@@ -13,7 +13,7 @@ import i18n from './i18n';
 import VueHotkey from './scripts/hotkey';
 import App from './app.vue';
 import MiOS from './mios';
-import { version, langs, instanceName } from './config';
+import { version, langs, instanceName, getLocale } from './config';
 import PostFormDialog from './components/post-form-dialog.vue';
 import Dialog from './components/dialog.vue';
 import Menu from './components/menu.vue';
@@ -21,6 +21,8 @@ import { router } from './router';
 import { applyTheme, lightTheme } from './theme';
 import { isDeviceDarkmode } from './scripts/is-device-darkmode';
 import createStore from './store';
+import { clientDb, get, count } from './db';
+import { setI18nContexts } from './scripts/set-i18n-contexts';
 
 Vue.use(Vuex);
 Vue.use(VueHotkey);
@@ -96,27 +98,6 @@ if (isMobile || window.innerWidth <= 1024) {
 	head.appendChild(viewport);
 }
 
-//#region Fetch locale data
-const cachedLocale = localStorage.getItem('locale');
-
-if (cachedLocale == null) {
-	fetch(`/assets/locales/${lang}.${version}.json`)
-		.then(response => response.json()).then(locale => {
-			localStorage.setItem('locale', JSON.stringify(locale));
-			i18n.locale = lang;
-			i18n.setLocaleMessage(lang, locale);
-		});
-} else {
-	// TODO: 古い時だけ更新
-	setTimeout(() => {
-		fetch(`/assets/locales/${lang}.${version}.json`)
-			.then(response => response.json()).then(locale => {
-				localStorage.setItem('locale', JSON.stringify(locale));
-			});
-	}, 1000 * 5);
-}
-//#endregion
-
 //#region Set lang attr
 const html = document.documentElement;
 html.setAttribute('lang', lang);
@@ -164,6 +145,16 @@ os.init(async () => {
 		if (store.state.device.syncDeviceDarkMode) {
 			store.commit('device/set', { key: 'darkMode', value: mql.matches });
 		}
+	});
+	//#endregion
+
+	//#region Fetch locale data
+	await count(clientDb.i18nContexts).then(async n => {
+		if (n === 0) return setI18nContexts(lang, version);
+		if ((await get('_version_', clientDb.i18nContexts) !== version)) return setI18nContexts(lang, version, n > 4000);
+
+		i18n.locale = lang;
+		i18n.setLocaleMessage(lang, await getLocale());
 	});
 	//#endregion
 
