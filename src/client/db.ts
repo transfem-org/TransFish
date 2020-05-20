@@ -25,6 +25,28 @@ export function entries(store: Store): Promise<[IDBValidKey, unknown][]> {
 	}).then(() => entries);
 }
 
+export async function bulkGet(keys: IDBValidKey[], store: Store): Promise<[IDBValidKey, unknown][]> {
+	const valPromises: Promise<[IDBValidKey, unknown]>[] = [];
+
+	const tx = await openTransaction(store, 'readwrite');
+	const st = tx.objectStore(store.storeName);
+	for (const key of keys) {
+		valPromises.push(new Promise((resolve, reject) => {
+			const getting = st.get(key);
+			getting.onsuccess = function (e) {
+				return resolve([key, this.result]);
+			};
+			getting.onerror = function (e) {
+				return reject(this.error);
+			};
+		}));
+	}
+	return new Promise((resolve, reject) => {
+		tx.oncomplete = () => resolve(Promise.all(valPromises));
+		tx.abort = tx.onerror = () => reject(tx.error);
+	});
+}
+
 export async function bulkSet(map: [IDBValidKey, any][], store: Store): Promise<void> {
 	const tx = await openTransaction(store, 'readwrite');
 	const st = tx.objectStore(store.storeName);

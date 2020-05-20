@@ -1,14 +1,13 @@
 import getNoteSummary from '../../misc/get-note-summary';
 import getUserName from '../../misc/get-user-name';
-import { clientDb, get } from '../db';
+import { clientDb, get, bulkGet } from '../db';
 import { fromEntries } from '../../prelude/array';
 
 const getTranslation = (text: string): Promise<string> => get(text, clientDb.i18nContexts);
 
 export default async function(type, data): Promise<[string, NotificationOptions]> {
 	const contexts = ['deletedNote', 'invisibleNote', 'withNFiles', '_cw.poll'];
-	const locale = await Promise.all(contexts.map(c => getTranslation(c)))
-		.then(translations => fromEntries(translations.map((translation, i) => [contexts[i], translation])));
+	const locale = fromEntries(await bulkGet(contexts, clientDb.i18nContexts) as [string, string][]);
 
 	switch (type) {
 		case 'driveFileCreated': // TODO (Server Side)
@@ -30,6 +29,12 @@ export default async function(type, data): Promise<[string, NotificationOptions]
 						icon: data.user.avatarUrl
 					}];
 
+				case 'renote':
+					return [(await getTranslation('youRenoted')).replace('{name}', getUserName(data.user)), {
+						body: getNoteSummary(data.note, locale),
+						icon: data.user.avatarUrl
+					}];
+
 				case 'quote':
 					return [(await getTranslation('youGotQuote')).replace('{name}', getUserName(data.user)), {
 						body: getNoteSummary(data.note, locale),
@@ -40,6 +45,35 @@ export default async function(type, data): Promise<[string, NotificationOptions]
 					return [`${data.reaction} ${getUserName(data.user)}`, {
 						body: getNoteSummary(data.note, locale),
 						icon: data.user.avatarUrl
+					}];
+
+				case 'pollVote':
+					return [(await getTranslation('youGotPoll')).replace('{name}', getUserName(data.user)), {
+						body: getNoteSummary(data.note, locale),
+						icon: data.user.avatarUrl
+					}];
+
+				case 'follow':
+					return [await getTranslation('youWereFollowed'), {
+						body: getUserName(data.user),
+						icon: data.user.avatarUrl
+					}];
+
+				case 'receiveFollowRequest':
+					return [await getTranslation('youReceivedFollowRequest'), {
+						body: getUserName(data.user),
+						icon: data.user.avatarUrl
+					}];
+
+				case 'followRequestAccepted':
+					return [await getTranslation('yourFollowRequestAccepted'), {
+						body: getUserName(data.user),
+						icon: data.user.avatarUrl
+					}];
+
+				case 'groupInvited':
+					return [await getTranslation('youWereInvitedToGroup'), {
+						body: data.group.name
 					}];
 
 				default:
