@@ -5,7 +5,7 @@
 		<x-notification v-else :notification="notification" :with-time="true" :full="true" class="_panel notification" :key="notification.id"/>
 	</x-list>
 
-	<button class="_panel _button" v-if="more" @click="fetchMore" :disabled="moreFetching">
+	<button class="_panel _button" ref="loadMore" v-show="more" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }">
 		<template v-if="!moreFetching">{{ $t('loadMore') }}</template>
 		<template v-if="moreFetching"><mk-loading inline/></template>
 	</button>
@@ -27,7 +27,7 @@ export default Vue.extend({
 	components: {
 		XNotification,
 		XList,
-		XNote,
+		XNote
 	},
 
 	mixins: [
@@ -50,7 +50,7 @@ export default Vue.extend({
 				params: () => ({
 					includeTypes: this.type ? [this.type] : undefined
 				})
-			},
+			}
 		};
 	},
 
