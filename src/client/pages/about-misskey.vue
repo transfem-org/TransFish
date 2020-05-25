@@ -23,7 +23,7 @@
 				<li><mk-link url="https://github.com/u1-liquid" class="at">@u1-liquid</mk-link></li>
 			</ul>
 			<div style="margin-top: 1em;">📦 {{ $t('misskeySource') }}</div>
-			<mk-url url="https://github.com/syuilo/misskey"/>
+			<mk-url url="https://github.com/tamaina/misskey"/>
 			<div style="margin-top: 1em;">🌏 {{ $t('misskeyTranslation') }}</div>
 			<mk-url url="https://crowdin.com/project/misskey"/>
 			<div style="margin-top: 1em;">💴 {{ $t('misskeyDonate') }}</div>
