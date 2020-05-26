@@ -69,6 +69,7 @@ import { formatTimeString } from '../../misc/format-time-string';
 import { selectDriveFile } from '../scripts/select-drive-file';
 import MkTooltip from './ui/tooltip.vue';
 import { isDeviceTouch } from '../scripts/is-device-touch';
+import { noteVisibilities } from '../../types'
 
 const tooltipEvents = isDeviceTouch ? ['touchstart', 'touchend'] : ['mouseover', 'mouseleave'];
 
@@ -463,7 +464,7 @@ export default Vue.extend({
 		},
 
 		applyVisibility(v: string) {
-			this.visibility = ['public', 'home', 'followers', 'specified'].includes(v) ? v : 'public'; // v11互換性のため
+			this.visibility = (noteVisibilities as unknown as string[]).includes(v) ? v : 'public'; // v11互換性のため
 		},
 
 		addVisibleUser() {
