@@ -1,8 +1,7 @@
 <template>
-<transition name="zoom-in-top">
-	<div class="buebdbiu" ref="popover" v-if="show">
-		{{ text }}
-		<slot></slot>
+<transition name="zoom-in-top" appear>
+	<div class="buebdbiu" v-if="show">
+		<slot>{{ text }}</slot>
 	</div>
 </transition>
 </template>
@@ -20,17 +19,17 @@ export default Vue.extend({
 			required: false
 		}
 	},
+
 	data() {
 		return {
 			show: false
 		};
 	},
+
 	mounted() {
 		this.show = true;
 
 		this.$nextTick(() => {
-			const popover = this.$refs.popover as any;
-
 			if (this.source == null) {
 				this.destroyDom();
 				return;
@@ -39,10 +38,11 @@ export default Vue.extend({
 
 			const x = rect.left + window.pageXOffset + (this.source.offsetWidth / 2);
 			const y = rect.top + window.pageYOffset + this.source.offsetHeight;
-			popover.style.left = (x - 28) + 'px';
-			popover.style.top = (y + 16) + 'px';
+			this.$el.style.left = (x - 28) + 'px';
+			this.$el.style.top = (y + 16) + 'px';
 		});
 	},
+
 	methods: {
 		close() {
 			this.show = false;
@@ -54,7 +54,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .buebdbiu {
-	z-index: 10000;
+	z-index: 11000;
 	display: block;
 	position: absolute;
 	max-width: 240px;
