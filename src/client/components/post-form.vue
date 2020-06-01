@@ -67,14 +67,6 @@ import extractMentions from '../../misc/extract-mentions';
 import getAcct from '../../misc/acct/render';
 import { formatTimeString } from '../../misc/format-time-string';
 import { selectDriveFile } from '../scripts/select-drive-file';
-<<<<<<< HEAD
-import MkTooltip from './ui/tooltip.vue';
-import { isDeviceTouch } from '../scripts/is-device-touch';
-import { noteVisibilities } from '../../types'
-
-const tooltipEvents = isDeviceTouch ? ['touchstart', 'touchend'] : ['mouseover', 'mouseleave'];
-=======
->>>>>>> post-form-improve
 
 export default Vue.extend({
 	components: {
