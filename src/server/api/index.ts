@@ -76,7 +76,7 @@ router.get('/v1/instance/peers', async ctx => {
 });
 
 // Return 404 for unknown API
-router.all('*', async ctx => {
+router.all('/*', async ctx => {
 	ctx.status = 404;
 });
 
