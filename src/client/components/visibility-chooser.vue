@@ -29,12 +29,14 @@
 				<span>{{ $t('_visibility.specifiedDescription') }}</span>
 			</div>
 		</button>
-		<button class="_button" @click="localOnly = !localOnly" :class="{ active: localOnly }" data-index="5" key="localOnly">
+		<div class="divider"></div>
+		<button class="_button localOnly" @click="localOnly = !localOnly" :class="{ active: localOnly }" data-index="5" key="localOnly">
 			<div><fa :icon="faBiohazard"/></div>
 			<div>
 				<span>{{ $t('_visibility.localOnly') }}</span>
 				<span>{{ $t('_visibility.localOnlyDescription') }}</span>
 			</div>
+			<div><fa :icon="localOnly ? faToggleOn : faToggleOff"/></div>
 		</button>
 	</div>
 </x-popup>
@@ -42,7 +44,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faGlobe, faUnlock, faHome, faBiohazard } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faUnlock, faHome, faBiohazard, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import XPopup from './popup.vue';
 
@@ -67,7 +69,7 @@ export default Vue.extend({
 		return {
 			v: this.$store.state.settings.rememberNoteVisibility ? this.$store.state.deviceUser.visibility : (this.currentVisibility || this.$store.state.settings.defaultNoteVisibility),
 			localOnly: this.currentLocalOnly,
-			faGlobe, faUnlock, faEnvelope, faHome, faBiohazard
+			faGlobe, faUnlock, faEnvelope, faHome, faBiohazard, faToggleOn, faToggleOff
 		}
 	},
 	methods: {
@@ -93,6 +95,11 @@ export default Vue.extend({
 	width: 240px;
 	padding: 8px 0;
 
+	> .divider {
+		margin: 8px 0;
+		border-top: solid 1px var(--divider);
+	}
+
 	> button {
 		display: flex;
 		padding: 8px 14px;
@@ -114,7 +121,12 @@ export default Vue.extend({
 			background: var(--accent);
 		}
 
-		> *:first-child {
+		&.localOnly.active {
+			color: var(--accent);
+			background: inherit;
+		}
+
+		> *:nth-child(1) {
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -126,8 +138,11 @@ export default Vue.extend({
 			margin-bottom: auto;
 		}
 
-		> *:last-child {
+		> *:nth-child(2) {
 			flex: 1 1 auto;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 
 			> span:first-child {
 				display: block;
@@ -137,6 +152,18 @@ export default Vue.extend({
 			> span:last-child:not(:first-child) {
 				opacity: 0.6;
 			}
+		}
+
+		> *:nth-child(3) {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-left: 10px;
+			width: 16px;
+			top: 0;
+			bottom: 0;
+			margin-top: auto;
+			margin-bottom: auto;
 		}
 	}
 }
