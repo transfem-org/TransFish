@@ -97,14 +97,14 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		if (!this.notification.isRead ) {
+		if (!this.notification.isRead) {
 			this.readObserver = new IntersectionObserver((entries, observer) => {
 				if (!entries.some(entry => entry.isIntersecting)) return;
 				this.$root.stream.send('readNotification', {
 					id: this.notification.id
 				});
 				entries.map(({ target }) => observer.unobserve(target));
-			})
+			});
 
 			this.readObserver.observe(this.$el);
 
