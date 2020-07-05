@@ -1,4 +1,5 @@
 import * as Router from '@koa/router';
+import * as json from 'koa-json-body';
 import * as httpSignature from 'http-signature';
 
 import { renderActivity } from '../remote/activitypub/renderer';
@@ -57,8 +58,8 @@ export function setResponseType(ctx: Router.RouterContext) {
 }
 
 // inbox
-router.post('/inbox', inbox);
-router.post('/users/:user/inbox', inbox);
+router.post('/inbox', json(), inbox);
+router.post('/users/:user/inbox', json(), inbox);
 
 // note
 router.get('/notes/:note', async (ctx, next) => {
