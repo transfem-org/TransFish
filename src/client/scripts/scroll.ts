@@ -30,3 +30,12 @@ export function onScrollTop(el: Element, cb) {
 		remove: () => container.removeEventListener('scroll', onscroll)
 	};
 }
+
+export function scroll(el: Element, top: number) {
+	const container = getScrollContainer(el);
+	if (container == null) {
+		window.scroll({ top: top, behavior: 'instant' });
+	} else {
+		container.scrollTop = top;
+	}
+}
