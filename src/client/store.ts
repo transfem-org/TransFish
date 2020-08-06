@@ -77,6 +77,7 @@ export const defaultDeviceSettings = {
 	enableInfiniteScroll: true,
 	fixedWidgetsPosition: false,
 	useBlurEffectForModal: true,
+	sidebarDisplay: 'full', // full, icon, hide
 	roomGraphicsQuality: 'medium',
 	roomUseOrthographicCamera: true,
 	deckColumnAlign: 'left',
@@ -613,9 +614,10 @@ export default () => new Vuex.Store({
 				},
 				//#endregion
 
-				installPlugin(state, { meta, ast, token }) {
+				installPlugin(state, { id, meta, ast, token }) {
 					state.plugins.push({
 						...meta,
+						id,
 						active: true,
 						configData: {},
 						token: token,

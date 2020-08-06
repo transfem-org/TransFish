@@ -1,5 +1,81 @@
 ChangeLog
 =========
+
+12.46.0 (2020/8/2)
+------------------
+
+### ✨Improvements
+
+- チャットでCmd+Enterショートカットが使用できない問題を修正 [#6614](https://github.com/syuilo/misskey/pull/6614)
+- サイドバーを折り畳めるように [#6610](https://github.com/syuilo/misskey/pull/6610)
+	
+### 🐛Fixes
+- お知らせを既読にできない問題を修正 [9008664](https://github.com/syuilo/misskey/commit/9008664606483e2902f03929f0f696ac43de6db4)
+- シンタックスハイライト構文が壊れている問題を修正 [60736ba](https://github.com/syuilo/misskey/commit/60736bab2ac974c2d2c2c106d297fa67fdaff87a)
+
+12.45.1 (2020/8/1)
+-------------------
+
+### ✨Improvements
+- 自分のノートにリアクションを押せるように [#6506](https://github.com/syuilo/misskey/pull/6506)
+- 非ログイン時にウェルカムメッセージが被る問題を修正 [#6509](https://github.com/syuilo/misskey/pull/6509)
+
+### 🐛Fixes
+- 最新の投票結果がタイムラインなどに反映されない問題を修正 [2522e73](https://github.com/syuilo/misskey/commit/2522e7388d4d0b92d4517f2c07190e8f88394026)
+
+
+12.45.0 (2020/7/30)
+-------------------
+
+### ✨Improvements
+- プラグインのIDを不要に [57203de](https://github.com/syuilo/misskey/commit/57203de4cbf3947825f422dd746a076d79e353c7)
+- プラグインの設定にdescriptionを表示できるように [9eee564](https://github.com/syuilo/misskey/commit/9eee5644b9b112ed6d8863edce569f4d554459f5)
+- AiScript: Plugin:register_note_post_interruptor 関数を追加(ノート作成時の割り込み処理を登録できる) [e7de5f6](https://github.com/syuilo/misskey/commit/e7de5f60513774e9c599a2e3aac0fbeefb88236f)
+- AiScript: Plugin:open_url 関数を追加 [60d81d7](https://github.com/syuilo/misskey/commit/60d81d74e35879f52a374d5e35fe25dc115d75a4)
+
+### 🐛Fixes
+- 通知のノートがリアクティブではない問題を修正 [2701a7e](https://github.com/syuilo/misskey/commit/2701a7e85fcf745e75b46b88b0fc9b3f76218e44)
+- ピン留めされたノートがリアクティブではない問題を修正 [31a0afd](https://github.com/syuilo/misskey/commit/31a0afdaab309cd2e9fd22f0524730488202704d)
+- プラグインの設定がnullになることがある問題を修正 [01e9b3c](https://github.com/syuilo/misskey/commit/01e9b3c2f634f37cee6820ca25d7576ef3ab6442)
+
+12.44.1 (2020/7/29)
+-------------------
+### 🐛Fixes
+- 通知が流れない問題を修正 [9f94f60](https://github.com/syuilo/misskey/commit/9f94f60ededccfb3ff109aef1241be633d27eaa7)
+
+12.44.0 (2020/7/29)
+-------------------
+### ✨Improvements
+- ワードミュートの実装 [#6594](https://github.com/syuilo/misskey/pull/6594)
+- ページのリストをタブUIに [6b8354c](https://github.com/syuilo/misskey/commit/6b8354ccbfa1d96b4445013d2e93af8e06550516)
+- プラグインを無効にできるように [595ad04](https://github.com/syuilo/misskey/commit/595ad04ddbbf9ff9fc6842f345d4738a9f1cc150)
+- AiScript: ノート書き換えAPI [30df8ea](https://github.com/syuilo/misskey/commit/30df8ea1213013072f139aa26a635330457cf2bc)
+- クライアントのソースコードのリファクタ [b5a1fdd](https://github.com/syuilo/misskey/commit/b5a1fdd4c7597ebdd4ab6022e189da9ca3451dbb), [14b7f05](https://github.com/syuilo/misskey/commit/14b7f05af40ede154a767334dbbefc3458584290), [0efa969](https://github.com/syuilo/misskey/commit/0efa969a153a060d232a0e31b10577ece87faeae), [a8adc46](https://github.com/syuilo/misskey/commit/a8adc46f3ba42e86c64a64f2633f5796aeca01f4), [1b9d316](https://github.com/syuilo/misskey/commit/1b9d316e7c2446211f4b5b6ec27dce0d9b4f0968)
+
+12.43.0 (2020/7/26)
+-------------------
+*このアップデートでは、データベースのマイグレーション(`npm run migrate`/`yarn migrate`)が必要です。*
+
+### ✨Improvements
+- 連合ウィジェットを追加 [186b26e](https://github.com/syuilo/misskey/commit/186b26e103d5dc893a741ab9c5805b5dc81f14c0), [e1f2e36](https://github.com/syuilo/misskey/commit/e1f2e364a4347a8da78a32ed741c789a288d3957), [bd54e44](https://github.com/syuilo/misskey/commit/bd54e44b35f7aeae8766054322e2908881323041), [58211fc](https://github.com/syuilo/misskey/commit/58211fc6a72536b066bd8a78fb4bb083cfc1051a), [e5863c2](https://github.com/syuilo/misskey/commit/e5863c2867c1ee8d0d6f2257de7f7fc7791cf8a6), [55be9cc](https://github.com/syuilo/misskey/commit/55be9cc9d130cca541cfe0569885db4d79a58128)
+  * 連合ウィジェットは、最近着信のあったリモートのインスタンスを表示します。
+- リモートのインスタンスのアイコンを取得して表示するように [#6591](https://github.com/syuilo/misskey/pull/6591), [b07d037](https://github.com/syuilo/misskey/commit/b07d037cb5b1531c38cb2d56ff612bdba5c58a3f), [3f2ffce](https://github.com/syuilo/misskey/commit/3f2ffcea97b6496053fd4027192976bfad2626b0)
+- インスタンス設定の不足分を追加 [#6576](https://github.com/syuilo/misskey/pull/6576)
+- クライアントでのソースコードのリファクタ・パフォーマンス改善
+  * lintでのエラーを修正 [#6568](https://github.com/syuilo/misskey/pull/6568)
+  * ~~vue-i18nのv-tを使うように [9c30b23](https://github.com/syuilo/misskey/commit/9c30b23358699a530f2bcb0f5ae6efe17146bcb3)~~ [166bc19](https://github.com/syuilo/misskey/commit/166bc19131ae4b40bdd5e85269729f6eb5e3d931)
+  * 静的な内容にv-onceを付加 [da874f3](https://github.com/syuilo/misskey/commit/da874f3383088dddbf7ce441b0c9d8f6512dfc9b)
+
+### 🐛Fixes
+- 投票の残り時間表示の修正 [#6565](https://github.com/syuilo/misskey/pull/6565)
+- blurhashにした影響で猫耳の色をアイコンに合わせられなくなっているのを修正 [#6585](https://github.com/syuilo/misskey/pull/6585), [7e2b6b6](https://github.com/syuilo/misskey/commit/7e2b6b6369a5eecad2374b84527dca1a712053c9)
+- 脆弱性のある依存関係をアップデート [#6572](https://github.com/syuilo/misskey/pull/6572)
+- blurhashのテストを修正 [#6573](https://github.com/syuilo/misskey/pull/6573)
+- Deckであなた宛て・ダイレクトカラムを追加するとメインカラムに文字が重なる問題を修正 [#6577](https://github.com/syuilo/misskey/pull/6577)
+- Deckの翻訳を追加 [#6567](https://github.com/syuilo/misskey/pull/6567)
+- アンテナカラムの挙動を正常化 [#6567](https://github.com/syuilo/misskey/pull/6567)
+- ウィジェットカラムの挙動を正常化して編集モードの見栄えを良くした [#6567](https://github.com/syuilo/misskey/pull/6567)
+
 12.42.0 (2020/7/19)
 -------------------
 *このアップデートでは、データベースのマイグレーション(`npm run migrate`/`yarn migrate`)が必要です。*
