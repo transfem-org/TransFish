@@ -1,6 +1,4 @@
-import Vue from 'vue';
-import { getScrollPosition, onScrollTop } from './scroll';
-import { onBecomeVisible } from './page-visibility';
+import { onScrollTop, isTopVisible } from './scroll';
 
 const SECOND_FETCH_LIMIT = 30;
 
@@ -149,8 +147,7 @@ export default (opts) => ({
 		},
 
 		prepend(item) {
-			const isTop = () => this.isBackTop || (document.body.contains(this.$el) && (getScrollPosition(this.$el) === 0));
-			const isTabVisible = () => document.visibilityState === 'visible';
+			const isTop = this.isBackTop || (document.body.contains(this.$el) && isTopVisible(this.$el));
 
 			if (isTop() && isTabVisible()) {
 				// Prepend the item
