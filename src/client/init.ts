@@ -126,6 +126,10 @@ window.addEventListener('storage', e => {
 	}
 }, false);
 
+(async () => {
+
+await vuexPersistAndShare(store, ['i'], ['device', 'deviceUser', 'settings', 'instance'], []);
+
 const os = new MiOS(store);
 
 os.init(async () => {
@@ -404,3 +408,5 @@ os.init(async () => {
 		});
 	}
 });
+
+})();
