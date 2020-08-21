@@ -28,6 +28,7 @@ import createStore from './store';
 import { clientDb, get, count } from './db';
 import { setI18nContexts } from './scripts/set-i18n-contexts';
 import { createPluginEnv } from './scripts/aiscript/api';
+import { vuexPersistAndShare } from './scripts/vuex-persist-and-share';
 
 Vue.use(Vuex);
 Vue.use(VueHotkey);
@@ -114,14 +115,9 @@ document.body.innerHTML = '<div id="app"></div>';
 
 const store = createStore();
 
-// 他のタブと永続化されたstateを同期
+// 他のタブとlocalStorageを同期
 window.addEventListener('storage', e => {
-	if (e.key === 'vuex') {
-		store.replaceState({
-			...store.state,
-			...JSON.parse(e.newValue)
-		});
-	} else if (e.key === 'i') {
+	if (e.key === 'i') {
 		location.reload();
 	}
 }, false);
