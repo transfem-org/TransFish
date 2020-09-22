@@ -161,6 +161,10 @@ export default Vue.extend({
 		},
 
 		async onNotification(notification) {
+			if (this.$store.state.i.mutingNotificationTypes.includes(notification.type)) {
+				return;
+			}
+
 			if (document.visibilityState === 'visible') {
 				this.$root.stream.send('readNotification', {
 					id: notification.id
@@ -170,7 +174,6 @@ export default Vue.extend({
 					notification
 				});
 			}
-
 			this.$root.sound('notification');
 		},
 
