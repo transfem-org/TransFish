@@ -336,7 +336,7 @@ export default Vue.extend({
 				padding 16px
 				overflow-wrap break-word
 				font-size 12px
-				box-shadow 0 1px 8px rgba(0, 0, 0, 0.2)
+				border-bottom solid var(--lineWidth) var(--faceDivider)
 
 				&:last-child
 					border-bottom none

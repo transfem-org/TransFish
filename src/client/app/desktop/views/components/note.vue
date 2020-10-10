@@ -196,7 +196,7 @@ export default Vue.extend({
 	margin 0
 	padding 0
 	overflow hidden
-	box-shadow 0 1px 8px rgba(0, 0, 0, 0.2)
+	border-bottom solid var(--lineWidth) var(--faceDivider)
 
 	&.mini
 		font-size 13px
