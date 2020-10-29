@@ -4,21 +4,19 @@
 
 import '@/style.scss';
 
-import { createApp } from 'vue';
+import { createApp, defineAsyncComponent } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import Root from './root.vue';
 import widgets from './widgets';
 import directives from './directives';
 import components from '@/components';
-import { version, apiUrl } from '@/config';
+import { version, apiUrl, deckmode } from '@/config';
 import { store } from './store';
 import { router } from './router';
 import { applyTheme } from '@/scripts/theme';
 import { isDeviceDarkmode } from '@/scripts/is-device-darkmode';
 import { i18n, lang } from './i18n';
 import { stream, sound, isMobile, dialog } from '@/os';
-import { vuexPersistAndShare } from './scripts/vuex-persist-and-share';
 
 console.info(`Misskey v${version}`);
 
@@ -47,9 +45,6 @@ if (_DEV_) {
 		*/
 	});
 }
-
-// vuex永続化・共有スクリプトを起動しておく
-vuexPersistAndShare(store, ['i'], ['device', 'deviceUser', 'settings', 'instance'], []);
 
 // タッチデバイスでCSSの:hoverを機能させる
 document.addEventListener('touchend', () => {}, { passive: true });
@@ -156,7 +151,12 @@ store.dispatch('instance/fetch').then(() => {
 
 stream.init(store.state.i);
 
-const app = createApp(Root);
+const app = createApp(await (
+	window.location.search === '?zen' ? import('@/ui/zen.vue') :
+	!store.getters.isSignedIn         ? import('@/ui/visitor.vue') :
+	deckmode                          ? import('@/ui/deck.vue') :
+	import('@/ui/default.vue')
+).then(x => x.default));
 
 if (_DEV_) {
 	app.config.performance = true;

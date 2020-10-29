@@ -2,6 +2,8 @@ import { createStore } from 'vuex';
 import * as nestedProperty from 'nested-property';
 import { api } from '@/os';
 import { erase } from '../prelude/array';
+import { VuexPersistDB } from './scripts/vuex-idb';
+import { vuexPersistAndSharePlugin } from './scripts/vuex-persist-and-share';
 
 export const defaultSettings = {
 	tutorial: 0,
@@ -69,11 +71,14 @@ export const defaultDeviceSettings = {
 	animatedMfm: true,
 	imageNewTab: false,
 	chatOpenBehavior: 'page',
+	defaultSideView: false,
+	deckNavWindow: true,
 	showFixedPostForm: false,
 	disablePagesScript: false,
 	enableInfiniteScroll: true,
 	useBlurEffectForModal: true,
 	sidebarDisplay: 'full', // full, icon, hide
+	instanceTicker: 'remote', // none, remote, always
 	roomGraphicsQuality: 'medium',
 	roomUseOrthographicCamera: true,
 	deckColumnAlign: 'left',
@@ -103,6 +108,10 @@ export const notePostInterruptors = [];
 export const store = createStore({
 	strict: _DEV_,
 
+	plugins: [
+		vuexPersistAndSharePlugin()
+	],
+
 	state: {
 		i: null,
 	},
@@ -127,7 +136,8 @@ export const store = createStore({
 			ctx.commit('settings/init', i.clientData);
 			ctx.commit('deviceUser/init', ctx.state.device.userData[i.id] || {});
 			// TODO: ローカルストレージを消してページリロードしたときは i が無いのでその場合のハンドリングをよしなにやる
-			await ctx.dispatch('addAcount', { id: i.id, i: localStorage.getItem('i') });
+			const db = new VuexPersistDB();
+			await ctx.dispatch('addAcount', { id: i.id, i: await db.get('i', 'store') });
 		},
 
 		addAcount(ctx, info) {
@@ -197,6 +207,15 @@ export const store = createStore({
 			state: defaultDeviceSettings,
 
 			mutations: {
+				overwrite(state, x) {
+					for (const k of Object.keys(state)) {
+						if (x[k] === undefined) delete state[k];
+					}
+					for (const k of Object.keys(x)) {
+						state[k] = x[k];
+					}
+				},
+
 				set(state, x: { key: string; value: any }) {
 					state[x.key] = x.value;
 				},
@@ -213,6 +232,15 @@ export const store = createStore({
 			state: defaultDeviceUserSettings,
 
 			mutations: {
+				overwrite(state, x) {
+					for (const k of Object.keys(state)) {
+						if (x[k] === undefined) delete state[k];
+					}
+					for (const k of Object.keys(x)) {
+						state[k] = x[k];
+					}
+				},
+
 				init(state, x) {
 					for (const [key, value] of Object.entries(defaultDeviceUserSettings)) {
 						if (x[key]) {
