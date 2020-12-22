@@ -6,7 +6,7 @@ import instanceChart from '../../services/chart/instance';
 import Logger from '../../services/logger';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
 import { isBlockedHost, isClosedHost } from '../../misc/instance-info';
-import { DeliverJobData } from '..';
+import { DeliverJobData } from '../types';
 
 const logger = new Logger('deliver');
 

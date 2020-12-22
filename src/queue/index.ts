@@ -1,4 +1,3 @@
-import { ObjectID } from 'mongodb';
 import * as Queue from 'bull';
 import * as httpSignature from 'http-signature';
 
@@ -15,6 +14,7 @@ import { getJobInfo } from './get-job-info';
 import { IActivity } from '../remote/activitypub/type';
 import { IMute } from '../models/mute';
 import queueChart from '../services/chart/queue';
+import { DeliverJobData, InboxJobData, DbJobData, InboxInfo, InboxRequestData } from './types';
 
 function initializeQueue<T>(name: string, limitPerSec = -1) {
 	return new Queue<T>(name, config.redis != null ? {
@@ -31,62 +31,6 @@ function initializeQueue<T>(name: string, limitPerSec = -1) {
 		} : undefined
 	} : undefined);
 }
-
-//#region job data types
-export type DeliverJobData = {
-	/** Actor */
-	user: ILocalUser;
-	/** Activity */
-	content: any;
-	/** inbox URL to deliver */
-	to: string;
-	/** Detail information of inbox */
-	inboxInfo?: InboxInfo;
-};
-
-export type InboxInfo = {
-	/** kind of inbox */
-	origin: 'inbox' | 'sharedInbox';
-	/** inbox or sharedInbox URL to deliver */
-	url: string;
-	/** userId (in case of origin=inbox) */
-	userId?: string;
-};
-
-export type InboxJobData = {
-	activity: IActivity;
-	signature: httpSignature.IParsedSignature;
-	request?: InboxRequestData;
-};
-
-export type InboxRequestData = {
-	ip?: string;
-};
-
-export type DbJobData = DbUserJobData | DbUserImportJobData | DeleteNoteJobData | NotifyPollFinishedData | ExpireMuteJobData;
-
-export type DbUserJobData = {
-	user: ILocalUser;
-};
-
-export type DbUserImportJobData = {
-	user: ILocalUser;
-	fileId: ObjectID;
-};
-
-export type DeleteNoteJobData = {
-	noteId: ObjectID;
-};
-
-export type NotifyPollFinishedData = {
-	userId: string;	// ObjectIDを入れてもstringでシリアライズされるだけ
-	noteId: string;
-}
-
-export type ExpireMuteJobData = {
-	muteId: string;
-}
-//#endregion
 
 export const deliverQueue = initializeQueue<DeliverJobData>('deliver', config.deliverJobPerSec || 128);
 export const inboxQueue = initializeQueue<InboxJobData>('inbox', config.inboxJobPerSec || 16);
