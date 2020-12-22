@@ -12,7 +12,7 @@ import instanceChart from '../../services/chart/instance';
 import { getApId } from '../../remote/activitypub/type';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
 import { isBlockedHost } from '../../misc/instance-info';
-import { InboxJobData } from '../types';
+import { InboxJobData } from '../type';
 import DbResolver from '../../remote/activitypub/db-resolver';
 import { inspect } from 'util';
 import { extractApHost } from '../../misc/convert-host';

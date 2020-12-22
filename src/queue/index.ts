@@ -14,7 +14,7 @@ import { getJobInfo } from './get-job-info';
 import { IActivity } from '../remote/activitypub/type';
 import { IMute } from '../models/mute';
 import queueChart from '../services/chart/queue';
-import { DeliverJobData, InboxJobData, DbJobData, InboxInfo, InboxRequestData } from './types';
+import { DeliverJobData, InboxJobData, DbJobData, InboxInfo, InboxRequestData } from './type';
 
 function initializeQueue<T>(name: string, limitPerSec = -1) {
 	return new Queue<T>(name, config.redis != null ? {
