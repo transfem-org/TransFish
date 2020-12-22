@@ -14,6 +14,7 @@ import { INote } from '../models/note';
 import { getJobInfo } from './get-job-info';
 import { IActivity } from '../remote/activitypub/type';
 import { IMute } from '../models/mute';
+import queueChart from '../services/chart/queue';
 
 function initializeQueue<T>(name: string, limitPerSec = -1) {
 	return new Queue<T>(name, config.redis != null ? {
@@ -95,8 +96,14 @@ const deliverLogger = queueLogger.createSubLogger('deliver');
 const inboxLogger = queueLogger.createSubLogger('inbox');
 const dbLogger = queueLogger.createSubLogger('db');
 
+let deliverDeltaCounts = 0;
+let inboxDeltaCounts = 0;
+
 deliverQueue
-	.on('waiting', (jobId) => deliverLogger.debug(`waiting id=${jobId}`))
+	.on('waiting', (jobId) => {
+		deliverDeltaCounts++;
+		deliverLogger.debug(`waiting id=${jobId}`);
+	})
 	.on('active', (job) => deliverLogger.info(`active ${getJobInfo(job, true)} to=${job.data.to}`))
 	.on('completed', (job, result) => deliverLogger.info(`completed(${result}) ${getJobInfo(job, true)} to=${job.data.to}`))
 	.on('failed', (job, err) => deliverLogger.warn(`failed(${err}) ${getJobInfo(job)} to=${job.data.to}`))
@@ -104,7 +111,10 @@ deliverQueue
 	.on('stalled', (job) => deliverLogger.warn(`stalled ${getJobInfo(job)} to=${job.data.to}`));
 
 inboxQueue
-	.on('waiting', (jobId) => inboxLogger.debug(`waiting id=${jobId}`))
+	.on('waiting', (jobId) => {
+		inboxDeltaCounts++;
+		inboxLogger.debug(`waiting id=${jobId}`);
+	})
 	.on('active', (job) => inboxLogger.info(`active ${getJobInfo(job, true)} activity=${job.data.activity ? job.data.activity.id : 'none'}`))
 	.on('completed', (job, result) => inboxLogger.info(`completed(${result}) ${getJobInfo(job, true)} activity=${job.data.activity ? job.data.activity.id : 'none'}`))
 	.on('failed', (job, err) => inboxLogger.warn(`failed(${err}) ${getJobInfo(job)} activity=${job.data.activity ? job.data.activity.id : 'none'}`))
@@ -118,6 +128,15 @@ dbQueue
 	.on('failed', (job, err) => dbLogger.warn(`${job.name} failed(${err}) ${getJobInfo(job)}`))
 	.on('error', (error) => dbLogger.error(`error ${error}`))
 	.on('stalled', (job) => dbLogger.warn(`${job.name} stalled ${getJobInfo(job)}`));
+
+// Chart bulk write
+setInterval(() => {
+	if (deliverDeltaCounts === 0 && inboxDeltaCounts === 0) return;
+	queueChart.update(deliverDeltaCounts, inboxDeltaCounts);
+	deliverDeltaCounts = 0;
+	inboxDeltaCounts = 0;
+}, 5000);
+//#endregion
 
 /**
  * Queue deliver job
