@@ -33,7 +33,7 @@ export type InboxRequestData = {
 	ip?: string;
 };
 
-export type DbJobData = DbUserJobData | DbUserImportJobData | DeleteNoteJobData | NotifyPollFinishedData | ExpireMuteJobData;
+export type DbJobData = DbUserJobData | DbUserImportJobData | DeleteNoteJobData | NotifyPollFinishedJobData | ExpireMuteJobData;
 
 export type DbUserJobData = {
 	user: ILocalUser;
@@ -48,7 +48,7 @@ export type DeleteNoteJobData = {
 	noteId: ObjectID;
 };
 
-export type NotifyPollFinishedData = {
+export type NotifyPollFinishedJobData = {
 	userId: string;	// ObjectIDを入れてもstringでシリアライズされるだけ
 	noteId: string;
 }
