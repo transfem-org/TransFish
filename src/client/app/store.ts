@@ -210,7 +210,6 @@ export default (os: MiOS) => new Vuex.Store({
 
 					// 左端固定以外から左端に移動したら左端固定にする
 					if (state.deckTemporaryColumnPosition !== 'left' && leftEdge) {
-						console.log(`左端以外から左端に移動したら左端にする`);
 						state.deckTemporaryColumnPosition = 'left';
 						state.deckTemporaryColumnIndex = 1;
 						return;
@@ -218,7 +217,6 @@ export default (os: MiOS) => new Vuex.Store({
 
 					// 右端固定以外から右端に移動したら右端固定にする
 					if (state.deckTemporaryColumnPosition !== 'right' && rightEdge) {
-						console.log(`右端以外から右端に移動したら右端にする`);
 						state.deckTemporaryColumnPosition = 'right';
 						state.deckTemporaryColumnIndex = 1;
 						return;
