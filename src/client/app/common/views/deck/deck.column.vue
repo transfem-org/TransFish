@@ -279,14 +279,8 @@ export default Vue.extend({
 		},
 
 		onDragstart(e) {
-			// テンポラリカラムはドラッグさせない
-			if (this.isTemporaryColumn) {
-				e.preventDefault();
-				return;
-			}
-
 			e.dataTransfer.effectAllowed = 'move';
-			e.dataTransfer.setData('mk-deck-column', this.column.id);
+			e.dataTransfer.setData('mk-deck-column', this.isTemporaryColumn ? 'TEMP' : this.column.id);
 			this.dragging = true;
 		},
 
@@ -324,6 +318,12 @@ export default Vue.extend({
 			this.$root.$emit('deck.column.dragEnd');
 
 			const id = e.dataTransfer.getData('mk-deck-column');
+
+			if (id === 'TEMP') {
+				this.$store.commit('device/changeTemporaryColumn', this.column.id);
+				return;
+			}
+
 			if (id != null && id != '') {
 				this.$store.commit('device/swapDeckColumn', {
 					a: this.column.id,
