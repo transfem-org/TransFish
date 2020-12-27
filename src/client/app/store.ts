@@ -211,6 +211,9 @@ export default (os: MiOS) => new Vuex.Store({
 					const bY = state.deck.layout[bX].findIndex(id => id == b);
 					state.deck.layout[aX][aY] = b;
 					state.deck.layout[bX][bY] = a;
+
+					// なんかしないと変更が反映されない
+					state.deck.layout = state.deck.layout.map(x => x);
 				},
 
 				swapLeftDeckColumn(state, id) {
