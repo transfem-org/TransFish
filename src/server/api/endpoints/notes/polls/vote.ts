@@ -1,19 +1,20 @@
 import $ from 'cafy';
 import ID, { transform } from '../../../../../misc/cafy-id';
 import Vote from '../../../../../models/poll-vote';
-import Note from '../../../../../models/note';
+import Note, { INote } from '../../../../../models/note';
 import Watching from '../../../../../models/note-watching';
 import watch from '../../../../../services/note/watch';
 import { publishNoteStream } from '../../../../../services/stream';
 import { createNotification } from '../../../../../services/create-notification';
 import define from '../../../define';
-import User, { IRemoteUser } from '../../../../../models/user';
+import User, { IRemoteUser, ILocalUser } from '../../../../../models/user';
 import { ApiError } from '../../../error';
 import { getNote } from '../../../common/getters';
 import { deliver, createNotifyPollFinishedJob } from '../../../../../queue';
 import { renderActivity } from '../../../../../remote/activitypub/renderer';
 import renderVote from '../../../../../remote/activitypub/renderer/vote';
 import { deliverQuestionUpdate } from '../../../../../services/note/polls/update';
+import { oidEquals } from '../../../../../prelude/oid';
 
 export const meta = {
 	desc: {
@@ -164,7 +165,8 @@ export default define(meta, async (ps, user) => {
 		watch(user._id, note);
 	}
 
-	if (note.poll.expiresAt) {
+	// 投票完了通知
+	if (note.poll.expiresAt && !oidEquals(note.userId, user._id) && exist.length === 0) {
 		createNotifyPollFinishedJob(note, user, note.poll.expiresAt);
 	}
 
