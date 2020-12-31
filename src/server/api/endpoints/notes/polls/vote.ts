@@ -1,13 +1,13 @@
 import $ from 'cafy';
 import ID, { transform } from '../../../../../misc/cafy-id';
 import Vote from '../../../../../models/poll-vote';
-import Note, { INote } from '../../../../../models/note';
+import Note from '../../../../../models/note';
 import Watching from '../../../../../models/note-watching';
 import watch from '../../../../../services/note/watch';
 import { publishNoteStream } from '../../../../../services/stream';
 import { createNotification } from '../../../../../services/create-notification';
 import define from '../../../define';
-import User, { IRemoteUser, ILocalUser } from '../../../../../models/user';
+import User, { IRemoteUser } from '../../../../../models/user';
 import { ApiError } from '../../../error';
 import { getNote } from '../../../common/getters';
 import { deliver, createNotifyPollFinishedJob } from '../../../../../queue';
