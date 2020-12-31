@@ -2,6 +2,7 @@ import DriveFile from '../../models/drive-file';
 import { ObjectID } from 'mongodb';
 import User, { isRemoteUser } from '../../models/user';
 import deleteFile from './delete-file';
+import { oidEquals } from '../../prelude/oid';
 
 export async function deleteUnusedFile(fileId: ObjectID) {
 	const file = await DriveFile.findOne(fileId);
@@ -15,6 +16,10 @@ export async function deleteUnusedFile(fileId: ObjectID) {
 	}
 
 	if (!file.metadata.attachedNoteIds || file.metadata.attachedNoteIds.length !== 0) {
+		return;
+	}
+
+	if (oidEquals(file._id, user.avatarId) || oidEquals(file._id, user.bannerId)) {
 		return;
 	}
 
