@@ -136,16 +136,10 @@ async function workerMain() {
 	if (workerType === 'server') {
 		await require('./server').default();
 	} else if (workerType === 'queue') {
-		require('./queue').default();
+		await require('./queue').default();
 	} else {
 		await require('./server').default();
-		require('./queue').default();
-	}
-
-	// ユニットテスト時にMisskeyが子プロセスで起動された時のため
-	// それ以外のときは process.send は使えないので弾く
-	if (process.send) {
-		process.send('ok');
+		await require('./queue').default();
 	}
 
 	if (cluster.isWorker) {
@@ -153,6 +147,12 @@ async function workerMain() {
 		if (process.send) {
 			process.send('ready');
 		}
+	}
+
+	// ユニットテスト時にMisskeyが子プロセスで起動された時のため
+	// それ以外のときは process.send は使えないので弾く
+	if (process.send) {
+		process.send('ok');
 	}
 }
 
@@ -235,6 +235,7 @@ function spawnWorker(type: 'server' | 'queue' | 'worker' = 'worker'): Promise<cl
 	return new Promise((res, rej) => {
 		const worker = cluster.fork({ WORKER_TYPE: type });
 		worker.on('message', message => {
+			console.log(`${worker.id} ${worker.process.pid} ${message}`);
 			if (message !== 'ready') return rej();
 			res(worker);
 		});
