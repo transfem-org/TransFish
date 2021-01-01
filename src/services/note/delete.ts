@@ -86,7 +86,10 @@ export default async function(user: IUser, note: INote, quiet = false) {
 				}
 			});
 
-			deleteUnusedFile(fileId);
+			// リモートユーザーの場合はもう参照されてないファイルか確認
+			if (isRemoteUser(user)) {
+				deleteUnusedFile(fileId);
+			}
 		}
 	}
 
