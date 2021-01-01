@@ -216,7 +216,7 @@ async function spawnWorkers(config: Config) {
 }
 
 export function getWorkerStrategies(config: Config) {
-	let workers = 1;
+	let workers = 0;
 	let servers = 0;
 	let queues = 0;
 
