@@ -126,7 +126,7 @@ themeColor: '#fb4e4e'
 # serverWorkerCount: server処理のみをするworkerの数
 # queueWorkerCount: queue処理のみをするworkerの数
 # 稼働するのに必要な処理はserverとqueueの処理です
-# デフォルト(0:0:0)では、1つのmaster processが上がりそれに全ての処理が含まれるようになります
+# デフォルト(1:0:0)では、1つのmaster processと1つのworker processが上がります
 # 0:1:1 にすると master(実処理は含まない), server(server処理を含む), queue(queueの処理を含む) の3つのプロセスが上がります
 #workerStrategies:
 #  workerWorkerCount: 0
