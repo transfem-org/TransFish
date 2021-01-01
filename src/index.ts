@@ -235,7 +235,6 @@ function spawnWorker(type: 'server' | 'queue' | 'worker' = 'worker'): Promise<cl
 	return new Promise((res, rej) => {
 		const worker = cluster.fork({ WORKER_TYPE: type });
 		worker.on('message', message => {
-			console.log(`${worker.id} ${worker.process.pid} ${message}`);
 			if (message !== 'ready') return rej();
 			res(worker);
 		});
