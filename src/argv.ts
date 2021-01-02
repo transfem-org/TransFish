@@ -3,7 +3,6 @@ import config from './config';
 
 program
 	.version(config.version)
-	.option('--no-daemons', 'Disable daemon processes (for debbuging)')
 	.option('--disable-clustering', 'Disable clustering')
 	.option('--quiet', 'Suppress all logs')
 	.option('--verbose', 'Enable all logs')
