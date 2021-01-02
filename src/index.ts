@@ -62,8 +62,11 @@ function main() {
 	if (program.disableClustering) {
 		masterMain(config).then(() => {
 			ev.mount();
-			serverStats();
-			queueStats();
+
+			if (program.daemons) {
+				serverStats();
+				queueStats();
+			}
 
 			workerMain().then(() => {
 				bootLogger.succ(`Now listening on port ${config.port} on ${config.url}`, undefined, true);
@@ -77,8 +80,11 @@ function main() {
 	} else if (cluster.isMaster) {
 		masterMain(config).then(() => {
 			ev.mount();
-			serverStats();
-			queueStats();
+
+			if (program.daemons) {
+				serverStats();
+				queueStats();
+			}
 
 			spawnWorkers(config).then(() => {
 				bootLogger.succ(`Now listening on port ${config.port} on ${config.url}`, undefined, true);
