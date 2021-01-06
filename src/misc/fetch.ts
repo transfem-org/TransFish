@@ -11,7 +11,7 @@ export async function getJson(url: string, accept = 'application/json, */*', tim
 	const controller = new AbortController();
 	setTimeout(() => {
 		controller.abort();
-	}, 60 * 1000);
+	}, timeout * 6);
 
 	const res = await fetch(url, {
 		headers: Object.assign({
@@ -47,7 +47,7 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 	const controller = new AbortController();
 	setTimeout(() => {
 		controller.abort();
-	}, 60 * 1000);
+	}, timeout * 6);
 
 	const res = await fetch(url, {
 		headers: Object.assign({
