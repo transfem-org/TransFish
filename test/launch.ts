@@ -12,7 +12,7 @@ process.env.NODE_ENV = 'test';
 
 import * as assert from 'assert';
 import * as childProcess from 'child_process';
-import { async, launchServer, api } from './utils';
+import { async, launchServer, api, get } from './utils';
 
 describe('Launch server', () => {
 	let p: childProcess.ChildProcess;
@@ -28,6 +28,21 @@ describe('Launch server', () => {
 		const res = await api('meta', {
 		});
 
+		assert.strictEqual(res.status, 200);
+	}));
+
+	it('GET root', async(async () => {
+		const res = await get('/');
+		assert.strictEqual(res.status, 200);
+	}));
+
+	it('GET docs', async(async () => {
+		const res = await get('/docs/ja-JP/about');
+		assert.strictEqual(res.status, 200);
+	}));
+
+	it('GET api-doc', async(async () => {
+		const res = await get('/api-doc');
 		assert.strictEqual(res.status, 200);
 	}));
 });

@@ -44,3 +44,15 @@ export const api = async (endpoint: string, params: any, me?: any): Promise<{ bo
 	};
 };
 
+export const get = async (path: string): Promise<{ status: number }> => {
+	const res = await fetch(`http://localhost:8010${path}`, {
+		method: 'GET',
+	});
+
+	const status = res.status;
+
+	return {
+		status
+	};
+};
+
