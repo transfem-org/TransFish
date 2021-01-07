@@ -4,6 +4,7 @@ import * as diskusage from 'diskusage';
 import * as Deque from 'double-ended-queue';
 import Xev from 'xev';
 import * as osUtils from 'os-utils';
+import config from '../config';
 
 const ev = new Xev();
 
@@ -32,8 +33,8 @@ export default function() {
 				used: usedmem
 			},
 			disk,
-			os_uptime: -1,
-			process_uptime: -1
+			os_uptime: config.hideServerInfo ? -1 : os.uptime(),
+			process_uptime: config.hideServerInfo ? -1 : process.uptime()
 		};
 		ev.emit('serverStats', stats);
 		log.unshift(stats);

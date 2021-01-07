@@ -72,6 +72,8 @@ export type Source = {
 
 	icons?: Icons
 	themeColor?: string;
+
+	hideServerInfo?: boolean;
 };
 
 export type DriveConfig = {
