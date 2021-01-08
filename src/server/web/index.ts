@@ -174,6 +174,7 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			icon: config.icons?.favicon?.url,
 			iconType: config.icons?.favicon?.type,
 			appleTouchIcon: config.icons?.appleTouchIcon?.url,
+			showRemote: !!config.showRemoteForAnon,
 		});
 		ctx.set('Cache-Control', 'public, max-age=60');
 	} else {
@@ -238,6 +239,7 @@ router.get('/notes/:note', async ctx => {
 				icon: config.icons?.favicon?.url,
 				iconType: config.icons?.favicon?.type,
 				appleTouchIcon: config.icons?.appleTouchIcon?.url,
+				showRemote: !!config.showRemoteForAnon,
 			});
 
 			if (['public', 'home'].includes(note.visibility)) {
