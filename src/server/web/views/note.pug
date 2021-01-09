@@ -29,9 +29,6 @@ block meta
 
 		meta(name='twitter:card' content='summary')
 
-	if user.host || user.avoidSearchIndex
-		meta(name='robots' content='noindex')
-
 	if !user.host
 		link(rel='alternate' href=url type='application/activity+json')
 	if (!user.host || showRemote) && note.uri

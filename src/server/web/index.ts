@@ -174,6 +174,7 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			icon: config.icons?.favicon?.url,
 			iconType: config.icons?.favicon?.type,
 			appleTouchIcon: config.icons?.appleTouchIcon?.url,
+			noindex: user.host || user.avoidSearchIndex,
 			showRemote: !!config.showRemoteForAnon,
 		});
 		ctx.set('Cache-Control', 'public, max-age=60');
@@ -239,6 +240,7 @@ router.get('/notes/:note', async ctx => {
 				icon: config.icons?.favicon?.url,
 				iconType: config.icons?.favicon?.type,
 				appleTouchIcon: config.icons?.appleTouchIcon?.url,
+				noindex: _note.user.host || _note.user.avoidSearchIndex,
 				showRemote: !!config.showRemoteForAnon,
 			});
 
@@ -349,6 +351,8 @@ router.get('*', async ctx => {
 		desc = fromHtml(desc || '') || undefined;
 	} catch { }
 
+	const noindex = ctx.path.match(/^[/](search|tags[/]|explore|featured)/);
+
 	await ctx.render('base', {
 		initialMeta: htmlescape(builded),
 		img: meta.bannerUrl,
@@ -358,6 +362,7 @@ router.get('*', async ctx => {
 		icon: config.icons?.favicon?.url,
 		iconType: config.icons?.favicon?.type,
 		appleTouchIcon: config.icons?.appleTouchIcon?.url,
+		noindex
 	});
 
 	ctx.set('Cache-Control', 'public, max-age=300');
