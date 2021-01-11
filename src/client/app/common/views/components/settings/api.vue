@@ -72,8 +72,18 @@ export default Vue.extend({
 		},
 
 		send() {
+			let body;
+			try {
+				body = JSON5.parse(this.body);
+			} catch(e) {
+				this.$root.dialog({
+					type: 'error',
+					text: e.message
+				});
+			}
+
 			this.sending = true;
-			this.$root.api(this.endpoint, JSON5.parse(this.body)).then(res => {
+			this.$root.api(this.endpoint, body).then(res => {
 				this.sending = false;
 				this.res = JSON5.stringify(res, null, 2);
 			}, err => {
