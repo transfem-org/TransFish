@@ -26,7 +26,7 @@
 			<template v-else><fa icon="paper-plane"/> {{ $t('console.send') }}</template>
 		</ui-button>
 		<ui-textarea v-if="res" v-model="res" readonly tall>
-			<span>{{ $t('console.response') }}</span>
+			<span>{{ $t('console.response') + ` (${resTime} ms)` }}</span>
 		</ui-textarea>
 	</section>
 </ui-card>
@@ -42,9 +42,10 @@ export default Vue.extend({
 
 	data() {
 		return {
-			endpoint: '',
+			endpoint: 'meta',
 			body: '{}',
 			res: null,
+			resTime: 0,
 			sending: false,
 			endpoints: []
 		};
@@ -83,10 +84,13 @@ export default Vue.extend({
 			}
 
 			this.sending = true;
+			const t0 = Date.now();
 			this.$root.api(this.endpoint, body).then(res => {
+				this.resTime = Date.now() - t0;
 				this.sending = false;
 				this.res = JSON5.stringify(res, null, 2) || 'NO CONTENT';
 			}, err => {
+				this.resTime = Date.now() - t0;
 				this.sending = false;
 				this.res = JSON5.stringify(err, null, 2) || 'UNKNOWN ERROR';
 			});
