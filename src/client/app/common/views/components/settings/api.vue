@@ -74,7 +74,7 @@ export default Vue.extend({
 		send() {
 			let body;
 			try {
-				body = JSON5.parse(this.body);
+				body = this.body ? JSON5.parse(this.body) : undefined;
 			} catch(e) {
 				this.$root.dialog({
 					type: 'error',
@@ -85,10 +85,10 @@ export default Vue.extend({
 			this.sending = true;
 			this.$root.api(this.endpoint, body).then(res => {
 				this.sending = false;
-				this.res = JSON5.stringify(res, null, 2);
+				this.res = JSON5.stringify(res, null, 2) || 'NO CONTENT';
 			}, err => {
 				this.sending = false;
-				this.res = JSON5.stringify(err, null, 2);
+				this.res = JSON5.stringify(err, null, 2) || 'UNKNOWN ERROR';
 			});
 		}
 	}
