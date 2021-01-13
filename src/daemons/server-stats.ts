@@ -22,16 +22,18 @@ export default function() {
 
 	async function tick() {
 		const cpu = await cpuUsage();
-		const usedmem = await usedMem();
-		const totalmem = await totalMem();
+		const mem = await systeminformation.mem();
+		const cpuSpeed = (await systeminformation.cpuCurrentspeed()).avg;
 		const disk = await diskusage.check(os.platform() == 'win32' ? 'c:' : '/');
+
+		mem.used = mem.used - mem.buffers - mem.cached;
+		// |- used -|- buffer-|- cache -|- free -|
+		// |-- active --|-- available --|- free -|
 
 		const stats = {
 			cpu_usage: cpu,
-			mem: {
-				total: totalmem,
-				used: usedmem
-			},
+			cpu_speed: cpuSpeed,
+			mem,
 			disk,
 			os_uptime: config.hideServerInfo ? -1 : os.uptime(),
 			process_uptime: config.hideServerInfo ? -1 : process.uptime()
@@ -57,16 +59,4 @@ function cpuUsage() {
 			rej(e);
 		}
 	});
-}
-
-// MEMORY(excl buffer + cache) STAT
-async function usedMem() {
-	const data = await systeminformation.mem();
-	return data.active;
-}
-
-// TOTAL MEMORY STAT
-async function totalMem() {
-	const data = await systeminformation.mem();
-	return data.total;
 }
