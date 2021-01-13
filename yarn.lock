@@ -1515,10 +1515,10 @@ autwh@0.1.0:
   dependencies:
     oauth "0.9.15"
 
-aws-sdk@2.824.0:
-  version "2.824.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.824.0.tgz#a67747d4d0b53d09c6c121e93f44d8f6e76fc44b"
-  integrity sha512-9KNRQBkIMPn+6DWb4gR+RzqTMNyGLEwOgXbE4dDehOIAflfLnv3IFwLnzrhxJnleB4guYrILIsBroJFBzjiekg==
+aws-sdk@2.825.0:
+  version "2.825.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.825.0.tgz#91dad854827f6f8ada5a305dd32524e2f19cc622"
+  integrity sha512-b49nvaETm7uVRLf0FJ1CMmwCRVlLaxHtptVFuxX+2L4FR9VB0sLdgsxhtL3RVFbQlgVFNRV7fJUVK27mC++H+A==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -8168,10 +8168,10 @@ showdown@1.9.1:
   dependencies:
     yargs "^14.2"
 
-shvl@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/shvl/-/shvl-2.0.0.tgz#55fd550b6e81bf7574f2f576b8b5c1ffae74e10f"
-  integrity sha512-WbpzSvI5XgVGJ3A4ySGe8hBxj0JgJktfnoLhhJmvITDdK21WPVWwgG8GPlYEh4xqdti3Ff7PJ5G0QrRAjNS0Ig==
+shvl@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/shvl/-/shvl-2.0.2.tgz#eca7decb9bbd4e8dd93f06ea9ab94036319cd351"
+  integrity sha512-G3KkIXPza3dgkt6Bo8zIl5K/KvAAhbG6o9KfAjhPvrIIzzAhnfc2ztv1i+iPTbNNM43MaBUqIaZwqVjkSgY/rw==
 
 sigmund@^1.0.1:
   version "1.0.1"
@@ -8592,10 +8592,10 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-stylus-loader@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/stylus-loader/-/stylus-loader-4.3.1.tgz#8b4e749294d9fe0729c2e5e1f04cbf87e1c941aa"
-  integrity sha512-apDYJEM5ZpOAWbWInWcsbtI8gHNr/XYVcSY/tWqOUPt7M5tqhtwXVsAkgyiVjhuvw2Yrjq474a9H+g4d047Ebw==
+stylus-loader@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/stylus-loader/-/stylus-loader-4.3.2.tgz#d3577e7f5ff65ea3f9516e1a0f1f16aea706d3f0"
+  integrity sha512-xXVKHY+J7GBlOmqjCL1VvQfc+pFkBdWGtcpJSvBGE49nWWHaukox7KCjRdLTEzjrmHODm4+rLpqkYWzfJteMXQ==
   dependencies:
     fast-glob "^3.2.4"
     klona "^2.0.4"
@@ -8744,10 +8744,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-systeminformation@*, systeminformation@4.34.5:
-  version "4.34.5"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.34.5.tgz#f2520697085736d9c3edf58ee9230c6aee1130f3"
-  integrity sha512-oFgpUeGc2BVTl9FPsdixzfcHkMg1llGUeA+flsZf7AM9HTQhWfcVrfHJEoWCq+mOqiSp4SCNrdSPFXJKYPDdYg==
+systeminformation@*, systeminformation@4.34.6:
+  version "4.34.6"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.34.6.tgz#d5d592fdba9dd77224551d3ae3a35ae49aff9a0d"
+  integrity sha512-JWcrnfBqkws9R12jTYF7+zl59bdhL/+sw6efHZllIdtztrRfyykL4Bbr0aTRHQqDP0tjFhZOlRHifPSSmdqmFg==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
@@ -9590,13 +9590,13 @@ vuewordcloud@18.7.11:
   dependencies:
     vue "^2.5.16"
 
-vuex-persistedstate@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/vuex-persistedstate/-/vuex-persistedstate-3.1.0.tgz#a710d01000bff8336bc3b03fa3ef42e376094b71"
-  integrity sha512-nRiCe1qDdDrcveFQzTw0QGEj3dRpwN19BailSSwfhe4eUNNQ+9S/ApKnDEAuyw95cigOtSPciMEhdsC0qNUiKQ==
+vuex-persistedstate@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/vuex-persistedstate/-/vuex-persistedstate-3.2.0.tgz#41d3ea304404769ac653ec020de80c95ce16243d"
+  integrity sha512-1Q4zV9cNaJtl59jN6rXbndemEtXKywZr0OFZnqgpYdwvdyy+64KNsEltKldQW+i03st5LuDwHsdOEevXIZUgdg==
   dependencies:
     deepmerge "^4.2.2"
-    shvl "^2.0.0"
+    shvl "^2.0.2"
 
 vuex@3.6.0:
   version "3.6.0"
