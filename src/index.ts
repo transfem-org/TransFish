@@ -165,6 +165,10 @@ async function workerMain() {
 			process.send('ready');
 		}
 	}
+
+	setInterval(() => {
+		clusterLogger.info(`memoryUsage(${workerType}:${process.pid}): ${JSON.stringify(process.memoryUsage())}`);
+	}, 5 * 60 * 1000);
 }
 
 const runningNodejsVersion = process.version.slice(1).split('.').map(x => parseInt(x, 10));
