@@ -220,7 +220,7 @@ export default Vue.extend({
 			> .main
 				> .footer
 					> .button
-						margin 0 20px 0 0
+						margin 0 10px 0 0
 
 	&:last-of-type
 		border-bottom none
