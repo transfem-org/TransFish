@@ -2,7 +2,7 @@
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
 	"version": "10.102.394-m544",
-	"codename": "nighthike",
+	"codename": "m544",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/mei23/misskey.git"
