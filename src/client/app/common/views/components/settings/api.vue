@@ -25,9 +25,8 @@
 			<template v-if="sending">{{ $t('console.sending') }}</template>
 			<template v-else><fa icon="paper-plane"/> {{ $t('console.send') }}</template>
 		</ui-button>
-		<ui-textarea v-if="res" v-model="res" readonly tall>
-			<span>{{ $t('console.response') + ` (${resTime} ms)` }}</span>
-		</ui-textarea>
+		<div v-if="res" style="opacity: 0.7; font-size: 13px; margin-top: 1.5em; margin-bottom: -8px;">{{ $t('console.response') + ` (${resTime} ms)` }}</div>
+		<highlightjs v-if="res" :language="json" :code="res"/>
 	</section>
 </ui-card>
 </template>
@@ -88,13 +87,22 @@ export default Vue.extend({
 			this.$root.api(this.endpoint, body).then(res => {
 				this.resTime = Date.now() - t0;
 				this.sending = false;
-				this.res = JSON5.stringify(res, null, 2) || 'NO CONTENT';
+				this.res = JSON.stringify(res, null, 2) || 'NO CONTENT';
 			}, err => {
 				this.resTime = Date.now() - t0;
 				this.sending = false;
-				this.res = JSON5.stringify(err, null, 2) || 'UNKNOWN ERROR';
+				this.res = JSON.stringify(err, null, 2) || 'UNKNOWN ERROR';
 			});
 		}
 	}
 });
 </script>
+
+<style lang="stylus">
+code.hljs
+	font-size small
+	overflow-x auto
+	overflow-y auto
+	max-height 320px
+</style>
+
