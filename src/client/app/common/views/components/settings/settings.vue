@@ -118,6 +118,7 @@
 				<ui-switch v-model="fetchOnScroll">{{ $t('@._settings.fetch-on-scroll') }}
 					<template #desc>{{ $t('@._settings.fetch-on-scroll-desc') }}</template>
 				</ui-switch>
+				<ui-switch v-model="enableKeyboardShortcutInNote">{{ $t('@._settings.enableKeyboardShortcutInNote') }}</ui-switch>
 
 				<ui-switch v-if="$root.isMobile" v-model="disableViaMobile">{{ $t('@._settings.disable-via-mobile') }}</ui-switch>
 			</section>
@@ -651,6 +652,11 @@ export default Vue.extend({
 		disableShowingInstanceInfo: {
 			get() { return !!this.$store.state.device.disableShowingInstanceInfo; },
 			set(value) { this.$store.commit('device/set', { key: 'disableShowingInstanceInfo', value }); }
+		},
+
+		enableKeyboardShortcutInNote: {
+			get() { return !!this.$store.state.device.enableKeyboardShortcutInNote; },
+			set(value) { this.$store.commit('device/set', { key: 'enableKeyboardShortcutInNote', value }); }
 		},
 
 		mobileNotificationPosition: {

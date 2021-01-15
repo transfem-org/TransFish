@@ -33,6 +33,8 @@ export default (opts: Opts = {}) => ({
 
 	computed: {
 		keymap(): any {
+			if (!this.$store.state.device.enableKeyboardShortcutInNote) return {};
+
 			return {
 				'r': () => this.reply(true),
 				'e|a|plus': () => this.react(true),
