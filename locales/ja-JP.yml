@@ -663,6 +663,8 @@ common/views/components/note-menu.vue:
   unpin: "ピン留め解除"
   delete: "削除"
   delete-confirm: "この投稿を削除しますか？"
+  deleteAsAdmin: "管理者として削除"
+  deleteAsAdmin-confirm: "管理者権限を行使してこの投稿を削除しますか？"
   edit: "編集"
   edit-confirm: "この投稿を編集しますか？この投稿へのリアクション、Renote、返信も全て削除されます。"
   delete-and-edit: "削除して編集"
