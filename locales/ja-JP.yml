@@ -947,6 +947,7 @@ common/views/components/profile-editor.vue:
   enter-password: "パスワードを入力してください"
   danger-zone: "危険な設定"
   delete-account: "アカウントを削除"
+  delete-account-confirm: "本当にアカウントを削除しますか？"
   account-deleted: "アカウントが削除されました。データが消えるまで時間がかかる場合があります。"
   profile-metadata: "プロフィール補足情報"
   metadata-label: "ラベル"
