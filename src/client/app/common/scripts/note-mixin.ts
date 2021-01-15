@@ -35,6 +35,7 @@ export default (opts: Opts = {}) => ({
 		keymap(): any {
 			if (!this.$store.state.device.enableKeyboardShortcutInNote) return {};
 
+			// TODO: ログインしてるかとか権限があるかとか一切チェックしてない
 			return {
 				'r': () => this.reply(true),
 				'e|a|plus': () => this.react(true),
@@ -188,7 +189,7 @@ export default (opts: Opts = {}) => ({
 		del() {
 			this.$root.dialog({
 				type: 'warning',
-				text: this.$t('@.delete-confirm'),
+				text: (this.appearNote.userId == this.$store.state.i.id) ? this.$t('@.delete-confirm') : this.$t('@.deleteAsAdmin-confirm'),
 				showCancelButton: true
 			}).then(({ canceled }) => {
 				if (canceled) return;
