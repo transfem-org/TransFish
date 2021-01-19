@@ -179,9 +179,8 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 		});
 		ctx.set('Cache-Control', 'public, max-age=60');
 	} else {
-		// リモートユーザーなので
-		// サスペンドユーザーのogは出さないがAPI経由でモデレータが閲覧できるように
-		await next();
+		ctx.status = 404;
+		return;
 	}
 });
 
@@ -200,7 +199,7 @@ router.get('/users/:user', async ctx => {
 		host: null
 	});
 
-	if (user === null) {
+	if (user == null) {
 		ctx.status = 404;
 		return;
 	}
