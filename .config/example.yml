@@ -161,6 +161,3 @@ themeColor: '#fb4e4e'
 
 # サーバー情報を隠す (default: false)
 #hideServerInfo: true
-
-# 未認証ログインユーザーに対してリモートユーザーのコンテンツを表示する (default: false)
-#showRemoteForAnon: true
