@@ -155,7 +155,12 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 		host
 	}) as ILocalUser;
 
-	if (user != null) {
+	if (user == null || user.isDeleted) {
+		ctx.status = 404;
+	} else if (user.isSuspended) {
+		// サスペンドユーザーのogは出さないがAPI経由でモデレータが閲覧できるように
+		await next();
+	} else {
 		const meta = await fetchMeta();
 		const builded = await buildMeta(meta, false);
 
@@ -178,9 +183,6 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			showRemote: !!config.showRemoteForAnon,
 		});
 		ctx.set('Cache-Control', 'public, max-age=60');
-	} else {
-		ctx.status = 404;
-		return;
 	}
 });
 
