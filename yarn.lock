@@ -222,10 +222,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/bull@3.14.4":
-  version "3.14.4"
-  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.14.4.tgz#8a787ad4582b1a6cf2bfa6cca5f72428330c455e"
-  integrity sha512-XAYSV6A/r9GX+TgWwjF0WgpKK9/WAiSfVe3q6+2JrRW+3hLDjIU5MQL9HQZet3my98VA3kNWjEYrJCeRmJ5a5w==
+"@types/bull@3.15.0":
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/@types/bull/-/bull-3.15.0.tgz#69c518d4e7a53056f287cebcc4ef4ffe91aaf201"
+  integrity sha512-54Y1RYkJt6i+4dH45w4gZOP6fyhksTvOImfgBYAxgq/nt5ZrES4xFWwOzt2bxAgSR7FMH9fwvaiJN/pripPzag==
   dependencies:
     "@types/ioredis" "*"
 
@@ -548,10 +548,10 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/lodash@4.14.167":
-  version "4.14.167"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.167.tgz#ce7d78553e3c886d4ea643c37ec7edc20f16765e"
-  integrity sha512-w7tQPjARrvdeBkX/Rwg95S592JwxqOjmms3zWQ0XZgSyxSLdzWaYH3vErBhdVS/lRBX7F8aBYcYJYTr5TMGOzw==
+"@types/lodash@4.14.168":
+  version "4.14.168"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
+  integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
 "@types/mime@*":
   version "2.0.1"
