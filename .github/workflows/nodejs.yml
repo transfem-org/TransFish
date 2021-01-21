@@ -15,7 +15,7 @@ jobs:
       mongo:
         image: mongo:4.4-bionic
         ports:
-          - 27017:27017
+          - 57010:27017
       redis:
         image: redis:alpine
         ports:

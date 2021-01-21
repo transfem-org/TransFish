@@ -3,7 +3,7 @@ port: 8010
 
 mongodb:
   host: localhost
-  port: 27017
+  port: 57010
   db: test-misskey
 
 redis:
