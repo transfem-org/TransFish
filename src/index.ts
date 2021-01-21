@@ -101,7 +101,7 @@ function main() {
 }
 
 function greet(config: Config) {
-	if (!program.quiet) {
+	if (!program.quiet && process.env.NODE_ENV !== 'test') {
 		//#region Misskey logo
 		const v = `v${config.version}`;
 		console.log('  _____ _         _           ');
