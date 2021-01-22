@@ -90,6 +90,8 @@ common:
   mobile-mode: 'Mobile mode'
   empty: 'Empty'
   edit: 'Edit'
+  aboutInstance: "About this instance"
+
   favorites: "Favorites"
   noteReactions: "Reacted notes"
   poll_finished: "Poll finished"
@@ -442,6 +444,15 @@ common/views/pages/explore.vue:
   explore-fediverse: "Explore fediverse"
   users-info: "Currently, {users} users are registered here"
   searchUser: "Search user"
+common/views/pages/about.vue:
+  about: "About {host}"
+  basic: "Basic"
+  maintainerName: "Administrator"
+  maintainerEmail: "Contanct"
+  stats: "Statistics"
+  users: "Users"
+  notes: "Posts"
+  instances: "Instances"
 common/views/components/url-preview.vue:
   enable-player: "Enable playback"
   disable-player: "Close the player"
