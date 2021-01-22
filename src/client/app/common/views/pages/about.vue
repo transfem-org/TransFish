@@ -42,13 +42,26 @@
 			</div>
 		</div>
 	</ui-container>
+
+	<ui-container v-if="popularReactions">
+		<template #header><fa :icon="faThumbsUp"/> {{ $t('popularReactions') }}</template>
+		<div class="items" v-for="reaction in popularReactions.reactions" :key="reaction.reaction">
+			<div for class="item">
+				<div class="key">
+					<mk-reaction-icon :reaction="reaction.reaction" :customEmojis="popularReactions.emojis"/>
+				</div>
+				<div class="value">{{ reaction.count }}</div>
+			</div>
+		</div>
+	</ui-container>
+
 </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { faServer, faChartBar } from '@fortawesome/free-solid-svg-icons';
+import { faServer, faChartBar, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('common/views/pages/about.vue'),
@@ -57,16 +70,10 @@ export default Vue.extend({
 		return {
 			meta: null,
 			stats: null,
-			faServer, faChartBar
+			reactions: null,
+			popularReactions: null,
+			faServer, faChartBar, faThumbsUp
 		};
-	},
-
-	computed: {
-
-	},
-
-	watch: {
-
 	},
 
 	created() {
@@ -75,6 +82,9 @@ export default Vue.extend({
 		});
 		this.$root.getMeta().then((meta: any) => {
 			this.meta = meta;
+		});
+		this.$root.api('notes/reactions/trend', {}, false, true).then((popularReactions: any) => {
+			this.popularReactions = popularReactions;
 		});
 	},
 

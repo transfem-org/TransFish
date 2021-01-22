@@ -453,6 +453,8 @@ common/views/pages/about.vue:
   users: "Users"
   notes: "Posts"
   instances: "Instances"
+  popularReactions: "Popular reactions"
+
 common/views/components/url-preview.vue:
   enable-player: "Enable playback"
   disable-player: "Close the player"
