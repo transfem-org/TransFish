@@ -767,6 +767,10 @@ common/views/components/poll-editor.vue:
 
 common/views/components/reaction-picker.vue:
   choose-reaction: "リアクションを選択"
+  emoji: "絵文字"
+  react: "リアクション"
+  pick: "絵文字を選択"
+  random: "ランダム"
 
 common/views/components/emoji-picker.vue:
   pinned: "ピッカーを開いたままにする"
