@@ -28,7 +28,7 @@ yarn start
 
 1. テスト用configをコピー
 
-	`cp -i .circleci/misskey/test.yml .config/test.yml`
+	`cp -i .github/misskey/test.yml .config/test.yml`
 
 2. DBを準備
 
