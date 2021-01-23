@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="about814">
 	<div class="about815" v-if="meta" :style="{ backgroundImage: meta.bannerUrl ? `url(${meta.bannerUrl})` : null }">
 		<header>{{ meta.name }}</header>
 		<div class="desc" v-if="meta.description" v-html="meta.description"></div>
@@ -45,8 +45,8 @@
 
 	<ui-container v-if="popularReactions">
 		<template #header><fa :icon="faThumbsUp"/> {{ $t('popularReactions') }}</template>
-		<div class="items" v-for="reaction in popularReactions.reactions" :key="reaction.reaction">
-			<div for class="item">
+		<div class="items">
+			<div class="item" v-for="reaction in popularReactions.reactions" :key="reaction.reaction">
 				<div class="key">
 					<mk-reaction-icon :reaction="reaction.reaction" :customEmojis="popularReactions.emojis"/>
 				</div>
@@ -95,36 +95,37 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-.about815
-	overflow hidden
-	background var(--face)
-	color #fff
-	text-shadow 0 0 8px #000
-	border-radius 6px
-	padding 16px
-	margin-bottom 16px
-	background-position 50%
-	background-size cover
+.about814
+	> .about815
+		overflow hidden
+		background var(--face)
+		color #fff
+		text-shadow 0 0 8px #000
+		border-radius 6px
+		padding 16px
+		margin-bottom 16px
+		background-position 50%
+		background-size cover
 
-	> header
-		font-size 20px
-		font-weight bold
+		> header
+			font-size 20px
+			font-weight bold
 
-	> div
-		font-size 14px
-		opacity 0.8
+		> div
+			font-size 14px
+			opacity 0.8
 
-.items
-	color var(--text)
+	>>> .items
+		color var(--text)
 
-	> .item
-		display flex
-		padding 1em
-		border-bottom solid 1px var(--faceDivider)
+		> .item
+			display flex
+			padding 1em
+			border-bottom solid 1px var(--faceDivider)
 
-		&:last-child
-			border-bottom none
+			&:last-child
+				border-bottom none
 
-		> .value
-			margin-left auto
+			> .value
+				margin-left auto
 </style>
