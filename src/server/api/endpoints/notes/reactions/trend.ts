@@ -16,8 +16,12 @@ export const meta = {
 		},
 
 		offset: {
-			validator: $.optional.num.min(0),
-			default: 0
+			validator: $.optional.either($.optional.num.min(0), $.str.pipe(v => 0 <= Number(v))),
+			default: 0,
+			transform: (v: any) => JSON.parse(v),
+			desc: {
+				'ja-JP': 'オフセット'
+			}
 		},
 	},
 
@@ -29,7 +33,6 @@ export const meta = {
 export default define(meta, async (ps, me) => {
 	const users = await User.find({
 		host: null,
-		updatedAt: { $gt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30) },
 		isDeleted: { $ne: true },
 		isSuspended: { $ne: true },
 	}, {
