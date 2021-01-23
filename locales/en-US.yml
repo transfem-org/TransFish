@@ -91,6 +91,7 @@ common:
   empty: 'Empty'
   edit: 'Edit'
   aboutInstance: "About this instance"
+  favoriteReactions: "Favorite reactions"
 
   favorites: "Favorites"
   noteReactions: "Reacted notes"
