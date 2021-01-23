@@ -22,7 +22,7 @@ export const meta = {
 
 	requireCredential: false,
 	allowGet: true,
-	cacheSec: 3600,
+	cacheSec: 600,
 };
 
 export default define(meta, async (ps, me) => {
