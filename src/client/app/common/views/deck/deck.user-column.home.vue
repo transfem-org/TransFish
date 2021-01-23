@@ -17,7 +17,7 @@
 		</div>
 	</ui-container>
 	<!-- リアクション -->
-	<x-reactions :user="user" :deck="true"/>
+	<x-reactions :user="user" :key="user.id" :deck="true"/>
 	<!-- フォト -->
 	<ui-container v-if="images.length > 0" :body-togglable="true"
 		:expanded="$store.state.device.expandUsersPhotos"
