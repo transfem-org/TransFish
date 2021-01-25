@@ -88,9 +88,8 @@ export type DriveConfig = {
 		accessKey: string;
 		secretKey: string;
 		region?: string;
-		transport?: string;
-		sessionToken?: string;
-		partSize?: number;
+		setPublicRead?: boolean;
+		s3ForcePathStyle?: boolean;
 	};
 };
 
