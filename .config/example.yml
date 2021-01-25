@@ -40,7 +40,7 @@ drive:
 #    accessKey: <accessKey>
 #    secretKey: <secretKey>
 #    setPublicRead: false
-#    s3ForcePathStyle:
+#    s3ForcePathStyle: true
 #
 # * endPoint
 #     S3: Leave empty
@@ -61,9 +61,7 @@ drive:
 # * setPublicRead
 #     Set to true to set 'public-read' to the file (default: false)
 #
-# * s3ForcePathStyle
-#     s3ForcePathStyleの設定 (true/false)
-#     デフォルトは空で、空の場合はendPointが指定されていればtrue, されてなければfalseになります。
+# * s3ForcePathStyle (default: true, ただしendPointを省略した場合は常にfalse)
 
 # If defined, store remote files in another location
 # remoteDrive:

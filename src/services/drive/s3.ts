@@ -10,7 +10,9 @@ export function getS3(drive: DriveConfig) {
 		secretAccessKey: drive.config.secretKey,
 		region: drive.config.region || undefined,
 		sslEnabled: drive.config.useSSL,
-		s3ForcePathStyle: drive.config.s3ForcePathStyle == null ? !!drive.config.endPoint : drive.config.s3ForcePathStyle,
+		s3ForcePathStyle: !drive.config.endPoint	// AWS with endPoint omitted
+			? false
+			: drive.config.s3ForcePathStyle == null ? true : !!drive.config.s3ForcePathStyle,
 		httpOptions: {
 			agent: drive.config.useSSL ? httpsAgent : httpAgent
 		}
