@@ -53,6 +53,9 @@ export type Source = {
 		serverWorkerCount?: number;
 		queueWorkerCount?: number;
 		workerWorkerCount?: number;
+		serverWorkerRestartMin?: number;
+		queueWorkerRestartMin?: number;
+		workerWorkerRestartMin?: number;
 	};
 
 	outgoingAddressFamily?: 'ipv4' | 'ipv6' | 'dual';
