@@ -31,7 +31,7 @@ export async function getWordIndexer(note: Partial<Record<'text' | 'cw', string>
 
 async function me(text: string): Promise<string[][]> {
 	if (config.mecabSearch?.mecabBin) {
-		return await mecab(text, config.mecabSearch.mecabBin, config.mecabSearch.mecabDic)
+		return await mecab(text.normalize('NFKC'), config.mecabSearch.mecabBin, config.mecabSearch.mecabDic)
 	}
 
 	return [];
