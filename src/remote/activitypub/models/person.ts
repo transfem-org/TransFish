@@ -29,6 +29,7 @@ import { UpdateInstanceinfo } from '../../../services/update-instanceinfo';
 import { extractDbHost } from '../../../misc/convert-host';
 import DbResolver from '../db-resolver';
 import resolveUser from '../../resolve-user';
+import { normalizeTag } from '../../../misc/normalize-tag';
 const logger = apLogger;
 
 /**
@@ -125,7 +126,7 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<IU
 
 	const { fields, services } = analyzeAttachments(person.attachment);
 
-	const tags = extractApHashtags(person.tag).map(tag => tag.toLowerCase()).splice(0, 64);
+	const tags = extractApHashtags(person.tag).map(tag => normalizeTag(tag)).splice(0, 64);
 
 	const movedToUserId = await resolveAnotherUser(uri, person.movedTo);
 	// const alsoKnownAsUserIds = await resolveAnotherUsers(uri, person.alsoKnownAs);
@@ -354,7 +355,7 @@ export async function updatePerson(uri: string, resolver?: Resolver, hint?: IApP
 
 	const { fields, services } = analyzeAttachments(person.attachment);
 
-	const tags = extractApHashtags(person.tag).map(tag => tag.toLowerCase()).splice(0, 64);
+	const tags = extractApHashtags(person.tag).map(tag => normalizeTag(tag)).splice(0, 64);
 
 	const movedToUserId = await resolveAnotherUser(uri, person.movedTo);
 	const alsoKnownAsUserIds = await resolveAnotherUsers(uri, person.alsoKnownAs);

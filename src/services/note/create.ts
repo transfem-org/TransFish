@@ -37,6 +37,7 @@ import { deliverToRelays } from '../relay';
 import { getIndexer, getWordIndexer } from '../../misc/mecab';
 import Following from '../../models/following';
 import { IActivity } from '../../remote/activitypub/type';
+import { normalizeTag } from '../../misc/normalize-tag';
 
 type NotificationType = 'reply' | 'renote' | 'quote' | 'mention' | 'highlight';
 
@@ -496,7 +497,7 @@ async function insertNote(user: IUser, data: Option, tags: string[], emojis: str
 		poll: data.poll,
 		cw: data.cw == null ? null : data.cw,
 		tags,
-		tagsLower: tags.map(tag => tag.toLowerCase()),
+		tagsLower: tags.map(tag => normalizeTag(tag)),
 		emojis,
 		userId: user._id,
 		viaMobile: data.viaMobile,

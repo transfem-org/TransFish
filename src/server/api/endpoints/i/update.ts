@@ -14,6 +14,7 @@ import { updateUsertags } from '../../../../services/update-hashtag';
 import { ApiError } from '../../error';
 import { sendDeleteActivity } from '../../../../services/suspend-user';
 import { doPostUnsuspend } from '../../../../services/unsuspend-user';
+import { normalizeTag } from '../../../../misc/normalize-tag';
 
 export const meta = {
 	desc: {
@@ -340,7 +341,7 @@ export default define(meta, async (ps, user, app) => {
 		if (updates.description != null) {
 			const tokens = parse(updates.description);
 			emojis = emojis.concat(extractEmojis(tokens));
-			tags = extractHashtags(tokens).map(tag => tag.toLowerCase()).slice(0, 64);
+			tags = extractHashtags(tokens).map(tag => normalizeTag(tag)).slice(0, 64);
 		}
 
 		updates.emojis = emojis;

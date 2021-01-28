@@ -1,6 +1,7 @@
 import { IUser, isLocalUser, isRemoteUser } from '../models/user';
 import Hashtag from '../models/hashtag';
 import hashtagChart from './chart/hashtag';
+import { normalizeTag } from '../misc/normalize-tag';
 
 export async function updateHashtags(user: IUser, tags: string[]) {
 	for (const tag of tags) {
@@ -19,7 +20,7 @@ export async function updateUsertags(user: IUser, tags: string[]) {
 }
 
 export async function updateHashtag(user: IUser, tag: string, isUserAttached = false, inc = true) {
-	tag = tag.toLowerCase();
+	tag = normalizeTag(tag) as string;
 
 	const index = await Hashtag.findOne({ tag });
 

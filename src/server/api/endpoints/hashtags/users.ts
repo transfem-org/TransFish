@@ -1,6 +1,7 @@
 import $ from 'cafy';
 import User, { pack } from '../../../../models/user';
 import define from '../../define';
+import { normalizeTag } from '../../../../misc/normalize-tag';
 
 export const meta = {
 	requireCredential: false,
@@ -65,7 +66,7 @@ const sort: any = {
 
 export default define(meta, async (ps, me) => {
 	const q = {
-		tags: ps.tag.toLowerCase(),
+		tags: normalizeTag(ps.tag),
 		$and: []
 	} as any;
 
