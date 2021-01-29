@@ -86,7 +86,7 @@ export default Vue.extend({
 	mounted() {
 		const head = document.getElementsByTagName('head')[0];
 		const script = document.createElement('script');
-		script.setAttribute('src', 'https://www.google.com/recaptcha/api.js');
+		script.setAttribute('src', 'https://www.recaptcha.net/recaptcha/api.js');
 		head.appendChild(script);
 	},
 
