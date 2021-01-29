@@ -611,22 +611,6 @@ describe('MFM', () => {
 					leaf('hashtag', { hashtag: 'foo' }),
 					text(')'),
 				]);
-
-				const tokens2 = parse('「#foo」');
-				assert.deepStrictEqual(tokens2, [
-					text('「'),
-					leaf('hashtag', { hashtag: 'foo' }),
-					text('」'),
-				]);
-			});
-
-			it('with mixed brackets', () => {
-				const tokens = parse('「#foo(bar)」');
-				assert.deepStrictEqual(tokens, [
-					text('「'),
-					leaf('hashtag', { hashtag: 'foo(bar)' }),
-					text('」'),
-				]);
 			});
 
 			it('with brackets (space before)', () => {
@@ -635,13 +619,6 @@ describe('MFM', () => {
 					text('(bar '),
 					leaf('hashtag', { hashtag: 'foo' }),
 					text(')'),
-				]);
-
-				const tokens2 = parse('「bar #foo」');
-				assert.deepStrictEqual(tokens2, [
-					text('「bar '),
-					leaf('hashtag', { hashtag: 'foo' }),
-					text('」'),
 				]);
 			});
 
