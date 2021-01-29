@@ -268,7 +268,7 @@ export const mfmLanguage = P.createLanguage({
 			P.string('['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
 		).map((x: any) => {
 			let name = x.fn;
-			const args = {};
+			const args = {} as any;
 			const separator = x.fn.indexOf('.');
 			if (separator > -1) {
 				name = x.fn.substr(0, separator);
