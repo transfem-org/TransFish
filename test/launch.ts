@@ -45,4 +45,9 @@ describe('Launch server', () => {
 		const res = await simpleGet('/api-doc', 'text/html');
 		assert.strictEqual(res.status, 200);
 	}));
+
+	it('GET api.json', async(async () => {
+		const res = await simpleGet('/api.json', 'application/json');
+		assert.strictEqual(res.status, 200);
+	}));
 });
