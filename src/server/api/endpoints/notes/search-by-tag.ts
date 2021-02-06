@@ -140,7 +140,7 @@ export default define(meta, async (ps, me) => {
 	if (ps.tag) {
 		const tokens = ps.tag.trim().split(/\s+/);
 
-		const tag = tokens.shift();
+		const tag = tokens.shift() as string
 
 		push({
 			tagsLower: normalizeTag(tag)
