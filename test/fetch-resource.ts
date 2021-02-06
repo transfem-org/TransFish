@@ -154,4 +154,24 @@ describe('Fetch resource', () => {
 			assert.strictEqual(res.type, HTML);
 		}));
 	});
+
+	describe('Feeds', () => {
+		it('RSS', async(async () => {
+			const res = await simpleGet(`/@${alice.username}.rss`, UNSPECIFIED);
+			assert.strictEqual(res.status, 200);
+			assert.strictEqual(res.type, 'application/rss+xml; charset=utf-8');
+		}));
+
+		it('ATOM', async(async () => {
+			const res = await simpleGet(`/@${alice.username}.atom`, UNSPECIFIED);
+			assert.strictEqual(res.status, 200);
+			assert.strictEqual(res.type, 'application/atom+xml; charset=utf-8');
+		}));
+
+		it('JSON', async(async () => {
+			const res = await simpleGet(`/@${alice.username}.json`, UNSPECIFIED);
+			assert.strictEqual(res.status, 200);
+			assert.strictEqual(res.type, 'application/json; charset=utf-8');
+		}));
+	});
 });
