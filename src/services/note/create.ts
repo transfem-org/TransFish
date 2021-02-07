@@ -320,7 +320,8 @@ export default async (user: IUser, data: Option, silent = false) => {
 		}
 
 		if (isQuote(note)) {
-			saveQuote(data.renote, note);
+			saveQuote(data.renote!, note);
+			incQuoteCount(data.renote!);
 		}
 
 		// Pack the note
@@ -481,6 +482,14 @@ function incRenoteCount(renote: INote, user: IUser) {
 		$inc: {
 			renoteCount: 1,
 			score: user.isBot ? 0 : 1
+		}
+	});
+}
+
+function incQuoteCount(renote: INote) {
+	Note.update({ _id: renote._id }, {
+		$inc: {
+			quoteCount: 1
 		}
 	});
 }

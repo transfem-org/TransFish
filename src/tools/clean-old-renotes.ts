@@ -4,6 +4,7 @@ import { ObjectID } from 'mongodb';
 import Favorite from '../models/favorite';
 import { concat } from '../prelude/array';
 import { genMeid7 } from '../misc/id/meid7';
+import isQuote from '../misc/is-quote';
 
 async function main(days = 90) {
 	const limit = new Date(Date.now() - (days * 1000 * 86400));
@@ -90,7 +91,8 @@ async function main(days = 90) {
 
 			await Note.update({ _id: note.renoteId }, {
 				$inc: {
-					renoteCount: -1
+					renoteCount: -1,
+					quoteCount: isQuote(note) ? -1 : 0,
 				}
 			});
 

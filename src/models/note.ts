@@ -63,6 +63,7 @@ export type INote = {
 	copyOnce?: boolean;
 	renoteCount: number;
 	repliesCount: number;
+	quoteCount?: number;
 	reactionCounts: Record<string, number>;
 	mentions: mongo.ObjectID[];
 	mentionedRemoteUsers: {
@@ -280,6 +281,7 @@ export const pack = async (
 
 	// Some counts
 	_note.renoteCount = _note.renoteCount || 0;
+	_note.quoteCount = _note.quoteCount || 0;
 	_note.repliesCount = _note.repliesCount || 0;
 	_note.reactionCounts = _note.reactionCounts ? decodeReactionCounts(_note.reactionCounts) : {};
 	_note.reactions = _note.reactionCounts;

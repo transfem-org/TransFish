@@ -20,6 +20,7 @@ import DeliverManager, { deliverToFollowers } from '../../remote/activitypub/del
 import { deliverToRelays } from '../relay';
 import Notification from '../../models/notification';
 import { deleteUnusedFile } from '../drive/delete-unused-file';
+import isQuote from '../../misc/is-quote';
 
 /**
  * 投稿を削除します。
@@ -51,6 +52,7 @@ export default async function(user: IUser, note: INote, quiet = false) {
 		Note.update({ _id: note.renoteId }, {
 			$inc: {
 				renoteCount: -1,
+				quoteCount: isQuote(note) ? -1 : 0,
 				score: user.isBot ? 0 : -1
 			},
 			$pull: {
