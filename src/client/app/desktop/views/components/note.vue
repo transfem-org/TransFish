@@ -49,7 +49,6 @@
 						<a class="reply" v-if="appearNote.reply"><fa icon="reply"/></a>
 						<mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$store.state.i" :custom-emojis="appearNote.emojis"
 							:style="{ 'font-size': appearNote.text && appearNote.text.length > 500 ? '11px' : 'inherit' }"/>
-						<a class="rp" v-if="appearNote.renote">RN:</a>
 					</div>
 					<div class="files" v-if="appearNote.files.length > 0">
 						<mk-media-list :hide="!$store.state.device.alwaysShowNsfw && appearNote.cw == null" :media-list="appearNote.files"/>
