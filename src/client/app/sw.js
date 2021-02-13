@@ -32,6 +32,9 @@ self.addEventListener('push', ev => {
 	}));
 });
 
+self.addEventListener('fetch', ev => {
+});
+
 self.addEventListener('notificationclick', function(event) {
 	event.notification.close();
 
