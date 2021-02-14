@@ -28,10 +28,9 @@ export default Vue.extend({
 	computed: {
 		template(): string {
 			let t = '';
-			if (this.title && this.url) t += `【[${this.title}](${this.url})】\n`;
-			if (this.title && !this.url) t += `【${this.title}】\n`;
+			if (this.title) t += `【${this.title}】\n`;
 			if (this.text) t += `${this.text}\n`;
-			if (!this.title && this.url) t += `${this.url}`;
+			if (this.url) t += `${this.url}`;
 			return t.trim();
 		}
 	},
@@ -52,7 +51,7 @@ export default Vue.extend({
 .azibmfpleajagva420swmu4c3r7ni7iw
 	> h1
 		margin 8px 0
-		color #555
+		color var(--text)
 		font-size 20px
 		text-align center
 
