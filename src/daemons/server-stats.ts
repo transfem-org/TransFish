@@ -23,7 +23,7 @@ export default function() {
 	async function tick() {
 		const cpu = await cpuUsage();
 		const mem = await systeminformation.mem();
-		const cpuSpeed = (await systeminformation.cpuCurrentspeed()).avg;
+		const cpuSpeed = (await systeminformation.cpuCurrentSpeed()).avg;
 		const disk = await diskusage.check(os.platform() == 'win32' ? 'c:' : '/');
 
 		mem.used = mem.used - mem.buffers - mem.cached;
