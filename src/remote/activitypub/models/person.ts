@@ -180,27 +180,22 @@ export async function createPerson(uri: string, resolver?: Resolver): Promise<IU
 	} catch (e) {
 		// duplicate key error
 		if (e.code === 11000) {
-			user = await User.findOne({
-				uri: person.id
+			// 同じ@username@host を持つものがあった場合、被った先を返す
+			const u = await User.findOne({
+				uri: { $ne: person.id },
+				usernameLower: person.preferredUsername.toLowerCase(),
+				host
 			});
 
-			// 同じ@username@host を持つものがあった場合、被った先を返す
-			if (user == null) {
-				const u = await User.findOne({
-					usernameLower: person.preferredUsername.toLowerCase(),
-					host
-				});
-
-				if (u) {
-					throw {
-						code: 'DUPLICATED_USERNAME',
-						with: u,
-					};
-				}
-
-				logger.error(e);
-				throw e;
+			if (u) {
+				throw {
+					code: 'DUPLICATED_USERNAME',
+					with: u,
+				};
 			}
+
+			logger.error(e);
+			throw e;
 		} else {
 			logger.error(e);
 			throw e;
