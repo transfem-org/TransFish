@@ -25,7 +25,7 @@ export function concat<T>(xss: T[][]): T[] {
 /**
  * Returns the array of elements that is not equal to the element
  */
-export function erase<T>(a: T, xs: T[]): T[] {
+export function erase<T>(a: T | null, xs: T[]): T[] {
 	return xs.filter(x => x !== a);
 }
 
