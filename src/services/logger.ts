@@ -73,7 +73,7 @@ export default class Logger {
 				level: level,
 				message: message,
 				data: data,
-			});
+			}).then(() => {});
 		}
 	}
 
