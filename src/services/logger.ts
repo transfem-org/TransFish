@@ -7,14 +7,14 @@ import Log from '../models/log';
 
 type Domain = {
 	name: string;
-	color: string;
+	color?: string;
 };
 
 type Level = 'error' | 'success' | 'warning' | 'debug' | 'info';
 
 export default class Logger {
 	private domain: Domain;
-	private parentLogger: Logger;
+	private parentLogger: Logger | null = null;
 	private store: boolean;
 
 	constructor(domain: string, color?: string, store = false) {
@@ -31,7 +31,7 @@ export default class Logger {
 		return logger;
 	}
 
-	private log(level: Level, message: string, data: Record<string, any>, important = false, subDomains: Domain[] = [], store = false): void {
+	private log(level: Level, message: string, data: Record<string, any> | null | undefined, important = false, subDomains: Domain[] = [], store = false): void {
 		if (program.quiet) return;
 		//if (process.env.NODE_ENV === 'test') return;
 		if (!this.store) store = false;
@@ -82,8 +82,10 @@ export default class Logger {
 			data = data || {};
 			data.e = x;
 			this.log('error', x.toString(), data, important);
+		} else if (typeof x === 'object') {
+			this.log('error', `${(x as any).message || (x as any).name || x}`, data, important);
 		} else {
-			this.log('error', x, data, important);
+			this.log('error', `${x}`, data, important);
 		}
 	}
 
