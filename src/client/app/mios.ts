@@ -141,6 +141,9 @@ export default class MiOS extends EventEmitter {
 			// Fetch user
 			fetch(`${apiUrl}/i`, {
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
 				body: JSON.stringify({
 					i: token
 				})
@@ -449,6 +452,9 @@ export default class MiOS extends EventEmitter {
 				credentials: 'omit'
 			}) : fetch(url, {
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
 				body: JSON.stringify(data),
 				credentials: endpoint === 'signin' ? 'include' : 'omit',
 				cache: 'no-cache'
