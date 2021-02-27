@@ -407,6 +407,7 @@ export default Vue.extend({
 				color var(--primary)
 
 		> .hashtags
+			max-width 540px
 			margin 0 0 8px 0
 			padding 2px
 			overflow hidden
