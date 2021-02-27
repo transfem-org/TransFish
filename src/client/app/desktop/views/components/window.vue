@@ -1,7 +1,7 @@
 <template>
 <div class="mk-window" :data-flexible="isFlexible" @dragover="onDragover">
 	<div class="bg" ref="bg" v-show="isModal" @click="onBgClick"></div>
-	<div class="main" ref="main" tabindex="-1" :data-is-modal="isModal" @mousedown="onBodyMousedown" @keydown="onKeydown" :style="{ width, height }">
+	<div class="main" ref="main" tabindex="-1" :data-is-modal="isModal" @mousedown="onBodyMousedown" @keydown="onKeydown" :style="{ minWidth: width, height }">
 		<div class="body">
 			<header ref="header"
 				@contextmenu.prevent="() => {}" @mousedown.prevent="onHeaderMousedown"
