@@ -89,4 +89,7 @@ export default Vue.extend({
 						max-height 180px
 						overflow hidden auto
 						padding-left 0.2em
+
+	&.preview
+		max-width 540px
 </style>
