@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="background: var(--desktopPostFormBg)">
 	<div class="mk-post-form"
 		@dragover.stop="onDragover"
 		@dragenter="onDragenter"
