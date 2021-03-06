@@ -1,1 +1,1 @@
-export const twemojiSvgBase = 'https://twemoji.maxcdn.com/v/latest/svg';
+export const twemojiSvgBase = '/assets/twemoji/v/13.0.1/svg';

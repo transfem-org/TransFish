@@ -57,6 +57,14 @@ const router = new Router();
 
 //#region static assets
 
+router.get('/assets/twemoji/*', async ctx => {
+	await send(ctx, ctx.path, {
+		root: client,
+		maxage: ms('30 days'),
+		immutable: true,
+	});
+});
+
 router.get('/assets/*', async ctx => {
 	if (env !== 'production') {
 		ctx.set('Cache-Control', 'no-store');
