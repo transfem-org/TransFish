@@ -123,7 +123,7 @@ export default define(meta, async (ps, me) => {
 			$skip: ps.offset
 		},
 		{
-			$limit: ps.limit
+			$limit: ps.limit * 3
 		}
 	]) as Promise<ReactionStat[]>;
 
@@ -143,12 +143,28 @@ export default define(meta, async (ps, me) => {
 		}
 	});
 
+	// なんか被るので多めに取得して再集計
+	const n: Record<string, number> = {};
+	for (const r of reacteds) {
+		if (r.reaction === '__proto__') continue;
+		if (n[r.reaction]) {
+			n[r.reaction] += r.count;
+		} else {
+			n[r.reaction] = 0;
+		}
+	}
+
+	const reacteds2 = Object.keys(n)
+		.map(x => ({ reaction: x, count: n[x] }))
+		.sort((a, b) => a.count - b.count)
+		.splice(0, ps.limit);
+
 	const reactionNames = unique(concat([xs.map(x => x._id), ys.map(x => x._id)]));
 	const emojis = await packEmojis([], null, reactionNames.map(x => decodeReaction(x)).map(x => x.replace(/:/g, '')));
 
 	const r = {
 		reactions,
-		reacteds,
+		reacteds: reacteds2,
 		emojis
 	}
 
