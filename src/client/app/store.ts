@@ -78,6 +78,7 @@ const defaultDeviceSettings = Object.assign({
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
 	expandUsersReactions: true,
+	expandUsersReacteds: true,
 	showPostPreview: true,
 	enableMobileQuickNotificationView: false,
 	roomGraphicsQuality: 'medium',

@@ -4,6 +4,10 @@ import NoteReaction from '../../../../models/note-reaction';
 import { decodeReaction } from '../../../../misc/reaction-lib';
 import { packEmojis } from '../../../../misc/pack-emojis';
 import ID, { transform } from '../../../../misc/cafy-id';
+import { genMeid7 } from '../../../../misc/id/meid7';
+import Note from '../../../../models/note';
+import * as mongo from 'mongodb';
+import { concat, unique } from '../../../../prelude/array';
 
 export const meta = {
 	tags: ['reactions', 'users'],
@@ -51,14 +55,22 @@ export const meta = {
 	cacheSec: 600,
 };
 
+type ReactionStat = {
+	/** Reaction */
+	_id: string,
+	count: number
+};
+
 export default define(meta, async (ps, me) => {
+	const date = new Date(Date.now() - (1000 * 60 * 60 * 24 * ps.days));
+	const id = genMeid7(date);
 
 	// よくするリアクション
 	const queryReactions = NoteReaction.aggregate([
 		{
 			$match: {
 				userId: ps.userId,
-				createdAt: { $gt: new Date(Date.now() - (1000 * 60 * 60 * 24 * ps.days)) }
+				createdAt: { $gt: date }
 			}
 		},
 		{
@@ -76,9 +88,47 @@ export default define(meta, async (ps, me) => {
 		{
 			$limit: ps.limit
 		}
-	]) as Promise<{ _id: string, count: number }[]>;
+	]) as Promise<ReactionStat[]>;
 
-	const xs = await queryReactions;
+	// よくされるリアクション
+	const queryReacteds = Note.aggregate([
+		{
+			$match: {
+				userId: ps.userId,
+				_id: { $gt: new mongo.ObjectID(id) },
+				reactionCounts: { $ne: {} },
+			}
+		},
+		{
+			$lookup: {
+				from: 'noteReactions',
+				localField: '_id',
+				foreignField: 'noteId',
+				as: '_reactions',
+			}
+		},
+		{
+			$group: {
+				_id: '$_reactions.reaction',
+				count: { $sum: 1 }
+			}
+		},
+		{
+			$unwind: '$_id'
+		},
+		{
+			$sort: { count: -1 }
+		},
+		{
+			$skip: ps.offset
+		},
+		{
+			$limit: ps.limit
+		}
+	]) as Promise<ReactionStat[]>;
+
+	const [xs, ys] = await Promise.all([queryReactions, queryReacteds]);
+
 	const reactions = xs.map(x => {
 		return {
 			count: x.count,
@@ -86,10 +136,19 @@ export default define(meta, async (ps, me) => {
 		}
 	});
 
-	const emojis = await packEmojis([], null, xs.map(x => decodeReaction(x._id)).map(x => x.replace(/:/g, '')));
+	const reacteds = ys.map(x => {
+		return {
+			count: x.count,
+			reaction: decodeReaction(x._id)
+		}
+	});
+
+	const reactionNames = unique(concat([xs.map(x => x._id), xs.map(x => x._id)]));
+	const emojis = await packEmojis([], null, reactionNames.map(x => decodeReaction(x)).map(x => x.replace(/:/g, '')));
 
 	const r = {
 		reactions,
+		reacteds,
 		emojis
 	}
 

@@ -106,7 +106,8 @@ common:
   empty: 'ありません！'
   edit: '編集'
   aboutInstance: "このインスタンスについて"
-  favoriteReactions: "よく使うリアクション"
+  favoriteReactions: "よくするリアクション"
+  mostReacteds: "よくされるリアクション"
 
   favorites: "お気に入り"
   noteReactions: "リアクションした投稿"

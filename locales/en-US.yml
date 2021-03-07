@@ -92,6 +92,7 @@ common:
   edit: 'Edit'
   aboutInstance: "About this instance"
   favoriteReactions: "Favorite reactions"
+  mostReacteds: "Most reacteds"
 
   favorites: "Favorites"
   noteReactions: "Reacted notes"
