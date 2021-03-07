@@ -19,6 +19,7 @@
 			<x-activity :user="user"/>
 		</div>
 	</ui-container>
+	<x-reactions :user="user" style="margin-top: 16px; margin-bottom: 16px; "/>
 	<mk-user-list :make-promise="makeFrequentlyRepliedUsersPromise" :icon-only="true"><fa icon="users"/> {{ $t('frequently-replied-users') }}</mk-user-list>
 	<mk-user-list v-if="$store.getters.isSignedIn && $store.state.i.id !== user.id" :make-promise="makeFollowersYouKnowPromise" :icon-only="true"><fa icon="users"/> {{ $t('followers-you-know') }}</mk-user-list>
 </div>
@@ -29,12 +30,14 @@ import Vue from 'vue';
 import i18n from '../../../../i18n';
 import XNotes from './home.notes.vue';
 import XPhotos from './home.photos.vue';
+import XReactions from '../../../../common/views/components/user-reactions.vue';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/pages/user/home.vue'),
 	components: {
 		XNotes,
 		XPhotos,
+		XReactions,
 		XActivity: () => import('../../../../common/views/components/activity.vue').then(m => m.default)
 	},
 	props: ['user'],
