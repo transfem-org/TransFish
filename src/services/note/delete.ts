@@ -21,6 +21,7 @@ import { deliverToRelays } from '../relay';
 import Notification from '../../models/notification';
 import { deleteUnusedFile } from '../drive/delete-unused-file';
 import isQuote from '../../misc/is-quote';
+import { inspect } from 'util';
 
 /**
  * 投稿を削除します。
@@ -94,6 +95,18 @@ export default async function(user: IUser, note: INote, quiet = false) {
 			}
 		}
 	}
+
+	// このNoteに対するPureRenoteを削除
+	Note.remove({
+		$and: [
+			{ renoteId: note._id },
+			{ text: null },
+			{ fileIds: [] },
+			{ poll: null }
+		]
+	}, {
+		multi: true
+	});
 
 	if (!quiet) {
 		publishNoteStream(note._id, 'deleted', {
