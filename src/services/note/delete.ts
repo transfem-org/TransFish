@@ -21,7 +21,6 @@ import { deliverToRelays } from '../relay';
 import Notification from '../../models/notification';
 import { deleteUnusedFile } from '../drive/delete-unused-file';
 import isQuote from '../../misc/is-quote';
-import { inspect } from 'util';
 
 /**
  * 投稿を削除します。
