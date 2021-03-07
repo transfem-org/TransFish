@@ -29,6 +29,7 @@ const htmlescape = require('htmlescape');
 
 const env = process.env.NODE_ENV;
 
+const staticAssets = `${__dirname}/../../../assets/`;
 const client = `${__dirname}/../../client/`;
 
 // Init app
@@ -56,21 +57,23 @@ app.use(async (ctx, next) => {
 const router = new Router();
 
 //#region static assets
-
-router.get('/assets/twemoji/*', async ctx => {
-	await send(ctx, ctx.path, {
-		root: client,
+router.get('/static-assets/twemoji/*', async ctx => {
+	await send(ctx as any, ctx.path.replace('/static-assets/', ''), {
+		root: staticAssets,
 		maxage: ms('30 days'),
 		immutable: true,
 	});
 });
 
-router.get('/assets/*', async ctx => {
-	if (env !== 'production') {
-		ctx.set('Cache-Control', 'no-store');
-	}
+router.get('/static-assets/*', async ctx => {
+	await send(ctx as any, ctx.path.replace('/static-assets/', ''), {
+		root: staticAssets,
+		maxage: ms('7 days'),
+	});
+});
 
-	await send(ctx, ctx.path, {
+router.get('/assets/*', async ctx => {
+	await send(ctx as any, ctx.path, {
 		root: client,
 		maxage: ms('7 days'),
 	});
@@ -78,14 +81,14 @@ router.get('/assets/*', async ctx => {
 
 // Apple touch icon
 router.get('/apple-touch-icon.png', async ctx => {
-	await send(ctx, '/assets/apple-touch-icon.png', {
+	await send(ctx as any, '/assets/apple-touch-icon.png', {
 		root: client
 	});
 });
 
 // ServiceWorker
 router.get(/^\/sw\.(.+?)\.js$/, async ctx => {
-	await send(ctx, `/assets/sw.${ctx.params[0]}.js`, {
+	await send(ctx as any, `/assets/sw.${ctx.params[0]}.js`, {
 		root: client
 	});
 });
@@ -94,7 +97,7 @@ router.get(/^\/sw\.(.+?)\.js$/, async ctx => {
 router.get('/manifest.json', require('./manifest'));
 
 router.get('/robots.txt', async ctx => {
-	await send(ctx, '/assets/robots.txt', {
+	await send(ctx as any, '/assets/robots.txt', {
 		root: client
 	});
 });
@@ -104,7 +107,7 @@ router.get('/robots.txt', async ctx => {
 // Docs
 router.use('/docs', docs.routes());
 router.get('/api-doc', async ctx => {
-	await send(ctx, '/assets/redoc.html', {
+	await send(ctx as any, '/assets/redoc.html', {
 		root: client
 	});
 });
