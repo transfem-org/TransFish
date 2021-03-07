@@ -143,7 +143,7 @@ export default define(meta, async (ps, me) => {
 		}
 	});
 
-	const reactionNames = unique(concat([xs.map(x => x._id), xs.map(x => x._id)]));
+	const reactionNames = unique(concat([xs.map(x => x._id), ys.map(x => x._id)]));
 	const emojis = await packEmojis([], null, reactionNames.map(x => decodeReaction(x)).map(x => x.replace(/:/g, '')));
 
 	const r = {
