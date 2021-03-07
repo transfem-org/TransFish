@@ -22,6 +22,18 @@ export const meta = {
 			validator: $.optional.either($.optional.num.range(1, 1000), $.str.pipe(v => 1 <= Number(v) && Number(v) <= 1000)),
 			default: 20,
 			transform: (v: any) => JSON.parse(v),
+			desc: {
+				'ja-JP': '取得数'
+			}
+		},
+
+		days: {
+			validator: $.optional.either($.optional.num.range(1, 30), $.str.pipe(v => 1 <= Number(v) && Number(v) <= 30)),
+			default: 30,
+			transform: (v: any) => JSON.parse(v),
+			desc: {
+				'ja-JP': '集計期間 (日)'
+			}
 		},
 
 		offset: {
@@ -40,10 +52,13 @@ export const meta = {
 };
 
 export default define(meta, async (ps, me) => {
-	const xs = await NoteReaction.aggregate([
+
+	// よくするリアクション
+	const queryReactions = NoteReaction.aggregate([
 		{
 			$match: {
 				userId: ps.userId,
+				createdAt: { $gt: new Date(Date.now() - (1000 * 60 * 60 * 24 * ps.days)) }
 			}
 		},
 		{
@@ -61,8 +76,9 @@ export default define(meta, async (ps, me) => {
 		{
 			$limit: ps.limit
 		}
-	]) as { _id: string, count: number }[];
+	]) as Promise<{ _id: string, count: number }[]>;
 
+	const xs = await queryReactions;
 	const reactions = xs.map(x => {
 		return {
 			count: x.count,
