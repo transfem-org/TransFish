@@ -345,7 +345,7 @@ export default Vue.extend({
 				// Twemojiライクに、200d(joiner) を含まない場合は 最後の fe0f (絵文字セレクタを削除する)
 				if (!codes.includes('200d')) codes = codes.filter(x => x != 'fe0f');
 				// で、参照先はTwemoji CDNじゃなくてローカル
-				this.url = `/assets/emojis/${codes.join('-')}.svg`;
+				this.url = `/static-assets/emojis/${codes.join('-')}.svg`;
 				return;
 			}
 
