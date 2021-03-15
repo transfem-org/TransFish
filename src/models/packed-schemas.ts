@@ -41,39 +41,32 @@ export type PackedNote = ThinPackedNote & {
 	myRenoteId?: string | null;
 };
 
-export type PackedUser = {
+export type ThinPackedUser = {
 	id: string;
 	username: string;
 	name: string | null;
 	host: string | null;
-	description?: string | null;
-	createdAt?: string | null;
-	followersCount?: number;
-	followingCount?: number;
-	notesCount?: number;
-	isBot: boolean;
-	isCat: boolean;
-	isAdmin?: boolean;
-	isVerified?: boolean;
-	isLocked?: boolean;
-
-	isExplorable?: boolean;
-	hideFollows?: boolean;
-
 	avatarUrl: string | null;
 	avatarColor: string | null;
-	isModerator?: boolean;
-	isSilenced?: boolean;
-	isSuspended?: boolean;
+	isAdmin: boolean;
+	isBot: boolean;
+	isCat: boolean;
+	instance: any;	// TODO
 	emojis: {
 		name: string;
 		url: string;
 	}[];
-	url?: string | null;
+};
 
+export type PackedUser = ThinPackedUser & {
+	createdAt?: string | null;
 	updatedAt?: string | null;
 	bannerUrl?: string | null;
 	bannerColor?: string | null;
+	isLocked?: boolean;
+	isSilenced?: boolean;
+	isSuspended?: boolean;
+	description?: string | null;
 	profile?: {
 		birthday?: string | null;
 		location?: string | null;
@@ -83,47 +76,18 @@ export type PackedUser = {
 		name: string;
 		value: string;
 	}[];
-
+	followersCount?: number;
+	followingCount?: number;
+	notesCount?: number;
 	pinnedNoteIds?: string[];
 	pinnedNotes?: PackedNote[]
-	twoFactorEnabled?: boolean;
-
-	avatarId?: string | null;
-	bannerId?: string | null;
-	autoWatch?: boolean;
-
-	wallpaperId?: string | null;
-	wallpaperUrl?: string | null;
-
-	alwaysMarkNsfw?: boolean;
-	carefulBot?: boolean;
-	carefulRemote?: boolean;
-	carefulMassive?: boolean;
-	refuseFollow?: boolean;
-	avoidSearchIndex?: boolean;
-	autoAcceptFollowed?: boolean;
-	hasUnreadSpecifiedNotes?: boolean;
-	hasUnreadMentions?: boolean;
-	hasUnreadAnnouncement?: boolean;
-	hasUnreadMessagingMessage?: boolean;
-	hasUnreadNotification?: boolean;
-	pendingReceivedFollowRequestsCount?: number;
-	isFollowing?: boolean;
-	hasPendingFollowRequestFromYou?: boolean;
-	hasPendingFollowRequestToYou?: boolean;
-	isFollowed?: boolean;
-	isBlocking?: boolean;
-	isBlocked?: boolean;
-	isMuted?: boolean;
-
-	movedToUserId?: string | null;
 	movedToUser?: PackedUser | null;
-
 	usertags?: string[];
 
-	email?: string | null;
-	emailVerified?: boolean;
-
+	// local
+	isVerified?: boolean;
+	isModerator?: boolean;
+	twoFactorEnabled?: boolean;
 	twitter?: {
 		screenName: string;
 		userId: string;
@@ -137,4 +101,48 @@ export type PackedUser = {
 		username: string;
 		discriminator: string;
 	};
+
+	// remote
+	url?: string | null;
+	uri?: string | null;
+
+	// my
+	avatarId?: string | null;
+	bannerId?: string | null;
+	alwaysMarkNsfw?: boolean;
+	carefulBot?: boolean;
+	carefulRemote?: boolean;
+	carefulMassive?: boolean;
+	refuseFollow?: boolean;
+	autoAcceptFollowed?: boolean;
+	avoidSearchIndex?: boolean;
+	isExplorable?: boolean;
+	hideFollows?: boolean;
+	wallpaperId?: string | null;
+	wallpaperUrl?: string | null;
+	hasUnreadMessagingMessage?: boolean;
+	hasUnreadNotification?: boolean;
+	hasUnreadSpecifiedNotes?: boolean;
+	hasUnreadMentions?: boolean;
+	pendingReceivedFollowRequestsCount?: number;
+
+	// my secrets
+	email?: string | null;
+	emailVerified?: boolean;
+
+	// other
+	isFollowing?: boolean;
+	isFollowed?: boolean;
+	hasPendingFollowRequestFromYou?: boolean;
+	hasPendingFollowRequestToYou?: boolean;
+	isBlocking?: boolean;
+	isBlocked?: boolean;
+	isMuted?: boolean;
+	isHideRenoting?: boolean;
+
+	/*
+	movedToUserId?: string | null;
+	autoWatch?: boolean;
+	hasUnreadAnnouncement?: boolean;
+	*/
 }

@@ -21,6 +21,7 @@ import { toApHost } from '../misc/convert-host';
 import { awaitAll } from '../prelude/await-all';
 import { oidEquals } from '../prelude/oid';
 import { PackedUser, PackedNote } from './packed-schemas';
+import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-utils';
 
 const User = db.get<IUser>('users');
 
@@ -410,7 +411,7 @@ export const pack = async (
 	};
 
 	const packed: PackedUser = await awaitAll({
-		id: db._id.toHexString(),
+		id: toOidString(db._id),
 		username: db.username,
 		name: db.name || null,
 		host: db.host,
@@ -420,7 +421,7 @@ export const pack = async (
 		}).then(file => getDriveFileUrl(file, true) || `${config.driveUrl}/default-avatar.jpg`) : `${config.driveUrl}/default-avatar.jpg`,
 		avatarColor: null, // 後方互換性のため
 
-		isAdmin: isLocalUser(db) ? !!db.isAdmin : undefined,
+		isAdmin: !!db.isAdmin,
 		isBot: !!db.isBot,
 		isCat: !!db.isCat,
 
@@ -433,8 +434,8 @@ export const pack = async (
 		}): [],
 
 		...(opts.detail ? {
-			createdAt: db.createdAt ? db.createdAt.toISOString() : null,
-			updatedAt: db.updatedAt ? db.updatedAt.toISOString() : null,
+			createdAt: toISODateOrNull(db.createdAt),
+			updatedAt: toISODateOrNull(db.updatedAt),
 			bannerUrl: db.bannerUrl ? DriveFile.findOne({
 				_id: db.bannerId
 			}).then(file => getDriveFileUrl(file, false) || null) : null,
@@ -453,7 +454,7 @@ export const pack = async (
 			followersCount: db.followersCount,
 			followingCount: db.followingCount,
 			notesCount: db.notesCount,
-			pinnedNoteIds: db.pinnedNoteIds ? db.pinnedNoteIds.map(x => `${x}`) : [],
+			pinnedNoteIds: db.pinnedNoteIds ? db.pinnedNoteIds.map(toOidString) : [],
 			pinnedNotes: packNoteMany(db.pinnedNoteIds || [], meId, {
 				removeError: true,
 				detail: true
@@ -490,8 +491,8 @@ export const pack = async (
 
 		// detail && 自分を見てる
 		...((opts.detail && meId && oidEquals(meId, db._id) && isLocalUser(db)) ? {
-			avatarId: `${db.avatarId}`,
-			bannerId: `${db.bannerId}`,
+			avatarId: toOidString(db.avatarId),
+			bannerId: toOidString(db.bannerId),
 			alwaysMarkNsfw: !!db.settings?.alwaysMarkNsfw,
 			carefulBot: !!db.carefulBot,
 			carefulRemote: !!db.carefulRemote,
@@ -502,7 +503,7 @@ export const pack = async (
 			isExplorable: !!db.isExplorable,
 			hideFollows: !!db.hideFollows,
 
-			wallpaperId: db.wallpaperId ? `${db.wallpaperId}` : null,
+			wallpaperId: toOidStringOrNull(db.wallpaperId),
 			wallpaperUrl: db.wallpaperUrl || null,
 
 			hasUnreadMessagingMessage: !!db.hasUnreadMessagingMessage,
