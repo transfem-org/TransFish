@@ -7,7 +7,7 @@ export type ThinPackedNote = {
 	text: string | null
 	cw: string | null;
 	userId: string;
-	user: PackedUser | null;
+	user: ThinPackedUser | null;
 	replyId: string | null;
 	renoteId: string | null;
 	viaMobile: boolean;
@@ -34,7 +34,7 @@ export type ThinPackedNote = {
 }
 
 export type PackedNote = ThinPackedNote & {
-	reply?: PackedNote | null;
+	reply?: ThinPackedNote | null;
 	renote?: PackedNote | null;
 	poll?: any | null;	// TODO
 	myReaction?: string | null;
@@ -81,7 +81,7 @@ export type PackedUser = ThinPackedUser & {
 	notesCount?: number;
 	pinnedNoteIds?: string[];
 	pinnedNotes?: PackedNote[]
-	movedToUser?: PackedUser | null;
+	movedToUser?: ThinPackedUser | null;
 	usertags?: string[];
 
 	// local

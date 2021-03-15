@@ -413,7 +413,7 @@ export const pack = async (
 			}) : null,
 
 			renote: db.renoteId ? pack(db.renoteId, meId, {
-				detail: db.text == null
+				detail: true
 			}) : null,
 
 			poll: db.poll ? populatePoll() : null,
