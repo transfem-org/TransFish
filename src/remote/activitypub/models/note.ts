@@ -27,6 +27,7 @@ import { parseAudience } from '../audience';
 import MessagingMessage from '../../../models/messaging-message';
 import DbResolver from '../db-resolver';
 import { tryStockEmoji } from '../../../services/emoji-store';
+import { parseDate, parseDateWithLimit } from '../misc/date';
 
 const logger = apLogger;
 
@@ -247,7 +248,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 	}
 
 	return await post(actor, {
-		createdAt: note.published ? new Date(note.published) : undefined,
+		createdAt: parseDateWithLimit(note.published, 600 * 1000) || new Date(),
 		files,
 		reply,
 		renote: quote,
@@ -317,9 +318,10 @@ export async function extractEmojis(tags: IObject | IObject[], host_: string) {
 
 			if (exists) {
 				// 更新されていたら更新
-				if ((tag.updated != null && exists.updatedAt == null)
+				const updated = parseDate(tag.updated);
+				if ((updated != null && exists.updatedAt == null)
 					|| (tag.id != null && exists.uri == null)
-					|| (tag.updated != null && exists.updatedAt != null && new Date(tag.updated) > exists.updatedAt)) {
+					|| (updated != null && exists.updatedAt != null && updated > exists.updatedAt)) {
 						logger.info(`update emoji host=${host}, name=${name}`);
 						exists = await Emoji.findOneAndUpdate({
 							host,

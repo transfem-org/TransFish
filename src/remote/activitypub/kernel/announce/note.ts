@@ -8,6 +8,7 @@ import { extractApHost } from '../../../../misc/convert-host';
 import { getApLock } from '../../../../misc/app-lock';
 import { isBlockedHost } from '../../../../misc/instance-info';
 import { parseAudience } from '../../audience';
+import { parseDateWithLimit } from '../../misc/date';
 
 const logger = apLogger;
 
@@ -56,7 +57,7 @@ export default async function(resolver: Resolver, actor: IRemoteUser, activity: 
 		const activityAudience = await parseAudience(actor, activity.to, activity.cc);
 
 		await post(actor, {
-			createdAt: new Date(activity.published),
+			createdAt: parseDateWithLimit(activity.published, 600 * 1000) || new Date(),
 			renote,
 			visibility: activityAudience.visibility,
 			visibleUsers: activityAudience.visibleUsers,
