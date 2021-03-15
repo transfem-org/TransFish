@@ -20,7 +20,7 @@ import { registerOrFetchInstanceDoc } from '../services/register-or-fetch-instan
 import { toApHost } from '../misc/convert-host';
 import { awaitAll } from '../prelude/await-all';
 import { oidEquals } from '../prelude/oid';
-import { PackedUser, PackedNote } from './packedSchemas';
+import { PackedUser, PackedNote } from './packed-schemas';
 
 const User = db.get<IUser>('users');
 

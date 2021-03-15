@@ -14,7 +14,7 @@ import { dbLogger } from '../db/logger';
 import { decodeReaction, decodeReactionCounts } from '../misc/reaction-lib';
 import { parse } from '../mfm/parse';
 import { toString } from '../mfm/to-string';
-import { PackedNote } from './packedSchemas';
+import { PackedNote } from './packed-schemas';
 import { awaitAll } from '../prelude/await-all';
 import { pack as packApp } from './app';
 
