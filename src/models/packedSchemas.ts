@@ -1,10 +1,10 @@
 export type PackedNote = {
 	id: string;
-	createdAt: string;
+	createdAt: string | null;
 	text: string | null
 	cw: string | null;
 	userId: string;
-	user: PackedUser;
+	user: PackedUser | null;
 	replyId: string | null;
 	renoteId: string | null;
 	reply?: PackedNote | null;
@@ -41,7 +41,7 @@ export type PackedUser = {
 	name: string | null;
 	host: string | null;
 	description?: string | null;
-	createdAt?: string;
+	createdAt?: string | null;
 	followersCount?: number;
 	followingCount?: number;
 	notesCount?: number;

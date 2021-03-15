@@ -41,7 +41,7 @@ export default User;
 
 type IUserBase = {
 	_id: mongo.ObjectID;
-	createdAt: Date;
+	createdAt?: Date;
 	updatedAt?: Date;
 	deletedAt?: Date;
 	followersCount: number;
@@ -433,7 +433,7 @@ export const pack = async (
 		}): [],
 
 		...(opts.detail ? {
-			createdAt: db.createdAt.toISOString(),
+			createdAt: db.createdAt ? db.createdAt.toISOString() : null,
 			updatedAt: db.updatedAt ? db.updatedAt.toISOString() : null,
 			bannerUrl: db.bannerUrl ? DriveFile.findOne({
 				_id: db.bannerId
@@ -464,7 +464,7 @@ export const pack = async (
 			...(isLocalUser(db) ? {
 				isVerified: !!db.isVerified,
 				isModerator: !!db.isModerator,
-				twoFactorEnabled: db.twoFactorEnabled,
+				twoFactorEnabled: !!db.twoFactorEnabled,
 
 				twitter: db.twitter ? {
 					screenName: db.twitter?.screenName,

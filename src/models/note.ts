@@ -381,7 +381,7 @@ export const pack = async (
 
 	const packed: PackedNote = await awaitAll({
 		id: db._id.toHexString(),
-		createdAt: db.createdAt.toISOString(),
+		createdAt: db.createdAt ? db.createdAt.toISOString() : null,
 		text: text,
 		cw: db.cw,
 		userId: `${db.userId}`,
@@ -425,7 +425,7 @@ export const pack = async (
 		} : {})
 	});
 
-	if (packed.user.isCat && packed.text) {
+	if (packed.user?.isCat && packed.text) {
 		const tokens = packed.text ? parse(packed.text) : [];
 		packed.text = toString(tokens, { doNyaize: true });
 	}
