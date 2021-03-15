@@ -16,7 +16,6 @@ import { parse } from '../mfm/parse';
 import { toString } from '../mfm/to-string';
 import { PackedNote } from './packedSchemas';
 import { awaitAll } from '../prelude/await-all';
-import { inspect } from 'util';
 import { pack as packApp } from './app';
 
 const Note = db.get<INote>('notes');
@@ -376,8 +375,6 @@ export const pack = async (
 
 		return renote ? `${renote._id}` : null;
 	};
-
-	console.log(inspect(db));
 
 	const packed: PackedNote = await awaitAll({
 		id: db._id.toHexString(),
