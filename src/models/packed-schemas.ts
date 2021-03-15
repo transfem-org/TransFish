@@ -1,38 +1,44 @@
-export type PackedNote = {
+
+export type ThinPackedNote = {
 	id: string;
 	createdAt: string | null;
+	deletedAt: string | null;
+	updatedAt: string | null;
 	text: string | null
 	cw: string | null;
 	userId: string;
 	user: PackedUser | null;
 	replyId: string | null;
 	renoteId: string | null;
-	reply?: PackedNote | null;
-	renote?: PackedNote | null;
 	viaMobile: boolean;
 	visibility: string;
-	fileIds: string[];
-	files: any;	// TODO
 	tags: string[];
-	reactions: Record<string, number>;	// Forward Compatibility
-	reactionCounts: Record<string, number>;
-	emojis: {
-		name: string;
-		url: string;
-	}[];
 	localOnly: boolean;
 	copyOnce: boolean;
 	score: number;
 	renoteCount: number;
 	quoteCount: number;
 	repliesCount: number;
-	myReaction?: string | null;
-	myRenoteId?: string | null;
-	poll?: any | null;	// TODO
-	url: string | null;
+	reactions: Record<string, number>;	// Forward Compatibility
+	reactionCounts: Record<string, number>;
+	emojis: {
+		name: string;
+		url: string;
+	}[];
+	fileIds: string[];
+	files: any;	// TODO
 	uri: string | null;
+	url: string | null;
 	appId: string | null;
 	app: any | null;	// TODO
+}
+
+export type PackedNote = ThinPackedNote & {
+	reply?: PackedNote | null;
+	renote?: PackedNote | null;
+	poll?: any | null;	// TODO
+	myReaction?: string | null;
+	myRenoteId?: string | null;
 };
 
 export type PackedUser = {

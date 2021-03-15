@@ -17,6 +17,7 @@ import { toString } from '../mfm/to-string';
 import { PackedNote } from './packed-schemas';
 import { awaitAll } from '../prelude/await-all';
 import { pack as packApp } from './app';
+import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-utils';
 
 const Note = db.get<INote>('notes');
 Note.createIndex('uri', { sparse: true, unique: true });
@@ -45,7 +46,7 @@ export function isValidCw(text: string): boolean {
 export type INote = {
 	_id: mongo.ObjectID;
 	createdAt: Date;
-	deletedAt: Date;
+	deletedAt?: Date;
 	updatedAt?: Date;
 	fileIds: mongo.ObjectID[];
 	replyId: mongo.ObjectID;
@@ -58,7 +59,7 @@ export type INote = {
 	emojis: string[];
 	cw: string;
 	userId: mongo.ObjectID;
-	appId: mongo.ObjectID;
+	appId?: mongo.ObjectID;
 	viaMobile: boolean;
 	localOnly: boolean;
 	copyOnce?: boolean;
@@ -377,11 +378,13 @@ export const pack = async (
 	};
 
 	const packed: PackedNote = await awaitAll({
-		id: db._id.toHexString(),
-		createdAt: db.createdAt ? db.createdAt.toISOString() : null,
+		id: toOidString(db._id),
+		createdAt: toISODateOrNull(db.createdAt),
+		deletedAt: toISODateOrNull(db.deletedAt),
+		updatedAt: toISODateOrNull(db.updatedAt),
 		text: text,
 		cw: db.cw,
-		userId: `${db.userId}`,
+		userId: toOidString(db.userId),
 		user: packUser(db.userId, meId),
 		replyId: db.replyId ? `${db.replyId}` : null,
 		renoteId: db.renoteId ? `${db.renoteId}` : null,
@@ -397,11 +400,11 @@ export const pack = async (
 		reactions: reactionCounts,
 		reactionCounts: reactionCounts,
 		emojis: populateEmojis(),
-		fileIds: db.fileIds ? db.fileIds.map(x => `${x}`) : [],
+		fileIds: db.fileIds ? db.fileIds.map(toOidString) : [],
 		files: packFileMany(db.fileIds || []),
 		uri: db.uri || null,
 		url: db.url || null,
-		appId: db.appId ? `${db.appId}` : null,
+		appId: toOidStringOrNull(db.appId),
 		app: db.appId ? packApp(db.appId) : null,
 
 		...(opts.detail ? {
