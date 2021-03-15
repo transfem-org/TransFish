@@ -143,6 +143,7 @@ export default async function renderNote(note: INote, dive = true, isTalk = fals
 
 	return {
 		id: `${config.url}/notes/${note._id}`,
+		url: `${config.url}/notes/${note._id}`,
 		type: 'Note',
 		attributedTo,
 		summary,
