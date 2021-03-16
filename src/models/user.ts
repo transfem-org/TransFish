@@ -491,8 +491,8 @@ export const pack = async (
 
 		// detail && 自分を見てる
 		...((opts.detail && meId && oidEquals(meId, db._id) && isLocalUser(db)) ? {
-			avatarId: toOidString(db.avatarId),
-			bannerId: toOidString(db.bannerId),
+			avatarId: toOidStringOrNull(db.avatarId),
+			bannerId: toOidStringOrNull(db.bannerId),
 			alwaysMarkNsfw: !!db.settings?.alwaysMarkNsfw,
 			carefulBot: !!db.carefulBot,
 			carefulRemote: !!db.carefulRemote,
