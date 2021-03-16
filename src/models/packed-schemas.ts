@@ -117,7 +117,7 @@ export type PackedUser = ThinPackedUser & {
 	autoAcceptFollowed?: boolean;
 	avoidSearchIndex?: boolean;
 	isExplorable?: boolean;
-	hideFollows?: boolean;
+	hideFollows?: string;
 	wallpaperId?: string | null;
 	wallpaperUrl?: string | null;
 	hasUnreadMessagingMessage?: boolean;
@@ -129,6 +129,12 @@ export type PackedUser = ThinPackedUser & {
 	// my secrets
 	email?: string | null;
 	emailVerified?: boolean;
+	clientSettings: any;
+	settings?: {
+		autoWatch: boolean;
+		alwaysMarkNsfw?: boolean;
+		pushNotifications?: Record<string, boolean | undefined>;
+	};
 
 	// other
 	isFollowing?: boolean;

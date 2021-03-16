@@ -501,7 +501,7 @@ export const pack = async (
 			autoAcceptFollowed: !!db.autoAcceptFollowed,
 			avoidSearchIndex: !!db.avoidSearchIndex,
 			isExplorable: !!db.isExplorable,
-			hideFollows: !!db.hideFollows,
+			hideFollows: db.hideFollows || '',
 
 			wallpaperId: toOidStringOrNull(db.wallpaperId),
 			wallpaperUrl: db.wallpaperUrl || null,
@@ -516,7 +516,9 @@ export const pack = async (
 		// includeSecrets && 自分を見てる
 		...((opts.includeSecrets && meId && oidEquals(meId, db._id) && isLocalUser(db)) ? {
 			email: db.email || null,
-			emailVerified: !!db.emailVerified
+			emailVerified: !!db.emailVerified,
+			clientSettings: db.clientSettings,
+			settings: db.settings,
 		} : {}),
 
 		// 他人を見てる
