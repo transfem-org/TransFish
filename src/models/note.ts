@@ -18,6 +18,7 @@ import { PackedNote } from './packed-schemas';
 import { awaitAll } from '../prelude/await-all';
 import { pack as packApp } from './app';
 import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-utils';
+import { transform } from '../misc/cafy-id';
 
 const Note = db.get<INote>('notes');
 Note.createIndex('uri', { sparse: true, unique: true });
@@ -182,7 +183,7 @@ export const hideNote = async (packedNote: PackedNote, meId: mongo.ObjectID | nu
 		} else {
 			// フォロワーかどうか
 			const following = await Following.findOne({
-				followeeId: packedNote.userId,
+				followeeId: transform(packedNote.userId),
 				followerId: meId
 			});
 
