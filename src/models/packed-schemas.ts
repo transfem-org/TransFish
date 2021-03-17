@@ -31,6 +31,9 @@ export type ThinPackedNote = {
 	url: string | null;
 	appId: string | null;
 	app: any | null;	// TODO
+
+	visibleUserIds: string[];
+	mentions: string[];
 }
 
 export type PackedNote = ThinPackedNote & {
