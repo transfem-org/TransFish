@@ -132,7 +132,7 @@ export type PackedUser = ThinPackedUser & {
 	// my secrets
 	email?: string | null;
 	emailVerified?: boolean;
-	clientSettings: any;
+	clientSettings?: any;
 	settings?: {
 		autoWatch: boolean;
 		alwaysMarkNsfw?: boolean;
@@ -155,3 +155,40 @@ export type PackedUser = ThinPackedUser & {
 	hasUnreadAnnouncement?: boolean;
 	*/
 }
+
+//#region Follow
+export type PackedFollowBase = {
+	/** Relation ID */
+	id: string;
+	/** フォローの作成日時 */
+	createdAt: string | null;
+	/** フォローされたユーザーのID */
+	followeeId: string;
+	/** フォローしたユーザーのID */
+	followerId: string;
+}
+
+export type PackedFollowee = PackedFollowBase & {
+	/** フォローされたユーザーのオブジェクト */
+	followee: PackedUser;
+};
+
+export type PackedFollower = PackedFollowBase & {
+	/** フォローしているユーザーのオブジェクト */
+	follower: PackedUser;
+};
+
+export type V10Followees = {
+	/** フォローしているユーザーのオブジェクト */
+	users: PackedUser[];
+	/** 返した中で最後のRelation ID (nextという名前だけどnextではない！) */
+	next: string
+}
+
+export type V10Followers = {
+	/** フォローされたユーザーのオブジェクト */
+	users: PackedUser[];
+	/** 返した中で最後のRelation ID (nextという名前だけどnextではない！) */
+	next: string
+}
+//#endregion
