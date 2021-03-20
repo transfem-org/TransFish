@@ -16,3 +16,7 @@ export async function publishFilterChanged(userId: mongo.ObjectID) {
 export async function publishTerminate(userId: mongo.ObjectID) {
 	await publishServerEvent(userId, 'terminate');
 }
+
+export async function publishInstanceModUpdated() {
+	await publishServerEvent(null, 'instanceModUpdated');
+}

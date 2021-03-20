@@ -1,5 +1,6 @@
 import Instance from '../models/instance';
 import { toApHost } from './convert-host';
+import { getServerSubscriber } from '../services/server-subscriber';
 
 let blockedHosts: Set<string>;
 let closedHosts: Set<string>;
@@ -28,8 +29,19 @@ async function Update() {
 	closedHosts = new Set(closed.map(x => toApHost(x.host)));
 }
 
+// 初回アップデート
 Update();
 
+// 一定時間ごとにアップデート
 setInterval(() => {
 	Update();
 }, 300 * 1000);
+
+// イベントでアップデート
+const ev = getServerSubscriber();
+
+ev.on('serverEvent', (data: any) => {
+	if (data.type === 'instanceModUpdated') {
+		Update();
+	}
+});

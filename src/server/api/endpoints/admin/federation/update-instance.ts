@@ -1,6 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import Instance from '../../../../../models/instance';
+import { publishInstanceModUpdated } from '../../../../../services/create-event';
 
 export const meta = {
 	tags: ['admin'],
@@ -30,12 +31,14 @@ export default define(meta, async (ps, me) => {
 		throw new Error('instance not found');
 	}
 
-	Instance.update({ host: ps.host }, {
+	await Instance.update({ host: ps.host }, {
 		$set: {
 			isBlocked: ps.isBlocked,
 			isMarkedAsClosed: ps.isClosed
 		}
 	});
+
+	publishInstanceModUpdated();
 
 	return;
 });
