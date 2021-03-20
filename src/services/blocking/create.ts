@@ -97,7 +97,7 @@ async function unFollow(follower: IUser, followee: IUser) {
 		return;
 	}
 
-	Following.remove({
+	await Following.remove({
 		_id: following._id
 	});
 
