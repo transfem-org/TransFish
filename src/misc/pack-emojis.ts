@@ -19,7 +19,7 @@ type IREmoji = {
 	resolvable: string,
 };
 
-const SELF_HOST: string = null;
+const SELF_HOST = null;
 
 /**
  * 絵文字クエリ
@@ -62,15 +62,15 @@ export async function packAvatarEmojis(emojis: string[], ownerHost: string | nul
 
 	let avatarEmojis = await Promise.all(avatarKeys.map(async key =>  {
 		const user = await User.findOne({
-			usernameLower: key.usernameLower,
-			host: key.host
+			usernameLower: key!.usernameLower,
+			host: key!.host
 		});
 
 		const profileEmoji = {
-			name: key.emoji,
+			name: key!.emoji,
 			url: (user && user.avatarId) ? getDriveFileUrl(await DriveFile.findOne({ _id: user.avatarId }), true) : `${config.driveUrl}/default-avatar.jpg`,
-			host: key.host,
-			resolvable: key.resolvable,
+			host: key!.host,
+			resolvable: key!.resolvable,
 		} as IREmoji;
 
 		return profileEmoji;
@@ -130,10 +130,10 @@ export async function packCustomEmojis(emojis: string[], ownerHost: string | nul
 
 	const keys = customKeys.concat(reactionKeys);
 
-	let customEmojis = await Promise.all(keys.map(async key =>  {
+	const customEmojis = await Promise.all(keys.map(async key =>  {
 		const emoji = await Emoji.findOne({
-			name: key.name,
-			host: key.host
+			name: key!.name,
+			host: key!.host
 		}, {
 			fields: { _id: false }
 		});
@@ -141,26 +141,24 @@ export async function packCustomEmojis(emojis: string[], ownerHost: string | nul
 		if (emoji == null) return null;
 
 		const customEmoji = {
-			name: key.emoji,
-			url: (key.host && !emoji.saved) ? `${config.url}/files/${emoji.name}@${emoji.host}/${emoji.updatedAt ? emoji.updatedAt.getTime().toString(16) : '0'}.png` : emoji.url,
+			name: key!.emoji,
+			url: (key!.host && !emoji.saved) ? `${config.url}/files/${emoji.name}@${emoji.host}/${emoji.updatedAt ? emoji.updatedAt.getTime().toString(16) : '0'}.png` : emoji.url,
 			//host: key.host,
-			resolvable: key.resolvable,
+			resolvable: key!.resolvable,
 		} as IREmoji;
 
 		return customEmoji;
 	}));
 
-	customEmojis = customEmojis.filter(x => x != null);
-
-	return customEmojis;
+	return customEmojis.filter((x): x is IREmoji => x != null);
 }
 
-const normalizeHost = (host: string) => {
+const normalizeHost = (host: string | null) => {
 	if (host == null) return null;
 	return toUnicode(host.toLowerCase());
 };
 
-const normalizeAsciiHost = (host: string) => {
+const normalizeAsciiHost = (host: string | null) => {
 	if (host == null) return null;
 	return toASCII(host.toLowerCase());
 };
