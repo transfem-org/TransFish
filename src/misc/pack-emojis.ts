@@ -27,58 +27,81 @@ const SELF_HOST = null;
  * @param ownerHost 投稿またはプロフィール所有者のホスト
  * @param reactionEmojis リアクションの絵文字名一覧
  */
-export async function packEmojis(emojis: string[], ownerHost: string | null, reactionEmojis = [] as string[]) {
+export async function packEmojis(emojis: string[], ownerHost: string | null) {
 	const [custom, avatar] = await Promise.all([
-		packCustomEmojis(emojis, ownerHost, true, reactionEmojis),
-		packAvatarEmojis(emojis, ownerHost, true)
+		packCustomEmojis(emojis, ownerHost),
+		packAvatarEmojis(emojis, ownerHost)
 	]);
 
 	return custom.concat(avatar);
 }
 
+export async function packAvatarEmoji(str: string, ownerHost: string | null): Promise<IREmoji | null> {
+	// str: '@a' => { username: 'a', host: ownerHost } のアバター
+	// str: '@a@b' => { username: 'a', host: 'b } のアバター
+
+	const match = str.match(/^@([\w-]+)(?:@([\w.-]+))?$/);
+	if (!match) return null;
+
+	let queryHost = match[2] || ownerHost || SELF_HOST;
+	if (isSelfHost(queryHost)) queryHost = SELF_HOST;
+
+	const usernameLower = match[1].toLowerCase();
+	const host = normalizeHost(queryHost);	// DB (Unicode) host
+	const resolvable = `@${match[1]}` + (queryHost ? `@${normalizeAsciiHost(queryHost)}` : '');
+
+	const user = await User.findOne({
+		usernameLower,
+		host
+	});
+
+	return {
+		name: str,
+		url: (user && user.avatarId) ? getDriveFileUrl(await DriveFile.findOne({ _id: user.avatarId }), true) : `${config.driveUrl}/default-avatar.jpg`,
+		host,
+		resolvable,
+	} as IREmoji;
+}
+
 /**
  * Pack avatar emojis
- * @param emojis 絵文字名一覧
- * @param host 投稿またはプロフィール所有者のホスト
- * @param foreign 外部ホスト指定を許可する
+ * @param strs 絵文字名一覧
+ * @param ownerHost 投稿またはプロフィール所有者のホスト
  */
-export async function packAvatarEmojis(emojis: string[], ownerHost: string | null, foreign: boolean): Promise<IREmoji[]> {
-	const avatarKeys = emojis
-		.map(name => {
-			const match = foreign ? name.match(/^@([\w-]+)(?:@([\w.-]+))?$/) : name.match(/^@([\w-]+)$/);
-			if (!match) return null;
+export async function packAvatarEmojis(strs: string[], ownerHost: string | null): Promise<IREmoji[]> {
+	const emojis = await Promise.all(strs.map(str => packAvatarEmoji(str, ownerHost)));
+	return emojis.filter((x): x is IREmoji => x != null);
+}
 
-			let queryHost = foreign ? match[2] || (ownerHost || SELF_HOST) : SELF_HOST;
-			if (isSelfHost(queryHost)) queryHost = SELF_HOST;
+export async function packCustomEmoji(str: string, ownerHost: string | null): Promise<IREmoji | null> {
+	// str: 'a' => Emoji { name: 'a', host: ownerHost }
+	// str: 'a@.' => Emoji { name: 'a', host: null }	(リアクションのホスト省略系は必ずこの形式で来る)
+	// str: '@a@b' => Emoji { username: 'a', host: 'b' }
 
-			return {
-				emoji: match[0],
-				usernameLower: match[1].toLowerCase(),
-				host: normalizeHost(queryHost),
-				resolvable: `@${match[1]}` + (queryHost ? `@${normalizeAsciiHost(queryHost)}` : '')
-			};
-		})
-		.filter(x => x != null);
+	const match = str.match(/^(\w+)(?:@([\w.-]+))?$/);
+	if (!match) return null;
 
-	let avatarEmojis = await Promise.all(avatarKeys.map(async key =>  {
-		const user = await User.findOne({
-			usernameLower: key!.usernameLower,
-			host: key!.host
-		});
+	// クエリに使うホスト
+	const queryHost = match[2] === '.' ? SELF_HOST : match[2] === undefined ? ownerHost : isSelfHost(match[2]) ? SELF_HOST : (match[2] || ownerHost);
+	const name = match[1];
+	const host = normalizeHost(queryHost);
+	const resolvable = `${match[1]}` + (queryHost ? `@${normalizeAsciiHost(queryHost)}` : '');
 
-		const profileEmoji = {
-			name: key!.emoji,
-			url: (user && user.avatarId) ? getDriveFileUrl(await DriveFile.findOne({ _id: user.avatarId }), true) : `${config.driveUrl}/default-avatar.jpg`,
-			host: key!.host,
-			resolvable: key!.resolvable,
-		} as IREmoji;
+	const emoji = await Emoji.findOne({
+		name,
+		host
+	}, {
+		fields: { _id: false }
+	});
 
-		return profileEmoji;
-	}));
+	if (emoji == null) return null;
 
-	avatarEmojis = avatarEmojis.filter(x => x != null);
-
-	return avatarEmojis;
+	return {
+		name: str,
+		url: (host && emoji.saved) ? `${config.url}/files/${emoji.name}@${emoji.host}/${emoji.updatedAt ? emoji.updatedAt.getTime().toString(16) : '0'}.png` : emoji.url,
+		host: host,
+		resolvable: resolvable,
+	} as IREmoji;
 }
 
 /**
@@ -87,70 +110,9 @@ export async function packAvatarEmojis(emojis: string[], ownerHost: string | nul
  * @param host 投稿またはプロフィール所有者のホスト
  * @param foreign 外部ホスト指定を許可する
  */
-export async function packCustomEmojis(emojis: string[], ownerHost: string | null, foreign: boolean, reactionEmojis = [] as string[]): Promise<IREmoji[]> {
-	const customKeys = emojis
-		.map(name => {
-			const match = foreign ? name.match(/^(\w+)(?:@([\w.-]+))?$/) : name.match(/^(\w+)$/);
-			if (!match) return null;
-
-			let queryHost = foreign
-				? match[2] || (ownerHost || SELF_HOST)	// 通常のカスタム絵文字の場合、絶対指定ならそれ || なければNote所有者のホスト
-				: SELF_HOST;	// 外部参照を許可しない場合は常に自分のホスト
-			if (isSelfHost(queryHost)) queryHost = SELF_HOST;
-
-			return {
-				emoji: match[0],
-				name: match[1],
-				host: normalizeHost(queryHost),
-				resolvable: `${match[1]}` + (queryHost ? `@${normalizeAsciiHost(queryHost)}` : ''),
-			};
-		})
-		.filter(x => x != null);
-
-	const reactionKeys = reactionEmojis
-		.map(name => {
-			const match = foreign ? name.match(/^(\w+)(?:@([\w.-]+))?$/) : name.match(/^(\w+)$/);
-			if (!match) return null;
-
-			// リアクションカスタム絵文字のクエリに使うホスト
-			let queryHost = foreign
-				? match[2] || SELF_HOST	// 絶対指定ならそれ、なければローカルホスト
-				: SELF_HOST;
-			// ローカルホストはおそらく.
-			if (isSelfHost(queryHost) || queryHost === '.') queryHost = SELF_HOST;
-
-			return {
-				emoji: match[0],
-				name: match[1],
-				host: normalizeHost(queryHost),
-				resolvable: `${match[1]}` + (queryHost ? `@${normalizeAsciiHost(queryHost)}` : ''),
-			};
-		})
-		.filter(x => x != null);
-
-	const keys = customKeys.concat(reactionKeys);
-
-	const customEmojis = await Promise.all(keys.map(async key =>  {
-		const emoji = await Emoji.findOne({
-			name: key!.name,
-			host: key!.host
-		}, {
-			fields: { _id: false }
-		});
-
-		if (emoji == null) return null;
-
-		const customEmoji = {
-			name: key!.emoji,
-			url: (key!.host && !emoji.saved) ? `${config.url}/files/${emoji.name}@${emoji.host}/${emoji.updatedAt ? emoji.updatedAt.getTime().toString(16) : '0'}.png` : emoji.url,
-			//host: key.host,
-			resolvable: key!.resolvable,
-		} as IREmoji;
-
-		return customEmoji;
-	}));
-
-	return customEmojis.filter((x): x is IREmoji => x != null);
+export async function packCustomEmojis(names: string[], ownerHost: string | null): Promise<IREmoji[]> {
+	const emojis = await Promise.all(names.map(name => packCustomEmoji(name, ownerHost)));
+	return emojis.filter((x): x is IREmoji => x != null);
 }
 
 const normalizeHost = (host: string | null) => {
