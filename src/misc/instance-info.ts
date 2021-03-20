@@ -1,31 +1,31 @@
 import Instance from '../models/instance';
 import { toApHost } from './convert-host';
 
-let blockedHosts: string[];
-let closedHosts: string[];
+let blockedHosts: Set<string>;
+let closedHosts: Set<string>;
 
 export async function isBlockedHost(host: string | null) {
 	if (host == null) return false;
 	if (!blockedHosts) await Update();
-	return blockedHosts?.includes(toApHost(host)!);
+	return blockedHosts?.has(toApHost(host));
 }
 
 export async function isClosedHost(host: string | null) {
 	if (host == null) return false;
 	if (!closedHosts) await Update();
-	return closedHosts?.includes(toApHost(host)!);
+	return closedHosts?.has(toApHost(host));
 }
 
 async function Update() {
 	const blocked = await Instance.find({
 		isBlocked: true
 	});
-	blockedHosts = blocked.map(x => toApHost(x.host)!);
+	blockedHosts = new Set(blocked.map(x => toApHost(x.host)));
 
 	const closed = await Instance.find({
 		isMarkedAsClosed: true
 	});
-	closedHosts = closed.map(x => toApHost(x.host)!);
+	closedHosts = new Set(closed.map(x => toApHost(x.host)));
 }
 
 Update();
