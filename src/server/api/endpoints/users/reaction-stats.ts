@@ -160,7 +160,7 @@ export default define(meta, async (ps, me) => {
 		.splice(0, ps.limit);
 
 	const reactionNames = unique(concat([xs.map(x => x._id), ys.map(x => x._id)]));
-	const emojis = await packEmojis([], null, reactionNames.map(x => decodeReaction(x)).map(x => x.replace(/:/g, '')));
+	const emojis = await packEmojis(reactionNames.map(x => decodeReaction(x)).map(x => x.replace(/:/g, '')), null);
 
 	const r = {
 		reactions,

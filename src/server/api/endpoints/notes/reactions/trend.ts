@@ -72,7 +72,7 @@ export default define(meta, async (ps, me) => {
 		}
 	});
 
-	const emojis = await packEmojis([], null, xs.map(x => decodeReaction(x._id)).map(x => x.replace(/:/g, '')));
+	const emojis = await packEmojis(xs.map(x => decodeReaction(x._id)).map(x => x.replace(/:/g, '')), null);
 
 	const r = {
 		reactions,
