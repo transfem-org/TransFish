@@ -7,6 +7,7 @@ import Logger from '../../services/logger';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
 import { isBlockedHost, isClosedHost } from '../../misc/instance-info';
 import { DeliverJobData } from '../type';
+import { publishInstanceModUpdated } from '../../services/server-event';
 
 const logger = new Logger('deliver');
 
@@ -79,7 +80,9 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 							$set: {
 								isMarkedAsClosed: true
 							}
-						});
+						}).then(() => {
+							publishInstanceModUpdated();
+						})
 					});
 				}
 
