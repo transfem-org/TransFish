@@ -1,12 +1,11 @@
 import $ from 'cafy';
 import ID, { transform } from '../../../../misc/cafy-id';
-import Note from '../../../../models/note';
-import { packMany } from '../../../../models/note';
 import define from '../../define';
 import fetchMeta from '../../../../misc/fetch-meta';
 import activeUsersChart from '../../../../services/chart/active-users';
 import { getHideUserIds } from '../../common/get-hide-users';
 import { ApiError } from '../../error';
+import { getPackedTimeline } from '../../common/get-timeline';
 
 export const meta = {
 	desc: {
@@ -189,14 +188,9 @@ export default define(meta, async (ps, user) => {
 	}
 	//#endregion
 
-	const timeline = await Note.find(query, {
-		limit: ps.limit,
-		sort: sort
-	});
-
 	if (user) {
 		activeUsersChart.update(user);
 	}
 
-	return await packMany(timeline, user);
+	return await getPackedTimeline(user, query, sort, ps.limit!);
 });

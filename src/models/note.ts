@@ -128,6 +128,9 @@ export type INote = {
 		inbox?: string;
 	};
 	_files?: IDriveFile[];
+
+	// Lookuped
+	__user?: IUser;
 };
 
 export type IPoll = {
@@ -388,7 +391,7 @@ export const pack = async (
 		text: text,
 		cw: db.cw,
 		userId: toOidString(db.userId),
-		user: packUser(db.userId, meId),
+		user: packUser(db.__user as IUser || db.userId, meId),
 		replyId: db.replyId ? `${db.replyId}` : null,
 		renoteId: db.renoteId ? `${db.renoteId}` : null,
 		viaMobile: !!db.viaMobile,

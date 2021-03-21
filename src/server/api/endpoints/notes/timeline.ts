@@ -1,8 +1,6 @@
 import $ from 'cafy';
 import ID, { transform } from '../../../../misc/cafy-id';
-import Note from '../../../../models/note';
 import { getFriendIds } from '../../common/get-friends';
-import { packMany } from '../../../../models/note';
 import define from '../../define';
 import activeUsersChart from '../../../../services/chart/active-users';
 import { getHideUserIds } from '../../common/get-hide-users';
@@ -11,6 +9,7 @@ import { concat } from '../../../../prelude/array';
 import { isSelfHost } from '../../../../misc/convert-host';
 import { getHideRenoteUserIds } from '../../common/get-hide-renote-users';
 import { oidIncludes } from '../../../../prelude/oid';
+import { getPackedTimeline } from '../../common/get-timeline';
 
 export const meta = {
 	desc: {
@@ -344,14 +343,7 @@ export default define(meta, async (ps, user) => {
 		};
 	}
 	//#endregion
-
-	const timeline = await Note.find(query, {
-		maxTimeMS: 25000,
-		limit: ps.limit,
-		sort: sort
-	});
-
 	activeUsersChart.update(user);
 
-	return await packMany(timeline, user);
+	return await getPackedTimeline(user, query, sort, ps.limit!);
 });
