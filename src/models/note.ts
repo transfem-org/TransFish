@@ -301,6 +301,7 @@ export const pack = async (
 				});
 			} else {
 				const rs = Object.keys(reactionCounts)
+					.filter(x => x && x.startsWith(':'))
 					.map(x => decodeReaction(x))
 					.map(x => x.replace(/:/g, ''));
 
