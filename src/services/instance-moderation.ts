@@ -1,6 +1,6 @@
 import Instance from '../models/instance';
-import { toApHost } from './convert-host';
 import { getServerSubscriber } from '../services/server-subscriber';
+import { toApHost } from '../misc/convert-host';
 
 let blockedHosts: Set<string>;
 let closedHosts: Set<string>;

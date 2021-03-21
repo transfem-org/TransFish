@@ -5,7 +5,7 @@ import Instance from '../../models/instance';
 import instanceChart from '../../services/chart/instance';
 import Logger from '../../services/logger';
 import { UpdateInstanceinfo } from '../../services/update-instanceinfo';
-import { isBlockedHost, isClosedHost } from '../../misc/instance-info';
+import { isBlockedHost, isClosedHost } from '../../services/instance-moderation';
 import { DeliverJobData } from '../type';
 import { publishInstanceModUpdated } from '../../services/server-event';
 

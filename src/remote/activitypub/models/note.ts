@@ -22,7 +22,7 @@ import { deliverQuestionUpdate } from '../../../services/note/polls/update';
 import { extractApHost } from '../../../misc/convert-host';
 import { getApLock } from '../../../misc/app-lock';
 import { createMessage } from '../../../services/messages/create';
-import { isBlockedHost } from '../../../misc/instance-info';
+import { isBlockedHost } from '../../../services/instance-moderation';
 import { parseAudience } from '../audience';
 import MessagingMessage from '../../../models/messaging-message';
 import DbResolver from '../db-resolver';

@@ -10,7 +10,7 @@ import Resolver from '../../../../remote/activitypub/resolver';
 import { ApiError } from '../../error';
 import { extractApHost } from '../../../../misc/convert-host';
 import { isActor, isPost } from '../../../../remote/activitypub/type';
-import { isBlockedHost } from '../../../../misc/instance-info';
+import { isBlockedHost } from '../../../../services/instance-moderation';
 
 export const meta = {
 	tags: ['federation'],
