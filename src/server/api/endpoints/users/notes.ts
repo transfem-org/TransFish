@@ -1,10 +1,10 @@
 import $ from 'cafy';
 import ID, { transform } from '../../../../misc/cafy-id';
-import Note, { packMany } from '../../../../models/note';
 import define from '../../define';
 import Following from '../../../../models/following';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
+import { getPackedTimeline } from '../../common/get-timeline';
 
 export const meta = {
 	desc: {
@@ -145,7 +145,7 @@ export const meta = {
 
 export default define(meta, async (ps, me) => {
 	// Lookup user
-	const user = await getUser(ps.userId).catch(e => {
+	const user = await getUser(ps.userId!).catch(e => {
 		if (e.id === '15348ddd-432d-49c2-8a5a-8069753becff') throw new ApiError(meta.errors.noSuchUser);
 		throw e;
 	});
@@ -248,10 +248,5 @@ export default define(meta, async (ps, me) => {
 	}
 	//#endregion
 
-	const notes = await Note.find(query, {
-		limit: ps.limit,
-		sort: sort
-	});
-
-	return await packMany(notes, me);
+	return await getPackedTimeline(me, query, sort, ps.limit!);
 });
