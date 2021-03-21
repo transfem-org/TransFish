@@ -1,4 +1,4 @@
-import User, { IUser, isRemoteUser, ILocalUser, pack as packUser } from '../../../models/user';
+import User, { IUser, isRemoteUser, ILocalUser, pack as packUser, isLocalUser } from '../../../models/user';
 import FollowRequest from '../../../models/follow-request';
 import { renderActivity } from '../../../remote/activitypub/renderer';
 import renderFollow from '../../../remote/activitypub/renderer/follow';
@@ -46,12 +46,14 @@ export default async function(followee: IUser, follower: IUser) {
 				_id: following._id
 			});
 			decrementFollowing(follower, followee);
+
+			if (isLocalUser(follower)) {
+				publishFollowingChanged(follower._id);
+			}
 		}
 	}
 
 	packUser(followee, follower, {
 		detail: true
 	}).then(packed => publishMainStream(follower._id, 'unfollow', packed));
-
-	publishFollowingChanged(follower._id);
 }
