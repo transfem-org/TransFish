@@ -16,7 +16,7 @@ import instanceChart from '../../services/chart/instance';
 import Logger from '../logger';
 import FollowRequest from '../../models/follow-request';
 import { IdentifiableError } from '../../misc/identifiable-error';
-import { publishFollowingChanged } from '../create-event';
+import { publishFollowingChanged } from '../server-event';
 
 const logger = new Logger('following/create');
 

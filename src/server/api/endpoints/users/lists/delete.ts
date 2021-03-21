@@ -3,7 +3,7 @@ import ID, { transform } from '../../../../../misc/cafy-id';
 import UserList from '../../../../../models/user-list';
 import define from '../../../define';
 import { ApiError } from '../../../error';
-import { publishFilterChanged } from '../../../../../services/create-event';
+import { publishFilterChanged } from '../../../../../services/server-event';
 
 export const meta = {
 	desc: {

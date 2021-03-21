@@ -10,7 +10,7 @@ import Logger from '../logger';
 import { registerOrFetchInstanceDoc } from '../register-or-fetch-instance-doc';
 import Instance from '../../models/instance';
 import instanceChart from '../../services/chart/instance';
-import { publishFollowingChanged } from '../create-event';
+import { publishFollowingChanged } from '../server-event';
 
 const logger = new Logger('following/delete');
 

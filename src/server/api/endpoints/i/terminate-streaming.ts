@@ -1,5 +1,5 @@
 import define from '../../define';
-import { publishTerminate } from '../../../../services/create-event';
+import { publishTerminate } from '../../../../services/server-event';
 
 export const meta = {
 	requireCredential: true,

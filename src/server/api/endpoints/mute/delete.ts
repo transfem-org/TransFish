@@ -4,7 +4,7 @@ import Mute from '../../../../models/mute';
 import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
-import { publishMutingChanged } from '../../../../services/create-event';
+import { publishMutingChanged } from '../../../../services/server-event';
 
 export const meta = {
 	desc: {

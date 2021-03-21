@@ -10,7 +10,7 @@ import { deliver } from '../../queue';
 import renderReject from '../../remote/activitypub/renderer/reject';
 import perUserFollowingChart from '../../services/chart/per-user-following';
 import Blocking from '../../models/blocking';
-import { publishFollowingChanged, publishMutingChanged } from '../create-event';
+import { publishFollowingChanged, publishMutingChanged } from '../server-event';
 
 export default async function(blocker: IUser, blockee: IUser) {
 

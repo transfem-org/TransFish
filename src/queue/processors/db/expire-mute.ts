@@ -3,7 +3,7 @@ import * as Bull from 'bull';
 import { queueLogger } from '../../logger';
 import { ExpireMuteJobData } from '../../type';
 import Mute from '../../../models/mute';
-import { publishMutingChanged } from '../../../services/create-event';
+import { publishMutingChanged } from '../../../services/server-event';
 
 const logger = queueLogger.createSubLogger('expire-mute');
 

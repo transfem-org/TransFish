@@ -4,7 +4,7 @@ import UserList, { pack } from '../../../../../models/user-list';
 import define from '../../../define';
 import { ApiError } from '../../../error';
 import { publishUserListStream } from '../../../../../services/stream';
-import { publishFilterChanged } from '../../../../../services/create-event';
+import { publishFilterChanged } from '../../../../../services/server-event';
 
 export const meta = {
 	desc: {

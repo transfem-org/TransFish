@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import UserList, { pack } from '../../../../../models/user-list';
 import define from '../../../define';
-import { publishFilterChanged } from '../../../../../services/create-event';
+import { publishFilterChanged } from '../../../../../services/server-event';
 
 export const meta = {
 	desc: {

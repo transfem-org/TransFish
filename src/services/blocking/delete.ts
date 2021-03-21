@@ -5,7 +5,7 @@ import renderBlock from '../../remote/activitypub/renderer/block';
 import renderUndo from '../../remote/activitypub/renderer/undo';
 import { deliver } from '../../queue';
 import Logger from '../logger';
-import { publishMutingChanged } from '../create-event';
+import { publishMutingChanged } from '../server-event';
 
 const logger = new Logger('blocking/delete');
 

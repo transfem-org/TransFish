@@ -5,7 +5,7 @@ import define from '../../../define';
 import { ApiError } from '../../../error';
 import { toDbHost } from '../../../../../misc/convert-host';
 import { publishUserListStream } from '../../../../../services/stream';
-import { publishFilterChanged } from '../../../../../services/create-event';
+import { publishFilterChanged } from '../../../../../services/server-event';
 
 export const meta = {
 	desc: {

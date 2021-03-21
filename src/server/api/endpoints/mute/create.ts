@@ -4,8 +4,7 @@ import Mute from '../../../../models/mute';
 import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
-import { publishMutingChanged } from '../../../../services/create-event';
-import { inspect } from 'util';
+import { publishMutingChanged } from '../../../../services/server-event';
 import { createExpireMuteJob } from '../../../../queue';
 
 export const meta = {

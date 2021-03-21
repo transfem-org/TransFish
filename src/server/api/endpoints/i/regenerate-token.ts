@@ -4,7 +4,7 @@ import User from '../../../../models/user';
 import { publishMainStream } from '../../../../services/stream';
 import generateUserToken from '../../common/generate-native-user-token';
 import define from '../../define';
-import { publishTerminate } from '../../../../services/create-event';
+import { publishTerminate } from '../../../../services/server-event';
 
 export const meta = {
 	requireCredential: true,

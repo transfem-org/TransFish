@@ -7,7 +7,7 @@ import { deliver } from '../../../queue';
 import { publishMainStream } from '../../stream';
 import Following from '../../../models/following';
 import { decrementFollowing } from '../delete';
-import { publishFollowingChanged } from '../../create-event';
+import { publishFollowingChanged } from '../../server-event';
 
 export default async function(followee: IUser, follower: IUser) {
 	if (isRemoteUser(follower)) {

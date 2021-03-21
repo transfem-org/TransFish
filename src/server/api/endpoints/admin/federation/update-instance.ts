@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import define from '../../../define';
 import Instance from '../../../../../models/instance';
-import { publishInstanceModUpdated } from '../../../../../services/create-event';
+import { publishInstanceModUpdated } from '../../../../../services/server-event';
 
 export const meta = {
 	tags: ['admin'],

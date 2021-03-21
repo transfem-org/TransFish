@@ -3,7 +3,7 @@ import ID, { transform } from '../../../../misc/cafy-id';
 import define from '../../define';
 import User, { isLocalUser } from '../../../../models/user';
 import { doPostSuspend } from '../../../../services/suspend-user';
-import { publishTerminate } from '../../../../services/create-event';
+import { publishTerminate } from '../../../../services/server-event';
 
 export const meta = {
 	desc: {
