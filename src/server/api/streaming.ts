@@ -37,7 +37,7 @@ module.exports = (server: http.Server) => {
 
 		if (config.redis) {
 			// Connect to Redis
-			const subscriber = redis.createClient(
+			const redisSubscriber = redis.createClient(
 				config.redis.port,
 				config.redis.host,
 				{
@@ -45,19 +45,19 @@ module.exports = (server: http.Server) => {
 				}
 			);
 
-			subscriber.subscribe(config.host);
+			redisSubscriber.subscribe(config.host);
 
 			ev = new EventEmitter();
 
-			subscriber.on('message', async (_, data) => {
+			redisSubscriber.on('message', async (_, data) => {
 				const obj = JSON.parse(data);
 
 				ev.emit(obj.channel, obj.message);
 			});
 
 			connection.once('close', () => {
-				subscriber.unsubscribe();
-				subscriber.quit();
+				redisSubscriber.unsubscribe();
+				redisSubscriber.quit();
 			});
 		} else {
 			ev = new Xev();
