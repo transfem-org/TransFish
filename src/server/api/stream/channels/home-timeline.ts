@@ -8,6 +8,7 @@ import { isSelfHost } from '../../../../misc/convert-host';
 import Following from '../../../../models/following';
 import { oidEquals, oidIncludes } from '../../../../prelude/oid';
 import UserFilter from '../../../../models/user-filter';
+import { PackedNote } from '../../../../models/packed-schemas';
 
 export default class extends Channel {
 	public readonly chName = 'homeTimeline';
@@ -71,7 +72,7 @@ export default class extends Channel {
 	}
 
 	@autobind
-	private async onNote(note: any) {
+	private async onNote(note: PackedNote) {
 		if (!(
 			oidEquals(note.userId, this.user!._id) ||	// myself
 			oidIncludes(this.followingIds, note.userId)	// from followers

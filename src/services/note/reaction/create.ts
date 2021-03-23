@@ -59,8 +59,8 @@ export default async (user: IUser, note: INote, reaction?: string, dislike = fal
 
 	if (note.reactionCounts == null) {
 		(async () => {
-			const fresh = await Note.findOne({ _id: note._id });
-			publishHotStream(await pack(fresh));
+			const fresh = (await Note.findOne({ _id: note._id }))!;
+			publishHotStream((await pack(fresh))!);
 		})();
 	}
 

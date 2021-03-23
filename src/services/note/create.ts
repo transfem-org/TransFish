@@ -325,10 +325,10 @@ export default async (user: IUser, data: Option, silent = false) => {
 		}
 
 		// Pack the note
-		const noteObj = await pack(note);
+		const noteObj = (await pack(note))!;
 
 		if (isFirstNote) {
-			noteObj.isFirstNote = true;
+			(noteObj as any).isFirstNote = true;
 		}
 
 		publishNotesStream(noteObj);

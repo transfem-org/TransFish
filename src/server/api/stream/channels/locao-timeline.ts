@@ -3,6 +3,7 @@ import { pack } from '../../../../models/note';
 import shouldMuteThisNote from '../../../../misc/should-mute-this-note';
 import Channel from '../channel';
 import fetchMeta from '../../../../misc/fetch-meta';
+import { PackedNote } from '../../../../models/packed-schemas';
 
 export default class extends Channel {
 	public readonly chName = 'locaoTimeline';
@@ -24,10 +25,10 @@ export default class extends Channel {
 	}
 
 	@autobind
-	private async onNote(note: any) {
+	private async onNote(note: PackedNote) {
 		if (!note.localOnly) return;
 		if (note.visibility !== 'public') return;
-		if (note.user.host != null) return;
+		if (note.user!.host != null) return;
 		if (!this.showReplayInPublicTimeline && note.replyId) return;
 
 		// Renoteなら再pack

@@ -7,6 +7,7 @@ import config from '../../../../config';
 import UserFilter from '../../../../models/user-filter';
 import { oidIncludes, oidEquals } from '../../../../prelude/oid';
 import Following from '../../../../models/following';
+import { PackedNote } from '../../../../models/packed-schemas';
 
 export default class extends Channel {
 	public readonly chName = 'userList';
@@ -59,7 +60,7 @@ export default class extends Channel {
 	}
 
 	@autobind
-	private async onNote(note: any) {
+	private async onNote(note: PackedNote) {
 		if (this.list.mediaOnly) {
 			const medias = ['image/jpeg', 'image/png', 'image/apng', 'image/gif', 'image/webp', 'video/mp4', 'video/webm'];
 			const types = ((note.files || []) as any[]).map(x => x.type);
