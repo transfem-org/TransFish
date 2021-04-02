@@ -149,7 +149,7 @@ export default (opts: Opts = {}) => ({
 			const w = this.$root.new(MkReactionPicker, {
 				source: this.$refs.reactButton,
 				showFocus: viaKeyboard,
-				animation: !viaKeyboard
+				animation: false
 			});
 			w.$once('chosen', (reaction, disliked)  => {
 				this.$root.api('notes/reactions/create', {
