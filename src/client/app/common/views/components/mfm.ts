@@ -478,31 +478,23 @@ export default Vue.component('misskey-flavored-markdown', {
 						return genEl(token.children, inQuote);
 					}
 
-					let behavior = 'scroll';
-					let direction = 'left';
-					let scrollamount = '5';
+					let className = 'marquee';
 
 					if (token.node.props.attr === 'reverse') {
-						direction = 'right';
+						className = 'marqueeReverse';
 					} else if (token.node.props.attr === 'alternate') {
-						behavior = 'alternate';
-						scrollamount = '10';
+						className = 'marqueeAlternate';
 					} else if (token.node.props.attr === 'slide') {
-						behavior = 'slide';
+						className = 'marqueeSlide';
 					} else if (token.node.props.attr === 'reverse-slide') {
-						direction = 'right';
-						behavior = 'slide';
+						className = 'marqueeReverseSlide';
 					}
 
-					return [createElement('marquee', {
-							attrs: {
-								behavior,
-								direction,
-								scrolldelay: '60',
-								scrollamount,
-							}
-						}, genEl(token.children, inQuote)),
-					];
+					return [createElement('div', {
+						attrs: {
+							class: className
+						}
+					}, genEl(token.children, inQuote))];
 				}
 
 				default: {
