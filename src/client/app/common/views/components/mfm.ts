@@ -1,7 +1,7 @@
 import Vue, { VNode } from 'vue';
 import { length } from 'stringz';
-import { MfmForest } from '../../../../../mfm/prelude';
-import { parse, parsePlain, parsePlainX } from '../../../../../mfm/parse';
+import { MfmForest, urlRegex } from '../../../../../mfm/prelude';
+import { parseFull, parsePlain, parsePlainX, parseBasic } from '../../../../../mfm/parse';
 import MkUrl from './url.vue';
 import MkMention from './mention.vue';
 import { concat, sum } from '../../../../../prelude/array';
@@ -22,11 +22,17 @@ export default Vue.component('misskey-flavored-markdown', {
 			type: String,
 			required: true
 		},
+		// plain扱い (絵文字のみ)
 		plain: {
 			type: Boolean,
 			default: false
 		},
+		// plain扱いだけどインライン装飾も許可
 		extra: {
+			type: Boolean,
+			default: false
+		},
+		basic: {
 			type: Boolean,
 			default: false
 		},
@@ -54,7 +60,7 @@ export default Vue.component('misskey-flavored-markdown', {
 	render(createElement) {
 		if (this.text == null || this.text == '') return;
 
-		const ast = (this.plain ? this.extra ? parsePlainX : parsePlain : parse)(this.text);
+		const ast = (this.basic ? parseBasic : this.plain ? this.extra ? parsePlainX : parsePlain : parseFull)(this.text);
 
 		let bigCount = 0;
 		let motionCount = 0;
@@ -346,16 +352,31 @@ export default Vue.component('misskey-flavored-markdown', {
 				}
 
 				case 'link': {
+					let text = token.children.filter(x => x.node.type === 'text').map(x => x.node.props.text)[0];
+					const href = token.node.props.url;
+
+					const t = (text as string | null)?.match(/https?:\/\/\S+/);
+					const h = (href as string | null)?.match(/https?:\/\/\S+/);
+
+					if (t && h) {
+						const tu = new URL(t[0]);
+						const hu = new URL(h[0]);
+
+						if (tu.hostname !== hu.hostname) {
+							text = href;
+						}
+					}
+
 					return [createElement('a', {
 						attrs: {
 							class: 'link',
-							href: token.node.props.url,
+							href: href,
 							rel: 'nofollow noopener',
 							target: '_blank',
-							title: token.node.props.url,
+							title: href,
 							style: 'color:var(--mfmLink);'
 						}
-					}, genEl(token.children, inQuote))];
+					}, text)];
 				}
 
 				case 'mention': {
