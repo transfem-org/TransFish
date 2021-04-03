@@ -364,13 +364,17 @@ export default Vue.component('misskey-flavored-markdown', {
 					const t = (text as string | null)?.match(/https?:\/\/\S+/);
 					const h = (href as string | null)?.match(/https?:\/\/\S+/);
 
-					if (t && h) {
-						const tu = new URL(t[0]);
-						const hu = new URL(h[0]);
+					if ((text as string | null)?.match(/^[\u200B\s]*[\w-]+[.]\w+/)) {
+						text = href;
+					} else if (t && h) {
+						try {
+							const tu = new URL(t[0]);
+							const hu = new URL(h[0]);
 
-						if (tu.hostname !== hu.hostname) {
-							text = href;
-						}
+							if (tu.hostname !== hu.hostname) {
+								text = href;
+							}
+						} catch {}
 					}
 
 					return [createElement('a', {
