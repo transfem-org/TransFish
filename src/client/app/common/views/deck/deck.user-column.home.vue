@@ -39,7 +39,7 @@
 			<div class="command">
 				<ui-button @click="fetchOutbox()">{{ $t('fetch-posts') }}</ui-button>
 			</div>
-			<x-notes id="user_timeline_53" ref="timeline" :make-promise="makePromise" @inited="() => $emit('loaded')"/>
+			<x-notes id="user_timeline_53" ref="timeline" :key="user.id" :make-promise="makePromise" @inited="() => $emit('loaded')"/>
 		</div>
 	</ui-container>
 </div>
