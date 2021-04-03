@@ -439,7 +439,7 @@ export const pack = async (
 
 	if (tokens) {
 		const mfmTypes = extractMfmTypes(tokens);
-		const decorationMfmTypes = mfmTypes.filter(x => !['text', 'mention', 'hashtag', 'url', 'link', 'emoji', 'blockCode', 'inlineCode'].includes(x)) || [];
+		const decorationMfmTypes = mfmTypes.filter(x => !['text', 'mention', 'hashtag', 'url', 'link', 'emoji'].includes(x)) || [];
 		packed.notHaveDecorationMfm = decorationMfmTypes.length === 0;
 
 		if (packed.user?.isCat && packed.text) {

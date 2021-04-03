@@ -45,3 +45,14 @@ export function parseBasic(source: string): MfmForest | null {
 
 	return normalize(mfmLanguage.basic.tryParse(source));
 }
+
+/**
+ * メンション, タグ, URL, リンク のみ
+ */
+export function parseThin(source: string): MfmForest | null {
+	if (source == null || source == '') {
+		return null;
+	}
+
+	return normalize(mfmLanguage.thin.tryParse(source));
+}
