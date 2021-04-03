@@ -364,9 +364,7 @@ export default Vue.component('misskey-flavored-markdown', {
 					const t = (text as string | null)?.match(/https?:\/\/\S+/);
 					const h = (href as string | null)?.match(/https?:\/\/\S+/);
 
-					if ((text as string | null)?.match(/^[\u200B\s]*[\w-]+[.]\w+/)) {
-						text = href;
-					} else if (t && h) {
+					if (t && h) {
 						try {
 							const tu = new URL(t[0]);
 							const hu = new URL(h[0]);
