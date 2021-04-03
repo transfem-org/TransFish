@@ -133,7 +133,7 @@
 import Vue from 'vue';
 import i18n from '../../i18n';
 import { url, host } from '../../config';
-import { toUnicode } from 'punycode';
+import { toUnicode } from 'punycode/';
 import { faHeadset, faShieldAlt, faGhost, faUserPlus, faBolt } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope as farEnvelope } from '@fortawesome/free-regular-svg-icons';
 

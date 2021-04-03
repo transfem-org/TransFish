@@ -12,7 +12,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { toUnicode } from 'punycode';
+import { toUnicode } from 'punycode/';
 import { host as localHost } from '../../../config';
 
 export default Vue.extend({

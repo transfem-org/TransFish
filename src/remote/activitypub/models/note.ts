@@ -12,7 +12,7 @@ import { htmlToMfm } from '../misc/html-to-mfm';
 import Emoji, { IEmoji } from '../../../models/emoji';
 import { extractApMentions } from './mention';
 import { extractApHashtags } from './tag';
-import { toUnicode } from 'punycode';
+import { toUnicode } from 'punycode/';
 import { unique, toArray, toSingle } from '../../../prelude/array';
 import { extractPollFromQuestion } from './question';
 import vote from '../../../services/note/polls/vote';

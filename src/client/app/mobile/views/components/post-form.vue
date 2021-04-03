@@ -72,7 +72,7 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import { parseBasic } from '../../../../../mfm/parse';
 import { host } from '../../../config';
-import { toASCII } from 'punycode';
+import { toASCII } from 'punycode/';
 import extractMentions from '../../../../../misc/extract-mentions';
 import XPostFormAttaches from '../../../common/views/components/post-form-attaches.vue';
 import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';

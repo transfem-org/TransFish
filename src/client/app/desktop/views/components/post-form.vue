@@ -77,7 +77,7 @@ import MkVisibilityChooser from '../../../common/views/components/visibility-cho
 import XPostFormAttaches from '../../../common/views/components/post-form-attaches.vue';
 import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';
 import form from '../../../common/scripts/post-form';
-import { toASCII } from 'punycode';
+import { toASCII } from 'punycode/';
 import extractMentions from '../../../../../misc/extract-mentions';
 import { parseBasic } from '../../../../../mfm/parse';
 import { host } from '../../../config';

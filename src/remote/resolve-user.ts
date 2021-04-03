@@ -1,4 +1,4 @@
-import { toUnicode, toASCII } from 'punycode';
+import { toUnicode, toASCII } from 'punycode/';
 import User, { IUser, IRemoteUser } from '../models/user';
 import webFinger from './webfinger';
 import config from '../config';

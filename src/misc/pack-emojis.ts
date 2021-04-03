@@ -1,6 +1,6 @@
 import User from '../models/user';
 import Emoji from '../models/emoji';
-import { toUnicode, toASCII } from 'punycode';
+import { toUnicode, toASCII } from 'punycode/';
 import config from '../config';
 import { isSelfHost } from './convert-host';
 import getDriveFileUrl from './get-drive-file-url';

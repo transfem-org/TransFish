@@ -3,7 +3,7 @@ import * as httpSignature from 'http-signature';
 import { IRemoteUser } from '../../models/user';
 import perform from '../../remote/activitypub/perform';
 import { resolvePerson } from '../../remote/activitypub/models/person';
-import { toUnicode } from 'punycode';
+import { toUnicode } from 'punycode/';
 import { URL } from 'url';
 import Logger from '../../services/logger';
 import { registerOrFetchInstanceDoc } from '../../services/register-or-fetch-instance-doc';

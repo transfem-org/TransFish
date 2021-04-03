@@ -1,4 +1,4 @@
-import { toUnicode } from 'punycode';
+import { toUnicode } from 'punycode/';
 
 export default (host: string) => {
 	if (host == null) return null;

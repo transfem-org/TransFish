@@ -1,6 +1,6 @@
 import * as mongo from 'mongodb';
 import * as promiseLimit from 'promise-limit';
-import { toUnicode } from 'punycode';
+import { toUnicode } from 'punycode/';
 
 import config from '../../../config';
 import User, { validateUsername, IUser, IRemoteUser, isRemoteUser } from '../../../models/user';
