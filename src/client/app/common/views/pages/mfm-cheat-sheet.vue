@@ -66,6 +66,12 @@
 	</section>
 
 	<section>
+		<header>上付き・下付き</header>
+		<p><mfm :text="preview_supsub" :key="preview_supsub"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_supsub"></ui-textarea>
+	</section>
+
+	<section>
 		<header>打ち消し線</header>
 		<p>文字に打ち消し線を付けることができます。</p>
 		<p><mfm :text="preview_strike" :key="preview_strike"/></p>
@@ -255,6 +261,7 @@ export default Vue.extend({
 			preview_bold: '**太字**\n__abc__ \`// [0-9A-Za-z]にのみ効く見なかったことにしたい記法\`',
 			preview_small: `<small>小さくなります</small>`,
 			preview_italic: '<i>これは斜体</i>\n_a先頭がアルファベットとかと接着してれば斜体になる構文_\n*a先頭がアルファベットとかと接着してれば斜体になる構文*',preview_strike: '~~環境によって意味が変わるとかめんどくさいこと言われる打ち消し線です~~',
+			preview_supsub: '上付き<sup>a</sup>\n下付き<sub>b</sub>',
 			preview_quote: `> これは引用です`,
 			preview_center: `<center>中央に</center>`,
 			preview_inlineCode: '`a ? 1 : 0`',

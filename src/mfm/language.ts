@@ -61,6 +61,8 @@ export const mfmLanguage = P.createLanguage({
 		r.blink,
 		r.twitch,
 		r.shake,
+		r.sup,
+		r.sub,
 
 		r.text
 	),
@@ -229,6 +231,8 @@ export const mfmLanguage = P.createLanguage({
 	blink: r => P.regexp(/<blink>(.+?)<\/blink>/, 1).map(x => createMfmNode('blink', {}, r.inline.atLeast(1).tryParse(x))),
 	twitch: r => P.regexp(/<twitch>(.+?)<\/twitch>/, 1).map(x => createMfmNode('twitch', {}, r.inline.atLeast(1).tryParse(x))),
 	shake: r => P.regexp(/<shake>(.+?)<\/shake>/, 1).map(x => createMfmNode('shake', {}, r.inline.atLeast(1).tryParse(x))),
+	sup: r => P.regexp(/<sup>(.+?)<\/sup>/, 1).map(x => createMfmNode('sup', {}, r.inline.atLeast(1).tryParse(x))),
+	sub: r => P.regexp(/<sub>(.+?)<\/sub>/, 1).map(x => createMfmNode('sub', {}, r.inline.atLeast(1).tryParse(x))),
 
 	center: r => r.startOfLine.then(P.regexp(/<center>([\s\S]+?)<\/center>/, 1).map(x => createMfmNode('center', {}, r.inline.atLeast(1).tryParse(x)))),
 	inlineCode: () => P.regexp(/`([^´\n]+?)`/, 1).map(x => createMfmNode('inlineCode', { code: x })),

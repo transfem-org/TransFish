@@ -100,6 +100,22 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(node.children, inQuote));
 				}
 
+				case 'sup': {
+					return (createElement as any)('sup', {
+						attrs: {
+							style: 'vertical-align: super; font-size: smaller;'
+						},
+					}, genEl(node.children));
+				}
+
+				case 'sub': {
+					return (createElement as any)('sub', {
+						attrs: {
+							style: 'vertical-align: sub; font-size: smaller;'
+						},
+					}, genEl(node.children));
+				}
+
 				case 'big': {
 					bigCount++;
 					const isMany = bigCount > 50;
