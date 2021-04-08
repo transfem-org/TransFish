@@ -276,7 +276,7 @@ class Autocomplete {
 			const source = this.text;
 
 			const before = source.substr(0, caret);
-			const trimmedBefore = before.substring(0, before.lastIndexOf('#'));
+			const trimmedBefore = before.substring(0, before.lastIndexOf('<'));
 			const after = source.substr(caret);
 
 			// 挿入
