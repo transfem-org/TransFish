@@ -365,6 +365,12 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(node.children));
 				}
 
+				case 'rgbshift': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'animation: mfm-rgbshift 2s linear infinite;' : ''
+					}, genEl(node.children));
+				}
+
 				case 'url': {
 					return [createElement(MkUrl, {
 						key: Math.random(),
