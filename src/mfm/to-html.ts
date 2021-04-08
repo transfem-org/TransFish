@@ -87,6 +87,14 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 			return el;
 		}
 
+		if (node.type === 'strike') {
+			const el = doc.createElement('span');
+			el.appendChild(doc.createTextNode('~~'));
+			if (node.children) appendChildren(node.children, el);
+			el.appendChild(doc.createTextNode('~~'));
+			return el;
+		}
+
 		const el = doc.createElement('span');
 		if (node.children) appendChildren(node.children, el);
 		return el;
