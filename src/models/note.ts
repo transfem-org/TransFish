@@ -443,7 +443,6 @@ export const pack = async (
 		packed.notHaveDecorationMfm = decorationMfmTypes.length === 0;
 	}
 
-
 	if (packed.user?.isCat) {
 		if (packed.text) packed.text = nyaize(packed.text);
 		if (packed.cw) packed.cw = nyaize(packed.cw);
