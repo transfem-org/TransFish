@@ -370,7 +370,7 @@ export default Vue.component('misskey-flavored-markdown', {
 							title: href,
 							style: 'color:var(--mfmLink);'
 						}
-					}, text)];
+					}, genEl(node.children, inQuote))];
 				}
 
 				case 'mention': {

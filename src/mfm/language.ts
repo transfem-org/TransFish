@@ -277,7 +277,7 @@ export const mfmLanguage = P.createLanguage({
 			{
 				silent: x.silent,
 				url: x.url.props.url
-			}, r.text.atLeast(1).tryParse(x.text));
+			}, P.alt(r.emoji, r.text).atLeast(1).tryParse(x.text));
 		});
 	},
 	emoji: () => {
