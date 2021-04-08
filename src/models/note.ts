@@ -13,13 +13,13 @@ import { packEmojis } from '../misc/pack-emojis';
 import { dbLogger } from '../db/logger';
 import { decodeReaction, decodeReactionCounts } from '../misc/reaction-lib';
 import { parseFull } from '../mfm/parse';
-import { toString } from '../mfm/to-string';
 import { PackedNote } from './packed-schemas';
 import { awaitAll } from '../prelude/await-all';
 import { pack as packApp } from './app';
 import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-utils';
 import { transform } from '../misc/cafy-id';
 import extractMfmTypes from '../misc/extract-mfm-types';
+import { nyaize } from '../misc/nyaize';
 
 const Note = db.get<INote>('notes');
 Note.createIndex('uri', { sparse: true, unique: true });
@@ -441,9 +441,16 @@ export const pack = async (
 		const mfmTypes = extractMfmTypes(nodes);
 		const decorationMfmTypes = mfmTypes.filter(x => !['text', 'mention', 'hashtag', 'url', 'link', 'emoji'].includes(x)) || [];
 		packed.notHaveDecorationMfm = decorationMfmTypes.length === 0;
+	}
 
-		if (packed.user?.isCat && packed.text) {
-			packed.text = toString(nodes, { doNyaize: true });
+
+	if (packed.user?.isCat) {
+		if (packed.text) packed.text = nyaize(packed.text);
+		if (packed.cw) packed.cw = nyaize(packed.cw);
+		if (packed.poll?.choices) {
+			for (const c of packed.poll.choices) {
+				if (c.text) c.text = nyaize(c.text);
+			}
 		}
 	}
 
