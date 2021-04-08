@@ -148,14 +148,14 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 		},
 
 		mathInline(node) {
-			const el = doc.createElement('code');
-			el.textContent = node.props.formula;
+			const el = doc.createElement('span');
+			el.textContent = 'Formula';
 			return el;
 		},
 
 		mathBlock(node) {
-			const el = doc.createElement('code');
-			el.textContent = node.props.formula;
+			const el = doc.createElement('div');
+			el.textContent = 'Formula';
 			return el;
 		},
 
