@@ -328,6 +328,27 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(node.children, inQuote));
 				}
 
+				// 装飾はここに追加
+				case 'blink': {
+					return (createElement as any)('span', {
+						attrs: {
+							style: (this.$store.state.settings.disableAnimatedMfm) ? 'display: inline-block;' : 'display: inline-block; animation: blink 0.75s linear infinite;'
+						},
+					}, genEl(node.children));
+				}
+
+				case 'twitch': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: mfm-twitch 0.5s ease infinite;' : 'display: inline-block;'
+					}, genEl(node.children));
+				}
+
+				case 'shake': {
+					return (createElement as any)('span', {
+						style: !this.$store.state.settings.disableAnimatedMfm ? 'display: inline-block; animation: mfm-shake 0.5s ease infinite;' : 'display: inline-block;'
+					}, genEl(node.children));
+				}
+
 				case 'url': {
 					return [createElement(MkUrl, {
 						key: Math.random(),

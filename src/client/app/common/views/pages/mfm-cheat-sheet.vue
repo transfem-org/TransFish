@@ -263,7 +263,7 @@ export default Vue.extend({
 			preview_blockMath: '\\[\nx= \\frac{-b\' \\pm \\sqrt{(b\')^2-ac}}{a}\n\\]',
 			preview_search: `MisskeyでFediverseの世界が広がります 検索`,
 			preview_title: `【タイトル】`,
-			preview_legacyAnime: `<motion>モーション</motion>\n*** ビッグ＋ ***\n<jump>ジャンプ</jump>`,
+			preview_legacyAnime: `<motion>モーション</motion>\n*** ビッグ＋ ***\n<jump>ジャンプ</jump>\n<blink>点滅</blink>\n<twitch>twitch</twitch>\n<shake>shake</shake>`,
 			preview_flip: '<flip>左右反転</flip>\n<vflip>上下反転</vflip>\n<flip><vflip>双方反転</vflip></flip>',
 			preview_spin: '<spin>回転</spin> <spin left>左回転</spin> <spin alternate>往復回転</spin>',
 			preview_xspin: '<xspin>回転</xspin> <xspin left>左回転</xspin> <xspin alternate>往復回転</xspin>',
