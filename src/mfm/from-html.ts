@@ -39,13 +39,6 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 				break;
 
 			case 'a': {
-				const name = getValue(node, 'data-mfm');
-				if (name === 'search') {
-					const query = getValue(node, 'data-mfm-query')
-					text += `${query} Search`;
-					break;
-				}
-
 				const txt = getText(node);
 				const rel = node.attrs.find(x => x.name == 'rel');
 				const href = node.attrs.find(x => x.name == 'href');
@@ -144,83 +137,14 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 				break;
 
 			case 'span': {
-				const name = getValue(node, 'data-mfm');
-				if (name === 'jelly') {
-					text += '<motion>';
-					appendChildren(node.childNodes);
-					text += '</motion>';
-				} else if (name === 'tada') {
-						text += '***';
-						appendChildren(node.childNodes);
-						text += '***';
-				} else if (name === 'spin') {
-					const tag = hasAttribute(node, 'data-mfm-x') ? 'xspin' : hasAttribute(node, 'data-mfm-y') ? 'yspin' : 'spin';
-					const attr = hasAttribute(node, 'data-mfm-left') ? ' left' : hasAttribute(node, 'data-mfm-alternate') ? ' alternate' : '';
-					text += `<${tag}${attr}>`;
-					appendChildren(node.childNodes);
-					text += `</${tag}>`;
-				} else if (name === 'jump') {
-					text += '<jump>';
-					appendChildren(node.childNodes);
-					text += '</jump>';
-				} else if (name === 'flip') {
-					if (hasAttribute(node, 'data-mfm-h') && hasAttribute(node, 'data-mfm-v')) {
-						text += `<flip><vflip>`;
-						appendChildren(node.childNodes);
-						text += `</vflip></flip>`;
-					} else if (hasAttribute(node, 'data-mfm-v')) {
-						text += `<vflip>`;
-						appendChildren(node.childNodes);
-						text += `</vflip>`;
-					} else {
-						text += `<flip>`;
-						appendChildren(node.childNodes);
-						text += `</flip>`;
-					}
-				} else if (name === 'rotate') {
-					const deg = node.attrs.find(x => x.name == 'data-mfm-deg');
-					text += `<rotate ${deg?.value || '0'}>`;
-					appendChildren(node.childNodes);
-					text += `</rotate>`;
-				} else if (name?.match(/^[a-z]+$/)) {
-					const args = [];
-					for (const attr of node.attrs) {
-						const m = attr.name.match(/^data-mfm-([a-z]+)$/);
-						if (!m) continue;
-						const key = m[1];
-						args.push(attr.name === attr.value ? key : `${key}=${attr.value}`);
-					}
-
-					text += args.length > 0 ? `[${name}.${args.join(',')} ` : `[${name} `;
-					appendChildren(node.childNodes);
-					text += ']';
-				} else {
-					appendChildren(node.childNodes);
-				}
-				break;
-			}
-
-			case 'marquee': {
-				const direction = getValue(node, 'direction');
-				const behavior = getValue(node, 'behavior');
-
-				const attr
-					= behavior === 'alternate' ? ' alternate'
-					: behavior === 'slide'
-						? direction === 'right' ? ' reverse-slide' : ' slide'
-						: direction === 'right' ? ' reverse' : ''
-
-						text += `<marquee${attr}>`;
-					appendChildren(node.childNodes);
-					text += `</marquee>`;
+				appendChildren(node.childNodes);
 				break;
 			}
 
 			// block code (<pre><code>)
 			case 'pre': {
 				if (node.childNodes.length === 1 && node.childNodes[0].nodeName === 'code') {
-					const lang = node.childNodes[0].attrs.find(x => x.name == 'data-mfm-lang');
-					text += '```' + (lang?.value || '') + '\n';
+					text += '```\n';
 					text += getText(node.childNodes[0]);
 					text += '\n```\n';
 				} else {
@@ -231,16 +155,9 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 			// inline code (<code>)
 			case 'code': {
-				const name = getValue(node, 'data-mfm');
-				if (name === 'math') {
-					text += '\\\(';
-					text += getText(node);
-					text += '\\\)';
-				} else {
-					text += '`';
-					appendChildren(node.childNodes);
-					text += '`';
-				}
+				text += '`';
+				appendChildren(node.childNodes);
+				text += '`';
 				break;
 			}
 
@@ -274,12 +191,4 @@ function getText(node: parse5.Node): string {
 	}
 
 	return '';
-}
-
-function getValue(node: parse5.Element, name: string): string | undefined {
-	return node.attrs.find(x => x.name == name)?.value || undefined;
-}
-
-function hasAttribute(node: parse5.Element, name: string) {
-	return !!node.attrs.find(x => x.name == name);
 }

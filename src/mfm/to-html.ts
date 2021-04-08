@@ -33,7 +33,6 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 
 		big(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'tada');
 			appendChildren(node.children, el);
 			return el;
 		},
@@ -58,78 +57,54 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 
 		fn(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', node.props.name);
-			for (const [key, value] of Object.entries(node.props.args || {})) {
-				if (!key.match(/^[a-z]+$/)) continue;
-				if (value === false) continue;
-				el.setAttribute(`data-mfm-${key}`, (value === true) ? `data-mfm-${key}` : value as string);
-			}
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		motion(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'jelly');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		spin(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'spin');
-			if (node.props.attr === 'left') el.setAttribute('data-mfm-left', 'data-mfm-left');
-			if (node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', 'data-mfm-alternate');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		xspin(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'spin');
-			el.setAttribute('data-mfm-x', 'data-mfm-x');
-			if (node.props.attr === 'left') el.setAttribute('data-mfm-left', 'data-mfm-left');
-			if (node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', 'data-mfm-alternate');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		yspin(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'spin');
-			el.setAttribute('data-mfm-y', 'data-mfm-y');
-			if (node.props.attr === 'left') el.setAttribute('data-mfm-left', 'data-mfm-left');
-			if (node.props.attr === 'alternate') el.setAttribute('data-mfm-alternate', 'data-mfm-alternate');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		jump(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'jump');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		flip(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'flip');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		vflip(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'flip');
-			el.setAttribute('data-mfm-v', 'data-mfm-v');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		rotate(node) {
 			const el = doc.createElement('span');
-			el.setAttribute('data-mfm', 'rotate');
-			el.setAttribute('data-mfm-deg', node.props.attr);
 			appendChildren(node.children, el);
 			return el;
 		},
@@ -137,7 +112,6 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 		blockCode(node) {
 			const pre = doc.createElement('pre');
 			const inner = doc.createElement('code');
-			if (node.props.lang) inner.setAttribute('data-mfm-lang', node.props.lang);
 			inner.textContent = node.props.code;
 			pre.appendChild(inner);
 			return pre;
@@ -145,23 +119,12 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 
 		center(node) {
 			const el = doc.createElement('div');
-			el.setAttribute('align', 'center');
 			appendChildren(node.children, el);
 			return el;
 		},
 
 		marquee(node) {
-			const el = doc.createElement('marquee');
-			if (node.props.attr === 'reverse') {
-				el.setAttribute('direction', 'right');
-			} else if (node.props.attr === 'alternate') {
-				el.setAttribute('behavior', 'alternate');
-			} else if (node.props.attr === 'slide') {
-				el.setAttribute('behavior', 'slide');
-			} else if (node.props.attr === 'reverse-slide') {
-				el.setAttribute('direction', 'right');
-				el.setAttribute('behavior', 'slide');
-			}
+			const el = doc.createElement('div');
 			appendChildren(node.children, el);
 			return el;
 		},
@@ -186,14 +149,12 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 
 		mathInline(node) {
 			const el = doc.createElement('code');
-			el.setAttribute('data-mfm', 'math');
 			el.textContent = node.props.formula;
 			return el;
 		},
 
 		mathBlock(node) {
 			const el = doc.createElement('code');
-			el.setAttribute('data-mfm', 'math');
 			el.textContent = node.props.formula;
 			return el;
 		},
@@ -249,8 +210,6 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 			const a = doc.createElement('a');
 			a.href = `https://www.google.com/search?q=${encodeURIComponent(node.props.query)}`;
 			a.textContent = node.props.content;
-			a.setAttribute('data-mfm', 'search');
-			a.setAttribute('data-mfm-query', node.props.query);
 			return a;
 		}
 	};
