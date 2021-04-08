@@ -4,11 +4,6 @@ const check = (x?: string) => x && x.length;
 
 function visit(node: MfmNode): string {
 	switch (node.type) {
-		case 'titlePlain':
-		case 'atPlain': {
-			return node.props.raw;
-		}
-
 		case 'search': {
 			return node.props.query;
 		}
