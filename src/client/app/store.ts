@@ -92,6 +92,7 @@ const defaultDeviceSettings = Object.assign({
 	enableRandomReactionPicker: false,
 	appType: 'auto',
 	emojiFlavor: 'default',
+	emojiSkinTone: null,
 }, mods.defaultDeviceSettings || {});
 
 export default (os: MiOS) => new Vuex.Store({
