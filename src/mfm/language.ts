@@ -139,7 +139,7 @@ export const mfmLanguage = P.createLanguage({
 	color: r => {
 		return P((input, i) => {
 			const text = input.substr(i);
-			const match = text.match(/^<color\s+(\S+)(?:\s+(\S+))?>(.+?)<[/]color>/i);
+			const match = text.match(/^<color\s+(\S+)(?:\s+(\S+))?>([\s\S]+?)<[/]color>/i);
 			if (!match) return P.makeFailure(i, 'not a color');
 
 			const fg = tinycolor(match[1]);

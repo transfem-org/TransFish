@@ -575,7 +575,7 @@ export default Vue.component('misskey-flavored-markdown', {
 						style += `background-color: ${node.props.bg};`
 					}
 
-					return [createElement('span', {
+					return [createElement('div', {
 						attrs: {
 							style
 						}

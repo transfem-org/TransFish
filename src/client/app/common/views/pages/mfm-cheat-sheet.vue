@@ -274,7 +274,7 @@ export default Vue.extend({
 			preview_small: `<small>小さくなります</small>`,
 			preview_italic: '<i>これは斜体</i>\n_a先頭がアルファベットとかと接着してれば斜体になる構文_\n*a先頭がアルファベットとかと接着してれば斜体になる構文*',
 			preview_strike: '~~環境によって意味が変わるとかめんどくさいこと言われる打ち消し線です~~',
-			preview_color: '<color #f00>前景色</color>\n<color #0000ff lightpink>前景色と背景色</color>',
+			preview_color: '<color #0000ff lightpink>前景色と背景色</color>',
 			preview_supsub: '上付き<sup>a</sup>\n下付き<sub>b</sub>',
 			preview_quote: `> これは引用です`,
 			preview_center: `<center>中央に</center>`,
