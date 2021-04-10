@@ -569,6 +569,19 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(node.children, inQuote))];
 				}
 
+				case 'color': {
+					let style = `color: ${node.props.fg};`;
+					if (node.props.bg) {
+						style += `background-color: ${node.props.bg};`
+					}
+
+					return [createElement('span', {
+						attrs: {
+							style
+						}
+					}, genEl(node.children, inQuote))];
+				}
+
 				default: {
 					console.log('unknown ast type:', node.type);
 

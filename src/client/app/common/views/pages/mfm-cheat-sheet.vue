@@ -88,6 +88,13 @@
 	</section>
 
 	<section>
+		<header>色</header>
+		<p>前景色と背景色を付けることが出来ます</p>
+		<p><mfm :text="preview_color" :key="preview_color"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_color"></ui-textarea>
+	</section>
+
+	<section>
 		<header>引用 (ブロック要素)</header>
 		<p>引用を示すことができます。</p>
 		<p><mfm :text="preview_quote" :key="preview_quote"/></p>
@@ -113,27 +120,6 @@
 		<p>ソースコードなどをブロックでシンタックスハイライトします。言語指定も出来ます。</p>
 		<p><mfm :text="preview_blockCode" :key="preview_blockCode"/></p>
 		<ui-textarea :slim="false" class="text" v-model="preview_blockCode"></ui-textarea>
-	</section>
-
-	<section>
-		<header>インライン数式</header>
-		<p>数式 (KaTeX)をインラインで表示します。</p>
-		<p><mfm :text="preview_inlineMath" :key="preview_inlineMath"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_inlineMath"></ui-textarea>
-	</section>
-
-	<section>
-		<header>ブロック数式 (ブロック要素)</header>
-		<p>数式 (KaTeX)をブロックで表示します。</p>
-		<p><mfm :text="preview_blockMath" :key="preview_blockMath"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_blockMath"></ui-textarea>
-	</section>
-
-	<section>
-		<header>検索 (ブロック要素)</header>
-		<p>入力済み検索ボックスを表示させることができます。</p>
-		<p><mfm :text="preview_search" :key="preview_search"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_search"></ui-textarea>
 	</section>
 
 	<section>
@@ -188,6 +174,27 @@
 		<header>マーキー (ブロック要素)</header>
 		<p><mfm :text="preview_marquee" :key="preview_marquee"/></p>
 		<ui-textarea :slim="false" class="text" v-model="preview_marquee"></ui-textarea>
+	</section>
+
+	<section>
+		<header>インライン数式</header>
+		<p>数式 (KaTeX)をインラインで表示します。</p>
+		<p><mfm :text="preview_inlineMath" :key="preview_inlineMath"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_inlineMath"></ui-textarea>
+	</section>
+
+	<section>
+		<header>ブロック数式 (ブロック要素)</header>
+		<p>数式 (KaTeX)をブロックで表示します。</p>
+		<p><mfm :text="preview_blockMath" :key="preview_blockMath"/></p>
+		<ui-textarea :slim="false" class="text" v-model="preview_blockMath"></ui-textarea>
+	</section>
+
+	<section>
+		<header>検索 (ブロック要素)</header>
+		<p>入力済み検索ボックスを表示させることができます。</p>
+		<p><mfm :text="preview_search" :key="preview_search"/></p>
+		<ui-textarea :slim="true" class="text" v-model="preview_search"></ui-textarea>
 	</section>
 
 	<section>
@@ -265,7 +272,9 @@ export default Vue.extend({
 			preview_avatar: ':@user: :@user@example.com:',
 			preview_bold: '**太字**\n__abc__ \`// [0-9A-Za-z]にのみ効く見なかったことにしたい記法\`',
 			preview_small: `<small>小さくなります</small>`,
-			preview_italic: '<i>これは斜体</i>\n_a先頭がアルファベットとかと接着してれば斜体になる構文_\n*a先頭がアルファベットとかと接着してれば斜体になる構文*',preview_strike: '~~環境によって意味が変わるとかめんどくさいこと言われる打ち消し線です~~',
+			preview_italic: '<i>これは斜体</i>\n_a先頭がアルファベットとかと接着してれば斜体になる構文_\n*a先頭がアルファベットとかと接着してれば斜体になる構文*',
+			preview_strike: '~~環境によって意味が変わるとかめんどくさいこと言われる打ち消し線です~~',
+			preview_color: '<color #f00>前景色</color>\n<color #0000ff lightpink>前景色と背景色</color>',
 			preview_supsub: '上付き<sup>a</sup>\n下付き<sub>b</sub>',
 			preview_quote: `> これは引用です`,
 			preview_center: `<center>中央に</center>`,

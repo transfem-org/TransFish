@@ -4,6 +4,7 @@ import { Predicate } from '../prelude/relation';
 import parseAcct from '../misc/acct/parse';
 import { toUnicode } from 'punycode/';
 import { emojiRegex, vendorEmojiRegex, localEmojiRegex } from '../misc/emoji-regex';
+import * as tinycolor from 'tinycolor2';
 
 export function removeOrphanedBrackets(s: string): string {
 	const openBrackets = ['(', '['];
@@ -32,7 +33,8 @@ export const mfmLanguage = P.createLanguage({
 		r.blockCode,
 		r.mathBlock,
 		r.center,
-		r.marquee
+		r.marquee,
+		r.color,
 	),
 	inline: r => P.alt(
 		r.bigger,
@@ -133,6 +135,22 @@ export const mfmLanguage = P.createLanguage({
 				content: match[2], attr: match[1] ? match[1].trim() : null
 			});
 		}).map(x => createMfmNode('marquee', { attr: x.attr }, r.inline.atLeast(1).tryParse(x.content)));
+	},
+	color: r => {
+		return P((input, i) => {
+			const text = input.substr(i);
+			const match = text.match(/^<color\s+(\S+)(?:\s+(\S+))?>(.+?)<[/]color>/i);
+			if (!match) return P.makeFailure(i, 'not a color');
+
+			const fg = tinycolor(match[1]);
+			if (!fg.isValid()) return P.makeFailure(i, 'not a valid fg color');
+
+			const bg = tinycolor(match[2]);
+
+			return P.makeSuccess(i + match[0].length, {
+				content: match[3], fg: fg.toHex8String(), bg: bg.isValid() ? bg.toHex8String() : undefined
+			});
+		}).map(x => createMfmNode('color', { fg: x.fg, bg: x.bg }, r.inline.atLeast(1).tryParse(x.content)));
 	},
 
 	big: r => P.regexp(/^\*\*\*([\s\S]+?)\*\*\*/, 1).map(x => createMfmNode('big', {}, r.inline.atLeast(1).tryParse(x))),
