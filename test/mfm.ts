@@ -10,12 +10,13 @@
 
 import * as assert from 'assert';
 
-import { parseFull, parsePlain } from '../src/mfm/parse';
+import { parseFull, parsePlain, parseBasic } from '../src/mfm/parse';
 import { createMfmNode } from '../src/mfm/utils';
 import { MfmNode } from '../src/mfm/types';
 import { removeOrphanedBrackets } from '../src/mfm/language';
 import { fromHtml } from '../src/mfm/from-html';
 import { toHtml } from '../src/mfm/to-html';
+import { extractMentions } from '../src/mfm/extract-mentions';
 
 function text(text: string): MfmNode {
 	return createMfmNode('text', { text });
@@ -1321,5 +1322,49 @@ describe('toHtml', () => {
 		const input = 'foo\r\nbar\rbaz';
 		const output = '<p><span>foo<br>bar<br>baz</span></p>';
 		assert.equal(toHtml(parseFull(input)!), output);
+	});
+});
+
+describe('Extract mentions', () => {
+	it('simple', () => {
+		const ast = parseBasic('@foo @bar @baz')!;
+		const mentions = extractMentions(ast);
+		assert.deepStrictEqual(mentions, [{
+			username: 'foo',
+			acct: '@foo',
+			canonical: '@foo',
+			host: null
+		}, {
+			username: 'bar',
+			acct: '@bar',
+			canonical: '@bar',
+			host: null
+		}, {
+			username: 'baz',
+			acct: '@baz',
+			canonical: '@baz',
+			host: null
+		}]);
+	});
+
+	it('装飾の下', () => {
+		const ast = parseBasic('@foo **@bar** @baz')!;
+		const mentions = extractMentions(ast);
+		assert.deepStrictEqual(mentions, [{
+			username: 'foo',
+			acct: '@foo',
+			canonical: '@foo',
+			host: null
+		}, {
+			username: 'bar',
+			acct: '@bar',
+			canonical: '@bar',
+			host: null
+		}, {
+			username: 'baz',
+			acct: '@baz',
+			canonical: '@baz',
+			host: null
+		}]);
 	});
 });
