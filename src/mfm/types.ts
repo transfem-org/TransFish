@@ -19,6 +19,9 @@ export interface MfmMentionNode extends MfmNode {
 		canonical: string;
 	}
 }
+export const isMfmMention = (node: MfmNode): node is MfmMentionNode => {
+	return node.type === 'mention';
+}
 
 /** ハッシュタグ */
 export interface MfmHashtagNode extends MfmNode {
@@ -27,6 +30,9 @@ export interface MfmHashtagNode extends MfmNode {
 		/** ハッシュタグ (#は含まない) */
 		hashtag: string;
 	};
+}
+export const isMfmHashtag = (node: MfmNode): node is MfmHashtagNode => {
+	return node.type === 'hashtag';
 }
 
 /** 絵文字 */

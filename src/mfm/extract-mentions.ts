@@ -1,13 +1,15 @@
-// test is located in test/extract-mentions
-
-import { MfmNode, MfmMentionNode } from '../mfm/types';
+import { MfmNode, MfmMentionNode, isMfmMention } from '../mfm/types';
 
 /**
  * Extract mentions
  * @param nodes parseBasicの結果を入れる
  */
 export function extractMentions(nodes: MfmNode[]): MfmMentionNode['props'][] {
-	// TODO: 重複を削除
-	const mentionNodes = nodes.filter(x => x.type === 'mention') as MfmMentionNode [];
-	return mentionNodes.map(x => x.props);
+	const mentions = new Set<MfmMentionNode>();
+
+	for (const node of nodes) {
+		if (isMfmMention(node)) mentions.add(node);
+	}
+
+	return [...mentions].map(x => x.props);
 }
