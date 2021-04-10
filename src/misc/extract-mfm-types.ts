@@ -1,4 +1,4 @@
-import { MfmNode } from '../mfm/prelude';
+import { MfmNode } from '../mfm/types';
 
 export default function(nodes: MfmNode[]): string[] {
 	const types = new Set<string>();

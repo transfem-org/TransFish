@@ -1,4 +1,4 @@
-import { MfmNode, MfmHashtagNode } from '../mfm/prelude';
+import { MfmNode, MfmHashtagNode } from '../mfm/types';
 import { unique } from '../prelude/array';
 
 export default function(nodes: MfmNode[]): string[] {

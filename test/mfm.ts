@@ -11,7 +11,8 @@
 import * as assert from 'assert';
 
 import { parseFull, parsePlain } from '../src/mfm/parse';
-import { createMfmNode, MfmNode } from '../src/mfm/prelude';
+import { createMfmNode } from '../src/mfm/utils';
+import { MfmNode } from '../src/mfm/types';
 import { removeOrphanedBrackets } from '../src/mfm/language';
 
 

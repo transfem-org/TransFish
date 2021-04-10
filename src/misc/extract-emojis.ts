@@ -1,4 +1,4 @@
-import { MfmNode, MfmEmojiNode } from '../mfm/prelude';
+import { MfmNode, MfmEmojiNode } from '../mfm/types';
 import { unique, concat } from '../prelude/array';
 
 export default function(nodes: MfmNode[]): string[] {

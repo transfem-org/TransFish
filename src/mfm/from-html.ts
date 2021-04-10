@@ -1,7 +1,7 @@
 import * as parse5 from 'parse5';
 import treeAdapter = require('parse5/lib/tree-adapters/default');
 import { URL } from 'url';
-import { urlRegexFull, urlRegex } from './prelude';
+import { urlRegexFull, urlRegex } from './utils';
 
 export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 	if (html == null) return null;

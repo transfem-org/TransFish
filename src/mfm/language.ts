@@ -1,5 +1,5 @@
 import * as P from 'parsimmon';
-import { createMfmNode, urlRegex } from './prelude';
+import { createMfmNode, urlRegex } from './utils';
 import { Predicate } from '../prelude/relation';
 import parseAcct from '../misc/acct/parse';
 import { toUnicode } from 'punycode/';

@@ -1,6 +1,7 @@
 import { concat } from '../prelude/array';
 import { EndoRelation } from '../prelude/relation';
-import { MfmNode, createMfmNode } from './prelude';
+import { createMfmNode } from './utils';
+import { MfmNode } from './types';
 
 function isEmptyTextNode(node: MfmNode): boolean {
 	return node.type == 'text' && node.props.text === '';

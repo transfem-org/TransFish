@@ -1,5 +1,5 @@
 import { mfmLanguage } from './language';
-import { MfmNode } from './prelude';
+import { MfmNode } from './types';
 import { normalize } from './normalize';
 
 /**

@@ -1,6 +1,6 @@
 // test is located in test/extract-mentions
 
-import { MfmNode, MfmMentionNode } from '../mfm/prelude';
+import { MfmNode, MfmMentionNode } from '../mfm/types';
 
 /**
  * Extract mentions

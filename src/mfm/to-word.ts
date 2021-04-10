@@ -1,4 +1,4 @@
-import { MfmNode } from './prelude';
+import { MfmNode } from './types';
 
 const check = (x?: string) => x && x.length;
 

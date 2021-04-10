@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom';
 import config from '../config';
 import { INote } from '../models/note';
 import { concat } from '../prelude/array';
-import { MfmNode } from './prelude';
+import { MfmNode } from './types';
 
 export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['mentionedRemoteUsers'] = []) {
 	if (nodes == null) {
