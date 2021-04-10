@@ -1,3 +1,5 @@
+import { MfmNode } from './types';
+
 export function createMfmNode(type: string, props: Record<string, any> = {}, children: MfmNode[] = []): MfmNode {
 	return {
 		type,
