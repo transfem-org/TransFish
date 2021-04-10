@@ -1,6 +1,6 @@
 import { MfmNode } from '../mfm/types';
 
-export default function(nodes: MfmNode[]): string[] {
+export function extractMfmTypes(nodes: MfmNode[]): string[] {
 	const types = new Set<string>();
 
 	function scan(nodes: MfmNode[]) {

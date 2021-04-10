@@ -18,7 +18,7 @@ import { awaitAll } from '../prelude/await-all';
 import { pack as packApp } from './app';
 import { toISODateOrNull, toOidString, toOidStringOrNull } from '../misc/pack-utils';
 import { transform } from '../misc/cafy-id';
-import extractMfmTypes from '../misc/extract-mfm-types';
+import { extractMfmTypes } from '../mfm/extract-mfm-types';
 import { nyaize } from '../misc/nyaize';
 
 const Note = db.get<INote>('notes');

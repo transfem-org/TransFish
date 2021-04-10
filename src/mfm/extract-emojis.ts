@@ -1,7 +1,7 @@
 import { MfmNode, MfmEmojiNode } from '../mfm/types';
 import { unique, concat } from '../prelude/array';
 
-export default function(nodes: MfmNode[]): string[] {
+export function extractEmojis(nodes: MfmNode[]): string[] {
 	const emojiNodes = nodes.filter(x => x.type === 'emoji') as MfmEmojiNode[];
 	const emojiNodes2 = concat(nodes.filter(x => x.type === 'link').map(x => x.children.filter(x => x.type === 'emoji'))) as MfmEmojiNode[];
 

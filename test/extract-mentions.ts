@@ -2,7 +2,7 @@
 
 import * as assert from 'assert';
 
-import extractMentions from '../src/misc/extract-mentions';
+import { extractMentions } from '../src/mfm/extract-mentions';
 import { parseBasic } from '../src/mfm/parse';
 
 describe('Extract mentions', () => {

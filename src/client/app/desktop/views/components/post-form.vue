@@ -78,7 +78,7 @@ import XPostFormAttaches from '../../../common/views/components/post-form-attach
 import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';
 import form from '../../../common/scripts/post-form';
 import { toASCII } from 'punycode/';
-import extractMentions from '../../../../../misc/extract-mentions';
+import { extractMentions } from '../../../../../mfm/extract-mentions';
 import { parseBasic } from '../../../../../mfm/parse';
 import { host } from '../../../config';
 
