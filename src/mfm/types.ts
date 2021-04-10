@@ -17,11 +17,9 @@ export interface MfmMentionNode extends MfmNode {
 		acct: string;
 		/** ローカルホストの場合省略される, punycodeはデコードされる 表記 */
 		canonical: string;
-	}
+	};
 }
-export const isMfmMention = (node: MfmNode): node is MfmMentionNode => {
-	return node.type === 'mention';
-}
+export const isMfmMention = (node: MfmNode): node is MfmMentionNode => node.type === 'mention';
 
 /** ハッシュタグ */
 export interface MfmHashtagNode extends MfmNode {
@@ -31,9 +29,7 @@ export interface MfmHashtagNode extends MfmNode {
 		hashtag: string;
 	};
 }
-export const isMfmHashtag = (node: MfmNode): node is MfmHashtagNode => {
-	return node.type === 'hashtag';
-}
+export const isMfmHashtag = (node: MfmNode): node is MfmHashtagNode => node.type === 'hashtag';
 
 /** 絵文字 */
 export interface MfmEmojiNode extends MfmNode {
@@ -49,3 +45,40 @@ export interface MfmEmojiNode extends MfmNode {
 		local?: boolean;
 	};
 }
+export const isMfmEmoji = (node: MfmNode): node is MfmEmojiNode => node.type === 'emoji';
+
+/** カスタム絵文字 */
+export interface MfmCustomEmojiNode extends MfmNode {
+	type: 'emoji';
+	props: {
+		/** カスタム絵文字名 (:は含まない) */
+		name: string;
+	};
+}
+export const isMfmCustomEmoji = (node: MfmNode): node is MfmCustomEmojiNode => isMfmEmoji(node) && node.props.name != null;
+
+/** Unicode絵文字 */
+export interface MfmUnicodeEmojiNode extends MfmNode {
+	type: 'emoji';
+	props: {
+		/** 絵文字 */
+		emoji: string;
+		/** Twemojiを迂回するか */
+		vendor: boolean;
+		/** ローカル定義の絵文字か */
+		local: boolean;
+	};
+}
+export const isMfmUnicodeEmoji = (node: MfmNode): node is MfmUnicodeEmojiNode => isMfmEmoji(node) && node.props.emoji != null;
+
+/** リンク */
+export interface MfmLinkNode extends MfmNode {
+	type: 'link';
+	props: {
+		/** URL */
+		url: string;
+		/** プレビューを表示しない */
+		silent: boolean;
+	};
+}
+export const isMfmLink = (node: MfmNode): node is MfmLinkNode => node.type === 'link';

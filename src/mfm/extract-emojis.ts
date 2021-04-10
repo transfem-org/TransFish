@@ -1,10 +1,22 @@
-import { MfmNode, MfmEmojiNode } from '../mfm/types';
-import { unique, concat } from '../prelude/array';
+import { MfmNode, isMfmCustomEmoji, isMfmLink } from '../mfm/types';
 
+/**
+ * カスタム絵文字を抽出する
+ * @param nodes parseBasicの結果を入れる
+ */
 export function extractEmojis(nodes: MfmNode[]): string[] {
-	const emojiNodes = nodes.filter(x => x.type === 'emoji') as MfmEmojiNode[];
-	const emojiNodes2 = concat(nodes.filter(x => x.type === 'link').map(x => x.children.filter(x => x.type === 'emoji'))) as MfmEmojiNode[];
+	const emojis = new Set<string>();
 
-	const emojis = emojiNodes.concat(emojiNodes2).filter(x => x.props.name && x.props.name.length <= 2048).map(x => x.props.name);
-	return unique(emojis) as string[];
+	// parseBasicの場合、カスタム絵文字は最上位かlinkの直下にのみある。
+	for (const node of nodes) {
+		if (isMfmCustomEmoji(node)) {
+			emojis.add(node.props.name);
+		} else if (isMfmLink(node)) {
+			for (const child of node.children) {
+				if (isMfmCustomEmoji(child)) emojis.add(child.props.name);
+			}
+		}
+	}
+
+	return [...emojis];
 }

@@ -18,6 +18,7 @@ import { fromHtml } from '../src/mfm/from-html';
 import { toHtml } from '../src/mfm/to-html';
 import { extractMentions } from '../src/mfm/extract-mentions';
 import { extractHashtags } from '../src/mfm/extract-hashtags';
+import { extractEmojis } from '../src/mfm/extract-emojis';
 
 function text(text: string): MfmNode {
 	return createMfmNode('text', { text });
@@ -1381,5 +1382,31 @@ describe('Extract hashtags', () => {
 		const ast = parseBasic('#あ #いいい #あ')!;
 		const mentions = extractHashtags(ast);
 		assert.deepStrictEqual(mentions, ['あ', 'いいい']);
+	});
+});
+
+describe('Extract emojis', () => {
+	it('simple', () => {
+		const ast = parseBasic(':aaa: :bbb:')!;
+		const emojis = extractEmojis(ast);
+		assert.deepStrictEqual(emojis, ['aaa', 'bbb']);
+	});
+
+	it('装飾内', () => {
+		const ast = parseBasic(':aaa: ***:bbb:***')!;
+		const emojis = extractEmojis(ast);
+		assert.deepStrictEqual(emojis, ['aaa', 'bbb']);
+	});
+
+	it('リンク内', () => {
+		const ast = parseBasic(':aaa: [a :bbb: c](https://example.com)')!;
+		const emojis = extractEmojis(ast);
+		assert.deepStrictEqual(emojis, ['aaa', 'bbb']);
+	});
+
+	it('duplicate', () => {
+		const ast = parseBasic(':aaa: :bbb: :aaa:')!;
+		const emojis = extractEmojis(ast);
+		assert.deepStrictEqual(emojis, ['aaa', 'bbb']);
 	});
 });
