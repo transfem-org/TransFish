@@ -101,6 +101,8 @@ const angleDb: MfmDef[] = [
 
 	{ name: 'rgbshift', head: '<rgbshift>', tail: '</rgbshift>', desc: '<rgbshift>rpgshift</rgbshift>' },
 
+	{ name: 'color', head: '<color red blue>', tail: '</color>' },
+
 	{ name: 'flip', head: '<flip>', tail: '</flip>', desc: '<flip>flip</flip>' },
 	{ name: 'vflip', head: '<vflip>', tail: '</vflip>', desc: '<vflip>vflip</vflip>' },
 
