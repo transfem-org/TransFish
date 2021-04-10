@@ -130,6 +130,20 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(node.children, inQuote));
 				}
 
+				case 'bigger': {
+					bigCount++;
+					const isMany = bigCount > 50;
+					return (createElement as any)('strong', {
+						attrs: {
+							style: `display: inline-block; font-size: ${ isMany ? '100%' : '300%' };`
+						},
+						directives: [this.$store.state.settings.disableAnimatedMfm || isMany ? {} : {
+							name: 'animate-css',
+							value: { classes: 'wobble', iteration: 'infinite' }
+						}]
+					}, genEl(node.children, inQuote));
+				}
+
 				case 'fn': {
 					// TODO: CSSを文字列で組み立てていくと node.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
 					let style;

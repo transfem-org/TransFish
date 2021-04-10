@@ -35,6 +35,7 @@ export const mfmLanguage = P.createLanguage({
 		r.marquee
 	),
 	inline: r => P.alt(
+		r.bigger,
 		r.big,
 		r.bold,
 		r.small,
@@ -135,6 +136,7 @@ export const mfmLanguage = P.createLanguage({
 	},
 
 	big: r => P.regexp(/^\*\*\*([\s\S]+?)\*\*\*/, 1).map(x => createMfmNode('big', {}, r.inline.atLeast(1).tryParse(x))),
+	bigger: r => P.regexp(/^\*\*\*\*([\s\S]+?)\*\*\*\*/, 1).map(x => createMfmNode('bigger', {}, r.inline.atLeast(1).tryParse(x))),
 	bold: r => {
 		const asterisk = P.regexp(/\*\*([\s\S]+?)\*\*/, 1);
 		const underscore = P.regexp(/__([a-zA-Z0-9\s]+?)__/, 1);
