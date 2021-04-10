@@ -1,8 +1,15 @@
-import { MfmNode, MfmHashtagNode } from '../mfm/types';
-import { unique } from '../prelude/array';
+import { MfmNode, isMfmHashtag } from '../mfm/types';
 
+/**
+ * Extract hashtags
+ * @param nodes parseBasicの結果を入れる
+ */
 export function extractHashtags(nodes: MfmNode[]): string[] {
-	const hashtagNodes = nodes.filter(x => x.type === 'hashtag') as MfmHashtagNode[];
-	const hashtags = hashtagNodes.map(x => x.props.hashtag);
-	return unique(hashtags);
+	const hashtags = new Set<string>();
+
+	for (const node of nodes) {
+		if (isMfmHashtag(node)) hashtags.add(node.props.hashtag);
+	}
+
+	return [...hashtags];
 }

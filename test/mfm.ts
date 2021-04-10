@@ -17,6 +17,7 @@ import { removeOrphanedBrackets } from '../src/mfm/language';
 import { fromHtml } from '../src/mfm/from-html';
 import { toHtml } from '../src/mfm/to-html';
 import { extractMentions } from '../src/mfm/extract-mentions';
+import { extractHashtags } from '../src/mfm/extract-hashtags';
 
 function text(text: string): MfmNode {
 	return createMfmNode('text', { text });
@@ -1366,5 +1367,19 @@ describe('Extract mentions', () => {
 			canonical: '@baz',
 			host: null
 		}]);
+	});
+});
+
+describe('Extract hashtags', () => {
+	it('simple', () => {
+		const ast = parseBasic('#あ #いいい #ううう')!;
+		const mentions = extractHashtags(ast);
+		assert.deepStrictEqual(mentions, ['あ', 'いいい', 'ううう']);
+	});
+
+	it('duplicate', () => {
+		const ast = parseBasic('#あ #いいい #あ')!;
+		const mentions = extractHashtags(ast);
+		assert.deepStrictEqual(mentions, ['あ', 'いいい']);
 	});
 });
