@@ -2,6 +2,15 @@
 <ui-card style="margin: 1em auto">
 	<template #title><fa :icon="faQuestionCircle"/> 文字装飾チートシート</template>
 
+	<details style="padding: 0 32px 8px 32px">
+		<summary style="padding: 16px 0; cursor: pointer">Playground</summary>
+		<section>
+			<ui-textarea :slim="false" class="text" v-model="playground"></ui-textarea>
+			<p><mfm :text="playground" :key="playground"/></p>
+			<highlightjs v-if="parsed" :language="json" :code="parsed"/>
+		</section>
+	</details>
+
 	<section>
 		<header>メンション</header>
 		<p>特定のユーザーを示すことができます。</p>
@@ -246,12 +255,14 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import { parseFull } from '../../../../../mfm/parse';
 
 export default Vue.extend({
 	i18n: i18n(''),
 
 	data() {
 		return {
+			playground: '',
 			preview_mention: '@example\n@example@example.com',
 			preview_hashtag: '#test\n\#Misskeyならこれもタグにできちゃいます🍊',
 			preview_url: `https://example.com\n<https://example.com/エスケープされてないもの>`,
@@ -296,6 +307,14 @@ export default Vue.extend({
 
 			faQuestionCircle
 		};
+	},
+
+	computed: {
+		parsed(): string {
+			if (!this.playground) return '';
+			const nodes = parseFull(this.playground) || [];
+			return JSON.stringify(nodes, null, 2);
+		}
 	},
 });
 </script>
