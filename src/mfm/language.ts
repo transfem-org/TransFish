@@ -263,7 +263,7 @@ export const mfmLanguage = P.createLanguage({
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
 		if (hashtag.match(/^[0-9]+$/)) return P.makeFailure(i, 'not a hashtag');
 		if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a hashtag');
-		if (Array.from(hashtag || '').length > 128) return P.makeFailure(i, 'not a hashtag');
+		if (Array.from(hashtag || '').length > 256) return P.makeFailure(i, 'not a hashtag');
 		return P.makeSuccess(i + ('#' + hashtag).length, createMfmNode('hashtag', { hashtag: hashtag }));
 	}),
 	url: () => {
