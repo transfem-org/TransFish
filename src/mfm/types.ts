@@ -48,7 +48,7 @@ export interface MfmEmojiNode extends MfmNode {
 export const isMfmEmoji = (node: MfmNode): node is MfmEmojiNode => node.type === 'emoji';
 
 /** カスタム絵文字 */
-export interface MfmCustomEmojiNode extends MfmNode {
+export interface MfmCustomEmojiNode extends MfmEmojiNode {
 	type: 'emoji';
 	props: {
 		/** カスタム絵文字名 (:は含まない) */
@@ -58,7 +58,7 @@ export interface MfmCustomEmojiNode extends MfmNode {
 export const isMfmCustomEmoji = (node: MfmNode): node is MfmCustomEmojiNode => isMfmEmoji(node) && node.props.name != null;
 
 /** Unicode絵文字 */
-export interface MfmUnicodeEmojiNode extends MfmNode {
+export interface MfmUnicodeEmojiNode extends MfmEmojiNode {
 	type: 'emoji';
 	props: {
 		/** 絵文字 */
