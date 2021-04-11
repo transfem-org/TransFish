@@ -111,7 +111,8 @@ export default Vue.extend({
 
 <style lang="stylus" scoped>
 .reaction
-	display inline-block
+	display inline-flex
+	align-items center
 	height 32px
 	margin 2px
 	padding 0 6px
