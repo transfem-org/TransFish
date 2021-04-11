@@ -67,12 +67,6 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 			return a;
 		}
 
-		if (node.type === 'quote') {
-			const el = doc.createElement('blockquote');
-			appendChildren(node.children, el);
-			return el;
-		}
-
 		if (node.type === 'blockCode') {
 			const pre = doc.createElement('pre');
 			const inner = doc.createElement('code');
@@ -84,14 +78,6 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 		if (node.type === 'inlineCode') {
 			const el = doc.createElement('code');
 			el.textContent = node.props.code;
-			return el;
-		}
-
-		if (node.type === 'strike') {
-			const el = doc.createElement('span');
-			el.appendChild(doc.createTextNode('~~'));
-			if (node.children) appendChildren(node.children, el);
-			el.appendChild(doc.createTextNode('~~'));
 			return el;
 		}
 
