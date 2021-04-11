@@ -6,7 +6,7 @@ import config from '../../../config';
 import DriveFile from '../../../models/drive-file';
 import Note, { INote } from '../../../models/note';
 import User from '../../../models/user';
-import toHtml from '../misc/get-note-html';
+import { getNoteHtml } from '../misc/get-note-html';
 import Emoji, { IEmoji } from '../../../models/emoji';
 
 export default async function renderNote(note: INote, dive = true, isTalk = false): Promise<any> {
@@ -102,7 +102,7 @@ export default async function renderNote(note: INote, dive = true, isTalk = fals
 
 	const summary = note.cw === '' ? String.fromCharCode(0x200B) : note.cw;
 
-	const content = toHtml(Object.assign({}, note, {
+	const content = getNoteHtml(Object.assign({}, note, {
 		text: apText
 	}));
 
@@ -123,7 +123,7 @@ export default async function renderNote(note: INote, dive = true, isTalk = fals
 
 	const asPoll = note.poll ? {
 		type: 'Question',
-		content: toHtml(Object.assign({}, note, {
+		content: getNoteHtml(Object.assign({}, note, {
 			text: text
 		})),
 		[expiresAt && expiresAt < new Date() ? 'closed' : 'endTime']: expiresAt,

@@ -3,7 +3,7 @@ import Note from '../../../models/note';
 import User from '../../../models/user';
 import getDriveFileUrl from '../../../misc/get-drive-file-url';
 import { transform } from '../../../misc/cafy-id';
-import getNoteHtml from '../../../remote/activitypub/misc/get-note-html';
+import { getNoteHtml } from '../../../remote/activitypub/misc/get-note-html';
 import parseAcct from '../../../misc/acct/parse';
 
 //#region JSON Feed models
