@@ -598,20 +598,6 @@ describe('parse', () => {
 				]);
 			});
 
-			it('disallow number only', () => {
-				const tokens = parseFull('#123');
-				assert.deepStrictEqual(tokens, [
-					text('#123'),
-				]);
-			});
-
-			it('disallow number only (with brackets)', () => {
-				const tokens = parseFull('(#123)');
-				assert.deepStrictEqual(tokens, [
-					text('(#123)'),
-				]);
-			});
-
 			it('ignore slash', () => {
 				const tokens = parseFull('#foo/bar');
 				assert.deepStrictEqual(tokens, [
