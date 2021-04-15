@@ -1,4 +1,5 @@
 import { MfmNode, isMfmHashtag } from '../mfm/types';
+import { isHashtag } from './utils';
 
 /**
  * Extract hashtags
@@ -8,7 +9,7 @@ export function extractHashtags(nodes: MfmNode[]): string[] {
 	const hashtags = new Set<string>();
 
 	for (const node of nodes) {
-		if (isMfmHashtag(node)) hashtags.add(node.props.hashtag);
+		if (isMfmHashtag(node) && isHashtag(node.props.hashtag)) hashtags.add(node.props.hashtag);
 	}
 
 	return [...hashtags];

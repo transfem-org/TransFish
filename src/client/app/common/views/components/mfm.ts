@@ -1,5 +1,5 @@
 import Vue, { VNode } from 'vue';
-import { MfmNode } from '../../../../../mfm/prelude';
+import { MfmNode } from '../../../../../mfm/types';
 import { parseFull, parsePlain, parsePlainX, parseBasic, parseThin } from '../../../../../mfm/parse';
 import MkUrl from './url.vue';
 import MkMention from './mention.vue';
@@ -8,6 +8,7 @@ import MkFormula from './formula.vue';
 import MkCode from './code.vue';
 import MkGoogle from './google.vue';
 import { host } from '../../../config';
+import { normalizeTag } from '../../../../../misc/normalize-tag';
 
 export default Vue.component('misskey-flavored-markdown', {
 	props: {
@@ -49,6 +50,11 @@ export default Vue.component('misskey-flavored-markdown', {
 		},
 		customEmojis: {
 			required: false,
+		},
+		hashtags: {
+			type: Array,
+			required: false,
+			default: null
 		},
 		isNote: {
 			type: Boolean,
@@ -442,6 +448,10 @@ export default Vue.component('misskey-flavored-markdown', {
 				}
 
 				case 'hashtag': {
+					if (this.hashtags && !(this.hashtags as string[]).map(x => normalizeTag(x)).includes(normalizeTag(node.props.hashtag))) {
+						return [createElement('span', `#${node.props.hashtag}`)];
+					}
+
 					return [createElement('router-link', {
 						key: Math.random(),
 						attrs: {
