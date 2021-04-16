@@ -16,7 +16,7 @@
 					</div>
 				</header>
 				<div class="text">
-					<mfm v-if="note.text" :text="note.cw != null ? note.cw : note.text" :author="note.user" :custom-emojis="note.emojis" :hashtags="note.tags" :thin="!!note.notHaveDecorationMfm"/>
+					<mfm v-if="note.text" :text="note.cw != null ? note.cw : note.text" :author="note.user" :custom-emojis="note.emojis" :hashtags="note.tags" :basic="!!note.notHaveDecorationMfm"/>
 				</div>
 				<mk-reactions-viewer class="reactions" :note="note"/>
 			</div>

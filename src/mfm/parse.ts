@@ -33,11 +33,3 @@ export function parseBasic(source: string): MfmNode[] | null {
 	if (source == null || source == '') return null;
 	return normalize(mfmLanguage.basic.tryParse(source));
 }
-
-/**
- * メンション, タグ, URL, リンク のみ
- */
-export function parseThin(source: string): MfmNode[] | null {
-	if (source == null || source == '') return null;
-	return normalize(mfmLanguage.thin.tryParse(source));
-}
