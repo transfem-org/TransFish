@@ -275,13 +275,22 @@ export const mfmLanguage = P.createLanguage({
 		});
 	},
 	hashtag: () => P((input, i) => {
+		// ローカルサーバーでの新規投稿作成時 / クライアントでのパース時 共通で適用したいハッシュタグ条件はここで指定する
+		// ローカルサーバーでの新規投稿作成時 に最終的にどれをハッシュタグとするかはisHashtag()に記述
+		// クライアントでのパース時 に最終的にどれをハッシュタグとするかはタグとして添付されているかで決まる
+
 		const text = input.substr(i);
 		// eslint-disable-next-line no-useless-escape
 		const match = text.match(/^#([^\s\.,!\?'"#:\/()\[\]]+)/i);
 		if (!match) return P.makeFailure(i, 'not a hashtag');
 		const hashtag = match[1];
+
+		// # + U+20E3 / # + U+FE0F + U+20E3 のような 合字/絵文字異体字セレクタ付きは ハッシュタグ扱いしない
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
+
+		// # の前に英数字はハッシュタグ扱いしない
 		if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a hashtag');
+
 		return P.makeSuccess(i + ('#' + hashtag).length, createMfmNode('hashtag', { hashtag: hashtag }));
 	}),
 	url: () => {
