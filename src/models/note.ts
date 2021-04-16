@@ -437,8 +437,8 @@ export const pack = async (
 
 	const nodes = packed.text ? parseFull(packed.text) : [];
 
-	if (tokens) {
-		const mfmTypes = extractMfmTypes(tokens);
+	if (nodes) {
+		const mfmTypes = extractMfmTypes(nodes);
 		const decorationMfmTypes = mfmTypes.filter(x => !['text', 'mention', 'hashtag', 'url', 'link', 'emoji', 'blockCode', 'inlineCode'].includes(x)) || [];
 		packed.notHaveDecorationMfm = decorationMfmTypes.length === 0;
 	}
