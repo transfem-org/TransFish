@@ -68,23 +68,34 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 					};
 
 					const generateLink = () => {
+						// hrefもtextもない
 						if (!href && !txt) {
 							return '';
 						}
+
+						// hrefがない
 						if (!href) {
 							return txt;
 						}
-						if (!txt || txt === href.value) {
-							if (isPlainSafe(href.value)) {
-								return href.value;
-							} else {
-								return `<${href.value}>`;
-							}
+
+						// ラベル不要＆安全にベタ書き出来るURL
+						if ((!txt || txt === href.value) && isPlainSafe(href.value)) {
+							return href.value;
 						}
-						if (isPlainSafe(href.value)) {
-							return `[${txt}](${href.value})`;
+
+						let encoded: string | null = null;
+						try {
+							encoded = href.value.match(/^https?:[/][/]/)
+								? new URL(href.value).href
+								.replace(/[()]/g, c => '%' + c.charCodeAt(0).toString(16))
+								.replace(/[.,]$/, c => '%' + c.charCodeAt(0).toString(16))
+								: null;
+						} catch { }
+
+						if (encoded) {
+							return `[${txt}](${encoded})`;
 						} else {
-							return `[${txt}](<${href.value}>)`;
+							return txt;
 						}
 					};
 
