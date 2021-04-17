@@ -1,7 +1,7 @@
 import * as parse5 from 'parse5';
 import treeAdapter = require('parse5/lib/tree-adapters/default');
 import { URL } from 'url';
-import { urlRegexFull, urlRegex } from './utils';
+import { urlRegexFull } from './utils';
 
 export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 	if (html == null) return null;
@@ -60,6 +60,13 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 					}
 				// その他
 				} else {
+					const isPlainSafe = (input: string): boolean => {
+						if (input.match(/[()]/)) return false;
+						if (input.match(/[.,]$/)) return false;
+						if (input.match(urlRegexFull)) return true;
+						return false;
+					};
+
 					const generateLink = () => {
 						if (!href && !txt) {
 							return '';
@@ -68,16 +75,16 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 							return txt;
 						}
 						if (!txt || txt === href.value) {
-							if (href.value.match(urlRegexFull)) {
+							if (isPlainSafe(href.value)) {
 								return href.value;
 							} else {
 								return `<${href.value}>`;
 							}
 						}
-						if (href.value.match(urlRegex) && !href.value.match(urlRegexFull)) {
-							return `[${txt}](<${href.value}>)`;
-						} else {
+						if (isPlainSafe(href.value)) {
 							return `[${txt}](${href.value})`;
+						} else {
+							return `[${txt}](<${href.value}>)`;
 						}
 					};
 

@@ -1353,7 +1353,7 @@ describe('fromHtml', () => {
 	});
 
 	it('link with no url', () => {
-		assert.deepStrictEqual(fromHtml('<p>a <a href="b">c</a> d</p>'), 'a [c](b) d');
+		assert.deepStrictEqual(fromHtml('<p>a <a href="b">c</a> d</p>'), 'a [c](<b>) d');
 	});
 
 	it('link without href', () => {
