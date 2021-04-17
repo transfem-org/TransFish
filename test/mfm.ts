@@ -914,6 +914,38 @@ describe('parse', () => {
 					text(')')
 				]);
 			});
+
+			it('allow inconsistent parentheses within angle brackets', () => {
+				const tokens = parseFull('<https://example.com/foo(>');
+				assert.deepStrictEqual(tokens, [
+					tree('url', [], { url: 'https://example.com/foo(' }),
+				]);
+			});
+
+			it('allow inconsistent parentheses within angle brackets (for link label)', () => {
+				const tokens = parseFull('[foo](<https://example.com/foo(>)');
+				assert.deepStrictEqual(tokens, [
+					tree('link', [
+						text('foo')
+					], { url: 'https://example.com/foo(', silent: false }),
+				]);
+			});
+
+			it('allow trailing period within angle brackets', () => {
+				const tokens = parseFull('<https://example.com/foo.>');
+				assert.deepStrictEqual(tokens, [
+					tree('url', [], { url: 'https://example.com/foo.' }),
+				]);
+			});
+
+			it('allow trailing period within angle brackets (for link label)', () => {
+				const tokens = parseFull('[foo](<https://example.com/foo.>)');
+				assert.deepStrictEqual(tokens, [
+					tree('link', [
+						text('foo')
+					], { url: 'https://example.com/foo.', silent: false }),
+				]);
+			});
 		});
 
 		it('emoji', () => {
@@ -1264,6 +1296,10 @@ describe('fromHtml', () => {
 
 	it('link with different text, but not encoded', () => {
 		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/ä">c</a> d</p>'), 'a [c](<https://example.com/ä>) d');
+	});
+
+	it('link with different text, but ()', () => {
+		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/(">c</a> d</p>'), 'a [c](<https://example.com/(>) d');
 	});
 
 	it('link with same text', () => {

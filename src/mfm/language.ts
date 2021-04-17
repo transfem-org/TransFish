@@ -295,10 +295,11 @@ export const mfmLanguage = P.createLanguage({
 					return P.makeFailure(i, 'not a url');
 				url = match[1];
 				i += 2;
-			} else
+			} else {
 				url = match[0];
-			url = removeOrphanedBrackets(url);
-			url = url.replace(/[.,]*$/, '');
+				url = removeOrphanedBrackets(url);
+				url = url.replace(/[.,]*$/, '');
+			}
 			return P.makeSuccess(i + url.length, url);
 		}).map(x => createMfmNode('url', { url: x }));
 	},
