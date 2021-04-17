@@ -946,6 +946,48 @@ describe('parse', () => {
 					], { url: 'https://example.com/foo.', silent: false }),
 				]);
 			});
+
+			it('disallow non http URLs <>', () => {
+				const tokens = parseFull('<ftp://example.com/>');
+				assert.deepStrictEqual(tokens, [
+					text('<ftp://example.com/>'),
+				]);
+			});
+
+			it('disallow non URLs <>', () => {
+				const tokens = parseFull('<foo>');
+				assert.deepStrictEqual(tokens, [
+					text('<foo>'),
+				]);
+			});
+
+			it('disallow non http URLs []()', () => {
+				const tokens = parseFull('[foo](ftp://example.com/)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](ftp://example.com/)'),
+				]);
+			});
+
+			it('disallow non URLs []()', () => {
+				const tokens = parseFull('[foo](foo)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](foo)'),
+				]);
+			});
+
+			it('disallow non http URLs [](<>)', () => {
+				const tokens = parseFull('[foo](<ftp://example.com/>)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](<ftp://example.com/>)'),
+				]);
+			});
+
+			it('disallow non URLs [](<>)', () => {
+				const tokens = parseFull('[foo](<foo>)');
+				assert.deepStrictEqual(tokens, [
+					text('[foo](<foo>)'),
+				]);
+			});
 		});
 
 		it('emoji', () => {
