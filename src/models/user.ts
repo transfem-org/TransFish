@@ -28,6 +28,7 @@ const User = db.get<IUser>('users');
 
 User.createIndex('createdAt');
 User.createIndex('updatedAt');
+User.createIndex('lastActivityAt');
 User.createIndex('followersCount');
 User.createIndex('tags');
 User.createIndex('isSuspended');
@@ -45,6 +46,7 @@ type IUserBase = {
 	_id: mongo.ObjectID;
 	createdAt?: Date;
 	updatedAt?: Date;
+	lastActivityAt?: Date;
 	deletedAt?: Date;
 	followersCount: number;
 	followingCount: number;

@@ -496,6 +496,8 @@ common/views/pages/about.vue:
   notes: "投稿数"
   instances: "インスタンス数"
   popularReactions: "人気のリアクション"
+  localActive: "今のユーザー数"
+  globalActive: "今のユーザー数 (グローバル)"
 
 common/views/components/url-preview.vue:
   enable-player: "プレイヤーを開く"

@@ -27,18 +27,27 @@
 	<!-- 統計 -->
 	<ui-container>
 		<template #header><fa :icon="faChartBar"/> {{ $t('stats') }}</template>
-		<div class="items" v-if="stats">
-			<div class="item">
+		<div class="items">
+			<div class="item" v-if="stats">
 				<div class="key">{{ $t('users') }}</div>
 				<div class="value">{{ stats.originalUsersCount }}</div>
 			</div>
-			<div class="item">
+			<div class="item" v-if="stats">
 				<div class="key">{{ $t('notes') }}</div>
 				<div class="value">{{ stats.originalNotesCount }}</div>
 			</div>
-			<div class="item">
+			<div class="item" v-if="stats">
 				<div class="key">{{ $t('instances') }}</div>
 				<div class="value">{{ stats.instances }}</div>
+			</div>
+
+			<div class="item" v-if="activeUsersCount">
+				<div class="key">{{ $t('localActive') }}</div>
+				<div class="value">{{ activeUsersCount.local }}</div>
+			</div>
+			<div class="item" v-if="activeUsersCount">
+				<div class="key">{{ $t('globalActive') }}</div>
+				<div class="value">{{ activeUsersCount.global }}</div>
 			</div>
 		</div>
 	</ui-container>
@@ -72,6 +81,7 @@ export default Vue.extend({
 			stats: null,
 			reactions: null,
 			popularReactions: null,
+			activeUsersCount: null,
 			faServer, faChartBar, faThumbsUp
 		};
 	},
@@ -85,6 +95,9 @@ export default Vue.extend({
 		});
 		this.$root.api('notes/reactions/trend', {}, false, true).then((popularReactions: any) => {
 			this.popularReactions = popularReactions;
+		});
+		this.$root.api('active-users-count', {}, false, true).then((activeUsersCount: any) => {
+			this.activeUsersCount = activeUsersCount;
 		});
 	},
 

@@ -708,7 +708,8 @@ function saveReply(reply: INote, note: INote) {
 function incNotesCountOfUser(user: IUser) {
 	User.update({ _id: user._id }, {
 		$set: {
-			updatedAt: new Date()
+			updatedAt: new Date(),
+			lastActivityAt: new Date()
 		},
 		$inc: {
 			notesCount: 1

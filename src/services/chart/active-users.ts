@@ -1,6 +1,6 @@
 import autobind from 'autobind-decorator';
 import Chart, { Obj } from '.';
-import { IUser, isLocalUser } from '../../models/user';
+import User, { IUser, isLocalUser } from '../../models/user';
 
 /**
  * アクティブユーザーに関するチャート
@@ -42,6 +42,12 @@ class ActiveUsersChart extends Chart<ActiveUsersLog> {
 		await this.incIfUnique({
 			[isLocalUser(user) ? 'local' : 'remote']: update
 		}, 'users', user._id.toHexString());
+
+		User.update({ _id: user._id }, {
+			$set: {
+				lastActivityAt: new Date()
+			}
+		});
 	}
 }
 

@@ -456,6 +456,8 @@ common/views/pages/about.vue:
   notes: "Posts"
   instances: "Instances"
   popularReactions: "Popular reactions"
+  localActive: "Current users"
+  globalActive: "Current users (global)"
 
 common/views/components/url-preview.vue:
   enable-player: "Enable playback"
