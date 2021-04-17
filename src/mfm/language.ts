@@ -24,7 +24,16 @@ export const mfmLanguage = P.createLanguage({
 	root: r => P.alt(r.block, r.inline).atLeast(1),
 	plain: r => P.alt(r.emoji, r.text).atLeast(1),
 	plainX: r => P.alt(r.inline).atLeast(1),
-	basic: r => P.alt(r.blockBasic, r.inlineBasic).atLeast(1),
+	basic: r => P.alt(
+		r.mention,
+		r.hashtag,
+		r.url,
+		r.link,
+		r.emoji,
+		r.text,
+		r.inlineCode,
+		r.blockCode,
+	).atLeast(1),
 	block: r => P.alt(
 		r.title,
 		r.quote,
@@ -68,18 +77,6 @@ export const mfmLanguage = P.createLanguage({
 		r.rgbshift,
 
 		r.text
-	),
-	blockBasic: r => P.alt(
-		r.blockCode
-	),
-	inlineBasic: r => P.alt(
-		r.mention,
-		r.hashtag,
-		r.url,
-		r.link,
-		r.emoji,
-		r.text,
-		r.inlineCode,
 	),
 	startOfLine: () => P((input, i) => {
 		if (i == 0 || input[i] == '\n' || input[i - 1] == '\n') {
