@@ -16,7 +16,6 @@ import serverStats from './daemons/server-stats';
 import queueStats from './daemons/queue-stats';
 import loadConfig from './config/load';
 import { Config } from './config/types';
-import { lessThan } from './prelude/array';
 import { program } from './argv';
 import { checkMongoDB } from './misc/check-mongodb';
 import { showMachineInfo } from './misc/show-machine-info';
@@ -188,8 +187,6 @@ async function workerMain(config: Config) {
 }
 
 const runningNodejsVersion = process.version.slice(1).split('.').map(x => parseInt(x, 10));
-const requiredNodejsVersion = [10, 0, 0];
-const satisfyNodejsVersion = !lessThan(runningNodejsVersion, requiredNodejsVersion);
 
 function showEnvironment(): void {
 	const env = process.env.NODE_ENV;
@@ -211,11 +208,6 @@ async function init(config: Config) {
 	const nodejsLogger = bootLogger.createSubLogger('nodejs');
 
 	nodejsLogger.info(`Version ${runningNodejsVersion.join('.')}`);
-
-	if (!satisfyNodejsVersion) {
-		nodejsLogger.error(`Node.js version is less than ${requiredNodejsVersion.join('.')}. Please upgrade it.`, null, true);
-		process.exit(1);
-	}
 
 	await showMachineInfo(bootLogger);
 
