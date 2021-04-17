@@ -87,8 +87,8 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 						try {
 							encoded = href.value.match(/^https?:[/][/]/)
 								? new URL(href.value).href
-								.replace(/[()]/g, c => '%' + c.charCodeAt(0).toString(16))
-								.replace(/[.,]$/, c => '%' + c.charCodeAt(0).toString(16))
+									.replace(/[()]/g, c => '%' + c.charCodeAt(0).toString(16))
+									.replace(/[.,]$/, c => '%' + c.charCodeAt(0).toString(16))
 								: null;
 						} catch { }
 
