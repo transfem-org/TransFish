@@ -100,7 +100,6 @@ import XSub from './note.sub.vue';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 import noteMixin from '../../../common/scripts/note-mixin';
 import { faClock, faLaugh } from '@fortawesome/free-regular-svg-icons';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import XVisibilityIcon from '../../../common/views/components/visibility-icon.vue';
 import XInstanceInfo from '../../../common/views/components/instance-info.vue';
 
@@ -127,7 +126,7 @@ export default Vue.extend({
 
 	data() {
 		return {
-			faClock, faLaugh, faPlusCircle,
+			faClock, faLaugh,
 			conversation: [],
 			conversationFetching: false,
 			replies: []
@@ -355,6 +354,7 @@ export default Vue.extend({
 					margin 0 0 0 8px
 					color var(--text)
 					opacity 0.7
+					font-size 0.8em
 
 				&.reacted, &.reacted:hover
 					color var(--noteActionsReactionHover)
