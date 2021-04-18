@@ -76,10 +76,13 @@
 					<fa icon="ban"/>
 				</button>
 				<button v-if="appearNote.myReaction == null" class="button" @click="react()" ref="reactButton">
-					<fa icon="plus"/>
+					<fa-layers>
+						<fa :icon="faLaugh"/>
+						<fa icon="plus" transform="shrink-8 down-4 right-5" style="color: var(--noteActionsReactionHover)"/>
+					</fa-layers>
 				</button>
 				<button v-if="appearNote.myReaction != null" class="button reacted" @click="undoReact(appearNote)" ref="reactButton">
-					<fa icon="minus"/>
+					<fa :icon="faLaugh"/>
 				</button>
 				<button class="button" @click="menu()" ref="menuButton">
 					<fa icon="ellipsis-h"/>
@@ -101,6 +104,8 @@ import XSub from './note.sub.vue';
 import noteMixin from '../../../common/scripts/note-mixin';
 import noteSubscriber from '../../../common/scripts/note-subscriber';
 import XInstanceInfo from '../../../common/views/components/instance-info.vue';
+import { faLaugh } from '@fortawesome/free-regular-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/note.vue'),
@@ -141,6 +146,7 @@ export default Vue.extend({
 
 	data() {
 		return {
+			faLaugh, faPlusCircle,
 			conversation: [],
 			replies: []
 		};
@@ -369,7 +375,7 @@ export default Vue.extend({
 						opacity 0.7
 
 					&.reacted
-						color var(--primary)
+						color var(--noteActionsReactionHover)
 
 					&.renoted
 						color var(--primary)
