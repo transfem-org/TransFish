@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom';
 import config from '../config';
 import { INote } from '../models/note';
 import { concat } from '../prelude/array';
-import { MfmNode } from './types';
+import { MfmNode, isMfmLink } from './types';
 
 export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['mentionedRemoteUsers'] = []) {
 	if (nodes == null) {
@@ -55,14 +55,24 @@ export function toHtml(nodes: MfmNode[] | null, mentionedRemoteUsers: INote['men
 
 		if (node.type === 'url') {
 			const a = doc.createElement('a');
+
 			a.href = node.props.url;
+			try {
+				a.href = new URL(a.href).href;
+			} catch { }
+
 			a.textContent = node.props.url;
 			return a;
 		}
 
-		if (node.type === 'link') {
+		if (isMfmLink(node)) {
 			const a = doc.createElement('a');
+
 			a.href = node.props.url;
+			try {
+				a.href = new URL(a.href).href;
+			} catch { }
+
 			appendChildren(node.children, a);
 			return a;
 		}
