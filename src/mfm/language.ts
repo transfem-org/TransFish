@@ -331,6 +331,10 @@ export const mfmLanguage = P.createLanguage({
 			const argsPart = match[2];
 			const content = match[3];
 
+			if (!['tada', 'jelly', 'twitch', 'shake', 'spin', 'jump', 'bounce', 'flip', 'rgbshift', 'x2', 'x3', 'x4', 'font', 'blur'].includes(name)) {
+				return P.makeFailure(i, 'unknown fn name');
+			}
+
 			const args: Record<string, boolean | string> = {};
 			for (const arg of argsPart?.split(',') || []) {
 				const kv = arg.split('=');
