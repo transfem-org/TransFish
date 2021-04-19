@@ -25,14 +25,14 @@ export const mfmLanguage = P.createLanguage({
 	plain: r => P.alt(r.emoji, r.text).atLeast(1),
 	plainX: r => P.alt(r.inline).atLeast(1),
 	basic: r => P.alt(
+		r.inlineCode,
+		r.blockCode,
 		r.mention,
 		r.hashtag,
 		r.url,
 		r.link,
 		r.emoji,
 		r.text,
-		r.inlineCode,
-		r.blockCode,
 	).atLeast(1),
 	block: r => P.alt(
 		r.title,
