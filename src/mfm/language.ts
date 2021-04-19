@@ -322,28 +322,28 @@ export const mfmLanguage = P.createLanguage({
 		return P.alt(name, lcode, vcode, code);
 	},
 	fn: r => {
-		return P.seqObj(
-			P.string('['), ['fn', P.regexp(/[^\s\n\[\]]+/)] as any, P.string(' '), P.optWhitespace, ['text', P.regexp(/[^\n\[\]]+/)] as any, P.string(']'),
-		).map((x: any) => {
-			let name = x.fn;
-			const args = {} as any;
-			const separator = x.fn.indexOf('.');
-			if (separator > -1) {
-				name = x.fn.substr(0, separator);
-				for (const arg of x.fn.substr(separator + 1).split(',')) {
-					const kv = arg.split('=');
-					if (kv.length === 1) {
-						args[kv[0]] = true;
-					} else {
-						args[kv[0]] = kv[1];
-					}
+		return P((input, i) => {
+			const text = input.substr(i);
+			const match = text.match(/^\[([0-9a-z]+)(?:\.([0-9a-z.,=]+))?\s+([^\n\[\]]+)\]/);
+			if (!match) return P.makeFailure(i, 'not a fn');
+
+			const name = match[1];
+			const argsPart = match[2];
+			const content = match[3];
+
+			const args: Record<string, boolean | string> = {};
+			for (const arg of argsPart?.split(',') || []) {
+				const kv = arg.split('=');
+				if (kv[0] == '__proto__') return P.makeFailure(i, 'prototype pollution');
+				if (kv.length === 1) {
+					args[kv[0]] = true;
+				} else {
+					args[kv[0]] = kv[1];
 				}
 			}
-			return createMfmNode('fn', {
-				name,
-				args
-			}, r.inline.atLeast(1).tryParse(x.text));
-		});
+
+			return P.makeSuccess(i + match[0].length, { name, args, content });
+		}).map(x => createMfmNode('fn', { name: x.name, args: x.args }, r.inline.atLeast(1).tryParse(x.content)));
 	},
 	text: () => P.any.map(x => createMfmNode('text', { text: x }))
 });
