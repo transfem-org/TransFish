@@ -146,7 +146,7 @@ export default define(meta, async (ps, me) => {
 	// なんか被るので多めに取得して再集計
 	const n: Record<string, number> = {};
 	for (const r of reacteds) {
-		if (r.reaction === '__proto__') continue;
+		if (r.reaction == '__proto__') continue;
 		if (n[r.reaction]) {
 			n[r.reaction] += r.count;
 		} else {
