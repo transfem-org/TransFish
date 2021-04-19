@@ -177,20 +177,6 @@
 	</section>
 
 	<section>
-		<header>インライン数式</header>
-		<p>数式 (KaTeX)をインラインで表示します。</p>
-		<p><mfm :text="preview_inlineMath" :key="preview_inlineMath"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_inlineMath"></ui-textarea>
-	</section>
-
-	<section>
-		<header>ブロック数式 (ブロック要素)</header>
-		<p>数式 (KaTeX)をブロックで表示します。</p>
-		<p><mfm :text="preview_blockMath" :key="preview_blockMath"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_blockMath"></ui-textarea>
-	</section>
-
-	<section>
 		<header>検索 (ブロック要素)</header>
 		<p>入力済み検索ボックスを表示させることができます。</p>
 		<p><mfm :text="preview_search" :key="preview_search"/></p>
@@ -228,8 +214,6 @@ export default Vue.extend({
 			preview_center: `<center>中央に</center>`,
 			preview_inlineCode: '`a ? 1 : 0`',
 			preview_blockCode: '```\nconst a = 1;\n```\n```html\n<!doctype html><html><head><body></body></html>\n```',
-			preview_inlineMath: '\\(x= \\frac{-b\' \\pm \\sqrt{(b\')^2-ac}}{a}\\)',
-			preview_blockMath: '\\[\nx= \\frac{-b\' \\pm \\sqrt{(b\')^2-ac}}{a}\n\\]',
 			preview_search: `MisskeyでFediverseの世界が広がります 検索`,
 			preview_title: `【タイトル】`,
 			preview_anime1: `<motion>モーション</motion>\n*** ビッグ＋ ***\n**** ビッグ＋＋ ****\n<jump>ジャンプ</jump>\n<blink>blink</blink> <twitch>twitch</twitch> <shake>shake</shake>`,
