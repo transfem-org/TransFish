@@ -196,58 +196,6 @@
 		<p><mfm :text="preview_search" :key="preview_search"/></p>
 		<ui-textarea :slim="true" class="text" v-model="preview_search"></ui-textarea>
 	</section>
-
-	<section>
-		<header>fn系アニメーション</header>
-		<p>fn系はv12の[]でくくるアニメーションです。既出分と似た分。</p>
-		<p><mfm :text="preview_fn1" :key="preview_fn1"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_fn1"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系反転</header>
-		<p><mfm :text="preview_fnFlip" :key="preview_fnFlip"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_fnFlip"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系回転</header>
-		<p><mfm :text="preview_fnSpin" :key="preview_fnSpin"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_fnSpin"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系speed</header>
-		<p>fn系の一部は1ループの速度調整ができます。なお、fn系同士ではネストができません。</p>
-		<p><mfm :text="preview_fnSpeed" :key="preview_fnSpeed"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_fnSpeed"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系delay</header>
-		<p>fn系の一部はループの開始タイミングを調整できます。</p>
-		<p><mfm :text="preview_fnDelay" :key="preview_fnDelay"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_fnDelay"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系拡大</header>
-		<p><mfm :text="preview_x" :key="preview_x"/></p>
-		<ui-textarea :slim="false" class="text" v-model="preview_x"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系blur</header>
-		<p>ぼかしです、マウスオーバーで表示します。</p>
-		<p><mfm :text="preview_blur" :key="preview_blur"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_blur"></ui-textarea>
-	</section>
-
-	<section>
-		<header>fn系font</header>
-		<p><mfm :text="preview_font" :key="preview_font"/></p>
-		<ui-textarea :slim="true" class="text" v-model="preview_font"></ui-textarea>
-	</section>
 </ui-card>
 
 </template>
@@ -291,20 +239,6 @@ export default Vue.extend({
 			preview_yspin: '<yspin>回転</yspin> <yspin left>左回転</yspin> <yspin alternate>往復回転</yspin>',
 			preview_rotate: '<rotate 30>指定角度回転</rotate>',
 			preview_marquee: '<marquee>マーキー (右から左へ)</marquee>\n<marquee reverse>マーキー (左から右へ)</marquee>\n<marquee alternate>マーキー (往復)</marquee>\n<marquee slide>マーキー (右から出てきて左で停止)</marquee>\n<marquee reverse-slide>マーキー (左から出てきて右で停止)</marquee>',
-			preview_fn1: '[jelly 🍣] びよんびよん motionに同じ\n'
-				+ '[tada 🍣] じゃーん 太字にならないビッグ＋に同じ\n'
-				+ '[jump 🍣] ジャンプ jump同じ\n'
-				+ '[bounce 🍣] バウンド\n'
-				+ '[shake 🍣] ぶるぶる\n'
-				+ '[twitch 🍣] ブレ',
-			preview_fnFlip: '[flip MisskeyでFediverseの世界が広がります]\n[flip.v MisskeyでFediverseの世界が広がります]\n[flip.h,v MisskeyでFediverseの世界が広がります]',
-			preview_fnSpin: '[spin あいう] [spin.left あいう] [spin.alternate あいう]\n[spin.x あいう] [spin.x,left あいう] [spin.x,alternate あいう]\n[spin.y あいう] [spin.y,left あいう] [spin.y,alternate あいう]',
-			preview_fnSpeed: '[spin.y,left,speed=1s あいう]\n[spin.y,left,speed=2s あいう]\n[spin.y,left,speed=3s あいう]',
-			preview_fnDelay: '[spin.y,left,speed=1s,delay=0.1s あいう]\n[spin.y,left,speed=1s,delay=0.2s あいう]\n[spin.y,left,speed=1s,delay=0.3s あいう]',
-			preview_rgbshift: '<rgbshift>色ずれアニメーション効果です</rgbshift>',
-			preview_x: '[x2 あいう]\n[x3 あいう]\n[x4 あいう]',
-			preview_blur: '[blur あいう]',
-			preview_font: '[font.serif serif]\n[font.monospace monospace]',
 
 			faQuestionCircle
 		};
