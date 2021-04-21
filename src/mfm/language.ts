@@ -39,6 +39,7 @@ export const mfmLanguage = P.createLanguage({
 		r.quote,
 		r.search,
 		r.blockCode,
+		r.mathBlock,
 		r.center,
 		r.marquee,
 		r.color,
@@ -59,6 +60,7 @@ export const mfmLanguage = P.createLanguage({
 		r.vflip,
 		r.rotate,
 		r.inlineCode,
+		r.mathInline,
 		r.mention,
 		r.hashtag,
 		r.url,
@@ -243,6 +245,8 @@ export const mfmLanguage = P.createLanguage({
 
 	center: r => r.startOfLine.then(P.regexp(/<center>([\s\S]+?)<\/center>/, 1).map(x => createMfmNode('center', {}, r.inline.atLeast(1).tryParse(x)))),
 	inlineCode: () => P.regexp(/`([^´\n]+?)`/, 1).map(x => createMfmNode('inlineCode', { code: x })),
+	mathBlock: r => r.startOfLine.then(P.regexp(/\\\[([\s\S]+?)\\\]/, 1).map(x => createMfmNode('mathBlock', { formula: x.trim() }))),
+	mathInline: () => P.regexp(/\\\((.+?)\\\)/, 1).map(x => createMfmNode('mathInline', { formula: x })),
 	mention: () => {
 		return P((input, i) => {
 			const text = input.substr(i);

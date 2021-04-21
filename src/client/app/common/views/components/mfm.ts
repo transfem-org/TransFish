@@ -4,6 +4,7 @@ import { parseFull, parsePlain, parsePlainX, parseBasic } from '../../../../../m
 import MkUrl from './url.vue';
 import MkMention from './mention.vue';
 import { concat } from '../../../../../prelude/array';
+import MkFormula from './formula.vue';
 import MkCode from './code.vue';
 import MkGoogle from './google.vue';
 import { host } from '../../../config';
@@ -410,6 +411,28 @@ export default Vue.component('misskey-flavored-markdown', {
 						props: {
 							customEmojis: this.customEmojis || customEmojis,
 							normal: this.plain
+						}
+					})];
+				}
+
+				case 'mathInline': {
+					//const MkFormula = () => import('./formula.vue').then(m => m.default);
+					return [createElement(MkFormula, {
+						key: Math.random(),
+						props: {
+							formula: node.props.formula,
+							block: false
+						}
+					})];
+				}
+
+				case 'mathBlock': {
+					//const MkFormula = () => import('./formula.vue').then(m => m.default);
+					return [createElement(MkFormula, {
+						key: Math.random(),
+						props: {
+							formula: node.props.formula,
+							block: true
 						}
 					})];
 				}
