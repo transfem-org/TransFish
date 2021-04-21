@@ -66,6 +66,7 @@ export const mfmLanguage = P.createLanguage({
 		r.url,
 		r.link,
 		r.emoji,
+		r.fn,
 
 		// 装飾はここに追加
 		r.blink,
@@ -319,6 +320,34 @@ export const mfmLanguage = P.createLanguage({
 		const lcode = P.regexp(localEmojiRegex).map(x => createMfmNode('emoji', { emoji: x, local: true }));
 		const code = P.regexp(emojiRegex).map(x => createMfmNode('emoji', { emoji: x }));
 		return P.alt(name, lcode, vcode, code);
+	},
+	fn: r => {
+		return P((input, i) => {
+			const text = input.substr(i);
+			const match = text.match(/^\[([0-9a-z]+)(?:\.([0-9a-z.,=]+))?\s+([^\n\[\]]+)\]/);
+			if (!match) return P.makeFailure(i, 'not a fn');
+
+			const name = match[1];
+			const argsPart = match[2];
+			const content = match[3];
+
+			if (!['tada', 'jelly', 'twitch', 'shake', 'spin', 'jump', 'bounce', 'flip', 'rgbshift', 'x2', 'x3', 'x4', 'font', 'blur'].includes(name)) {
+				return P.makeFailure(i, 'unknown fn name');
+			}
+
+			const args: Record<string, boolean | string> = {};
+			for (const arg of argsPart?.split(',') || []) {
+				const kv = arg.split('=');
+				if (kv[0] == '__proto__') return P.makeFailure(i, 'prototype pollution');
+				if (kv.length === 1) {
+					args[kv[0]] = true;
+				} else {
+					args[kv[0]] = kv[1];
+				}
+			}
+
+			return P.makeSuccess(i + match[0].length, { name, args, content });
+		}).map(x => createMfmNode('fn', { name: x.name, args: x.args }, r.inline.atLeast(1).tryParse(x.content)));
 	},
 	text: () => P.any.map(x => createMfmNode('text', { text: x }))
 });
