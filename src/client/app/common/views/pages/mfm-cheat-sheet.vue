@@ -137,6 +137,12 @@
 	</section>
 
 	<section>
+		<header>大きく</header>
+		<p><mfm :text="preview_x" :key="preview_anime1"/></p>
+		<ui-textarea :slim="false" class="text" v-model="preview_x"></ui-textarea>
+	</section>
+
+	<section>
 		<header>色ずれアニメーション</header>
 		<p><mfm :text="preview_rgbshift" :key="preview_rgbshift"/></p>
 		<ui-textarea :slim="true" class="text" v-model="preview_rgbshift"></ui-textarea>
@@ -285,6 +291,7 @@ export default Vue.extend({
 			preview_search: `MisskeyでFediverseの世界が広がります 検索`,
 			preview_title: `【タイトル】`,
 			preview_anime1: `<motion>モーション</motion>\n*** ビッグ＋ ***\n**** ビッグ＋＋ ****\n<jump>ジャンプ</jump>\n<blink>blink</blink> <twitch>twitch</twitch> <shake>shake</shake>`,
+			preview_x: `<x2>🍮</x2>\n<x3>🍮</x3>\n<x4>🍮</x4>\n`,
 			preview_flip: '<flip>左右反転</flip>\n<vflip>上下反転</vflip>\n<flip><vflip>双方反転</vflip></flip>',
 			preview_spin: '<spin>回転</spin> <spin left>左回転</spin> <spin alternate>往復回転</spin>',
 			preview_xspin: '<xspin>回転</xspin> <xspin left>左回転</xspin> <xspin alternate>往復回転</xspin>',

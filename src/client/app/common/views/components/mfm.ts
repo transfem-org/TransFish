@@ -385,6 +385,24 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(node.children));
 				}
 
+				case 'x2': {
+					return (createElement as any)('span', {
+						style: `font-size: 200%;`
+					}, genEl(node.children));
+				}
+
+				case 'x3': {
+					return (createElement as any)('span', {
+						style: `font-size: 400%;`
+					}, genEl(node.children));
+				}
+
+				case 'x4': {
+					return (createElement as any)('span', {
+						style: `font-size: 600%;`
+					}, genEl(node.children));
+				}
+
 				case 'url': {
 					return [createElement(MkUrl, {
 						key: Math.random(),
