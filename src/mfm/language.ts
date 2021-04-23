@@ -283,8 +283,8 @@ export const mfmLanguage = P.createLanguage({
 		// # + U+20E3 / # + U+FE0F + U+20E3 のような 合字/絵文字異体字セレクタ付きは ハッシュタグ扱いしない
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
 
-		// # の前に英数字はハッシュタグ扱いしない
-		if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a hashtag');
+		// # の前に何かあればハッシュタグ扱いしない
+		if (input[i - 1] != null && input[i - 1].match(/\S/i)) return P.makeFailure(i, 'not a hashtag');
 
 		return P.makeSuccess(i + ('#' + hashtag).length, createMfmNode('hashtag', { hashtag: hashtag }));
 	}),
