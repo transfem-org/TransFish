@@ -517,8 +517,7 @@ describe('parse', () => {
 			it('with text (zenkaku)', () => {
 				const tokens = parseFull('こんにちは#世界');
 				assert.deepStrictEqual(tokens, [
-					text('こんにちは'),
-					leaf('hashtag', { hashtag: '世界' })
+					text('こんにちは#世界')
 				]);
 			});
 
@@ -583,9 +582,7 @@ describe('parse', () => {
 			it('with brackets', () => {
 				const tokens1 = parseFull('(#foo)');
 				assert.deepStrictEqual(tokens1, [
-					text('('),
-					leaf('hashtag', { hashtag: 'foo' }),
-					text(')'),
+					text('(#foo)')
 				]);
 			});
 
