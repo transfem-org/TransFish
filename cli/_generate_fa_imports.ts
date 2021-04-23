@@ -1,13 +1,12 @@
 import * as fs from 'fs';
 //import { inspect } from 'util';
-import { concat } from './src/prelude/array';
-
+import { concat } from '../src/prelude/array';
 
 // TODO: unique, auto generate r/s
 const importRegex = new RegExp(/import\s+\{([^}]+)\}\s+from\s+'@fortawesome\/free-(\w+)-svg-icons';/g, 'gs');
 
 function main() {
-	const content = fs.readFileSync('src/client/app/init.ts', 'utf-8');
+	const content = fs.readFileSync(`${__dirname}/../src/client/app/init.ts`, 'utf-8');
 
 	const fais = getFaImports(content);
 
