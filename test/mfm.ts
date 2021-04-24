@@ -582,9 +582,7 @@ describe('parse', () => {
 			it('with brackets', () => {
 				const tokens1 = parseFull('(#foo)');
 				assert.deepStrictEqual(tokens1, [
-					text('('),
-					leaf('hashtag', { hashtag: 'foo' }),
-					text(')')
+					text('(#foo)')
 				]);
 			});
 

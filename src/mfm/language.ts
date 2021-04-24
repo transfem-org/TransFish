@@ -276,7 +276,7 @@ export const mfmLanguage = P.createLanguage({
 
 		const text = input.substr(i);
 		// eslint-disable-next-line no-useless-escape
-		const match = text.match(/^#((?:\p{L}|\p{M}|\p{N}|\p{S})+)/u);
+		const match = text.match(/^#([^\s\.,!\?'"#:\/()\[\]]+)/i);
 		if (!match) return P.makeFailure(i, 'not a hashtag');
 		const hashtag = match[1];
 
@@ -284,7 +284,7 @@ export const mfmLanguage = P.createLanguage({
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
 
 		// # の前に何かあればハッシュタグ扱いしない
-		if (input[i - 1] != null && input[i - 1].match(/(?:\p{L}|\p{M}|\p{N}|\p{S})/u)) return P.makeFailure(i, 'not a hashtag');
+		if (input[i - 1] != null && input[i - 1].match(/[^\s\u200b]/i)) return P.makeFailure(i, 'not a hashtag');
 
 		return P.makeSuccess(i + ('#' + hashtag).length, createMfmNode('hashtag', { hashtag: hashtag }));
 	}),
