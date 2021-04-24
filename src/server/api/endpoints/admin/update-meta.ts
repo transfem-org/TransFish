@@ -69,13 +69,6 @@ export const meta = {
 			}
 		},
 
-		errorImageUrl: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'インスタンスのエラー画像URL'
-			}
-		},
-
 		iconUrl: {
 			validator: $.optional.nullable.str,
 			desc: {
@@ -475,10 +468,6 @@ export default define(meta, async (ps) => {
 
 	if (ps.smtpPass !== undefined) {
 		set.smtpPass = ps.smtpPass;
-	}
-
-	if (ps.errorImageUrl !== undefined) {
-		set.errorImageUrl = ps.errorImageUrl;
 	}
 
 	if (ps.enableServiceWorker !== undefined) {

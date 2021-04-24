@@ -18,7 +18,6 @@ const defaultMeta: any = {
 	enableGithubIntegration: false,
 	enableDiscordIntegration: false,
 	mascotImageUrl: '/assets/ai.png',
-	errorImageUrl: 'https://xn--931a.moe/aiart/yubitun.png',
 	enableServiceWorker: false
 };
 

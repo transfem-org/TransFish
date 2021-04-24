@@ -45,7 +45,6 @@ export async function buildMeta(instance: IMeta, detail = true) {
 		swPublickey: instance.swPublicKey,
 		mascotImageUrl: instance.mascotImageUrl,
 		bannerUrl: instance.bannerUrl,
-		errorImageUrl: instance.errorImageUrl,
 		iconUrl: instance.iconUrl,
 		maxNoteTextLength: instance.maxNoteTextLength,
 		emojis: emojis.map(e => ({
