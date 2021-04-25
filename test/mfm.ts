@@ -462,12 +462,7 @@ describe('parse', () => {
 					tree('bold', [
 						text('x')
 					], {}),
-					leaf('mention', {
-						acct: '@a',
-						canonical: '@a',
-						username: 'a',
-						host: null
-					})
+					text('@a')
 				]);
 
 				const tokens4 = parseFull('@\n@v\n@veryverylongusername');
@@ -1411,7 +1406,7 @@ describe('Extract mentions', () => {
 	});
 
 	it('装飾の下', () => {
-		const ast = parseBasic('@foo **@bar** @baz')!;
+		const ast = parseBasic('@foo ** @bar ** @baz')!;
 		const mentions = extractMentions(ast);
 		assert.deepStrictEqual(mentions, [{
 			username: 'foo',
