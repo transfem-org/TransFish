@@ -261,7 +261,8 @@ export const mfmLanguage = P.createLanguage({
 			// eslint-disable-next-line no-useless-escape
 			const match = text.match(/^@\w([\w-]*\w)?(?:@[\w\.\-]+\w)?/);
 			if (!match) return P.makeFailure(i, 'not a mention');
-			if (input[i - 1] != null && input[i - 1].match(/[a-z0-9]/i)) return P.makeFailure(i, 'not a mention');
+			// @ の前に何かあればハッシュタグ扱いしない
+			if (input[i - 1]?.match(/[^\s\u200b]/)) return P.makeFailure(i, 'not a mention');
 			return P.makeSuccess(i + match[0].length, match[0]);
 		}).map(x => {
 			const { username, host } = parseAcct(x.substr(1));
@@ -284,7 +285,7 @@ export const mfmLanguage = P.createLanguage({
 		if (hashtag.match(/^(\u20e3|\ufe0f)/)) return P.makeFailure(i, 'not a hashtag');
 
 		// # の前に何かあればハッシュタグ扱いしない
-		if (input[i - 1] != null && input[i - 1].match(/[^\s\u200b]/i)) return P.makeFailure(i, 'not a hashtag');
+		if (input[i - 1]?.match(/[^\s\u200b]/)) return P.makeFailure(i, 'not a hashtag');
 
 		return P.makeSuccess(i + ('#' + hashtag).length, createMfmNode('hashtag', { hashtag: hashtag }));
 	}),
