@@ -51,7 +51,7 @@ export default Vue.extend({
 		this.$root.api('users/reaction-stats', {
 			userId: this.user.id,
 			limit: 10,
-		}).then((reactionStats: any) => {
+		}, false, true).then((reactionStats: any) => {
 			this.reactionStats = reactionStats;
 		});
 	},
