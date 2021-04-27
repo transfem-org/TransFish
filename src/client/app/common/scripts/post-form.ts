@@ -66,7 +66,7 @@ export default (opts) => ({
 			tertiaryNoteVisibility: 'none',
 			autocomplete: null,
 			draghover: false,
-			recentHashtags: JSON.parse(localStorage.getItem('hashtags') || '[]'),
+			recentHashtags: [],
 			maxNoteTextLength: 1000,
 			useJpeg: false,
 			faFish, faShareSquare
@@ -125,6 +125,17 @@ export default (opts) => ({
 		this.$root.getMeta().then(meta => {
 			this.maxNoteTextLength = meta.maxNoteTextLength;
 		});
+
+		try {
+			const tags = JSON.parse(localStorage.getItem('hashtags') || '[]')
+			if (typeof tags === 'object') {
+				this.recentHashtags = tags;
+			} else {
+				throw 'not an array';
+			}
+		} catch (e) {
+			localStorage.setItem('hashtags', JSON.stringify([]));
+		}
 	},
 
 	methods: {
@@ -448,7 +459,8 @@ export default (opts) => ({
 			if (this.text && this.text != '') {
 				const hashtags = parseBasic(this.text).filter(x => x.type === 'hashtag').map(x => x.props.hashtag);
 				const history = JSON.parse(localStorage.getItem('hashtags') || '[]') as string[];
-				localStorage.setItem('hashtags', JSON.stringify(unique(hashtags.concat(history))));
+				const tags = unique(hashtags.concat(history)).slice(0, 10);
+				localStorage.setItem('hashtags', JSON.stringify(tags));
 			}
 		},
 	}
