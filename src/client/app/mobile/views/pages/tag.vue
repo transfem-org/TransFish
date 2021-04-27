@@ -2,6 +2,10 @@
 <mk-ui>
 	<template #header><span style="margin-right:4px;"><fa icon="hashtag"/></span>{{ $route.params.tag }}</template>
 
+	<template #func>
+		<button @click="fn"><fa icon="pencil-alt"/></button>
+	</template>
+
 	<main>
 		<div class="search-area">
 			<x-search-box :word="`#${$route.params.tag}`"/>
@@ -52,6 +56,10 @@ export default Vue.extend({
 		}
 	},
 	methods: {
+		fn() {
+			this.$post();
+		},
+
 		inited() {
 			Progress.done();
 		},

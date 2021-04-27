@@ -227,6 +227,10 @@ export default Vue.extend({
 					if (!this.renote) this.renote = this.initialNote.renote;
 				}
 
+				if (!this.text && this.$route?.params?.tag) {
+					this.text = `#${this.$route.params.tag} `;
+				}
+
 				this.focus();
 
 				this.$nextTick(() => this.watch());

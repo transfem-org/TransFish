@@ -240,6 +240,10 @@ export default Vue.extend({
 					if (!this.renote) this.renote = this.initialNote.renote;
 				}
 
+				if (!this.text && this.$route?.params?.tag) {
+					this.text = `#${this.$route.params.tag} `;
+				}
+
 				this.$nextTick(() => this.watch());
 
 				const len = this.text.length;
