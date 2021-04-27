@@ -82,7 +82,7 @@ export default Vue.extend({
 			userId: this.$store.state.i.id,
 			limit: 10,
 		}, false, true).then((reactionStats: any) => {
-			const mosts = reactionStats.reactions.map((x: any) => x.reaction);
+			const mosts = reactionStats.reactions.map((x: any) => (x.reaction as string).replace(/@.:$/, ':'));
 			this.mosts = mosts.filter(x => !this.bases.includes(x));
 		});
 	},
