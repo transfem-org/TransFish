@@ -7,7 +7,7 @@
 	<iframe ref="tweet" scrolling="no" frameborder="no" :style="{ 'margin-top': '8px', left: `${tweetLeft}px`, width: `${tweetLeft < 0 ? 'auto' : '100%'}`, height: `${tweetHeight}px` }" :src="`https://platform.twitter.com/embed/index.html?embedId=${embedId}&amp;hideCard=false&amp;hideThread=false&amp;lang=en&amp;theme=${$store.state.device.darkmode ? 'dark' : 'light'}&amp;id=${tweetId}`"></iframe>
 	<div class="expandTweet">
 		<a @click="tweetExpanded = false">
-			<fa :icon="faTwitter"/> {{ $t('collapseTweet') }}
+			{{ $t('collapseTweet') }}
 		</a>
 	</div>
 </div>
@@ -29,7 +29,7 @@
 	</a>
 	<div class="expandTweet" v-if="tweetId">
 		<a @click="tweetExpanded = true">
-			<fa :icon="faTwitter"/> {{ $t('expandTweet') }}
+			{{ $t('expandTweet') }}
 		</a>
 	</div>
 </div>
@@ -39,7 +39,6 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import { url as misskeyUrl, lang } from '../../../config';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/url-preview.vue'),
@@ -90,7 +89,6 @@ export default Vue.extend({
 			tweetLeft: 0,
 			playerEnabled: false,
 			misskeyUrl,
-			faTwitter
 		};
 	},
 
