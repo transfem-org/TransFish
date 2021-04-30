@@ -1,8 +1,7 @@
 import clip from './utils/clip';
 import cleanupTitle from './utils/cleanup-title';
 
-import { AllHtmlEntities } from 'html-entities';
-const entities = new AllHtmlEntities();
+import { decode } from 'html-entities';
 
 import Summary from './types';
 import { createInstance } from './client';
@@ -35,7 +34,7 @@ export default async (url: URL): Promise<Summary> => {
 		throw 'no title';
 	}
 
-	title = clip(entities.decode(title), 100) || null;
+	title = clip(decode(title), 100) || null;
 
 	let image =
 		$('meta[property="og:image"]').attr('content') ||
@@ -74,7 +73,7 @@ export default async (url: URL): Promise<Summary> => {
 		null;
 
 	description = description
-		? (clip(entities.decode(description), 300) || null)
+		? (clip(decode(description), 300) || null)
 		: null;
 
 	if (title === description) {
@@ -87,7 +86,7 @@ export default async (url: URL): Promise<Summary> => {
 		landingUrl.hostname ||
 		null;
 
-	siteName = siteName ? entities.decode(siteName) : null;
+	siteName = siteName ? decode(siteName) : null;
 
 	const favicon =
 		$('link[rel="shortcut icon"]').attr('href') ||
