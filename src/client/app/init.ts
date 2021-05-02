@@ -8,6 +8,7 @@ import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
 import VModal from 'vue-js-modal';
 import VueI18n from 'vue-i18n';
+import Vue2TouchEvents from 'vue2-touch-events'
 import SequentialEntrance from 'vue-sequential-entrance';
 import * as hljs from 'highlight.js';
 import 'highlight.js/styles/monokai.css';
@@ -302,6 +303,7 @@ Vue.use(VueSize);
 Vue.use(VueI18n);
 Vue.use(SequentialEntrance);
 Vue.use(hljs.vuePlugin);
+Vue.use(Vue2TouchEvents);
 
 Vue.component('fa', FontAwesomeIcon);
 Vue.component('fa-layers', FontAwesomeLayers);
