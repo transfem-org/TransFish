@@ -203,12 +203,10 @@ export const hideNote = async (packedNote: PackedNote, meId: mongo.ObjectID | nu
 	if (hide) {
 		packedNote.fileIds = [];
 		packedNote.files = [];
-		packedNote.mediaIds = [];
-		packedNote.media = [];
 		packedNote.replyId = null;
-		packedNote.reply = [];
+		packedNote.reply = null;
 		packedNote.appId = null;
-		packedNote.visibleUserIds = null;
+		packedNote.visibleUserIds = [];
 		packedNote.reactionCounts = {};
 		packedNote.renoteCount = 0;
 		packedNote.repliesCount = 0;
@@ -216,7 +214,6 @@ export const hideNote = async (packedNote: PackedNote, meId: mongo.ObjectID | nu
 		packedNote.poll = null;
 		packedNote.cw = null;
 		packedNote.tags = [];
-		packedNote.geo = null;
 		packedNote.isHidden = true;
 	}
 };
