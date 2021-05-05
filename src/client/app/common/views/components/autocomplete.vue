@@ -296,6 +296,14 @@ export default Vue.extend({
 				const matched: any[] = [];
 				const max = 30;
 
+				// 完全一致
+				if (matched.length < max) {
+					this.emojiDb.some(x => {
+						if (x.name === this.q && !matched.some(y => y.emoji == x.emoji)) matched.push(x);
+						return matched.length == max;
+					});
+				}
+
 				// カスタム絵文字マッチ
 				if (matched.length < max) {
 					this.emojiDb.some(x => {
