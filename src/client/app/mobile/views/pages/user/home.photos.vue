@@ -35,7 +35,7 @@ export default Vue.extend({
 			limit: 9,
 		}).then(notes => {
 			for (const note of notes) {
-				for (const media of note.media) {
+				for (const media of note.files) {
 					if (this.images.length < 9) {
 						this.images.push({
 							note,
