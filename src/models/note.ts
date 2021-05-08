@@ -8,7 +8,6 @@ import PollVote from './poll-vote';
 import NoteReaction from './note-reaction';
 import { packMany as packFileMany, IDriveFile } from './drive-file';
 import Following from './following';
-import Emoji from './emoji';
 import { packEmojis } from '../misc/pack-emojis';
 import { dbLogger } from '../db/logger';
 import { decodeReaction, decodeReactionCounts } from '../misc/reaction-lib';
