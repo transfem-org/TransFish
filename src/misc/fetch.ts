@@ -94,6 +94,7 @@ export async function receiveResponce<T>(req: Got.CancelableRequest<Got.Response
 			throw {
 				name: `StatusError`,
 				statusCode,
+				statusMessage,
 				message: `${statusCode} ${statusMessage}`,
 			};
 		} else {
