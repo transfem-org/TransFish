@@ -22,6 +22,8 @@
 		"format": "gulp format"
 	},
 	"resolutions": {
+    "http-proxy-agent/agent-base": "^6.0.2",
+    "https-proxy-agent/agent-base": "^6.0.2",
 		"lodash": "^4.17.21"
 	},
 	"dependencies": {
