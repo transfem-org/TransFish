@@ -1463,13 +1463,6 @@ async-settle@^1.0.0:
   dependencies:
     async-done "^1.2.2"
 
-async@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
-  integrity sha512-xAfGg1/NTLBBKlHFmnd7PlmUW9KhVQIUuSrYem9xzFUZy13ScvtyGGejaae9iAVRiRq9+Cx7DPFaAAhCpyxyPw==
-  dependencies:
-    lodash "^4.14.0"
-
 async@>=0.2.9, async@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.0.tgz#b3a2685c5ebb641d3de02d161002c60fc9f85720"
@@ -1864,6 +1857,11 @@ cache-content-type@^1.0.0:
   dependencies:
     mime-types "^2.1.18"
     ylru "^1.2.0"
+
+cacheable-lookup@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/cacheable-lookup/-/cacheable-lookup-6.0.0.tgz#6fd7e364a0929ee50af00843aaf6e31b9b9f200e"
+  integrity sha512-5qeyMn8/BERrUPdIfcOLkdMrwltVbxIpgnYM61OLWOg3BuSSh9HrkUtTTRxYthQpBrocvYqD0tJ7vU0y6T7OWw==
 
 cacheable-lookup@^5.0.3:
   version "5.0.3"
@@ -5638,7 +5636,7 @@ lodash.uniq@^4.3.0, lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.14.0, lodash@^4.17.10, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
+lodash@^4.17.10, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -5654,15 +5652,6 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
   integrity sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
-
-lookup-dns-cache@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/lookup-dns-cache/-/lookup-dns-cache-2.1.0.tgz#6362340e269071e20b6f0bcf51da98873411e051"
-  integrity sha512-tLcJ7rkqWzZ77D7pN5R2ceWKZsIJ5/6HaLQdmhw3M9fBQQmqS4LZqvBcstKzQ6kuZet5LY4TWTiShx7QmO+Q8w==
-  dependencies:
-    async "2.6.0"
-    lodash "^4.17.10"
-    rr "0.1.0"
 
 lower-case@^1.1.1:
   version "1.1.4"
@@ -7897,11 +7886,6 @@ rndstr@1.0.0:
   dependencies:
     rangestr "0.0.1"
     seedrandom "2.4.2"
-
-rr@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/rr/-/rr-0.1.0.tgz#a18ec25ec94a67c35f210bb3a85d17914e79cd1e"
-  integrity sha1-oY7CXslKZ8NfIQuzqF0XkU55zR4=
 
 rsvp@^4.8.5:
   version "4.8.5"
