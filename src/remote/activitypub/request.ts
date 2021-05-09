@@ -38,12 +38,7 @@ export default async (user: ILocalUser, url: string, object: any) => {
 						const clientRequest = requestFunc(url, opt, callback) as http.ClientRequest;
 
 						// HTTP-Signature
-						sign(clientRequest, {
-							authorizationHeaderName: 'Signature',
-							key: user.keypair,
-							keyId: `${config.url}/users/${user._id}#main-key`,
-							headers: ['(request-target)', 'date', 'host', 'digest']
-						});
+						signToRequest(clientRequest, user.keypair, `${config.url}/users/${user._id}#main-key`);
 
 						return clientRequest;
 					};
@@ -83,12 +78,7 @@ export async function signedGet(url: string, user: ILocalUser) {
 						const clientRequest = requestFunc(url, opt, callback) as http.ClientRequest;
 
 						// HTTP-Signature
-						sign(clientRequest, {
-							authorizationHeaderName: 'Signature',
-							key: user.keypair,
-							keyId: `${config.url}/users/${user._id}#main-key`,
-							headers: ['(request-target)', 'host', 'date', 'accept']
-						});
+						signToRequest(clientRequest, user.keypair, `${config.url}/users/${user._id}#main-key`);
 
 						return clientRequest;
 					};
@@ -103,7 +93,22 @@ export async function signedGet(url: string, user: ILocalUser) {
 	return res.body;
 }
 
-export async function receiveResponce<T>(req: Got.CancelableRequest<Got.Response<T>>, maxSize: number) {
+/**
+ * Sign to ClientRequest
+ * @param clientRequest http.ClientRequest
+ * @param key Private key as PEM string
+ * @param keyId KeyID
+ */
+function signToRequest(clientRequest: http.ClientRequest, key: string, keyId: string) {
+	sign(clientRequest, {
+		authorizationHeaderName: 'Signature',
+		key,
+		keyId,
+		headers: ['(request-target)', 'date', 'host', 'digest']
+	});
+}
+
+async function receiveResponce<T>(req: Got.CancelableRequest<Got.Response<T>>, maxSize: number) {
 	// 応答ヘッダでサイズチェック
 	req.on('response', (res: Got.Response) => {
 		const contentLength = res.headers['content-length'];
