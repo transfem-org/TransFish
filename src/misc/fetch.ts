@@ -70,13 +70,15 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 
 	return await res.text();
 }
+
 /**
  * Get http non-proxy agent
  */
 const _http = new http.Agent({
 	keepAlive: true,
 	keepAliveMsecs: 30 * 1000,
-});
+	lookup: cache.lookup,	// DefinitelyTyped issues
+} as http.AgentOptions);
 
 /**
  * Get https non-proxy agent
