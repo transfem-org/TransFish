@@ -126,7 +126,7 @@ export default Vue.extend({
 			anime({
 				targets: this.$refs.backdrop,
 				opacity: 1,
-				duration: this.animation ? 50 : 0,
+				duration: this.animation ? 100 : 0,
 				easing: 'linear'
 			});
 
@@ -134,7 +134,7 @@ export default Vue.extend({
 				targets: this.$refs.popover,
 				opacity: 1,
 				scale: [0.5, 1],
-				duration: this.animation ? 250 : 0
+				duration: this.animation ? 500 : 0
 			});
 		});
 	},
