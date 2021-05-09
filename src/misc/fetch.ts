@@ -72,7 +72,8 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 }
 
 const cache = new CacheableLookup({
-	errorTtl: 30,
+	maxTtl: 3600,	// 1hours
+	errorTtl: 30,	// 30secs
 	lookup: false,	// nativeのdns.lookupにfallbackしない
 });
 
