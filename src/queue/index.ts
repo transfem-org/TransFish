@@ -84,6 +84,7 @@ export function deliver(user: ILocalUser, content: any, to: string, lowSeverity 
 
 	return deliverQueue.add(data, {
 		attempts,
+		timeout: 1 * 60 * 1000,	// 1min
 		backoff: {
 			type: 'exponential',
 			delay: 60 * 1000
@@ -107,6 +108,7 @@ export function inbox(activity: IActivity, signature: httpSignature.IParsedSigna
 
 	return inboxQueue.add(data, {
 		attempts: config.inboxJobMaxAttempts || 8,
+		timeout: 5 * 60 * 1000,	// 5min
 		backoff: {
 			type: 'exponential',
 			delay: 60 * 1000
@@ -120,6 +122,7 @@ export function createDeleteNotesJob(user: ILocalUser) {
 	return dbQueue.add('deleteNotes', {
 		user: user
 	}, {
+		timeout: 3 * 60 * 60 * 1000,	// 3hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -129,6 +132,7 @@ export function createDeleteDriveFilesJob(user: ILocalUser) {
 	return dbQueue.add('deleteDriveFiles', {
 		user: user
 	}, {
+		timeout: 3 * 60 * 60 * 1000,	// 3hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -139,6 +143,7 @@ export function createDeleteNoteJob(note: INote, delay: number) {
 		noteId: note._id
 	}, {
 		delay,
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -153,6 +158,7 @@ export function createExpireMuteJob(mute: IMute) {
 		muteId: `${mute._id}`
 	}, {
 		delay,
+		timeout: 5 * 60 * 1000,	// 5min
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -167,6 +173,7 @@ export function createNotifyPollFinishedJob(note: INote, user: ILocalUser, expir
 		userId: `${user._id}`
 	}, {
 		delay,
+		timeout: 5 * 60 * 1000,	// 5min
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -176,6 +183,7 @@ export function createExportNotesJob(user: ILocalUser) {
 	return dbQueue.add('exportNotes', {
 		user: user
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -185,6 +193,7 @@ export function createExportFollowingJob(user: ILocalUser) {
 	return dbQueue.add('exportFollowing', {
 		user: user
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -194,6 +203,7 @@ export function createExportMuteJob(user: ILocalUser) {
 	return dbQueue.add('exportMute', {
 		user: user
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -203,6 +213,7 @@ export function createExportBlockingJob(user: ILocalUser) {
 	return dbQueue.add('exportBlocking', {
 		user: user
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -212,6 +223,7 @@ export function createExportUserListsJob(user: ILocalUser) {
 	return dbQueue.add('exportUserLists', {
 		user: user
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -222,6 +234,7 @@ export function createImportFollowingJob(user: ILocalUser, fileId: IDriveFile['_
 		user: user,
 		fileId: fileId
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -232,6 +245,7 @@ export function createImportBlockingJob(user: ILocalUser, fileId: IDriveFile['_i
 		user: user,
 		fileId: fileId
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -242,6 +256,7 @@ export function createImportMuteJob(user: ILocalUser, fileId: IDriveFile['_id'])
 		user: user,
 		fileId: fileId
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
@@ -252,6 +267,7 @@ export function createImportUserListsJob(user: ILocalUser, fileId: IDriveFile['_
 		user: user,
 		fileId: fileId
 	}, {
+		timeout: 1 * 60 * 60 * 1000,	// 1hour
 		removeOnComplete: true,
 		removeOnFail: true
 	});
