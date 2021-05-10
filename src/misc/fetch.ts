@@ -51,18 +51,6 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 }
 
 /**
- * agent を URL から設定する beforeRequest hook
- */
-export function beforeRequestHook(options: Got.NormalizedOptions) {
-	options.request = (url: URL, opt: http.RequestOptions, callback?: (response: any) => void) => {
-		const requestFunc = url.protocol === 'http:' ? http.request : https.request;
-		opt.agent = getAgentByUrl(url, false);
-		const clientRequest = requestFunc(url, opt, callback) as http.ClientRequest;
-		return clientRequest;
-	};
-}
-
-/**
  * Receive response (with size limit)
  * @param req Request
  * @param maxSize size limit
