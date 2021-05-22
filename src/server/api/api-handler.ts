@@ -15,11 +15,11 @@ export default (endpoint: IEndpoint, ctx: Router.RouterContext) => new Promise((
 			ctx.status = x;
 			ctx.body = {
 				error: {
-					message: y.message,
-					code: y.code,
-					id: y.id,
-					kind: y.kind,
-					...(y.info ? { info: y.info } : {})
+					message: y?.message,
+					code: y?.code,
+					id: y?.id,
+					kind: y?.kind,
+					...(y?.info ? { info: y.info } : {})
 				}
 			};
 		} else {
