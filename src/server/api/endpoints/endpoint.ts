@@ -31,7 +31,14 @@ export default define(meta, async (ps) => {
 	const ep = endpoints.find(x => x.name === ps.endpoint);
 	if (ep == null) return;
 	return {
-		params: Object.entries(ep.meta.params || {}).map(([k, v]) => genParaDesc(k, v))
+		params: Object.entries(ep.meta.params || {}).map(([k, v]) => genParaDesc(k, v)),
+		desc: ep.meta.desc,
+		limit: ep.meta.limit,
+		allowGet: !!ep.meta.allowGet,
+		requireAdmin: !!ep.meta.requireAdmin,
+		requireCredential: !!ep.meta.requireCredential,
+		requireModerator: !!ep.meta.requireModerator,
+		secure: !!ep.meta.secure,
 	};
 });
 
