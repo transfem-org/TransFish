@@ -41,7 +41,7 @@ function genParaDesc(name: string, param: Param) {
 		result.maximum = param.validator.maximum;
 	} else if (isStringContext(param.validator)) {
 		if (param.validator.enum) {
-			result.emun = param.validator.enum;
+			result.enum = param.validator.enum;
 		} else {
 			result.minimum = param.validator.minLength;
 			result.maximum = param.validator.maxLength;
