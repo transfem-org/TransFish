@@ -14,7 +14,7 @@
 
 	<section>
 		<header><fa icon="terminal"/> {{ $t('console.title') }}</header>
-		<ui-input v-model="endpoint" :datalist="endpoints">
+		<ui-input v-model="endpoint" :datalist="endpoints" @keydown="onEndpointChange()">
 			<span>{{ $t('console.endpoint') }}</span>
 		</ui-input>
 		<ui-textarea v-model="body">
@@ -93,7 +93,23 @@ export default Vue.extend({
 				this.sending = false;
 				this.res = JSON.stringify(err, null, 2) || 'UNKNOWN ERROR';
 			});
-		}
+		},
+
+		onEndpointChange() {
+			this.$root.api('endpoint', { endpoint: this.endpoint }).then(endpoint => {
+				const body = {};
+				for (const p of endpoint.params) {
+					body[p.name] =
+						p.type === 'String' ? '' :
+						p.type === 'Number' ? 0 :
+						p.type === 'Boolean' ? false :
+						p.type === 'Array' ? [] :
+						p.type === 'Object' ? {} :
+						null;
+				}
+				this.body = JSON5.stringify(body, null, 2);
+			});
+		},
 	}
 });
 </script>
