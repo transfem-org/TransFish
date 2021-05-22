@@ -15,6 +15,18 @@ export const meta = {
 	},
 };
 
+type Result = {
+	name: string;
+	type: string;
+	desc?: { [key: string]: string };
+	deprecated: boolean;
+	default?: string | number;
+	required: boolean;
+	minimum: number | null;
+	maximum: number | null;
+	enum?: string[];
+};
+
 export default define(meta, async (ps) => {
 	const ep = endpoints.find(x => x.name === ps.endpoint);
 	if (ep == null) return;
@@ -34,7 +46,7 @@ function genParaDesc(name: string, param: Param) {
 		deprecated: !!param.deprecated,
 		default: param.default,
 		required: !param.validator.isOptional,	// TODO: Object
-	} as any;
+	} as Result;
 
 	if (isNumberContext(param.validator)) {
 		result.minimum = param.validator.minimum;
