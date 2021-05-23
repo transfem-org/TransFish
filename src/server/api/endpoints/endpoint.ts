@@ -15,7 +15,7 @@ export const meta = {
 	},
 };
 
-type Result = {
+type ParaDesc = {
 	name: string;
 	type: string;
 	desc?: { [key: string]: string };
@@ -53,7 +53,7 @@ function genParaDesc(name: string, param: Param) {
 		deprecated: !!param.deprecated,
 		default: param.default,
 		required: !param.validator.isOptional,	// TODO: Object
-	} as Result;
+	} as ParaDesc;
 
 	if (isNumberContext(param.validator)) {
 		result.minimum = param.validator.minimum;
