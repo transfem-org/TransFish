@@ -12,11 +12,11 @@ export interface IObject {
 	published?: string;
 	cc?: ApObject;
 	to?: ApObject;
-	attributedTo: ApObject;
+	attributedTo?: ApObject;
 	attachment?: IObject | IObject[];
 	inReplyTo?: ApObject;
 	replies?: ICollection;
-	content: string;
+	content?: string;
 	name?: string;
 	startTime?: Date;
 	endTime?: Date;
@@ -135,7 +135,7 @@ export interface IOrderedCollectionPage extends IObject {
 
 export interface IPost extends IObject {
 	type: 'Note' | 'Question' | 'Article' | 'Audio' | 'Document' | 'Image' | 'Page' | 'Video' | 'Event';
-	_misskey_content: string;
+	_misskey_content?: string;
 	_misskey_quote?: string;
 	quoteUrl?: string;
 	_misskey_talk?: boolean;
@@ -157,7 +157,7 @@ export const isTombstone = (object: IObject): object is ITombstone =>
 
 export interface IQuestion extends IObject {
 	type: 'Note' | 'Question';
-	_misskey_content: string;
+	_misskey_content?: string;
 	_misskey_quote?: string;
 	quoteUrl?: string;
 	oneOf?: IQuestionChoice[];
@@ -220,27 +220,27 @@ export const isHashtag = (object: IObject): object is IApHashtag =>
 	getApType(object) === 'Hashtag' &&
 	typeof object.name === 'string';
 
-export interface IApPerson extends IObject {
+export interface IActor extends IObject {
 	type: 'Person' | 'Service' | 'Organization' | 'Group' | 'Application';
-	name: string;
+	name?: string;
 	preferredUsername: string;
-	manuallyApprovesFollowers: boolean;
+	manuallyApprovesFollowers?: boolean;
 	discoverable?: boolean;
 	inbox: string;
 	sharedInbox?: string;
-	publicKey: any;
-	followers: any;
-	following: any;
+	publicKey?: any;
+	followers?: any;
+	following?: any;
 	featured?: any;
 	outbox: any;
-	endpoints: any;
+	endpoints?: any;
 	'vcard:bday'?: string;
 	'vcard:Address'?: string;
 }
 
 export const validActor = ['Person', 'Service', 'Group', 'Organization', 'Application'];
 
-export const isActor = (object: IObject): object is IApPerson =>
+export const isActor = (object: IObject): object is IActor =>
 	validActor.includes(getApType(object));
 
 export interface IApEmoji extends IObject {
