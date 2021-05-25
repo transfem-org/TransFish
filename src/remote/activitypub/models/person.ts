@@ -420,7 +420,7 @@ export async function updatePerson(uri: string, resolver?: Resolver, hint?: IAct
  * Misskeyに対象のPersonが登録されていればそれを返し、そうでなければ
  * リモートサーバーからフェッチしてMisskeyに登録しそれを返します。
  */
-export async function resolvePerson(uri: string, verifier?: string, resolver?: Resolver): Promise<IUser> {
+export async function resolvePerson(uri: string, verifier?: string | null, resolver?: Resolver): Promise<IUser> {
 	if (typeof uri !== 'string') throw 'uri is not string';
 
 	//#region このサーバーに既に登録されていたらそれを返す
