@@ -345,6 +345,7 @@ async function deleteOldFile(user: IRemoteUser) {
 			$nin: [user.avatarId, user.bannerId]
 		},
 		'metadata.userId': user._id
+		// TODO: metadata.deletedAtを見るべきだが、削除時にmetadata.userIdを消してしまうのでこれ動いてしまう
 	}, {
 		sort: {
 			_id: 1
@@ -404,7 +405,7 @@ export async function addFile(
 		}
 	}
 
-	//#region Check drive usage
+	//#region Check drive usageisRemote
 	if (!isLink) {
 		const usage = await DriveFile
 			.aggregate([{

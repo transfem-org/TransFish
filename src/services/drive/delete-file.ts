@@ -63,6 +63,7 @@ export default async function(file: IDriveFile, isExpired = false) {
 		if (file.metadata?.storageProps?.webpublicKey) InternalStorage.del(file.metadata?.storageProps?.webpublicKey);
 	}
 
+	// TODO: 他のmetadataをふっ飛ばしてしまっている
 	const set = {
 		metadata: {
 			deletedAt: new Date(),
