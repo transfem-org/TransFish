@@ -344,8 +344,8 @@ async function deleteOldFile(user: IRemoteUser) {
 		_id: {
 			$nin: [user.avatarId, user.bannerId]
 		},
-		'metadata.userId': user._id
-		// TODO: metadata.deletedAtを見るべきだが、削除時にmetadata.userIdを消してしまうのでこれ動いてしまう
+		'metadata.userId': user._id,
+		'metadata.deletedAt': { $exists: false },
 	}, {
 		sort: {
 			_id: 1
