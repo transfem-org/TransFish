@@ -373,7 +373,7 @@ export const pack = async (
 		db.emojis = extractEmojis(nodes);
 	}
 
-	db.fileIds = db.fileIds ? db.fileIds.slice(0, 10) : [];
+	db.fileIds = db.fileIds ? db.fileIds.slice(0, 100) : [];
 
 	const packed: PackedNote = await awaitAll({
 		id: toOidString(db._id),
