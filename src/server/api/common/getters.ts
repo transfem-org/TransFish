@@ -9,7 +9,6 @@ import { IdentifiableError } from '../../../misc/identifiable-error';
 export async function getNote(noteId: mongo.ObjectID, user?: ILocalUser, visibleOnly = false) {
 	const note = await Note.findOne({
 		_id: noteId,
-		'fileIds.100': { $exists: false },
 		deletedAt: { $exists: false }
 	});
 

@@ -4,10 +4,7 @@ import { ILocalUser } from '../../../models/user';
 export async function getPackedTimeline(me: ILocalUser | null, query: any, sort: Record<string, number>, limit: number) {
 	const timeline = await Note.aggregate<INote[]>([
 		{
-			$match: { $and: [
-				query,
-				{'fileIds.100': { $exists: false }}
-			]},
+			$match: query
 		}, {
 			$sort: sort
 		}, {
