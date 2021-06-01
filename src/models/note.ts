@@ -373,8 +373,6 @@ export const pack = async (
 		db.emojis = extractEmojis(nodes);
 	}
 
-	db.fileIds = db.fileIds ? db.fileIds.slice(0, 100) : [];
-
 	const packed: PackedNote = await awaitAll({
 		id: toOidString(db._id),
 		createdAt: toISODateOrNull(db.createdAt),
@@ -398,8 +396,8 @@ export const pack = async (
 		reactions: reactionCounts,
 		reactionCounts: reactionCounts,
 		emojis: populateEmojis(),
-		fileIds: db.fileIds.map(toOidString),
-		files: packFileMany(db.fileIds),
+		fileIds: db.fileIds ? db.fileIds.map(toOidString) : [],
+		files: packFileMany(db.fileIds || []),
 		uri: db.uri || null,
 		url: db.url || null,
 		appId: toOidStringOrNull(db.appId),
