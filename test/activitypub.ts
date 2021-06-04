@@ -25,9 +25,9 @@ type MockResponse = {
 	content: string;
 };
 
-export class MockResolver extends Resolver {
+class MockResolver extends Resolver {
 	private _rs = new Map<string, MockResponse>();
-	public async _register(uri: string, content: string | Object, type = 'application/activity+json') {
+	public async _register(uri: string, content: string | Record<string, any>, type = 'application/activity+json') {
 		this._rs.set(uri, {
 			type,
 			content: typeof content === 'string' ? content : JSON.stringify(content)
@@ -90,7 +90,7 @@ describe('Parse minimum object', async () => {
 	});
 
 	it('Minimum Note', async () => {
-		const resolver = new MockResolver()
+		const resolver = new MockResolver();
 		resolver._register(actor.id, actor);
 		resolver._register(post.id, post);
 
