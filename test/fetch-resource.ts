@@ -12,7 +12,7 @@ process.env.NODE_ENV = 'test';
 
 import * as assert from 'assert';
 import * as childProcess from 'child_process';
-import { async, launchServer, signup, post, api, simpleGet, port } from './utils';
+import { async, launchServer, signup, post, api, simpleGet, port, shutdownServer } from './utils';
 import * as openapi from '@redocly/openapi-core';
 
 const db = require('../built/db/mongodb').default;
@@ -46,8 +46,8 @@ describe('Fetch resource', () => {
 		});
 	}));
 
-	after(() => {
-		p.kill();
+	after(async () => {
+		await shutdownServer(p);
 	});
 
 	describe('Common', () => {
