@@ -299,18 +299,9 @@ export async function updatePerson(uri: string, resolver?: Resolver, hint?: IAct
 	logger.info(`Updating the Person: ${person.id}`);
 
 	const [followersCount = 0, followingCount = 0, notesCount = 0] = await Promise.all([
-		resolver.resolve(person.followers).then(
-			resolved => isCollectionOrOrderedCollection(resolved) ? resolved.totalItems : undefined,
-			() => undefined
-		),
-		resolver.resolve(person.following).then(
-			resolved => isCollectionOrOrderedCollection(resolved) ? resolved.totalItems : undefined,
-			() => undefined
-		),
-		resolver.resolve(person.outbox).then(
-			resolved => isCollectionOrOrderedCollection(resolved) ? resolved.totalItems : undefined,
-			() => undefined
-		)
+		getCollectionCount(person.followers, resolver).catch(() => undefined),
+		getCollectionCount(person.following, resolver).catch(() => undefined),
+		getCollectionCount(person.outbox, resolver).catch(() => undefined),
 	]);
 
 	// アイコンとヘッダー画像をフェッチ

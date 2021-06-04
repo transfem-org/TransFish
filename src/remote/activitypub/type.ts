@@ -228,12 +228,17 @@ export interface IActor extends IObject {
 	discoverable?: boolean;
 	inbox: string;
 	sharedInbox?: string;
-	publicKey?: any;
-	followers?: any;
-	following?: any;
-	featured?: any;
-	outbox: any;
-	endpoints?: any;
+	publicKey?: {
+		id: string;
+		publicKeyPem: string;
+	};
+	followers?: string | ICollection | IOrderedCollection;
+	following?: string | ICollection | IOrderedCollection;
+	featured?: string | IOrderedCollection;
+	outbox?: string | IOrderedCollection;
+	endpoints?: {
+		sharedInbox?: string;
+	};
 	'vcard:bday'?: string;
 	'vcard:Address'?: string;
 }
@@ -310,7 +315,7 @@ export interface IRemove extends IActivity {
 
 export interface ILike extends IActivity {
 	type: 'Like' | 'Dislike' | 'EmojiReaction' | 'EmojiReact';
-	_misskey_reaction: string;
+	_misskey_reaction?: string;
 }
 
 export interface IAnnounce extends IActivity {

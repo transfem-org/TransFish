@@ -92,6 +92,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 	logger.info(`Creating the Note: ${note.id}`);
 
 	// 投稿者をフェッチ
+	if (!note.attributedTo) return null;
 	const actor = await resolvePerson(getOneApId(note.attributedTo), null, resolver) as IRemoteUser;
 
 	// 投稿者が凍結されていたらスキップ
@@ -132,7 +133,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 		: [];
 
 	// リプライ
-	const reply: INote = note.inReplyTo
+	const reply: INote | null = note.inReplyTo
 		? await resolveNote(getOneApId(note.inReplyTo), resolver).then(x => {
 			if (x == null) {
 				logger.warn(`Specified inReplyTo, but not found`);
@@ -142,7 +143,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 			}
 		}).catch(async e => {
 			// トークだったらinReplyToのエラーは無視
-			const uri = getApId(getOneApId(note.inReplyTo));
+			const uri = getApId(getOneApId(note.inReplyTo!));
 			if (uri.startsWith(config.url + '/')) {
 				const id = uri.split('/').pop();
 				const talk = await MessagingMessage.findOne({ _id: id });
@@ -159,7 +160,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 		: null;
 
 	// 引用
-	let quote: INote;
+	let quote: INote | undefined | null;
 
 	if (note._misskey_quote || note.quoteUrl) {
 		const tryResolveNote = async (uri: string): Promise<{
@@ -200,7 +201,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 	const cw = note.summary === '' ? null : note.summary;
 
 	// テキストのパース
-	const text = note._misskey_content || htmlToMfm(note.content, note.tag);
+	const text = note._misskey_content || (note.content ? htmlToMfm(note.content, note.tag) : null);
 
 	// vote
 	if (reply && reply.poll) {
@@ -231,7 +232,7 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 		}
 	}
 
-	const emojis = await extractEmojis(note.tag, actor.host).catch(e => {
+	const emojis = await extractEmojis(note.tag || [], actor.host).catch(e => {
 		logger.info(`extractEmojis: ${e}`);
 		return [] as IEmoji[];
 	});
