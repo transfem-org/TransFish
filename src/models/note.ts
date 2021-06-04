@@ -137,7 +137,7 @@ export type INote = {
 export type IPoll = {
 	choices: IChoice[];
 	multiple?: boolean;
-	expiresAt?: Date;
+	expiresAt?: Date | null;
 };
 
 export type IChoice = {
