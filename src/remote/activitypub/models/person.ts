@@ -53,10 +53,11 @@ function validateActor(x: IObject, uri: string): IActor {
 		if (e) throw new Error(`invalid Actor: ${name} ${e.message}`);
 	};
 
-	validate('preferredUsername', x.preferredUsername, $.str.min(1).max(128).match(/^\w([\w-.]*\w)?$/));
-	validate('inbox', x.inbox, $.str.min(1));
 	validate('id', x.id, $.str.min(1));
-	validate('summary', x.summary, $.nullable.optional.str.max(2048));
+	validate('inbox', x.inbox, $.str.min(1));
+	validate('preferredUsername', x.preferredUsername, $.str.min(1).max(128).match(/^\w([\w-.]*\w)?$/));
+	validate('name', x.name, $.optional.nullable.str.max(128));
+	validate('summary', x.summary, $.optional.nullable.str.max(2048));
 
 	const idHost = toUnicode(new URL(x.id!).hostname.toLowerCase());
 	if (idHost !== expectHost) {
