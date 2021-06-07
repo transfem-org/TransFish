@@ -18,7 +18,7 @@
 		"clean": "gulp clean",
 		"cleanall": "gulp cleanall",
 		"lint": "gulp lint",
-		"test": "TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS=\"{\\\"target\\\":\\\"es2017\\\",\\\"module\\\":\\\"commonjs\\\",\\\"typeRoots\\\":[\\\"node_modules/@types\\\",\\\"src/@types\\\"]}\" mocha",
+		"test": "cross-env TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
 		"format": "gulp format"
 	},
 	"resolutions": {
@@ -104,6 +104,7 @@
 		"commander": "4.1.1",
 		"content-disposition": "0.5.3",
 		"crc-32": "1.2.0",
+		"cross-env": "7.0.3",
 		"css-loader": "5.2.6",
 		"cssnano": "5.0.5",
 		"dateformat": "4.5.1",
