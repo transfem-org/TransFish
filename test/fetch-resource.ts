@@ -12,7 +12,7 @@ process.env.NODE_ENV = 'test';
 
 import * as assert from 'assert';
 import * as childProcess from 'child_process';
-import { async, launchServer, signup, post, api, simpleGet, port, shutdownServer } from './utils';
+import { async, startServer, signup, post, api, simpleGet, port, shutdownServer } from './utils';
 import * as openapi from '@redocly/openapi-core';
 
 const db = require('../built/db/mongodb').default;
@@ -34,7 +34,8 @@ describe('Fetch resource', () => {
 	let alice: any;
 	let alicesPost: any;
 
-	before(launchServer(g => p = g, async () => {
+	before(async () => {
+		p = await startServer();
 		await Promise.all([
 			db.get('users').drop(),
 			db.get('notes').drop(),
@@ -44,7 +45,7 @@ describe('Fetch resource', () => {
 		alicesPost = await post(alice, {
 			text: 'test'
 		});
-	}));
+	});
 
 	after(async () => {
 		await shutdownServer(p);
