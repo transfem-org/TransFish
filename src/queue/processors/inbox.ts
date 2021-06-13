@@ -114,7 +114,7 @@ export const tryProcessInbox = async (data: InboxJobData, ctx?: ApContext): Prom
 			}
 
 			if (user.publicKey == null) {
-				throw `skip: LD-SignatureのユーザーはpublicKeyを持っていませんでした`;
+				return `skip: LD-SignatureのユーザーはpublicKeyを持っていませんでした`;
 			}
 
 			// LD-Signature検証
