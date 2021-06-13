@@ -1,13 +1,13 @@
 import config from '../../config';
 import fetch from 'node-fetch';
 import { getAgentByUrl } from '../../misc/fetch';
-import { genSignedPost, genSignedGet } from './signed-request';
+import { createSignedPost, createSignedGet } from './ap-request';
 import { ILocalUser } from '../../models/user';
 
 export default async (user: ILocalUser, url: string, object: any) => {
 	const body = JSON.stringify(object);
 
-	const req = genSignedPost({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, body, {
+	const req = createSignedPost({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, body, {
 			'User-Agent': config.userAgent,
 	});
 
@@ -20,9 +20,9 @@ export default async (user: ILocalUser, url: string, object: any) => {
 	}, timeout * 6);
 
 	const res = await fetch(url, {
-		method: req.request.method,
+		method: req.method,
 		body: body,
-		headers: req.request.headers,
+		headers: req.headers,
 		timeout,
 		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
@@ -45,7 +45,7 @@ export default async (user: ILocalUser, url: string, object: any) => {
  * @param url URL to fetch
  */
 export async function signedGet(url: string, user: ILocalUser) {
-	const req = genSignedGet({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, {
+	const req = createSignedGet({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, {
 		'User-Agent': config.userAgent,
 	});
 
@@ -57,8 +57,8 @@ export async function signedGet(url: string, user: ILocalUser) {
 		controller.abort();
 	}, timeout * 6);
 
-	const res = await fetch(req.request.url, {
-		headers: req.request.headers,
+	const res = await fetch(req.url, {
+		headers: req.headers,
 		timeout,
 		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
