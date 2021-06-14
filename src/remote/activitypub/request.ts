@@ -20,9 +20,9 @@ export default async (user: ILocalUser, url: string, object: any) => {
 	}, timeout * 6);
 
 	const res = await fetch(url, {
-		method: req.method,
+		method: req.request.method,
 		body: body,
-		headers: req.headers,
+		headers: req.request.headers,
 		timeout,
 		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
@@ -57,8 +57,8 @@ export async function signedGet(url: string, user: ILocalUser) {
 		controller.abort();
 	}, timeout * 6);
 
-	const res = await fetch(req.url, {
-		headers: req.headers,
+	const res = await fetch(req.request.url, {
+		headers: req.request.headers,
 		timeout,
 		size: 10 * 1024 * 1024,
 		agent: getAgentByUrl,
