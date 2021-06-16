@@ -8,7 +8,7 @@ export default async (user: ILocalUser, url: string, object: any) => {
 	const body = JSON.stringify(object);
 
 	const req = createSignedPost({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, body, {
-			'User-Agent': config.userAgent,
+		'User-Agent': config.userAgent,
 	});
 
 	const timeout = 10 * 1000;
