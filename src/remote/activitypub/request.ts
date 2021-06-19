@@ -1,42 +1,29 @@
 import config from '../../config';
-import fetch from 'node-fetch';
-import { getAgentByUrl } from '../../misc/fetch';
+import { getResponse } from '../../misc/fetch';
 import { createSignedPost, createSignedGet } from './ap-request';
 import { ILocalUser } from '../../models/user';
 
 export default async (user: ILocalUser, url: string, object: any) => {
 	const body = JSON.stringify(object);
 
-	const req = createSignedPost({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, body, {
-		'User-Agent': config.userAgent,
+	const req = createSignedPost({
+		key: {
+			privateKeyPem: user.keypair,
+			keyId: `${config.url}/users/${user._id}#main-key`
+		},
+		url,
+		body,
+		additionalHeaders: {
+			'User-Agent': config.userAgent,
+		}
 	});
 
-	const timeout = 10 * 1000;
-
-	const controller = new AbortController();
-
-	setTimeout(() => {
-		controller.abort();
-	}, timeout * 6);
-
-	const res = await fetch(url, {
+	await getResponse({
+		url,
 		method: req.request.method,
-		body: body,
 		headers: req.request.headers,
-		timeout,
-		size: 10 * 1024 * 1024,
-		agent: getAgentByUrl,
-		signal: controller.signal,
+		body,
 	});
-
-	if (!res.ok) {
-		throw {
-			name: `StatusError`,
-			statusCode: res.status,
-			statusMessage: res.statusText,
-			message: `${res.status} ${res.statusText}`,
-		};
-	}
 };
 
 /**
@@ -45,34 +32,22 @@ export default async (user: ILocalUser, url: string, object: any) => {
  * @param url URL to fetch
  */
 export async function signedGet(url: string, user: ILocalUser) {
-	const req = createSignedGet({ privateKeyPem: user.keypair, keyId: `${config.url}/users/${user._id}#main-key` }, url, {
-		'User-Agent': config.userAgent,
+	const req = createSignedGet({
+		key: {
+			privateKeyPem: user.keypair,
+			keyId: `${config.url}/users/${user._id}#main-key`
+		},
+		url,
+		additionalHeaders: {
+			'User-Agent': config.userAgent,
+		}
 	});
 
-	const timeout = 10 * 1000;
-
-	const controller = new AbortController();
-
-	setTimeout(() => {
-		controller.abort();
-	}, timeout * 6);
-
-	const res = await fetch(req.request.url, {
-		headers: req.request.headers,
-		timeout,
-		size: 10 * 1024 * 1024,
-		agent: getAgentByUrl,
-		signal: controller.signal,
+	const res = await getResponse({
+		url,
+		method: req.request.method,
+		headers: req.request.headers
 	});
-
-	if (!res.ok) {
-		throw {
-			name: `StatusError`,
-			statusCode: res.status,
-			statusMessage: res.statusText,
-			message: `${res.status} ${res.statusText}`,
-		};
-	}
 
 	try {
 		return await res.json();
@@ -84,3 +59,4 @@ export async function signedGet(url: string, user: ILocalUser) {
 		};
 	}
 }
+
