@@ -6,6 +6,9 @@ import { HttpProxyAgent } from 'http-proxy-agent';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import config from '../config';
 import { AbortController } from 'abort-controller';
+import Logger from '../services/logger';
+
+const logger = new Logger('fetch');
 
 export async function getJson(url: string, accept = 'application/json, */*', timeout = 10000, headers?: Record<string, string>) {
 	const res = await getResponse({
@@ -44,6 +47,8 @@ export async function getHtml(url: string, accept = 'text/html, */*', timeout = 
 }
 
 export async function getResponse(args: { url: string, method: string, body?: string, headers: Record<string, string>, timeout?: number, size?: number }) {
+	logger.debug(`${args.method.toUpperCase()} ${args.url}\nHeaders: ${JSON.stringify(args.headers, null, 2)}${args.body ? `\n${args.body}` : ''}`);
+
 	const timeout = args?.timeout || 10 * 1000;
 
 	const controller = new AbortController();

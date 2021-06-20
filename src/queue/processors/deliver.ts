@@ -11,8 +11,6 @@ import { publishInstanceModUpdated } from '../../services/server-event';
 
 const logger = new Logger('deliver');
 
-let latest: string | null = null;
-
 export default async (job: Bull.Job<DeliverJobData>) => {
 	if (!job.data.to?.match(/^https?:/)) {
 		return 'skip (invalid URL)';
@@ -29,10 +27,6 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 	}
 
 	try {
-		if (latest !== (latest = JSON.stringify(job.data.content, null, 2))) {
-			logger.debug(`delivering ${latest}`);
-		}
-
 		await request(job.data.user, job.data.to, job.data.content);
 
 		// Update stats
