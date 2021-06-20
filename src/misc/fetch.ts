@@ -75,11 +75,11 @@ export async function getResponse(args: { url: string, method: string, body?: st
 
 function lcObjectKey(src: Record<string, string>) {
 	const dst: Record<string, string> = {};
-	for (const key of Object.keys(src).filter(x => x != '__proto__')) dst[key.toLowerCase()] = src[key];
+	for (const key of Object.keys(src).filter(x => x != '__proto__' && typeof src[x] === 'string')) dst[key.toLowerCase()] = src[key];
 	return dst;
 }
 
-function objectAssignWithLcKey (a: Record<string, string>, b: Record<string, string>) {
+function objectAssignWithLcKey(a: Record<string, string>, b: Record<string, string>) {
 	return Object.assign(lcObjectKey(a), lcObjectKey(b));
 }
 
