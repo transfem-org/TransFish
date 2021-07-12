@@ -23,6 +23,7 @@ export const meta = {
 
 export default define(meta, async (ps, user) => {
 	await AccessToken.remove({
-		_id: ps.tokenId
+		_id: ps.tokenId,
+		userId: user._id
 	});
 });
