@@ -13,7 +13,7 @@ export default async (token: string): Promise<[IUser | null | undefined, IApp | 
 		const user: IUser | null | undefined = await User
 			.findOne({ token });
 
-		if (user === null) {
+		if (user == null) {
 			throw 'user not found';
 		}
 
@@ -23,7 +23,7 @@ export default async (token: string): Promise<[IUser | null | undefined, IApp | 
 			hash: token.toLowerCase()
 		});
 
-		if (accessToken === null) {
+		if (accessToken == null) {
 			throw 'invalid signature';
 		}
 
