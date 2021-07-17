@@ -19,7 +19,7 @@ export default (endpoint: IEndpoint, ctx: Router.RouterContext) => new Promise((
 					code: y?.code,
 					id: y?.id,
 					kind: y?.kind,
-					...(y?.info ? { info: y.info } : {})
+					...((y?.info && y.kind === 'client') ? { info: y.info } : {})
 				}
 			};
 		} else {
