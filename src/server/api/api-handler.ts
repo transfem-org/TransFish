@@ -1,12 +1,12 @@
 import * as Router from '@koa/router';
 
 import { IEndpoint } from './endpoints';
-import authenticate from './authenticate';
+import authenticate, { AuthenticationError } from './authenticate';
 import call from './call';
 import { ApiError } from './error';
 
 export default (endpoint: IEndpoint, ctx: Router.RouterContext) => new Promise((res) => {
-	const body = ctx.method === 'GET' ? ctx.query : ctx.request.body;
+	const body: any = ctx.method === 'GET' ? ctx.query : ctx.request.body;
 
 	const reply = (x?: any, y?: ApiError) => {
 		if (x == null) {
@@ -40,7 +40,7 @@ export default (endpoint: IEndpoint, ctx: Router.RouterContext) => new Promise((
 			reply(e.httpStatusCode ? e.httpStatusCode : e.kind == 'client' ? 400 : 500, e);
 		});
 	}).catch(e => {
-		if (e === 'user not found' || e === 'invalid signature') {	// TODO
+		if (e instanceof AuthenticationError) {
 			reply(403, new ApiError({
 				message: 'Authentication failed. Please ensure your token is correct.',
 				code: 'AUTHENTICATION_FAILED',

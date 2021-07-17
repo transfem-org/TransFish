@@ -3,6 +3,13 @@ import { default as User, IUser } from '../../models/user';
 import AccessToken from '../../models/access-token';
 import isNativeToken from './common/is-native-token';
 
+export class AuthenticationError extends Error {
+	constructor(message: string) {
+		super(message);
+		this.name = 'AuthenticationError';
+	}
+}
+
 export default async (token: string): Promise<[IUser | null | undefined, IApp | null | undefined]> => {
 	if (token == null) {
 		return [null, null];
@@ -14,7 +21,7 @@ export default async (token: string): Promise<[IUser | null | undefined, IApp | 
 			.findOne({ token });
 
 		if (user == null) {
-			throw 'user not found';
+			throw new AuthenticationError('user not found');
 		}
 
 		return [user, null];
@@ -24,7 +31,7 @@ export default async (token: string): Promise<[IUser | null | undefined, IApp | 
 		});
 
 		if (accessToken == null) {
-			throw 'invalid signature';
+			throw new AuthenticationError('invalid signature');
 		}
 
 		const app = await App
