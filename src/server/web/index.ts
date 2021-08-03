@@ -294,7 +294,8 @@ router.get('/notes/:note/embed', async ctx => {
 			await ctx.render('note-embed', {
 				video: video?.url,
 				audio: audio?.url,
-				type: (video || audio)?.type
+				type: (video || audio)?.type,
+				autoplay: ctx.query.autoplay != null,
 			});
 
 			if (['public', 'home'].includes(note.visibility)) {
