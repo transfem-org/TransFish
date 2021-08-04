@@ -113,6 +113,7 @@ common:
   favorites: "お気に入り"
   noteReactions: "リアクションした投稿"
   poll_finished: "アンケートが完了しました"
+  flush: "キャッシュをクリア"
 
   permissions:
     "read:account": "アカウントの情報を見る"

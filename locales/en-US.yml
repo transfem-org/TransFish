@@ -98,6 +98,7 @@ common:
   favorites: "Favorites"
   noteReactions: "Reacted notes"
   poll_finished: "Poll finished"
+  flush: "Clear cache"
   permissions:
     "read:account": "View your account information"
     "write:account": "Edit your account information"
