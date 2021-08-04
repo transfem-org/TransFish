@@ -97,7 +97,7 @@
 				<button @click="menu()" ref="menuButton" class="button">
 					<fa icon="ellipsis-h"/>
 				</button>
-				<button class="button stayTl" :class="{ pinned: !!appearNote.stayTl }" @click="toggleStayTl"><fa icon="thumbtack"/></button>
+				<button v-if="$store.state.device.showTlPin" class="button stayTl" :class="{ pinned: !!appearNote.stayTl }" @click="toggleStayTl"><fa icon="thumbtack"/></button>
 			</footer>
 			<div class="deleted" v-if="appearNote.deletedAt != null">{{ $t('deleted') }}</div>
 		</div>
