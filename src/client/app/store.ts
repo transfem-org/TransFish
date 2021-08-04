@@ -73,7 +73,7 @@ const defaultDeviceSettings = Object.assign({
 	navbar: 'top',
 	mobileNotificationPosition: 'bottom',
 	disableShowingAnimatedImages: true,
-	disableShowingInstanceInfo: false,
+	showInstanceInfo: false,
 	enableKeyboardShortcutInNote: false,
 	expandUsersPhotos: true,
 	expandUsersActivity: true,
