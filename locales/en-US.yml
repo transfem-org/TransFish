@@ -1345,7 +1345,13 @@ admin/views/dashboard.vue:
   federated: "Federated"
 admin/views/queue.vue:
   title: "Queue"
+  promoteJobs: "Promote 50 jobs"
   remove-all-jobs: "Clear all queued jobs"
+  jobs: "Jobs"
+  queue: "Queue"
+  state: "State"
+  limit: "Limit"
+
 admin/views/abuse.vue:
   title: "Abuse"
   target: "Target"
