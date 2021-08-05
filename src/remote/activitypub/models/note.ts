@@ -221,15 +221,6 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 		if (note.name) {
 			return await tryCreateVote(note.name, reply.poll.choices.findIndex(x => x.text === note.name));
 		}
-
-		// 後方互換性のため
-		if (text) {
-			const m = text.match(/(\d+)$/);
-
-			if (m) {
-				return await tryCreateVote(m[0], Number(m[1]));
-			}
-		}
 	}
 
 	const emojis = await extractEmojis(note.tag || [], actor.host).catch(e => {
