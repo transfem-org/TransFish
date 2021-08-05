@@ -217,7 +217,7 @@ export default Vue.extend({
 			instances: [],
 			chart: null,
 			chartSrc: 'requests',
-			chartSpan: 'hour',
+			chartSpan: 'day',
 			chartInstance: null,
 			urlQuery,
 			faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox
