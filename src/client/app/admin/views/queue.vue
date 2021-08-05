@@ -154,7 +154,7 @@ export default Vue.extend({
 			const grps = groupBy(this.jobs, (job: any) => {
 				if (typeof job.name === 'string' && job.name.match(/^[0-9A-Za-z.-]+$/)) return job.name;
 				try {
-					const t = job?.data?.to || job?.data?.url;
+					const t = job?.data?.to || job?.data?.signature?.keyId;
 					if (t == null) return '(none)';
 					const u = new URL(t);
 					if (u.hostname.match(/^[0-9A-Za-z.-]+$/)) return u.hostname;
@@ -388,11 +388,11 @@ export default Vue.extend({
 		margin 0 -8px
 
 details.gsjs280
-	margin 0.5em
+	margin 0.3em
 	> summary
 		cursor pointer
 	> .xvvuvgsv
-		margin 0.3em
+		margin 0.2em
 		> b, span
 			margin 0 6px
 
