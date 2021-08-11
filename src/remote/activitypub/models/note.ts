@@ -95,8 +95,8 @@ export async function createNote(value: string | IObject, resolver?: Resolver | 
 	if (!note.attributedTo) return null;
 	const actor = await resolvePerson(getOneApId(note.attributedTo), null, resolver) as IRemoteUser;
 
-	// 投稿者が凍結されていたらスキップ
-	if (actor.isSuspended) {
+	// 投稿者が凍結か削除されていたらスキップ
+	if (actor.isSuspended || actor.isDeleted) {
 		return null;
 	}
 

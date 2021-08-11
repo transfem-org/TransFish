@@ -1,6 +1,7 @@
 import User, { IRemoteUser } from '../../../../models/user';
+import Message from '../../../../models/messaging-message';
 import { apLogger } from '../../logger';
-import { createDeleteDriveFilesJob } from '../../../../queue';
+import { createDeleteDriveFilesJob, createDeleteNotesJob } from '../../../../queue';
 import { doPostSuspend } from '../../../../services/suspend-user';
 
 const logger = apLogger;
@@ -33,6 +34,8 @@ export default async function(actor: IRemoteUser, uri: string): Promise<string> 
 		}
 	});
 
+	Message.remove({ userId: actor._id });
+	createDeleteNotesJob(actor);
 	createDeleteDriveFilesJob(actor);
 	doPostSuspend(actor);
 

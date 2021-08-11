@@ -67,11 +67,11 @@ export default define(meta, async (ps) => {
 
 	if (isLocalUser(user)) {
 		publishTerminate(user._id);
-		Message.remove({ userId: user._id });
 		Signin.remove({ userId: user._id });
-		createDeleteNotesJob(user);
 	}
 
+	Message.remove({ userId: user._id });
+	createDeleteNotesJob(user);
 	createDeleteDriveFilesJob(user);
 	doPostSuspend(user);
 });
