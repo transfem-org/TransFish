@@ -397,7 +397,7 @@ export default (opts) => ({
 				});
 				const emojis = concat([localEmojis, remoteEmojis]);
 
-				let text = this.text == '' ? undefined : this.trim();
+				let text = this.text == '' ? undefined : this.text.trim();
 				if (text != null && this.fixedTag) {
 					text = `${text.replace(/\s+$/, '')}\n#${this.fixedTag}`;
 				}
