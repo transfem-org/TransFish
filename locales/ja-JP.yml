@@ -1381,6 +1381,7 @@ common/views/components/password-settings.vue:
 
 common/views/components/post-form-attaches.vue:
   attach-cancel: "添付取り消し"
+  attach-delete: "取り消しと削除"
   mark-as-sensitive: "閲覧注意に設定"
   unmark-as-sensitive: "閲覧注意を解除"
 
