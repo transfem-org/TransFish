@@ -207,6 +207,8 @@ common:
     d: "What do you want to say?"
     e: "Write here"
     f: "Waiting for your writing."
+    tag: "Post with this hashtag"
+
   settings: "Settings"
   _settings:
     profile: "Profile"

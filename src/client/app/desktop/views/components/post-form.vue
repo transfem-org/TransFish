@@ -13,7 +13,7 @@
 				</span>
 				<a @click="addVisibleUser">{{ $t('add-visible-user') }}</a>
 			</div>
-			<div class="hashtags" v-if="recentHashtags.length > 0 && $store.state.settings.suggestRecentHashtags">
+			<div class="hashtags" v-if="recentHashtags.length > 0 && $store.state.settings.suggestRecentHashtags && fixedTag == null">
 				<a v-for="tag in recentHashtags.slice(0, 5)" @click="addTag(tag)" :key="tag" :title="$t('click-to-tagging')">#{{ tag }}</a>
 			</div>
 			<div class="local-only-remote" v-if="isUnreachable">ローカルのみでリモートリプライしてもとどきません</div>
@@ -225,10 +225,6 @@ export default Vue.extend({
 					this.localOnly = init.localOnly;
 					this.quoteId = init.renote ? init.renote.id : null;
 					if (!this.renote) this.renote = this.initialNote.renote;
-				}
-
-				if (!this.text && this.$route?.params?.tag) {
-					this.text = `#${this.$route.params.tag} `;
 				}
 
 				this.focus();
