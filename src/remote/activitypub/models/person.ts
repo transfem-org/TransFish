@@ -593,10 +593,7 @@ export async function fetchOutbox(user: IUser) {
 					// skip quote
 				} else {
 					if (++itemCount > 10) break;
-
-					// finally, register it.
-					// Host validation is not done when object is passed. So pass the uri.
-					await resolveNote(getApId(object), resolver);
+					await resolveNote(object, resolver);
 				}
 			}
 		} else {
