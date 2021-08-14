@@ -390,7 +390,7 @@ export default Vue.extend({
 			}).then((job: any) => {
 				this.jobs
 					.filter((j: any) => j.id == jobId)
-					.map((j: any) => Vue.set(j, 'logs', job.logs.length > 1 ? job.logs.join('\n') : '(no logs)'));
+					.map((j: any) => Vue.set(j, 'logs', job.logs.length > 0 ? job.logs.join('\n') : '(no logs)'));
 			});
 		},
 	}
