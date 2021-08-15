@@ -27,6 +27,6 @@ function apBackoff(attemptsMade: number, err: Error) {
 	const maxBackoff = 8 * 60 * 60 * 1000;	// 8hours
 	let backoff = (Math.pow(2, attemptsMade) - 1) * baseDelay;
 	backoff = Math.min(backoff, maxBackoff);
-	backoff += Math.round(baseDelay * Math.random() * 0.5);
+	backoff += Math.round(backoff * Math.random() * 0.2);
 	return backoff;
 }
