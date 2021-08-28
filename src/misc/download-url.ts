@@ -39,7 +39,7 @@ export async function downloadUrl(url: string, path: string) {
 		},
 		retry: 0,
 	}).on('response', (res: Got.Response) => {
-		if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
+		if ((process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') && !config.proxy && res.ip) {
 			if (PrivateIp(res.ip)) {
 				logger.warn(`Blocked address: ${res.ip}`);
 				req.destroy();
