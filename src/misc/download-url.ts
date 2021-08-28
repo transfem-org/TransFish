@@ -19,8 +19,6 @@ export async function downloadUrl(url: string, path: string) {
 	const operationTimeout = 60 * 1000;
 	const maxSize = config.maxFileSize || 262144000;
 
-	let responseUrl = url;
-
 	const req = got.stream(url, {
 		headers: {
 			'User-Agent': config.userAgent
@@ -40,8 +38,6 @@ export async function downloadUrl(url: string, path: string) {
 		},
 		retry: 0,
 	}).on('response', (res: Got.Response) => {
-		responseUrl = res.url;
-
 		const contentLength = res.headers['content-length'];
 		if (contentLength != null) {
 			const size = Number(contentLength);
