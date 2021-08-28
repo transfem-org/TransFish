@@ -7,6 +7,7 @@ import { httpAgent, httpsAgent } from './fetch';
 import config from '../config';
 import * as chalk from 'chalk';
 import Logger from '../services/logger';
+const PrivateIp = require('private-ip');
 
 const pipeline = util.promisify(stream.pipeline);
 
@@ -38,6 +39,13 @@ export async function downloadUrl(url: string, path: string) {
 		},
 		retry: 0,
 	}).on('response', (res: Got.Response) => {
+		if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
+			if (PrivateIp(res.ip)) {
+				logger.warn(`Blocked address: ${res.ip}`);
+				req.destroy();
+			}
+		}
+
 		const contentLength = res.headers['content-length'];
 		if (contentLength != null) {
 			const size = Number(contentLength);
