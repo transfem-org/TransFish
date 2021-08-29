@@ -61,7 +61,11 @@ export async function downloadUrl(url: string, path: string) {
 		}
 	}).on('error', (e: any) => {
 		if (e.name === 'HTTPError') {
-			throw e.response?.statusCode;
+			const statusCode = e.response?.statusCode;
+			const statusMessage = e.response?.statusMessage;
+			e.name = `StatusError`;
+			e.statusCode = statusCode;
+			e.message = `${statusCode} ${statusMessage}`;
 		}
 	});
 
