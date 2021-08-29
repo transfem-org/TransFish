@@ -176,6 +176,10 @@ themeColor: '#fb4e4e'
 #proxySmtp: socks4://127.0.0.1:1080 # use SOCKS4
 #proxySmtp: socks5://127.0.0.1:1080 # use SOCKS5
 
+#allowedPrivateNetworks: [
+#  '127.0.0.1/32'
+#]
+
 # アップロードやリモート取得で処理できるファイルサイズの制限 (bytes)
 #maxFileSize: 262144000
 
