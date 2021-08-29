@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as stream from 'stream';
 import * as util from 'util';
-import got from 'got';
-import * as Got from 'got';
+import got, * as Got from 'got';
 import { httpAgent, httpsAgent } from './fetch';
 import config from '../config';
 import * as chalk from 'chalk';
