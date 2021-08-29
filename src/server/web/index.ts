@@ -250,6 +250,7 @@ router.get('/notes/:note', async ctx => {
 			await ctx.render('note', {
 				initialMeta: htmlescape(builded),
 				note: _note,
+				hidden: !!_note?.isHidden,
 				summary: getNoteSummary(_note),
 				imageUrl,
 				instanceName: meta.name,
