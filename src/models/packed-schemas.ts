@@ -59,6 +59,7 @@ export type ThinPackedUser = {
 	isBot: boolean;
 	isCat: boolean;
 	instance: any;	// TODO
+	avoidSearchIndex?: boolean;
 	emojis: {
 		name: string;
 		url: string;
@@ -123,7 +124,6 @@ export type PackedUser = ThinPackedUser & {
 	carefulMassive?: boolean;
 	refuseFollow?: boolean;
 	autoAcceptFollowed?: boolean;
-	avoidSearchIndex?: boolean;
 	isExplorable?: boolean;
 	hideFollows?: string;
 	wallpaperId?: string | null;

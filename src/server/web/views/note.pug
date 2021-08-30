@@ -2,40 +2,38 @@ extends ./base
 
 block vars
 	- const user = note.user;
-	- const title = hidden ? '' : (user.name ? `${user.name} (@${user.username})` : `@${user.username}`);
+	- const title = user.name ? `${user.name} (@${user.username})` : `@${user.username}`;
 	- const url = `${config.url}/notes/${note.id}`;
 
 block title
 	= `${title} | ${instanceName}`
 
 block desc
-	unless hidden
-		meta(name='description' content= summary)
+	meta(name='description' content= summary)
 
 block og
-	unless hidden
-		meta(property='og:type'        content='article')
-		meta(property='og:title'       content= title)
-		meta(property='og:description' content= summary)
-		meta(property='og:url'         content= url)
-		meta(property='og:image'       content= imageUrl)
-		meta(property='og:published_time' content= note.createdAt)
+	meta(property='og:type'        content='article')
+	meta(property='og:title'       content= title)
+	meta(property='og:description' content= summary)
+	meta(property='og:url'         content= url)
+	meta(property='og:image'       content= imageUrl)
+	meta(property='og:published_time' content= note.createdAt)
 
 block meta
-	unless hidden
-		meta(name='misskey:user-username' content=user.username)
-		meta(name='misskey:user-id' content=user.id)
-		meta(name='misskey:note-id' content=note.id)
-		meta(name='twitter:card' content=card)
+	meta(name='misskey:user-username' content=user.username)
+	meta(name='misskey:user-id' content=user.id)
+	meta(name='misskey:note-id' content=note.id)
 
-		if player
-			meta(name='twitter:player' content=player)
-			meta(name='twitter:player:width' content=width)
-			meta(name='twitter:player:height' content=height)
-			meta(name='twitter:player:stream' content=stream)
-			meta(name='twitter:player:stream:content_type' content=type)
+	meta(name='twitter:card' content=card)
 
-		if !user.host
-			link(rel='alternate' href=url type='application/activity+json')
-		if note.uri
-			link(rel='alternate' href=note.uri type='application/activity+json')
+	if player
+		meta(name='twitter:player' content=player)
+		meta(name='twitter:player:width' content=width)
+		meta(name='twitter:player:height' content=height)
+		meta(name='twitter:player:stream' content=stream)
+		meta(name='twitter:player:stream:content_type' content=type)
+
+	if !user.host
+		link(rel='alternate' href=url type='application/activity+json')
+	if note.uri
+		link(rel='alternate' href=note.uri type='application/activity+json')
