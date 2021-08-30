@@ -36,7 +36,7 @@ export async function createImage(actor: IRemoteUser, value: IObject): Promise<I
 	} catch (e) {
 		// 4xxの場合は添付されてなかったことにする
 		if (e.statusCode >= 400 && e.statusCode < 500) {
-			logger.warn(`Ignored image: ${image.url} - ${e}`);
+			logger.warn(`Ignored image: ${image.url} - ${e.statusCode}`);
 			return null;
 		}
 
