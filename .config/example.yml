@@ -180,7 +180,7 @@ themeColor: '#fb4e4e'
 #  '127.0.0.1/32'
 #]
 
-# アップロードやリモート取得で処理できるファイルサイズの制限 (bytes)
+# Upload or download file size limits (bytes)
 #maxFileSize: 262144000
 
 # サーバー情報を隠す (default: false)
