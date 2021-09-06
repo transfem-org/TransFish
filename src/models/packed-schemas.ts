@@ -197,3 +197,15 @@ export type V10Followers = {
 	next: string
 }
 //#endregion
+
+export type PackedNotification = {
+	id: string;
+	createdAt: string;
+	isRead: boolean;
+	type: 'follow' | 'mention' | 'reply' | 'renote' | 'quote' | 'reaction' | 'poll_vote' | 'poll_finished' | 'highlight';
+	user: ThinPackedUser;
+	userId: string;
+	note?: PackedNote | null;
+	reaction?: string | null;
+	choice?: number | null;
+};
