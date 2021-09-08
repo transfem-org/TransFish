@@ -170,7 +170,7 @@ export default async (user: IUser, data: Option, silent = false) => {
 	}
 
 	// Renote/Quote対象がホームだったらホームに
-	if (data.renote && data.renote.visibility === 'home') {
+	if (data.renote && data.visibility === 'public' && data.renote.visibility === 'home') {
 		data.visibility = 'home';
 	}
 
