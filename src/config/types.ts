@@ -96,6 +96,7 @@ export type DriveConfig = {
 		accessKey: string;
 		secretKey: string;
 		region?: string;
+		useProxy? :boolean;
 		setPublicRead?: boolean;
 		s3ForcePathStyle?: boolean;
 	};
