@@ -21,7 +21,7 @@ Fork先でこのワークフローを実行すると失敗します。
 ## pushする方法
 
 上記設定によりリリース時に自動的にDocker Hubにpushされるようになります。  
-具体的には、GitHubのリリース機能でリリースしたタイミングで、`latest`, `(リリース名)` それぞれのタグでDocker Hubにpushされます。
+具体的には、GitHubのリリース機能でリリースしたタイミングで `latest`, `(リリース名)` それぞれのタグでDocker Hubにpushされます。
 
 また、GitHub上から手動でpushすることも出来ます。  
 それを行うには、Actions => Publish Docker image => Run workflow からbranchを選択してワークフローを実行します。  
