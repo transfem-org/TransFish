@@ -1,6 +1,7 @@
 import getNoteSummary from '../../../../misc/get-note-summary';
 import getReactionEmoji from '../../../../misc/get-reaction-emoji';
 import getUserName from '../../../../misc/get-user-name';
+import { PackedNotification } from '../../../../models/packed-schemas';
 
 type Notification = {
 	title: string;
@@ -35,40 +36,41 @@ export default function(type, data): Notification {
 			};
 
 		case 'notification':
-			switch (data.type) {
+			const notification = data as PackedNotification;
+			switch (notification.type) {
 				case 'mention':
 					return {
-						title: `${getUserName(data.user)}:`,
-						body: getNoteSummary(data),
-						icon: data.user.avatarUrl
+						title: `${getUserName(notification.user)}:`,
+						body: getNoteSummary(notification.note),
+						icon: notification.user.avatarUrl
 					};
 
 				case 'reply':
 					return {
-						title: `You got reply from ${getUserName(data.user)}:`,
-						body: getNoteSummary(data),
-						icon: data.user.avatarUrl
+						title: `You got reply from ${getUserName(notification.user)}:`,
+						body: getNoteSummary(notification.note),
+						icon: notification.user.avatarUrl
 					};
 
 				case 'quote':
 					return {
-						title: `${getUserName(data.user)}:`,
-						body: getNoteSummary(data),
-						icon: data.user.avatarUrl
+						title: `${getUserName(notification.user)}:`,
+						body: getNoteSummary(notification.note),
+						icon: notification.user.avatarUrl
 					};
 
 				case 'reaction':
 					return {
-						title: `${getUserName(data.user)}: ${getReactionEmoji(data.reaction)}:`,
-						body: getNoteSummary(data.note),
-						icon: data.user.avatarUrl
+						title: `${getUserName(notification.user)}: ${getReactionEmoji(notification.reaction)}:`,
+						body: getNoteSummary(notification.note),
+						icon: notification.user.avatarUrl
 					};
 
 				case 'highlight':
 					return {
-						title: `${getUserName(data.user)}:`,
-						body: getNoteSummary(data),
-						icon: data.user.avatarUrl
+						title: `${getUserName(notification.user)}:`,
+						body: getNoteSummary(notification.note),
+						icon: notification.user.avatarUrl
 					};
 
 				default:
