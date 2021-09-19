@@ -1,6 +1,6 @@
 import * as childProcess from 'child_process';
 import * as http from 'http';
-import fetch from 'node-fetch';
+import { getResponse } from '../src/misc/fetch';
 import loadConfig from '../src/config/load';
 import { SIGKILL } from 'constants';
 
@@ -71,7 +71,8 @@ export const api = async (endpoint: string, params: any, me?: any): Promise<{ bo
 		i: me.token
 	} : {};
 
-	const res = await fetch(`http://localhost:${port}/api/${endpoint}`, {
+	const res = await getResponse({
+		url: `http://localhost:${port}/api/${endpoint}`,
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -79,8 +80,8 @@ export const api = async (endpoint: string, params: any, me?: any): Promise<{ bo
 		body: JSON.stringify(Object.assign(auth, params))
 	});
 
-	const status = res.status;
-	const body = res.status !== 204 ? await res.json().catch() : null;
+	const status = res.statusCode;
+	const body = res.statusCode !== 204 ? await JSON.parse(res.body) : null;
 
 	return {
 		status,
