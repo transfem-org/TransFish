@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { genRsaKeyPair } from '../src/misc/gen-key-pair';
 import { createSignedPost, createSignedGet } from '../src/remote/activitypub/ap-request';
-import * as httpSignature from 'http-signature';
+const httpSignature = require('http-signature');
 
 export const buildParsedSignature = (signingString: string, signature: string, algorithm: string) => {
 	return {
