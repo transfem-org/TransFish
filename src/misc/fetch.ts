@@ -84,7 +84,7 @@ async function receiveResponce<T>(req: Got.CancelableRequest<Got.Response<T>>, m
 
 	// 受信中のデータでサイズチェック
 	req.on('downloadProgress', (progress: Got.Progress) => {
-		if (progress.transferred > maxSize) {
+		if (progress.transferred > maxSize && progress.percent !== 1) {
 			req.cancel(`maxSize exceeded (${progress.transferred} > ${maxSize}) on response`);
 		}
 	});
