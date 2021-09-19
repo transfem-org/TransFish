@@ -3,9 +3,18 @@ import * as httpSignature from 'http-signature';
 import { ILocalUser, IUser } from '../models/user';
 import { IActivity } from '../remote/activitypub/type';
 
+export type ThinUser = {
+	_id: string;
+};
+
+export type ThinUserWithKey = ThinUser & {
+	/** privateKeyPem */
+	keypair: string;
+};
+
 export type DeliverJobData = {
 	/** Actor */
-	user: ILocalUser;
+	user: ThinUserWithKey;
 	/** Activity */
 	content: any;
 	/** inbox URL to deliver */

@@ -84,7 +84,10 @@ export function deliver(user: ILocalUser, content: any, to: string, lowSeverity 
 	if (content == null) return null;
 
 	const data = {
-		user,
+		user: {
+			_id: `${user._id}`,
+			keypair: user.keypair
+		},
 		content,
 		to,
 		inboxInfo
