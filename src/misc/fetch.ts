@@ -4,6 +4,7 @@ import CacheableLookup from 'cacheable-lookup';
 import got, * as Got from 'got';
 import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import config from '../config';
+import { checkPrivateIp } from './check-private-ip';
 
 export async function getJson(url: string, accept = 'application/json, */*', timeout = 10000, headers?: Record<string, string>): Promise<any> {
 	const res = await getResponse({
@@ -71,6 +72,12 @@ export async function getResponse(args: { url: string, method: 'GET' | 'POST', b
  * @param maxSize size limit
  */
 async function receiveResponce<T>(req: Got.CancelableRequest<Got.Response<T>>, maxSize: number) {
+	req.on('response', (res: Got.Response) => {
+		if (checkPrivateIp(res.ip)) {
+			req.cancel(`Blocked address: ${res.ip}`);
+		}
+	});
+
 	// 応答ヘッダでサイズチェック
 	req.on('response', (res: Got.Response) => {
 		const contentLength = res.headers['content-length'];
