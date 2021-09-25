@@ -104,20 +104,6 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 				break;
 			}
 
-			case 'div': {
-				const align = node.attrs.find(x => x.name === 'align');
-				const center = align?.value === 'center';
-				if (center) text += '<center>';
-				appendChildren(node.childNodes);
-				if (center) text += '</center>';
-				break;
-			}
-
-			case 'p':
-				text += '\n\n';
-				appendChildren(node.childNodes);
-				break;
-
 			case 'h1':
 				text += '【';
 				appendChildren(node.childNodes);
@@ -154,11 +140,6 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 				text += '</i>';
 				break;
 
-			case 'span': {
-				appendChildren(node.childNodes);
-				break;
-			}
-
 			// block code (<pre><code>)
 			case 'pre': {
 				if (node.childNodes.length === 1 && node.childNodes[0].nodeName === 'code') {
@@ -188,12 +169,33 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 				break;
 			}
 
+			case 'p':
+			case 'h2':
+			case 'h3':
+			case 'h4':
+			case 'h5':
+			case 'h6':
+			{
+				text += '\n\n';
+				appendChildren(node.childNodes);
+				break;
+			}
+
+			case 'div':
+			case 'header':
+			case 'footer':
+			case 'artivle':
+			case 'li':
+			case 'dt':
+			case 'dd':
+			{
+				text += '\n';
+				appendChildren(node.childNodes);
+				break;
+			}
+
 			default:
-				if (node.childNodes) {
-					for (const n of node.childNodes) {
-						analyze(n);
-					}
-				}
+				appendChildren(node.childNodes);
 				break;
 		}
 	}
