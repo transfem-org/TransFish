@@ -81,7 +81,7 @@ async function rejectFollowAll(followee: IUser) {
 	}
 }
 
-async function removeFollowingRequestAll(follower: IUser) {
+export async function removeFollowingRequestAll(follower: IUser) {
 	const reqs = await FollowRequest.find({
 		followerId: follower._id
 	});
@@ -105,7 +105,7 @@ async function removeFollowingRequestAll(follower: IUser) {
 	}
 }
 
-async function removeFollowedRequestAll(followee: IUser) {
+export async function removeFollowedRequestAll(followee: IUser) {
 	const reqs = await FollowRequest.find({
 		followeeId: followee._id
 	});
