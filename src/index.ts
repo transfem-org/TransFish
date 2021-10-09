@@ -118,7 +118,7 @@ function greet(config: Config) {
 	}
 
 	bootLogger.info('Welcome to Misskey!');
-	bootLogger.info(`Misskey v${config.version}`, null, true);
+	bootLogger.info(`Misskey v${config.version}`, undefined, true);
 }
 
 /**
@@ -195,7 +195,7 @@ function showEnvironment(): void {
 
 	if (env !== 'production') {
 		logger.warn('The environment is not in production mode.');
-		logger.warn('DO NOT USE FOR PRODUCTION PURPOSE!', null, true);
+		logger.warn('DO NOT USE FOR PRODUCTION PURPOSE!', undefined, true);
 	}
 }
 
