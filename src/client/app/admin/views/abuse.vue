@@ -5,8 +5,8 @@
 		<section class="fit-top">
 			<sequential-entrance animation="entranceFromTop" delay="25">
 				<div v-for="report in userReports" :key="report.id" class="haexwsjc">
-					<div>{{ $t('target') }}: <a :href="report.user | userPage(null, true)">{{ report.user.username }}</a></div>
-					<div>{{ $t('reporter') }}: <a :href="report.reporter | userPage(null, true)">{{ report.reporter.username }}</a></div>
+					<div>{{ $t('target') }}: <a :href="report.user | userPage(null, true)"><mk-acct :user="report.user" :simple="true"/></a></div>
+					<div>{{ $t('reporter') }}: <a :href="report.reporter | userPage(null, true)"><mk-acct :user="report.reporter" :simple="true"/></a></div>
 					<div v-if="(report.notes || []).length > 0">{{ $t('notes') }}: 
 						<span v-for="note in report.notes || []" :key="note.id" style="margin-right: 1em">
 							<a :href="`/notes/${note.id}`">{{ note.id }}</a>
