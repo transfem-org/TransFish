@@ -16,7 +16,7 @@
 		<ui-switch v-model="column.isMediaOnly" @change="onChangeSettings">{{ $t('is-media-only') }}</ui-switch>
 		<ui-switch v-model="column.sfwMediaOnly" @change="onChangeSettings">{{ $t('is-sfw-media-only') }}</ui-switch>
 		<ui-switch v-model="column.nsfwMediaOnly" @change="onChangeSettings">{{ $t('is-nsfw-media-only') }}</ui-switch>
-		<ui-switch v-if="column.type === 'home' || column.type === 'hybrid'" v-model="column.excludeRenote" @change="onChangeSettings">{{ $t('excludeRenote') }}</ui-switch>
+		<ui-switch v-if="column.type === 'home' || column.type === 'hybrid' || column.type === 'list'" v-model="column.excludeRenote" @change="onChangeSettings">{{ $t('excludeRenote') }}</ui-switch>
 	</div>
 
 	<x-list-tl v-if="column.type == 'list'"

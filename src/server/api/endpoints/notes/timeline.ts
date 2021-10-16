@@ -94,7 +94,7 @@ export const meta = {
 
 		excludeRenote: {
 			validator: $.optional.bool,
-			default: true,
+			default: false,
 			desc: {
 				'ja-JP': 'Renoteを含めない'
 			}

@@ -102,7 +102,7 @@ export const meta = {
 
 		excludeRenote: {
 			validator: $.optional.bool,
-			default: true,
+			default: false,
 			desc: {
 				'ja-JP': 'Renoteを含めない'
 			}
@@ -290,6 +290,7 @@ export default define(meta, async (ps, user) => {
 	}
 
 	if (ps.excludeRenote) {
+		console.log('excludeRenote');
 		query.$and.push({
 			$or: [{
 				renoteId: null
@@ -414,6 +415,8 @@ export default define(meta, async (ps, user) => {
 		};
 	}
 	//#endregion
+
+	console.log(JSON.stringify(query, null, 2));
 
 	return await getPackedTimeline(user, query, sort, ps.limit!);
 });
