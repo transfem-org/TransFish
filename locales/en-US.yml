@@ -1955,6 +1955,7 @@ deck/deck.tl-column.vue:
   is-media-only: "Only media posts"
   is-sfw-media-only: "Only SFW media posts"
   is-nsfw-media-only: "Only NSFW media posts"
+  excludeRenote: "Exclude renote"
   edit: "Options"
 deck/deck.user-column.vue:
   follows-you: "Follows you"
