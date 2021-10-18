@@ -4,23 +4,23 @@ import Meta from '../models/meta';
 
 export async function RecountStats() {
 	const notesCount = await Note.count({
-		deletedAt: { $exists: false },
+		//deletedAt: { $exists: false },
 	});
 
 	const originalNotesCount = await Note.count({
-		deletedAt: { $exists: false },
+		//deletedAt: { $exists: false },
 		'_user.host': null,
 	});
 
 	const usersCount = await User.count({
-		isDeleted: { $ne: true },
-		isSuspended: { $ne: true },
+		//isDeleted: { $ne: true },
+		//isSuspended: { $ne: true },
 	});
 
 	const originalUsersCount = await User.count({
-		isDeleted: { $ne: true },
-		isSuspended: { $ne: true },
-		host: null
+		//isDeleted: { $ne: true },
+		//isSuspended: { $ne: true },
+		host: null,
 	});
 
 	const reactionsCount = await Note.count({});
