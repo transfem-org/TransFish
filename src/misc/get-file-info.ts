@@ -114,7 +114,8 @@ export async function detectType(path: string) {
 
 		if (type.mime === 'video/quicktime') {
 			const props = await getVideoProps(path);
-			if (props.streams.filter(s => s.codec_type === 'video').every(s => s.codec_name === 'h264')) {
+			if (props.streams.filter(s => s.codec_type === 'video').every(s => s.codec_name === 'h264')
+				&& (props.streams.filter(s => s.codec_type === 'audio').length === 0 || props.streams.filter(s => s.codec_type === 'audio').every(s => s.codec_name === 'aac'))) {
 				return TYPE_MP4;
 			}
 		}
