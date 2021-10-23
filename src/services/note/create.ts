@@ -331,7 +331,9 @@ export default async (user: IUser, data: Option, silent = false) => {
 			(noteObj as any).isFirstNote = true;
 		}
 
-		publishNotesStream(noteObj);
+		if (note.createdAt?.getTime() > new Date().getTime() - 1000 * 60 * 10) {
+			publishNotesStream(noteObj);
+		}
 		//publishHotStream(noteObj);
 
 		const nm = new NotificationManager(user, note);
