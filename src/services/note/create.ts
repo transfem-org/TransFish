@@ -27,7 +27,6 @@ import { erase, concat, unique } from '../../prelude/array';
 import insertNoteUnread from './unread';
 import { registerOrFetchInstanceDoc } from '../register-or-fetch-instance-doc';
 import Instance from '../../models/instance';
-import { toASCII } from 'punycode/';
 import { extractMentions } from '../../mfm/extract-mentions';
 import { extractEmojis } from '../../mfm/extract-emojis';
 import { extractHashtags } from '../../mfm/extract-hashtags';
@@ -221,14 +220,6 @@ export default async (user: IUser, data: Option, silent = false) => {
 	}
 
 	tags = tags.filter(tag => Array.from(tag || '').length <= 128).splice(0, 64);
-
-	const normalizeAsciiHost = (host: string) => {
-		if (host == null) return null;
-		return toASCII(host.toLowerCase());
-	};
-
-	const mentionEmojis = mentionedUsers.map(user => `@${user.usernameLower}` + (user.host != null ? `@${normalizeAsciiHost(user.host)}` : ''));
-	emojis = emojis.concat(mentionEmojis);
 
 	if (data.reply && !user._id.equals(data.reply.userId) && !mentionedUsers.some(u => u._id.equals(data.reply.userId))) {
 		mentionedUsers.push(await User.findOne({ _id: data.reply.userId }));
