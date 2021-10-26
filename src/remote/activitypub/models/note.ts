@@ -291,8 +291,7 @@ export async function resolveNote(value: string | IObject, resolver?: Resolver |
 
 		// ローカルを指していたらこの先に行ってはいけない
 		if (uri.startsWith(config.url)) {
-			console.log(`X0128: Deleted local note: ${uri}`);	// DEBUG
-			throw new StatusError(`Deleted local note: ${uri}`, 410, 'Deleted Local Note');
+			throw new StatusError(`Local note not found: ${uri}`, 404, 'Local note not found');
 		}
 
 		// リモートサーバーからフェッチしてきて登録
