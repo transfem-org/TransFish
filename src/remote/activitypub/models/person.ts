@@ -32,6 +32,7 @@ import resolveUser from '../../resolve-user';
 import { normalizeTag } from '../../../misc/normalize-tag';
 import { substr } from 'stringz';
 import { resolveAnotherUser } from '../misc/resolve-another-user';
+import { StatusError } from '../../../misc/fetch';
 const logger = apLogger;
 
 const MAX_NAME_LENGTH = 512;
@@ -427,6 +428,10 @@ export async function resolvePerson(uri: string, verifier?: string | null, resol
 		return exist;
 	}
 	//#endregion
+
+	if (uri.startsWith(config.url)) {
+		throw new StatusError(`Local user not found: ${uri}`, 404, 'Local user not found');
+	}
 
 	// リモートサーバーからフェッチしてきて登録
 	if (resolver == null) resolver = new Resolver();
