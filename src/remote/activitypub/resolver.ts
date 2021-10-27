@@ -41,7 +41,7 @@ export default class Resolver {
 		}
 
 		if (value.startsWith(config.url)) {
-			console.log(`X1152: cannot resolve local instance ${config.url}`);
+			console.log(`X1152: cannot resolve local instance ${value}`);
 			throw new Error('cannot resolve local instance');
 		}
 
