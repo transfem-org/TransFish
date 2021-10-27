@@ -68,10 +68,6 @@ export async function fetchNote(object: string | IObject): Promise<INote | null>
  * Noteを作成します。
  */
 export async function createNote(value: string | IObject, resolver?: Resolver | null, silent = false): Promise<INote | null> {
-	if (typeof value === 'string' && value.startsWith(config.url)) {
-		throw new StatusError('cannot resolve local note', 400, 'cannot resolve local note');
-	}
-
 	if (resolver == null) resolver = new Resolver();
 
 	const object = await resolver.resolve(value);
@@ -292,6 +288,10 @@ export async function resolveNote(value: string | IObject, resolver?: Resolver |
 			return exist;
 		}
 		//#endregion
+
+		if (uri.startsWith(config.url)) {
+			throw new StatusError('cannot resolve local note', 400, 'cannot resolve local note');
+		}
 
 		// リモートサーバーからフェッチしてきて登録
 		// ここでuriの代わりに添付されてきたNote Objectが指定されていると、サーバーフェッチを経ずにノートが生成されるが
