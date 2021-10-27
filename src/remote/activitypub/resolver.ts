@@ -40,11 +40,6 @@ export default class Resolver {
 			return value;
 		}
 
-		if (value.startsWith(config.url)) {
-			console.log(`X1152: cannot resolve local instance ${value}`);
-			throw new Error('cannot resolve local instance');
-		}
-
 		if (this.history.has(value)) {
 			throw new Error('cannot resolve already resolved one');
 		}
