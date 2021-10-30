@@ -1,7 +1,6 @@
 import $ from 'cafy';
 import define from '../../define';
 import config from '../../../../config';
-import * as mongo from 'mongodb';
 import User, { pack as packUser, IUser } from '../../../../models/user';
 import { createPerson } from '../../../../remote/activitypub/models/person';
 import Note, { pack as packNote, INote } from '../../../../models/note';
@@ -12,6 +11,7 @@ import { extractApHost } from '../../../../misc/convert-host';
 import { isActor, isPost, getApId } from '../../../../remote/activitypub/type';
 import { isBlockedHost } from '../../../../services/instance-moderation';
 import * as ms from 'ms';
+import * as escapeRegexp from 'escape-regexp';
 
 export const meta = {
 	tags: ['federation'],
@@ -60,14 +60,36 @@ export default define(meta, async (ps) => {
 async function fetchAny(uri: string) {
 	// URIがこのサーバーを指しているなら、ローカルユーザーIDとしてDBからフェッチ
 	if (uri.startsWith(config.url + '/')) {
-		const id = new mongo.ObjectID(uri.split('/').pop());
-		const [user, note] = await Promise.all([
-			User.findOne({ _id: id }),
-			Note.findOne({ _id: id })
-		]);
+		// https://local/(users|notes)/:id
+		const localIdRegex = new RegExp('^' + escapeRegexp(config.url) + '/' + '(\\w+)' + '/' + '(\\w+)');
+		const matchLocalId = uri.match(localIdRegex);
+		if (matchLocalId) {
+			const type = matchLocalId[1];
+			const id = matchLocalId[2];
 
-		const packed = await mergePack(user, note);
-		if (packed !== null) return packed;
+			if (type === 'users') {
+				const user = await User.findOne({ _id: id });
+				return await mergePack(user, null);
+			}
+
+			if (type === 'notes') {
+				const note = await Note.findOne({ _id: id });
+				return await mergePack(null, note);
+			}
+
+			return null;
+		}
+
+		// https://local/@:username
+		const localNameRegex = new RegExp('^' + escapeRegexp(config.url) + '/@(\\w+)');
+		const matchLocalName = uri.match(localNameRegex);
+		if (matchLocalName) {
+			const username = matchLocalName[1];
+			const user = await User.findOne({ usernameLower: username.toLowerCase() });
+			return await mergePack(user, null);
+		}
+
+		return null;
 	}
 
 	// ブロックしてたら中断
@@ -94,17 +116,6 @@ async function fetchAny(uri: string) {
 	// /@user のような正規id以外で取得できるURIが指定されていた場合、ここで初めて正規URIが確定する
 	// これはDBに存在する可能性があるため再度DB検索
 	if (uri !== object.id) {
-		if (object.id.startsWith(config.url + '/')) {
-			const id = new mongo.ObjectID(object.id.split('/').pop());
-			const [user, note] = await Promise.all([
-				User.findOne({ _id: id }),
-				Note.findOne({ _id: id })
-			]);
-
-			const packed = await mergePack(user, note);
-			if (packed !== null) return packed;
-		}
-
 		const [user, note] = await Promise.all([
 			User.findOne({ uri: object.id }),
 			Note.findOne({ uri: object.id })
@@ -134,15 +145,15 @@ async function fetchAny(uri: string) {
 	return null;
 }
 
-async function mergePack(user: IUser, note: INote) {
-	if (user !== null) {
+async function mergePack(user?: IUser | null, note?: INote | null) {
+	if (user != null) {
 		return {
 			type: 'User',
 			object: await packUser(user, null, { detail: true })
 		};
 	}
 
-	if (note !== null) {
+	if (note != null) {
 		return {
 			type: 'Note',
 			object: await packNote(note, null, { detail: true })
