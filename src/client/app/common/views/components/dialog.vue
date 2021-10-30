@@ -10,8 +10,8 @@
 		</template>
 		<template v-else>
 			<div class="icon" v-if="!input && !select && !user" :class="type"><fa :icon="icon"/></div>
-			<header v-if="title">{{ title }}</header>
-			<div class="body" v-if="text">{{ text }}</div>
+			<header v-if="title"><mfm :text="title"/></header>
+			<div class="body" v-if="text"><mfm :text="text"/></div>
 			<ui-input v-if="input" v-model="inputValue" autofocus :type="input.type || 'text'" :placeholder="input.placeholder" @keydown="onInputKeydown"></ui-input>
 			<ui-input v-if="user" v-model="userInputValue" autofocus @keydown="onInputKeydown"><template #prefix>@</template></ui-input>
 			<ui-select v-if="select" v-model="selectedValue" autofocus>
