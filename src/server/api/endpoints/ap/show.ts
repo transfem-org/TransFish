@@ -12,6 +12,7 @@ import { isActor, isPost, getApId } from '../../../../remote/activitypub/type';
 import { isBlockedHost } from '../../../../services/instance-moderation';
 import * as ms from 'ms';
 import * as escapeRegexp from 'escape-regexp';
+import { StatusError } from '../../../../misc/fetch';
 
 export const meta = {
 	tags: ['federation'],
@@ -46,11 +47,23 @@ export const meta = {
 };
 
 export default define(meta, async (ps) => {
-	const object = await fetchAny(ps.uri);
-	if (object) {
-		return object;
-	} else {
-		throw new ApiError(meta.errors.noSuchObject);
+	try {
+		const object = await fetchAny(ps.uri);
+		if (object) {
+			return object;
+		} else {
+			throw new ApiError(meta.errors.noSuchObject);
+		}
+	} catch (e) {
+		if (e instanceof RejectedError) {
+			throw new ApiError(meta.errors.noSuchObject);
+		}
+
+		if (e instanceof StatusError) {
+			throw new ApiError(meta.errors.noSuchObject);
+		}
+
+		throw e;
 	}
 });
 
@@ -58,10 +71,9 @@ export default define(meta, async (ps) => {
  * URIからUserかNoteを解決する
  */
 async function fetchAny(uri: string) {
-	// URIがこのサーバーを指しているなら、ローカルユーザーIDとしてDBからフェッチ
-	if (uri.startsWith(config.url + '/')) {
+	const processLocal = async (uri: string) => {
 		// https://local/(users|notes)/:id
-		const localIdRegex = new RegExp('^' + escapeRegexp(config.url) + '/' + '(\\w+)' + '/' + '(\\w+)');
+		const localIdRegex = new RegExp('^' + escapeRegexp(config.url) + '/' + '(\\w+)' + '/' + '(\\w+)/?$');
 		const matchLocalId = uri.match(localIdRegex);
 		if (matchLocalId) {
 			const type = matchLocalId[1];
@@ -81,7 +93,7 @@ async function fetchAny(uri: string) {
 		}
 
 		// https://local/@:username
-		const localNameRegex = new RegExp('^' + escapeRegexp(config.url) + '/@(\\w+)');
+		const localNameRegex = new RegExp('^' + escapeRegexp(config.url) + '/@(\\w+)/?$');
 		const matchLocalName = uri.match(localNameRegex);
 		if (matchLocalName) {
 			const username = matchLocalName[1];
@@ -92,22 +104,30 @@ async function fetchAny(uri: string) {
 		return null;
 	}
 
-	// ブロックしてたら中断
-	if (await isBlockedHost(extractApHost(uri))) return null;
-
-	// URI(AP Object id)としてDB検索
-	{
+	const processRemote = async (uri: string) => {
 		const [user, note] = await Promise.all([
 			User.findOne({ uri: uri }),
 			Note.findOne({ uri: uri })
 		]);
 
-		const packed = await mergePack(user, note);
-		if (packed !== null) return packed;
+		return await mergePack(user, note);
 	}
 
+	// URIがこのサーバーを指しているなら、ローカルユーザーIDとしてDBからフェッチ
+	if (uri.startsWith(config.url + '/')) {
+		const result = await processLocal(uri);
+		if (result != null) return result;
+	}
+
+	// URI(AP Object id)としてDB検索
+	const packed = await processRemote(uri);
+	if (packed !== null) return packed;
+
 	// disableFederationならリモート解決しない
-	if (config.disableFederation) return null;
+	if (config.disableFederation) throw new RejectedError('Federation disabled');
+
+	// ブロックしてたら中断
+	if (await isBlockedHost(extractApHost(uri))) throw new RejectedError('Instance blocked');
 
 	// リモートから一旦オブジェクトフェッチ
 	const resolver = new Resolver();
@@ -115,13 +135,17 @@ async function fetchAny(uri: string) {
 
 	// /@user のような正規id以外で取得できるURIが指定されていた場合、ここで初めて正規URIが確定する
 	// これはDBに存在する可能性があるため再度DB検索
-	if (uri !== object.id) {
-		const [user, note] = await Promise.all([
-			User.findOne({ uri: object.id }),
-			Note.findOne({ uri: object.id })
-		]);
+	if (typeof object.id === 'string' && object.id !== uri) {
+		// ブロックしてたら中断
+		if (await isBlockedHost(extractApHost(object.id))) throw new RejectedError('Instance blocked');
 
-		const packed = await mergePack(user, note);
+		if (object.id.startsWith(config.url + '/')) {
+			return await processLocal(object.id);
+			// ここで見つからなければローカルはなし確定なので流れ落ちなし
+		}
+
+		// URI(AP Object id)としてDB検索
+		const packed = await processRemote(object.id);
 		if (packed !== null) return packed;
 	}
 
@@ -145,8 +169,17 @@ async function fetchAny(uri: string) {
 	return null;
 }
 
-async function mergePack(user?: IUser | null, note?: INote | null) {
+/**
+ * Pack DB Object for API Response
+ * @param user User DB Object
+ * @param note Note DB Object
+ * @returns Packed API response, or null on not found.
+ * @throws RejectedError on deleted, moderated or hidden.
+ */
+async function mergePack(user: IUser | null | undefined, note: INote | null | undefined) {
 	if (user != null) {
+		if (user.isDeleted) throw new RejectedError('User is deleted');
+		if (user.isSuspended) throw new RejectedError('User is suspended');
 		return {
 			type: 'User',
 			object: await packUser(user, null, { detail: true })
@@ -154,11 +187,19 @@ async function mergePack(user?: IUser | null, note?: INote | null) {
 	}
 
 	if (note != null) {
+		const packedNote = await packNote(note, null, { detail: true });
+		if (packedNote?.isHidden) throw new RejectedError('Note is hidden');
 		return {
 			type: 'Note',
-			object: await packNote(note, null, { detail: true })
+			object: packedNote
 		};
 	}
 
 	return null;
+}
+
+class RejectedError extends Error {
+	constructor(message: string) {
+		super(message);
+	}
 }
