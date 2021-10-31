@@ -4,15 +4,16 @@ import config from '../../../../config';
 import User, { pack as packUser, IUser } from '../../../../models/user';
 import { createPerson } from '../../../../remote/activitypub/models/person';
 import Note, { pack as packNote, INote } from '../../../../models/note';
-import { createNote } from '../../../../remote/activitypub/models/note';
+import { createNote, extractEmojis } from '../../../../remote/activitypub/models/note';
 import Resolver from '../../../../remote/activitypub/resolver';
 import { ApiError } from '../../error';
 import { extractApHost } from '../../../../misc/convert-host';
-import { isActor, isPost, getApId } from '../../../../remote/activitypub/type';
+import { isActor, isPost, getApId, isEmoji } from '../../../../remote/activitypub/type';
 import { isBlockedHost } from '../../../../services/instance-moderation';
 import * as ms from 'ms';
 import * as escapeRegexp from 'escape-regexp';
 import { StatusError } from '../../../../misc/fetch';
+import Emoji, { IEmoji } from '../../../../models/emoji';
 
 export const meta = {
 	tags: ['federation'],
@@ -111,12 +112,17 @@ async function fetchAny(uri: string) {
 	// それでもみつからなければ新規であるため登録
 	if (isActor(object)) {
 		const user = await createPerson(getApId(object));
-		return mergePack({ user });
+		return await mergePack({ user });
 	}
 
 	if (isPost(object)) {
 		const note = await createNote(getApId(object), null, true);
-		return mergePack({ note });
+		return await mergePack({ note });
+	}
+
+	if (isEmoji(object)) {
+		const emojis = await extractEmojis(object, extractApHost(uri));
+		return await mergePack({ emoji: emojis[0] });
 	}
 
 	return null;
@@ -139,6 +145,7 @@ async function processLocal(uri: string) {
 		return await mergePack({
 			user: type === 'users' ? await User.findOne({ _id: id }) : null,
 			note: type === 'notes' ? await Note.findOne({ _id: id }) : null,
+			emoji: type === 'emojis' ? await Emoji.findOne({ name: id, host: null }) : null,
 		});
 	}
 
@@ -162,12 +169,13 @@ async function processLocal(uri: string) {
  * @throws RejectedError on deleted, moderated or hidden.
  */
 async function processRemote(uri: string) {
-	const [user, note] = await Promise.all([
+	const [user, note, emoji] = await Promise.all([
 		User.findOne({ uri: uri }),
-		Note.findOne({ uri: uri })
+		Note.findOne({ uri: uri }),
+		Emoji.findOne({ uri: uri }),
 	]);
 
-	return await mergePack({ user, note });
+	return await mergePack({ user, note, emoji });
 }
 
 /**
@@ -175,7 +183,7 @@ async function processRemote(uri: string) {
  * @returns Packed API response, or null on not found.
  * @throws RejectedError on deleted, moderated or hidden.
  */
-async function mergePack(opts: { user?: IUser | null, note?: INote | null }) {
+async function mergePack(opts: { user?: IUser | null, note?: INote | null, emoji?: IEmoji | null }) {
 	if (opts.user != null) {
 		if (opts.user.isDeleted) throw new RejectedError('User is deleted');
 		if (opts.user.isSuspended) throw new RejectedError('User is suspended');
@@ -191,6 +199,17 @@ async function mergePack(opts: { user?: IUser | null, note?: INote | null }) {
 		return {
 			type: 'Note',
 			object: packedNote
+		};
+	}
+
+	if (opts.emoji != null) {
+		return {
+			type: 'Emoji',
+			object: {
+				name: `${opts.emoji.name}${ opts.emoji.host ? `@${opts.emoji.host}` : '' }`,
+				host: opts.emoji.host,
+				url: opts.emoji.url,
+			},
 		};
 	}
 
