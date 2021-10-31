@@ -71,48 +71,6 @@ export default define(meta, async (ps) => {
  * URIからUserかNoteを解決する
  */
 async function fetchAny(uri: string) {
-	const processLocal = async (uri: string) => {
-		// https://local/(users|notes)/:id
-		const localIdRegex = new RegExp('^' + escapeRegexp(config.url) + '/' + '(\\w+)' + '/' + '(\\w+)/?$');
-		const matchLocalId = uri.match(localIdRegex);
-		if (matchLocalId) {
-			const type = matchLocalId[1];
-			const id = matchLocalId[2];
-
-			if (type === 'users') {
-				const user = await User.findOne({ _id: id });
-				return await mergePack(user, null);
-			}
-
-			if (type === 'notes') {
-				const note = await Note.findOne({ _id: id });
-				return await mergePack(null, note);
-			}
-
-			return null;
-		}
-
-		// https://local/@:username
-		const localNameRegex = new RegExp('^' + escapeRegexp(config.url) + '/@(\\w+)/?$');
-		const matchLocalName = uri.match(localNameRegex);
-		if (matchLocalName) {
-			const username = matchLocalName[1];
-			const user = await User.findOne({ usernameLower: username.toLowerCase() });
-			return await mergePack(user, null);
-		}
-
-		return null;
-	}
-
-	const processRemote = async (uri: string) => {
-		const [user, note] = await Promise.all([
-			User.findOne({ uri: uri }),
-			Note.findOne({ uri: uri })
-		]);
-
-		return await mergePack(user, note);
-	}
-
 	// URIがこのサーバーを指しているなら、ローカルユーザーIDとしてDBからフェッチ
 	if (uri.startsWith(config.url + '/')) {
 		const result = await processLocal(uri);
@@ -121,7 +79,7 @@ async function fetchAny(uri: string) {
 
 	// URI(AP Object id)としてDB検索
 	const packed = await processRemote(uri);
-	if (packed !== null) return packed;
+	if (packed != null) return packed;
 
 	// disableFederationならリモート解決しない
 	if (config.disableFederation) throw new RejectedError('Federation disabled');
@@ -136,13 +94,14 @@ async function fetchAny(uri: string) {
 	// /@user のような正規id以外で取得できるURIが指定されていた場合、ここで初めて正規URIが確定する
 	// これはDBに存在する可能性があるため再度DB検索
 	if (typeof object.id === 'string' && object.id !== uri) {
-		// ブロックしてたら中断
-		if (await isBlockedHost(extractApHost(object.id))) throw new RejectedError('Instance blocked');
-
+		// URIがこのサーバーを指しているなら、ローカルユーザーIDとしてDBからフェッチ
 		if (object.id.startsWith(config.url + '/')) {
 			return await processLocal(object.id);
 			// ここで見つからなければローカルはなし確定なので流れ落ちなし
 		}
+
+		// ブロックしてたら中断
+		if (await isBlockedHost(extractApHost(object.id))) throw new RejectedError('Instance blocked');
 
 		// URI(AP Object id)としてDB検索
 		const packed = await processRemote(object.id);
@@ -152,42 +111,82 @@ async function fetchAny(uri: string) {
 	// それでもみつからなければ新規であるため登録
 	if (isActor(object)) {
 		const user = await createPerson(getApId(object));
-		return {
-			type: 'User',
-			object: await packUser(user, null, { detail: true })
-		};
+		return mergePack({ user });
 	}
 
 	if (isPost(object)) {
 		const note = await createNote(getApId(object), null, true);
-		return {
-			type: 'Note',
-			object: await packNote(note!, null, { detail: true })
-		};
+		return mergePack({ note });
 	}
 
 	return null;
 }
 
 /**
- * Pack DB Object for API Response
- * @param user User DB Object
- * @param note Note DB Object
+ * Process local URI
+ * @param uri Local URI
  * @returns Packed API response, or null on not found.
  * @throws RejectedError on deleted, moderated or hidden.
  */
-async function mergePack(user: IUser | null | undefined, note: INote | null | undefined) {
-	if (user != null) {
-		if (user.isDeleted) throw new RejectedError('User is deleted');
-		if (user.isSuspended) throw new RejectedError('User is suspended');
+async function processLocal(uri: string) {
+	// https://local/(users|notes)/:id
+	const localIdRegex = new RegExp('^' + escapeRegexp(config.url) + '/' + '(\\w+)' + '/' + '(\\w+)/?$');
+	const matchLocalId = uri.match(localIdRegex);
+	if (matchLocalId) {
+		const type = matchLocalId[1];
+		const id = matchLocalId[2];
+
+		return await mergePack({
+			user: type === 'users' ? await User.findOne({ _id: id }) : null,
+			note: type === 'notes' ? await Note.findOne({ _id: id }) : null,
+		});
+	}
+
+	// https://local/@:username
+	const localNameRegex = new RegExp('^' + escapeRegexp(config.url) + '/@(\\w+)/?$');
+	const matchLocalName = uri.match(localNameRegex);
+	if (matchLocalName) {
+		const username = matchLocalName[1];
+		return await mergePack({
+			user: await User.findOne({ usernameLower: username.toLowerCase() })
+		});
+	}
+
+	return null;
+}
+
+/**
+ * Process remote URI
+ * @param uri Local URI
+ * @returns Packed API response, or null on not found.
+ * @throws RejectedError on deleted, moderated or hidden.
+ */
+async function processRemote(uri: string) {
+	const [user, note] = await Promise.all([
+		User.findOne({ uri: uri }),
+		Note.findOne({ uri: uri })
+	]);
+
+	return await mergePack({ user, note });
+}
+
+/**
+ * Pack DB Object for API Response
+ * @returns Packed API response, or null on not found.
+ * @throws RejectedError on deleted, moderated or hidden.
+ */
+async function mergePack(opts: { user?: IUser | null, note?: INote | null }) {
+	if (opts.user != null) {
+		if (opts.user.isDeleted) throw new RejectedError('User is deleted');
+		if (opts.user.isSuspended) throw new RejectedError('User is suspended');
 		return {
 			type: 'User',
-			object: await packUser(user, null, { detail: true })
+			object: await packUser(opts.user, null, { detail: true })
 		};
 	}
 
-	if (note != null) {
-		const packedNote = await packNote(note, null, { detail: true });
+	if (opts.note != null) {
+		const packedNote = await packNote(opts.note, null, { detail: true });
 		if (packedNote?.isHidden) throw new RejectedError('Note is hidden');
 		return {
 			type: 'Note',
