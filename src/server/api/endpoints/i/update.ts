@@ -16,7 +16,7 @@ import { sendDeleteActivity } from '../../../../services/suspend-user';
 import { doPostUnsuspend } from '../../../../services/unsuspend-user';
 import { normalizeTag } from '../../../../misc/normalize-tag';
 import config from '../../../../config';
-const age = require('s-age');
+import { calcAge } from '../../../../misc/calc-age';
 
 export const meta = {
 	desc: {
@@ -245,7 +245,7 @@ export default define(meta, async (ps, user, app) => {
 		if (typeof config.minimumAge === 'number' && ps.birthday != null) {
 			const d = new Date(ps.birthday);
 			if (d?.toString() !== 'Invalid Date') {
-				const a = age(d);
+				const a = calcAge(d);
 				if (a < config.minimumAge && a >= 0) {
 					ps.birthday = null;
 				}

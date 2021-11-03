@@ -87,7 +87,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../../i18n';
-import * as age from 's-age';
+import { calcAge } from '../../../../../../misc/calc-age';
 import parseAcct from '../../../../../../misc/acct/parse';
 import Progress from '../../../../common/scripts/loading';
 import XUserMenu from '../../../../common/views/components/user-menu.vue';
@@ -113,7 +113,7 @@ export default Vue.extend({
 	},
 	computed: {
 		age(): number {
-			return age(this.user.profile.birthday);
+			return calcAge(this.user.profile.birthday);
 		},
 		avator(): string {
 			return this.$store.state.device.disableShowingAnimatedImages
