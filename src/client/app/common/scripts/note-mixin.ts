@@ -155,6 +155,7 @@ export default (opts: Opts = {}) => ({
 					noteId: this.appearNote.id,
 					reaction: reaction,
 					dislike: disliked,
+					_res: true,
 				}).then(() => {
 					w.close();
 				});
