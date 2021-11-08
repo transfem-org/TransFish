@@ -59,7 +59,6 @@ export default Vue.extend({
 						this.$root.api('notes/reactions/create', {
 							noteId: this.note.id,
 							reaction: this.reaction,
-							_res: true,
 						});
 					}
 				});
@@ -67,7 +66,6 @@ export default Vue.extend({
 				this.$root.api('notes/reactions/create', {
 					noteId: this.note.id,
 					reaction: this.reaction,
-					_res: true,
 				});
 			}
 		},
