@@ -805,6 +805,7 @@ common/views/components/notification-settings.vue:
   poll_vote: "Vote"
   poll_finished: "Poll finished"
   highlight: "Highlight"
+  unreadMessagingMessage: "Chat message"
   mark-as-read-all-notifications: "Mark all notifications as read"
   mark-as-read-all-unread-notes: "Mark all posts as read"
   mark-as-read-all-talk-messages: "Mark all chat as read"
