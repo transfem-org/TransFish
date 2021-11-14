@@ -128,6 +128,15 @@ export const pack = async (notification: any) => {
 			break;
 		case 'unreadMessagingMessage':
 			_notification.message = await packMessagingMessage(_notification.messageId, me);
+
+			// (データベースの不具合などで)投稿が見つからなかったら
+			if (_notification.message == null) {
+				dbLogger.warn(`[DAMAGED DB] (missing) pkg: notification -> message :: ${_notification.id} (note ${_notification.messageId})`);
+				_notification.type = '_missing_';
+				delete _notification.messageId;
+				delete _notification.message;
+			}
+
 			break;
 		default:
 			dbLogger.error(`Unknown type: ${_notification.type}`);
