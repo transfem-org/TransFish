@@ -10,6 +10,7 @@ import define from '../../define';
 import fetchMeta from '../../../../misc/fetch-meta';
 import { ApiError } from '../../error';
 import { uniqBy } from 'lodash';
+import { removeNull } from '../../../../prelude/array';
 
 let maxNoteTextLength = 1000;
 
@@ -256,7 +257,7 @@ export default define(meta, async (ps, user, app) => {
 			_id: id
 		})));
 
-		visibleUsers = users.filter((user): user is IUser => user != null);
+		visibleUsers = removeNull(users);
 	}
 
 	let files: IDriveFile[] = [];
