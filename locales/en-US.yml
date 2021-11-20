@@ -1331,6 +1331,7 @@ desktop/views/components/users-list-item.vue:
   followed: "Follows you"
 desktop/views/components/window.vue:
   popout: "Pop-out"
+  transparent: "Transparent"
   close: "Close"
 desktop/views/home/featured.vue:
   options: "Options"

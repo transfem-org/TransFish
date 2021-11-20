@@ -1468,6 +1468,7 @@ desktop/views/components/users-list-item.vue:
 
 desktop/views/components/window.vue:
   popout: "ポップアウト"
+  transparent: "透過"
   close: "閉じる"
 
 desktop/views/home/featured.vue:
