@@ -7,7 +7,6 @@ import define from '../../define';
 import { ApiError } from '../../error';
 import { getUser } from '../../common/getters';
 import { isLocalUser, isRemoteUser } from '../../../../models/user';
-import activeUsersChart from '../../../../services/chart/active-users';
 
 export const meta = {
 	desc: {
@@ -115,8 +114,6 @@ export default define(meta, async (ps, user) => {
 			deliverReadActivity(user, recipient, messages);
 		}
 	}
-
-	activeUsersChart.update(user);
 
 	return await Promise.all(messages.map(message => pack(message, user, {
 		populateRecipient: false
