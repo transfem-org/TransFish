@@ -9,6 +9,7 @@ import renderCreate from '../../remote/activitypub/renderer/create';
 import { renderActivity } from '../../remote/activitypub/renderer';
 import { deliver } from '../../queue';
 import { createNotification } from '../create-notification';
+import activeUsersChart from '../../services/chart/active-users';
 
 export async function createMessage(user: IUser, recipient: IUser, text: string | null, file: IDriveFile | undefined, uri?: string) {
 	const message = await MessagingMessage.insert({
@@ -80,6 +81,8 @@ export async function createMessage(user: IUser, recipient: IUser, text: string 
 
 		deliver(user, activity, recipient.inbox);
 	}
+
+	activeUsersChart.update(user);
 
 	return messageObj;
 }
