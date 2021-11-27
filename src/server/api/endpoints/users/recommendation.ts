@@ -101,7 +101,8 @@ export default define(meta, async (ps, me) => {
 		// ユーザーフィルタ
 		$match: {
 			'_user.updatedAt': { $gt: new Date(Date.now() - (1000 * 60 * 60 * 24 * 5)) },
-			'_user.isExplorable': true
+			'_user.isExplorable': true,
+			'_user.isLocked': { $ne: true },
 		}
 	}, {
 		// フォロワー多い順
