@@ -484,6 +484,12 @@ export default Vue.extend({
 		},
 
 		async deleteAccount() {
+			const { canceled: canceled2 } = await this.$root.dialog({
+				title: this.$t('delete-account-confirm'),
+				showCancelButton: true
+			});
+			if (canceled2) return;
+
 			const { canceled: canceled, result: password } = await this.$root.dialog({
 				title: this.$t('enter-password'),
 				input: {
@@ -491,12 +497,6 @@ export default Vue.extend({
 				}
 			});
 			if (canceled) return;
-
-			const { canceled: canceled2 } = await this.$root.dialog({
-				title: this.$t('delete-account-confirm'),
-				showCancelButton: true
-			});
-			if (canceled2) return;
 
 			this.$root.api('i/delete-account', {
 				password
