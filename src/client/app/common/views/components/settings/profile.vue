@@ -221,8 +221,6 @@ export default Vue.extend({
 		this.location = this.$store.state.i.profile.location;
 		this.description = this.$store.state.i.description;
 		this.birthday = this.$store.state.i.profile.birthday;
-		this.avatarId = this.$store.state.i.avatarId;
-		this.bannerId = this.$store.state.i.bannerId;
 		this.isCat = this.$store.state.i.isCat;
 		this.isBot = this.$store.state.i.isBot;
 		this.isLocked = this.$store.state.i.isLocked;
