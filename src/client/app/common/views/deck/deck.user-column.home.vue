@@ -19,7 +19,7 @@
 	<!-- リアクション -->
 	<x-reactions :user="user" :key="user.id" :deck="true"/>
 	<!-- よく話すユーザー -->
-	<mk-user-list :make-promise="makeFrequentlyRepliedUsersPromise" :icon-only="true"><fa icon="users"/> {{ $t('@.frequently-replied-users') }}</mk-user-list>
+	<mk-user-list :make-promise="makeFrequentlyRepliedUsersPromise" :icon-only="true" :key="user.id"><fa icon="users"/> {{ $t('@.frequently-replied-users') }}</mk-user-list>
 	<!-- フォト -->
 	<ui-container v-if="images.length > 0" :body-togglable="true"
 		:expanded="$store.state.device.expandUsersPhotos"
