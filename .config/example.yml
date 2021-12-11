@@ -132,12 +132,6 @@ themeColor: '#fb4e4e'
 #  # mecab辞書はmecab-ipadic-NEologd
 #  mecabNeologd: true
 
-# Elasticsearch
-#elasticsearch:
-#  host: localhost
-#  port: 9200
-#  pass: null
-
 # Whether disable HSTS
 #disableHsts: true
 
