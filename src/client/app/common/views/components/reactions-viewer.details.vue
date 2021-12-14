@@ -113,7 +113,6 @@ export default Vue.extend({
 		border-left solid 14px transparent
 
 	> .reaction
-		text-align left
 		margin 0.3em
 		> .icon
 			font-size 2em
