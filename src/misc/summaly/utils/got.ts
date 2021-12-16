@@ -2,7 +2,7 @@ import got, * as Got from 'got';
 import { StatusError, httpAgent, httpsAgent } from '../../fetch';
 import { detectEncoding, toUtf8 } from './encoding';
 import * as cheerio from 'cheerio';
-const PrivateIp = require('private-ip');
+import { checkPrivateIp } from '../../check-private-ip';
 
 const RESPONSE_TIMEOUT = 20 * 1000;
 const OPERATION_TIMEOUT = 60 * 1000;
@@ -20,7 +20,7 @@ export async function scpaping(url: string) {
 		typeFilter: /^text\/html/,
 	});
 
-	if (response.ip && PrivateIp(response.ip)) {
+	if (checkPrivateIp(response.ip)) {
 		throw new StatusError(`Private IP rejected ${response.ip}`, 400, 'Private IP Rejected');
 	}
 
