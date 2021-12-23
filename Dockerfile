@@ -11,6 +11,7 @@ RUN yarn install
 COPY . ./
 RUN yarn build
 
+
 FROM node:16.13.1-bullseye-slim AS runner
 
 ENV NODE_ENV=production
