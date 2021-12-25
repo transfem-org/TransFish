@@ -4,7 +4,7 @@ import { serverLogger } from '..';
 import { IImage, convertToPng, convertToJpeg } from '../../services/drive/image-processor';
 import { createTemp } from '../../misc/create-temp';
 import { downloadUrl } from '../../misc/download-url';
-import { detectType } from '../../misc/get-file-info';
+import { detectTypeWithCheck } from '../../misc/get-file-info';
 import { StatusError } from '../../misc/fetch';
 
 export async function proxyMedia(ctx: Router.RouterContext) {
@@ -16,7 +16,7 @@ export async function proxyMedia(ctx: Router.RouterContext) {
 	try {
 		await downloadUrl(url, path);
 
-		const { mime, ext } = await detectType(path);
+		const { mime, ext } = await detectTypeWithCheck(path);
 
 		if (!mime.startsWith('image/')) throw 403;
 
@@ -29,7 +29,7 @@ export async function proxyMedia(ctx: Router.RouterContext) {
 		} else {
 			image = {
 				data: fs.readFileSync(path),
-				ext,
+				ext: ext || '',
 				type: mime,
 			};
 		}

@@ -12,7 +12,7 @@ import { serverLogger } from '..';
 import { convertToJpeg, convertToPngOrJpeg } from '../../services/drive/image-processor';
 import { generateVideoThumbnail } from '../../services/drive/generate-video-thumbnail';
 import { contentDisposition } from '../../misc/content-disposition';
-import { detectType } from '../../misc/get-file-info';
+import { detectTypeWithCheck } from '../../misc/get-file-info';
 import { downloadUrl } from '../../misc/download-url';
 import { InternalStorage } from '../../services/drive/internal-storage';
 import { StatusError } from '../../misc/fetch';
@@ -58,7 +58,7 @@ export default async function(ctx: Router.RouterContext) {
 		try {
 			await downloadUrl(url, path);
 
-			const { mime, ext } = await detectType(path);
+			const { mime, ext } = await detectTypeWithCheck(path);
 
 			const convertFile = async () => {
 				if ('thumbnail' in ctx.query) {
@@ -108,7 +108,7 @@ export default async function(ctx: Router.RouterContext) {
 			const key = isThumbnail ? (file.metadata.storageProps?.thumbnailKey || file.metadata.storageProps?.key) : (file.metadata.storageProps?.webpublicKey || file.metadata.storageProps?.key);
 			if (!key) throw 'fs but key not found';
 
-			const { mime, ext } = await detectType(InternalStorage.resolvePath(key));
+			const { mime, ext } = await detectTypeWithCheck(InternalStorage.resolvePath(key));
 			const filename = rename(file.filename, {
 				suffix: isThumbnail ? '-thumb' : '-web',
 				extname: ext ? `.${ext}` : undefined
