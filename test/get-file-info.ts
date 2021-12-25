@@ -102,11 +102,11 @@ describe('Get file info', () => {
 			size: 505,
 			md5: 'b6f52b4b021e7b92cdd04509c7267965',
 			type: {
-				mime: 'image/svg+xml',
-				ext: 'svg'
+				mime: 'application/octet-stream',
+				ext: null
 			},
-			width: 256,
-			height: 256,
+			width: undefined,
+			height: undefined,
 		});
 	}));
 
@@ -119,11 +119,11 @@ describe('Get file info', () => {
 			size: 544,
 			md5: '4b7a346cde9ccbeb267e812567e33397',
 			type: {
-				mime: 'image/svg+xml',
-				ext: 'svg'
+				mime: 'application/octet-stream',
+				ext: null
 			},
-			width: 256,
-			height: 256,
+			width: undefined,
+			height: undefined,
 		});
 	}));
 
