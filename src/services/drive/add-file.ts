@@ -19,7 +19,7 @@ import { driveLogger } from './logger';
 import { IImage, convertSharpToJpeg, convertSharpToWebp, convertSharpToPng, convertSharpToPngOrJpeg } from './image-processor';
 import Instance from '../../models/instance';
 import { contentDisposition } from '../../misc/content-disposition';
-import { getFileInfo, FileInfo } from '../../misc/get-file-info';
+import { getFileInfo, FileInfo, FILE_TYPE_BROWSERSAFE } from '../../misc/get-file-info';
 import { DriveConfig } from '../../config/types';
 import { getDriveConfig } from '../../misc/get-drive-config';
 import * as S3 from 'aws-sdk/clients/s3';
@@ -224,7 +224,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 	}
 
 	// unsupported image
-	if (!['image/jpeg', 'image/png', 'image/webp'].includes(type)) {
+	if (!['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'].includes(type)) {
 		return {
 			webpublic: null,
 			thumbnail: null
@@ -253,7 +253,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 			webpublic = await convertSharpToJpeg(img, webSize, webSize);
 		} else if (['image/webp'].includes(type)) {
 			webpublic = await convertSharpToWebp(img, webSize, webSize);
-		} else if (['image/png'].includes(type)) {
+		} else if (['image/png', 'image/svg+xml'].includes(type)) {
 			webpublic = await convertSharpToPng(img, webSize, webSize);
 		} else {
 			logger.debug(`web image not created (not an image)`);
@@ -269,7 +269,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 	if (['image/jpeg', 'image/webp'].includes(type)
 		|| (prsOpts?.useJpegForWeb && ['image/png'].includes(type))) {
 		thumbnail = await convertSharpToJpeg(img, 530, 255);
-	} else if (['image/png'].includes(type)) {
+	} else if (['image/png', 'image/svg+xml'].includes(type)) {
 		thumbnail = await convertSharpToPngOrJpeg(img, 530, 255);
 	}
 	// #endregion thumbnail
@@ -284,6 +284,8 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
  * Upload to ObjectStorage
  */
 async function upload(key: string, stream: fs.ReadStream | Buffer, type: string, filename: string | null, drive: DriveConfig) {
+	if (!FILE_TYPE_BROWSERSAFE.includes(type)) type = 'application/octet-stream';
+
 	const params = {
 		Bucket: drive.bucket,
 		Key: key,
