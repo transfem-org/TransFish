@@ -65,7 +65,7 @@ async function save(path: string, name: string, info: FileInfo, metadata: IMetad
 
 	if (drive.storage == 'minio') {
 		//#region ObjectStorage params
-		const ext = info.type.ext ? `.${info.type.ext}` : '';
+		const ext = (info.type.ext && FILE_TYPE_BROWSERSAFE.includes(info.type.mime)) ? `.${info.type.ext}` : '';
 
 		const baseUrl = drive.baseUrl
 			|| `${ drive.config!.useSSL ? 'https' : 'http' }://${ drive.config!.endPoint }${ drive.config!.port ? `:${drive.config!.port}` : '' }/${ drive.bucket }`;
