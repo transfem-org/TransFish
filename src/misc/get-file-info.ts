@@ -209,7 +209,7 @@ export async function detectTypeWithCheck(path: string) {
 	if (type.mime === 'video/mp4') {
 		const props = await getVideoProps(path);
 		if (props.streams.filter(s => s.codec_type === 'video').length === 0
-			&& props.streams.filter(s => s.codec_type === 'audio').length > 1
+			&& props.streams.filter(s => s.codec_type === 'audio').length > 0
 		) {
 			type = TYPE_MP4_AS_AUDIO;
 		}
