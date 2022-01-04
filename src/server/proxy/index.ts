@@ -12,7 +12,6 @@ const app = new Koa();
 app.use(cors());
 app.use(async (ctx, next) => {
 	ctx.set('Content-Security-Policy', `default-src 'none'; style-src 'unsafe-inline'`);
-	ctx.set('X-Content-Type-Options', 'nosniff');
 	await next();
 });
 
