@@ -118,6 +118,11 @@ const TYPE_MP4 = {
 	ext: 'mp4'
 };
 
+const TYPE_MP4_AS_AUDIO = {
+	mime: 'audio/mp4',
+	ext: 'mp4'
+};
+
 /**
  * Get file information
  */
@@ -200,7 +205,17 @@ export async function detectTypeWithCheck(path: string) {
 		}
 	}
 
-	// quicktime => mp4
+	// videoを持たないmp4 videoはaudio扱いにしてしまう
+	if (type.mime === 'video/mp4') {
+		const props = await getVideoProps(path);
+		if (props.streams.filter(s => s.codec_type === 'video').length === 0
+			&& props.streams.filter(s => s.codec_type === 'audio').length > 1
+		) {
+			type = TYPE_MP4_AS_AUDIO;
+		}
+	}
+
+	// quicktime だけど h264 と aac で構成されているのは、実際はSafari以外でも再生できちゃうのでmp4扱いにしてしまう
 	if (type.mime === 'video/quicktime') {
 		const props = await getVideoProps(path);
 		if (props.streams.filter(s => s.codec_type === 'video').every(s => s.codec_name === 'h264')
