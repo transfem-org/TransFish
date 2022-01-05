@@ -98,6 +98,8 @@ export async function packCustomEmoji(str: string, ownerHost: string | null): Pr
 
 	if (emoji == null) return null;
 
+	if (host === 'misskey.io') return null;
+
 	const e = {
 		name: str,
 		url: getEmojiUrl(emoji),
