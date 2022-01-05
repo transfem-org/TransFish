@@ -36,7 +36,6 @@ async function resync(x: string): Promise<any> {
 const args = process.argv.slice(2);
 
 main(args).then(() => {
-
 	setTimeout(() => { console.log('\n======\n Done\n======'); }, 2 * 1000);
 }).catch(e => {
 	console.warn(e);
