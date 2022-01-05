@@ -83,6 +83,8 @@ export async function packCustomEmoji(str: string, ownerHost: string | null): Pr
 	const match = str.match(/^(\w+)(?:@([\w.-]+))?$/);
 	if (!match) return null;
 
+	if (match[2] === 'misskey.io') return null;
+
 	// クエリに使うホスト
 	const queryHost = match[2] === '.' ? SELF_HOST : match[2] === undefined ? ownerHost : isSelfHost(match[2]) ? SELF_HOST : (match[2] || ownerHost);
 	const name = match[1];
@@ -97,8 +99,6 @@ export async function packCustomEmoji(str: string, ownerHost: string | null): Pr
 	});
 
 	if (emoji == null) return null;
-
-	if (host === 'misskey.io') return null;
 
 	const e = {
 		name: str,
