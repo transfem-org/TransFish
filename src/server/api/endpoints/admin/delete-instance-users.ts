@@ -40,7 +40,8 @@ export default define(meta, async (ps) => {
 	if (!instance.isBlocked && !instance.isMarkedAsClosed) throw 'instance はブロックでもクローズでもない';
 
 	const users = await User.find({
-		host
+		host,
+		isDeleted: { $ne: true },
 	});
 
 	for (const user of users) {
