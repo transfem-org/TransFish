@@ -26,8 +26,6 @@ export async function doPostSuspend(user: IUser) {
 	}).catch(() => {});
 }
 
-
-
 export async function sendDeleteActivity(user: IUser) {
 	if (isLocalUser(user)) {
 		// 知り得る全SharedInboxにDelete配信
