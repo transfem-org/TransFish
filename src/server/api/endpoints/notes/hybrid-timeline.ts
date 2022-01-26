@@ -161,7 +161,7 @@ export default define(meta, async (ps, user) => {
 	const [followingIds, hideUserIds, hideFromHomeLists, hideRenoteUserIds] = await Promise.all([
 		// フォローを取得
 		// Fetch following
-		getFriendIds(user._id, true),
+		getFriendIds(user._id, true, 3),
 
 		// 隠すユーザーを取得
 		getHideUserIds(user),
