@@ -62,7 +62,7 @@ async function main() {
 			userId: user._id
 		});
 
-		console.log(`  follows:${reactions.deletedCount}`);
+		console.log(`  reactions:${reactions.deletedCount}`);
 
 	}
 }
