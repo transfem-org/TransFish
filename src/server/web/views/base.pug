@@ -11,11 +11,7 @@ html
 		link(rel='icon' href= icon || '/favicon.ico' type= iconType || 'image/x-icon')
 		link(rel='apple-touch-icon' href= appleTouchIcon || '/apple-touch-icon.png')
 		link(rel='manifest' href='/manifest.json')
-
-		if player
-			meta(name='twitter:card' content='player')
-		else
-			meta(name='twitter:card' content='summary')
+		meta(name='twitter:card' content= player ? 'player' : 'summary')
 
 		if noindex
 			meta(name='robots' content='noindex')
