@@ -8,7 +8,6 @@ html
 		meta(charset='utf-8')
 		meta(name='referrer' content='origin')
 		meta(name='theme-color' content='#5A0608')
-		meta(property='og:site_name' content= instanceName || 'Misskey')
 		link(rel='icon' href= icon || '/favicon.ico' type= iconType || 'image/x-icon')
 		link(rel='apple-touch-icon' href= appleTouchIcon || '/apple-touch-icon.png')
 		link(rel='manifest' href='/manifest.json')
@@ -31,7 +30,9 @@ html
 		block meta
 
 		block og
-			meta(property='og:image' content=img)
+			meta(property='og:site_name' content= instanceName || 'Misskey')
+			meta(property='og:title' content= instanceName || 'Misskey')
+			meta(property='og:description' content= desc || '✨🌎✨ A federated blogging platform ✨🚀✨')
 
 		style
 			include ./../../../../built/client/assets/init.css
