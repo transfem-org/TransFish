@@ -390,7 +390,7 @@ export async function pack(
 				: (me as IUser)._id
 		: null;
 
-		const fetchInstance = async () => {
+	const fetchInstance = async () => {
 		if (db!.host == null) return null;
 
 		const info = {
