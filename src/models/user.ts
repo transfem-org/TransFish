@@ -278,27 +278,27 @@ export async function getRelation(me: mongo.ObjectId, target: mongo.ObjectId) {
 		Following.count({
 			followerId: me,
 			followeeId: target
-		}),
+		}, { limit: 1 }),
 		Following.count({
 			followerId: target,
 			followeeId: me
-		}),
+		}, { limit: 1 }),
 		FollowRequest.count({
 			followerId: me,
 			followeeId: target
-		}),
+		}, { limit: 1 }),
 		FollowRequest.count({
 			followerId: target,
 			followeeId: me
-		}),
+		}, { limit: 1 }),
 		Blocking.count({
 			blockerId: me,
 			blockeeId: target
-		}),
+		}, { limit: 1 }),
 		Blocking.count({
 			blockerId: target,
 			blockeeId: me
-		}),
+		}, { limit: 1 }),
 		Mute.count({
 			muterId: me,
 			muteeId: target,
@@ -306,7 +306,7 @@ export async function getRelation(me: mongo.ObjectId, target: mongo.ObjectId) {
 				{ expiresAt: null },
 				{ expiresAt: { $gt: new Date() }}
 			]
-		}),
+		}, { limit: 1 }),
 		UserFilter.findOne({
 			ownerId: me,
 			targetId: target
