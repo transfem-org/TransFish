@@ -414,6 +414,14 @@ export async function pack(
 
 	const relation = (meId && !oidEquals(meId, db._id) && opts.detail) ? await getRelation(meId, db._id) : null;	// TODO
 
+	const visibleFollowers = (() => {
+		if (meId && oidEquals(meId, db._id)) return true;
+		if (db.hideFollows === '') return true;
+		if (db.hideFollows === 'always') return false;
+		if (relation?.isFollowing) return true;
+		return false;
+	})();
+
 	const populateUserTags = async () => {
 		if (!meId) return undefined;
 
@@ -472,8 +480,8 @@ export async function pack(
 				location: db.profile?.location || null,
 			},
 			fields: db.fields || [],
-			followersCount: db.followersCount,
-			followingCount: db.followingCount,
+			followersCount: visibleFollowers ? db.followersCount : null,
+			followingCount: visibleFollowers ? db.followingCount : null,
 			notesCount: db.notesCount,
 			pinnedNoteIds: db.pinnedNoteIds ? db.pinnedNoteIds.map(toOidString) : [],
 			pinnedNotes: packNoteMany(db.pinnedNoteIds || [], meId, {
