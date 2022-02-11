@@ -445,6 +445,7 @@ export async function pack(
 		avatarColor: null, // 後方互換性のため
 
 		isAdmin: !!db.isAdmin,
+		isVerified: !!(db as any).isVerified,
 		isBot: !!db.isBot,
 		isCat: !!db.isCat,
 
@@ -492,7 +493,6 @@ export async function pack(
 			usertags: populateUserTags(),
 
 			...(isLocalUser(db) ? {
-				isVerified: !!db.isVerified,
 				isModerator: !!db.isModerator,
 				twoFactorEnabled: !!db.twoFactorEnabled,
 

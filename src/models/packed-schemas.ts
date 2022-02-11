@@ -56,6 +56,7 @@ export type ThinPackedUser = {
 	avatarUrl: string | null;
 	avatarColor: string | null;
 	isAdmin: boolean;
+	isVerified?: boolean;
 	isBot: boolean;
 	isCat: boolean;
 	instance: any;	// TODO
@@ -96,7 +97,6 @@ export type PackedUser = ThinPackedUser & {
 	usertags?: string[];
 
 	// local
-	isVerified?: boolean;
 	isModerator?: boolean;
 	twoFactorEnabled?: boolean;
 	twitter?: {
