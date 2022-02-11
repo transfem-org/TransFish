@@ -57,6 +57,7 @@ export type ThinPackedUser = {
 	avatarColor: string | null;
 	isAdmin: boolean;
 	isVerified?: boolean;
+	borderColor?: string | null;
 	isBot: boolean;
 	isCat: boolean;
 	instance: any;	// TODO

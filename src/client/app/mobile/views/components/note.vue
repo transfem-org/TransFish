@@ -28,13 +28,13 @@
 	<article
 		class="article"
 		:class="{
-			'verified': appearNote.user.isVerified,
 			'visibility-home': appearNote.visibility === 'home',
 			'visibility-followers': appearNote.visibility === 'followers',
 			'visibility-specified': appearNote.visibility === 'specified',
 			'coloring-bg': $store.state.device.visibilityColoring === 'bg',
 			'coloring-left': $store.state.device.visibilityColoring === 'left',
 		}"
+		:style="{ boxShadow: `inset 0 0 3px 3px ${appearNote.user.borderColor || 'transparent'}` }"
 	>
 		<mk-avatar class="avatar" :user="appearNote.user" v-if="$store.state.device.postStyle != 'smart'"/>
 		<div class="main">
@@ -245,9 +245,6 @@ export default Vue.extend({
 	> .article
 		display flex
 		padding 12px 12px 6px
-
-		&.verified
-			box-shadow inset 0 0 3px 3px #ffd700a0
 
 		&.coloring-bg
 			&.visibility-home

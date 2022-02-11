@@ -71,6 +71,7 @@ type IUserBase = {
 		birthday?: string | null; // 'YYYY-MM-DD'
 		tags?: string[];
 	};
+	borderColor?: string;
 
 	isDeleted: boolean;
 
@@ -448,6 +449,7 @@ export async function pack(
 		isVerified: !!(db as any).isVerified,
 		isBot: !!db.isBot,
 		isCat: !!db.isCat,
+		borderColor: db.borderColor,
 
 		instance: fetchInstance(),
 
