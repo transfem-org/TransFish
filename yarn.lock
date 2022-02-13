@@ -4196,9 +4196,10 @@ http-proxy-agent@^5.0.0:
     agent-base "6"
     debug "4"
 
-"http-signature@git+https://github.com/mei23/node-http-signature#v1.5.0":
-  version "1.5.0"
-  resolved "git+https://github.com/mei23/node-http-signature#703c754e7a961102656944eaf463874d690b28ae"
+http-signature@1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.3.6.tgz#cb6fbfdf86d1c974f343be94e87f7fc128662cf9"
+  integrity sha512-3adrsD6zqo4GsTqtO7FyrejHNv+NgiIfAfv68+jVlFmSr9OGy7zrxONceFRLKvnnZA5jbxQBX1u9PpB6Wi32Gw==
   dependencies:
     assert-plus "^1.0.0"
     jsprim "^2.0.2"
