@@ -550,7 +550,10 @@ export async function addFile({
 	// 統計を更新
 	driveChart.update(driveFile, true);
 
-	perUserDriveChart.update(driveFile, true);
+	if (isLocalUser(driveFile.metadata?._user)) {
+		perUserDriveChart.update(driveFile, true);
+	}
+
 	if (isRemoteUser(driveFile.metadata?._user)) {
 		instanceChart.updateDrive(driveFile, true);
 		Instance.update({ host: driveFile.metadata!._user.host }, {
