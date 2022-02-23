@@ -20,13 +20,6 @@
 		<template #title><fa :icon="faCloud"/> {{ $t('@.drive') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
-				<ui-select v-model="sort">
-					<template #label>{{ $t('sort.title') }}</template>
-					<option value="-createdAt">{{ $t('sort.createdAtAsc') }}</option>
-					<option value="+createdAt">{{ $t('sort.createdAtDesc') }}</option>
-					<option value="-size">{{ $t('sort.sizeAsc') }}</option>
-					<option value="+size">{{ $t('sort.sizeDesc') }}</option>
-				</ui-select>
 				<ui-select v-model="origin">
 					<template #label>{{ $t('origin.title') }}</template>
 					<option value="combined">{{ $t('origin.combined') }}</option>
@@ -88,8 +81,7 @@ export default Vue.extend({
 		return {
 			file: null,
 			target: null,
-			sort: '+createdAt',
-			origin: 'combined',
+			origin: 'local',
 			limit: 10,
 			offset: 0,
 			files: [],
@@ -99,12 +91,6 @@ export default Vue.extend({
 	},
 
 	watch: {
-		sort() {
-			this.files = [];
-			this.offset = 0;
-			this.fetch();
-		},
-
 		origin() {
 			this.files = [];
 			this.offset = 0;
@@ -131,7 +117,6 @@ export default Vue.extend({
 		fetch() {
 			this.$root.api('admin/drive/files', {
 				origin: this.origin,
-				sort: this.sort,
 				offset: this.offset,
 				limit: this.limit + 1
 			}).then(files => {
