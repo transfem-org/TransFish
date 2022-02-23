@@ -27,7 +27,7 @@
 					<option value="remote">{{ $t('origin.remote') }}</option>
 				</ui-select>
 				<ui-input v-model="hostname" type="text" spellcheck="false" :disabled="origin === 'local'">
-					<span>{{ $t('host') }}</span>
+					<span>{{ $t('@.host') }}</span>
 				</ui-input>
 			</ui-horizon-group>
 			<sequential-entrance animation="entranceFromTop" delay="25">
@@ -38,6 +38,7 @@
 						</div>
 						<div>
 							<header>
+								<span class="sensitive" v-if="file.isSensitive"><fa :icon="faEyeSlash"/></span>
 								<b>{{ file.name }}</b>
 								<span class="username">@{{ file.user | acct }}</span>
 							</header>
@@ -247,6 +248,9 @@ export default Vue.extend({
 
 			> header
 				word-break break-word
+
+				> .sensitive
+					margin-right 8px
 
 				> .username
 					margin-left 8px

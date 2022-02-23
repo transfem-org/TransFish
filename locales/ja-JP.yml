@@ -111,6 +111,7 @@ common:
   favoriteReactions: "よくするリアクション"
   mostReacteds: "よくされるリアクション"
   frequently-replied-users: "よく話すユーザー"
+  host: "ホスト"
 
   favorites: "お気に入り"
   noteReactions: "リアクションした投稿"
