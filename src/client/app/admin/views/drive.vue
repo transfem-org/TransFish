@@ -25,42 +25,41 @@
 					<option value="combined">{{ $t('origin.combined') }}</option>
 					<option value="local">{{ $t('origin.local') }}</option>
 					<option value="remote">{{ $t('origin.remote') }}</option>
+					<option value="system">{{ $t('origin.system') }}</option>
 				</ui-select>
 				<ui-input v-model="hostname" type="text" spellcheck="false" :disabled="origin === 'local'">
 					<span>{{ $t('@.host') }}</span>
 				</ui-input>
 			</ui-horizon-group>
-			<sequential-entrance animation="entranceFromTop" delay="25">
-				<div class="kidvdlkg" v-for="file in files">
-					<div @click="file._open = !file._open">
-						<div>
-							<x-file-thumbnail class="thumbnail" :file="file" fit="contain" @click="showFileMenu(file)"/>
-						</div>
-						<div>
-							<header>
-								<span class="sensitive" v-if="file.isSensitive"><fa :icon="faEyeSlash"/></span>
-								<b>{{ file.name }}</b>
-								<span class="username">@{{ file.user | acct }}</span>
-							</header>
-							<div>
-								<div>
-									<span style="margin-right:16px;">{{ file.type }}</span>
-									<span>{{ file.datasize | bytes }}</span>
-								</div>
-								<div><mk-time :time="file.createdAt" mode="detail"/></div>
-							</div>
-						</div>
+			<div class="kidvdlkg" v-for="file in files">
+				<div @click="file._open = !file._open">
+					<div>
+						<x-file-thumbnail class="thumbnail" :file="file" fit="contain" @click="showFileMenu(file)"/>
 					</div>
-					<div v-show="file._open">
-						<ui-input readonly :value="file.url"></ui-input>
-						<ui-horizon-group>
-							<ui-button @click="toggleSensitive(file)" v-if="file.isSensitive"><fa :icon="faEye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
-							<ui-button @click="toggleSensitive(file)" v-else><fa :icon="faEyeSlash"/> {{ $t('mark-as-sensitive') }}</ui-button>
-							<ui-button @click="del(file)"><fa :icon="faTrashAlt"/> {{ $t('delete') }}</ui-button>
-						</ui-horizon-group>
+					<div>
+						<header>
+							<span class="sensitive" v-if="file.isSensitive"><fa :icon="faEyeSlash"/></span>
+							<b>{{ file.name }}</b>
+							<span class="username">@{{ file.user | acct }}</span>
+						</header>
+						<div>
+							<div>
+								<span style="margin-right:16px;">{{ file.type }}</span>
+								<span>{{ file.datasize | bytes }}</span>
+							</div>
+							<div><mk-time :time="file.createdAt" mode="detail"/></div>
+						</div>
 					</div>
 				</div>
-			</sequential-entrance>
+				<div v-show="file._open">
+					<ui-input readonly :value="file.url"></ui-input>
+					<ui-horizon-group>
+						<ui-button @click="toggleSensitive(file)" v-if="file.isSensitive"><fa :icon="faEye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
+						<ui-button @click="toggleSensitive(file)" v-else><fa :icon="faEyeSlash"/> {{ $t('mark-as-sensitive') }}</ui-button>
+						<ui-button @click="del(file)"><fa :icon="faTrashAlt"/> {{ $t('delete') }}</ui-button>
+					</ui-horizon-group>
+				</div>
+			</div>
 			<ui-button v-if="existMore" @click="fetch">{{ $t('@.load-more') }}</ui-button>
 		</section>
 	</ui-card>
@@ -97,7 +96,7 @@ export default Vue.extend({
 
 	watch: {
 		origin() {
-			if (this.origin === 'local') this.hostname = '';
+			if (this.origin === 'local' || this.origin === 'system') this.hostname = '';
 			this.files = [];
 			this.offset = 0;
 			this.fetch();

@@ -1,6 +1,7 @@
 import $ from 'cafy';
 import { toDbHost } from '../../../../../misc/convert-host';
 import File, { packMany } from '../../../../../models/drive-file';
+import { getSystem1 } from '../../../../../services/emoji-store';
 import define from '../../../define';
 
 export const meta = {
@@ -25,6 +26,7 @@ export const meta = {
 				'combined',
 				'local',
 				'remote',
+				'system',
 			]),
 			default: 'local'
 		},
@@ -44,8 +46,17 @@ export default define(meta, async (ps, me) => {
 	if (ps.hostname != null && ps.hostname.length > 0) {
 		q['metadata._user.host'] = toDbHost(ps.hostname);
 	} else {
-		if (ps.origin == 'local') q['metadata._user.host'] = null;
-		if (ps.origin == 'remote') q['metadata._user.host'] = { $ne: null };
+		if (ps.origin === 'system') {
+			q['metadata._user.host'] = null;
+			const s = await getSystem1();
+			q['metadata.userId'] = s._id;
+		} else if (ps.origin === 'local') {
+			q['metadata._user.host'] = null;
+			const s = await getSystem1();
+			q['metadata.userId'] = { $ne: s._id };
+		} else if (ps.origin === 'remote') {
+			q['metadata._user.host'] = { $ne: null };
+		}
 	}
 
 	const files = await File
