@@ -26,6 +26,9 @@
 					<option value="local">{{ $t('origin.local') }}</option>
 					<option value="remote">{{ $t('origin.remote') }}</option>
 				</ui-select>
+				<ui-input v-model="hostname" type="text" spellcheck="false" :disabled="origin === 'local'">
+					<span>{{ $t('host') }}</span>
+				</ui-input>
 			</ui-horizon-group>
 			<sequential-entrance animation="entranceFromTop" delay="25">
 				<div class="kidvdlkg" v-for="file in files">
@@ -82,6 +85,7 @@ export default Vue.extend({
 			file: null,
 			target: null,
 			origin: 'local',
+			hostname: '',
 			limit: 10,
 			offset: 0,
 			files: [],
@@ -92,6 +96,13 @@ export default Vue.extend({
 
 	watch: {
 		origin() {
+			if (this.origin === 'local') this.hostname = '';
+			this.files = [];
+			this.offset = 0;
+			this.fetch();
+		},
+
+		hostname() {
 			this.files = [];
 			this.offset = 0;
 			this.fetch();
@@ -117,6 +128,7 @@ export default Vue.extend({
 		fetch() {
 			this.$root.api('admin/drive/files', {
 				origin: this.origin,
+				hostname: this.hostname,
 				offset: this.offset,
 				limit: this.limit + 1
 			}).then(files => {

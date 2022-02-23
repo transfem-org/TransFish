@@ -1,4 +1,5 @@
 import $ from 'cafy';
+import { toDbHost } from '../../../../../misc/convert-host';
 import File, { packMany } from '../../../../../models/drive-file';
 import define from '../../../define';
 
@@ -40,8 +41,8 @@ export default define(meta, async (ps, me) => {
 		'metadata.deletedAt': { $exists: false },
 	} as any;
 
-	if (ps.hostname != null) {
-		q['metadata._user.host'] = ps.hostname;	// TODO:normalize
+	if (ps.hostname != null && ps.hostname.length > 0) {
+		q['metadata._user.host'] = toDbHost(ps.hostname);
 	} else {
 		if (ps.origin == 'local') q['metadata._user.host'] = null;
 		if (ps.origin == 'remote') q['metadata._user.host'] = { $ne: null };
@@ -50,6 +51,7 @@ export default define(meta, async (ps, me) => {
 	const files = await File
 		.find(q, {
 			limit: ps.limit,
+			sort: { _id: -1 },
 			skip: ps.offset
 		});
 
