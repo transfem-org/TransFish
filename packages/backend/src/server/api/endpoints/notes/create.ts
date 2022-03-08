@@ -11,6 +11,7 @@ import { noteVisibilities } from '../../../../types.js';
 import { ApiError } from '../../error.js';
 import define from '../../define.js';
 import { HOUR } from '@/const.js';
+import { getNote } from '../../common/getters.js';
 
 export const meta = {
 	tags: ['notes'],
