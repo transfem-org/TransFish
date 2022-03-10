@@ -103,11 +103,13 @@ function greet(config: Config) {
 	if (!envOption.quiet && process.env.NODE_ENV !== 'test') {
 		//#region Meisskey logo
 		const v = `v${config.version}`;
-		console.log(chalk.red('  _____     _         _           '));
-		console.log(chalk.red(' |     |___|_|___ ___| |_ ___ _ _ '));
-		console.log(chalk.red(` | | | | -_| |_ -|_ -| '_| -_| | |`));
-		console.log(chalk.red(' |_|_|_|___|_|___|___|_,_|___|_  |'));
-		console.log(' ' + chalk.redBright(v) + chalk.red('                            |___|\n'.substr(v.length)));
+		console.log(chalk.red(' '));
+		console.log(chalk.red(' • ▌ ▄ ·. ▄▄▄ .▪  .▄▄ · .▄▄ · ▄ •▄ ▄▄▄ . ▄· ▄▌'));
+		console.log(chalk.red(' ·██ ▐███▪▀▄.▀·██ ▐█ ▀. ▐█ ▀. █▌▄▌▪▀▄.▀·▐█▪██▌'));
+		console.log(chalk.red(` ▐█ ▌▐▌▐█·▐▀▀▪▄▐█·▄▀▀▀█▄▄▀▀▀█▄▐▀▀▄·▐▀▀▪▄▐█▌▐█▪`));
+		console.log(chalk.red(' ██ ██▌▐█▌▐█▄▄▌▐█▌▐█▄▪▐█▐█▄▪▐█▐█.█▌▐█▄▄▌ ▐█▀·.'));
+		console.log(chalk.red(' ▀▀  █▪▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀  ▀▀▀▀ ·▀  ▀ ▀▀▀   ▀ • '));
+		console.log(' ' + chalk.redBright(v));
 		//#endregion
 
 		console.log('');
