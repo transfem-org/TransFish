@@ -1,11 +1,11 @@
-import User, { IUser, isLocalUser, isRemoteUser, IRemoteUser } from '../../../models/user';
+import { IUser, isLocalUser, isRemoteUser } from '../../../models/user';
 import Note, { INote } from '../../../models/note';
 import NoteReaction from '../../../models/note-reaction';
 import { publishNoteStream } from '../../stream';
 import { renderLike } from '../../../remote/activitypub/renderer/like';
 import renderUndo from '../../../remote/activitypub/renderer/undo';
 import { renderActivity } from '../../../remote/activitypub/renderer';
-import DeliverManager from '../../../remote/activitypub/deliver-manager';
+import { deliverToUser, deliverToFollowers } from '../../../remote/activitypub/deliver-manager';
 import { IdentifiableError } from '../../../misc/identifiable-error';
 import { decodeReaction } from '../../../misc/reaction-lib';
 import Notification from '../../../models/notification';
@@ -53,15 +53,9 @@ export default async (user: IUser, note: INote) => {
 
 	//#region 配信
 	if (isLocalUser(user) && !note.localOnly && !user.noFederation) {
-		const content = renderActivity(renderUndo(await renderLike(exist, note), user));
-
-		const dm = new DeliverManager(user, content);
-		if (isRemoteUser(note._user)) {
-			const reactee = await User.findOne(note.userId);
-			dm.addDirectRecipe(reactee as IRemoteUser, true);
-		}
-		dm.addFollowersRecipe();
-		dm.execute();
+		const content = renderActivity(renderUndo(await renderLike(exist, note), user), user);
+		if (isRemoteUser(note._user)) deliverToUser(user, content, note._user);
+		deliverToFollowers(user, content, true);
 		//deliverToRelays(user, content);
 	}
 	//#endregion
