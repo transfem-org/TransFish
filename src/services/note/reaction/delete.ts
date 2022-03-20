@@ -54,7 +54,7 @@ export default async (user: IUser, note: INote) => {
 	//#region 配信
 	if (isLocalUser(user) && !note.localOnly && !user.noFederation) {
 		const content = renderActivity(renderUndo(await renderLike(exist, note), user), user);
-		if (isRemoteUser(note._user)) deliverToUser(user, content, note._user);
+		//if (isRemoteUser(note._user)) deliverToUser(user, content, note._user);
 		deliverToFollowers(user, content, true);
 		//deliverToRelays(user, content);
 	}
