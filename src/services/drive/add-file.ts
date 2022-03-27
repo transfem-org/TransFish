@@ -261,7 +261,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 	let thumbnail: IImage | null = null;
 
 	if (['image/jpeg', 'image/webp'].includes(type)) {
-		thumbnail = await convertSharpToJpeg(img, 530, 255);
+		thumbnail = await convertSharpToJpeg(img, 530, 255, { useMozjpeg: true });
 	} else if (['image/png', 'image/svg+xml'].includes(type)) {
 		thumbnail = await convertSharpToPngOrJpeg(img, 530, 255);
 	}
