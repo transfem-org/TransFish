@@ -264,7 +264,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 
 	if (['image/jpeg', 'image/webp'].includes(type)) {
 		// このあたりのサイズだとWebPの方が強いが互換性のためにとりあえず保留
-		thumbnail = await convertSharpToJpeg(img, 530, 255, { useMozjpeg: true });
+		thumbnail = await convertSharpToJpeg(img, 530, 255);
 	} else if (['image/png', 'image/svg+xml'].includes(type)) {
 		// このあたりのサイズだとWebPの方が強いが互換性のためにとりあえず保留
 		// こっちの方は smartSubsample 使うといいかも
