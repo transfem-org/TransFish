@@ -239,8 +239,10 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 
 		if (['image/jpeg'].includes(type) && !webpulicSafe) {
 			if (subsamplingOff) {
+				// (Photoshopの書き出しのデフォルトのように) Chroma subsampling を行っていない場合は、意図を汲んで行わないようにする。
 				webpublic = await convertSharpToJpeg(img, 2048, 2048, { disableSubsampling: true });
 			} else {
+				// それ以外は、MozJPEGルーチンを使用する (このあたりのサイズだとWebPより強い)
 				webpublic = await convertSharpToJpeg(img, 2048, 2048, { useMozjpeg: true });
 			}
 		} else if (['image/webp'].includes(type) && !webpulicSafe) {
@@ -261,8 +263,11 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 	let thumbnail: IImage | null = null;
 
 	if (['image/jpeg', 'image/webp'].includes(type)) {
+		// このあたりのサイズだとWebPの方が強いが互換性のためにとりあえず保留
 		thumbnail = await convertSharpToJpeg(img, 530, 255, { useMozjpeg: true });
 	} else if (['image/png', 'image/svg+xml'].includes(type)) {
+		// このあたりのサイズだとWebPの方が強いが互換性のためにとりあえず保留
+		// こっちの方は smartSubsample 使うといいかも
 		thumbnail = await convertSharpToPngOrJpeg(img, 530, 255);
 	}
 	// #endregion thumbnail
