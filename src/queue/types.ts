@@ -1,4 +1,4 @@
-import * as httpSignature from '@peertube/http-signature';
+import * as httpSignature from 'http-signature';
 import { IActivity } from '../remote/activitypub/type';
 
 export type ThinUser = {

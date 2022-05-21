@@ -1,4 +1,4 @@
-declare module '@peertube/http-signature' {
+declare module 'http-signature' {
 	import { IncomingMessage, ClientRequest } from 'http';
 
 	interface ISignature {
