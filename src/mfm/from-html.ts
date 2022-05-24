@@ -10,6 +10,19 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 	let text = '';
 
+	let compensatableNL = 0;
+
+	const pushCompensatableNL = (n: number) => {
+		text += '\n'.repeat(n);
+		compensatableNL = n;
+	}
+
+	const resolveCompensatableNL = (n?: number) => {
+		const d = (n || 0) - compensatableNL;
+		if (d > 0) text += '\n'.repeat(d);
+		compensatableNL = 0;
+	}
+
 	for (const n of dom.childNodes) {
 		analyze(n);
 	}
@@ -26,6 +39,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 	function analyze(node: parse5.Node) {
 		if (treeAdapter.isTextNode(node)) {
+			resolveCompensatableNL();
 			text += node.value;
 			return;
 		}
@@ -35,10 +49,11 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 		switch (node.nodeName) {
 			case 'br':
-				text += '\n';
+				resolveCompensatableNL(1);
 				break;
 
 			case 'a': {
+				resolveCompensatableNL();
 				const txt = getText(node);
 				const rel = node.attrs.find(x => x.name == 'rel');
 				const href = node.attrs.find(x => x.name == 'href');
@@ -106,6 +121,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 			case 'h1':
 			{
+				resolveCompensatableNL();
 				text += '【';
 				appendChildren(node.childNodes);
 				text += '】\n';
@@ -115,6 +131,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 			case 'b':
 			case 'strong':
 			{
+				resolveCompensatableNL();
 				text += '**';
 				appendChildren(node.childNodes);
 				text += '**';
@@ -123,6 +140,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 			case 'small':
 			{
+				resolveCompensatableNL();
 				text += '<small>';
 				appendChildren(node.childNodes);
 				text += '</small>';
@@ -132,6 +150,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 			case 's':
 			case 'del':
 			{
+				resolveCompensatableNL();
 				text += '~~';
 				appendChildren(node.childNodes);
 				text += '~~';
@@ -141,6 +160,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 			case 'i':
 			case 'em':
 			{
+				resolveCompensatableNL();
 				text += '<i>';
 				appendChildren(node.childNodes);
 				text += '</i>';
@@ -149,6 +169,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 			// block code (<pre><code>)
 			case 'pre': {
+				resolveCompensatableNL();
 				if (node.childNodes.length === 1 && node.childNodes[0].nodeName === 'code') {
 					text += '```\n';
 					text += getText(node.childNodes[0]);
@@ -161,6 +182,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 
 			// inline code (<code>)
 			case 'code': {
+				resolveCompensatableNL();
 				text += '`';
 				appendChildren(node.childNodes);
 				text += '`';
@@ -168,6 +190,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 			}
 
 			case 'blockquote': {
+				resolveCompensatableNL();
 				const t = getText(node);
 				if (t) {
 					text += '> ';
@@ -183,8 +206,9 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 			case 'h5':
 			case 'h6':
 			{
-				text += '\n\n';
+				resolveCompensatableNL(2);
 				appendChildren(node.childNodes);
+				pushCompensatableNL(2);
 				break;
 			}
 
@@ -196,12 +220,14 @@ export function fromHtml(html: string, hashtagNames?: string[]): string | null {
 			case 'dt':
 			case 'dd':
 			{
-				text += '\n';
+				resolveCompensatableNL(1);
 				appendChildren(node.childNodes);
+				pushCompensatableNL(1);
 				break;
 			}
 
 			default:
+				resolveCompensatableNL();
 				appendChildren(node.childNodes);
 				break;
 		}

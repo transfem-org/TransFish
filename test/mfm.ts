@@ -1391,6 +1391,34 @@ describe('fromHtml', () => {
 	it('hashtag', () => {
 		assert.deepStrictEqual(fromHtml('<p>a <a href="https://example.com/tags/a">#a</a> d</p>', ['#a']), 'a #a d');
 	});
+
+	it('Compensatable NL - block(p)-inline => 2NL', () => {
+		assert.deepStrictEqual(fromHtml('<p>x</p><a href="https://example.com">https://example.com</a>'), 'x\n\nhttps://example.com');
+	});
+
+	it('Compensatable NL - block(div)-inline => 1NL', () => {
+		assert.deepStrictEqual(fromHtml('<div>x</div><a href="https://example.com">https://example.com</a>'), 'x\nhttps://example.com');
+	});
+
+	it('Compensatable NL - block(p)-block(p) => 2NL', () => {
+		assert.deepStrictEqual(fromHtml('<p>x</p><p>y</p>'), 'x\n\ny');
+	});
+
+	it('Compensatable NL - block(p)-block(div) => 2NL', () => {
+		assert.deepStrictEqual(fromHtml('<p>x</p><div>y</div>'), 'x\n\ny');
+	});
+
+	it('Compensatable NL - block(div)-block(p) => 2NL', () => {
+		assert.deepStrictEqual(fromHtml('<div>x</div><p>y</p>'), 'x\n\ny');
+	});
+
+	it('Compensatable NL - block(div)-block(div) => 1NL', () => {
+		assert.deepStrictEqual(fromHtml('<div>x</div><div>y</div>'), 'x\ny');
+	});
+
+	it('Compensatable NL - inline-inline => 0NL', () => {
+		assert.deepStrictEqual(fromHtml('<span>x</span>y'), 'xy');
+	});
 });
 
 describe('toHtml', () => {
