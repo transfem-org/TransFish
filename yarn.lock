@@ -5903,9 +5903,10 @@ msgpackr@^1.5.2:
   optionalDependencies:
     msgpackr-extract "^1.0.14"
 
-"multer@git+https://github.com/jlourenc/multer#e081d486484bef2ef8b8ad36b13f2da70132acae":
-  version "1.4.4"
-  resolved "git+https://github.com/jlourenc/multer#e081d486484bef2ef8b8ad36b13f2da70132acae"
+multer@1.4.4-lts.1:
+  version "1.4.4-lts.1"
+  resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.4-lts.1.tgz#24100f701a4611211cfae94ae16ea39bb314e04d"
+  integrity sha512-WeSGziVj6+Z2/MwQo3GvqzgR+9Uc+qt8SwHKh3gvNPiISKfsMfG4SvCOFYlxxgkXt7yIV2i1yczehm0EOKIxIg==
   dependencies:
     append-field "^1.0.0"
     busboy "^1.0.0"
