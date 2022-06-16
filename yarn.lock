@@ -1774,10 +1774,10 @@ builtin-modules@^1.1.1:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
-bull@4.8.3:
-  version "4.8.3"
-  resolved "https://registry.yarnpkg.com/bull/-/bull-4.8.3.tgz#4ab67029fee1183dcb7185895b20dc08c02d6bf2"
-  integrity sha512-oOHr+KTLu3JM5V9TXsg18/1xyVQceoYCFiGrXZOpu9abZn3W3vXJtMBrwB6Yvl/RxSKVVBpoa25RF/ya3750qg==
+bull@4.8.4:
+  version "4.8.4"
+  resolved "https://registry.yarnpkg.com/bull/-/bull-4.8.4.tgz#c538610492050d5160dbd9180704145f135a0aa9"
+  integrity sha512-vDNhM/pvfFY3+msulMbqPBdBO7ntKxRZRtMfi3EguVW/Ozo4uez+B81I8ZoDxYCLgSOBfwRuPnFtcv7QNzm4Ew==
   dependencies:
     cron-parser "^4.2.1"
     debuglog "^1.0.0"
@@ -8192,10 +8192,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-systeminformation@5.11.16:
-  version "5.11.16"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.11.16.tgz#5f6fda2447fafe204bd2ab543475f1ffa8c14a85"
-  integrity sha512-/a1VfP9WELKLT330yhAHJ4lWCXRYynel1kMMHKc/qdzCgDt3BIcMlo+3tKcTiRHFefjV3fz4AvqMx7dGO/72zw==
+systeminformation@5.11.20:
+  version "5.11.20"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.11.20.tgz#a0e1dcfc80c0dac12f1475d9a97e564ba8fa58a2"
+  integrity sha512-7PTbNtcTBKIdUJ8zY7KeHH0lUArh5IgkJhunWYtaVPQXU1N+9Pk4Ko2Adb3w4qgB6Zmm70SvX6zxnnzca+0j4A==
 
 syuilo-password-strength@0.0.1:
   version "0.0.1"
