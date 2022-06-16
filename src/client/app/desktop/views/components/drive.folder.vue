@@ -63,7 +63,9 @@ export default Vue.extend({
 				text: this.$t('contextmenu.show-in-new-window'),
 				icon: ['far', 'window-restore'],
 				action: this.newWindow
-			}, null, {
+			}, ...(this.folder ? [
+				null,
+				{
 				type: 'item',
 				text: this.$t('contextmenu.rename'),
 				icon: 'i-cursor',
@@ -73,7 +75,7 @@ export default Vue.extend({
 				text: this.$t('@.delete'),
 				icon: ['far', 'trash-alt'],
 				action: this.deleteFolder
-			}], {
+			}] : [])], {
 				closed: () => {
 					this.isContextmenuShowing = false;
 				}
@@ -133,7 +135,7 @@ export default Vue.extend({
 				this.browser.removeFile(file.id);
 				this.$root.api('drive/files/update', {
 					fileId: file.id,
-					folderId: this.folder.id
+					folderId: this.folder?.id || null
 				});
 			}
 			//#endregion
@@ -144,12 +146,12 @@ export default Vue.extend({
 				const folder = JSON.parse(driveFolder);
 
 				// 移動先が自分自身ならreject
-				if (folder.id == this.folder.id) return;
+				if (folder.id == this.folder?.id) return;
 
 				this.browser.removeFolder(folder.id);
 				this.$root.api('drive/folders/update', {
 					folderId: folder.id,
-					parentId: this.folder.id
+					parentId: this.folder?.id || null
 				}).then(() => {
 					// noop
 				}).catch(err => {
@@ -184,7 +186,7 @@ export default Vue.extend({
 		},
 
 		go() {
-			this.browser.move(this.folder.id);
+			this.browser.move(this.folder?.id || null);
 		},
 
 		newWindow() {
