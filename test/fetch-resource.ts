@@ -290,6 +290,13 @@ describe('Fetch resource', () => {
 				'twitter:player:height': doc.querySelector('meta[name="twitter:player:height"]')?.getAttribute('content'),
 				'twitter:player:stream': doc.querySelector('meta[name="twitter:player:stream"]')?.getAttribute('content'),
 				'twitter:player:stream:content_type': doc.querySelector('meta[name="twitter:player:stream:content_type"]')?.getAttribute('content'),
+
+				// Player - og
+				'og:video:url': doc.querySelector('meta[property="og:video:url"]')?.getAttribute('content'),
+				'og:video:secure_url': doc.querySelector('meta[property="og:video:secure_url"]')?.getAttribute('content'),
+				'og:video:type': doc.querySelector('meta[property="og:video:type"]')?.getAttribute('content'),
+				'og:video:width': doc.querySelector('meta[property="og:video:width"]')?.getAttribute('content'),
+				'og:video:height': doc.querySelector('meta[property="og:video:height"]')?.getAttribute('content'),
 			};
 		}
 
@@ -313,6 +320,11 @@ describe('Fetch resource', () => {
 				'twitter:player:height': undefined,
 				'twitter:player:stream': undefined,
 				'twitter:player:stream:content_type': undefined,
+				'og:video:url': undefined,
+				'og:video:secure_url': undefined,
+				'og:video:type': undefined,
+				'og:video:width': undefined,
+				'og:video:height': undefined,
 			});
 		}));
 
@@ -336,6 +348,11 @@ describe('Fetch resource', () => {
 				'twitter:player:height': undefined,
 				'twitter:player:stream': undefined,
 				'twitter:player:stream:content_type': undefined,
+				'og:video:url': undefined,
+				'og:video:secure_url': undefined,
+				'og:video:type': undefined,
+				'og:video:width': undefined,
+				'og:video:height': undefined,
 			});
 		}));
 
@@ -359,6 +376,11 @@ describe('Fetch resource', () => {
 				'twitter:player:height': undefined,
 				'twitter:player:stream': undefined,
 				'twitter:player:stream:content_type': undefined,
+				'og:video:url': undefined,
+				'og:video:secure_url': undefined,
+				'og:video:type': undefined,
+				'og:video:width': undefined,
+				'og:video:height': undefined,
 			});
 		}));
 
@@ -382,6 +404,11 @@ describe('Fetch resource', () => {
 				'twitter:player:height': undefined,
 				'twitter:player:stream': undefined,
 				'twitter:player:stream:content_type': undefined,
+				'og:video:url': undefined,
+				'og:video:secure_url': undefined,
+				'og:video:type': undefined,
+				'og:video:width': undefined,
+				'og:video:height': undefined,
 			});
 		}));
 
@@ -405,6 +432,11 @@ describe('Fetch resource', () => {
 				'twitter:player:height': '255',
 				'twitter:player:stream': alicesPostVideo.files[0].url,
 				'twitter:player:stream:content_type': alicesPostVideo.files[0].type,
+				'og:video:url': `http://misskey.local/notes/${alicesPostVideo.id}/embed`,
+				'og:video:secure_url': `http://misskey.local/notes/${alicesPostVideo.id}/embed`,
+				'og:video:type': 'text/html',
+				'og:video:width': '530',
+				'og:video:height': '255',
 			});
 		}));
 	});
