@@ -1,10 +1,10 @@
-import ms from 'ms';
 import define from '../../../define.js';
 import { DriveFiles, GalleryPosts } from '@/models/index.js';
 import { genId } from '../../../../../misc/gen-id.js';
 import { GalleryPost } from '@/models/entities/gallery-post.js';
 import { ApiError } from '../../../error.js';
 import { DriveFile } from '@/models/entities/drive-file.js';
+import { HOUR } from '@/const.js';
 
 export const meta = {
 	tags: ['gallery'],
@@ -14,7 +14,7 @@ export const meta = {
 	kind: 'write:gallery',
 
 	limit: {
-		duration: ms('1hour'),
+		duration: HOUR,
 		max: 300,
 	},
 

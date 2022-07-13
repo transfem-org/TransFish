@@ -1,7 +1,6 @@
 import define from '../../define.js';
 import Resolver from '@/remote/activitypub/resolver.js';
-import { ApiError } from '../../error.js';
-import ms from 'ms';
+import { HOUR } from '@/const.js';
 
 export const meta = {
 	tags: ['federation'],
@@ -9,7 +8,7 @@ export const meta = {
 	requireCredential: true,
 
 	limit: {
-		duration: ms('1hour'),
+		duration: HOUR,
 		max: 30,
 	},
 
