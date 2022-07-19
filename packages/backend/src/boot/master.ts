@@ -34,7 +34,7 @@ function greet() {
 		console.log(themeColor(' / /  / _` | |/ __| |/ / _ \ | | |'));
 		console.log(themeColor('/ /__| (_| | | (__|   <  __/ |_| |'));
 		console.log(themeColor('\\____/\\__,_|_|\\___|_|\\_\\___|\\__, |'));
-		console.log(themeColor('                            |___/ '));
+		console.log(themeColor('                            (___/ '));
 		//#endregion
 
 		console.log(' Calckey is an open-source decentralized microblogging platform.');
