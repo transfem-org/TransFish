@@ -1,5 +1,16 @@
 # All the changes to Calckey from stock Misskey
 
+### Planned
+
+- MFM button
+- Better Messaging UI
+- Like/star button
+- Option to publicize instance blocks
+- Better intro/onboarding
+- Fully revamp welcome.a (non-logged in screen)
+- Tabler icons instead of FontAwesome
+- Personal notes for all accounts
+
 ### Implemented
 
 - Yarn 3
@@ -22,14 +33,3 @@
 - https://github.com/misskey-dev/misskey/pull/8927
 - https://github.com/misskey-dev/misskey/pull/8927
 - https://github.com/misskey-dev/misskey/pull/8549
-
-### Planned
-
-- MFM button
-- Better Messaging UI
-- Like/star button
-- Option to publicize instance blocks
-- Better intro/onboarding
-- Fully revamp welcome.a (non-logged in screen)
-- Tabler icons instead of FontAwesome
-- Personal notes for all accounts
