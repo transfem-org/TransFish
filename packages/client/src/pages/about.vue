@@ -19,7 +19,7 @@
 
 			<FormSection>
 				<MkKeyValue class="_formBlock" :copy="version">
-					<template #key>Misskey</template>
+					<template #key>Calckey</template>
 					<template #value>{{ version }}</template>
 				</MkKeyValue>
 				<FormLink to="/about-misskey">{{ $ts.aboutMisskey }}</FormLink>
