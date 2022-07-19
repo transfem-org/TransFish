@@ -28,7 +28,6 @@
 - MFM button
 - Better Messaging UI
 - Like/star button
-- Star react by default
 - Better intro/onboarding
 - Fully revamp welcome.a (non-logged in screen)
 - Tabler icons instead of FontAwesome
