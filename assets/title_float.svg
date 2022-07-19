@@ -37,8 +37,8 @@
 		}
 	</style>
 	<linearGradient id="myGradient" gradientTransform="rotate(90)">
-      <stop offset="5%"  stop-color="#A1CA03" />
-      <stop offset="95%" stop-color="#91BA03" />
+      <stop offset="5%"  stop-color="#9ccfd8" />
+      <stop offset="95%" stop-color="#31748f" />
     </linearGradient>
   <defs
      id="defs14" />
