@@ -242,7 +242,7 @@ function more() {
 		}
 
 		> .middle {
-			flex: 1;
+			flex: 0.1;
 
 			> .divider {
 				margin: 16px 16px;
