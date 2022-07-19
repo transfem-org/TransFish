@@ -23,21 +23,23 @@ const meta = JSON.parse(fs.readFileSync(`${_dirname}/../../../../built/meta.json
 const logger = new Logger('core', 'cyan');
 const bootLogger = logger.createSubLogger('boot', 'magenta', false);
 
-const themeColor = chalk.hex('#86b300');
+const themeColor = chalk.hex('#31748f');
 
 function greet() {
 	if (!envOption.quiet) {
 		//#region Misskey logo
 		const v = `v${meta.version}`;
-		console.log(themeColor('  _____ _         _           '));
-		console.log(themeColor(' |     |_|___ ___| |_ ___ _ _ '));
-		console.log(themeColor(' | | | | |_ -|_ -| \'_| -_| | |'));
-		console.log(themeColor(' |_|_|_|_|___|___|_,_|___|_  |'));
+		console.log(themeColor('   ___      _      _              '));
+		console.log(themeColor('  / __\\__ _| | ___| | _____ _   _ '));
+		console.log(themeColor(' / /  / _` | |/ __| |/ / _ \ | | |'));
+		console.log(themeColor('/ /__| (_| | | (__|   <  __/ |_| |'));
+		console.log(themeColor('\\____/\\__,_|_|\\___|_|\\_\\___|\\__, |'));
+		console.log(themeColor('                            |___/ '));
 		console.log(' ' + chalk.gray(v) + themeColor('                        |___|\n'.substr(v.length)));
 		//#endregion
 
 		console.log(' Misskey is an open-source decentralized microblogging platform.');
-		console.log(chalk.rgb(255, 136, 0)(' If you like Misskey, please donate to support development. https://www.patreon.com/syuilo'));
+		console.log(chalk.rgb(255, 136, 0)(' If you like Calckey, please consider starring or contributing to the repo. https://codeberg.org/thatonecalculator/calckey'));
 
 		console.log('');
 		console.log(chalkTemplate`--- ${os.hostname()} {gray (PID: ${process.pid.toString()})} ---`);
