@@ -35,7 +35,7 @@ Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/).
 ## 🤔 What's different about Calckey?
 Read [this](./CALCKEY.md) for current and future differences.
 
-## 🛻 Migrating to Calckey from Misskey
+## 🛻 Migrating from Misskey to Calckey
 ```sh
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
