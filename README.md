@@ -49,6 +49,7 @@ yarn set version berry
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
 cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey folder is
+cp -r ../misskey/files . # if you don't use object storage
 yarn install # Prepend `YARN_CHECKSUM_BEHAVIOR=update` if it doesn't work
 NODE_ENV=production npm run build && npm run migrate
 # Edit service to point to calckey folder and restart!
