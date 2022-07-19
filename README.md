@@ -47,5 +47,5 @@ cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey fo
 yarn --version # Check version is yarn 3.2.1!
 yarn install
 NODE_ENV=production npm run build && npm run migrate
-# Edit service to point to calckey service and restart
+# Edit service to point to calckey folder and restart!
 ```
