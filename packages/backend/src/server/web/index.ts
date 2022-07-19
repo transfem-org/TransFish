@@ -280,7 +280,7 @@ const motd = [
 	'Use the 4 buttons at the top (or the top drop-down on mobile) to switch timelines.',
 	'The Fediverse is made up of more than just Calckey.',
 	'Avatars and banners can be GIFs.',
-  'When writing a note, type $ to see a list of cool text effects (mfm).',
+	'When writing a note, type $ to see a list of cool text effects (mfm).',
 	'Be gay, do crime.',
 ];
 
