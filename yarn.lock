@@ -2991,6 +2991,7 @@ __metadata:
     node-fetch: 3.2.8
     nodemailer: 6.7.7
     nsfwjs: 2.4.1
+    oauth: ^0.9.15
     os-utils: 0.0.14
     parse5: 7.0.0
     pg: 8.7.3
@@ -10587,7 +10588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oauth@npm:0.9.15":
+"oauth@npm:0.9.15, oauth@npm:^0.9.15":
   version: 0.9.15
   resolution: "oauth@npm:0.9.15"
   checksum: 957c0d8d85300398dcb0e293953650c0fc3facc795bee8228238414f19f59cef5fd4ee8d17a972c142924c10c5f6ec50ef80f77f4a6cc6e3c98f9d22c027801c
