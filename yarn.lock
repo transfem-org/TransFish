@@ -3945,7 +3945,6 @@ __metadata:
     v-debounce: 0.1.2
     vanilla-tilt: 1.7.2
     vite: ^3.0.2
-    vlitejs: 4.0.6
     vue: 3.2.37
     vue-prism-editor: 2.0.0-alpha.2
     vuedraggable: 4.0.1
@@ -14979,15 +14978,6 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 10aebec0df89bbdba9a0c72dc35ec3ec5be0b50216fc7a1e04b5da11de244033b1cbe83a95b1af67be176fc09e05698387d3cc9dcbee64e009dd43811f8717e9
-  languageName: node
-  linkType: hard
-
-"vlitejs@npm:4.0.6":
-  version: 4.0.6
-  resolution: "vlitejs@npm:4.0.6"
-  dependencies:
-    validate-target: ^2.0.0
-  checksum: c538120d029f8bd53b774242674428595494287c3951e10a6cf6a36f8be4d0e50b0a6c50c2c9f11343fca3c9d748a408d51e694e42270f47fb10a14bdbf6a970
   languageName: node
   linkType: hard
 
