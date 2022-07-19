@@ -1,9 +1,9 @@
 <div align="center">
-<a href="https://misskey-hub.net">
+<a href="https://stop.voring.me/">
 	<img src="./assets/title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
 </a>
 	
-**🌎 **[Calckey](https://misskey-hub.net/)** is an open source, decentralized social media platform that's free forever! 🚀**
+**🌎 **[Calckey](https://stop.voring.me/)** is an open source, decentralized social media platform that's free forever! 🚀**
 	
 </div>
 
@@ -28,14 +28,14 @@ With Calckey's built in drive, you get cloud storage right in your social media,
 
 <div style="clear: both;"></div>
 
-## Documentation
+## 📝 Documentation
 
-Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/), some of the links and graphics above also lead to specific portions of it.
+Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/).
 
-## What's different about Calckey?
+## 🤔 What's different about Calckey?
 Read [this](./CALCKEY.md) for current and future differences.
 
-## Migrating to Calckey from Misskey
+## 🛻 Migrating to Calckey from Misskey
 ```sh
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
