@@ -7,6 +7,7 @@
 - Rosé Pine by default
 - Better welcome screen (not logged in)
 - Annoying Orange search
+- MOTD
 - https://github.com/misskey-dev/misskey/pull/8983
 - https://github.com/misskey-dev/misskey/pull/8956
 - https://github.com/misskey-dev/misskey/pull/8954
