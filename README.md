@@ -33,7 +33,7 @@ With Calckey's built in drive, you get cloud storage right in your social media,
 Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/), some of the links and graphics above also lead to specific portions of it.
 
 ## What's different about Calckey?
-Read [this](./CALCKEY.md)
+Read [this](./CALCKEY.md) for current and future differences.
 
 ## Migrating to Calckey from Misskey
 ```sh
