@@ -105,6 +105,7 @@ same as 12.112.0
 - Client: For notes with specified visibility, show recipients when hovering over visibility symbol. @Johann150
 - Client: Make widgets available again on a tablet @syuilo
 - ユーザーにモデレーションメモを残せる機能 @syuilo
+- Client: Add timeline page that can be viewed when not logged in @futchitwo
 - Make possible to delete an account by admin @syuilo
 - Improve player detection in URL preview @mei23
 - Add Badge Image to Push Notification #8012 @tamaina
