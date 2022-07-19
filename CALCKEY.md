@@ -28,6 +28,7 @@
 - MFM button
 - Better Messaging UI
 - Like/star button
+- Option to publicize instance blocks
 - Better intro/onboarding
 - Fully revamp welcome.a (non-logged in screen)
 - Tabler icons instead of FontAwesome
