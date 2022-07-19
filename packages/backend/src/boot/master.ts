@@ -27,7 +27,7 @@ const themeColor = chalk.hex('#31748f');
 
 function greet() {
 	if (!envOption.quiet) {
-		//#region Misskey logo
+		//#region Calckey logo
 		const v = `v${meta.version}`;
 		console.log(themeColor('   ___      _      _              '));
 		console.log(themeColor('  / __\\__ _| | ___| | _____ _   _ '));
