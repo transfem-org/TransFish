@@ -257,7 +257,7 @@ export const defaultStore = markRaw(new Storage('base', {
 	},
 	enterSendsMessage: {
 		where: 'device',
-		default: false,
+		default: true,
 	},
 }));
 
