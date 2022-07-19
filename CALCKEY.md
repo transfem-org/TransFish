@@ -6,6 +6,7 @@
 - Star as default reaction
 - Rosé Pine by default
 - Better welcome screen (not logged in)
+- Annoying Orange search
 - https://github.com/misskey-dev/misskey/pull/8983
 - https://github.com/misskey-dev/misskey/pull/8956
 - https://github.com/misskey-dev/misskey/pull/8954
