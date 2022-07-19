@@ -34,3 +34,12 @@ Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/), s
 
 ## What's different about Calckey?
 Read [this](./CALCKEY.md)
+
+## Migrating to Calckey from Misskey
+```sh
+git clone https://codeberg.org/thatonecalculator/calckey.git
+cd calckey/
+cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey folder is
+NODE_ENV=production npm run build && npm run migrate
+# Edit service to point to calckey service and restart
+```
