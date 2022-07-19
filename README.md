@@ -37,7 +37,7 @@ Read [this](./CALCKEY.md) for current and future differences.
 
 ## 🛻 Migrating from Misskey to Calckey
 
-You need at least 🐢 NodeJS v16.5.0 (v18.4.0+ reccomended!) and *exactly* 🧶 Yarn v3.2.1!
+You need at least 🐢 NodeJS v16.10.0 (v18.4.0+ reccomended!) and *exactly* 🧶 Yarn v3.2.1!
 
 ```sh
 corepack enable
