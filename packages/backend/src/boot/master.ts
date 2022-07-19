@@ -37,15 +37,15 @@ function greet() {
 		console.log(themeColor('                            |___/ '));
 		//#endregion
 
-		console.log(' Misskey is an open-source decentralized microblogging platform.');
+		console.log(' Calckey is an open-source decentralized microblogging platform.');
 		console.log(chalk.rgb(255, 136, 0)(' If you like Calckey, please consider starring or contributing to the repo. https://codeberg.org/thatonecalculator/calckey'));
 
 		console.log('');
 		console.log(chalkTemplate`--- ${os.hostname()} {gray (PID: ${process.pid.toString()})} ---`);
 	}
 
-	bootLogger.info('Welcome to Misskey!');
-	bootLogger.info(`Misskey v${meta.version}`, null, true);
+	bootLogger.info('Welcome to Calckey!');
+	bootLogger.info(`Calckey v${meta.version}`, null, true);
 }
 
 /**
@@ -67,7 +67,7 @@ export async function masterMain() {
 		process.exit(1);
 	}
 
-	bootLogger.succ('Misskey initialized');
+	bootLogger.succ('Calckey initialized');
 
 	if (!envOption.disableClustering) {
 		await spawnWorkers(config.clusterLimit);
