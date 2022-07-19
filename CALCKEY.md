@@ -12,6 +12,7 @@
 - https://github.com/misskey-dev/misskey/pull/8996
 - https://github.com/misskey-dev/misskey/pull/8955
 - https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch
+- https://github.com/misskey-dev/misskey/pull/8671
 
 ### Planned
 
