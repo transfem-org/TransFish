@@ -4,6 +4,7 @@
 
 ### Planned
 - MFM button
+- Better Messaging UI
 - Like/star button
 - Star react by default
 - Better intro/onboarding
