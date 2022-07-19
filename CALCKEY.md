@@ -24,6 +24,7 @@
 - Saner defaults
 - Star as default reaction
 - Rosé Pine by default
+- Better sidebar/navbar
 - Better welcome screen (not logged in)
 - Annoying Orange search
 - MOTD
