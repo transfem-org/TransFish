@@ -5,6 +5,7 @@
 - Saner defaults
 - Star as default reaction
 - Rosé Pine by default
+- Better welcome screen (not logged in)
 - https://github.com/misskey-dev/misskey/pull/8983
 - https://github.com/misskey-dev/misskey/pull/8956
 - https://github.com/misskey-dev/misskey/pull/8954
@@ -13,6 +14,7 @@
 - https://github.com/misskey-dev/misskey/pull/8955
 - https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch
 - https://github.com/misskey-dev/misskey/pull/8671
+- https://github.com/misskey-dev/misskey/pull/8927
 
 ### Planned
 
@@ -21,6 +23,6 @@
 - Like/star button
 - Star react by default
 - Better intro/onboarding
-- Revamp welcome.a (non-logged in screen)
+- Fully revamp welcome.a (non-logged in screen)
 - Tabler icons instead of FontAwesome
 - Personal notes for all accounts
