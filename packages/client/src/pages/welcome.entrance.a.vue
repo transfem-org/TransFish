@@ -196,7 +196,8 @@ function showMenu(ev) {
 		> .emojis {
 			position: absolute;
 			bottom: 32px;
-			left: 35px;
+			left: 115px;
+			transform: scale(1.5);
 
 			> * {
 				margin-right: 8px;
@@ -278,7 +279,8 @@ function showMenu(ev) {
 			backdrop-filter: var(--blur, blur(15px));
 			border-radius: 999px;
 			overflow: clip;
-			width: 800px;
+			width: 35%;
+			left: 50%;
 			padding: 8px 0;
 
 			@media (max-width: 900px) {
