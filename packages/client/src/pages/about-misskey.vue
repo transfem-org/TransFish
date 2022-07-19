@@ -15,7 +15,7 @@
 					{{ i18n.ts._aboutMisskey.about }}<br><a href="https://misskey-hub.net/docs/misskey.html" target="_blank" class="_link">{{ i18n.ts.learnMore }}</a>
 				</div>
 				<div class="_formBlock" style="text-align: center;">
-					<MkButton primary rounded inline @click="iLoveMisskey">I <Mfm text="$[jelly ❤]"/> #Misskey</MkButton>
+					<MkButton primary rounded inline @click="iLoveMisskey">I <Mfm text="$[jelly ❤]"/> #Calckey</MkButton>
 				</div>
 				<FormSection>
 					<div class="_formLinks">
@@ -169,7 +169,7 @@ function gravity() {
 
 function iLoveMisskey() {
 	os.post({
-		initialText: 'I $[jelly ❤] #Calckey and #Misskey',
+		initialText: 'I $[jelly ❤] #Calckey',
 		instant: true,
 	});
 }
