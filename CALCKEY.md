@@ -16,6 +16,7 @@
 - https://github.com/misskey-dev/misskey/pull/8671
 - https://github.com/misskey-dev/misskey/pull/8927
 - https://github.com/misskey-dev/misskey/pull/8927
+- https://github.com/misskey-dev/misskey/pull/8549
 
 ### Planned
 
