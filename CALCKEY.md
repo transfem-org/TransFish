@@ -10,6 +10,11 @@
 - Fully revamp welcome.a (non-logged in screen)
 - Tabler icons instead of FontAwesome
 - Personal notes for all accounts
+- Ability to turn off "Connection lost" message (and set to default!)
+- Admin custom CSS
+- Improve notifications 
+- Non-nyaify cat mode
+- Timeline filters
 
 ### Implemented
 
