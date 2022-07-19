@@ -15,6 +15,7 @@
 - Improve notifications 
 - Non-nyaify cat mode
 - Timeline filters
+- Mark as read from notifications widget
 
 ### Implemented
 
