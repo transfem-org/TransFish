@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 FROM node:16.15.1-bullseye AS builder
-=======
-FROM node:18.2.0-alpine3.15 AS base
->>>>>>> thatonecalculator/yarn-3
 
 ARG NODE_ENV=production
 
