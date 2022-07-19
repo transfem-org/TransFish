@@ -2,6 +2,7 @@
 
 ### Implemented
 
+- Yarn 3
 - Saner defaults
 - Star as default reaction
 - Rosé Pine by default

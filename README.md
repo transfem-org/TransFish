@@ -2,9 +2,9 @@
 <a href="https://stop.voring.me/">
 	<img src="./assets/title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
 </a>
-	
+
 **🌎 **[Calckey](https://stop.voring.me/)** is an open source, decentralized social media platform that's free forever! 🚀**
-	
+
 </div>
 
 <div>
@@ -36,10 +36,16 @@ Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/).
 Read [this](./CALCKEY.md) for current and future differences.
 
 ## 🛻 Migrating from Misskey to Calckey
+
+You need at least 🐢 NodeJS v18.4.0 and *exactly* 🧶 Yarn v3.2.1!
+
 ```sh
+corepack enable
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
 cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey folder is
+yarn --version
+# Check version is yarn 3.2.1!
 NODE_ENV=production npm run build && npm run migrate
 # Edit service to point to calckey service and restart
 ```
