@@ -35,7 +35,6 @@ function greet() {
 		console.log(themeColor('/ /__| (_| | | (__|   <  __/ |_| |'));
 		console.log(themeColor('\\____/\\__,_|_|\\___|_|\\_\\___|\\__, |'));
 		console.log(themeColor('                            |___/ '));
-		console.log(' ' + chalk.gray(v) + themeColor('                        |___|\n'.substr(v.length)));
 		//#endregion
 
 		console.log(' Misskey is an open-source decentralized microblogging platform.');
