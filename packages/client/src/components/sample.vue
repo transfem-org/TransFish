@@ -50,8 +50,8 @@ export default defineComponent({
 		return {
 			text: '',
 			flag: true,
-			radio: 'misskey',
-			mfm: `Hello world! This is an @example mention. BTW you are @${this.$i ? this.$i.username : 'guest'}.\nAlso, here is ${config.url} and [example link](${config.url}). for more details, see https://example.com.\nAs you know #misskey is open-source software.`
+			radio: 'calckey',
+			mfm: `Hello world! This is an @example mention. BTW, you are @${this.$i ? this.$i.username : 'guest'}.\nAlso, here is ${config.url} and [example link](${config.url}). for more details, see https://example.com.\nAs you know #misskey is open-source software.`
 		};
 	},
 
