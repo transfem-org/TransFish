@@ -354,14 +354,14 @@ export class Meta {
 
 	@Column('varchar', {
 		length: 512,
-		default: 'https://github.com/misskey-dev/misskey',
+		default: 'https://codeberg.org/thatonecalculator/calckey',
 		nullable: false,
 	})
 	public repositoryUrl: string;
 
 	@Column('varchar', {
 		length: 512,
-		default: 'https://github.com/misskey-dev/misskey/issues/new',
+		default: 'https://codeberg.org/thatonecalculator/calckey/issues/new',
 		nullable: true,
 	})
 	public feedbackUrl: string | null;
