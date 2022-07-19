@@ -891,6 +891,8 @@ navbar: "Navigation bar"
 shuffle: "Shuffle"
 account: "Account"
 move: "Move"
+showAds: "Show ads"
+
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing NSFW media via Machine Learning. This will slightly increase the load on the server."
   sensitivity: "Detection sensitivity"
