@@ -457,7 +457,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .middle {
-				flex: 1;
+				flex: 0.1;
 
 				> .divider {
 					margin: 8px auto;
