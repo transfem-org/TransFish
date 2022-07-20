@@ -35,6 +35,7 @@
 			<option value="reload">{{ i18n.ts._serverDisconnectedBehavior.reload }}</option>
 			<option value="dialog">{{ i18n.ts._serverDisconnectedBehavior.dialog }}</option>
 			<option value="quiet">{{ i18n.ts._serverDisconnectedBehavior.quiet }}</option>
+			<option value="nothing">{{ i18n.ts._serverDisconnectedBehavior.nothing }}</option>
 		</FormSelect>
 	</FormSection>
 
