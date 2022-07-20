@@ -11,9 +11,8 @@
 - Fully revamp welcome.a (non-logged in screen)
 - Tabler icons instead of FontAwesome
 - Personal notes for all accounts
-- Ability to turn off "Connection lost" message (and set to default!)
 - Admin custom CSS
-- Improve notifications 
+- Improve notifications (content is too verbose)
 - Non-nyaify cat mode
 - Timeline filters
 - Mark as read from notifications widget
@@ -26,6 +25,7 @@
 - Rosé Pine by default
 - Better sidebar/navbar
 - Better welcome screen (not logged in)
+- Ability to turn off "Connection lost" message
 - Annoying Orange search
 - MOTD
 - Reply limit bug fixed
