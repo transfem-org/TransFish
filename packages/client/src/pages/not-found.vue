@@ -2,7 +2,7 @@
 <div class="ipledcug">
 	<div class="_fullinfo">
 		<img src="/static-assets/badges/not-found.jpg" class="_ghost" alt="Not found"/>
-		<div>{{ $ts.notFoundDescription }}</div>
+		<div>{{ i18n.ts.notFoundDescription }}</div>
 	</div>
 </div>
 </template>

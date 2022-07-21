@@ -2,14 +2,15 @@
 <transition :name="$store.state.animation ? 'zoom' : ''" appear>
 	<div class="mjndxjcg">
 		<img src="/static-assets/badges/error.jpg" class="_ghost" alt="Error"/>
-		<p><i class="fas fa-exclamation-triangle"></i> {{ $ts.somethingHappened }}</p>
-		<MkButton class="button" @click="() => $emit('retry')">{{ $ts.retry }}</MkButton>
+		<p><i class="fas fa-exclamation-triangle"></i> {{ i18n.ts.somethingHappened }}</p>
+		<MkButton class="button" @click="() => $emit('retry')">{{ i18n.ts.retry }}</MkButton>
 	</div>
 </transition>
 </template>
 
 <script lang="ts" setup>
 import MkButton from '@/components/ui/button.vue';
+import { i18n } from '@/i18n';
 </script>
 
 <style lang="scss" scoped>

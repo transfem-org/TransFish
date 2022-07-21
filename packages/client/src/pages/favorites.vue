@@ -6,7 +6,7 @@
 			<template #empty>
 				<div class="_fullinfo">
 					<img src="/static-assets/badges/info.jpg" class="_ghost" alt="Info"/>
-					<div>{{ $ts.noNotes }}</div>
+					<div>{{ i18n.ts.noNotes }}</div>
 				</div>
 			</template>
 

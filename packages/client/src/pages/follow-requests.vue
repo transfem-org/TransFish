@@ -6,7 +6,7 @@
 			<template #empty>
 				<div class="_fullinfo">
 					<img src="/static-assets/badges/info.jpg" class="_ghost"/>
-					<div>{{ $ts.noFollowRequests }}</div>
+					<div>{{ i18n.ts.noFollowRequests }}</div>
 				</div>
 			</template>
 			<template #default="{items}">
