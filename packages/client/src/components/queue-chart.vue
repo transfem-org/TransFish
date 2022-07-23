@@ -2,8 +2,8 @@
 <canvas ref="chartEl"></canvas>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
+<script lang="ts" setup>
+import { onMounted, onUnmounted, ref } from 'vue';
 import {
 	Chart,
 	ArcElement,
@@ -42,183 +42,88 @@ Chart.register(
 	Filler,
 );
 
-export default defineComponent({
-	props: {
-		domain: {
-			type: String,
-			required: true,
+const props = defineProps<{
+	domain: string,
+	connection: any,
+}>();
+
+const chartEl = ref<HTMLCanvasElement>(null);
+
+const gridColor = defaultStore.state.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+
+// フォントカラー
+Chart.defaults.color = getComputedStyle(document.documentElement).getPropertyValue('--fg');
+
+onMounted(() => {
+	const chartInstance = new Chart(chartEl.value, {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: 'Process',
+				pointRadius: 0,
+				tension: 0,
+				borderWidth: 2,
+				borderJoinStyle: 'round',
+				borderColor: '#9ccfd8',
+				backgroundColor: '#9ccfd81A',
+				data: []
+			}, {
+				label: 'Active',
+				pointRadius: 0,
+				tension: 0,
+				borderWidth: 2,
+				borderJoinStyle: 'round',
+				borderColor: '#31748f',
+				backgroundColor: '#31748f1A',
+				data: []
+			}, {
+				label: 'Waiting',
+				pointRadius: 0,
+				tension: 0,
+				borderWidth: 2,
+				borderJoinStyle: 'round',
+				borderColor: '#f6c177',
+				backgroundColor: '#f6c1771A',
+				yAxisID: 'y2',
+				data: []
+			}, {
+				label: 'Delayed',
+				pointRadius: 0,
+				tension: 0,
+				borderWidth: 2,
+				borderJoinStyle: 'round',
+				borderColor: '#eb6f92',
+				borderDash: [5, 5],
+				fill: false,
+				yAxisID: 'y2',
+				data: []
+			}],
 		},
-		connection: {
-			required: true,
-		},
-	},
-
-	setup(props) {
-		const chartEl = ref<HTMLCanvasElement>(null);
-
-		const gridColor = defaultStore.state.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
-
-		// フォントカラー
-		Chart.defaults.color = getComputedStyle(document.documentElement).getPropertyValue('--fg');
-
-		onMounted(() => {
-			const chartInstance = new Chart(chartEl.value, {
-				type: 'line',
-				data: {
-					labels: [],
-					datasets: [{
-						label: 'Process',
-						pointRadius: 0,
-						tension: 0,
-						borderWidth: 2,
-						borderJoinStyle: 'round',
-						borderColor: '#9ccfd8',
-						backgroundColor: '#9ccfd81A',
-						data: []
-					}, {
-						label: 'Active',
-						pointRadius: 0,
-						tension: 0,
-						borderWidth: 2,
-						borderJoinStyle: 'round',
-						borderColor: '#31748f',
-						backgroundColor: '#31748f1A',
-						data: []
-					}, {
-						label: 'Waiting',
-						pointRadius: 0,
-						tension: 0,
-						borderWidth: 2,
-						borderJoinStyle: 'round',
-						borderColor: '#f6c177',
-						backgroundColor: '#f6c1771A',
-						yAxisID: 'y2',
-						data: []
-					}, {
-						label: 'Delayed',
-						pointRadius: 0,
-						tension: 0,
-						borderWidth: 2,
-						borderJoinStyle: 'round',
-						borderColor: '#eb6f92',
-						borderDash: [5, 5],
-						fill: false,
-						yAxisID: 'y2',
-						data: []
-					}],
+		options: {
+			aspectRatio: 2.5,
+			layout: {
+				padding: {
+					left: 16,
+					right: 16,
+					top: 16,
+					bottom: 8,
 				},
-				options: {
-					aspectRatio: 2.5,
-					layout: {
-						padding: {
-							left: 16,
-							right: 16,
-							top: 16,
-							bottom: 8,
-						},
+			},
+			scales: {
+				x: {
+					grid: {
+						display: true,
+						color: gridColor,
+						borderColor: '#1f1d2e',
 					},
-					scales: {
-						x: {
-							grid: {
-								display: true,
-								color: gridColor,
-								borderColor: '#1f1d2e',
-							},
-							ticks: {
-								display: false,
-								maxTicksLimit: 10
-							},
-						},
-						y: {
-							min: 0,
-							stack: 'queue',
-							stackWeight: 2,
-							grid: {
-								color: gridColor,
-								borderColor: '#1f1d2e',
-							},
-						},
-						y2: {
-							min: 0,
-							offset: true,
-							stack: 'queue',
-							stackWeight: 1,
-							grid: {
-								color: gridColor,
-								borderColor: '#1f1d2e',
-							},
-						},
-					},
-					interaction: {
-						intersect: false,
-					},
-					plugins: {
-						legend: {
-							position: 'bottom',
-							labels: {
-								boxWidth: 16,
-							},
-						},
-						tooltip: {
-							mode: 'index',
-							animation: {
-								duration: 0,
-							},
-						},
+					ticks: {
+						display: false,
+						maxTicksLimit: 10
 					},
 				},
-			});
-
-			const onStats = (stats) => {
-				chartInstance.data.labels.push('');
-				chartInstance.data.datasets[0].data.push(stats[props.domain].activeSincePrevTick);
-				chartInstance.data.datasets[1].data.push(stats[props.domain].active);
-				chartInstance.data.datasets[2].data.push(stats[props.domain].waiting);
-				chartInstance.data.datasets[3].data.push(stats[props.domain].delayed);
-				if (chartInstance.data.datasets[0].data.length > 200) {
-					chartInstance.data.labels.shift();
-					chartInstance.data.datasets[0].data.shift();
-					chartInstance.data.datasets[1].data.shift();
-					chartInstance.data.datasets[2].data.shift();
-					chartInstance.data.datasets[3].data.shift();
-				}
-				chartInstance.update();
-			};
-
-			const onStatsLog = (statsLog) => {
-				for (const stats of [...statsLog].reverse()) {
-					chartInstance.data.labels.push('');
-					chartInstance.data.datasets[0].data.push(stats[props.domain].activeSincePrevTick);
-					chartInstance.data.datasets[1].data.push(stats[props.domain].active);
-					chartInstance.data.datasets[2].data.push(stats[props.domain].waiting);
-					chartInstance.data.datasets[3].data.push(stats[props.domain].delayed);
-					if (chartInstance.data.datasets[0].data.length > 200) {
-						chartInstance.data.labels.shift();
-						chartInstance.data.datasets[0].data.shift();
-						chartInstance.data.datasets[1].data.shift();
-						chartInstance.data.datasets[2].data.shift();
-						chartInstance.data.datasets[3].data.shift();
-					}
-				}
-				chartInstance.update();
-			};
-
-			props.connection.on('stats', onStats);
-			props.connection.on('statsLog', onStatsLog);
-
-			onUnmounted(() => {
-				props.connection.off('stats', onStats);
-				props.connection.off('statsLog', onStatsLog);
-			});
-		});
-
-		return {
-			chartEl,
-		};
-	},
-});
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+				y: {
+					min: 0,
+					stack: 'queue',
+					stackWeight: 2,
+					grid: {
