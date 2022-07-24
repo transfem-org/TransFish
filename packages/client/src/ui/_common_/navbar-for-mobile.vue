@@ -236,7 +236,8 @@ function more() {
 					position: relative;
 					width: 32px;
 					aspect-ratio: 1;
-					margin-right: 8px;
+					transform: translateX(-100%);
+					left: 50%;
 				}
 			}
 		}
@@ -265,8 +266,7 @@ function more() {
 				> .icon {
 					position: relative;
 					width: 32px;
-					transform: translateX(-100%);
-					left: 50%;
+					margin-right: 8px;
 				}
 
 				> .indicator {
