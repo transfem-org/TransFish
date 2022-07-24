@@ -55,7 +55,7 @@ export default defineComponent({
 			margin: 0 0 8px 0;
 			font-size: 0.9em;
 		}
-	
+
 		> .items {
 			> .item {
 				display: flex;
@@ -65,6 +65,7 @@ export default defineComponent({
 				padding: 10px 16px 10px 8px;
 				border-radius: 9px;
 				font-size: 0.9em;
+				margin-bottom: 0.3rem;
 
 				&:hover {
 					text-decoration: none;
