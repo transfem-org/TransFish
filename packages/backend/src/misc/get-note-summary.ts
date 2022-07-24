@@ -32,6 +32,7 @@ export const getNoteSummary = (note: Packed<'Note'>): string => {
 		summary += ` (📊)`;
 	}
 
+	/*
 	// 返信のとき
 	if (note.replyId) {
 		if (note.reply) {
@@ -49,6 +50,7 @@ export const getNoteSummary = (note: Packed<'Note'>): string => {
 			summary += '\n\nRN: ...';
 		}
 	}
+	*/
 
 	return summary.trim();
 };

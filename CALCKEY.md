@@ -11,7 +11,6 @@
 - Fully revamp non-logged-in screen
 - Personal notes for all accounts
 - Admin custom CSS
-- Improve notifications (content is too verbose)
 - Non-nyaify cat mode
 - Timeline filters
 - "Bubble" timeline
@@ -25,6 +24,7 @@
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - Mark as read from notifications widget
+- Less cluttered notification summary
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Spinner instead of "Loading..."

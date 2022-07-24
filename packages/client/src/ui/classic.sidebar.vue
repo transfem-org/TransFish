@@ -32,7 +32,7 @@
 	</MkA>
 	<div class="divider"></div>
 	<div class="about">
-		<MkA v-click-anime class="link" to="/about">
+		<MkA v-click-anime class="link" @click="openInstanceMenu">
 			<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" class="_ghost"/>
 		</MkA>
 	</div>
@@ -133,6 +133,60 @@ export default defineComponent({
 		},
 	},
 });
+
+function openInstanceMenu(ev: MouseEvent) {
+	os.popupMenu([{
+		text: instance.name ?? host,
+		type: 'label',
+	}, {
+		type: 'link',
+		text: i18n.ts.instanceInfo,
+		icon: 'fas fa-info-circle',
+		to: '/about',
+	}, {
+		type: 'link',
+		text: i18n.ts.customEmojis,
+		icon: 'fas fa-laugh',
+		to: '/about#emojis',
+	}, {
+		type: 'link',
+		text: i18n.ts.federation,
+		icon: 'fas fa-globe',
+		to: '/about#federation',
+	}, null, {
+		type: 'parent',
+		text: i18n.ts.help,
+		icon: 'fas fa-question-circle',
+		children: [{
+			type: 'link',
+			to: '/mfm-cheat-sheet',
+			text: i18n.ts._mfm.cheatSheet,
+			icon: 'fas fa-code',
+		}, {
+			type: 'link',
+			to: '/scratchpad',
+			text: i18n.ts.scratchpad,
+			icon: 'fas fa-terminal',
+		}, {
+			type: 'link',
+			to: '/api-console',
+			text: 'API Console',
+			icon: 'fas fa-terminal',
+		}, null, {
+			text: i18n.ts.document,
+			icon: 'fas fa-question-circle',
+			action: () => {
+				window.open('https://misskey-hub.net/help.html', '_blank');
+			},
+		}],
+	}, {
+		type: 'link',
+		text: i18n.ts.aboutMisskey,
+		to: '/about-misskey',
+	}], ev.currentTarget ?? ev.target, {
+		align: 'left',
+	});
+}
 </script>
 
 <style lang="scss" scoped>
