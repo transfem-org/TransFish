@@ -28,9 +28,10 @@
 - Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
+- Spinner instead of "Loading..."
 - Annoying Orange search
 - MOTD
-- Reply limit bug fixed
+- Reply limit bug fixed (somewhat)
 - Custom assets
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
