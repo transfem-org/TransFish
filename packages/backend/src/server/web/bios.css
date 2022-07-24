@@ -63,7 +63,7 @@ button {
 	border: none;
 	cursor: pointer;
 	margin-bottom: 12px;
-	background: linear-gradient(90deg, rgb(156, 207, 216), rgb(74, 179, 0));
+	background: linear-gradient(90deg, rgb(156, 207, 216), rgb(49, 116, 143));
 	line-height: 50px;
 	color: #191724;
 	font-weight: bold;
@@ -85,13 +85,12 @@ button {
   padding: 0 20px;
   margin-right: 5px;
   margin-left: 5px;
-  
 }
 button:hover {
 	background: #555;
 }
 #ls {
-	background: linear-gradient(90deg, rgb(156, 207, 216), rgb(74, 179, 0));
+	background: linear-gradient(90deg, rgb(156, 207, 216), rgb(49, 116, 143));
 	line-height: 30px;
 	color: #191724;
 	font-weight: bold;
