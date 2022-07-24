@@ -258,6 +258,10 @@ function more(ev: MouseEvent) {
 							background: var(--accentLighten);
 						}
 					}
+
+					> .text {
+						position: relative;
+					}
 				}
 
 				> .instance {
@@ -270,11 +274,6 @@ function more(ev: MouseEvent) {
 						display: inline-block;
 						width: 32px !important;
 						aspect-ratio: 1;
-					}
-				}
-
-					> .text {
-						position: relative;
 					}
 				}
 
