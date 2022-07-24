@@ -73,7 +73,7 @@ export default defineComponent({
 		const el = ref<HTMLElement>();
 		const width = ref(0);
 		const height = ref(0);
-		const colors = ['#FF1493', '#00FFFF', '#FFE202', '#FFE202', '#FFE202'];
+		const colors = ['#eb6f92', '#9ccfd8', '#f6c177', '#f6c177', '#ebbcba'];
 		let stop = false;
 		let ro: ResizeObserver | undefined;
 
@@ -107,7 +107,7 @@ export default defineComponent({
 			};
 			add();
 		});
-		
+
 		onUnmounted(() => {
 			if (ro) ro.disconnect();
 			stop = true;
