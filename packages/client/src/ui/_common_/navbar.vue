@@ -3,7 +3,9 @@
 	<div class="body">
 		<div class="top">
 			<div class="banner" :user="$i" :style="{ backgroundImage: `url(${ $i.bannerUrl })` }"></div>
-			<MkAvatar :user="$i" class="avatar"/><MkAcct class="text" :user="$i"/>
+			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
+				<MkAvatar :user="$i" class="icon"/><!-- <MkAcct class="text" :user="$i"/> -->
+			</button>
 			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button> -->
@@ -188,7 +190,7 @@ function more(ev: MouseEvent) {
 				position: sticky;
 				top: 0;
 				z-index: 1;
-				padding: 20px 0;
+				padding: 2.5rem 0;
 				background: var(--X14);
 				-webkit-backdrop-filter: var(--blur, blur(8px));
 				backdrop-filter: var(--blur, blur(8px));
@@ -375,7 +377,7 @@ function more(ev: MouseEvent) {
 				position: sticky;
 				top: 0;
 				z-index: 1;
-				padding: 20px 0;
+				padding: 2.5rem 0;
 				background: var(--X14);
 				-webkit-backdrop-filter: var(--blur, blur(8px));
 				backdrop-filter: var(--blur, blur(8px));
