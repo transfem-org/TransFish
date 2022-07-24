@@ -304,6 +304,7 @@ function more(ev: MouseEvent) {
 					display: block;
 					padding-left: 30px;
 					line-height: 2.85rem;
+					margin-bottom: 0.5rem;
 					text-overflow: ellipsis;
 					overflow: hidden;
 					white-space: nowrap;
