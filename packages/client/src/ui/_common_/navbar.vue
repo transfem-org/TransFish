@@ -259,12 +259,18 @@ function more(ev: MouseEvent) {
 						}
 					}
 
+				> .instance {
+					position: relative;
+					display: block;
+					text-align: center;
+					width: 100%;
+
 					> .icon {
-						position: relative;
-						margin-left: 30px;
-						margin-right: 8px;
-						width: 32px;
+						display: inline-block;
+						width: 32px !important;
+						aspect-ratio: 1;
 					}
+				}
 
 					> .text {
 						position: relative;
@@ -381,7 +387,7 @@ function more(ev: MouseEvent) {
 
 					> .icon {
 						display: inline-block;
-						width: 30px;
+						width: 40px;
 						aspect-ratio: 1;
 					}
 				}
@@ -434,7 +440,7 @@ function more(ev: MouseEvent) {
 					}
 				}
 
-				> .account {
+				> .instance {
 					position: relative;
 					display: block;
 					text-align: center;
@@ -442,7 +448,7 @@ function more(ev: MouseEvent) {
 
 					> .icon {
 						display: inline-block;
-						width: 38px;
+						width: 32px !important;
 						aspect-ratio: 1;
 					}
 				}
