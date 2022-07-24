@@ -56,6 +56,7 @@
 			<div><Mfm :key="useOsNativeEmojis" text="🍮🍦🍭🍩🍰🍫🍬🥞🍪"/></div>
 		</FormSwitch>
 		<FormSwitch v-model="disableDrawer" class="_formBlock">{{ i18n.ts.disableDrawer }}</FormSwitch>
+		<FormSwitch v-model="aiChanMode">{{ i18n.ts.aiChanMode }}</FormSwitch>
 
 		<FormRadios v-model="fontSize" class="_formBlock">
 			<template #label>{{ i18n.ts.fontSize }}</template>
@@ -64,10 +65,6 @@
 			<option value="2"><span style="font-size: 16px;">Aa</span></option>
 			<option value="3"><span style="font-size: 17px;">Aa</span></option>
 		</FormRadios>
-	</FormSection>
-
-	<FormSection>
-		<FormSwitch v-model="aiChanMode">{{ i18n.ts.aiChanMode }}</FormSwitch>
 	</FormSection>
 
 	<FormSelect v-model="instanceTicker" class="_formBlock">
