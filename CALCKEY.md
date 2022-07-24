@@ -32,6 +32,7 @@
 - MOTD
 - Reply limit bug fixed
 - Custom assets
+- [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
 - [Option to make enter send message](https://github.com/misskey-dev/misskey/pull/8954)
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
