@@ -2,6 +2,7 @@
 
 ### Planned
 
+- Better sidebar/navbar
 - MFM button
 - Better Messaging UI
 - Classic mode make instance icon bring up new context menu
@@ -15,7 +16,6 @@
 - Improve notifications (content is too verbose)
 - Non-nyaify cat mode
 - Timeline filters
-- Mark as read from notifications widget
 - "Bubble" timeline
 - Filter notifications by user
 
@@ -25,7 +25,7 @@
 - Saner defaults
 - Star as default reaction
 - Rosé Pine by default
-- Better sidebar/navbar
+- Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Annoying Orange search
