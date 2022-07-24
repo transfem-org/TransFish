@@ -1,10 +1,9 @@
 # All the changes to Calckey from stock Misskey
 
-### Planned
+## Planned
 
 - MFM button
 - Better Messaging UI
-- Better timeline top bar
 - Classic mode make instance icon bring up new context menu
 - Like/star button
 - Option to publicize instance blocks
@@ -17,7 +16,12 @@
 - "Bubble" timeline
 - Filter notifications by user
 
-### Implemented
+## In progress
+
+- Better timeline top bar
+- Profile background
+
+## Implemented
 
 - Yarn 3
 - Saner defaults

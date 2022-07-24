@@ -121,19 +121,19 @@ const headerTabs = $computed(() => [{
 }, ...(isLocalTimelineAvailable ? [{
 	key: 'local',
 	title: i18n.ts._timelines.local,
-	icon: 'fas fa-comments',
+	icon: 'fas fa-user-group',
 	iconOnly: true,
 }, {
 	key: 'social',
 	title: i18n.ts._timelines.social,
-	icon: 'fas fa-share-alt',
+	icon: 'fas fa-handshake-simple',
 	iconOnly: true,
 }] : []), ...(isGlobalTimelineAvailable ? [{
 	key: 'global',
 	title: i18n.ts._timelines.global,
 	icon: 'fas fa-globe',
 	iconOnly: true,
-}] : []), {
+}] : []), /* {
 	icon: 'fas fa-list-ul',
 	title: i18n.ts.lists,
 	iconOnly: true,
@@ -148,13 +148,13 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts.channel,
 	iconOnly: true,
 	onClick: chooseChannel,
-}]);
+}*/]);
 
 const headerTabsWhenNotLogin = $computed(() => [
 	...(isLocalTimelineAvailable ? [{
 		key: 'local',
 		title: i18n.ts._timelines.local,
-		icon: 'fas fa-comments',
+		icon: 'fas fa-user-group',
 		iconOnly: true,
 	}] : []),
 	...(isGlobalTimelineAvailable ? [{
@@ -167,7 +167,7 @@ const headerTabsWhenNotLogin = $computed(() => [
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
-	icon: src === 'local' ? 'fas fa-comments' : src === 'social' ? 'fas fa-share-alt' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
+	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
 })));
 </script>
 
