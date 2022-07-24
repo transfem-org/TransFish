@@ -9,7 +9,6 @@
 - Option to publicize instance blocks
 - Better intro/onboarding
 - Fully revamp non-logged-in screen
-- Tabler icons instead of FontAwesome
 - Personal notes for all accounts
 - Admin custom CSS
 - Improve notifications (content is too verbose)
