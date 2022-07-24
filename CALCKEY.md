@@ -8,7 +8,7 @@
 - Like/star button
 - Option to publicize instance blocks
 - Better intro/onboarding
-- Fully revamp welcome.a (non-logged in screen)
+- Fully revamp non-logged-in screen
 - Tabler icons instead of FontAwesome
 - Personal notes for all accounts
 - Admin custom CSS
@@ -16,6 +16,8 @@
 - Non-nyaify cat mode
 - Timeline filters
 - Mark as read from notifications widget
+- "Bubble" timeline
+- Filter notifications by user
 
 ### Implemented
 
