@@ -1,13 +1,13 @@
 html {
-	background: #222;
+	background: #191724;
 }
 main {
-	background: #333;
+	background: #1f1d2e;
 	border-radius: 10px;
 }
 #tl > div {
 	padding: 16px;
-	border-bottom: 1px solid #c3c3c3;
+	border-bottom: 1px solid #908caa;
 }
 #tl > div > header {
 	font-weight: 700;
@@ -21,8 +21,8 @@ main {
 }
 body,
 html {
-	background-color: #222;
-	color: #dfddcc;
+	background-color: #191724;
+	color: #e0def4;
 	justify-content: center;
 	margin: auto;
 	padding: 10px;
@@ -37,15 +37,15 @@ button {
 	margin-bottom:12px;
 	background:linear-gradient(90deg,#86b300,#4ab300);
 	line-height:50px;
-	color:#222;
+	color:#191724;
 	font-weight:700;
 	font-size:20px;
  }
 button:hover {
-	background: rgb(153, 204, 0);
+	background: rgb(156, 207, 216);
 }
 a {
-	color: rgb(134, 179, 0);
+	color: rgb(156, 207, 216);
 	text-decoration: none;
 }
 p,
@@ -63,7 +63,7 @@ code {
 	background-color: #444;
 	border: solid #aaa;
 	border-radius: 10px;
-	color: #dfddcc;
+	color: #e0def4;
 	margin-top: 3rem;
 	width: 20rem;
 	height: 5rem;

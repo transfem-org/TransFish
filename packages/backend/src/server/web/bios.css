@@ -1,11 +1,11 @@
 main > .tabs {
 	padding: 16px;
-	border-bottom: 4px solid #c3c3c3;
+	border-bottom: 4px solid #908caa;
 }
 #lsEditor > .adder {
 	margin: 16px;
 	padding: 16px;
-	border: 2px solid #c3c3c3;
+	border: 2px solid #908caa;
 }
 #lsEditor > .adder > textarea {
 	display: block;
@@ -15,7 +15,7 @@ main > .tabs {
 }
 #lsEditor > .record {
 	padding: 16px;
-	border-bottom: 1px solid #c3c3c3;
+	border-bottom: 1px solid #908caa;
 }
 #lsEditor > .record > header {
 	font-weight: 700;
@@ -28,15 +28,15 @@ main > .tabs {
 }
 
 html {
-	background: #222;
+	background: #191724;
 }
 main {
-	background: #333;
+	background: #1f1d2e;
 	border-radius: 10px;
 }
 #tl > div {
 	padding: 16px;
-	border-bottom: 1px solid #c3c3c3;
+	border-bottom: 1px solid #908caa;
 }
 #tl > div > header {
 	font-weight: 700;
@@ -50,8 +50,8 @@ main {
 }
 body,
 html {
-	background-color: #222;
-	color: #dfddcc;
+	background-color: #191724;
+	color: #e0def4;
 	justify-content: center;
 	margin: auto;
 	padding: 10px;
@@ -63,9 +63,9 @@ button {
 	border: none;
 	cursor: pointer;
 	margin-bottom: 12px;
-	background: linear-gradient(90deg, rgb(134, 179, 0), rgb(74, 179, 0));
+	background: linear-gradient(90deg, rgb(156, 207, 216), rgb(74, 179, 0));
 	line-height: 50px;
-	color: #222;
+	color: #191724;
 	font-weight: bold;
 	font-size: 20px;
 	padding: 12px;
@@ -80,7 +80,7 @@ button {
 button {
 	background: #444;
 	line-height: 40px;
-	color: rgb(153, 204, 0);
+	color: rgb(156, 207, 216);
 	font-size: 16px;
   padding: 0 20px;
   margin-right: 5px;
@@ -91,18 +91,18 @@ button:hover {
 	background: #555;
 }
 #ls {
-	background: linear-gradient(90deg, rgb(134, 179, 0), rgb(74, 179, 0));
+	background: linear-gradient(90deg, rgb(156, 207, 216), rgb(74, 179, 0));
 	line-height: 30px;
-	color: #222;
+	color: #191724;
 	font-weight: bold;
 	font-size: 18px;
 	padding: 12px;
 }
 #ls:hover {
-	background: rgb(153, 204, 0);
+	background: rgb(156, 207, 216);
 }
 a {
-	color: rgb(134, 179, 0);
+	color: rgb(156, 207, 216);
 	text-decoration: none;
 }
 p,
@@ -120,7 +120,7 @@ textarea {
 	background-color: #444;
 	border: solid #aaa;
 	border-radius: 10px;
-	color: #dfddcc;
+	color: #e0def4;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	width: 20rem;
@@ -135,7 +135,7 @@ input {
 	background-color: #666;
 	border: solid #aaa;
 	border-radius: 10px;
-	color: #dfddcc;
+	color: #e0def4;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	width: 10rem;

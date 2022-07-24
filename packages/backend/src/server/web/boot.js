@@ -137,9 +137,8 @@
 				<span class="button-label-big">Refresh</span>
 			</button>
 			<p class="dont-worry">Don't worry, it's (probably) not your fault.</p>
+			<p>Please make sure your browser is up-to-date and any AdBlockers are off.</p>
 			<p>If the problem persists after refreshing, please contact your instance's administrator.<br>You may also try the following options:</p>
-			<p>Update your os and browser.</p>
-			<p>Disable an adblocker.</p>
 			<a href="/flush">
 				<button class="button-small">
 					<span class="button-label-small">Clear preferences and cache</span>
@@ -182,8 +181,8 @@
 
 		body,
 		html {
-			background-color: #222;
-			color: #dfddcc;
+			background-color: #191724;
+			color: #e0def4;
 			justify-content: center;
 			margin: auto;
 			padding: 10px;
@@ -199,12 +198,12 @@
 		}
 
 		.button-big {
-			background: linear-gradient(90deg, rgb(134, 179, 0), rgb(74, 179, 0));
+			background: linear-gradient(90deg, rgb(196, 167, 231), rgb(235, 188, 186));
 			line-height: 50px;
 		}
 
 		.button-big:hover {
-			background: rgb(153, 204, 0);
+			background: rgb(49, 116, 143);
 		}
 
 		.button-small {
@@ -217,20 +216,20 @@
 		}
 
 		.button-label-big {
-			color: #222;
+			color: #191724;
 			font-weight: bold;
 			font-size: 20px;
 			padding: 12px;
 		}
 
 		.button-label-small {
-			color: rgb(153, 204, 0);
+			color: rgb(156, 207, 216);
 			font-size: 16px;
 			padding: 12px;
 		}
 
 		a {
-			color: rgb(134, 179, 0);
+			color: rgb(156, 207, 216);
 			text-decoration: none;
 		}
 
@@ -245,7 +244,7 @@
 		}
 
 		.icon-warning {
-			color: #dec340;
+			color: #f6c177;
 			height: 4rem;
 			padding-top: 2rem;
 		}
@@ -259,7 +258,7 @@
 		}
 
 		details {
-			background: #333;
+			background: #1f1d2e;
 			margin-bottom: 2rem;
 			padding: 0.5rem 1rem;
 			width: 40rem;
