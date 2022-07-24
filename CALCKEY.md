@@ -4,6 +4,7 @@
 
 - MFM button
 - Better Messaging UI
+- Better timeline top bar
 - Classic mode make instance icon bring up new context menu
 - Like/star button
 - Option to publicize instance blocks
