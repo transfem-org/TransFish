@@ -259,9 +259,12 @@ function more(ev: MouseEvent) {
 						}
 					}
 
-					> .text {
+					> .icon, > .text {
 						position: relative;
+						left: 3rem;
+						color: var(--fgOnAccent);
 					}
+
 				}
 
 				> .instance {
@@ -274,6 +277,7 @@ function more(ev: MouseEvent) {
 						display: inline-block;
 						width: 32px !important;
 						aspect-ratio: 1;
+						margin-top: 0.5rem;
 					}
 				}
 
