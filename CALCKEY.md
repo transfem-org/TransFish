@@ -30,14 +30,11 @@
 - MOTD
 - Reply limit bug fixed
 - Custom assets
-- https://github.com/misskey-dev/misskey/pull/8983
-- https://github.com/misskey-dev/misskey/pull/8956
-- https://github.com/misskey-dev/misskey/pull/8954
-- https://github.com/misskey-dev/misskey/pull/8997
-- https://github.com/misskey-dev/misskey/pull/8996
-- https://github.com/misskey-dev/misskey/pull/8955
-- https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch
-- https://github.com/misskey-dev/misskey/pull/8671
-- https://github.com/misskey-dev/misskey/pull/8927
-- https://github.com/misskey-dev/misskey/pull/8927
-- https://github.com/misskey-dev/misskey/pull/8549
+- [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
+- [Option to make enter send message](https://github.com/misskey-dev/misskey/pull/8954)
+- [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
+- [Autocomplete in messaging](https://github.com/misskey-dev/misskey/pull/8955)
+- [Star is like](https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch)
+- [Add additional background for acrylic popups if backdrop-filter is unsupported](https://github.com/misskey-dev/misskey/pull/8671)
+- [Timeline page for non-login users](https://github.com/misskey-dev/misskey/pull/8927)
+- [Add parameters to MFM rotate](https://github.com/misskey-dev/misskey/pull/8549)
