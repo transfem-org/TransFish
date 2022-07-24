@@ -16,8 +16,9 @@
 - "Bubble" timeline
 - Filter notifications by user
 
-## In progress
+## Work in progress
 
+- Profile background as banner
 - Better timeline top bar
 
 ## Implemented
@@ -29,7 +30,6 @@
 - Better sidebar/navbar
 - Mark as read from notifications widget
 - Less cluttered notification summary
-- Profile background as banner
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Spinner instead of "Loading..."
