@@ -265,7 +265,8 @@ function more() {
 				> .icon {
 					position: relative;
 					width: 32px;
-					margin-right: 8px;
+					transform: translateX(-100%);
+					left: 50%;
 				}
 
 				> .indicator {
