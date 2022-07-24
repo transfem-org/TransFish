@@ -4,17 +4,17 @@
 		:points="pointsNote"
 		fill="none"
 		stroke-width="1"
-		stroke="#41ddde"/>
+		stroke="#c4a7e7"/>
 	<polyline
 		:points="pointsReply"
 		fill="none"
 		stroke-width="1"
-		stroke="#f7796c"/>
+		stroke="#eb6f92"/>
 	<polyline
 		:points="pointsRenote"
 		fill="none"
 		stroke-width="1"
-		stroke="#a1de41"/>
+		stroke="#ebbcba"/>
 	<polyline
 		:points="pointsTotal"
 		fill="none"

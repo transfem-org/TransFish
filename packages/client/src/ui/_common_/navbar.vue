@@ -265,6 +265,10 @@ function more(ev: MouseEvent) {
 						color: var(--fgOnAccent);
 					}
 
+					> .text {
+						margin-left: 1rem;
+					}
+
 				}
 
 				> .instance {
