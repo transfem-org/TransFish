@@ -189,6 +189,8 @@ const onClick = (ev: MouseEvent) => {
 	> .input {
 		position: relative;
 		cursor: pointer;
+		margin-left: 0.2rem;
+		margin-right: 0.2rem;
 
 		&:hover {
 			> .select {
