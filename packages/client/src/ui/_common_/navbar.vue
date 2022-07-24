@@ -2,10 +2,11 @@
 <div class="mvcprjjd" :class="{ iconOnly }">
 	<div class="body">
 		<div class="top">
-			<div class="banner" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }"></div>
-			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
+			<div class="banner" :user="$i" :style="{ backgroundImage: `url(${ $i.bannerUrl })` }"></div>
+			<MkAvatar :user="$i" class="avatar"/><MkAcct class="text" :user="$i"/>
+			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
-			</button>
+			</button> -->
 		</div>
 		<div class="middle">
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.timeline" class="item index" active-class="active" to="/" exact>
