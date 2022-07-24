@@ -215,7 +215,7 @@ function more(ev: MouseEvent) {
 
 					> .icon {
 						display: inline-block;
-						width: 38px;
+						width: 55px;
 						aspect-ratio: 1;
 					}
 				}
@@ -258,6 +258,7 @@ function more(ev: MouseEvent) {
 							background: var(--accentLighten);
 						}
 					}
+				}
 
 				> .instance {
 					position: relative;
