@@ -198,18 +198,18 @@ export default defineComponent({
 	}
 
 	&.danger {
-		color: #ff2a2a;
+		color: #eb6f92;
 
 		&.primary {
-			color: #fff;
-			background: #ff2a2a;
+			color: #e0def4;
+			background: #eb6f92;
 
 			&:not(:disabled):hover {
-				background: #ff4242;
+				background: #eb6f92;
 			}
 
 			&:not(:disabled):active {
-				background: #d42e2e;
+				background: #b4637a;
 			}
 		}
 	}

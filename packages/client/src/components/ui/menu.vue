@@ -237,21 +237,21 @@ onBeforeUnmount(() => {
 		}
 
 		&.danger {
-			color: #ff2a2a;
+			color: #eb6f92;
 
 			&:hover {
-				color: #fff;
+				color: #e0def4;
 
 				&:before {
-					background: #ff4242;
+					background: #eb6f92;
 				}
 			}
 
 			&:active {
-				color: #fff;
+				color: #e0def4;
 
 				&:before {
-					background: #d42e2e;
+					background: #b4637a;
 				}
 			}
 		}
