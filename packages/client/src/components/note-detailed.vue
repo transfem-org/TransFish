@@ -99,7 +99,7 @@
 			</footer>
 		</div>
 	</article>
-	<MkNoteSub v-for="note in replies" :key="note.id" :note="note" class="reply" :detail="true"/>
+	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
 </div>
 <div v-else class="_panel muted" @click="muted = false">
 	<I18n :src="i18n.ts.userSaysSomething" tag="small">
@@ -182,6 +182,7 @@ const urls = appearNote.text ? extractUrlFromMfm(mfm.parse(appearNote.text)) : n
 const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && appearNote.user.instance);
 const conversation = ref<misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
+const directReplies = ref<misskey.entities.Note[]>([]);
 
 const keymap = {
 	'r': () => reply(true),
@@ -281,8 +282,10 @@ function blur() {
 os.api('notes/children', {
 	noteId: appearNote.id,
 	limit: 100,
+	depth: 6,
 }).then(res => {
 	replies.value = res;
+	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id);
 });
 
 if (appearNote.replyId) {
