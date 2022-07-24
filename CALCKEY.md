@@ -2,7 +2,6 @@
 
 ### Planned
 
-- Better sidebar/navbar
 - MFM button
 - Better Messaging UI
 - Classic mode make instance icon bring up new context menu
@@ -24,7 +23,8 @@
 - Yarn 3
 - Saner defaults
 - Star as default reaction
-- Rosé Pine by default
+- Rosé Pine by default (+ non-themable elements made Rosé Pine)
+- Better sidebar/navbar
 - Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message

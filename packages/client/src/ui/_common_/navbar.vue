@@ -3,12 +3,9 @@
 	<div class="body">
 		<div class="top">
 			<div class="banner" :user="$i" :style="{ backgroundImage: `url(${ $i.bannerUrl })` }"></div>
-			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button instance" @click="openAccountMenu">
+			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
 				<MkAvatar :user="$i" class="icon"/><!-- <MkAcct class="text" :user="$i"/> -->
 			</button>
-			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
-				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
-			</button> -->
 		</div>
 		<div class="middle">
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.timeline" class="item index" active-class="active" to="/" exact>
@@ -47,9 +44,12 @@
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon fas fa-pencil-alt fa-fw"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
-				<MkAvatar :user="$i" class="avatar"/><MkAcct class="text" :user="$i"/>
+			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
+				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button>
+			<!-- <button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
+				<MkAvatar :user="$i" class="account"/><MkAcct class="text" :user="$i"/>
+			</button> -->
 		</div>
 	</div>
 </div>
@@ -190,7 +190,7 @@ function more(ev: MouseEvent) {
 				position: sticky;
 				top: 0;
 				z-index: 1;
-				padding: 2.5rem 0;
+				padding: 2rem 0;
 				background: var(--X14);
 				-webkit-backdrop-filter: var(--blur, blur(8px));
 				backdrop-filter: var(--blur, blur(8px));
@@ -207,7 +207,7 @@ function more(ev: MouseEvent) {
 					mask-image: linear-gradient(0deg, rgba(0,0,0,0) 15%, rgba(0,0,0,0.75) 100%);
 				}
 
-				> .instance {
+				> .account {
 					position: relative;
 					display: block;
 					text-align: center;
@@ -273,22 +273,14 @@ function more(ev: MouseEvent) {
 
 				> .account {
 					position: relative;
-					display: flex;
-					align-items: center;
-					padding-left: 30px;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					white-space: nowrap;
+					display: block;
+					text-align: center;
 					width: 100%;
-					text-align: left;
-					box-sizing: border-box;
-					margin-top: 16px;
 
-					> .avatar {
-						position: relative;
-						width: 32px;
+					> .icon {
+						display: inline-block;
+						width: 38px;
 						aspect-ratio: 1;
-						margin-right: 8px;
 					}
 				}
 			}
@@ -377,12 +369,12 @@ function more(ev: MouseEvent) {
 				position: sticky;
 				top: 0;
 				z-index: 1;
-				padding: 2.5rem 0;
+				padding: 2rem 0;
 				background: var(--X14);
 				-webkit-backdrop-filter: var(--blur, blur(8px));
 				backdrop-filter: var(--blur, blur(8px));
 
-				> .instance {
+				> .account {
 					display: block;
 					text-align: center;
 					width: 100%;
@@ -443,18 +435,15 @@ function more(ev: MouseEvent) {
 				}
 
 				> .account {
+					position: relative;
 					display: block;
 					text-align: center;
 					width: 100%;
 
-					> .avatar {
+					> .icon {
 						display: inline-block;
 						width: 38px;
 						aspect-ratio: 1;
-					}
-
-					> .text {
-						display: none;
 					}
 				}
 			}
