@@ -281,7 +281,7 @@ function more(ev: MouseEvent) {
 						display: inline-block;
 						width: 32px !important;
 						aspect-ratio: 1;
-						margin-top: 0.5rem;
+						margin-top: 1rem;
 					}
 				}
 
