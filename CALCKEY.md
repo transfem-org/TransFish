@@ -19,7 +19,6 @@
 ## In progress
 
 - Better timeline top bar
-- Profile background
 
 ## Implemented
 
@@ -30,6 +29,7 @@
 - Better sidebar/navbar
 - Mark as read from notifications widget
 - Less cluttered notification summary
+- Profile background as banner
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Spinner instead of "Loading..."
