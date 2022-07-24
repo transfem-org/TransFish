@@ -34,6 +34,7 @@
 - Ability to turn off "Connection lost" message
 - Spinner instead of "Loading..."
 - Annoying Orange search
+- Spacing on group items
 - MOTD
 - Reply limit bug fixed (somewhat)
 - Custom assets
