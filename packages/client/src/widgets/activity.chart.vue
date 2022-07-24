@@ -19,7 +19,7 @@
 		:points="pointsTotal"
 		fill="none"
 		stroke-width="1"
-		stroke="#555"
+		stroke="#6e6a86"
 		stroke-dasharray="2 2"/>
 </svg>
 </template>

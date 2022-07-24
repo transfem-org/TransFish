@@ -187,7 +187,7 @@ function del(): void {
 						> p {
 							padding: 30px;
 							text-align: center;
-							color: #555;
+							color: #6e6a86;
 							background: #ddd;
 						}
 					}
