@@ -15,6 +15,7 @@
 - Timeline filters
 - "Bubble" timeline
 - Filter notifications by user
+- [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
 
@@ -33,7 +34,7 @@
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Spinner instead of "Loading..."
-- Annoying Orange search
+- SearchX instead of Google
 - Spacing on group items
 - MOTD
 - Reply limit bug fixed (somewhat)
