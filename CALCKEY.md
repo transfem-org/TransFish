@@ -50,6 +50,7 @@
 - [Timeline page for non-login users](https://github.com/misskey-dev/misskey/pull/8927)
 - [Add parameters to MFM rotate](https://github.com/misskey-dev/misskey/pull/8549)
 - Many changes from [Foundkey](https://akkoma.dev/FoundKeyGang/Foundkey)
+  - 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
 	- 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
 	- 4bc9610d8bf5af736b5e89e4782395705de45d7d: remove unnecessary joins
 	- 9ee609d70082f7a6dc119a5d83c0e7c5e1208676: enhance privacy of notes
@@ -61,4 +62,4 @@
 	- 6d3181f9835955e5b79bde5484c74bd70e7f9535: Refactor components/page/page.text.vue to composition API
 	- b630cd7eacd695bb705e6748c87f38425ec4ed45:  refactor: add NoteReactions.packMany
 	- 3fe351df6d4e21f7748c46adfa6ca165abd030c0: fix: catch errors from packing with detail
-	- 63591da33e233b2ed0ab331ae6bb3c9eff5020ae: refactor: colours in queue chart 
+	- 63591da33e233b2ed0ab331ae6bb3c9eff5020ae: refactor: colours in queue chart
