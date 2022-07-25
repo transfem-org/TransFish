@@ -9,4 +9,6 @@
 - aca724e0bfff3e58b4d273f3ee744e3f3aa9c39b: enable to fetch replies recursively
 - 2fe64c11502fd8d89c126558cd715e095c83754e: Refactor components/page/page.textarea.vue to composition API
 - 6d3181f9835955e5b79bde5484c74bd70e7f9535: Refactor components/page/page.text.vue to composition API
-- b630cd7eacd695bb705e6748c87f38425ec4ed45:  refactor: add NoteReactions.packMany 
+- b630cd7eacd695bb705e6748c87f38425ec4ed45:  refactor: add NoteReactions.packMany
+- 3fe351df6d4e21f7748c46adfa6ca165abd030c0: fix: catch errors from packing with detail
+- 63591da33e233b2ed0ab331ae6bb3c9eff5020ae: refactor: colours in queue chart 

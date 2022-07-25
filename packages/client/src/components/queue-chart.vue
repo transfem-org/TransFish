@@ -72,8 +72,8 @@ export default defineComponent({
 						tension: 0,
 						borderWidth: 2,
 						borderJoinStyle: 'round',
-						borderColor: '#00E396',
-						backgroundColor: '#00E3961A',
+						borderColor: '#9ccfd8',
+						backgroundColor: '#9ccfd81A',
 						data: []
 					}, {
 						label: 'Active',
@@ -81,8 +81,8 @@ export default defineComponent({
 						tension: 0,
 						borderWidth: 2,
 						borderJoinStyle: 'round',
-						borderColor: '#00BCD4',
-						backgroundColor: '#00BCD41A',
+						borderColor: '#31748f',
+						backgroundColor: '#31748f1A',
 						data: []
 					}, {
 						label: 'Waiting',
@@ -90,8 +90,8 @@ export default defineComponent({
 						tension: 0,
 						borderWidth: 2,
 						borderJoinStyle: 'round',
-						borderColor: '#FFB300',
-						backgroundColor: '#FFB3001A',
+						borderColor: '#f6c177',
+						backgroundColor: '#f6c1771A',
 						yAxisID: 'y2',
 						data: []
 					}, {
@@ -100,7 +100,7 @@ export default defineComponent({
 						tension: 0,
 						borderWidth: 2,
 						borderJoinStyle: 'round',
-						borderColor: '#E53935',
+						borderColor: '#eb6f92',
 						borderDash: [5, 5],
 						fill: false,
 						yAxisID: 'y2',
@@ -122,7 +122,7 @@ export default defineComponent({
 							grid: {
 								display: true,
 								color: gridColor,
-								borderColor: '#0000',
+								borderColor: '#1f1d2e',
 							},
 							ticks: {
 								display: false,
@@ -135,7 +135,7 @@ export default defineComponent({
 							stackWeight: 2,
 							grid: {
 								color: gridColor,
-								borderColor: '#0000',
+								borderColor: '#1f1d2e',
 							},
 						},
 						y2: {
@@ -145,7 +145,7 @@ export default defineComponent({
 							stackWeight: 1,
 							grid: {
 								color: gridColor,
-								borderColor: '#0000',
+								borderColor: '#1f1d2e',
 							},
 						},
 					},
