@@ -1,4 +1,4 @@
-# These are all the commits cherry-picked from Foundkey that are in Calckey
+# These are all the commits cherry-picked from [Foundkey](https://akkoma.dev/FoundKeyGang/FoundKey) that are in Calckey
 
 - 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
 - 4bc9610d8bf5af736b5e89e4782395705de45d7d: remove unnecessary joins
