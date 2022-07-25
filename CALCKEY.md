@@ -17,6 +17,12 @@
 - Filter notifications by user
 - Remove NSFW/AI stuff
 - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
+- Improve accesibility score
+<details><summary>Current Misskey score is 57/100</summary>
+
+![](https://pool.jortage.com/voringme/misskey/8ff18aae-4dc6-4b08-9e05-a4c9d051a9e3.png)
+
+</details>
 
 ## Work in progress
 
