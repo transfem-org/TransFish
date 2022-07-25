@@ -40,7 +40,7 @@ Read [this](./CALCKEY.md) for current and future differences.
 You need at least 🐢 NodeJS v16.10.0 (>v18.0.0 \<v18.6.0 reccomended!) and *exactly* 🧶 Yarn v3.2.1!
 
 ```sh
-# nvm install 18 && nvm alias default 18
+# nvm install 18.4.0 && nvm alias default 18.4.0 && nvm use 18.4.0
 corepack enable
 yarn set version berry
 ```
