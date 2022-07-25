@@ -20,6 +20,7 @@
 ## Work in progress
 
 - Profile background as banner
+- Less cluttered notification summary
 - Better timeline top bar
 
 ## Implemented
@@ -30,7 +31,6 @@
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - Mark as read from notifications widget
-- Less cluttered notification summary
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Spinner instead of "Loading..."
