@@ -213,11 +213,23 @@ onUnmounted(() => {
 
 					> .banner {
 						height: 100%;
-						background-color: #4c5e6d;
+						background-color: #26233a;
 						background-size: cover;
 						background-position: center;
 						box-shadow: 0 0 128px rgba(0, 0, 0, 0.5) inset;
 						will-change: background-position;
+
+						&::after {
+							content: "";
+							background-image: inherit;
+							position: fixed;
+							inset: 0;
+							background-size: cover;
+							background-position: center;
+							pointer-events: none;
+							opacity: .1;
+							filter: blur(10px);
+						}
 					}
 
 					> .fade {

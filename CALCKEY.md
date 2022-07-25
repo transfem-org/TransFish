@@ -20,7 +20,6 @@
 
 ## Work in progress
 
-- Profile background as banner
 - Less cluttered notification summary
 - Better timeline top bar
 
@@ -31,6 +30,7 @@
 - Star as default reaction
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
+- Profile background as banner
 - Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
