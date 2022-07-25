@@ -1,8 +1,8 @@
 import { uploadFromUrl } from '@/services/drive/upload-from-url.js';
+import define from '../../../define.js';
 import { DriveFiles } from '@/models/index.js';
 import { publishMainStream } from '@/services/stream.js';
 import { HOUR } from '@/const.js';
-import define from '@/server/api/define';
 
 export const meta = {
 	tags: ['drive'],
@@ -33,8 +33,8 @@ export const paramDef = {
 } as const;
 
 // eslint-disable-next-line import/no-default-export
-export default define(meta, paramDef, async (ps, user, _1, _2, _3, ip, headers) => {
-	uploadFromUrl({ url: ps.url, user, folderId: ps.folderId, sensitive: ps.isSensitive, force: ps.force, comment: ps.comment, requestIp: ip, requestHeaders: headers }).then(file => {
+export default define(meta, paramDef, async (ps, user) => {
+	uploadFromUrl({ url: ps.url, user, folderId: ps.folderId, sensitive: ps.isSensitive, force: ps.force, comment: ps.comment }).then(file => {
 		DriveFiles.pack(file, { self: true }).then(packedFile => {
 			publishMainStream(user.id, 'urlUploadFinished', {
 				marker: ps.marker,
