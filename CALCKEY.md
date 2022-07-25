@@ -30,7 +30,7 @@
 - Star as default reaction
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
-- Profile background as banner
+- [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
