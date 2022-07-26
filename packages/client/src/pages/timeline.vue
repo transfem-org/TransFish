@@ -172,14 +172,6 @@ definePageMetadata(computed(() => ({
 </script>
 
 <style lang="scss" scoped>
-.icon.fa-list-ul {
-	padding-left: 0.5rem;
-	font-size: 0.8em;
-}
-
-.icon.fa-satellite, .icon.fa-satellite-dish {
-	font-size: 0.8em;
-}
 
 .cmuxhskf {
 	> .new {
