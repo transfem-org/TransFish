@@ -121,12 +121,12 @@ const headerActions = $computed(() => [{
 	title: i18n.ts.antennas,
 	iconOnly: true,
 	handler: chooseAntenna,
-}, {
+}, /* {
 	icon: 'fas fa-satellite-dish',
 	title: i18n.ts.channel,
 	iconOnly: true,
 	handler: chooseChannel,
-}, {
+}, */ {
 	icon: 'fas fa-calendar-alt',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
