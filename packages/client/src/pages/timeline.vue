@@ -115,22 +115,22 @@ const headerActions = $computed(() => [{
 	icon: 'fas fa-list-ul',
 	title: i18n.ts.lists,
 	iconOnly: true,
-	onClick: chooseList,
+	handler: chooseList,
 }, {
 	icon: 'fas fa-satellite',
 	title: i18n.ts.antennas,
 	iconOnly: true,
-	onClick: chooseAntenna,
+	handler: chooseAntenna,
 }, {
 	icon: 'fas fa-satellite-dish',
 	title: i18n.ts.channel,
 	iconOnly: true,
-	onClick: chooseChannel,
+	handler: chooseChannel,
 }, {
 	icon: 'fas fa-calendar-alt',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
-	onClick: timetravel,
+	handler: timetravel,
 }]);
 
 const headerTabs = $computed(() => [{
