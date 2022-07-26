@@ -1,9 +1,9 @@
-import ms from 'ms';
 import deleteNote from '@/services/note/delete.js';
 import { Notes, Users } from '@/models/index.js';
 import define from '../../define.js';
 import { getNote } from '../../common/getters.js';
 import { ApiError } from '../../error.js';
+import { SECOND, HOUR } from '@/const.js';
 
 export const meta = {
 	tags: ['notes'],
@@ -13,9 +13,9 @@ export const meta = {
 	kind: 'write:notes',
 
 	limit: {
-		duration: ms('1hour'),
+		duration: HOUR,
 		max: 300,
-		minInterval: ms('1sec'),
+		minInterval: SECOND,
 	},
 
 	errors: {
@@ -37,9 +37,9 @@ export const paramDef = {
 
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
-	const note = await getNote(ps.noteId).catch(e => {
-		if (e.id === '9725d0ce-ba28-4dde-95a7-2cbb2c15de24') throw new ApiError(meta.errors.noSuchNote);
-		throw e;
+	const note = await getNote(ps.noteId, user).catch(err => {
+		if (err.id === '9725d0ce-ba28-4dde-95a7-2cbb2c15de24') throw new ApiError(meta.errors.noSuchNote);
+		throw err;
 	});
 
 	const renotes = await Notes.findBy({

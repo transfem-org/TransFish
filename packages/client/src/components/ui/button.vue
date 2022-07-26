@@ -141,7 +141,7 @@ export default defineComponent({
 	display: block;
 	min-width: 100px;
 	width: max-content;
-	padding: 8px 14px;
+	padding: 8px 16px;
 	text-align: center;
 	font-weight: normal;
 	font-size: 1em;
@@ -152,6 +152,8 @@ export default defineComponent({
 	overflow: clip;
 	box-sizing: border-box;
 	transition: background 0.1s ease;
+	margin-right: 0.2rem;
+	margin-left: 0.2rem;
 
 	&:not(:disabled):hover {
 		background: var(--buttonHoverBg);
@@ -198,18 +200,18 @@ export default defineComponent({
 	}
 
 	&.danger {
-		color: #ff2a2a;
+		color: #eb6f92;
 
 		&.primary {
-			color: #fff;
-			background: #ff2a2a;
+			color: #e0def4;
+			background: #eb6f92;
 
 			&:not(:disabled):hover {
-				background: #ff4242;
+				background: #eb6f92;
 			}
 
 			&:not(:disabled):active {
-				background: #d42e2e;
+				background: #b4637a;
 			}
 		}
 	}

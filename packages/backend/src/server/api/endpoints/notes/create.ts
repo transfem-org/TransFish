@@ -1,4 +1,3 @@
-import ms from 'ms';
 import { In } from 'typeorm';
 import create from '@/services/note/create.js';
 import { User } from '@/models/entities/user.js';
@@ -10,6 +9,8 @@ import { MAX_NOTE_TEXT_LENGTH } from '@/const.js';
 import { noteVisibilities } from '../../../../types.js';
 import { ApiError } from '../../error.js';
 import define from '../../define.js';
+import { HOUR } from '@/const.js';
+import { getNote } from '../../common/getters.js';
 
 export const meta = {
 	tags: ['notes'],
@@ -17,7 +18,7 @@ export const meta = {
 	requireCredential: true,
 
 	limit: {
-		duration: ms('1hour'),
+		duration: HOUR,
 		max: 300,
 	},
 
@@ -83,7 +84,7 @@ export const meta = {
 export const paramDef = {
 	type: 'object',
 	properties: {
-		visibility: { type: 'string', enum: ['public', 'home', 'followers', 'specified'], default: 'public' },
+		visibility: { type: 'string', enum: noteVisibilities, default: 'public' },
 		visibleUserIds: { type: 'array', uniqueItems: true, items: {
 			type: 'string', format: 'misskey:id',
 		} },
@@ -185,11 +186,12 @@ export default define(meta, paramDef, async (ps, user) => {
 	let renote: Note | null = null;
 	if (ps.renoteId != null) {
 		// Fetch renote to note
-		renote = await Notes.findOneBy({ id: ps.renoteId });
+		renote = await getNote(ps.renoteId, user).catch(e => {
+			if (e.id === '9725d0ce-ba28-4dde-95a7-2cbb2c15de24') throw new ApiError(meta.errors.noSuchRenoteTarget);
+			throw e;
+		});
 
-		if (renote == null) {
-			throw new ApiError(meta.errors.noSuchRenoteTarget);
-		} else if (renote.renoteId && !renote.text && !renote.fileIds && !renote.hasPoll) {
+		if (renote.renoteId && !renote.text && !renote.fileIds && !renote.hasPoll) {
 			throw new ApiError(meta.errors.cannotReRenote);
 		}
 
@@ -208,11 +210,12 @@ export default define(meta, paramDef, async (ps, user) => {
 	let reply: Note | null = null;
 	if (ps.replyId != null) {
 		// Fetch reply
-		reply = await Notes.findOneBy({ id: ps.replyId });
+		reply = await getNote(ps.replyId, user).catch(e => {
+			if (e.id === '9725d0ce-ba28-4dde-95a7-2cbb2c15de24') throw new ApiError(meta.errors.noSuchReplyTarget);
+			throw e;
+		});
 
-		if (reply == null) {
-			throw new ApiError(meta.errors.noSuchReplyTarget);
-		} else if (reply.renoteId && !reply.text && !reply.fileIds && !reply.hasPoll) {
+		if (reply.renoteId && !reply.text && !reply.fileIds && !reply.hasPoll) {
 			throw new ApiError(meta.errors.cannotReplyToPureRenote);
 		}
 

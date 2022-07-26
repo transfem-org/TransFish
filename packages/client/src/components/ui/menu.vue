@@ -46,7 +46,7 @@
 			</button>
 		</template>
 		<span v-if="items2.length === 0" class="none item">
-			<span>{{ $ts.none }}</span>
+			<span>{{ i18n.ts.none }}</span>
 		</span>
 	</div>
 	<div v-if="childMenu" class="child">
@@ -61,6 +61,8 @@ import { focusPrev, focusNext } from '@/scripts/focus';
 import FormSwitch from '@/components/form/switch.vue';
 import { MenuItem, InnerMenuItem, MenuPending, MenuAction } from '@/types/menu';
 import * as os from '@/os';
+import { i18n } from '@/i18n';
+
 const XChild = defineAsyncComponent(() => import('./menu.child.vue'));
 
 const props = defineProps<{
@@ -217,6 +219,7 @@ onBeforeUnmount(() => {
 			right: 0;
 			margin: auto;
 			width: calc(100% - 16px);
+			margin-bottom: 0.2rem;
 			height: 100%;
 			border-radius: 6px;
 		}
@@ -235,21 +238,21 @@ onBeforeUnmount(() => {
 		}
 
 		&.danger {
-			color: #ff2a2a;
+			color: #eb6f92;
 
 			&:hover {
-				color: #fff;
+				color: #e0def4;
 
 				&:before {
-					background: #ff4242;
+					background: #eb6f92;
 				}
 			}
 
 			&:active {
-				color: #fff;
+				color: #e0def4;
 
 				&:before {
-					background: #d42e2e;
+					background: #b4637a;
 				}
 			}
 		}
@@ -335,6 +338,9 @@ onBeforeUnmount(() => {
 	&.asDrawer {
 		padding: 12px 0 calc(env(safe-area-inset-bottom, 0px) + 12px) 0;
 		width: 100%;
+		border-radius: 24px;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
 
 		> .item {
 			font-size: 1em;

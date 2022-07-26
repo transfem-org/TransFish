@@ -120,6 +120,18 @@ export default defineComponent({
 			background-color: rgba(0, 0, 0, 0.1);
 			background-size: cover;
 			background-position: center;
+
+			&::after {
+				content: "";
+				background-image: inherit;
+				position: fixed;
+				inset: 0;
+				background-size: cover;
+				background-position: center;
+				pointer-events: none;
+				opacity: .1;
+				filter: blur(10px);
+			}
 		}
 
 		> .avatar {

@@ -9,7 +9,7 @@
 	@ok="ok()"
 	@closed="$emit('closed')"
 >
-	<template #header>{{ $ts.cropImage }}</template>
+	<template #header>{{ i18n.ts.cropImage }}</template>
 	<template #default="{ width, height }">
 		<div class="mk-cropper-dialog" :style="`--vw: ${width}px; --vh: ${height}px;`">
 			<Transition name="fade">
@@ -36,6 +36,7 @@ import { $i } from '@/account';
 import { defaultStore } from '@/store';
 import { apiUrl, url } from '@/config';
 import { query } from '@/scripts/url';
+import { i18n } from '@/i18n';
 
 const emit = defineEmits<{
 	(ev: 'ok', cropped: misskey.entities.DriveFile): void;
@@ -62,7 +63,6 @@ const ok = async () => {
 		croppedCanvas.toBlob(blob => {
 			const formData = new FormData();
 			formData.append('file', blob);
-			formData.append('i', $i.token);
 			if (defaultStore.state.uploadFolder) {
 				formData.append('folderId', defaultStore.state.uploadFolder);
 			}
@@ -70,6 +70,9 @@ const ok = async () => {
 			fetch(apiUrl + '/drive/files/create', {
 				method: 'POST',
 				body: formData,
+				headers: {
+					authorization: `Bearer ${$i.token}`,
+				},
 			})
 			.then(response => response.json())
 			.then(f => {

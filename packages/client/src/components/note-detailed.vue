@@ -14,7 +14,7 @@
 	<div v-if="isRenote" class="renote">
 		<MkAvatar class="avatar" :user="note.user"/>
 		<i class="fas fa-retweet"></i>
-		<I18n :src="$ts.renotedBy" tag="span">
+		<I18n :src="i18n.ts.renotedBy" tag="span">
 			<template #user>
 				<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
 					<MkUserName :user="note.user"/>
@@ -54,7 +54,6 @@
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content">
 					<div class="text">
-						<span v-if="appearNote.isHidden" style="opacity: 0.5">({{ $ts.private }})</span>
 						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="fas fa-reply"></i></MkA>
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<a v-if="appearNote.renote != null" class="rp">RN:</a>
@@ -100,10 +99,10 @@
 			</footer>
 		</div>
 	</article>
-	<MkNoteSub v-for="note in replies" :key="note.id" :note="note" class="reply" :detail="true"/>
+	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
 </div>
 <div v-else class="_panel muted" @click="muted = false">
-	<I18n :src="$ts.userSaysSomething" tag="small">
+	<I18n :src="i18n.ts.userSaysSomething" tag="small">
 		<template #name>
 			<MkA v-user-preview="appearNote.userId" class="name" :to="userPage(appearNote.user)">
 				<MkUserName :user="appearNote.user"/>
@@ -183,6 +182,7 @@ const urls = appearNote.text ? extractUrlFromMfm(mfm.parse(appearNote.text)) : n
 const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && appearNote.user.instance);
 const conversation = ref<misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
+const directReplies = ref<misskey.entities.Note[]>([]);
 
 const keymap = {
 	'r': () => reply(true),
@@ -281,9 +281,11 @@ function blur() {
 
 os.api('notes/children', {
 	noteId: appearNote.id,
-	limit: 100,
+	limit: 30,
+	depth: 6,
 }).then(res => {
 	replies.value = res;
+	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id);
 });
 
 if (appearNote.replyId) {

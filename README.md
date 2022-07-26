@@ -40,7 +40,7 @@ Read [this](./CALCKEY.md) for current and future differences.
 You need at least 🐢 NodeJS v16.10.0 (>v18.0.0 \<v18.6.0 reccomended!) and *exactly* 🧶 Yarn v3.2.1!
 
 ```sh
-# nvm install 18 && nvm alias default 18
+# nvm install 18.4.0 && nvm alias default 18.4.0 && nvm use 18.4.0
 corepack enable
 yarn set version berry
 ```
@@ -48,9 +48,9 @@ yarn set version berry
 ```sh
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
-# `git checkout main` if you want only stable versions
+# git checkout main # if you want only stable versions
 cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey folder is
-cp -r ../misskey/files . # if you don't use object storage
+# cp -r ../misskey/files . # if you don't use object storage
 YARN_CHECKSUM_BEHAVIOR=update yarn install
 NODE_ENV=production npm run build && npm run migrate
 # Edit service to point to calckey folder and restart!

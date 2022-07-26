@@ -12,6 +12,8 @@ export const meta = {
 	requireCredential: false,
 	requireCredentialPrivateMode: true,
 
+	description: 'Get a list of children of a notes. Children includes replies as well as quote renotes that quote the respective post. A post will not be duplicated if it is a reply and a quote of a note in this thread. For depths larger than 1 the threading has to be computed by the client.',
+
 	res: {
 		type: 'array',
 		optional: false, nullable: false,
@@ -27,7 +29,20 @@ export const paramDef = {
 	type: 'object',
 	properties: {
 		noteId: { type: 'string', format: 'misskey:id' },
-		limit: { type: 'integer', minimum: 1, maximum: 100, default: 10 },
+		limit: {
+			description: 'The maximum number of replies/quotes to show per parent note, i.e. the maximum number of children each note may have.',
+			type: 'integer',
+			minimum: 1,
+			maximum: 100,
+			default: 10,
+		},
+		depth: {
+			description: 'The number of layers of replies to fetch at once. Defaults to 1 for backward compatibility.',
+			type: 'integer',
+			minimum: 1,
+			maximum: 100,
+			default: 1,
+		},
 		sinceId: { type: 'string', format: 'misskey:id' },
 		untilId: { type: 'string', format: 'misskey:id' },
 	},
@@ -37,28 +52,10 @@ export const paramDef = {
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'), ps.sinceId, ps.untilId)
-		.andWhere(new Brackets(qb => { qb
-			.where('note.replyId = :noteId', { noteId: ps.noteId })
-			.orWhere(new Brackets(qb => { qb
-				.where('note.renoteId = :noteId', { noteId: ps.noteId })
-				.andWhere(new Brackets(qb => { qb
-					.where('note.text IS NOT NULL')
-					.orWhere('note.fileIds != \'{}\'')
-					.orWhere('note.hasPoll = TRUE');
-				}));
-			}));
-		}))
+		.andWhere('note.id IN (SELECT id FROM note_replies(:noteId, :depth, :limit))', { noteId: ps.noteId, depth: ps.depth, limit: ps.limit })
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
 		.leftJoinAndSelect('user.banner', 'banner')
-		.leftJoinAndSelect('note.reply', 'reply')
-		.leftJoinAndSelect('note.renote', 'renote')
-		.leftJoinAndSelect('reply.user', 'replyUser')
-		.leftJoinAndSelect('replyUser.avatar', 'replyUserAvatar')
-		.leftJoinAndSelect('replyUser.banner', 'replyUserBanner')
-		.leftJoinAndSelect('renote.user', 'renoteUser')
-		.leftJoinAndSelect('renoteUser.avatar', 'renoteUserAvatar')
-		.leftJoinAndSelect('renoteUser.banner', 'renoteUserBanner');
 
 	generateVisibilityQuery(query, user);
 	if (user) {
@@ -66,7 +63,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		generateBlockedUserQuery(query, user);
 	}
 
-	const notes = await query.take(ps.limit).getMany();
+	const notes = await query.getMany();
 
-	return await Notes.packMany(notes, user);
+	return await Notes.packMany(notes, user, { detail: false });
 });

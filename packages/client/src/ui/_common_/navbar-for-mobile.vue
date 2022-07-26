@@ -2,40 +2,40 @@
 <div class="kmwsukvl">
 	<div class="body">
 		<div class="top">
-			<div class="banner" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }"></div>
-			<button v-click-anime class="item _button instance" @click="openInstanceMenu">
-				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
+			<div class="banner" :user="$i" :style="{ backgroundImage: `url(${ $i.bannerUrl })` }"></div>
+			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
+				<MkAvatar :user="$i" class="icon"/><!-- <MkAcct class="text" :user="$i"/> -->
 			</button>
 		</div>
 		<div class="middle">
 			<MkA v-click-anime class="item index" active-class="active" to="/" exact>
-				<i class="icon fas fa-home fa-fw"></i><span class="text">{{ $ts.timeline }}</span>
+				<i class="icon fas fa-home fa-fw"></i><span class="text">{{ i18n.ts.timeline }}</span>
 			</MkA>
 			<template v-for="item in menu">
 				<div v-if="item === '-'" class="divider"></div>
 				<component :is="navbarItemDef[item].to ? 'MkA' : 'button'" v-else-if="navbarItemDef[item] && (navbarItemDef[item].show !== false)" v-click-anime class="item _button" :class="[item, { active: navbarItemDef[item].active }]" active-class="active" :to="navbarItemDef[item].to" v-on="navbarItemDef[item].action ? { click: navbarItemDef[item].action } : {}">
-					<i class="icon fa-fw" :class="navbarItemDef[item].icon"></i><span class="text">{{ $ts[navbarItemDef[item].title] }}</span>
+					<i class="icon fa-fw" :class="navbarItemDef[item].icon"></i><span class="text">{{ i18n.ts[navbarItemDef[item].title] }}</span>
 					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="icon fas fa-circle"></i></span>
 				</component>
 			</template>
 			<div class="divider"></div>
 			<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime class="item" active-class="active" to="/admin">
-				<i class="icon fas fa-door-open fa-fw"></i><span class="text">{{ $ts.controlPanel }}</span>
+				<i class="icon fas fa-door-open fa-fw"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
 			</MkA>
 			<button v-click-anime class="item _button" @click="more">
-				<i class="icon fa fa-ellipsis-h fa-fw"></i><span class="text">{{ $ts.more }}</span>
+				<i class="icon fa fa-ellipsis-h fa-fw"></i><span class="text">{{ i18n.ts.more }}</span>
 				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon fas fa-circle"></i></span>
 			</button>
 			<MkA v-click-anime class="item" active-class="active" to="/settings">
-				<i class="icon fas fa-cog fa-fw"></i><span class="text">{{ $ts.settings }}</span>
+				<i class="icon fas fa-cog fa-fw"></i><span class="text">{{ i18n.ts.settings }}</span>
 			</MkA>
 		</div>
 		<div class="bottom">
 			<button class="item _button post" data-cy-open-post-form @click="os.post">
-				<i class="icon fas fa-pencil-alt fa-fw"></i><span class="text">{{ $ts.note }}</span>
+				<i class="icon fas fa-pencil-alt fa-fw"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<button v-click-anime class="item _button account" @click="openAccountMenu">
-				<MkAvatar :user="$i" class="avatar"/><MkAcct class="text" :user="$i"/>
+			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
+				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button>
 		</div>
 	</div>
@@ -138,7 +138,7 @@ function more() {
 			position: sticky;
 			top: 0;
 			z-index: 1;
-			padding: 20px 0;
+			padding: 2rem 0;
 			background: var(--X14);
 			-webkit-backdrop-filter: var(--blur, blur(8px));
 			backdrop-filter: var(--blur, blur(8px));
@@ -155,7 +155,7 @@ function more() {
 				mask-image: linear-gradient(0deg, rgba(0,0,0,0) 15%, rgba(0,0,0,0.75) 100%);
 			}
 
-			> .instance {
+			> .account {
 				position: relative;
 				display: block;
 				text-align: center;
@@ -163,7 +163,7 @@ function more() {
 
 				> .icon {
 					display: inline-block;
-					width: 38px;
+					width: 55px;
 					aspect-ratio: 1;
 				}
 			}
@@ -219,7 +219,7 @@ function more() {
 				}
 			}
 
-			> .account {
+			> .instance {
 				position: relative;
 				display: flex;
 				align-items: center;
@@ -232,11 +232,12 @@ function more() {
 				box-sizing: border-box;
 				margin-top: 16px;
 
-				> .avatar {
+				> .icon {
 					position: relative;
 					width: 32px;
 					aspect-ratio: 1;
-					margin-right: 8px;
+					transform: translateX(-100%);
+					left: 50%;
 				}
 			}
 		}

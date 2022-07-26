@@ -4,8 +4,7 @@
 
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { PathOrFileDescriptor, readFileSync } from 'node:fs';
-import ms from 'ms';
+import { readFileSync } from 'node:fs';
 import Koa from 'koa';
 import Router from '@koa/router';
 import send from 'koa-send';
@@ -27,6 +26,7 @@ import { genOpenapiSpec } from '../api/openapi/gen-spec.js';
 import { urlPreviewHandler } from './url-preview.js';
 import { manifestHandler } from './manifest.js';
 import packFeed from './feed.js';
+import { MINUTE, DAY } from '@/const.js';
 
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(_filename);
@@ -100,21 +100,21 @@ const router = new Router();
 router.get('/static-assets/(.*)', async ctx => {
 	await send(ctx as any, ctx.path.replace('/static-assets/', ''), {
 		root: staticAssets,
-		maxage: ms('7 days'),
+		maxage: 7 * DAY,
 	});
 });
 
 router.get('/client-assets/(.*)', async ctx => {
 	await send(ctx as any, ctx.path.replace('/client-assets/', ''), {
 		root: clientAssets,
-		maxage: ms('7 days'),
+		maxage: 7 * DAY,
 	});
 });
 
 router.get('/assets/(.*)', async ctx => {
 	await send(ctx as any, ctx.path.replace('/assets/', ''), {
 		root: assets,
-		maxage: ms('7 days'),
+		maxage: 7 * DAY,
 	});
 });
 
@@ -137,7 +137,7 @@ router.get('/twemoji/(.*)', async ctx => {
 
 	await send(ctx as any, path, {
 		root: `${_dirname}/../../../node_modules/@discordapp/twemoji/dist/svg/`,
-		maxage: ms('30 days'),
+		maxage: 30 * DAY,
 	});
 });
 
@@ -188,7 +188,7 @@ router.get('/twemoji-badge/(.*)', async ctx => {
 router.get(`/sw.js`, async ctx => {
 	await send(ctx as any, `/sw.js`, {
 		root: swAssets,
-		maxage: ms('10 minutes'),
+		maxage: 10 * MINUTE,
 	});
 });
 
@@ -344,24 +344,32 @@ router.get('/notes/:note', async (ctx, next) => {
 	});
 
 	if (note) {
-		const _note = await Notes.pack(note);
-		const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
-		const meta = await fetchMeta();
-		await ctx.render('note', {
-			note: _note,
-			profile,
-			avatarUrl: await Users.getAvatarUrl(await Users.findOneByOrFail({ id: note.userId })),
-			// TODO: Let locale changeable by instance setting
-			summary: getNoteSummary(_note),
-			instanceName: meta.name || 'Calckey',
-			icon: meta.iconUrl,
-			privateMode: meta.privateMode,
-			themeColor: meta.themeColor,
-		});
+		try {
+			// FIXME: packing with detail may throw an error if the reply or renote is not visible (#8774)
+			const _note = await Notes.pack(note);
+			const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
+			const meta = await fetchMeta();
+			await ctx.render('note', {
+				note: _note,
+				profile,
+				avatarUrl: await Users.getAvatarUrl(await Users.findOneByOrFail({ id: note.userId })),
+				// TODO: Let locale changeable by instance setting
+				summary: getNoteSummary(_note),
+				instanceName: meta.name || 'Misskey',
+				icon: meta.iconUrl,
+				themeColor: meta.themeColor,
+			});
 
-		ctx.set('Cache-Control', 'public, max-age=15');
+			ctx.set('Cache-Control', 'public, max-age=15');
 
-		return;
+			return;
+		} catch (err) {
+			if (err.id === '9725d0ce-ba28-4dde-95a7-2cbb2c15de24') {
+				// note not visible to user
+			} else {
+				throw err;
+			}
+		}
 	}
 
 	await next();

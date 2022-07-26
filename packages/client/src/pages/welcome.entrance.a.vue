@@ -8,9 +8,15 @@
 		<img src="/client-assets/misskey.svg" class="misskey"/>
 		<div class="emojis">
 			<MkEmoji :normal="true" :no-style="true" emoji="⭐"/>
-			<MkEmoji :normal="true" :no-style="true" emoji="❤"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="❤️"/>
 			<MkEmoji :normal="true" :no-style="true" emoji="😆"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="🤔"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="😮"/>
 			<MkEmoji :normal="true" :no-style="true" emoji="🎉"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="💢"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="😥"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="😇"/>
+			<MkEmoji :normal="true" :no-style="true" emoji="🥴"/>
 			<MkEmoji :normal="true" :no-style="true" emoji="🍮"/>
 		</div>
 		<div class="main">

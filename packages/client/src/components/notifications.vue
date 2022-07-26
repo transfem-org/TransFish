@@ -3,7 +3,7 @@
 	<template #empty>
 		<div class="_fullinfo">
 			<img src="/static-assets/badges/info.jpg" class="_ghost" alt="Info"/>
-			<div>{{ $ts.noNotifications }}</div>
+			<div>{{ i18n.ts.noNotifications }}</div>
 		</div>
 	</template>
 
@@ -26,6 +26,7 @@ import XNote from '@/components/note.vue';
 import * as os from '@/os';
 import { stream } from '@/stream';
 import { $i } from '@/account';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	includeTypes?: typeof notificationTypes[number][];

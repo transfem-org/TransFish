@@ -2,9 +2,9 @@
 <div class="mvcprjjd" :class="{ iconOnly }">
 	<div class="body">
 		<div class="top">
-			<div class="banner" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }"></div>
-			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
-				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
+			<div class="banner" :user="$i" :style="{ backgroundImage: `url(${ $i.bannerUrl })` }"></div>
+			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
+				<MkAvatar :user="$i" class="icon"/><!-- <MkAcct class="text" :user="$i"/> -->
 			</button>
 		</div>
 		<div class="middle">
@@ -44,9 +44,12 @@
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon fas fa-pencil-alt fa-fw"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
-				<MkAvatar :user="$i" class="avatar"/><MkAcct class="text" :user="$i"/>
+			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
+				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button>
+			<!-- <button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
+				<MkAvatar :user="$i" class="account"/><MkAcct class="text" :user="$i"/>
+			</button> -->
 		</div>
 	</div>
 </div>
@@ -187,7 +190,7 @@ function more(ev: MouseEvent) {
 				position: sticky;
 				top: 0;
 				z-index: 1;
-				padding: 20px 0;
+				padding: 2rem 0;
 				background: var(--X14);
 				-webkit-backdrop-filter: var(--blur, blur(8px));
 				backdrop-filter: var(--blur, blur(8px));
@@ -204,7 +207,7 @@ function more(ev: MouseEvent) {
 					mask-image: linear-gradient(0deg, rgba(0,0,0,0) 15%, rgba(0,0,0,0.75) 100%);
 				}
 
-				> .instance {
+				> .account {
 					position: relative;
 					display: block;
 					text-align: center;
@@ -212,7 +215,7 @@ function more(ev: MouseEvent) {
 
 					> .icon {
 						display: inline-block;
-						width: 38px;
+						width: 55px;
 						aspect-ratio: 1;
 					}
 				}
@@ -256,36 +259,42 @@ function more(ev: MouseEvent) {
 						}
 					}
 
-					> .icon {
+					> .icon, > .text {
 						position: relative;
-						margin-left: 30px;
-						margin-right: 8px;
-						width: 32px;
+						left: 3rem;
+						color: var(--fgOnAccent);
 					}
 
 					> .text {
-						position: relative;
+						margin-left: 1rem;
+					}
+
+				}
+
+				> .instance {
+					position: relative;
+					display: block;
+					text-align: center;
+					width: 100%;
+
+					> .icon {
+						display: inline-block;
+						width: 32px !important;
+						aspect-ratio: 1;
+						margin-top: 1rem;
 					}
 				}
 
 				> .account {
 					position: relative;
-					display: flex;
-					align-items: center;
-					padding-left: 30px;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					white-space: nowrap;
+					display: block;
+					text-align: center;
 					width: 100%;
-					text-align: left;
-					box-sizing: border-box;
-					margin-top: 16px;
 
-					> .avatar {
-						position: relative;
-						width: 32px;
+					> .icon {
+						display: inline-block;
+						width: 38px;
 						aspect-ratio: 1;
-						margin-right: 8px;
 					}
 				}
 			}
@@ -303,6 +312,7 @@ function more(ev: MouseEvent) {
 					display: block;
 					padding-left: 30px;
 					line-height: 2.85rem;
+					margin-bottom: 0.5rem;
 					text-overflow: ellipsis;
 					overflow: hidden;
 					white-space: nowrap;
@@ -374,19 +384,19 @@ function more(ev: MouseEvent) {
 				position: sticky;
 				top: 0;
 				z-index: 1;
-				padding: 20px 0;
+				padding: 2rem 0;
 				background: var(--X14);
 				-webkit-backdrop-filter: var(--blur, blur(8px));
 				backdrop-filter: var(--blur, blur(8px));
 
-				> .instance {
+				> .account {
 					display: block;
 					text-align: center;
 					width: 100%;
 
 					> .icon {
 						display: inline-block;
-						width: 30px;
+						width: 40px;
 						aspect-ratio: 1;
 					}
 				}
@@ -439,19 +449,16 @@ function more(ev: MouseEvent) {
 					}
 				}
 
-				> .account {
+				> .instance {
+					position: relative;
 					display: block;
 					text-align: center;
 					width: 100%;
 
-					> .avatar {
+					> .icon {
 						display: inline-block;
-						width: 38px;
+						width: 32px !important;
 						aspect-ratio: 1;
-					}
-
-					> .text {
-						display: none;
 					}
 				}
 			}
@@ -469,6 +476,7 @@ function more(ev: MouseEvent) {
 					display: block;
 					position: relative;
 					padding: 18px 0;
+					margin-bottom: 0.5rem;
 					width: 100%;
 					text-align: center;
 
