@@ -111,7 +111,27 @@ function focus(): void {
 	tlComponent.focus();
 }
 
-const headerActions = $computed(() => []);
+const headerActions = $computed(() => [{
+	icon: 'fas fa-list-ul',
+	title: i18n.ts.lists,
+	iconOnly: true,
+	onClick: chooseList,
+}, {
+	icon: 'fas fa-satellite',
+	title: i18n.ts.antennas,
+	iconOnly: true,
+	onClick: chooseAntenna,
+}, {
+	icon: 'fas fa-satellite-dish',
+	title: i18n.ts.channel,
+	iconOnly: true,
+	onClick: chooseChannel,
+}, {
+	icon: 'fas fa-calendar-alt',
+	title: i18n.ts.jumpToSpecifiedDate,
+	iconOnly: true,
+	onClick: timetravel,
+}]);
 
 const headerTabs = $computed(() => [{
 	key: 'home',
@@ -133,22 +153,7 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts._timelines.global,
 	icon: 'fas fa-globe',
 	iconOnly: true,
-}] : []), {
-	icon: 'fas fa-list-ul',
-	title: i18n.ts.lists,
-	iconOnly: true,
-	onClick: chooseList,
-}, {
-	icon: 'fas fa-satellite',
-	title: i18n.ts.antennas,
-	iconOnly: true,
-	onClick: chooseAntenna,
-}, {
-	icon: 'fas fa-satellite-dish',
-	title: i18n.ts.channel,
-	iconOnly: true,
-	onClick: chooseChannel,
-}]);
+}] : [])]);
 
 const headerTabsWhenNotLogin = $computed(() => [
 	...(isLocalTimelineAvailable ? [{
