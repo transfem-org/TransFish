@@ -94,6 +94,14 @@ export const routes = [{
 		name: 'theme',
 		component: page(() => import('./pages/settings/theme.vue')),
 	}, {
+		path: '/custom-css',
+		name: 'custom-css',
+		component: page(() => import('./pages/settings/custom-css.vue')),
+	}, {
+		path: '/account-info',
+		name: 'account-info',
+		component: page(() => import('./pages/settings/account-info.vue')),
+	}, {
 		path: '/navbar',
 		name: 'navbar',
 		component: page(() => import('./pages/settings/navbar.vue')),
