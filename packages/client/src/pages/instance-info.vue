@@ -198,31 +198,31 @@ const headerActions = $computed(() => [{
 	},
 }]);
 
-let headerTabs = $computed(() => [{
+let theTabs = [{
 	key: 'overview',
 	title: i18n.ts.overview,
 	icon: 'fas fa-info-circle',
-}]);
+}];
 
 if (iAmModerator) {
-	headerTabs.values.apply([{
-		key: 'overview',
-		title: i18n.ts.overview,
-		icon: 'fas fa-info-circle',
-	}, {
-		key: 'chart',
-		title: i18n.ts.charts,
-		icon: 'fas fa-chart-simple',
-	}, {
-		key: 'users',
-		title: i18n.ts.users,
-		icon: 'fas fa-users',
-	}, {
-		key: 'raw',
-		title: 'Raw',
-		icon: 'fas fa-code',
-	}]);
+	theTabs.push(
+		{
+			key: 'chart',
+			title: i18n.ts.charts,
+			icon: 'fas fa-chart-simple',
+		}, {
+			key: 'users',
+			title: i18n.ts.users,
+			icon: 'fas fa-users',
+		}, {
+			key: 'raw',
+			title: 'Raw',
+			icon: 'fas fa-code',
+		},
+	);
 }
+
+let headerTabs = $computed(() => theTabs);
 
 definePageMetadata({
 	title: props.host,
