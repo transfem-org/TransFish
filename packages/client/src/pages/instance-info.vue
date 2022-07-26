@@ -53,7 +53,7 @@
 					<template #value><MkTime v-if="instance.latestRequestReceivedAt" :time="instance.latestRequestReceivedAt"/><span v-else>N/A</span></template>
 				</MkKeyValue>
 			</FormSection>
-	
+
 			<FormSection>
 				<MkKeyValue oneline style="margin: 1em 0;">
 					<template #key>Following (Pub)</template>
@@ -198,23 +198,42 @@ const headerActions = $computed(() => [{
 	},
 }]);
 
-const headerTabs = $computed(() => [{
-	key: 'overview',
-	title: i18n.ts.overview,
-	icon: 'fas fa-info-circle',
-}, {
-	key: 'chart',
-	title: i18n.ts.charts,
-	icon: 'fas fa-chart-simple',
-}, {
-	key: 'users',
-	title: i18n.ts.users,
-	icon: 'fas fa-users',
-}, {
-	key: 'raw',
-	title: 'Raw',
-	icon: 'fas fa-code',
-}]);
+let headerTabs;
+
+if (iAmModerator) {
+	headerTabs = $computed(() => [{
+		key: 'overview',
+		title: i18n.ts.overview,
+		icon: 'fas fa-info-circle',
+	}, {
+		key: 'chart',
+		title: i18n.ts.charts,
+		icon: 'fas fa-chart-simple',
+	}, {
+		key: 'users',
+		title: i18n.ts.users,
+		icon: 'fas fa-users',
+	}, {
+		key: 'raw',
+		title: 'Raw',
+		icon: 'fas fa-code',
+	}]);
+}
+else {
+	headerTabs = $computed(() => [{
+		key: 'overview',
+		title: i18n.ts.overview,
+		icon: 'fas fa-info-circle',
+	}, {
+		key: 'chart',
+		title: i18n.ts.charts,
+		icon: 'fas fa-chart-simple',
+	}, {
+		key: 'users',
+		title: i18n.ts.users,
+		icon: 'fas fa-users',
+	}]);
+}
 
 definePageMetadata({
 	title: props.host,

@@ -155,7 +155,7 @@ definePageMetadata(computed(() => ({
 		> .name {
 			display: block;
 			padding: 16px;
-			color: #fff;
+			color: #e0def4;
 			text-shadow: 0 0 8px #000;
 			background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
 		}

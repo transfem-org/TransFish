@@ -40,6 +40,7 @@
 - Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
+- Raw instance info only for moderators
 - Spinner instead of "Loading..."
 - SearchX instead of Google
 - Spacing on group items
