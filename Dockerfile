@@ -9,6 +9,7 @@ COPY . ./
 RUN apt-get update
 RUN apt-get install -y build-essential
 RUN git submodule update --init
+RUN yarn set version berry
 RUN yarn install
 RUN yarn build
 RUN rm -rf .git
