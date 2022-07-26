@@ -397,17 +397,17 @@ const fetchApRequestChart = async (): Promise<typeof chartData> => {
 		series: [{
 			name: 'In',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(raw.inboxReceived),
 		}, {
 			name: 'Out (succ)',
 			type: 'area',
-			color: '#00E396',
+			color: '#c4a7e7',
 			data: format(raw.deliverSucceeded),
 		}, {
 			name: 'Out (fail)',
 			type: 'area',
-			color: '#FEB019',
+			color: '#f6c177',
 			data: format(raw.deliverFailed),
 		}],
 	};
@@ -636,17 +636,17 @@ const fetchInstanceRequestsChart = async (): Promise<typeof chartData> => {
 		series: [{
 			name: 'In',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(raw.requests.received),
 		}, {
 			name: 'Out (succ)',
 			type: 'area',
-			color: '#00E396',
+			color: '#c4a7e7',
 			data: format(raw.requests.succeeded),
 		}, {
 			name: 'Out (fail)',
 			type: 'area',
-			color: '#FEB019',
+			color: '#f6c177',
 			data: format(raw.requests.failed),
 		}],
 	};
@@ -658,7 +658,7 @@ const fetchInstanceUsersChart = async (total: boolean): Promise<typeof chartData
 		series: [{
 			name: 'Users',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(total
 				? raw.users.total
 				: sum(raw.users.inc, negate(raw.users.dec)),
@@ -673,7 +673,7 @@ const fetchInstanceNotesChart = async (total: boolean): Promise<typeof chartData
 		series: [{
 			name: 'Notes',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(total
 				? raw.notes.total
 				: sum(raw.notes.inc, negate(raw.notes.dec)),
@@ -688,7 +688,7 @@ const fetchInstanceFfChart = async (total: boolean): Promise<typeof chartData> =
 		series: [{
 			name: 'Following',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(total
 				? raw.following.total
 				: sum(raw.following.inc, negate(raw.following.dec)),
@@ -696,7 +696,7 @@ const fetchInstanceFfChart = async (total: boolean): Promise<typeof chartData> =
 		}, {
 			name: 'Followers',
 			type: 'area',
-			color: '#00E396',
+			color: '#c4a7e7',
 			data: format(total
 				? raw.followers.total
 				: sum(raw.followers.inc, negate(raw.followers.dec)),
@@ -712,7 +712,7 @@ const fetchInstanceDriveUsageChart = async (total: boolean): Promise<typeof char
 		series: [{
 			name: 'Drive usage',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(total
 				? raw.drive.totalUsage
 				: sum(raw.drive.incUsage, negate(raw.drive.decUsage)),
@@ -727,7 +727,7 @@ const fetchInstanceDriveFilesChart = async (total: boolean): Promise<typeof char
 		series: [{
 			name: 'Drive files',
 			type: 'area',
-			color: '#008FFB',
+			color: '#31748f',
 			data: format(total
 				? raw.drive.totalFiles
 				: sum(raw.drive.incFiles, negate(raw.drive.decFiles)),
