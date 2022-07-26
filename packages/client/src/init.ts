@@ -237,6 +237,7 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 		// テーマリビルドするため
 		localStorage.removeItem('theme');
 
+		/*
 		try { // 変なバージョン文字列来るとcompareVersionsでエラーになるため
 			if (lastVersion != null && compareVersions(version, lastVersion) === 1) {
 				// ログインしてる場合だけ
@@ -246,6 +247,7 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 			}
 		} catch (err) {
 		}
+		*/
 	}
 
 	// NOTE: この処理は必ず↑のクライアント更新時処理より後に来ること(テーマ再構築のため)
