@@ -10,7 +10,6 @@
 - Better intro/onboarding
 - Fully revamp non-logged-in screen
 - Personal notes for all accounts
-- Admin custom CSS
 - Non-nyaify cat mode
 - Timeline filters
 - "Bubble" timeline
@@ -22,6 +21,7 @@
 
 - Less cluttered notification summary
 - Better timeline top bar
+- Admin custom CSS
 
 ## Implemented
 
