@@ -133,7 +133,7 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts._timelines.global,
 	icon: 'fas fa-globe',
 	iconOnly: true,
-}] : []), /* {
+}] : []), {
 	icon: 'fas fa-list-ul',
 	title: i18n.ts.lists,
 	iconOnly: true,
@@ -148,7 +148,7 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts.channel,
 	iconOnly: true,
 	onClick: chooseChannel,
-}*/]);
+}]);
 
 const headerTabsWhenNotLogin = $computed(() => [
 	...(isLocalTimelineAvailable ? [{
@@ -172,6 +172,11 @@ definePageMetadata(computed(() => ({
 </script>
 
 <style lang="scss" scoped>
+.icon > .fa-list-ul, .fa-satellite, .fa-satellite-dish {
+	padding-left: 0.5rem;
+	font-size: 0.8em;
+}
+
 .cmuxhskf {
 	> .new {
 		position: sticky;
