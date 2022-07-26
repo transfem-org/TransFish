@@ -94,6 +94,7 @@ import * as os from '@/os';
 import number from '@/filters/number';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { iAmModerator } from '@/account';
 
 const props = withDefaults(defineProps<{
 	initialTab?: string;
@@ -111,7 +112,7 @@ const initStats = () => os.api('stats', {
 
 const headerActions = $computed(() => []);
 
-const headerTabs = $computed(() => [{
+let theTabs = [{
 	key: 'overview',
 	title: i18n.ts.overview,
 }, {
@@ -119,14 +120,22 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts.customEmojis,
 	icon: 'fas fa-laugh',
 }, {
-	key: 'federation',
-	title: i18n.ts.federation,
-	icon: 'fas fa-globe',
-}, {
 	key: 'charts',
 	title: i18n.ts.charts,
 	icon: 'fas fa-chart-simple',
-}]);
+}];
+
+if (iAmModerator) {
+	theTabs.push(
+		{
+			key: 'federation',
+			title: i18n.ts.federation,
+			icon: 'fas fa-globe',
+		},
+	);
+}
+
+let headerTabs = $computed(() => theTabs);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.instanceInfo,
