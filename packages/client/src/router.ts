@@ -357,6 +357,10 @@ export const routes = [{
 		name: 'other-settings',
 		component: page(() => import('./pages/admin/other-settings.vue')),
 	}, {
+		path: '/other-settings',
+		name: 'other-settings',
+		component: page(() => import('./pages/admin/custom-css.vue')),
+	}, {
 		path: '/',
 		component: page(() => import('./pages/_empty_.vue')),
 	}],
