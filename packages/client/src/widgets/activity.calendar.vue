@@ -19,7 +19,7 @@
 		rx="1" ry="1"
 		fill="none"
 		stroke-width="0.1"
-		stroke="#f73520"/>
+		stroke="#eb6f92"/>
 </svg>
 </template>
 
@@ -52,6 +52,7 @@ props.activity.slice().forEach((d, i) => {
 
 	d.v = peak === 0 ? 0 : d.total / (peak / 2);
 	if (d.v > 1) d.v = 1;
+	// TODO: Make Rose Pine
 	const ch = d.date.weekday === 0 || d.date.weekday === 6 ? 275 : 170;
 	const cs = d.v * 100;
 	const cl = 15 + ((1 - d.v) * 80);
