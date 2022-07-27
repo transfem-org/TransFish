@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<{
 	text-align: center;
 	cursor: wait;
 
-	--size: 50px;
+	--size: 40px;
 
 	&.colored {
 		color: var(--accent);
