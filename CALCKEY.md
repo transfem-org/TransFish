@@ -38,6 +38,7 @@
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - MOTD (customizable by admins!)
+- Custom randomized splash icons
 - [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - Better timeline top bar
 - Mark as read from notifications widget
