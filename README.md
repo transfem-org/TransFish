@@ -37,7 +37,9 @@ Read [this](./CALCKEY.md) for current and future differences.
 
 ## 🛻 Migrating from Misskey to Calckey
 
-You need at least 🐢 NodeJS v16.10.0 (>v18.0.0 \<v18.6.0 reccomended!) and *exactly* 🧶 Yarn v3.2.1!
+You need at least 🐢 NodeJS v16.15.0 (v18.4.0 reccomended!) and *exactly* 🧶 Yarn v3.2.1!
+
+### Install dependencies
 
 ```sh
 # nvm install 18.4.0 && nvm alias default 18.4.0 && nvm use 18.4.0
@@ -45,12 +47,22 @@ corepack enable
 yarn set version berry
 ```
 
+### Get folder ready
+
 ```sh
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
 # git checkout main # if you want only stable versions
 cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey folder is
 # cp -r ../misskey/files . # if you don't use object storage
+```
+
+### Build and launch!
+
+#### `git pull` and run these steps to update Calckey in the future!
+
+```sh
+# git pull
 YARN_CHECKSUM_BEHAVIOR=update yarn install
 NODE_ENV=production npm run build && npm run migrate
 # Edit service to point to calckey folder and restart!
