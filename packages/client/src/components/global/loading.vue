@@ -1,18 +1,8 @@
 <template>
 <div :class="[$style.root, { [$style.inline]: inline, [$style.colored]: colored, [$style.mini]: mini }]">
 	<div :class="$style.container" aria-hidden="true">
-		<!-- <svg :class="[$style.spinner, $style.bg]" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
-			<g transform="matrix(1.125,0,0,1.125,12,12)">
-				<circle cx="168" cy="64" r="64" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
-			</g>
-		</svg>
-		<svg :class="[$style.spinner, $style.fg]" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
-			<g transform="matrix(1.125,0,0,1.125,12,12)">
-				<path d="M128,64C128,28.654 99.346,0 64,0C99.346,0 128,28.654 128,64Z" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
-			</g>
-		</svg> -->
 		<svg :class="[$style.spinner]" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-			<circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5px" style="fill:none;stroke:currentColor;stroke-width:5px;"></circle>
+			<circle :class="[$style.path]" cx="25" cy="25" r="20" fill="none" stroke-width="5px" style="fill:none;stroke:currentColor;stroke-width:5px;"></circle>
 		</svg>
 	</div>
 </div>
