@@ -1,6 +1,6 @@
 <template>
 <div :class="[$style.root, { [$style.inline]: inline, [$style.colored]: colored, [$style.mini]: mini }]">
-	<div :class="$style.container">
+	<div :class="$style.container" aria-hidden="true">
 		<!-- <svg :class="[$style.spinner, $style.bg]" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
 			<g transform="matrix(1.125,0,0,1.125,12,12)">
 				<circle cx="168" cy="64" r="64" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
