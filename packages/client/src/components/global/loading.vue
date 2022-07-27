@@ -83,24 +83,25 @@ const props = withDefaults(defineProps<{
 		}
 	}
 
-	@keyframes dash {
-		0% {
-			stroke-dasharray: 1, 150;
-			stroke-dashoffset: 0;
-		}
-		50% {
-			stroke-dasharray: 90, 150;
-			stroke-dashoffset: -35;
-		}
-		100% {
-			stroke-dasharray: 90, 150;
-			stroke-dashoffset: -124;
-		}
-	}
 	&.path {
-    stroke: var(--accent);
-    stroke-linecap: round;
-    animation: dash 1.5s ease-in-out infinite;
+		@keyframes dash {
+			0% {
+				stroke-dasharray: 1, 150;
+				stroke-dashoffset: 0;
+			}
+			50% {
+				stroke-dasharray: 90, 150;
+				stroke-dashoffset: -35;
+			}
+			100% {
+				stroke-dasharray: 90, 150;
+				stroke-dashoffset: -124;
+			}
+		}
+
+		stroke: var(--accent);
+		stroke-linecap: round;
+		animation: dash 1.5s ease-in-out infinite;
   }
 }
 
