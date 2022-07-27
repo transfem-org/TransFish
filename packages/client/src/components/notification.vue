@@ -214,50 +214,50 @@ useTooltip(reactionRef, (showing) => {
 			}
 
 			> * {
-				color: #fff;
+				color: #e0def4;
 				width: 100%;
 				height: 100%;
 			}
 
 			&.follow, &.followRequestAccepted, &.receiveFollowRequest, &.groupInvited {
 				padding: 3px;
-				background: #36aed2;
+				background: #31748f;
 				pointer-events: none;
 			}
 
 			&.renote {
 				padding: 3px;
-				background: #36d298;
+				background: #9ccfd8;
 				pointer-events: none;
 			}
 
 			&.quote {
 				padding: 3px;
-				background: #36d298;
+				background: #9ccfd8;
 				pointer-events: none;
 			}
 
 			&.reply {
 				padding: 3px;
-				background: #007aff;
+				background: #c4a7e7;
 				pointer-events: none;
 			}
 
 			&.mention {
 				padding: 3px;
-				background: #88a6b7;
+				background: #908caa;
 				pointer-events: none;
 			}
 
 			&.pollVote {
 				padding: 3px;
-				background: #88a6b7;
+				background: #908caa;
 				pointer-events: none;
 			}
 
 			&.pollEnded {
 				padding: 3px;
-				background: #88a6b7;
+				background: #908caa;
 				pointer-events: none;
 			}
 		}
