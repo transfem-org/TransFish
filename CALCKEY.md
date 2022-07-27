@@ -46,7 +46,8 @@
 - Spinner instead of "Loading..."
 - SearchX instead of Google
 - Spacing on group items
-- Reply limit bug fixed (somewhat)
+- Quotes have solid border
+- Reply limit bug fixed
 - Custom assets
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
