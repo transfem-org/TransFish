@@ -25,6 +25,30 @@ const props = withDefaults(defineProps<{
 <style lang="scss" module>
 /* Credit to https://codepen.io/supah/pen/BjYLdW */
 
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes dash {
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}
+
 .root {
 	padding: 32px;
 	text-align: center;
@@ -62,33 +86,9 @@ const props = withDefaults(defineProps<{
 	z-index: 999;
 	width: var(--size);
 	height: var(--size);
-	animation: rotate 2s linear infinite;
-
-	@keyframes rotate {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
+	animation: spin 2s linear infinite;
 
 	&.path {
-		@keyframes dash {
-			0% {
-				stroke-dasharray: 1, 150;
-				stroke-dashoffset: 0;
-			}
-			50% {
-				stroke-dasharray: 90, 150;
-				stroke-dashoffset: -35;
-			}
-			100% {
-				stroke-dasharray: 90, 150;
-				stroke-dashoffset: -124;
-			}
-		}
-
 		stroke: var(--accent);
 		stroke-linecap: round;
 		animation: dash 1.5s ease-in-out infinite;
