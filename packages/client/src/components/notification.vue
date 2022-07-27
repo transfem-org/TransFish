@@ -214,7 +214,7 @@ useTooltip(reactionRef, (showing) => {
 			}
 
 			> * {
-				color: #e0def4;
+				color: #fff;
 				width: 100%;
 				height: 100%;
 			}
@@ -227,13 +227,13 @@ useTooltip(reactionRef, (showing) => {
 
 			&.renote {
 				padding: 3px;
-				background: #9ccfd8;
+				background: #31748f;
 				pointer-events: none;
 			}
 
 			&.quote {
 				padding: 3px;
-				background: #9ccfd8;
+				background: #31748f;
 				pointer-events: none;
 			}
 
