@@ -33,6 +33,7 @@ export default defineComponent({
 	display: flex;
 	font-size: 90%;
 	border-radius: 10px;
+	padding: 0.5rem;
 
 	> button {
 		flex: 1;
