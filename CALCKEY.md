@@ -9,6 +9,7 @@
 - Option to publicize instance blocks
 - Better intro/onboarding
 - Fully revamp non-logged-in screen
+- Remote follow button
 - Personal notes for all accounts
 - Non-nyaify cat mode
 - Timeline filters
