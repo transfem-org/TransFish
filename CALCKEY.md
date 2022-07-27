@@ -20,7 +20,6 @@
 ## Work in progress
 
 - Less cluttered notification summary
-- Better timeline top bar
 - Admin custom CSS
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
@@ -37,6 +36,7 @@
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
+- Better timeline top bar
 - Mark as read from notifications widget
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
