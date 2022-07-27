@@ -75,6 +75,11 @@ export class Meta {
 	@Column('varchar', {
 		length: 256, array: true, default: '{}',
 	})
+	public customSplashIcons: string[];
+
+	@Column('varchar', {
+		length: 256, array: true, default: '{}',
+	})
 	public hiddenTags: string[];
 
 	@Column('varchar', {

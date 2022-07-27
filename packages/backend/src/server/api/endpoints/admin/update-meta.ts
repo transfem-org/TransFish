@@ -24,6 +24,9 @@ export const paramDef = {
 		customMOTD: { type: 'array', nullable: true, items: {
 			type: 'string',
 		} },
+		customSplashIcons: { type: 'array', nullable: true, items: {
+			type: 'string',
+		} },
 		hiddenTags: { type: 'array', nullable: true, items: {
 			type: 'string',
 		} },
@@ -140,6 +143,10 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (Array.isArray(ps.customMOTD)) {
 		set.customMOTD = ps.customMOTD.filter(Boolean);
+	}
+
+	if (Array.isArray(ps.customSplashIcons)) {
+		set.customSplashIcons = ps.customSplashIcons.filter(Boolean);
 	}
 
 	if (Array.isArray(ps.hiddenTags)) {

@@ -39,6 +39,11 @@
 						<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
 					</FormTextarea>
 
+					<FormTextarea v-model="customSplashIcons" class="_formBlock">
+						<template #label>{{ i18n.ts.customSplashIcons }}</template>
+						<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
+					</FormTextarea>
+
 					<FormSection>
 						<FormSwitch v-model="enableRegistration" class="_formBlock">
 							<template #label>{{ i18n.ts.enableRegistration }}</template>
@@ -182,6 +187,7 @@ let enableLocalTimeline: boolean = $ref(false);
 let enableGlobalTimeline: boolean = $ref(false);
 let pinnedUsers: string = $ref('');
 let customMOTD: string = $ref('');
+let customSplashIcons: string = $ref('');
 let cacheRemoteFiles: boolean = $ref(false);
 let localDriveCapacityMb: any = $ref(0);
 let remoteDriveCapacityMb: any = $ref(0);
@@ -210,6 +216,7 @@ async function init() {
 	enableGlobalTimeline = !meta.disableGlobalTimeline;
 	pinnedUsers = meta.pinnedUsers.join('\n');
 	customMOTD = meta.customMOTD.join('\n');
+	customSplashIcons = meta.customSplashIcons.join('\n');
 	cacheRemoteFiles = meta.cacheRemoteFiles;
 	localDriveCapacityMb = meta.driveCapacityPerLocalUserMb;
 	remoteDriveCapacityMb = meta.driveCapacityPerRemoteUserMb;
@@ -239,6 +246,7 @@ function save() {
 		disableGlobalTimeline: !enableGlobalTimeline,
 		pinnedUsers: pinnedUsers.split('\n'),
 		customMOTD: customMOTD.split('\n'),
+		customSplashIcons: customSplashIcons.split('\n'),
 		cacheRemoteFiles,
 		localDriveCapacityMb: parseInt(localDriveCapacityMb, 10),
 		remoteDriveCapacityMb: parseInt(remoteDriveCapacityMb, 10),

@@ -179,6 +179,14 @@ export const meta = {
 					optional: false, nullable: false,
 				},
 			},
+			customSplashIcons: {
+				type: 'array',
+				optional: true, nullable: false,
+				items: {
+					type: 'string',
+					optional: false, nullable: false,
+				},
+			},
 			hiddenTags: {
 				type: 'array',
 				optional: true, nullable: false,
@@ -411,6 +419,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		useStarForReactionFallback: instance.useStarForReactionFallback,
 		pinnedUsers: instance.pinnedUsers,
 		customMOTD: instance.customMOTD,
+		customSplashIcons: instance.customSplashIcons,
 		hiddenTags: instance.hiddenTags,
 		blockedHosts: instance.blockedHosts,
 		allowedHosts: instance.allowedHosts,
