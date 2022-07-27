@@ -32,6 +32,7 @@ export default defineComponent({
 .pxhvhrfw {
 	display: flex;
 	font-size: 90%;
+	border-radius: 10px;
 
 	> button {
 		flex: 1;
