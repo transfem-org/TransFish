@@ -527,8 +527,7 @@ router.get('/streaming', async ctx => {
 router.get('(.*)', async ctx => {
 	const meta = await fetchMeta();
 	let motd = ['Loading...'];
-	// Check if meta.MOTD exists and is at least 1 in length
-	if (meta.customMOTD && meta.customMOTD.length > 0) {
+	if (meta.customMOTD.length > 0) {
 		motd = meta.customMOTD;
 	}
 	await ctx.render('base', {
