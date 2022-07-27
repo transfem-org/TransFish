@@ -87,12 +87,12 @@ const props = withDefaults(defineProps<{
 	width: var(--size);
 	height: var(--size);
 	animation: spin 2s linear infinite;
+}
 
-	&.path {
-		stroke: var(--accent);
-		stroke-linecap: round;
-		animation: dash 1.5s ease-in-out infinite;
-  }
+.path {
+	stroke: var(--accent);
+	stroke-linecap: round;
+	animation: dash 1.5s ease-in-out infinite;
 }
 
 </style>
