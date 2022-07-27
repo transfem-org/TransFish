@@ -92,7 +92,7 @@ const props = withDefaults(defineProps<{
 .path {
 	stroke: var(--accent);
 	stroke-linecap: round;
-	animation: dash 1.5s ease-in-out infinite;
+	animation: dash 1.2s ease-in-out infinite;
 }
 
 </style>
