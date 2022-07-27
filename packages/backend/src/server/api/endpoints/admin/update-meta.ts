@@ -21,6 +21,9 @@ export const paramDef = {
 		pinnedUsers: { type: 'array', nullable: true, items: {
 			type: 'string',
 		} },
+		customMOTD: { type: 'array', nullable: true, items: {
+			type: 'string',
+		} },
 		hiddenTags: { type: 'array', nullable: true, items: {
 			type: 'string',
 		} },
@@ -133,6 +136,10 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (Array.isArray(ps.pinnedUsers)) {
 		set.pinnedUsers = ps.pinnedUsers.filter(Boolean);
+	}
+
+	if (Array.isArray(ps.customMOTD)) {
+		set.customMOTD = ps.customMOTD.filter(Boolean);
 	}
 
 	if (Array.isArray(ps.hiddenTags)) {

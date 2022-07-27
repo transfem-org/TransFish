@@ -171,6 +171,14 @@ export const meta = {
 					optional: false, nullable: false,
 				},
 			},
+			customMOTD: {
+				type: 'array',
+				optional: true, nullable: false,
+				items: {
+					type: 'string',
+					optional: false, nullable: false,
+				},
+			},
 			hiddenTags: {
 				type: 'array',
 				optional: true, nullable: false,
@@ -402,6 +410,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		cacheRemoteFiles: instance.cacheRemoteFiles,
 		useStarForReactionFallback: instance.useStarForReactionFallback,
 		pinnedUsers: instance.pinnedUsers,
+		customMOTD: instance.customMOTD,
 		hiddenTags: instance.hiddenTags,
 		blockedHosts: instance.blockedHosts,
 		allowedHosts: instance.allowedHosts,

@@ -901,6 +901,9 @@ move: "Move"
 showAds: "Show ads"
 enterSendsMessage: "Press Return in Messaging to send message (off is Ctrl + Return)"
 adminCustomCssWarn: "This setting should only be used if you know what it does. Entering improper values may cause EVERYONE'S clients to stop functioning normally. Please ensure your CSS works properly by testing it in your user settings."
+customMOTD: "Custom MOTD (splash screen messages)"
+customMOTDDescription: "Custom messages for the MOTD (splash screen) separated by line breaks to be shown randomly every time a user loads/reloads the page."
+
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing NSFW media via Machine Learning. This will slightly increase the load on the server."

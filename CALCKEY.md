@@ -36,6 +36,7 @@
 - Star as default reaction
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
+- MOTD (customizable by admins!)
 - [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - Better timeline top bar
 - Mark as read from notifications widget
@@ -45,7 +46,6 @@
 - Spinner instead of "Loading..."
 - SearchX instead of Google
 - Spacing on group items
-- MOTD
 - Reply limit bug fixed (somewhat)
 - Custom assets
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)

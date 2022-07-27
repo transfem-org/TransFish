@@ -268,6 +268,7 @@ import * as ep___pages_unlike from './endpoints/pages/unlike.js';
 import * as ep___pages_update from './endpoints/pages/update.js';
 import * as ep___ping from './endpoints/ping.js';
 import * as ep___pinnedUsers from './endpoints/pinned-users.js';
+import * as ep___customMOTD from './endpoints/custom-motd.js';
 import * as ep___promo_read from './endpoints/promo/read.js';
 import * as ep___requestResetPassword from './endpoints/request-reset-password.js';
 import * as ep___resetDb from './endpoints/reset-db.js';
@@ -585,6 +586,7 @@ const eps = [
 	['pages/update', ep___pages_update],
 	['ping', ep___ping],
 	['pinned-users', ep___pinnedUsers],
+	['custom-motd', ep___customMOTD],
 	['promo/read', ep___promo_read],
 	['request-reset-password', ep___requestResetPassword],
 	['reset-db', ep___resetDb],

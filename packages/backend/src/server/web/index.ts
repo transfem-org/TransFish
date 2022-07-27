@@ -268,22 +268,6 @@ router.get('/@:user.json', async ctx => {
 	}
 });
 
-// MOTD
-const motd = [
-	'If you\'re on mobile, you can tap install/add to homescreen to get the app!',
-	'You can click the time a note was posted to get a full view of the note.',
-	'Wanna find people to follow? Head over to the Explore tab!',
-	'Want more ways to post? You can make blogs in Pages and galleries in Gallery tab.',
-	'You can add cool stuff to notes like CWs, polls, multiple videos/gifs, and audio!',
-	'Use #hashtags to tag notes and reach more people, especially for #art.',
-	'If your note gets popular, it might show up on the Featured tap for up to 3 days!',
-	'Use the 4 buttons at the top (or the top drop-down on mobile) to switch timelines.',
-	'The Fediverse is made up of more than just Calckey.',
-	'Avatars and banners can be GIFs.',
-	'When writing a note, type $ to see a list of cool text effects (mfm).',
-	'Be gay, do crime.',
-];
-
 //#region SSR (for crawlers)
 // User
 router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
@@ -311,9 +295,8 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			icon: meta.iconUrl,
 			themeColor: meta.themeColor,
 			privateMode: meta.privateMode,
-			randomMOTD: motd[Math.floor(Math.random() * motd.length)],
 		});
-		ctx.set('Cache-Control', 'public, max-age=3');
+		ctx.set('Cache-Control', 'public, max-age=15');
 	} else {
 		// リモートユーザーなので
 		// モデレータがAPI経由で参照可能にするために404にはしない
@@ -543,6 +526,11 @@ router.get('/streaming', async ctx => {
 // Render base html for all requests
 router.get('(.*)', async ctx => {
 	const meta = await fetchMeta();
+	let motd = ['Loading...'];
+	// Check if meta.MOTD exists and is at least 1 in length
+	if (meta.customMOTD && meta.customMOTD.length > 0) {
+		motd = meta.customMOTD;
+	}
 	await ctx.render('base', {
 		img: meta.bannerUrl,
 		title: meta.name || 'Calckey',
@@ -551,8 +539,9 @@ router.get('(.*)', async ctx => {
 		icon: meta.iconUrl,
 		themeColor: meta.themeColor,
 		privateMode: meta.privateMode,
+		randomMOTD: motd[Math.floor(Math.random() * motd.length)],
 	});
-	ctx.set('Cache-Control', 'public, max-age=15');
+	ctx.set('Cache-Control', 'public, max-age=3');
 });
 
 // Register router
