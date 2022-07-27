@@ -11,8 +11,8 @@
 				<path d="M128,64C128,28.654 99.346,0 64,0C99.346,0 128,28.654 128,64Z" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
 			</g>
 		</svg> -->
-		<svg :class="[$style.spinner, $style.bg]" viewBox="0 0 50 50">
-			<circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+		<svg :class="[$style.spinner]" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+			<circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5px" style="fill:none;stroke:currentColor;stroke-width:5px;"></circle>
 		</svg>
 	</div>
 </div>
@@ -89,6 +89,7 @@ const props = withDefaults(defineProps<{
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: 999;
 	width: var(--size);
 	height: var(--size);
 	stroke-linecap: round;
