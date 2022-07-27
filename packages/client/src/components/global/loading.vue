@@ -1,15 +1,18 @@
 <template>
 <div :class="[$style.root, { [$style.inline]: inline, [$style.colored]: colored, [$style.mini]: mini }]">
 	<div :class="$style.container">
-		<svg :class="[$style.spinner, $style.bg]" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
+		<!-- <svg :class="[$style.spinner, $style.bg]" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
 			<g transform="matrix(1.125,0,0,1.125,12,12)">
-				<circle cx="64" cy="64" r="64" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
+				<circle cx="168" cy="64" r="64" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
 			</g>
 		</svg>
 		<svg :class="[$style.spinner, $style.fg]" viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
 			<g transform="matrix(1.125,0,0,1.125,12,12)">
 				<path d="M128,64C128,28.654 99.346,0 64,0C99.346,0 128,28.654 128,64Z" style="fill:none;stroke:currentColor;stroke-width:21.33px;"/>
 			</g>
+		</svg> -->
+		<svg :class="[$style.spinner, $style.bg]" viewBox="0 0 50 50">
+			<circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
 		</svg>
 	</div>
 </div>
@@ -30,12 +33,25 @@ const props = withDefaults(defineProps<{
 </script>
 
 <style lang="scss" module>
-@keyframes spinner {
-	0% {
-		transform: rotate(0deg);
-	}
+/* Credit to https://codepen.io/supah/pen/BjYLdW */
+@keyframes rotate {
 	100% {
 		transform: rotate(360deg);
+	}
+}
+
+@keyframes dash {
+	0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
 	}
 }
 
@@ -44,7 +60,7 @@ const props = withDefaults(defineProps<{
 	text-align: center;
 	cursor: wait;
 
-	--size: 40px;
+	--size: 50px;
 
 	&.colored {
 		color: var(--accent);
@@ -75,18 +91,14 @@ const props = withDefaults(defineProps<{
 	left: 0;
 	width: var(--size);
 	height: var(--size);
-	fill-rule: evenodd;
-	clip-rule: evenodd;
 	stroke-linecap: round;
 	stroke-linejoin: round;
-	stroke-miterlimit: 1.5;
+
+	&.path {
+    stroke: var(--accent);
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
 }
 
-.bg {
-	opacity: 0.275;
-}
-
-.fg {
-	animation: spinner 0.5s linear infinite;
-}
 </style>
