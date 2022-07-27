@@ -3,6 +3,7 @@
 ## Planned
 
 - MFM button
+- Make more of the post clickable like every other SNS
 - Better Messaging UI
 - Classic mode make instance icon bring up new context menu
 - Like/star button
