@@ -12,6 +12,9 @@
 <img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px"/>
 
 ## ✨ Features
+
+<!-- TODO: REDO ME! -->
+
 - **ActivityPub support**\
 Not on Calckey? No problem! Not only can Calckey/Misskey instances talk to each other, but you can make friends with people on other networks like Mastodon and Pixelfed!
 - **Reactions**\
