@@ -39,7 +39,7 @@ Read [this](./CALCKEY.md) for current and future differences.
 
 You need at least 🐢 NodeJS v16.15.0 (v18.4.0 reccomended!) and *exactly* 🧶 Yarn v3.2.1!
 
-### Install dependencies
+### 📩 Install dependencies
 
 ```sh
 # nvm install 18.4.0 && nvm alias default 18.4.0 && nvm use 18.4.0
@@ -47,7 +47,7 @@ corepack enable
 yarn set version berry
 ```
 
-### Get folder ready
+### 👀 Get folder ready
 
 ```sh
 git clone https://codeberg.org/thatonecalculator/calckey.git
@@ -57,7 +57,7 @@ cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey fo
 # cp -r ../misskey/files . # if you don't use object storage
 ```
 
-### Build and launch!
+### 🚀 Build and launch!
 
 #### `git pull` and run these steps to update Calckey in the future!
 
