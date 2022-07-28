@@ -16,7 +16,7 @@
 - Timeline filters
 - "Bubble" timeline
 - Filter notifications by user
-- Remove NSFW/AI stuff
+- Build flag to remove NSFW/AI stuff
 - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
