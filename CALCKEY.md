@@ -63,7 +63,7 @@
 - [Timeline page for non-login users](https://github.com/misskey-dev/misskey/pull/8927)
 - [Add parameters to MFM rotate](https://github.com/misskey-dev/misskey/pull/8549)
 - Many changes from [Foundkey](https://akkoma.dev/FoundKeyGang/Foundkey)
-  - 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
+	- 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
 	- 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
 	- 4bc9610d8bf5af736b5e89e4782395705de45d7d: remove unnecessary joins
 	- 9ee609d70082f7a6dc119a5d83c0e7c5e1208676: enhance privacy of notes
