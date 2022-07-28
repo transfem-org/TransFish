@@ -475,7 +475,7 @@ function more(ev: MouseEvent) {
 				> .item {
 					display: block;
 					position: relative;
-					padding: 18px 0;
+					padding: 1.1rem 0;
 					margin-bottom: 0.2rem;
 					width: 100%;
 					text-align: center;
