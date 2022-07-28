@@ -320,7 +320,7 @@ if (appearNote.replyId) {
 			margin: auto;
 			width: calc(100% - 8px);
 			height: calc(100% - 8px);
-			border: dashed 1px var(--focus);
+			border: solid 1px var(--focus);
 			border-radius: var(--radius);
 			box-sizing: border-box;
 		}
@@ -486,7 +486,7 @@ if (appearNote.replyId) {
 
 						> * {
 							padding: 16px;
-							border: dashed 1px var(--renote);
+							border: solid 1px var(--renote);
 							border-radius: 8px;
 						}
 					}
