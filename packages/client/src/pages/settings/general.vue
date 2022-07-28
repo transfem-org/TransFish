@@ -56,6 +56,7 @@
 			<div><Mfm :key="useOsNativeEmojis" text="🍮🍦🍭🍩🍰🍫🍬🥞🍪"/></div>
 		</FormSwitch>
 		<FormSwitch v-model="disableDrawer" class="_formBlock">{{ i18n.ts.disableDrawer }}</FormSwitch>
+		<FormSwitch v-model="showUpdates" class="_formBlock">{{ i18n.ts.showUpdates }}</FormSwitch>
 		<FormSwitch v-model="aiChanMode">{{ i18n.ts.aiChanMode }}</FormSwitch>
 
 		<FormRadios v-model="fontSize" class="_formBlock">
@@ -144,6 +145,7 @@ const enableInfiniteScroll = computed(defaultStore.makeGetterSetter('enableInfin
 const enterSendsMessage = computed(defaultStore.makeGetterSetter('enterSendsMessage'));
 const useReactionPickerForContextMenu = computed(defaultStore.makeGetterSetter('useReactionPickerForContextMenu'));
 const squareAvatars = computed(defaultStore.makeGetterSetter('squareAvatars'));
+const showUpdates = computed(defaultStore.makeGetterSetter('showUpdates'));
 const aiChanMode = computed(defaultStore.makeGetterSetter('aiChanMode'));
 
 watch(lang, () => {
@@ -178,6 +180,7 @@ watch([
 	instanceTicker,
 	overridedDeviceKind,
 	showAds,
+	showUpdates,
 ], async () => {
 	await reloadAsk();
 });

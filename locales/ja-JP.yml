@@ -905,6 +905,7 @@ customMOTD: "カスタムMOTD（スプラッシュスクリーンメッセージ
 customMOTDDescription: "ユーザがページをロード/リロードするたびにランダムに表示される、改行で区切られたMOTD（スプラッシュスクリーン）用のカスタムメッセージ"
 customSplashIcons: "カスタムスプラッシュスクリーンアイコン"
 customSplashIconsDescription: "ユーザがページをロード/リロードするたびにランダムに表示される、改行で区切られたカスタムスプラッシュスクリーンアイコンの URL。画像は静的なURLで、できればすべて192x192にリサイズしてください。"
+showUpdates: "Calckeyの更新時にポップアップを表示する"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てることができます。サーバーの負荷が少し増えます。"
