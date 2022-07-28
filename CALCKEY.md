@@ -76,3 +76,4 @@
 	- b630cd7eacd695bb705e6748c87f38425ec4ed45:  refactor: add NoteReactions.packMany
 	- 3fe351df6d4e21f7748c46adfa6ca165abd030c0: fix: catch errors from packing with detail
 	- 63591da33e233b2ed0ab331ae6bb3c9eff5020ae: refactor: colours in queue chart
+	- 0f6d94f1e7e1f58cfbf8d07e5f835f8de626842e: backend: improve mutes and blocks
