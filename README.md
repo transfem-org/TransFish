@@ -28,12 +28,13 @@ With Calckey's built in drive, you get cloud storage right in your social media,
 
 <div style="clear: both;"></div>
 
+## 🤔 What's different about Calckey?
+
+Read [this](./CALCKEY.md) for current and future differences.
+
 ## 📝 Documentation
 
 Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/).
-
-## 🤔 What's different about Calckey?
-Read [this](./CALCKEY.md) for current and future differences.
 
 ## 🛻 Migrating from Misskey to Calckey
 
