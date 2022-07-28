@@ -52,10 +52,11 @@
 - Quotes have solid border
 - Reply limit bug fixed
 - Custom assets
+- Make showing the update popup optional
+- [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
 - [Option to make enter send message](https://github.com/misskey-dev/misskey/pull/8954)
-- [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Autocomplete in messaging](https://github.com/misskey-dev/misskey/pull/8955)
 - [Star is like](https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch)
 - [Add additional background for acrylic popups if backdrop-filter is unsupported](https://github.com/misskey-dev/misskey/pull/8671)
