@@ -21,7 +21,6 @@
 
 ## Work in progress
 
-- Less cluttered notification summary
 - Admin custom CSS
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
@@ -42,6 +41,7 @@
 - [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - Better timeline top bar
 - Mark as read from notifications widget
+- Less cluttered notification summary
 - Better welcome screen (not logged in)
 - Ability to turn off "Connection lost" message
 - Raw instance info only for moderators

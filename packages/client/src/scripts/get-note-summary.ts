@@ -6,9 +6,11 @@ import { i18n } from '@/i18n';
  * @param {*} note (packされた)投稿
  */
 export const getNoteSummary = (note: misskey.entities.Note): string => {
+	/*
 	if (note.deletedAt) {
 		return `(${i18n.ts.deletedNote})`;
 	}
+	*/
 
 	let summary = '';
 
@@ -29,6 +31,8 @@ export const getNoteSummary = (note: misskey.entities.Note): string => {
 		summary += ` (${i18n.ts.poll})`;
 	}
 
+	/*
+
 	// 返信のとき
 	if (note.replyId) {
 		if (note.reply) {
@@ -46,6 +50,8 @@ export const getNoteSummary = (note: misskey.entities.Note): string => {
 			summary += '\n\nRN: ...';
 		}
 	}
+
+	*/
 
 	return summary.trim();
 };
