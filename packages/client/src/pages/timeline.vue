@@ -147,7 +147,7 @@ const headerTabs = $computed(() => [{
 }, {
 	key: 'recommended',
 	title: i18n.ts._timelines.recommended,
-	icon: 'fas fa-comet',
+	icon: 'fas fa-signs-post',
 	iconOnly: true,
 }, {
 	key: 'social',
@@ -178,7 +178,7 @@ const headerTabsWhenNotLogin = $computed(() => [
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
-	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended' ? 'fas fa-comet' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
+	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended' ? 'fas fa-signs-post' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
 })));
 </script>
 
