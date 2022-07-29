@@ -77,6 +77,10 @@ if (props.src === 'antenna') {
 	endpoint = 'notes/local-timeline';
 	connection = stream.useChannel('localTimeline');
 	connection.on('note', prepend);
+} else if (props.src === 'recommended') {
+	endpoint = 'notes/recommended-timeline';
+	connection = stream.useChannel('recommendedTimeline');
+	connection.on('note', prepend);
 } else if (props.src === 'social') {
 	endpoint = 'notes/hybrid-timeline';
 	connection = stream.useChannel('hybridTimeline');
