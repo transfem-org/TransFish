@@ -69,7 +69,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere('(note.visibility = \'public\')')
-		.andWhere('(note.userHost IN meta.recommendedInstances) OR (note.userHost IS NULL)')
+		.andWhere('(note.userHost IN :instances) OR (note.userHost IS NULL)', { instances: m.recommendedInstances })
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
 		.leftJoinAndSelect('user.banner', 'banner')
