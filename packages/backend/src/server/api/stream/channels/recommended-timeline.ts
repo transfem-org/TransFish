@@ -2,12 +2,13 @@ import Channel from '../channel.js';
 import { fetchMeta } from '@/misc/fetch-meta.js';
 import { checkWordMute } from '@/misc/check-word-mute.js';
 import { isUserRelated } from '@/misc/is-user-related.js';
+import { isInstanceMuted } from '@/misc/is-instance-muted.js';
 import { Packed } from '@/misc/schema.js';
 
 export default class extends Channel {
 	public readonly chName = 'recommendedTimeline';
 	public static shouldShare = true;
-	public static requireCredential = false;
+	public static requireCredential = true;
 
 	constructor(id: string, connection: Channel['connection']) {
 		super(id, connection);
@@ -16,19 +17,24 @@ export default class extends Channel {
 
 	public async init(params: any) {
 		const meta = await fetchMeta();
-		if (meta.disableRecommendedTimeline) {
-			if (this.user == null || (!this.user.isAdmin && !this.user.isModerator)) return;
-		}
+		if (meta.disableLocalTimeline && !this.user!.isAdmin && !this.user!.isModerator) return;
 
 		// Subscribe events
 		this.subscriber.on('notesStream', this.onNote);
 	}
 
 	private async onNote(note: Packed<'Note'>) {
+		// チャンネルの投稿ではなく、自分自身の投稿 または
+		// チャンネルの投稿ではなく、その投稿のユーザーをフォローしている または
+		// チャンネルの投稿ではなく、全体公開のローカルの投稿 または
+		// フォローしているチャンネルの投稿 の場合だけ
 		const meta = await fetchMeta();
-		if (note.user.host !== null && !meta.recommendedInstances.includes(note.user.host)) return;
-		if (note.visibility !== 'public') return;
-		if (note.channelId != null && !this.followingChannels.has(note.channelId)) return;
+		if (!(
+			((note.user.host == null || meta.recommendedInstances.includes(note.user.host)) && note.visibility === 'public')
+		)) return;
+
+		// Ignore notes from instances the user has muted
+		if (isInstanceMuted(note, new Set<string>(this.userProfile?.mutedInstances ?? []))) return;
 
 		// 関係ない返信は除外
 		if (note.reply && !this.user!.showTimelineReplies) {
