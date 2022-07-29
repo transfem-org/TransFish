@@ -14,7 +14,6 @@
 - Personal notes for all accounts
 - Non-nyaify cat mode
 - Timeline filters
-- "Bubble" timeline
 - Filter notifications by user
 - Build flag to remove NSFW/AI stuff
 - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
@@ -33,6 +32,7 @@
 
 - Yarn 3
 - Saner defaults
+- Recommended instances timeline
 - Star as default reaction
 - Recommended Instances timeline
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
