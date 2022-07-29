@@ -59,7 +59,6 @@ export const paramDef = {
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	const m = await fetchMeta();
-	const instances = m.recommendedInstances;
 	if (m.disableRecommendedTimeline) {
 		if (user == null || (!user.isAdmin && !user.isModerator)) {
 			throw new ApiError(meta.errors.rtlDisabled);
@@ -71,7 +70,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere(new Brackets(qb => {
-			qb.where('note.userHost IN (:instances)', { instances: instances })
+			qb.where('note.userHost IN (:instances)', { instances: m.recommendedInstances })
 			.orWhere('note.userHost IS NULL');
 		}))
 		.andWhere('(note.visibility = \'public\')')
