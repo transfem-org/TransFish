@@ -322,6 +322,7 @@ connectService: "Connect"
 disconnectService: "Disconnect"
 enableLocalTimeline: "Enable local timeline"
 enableGlobalTimeline: "Enable global timeline"
+enableRecommendedTimeline: "Enable recommended timeline"
 disablingTimelinesInfo: "Adminstrators and Moderators will always have access to all timelines, even if they are not enabled."
 registration: "Register"
 enableRegistration: "Enable new user registration"
@@ -789,6 +790,7 @@ previewNoteText: "Show preview"
 customCss: "Custom CSS"
 customCssWarn: "This setting should only be used if you know what it does. Entering improper values may cause the client to stop functioning normally."
 global: "Global"
+recommended: "Recommended"
 squareAvatars: "Display squared avatars"
 sent: "Sent"
 received: "Received"
@@ -906,6 +908,8 @@ customMOTDDescription: "Custom messages for the MOTD (splash screen) separated b
 customSplashIcons: "Custom splash screen icons (urls)"
 customSplashIconsDescription: "URLs for custom splash screen icons separated by line breaks to be shown randomly every time a user loads/reloads the page. Please make sure the images are on a static URL, preferably all resized to 192x192."
 showUpdates: "Show a popup when Calckey updates"
+recommendedInstances: "Recommended instances"
+recommendedInstancesDescription: "Recommended instances seperated by line breaks to appear in the recommended timeline. Do NOT add `https://`, ONLY the domain."
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing NSFW media via Machine Learning. This will slightly increase the load on the server."
@@ -1382,6 +1386,7 @@ _instanceCharts:
 _timelines:
   home: "Home"
   local: "Local"
+  recommended: "Recommended"
   social: "Social"
   global: "Global"
 _pages:

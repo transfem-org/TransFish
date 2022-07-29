@@ -57,8 +57,14 @@
 					<FormSection>
 						<FormSwitch v-model="enableLocalTimeline" class="_formBlock">{{ i18n.ts.enableLocalTimeline }}</FormSwitch>
 						<FormSwitch v-model="enableGlobalTimeline" class="_formBlock">{{ i18n.ts.enableGlobalTimeline }}</FormSwitch>
+						<FormSwitch v-model="enableRecommendedTimeline" class="_formBlock">{{ i18n.ts.enableRecommendedTimeline }}</FormSwitch>
 						<FormInfo class="_formBlock">{{ i18n.ts.disablingTimelinesInfo }}</FormInfo>
 					</FormSection>
+
+					<FormTextarea v-model="recommendedInstances" class="_formBlock">
+						<template #label>{{ i18n.ts.recommendedInstances }}</template>
+						<template #caption>{{ i18n.ts.recommendedInstancesDescription }}</template>
+					</FormTextarea>
 
 					<FormSection>
 						<template #label>{{ i18n.ts.theme }}</template>
@@ -185,8 +191,10 @@ let defaultLightTheme: any = $ref(null);
 let defaultDarkTheme: any = $ref(null);
 let enableLocalTimeline: boolean = $ref(false);
 let enableGlobalTimeline: boolean = $ref(false);
+let enableRecommendedTimeline: boolean = $ref(false);
 let pinnedUsers: string = $ref('');
 let customMOTD: string = $ref('');
+let recommendedInstances: string = $ref('');
 let customSplashIcons: string = $ref('');
 let cacheRemoteFiles: boolean = $ref(false);
 let localDriveCapacityMb: any = $ref(0);
@@ -214,9 +222,11 @@ async function init() {
 	maintainerEmail = meta.maintainerEmail;
 	enableLocalTimeline = !meta.disableLocalTimeline;
 	enableGlobalTimeline = !meta.disableGlobalTimeline;
+	enableRecommendedTimeline = !meta.disableRecommendedTimeline;
 	pinnedUsers = meta.pinnedUsers.join('\n');
 	customMOTD = meta.customMOTD.join('\n');
 	customSplashIcons = meta.customSplashIcons.join('\n');
+	recommendedInstances = meta.recommendedInstances.join('\n');
 	cacheRemoteFiles = meta.cacheRemoteFiles;
 	localDriveCapacityMb = meta.driveCapacityPerLocalUserMb;
 	remoteDriveCapacityMb = meta.driveCapacityPerRemoteUserMb;
@@ -244,9 +254,11 @@ function save() {
 		maintainerEmail,
 		disableLocalTimeline: !enableLocalTimeline,
 		disableGlobalTimeline: !enableGlobalTimeline,
+		disableRecommendedTimeline: !enableRecommendedTimeline,
 		pinnedUsers: pinnedUsers.split('\n'),
 		customMOTD: customMOTD.split('\n'),
 		customSplashIcons: customSplashIcons.split('\n'),
+		recommendedInstances: recommendedInstances.split('\n'),
 		cacheRemoteFiles,
 		localDriveCapacityMb: parseInt(localDriveCapacityMb, 10),
 		remoteDriveCapacityMb: parseInt(remoteDriveCapacityMb, 10),

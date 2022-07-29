@@ -48,6 +48,11 @@ export class Meta {
 	public disableLocalTimeline: boolean;
 
 	@Column('boolean', {
+		default: true,
+	})
+	public disableRecommendedTimeline: boolean;
+
+	@Column('boolean', {
 		default: false,
 	})
 	public disableGlobalTimeline: boolean;
@@ -66,6 +71,11 @@ export class Meta {
 		length: 256, array: true, default: '{}',
 	})
 	public pinnedUsers: string[];
+
+	@Column('varchar', {
+		length: 256, array: true, default: '{}',
+	})
+	public recommendedInstances: string[];
 
 	@Column('varchar', {
 		length: 256, array: true, default: '{}',

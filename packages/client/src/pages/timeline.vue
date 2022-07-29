@@ -36,6 +36,7 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
 const isLocalTimelineAvailable = !instance.disableLocalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
+const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const isGlobalTimelineAvailable = !instance.disableGlobalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const keymap = {
 	't': focus,
@@ -143,6 +144,13 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts._timelines.local,
 	icon: 'fas fa-user-group',
 	iconOnly: true,
+}, ...(isRecommendedTimelineAvailable ? [{
+	key: 'recommended
+',
+	title: i18n.ts._timelines.recommended
+,
+	icon: 'fas fa-comet',
+	iconOnly: true,
 }, {
 	key: 'social',
 	title: i18n.ts._timelines.social,
@@ -172,7 +180,8 @@ const headerTabsWhenNotLogin = $computed(() => [
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
-	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
+	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended
+' ? 'fas fa-comet' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
 })));
 </script>
 

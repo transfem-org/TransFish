@@ -80,6 +80,10 @@ export const meta = {
 				type: 'boolean',
 				optional: false, nullable: false,
 			},
+			disableRecommendedTimeline: {
+				type: 'boolean',
+				optional: false, nullable: false,
+			},
 			disableGlobalTimeline: {
 				type: 'boolean',
 				optional: false, nullable: false,
@@ -248,6 +252,11 @@ export const meta = {
 						type: 'boolean',
 						optional: false, nullable: false,
 					},
+					recommended
+TimeLine: {
+						type: 'boolean',
+						optional: false, nullable: false,
+					},
 					globalTimeLine: {
 						type: 'boolean',
 						optional: false, nullable: false,
@@ -356,6 +365,7 @@ export default define(meta, paramDef, async (ps, me) => {
 
 		disableRegistration: instance.disableRegistration,
 		disableLocalTimeline: instance.disableLocalTimeline,
+		disableRecommendedTimeline: instance.disableRecommendedTimeline,
 		disableGlobalTimeline: instance.disableGlobalTimeline,
 		driveCapacityPerLocalUserMb: instance.localDriveCapacityMb,
 		driveCapacityPerRemoteUserMb: instance.remoteDriveCapacityMb,
@@ -412,6 +422,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		response.features = {
 			registration: !instance.disableRegistration,
 			localTimeLine: !instance.disableLocalTimeline,
+			recommended
+Timeline: !instance.disableRecommendedTimeline,
 			globalTimeLine: !instance.disableGlobalTimeline,
 			emailRequiredForSignup: instance.emailRequiredForSignup,
 			elasticsearch: config.elasticsearch ? true : false,

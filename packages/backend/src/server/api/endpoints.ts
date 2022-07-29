@@ -267,6 +267,7 @@ import * as ep___pages_show from './endpoints/pages/show.js';
 import * as ep___pages_unlike from './endpoints/pages/unlike.js';
 import * as ep___pages_update from './endpoints/pages/update.js';
 import * as ep___ping from './endpoints/ping.js';
+import * as ep___recommendedInstances from './endpoints/recommended-instances.js';
 import * as ep___pinnedUsers from './endpoints/pinned-users.js';
 import * as ep___customMOTD from './endpoints/custom-motd.js';
 import * as ep___customSplashIcons from './endpoints/custom-splash-icons.js';
@@ -587,6 +588,7 @@ const eps = [
 	['pages/update', ep___pages_update],
 	['ping', ep___ping],
 	['pinned-users', ep___pinnedUsers],
+	['recommended-instances', ep___recommendedInstances],
 	['custom-motd', ep___customMOTD],
 	['custom-motd', ep___customSplashIcons],
 	['promo/read', ep___promo_read],

@@ -41,7 +41,7 @@ Misskey documentation can be found at [Misskey Hub](https://misskey-hub.net/).
 
 ## 🚚 Migrating from Misskey to Calckey
 
-You need at least 🐢 NodeJS v16.15.0 (v18.4.0 reccomended!) and *exactly* 🧶 Yarn v3.2.1!
+You need at least 🐢 NodeJS v16.15.0 (v18.4.0 recommended!) and *exactly* 🧶 Yarn v3.2.1!
 
 ### 📩 Install dependencies
 

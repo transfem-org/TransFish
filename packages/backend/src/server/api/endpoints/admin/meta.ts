@@ -163,6 +163,14 @@ export const meta = {
 				type: 'boolean',
 				optional: true, nullable: false,
 			},
+			recommendedInstances: {
+				type: 'array',
+				optional: true, nullable: false,
+				items: {
+					type: 'string',
+					optional: false, nullable: false,
+				},
+			},
 			pinnedUsers: {
 				type: 'array',
 				optional: true, nullable: false,
@@ -388,6 +396,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		feedbackUrl: instance.feedbackUrl,
 		disableRegistration: instance.disableRegistration,
 		disableLocalTimeline: instance.disableLocalTimeline,
+		disableRecommendedTimeline: instance.disableRecommendedTimeline,
 		disableGlobalTimeline: instance.disableGlobalTimeline,
 		driveCapacityPerLocalUserMb: instance.localDriveCapacityMb,
 		driveCapacityPerRemoteUserMb: instance.remoteDriveCapacityMb,
@@ -417,6 +426,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		pinnedClipId: instance.pinnedClipId,
 		cacheRemoteFiles: instance.cacheRemoteFiles,
 		useStarForReactionFallback: instance.useStarForReactionFallback,
+		recommendedInstances: instance.recommendedInstances,
 		pinnedUsers: instance.pinnedUsers,
 		customMOTD: instance.customMOTD,
 		customSplashIcons: instance.customSplashIcons,
