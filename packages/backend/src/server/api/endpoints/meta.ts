@@ -252,8 +252,7 @@ export const meta = {
 						type: 'boolean',
 						optional: false, nullable: false,
 					},
-					recommended
-TimeLine: {
+					recommendedTimeLine: {
 						type: 'boolean',
 						optional: false, nullable: false,
 					},
@@ -422,8 +421,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		response.features = {
 			registration: !instance.disableRegistration,
 			localTimeLine: !instance.disableLocalTimeline,
-			recommended
-Timeline: !instance.disableRecommendedTimeline,
+			recommendedTimeline: !instance.disableRecommendedTimeline,
 			globalTimeLine: !instance.disableGlobalTimeline,
 			emailRequiredForSignup: instance.emailRequiredForSignup,
 			elasticsearch: config.elasticsearch ? true : false,
