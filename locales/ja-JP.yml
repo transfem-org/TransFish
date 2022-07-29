@@ -322,6 +322,7 @@ connectService: "接続する"
 disconnectService: "切断する"
 enableLocalTimeline: "ローカルタイムラインを有効にする"
 enableGlobalTimeline: "グローバルタイムラインを有効にする"
+enableRecommendedTimeline: "推奨されるタイムラインを有効にする"
 disablingTimelinesInfo: "これらのタイムラインを無効化しても、利便性のため管理者およびモデレーターは引き続き利用することができます。"
 registration: "登録"
 enableRegistration: "誰でも新規登録できるようにする"
@@ -789,6 +790,7 @@ previewNoteText: "本文をプレビュー"
 customCss: "カスタムCSS"
 customCssWarn: "この設定は必ず知識のある方が行ってください。不適切な設定を行うとクライアントが正常に使用できなくなる恐れがあります。"
 global: "グローバル"
+recommended: "おすすめされた"
 squareAvatars: "アイコンを四角形で表示"
 sent: "送信"
 received: "受信"
@@ -906,6 +908,8 @@ customMOTDDescription: "ユーザがページをロード/リロードするた�
 customSplashIcons: "カスタムスプラッシュスクリーンアイコン"
 customSplashIconsDescription: "ユーザがページをロード/リロードするたびにランダムに表示される、改行で区切られたカスタムスプラッシュスクリーンアイコンの URL。画像は静的なURLで、できればすべて192x192にリサイズしてください。"
 showUpdates: "Calckeyの更新時にポップアップを表示する"
+recommendedInstances: "推奨インスタンス"
+recommendedInstancesDescription: "推奨タイムラインに表示するために改行で区切られた推奨インスタンス。`https：//`を追加しないでください。ドメインのみを追加してください。"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てることができます。サーバーの負荷が少し増えます。"
@@ -1424,6 +1428,7 @@ _instanceCharts:
 _timelines:
   home: "ホーム"
   local: "ローカル"
+  recommended: "一押し"
   social: "ソーシャル"
   global: "グローバル"
 
