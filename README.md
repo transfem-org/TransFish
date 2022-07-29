@@ -71,3 +71,7 @@ YARN_CHECKSUM_BEHAVIOR=update yarn install
 NODE_ENV=production npm run build && npm run migrate
 # Edit service to point to calckey folder and restart!
 ```
+
+# 💸 Patrons
+
+None yet! You can support of the development of this fork here, every little bit counts: https://liberapay.com/ThatOneCalculator/
