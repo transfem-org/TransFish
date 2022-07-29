@@ -26,6 +26,9 @@ export default class extends Channel {
 
 	private async onNote(note: Packed<'Note'>) {
 		const meta = await fetchMeta();
+		console.log(meta.disableRecommendedTimeline);
+		console.log(meta.recommendedInstances);
+		console.log(note.user.host);
 		if (note.user.host !== null && !meta.recommendedInstances.includes(note.user.host)) return;
 		if (note.visibility !== 'public') return;
 		if (note.channelId != null && !this.followingChannels.has(note.channelId)) return;

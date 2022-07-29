@@ -65,10 +65,12 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	}
 
+	// AND (note.userHost = ANY(meta.recommendedInstances))')
+
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
-		.andWhere('(note.visibility = \'public\' AND (note.userHost = ANY(meta.recommendedInstances))')
+		.andWhere('(note.visibility = \'public\'')
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
 		.leftJoinAndSelect('user.banner', 'banner')
