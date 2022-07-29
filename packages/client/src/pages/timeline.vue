@@ -178,8 +178,7 @@ const headerTabsWhenNotLogin = $computed(() => [
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
-	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended
-' ? 'fas fa-comet' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
+	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended' ? 'fas fa-comet' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
 })));
 </script>
 
