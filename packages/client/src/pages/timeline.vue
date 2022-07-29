@@ -145,10 +145,8 @@ const headerTabs = $computed(() => [{
 	icon: 'fas fa-user-group',
 	iconOnly: true,
 }, ...(isRecommendedTimelineAvailable ? [{
-	key: 'recommended
-',
-	title: i18n.ts._timelines.recommended
-,
+	key: 'recommended',
+	title: i18n.ts._timelines.recommended,
 	icon: 'fas fa-comet',
 	iconOnly: true,
 }, {
