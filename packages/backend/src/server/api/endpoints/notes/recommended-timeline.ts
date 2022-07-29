@@ -69,7 +69,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	//#region Construct query
 	const instancesQuery = Metas.createQueryBuilder('meta')
-		.select('meta.recommendedInstances');
+		.select('recommendedInstances');
 		// .where('meta.recommendedInstances = ANY(:instance)', { instance: m.recommendedInstances });
 
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
