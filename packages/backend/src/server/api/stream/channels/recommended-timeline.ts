@@ -17,7 +17,7 @@ export default class extends Channel {
 
 	public async init(params: any) {
 		const meta = await fetchMeta();
-		if (meta.disableLocalTimeline && !this.user!.isAdmin && !this.user!.isModerator) return;
+		if (meta.disableRecommendedTimeline && !this.user!.isAdmin && !this.user!.isModerator) return;
 
 		// Subscribe events
 		this.subscriber.on('notesStream', this.onNote);
