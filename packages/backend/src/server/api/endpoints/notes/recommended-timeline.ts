@@ -29,7 +29,7 @@ export const meta = {
 	errors: {
 		ltlDisabled: {
 			message: 'Recommended timeline has been disabled.',
-			code: 'LTL_DISABLED',
+			code: 'RTL_DISABLED',
 			id: '45a6eb02-7695-4393-b023-dd3be9aaaefe',
 		},
 	},
@@ -68,7 +68,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
-		.andWhere('(note.visibility = \'public\') AND (note.userHost = ANY(meta.recommendedInstances))')
+		.andWhere('(note.visibility = \'public\')') // AND (note.userHost = ANY(meta.recommendedInstances))')
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
 		.leftJoinAndSelect('user.banner', 'banner')
