@@ -71,8 +71,8 @@ export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere(new Brackets(qb => {
-			qb.where('((note.userHost IN (:instances))', { instances: instances })
-			.orWhere('(note.userHost IS NULL)');
+			qb.where('note.userHost IN (:instances)', { instances: instances })
+			.orWhere('note.userHost IS NULL');
 		}))
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
