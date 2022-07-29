@@ -148,13 +148,13 @@ const headerTabs = $computed(() => [{
 ...(isRecommendedTimelineAvailable ? [{
 	key: 'recommended',
 	title: i18n.ts._timelines.recommended,
-	icon: 'fas fa-user-signs-post',
+	icon: 'fas fa-signs-post',
 	iconOnly: true,
 }] : []),
  ...(isLocalTimelineAvailable ? [{
 	key: 'social',
 	title: i18n.ts._timelines.social,
-	icon: 'fas fa-user-handshake-simple',
+	icon: 'fas fa-handshake-simple',
 	iconOnly: true,
 }] : []),
  ...(isGlobalTimelineAvailable ? [{
