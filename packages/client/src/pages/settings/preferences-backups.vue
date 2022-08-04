@@ -57,12 +57,14 @@ const defaultStoreSaveKeys: (keyof typeof defaultStore['state'])[] = [
 	'overridedDeviceKind',
 	'serverDisconnectedBehavior',
 	'nsfw',
+	'showAds',
 	'animation',
 	'animatedMfm',
 	'loadRawImages',
 	'imageNewTab',
 	'disableShowingAnimatedImages',
 	'disablePagesScript',
+	'enterSendsMessage',
 	'useOsNativeEmojis',
 	'disableDrawer',
 	'useBlurEffectForModal',
@@ -81,6 +83,7 @@ const defaultStoreSaveKeys: (keyof typeof defaultStore['state'])[] = [
 	'reportError',
 	'squareAvatars',
 	'numberOfPageCache',
+	'showUpdates',
 	'aiChanMode',
 ];
 const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
