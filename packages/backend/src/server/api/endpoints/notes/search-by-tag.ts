@@ -87,14 +87,14 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	try {
 		if (ps.tag) {
-			if (!safeForSql(ps.tag)) throw 'Injection';
+			if (!safeForSql(ps.tag)) throw new Error('Injection');
 			query.andWhere(`'{"${normalizeForSearch(ps.tag)}"}' <@ note.tags`);
 		} else {
 			query.andWhere(new Brackets(qb => {
 				for (const tags of ps.query!) {
 					qb.orWhere(new Brackets(qb => {
 						for (const tag of tags) {
-							if (!safeForSql(tag)) throw 'Injection';
+							if (!safeForSql(tag)) throw new Error('Injection');
 							qb.andWhere(`'{"${normalizeForSearch(tag)}"}' <@ note.tags`);
 						}
 					}));
@@ -102,7 +102,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			}));
 		}
 	} catch (e) {
-		if (e === 'Injection') return [];
+		if (e.message === 'Injection') return [];
 		throw e;
 	}
 
