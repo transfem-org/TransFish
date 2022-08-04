@@ -70,12 +70,11 @@ export default define(meta, paramDef, async (ps, user) => {
 		.select('meta.recommendedInstances')
 		.where('meta.recommendedInstances = ANY');
 
-	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere(new Brackets(qb => {
-			qb.where(`((note.userHost IN (${ recommendedQuery.getQuery() }))`)
-				.orWhere('(note.visibility = \'public\') AND (note.userHost IS NULL)');
+			qb.where(`((note.userHost IN (${ recommendedQuery.getQuery() }))`);
+				// .orWhere('(note.visibility = \'public\') AND (note.userHost IS NULL)');
 		}))
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
