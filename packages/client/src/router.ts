@@ -158,6 +158,10 @@ export const routes = [{
 		name: 'delete-account',
 		component: page(() => import('./pages/settings/delete-account.vue')),
 	}, {
+		path: '/preferences-backups',
+		name: 'preferences-backups',
+		component: page(() => import('./pages/settings/preferences-backups.vue')),
+	}, {
 		path: '/other',
 		name: 'other',
 		component: page(() => import('./pages/settings/other.vue')),

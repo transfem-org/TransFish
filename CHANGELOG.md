@@ -2,6 +2,7 @@
 ## 12.x.x (unreleased)
 
 ### Improvements
+- Client: Preferences Registry
 
 ### Bugfixes
 - 
@@ -13,6 +14,7 @@ You should also include the user name that made the change.
 
 ### Improvements
 - Client: Add vi-VN language support
+- Client: Add unix time widget @syuilo
 
 ### Bugfixes
 - Server: リモートユーザーを正しくブロックできるように修正する @xianonn
