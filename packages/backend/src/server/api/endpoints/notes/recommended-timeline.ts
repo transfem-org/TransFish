@@ -65,6 +65,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	}
 
+	// .andWhere('(note.userHost IN (:instances)) OR (note.userHost IS NULL)', { instances: instances })
 	//#region Construct query
 	const recommendedQuery = Metas.createQueryBuilder('meta')
 		.select('meta.recommendedInstances')
@@ -73,8 +74,8 @@ export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere(new Brackets(qb => {
-			qb.where(`((note.userHost IN (${ recommendedQuery.getQuery() }))`);
-				// .orWhere('(note.visibility = \'public\') AND (note.userHost IS NULL)');
+			qb.where(`note.userHost IN (${recommendedQuery.getQuery()})`)
+			.orWhere('note.userHost IS NULL');
 		}))
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
