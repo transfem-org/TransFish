@@ -81,4 +81,4 @@
 	- e2bf2715a6462ed377b033956d65260157f042ea: fix spelling error
 	- 09a7eabda137e77f81ab31f65d69329670693c8d: backend: fix lint "no-throw-literal"
 	- 4fbe2e065e75ed3e5b4dfdfd4be3baa03cc447c3: client: fix lint "quotes"
-	- 585e4f5c42cfafb6cdf7eb601ab435d6a4d85a96:  fix textarea not updating properly
+	- 585e4f5c42cfafb6cdf7eb601ab435d6a4d85a96: fix textarea not updating properly
