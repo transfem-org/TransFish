@@ -154,6 +154,10 @@ export const routes = [{
 		name: 'deck',
 		component: page(() => import('./pages/settings/deck.vue')),
 	}, {
+		path: '/delete-account',
+		name: 'delete-account',
+		component: page(() => import('./pages/settings/delete-account.vue')),
+	}, {
 		path: '/other',
 		name: 'other',
 		component: page(() => import('./pages/settings/other.vue')),
