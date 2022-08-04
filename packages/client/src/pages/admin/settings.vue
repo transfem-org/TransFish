@@ -54,11 +54,12 @@
 						</FormSwitch>
 					</FormSection>
 
-					<FormTextarea v-model="recommendedInstances" class="_formBlock">
-						<template #label>{{ i18n.ts.recommendedInstances }}<span class="_beta">{{ i18n.ts.beta }}</span></template>
+					<FormSection>
 						<FormSwitch v-model="enableRecommendedTimeline" class="_formBlock">{{ i18n.ts.enableRecommendedTimeline }}</FormSwitch>
+						<template #label>{{ i18n.ts.recommendedInstances }}<span class="_beta">{{ i18n.ts.beta }}</span></template>
+						<FormTextarea v-model="recommendedInstances" class="_formBlock"></FormTextarea>
 						<FormInfo class="_formBlock">{{ i18n.ts.recommendedInstancesDescription }}</FormInfo>
-					</FormTextarea>
+					</FormSection>
 
 					<FormSection>
 						<FormSwitch v-model="enableLocalTimeline" class="_formBlock">{{ i18n.ts.enableLocalTimeline }}</FormSwitch>
