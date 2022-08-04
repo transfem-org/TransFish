@@ -20,6 +20,7 @@
 
 ## Work in progress
 
+- Recommended instances timeline
 - Admin custom CSS
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
@@ -32,7 +33,6 @@
 
 - Yarn 3
 - Saner defaults
-- Recommended instances timeline
 - Star as default reaction
 - Recommended Instances timeline
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
