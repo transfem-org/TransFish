@@ -1,6 +1,6 @@
 import { Brackets } from 'typeorm';
 import { fetchMeta } from '@/misc/fetch-meta.js';
-import { Notes, Users } from '@/models/index.js';
+import { Notes, Metas } from '@/models/index.js';
 import { activeUsersChart } from '@/services/chart/index.js';
 import define from '../../define.js';
 import { ApiError } from '../../error.js';
@@ -65,13 +65,17 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	}
 
-	// .andWhere('(note.userHost IN (:instances)) OR (note.userHost IS NULL)', { instances: instances })
+	//#region Construct query
+	const recommendedQuery = Metas.createQueryBuilder('meta')
+		.select('meta.recommendedInstances')
+		.where('meta.recommendedInstances = ANY');
+
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere(new Brackets(qb => {
-			qb.where('note.userHost IN (:instances)', { instances: m.recommendedInstances })
-			.orWhere('note.userHost IS NULL');
+			qb.where(`((note.userHost IN (${ recommendedQuery.getQuery() }))`)
+				.orWhere('(note.visibility = \'public\') AND (note.userHost IS NULL)');
 		}))
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
