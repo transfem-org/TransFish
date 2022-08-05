@@ -338,7 +338,7 @@ router.get('/notes/:note', async (ctx, next) => {
 				avatarUrl: await Users.getAvatarUrl(await Users.findOneByOrFail({ id: note.userId })),
 				// TODO: Let locale changeable by instance setting
 				summary: getNoteSummary(_note),
-				instanceName: meta.name || 'Misskey',
+				instanceName: meta.name || 'Calckey',
 				icon: meta.iconUrl,
 				themeColor: meta.themeColor,
 			});

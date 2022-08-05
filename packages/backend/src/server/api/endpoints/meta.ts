@@ -36,7 +36,7 @@ export const meta = {
 				type: 'string',
 				optional: false, nullable: false,
 				format: 'url',
-				example: 'https://misskey.example.com',
+				example: 'https://calckey.example.com',
 			},
 			description: {
 				type: 'string',
@@ -57,12 +57,12 @@ export const meta = {
 			repositoryUrl: {
 				type: 'string',
 				optional: false, nullable: false,
-				default: 'https://github.com/misskey-dev/misskey',
+				default: 'https://codeberg.org/thatonecalculator/calckey',
 			},
 			feedbackUrl: {
 				type: 'string',
 				optional: false, nullable: false,
-				default: 'https://github.com/misskey-dev/misskey/issues/new',
+				default: 'https://codeberg.org/thatonecalculator/calckey/issues',
 			},
 			defaultDarkTheme: {
 				type: 'string',
