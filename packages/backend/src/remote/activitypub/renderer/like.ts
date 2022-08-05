@@ -13,7 +13,7 @@ export const renderLike = async (noteReaction: NoteReaction, note: Note) => {
 		id: `${config.url}/likes/${noteReaction.id}`,
 		actor: `${config.url}/users/${noteReaction.userId}`,
 		object: note.uri ? note.uri : `${config.url}/notes/${noteReaction.noteId}`,
-		... (reaction !== '\u2b50' ? {
+		... (!['\u2b50', '\u1f44d'].includes(reaction) ? {
 			content: reaction,
 			_misskey_reaction: reaction,
 		} : {}),
