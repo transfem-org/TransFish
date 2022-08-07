@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"version": "12.118.0-calc",
-	"codename": "indigo",
+	"codename": "aqua",
 	"repository": {
 		"type": "git",
 		"url": "https://codeberg.org/thatonecalculator/calckey.git"
