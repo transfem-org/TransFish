@@ -40,6 +40,7 @@
 	},
 	"dependencies": {
 		"@bull-board/api": "^4.2.2",
+		"@bull-board/ui": "^4.2.2",
 		"@tensorflow/tfjs": "^3.18.0",
 		"eslint": "^8.20.0",
 		"execa": "5.1.1",
