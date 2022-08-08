@@ -16,7 +16,6 @@ RUN yarn set version berry
 RUN yarn plugin import workspace-tools
 
 # Install Dependencies
-RUN yarn add @bull-board/api @bull-board/ui
 RUN yarn install
 RUN yarn build
 
