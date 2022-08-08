@@ -27,7 +27,8 @@
 
 # 📝 Documentation
 
-Misskey/Calckey documentation can be found at [Misskey Hub](https://misskey-hub.net/).
+- Misskey documentation can be found on [Misskey Hub](https://misskey-hub.net/)
+- API reference can be found on any Calckey instance's [API doc page](https://stop.voring.me/api-doc)
 
 # 🚚 Migrating from Misskey to Calckey
 
