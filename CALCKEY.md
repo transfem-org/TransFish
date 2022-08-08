@@ -40,6 +40,9 @@
 - Better sidebar/navbar
 - MOTD (customizable by admins!)
 - Custom randomized splash icons
+- Self hosted, newly designed error images
+  - Illustrated by [Henki](https://www.youtube.com/c/Henkiwashere)!
+  - Licensed under the CC-BY-SA 4.0.
 - [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - Better timeline top bar
 - Mark as read from notifications widget
@@ -53,7 +56,6 @@
 - Spacing on group items
 - Quotes have solid border
 - Reply limit bug fixed
-- Custom assets
 - Make showing the update popup optional
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)

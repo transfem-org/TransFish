@@ -7,7 +7,7 @@
 	<div v-else-if="empty" key="_empty_" class="empty">
 		<slot name="empty">
 			<div class="_fullinfo">
-				<img src="/static-assets/badges/info.jpg" class="_ghost" alt="Error"/>
+				<img src="/static-assets/badges/info.png" class="_ghost" alt="Error"/>
 				<div>{{ i18n.ts.nothing }}</div>
 			</div>
 		</slot>
