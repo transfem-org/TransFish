@@ -47,7 +47,7 @@ yarn set version berry
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
 # git checkout main # if you want only stable versions
-cp ../misskey/.config/default.yml ./.config/default.yml # or wherever misskey folder is
+cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, replace `default.yml` with `docker.yml` if you use docker
 # cp -r ../misskey/files . # if you don't use object storage
 ```
 
