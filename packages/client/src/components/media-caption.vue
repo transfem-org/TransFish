@@ -146,6 +146,7 @@ export default defineComponent({
 
 		caption: async () => {
 			const img = document.getElementById('imgtocaption');
+			const textarea = document.getElementById("captioninput");
 			await worker.load();
 			await worker.loadLanguage('eng');
 			await worker.initialize('eng', OEM.LSTM_ONLY);
@@ -153,9 +154,8 @@ export default defineComponent({
 				tessedit_pageseg_mode: PSM.SINGLE_BLOCK,
 			});
 			const { data: { text } } = await worker.recognize(img);
-			const allowedLength = 512 - this.inputValue.length;
-			// @ts-ignore
-			document.getElementById("captioninput").value += text.slice(0, allowedLength);
+			const allowedLength = 512 - textarea.value.length;
+			textarea.value += text.slice(0, allowedLength);
 		},
 	},
 });
