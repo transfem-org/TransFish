@@ -156,7 +156,7 @@ export function genOpenapiSpec() {
 					},
 				},
 				'418': {
-					description: 'I\'m Ai',
+					description: 'I\'m Calc',
 					content: {
 						'application/json': {
 							schema: {

@@ -57,6 +57,7 @@
 - Quotes have solid border
 - Reply limit bug fixed
 - Make showing the update popup optional
+- Obliteration of Ai-chan
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)

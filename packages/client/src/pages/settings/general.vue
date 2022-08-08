@@ -57,7 +57,6 @@
 		</FormSwitch>
 		<FormSwitch v-model="disableDrawer" class="_formBlock">{{ i18n.ts.disableDrawer }}</FormSwitch>
 		<FormSwitch v-model="showUpdates" class="_formBlock">{{ i18n.ts.showUpdates }}</FormSwitch>
-		<FormSwitch v-model="aiChanMode">{{ i18n.ts.aiChanMode }}</FormSwitch>
 
 		<FormRadios v-model="fontSize" class="_formBlock">
 			<template #label>{{ i18n.ts.fontSize }}</template>
@@ -146,7 +145,6 @@ const enterSendsMessage = computed(defaultStore.makeGetterSetter('enterSendsMess
 const useReactionPickerForContextMenu = computed(defaultStore.makeGetterSetter('useReactionPickerForContextMenu'));
 const squareAvatars = computed(defaultStore.makeGetterSetter('squareAvatars'));
 const showUpdates = computed(defaultStore.makeGetterSetter('showUpdates'));
-const aiChanMode = computed(defaultStore.makeGetterSetter('aiChanMode'));
 
 watch(lang, () => {
 	localStorage.setItem('lang', lang.value as string);
@@ -175,7 +173,6 @@ watch([
 	useSystemFont,
 	enableInfiniteScroll,
 	squareAvatars,
-	aiChanMode,
 	showGapBetweenNotesInTimeline,
 	instanceTicker,
 	overridedDeviceKind,

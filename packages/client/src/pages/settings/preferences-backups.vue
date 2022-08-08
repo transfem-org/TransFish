@@ -84,7 +84,6 @@ const defaultStoreSaveKeys: (keyof typeof defaultStore['state'])[] = [
 	'squareAvatars',
 	'numberOfPageCache',
 	'showUpdates',
-	'aiChanMode',
 ];
 const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	'lightTheme',

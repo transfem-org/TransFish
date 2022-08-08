@@ -15,7 +15,7 @@ export const packedUserLiteSchema = {
 		username: {
 			type: 'string',
 			nullable: false, optional: false,
-			example: 'ai',
+			example: 'calc',
 		},
 		host: {
 			type: 'string',

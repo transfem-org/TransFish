@@ -247,10 +247,6 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'device',
 		default: 5,
 	},
-	aiChanMode: {
-		where: 'device',
-		default: false,
-	},
 	enterSendsMessage: {
 		where: 'device',
 		default: true,
