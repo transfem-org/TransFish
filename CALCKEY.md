@@ -32,6 +32,7 @@
 ## Implemented
 
 - Yarn 3
+  - Fix Dockerfile @hanna
 - Saner defaults
 - Star as default reaction
 - Recommended Instances timeline
