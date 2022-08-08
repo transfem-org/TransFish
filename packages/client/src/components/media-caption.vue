@@ -7,7 +7,7 @@
 					<Mfm v-if="title" class="title" :text="title"/>
 					<span class="text-count" :class="{ over: remainingLength < 0 }">{{ remainingLength }}</span>
 				</header>
-				<textarea v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
+				<textarea id="captioninput" v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
 				<div v-if="(showOkButton || showCaptionButton || showCancelButton)" class="buttons">
 					<MkButton inline primary :disabled="remainingLength < 0" @click="ok">{{ $ts.ok }}</MkButton>
 					<MkButton inline @click="caption" >{{ $ts.caption }}</MkButton>
@@ -153,7 +153,9 @@ export default defineComponent({
 				tessedit_pageseg_mode: PSM.SINGLE_BLOCK,
 			});
 			const { data: { text } } = await worker.recognize(img);
-			console.log(text);
+			const allowedLength = 512 - this.inputValue.length;
+			// @ts-ignore
+			document.getElementById("captioninput").value += text.slice(0, allowedLength);
 		},
 	},
 });
