@@ -911,6 +911,7 @@ customSplashIconsDescription: "ユーザがページをロード/リロードす
 showUpdates: "Calckeyの更新時にポップアップを表示する"
 recommendedInstances: "推奨インスタンス"
 recommendedInstancesDescription: "推奨タイムラインに表示するために改行で区切られた推奨インスタンス。`https：//`を追加しないでください。ドメインのみを追加してください。"
+caption: "自動キャプション"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てることができます。サーバーの負荷が少し増えます。"

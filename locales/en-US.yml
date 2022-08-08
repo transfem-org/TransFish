@@ -911,6 +911,7 @@ customSplashIconsDescription: "URLs for custom splash screen icons separated by 
 showUpdates: "Show a popup when Calckey updates"
 recommendedInstances: "Recommended instances"
 recommendedInstancesDescription: "Recommended instances seperated by line breaks to appear in the recommended timeline. Do NOT add `https://`, ONLY the domain."
+caption: "Auto Caption"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing NSFW media via Machine Learning. This will slightly increase the load on the server."

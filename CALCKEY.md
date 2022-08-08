@@ -20,6 +20,7 @@
 
 ## Work in progress
 
+- OCR image/video captioning
 - Recommended instances timeline
 - Admin custom CSS
 - Improve accesibility score
