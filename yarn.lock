@@ -63,6 +63,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bull-board/api@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "@bull-board/api@npm:4.2.2"
+  dependencies:
+    redis-info: ^3.0.8
+  checksum: 547174f63d611a568303ad261d3f41a57f632ea2067e8ab900bad90dbc9790a45af8229765350ef47a2eba4300656e8cc792bdcef94003a531f4eabeb4982876
+  languageName: node
+  linkType: hard
+
 "@bull-board/koa@npm:4.1.1":
   version: 4.1.1
   resolution: "@bull-board/koa@npm:4.1.1"
@@ -9893,6 +9902,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "misskey@workspace:."
   dependencies:
+    "@bull-board/api": ^4.2.2
     "@tensorflow/tfjs": ^3.18.0
     "@types/gulp": 4.0.9
     "@types/gulp-rename": 2.0.1
