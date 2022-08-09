@@ -3210,10 +3210,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"blueimp-load-image@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "blueimp-load-image@npm:3.0.0"
+  checksum: 19a1e9a76ea87e15c1624c3ed30536f094252f0a65a193239f54ec0c25fe480b5140c962ac41a66f35a2d19b58d9da26803287b5a37b78d82d4b23328b09bf4a
+  languageName: node
+  linkType: hard
+
 "blurhash@npm:1.1.5":
   version: 1.1.5
   resolution: "blurhash@npm:1.1.5"
   checksum: 8a647024948552e7250d4f123a0dc2a56941be476811c1c999b182cde01e6e15cc6938a8c523f1a2fea8c0dc12c1fffc1cf2001b86683e196bed03e88e176af2
+  languageName: node
+  linkType: hard
+
+"bmp-js@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "bmp-js@npm:0.1.0"
+  checksum: 2f6cf7eeabae2aa50eb768122f59e9752caa97248028cb8b5cf0d9db7cf8fb3a60262aeb2c6889dd21357ab061b2fb318f21f20d2b24963ba36ead8e264c6654
   languageName: node
   linkType: hard
 
@@ -3950,6 +3964,7 @@ __metadata:
     strict-event-emitter-types: 2.0.0
     stringz: 2.1.0
     syuilo-password-strength: 0.0.1
+    tesseract.js: ^2.1.5
     textarea-caret: 3.1.0
     three: 0.143.0
     throttle-debounce: 5.0.0
@@ -4226,6 +4241,13 @@ __metadata:
     css-color-names: 0.0.4
     has: ^1.0.1
   checksum: 246dc6f2b1b46728efd9882a4aa818cf42cd99bc3cc20d0a27c61c4234d0b22db1974713cda3aa3aeb6fc2c82ef62169102f3557aeb1ba9ddb74acfd6d1fd96c
+  languageName: node
+  linkType: hard
+
+"colors@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "colors@npm:1.4.0"
+  checksum: 98aa2c2418ad87dedf25d781be69dc5fc5908e279d9d30c34d8b702e586a0474605b3a189511482b9d5ed0d20c867515d22749537f7bc546256c6014f3ebdcec
   languageName: node
   linkType: hard
 
@@ -6385,6 +6407,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"file-type@npm:^12.4.1":
+  version: 12.4.2
+  resolution: "file-type@npm:12.4.2"
+  checksum: 67c8d7f8f032fd8cf4d14016d96567d20eeb7bf3524915f2c5d79337ca4e5338032d373a5fe827610eaf4ab7eb80629ff868331a66f63d1f9e9cc4c433e3f047
+  languageName: node
+  linkType: hard
+
 "filelist@npm:^1.0.1":
   version: 1.0.4
   resolution: "filelist@npm:1.0.4"
@@ -7036,7 +7065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.1.1, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.2.0":
+"glob@npm:^7.1.1, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6, glob@npm:^7.2.0":
   version: 7.2.3
   resolution: "glob@npm:7.2.3"
   dependencies:
@@ -7708,6 +7737,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"idb-keyval@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "idb-keyval@npm:3.2.0"
+  checksum: 3270010af049fa7f07b0381818daa7f16d3704aaba9d2585e531908f09130f6d0772464b2b48c23676dd1e51e5245585da5ce56f2c74dfd4f9961d1e0d0f5909
+  languageName: node
+  linkType: hard
+
 "ieee754@npm:1.1.13":
   version: 1.1.13
   resolution: "ieee754@npm:1.1.13"
@@ -8098,6 +8134,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-electron@npm:^2.2.0":
+  version: 2.2.1
+  resolution: "is-electron@npm:2.2.1"
+  checksum: 06e569aa933a737d418489bb9ca081af62eceb714d4c3d553ad2497610e35494be6dddd010c4e29890c7dd9d0481c2e3e1e9097af9d19df1c52dd5be747d80a0
+  languageName: node
+  linkType: hard
+
 "is-expression@npm:^4.0.0":
   version: 4.0.0
   resolution: "is-expression@npm:4.0.0"
@@ -8411,6 +8454,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-url@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "is-url@npm:1.2.4"
+  checksum: 100e74b3b1feab87a43ef7653736e88d997eb7bd32e71fd3ebc413e58c1cbe56269699c776aaea84244b0567f2a7d68dfaa512a062293ed2f9fdecb394148432
+  languageName: node
+  linkType: hard
+
 "is-utf8@npm:^0.2.0, is-utf8@npm:^0.2.1":
   version: 0.2.1
   resolution: "is-utf8@npm:0.2.1"
@@ -8536,6 +8586,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jpeg-autorotate@npm:^7.1.1":
+  version: 7.1.1
+  resolution: "jpeg-autorotate@npm:7.1.1"
+  dependencies:
+    colors: ^1.4.0
+    glob: ^7.1.6
+    jpeg-js: ^0.4.2
+    piexifjs: ^1.0.6
+    yargs-parser: ^20.2.1
+  bin:
+    jpeg-autorotate: src/cli.js
+  checksum: fdd6898ed287e074e26667e503731846ddb3e3042d5aee70f3f6ae86051b8d493bfa0906f9df19a4e5fb0df6253ff059bf8967cda5fb3e6f1c8e8e2d7a58a3ee
+  languageName: node
+  linkType: hard
+
 "jpeg-js@npm:^0.3.2":
   version: 0.3.7
   resolution: "jpeg-js@npm:0.3.7"
@@ -8543,7 +8608,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jpeg-js@npm:^0.4.1":
+"jpeg-js@npm:^0.4.1, jpeg-js@npm:^0.4.2":
   version: 0.4.4
   resolution: "jpeg-js@npm:0.4.4"
   checksum: bd7cb61aa8df40a9ee2c2106839c3df6054891e56cfc22c0ac581402e06c6295f962a4754b0b2ac50a401789131b1c6dc9df8d24400f1352168be1894833c590
@@ -10316,7 +10381,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7, node-fetch@npm:~2.6.1":
+"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7, node-fetch@npm:~2.6.1":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
@@ -10725,6 +10790,15 @@ __metadata:
   version: 0.0.2
   resolution: "only@npm:0.0.2"
   checksum: d399710db867a1ef436dd3ce74499c87ece794aa81ab0370b5d153968766ee4aed2f98d3f92fc87c963e45b7a74d400d6f463ef651a5e7cfb861b15e88e9efe6
+  languageName: node
+  linkType: hard
+
+"opencollective-postinstall@npm:^2.0.2":
+  version: 2.0.3
+  resolution: "opencollective-postinstall@npm:2.0.3"
+  bin:
+    opencollective-postinstall: index.js
+  checksum: 0a68c5cef135e46d11e665d5077398285d1ce5311c948e8327b435791c409744d4a6bb9c55bd6507fb5f2ef34b0ad920565adcdaf974cbdae701aead6f32b396
   languageName: node
   linkType: hard
 
@@ -11259,6 +11333,13 @@ __metadata:
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 050c865ce81119c4822c45d3c84f1ced46f93a0126febae20737bd05ca20589c564d6e9226977df859ed5e03dc73f02584a2b0faad36e896936238238b0446cf
+  languageName: node
+  linkType: hard
+
+"piexifjs@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "piexifjs@npm:1.0.6"
+  checksum: 137caf5ca36c0ad98cfd445c0ec40737f7589469e750ac417a2019b940cf6534e9834f3f01dc6a85a6d6c127c3eb5b5dc750812c800e6567392b67da94a755bd
   languageName: node
   linkType: hard
 
@@ -12412,7 +12493,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.13.4, regenerator-runtime@npm:^0.13.5":
+"regenerator-runtime@npm:^0.13.3, regenerator-runtime@npm:^0.13.4, regenerator-runtime@npm:^0.13.5":
   version: 0.13.9
   resolution: "regenerator-runtime@npm:0.13.9"
   checksum: 65ed455fe5afd799e2897baf691ca21c2772e1a969d19bb0c4695757c2d96249eb74ee3553ea34a91062b2a676beedf630b4c1551cc6299afb937be1426ec55e
@@ -13892,6 +13973,34 @@ __metadata:
   bin:
     terser: bin/terser
   checksum: cabb50a640d6c2cfb351e4f43dc7bf7436f649755bb83eb78b2cacda426d5e0979bd44e6f92d713f3ca0f0866e322739b9ced888ebbce6508ad872d08de74fcc
+  languageName: node
+  linkType: hard
+
+"tesseract.js-core@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "tesseract.js-core@npm:2.2.0"
+  checksum: 7587514a6bd51540ba7bbe1fd6349a83c5865261db43bee1625b07c877ac6949b1bf7e0a9a84b6925f8acfb34287f9c28dfd3f3d1bbaa49abc9cbb6cb7927389
+  languageName: node
+  linkType: hard
+
+"tesseract.js@npm:^2.1.5":
+  version: 2.1.5
+  resolution: "tesseract.js@npm:2.1.5"
+  dependencies:
+    blueimp-load-image: ^3.0.0
+    bmp-js: ^0.1.0
+    file-type: ^12.4.1
+    idb-keyval: ^3.2.0
+    is-electron: ^2.2.0
+    is-url: ^1.2.4
+    jpeg-autorotate: ^7.1.1
+    node-fetch: ^2.6.0
+    opencollective-postinstall: ^2.0.2
+    regenerator-runtime: ^0.13.3
+    resolve-url: ^0.2.1
+    tesseract.js-core: ^2.2.0
+    zlibjs: ^0.3.1
+  checksum: a28a2edae162ab5db97a9337dbce1ea96f3c303f6976560784d9f774be6fec15b05f04b8776fe6b9d12471324ee0c94fe25efd2d991fdb859ad66d24e8d66fb0
   languageName: node
   linkType: hard
 
@@ -15433,7 +15542,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs-parser@npm:^20.2.2":
+"yargs-parser@npm:^20.2.1, yargs-parser@npm:^20.2.2":
   version: 20.2.9
   resolution: "yargs-parser@npm:20.2.9"
   checksum: 8bb69015f2b0ff9e17b2c8e6bfe224ab463dd00ca211eece72a4cd8a906224d2703fb8a326d36fdd0e68701e201b2a60ed7cf81ce0fd9b3799f9fe7745977ae3
@@ -15571,5 +15680,12 @@ __metadata:
     compress-commons: ^4.1.0
     readable-stream: ^3.6.0
   checksum: 4a73da856738b0634700b52f4ab3fe0bf0a532bea6820ad962d0bda0163d2d5525df4859f89a7238e204a378384e12551985049790c1894c3ac191866e85887f
+  languageName: node
+  linkType: hard
+
+"zlibjs@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "zlibjs@npm:0.3.1"
+  checksum: 91f3d28bb5925ac71565a1fd4d44303b6b876ed483c9c192864393811151b399f29d917c9118a5aca5a541d9dfc7c199460f86b489ea1f77b7217e0edc887c89
   languageName: node
   linkType: hard
