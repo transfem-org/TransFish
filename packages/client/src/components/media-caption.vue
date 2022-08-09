@@ -31,7 +31,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { length } from 'stringz';
-import { createWorker, PSM, OEM } from 'tesseract.js';
+import { createWorker } from 'tesseract.js';
 import MkModal from '@/components/ui/modal.vue';
 import MkButton from '@/components/ui/button.vue';
 import bytes from '@/filters/bytes';
@@ -145,17 +145,16 @@ export default defineComponent({
 		},
 
 		caption: async () => {
-			const img = document.getElementById('imgtocaption');
+			const img = document.getElementById('imgtocaption') as HTMLImageElement;
+			const imgurl = img.src;
 			await worker.load();
 			await worker.loadLanguage('eng');
-			await worker.initialize('eng', OEM.LSTM_ONLY);
-			await worker.setParameters({
-				tessedit_pageseg_mode: PSM.SINGLE_BLOCK,
-			});
-			const { data: { text } } = await worker.recognize(img);
-			console.log(text);
+			await worker.initialize('eng');
+			const { data: { text } } = await worker.recognize(imgurl);
+			console.log(`\n\n${text}\n\n`);
 			const allowedLength = 512 - this.inputValue.length;
 			this.inputValue += text.slice(0, allowedLength);
+			await worker.terminate();
 		},
 	},
 });
