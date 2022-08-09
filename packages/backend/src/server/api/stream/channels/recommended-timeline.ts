@@ -30,7 +30,7 @@ export default class extends Channel {
 		// フォローしているチャンネルの投稿 の場合だけ
 		const meta = await fetchMeta();
 		if (!(
-			((note.user.host == null || meta.recommendedInstances.includes(note.user.host)) && note.visibility === 'public')
+			((note.user.host != null && meta.recommendedInstances.includes(note.user.host)) && note.visibility === 'public')
 		)) return;
 
 		// Ignore notes from instances the user has muted
