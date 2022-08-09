@@ -34,16 +34,6 @@
 						<template #caption>{{ i18n.ts.pinnedUsersDescription }}</template>
 					</FormTextarea>
 
-					<FormTextarea v-model="customMOTD" class="_formBlock">
-						<template #label>{{ i18n.ts.customMOTD }}</template>
-						<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
-					</FormTextarea>
-
-					<FormTextarea v-model="customSplashIcons" class="_formBlock">
-						<template #label>{{ i18n.ts.customSplashIcons }}</template>
-						<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
-					</FormTextarea>
-
 					<FormSection>
 						<FormSwitch v-model="enableRegistration" class="_formBlock">
 							<template #label>{{ i18n.ts.enableRegistration }}</template>
@@ -64,6 +54,20 @@
 						<FormSwitch v-model="enableLocalTimeline" class="_formBlock">{{ i18n.ts.enableLocalTimeline }}</FormSwitch>
 						<FormSwitch v-model="enableGlobalTimeline" class="_formBlock">{{ i18n.ts.enableGlobalTimeline }}</FormSwitch>
 						<FormInfo class="_formBlock">{{ i18n.ts.disablingTimelinesInfo }}</FormInfo>
+					</FormSection>
+
+					<FormSection>
+						<template #label>{{ i18n.ts.splash }}</template>
+
+						<FormTextarea v-model="customMOTD" class="_formBlock">
+							<template #label>{{ i18n.ts.customMOTD }}</template>
+							<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
+						</FormTextarea>
+
+						<FormTextarea v-model="customSplashIcons" class="_formBlock">
+							<template #label>{{ i18n.ts.customSplashIcons }}</template>
+							<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
+						</FormTextarea>
 					</FormSection>
 
 					<FormSection>
