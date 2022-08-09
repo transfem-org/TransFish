@@ -67,15 +67,10 @@ export default define(meta, paramDef, async (ps, user) => {
 	}
 
 	const cursed = `(note.userHost = ANY ('{"${m.recommendedInstances.join('","')}"}'))`;
-	console.log(cursed);
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
 		.andWhere(cursed)
-		// .andWhere(new Brackets(qb => {
-		// 	qb.where('note.userHost IN :instances', { instances: m.recommendedInstances })
-		// 	.orWhere('note.userHost IS NULL');
-		// }))
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
