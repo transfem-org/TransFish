@@ -103,8 +103,6 @@ export default defineComponent({
 	methods: {
 		bytes,
 		number,
-		PSM,
-		OEM,
 
 		done(canceled, result?) {
 			this.$emit('done', { canceled, result });
