@@ -20,7 +20,7 @@
 
 ## Work in progress
 
-- OCR image/video captioning
+- OCR image captioning via `tesseract.js`
 - Recommended instances timeline
 - Admin custom CSS
 - Improve accesibility score
