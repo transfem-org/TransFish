@@ -126,12 +126,7 @@ const headerActions = $computed(() => [{
 	title: i18n.ts.antennas,
 	iconOnly: true,
 	handler: chooseAntenna,
-}, /* {
-	icon: 'fas fa-satellite-dish',
-	title: i18n.ts.channel,
-	iconOnly: true,
-	handler: chooseChannel,
-}, */ {
+}, {
 	icon: 'fas fa-calendar-alt',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
@@ -168,7 +163,7 @@ const headerTabs = $computed(() => [{
 	iconOnly: true,
 }] : [])]);
 
-const headerTabsWhenNotLogin = $computed(() => [
+let headerTabsWhenNotLogin = $computed(() => [
 	...(isLocalTimelineAvailable ? [{
 		key: 'local',
 		title: i18n.ts._timelines.local,
@@ -182,6 +177,10 @@ const headerTabsWhenNotLogin = $computed(() => [
 		iconOnly: true,
 	}] : []),
 ]);
+
+if (!enableGuestTimeline) {
+	headerTabsWhenNotLogin = [];
+}
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
