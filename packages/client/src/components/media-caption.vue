@@ -146,16 +146,21 @@ export default defineComponent({
 
 		caption: async () => {
 			const img = document.getElementById('imgtocaption') as HTMLImageElement;
-			const imgurl = img.src;
-			await worker.load();
-			await worker.loadLanguage('eng');
-			await worker.initialize('eng');
-			const { data: { text } } = await worker.recognize(imgurl);
-			console.log(text);
-			// document.getElementById('recognized-text').innerText = text;
-			// const allowedLength = 512 - this.inputValue.length;
-			// this.inputValue += text.slice(0, allowedLength);
-			await worker.terminate();
+			fetch(img.src)
+			.then((response) => {
+				return response.blob();
+			})
+			.then((blob) => {
+				worker.load();
+				worker.loadLanguage('eng');
+				worker.initialize('eng');
+				const { data: { text } } = worker.recognize(blob);
+				console.log(text);
+				// document.getElementById('recognized-text').innerText = text;
+				// const allowedLength = 512 - this.inputValue.length;
+				// this.inputValue += text.slice(0, allowedLength);
+				worker.terminate();
+			});
 		},
 	},
 });
