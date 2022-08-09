@@ -55,7 +55,7 @@ cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` 
 ## 💅 Customize
 
 - To add custom CSS for all users, edit `/custom/instance.css`.
-- To add static assets (such as images for the splash screen), place them in the `/custom/` folder. They'll then be avaliable with `https://yourinstance.tld/static-assets/filename.png`.
+- To add static assets (such as images for the splash screen), place them in the `/custom/` folder. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.png`.
 
 ## 🚀 Build and launch!
 
