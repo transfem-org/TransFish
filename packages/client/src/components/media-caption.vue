@@ -12,7 +12,7 @@
 				<textarea id="captioninput" v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
 				<div v-if="(showOkButton || showCaptionButton || showCancelButton)" class="buttons">
 					<MkButton inline primary :disabled="remainingLength < 0" @click="ok">{{ $ts.ok }}</MkButton>
-					<MkButton inline @click="caption" >{{ $ts.caption }}</MkButton>
+					<!-- <MkButton inline @click="caption" >{{ $ts.caption }}</MkButton> -->
 					<MkButton inline @click="cancel" >{{ $ts.cancel }}</MkButton>
 				</div>
 			</div>

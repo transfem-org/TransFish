@@ -20,7 +20,6 @@
 
 ## Work in progress
 
-- Recommended instances timeline
 - OCR image captioning
 - Admin custom CSS
 - Improve accesibility score
@@ -35,6 +34,7 @@
 - Yarn 3
   - Fix Dockerfile @hanna
 - Saner defaults
+- Recommended instances timeline
 - Star as default reaction
 - Recommended Instances timeline
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
