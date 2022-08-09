@@ -46,8 +46,10 @@
 
 					<FormSection>
 						<FormSwitch v-model="enableRecommendedTimeline" class="_formBlock">{{ i18n.ts.enableRecommendedTimeline }}</FormSwitch>
-						<FormTextarea v-model="recommendedInstances" class="_formBlock"></FormTextarea>
-						<template #caption>{{ i18n.ts.recommendedInstancesDescription }}</template>
+						<FormTextarea v-model="recommendedInstances" class="_formBlock">
+							<template #label>{{ i18n.ts.recommendedInstances }}</template>
+							<template #caption>{{ i18n.ts.recommendedInstancesDescription }}</template>
+						</FormTextarea>
 					</FormSection>
 
 					<FormSection>
