@@ -33,15 +33,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { length } from 'stringz';
-import { createWorker } from 'tesseract.js';
+import Tesseract from 'tesseract.js';
 import MkModal from '@/components/ui/modal.vue';
 import MkButton from '@/components/ui/button.vue';
 import bytes from '@/filters/bytes';
 import number from '@/filters/number';
-
-const worker = createWorker({
-	logger: m => console.log(m),
-});
 
 export default defineComponent({
 	components: {
@@ -144,20 +140,24 @@ export default defineComponent({
 			}
 		},
 
-		caption: async () => {
-			const img = document.getElementById('imgtocaption') as HTMLImageElement;
-			const imgurl = img.src;
-			console.log(imgurl)
-			const imgblob = await fetch(imgurl).then(r => r.blob());
-			await worker.load();
-			await worker.loadLanguage('eng');
-			await worker.initialize('eng');
-			const { data: { text } } = await worker.recognize(imgblob);
-			console.log(text);
-			// document.getElementById('recognized-text').innerText = text;
-			// const allowedLength = 512 - this.inputValue.length;
-			// this.inputValue += text.slice(0, allowedLength);
-			await worker.terminate();
+		caption() {
+			const img = document.getElementById('imgtocaption');
+			Tesseract.recognize(
+				img,
+				'eng',
+				{ logger: m => console.log(m) },
+			).then(({ data: { text } }) => {
+				console.log(text);
+			});
+			// await worker.load();
+			// await worker.loadLanguage('eng');
+			// await worker.initialize('eng');
+			// const { data: { text } } = await worker.recognize(img);
+			// console.log(text);
+			// // document.getElementById('recognized-text').innerText = text;
+			// // const allowedLength = 512 - this.inputValue.length;
+			// // this.inputValue += text.slice(0, allowedLength);
+			// await worker.terminate();
 		},
 	},
 });
