@@ -69,10 +69,12 @@ export default define(meta, paramDef, async (ps, user) => {
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
-		.andWhere(new Brackets(qb => {
-			qb.where('note.userHost IN :instances', { instances: m.recommendedInstances })
-			.orWhere('note.userHost IS NULL');
-		}))
+		// Query where note.userHost is in recommended instances
+		.andWhere('(note.userHost IN (:instances)) OR (note.userHost IS NULL)', { instances: m.recommendedInstances })
+		// .andWhere(new Brackets(qb => {
+		// 	qb.where('note.userHost IN :instances', { instances: m.recommendedInstances })
+		// 	.orWhere('note.userHost IS NULL');
+		// }))
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
