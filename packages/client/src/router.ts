@@ -5,6 +5,8 @@ import MkLoading from '@/pages/_loading_.vue';
 import MkError from '@/pages/_error_.vue';
 import { ui } from '@/config';
 
+// const guestTimeline = nodeinfo.meta.enableGuestTimeline;
+
 const page = (loader: AsyncComponentLoader<any>) => defineAsyncComponent({
 	loader: loader,
 	loadingComponent: MkLoading,
@@ -456,6 +458,7 @@ export const routes = [{
 }, {
 	path: '/timeline',
 	component: page(() => import('./pages/timeline.vue')),
+	// loginRequired: guestTimeline,
 }, {
 	name: 'index',
 	path: '/',

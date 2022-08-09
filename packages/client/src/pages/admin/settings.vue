@@ -55,6 +55,7 @@
 					<FormSection>
 						<FormSwitch v-model="enableLocalTimeline" class="_formBlock">{{ i18n.ts.enableLocalTimeline }}</FormSwitch>
 						<FormSwitch v-model="enableGlobalTimeline" class="_formBlock">{{ i18n.ts.enableGlobalTimeline }}</FormSwitch>
+						<FormSwitch v-model="enableGuestTimeline" class="_formBlock">{{ i18n.ts.enableGuestTimeline }}</FormSwitch>
 						<FormInfo class="_formBlock">{{ i18n.ts.disablingTimelinesInfo }}</FormInfo>
 					</FormSection>
 
@@ -198,6 +199,7 @@ let defaultDarkTheme: any = $ref(null);
 let enableLocalTimeline: boolean = $ref(false);
 let enableGlobalTimeline: boolean = $ref(false);
 let enableRecommendedTimeline: boolean = $ref(false);
+let enableGuestTimeline: boolean = $ref(false);
 let pinnedUsers: string = $ref('');
 let customMOTD: string = $ref('');
 let recommendedInstances: string = $ref('');
@@ -229,6 +231,7 @@ async function init() {
 	enableLocalTimeline = !meta.disableLocalTimeline;
 	enableGlobalTimeline = !meta.disableGlobalTimeline;
 	enableRecommendedTimeline = !meta.disableRecommendedTimeline;
+	enableGuestTimeline = meta.enableGuestTimeline;
 	pinnedUsers = meta.pinnedUsers.join('\n');
 	customMOTD = meta.customMOTD.join('\n');
 	customSplashIcons = meta.customSplashIcons.join('\n');
@@ -261,6 +264,7 @@ function save() {
 		disableLocalTimeline: !enableLocalTimeline,
 		disableGlobalTimeline: !enableGlobalTimeline,
 		disableRecommendedTimeline: !enableRecommendedTimeline,
+		enableGuestTimeline: enableGuestTimeline,
 		pinnedUsers: pinnedUsers.split('\n'),
 		customMOTD: customMOTD.split('\n'),
 		customSplashIcons: customSplashIcons.split('\n'),

@@ -60,6 +60,11 @@ export class Meta {
 	@Column('boolean', {
 		default: false,
 	})
+	public enableGuestTimeline: boolean;
+
+	@Column('boolean', {
+		default: false,
+	})
 	public useStarForReactionFallback: boolean;
 
 	@Column('varchar', {
