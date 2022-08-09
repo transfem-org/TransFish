@@ -63,7 +63,7 @@ export default defineComponent({
 		},
 		showCaptionButton: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 		showCancelButton: {
 			type: Boolean,
