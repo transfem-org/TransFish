@@ -154,8 +154,10 @@ export default defineComponent({
 				});
 			};
 			const img = document.getElementById('imgtocaption') as HTMLImageElement;
+			const b64 = getBase64FromUrl(img.src);
+			console.log(b64);
 			Tesseract.recognize(
-				getBase64FromUrl(img.src),
+				b64,
 				'eng',
 				{ logger: m => console.log(m) },
 			).then(({ data: { text } }) => {
