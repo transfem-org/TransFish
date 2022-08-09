@@ -59,18 +59,16 @@ export const paramDef = {
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	const m = await fetchMeta();
-	// const formattedInstances = `(${m.recommendedInstances.toString().split(',').map(v => JSON.stringify(`'${v.toString()}'`)).join(', ')})`;
 	if (m.disableRecommendedTimeline) {
 		if (user == null || (!user.isAdmin && !user.isModerator)) {
 			throw new ApiError(meta.errors.rtlDisabled);
 		}
 	}
 
-	const cursed = `(note.userHost = ANY ('{"${m.recommendedInstances.join('","')}"}'))`;
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
-		.andWhere(cursed)
+		.andWhere(`(note.userHost = ANY ('{"${m.recommendedInstances.join('","')}"}'))`)
 		.andWhere('(note.visibility = \'public\')')
 		.innerJoinAndSelect('note.user', 'user')
 		.leftJoinAndSelect('user.avatar', 'avatar')
