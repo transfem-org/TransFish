@@ -4,6 +4,10 @@ import { $i, iAmModerator } from '@/account';
 import MkLoading from '@/pages/_loading_.vue';
 import MkError from '@/pages/_error_.vue';
 import { ui } from '@/config';
+import * as os from '@/os';
+
+const meta = await os.api('admin/meta');
+const guestTimeline = meta.enableGuestTimeline;
 
 const page = (loader: AsyncComponentLoader<any>) => defineAsyncComponent({
 	loader: loader,
@@ -456,6 +460,7 @@ export const routes = [{
 }, {
 	path: '/timeline',
 	component: page(() => import('./pages/timeline.vue')),
+	loginRequired: guestTimeline,
 }, {
 	name: 'index',
 	path: '/',

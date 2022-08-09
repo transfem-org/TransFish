@@ -77,7 +77,7 @@ const announcements = {
 	endpoint: 'announcements',
 	limit: 10,
 };
-const isTimelineAvailable = !instance.disableLocalTimeline || !instance.disableRecommendedTimeline || !instance.disableGlobalTimeline;
+const isTimelineAvailable = instance.enableGuestTimeline && (!instance.disableLocalTimeline || !instance.disableRecommendedTimeline || !instance.disableGlobalTimeline);
 let showMenu = $ref(false);
 let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
 let narrow = $ref(window.innerWidth < 1280);

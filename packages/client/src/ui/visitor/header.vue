@@ -60,7 +60,7 @@ export default defineComponent({
 		return {
 			narrow: null,
 			showMenu: false,
-			isTimelineAvailable: !instance.disableLocalTimeline || !instance.disableRecommendedTimeline || !instance.disableGlobalTimeline,
+			isTimelineAvailable: instance.enableGuestTimeline && (!instance.disableLocalTimeline || !instance.disableRecommendedTimeline || !instance.disableGlobalTimeline),
 		};
 	},
 
