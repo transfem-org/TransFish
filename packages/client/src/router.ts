@@ -6,7 +6,7 @@ import MkError from '@/pages/_error_.vue';
 import { api } from '@/os';
 import { ui } from '@/config';
 
-const meta = await api('meta', {
+const meta = api('meta', {
 	detail: false
 });
 const guestTimeline = meta.enableGuestTimeline;
