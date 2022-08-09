@@ -15,6 +15,10 @@ gulp.task('copy:backend:views', () =>
 	gulp.src('./packages/backend/src/server/web/views/**/*').pipe(gulp.dest('./packages/backend/built/server/web/views'))
 );
 
+gulp.task('copy:backend:custom', () =>
+	gulp.src('./custom/*').pipe(gulp.dest('./packages/backend/assets/'))
+);
+
 gulp.task('copy:client:fonts', () =>
 	gulp.src('./packages/client/node_modules/three/examples/fonts/**/*').pipe(gulp.dest('./built/_client_dist_/fonts/'))
 );
@@ -34,6 +38,7 @@ gulp.task('copy:client:locales', cb => {
 
 	cb();
 });
+
 
 gulp.task('build:backend:script', () => {
 	return gulp.src(['./packages/backend/src/server/web/boot.js', './packages/backend/src/server/web/bios.js', './packages/backend/src/server/web/cli.js'])

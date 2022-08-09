@@ -52,6 +52,11 @@ cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` 
 # cp -r ../misskey/files . # if you don't use object storage
 ```
 
+## 💅 Customize
+
+- To add custom CSS for all users, edit `/custom/instance.css`.
+- To add static assets (such as images for the splash screen), place them in the `/custom/` folder. They'll then be avaliable with `https://yourinstance.tld/static-assets/filename.png`.
+
 ## 🚀 Build and launch!
 
 ### `git pull` and run these steps to update Calckey in the future!
