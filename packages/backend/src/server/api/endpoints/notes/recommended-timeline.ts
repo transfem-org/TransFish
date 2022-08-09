@@ -59,14 +59,14 @@ export const paramDef = {
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	const m = await fetchMeta();
-	const formattedInstances = `(${m.recommendedInstances.toString().split(',').map(v => JSON.stringify(`'${v.toString()}'`)).join(', ')})`;
+	// const formattedInstances = `(${m.recommendedInstances.toString().split(',').map(v => JSON.stringify(`'${v.toString()}'`)).join(', ')})`;
 	if (m.disableRecommendedTimeline) {
 		if (user == null || (!user.isAdmin && !user.isModerator)) {
 			throw new ApiError(meta.errors.rtlDisabled);
 		}
 	}
 
-	const cursed = `(note.userHost = ANY (ARRAY${m.recommendedInstances.toString().split(',')})`;
+	const cursed = `(note.userHost = ANY (ARRAY["${m.recommendedInstances.join('","')}"])`;
 	console.log(cursed);
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
