@@ -20,8 +20,8 @@
 
 ## Work in progress
 
-- OCR image captioning via `tesseract.js`
 - Recommended instances timeline
+- OCR image captioning
 - Admin custom CSS
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
