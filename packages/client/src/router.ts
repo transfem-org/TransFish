@@ -6,7 +6,12 @@ import MkError from '@/pages/_error_.vue';
 import { api } from '@/os';
 import { ui } from '@/config';
 
-const guestTimeline = api('meta', { detail: false }).enableGuestTimeline;
+const meta = await api('meta', {
+	detail: false
+});
+const guestTimeline = meta.enableGuestTimeline;
+console.log(meta);
+console.log(guestTimeline);
 
 const page = (loader: AsyncComponentLoader<any>) => defineAsyncComponent({
 	loader: loader,
