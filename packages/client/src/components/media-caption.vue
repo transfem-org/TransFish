@@ -6,6 +6,8 @@
 				<header>
 					<Mfm v-if="title" class="title" :text="title"/>
 					<span class="text-count" :class="{ over: remainingLength < 0 }">{{ remainingLength }}</span>
+					<br/>
+					<span id="recognized-text"></span>
 				</header>
 				<textarea id="captioninput" v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
 				<div v-if="(showOkButton || showCaptionButton || showCancelButton)" class="buttons">
@@ -149,10 +151,11 @@ export default defineComponent({
 			await worker.loadLanguage('eng');
 			await worker.initialize('eng');
 			const { data: { text } } = await worker.recognize(imgurl);
-			console.log(`\n\n${text}\n\n`);
-			const allowedLength = 512 - this.inputValue.length;
-			this.inputValue += text.slice(0, allowedLength);
-			await worker.terminate();
+			console.log(text);
+			document.getElementById('recognized-text').innerText = text;
+			// const allowedLength = 512 - this.inputValue.length;
+			// this.inputValue += text.slice(0, allowedLength);
+			// await worker.terminate();
 		},
 	},
 });
