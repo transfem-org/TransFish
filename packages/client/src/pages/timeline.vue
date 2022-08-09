@@ -38,6 +38,7 @@ const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 const isLocalTimelineAvailable = !instance.disableLocalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const isGlobalTimelineAvailable = !instance.disableGlobalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
+const enableGuestTimeline = instance.enableGuestTimeline;
 const keymap = {
 	't': focus,
 };
@@ -47,7 +48,10 @@ const rootEl = $ref<HTMLElement>();
 
 let queue = $ref(0);
 let srcWhenNotSignin = $ref(isLocalTimelineAvailable ? 'local' : 'global');
-const src = $computed({ get: () => ($i ? defaultStore.reactiveState.tl.value.src : srcWhenNotSignin), set: (x) => saveSrc(x) });
+let src = $computed({ get: () => ($i ? defaultStore.reactiveState.tl.value.src : srcWhenNotSignin), set: (x) => saveSrc(x) });
+if (!enableGuestTimeline) {
+	src = $computed({});
+}
 
 watch ($$(src), () => queue = 0);
 
