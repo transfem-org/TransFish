@@ -66,10 +66,12 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	}
 
+	const cursed = `(note.userHost = ANY (ARRAY[${m.recommendedInstances}])`;
+	console.log(cursed);
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
 		ps.sinceId, ps.untilId, ps.sinceDate, ps.untilDate)
-		.andWhere(`(note.userHost = ANY (ARRAY[${m.recommendedInstances}])`)
+		.andWhere(cursed)
 		// .andWhere(new Brackets(qb => {
 		// 	qb.where('note.userHost IN :instances', { instances: m.recommendedInstances })
 		// 	.orWhere('note.userHost IS NULL');
