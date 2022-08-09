@@ -46,28 +46,16 @@
 
 					<FormSection>
 						<FormSwitch v-model="enableRecommendedTimeline" class="_formBlock">{{ i18n.ts.enableRecommendedTimeline }}</FormSwitch>
-						<FormTextarea v-model="recommendedInstances" class="_formBlock"></FormTextarea>
-						<template #caption>{{ i18n.ts.recommendedInstancesDescription }}</template>
+						<FormTextarea v-model="recommendedInstances" class="_formBlock">
+							<template #label>{{ i18n.ts.recommendedInstances }}</template>
+							<template #caption>{{ i18n.ts.recommendedInstancesDescription }}</template>
+						</FormTextarea>
 					</FormSection>
 
 					<FormSection>
 						<FormSwitch v-model="enableLocalTimeline" class="_formBlock">{{ i18n.ts.enableLocalTimeline }}</FormSwitch>
 						<FormSwitch v-model="enableGlobalTimeline" class="_formBlock">{{ i18n.ts.enableGlobalTimeline }}</FormSwitch>
 						<FormInfo class="_formBlock">{{ i18n.ts.disablingTimelinesInfo }}</FormInfo>
-					</FormSection>
-
-					<FormSection>
-						<template #label>{{ i18n.ts.splash }}</template>
-
-						<FormTextarea v-model="customMOTD" class="_formBlock">
-							<template #label>{{ i18n.ts.customMOTD }}</template>
-							<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
-						</FormTextarea>
-
-						<FormTextarea v-model="customSplashIcons" class="_formBlock">
-							<template #label>{{ i18n.ts.customSplashIcons }}</template>
-							<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
-						</FormTextarea>
 					</FormSection>
 
 					<FormSection>
@@ -102,6 +90,20 @@
 						<FormTextarea v-model="defaultDarkTheme" class="_formBlock">
 							<template #label>{{ i18n.ts.instanceDefaultDarkTheme }}</template>
 							<template #caption>{{ i18n.ts.instanceDefaultThemeDescription }}</template>
+						</FormTextarea>
+					</FormSection>
+
+					<FormSection>
+						<template #label>{{ i18n.ts.splash }}</template>
+
+						<FormTextarea v-model="customMOTD" class="_formBlock">
+							<template #label>{{ i18n.ts.customMOTD }}</template>
+							<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
+						</FormTextarea>
+
+						<FormTextarea v-model="customSplashIcons" class="_formBlock">
+							<template #label>{{ i18n.ts.customSplashIcons }}</template>
+							<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
 						</FormTextarea>
 					</FormSection>
 
