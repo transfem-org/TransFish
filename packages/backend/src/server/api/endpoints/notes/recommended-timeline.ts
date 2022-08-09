@@ -66,7 +66,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	}
 
-	const cursed = `(note.userHost = ANY ('{"${m.recommendedInstances.join('","')}"}'::string[]))`;
+	const cursed = `(note.userHost = ANY ('{"${m.recommendedInstances.join('","')}"}'))`;
 	console.log(cursed);
 	//#region Construct query
 	const query = makePaginationQuery(Notes.createQueryBuilder('note'),
