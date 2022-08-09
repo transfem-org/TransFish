@@ -8,10 +8,16 @@ import { ui } from '@/config';
 
 const meta = api('meta', {
 	detail: false
+}).then((meta) => {
+	console.log(meta);
+	console.log(meta[0]);
+	console.log(meta[1]);
+	console.log(meta[0][0]);
+	// const guestTimeline = meta.enableGuestTimeline;
+	// console.log(guestTimeline);
 });
-const guestTimeline = meta.enableGuestTimeline;
-console.log(meta);
-console.log(guestTimeline);
+
+const guestTimeline = true;
 
 const page = (loader: AsyncComponentLoader<any>) => defineAsyncComponent({
 	loader: loader,
