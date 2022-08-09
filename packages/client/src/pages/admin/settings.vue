@@ -59,20 +59,6 @@
 					</FormSection>
 
 					<FormSection>
-						<template #label>{{ i18n.ts.splash }}</template>
-
-						<FormTextarea v-model="customMOTD" class="_formBlock">
-							<template #label>{{ i18n.ts.customMOTD }}</template>
-							<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
-						</FormTextarea>
-
-						<FormTextarea v-model="customSplashIcons" class="_formBlock">
-							<template #label>{{ i18n.ts.customSplashIcons }}</template>
-							<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
-						</FormTextarea>
-					</FormSection>
-
-					<FormSection>
 						<template #label>{{ i18n.ts.theme }}</template>
 
 						<FormInput v-model="iconUrl" class="_formBlock">
@@ -104,6 +90,20 @@
 						<FormTextarea v-model="defaultDarkTheme" class="_formBlock">
 							<template #label>{{ i18n.ts.instanceDefaultDarkTheme }}</template>
 							<template #caption>{{ i18n.ts.instanceDefaultThemeDescription }}</template>
+						</FormTextarea>
+					</FormSection>
+
+					<FormSection>
+						<template #label>{{ i18n.ts.splash }}</template>
+
+						<FormTextarea v-model="customMOTD" class="_formBlock">
+							<template #label>{{ i18n.ts.customMOTD }}</template>
+							<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
+						</FormTextarea>
+
+						<FormTextarea v-model="customSplashIcons" class="_formBlock">
+							<template #label>{{ i18n.ts.customSplashIcons }}</template>
+							<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
 						</FormTextarea>
 					</FormSection>
 
