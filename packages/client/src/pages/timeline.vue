@@ -50,7 +50,7 @@ let queue = $ref(0);
 let srcWhenNotSignin = $ref(isLocalTimelineAvailable ? 'local' : 'global');
 let src = $computed({ get: () => ($i ? defaultStore.reactiveState.tl.value.src : srcWhenNotSignin), set: (x) => saveSrc(x) });
 if (!enableGuestTimeline) {
-	src = $computed({});
+	src = {};
 }
 
 watch ($$(src), () => queue = 0);
