@@ -38,6 +38,7 @@ const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 const isLocalTimelineAvailable = !instance.disableLocalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const isGlobalTimelineAvailable = !instance.disableGlobalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
+const enableGuestTimeline = instance.enableGuestTimeline;
 const keymap = {
 	't': focus,
 };
