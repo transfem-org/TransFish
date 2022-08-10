@@ -36,7 +36,6 @@
 - Saner defaults
 - Recommended instances timeline
 - Star as default reaction
-- Recommended Instances timeline
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - MOTD (customizable by admins!)
