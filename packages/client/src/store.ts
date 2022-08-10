@@ -67,7 +67,6 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'account',
 		default: true,
 	},
-
 	menu: {
 		where: 'deviceAccount',
 		default: [
@@ -248,13 +247,13 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'device',
 		default: 5,
 	},
-	aiChanMode: {
-		where: 'device',
-		default: false,
-	},
 	enterSendsMessage: {
 		where: 'device',
 		default: true,
+	},
+	showUpdates: {
+		where: 'device',
+		default: false,
 	},
 }));
 

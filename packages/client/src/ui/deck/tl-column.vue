@@ -49,6 +49,7 @@ onMounted(() => {
 	} else if ($i) {
 		disabled = !$i.isModerator && !$i.isAdmin && (
 			instance.disableLocalTimeline && ['local', 'social'].includes(props.column.tl) ||
+			instance.disableRecommendedTimeline && ['recommended'].includes(props.column.tl) ||
 			instance.disableGlobalTimeline && ['global'].includes(props.column.tl));
 	}
 });
@@ -60,6 +61,8 @@ async function setType() {
 			value: 'home' as const, text: i18n.ts._timelines.home,
 		}, {
 			value: 'local' as const, text: i18n.ts._timelines.local,
+		}, {
+			value: 'recommended' as const, text: i18n.ts._timelines.recommended,
 		}, {
 			value: 'social' as const, text: i18n.ts._timelines.social,
 		}, {

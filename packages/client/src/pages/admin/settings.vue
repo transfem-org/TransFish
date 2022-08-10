@@ -45,6 +45,14 @@
 					</FormSection>
 
 					<FormSection>
+						<FormSwitch v-model="enableRecommendedTimeline" class="_formBlock">{{ i18n.ts.enableRecommendedTimeline }}</FormSwitch>
+						<FormTextarea v-model="recommendedInstances" class="_formBlock">
+							<template #label>{{ i18n.ts.recommendedInstances }}</template>
+							<template #caption>{{ i18n.ts.recommendedInstancesDescription }}</template>
+						</FormTextarea>
+					</FormSection>
+
+					<FormSection>
 						<FormSwitch v-model="enableLocalTimeline" class="_formBlock">{{ i18n.ts.enableLocalTimeline }}</FormSwitch>
 						<FormSwitch v-model="enableGlobalTimeline" class="_formBlock">{{ i18n.ts.enableGlobalTimeline }}</FormSwitch>
 						<FormInfo class="_formBlock">{{ i18n.ts.disablingTimelinesInfo }}</FormInfo>
@@ -82,6 +90,20 @@
 						<FormTextarea v-model="defaultDarkTheme" class="_formBlock">
 							<template #label>{{ i18n.ts.instanceDefaultDarkTheme }}</template>
 							<template #caption>{{ i18n.ts.instanceDefaultThemeDescription }}</template>
+						</FormTextarea>
+					</FormSection>
+
+					<FormSection>
+						<template #label>{{ i18n.ts.splash }}</template>
+
+						<FormTextarea v-model="customMOTD" class="_formBlock">
+							<template #label>{{ i18n.ts.customMOTD }}</template>
+							<template #caption>{{ i18n.ts.customMOTDDescription }}</template>
+						</FormTextarea>
+
+						<FormTextarea v-model="customSplashIcons" class="_formBlock">
+							<template #label>{{ i18n.ts.customSplashIcons }}</template>
+							<template #caption>{{ i18n.ts.customSplashIconsDescription }}</template>
 						</FormTextarea>
 					</FormSection>
 
@@ -175,7 +197,11 @@ let defaultLightTheme: any = $ref(null);
 let defaultDarkTheme: any = $ref(null);
 let enableLocalTimeline: boolean = $ref(false);
 let enableGlobalTimeline: boolean = $ref(false);
+let enableRecommendedTimeline: boolean = $ref(false);
 let pinnedUsers: string = $ref('');
+let customMOTD: string = $ref('');
+let recommendedInstances: string = $ref('');
+let customSplashIcons: string = $ref('');
 let cacheRemoteFiles: boolean = $ref(false);
 let localDriveCapacityMb: any = $ref(0);
 let remoteDriveCapacityMb: any = $ref(0);
@@ -202,7 +228,11 @@ async function init() {
 	maintainerEmail = meta.maintainerEmail;
 	enableLocalTimeline = !meta.disableLocalTimeline;
 	enableGlobalTimeline = !meta.disableGlobalTimeline;
+	enableRecommendedTimeline = !meta.disableRecommendedTimeline;
 	pinnedUsers = meta.pinnedUsers.join('\n');
+	customMOTD = meta.customMOTD.join('\n');
+	customSplashIcons = meta.customSplashIcons.join('\n');
+	recommendedInstances = meta.recommendedInstances.join('\n');
 	cacheRemoteFiles = meta.cacheRemoteFiles;
 	localDriveCapacityMb = meta.driveCapacityPerLocalUserMb;
 	remoteDriveCapacityMb = meta.driveCapacityPerRemoteUserMb;
@@ -230,7 +260,11 @@ function save() {
 		maintainerEmail,
 		disableLocalTimeline: !enableLocalTimeline,
 		disableGlobalTimeline: !enableGlobalTimeline,
+		disableRecommendedTimeline: !enableRecommendedTimeline,
 		pinnedUsers: pinnedUsers.split('\n'),
+		customMOTD: customMOTD.split('\n'),
+		customSplashIcons: customSplashIcons.split('\n'),
+		recommendedInstances: recommendedInstances.split('\n'),
 		cacheRemoteFiles,
 		localDriveCapacityMb: parseInt(localDriveCapacityMb, 10),
 		remoteDriveCapacityMb: parseInt(remoteDriveCapacityMb, 10),

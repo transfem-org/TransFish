@@ -31,7 +31,7 @@ export default defineComponent({
 		},
 	},
 	methods: {
-		userName
+		userName,
 	}
 });
 </script>

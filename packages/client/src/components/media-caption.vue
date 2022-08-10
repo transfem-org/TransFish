@@ -1,35 +1,39 @@
 <template>
-	<MkModal ref="modal" @click="done(true)" @closed="$emit('closed')">
-		<div class="container">
-			<div class="fullwidth top-caption">
-				<div class="mk-dialog">
-					<header>
-						<Mfm v-if="title" class="title" :text="title"/>
-						<span class="text-count" :class="{ over: remainingLength < 0 }">{{ remainingLength }}</span>
-					</header>
-					<textarea v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
-					<div v-if="(showOkButton || showCancelButton)" class="buttons">
-						<MkButton inline primary :disabled="remainingLength < 0" @click="ok">{{ $ts.ok }}</MkButton>
-						<MkButton inline @click="cancel" >{{ $ts.cancel }}</MkButton>
-					</div>
+<MkModal ref="modal" @click="done(true)" @closed="$emit('closed')">
+	<div class="container">
+		<div class="fullwidth top-caption">
+			<div class="mk-dialog">
+				<header>
+					<Mfm v-if="title" class="title" :text="title"/>
+					<span class="text-count" :class="{ over: remainingLength < 0 }">{{ remainingLength }}</span>
+					<br/>
+					<span id="recognized-text"></span>
+				</header>
+				<textarea id="captioninput" v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
+				<div v-if="(showOkButton || showCaptionButton || showCancelButton)" class="buttons">
+					<MkButton inline primary :disabled="remainingLength < 0" @click="ok">{{ $ts.ok }}</MkButton>
+					<!-- <MkButton inline @click="caption" >{{ $ts.caption }}</MkButton> -->
+					<MkButton inline @click="cancel" >{{ $ts.cancel }}</MkButton>
 				</div>
 			</div>
-			<div class="hdrwpsaf fullwidth">
-				<header>{{ image.name }}</header>
-				<img :src="image.url" :alt="image.comment" :title="image.comment" @click="$refs.modal.close()"/>
-				<footer>
-					<span>{{ image.type }}</span>
-					<span>{{ bytes(image.size) }}</span>
-					<span v-if="image.properties && image.properties.width">{{ number(image.properties.width) }}px × {{ number(image.properties.height) }}px</span>
-				</footer>
-			</div>
 		</div>
-	</MkModal>
+		<div class="hdrwpsaf fullwidth">
+			<header>{{ image.name }}</header>
+			<img id="imgtocaption" :src="image.url" :alt="image.comment" :title="image.comment" @click="$refs.modal.close()"/>
+			<footer>
+				<span>{{ image.type }}</span>
+				<span>{{ bytes(image.size) }}</span>
+				<span v-if="image.properties && image.properties.width">{{ number(image.properties.width) }}px × {{ number(image.properties.height) }}px</span>
+			</footer>
+		</div>
+	</div>
+</MkModal>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { length } from 'stringz';
+import Tesseract from 'tesseract.js';
 import MkModal from '@/components/ui/modal.vue';
 import MkButton from '@/components/ui/button.vue';
 import bytes from '@/filters/bytes';
@@ -48,22 +52,26 @@ export default defineComponent({
 		},
 		title: {
 			type: String,
-			required: false
+			required: false,
 		},
 		input: {
-			required: true
+			required: true,
 		},
 		showOkButton: {
 			type: Boolean,
-			default: true
+			default: true,
+		},
+		showCaptionButton: {
+			type: Boolean,
+			default: false,
 		},
 		showCancelButton: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		cancelableByBgClick: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 	},
 
@@ -130,8 +138,42 @@ export default defineComponent({
 					this.ok();
 				}
 			}
-		}
-	}
+		},
+
+		caption() {
+			const getBase64FromUrl = async (url) => {
+				const data = await fetch(url);
+				const blob = await data.blob();
+				return new Promise((resolve) => {
+					const reader = new FileReader();
+					reader.readAsDataURL(blob);
+					reader.onloadend = () => {
+						const base64data = reader.result;
+						resolve(base64data);
+					};
+				});
+			};
+			const img = document.getElementById('imgtocaption') as HTMLImageElement;
+			const b64 = getBase64FromUrl(img.src);
+			console.log(b64);
+			Tesseract.recognize(
+				b64,
+				'eng',
+				{ logger: m => console.log(m) },
+			).then(({ data: { text } }) => {
+				console.log(text);
+			});
+			// await worker.load();
+			// await worker.loadLanguage('eng');
+			// await worker.initialize('eng');
+			// const { data: { text } } = await worker.recognize(img);
+			// console.log(text);
+			// // document.getElementById('recognized-text').innerText = text;
+			// // const allowedLength = 512 - this.inputValue.length;
+			// // this.inputValue += text.slice(0, allowedLength);
+			// await worker.terminate();
+		},
+	},
 });
 </script>
 

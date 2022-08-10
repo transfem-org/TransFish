@@ -45,7 +45,7 @@ export default function load() {
 	mixin.apiUrl = `${mixin.scheme}://${mixin.host}/api`;
 	mixin.authUrl = `${mixin.scheme}://${mixin.host}/auth`;
 	mixin.driveUrl = `${mixin.scheme}://${mixin.host}/files`;
-	mixin.userAgent = `Misskey/${meta.version} (${config.url})`;
+	mixin.userAgent = `Calckey/${meta.version} (${config.url})`;
 	mixin.clientEntry = clientManifest['src/init.ts'];
 
 	if (!config.redis.prefix) config.redis.prefix = mixin.host;
@@ -57,6 +57,6 @@ function tryCreateUrl(url: string) {
 	try {
 		return new URL(url);
 	} catch (e) {
-		throw `url="${url}" is not a valid URL.`;
+		throw new Error(`url="${url}" is not a valid URL.`);
 	}
 }

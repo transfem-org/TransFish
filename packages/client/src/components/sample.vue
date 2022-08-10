@@ -59,7 +59,7 @@ export default defineComponent({
 		async openDialog() {
 			os.alert({
 				type: 'warning',
-				title: 'Oh my Aichan',
+				title: 'Oh my Calc',
 				text: 'Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 			});
 		},

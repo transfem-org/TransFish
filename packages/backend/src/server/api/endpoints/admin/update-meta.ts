@@ -16,9 +16,19 @@ export const paramDef = {
 	properties: {
 		disableRegistration: { type: 'boolean', nullable: true },
 		disableLocalTimeline: { type: 'boolean', nullable: true },
+		disableRecommendedTimeline: { type: 'boolean', nullable: true },
 		disableGlobalTimeline: { type: 'boolean', nullable: true },
 		useStarForReactionFallback: { type: 'boolean', nullable: true },
+		recommendedInstances: { type: 'array', nullable: true, items: {
+			type: 'string',
+		} },
 		pinnedUsers: { type: 'array', nullable: true, items: {
+			type: 'string',
+		} },
+		customMOTD: { type: 'array', nullable: true, items: {
+			type: 'string',
+		} },
+		customSplashIcons: { type: 'array', nullable: true, items: {
 			type: 'string',
 		} },
 		hiddenTags: { type: 'array', nullable: true, items: {
@@ -123,6 +133,10 @@ export default define(meta, paramDef, async (ps, me) => {
 		set.disableLocalTimeline = ps.disableLocalTimeline;
 	}
 
+	if (typeof ps.disableRecommendedTimeline === 'boolean') {
+		set.disableRecommendedTimeline = ps.disableRecommendedTimeline;
+	}
+
 	if (typeof ps.disableGlobalTimeline === 'boolean') {
 		set.disableGlobalTimeline = ps.disableGlobalTimeline;
 	}
@@ -133,6 +147,18 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (Array.isArray(ps.pinnedUsers)) {
 		set.pinnedUsers = ps.pinnedUsers.filter(Boolean);
+	}
+
+	if (Array.isArray(ps.customMOTD)) {
+		set.customMOTD = ps.customMOTD.filter(Boolean);
+	}
+
+	if (Array.isArray(ps.customSplashIcons)) {
+		set.customSplashIcons = ps.customSplashIcons.filter(Boolean);
+	}
+
+	if (Array.isArray(ps.recommendedInstances)) {
+		set.recommendedInstances = ps.recommendedInstances.filter(Boolean);
 	}
 
 	if (Array.isArray(ps.hiddenTags)) {

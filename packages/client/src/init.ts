@@ -40,7 +40,7 @@ import { getUrlWithoutLoginId } from '@/scripts/login-id';
 import { getAccountFromId } from '@/scripts/get-account-from-id';
 
 (async () => {
-	console.info(`Misskey v${version}`);
+	console.info(`Calckey v${version}`);
 
 	if (_DEV_) {
 		console.warn('Development mode!!!');
@@ -237,17 +237,16 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 		// テーマリビルドするため
 		localStorage.removeItem('theme');
 
-		/*
 		try { // 変なバージョン文字列来るとcompareVersionsでエラーになるため
-			if (lastVersion != null && compareVersions(version, lastVersion) === 1) {
+			if (lastVersion != null && compareVersions(version, lastVersion) === 1 && defaultStore.state.showUpdates) {
 				// ログインしてる場合だけ
 				if ($i) {
 					popup(defineAsyncComponent(() => import('@/components/updated.vue')), {}, {}, 'closed');
 				}
 			}
 		} catch (err) {
+			console.error(err);
 		}
-		*/
 	}
 
 	// NOTE: この処理は必ず↑のクライアント更新時処理より後に来ること(テーマ再構築のため)

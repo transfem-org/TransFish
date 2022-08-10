@@ -36,7 +36,7 @@ export const meta = {
 				type: 'string',
 				optional: false, nullable: false,
 				format: 'url',
-				example: 'https://misskey.example.com',
+				example: 'https://calckey.example.com',
 			},
 			description: {
 				type: 'string',
@@ -57,12 +57,12 @@ export const meta = {
 			repositoryUrl: {
 				type: 'string',
 				optional: false, nullable: false,
-				default: 'https://github.com/misskey-dev/misskey',
+				default: 'https://codeberg.org/thatonecalculator/calckey',
 			},
 			feedbackUrl: {
 				type: 'string',
 				optional: false, nullable: false,
-				default: 'https://github.com/misskey-dev/misskey/issues/new',
+				default: 'https://codeberg.org/thatonecalculator/calckey/issues',
 			},
 			defaultDarkTheme: {
 				type: 'string',
@@ -77,6 +77,10 @@ export const meta = {
 				optional: false, nullable: false,
 			},
 			disableLocalTimeline: {
+				type: 'boolean',
+				optional: false, nullable: false,
+			},
+			disableRecommendedTimeline: {
 				type: 'boolean',
 				optional: false, nullable: false,
 			},
@@ -248,6 +252,10 @@ export const meta = {
 						type: 'boolean',
 						optional: false, nullable: false,
 					},
+					recommendedTimeLine: {
+						type: 'boolean',
+						optional: false, nullable: false,
+					},
 					globalTimeLine: {
 						type: 'boolean',
 						optional: false, nullable: false,
@@ -356,6 +364,7 @@ export default define(meta, paramDef, async (ps, me) => {
 
 		disableRegistration: instance.disableRegistration,
 		disableLocalTimeline: instance.disableLocalTimeline,
+		disableRecommendedTimeline: instance.disableRecommendedTimeline,
 		disableGlobalTimeline: instance.disableGlobalTimeline,
 		driveCapacityPerLocalUserMb: instance.localDriveCapacityMb,
 		driveCapacityPerRemoteUserMb: instance.remoteDriveCapacityMb,
@@ -412,6 +421,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		response.features = {
 			registration: !instance.disableRegistration,
 			localTimeLine: !instance.disableLocalTimeline,
+			recommendedTimeline: !instance.disableRecommendedTimeline,
 			globalTimeLine: !instance.disableGlobalTimeline,
 			emailRequiredForSignup: instance.emailRequiredForSignup,
 			elasticsearch: config.elasticsearch ? true : false,

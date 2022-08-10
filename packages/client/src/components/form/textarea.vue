@@ -137,7 +137,7 @@ export default defineComponent({
 			v.value = newValue;
 		});
 
-		watch(v, newValue => {
+		watch($$(v), () => {
 			if (!props.manualSave) {
 				if (props.debounce) {
 					debouncedUpdated();

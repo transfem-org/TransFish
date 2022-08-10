@@ -2,6 +2,7 @@ import main from './main.js';
 import homeTimeline from './home-timeline.js';
 import localTimeline from './local-timeline.js';
 import hybridTimeline from './hybrid-timeline.js';
+import recommendedTimeline from './recommended-timeline.js';
 import globalTimeline from './global-timeline.js';
 import serverStats from './server-stats.js';
 import queueStats from './queue-stats.js';
@@ -18,6 +19,7 @@ export default {
 	main,
 	homeTimeline,
 	localTimeline,
+	recommendedTimeline,
 	hybridTimeline,
 	globalTimeline,
 	serverStats,

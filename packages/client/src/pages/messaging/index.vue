@@ -33,7 +33,7 @@
 				</MkA>
 			</div>
 			<div v-if="!fetching && messages.length == 0" class="_fullinfo">
-				<img src="/static-assets/badges/info.jpg" class="_ghost" alt="Info"/>
+				<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
 				<div>{{ $ts.noHistory }}</div>
 			</div>
 			<MkLoading v-if="fetching"/>

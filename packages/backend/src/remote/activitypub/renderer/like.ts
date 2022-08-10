@@ -1,8 +1,8 @@
+import { IsNull } from 'typeorm';
 import config from '@/config/index.js';
 import { NoteReaction } from '@/models/entities/note-reaction.js';
 import { Note } from '@/models/entities/note.js';
 import { Emojis } from '@/models/index.js';
-import { IsNull } from 'typeorm';
 import renderEmoji from './emoji.js';
 
 export const renderLike = async (noteReaction: NoteReaction, note: Note) => {
@@ -13,7 +13,7 @@ export const renderLike = async (noteReaction: NoteReaction, note: Note) => {
 		id: `${config.url}/likes/${noteReaction.id}`,
 		actor: `${config.url}/users/${noteReaction.userId}`,
 		object: note.uri ? note.uri : `${config.url}/notes/${noteReaction.noteId}`,
-		... (reaction !== '\u2b50' ? {
+		... (!['\u2b50', '\u1f44d'].includes(reaction) ? {
 			content: reaction,
 			_misskey_reaction: reaction,
 		} : {}),

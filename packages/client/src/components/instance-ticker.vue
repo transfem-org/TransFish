@@ -1,6 +1,6 @@
 <template>
 <div class="hpaizdrt" :style="bg">
-	<img v-if="instance.faviconUrl" class="icon" :src="instance.faviconUrl"/>
+	<img v-if="instance.faviconUrl" class="icon" :src="instance.faviconUrl" aria-hidden="true"/>
 	<span class="name">{{ instance.name }}</span>
 </div>
 </template>

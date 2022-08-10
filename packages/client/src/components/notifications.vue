@@ -2,7 +2,7 @@
 <MkPagination ref="pagingComponent" :pagination="pagination">
 	<template #empty>
 		<div class="_fullinfo">
-			<img src="/static-assets/badges/info.jpg" class="_ghost" alt="Info"/>
+			<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
 			<div>{{ i18n.ts.noNotifications }}</div>
 		</div>
 	</template>

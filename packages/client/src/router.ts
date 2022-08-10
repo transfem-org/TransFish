@@ -3,7 +3,18 @@ import { Router } from '@/nirax';
 import { $i, iAmModerator } from '@/account';
 import MkLoading from '@/pages/_loading_.vue';
 import MkError from '@/pages/_error_.vue';
+import { api } from '@/os';
 import { ui } from '@/config';
+
+function getGuestTimelineStatus() {
+	api('meta', {
+		detail: false
+	}).then((meta) => {
+		return meta.enableGuestTimeline;
+	});
+}
+
+const guestTimeline = getGuestTimelineStatus();
 
 const page = (loader: AsyncComponentLoader<any>) => defineAsyncComponent({
 	loader: loader,
@@ -114,6 +125,10 @@ export const routes = [{
 		name: 'sounds',
 		component: page(() => import('./pages/settings/sounds.vue')),
 	}, {
+		path: '/plugin/install',
+		name: 'plugin',
+		component: page(() => import('./pages/settings/plugin.install.vue')),
+	}, {
 		path: '/plugin',
 		name: 'plugin',
 		component: page(() => import('./pages/settings/plugin.vue')),
@@ -153,6 +168,26 @@ export const routes = [{
 		path: '/deck',
 		name: 'deck',
 		component: page(() => import('./pages/settings/deck.vue')),
+	}, {
+		path: '/delete-account',
+		name: 'delete-account',
+		component: page(() => import('./pages/settings/delete-account.vue')),
+	}, {
+		path: '/preferences-backups',
+		name: 'preferences-backups',
+		component: page(() => import('./pages/settings/preferences-backups.vue')),
+	}, {
+		path: '/custom-css',
+		name: 'general',
+		component: page(() => import('./pages/settings/custom-css.vue')),
+	}, {
+		path: '/account-info',
+		name: 'other',
+		component: page(() => import('./pages/settings/account-info.vue')),
+	}, {
+		path: '/delete-account',
+		name: 'other',
+		component: page(() => import('./pages/settings/delete-account.vue')),
 	}, {
 		path: '/other',
 		name: 'other',
@@ -430,9 +465,6 @@ export const routes = [{
 	component: page(() => import('./pages/antenna-timeline.vue')),
 	loginRequired: true,
 }, {
-	path: '/timeline',
-	component: page(() => import('./pages/timeline.vue')),
-}, {
 	name: 'index',
 	path: '/',
 	component: $i ? page(() => import('./pages/timeline.vue')) : page(() => import('./pages/welcome.vue')),
@@ -462,7 +494,7 @@ mainRouter.addListener('push', ctx => {
 	if (scrollPos !== 0) {
 		window.setTimeout(() => { // 遷移直後はタイミングによってはコンポーネントが復元し切ってない可能性も考えられるため少し時間を空けて再度スクロール
 			window.scroll({ top: scrollPos, behavior: 'instant' });
-		}, 1000);
+		}, 100);
 	}
 });
 
@@ -480,7 +512,7 @@ window.addEventListener('popstate', (event) => {
 	window.scroll({ top: scrollPos, behavior: 'instant' });
 	window.setTimeout(() => { // 遷移直後はタイミングによってはコンポーネントが復元し切ってない可能性も考えられるため少し時間を空けて再度スクロール
 		window.scroll({ top: scrollPos, behavior: 'instant' });
-	}, 1000);
+	}, 100);
 });
 
 export function useRouter(): Router {

@@ -1,12 +1,12 @@
 {
 	"name": "misskey",
-	"version": "12.118.0-calc.8.b4",
-	"codename": "indigo",
+"version": "12.118.1-calc",
+	"codename": "aqua",
 	"repository": {
 		"type": "git",
 		"url": "https://codeberg.org/thatonecalculator/calckey.git"
 	},
-	"packageManager": "yarn@3.2.1",
+	"packageManager": "yarn@3.2.2",
 	"workspaces": [
 		"packages/client",
 		"packages/backend",
@@ -39,6 +39,8 @@
 		"lodash": "^4.17.21"
 	},
 	"dependencies": {
+		"@bull-board/api": "^4.2.2",
+		"@bull-board/ui": "^4.2.2",
 		"@tensorflow/tfjs": "^3.18.0",
 		"eslint": "^8.20.0",
 		"execa": "5.1.1",
@@ -54,7 +56,7 @@
 	"devDependencies": {
 		"@types/gulp": "4.0.9",
 		"@types/gulp-rename": "2.0.1",
-		"@typescript-eslint/parser": "5.30.7",
+		"@typescript-eslint/parser": "5.31.0",
 		"cross-env": "7.0.3",
 		"cypress": "10.3.1",
 		"start-server-and-test": "1.14.0",

@@ -32,6 +32,8 @@ export default defineComponent({
 .pxhvhrfw {
 	display: flex;
 	font-size: 90%;
+	border-radius: var(--radius);
+	padding: 10px 8px;
 
 	> button {
 		flex: 1;

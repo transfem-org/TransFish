@@ -3,7 +3,7 @@
 	<template #header><MkPageHeader v-model:tab="src" :actions="headerActions" :tabs="$i ? headerTabs : headerTabsWhenNotLogin"/></template>
 	<MkSpacer :content-max="800">
 		<div ref="rootEl" v-hotkey.global="keymap" class="cmuxhskf">
-			<XTutorial v-if="$i && $store.reactiveState.tutorial.value != -1" class="tutorial _block"/>
+			<XTutorial v-if="$store.reactiveState.tutorial.value != -1" class="tutorial _block"/>
 			<XPostForm v-if="$store.reactiveState.showFixedPostForm.value" class="post-form _block" fixed/>
 
 			<div v-if="queue > 0" class="new"><button class="_buttonPrimary" @click="top()">{{ i18n.ts.newNoteRecived }}</button></div>
@@ -36,7 +36,9 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
 const isLocalTimelineAvailable = !instance.disableLocalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
+const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
 const isGlobalTimelineAvailable = !instance.disableGlobalTimeline || ($i != null && ($i.isModerator || $i.isAdmin));
+const enableGuestTimeline = instance.enableGuestTimeline;
 const keymap = {
 	't': focus,
 };
@@ -45,8 +47,7 @@ const tlComponent = $ref<InstanceType<typeof XTimeline>>();
 const rootEl = $ref<HTMLElement>();
 
 let queue = $ref(0);
-let srcWhenNotSignin = $ref(isLocalTimelineAvailable ? 'local' : 'global');
-const src = $computed({ get: () => ($i ? defaultStore.reactiveState.tl.value.src : srcWhenNotSignin), set: (x) => saveSrc(x) });
+const src = $computed({ get: () => defaultStore.reactiveState.tl.value.src, set: (x) => saveSrc(x) });
 
 watch ($$(src), () => queue = 0);
 
@@ -95,7 +96,6 @@ function saveSrc(newSrc: 'home' | 'local' | 'social' | 'global'): void {
 		...defaultStore.state.tl,
 		src: newSrc,
 	});
-	srcWhenNotSignin = newSrc ;
 }
 
 async function timetravel(): Promise<void> {
@@ -121,12 +121,7 @@ const headerActions = $computed(() => [{
 	title: i18n.ts.antennas,
 	iconOnly: true,
 	handler: chooseAntenna,
-}, /* {
-	icon: 'fas fa-satellite-dish',
-	title: i18n.ts.channel,
-	iconOnly: true,
-	handler: chooseChannel,
-}, */ {
+}, {
 	icon: 'fas fa-calendar-alt',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
@@ -143,36 +138,29 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts._timelines.local,
 	icon: 'fas fa-user-group',
 	iconOnly: true,
-}, {
+}] : []),
+...(isRecommendedTimelineAvailable ? [{
+	key: 'recommended',
+	title: i18n.ts._timelines.recommended,
+	icon: 'fas fa-signs-post',
+	iconOnly: true,
+}] : []),
+...(isLocalTimelineAvailable ? [{
 	key: 'social',
 	title: i18n.ts._timelines.social,
 	icon: 'fas fa-handshake-simple',
 	iconOnly: true,
-}] : []), ...(isGlobalTimelineAvailable ? [{
+}] : []),
+...(isGlobalTimelineAvailable ? [{
 	key: 'global',
 	title: i18n.ts._timelines.global,
 	icon: 'fas fa-globe',
 	iconOnly: true,
 }] : [])]);
 
-const headerTabsWhenNotLogin = $computed(() => [
-	...(isLocalTimelineAvailable ? [{
-		key: 'local',
-		title: i18n.ts._timelines.local,
-		icon: 'fas fa-user-group',
-		iconOnly: true,
-	}] : []),
-	...(isGlobalTimelineAvailable ? [{
-		key: 'global',
-		title: i18n.ts._timelines.global,
-		icon: 'fas fa-globe',
-		iconOnly: true,
-	}] : []),
-]);
-
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
-	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
+	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended' ? 'fas fa-signs-post' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
 })));
 </script>
 

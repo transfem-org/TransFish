@@ -235,6 +235,7 @@ import * as ep___notes_featured from './endpoints/notes/featured.js';
 import * as ep___notes_globalTimeline from './endpoints/notes/global-timeline.js';
 import * as ep___notes_hybridTimeline from './endpoints/notes/hybrid-timeline.js';
 import * as ep___notes_localTimeline from './endpoints/notes/local-timeline.js';
+import * as ep___notes_recommendedTimeline from './endpoints/notes/recommended-timeline.js';
 import * as ep___notes_mentions from './endpoints/notes/mentions.js';
 import * as ep___notes_polls_recommendation from './endpoints/notes/polls/recommendation.js';
 import * as ep___notes_polls_vote from './endpoints/notes/polls/vote.js';
@@ -267,7 +268,10 @@ import * as ep___pages_show from './endpoints/pages/show.js';
 import * as ep___pages_unlike from './endpoints/pages/unlike.js';
 import * as ep___pages_update from './endpoints/pages/update.js';
 import * as ep___ping from './endpoints/ping.js';
+import * as ep___recommendedInstances from './endpoints/recommended-instances.js';
 import * as ep___pinnedUsers from './endpoints/pinned-users.js';
+import * as ep___customMOTD from './endpoints/custom-motd.js';
+import * as ep___customSplashIcons from './endpoints/custom-splash-icons.js';
 import * as ep___promo_read from './endpoints/promo/read.js';
 import * as ep___requestResetPassword from './endpoints/request-reset-password.js';
 import * as ep___resetDb from './endpoints/reset-db.js';
@@ -552,6 +556,7 @@ const eps = [
 	['notes/global-timeline', ep___notes_globalTimeline],
 	['notes/hybrid-timeline', ep___notes_hybridTimeline],
 	['notes/local-timeline', ep___notes_localTimeline],
+	['notes/recommended-timeline', ep___notes_recommendedTimeline],
 	['notes/mentions', ep___notes_mentions],
 	['notes/polls/recommendation', ep___notes_polls_recommendation],
 	['notes/polls/vote', ep___notes_polls_vote],
@@ -585,6 +590,9 @@ const eps = [
 	['pages/update', ep___pages_update],
 	['ping', ep___ping],
 	['pinned-users', ep___pinnedUsers],
+	['recommended-instances', ep___recommendedInstances],
+	['custom-motd', ep___customMOTD],
+	['custom-motd', ep___customSplashIcons],
 	['promo/read', ep___promo_read],
 	['request-reset-password', ep___requestResetPassword],
 	['reset-db', ep___resetDb],
