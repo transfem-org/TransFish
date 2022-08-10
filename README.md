@@ -71,7 +71,7 @@ cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` 
 
 ```sh
 # git pull
-yarn install
+yarn install # prepend `YARN_CHECKSUM_BEHAVIOR=update` if it doesn't work
 NODE_ENV=production yarn run build && yarn run migrate
 # Edit service to point to calckey folder and restart!
 ```
