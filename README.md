@@ -64,7 +64,7 @@ cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` 
 ```sh
 # git pull
 yarn install
-NODE_ENV=production npm run build && npm run migrate
+NODE_ENV=production yarn run build && yarn run migrate
 # Edit service to point to calckey folder and restart!
 ```
 
