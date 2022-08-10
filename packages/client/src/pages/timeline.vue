@@ -95,7 +95,6 @@ function saveSrc(newSrc: 'home' | 'local' | 'social' | 'global'): void {
 		...defaultStore.state.tl,
 		src: newSrc,
 	});
-	logoutSrc = newSrc ;
 }
 
 async function timetravel(): Promise<void> {
@@ -121,12 +120,7 @@ const headerActions = $computed(() => [{
 	title: i18n.ts.antennas,
 	iconOnly: true,
 	handler: chooseAntenna,
-}, /* {
-	icon: 'fas fa-satellite-dish',
-	title: i18n.ts.channel,
-	iconOnly: true,
-	handler: chooseChannel,
-}, */ {
+}, {
 	icon: 'fas fa-calendar-alt',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
@@ -150,36 +144,18 @@ const headerTabs = $computed(() => [{
 	icon: 'fas fa-signs-post',
 	iconOnly: true,
 }] : []),
- ...(isLocalTimelineAvailable ? [{
+...(isLocalTimelineAvailable ? [{
 	key: 'social',
 	title: i18n.ts._timelines.social,
 	icon: 'fas fa-handshake-simple',
 	iconOnly: true,
-	loginRequired: true,
-}] : []), ...(isGlobalTimelineAvailable ? [{
+}] : []),
+...(isGlobalTimelineAvailable ? [{
 	key: 'global',
 	title: i18n.ts._timelines.global,
 	icon: 'fas fa-globe',
 	iconOnly: true,
-}] : []), {
-	icon: 'fas fa-list-ul',
-	title: i18n.ts.lists,
-	iconOnly: true,
-	loginRequired: true,
-	onClick: chooseList,
-}, {
-	icon: 'fas fa-satellite',
-	title: i18n.ts.antennas,
-	iconOnly: true,
-	loginRequired: true,
-	onClick: chooseAntenna,
-}, {
-	icon: 'fas fa-satellite-dish',
-	title: i18n.ts.channel,
-	iconOnly: true,
-	loginRequired: true,
-	onClick: chooseChannel,
-}]);
+}] : [])]);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,

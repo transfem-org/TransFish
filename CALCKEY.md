@@ -67,7 +67,6 @@
 - [Star is generic like/favorite](https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch)
   - 👍 also triggers generic like/favorite
 - [Add additional background for acrylic popups if backdrop-filter is unsupported](https://github.com/misskey-dev/misskey/pull/8671)
-- [Timeline page for non-login users](https://github.com/misskey-dev/misskey/pull/8927)
 - [Add parameters to MFM rotate](https://github.com/misskey-dev/misskey/pull/8549)
 - Many changes from [Foundkey](https://akkoma.dev/FoundKeyGang/Foundkey)
 	- 0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
