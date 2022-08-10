@@ -27,10 +27,10 @@
 
 # 🥂 Links
 
-- Liberapay: https://liberapay.com/ThatOneCalculator
-- Matrix support room: https://matrix.to/#/#calckey:matrix.fedibird.com
-- Instance list: https://calckey.fediverse.observer/list
-- JoinFediverse Wiki: https://joinfediverse.wiki/What_is_Calckey%3F
+- 💸 Liberapay: https://liberapay.com/ThatOneCalculator
+- 💁 Matrix support room: https://matrix.to/#/#calckey:matrix.fedibird.com
+- 📜 Instance list: https://calckey.fediverse.observer/list
+- 📖 JoinFediverse Wiki: https://joinfediverse.wiki/What_is_Calckey%3F
 
 # 📝 Documentation
 
@@ -83,7 +83,3 @@ NODE_ENV=production yarn run build && yarn run migrate
 sudo docker-compose build
 sudo docker-compose stop && sudo docker-compose up -d
 ```
-
-# 💸 Patrons
-
-None yet! You can support of the development of this fork here, every little bit counts: https://liberapay.com/ThatOneCalculator/
