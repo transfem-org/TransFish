@@ -42,6 +42,8 @@
 
 You need at least 🐢 NodeJS v16.15.0 (v18.4.0 recommended!) and *exactly* 🧶 Yarn v3.2.2!
 
+> ⚠️ Please don't use NodeJS v18.6.0, as it's known to cause problems.
+
 ## 📩 Install dependencies
 
 ```sh
