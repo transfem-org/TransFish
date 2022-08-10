@@ -15,6 +15,7 @@
 - Non-nyaify cat mode
 - Timeline filters
 - Filter notifications by user
+- Join Reason system like Mastodon/Pleroma
 - Build flag to remove NSFW/AI stuff
 - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
