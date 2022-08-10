@@ -25,9 +25,17 @@
 
 <div style="clear: both;"></div>
 
+# 🥂 Links
+
+- Liberapay: https://liberapay.com/ThatOneCalculator
+- Matrix support room: https://matrix.to/#/#calckey:matrix.fedibird.com
+- Instance list: https://calckey.fediverse.observer/list
+- JoinFediverse Wiki: https://joinfediverse.wiki/What_is_Calckey%3F
+
 # 📝 Documentation
 
 - Misskey documentation can be found on [Misskey Hub](https://misskey-hub.net/)
+  - To make a new Calckey instance, read their documentation for building from source or using Docker, but replace their repo link (`https://github.com/misskey-dev/misskey.git`) with `https://codeberg.org/thatonecalculator/calckey.git`.
 - API reference can be found on any Calckey instance's [API doc page](https://stop.voring.me/api-doc)
 
 # 🚚 Migrating from Misskey to Calckey
