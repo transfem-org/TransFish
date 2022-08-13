@@ -3308,8 +3308,8 @@ __metadata:
 
 "browser-image-resizer@git+https://github.com/misskey-dev/browser-image-resizer#v2.2.1-misskey.2":
   version: 2.2.1-misskey.2
-  resolution: "browser-image-resizer@https://github.com/misskey-dev/browser-image-resizer.git#commit=a58834f5fe2af9f9f31ff115121aef3de6f9d416"
-  checksum: 8ea30705704cc3f81eca23ff6cd0d5bf0d5404cd82612a52de11c0b851be511613022758babf5c202cc92b019483cfb97d7ef48cc18368a8913803fd654ac5d1
+  resolution: "browser-image-resizer@https://github.com/misskey-dev/browser-image-resizer.git#commit=a58834f5fe2af9f9f31ff115121aef3de6>
+  checksum: eb5ddfe7f6a2de96340ef420df9be03a75f2bfd8f568a60be22cc8f2ccdcb754105b7799cf706c09add3f9d82b7ce1c6f963842f80a85f234b26ef6bf1b>
   languageName: node
   linkType: hard
 
@@ -14591,11 +14591,11 @@ __metadata:
 
 "typescript@patch:typescript@4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
+  checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a>
   languageName: node
   linkType: hard
 
