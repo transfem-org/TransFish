@@ -90,3 +90,4 @@
 	- 585e4f5c42cfafb6cdf7eb601ab435d6a4d85a96: fix textarea not updating properly
 	- 30d8bc9259cb6b72ed76d67b21dbb4cdceca8327: refactor: welcome.setup.vue to composition api
 	- 751921e24f37ed707fe44a40d88eebb1299efa35: make emoji picker case insensitive
+	- 298febeb9c9501e3e3df16982c08657d1da474e0: enhance: add re-collapsing to quoted notes
