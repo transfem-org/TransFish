@@ -530,16 +530,17 @@ router.get('(.*)', async ctx => {
 	if (meta.customMOTD.length > 0) {
 		motd = meta.customMOTD;
 	}
-	let iconUrl = meta.iconUrl;
+	let splashIconUrl = meta.iconUrl;
 	if (meta.customSplashIcons.length > 0) {
-		iconUrl = meta.customSplashIcons[Math.floor(Math.random() * meta.customSplashIcons.length)];
+		splashIconUrl = meta.customSplashIcons[Math.floor(Math.random() * meta.customSplashIcons.length)];
 	}
 	await ctx.render('base', {
 		img: meta.bannerUrl,
 		title: meta.name || 'Calckey',
 		instanceName: meta.name || 'Calckey',
 		desc: meta.description,
-		icon: iconUrl,
+		icon: meta.iconUrl,
+		splashIcon: splashIconUrl,
 		themeColor: meta.themeColor,
 		privateMode: meta.privateMode,
 		randomMOTD: motd[Math.floor(Math.random() * motd.length)],
