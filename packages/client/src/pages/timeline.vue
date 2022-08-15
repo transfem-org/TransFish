@@ -121,12 +121,12 @@ const headerActions = $computed(() => [{
 	title: i18n.ts.antennas,
 	iconOnly: true,
 	handler: chooseAntenna,
-}, {
+}, /* **TODO: fix timetravel** {
 	icon: 'fas fa-calendar-alt',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
 	handler: timetravel,
-}]);
+}*/]);
 
 const headerTabs = $computed(() => [{
 	key: 'home',

@@ -23,6 +23,7 @@
 
 - OCR image captioning
 - Admin custom CSS
+- Add back time machine (jump to date)
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
 
