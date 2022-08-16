@@ -3900,7 +3900,6 @@ __metadata:
     start-server-and-test: 1.14.0
     strict-event-emitter-types: 2.0.0
     stringz: 2.1.0
-    swiped-events: ^1.1.6
     syuilo-password-strength: 0.0.1
     tesseract.js: ^2.1.5
     textarea-caret: 3.1.0
@@ -10360,13 +10359,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"natives@npm:^1.1.6":
-  version: 1.1.6
-  resolution: "natives@npm:1.1.6"
-  checksum: f9823dddba1eb71dc34f7e684d6d2bb39e709bdc54c42e89f27ec4a87966564644d88d2ea332ddfb91d00129a03d8e73abc35b09a0d985a80d6eaad95f3c1887
-  languageName: node
-  linkType: hard
-
 "natural-compare@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
@@ -14053,15 +14045,6 @@ __metadata:
     misskey-js: 0.0.14
   languageName: unknown
   linkType: soft
-
-"swiped-events@npm:^1.1.6":
-  version: 1.1.6
-  resolution: "swiped-events@npm:1.1.6"
-  dependencies:
-    natives: ^1.1.6
-  checksum: c2c88d0390c667938213fe661c693522d32d0432acbd02ccb8f1883b67b503ffdfa22cbec89d2102d1f9f61023aa477b704920fd1ec883ae813d8756aacd5506
-  languageName: node
-  linkType: hard
 
 "symbol-tree@npm:^3.2.4":
   version: 3.2.4
