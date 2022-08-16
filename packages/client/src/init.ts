@@ -21,6 +21,8 @@ import widgets from '@/widgets';
 import directives from '@/directives';
 import components from '@/components';
 import { version, ui, lang, host } from '@/config';
+import VuePlyr from 'vue-plyr';
+import 'vue-plyr/dist/vue-plyr.css';
 import { applyTheme } from '@/scripts/theme';
 import { isDeviceDarkmode } from '@/scripts/is-device-darkmode';
 import { i18n } from '@/i18n';
@@ -38,6 +40,7 @@ import { reloadChannel } from '@/scripts/unison-reload';
 import { reactionPicker } from '@/scripts/reaction-picker';
 import { getUrlWithoutLoginId } from '@/scripts/login-id';
 import { getAccountFromId } from '@/scripts/get-account-from-id';
+
 
 (async () => {
 	console.info(`Calckey v${version}`);
@@ -175,6 +178,8 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 		ui === 'classic' ? defineAsyncComponent(() => import('@/ui/classic.vue')) :
 		defineAsyncComponent(() => import('@/ui/universal.vue')),
 	);
+
+	app.use(VuePlyr, { plyr: {} });
 
 	if (_DEV_) {
 		app.config.performance = true;
