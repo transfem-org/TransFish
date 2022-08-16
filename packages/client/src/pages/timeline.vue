@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, watch } from 'vue';
+import { defineAsyncComponent, computed, watch, ref } from 'vue';
 import XTimeline from '@/components/timeline.vue';
 import XPostForm from '@/components/post-form.vue';
 import { scroll } from '@/scripts/scroll';
@@ -32,6 +32,9 @@ import { i18n } from '@/i18n';
 import { instance } from '@/instance';
 import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { deviceKind } from '@/scripts/device-kind';
+
+import 'tocada';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
@@ -42,6 +45,16 @@ const enableGuestTimeline = instance.enableGuestTimeline;
 const keymap = {
 	't': focus,
 };
+
+const DESKTOP_THRESHOLD = 1100;
+const MOBILE_THRESHOLD = 500;
+
+// デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
+const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
+const isMobile = ref(deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD);
+window.addEventListener('resize', () => {
+	isMobile.value = deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
+});
 
 const tlComponent = $ref<InstanceType<typeof XTimeline>>();
 const rootEl = $ref<HTMLElement>();
@@ -91,7 +104,7 @@ async function chooseChannel(ev: MouseEvent): Promise<void> {
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
-function saveSrc(newSrc: 'home' | 'local' | 'social' | 'global'): void {
+function saveSrc(newSrc: 'home' | 'local' | 'recommended' | 'social' | 'global'): void {
 	defaultStore.set('tl', {
 		...defaultStore.state.tl,
 		src: newSrc,
@@ -162,6 +175,20 @@ definePageMetadata(computed(() => ({
 	title: i18n.ts.timeline,
 	icon: src === 'local' ? 'fas fa-user-group' : src === 'social' ? 'fas fa-handshake-simple' : src === 'recommended' ? 'fas fa-signs-post' : src === 'global' ? 'fas fa-globe' : 'fas fa-home',
 })));
+
+if (isMobile.value) {
+	window.addEventListener('swipeleft', () => {
+		const current = headerTabs.value.find(x => x.key === src.value);
+		const next = headerTabs.value[(headerTabs.value.indexOf(current) - 1) % headerTabs.value.length];
+		saveSrc(next.key);
+	});
+	window.addEventListener('swiperight', () => {
+		const current = headerTabs.value.find(x => x.key === src.value);
+		const next = headerTabs.value[(headerTabs.value.indexOf(current) + 1) % headerTabs.value.length];
+		saveSrc(next.key);
+	});
+}
+
 </script>
 
 <style lang="scss" scoped>

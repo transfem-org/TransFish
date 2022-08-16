@@ -4,7 +4,7 @@
 
 	<MkStickyContainer class="contents">
 		<template #header><XStatusBars :class="$style.statusbars"/></template>
-		<main style="min-width: 0;" :style="{ background: pageMetadata?.value?.bg }" @contextmenu.stop="onContextmenu">
+		<main id="maincontent" style="min-width: 0;" :style="{ background: pageMetadata?.value?.bg }" @contextmenu.stop="onContextmenu">
 			<div :class="$style.content">
 				<RouterView/>
 			</div>
@@ -71,6 +71,7 @@ import { Router } from '@/nirax';
 import { mainRouter } from '@/router';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
+
 const XWidgets = defineAsyncComponent(() => import('./universal.widgets.vue'));
 const XSidebar = defineAsyncComponent(() => import('@/ui/_common_/navbar.vue'));
 const XStatusBars = defineAsyncComponent(() => import('@/ui/_common_/statusbars.vue'));
@@ -170,6 +171,7 @@ function top() {
 }
 
 const wallpaper = localStorage.getItem('wallpaper') != null;
+
 </script>
 
 <style lang="scss" scoped>
@@ -288,14 +290,11 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		z-index: 1000;
 		bottom: 0;
 		left: 0;
-		padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 16px) 16px;
+		padding: 12px 12px calc(env(safe-area-inset-bottom, 0px) + 12px) 12px;
 		display: flex;
 		width: 100%;
 		box-sizing: border-box;
-		-webkit-backdrop-filter: var(--blur, blur(32px));
-		backdrop-filter: var(--blur, blur(32px));
-		background-color: var(--header);
-		border-top: solid 0.5px var(--divider);
+		background-color: var(--bg);
 
 		> .button {
 			position: relative;
@@ -341,7 +340,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			}
 
 			> * {
-				font-size: 20px;
+				font-size: 16px;
 			}
 
 			&:disabled {

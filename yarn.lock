@@ -3236,7 +3236,7 @@ __metadata:
 "browser-image-resizer@git+https://github.com/misskey-dev/browser-image-resizer#v2.2.1-misskey.2":
   version: 2.2.1-misskey.2
   resolution: "browser-image-resizer@https://github.com/misskey-dev/browser-image-resizer.git#commit=a58834f5fe2af9f9f31ff115121aef3de6f9d416"
-  checksum: eb5ddfe7f6a2de96340ef420df9be03a75f2bfd8f568a60be22cc8f2ccdcb754105b7799cf706c09add3f9d82b7ce1c6f963842f80a85f234b26ef6bf1b8da09
+  checksum: 8ea30705704cc3f81eca23ff6cd0d5bf0d5404cd82612a52de11c0b851be511613022758babf5c202cc92b019483cfb97d7ef48cc18368a8913803fd654ac5d1
   languageName: node
   linkType: hard
 
@@ -10101,6 +10101,7 @@ __metadata:
     long: ^5.2.0
     seedrandom: ^3.0.5
     start-server-and-test: 1.14.0
+    tocada: ^1.0.0-beta.6
     typescript: 4.7.4
     vue-eslint-parser: ^9.0.2
   languageName: unknown
@@ -14374,6 +14375,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tocada@npm:^1.0.0-beta.6":
+  version: 1.0.0-beta.6
+  resolution: "tocada@npm:1.0.0-beta.6"
+  checksum: 62637d2a5ca96b592cb0aa95d1e474386b95ac52111da90a0a9348b73f5f27633fef95222b0c8ff2f6c2767dabea0a3182ea1d4d6454ef02e03efe3a364d18c7
+  languageName: node
+  linkType: hard
+
 "toidentifier@npm:1.0.1":
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
@@ -14783,7 +14791,7 @@ __metadata:
 
 "typescript@patch:typescript@4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
