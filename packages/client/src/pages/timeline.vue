@@ -34,7 +34,7 @@ import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 
-import 'tocada';
+import 'swiped-events';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
