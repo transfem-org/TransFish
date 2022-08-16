@@ -177,14 +177,14 @@ definePageMetadata(computed(() => ({
 })));
 
 if (isMobile.value) {
-	window.addEventListener('swipeleft', () => {
-		const current = headerTabs.value.find(x => x.key === src.value);
-		const next = headerTabs.value[(headerTabs.value.indexOf(current) - 1) % headerTabs.value.length];
+	document.addEventListener('swipeleft', () => {
+		const current = headerTabs.values.find(x => x.key === src.value);
+		const next = headerTabs.values[(headerTabs.values.indexOf(current) - 1) % headerTabs.values.length];
 		saveSrc(next.key);
 	});
-	window.addEventListener('swiperight', () => {
-		const current = headerTabs.value.find(x => x.key === src.value);
-		const next = headerTabs.value[(headerTabs.value.indexOf(current) + 1) % headerTabs.value.length];
+	document.addEventListener('swiperight', () => {
+		const current = headerTabs.values.find(x => x.key === src.value);
+		const next = headerTabs.values[(headerTabs.values.indexOf(current) + 1) % headerTabs.values.length];
 		saveSrc(next.key);
 	});
 }

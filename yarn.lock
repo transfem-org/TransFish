@@ -3900,6 +3900,7 @@ __metadata:
     start-server-and-test: 1.14.0
     strict-event-emitter-types: 2.0.0
     stringz: 2.1.0
+    swiped-events: ^1.1.6
     syuilo-password-strength: 0.0.1
     tesseract.js: ^2.1.5
     textarea-caret: 3.1.0
@@ -10101,7 +10102,6 @@ __metadata:
     long: ^5.2.0
     seedrandom: ^3.0.5
     start-server-and-test: 1.14.0
-    tocada: ^1.0.0-beta.6
     typescript: 4.7.4
     vue-eslint-parser: ^9.0.2
   languageName: unknown
@@ -10357,6 +10357,13 @@ __metadata:
   version: 1.0.2
   resolution: "napi-build-utils@npm:1.0.2"
   checksum: 06c14271ee966e108d55ae109f340976a9556c8603e888037145d6522726aebe89dd0c861b4b83947feaf6d39e79e08817559e8693deedc2c94e82c5cbd090c7
+  languageName: node
+  linkType: hard
+
+"natives@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "natives@npm:1.1.6"
+  checksum: f9823dddba1eb71dc34f7e684d6d2bb39e709bdc54c42e89f27ec4a87966564644d88d2ea332ddfb91d00129a03d8e73abc35b09a0d985a80d6eaad95f3c1887
   languageName: node
   linkType: hard
 
@@ -14047,6 +14054,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"swiped-events@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "swiped-events@npm:1.1.6"
+  dependencies:
+    natives: ^1.1.6
+  checksum: c2c88d0390c667938213fe661c693522d32d0432acbd02ccb8f1883b67b503ffdfa22cbec89d2102d1f9f61023aa477b704920fd1ec883ae813d8756aacd5506
+  languageName: node
+  linkType: hard
+
 "symbol-tree@npm:^3.2.4":
   version: 3.2.4
   resolution: "symbol-tree@npm:3.2.4"
@@ -14372,13 +14388,6 @@ __metadata:
   dependencies:
     through2: ^2.0.3
   checksum: 5834a69d68cbe0d74115373bbe219dbe60c1950021f5ec9dd4af179ffbb307bce3d45fde9dacec05a8f4f79b86734433eb9b42946ccb81d2d4d4f8828628b7e6
-  languageName: node
-  linkType: hard
-
-"tocada@npm:^1.0.0-beta.6":
-  version: 1.0.0-beta.6
-  resolution: "tocada@npm:1.0.0-beta.6"
-  checksum: 62637d2a5ca96b592cb0aa95d1e474386b95ac52111da90a0a9348b73f5f27633fef95222b0c8ff2f6c2767dabea0a3182ea1d4d6454ef02e03efe3a364d18c7
   languageName: node
   linkType: hard
 
