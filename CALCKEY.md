@@ -23,6 +23,7 @@
 
 - OCR image captioning
 - Swipe through timelines on mobile
+- vue-plyr as video/audio player
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility score
