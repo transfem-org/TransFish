@@ -22,6 +22,7 @@
 ## Work in progress
 
 - OCR image captioning
+- Swipe through timelines on mobile
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility score
