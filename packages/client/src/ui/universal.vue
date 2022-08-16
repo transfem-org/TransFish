@@ -308,14 +308,10 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			transition: background 0.6s;
 			color: var(--fg);
 
-			&:hover {
-				background: var(--panelHover) radial-gradient(circle, transparent 1%, var(--panelHover) 1%) center/15000%;
-			}
-
 			&:active {
 				background-color: var(--accentedBg);
 				background-size: 100%;
-				transition: background 0s;
+				transition: background 0.1s;
 			}
 
 			&:not(:last-child) {
