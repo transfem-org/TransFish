@@ -27,7 +27,7 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 let tab = $ref('all');
 let includeTypes = $ref<string[] | null>(null);
 let unreadOnly = $computed(() => tab === 'unread');
-os.apiWithDialog('notifications/mark-all-as-read');
+os.api('notifications/mark-all-as-read');
 
 const mentionsPagination = {
 	endpoint: 'notes/mentions' as const,
