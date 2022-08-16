@@ -304,7 +304,19 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			height: 64px;
 			border-radius: 8px;
 			background: var(--panel);
+			background-position: center;
+			transition: background 0.6s;
 			color: var(--fg);
+
+			&:hover {
+				background: var(--panelHover) radial-gradient(circle, transparent 1%, var(--panelHover) 1%) center/15000%;
+			}
+
+			&:active {
+				background-color: var(--accentedBg);
+				background-size: 100%;
+				transition: background 0s;
+			}
 
 			&:not(:last-child) {
 				margin-right: 12px;

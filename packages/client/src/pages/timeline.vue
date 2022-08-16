@@ -1,42 +1,43 @@
 <template>
-	<MkStickyContainer>
-		<template #header
-			><MkPageHeader
-				v-model:tab="src"
-				:actions="headerActions"
-				:tabs="headerTabs"
-				:display-my-avatar="true"
-		/></template>
-		<MkSpacer :content-max="800">
-			<div ref="rootEl" v-hotkey.global="keymap" class="cmuxhskf">
-				<XTutorial
-					v-if="$store.reactiveState.tutorial.value != -1"
-					class="tutorial _block"
-				/>
-				<XPostForm
-					v-if="$store.reactiveState.showFixedPostForm.value"
-					class="post-form _block"
-					fixed
-				/>
+<MkStickyContainer>
+	<template #header>
+		<MkPageHeader
+			v-model:tab="src"
+			:actions="headerActions"
+			:tabs="headerTabs"
+			:display-my-avatar="true"
+		/>
+	</template>
+	<MkSpacer :content-max="800">
+		<div ref="rootEl" v-hotkey.global="keymap" class="cmuxhskf">
+			<XTutorial
+				v-if="$store.reactiveState.tutorial.value != -1"
+				class="tutorial _block"
+			/>
+			<XPostForm
+				v-if="$store.reactiveState.showFixedPostForm.value"
+				class="post-form _block"
+				fixed
+			/>
 
-				<div v-if="queue > 0" class="new">
-					<button class="_buttonPrimary" @click="top()">
-						{{ i18n.ts.newNoteRecived }}
-					</button>
-				</div>
-				<div class="tl _block">
-					<XTimeline
-						ref="tl"
-						:key="src"
-						class="tl"
-						:src="src"
-						:sound="true"
-						@queue="queueUpdated"
-					/>
-				</div>
+			<div v-if="queue > 0" class="new">
+				<button class="_buttonPrimary" @click="top()">
+					{{ i18n.ts.newNoteRecived }}
+				</button>
 			</div>
-		</MkSpacer>
-	</MkStickyContainer>
+			<div class="tl _block">
+				<XTimeline
+					ref="tl"
+					:key="src"
+					class="tl"
+					:src="src"
+					:sound="true"
+					@queue="queueUpdated"
+				/>
+			</div>
+		</div>
+	</MkSpacer>
+</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
@@ -72,7 +73,6 @@ const DESKTOP_THRESHOLD = 1100;
 const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
-const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
 const isMobile = ref(
 	deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD
 );
@@ -297,6 +297,7 @@ if (isMobile.value) {
 		/* reset values */
 		xDown = null;
 		yDown = null;
+		return;
 	}
 }
 </script>
