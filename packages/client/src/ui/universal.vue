@@ -326,9 +326,9 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 				}
 			}
 
-			&:hover {
+			/* &:hover {
 				background: var(--X2);
-			}
+			} */
 
 			> .indicator {
 				position: absolute;
