@@ -325,11 +325,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 					margin-right: 8px;
 				}
 			}
-
-			/* &:hover {
-				background: var(--X2);
-			} */
-
 			> .indicator {
 				position: absolute;
 				top: 0;
