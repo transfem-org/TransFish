@@ -55,6 +55,7 @@
 - Mark as read from notifications widget
 - Less cluttered notification summary
 - Better welcome screen (not logged in)
+- vue-plyr as video/audio player
 - Ability to turn off "Connection lost" message
 - Raw instance info only for moderators
 - New spinner animation
@@ -65,7 +66,6 @@
 - Reply limit bug fixed
 - Make showing the update popup optional
 - Obliteration of Ai-chan
-- [@skjnldsv/vue-plyr](https://www.npmjs.com/package/@skjnldsv/vue-plyr) as video/audio player
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
