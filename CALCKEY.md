@@ -3,7 +3,6 @@
 ## Planned
 
 - MFM button
-- Make more of the post clickable like every other SNS
 - Better Messaging UI
 - Classic mode make instance icon bring up new context menu
 - Like/star button
@@ -21,7 +20,6 @@
 
 ## Work in progress
 
-- Improved note style
 - OCR image captioning
 - Swipe through timelines on mobile
 - Admin custom CSS
@@ -48,6 +46,8 @@
   - Illustrated by [Henki](https://www.youtube.com/c/Henkiwashere)!
   - Licensed under the CC-BY-SA 4.0.
 - Better timeline top bar
+- Improved note style
+  - Make more of the post clickable like every other SNS
 - Mark as read from notifications widget
 - Less cluttered notification summary
 - Better welcome screen (not logged in)

@@ -31,9 +31,9 @@
 			<MkVisibility :note="note"/>
 		</div>
 	</div>
-	<article class="article" @contextmenu.stop="onContextmenu">
+	<article class="article" @contextmenu.stop="onContextmenu" @click="router.push(notePage(appearNote))">
 		<MkAvatar class="avatar" :user="appearNote.user"/>
-		<div class="main" @click="router.push(notePage(appearNote))">
+		<div class="main">
 			<XNoteHeader class="header" :note="appearNote" :mini="true"/>
 			<MkInstanceTicker v-if="showTicker" class="ticker" :instance="appearNote.user.instance"/>
 			<div class="body">
