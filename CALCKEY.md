@@ -46,6 +46,7 @@
   - Illustrated by [Henki](https://www.youtube.com/c/Henkiwashere)!
   - Licensed under the CC-BY-SA 4.0.
 - Better timeline top bar
+- Redesigned mobile bottom nav bar
 - Improved note style
   - Make more of the post clickable like every other SNS
   - No more details tag for reply attachments
