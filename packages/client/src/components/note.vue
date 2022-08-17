@@ -298,11 +298,6 @@ function readPromo() {
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
-	transition: background-color 0.25s ease-in-out;
-
-	&:hover {
-		background-color: var(--panelHighlight);
-	}
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -331,6 +326,11 @@ function readPromo() {
 			border: solid 1px var(--focus);
 			border-radius: var(--radius);
 			box-sizing: border-box;
+			transition: background-color 0.25s ease-in-out;
+
+			&:hover {
+				background-color: var(--panelHighlight);
+			}
 		}
 	}
 
