@@ -38,14 +38,17 @@ const toggle = () => {
 .nrvgflfu {
 	display: inline-block;
 	padding: 4px 8px;
-	font-size: 0.7em;
+	font-size: 0.8em;
 	color: var(--cwFg);
 	background: var(--cwBg);
-	border-radius: 2px;
+	padding: 6px 10px;
+	width: 90%;
+	border-radius: 10px;
+	margin-top: 10px;
 	transition: background-color 0.25s ease-in-out;
 
 	&:hover {
-		background: var(--cwHoverBg);
+		background: var(--X3);
 	}
 
 	> span {

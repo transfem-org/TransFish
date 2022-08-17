@@ -326,11 +326,6 @@ function readPromo() {
 			border: solid 1px var(--focus);
 			border-radius: var(--radius);
 			box-sizing: border-box;
-			transition: background-color 0.25s ease-in-out;
-
-			&:hover {
-				background-color: var(--panelHighlight);
-			}
 		}
 	}
 
@@ -428,7 +423,6 @@ function readPromo() {
 	> .article {
 		display: flex;
 		padding: 28px 32px 18px;
-		pointer-events: all;
 
 		> .avatar {
 			flex-shrink: 0;
@@ -452,15 +446,6 @@ function readPromo() {
 					margin: 0;
 					padding: 0;
 					overflow-wrap: break-word;
-
-					> .button {
-						background: var(--X3);
-						padding: 6px 10px;
-						width: 90%;
-						border-radius: 10px;
-						margin-top: 10px;
-					}
-
 					> .text {
 						margin-right: 8px;
 					}

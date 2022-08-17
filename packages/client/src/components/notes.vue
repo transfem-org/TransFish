@@ -51,6 +51,11 @@ defineExpose({
 			.qtqtichx {
 				background: var(--panel);
 				border-radius: var(--radius);
+				transition: background-color 0.25s ease-in-out;
+
+				&:hover {
+					background-color: var(--panelHighlight);
+				}
 			}
 		}
 	}
