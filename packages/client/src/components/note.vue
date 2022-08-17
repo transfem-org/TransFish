@@ -33,7 +33,7 @@
 	</div>
 	<article class="article" @contextmenu.stop="onContextmenu">
 		<MkAvatar class="avatar" :user="appearNote.user"/>
-		<div class="main">
+		<div class="main" @click="router.push(notePage(appearNote))">
 			<XNoteHeader class="header" :note="appearNote" :mini="true"/>
 			<MkInstanceTicker v-if="showTicker" class="ticker" :instance="appearNote.user.instance"/>
 			<div class="body">
@@ -129,6 +129,9 @@ import { $i } from '@/account';
 import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
+import { notePage } from '@/filters/note';
+
+const router = useRouter();
 
 const props = defineProps<{
 	note: misskey.entities.Note;
