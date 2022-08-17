@@ -6,13 +6,15 @@
 		<span>{{ $ts.clickToShow }}</span>
 	</div>
 	<div v-else-if="media.type.startsWith('audio') && media.type !== 'audio/midi'" class="audio">
-		<audio ref="audioEl"
-			class="audio"
-			:src="media.url"
-			:title="media.name"
-			controls
-			preload="metadata"
-			@volumechange="volumechange" />
+		<VuePlyr>
+			<audio ref="audioEl"
+				class="audio"
+				:src="media.url"
+				:title="media.name"
+				controls
+				preload="metadata"
+				@volumechange="volumechange" />
+		</VuePlyr>
 	</div>
 	<a v-else class="download"
 		:href="media.url"
@@ -28,7 +30,9 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import * as misskey from 'misskey-js';
+import VuePlyr from 'vue-plyr';
 import { ColdDeviceStorage } from '@/store';
+import 'vue-plyr/dist/vue-plyr.css';
 
 const props = withDefaults(defineProps<{
 	media: misskey.entities.DriveFile;
@@ -53,6 +57,7 @@ onMounted(() => {
 	border-radius: 4px;
 	margin-top: 4px;
 	overflow: hidden;
+	--plyr-color-main: var(--accent);
 
 	> .download,
 	> .sensitive {
