@@ -48,6 +48,8 @@
 - Better timeline top bar
 - Improved note style
   - Make more of the post clickable like every other SNS
+  - No more details tag for reply attachments
+  - Better CW button
 - Mark as read from notifications widget
 - Less cluttered notification summary
 - Better welcome screen (not logged in)
