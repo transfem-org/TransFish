@@ -64,7 +64,7 @@
 - Reply limit bug fixed
 - Make showing the update popup optional
 - Obliteration of Ai-chan
-- vue-plyr as video/audio player
+- [@skjnldsv/vue-plyr](https://www.npmjs.com/package/@skjnldsv/vue-plyr) as video/audio player
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)

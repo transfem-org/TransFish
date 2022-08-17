@@ -33,7 +33,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.16.4, @babel/parser@npm:^7.18.4, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
+"@babel/parser@npm:^7.16.4, @babel/parser@npm:^7.6.0, @babel/parser@npm:^7.9.6":
   version: 7.18.11
   resolution: "@babel/parser@npm:7.18.11"
   bin:
@@ -795,6 +795,16 @@ __metadata:
   dependencies:
     "@sinonjs/commons": ^1.7.0
   checksum: 7d3aef54e17c1073101cb64d953157c19d62a40e261a30923fa1ee337b049c5f29cc47b1f0c477880f42b5659848ba9ab897607ac8ea4acd5c30ddcfac57fca6
+  languageName: node
+  linkType: hard
+
+"@skjnldsv/vue-plyr@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "@skjnldsv/vue-plyr@npm:7.2.0"
+  dependencies:
+    plyr: ^3.6.8
+    vue: ^3.2.37
+  checksum: fc39a9159b9539b12e1ea9e7404c98766418eb19146a14ea6bd540cfa69619b38ba03766e905ee063ffdf69dd6725976759d420b7945cce99e283a33668ac515
   languageName: node
   linkType: hard
 
@@ -1971,17 +1981,6 @@ __metadata:
     "@vue/compiler-core": 3.2.37
     "@vue/shared": 3.2.37
   checksum: 6cfa9d2ee123339549ba005fa61b2cd5ccf079ba8d8d797f0075e7054c2766744029cb0997341bcb6a51e129ae43489263aa7d8500b262ef7b81c63c2b0c4576
-  languageName: node
-  linkType: hard
-
-"@vue/compiler-sfc@npm:2.7.8":
-  version: 2.7.8
-  resolution: "@vue/compiler-sfc@npm:2.7.8"
-  dependencies:
-    "@babel/parser": ^7.18.4
-    postcss: ^8.4.14
-    source-map: ^0.6.1
-  checksum: da0b4b0866224fe2aee376a88c25914da4e73ba9e11e7aa2ed240b99897735b4a988e951dcae9c8f0843216c5a97050bf16e1bb04bf65541444a8bdfedc35b38
   languageName: node
   linkType: hard
 
@@ -3247,7 +3246,7 @@ __metadata:
 "browser-image-resizer@git+https://github.com/misskey-dev/browser-image-resizer#v2.2.1-misskey.2":
   version: 2.2.1-misskey.2
   resolution: "browser-image-resizer@https://github.com/misskey-dev/browser-image-resizer.git#commit=a58834f5fe2af9f9f31ff115121aef3de6f9d416"
-  checksum: 8ea30705704cc3f81eca23ff6cd0d5bf0d5404cd82612a52de11c0b851be511613022758babf5c202cc92b019483cfb97d7ef48cc18368a8913803fd654ac5d1
+  checksum: 5a29181ee34a407b43069dcd5e3364c3066eb4af3ffdd262ba669ea37273ac232aadebff8204a6ae9ff8d74305429191feedb5d420449acf01e1bbf9759c4847
   languageName: node
   linkType: hard
 
@@ -3857,6 +3856,7 @@ __metadata:
     "@rollup/plugin-alias": 3.1.9
     "@rollup/plugin-json": 4.1.0
     "@rollup/pluginutils": ^4.2.1
+    "@skjnldsv/vue-plyr": ^7.2.0
     "@syuilo/aiscript": 0.11.1
     "@types/escape-regexp": 0.0.1
     "@types/glob": 7.2.0
@@ -3925,7 +3925,6 @@ __metadata:
     vanilla-tilt: 1.7.2
     vite: 3.0.7
     vue: 3.2.37
-    vue-plyr: ^7.0.0
     vue-prism-editor: 2.0.0-alpha.2
     vuedraggable: 4.0.1
   languageName: unknown
@@ -4608,13 +4607,6 @@ __metadata:
   version: 2.6.20
   resolution: "csstype@npm:2.6.20"
   checksum: cb5d5ded49c3390909e93b20b285d4a63d0ba5b10294bdfbc4cf911f80e91d6cf367ea671f99f09570762535c14ea7074a2c7fa73f02008203f01328dea8968b
-  languageName: node
-  linkType: hard
-
-"csstype@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "csstype@npm:3.1.0"
-  checksum: 644e986cefab86525f0b674a06889cfdbb1f117e5b7d1ce0fc55b0423ecc58807a1ea42ecc75c4f18999d14fc42d1d255f84662a45003a52bb5840e977eb2ffd
   languageName: node
   linkType: hard
 
@@ -11547,16 +11539,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plyr@github:sampotts/plyr#develop":
-  version: 3.7.0
-  resolution: "plyr@https://github.com/sampotts/plyr.git#commit=d434c9af16e641400aaee93188594208d88f2658"
+"plyr@npm:^3.6.8":
+  version: 3.7.2
+  resolution: "plyr@npm:3.7.2"
   dependencies:
     core-js: ^3.22.0
     custom-event-polyfill: ^1.0.7
     loadjs: ^4.2.0
     rangetouch: ^2.0.1
     url-polyfill: ^1.1.12
-  checksum: ee85815c1c992141af030d71f70e79532814b142b0057c1bedbf7c74000a79f647147bb1f03f3a9f725341afa43e848e7b54168361d95285dfed30d53be63607
+  checksum: 140b2e43272023737dd7f95b7bc745490131da866a4ef154f6b2c7992f94d6d951b859614ca851c3ec4a134b6b8fd1244a2642d2739dfad3aae5402b8f311455
   languageName: node
   linkType: hard
 
@@ -11895,7 +11887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.1.10, postcss@npm:^8.3.11, postcss@npm:^8.4.14, postcss@npm:^8.4.16":
+"postcss@npm:^8.1.10, postcss@npm:^8.3.11, postcss@npm:^8.4.16":
   version: 8.4.16
   resolution: "postcss@npm:8.4.16"
   dependencies:
@@ -15328,16 +15320,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-plyr@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "vue-plyr@npm:7.0.0"
-  dependencies:
-    plyr: "github:sampotts/plyr#develop"
-    vue: ^2.6.12
-  checksum: 004d830cfc9dbe0563cafafab6240379b7224362d3e60d8d441126f0eaafd2487c7416cb434482165b52e961b83f020dfbc2645536aa8ba991f101477d984206
-  languageName: node
-  linkType: hard
-
 "vue-prism-editor@npm:2.0.0-alpha.2":
   version: 2.0.0-alpha.2
   resolution: "vue-prism-editor@npm:2.0.0-alpha.2"
@@ -15347,7 +15329,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:3.2.37":
+"vue@npm:3.2.37, vue@npm:^3.2.37":
   version: 3.2.37
   resolution: "vue@npm:3.2.37"
   dependencies:
@@ -15357,16 +15339,6 @@ __metadata:
     "@vue/server-renderer": 3.2.37
     "@vue/shared": 3.2.37
   checksum: cd20069c311e1de54b7d9b5d9c6021f1a6a70b0cf05cf7fc36b59c02623cbdc7c0075fb2c9e17859c77c86b15c596a447ee16c70064e9f2feba2df27139260b9
-  languageName: node
-  linkType: hard
-
-"vue@npm:^2.6.12":
-  version: 2.7.8
-  resolution: "vue@npm:2.7.8"
-  dependencies:
-    "@vue/compiler-sfc": 2.7.8
-    csstype: ^3.1.0
-  checksum: 45fc85a13fc027798ad859fe4a5509b54217ae2f129240fc349a799bd4dbc6848ef8fa9968ab7ef7afcb954735882dbfdeb746673aa3f051e4d7ae555c213a1b
   languageName: node
   linkType: hard
 
