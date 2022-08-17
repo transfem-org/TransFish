@@ -119,6 +119,7 @@ import MkVisibility from '@/components/visibility.vue';
 import { pleaseLogin } from '@/scripts/please-login';
 import { focusPrev, focusNext } from '@/scripts/focus';
 import { checkWordMute } from '@/scripts/check-word-mute';
+import { useRouter } from '@/router';
 import { userPage } from '@/filters/user';
 import * as os from '@/os';
 import { defaultStore, noteViewInterruptors } from '@/store';
