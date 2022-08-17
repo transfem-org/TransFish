@@ -401,7 +401,7 @@ function readPromo() {
 				flex-shrink: 0;
 				color: inherit;
 
-				&::after {
+				&:after {
 					content: "";
 					position: absolute;
 					inset: 0;
@@ -453,7 +453,7 @@ function readPromo() {
 				}
 
 				> .content {
-					position: relative;
+					/* position: relative; */
 
 					&.isLong {
 						> .showLess {
