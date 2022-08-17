@@ -35,7 +35,7 @@
 				<div class="action">
 					<MkButton inline rounded gradate data-cy-signup style="margin-right: 12px;" @click="signup()">{{ i18n.ts.signup }}</MkButton>
 					<MkButton inline rounded data-cy-signin @click="signin()">{{ i18n.ts.login }}</MkButton>
-					<MkButton inline rounded style="margin-left: 12px;" onclick="window.location.href='/explore'">Explore</MkButton>
+					<MkButton inline rounded style="margin-left: 12px; margin-top: 12px;" onclick="window.location.href='/explore'">Explore</MkButton>
 				</div>
 			</div>
 		</div>
@@ -266,6 +266,7 @@ function showMenu(ev) {
 
 				> .action {
 					padding: 32px;
+					padding-top: 22px;
 
 					> * {
 						line-height: 28px;
