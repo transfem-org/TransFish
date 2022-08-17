@@ -340,7 +340,7 @@ function readPromo() {
 		line-height: 24px;
 		font-size: 90%;
 		white-space: pre;
-		color: #d28a3f;
+		color: #f6c177;
 
 		> i {
 			margin-right: 4px;
@@ -401,6 +401,14 @@ function readPromo() {
 				flex-shrink: 0;
 				color: inherit;
 
+				&::after {
+					content: "";
+					position: absolute;
+					inset: 0;
+					z-index: -1;
+					cursor: default;
+				}
+
 				> .dropdownIcon {
 					margin-right: 4px;
 				}
@@ -415,6 +423,12 @@ function readPromo() {
 	> .article {
 		display: flex;
 		padding: 28px 32px 18px;
+		pointer-events: all;
+		transition: background-color 0.25s ease-in-out;
+
+		&:hover {
+			background-color: var(--panelHighlight);
+		}
 
 		> .avatar {
 			flex-shrink: 0;
@@ -438,6 +452,11 @@ function readPromo() {
 					margin: 0;
 					padding: 0;
 					overflow-wrap: break-word;
+					background: var(--X3);
+					padding: 6px 10px;
+					width: 90%;
+					border-radius: 10px;
+					margin-top: 10px;
 
 					> .text {
 						margin-right: 8px;
@@ -445,6 +464,8 @@ function readPromo() {
 				}
 
 				> .content {
+					position: relative;
+
 					&.isLong {
 						> .showLess {
 							width: 100%;
