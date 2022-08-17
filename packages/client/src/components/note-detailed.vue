@@ -9,8 +9,8 @@
 	:tabindex="!isDeleted ? '-1' : null"
 	:class="{ renote: isRenote }"
 >
-	<MkNoteSub v-for="note in conversation" :key="note.id" class="reply-to-more" :note="note"/>
-	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
+	<MkNoteSub v-for="note in conversation" :key="note.id" class="reply-to-more" :note="note" @click.self="router.push(notePage(note))"/>
+	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to" @click.self="router.push(notePage(appearNote))"/>
 	<div v-if="isRenote" class="renote">
 		<MkAvatar class="avatar" :user="note.user"/>
 		<i class="fas fa-retweet"></i>
@@ -537,6 +537,9 @@ if (appearNote.replyId) {
 
 	> .reply {
 		border-top: solid 0.5px var(--divider);
+	}
+
+	> .reply, .reply-to, .reply-to-more {
 		transition: background-color 0.25s ease-in-out;
 
 		&:hover {
