@@ -6,14 +6,14 @@
 		<Mfm v-if="note.text" :text="note.text" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">RN: ...</MkA>
 	</div>
-	<details v-if="note.files.length > 0">
+	<div v-if="note.files.length > 0">
 		<summary>({{ $t('withNFiles', { n: note.files.length }) }})</summary>
 		<XMediaList :media-list="note.files"/>
-	</details>
-	<details v-if="note.poll">
+	</div>
+	<div v-if="note.poll">
 		<summary>{{ i18n.ts.poll }}</summary>
 		<XPoll :note="note"/>
-	</details>
+	</div>
 	<button v-if="isLong && collapsed" class="fade _button" @click="collapsed = false">
 		<span>{{ i18n.ts.showMore }}</span>
 	</button>
