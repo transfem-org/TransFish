@@ -438,6 +438,7 @@ function readPromo() {
 		> .main {
 			flex: 1;
 			min-width: 0;
+			pointer-events: all;
 
 			> .body {
 				> .cw {

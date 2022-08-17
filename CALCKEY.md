@@ -21,7 +21,7 @@
 
 ## Work in progress
 
-- New note style
+- Improved note style
 - OCR image captioning
 - Swipe through timelines on mobile
 - Admin custom CSS
@@ -67,6 +67,7 @@
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
 - [Option to make enter send message](https://github.com/misskey-dev/misskey/pull/8954)
 - [Autocomplete in messaging](https://github.com/misskey-dev/misskey/pull/8955)
+- [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - [Star is generic like/favorite](https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch)
   - 👍 also triggers generic like/favorite
 - [Add additional background for acrylic popups if backdrop-filter is unsupported](https://github.com/misskey-dev/misskey/pull/8671)
@@ -94,4 +95,4 @@
 	- 751921e24f37ed707fe44a40d88eebb1299efa35: make emoji picker case insensitive
 	- 298febeb9c9501e3e3df16982c08657d1da474e0: enhance: add re-collapsing to quoted notes
 - A few changed from [Misskey-Tweaks](https://codeberg.org/Freeplay/Misskey-Tweaks)
-  - [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
+  - 
