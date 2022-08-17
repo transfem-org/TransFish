@@ -35,6 +35,7 @@
 
 - Yarn 3
   - Fix Dockerfile @hanna
+  - Upgrade packages with security vunrabilities
 - Saner defaults
 - Recommended instances timeline
 - Star as default reaction
