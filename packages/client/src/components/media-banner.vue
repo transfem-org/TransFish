@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import * as misskey from 'misskey-js';
-import VuePlyr from 'vue-plyr';
+import VuePlyr from '@skjnldsv/vue-plyr';
 import { ColdDeviceStorage } from '@/store';
 import 'vue-plyr/dist/vue-plyr.css';
 
