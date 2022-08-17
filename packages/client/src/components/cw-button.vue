@@ -42,6 +42,7 @@ const toggle = () => {
 	color: var(--cwFg);
 	background: var(--cwBg);
 	border-radius: 2px;
+	transition: background-color 0.25s ease-in-out;
 
 	&:hover {
 		background: var(--cwHoverBg);

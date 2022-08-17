@@ -298,6 +298,11 @@ function readPromo() {
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
+	transition: background-color 0.25s ease-in-out;
+
+	&:hover {
+		background-color: var(--panelHighlight);
+	}
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -424,11 +429,6 @@ function readPromo() {
 		display: flex;
 		padding: 28px 32px 18px;
 		pointer-events: all;
-		transition: background-color 0.25s ease-in-out;
-
-		&:hover {
-			background-color: var(--panelHighlight);
-		}
 
 		> .avatar {
 			flex-shrink: 0;
@@ -452,11 +452,14 @@ function readPromo() {
 					margin: 0;
 					padding: 0;
 					overflow-wrap: break-word;
-					background: var(--X3);
-					padding: 6px 10px;
-					width: 90%;
-					border-radius: 10px;
-					margin-top: 10px;
+
+					> .button {
+						background: var(--X3);
+						padding: 6px 10px;
+						width: 90%;
+						border-radius: 10px;
+						margin-top: 10px;
+					}
 
 					> .text {
 						margin-right: 8px;

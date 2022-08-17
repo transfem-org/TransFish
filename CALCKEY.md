@@ -21,6 +21,7 @@
 
 ## Work in progress
 
+- New note style
 - OCR image captioning
 - Swipe through timelines on mobile
 - Admin custom CSS
