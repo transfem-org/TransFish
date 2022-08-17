@@ -45,6 +45,7 @@ const toggle = () => {
 	width: 90%;
 	border-radius: 10px;
 	margin-top: 10px;
+	margin-bottom: 10px;
 	transition: background-color 0.25s ease-in-out;
 
 	&:hover {

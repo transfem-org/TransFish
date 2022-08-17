@@ -46,58 +46,60 @@
 				<MkInstanceTicker v-if="showTicker" class="ticker" :instance="appearNote.user.instance"/>
 			</div>
 		</header>
-		<div class="main">
-			<div class="body" :to="notePage(appearNote)">
-				<p v-if="appearNote.cw != null" class="cw">
-					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
-					<XCwButton v-model="showContent" :note="appearNote"/>
-				</p>
-				<div v-show="appearNote.cw == null || showContent" class="content">
-					<div class="text">
-						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="fas fa-reply"></i></MkA>
-						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
-						<a v-if="appearNote.renote != null" class="rp">RN:</a>
-						<div v-if="translating || translation" class="translation">
-							<MkLoading v-if="translating" mini/>
-							<div v-else class="translated">
-								<b>{{ $t('translatedFrom', { x: translation.sourceLang }) }}: </b>
-								<Mfm :text="translation.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+		<MkA class="created-at" :to="notePage(appearNote)">
+			<div class="main">
+				<div class="body">
+					<p v-if="appearNote.cw != null" class="cw">
+						<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+						<XCwButton v-model="showContent" :note="appearNote"/>
+					</p>
+					<div v-show="appearNote.cw == null || showContent" class="content">
+						<div class="text">
+							<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="fas fa-reply"></i></MkA>
+							<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+							<a v-if="appearNote.renote != null" class="rp">RN:</a>
+							<div v-if="translating || translation" class="translation">
+								<MkLoading v-if="translating" mini/>
+								<div v-else class="translated">
+									<b>{{ $t('translatedFrom', { x: translation.sourceLang }) }}: </b>
+									<Mfm :text="translation.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+								</div>
 							</div>
 						</div>
+						<div v-if="appearNote.files.length > 0" class="files">
+							<XMediaList :media-list="appearNote.files"/>
+						</div>
+						<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
+						<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="true" class="url-preview"/>
+						<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
 					</div>
-					<div v-if="appearNote.files.length > 0" class="files">
-						<XMediaList :media-list="appearNote.files"/>
-					</div>
-					<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
-					<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="true" class="url-preview"/>
-					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
+					<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="fas fa-satellite-dish"></i> {{ appearNote.channel.name }}</MkA>
 				</div>
-				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="fas fa-satellite-dish"></i> {{ appearNote.channel.name }}</MkA>
+				<footer class="footer">
+					<div class="info">
+						<MkA class="created-at" :to="notePage(appearNote)">
+							<MkTime :time="appearNote.createdAt" mode="detail"/>
+						</MkA>
+					</div>
+					<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
+					<button class="button _button" @click="reply()">
+						<template v-if="appearNote.reply"><i class="fas fa-reply-all"></i></template>
+						<template v-else><i class="fas fa-reply"></i></template>
+						<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
+					</button>
+					<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
+					<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" @click="react()">
+						<i class="fas fa-plus"></i>
+					</button>
+					<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button ref="menuButton" class="button _button" @click="menu()">
+						<i class="fas fa-ellipsis-h"></i>
+					</button>
+				</footer>
 			</div>
-			<footer class="footer">
-				<div class="info">
-					<MkA class="created-at">
-						<MkTime :time="appearNote.createdAt" mode="detail"/>
-					</MkA>
-				</div>
-				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
-				<button class="button _button" @click="reply()">
-					<template v-if="appearNote.reply"><i class="fas fa-reply-all"></i></template>
-					<template v-else><i class="fas fa-reply"></i></template>
-					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
-				</button>
-				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
-				<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" @click="react()">
-					<i class="fas fa-plus"></i>
-				</button>
-				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
-					<i class="fas fa-minus"></i>
-				</button>
-				<button ref="menuButton" class="button _button" @click="menu()">
-					<i class="fas fa-ellipsis-h"></i>
-				</button>
-			</footer>
-		</div>
+		</MkA>
 	</article>
 	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
 </div>
