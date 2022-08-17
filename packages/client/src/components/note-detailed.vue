@@ -99,7 +99,7 @@
 			</footer>
 		</div>
 	</article>
-	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
+	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies" @click="router.push(notePage(note))"/>
 </div>
 <div v-else class="_panel muted" @click="muted = false">
 	<I18n :src="i18n.ts.userSaysSomething" tag="small">
@@ -130,6 +130,7 @@ import { pleaseLogin } from '@/scripts/please-login';
 import { checkWordMute } from '@/scripts/check-word-mute';
 import { userPage } from '@/filters/user';
 import { notePage } from '@/filters/note';
+import { useRouter } from '@/router';
 import * as os from '@/os';
 import { defaultStore, noteViewInterruptors } from '@/store';
 import { reactionPicker } from '@/scripts/reaction-picker';
@@ -138,6 +139,8 @@ import { $i } from '@/account';
 import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
+
+const router = useRouter();
 
 const props = defineProps<{
 	note: misskey.entities.Note;
