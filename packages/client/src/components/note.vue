@@ -401,14 +401,6 @@ function readPromo() {
 				flex-shrink: 0;
 				color: inherit;
 
-				&:after {
-					content: "";
-					position: absolute;
-					inset: 0;
-					z-index: -1;
-					cursor: default;
-				}
-
 				> .dropdownIcon {
 					margin-right: 4px;
 				}
@@ -438,7 +430,6 @@ function readPromo() {
 		> .main {
 			flex: 1;
 			min-width: 0;
-			pointer-events: all;
 
 			> .body {
 				> .cw {
@@ -447,14 +438,13 @@ function readPromo() {
 					margin: 0;
 					padding: 0;
 					overflow-wrap: break-word;
+
 					> .text {
 						margin-right: 8px;
 					}
 				}
 
 				> .content {
-					/* position: relative; */
-
 					&.isLong {
 						> .showLess {
 							width: 100%;

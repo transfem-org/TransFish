@@ -47,7 +47,7 @@
 			</div>
 		</header>
 		<div class="main">
-			<div class="body">
+			<div class="body" :to="notePage(appearNote)">
 				<p v-if="appearNote.cw != null" class="cw">
 					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 					<XCwButton v-model="showContent" :note="appearNote"/>
@@ -76,7 +76,7 @@
 			</div>
 			<footer class="footer">
 				<div class="info">
-					<MkA class="created-at" :to="notePage(appearNote)">
+					<MkA class="created-at">
 						<MkTime :time="appearNote.createdAt" mode="detail"/>
 					</MkA>
 				</div>
