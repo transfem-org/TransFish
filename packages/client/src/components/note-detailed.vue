@@ -99,7 +99,7 @@
 			</footer>
 		</div>
 	</article>
-	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies" @click="router.push(notePage(note))"/>
+	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies" @click.self="router.push(notePage(note))"/>
 </div>
 <div v-else class="_panel muted" @click="muted = false">
 	<I18n :src="i18n.ts.userSaysSomething" tag="small">
