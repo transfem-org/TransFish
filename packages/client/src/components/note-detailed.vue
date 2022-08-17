@@ -537,6 +537,11 @@ if (appearNote.replyId) {
 
 	> .reply {
 		border-top: solid 0.5px var(--divider);
+		transition: background-color 0.25s ease-in-out;
+
+		&:hover {
+			background-color: var(--panelHighlight);
+		}
 	}
 
 	&.max-width_500px {
