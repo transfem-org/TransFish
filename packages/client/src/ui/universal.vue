@@ -23,8 +23,9 @@
 		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')"><i class="fas fa-home"></i></button>
 		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="fas fa-bell"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="fas fa-circle"></i></span></button>
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="fas fa-layer-group"></i></button>
-		<button class="button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 	</div>
+
+	<button id="postButton" class="button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -115,6 +116,22 @@ mainRouter.on('change', () => {
 
 document.documentElement.style.overflowY = 'scroll';
 
+let timer = -1;
+const postButton = document.getElementById('postButton');
+window.addEventListener('scroll', () => {
+	if (timer !== -1) {
+		if (postButton != null) {
+			postButton.style.animation = 'shrink 0.5s linear 1';
+		}
+		clearTimeout(timer);
+	}
+	timer = setTimeout(() => {
+		if (postButton != null) {
+			postButton.style.animation = 'grow 0.5s linear 1';
+		}
+	}, 150);
+}, false);
+
 if (defaultStore.state.widgets.length === 0) {
 	defaultStore.set('widgets', [{
 		name: 'calendar',
@@ -175,6 +192,24 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 </script>
 
 <style lang="scss" scoped>
+@keyframes shrink {
+	from {
+			transform: scale(1);
+	}
+	to {
+			transform: scale(0);
+	}
+}
+
+@keyframes grow {
+	from {
+			transform: scale(0);
+	}
+	to {
+			transform: scale(1);
+	}
+}
+
 .widgetsDrawer-enter-active,
 .widgetsDrawer-leave-active {
 	opacity: 1;
@@ -283,6 +318,19 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		overflow: auto;
 		overscroll-behavior: contain;
 		background: var(--bg);
+	}
+
+	> #postButton {
+		bottom: 6rem;
+		right: 1.5rem;
+		height: 4.5rem;
+		width: 4.5rem;
+		background: var(--panelHighlight);
+		position: fixed !important;
+		z-index: 1000;
+		font-size: 16px;
+		border-radius: 10px;
+		box-shadow: var(--shadow) 0px 0px 25px;
 	}
 
 	> .buttons {
