@@ -139,11 +139,6 @@ onMounted(() => {
 			function checkPosition() {
 				let windowY = window.scrollY;
 				postButton.style.transform = `scale(${windowY < scrollPos ? '1' : '0'})`;
-				// if (windowY < scrollPos) {
-				// 	postButton.style.transform = 'scale(1)';
-				// } else {
-				// 	postButton.style.transform = 'scale(0)';
-				// }
 				scrollPos = windowY;
 			}
 
