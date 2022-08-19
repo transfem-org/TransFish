@@ -20,6 +20,7 @@
 ## Work in progress
 
 - Better Messaging UI
+  - Videos can be played in DMs
 - OCR image captioning
 - Swipe through timelines on mobile
 - Admin custom CSS
