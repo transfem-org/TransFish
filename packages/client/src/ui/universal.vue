@@ -25,7 +25,7 @@
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="fas fa-layer-group"></i></button>
 	</div>
 
-	<button id="postButton" class="button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
+	<button v-if="isMobile" id="postButton" class="button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -121,13 +121,13 @@ const postButton = document.getElementById('postButton');
 window.addEventListener('scroll', () => {
 	if (timer !== -1) {
 		if (postButton != null) {
-			postButton.style.animation = 'shrink 0.5s linear 1';
+			postButton.style.transform = 'scale(0)';
 		}
 		clearTimeout(timer);
 	}
 	timer = setTimeout(() => {
 		if (postButton != null) {
-			postButton.style.animation = 'grow 0.5s linear 1';
+			postButton.style.transform = 'scale(1)';
 		}
 	}, 150);
 }, false);
@@ -192,24 +192,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 </script>
 
 <style lang="scss" scoped>
-@keyframes shrink {
-	from {
-			transform: scale(1);
-	}
-	to {
-			transform: scale(0);
-	}
-}
-
-@keyframes grow {
-	from {
-			transform: scale(0);
-	}
-	to {
-			transform: scale(1);
-	}
-}
-
 .widgetsDrawer-enter-active,
 .widgetsDrawer-leave-active {
 	opacity: 1;
@@ -325,12 +307,22 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		right: 1.5rem;
 		height: 4.5rem;
 		width: 4.5rem;
+		background-position: center;
 		background: var(--panelHighlight);
+		color: var(--fg);
 		position: fixed !important;
 		z-index: 1000;
 		font-size: 16px;
 		border-radius: 10px;
 		box-shadow: var(--shadow) 0px 0px 25px;
+		transition: background 0.6s;
+		transition: 0.3s;
+
+		&:active {
+			background-color: var(--accentedBg);
+			background-size: 100%;
+			transition: background 0.1s;
+		}
 	}
 
 	> .buttons {
