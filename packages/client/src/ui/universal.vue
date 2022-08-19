@@ -116,22 +116,6 @@ mainRouter.on('change', () => {
 
 document.documentElement.style.overflowY = 'scroll';
 
-let timer = -1;
-const postButton = document.getElementById('postButton');
-window.addEventListener('scroll', () => {
-	if (timer !== -1) {
-		if (postButton != null) {
-			postButton.style.transform = 'scale(0)';
-		}
-		clearTimeout(timer);
-	}
-	timer = setTimeout(() => {
-		if (postButton != null) {
-			postButton.style.transform = 'scale(1)';
-		}
-	}, 150);
-}, false);
-
 if (defaultStore.state.widgets.length === 0) {
 	defaultStore.set('widgets', [{
 		name: 'calendar',
@@ -153,7 +137,7 @@ onMounted(() => {
 	}
 });
 
-const onContextmenu = (ev) => {
+const onContextmenu = (ev: MouseEvent) => {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === 'A') return true;
 		if (el.parentElement) {
@@ -176,7 +160,7 @@ const onContextmenu = (ev) => {
 	}], ev);
 };
 
-const attachSticky = (el) => {
+const attachSticky = (el: any) => {
 	const sticky = new StickySidebar(widgetsEl);
 	window.addEventListener('scroll', () => {
 		sticky.calc(window.scrollY);
@@ -187,7 +171,25 @@ function top() {
 	window.scroll({ top: 0, behavior: 'smooth' });
 }
 
+let scrollPos = 0;
+const postButton = document.querySelector<HTMLElement>('.postButton');
+
+function checkPosition() {
+	let windowY = window.scrollY;
+	if (postButton != null) {
+		if (windowY < scrollPos) {
+			postButton.style.transform = 'scale(1)';
+		} else {
+			postButton.style.transform = 'scale(0)';
+		}
+	}
+	scrollPos = windowY;
+}
+
+window.addEventListener('scroll', checkPosition);
+
 const wallpaper = localStorage.getItem('wallpaper') != null;
+
 
 </script>
 
@@ -302,7 +304,15 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		border-radius: 10px;
 		box-shadow: var(--shadow) 0px 0px 25px;
 		transition: background 0.6s;
-		transition: 0.3s;
+		transition: transform 0.3s;
+
+		> .isHidden {
+			transform: scale(0);
+		}
+
+		> .isVisible {
+			transform: scale(1);
+		}
 
 		&:active {
 			background-color: var(--accentedBg);
