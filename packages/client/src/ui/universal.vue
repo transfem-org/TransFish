@@ -25,7 +25,7 @@
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="fas fa-layer-group"></i></button>
 	</div>
 
-	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" id="postButton" class="postButton button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
+	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -89,6 +89,7 @@ window.addEventListener('resize', () => {
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
+const postButton = $ref<HTMLElement>();
 const widgetsShowing = $ref(false);
 
 provide('router', mainRouter);
@@ -134,17 +135,15 @@ onMounted(() => {
 		window.addEventListener('resize', () => {
 			if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
 			let scrollPos = 0;
-			const postButton = document.getElementById('postButton');
 
 			function checkPosition() {
 				let windowY = window.scrollY;
-				if (postButton != null) {
-					if (windowY < scrollPos) {
-						postButton.style.transform = 'scale(1)';
-					} else {
-						postButton.style.transform = 'scale(0)';
-					}
-				}
+				postButton.style.transform = `scale(${windowY < scrollPos ? '1' : '0'})`;
+				// if (windowY < scrollPos) {
+				// 	postButton.style.transform = 'scale(1)';
+				// } else {
+				// 	postButton.style.transform = 'scale(0)';
+				// }
 				scrollPos = windowY;
 			}
 
