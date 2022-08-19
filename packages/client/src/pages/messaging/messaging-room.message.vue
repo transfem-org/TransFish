@@ -9,21 +9,21 @@
 			<div v-if="!message.isDeleted" class="content">
 				<Mfm v-if="message.text" ref="text" class="text" :text="message.text" :i="$i"/>
 				<div v-if="message.file" class="file">
-					<a :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
-						<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name"/>
-						<VuePlyr v-if="message.file.type.split('/')[0] == 'video'">
-							<video
-								:alt="message.file.name"
-								preload="none"
-								controls
-								@contextmenu.stop
+					<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name"/>
+					<VuePlyr v-else-if="message.file.type.split('/')[0] == 'video'">
+						<video
+							:alt="message.file.name"
+							preload="none"
+							controls
+							@contextmenu.stop
+						>
+							<source
+								:src="message.file.url"
 							>
-								<source
-									:src="message.file.url"
-								>
-							</video>
-						</VuePlyr>
-						<p v-else>{{ message.file.name }}</p>
+						</video>
+					</VuePlyr>
+					<a v-else :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
+						<p>{{ message.file.name }}</p>
 					</a>
 				</div>
 			</div>
