@@ -134,15 +134,14 @@ onMounted(() => {
 	if (!isDesktop.value) {
 		window.addEventListener('resize', () => {
 			if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
-			let scrollPos = 0;
+		}, { passive: true });
 
-			function checkPosition() {
-				let windowY = window.scrollY;
-				postButton.style.transform = `scale(${windowY < scrollPos ? '1' : '0'})`;
-				scrollPos = windowY;
-			}
+		let scrollPos = 0;
 
-			window.addEventListener('scroll', checkPosition);
+		window.addEventListener('scroll', () => {
+			let windowY = window.scrollY;
+			postButton.style.transform = `scale(${windowY < scrollPos ? '1' : '0'})`;
+			scrollPos = windowY;
 		}, { passive: true });
 	}
 });
@@ -182,7 +181,6 @@ function top() {
 }
 
 const wallpaper = localStorage.getItem('wallpaper') != null;
-
 
 </script>
 
