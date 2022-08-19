@@ -3,7 +3,6 @@
 ## Planned
 
 - MFM button
-- Better Messaging UI
 - Classic mode make instance icon bring up new context menu
 - Like/star button
 - Option to publicize instance blocks
@@ -20,6 +19,7 @@
 
 ## Work in progress
 
+- Better Messaging UI
 - OCR image captioning
 - Swipe through timelines on mobile
 - Admin custom CSS

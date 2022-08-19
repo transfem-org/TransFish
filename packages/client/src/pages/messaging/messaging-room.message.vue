@@ -11,6 +11,18 @@
 				<div v-if="message.file" class="file">
 					<a :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
 						<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name"/>
+						<VuePlyr v-if="message.file.type.split('/')[0] == 'video'">
+							<video
+								:alt="message.file.name"
+								preload="none"
+								controls
+								@contextmenu.stop
+							>
+								<source
+									:src="message.file.url"
+								>
+							</video>
+						</VuePlyr>
 						<p v-else>{{ message.file.name }}</p>
 					</a>
 				</div>
@@ -39,6 +51,7 @@
 import { } from 'vue';
 import * as mfm from 'mfm-js';
 import * as Misskey from 'misskey-js';
+import VuePlyr from 'vue-plyr';
 import { extractUrlFromMfm } from '@/scripts/extract-url-from-mfm';
 import MkUrlPreview from '@/components/url-preview.vue';
 import * as os from '@/os';
@@ -62,6 +75,7 @@ function del(): void {
 <style lang="scss" scoped>
 .thvuemwp {
 	$me-balloon-color: var(--accent);
+	--plyr-color-main: var(--accent);
 
 	position: relative;
 	background-color: transparent;
