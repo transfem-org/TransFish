@@ -11,6 +11,7 @@
 			:poster="video.thumbnailUrl"
 			:title="video.comment"
 			:alt="video.comment"
+			:download="video.url"
 			preload="none"
 			controls
 			@contextmenu.stop

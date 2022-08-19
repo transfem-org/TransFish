@@ -13,6 +13,7 @@
 					<VuePlyr v-else-if="message.file.type.split('/')[0] == 'video'">
 						<video
 							:alt="message.file.name"
+							:download="message.file.url"
 							preload="none"
 							controls
 							@contextmenu.stop
