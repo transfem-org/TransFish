@@ -25,7 +25,7 @@
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="fas fa-layer-group"></i></button>
 	</div>
 
-	<button v-if="isMobile" id="postButton" class="postButton button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
+	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" id="postButton" class="postButton button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
