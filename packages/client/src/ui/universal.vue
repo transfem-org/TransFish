@@ -25,7 +25,7 @@
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="fas fa-layer-group"></i></button>
 	</div>
 
-	<button v-if="isMobile" id="postButton" class="button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
+	<button v-if="isMobile" class="postButton button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -270,20 +270,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		}
 	}
 
-	> .widgetButton {
-		display: block;
-		position: fixed;
-		z-index: 1000;
-		bottom: 32px;
-		right: 32px;
-		width: 64px;
-		height: 64px;
-		border-radius: 100%;
-		box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-		font-size: 22px;
-		background: var(--panel);
-	}
-
 	> .widgetsDrawer-back {
 		z-index: 1001;
 	}
@@ -302,7 +288,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		background: var(--bg);
 	}
 
-	> #postButton {
+	> .postButton, .widgetButton {
 		bottom: 6rem;
 		right: 1.5rem;
 		height: 4.5rem;
