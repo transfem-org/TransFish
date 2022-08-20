@@ -138,15 +138,15 @@ if (isMobile.value) {
 		let tabs = ['all', 'unread', 'mentions', 'directNotes'];
 
 		if (Math.abs(xDiff) > Math.abs(yDiff)) {
-			if (xDiff > 0) {
+			if (xDiff < 0) {
 				if (tab === 'all') {
 					next = 'directNotes';
 				}
 				else {
-					next = tabs[(tabs.indexOf(tab) + 1) % tabs.length];
+					next = tabs[(tabs.indexOf(tab) - 1) % tabs.length];
 				}
 			} else {
-				next = tabs[(tabs.indexOf(tab) - 1) % tabs.length];
+				next = tabs[(tabs.indexOf(tab) + 1) % tabs.length];
 			}
 			tab = next;
 		}
