@@ -121,17 +121,6 @@ async function chooseAntenna(ev: MouseEvent): Promise<void> {
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
-async function chooseChannel(ev: MouseEvent): Promise<void> {
-	const channels = await os.api('channels/followed');
-	const items = channels.map((channel) => ({
-		type: 'link' as const,
-		text: channel.name,
-		indicate: channel.hasUnreadNote,
-		to: `/channels/${channel.id}`,
-	}));
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
-}
-
 function saveSrc(
 	newSrc: 'home' | 'local' | 'recommended' | 'social' | 'global'
 ): void {
@@ -269,24 +258,37 @@ if (isMobile.value) {
 		let xDiff = xDown - xUp;
 		let yDiff = yDown - yUp;
 
+		let next = 'home';
+		let timelines = ['home'];
+
+		if (isLocalTimelineAvailable) {
+			timelines.push('local');
+		}
+		if (isRecommendedTimelineAvailable) {
+			timelines.push('recommended');
+		}
+		if (isLocalTimelineAvailable) {
+			timelines.push('social');
+		}
+		if (isGlobalTimelineAvailable) {
+			timelines.push('global');
+		}
+
 		if (Math.abs(xDiff) > Math.abs(yDiff)) {
 			if (xDiff > 0) {
 				console.log('right swipe');
-				const current = headerTabs.values.find((x) => x.key === src.value);
-				const next =
-					headerTabs.values[
-						(headerTabs.values.indexOf(current) + 1) % headerTabs.values.length
+				next =
+					timelines[
+						(timelines.indexOf(src) + 1) % timelines.length
 					];
-				saveSrc(next.key);
 			} else {
 				console.log('left swipe');
-				const current = headerTabs.values.find((x) => x.key === src.value);
-				const next =
-					headerTabs.values[
-						(headerTabs.values.indexOf(current) - 1) % headerTabs.values.length
+				next =
+					timelines[
+						(timelines.indexOf(src) + 1) % timelines.length
 					];
-				saveSrc(next.key);
 			}
+			saveSrc(next);
 		} /* else {
 			if (yDiff > 0) {
 				// down swipe
