@@ -22,7 +22,6 @@
 - Better Messaging UI
   - Videos can be played in DMs
 - OCR image captioning
-- Swipe through timelines on mobile
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility score
@@ -39,6 +38,10 @@
   - Upgrade packages with security vunrabilities
 - Saner defaults
 - Recommended instances timeline
+- Improve mobile UX
+  - Swipe through timelines on mobile
+  - Redesigned mobile bottom nav bar
+  - Post button on TL
 - Star as default reaction
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
@@ -48,7 +51,6 @@
   - Illustrated by [Henki](https://www.youtube.com/c/Henkiwashere)!
   - Licensed under the CC-BY-SA 4.0.
 - Better timeline top bar
-- Redesigned mobile bottom nav bar
 - Improved note style
   - Make more of the post clickable like every other SNS
   - No more details tag for reply attachments
