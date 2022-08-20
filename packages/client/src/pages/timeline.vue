@@ -285,7 +285,7 @@ if (isMobile.value) {
 				console.log('left swipe');
 				next =
 					timelines[
-						(timelines.indexOf(src) + 1) % timelines.length
+						(timelines.indexOf(src) - 1) % timelines.length
 					];
 			}
 			saveSrc(next);
