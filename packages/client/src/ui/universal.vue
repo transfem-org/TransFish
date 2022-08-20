@@ -328,7 +328,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			flex: 1;
 			padding: 0;
 			margin: auto;
-			height: 64px;
+			height: 3.5rem;
 			border-radius: 8px;
 			/* background: var(--panel); */
 			background-position: center;
