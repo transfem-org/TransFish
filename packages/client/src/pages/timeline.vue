@@ -1,6 +1,5 @@
 <template>
 <MkStickyContainer>
-	<svg class="fader" ref="fader"></svg>
 	<template #header>
 		<MkPageHeader
 			v-model:tab="src"
@@ -84,7 +83,6 @@ window.addEventListener('resize', () => {
 
 const tlComponent = $ref<InstanceType<typeof XTimeline>>();
 const rootEl = $ref<HTMLElement>();
-const fader = $ref<SVGElement>();
 
 let queue = $ref(0);
 const src = $computed({
@@ -287,8 +285,6 @@ if (isMobile.value) {
 			} else {
 				next = timelines[(timelines.indexOf(src) + 1) % timelines.length];
 			}
-			fader.classList.remove('fade');
-			fader.classList.add('fade');
 			saveSrc(next);
 		}
 		xDown = null;
@@ -323,34 +319,5 @@ if (isMobile.value) {
 		border-radius: var(--radius);
 		overflow: clip;
 	}
-}
-
-@keyframes fade {
-		0%, 100% { opacity: 0 }
-		50% { opacity: 1 }
-}
-
-.fader {
-		position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-		opacity: 0;
-    z-index: 1001;
-		pointer-events: none;
-		background: var(--acrylicBg);
-		animation-duration: 0.25s;
-    animation-timing-function: ease-in-out;
-
-		> .fadeOut {
-			opacity: 0;
-			animation-name: fade-out;
-		}
-
-		> .fadeIn {
-			opacity: 1;
-			animation-name: fade-in;
-		}
 }
 </style>
