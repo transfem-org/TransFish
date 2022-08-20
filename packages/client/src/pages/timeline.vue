@@ -278,15 +278,14 @@ if (isMobile.value) {
 
 		if (Math.abs(xDiff) > Math.abs(yDiff)) {
 			if (xDiff > 0) {
-				next =
-					timelines[
-						(timelines.indexOf(src) - 1) % timelines.length
-					];
+				if (src === 'home') {
+					next = 'global'
+				}
+				else {
+					next = timelines[(timelines.indexOf(src) - 1) % timelines.length];
+				}
 			} else {
-				next =
-					timelines[
-						(timelines.indexOf(src) + 1) % timelines.length
-					];
+				next = timelines[(timelines.indexOf(src) + 1) % timelines.length];
 			}
 			fader.classList.remove('fade');
 			fader.classList.add('fade');
