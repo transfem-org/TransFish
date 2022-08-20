@@ -280,10 +280,10 @@ if (isMobile.value) {
 					next = 'global'
 				}
 				else {
-					next = timelines[(timelines.indexOf(src) - 1) % timelines.length];
+					next = timelines[(timelines.indexOf(src) + 1) % timelines.length];
 				}
 			} else {
-				next = timelines[(timelines.indexOf(src) + 1) % timelines.length];
+				next = timelines[(timelines.indexOf(src) - 1) % timelines.length];
 			}
 			saveSrc(next);
 		}

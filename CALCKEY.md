@@ -39,7 +39,7 @@
 - Saner defaults
 - Recommended instances timeline
 - Improve mobile UX
-  - Swipe through timelines on mobile
+  - Swipe through timelines/notifications on mobile
   - Redesigned mobile bottom nav bar
   - Post button on TL
 - Star as default reaction
