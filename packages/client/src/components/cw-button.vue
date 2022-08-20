@@ -49,7 +49,7 @@ const toggle = () => {
 	transition: background-color 0.25s ease-in-out;
 
 	&:hover {
-		background: var(--X3);
+		background: lighten(var(--cwBg), 10%);
 	}
 
 	> span {
