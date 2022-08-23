@@ -64,6 +64,7 @@
 - New spinner animation
 - Spinner instead of "Loading..."
 - SearchX instead of Google
+- Always signToActivityPubGet
 - Spacing on group items
 - Quotes have solid border
 - Reply limit bug fixed
