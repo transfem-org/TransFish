@@ -103,3 +103,5 @@
 	- 30d8bc9259cb6b72ed76d67b21dbb4cdceca8327: refactor: welcome.setup.vue to composition api
 	- 751921e24f37ed707fe44a40d88eebb1299efa35: make emoji picker case insensitive
 	- 298febeb9c9501e3e3df16982c08657d1da474e0: enhance: add re-collapsing to quoted notes
+	- b0fdedb264db87575063abed45e52ad71ce4a6af: fix lints in folder.vue
+	- 6fed87f85d132304eb84b0a59b84dce299a1822f: fix pagination.vue lints
