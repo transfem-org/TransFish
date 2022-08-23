@@ -36,7 +36,7 @@
 				/>
 			</div>
 			<div v-else class="tl _block">
-				<swiper :modules="[Pagination]" :pagination="{ dynamicBullets: true, }">
+				<swiper :modules="[Pagination]" :pagination="{ dynamicBullets: true, }" :space-between="20">
 					<swiper-slide>
 						<XTimeline
 							ref="tl"
@@ -293,6 +293,8 @@ definePageMetadata(
 
 <style lang="scss" scoped>
 .cmuxhskf {
+	--swiper-theme-color: var(--accent);
+
 	> .new {
 		position: sticky;
 		top: calc(var(--stickyTop, 0px) + 16px);
@@ -316,5 +318,20 @@ definePageMetadata(
 		border-radius: var(--radius);
 		overflow: clip;
 	}
+
+	> .swiper-pagination {
+		position: fixed;
+		margin-bottom: 100px;
+		z-index: 99999;
+		background-color: var(--panelHighlight);
+		padding: 0.5rem 1rem;
+		border-radius: 999px;
+		color: var(--accent);
+	}
+
+	> .swiper-pagination-bullet-active {
+		background: var(--accent, var(--panel));
+	}
+
 }
 </style>
