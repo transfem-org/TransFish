@@ -53,9 +53,8 @@ export default defineConfig(({ command, mode }) => {
 			],
 			manifest: 'manifest.json',
 			rollupOptions: {
-				external: {
-					'swiper': 'swiper',
-					'vue': 'vue',
+				optimizeDeps: {
+					exclude: ['swiper'],
 				},
 				input: {
 					app: './src/init.ts',
