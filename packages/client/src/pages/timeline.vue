@@ -36,7 +36,7 @@
 				/>
 			</div>
 			<div v-else class="tl _block">
-				<swiper :modules="[Pagination]" :pagination="{ dynamicBullets: true, }" :space-between="20">
+				<swiper :space-between="20">
 					<swiper-slide>
 						<XTimeline
 							ref="tl"
@@ -100,7 +100,6 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, computed, watch, ref } from 'vue';
-import { Pagination, Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTimeline from '@/components/timeline.vue';
 import XPostForm from '@/components/post-form.vue';
@@ -318,19 +317,5 @@ definePageMetadata(
 		border-radius: var(--radius);
 		overflow: clip;
 	}
-
-	> .swiper-pagination-bullet-active {
-		background: var(--accent, var(--panel));
-	}
-}
-
-.swiper-pagination {
-	position: fixed;
-	top: 5rem;
-	z-index: 1001;
-	background-color: var(--panelHighlight);
-	padding: 0.5rem 1rem;
-	border-radius: 999px;
-	color: var(--accent);
 }
 </style>
