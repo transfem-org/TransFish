@@ -274,8 +274,9 @@ if (isMobile.value) {
 			timelines.push('global');
 		}
 
-		if (Math.abs(xDiff) > Math.abs(yDiff) && Math.abs(xDiff) > 50) {
+		if (Math.abs(xDiff) > Math.abs(yDiff)) {
 			if (xDiff < 0) {
+				console.log(Math.abs(xDiff));
 				if (src === 'home') {
 					next = 'global';
 				}
