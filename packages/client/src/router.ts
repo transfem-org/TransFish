@@ -153,6 +153,10 @@ export const routes = [{
 		name: 'api',
 		component: page(() => import('./pages/settings/api.vue')),
 	}, {
+		path: '/apps',
+		name: 'api',
+		component: page(() => import('./pages/settings/apps.vue')),
+	}, {
 		path: '/webhook/edit/:webhookId',
 		name: 'webhook',
 		component: page(() => import('./pages/settings/webhook.edit.vue')),
@@ -180,6 +184,10 @@ export const routes = [{
 		path: '/custom-css',
 		name: 'general',
 		component: page(() => import('./pages/settings/custom-css.vue')),
+	}, {
+		path: '/accounts',
+		name: 'profile',
+		component: page(() => import('./pages/settings/accounts.vue')),
 	}, {
 		path: '/account-info',
 		name: 'other',
