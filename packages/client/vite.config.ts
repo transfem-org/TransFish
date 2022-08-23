@@ -52,9 +52,6 @@ export default defineConfig(({ command, mode }) => {
 				'es2017', // TODO: そのうち消す
 			],
 			manifest: 'manifest.json',
-			optimizeDeps: {
-				exclude: ['swiper'],
-			},
 			rollupOptions: {
 				input: {
 					app: './src/init.ts',
