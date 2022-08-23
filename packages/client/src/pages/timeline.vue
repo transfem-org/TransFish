@@ -25,7 +25,7 @@
 					{{ i18n.ts.newNoteRecived }}
 				</button>
 			</div>
-			<div class="tl _block">
+			<div v-if="isDesktop" class="tl _block">
 				<XTimeline
 					ref="tl"
 					:key="src"
@@ -35,6 +35,64 @@
 					@queue="queueUpdated"
 				/>
 			</div>
+			<div v-else class="tl _block">
+				<swiper>
+					<swiper-slide>
+						<XTimeline
+							ref="tl"
+							key="home"
+							class="tl"
+							src="home"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+					</swiper-slide>
+					<swiper-slide>
+						<XTimeline
+							v-if="isLocalTimelineAvailable"
+							ref="tl"
+							key="local"
+							class="tl"
+							src="local"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+					</swiper-slide>
+					<swiper-slide>
+						<XTimeline
+							v-if="isRecommendedTimelineAvailable"
+							ref="tl"
+							key="recommended"
+							class="tl"
+							src="recommended"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+					</swiper-slide>
+					<swiper-slide>
+						<XTimeline
+							v-if="isLocalTimelineAvailable"
+							ref="tl"
+							key="social"
+							class="tl"
+							src="social"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+					</swiper-slide>
+					<swiper-slide>
+						<XTimeline
+							v-if="isGlobalTimelineAvailable"
+							ref="tl"
+							key="global"
+							class="tl"
+							src="global"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+					</swiper-slide>
+				</swiper>
+			</div>
 		</div>
 	</MkSpacer>
 </MkStickyContainer>
@@ -42,6 +100,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, computed, watch, ref } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTimeline from '@/components/timeline.vue';
 import XPostForm from '@/components/post-form.vue';
 import { scroll } from '@/scripts/scroll';
@@ -52,6 +111,7 @@ import { instance } from '@/instance';
 import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
+import 'swiper/css';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
@@ -228,7 +288,7 @@ definePageMetadata(
 	}))
 );
 
-if (isMobile.value) {
+/* if (isMobile.value) {
 	document.addEventListener('touchstart', handleTouchStart, false);
 	document.addEventListener('touchmove', handleTouchMove, false);
 
@@ -292,7 +352,7 @@ if (isMobile.value) {
 		yDown = null;
 		return;
 	}
-}
+} */
 </script>
 
 <style lang="scss" scoped>
