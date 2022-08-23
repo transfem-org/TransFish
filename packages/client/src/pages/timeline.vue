@@ -319,19 +319,18 @@ definePageMetadata(
 		overflow: clip;
 	}
 
-	> .swiper-pagination {
-		position: fixed;
-		margin-bottom: 100px;
-		z-index: 99999;
-		background-color: var(--panelHighlight);
-		padding: 0.5rem 1rem;
-		border-radius: 999px;
-		color: var(--accent);
-	}
-
 	> .swiper-pagination-bullet-active {
 		background: var(--accent, var(--panel));
 	}
+}
 
+.swiper-pagination {
+	position: fixed;
+	top: 5rem;
+	z-index: 1001;
+	background-color: var(--panelHighlight);
+	padding: 0.5rem 1rem;
+	border-radius: 999px;
+	color: var(--accent);
 }
 </style>
