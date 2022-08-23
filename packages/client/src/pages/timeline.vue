@@ -248,9 +248,9 @@ if (isMobile.value) {
 	}
 
 	function handleTouchMove(evt) {
-		if (!xDown || !yDown) {
-			return;
-		}
+		if (!xDown || !yDown) return;
+
+		if (['INPUT', 'TEXTAREA', 'IMG', 'VIDEO', 'CANVAS'].includes(evt.target.tagName) || evt.target.attributes['contenteditable']) return;
 
 		let xUp = evt.touches[0].clientX;
 		let yUp = evt.touches[0].clientY;
@@ -274,7 +274,7 @@ if (isMobile.value) {
 			timelines.push('global');
 		}
 
-		if (Math.abs(xDiff) > Math.abs(yDiff)) {
+		if (Math.abs(xDiff) > Math.abs(yDiff) && Math.abs(xDiff) > 100) {
 			if (xDiff < 0) {
 				if (src === 'home') {
 					next = 'global';
