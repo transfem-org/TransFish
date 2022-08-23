@@ -36,7 +36,7 @@
 				/>
 			</div>
 			<div v-else class="tl _block">
-				<swiper :modules="[Pagination, Virtual]" virtual>
+				<swiper :modules="[Pagination, Virtual]" :add-slides-after="1" :add-slides-before="1" virtual>
 					<swiper-slide>
 						<XTimeline
 							ref="tl"
