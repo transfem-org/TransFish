@@ -136,21 +136,13 @@ onMounted(() => {
 			if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
 		}, { passive: true });
 
-		let scrollPos = 0;
-
-		window.addEventListener('scroll', () => {
-			let windowY = window.scrollY;
-			postButton.style.transform = `scale(${windowY < scrollPos ? '1' : '0.3'})`;
-			scrollPos = windowY;
-		}, { passive: true });
-
 		function createScrollStopListener(element: Window, callback: TimerHandler, timeout: number): () => void {
 			let handle = 0;
 			const onScroll = () => {
 				if (handle) {
 					clearTimeout(handle);
 				}
-				postButton.style.transform = 'scale(0.3)';
+				postButton.style.transform = 'scale(0)';
 				handle = setTimeout(callback, timeout || 200);
 			};
 			element.addEventListener('scroll', onScroll, { passive: true });
