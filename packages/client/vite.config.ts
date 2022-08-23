@@ -53,6 +53,9 @@ export default defineConfig(({ command, mode }) => {
 			],
 			manifest: 'manifest.json',
 			rollupOptions: {
+				external: {
+					'swiper': 'swiper',
+				},
 				input: {
 					app: './src/init.ts',
 				},
