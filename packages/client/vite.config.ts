@@ -55,6 +55,7 @@ export default defineConfig(({ command, mode }) => {
 			rollupOptions: {
 				external: {
 					'swiper': 'swiper',
+					'vue': 'vue',
 				},
 				input: {
 					app: './src/init.ts',
