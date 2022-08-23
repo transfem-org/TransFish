@@ -36,7 +36,7 @@
 				/>
 			</div>
 			<div v-else class="tl _block">
-				<swiper :modules="[Virtual]" virtual>
+				<swiper :modules="[Pagination, Virtual]" virtual>
 					<swiper-slide>
 						<XTimeline
 							ref="tl"
@@ -100,7 +100,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, computed, watch, ref } from 'vue';
-import { Virtual } from 'swiper';
+import { Pagination, Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTimeline from '@/components/timeline.vue';
 import XPostForm from '@/components/post-form.vue';
@@ -112,7 +112,8 @@ import { instance } from '@/instance';
 import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
-import 'swiper/css';
+import 'swiper/scss';
+import 'swiper/scss/pagination';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
