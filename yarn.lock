@@ -805,6 +805,173 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-android-arm-eabi@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-android-arm-eabi@npm:1.2.244"
+  dependencies:
+    "@swc/wasm": 1.2.122
+  conditions: os=android & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-android-arm64@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-android-arm64@npm:1.2.244"
+  dependencies:
+    "@swc/wasm": 1.2.130
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-arm64@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-darwin-arm64@npm:1.2.244"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-x64@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-darwin-x64@npm:1.2.244"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-freebsd-x64@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-freebsd-x64@npm:1.2.244"
+  dependencies:
+    "@swc/wasm": 1.2.130
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm-gnueabihf@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.2.244"
+  dependencies:
+    "@swc/wasm": 1.2.130
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-gnu@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.2.244"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-musl@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-linux-arm64-musl@npm:1.2.244"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-gnu@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-linux-x64-gnu@npm:1.2.244"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-musl@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-linux-x64-musl@npm:1.2.244"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-arm64-msvc@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.2.244"
+  dependencies:
+    "@swc/wasm": 1.2.130
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-ia32-msvc@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.2.244"
+  dependencies:
+    "@swc/wasm": 1.2.130
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-x64-msvc@npm:1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core-win32-x64-msvc@npm:1.2.244"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core@npm:^1.2.244":
+  version: 1.2.244
+  resolution: "@swc/core@npm:1.2.244"
+  dependencies:
+    "@swc/core-android-arm-eabi": 1.2.244
+    "@swc/core-android-arm64": 1.2.244
+    "@swc/core-darwin-arm64": 1.2.244
+    "@swc/core-darwin-x64": 1.2.244
+    "@swc/core-freebsd-x64": 1.2.244
+    "@swc/core-linux-arm-gnueabihf": 1.2.244
+    "@swc/core-linux-arm64-gnu": 1.2.244
+    "@swc/core-linux-arm64-musl": 1.2.244
+    "@swc/core-linux-x64-gnu": 1.2.244
+    "@swc/core-linux-x64-musl": 1.2.244
+    "@swc/core-win32-arm64-msvc": 1.2.244
+    "@swc/core-win32-ia32-msvc": 1.2.244
+    "@swc/core-win32-x64-msvc": 1.2.244
+  dependenciesMeta:
+    "@swc/core-android-arm-eabi":
+      optional: true
+    "@swc/core-android-arm64":
+      optional: true
+    "@swc/core-darwin-arm64":
+      optional: true
+    "@swc/core-darwin-x64":
+      optional: true
+    "@swc/core-freebsd-x64":
+      optional: true
+    "@swc/core-linux-arm-gnueabihf":
+      optional: true
+    "@swc/core-linux-arm64-gnu":
+      optional: true
+    "@swc/core-linux-arm64-musl":
+      optional: true
+    "@swc/core-linux-x64-gnu":
+      optional: true
+    "@swc/core-linux-x64-musl":
+      optional: true
+    "@swc/core-win32-arm64-msvc":
+      optional: true
+    "@swc/core-win32-ia32-msvc":
+      optional: true
+    "@swc/core-win32-x64-msvc":
+      optional: true
+  bin:
+    swcx: run_swcx.js
+  checksum: be714bc484b0e3ad8e68269e739f02a8b9ba47cd4ea2fd2d223832fa78d00f85b02fed12bb8e7a61c430981d9260c6319d3215af86c8d1f4832bb419e269691f
+  languageName: node
+  linkType: hard
+
+"@swc/wasm@npm:1.2.122":
+  version: 1.2.122
+  resolution: "@swc/wasm@npm:1.2.122"
+  checksum: 563345370c5ad18373d3b403590ab880fe52dcd8fc8c8601be263fcd9886520b28a7f4e46236cf49ca2b136c79d4ef50c960bc34b7cdc2068118b0d84dfca1f4
+  languageName: node
+  linkType: hard
+
+"@swc/wasm@npm:1.2.130":
+  version: 1.2.130
+  resolution: "@swc/wasm@npm:1.2.130"
+  checksum: 02203bfef3e382c64cbbd63c138c8fdf61865e74d923b317e9d9e9f33f5a3f0a9533b5fdbc9505e76d78e864be04a82fc847eb987a1e47ccac5850146c858292
+  languageName: node
+  linkType: hard
+
 "@syuilo/aiscript@npm:0.11.1":
   version: 0.11.1
   resolution: "@syuilo/aiscript@npm:0.11.1"
@@ -3495,6 +3662,7 @@ __metadata:
   dependencies:
     "@bull-board/api": ^4.2.2
     "@bull-board/ui": ^4.2.2
+    "@swc/core": ^1.2.244
     "@tensorflow/tfjs": ^3.18.0
     "@types/gulp": 4.0.9
     "@types/gulp-rename": 2.0.1
@@ -3513,6 +3681,7 @@ __metadata:
     seedrandom: ^3.0.5
     start-server-and-test: 1.14.0
     typescript: 4.7.4
+    unplugin-swc: ^1.3.2
     vue-eslint-parser: ^9.0.2
   languageName: unknown
   linkType: soft
@@ -15011,6 +15180,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unplugin-swc@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "unplugin-swc@npm:1.3.2"
+  dependencies:
+    unplugin: ^0.6.0
+  peerDependencies:
+    "@swc/core": ^1.2.108
+  checksum: 3aea46ef5980603ec8842597c4d75254d8c09729ece3f221ab2b51f589bbbe4c53cd54d617baadc2786a68c4ddcf27bf53a4cd91226ff775d5b5736c2091d6c4
+  languageName: node
+  linkType: hard
+
+"unplugin@npm:^0.6.0":
+  version: 0.6.3
+  resolution: "unplugin@npm:0.6.3"
+  dependencies:
+    chokidar: ^3.5.3
+    webpack-sources: ^3.2.3
+    webpack-virtual-modules: ^0.4.3
+  peerDependencies:
+    esbuild: ">=0.13"
+    rollup: ^2.50.0
+    vite: ^2.3.0
+    webpack: 4 || 5
+  peerDependenciesMeta:
+    esbuild:
+      optional: true
+    rollup:
+      optional: true
+    vite:
+      optional: true
+    webpack:
+      optional: true
+  checksum: 14e1f9c941e87e97fdda3efc745183e027de7d8b88eed8be5fa0708c2ec5dd114cc10e569c4b9dd2dafc89ba84d8bf90935d01e02cef510b7faedaa8af2b081f
+  languageName: node
+  linkType: hard
+
 "unset-value@npm:^1.0.0":
   version: 1.0.0
   resolution: "unset-value@npm:1.0.0"
@@ -15482,6 +15687,20 @@ __metadata:
   version: 7.0.0
   resolution: "webidl-conversions@npm:7.0.0"
   checksum: f05588567a2a76428515333eff87200fae6c83c3948a7482ebb109562971e77ef6dc49749afa58abb993391227c5697b3ecca52018793e0cb4620a48f10bd21b
+  languageName: node
+  linkType: hard
+
+"webpack-sources@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "webpack-sources@npm:3.2.3"
+  checksum: 989e401b9fe3536529e2a99dac8c1bdc50e3a0a2c8669cbafad31271eadd994bc9405f88a3039cd2e29db5e6d9d0926ceb7a1a4e7409ece021fe79c37d9c4607
+  languageName: node
+  linkType: hard
+
+"webpack-virtual-modules@npm:^0.4.3":
+  version: 0.4.4
+  resolution: "webpack-virtual-modules@npm:0.4.4"
+  checksum: 6720b4c47d76dc9cbaff557562506c192da7560a90395e9918a418e257a0c0cda9f5e3ac92107ec0789f8f23ad942313bd8cdebc95031d0adef1032bf6142bc7
   languageName: node
   linkType: hard
 
