@@ -36,57 +36,13 @@
 				/>
 			</div>
 			<div v-else class="tl _block">
-				<swiper :space-between="20">
+				<swiper :modules="[Pagination, Virtual]" :space-between="20" virtual>
 					<swiper-slide>
 						<XTimeline
 							ref="tl"
-							key="home"
+							:key="src"
 							class="tl"
-							src="home"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-					</swiper-slide>
-					<swiper-slide>
-						<XTimeline
-							v-if="isLocalTimelineAvailable"
-							ref="tl"
-							key="local"
-							class="tl"
-							src="local"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-					</swiper-slide>
-					<swiper-slide>
-						<XTimeline
-							v-if="isRecommendedTimelineAvailable"
-							ref="tl"
-							key="recommended"
-							class="tl"
-							src="recommended"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-					</swiper-slide>
-					<swiper-slide>
-						<XTimeline
-							v-if="isLocalTimelineAvailable"
-							ref="tl"
-							key="social"
-							class="tl"
-							src="social"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-					</swiper-slide>
-					<swiper-slide>
-						<XTimeline
-							v-if="isGlobalTimelineAvailable"
-							ref="tl"
-							key="global"
-							class="tl"
-							src="global"
+							:src="src"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -100,6 +56,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, computed, watch, ref } from 'vue';
+import { Pagination, Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTimeline from '@/components/timeline.vue';
 import XPostForm from '@/components/post-form.vue';
@@ -125,7 +82,6 @@ const isRecommendedTimelineAvailable =
 const isGlobalTimelineAvailable =
 	!instance.disableGlobalTimeline ||
 	($i != null && ($i.isModerator || $i.isAdmin));
-const enableGuestTimeline = instance.enableGuestTimeline;
 const keymap = {
 	t: focus,
 };
@@ -286,7 +242,7 @@ definePageMetadata(
 						: src === 'global'
 							? 'fas fa-globe'
 							: 'fas fa-home',
-	}))
+	})),
 );
 </script>
 
