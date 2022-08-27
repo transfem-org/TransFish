@@ -36,13 +36,22 @@
 				/>
 			</div>
 			<div v-else class="tl _block">
-				<swiper :modules="[Pagination, Virtual]" :space-between="20" virtual>
-					<swiper-slide>
+				<swiper
+					:modules="[Pagination, Virtual]"
+					:space-between="20"
+					:virtual="true"
+					@swiper="setSwiperRef"
+				>
+					<swiper-slide
+						v-for="index in timelines"
+						:key="index"
+						:virtual-index="index"
+					>
 						<XTimeline
 							ref="tl"
-							:key="src"
+							:key="index"
 							class="tl"
-							:src="src"
+							:src="index"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -70,6 +79,7 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/pagination';
+import 'swiper/css/virtual';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
@@ -86,7 +96,6 @@ const keymap = {
 	t: focus,
 };
 
-const DESKTOP_THRESHOLD = 1100;
 const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
@@ -244,6 +253,32 @@ definePageMetadata(
 							: 'fas fa-home',
 	})),
 );
+
+let timelines = ['home'];
+
+if (isLocalTimelineAvailable) {
+	timelines.push('local');
+}
+if (isRecommendedTimelineAvailable) {
+	timelines.push('recommended');
+}
+if (isLocalTimelineAvailable) {
+	timelines.push('social');
+}
+if (isGlobalTimelineAvailable) {
+	timelines.push('global');
+}
+
+let swiperRef = null;
+
+const setSwiperRef = (swiper) => {
+	swiperRef = swiper;
+};
+
+const slideTo = (index) => {
+	swiperRef.slideTo(index - 1, 0);
+};
+
 </script>
 
 <style lang="scss" scoped>

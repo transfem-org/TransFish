@@ -1,6 +1,13 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header>
+		<MkPageHeader
+			v-model:tab="tab"
+			:actions="headerActions"
+			:tabs="headerTabs"
+			:display-my-avatar="true"
+		/>
+	</template>
 	<MkSpacer :content-max="800">
 		<div v-if="tab === 'all' || tab === 'unread'">
 			<XNotifications class="notifications" :include-types="includeTypes" :unread-only="unreadOnly"/>
