@@ -4,7 +4,7 @@
 	"description": "An open source, decentralized social media platform that's free forever!",
 	"start_url": "/",
 	"display": "standalone",
-	"background_color": "#6e6a86",
+	"background_color": "#1f1d2e",
 	"theme_color": "#31748f",
 	"orientation": "portrait-primary",
 	"icons": [
