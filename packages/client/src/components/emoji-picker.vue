@@ -46,7 +46,7 @@
 			</section>
 
 			<section>
-				<header class="_acrylic"><i class="far fa-clock fa-fw"></i> {{ i18n.ts.recentUsed }}</header>
+				<header><i class="far fa-clock fa-fw"></i> {{ i18n.ts.recentUsed }}</header>
 				<div class="body">
 					<button
 						v-for="emoji in recentlyUsedEmojis"
@@ -60,11 +60,11 @@
 			</section>
 		</div>
 		<div v-once class="group">
-			<header class="_acrylic">{{ i18n.ts.customEmojis }}</header>
+			<header>{{ i18n.ts.customEmojis }}</header>
 			<XSection v-for="category in customEmojiCategories" :key="'custom:' + category" :initial-shown="false" :emojis="customEmojis.filter(e => e.category === category).map(e => ':' + e.name + ':')" @chosen="chosen">{{ category || i18n.ts.other }}</XSection>
 		</div>
 		<div v-once class="group">
-			<header class="_acrylic">{{ i18n.ts.emoji }}</header>
+			<header>{{ i18n.ts.emoji }}</header>
 			<XSection v-for="category in categories" :key="category" :emojis="emojilist.filter(e => e.category === category).map(e => e.char)" @chosen="chosen">{{ category }}</XSection>
 		</div>
 	</div>
