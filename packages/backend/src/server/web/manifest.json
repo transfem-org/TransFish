@@ -37,7 +37,7 @@
 		},
 		{
 			"src": "/static-assets/screenshots/2.webp",
-			"sizes": "1280x720",
+			"sizes": "1195x579",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Posts"
