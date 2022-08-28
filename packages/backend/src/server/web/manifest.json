@@ -1,6 +1,7 @@
 {
 	"short_name": "Calckey",
 	"name": "Calckey",
+	"description": "An open source, decentralized social media platform that's free forever!",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#6e6a86",
