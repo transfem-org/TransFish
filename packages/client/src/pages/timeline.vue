@@ -64,11 +64,11 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, watch, ref } from 'vue';
+import { defineAsyncComponent, computed, watch } from 'vue';
 import { Pagination, Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import XTimeline from '@/components/timeline.vue';
-import XPostForm from '@/components/post-form.vue';
+import XTimeline from '@/components/MkTimeline.vue';
+import XPostForm from '@/components/MkPostForm.vue';
 import { scroll } from '@/scripts/scroll';
 import * as os from '@/os';
 import { defaultStore } from '@/store';
