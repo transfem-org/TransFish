@@ -25,7 +25,7 @@
 					{{ i18n.ts.newNoteRecived }}
 				</button>
 			</div>
-			<div v-if="!isMobile" class="tl _block">
+			<!-- <div v-if="!isMobile" class="tl _block">
 				<XTimeline
 					ref="tl"
 					:key="src"
@@ -34,13 +34,14 @@
 					:sound="true"
 					@queue="queueUpdated"
 				/>
-			</div>
-			<div v-else class="tl _block">
+			</div> *v-else on next div* -->
+			<div class="tl _block">
 				<swiper
 					:modules="[Pagination, Virtual]"
 					:space-between="20"
 					:virtual="true"
 					@swiper="setSwiperRef"
+					@slide-change="onSlideChange"
 				>
 					<swiper-slide
 						v-for="index in timelines"
@@ -79,7 +80,7 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/pagination';
-import 'swiper/css/virtual';
+import 'swiper/scss/virtual';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
@@ -148,7 +149,7 @@ async function chooseAntenna(ev: MouseEvent): Promise<void> {
 }
 
 function saveSrc(
-	newSrc: 'home' | 'local' | 'recommended' | 'social' | 'global'
+	newSrc: 'home' | 'local' | 'recommended' | 'social' | 'global',
 ): void {
 	defaultStore.set('tl', {
 		...defaultStore.state.tl,
@@ -271,13 +272,17 @@ if (isGlobalTimelineAvailable) {
 
 let swiperRef = null;
 
-const setSwiperRef = (swiper) => {
+function setSwiperRef(swiper) {
 	swiperRef = swiper;
-};
+}
 
-const slideTo = (index) => {
-	swiperRef.slideTo(index - 1, 0);
-};
+function onSlideChange() {
+	if (swiperRef) {
+		const index = swiperRef.activeIndex;
+		saveSrc(timelines[swiperRef.activeIndex]);
+		swiperRef.slideTo(index - 1, 0);
+	}
+}
 
 </script>
 
