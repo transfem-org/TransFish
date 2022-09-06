@@ -50,9 +50,9 @@
 					>
 						<XTimeline
 							ref="tl"
-							:key="index"
+							:key="src"
 							class="tl"
-							:src="index"
+							:src="src"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
