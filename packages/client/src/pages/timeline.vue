@@ -114,7 +114,11 @@ const rootEl = $ref<HTMLElement>();
 let queue = $ref(0);
 const src = $computed({
 	get: () => defaultStore.reactiveState.tl.value.src,
-	set: (x) => saveSrc(x),
+	set: (x) => {
+		saveSrc(x);
+		console.log('set src', x);
+		syncSlide(x);
+	},
 });
 
 watch($$(src), () => (queue = 0));
@@ -277,11 +281,11 @@ function setSwiperRef(swiper) {
 }
 
 function onSlideChange() {
-	if (swiperRef) {
-		const index = swiperRef.activeIndex;
-		saveSrc(timelines[swiperRef.activeIndex]);
-		swiperRef.slideTo(index - 1, 0);
-	}
+	saveSrc(timelines[swiperRef.activeIndex]);
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
 }
 
 </script>
