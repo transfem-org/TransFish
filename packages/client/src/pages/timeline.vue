@@ -97,6 +97,21 @@ const keymap = {
 	t: focus,
 };
 
+let timelines = ['home'];
+
+if (isLocalTimelineAvailable) {
+	timelines.push('local');
+}
+if (isRecommendedTimelineAvailable) {
+	timelines.push('recommended');
+}
+if (isLocalTimelineAvailable) {
+	timelines.push('social');
+}
+if (isGlobalTimelineAvailable) {
+	timelines.push('global');
+}
+
 const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
@@ -116,8 +131,7 @@ const src = $computed({
 	get: () => defaultStore.reactiveState.tl.value.src,
 	set: (x) => {
 		saveSrc(x);
-		console.log('set src', x);
-		syncSlide(x);
+		syncSlide(timelines.indexOf(x));
 	},
 });
 
@@ -258,21 +272,6 @@ definePageMetadata(
 							: 'fas fa-home',
 	})),
 );
-
-let timelines = ['home'];
-
-if (isLocalTimelineAvailable) {
-	timelines.push('local');
-}
-if (isRecommendedTimelineAvailable) {
-	timelines.push('recommended');
-}
-if (isLocalTimelineAvailable) {
-	timelines.push('social');
-}
-if (isGlobalTimelineAvailable) {
-	timelines.push('global');
-}
 
 let swiperRef = null;
 
