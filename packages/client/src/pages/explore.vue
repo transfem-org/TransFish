@@ -77,6 +77,7 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts.users,
 }, {
 	key: 'search',
+	icon: 'fas fa-magnifying-glass',
 	title: i18n.ts.search,
 }]);
 

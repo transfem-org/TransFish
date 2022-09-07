@@ -93,17 +93,23 @@ const headerActions = $computed(() => [tab === 'all' ? {
 const headerTabs = $computed(() => [{
 	key: 'all',
 	title: i18n.ts.all,
+	icon: 'fas fa-bell',
+	iconOnly: true,
 }, {
 	key: 'unread',
 	title: i18n.ts.unread,
+	icon: 'fas fa-exclamation',
+	iconOnly: true,
 }, {
 	key: 'mentions',
 	title: i18n.ts.mentions,
 	icon: 'fas fa-at',
+	iconOnly: true,
 }, {
 	key: 'directNotes',
 	title: i18n.ts.directNotes,
 	icon: 'fas fa-envelope',
+	iconOnly: true,
 }]);
 
 definePageMetadata(computed(() => ({

@@ -115,6 +115,7 @@ const headerActions = $computed(() => []);
 let theTabs = [{
 	key: 'overview',
 	title: i18n.ts.overview,
+	icon: 'fas fa-sitemap',
 }, {
 	key: 'emojis',
 	title: i18n.ts.customEmojis,

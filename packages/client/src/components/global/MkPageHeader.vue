@@ -14,16 +14,17 @@
 				<div v-if="!narrow && metadata.subtitle" class="subtitle">
 					{{ metadata.subtitle }}
 				</div>
-				<div v-if="narrow && hasTabs" class="subtitle activeTab">
+				<!-- <div v-if="narrow && hasTabs" class="subtitle activeTab">
 					{{ tabs.find(tab => tab.key === props.tab)?.title }}
 					<i class="chevron fas fa-chevron-down"></i>
-				</div>
+				</div> -->
 			</div>
 		</div>
-		<div v-if="!narrow || hideTitle" class="tabs">
+		<div v-if="hideTitle" class="tabs"> <!-- v-if="!narrow || hideTitle" -->
+			<!-- eslint-disable-next-line vue/require-v-for-key -->
 			<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
 				<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
-				<span v-if="!tab.iconOnly" class="title">{{ tab.title }}</span>
+				<span v-if="!tab.iconOnly && !narrow" class="title">{{ tab.title }}</span>
 			</button>
 			<div ref="tabHighlightEl" class="highlight"></div>
 		</div>
