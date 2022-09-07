@@ -45,10 +45,16 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
-let tab = $ref('all');
 let includeTypes = $ref<string[] | null>(null);
 let unreadOnly = $computed(() => tab === 'unread');
 os.api('notifications/mark-all-as-read');
+
+const tab = $computed({
+	get: () => 'all',
+	set: (x) => {
+		syncSlide(['all', 'unread', 'mentions', 'directNotes'].indexOf(x));
+	},
+});
 
 const MOBILE_THRESHOLD = 500;
 const isMobile = ref(
