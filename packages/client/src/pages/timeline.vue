@@ -37,7 +37,7 @@
 			</div> *v-else on next div* -->
 			<div class="tl _block">
 				<swiper
-					:modules="[Pagination, Virtual]"
+					:modules="[Virtual]"
 					:space-between="20"
 					:virtual="true"
 					@swiper="setSwiperRef"
@@ -66,7 +66,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, computed, watch, ref } from 'vue';
-import { Pagination, Virtual } from 'swiper';
+import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTimeline from '@/components/MkTimeline.vue';
 import XPostForm from '@/components/MkPostForm.vue';
@@ -79,7 +79,6 @@ import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
-import 'swiper/scss/pagination';
 import 'swiper/scss/virtual';
 
 const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
@@ -128,11 +127,7 @@ const rootEl = $ref<HTMLElement>();
 
 let queue = $ref(0);
 const src = $computed({
-	get: () => {
-		const lastSrc = defaultStore.reactiveState.tl.value.src;
-		syncSlide(timelines.indexOf(lastSrc));
-		return lastSrc;
-	},
+	get: () => defaultStore.reactiveState.tl.value.src,
 	set: (x) => {
 		saveSrc(x);
 		syncSlide(timelines.indexOf(x));

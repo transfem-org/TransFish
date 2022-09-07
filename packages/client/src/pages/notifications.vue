@@ -9,15 +9,25 @@
 		/>
 	</template>
 	<MkSpacer :content-max="800">
-		<div v-if="tab === 'all' || tab === 'unread'">
-			<XNotifications class="notifications" :include-types="includeTypes" :unread-only="unreadOnly"/>
-		</div>
-		<div v-else-if="tab === 'mentions'">
-			<XNotes :pagination="mentionsPagination"/>
-		</div>
-		<div v-else-if="tab === 'directNotes'">
-			<XNotes :pagination="directNotesPagination"/>
-		</div>
+		<swiper
+			:modules="[Virtual]"
+			:space-between="20"
+			:virtual="true"
+			@swiper="setSwiperRef"
+		>
+			<swiper-slide>
+				<XNotifications class="notifications" :include-types="includeTypes" :unread-only="false"/>
+			</swiper-slide>
+			<swiper-slide>
+				<XNotifications class="notifications" :include-types="includeTypes" :unread-only="true"/>
+			</swiper-slide>
+			<swiper-slide>
+				<XNotes :pagination="mentionsPagination"/>
+			</swiper-slide>
+			<swiper-slide>
+				<XNotes :pagination="directNotesPagination"/>
+			</swiper-slide>
+		</swiper>
 	</MkSpacer>
 </MkStickyContainer>
 </template>
@@ -25,13 +35,16 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { notificationTypes } from 'misskey-js';
+import { Virtual } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import XNotifications from '@/components/MkNotifications.vue';
 import XNotes from '@/components/MkNotes.vue';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
-
+import 'swiper/scss';
+import 'swiper/scss/virtual';
 let tab = $ref('all');
 let includeTypes = $ref<string[] | null>(null);
 let unreadOnly = $computed(() => tab === 'unread');
@@ -39,7 +52,7 @@ os.api('notifications/mark-all-as-read');
 
 const MOBILE_THRESHOLD = 500;
 const isMobile = ref(
-	deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD
+	deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD,
 );
 window.addEventListener('resize', () => {
 	isMobile.value =
@@ -111,6 +124,16 @@ const headerTabs = $computed(() => [{
 	icon: 'fas fa-envelope',
 	iconOnly: true,
 }]);
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
+}
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.notifications,
