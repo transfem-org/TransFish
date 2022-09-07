@@ -6,7 +6,7 @@
 	<template v-if="metadata">
 		<div v-if="!hideTitle" class="titleContainer" @click="showTabsPopup">
 			<MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
-			<i v-else-if="metadata.icon" class="icon" :class="metadata.icon"></i>
+			<i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
 
 			<div class="title">
 				<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
@@ -18,7 +18,7 @@
 		</div>
 		<div class="tabs">
 			<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
-				<i v-if="tab.icon && !narrow" class="icon" :class="tab.icon"></i>
+				<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
 				<span v-if="!tab.iconOnly && !narrow" class="title">{{ tab.title }}</span>
 			</button>
 			<div ref="tabHighlightEl" class="highlight"></div>
