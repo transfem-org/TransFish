@@ -10,7 +10,7 @@
 
 			<div class="title">
 				<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
-				<div v-else-if="metadata.title" class="title">{{ metadata.title }}</div>
+				<div v-else-if="!narrow && metadata.title" class="title">{{ metadata.title }}</div>
 				<div v-if="!narrow && metadata.subtitle" class="subtitle">
 					{{ metadata.subtitle }}
 				</div>
@@ -23,7 +23,7 @@
 		<div class="tabs">
 			<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
 				<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
-			<span v-if="!tab.iconOnly && !narrow" class="title">{{ tab.title }}</span>
+				<span v-if="!tab.iconOnly && !narrow" class="title">{{ tab.title }}</span>
 			</button>
 			<div ref="tabHighlightEl" class="highlight"></div>
 		</div>
