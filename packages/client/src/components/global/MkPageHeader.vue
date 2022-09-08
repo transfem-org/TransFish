@@ -327,8 +327,8 @@ onUnmounted(() => {
 
 	> .tabs {
 		position: relative;
-		margin-left: 16px;
-		font-size: 0.9em;
+		width: 100%;
+		font-size: 1em;
 		overflow: auto;
 		white-space: nowrap;
 

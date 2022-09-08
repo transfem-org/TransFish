@@ -1,6 +1,6 @@
 {
 	"name": "calckey",
-	"version": "12.118.1-calc.2-beta.2-rc.16",
+	"version": "12.118.1-calc.2-beta.2-rc.17",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
@@ -54,7 +54,7 @@
 		"seedrandom": "^3.0.5"
 	},
 	"devDependencies": {
-		"@swc/core": "^1.2.244",
+		"@swc/core": "^1.2.248",
 		"@types/gulp": "4.0.9",
 		"@types/gulp-rename": "2.0.1",
 		"@typescript-eslint/parser": "5.36.2",
