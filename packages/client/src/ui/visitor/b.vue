@@ -52,6 +52,7 @@ import XKanban from './kanban.vue';
 import { host, instanceName } from '@/config';
 import { search } from '@/scripts/search';
 import * as os from '@/os';
+import { instance } from '@/instance';
 import MkPagination from '@/components/MkPagination.vue';
 import XSigninDialog from '@/components/MkSigninDialog.vue';
 import XSignupDialog from '@/components/MkSignupDialog.vue';
