@@ -60,11 +60,12 @@ const props = defineProps<{
 }>();
 
 let featured = $ref('featured');
+const tabs = ['featured', 'users', 'search'];
 
-const tab = $computed({
+let tab = $computed({
 	get: () => featured,
 	set: (x) => {
-		syncSlide(['featured', 'users', 'search'].indexOf(x));
+		syncSlide(tabs.indexOf(x));
 	},
 });
 
@@ -113,7 +114,7 @@ function setSwiperRef(swiper) {
 }
 
 function onSlideChange() {
-	saveSrc(timelines[swiperRef.activeIndex]);
+	tab = tabs[swiperRef.activeIndex];
 }
 
 function syncSlide(index) {
