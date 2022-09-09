@@ -95,6 +95,21 @@ definePageMetadata(computed(() => ({
 	title: i18n.ts.pages,
 	icon: 'fas fa-sticky-note',
 })));
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
+}
+
+function onSlideChange() {
+	tab = tabs[swiperRef.activeIndex];
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
+}
 </script>
 
 <style lang="scss" scoped>
