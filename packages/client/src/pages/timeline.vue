@@ -276,7 +276,6 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(timelines.indexOf(src));
 }
 
 function onSlideChange() {
