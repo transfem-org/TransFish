@@ -10,8 +10,12 @@
 		"build": "tsc -p tsconfig.json || echo done. && tsc-alias -p tsconfig.json",
 		"watch": "node watch.mjs",
 		"lint": "eslint --quiet \"src/**/*.ts\"",
-		"mocha": "NODE_ENV=test TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
-		"test": "yarn mocha"
+		"mocha": "cross-env NODE_ENV=test TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
+		"test": "npm run mocha"
+	},
+	"resolutions": {
+		"chokidar": "^3.3.1",
+		"lodash": "^4.17.21"
 	},
 	"optionalDependencies": {
 		"@tensorflow/tfjs-node": "3.20.0"
@@ -113,7 +117,7 @@
 		"tsc-alias": "1.7.0",
 		"tsconfig-paths": "4.1.0",
 		"twemoji-parser": "14.0.0",
-		"typeorm": "^0.3.9",
+		"typeorm": "0.3.9",
 		"ulid": "2.3.0",
 		"unzipper": "0.10.11",
 		"uuid": "8.3.2",

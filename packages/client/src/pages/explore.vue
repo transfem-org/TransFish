@@ -43,7 +43,7 @@ import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XFeatured from './explore.featured.vue';
 import XUsers from './explore.users.vue';
-import MkFolder from '@/components/ui/folder.vue';
+import MkFolder from '@/components/MkFolder.vue';
 import MkInput from '@/components/form/input.vue';
 import MkRadios from '@/components/form/radios.vue';
 import number from '@/filters/number';
