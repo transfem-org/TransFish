@@ -276,6 +276,7 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
+	syncSlide(timelines.indexOf(src));
 }
 
 function onSlideChange() {
@@ -286,7 +287,6 @@ function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
 
-syncSlide(timelines.indexOf(src));
 
 </script>
 
