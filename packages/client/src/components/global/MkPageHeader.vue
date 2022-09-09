@@ -10,7 +10,7 @@
 
 			<div class="title">
 				<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
-				<div v-else-if="!narrow && metadata.title" class="title">{{ metadata.title }}</div>
+				<div v-else-if="metadata.title && !(tabs != null && tabs.length > 0 && narrow)" class="title">{{ metadata.title }}</div>
 				<div v-if="!narrow && metadata.subtitle" class="subtitle">
 					{{ metadata.subtitle }}
 				</div>

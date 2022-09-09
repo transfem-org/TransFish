@@ -28,7 +28,6 @@
 							<option value="remote">{{ i18n.ts.remote }}</option>
 						</MkRadios>
 					</div>
-
 					<XUserList v-if="searchQuery" ref="searchEl" class="_gap" :pagination="searchPagination"/>
 				</MkSpacer>
 			</swiper-slide>
@@ -59,16 +58,9 @@ const props = defineProps<{
 	tag?: string;
 }>();
 
-let featured = $ref('featured');
 const tabs = ['featured', 'users', 'search'];
 
-let tab = $computed({
-	get: () => featured,
-	set: (x) => {
-		syncSlide(tabs.indexOf(x));
-	},
-});
-
+let tab = $ref('featured');
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let searchQuery = $ref(null);
 let searchOrigin = $ref('combined');
