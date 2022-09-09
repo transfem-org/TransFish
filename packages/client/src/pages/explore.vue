@@ -59,10 +59,10 @@ const props = defineProps<{
 	tag?: string;
 }>();
 
-// let tab = $ref('featured');
+let featured = $ref('featured');
 
 const tab = $computed({
-	get: () => $ref('featured'),
+	get: () => featured,
 	set: (x) => {
 		syncSlide(['featured', 'users', 'search'].indexOf(x));
 	},
