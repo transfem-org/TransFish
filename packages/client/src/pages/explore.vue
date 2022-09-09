@@ -111,6 +111,7 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
 }
 
 function onSlideChange() {
