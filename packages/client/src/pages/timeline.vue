@@ -127,7 +127,7 @@ const rootEl = $ref<HTMLElement>();
 
 let queue = $ref(0);
 const src = $computed({
-	get: () => getSrc(),
+	get: () => defaultStore.state.tl.src,
 	set: (x) => {
 		saveSrc(x);
 		syncSlide(timelines.indexOf(x));
@@ -278,12 +278,6 @@ function setSwiperRef(swiper) {
 	swiperRef = swiper;
 }
 
-function getSrc(): 'home' | 'local' | 'recommended' | 'social' | 'global' {
-	const dSrc = defaultStore.state.tl.src;
-	syncSlide(dSrc);
-	return dSrc;
-}
-
 function onSlideChange() {
 	saveSrc(timelines[swiperRef.activeIndex]);
 }
@@ -291,6 +285,8 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+syncSlide(timelines.indexOf(src));
 
 </script>
 

@@ -62,7 +62,7 @@ const props = defineProps<{
 // let tab = $ref('featured');
 
 const tab = $computed({
-	get: () => getSrc(),
+	get: () => $ref('featured'),
 	set: (x) => {
 		syncSlide(['featured', 'users', 'search'].indexOf(x));
 	},
@@ -118,12 +118,6 @@ function onSlideChange() {
 
 function syncSlide(index) {
 	swiperRef.slideTo(index);
-}
-
-function getSrc() {
-	const dSrc = $ref('featured');
-	syncSlide(dSrc);
-	return dSrc;
 }
 
 </script>
