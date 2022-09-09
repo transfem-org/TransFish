@@ -1,15 +1,15 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
-	<swiper
-		:modules="[Virtual]"
-		:space-between="20"
-		:virtual="true"
-		@swiper="setSwiperRef"
-		@slide-change="onSlideChange"
-	>
-		<swiper-slide>
-			<MkSpacer :content-max="600" :margin-min="20">
+	<MkSpacer :content-max="600" :margin-min="20">
+		<swiper
+			:modules="[Virtual]"
+			:space-between="20"
+			:virtual="true"
+			@swiper="setSwiperRef"
+			@slide-change="onSlideChange"
+		>
+			<swiper-slide>
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
@@ -74,24 +74,18 @@
 						</div>
 					</FormSection>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="1000" :margin-min="20">
+			</swiper-slide>
+			<swiper-slide>
 				<XEmojis/>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="1000" :margin-min="20">
+			</swiper-slide>
+			<swiper-slide>
 				<XFederation/>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="1000" :margin-min="20">
+			</swiper-slide>
+			<swiper-slide>
 				<MkInstanceStats :chart-limit="500" :detailed="true"/>
-			</MkSpacer>
-		</swiper-slide>
-	</swiper>
+			</swiper-slide>
+		</swiper>
+	</MkSpacer>
 </MkStickyContainer>
 </template>
 

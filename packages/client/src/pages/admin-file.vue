@@ -1,15 +1,15 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
-	<swiper
-		:modules="[Virtual]"
-		:space-between="20"
-		:virtual="true"
-		@swiper="setSwiperRef"
-		@slide-change="onSlideChange"
-	>
-		<swiper-slide>
-			<MkSpacer :content-max="600" :margin-min="16" :margin-max="32">
+	<MkSpacer :content-max="600" :margin-min="16" :margin-max="32">
+		<swiper
+			:modules="[Virtual]"
+			:space-between="20"
+			:virtual="true"
+			@swiper="setSwiperRef"
+			@slide-change="onSlideChange"
+		>
+			<swiper-slide>
 				<div class="cxqhhsmd _formRoot">
 					<a class="_formBlock thumbnail" :href="file.url" target="_blank">
 						<MkDriveFileThumbnail class="thumbnail" :file="file" fit="contain"/>
@@ -47,10 +47,8 @@
 						<MkButton danger @click="del"><i class="fas fa-trash-alt"></i> {{ i18n.ts.delete }}</MkButton>
 					</div>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="600" :margin-min="16" :margin-max="32">
+			</swiper-slide>
+			<swiper-slide>
 				<div v-if="info" class="_formRoot">
 					<MkInfo v-if="!iAmAdmin" warn>{{ i18n.ts.requireAdminForView }}</MkInfo>
 					<MkKeyValue v-if="info.requestIp" class="_formBlock _monospace" :copy="info.requestIp" oneline>
@@ -65,17 +63,15 @@
 						</MkKeyValue>
 					</FormSection>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="600" :margin-min="16" :margin-max="32">
+			</swiper-slide>
+			<swiper-slide>
 				<div class="_formRoot">
 					<MkObjectView v-if="info" tall :value="info">
 					</MkObjectView>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-	</swiper>
+			</swiper-slide>
+		</swiper>
+	</MkSpacer>
 </MkStickyContainer>
 </template>
 

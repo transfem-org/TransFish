@@ -1,42 +1,38 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
-	<swiper
-		:modules="[Virtual]"
-		:space-between="20"
-		:virtual="true"
-		@swiper="setSwiperRef"
-		@slide-change="onSlideChange"
-	>
-		<swiper-slide>
-			<MkSpacer :content-max="700">
+	<MkSpacer :content-max="700">
+		<swiper
+			:modules="[Virtual]"
+			:space-between="20"
+			:virtual="true"
+			@swiper="setSwiperRef"
+			@slide-change="onSlideChange"
+		>
+			<swiper-slide>
 				<div class="_content grwlizim featured">
 					<MkPagination v-slot="{items}" :pagination="featuredPagination">
 						<MkChannelPreview v-for="channel in items" :key="channel.id" class="_gap" :channel="channel"/>
 					</MkPagination>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="700">
+			</swiper-slide>
+			<swiper-slide>
 				<div class="_content grwlizim following">
 					<MkPagination v-slot="{items}" :pagination="followingPagination">
 						<MkChannelPreview v-for="channel in items" :key="channel.id" class="_gap" :channel="channel"/>
 					</MkPagination>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-		<swiper-slide>
-			<MkSpacer :content-max="700">
+			</swiper-slide>
+			<swiper-slide>
 				<div class="_content grwlizim owned">
 					<MkButton class="new" @click="create()"><i class="fas fa-plus"></i></MkButton>
 					<MkPagination v-slot="{items}" :pagination="ownedPagination">
 						<MkChannelPreview v-for="channel in items" :key="channel.id" class="_gap" :channel="channel"/>
 					</MkPagination>
 				</div>
-			</MkSpacer>
-		</swiper-slide>
-	</swiper>
+			</swiper-slide>
+		</swiper>
+	</MkSpacer>
 </MkStickyContainer>
 </template>
 
