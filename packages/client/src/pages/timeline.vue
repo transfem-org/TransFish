@@ -127,7 +127,7 @@ const rootEl = $ref<HTMLElement>();
 
 let queue = $ref(0);
 const src = $computed({
-	get: () => defaultStore.state.tl.src,
+	get: () => defaultStore.reactiveState.tl.value.src,
 	set: (x) => {
 		saveSrc(x);
 		syncSlide(timelines.indexOf(x));
