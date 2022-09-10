@@ -989,7 +989,7 @@ _registry:
   domain: "Domain"
   createKey: "Create key"
 _aboutMisskey:
-  about: "Calckey is a fork of Misskey made by ThatOneCalculator being developed since 2022."
+  about: "Calckeyは、2022年から開発されているThatOneCalculator社製のMisskeyのforkです。"
   contributors: "Main contributors"
   allContributors: "All contributors"
   source: "Source code"
