@@ -23,6 +23,7 @@
 
 - Better Messaging UI
   - Videos can be played in DMs
+- Make your password hasn't been pwned
 - OCR image captioning
 - Admin custom CSS
 - Add back time machine (jump to date)

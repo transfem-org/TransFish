@@ -3875,6 +3875,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"charenc@npm:>= 0.0.1":
+  version: 0.0.2
+  resolution: "charenc@npm:0.0.2"
+  checksum: 81dcadbe57e861d527faf6dd3855dc857395a1c4d6781f4847288ab23cffb7b3ee80d57c15bba7252ffe3e5e8019db767757ee7975663ad2ca0939bb8fcaf2e5
+  languageName: node
+  linkType: hard
+
 "chart.js@npm:3.9.1":
   version: 3.9.1
   resolution: "chart.js@npm:3.9.1"
@@ -4136,6 +4143,7 @@ __metadata:
     vanilla-tilt: 1.7.2
     vite: ^3.1.0
     vue: 3.2.39
+    vue-isyourpasswordsafe: ^2.0.0
     vue-plyr: ^7.0.0
     vue-prism-editor: 2.0.0-alpha.2
     vue3-lottie: ^2.3.0
@@ -4703,6 +4711,13 @@ __metadata:
     shebang-command: ^2.0.0
     which: ^2.0.1
   checksum: 671cc7c7288c3a8406f3c69a3ae2fc85555c04169e9d611def9a675635472614f1c0ed0ef80955d5b6d4e724f6ced67f0ad1bb006c2ea643488fcfef994d7f52
+  languageName: node
+  linkType: hard
+
+"crypt@npm:>= 0.0.1":
+  version: 0.0.2
+  resolution: "crypt@npm:0.0.2"
+  checksum: baf4c7bbe05df656ec230018af8cf7dbe8c14b36b98726939cef008d473f6fe7a4fad906cfea4062c93af516f1550a3f43ceb4d6615329612c6511378ed9fe34
   languageName: node
   linkType: hard
 
@@ -13729,6 +13744,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sha1@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "sha1@npm:1.1.1"
+  dependencies:
+    charenc: ">= 0.0.1"
+    crypt: ">= 0.0.1"
+  checksum: da9f47e949988e2f595ef19733fd1dc736866ef6de4e421a55c13b444c03ae532e528b7350ae6ea55d9fb053be61d4648ec2cd5250d46cfdbdf4f6b4e763713d
+  languageName: node
+  linkType: hard
+
 "sharp@npm:0.30.7":
   version: 0.30.7
   resolution: "sharp@npm:0.30.7"
@@ -15782,6 +15807,15 @@ __metadata:
   peerDependencies:
     eslint: ">=6.0.0"
   checksum: 61248eb504b8d0cbc95ed3f7ec6b11b72782cd76e4049798626f9c09031d620691a967231985c79d8ece8b04864797e465b7f47bcf91828e18344ae3691d9066
+  languageName: node
+  linkType: hard
+
+"vue-isyourpasswordsafe@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "vue-isyourpasswordsafe@npm:2.0.0"
+  dependencies:
+    sha1: ^1.1.1
+  checksum: c85fe2609d12112dd68896e6d33a1138a63d93ca4c4817b4142a89dc71d09f7bf5ff9a55bdcc8220727f9c00ed704376028bd068bd52f24ba020a560d4f13326
   languageName: node
   linkType: hard
 
