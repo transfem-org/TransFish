@@ -457,6 +457,10 @@ export const routes = [{
 	component: page(() => import('./pages/my-groups/index.vue')),
 	loginRequired: true,
 }, {
+	path: '/my/groups/:groupId',
+	component: page(() => import('./pages/my-groups/index.vue')),
+	loginRequired: true,
+}, {
 	path: '/my/antennas/create',
 	component: page(() => import('./pages/my-antennas/create.vue')),
 	loginRequired: true,
