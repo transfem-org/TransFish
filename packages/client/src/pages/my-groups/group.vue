@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import MkButton from '@/components/ui/MkButton.vue';
+import MkButton from '@/components/MkButton.vue';
 import * as os from '@/os';
 
 export default defineComponent({
