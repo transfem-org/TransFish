@@ -143,4 +143,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+._card {
+	margin-bottom: 1rem;
+	._title {
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+	._content {
+		margin: 1rem 0;
+	}
+	._footer {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
 </style>
