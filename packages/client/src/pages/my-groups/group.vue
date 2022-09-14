@@ -26,7 +26,6 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from "vue";
-import MkButton from "@/components/MkButton.vue";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { i18n } from "@/i18n";
 import { useRouter } from "@/router";
