@@ -72,7 +72,7 @@ function invite() {
 			userId: user.id
 		});
 	});
-},
+}
 
 function removeUser(user) {
 	os.api('users/groups/pull', {
@@ -81,7 +81,7 @@ function removeUser(user) {
 	}).then(() => {
 		this.users = this.users.filter(x => x.id !== user.id);
 	});
-},
+}
 
 async function renameGroup() {
 	const { canceled, result: name } = await os.inputText({
@@ -96,7 +96,7 @@ async function renameGroup() {
 	});
 
 	this.group.name = name;
-},
+}
 
 function transfer() {
 	os.selectUser().then(user => {
@@ -105,7 +105,7 @@ function transfer() {
 			userId: user.id
 		});
 	});
-},
+}
 
 async function deleteGroup() {
 	const { canceled } = await os.confirm({
