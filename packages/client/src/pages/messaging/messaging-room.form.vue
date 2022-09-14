@@ -234,15 +234,14 @@ defineExpose({
 
 <style lang="scss" scoped>
 .pemppnzi {
-	position: relative;
+	position: fixed;
 
 	> textarea {
 		cursor: auto;
 		display: block;
-		width: 100%;
-		min-width: 100%;
-		max-width: 100%;
-		min-height: 80px;
+		width: 80%;
+		min-width: 80%;
+		max-width: 80%;
 		margin: 0;
 		padding: 16px 16px 0 16px;
 		resize: none;

@@ -296,6 +296,10 @@ definePageMetadata(computed(() => !fetching ? user ? {
 	position: relative;
 	overflow: auto;
 
+	XMessage:last-of-type {
+		margin-bottom: 4rem;
+	}
+
 	> .body {
 		.more {
 			display: block;
