@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import MkButton from '@/components/MkButton.vue';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { i18n } from '@/i18n';
@@ -45,8 +45,8 @@ const props = defineProps<{
 		}
 }>();
 
-let users = [];
-let group = null;
+const users = ref<any[]>([]);
+const group = ref<any>();
 
 const router = useRouter();
 
@@ -115,7 +115,7 @@ function transfer() {
 async function deleteGroup() {
 	const { canceled } = await os.confirm({
 		type: 'warning',
-		text: i18n.ts('removeAreYouSure', { x: group.name }),
+		text: i18n.t('removeAreYouSure', { x: group.name }),
 	});
 	if (canceled) return;
 
