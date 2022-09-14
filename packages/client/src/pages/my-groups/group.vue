@@ -54,12 +54,12 @@ watch(() => props.groupId, () => {
 	fetch();
 });
 
-
 async function fetch() {
 	os.api('users/groups/show', {
 		groupId: props.groupId,
 	}).then(gp => {
 		group.value = gp;
+		console.log(gp);
 		os.api('users/show', {
 			userIds: group.userIds
 		}).then(us => {
