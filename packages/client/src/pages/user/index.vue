@@ -31,8 +31,6 @@
 	</div>
 	<MkError v-else-if="error" @retry="fetchUser()"/>
 	<MkLoading v-else/>
-	</swiper>
-	</div>
 </MkStickyContainer>
 </template>
 
