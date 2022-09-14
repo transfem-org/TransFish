@@ -4,10 +4,10 @@
 	<div class="mk-group-page">
 		<div class="_section">
 			<div class="_content" style="display: flex; gap: var(--margin); flex-wrap: wrap;">
-				<MkButton inline @click="invite()">{{ $ts.invite }}</MkButton>
-				<MkButton inline @click="renameGroup()">{{ $ts.rename }}</MkButton>
-				<MkButton inline @click="transfer()">{{ $ts.transfer }}</MkButton>
-				<MkButton inline @click="deleteGroup()">{{ $ts.delete }}</MkButton>
+				<MkButton inline @click="invite()">{{ i18n.ts.invite }}</MkButton>
+				<MkButton inline @click="renameGroup()">{{ i18n.ts.rename }}</MkButton>
+				<MkButton inline @click="transfer()">{{ i18n.ts.transfer }}</MkButton>
+				<MkButton inline @click="deleteGroup()">{{ i18n.ts.delete }}</MkButton>
 			</div>
 		</div>
 		<div class="_section members _gap">
@@ -35,14 +35,20 @@ import { computed, watch } from 'vue';
 import MkButton from '@/components/MkButton.vue';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { i18n } from '@/i18n';
+import { useRouter } from '@/router';
 import * as os from '@/os';
 
 const props = defineProps<{
 	groupId: {
 			type: string,
 			required: true,
-		},
+		}
 }>();
+
+let users = [];
+let group = null;
+
+const router = useRouter();
 
 watch(() => props.groupId, () => {
 	fetch();
@@ -50,13 +56,13 @@ watch(() => props.groupId, () => {
 
 function fetch() {
 	os.api('users/groups/show', {
-		groupId: this.groupId
-	}).then(group => {
-		this.group = group;
+		groupId: props.groupId,
+	}).then(gp => {
+		group = gp;
 		os.api('users/show', {
-			userIds: this.group.userIds
-		}).then(users => {
-			this.users = users;
+			userIds: group.userIds
+		}).then(us => {
+			users = us;
 		});
 	});
 }
@@ -64,7 +70,7 @@ function fetch() {
 function invite() {
 	os.selectUser().then(user => {
 		os.apiWithDialog('users/groups/invite', {
-			groupId: this.group.id,
+			groupId: group.id,
 			userId: user.id
 		});
 	});
@@ -72,32 +78,32 @@ function invite() {
 
 function removeUser(user) {
 	os.api('users/groups/pull', {
-		groupId: this.group.id,
+		groupId: group.id,
 		userId: user.id
 	}).then(() => {
-		this.users = this.users.filter(x => x.id !== user.id);
+		users = users.filter(x => x.id !== user.id);
 	});
 }
 
 async function renameGroup() {
 	const { canceled, result: name } = await os.inputText({
-		title: this.$ts.groupName,
-		default: this.group.name
+		title: i18n.ts.groupName,
+		default: group.name
 	});
 	if (canceled) return;
 
 	await os.api('users/groups/update', {
-		groupId: this.group.id,
+		groupId: group.id,
 		name: name
 	});
 
-	this.group.name = name;
+	group.name = name;
 }
 
 function transfer() {
 	os.selectUser().then(user => {
 		os.apiWithDialog('users/groups/transfer', {
-			groupId: this.group.id,
+			groupId: group.id,
 			userId: user.id
 		});
 	});
@@ -106,14 +112,14 @@ function transfer() {
 async function deleteGroup() {
 	const { canceled } = await os.confirm({
 		type: 'warning',
-		text: this.$t('removeAreYouSure', { x: this.group.name }),
+		text: i18n.ts('removeAreYouSure', { x: group.name }),
 	});
 	if (canceled) return;
 
 	await os.apiWithDialog('users/groups/delete', {
-		groupId: this.group.id
+		groupId: group.id,
 	});
-	this.$router.push('/my/groups');
+	router.push('/my/groups');
 }
 
 definePageMetadata(computed(() => ({
