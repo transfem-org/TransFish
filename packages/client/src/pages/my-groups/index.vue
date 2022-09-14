@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader :actions="headerActions"/></template>
 	<MkSpacer :content-max="800" :margin-min="20">
 		<MkButton primary style="margin: 0 auto var(--margin) auto;" @click="create"><i class="fas fa-plus"></i> {{ i18n.ts.createGroup }}</MkButton>
 		<MkPagination v-slot="{items}" ref="owned" :pagination="ownedPagination">
@@ -36,11 +36,8 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { i18n } from '@/i18n';
 import MkStickyContainer from '@/components/global/MkStickyContainer.vue';
 
-const tabs = ['owned', 'joined', 'invites'];
-let tab = $ref('owned');
 const owned = ref('owned');
 const joined = ref('joined');
-const invitations = ref('invitations');
 
 const ownedPagination = {
 	endpoint: 'users/groups/owned' as const,
