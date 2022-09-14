@@ -2,34 +2,30 @@
 <MkStickyContainer>
 	<template #header><MkPageHeader/></template>
 	<div class="mk-group-page">
-		<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
-			<div v-if="group" class="_section">
-				<div class="_content" style="display: flex; gap: var(--margin); flex-wrap: wrap;">
-					<MkButton inline @click="invite()">{{ $ts.invite }}</MkButton>
-					<MkButton inline @click="renameGroup()">{{ $ts.rename }}</MkButton>
-					<MkButton inline @click="transfer()">{{ $ts.transfer }}</MkButton>
-					<MkButton inline @click="deleteGroup()">{{ $ts.delete }}</MkButton>
-				</div>
+		<div class="_section">
+			<div class="_content" style="display: flex; gap: var(--margin); flex-wrap: wrap;">
+				<MkButton inline @click="invite()">{{ $ts.invite }}</MkButton>
+				<MkButton inline @click="renameGroup()">{{ $ts.rename }}</MkButton>
+				<MkButton inline @click="transfer()">{{ $ts.transfer }}</MkButton>
+				<MkButton inline @click="deleteGroup()">{{ $ts.delete }}</MkButton>
 			</div>
-		</transition>
-		<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
-			<div v-if="group" class="_section members _gap">
-				<div class="_content">
-					<div class="users">
-						<div v-for="user in users" :key="user.id" class="user _panel">
-							<MkAvatar :user="user" class="avatar" :show-indicator="true"/>
-							<div class="body">
-								<MkUserName :user="user" class="name"/>
-								<MkAcct :user="user" class="acct"/>
-							</div>
-							<div class="action">
-								<button class="_button" @click="removeUser(user)"><i class="fas fa-times"></i></button>
-							</div>
+		</div>
+		<div class="_section members _gap">
+			<div class="_content">
+				<div class="users">
+					<div v-for="user in users" :key="user.id" class="user _panel">
+						<MkAvatar :user="user" class="avatar" :show-indicator="true"/>
+						<div class="body">
+							<MkUserName :user="user" class="name"/>
+							<MkAcct :user="user" class="acct"/>
+						</div>
+						<div class="action">
+							<button class="_button" @click="removeUser(user)"><i class="fas fa-times"></i></button>
 						</div>
 					</div>
 				</div>
 			</div>
-		</transition>
+		</div>
 	</div>
 </MkStickyContainer>
 </template>
