@@ -45,7 +45,7 @@ const props = defineProps<{
 		}
 }>();
 
-const users = ref<any[]>([]);
+const users.value = ref<any[]>([]);
 const group = ref<any>();
 
 const router = useRouter();
@@ -59,11 +59,11 @@ async function fetch() {
 	os.api('users/groups/show', {
 		groupId: props.groupId,
 	}).then(gp => {
-		group = gp;
+		group.value = gp;
 		os.api('users/show', {
 			userIds: group.userIds
 		}).then(us => {
-			users = us;
+			users.value = us;
 		});
 	});
 }
@@ -84,7 +84,7 @@ function removeUser(user) {
 		groupId: group.id,
 		userId: user.id
 	}).then(() => {
-		users = users.filter(x => x.id !== user.id);
+		users.value = users.filter(x => x.id !== user.id);
 	});
 }
 
