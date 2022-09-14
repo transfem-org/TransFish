@@ -1,41 +1,44 @@
 <template>
-<div class="mk-group-page">
-	<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
-		<div v-if="group" class="_section">
-			<div class="_content" style="display: flex; gap: var(--margin); flex-wrap: wrap;">
-				<MkButton inline @click="invite()">{{ $ts.invite }}</MkButton>
-				<MkButton inline @click="renameGroup()">{{ $ts.rename }}</MkButton>
-				<MkButton inline @click="transfer()">{{ $ts.transfer }}</MkButton>
-				<MkButton inline @click="deleteGroup()">{{ $ts.delete }}</MkButton>
+<MkStickyContainer>
+	<template #header><MkPageHeader/></template>
+	<div class="mk-group-page">
+		<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
+			<div v-if="group" class="_section">
+				<div class="_content" style="display: flex; gap: var(--margin); flex-wrap: wrap;">
+					<MkButton inline @click="invite()">{{ $ts.invite }}</MkButton>
+					<MkButton inline @click="renameGroup()">{{ $ts.rename }}</MkButton>
+					<MkButton inline @click="transfer()">{{ $ts.transfer }}</MkButton>
+					<MkButton inline @click="deleteGroup()">{{ $ts.delete }}</MkButton>
+				</div>
 			</div>
-		</div>
-	</transition>
-
-	<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
-		<div v-if="group" class="_section members _gap">
-			<div class="_title">{{ $ts.members }}</div>
-			<div class="_content">
-				<div class="users">
-					<div v-for="user in users" :key="user.id" class="user _panel">
-						<MkAvatar :user="user" class="avatar" :show-indicator="true"/>
-						<div class="body">
-							<MkUserName :user="user" class="name"/>
-							<MkAcct :user="user" class="acct"/>
-						</div>
-						<div class="action">
-							<button class="_button" @click="removeUser(user)"><i class="fas fa-times"></i></button>
+		</transition>
+		<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
+			<div v-if="group" class="_section members _gap">
+				<div class="_content">
+					<div class="users">
+						<div v-for="user in users" :key="user.id" class="user _panel">
+							<MkAvatar :user="user" class="avatar" :show-indicator="true"/>
+							<div class="body">
+								<MkUserName :user="user" class="name"/>
+								<MkAcct :user="user" class="acct"/>
+							</div>
+							<div class="action">
+								<button class="_button" @click="removeUser(user)"><i class="fas fa-times"></i></button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</transition>
-</div>
+		</transition>
+	</div>
+</MkStickyContainer>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { computed, defineComponent } from 'vue';
 import MkButton from '@/components/MkButton.vue';
+import { definePageMetadata } from '@/scripts/page-metadata';\
+import { i18n } from '@/i18n';
 import * as os from '@/os';
 
 export default defineComponent({
@@ -139,39 +142,51 @@ export default defineComponent({
 		}
 	}
 });
+
+definePageMetadata(computed(() => ({
+	title: i18n.ts.members,
+	icon: 'fas fa-users',
+})));
+
 </script>
 
 <style lang="scss" scoped>
-.mk-group-page {
-	> .members {
-		> ._content {
-			> .users {
-				> .user {
-					display: flex;
-					align-items: center;
-					padding: 16px;
+	.mk-group-page {
+		> ._section {
+			> ._content {
+				padding-top: 1rem;
+				justify-content: center;
+			}
+		}
+		> .members {
+			> ._content {
+				> .users {
+					> .user {
+						display: flex;
+						align-items: center;
+						padding: 16px;
 
-					> .avatar {
-						width: 50px;
-						height: 50px;
-					}
-
-					> .body {
-						flex: 1;
-						padding: 8px;
-
-						> .name {
-							display: block;
-							font-weight: bold;
+						> .avatar {
+							width: 50px;
+							height: 50px;
 						}
 
-						> .acct {
-							opacity: 0.5;
+						> .body {
+							flex: 1;
+							padding: 8px;
+
+							> .name {
+								display: block;
+								font-weight: bold;
+							}
+
+							> .acct {
+								opacity: 0.5;
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-}
-</style>
+	</style>
