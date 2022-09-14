@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader /></template>
+	<template #header><MkPageHeader/></template>
 	<div class="mk-group-page">
 		<div class="_section">
 			<div
@@ -141,7 +141,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.members,
 		icon: "fas fa-users",
-	}))
+	})),
 );
 </script>
 
