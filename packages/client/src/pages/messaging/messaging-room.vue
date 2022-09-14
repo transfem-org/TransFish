@@ -240,7 +240,9 @@ function onDeleted(id) {
 }
 
 function thisScrollToBottom() {
-	scrollToBottom($$(rootEl).value, { behavior: 'smooth' });
+	if (window.location.href.includes('my/messaging/')) {
+		scrollToBottom($$(rootEl).value, { behavior: 'smooth' });
+	}
 }
 
 function onIndicatorClick() {
