@@ -57,20 +57,6 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => [{
-	key: 'owned',
-	icon: 'fas fa-crown',
-	title: i18n.ts.ownedGroups,
-}, {
-	key: 'joined',
-	icon: 'fas fa-hand',
-	title: i18n.ts.joinedGroups,
-}, {
-	key: 'invites',
-	icon: 'fas fa-envelope-open-text',
-	title: i18n.ts.invites,
-}]);
-
 definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.groups,
