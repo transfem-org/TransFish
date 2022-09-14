@@ -1002,7 +1002,7 @@ _registry:
   createKey: "キーを作成"
 
 _aboutMisskey:
-  about: "Misskeyはsyuiloによって2014年から開発されている、オープンソースのソフトウェアです。"
+  about: "Calckeyは、2022年から開発されているThatOneCalculator社製のMisskeyのforkです。"
   contributors: "主なコントリビューター"
   allContributors: "全てのコントリビューター"
   source: "ソースコード"
