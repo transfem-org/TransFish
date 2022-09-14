@@ -26,7 +26,6 @@
 - Make your password hasn't been pwned
 - OCR image captioning
 - Admin custom CSS
-- Add back groups
 - Add back time machine (jump to date)
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
@@ -49,6 +48,7 @@
 - Star as default reaction
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
+- Add back groups
 - MOTD (customizable by admins!)
 - Custom randomized splash icons
 - Self hosted, newly designed error images
