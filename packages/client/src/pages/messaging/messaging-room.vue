@@ -140,7 +140,7 @@ async function fetch() {
 	document.addEventListener('visibilitychange', onVisibilitychange);
 
 	nextTick(() => {
-		thisScrollToBottom();
+		// thisScrollToBottom();
 		window.setTimeout(() => {
 			fetching = false;
 		}, 300);
