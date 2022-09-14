@@ -292,13 +292,14 @@ definePageMetadata(computed(() => !fetching ? user ? {
 </script>
 
 <style lang="scss" scoped>
+
+XMessage:last-of-type {
+	margin-bottom: 4rem;
+}
+
 .mk-messaging-room {
 	position: relative;
 	overflow: auto;
-
-	XMessage:last-of-type {
-		margin-bottom: 4rem;
-	}
 
 	> .body {
 		.more {
