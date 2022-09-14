@@ -45,7 +45,7 @@ const props = defineProps<{
 		}
 }>();
 
-const users.value = ref<any[]>([]);
+const users = ref<any[]>([]);
 const group = ref<any>();
 
 const router = useRouter();
