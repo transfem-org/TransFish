@@ -534,6 +534,7 @@ router.get('(.*)', async ctx => {
 		icon: meta.iconUrl,
 		splashIcon: splashIconUrl,
 		themeColor: meta.themeColor,
+		randomMOTD: motd,
 		privateMode: meta.privateMode,
 	});
 	ctx.set('Cache-Control', 'public, max-age=3');
