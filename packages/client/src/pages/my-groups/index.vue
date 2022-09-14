@@ -1,61 +1,33 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :content-max="1000">
-		<swiper
-			:modules="[Virtual]"
-			:space-between="20"
-			:virtual="true"
-			@swiper="setSwiperRef"
-			@slide-change="onSlideChange"
-		>
-			<swiper-slide class="_content">
-				<MkButton primary style="margin: 0 auto var(--margin) auto;" @click="create"><i class="fas fa-plus"></i> {{ i18n.ts.createGroup }}</MkButton>
-				<MkPagination v-slot="{items}" ref="owned" :pagination="ownedPagination">
-					<div v-for="group in items" :key="group.id" class="_card">
-						<div class="_title"><MkA :to="`/my/groups/${ group.id }`" class="_link">{{ group.name }}</MkA></div>
-						<div class="_content">
-							<MkAvatars :user-ids="group.userIds"/>
-						</div>
-					</div>
-				</MkPagination>
-			</swiper-slide>
-			<swiper-slide class="_content">
-				<MkPagination v-slot="{items}" ref="joined" :pagination="joinedPagination">
-					<div v-for="group in items" :key="group.id" class="_card">
-						<div class="_title">{{ group.name }}</div>
-						<div class="_content">
-							<MkAvatars :user-ids="group.userIds"/>
-						</div>
-						<div class="_footer">
-							<MkButton danger @click="leave(group)">{{ i18n.ts.leaveGroup }}</MkButton>
-						</div>
-					</div>
-				</MkPagination>
-			</swiper-slide>
-			<swiper-slide class="_content">
-				<MkPagination v-slot="{items}" ref="invitations" :pagination="invitationPagination">
-					<div v-for="invitation in items" :key="invitation.id" class="_card">
-						<div class="_title">{{ invitation.group.name }}</div>
-						<div class="_content">
-							<MkAvatars :user-ids="invitation.group.userIds"/>
-						</div>
-						<div class="_footer">
-							<MkButton primary inline @click="acceptInvite(invitation)"><i class="fas fa-check"></i> {{ i18n.ts.accept }}</MkButton>
-							<MkButton primary inline @click="rejectInvite(invitation)"><i class="fas fa-ban"></i> {{ i18n.ts.reject }}</MkButton>
-						</div>
-					</div>
-				</MkPagination>
-			</swiper-slide>
-		</swiper>
+	<MkSpacer :content-max="800" :margin-min="20">
+		<MkButton primary style="margin: 0 auto var(--margin) auto;" @click="create"><i class="fas fa-plus"></i> {{ i18n.ts.createGroup }}</MkButton>
+		<MkPagination v-slot="{items}" ref="owned" :pagination="ownedPagination">
+			<div v-for="group in items" :key="group.id" class="_card">
+				<div class="_title"><MkA :to="`/my/groups/${ group.id }`" class="_link">{{ group.name }}</MkA></div>
+				<div class="_content">
+					<MkAvatars :user-ids="group.userIds"/>
+				</div>
+			</div>
+		</MkPagination>
+		<MkPagination v-slot="{items}" ref="joined" :pagination="joinedPagination">
+			<div v-for="group in items" :key="group.id" class="_card">
+				<div class="_title">{{ group.name }}</div>
+				<div class="_content">
+					<MkAvatars :user-ids="group.userIds"/>
+				</div>
+				<div class="_footer">
+					<MkButton danger @click="leave(group)">{{ i18n.ts.leaveGroup }}</MkButton>
+				</div>
+			</div>
+		</MkPagination>
 	</MkSpacer>
 </MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
 import MkPagination from '@/components/MkPagination.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkAvatars from '@/components/MkAvatars.vue';
@@ -72,17 +44,12 @@ const invitations = ref('invitations');
 
 const ownedPagination = {
 	endpoint: 'users/groups/owned' as const,
-	limit: 12,
+	limit: 10,
 };
 
 const joinedPagination = {
 	endpoint: 'users/groups/joined' as const,
-	limit: 12,
-};
-
-const invitationPagination = {
-	endpoint: 'i/user-group-invites' as const,
-	limit: 12,
+	limit: 10,
 };
 
 const headerActions = $computed(() => [
@@ -124,24 +91,6 @@ async function create() {
 	os.success();
 }
 
-function acceptInvite(invitation) {
-	os.api('users/groups/invitations/accept', {
-		invitationId: invitation.id,
-	}).then(() => {
-		os.success();
-		invitations.value.reload();
-		joined.value.reload();
-	});
-}
-
-function rejectInvite(invitation) {
-	os.api('users/groups/invitations/reject', {
-		invitationId: invitation.id,
-	}).then(() => {
-		invitations.value.reload();
-	});
-}
-
 async function leave(group) {
 	const { canceled } = await os.confirm({
 		type: 'warning',
@@ -153,21 +102,6 @@ async function leave(group) {
 	}).then(() => {
 		joined.value.reload();
 	});
-}
-
-let swiperRef = null;
-
-function setSwiperRef(swiper) {
-	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
-}
-
-function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
-}
-
-function syncSlide(index) {
-	swiperRef.slideTo(index);
 }
 </script>
 
