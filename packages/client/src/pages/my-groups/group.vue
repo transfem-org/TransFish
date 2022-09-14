@@ -54,7 +54,8 @@ watch(() => props.groupId, () => {
 	fetch();
 });
 
-function fetch() {
+
+async function fetch() {
 	os.api('users/groups/show', {
 		groupId: props.groupId,
 	}).then(gp => {
@@ -66,6 +67,8 @@ function fetch() {
 		});
 	});
 }
+
+fetch();
 
 function invite() {
 	os.selectUser().then(user => {
