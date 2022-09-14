@@ -59,9 +59,8 @@ async function fetch() {
 		groupId: props.groupId,
 	}).then(gp => {
 		group.value = gp;
-		console.log(gp);
 		os.api('users/show', {
-			userIds: group.userIds
+			userIds: group.value.userIds
 		}).then(us => {
 			users.value = us;
 		});
@@ -73,41 +72,41 @@ fetch();
 function invite() {
 	os.selectUser().then(user => {
 		os.apiWithDialog('users/groups/invite', {
-			groupId: group.id,
-			userId: user.id
+			groupId: group.value.id,
+			userId: user.id,
 		});
 	});
 }
 
 function removeUser(user) {
 	os.api('users/groups/pull', {
-		groupId: group.id,
+		groupId: group.value.id,
 		userId: user.id
 	}).then(() => {
-		users.value = users.filter(x => x.id !== user.id);
+		users.value = users.value.filter(x => x.id !== user.id);
 	});
 }
 
 async function renameGroup() {
 	const { canceled, result: name } = await os.inputText({
 		title: i18n.ts.groupName,
-		default: group.name
+		default: group.value.name
 	});
 	if (canceled) return;
 
 	await os.api('users/groups/update', {
-		groupId: group.id,
+		groupId: group.value.id,
 		name: name
 	});
 
-	group.name = name;
+	group.value.name = name;
 }
 
 function transfer() {
 	os.selectUser().then(user => {
 		os.apiWithDialog('users/groups/transfer', {
-			groupId: group.id,
-			userId: user.id
+			groupId: group.value.id,
+			userId: user.id,
 		});
 	});
 }
@@ -115,12 +114,12 @@ function transfer() {
 async function deleteGroup() {
 	const { canceled } = await os.confirm({
 		type: 'warning',
-		text: i18n.t('removeAreYouSure', { x: group.name }),
+		text: i18n.t('removeAreYouSure', { x: group.value.name }),
 	});
 	if (canceled) return;
 
 	await os.apiWithDialog('users/groups/delete', {
-		groupId: group.id,
+		groupId: group.value.id,
 	});
 	router.push('/my/groups');
 }
