@@ -5,7 +5,7 @@
 		<div class="_root">
 			<div v-if="tab === 'explore'">
 				<MkFolder class="_gap">
-					<template #header><i class="fas fa-clock"></i>{{ i18n.ts.recentPosts }}</template>
+					<template #header><i class="fas fa-clock"></i> {{ i18n.ts.recentPosts }}</template>
 					<MkPagination v-slot="{items}" :pagination="recentPostsPagination" :disable-auto-load="true">
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
@@ -13,7 +13,7 @@
 					</MkPagination>
 				</MkFolder>
 				<MkFolder class="_gap">
-					<template #header><i class="fas fa-fire-alt"></i>{{ i18n.ts.popularPosts }}</template>
+					<template #header><i class="fas fa-fire-alt"></i> {{ i18n.ts.popularPosts }}</template>
 					<MkPagination v-slot="{items}" :pagination="popularPostsPagination" :disable-auto-load="true">
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
