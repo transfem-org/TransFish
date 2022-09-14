@@ -35,113 +35,90 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent } from 'vue';
+import { computed, watch } from 'vue';
 import MkButton from '@/components/MkButton.vue';
-import { definePageMetadata } from '@/scripts/page-metadata';\
+import { definePageMetadata } from '@/scripts/page-metadata';
 import { i18n } from '@/i18n';
 import * as os from '@/os';
 
-export default defineComponent({
-	components: {
-		MkButton,
-	},
-
-	props: {
-		groupId: {
+const props = defineProps<{
+	groupId: {
 			type: String,
 			required: true,
 		},
-	},
+}>();
 
-	data() {
-		return {
-			[Symbol('Page info')]: computed(() => this.group ? {
-				title: this.group.name,
-				icon: 'fas fa-users',
-			} : null),
-			group: null,
-			users: [],
-		};
-	},
-
-	watch: {
-		groupId: 'fetch',
-	},
-
-	created() {
-		this.fetch();
-	},
-
-	methods: {
-		fetch() {
-			os.api('users/groups/show', {
-				groupId: this.groupId
-			}).then(group => {
-				this.group = group;
-				os.api('users/show', {
-					userIds: this.group.userIds
-				}).then(users => {
-					this.users = users;
-				});
-			});
-		},
-
-		invite() {
-			os.selectUser().then(user => {
-				os.apiWithDialog('users/groups/invite', {
-					groupId: this.group.id,
-					userId: user.id
-				});
-			});
-		},
-
-		removeUser(user) {
-			os.api('users/groups/pull', {
-				groupId: this.group.id,
-				userId: user.id
-			}).then(() => {
-				this.users = this.users.filter(x => x.id !== user.id);
-			});
-		},
-
-		async renameGroup() {
-			const { canceled, result: name } = await os.inputText({
-				title: this.$ts.groupName,
-				default: this.group.name
-			});
-			if (canceled) return;
-
-			await os.api('users/groups/update', {
-				groupId: this.group.id,
-				name: name
-			});
-
-			this.group.name = name;
-		},
-
-		transfer() {
-			os.selectUser().then(user => {
-				os.apiWithDialog('users/groups/transfer', {
-					groupId: this.group.id,
-					userId: user.id
-				});
-			});
-		},
-
-		async deleteGroup() {
-			const { canceled } = await os.confirm({
-				type: 'warning',
-				text: this.$t('removeAreYouSure', { x: this.group.name }),
-			});
-			if (canceled) return;
-
-			await os.apiWithDialog('users/groups/delete', {
-				groupId: this.group.id
-			});
-			this.$router.push('/my/groups');
-		}
-	}
+watch(() => props.groupId, () => {
+	fetch();
 });
+
+function fetch() {
+	os.api('users/groups/show', {
+		groupId: this.groupId
+	}).then(group => {
+		this.group = group;
+		os.api('users/show', {
+			userIds: this.group.userIds
+		}).then(users => {
+			this.users = users;
+		});
+	});
+}
+
+function invite() {
+	os.selectUser().then(user => {
+		os.apiWithDialog('users/groups/invite', {
+			groupId: this.group.id,
+			userId: user.id
+		});
+	});
+},
+
+function removeUser(user) {
+	os.api('users/groups/pull', {
+		groupId: this.group.id,
+		userId: user.id
+	}).then(() => {
+		this.users = this.users.filter(x => x.id !== user.id);
+	});
+},
+
+async function renameGroup() {
+	const { canceled, result: name } = await os.inputText({
+		title: this.$ts.groupName,
+		default: this.group.name
+	});
+	if (canceled) return;
+
+	await os.api('users/groups/update', {
+		groupId: this.group.id,
+		name: name
+	});
+
+	this.group.name = name;
+},
+
+function transfer() {
+	os.selectUser().then(user => {
+		os.apiWithDialog('users/groups/transfer', {
+			groupId: this.group.id,
+			userId: user.id
+		});
+	});
+},
+
+async function deleteGroup() {
+	const { canceled } = await os.confirm({
+		type: 'warning',
+		text: this.$t('removeAreYouSure', { x: this.group.name }),
+	});
+	if (canceled) return;
+
+	await os.apiWithDialog('users/groups/delete', {
+		groupId: this.group.id
+	});
+	this.$router.push('/my/groups');
+}
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.members,
