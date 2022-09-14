@@ -17,9 +17,13 @@
 - Calckey adds many quality of life changes and bug fixes for users and instance admins alike.
 - Read **[this document](./CALCKEY.md)** all for current and future differences.
 - Notable differences:
-  - Improved UI/UX, notifications, security, and more
+  - Improved UI/UX (especially on mobile)
+  - Improved notifications
+  - Improved instance security
   - Recommended Instances timeline
+  - New and improved Groups
   - Many more user and admin settings
+  - [So much more!](./CALCKEY.md)
 
 </div>
 

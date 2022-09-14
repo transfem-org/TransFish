@@ -58,7 +58,7 @@ html
 
 		block og
 			meta(property='og:title'       content= title || 'Calckey')
-			meta(property='og:description' content= desc || '✨🌎✨ A interplanetary communication platform ✨🚀✨')
+			meta(property='og:description' content= desc || '✨🌎 A interplanetary communication platform 🚀✨')
 			meta(property='og:image'       content= img)
 
 		style
@@ -77,7 +77,7 @@ html
 			br
 			| Please turn on your JavaScript
 		div#splash
-			img#splashIcon(src= icon || '/static-assets/splash.png')
+			img#splashIcon(src= splashIcon || '/static-assets/splash.png')
 			span#splashText
 				block randomMOTD
 					= randomMOTD

@@ -14,7 +14,7 @@ if (localStorage.getItem('accounts') != null) {
 //#endregion
 
 import { computed, createApp, watch, markRaw, version as vueVersion, defineAsyncComponent } from 'vue';
-import compareVersions from 'compare-versions';
+import { compareVersions } from 'compare-versions';
 import JSON5 from 'json5';
 
 import widgets from '@/widgets';
@@ -38,6 +38,7 @@ import { reloadChannel } from '@/scripts/unison-reload';
 import { reactionPicker } from '@/scripts/reaction-picker';
 import { getUrlWithoutLoginId } from '@/scripts/login-id';
 import { getAccountFromId } from '@/scripts/get-account-from-id';
+
 
 (async () => {
 	console.info(`Calckey v${version}`);
@@ -241,7 +242,7 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 			if (lastVersion != null && compareVersions(version, lastVersion) === 1 && defaultStore.state.showUpdates) {
 				// ログインしてる場合だけ
 				if ($i) {
-					popup(defineAsyncComponent(() => import('@/components/updated.vue')), {}, {}, 'closed');
+					popup(defineAsyncComponent(() => import('@/components/MkUpdated.vue')), {}, {}, 'closed');
 				}
 			}
 		} catch (err) {

@@ -1,10 +1,12 @@
 {
 	"short_name": "Calckey",
 	"name": "Calckey",
+	"description": "An open source, decentralized social media platform that's free forever!",
 	"start_url": "/",
 	"display": "standalone",
-	"background_color": "#6e6a86",
+	"background_color": "#1f1d2e",
 	"theme_color": "#31748f",
+	"orientation": "portrait-primary",
 	"icons": [
 		{
 			"src": "/static-assets/icons/192.png",
@@ -24,5 +26,32 @@
 			"text": "text",
 			"url": "url"
 		}
-	}
+	},
+	"screenshots" : [
+		{
+			"src": "/static-assets/screenshots/1.webp",
+			"sizes": "1195x579",
+			"type": "image/webp",
+			"platform": "narrow",
+			"label": "Profile page"
+		},
+		{
+			"src": "/static-assets/screenshots/2.webp",
+			"sizes": "1195x579",
+			"type": "image/webp",
+			"platform": "narrow",
+			"label": "Posts"
+		}
+	],
+	"shortcuts" : [
+		{
+			"name": "Notifications",
+			"short_name": "Notifs",
+			"url": "/my/notifications"
+		},
+		{
+			"name": "Chats",
+			"url": "/my/messaging"
+		}
+	]
 }

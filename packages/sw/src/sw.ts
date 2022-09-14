@@ -24,6 +24,16 @@ self.addEventListener('activate', ev => {
 });
 
 self.addEventListener('fetch', ev => {
+	let isHTMLRequest = false;
+	if (ev.request.headers.get('sec-fetch-dest') === 'document') {
+		isHTMLRequest = true;
+	} else if (ev.request.headers.get('accept')?.includes('/html')) {
+		isHTMLRequest = true;
+	} else if (ev.request.url.endsWith('/')) {
+		isHTMLRequest = true;
+	}
+
+	if (!isHTMLRequest) return;
 	ev.respondWith(
 		fetch(ev.request)
 		.catch(() => new Response(`Offline. Service Worker @${_VERSION_}`, { status: 200 }))
@@ -88,12 +98,12 @@ self.addEventListener('notificationclick', <K extends keyof pushNotificationData
 		if (_DEV_) {
 			console.log('notificationclick', ev.action, ev.notification.data);
 		}
-	
+
 		const { action, notification } = ev;
 		const data: pushNotificationDataMap[K] = notification.data;
 		const { userId: id } = data;
 		let client: WindowClient | null = null;
-	
+
 		switch (data.type) {
 			case 'notification':
 				switch (action) {
@@ -157,16 +167,16 @@ self.addEventListener('notificationclick', <K extends keyof pushNotificationData
 				client = await swos.openChat(data.body, id);
 				break;
 		}
-	
+
 		if (client) {
 			client.focus();
 		}
 		if (data.type === 'notification') {
 			swNotificationRead.then(that => that.read(data));
 		}
-	
+
 		notification.close();
-	
+
 	})());
 });
 
@@ -189,11 +199,11 @@ self.addEventListener('message', (ev: ServiceWorkerGlobalScopeEventMap['message'
 					));
 				return; // TODO
 		}
-	
+
 		if (typeof ev.data === 'object') {
 			// E.g. '[object Array]' → 'array'
 			const otype = Object.prototype.toString.call(ev.data).slice(8, -1).toLowerCase();
-	
+
 			if (otype === 'object') {
 				if (ev.data.msg === 'initialize') {
 					swLang.setLang(ev.data.lang);

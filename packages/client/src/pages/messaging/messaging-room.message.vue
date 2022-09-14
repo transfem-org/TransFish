@@ -9,9 +9,22 @@
 			<div v-if="!message.isDeleted" class="content">
 				<Mfm v-if="message.text" ref="text" class="text" :text="message.text" :i="$i"/>
 				<div v-if="message.file" class="file">
-					<a :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
-						<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name"/>
-						<p v-else>{{ message.file.name }}</p>
+					<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name" max-width="400"/>
+					<VuePlyr v-else-if="message.file.type.split('/')[0] == 'video'">
+						<video
+							:alt="message.file.name"
+							:download="message.file.url"
+							preload="none"
+							controls
+							@contextmenu.stop
+						>
+							<source
+								:src="message.file.url"
+							>
+						</video>
+					</VuePlyr>
+					<a v-else :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
+						<p>{{ message.file.name }}</p>
 					</a>
 				</div>
 			</div>
@@ -39,8 +52,10 @@
 import { } from 'vue';
 import * as mfm from 'mfm-js';
 import * as Misskey from 'misskey-js';
+import XImage from '@/components/MkMediaImage.vue';
+import VuePlyr from 'vue-plyr';
 import { extractUrlFromMfm } from '@/scripts/extract-url-from-mfm';
-import MkUrlPreview from '@/components/url-preview.vue';
+import MkUrlPreview from '@/components/MkUrlPreview.vue';
 import * as os from '@/os';
 import { $i } from '@/account';
 
@@ -62,6 +77,7 @@ function del(): void {
 <style lang="scss" scoped>
 .thvuemwp {
 	$me-balloon-color: var(--accent);
+	--plyr-color-main: var(--accent);
 
 	position: relative;
 	background-color: transparent;

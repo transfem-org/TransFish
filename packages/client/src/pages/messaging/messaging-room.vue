@@ -55,8 +55,8 @@ import * as Misskey from 'misskey-js';
 import * as Acct from 'misskey-js/built/acct';
 import XMessage from './messaging-room.message.vue';
 import XForm from './messaging-room.form.vue';
-import XList from '@/components/date-separated-list.vue';
-import MkPagination, { Paging } from '@/components/ui/pagination.vue';
+import XList from '@/components/MkDateSeparatedList.vue';
+import MkPagination, { Paging } from '@/components/MkPagination.vue';
 import { isBottomVisible, onScrollBottom, scrollToBottom } from '@/scripts/scroll';
 import * as os from '@/os';
 import { stream } from '@/stream';
@@ -99,7 +99,7 @@ async function fetch() {
 		const acct = Acct.parse(props.userAcct);
 		user = await os.api('users/show', { username: acct.username, host: acct.host || undefined });
 		group = null;
-		
+
 		pagination = {
 			endpoint: 'messaging/messages',
 			limit: 20,
@@ -140,7 +140,7 @@ async function fetch() {
 	document.addEventListener('visibilitychange', onVisibilitychange);
 
 	nextTick(() => {
-		thisScrollToBottom();
+		// thisScrollToBottom();
 		window.setTimeout(() => {
 			fetching = false;
 		}, 300);
@@ -240,7 +240,9 @@ function onDeleted(id) {
 }
 
 function thisScrollToBottom() {
-	scrollToBottom($$(rootEl).value, { behavior: 'smooth' });
+	if (window.location.href.includes('my/messaging/')) {
+		scrollToBottom($$(rootEl).value, { behavior: 'smooth' });
+	}
 }
 
 function onIndicatorClick() {
@@ -290,6 +292,11 @@ definePageMetadata(computed(() => !fetching ? user ? {
 </script>
 
 <style lang="scss" scoped>
+
+XMessage:last-of-type {
+	margin-bottom: 4rem;
+}
+
 .mk-messaging-room {
 	position: relative;
 	overflow: auto;

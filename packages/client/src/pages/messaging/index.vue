@@ -27,7 +27,11 @@
 							<MkTime :time="message.createdAt" class="time"/>
 						</header>
 						<div class="body">
-							<p class="text"><span v-if="isMe(message)" class="me">{{ $ts.you }}:</span>{{ message.text }}</p>
+							<p class="text">
+								<span v-if="isMe(message)" class="me">{{ $ts.you }}: </span>
+								<span v-if="message.text != null && message.text.length > 0">{{ message.text }}</span>
+								<span v-else> 📎</span>
+							</p>
 						</div>
 					</div>
 				</MkA>
@@ -45,7 +49,7 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, defineComponent, inject, markRaw, onMounted, onUnmounted } from 'vue';
 import * as Acct from 'misskey-js/built/acct';
-import MkButton from '@/components/ui/button.vue';
+import MkButton from '@/components/MkButton.vue';
 import { acct } from '@/filters/user';
 import * as os from '@/os';
 import { stream } from '@/stream';

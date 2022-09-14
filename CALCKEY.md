@@ -3,10 +3,10 @@
 ## Planned
 
 - MFM button
-- Make more of the post clickable like every other SNS
-- Better Messaging UI
 - Classic mode make instance icon bring up new context menu
 - Like/star button
+- Backfill remote users
+- User "choices" (recommended users) like Mastodon and Soapbox
 - Option to publicize instance blocks
 - Better intro/onboarding
 - Fully revamp non-logged-in screen
@@ -21,8 +21,12 @@
 
 ## Work in progress
 
+- Better Messaging UI
+  - Videos can be played in DMs
+- Make your password hasn't been pwned
 - OCR image captioning
 - Admin custom CSS
+- Add back time machine (jump to date)
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
 
@@ -34,36 +38,51 @@
 
 - Yarn 3
   - Fix Dockerfile @hanna
+  - Upgrade packages with security vunrabilities
 - Saner defaults
 - Recommended instances timeline
+- Improve mobile UX
+  - Swipe through pages on mobile
+  - Redesigned mobile bottom nav bar
+  - Post button on TL
 - Star as default reaction
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
+- Add back groups
 - MOTD (customizable by admins!)
 - Custom randomized splash icons
 - Self hosted, newly designed error images
   - Illustrated by [Henki](https://www.youtube.com/c/Henkiwashere)!
   - Licensed under the CC-BY-SA 4.0.
-- [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - Better timeline top bar
+- Improved note style
+  - Make more of the post clickable like every other SNS
+  - No more details tag for reply attachments
+  - Better CW button
 - Mark as read from notifications widget
 - Less cluttered notification summary
 - Better welcome screen (not logged in)
+- vue-plyr as video/audio player
 - Ability to turn off "Connection lost" message
 - Raw instance info only for moderators
 - New spinner animation
 - Spinner instead of "Loading..."
 - SearchX instead of Google
+- Always signToActivityPubGet
 - Spacing on group items
 - Quotes have solid border
 - Reply limit bug fixed
 - Make showing the update popup optional
+- Improve PWA manifest
+- Fix incoming chat scrolling globally
 - Obliteration of Ai-chan
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
+- [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
 - [OAuth bearer token authentication](https://github.com/misskey-dev/misskey/pull/9021)
 - [Styled Repair Tools](https://github.com/misskey-dev/misskey/pull/8956)
 - [Option to make enter send message](https://github.com/misskey-dev/misskey/pull/8954)
 - [Autocomplete in messaging](https://github.com/misskey-dev/misskey/pull/8955)
+- [Profile background as banner](https://codeberg.org/Freeplay/Misskey-Tweaks/src/branch/main/snippets/profile-background.styl)
 - [Star is generic like/favorite](https://github.com/JakeMBauer/Misskey-Extras/blob/master/patches/star-is-like.patch)
   - 👍 also triggers generic like/favorite
 - [Add additional background for acrylic popups if backdrop-filter is unsupported](https://github.com/misskey-dev/misskey/pull/8671)
@@ -89,3 +108,6 @@
 	- 585e4f5c42cfafb6cdf7eb601ab435d6a4d85a96: fix textarea not updating properly
 	- 30d8bc9259cb6b72ed76d67b21dbb4cdceca8327: refactor: welcome.setup.vue to composition api
 	- 751921e24f37ed707fe44a40d88eebb1299efa35: make emoji picker case insensitive
+	- 298febeb9c9501e3e3df16982c08657d1da474e0: enhance: add re-collapsing to quoted notes
+	- b0fdedb264db87575063abed45e52ad71ce4a6af: fix lints in folder.vue
+	- 6fed87f85d132304eb84b0a59b84dce299a1822f: fix pagination.vue lints

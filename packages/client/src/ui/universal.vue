@@ -4,7 +4,7 @@
 
 	<MkStickyContainer class="contents">
 		<template #header><XStatusBars :class="$style.statusbars"/></template>
-		<main style="min-width: 0;" :style="{ background: pageMetadata?.value?.bg }" @contextmenu.stop="onContextmenu">
+		<main id="maincontent" style="min-width: 0;" :style="{ background: pageMetadata?.value?.bg }" @contextmenu.stop="onContextmenu">
 			<div :class="$style.content">
 				<RouterView/>
 			</div>
@@ -23,8 +23,9 @@
 		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')"><i class="fas fa-home"></i></button>
 		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="fas fa-bell"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="fas fa-circle"></i></span></button>
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="fas fa-layer-group"></i></button>
-		<button class="button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 	</div>
+
+	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="fas fa-pencil-alt"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -71,6 +72,7 @@ import { Router } from '@/nirax';
 import { mainRouter } from '@/router';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
+
 const XWidgets = defineAsyncComponent(() => import('./universal.widgets.vue'));
 const XSidebar = defineAsyncComponent(() => import('@/ui/_common_/navbar.vue'));
 const XStatusBars = defineAsyncComponent(() => import('@/ui/_common_/statusbars.vue'));
@@ -87,11 +89,11 @@ window.addEventListener('resize', () => {
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
+const postButton = $ref<HTMLElement>();
 const widgetsShowing = $ref(false);
 
 provide('router', mainRouter);
 provideMetadataReceiver((info) => {
-	console.log(info);
 	pageMetadata = info;
 	if (pageMetadata.value) {
 		document.title = `${pageMetadata.value.title} | ${instanceName}`;
@@ -132,10 +134,29 @@ onMounted(() => {
 		window.addEventListener('resize', () => {
 			if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
 		}, { passive: true });
+
+		function createScrollStopListener(element: Window, callback: TimerHandler, timeout: number): () => void {
+			let handle = 0;
+			const onScroll = () => {
+				if (handle) {
+					clearTimeout(handle);
+				}
+				postButton.style.transform = 'scale(0)';
+				handle = setTimeout(callback, timeout || 200);
+			};
+			element.addEventListener('scroll', onScroll, { passive: true });
+			return () => {
+				element.removeEventListener('scroll', onScroll);
+			};
+		}
+
+		createScrollStopListener(window, () => {
+			postButton.style.transform = 'scale(1)';
+		} , 200);
 	}
 });
 
-const onContextmenu = (ev) => {
+const onContextmenu = (ev: MouseEvent) => {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === 'A') return true;
 		if (el.parentElement) {
@@ -158,7 +179,7 @@ const onContextmenu = (ev) => {
 	}], ev);
 };
 
-const attachSticky = (el) => {
+const attachSticky = (el: any) => {
 	const sticky = new StickySidebar(widgetsEl);
 	window.addEventListener('scroll', () => {
 		sticky.calc(window.scrollY);
@@ -170,6 +191,7 @@ function top() {
 }
 
 const wallpaper = localStorage.getItem('wallpaper') != null;
+
 </script>
 
 <style lang="scss" scoped>
@@ -251,20 +273,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		}
 	}
 
-	> .widgetButton {
-		display: block;
-		position: fixed;
-		z-index: 1000;
-		bottom: 32px;
-		right: 32px;
-		width: 64px;
-		height: 64px;
-		border-radius: 100%;
-		box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-		font-size: 22px;
-		background: var(--panel);
-	}
-
 	> .widgetsDrawer-back {
 		z-index: 1001;
 	}
@@ -283,29 +291,65 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 		background: var(--bg);
 	}
 
+	> .postButton, .widgetButton {
+		bottom: 6rem;
+		right: 1.5rem;
+		height: 4.5rem;
+		width: 4.5rem;
+		background-position: center;
+		background: var(--panelHighlight);
+		color: var(--fg);
+		position: fixed !important;
+		z-index: 1000;
+		font-size: 16px;
+		border-radius: 10px;
+		box-shadow: var(--shadow) 0px 0px 25px;
+		transition: background 0.6s;
+		transition: transform 0.3s;
+
+		> .isHidden {
+			transform: scale(0);
+		}
+
+		> .isVisible {
+			transform: scale(1);
+		}
+
+		&:active {
+			background-color: var(--accentedBg);
+			background-size: 100%;
+			transition: background 0.1s;
+		}
+	}
+
 	> .buttons {
 		position: fixed;
 		z-index: 1000;
 		bottom: 0;
 		left: 0;
-		padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 16px) 16px;
+		padding: 12px 12px calc(env(safe-area-inset-bottom, 0px) + 12px) 12px;
 		display: flex;
 		width: 100%;
 		box-sizing: border-box;
-		-webkit-backdrop-filter: var(--blur, blur(32px));
-		backdrop-filter: var(--blur, blur(32px));
-		background-color: var(--header);
-		border-top: solid 0.5px var(--divider);
+		background-color: var(--bg);
 
 		> .button {
 			position: relative;
 			flex: 1;
 			padding: 0;
 			margin: auto;
-			height: 64px;
+			height: 3.5rem;
 			border-radius: 8px;
-			background: var(--panel);
+			/* background: var(--panel); */
+			background-position: center;
+			transition: background 0.6s;
 			color: var(--fg);
+
+			&:active {
+				background-color: var(--accentedBg);
+				background-size: 100%;
+				transition: background 0.1s;
+			}
 
 			&:not(:last-child) {
 				margin-right: 12px;
@@ -318,11 +362,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 					margin-right: 8px;
 				}
 			}
-
-			&:hover {
-				background: var(--X2);
-			}
-
 			> .indicator {
 				position: absolute;
 				top: 0;
@@ -341,7 +380,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			}
 
 			> * {
-				font-size: 20px;
+				font-size: 16px;
 			}
 
 			&:disabled {

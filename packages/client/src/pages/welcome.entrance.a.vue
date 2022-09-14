@@ -35,7 +35,7 @@
 				<div class="action">
 					<MkButton inline rounded gradate data-cy-signup style="margin-right: 12px;" @click="signup()">{{ i18n.ts.signup }}</MkButton>
 					<MkButton inline rounded data-cy-signin @click="signin()">{{ i18n.ts.login }}</MkButton>
-					<MkButton inline rounded style="margin-left: 12px;" onclick="window.location.href='/explore'">Explore</MkButton>
+					<MkButton inline rounded style="margin-left: 12px; margin-top: 12px;" onclick="window.location.href='/explore'">Explore</MkButton>
 				</div>
 			</div>
 		</div>
@@ -56,12 +56,12 @@
 import { } from 'vue';
 import { toUnicode } from 'punycode/';
 import XTimeline from './welcome.timeline.vue';
-import MarqueeText from '@/components/marquee.vue';
-import XSigninDialog from '@/components/signin-dialog.vue';
-import XSignupDialog from '@/components/signup-dialog.vue';
-import MkButton from '@/components/ui/button.vue';
-import XNote from '@/components/note.vue';
-import MkFeaturedPhotos from '@/components/featured-photos.vue';
+import MarqueeText from '@/components/MkMarquee.vue';
+import XSigninDialog from '@/components/MkSigninDialog.vue';
+import XSignupDialog from '@/components/MkSignupDialog.vue';
+import MkButton from '@/components/MkButton.vue';
+import XNote from '@/components/MkNote.vue';
+import MkFeaturedPhotos from '@/components/MkFeaturedPhotos.vue';
 import { host, instanceName } from '@/config';
 import * as os from '@/os';
 import number from '@/filters/number';
@@ -122,7 +122,7 @@ function showMenu(ev) {
 		text: i18n.ts.aboutMisskey,
 		icon: 'fas fa-info-circle',
 		action: () => {
-			os.pageWindow('/about-misskey');
+			os.pageWindow('/about-calckey');
 		},
 	}, null, {
 		text: i18n.ts.help,
@@ -266,6 +266,7 @@ function showMenu(ev) {
 
 				> .action {
 					padding: 32px;
+					padding-top: 22px;
 
 					> * {
 						line-height: 28px;

@@ -1,7 +1,7 @@
 FROM node:alpine
 ENV YARN_CHECKSUM_BEHAVIOR=update
 ARG NODE_ENV=production
-WORKDIR /misskey
+WORKDIR /calckey
 
 # Copy Files
 COPY . ./

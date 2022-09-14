@@ -73,8 +73,8 @@ export const defaultStore = markRaw(new Storage('base', {
 			'notifications',,
 			'followRequests',
 			'messaging',
-			'favorites',
 			'explore',
+			'favorites',
 			'channels',
 			'search',
 		],
@@ -165,7 +165,7 @@ export const defaultStore = markRaw(new Storage('base', {
 	},
 	useBlurEffect: {
 		where: 'device',
-		default: false,
+		default: true,
 	},
 	showFixedPostForm: {
 		where: 'device',
@@ -229,7 +229,7 @@ export const defaultStore = markRaw(new Storage('base', {
 	},
 	squareAvatars: {
 		where: 'device',
-		default: false,
+		default: true,
 	},
 	postFormWithHashtags: {
 		where: 'device',

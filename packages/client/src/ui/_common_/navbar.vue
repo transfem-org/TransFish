@@ -142,14 +142,14 @@ function openInstanceMenu(ev: MouseEvent) {
 	}, {
 		type: 'link',
 		text: i18n.ts.aboutMisskey,
-		to: '/about-misskey',
+		to: '/about-calckey',
 	}], ev.currentTarget ?? ev.target, {
 		align: 'left',
 	});
 }
 
 function more(ev: MouseEvent) {
-	os.popup(defineAsyncComponent(() => import('@/components/launch-pad.vue')), {
+	os.popup(defineAsyncComponent(() => import('@/components/MkLaunchPad.vue')), {
 		src: ev.currentTarget ?? ev.target,
 	}, {
 	}, 'closed');

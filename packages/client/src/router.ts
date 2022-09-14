@@ -153,6 +153,10 @@ export const routes = [{
 		name: 'api',
 		component: page(() => import('./pages/settings/api.vue')),
 	}, {
+		path: '/apps',
+		name: 'api',
+		component: page(() => import('./pages/settings/apps.vue')),
+	}, {
 		path: '/webhook/edit/:webhookId',
 		name: 'webhook',
 		component: page(() => import('./pages/settings/webhook.edit.vue')),
@@ -180,6 +184,10 @@ export const routes = [{
 		path: '/custom-css',
 		name: 'general',
 		component: page(() => import('./pages/settings/custom-css.vue')),
+	}, {
+		path: '/accounts',
+		name: 'profile',
+		component: page(() => import('./pages/settings/accounts.vue')),
 	}, {
 		path: '/account-info',
 		name: 'other',
@@ -210,8 +218,8 @@ export const routes = [{
 	component: page(() => import('./pages/about.vue')),
 	hash: 'initialTab',
 }, {
-	path: '/about-misskey',
-	component: page(() => import('./pages/about-misskey.vue')),
+	path: '/about-calckey',
+	component: page(() => import('./pages/about-calckey.vue')),
 }, {
 	path: '/theme-editor',
 	component: page(() => import('./pages/theme-editor.vue')),
@@ -443,6 +451,14 @@ export const routes = [{
 }, {
 	path: '/my/clips',
 	component: page(() => import('./pages/my-clips/index.vue')),
+	loginRequired: true,
+}, {
+	path: '/my/groups',
+	component: page(() => import('./pages/my-groups/index.vue')),
+	loginRequired: true,
+}, {
+	path: '/my/groups/:groupId',
+	component: page(() => import('./pages/my-groups/group.vue')),
 	loginRequired: true,
 }, {
 	path: '/my/antennas/create',

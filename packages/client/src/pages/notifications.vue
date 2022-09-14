@@ -1,32 +1,66 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header>
+		<MkPageHeader
+			v-model:tab="tab"
+			:actions="headerActions"
+			:tabs="headerTabs"
+			:display-my-avatar="true"
+		/>
+	</template>
 	<MkSpacer :content-max="800">
-		<div v-if="tab === 'all' || tab === 'unread'">
-			<XNotifications class="notifications" :include-types="includeTypes" :unread-only="unreadOnly"/>
-		</div>
-		<div v-else-if="tab === 'mentions'">
-			<XNotes :pagination="mentionsPagination"/>
-		</div>
-		<div v-else-if="tab === 'directNotes'">
-			<XNotes :pagination="directNotesPagination"/>
-		</div>
+		<swiper
+			:modules="[Virtual]"
+			:space-between="20"
+			:virtual="true"
+			@swiper="setSwiperRef"
+			@slide-change="onSlideChange"
+		>
+			<swiper-slide>
+				<XNotifications class="notifications" :include-types="includeTypes" :unread-only="false"/>
+			</swiper-slide>
+			<swiper-slide>
+				<XNotifications class="notifications" :include-types="includeTypes" :unread-only="true"/>
+			</swiper-slide>
+			<swiper-slide>
+				<XNotes :pagination="mentionsPagination"/>
+			</swiper-slide>
+			<swiper-slide>
+				<XNotes :pagination="directNotesPagination"/>
+			</swiper-slide>
+		</swiper>
 	</MkSpacer>
 </MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import { Virtual } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import { notificationTypes } from 'misskey-js';
-import XNotifications from '@/components/notifications.vue';
-import XNotes from '@/components/notes.vue';
+import XNotifications from '@/components/MkNotifications.vue';
+import XNotes from '@/components/MkNotes.vue';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { deviceKind } from '@/scripts/device-kind';
+import 'swiper/scss';
+import 'swiper/scss/virtual';
 
 let tab = $ref('all');
+const tabs = ['all', 'unread', 'mentions', 'directNotes'];
 let includeTypes = $ref<string[] | null>(null);
 let unreadOnly = $computed(() => tab === 'unread');
+os.api('notifications/mark-all-as-read');
+
+const MOBILE_THRESHOLD = 500;
+const isMobile = ref(
+	deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD
+);
+window.addEventListener('resize', () => {
+	isMobile.value =
+		deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
+});
 
 const mentionsPagination = {
 	endpoint: 'notes/mentions' as const,
@@ -75,9 +109,11 @@ const headerActions = $computed(() => [tab === 'all' ? {
 const headerTabs = $computed(() => [{
 	key: 'all',
 	title: i18n.ts.all,
+	icon: 'fas fa-bell',
 }, {
 	key: 'unread',
 	title: i18n.ts.unread,
+	icon: 'fas fa-exclamation',
 }, {
 	key: 'mentions',
 	title: i18n.ts.mentions,
@@ -92,4 +128,19 @@ definePageMetadata(computed(() => ({
 	title: i18n.ts.notifications,
 	icon: 'fas fa-bell',
 })));
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
+}
+
+function onSlideChange() {
+	tab = tabs[swiperRef.activeIndex];
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
+}
 </script>
