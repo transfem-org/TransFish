@@ -1,23 +1,7 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader/></template>
+	<template #header><MkPageHeader :actions="headerActions"/></template>
 	<div class="mk-group-page">
-		<div class="_section">
-			<div
-				class="_content"
-				style="display: flex; gap: var(--margin); flex-wrap: wrap"
-			>
-				<MkButton inline @click="invite()">{{ i18n.ts.invite }}</MkButton>
-				<MkButton inline @click="renameGroup()">{{
-					i18n.ts.rename
-				}}</MkButton>
-				<MkButton inline @click="transfer()">{{ i18n.ts.transfer }}</MkButton>
-				<MkButton inline @click="deleteGroup()">{{
-					i18n.ts.delete
-				}}
-				</MkButton>
-			</div>
-		</div>
 		<div class="_section members _gap">
 			<div class="_content">
 				<div class="users">
@@ -143,16 +127,31 @@ definePageMetadata(
 		icon: "fas fa-users",
 	})),
 );
+
+const headerActions = $computed(() => [
+	{
+		icon: 'fas fa-plus',
+		text: i18n.ts.invite,
+		handler: invite,
+	}, {
+		icon: 'fas fa-i-cursor',
+		text: i18n.ts.rename,
+		handler: renameGroup,
+	}, {
+		icon: 'fas fa-right-left',
+		text: i18n.ts.transfer,
+		handler: transfer,
+	}, {
+		icon: 'fas fa-trash-alt',
+		text: i18n.ts.delete,
+		handler: deleteGroup,
+	},
+]);
+
 </script>
 
 <style lang="scss" scoped>
 .mk-group-page {
-	> ._section {
-		> ._content {
-			padding-top: 1rem;
-			justify-content: center;
-		}
-	}
 	> .members {
 		> ._content {
 			> .users {

@@ -90,7 +90,7 @@ const headerActions = $computed(() => [
 		icon: 'fas fa-plus',
 		text: i18n.ts.createGroup,
 		handler: create,
-	}
+	},
 ]);
 
 const headerTabs = $computed(() => [{
