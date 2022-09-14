@@ -43,7 +43,7 @@ import * as os from '@/os';
 
 const props = defineProps<{
 	groupId: {
-			type: String,
+			type: string,
 			required: true,
 		},
 }>();
