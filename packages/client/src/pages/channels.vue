@@ -54,8 +54,13 @@ import 'swiper/scss/virtual';
 
 const router = useRouter();
 
-let tab = $ref('featured');
 const tabs = ['featured', 'following', 'owned'];
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 
 const featuredPagination = {
 	endpoint: 'channels/featured' as const,
