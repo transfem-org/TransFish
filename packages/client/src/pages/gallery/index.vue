@@ -6,7 +6,7 @@
 			:modules="[Virtual]"
 			:space-between="20"
 			:virtual="true"
-			:allow-touch-move="deviceKind === 'smartphone'"
+			:allow-touch-move="!(deviceKind === 'desktop')"
 			@swiper="setSwiperRef"
 			@slide-change="onSlideChange"
 		>

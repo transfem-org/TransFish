@@ -7,7 +7,7 @@
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
-			:allow-touch-move="deviceKind === 'smartphone'"
+				:allow-touch-move="!(deviceKind === 'desktop')"
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
 			>
@@ -62,7 +62,12 @@ const props = defineProps<{
 
 const tabs = ['featured', 'users', 'search'];
 
-let tab = $ref('featured');
+const tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let searchQuery = $ref(null);
 let searchOrigin = $ref('combined');
