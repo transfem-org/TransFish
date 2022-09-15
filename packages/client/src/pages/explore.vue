@@ -7,6 +7,7 @@
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
+			:allow-touch-move="deviceKind === 'smartphone'"
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
 			>
@@ -48,6 +49,7 @@ import MkRadios from '@/components/form/radios.vue';
 import number from '@/filters/number';
 import * as os from '@/os';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { deviceKind } from '@/scripts/device-kind';
 import { i18n } from '@/i18n';
 import { instance } from '@/instance';
 import XUserList from '@/components/MkUserList.vue';

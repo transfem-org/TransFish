@@ -6,6 +6,7 @@
 			:modules="[Virtual]"
 			:space-between="20"
 			:virtual="true"
+			:allow-touch-move="deviceKind === 'smartphone'"
 			@swiper="setSwiperRef"
 			@slide-change="onSlideChange"
 		>
@@ -55,6 +56,7 @@ import MkFolder from '@/components/MkFolder.vue';
 import MkPagination from '@/components/MkPagination.vue';
 import MkGalleryPostPreview from '@/components/MkGalleryPostPreview.vue';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { deviceKind } from '@/scripts/device-kind';
 import { i18n } from '@/i18n';
 import { useRouter } from '@/router';
 import 'swiper/scss';

@@ -6,6 +6,7 @@
 			:modules="[Virtual]"
 			:space-between="20"
 			:virtual="true"
+			:allow-touch-move="deviceKind === 'smartphone'"
 			@swiper="setSwiperRef"
 			@slide-change="onSlideChange"
 		>
@@ -149,6 +150,7 @@ import number from '@/filters/number';
 import bytes from '@/filters/bytes';
 import { iAmModerator } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { deviceKind } from '@/scripts/device-kind';
 import { i18n } from '@/i18n';
 import MkUserCardMini from '@/components/MkUserCardMini.vue';
 import MkPagination from '@/components/MkPagination.vue';

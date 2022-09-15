@@ -6,6 +6,7 @@
 			:modules="[Virtual]"
 			:space-between="20"
 			:virtual="true"
+			:allow-touch-move="deviceKind === 'smartphone'"
 			@swiper="setSwiperRef"
 			@slide-change="onSlideChange"
 		>
@@ -90,7 +91,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XEmojis from './about.emojis.vue';
@@ -106,6 +107,7 @@ import * as os from '@/os';
 import number from '@/filters/number';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { deviceKind } from '@/scripts/device-kind';
 import { iAmModerator } from '@/account';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
