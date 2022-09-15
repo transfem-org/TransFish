@@ -79,7 +79,6 @@ import { instance } from '@/instance';
 import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
-import { defaultStore } from '@/store';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
