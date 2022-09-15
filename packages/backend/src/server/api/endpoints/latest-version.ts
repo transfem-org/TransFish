@@ -1,7 +1,26 @@
-export async function getLatestVersion(): Promise<string> {
+import define from '../define.js';
+
+export const meta = {
+	tags: ['meta'],
+
+	requireCredential: false,
+	requireCredentialPrivateMode: true,
+} as const;
+
+export const paramDef = {
+	type: 'object',
+	properties: {},
+	required: [],
+} as const;
+
+// eslint-disable-next-line import/no-default-export
+export default define(meta, paramDef, async () => {
 	let tag_name = 'v12.119.0-calc';
 	fetch('https://codeberg.org/api/v1/repos/thatonecalculator/calckey/releases?draft=false&pre-release=false&page=1&limit=1')
 		.then((response) => response.json())
 		.then((data) => { tag_name = data[0].tag_name; });
-	return tag_name;
-}
+
+	return {
+		tag_name,
+	};
+});
