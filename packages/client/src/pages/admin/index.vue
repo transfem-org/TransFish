@@ -69,7 +69,9 @@ os.api('admin/abuse-user-reports', {
 });
 
 os.api('latest-version').then(res => {
-	console.log(res);
+	if (res?.tag_name !== version) {
+		updateAvailable = true;
+	}
 });
 
 const NARROW_THRESHOLD = 600;
