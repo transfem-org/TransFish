@@ -40,7 +40,7 @@
 					:modules="[Virtual]"
 					:space-between="20"
 					:virtual="true"
-			:allow-touch-move="deviceKind === 'smartphone'"
+					:allow-touch-move="deviceKind === 'smartphone'"
 					@swiper="setSwiperRef"
 					@slide-change="onSlideChange"
 				>
@@ -78,7 +78,6 @@ import { i18n } from '@/i18n';
 import { instance } from '@/instance';
 import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
-import { deviceKind } from '@/scripts/device-kind';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
