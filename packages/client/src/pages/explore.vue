@@ -7,7 +7,7 @@
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
-				:allow-touch-move="!(deviceKind === 'desktop')"
+				:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
 			>
@@ -53,6 +53,7 @@ import { deviceKind } from '@/scripts/device-kind';
 import { i18n } from '@/i18n';
 import { instance } from '@/instance';
 import XUserList from '@/components/MkUserList.vue';
+import { defaultStore } from '@/store';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
