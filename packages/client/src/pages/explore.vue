@@ -63,7 +63,7 @@ const props = defineProps<{
 
 const tabs = ['featured', 'users', 'search'];
 
-const tab = $computed({
+let tab = $computed({
 	get: () => tabs[0],
 	set: (x) => {
 		syncSlide(tabs.indexOf(x));
