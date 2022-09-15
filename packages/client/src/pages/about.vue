@@ -120,8 +120,13 @@ const props = withDefaults(defineProps<{
 });
 
 let stats = $ref(null);
-let tab = $ref(props.initialTab);
 let tabs = ['overview', 'emojis','charts'];
+let tab = $computed({
+	get: () => props.initialTab,
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 if (iAmModerator) tabs.push('federation');
 
 const initStats = () => os.api('stats', {

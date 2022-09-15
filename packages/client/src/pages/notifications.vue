@@ -49,8 +49,13 @@ import { defaultStore } from '@/store';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
-let tab = $ref('all');
 const tabs = ['all', 'unread', 'mentions', 'directNotes'];
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let includeTypes = $ref<string[] | null>(null);
 let unreadOnly = $computed(() => tab === 'unread');
 os.api('notifications/mark-all-as-read');

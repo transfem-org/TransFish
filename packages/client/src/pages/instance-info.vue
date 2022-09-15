@@ -162,9 +162,14 @@ const props = defineProps<{
 	host: string;
 }>();
 
-let tab = $ref('overview');
 let tabs = ['overview'];
 if (iAmModerator) tabs.push('chart', 'users', 'raw');
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let chartSrc = $ref('instance-requests');
 let meta = $ref<misskey.entities.DetailedInstanceMetadata | null>(null);
 let instance = $ref<misskey.entities.Instance | null>(null);

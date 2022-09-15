@@ -99,10 +99,15 @@ import { defaultStore } from '@/store';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
-let tab = $ref('overview');
 let tabs = ['overview'];
 if (iAmModerator) tabs.push('ip');
 tabs.push('raw');
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let file: any = $ref(null);
 let info: any = $ref(null);
 let isSensitive: boolean = $ref(false);

@@ -69,8 +69,13 @@ const props = defineProps<{
 	tag?: string;
 }>();
 
-let tab = $ref('explore');
 const tabs = ['explore', 'liked', 'my'];
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let tagsRef = $ref();
 
 const recentPostsPagination = {

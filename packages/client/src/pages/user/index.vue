@@ -67,7 +67,6 @@ const props = withDefaults(defineProps<{
 
 const router = useRouter();
 
-let tab = $ref(props.page);
 let tabs = ['home'];
 let user = $ref<null | misskey.entities.UserDetailed>(null);
 if (($i && ($i.id === user?.id)) || user?.publicReactions) {
@@ -76,6 +75,12 @@ if (($i && ($i.id === user?.id)) || user?.publicReactions) {
 if ((user?.instance != null)) {
 	tabs.push('clips', 'pages', 'gallery');
 }
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let error = $ref(null);
 
 function fetchUser(): void {
