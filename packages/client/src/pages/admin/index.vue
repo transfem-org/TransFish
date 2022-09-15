@@ -65,7 +65,7 @@ os.api('admin/abuse-user-reports', {
 	state: 'unresolved',
 	limit: 1,
 }).then(reports => {
-	if (reports.length > 0) thereIsUnresolvedAbuseReport = true;
+	if (reports?.length > 0) thereIsUnresolvedAbuseReport = true;
 });
 
 await fetch('https://codeberg.org/api/v1/repos/thatonecalculator/calckey/releases?draft=false&pre-release=false&page=1&limit=1')
