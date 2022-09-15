@@ -68,10 +68,12 @@ os.api('admin/abuse-user-reports', {
 	if (reports.length > 0) thereIsUnresolvedAbuseReport = true;
 });
 
-fetch('https://codeberg.org/api/v1/repos/thatonecalculator/calckey/releases?draft=false&pre-release=false&page=1&limit=1')
+await fetch('https://codeberg.org/api/v1/repos/thatonecalculator/calckey/releases?draft=false&pre-release=false&page=1&limit=1')
 	.then((response) => response.json())
 	.then((data) => {
-		if (data.length > 0 && data[0].tag_name !== version) {
+		console.log(data);
+		console.log(data[0]);
+		if (data[0].tag_name !== version) {
 			updateAvailable = true;
 		}
 	});
