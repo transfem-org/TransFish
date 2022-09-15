@@ -68,15 +68,9 @@ os.api('admin/abuse-user-reports', {
 	if (reports?.length > 0) thereIsUnresolvedAbuseReport = true;
 });
 
-await fetch('https://codeberg.org/api/v1/repos/thatonecalculator/calckey/releases?draft=false&pre-release=false&page=1&limit=1')
-	.then((response) => response.json())
-	.then((data) => {
-		console.log(data);
-		console.log(data[0]);
-		if (data[0].tag_name !== version) {
-			updateAvailable = true;
-		}
-	});
+os.api('latest-version').then(res => {
+	console.log(res);
+});
 
 const NARROW_THRESHOLD = 600;
 const ro = new ResizeObserver((entries, observer) => {
