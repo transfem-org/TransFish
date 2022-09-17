@@ -6,7 +6,7 @@
 	</MkTab>
 	<div v-if="origin === 'local'">
 		<template v-if="tag == null">
-			<MkFolder class="_gap" persist-key="explore-pinned-users">
+			<MkFolder v-if="pinnedUsers.length > 0" class="_gap" persist-key="explore-pinned-users">
 				<template #header><i class="fas fa-bookmark fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
