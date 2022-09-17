@@ -116,11 +116,11 @@ const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
 const isMobile = ref(
-	deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD
+	deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD,
 );
 window.addEventListener('resize', () => {
 	isMobile.value =
-		deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
+		(deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD);
 });
 
 const tlComponent = $ref<InstanceType<typeof XTimeline>>();

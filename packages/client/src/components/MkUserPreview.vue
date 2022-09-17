@@ -115,7 +115,7 @@ onMounted(() => {
 
 			&::after {
 				content: "";
-				background-image: inherit;
+				background-image: var(--blur, inherit);
 				position: fixed;
 				inset: 0;
 				background-size: cover;
