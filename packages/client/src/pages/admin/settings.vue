@@ -71,9 +71,9 @@
 							<template #label>{{ i18n.ts.bannerUrl }}</template>
 						</FormInput>
 
-						<FormInput v-model="logoUrl" class="_formBlock">
+						<FormInput v-model="logoImageUrl" class="_formBlock">
 							<template #prefix><i class="fas fa-link"></i></template>
-							<template #label>{{ i18n.ts.logoUrl }}</template>
+							<template #label>{{ i18n.ts.logoImageUrl }}</template>
 						</FormInput>
 
 						<FormInput v-model="backgroundImageUrl" class="_formBlock">
@@ -196,7 +196,7 @@ let maintainerName: string | null = $ref(null);
 let maintainerEmail: string | null = $ref(null);
 let iconUrl: string | null = $ref(null);
 let bannerUrl: string | null = $ref(null);
-let logoUrl: string | null = $ref(null);
+let logoImageUrl: string | null = $ref(null);
 let backgroundImageUrl: string | null = $ref(null);
 let themeColor: any = $ref(null);
 let defaultLightTheme: any = $ref(null);
@@ -226,7 +226,7 @@ async function init() {
 	tosUrl = meta.tosUrl;
 	iconUrl = meta.iconUrl;
 	bannerUrl = meta.bannerUrl;
-	logoUrl = meta.logoUrl;
+	logoImageUrl = meta.logoImageUrl;
 	backgroundImageUrl = meta.backgroundImageUrl;
 	themeColor = meta.themeColor;
 	defaultLightTheme = meta.defaultLightTheme;
@@ -259,7 +259,7 @@ function save() {
 		tosUrl,
 		iconUrl,
 		bannerUrl,
-		logoUrl,
+		logoImageUrl,
 		backgroundImageUrl,
 		themeColor: themeColor === '' ? null : themeColor,
 		defaultLightTheme: defaultLightTheme === '' ? null : defaultLightTheme,
