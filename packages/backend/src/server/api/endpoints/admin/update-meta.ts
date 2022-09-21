@@ -45,6 +45,7 @@ export const paramDef = {
 		themeColor: { type: 'string', nullable: true, pattern: '^#[0-9a-fA-F]{6}$' },
 		mascotImageUrl: { type: 'string', nullable: true },
 		bannerUrl: { type: 'string', nullable: true },
+		logoUrl: { type: 'string', nullable: true },
 		errorImageUrl: { type: 'string', nullable: true },
 		iconUrl: { type: 'string', nullable: true },
 		backgroundImageUrl: { type: 'string', nullable: true },
@@ -191,6 +192,10 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (ps.bannerUrl !== undefined) {
 		set.bannerUrl = ps.bannerUrl;
+	}
+
+	if (ps.logoUrl !== undefined) {
+		set.logoUrl = ps.logoUrl;
 	}
 
 	if (ps.iconUrl !== undefined) {
