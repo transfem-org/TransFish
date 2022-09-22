@@ -1,3 +1,4 @@
+import { ArrayOverlap, IsNull, Not } from 'typeorm';
 import { publishNoteStream } from "@/services/stream.js";
 import { renderLike } from "@/remote/activitypub/renderer/like.js";
 import DeliverManager from "@/remote/activitypub/deliver-manager.js";
@@ -118,9 +119,15 @@ export default async (
 		userId: user.id,
 	});
 
+	// check if this thread is muted
+	const threadMuted = await NoteThreadMutings.findOne({
+		userId: note.userId,
+		threadId: note.threadId || note.id,
+		mutingNotificationTypes: ArrayOverlap(['reaction']),
+	});
 	// リアクションされたユーザーがローカルユーザーなら通知を作成
-	if (note.userHost === null) {
-		createNotification(note.userId, "reaction", {
+	if (note.userHost === null && !threadMuted) {
+		createNotification(note.userId, 'reaction', {
 			notifierId: user.id,
 			note: note,
 			noteId: note.id,

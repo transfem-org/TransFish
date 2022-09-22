@@ -1,3 +1,4 @@
+import { ArrayOverlap, Not, In } from 'typeorm';
 import * as mfm from "mfm-js";
 import es from "../../db/elasticsearch.js";
 import {
@@ -90,7 +91,7 @@ class NotificationManager {
 		// 自分自身へは通知しない
 		if (this.notifier.id === notifiee) return;
 
-		const exist = this.queue.find((x) => x.target === notifiee);
+		const exist = this.queue.find(async (x) => x.target === notifiee);
 
 		if (exist) {
 			// 「メンションされているかつ返信されている」場合は、メンションとしての通知ではなく返信としての通知にする
@@ -107,15 +108,19 @@ class NotificationManager {
 
 	public async deliver() {
 		for (const x of this.queue) {
-			// ミュート情報を取得
-			const mentioneeMutes = await Mutings.findBy({
+			// check if the sender or thread are muted
+			const userMuted = await Mutings.findOneBy({
 				muterId: x.target,
+				muteeId: this.notifier.id,
 			});
 
-			const mentioneesMutedUserIds = mentioneeMutes.map((m) => m.muteeId);
+			const threadMuted = await NoteThreadMutings.findOneBy({
+				userId: x.target,
+				threadId: this.note.threadId || this.note.id,
+				mutingNotificationTypes: ArrayOverlap([x.reason]),
+			});
 
-			// 通知される側のユーザーが通知する側のユーザーをミュートしていない限りは通知する
-			if (!mentioneesMutedUserIds.includes(this.notifier.id)) {
+			if (!(userMuted || threadMuted)) {
 				createNotification(x.target, x.reason, {
 					notifierId: this.notifier.id,
 					noteId: this.note.id,

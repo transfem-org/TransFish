@@ -18,7 +18,7 @@
 			</MkSwitch>
 		</div>
 		<div v-if="!useGlobalSetting" class="_section">
-			<MkInfo>{{ i18n.ts.notificationSettingDesc }}</MkInfo>
+			<MkInfo>{{ message }}</MkInfo>
 			<MkButton inline @click="disableAll">{{ i18n.ts.disableAll }}</MkButton>
 			<MkButton inline @click="enableAll">{{ i18n.ts.enableAll }}</MkButton>
 			<MkSwitch v-for="ntype in notificationTypes" :key="ntype" v-model="typesMap[ntype]">{{ i18n.t(`_notification._types.${ntype}`) }}</MkSwitch>
@@ -42,21 +42,25 @@ const emit = defineEmits<{
 }>();
 
 const props = withDefaults(defineProps<{
-	includingTypes?: typeof notificationTypes[number][] | null;
+	includingTypes?: typeof foundkey.notificationTypes[number][] | null;
+	notificationTypes?: typeof foundkey.notificationTypes[number][] | null;
 	showGlobalToggle?: boolean;
+	message?: string,
 }>(), {
 	includingTypes: () => [],
+	notificationTypes: () => [],
 	showGlobalToggle: true,
+	message: i18n.ts.notificationSettingDesc,
 });
 
 let includingTypes = $computed(() => props.includingTypes || []);
 
 const dialog = $ref<InstanceType<typeof XModalWindow>>();
 
-let typesMap = $ref<Record<typeof notificationTypes[number], boolean>>({});
+let typesMap = $ref<Record<typeof foundkey.notificationTypes[number], boolean>>({});
 let useGlobalSetting = $ref((includingTypes === null || includingTypes.length === 0) && props.showGlobalToggle);
 
-for (const ntype of notificationTypes) {
+for (const ntype of props.notificationTypes) {
 	typesMap[ntype] = includingTypes.includes(ntype);
 }
 
@@ -65,7 +69,7 @@ function ok() {
 		emit('done', { includingTypes: null });
 	} else {
 		emit('done', {
-			includingTypes: (Object.keys(typesMap) as typeof notificationTypes[number][])
+			includingTypes: (Object.keys(typesMap) as typeof foundkey.notificationTypes[number][])
 				.filter(type => typesMap[type]),
 		});
 	}
@@ -75,13 +79,13 @@ function ok() {
 
 function disableAll() {
 	for (const type in typesMap) {
-		typesMap[type as typeof notificationTypes[number]] = false;
+		typesMap[type as typeof foundkey.notificationTypes[number]] = false;
 	}
 }
 
 function enableAll() {
 	for (const type in typesMap) {
-		typesMap[type as typeof notificationTypes[number]] = true;
+		typesMap[type as typeof foundkey.notificationTypes[number]] = true;
 	}
 }
 </script>

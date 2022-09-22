@@ -1,14 +1,7 @@
-import {
-	PrimaryColumn,
-	Entity,
-	Index,
-	JoinColumn,
-	Column,
-	ManyToOne,
-} from "typeorm";
-import { User } from "./user.js";
-import { Note } from "./note.js";
-import { id } from "../id.js";
+import { PrimaryColumn, Entity, Index, JoinColumn, Column, ManyToOne } from 'typeorm';
+import { id } from '../id.js';
+import { User } from './user.js';
+import { Note } from './note.js';
 
 @Entity()
 @Index(['userId', 'threadId'], { unique: true })
@@ -37,4 +30,10 @@ export class NoteThreadMuting {
 		length: 256,
 	})
 	public threadId: string;
+
+	@Column('enum', {
+		array: true,
+		default: [],
+	})
+	public mutingNotificationTypes: any;
 }
