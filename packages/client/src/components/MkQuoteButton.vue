@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { Note } from 'foundkey-js/built/entities';
+import { Note } from 'misskey-js/built/entities';
 import { pleaseLogin } from '@/scripts/please-login';
 import * as os from '@/os';
 import { $i } from '@/account';
