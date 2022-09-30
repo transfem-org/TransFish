@@ -124,7 +124,7 @@ import XMediaList from '@/components/MkMediaList.vue';
 import XCwButton from '@/components/MkCwButton.vue';
 import XPoll from '@/components/MkPoll.vue';
 import XRenoteButton from '@/components/MkRenoteButton.vue';
-import XQuoteButton from './quote-button.vue';
+import XQuoteButton from '@/components/MkQuoteButton.vue';
 import MkUrlPreview from '@/components/MkUrlPreview.vue';
 import MkInstanceTicker from '@/components/MkInstanceTicker.vue';
 import MkVisibility from '@/components/MkVisibility.vue';
