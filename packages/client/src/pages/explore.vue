@@ -115,8 +115,8 @@ function setSwiperRef(swiper) {
 }
 
 function onSlideChange() {
-	tab = tabs[useSwiper().value.activeIndex];
-	console.log(tabs);
+	const current = useSwiper();
+	tab = tabs[current.value.activeIndex + 1];
 }
 
 function syncSlide(index) {
