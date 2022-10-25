@@ -10,7 +10,6 @@
 			:options="{
 				controls: [
 					'play-large',
-					'restart',
 					'play',
 					'progress',
 					'current-time',
