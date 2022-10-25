@@ -16,6 +16,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import * as misskey from 'misskey-js';
+import Ripple from '@/components/MkRipple.vue';
 import XDetails from '@/components/MkUsersTooltip.vue';
 import { pleaseLogin } from '@/scripts/please-login';
 import * as os from '@/os';
@@ -58,6 +59,13 @@ const renote = (viaKeyboard = false) => {
 			renoteId: props.note.id,
 			visibility: props.note.visibility,
 		});
+		const el = ev && (ev.currentTarget ?? ev.target) as HTMLElement | null | undefined;
+		if (el) {
+			const rect = el.getBoundingClientRect();
+			const x = rect.left + (el.offsetWidth / 2);
+			const y = rect.top + (el.offsetHeight / 2);
+			os.popup(Ripple, { x, y }, {}, 'end');
+		}
 	} else {
 		os.popupMenu([{
 			text: i18n.ts.renote,
