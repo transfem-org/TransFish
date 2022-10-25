@@ -63,12 +63,11 @@ const props = defineProps<{
 
 const tabs = ['featured', 'users', 'search'];
 
-let tab = $computed({
-	get: () => tabs[0],
-	set: (x) => {
-		syncSlide(tabs.indexOf(x));
-	},
-});
+const emit = defineEmits<{
+	(ev: 'update:tab', key: string);
+}>();
+
+let tab = $ref('featured');
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let searchQuery = $ref(null);
 let searchOrigin = $ref('combined');
@@ -115,7 +114,10 @@ function setSwiperRef(swiper) {
 }
 
 function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex + 1];
+	// tab = tabs[swiperRef.activeIndex];
+	let theTab = tabs[swiperRef.activeIndex];
+	console.log(theTab);
+	emit('update:tab', theTab);
 }
 
 function syncSlide(index) {
