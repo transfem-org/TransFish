@@ -120,6 +120,7 @@ function onSlideChange() {
 
 function syncSlide(index) {
 	swiperRef.slideTo(index);
+	tab = tabs[index];
 }
 
 </script>
