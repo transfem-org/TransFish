@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 import { computed, watch } from 'vue';
 import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import XFeatured from './explore.featured.vue';
 import XUsers from './explore.users.vue';
 import type MkFolder from '@/components/MkFolder.vue';
@@ -115,8 +115,7 @@ function setSwiperRef(swiper) {
 }
 
 function onSlideChange() {
-	const current = useSwiper();
-	tab = tabs[current.value.activeIndex + 1];
+	tab = tabs[swiperRef.activeIndex + 1];
 }
 
 function syncSlide(index) {
