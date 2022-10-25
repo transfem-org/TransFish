@@ -63,11 +63,12 @@ const props = defineProps<{
 
 const tabs = ['featured', 'users', 'search'];
 
-const emit = defineEmits<{
-	(ev: 'update:tab', key: string);
-}>();
-
-let tab = $ref('featured');
+let tab = $computed({
+	get: () => tabs[0],
+	set: (x) => {
+		syncSlide(tabs.indexOf(x));
+	},
+});
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let searchQuery = $ref(null);
 let searchOrigin = $ref('combined');
@@ -108,16 +109,20 @@ definePageMetadata(computed(() => ({
 
 let swiperRef = null;
 
+const emit = defineEmits<{
+	(ev: 'update:tab', key: string);
+}>();
+
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
 	syncSlide(tabs.indexOf(tab));
 }
 
 function onSlideChange() {
-	// tab = tabs[swiperRef.activeIndex];
 	let theTab = tabs[swiperRef.activeIndex];
 	console.log(theTab);
 	emit('update:tab', theTab);
+	tab = theTab;
 }
 
 function syncSlide(index) {
