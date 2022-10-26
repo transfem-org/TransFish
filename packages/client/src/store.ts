@@ -265,7 +265,7 @@ export const defaultStore = markRaw(new Storage('base', {
 	},
 	showAdminUpdates: {
 		where: 'account',
-		default: false,
+		default: true,
 	}
 }));
 
