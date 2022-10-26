@@ -4,7 +4,6 @@
 
 - MFM button
 - Classic mode make instance icon bring up new context menu
-- Like/star button
 - Backfill remote users
 - User "choices" (recommended users) like Mastodon and Soapbox
 - Option to publicize instance blocks
@@ -46,6 +45,7 @@
   - Redesigned mobile bottom nav bar
   - Post button on TL
 - Star as default reaction
+- Like/star button
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - Add back groups
