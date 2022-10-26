@@ -132,7 +132,7 @@
 </template>
 
 <script lang="ts" setup>
-import { } from 'vue';
+import { watch } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import * as misskey from 'misskey-js';

@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, inject } from 'vue';
+import { computed, defineComponent, inject, watch } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import MkChannelPreview from '@/components/MkChannelPreview.vue';
