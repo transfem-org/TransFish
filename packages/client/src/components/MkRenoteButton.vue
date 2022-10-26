@@ -3,7 +3,7 @@
 	v-if="canRenote"
 	ref="buttonRef"
 	class="eddddedb _button canRenote"
-	@click="renote()"
+	@click="renote(false, $event)"
 >
 	<i class="fas fa-retweet"></i>
 	<p v-if="count > 0" class="count">{{ count }}</p>
@@ -52,7 +52,7 @@ useTooltip(buttonRef, async (showing) => {
 	}, {}, 'closed');
 });
 
-const renote = (viaKeyboard = false) => {
+const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
 	if (defaultStore.state.seperateRenoteQuote) {
 		os.api('notes/create', {
