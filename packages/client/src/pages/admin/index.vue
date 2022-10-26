@@ -69,9 +69,9 @@ os.api('admin/abuse-user-reports', {
 });
 
 os.api('latest-version').then(res => {
-	const cleanRes = parseInt(res?.tag_name.replace(/[^0-9]/g, ''), 10);
-	const cleanVersion = parseInt(version.replace(/[^0-9]/g, ''), 10);
-	if (cleanRes > cleanVersion) {
+	const cleanRes = res?.tag_name.replace(/[^0-9]/g, '');
+	const cleanVersion = version.replace(/[^0-9]/g, '');
+	if (cleanRes !== cleanVersion) {
 		updateAvailable = true;
 	}
 });
