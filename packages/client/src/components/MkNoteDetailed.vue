@@ -81,6 +81,12 @@
 					</MkA>
 				</div>
 				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
+				<button class="button _button" @click="reply()">
+					<template v-if="appearNote.reply"><i class="fas fa-reply-all"></i></template>
+					<template v-else><i class="fas fa-reply"></i></template>
+					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
+				</button>
+				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
 				<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" @click="react()">
 					<i class="fas fa-face-laugh"></i>
@@ -88,12 +94,6 @@
 				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
 					<i class="fas fa-minus"></i>
 				</button>
-				<button class="button _button" @click="reply()">
-					<template v-if="appearNote.reply"><i class="fas fa-reply-all"></i></template>
-					<template v-else><i class="fas fa-reply"></i></template>
-					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
-				</button>
-				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 				<XQuoteButton class="button" :note="appearNote"/>
 				<button ref="menuButton" class="button _button" @click="menu()">
 					<i class="fas fa-ellipsis-h"></i>
@@ -519,7 +519,7 @@ if (appearNote.replyId) {
 					opacity: 0.7;
 
 					&:not(:last-child) {
-						margin-right: 28px;
+						margin-right: 16px;
 					}
 
 					&:hover {
