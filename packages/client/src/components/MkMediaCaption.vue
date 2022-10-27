@@ -7,7 +7,6 @@
 					<Mfm v-if="title" class="title" :text="title"/>
 					<span class="text-count" :class="{ over: remainingLength < 0 }">{{ remainingLength }}</span>
 					<br/>
-					<span id="recognized-text"></span>
 				</header>
 				<textarea id="captioninput" v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
 				<div v-if="(showOkButton || showCaptionButton || showCancelButton)" class="buttons">
@@ -142,12 +141,11 @@ export default defineComponent({
 
 		caption() {
 			const img = document.getElementById('imgtocaption') as HTMLImageElement;
+			const ta = document.getElementById('captioninput') as HTMLTextAreaElement;
 			os.api('drive/files/caption-image', {
 				url: img.src,
 			}).then(text => {
-				document.getElementById('recognized-text').innerText = text;
-				const allowedLength = 512 - this.inputValue.length;
-				this.inputValue += text.slice(0, allowedLength);
+				ta.value += text.slice(0, (512 - ta.value.length));
 			});
 		},
 	},
