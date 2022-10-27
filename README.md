@@ -21,6 +21,7 @@
   - Improved notifications
   - Improved instance security
   - Recommended Instances timeline
+  - OCR image captioning
   - New and improved Groups
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)

@@ -23,7 +23,6 @@
 - Better Messaging UI
   - Videos can be played in DMs
 - Make your password hasn't been pwned
-- OCR image captioning
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility score
@@ -40,6 +39,7 @@
   - Upgrade packages with security vunrabilities
 - Saner defaults
 - Recommended instances timeline
+- OCR image captioning
 - Improve mobile UX
   - Swipe through pages on mobile
   - Redesigned mobile bottom nav bar
