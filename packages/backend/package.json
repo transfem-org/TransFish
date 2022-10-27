@@ -110,6 +110,7 @@
 		"summaly": "2.7.0",
 		"syslog-pro": "1.0.0",
 		"systeminformation": "5.12.11",
+		"tesseract.js": "^3.0.3",
 		"tinycolor2": "1.4.2",
 		"tmp": "0.2.1",
 		"ts-loader": "9.4.1",

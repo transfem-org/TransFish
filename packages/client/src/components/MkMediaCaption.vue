@@ -11,9 +11,9 @@
 				</header>
 				<textarea id="captioninput" v-model="inputValue" autofocus :placeholder="input.placeholder" @keydown="onInputKeydown"></textarea>
 				<div v-if="(showOkButton || showCaptionButton || showCancelButton)" class="buttons">
-					<MkButton inline primary :disabled="remainingLength < 0" @click="ok">{{ $ts.ok }}</MkButton>
-					<!-- <MkButton inline @click="caption" >{{ $ts.caption }}</MkButton> -->
-					<MkButton inline @click="cancel" >{{ $ts.cancel }}</MkButton>
+					<MkButton inline primary :disabled="remainingLength < 0" @click="ok">{{ i18n.ts.ok }}</MkButton>
+					<MkButton inline @click="caption">{{ i18n.ts.caption }}</MkButton>
+					<MkButton inline @click="cancel">{{ i18n.ts.cancel }}</MkButton>
 				</div>
 			</div>
 		</div>
@@ -33,7 +33,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { length } from 'stringz';
-import Tesseract from 'tesseract.js';
+import { i18n } from '@/i18n';
+import * as os from '@/os';
 import MkModal from '@/components/MkModal.vue';
 import MkButton from '@/components/MkButton.vue';
 import bytes from '@/filters/bytes';
@@ -141,37 +142,14 @@ export default defineComponent({
 		},
 
 		caption() {
-			const getBase64FromUrl = async (url) => {
-				const data = await fetch(url);
-				const blob = await data.blob();
-				return new Promise((resolve) => {
-					const reader = new FileReader();
-					reader.readAsDataURL(blob);
-					reader.onloadend = () => {
-						const base64data = reader.result;
-						resolve(base64data);
-					};
-				});
-			};
 			const img = document.getElementById('imgtocaption') as HTMLImageElement;
-			const b64 = getBase64FromUrl(img.src);
-			console.log(b64);
-			Tesseract.recognize(
-				b64,
-				'eng',
-				{ logger: m => console.log(m) },
-			).then(({ data: { text } }) => {
-				console.log(text);
+			os.api('drive/files/caption-image', {
+				url: img.src,
+			}).then(text => {
+				document.getElementById('recognized-text').innerText = text;
+				const allowedLength = 512 - this.inputValue.length;
+				this.inputValue += text.slice(0, allowedLength);
 			});
-			// await worker.load();
-			// await worker.loadLanguage('eng');
-			// await worker.initialize('eng');
-			// const { data: { text } } = await worker.recognize(img);
-			// console.log(text);
-			// // document.getElementById('recognized-text').innerText = text;
-			// // const allowedLength = 512 - this.inputValue.length;
-			// // this.inputValue += text.slice(0, allowedLength);
-			// await worker.terminate();
 		},
 	},
 });

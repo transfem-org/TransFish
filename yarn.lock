@@ -3084,6 +3084,7 @@ __metadata:
     summaly: 2.7.0
     syslog-pro: 1.0.0
     systeminformation: 5.12.11
+    tesseract.js: ^3.0.3
     tinycolor2: 1.4.2
     tmp: 0.2.1
     ts-loader: 9.4.1
@@ -4037,7 +4038,6 @@ __metadata:
     stringz: 2.1.0
     swiper: ^8.4.4
     syuilo-password-strength: 0.0.1
-    tesseract.js: ^3.0.3
     textarea-caret: 3.1.0
     three: 0.144.0
     throttle-debounce: 5.0.0
