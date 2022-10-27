@@ -20,7 +20,7 @@ export const meta = {
 		},
 
 		unexpectedFileType: {
-			message: 'We need csv file.',
+			message: 'Must be a CSV or JSON file.',
 			code: 'UNEXPECTED_FILE_TYPE',
 			id: '660f3599-bce0-4f95-9dde-311fd841c183',
 		},

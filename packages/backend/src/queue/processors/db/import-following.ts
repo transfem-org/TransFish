@@ -1,14 +1,14 @@
-import Bull from 'bull';
-
-import { queueLogger } from '../../logger.js';
+import { IsNull } from 'typeorm';
 import follow from '@/services/following/create.js';
+
 import * as Acct from '@/misc/acct.js';
 import { resolveUser } from '@/remote/resolve-user.js';
 import { downloadTextFile } from '@/misc/download-text-file.js';
 import { isSelfHost, toPuny } from '@/misc/convert-host.js';
 import { Users, DriveFiles } from '@/models/index.js';
-import { DbUserImportJobData } from '@/queue/types.js';
-import { IsNull } from 'typeorm';
+import type { DbUserImportJobData } from '@/queue/types.js';
+import { queueLogger } from '../../logger.js';
+import type Bull from 'bull';
 
 const logger = queueLogger.createSubLogger('import-following');
 
@@ -33,39 +33,75 @@ export async function importFollowing(job: Bull.Job<DbUserImportJobData>, done: 
 
 	let linenum = 0;
 
-	for (const line of csv.trim().split('\n')) {
-		linenum++;
+	if (file.type.endsWith('json')) {
+		for (const acct of JSON.parse(csv)) {
+			try {
+				const { username, host } = Acct.parse(acct);
 
-		try {
-			const acct = line.split(',')[0].trim();
-			const { username, host } = Acct.parse(acct);
+				let target = isSelfHost(host!) ? await Users.findOneBy({
+					host: IsNull(),
+					usernameLower: username.toLowerCase(),
+				}) : await Users.findOneBy({
+					host: toPuny(host!),
+					usernameLower: username.toLowerCase(),
+				});
 
-			let target = isSelfHost(host!) ? await Users.findOneBy({
-				host: IsNull(),
-				usernameLower: username.toLowerCase(),
-			}) : await Users.findOneBy({
-				host: toPuny(host!),
-				usernameLower: username.toLowerCase(),
-			});
+				if (host == null && target == null) continue;
 
-			if (host == null && target == null) continue;
+				if (target == null) {
+					target = await resolveUser(username, host);
+				}
 
-			if (target == null) {
-				target = await resolveUser(username, host);
+				if (target == null) {
+					throw new Error(`cannot resolve user: @${username}@${host}`);
+				}
+
+				// skip myself
+				if (target.id === job.data.user.id) continue;
+
+				logger.info(`Follow[${linenum}] ${target.id} ...`);
+
+				follow(user, target);
+			} catch (e) {
+				logger.warn(`Error in line:${linenum} ${e}`);
 			}
+		}
+	}
+	else {
+		for (const line of csv.trim().split('\n')) {
+			linenum++;
 
-			if (target == null) {
-				throw new Error(`cannot resolve user: @${username}@${host}`);
+			try {
+				const acct = line.split(',')[0].trim();
+				const { username, host } = Acct.parse(acct);
+
+				let target = isSelfHost(host!) ? await Users.findOneBy({
+					host: IsNull(),
+					usernameLower: username.toLowerCase(),
+				}) : await Users.findOneBy({
+					host: toPuny(host!),
+					usernameLower: username.toLowerCase(),
+				});
+
+				if (host == null && target == null) continue;
+
+				if (target == null) {
+					target = await resolveUser(username, host);
+				}
+
+				if (target == null) {
+					throw new Error(`cannot resolve user: @${username}@${host}`);
+				}
+
+				// skip myself
+				if (target.id === job.data.user.id) continue;
+
+				logger.info(`Follow[${linenum}] ${target.id} ...`);
+
+				follow(user, target);
+			} catch (e) {
+				logger.warn(`Error in line:${linenum} ${e}`);
 			}
-
-			// skip myself
-			if (target.id === job.data.user.id) continue;
-
-			logger.info(`Follow[${linenum}] ${target.id} ...`);
-
-			follow(user, target);
-		} catch (e) {
-			logger.warn(`Error in line:${linenum} ${e}`);
 		}
 	}
 

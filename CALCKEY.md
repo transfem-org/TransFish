@@ -29,7 +29,7 @@
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
 
-![](https://pool.jortage.com/voringme/misskey/8ff18aae-4dc6-4b08-9e05-a4c9d051a9e3.png)
+![accesibility score](https://pool.jortage.com/voringme/misskey/8ff18aae-4dc6-4b08-9e05-a4c9d051a9e3.png)
 
 </details>
 
@@ -77,6 +77,7 @@
 - Fix incoming chat scrolling globally
 - Update notifier
 - Allow admins to set logo URL via admin settings
+- Allow importing follows from Pixelfed
 - Obliteration of Ai-chan
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
