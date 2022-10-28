@@ -9,7 +9,7 @@
 					<Mfm v-if="note.cw != ''" class="text" :text="note.cw" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 					<XCwButton v-model="showContent" :note="note"/>
 				</p>
-				<div v-show="note.cw == null || showContent" class="content">
+				<div v-show="note.cw == null || showContent" class="content" @click="router.push(notePage(note))">
 					<MkSubNoteContent class="text" :note="note"/>
 				</div>
 			</div>
