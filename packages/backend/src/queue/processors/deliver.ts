@@ -1,50 +1,25 @@
 import { URL } from 'node:url';
-import Bull from 'bull';
 import request from '@/remote/activitypub/request.js';
 import { registerOrFetchInstanceDoc } from '@/services/register-or-fetch-instance-doc.js';
 import Logger from '@/services/logger.js';
 import { Instances } from '@/models/index.js';
 import { apRequestChart, federationChart, instanceChart } from '@/services/chart/index.js';
 import { fetchInstanceMetadata } from '@/services/fetch-instance-metadata.js';
-import { fetchMeta } from '@/misc/fetch-meta.js';
 import { toPuny } from '@/misc/convert-host.js';
-import { Cache } from '@/misc/cache.js';
-import { Instance } from '@/models/entities/instance.js';
-import { DeliverJobData } from '../types.js';
 import { StatusError } from '@/misc/fetch.js';
+import { shouldSkipInstance } from '@/misc/skipped-instances.js';
+import type { DeliverJobData } from '@/queue/types.js';
+import type Bull from 'bull';
 
 const logger = new Logger('deliver');
 
 let latest: string | null = null;
 
-const suspendedHostsCache = new Cache<Instance[]>(1000 * 60 * 60);
-
 export default async (job: Bull.Job<DeliverJobData>) => {
 	const { host } = new URL(job.data.to);
+	const puny = toPuny(host);
 
-	// ブロックしてたら中断
-	const meta = await fetchMeta();
-	if (meta.blockedHosts.includes(toPuny(host))) {
-		return 'skip (blocked)';
-	}
-
-	if (meta.privateMode && !meta.allowedHosts.includes(toPuny(host))) {
-		return 'skip (not allowed)';
-	}
-
-	// isSuspendedなら中断
-	let suspendedHosts = suspendedHostsCache.get(null);
-	if (suspendedHosts == null) {
-		suspendedHosts = await Instances.find({
-			where: {
-				isSuspended: true,
-			},
-		});
-		suspendedHostsCache.set(null, suspendedHosts);
-	}
-	if (suspendedHosts.map(x => x.host).includes(toPuny(host))) {
-		return 'skip (suspended)';
-	}
+	if (await shouldSkipInstance(puny)) return 'skip';
 
 	try {
 		if (latest !== (latest = JSON.stringify(job.data.content, null, 2))) {
