@@ -80,10 +80,10 @@
 				<XEmojis/>
 			</swiper-slide>
 			<swiper-slide>
-				<XFederation/>
+				<MkInstanceStats :chart-limit="500" :detailed="true"/>
 			</swiper-slide>
 			<swiper-slide>
-				<MkInstanceStats :chart-limit="500" :detailed="true"/>
+				<XFederation/>
 			</swiper-slide>
 		</swiper>
 	</MkSpacer>
