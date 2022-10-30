@@ -3,7 +3,7 @@
 	<div v-if="showing" class="fxxzrfni _popup _shadow" :style="{ zIndex, top: top + 'px', left: left + 'px' }" @mouseover="() => { emit('mouseover'); }" @mouseleave="() => { emit('mouseleave'); }">
 		<div v-if="user != null" class="info">
 			<div class="banner" :style="user.bannerUrl ? `background-image: url(${user.bannerUrl})` : ''">
-				<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ $ts.followsYou }}</span>
+				<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
 			</div>
 			<MkAvatar class="avatar" :user="user" :disable-preview="true" :show-indicator="true"/>
 			<div class="title">
@@ -102,28 +102,6 @@ onMounted(() => {
 			background-color: rgba(0, 0, 0, 0.1);
 			background-size: cover;
 			background-position: center;
-			> .followed {
-					position: absolute;
-					top: 12px;
-					left: 12px;
-					padding: 4px 8px;
-					color: #fff;
-					background: rgba(0, 0, 0, 0.7);
-					font-size: 0.7em;
-					border-radius: 6px;
-			}
-
-			&::after {
-				content: "";
-				background-image: var(--blur, inherit);
-				position: fixed;
-				inset: 0;
-				background-size: cover;
-				background-position: center;
-				pointer-events: none;
-				opacity: .1;
-				filter: var(--blur, blur(10px));
-			}
 		}
 
 		> .avatar {
