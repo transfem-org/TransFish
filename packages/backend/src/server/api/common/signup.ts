@@ -11,6 +11,7 @@ import { UserKeypair } from '@/models/entities/user-keypair.js';
 import { usersChart } from '@/services/chart/index.js';
 import { UsedUsername } from '@/models/entities/used-username.js';
 import { db } from '@/db/postgre.js';
+import config from '@/config/index.js';
 
 export async function signup(opts: {
 	username: User['username'];
@@ -20,6 +21,14 @@ export async function signup(opts: {
 }) {
 	const { username, password, passwordHash, host } = opts;
 	let hash = passwordHash;
+
+	const userCount = await Users.countBy({
+		host: IsNull(),
+	});
+
+	if (config.maxUserSignups != null && config.maxUserSignups > userCount) {
+		throw new Error('MAX_USERS_REACHED');
+	}
 
 	// Validate username
 	if (!Users.validateLocalUsername(username)) {
