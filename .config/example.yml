@@ -170,6 +170,7 @@ id: 'aid'
 #
 #objectStorage:
 #  managed: true
+#  baseUrl: ''
 #  bucket: ''
 #  prefix: ''
 #  endpoint: ''
