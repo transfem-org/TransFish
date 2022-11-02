@@ -2,19 +2,19 @@
 <form class="mk-setup" @submit.prevent="submit()">
 	<h1>Welcome to Calckey!</h1>
 	<div class="_formRoot">
-		<p>{{ $ts.intro }}</p>
+		<p>{{ i18n.ts.intro }}</p>
 		<MkInput v-model="username" pattern="^[a-zA-Z0-9_]{1,20}$" :spellcheck="false" required data-cy-admin-username class="_formBlock">
-			<template #label>{{ $ts.username }}</template>
+			<template #label>{{ i18n.ts.username }}</template>
 			<template #prefix>@</template>
 			<template #suffix>@{{ host }}</template>
 		</MkInput>
 		<MkInput v-model="password" type="password" data-cy-admin-password class="_formBlock">
-			<template #label>{{ $ts.password }}</template>
+			<template #label>{{ i18n.ts.password }}</template>
 			<template #prefix><i class="fas fa-lock"></i></template>
 		</MkInput>
 		<div class="bottom _formBlock">
 			<MkButton gradate type="submit" :disabled="submitting" data-cy-admin-ok>
-				{{ submitting ? $ts.processing : $ts.done }}<MkEllipsis v-if="submitting"/>
+				{{ submitting ? i18n.ts.processing : i18n.ts.done }}<MkEllipsis v-if="submitting"/>
 			</MkButton>
 		</div>
 	</div>
@@ -37,15 +37,22 @@ let submitting = $ref(false);
 function submit() {
 	if (submitting) return;
 	submitting = true;
-
 	os.api('admin/accounts/create', {
 		username: username,
 		password: password,
 	}).then(res => {
-		return login(res.token);
+		os.api('admin/accounts/hosted').then(res => {
+			if (res != null && res === true) {
+				os.alert({
+					type: 'success',
+					title: 'Thank you!',
+					text: 'Your hosting provider has set your settings for you. Enjoy your new instance!',
+				});
+			}
+		});
+		return login(res?.token);
 	}).catch(() => {
 		submitting = false;
-
 		os.alert({
 			type: 'error',
 			text: i18n.ts.somethingHappened,

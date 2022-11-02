@@ -78,7 +78,7 @@ yarn set version berry
 
 ```sh
 # git pull
-YARN_CHECKSUM_BEHAVIOR=update yarn install
+yarn install
 NODE_ENV=production yarn run build && yarn run migrate
 # Edit service to point to calckey folder and restart!
 ```

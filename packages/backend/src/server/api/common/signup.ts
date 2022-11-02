@@ -26,7 +26,7 @@ export async function signup(opts: {
 		host: IsNull(),
 	});
 
-	if (config.maxUserSignups != null && config.maxUserSignups > userCount) {
+	if (config.maxUserSignups != null && userCount > config.maxUserSignups) {
 		throw new Error('MAX_USERS_REACHED');
 	}
 

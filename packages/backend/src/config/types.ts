@@ -64,7 +64,39 @@ export type Source = {
 	mediaProxy?: string;
 	proxyRemoteFiles?: boolean;
 
+	// Managed hosting stuff
 	maxUserSignups?: number;
+	isManagedHosting?: boolean;
+	deepl: {
+		managed?: boolean;
+		authKey?: string;
+		isPro?: boolean;
+	};
+	email: {
+		managed?: boolean;
+		address?: string;
+		host?: string;
+		port?: number;
+		user?: string;
+		pass?: string;
+		useImplicitSslTls?: boolean;
+
+	};
+	objectStorage: {
+		managed?: boolean;
+		baseUrl?: string;
+		bucket?: string;
+		prefix?: string;
+		endpoint?: string;
+		region?: string;
+		accessKey?: string;
+		secretKey?: string;
+		useSsl?: boolean;
+		connnectOverProxy?: boolean;
+		setPublicReadOnUpload?: boolean;
+		s3ForcePathStyle?: boolean;
+	};
+	summalyProxyUrl?: string;
 };
 
 /**

@@ -39,7 +39,7 @@ export const paramDef = {
 		} },
 		allowedHosts: { type: 'array', nullable: true, items: {
 			type: 'string',
-    } },
+		} },
 		secureMode: { type: 'boolean', nullable: true },
 		privateMode: { type: 'boolean', nullable: true },
 		themeColor: { type: 'string', nullable: true, pattern: '^#[0-9a-fA-F]{6}$' },
@@ -49,7 +49,6 @@ export const paramDef = {
 		errorImageUrl: { type: 'string', nullable: true },
 		iconUrl: { type: 'string', nullable: true },
 		backgroundImageUrl: { type: 'string', nullable: true },
-		logoImageUrl: { type: 'string', nullable: true },
 		name: { type: 'string', nullable: true },
 		description: { type: 'string', nullable: true },
 		defaultLightTheme: { type: 'string', nullable: true },

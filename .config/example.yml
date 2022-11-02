@@ -145,5 +145,39 @@ id: 'aid'
 # Upload or download file size limits (bytes)
 #maxFileSize: 262144000
 
-# Maxium users, should be used for hosting management services
+# Managed hosting settings
+# !!!!!!!!!!
+# >>>>>> NORMAL SELF-HOSTERS, STAY AWAY! YOU DON'T NEED THIS! <<<<<<
+# !!!!!!!!!!
+# Each category is optional, but if each item in each category is mandatory!
+# If you mess this up, that's on you, you've been warned...
+
 #maxUserSignups: 100
+#isManagedHosting: true
+#deepl:
+#  managed: true
+#  authKey: ''
+#  isPro: false
+#
+#email:
+#  managed: true
+#  address: 'example@email.com'
+#  host: 'email.com'
+#  port: 587
+#  user: 'example@email.com'
+#  pass: ''
+#  useImplicitSslTls: false
+#
+#objectStorage:
+#  managed: true
+#  bucket: ''
+#  prefix: ''
+#  endpoint: ''
+#  region: ''
+#  accessKey: ''
+#  secretKey: ''
+#  useSsl: true
+#  connnectOverProxy: false
+#  setPublicReadOnUpload: true
+#  s3ForcePathStyle: true
+#summalyProxyUrl: 'https://summaly.arkjp.net'
