@@ -29,15 +29,14 @@ html
 		meta(property='twitter:card' content='summary')
 		meta(property='og:site_name' content= instanceName || 'Calckey')
 		meta(name='viewport' content='width=device-width, initial-scale=1')
-		meta(name='darkreader-lock')
-		link(rel='icon' href= icon || '/favicon.ico')
-		link(rel='apple-touch-icon' href= icon || '/apple-touch-icon.png')
+		link(rel='icon' href= icon || `/favicon.ico?${ nowDateMs }`)
+		link(rel='apple-touch-icon' href= icon || `/apple-touch-icon.png?${ nowDateMs }`)
 		link(rel='manifest' href='/manifest.json')
-		link(rel='prefetch' href='/static-assets/badges/info.png')
-		link(rel='prefetch' href='/static-assets/badges/not-found.png')
-		link(rel='prefetch' href='/static-assets/badges/error.png')
+		link(rel='prefetch' href=`/static-assets/badges/info.png?${ nowDateMs }`)
+		link(rel='prefetch' href=`/static-assets/badges/not-found.png?${ nowDateMs }`)
+		link(rel='prefetch' href=`/static-assets/badges/error.png?${ nowDateMs }`)
 		link(rel='stylesheet' href='/assets/fontawesome/css/all.css')
-		link(rel='stylesheet' href='/static-assets/instance.css')
+		link(rel='stylesheet' href=`/static-assets/instance.css?${ nowDateMs }`)
 		link(rel='modulepreload' href=`/assets/${clientEntry.file}`)
 
 		each href in clientEntry.css
@@ -78,7 +77,7 @@ html
 			br
 			| Please turn on your JavaScript
 		div#splash
-			img#splashIcon(src= splashIcon || '/static-assets/splash.png')
+			img#splashIcon(src= splashIcon || `/static-assets/splash.png?${ nowDateMs }`)
 			span#splashText
 				block randomMOTD
 					= randomMOTD

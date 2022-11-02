@@ -526,6 +526,7 @@ router.get('(.*)', async ctx => {
 	if (meta.customSplashIcons.length > 0) {
 		splashIconUrl = meta.customSplashIcons[Math.floor(Math.random() * meta.customSplashIcons.length)];
 	}
+	const nowDateMs = Date.now();
 	await ctx.render('base', {
 		img: meta.bannerUrl,
 		title: meta.name || 'Calckey',
@@ -536,6 +537,7 @@ router.get('(.*)', async ctx => {
 		themeColor: meta.themeColor,
 		randomMOTD: motd[Math.floor(Math.random() * motd.length)],
 		privateMode: meta.privateMode,
+		nowDateMs: nowDateMs,
 	});
 	ctx.set('Cache-Control', 'public, max-age=3');
 });
