@@ -6,7 +6,7 @@
 			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 
 			<div v-if="messages.length > 0" class="history">
-				<MkPagination v-slot="{messages}" :pagination="pagination">
+				<MkPagination v-slot="{items}" :pagination="pagination">
 					<MkA
 						v-for="(message, i) in messages"
 						:key="message.id"
@@ -70,8 +70,8 @@ let connection = $ref(null);
 const getAcct = Acct.toString;
 
 const pagination = {
-	endpoint: 'messaging' as const,
-	limit: 20,
+	endpoint: 'messaging/history' as const,
+	limit: 10,
 };
 
 function isMe(message) {
