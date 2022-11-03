@@ -8,13 +8,11 @@
 			<div v-if="messages.length > 0" class="history">
 				<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
 					<MkA
-						v-for="(message, i) in items"
+						v-for="message in items"
 						:key="message.id"
-						v-anim="i"
 						class="message _block"
 						:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i?.id) : message.isRead }"
 						:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
-						:data-index="i"
 					>
 						<div>
 							<MkAvatar class="avatar" :user="message.groupId ? message.user : isMe(message) ? message.recipient : message.user" :show-indicator="true"/>
