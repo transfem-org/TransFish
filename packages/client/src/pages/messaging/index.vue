@@ -3,42 +3,44 @@
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
 	<MkSpacer :content-max="800">
 		<div v-size="{ max: [400] }" class="yweeujhr">
-			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ $ts.startMessaging }}</MkButton>
+			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 
 			<div v-if="messages.length > 0" class="history">
-				<MkA
-					v-for="(message, i) in messages"
-					:key="message.id"
-					v-anim="i"
-					class="message _block"
-					:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i.id) : message.isRead }"
-					:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
-					:data-index="i"
-				>
-					<div>
-						<MkAvatar class="avatar" :user="message.groupId ? message.user : isMe(message) ? message.recipient : message.user" :show-indicator="true"/>
-						<header v-if="message.groupId">
-							<span class="name">{{ message.group.name }}</span>
-							<MkTime :time="message.createdAt" class="time"/>
-						</header>
-						<header v-else>
-							<span class="name"><MkUserName :user="isMe(message) ? message.recipient : message.user"/></span>
-							<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
-							<MkTime :time="message.createdAt" class="time"/>
-						</header>
-						<div class="body">
-							<p class="text">
-								<span v-if="isMe(message)" class="me">{{ $ts.you }}: </span>
-								<span v-if="message.text != null && message.text.length > 0">{{ message.text }}</span>
-								<span v-else> 📎</span>
-							</p>
+				<MkPagination v-slot="{items}" :pagination="pagination">
+					<MkA
+						v-for="(message, i) in items"
+						:key="message.id"
+						v-anim="i"
+						class="message _block"
+						:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i.id) : message.isRead }"
+						:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
+						:data-index="i"
+					>
+						<div>
+							<MkAvatar class="avatar" :user="message.groupId ? message.user : isMe(message) ? message.recipient : message.user" :show-indicator="true"/>
+							<header v-if="message.groupId">
+								<span class="name">{{ message.group.name }}</span>
+								<MkTime :time="message.createdAt" class="time"/>
+							</header>
+							<header v-else>
+								<span class="name"><MkUserName :user="isMe(message) ? message.recipient : message.user"/></span>
+								<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
+								<MkTime :time="message.createdAt" class="time"/>
+							</header>
+							<div class="body">
+								<p class="text">
+									<span v-if="isMe(message)" class="me">{{ i18n.ts.you }}: </span>
+									<span v-if="message.text != null && message.text.length > 0">{{ message.text }}</span>
+									<span v-else> 📎</span>
+								</p>
+							</div>
 						</div>
-					</div>
-				</MkA>
+					</MkA>
+				</MkPagination>
 			</div>
 			<div v-if="!fetching && messages.length == 0" class="_fullinfo">
 				<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
-				<div>{{ $ts.noHistory }}</div>
+				<div>{{ i18n.ts.noHistory }}</div>
 			</div>
 			<MkLoading v-if="fetching"/>
 		</div>
@@ -66,6 +68,11 @@ let messages = $ref([]);
 let connection = $ref(null);
 
 const getAcct = Acct.toString;
+
+const pagination = {
+	endpoint: 'messaging' as const,
+	limit: 10,
+};
 
 function isMe(message) {
 	return message.userId === $i.id;
