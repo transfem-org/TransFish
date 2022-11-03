@@ -6,13 +6,13 @@
 			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 
 			<div v-if="messages.length > 0" class="history">
-				<MkPagination v-slot="{items}" :pagination="pagination">
+				<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
 					<MkA
-						v-for="(message, i) in messages"
+						v-for="(message, i) in items"
 						:key="message.id"
 						v-anim="i"
 						class="message _block"
-						:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i.id) : message.isRead }"
+						:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i?.id) : message.isRead }"
 						:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
 						:data-index="i"
 					>
