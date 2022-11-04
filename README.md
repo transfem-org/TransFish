@@ -37,13 +37,17 @@
 - 📜 Instance list: https://calckey.fediverse.observer/list
 - 📖 JoinFediverse Wiki: https://joinfediverse.wiki/What_is_Calckey%3F
 
-# 🏂 Starting a new instance
+# 🌠 Getting started
 
-You need at least 🐢 NodeJS v16.15.0 (v18.20.0 recommended!) and at least 🧶 Yarn v3.2!
+This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
-# 🚚 Migrating from Misskey to Calckey
+# 🐳
 
-You need at least 🐢 NodeJS v16.15.0 (v19 recommended!) and at least 🧶 Yarn v3.2!
+# 🔨 Building from source
+
+You need at least 🐢 NodeJS v16.15.0 (v18.20.0 recommended!) and at least 🧶 Yarn v3!
+
+> ⚠️ NodeJS v19 is not supported as of right now because of [this issue](https://github.com/nodejs/node-gyp/issues/2757).
 
 ## 👀 Get folder ready
 
@@ -51,8 +55,6 @@ You need at least 🐢 NodeJS v16.15.0 (v19 recommended!) and at least 🧶 Yarn
 git clone https://codeberg.org/thatonecalculator/calckey.git
 cd calckey/
 # git checkout main # if you want only stable versions
-cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, replace `default.yml` with `docker.yml` if you use docker
-# cp -r ../misskey/files . # if you don't use object storage
 ```
 
 ## 📩 Install dependencies
@@ -68,9 +70,19 @@ yarn set version berry
 - To add custom CSS for all users, edit `./custom/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
 
+## 🚚 Migrating from Misskey to Calckey
+
+> ⚠️ Because of their changes, migrating from Foundkey is not supported.
+
+```sh
+cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, replace `default.yml` with `docker.yml` if you use docker
+cp -r ../misskey/files . # if you don't use object storage
+```
+
 ## 🚀 Build and launch!
 
-### `git pull` and run these steps to update Calckey in the future!
+### 🐢 NodeJS
+#### `git pull` and run these steps to update Calckey in the future!
 
 ```sh
 # git pull
@@ -79,11 +91,17 @@ NODE_ENV=production yarn run build && yarn run migrate
 # Edit service to point to calckey folder and restart!
 ```
 
-## 🐳 Docker
+### 🐋 Prebuilt Docker image
 
 ```sh
-# git pull
-docker compose build
-# docker compose stop misskey
-docker compose up -d
+docker pull thatonecalculator:calckey
+docker up -d
+```
+
+### 🐳 Docker Compose
+
+```sh
+sudo docker compose build
+sudo docker-compose run --rm web yarn run init
+sudo docker compose up -d
 ```
