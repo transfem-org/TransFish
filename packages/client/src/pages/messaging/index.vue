@@ -69,13 +69,9 @@ let connection = $ref(null);
 
 const getAcct = Acct.toString;
 
-const pagination = {
-	endpoint: 'messaging/history' as const,
-	limit: 10,
-	parameters: {
-		group: false,
-	},
-};
+const props = defineProps<{
+	pagination: any;
+}>();
 
 function isMe(message) {
 	return message.userId === $i.id;
