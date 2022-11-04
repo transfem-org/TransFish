@@ -64,7 +64,7 @@ cd calckey/
 ## 📩 Install dependencies
 
 ```sh
-# nvm install 18.4.0 && nvm alias default 18.4.0 && nvm use 18.4.0
+# nvm install 18 && nvm alias default 18 && nvm use 18
 corepack enable
 yarn set version berry
 ```
