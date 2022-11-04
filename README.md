@@ -47,7 +47,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 > ⚠️ NodeJS v19 is not supported as of right now because of [this issue](https://github.com/nodejs/node-gyp/issues/2757).
 
-- At least 🧶 Yarn v3
+- 🧶 At least Yarn v3
 
 - 🐘 At least PostgreSQL v12
 
