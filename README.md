@@ -37,17 +37,13 @@
 - 📜 Instance list: https://calckey.fediverse.observer/list
 - 📖 JoinFediverse Wiki: https://joinfediverse.wiki/What_is_Calckey%3F
 
-# 📝 Documentation
+# 🏂 Starting a new instance
 
-- Misskey documentation can be found on [Misskey Hub](https://misskey-hub.net/)
-  - To make a new Calckey instance, read their documentation for building from source or using Docker, but replace their repo link (`https://github.com/misskey-dev/misskey.git`) with `https://codeberg.org/thatonecalculator/calckey.git`.
-- API reference can be found on any Calckey instance's [API doc page](https://stop.voring.me/api-doc)
+You need at least 🐢 NodeJS v16.15.0 (v18.20.0 recommended!) and at least 🧶 Yarn v3.2!
 
 # 🚚 Migrating from Misskey to Calckey
 
-You need at least 🐢 NodeJS v16.15.0 (v18.4.0 recommended!) and *exactly* 🧶 Yarn v3.2.2!
-
-> ⚠️ Please don't use NodeJS v18.6.0, as it's known to cause problems.
+You need at least 🐢 NodeJS v16.15.0 (v19 recommended!) and at least 🧶 Yarn v3.2!
 
 ## 👀 Get folder ready
 
@@ -83,11 +79,11 @@ NODE_ENV=production yarn run build && yarn run migrate
 # Edit service to point to calckey folder and restart!
 ```
 
-### 🐳 Docker
+## 🐳 Docker
 
 ```sh
 # git pull
-sudo docker compose build
-# sudo docker compose stop misskey
-sudo docker compose up -d
+docker compose build
+# docker compose stop misskey
+docker compose up -d
 ```
