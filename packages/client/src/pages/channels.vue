@@ -58,18 +58,18 @@ const tabs = ['featured', 'following', 'owned'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
-
 const featuredPagination = {
 	endpoint: 'channels/featured' as const,
-	noPaging: true,
+	limit: 10,
+	noPaging: false,
 };
 const followingPagination = {
 	endpoint: 'channels/followed' as const,
-	limit: 5,
+	limit: 10,
 };
 const ownedPagination = {
 	endpoint: 'channels/owned' as const,
-	limit: 5,
+	limit: 10,
 };
 
 function create() {
