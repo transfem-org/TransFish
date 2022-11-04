@@ -6,37 +6,35 @@
 			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 
 			<div v-if="messages.length > 0" class="history">
-				<!-- <MkPagination v-slot="{items}" ref="list" :pagination="pagination"> -->
-					<MkA
-						v-for="message in items"
-						:key="message.id"
-						class="message _block"
-						:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i?.id) : message.isRead }"
-						:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
-					>
-						<div>
-							<MkAvatar class="avatar" :user="message.groupId ? message.user : isMe(message) ? message.recipient : message.user" :show-indicator="true"/>
-							<header v-if="message.groupId">
-								<span class="name">{{ message.group.name }}</span>
-								<MkTime :time="message.createdAt" class="time"/>
-							</header>
-							<header v-else>
-								<span class="name">
-									<MkUserName :user="isMe(message) ? message.recipient : message.user"/>
-								</span>
-								<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
-								<MkTime :time="message.createdAt" class="time"/>
-							</header>
-							<div class="body">
-								<p class="text">
-									<span v-if="isMe(message)" class="me">{{ i18n.ts.you }}: </span>
-									<span v-if="message.text != null && message.text.length > 0">{{ message.text }}</span>
-									<span v-else> 📎</span>
-								</p>
-							</div>
+				<MkA
+					v-for="(message, i) in messages"
+					:key="message.id"
+					v-anim="i"
+					class="message _block"
+					:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i.id) : message.isRead }"
+					:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
+					:data-index="i"
+				>
+					<div>
+						<MkAvatar class="avatar" :user="message.groupId ? message.user : isMe(message) ? message.recipient : message.user" :show-indicator="true"/>
+						<header v-if="message.groupId">
+							<span class="name">{{ message.group.name }}</span>
+							<MkTime :time="message.createdAt" class="time"/>
+						</header>
+						<header v-else>
+							<span class="name"><MkUserName :user="isMe(message) ? message.recipient : message.user"/></span>
+							<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
+							<MkTime :time="message.createdAt" class="time"/>
+						</header>
+						<div class="body">
+							<p class="text">
+								<span v-if="isMe(message)" class="me">{{ i18n.ts.you }}: </span>
+								<span v-if="message.text != null && message.text.length > 0">{{ message.text }}</span>
+								<span v-else> 📎</span>
+							</p>
 						</div>
-					</MkA>
-				<!-- </MkPagination> -->
+					</div>
+				</MkA>
 			</div>
 			<div v-if="!fetching && messages.length == 0" class="_fullinfo">
 				<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
@@ -69,10 +67,6 @@ let connection = $ref(null);
 
 const getAcct = Acct.toString;
 
-const props = defineProps<{
-	pagination: any;
-}>();
-
 function isMe(message) {
 	return message.userId === $i.id;
 }
@@ -81,7 +75,7 @@ function onMessage(message) {
 	if (message.recipientId) {
 		messages = messages.filter(m => !(
 			(m.recipientId === message.recipientId && m.userId === message.userId) ||
-			(m.recipientId === message.userId && m.userId === message.recipientId)));
+				(m.recipientId === message.userId && m.userId === message.recipientId)));
 
 		messages.unshift(message);
 	} else if (message.groupId) {
@@ -172,54 +166,45 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" scoped>
-.yweeujhr {
+	<style lang="scss" scoped>
+	.yweeujhr {
 
-	> .start {
-		margin: 0 auto var(--margin) auto;
-	}
+		> .start {
+			margin: 0 auto var(--margin) auto;
+		}
 
-	> .history {
-		> .message {
-			display: block;
-			text-decoration: none;
-			margin-bottom: var(--margin);
-
-			* {
-				pointer-events: none;
-				user-select: none;
-			}
-
-			&:hover {
-				.avatar {
-					filter: saturate(200%);
-				}
-			}
-
-			&:active {
-			}
-
-			&.isRead,
-			&.isMe {
-				opacity: 0.8;
-			}
-
-			&:not(.isMe):not(.isRead) {
-				> div {
-					background-image: url("/client-assets/unread.svg");
-					background-repeat: no-repeat;
-					background-position: 0 center;
-				}
-			}
-
-			&:after {
-				content: "";
+		> .history {
+			> .message {
 				display: block;
-				clear: both;
-			}
+				text-decoration: none;
+				margin-bottom: var(--margin);
 
-			> div {
-				padding: 20px 30px;
+				* {
+					pointer-events: none;
+					user-select: none;
+				}
+
+				&:hover {
+					.avatar {
+						filter: saturate(200%);
+					}
+				}
+
+				&:active {
+				}
+
+				&.isRead,
+				&.isMe {
+					opacity: 0.8;
+				}
+
+				&:not(.isMe):not(.isRead) {
+					> div {
+						background-image: url("/client-assets/unread.svg");
+						background-repeat: no-repeat;
+						background-position: 0 center;
+					}
+				}
 
 				&:after {
 					content: "";
@@ -227,87 +212,96 @@ definePageMetadata({
 					clear: both;
 				}
 
-				> header {
-					display: flex;
-					align-items: center;
-					margin-bottom: 2px;
-					white-space: nowrap;
-					overflow: hidden;
+				> div {
+					padding: 20px 30px;
 
-					> .name {
-						margin: 0;
-						padding: 0;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						font-size: 1em;
-						font-weight: bold;
-						transition: all 0.1s ease;
-					}
-
-					> .username {
-						margin: 0 8px;
-					}
-
-					> .time {
-						margin: 0 0 0 auto;
-					}
-				}
-
-				> .avatar {
-					float: left;
-					width: 54px;
-					height: 54px;
-					margin: 0 16px 0 0;
-					border-radius: 8px;
-					transition: all 0.1s ease;
-				}
-
-				> .body {
-
-					> .text {
+					&:after {
+						content: "";
 						display: block;
-						margin: 0 0 0 0;
-						padding: 0;
-						overflow: hidden;
-						overflow-wrap: break-word;
-						font-size: 1.1em;
-						color: var(--faceText);
+						clear: both;
+					}
 
-						.me {
-							opacity: 0.7;
+					> header {
+						display: flex;
+						align-items: center;
+						margin-bottom: 2px;
+						white-space: nowrap;
+						overflow: hidden;
+
+						> .name {
+							margin: 0;
+							padding: 0;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							font-size: 1em;
+							font-weight: bold;
+							transition: all 0.1s ease;
+						}
+
+						> .username {
+							margin: 0 8px;
+						}
+
+						> .time {
+							margin: 0 0 0 auto;
 						}
 					}
 
-					> .image {
-						display: block;
-						max-width: 100%;
-						max-height: 512px;
-					}
-				}
-			}
-		}
-	}
-
-	&.max-width_400px {
-		> .history {
-			> .message {
-				&:not(.isMe):not(.isRead) {
-					> div {
-						background-image: none;
-						border-left: solid 4px #3aa2dc;
-					}
-				}
-
-				> div {
-					padding: 16px;
-					font-size: 0.9em;
-
 					> .avatar {
-						margin: 0 12px 0 0;
+						float: left;
+						width: 54px;
+						height: 54px;
+						margin: 0 16px 0 0;
+						border-radius: 8px;
+						transition: all 0.1s ease;
+					}
+
+					> .body {
+
+						> .text {
+							display: block;
+							margin: 0 0 0 0;
+							padding: 0;
+							overflow: hidden;
+							overflow-wrap: break-word;
+							font-size: 1.1em;
+							color: var(--faceText);
+
+							.me {
+								opacity: 0.7;
+							}
+						}
+
+						> .image {
+							display: block;
+							max-width: 100%;
+							max-height: 512px;
+						}
+					}
+				}
+			}
+		}
+
+		&.max-width_400px {
+			> .history {
+				> .message {
+					&:not(.isMe):not(.isRead) {
+						> div {
+							background-image: none;
+							border-left: solid 4px #3aa2dc;
+						}
+					}
+
+					> div {
+						padding: 16px;
+						font-size: 0.9em;
+
+						> .avatar {
+							margin: 0 12px 0 0;
+						}
 					}
 				}
 			}
 		}
 	}
-}
-</style>
+	</style>
