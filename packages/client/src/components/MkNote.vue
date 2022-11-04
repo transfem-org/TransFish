@@ -432,7 +432,7 @@ function readPromo() {
 			width: 58px;
 			height: 58px;
 			position: sticky;
-			top: calc(22px + var(--stickyTop, 0px));
+			top: var(--stickyTop, 0px);
 			left: 0;
 		}
 
