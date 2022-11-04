@@ -21,7 +21,9 @@
 								<MkTime :time="message.createdAt" class="time"/>
 							</header>
 							<header v-else>
-								<span class="name"><MkUserName :user="isMe(message) ? message.recipient : message.user"/></span>
+								<span class="name">
+									<MkUserName :user="isMe(message) ? message.recipient : message.user"/>
+								</span>
 								<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
 								<MkTime :time="message.createdAt" class="time"/>
 							</header>
@@ -70,6 +72,9 @@ const getAcct = Acct.toString;
 const pagination = {
 	endpoint: 'messaging/history' as const,
 	limit: 10,
+	parameters: {
+		group: false,
+	},
 };
 
 function isMe(message) {
