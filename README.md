@@ -41,10 +41,6 @@
 
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
-# 🐳
-
-# 🔨 Building from source
-
 You need at least 🐢 NodeJS v16.15.0 (v18.20.0 recommended!) and at least 🧶 Yarn v3!
 
 > ⚠️ NodeJS v19 is not supported as of right now because of [this issue](https://github.com/nodejs/node-gyp/issues/2757).
@@ -78,6 +74,10 @@ yarn set version berry
 cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, replace `default.yml` with `docker.yml` if you use docker
 cp -r ../misskey/files . # if you don't use object storage
 ```
+
+## 🍀 NGINX
+
+Read <https://misskey-hub.net/en/docs/admin/nginx.html>
 
 ## 🚀 Build and launch!
 
