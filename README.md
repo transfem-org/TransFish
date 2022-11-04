@@ -41,7 +41,7 @@
 
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
-## 💗 Dependencies
+## 📦 Dependencies
 
 - At least 🐢 NodeJS v16.15.0 (v18.20.0 recommended)
 
