@@ -41,9 +41,17 @@
 
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
-You need at least 🐢 NodeJS v16.15.0 (v18.20.0 recommended!) and at least 🧶 Yarn v3!
+## 💗 Dependencies
+
+- At least 🐢 NodeJS v16.15.0 (v18.20.0 recommended)
 
 > ⚠️ NodeJS v19 is not supported as of right now because of [this issue](https://github.com/nodejs/node-gyp/issues/2757).
+
+- At least 🧶 Yarn v3
+
+- 🐘 At least PostgreSQL v12
+
+- 🍱 At least Redis v6 (v7 recommended)
 
 ## 👀 Get folder ready
 
