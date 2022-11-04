@@ -6,7 +6,7 @@
 			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 
 			<div v-if="messages.length > 0" class="history">
-				<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
+				<!-- <MkPagination v-slot="{items}" ref="list" :pagination="pagination"> -->
 					<MkA
 						v-for="message in items"
 						:key="message.id"
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 					</MkA>
-				</MkPagination>
+				<!-- </MkPagination> -->
 			</div>
 			<div v-if="!fetching && messages.length == 0" class="_fullinfo">
 				<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
