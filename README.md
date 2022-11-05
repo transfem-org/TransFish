@@ -53,6 +53,8 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 - 🍱 At least Redis v6 (v7 recommended)
 
+- 🛰️ (Optional, for non-Docker) pm2
+
 ## 👀 Get folder ready
 
 ```sh
@@ -96,7 +98,7 @@ Read <https://misskey-hub.net/en/docs/admin/nginx.html>
 # git pull
 yarn install
 NODE_ENV=production yarn run build && yarn run migrate
-# Edit service to point to calckey folder and restart!
+pm2 start "NODE_ENV=production yarn start" --name Calckey
 ```
 
 ### 🐋 Prebuilt Docker image
