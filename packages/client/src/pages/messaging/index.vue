@@ -142,8 +142,8 @@ onMounted(() => {
 	connection.on('message', onMessage);
 	connection.on('read', onRead);
 
-	os.api('messaging/history', { group: false, limit: 100 }).then(userMessages => {
-		os.api('messaging/history', { group: true }).then(groupMessages => {
+	os.api('messaging/history', { group: false, limit: 30 }).then(userMessages => {
+		os.api('messaging/history', { group: true, limit: 5 }).then(groupMessages => {
 			const _messages = userMessages.concat(groupMessages);
 			_messages.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 			messages = _messages;
