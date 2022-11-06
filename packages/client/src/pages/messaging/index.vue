@@ -11,7 +11,7 @@
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
 			>
-				<swiper-slide>
+				<!-- <swiper-slide>
 					<div class="_content yweeujhr dms">
 						<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						<MkPagination v-slot="{items}" :pagination="dmsPagination">
@@ -22,7 +22,7 @@
 							<div>{{ i18n.ts.noHistory }}</div>
 						</div>
 					</div>
-				</swiper-slide>
+				</swiper-slide> -->
 				<swiper-slide>
 					<div class="_content yweeujhr groups">
 						<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
