@@ -11,15 +11,19 @@
 			@slide-change="onSlideChange"
 		>
 			<swiper-slide>
-				<div class="_content grwlizim dms">
+				<div class="_content yweeujhr dms">
 					<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 					<MkPagination v-slot="{items}" :pagination="dmsPagination">
 						<MkChatPreview v-for="message in items" :key="message.id" class="_gap" :message="message"/>
 					</MkPagination>
+					<div v-if="messages.length == 0" class="_fullinfo">
+						<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
+						<div>{{ i18n.ts.noHistory }}</div>
+					</div>
 				</div>
 			</swiper-slide>
 			<swiper-slide>
-				<div class="_content grwlizim groups">
+				<div class="_content yweeujhr groups">
 					<MkPagination v-slot="{items}" :pagination="groupsPagination">
 						<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
@@ -28,46 +32,6 @@
 				</div>
 			</swiper-slide>
 		</swiper>
-		<!-- <div v-size="{ max: [400] }" class="yweeujhr">
-			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-
-			<div v-if="messages.length > 0" class="history">
-				<MkA
-					v-for="(message, i) in messages"
-					:key="message.id"
-					v-anim="i"
-					class="message _block"
-					:class="{ isMe: isMe(message), isRead: message.groupId ? message.reads.includes($i.id) : message.isRead }"
-					:to="message.groupId ? `/my/messaging/group/${message.groupId}` : `/my/messaging/${getAcct(isMe(message) ? message.recipient : message.user)}`"
-					:data-index="i"
-				>
-					<div>
-						<MkAvatar class="avatar" :user="message.groupId ? message.user : isMe(message) ? message.recipient : message.user" :show-indicator="true"/>
-						<header v-if="message.groupId">
-							<span class="name">{{ message.group.name }}</span>
-							<MkTime :time="message.createdAt" class="time"/>
-						</header>
-						<header v-else>
-							<span class="name"><MkUserName :user="isMe(message) ? message.recipient : message.user"/></span>
-							<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
-							<MkTime :time="message.createdAt" class="time"/>
-						</header>
-						<div class="body">
-							<p class="text">
-								<span v-if="isMe(message)" class="me">{{ i18n.ts.you }}: </span>
-								<span v-if="message.text != null && message.text.length > 0">{{ message.text }}</span>
-								<span v-else> 📎</span>
-							</p>
-						</div>
-					</div>
-				</MkA>
-			</div>
-			<div v-if="!fetching && messages.length == 0" class="_fullinfo">
-				<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
-				<div>{{ i18n.ts.noHistory }}</div>
-			</div>
-			<MkLoading v-if="fetching"/>
-		</div> -->
 	</MkSpacer>
 </MkStickyContainer>
 </template>
