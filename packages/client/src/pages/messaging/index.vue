@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
 	<div>
 		<MkSpacer :content-max="800">
 			<swiper
@@ -17,10 +17,10 @@
 						<MkPagination v-slot="{items}" :pagination="dmsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
-						<!-- <div v-if="messages.length == 0" class="_fullinfo">
+						<div v-if="messages.length == 0" class="_fullinfo">
 							<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
 							<div>{{ i18n.ts.noHistory }}</div>
-						</div> -->
+						</div>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
@@ -61,8 +61,8 @@ import 'swiper/scss/virtual';
 
 const router = useRouter();
 
-// let messages = $ref([]);
-// let connection = $ref(null);
+let messages = $ref([]);
+let connection = $ref(null);
 
 const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
@@ -100,31 +100,31 @@ const groupsPagination = {
 	},
 };
 
-// function onMessage(message): void {
-// 	if (message.recipientId) {
-// 		messages = messages.filter(m => !(
-// 			(m.recipientId === message.recipientId && m.userId === message.userId) ||
-// 				(m.recipientId === message.userId && m.userId === message.recipientId)));
+function onMessage(message): void {
+	if (message.recipientId) {
+		messages = messages.filter(m => !(
+			(m.recipientId === message.recipientId && m.userId === message.userId) ||
+				(m.recipientId === message.userId && m.userId === message.recipientId)));
 
-// 		messages.unshift(message);
-// 	} else if (message.groupId) {
-// 		messages = messages.filter(m => m.groupId !== message.groupId);
-// 		messages.unshift(message);
-// 	}
-// }
+		messages.unshift(message);
+	} else if (message.groupId) {
+		messages = messages.filter(m => m.groupId !== message.groupId);
+		messages.unshift(message);
+	}
+}
 
-// function onRead(ids): void {
-// 	for (const id of ids) {
-// 		const found = messages.find(m => m.id === id);
-// 		if (found) {
-// 			if (found.recipientId) {
-// 				found.isRead = true;
-// 			} else if (found.groupId) {
-// 				found.reads.push($i.id);
-// 			}
-// 		}
-// 	}
-// }
+function onRead(ids): void {
+	for (const id of ids) {
+		const found = messages.find(m => m.id === id);
+		if (found) {
+			if (found.recipientId) {
+				found.isRead = true;
+			} else if (found.groupId) {
+				found.reads.push($i.id);
+			}
+		}
+	}
+}
 
 async function startUser(): void {
 	os.selectUser().then(user => {
@@ -168,25 +168,24 @@ function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
 
-// onMounted(() => {
-// 	connection = markRaw(stream.useChannel('messagingIndex'));
+onMounted(() => {
+	connection = markRaw(stream.useChannel('messagingIndex'));
 
-// 	connection.on('message', onMessage);
-// 	connection.on('read', onRead);
+	connection.on('message', onMessage);
+	connection.on('read', onRead);
 
-// 	os.api('messaging/history', { group: false, limit: 5 }).then(userMessages => {
-// 		os.api('messaging/history', { group: true, limit: 5 }).then(groupMessages => {
-// 			const _messages = userMessages.concat(groupMessages);
-// 			_messages.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-// 			messages = _messages;
-// 			fetching = false;
-// 		});
-// 	});
-// });
+	os.api('messaging/history', { group: false, limit: 5 }).then(userMessages => {
+		os.api('messaging/history', { group: true, limit: 5 }).then(groupMessages => {
+			const _messages = userMessages.concat(groupMessages);
+			_messages.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+			messages = _messages;
+		});
+	});
+});
 
-// onUnmounted(() => {
-// 	if (connection) connection.dispose();
-// });
+onUnmounted(() => {
+	if (connection) connection.dispose();
+});
 </script>
 
 	<style lang="scss" scoped>
