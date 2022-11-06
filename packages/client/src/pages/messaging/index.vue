@@ -41,9 +41,9 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, defineComponent, inject, markRaw, onMounted, onUnmounted, watch } from 'vue';
 import * as Acct from 'misskey-js/built/acct';
-import MkButton from '@/components/MkButton.vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkButton from '@/components/MkButton.vue';
 import MkChatPreview from '@/components/MkChatPreview.vue';
 import MkPagination from '@/components/MkPagination.vue';
 import * as os from '@/os';
@@ -80,23 +80,6 @@ const groupsPagination = {
 		group: true,
 	},
 };
-
-const headerActions = $computed(() => []);
-
-const headerTabs = $computed(() => [{
-	key: 'dms',
-	title: i18n.ts._messaging.dms,
-	icon: 'fas fa-user',
-}, {
-	key: 'groups',
-	title: i18n.ts._messaging.groups,
-	icon: 'fas fa-users',
-}]);
-
-definePageMetadata({
-	title: i18n.ts.messaging,
-	icon: 'fas fa-comments',
-});
 
 function onMessage(message) {
 	if (message.recipientId) {
@@ -169,6 +152,23 @@ onMounted(() => {
 
 onUnmounted(() => {
 	if (connection) connection.dispose();
+});
+
+const headerActions = $computed(() => []);
+
+const headerTabs = $computed(() => [{
+	key: 'dms',
+	title: i18n.ts._messaging.dms,
+	icon: 'fas fa-user',
+}, {
+	key: 'groups',
+	title: i18n.ts._messaging.groups,
+	icon: 'fas fa-users',
+}]);
+
+definePageMetadata({
+	title: i18n.ts.messaging,
+	icon: 'fas fa-comments',
 });
 
 let swiperRef = null;
