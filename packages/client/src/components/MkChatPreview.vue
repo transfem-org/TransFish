@@ -14,7 +14,7 @@
 			)}`
 	"
 >
-	<div class="message">
+	<div class="message _block">
 		<MkAvatar
 			class="avatar"
 			:user="

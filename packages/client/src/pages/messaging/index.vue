@@ -14,7 +14,7 @@
 				<div class="_content yweeujhr dms">
 					<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 					<MkPagination v-slot="{items}" :pagination="dmsPagination">
-						<MkChatPreview v-for="message in items" :key="message.id" class="_gap" :message="message"/>
+						<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 					</MkPagination>
 					<div v-if="messages.length == 0" class="_fullinfo">
 						<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
@@ -24,10 +24,10 @@
 			</swiper-slide>
 			<swiper-slide>
 				<div class="_content yweeujhr groups">
+					<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+					<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
 					<MkPagination v-slot="{items}" :pagination="groupsPagination">
-						<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
-						<MkChatPreview v-for="message in items" :key="message.id" class="_gap" :message="message"/>
+						<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 					</MkPagination>
 				</div>
 			</swiper-slide>
@@ -60,6 +60,10 @@ const router = useRouter();
 let messages = $ref([]);
 let connection = $ref(null);
 
+const tabs = ['dms', 'groups'];
+let tab = $ref(tabs[0]);
+watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
+
 const dmsPagination = {
 	endpoint: 'messaging/history' as const,
 	limit: 15,
@@ -74,10 +78,6 @@ const groupsPagination = {
 		group: true,
 	},
 };
-
-const tabs = ['dms', 'groups'];
-let tab = $ref(tabs[0]);
-watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
 const headerActions = $computed(() => []);
 
@@ -95,21 +95,6 @@ definePageMetadata({
 	title: i18n.ts.messaging,
 	icon: 'fas fa-comments',
 });
-
-let swiperRef = null;
-
-function setSwiperRef(swiper) {
-	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
-}
-
-function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
-}
-
-function syncSlide(index) {
-	swiperRef.slideTo(index);
-}
 
 function onMessage(message) {
 	if (message.recipientId) {
@@ -183,6 +168,21 @@ onMounted(() => {
 onUnmounted(() => {
 	if (connection) connection.dispose();
 });
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
+}
+
+function onSlideChange() {
+	tab = tabs[swiperRef.activeIndex];
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
+}
 
 </script>
 
