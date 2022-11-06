@@ -100,70 +100,62 @@ function isMe(message): boolean {
 			clear: both;
 		}
 
-		> div {
-			padding: 20px 30px;
+		padding: 20px 30px;
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
+		> header {
+			display: flex;
+			align-items: center;
+			margin-bottom: 2px;
+			white-space: nowrap;
+			overflow: hidden;
 
-			> header {
-				display: flex;
-				align-items: center;
-				margin-bottom: 2px;
-				white-space: nowrap;
+			> .name {
+				margin: 0;
+				padding: 0;
 				overflow: hidden;
-
-				> .name {
-					margin: 0;
-					padding: 0;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					font-size: 1em;
-					font-weight: bold;
-					transition: all 0.1s ease;
-				}
-
-				> .username {
-					margin: 0 8px;
-				}
-
-				> .time {
-					margin: 0 0 0 auto;
-				}
-			}
-
-			> .avatar {
-				float: left;
-				width: 54px;
-				height: 54px;
-				margin: 0 16px 0 0;
-				border-radius: 8px;
+				text-overflow: ellipsis;
+				font-size: 1em;
+				font-weight: bold;
 				transition: all 0.1s ease;
 			}
 
-			> .body {
-				> .text {
-					display: block;
-					margin: 0 0 0 0;
-					padding: 0;
-					overflow: hidden;
-					overflow-wrap: break-word;
-					font-size: 1.1em;
-					color: var(--faceText);
+			> .username {
+				margin: 0 8px;
+			}
 
-					.me {
-						opacity: 0.7;
-					}
-				}
+			> .time {
+				margin: 0 0 0 auto;
+			}
+		}
 
-				> .image {
-					display: block;
-					max-width: 100%;
-					max-height: 512px;
+		> .avatar {
+			float: left;
+			width: 54px;
+			height: 54px;
+			margin: 0 16px 0 0;
+			border-radius: 8px;
+			transition: all 0.1s ease;
+		}
+
+		> .body {
+			> .text {
+				display: block;
+				margin: 0 0 0 0;
+				padding: 0;
+				overflow: hidden;
+				overflow-wrap: break-word;
+				font-size: 1.1em;
+				color: var(--faceText);
+
+				.me {
+					opacity: 0.7;
 				}
+			}
+
+			> .image {
+				display: block;
+				max-width: 100%;
+				max-height: 512px;
 			}
 		}
 	}
