@@ -34,6 +34,7 @@
 
 ## Implemented
 
+- A lot of general bugfixes
 - Yarn 3
   - Fix Dockerfile @hanna
   - Upgrade packages with security vunrabilities
@@ -49,6 +50,7 @@
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
 - Add back groups
+  - Integrate groups UI into chats UI
 - MOTD (customizable by admins!)
 - Custom randomized splash icons
 - Self hosted, newly designed error images
