@@ -25,10 +25,10 @@
 				</swiper-slide>
 				<swiper-slide>
 					<div class="_content yweeujhr groups">
-						<span>
+						<div class="groupsbuttons">
 							<MkButton primary class="start" :link="true" to="/my/groups"><i class="fas fa-people-roof"></i> {{ i18n.ts.manageGroups }}</MkButton>
 							<MkButton primary class="start" @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						</span>
+						</div>
 						<MkPagination v-slot="{items}" :pagination="groupsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
@@ -192,6 +192,13 @@ onUnmounted(() => {
 	.yweeujhr {
 		> .start {
 			margin: 0 auto var(--margin) auto;
+		}
+
+		> .groupsbuttons {
+			max-width: 100%;
+			display: flex;
+			justify-content: center;
+			margin-bottom: 1rem;
 		}
 	}
 	</style>
