@@ -1,38 +1,40 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :content-max="800">
-		<swiper
-			:modules="[Virtual]"
-			:space-between="20"
-			:virtual="true"
-			:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
-			@swiper="setSwiperRef"
-			@slide-change="onSlideChange"
-		>
-			<swiper-slide>
-				<div class="_content yweeujhr dms">
-					<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-					<MkPagination v-slot="{items}" :pagination="dmsPagination">
-						<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
-					</MkPagination>
-					<div v-if="messages.length == 0" class="_fullinfo">
-						<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
-						<div>{{ i18n.ts.noHistory }}</div>
+	<div>
+		<MkSpacer :content-max="800">
+			<swiper
+				:modules="[Virtual]"
+				:space-between="20"
+				:virtual="true"
+				:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
+				@swiper="setSwiperRef"
+				@slide-change="onSlideChange"
+			>
+				<swiper-slide>
+					<div class="_content yweeujhr dms">
+						<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkPagination v-slot="{items}" :pagination="dmsPagination">
+							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						</MkPagination>
+						<div v-if="messages.length == 0" class="_fullinfo">
+							<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
+							<div>{{ i18n.ts.noHistory }}</div>
+						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="_content yweeujhr groups">
-					<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-					<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
-					<MkPagination v-slot="{items}" :pagination="groupsPagination">
-						<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
-					</MkPagination>
-				</div>
-			</swiper-slide>
-		</swiper>
-	</MkSpacer>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="_content yweeujhr groups">
+						<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
+						<MkPagination v-slot="{items}" :pagination="groupsPagination">
+							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						</MkPagination>
+					</div>
+				</swiper-slide>
+			</swiper>
+		</MkSpacer>
+	</div>
 </MkStickyContainer>
 </template>
 
@@ -191,137 +193,6 @@ function syncSlide(index) {
 
 		> .start {
 			margin: 0 auto var(--margin) auto;
-		}
-
-		> .history {
-			> .message {
-				display: block;
-				text-decoration: none;
-				margin-bottom: var(--margin);
-
-				* {
-					pointer-events: none;
-					user-select: none;
-				}
-
-				&:hover {
-					.avatar {
-						filter: saturate(200%);
-					}
-				}
-
-				&:active {
-				}
-
-				&.isRead,
-				&.isMe {
-					opacity: 0.8;
-				}
-
-				&:not(.isMe):not(.isRead) {
-					> div {
-						background-image: url("/client-assets/unread.svg");
-						background-repeat: no-repeat;
-						background-position: 0 center;
-					}
-				}
-
-				&:after {
-					content: "";
-					display: block;
-					clear: both;
-				}
-
-				> div {
-					padding: 20px 30px;
-
-					&:after {
-						content: "";
-						display: block;
-						clear: both;
-					}
-
-					> header {
-						display: flex;
-						align-items: center;
-						margin-bottom: 2px;
-						white-space: nowrap;
-						overflow: hidden;
-
-						> .name {
-							margin: 0;
-							padding: 0;
-							overflow: hidden;
-							text-overflow: ellipsis;
-							font-size: 1em;
-							font-weight: bold;
-							transition: all 0.1s ease;
-						}
-
-						> .username {
-							margin: 0 8px;
-						}
-
-						> .time {
-							margin: 0 0 0 auto;
-						}
-					}
-
-					> .avatar {
-						float: left;
-						width: 54px;
-						height: 54px;
-						margin: 0 16px 0 0;
-						border-radius: 8px;
-						transition: all 0.1s ease;
-					}
-
-					> .body {
-
-						> .text {
-							display: block;
-							margin: 0 0 0 0;
-							padding: 0;
-							overflow: hidden;
-							overflow-wrap: break-word;
-							font-size: 1.1em;
-							color: var(--faceText);
-
-							.me {
-								opacity: 0.7;
-							}
-						}
-
-						> .image {
-							display: block;
-							max-width: 100%;
-							max-height: 512px;
-						}
-					}
-				}
-			}
-		}
-
-		&.max-width_400px {
-			> .history {
-				> .message {
-					&:not(.isMe):not(.isRead) {
-						> div {
-							background-image: none;
-							border-left: solid 4px #3aa2dc;
-						}
-					}
-
-					> div {
-						padding: 16px;
-						font-size: 0.9em;
-
-						> .avatar {
-							margin: 0 12px 0 0;
-						}
-					}
-				}
-			}
 		}
 	}
 	</style>
