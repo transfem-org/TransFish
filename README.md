@@ -32,10 +32,10 @@
 
 # 🥂 Links
 
-- 💸 Liberapay: https://liberapay.com/ThatOneCalculator
-- 💁 Matrix support room: https://matrix.to/#/#calckey:matrix.fedibird.com
-- 📜 Instance list: https://calckey.fediverse.observer/list
-- 📖 JoinFediverse Wiki: https://joinfediverse.wiki/What_is_Calckey%3F
+- 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
+- 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
+- 📜 Instance list: <https://calckey.fediverse.observer/list>
+- 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
 
 # 🌠 Getting started
 
