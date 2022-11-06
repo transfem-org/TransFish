@@ -25,8 +25,8 @@
 				</swiper-slide> -->
 				<swiper-slide>
 					<div class="_content yweeujhr groups">
-						<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
+						<MkButton primary class="start" @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkButton primary class="start" :link="true" to="/my/groups"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
 						<MkPagination v-slot="{items}" :pagination="groupsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
