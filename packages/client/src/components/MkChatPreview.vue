@@ -76,6 +76,7 @@ function isMe(message): boolean {
 		}
 
 		&:hover {
+			text-decoration: none !important;
 			.avatar {
 				filter: saturate(200%);
 			}
@@ -138,6 +139,11 @@ function isMe(message): boolean {
 		}
 
 		> .body {
+
+			&:hover {
+				text-decoration: none !important;
+			}
+
 			> .text {
 				display: block;
 				margin: 0 0 0 0;
@@ -147,6 +153,10 @@ function isMe(message): boolean {
 				text-decoration: none;
 				font-size: 1.1em;
 				color: var(--faceText);
+
+				&:hover {
+					text-decoration: none !important;
+				}
 
 				.me {
 					opacity: 0.7;
