@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, defineComponent, inject, markRaw, onMounted, onUnmounted, watch } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch } from 'vue';
 import * as Acct from 'misskey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -68,6 +68,23 @@ const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
+const headerActions = $computed(() => []);
+
+const headerTabs = $computed(() => [{
+	key: 'dms',
+	title: i18n.ts._messaging.dms,
+	icon: 'fas fa-user',
+}, {
+	key: 'groups',
+	title: i18n.ts._messaging.groups,
+	icon: 'fas fa-users',
+}]);
+
+definePageMetadata({
+	title: i18n.ts.messaging,
+	icon: 'fas fa-comments',
+});
+
 const dmsPagination = {
 	endpoint: 'messaging/history' as const,
 	limit: 15,
@@ -83,7 +100,7 @@ const groupsPagination = {
 	},
 };
 
-function onMessage(message) {
+function onMessage(message): void {
 	if (message.recipientId) {
 		messages = messages.filter(m => !(
 			(m.recipientId === message.recipientId && m.userId === message.userId) ||
@@ -96,7 +113,7 @@ function onMessage(message) {
 	}
 }
 
-function onRead(ids) {
+function onRead(ids): void {
 	for (const id of ids) {
 		const found = messages.find(m => m.id === id);
 		if (found) {
@@ -109,13 +126,13 @@ function onRead(ids) {
 	}
 }
 
-async function startUser() {
+async function startUser(): void {
 	os.selectUser().then(user => {
 		router.push(`/my/messaging/${Acct.toString(user)}`);
 	});
 }
 
-async function startGroup() {
+async function startGroup(): void {
 	const groups1 = await os.api('users/groups/owned');
 	const groups2 = await os.api('users/groups/joined');
 	if (groups1.length === 0 && groups2.length === 0) {
@@ -134,6 +151,21 @@ async function startGroup() {
 	});
 	if (canceled) return;
 	router.push(`/my/messaging/group/${group.id}`);
+}
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
+}
+
+function onSlideChange() {
+	tab = tabs[swiperRef.activeIndex];
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
 }
 
 onMounted(() => {
@@ -155,39 +187,6 @@ onMounted(() => {
 onUnmounted(() => {
 	if (connection) connection.dispose();
 });
-
-const headerActions = $computed(() => []);
-
-const headerTabs = $computed(() => [{
-	key: 'dms',
-	title: i18n.ts._messaging.dms,
-	icon: 'fas fa-user',
-}, {
-	key: 'groups',
-	title: i18n.ts._messaging.groups,
-	icon: 'fas fa-users',
-}]);
-
-definePageMetadata({
-	title: i18n.ts.messaging,
-	icon: 'fas fa-comments',
-});
-
-let swiperRef = null;
-
-function setSwiperRef(swiper) {
-	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
-}
-
-function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
-}
-
-function syncSlide(index) {
-	swiperRef.slideTo(index);
-}
-
 </script>
 
 	<style lang="scss" scoped>
