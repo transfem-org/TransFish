@@ -144,6 +144,7 @@ function isMe(message): boolean {
 				padding: 0;
 				overflow: hidden;
 				overflow-wrap: break-word;
+				text-decoration: none;
 				font-size: 1.1em;
 				color: var(--faceText);
 
