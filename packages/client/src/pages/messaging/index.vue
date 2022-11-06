@@ -11,7 +11,7 @@
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
 			>
-				<!-- <swiper-slide>
+				<swiper-slide>
 					<div class="_content yweeujhr dms">
 						<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						<MkPagination v-slot="{items}" :pagination="dmsPagination">
@@ -22,11 +22,13 @@
 							<div>{{ i18n.ts.noHistory }}</div>
 						</div>
 					</div>
-				</swiper-slide> -->
+				</swiper-slide>
 				<swiper-slide>
 					<div class="_content yweeujhr groups">
-						<MkButton primary class="start" @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						<MkButton primary class="start" :link="true" to="/my/groups"><i class="fas fa-people-roof"></i> {{ i18n.ts.manageGroups }}</MkButton>
+						<div class="start">
+							<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+							<MkButton primary :link="true" to="/my/groups"><i class="fas fa-people-roof"></i> {{ i18n.ts.manageGroups }}</MkButton>
+						</div>
 						<MkPagination v-slot="{items}" :pagination="groupsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
@@ -190,7 +192,6 @@ function syncSlide(index) {
 
 	<style lang="scss" scoped>
 	.yweeujhr {
-
 		> .start {
 			margin: 0 auto var(--margin) auto;
 		}
