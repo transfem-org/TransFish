@@ -80,7 +80,6 @@ import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import MkChatPreview from '@/components/MkChatPreview.vue';
 import MkPagination from '@/components/MkPagination.vue';
-import { acct } from '@/filters/user';
 import * as os from '@/os';
 import { stream } from '@/stream';
 import { useRouter } from '@/router';
@@ -94,11 +93,23 @@ import 'swiper/scss/virtual';
 
 const router = useRouter();
 
-
 let messages = $ref([]);
 let connection = $ref(null);
 
-const getAcct = Acct.toString;
+const dmsPagination = {
+	endpoint: 'messaging/history' as const,
+	limit: 20,
+	params: {
+		group: false,
+	},
+};
+const groupsPagination = {
+	endpoint: 'messaging/history' as const,
+	limit: 10,
+	params: {
+		group: true,
+	},
+};
 
 const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
@@ -134,10 +145,6 @@ function onSlideChange() {
 
 function syncSlide(index) {
 	swiperRef.slideTo(index);
-}
-
-function isMe(message) {
-	return message.userId === $i.id;
 }
 
 function onMessage(message) {
