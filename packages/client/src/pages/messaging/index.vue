@@ -98,14 +98,14 @@ let connection = $ref(null);
 
 const dmsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 20,
+	limit: 15,
 	params: {
 		group: false,
 	},
 };
 const groupsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 10,
+	limit: 5,
 	params: {
 		group: true,
 	},
@@ -206,7 +206,7 @@ onMounted(() => {
 	connection.on('message', onMessage);
 	connection.on('read', onRead);
 
-	os.api('messaging/history', { group: false, limit: 30 }).then(userMessages => {
+	os.api('messaging/history', { group: false, limit: 5 }).then(userMessages => {
 		os.api('messaging/history', { group: true, limit: 5 }).then(groupMessages => {
 			const _messages = userMessages.concat(groupMessages);
 			_messages.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());

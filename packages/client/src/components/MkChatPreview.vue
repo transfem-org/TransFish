@@ -1,7 +1,7 @@
 <template>
 <MkA
-	tabindex="-1"
 	class="rivslvers"
+	tabindex="-1"
 	:class="{
 		isMe: isMe(message),
 		isRead: message.groupId ? message.reads.includes($i.id) : message.isRead,
@@ -14,7 +14,7 @@
 			)}`
 	"
 >
-	<div>
+	<div class="message">
 		<MkAvatar
 			class="avatar"
 			:user="
@@ -38,9 +38,7 @@
 		<div class="body">
 			<p class="text">
 				<span v-if="isMe(message)" class="me">{{ i18n.ts.you }}: </span>
-				<span v-if="message.text != null && message.text.length > 0">{{
-					message.text
-				}}</span>
+				<Mfm v-if="message.text != null && message.text.length > 0" :text="message.text"/>
 				<span v-else> 📎</span>
 			</p>
 		</div>
