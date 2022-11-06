@@ -178,7 +178,7 @@
 			font-family: BIZ UDGothic, Roboto, HelveticaNeue, Arial, sans-serif;
 		}
 
-		#misskey_app,
+		#calckey_app,
 		#splash {
 			display: none !important;
 		}

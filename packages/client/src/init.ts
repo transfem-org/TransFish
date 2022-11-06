@@ -202,7 +202,7 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 	// https://github.com/misskey-dev/misskey/pull/8575#issuecomment-1114239210
 	// なぜかinit.tsの内容が2回実行されることがあるため、mountするdivを1つに制限する
 	const rootEl = (() => {
-		const MISSKEY_MOUNT_DIV_ID = 'misskey_app';
+		const MISSKEY_MOUNT_DIV_ID = 'calckey_app';
 
 		const currentEl = document.getElementById(MISSKEY_MOUNT_DIV_ID);
 
