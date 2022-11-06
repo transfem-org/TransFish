@@ -2,7 +2,33 @@
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
 	<MkSpacer :content-max="800">
-		<div v-size="{ max: [400] }" class="yweeujhr">
+		<swiper
+			:modules="[Virtual]"
+			:space-between="20"
+			:virtual="true"
+			:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
+			@swiper="setSwiperRef"
+			@slide-change="onSlideChange"
+		>
+			<swiper-slide>
+				<div class="_content grwlizim dms">
+					<MkButton primary class="start" @click="startUser"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+					<MkPagination v-slot="{items}" :pagination="dmsPagination">
+						<MkChatPreview v-for="message in items" :key="message.id" class="_gap" :message="message"/>
+					</MkPagination>
+				</div>
+			</swiper-slide>
+			<swiper-slide>
+				<div class="_content grwlizim groups">
+					<MkPagination v-slot="{items}" :pagination="groupsPagination">
+						<MkButton primary @click="startGroup"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkButton primary class="start" :to="`/my/groups`"><i class="fas fa-plus"></i> {{ i18n.ts.manageGroups }}</MkButton>
+						<MkChatPreview v-for="message in items" :key="message.id" class="_gap" :message="message"/>
+					</MkPagination>
+				</div>
+			</swiper-slide>
+		</swiper>
+		<!-- <div v-size="{ max: [400] }" class="yweeujhr">
 			<MkButton primary class="start" @click="start"><i class="fas fa-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
 
 			<div v-if="messages.length > 0" class="history">
@@ -41,15 +67,19 @@
 				<div>{{ i18n.ts.noHistory }}</div>
 			</div>
 			<MkLoading v-if="fetching"/>
-		</div>
+		</div> -->
 	</MkSpacer>
 </MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, defineComponent, inject, markRaw, onMounted, onUnmounted } from 'vue';
+import { defineAsyncComponent, defineComponent, inject, markRaw, onMounted, onUnmounted, watch } from 'vue';
 import * as Acct from 'misskey-js/built/acct';
 import MkButton from '@/components/MkButton.vue';
+import { Virtual } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkChatPreview from '@/components/MkChatPreview.vue';
+import MkPagination from '@/components/MkPagination.vue';
 import { acct } from '@/filters/user';
 import * as os from '@/os';
 import { stream } from '@/stream';
@@ -57,15 +87,54 @@ import { useRouter } from '@/router';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { $i } from '@/account';
+import { deviceKind } from '@/scripts/device-kind';
+import { defaultStore } from '@/store';
+import 'swiper/scss';
+import 'swiper/scss/virtual';
 
 const router = useRouter();
 
-let fetching = $ref(true);
-let moreFetching = $ref(false);
+
 let messages = $ref([]);
 let connection = $ref(null);
 
 const getAcct = Acct.toString;
+
+const tabs = ['dms', 'groups'];
+let tab = $ref(tabs[0]);
+watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
+
+const headerActions = $computed(() => []);
+
+const headerTabs = $computed(() => [{
+	key: 'dms',
+	title: i18n.ts._messaging.dms,
+	icon: 'fas fa-user',
+}, {
+	key: 'groups',
+	title: i18n.ts._messaging.groups,
+	icon: 'fas fa-users',
+}]);
+
+definePageMetadata({
+	title: i18n.ts.messaging,
+	icon: 'fas fa-comments',
+});
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
+}
+
+function onSlideChange() {
+	tab = tabs[swiperRef.activeIndex];
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
+}
 
 function isMe(message) {
 	return message.userId === $i.id;
@@ -95,18 +164,6 @@ function onRead(ids) {
 			}
 		}
 	}
-}
-
-function start(ev) {
-	os.popupMenu([{
-		text: i18n.ts.messagingWithUser,
-		icon: 'fas fa-user',
-		action: () => { startUser(); },
-	}, {
-		text: i18n.ts.messagingWithGroup,
-		icon: 'fas fa-users',
-		action: () => { startGroup(); },
-	}], ev.currentTarget ?? ev.target);
 }
 
 async function startUser() {
@@ -156,14 +213,6 @@ onUnmounted(() => {
 	if (connection) connection.dispose();
 });
 
-const headerActions = $computed(() => []);
-
-const headerTabs = $computed(() => []);
-
-definePageMetadata({
-	title: i18n.ts.messaging,
-	icon: 'fas fa-comments',
-});
 </script>
 
 	<style lang="scss" scoped>

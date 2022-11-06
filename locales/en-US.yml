@@ -251,6 +251,7 @@ explore: "Explore"
 messageRead: "Read"
 noMoreHistory: "There is no further history"
 startMessaging: "Start a new chat"
+manageGroups: "Manage groups"
 nUsersRead: "read by {n}"
 agreeTo: "I agree to {0}"
 tos: "Terms of Service"
@@ -1091,6 +1092,9 @@ _channel:
   following: "Followed"
   usersCount: "{n} Participants"
   notesCount: "{n} Notes"
+_messaging:
+  dms: "DMs"
+  groups: "Groups"
 _menuDisplay:
   sideFull: "Side"
   sideIcon: "Side (Icons)"
