@@ -520,6 +520,9 @@ export async function openEmojiPicker(src?: HTMLElement, opts, initialTextarea: 
 		chosen: emoji => {
 			insertTextAtCursor(activeTextarea, emoji);
 		},
+		done: emoji => {
+			insertTextAtCursor(activeTextarea, emoji);
+		},
 		closed: () => {
 			openingEmojiPicker!.dispose();
 			openingEmojiPicker = null;
