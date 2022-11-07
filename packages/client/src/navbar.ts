@@ -59,7 +59,7 @@ export const navbarItemDef = reactive({
 	/*
 	groups: {
 		title: 'groups',
-		icon: 'ph-users-bold ph-lg',
+		icon: 'ph-users-three-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/groups',
 	},
@@ -99,7 +99,7 @@ export const navbarItemDef = reactive({
 	},
 	groups: {
 		title: 'groups',
-		icon: 'ph-users-bold ph-lg',
+		icon: 'ph-users-three-bold ph-lg',
 		to: '/my/groups',
 	},
 	ui: {

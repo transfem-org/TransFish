@@ -180,7 +180,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		text: i18n.ts.addToList,
 		action: pushList,
 	}, meId !== user.id ? {
-		icon: 'ph-users-bold ph-lg',
+		icon: 'ph-users-three-bold ph-lg',
 		text: i18n.ts.inviteToGroup,
 		action: inviteGroup,
 	} : undefined] as any;

@@ -287,7 +287,7 @@ definePageMetadata(computed(() => !fetching ? user ? {
 	avatar: user,
 } : {
 	title: group?.name,
-	icon: 'ph-users-bold ph-lg',
+	icon: 'ph-users-three-bold ph-lg',
 } : null));
 </script>
 

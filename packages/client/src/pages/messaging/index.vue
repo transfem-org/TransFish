@@ -77,7 +77,7 @@ const headerTabs = $computed(() => [{
 }, {
 	key: 'groups',
 	title: i18n.ts._messaging.groups,
-	icon: 'ph-users-bold ph-lg',
+	icon: 'ph-users-three-bold ph-lg',
 }]);
 
 definePageMetadata({

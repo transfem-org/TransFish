@@ -60,7 +60,7 @@ const headerActions = $computed(() => [
 definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.groups,
-		icon: "ph-users-bold ph-lg",
+		icon: "ph-users-three-bold ph-lg",
 	})),
 );
 

@@ -123,7 +123,7 @@ async function deleteGroup() {
 definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.members,
-		icon: "ph-users-bold ph-lg",
+		icon: "ph-users-three-bold ph-lg",
 	})),
 );
 
