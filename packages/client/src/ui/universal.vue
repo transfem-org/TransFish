@@ -24,7 +24,7 @@
 				<i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')">
+		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 0 ? 'on' : ''">
 				<i class="ph-house-bold ph-lg"></i>
 			</div>
