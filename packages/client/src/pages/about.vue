@@ -140,7 +140,7 @@ let theTabs = [{
 }, {
 	key: 'emojis',
 	title: i18n.ts.customEmojis,
-	icon: 'ph-smiley-wink-bold ph-lg',
+	icon: 'ph-smiley-bold ph-lg',
 }, {
 	key: 'charts',
 	title: i18n.ts.charts,

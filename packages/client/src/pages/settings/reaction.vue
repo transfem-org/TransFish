@@ -126,7 +126,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.reaction,
-	icon: 'ph-smiley-wink-bold ph-lg',
+	icon: 'ph-smiley-bold ph-lg',
 	action: {
 		icon: 'ph-eye-bold ph-lg',
 		handler: preview,

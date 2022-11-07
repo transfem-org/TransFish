@@ -146,7 +146,7 @@ function openInstanceMenu(ev: MouseEvent) {
 	}, {
 		type: 'link',
 		text: i18n.ts.customEmojis,
-		icon: 'ph-smiley-wink-bold ph-lg',
+		icon: 'ph-smiley-bold ph-lg',
 		to: '/about#emojis',
 	}, {
 		type: 'link',

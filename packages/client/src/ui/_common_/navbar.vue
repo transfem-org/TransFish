@@ -133,7 +133,7 @@ function openInstanceMenu(ev: MouseEvent) {
 	}, {
 		type: 'link',
 		text: i18n.ts.customEmojis,
-		icon: 'ph-smiley-wink-bold ph-lg',
+		icon: 'ph-smiley-bold ph-lg',
 		to: '/about#emojis',
 	}, {
 		type: 'link',
@@ -244,7 +244,6 @@ function more(ev: MouseEvent) {
 						display: inline-block;
 						width: 55px;
 						aspect-ratio: 1;
-						transform: translateY(0.2em);
 					}
 				}
 			}

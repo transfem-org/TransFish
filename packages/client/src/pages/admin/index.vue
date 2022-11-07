@@ -111,7 +111,7 @@ const menuDef = $computed(() => [{
 		to: '/admin/users',
 		active: currentPage?.route.name === 'users',
 	}, {
-		icon: 'ph-smiley-wink-bold ph-lg',
+		icon: 'ph-smiley-bold ph-lg',
 		text: i18n.ts.customEmojis,
 		to: '/admin/emojis',
 		active: currentPage?.route.name === 'emojis',

@@ -68,7 +68,7 @@ const menuDef = computed(() => [{
 		to: '/settings/privacy',
 		active: currentPage?.route.name === 'privacy',
 	}, {
-		icon: 'ph-smiley-wink-bold ph-lg',
+		icon: 'ph-smiley-bold ph-lg',
 		text: i18n.ts.reaction,
 		to: '/settings/reaction',
 		active: currentPage?.route.name === 'reaction',

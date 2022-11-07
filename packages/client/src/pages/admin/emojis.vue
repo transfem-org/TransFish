@@ -290,7 +290,7 @@ const headerTabs = $computed(() => [{
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.customEmojis,
-	icon: 'ph-smiley-wink-bold ph-lg',
+	icon: 'ph-smiley-bold ph-lg',
 })));
 </script>
 
@@ -300,7 +300,7 @@ definePageMetadata(computed(() => ({
 		.empty {
 			margin: var(--margin);
 		}
-		
+
 		.ldhfsamy {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
