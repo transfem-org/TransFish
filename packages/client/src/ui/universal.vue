@@ -19,10 +19,31 @@
 	<button v-if="!isDesktop && !isMobile" class="widgetButton _button" @click="widgetsShowing = true"><i class="ph-stack-bold ph-lg"></i></button>
 
 	<div v-if="isMobile" class="buttons">
-		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span></button>
-		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')"><i class="ph-house-bold ph-lg"></i></button>
-		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span></button>
-		<button class="button widget _button" @click="widgetsShowing = true"><i class="ph-stack-bold ph-lg"></i></button>
+		<button class="button nav _button" @click="drawerMenuShowing = true">
+			<div class="button-wrapper">
+				<i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
+			</div>
+		</button>
+		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')">
+			<div class="button-wrapper">
+				<i class="ph-house-bold ph-lg"></i>
+			</div>
+		</button>
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')">
+			<div class="button-wrapper">
+				<i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
+			</div>
+		</button>
+		<button class="button widget _button" @click="mainRouter.push('/my/messaging')">
+			<div class="button-wrapper">
+				<i class="ph-chats-teardrop-bold ph-lg"></i>
+			</div>
+		</button>
+		<button class="button widget _button" @click="widgetsShowing = true">
+			<div class="button-wrapper">
+				<i class="ph-stack-bold ph-lg"></i>
+			</div>
+		</button>
 	</div>
 
 	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="ph-pencil-bold ph-lg"></i></button>
@@ -68,7 +89,6 @@ import { defaultStore } from '@/store';
 import { navbarItemDef } from '@/navbar';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
-import { Router } from '@/nirax';
 import { mainRouter } from '@/router';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
@@ -340,7 +360,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			margin: auto;
 			height: 3.5rem;
 			border-radius: 8px;
-			/* background: var(--panel); */
 			background-position: center;
 			transition: background 0.6s;
 			color: var(--fg);
@@ -349,6 +368,14 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 				background-color: var(--accentedBg);
 				background-size: 100%;
 				transition: background 0.1s;
+			}
+
+			> .button-wrapper:active {
+				background-color: var(--accentedBg);
+				width: 60%;
+				border-radius: 10px;
+				transform: translateY(-0.5em);
+				transition: all 0.2s;
 			}
 
 			&:not(:last-child) {

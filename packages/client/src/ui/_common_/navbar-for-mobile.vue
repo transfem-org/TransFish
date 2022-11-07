@@ -45,7 +45,6 @@
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, defineComponent, ref, toRef, watch } from 'vue';
 import { host } from '@/config';
-import { search } from '@/scripts/search';
 import * as os from '@/os';
 import { navbarItemDef } from '@/navbar';
 import { openAccountMenu as openAccountMenu_ } from '@/account';

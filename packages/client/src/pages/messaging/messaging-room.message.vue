@@ -3,43 +3,30 @@
 	<MkAvatar class="avatar" :user="message.user" :show-indicator="true"/>
 	<div class="content">
 		<div class="balloon" :class="{ noText: message.text == null }">
-			<button v-if="isMe" class="delete-button" :title="$ts.delete" @click="del">
+			<button v-if="isMe" class="delete-button" :title="i18n.ts.delete" @click="del">
 				<img src="/client-assets/remove.png" alt="Delete"/>
 			</button>
 			<div v-if="!message.isDeleted" class="content">
 				<Mfm v-if="message.text" ref="text" class="text" :text="message.text" :i="$i"/>
 				<div v-if="message.file" class="file">
-					<img v-if="message.file.type.split('/')[0] == 'image'" :src="message.file.url" :alt="message.file.name" max-width="400px" style="border-radius: 5px"/>
-					<VuePlyr v-else-if="message.file.type.split('/')[0] == 'video'">
-						<video
-							:alt="message.file.name"
-							:download="message.file.url"
-							preload="none"
-							controls
-							@contextmenu.stop
-						>
-							<source
-								:src="message.file.url"
-							>
-						</video>
-					</VuePlyr>
+					<XMediaList v-if="message.file.type.split('/')[0] == 'image' || message.file.type.split('/')[0] == 'video'" :media-list="[message.file]" max-width="400px" style="border-radius: 5px"/>
 					<a v-else :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
 						<p>{{ message.file.name }}</p>
 					</a>
 				</div>
 			</div>
 			<div v-else class="content">
-				<p class="is-deleted">{{ $ts.deleted }}</p>
+				<p class="is-deleted">{{ i18n.ts.deleted }}</p>
 			</div>
 		</div>
 		<div></div>
 		<MkUrlPreview v-for="url in urls" :key="url" :url="url" style="margin: 8px 0;"/>
 		<footer>
 			<template v-if="isGroup">
-				<span v-if="message.reads.length > 0" class="read">{{ $ts.messageRead }} {{ message.reads.length }}</span>
+				<span v-if="message.reads.length > 0" class="read">{{ i18n.ts.messageRead }} {{ message.reads.length }}</span>
 			</template>
 			<template v-else>
-				<span v-if="isMe && message.isRead" class="read">{{ $ts.messageRead }}</span>
+				<span v-if="isMe && message.isRead" class="read">{{ i18n.ts.messageRead }}</span>
 			</template>
 			<MkTime :time="message.createdAt"/>
 			<template v-if="message.is_edited"><i class="ph-pencil-bold ph-lg"></i></template>
@@ -53,11 +40,12 @@ import { } from 'vue';
 import * as mfm from 'mfm-js';
 import VuePlyr from 'vue-plyr';
 import type * as Misskey from 'misskey-js';
-import XImage from '@/components/MkMediaImage.vue';
+import XMediaList from '@/components/MkMediaList.vue';
 import { extractUrlFromMfm } from '@/scripts/extract-url-from-mfm';
 import MkUrlPreview from '@/components/MkUrlPreview.vue';
 import * as os from '@/os';
 import { $i } from '@/account';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	message: Misskey.entities.MessagingMessage;
