@@ -12,7 +12,7 @@
 		>
 			<swiper-slide>
 				<MkFolder class="_gap">
-					<template #header><i class="fas fa-clock"></i> {{ i18n.ts.recentPosts }}</template>
+					<template #header><i class="ph-clock"></i> {{ i18n.ts.recentPosts }}</template>
 					<MkPagination v-slot="{items}" :pagination="recentPostsPagination" :disable-auto-load="true">
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
@@ -20,7 +20,7 @@
 					</MkPagination>
 				</MkFolder>
 				<MkFolder class="_gap">
-					<template #header><i class="fas fa-fire-alt"></i> {{ i18n.ts.popularPosts }}</template>
+					<template #header><i class="ph-fire-simple"></i> {{ i18n.ts.popularPosts }}</template>
 					<MkPagination v-slot="{items}" :pagination="popularPostsPagination" :disable-auto-load="true">
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
@@ -36,7 +36,7 @@
 				</MkPagination>
 			</swiper-slide>
 			<swiper-slide>
-				<MkA to="/gallery/new" class="_link" style="margin: 16px;"><i class="fas fa-plus"></i> {{ i18n.ts.postToGallery }}</MkA>
+				<MkA to="/gallery/new" class="_link" style="margin: 16px;"><i class="ph-plus"></i> {{ i18n.ts.postToGallery }}</MkA>
 				<MkPagination v-slot="{items}" :pagination="myPostsPagination">
 					<div class="vfpdbgtk">
 						<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
@@ -97,7 +97,7 @@ watch(() => props.tag, () => {
 });
 
 const headerActions = $computed(() => [{
-	icon: 'fas fa-plus',
+	icon: 'ph-plus',
 	text: i18n.ts.create,
 	handler: () => {
 		router.push('/gallery/new');
@@ -107,20 +107,20 @@ const headerActions = $computed(() => [{
 const headerTabs = $computed(() => [{
 	key: 'explore',
 	title: i18n.ts.gallery,
-	icon: 'fas fa-icons',
+	icon: 'ph-image-square',
 }, {
 	key: 'liked',
 	title: i18n.ts._gallery.liked,
-	icon: 'fas fa-heart',
+	icon: 'ph-heart',
 }, {
 	key: 'my',
 	title: i18n.ts._gallery.my,
-	icon: 'fas fa-edit',
+	icon: 'ph-crown-simple',
 }]);
 
 definePageMetadata({
 	title: i18n.ts.gallery,
-	icon: 'fas fa-icons',
+	icon: 'ph-image-square',
 });
 
 let swiperRef = null;

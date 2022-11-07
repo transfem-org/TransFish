@@ -88,7 +88,7 @@ function setFilter(ev) {
 		},
 	}));
 	const items = includeTypes != null ? [{
-		icon: 'fas fa-times',
+		icon: 'ph-x',
 		text: i18n.ts.clear,
 		action: () => {
 			includeTypes = null;
@@ -99,12 +99,12 @@ function setFilter(ev) {
 
 const headerActions = $computed(() => [tab === 'all' ? {
 	text: i18n.ts.filter,
-	icon: 'fas fa-filter',
+	icon: 'ph-funnel',
 	highlighted: includeTypes != null,
 	handler: setFilter,
 } : undefined, tab === 'all' ? {
 	text: i18n.ts.markAllAsRead,
-	icon: 'fas fa-check',
+	icon: 'ph-check',
 	handler: () => {
 		os.apiWithDialog('notifications/mark-all-as-read');
 	},
@@ -113,24 +113,24 @@ const headerActions = $computed(() => [tab === 'all' ? {
 const headerTabs = $computed(() => [{
 	key: 'all',
 	title: i18n.ts.all,
-	icon: 'fas fa-bell',
+	icon: 'ph-bell',
 }, {
 	key: 'unread',
 	title: i18n.ts.unread,
-	icon: 'fas fa-exclamation',
+	icon: 'ph-circle-wavy-warning',
 }, {
 	key: 'mentions',
 	title: i18n.ts.mentions,
-	icon: 'fas fa-at',
+	icon: 'ph-at',
 }, {
 	key: 'directNotes',
 	title: i18n.ts.directNotes,
-	icon: 'fas fa-envelope',
+	icon: 'ph-envelope-simple-open',
 }]);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.notifications,
-	icon: 'fas fa-bell',
+	icon: 'ph-bell',
 })));
 
 let swiperRef = null;

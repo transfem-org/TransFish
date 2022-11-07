@@ -119,6 +119,15 @@ hr {
 	background: var(--divider);
 }
 
+.fa-pulse {
+	animation: spin 1s infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
 ._noSelect {
 	user-select: none;
 	-webkit-user-select: none;

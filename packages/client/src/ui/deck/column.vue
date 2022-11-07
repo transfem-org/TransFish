@@ -16,14 +16,14 @@
 		@contextmenu.prevent.stop="onContextmenu"
 	>
 		<button v-if="isStacked && !isMainColumn" class="toggleActive _button" @click="toggleActive">
-			<template v-if="active"><i class="fas fa-angle-up"></i></template>
-			<template v-else><i class="fas fa-angle-down"></i></template>
+			<template v-if="active"><i class="ph-caret-up"></i></template>
+			<template v-else><i class="ph-caret-down"></i></template>
 		</button>
 		<div class="action">
 			<slot name="action"></slot>
 		</div>
 		<span class="header"><slot name="header"></slot></span>
-		<button v-tooltip="i18n.ts.settings" class="menu _button" @click.stop="showSettingsMenu"><i class="fas fa-ellipsis"></i></button>
+		<button v-tooltip="i18n.ts.settings" class="menu _button" @click.stop="showSettingsMenu"><i class="ph-three-dots-outline-vertical"></i></button>
 	</header>
 	<div v-show="active" ref="body">
 		<slot></slot>
@@ -105,7 +105,7 @@ function toggleActive() {
 
 function getMenu() {
 	let items = [{
-		icon: 'fas fa-cog',
+		icon: 'ph-gear-six',
 		text: i18n.ts._deck.configureColumn,
 		action: async () => {
 			const { canceled, result } = await os.form(props.column.name, {
@@ -131,46 +131,46 @@ function getMenu() {
 	}, {
 		type: 'parent',
 		text: i18n.ts.move + '...',
-		icon: 'fas fa-arrows-up-down-left-right',
+		icon: 'ph-arrows-out-cardinal',
 		children: [{
-			icon: 'fas fa-arrow-left',
+			icon: 'ph--left',
 			text: i18n.ts._deck.swapLeft,
 			action: () => {
 				swapLeftColumn(props.column.id);
 			},
 		}, {
-			icon: 'fas fa-arrow-right',
+			icon: 'ph--right',
 			text: i18n.ts._deck.swapRight,
 			action: () => {
 				swapRightColumn(props.column.id);
 			},
 		}, props.isStacked ? {
-			icon: 'fas fa-arrow-up',
+			icon: 'ph--up',
 			text: i18n.ts._deck.swapUp,
 			action: () => {
 				swapUpColumn(props.column.id);
 			},
 		} : undefined, props.isStacked ? {
-			icon: 'fas fa-arrow-down',
+			icon: 'ph--down',
 			text: i18n.ts._deck.swapDown,
 			action: () => {
 				swapDownColumn(props.column.id);
 			},
 		} : undefined],
 	}, {
-		icon: 'fas fa-window-restore',
+		icon: 'ph-copy',
 		text: i18n.ts._deck.stackLeft,
 		action: () => {
 			stackLeftColumn(props.column.id);
 		},
 	}, props.isStacked ? {
-		icon: 'fas fa-window-maximize',
+		icon: 'ph-browser',
 		text: i18n.ts._deck.popRight,
 		action: () => {
 			popRightColumn(props.column.id);
 		},
 	} : undefined, null, {
-		icon: 'fas fa-trash-alt',
+		icon: 'ph-trash',
 		text: i18n.ts.remove,
 		danger: true,
 		action: () => {

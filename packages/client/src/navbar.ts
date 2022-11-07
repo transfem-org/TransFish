@@ -9,102 +9,102 @@ import { unisonReload } from '@/scripts/unison-reload';
 export const navbarItemDef = reactive({
 	notifications: {
 		title: 'notifications',
-		icon: 'fas fa-bell',
+		icon: 'ph-bell',
 		show: computed(() => $i != null),
 		indicated: computed(() => $i != null && $i.hasUnreadNotification),
 		to: '/my/notifications',
 	},
 	messaging: {
 		title: 'messaging',
-		icon: 'fas fa-comments',
+		icon: 'ph-chats-teardrop',
 		show: computed(() => $i != null),
 		indicated: computed(() => $i != null && $i.hasUnreadMessagingMessage),
 		to: '/my/messaging',
 	},
 	drive: {
 		title: 'drive',
-		icon: 'fas fa-cloud',
+		icon: 'ph-cloud',
 		show: computed(() => $i != null),
 		to: '/my/drive',
 	},
 	followRequests: {
 		title: 'followRequests',
-		icon: 'fas fa-user-clock',
+		icon: 'ph-hand-waving',
 		show: computed(() => $i != null && $i.isLocked),
 		indicated: computed(() => $i != null && $i.hasPendingReceivedFollowRequest),
 		to: '/my/follow-requests',
 	},
 	explore: {
 		title: 'explore',
-		icon: 'fas fa-hashtag',
+		icon: 'ph-hash',
 		to: '/explore',
 	},
 	announcements: {
 		title: 'announcements',
-		icon: 'fas fa-broadcast-tower',
+		icon: 'ph-megaphone-simple',
 		indicated: computed(() => $i != null && $i.hasUnreadAnnouncement),
 		to: '/announcements',
 	},
 	search: {
 		title: 'search',
-		icon: 'fas fa-search',
+		icon: 'ph-magnifying-glass',
 		action: () => search(),
 	},
 	lists: {
 		title: 'lists',
-		icon: 'fas fa-list-ul',
+		icon: 'ph-list-bullets',
 		show: computed(() => $i != null),
 		to: '/my/lists',
 	},
 	/*
 	groups: {
 		title: 'groups',
-		icon: 'fas fa-users',
+		icon: 'ph-users',
 		show: computed(() => $i != null),
 		to: '/my/groups',
 	},
 	*/
 	antennas: {
 		title: 'antennas',
-		icon: 'fas fa-satellite',
+		icon: 'ph-flying-saucer',
 		show: computed(() => $i != null),
 		to: '/my/antennas',
 	},
 	favorites: {
 		title: 'favorites',
-		icon: 'fas fa-star',
+		icon: 'ph-star',
 		show: computed(() => $i != null),
 		to: '/my/favorites',
 	},
 	pages: {
 		title: 'pages',
-		icon: 'fas fa-file-alt',
+		icon: 'ph-file-text',
 		to: '/pages',
 	},
 	gallery: {
 		title: 'gallery',
-		icon: 'fas fa-icons',
+		icon: 'ph-image-square',
 		to: '/gallery',
 	},
 	clips: {
 		title: 'clip',
-		icon: 'fas fa-paperclip',
+		icon: 'ph-paperclip',
 		show: computed(() => $i != null),
 		to: '/my/clips',
 	},
 	channels: {
 		title: 'channel',
-		icon: 'fas fa-satellite-dish',
+		icon: 'ph-television',
 		to: '/channels',
 	},
 	groups: {
 		title: 'groups',
-		icon: 'fas fa-users',
+		icon: 'ph-users',
 		to: '/my/groups',
 	},
 	ui: {
 		title: 'switchUi',
-		icon: 'fas fa-columns',
+		icon: 'ph-layout',
 		action: (ev) => {
 			os.popupMenu([{
 				text: i18n.ts.default,
@@ -132,7 +132,7 @@ export const navbarItemDef = reactive({
 	},
 	reload: {
 		title: 'reload',
-		icon: 'fas fa-refresh',
+		icon: 'ph-arrows-clockwise',
 		action: (ev) => {
 			location.reload();
 		},

@@ -102,13 +102,13 @@ function onContextmenu(ev: MouseEvent) {
 		type: 'label',
 		text: path,
 	}, {
-		icon: fullView ? 'fas fa-compress' : 'fas fa-expand',
+		icon: fullView ? 'ph-arrows-in-simple' : 'ph-arrows-out-simple',
 		text: fullView ? i18n.ts.quitFullView : i18n.ts.fullView,
 		action: () => {
 			fullView = !fullView;
 		},
 	}, {
-		icon: 'fas fa-window-maximize',
+		icon: 'ph-browser',
 		text: i18n.ts.openInWindow,
 		action: () => {
 			os.pageWindow(path);

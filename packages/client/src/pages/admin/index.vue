@@ -43,7 +43,7 @@ const router = useRouter();
 
 const indexInfo = {
 	title: i18n.ts.controlPanel,
-	icon: 'fas fa-cog',
+	icon: 'ph-gear-six',
 	hideHeader: true,
 };
 
@@ -89,59 +89,59 @@ const menuDef = $computed(() => [{
 	title: i18n.ts.quickAction,
 	items: [{
 		type: 'button',
-		icon: 'fas fa-search',
+		icon: 'ph-magnifying-glass',
 		text: i18n.ts.lookup,
 		action: lookup,
 	}, ...(instance.disableRegistration ? [{
 		type: 'button',
-		icon: 'fas fa-user',
+		icon: 'ph-user',
 		text: i18n.ts.invite,
 		action: invite,
 	}] : [])],
 }, {
 	title: i18n.ts.administration,
 	items: [{
-		icon: 'fas fa-tachometer-alt',
+		icon: 'ph-gauge',
 		text: i18n.ts.dashboard,
 		to: '/admin/overview',
 		active: currentPage?.route.name === 'overview',
 	}, {
-		icon: 'fas fa-users',
+		icon: 'ph-users',
 		text: i18n.ts.users,
 		to: '/admin/users',
 		active: currentPage?.route.name === 'users',
 	}, {
-		icon: 'fas fa-laugh',
+		icon: 'ph-smiley-wink',
 		text: i18n.ts.customEmojis,
 		to: '/admin/emojis',
 		active: currentPage?.route.name === 'emojis',
 	}, {
-		icon: 'fas fa-globe',
+		icon: 'ph-planet',
 		text: i18n.ts.federation,
 		to: '/about#federation',
 		active: currentPage?.route.name === 'federation',
 	}, {
-		icon: 'fas fa-clipboard-list',
+		icon: 'ph-clipboard-text',
 		text: i18n.ts.jobQueue,
 		to: '/admin/queue',
 		active: currentPage?.route.name === 'queue',
 	}, {
-		icon: 'fas fa-cloud',
+		icon: 'ph-cloud',
 		text: i18n.ts.files,
 		to: '/admin/files',
 		active: currentPage?.route.name === 'files',
 	}, {
-		icon: 'fas fa-broadcast-tower',
+		icon: 'ph-megaphone-simple',
 		text: i18n.ts.announcements,
 		to: '/admin/announcements',
 		active: currentPage?.route.name === 'announcements',
 	}, {
-		icon: 'fas fa-audio-description',
+		icon: 'ph-money',
 		text: i18n.ts.ads,
 		to: '/admin/ads',
 		active: currentPage?.route.name === 'ads',
 	}, {
-		icon: 'fas fa-exclamation-circle',
+		icon: 'ph-warning-circle',
 		text: i18n.ts.abuseReports,
 		to: '/admin/abuses',
 		active: currentPage?.route.name === 'abuses',
@@ -149,47 +149,47 @@ const menuDef = $computed(() => [{
 }, {
 	title: i18n.ts.settings,
 	items: [{
-		icon: 'fas fa-cog',
+		icon: 'ph-gear-six',
 		text: i18n.ts.general,
 		to: '/admin/settings',
 		active: currentPage?.route.name === 'settings',
 	}, {
-		icon: 'fas fa-envelope',
+		icon: 'ph-envelope-simple-open',
 		text: i18n.ts.emailServer,
 		to: '/admin/email-settings',
 		active: currentPage?.route.name === 'email-settings',
 	}, {
-		icon: 'fas fa-cloud',
+		icon: 'ph-cloud',
 		text: i18n.ts.objectStorage,
 		to: '/admin/object-storage',
 		active: currentPage?.route.name === 'object-storage',
 	}, {
-		icon: 'fas fa-lock',
+		icon: 'ph-lock',
 		text: i18n.ts.security,
 		to: '/admin/security',
 		active: currentPage?.route.name === 'security',
 	}, {
-		icon: 'fas fa-globe',
+		icon: 'ph-planet',
 		text: i18n.ts.relays,
 		to: '/admin/relays',
 		active: currentPage?.route.name === 'relays',
 	}, {
-		icon: 'fas fa-share-alt',
+		icon: 'ph-share-network',
 		text: i18n.ts.integration,
 		to: '/admin/integrations',
 		active: currentPage?.route.name === 'integrations',
 	}, {
-		icon: 'fas fa-ban',
+		icon: 'ph-prohibit',
 		text: i18n.ts.instanceBlocking,
 		to: '/admin/instance-block',
 		active: currentPage?.route.name === 'instance-block',
 	}, {
-		icon: 'fas fa-ghost',
+		icon: 'ph-ghost',
 		text: i18n.ts.proxyAccount,
 		to: '/admin/proxy-account',
 		active: currentPage?.route.name === 'proxy-account',
 	}, {
-		icon: 'fas fa-cogs',
+		icon: 'ph-gear-six',
 		text: i18n.ts.other,
 		to: '/admin/other-settings',
 		active: currentPage?.route.name === 'other-settings',
@@ -197,7 +197,7 @@ const menuDef = $computed(() => [{
 }, {
 	title: i18n.ts.info,
 	items: [{
-		icon: 'fas fa-database',
+		icon: 'ph-database',
 		text: i18n.ts.database,
 		to: '/admin/database',
 		active: currentPage?.route.name === 'database',
@@ -248,25 +248,25 @@ const invite = () => {
 const lookup = (ev) => {
 	os.popupMenu([{
 		text: i18n.ts.user,
-		icon: 'fas fa-user',
+		icon: 'ph-user',
 		action: () => {
 			lookupUser();
 		},
 	}, {
 		text: i18n.ts.note,
-		icon: 'fas fa-pencil-alt',
+		icon: 'ph-pencil',
 		action: () => {
 			alert('TODO');
 		},
 	}, {
 		text: i18n.ts.file,
-		icon: 'fas fa-cloud',
+		icon: 'ph-cloud',
 		action: () => {
 			alert('TODO');
 		},
 	}, {
 		text: i18n.ts.instance,
-		icon: 'fas fa-globe',
+		icon: 'ph-planet',
 		action: () => {
 			alert('TODO');
 		},

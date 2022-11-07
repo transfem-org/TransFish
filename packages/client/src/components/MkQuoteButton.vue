@@ -4,7 +4,7 @@
 	class="eddddedb _button"
 	@click="quote()"
 >
-	<i class="fas fa-quote-right"></i>
+	<i class="ph-quotes"></i>
 </button>
 </template>
 
