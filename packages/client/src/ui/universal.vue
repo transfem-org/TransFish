@@ -34,7 +34,7 @@
 				<i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button widget _button" @click="mainRouter.push('/my/messaging')">
+		<button class="button messaging _button" @click="mainRouter.push('/my/messaging')">
 			<div class="button-wrapper" :class="buttonAnimIndex === 2 ? 'on' : ''">
 				<i class="ph-chats-teardrop-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
@@ -138,14 +138,14 @@ mainRouter.on('change', () => {
 	if (routerState === 'index') {
 		buttonAnimIndex.value = 0;
 	}
-	else if (window.location.href.includes('my/notifications')) {
+	else if (window.location.href.includes('notifications')) {
 		buttonAnimIndex.value = 1;
 	}
-	else if (window.location.href.includes('my/messaging')) {
+	else if (window.location.href.includes('messaging')) {
 		buttonAnimIndex.value = 2;
 	}
 	else {
-		buttonAnimIndex.value = 3;
+		buttonAnimIndex.value = 0;
 	}
 });
 
