@@ -5,16 +5,16 @@
 		<MkAvatar v-else-if="notification.user" class="icon" :user="notification.user"/>
 		<img v-else-if="notification.icon" class="icon" :src="notification.icon" alt=""/>
 		<div class="sub-icon" :class="notification.type">
-			<i v-if="notification.type === 'follow'" class="ph-plus-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'receiveFollowRequest'" class="ph-clock-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'followRequestAccepted'" class="ph-check-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'groupInvited'" class="ph-identification-card-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'renote'" class="ph-repeat-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'reply'" class="ph-arrow-bend-up-left-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'mention'" class="ph-at-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'quote'" class="ph-quotes-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'pollVote'" class="ph-microphone-stage-bold ph-lg"></i>
-			<i v-else-if="notification.type === 'pollEnded'" class="ph-microphone-stage-bold ph-lg"></i>
+			<i v-if="notification.type === 'follow'" class="ph-plus-bold"></i>
+			<i v-else-if="notification.type === 'receiveFollowRequest'" class="ph-clock-bold"></i>
+			<i v-else-if="notification.type === 'followRequestAccepted'" class="ph-check-bold"></i>
+			<i v-else-if="notification.type === 'groupInvited'" class="ph-identification-card-bold"></i>
+			<i v-else-if="notification.type === 'renote'" class="ph-repeat-bold"></i>
+			<i v-else-if="notification.type === 'reply'" class="ph-arrow-bend-up-left-bold"></i>
+			<i v-else-if="notification.type === 'mention'" class="ph-at-bold"></i>
+			<i v-else-if="notification.type === 'quote'" class="ph-quotes-bold"></i>
+			<i v-else-if="notification.type === 'pollVote'" class="ph-microphone-stage-bold"></i>
+			<i v-else-if="notification.type === 'pollEnded'" class="ph-microphone-stage-bold"></i>
 			<!-- notification.reaction が null になることはまずないが、ここでoptional chaining使うと一部ブラウザで刺さるので念の為 -->
 			<XReactionIcon
 				v-else-if="notification.type === 'reaction'"
