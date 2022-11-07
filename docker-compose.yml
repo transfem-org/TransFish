@@ -2,35 +2,34 @@ version: "3"
 
 services:
   web:
-    image: thatonecalculator/calckey
+    image: docker.io/thatonecalculator/calckey
     build: .
     restart: always
-    links:
+    depends_on:
       - db
       - redis
 #      - es
     ports:
       - "3000:3000"
     networks:
-      - internal_network
-      - external_network
+      - network
     volumes:
       - ./files:/calckey/files
       - ./.config:/calckey/.config:ro
 
   redis:
     restart: always
-    image: redis:4.0-alpine
+    image: docker.io/redis:4.0-alpine
     networks:
-      - internal_network
+      - network
     volumes:
       - ./redis:/data
 
   db:
     restart: always
-    image: postgres:12.2-alpine
+    image: docker.io/postgres:12.2-alpine
     networks:
-      - internal_network
+      - network
     env_file:
       - .config/docker.env
     volumes:
@@ -43,11 +42,9 @@ services:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #      - "TAKE_FILE_OWNERSHIP=111"
 #    networks:
-#      - internal_network
+#      - network
 #    volumes:
 #      - ./elasticsearch:/usr/share/elasticsearch/data
 
 networks:
-  internal_network:
-    internal: true
-  external_network:
+  network:
