@@ -297,6 +297,7 @@ onUnmounted(() => {
 			margin-right: 8px;
 			width: 16px;
 			text-align: center;
+			transform: translateY(0.1em);
 		}
 
 		> .title {

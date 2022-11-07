@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><XHeader :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
 	<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
 		<FormSuspense :p="init">
 			<div class="_formRoot">
@@ -123,7 +123,6 @@
 <script lang="ts" setup>
 import { } from 'vue';
 import XBotProtection from './bot-protection.vue';
-import XHeader from './_header_.vue';
 import FormFolder from '@/components/form/folder.vue';
 import FormRadios from '@/components/form/radios.vue';
 import FormSwitch from '@/components/form/switch.vue';

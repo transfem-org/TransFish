@@ -1,7 +1,7 @@
 <template>
 <div>
 	<MkStickyContainer>
-		<template #header><XHeader :actions="headerActions"/></template>
+		<template #header><MkPageHeader :actions="headerActions"/></template>
 		<MkSpacer :content-max="900">
 			<div class="xrmjdkdw">
 				<div>
@@ -35,7 +35,6 @@
 <script lang="ts" setup>
 import { computed, defineAsyncComponent } from 'vue';
 import * as Acct from 'misskey-js/built/acct';
-import XHeader from './_header_.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkInput from '@/components/form/input.vue';
 import MkSelect from '@/components/form/select.vue';

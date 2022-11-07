@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><XHeader :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
 	<MkSpacer :content-max="900">
 		<div class="lcixvhis">
 			<div class="_section reports">
@@ -49,7 +49,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import XHeader from './_header_.vue';
 import MkInput from '@/components/form/input.vue';
 import MkSelect from '@/components/form/select.vue';
 import MkPagination from '@/components/MkPagination.vue';

@@ -244,6 +244,7 @@ function more(ev: MouseEvent) {
 						display: inline-block;
 						width: 55px;
 						aspect-ratio: 1;
+						transform: translateY(0.2em);
 					}
 				}
 			}
