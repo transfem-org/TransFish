@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, provide, onMounted, computed, ref, watch, ComputedRef } from 'vue';
+import { defineAsyncComponent, provide, onMounted, computed, ref, ComputedRef } from 'vue';
 import XCommon from './_common_/common.vue';
 import { instanceName } from '@/config';
 import { StickySidebar } from '@/scripts/sticky-sidebar';
@@ -130,12 +130,6 @@ const menuIndicated = computed(() => {
 	return false;
 });
 
-const drawerMenuShowing = ref(false);
-
-mainRouter.on('change', () => {
-	drawerMenuShowing.value = false;
-});
-
 function updateButtonState(): void {
 	let routerState = window.location.href;
 	let secondaryRouterState = mainRouter.currentRoute.value.name;
@@ -156,7 +150,12 @@ function updateButtonState(): void {
 
 updateButtonState();
 
-watch($$(window.location.href), () => (updateButtonState()));
+const drawerMenuShowing = ref(false);
+
+mainRouter.on('change', () => {
+	drawerMenuShowing.value = false;
+	updateButtonState();
+});
 
 document.documentElement.style.overflowY = 'scroll';
 
