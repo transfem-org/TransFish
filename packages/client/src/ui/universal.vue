@@ -24,17 +24,17 @@
 				<i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button home _button" active-class="active" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')">
+		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')">
 			<div class="button-wrapper" :class="buttonAnimIndex === 0 ? 'on' : ''">
 				<i class="ph-house-bold ph-lg"></i>
 			</div>
 		</button>
-		<button class="button notifications _button" active-class="active" @click="mainRouter.push('/my/notifications')">
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 1 ? 'on' : ''">
 				<i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button messaging _button" active-class="active" @click="mainRouter.push('/my/messaging')">
+		<button class="button messaging _button" @click="mainRouter.push('/my/messaging'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 2 ? 'on' : ''">
 				<i class="ph-chats-teardrop-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
@@ -133,7 +133,30 @@ const menuIndicated = computed(() => {
 	return false;
 });
 
-mainRouter.on('change', () => (drawerMenuShowing.value = false));
+function updateButtonState(): void {
+	let routerState = window.location.pathname;
+	if (routerState === '/') {
+		buttonAnimIndex.value = 0;
+		return;
+	}
+	if (routerState.includes('/my/notifications')) {
+		buttonAnimIndex.value = 1;
+		return;
+	}
+	if (routerState.includes('/my/messaging')) {
+		buttonAnimIndex.value = 2;
+		return;
+	}
+	buttonAnimIndex.value = 3;
+	return;
+}
+
+updateButtonState();
+
+mainRouter.on('change', () => {
+	drawerMenuShowing.value = false;
+	updateButtonState();
+});
 
 document.documentElement.style.overflowY = 'scroll';
 
@@ -158,7 +181,7 @@ onMounted(() => {
 
 		function createScrollStopListener(element: Window, callback: TimerHandler, timeout: number): () => void {
 			let handle = 0;
-			const onScroll = (): void => {
+			const onScroll = () => {
 				if (handle) {
 					clearTimeout(handle);
 				}
@@ -373,7 +396,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 
 			> .button-wrapper {
 
-				&.active {
+				&.on {
 					background-color: var(--accentedBg);
 					width: 100%;
 					border-radius: 999px;
