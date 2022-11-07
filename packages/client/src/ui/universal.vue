@@ -24,17 +24,17 @@
 				<i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/'); updateButtonState();">
+		<button class="button home _button" active-class="active" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')">
 			<div class="button-wrapper" :class="buttonAnimIndex === 0 ? 'on' : ''">
 				<i class="ph-house-bold ph-lg"></i>
 			</div>
 		</button>
-		<button class="button notifications _button" @click="mainRouter.push('/my/notifications'); updateButtonState();">
+		<button class="button notifications _button" active-class="active" @click="mainRouter.push('/my/notifications')">
 			<div class="button-wrapper" :class="buttonAnimIndex === 1 ? 'on' : ''">
 				<i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button messaging _button" @click="mainRouter.push('/my/messaging'); updateButtonState();">
+		<button class="button messaging _button" active-class="active" @click="mainRouter.push('/my/messaging')">
 			<div class="button-wrapper" :class="buttonAnimIndex === 2 ? 'on' : ''">
 				<i class="ph-chats-teardrop-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
@@ -133,31 +133,7 @@ const menuIndicated = computed(() => {
 	return false;
 });
 
-function updateButtonState(): string {
-	let routerState = window.location.pathname;
-	if (routerState === '/') {
-		buttonAnimIndex.value = 0;
-		return routerState;
-	}
-	if (routerState.includes('/my/notifications')) {
-		buttonAnimIndex.value = 1;
-		return routerState;
-	}
-	if (routerState.includes('/my/messaging')) {
-		buttonAnimIndex.value = 2;
-		return routerState;
-	}
-	buttonAnimIndex.value = 3;
-	return routerState;
-}
-
-updateButtonState();
-
-mainRouter.on('change', () => {
-	drawerMenuShowing.value = false;
-	const newState = updateButtonState();
-	console.log(newState);
-});
+mainRouter.on('change', () => (drawerMenuShowing.value = false));
 
 document.documentElement.style.overflowY = 'scroll';
 
@@ -182,7 +158,7 @@ onMounted(() => {
 
 		function createScrollStopListener(element: Window, callback: TimerHandler, timeout: number): () => void {
 			let handle = 0;
-			const onScroll = () => {
+			const onScroll = (): void => {
 				if (handle) {
 					clearTimeout(handle);
 				}
@@ -396,6 +372,15 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 			}
 
 			> .button-wrapper {
+
+				&.on {
+					background-color: var(--accentedBg);
+					width: 100%;
+					border-radius: 999px;
+					transform: translateY(-0.5em);
+					transition: all 0.3s ease-in-out;
+				}
+
 				> .indicator {
 					position: absolute;
 					top: 0;
@@ -404,14 +389,6 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 					font-size: 16px;
 					animation: blink 1s infinite;
 				}
-			}
-
-			> .button-wrapper.on {
-				background-color: var(--accentedBg);
-				width: 100%;
-				border-radius: 999px;
-				transform: translateY(-0.5em);
-				transition: all 0.3s ease-in-out;
 			}
 
 			&:not(:last-child) {
