@@ -57,7 +57,7 @@ const buttonsLeft = $computed(() => {
 
 	if (history.length > 1) {
 		buttons.push({
-			icon: 'fas fa-arrow-left',
+			icon: 'ph--left',
 			onClick: back,
 		});
 	}
@@ -66,7 +66,7 @@ const buttonsLeft = $computed(() => {
 });
 const buttonsRight = $computed(() => {
 	const buttons = [{
-		icon: 'fas fa-expand-alt',
+		icon: 'ph-arrows-out-simple',
 		title: i18n.ts.showInPage,
 		onClick: expand,
 	}];
@@ -86,22 +86,22 @@ provide('shouldOmitHeaderTitle', true);
 provide('shouldHeaderThin', true);
 
 const contextmenu = $computed(() => ([{
-	icon: 'fas fa-expand-alt',
+	icon: 'ph-arrows-out-simple',
 	text: i18n.ts.showInPage,
 	action: expand,
 }, {
-	icon: 'fas fa-external-link-alt',
+	icon: 'ph-arrow-square-out',
 	text: i18n.ts.popout,
 	action: popout,
 }, {
-	icon: 'fas fa-external-link-alt',
+	icon: 'ph-arrow-square-out',
 	text: i18n.ts.openInNewTab,
 	action: () => {
 		window.open(url + router.getCurrentPath(), '_blank');
 		windowEl.close();
 	},
 }, {
-	icon: 'fas fa-link',
+	icon: 'ph-link-simple',
 	text: i18n.ts.copyLink,
 	action: () => {
 		copyToClipboard(url + router.getCurrentPath());

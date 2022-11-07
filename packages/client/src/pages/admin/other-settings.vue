@@ -30,7 +30,7 @@ function save() {
 
 const headerActions = $computed(() => [{
 	asFullButton: true,
-	icon: 'fas fa-check',
+	icon: 'ph-check',
 	text: i18n.ts.save,
 	handler: save,
 }]);
@@ -39,6 +39,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.other,
-	icon: 'fas fa-cogs',
+	icon: 'ph-gear-six',
 });
 </script>

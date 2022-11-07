@@ -1,6 +1,6 @@
 {
 	"name": "calckey",
-	"version": "12.119.0-calc.8.1",
+	"version": "12.119.0-calc.8.2",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
@@ -51,6 +51,7 @@
 		"gulp-terser": "2.1.0",
 		"js-yaml": "4.1.0",
 		"long": "^5.2.1",
+		"phosphor-icons": "^1.4.2",
 		"seedrandom": "^3.0.5"
 	},
 	"devDependencies": {

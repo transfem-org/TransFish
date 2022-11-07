@@ -48,6 +48,7 @@
 - Star as default reaction
 - Like/star button
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
+- Phosphor icons instead of FontAwesome
 - Better sidebar/navbar
 - Add back groups
   - Integrate groups UI into chats UI

@@ -1,7 +1,7 @@
 <template>
 <div v-if="hide" class="icozogqfvdetwohsdglrbswgrejoxbdj" @click="hide = false">
 	<div>
-		<b><i class="fas fa-exclamation-triangle"></i> {{ $ts.sensitive }}</b>
+		<b><i class="ph-warning"></i> {{ $ts.sensitive }}</b>
 		<span>{{ $ts.clickToShow }}</span>
 	</div>
 </div>
@@ -36,7 +36,7 @@
 			>
 		</video>
 	</VuePlyr>
-	<i class="fas fa-eye-slash" @click="hide = true"></i>
+	<i class="ph-eye-slash" @click="hide = true"></i>
 </div>
 </template>
 

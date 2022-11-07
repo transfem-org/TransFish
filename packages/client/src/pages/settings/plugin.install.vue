@@ -7,7 +7,7 @@
 	</FormTextarea>
 
 	<div class="_formBlock">
-		<FormButton :disabled="code == null" primary inline @click="install"><i class="fas fa-check"></i> {{ i18n.ts.install }}</FormButton>
+		<FormButton :disabled="code == null" primary inline @click="install"><i class="ph-check"></i> {{ i18n.ts.install }}</FormButton>
 	</div>
 </div>
 </template>
@@ -119,6 +119,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._plugin.install,
-	icon: 'fas fa-download',
+	icon: 'ph-download-simple',
 });
 </script>

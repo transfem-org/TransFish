@@ -5,11 +5,11 @@
 	class="eddddedb _button canRenote"
 	@click="renote(false, $event)"
 >
-	<i class="fas fa-retweet"></i>
+	<i class="ph-repeat"></i>
 	<p v-if="count > 0" class="count">{{ count }}</p>
 </button>
 <button v-else class="eddddedb _button">
-	<i class="fas fa-ban"></i>
+	<i class="ph-prohibit"></i>
 </button>
 </template>
 
@@ -69,7 +69,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	} else {
 		os.popupMenu([{
 			text: i18n.ts.renote,
-			icon: 'fas fa-retweet',
+			icon: 'ph-repeat',
 			action: () => {
 				os.api('notes/create', {
 					renoteId: props.note.id,
@@ -78,7 +78,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 			},
 		}, {
 			text: i18n.ts.quote,
-			icon: 'fas fa-quote-right',
+			icon: 'ph-quotes',
 			action: () => {
 				os.post({
 					renote: props.note,

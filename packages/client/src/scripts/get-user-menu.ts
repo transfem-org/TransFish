@@ -153,70 +153,70 @@ export function getUserMenu(user, router: Router = mainRouter) {
 	}
 
 	let menu = [{
-		icon: 'fas fa-at',
+		icon: 'ph-at',
 		text: i18n.ts.copyUsername,
 		action: () => {
 			copyToClipboard(`@${user.username}@${user.host || host}`);
 		},
 	}, {
-		icon: 'fas fa-info-circle',
+		icon: 'ph-info',
 		text: i18n.ts.info,
 		action: () => {
 			router.push(`/user-info/${user.id}`);
 		},
 	}, {
-		icon: 'fas fa-envelope',
+		icon: 'ph-envelope-simple-open',
 		text: i18n.ts.sendMessage,
 		action: () => {
 			os.post({ specified: user });
 		},
 	}, meId !== user.id ? {
 		type: 'link',
-		icon: 'fas fa-comments',
+		icon: 'ph-chats-teardrop',
 		text: i18n.ts.startMessaging,
 		to: '/my/messaging/' + Acct.toString(user),
 	} : undefined, null, {
-		icon: 'fas fa-list-ul',
+		icon: 'ph-list-bullets',
 		text: i18n.ts.addToList,
 		action: pushList,
 	}, meId !== user.id ? {
-		icon: 'fas fa-users',
+		icon: 'ph-users',
 		text: i18n.ts.inviteToGroup,
 		action: inviteGroup,
 	} : undefined] as any;
 
 	if ($i && meId !== user.id) {
 		menu = menu.concat([null, {
-			icon: user.isMuted ? 'fas fa-eye' : 'fas fa-eye-slash',
+			icon: user.isMuted ? 'ph-eye' : 'ph-eye-slash',
 			text: user.isMuted ? i18n.ts.unmute : i18n.ts.mute,
 			action: toggleMute,
 		}, {
-			icon: 'fas fa-ban',
+			icon: 'ph-prohibit',
 			text: user.isBlocking ? i18n.ts.unblock : i18n.ts.block,
 			action: toggleBlock,
 		}]);
 
 		if (user.isFollowed) {
 			menu = menu.concat([{
-				icon: 'fas fa-unlink',
+				icon: 'ph-link-break',
 				text: i18n.ts.breakFollow,
 				action: invalidateFollow,
 			}]);
 		}
 
 		menu = menu.concat([null, {
-			icon: 'fas fa-exclamation-circle',
+			icon: 'ph-warning-circle',
 			text: i18n.ts.reportAbuse,
 			action: reportAbuse,
 		}]);
 
 		if (iAmModerator) {
 			menu = menu.concat([null, {
-				icon: 'fas fa-microphone-slash',
+				icon: 'ph-microphone-slash',
 				text: user.isSilenced ? i18n.ts.unsilence : i18n.ts.silence,
 				action: toggleSilence,
 			}, {
-				icon: 'fas fa-snowflake',
+				icon: 'ph-snowflake',
 				text: user.isSuspended ? i18n.ts.unsuspend : i18n.ts.suspend,
 				action: toggleSuspend,
 			}]);
@@ -225,7 +225,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 
 	if ($i && meId === user.id) {
 		menu = menu.concat([null, {
-			icon: 'fas fa-pencil-alt',
+			icon: 'ph-pencil',
 			text: i18n.ts.editProfile,
 			action: () => {
 				router.push('/settings/profile');
@@ -235,7 +235,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 
 	if (userActions.length > 0) {
 		menu = menu.concat([null, ...userActions.map(action => ({
-			icon: 'fas fa-plug',
+			icon: 'ph-plug',
 			text: action.title,
 			action: () => {
 				action.handler(user);

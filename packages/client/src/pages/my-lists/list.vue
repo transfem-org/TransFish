@@ -25,7 +25,7 @@
 									<MkAcct :user="user" class="acct"/>
 								</div>
 								<div class="action">
-									<button class="_button" @click="removeUser(user)"><i class="fas fa-times"></i></button>
+									<button class="_button" @click="removeUser(user)"><i class="ph-x"></i></button>
 								</div>
 							</div>
 						</div>
@@ -122,7 +122,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => list ? {
 	title: list.name,
-	icon: 'fas fa-list-ul',
+	icon: 'ph-list-bullets',
 } : null));
 </script>
 

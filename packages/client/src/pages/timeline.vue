@@ -190,18 +190,18 @@ function focus(): void {
 
 const headerActions = $computed(() => [
 	{
-		icon: 'fas fa-list-ul',
+		icon: 'ph-list-bullets',
 		title: i18n.ts.lists,
 		iconOnly: true,
 		handler: chooseList,
 	},
 	{
-		icon: 'fas fa-satellite',
+		icon: 'ph-flying-saucer',
 		title: i18n.ts.antennas,
 		iconOnly: true,
 		handler: chooseAntenna,
 	} /* **TODO: fix timetravel** {
-	icon: 'fas fa-calendar-alt',
+	icon: 'ph-calendar-blank',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
 	handler: timetravel,
@@ -212,7 +212,7 @@ const headerTabs = $computed(() => [
 	{
 		key: 'home',
 		title: i18n.ts._timelines.home,
-		icon: 'fas fa-home',
+		icon: 'ph-house',
 		iconOnly: true,
 	},
 	...(isLocalTimelineAvailable
@@ -220,7 +220,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'local',
 				title: i18n.ts._timelines.local,
-				icon: 'fas fa-user-group',
+				icon: 'ph-users',
 				iconOnly: true,
 			},
 		]
@@ -230,7 +230,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'recommended',
 				title: i18n.ts._timelines.recommended,
-				icon: 'fas fa-signs-post',
+				icon: 'ph-thumbs-up',
 				iconOnly: true,
 			},
 		]
@@ -240,7 +240,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'social',
 				title: i18n.ts._timelines.social,
-				icon: 'fas fa-handshake-simple',
+				icon: 'ph-handshake-simple',
 				iconOnly: true,
 			},
 		]
@@ -250,7 +250,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'global',
 				title: i18n.ts._timelines.global,
-				icon: 'fas fa-globe',
+				icon: 'ph-planet',
 				iconOnly: true,
 			},
 		]
@@ -262,14 +262,14 @@ definePageMetadata(
 		title: i18n.ts.timeline,
 		icon:
 			src === 'local'
-				? 'fas fa-user-group'
+				? 'ph-users'
 				: src === 'social'
-					? 'fas fa-handshake-simple'
+					? 'ph-handshake-simple'
 					: src === 'recommended'
-						? 'fas fa-signs-post'
+						? 'ph-thumbs-up'
 						: src === 'global'
-							? 'fas fa-globe'
-							: 'fas fa-home',
+							? 'ph-planet'
+							: 'ph-house',
 	})),
 );
 

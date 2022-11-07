@@ -37,7 +37,7 @@
 						<template #label>Moderation</template>
 						<FormSwitch v-model="suspended" class="_formBlock" @update:modelValue="toggleSuspend">{{ i18n.ts.stopActivityDelivery }}</FormSwitch>
 						<FormSwitch v-model="isBlocked" class="_formBlock" @update:modelValue="toggleBlock">{{ i18n.ts.blockThisInstance }}</FormSwitch>
-						<MkButton @click="refreshMetadata"><i class="fas fa-refresh"></i> Refresh metadata</MkButton>
+						<MkButton @click="refreshMetadata"><i class="ph-arrows-clockwise"></i> Refresh metadata</MkButton>
 					</FormSection>
 
 					<FormSection>
@@ -219,7 +219,7 @@ fetch();
 
 const headerActions = $computed(() => [{
 	text: `https://${props.host}`,
-	icon: 'fas fa-external-link-alt',
+	icon: 'ph-arrow-square-out',
 	handler: () => {
 		window.open(`https://${props.host}`, '_blank');
 	},
@@ -228,7 +228,7 @@ const headerActions = $computed(() => [{
 let theTabs = [{
 	key: 'overview',
 	title: i18n.ts.overview,
-	icon: 'fas fa-info-circle',
+	icon: 'ph-info',
 }];
 
 if (iAmModerator) {
@@ -236,15 +236,15 @@ if (iAmModerator) {
 		{
 			key: 'chart',
 			title: i18n.ts.charts,
-			icon: 'fas fa-chart-simple',
+			icon: 'ph-chart-bar',
 		}, {
 			key: 'users',
 			title: i18n.ts.users,
-			icon: 'fas fa-users',
+			icon: 'ph-users',
 		}, {
 			key: 'raw',
 			title: 'Raw',
-			icon: 'fas fa-code',
+			icon: 'ph-code',
 		},
 	);
 }
@@ -253,7 +253,7 @@ let headerTabs = $computed(() => theTabs);
 
 definePageMetadata({
 	title: props.host,
-	icon: 'fas fa-server',
+	icon: 'ph-hard-drives',
 });
 
 let swiperRef = null;

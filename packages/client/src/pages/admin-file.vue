@@ -45,7 +45,7 @@
 					</div>
 
 					<div class="_formBlock">
-						<MkButton danger @click="del"><i class="fas fa-trash-alt"></i> {{ i18n.ts.delete }}</MkButton>
+						<MkButton danger @click="del"><i class="ph-trash"></i> {{ i18n.ts.delete }}</MkButton>
 					</div>
 				</div>
 			</swiper-slide>
@@ -140,7 +140,7 @@ async function toggleIsSensitive(v) {
 
 const headerActions = $computed(() => [{
 	text: i18n.ts.openInNewTab,
-	icon: 'fas fa-external-link-alt',
+	icon: 'ph-arrow-square-out',
 	handler: () => {
 		window.open(file.url, '_blank');
 	},
@@ -149,20 +149,20 @@ const headerActions = $computed(() => [{
 const headerTabs = $computed(() => [{
 	key: 'overview',
 	title: i18n.ts.overview,
-	icon: 'fas fa-info-circle',
+	icon: 'ph-info',
 }, iAmModerator ? {
 	key: 'ip',
 	title: 'IP',
-	icon: 'fas fa-bars-staggered',
+	icon: 'ph-receipt',
 } : null, {
 	key: 'raw',
 	title: 'Raw data',
-	icon: 'fas fa-code',
+	icon: 'ph-code',
 }]);
 
 definePageMetadata(computed(() => ({
 	title: file ? i18n.ts.file + ': ' + file.name : i18n.ts.file,
-	icon: 'fas fa-file',
+	icon: 'ph-file',
 })));
 
 let swiperRef = null;

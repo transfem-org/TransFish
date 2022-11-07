@@ -1,7 +1,7 @@
 <template>
 <MkContainer :show-header="widgetProps.showHeader" class="mkw-rss">
-	<template #header><i class="fas fa-rss-square"></i>RSS</template>
-	<template #func><button class="_button" @click="configure"><i class="fas fa-cog"></i></button></template>
+	<template #header><i class="ph-rss"></i>RSS</template>
+	<template #func><button class="_button" @click="configure"><i class="ph-gear-six"></i></button></template>
 
 	<div class="ekmkgxbj">
 		<MkLoading v-if="fetching"/>
