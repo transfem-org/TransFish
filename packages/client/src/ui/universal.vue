@@ -65,10 +65,7 @@
 		<div
 			v-if="widgetsShowing"
 			class="widgetsDrawer-back _modalBg"
-			@click="widgetsShowing = false"
-			@touchstart.passive="widgetsShowing = false"
-		></div>
-	</transition>
+			@click="widgetsShowing = false"let
 
 	<transition :name="$store.state.animation ? 'widgetsDrawer' : ''">
 		<XWidgets v-if="widgetsShowing" class="widgetsDrawer"/>
@@ -107,7 +104,8 @@ window.addEventListener('resize', () => {
 	isMobile.value = deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
 });
 
-let buttonAnimIndex = ref(0);
+const buttonAnimIndex = ref(0);
+const drawerMenuShowing = ref(false);
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
@@ -131,26 +129,23 @@ const menuIndicated = computed(() => {
 });
 
 function updateButtonState(): void {
-	let routerState = window.location.href;
-	let secondaryRouterState = mainRouter.currentRoute.value.name;
-	if (secondaryRouterState != null && secondaryRouterState === 'index') {
+	let routerState = window.location.pathname;
+	if (routerState === '/') {
 		buttonAnimIndex.value = 0;
 		return;
 	}
-	if (routerState.includes('notifications')) {
+	if (routerState.includes('/my/notifications')) {
 		buttonAnimIndex.value = 1;
+		return;
 	}
-	else if (routerState.includes('messaging')) {
+	if (routerState.includes('/my/messaging')) {
 		buttonAnimIndex.value = 2;
+		return;
 	}
-	else {
-		buttonAnimIndex.value = 3;
-	}
+	buttonAnimIndex.value = 3;
 }
 
 updateButtonState();
-
-const drawerMenuShowing = ref(false);
 
 mainRouter.on('change', () => {
 	drawerMenuShowing.value = false;
