@@ -65,7 +65,10 @@
 		<div
 			v-if="widgetsShowing"
 			class="widgetsDrawer-back _modalBg"
-			@click="widgetsShowing = false"let
+			@click="widgetsShowing = false"
+			@touchstart.passive="widgetsShowing = false"
+		></div>
+	</transition>
 
 	<transition :name="$store.state.animation ? 'widgetsDrawer' : ''">
 		<XWidgets v-if="widgetsShowing" class="widgetsDrawer"/>
@@ -76,8 +79,10 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, provide, onMounted, computed, ref, ComputedRef } from 'vue';
+import { defineAsyncComponent, provide, onMounted, computed, ref } from 'vue';
 import XCommon from './_common_/common.vue';
+import type { ComputedRef } from 'vue';
+import type { PageMetadata } from '@/scripts/page-metadata';
 import { instanceName } from '@/config';
 import { StickySidebar } from '@/scripts/sticky-sidebar';
 import XDrawerMenu from '@/ui/_common_/navbar-for-mobile.vue';
@@ -87,7 +92,7 @@ import { navbarItemDef } from '@/navbar';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
 import { mainRouter } from '@/router';
-import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
+import { provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 
 const XWidgets = defineAsyncComponent(() => import('./universal.widgets.vue'));
