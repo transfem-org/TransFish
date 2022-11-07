@@ -36,7 +36,7 @@ import * as os from '@/os';
 
 const indexInfo = {
 	title: i18n.ts.settings,
-	icon: 'ph-gear-six-bold',
+	icon: 'ph-gear-six-bold ph-lg',
 	hideHeader: true,
 };
 const INFO = ref(indexInfo);
@@ -58,42 +58,42 @@ const ro = new ResizeObserver((entries, observer) => {
 const menuDef = computed(() => [{
 	title: i18n.ts.basicSettings,
 	items: [{
-		icon: 'ph-user-bold',
+		icon: 'ph-user-bold ph-lg',
 		text: i18n.ts.profile,
 		to: '/settings/profile',
 		active: currentPage?.route.name === 'profile',
 	}, {
-		icon: 'ph-lock-open-bold',
+		icon: 'ph-lock-open-bold ph-lg',
 		text: i18n.ts.privacy,
 		to: '/settings/privacy',
 		active: currentPage?.route.name === 'privacy',
 	}, {
-		icon: 'ph-smiley-wink-bold',
+		icon: 'ph-smiley-wink-bold ph-lg',
 		text: i18n.ts.reaction,
 		to: '/settings/reaction',
 		active: currentPage?.route.name === 'reaction',
 	}, {
-		icon: 'ph-cloud-bold',
+		icon: 'ph-cloud-bold ph-lg',
 		text: i18n.ts.drive,
 		to: '/settings/drive',
 		active: currentPage?.route.name === 'drive',
 	}, {
-		icon: 'ph-bell-bold',
+		icon: 'ph-bell-bold ph-lg',
 		text: i18n.ts.notifications,
 		to: '/settings/notifications',
 		active: currentPage?.route.name === 'notifications',
 	}, {
-		icon: 'ph-envelope-simple-open-bold',
+		icon: 'ph-envelope-simple-open-bold ph-lg',
 		text: i18n.ts.email,
 		to: '/settings/email',
 		active: currentPage?.route.name === 'email',
 	}, {
-		icon: 'ph-share-network-bold',
+		icon: 'ph-share-network-bold ph-lg',
 		text: i18n.ts.integration,
 		to: '/settings/integration',
 		active: currentPage?.route.name === 'integration',
 	}, {
-		icon: 'ph-lock-bold',
+		icon: 'ph-lock-bold ph-lg',
 		text: i18n.ts.security,
 		to: '/settings/security',
 		active: currentPage?.route.name === 'security',
@@ -101,32 +101,32 @@ const menuDef = computed(() => [{
 }, {
 	title: i18n.ts.clientSettings,
 	items: [{
-		icon: 'ph-gear-six-bold',
+		icon: 'ph-gear-six-bold ph-lg',
 		text: i18n.ts.general,
 		to: '/settings/general',
 		active: currentPage?.route.name === 'general',
 	}, {
-		icon: 'ph-palette-bold',
+		icon: 'ph-palette-bold ph-lg',
 		text: i18n.ts.theme,
 		to: '/settings/theme',
 		active: currentPage?.route.name === 'theme',
 	}, {
-		icon: 'ph-list-bold',
+		icon: 'ph-list-bold ph-lg',
 		text: i18n.ts.navbar,
 		to: '/settings/navbar',
 		active: currentPage?.route.name === 'navbar',
 	}, {
-		icon: 'ph-traffic-signal-bold',
+		icon: 'ph-traffic-signal-bold ph-lg',
 		text: i18n.ts.statusbar,
 		to: '/settings/statusbar',
 		active: currentPage?.route.name === 'statusbar',
 	}, {
-		icon: 'ph-speaker-high-bold',
+		icon: 'ph-speaker-high-bold ph-lg',
 		text: i18n.ts.sounds,
 		to: '/settings/sounds',
 		active: currentPage?.route.name === 'sounds',
 	}, {
-		icon: 'ph-plug-bold',
+		icon: 'ph-plug-bold ph-lg',
 		text: i18n.ts.plugins,
 		to: '/settings/plugin',
 		active: currentPage?.route.name === 'plugin',
@@ -134,50 +134,50 @@ const menuDef = computed(() => [{
 }, {
 	title: i18n.ts.otherSettings,
 	items: [{
-		icon: 'ph-package-bold',
+		icon: 'ph-package-bold ph-lg',
 		text: i18n.ts.importAndExport,
 		to: '/settings/import-export',
 		active: currentPage?.route.name === 'import-export',
 	}, {
-		icon: 'ph-speaker-none-bold',
+		icon: 'ph-speaker-none-bold ph-lg',
 		text: i18n.ts.instanceMute,
 		to: '/settings/instance-mute',
 		active: currentPage?.route.name === 'instance-mute',
 	}, {
-		icon: 'ph-prohibit-bold',
+		icon: 'ph-prohibit-bold ph-lg',
 		text: i18n.ts.muteAndBlock,
 		to: '/settings/mute-block',
 		active: currentPage?.route.name === 'mute-block',
 	}, {
-		icon: 'ph-speaker-x-bold',
+		icon: 'ph-speaker-x-bold ph-lg',
 		text: i18n.ts.wordMute,
 		to: '/settings/word-mute',
 		active: currentPage?.route.name === 'word-mute',
 	}, {
-		icon: 'ph-key-bold',
+		icon: 'ph-key-bold ph-lg',
 		text: 'API',
 		to: '/settings/api',
 		active: currentPage?.route.name === 'api',
 	}, {
-		icon: 'ph-lightning-bold',
+		icon: 'ph-lightning-bold ph-lg',
 		text: 'Webhook',
 		to: '/settings/webhook',
 		active: currentPage?.route.name === 'webhook',
 	}, {
-		icon: 'ph-dots-three-outline-bold',
+		icon: 'ph-dots-three-outline-bold ph-lg',
 		text: i18n.ts.other,
 		to: '/settings/other',
 		active: currentPage?.route.name === 'other',
 	}],
 }, {
 	items: [{
-		icon: 'ph-floppy-disk-bold',
+		icon: 'ph-floppy-disk-bold ph-lg',
 		text: i18n.ts.preferencesBackups,
 		to: '/settings/preferences-backups',
 		active: currentPage?.route.name === 'preferences-backups',
 	}, {
 		type: 'button',
-		icon: 'ph-trash-bold',
+		icon: 'ph-trash-bold ph-lg',
 		text: i18n.ts.clearCache,
 		action: () => {
 			localStorage.removeItem('locale');
@@ -186,7 +186,7 @@ const menuDef = computed(() => [{
 		},
 	}, {
 		type: 'button',
-		icon: 'ph-sign-in-bold fa-flip-horizontal',
+		icon: 'ph-sign-in-bold ph-lg fa-flip-horizontal',
 		text: i18n.ts.logout,
 		action: async () => {
 			const { canceled } = await os.confirm({

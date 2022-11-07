@@ -190,18 +190,18 @@ function focus(): void {
 
 const headerActions = $computed(() => [
 	{
-		icon: 'ph-list-bullets-bold',
+		icon: 'ph-list-bullets-bold ph-lg',
 		title: i18n.ts.lists,
 		iconOnly: true,
 		handler: chooseList,
 	},
 	{
-		icon: 'ph-flying-saucer-bold',
+		icon: 'ph-flying-saucer-bold ph-lg',
 		title: i18n.ts.antennas,
 		iconOnly: true,
 		handler: chooseAntenna,
 	} /* **TODO: fix timetravel** {
-	icon: 'ph-calendar-blank-bold',
+	icon: 'ph-calendar-blank-bold ph-lg',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
 	handler: timetravel,
@@ -212,7 +212,7 @@ const headerTabs = $computed(() => [
 	{
 		key: 'home',
 		title: i18n.ts._timelines.home,
-		icon: 'ph-house-bold',
+		icon: 'ph-house-bold ph-lg',
 		iconOnly: true,
 	},
 	...(isLocalTimelineAvailable
@@ -220,7 +220,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'local',
 				title: i18n.ts._timelines.local,
-				icon: 'ph-users-bold',
+				icon: 'ph-users-bold ph-lg',
 				iconOnly: true,
 			},
 		]
@@ -230,7 +230,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'recommended',
 				title: i18n.ts._timelines.recommended,
-				icon: 'ph-thumbs-up-bold',
+				icon: 'ph-thumbs-up-bold ph-lg',
 				iconOnly: true,
 			},
 		]
@@ -240,7 +240,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'social',
 				title: i18n.ts._timelines.social,
-				icon: 'ph-handshake-bold',
+				icon: 'ph-handshake-bold ph-lg',
 				iconOnly: true,
 			},
 		]
@@ -250,7 +250,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'global',
 				title: i18n.ts._timelines.global,
-				icon: 'ph-planet-bold',
+				icon: 'ph-planet-bold ph-lg',
 				iconOnly: true,
 			},
 		]
@@ -262,14 +262,14 @@ definePageMetadata(
 		title: i18n.ts.timeline,
 		icon:
 			src === 'local'
-				? 'ph-users-bold'
+				? 'ph-users-bold ph-lg'
 				: src === 'social'
-					? 'ph-handshake-bold'
+					? 'ph-handshake-bold ph-lg'
 					: src === 'recommended'
-						? 'ph-thumbs-up-bold'
+						? 'ph-thumbs-up-bold ph-lg'
 						: src === 'global'
-							? 'ph-planet-bold'
-							: 'ph-house-bold',
+							? 'ph-planet-bold ph-lg'
+							: 'ph-house-bold ph-lg',
 	})),
 );
 

@@ -2,28 +2,28 @@
 <MkModal ref="modal" :z-priority="'high'" :src="src" @click="modal.close()" @closed="emit('closed')">
 	<div class="gqyayizv _popup">
 		<button key="public" class="_button" :class="{ active: v === 'public' }" data-index="1" @click="choose('public')">
-			<div><i class="ph-planet-bold"></i></div>
+			<div><i class="ph-planet-bold ph-lg"></i></div>
 			<div>
 				<span>{{ i18n.ts._visibility.public }}</span>
 				<span>{{ i18n.ts._visibility.publicDescription }}</span>
 			</div>
 		</button>
 		<button key="home" class="_button" :class="{ active: v === 'home' }" data-index="2" @click="choose('home')">
-			<div><i class="ph-house-bold"></i></div>
+			<div><i class="ph-house-bold ph-lg"></i></div>
 			<div>
 				<span>{{ i18n.ts._visibility.home }}</span>
 				<span>{{ i18n.ts._visibility.homeDescription }}</span>
 			</div>
 		</button>
 		<button key="followers" class="_button" :class="{ active: v === 'followers' }" data-index="3" @click="choose('followers')">
-			<div><i class="ph-lock-simple-open-bold"></i></div>
+			<div><i class="ph-lock-simple-open-bold ph-lg"></i></div>
 			<div>
 				<span>{{ i18n.ts._visibility.followers }}</span>
 				<span>{{ i18n.ts._visibility.followersDescription }}</span>
 			</div>
 		</button>
 		<button key="specified" :disabled="localOnly" class="_button" :class="{ active: v === 'specified' }" data-index="4" @click="choose('specified')">
-			<div><i class="ph-envelope-simple-open-bold"></i></div>
+			<div><i class="ph-envelope-simple-open-bold ph-lg"></i></div>
 			<div>
 				<span>{{ i18n.ts._visibility.specified }}</span>
 				<span>{{ i18n.ts._visibility.specifiedDescription }}</span>
@@ -31,12 +31,12 @@
 		</button>
 		<div class="divider"></div>
 		<button key="localOnly" class="_button localOnly" :class="{ active: localOnly }" data-index="5" @click="localOnly = !localOnly">
-			<div><i class="ph-hand-fist-bold"></i></div>
+			<div><i class="ph-hand-fist-bold ph-lg"></i></div>
 			<div>
 				<span>{{ i18n.ts._visibility.localOnly }}</span>
 				<span>{{ i18n.ts._visibility.localOnlyDescription }}</span>
 			</div>
-			<div><i :class="localOnly ? 'ph-toggle-right-bold' : 'ph-toggle-left-bold'"></i></div>
+			<div><i :class="localOnly ? 'ph-toggle-right-bold ph-lg' : 'ph-toggle-left-bold ph-lg'"></i></div>
 		</button>
 	</div>
 </MkModal>

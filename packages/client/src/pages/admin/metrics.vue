@@ -1,6 +1,6 @@
 <template>
 <div class="_debobigegoItem">
-	<div class="_debobigegoLabel"><i class="ph-microchip-bold"></i> {{ $ts.cpuAndMemory }}</div>
+	<div class="_debobigegoLabel"><i class="ph-microchip-bold ph-lg"></i> {{ $ts.cpuAndMemory }}</div>
 	<div class="_debobigegoPanel xhexznfu">
 		<div>
 			<canvas :ref="cpumem"></canvas>
@@ -17,7 +17,7 @@
 	</div>
 </div>
 <div class="_debobigegoItem">
-	<div class="_debobigegoLabel"><i class="ph-hard-drives-bold"></i> {{ $ts.disk }}</div>
+	<div class="_debobigegoLabel"><i class="ph-hard-drives-bold ph-lg"></i> {{ $ts.disk }}</div>
 	<div class="_debobigegoPanel xhexznfu">
 		<div>
 			<canvas :ref="disk"></canvas>
@@ -34,7 +34,7 @@
 	</div>
 </div>
 <div class="_debobigegoItem">
-	<div class="_debobigegoLabel"><i class="ph-swap-bold"></i> {{ $ts.network }}</div>
+	<div class="_debobigegoLabel"><i class="ph-swap-bold ph-lg"></i> {{ $ts.network }}</div>
 	<div class="_debobigegoPanel xhexznfu">
 		<div>
 			<canvas :ref="net"></canvas>

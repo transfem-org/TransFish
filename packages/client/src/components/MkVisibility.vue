@@ -1,10 +1,10 @@
 <template>
 <span v-if="note.visibility !== 'public'" :class="$style.visibility">
-	<i v-if="note.visibility === 'home'" class="ph-house-bold"></i>
-	<i v-else-if="note.visibility === 'followers'" class="ph-lock-simple-open-bold"></i>
-	<i v-else-if="note.visibility === 'specified'" ref="specified" class="ph-envelope-simple-open-bold"></i>
+	<i v-if="note.visibility === 'home'" class="ph-house-bold ph-lg"></i>
+	<i v-else-if="note.visibility === 'followers'" class="ph-lock-simple-open-bold ph-lg"></i>
+	<i v-else-if="note.visibility === 'specified'" ref="specified" class="ph-envelope-simple-open-bold ph-lg"></i>
 </span>
-<span v-if="note.localOnly" :class="$style.localOnly"><i class="ph-hand-fist-bold"></i></span>
+<span v-if="note.localOnly" :class="$style.localOnly"><i class="ph-hand-fist-bold ph-lg"></i></span>
 </template>
 
 <script lang="ts" setup>

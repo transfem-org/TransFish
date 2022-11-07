@@ -8,8 +8,8 @@
 	</div>
 	<div v-else>
 		<div class="wszdbhzo">
-			<div><i class="ph-warning-bold"></i> {{ $ts.somethingHappened }}</div>
-			<MkButton inline class="retry" @click="retry"><i class="ph-arrow-clockwise-bold"></i> {{ $ts.retry }}</MkButton>
+			<div><i class="ph-warning-bold ph-lg"></i> {{ $ts.somethingHappened }}</div>
+			<MkButton inline class="retry" @click="retry"><i class="ph-arrow-clockwise-bold ph-lg"></i> {{ $ts.retry }}</MkButton>
 		</div>
 	</div>
 </transition>

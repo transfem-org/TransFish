@@ -9,102 +9,102 @@ import { unisonReload } from '@/scripts/unison-reload';
 export const navbarItemDef = reactive({
 	notifications: {
 		title: 'notifications',
-		icon: 'ph-bell-bold',
+		icon: 'ph-bell-bold ph-lg',
 		show: computed(() => $i != null),
 		indicated: computed(() => $i != null && $i.hasUnreadNotification),
 		to: '/my/notifications',
 	},
 	messaging: {
 		title: 'messaging',
-		icon: 'ph-chats-teardrop-bold',
+		icon: 'ph-chats-teardrop-bold ph-lg',
 		show: computed(() => $i != null),
 		indicated: computed(() => $i != null && $i.hasUnreadMessagingMessage),
 		to: '/my/messaging',
 	},
 	drive: {
 		title: 'drive',
-		icon: 'ph-cloud-bold',
+		icon: 'ph-cloud-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/drive',
 	},
 	followRequests: {
 		title: 'followRequests',
-		icon: 'ph-hand-waving-bold',
+		icon: 'ph-hand-waving-bold ph-lg',
 		show: computed(() => $i != null && $i.isLocked),
 		indicated: computed(() => $i != null && $i.hasPendingReceivedFollowRequest),
 		to: '/my/follow-requests',
 	},
 	explore: {
 		title: 'explore',
-		icon: 'ph-hash-bold',
+		icon: 'ph-hash-bold ph-lg',
 		to: '/explore',
 	},
 	announcements: {
 		title: 'announcements',
-		icon: 'ph-megaphone-simple-bold',
+		icon: 'ph-megaphone-simple-bold ph-lg',
 		indicated: computed(() => $i != null && $i.hasUnreadAnnouncement),
 		to: '/announcements',
 	},
 	search: {
 		title: 'search',
-		icon: 'ph-magnifying-glass-bold',
+		icon: 'ph-magnifying-glass-bold ph-lg',
 		action: () => search(),
 	},
 	lists: {
 		title: 'lists',
-		icon: 'ph-list-bullets-bold',
+		icon: 'ph-list-bullets-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/lists',
 	},
 	/*
 	groups: {
 		title: 'groups',
-		icon: 'ph-users-bold',
+		icon: 'ph-users-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/groups',
 	},
 	*/
 	antennas: {
 		title: 'antennas',
-		icon: 'ph-flying-saucer-bold',
+		icon: 'ph-flying-saucer-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/antennas',
 	},
 	favorites: {
 		title: 'favorites',
-		icon: 'ph-star-bold',
+		icon: 'ph-star-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/favorites',
 	},
 	pages: {
 		title: 'pages',
-		icon: 'ph-file-text-bold',
+		icon: 'ph-file-text-bold ph-lg',
 		to: '/pages',
 	},
 	gallery: {
 		title: 'gallery',
-		icon: 'ph-image-square-bold',
+		icon: 'ph-image-square-bold ph-lg',
 		to: '/gallery',
 	},
 	clips: {
 		title: 'clip',
-		icon: 'ph-paperclip-bold',
+		icon: 'ph-paperclip-bold ph-lg',
 		show: computed(() => $i != null),
 		to: '/my/clips',
 	},
 	channels: {
 		title: 'channel',
-		icon: 'ph-television-bold',
+		icon: 'ph-television-bold ph-lg',
 		to: '/channels',
 	},
 	groups: {
 		title: 'groups',
-		icon: 'ph-users-bold',
+		icon: 'ph-users-bold ph-lg',
 		to: '/my/groups',
 	},
 	ui: {
 		title: 'switchUi',
-		icon: 'ph-layout-bold',
+		icon: 'ph-layout-bold ph-lg',
 		action: (ev) => {
 			os.popupMenu([{
 				text: i18n.ts.default,
@@ -132,7 +132,7 @@ export const navbarItemDef = reactive({
 	},
 	reload: {
 		title: 'reload',
-		icon: 'ph-arrows-clockwise-bold',
+		icon: 'ph-arrows-clockwise-bold ph-lg',
 		action: (ev) => {
 			location.reload();
 		},

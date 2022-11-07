@@ -1,6 +1,6 @@
 <template>
 <button class="skdfgljsdkf _button" @click="star($event)">
-	<i class="ph-star-bold"></i>
+	<i class="ph-star-bold ph-lg"></i>
 </button>
 </template>
 

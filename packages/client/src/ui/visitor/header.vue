@@ -2,12 +2,12 @@
 <div class="sqxihjet">
 	<div v-if="narrow === false" class="wide">
 		<div class="content">
-			<MkA to="/" class="link" active-class="active"><i class="ph-house-bold icon"></i>{{ $ts.home }}</MkA>
-			<MkA v-if="isTimelineAvailable" to="/timeline" class="link" active-class="active"><i class="ph-chats-circle-bold icon"></i>{{ $ts.timeline }}</MkA>
-			<MkA to="/explore" class="link" active-class="active"><i class="ph-hash-bold icon"></i>{{ $ts.explore }}</MkA>
-			<MkA to="/channels" class="link" active-class="active"><i class="ph-television-bold icon"></i>{{ $ts.channel }}</MkA>
-			<MkA to="/pages" class="link" active-class="active"><i class="ph-file-text-bold icon"></i>{{ $ts.pages }}</MkA>
-			<MkA to="/gallery" class="link" active-class="active"><i class="ph-image-square-bold icon"></i>{{ $ts.gallery }}</MkA>
+			<MkA to="/" class="link" active-class="active"><i class="ph-house-bold ph-lg icon"></i>{{ $ts.home }}</MkA>
+			<MkA v-if="isTimelineAvailable" to="/timeline" class="link" active-class="active"><i class="ph-chats-circle-bold ph-lg icon"></i>{{ $ts.timeline }}</MkA>
+			<MkA to="/explore" class="link" active-class="active"><i class="ph-hash-bold ph-lg icon"></i>{{ $ts.explore }}</MkA>
+			<MkA to="/channels" class="link" active-class="active"><i class="ph-television-bold ph-lg icon"></i>{{ $ts.channel }}</MkA>
+			<MkA to="/pages" class="link" active-class="active"><i class="ph-file-text-bold ph-lg icon"></i>{{ $ts.pages }}</MkA>
+			<MkA to="/gallery" class="link" active-class="active"><i class="ph-image-square-bold ph-lg icon"></i>{{ $ts.gallery }}</MkA>
 			<div v-if="info" class="page active link">
 				<div class="title">
 					<i v-if="info.icon" class="icon" :class="info.icon"></i>
@@ -18,7 +18,7 @@
 				<button v-if="info.action" class="_button action" @click.stop="info.action.handler"><!-- TODO --></button>
 			</div>
 			<div class="right">
-				<button class="_button search" @click="search()"><i class="ph-magnifying-glass-bold icon"></i><span>{{ $ts.search }}</span></button>
+				<button class="_button search" @click="search()"><i class="ph-magnifying-glass-bold ph-lg icon"></i><span>{{ $ts.search }}</span></button>
 				<button class="_buttonPrimary signup" @click="signup()">{{ $ts.signup }}</button>
 				<button class="_button login" @click="signin()">{{ $ts.login }}</button>
 			</div>
@@ -26,7 +26,7 @@
 	</div>
 	<div v-else-if="narrow === true" class="narrow">
 		<button class="menu _button" @click="$parent.showMenu = true">
-			<i class="ph-list-bold icon"></i>
+			<i class="ph-list-bold ph-lg icon"></i>
 		</button>
 		<div v-if="info" class="title">
 			<i v-if="info.icon" class="icon" :class="info.icon"></i>

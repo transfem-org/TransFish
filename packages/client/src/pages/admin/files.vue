@@ -97,11 +97,11 @@ async function find() {
 
 const headerActions = $computed(() => [{
 	text: i18n.ts.lookup,
-	icon: 'ph-magnifying-glass-bold',
+	icon: 'ph-magnifying-glass-bold ph-lg',
 	handler: find,
 }, {
 	text: i18n.ts.clearCachedFiles,
-	icon: 'ph-trash-bold',
+	icon: 'ph-trash-bold ph-lg',
 	handler: clear,
 }]);
 
@@ -109,7 +109,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.files,
-	icon: 'ph-cloud-bold',
+	icon: 'ph-cloud-bold ph-lg',
 })));
 </script>
 

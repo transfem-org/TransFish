@@ -1,10 +1,10 @@
 <template>
 <!-- eslint-disable vue/no-mutating-props -->
 <XContainer :draggable="true" @remove="() => $emit('remove')">
-	<template #header><i class="ph-question-bold"></i> {{ $ts._pages.blocks.if }}</template>
+	<template #header><i class="ph-question-bold ph-lg"></i> {{ $ts._pages.blocks.if }}</template>
 	<template #func>
 		<button class="_button" @click="add()">
-			<i class="ph-plus-bold"></i>
+			<i class="ph-plus-bold ph-lg"></i>
 		</button>
 	</template>
 

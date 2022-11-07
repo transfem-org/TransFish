@@ -3,7 +3,7 @@
 	<ImgWithBlurhash class="bg" :hash="image.blurhash" :title="image.comment" :alt="image.comment"/>
 	<div class="text">
 		<div class="wrapper">
-			<b style="display: block;"><i class="ph-warning-bold"></i> {{ $ts.sensitive }}</b>
+			<b style="display: block;"><i class="ph-warning-bold ph-lg"></i> {{ $ts.sensitive }}</b>
 			<span style="display: block;">{{ $ts.clickToShow }}</span>
 		</div>
 	</div>
@@ -16,7 +16,7 @@
 		<ImgWithBlurhash :hash="image.blurhash" :src="url" :alt="image.comment" :title="image.comment" :cover="false"/>
 		<div v-if="image.type === 'image/gif'" class="gif">GIF</div>
 	</a>
-	<button v-tooltip="$ts.hide" class="_button hide" @click="hide = true"><i class="ph-eye-slash-bold"></i></button>
+	<button v-tooltip="$ts.hide" class="_button hide" @click="hide = true"><i class="ph-eye-slash-bold ph-lg"></i></button>
 </div>
 </template>
 

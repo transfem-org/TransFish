@@ -2,13 +2,13 @@
 <MkModal ref="modal" @click="$emit('click')" @closed="$emit('closed')">
 	<div ref="rootEl" class="hrmcaedk _narrow_" :style="{ width: `${width}px`, height: (height ? `min(${height}px, 100%)` : '100%') }">
 		<div class="header" @contextmenu="onContextmenu">
-			<button v-if="history.length > 0" v-tooltip="$ts.goBack" class="_button" @click="back()"><i class="ph--left-bold"></i></button>
+			<button v-if="history.length > 0" v-tooltip="$ts.goBack" class="_button" @click="back()"><i class="ph--left-bold ph-lg"></i></button>
 			<span v-else style="display: inline-block; width: 20px"></span>
 			<span v-if="pageMetadata?.value" class="title">
 				<i v-if="pageMetadata?.value.icon" class="icon" :class="pageMetadata?.value.icon"></i>
 				<span>{{ pageMetadata?.value.title }}</span>
 			</span>
-			<button class="_button" @click="$refs.modal.close()"><i class="ph-x-bold"></i></button>
+			<button class="_button" @click="$refs.modal.close()"><i class="ph-x-bold ph-lg"></i></button>
 		</div>
 		<div class="body">
 			<MkStickyContainer>
@@ -68,22 +68,22 @@ const contextmenu = $computed(() => {
 		type: 'label',
 		text: path,
 	}, {
-		icon: 'ph-arrows-out-simple-bold',
+		icon: 'ph-arrows-out-simple-bold ph-lg',
 		text: i18n.ts.showInPage,
 		action: expand,
 	}, {
-		icon: 'ph-arrow-square-out-bold',
+		icon: 'ph-arrow-square-out-bold ph-lg',
 		text: i18n.ts.popout,
 		action: popout,
 	}, null, {
-		icon: 'ph-arrow-square-out-bold',
+		icon: 'ph-arrow-square-out-bold ph-lg',
 		text: i18n.ts.openInNewTab,
 		action: () => {
 			window.open(pageUrl, '_blank');
 			modal.close();
 		},
 	}, {
-		icon: 'ph-link-simple-bold',
+		icon: 'ph-link-simple-bold ph-lg',
 		text: i18n.ts.copyLink,
 		action: () => {
 			copyToClipboard(pageUrl);

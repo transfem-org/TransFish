@@ -20,7 +20,7 @@
 				<swiper-slide>
 					<div>
 						<MkInput v-model="searchQuery" :debounce="true" type="search" class="_formBlock">
-							<template #prefix><i class="ph-magnifying-glass-bold"></i></template>
+							<template #prefix><i class="ph-magnifying-glass-bold ph-lg"></i></template>
 							<template #label>{{ i18n.ts.searchUser }}</template>
 						</MkInput>
 						<MkRadios v-model="searchOrigin" class="_formBlock">
@@ -86,21 +86,21 @@ const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => [{
 	key: 'featured',
-	icon: 'ph-lightning-bold',
+	icon: 'ph-lightning-bold ph-lg',
 	title: i18n.ts.featured,
 }, {
 	key: 'users',
-	icon: 'ph-users-bold',
+	icon: 'ph-users-bold ph-lg',
 	title: i18n.ts.users,
 }, {
 	key: 'search',
-	icon: 'ph-magnifying-glass-bold',
+	icon: 'ph-magnifying-glass-bold ph-lg',
 	title: i18n.ts.search,
 }]);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.explore,
-	icon: 'ph-hash-bold',
+	icon: 'ph-hash-bold ph-lg',
 })));
 
 let swiperRef = null;

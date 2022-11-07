@@ -9,7 +9,7 @@
 		</div>
 		<div class="middle">
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.timeline" class="item index" active-class="active" to="/" exact>
-				<i class="icon ph-house-bold ph-fw"></i><span class="text">{{ i18n.ts.timeline }}</span>
+				<i class="icon ph-house-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.timeline }}</span>
 			</MkA>
 			<template v-for="item in menu">
 				<div v-if="item === '-'" class="divider"></div>
@@ -24,25 +24,25 @@
 					:to="navbarItemDef[item].to"
 					v-on="navbarItemDef[item].action ? { click: navbarItemDef[item].action } : {}"
 				>
-					<i class="icon ph-fw" :class="navbarItemDef[item].icon"></i><span class="text">{{ i18n.ts[navbarItemDef[item].title] }}</span>
-					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="icon ph-circle-bold"></i></span>
+					<i class="icon ph-fw ph-lg" :class="navbarItemDef[item].icon"></i><span class="text">{{ i18n.ts[navbarItemDef[item].title] }}</span>
+					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="icon ph-circle-bold ph-lg"></i></span>
 				</component>
 			</template>
 			<div class="divider"></div>
 			<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime v-tooltip.noDelay.right="i18n.ts.controlPanel" class="item" active-class="active" to="/admin">
-				<span v-if="thereIsUnresolvedAbuseReport || noMaintainerInformation || noBotProtection || noEmailServer || updateAvailable" class="indicator"></span><i class="icon ph-door-bold ph-fw"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
+				<span v-if="thereIsUnresolvedAbuseReport || noMaintainerInformation || noBotProtection || noEmailServer || updateAvailable" class="indicator"></span><i class="icon ph-door-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
 			</MkA>
 			<button v-click-anime class="item _button" @click="more">
-				<i class="icon ph-dots-three-outline-bold ph-fw"></i><span class="text">{{ i18n.ts.more }}</span>
-				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon ph-circle-bold"></i></span>
+				<i class="icon ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.more }}</span>
+				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon ph-circle-bold ph-lg"></i></span>
 			</button>
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.settings" class="item" active-class="active" to="/settings">
-				<i class="icon ph-gear-six-bold ph-fw"></i><span class="text">{{ i18n.ts.settings }}</span>
+				<i class="icon ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.settings }}</span>
 			</MkA>
 		</div>
 		<div class="bottom">
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
-				<i class="icon ph-pencil-bold ph-fw"></i><span class="text">{{ i18n.ts.note }}</span>
+				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
 			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
@@ -128,40 +128,40 @@ function openInstanceMenu(ev: MouseEvent) {
 	}, {
 		type: 'link',
 		text: i18n.ts.instanceInfo,
-		icon: 'ph-info-bold',
+		icon: 'ph-info-bold ph-lg',
 		to: '/about',
 	}, {
 		type: 'link',
 		text: i18n.ts.customEmojis,
-		icon: 'ph-smiley-wink-bold',
+		icon: 'ph-smiley-wink-bold ph-lg',
 		to: '/about#emojis',
 	}, {
 		type: 'link',
 		text: i18n.ts.federation,
-		icon: 'ph-planet-bold',
+		icon: 'ph-planet-bold ph-lg',
 		to: '/about#federation',
 	}, null, {
 		type: 'parent',
 		text: i18n.ts.help,
-		icon: 'ph-question-bold',
+		icon: 'ph-question-bold ph-lg',
 		children: [{
 			type: 'link',
 			to: '/mfm-cheat-sheet',
 			text: i18n.ts._mfm.cheatSheet,
-			icon: 'ph-code-bold',
+			icon: 'ph-code-bold ph-lg',
 		}, {
 			type: 'link',
 			to: '/scratchpad',
 			text: i18n.ts.scratchpad,
-			icon: 'ph-terminal-window-bold',
+			icon: 'ph-terminal-window-bold ph-lg',
 		}, {
 			type: 'link',
 			to: '/api-console',
 			text: 'API Console',
-			icon: 'ph-terminal-window-bold',
+			icon: 'ph-terminal-window-bold ph-lg',
 		}, null, {
 			text: i18n.ts.document,
-			icon: 'ph-question-bold',
+			icon: 'ph-question-bold ph-lg',
 			action: () => {
 				window.open('https://misskey-hub.net/help.html', '_blank');
 			},

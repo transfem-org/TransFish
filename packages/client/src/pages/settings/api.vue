@@ -41,6 +41,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: 'API',
-	icon: 'ph-key-bold',
+	icon: 'ph-key-bold ph-lg',
 });
 </script>

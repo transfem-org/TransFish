@@ -102,13 +102,13 @@ function onContextmenu(ev: MouseEvent) {
 		type: 'label',
 		text: path,
 	}, {
-		icon: fullView ? 'ph-arrows-in-simple-bold' : 'ph-arrows-out-simple-bold',
+		icon: fullView ? 'ph-arrows-in-simple-bold ph-lg' : 'ph-arrows-out-simple-bold ph-lg',
 		text: fullView ? i18n.ts.quitFullView : i18n.ts.fullView,
 		action: () => {
 			fullView = !fullView;
 		},
 	}, {
-		icon: 'ph-browser-bold',
+		icon: 'ph-browser-bold ph-lg',
 		text: i18n.ts.openInWindow,
 		action: () => {
 			os.pageWindow(path);

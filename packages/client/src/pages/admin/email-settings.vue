@@ -112,7 +112,7 @@ const headerActions = $computed(() => [{
 	handler: testEmail,
 }, {
 	asFullButton: true,
-	icon: 'ph-check-bold',
+	icon: 'ph-check-bold ph-lg',
 	text: i18n.ts.save,
 	handler: save,
 }]);
@@ -121,6 +121,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.emailServer,
-	icon: 'ph-envelope-simple-open-bold',
+	icon: 'ph-envelope-simple-open-bold ph-lg',
 });
 </script>

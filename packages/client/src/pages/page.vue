@@ -18,12 +18,12 @@
 					</div>
 					<div class="actions">
 						<div class="like">
-							<MkButton v-if="page.isLiked" v-tooltip="i18n.ts._pages.unlike" class="button" primary @click="unlike()"><i class="ph-heart-bold"></i><span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span></MkButton>
+							<MkButton v-if="page.isLiked" v-tooltip="i18n.ts._pages.unlike" class="button" primary @click="unlike()"><i class="ph-heart-bold ph-lg"></i><span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span></MkButton>
 							<MkButton v-else v-tooltip="i18n.ts._pages.like" class="button" @click="like()"><i class="far fa-heart"></i><span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span></MkButton>
 						</div>
 						<div class="other">
-							<button v-tooltip="i18n.ts.shareWithNote" v-click-anime class="_button" @click="shareWithNote"><i class="ph-repeat-bold ph-fw"></i></button>
-							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-fw"></i></button>
+							<button v-tooltip="i18n.ts.shareWithNote" v-click-anime class="_button" @click="shareWithNote"><i class="ph-repeat-bold ph-lg ph-fw ph-lg"></i></button>
+							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-lg ph-fw ph-lg"></i></button>
 						</div>
 					</div>
 					<div class="user">
@@ -49,7 +49,7 @@
 				</div>
 				<MkAd :prefer="['horizontal', 'horizontal-big']"/>
 				<MkContainer :max-height="300" :foldable="true" class="other">
-					<template #header><i class="ph-clock-bold"></i> {{ i18n.ts.recentPosts }}</template>
+					<template #header><i class="ph-clock-bold ph-lg"></i> {{ i18n.ts.recentPosts }}</template>
 					<MkPagination v-slot="{items}" :pagination="otherPostsPagination">
 						<MkPagePreview v-for="page in items" :key="page.id" :page="page" class="_gap"/>
 					</MkPagination>

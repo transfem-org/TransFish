@@ -16,8 +16,8 @@
 	@dragend="onDragend"
 >
 	<p class="name">
-		<template v-if="hover"><i class="ph-folder-notch-open-bold ph-fw"></i></template>
-		<template v-if="!hover"><i class="ph-folder-notch-bold ph-fw"></i></template>
+		<template v-if="hover"><i class="ph-folder-notch-open-bold ph-lg ph-fw ph-lg"></i></template>
+		<template v-if="!hover"><i class="ph-folder-notch-bold ph-lg ph-fw ph-lg"></i></template>
 		{{ folder.name }}
 	</p>
 	<p v-if="defaultStore.state.uploadFolder == folder.id" class="upload">
@@ -229,7 +229,7 @@ function setAsUploadFolder() {
 function onContextmenu(ev: MouseEvent) {
 	os.contextMenu([{
 		text: i18n.ts.openInWindow,
-		icon: 'ph-copy-bold',
+		icon: 'ph-copy-bold ph-lg',
 		action: () => {
 			os.popup(defineAsyncComponent(() => import('@/components/MkDriveWindow.vue')), {
 				initialFolder: props.folder,
@@ -238,11 +238,11 @@ function onContextmenu(ev: MouseEvent) {
 		},
 	}, null, {
 		text: i18n.ts.rename,
-		icon: 'ph-cursor-text-bold',
+		icon: 'ph-cursor-text-bold ph-lg',
 		action: rename,
 	}, null, {
 		text: i18n.ts.delete,
-		icon: 'ph-trash-bold',
+		icon: 'ph-trash-bold ph-lg',
 		danger: true,
 		action: deleteFolder,
 	}], ev);

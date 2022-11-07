@@ -22,8 +22,8 @@
 								<Mfm :text="req.follower.description" :is-note="false" :author="req.follower" :i="$i" :custom-emojis="req.follower.emojis" :plain="true" :nowrap="true"/>
 							</div>
 							<div class="actions">
-								<button class="_button" @click="accept(req.follower)"><i class="ph-check-bold"></i></button>
-								<button class="_button" @click="reject(req.follower)"><i class="ph-x-bold"></i></button>
+								<button class="_button" @click="accept(req.follower)"><i class="ph-check-bold ph-lg"></i></button>
+								<button class="_button" @click="reject(req.follower)"><i class="ph-x-bold ph-lg"></i></button>
 							</div>
 						</div>
 					</div>
@@ -67,7 +67,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.followRequests,
-	icon: 'ph-hand-waving-bold',
+	icon: 'ph-hand-waving-bold ph-lg',
 })));
 </script>
 

@@ -16,7 +16,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.preview,
-	icon: 'ph-eye-bold',
+	icon: 'ph-eye-bold ph-lg',
 })));
 </script>
 

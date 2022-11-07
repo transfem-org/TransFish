@@ -1,6 +1,6 @@
 <template>
 <div class="_card tbkwesmv">
-	<div class="_title"><i class="ph-info-bold"></i> {{ i18n.ts._tutorial.title }}</div>
+	<div class="_title"><i class="ph-info-bold ph-lg"></i> {{ i18n.ts._tutorial.title }}</div>
 	<div v-if="tutorial === 0" class="_content">
 		<div>{{ i18n.ts._tutorial.step1_1 }}</div>
 		<div>{{ i18n.ts._tutorial.step1_2 }}</div>
@@ -52,15 +52,15 @@
 	<div class="_footer navigation">
 		<div class="step">
 			<button class="arrow _button" :disabled="tutorial === 0" @click="tutorial--">
-				<i class="ph-caret-left-bold"></i>
+				<i class="ph-caret-left-bold ph-lg"></i>
 			</button>
 			<span>{{ tutorial + 1 }} / 7</span>
 			<button class="arrow _button" :disabled="tutorial === 6" @click="tutorial++">
-				<i class="ph-caret-right-bold"></i>
+				<i class="ph-caret-right-bold ph-lg"></i>
 			</button>
 		</div>
-		<MkButton v-if="tutorial === 6" class="ok" primary @click="tutorial = -1"><i class="ph-check-bold"></i> {{ i18n.ts.gotIt }}</MkButton>
-		<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold"></i> {{ i18n.ts.next }}</MkButton>
+		<MkButton v-if="tutorial === 6" class="ok" primary @click="tutorial = -1"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
+		<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
 	</div>
 </div>
 </template>

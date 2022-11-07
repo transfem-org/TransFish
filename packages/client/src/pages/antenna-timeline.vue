@@ -72,11 +72,11 @@ watch(() => props.antennaId, async () => {
 }, { immediate: true });
 
 const headerActions = $computed(() => antenna ? [{
-	icon: 'ph-calendar-blank-bold',
+	icon: 'ph-calendar-blank-bold ph-lg',
 	text: i18n.ts.jumpToSpecifiedDate,
 	handler: timetravel,
 }, {
-	icon: 'ph-gear-six-bold',
+	icon: 'ph-gear-six-bold ph-lg',
 	text: i18n.ts.settings,
 	handler: settings,
 }] : []);
@@ -85,7 +85,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => antenna ? {
 	title: antenna.name,
-	icon: 'ph-flying-saucer-bold',
+	icon: 'ph-flying-saucer-bold ph-lg',
 } : null));
 </script>
 

@@ -16,14 +16,14 @@
 		@contextmenu.prevent.stop="onContextmenu"
 	>
 		<button v-if="isStacked && !isMainColumn" class="toggleActive _button" @click="toggleActive">
-			<template v-if="active"><i class="ph-caret-up-bold"></i></template>
-			<template v-else><i class="ph-caret-down-bold"></i></template>
+			<template v-if="active"><i class="ph-caret-up-bold ph-lg"></i></template>
+			<template v-else><i class="ph-caret-down-bold ph-lg"></i></template>
 		</button>
 		<div class="action">
 			<slot name="action"></slot>
 		</div>
 		<span class="header"><slot name="header"></slot></span>
-		<button v-tooltip="i18n.ts.settings" class="menu _button" @click.stop="showSettingsMenu"><i class="ph-three-dots-outline-vertical-bold"></i></button>
+		<button v-tooltip="i18n.ts.settings" class="menu _button" @click.stop="showSettingsMenu"><i class="ph-three-dots-outline-vertical-bold ph-lg"></i></button>
 	</header>
 	<div v-show="active" ref="body">
 		<slot></slot>
@@ -105,7 +105,7 @@ function toggleActive() {
 
 function getMenu() {
 	let items = [{
-		icon: 'ph-gear-six-bold',
+		icon: 'ph-gear-six-bold ph-lg',
 		text: i18n.ts._deck.configureColumn,
 		action: async () => {
 			const { canceled, result } = await os.form(props.column.name, {
@@ -131,46 +131,46 @@ function getMenu() {
 	}, {
 		type: 'parent',
 		text: i18n.ts.move + '...',
-		icon: 'ph-arrows-out-cardinal-bold',
+		icon: 'ph-arrows-out-cardinal-bold ph-lg',
 		children: [{
-			icon: 'ph--left-bold',
+			icon: 'ph--left-bold ph-lg',
 			text: i18n.ts._deck.swapLeft,
 			action: () => {
 				swapLeftColumn(props.column.id);
 			},
 		}, {
-			icon: 'ph--right-bold',
+			icon: 'ph--right-bold ph-lg',
 			text: i18n.ts._deck.swapRight,
 			action: () => {
 				swapRightColumn(props.column.id);
 			},
 		}, props.isStacked ? {
-			icon: 'ph--up-bold',
+			icon: 'ph--up-bold ph-lg',
 			text: i18n.ts._deck.swapUp,
 			action: () => {
 				swapUpColumn(props.column.id);
 			},
 		} : undefined, props.isStacked ? {
-			icon: 'ph--down-bold',
+			icon: 'ph--down-bold ph-lg',
 			text: i18n.ts._deck.swapDown,
 			action: () => {
 				swapDownColumn(props.column.id);
 			},
 		} : undefined],
 	}, {
-		icon: 'ph-copy-bold',
+		icon: 'ph-copy-bold ph-lg',
 		text: i18n.ts._deck.stackLeft,
 		action: () => {
 			stackLeftColumn(props.column.id);
 		},
 	}, props.isStacked ? {
-		icon: 'ph-browser-bold',
+		icon: 'ph-browser-bold ph-lg',
 		text: i18n.ts._deck.popRight,
 		action: () => {
 			popRightColumn(props.column.id);
 		},
 	} : undefined, null, {
-		icon: 'ph-trash-bold',
+		icon: 'ph-trash-bold ph-lg',
 		text: i18n.ts.remove,
 		danger: true,
 		action: () => {
