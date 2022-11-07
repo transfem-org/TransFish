@@ -24,17 +24,17 @@
 				<i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/');">
+		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 0 ? 'on' : ''">
 				<i class="ph-house-bold ph-lg"></i>
 			</div>
 		</button>
-		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')">
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 1 ? 'on' : ''">
 				<i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
 		</button>
-		<button class="button messaging _button" @click="mainRouter.push('/my/messaging')">
+		<button class="button messaging _button" @click="mainRouter.push('/my/messaging'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 2 ? 'on' : ''">
 				<i class="ph-chats-teardrop-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
@@ -133,28 +133,30 @@ const menuIndicated = computed(() => {
 	return false;
 });
 
-function updateButtonState(): void {
+function updateButtonState(): string {
 	let routerState = window.location.pathname;
 	if (routerState === '/') {
 		buttonAnimIndex.value = 0;
-		return;
+		return routerState;
 	}
 	if (routerState.includes('/my/notifications')) {
 		buttonAnimIndex.value = 1;
-		return;
+		return routerState;
 	}
 	if (routerState.includes('/my/messaging')) {
 		buttonAnimIndex.value = 2;
-		return;
+		return routerState;
 	}
 	buttonAnimIndex.value = 3;
+	return routerState;
 }
 
 updateButtonState();
 
 mainRouter.on('change', () => {
 	drawerMenuShowing.value = false;
-	updateButtonState();
+	const newState = updateButtonState();
+	console.log(newState);
 });
 
 document.documentElement.style.overflowY = 'scroll';
