@@ -16,7 +16,7 @@
 		<div v-if="item === '-'" class="divider"></div>
 		<component :is="navbarItemDef[item].to ? 'MkA' : 'button'" v-else-if="navbarItemDef[item] && (navbarItemDef[item].show !== false)" v-click-anime class="item _button" :class="item" active-class="active" :to="navbarItemDef[item].to" v-on="navbarItemDef[item].action ? { click: navbarItemDef[item].action } : {}">
 			<i class="ph-fw ph-lg" :class="navbarItemDef[item].icon"></i><span class="text">{{ $ts[navbarItemDef[item].title] }}</span>
-			<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="ph-circle-bold ph-lg"></i></span>
+			<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="ph-circle-fill"></i></span>
 		</component>
 	</template>
 	<div class="divider"></div>
@@ -25,7 +25,7 @@
 	</MkA>
 	<button v-click-anime class="item _button" @click="more">
 		<i class="ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ $ts.more }}</span>
-		<span v-if="otherNavItemIndicated" class="indicator"><i class="ph-circle-bold ph-lg"></i></span>
+		<span v-if="otherNavItemIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 	</button>
 	<MkA v-click-anime class="item" active-class="active" to="/settings" :behavior="settingsWindowed ? 'modalWindow' : null">
 		<i class="ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ $ts.settings }}</span>

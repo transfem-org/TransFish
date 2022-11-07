@@ -19,9 +19,9 @@
 	<button v-if="!isDesktop && !isMobile" class="widgetButton _button" @click="widgetsShowing = true"><i class="ph-stack-bold ph-lg"></i></button>
 
 	<div v-if="isMobile" class="buttons">
-		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-bold ph-lg"></i></span></button>
+		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span></button>
 		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/')"><i class="ph-house-bold ph-lg"></i></button>
-		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-bold ph-lg"></i></span></button>
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span></button>
 		<button class="button widget _button" @click="widgetsShowing = true"><i class="ph-stack-bold ph-lg"></i></button>
 	</div>
 

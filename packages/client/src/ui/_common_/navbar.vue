@@ -25,7 +25,7 @@
 					v-on="navbarItemDef[item].action ? { click: navbarItemDef[item].action } : {}"
 				>
 					<i class="icon ph-fw ph-lg" :class="navbarItemDef[item].icon"></i><span class="text">{{ i18n.ts[navbarItemDef[item].title] }}</span>
-					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="icon ph-circle-bold ph-lg"></i></span>
+					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="icon ph-circle-fill"></i></span>
 				</component>
 			</template>
 			<div class="divider"></div>
@@ -34,7 +34,7 @@
 			</MkA>
 			<button v-click-anime class="item _button" @click="more">
 				<i class="icon ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.more }}</span>
-				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon ph-circle-bold ph-lg"></i></span>
+				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon ph-circle-fill"></i></span>
 			</button>
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.settings" class="item" active-class="active" to="/settings">
 				<i class="icon ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.settings }}</span>
