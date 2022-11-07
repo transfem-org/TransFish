@@ -178,25 +178,6 @@ onMounted(() => {
 		window.addEventListener('resize', () => {
 			if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop.value = true;
 		}, { passive: true });
-
-		function createScrollStopListener(element: Window, callback: TimerHandler, timeout: number): () => void {
-			let handle = 0;
-			const onScroll = () => {
-				if (handle) {
-					clearTimeout(handle);
-				}
-				postButton.style.transform = 'scale(0)';
-				handle = setTimeout(callback, timeout || 200);
-			};
-			element.addEventListener('scroll', onScroll, { passive: true });
-			return () => {
-				element.removeEventListener('scroll', onScroll);
-			};
-		}
-
-		createScrollStopListener(window, () => {
-			postButton.style.transform = 'scale(1)';
-		} , 200);
 	}
 });
 
