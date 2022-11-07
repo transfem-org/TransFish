@@ -490,7 +490,7 @@ hr {
 		left: 0;
 		width: 0%;
 		border-bottom: 2px solid var(--link);
-		transition: 0.4s;
+		transition: 0.3s ease-in-out;
 	}
 
 	&:hover:after {
