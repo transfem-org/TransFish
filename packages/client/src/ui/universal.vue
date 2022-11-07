@@ -107,21 +107,17 @@ window.addEventListener('resize', () => {
 	isMobile.value = deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
 });
 
-const props = defineProps<{
-	buttonAnimIndex: number;
-}>();
+let buttonAnimIndex: number;
 
 watch($$(mainRouter.currentRoute.value.name), () => {
 	let routerState = mainRouter.currentRoute.value.name;
-		const bottomButtons = ['index', 'notifications', 'messaging'];
-		bottomButtons.forEach(i => {
-			if (routerState.includes(i)) {
-				props.buttonAnimIndex = bottomButtons.findIndex(e => e.includes(i))
-			}
-		});
-	}
-);
-
+	const bottomButtons = ['index', 'notifications', 'messaging'];
+	bottomButtons.forEach(i => {
+		if (routerState.includes(i)) {
+			buttonAnimIndex = bottomButtons.findIndex(j => j.includes(i));
+		}
+	});
+});
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
