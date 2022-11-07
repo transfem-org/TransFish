@@ -48,7 +48,6 @@
 - Star as default reaction
 - Like/star button
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
-- Phosphor icons instead of FontAwesome
 - Better sidebar/navbar
 - Add back groups
   - Integrate groups UI into chats UI
@@ -81,6 +80,8 @@
 - Update notifier
 - Allow admins to set logo URL via admin settings
 - Allow importing follows from Pixelfed
+- Phosphor icons instead of FontAwesome
+- Cool link hover effect
 - Obliteration of Ai-chan
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
