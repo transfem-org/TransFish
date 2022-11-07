@@ -109,17 +109,6 @@ window.addEventListener('resize', () => {
 
 let buttonAnimIndex = 0;
 
-watch($$(mainRouter.currentRoute.value.name), () => {
-	let routerState = mainRouter.currentRoute.value.name;
-	console.log(routerState);
-	const bottomButtons = ['index', 'notifications', 'messaging'];
-	bottomButtons.forEach(i => {
-		if (routerState.includes(i)) {
-			buttonAnimIndex = bottomButtons.findIndex(j => j.includes(i));
-		}
-	});
-});
-
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
 const postButton = $ref<HTMLElement>();
@@ -145,6 +134,14 @@ const drawerMenuShowing = ref(false);
 
 mainRouter.on('change', () => {
 	drawerMenuShowing.value = false;
+	let routerState = mainRouter.currentRoute.value.name;
+	console.log(routerState);
+	const bottomButtons = ['index', 'notifications', 'messaging'];
+	bottomButtons.forEach(i => {
+		if (routerState.includes(i)) {
+			buttonAnimIndex = bottomButtons.findIndex(j => j.includes(i));
+		}
+	});
 });
 
 document.documentElement.style.overflowY = 'scroll';
