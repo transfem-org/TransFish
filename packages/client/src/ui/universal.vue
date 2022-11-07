@@ -107,10 +107,11 @@ window.addEventListener('resize', () => {
 	isMobile.value = deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
 });
 
-let buttonAnimIndex: number;
+let buttonAnimIndex = 0;
 
 watch($$(mainRouter.currentRoute.value.name), () => {
 	let routerState = mainRouter.currentRoute.value.name;
+	console.log(routerState);
 	const bottomButtons = ['index', 'notifications', 'messaging'];
 	bottomButtons.forEach(i => {
 		if (routerState.includes(i)) {
