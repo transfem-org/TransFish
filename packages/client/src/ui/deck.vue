@@ -34,24 +34,24 @@
 			</div>
 			<div class="sideMenu">
 				<div class="top">
-					<button v-tooltip.noDelay.left="`${i18n.ts._deck.profile}: ${deckStore.state.profile}`" class="_button button" @click="changeProfile"><i class="ph-caret-down"></i></button>
-					<button v-tooltip.noDelay.left="i18n.ts._deck.deleteProfile" class="_button button" @click="deleteProfile"><i class="ph-trash"></i></button>
+					<button v-tooltip.noDelay.left="`${i18n.ts._deck.profile}: ${deckStore.state.profile}`" class="_button button" @click="changeProfile"><i class="ph-caret-down-bold"></i></button>
+					<button v-tooltip.noDelay.left="i18n.ts._deck.deleteProfile" class="_button button" @click="deleteProfile"><i class="ph-trash-bold"></i></button>
 				</div>
 				<div class="middle">
-					<button v-tooltip.noDelay.left="i18n.ts._deck.addColumn" class="_button button" @click="addColumn"><i class="ph-plus"></i></button>
+					<button v-tooltip.noDelay.left="i18n.ts._deck.addColumn" class="_button button" @click="addColumn"><i class="ph-plus-bold"></i></button>
 				</div>
 				<div class="bottom">
-					<button v-tooltip.noDelay.left="i18n.ts.settings" class="_button button settings" @click="showSettings"><i class="ph-gear-six"></i></button>
+					<button v-tooltip.noDelay.left="i18n.ts.settings" class="_button button settings" @click="showSettings"><i class="ph-gear-six-bold"></i></button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div v-if="isMobile" class="buttons">
-		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle"></i></span></button>
-		<button class="button home _button" @click="mainRouter.push('/')"><i class="ph-house"></i></button>
-		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle"></i></span></button>
-		<button class="button post _button" @click="os.post()"><i class="ph-pencil"></i></button>
+		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list-bold"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-bold"></i></span></button>
+		<button class="button home _button" @click="mainRouter.push('/')"><i class="ph-house-bold"></i></button>
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell-bold"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-bold"></i></span></button>
+		<button class="button post _button" @click="os.post()"><i class="ph-pencil-bold"></i></button>
 	</div>
 
 	<transition :name="$store.state.animation ? 'menu-back' : ''">
@@ -194,7 +194,7 @@ function changeProfile(ev: MouseEvent) {
 			},
 		}))), null, {
 			text: i18n.ts._deck.newProfile,
-			icon: 'ph-plus',
+			icon: 'ph-plus-bold',
 			action: async () => {
 				const { canceled, result: name } = await os.inputText({
 					title: i18n.ts._deck.profile,

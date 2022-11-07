@@ -35,7 +35,7 @@ export async function search() {
 		// TODO
 		//v.$root.$emit('warp', date);
 		os.alert({
-			icon: 'ph-clock-counter-clockwise',
+			icon: 'ph-clock-counter-clockwise-bold',
 			iconOnly: true, autoClose: true,
 		});
 		return;

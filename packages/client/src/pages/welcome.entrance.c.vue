@@ -41,7 +41,7 @@
 							<template #n><b>{{ onlineUsersCount }}</b></template>
 						</I18n>
 					</div>
-					<button class="_button _acrylic menu" @click="showMenu"><i class="ph-three-dots-outline"></i></button>
+					<button class="_button _acrylic menu" @click="showMenu"><i class="ph-three-dots-outline-bold"></i></button>
 				</div>
 			</div>
 			<nav class="nav">
@@ -124,19 +124,19 @@ export default defineComponent({
 		showMenu(ev) {
 			os.popupMenu([{
 				text: this.$t('aboutX', { x: instanceName }),
-				icon: 'ph-info',
+				icon: 'ph-info-bold',
 				action: () => {
 					os.pageWindow('/about');
 				}
 			}, {
 				text: this.$ts.aboutMisskey,
-				icon: 'ph-info',
+				icon: 'ph-info-bold',
 				action: () => {
 					os.pageWindow('/about-calckey');
 				}
 			}, null, {
 				text: this.$ts.help,
-				icon: 'ph-question',
+				icon: 'ph-question-bold',
 				action: () => {
 					window.open(`https://misskey-hub.net/help.md`, '_blank');
 				}

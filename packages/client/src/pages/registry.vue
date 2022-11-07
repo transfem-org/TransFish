@@ -66,7 +66,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.registry,
-	icon: 'ph-gear-six',
+	icon: 'ph-gear-six-bold',
 });
 </script>
 

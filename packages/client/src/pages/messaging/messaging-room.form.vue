@@ -15,10 +15,10 @@
 	<footer>
 		<div v-if="file" class="file" @click="file = null">{{ file.name }}</div>
 		<div class="buttons">
-			<button class="_button" @click="chooseFile"><i class="ph-upload"></i></button>
-			<button class="_button" @click="insertEmoji"><i class="ph-smiley-wink"></i></button>
+			<button class="_button" @click="chooseFile"><i class="ph-upload-bold"></i></button>
+			<button class="_button" @click="insertEmoji"><i class="ph-smiley-wink-bold"></i></button>
 			<button class="send _button" :disabled="!canSend || sending" :title="i18n.ts.send" @click="send">
-				<template v-if="!sending"><i class="ph-paper-plane-tilt"></i></template><template v-if="sending"><i class="ph-circle-notch fa-pulse ph-fw"></i></template>
+				<template v-if="!sending"><i class="ph-paper-plane-tilt-bold"></i></template><template v-if="sending"><i class="ph-circle-notch-bold fa-pulse ph-fw-bold"></i></template>
 			</button>
 		</div>
 	</footer>

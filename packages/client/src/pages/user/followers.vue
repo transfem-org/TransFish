@@ -49,7 +49,7 @@ const headerActions = $computed(() => []);
 const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => user ? {
-	icon: 'ph-user',
+	icon: 'ph-user-bold',
 	title: user.name ? `${user.name} (@${user.username})` : `@${user.username}`,
 	subtitle: i18n.ts.followers,
 	userName: user,

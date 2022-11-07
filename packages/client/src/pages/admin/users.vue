@@ -115,17 +115,17 @@ function show(user) {
 }
 
 const headerActions = $computed(() => [{
-	icon: 'ph-magnifying-glass',
+	icon: 'ph-magnifying-glass-bold',
 	text: i18n.ts.search,
 	handler: searchUser,
 }, {
 	asFullButton: true,
-	icon: 'ph-plus',
+	icon: 'ph-plus-bold',
 	text: i18n.ts.addUser,
 	handler: addUser,
 }, {
 	asFullButton: true,
-	icon: 'ph-magnifying-glass',
+	icon: 'ph-magnifying-glass-bold',
 	text: i18n.ts.lookup,
 	handler: lookupUser,
 }]);
@@ -134,7 +134,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.users,
-	icon: 'ph-users',
+	icon: 'ph-users-bold',
 })));
 </script>
 

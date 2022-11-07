@@ -5,17 +5,17 @@
 			<i :class="icon"></i>
 		</div>
 		<div v-else-if="!input && !select" class="icon" :class="type">
-			<i v-if="type === 'success'" class="ph-check"></i>
-			<i v-else-if="type === 'error'" class="ph-circle-wavy-warning"></i>
-			<i v-else-if="type === 'warning'" class="ph-warning"></i>
-			<i v-else-if="type === 'info'" class="ph-info"></i>
-			<i v-else-if="type === 'question'" class="ph-question"></i>
-			<i v-else-if="type === 'waiting'" class="ph-circle-notch fa-pulse"></i>
+			<i v-if="type === 'success'" class="ph-check-bold"></i>
+			<i v-else-if="type === 'error'" class="ph-circle-wavy-warning-bold"></i>
+			<i v-else-if="type === 'warning'" class="ph-warning-bold"></i>
+			<i v-else-if="type === 'info'" class="ph-info-bold"></i>
+			<i v-else-if="type === 'question'" class="ph-question-bold"></i>
+			<i v-else-if="type === 'waiting'" class="ph-circle-notch-bold fa-pulse"></i>
 		</div>
 		<header v-if="title"><Mfm :text="title"/></header>
 		<div v-if="text" class="body"><Mfm :text="text"/></div>
 		<MkInput v-if="input" v-model="inputValue" autofocus :type="input.type || 'text'" :placeholder="input.placeholder || undefined" @keydown="onInputKeydown">
-			<template v-if="input.type === 'password'" #prefix><i class="ph-lock"></i></template>
+			<template v-if="input.type === 'password'" #prefix><i class="ph-lock-bold"></i></template>
 		</MkInput>
 		<MkSelect v-if="select" v-model="selectedValue" autofocus>
 			<template v-if="select.items">

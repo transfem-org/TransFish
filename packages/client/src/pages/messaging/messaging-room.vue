@@ -40,7 +40,7 @@
 			</div>
 			<transition :name="animation ? 'fade' : ''">
 				<div v-show="showIndicator" class="new-message">
-					<button class="_buttonPrimary" @click="onIndicatorClick"><i class="fas ph-fw ph-arrow-circle-down"></i>{{ i18n.ts.newMessageExists }}</button>
+					<button class="_buttonPrimary" @click="onIndicatorClick"><i class="fas ph-fw-bold ph-arrow-circle-down-bold"></i>{{ i18n.ts.newMessageExists }}</button>
 				</div>
 			</transition>
 			<XForm v-if="!fetching" ref="formEl" :user="user" :group="group" class="form"/>
@@ -287,7 +287,7 @@ definePageMetadata(computed(() => !fetching ? user ? {
 	avatar: user,
 } : {
 	title: group?.name,
-	icon: 'ph-users',
+	icon: 'ph-users-bold',
 } : null));
 </script>
 

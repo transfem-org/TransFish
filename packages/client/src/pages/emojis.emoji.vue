@@ -24,7 +24,7 @@ function menu(ev) {
 		text: ':' + props.emoji.name + ':',
 	}, {
 		text: i18n.ts.copy,
-		icon: 'ph-clipboard-text',
+		icon: 'ph-clipboard-text-bold',
 		action: () => {
 			copyToClipboard(`:${props.emoji.name}:`);
 			os.success();

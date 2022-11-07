@@ -13,7 +13,7 @@
 			>
 				<swiper-slide>
 					<div class="_content yweeujhr dms">
-						<MkButton primary class="start" @click="startUser"><i class="ph-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						<MkPagination v-slot="{items}" :pagination="dmsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
@@ -26,8 +26,8 @@
 				<swiper-slide>
 					<div class="_content yweeujhr groups">
 						<div class="groupsbuttons">
-							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear"></i> {{ i18n.ts.manageGroups }}</MkButton>
-							<MkButton primary class="start" @click="startGroup"><i class="ph-plus"></i> {{ i18n.ts.startMessaging }}</MkButton>
+							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear-bold"></i> {{ i18n.ts.manageGroups }}</MkButton>
+							<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						</div>
 						<MkPagination v-slot="{items}" :pagination="groupsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
@@ -73,16 +73,16 @@ const headerActions = $computed(() => []);
 const headerTabs = $computed(() => [{
 	key: 'dms',
 	title: i18n.ts._messaging.dms,
-	icon: 'ph-user',
+	icon: 'ph-user-bold',
 }, {
 	key: 'groups',
 	title: i18n.ts._messaging.groups,
-	icon: 'ph-users',
+	icon: 'ph-users-bold',
 }]);
 
 definePageMetadata({
 	title: i18n.ts.messaging,
-	icon: 'ph-chats-teardrop',
+	icon: 'ph-chats-teardrop-bold',
 });
 
 const dmsPagination = {

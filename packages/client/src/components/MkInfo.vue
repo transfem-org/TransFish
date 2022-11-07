@@ -1,7 +1,7 @@
 <template>
 <div class="fpezltsf" :class="{ warn }">
-	<i v-if="warn" class="ph-warning"></i>
-	<i v-else class="ph-info"></i>
+	<i v-if="warn" class="ph-warning-bold"></i>
+	<i v-else class="ph-info-bold"></i>
 	<slot></slot>
 </div>
 </template>

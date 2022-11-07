@@ -6,15 +6,15 @@
 			<div class="wpgynlbz _panel _gap" :class="{ hide: !showBanner }">
 				<XChannelFollowButton :channel="channel" :full="true" class="subscribe"/>
 				<button class="_button toggle" @click="() => showBanner = !showBanner">
-					<template v-if="showBanner"><i class="ph-caret-up"></i></template>
-					<template v-else><i class="ph-caret-down"></i></template>
+					<template v-if="showBanner"><i class="ph-caret-up-bold"></i></template>
+					<template v-else><i class="ph-caret-down-bold"></i></template>
 				</button>
 				<div v-if="!showBanner" class="hideOverlay">
 				</div>
 				<div :style="{ backgroundImage: channel.bannerUrl ? `url(${channel.bannerUrl})` : null }" class="banner">
 					<div class="status">
-						<div><i class="ph-users ph-fw"></i><I18n :src="i18n.ts._channel.usersCount" tag="span" style="margin-left: 4px;"><template #n><b>{{ channel.usersCount }}</b></template></I18n></div>
-						<div><i class="ph-pencil ph-fw"></i><I18n :src="i18n.ts._channel.notesCount" tag="span" style="margin-left: 4px;"><template #n><b>{{ channel.notesCount }}</b></template></I18n></div>
+						<div><i class="ph-users-bold ph-fw-bold"></i><I18n :src="i18n.ts._channel.usersCount" tag="span" style="margin-left: 4px;"><template #n><b>{{ channel.usersCount }}</b></template></I18n></div>
+						<div><i class="ph-pencil-bold ph-fw-bold"></i><I18n :src="i18n.ts._channel.notesCount" tag="span" style="margin-left: 4px;"><template #n><b>{{ channel.notesCount }}</b></template></I18n></div>
 					</div>
 					<div class="fade"></div>
 				</div>
@@ -70,7 +70,7 @@ function edit() {
 }
 
 const headerActions = $computed(() => channel && channel.userId ? [{
-	icon: 'ph-gear-six',
+	icon: 'ph-gear-six-bold',
 	text: i18n.ts.edit,
 	handler: edit,
 }] : null);
@@ -79,7 +79,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(computed(() => channel ? {
 	title: channel.name,
-	icon: 'ph-television',
+	icon: 'ph-television-bold',
 } : null));
 </script>
 

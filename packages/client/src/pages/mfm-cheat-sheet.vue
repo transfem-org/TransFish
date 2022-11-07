@@ -351,7 +351,7 @@ let preview_plain = $ref('<plain>**bold** @mention #hashtag `code` $[x2 🍮]</p
 
 definePageMetadata({
 	title: i18n.ts._mfm.cheatSheet,
-	icon: 'ph-question',
+	icon: 'ph-question-bold',
 });
 </script>
 

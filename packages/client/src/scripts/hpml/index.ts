@@ -14,13 +14,13 @@ export type Fn = {
 export type Type = 'string' | 'number' | 'boolean' | 'stringArray' | null;
 
 export const literalDefs: Record<string, { out: any; category: string; icon: any; }> = {
-	text: { out: 'string', category: 'value', icon: 'ph-quotes', },
-	multiLineText: { out: 'string', category: 'value', icon: 'ph-align-left', },
-	textList: { out: 'stringArray', category: 'value', icon: 'ph-list', },
-	number: { out: 'number', category: 'value', icon: 'ph-sort-descending-up', },
-	ref: { out: null, category: 'value', icon: 'ph-magic-wand', },
-	aiScriptVar: { out: null, category: 'value', icon: 'ph-magic-wand', },
-	fn: { out: 'function', category: 'value', icon: 'ph-radical', },
+	text: { out: 'string', category: 'value', icon: 'ph-quotes-bold', },
+	multiLineText: { out: 'string', category: 'value', icon: 'ph-align-left-bold', },
+	textList: { out: 'stringArray', category: 'value', icon: 'ph-list-bold', },
+	number: { out: 'number', category: 'value', icon: 'ph-sort-descending-up-bold', },
+	ref: { out: null, category: 'value', icon: 'ph-magic-wand-bold', },
+	aiScriptVar: { out: null, category: 'value', icon: 'ph-magic-wand-bold', },
+	fn: { out: 'function', category: 'value', icon: 'ph-radical-bold', },
 };
 
 export const blockDefs = [

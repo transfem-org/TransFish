@@ -3,10 +3,10 @@
 	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
 	<MkSpacer :content-max="700">
 		<div class="jqqmcavi">
-			<MkButton v-if="pageId" class="button" inline link :to="`/@${ author.username }/pages/${ currentName }`"><i class="ph-arrow-square-out"></i> {{ $ts._pages.viewPage }}</MkButton>
-			<MkButton v-if="!readonly" inline primary class="button" @click="save"><i class="ph-floppy-disk-back"></i> {{ $ts.save }}</MkButton>
-			<MkButton v-if="pageId" inline class="button" @click="duplicate"><i class="ph-clipboard-text"></i> {{ $ts.duplicate }}</MkButton>
-			<MkButton v-if="pageId && !readonly" inline class="button" danger @click="del"><i class="ph-trash"></i> {{ $ts.delete }}</MkButton>
+			<MkButton v-if="pageId" class="button" inline link :to="`/@${ author.username }/pages/${ currentName }`"><i class="ph-arrow-square-out-bold"></i> {{ $ts._pages.viewPage }}</MkButton>
+			<MkButton v-if="!readonly" inline primary class="button" @click="save"><i class="ph-floppy-disk-back-bold"></i> {{ $ts.save }}</MkButton>
+			<MkButton v-if="pageId" inline class="button" @click="duplicate"><i class="ph-clipboard-text-bold"></i> {{ $ts.duplicate }}</MkButton>
+			<MkButton v-if="pageId && !readonly" inline class="button" danger @click="del"><i class="ph-trash-bold"></i> {{ $ts.delete }}</MkButton>
 		</div>
 
 		<div v-if="tab === 'settings'">
@@ -35,10 +35,10 @@
 				<MkSwitch v-model="hideTitleWhenPinned" class="_formBlock">{{ $ts._pages.hideTitleWhenPinned }}</MkSwitch>
 
 				<div class="eyeCatch">
-					<MkButton v-if="eyeCatchingImageId == null && !readonly" @click="setEyeCatchingImage"><i class="ph-plus"></i> {{ $ts._pages.eyeCatchingImageSet }}</MkButton>
+					<MkButton v-if="eyeCatchingImageId == null && !readonly" @click="setEyeCatchingImage"><i class="ph-plus-bold"></i> {{ $ts._pages.eyeCatchingImageSet }}</MkButton>
 					<div v-else-if="eyeCatchingImage">
 						<img :src="eyeCatchingImage.url" :alt="eyeCatchingImage.name" style="max-width: 100%;"/>
-						<MkButton v-if="!readonly" @click="removeEyeCatchingImage()"><i class="ph-trash"></i> {{ $ts._pages.eyeCatchingImageRemove }}</MkButton>
+						<MkButton v-if="!readonly" @click="removeEyeCatchingImage()"><i class="ph-trash-bold"></i> {{ $ts._pages.eyeCatchingImageRemove }}</MkButton>
 					</div>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 			<div>
 				<XBlocks v-model="content" class="content" :hpml="hpml"/>
 
-				<MkButton v-if="!readonly" @click="add()"><i class="ph-plus"></i></MkButton>
+				<MkButton v-if="!readonly" @click="add()"><i class="ph-plus-bold"></i></MkButton>
 			</div>
 		</div>
 
@@ -68,7 +68,7 @@
 					</template>
 				</XDraggable>
 
-				<MkButton v-if="!readonly" class="add" @click="addVariable()"><i class="ph-plus"></i></MkButton>
+				<MkButton v-if="!readonly" class="add" @click="addVariable()"><i class="ph-plus-bold"></i></MkButton>
 			</div>
 		</div>
 
@@ -412,19 +412,19 @@ const headerActions = $computed(() => []);
 const headerTabs = $computed(() => [{
 	key: 'settings',
 	title: i18n.ts._pages.pageSetting,
-	icon: 'ph-gear-six',
+	icon: 'ph-gear-six-bold',
 }, {
 	key: 'contents',
 	title: i18n.ts._pages.contents,
-	icon: 'ph-sticker',
+	icon: 'ph-sticker-bold',
 }, {
 	key: 'variables',
 	title: i18n.ts._pages.variables,
-	icon: 'ph-magic-wand',
+	icon: 'ph-magic-wand-bold',
 }, {
 	key: 'script',
 	title: i18n.ts.script,
-	icon: 'ph-code',
+	icon: 'ph-code-bold',
 }]);
 
 definePageMetadata(computed(() => {
@@ -437,7 +437,7 @@ definePageMetadata(computed(() => {
 	}
 	return {
 		title: title,
-		icon: 'ph-pencil',
+		icon: 'ph-pencil-bold',
 		};
 }));
 </script>

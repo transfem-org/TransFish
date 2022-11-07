@@ -80,15 +80,15 @@ function select(src: any, label: string | null, multiple: boolean): Promise<Driv
 			ref: keepOriginal,
 		}, {
 			text: i18n.ts.upload,
-			icon: 'ph-upload-simple',
+			icon: 'ph-upload-simple-bold',
 			action: chooseFileFromPc,
 		}, {
 			text: i18n.ts.fromDrive,
-			icon: 'ph-cloud',
+			icon: 'ph-cloud-bold',
 			action: chooseFileFromDrive,
 		}, {
 			text: i18n.ts.fromUrl,
-			icon: 'ph-link-simple',
+			icon: 'ph-link-simple-bold',
 			action: chooseFileFromUrl,
 		}], src);
 	});

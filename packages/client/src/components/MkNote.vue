@@ -10,12 +10,12 @@
 	:class="{ renote: isRenote }"
 >
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
-	<div v-if="pinned" class="info"><i class="ph-push-pin"></i> {{ i18n.ts.pinnedNote }}</div>
-	<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x"></i></button></div>
-	<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning"></i> {{ i18n.ts.featured }}</div>
+	<div v-if="pinned" class="info"><i class="ph-push-pin-bold"></i> {{ i18n.ts.pinnedNote }}</div>
+	<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold"></i></button></div>
+	<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold"></i> {{ i18n.ts.featured }}</div>
 	<div v-if="isRenote" class="renote">
 		<MkAvatar class="avatar" :user="note.user"/>
-		<i class="ph-repeat"></i>
+		<i class="ph-repeat-bold"></i>
 		<I18n :src="i18n.ts.renotedBy" tag="span">
 			<template #user>
 				<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
@@ -25,7 +25,7 @@
 		</I18n>
 		<div class="info">
 			<button ref="renoteTime" class="_button time" @click="showRenoteMenu()">
-				<i v-if="isMyRenote" class="ph-three-dots-outline dropdownIcon"></i>
+				<i v-if="isMyRenote" class="ph-three-dots-outline-bold dropdownIcon"></i>
 				<MkTime :time="note.createdAt"/>
 			</button>
 			<MkVisibility :note="note"/>
@@ -43,7 +43,7 @@
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content" :class="{ collapsed, isLong }">
 					<div class="text" @click.self="router.push(notePage(appearNote))">
-						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="ph-arrow-bend-up-left"></i></MkA>
+						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="ph-arrow-bend-up-left-bold"></i></MkA>
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<a v-if="appearNote.renote != null" class="rp">RN:</a>
 						<div v-if="translating || translation" class="translation">
@@ -67,26 +67,26 @@
 						<span>{{ i18n.ts.showLess }}</span>
 					</button>
 				</div>
-				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television"></i> {{ appearNote.channel.name }}</MkA>
+				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television-bold"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
 			<footer class="footer">
 				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
 				<button class="button _button" @click="reply()">
-					<template v-if="appearNote.reply"><i class="ph-arrow-bend-double-left"></i></template>
-					<template v-else><i class="ph-arrow-bend-up-left"></i></template>
+					<template v-if="appearNote.reply"><i class="ph-arrow-bend-double-left-bold"></i></template>
+					<template v-else><i class="ph-arrow-bend-up-left-bold"></i></template>
 					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
 				</button>
 				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
 				<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" @click="react()">
-					<i class="ph-smiley-wink"></i>
+					<i class="ph-smiley-wink-bold"></i>
 				</button>
 				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
-					<i class="ph-minus"></i>
+					<i class="ph-minus-bold"></i>
 				</button>
 				<XQuoteButton class="button" :note="appearNote"/>
 				<button ref="menuButton" class="button _button" @click="menu()">
-					<i class="ph-three-dots-outline"></i>
+					<i class="ph-three-dots-outline-bold"></i>
 				</button>
 			</footer>
 		</div>
@@ -263,7 +263,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 	if (!isMyRenote) return;
 	os.popupMenu([{
 		text: i18n.ts.unrenote,
-		icon: 'ph-trash',
+		icon: 'ph-trash-bold',
 		danger: true,
 		action: () => {
 			os.api('notes/delete', {

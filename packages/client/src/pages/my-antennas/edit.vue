@@ -34,7 +34,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.manageAntennas,
-	icon: 'ph-flying-saucer',
+	icon: 'ph-flying-saucer-bold',
 });
 </script>
 

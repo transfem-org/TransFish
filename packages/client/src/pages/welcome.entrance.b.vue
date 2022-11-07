@@ -104,19 +104,19 @@ export default defineComponent({
 		showMenu(ev) {
 			os.popupMenu([{
 				text: this.$t('aboutX', { x: instanceName }),
-				icon: 'ph-info',
+				icon: 'ph-info-bold',
 				action: () => {
 					os.pageWindow('/about');
 				}
 			}, {
 				text: this.$ts.aboutMisskey,
-				icon: 'ph-info',
+				icon: 'ph-info-bold',
 				action: () => {
 					os.pageWindow('/about-calckey');
 				}
 			}, null, {
 				text: this.$ts.help,
-				icon: 'ph-question',
+				icon: 'ph-question-bold',
 				action: () => {
 					window.open(`https://misskey-hub.net/help.md`, '_blank');
 				}

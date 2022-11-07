@@ -10,7 +10,7 @@
 					</button>
 				</template>
 				<template #footer>
-					<button class="_button add" @click="chooseEmoji"><i class="ph-plus"></i></button>
+					<button class="_button add" @click="chooseEmoji"><i class="ph-plus-bold"></i></button>
 				</template>
 			</XDraggable>
 		</div>
@@ -46,8 +46,8 @@
 
 	<FormSection>
 		<div style="display: flex; gap: var(--margin); flex-wrap: wrap;">
-			<FormButton inline @click="preview"><i class="ph-eye"></i> {{ i18n.ts.preview }}</FormButton>
-			<FormButton inline danger @click="setDefault"><i class="ph-arrow-counter-clockwise"></i> {{ i18n.ts.default }}</FormButton>
+			<FormButton inline @click="preview"><i class="ph-eye-bold"></i> {{ i18n.ts.preview }}</FormButton>
+			<FormButton inline danger @click="setDefault"><i class="ph-arrow-counter-clockwise-bold"></i> {{ i18n.ts.default }}</FormButton>
 		</div>
 	</FormSection>
 </div>
@@ -126,9 +126,9 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.reaction,
-	icon: 'ph-smiley-wink',
+	icon: 'ph-smiley-wink-bold',
 	action: {
-		icon: 'ph-eye',
+		icon: 'ph-eye-bold',
 		handler: preview,
 	},
 });

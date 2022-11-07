@@ -47,6 +47,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._accountDelete.accountDelete,
-	icon: 'ph-warning',
+	icon: 'ph-warning-bold',
 });
 </script>

@@ -5,7 +5,7 @@
 		<template #label>{{ i18n.ts._instanceMute.heading }}</template>
 		<template #caption>{{ i18n.ts._instanceMute.instanceMuteDescription }}<br>{{ i18n.ts._instanceMute.instanceMuteDescription2 }}</template>
 	</FormTextarea>
-	<MkButton primary :disabled="!changed" class="_formBlock" @click="save()"><i class="ph-floppy-disk-back"></i> {{ i18n.ts.save }}</MkButton>
+	<MkButton primary :disabled="!changed" class="_formBlock" @click="save()"><i class="ph-floppy-disk-back-bold"></i> {{ i18n.ts.save }}</MkButton>
 </div>
 </template>
 
@@ -48,6 +48,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.instanceMute,
-	icon: 'ph-speaker-none',
+	icon: 'ph-speaker-none-bold',
 });
 </script>

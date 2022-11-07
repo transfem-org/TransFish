@@ -26,7 +26,7 @@
 			<ol v-if="registration && !registration.error">
 				<li v-if="registration.stage >= 0">
 					{{ i18n.ts.tapSecurityKey }}
-					<i v-if="registration.saving && registration.stage == 0" class="ph-circle-notch fa-pulse ph-fw"></i>
+					<i v-if="registration.saving && registration.stage == 0" class="ph-circle-notch-bold fa-pulse ph-fw-bold"></i>
 				</li>
 				<li v-if="registration.stage >= 1">
 					<MkForm :disabled="registration.stage != 1 || registration.saving">
@@ -34,7 +34,7 @@
 							<template #label>{{ i18n.ts.securityKeyName }}</template>
 						</MkInput>
 						<MkButton :disabled="keyName.length == 0" @click="registerKey">{{ i18n.ts.registerSecurityKey }}</MkButton>
-						<i v-if="registration.saving && registration.stage == 1" class="ph-circle-notch fa-pulse ph-fw"></i>
+						<i v-if="registration.saving && registration.stage == 1" class="ph-circle-notch-bold fa-pulse ph-fw-bold"></i>
 					</MkForm>
 				</li>
 			</ol>

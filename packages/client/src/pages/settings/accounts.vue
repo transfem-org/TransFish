@@ -1,7 +1,7 @@
 <template>
 <div class="_formRoot">
 	<FormSuspense :p="init">
-		<FormButton primary @click="addAccount"><i class="ph-plus"></i> {{ i18n.ts.addAccount }}</FormButton>
+		<FormButton primary @click="addAccount"><i class="ph-plus-bold"></i> {{ i18n.ts.addAccount }}</FormButton>
 
 		<div v-for="account in accounts" :key="account.id" class="_panel _button lcjjdxlm" @click="menu(account, $event)">
 			<div class="avatar">
@@ -50,11 +50,11 @@ const init = async () => {
 function menu(account, ev) {
 	os.popupMenu([{
 		text: i18n.ts.switch,
-		icon: 'ph-swap',
+		icon: 'ph-swap-bold',
 		action: () => switchAccount(account),
 	}, {
 		text: i18n.ts.remove,
-		icon: 'ph-trash',
+		icon: 'ph-trash-bold',
 		danger: true,
 		action: () => removeAccount(account),
 	}], ev.currentTarget ?? ev.target);
@@ -108,7 +108,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.accounts,
-	icon: 'ph-users',
+	icon: 'ph-users-bold',
 });
 </script>
 

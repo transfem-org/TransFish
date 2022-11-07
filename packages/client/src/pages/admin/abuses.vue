@@ -86,7 +86,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.abuseReports,
-	icon: 'ph-warning-circle',
+	icon: 'ph-warning-circle-bold',
 });
 </script>
 

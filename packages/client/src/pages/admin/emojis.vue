@@ -6,7 +6,7 @@
 			<div class="ogwlenmc">
 				<div v-if="tab === 'local'" class="local">
 					<MkInput v-model="query" :debounce="true" type="search">
-						<template #prefix><i class="ph-magnifying-glass"></i></template>
+						<template #prefix><i class="ph-magnifying-glass-bold"></i></template>
 						<template #label>{{ i18n.ts.search }}</template>
 					</MkInput>
 					<MkSwitch v-model="selectMode" style="margin: 8px 0;">
@@ -39,7 +39,7 @@
 				<div v-else-if="tab === 'remote'" class="remote">
 					<FormSplit>
 						<MkInput v-model="queryRemote" :debounce="true" type="search">
-							<template #prefix><i class="ph-magnifying-glass"></i></template>
+							<template #prefix><i class="ph-magnifying-glass-bold"></i></template>
 							<template #label>{{ i18n.ts.search }}</template>
 						</MkInput>
 						<MkInput v-model="host" :debounce="true">
@@ -164,14 +164,14 @@ const remoteMenu = (emoji, ev: MouseEvent) => {
 		text: ':' + emoji.name + ':',
 	}, {
 		text: i18n.ts.import,
-		icon: 'ph-plus',
+		icon: 'ph-plus-bold',
 		action: () => { im(emoji); },
 	}], ev.currentTarget ?? ev.target);
 };
 
 const menu = (ev: MouseEvent) => {
 	os.popupMenu([{
-		icon: 'ph-download-simple',
+		icon: 'ph-download-simple-bold',
 		text: i18n.ts.export,
 		action: async () => {
 			os.api('export-custom-emojis', {
@@ -189,7 +189,7 @@ const menu = (ev: MouseEvent) => {
 			});
 		},
 	}, {
-		icon: 'ph-upload-simple',
+		icon: 'ph-upload-simple-bold',
 		text: i18n.ts.import,
 		action: async () => {
 			const file = await selectFile(ev.currentTarget ?? ev.target);
@@ -273,11 +273,11 @@ const delBulk = async () => {
 
 const headerActions = $computed(() => [{
 	asFullButton: true,
-	icon: 'ph-plus',
+	icon: 'ph-plus-bold',
 	text: i18n.ts.addEmoji,
 	handler: add,
 }, {
-	icon: 'ph-three-dots-outline',
+	icon: 'ph-three-dots-outline-bold',
 	handler: menu,
 }]);
 
@@ -291,7 +291,7 @@ const headerTabs = $computed(() => [{
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.customEmojis,
-	icon: 'ph-smiley-wink',
+	icon: 'ph-smiley-wink-bold',
 })));
 </script>
 

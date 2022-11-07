@@ -3,7 +3,7 @@
 	:title="url"
 >
 	<slot></slot>
-	<i v-if="target === '_blank'" class="ph-arrow-square-out icon"></i>
+	<i v-if="target === '_blank'" class="ph-arrow-square-out-bold icon"></i>
 </component>
 </template>
 

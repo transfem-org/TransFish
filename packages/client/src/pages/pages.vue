@@ -19,7 +19,7 @@
 			</swiper-slide>
 			<swiper-slide>
 				<div class="rknalgpo my">
-					<MkButton class="new" @click="create()"><i class="ph-plus"></i></MkButton>
+					<MkButton class="new" @click="create()"><i class="ph-plus-bold"></i></MkButton>
 					<MkPagination v-slot="{items}" :pagination="myPagesPagination">
 						<MkPagePreview v-for="page in items" :key="page.id" class="ckltabjg" :page="page"/>
 					</MkPagination>
@@ -75,7 +75,7 @@ function create() {
 }
 
 const headerActions = $computed(() => [{
-	icon: 'ph-plus',
+	icon: 'ph-plus-bold',
 	text: i18n.ts.create,
 	handler: create,
 }]);
@@ -83,20 +83,20 @@ const headerActions = $computed(() => [{
 const headerTabs = $computed(() => [{
 	key: 'featured',
 	title: i18n.ts._pages.featured,
-	icon: 'ph-fire-simple',
+	icon: 'ph-fire-simple-bold',
 }, {
 	key: 'my',
 	title: i18n.ts._pages.my,
-	icon: 'ph-crown-simple',
+	icon: 'ph-crown-simple-bold',
 }, {
 	key: 'liked',
 	title: i18n.ts._pages.liked,
-	icon: 'ph-heart',
+	icon: 'ph-heart-bold',
 }]);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.pages,
-	icon: 'ph-sticker',
+	icon: 'ph-sticker-bold',
 })));
 
 let swiperRef = null;

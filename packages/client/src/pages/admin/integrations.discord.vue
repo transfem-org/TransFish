@@ -9,17 +9,17 @@
 			<FormInfo class="_formBlock">Callback URL: {{ `${uri}/api/dc/cb` }}</FormInfo>
 		
 			<FormInput v-model="discordClientId" class="_formBlock">
-				<template #prefix><i class="ph-key"></i></template>
+				<template #prefix><i class="ph-key-bold"></i></template>
 				<template #label>Client ID</template>
 			</FormInput>
 
 			<FormInput v-model="discordClientSecret" class="_formBlock">
-				<template #prefix><i class="ph-key"></i></template>
+				<template #prefix><i class="ph-key-bold"></i></template>
 				<template #label>Client Secret</template>
 			</FormInput>
 		</template>
 
-		<FormButton primary class="_formBlock" @click="save"><i class="ph-floppy-disk-back"></i> {{ i18n.ts.save }}</FormButton>
+		<FormButton primary class="_formBlock" @click="save"><i class="ph-floppy-disk-back-bold"></i> {{ i18n.ts.save }}</FormButton>
 	</div>
 </FormSuspense>
 </template>

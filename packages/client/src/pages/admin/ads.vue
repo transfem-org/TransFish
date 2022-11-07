@@ -37,8 +37,8 @@
 					<template #label>{{ i18n.ts.memo }}</template>
 				</MkTextarea>
 				<div class="buttons _formBlock">
-					<MkButton class="button" inline primary style="margin-right: 12px;" @click="save(ad)"><i class="ph-floppy-disk-back"></i> {{ i18n.ts.save }}</MkButton>
-					<MkButton class="button" inline danger @click="remove(ad)"><i class="ph-trash"></i> {{ i18n.ts.remove }}</MkButton>
+					<MkButton class="button" inline primary style="margin-right: 12px;" @click="save(ad)"><i class="ph-floppy-disk-back-bold"></i> {{ i18n.ts.save }}</MkButton>
+					<MkButton class="button" inline danger @click="remove(ad)"><i class="ph-trash-bold"></i> {{ i18n.ts.remove }}</MkButton>
 				</div>
 			</div>
 		</div>
@@ -106,7 +106,7 @@ function save(ad) {
 
 const headerActions = $computed(() => [{
 	asFullButton: true,
-	icon: 'ph-plus',
+	icon: 'ph-plus-bold',
 	text: i18n.ts.add,
 	handler: add,
 }]);
@@ -115,7 +115,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.ads,
-	icon: 'ph-money',
+	icon: 'ph-money-bold',
 });
 </script>
 

@@ -136,15 +136,15 @@ const headerActions = $computed(() => []);
 let theTabs = [{
 	key: 'overview',
 	title: i18n.ts.overview,
-	icon: 'ph-map-trifold',
+	icon: 'ph-map-trifold-bold',
 }, {
 	key: 'emojis',
 	title: i18n.ts.customEmojis,
-	icon: 'ph-smiley-wink',
+	icon: 'ph-smiley-wink-bold',
 }, {
 	key: 'charts',
 	title: i18n.ts.charts,
-	icon: 'ph-chart-bar',
+	icon: 'ph-chart-bar-bold',
 }];
 
 if (iAmModerator) {
@@ -152,7 +152,7 @@ if (iAmModerator) {
 		{
 			key: 'federation',
 			title: i18n.ts.federation,
-			icon: 'ph-planet',
+			icon: 'ph-planet-bold',
 		},
 	);
 }
@@ -161,7 +161,7 @@ let headerTabs = $computed(() => theTabs);
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.instanceInfo,
-	icon: 'ph-info',
+	icon: 'ph-info-bold',
 })));
 
 let swiperRef = null;

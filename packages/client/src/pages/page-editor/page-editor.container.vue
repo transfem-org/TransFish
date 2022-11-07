@@ -5,14 +5,14 @@
 		<div class="buttons">
 			<slot name="func"></slot>
 			<button v-if="removable" class="_button" @click="remove()">
-				<i class="ph-trash"></i>
+				<i class="ph-trash-bold"></i>
 			</button>
 			<button v-if="draggable" class="drag-handle _button">
-				<i class="ph-list"></i>
+				<i class="ph-list-bold"></i>
 			</button>
 			<button class="_button" @click="toggleContent(!showBody)">
-				<template v-if="showBody"><i class="ph-caret-up"></i></template>
-				<template v-else><i class="ph-caret-down"></i></template>
+				<template v-if="showBody"><i class="ph-caret-up-bold"></i></template>
+				<template v-else><i class="ph-caret-down-bold"></i></template>
 			</button>
 		</div>
 	</header>

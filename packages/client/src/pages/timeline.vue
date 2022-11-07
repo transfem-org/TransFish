@@ -190,18 +190,18 @@ function focus(): void {
 
 const headerActions = $computed(() => [
 	{
-		icon: 'ph-list-bullets',
+		icon: 'ph-list-bullets-bold',
 		title: i18n.ts.lists,
 		iconOnly: true,
 		handler: chooseList,
 	},
 	{
-		icon: 'ph-flying-saucer',
+		icon: 'ph-flying-saucer-bold',
 		title: i18n.ts.antennas,
 		iconOnly: true,
 		handler: chooseAntenna,
 	} /* **TODO: fix timetravel** {
-	icon: 'ph-calendar-blank',
+	icon: 'ph-calendar-blank-bold',
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
 	handler: timetravel,
@@ -212,7 +212,7 @@ const headerTabs = $computed(() => [
 	{
 		key: 'home',
 		title: i18n.ts._timelines.home,
-		icon: 'ph-house',
+		icon: 'ph-house-bold',
 		iconOnly: true,
 	},
 	...(isLocalTimelineAvailable
@@ -220,7 +220,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'local',
 				title: i18n.ts._timelines.local,
-				icon: 'ph-users',
+				icon: 'ph-users-bold',
 				iconOnly: true,
 			},
 		]
@@ -230,7 +230,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'recommended',
 				title: i18n.ts._timelines.recommended,
-				icon: 'ph-thumbs-up',
+				icon: 'ph-thumbs-up-bold',
 				iconOnly: true,
 			},
 		]
@@ -240,7 +240,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'social',
 				title: i18n.ts._timelines.social,
-				icon: 'ph-handshake-simple',
+				icon: 'ph-handshake-simple-bold',
 				iconOnly: true,
 			},
 		]
@@ -250,7 +250,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'global',
 				title: i18n.ts._timelines.global,
-				icon: 'ph-planet',
+				icon: 'ph-planet-bold',
 				iconOnly: true,
 			},
 		]
@@ -262,14 +262,14 @@ definePageMetadata(
 		title: i18n.ts.timeline,
 		icon:
 			src === 'local'
-				? 'ph-users'
+				? 'ph-users-bold'
 				: src === 'social'
-					? 'ph-handshake-simple'
+					? 'ph-handshake-simple-bold'
 					: src === 'recommended'
-						? 'ph-thumbs-up'
+						? 'ph-thumbs-up-bold'
 						: src === 'global'
-							? 'ph-planet'
-							: 'ph-house',
+							? 'ph-planet-bold'
+							: 'ph-house-bold',
 	})),
 );
 

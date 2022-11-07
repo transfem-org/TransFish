@@ -11,7 +11,7 @@
 				@removeFolder="removeFolder"
 			/>
 			<template v-for="f in hierarchyFolders">
-				<span class="separator"><i class="ph-caret-right"></i></span>
+				<span class="separator"><i class="ph-caret-right-bold"></i></span>
 				<XNavFolder
 					:folder="f"
 					:parent-folder="folder"
@@ -21,10 +21,10 @@
 					@removeFolder="removeFolder"
 				/>
 			</template>
-			<span v-if="folder != null" class="separator"><i class="ph-caret-right"></i></span>
+			<span v-if="folder != null" class="separator"><i class="ph-caret-right-bold"></i></span>
 			<span v-if="folder != null" class="folder current">{{ folder.name }}</span>
 		</div>
-		<button class="menu _button" @click="showMenu"><i class="ph-three-dots-outline"></i></button>
+		<button class="menu _button" @click="showMenu"><i class="ph-three-dots-outline-bold"></i></button>
 	</nav>
 	<div
 		ref="main" class="main"
@@ -573,26 +573,26 @@ function getMenu() {
 		type: 'label',
 	}, {
 		text: i18n.ts.upload,
-		icon: 'ph-upload-simple',
+		icon: 'ph-upload-simple-bold',
 		action: () => { selectLocalFile(); },
 	}, {
 		text: i18n.ts.fromUrl,
-		icon: 'ph-link-simple',
+		icon: 'ph-link-simple-bold',
 		action: () => { urlUpload(); },
 	}, null, {
 		text: folder.value ? folder.value.name : i18n.ts.drive,
 		type: 'label',
 	}, folder.value ? {
 		text: i18n.ts.renameFolder,
-		icon: 'ph-cursor-text',
+		icon: 'ph-cursor-text-bold',
 		action: () => { renameFolder(folder.value); },
 	} : undefined, folder.value ? {
 		text: i18n.ts.deleteFolder,
-		icon: 'ph-trash',
+		icon: 'ph-trash-bold',
 		action: () => { deleteFolder(folder.value as Misskey.entities.DriveFolder); },
 	} : undefined, {
 		text: i18n.ts.createFolder,
-		icon: 'ph-folder-notch-plus',
+		icon: 'ph-folder-notch-plus-bold',
 		action: () => { createFolder(); },
 	}];
 }

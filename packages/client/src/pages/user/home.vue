@@ -3,8 +3,8 @@
 	<div ref="rootEl" v-size="{ max: [500] }" class="ftskorzw" :class="{ wide: !narrow }">
 		<div class="main">
 			<!-- TODO -->
-			<!-- <div class="punished" v-if="user.isSuspended"><i class="ph-warning" style="margin-right: 8px;"></i> {{ i18n.ts.userSuspended }}</div> -->
-			<!-- <div class="punished" v-if="user.isSilenced"><i class="ph-warning" style="margin-right: 8px;"></i> {{ i18n.ts.userSilenced }}</div> -->
+			<!-- <div class="punished" v-if="user.isSuspended"><i class="ph-warning-bold" style="margin-right: 8px;"></i> {{ i18n.ts.userSuspended }}</div> -->
+			<!-- <div class="punished" v-if="user.isSilenced"><i class="ph-warning-bold" style="margin-right: 8px;"></i> {{ i18n.ts.userSilenced }}</div> -->
 
 			<div class="profile">
 				<MkRemoteCaution v-if="user.host != null" :href="user.url" class="warn"/>
@@ -17,15 +17,15 @@
 							<MkUserName class="name" :user="user" :nowrap="true"/>
 							<div class="bottom">
 								<span class="username"><MkAcct :user="user" :detail="true"/></span>
-								<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple"></i></span>
+								<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-bold"></i></span>
 								<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="far fa-bookmark"></i></span>
-								<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock"></i></span>
-								<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot"></i></span>
+								<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock-bold"></i></span>
+								<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot-bold"></i></span>
 							</div>
 						</div>
 						<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
 						<div v-if="$i" class="actions">
-							<button class="menu _button" @click="menu"><i class="ph-three-dots-outline"></i></button>
+							<button class="menu _button" @click="menu"><i class="ph-three-dots-outline-bold"></i></button>
 							<MkFollowButton v-if="$i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
 					</div>
@@ -34,10 +34,10 @@
 						<MkUserName :user="user" :nowrap="false" class="name"/>
 						<div class="bottom">
 							<span class="username"><MkAcct :user="user" :detail="true"/></span>
-							<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple"></i></span>
+							<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-bold"></i></span>
 							<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="far fa-bookmark"></i></span>
-							<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock"></i></span>
-							<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot"></i></span>
+							<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock-bold"></i></span>
+							<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot-bold"></i></span>
 						</div>
 					</div>
 					<div class="description">
@@ -46,15 +46,15 @@
 					</div>
 					<div class="fields system">
 						<dl v-if="user.location" class="field">
-							<dt class="name"><i class="ph-map-pin ph-fw"></i> {{ i18n.ts.location }}</dt>
+							<dt class="name"><i class="ph-map-pin-bold ph-fw-bold"></i> {{ i18n.ts.location }}</dt>
 							<dd class="value">{{ user.location }}</dd>
 						</dl>
 						<dl v-if="user.birthday" class="field">
-							<dt class="name"><i class="ph-cake ph-fw"></i> {{ i18n.ts.birthday }}</dt>
+							<dt class="name"><i class="ph-cake-bold ph-fw-bold"></i> {{ i18n.ts.birthday }}</dt>
 							<dd class="value">{{ user.birthday.replace('-', '/').replace('-', '/') }} ({{ $t('yearsOld', { age }) }})</dd>
 						</dl>
 						<dl class="field">
-							<dt class="name"><i class="ph-calendar-blank ph-fw"></i> {{ i18n.ts.registeredDate }}</dt>
+							<dt class="name"><i class="ph-calendar-blank-bold ph-fw-bold"></i> {{ i18n.ts.registeredDate }}</dt>
 							<dd class="value">{{ new Date(user.createdAt).toLocaleString() }} (<MkTime :time="user.createdAt"/>)</dd>
 						</dl>
 					</div>

@@ -2,7 +2,7 @@
 <!-- このコンポーネントの要素のclassは親から利用されるのでむやみに弄らないこと -->
 <section>
 	<header class="_acrylic" @click="shown = !shown">
-		<i class="toggle ph-fw" :class="shown ? 'ph-caret-down' : 'ph-caret-up'"></i> <slot></slot> ({{ emojis.length }})
+		<i class="toggle ph-fw-bold" :class="shown ? 'ph-caret-down-bold' : 'ph-caret-up-bold'"></i> <slot></slot> ({{ emojis.length }})
 	</header>
 	<div v-if="shown" class="body">
 		<button

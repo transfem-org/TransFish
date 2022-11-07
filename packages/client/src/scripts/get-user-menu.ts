@@ -153,70 +153,70 @@ export function getUserMenu(user, router: Router = mainRouter) {
 	}
 
 	let menu = [{
-		icon: 'ph-at',
+		icon: 'ph-at-bold',
 		text: i18n.ts.copyUsername,
 		action: () => {
 			copyToClipboard(`@${user.username}@${user.host || host}`);
 		},
 	}, {
-		icon: 'ph-info',
+		icon: 'ph-info-bold',
 		text: i18n.ts.info,
 		action: () => {
 			router.push(`/user-info/${user.id}`);
 		},
 	}, {
-		icon: 'ph-envelope-simple-open',
+		icon: 'ph-envelope-simple-open-bold',
 		text: i18n.ts.sendMessage,
 		action: () => {
 			os.post({ specified: user });
 		},
 	}, meId !== user.id ? {
 		type: 'link',
-		icon: 'ph-chats-teardrop',
+		icon: 'ph-chats-teardrop-bold',
 		text: i18n.ts.startMessaging,
 		to: '/my/messaging/' + Acct.toString(user),
 	} : undefined, null, {
-		icon: 'ph-list-bullets',
+		icon: 'ph-list-bullets-bold',
 		text: i18n.ts.addToList,
 		action: pushList,
 	}, meId !== user.id ? {
-		icon: 'ph-users',
+		icon: 'ph-users-bold',
 		text: i18n.ts.inviteToGroup,
 		action: inviteGroup,
 	} : undefined] as any;
 
 	if ($i && meId !== user.id) {
 		menu = menu.concat([null, {
-			icon: user.isMuted ? 'ph-eye' : 'ph-eye-slash',
+			icon: user.isMuted ? 'ph-eye-bold' : 'ph-eye-slash-bold',
 			text: user.isMuted ? i18n.ts.unmute : i18n.ts.mute,
 			action: toggleMute,
 		}, {
-			icon: 'ph-prohibit',
+			icon: 'ph-prohibit-bold',
 			text: user.isBlocking ? i18n.ts.unblock : i18n.ts.block,
 			action: toggleBlock,
 		}]);
 
 		if (user.isFollowed) {
 			menu = menu.concat([{
-				icon: 'ph-link-break',
+				icon: 'ph-link-break-bold',
 				text: i18n.ts.breakFollow,
 				action: invalidateFollow,
 			}]);
 		}
 
 		menu = menu.concat([null, {
-			icon: 'ph-warning-circle',
+			icon: 'ph-warning-circle-bold',
 			text: i18n.ts.reportAbuse,
 			action: reportAbuse,
 		}]);
 
 		if (iAmModerator) {
 			menu = menu.concat([null, {
-				icon: 'ph-microphone-slash',
+				icon: 'ph-microphone-slash-bold',
 				text: user.isSilenced ? i18n.ts.unsilence : i18n.ts.silence,
 				action: toggleSilence,
 			}, {
-				icon: 'ph-snowflake',
+				icon: 'ph-snowflake-bold',
 				text: user.isSuspended ? i18n.ts.unsuspend : i18n.ts.suspend,
 				action: toggleSuspend,
 			}]);
@@ -225,7 +225,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 
 	if ($i && meId === user.id) {
 		menu = menu.concat([null, {
-			icon: 'ph-pencil',
+			icon: 'ph-pencil-bold',
 			text: i18n.ts.editProfile,
 			action: () => {
 				router.push('/settings/profile');
@@ -235,7 +235,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 
 	if (userActions.length > 0) {
 		menu = menu.concat([null, ...userActions.map(action => ({
-			icon: 'ph-plug',
+			icon: 'ph-plug-bold',
 			text: action.title,
 			action: () => {
 				action.handler(user);

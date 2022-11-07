@@ -6,23 +6,23 @@
 >
 	<template v-if="!wait">
 		<template v-if="hasPendingFollowRequestFromYou && user.isLocked">
-			<span v-if="full">{{ i18n.ts.followRequestPending }}</span><i class="ph-hourglass-medium"></i>
+			<span v-if="full">{{ i18n.ts.followRequestPending }}</span><i class="ph-hourglass-medium-bold"></i>
 		</template>
 		<template v-else-if="hasPendingFollowRequestFromYou && !user.isLocked"> <!-- つまりリモートフォローの場合。 -->
-			<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch fa-pulse"></i>
+			<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold fa-pulse"></i>
 		</template>
 		<template v-else-if="isFollowing">
-			<span v-if="full">{{ i18n.ts.unfollow }}</span><i class="ph-minus"></i>
+			<span v-if="full">{{ i18n.ts.unfollow }}</span><i class="ph-minus-bold"></i>
 		</template>
 		<template v-else-if="!isFollowing && user.isLocked">
-			<span v-if="full">{{ i18n.ts.followRequest }}</span><i class="ph-plus"></i>
+			<span v-if="full">{{ i18n.ts.followRequest }}</span><i class="ph-plus-bold"></i>
 		</template>
 		<template v-else-if="!isFollowing && !user.isLocked">
-			<span v-if="full">{{ i18n.ts.follow }}</span><i class="ph-plus"></i>
+			<span v-if="full">{{ i18n.ts.follow }}</span><i class="ph-plus-bold"></i>
 		</template>
 	</template>
 	<template v-else>
-		<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch fa-pulse ph-fw"></i>
+		<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold fa-pulse ph-fw-bold"></i>
 	</template>
 </button>
 </template>

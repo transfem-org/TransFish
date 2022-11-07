@@ -4,7 +4,7 @@
 	<template #header><i v-if="icon" :class="icon"></i> <template v-if="title">{{ title }} <span v-if="typeText" class="turmquns">({{ typeText }})</span></template><template v-else-if="typeText">{{ typeText }}</template></template>
 	<template #func>
 		<button class="_button" @click="changeType()">
-			<i class="ph-pencil"></i>
+			<i class="ph-pencil-bold"></i>
 		</button>
 	</template>
 
@@ -116,7 +116,7 @@ export default defineComponent({
 	computed: {
 		icon(): any {
 			if (this.modelValue.type === null) return null;
-			if (this.modelValue.type.startsWith('fn:')) return 'ph-plug';
+			if (this.modelValue.type.startsWith('fn:')) return 'ph-plug-bold';
 			return blockDefs.find(x => x.type === this.modelValue.type).icon;
 		},
 		typeText(): any {

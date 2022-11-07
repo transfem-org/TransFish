@@ -34,7 +34,7 @@ function clear() {
 
 const headerActions = $computed(() => [{
 	asFullButton: true,
-	icon: 'ph-arrow-square-up-right',
+	icon: 'ph-arrow-square-up-right-bold',
 	text: i18n.ts.dashboard,
 	handler: () => {
 		window.open(config.url + '/queue', '_blank');
@@ -51,6 +51,6 @@ const headerTabs = $computed(() => [{
 
 definePageMetadata({
 	title: i18n.ts.jobQueue,
-	icon: 'ph-clipboard-text',
+	icon: 'ph-clipboard-text-bold',
 });
 </script>

@@ -58,7 +58,7 @@ function onContextmenu(ev: MouseEvent) {
 		type: 'label',
 		text: path,
 	}, {
-		icon: 'ph-browser',
+		icon: 'ph-browser-bold',
 		text: i18n.ts.openInWindow,
 		action: () => {
 			os.pageWindow(path);

@@ -13,7 +13,7 @@
 						</div>
 						<div class="action">
 							<button class="_button" @click="removeUser(user)">
-								<i class="ph-x"></i>
+								<i class="ph-x-bold"></i>
 							</button>
 						</div>
 					</div>
@@ -123,25 +123,25 @@ async function deleteGroup() {
 definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.members,
-		icon: "ph-users",
+		icon: "ph-users-bold",
 	})),
 );
 
 const headerActions = $computed(() => [
 	{
-		icon: 'ph-plus',
+		icon: 'ph-plus-bold',
 		text: i18n.ts.invite,
 		handler: invite,
 	}, {
-		icon: 'ph-cursor-text',
+		icon: 'ph-cursor-text-bold',
 		text: i18n.ts.rename,
 		handler: renameGroup,
 	}, {
-		icon: 'ph-arrows-left-right',
+		icon: 'ph-arrows-left-right-bold',
 		text: i18n.ts.transfer,
 		handler: transfer,
 	}, {
-		icon: 'ph-trash',
+		icon: 'ph-trash-bold',
 		text: i18n.ts.delete,
 		handler: deleteGroup,
 	},
