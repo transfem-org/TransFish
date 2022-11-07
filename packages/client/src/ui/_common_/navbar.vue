@@ -283,6 +283,7 @@ function more(ev: MouseEvent) {
 					&:hover, &.active {
 						&:before {
 							background: var(--accentLighten);
+							transition: all 0.4s ease;
 						}
 					}
 
@@ -373,6 +374,7 @@ function more(ev: MouseEvent) {
 					&:hover {
 						text-decoration: none;
 						color: var(--navHoverFg);
+						transition: all 0.4s ease;
 					}
 
 					&.active {
@@ -381,6 +383,7 @@ function more(ev: MouseEvent) {
 
 					&:hover, &.active {
 						color: var(--accent);
+						transition: all 0.4s ease;
 
 						&:before {
 							content: "";
@@ -466,6 +469,7 @@ function more(ev: MouseEvent) {
 					&:hover, &.active {
 						&:before {
 							background: var(--accentLighten);
+							transition: all 0.4s ease;
 						}
 					}
 
@@ -534,6 +538,7 @@ function more(ev: MouseEvent) {
 					&:hover, &.active {
 						text-decoration: none;
 						color: var(--accent);
+						transition: all 0.4s ease;
 
 						&:before {
 							content: "";
