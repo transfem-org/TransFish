@@ -36,7 +36,7 @@
 					<MkAcct :user="u"/>
 					<button class="_button" @click="removeVisibleUser(u)"><i class="ph-x-bold"></i></button>
 				</span>
-				<button class="_buttonPrimary" @click="addVisibleUser"><i class="ph-plus-bold ph-fw-bold"></i></button>
+				<button class="_buttonPrimary" @click="addVisibleUser"><i class="ph-plus-bold ph-fw"></i></button>
 			</div>
 		</div>
 		<MkInfo v-if="hasNotSpecifiedMentions" warn class="hasNotSpecifiedMentions">{{ i18n.ts.notSpecifiedMentionWarning }} - <button class="_textButton" @click="addMissingMention()">{{ i18n.ts.add }}</button></MkInfo>

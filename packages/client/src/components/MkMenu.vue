@@ -16,13 +16,13 @@
 				<span><MkEllipsis/></span>
 			</span>
 			<MkA v-else-if="item.type === 'link'" :to="item.to" :tabindex="i" class="_button item" @click.passive="close(true)" @mouseenter.passive="onItemMouseEnter(item)" @mouseleave.passive="onItemMouseLeave(item)">
-				<i v-if="item.icon" class="ph-fw-bold" :class="item.icon"></i>
+				<i v-if="item.icon" class="ph-fw" :class="item.icon"></i>
 				<MkAvatar v-if="item.avatar" :user="item.avatar" class="avatar"/>
 				<span>{{ item.text }}</span>
 				<span v-if="item.indicate" class="indicator"><i class="ph-circle-bold"></i></span>
 			</MkA>
 			<a v-else-if="item.type === 'a'" :href="item.href" :target="item.target" :download="item.download" :tabindex="i" class="_button item" @click="close(true)" @mouseenter.passive="onItemMouseEnter(item)" @mouseleave.passive="onItemMouseLeave(item)">
-				<i v-if="item.icon" class="ph-fw-bold" :class="item.icon"></i>
+				<i v-if="item.icon" class="ph-fw" :class="item.icon"></i>
 				<span>{{ item.text }}</span>
 				<span v-if="item.indicate" class="indicator"><i class="ph-circle-bold"></i></span>
 			</a>
@@ -34,12 +34,12 @@
 				<FormSwitch v-model="item.ref" :disabled="item.disabled" class="form-switch">{{ item.text }}</FormSwitch>
 			</span>
 			<button v-else-if="item.type === 'parent'" :tabindex="i" class="_button item parent" :class="{ childShowing: childShowingItem === item }" @mouseenter="showChildren(item, $event)">
-				<i v-if="item.icon" class="ph-fw-bold" :class="item.icon"></i>
+				<i v-if="item.icon" class="ph-fw" :class="item.icon"></i>
 				<span>{{ item.text }}</span>
-				<span class="caret"><i class="ph-caret-right-bold ph-fw-bold"></i></span>
+				<span class="caret"><i class="ph-caret-right-bold ph-fw"></i></span>
 			</button>
 			<button v-else :tabindex="i" class="_button item" :class="{ danger: item.danger, active: item.active }" :disabled="item.active" @click="clicked(item.action, $event)" @mouseenter.passive="onItemMouseEnter(item)" @mouseleave.passive="onItemMouseLeave(item)">
-				<i v-if="item.icon" class="ph-fw-bold" :class="item.icon"></i>
+				<i v-if="item.icon" class="ph-fw" :class="item.icon"></i>
 				<MkAvatar v-if="item.avatar" :user="item.avatar" class="avatar"/>
 				<span>{{ item.text }}</span>
 				<span v-if="item.indicate" class="indicator"><i class="ph-circle-bold"></i></span>

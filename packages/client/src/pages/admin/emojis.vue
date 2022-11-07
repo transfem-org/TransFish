@@ -277,7 +277,7 @@ const headerActions = $computed(() => [{
 	text: i18n.ts.addEmoji,
 	handler: add,
 }, {
-	icon: 'ph-three-dots-outline-bold',
+	icon: 'ph-dots-three-outline-bold',
 	handler: menu,
 }]);
 

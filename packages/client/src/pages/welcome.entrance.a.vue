@@ -21,7 +21,7 @@
 		</div>
 		<div class="main">
 			<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
-			<button class="_button _acrylic menu" @click="showMenu"><i class="ph-three-dots-outline-bold"></i></button>
+			<button class="_button _acrylic menu" @click="showMenu"><i class="ph-dots-three-outline-bold"></i></button>
 			<div class="fg">
 				<h1>
 					<!-- 背景色によってはロゴが見えなくなるのでとりあえず無効に -->

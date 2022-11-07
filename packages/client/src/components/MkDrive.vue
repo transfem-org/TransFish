@@ -24,7 +24,7 @@
 			<span v-if="folder != null" class="separator"><i class="ph-caret-right-bold"></i></span>
 			<span v-if="folder != null" class="folder current">{{ folder.name }}</span>
 		</div>
-		<button class="menu _button" @click="showMenu"><i class="ph-three-dots-outline-bold"></i></button>
+		<button class="menu _button" @click="showMenu"><i class="ph-dots-three-outline-bold"></i></button>
 	</nav>
 	<div
 		ref="main" class="main"

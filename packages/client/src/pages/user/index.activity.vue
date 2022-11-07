@@ -3,7 +3,7 @@
 	<template #header><i class="ph-chart-bar-bold" style="margin-right: 0.5em;"></i>{{ $ts.activity }}</template>
 	<template #func>
 		<button class="_button" @click="showMenu">
-			<i class="ph-three-dots-outline-bold"></i>
+			<i class="ph-dots-three-outline-bold"></i>
 		</button>
 	</template>
 

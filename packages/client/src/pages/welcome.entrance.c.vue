@@ -41,7 +41,7 @@
 							<template #n><b>{{ onlineUsersCount }}</b></template>
 						</I18n>
 					</div>
-					<button class="_button _acrylic menu" @click="showMenu"><i class="ph-three-dots-outline-bold"></i></button>
+					<button class="_button _acrylic menu" @click="showMenu"><i class="ph-dots-three-outline-bold"></i></button>
 				</div>
 			</div>
 			<nav class="nav">

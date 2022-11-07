@@ -42,6 +42,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.other,
-	icon: 'ph-three-dots-outline-bold',
+	icon: 'ph-dots-three-outline-bold',
 });
 </script>

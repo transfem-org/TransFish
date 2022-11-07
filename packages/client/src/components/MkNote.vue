@@ -25,7 +25,7 @@
 		</I18n>
 		<div class="info">
 			<button ref="renoteTime" class="_button time" @click="showRenoteMenu()">
-				<i v-if="isMyRenote" class="ph-three-dots-outline-bold dropdownIcon"></i>
+				<i v-if="isMyRenote" class="ph-dots-three-outline-bold dropdownIcon"></i>
 				<MkTime :time="note.createdAt"/>
 			</button>
 			<MkVisibility :note="note"/>
@@ -86,7 +86,7 @@
 				</button>
 				<XQuoteButton class="button" :note="appearNote"/>
 				<button ref="menuButton" class="button _button" @click="menu()">
-					<i class="ph-three-dots-outline-bold"></i>
+					<i class="ph-dots-three-outline-bold"></i>
 				</button>
 			</footer>
 		</div>

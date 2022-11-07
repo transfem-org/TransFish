@@ -5,7 +5,7 @@
 		<div class="name"><i class="ph-television-bold"></i> {{ channel.name }}</div>
 		<div class="status">
 			<div>
-				<i class="ph-users-bold ph-fw-bold"></i>
+				<i class="ph-users-bold ph-fw"></i>
 				<I18n :src="i18n.ts._channel.usersCount" tag="span" style="margin-left: 4px;">
 					<template #n>
 						<b>{{ channel.usersCount }}</b>
@@ -13,7 +13,7 @@
 				</I18n>
 			</div>
 			<div>
-				<i class="ph-pencil-bold ph-fw-bold"></i>
+				<i class="ph-pencil-bold ph-fw"></i>
 				<I18n :src="i18n.ts._channel.notesCount" tag="span" style="margin-left: 4px;">
 					<template #n>
 						<b>{{ channel.notesCount }}</b>

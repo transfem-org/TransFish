@@ -25,7 +25,7 @@
 						</div>
 						<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
 						<div v-if="$i" class="actions">
-							<button class="menu _button" @click="menu"><i class="ph-three-dots-outline-bold"></i></button>
+							<button class="menu _button" @click="menu"><i class="ph-dots-three-outline-bold"></i></button>
 							<MkFollowButton v-if="$i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
 					</div>
@@ -46,15 +46,15 @@
 					</div>
 					<div class="fields system">
 						<dl v-if="user.location" class="field">
-							<dt class="name"><i class="ph-map-pin-bold ph-fw-bold"></i> {{ i18n.ts.location }}</dt>
+							<dt class="name"><i class="ph-map-pin-bold ph-fw"></i> {{ i18n.ts.location }}</dt>
 							<dd class="value">{{ user.location }}</dd>
 						</dl>
 						<dl v-if="user.birthday" class="field">
-							<dt class="name"><i class="ph-cake-bold ph-fw-bold"></i> {{ i18n.ts.birthday }}</dt>
+							<dt class="name"><i class="ph-cake-bold ph-fw"></i> {{ i18n.ts.birthday }}</dt>
 							<dd class="value">{{ user.birthday.replace('-', '/').replace('-', '/') }} ({{ $t('yearsOld', { age }) }})</dd>
 						</dl>
 						<dl class="field">
-							<dt class="name"><i class="ph-calendar-blank-bold ph-fw-bold"></i> {{ i18n.ts.registeredDate }}</dt>
+							<dt class="name"><i class="ph-calendar-blank-bold ph-fw"></i> {{ i18n.ts.registeredDate }}</dt>
 							<dd class="value">{{ new Date(user.createdAt).toLocaleString() }} (<MkTime :time="user.createdAt"/>)</dd>
 						</dl>
 					</div>

@@ -13,7 +13,7 @@
 		</template>
 	</template>
 	<template v-else>
-		<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold fa-pulse ph-fw-bold"></i>
+		<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold fa-pulse ph-fw"></i>
 	</template>
 </button>
 </template>

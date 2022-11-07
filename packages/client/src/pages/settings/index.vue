@@ -164,7 +164,7 @@ const menuDef = computed(() => [{
 		to: '/settings/webhook',
 		active: currentPage?.route.name === 'webhook',
 	}, {
-		icon: 'ph-three-dots-outline-bold',
+		icon: 'ph-dots-three-outline-bold',
 		text: i18n.ts.other,
 		to: '/settings/other',
 		active: currentPage?.route.name === 'other',

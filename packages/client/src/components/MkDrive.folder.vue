@@ -16,8 +16,8 @@
 	@dragend="onDragend"
 >
 	<p class="name">
-		<template v-if="hover"><i class="ph-folder-notch-open-bold ph-fw-bold"></i></template>
-		<template v-if="!hover"><i class="ph-folder-notch-bold ph-fw-bold"></i></template>
+		<template v-if="hover"><i class="ph-folder-notch-open-bold ph-fw"></i></template>
+		<template v-if="!hover"><i class="ph-folder-notch-bold ph-fw"></i></template>
 		{{ folder.name }}
 	</p>
 	<p v-if="defaultStore.state.uploadFolder == folder.id" class="upload">

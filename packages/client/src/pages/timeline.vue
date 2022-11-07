@@ -240,7 +240,7 @@ const headerTabs = $computed(() => [
 			{
 				key: 'social',
 				title: i18n.ts._timelines.social,
-				icon: 'ph-handshake-simple-bold',
+				icon: 'ph-handshake-bold',
 				iconOnly: true,
 			},
 		]
@@ -264,7 +264,7 @@ definePageMetadata(
 			src === 'local'
 				? 'ph-users-bold'
 				: src === 'social'
-					? 'ph-handshake-simple-bold'
+					? 'ph-handshake-bold'
 					: src === 'recommended'
 						? 'ph-thumbs-up-bold'
 						: src === 'global'
