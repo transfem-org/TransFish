@@ -373,7 +373,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 
 			> .button-wrapper {
 
-				&.on {
+				&.active {
 					background-color: var(--accentedBg);
 					width: 100%;
 					border-radius: 999px;
