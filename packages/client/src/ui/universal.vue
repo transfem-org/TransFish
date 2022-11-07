@@ -134,20 +134,29 @@ const drawerMenuShowing = ref(false);
 
 mainRouter.on('change', () => {
 	drawerMenuShowing.value = false;
-	const routerState = mainRouter.currentRoute.value.name;
-	if (routerState === 'index') {
+});
+
+function updateButtonState(): void {
+	let routerState = window.location.href;
+	let secondaryRouterState = mainRouter.currentRoute.value.name;
+	if (secondaryRouterState != null && secondaryRouterState === 'index') {
 		buttonAnimIndex.value = 0;
+		return;
 	}
-	else if (window.location.href.includes('notifications')) {
+	if (routerState.includes('notifications')) {
 		buttonAnimIndex.value = 1;
 	}
-	else if (window.location.href.includes('messaging')) {
+	else if (routerState.includes('messaging')) {
 		buttonAnimIndex.value = 2;
 	}
 	else {
-		buttonAnimIndex.value = 0;
+		buttonAnimIndex.value = 3;
 	}
-});
+}
+
+updateButtonState();
+
+watch($$(window.location.href), () => (updateButtonState()));
 
 document.documentElement.style.overflowY = 'scroll';
 
@@ -383,6 +392,17 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 				background-color: var(--accentedBg);
 				background-size: 100%;
 				transition: background 0.1s;
+			}
+
+			> .button-wrapper {
+				> .indicator {
+					position: absolute;
+					top: 0;
+					left: 0;
+					color: var(--indicator);
+					font-size: 16px;
+					animation: blink 1s infinite;
+				}
 			}
 
 			> .button-wrapper.on {
