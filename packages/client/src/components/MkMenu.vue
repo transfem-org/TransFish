@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, onUnmounted, Ref, ref, watch } from 'vue';
+import { computed, menu, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, onUnmounted, Ref, ref, watch } from 'vue';
 import { focusPrev, focusNext } from '@/scripts/focus';
 import FormSwitch from '@/components/form/switch.vue';
 import { MenuItem, InnerMenuItem, MenuPending, MenuAction } from '@/types/menu';
@@ -84,7 +84,7 @@ let items2: InnerMenuItem[] = $ref([]);
 
 let child = $ref<InstanceType<typeof XChild>>();
 
-let keymap = $computed(() => ({
+let keymap = computed(() => ({
 	'up|k|shift+tab': focusUp,
 	'down|j|tab': focusDown,
 	'esc': close,
@@ -226,6 +226,10 @@ onBeforeUnmount(() => {
 
 		> * {
 			position: relative;
+		}
+
+		> &.icon {
+			transform: translateY(0em);
 		}
 
 		&:not(:disabled):hover {

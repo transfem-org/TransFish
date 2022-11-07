@@ -290,6 +290,7 @@ function more(ev: MouseEvent) {
 						position: relative;
 						left: 3rem;
 						color: var(--fgOnAccent);
+						transform: translateY(0em)
 					}
 
 					> .text {
@@ -352,6 +353,7 @@ function more(ev: MouseEvent) {
 						position: relative;
 						width: 32px;
 						margin-right: 8px;
+						transform: translateY(-0.15em);
 					}
 
 					> .indicator {
@@ -425,6 +427,7 @@ function more(ev: MouseEvent) {
 						display: inline-block;
 						width: 40px;
 						aspect-ratio: 1;
+						transform: translateY(0em);
 					}
 				}
 			}
@@ -469,6 +472,7 @@ function more(ev: MouseEvent) {
 					> .icon {
 						position: relative;
 						color: var(--fgOnAccent);
+						transform: translate(0.15em, 0em)
 					}
 
 					> .text {
@@ -511,6 +515,7 @@ function more(ev: MouseEvent) {
 						display: block;
 						margin: 0 auto;
 						opacity: 0.7;
+						transform: translateY(0em);
 					}
 
 					> .text {
