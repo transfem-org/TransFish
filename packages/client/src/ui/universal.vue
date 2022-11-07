@@ -138,7 +138,7 @@ mainRouter.on('change', () => {
 	console.log(routerState);
 	const bottomButtons = ['index', 'notifications', 'messaging'];
 	bottomButtons.forEach(i => {
-		if (routerState?.includes(i)) {
+		if (routerState?.includes(i) || window.location.href.includes(i)) {
 			buttonAnimIndex.value = bottomButtons.findIndex(j => j.includes(i));
 		}
 	});
