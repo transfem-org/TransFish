@@ -353,7 +353,7 @@ function more(ev: MouseEvent) {
 						position: relative;
 						width: 32px;
 						margin-right: 8px;
-						transform: translateY(-0.15em);
+						transform: translateY(0.15em);
 					}
 
 					> .indicator {

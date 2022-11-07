@@ -1,5 +1,5 @@
 <template>
-<MkWindow ref="window"
+<MkModal ref="window"
 	:initial-width="null"
 	:initial-height="null"
 	:can-resize="false"
@@ -8,12 +8,12 @@
 	@closed="emit('closed')"
 >
 	<MkEmojiPicker :show-pinned="showPinned" :as-reaction-picker="asReactionPicker" @chosen="chosen"/>
-</MkWindow>
+</MkModal>
 </template>
 
 <script lang="ts" setup>
 import { } from 'vue';
-import MkWindow from '@/components/MkWindow.vue';
+import MkModal from '@/components/MkModal.vue';
 import MkEmojiPicker from '@/components/MkEmojiPicker.vue';
 
 withDefaults(defineProps<{
