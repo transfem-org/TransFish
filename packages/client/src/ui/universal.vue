@@ -134,14 +134,19 @@ const drawerMenuShowing = ref(false);
 
 mainRouter.on('change', () => {
 	drawerMenuShowing.value = false;
-	let routerState = mainRouter.currentRoute.value.name;
-	console.log(routerState);
-	const bottomButtons = ['index', 'notifications', 'messaging'];
-	bottomButtons.forEach(i => {
-		if (routerState?.includes(i) || window.location.href.includes(i)) {
-			buttonAnimIndex.value = bottomButtons.findIndex(j => j.includes(i));
-		}
-	});
+	const routerState = mainRouter.currentRoute.value.name;
+	if (routerState === 'index') {
+		buttonAnimIndex.value = 0;
+	}
+	else if (window.location.href.includes('my/notifications')) {
+		buttonAnimIndex.value = 1;
+	}
+	else if (window.location.href.includes('my/messaging')) {
+		buttonAnimIndex.value = 2;
+	}
+	else {
+		buttonAnimIndex.value = 3;
+	}
 });
 
 document.documentElement.style.overflowY = 'scroll';
