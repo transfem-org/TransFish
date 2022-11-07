@@ -513,7 +513,7 @@ export async function openEmojiPicker(src?: HTMLElement, opts, initialTextarea: 
 		characterData: false,
 	});
 
-	openingEmojiPicker = await popup(defineAsyncComponent(() => import('@/components/MkEmojiPickerWindow.vue')), {
+	openingEmojiPicker = await popup(defineAsyncComponent(() => import('@/components/MkEmojiPickerDialog.vue')), {
 		src,
 		...opts,
 	}, {
