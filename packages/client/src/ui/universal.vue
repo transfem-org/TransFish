@@ -107,7 +107,7 @@ window.addEventListener('resize', () => {
 	isMobile.value = deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD;
 });
 
-let buttonAnimIndex = 0;
+let buttonAnimIndex = ref(0);
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
@@ -124,7 +124,7 @@ provideMetadataReceiver((info) => {
 
 const menuIndicated = computed(() => {
 	for (const def in navbarItemDef) {
-		// if (def === 'notifications') continue; // 通知は下にボタンとして表示されてるから
+		if (def === 'notifications') continue; // 通知は下にボタンとして表示されてるから
 		if (navbarItemDef[def].indicated) return true;
 	}
 	return false;
@@ -138,8 +138,8 @@ mainRouter.on('change', () => {
 	console.log(routerState);
 	const bottomButtons = ['index', 'notifications', 'messaging'];
 	bottomButtons.forEach(i => {
-		if (routerState.includes(i)) {
-			buttonAnimIndex = bottomButtons.findIndex(j => j.includes(i));
+		if (routerState?.includes(i)) {
+			buttonAnimIndex.value = bottomButtons.findIndex(j => j.includes(i));
 		}
 	});
 });
