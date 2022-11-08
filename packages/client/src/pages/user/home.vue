@@ -17,8 +17,8 @@
 							<MkUserName class="name" :user="user" :nowrap="true"/>
 							<div class="bottom">
 								<span class="username"><MkAcct :user="user" :detail="true"/></span>
-								<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-bold ph-lg"></i></span>
-								<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="far fa-bookmark"></i></span>
+								<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-fill ph-lg"></i></span>
+								<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="ph-bookmark-simple-bold"></i></span>
 								<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock-bold ph-lg"></i></span>
 								<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot-bold ph-lg"></i></span>
 							</div>
@@ -34,8 +34,8 @@
 						<MkUserName :user="user" :nowrap="false" class="name"/>
 						<div class="bottom">
 							<span class="username"><MkAcct :user="user" :detail="true"/></span>
-							<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-bold ph-lg"></i></span>
-							<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="far fa-bookmark"></i></span>
+							<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-fill ph-lg"></i></span>
+							<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="ph-bookmark-simple-bold"></i></span>
 							<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock-bold ph-lg"></i></span>
 							<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot-bold ph-lg"></i></span>
 						</div>
