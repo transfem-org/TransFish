@@ -118,5 +118,7 @@ sudo docker compose up -d
 
 ## 😉 Tips & Tricks
 
-- To generate ServiceWorker keys, run `npx web-push generate-vapid-keys`
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off. 
+- For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
+- For translations, make a [DeepL](https://deepl.com) account and generate an API key, then put it into Control Panel > General > DeepL Translation.
+- For link previews, go to Control Panel > Security > Summaly Proxy and put in `https://summaly.arkjp.net`.
