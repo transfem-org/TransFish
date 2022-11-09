@@ -2,7 +2,7 @@
 <XModalWindow
 	ref="dialog"
 	:width="800"
-	:height="500"
+	:height="1000"
 	:scroll="false"
 	@close="dialog.close()"
 	@closed="$emit('closed')"
@@ -11,64 +11,84 @@
 
 	<div class="_monolithic_">
 		<div class="_section">
-			<div class="_title"><i class="ph-info-bold ph-lg"></i> {{ i18n.ts._tutorial.title }}</div>
-			<div v-if="tutorial === 0" class="_content">
-				<div>{{ i18n.ts._tutorial.step1_1 }}</div>
-				<div>{{ i18n.ts._tutorial.step1_2 }}</div>
-			</div>
-			<div v-else-if="tutorial === 1" class="_content">
-				<div>{{ i18n.ts._tutorial.step2_1 }}</div>
-				<div>{{ i18n.ts._tutorial.step2_2 }}</div>
-				<XSettings/>
-			</div>
-			<div v-else-if="tutorial === 2" class="_content">
-				<div>{{ i18n.ts._tutorial.step3_1 }}</div>
-				<div>{{ i18n.ts._tutorial.step3_2 }}</div>
-				<XFeaturedUsers/>
-			</div>
-			<div v-else-if="tutorial === 3" class="_content">
-				<div>{{ i18n.ts._tutorial.step4_1 }}</div>
-				<div>{{ i18n.ts._tutorial.step4_2 }}</div>
-			</div>
-			<div v-else-if="tutorial === 4" class="_content">
-				<div>{{ i18n.ts._tutorial.step5_1 }}</div>
-				<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
-					<template #featured>
-						<MkA class="_link" to="/featured">{{ i18n.ts.featured }}</MkA>
-					</template>
-					<template #explore>
-						<MkA class="_link" to="/explore">{{ i18n.ts.explore }}</MkA>
-					</template>
-				</I18n>
-				<div>{{ i18n.ts._tutorial.step5_3 }}</div>
-				<small>{{ i18n.ts._tutorial.step5_4 }}</small>
-			</div>
-			<div v-else-if="tutorial === 5" class="_content">
-				<div>{{ i18n.ts._tutorial.step6_1 }}</div>
-				<div>{{ i18n.ts._tutorial.step6_2 }}</div>
-				<div>{{ i18n.ts._tutorial.step6_3 }}</div>
-			</div>
-			<div v-else-if="tutorial === 6" class="_content">
-				<div>{{ i18n.ts._tutorial.step7_1 }}</div>
-				<I18n :src="i18n.ts._tutorial.step7_2" tag="div">
-					<template #help>
-						<a href="https://misskey-hub.net/help.html" target="_blank" class="_link">{{ i18n.ts.help }}</a>
-					</template>
-				</I18n>
-				<div>{{ i18n.ts._tutorial.step7_3 }}</div>
-			</div>
-			<div class="_footer navigation">
-				<div class="step">
-					<button class="arrow _button" :disabled="tutorial === 0" @click="tutorial--">
-						<i class="ph-caret-left-bold ph-lg"></i>
-					</button>
-					<span>{{ tutorial + 1 }} / 7</span>
-					<button class="arrow _button" :disabled="tutorial === 6" @click="tutorial++">
-						<i class="ph-caret-right-bold ph-lg"></i>
-					</button>
+			<div class="tbkwesmv">
+				<div class="_title title"><i class="ph-info-bold ph-lg"></i> {{ i18n.ts._tutorial.title }}</div>
+				<br/>
+				<div v-if="tutorial === 0" class="_content">
+					<div>{{ i18n.ts._tutorial.step1_1 }}</div>
+					<div>{{ i18n.ts._tutorial.step1_2 }}</div>
 				</div>
-				<MkButton v-if="tutorial === 6" class="ok" primary @click="close"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
-				<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
+				<div v-else-if="tutorial === 1" class="_content">
+					<div>{{ i18n.ts._tutorial.step2_1 }}</div>
+					<div>{{ i18n.ts._tutorial.step2_2 }}</div>
+					<XSettings/>
+				</div>
+				<div v-else-if="tutorial === 2" class="_content">
+					<div>{{ i18n.ts._tutorial.step3_1 }}</div>
+					<div>{{ i18n.ts._tutorial.step3_2 }}</div>
+					<XFeaturedUsers/>
+				</div>
+				<div v-else-if="tutorial === 3" class="_content">
+					<div>{{ i18n.ts._tutorial.step4_1 }}</div>
+					<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
+						<template #introduction>
+							<MkA class="_link" to="/tags/introduction">#introduction</MkA>
+						</template>
+					</I18n>
+					<XPostForm class="post-form _block"/>
+				</div>
+				<div v-else-if="tutorial === 4" class="_content">
+					<div>{{ i18n.ts._tutorial.step5_1 }}</div>
+					<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
+						<template #timelines>
+							<span>{{ timelines.length }}</span>
+						</template>
+					</I18n>
+					<I18n :src="i18n.ts._tutorial.step5_3" tag="div">
+						<template #icon>
+							<i class="ph-house-bold ph-lg"/>
+						</template>
+					</I18n>
+					<I18n v-if="timelines.includes('local')" :src="i18n.ts._tutorial.step5_4" tag="div">
+						<template #icon>
+							<i class="ph-users-bold ph-lg"/>
+						</template>
+					</I18n>
+					<I18n v-if="timelines.includes('recommended')" :src="i18n.ts._tutorial.step5_5" tag="div">
+						<template #icon>
+							<i class="ph-thumbs-up-bold ph-lg"/>
+						</template>
+					</I18n>
+					<I18n v-if="timelines.includes('social')" :src="i18n.ts._tutorial.step5_6" tag="div">
+						<template #icon>
+							<i class="ph-handshake-bold ph-lg"/>
+						</template>
+					</I18n>
+					<I18n v-if="timelines.includes('global')" :src="i18n.ts._tutorial.step5_7" tag="div">
+						<template #icon>
+							<i class="ph-planet-bold ph-lg"/>
+						</template>
+					</I18n>
+				</div>
+				<div v-else-if="tutorial === 5" class="_content">
+					<div>{{ i18n.ts._tutorial.step6_1 }}</div>
+					<div>{{ i18n.ts._tutorial.step6_2 }}</div>
+					<div>{{ i18n.ts._tutorial.step6_3 }}</div>
+					<div>{{ i18n.ts._tutorial.step6_4 }}</div>
+				</div>
+				<div class="_footer navigation">
+					<div class="step">
+						<button class="arrow _button" :disabled="tutorial === 0" @click="tutorial--">
+							<i class="ph-caret-left-bold ph-lg"></i>
+						</button>
+						<span>{{ tutorial + 1 }} / 6</span>
+						<button class="arrow _button" :disabled="tutorial === 5" @click="tutorial++">
+							<i class="ph-caret-right-bold ph-lg"></i>
+						</button>
+					</div>
+					<MkButton v-if="tutorial === 5" class="ok" primary @click="close"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
+					<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -81,8 +101,36 @@ import XSettings from '@/pages/settings/profile.vue';
 import XModalWindow from '@/components/MkModalWindow.vue';
 import MkButton from '@/components/MkButton.vue';
 import XFeaturedUsers from '@/pages/explore.users.vue';
+import XPostForm from '@/components/MkPostForm.vue';
 import { defaultStore } from '@/store';
 import { i18n } from '@/i18n';
+import { $i } from '@/account';
+import { instance } from '@/instance';
+
+const isLocalTimelineAvailable =
+	!instance.disableLocalTimeline ||
+	($i != null && ($i.isModerator || $i.isAdmin));
+const isRecommendedTimelineAvailable =
+	!instance.disableRecommendedTimeline ||
+	($i != null && ($i.isModerator || $i.isAdmin));
+const isGlobalTimelineAvailable =
+	!instance.disableGlobalTimeline ||
+	($i != null && ($i.isModerator || $i.isAdmin));
+
+let timelines = ['home'];
+
+if (isLocalTimelineAvailable) {
+	timelines.push('local');
+}
+if (isRecommendedTimelineAvailable) {
+	timelines.push('recommended');
+}
+if (isLocalTimelineAvailable) {
+	timelines.push('social');
+}
+if (isGlobalTimelineAvailable) {
+	timelines.push('global');
+}
 
 const emit = defineEmits<{
 	(ev: 'done'): void;
