@@ -89,7 +89,7 @@
 					<div>{{ i18n.ts._tutorial.step6_3 }}</div>
 					<br/>
 					<MkSparkle>
-						<span><h3>{{ i18n.ts._tutorial.step6_4 }}</h3> <Mfm text="$[x3 $[shake 🚀]]"></Mfm></span>
+						<h3>{{ i18n.ts._tutorial.step6_4 }} <Mfm text="$[shake 🚀]"></Mfm></h3>
 					</MkSparkle>
 				</div>
 			</div>
