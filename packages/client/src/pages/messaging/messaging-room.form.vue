@@ -235,6 +235,7 @@ defineExpose({
 <style lang="scss" scoped>
 .pemppnzi {
 	position: relative;
+	margin-top: 1rem;
 
 	> textarea {
 		cursor: auto;
