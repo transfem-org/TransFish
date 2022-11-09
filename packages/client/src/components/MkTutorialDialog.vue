@@ -2,9 +2,8 @@
 <XModalWindow
 	ref="dialog"
 	:width="800"
-	:height="600"
 	:style="{
-		'max-height': `calc(600px - ${filterSectionHeight}px)`
+		'max-height': `calc(100% - ${filterSectionHeight}px)`
 	}"
 	@close="dialog.close()"
 	@closed="$emit('closed')"
