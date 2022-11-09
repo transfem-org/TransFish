@@ -15,13 +15,13 @@
 			</div>
 			<div class="status">
 				<div>
-					<p>{{ $ts.notes }}</p><span>{{ user.notesCount }}</span>
+					<p>{{ i18n.ts.notes }}</p><span>{{ user.notesCount }}</span>
 				</div>
 				<div>
-					<p>{{ $ts.following }}</p><span>{{ user.followingCount }}</span>
+					<p>{{ i18n.ts.following }}</p><span>{{ user.followingCount }}</span>
 				</div>
 				<div>
-					<p>{{ $ts.followers }}</p><span>{{ user.followersCount }}</span>
+					<p>{{ i18n.ts.followers }}</p><span>{{ user.followersCount }}</span>
 				</div>
 			</div>
 			<MkFollowButton v-if="$i && user.id != $i.id" class="koudoku-button" :user="user" mini/>
@@ -36,10 +36,12 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import * as Acct from 'misskey-js/built/acct';
-import * as misskey from 'misskey-js';
+import type * as misskey from 'misskey-js';
 import MkFollowButton from '@/components/MkFollowButton.vue';
 import { userPage } from '@/filters/user';
 import * as os from '@/os';
+import { $i } from '@/account';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	showing: boolean;
