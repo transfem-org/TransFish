@@ -126,4 +126,7 @@
 	- 923c93da1228458dd65be47483c198a1a9191bcf: use await for notes.countBy
 	- ca90cedba0a0704b503c2778694230f5a7dfbace: server: reduce dead instance detection to 7 days
 	- b2c800e65497467295dfcfbcd05faa9d1c8f6ce6: client: properly set content-type header
-	- 
+	- a991740e00b3745bc590aa1d65971ad2a0524747: server: improve API definition for messaging/messages/create
+	- eb1ecd90e6fe23ec03b4fa3db759eb976f730598: client: Add "follows you" pill to user profile popup
+	- f50b04b015500a3b2a16efae25b22ddfd177c846: Fix type errors in withPackedNote
+	- 2a33d0ac83f4ba72b1e47e93439815ab5cb90f1b: Fix type import in stream emitter typing
