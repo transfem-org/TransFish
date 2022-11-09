@@ -10,10 +10,10 @@
 	</template>
 	<MkSpacer :content-max="800">
 		<div ref="rootEl" v-hotkey.global="keymap" class="cmuxhskf">
-			<XTutorial
+			<!-- <XTutorial
 				v-if="$store.reactiveState.tutorial.value != -1"
 				class="tutorial _block"
-			/>
+			/> -->
 			<XPostForm
 				v-if="$store.reactiveState.showFixedPostForm.value"
 				class="post-form _block"
@@ -82,7 +82,7 @@ import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
-const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
+// const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
 
 const isLocalTimelineAvailable =
 	!instance.disableLocalTimeline ||
