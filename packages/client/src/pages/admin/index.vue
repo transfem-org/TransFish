@@ -118,7 +118,7 @@ const menuDef = $computed(() => [{
 	}, {
 		icon: 'ph-planet-bold ph-lg',
 		text: i18n.ts.federation,
-		to: '/about#federation',
+		to: '/admin/federation',
 		active: currentPage?.route.name === 'federation',
 	}, {
 		icon: 'ph-clipboard-text-bold ph-lg',
