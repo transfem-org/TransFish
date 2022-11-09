@@ -68,7 +68,6 @@ cd calckey/
 ```sh
 # nvm install 18 && nvm alias default 18 && nvm use 18
 corepack enable
-yarn set version berry
 ```
 
 ## 💅 Customize
