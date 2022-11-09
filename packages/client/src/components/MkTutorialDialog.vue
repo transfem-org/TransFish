@@ -2,7 +2,10 @@
 <XModalWindow
 	ref="dialog"
 	:width="800"
-	:height="500"
+	:height="600"
+	:style="{
+		'max-height': `calc(600px - ${filterSectionHeight}px)`
+	}"
 	@close="dialog.close()"
 	@closed="$emit('closed')"
 >
@@ -61,31 +64,43 @@
 								<span>{{ timelines.length }}</span>
 							</template>
 						</I18n>
-						<I18n :src="i18n.ts._tutorial.step5_3" tag="div">
-							<template #icon>
-								<i class="ph-house-bold ph-lg"/>
-							</template>
-						</I18n>
-						<I18n v-if="timelines.includes('local')" :src="i18n.ts._tutorial.step5_4" tag="div">
-							<template #icon>
-								<i class="ph-users-bold ph-lg"/>
-							</template>
-						</I18n>
-						<I18n v-if="timelines.includes('recommended')" :src="i18n.ts._tutorial.step5_5" tag="div">
-							<template #icon>
-								<i class="ph-thumbs-up-bold ph-lg"/>
-							</template>
-						</I18n>
-						<I18n v-if="timelines.includes('social')" :src="i18n.ts._tutorial.step5_6" tag="div">
-							<template #icon>
-								<i class="ph-handshake-bold ph-lg"/>
-							</template>
-						</I18n>
-						<I18n v-if="timelines.includes('global')" :src="i18n.ts._tutorial.step5_7" tag="div">
-							<template #icon>
-								<i class="ph-planet-bold ph-lg"/>
-							</template>
-						</I18n>
+						<ul>
+							<li>
+								<I18n :src="i18n.ts._tutorial.step5_3" tag="div">
+									<template #icon>
+										<i class="ph-house-bold ph-lg"/>
+									</template>
+								</I18n>
+							</li>
+							<li v-if="timelines.includes('local')">
+								<I18n :src="i18n.ts._tutorial.step5_4" tag="div">
+									<template #icon>
+										<i class="ph-users-bold ph-lg"/>
+									</template>
+								</I18n>
+							</li>
+							<li v-if="timelines.includes('recommended')">
+								<I18n :src="i18n.ts._tutorial.step5_5" tag="div">
+									<template #icon>
+										<i class="ph-thumbs-up-bold ph-lg"/>
+									</template>
+								</I18n>
+							</li>
+							<li v-if="timelines.includes('social')">
+								<I18n :src="i18n.ts._tutorial.step5_6" tag="div">
+									<template #icon>
+										<i class="ph-handshake-bold ph-lg"/>
+									</template>
+								</I18n>
+							</li>
+							<li v-if="timelines.includes('global')">
+								<I18n :src="i18n.ts._tutorial.step5_7" tag="div">
+									<template #icon>
+										<i class="ph-planet-bold ph-lg"/>
+									</template>
+								</I18n>
+							</li>
+						</ul>
 					</div>
 					<div v-else-if="tutorial === 5" key="6" class="_content">
 						<h3>{{ i18n.ts._tutorial.step6_1 }}</h3>
@@ -153,6 +168,14 @@ const tutorial = computed({
 	set(value) { defaultStore.set('tutorial', value); },
 });
 
+const filterSectionHeight = computed({
+	get() {
+		const section = document.getElementsByClassName('tbkwesmv') as HTMLCollectionOf<HTMLElement>;
+		return section[0] ? section[0].offsetHeight : 0;
+	},
+	set() {},
+});
+
 function close(res) {
 	tutorial.value = -1;
 	dialog.close();
@@ -162,7 +185,7 @@ function close(res) {
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 0.5s ease 0.5s;
+	transition: opacity 0.15s ease 0.1s;
 }
 .fade-enter-from,
 .fade-leave-to {
