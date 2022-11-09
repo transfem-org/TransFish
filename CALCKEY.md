@@ -126,3 +126,4 @@
 	- 923c93da1228458dd65be47483c198a1a9191bcf: use await for notes.countBy
 	- 609312bb8202cd0414a3237ad150ce131c30ca4e: server: refactor errors in signin endpoint
 	- ca90cedba0a0704b503c2778694230f5a7dfbace: server: reduce dead instance detection to 7 days
+	- b2c800e65497467295dfcfbcd05faa9d1c8f6ce6: client: properly set content-type header
