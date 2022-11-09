@@ -7,7 +7,6 @@
 - Backfill remote users
 - User "choices" (recommended users) like Mastodon and Soapbox
 - Option to publicize instance blocks
-- Better intro/onboarding
 - Fully revamp non-logged-in screen
 - Remote follow button
 - Personal notes for all accounts
@@ -20,6 +19,7 @@
 
 ## Work in progress
 
+- Better intro tutorial/onboarding
 - Better Messaging UI
   - Videos can be played in DMs
 - Make your password hasn't been pwned
