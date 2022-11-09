@@ -69,6 +69,7 @@
 import { defineAsyncComponent, computed, watch, ref } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import XTutorial from '@components/MkTutorialDialog.vue';
 import XTimeline from '@/components/MkTimeline.vue';
 import XPostForm from '@/components/MkPostForm.vue';
 import { scroll } from '@/scripts/scroll';
@@ -82,7 +83,9 @@ import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
-// const XTutorial = defineAsyncComponent(() => import('./timeline.tutorial.vue'));
+if (defaultStore.reactiveState.tutorial.value !== -1) {
+	os.popup(XTutorial, {}, {}, 'closed');
+}
 
 const isLocalTimelineAvailable =
 	!instance.disableLocalTimeline ||
