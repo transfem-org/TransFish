@@ -124,3 +124,4 @@
 	- 384e8c49b738f576ba8843296de6cebf01c1b247: server: allow to like own gallery posts
 	- 4c5aa9e53887cca5561fcec6ab0754e018f589a5: server: allow to like own pages
 	- 923c93da1228458dd65be47483c198a1a9191bcf: use await for notes.countBy
+	- ca90cedba0a0704b503c2778694230f5a7dfbace: server: reduce dead instance detection to 7 days
