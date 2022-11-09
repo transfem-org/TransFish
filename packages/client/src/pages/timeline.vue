@@ -284,7 +284,9 @@ function setSwiperRef(swiper) {
 }
 
 function onSlideChange() {
-	saveSrc(timelines[swiperRef.activeIndex]);
+	const index = timelines[swiperRef.activeIndex];
+	saveSrc(index);
+	syncSlide(index);
 }
 
 function syncSlide(index) {
