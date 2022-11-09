@@ -19,9 +19,10 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import type { Paging } from '@/components/MkPagination.vue';
 import XNote from '@/components/MkNote.vue';
 import XList from '@/components/MkDateSeparatedList.vue';
-import MkPagination, { Paging } from '@/components/MkPagination.vue';
+import MkPagination from '@/components/MkPagination.vue';
 import { i18n } from '@/i18n';
 
 const props = defineProps<{
@@ -43,19 +44,12 @@ defineExpose({
 			background: var(--panel);
 		}
 	}
-
 	&:not(.noGap) {
 		> .notes {
 			background: var(--bg);
-
 			.qtqtichx {
 				background: var(--panel);
 				border-radius: var(--radius);
-				transition: background-color 0.25s ease-in-out;
-
-				&:hover {
-					background-color: var(--panelHighlight);
-				}
 			}
 		}
 	}
