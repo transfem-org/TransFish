@@ -25,76 +25,78 @@
 					<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
 				</div>
 				<h2 class="_title title"><i class="ph-info-bold ph-lg"></i> {{ i18n.ts._tutorial.title }}</h2>
-				<div v-if="tutorial === 0" class="_content">
-					<h3>{{ i18n.ts._tutorial.step1_1 }}</h3>
-					<div>{{ i18n.ts._tutorial.step1_2 }}</div>
-				</div>
-				<div v-else-if="tutorial === 1" class="_content">
-					<h3>{{ i18n.ts._tutorial.step2_1 }}</h3>
-					<div>{{ i18n.ts._tutorial.step2_2 }}</div>
-					<XSettings/>
-					<br/>
-					<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
-				</div>
-				<div v-else-if="tutorial === 2" class="_content">
-					<h3>{{ i18n.ts._tutorial.step3_1 }}</h3>
-					<div>{{ i18n.ts._tutorial.step3_2 }}</div>
-					<XFeaturedUsers/>
-					<br/>
-					<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
-				</div>
-				<div v-else-if="tutorial === 3" class="_content">
-					<h3>{{ i18n.ts._tutorial.step4_1 }}</h3>
-					<I18n :src="i18n.ts._tutorial.step4_2" tag="div">
-						<template #introduction>
-							<MkA class="_link" to="/tags/introduction">#introduction</MkA>
-						</template>
-					</I18n>
-					<br/>
-					<XPostForm class="post-form _block"/>
-				</div>
-				<div v-else-if="tutorial === 4" class="_content">
-					<h3>{{ i18n.ts._tutorial.step5_1 }}</h3>
-					<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
-						<template #timelines>
-							<span>{{ timelines.length }}</span>
-						</template>
-					</I18n>
-					<I18n :src="i18n.ts._tutorial.step5_3" tag="div">
-						<template #icon>
-							<i class="ph-house-bold ph-lg"/>
-						</template>
-					</I18n>
-					<I18n v-if="timelines.includes('local')" :src="i18n.ts._tutorial.step5_4" tag="div">
-						<template #icon>
-							<i class="ph-users-bold ph-lg"/>
-						</template>
-					</I18n>
-					<I18n v-if="timelines.includes('recommended')" :src="i18n.ts._tutorial.step5_5" tag="div">
-						<template #icon>
-							<i class="ph-thumbs-up-bold ph-lg"/>
-						</template>
-					</I18n>
-					<I18n v-if="timelines.includes('social')" :src="i18n.ts._tutorial.step5_6" tag="div">
-						<template #icon>
-							<i class="ph-handshake-bold ph-lg"/>
-						</template>
-					</I18n>
-					<I18n v-if="timelines.includes('global')" :src="i18n.ts._tutorial.step5_7" tag="div">
-						<template #icon>
-							<i class="ph-planet-bold ph-lg"/>
-						</template>
-					</I18n>
-				</div>
-				<div v-else-if="tutorial === 5" class="_content">
-					<h3>{{ i18n.ts._tutorial.step6_1 }}</h3>
-					<div>{{ i18n.ts._tutorial.step6_2 }}</div>
-					<div>{{ i18n.ts._tutorial.step6_3 }}</div>
-					<br/>
-					<MkSparkle>
-						<h3>{{ i18n.ts._tutorial.step6_4 }} <Mfm text="$[shake 🚀]"></Mfm></h3>
-					</MkSparkle>
-				</div>
+				<Transition name="fade" mode="out-in">
+					<div v-if="tutorial === 0" key="1" class="_content">
+						<h3>{{ i18n.ts._tutorial.step1_1 }}</h3>
+						<div>{{ i18n.ts._tutorial.step1_2 }}</div>
+					</div>
+					<div v-else-if="tutorial === 1" key="2" class="_content">
+						<h3>{{ i18n.ts._tutorial.step2_1 }}</h3>
+						<div>{{ i18n.ts._tutorial.step2_2 }}</div>
+						<XSettings/>
+						<br/>
+						<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
+					</div>
+					<div v-else-if="tutorial === 2" key="3" class="_content">
+						<h3>{{ i18n.ts._tutorial.step3_1 }}</h3>
+						<div>{{ i18n.ts._tutorial.step3_2 }}</div>
+						<XFeaturedUsers/>
+						<br/>
+						<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
+					</div>
+					<div v-else-if="tutorial === 3" key="4" class="_content">
+						<h3>{{ i18n.ts._tutorial.step4_1 }}</h3>
+						<I18n :src="i18n.ts._tutorial.step4_2" tag="div">
+							<template #introduction>
+								<MkA class="_link" to="/tags/introduction">#introduction</MkA>
+							</template>
+						</I18n>
+						<br/>
+						<XPostForm class="post-form _block"/>
+					</div>
+					<div v-else-if="tutorial === 4" key="5" class="_content">
+						<h3>{{ i18n.ts._tutorial.step5_1 }}</h3>
+						<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
+							<template #timelines>
+								<span>{{ timelines.length }}</span>
+							</template>
+						</I18n>
+						<I18n :src="i18n.ts._tutorial.step5_3" tag="div">
+							<template #icon>
+								<i class="ph-house-bold ph-lg"/>
+							</template>
+						</I18n>
+						<I18n v-if="timelines.includes('local')" :src="i18n.ts._tutorial.step5_4" tag="div">
+							<template #icon>
+								<i class="ph-users-bold ph-lg"/>
+							</template>
+						</I18n>
+						<I18n v-if="timelines.includes('recommended')" :src="i18n.ts._tutorial.step5_5" tag="div">
+							<template #icon>
+								<i class="ph-thumbs-up-bold ph-lg"/>
+							</template>
+						</I18n>
+						<I18n v-if="timelines.includes('social')" :src="i18n.ts._tutorial.step5_6" tag="div">
+							<template #icon>
+								<i class="ph-handshake-bold ph-lg"/>
+							</template>
+						</I18n>
+						<I18n v-if="timelines.includes('global')" :src="i18n.ts._tutorial.step5_7" tag="div">
+							<template #icon>
+								<i class="ph-planet-bold ph-lg"/>
+							</template>
+						</I18n>
+					</div>
+					<div v-else-if="tutorial === 5" key="6" class="_content">
+						<h3>{{ i18n.ts._tutorial.step6_1 }}</h3>
+						<div>{{ i18n.ts._tutorial.step6_2 }}</div>
+						<div>{{ i18n.ts._tutorial.step6_3 }}</div>
+						<br/>
+						<MkSparkle>
+							<h3>{{ i18n.ts._tutorial.step6_4 }} <Mfm text="$[shake 🚀]"></Mfm></h3>
+						</MkSparkle>
+					</div>
+				</Transition>
 			</div>
 		</div>
 	</div>
@@ -158,6 +160,15 @@ function close(res) {
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s ease 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
 .tbkwesmv {
 	> ._content {
 		> small {
