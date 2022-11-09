@@ -115,3 +115,8 @@ sudo docker compose build
 sudo docker-compose run --rm web yarn run init
 sudo docker compose up -d
 ```
+
+## 😉 Tips & Tricks
+
+- To generate ServiceWorker keys, run `npx web-push generate-vapid-keys`
+- I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off. 
