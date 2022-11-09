@@ -24,7 +24,6 @@
 - Make your password hasn't been pwned
 - Admin custom CSS
 - Add back time machine (jump to date)
-- Link hover effect
 - Improve accesibility score
 <details><summary>Current Misskey score is 57/100</summary>
 
@@ -83,6 +82,7 @@
 - Allow importing follows from Pixelfed
 - Phosphor icons instead of FontAwesome
 - Fully deprecate MkEmojiPickerWindow in favor of MkEmojiPickerDialog
+- Link hover effect
 - Obliteration of Ai-chan
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)

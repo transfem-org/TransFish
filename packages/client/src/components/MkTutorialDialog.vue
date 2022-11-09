@@ -32,6 +32,7 @@
 					<div v-else-if="tutorial === 1" key="2" class="_content">
 						<h3>{{ i18n.ts._tutorial.step2_1 }}</h3>
 						<div>{{ i18n.ts._tutorial.step2_2 }}</div>
+						<br/>
 						<XSettings/>
 						<br/>
 						<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
@@ -173,7 +174,7 @@ function close(res) {
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 0.1s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
 }
 .fade-enter-from,
 .fade-leave-to {
