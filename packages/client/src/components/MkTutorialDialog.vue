@@ -77,7 +77,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import XSettings from '@pages/settings/profile.vue';
+import XSettings from '@/pages/settings/profile.vue';
 import XModalWindow from '@/components/MkModalWindow.vue';
 import MkButton from '@/components/MkButton.vue';
 import XFeaturedUsers from '@/pages/explore.users.vue';
