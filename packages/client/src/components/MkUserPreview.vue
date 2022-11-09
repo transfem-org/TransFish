@@ -104,6 +104,28 @@ onMounted(() => {
 			background-color: rgba(0, 0, 0, 0.1);
 			background-size: cover;
 			background-position: center;
+			> .followed {
+					position: absolute;
+					top: 12px;
+					left: 12px;
+					padding: 4px 8px;
+					color: #fff;
+					background: rgba(0, 0, 0, 0.7);
+					font-size: 0.7em;
+					border-radius: 6px;
+			}
+
+			&::after {
+				content: "";
+				background-image: var(--blur, inherit);
+				position: fixed;
+				inset: 0;
+				background-size: cover;
+				background-position: center;
+				pointer-events: none;
+				opacity: .1;
+				filter: var(--blur, blur(10px));
+			}
 		}
 
 		> .avatar {
