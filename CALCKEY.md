@@ -4,6 +4,7 @@
 
 - MFM button
 - Classic mode make instance icon bring up new context menu
+- Exclude self from antenna
 - Backfill remote users
 - User "choices" (recommended users) like Mastodon and Soapbox
 - Option to publicize instance blocks
