@@ -62,7 +62,6 @@
 		"vue-isyourpasswordsafe": "^2.0.0",
 		"vue-plyr": "^7.0.0",
 		"vue-prism-editor": "2.0.0-alpha.2",
-		"vue3-lottie": "^2.4.0",
 		"vuedraggable": "4.1.0"
 	},
 	"devDependencies": {

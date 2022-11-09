@@ -1231,7 +1231,7 @@ _tutorial:
   step6_1: "So, what is this place?"
   step6_2: "Well, you didn't just join Calckey. You joined a portal to the Fediverse, an interconnected network of thousands of servers, called \"instances\"."
   step6_3: "Each server works in different ways, and not all servers run Calckey. This one does though!"
-  step6_4: "It may be a bit confusing at first, but you'll get the hang of it. Go, explore, and have fun! 🚀"
+  step6_4: "It may be a bit confusing at first, but you'll get the hang of it. Go, explore, and have fun!"
 _2fa:
   alreadyRegistered: "You have already registered a 2-factor authentication device."
   registerDevice: "Register a new device"

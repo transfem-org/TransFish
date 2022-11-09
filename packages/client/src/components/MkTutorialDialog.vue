@@ -87,7 +87,10 @@
 					<h3>{{ i18n.ts._tutorial.step6_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step6_2 }}</div>
 					<div>{{ i18n.ts._tutorial.step6_3 }}</div>
-					<div>{{ i18n.ts._tutorial.step6_4 }}</div>
+					<br/>
+					<MkSparkle>
+						<span><h3>{{ i18n.ts._tutorial.step6_4 }}</h3> <Mfm text="$[x3 $[shake 🚀]]"></Mfm></span>
+					</MkSparkle>
 				</div>
 			</div>
 		</div>
@@ -102,6 +105,7 @@ import XModalWindow from '@/components/MkModalWindow.vue';
 import MkButton from '@/components/MkButton.vue';
 import XFeaturedUsers from '@/pages/explore.users.vue';
 import XPostForm from '@/components/MkPostForm.vue';
+import MkSparkle from '@/components/MkSparkle.vue';
 import { defaultStore } from '@/store';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
