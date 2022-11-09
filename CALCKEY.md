@@ -19,7 +19,6 @@
 
 ## Work in progress
 
-- Better intro tutorial/onboarding
 - Better Messaging UI
   - Videos can be played in DMs
 - Make your password hasn't been pwned
@@ -50,6 +49,7 @@
 - Like/star button
 - Rosé Pine by default (+ non-themable elements made Rosé Pine)
 - Better sidebar/navbar
+- Better intro tutorial/onboarding
 - Add back groups
   - Integrate groups UI into chats UI
 - MOTD (customizable by admins!)

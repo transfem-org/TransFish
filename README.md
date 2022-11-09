@@ -23,6 +23,7 @@
   - Recommended Instances timeline
   - OCR image captioning
   - New and improved Groups
+  - Better intro tutorial
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)
 
