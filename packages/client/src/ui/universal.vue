@@ -382,7 +382,7 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 					width: 100%;
 					border-radius: 999px;
 					transform: translateY(-0.5em);
-					transition: all 0.3s ease-in-out;
+					transition: all 0.2s ease-in-out;
 				}
 
 				> .indicator {
