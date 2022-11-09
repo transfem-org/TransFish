@@ -2,9 +2,6 @@
 <XModalWindow
 	ref="dialog"
 	:width="800"
-	:style="{
-		'max-height': `calc(100% - ${filterSectionHeight}px)`
-	}"
 	@close="dialog.close()"
 	@closed="$emit('closed')"
 >
@@ -165,14 +162,6 @@ const dialog = $ref<InstanceType<typeof XModalWindow>>();
 const tutorial = computed({
 	get() { return defaultStore.reactiveState.tutorial.value || 0; },
 	set(value) { defaultStore.set('tutorial', value); },
-});
-
-const filterSectionHeight = computed({
-	get() {
-		const section = document.getElementsByClassName('tbkwesmv') as HTMLCollectionOf<HTMLElement>;
-		return section[0] ? section[0].offsetHeight : 0;
-	},
-	set() {},
 });
 
 function close(res) {

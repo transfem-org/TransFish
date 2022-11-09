@@ -90,6 +90,7 @@ defineExpose({
 	flex-direction: column;
 	contain: content;
 	border-radius: var(--radius);
+	transition: all 0.2s;
 
 	--root-margin: 24px;
 
