@@ -76,16 +76,6 @@ function openInstanceMenu(ev: MouseEvent) {
 		text: i18n.ts.instanceInfo,
 		icon: 'ph-info-bold ph-lg',
 		to: '/about',
-	}, {
-		type: 'link',
-		text: i18n.ts.customEmojis,
-		icon: 'ph-smiley-bold ph-lg',
-		to: '/about#emojis',
-	}, {
-		type: 'link',
-		text: i18n.ts.federation,
-		icon: 'ph-planet-bold ph-lg',
-		to: '/about#federation',
 	}, null, {
 		type: 'parent',
 		text: i18n.ts.help,
