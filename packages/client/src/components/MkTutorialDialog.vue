@@ -2,8 +2,8 @@
 <XModalWindow
 	ref="dialog"
 	:width="800"
-	:height="1000"
-	:scroll="false"
+	:height="600"
+	:scroll="true"
 	@close="dialog.close()"
 	@closed="$emit('closed')"
 >
@@ -12,33 +12,47 @@
 	<div class="_monolithic_">
 		<div class="_section">
 			<div class="tbkwesmv">
-				<div class="_title title"><i class="ph-info-bold ph-lg"></i> {{ i18n.ts._tutorial.title }}</div>
+				<div class="_footer navigation">
+					<div class="step">
+						<button class="arrow _button" :disabled="tutorial === 0" @click="tutorial--">
+							<i class="ph-caret-left-bold ph-lg"></i>
+						</button>
+						<span>{{ tutorial + 1 }} / 6</span>
+						<button class="arrow _button" :disabled="tutorial === 5" @click="tutorial++">
+							<i class="ph-caret-right-bold ph-lg"></i>
+						</button>
+					</div>
+					<MkButton v-if="tutorial === 5" class="ok" primary @click="close"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
+					<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
+				</div>
+				<h2 class="_title title"><i class="ph-info-bold ph-lg"></i> {{ i18n.ts._tutorial.title }}</h2>
 				<br/>
 				<div v-if="tutorial === 0" class="_content">
-					<div>{{ i18n.ts._tutorial.step1_1 }}</div>
+					<h3>{{ i18n.ts._tutorial.step1_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step1_2 }}</div>
 				</div>
 				<div v-else-if="tutorial === 1" class="_content">
-					<div>{{ i18n.ts._tutorial.step2_1 }}</div>
+					<h3>{{ i18n.ts._tutorial.step2_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step2_2 }}</div>
 					<XSettings/>
 				</div>
 				<div v-else-if="tutorial === 2" class="_content">
-					<div>{{ i18n.ts._tutorial.step3_1 }}</div>
+					<h3>{{ i18n.ts._tutorial.step3_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step3_2 }}</div>
 					<XFeaturedUsers/>
 				</div>
 				<div v-else-if="tutorial === 3" class="_content">
-					<div>{{ i18n.ts._tutorial.step4_1 }}</div>
-					<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
+					<h3>{{ i18n.ts._tutorial.step4_1 }}</h3>
+					<I18n :src="i18n.ts._tutorial.step4_2" tag="div">
 						<template #introduction>
 							<MkA class="_link" to="/tags/introduction">#introduction</MkA>
 						</template>
 					</I18n>
+					<br/>
 					<XPostForm class="post-form _block"/>
 				</div>
 				<div v-else-if="tutorial === 4" class="_content">
-					<div>{{ i18n.ts._tutorial.step5_1 }}</div>
+					<h3>{{ i18n.ts._tutorial.step5_1 }}</h3>
 					<I18n :src="i18n.ts._tutorial.step5_2" tag="div">
 						<template #timelines>
 							<span>{{ timelines.length }}</span>
@@ -71,23 +85,10 @@
 					</I18n>
 				</div>
 				<div v-else-if="tutorial === 5" class="_content">
-					<div>{{ i18n.ts._tutorial.step6_1 }}</div>
+					<h3>{{ i18n.ts._tutorial.step6_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step6_2 }}</div>
 					<div>{{ i18n.ts._tutorial.step6_3 }}</div>
 					<div>{{ i18n.ts._tutorial.step6_4 }}</div>
-				</div>
-				<div class="_footer navigation">
-					<div class="step">
-						<button class="arrow _button" :disabled="tutorial === 0" @click="tutorial--">
-							<i class="ph-caret-left-bold ph-lg"></i>
-						</button>
-						<span>{{ tutorial + 1 }} / 6</span>
-						<button class="arrow _button" :disabled="tutorial === 5" @click="tutorial++">
-							<i class="ph-caret-right-bold ph-lg"></i>
-						</button>
-					</div>
-					<MkButton v-if="tutorial === 5" class="ok" primary @click="close"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
-					<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
 				</div>
 			</div>
 		</div>
