@@ -69,7 +69,7 @@
 				</div>
 				<MkButton v-if="tutorial === 6" class="ok" primary @click="close"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
 				<MkButton v-else class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
-			</div>>
+			</div>
 		</div>
 	</div>
 </XModalWindow>
@@ -77,10 +77,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+import XSettings from '@pages/settings/profile.vue';
 import XModalWindow from '@/components/MkModalWindow.vue';
 import MkButton from '@/components/MkButton.vue';
 import XFeaturedUsers from '@/pages/explore.users.vue';
-import XSettings from '@pages/settings/profile.vue'
 import { defaultStore } from '@/store';
 import { i18n } from '@/i18n';
 
