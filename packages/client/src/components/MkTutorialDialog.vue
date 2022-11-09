@@ -34,11 +34,13 @@
 					<h3>{{ i18n.ts._tutorial.step2_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step2_2 }}</div>
 					<XSettings/>
+					<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
 				</div>
 				<div v-else-if="tutorial === 2" class="_content">
 					<h3>{{ i18n.ts._tutorial.step3_1 }}</h3>
 					<div>{{ i18n.ts._tutorial.step3_2 }}</div>
 					<XFeaturedUsers/>
+					<MkButton class="ok" primary @click="tutorial++"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.next }}</MkButton>
 				</div>
 				<div v-else-if="tutorial === 3" class="_content">
 					<h3>{{ i18n.ts._tutorial.step4_1 }}</h3>
