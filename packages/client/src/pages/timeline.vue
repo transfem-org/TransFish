@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, watch, ref } from 'vue';
+import { computed, watch, ref, onMounted } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTutorial from '@/components/MkTutorialDialog.vue';
@@ -285,6 +285,10 @@ function onSlideChange() {
 
 function syncSlide(index) {
 	swiperRef.slideTo(index);
+}
+
+onMounted(() => {
+	syncSlide(timelines.indexOf(swiperRef.activeIndex));
 }
 
 </script>
