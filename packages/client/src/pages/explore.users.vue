@@ -6,7 +6,7 @@
 	</MkTab>
 	<div v-if="origin === 'local'">
 		<template v-if="tag == null">
-			<MkFolder v-if="pinnedUsersList?.length > 0" class="_gap" persist-key="explore-pinned-users">
+			<MkFolder v-if="pinnedUsersList.length > 0" class="_gap" persist-key="explore-pinned-users">
 				<template #header><i class="ph-bookmark-simple-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
@@ -80,6 +80,8 @@ watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
 });
 
+watch(() => pinnedUsersList, () => {})
+
 const tagUsers = $computed(() => ({
 	endpoint: 'hashtags/users' as const,
 	limit: 30,
@@ -90,7 +92,13 @@ const tagUsers = $computed(() => ({
 	},
 }));
 
-const pinnedUsersList = await os.api('pinned-users');
+let pinnedUsersList = [];
+
+os.api('pinned-users').then(res => {
+	res?.forEach(u => {
+		pinnedUsersList.push(u);
+	});
+});
 
 const pinnedUsers = { endpoint: 'pinned-users' };
 const popularUsers = { endpoint: 'users', limit: 10, noPaging: true, params: {
