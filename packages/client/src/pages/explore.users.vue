@@ -6,7 +6,7 @@
 	</MkTab>
 	<div v-if="origin === 'local'">
 		<template v-if="tag == null">
-			<MkFolder v-if="pinnedUsers.length > 0" class="_gap" persist-key="explore-pinned-users">
+			<MkFolder v-show="thereArePinnedUsers" class="_gap" persist-key="explore-pinned-users">
 				<template #header><i class="ph-bookmark-simple-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
@@ -75,9 +75,14 @@ let origin = $ref('local');
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let tagsLocal = $ref([]);
 let tagsRemote = $ref([]);
+let thereArePinnedUsers = $ref(false);
 
 watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
+});
+
+watch(() => pinnedUsersList, () => {
+	if (pinnedUsersList?.length > 0) thereArePinnedUsers = true;
 });
 
 const tagUsers = $computed(() => ({
@@ -89,6 +94,10 @@ const tagUsers = $computed(() => ({
 		sort: '+follower',
 	},
 }));
+
+const pinnedUsersList = await os.api('pinned-users');
+
+if (pinnedUsersList?.length > 0) { thereArePinnedUsers = true; }
 
 const pinnedUsers = { endpoint: 'pinned-users' };
 const popularUsers = { endpoint: 'users', limit: 10, noPaging: true, params: {
