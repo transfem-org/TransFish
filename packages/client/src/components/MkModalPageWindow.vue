@@ -31,7 +31,6 @@ import { mainRouter, routes } from '@/router';
 import { i18n } from '@/i18n';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 import { Router } from '@/nirax';
-import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	initialPath: string;
