@@ -1,6 +1,6 @@
 <template>
 <MkContainer>
-	<template #header><i class="ph-chart-bar-bold ph-lg" style="margin-right: 0.5em;"></i>{{ $ts.activity }}</template>
+	<template #header><i class="ph-chart-bar-bold ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.activity }}</template>
 	<template #func>
 		<button class="_button" @click="showMenu">
 			<i class="ph-dots-three-outline-bold ph-lg"></i>

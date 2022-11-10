@@ -12,15 +12,15 @@
 		@accepted="accepted"
 	/>
 	<div v-if="state == 'denied'" class="denied">
-		<h1>{{ $ts._auth.denied }}</h1>
+		<h1>{{ i18n.ts._auth.denied }}</h1>
 	</div>
 	<div v-if="state == 'accepted'" class="accepted">
-		<h1>{{ session.app.isAuthorized ? $t('already-authorized') : $ts.allowed }}</h1>
-		<p v-if="session.app.callbackUrl">{{ $ts._auth.callback }}<MkEllipsis/></p>
-		<p v-if="!session.app.callbackUrl">{{ $ts._auth.pleaseGoBack }}</p>
+		<h1>{{ session.app.isAuthorized ? $t('already-authorized') : i18n.ts.allowed }}</h1>
+		<p v-if="session.app.callbackUrl">{{ i18n.ts._auth.callback }}<MkEllipsis/></p>
+		<p v-if="!session.app.callbackUrl">{{ i18n.ts._auth.pleaseGoBack }}</p>
 	</div>
 	<div v-if="state == 'fetch-session-error'" class="error">
-		<p>{{ $ts.somethingHappened }}</p>
+		<p>{{ i18n.ts.somethingHappened }}</p>
 	</div>
 </div>
 <div v-else class="signin">
@@ -34,6 +34,7 @@ import XForm from './auth.form.vue';
 import MkSignin from '@/components/MkSignin.vue';
 import * as os from '@/os';
 import { login } from '@/account';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {

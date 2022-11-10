@@ -5,12 +5,12 @@
 	</button>
 	<div class="post" data-cy-open-post-form @click="post">
 		<MkButton class="button" gradate full rounded>
-			<i class="ph-pencil-bold ph-lg ph-fw ph-lg"></i><span v-if="!iconOnly" class="text">{{ $ts.note }}</span>
+			<i class="ph-pencil-bold ph-lg ph-fw ph-lg"></i><span v-if="!iconOnly" class="text">{{ i18n.ts.note }}</span>
 		</MkButton>
 	</div>
 	<div class="divider"></div>
 	<MkA v-click-anime class="item index" active-class="active" to="/" exact>
-		<i class="ph-house-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ $ts.timeline }}</span>
+		<i class="ph-house-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.timeline }}</span>
 	</MkA>
 	<template v-for="item in menu">
 		<div v-if="item === '-'" class="divider"></div>
@@ -21,14 +21,14 @@
 	</template>
 	<div class="divider"></div>
 	<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime class="item" active-class="active" to="/admin" :behavior="settingsWindowed ? 'modalWindow' : null">
-		<i class="ph-door-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ $ts.controlPanel }}</span>
+		<i class="ph-door-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
 	</MkA>
 	<button v-click-anime class="item _button" @click="more">
-		<i class="ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ $ts.more }}</span>
+		<i class="ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.more }}</span>
 		<span v-if="otherNavItemIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 	</button>
 	<MkA v-click-anime class="item" active-class="active" to="/settings" :behavior="settingsWindowed ? 'modalWindow' : null">
-		<i class="ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ $ts.settings }}</span>
+		<i class="ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.settings }}</span>
 	</MkA>
 	<div class="divider"></div>
 	<div class="about">
@@ -50,6 +50,7 @@ import { openAccountMenu } from '@/account';
 import MkButton from '@/components/MkButton.vue';
 import { StickySidebar } from '@/scripts/sticky-sidebar';
 //import MisskeyLogo from '@assets/client/misskey.svg';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {

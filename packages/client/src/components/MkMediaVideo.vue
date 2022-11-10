@@ -1,8 +1,8 @@
 <template>
 <div v-if="hide" class="icozogqfvdetwohsdglrbswgrejoxbdj" @click="hide = false">
 	<div>
-		<b><i class="ph-warning-bold ph-lg"></i> {{ $ts.sensitive }}</b>
-		<span>{{ $ts.clickToShow }}</span>
+		<b><i class="ph-warning-bold ph-lg"></i> {{ i18n.ts.sensitive }}</b>
+		<span>{{ i18n.ts.clickToShow }}</span>
 	</div>
 </div>
 <div v-else class="kkjnbbplepmiyuadieoenjgutgcmtsvu">
@@ -46,6 +46,7 @@ import VuePlyr from 'vue-plyr';
 import type * as misskey from 'misskey-js';
 import { defaultStore } from '@/store';
 import 'vue-plyr/dist/vue-plyr.css';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	video: misskey.entities.DriveFile;

@@ -2,7 +2,7 @@
 <MkModal ref="modal" @click="$emit('click')" @closed="$emit('closed')">
 	<div ref="rootEl" class="hrmcaedk _narrow_" :style="{ width: `${width}px`, height: (height ? `min(${height}px, 100%)` : '100%') }">
 		<div class="header" @contextmenu="onContextmenu">
-			<button v-if="history.length > 0" v-tooltip="$ts.goBack" class="_button" @click="back()"><i class="ph--left-bold ph-lg"></i></button>
+			<button v-if="history.length > 0" v-tooltip="i18n.ts.goBack" class="_button" @click="back()"><i class="ph--left-bold ph-lg"></i></button>
 			<span v-else style="display: inline-block; width: 20px"></span>
 			<span v-if="pageMetadata?.value" class="title">
 				<i v-if="pageMetadata?.value.icon" class="icon" :class="pageMetadata?.value.icon"></i>
@@ -31,6 +31,7 @@ import { mainRouter, routes } from '@/router';
 import { i18n } from '@/i18n';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 import { Router } from '@/nirax';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	initialPath: string;
@@ -44,7 +45,7 @@ defineEmits<{
 const router = new Router(routes, props.initialPath);
 
 router.addListener('push', ctx => {
-	
+
 });
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();

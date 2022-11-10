@@ -22,22 +22,22 @@
 					</h1>
 					<div class="about">
 						<!-- eslint-disable-next-line vue/no-v-html -->
-						<div class="desc" v-html="meta.description || $ts.headlineMisskey"></div>
+						<div class="desc" v-html="meta.description || i18n.ts.headlineMisskey"></div>
 					</div>
 					<div class="action">
-						<MkButton inline gradate @click="signup()">{{ $ts.signup }}</MkButton>
-						<MkButton inline @click="signin()">{{ $ts.login }}</MkButton>
+						<MkButton inline gradate @click="signup()">{{ i18n.ts.signup }}</MkButton>
+						<MkButton inline @click="signin()">{{ i18n.ts.login }}</MkButton>
 					</div>
 					<div v-if="onlineUsersCount && stats" class="status">
 						<div>
-							<I18n :src="$ts.nUsers" text-tag="span" class="users">
+							<I18n :src="i18n.ts.nUsers" text-tag="span" class="users">
 								<template #n><b>{{ number(stats.originalUsersCount) }}</b></template>
 							</I18n>
-							<I18n :src="$ts.nNotes" text-tag="span" class="notes">
+							<I18n :src="i18n.ts.nNotes" text-tag="span" class="notes">
 								<template #n><b>{{ number(stats.originalNotesCount) }}</b></template>
 							</I18n>
 						</div>
-						<I18n :src="$ts.onlineUsersCount" text-tag="span" class="online">
+						<I18n :src="i18n.ts.onlineUsersCount" text-tag="span" class="online">
 							<template #n><b>{{ onlineUsersCount }}</b></template>
 						</I18n>
 					</div>
@@ -45,10 +45,10 @@
 				</div>
 			</div>
 			<nav class="nav">
-				<MkA to="/announcements">{{ $ts.announcements }}</MkA>
-				<MkA to="/explore">{{ $ts.explore }}</MkA>
-				<MkA to="/channels">{{ $ts.channel }}</MkA>
-				<MkA to="/featured">{{ $ts.featured }}</MkA>
+				<MkA to="/announcements">{{ i18n.ts.announcements }}</MkA>
+				<MkA to="/explore">{{ i18n.ts.explore }}</MkA>
+				<MkA to="/channels">{{ i18n.ts.channel }}</MkA>
+				<MkA to="/featured">{{ i18n.ts.featured }}</MkA>
 			</nav>
 		</div>
 	</div>
@@ -67,6 +67,7 @@ import XTimeline from './welcome.timeline.vue';
 import { host, instanceName } from '@/config';
 import * as os from '@/os';
 import number from '@/filters/number';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
@@ -129,13 +130,13 @@ export default defineComponent({
 					os.pageWindow('/about');
 				}
 			}, {
-				text: this.$ts.aboutMisskey,
+				text: this.i18n.ts.aboutMisskey,
 				icon: 'ph-info-bold ph-lg',
 				action: () => {
 					os.pageWindow('/about-calckey');
 				}
 			}, null, {
-				text: this.$ts.help,
+				text: this.i18n.ts.help,
 				icon: 'ph-question-bold ph-lg',
 				action: () => {
 					window.open(`https://misskey-hub.net/help.md`, '_blank');

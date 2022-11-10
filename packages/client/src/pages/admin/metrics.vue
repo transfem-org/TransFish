@@ -1,6 +1,6 @@
 <template>
 <div class="_debobigegoItem">
-	<div class="_debobigegoLabel"><i class="ph-microchip-bold ph-lg"></i> {{ $ts.cpuAndMemory }}</div>
+	<div class="_debobigegoLabel"><i class="ph-microchip-bold ph-lg"></i> {{ i18n.ts.cpuAndMemory }}</div>
 	<div class="_debobigegoPanel xhexznfu">
 		<div>
 			<canvas :ref="cpumem"></canvas>
@@ -17,7 +17,7 @@
 	</div>
 </div>
 <div class="_debobigegoItem">
-	<div class="_debobigegoLabel"><i class="ph-hard-drives-bold ph-lg"></i> {{ $ts.disk }}</div>
+	<div class="_debobigegoLabel"><i class="ph-hard-drives-bold ph-lg"></i> {{ i18n.ts.disk }}</div>
 	<div class="_debobigegoPanel xhexznfu">
 		<div>
 			<canvas :ref="disk"></canvas>
@@ -34,7 +34,7 @@
 	</div>
 </div>
 <div class="_debobigegoItem">
-	<div class="_debobigegoLabel"><i class="ph-swap-bold ph-lg"></i> {{ $ts.network }}</div>
+	<div class="_debobigegoLabel"><i class="ph-swap-bold ph-lg"></i> {{ i18n.ts.network }}</div>
 	<div class="_debobigegoPanel xhexznfu">
 		<div>
 			<canvas :ref="net"></canvas>
@@ -53,43 +53,44 @@
 <script lang="ts">
 import { defineComponent, markRaw } from 'vue';
 import {
-  Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  LineController,
-  CategoryScale,
-  LinearScale,
-  Legend,
-  Title,
-  Tooltip,
-  SubTitle
+	Chart,
+	ArcElement,
+	LineElement,
+	BarElement,
+	PointElement,
+	BarController,
+	LineController,
+	CategoryScale,
+	LinearScale,
+	Legend,
+	Title,
+	Tooltip,
+	SubTitle,
 } from 'chart.js';
+import MkwFederation from '../../widgets/federation.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkSelect from '@/components/form/select.vue';
 import MkInput from '@/components/form/input.vue';
 import MkContainer from '@/components/MkContainer.vue';
 import MkFolder from '@/components/MkFolder.vue';
-import MkwFederation from '../../widgets/federation.vue';
 import { version, url } from '@/config';
 import bytes from '@/filters/bytes';
 import number from '@/filters/number';
+import { i18n } from '@/i18n';
 
 Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  LineController,
-  CategoryScale,
-  LinearScale,
-  Legend,
-  Title,
-  Tooltip,
-  SubTitle
+	ArcElement,
+	LineElement,
+	BarElement,
+	PointElement,
+	BarController,
+	LineController,
+	CategoryScale,
+	LinearScale,
+	Legend,
+	Title,
+	Tooltip,
+	SubTitle,
 );
 
 const alpha = (hex, a) => {
@@ -155,13 +156,13 @@ export default defineComponent({
 			this.connection.on('statsLog', this.onStatsLog);
 			this.connection.send('requestLog', {
 				id: Math.random().toString().substr(2, 8),
-				length: 150
+				length: 150,
 			});
 
 			this.$nextTick(() => {
 				this.queueConnection.send('requestLog', {
 					id: Math.random().toString().substr(2, 8),
-					length: 200
+					length: 200,
 				});
 			});
 		});
@@ -190,7 +191,7 @@ export default defineComponent({
 						borderWidth: 2,
 						borderColor: '#31748f',
 						backgroundColor: alpha('#31748f', 0.1),
-						data: []
+						data: [],
 					}, {
 						label: 'MEM (active)',
 						pointRadius: 0,
@@ -198,7 +199,7 @@ export default defineComponent({
 						borderWidth: 2,
 						borderColor: '#c4a7e7',
 						backgroundColor: alpha('#c4a7e7', 0.02),
-						data: []
+						data: [],
 					}, {
 						label: 'MEM (used)',
 						pointRadius: 0,
@@ -207,8 +208,8 @@ export default defineComponent({
 						borderColor: '#935dbf',
 						borderDash: [5, 5],
 						fill: false,
-						data: []
-					}]
+						data: [],
+					}],
 				},
 				options: {
 					aspectRatio: 3,
@@ -217,14 +218,14 @@ export default defineComponent({
 							left: 16,
 							right: 16,
 							top: 16,
-							bottom: 0
-						}
+							bottom: 0,
+						},
 					},
 					legend: {
 						position: 'bottom',
 						labels: {
 							boxWidth: 16,
-						}
+						},
 					},
 					scales: {
 						x: {
@@ -235,7 +236,7 @@ export default defineComponent({
 							},
 							ticks: {
 								display: false,
-							}
+							},
 						},
 						y: {
 							position: 'right',
@@ -246,15 +247,15 @@ export default defineComponent({
 							},
 							ticks: {
 								display: false,
-								max: 100
-							}
-						}
+								max: 100,
+							},
+						},
 					},
 					tooltips: {
 						intersect: false,
 						mode: 'index',
-					}
-				}
+					},
+				},
 			}));
 		},
 
@@ -271,7 +272,7 @@ export default defineComponent({
 						borderWidth: 2,
 						borderColor: '#94a029',
 						backgroundColor: alpha('#94a029', 0.1),
-						data: []
+						data: [],
 					}, {
 						label: 'Out',
 						pointRadius: 0,
@@ -279,8 +280,8 @@ export default defineComponent({
 						borderWidth: 2,
 						borderColor: '#ff9156',
 						backgroundColor: alpha('#ff9156', 0.1),
-						data: []
-					}]
+						data: [],
+					}],
 				},
 				options: {
 					aspectRatio: 3,
@@ -289,14 +290,14 @@ export default defineComponent({
 							left: 16,
 							right: 16,
 							top: 16,
-							bottom: 0
-						}
+							bottom: 0,
+						},
 					},
 					legend: {
 						position: 'bottom',
 						labels: {
 							boxWidth: 16,
-						}
+						},
 					},
 					scales: {
 						x: {
@@ -306,8 +307,8 @@ export default defineComponent({
 								zeroLineColor: this.gridColor,
 							},
 							ticks: {
-								display: false
-							}
+								display: false,
+							},
 						},
 						y: {
 							position: 'right',
@@ -318,14 +319,14 @@ export default defineComponent({
 							},
 							ticks: {
 								display: false,
-							}
-						}
+							},
+						},
 					},
 					tooltips: {
 						intersect: false,
 						mode: 'index',
-					}
-				}
+					},
+				},
 			}));
 		},
 
@@ -342,7 +343,7 @@ export default defineComponent({
 						borderWidth: 2,
 						borderColor: '#94a029',
 						backgroundColor: alpha('#94a029', 0.1),
-						data: []
+						data: [],
 					}, {
 						label: 'Write',
 						pointRadius: 0,
@@ -350,8 +351,8 @@ export default defineComponent({
 						borderWidth: 2,
 						borderColor: '#ff9156',
 						backgroundColor: alpha('#ff9156', 0.1),
-						data: []
-					}]
+						data: [],
+					}],
 				},
 				options: {
 					aspectRatio: 3,
@@ -360,14 +361,14 @@ export default defineComponent({
 							left: 16,
 							right: 16,
 							top: 16,
-							bottom: 0
-						}
+							bottom: 0,
+						},
 					},
 					legend: {
 						position: 'bottom',
 						labels: {
 							boxWidth: 16,
-						}
+						},
 					},
 					scales: {
 						x: {
@@ -377,8 +378,8 @@ export default defineComponent({
 								zeroLineColor: this.gridColor,
 							},
 							ticks: {
-								display: false
-							}
+								display: false,
+							},
 						},
 						y: {
 							position: 'right',
@@ -389,14 +390,14 @@ export default defineComponent({
 							},
 							ticks: {
 								display: false,
-							}
-						}
+							},
+						},
 					},
 					tooltips: {
 						intersect: false,
 						mode: 'index',
-					}
-				}
+					},
+				},
 			}));
 		},
 
@@ -458,7 +459,7 @@ export default defineComponent({
 		resume() {
 			this.paused = false;
 		},
-	}
+	},
 });
 </script>
 

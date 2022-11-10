@@ -10,7 +10,7 @@
 					<img v-if="announcement.imageUrl" :src="announcement.imageUrl"/>
 				</div>
 				<div v-if="$i && !announcement.isRead" class="_footer">
-					<MkButton primary @click="read(items, announcement, i)"><i class="ph-check-bold ph-lg"></i> {{ $ts.gotIt }}</MkButton>
+					<MkButton primary @click="read(items, announcement, i)"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.gotIt }}</MkButton>
 				</div>
 			</section>
 		</MkPagination>
@@ -25,6 +25,7 @@ import MkButton from '@/components/MkButton.vue';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { i18n } from '@/i18n';
 
 const pagination = {
 	endpoint: 'announcements' as const,

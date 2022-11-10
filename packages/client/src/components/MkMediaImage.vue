@@ -3,8 +3,8 @@
 	<ImgWithBlurhash class="bg" :hash="image.blurhash" :title="image.comment" :alt="image.comment"/>
 	<div class="text">
 		<div class="wrapper">
-			<b style="display: block;"><i class="ph-warning-bold ph-lg"></i> {{ $ts.sensitive }}</b>
-			<span style="display: block;">{{ $ts.clickToShow }}</span>
+			<b style="display: block;"><i class="ph-warning-bold ph-lg"></i> {{ i18n.ts.sensitive }}</b>
+			<span style="display: block;">{{ i18n.ts.clickToShow }}</span>
 		</div>
 	</div>
 </div>
@@ -16,7 +16,7 @@
 		<ImgWithBlurhash :hash="image.blurhash" :src="url" :alt="image.comment" :title="image.comment" :cover="false"/>
 		<div v-if="image.type === 'image/gif'" class="gif">GIF</div>
 	</a>
-	<button v-tooltip="$ts.hide" class="_button hide" @click="hide = true"><i class="ph-eye-slash-bold ph-lg"></i></button>
+	<button v-tooltip="i18n.ts.hide" class="_button hide" @click="hide = true"><i class="ph-eye-slash-bold ph-lg"></i></button>
 </div>
 </template>
 
@@ -26,6 +26,7 @@ import * as misskey from 'misskey-js';
 import { getStaticImageUrl } from '@/scripts/get-static-image-url';
 import ImgWithBlurhash from '@/components/MkImgWithBlurhash.vue';
 import { defaultStore } from '@/store';
+import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	image: misskey.entities.DriveFile;

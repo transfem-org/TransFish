@@ -2,12 +2,12 @@
 <div class="sqxihjet">
 	<div v-if="narrow === false" class="wide">
 		<div class="content">
-			<MkA to="/" class="link" active-class="active"><i class="ph-house-bold ph-lg icon"></i>{{ $ts.home }}</MkA>
-			<MkA v-if="isTimelineAvailable" to="/timeline" class="link" active-class="active"><i class="ph-chats-circle-bold ph-lg icon"></i>{{ $ts.timeline }}</MkA>
-			<MkA to="/explore" class="link" active-class="active"><i class="ph-hash-bold ph-lg icon"></i>{{ $ts.explore }}</MkA>
-			<MkA to="/channels" class="link" active-class="active"><i class="ph-television-bold ph-lg icon"></i>{{ $ts.channel }}</MkA>
-			<MkA to="/pages" class="link" active-class="active"><i class="ph-file-text-bold ph-lg icon"></i>{{ $ts.pages }}</MkA>
-			<MkA to="/gallery" class="link" active-class="active"><i class="ph-image-square-bold ph-lg icon"></i>{{ $ts.gallery }}</MkA>
+			<MkA to="/" class="link" active-class="active"><i class="ph-house-bold ph-lg icon"></i>{{ i18n.ts.home }}</MkA>
+			<MkA v-if="isTimelineAvailable" to="/timeline" class="link" active-class="active"><i class="ph-chats-circle-bold ph-lg icon"></i>{{ i18n.ts.timeline }}</MkA>
+			<MkA to="/explore" class="link" active-class="active"><i class="ph-hash-bold ph-lg icon"></i>{{ i18n.ts.explore }}</MkA>
+			<MkA to="/channels" class="link" active-class="active"><i class="ph-television-bold ph-lg icon"></i>{{ i18n.ts.channel }}</MkA>
+			<MkA to="/pages" class="link" active-class="active"><i class="ph-file-text-bold ph-lg icon"></i>{{ i18n.ts.pages }}</MkA>
+			<MkA to="/gallery" class="link" active-class="active"><i class="ph-image-square-bold ph-lg icon"></i>{{ i18n.ts.gallery }}</MkA>
 			<div v-if="info" class="page active link">
 				<div class="title">
 					<i v-if="info.icon" class="icon" :class="info.icon"></i>
@@ -18,9 +18,9 @@
 				<button v-if="info.action" class="_button action" @click.stop="info.action.handler"><!-- TODO --></button>
 			</div>
 			<div class="right">
-				<button class="_button search" @click="search()"><i class="ph-magnifying-glass-bold ph-lg icon"></i><span>{{ $ts.search }}</span></button>
-				<button class="_buttonPrimary signup" @click="signup()">{{ $ts.signup }}</button>
-				<button class="_button login" @click="signin()">{{ $ts.login }}</button>
+				<button class="_button search" @click="search()"><i class="ph-magnifying-glass-bold ph-lg icon"></i><span>{{ i18n.ts.search }}</span></button>
+				<button class="_buttonPrimary signup" @click="signup()">{{ i18n.ts.signup }}</button>
+				<button class="_button login" @click="signin()">{{ i18n.ts.login }}</button>
 			</div>
 		</div>
 	</div>
@@ -48,6 +48,7 @@ import XSignupDialog from '@/components/MkSignupDialog.vue';
 import * as os from '@/os';
 import { instance } from '@/instance';
 import { search } from '@/scripts/search';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	props: {

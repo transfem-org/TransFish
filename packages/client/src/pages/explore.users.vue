@@ -10,15 +10,15 @@
 				<template #header><i class="ph-bookmark-simple-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
-			<MkFolder class="_gap" persist-key="explore-popular-users">
+			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-popular-users">
 				<template #header><i class="ph-chart-line-up-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
 				<XUserList :pagination="popularUsers"/>
 			</MkFolder>
-			<MkFolder class="_gap" persist-key="explore-recently-updated-users">
+			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-recently-updated-users">
 				<template #header><i class="ph-chat-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
 				<XUserList :pagination="recentlyUpdatedUsers"/>
 			</MkFolder>
-			<MkFolder class="_gap" persist-key="explore-recently-registered-users">
+			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-recently-registered-users">
 				<template #header><i class="ph-plus-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyRegisteredUsers }}</template>
 				<XUserList :pagination="recentlyRegisteredUsers"/>
 			</MkFolder>
@@ -65,6 +65,7 @@ import MkTab from '@/components/MkTab.vue';
 import number from '@/filters/number';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
+import { $i } from '@/account';
 import { instance } from '@/instance';
 
 const props = defineProps<{
