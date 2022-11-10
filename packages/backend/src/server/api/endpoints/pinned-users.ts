@@ -9,7 +9,7 @@ export const meta = {
 	tags: ['users'],
 
 	requireCredential: false,
-	requireCredentialPrivateMode: true,
+	requireCredentialPrivateMode: false,
 
 	res: {
 		type: 'array',
