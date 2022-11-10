@@ -180,7 +180,7 @@ pm2 start "NODE_ENV=production yarn start" --name Calckey
 ### 🐋 Prebuilt Docker image
 
 ```sh
-docker pull thatonecalculator:calckey
+docker pull thatonecalculator/calckey
 docker up -d
 ```
 
