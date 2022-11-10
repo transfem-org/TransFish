@@ -80,8 +80,6 @@ watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
 });
 
-watch(() => pinnedUsersList, () => {})
-
 const tagUsers = $computed(() => ({
 	endpoint: 'hashtags/users' as const,
 	limit: 30,
@@ -92,13 +90,8 @@ const tagUsers = $computed(() => ({
 	},
 }));
 
-let pinnedUsersList = [];
-
-os.api('pinned-users').then(res => {
-	res?.forEach(u => {
-		pinnedUsersList.push(u);
-	});
-});
+const pinnedUsersList = os.api('pinned-users');
+console.log(pinnedUsersList);
 
 const pinnedUsers = { endpoint: 'pinned-users' };
 const popularUsers = { endpoint: 'users', limit: 10, noPaging: true, params: {
