@@ -107,7 +107,6 @@ import { mainRouter } from '@/router';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { $i } from '@/account';
-import { i18n } from '@/i18n';
 
 const XDraggable = defineAsyncComponent(() => import('vuedraggable').then(x => x.default));
 
