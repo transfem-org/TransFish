@@ -272,7 +272,7 @@ definePageMetadata(
 	})),
 );
 
-let swiperRef = null;
+let swiperRef: any = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
@@ -289,7 +289,7 @@ function syncSlide(index) {
 
 onMounted(() => {
 	syncSlide(timelines.indexOf(swiperRef.activeIndex));
-}
+});
 
 </script>
 
