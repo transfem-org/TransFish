@@ -169,12 +169,12 @@ const menuDef = $computed(() => [{
 		to: '/admin/security',
 		active: currentPage?.route.name === 'security',
 	}, {
-		icon: 'ph-planet-bold ph-lg',
+		icon: 'ph-flow-arrow-bold ph-lg',
 		text: i18n.ts.relays,
 		to: '/admin/relays',
 		active: currentPage?.route.name === 'relays',
 	}, {
-		icon: 'ph-share-network-bold ph-lg',
+		icon: 'ph-plug-bold ph-lg',
 		text: i18n.ts.integration,
 		to: '/admin/integrations',
 		active: currentPage?.route.name === 'integrations',
