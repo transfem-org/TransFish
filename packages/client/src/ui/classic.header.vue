@@ -60,6 +60,7 @@ export default defineComponent({
 			connection: null,
 			navbarItemDef: navbarItemDef,
 			settingsWindowed: false,
+			i18n,
 		};
 	},
 

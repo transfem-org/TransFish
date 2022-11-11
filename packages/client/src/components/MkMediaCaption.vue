@@ -79,7 +79,8 @@ export default defineComponent({
 
 	data() {
 		return {
-			inputValue: this.input.default ? this.input.default : null
+			inputValue: this.input.default ? this.input.default : null,
+			i18n,
 		};
 	},
 

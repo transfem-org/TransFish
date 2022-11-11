@@ -42,6 +42,7 @@ export default defineComponent({
 	data() {
 		return {
 			menu: null as Promise<null> | null,
+			i18n,
 		};
 	},
 

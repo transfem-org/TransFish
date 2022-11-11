@@ -65,6 +65,7 @@ export default defineComponent({
 			stats: null,
 			tags: [],
 			onlineUsersCount: null,
+			i18n,
 		};
 	},
 

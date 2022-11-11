@@ -70,6 +70,7 @@ export default defineComponent({
 			},
 			mainRouter,
 			isDesktop: window.innerWidth >= DESKTOP_THRESHOLD,
+			i18n,
 		};
 	},
 

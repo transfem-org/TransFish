@@ -61,6 +61,7 @@ export default defineComponent({
 		return {
 			narrow: null,
 			showMenu: false,
+			i18n,
 			isTimelineAvailable: !instance.disableLocalTimeline || !instance.disableRecommendedTimeline || !instance.disableGlobalTimeline,
 		};
 	},

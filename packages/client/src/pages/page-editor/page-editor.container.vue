@@ -81,11 +81,11 @@ export default defineComponent({
 	}
 
 	&.warn {
-		border: solid 2px #dec44c;
+		border: solid 2px #f6c177;
 	}
 
 	&.error {
-		border: solid 2px #f00;
+		border: solid 2px #eb6f92;
 	}
 
 	& + .cpjygsrt {
@@ -131,14 +131,14 @@ export default defineComponent({
 	}
 
 	> .warn {
-		color: #b19e49;
+		color: #ea9d34;
 		margin: 0;
 		padding: 16px 16px 0 16px;
 		font-size: 14px;
 	}
 
 	> .error {
-		color: #f00;
+		color: #b4637a;
 		margin: 0;
 		padding: 16px 16px 0 16px;
 		font-size: 14px;

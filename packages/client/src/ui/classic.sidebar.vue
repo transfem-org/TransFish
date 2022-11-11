@@ -66,6 +66,7 @@ export default defineComponent({
 			navbarItemDef: navbarItemDef,
 			iconOnly: false,
 			settingsWindowed: false,
+			i18n,
 		};
 	},
 

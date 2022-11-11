@@ -94,6 +94,7 @@ export default defineComponent({
 	data() {
 		return {
 			values: {},
+			i18n,
 		};
 	},
 

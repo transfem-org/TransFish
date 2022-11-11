@@ -82,6 +82,7 @@ export default defineComponent({
 				endpoint: 'announcements',
 				limit: 10,
 			},
+			i18n,
 		};
 	},
 

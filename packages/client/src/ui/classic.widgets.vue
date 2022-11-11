@@ -29,6 +29,7 @@ export default defineComponent({
 	data() {
 		return {
 			editMode: false,
+			i18n,
 		};
 	},
 

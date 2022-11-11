@@ -74,6 +74,7 @@ export default defineComponent({
 			showBody: this.expanded,
 			omitted: null,
 			ignoreOmit: false,
+			i18n,
 		};
 	},
 	mounted() {

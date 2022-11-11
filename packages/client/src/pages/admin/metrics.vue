@@ -133,6 +133,7 @@ export default defineComponent({
 			overviewHeight: '1fr',
 			queueHeight: '1fr',
 			paused: false,
+			i18n,
 		};
 	},
 
@@ -205,7 +206,7 @@ export default defineComponent({
 						pointRadius: 0,
 						tension: 0,
 						borderWidth: 2,
-						borderColor: '#935dbf',
+						borderColor: '#ebbcba',
 						borderDash: [5, 5],
 						fill: false,
 						data: [],
