@@ -1,5 +1,5 @@
 <template>
-<MkContainer :max-height="300" :foldable="true">
+<MkContainer id="photos-container" :max-height="300" :foldable="true">
 	<template #header><i class="ph-image-bold ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.images }}</template>
 	<div class="ujigsodd">
 		<MkLoading v-if="fetching"/>
@@ -73,6 +73,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+#photos-container {
+	--stickyTop: 0;
+}
+
 .ujigsodd {
 	padding: 8px;
 

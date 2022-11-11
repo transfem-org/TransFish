@@ -110,13 +110,13 @@ export default defineComponent({
 					os.pageWindow('/about');
 				}
 			}, {
-				text: this.i18n.ts.aboutMisskey,
+				text: i18n.ts.aboutMisskey,
 				icon: 'ph-info-bold ph-lg',
 				action: () => {
 					os.pageWindow('/about-calckey');
 				}
 			}, null, {
-				text: this.i18n.ts.help,
+				text: i18n.ts.help,
 				icon: 'ph-question-bold ph-lg',
 				action: () => {
 					window.open(`https://misskey-hub.net/help.md`, '_blank');

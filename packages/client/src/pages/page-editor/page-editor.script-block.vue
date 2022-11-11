@@ -216,7 +216,7 @@ export default defineComponent({
 	methods: {
 		async changeType() {
 			const { canceled, result: type } = await os.select({
-				title: this.i18n.ts._pages.selectType,
+				title: i18n.ts._pages.selectType,
 				groupedItems: this.getScriptBlockList(this.getExpectedType ? this.getExpectedType() : null)
 			});
 			if (canceled) return;
