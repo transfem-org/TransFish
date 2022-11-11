@@ -111,6 +111,7 @@ export default defineComponent({
 			error: null,
 			warn: null,
 			slots: '',
+			i18n,
 		};
 	},
 
