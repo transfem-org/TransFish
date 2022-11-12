@@ -39,7 +39,7 @@
 
 <script lang="ts" setup>
 import { computed, inject } from 'vue';
-import Virtual from 'swiper';
+import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import MkPagePreview from '@/components/MkPagePreview.vue';
 import MkPagination from '@/components/MkPagination.vue';

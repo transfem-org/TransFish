@@ -169,6 +169,8 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+
 	connection = markRaw(stream.useChannel('messagingIndex'));
 
 	connection.on('message', onMessage);
