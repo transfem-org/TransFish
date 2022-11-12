@@ -694,7 +694,7 @@ receiveAnnouncementFromInstance: "استلم إشعارات من هذا المث
 emailNotification: "إشعارات البريد الكتروني"
 inChannelSearch: "ابحث عن قناة"
 useReactionPickerForContextMenu: "افتح منتقي التفاعلات عند النقر بالزر الأيمن"
-typingUsers: "{users} يكتب(ون)..."
+typingUsers: "{users} يكتب(ون)"
 jumpToSpecifiedDate: "انتقل إلى تاريخ محدد"
 showingPastTimeline: "أنت تستعرض حاليًا خيطًا زمنيًا قديمًا"
 clear: "عودة"
