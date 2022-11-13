@@ -77,6 +77,7 @@ onMounted(() => {
 	--plyr-color-main: var(--accent);
 	--plyr-audio-controls-background: var(--panelHighlight);
 	--plyr-audio-controls-background-hover: var(--accentedBg);
+	--plyr-audio-control-color: var(--navFg);
 
 	> .download,
 	> .sensitive {
