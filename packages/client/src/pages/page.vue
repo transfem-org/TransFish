@@ -195,7 +195,7 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .content {
-			margin-top: 16px;
+			margin: 1rem;
 			padding: 16px 0 0 0;
 		}
 
