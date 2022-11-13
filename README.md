@@ -74,12 +74,18 @@ corepack enable
 - To add custom CSS for all users, edit `./custom/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
 
+## 🧑‍🔬 Configuring a new instance
+
+- Run `cp .config/example.yml .config/default.yml`
+- Edit `.config/default.yml`, making sure to fill out required fields.
+- Also copy and edit `.config/docker_example.env` to `.config/docker.env` if you're using Docker.
+
 ## 🚚 Migrating from Misskey to Calckey
 
 > ⚠️ Because of their changes, migrating from Foundkey is not supported.
 
 ```sh
-cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, replace `default.yml` with `docker.yml` if you use docker
+cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, add `docker.env` if you use Docker
 cp -r ../misskey/files . # if you don't use object storage
 ```
 
