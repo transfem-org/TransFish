@@ -146,7 +146,7 @@ function openInstanceMenu(ev: MouseEvent) {
 				defaultStore.set('tutorial', 0);
 				os.popup(XTutorial, {}, {}, 'closed');
 			},
-			text: i18n.ts.tutorial,
+			text: i18n.ts.replayTutorial,
 			icon: 'ph-circle-wavy-question-bold ph-lg',
 		}, {
 			type: 'link',

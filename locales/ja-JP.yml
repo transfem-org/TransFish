@@ -919,6 +919,7 @@ updateAvailable: "アップデートがありますよ"
 swipeOnDesktop: "デスクトップでモバイルスタイルのスワイプを可能にする"
 logoImageUrl: "ロゴのURL"
 showAdminUpdates: "新しいCalckeyのバージョンが利用可能であることを示す(管理者のみ)"
+replayTutorial: "リプレイチュートリアル"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てることができます。サーバーの負荷が少し増えます。"
