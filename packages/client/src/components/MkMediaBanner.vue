@@ -75,6 +75,8 @@ onMounted(() => {
 	margin-top: 4px;
 	overflow: hidden;
 	--plyr-color-main: var(--accent);
+	--plyr-audio-controls-background: var(--panelHighlight);
+	--plyr-audio-controls-background-hover: var(--accentedBg);
 
 	> .download,
 	> .sensitive {
