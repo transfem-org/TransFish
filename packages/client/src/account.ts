@@ -221,7 +221,12 @@ export async function openAccountMenu(opts: {
 			icon: 'ph-users-bold ph-lg',
 			text: i18n.ts.manageAccounts,
 			to: '/settings/accounts',
-		}]], ev.currentTarget ?? ev.target, {
+		},{
+			type: 'button',
+			icon: 'ph-sign-out-bold ph-lg',
+			text: i18n.ts.logout,
+			action: () => { signout(); },
+		},]], ev.currentTarget ?? ev.target, {
 			align: 'left',
 		});
 	} else {

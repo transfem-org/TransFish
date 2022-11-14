@@ -144,6 +144,10 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+});
 </script>
 
 <style lang="scss" scoped>
