@@ -204,3 +204,9 @@ sudo docker compose up -d
 - For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
 - For translations, make a [DeepL](https://deepl.com) account and generate an API key, then put it into Control Panel > General > DeepL Translation.
 - For link previews, go to Control Panel > Security > Summaly Proxy and put in `https://summaly.arkjp.net`.
+- To add another admin account:
+	- Go to the user's page > 3 Dots > About > Moderation > turn on "Moderator"
+	- Go back to Overview > click the clipboard icon next to the ID
+	- Run `psql -d calckey` (or whatever the database name is)
+	- Run `UPDATE "user" SET "isAdmin" = true WHERE id='999999';` (replace 999999 with the copied ID)
+	- Have the new admin log out and log back in 
