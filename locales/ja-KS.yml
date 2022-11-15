@@ -1006,8 +1006,6 @@ _time:
   minute: "分"
   hour: "時間"
   day: "日"
-_tutorial:
-  step3_1: "プロフィール設定はええ感じにできたか？"
 _2fa:
   alreadyRegistered: "もう設定終わっとるわ。"
 _permissions:

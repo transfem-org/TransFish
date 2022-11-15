@@ -1,3 +1,5 @@
+
+4.8 KiB
 <template>
 <MkSpacer :content-max="1200">
 	<MkTab v-model="origin" style="margin-bottom: var(--margin);">
@@ -6,27 +8,27 @@
 	</MkTab>
 	<div v-if="origin === 'local'">
 		<template v-if="tag == null">
-			<MkFolder v-show="thereArePinnedUsers" class="_gap" persist-key="explore-pinned-users">
-				<template #header><i class="ph-bookmark-simple-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
+			<MkFolder class="_gap" persist-key="explore-pinned-users">
+				<template #header><i class="fas fa-bookmark fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
-			<MkFolder class="_gap" persist-key="explore-popular-users">
-				<template #header><i class="ph-chart-line-up-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
+			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-popular-users">
+				<template #header><i class="fas fa-chart-line fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
 				<XUserList :pagination="popularUsers"/>
 			</MkFolder>
-			<MkFolder class="_gap" persist-key="explore-recently-updated-users">
-				<template #header><i class="ph-chat-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
+			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-recently-updated-users">
+				<template #header><i class="fas fa-comment-alt fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
 				<XUserList :pagination="recentlyUpdatedUsers"/>
 			</MkFolder>
-			<MkFolder class="_gap" persist-key="explore-recently-registered-users">
-				<template #header><i class="ph-plus-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyRegisteredUsers }}</template>
+			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-recently-registered-users">
+				<template #header><i class="fas fa-plus fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyRegisteredUsers }}</template>
 				<XUserList :pagination="recentlyRegisteredUsers"/>
 			</MkFolder>
 		</template>
 	</div>
 	<div v-else>
 		<MkFolder ref="tagsEl" :foldable="true" :expanded="false" class="_gap">
-			<template #header><i class="ph-hash-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularTags }}</template>
+			<template #header><i class="fas fa-hashtag fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularTags }}</template>
 
 			<div class="vxjfqztj">
 				<MkA v-for="tag in tagsLocal" :key="'local:' + tag.tag" :to="`/explore/tags/${tag.tag}`" class="local">{{ tag.tag }}</MkA>
@@ -35,21 +37,21 @@
 		</MkFolder>
 
 		<MkFolder v-if="tag != null" :key="`${tag}`" class="_gap">
-			<template #header><i class="ph-hash-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ tag }}</template>
+			<template #header><i class="fas fa-hashtag fa-fw" style="margin-right: 0.5em;"></i>{{ tag }}</template>
 			<XUserList :pagination="tagUsers"/>
 		</MkFolder>
 
-		<template v-if="tag == null">
+		<template v-if="tag == null && $i != null">
 			<MkFolder class="_gap">
-				<template #header><i class="ph-chart-line-up-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
+				<template #header><i class="fas fa-chart-line fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
 				<XUserList :pagination="popularUsersF"/>
 			</MkFolder>
 			<MkFolder class="_gap">
-				<template #header><i class="ph-chat-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
+				<template #header><i class="fas fa-comment-alt fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
 				<XUserList :pagination="recentlyUpdatedUsersF"/>
 			</MkFolder>
 			<MkFolder class="_gap">
-				<template #header><i class="ph-rocket-launch-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyDiscoveredUsers }}</template>
+				<template #header><i class="fas fa-rocket fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyDiscoveredUsers }}</template>
 				<XUserList :pagination="recentlyRegisteredUsersF"/>
 			</MkFolder>
 		</template>
@@ -65,24 +67,20 @@ import MkTab from '@/components/MkTab.vue';
 import number from '@/filters/number';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
+import { $i } from '@/account';
 import { instance } from '@/instance';
 
 const props = defineProps<{
-	tag?: string;
-}>();
+		tag?: string;
+	}>();
 
 let origin = $ref('local');
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let tagsLocal = $ref([]);
 let tagsRemote = $ref([]);
-let thereArePinnedUsers = $ref(false);
 
 watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
-});
-
-watch(() => pinnedUsersList, () => {
-	if (pinnedUsersList?.length > 0) thereArePinnedUsers = true;
 });
 
 const tagUsers = $computed(() => ({
@@ -94,10 +92,6 @@ const tagUsers = $computed(() => ({
 		sort: '+follower',
 	},
 }));
-
-const pinnedUsersList = await os.api('pinned-users');
-
-if (pinnedUsersList?.length > 0) { thereArePinnedUsers = true; }
 
 const pinnedUsers = { endpoint: 'pinned-users' };
 const popularUsers = { endpoint: 'users', limit: 10, noPaging: true, params: {

@@ -26,6 +26,7 @@ const mimeTypeMap = {
 	'image/webp': 'webp',
 	'image/jpeg': 'jpg',
 	'image/png': 'png',
+	'image/avif': 'avif',
 } as const;
 
 export function uploadFile(

@@ -1,10 +1,12 @@
 <template>
 <div>
-	<MkPagination v-slot="{items}" :pagination="pagination">
-		<div class="jrnovfpt">
-			<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
-		</div>
-	</MkPagination>
+	<MkSpacer :content-max="800">
+		<MkPagination v-slot="{items}" :pagination="pagination">
+			<div class="jrnovfpt">
+				<MkGalleryPostPreview v-for="post in items" :key="post.id" :post="post" class="post"/>
+			</div>
+		</MkPagination>
+	</MkSpacer>
 </div>
 </template>
 

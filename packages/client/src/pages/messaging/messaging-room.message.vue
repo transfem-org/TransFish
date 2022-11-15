@@ -8,16 +8,16 @@
 			</button>
 			<div v-if="!message.isDeleted" class="content">
 				<Mfm v-if="message.text" ref="text" class="text" :text="message.text" :i="$i"/>
-				<div v-if="message.file" class="file">
-					<XMediaList v-if="message.file.type.split('/')[0] == 'image' || message.file.type.split('/')[0] == 'video'" :media-list="[message.file]" max-width="400px" style="border-radius: 5px"/>
-					<a v-else :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
-						<p>{{ message.file.name }}</p>
-					</a>
-				</div>
 			</div>
 			<div v-else class="content">
 				<p class="is-deleted">{{ i18n.ts.deleted }}</p>
 			</div>
+		</div>
+		<div v-if="message.file" class="file" width="400px">
+			<XMediaList v-if="message.file.type.split('/')[0] == 'image' || message.file.type.split('/')[0] == 'video'" width="400px" :media-list="[message.file]" max-width="400px" style="border-radius: 5px"/>
+			<a v-else :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
+				<p>{{ message.file.name }}</p>
+			</a>
 		</div>
 		<div></div>
 		<MkUrlPreview v-for="url in urls" :key="url" :url="url" style="margin: 8px 0;"/>

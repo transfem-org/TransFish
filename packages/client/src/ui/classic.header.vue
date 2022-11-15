@@ -2,7 +2,7 @@
 <div class="azykntjl">
 	<div class="body">
 		<div class="left">
-			<MkA v-click-anime v-tooltip="$ts.timeline" class="item index" active-class="active" to="/" exact>
+			<MkA v-click-anime v-tooltip="i18n.ts.timeline" class="item index" active-class="active" to="/" exact>
 				<i class="ph-house-bold ph-lg ph-fw ph-lg"></i>
 			</MkA>
 			<template v-for="item in menu">
@@ -13,7 +13,7 @@
 				</component>
 			</template>
 			<div class="divider"></div>
-			<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime v-tooltip="$ts.controlPanel" class="item" active-class="active" to="/admin" :behavior="settingsWindowed ? 'modalWindow' : null">
+			<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime v-tooltip="i18n.ts.controlPanel" class="item" active-class="active" to="/admin" :behavior="settingsWindowed ? 'modalWindow' : null">
 				<i class="ph-door-bold ph-lg ph-fw ph-lg"></i>
 			</MkA>
 			<button v-click-anime class="item _button" @click="more">
@@ -22,7 +22,7 @@
 			</button>
 		</div>
 		<div class="right">
-			<MkA v-click-anime v-tooltip="$ts.settings" class="item" active-class="active" to="/settings" :behavior="settingsWindowed ? 'modalWindow' : null">
+			<MkA v-click-anime v-tooltip="i18n.ts.settings" class="item" active-class="active" to="/settings" :behavior="settingsWindowed ? 'modalWindow' : null">
 				<i class="ph-gear-six-bold ph-lg ph-fw ph-lg"></i>
 			</MkA>
 			<button v-click-anime class="item _button account" @click="openAccountMenu">
@@ -46,6 +46,7 @@ import * as os from '@/os';
 import { navbarItemDef } from '@/navbar';
 import { openAccountMenu } from '@/account';
 import MkButton from '@/components/MkButton.vue';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
@@ -59,6 +60,7 @@ export default defineComponent({
 			connection: null,
 			navbarItemDef: navbarItemDef,
 			settingsWindowed: false,
+			i18n,
 		};
 	},
 

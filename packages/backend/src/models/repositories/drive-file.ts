@@ -60,7 +60,7 @@ export const DriveFileRepository = db.getRepository(DriveFile).extend({
 			}
 		}
 
-		const isImage = file.type && ['image/png', 'image/apng', 'image/gif', 'image/jpeg', 'image/webp', 'image/svg+xml'].includes(file.type);
+		const isImage = file.type && ['image/png', 'image/apng', 'image/gif', 'image/jpeg', 'image/webp', 'image/svg+xml', 'image/avif'].includes(file.type);
 
 		return thumbnail ? (file.thumbnailUrl || (isImage ? (file.webpublicUrl || file.url) : null)) : (file.webpublicUrl || file.url);
 	},

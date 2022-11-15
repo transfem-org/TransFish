@@ -38,8 +38,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject } from 'vue';
-import Virtual from 'swiper';
+import { computed, watch, onMounted } from 'vue';
+import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import MkPagePreview from '@/components/MkPagePreview.vue';
 import MkPagination from '@/components/MkPagination.vue';
@@ -56,6 +56,7 @@ const router = useRouter();
 
 let tab = $ref('featured');
 const tabs = ['featured', 'my', 'liked'];
+watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
 const featuredPagesPagination = {
 	endpoint: 'pages/featured' as const,
@@ -113,6 +114,10 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+});
 </script>
 
 <style lang="scss" scoped>

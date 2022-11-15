@@ -9,7 +9,7 @@
 	</template>
 
 	<section v-if="modelValue.type === null" class="pbglfege" @click="changeType()">
-		{{ $ts._pages.script.emptySlot }}
+		{{ i18n.ts._pages.script.emptySlot }}
 	</section>
 	<section v-else-if="modelValue.type === 'text'" class="tbwccoaw">
 		<input v-model="modelValue.value"/>
@@ -18,7 +18,7 @@
 		<textarea v-model="modelValue.value"></textarea>
 	</section>
 	<section v-else-if="modelValue.type === 'textList'" class="tbwccoaw">
-		<textarea v-model="modelValue.value" :placeholder="$ts._pages.script.blocks._textList.info"></textarea>
+		<textarea v-model="modelValue.value" :placeholder="i18n.ts._pages.script.blocks._textList.info"></textarea>
 	</section>
 	<section v-else-if="modelValue.type === 'number'" class="tbwccoaw">
 		<input v-model="modelValue.value" type="number"/>
@@ -26,13 +26,13 @@
 	<section v-else-if="modelValue.type === 'ref'" class="hpdwcrvs">
 		<select v-model="modelValue.value">
 			<option v-for="v in hpml.getVarsByType(getExpectedType ? getExpectedType() : null).filter(x => x.name !== name)" :value="v.name">{{ v.name }}</option>
-			<optgroup :label="$ts._pages.script.argVariables">
+			<optgroup :label="i18n.ts._pages.script.argVariables">
 				<option v-for="v in fnSlots" :value="v.name">{{ v.name }}</option>
 			</optgroup>
-			<optgroup :label="$ts._pages.script.pageVariables">
+			<optgroup :label="i18n.ts._pages.script.pageVariables">
 				<option v-for="v in hpml.getPageVarsByType(getExpectedType ? getExpectedType() : null)" :value="v">{{ v }}</option>
 			</optgroup>
-			<optgroup :label="$ts._pages.script.enviromentVariables">
+			<optgroup :label="i18n.ts._pages.script.enviromentVariables">
 				<option v-for="v in hpml.getEnvVarsByType(getExpectedType ? getExpectedType() : null)" :value="v">{{ v }}</option>
 			</optgroup>
 		</select>
@@ -42,7 +42,7 @@
 	</section>
 	<section v-else-if="modelValue.type === 'fn'" class="" style="padding:0 16px 16px 16px;">
 		<MkTextarea v-model="slots">
-			<template #label>{{ $ts._pages.script.blocks._fn.slots }}</template>
+			<template #label>{{ i18n.ts._pages.script.blocks._fn.slots }}</template>
 			<template #caption>{{ $t('_pages.script.blocks._fn.slots-info') }}</template>
 		</MkTextarea>
 		<XV v-if="modelValue.value.expression" v-model="modelValue.value.expression" :title="$t(`_pages.script.blocks._fn.arg1`)" :get-expected-type="() => null" :hpml="hpml" :fn-slots="modelValue.value.slots" :name="name"/>
@@ -66,6 +66,7 @@ import { blockDefs } from '@/scripts/hpml/index';
 import * as os from '@/os';
 import { isLiteralValue } from '@/scripts/hpml/expr';
 import { funcDefs } from '@/scripts/hpml/lib';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
@@ -110,6 +111,7 @@ export default defineComponent({
 			error: null,
 			warn: null,
 			slots: '',
+			i18n,
 		};
 	},
 
@@ -215,7 +217,7 @@ export default defineComponent({
 	methods: {
 		async changeType() {
 			const { canceled, result: type } = await os.select({
-				title: this.$ts._pages.selectType,
+				title: i18n.ts._pages.selectType,
 				groupedItems: this.getScriptBlockList(this.getExpectedType ? this.getExpectedType() : null)
 			});
 			if (canceled) return;

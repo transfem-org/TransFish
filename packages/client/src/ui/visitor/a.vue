@@ -5,11 +5,11 @@
 			<h1 v-if="meta"><img v-if="meta.logoImageUrl" class="logo" :src="meta.logoImageUrl"><span v-else class="text">{{ instanceName }}</span></h1>
 			<div v-if="meta" class="about">
 				<!-- eslint-disable-next-line vue/no-v-html -->
-				<div class="desc" v-html="meta.description || $ts.introMisskey"></div>
+				<div class="desc" v-html="meta.description || i18n.ts.introMisskey"></div>
 			</div>
 			<div class="action">
-				<button class="_button primary" @click="signup()">{{ $ts.signup }}</button>
-				<button class="_button" @click="signin()">{{ $ts.login }}</button>
+				<button class="_button primary" @click="signup()">{{ i18n.ts.signup }}</button>
+				<button class="_button" @click="signin()">{{ i18n.ts.login }}</button>
 			</div>
 		</div>
 	</div>
@@ -46,6 +46,7 @@ import MkPagination from '@/components/MkPagination.vue';
 import MkButton from '@/components/MkButton.vue';
 import { ColdDeviceStorage } from '@/store';
 import { mainRouter } from '@/router';
+import { i18n } from '@/i18n';
 
 const DESKTOP_THRESHOLD = 1100;
 
@@ -69,6 +70,7 @@ export default defineComponent({
 			},
 			mainRouter,
 			isDesktop: window.innerWidth >= DESKTOP_THRESHOLD,
+			i18n,
 		};
 	},
 

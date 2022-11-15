@@ -18,6 +18,7 @@
 import { defineComponent, defineAsyncComponent } from 'vue';
 import MkDriveFileThumbnail from '@/components/MkDriveFileThumbnail.vue';
 import * as os from '@/os';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
@@ -41,6 +42,7 @@ export default defineComponent({
 	data() {
 		return {
 			menu: null as Promise<null> | null,
+			i18n,
 		};
 	},
 
@@ -73,7 +75,7 @@ export default defineComponent({
 		},
 		async rename(file) {
 			const { canceled, result } = await os.inputText({
-				title: this.$ts.enterFileName,
+				title: i18n.ts.enterFileName,
 				default: file.name,
 				allowEmpty: false,
 			});
@@ -89,9 +91,9 @@ export default defineComponent({
 
 		async describe(file) {
 			os.popup(defineAsyncComponent(() => import('@/components/MkMediaCaption.vue')), {
-				title: this.$ts.describeFile,
+				title: i18n.ts.describeFile,
 				input: {
-					placeholder: this.$ts.inputNewDescription,
+					placeholder: i18n.ts.inputNewDescription,
 					default: file.comment !== null ? file.comment : '',
 				},
 				image: file,
@@ -112,19 +114,19 @@ export default defineComponent({
 		showFileMenu(file, ev: MouseEvent) {
 			if (this.menu) return;
 			this.menu = os.popupMenu([{
-				text: this.$ts.renameFile,
+				text: i18n.ts.renameFile,
 				icon: 'ph-cursor-text-bold ph-lg',
 				action: () => { this.rename(file); },
 			}, {
-				text: file.isSensitive ? this.$ts.unmarkAsSensitive : this.$ts.markAsSensitive,
+				text: file.isSensitive ? i18n.ts.unmarkAsSensitive : i18n.ts.markAsSensitive,
 				icon: file.isSensitive ? 'ph-eye-slash-bold ph-lg' : 'ph-eye-bold ph-lg',
 				action: () => { this.toggleSensitive(file); },
 			}, {
-				text: this.$ts.describeFile,
+				text: i18n.ts.describeFile,
 				icon: 'ph-cursor-text-bold ph-lg',
 				action: () => { this.describe(file); },
 			}, {
-				text: this.$ts.attachCancel,
+				text: i18n.ts.attachCancel,
 				icon: 'ph-circle-wavy-warning-bold ph-lg',
 				action: () => { this.detachMedia(file.id); },
 			}], ev.currentTarget ?? ev.target).then(() => this.menu = null);

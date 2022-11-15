@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
+import { computed, watch, onMounted } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XFeatured from './explore.featured.vue';
@@ -117,5 +117,9 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+});
 
 </script>

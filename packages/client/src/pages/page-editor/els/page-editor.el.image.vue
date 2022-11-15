@@ -1,7 +1,7 @@
 <template>
 <!-- eslint-disable vue/no-mutating-props -->
 <XContainer :draggable="true" @remove="() => $emit('remove')">
-	<template #header><i class="ph-image-bold ph-lg"></i> {{ $ts._pages.blocks.image }}</template>
+	<template #header><i class="ph-image-bold ph-lg"></i> {{ i18n.ts._pages.blocks.image }}</template>
 	<template #func>
 		<button @click="choose()">
 			<i class="ph-folder-notch-open-bold ph-lg"></i>
@@ -20,6 +20,7 @@ import { onMounted } from 'vue';
 import XContainer from '../page-editor.container.vue';
 import MkDriveFileThumbnail from '@/components/MkDriveFileThumbnail.vue';
 import * as os from '@/os';
+import { i18n } from '@/i18n';
 
 const props = withDefaults(defineProps<{
 	value: any

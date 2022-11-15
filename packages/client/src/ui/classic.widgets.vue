@@ -3,14 +3,15 @@
 	<XWidgets class="widgets" :edit="editMode" :widgets="$store.reactiveState.widgets.value.filter(w => w.place === place)" @add-widget="addWidget" @remove-widget="removeWidget" @update-widget="updateWidget" @update-widgets="updateWidgets" @exit="editMode = false"/>
 	<MkAd class="a" :prefer="['square']"/>
 
-	<button v-if="editMode" class="_textButton edit" style="font-size: 0.9em;" @click="editMode = false"><i class="ph-check-bold ph-lg"></i> {{ $ts.editWidgetsExit }}</button>
-	<button v-else class="_textButton edit" style="font-size: 0.9em;" @click="editMode = true"><i class="ph-pencil-bold ph-lg"></i> {{ $ts.editWidgets }}</button>
+	<button v-if="editMode" class="_textButton edit" style="font-size: 0.9em;" @click="editMode = false"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.editWidgetsExit }}</button>
+	<button v-else class="_textButton edit" style="font-size: 0.9em;" @click="editMode = true"><i class="ph-pencil-bold ph-lg"></i> {{ i18n.ts.editWidgets }}</button>
 </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue';
 import XWidgets from '@/components/MkWidgets.vue';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
@@ -28,6 +29,7 @@ export default defineComponent({
 	data() {
 		return {
 			editMode: false,
+			i18n,
 		};
 	},
 

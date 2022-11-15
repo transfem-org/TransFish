@@ -107,6 +107,7 @@ function save() {
 
 const headerActions = $computed(() => [{
 	asFullButton: true,
+	icon: 'ph-test-tube-bold ph-lg',
 	text: i18n.ts.testEmail,
 	handler: testEmail,
 }, {

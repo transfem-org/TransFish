@@ -17,10 +17,6 @@
 						<MkPagination v-slot="{items}" :pagination="dmsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
-						<div v-if="messages.length == 0" class="_fullinfo">
-							<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
-							<div>{{ i18n.ts.noHistory }}</div>
-						</div>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
@@ -68,7 +64,12 @@ const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
-const headerActions = $computed(() => []);
+const headerActions = $computed(() => [{
+	asFullButton: true,
+	icon: 'ph-plus-bold ph-lg',
+	text: i18n.ts.addUser,
+	handler: startMenu,
+}]);
 
 const headerTabs = $computed(() => [{
 	key: 'dms',
@@ -126,6 +127,19 @@ function onRead(ids): void {
 	}
 }
 
+function startMenu(ev) {
+	os.popupMenu([{
+		text: i18n.ts.messagingWithUser,
+		icon: 'fas fa-user',
+		action: () => { startUser(); },
+	}, {
+		text: i18n.ts.messagingWithGroup,
+		icon: 'fas fa-users',
+		action: () => { startGroup(); },
+	}], ev.currentTarget ?? ev.target);
+}
+
+
 async function startUser(): void {
 	os.selectUser().then(user => {
 		router.push(`/my/messaging/${Acct.toString(user)}`);
@@ -169,6 +183,8 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+
 	connection = markRaw(stream.useChannel('messagingIndex'));
 
 	connection.on('message', onMessage);

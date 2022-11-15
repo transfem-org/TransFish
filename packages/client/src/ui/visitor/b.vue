@@ -30,15 +30,14 @@
 
 	<transition :name="$store.state.animation ? 'tray' : ''">
 		<div v-if="showMenu" class="menu">
-			<MkA to="/" class="link" active-class="active"><i class="ph-house-bold ph-lg icon"></i>{{ $ts.home }}</MkA>
-			<MkA v-if="isTimelineAvailable" to="/timeline" class="link" active-class="active"><i class="ph-chats-circle-bold ph-lg icon"></i>{{ $ts.timeline }}</MkA>
-			<MkA to="/explore" class="link" active-class="active"><i class="ph-hash-bold ph-lg icon"></i>{{ $ts.explore }}</MkA>
-			<MkA to="/channels" class="link" active-class="active"><i class="ph-television-bold ph-lg icon"></i>{{ $ts.channel }}</MkA>
-			<MkA to="/pages" class="link" active-class="active"><i class="ph-file-text-bold ph-lg icon"></i>{{ $ts.pages }}</MkA>
-			<MkA to="/gallery" class="link" active-class="active"><i class="ph-image-square-bold ph-lg icon"></i>{{ $ts.gallery }}</MkA>
+			<MkA to="/" class="link" active-class="active"><i class="ph-house-bold ph-lg icon"></i>{{ i18n.ts.home }}</MkA>
+			<MkA to="/explore" class="link" active-class="active"><i class="ph-hash-bold ph-lg icon"></i>{{ i18n.ts.explore }}</MkA>
+			<MkA to="/channels" class="link" active-class="active"><i class="ph-television-bold ph-lg icon"></i>{{ i18n.ts.channel }}</MkA>
+			<MkA to="/pages" class="link" active-class="active"><i class="ph-file-text-bold ph-lg icon"></i>{{ i18n.ts.pages }}</MkA>
+			<MkA to="/gallery" class="link" active-class="active"><i class="ph-image-square-bold ph-lg icon"></i>{{ i18n.ts.gallery }}</MkA>
 			<div class="action">
-				<button class="_buttonPrimary" @click="signup()">{{ $ts.signup }}</button>
-				<button class="_button" @click="signin()">{{ $ts.login }}</button>
+				<button class="_buttonPrimary" @click="signup()">{{ i18n.ts.signup }}</button>
+				<button class="_button" @click="signin()">{{ i18n.ts.login }}</button>
 			</div>
 		</div>
 	</transition>
@@ -60,6 +59,7 @@ import MkButton from '@/components/MkButton.vue';
 import { ColdDeviceStorage, defaultStore } from '@/store';
 import { mainRouter } from '@/router';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
+import { i18n } from '@/i18n';
 
 const DESKTOP_THRESHOLD = 1000;
 

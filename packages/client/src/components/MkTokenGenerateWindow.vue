@@ -10,19 +10,19 @@
 	@closed="$emit('closed')"
 	@ok="ok()"
 >
-	<template #header>{{ title || $ts.generateAccessToken }}</template>
+	<template #header>{{ title || i18n.ts.generateAccessToken }}</template>
 	<div v-if="information" class="_section">
 		<MkInfo warn>{{ information }}</MkInfo>
 	</div>
 	<div class="_section">
 		<MkInput v-model="name">
-			<template #label>{{ $ts.name }}</template>
+			<template #label>{{ i18n.ts.name }}</template>
 		</MkInput>
 	</div>
 	<div class="_section">
-		<div style="margin-bottom: 16px;"><b>{{ $ts.permission }}</b></div>
-		<MkButton inline @click="disableAll">{{ $ts.disableAll }}</MkButton>
-		<MkButton inline @click="enableAll">{{ $ts.enableAll }}</MkButton>
+		<div style="margin-bottom: 16px;"><b>{{ i18n.ts.permission }}</b></div>
+		<MkButton inline @click="disableAll">{{ i18n.ts.disableAll }}</MkButton>
+		<MkButton inline @click="enableAll">{{ i18n.ts.enableAll }}</MkButton>
 		<MkSwitch v-for="kind in (initialPermissions || kinds)" :key="kind" v-model="permissions[kind]">{{ $t(`_permissions.${kind}`) }}</MkSwitch>
 	</div>
 </XModalWindow>
@@ -36,6 +36,7 @@ import MkSwitch from './form/switch.vue';
 import MkButton from './MkButton.vue';
 import MkInfo from './MkInfo.vue';
 import XModalWindow from '@/components/MkModalWindow.vue';
+import { i18n } from '@/i18n';
 
 const props = withDefaults(defineProps<{
 	title?: string | null;

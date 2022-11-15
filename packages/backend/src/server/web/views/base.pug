@@ -20,23 +20,26 @@ doctype html
 
 html
 
+	- var timestamp = Date.now();
+
 	head
 		meta(charset='utf-8')
 		meta(name='application-name' content='Calckey')
 		meta(name='referrer' content='origin')
+		meta(name='darkreader-lock' content='')
 		meta(name='theme-color' content= themeColor || '#31748f')
 		meta(name='theme-color-orig' content= themeColor || '#31748f')
 		meta(property='twitter:card' content='summary')
 		meta(property='og:site_name' content= instanceName || 'Calckey')
 		meta(name='viewport' content='width=device-width, initial-scale=1')
-		link(rel='icon' href= icon || `/favicon.ico?${ nowDateMs }`)
-		link(rel='apple-touch-icon' href= icon || `/apple-touch-icon.png?${ nowDateMs }`)
+		link(rel='icon' href= icon || `/favicon.ico?${ timestamp }`)
+		link(rel='apple-touch-icon' href= icon || `/apple-touch-icon.png?${ timestamp }`)
 		link(rel='manifest' href='/manifest.json')
-		link(rel='prefetch' href=`/static-assets/badges/info.png?${ nowDateMs }`)
-		link(rel='prefetch' href=`/static-assets/badges/not-found.png?${ nowDateMs }`)
-		link(rel='prefetch' href=`/static-assets/badges/error.png?${ nowDateMs }`)
+		link(rel='prefetch' href=`/static-assets/badges/info.png?${ timestamp }`)
+		link(rel='prefetch' href=`/static-assets/badges/not-found.png?${ timestamp }`)
+		link(rel='prefetch' href=`/static-assets/badges/error.png?${ timestamp }`)
 		link(rel='stylesheet' href='/assets/phosphor/icons.css')
-		link(rel='stylesheet' href=`/static-assets/instance.css?${ nowDateMs }`)
+		link(rel='stylesheet' href=`/static-assets/instance.css?${ timestamp }`)
 		link(rel='modulepreload' href=`/assets/${clientEntry.file}`)
 
 		each href in clientEntry.css
@@ -77,7 +80,7 @@ html
 			br
 			| Please turn on your JavaScript
 		div#splash
-			img#splashIcon(src= splashIcon || `/static-assets/splash.png?${ nowDateMs }`)
+			img#splashIcon(src= splashIcon || `/static-assets/splash.png?${ timestamp }`)
 			span#splashText
 				block randomMOTD
 					= randomMOTD

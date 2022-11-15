@@ -1,5 +1,9 @@
 <template>
 <div class="_formRoot">
+	<div v-if="saveButton == true">
+		<MkButton primary @click="save">{{ i18n.ts.save }}</MkButton>
+	</div>
+	<br/>
 	<div class="llvierxe" :style="{ backgroundImage: $i.bannerUrl ? `url(${ $i.bannerUrl })` : null }">
 		<div class="avatar">
 			<MkAvatar class="avatar" :user="$i" :disable-link="true" @click="changeAvatar"/>
@@ -56,6 +60,9 @@
 	<FormSwitch v-model="profile.isCat" class="_formBlock">{{ i18n.ts.flagAsCat }}<template #caption>{{ i18n.ts.flagAsCatDescription }}</template></FormSwitch>
 	<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock">{{ i18n.ts.flagShowTimelineReplies }}<template #caption>{{ i18n.ts.flagShowTimelineRepliesDescription }} {{ i18n.ts.reflectMayTakeTime }}</template></FormSwitch>
 	<FormSwitch v-model="profile.isBot" class="_formBlock">{{ i18n.ts.flagAsBot }}<template #caption>{{ i18n.ts.flagAsBotDescription }}</template></FormSwitch>
+	<div v-if="saveButton == true">
+		<MkButton primary @click="save">{{ i18n.ts.save }}</MkButton>
+	</div>
 </div>
 </template>
 
@@ -78,15 +85,21 @@ import { langmap } from '@/scripts/langmap';
 import { definePageMetadata } from '@/scripts/page-metadata';
 
 const profile = reactive({
-	name: $i.name,
-	description: $i.description,
-	location: $i.location,
-	birthday: $i.birthday,
-	lang: $i.lang,
-	isBot: $i.isBot,
-	isCat: $i.isCat,
-	showTimelineReplies: $i.showTimelineReplies,
+	name: $i?.name,
+	description: $i?.description,
+	location: $i?.location,
+	birthday: $i?.birthday,
+	lang: $i?.lang,
+	isBot: $i?.isBot,
+	isCat: $i?.isCat,
+	showTimelineReplies: $i?.showTimelineReplies,
 });
+
+const props = withDefaults(defineProps<{
+	saveButton?: boolean,
+}>(), {});
+
+let saveButton = $ref(props.saveButton ?? false);
 
 watch(() => profile, () => {
 	save();

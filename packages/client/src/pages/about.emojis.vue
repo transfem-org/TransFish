@@ -1,7 +1,7 @@
 <template>
 <div class="driuhtrh">
 	<div class="query">
-		<MkInput v-model="q" class="" :placeholder="$ts.search">
+		<MkInput v-model="q" class="" :placeholder="i18n.ts.search">
 			<template #prefix><i class="ph-magnifying-glass-bold ph-lg"></i></template>
 		</MkInput>
 
@@ -13,14 +13,14 @@
 	</div>
 
 	<MkFolder v-if="searchEmojis" class="emojis">
-		<template #header>{{ $ts.searchResult }}</template>
+		<template #header>{{ i18n.ts.searchResult }}</template>
 		<div class="zuvgdzyt">
 			<XEmoji v-for="emoji in searchEmojis" :key="emoji.name" class="emoji" :emoji="emoji"/>
 		</div>
 	</MkFolder>
-	
+
 	<MkFolder v-for="category in customEmojiCategories" :key="category" class="emojis">
-		<template #header>{{ category || $ts.other }}</template>
+		<template #header>{{ category || i18n.ts.other }}</template>
 		<div class="zuvgdzyt">
 			<XEmoji v-for="emoji in customEmojis.filter(e => e.category === category)" :key="emoji.name" class="emoji" :emoji="emoji"/>
 		</div>
@@ -38,6 +38,7 @@ import MkFolder from '@/components/MkFolder.vue';
 import MkTab from '@/components/MkTab.vue';
 import * as os from '@/os';
 import { emojiCategories, emojiTags } from '@/instance';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
@@ -57,6 +58,7 @@ export default defineComponent({
 			tags: emojiTags,
 			selectedTags: new Set(),
 			searchEmojis: null,
+			i18n,
 		};
 	},
 

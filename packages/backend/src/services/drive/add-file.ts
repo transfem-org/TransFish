@@ -49,6 +49,7 @@ async function save(file: DriveFile, path: string, name: string, type: string, h
 			if (type === 'image/png') ext = '.png';
 			if (type === 'image/webp') ext = '.webp';
 			if (type === 'image/apng') ext = '.apng';
+			if (type === 'image/avif') ext = '.avif';
 			if (type === 'image/vnd.mozilla.apng') ext = '.apng';
 		}
 
@@ -171,7 +172,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 		}
 	}
 
-	if (!['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'].includes(type)) {
+	if (!['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/avif'].includes(type)) {
 		logger.debug('web image and thumbnail not created (not an required file)');
 		return {
 			webpublic: null,
@@ -238,7 +239,7 @@ export async function generateAlts(path: string, type: string, generateWeb: bool
 	let thumbnail: IImage | null = null;
 
 	try {
-		if (['image/jpeg', 'image/webp', 'image/png', 'image/svg+xml'].includes(type)) {
+		if (['image/jpeg', 'image/webp', 'image/png', 'image/svg+xml', 'image/avif'].includes(type)) {
 			thumbnail = await convertSharpToWebp(img, 498, 280);
 		} else {
 			logger.debug('thumbnail not created (not an required file)');

@@ -57,6 +57,7 @@
 
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, ref, watch } from 'vue';
+import XTutorial from '@/components/MkTutorialDialog.vue';
 import * as os from '@/os';
 import { navbarItemDef } from '@/navbar';
 import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
@@ -139,6 +140,14 @@ function openInstanceMenu(ev: MouseEvent) {
 			to: '/mfm-cheat-sheet',
 			text: i18n.ts._mfm.cheatSheet,
 			icon: 'ph-code-bold ph-lg',
+		}, {
+			type: 'button',
+			action: async () => {
+				defaultStore.set('tutorial', 0);
+				os.popup(XTutorial, {}, {}, 'closed');
+			},
+			text: i18n.ts.replayTutorial,
+			icon: 'ph-circle-wavy-question-bold ph-lg',
 		}, {
 			type: 'link',
 			to: '/scratchpad',
