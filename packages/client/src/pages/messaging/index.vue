@@ -17,10 +17,6 @@
 						<MkPagination v-slot="{items}" :pagination="dmsPagination">
 							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
-						<div v-if="messages.length == 0" class="_fullinfo">
-							<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
-							<div>{{ i18n.ts.noHistory }}</div>
-						</div>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
