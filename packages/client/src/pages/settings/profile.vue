@@ -1,7 +1,7 @@
 <template>
 <div class="_formRoot">
 	<div v-if="saveButton == true">
-		<MkButton primary rounded @click="save">{{ i18n.ts.save }}</MkButton>
+		<MkButton primary @click="save">{{ i18n.ts.save }}</MkButton>
 	</div>
 	<br/>
 	<div class="llvierxe" :style="{ backgroundImage: $i.bannerUrl ? `url(${ $i.bannerUrl })` : null }">
@@ -61,7 +61,7 @@
 	<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock">{{ i18n.ts.flagShowTimelineReplies }}<template #caption>{{ i18n.ts.flagShowTimelineRepliesDescription }} {{ i18n.ts.reflectMayTakeTime }}</template></FormSwitch>
 	<FormSwitch v-model="profile.isBot" class="_formBlock">{{ i18n.ts.flagAsBot }}<template #caption>{{ i18n.ts.flagAsBotDescription }}</template></FormSwitch>
 	<div v-if="saveButton == true">
-		<MkButton primary rounded @click="save">{{ i18n.ts.save }}</MkButton>
+		<MkButton primary @click="save">{{ i18n.ts.save }}</MkButton>
 	</div>
 </div>
 </template>
