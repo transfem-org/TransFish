@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<div v-if="message.file" class="file" width="400px">
-			<XMediaList v-if="message.file.type.split('/')[0] == 'image' || message.file.type.split('/')[0] == 'video'" width="400px" :media-list="[message.file]" style="border-radius: 5px"/>
+			<XMediaList v-if="message.file.type.split('/')[0] == 'image' || message.file.type.split('/')[0] == 'video'" :in-dm="true" width="400px" :media-list="[message.file]" style="border-radius: 5px"/>
 			<a v-else :href="message.file.url" rel="noopener" target="_blank" :title="message.file.name">
 				<p>{{ message.file.name }}</p>
 			</a>
