@@ -64,7 +64,12 @@ const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
-const headerActions = $computed(() => []);
+const headerActions = $computed(() => [{
+	asFullButton: true,
+	icon: 'ph-plus-bold ph-lg',
+	text: i18n.ts.addUser,
+	handler: startMenu,
+}]);
 
 const headerTabs = $computed(() => [{
 	key: 'dms',
@@ -121,6 +126,19 @@ function onRead(ids): void {
 		}
 	}
 }
+
+function startMenu(ev) {
+	os.popupMenu([{
+		text: i18n.ts.messagingWithUser,
+		icon: 'fas fa-user',
+		action: () => { startUser(); },
+	}, {
+		text: i18n.ts.messagingWithGroup,
+		icon: 'fas fa-users',
+		action: () => { startGroup(); },
+	}], ev.currentTarget ?? ev.target);
+}
+
 
 async function startUser(): void {
 	os.selectUser().then(user => {
