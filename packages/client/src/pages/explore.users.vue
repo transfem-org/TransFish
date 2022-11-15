@@ -1,3 +1,5 @@
+
+4.8 KiB
 <template>
 <MkSpacer :content-max="1200">
 	<MkTab v-model="origin" style="margin-bottom: var(--margin);">
@@ -6,50 +8,50 @@
 	</MkTab>
 	<div v-if="origin === 'local'">
 		<template v-if="tag == null">
-			<MkFolder v-show="thereArePinnedUsers != null && thereArePinnedUsers" class="_gap" persist-key="explore-pinned-users">
-				<template #header><i class="ph-bookmark-simple-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
+			<MkFolder class="_gap" persist-key="explore-pinned-users">
+				<template #header><i class="fas fa-bookmark fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
 			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-popular-users">
-				<template #header><i class="ph-chart-line-up-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
+				<template #header><i class="fas fa-chart-line fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
 				<XUserList :pagination="popularUsers"/>
 			</MkFolder>
 			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-recently-updated-users">
-				<template #header><i class="ph-chat-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
+				<template #header><i class="fas fa-comment-alt fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
 				<XUserList :pagination="recentlyUpdatedUsers"/>
 			</MkFolder>
 			<MkFolder v-if="$i != null" class="_gap" persist-key="explore-recently-registered-users">
-				<template #header><i class="ph-plus-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyRegisteredUsers }}</template>
+				<template #header><i class="fas fa-plus fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyRegisteredUsers }}</template>
 				<XUserList :pagination="recentlyRegisteredUsers"/>
 			</MkFolder>
 		</template>
 	</div>
 	<div v-else>
 		<MkFolder ref="tagsEl" :foldable="true" :expanded="false" class="_gap">
-			<template #header><i class="ph-hash-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularTags }}</template>
+			<template #header><i class="fas fa-hashtag fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularTags }}</template>
 
 			<div class="vxjfqztj">
-				<MkA v-for="t in tagsLocal" :key="'local:' + t.tag" :to="`/explore/tags/${t.tag}`" class="local">{{ t.tag }}</MkA>
-				<MkA v-for="t in tagsRemote" :key="'remote:' + t.tag" :to="`/explore/tags/${t.tag}`">{{ t.tag }}</MkA>
+				<MkA v-for="tag in tagsLocal" :key="'local:' + tag.tag" :to="`/explore/tags/${tag.tag}`" class="local">{{ tag.tag }}</MkA>
+				<MkA v-for="tag in tagsRemote" :key="'remote:' + tag.tag" :to="`/explore/tags/${tag.tag}`">{{ tag.tag }}</MkA>
 			</div>
 		</MkFolder>
 
 		<MkFolder v-if="tag != null" :key="`${tag}`" class="_gap">
-			<template #header><i class="ph-hash-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ tag }}</template>
+			<template #header><i class="fas fa-hashtag fa-fw" style="margin-right: 0.5em;"></i>{{ tag }}</template>
 			<XUserList :pagination="tagUsers"/>
 		</MkFolder>
 
-		<template v-if="tag == null">
+		<template v-if="tag == null && $i != null">
 			<MkFolder class="_gap">
-				<template #header><i class="ph-chart-line-up-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
+				<template #header><i class="fas fa-chart-line fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
 				<XUserList :pagination="popularUsersF"/>
 			</MkFolder>
 			<MkFolder class="_gap">
-				<template #header><i class="ph-chat-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
+				<template #header><i class="fas fa-comment-alt fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
 				<XUserList :pagination="recentlyUpdatedUsersF"/>
 			</MkFolder>
 			<MkFolder class="_gap">
-				<template #header><i class="ph-rocket-launch-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyDiscoveredUsers }}</template>
+				<template #header><i class="fas fa-rocket fa-fw" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyDiscoveredUsers }}</template>
 				<XUserList :pagination="recentlyRegisteredUsersF"/>
 			</MkFolder>
 		</template>
@@ -58,27 +60,24 @@
 </template>
 
 <script lang="ts" setup>
-import { watch } from 'vue';
+import { computed, watch } from 'vue';
 import XUserList from '@/components/MkUserList.vue';
 import MkFolder from '@/components/MkFolder.vue';
 import MkTab from '@/components/MkTab.vue';
+import number from '@/filters/number';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
+import { instance } from '@/instance';
 
 const props = defineProps<{
-	tag?: string;
-}>();
+		tag?: string;
+	}>();
 
 let origin = $ref('local');
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let tagsLocal = $ref([]);
 let tagsRemote = $ref([]);
-let thereArePinnedUsers = $ref(false);
-
-const pinnedUsersList = await os.api('pinned-users');
-
-if (pinnedUsersList?.length > 0) { thereArePinnedUsers = true; }
 
 watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
