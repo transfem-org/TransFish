@@ -1,7 +1,7 @@
 <template>
 <div class="hoawjimk">
 	<XBanner v-for="media in mediaList.filter(media => !previewable(media))" :key="media.id" :media="media"/>
-	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="gird-container" :class="{ width400: inDm }">
+	<div v-if="mediaList.filter(media => previewable(media)).length > 0" class="gird-container" :class="{ dmWidth: inDm }">
 		<div ref="gallery" :data-count="mediaList.filter(media => previewable(media)).length">
 			<template v-for="media in mediaList.filter(media => previewable(media))">
 				<XVideo v-if="media.type.startsWith('video')" :key="media.id" :video="media"/>
@@ -105,8 +105,8 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 <style lang="scss" scoped>
 .hoawjimk {
 
-	> .width400 {
-		width: 400px !important;
+	> .dmWidth {
+		max-width: 400px;
 	}
 
 	> .gird-container {
