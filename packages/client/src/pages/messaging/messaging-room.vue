@@ -275,18 +275,10 @@ function onVisibilitychange() {
 
 onMounted(() => {
 	fetch();
-	if (group != null) {
-		definePageMetadata(computed(() => ({
-			title: group.name,
-			icon: 'ph-chats-teardrop-bold ph-lg',
-		})));
-	}
-	else {
-		definePageMetadata(computed(() => ({
-			title: user.name,
-			icon: 'ph-chats-teardrop-bold ph-lg',
-		})));
-	}
+	definePageMetadata(computed(() => ({
+		title: group != null ? group.name : user?.name,
+		icon: 'ph-chats-teardrop-bold ph-lg',
+	})));
 });
 
 onBeforeUnmount(() => {
