@@ -10,15 +10,15 @@
 				<template #header><i class="ph-bookmark-simple-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.pinnedUsers }}</template>
 				<XUserList :pagination="pinnedUsers"/>
 			</MkFolder>
-			<MkFolder v-if="user != null" class="_gap" persist-key="explore-popular-users">
+			<MkFolder class="_gap" persist-key="explore-popular-users">
 				<template #header><i class="ph-chart-line-up-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.popularUsers }}</template>
 				<XUserList :pagination="popularUsers"/>
 			</MkFolder>
-			<MkFolder v-if="user != null" class="_gap" persist-key="explore-recently-updated-users">
+			<MkFolder class="_gap" persist-key="explore-recently-updated-users">
 				<template #header><i class="ph-chat-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyUpdatedUsers }}</template>
 				<XUserList :pagination="recentlyUpdatedUsers"/>
 			</MkFolder>
-			<MkFolder v-if="user != null" class="_gap" persist-key="explore-recently-registered-users">
+			<MkFolder class="_gap" persist-key="explore-recently-registered-users">
 				<template #header><i class="ph-plus-bold ph-lg ph-fw ph-lg" style="margin-right: 0.5em;"></i>{{ i18n.ts.recentlyRegisteredUsers }}</template>
 				<XUserList :pagination="recentlyRegisteredUsers"/>
 			</MkFolder>
@@ -75,7 +75,6 @@ let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 let tagsLocal = $ref([]);
 let tagsRemote = $ref([]);
 let thereArePinnedUsers = $ref(false);
-let user = $ref(true);
 
 watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
@@ -84,8 +83,6 @@ watch(() => props.tag, () => {
 watch(() => pinnedUsersList, () => {
 	if (pinnedUsersList?.length > 0) thereArePinnedUsers = true;
 });
-
-if ($i == null) { user = false; }
 
 const tagUsers = $computed(() => ({
 	endpoint: 'hashtags/users' as const,
