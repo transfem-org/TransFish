@@ -74,7 +74,7 @@ corepack enable
 
 - To add custom CSS for all users, edit `./custom/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
-- To update custom assets without rebuilding, just run `yarn run gulp` and restart.
+- To update custom assets without rebuilding, just run `yarn run gulp`.
 
 ## 🧑‍🔬 Configuring a new instance
 
