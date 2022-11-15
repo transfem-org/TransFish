@@ -11,29 +11,19 @@
 			@slide-change="onSlideChange"
 		>
 			<swiper-slide>
-				<div class="home">
-					<XHome :user="user"/>
-				</div>
+				<XHome :user="user"/>
 			</swiper-slide>
 			<swiper-slide>
-				<div class="reactions">
-					<XReactions :user="user"/>
-				</div>
+				<XReactions :user="user"/>
 			</swiper-slide>
 			<swiper-slide>
-				<div class="clips">
-					<XClips :user="user"/>
-				</div>
+				<XClips :user="user"/>
 			</swiper-slide>
 			<swiper-slide>
-				<div class="pages">
-					<XPages :user="user"/>
-				</div>
+				<XPages :user="user"/>
 			</swiper-slide>
 			<swiper-slide>
-				<div class="gallery">
-					<XGallery :user="user"/>
-				</div>
+				<XGallery :user="user"/>
 			</swiper-slide>
 		</swiper>
 	</div>
