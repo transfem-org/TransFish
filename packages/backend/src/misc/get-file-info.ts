@@ -63,7 +63,7 @@ export async function getFileInfo(path: string, opts: {
 	let height: number | undefined;
 	let orientation: number | undefined;
 
-	if (['image/jpeg', 'image/gif', 'image/png', 'image/apng', 'image/webp', 'image/bmp', 'image/tiff', 'image/svg+xml', 'image/vnd.adobe.photoshop'].includes(type.mime)) {
+	if (['image/jpeg', 'image/gif', 'image/png', 'image/apng', 'image/webp', 'image/bmp', 'image/tiff', 'image/svg+xml', 'image/vnd.adobe.photoshop', 'image/avif'].includes(type.mime)) {
 		const imageSize = await detectImageSize(path).catch(e => {
 			warnings.push(`detectImageSize failed: ${e}`);
 			return undefined;
@@ -90,7 +90,7 @@ export async function getFileInfo(path: string, opts: {
 
 	let blurhash: string | undefined;
 
-	if (['image/jpeg', 'image/gif', 'image/png', 'image/apng', 'image/webp', 'image/svg+xml'].includes(type.mime)) {
+	if (['image/jpeg', 'image/gif', 'image/png', 'image/apng', 'image/webp', 'image/svg+xml', 'image/avif'].includes(type.mime)) {
 		blurhash = await getBlurhash(path).catch(e => {
 			warnings.push(`getBlurhash failed: ${e}`);
 			return undefined;

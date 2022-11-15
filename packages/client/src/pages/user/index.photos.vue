@@ -52,6 +52,7 @@ onMounted(() => {
 		'image/gif',
 		'image/apng',
 		'image/vnd.mozilla.apng',
+		'image/avif',
 	];
 	os.api('users/notes', {
 		userId: props.user.id,
