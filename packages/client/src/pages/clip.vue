@@ -1,7 +1,7 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions"/></template>
-		<MkSpacer :content-max="800">
+	<MkSpacer :content-max="800">
 		<div v-if="clip">
 			<div class="okzinsic _panel">
 				<div v-if="clip.description" class="description">
@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, provide } from 'vue';
-import * as misskey from 'misskey-js';
+import type * as misskey from 'misskey-js';
 import XNotes from '@/components/MkNotes.vue';
 import { $i } from '@/account';
 import { i18n } from '@/i18n';

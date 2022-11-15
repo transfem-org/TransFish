@@ -1,15 +1,17 @@
 <template>
 <div>
-	<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
-		<div v-for="item in items" :key="item.id" :to="`/clips/${item.id}`" class="item _panel _gap afdcfbfb">
-			<div class="header">
-				<MkAvatar class="avatar" :user="user"/>
-				<MkReactionIcon class="reaction" :reaction="item.type" :custom-emojis="item.note.emojis" :no-style="true"/>
-				<MkTime :time="item.createdAt" class="createdAt"/>
+	<MkSpacer :content-max="800">
+		<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
+			<div v-for="item in items" :key="item.id" :to="`/clips/${item.id}`" class="item _panel _gap afdcfbfb">
+				<div class="header">
+					<MkAvatar class="avatar" :user="user"/>
+					<MkReactionIcon class="reaction" :reaction="item.type" :custom-emojis="item.note.emojis" :no-style="true"/>
+					<MkTime :time="item.createdAt" class="createdAt"/>
+				</div>
+				<MkNote :key="item.id" :note="item.note"/>
 			</div>
-			<MkNote :key="item.id" :note="item.note"/>
-		</div>
-	</MkPagination>
+		</MkPagination>
+	</MkSpacer>
 </div>
 </template>
 
