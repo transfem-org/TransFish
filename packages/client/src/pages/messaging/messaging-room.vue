@@ -275,6 +275,10 @@ function onVisibilitychange() {
 
 onMounted(() => {
 	fetch();
+	definePageMetadata(computed(() => ({
+		title: group != null ? group.name : user?.name,
+		icon: 'ph-chats-teardrop-bold ph-lg',
+	})));
 });
 
 onBeforeUnmount(() => {
@@ -282,14 +286,6 @@ onBeforeUnmount(() => {
 	document.removeEventListener('visibilitychange', onVisibilitychange);
 	if (scrollRemove) scrollRemove();
 });
-
-definePageMetadata(computed(() => !fetching ? user ? {
-	userName: user,
-	avatar: user,
-} : {
-	title: group?.name,
-	icon: 'ph-users-three-bold ph-lg',
-} : null));
 </script>
 
 <style lang="scss" scoped>

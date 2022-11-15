@@ -4,7 +4,7 @@
 	tabindex="-1"
 	:class="{
 		isMe: isMe(message),
-		isRead: message.groupId ? message.reads.includes($i.id) : message.isRead,
+		isRead: message.groupId ? message.reads.includes($i?.id) : message.isRead,
 	}"
 	:to="
 		message.groupId

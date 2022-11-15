@@ -13,7 +13,7 @@
 
 # ✨ About Calckey
 
-- Calckey is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web ui, rich chatting, and much more!
+- Calckey is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web UI, rich chatting, and much more!
 - Calckey adds many quality of life changes and bug fixes for users and instance admins alike.
 - Read **[this document](./CALCKEY.md)** all for current and future differences.
 - Notable differences:
@@ -37,6 +37,7 @@
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
 - 📜 Instance list: <https://calckey.fediverse.observer/list>
 - 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
+- 🐋 Docker Hub: <https://hub.docker.com/r/thatonecalculator/calckey>
 
 # 🌠 Getting started
 
@@ -73,6 +74,7 @@ corepack enable
 
 - To add custom CSS for all users, edit `./custom/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
+- To update custom assets without rebuilding, just run `yarn run gulp`.
 
 ## 🧑‍🔬 Configuring a new instance
 
@@ -203,7 +205,6 @@ sudo docker compose up -d
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off. 
 - For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
 - For translations, make a [DeepL](https://deepl.com) account and generate an API key, then put it into Control Panel > General > DeepL Translation.
-- For link previews, go to Control Panel > Security > Summaly Proxy and put in `https://summaly.arkjp.net`.
 - To add another admin account:
 	- Go to the user's page > 3 Dots > About > Moderation > turn on "Moderator"
 	- Go back to Overview > click the clipboard icon next to the ID
