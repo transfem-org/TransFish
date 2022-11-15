@@ -2,7 +2,7 @@
 <XModalWindow
 	ref="dialog"
 	:width="800"
-	@close="dialog.close()"
+	@close="dialog?.close()"
 	@closed="$emit('closed')"
 >
 	<template #header>{{ i18n.ts._tutorial.title }}</template>

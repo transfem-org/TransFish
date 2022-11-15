@@ -84,10 +84,6 @@ watch(() => props.tag, () => {
 	if (tagsEl) tagsEl.toggleContent(props.tag == null);
 });
 
-watch(() => pinnedUsersList, () => {
-	if (pinnedUsersList?.length > 0) thereArePinnedUsers = true;
-});
-
 const tagUsers = $computed(() => ({
 	endpoint: 'hashtags/users' as const,
 	limit: 30,

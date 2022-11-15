@@ -42,9 +42,6 @@ const app = new Koa();
 //#region Bull Dashboard
 const bullBoardPath = '/queue';
 
- // used as a url param to prevent caching css and images
- const nowDateMs = Date.now();
- 
 // Authenticate
 app.use(async (ctx, next) => {
 	if (ctx.path === bullBoardPath || ctx.path.startsWith(bullBoardPath + '/')) {
@@ -298,7 +295,6 @@ router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
 			icon: meta.iconUrl,
 			themeColor: meta.themeColor,
 			privateMode: meta.privateMode,
-			nowDateMs: nowDateMs,
 		});
 		ctx.set('Cache-Control', 'public, max-age=15');
 	} else {
@@ -344,7 +340,6 @@ router.get('/notes/:note', async (ctx, next) => {
 			icon: meta.iconUrl,
 			privateMode: meta.privateMode,
 			themeColor: meta.themeColor,
-			nowDateMs: nowDateMs,
 		});
 
 		ctx.set('Cache-Control', 'public, max-age=15');
@@ -382,7 +377,6 @@ router.get('/@:user/pages/:page', async (ctx, next) => {
 			icon: meta.iconUrl,
 			themeColor: meta.themeColor,
 			privateMode: meta.privateMode,
-			nowDateMs: nowDateMs,
 		});
 
 		if (['public'].includes(page.visibility)) {
@@ -416,7 +410,6 @@ router.get('/clips/:clip', async (ctx, next) => {
 			privateMode: meta.privateMode,
 			icon: meta.iconUrl,
 			themeColor: meta.themeColor,
-			nowDateMs: nowDateMs,
 		});
 
 		ctx.set('Cache-Control', 'public, max-age=15');
@@ -443,7 +436,6 @@ router.get('/gallery/:post', async (ctx, next) => {
 			icon: meta.iconUrl,
 			themeColor: meta.themeColor,
 			privateMode: meta.privateMode,
-			nowDateMs: nowDateMs,
 		});
 
 		ctx.set('Cache-Control', 'public, max-age=15');
@@ -469,7 +461,6 @@ router.get('/channels/:channel', async (ctx, next) => {
 			icon: meta.iconUrl,
 			themeColor: meta.themeColor,
 			privateMode: meta.privateMode,
-			nowDateMs: nowDateMs,
 		});
 
 		ctx.set('Cache-Control', 'public, max-age=15');
@@ -545,7 +536,6 @@ router.get('(.*)', async ctx => {
 		themeColor: meta.themeColor,
 		randomMOTD: motd[Math.floor(Math.random() * motd.length)],
 		privateMode: meta.privateMode,
-		nowDateMs: nowDateMs,
 	});
 	ctx.set('Cache-Control', 'public, max-age=3');
 });
