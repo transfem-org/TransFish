@@ -432,7 +432,9 @@ function readPromo() {
 			width: 58px;
 			height: 58px;
 			position: sticky;
-			top: var(--stickyTop, 0px);
+			/* For some reason this breaks avatar
+			positions on notes, commenting it for now */
+			/* top: var(--stickyTop, 0px); */
 			left: 0;
 		}
 
