@@ -49,7 +49,7 @@
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
 							<div v-else class="translated">
-								<b>{{ $t('translatedFrom', { x: translation.sourceLang }) }}: </b>
+								<b>{{ i18n.t('translatedFrom', { x: translation.sourceLang }) }}: </b>
 								<Mfm :text="translation.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 							</div>
 						</div>
@@ -104,9 +104,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onMounted, onUnmounted, reactive, ref, Ref } from 'vue';
+import { computed, inject, onMounted, onUnmounted, reactive, ref } from 'vue';
 import * as mfm from 'mfm-js';
-import * as misskey from 'misskey-js';
+import type { Ref } from 'vue';
+import type * as misskey from 'misskey-js';
 import MkNoteSub from '@/components/MkNoteSub.vue';
 import XNoteHeader from '@/components/MkNoteHeader.vue';
 import XNoteSimple from '@/components/MkNoteSimple.vue';
