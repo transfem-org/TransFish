@@ -182,6 +182,7 @@ definePageMetadata(computed(() => page ? {
 
 		> .header {
 			padding: 16px;
+			margin: 0rem !important;
 
 			> h1 {
 				margin: 0;
@@ -211,11 +212,11 @@ definePageMetadata(computed(() => page ? {
 
 			> .like {
 				> .button {
-					--accent: rgb(241 97 132);
-					--X8: rgb(241 92 128);
+					--accent: #eb6f92;
+					--X8: #eb6f92;
 					--buttonBg: rgb(216 71 106 / 5%);
 					--buttonHoverBg: rgb(216 71 106 / 10%);
-					color: #ff002f;
+					color: #eb6f92;
 
 					::v-deep(.count) {
 						margin-left: 0.5em;
@@ -271,7 +272,6 @@ definePageMetadata(computed(() => page ? {
 	}
 
 	> .footer {
-		margin: var(--margin) 0 var(--margin) 0;
 		font-size: 85%;
 		opacity: 0.75;
 	}

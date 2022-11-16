@@ -202,11 +202,11 @@ definePageMetadata(computed(() => post ? {
 
 			> .like {
 				> .button {
-					--accent: rgb(241 97 132);
-					--X8: rgb(241 92 128);
+					--accent: #eb6f92;
+					--X8: #eb6f92;
 					--buttonBg: rgb(216 71 106 / 5%);
 					--buttonHoverBg: rgb(216 71 106 / 10%);
-					color: #ff002f;
+					color: #eb6f92;
 
 					::v-deep(.count) {
 						margin-left: 0.5em;
