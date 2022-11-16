@@ -93,7 +93,7 @@ cp -r ../misskey/files . # if you don't use object storage
 
 ## 🍀 NGINX
 
-- Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-avaliable/ && cd /etc/nginx/sites-avaliable/`
+- Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
 - Edit `calckey.nginx.conf` to reflect your instance properly
 - Run `sudo cp ./calckey.nginx.conf ../sites-enabled/`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
