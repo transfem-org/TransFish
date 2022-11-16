@@ -182,7 +182,6 @@ definePageMetadata(computed(() => page ? {
 
 		> .header {
 			padding: 16px;
-			margin: 0rem !important;
 
 			> h1 {
 				margin: 0;
@@ -192,6 +191,7 @@ definePageMetadata(computed(() => page ? {
 		> .banner {
 			> img {
 				// TODO: 良い感じのアスペクト比で表示
+				margin: 0rem !important;
 				display: block;
 				width: 100%;
 				height: 150px;
@@ -262,16 +262,17 @@ definePageMetadata(computed(() => page ? {
 
 		> .links {
 			margin-top: 16px;
-			padding: 24px 0 0 0;
+			padding: 14px 0;
 			border-top: solid 0.5px var(--divider);
 
 			> .link {
-				margin-right: 0.75em;
+				margin-right: 2em;
 			}
 		}
 	}
 
 	> .footer {
+		margin: var(--margin) 0 var(--margin) 0;
 		font-size: 85%;
 		opacity: 0.75;
 	}
