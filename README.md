@@ -9,7 +9,7 @@
 
 <div>
 
-<img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px"/>
+<img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px" alt="Calc (the Calckey mascot) smoking a fat dart"/>
 
 # ✨ About Calckey
 
