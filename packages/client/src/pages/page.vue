@@ -189,9 +189,10 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .banner {
+			margin: 0rem !important;
+
 			> img {
 				// TODO: 良い感じのアスペクト比で表示
-				margin: 0rem !important;
 				display: block;
 				width: 100%;
 				height: 150px;
