@@ -1,7 +1,7 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :content-max="700">
+	<MkSpacer :content-max="800">
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
 				<div class="_block main">
@@ -175,6 +175,7 @@ definePageMetadata(computed(() => page ? {
 
 .xcukqgmh {
 	> .main {
+		margin: 1rem;
 
 		> .header {
 			padding: 16px;
@@ -195,7 +196,6 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .content {
-			margin: 1rem;
 			padding: 16px 0 0 0;
 		}
 
