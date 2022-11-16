@@ -21,7 +21,7 @@
 			<MkInput v-model="value.message"><template #label>{{ i18n.ts._pages.blocks._button._action._pushEvent.message }}</template></MkInput>
 			<MkSelect v-model="value.var">
 				<template #label>{{ i18n.ts._pages.blocks._button._action._pushEvent.variable }}</template>
-				<option :value="null">{{ $t('_pages.blocks._button._action._pushEvent.no-variable') }}</option>
+				<option :value="null">{{ i18n.t('_pages.blocks._button._action._pushEvent.no-variable') }}</option>
 				<option v-for="v in hpml.getVarsByType()" :value="v.name">{{ v.name }}</option>
 				<optgroup :label="i18n.ts._pages.script.pageVariables">
 					<option v-for="v in hpml.getPageVarsByType()" :value="v">{{ v }}</option>

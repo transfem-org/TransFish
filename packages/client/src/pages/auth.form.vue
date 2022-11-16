@@ -1,6 +1,6 @@
 <template>
 <section class="_section">
-	<div class="_title">{{ $t('_auth.shareAccess', { name: app.name }) }}</div>
+	<div class="_title">{{ i18n.t('_auth.shareAccess', { name: app.name }) }}</div>
 	<div class="_content">
 		<h2>{{ app.name }}</h2>
 		<p class="id">{{ app.id }}</p>
@@ -9,7 +9,7 @@
 	<div class="_content">
 		<h2>{{ i18n.ts._auth.permissionAsk }}</h2>
 		<ul>
-			<li v-for="p in app.permission" :key="p">{{ $t(`_permissions.${p}`) }}</li>
+			<li v-for="p in app.permission" :key="p">{{ i18n.t(`_permissions.${p}`) }}</li>
 		</ul>
 	</div>
 	<div class="_footer">
