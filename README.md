@@ -1,9 +1,9 @@
 <div align="center">
-<a href="https://stop.voring.me/">
+<a href="https://i.calckey.cloud/">
 	<img src="./.github/title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
 </a>
 
-**🌎 **[Calckey](https://stop.voring.me/)** is an open source, decentralized social media platform that's free forever! 🚀**
+**🌎 **[Calckey](https://i.calckey.cloud/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
 </div>
 
@@ -33,7 +33,8 @@
 
 # 🥂 Links
 
-- 📣 Official account: https://i.calckey.cloud/@calckey
+- 🚢 Flagship instance: <https://i.calckey.cloud>
+- 📣 Official account: <https://i.calckey.cloud/@calckey>
 - 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
 - 📜 Instance list: <https://calckey.fediverse.observer/list>
