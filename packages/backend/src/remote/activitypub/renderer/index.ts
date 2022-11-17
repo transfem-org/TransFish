@@ -19,6 +19,7 @@ export const renderActivity = (x: any): IActivity | null => {
 			{
 				// as non-standards
 				manuallyApprovesFollowers: 'as:manuallyApprovesFollowers',
+				movedTo: 'as:movedTo',
 				sensitive: 'as:sensitive',
 				Hashtag: 'as:Hashtag',
 				quoteUrl: 'as:quoteUrl',
