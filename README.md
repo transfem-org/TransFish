@@ -33,6 +33,7 @@
 
 # 🥂 Links
 
+- 📣 Official account: https://i.calckey.cloud/@calckey
 - 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
 - 📜 Instance list: <https://calckey.fediverse.observer/list>
