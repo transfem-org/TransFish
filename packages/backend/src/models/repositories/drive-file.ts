@@ -9,6 +9,8 @@ import { query, appendQuery } from '@/prelude/url.js';
 import { Meta } from '@/models/entities/meta.js';
 import { fetchMeta } from '@/misc/fetch-meta.js';
 import { Users, DriveFolders } from '../index.js';
+import { deepClone } from '@/misc/clone.js';
+
 
 type PackOptions = {
 	detail?: boolean,
@@ -29,9 +31,7 @@ export const DriveFileRepository = db.getRepository(DriveFile).extend({
 
 	getPublicProperties(file: DriveFile): DriveFile['properties'] {
 		if (file.properties.orientation != null) {
-			// TODO
-			//const properties = structuredClone(file.properties);
-			const properties = JSON.parse(JSON.stringify(file.properties));
+			const properties = deepClone(file.properties);
 			if (file.properties.orientation >= 5) {
 				[properties.width, properties.height] = [properties.height, properties.width];
 			}

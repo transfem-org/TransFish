@@ -135,6 +135,7 @@ import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
 import { notePage } from '@/filters/note';
+import { deepClone } from '@/scripts/clone';
 
 const router = useRouter();
 
@@ -145,12 +146,12 @@ const props = defineProps<{
 
 const inChannel = inject('inChannel', null);
 
-let note = $ref(JSON.parse(JSON.stringify(props.note)));
+let note = $ref(deepClone(props.note));
 
 // plugin
 if (noteViewInterruptors.length > 0) {
 	onMounted(async () => {
-		let result = JSON.parse(JSON.stringify(note));
+		let result = deepClone(note);
 		for (const interruptor of noteViewInterruptors) {
 			result = await interruptor.handler(result);
 		}
