@@ -123,9 +123,9 @@ docker up -d
 ### 🐳 Docker Compose
 
 ```sh
-docker compose build
+docker-compose build
 docker-compose run --rm web yarn run init
-docker compose up -d
+docker-compose up -d
 ```
 
 ## 😉 Tips & Tricks
