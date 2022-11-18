@@ -89,7 +89,7 @@ function del(): void {
 			padding: 0;
 			min-height: 38px;
 			border-radius: 16px;
-			max-width: 100%;
+			max-width: 75%;
 
 			& + * {
 				clear: both;
