@@ -32,10 +32,10 @@
 		<div v-if="visibility === 'specified'" class="to-specified">
 			<span style="margin-right: 8px;">{{ i18n.ts.recipient }}</span>
 			<div class="visibleUsers">
-				<div v-for="u in visibleUsers" :key="u.id">
+				<span v-for="u in visibleUsers" :key="u.id">
 					<MkAcct :user="u"/>
 					<button class="_button" @click="removeVisibleUser(u)"><i class="ph-x-bold ph-lg"></i></button>
-				</div>
+				</span>
 				<button class="_buttonPrimary" @click="addVisibleUser"><i class="ph-plus-bold ph-lg ph-fw ph-lg"></i></button>
 			</div>
 		</div>
@@ -761,7 +761,7 @@ onMounted(() => {
 					margin-left: 0 !important;
 				}
 			}
-			
+
 			> .local-only {
 				margin: 0 0 0 12px;
 				opacity: 0.7;
@@ -839,15 +839,19 @@ onMounted(() => {
 				font-size: 14px;
 
 				> button {
-					padding: 4px;
+					padding: 2px;
 					border-radius: 8px;
+
+					> i {
+						transform: translateX(2px);
+					}
 				}
 
-				> div {
-					margin-right: 14px;
-					padding: 8px 0 8px 8px;
-					border-radius: 8px;
-					background: var(--X4);
+				> span {
+					margin: 0.3rem;
+					padding: 4px 0 4px 4px;
+					border-radius: 999px;
+					background: var(--X3);
 
 					> button {
 						padding: 4px 8px;
