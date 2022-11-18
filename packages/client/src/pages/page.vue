@@ -32,7 +32,7 @@
 							<MkUserName :user="page.user" style="display: block;"/>
 							<MkAcct :user="page.user"/>
 						</div>
-						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" large class="koudoku"/>
+						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 					</div>
 					<div class="links">
 						<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
