@@ -1,6 +1,6 @@
 <template>
 <div v-size="{ max: [400, 500] }" class="thvuemwp" :class="{ isMe }">
-	<MkAvatar v-if="$i != message.user" class="avatar" :user="message.user" :show-indicator="true"/>
+	<MkAvatar v-if="!isMe" class="avatar" :user="message.user" :show-indicator="true"/>
 	<div class="content">
 		<div class="balloon" :class="{ noText: message.text == null }">
 			<button v-if="isMe" class="delete-button" :title="i18n.ts.delete" @click="del">
@@ -90,14 +90,6 @@ function del(): void {
 			min-height: 38px;
 			border-radius: 16px;
 			max-width: 100%;
-
-			&:before {
-				content: "";
-				pointer-events: none;
-				display: block;
-				position: absolute;
-				top: 12px;
-			}
 
 			& + * {
 				clear: both;
