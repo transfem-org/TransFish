@@ -30,13 +30,13 @@
 		<XNoteSimple v-if="renote" class="preview" :note="renote"/>
 		<div v-if="quoteId" class="with-quote"><i class="ph-quotes-bold ph-lg"></i> {{ i18n.ts.quoteAttached }}<button @click="quoteId = null"><i class="ph-x-bold ph-lg"></i></button></div>
 		<div v-if="visibility === 'specified'" class="to-specified">
-			<button class="_button" @click="addVisibleUser"><i class="ph-plus-bold ph-md ph-fw ph-lg" style="transform: translateX(420px)"></i></button>
 			<span style="margin-right: 8px;">{{ i18n.ts.recipient }}</span>
 			<div class="visibleUsers">
 				<span v-for="u in visibleUsers" :key="u.id">
 					<MkAcct :user="u"/>
 					<button class="_button" @click="removeVisibleUser(u)"><i class="ph-x-bold ph-lg"></i></button>
 				</span>
+				<button class="_button" @click="addVisibleUser"><i class="ph-plus-bold ph-md ph-fw ph-lg"></i></button>
 			</div>
 		</div>
 		<MkInfo v-if="hasNotSpecifiedMentions" warn class="hasNotSpecifiedMentions">{{ i18n.ts.notSpecifiedMentionWarning }} - <button class="_textButton" @click="addMissingMention()">{{ i18n.ts.add }}</button></MkInfo>
