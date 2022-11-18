@@ -72,10 +72,10 @@ function del(): void {
 
 	> .avatar {
 		position: sticky;
-		top: calc(var(--stickyTop, 0px) + 16px);
+		top: calc(var(--stickyTop, 0px) + 20px);
 		display: block;
-		width: 54px;
-		height: 54px;
+		width: 45px;
+		height: 45px;
 		transition: all 0.1s ease;
 	}
 
