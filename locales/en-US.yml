@@ -1094,7 +1094,7 @@ _channel:
   usersCount: "{n} Participants"
   notesCount: "{n} Notes"
 _messaging:
-  dms: "DMs"
+  dms: "Private"
   groups: "Groups"
 _menuDisplay:
   sideFull: "Side"
