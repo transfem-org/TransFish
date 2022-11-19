@@ -39,7 +39,7 @@
 					<template #label><Mfm text="$[jelly ❤]"/> {{ i18n.ts._aboutMisskey.patrons }}</template>
 					<MkSparkle>
 						<div v-for="patron in patrons" :key="patron" style="margin-bottom: 0.5rem">
-							<Mfm :text="`$[x2 ${patron}]`"/>
+							<Mfm :text="`${patron}`"/>
 						</div>
 					</MkSparkle>
 					<template #caption>{{ i18n.ts._aboutMisskey.morePatrons }}</template>
