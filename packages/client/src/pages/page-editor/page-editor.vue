@@ -442,7 +442,7 @@ definePageMetadata(computed(() => {
 	return {
 		title: title,
 		icon: 'ph-pencil-bold ph-lg',
-		};
+	};
 }));
 </script>
 
