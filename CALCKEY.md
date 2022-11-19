@@ -86,6 +86,7 @@
 - Replace all `$ts` with i18n
 - AVIF support
 - Page drafts
+- Patron list
 - Obliteration of Ai-chan
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
