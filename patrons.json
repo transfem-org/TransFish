@@ -1,7 +1,7 @@
-[{
-	[
-		"@atomicpoet@vancity.social"
-		"@shoq@newsroom.social"
+{
+	"patrons": [
+		"@atomicpoet@vancity.social",
+		"@shoq@newsroom.social",
 		"@pikadude@erisly.social"
 	]
-}]
+}
