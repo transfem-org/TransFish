@@ -20,7 +20,7 @@
 ## Work in progress
 
 - Better Messaging UI
-- Make your password hasn't been pwned
+- Better API Documentation
 - Remote follow button
 - Admin custom CSS
 - Add back time machine (jump to date)
