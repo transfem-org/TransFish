@@ -24,7 +24,7 @@
 					<template #label>{{ i18n.ts._pages.url }}</template>
 				</MkInput>
 
-				<MkSwitch v-model="isPublic" class="_formBlock">{{ i18n.ts._pages.isPublic }}</MkSwitch>
+				<MkSwitch v-model="isPublic" class="_formBlock">{{ i18n.ts.public }}</MkSwitch>
 				<MkSwitch v-model="alignCenter" class="_formBlock">{{ i18n.ts._pages.alignCenter }}</MkSwitch>
 
 				<MkSelect v-model="font" class="_formBlock">
