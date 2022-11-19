@@ -34,7 +34,8 @@ export const paramDef = {
 export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(Pages.createQueryBuilder('page'), ps.sinceId, ps.untilId)
 		.andWhere('page.userId = :userId', { userId: ps.userId })
-		.andWhere('page.visibility = \'public\'');
+		.andWhere('page.visibility = \'public\'')
+		.andWhere('page.isPublic = true');
 
 	const pages = await query
 		.take(ps.limit)

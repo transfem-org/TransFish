@@ -47,5 +47,9 @@ export const packedPageSchema = {
 			ref: 'UserLite',
 			optional: false, nullable: false,
 		},
+		isPublic: {
+			type: 'boolean',
+			optional: false, nullable: false,
+		},
 	},
 } as const;

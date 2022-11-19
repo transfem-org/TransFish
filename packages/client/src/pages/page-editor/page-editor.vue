@@ -24,6 +24,7 @@
 					<template #label>{{ i18n.ts._pages.url }}</template>
 				</MkInput>
 
+				<MkSwitch v-model="isPublic" class="_formBlock">{{ i18n.ts._pages.isPublic }}</MkSwitch>
 				<MkSwitch v-model="alignCenter" class="_formBlock">{{ i18n.ts._pages.alignCenter }}</MkSwitch>
 
 				<MkSelect v-model="font" class="_formBlock">
@@ -130,6 +131,7 @@ let eyeCatchingImageId = $ref(null);
 let font = $ref('sans-serif');
 let content = $ref([]);
 let alignCenter = $ref(false);
+let isPublic = $ref(true);
 let hideTitleWhenPinned = $ref(false);
 let variables = $ref([]);
 let hpml = $ref(null);
@@ -158,6 +160,7 @@ function getSaveOptions() {
 		script: script,
 		hideTitleWhenPinned: hideTitleWhenPinned,
 		alignCenter: alignCenter,
+		isPublic: isPublic,
 		content: content,
 		variables: variables,
 		eyeCatchingImageId: eyeCatchingImageId,
@@ -393,6 +396,7 @@ async function init() {
 		script = page.script;
 		hideTitleWhenPinned = page.hideTitleWhenPinned;
 		alignCenter = page.alignCenter;
+		isPublic = page.isPublic;
 		content = page.content;
 		variables = page.variables;
 		eyeCatchingImageId = page.eyeCatchingImageId;
@@ -401,7 +405,7 @@ async function init() {
 		content = [{
 			id,
 			type: 'text',
-			text: 'Hello World!',
+			text: '',
 		}];
 	}
 }
