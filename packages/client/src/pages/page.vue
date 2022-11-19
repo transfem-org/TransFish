@@ -26,8 +26,8 @@
 							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-lg ph-fw ph-lg"></i></button>
 						</div>
 						<div class="user">
+							<MkAvatar :user="page.user" class="avatar"/>
 							<div class="name">
-								<MkAvatar :user="page.user" class="avatar"/>
 								<MkUserName :user="page.user" style="display: block;"/>
 								<MkAcct :user="page.user"/>
 							</div>
@@ -239,7 +239,6 @@ definePageMetadata(computed(() => page ? {
 			> .user {
 				margin-left: auto;
 				padding: 16px 0 0 0;
-				border-top: solid 0.5px var(--divider);
 				display: flex;
 				align-items: center;
 
@@ -255,6 +254,7 @@ definePageMetadata(computed(() => page ? {
 
 				> .koudoku {
 					margin-left: auto;
+					margin: 1rem;
 				}
 			}
 		}
