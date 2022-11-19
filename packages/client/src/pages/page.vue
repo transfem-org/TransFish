@@ -5,10 +5,10 @@
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
 				<div class="_block main">
-					<div class="header">
-						<h1>{{ page.title }}</h1>
-					</div>
 					<div class="banner">
+						<div class="header">
+							<h1>{{ page.title }}</h1>
+						</div>
 						<img v-if="page.eyeCatchingImageId" :src="page.eyeCatchingImage.url"/>
 					</div>
 					<div class="content">
@@ -180,6 +180,10 @@ definePageMetadata(computed(() => page ? {
 
 		> .header {
 			padding: 16px;
+			-webkit-backdrop-filter: var(--blur, blur(10px));
+			backdrop-filter: var(--blur, blur(10px));
+			background-color: var(--X16);
+			border-radius: 999px;
 
 			> h1 {
 				margin: 0;
