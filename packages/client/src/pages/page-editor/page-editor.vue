@@ -48,7 +48,6 @@
 		<div v-else-if="tab === 'contents'">
 			<div>
 				<XBlocks v-model="content" class="content" :hpml="hpml"/>
-
 				<MkButton v-if="!readonly" @click="add()"><i class="ph-plus-bold ph-lg"></i></MkButton>
 			</div>
 		</div>
@@ -451,7 +450,7 @@ definePageMetadata(computed(() => {
 .jqqmcavi {
 	> .button {
 		& + .button {
-			margin-left: 8px;
+			margin: 4px;
 		}
 	}
 }
