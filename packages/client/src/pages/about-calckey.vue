@@ -24,6 +24,11 @@
 							{{ i18n.ts._aboutMisskey.source }}
 							<template #suffix>Codeberg</template>
 						</FormLink>
+						<FormLink to="https://liberapay.com/ThatOneCalculator" external>
+							<template #icon><i class="ph-money-bold ph-lg"></i></template>
+							{{ i18n.ts._aboutMisskey.donate }}
+							<template #suffix>Donate</template>
+						</FormLink>
 					</div>
 				</FormSection>
 				<FormSection>
