@@ -19,7 +19,7 @@ export default define(meta, paramDef, async () => {
 	await fetch('https://codeberg.org/thatonecalculator/calckey/raw/branch/develop/patrons.json')
 		.then((response) => response.json())
 		.then((data) => {
-			patrons = data[0];
+			patrons = data['patrons'];
 		});
 
 	return {
