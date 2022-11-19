@@ -238,7 +238,6 @@ definePageMetadata(computed(() => page ? {
 
 			> .user {
 				margin-left: auto;
-				padding: 16px 0 0 0;
 				display: flex;
 				align-items: center;
 
