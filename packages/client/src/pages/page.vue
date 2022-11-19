@@ -25,14 +25,14 @@
 							<button v-tooltip="i18n.ts.shareWithNote" v-click-anime class="_button" @click="shareWithNote"><i class="ph-repeat-bold ph-lg ph-fw ph-lg"></i></button>
 							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-lg ph-fw ph-lg"></i></button>
 						</div>
-					</div>
-					<div class="user">
-						<div class="name">
-							<MkAvatar :user="page.user" class="avatar"/>
-							<MkUserName :user="page.user" style="display: block;"/>
-							<MkAcct :user="page.user"/>
+						<div class="user">
+							<div class="name">
+								<MkAvatar :user="page.user" class="avatar"/>
+								<MkUserName :user="page.user" style="display: block;"/>
+								<MkAcct :user="page.user"/>
+							</div>
+							<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
-						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 					</div>
 					<div class="links">
 						<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
@@ -226,8 +226,6 @@ definePageMetadata(computed(() => page ? {
 			}
 
 			> .other {
-				margin-left: auto;
-
 				> button {
 					padding: 8px;
 					margin: 0 8px;
@@ -237,27 +235,27 @@ definePageMetadata(computed(() => page ? {
 					}
 				}
 			}
-		}
 
-		> .user {
-			margin-left: auto;
-			padding: 16px 0 0 0;
-			border-top: solid 0.5px var(--divider);
-			display: flex;
-			align-items: center;
-
-			> .avatar {
-				width: 52px;
-				height: 52px;
-			}
-
-			> .name {
-				margin: 0 0 0 12px;
-				font-size: 90%;
-			}
-
-			> .koudoku {
+			> .user {
 				margin-left: auto;
+				padding: 16px 0 0 0;
+				border-top: solid 0.5px var(--divider);
+				display: flex;
+				align-items: center;
+
+				> .avatar {
+					width: 52px;
+					height: 52px;
+				}
+
+				> .name {
+					margin: 0 0 0 12px;
+					font-size: 90%;
+				}
+
+				> .koudoku {
+					margin-left: auto;
+				}
 			}
 		}
 
