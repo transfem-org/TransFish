@@ -5,10 +5,12 @@
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
 				<div class="_block main">
+					<!--
+				<div class="header">
+					<h1>{{ page.title }}</h1>
+				</div>
+				-->
 					<div class="banner">
-						<div class="header">
-							<h1>{{ page.title }}</h1>
-						</div>
 						<img v-if="page.eyeCatchingImageId" :src="page.eyeCatchingImage.url"/>
 					</div>
 					<div class="content">
@@ -23,14 +25,14 @@
 							<button v-tooltip="i18n.ts.shareWithNote" v-click-anime class="_button" @click="shareWithNote"><i class="ph-repeat-bold ph-lg ph-fw ph-lg"></i></button>
 							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-lg ph-fw ph-lg"></i></button>
 						</div>
-						<div class="user">
+					</div>
+					<div class="user">
+						<div class="name">
 							<MkAvatar :user="page.user" class="avatar"/>
-							<div class="name">
-								<MkUserName :user="page.user" style="display: block;"/>
-								<MkAcct :user="page.user"/>
-							</div>
-							<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
+							<MkUserName :user="page.user" style="display: block;"/>
+							<MkAcct :user="page.user"/>
 						</div>
+						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 					</div>
 					<div class="links">
 						<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
@@ -180,10 +182,6 @@ definePageMetadata(computed(() => page ? {
 
 		> .header {
 			padding: 16px;
-			-webkit-backdrop-filter: var(--blur, blur(10px));
-			backdrop-filter: var(--blur, blur(10px));
-			background-color: var(--X16);
-			border-radius: 999px;
 
 			> h1 {
 				margin: 0;
@@ -228,6 +226,7 @@ definePageMetadata(computed(() => page ? {
 			}
 
 			> .other {
+				margin-left: auto;
 
 				> button {
 					padding: 8px;
@@ -241,7 +240,7 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .user {
-			margin-top: 16px;
+			margin-left: auto;
 			padding: 16px 0 0 0;
 			border-top: solid 0.5px var(--divider);
 			display: flex;
