@@ -5,11 +5,9 @@
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
 				<div class="_block main">
-					<!--
-				<div class="header">
-					<h1>{{ page.title }}</h1>
-				</div>
-				-->
+					<div class="header">
+						<h1>{{ page.title }}</h1>
+					</div>
 					<div class="banner">
 						<img v-if="page.eyeCatchingImageId" :src="page.eyeCatchingImage.url"/>
 					</div>
@@ -25,14 +23,14 @@
 							<button v-tooltip="i18n.ts.shareWithNote" v-click-anime class="_button" @click="shareWithNote"><i class="ph-repeat-bold ph-lg ph-fw ph-lg"></i></button>
 							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-lg ph-fw ph-lg"></i></button>
 						</div>
-					</div>
-					<div class="user">
-						<MkAvatar :user="page.user" class="avatar"/>
-						<div class="name">
-							<MkUserName :user="page.user" style="display: block;"/>
-							<MkAcct :user="page.user"/>
+						<div class="user">
+							<MkAvatar :user="page.user" class="avatar"/>
+							<div class="name">
+								<MkUserName :user="page.user" style="display: block;"/>
+								<MkAcct :user="page.user"/>
+							</div>
+							<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
-						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 					</div>
 					<div class="links">
 						<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
@@ -226,7 +224,6 @@ definePageMetadata(computed(() => page ? {
 			}
 
 			> .other {
-				margin-left: auto;
 
 				> button {
 					padding: 8px;
