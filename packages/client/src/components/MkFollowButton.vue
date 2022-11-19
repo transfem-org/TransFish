@@ -4,10 +4,10 @@
 	:disabled="wait"
 	@click="onClick"
 >
-	<template v-if="remote">
+	<!-- <template v-if="remote">
 		<span v-if="full">{{ i18n.ts.remoteFollow }}</span><i class="ph-plus-bold ph-lg"></i>
-	</template>
-	<template v-else-if="!wait">
+	</template> -->
+	<template v-if="!wait">
 		<template v-if="hasPendingFollowRequestFromYou && user.isLocked">
 			<span v-if="full">{{ i18n.ts.followRequestPending }}</span><i class="ph-hourglass-medium-bold ph-lg"></i>
 		</template>
@@ -74,16 +74,16 @@ async function onClick() {
 	wait = true;
 
 	try {
-		if (props.remote) {
-			os.inputText({
-				title: i18n.ts.remoteFollow,
-				placeholder: 'thatonecalculator@i.calckey.cloud',
-			}).then(({ canceled, result: instance }) => {
-				if (canceled) return;
-				window.open(`${instance}/?authorize-follow?acct=${props.user.uri}`);
-			});
-		}
-		else if (isFollowing) {
+		// if (props.remote) {
+		// 	os.inputText({
+		// 		title: i18n.ts.remoteFollow,
+		// 		placeholder: 'thatonecalculator@i.calckey.cloud',
+		// 	}).then(({ canceled, result: instance }) => {
+		// 		if (canceled) return;
+		// 		window.open(`${instance}/?authorize-follow?acct=${props.user.uri}`);
+		// 	});
+		// }
+		if (isFollowing) {
 			const { canceled } = await os.confirm({
 				type: 'warning',
 				text: i18n.t('unfollowConfirm', { name: props.user.name || props.user.username }),
