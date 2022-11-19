@@ -22,7 +22,5 @@ export default define(meta, paramDef, async () => {
 			patrons = data['patrons'];
 		});
 
-	return {
-		patrons,
-	};
+	return patrons;
 });
