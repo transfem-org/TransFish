@@ -37,7 +37,11 @@
 				</FormSection>
 				<FormSection>
 					<template #label><Mfm text="$[jelly ❤]"/> {{ i18n.ts._aboutMisskey.patrons }}</template>
-					<Mfm v-for="patron in patrons" :key="patron" :text="patron"/>
+					<MkSparkle>
+						<div v-for="patron in patrons" :key="patron" style="margin-bottom: 0.5rem">
+							<Mfm :text="`$[x2 ${patron}]`"/>
+						</div>
+					</MkSparkle>
 					<template #caption>{{ i18n.ts._aboutMisskey.morePatrons }}</template>
 				</FormSection>
 			</div>
@@ -53,6 +57,7 @@ import FormLink from '@/components/form/link.vue';
 import FormSection from '@/components/form/section.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkLink from '@/components/MkLink.vue';
+import MkSparkle from '@/components/MkSparkle.vue';
 import { physics } from '@/scripts/physics';
 import { i18n } from '@/i18n';
 import { defaultStore } from '@/store';
