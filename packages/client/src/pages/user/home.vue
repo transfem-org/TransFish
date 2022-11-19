@@ -27,7 +27,7 @@
 						<div class="actions">
 							<button class="menu _button" @click="menu"><i class="ph-dots-three-outline-bold ph-lg"></i></button>
 							<MkFollowButton v-if="$i != null && $i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
-							<MkFollowButton v-else :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/>
+							<!-- <MkFollowButton v-else-if="$i == null" :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/> -->
 						</div>
 					</div>
 					<MkAvatar class="avatar" :user="user" :disable-preview="true" :show-indicator="true"/>
