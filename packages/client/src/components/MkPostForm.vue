@@ -36,7 +36,7 @@
 					<MkAcct :user="u"/>
 					<button class="_button" @click="removeVisibleUser(u)"><i class="ph-x-bold ph-lg"></i></button>
 				</span>
-				<button class="_buttonPrimary" @click="addVisibleUser"><i class="ph-plus-bold ph-lg ph-fw ph-lg"></i></button>
+				<button class="_button" @click="addVisibleUser"><i class="ph-plus-bold ph-md ph-fw ph-lg"></i></button>
 			</div>
 		</div>
 		<MkInfo v-if="hasNotSpecifiedMentions" warn class="hasNotSpecifiedMentions">{{ i18n.ts.notSpecifiedMentionWarning }} - <button class="_textButton" @click="addMissingMention()">{{ i18n.ts.add }}</button></MkInfo>
@@ -89,6 +89,7 @@ import { i18n } from '@/i18n';
 import { instance } from '@/instance';
 import { $i, getAccounts, openAccountMenu as openAccountMenu_ } from '@/account';
 import { uploadFile } from '@/scripts/upload';
+import { deepClone } from '@/scripts/clone';
 
 const modal = inject('modal');
 
@@ -458,7 +459,7 @@ async function onPaste(ev: ClipboardEvent) {
 	if (!props.renote && !quoteId && paste.startsWith(url + '/notes/')) {
 		ev.preventDefault();
 
-		os.confirm({
+		os.yesno({
 			type: 'info',
 			text: i18n.ts.quoteQuestion,
 		}).then(({ canceled }) => {
@@ -575,7 +576,7 @@ async function post() {
 	// plugin
 	if (notePostInterruptors.length > 0) {
 		for (const interruptor of notePostInterruptors) {
-			postData = await interruptor.handler(JSON.parse(JSON.stringify(postData)));
+			postData = await interruptor.handler(deepClone(postData));
 		}
 	}
 
@@ -761,7 +762,7 @@ onMounted(() => {
 					margin-left: 0 !important;
 				}
 			}
-			
+
 			> .local-only {
 				margin: 0 0 0 12px;
 				opacity: 0.7;
@@ -832,7 +833,7 @@ onMounted(() => {
 			padding: 6px 24px;
 			margin-bottom: 8px;
 			overflow: auto;
-			white-space: nowrap;
+			line-height: 2rem;
 
 			> .visibleUsers {
 				display: inline;
@@ -840,15 +841,19 @@ onMounted(() => {
 				font-size: 14px;
 
 				> button {
-					padding: 4px;
+					padding: 2px;
 					border-radius: 8px;
+
+					> i {
+						transform: translateX(2px);
+					}
 				}
 
 				> span {
-					margin-right: 14px;
-					padding: 8px 0 8px 8px;
-					border-radius: 8px;
-					background: var(--X4);
+					margin: 0.3rem;
+					padding: 4px 0 4px 4px;
+					border-radius: 999px;
+					background: var(--X3);
 
 					> button {
 						padding: 4px 8px;

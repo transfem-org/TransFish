@@ -86,9 +86,7 @@ if (defaultStore.reactiveState.tutorial.value !== -1) {
 const isLocalTimelineAvailable =
 	!instance.disableLocalTimeline ||
 	($i != null && ($i.isModerator || $i.isAdmin));
-const isRecommendedTimelineAvailable =
-	!instance.disableRecommendedTimeline ||
-	($i != null && ($i.isModerator || $i.isAdmin));
+const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline;
 const isGlobalTimelineAvailable =
 	!instance.disableGlobalTimeline ||
 	($i != null && ($i.isModerator || $i.isAdmin));

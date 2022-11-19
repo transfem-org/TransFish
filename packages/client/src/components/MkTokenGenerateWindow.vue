@@ -23,7 +23,7 @@
 		<div style="margin-bottom: 16px;"><b>{{ i18n.ts.permission }}</b></div>
 		<MkButton inline @click="disableAll">{{ i18n.ts.disableAll }}</MkButton>
 		<MkButton inline @click="enableAll">{{ i18n.ts.enableAll }}</MkButton>
-		<MkSwitch v-for="kind in (initialPermissions || kinds)" :key="kind" v-model="permissions[kind]">{{ $t(`_permissions.${kind}`) }}</MkSwitch>
+		<MkSwitch v-for="kind in (initialPermissions || kinds)" :key="kind" v-model="permissions[kind]">{{ i18n.t(`_permissions.${kind}`) }}</MkSwitch>
 	</div>
 </XModalWindow>
 </template>

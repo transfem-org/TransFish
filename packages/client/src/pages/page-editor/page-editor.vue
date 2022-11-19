@@ -24,6 +24,7 @@
 					<template #label>{{ i18n.ts._pages.url }}</template>
 				</MkInput>
 
+				<MkSwitch v-model="isPublic" class="_formBlock">{{ i18n.ts.public }}</MkSwitch>
 				<MkSwitch v-model="alignCenter" class="_formBlock">{{ i18n.ts._pages.alignCenter }}</MkSwitch>
 
 				<MkSelect v-model="font" class="_formBlock">
@@ -47,7 +48,6 @@
 		<div v-else-if="tab === 'contents'">
 			<div>
 				<XBlocks v-model="content" class="content" :hpml="hpml"/>
-
 				<MkButton v-if="!readonly" @click="add()"><i class="ph-plus-bold ph-lg"></i></MkButton>
 			</div>
 		</div>
@@ -130,6 +130,7 @@ let eyeCatchingImageId = $ref(null);
 let font = $ref('sans-serif');
 let content = $ref([]);
 let alignCenter = $ref(false);
+let isPublic = $ref(true);
 let hideTitleWhenPinned = $ref(false);
 let variables = $ref([]);
 let hpml = $ref(null);
@@ -158,6 +159,7 @@ function getSaveOptions() {
 		script: script,
 		hideTitleWhenPinned: hideTitleWhenPinned,
 		alignCenter: alignCenter,
+		isPublic: isPublic,
 		content: content,
 		variables: variables,
 		eyeCatchingImageId: eyeCatchingImageId,
@@ -393,6 +395,7 @@ async function init() {
 		script = page.script;
 		hideTitleWhenPinned = page.hideTitleWhenPinned;
 		alignCenter = page.alignCenter;
+		isPublic = page.isPublic;
 		content = page.content;
 		variables = page.variables;
 		eyeCatchingImageId = page.eyeCatchingImageId;
@@ -401,7 +404,7 @@ async function init() {
 		content = [{
 			id,
 			type: 'text',
-			text: 'Hello World!',
+			text: '',
 		}];
 	}
 }
@@ -439,7 +442,7 @@ definePageMetadata(computed(() => {
 	return {
 		title: title,
 		icon: 'ph-pencil-bold ph-lg',
-		};
+	};
 }));
 </script>
 
@@ -447,7 +450,7 @@ definePageMetadata(computed(() => {
 .jqqmcavi {
 	> .button {
 		& + .button {
-			margin-left: 8px;
+			margin: 4px;
 		}
 	}
 }

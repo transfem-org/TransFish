@@ -24,9 +24,10 @@
 							</div>
 						</div>
 						<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
-						<div v-if="$i" class="actions">
+						<div class="actions">
 							<button class="menu _button" @click="menu"><i class="ph-dots-three-outline-bold ph-lg"></i></button>
-							<MkFollowButton v-if="$i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
+							<MkFollowButton v-if="$i != null && $i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
+							<MkFollowButton v-else :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
 					</div>
 					<MkAvatar class="avatar" :user="user" :disable-preview="true" :show-indicator="true"/>
@@ -51,7 +52,7 @@
 						</dl>
 						<dl v-if="user.birthday" class="field">
 							<dt class="name"><i class="ph-cake-bold ph-lg ph-fw ph-lg"></i> {{ i18n.ts.birthday }}</dt>
-							<dd class="value">{{ user.birthday.replace('-', '/').replace('-', '/') }} ({{ $t('yearsOld', { age }) }})</dd>
+							<dd class="value">{{ user.birthday.replace('-', '/').replace('-', '/') }} ({{ i18n.t('yearsOld', { age }) }})</dd>
 						</dl>
 						<dl class="field">
 							<dt class="name"><i class="ph-calendar-blank-bold ph-lg ph-fw ph-lg"></i> {{ i18n.ts.registeredDate }}</dt>

@@ -53,6 +53,7 @@ export const paramDef = {
 		eyeCatchingImageId: { type: 'string', format: 'misskey:id', nullable: true },
 		font: { type: 'string', enum: ['serif', 'sans-serif'], default: 'sans-serif' },
 		alignCenter: { type: 'boolean', default: false },
+		isPublic: { type: 'boolean', default: true },
 		hideTitleWhenPinned: { type: 'boolean', default: false },
 	},
 	required: ['title', 'name', 'content', 'variables', 'script'],
@@ -97,6 +98,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		alignCenter: ps.alignCenter,
 		hideTitleWhenPinned: ps.hideTitleWhenPinned,
 		font: ps.font,
+		isPublic: ps.isPublic,
 	})).then(x => Pages.findOneByOrFail(x.identifiers[0]));
 
 	return await Pages.pack(page);

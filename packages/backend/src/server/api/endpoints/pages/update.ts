@@ -60,6 +60,7 @@ export const paramDef = {
 		font: { type: 'string', enum: ['serif', 'sans-serif'] },
 		alignCenter: { type: 'boolean' },
 		hideTitleWhenPinned: { type: 'boolean' },
+		isPublic: { type: 'boolean' },
 	},
 	required: ['pageId', 'title', 'name', 'content', 'variables', 'script'],
 } as const;
@@ -104,6 +105,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		content: ps.content,
 		variables: ps.variables,
 		script: ps.script,
+		isPublic: ps.isPublic,
 		alignCenter: ps.alignCenter === undefined ? page.alignCenter : ps.alignCenter,
 		hideTitleWhenPinned: ps.hideTitleWhenPinned === undefined ? page.hideTitleWhenPinned : ps.hideTitleWhenPinned,
 		font: ps.font === undefined ? page.font : ps.font,

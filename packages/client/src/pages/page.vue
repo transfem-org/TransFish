@@ -1,7 +1,7 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :content-max="700">
+	<MkSpacer :content-max="800">
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
 				<div class="_block main">
@@ -25,14 +25,14 @@
 							<button v-tooltip="i18n.ts.shareWithNote" v-click-anime class="_button" @click="shareWithNote"><i class="ph-repeat-bold ph-lg ph-fw ph-lg"></i></button>
 							<button v-tooltip="i18n.ts.share" v-click-anime class="_button" @click="share"><i class="ph-share-network-bold ph-lg ph-fw ph-lg"></i></button>
 						</div>
-					</div>
-					<div class="user">
-						<MkAvatar :user="page.user" class="avatar"/>
-						<div class="name">
-							<MkUserName :user="page.user" style="display: block;"/>
-							<MkAcct :user="page.user"/>
+						<div class="user">
+							<MkAvatar :user="page.user" class="avatar"/>
+							<div class="name">
+								<MkUserName :user="page.user" style="display: block;"/>
+								<MkAcct :user="page.user"/>
+							</div>
+							<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
-						<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" large class="koudoku"/>
 					</div>
 					<div class="links">
 						<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
@@ -176,6 +176,10 @@ definePageMetadata(computed(() => page ? {
 .xcukqgmh {
 	> .main {
 
+		> * {
+			margin: 1rem;
+		}
+
 		> .header {
 			padding: 16px;
 
@@ -185,6 +189,8 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .banner {
+			margin: 0rem !important;
+
 			> img {
 				// TODO: 良い感じのアスペクト比で表示
 				display: block;
@@ -195,7 +201,6 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .content {
-			margin: 1rem;
 			padding: 16px 0 0 0;
 		}
 
@@ -208,11 +213,11 @@ definePageMetadata(computed(() => page ? {
 
 			> .like {
 				> .button {
-					--accent: rgb(241 97 132);
-					--X8: rgb(241 92 128);
+					--accent: #eb6f92;
+					--X8: #eb6f92;
 					--buttonBg: rgb(216 71 106 / 5%);
 					--buttonHoverBg: rgb(216 71 106 / 10%);
-					color: #ff002f;
+					color: #eb6f92;
 
 					::v-deep(.count) {
 						margin-left: 0.5em;
@@ -221,8 +226,6 @@ definePageMetadata(computed(() => page ? {
 			}
 
 			> .other {
-				margin-left: auto;
-
 				> button {
 					padding: 8px;
 					margin: 0 8px;
@@ -232,37 +235,36 @@ definePageMetadata(computed(() => page ? {
 					}
 				}
 			}
-		}
 
-		> .user {
-			margin-top: 16px;
-			padding: 16px 0 0 0;
-			border-top: solid 0.5px var(--divider);
-			display: flex;
-			align-items: center;
-
-			> .avatar {
-				width: 52px;
-				height: 52px;
-			}
-
-			> .name {
-				margin: 0 0 0 12px;
-				font-size: 90%;
-			}
-
-			> .koudoku {
+			> .user {
 				margin-left: auto;
+				display: flex;
+				align-items: center;
+
+				> .avatar {
+					width: 52px;
+					height: 52px;
+				}
+
+				> .name {
+					margin: 0 0 0 12px;
+					font-size: 90%;
+				}
+
+				> .koudoku {
+					margin-left: auto;
+					margin: 1rem;
+				}
 			}
 		}
 
 		> .links {
 			margin-top: 16px;
-			padding: 24px 0 0 0;
+			padding: 14px 0;
 			border-top: solid 0.5px var(--divider);
 
 			> .link {
-				margin-right: 0.75em;
+				margin-right: 2em;
 			}
 		}
 	}

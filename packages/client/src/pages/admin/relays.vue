@@ -8,7 +8,7 @@
 				<i v-if="relay.status === 'accepted'" class="ph-check-bold ph-lg icon accepted"></i>
 				<i v-else-if="relay.status === 'rejected'" class="ph-prohibit-bold ph-lg icon rejected"></i>
 				<i v-else class="ph-clock-bold ph-lg icon requesting"></i>
-				<span>{{ $t(`_relayStatus.${relay.status}`) }}</span>
+				<span>{{ i18n.t(`_relayStatus.${relay.status}`) }}</span>
 			</div>
 			<MkButton class="button" inline danger @click="remove(relay.inbox)"><i class="ph-trash-bold ph-lg"></i> {{ i18n.ts.remove }}</MkButton>
 		</div>

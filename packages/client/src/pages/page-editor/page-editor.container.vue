@@ -16,8 +16,8 @@
 			</button>
 		</div>
 	</header>
-	<p v-show="showBody" v-if="error != null" class="error">{{ $t('_pages.script.typeError', { slot: error.arg + 1, expect: $t(`script.types.${error.expect}`), actual: $t(`script.types.${error.actual}`) }) }}</p>
-	<p v-show="showBody" v-if="warn != null" class="warn">{{ $t('_pages.script.thereIsEmptySlot', { slot: warn.slot + 1 }) }}</p>
+	<p v-show="showBody" v-if="error != null" class="error">{{ i18n.t('_pages.script.typeError', { slot: error.arg + 1, expect: i18n.t(`script.types.${error.expect}`), actual: i18n.t(`script.types.${error.actual}`) }) }}</p>
+	<p v-show="showBody" v-if="warn != null" class="warn">{{ i18n.t('_pages.script.thereIsEmptySlot', { slot: warn.slot + 1 }) }}</p>
 	<div v-show="showBody" class="body">
 		<slot></slot>
 	</div>
@@ -26,34 +26,36 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { i18n } from '@/i18n';
 
 export default defineComponent({
 	props: {
 		expanded: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		removable: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		draggable: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		error: {
 			required: false,
-			default: null
+			default: null,
 		},
 		warn: {
 			required: false,
-			default: null
-		}
+			default: null,
+		},
 	},
 	emits: ['toggle', 'remove'],
 	data() {
 		return {
 			showBody: this.expanded,
+			i18n,
 		};
 	},
 	methods: {
@@ -63,8 +65,8 @@ export default defineComponent({
 		},
 		remove() {
 			this.$emit('remove');
-		}
-	}
+		},
+	},
 });
 </script>
 

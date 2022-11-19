@@ -22,7 +22,7 @@ import { i18n } from '@/i18n';
 
 export default defineComponent({
 	components: {
-		MkButton
+		MkButton,
 	},
 
 	props: {
@@ -60,7 +60,7 @@ export default defineComponent({
 		watch(() => props.p, () => {
 			process();
 		}, {
-			immediate: true
+			immediate: true,
 		});
 
 		const retry = () => {
@@ -73,6 +73,7 @@ export default defineComponent({
 			rejected,
 			result,
 			retry,
+			i18n,
 		};
 	}
 });

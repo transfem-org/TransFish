@@ -43,15 +43,15 @@
 	<section v-else-if="modelValue.type === 'fn'" class="" style="padding:0 16px 16px 16px;">
 		<MkTextarea v-model="slots">
 			<template #label>{{ i18n.ts._pages.script.blocks._fn.slots }}</template>
-			<template #caption>{{ $t('_pages.script.blocks._fn.slots-info') }}</template>
+			<template #caption>{{ i18n.t('_pages.script.blocks._fn.slots-info') }}</template>
 		</MkTextarea>
-		<XV v-if="modelValue.value.expression" v-model="modelValue.value.expression" :title="$t(`_pages.script.blocks._fn.arg1`)" :get-expected-type="() => null" :hpml="hpml" :fn-slots="modelValue.value.slots" :name="name"/>
+		<XV v-if="modelValue.value.expression" v-model="modelValue.value.expression" :title="i18n.t(`_pages.script.blocks._fn.arg1`)" :get-expected-type="() => null" :hpml="hpml" :fn-slots="modelValue.value.slots" :name="name"/>
 	</section>
 	<section v-else-if="modelValue.type.startsWith('fn:')" class="" style="padding:16px;">
 		<XV v-for="(x, i) in modelValue.args" :key="i" v-model="modelValue.args[i]" :title="hpml.getVarByName(modelValue.type.split(':')[1]).value.slots[i].name" :get-expected-type="() => null" :hpml="hpml" :name="name"/>
 	</section>
 	<section v-else class="" style="padding:16px;">
-		<XV v-for="(x, i) in modelValue.args" :key="i" v-model="modelValue.args[i]" :title="$t(`_pages.script.blocks._${modelValue.type}.arg${i + 1}`)" :get-expected-type="() => _getExpectedType(i)" :hpml="hpml" :name="name" :fn-slots="fnSlots"/>
+		<XV v-for="(x, i) in modelValue.args" :key="i" v-model="modelValue.args[i]" :title="i18n.t(`_pages.script.blocks._${modelValue.type}.arg${i + 1}`)" :get-expected-type="() => _getExpectedType(i)" :hpml="hpml" :name="name" :fn-slots="fnSlots"/>
 	</section>
 </XContainer>
 </template>
@@ -124,7 +124,7 @@ export default defineComponent({
 		typeText(): any {
 			if (this.modelValue.type === null) return null;
 			if (this.modelValue.type.startsWith('fn:')) return this.modelValue.type.split(':')[1];
-			return this.$t(`_pages.script.blocks.${this.modelValue.type}`);
+			return i18n.t(`_pages.script.blocks.${this.modelValue.type}`);
 		},
 	},
 

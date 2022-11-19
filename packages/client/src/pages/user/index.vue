@@ -83,26 +83,26 @@ const headerTabs = $computed(() =>
 			{
 				key: 'home',
 				title: i18n.ts.overview,
-				icon: 'ph-user-bold ph-large',
+				icon: 'ph-user-bold ph-lg',
 			},
 			...(($i && $i.id === user.id) || user.publicReactions
 				? [{
 					key: 'reactions',
 					title: i18n.ts.reaction,
-					icon: 'ph-smiley-bold ph-large',
+					icon: 'ph-smiley-bold ph-lg',
 				}] : []),
 			...(user.instance == null ? [{
 				key: 'clips',
 				title: i18n.ts.clips,
-				icon: 'ph-paperclip-bold ph-large',
+				icon: 'ph-paperclip-bold ph-lg',
 			}, {
 				key: 'pages',
 				title: i18n.ts.pages,
-				icon: 'ph-file-text-bold ph-large',
+				icon: 'ph-file-text-bold ph-lg',
 			}, {
 				key: 'gallery',
 				title: i18n.ts.gallery,
-				icon: 'ph-image-square-bold ph-large',
+				icon: 'ph-image-square-bold ph-lg',
 			}] : []),
 		]
 		: null,

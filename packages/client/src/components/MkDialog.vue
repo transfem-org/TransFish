@@ -33,7 +33,7 @@
 				<MkButton v-if="showCancelButton || input || select" inline @click="cancel">{{ i18n.ts.cancel }}</MkButton>
 			</div>
 			<div v-else>
-				<MkButton v-if="showOkButton" inline primary :autofocus="!input && !select" @click="ok">{{ (showCancelButton || input || select) ? i18n.ts.ok : i18n.ts.yes }}</MkButton>
+				<MkButton v-if="showOkButton" inline primary :autofocus="!input && !select" @click="ok">{{ i18n.ts.yes }}</MkButton>
 				<MkButton v-if="showCancelButton || input || select" inline @click="cancel">{{ i18n.ts.no }}</MkButton>
 			</div>
 		</div>

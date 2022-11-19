@@ -49,7 +49,7 @@
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
 							<div v-else class="translated">
-								<b>{{ $t('translatedFrom', { x: translation.sourceLang }) }}: </b>
+								<b>{{ i18n.t('translatedFrom', { x: translation.sourceLang }) }}: </b>
 								<Mfm :text="translation.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 							</div>
 						</div>
@@ -104,9 +104,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onMounted, onUnmounted, reactive, ref, Ref } from 'vue';
+import { computed, inject, onMounted, onUnmounted, reactive, ref } from 'vue';
 import * as mfm from 'mfm-js';
-import * as misskey from 'misskey-js';
+import type { Ref } from 'vue';
+import type * as misskey from 'misskey-js';
 import MkNoteSub from '@/components/MkNoteSub.vue';
 import XNoteHeader from '@/components/MkNoteHeader.vue';
 import XNoteSimple from '@/components/MkNoteSimple.vue';
@@ -134,6 +135,7 @@ import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
 import { notePage } from '@/filters/note';
+import { deepClone } from '@/scripts/clone';
 
 const router = useRouter();
 
@@ -144,12 +146,12 @@ const props = defineProps<{
 
 const inChannel = inject('inChannel', null);
 
-let note = $ref(JSON.parse(JSON.stringify(props.note)));
+let note = $ref(deepClone(props.note));
 
 // plugin
 if (noteViewInterruptors.length > 0) {
 	onMounted(async () => {
-		let result = JSON.parse(JSON.stringify(note));
+		let result = deepClone(note);
 		for (const interruptor of noteViewInterruptors) {
 			result = await interruptor.handler(result);
 		}
@@ -432,7 +434,9 @@ function readPromo() {
 			width: 58px;
 			height: 58px;
 			position: sticky;
-			top: var(--stickyTop, 0px);
+			/* For some reason this breaks avatar
+			positions on notes, commenting it for now */
+			/* top: var(--stickyTop, 0px); */
 			left: 0;
 		}
 

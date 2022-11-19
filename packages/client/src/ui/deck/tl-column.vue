@@ -11,9 +11,9 @@
 	<div v-if="disabled" class="iwaalbte">
 		<p>
 			<i class="ph-minus-circle-bold ph-lg"></i>
-			{{ $t('disabled-timeline.title') }}
+			{{ i18n.t('disabled-timeline.title') }}
 		</p>
-		<p class="desc">{{ $t('disabled-timeline.description') }}</p>
+		<p class="desc">{{ i18n.t('disabled-timeline.description') }}</p>
 	</div>
 	<XTimeline v-else-if="column.tl" ref="timeline" :key="column.tl" :src="column.tl" @after="() => emit('loaded')" @queue="queueUpdated" @note="onNote"/>
 </XColumn>

@@ -125,7 +125,7 @@ export default defineComponent({
 
 		showMenu(ev) {
 			os.popupMenu([{
-				text: this.$t('aboutX', { x: instanceName }),
+				text: i18n.t('aboutX', { x: instanceName }),
 				icon: 'ph-info-bold ph-lg',
 				action: () => {
 					os.pageWindow('/about');

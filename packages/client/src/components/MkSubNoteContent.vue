@@ -7,7 +7,7 @@
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">RN: ...</MkA>
 	</div>
 	<div v-if="note.files.length > 0">
-		<summary>({{ $t('withNFiles', { n: note.files.length }) }})</summary>
+		<summary>({{ i18n.t('withNFiles', { n: note.files.length }) }})</summary>
 		<XMediaList :media-list="note.files"/>
 	</div>
 	<div v-if="note.poll">
