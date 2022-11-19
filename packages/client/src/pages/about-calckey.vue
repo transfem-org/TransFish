@@ -69,11 +69,7 @@ import { defaultStore } from '@/store';
 import * as os from '@/os';
 import { definePageMetadata } from '@/scripts/page-metadata';
 
-const patrons = [
-	'@atomicpoet@vancity.social',
-	'@shoq@newsroom.social',
-	'@pikadude@erisly.social',
-];
+const patrons = await os.api('patrons');
 
 let easterEggReady = false;
 let easterEggEmojis = $ref([]);
