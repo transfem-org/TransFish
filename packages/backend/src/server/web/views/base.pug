@@ -38,7 +38,6 @@ html
 		link(rel='prefetch' href=`/static-assets/badges/info.png?${ timestamp }`)
 		link(rel='prefetch' href=`/static-assets/badges/not-found.png?${ timestamp }`)
 		link(rel='prefetch' href=`/static-assets/badges/error.png?${ timestamp }`)
-		link(rel='stylesheet' href='/assets/phosphor/icons.css')
 		link(rel='stylesheet' href=`/static-assets/instance.css?${ timestamp }`)
 		link(rel='modulepreload' href=`/assets/${clientEntry.file}`)
 
@@ -47,6 +46,8 @@ html
 
 		each href in clientEntry.css
 			link(rel='preload' href=`/assets/${href}` as='style')
+
+		link(rel='stylesheet' href='/assets/phosphor/icons.css')
 
 		title
 			block title
