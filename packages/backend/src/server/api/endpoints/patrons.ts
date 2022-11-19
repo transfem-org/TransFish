@@ -2,6 +2,7 @@ import define from '../define.js';
 
 export const meta = {
 	tags: ['meta'],
+	summary: 'Get list of Calckey patrons from Codeberg',
 
 	requireCredential: false,
 	requireCredentialPrivateMode: false,
