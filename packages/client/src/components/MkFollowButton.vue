@@ -1,17 +1,16 @@
 <template>
-<button class="kpoogebi _button"
+<button
+	class="kpoogebi _button"
 	:class="{ wait, active: isFollowing || hasPendingFollowRequestFromYou, full, large }"
 	:disabled="wait"
 	@click="onClick"
 >
-	<!-- <template v-if="remote">
-		<span v-if="full">{{ i18n.ts.remoteFollow }}</span><i class="ph-plus-bold ph-lg"></i>
-	</template> -->
 	<template v-if="!wait">
 		<template v-if="hasPendingFollowRequestFromYou && user.isLocked">
 			<span v-if="full">{{ i18n.ts.followRequestPending }}</span><i class="ph-hourglass-medium-bold ph-lg"></i>
 		</template>
-		<template v-else-if="hasPendingFollowRequestFromYou && !user.isLocked"> <!-- つまりリモートフォローの場合。 -->
+		<template v-else-if="hasPendingFollowRequestFromYou && !user.isLocked">
+			<!-- つまりリモートフォローの場合。 -->
 			<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold ph-lg fa-pulse"></i>
 		</template>
 		<template v-else-if="isFollowing">
@@ -32,22 +31,17 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted } from 'vue';
-import * as Misskey from 'misskey-js';
+import type * as Misskey from 'misskey-js';
 import * as os from '@/os';
-import { useRouter } from '@/router';
 import { stream } from '@/stream';
 import { i18n } from '@/i18n';
 
-const router = useRouter();
-
 const props = withDefaults(defineProps<{
-	user: Misskey.entities.UserDetailed,
-	full?: boolean,
-	remote?: boolean,
-	large?: boolean,
-}>(), {
+		user: Misskey.entities.UserDetailed,
+		full?: boolean,
+		large?: boolean,
+	}>(), {
 	full: false,
-	remote: false,
 	large: false,
 });
 
@@ -58,9 +52,9 @@ const connection = stream.useChannel('main');
 
 if (props.user.isFollowing == null) {
 	os.api('users/show', {
-		userId: props.user.id
+		userId: props.user.id,
 	})
-	.then(onFollowChange);
+		.then(onFollowChange);
 }
 
 function onFollowChange(user: Misskey.entities.UserDetailed) {
@@ -74,15 +68,6 @@ async function onClick() {
 	wait = true;
 
 	try {
-		// if (props.remote) {
-		// 	os.inputText({
-		// 		title: i18n.ts.remoteFollow,
-		// 		placeholder: 'thatonecalculator@i.calckey.cloud',
-		// 	}).then(({ canceled, result: instance }) => {
-		// 		if (canceled) return;
-		// 		window.open(`${instance}/?authorize-follow?acct=${props.user.uri}`);
-		// 	});
-		// }
 		if (isFollowing) {
 			const { canceled } = await os.confirm({
 				type: 'warning',
@@ -92,17 +77,17 @@ async function onClick() {
 			if (canceled) return;
 
 			await os.api('following/delete', {
-				userId: props.user.id
+				userId: props.user.id,
 			});
 		} else {
 			if (hasPendingFollowRequestFromYou) {
 				await os.api('following/requests/cancel', {
-					userId: props.user.id
+					userId: props.user.id,
 				});
 				hasPendingFollowRequestFromYou = false;
 			} else {
 				await os.api('following/create', {
-					userId: props.user.id
+					userId: props.user.id,
 				});
 				hasPendingFollowRequestFromYou = true;
 			}
