@@ -38,7 +38,7 @@
 					<button v-tooltip.noDelay.left="i18n.ts._deck.deleteProfile" class="_button button" @click="deleteProfile"><i class="ph-trash-bold ph-lg"></i></button>
 				</div>
 				<div class="middle">
-					<button v-tooltip.noDelay.left="i18n.ts._deck.addColumn" class="_button button" @click="addColumn"><i class="ph-plus-bold ph-lg"></i></button>
+					<button v-tooltip.noDelay.left="i18n.ts._deck.addColumn" class="_button button new" @click="addColumn"><i class="ph-plus-bold ph-lg"></i></button>
 				</div>
 				<div class="bottom">
 					<button v-tooltip.noDelay.left="i18n.ts.settings" class="_button button settings" @click="showSettings"><i class="ph-gear-six-bold ph-lg"></i></button>
@@ -322,7 +322,7 @@ async function deleteProfile() {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				width: 32px;
+				width: 44px;
 
 				> .top, > .middle, > .bottom {
 					> .button {
@@ -339,6 +339,11 @@ async function deleteProfile() {
 				> .middle {
 					margin-top: auto;
 					margin-bottom: auto;
+
+					> .new {
+						font-size: 20px;
+						background-color: var(--accentedBg);
+					}
 				}
 
 				> .bottom {
