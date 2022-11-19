@@ -5,7 +5,7 @@
 		<MkAvatar v-else-if="notification.user" class="icon" :user="notification.user"/>
 		<img v-else-if="notification.icon" class="icon" :src="notification.icon" alt=""/>
 		<div class="sub-icon" :class="notification.type">
-			<i v-if="notification.type === 'follow'" class="ph-plus-bold"></i>
+			<i v-if="notification.type === 'follow'" class="ph-hand-waving-bold"></i>
 			<i v-else-if="notification.type === 'receiveFollowRequest'" class="ph-clock-bold"></i>
 			<i v-else-if="notification.type === 'followRequestAccepted'" class="ph-check-bold"></i>
 			<i v-else-if="notification.type === 'groupInvited'" class="ph-identification-card-bold"></i>

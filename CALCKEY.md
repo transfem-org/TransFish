@@ -9,7 +9,6 @@
 - User "choices" (recommended users) like Mastodon and Soapbox
 - Option to publicize instance blocks
 - Fully revamp non-logged-in screen
-- Remote follow button
 - Personal notes for all accounts
 - Non-nyaify cat mode
 - Timeline filters
@@ -21,8 +20,8 @@
 ## Work in progress
 
 - Better Messaging UI
-  - Videos can be played in DMs
 - Make your password hasn't been pwned
+- Remote follow button
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility score

@@ -4,7 +4,10 @@
 	:disabled="wait"
 	@click="onClick"
 >
-	<template v-if="!wait">
+	<template v-if="remote">
+		<span v-if="full">{{ i18n.ts.remoteFollow }}</span><i class="ph-plus-bold ph-lg"></i>
+	</template>
+	<template v-else-if="!wait">
 		<template v-if="hasPendingFollowRequestFromYou && user.isLocked">
 			<span v-if="full">{{ i18n.ts.followRequestPending }}</span><i class="ph-hourglass-medium-bold ph-lg"></i>
 		</template>
@@ -31,15 +34,20 @@
 import { onBeforeUnmount, onMounted } from 'vue';
 import * as Misskey from 'misskey-js';
 import * as os from '@/os';
+import { useRouter } from '@/router';
 import { stream } from '@/stream';
 import { i18n } from '@/i18n';
+
+const router = useRouter();
 
 const props = withDefaults(defineProps<{
 	user: Misskey.entities.UserDetailed,
 	full?: boolean,
+	remote?: boolean,
 	large?: boolean,
 }>(), {
 	full: false,
+	remote: false,
 	large: false,
 });
 
@@ -66,7 +74,16 @@ async function onClick() {
 	wait = true;
 
 	try {
-		if (isFollowing) {
+		if (props.remote) {
+			os.inputText({
+				title: i18n.ts.remoteFollow,
+				placeholder: 'thatonecalculator@i.calckey.cloud',
+			}).then(({ canceled, result: instance }) => {
+				if (canceled) return;
+				window.open(`${instance}/?authorize-follow?acct=${props.user.uri}`);
+			});
+		}
+		else if (isFollowing) {
 			const { canceled } = await os.confirm({
 				type: 'warning',
 				text: i18n.t('unfollowConfirm', { name: props.user.name || props.user.username }),
