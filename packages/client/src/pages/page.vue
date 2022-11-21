@@ -10,18 +10,17 @@
 				</div>
 				<div class="_block main">
 					<div class="banner">
-						<div v-if="page.eyeCatchingImageId" class="banner-image" :style="`background-image: url(${page.eyeCatchingImage.url})`">
-							<div class="header">
-								<h1>{{ page.title }}</h1>
-							</div>
-							<div class="menu-actions">
-								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="_button"><i class="ph-code-bold"/></MkA>
-								<template v-if="$i && $i.id === page.userId">
-									<MkA v-tooltip="i18n.ts._pages.editPage" class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
-									<button v-if="$i.pinnedPageId === page.id" v-tooltip="i18n.ts.unpin" class="menu _button" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
-									<button v-else v-tooltip="i18n.ts.pin" class="menu _button" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
-								</template>
-							</div>
+						<div v-if="page.eyeCatchingImageId" class="banner-image" :style="`background-image: url(${page.eyeCatchingImage.url})`"></div>
+						<div class="header">
+							<h1>{{ page.title }}</h1>
+						</div>
+						<div class="menu-actions">
+							<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="menu _button"><i class="ph-code-bold"/></MkA>
+							<template v-if="$i && $i.id === page.userId">
+								<MkA v-tooltip="i18n.ts._pages.editPage" class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
+								<button v-if="$i.pinnedPageId === page.id" v-tooltip="i18n.ts.unpin" class="menu _button" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
+								<button v-else v-tooltip="i18n.ts.pin" class="menu _button" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
+							</template>
 						</div>
 					</div>
 					<div class="content">
@@ -198,39 +197,41 @@ definePageMetadata(computed(() => page ? {
 				background-position: center;
 				background-size: cover;
 
-				> .header {
-					padding: 16px;
+			}
 
-					> h1 {
-						margin: 0;
-						color: white;
-						text-shadow: 0 0 8px #000;
-					}
+			> .header {
+				padding: 16px;
+
+				> h1 {
+					margin: 0;
+					color: white;
+					text-shadow: 0 0 8px #000;
+				}
+			}
+
+			> .menu-actions {
+				-webkit-backdrop-filter: var(--blur, blur(8px));
+				backdrop-filter: var(--blur, blur(8px));
+				background: rgba(0, 0, 0, 0.2);
+				padding: 8px;
+				border-radius: 24px;
+				width: fit-content;
+				position: relative;
+				top: -10px;
+				left: 1rem;
+
+				> .menu {
+					vertical-align: bottom;
+					height: 31px;
+					width: 31px;
+					color: #fff;
+					text-shadow: 0 0 8px #000;
+					font-size: 16px;
 				}
 
-				> .menu-actions {
-					-webkit-backdrop-filter: var(--blur, blur(8px));
-					backdrop-filter: var(--blur, blur(8px));
-					background: rgba(0, 0, 0, 0.2);
-					padding: 8px;
-					border-radius: 24px;
-					width: fit-content;
-					top: -10px;
-					left: 1rem;
-
-					> .menu {
-						vertical-align: bottom;
-						height: 31px;
-						width: 31px;
-						color: #fff;
-						text-shadow: 0 0 8px #000;
-						font-size: 16px;
-					}
-
-					> .koudoku {
-						margin-left: 4px;
-						vertical-align: bottom;
-					}
+				> .koudoku {
+					margin-left: 4px;
+					vertical-align: bottom;
 				}
 			}
 		}
