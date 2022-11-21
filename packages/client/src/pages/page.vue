@@ -17,9 +17,9 @@
 							<div class="menu-actions">
 								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="_button"><i class="ph-code-bold"/></MkA>
 								<template v-if="$i && $i.id === page.userId">
-									<MkA class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
-									<button v-if="$i.pinnedPageId === page.id" class="menu _button" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
-									<button v-else class="menu _button" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
+									<MkA v-tooltip="i18n.ts._pages.editPage" class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
+									<button v-if="$i.pinnedPageId === page.id" v-tooltip="i18n.ts.unpin" class="menu _button" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
+									<button v-else v-tooltip="i18n.ts.pin" class="menu _button" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
 								</template>
 							</div>
 						</div>
