@@ -15,11 +15,11 @@
 								<h1>{{ page.title }}</h1>
 							</div>
 							<div class="menu-actions">
-								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
+								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="_button"><i class="ph-code-bold"/></MkA>
 								<template v-if="$i && $i.id === page.userId">
 									<MkA class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-dots-pencil-outline-bold ph-lg"/></MkA>
-									<button v-if="$i.pinnedPageId === page.id" class="link _textButton" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
-									<button v-else class="link _textButton" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
+									<button v-if="$i.pinnedPageId === page.id" class="_textButton" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
+									<button v-else class="_textButton" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
 								</template>
 							</div>
 						</div>
