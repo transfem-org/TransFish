@@ -4,14 +4,25 @@
 	<MkSpacer :content-max="800">
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
-				<div class="_block main">
-					<!--
-				<div class="header">
-					<h1>{{ page.title }}</h1>
+				<div class="footer">
+					<div><i class="ph-alarm-bold"/>{{ i18n.ts.createdAt }}: <MkTime :time="page.createdAt" mode="detail"/></div>
+					<div v-if="page.createdAt != page.updatedAt"><i class="ph-alarm-bold"></i> {{ i18n.ts.updatedAt }}: <MkTime :time="page.updatedAt" mode="detail"/></div>
 				</div>
-				-->
+				<div class="_block main">
 					<div class="banner">
-						<img v-if="page.eyeCatchingImageId" :src="page.eyeCatchingImage.url"/>
+						<div v-if="page.eyeCatchingImageId" class="banner-image" :style="`background-image: url(${page.eyeCatchingImage.url})`">
+							<div class="header">
+								<h1>{{ page.title }}</h1>
+							</div>
+							<div class="menu-actions">
+								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
+								<template v-if="$i && $i.id === page.userId">
+									<MkA class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-dots-pencil-outline-bold ph-lg"/></MkA>
+									<button v-if="$i.pinnedPageId === page.id" class="link _textButton" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
+									<button v-else class="link _textButton" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
+								</template>
+							</div>
+						</div>
 					</div>
 					<div class="content">
 						<XPage :page="page"/>
@@ -34,18 +45,14 @@
 							<MkFollowButton v-if="!$i || $i.id != page.user.id" :user="page.user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
 						</div>
 					</div>
-					<div class="links">
+					<!-- <div class="links">
 						<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="link">{{ i18n.ts._pages.viewSource }}</MkA>
 						<template v-if="$i && $i.id === page.userId">
 							<MkA :to="`/pages/edit/${page.id}`" class="link">{{ i18n.ts._pages.editThisPage }}</MkA>
 							<button v-if="$i.pinnedPageId === page.id" class="link _textButton" @click="pin(false)">{{ i18n.ts.unpin }}</button>
 							<button v-else class="link _textButton" @click="pin(true)">{{ i18n.ts.pin }}</button>
 						</template>
-					</div>
-				</div>
-				<div class="footer">
-					<div><i class="ph-alarm-bold"></i> {{ i18n.ts.createdAt }}: <MkTime :time="page.createdAt" mode="detail"/></div>
-					<div v-if="page.createdAt != page.updatedAt"><i class="ph-alarm-bold"></i> {{ i18n.ts.updatedAt }}: <MkTime :time="page.updatedAt" mode="detail"/></div>
+					</div> -->
 				</div>
 				<MkAd :prefer="['horizontal', 'horizontal-big']"/>
 				<MkContainer :max-height="300" :foldable="true" class="other">
@@ -191,12 +198,37 @@ definePageMetadata(computed(() => page ? {
 		> .banner {
 			margin: 0rem !important;
 
-			> img {
+			> .banner-image {
 				// TODO: 良い感じのアスペクト比で表示
 				display: block;
 				width: 100%;
 				height: 150px;
 				object-fit: cover;
+
+				> .menu-actions {
+					position: absolute;
+					top: 12px;
+					right: 12px;
+					-webkit-backdrop-filter: var(--blur, blur(8px));
+					backdrop-filter: var(--blur, blur(8px));
+					background: rgba(0, 0, 0, 0.2);
+					padding: 8px;
+					border-radius: 24px;
+
+					> .menu {
+						vertical-align: bottom;
+						height: 31px;
+						width: 31px;
+						color: #fff;
+						text-shadow: 0 0 8px #000;
+						font-size: 16px;
+					}
+
+					> .koudoku {
+						margin-left: 4px;
+						vertical-align: bottom;
+					}
+				}
 			}
 		}
 
