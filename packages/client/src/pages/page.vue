@@ -17,9 +17,9 @@
 							<div class="menu-actions">
 								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="_button"><i class="ph-code-bold"/></MkA>
 								<template v-if="$i && $i.id === page.userId">
-									<MkA class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-dots-pencil-outline-bold ph-lg"/></MkA>
-									<button v-if="$i.pinnedPageId === page.id" class="_textButton" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
-									<button v-else class="_textButton" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
+									<MkA class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
+									<button v-if="$i.pinnedPageId === page.id" class="menu _button" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
+									<button v-else class="menu _button" @click="pin(true)"><i class="ph-push-pin-bold ph-lg"/></button>
 								</template>
 							</div>
 						</div>
@@ -214,6 +214,9 @@ definePageMetadata(computed(() => page ? {
 					background: rgba(0, 0, 0, 0.2);
 					padding: 8px;
 					border-radius: 24px;
+					width: fit-content;
+					top: -10px;
+					left: 1rem;
 
 					> .menu {
 						vertical-align: bottom;
