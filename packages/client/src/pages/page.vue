@@ -187,14 +187,6 @@ definePageMetadata(computed(() => page ? {
 			margin: 1rem;
 		}
 
-		> .header {
-			padding: 16px;
-
-			> h1 {
-				margin: 0;
-			}
-		}
-
 		> .banner {
 			margin: 0rem !important;
 
@@ -203,12 +195,20 @@ definePageMetadata(computed(() => page ? {
 				display: block;
 				width: 100%;
 				height: 150px;
-				object-fit: cover;
+				background-position: center;
+				background-size: cover;
+
+				> .header {
+					padding: 16px;
+
+					> h1 {
+						margin: 0;
+						color: white;
+						text-shadow: 0 0 8px #000;
+					}
+				}
 
 				> .menu-actions {
-					position: absolute;
-					top: 12px;
-					right: 12px;
 					-webkit-backdrop-filter: var(--blur, blur(8px));
 					backdrop-filter: var(--blur, blur(8px));
 					background: rgba(0, 0, 0, 0.2);
