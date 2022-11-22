@@ -33,9 +33,10 @@
 
 # 🥂 Links
 
+- 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
+  - Donate publicly to get your name on the Patron list!
 - 🚢 Flagship instance: <https://i.calckey.cloud>
 - 📣 Official account: <https://i.calckey.cloud/@calckey>
-- 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
 - 📜 Instance list: <https://calckey.fediverse.observer/list>
 - 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
@@ -47,9 +48,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 ## 📦 Dependencies
 
-- At least 🐢 [NodeJS](https://nodejs.org/en/) v16.15.0 (v18.12.1 recommended)
-
-> ⚠️ NodeJS v19 is not supported as of right now because of [this issue](https://github.com/nodejs/node-gyp/issues/2757).
+- At least 🐢 [NodeJS](https://nodejs.org/en/) v18.12.1 (v19.1.0 recommended)
 
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
 

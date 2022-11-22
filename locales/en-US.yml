@@ -1001,9 +1001,9 @@ _aboutMisskey:
   allContributors: "All contributors"
   source: "Source code"
   translation: "Translate Misskey"
-  donate: "Donate to Misskey"
+  donate: "Donate to Calckey"
   morePatrons: "We also appreciate the support of many other helpers not listed here. Thank you! 🥰"
-  patrons: "Misskey patrons"
+  patrons: "Calckey patrons"
 _nsfw:
   respect: "Hide NSFW media"
   ignore: "Don't hide NSFW media"
