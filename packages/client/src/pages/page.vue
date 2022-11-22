@@ -98,7 +98,9 @@ const otherPostsPagination = {
 };
 const path = $computed(() => props.username + '/' + props.pageName);
 
-const bgImg = page.eyeCatchingImage.url !== null ? page.eyeCatchingImage.url : 'linear-gradient(to bottom right, #31748f, #9ccfd8)';
+let bgImg = $ref('linear-gradient(to bottom right, #31748f, #9ccfd8)');
+
+if (page.eyeCatchingImage.url != null) { bgImg = `url(${page.eyeCatchingImage.url})`; }
 
 function fetchPage() {
 	page = null;
