@@ -5,7 +5,7 @@
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
 				<div class="footer">
-					<div><i class="ph-alarm-bold"/>{{ i18n.ts.createdAt }}: <MkTime :time="page.createdAt" mode="detail"/></div>
+					<div><i class="ph-alarm-bold"/> {{ i18n.ts.createdAt }}: <MkTime :time="page.createdAt" mode="detail"/></div>
 					<div v-if="page.createdAt != page.updatedAt"><i class="ph-alarm-bold"></i> {{ i18n.ts.updatedAt }}: <MkTime :time="page.updatedAt" mode="detail"/></div>
 				</div>
 				<div class="_block main">
@@ -87,9 +87,8 @@ const props = defineProps<{
 	username: string;
 }>();
 
-let bgImg = 'linear-gradient(to bottom right, #31748f, #9ccfd8)';
-
 let page = $ref(null);
+let bgImg = $ref(null);
 let error = $ref(null);
 const otherPostsPagination = {
 	endpoint: 'users/pages' as const,
@@ -107,15 +106,18 @@ function fetchPage() {
 		username: props.username,
 	}).then(_page => {
 		page = _page;
-		getBgImg();
+		bgImg = getBgImg();
 	}).catch(err => {
 		error = err;
 	});
 }
 
-function getBgImg() {
+function getBgImg(): string {
 	if (page.eyeCatchingImage != null) {
-		bgImg = `url(${page.eyeCatchingImage.url})`;
+		return `url(${page.eyeCatchingImage.url})`;
+	}
+	else {
+		return 'linear-gradient(to bottom right, #31748f, #9ccfd8)'
 	}
 }
 
@@ -163,7 +165,6 @@ function pin(pin) {
 }
 
 watch(() => path, fetchPage, { immediate: true });
-watch(() => bgImg, getBgImg, {});
 
 const headerActions = $computed(() => []);
 
