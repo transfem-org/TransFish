@@ -10,7 +10,7 @@
 				</div>
 				<div class="_block main">
 					<div class="banner">
-						<div class="banner-image" :style="{ 'background-image': bgImg }">
+						<div class="banner-image">
 							<div class="header">
 								<h1>{{ page.title }}</h1>
 							</div>
@@ -87,6 +87,8 @@ const props = defineProps<{
 	username: string;
 }>();
 
+let bgImg = 'linear-gradient(to bottom right, #31748f, #9ccfd8)';
+
 let page = $ref(null);
 let error = $ref(null);
 const otherPostsPagination = {
@@ -98,8 +100,6 @@ const otherPostsPagination = {
 };
 const path = $computed(() => props.username + '/' + props.pageName);
 
-let bgImg = $ref('linear-gradient(to bottom right, #31748f, #9ccfd8)');
-
 function fetchPage() {
 	page = null;
 	os.api('pages/show', {
@@ -107,6 +107,9 @@ function fetchPage() {
 		username: props.username,
 	}).then(_page => {
 		page = _page;
+		if (_page.eyeCatchingImage != null) {
+			bgImg = `url(${_page.eyeCatchingImage.url})`;
+		}
 	}).catch(err => {
 		error = err;
 	});
@@ -161,8 +164,6 @@ const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => []);
 
-if (page.eyeCatchingImage.url != null) { bgImg = `url(${page.eyeCatchingImage.url})`; }
-
 definePageMetadata(computed(() => page ? {
 	title: computed(() => page.title || page.name),
 	avatar: page.user,
@@ -201,6 +202,7 @@ definePageMetadata(computed(() => page ? {
 				height: 150px;
 				background-position: center;
 				background-size: cover;
+				background-image: v-bind('bgImg');
 
 				> .header {
 					padding: 16px;
