@@ -1,12 +1,6 @@
-/*--------------------------------
-
-Phosphor Web Font
-Generated using nucleoapp.com
-
--------------------------------- */
 @font-face {
   font-family: "Phosphor";
-  src: url("./Phosphor.woff2") format("woff");
+  src: url("/assets/phosphor/Phosphor.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -23,7 +17,6 @@ Generated using nucleoapp.com
   font: normal normal normal 1em/1 "Phosphor";
   color: inherit;
   flex-shrink: 0;
-  speak: none;
   text-transform: none;
   text-decoration: inherit;
   text-align: center;

@@ -24,7 +24,6 @@ gulp.task('copy:client:fonts', () =>
 );
 
 gulp.task('copy:client:phosphor', () =>
-	gulp.src('./packages/client/src/icons.css').pipe(gulp.dest('./built/_client_dist_/phosphor/')),
 	gulp.src('./node_modules/phosphor-icons/src/fonts/*').pipe(gulp.dest('./built/_client_dist_/phosphor/'))
 );
 
