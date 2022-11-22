@@ -20,7 +20,7 @@ gulp.task('copy:backend:custom', () =>
 );
 
 gulp.task('copy:client:fonts', () =>
-	gulp.src('./packages/client/node_modules/three/examples/fonts/**/*').pipe(gulp.dest('./built/_client_dist_/fonts/'))
+	gulp.src('./packages/client/src/icons.css.min').pipe(gulp.dest('./built/_client_dist_/fonts/'))
 );
 
 gulp.task('copy:client:phosphor', () =>

@@ -10,7 +10,7 @@
 				</div>
 				<div class="_block main">
 					<div class="banner">
-						<div class="banner-image" :style="`background-image: ${page.eyeCatchingImage.url !== null ? `url(${page.eyeCatchingImage.url})` : `linear-gradient(to bottom right, #31748f, #9ccfd8);` }`">
+						<div class="banner-image" :style="{ 'background-image': bgImg }">
 							<div class="header">
 								<h1>{{ page.title }}</h1>
 							</div>
@@ -97,6 +97,8 @@ const otherPostsPagination = {
 	})),
 };
 const path = $computed(() => props.username + '/' + props.pageName);
+
+const bgImg = page.eyeCatchingImage.url !== null ? page.eyeCatchingImage.url : 'linear-gradient(to bottom right, #31748f, #9ccfd8)';
 
 function fetchPage() {
 	page = null;
