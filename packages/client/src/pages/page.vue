@@ -10,12 +10,12 @@
 				</div>
 				<div class="_block main">
 					<div class="banner">
-						<div v-if="page.eyeCatchingImageId" class="banner-image" :style="`background-image: ${page.eyeCatchingImage.url !== null ? `url(${page.eyeCatchingImage.url})` : `linear-gradient(to bottom right, #31748f, #9ccfd8);` }`">
+						<div class="banner-image" :style="`background-image: ${page.eyeCatchingImage.url !== null ? `url(${page.eyeCatchingImage.url})` : `linear-gradient(to bottom right, #31748f, #9ccfd8);` }`">
 							<div class="header">
 								<h1>{{ page.title }}</h1>
 							</div>
 							<div class="menu-actions">
-								<MkA :to="`/@${username}/pages/${pageName}/view-source`" class="menu _button"><i class="ph-code-bold"/></MkA>
+								<MkA v-tooltip="i18n.ts._pages.viewSource" :to="`/@${username}/pages/${pageName}/view-source`" class="menu _button"><i class="ph-code-bold ph-lg"/></MkA>
 								<template v-if="$i && $i.id === page.userId">
 									<MkA v-tooltip="i18n.ts._pages.editPage" class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
 									<button v-if="$i.pinnedPageId === page.id" v-tooltip="i18n.ts.unpin" class="menu _button" @click="pin(false)"><i class="ph-push-pin-slash-bold ph-lg"/></button>
