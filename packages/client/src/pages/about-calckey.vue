@@ -19,7 +19,7 @@
 				</div>
 				<FormSection>
 					<div class="_formLinks">
-						<FormLink to="/@thatonecalculator@stop.voring.me" external>
+						<FormLink to="https://codeberg.org/thatonecalculator/calckey" external>
 							<template #icon><i class="ph-code-bold ph-lg"></i></template>
 							{{ i18n.ts._aboutMisskey.source }}
 							<template #suffix>Codeberg</template>
@@ -34,7 +34,7 @@
 				<FormSection>
 					<template #label>{{ i18n.ts._aboutMisskey.contributors }}</template>
 					<div class="_formLinks">
-						<FormLink to="https://codeberg.org/thatonecalculator" external><Mfm :text="'$[sparkle @thatonecalculator@stop.voring.me (Main fork developer)]'"/></FormLink>
+						<FormLink to="/@thatonecalculator@stop.voring.me"><Mfm :text="'$[sparkle @thatonecalculator@stop.voring.me (Main fork developer)]'"/></FormLink>
 						<FormLink to="https://github.com/syuilo" external>Syuilo (Misskey developer)</FormLink>
 						<FormLink to="https://www.youtube.com/c/Henkiwashere" external>Henki (error images artist)</FormLink>
 					</div>
