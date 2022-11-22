@@ -107,12 +107,16 @@ function fetchPage() {
 		username: props.username,
 	}).then(_page => {
 		page = _page;
-		if (_page.eyeCatchingImage != null) {
-			bgImg = `url(${_page.eyeCatchingImage.url})`;
-		}
+		getBgImg();
 	}).catch(err => {
 		error = err;
 	});
+}
+
+function getBgImg() {
+	if (page.eyeCatchingImage != null) {
+		bgImg = `url(${page.eyeCatchingImage.url})`;
+	}
 }
 
 function share() {
@@ -130,7 +134,7 @@ function shareWithNote() {
 }
 
 function like() {
-	os.apiWithDialog('pages/like', {
+	os.api('pages/like', {
 		pageId: page.id,
 	}).then(() => {
 		page.isLiked = true;
@@ -158,7 +162,7 @@ function pin(pin) {
 	});
 }
 
-watch(() => path, fetchPage, bgImg, { immediate: true });
+watch(() => path, fetchPage, { immediate: true });
 
 const headerActions = $computed(() => []);
 
