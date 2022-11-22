@@ -100,8 +100,6 @@ const path = $computed(() => props.username + '/' + props.pageName);
 
 let bgImg = $ref('linear-gradient(to bottom right, #31748f, #9ccfd8)');
 
-if (page.eyeCatchingImage.url != null) { bgImg = `url(${page.eyeCatchingImage.url})`; }
-
 function fetchPage() {
 	page = null;
 	os.api('pages/show', {
@@ -162,6 +160,8 @@ watch(() => path, fetchPage, { immediate: true });
 const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => []);
+
+if (page.eyeCatchingImage.url != null) { bgImg = `url(${page.eyeCatchingImage.url})`; }
 
 definePageMetadata(computed(() => page ? {
 	title: computed(() => page.title || page.name),
