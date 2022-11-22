@@ -163,6 +163,7 @@ function pin(pin) {
 }
 
 watch(() => path, fetchPage, { immediate: true });
+watch(() => bgImg, getBgImg, {});
 
 const headerActions = $computed(() => []);
 
