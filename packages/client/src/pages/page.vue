@@ -158,7 +158,7 @@ function pin(pin) {
 	});
 }
 
-watch(() => path, fetchPage, { immediate: true });
+watch(() => path, fetchPage, bgImg, { immediate: true });
 
 const headerActions = $computed(() => []);
 
@@ -269,7 +269,7 @@ definePageMetadata(computed(() => page ? {
 
 			> .other {
 				> button {
-					padding: 8px;
+					padding: 2px;
 					margin: 0 8px;
 
 					&:hover {
