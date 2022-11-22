@@ -48,9 +48,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 ## 📦 Dependencies
 
-- At least 🐢 [NodeJS](https://nodejs.org/en/) v16.15.0 (v18.12.1 recommended)
-
-> ⚠️ NodeJS v19 is not supported as of right now because of [this issue](https://github.com/nodejs/node-gyp/issues/2757).
+- At least 🐢 [NodeJS](https://nodejs.org/en/) v18.12.1 (v19.1.0 recommended)
 
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
 

@@ -19,7 +19,7 @@
 				</div>
 				<FormSection>
 					<div class="_formLinks">
-						<FormLink to="https://codeberg.org/thatonecalculator/calckey" external>
+						<FormLink to="/@thatonecalculator@stop.voring.me" external>
 							<template #icon><i class="ph-code-bold ph-lg"></i></template>
 							{{ i18n.ts._aboutMisskey.source }}
 							<template #suffix>Codeberg</template>
