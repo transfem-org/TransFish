@@ -431,8 +431,8 @@ function readPromo() {
 			flex-shrink: 0;
 			display: block;
 			margin: 0 14px 8px 0;
-			width: 58px;
-			height: 58px;
+			width: 52px;
+			height: 52px;
 			position: sticky;
 			/* For some reason this breaks avatar
 			positions on notes, commenting it for now */

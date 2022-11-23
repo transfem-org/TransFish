@@ -81,9 +81,12 @@ const bannerStyle = computed(() => {
 			top: 16px;
 			left: 16px;
 			padding: 12px 16px;
-			background: rgba(0, 0, 0, 0.7);
+			-webkit-backdrop-filter: var(--blur, blur(8px));
+			backdrop-filter: var(--blur, blur(8px));
+			background: rgba(0, 0, 0, 0.2);
 			color: #fff;
 			font-size: 1.2em;
+			border-radius: 999px;
 		}
 
 		> .status {
@@ -93,7 +96,9 @@ const bannerStyle = computed(() => {
 			right: 16px;
 			padding: 8px 12px;
 			font-size: 80%;
-			background: rgba(0, 0, 0, 0.7);
+			-webkit-backdrop-filter: var(--blur, blur(8px));
+			backdrop-filter: var(--blur, blur(8px));
+			background: rgba(0, 0, 0, 0.2);
 			border-radius: 6px;
 			color: #fff;
 		}

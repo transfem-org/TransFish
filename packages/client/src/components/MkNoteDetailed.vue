@@ -411,8 +411,8 @@ if (appearNote.replyId) {
 			> .avatar {
 				display: block;
 				flex-shrink: 0;
-				width: 58px;
-				height: 58px;
+				width: 52px;
+				height: 52px;
 			}
 
 			> .body {

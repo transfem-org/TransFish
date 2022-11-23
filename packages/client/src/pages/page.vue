@@ -249,7 +249,7 @@ definePageMetadata(computed(() => page ? {
 		}
 
 		> .content {
-			padding: 16px 0 0 0;
+			padding: 16px 0;
 		}
 
 		> .actions {
@@ -290,8 +290,8 @@ definePageMetadata(computed(() => page ? {
 				align-items: center;
 
 				> .avatar {
-					width: 52px;
-					height: 52px;
+					width: 40px;
+					height: 40px;
 				}
 
 				> .name {
