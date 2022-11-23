@@ -256,7 +256,7 @@ definePageMetadata(computed(() => page ? {
 			display: flex;
 			align-items: center;
 			margin-top: 16px;
-			padding: 16px 0 0 0;
+			padding: 16px 0;
 			border-top: solid 0.5px var(--divider);
 
 			> .like {
