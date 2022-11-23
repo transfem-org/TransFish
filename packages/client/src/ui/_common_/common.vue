@@ -99,8 +99,8 @@ if ($i) {
 	top: 0;
 	left: 0;
 	z-index: 2147483647;
-	color: #ff0;
-	background: rgba(0, 0, 0, 0.5);
+	color: #f6c177;
+	background: #6e6a86;
 	padding: 4px 5px;
 	font-size: 14px;
 	pointer-events: none;
