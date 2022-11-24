@@ -68,6 +68,12 @@ export class User {
 	})
 	public followingCount: number;
 
+	@Column('varchar', {
+		length: 512, nullable: true,
+		comment: 'The URI of the new account of the User',
+	})
+	public movedToUri: string | null;
+
 	@Column('integer', {
 		default: 0,
 		comment: 'The count of notes.',
