@@ -74,6 +74,12 @@ export class User {
 	})
 	public movedToUri: string | null;
 
+	@Column('simple-array', {
+		nullable: true,
+		comment: 'URIs the user is known as too',
+	})
+	public alsoKnownAs: string[] | null;
+
 	@Column('integer', {
 		default: 0,
 		comment: 'The count of notes.',
