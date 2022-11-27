@@ -52,8 +52,16 @@ This guide will work for both **starting from scratch** and **migrating from Mis
   - Install with [nvm](https://github.com/nvm-sh/nvm)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
 - 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended)
-- 📗 (Optional) [FFmpeg](https://ffmpeg.org/)
-- 🛰️ (Optional, for non-Docker) [pm2](https://pm2.io/)
+
+### 😗 Optional dependencies
+
+- 📗 [FFmpeg](https://ffmpeg.org/) for video transcoding
+- 🔍 [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
+  - OpenSearch/Sonic are not supported as of right now
+- 🥡 Management (choose one of the following)
+  - 🛰️ [pm2](https://pm2.io/)
+  - 🐳 [Docker](https://docker.com)
+  - 📐 Service manager (systemd, openrc, etc)
 
 ### 🏗️ Build dependencies
 
@@ -117,7 +125,7 @@ cp -r ../misskey/files . # if you don't use object storage
 
 ## 🚀 Build and launch!
 
-### 🐢 NodeJS
+### 🐢 NodeJS + pm2
 
 #### `git pull` and run these steps to update Calckey in the future!
 
