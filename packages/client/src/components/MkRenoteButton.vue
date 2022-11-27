@@ -2,8 +2,8 @@
 <button
 	v-if="canRenote"
 	ref="buttonRef"
-	class="eddddedb _button canRenote"
 	v-tooltip.noDelay.bottom="i18n.ts.renote"
+	class="eddddedb _button canRenote"
 	@click="renote(false, $event)"
 >
 	<i class="ph-repeat-bold ph-lg"></i>
@@ -16,7 +16,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import * as misskey from 'misskey-js';
+import type * as misskey from 'misskey-js';
 import Ripple from '@/components/MkRipple.vue';
 import XDetails from '@/components/MkUsersTooltip.vue';
 import { pleaseLogin } from '@/scripts/please-login';
@@ -24,7 +24,7 @@ import * as os from '@/os';
 import { $i } from '@/account';
 import { useTooltip } from '@/scripts/use-tooltip';
 import { i18n } from '@/i18n';
-import { defaultStore } from "@/store";
+import { defaultStore } from '@/store';
 
 const props = defineProps<{
 		note: misskey.entities.Note;
