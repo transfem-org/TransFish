@@ -296,7 +296,7 @@ import { getAccountFromId } from '@/scripts/get-account-from-id';
 	}, { immediate: true });
 
 	watch(defaultStore.reactiveState.useBlurEffect, v => {
-		if (v) {
+		if (v && deviceKind !== 'smartphone') {
 			document.documentElement.style.removeProperty('--blur');
 		} else {
 			document.documentElement.style.setProperty('--blur', 'none');
