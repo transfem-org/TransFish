@@ -48,13 +48,24 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 ## 📦 Dependencies
 
-- At least 🐢 [NodeJS](https://nodejs.org/en/) v18.12.1 (v19.1.0 recommended)
+- 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19.1.0 recommended)
+  - Best installed with [nvm](https://github.com/nvm-sh/nvm)
 
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
 
 - 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended)
 
+- 📗 (Optional) [FFmpeg](https://ffmpeg.org/)
+
 - 🛰️ (Optional, for non-Docker) [pm2](https://pm2.io/)
+
+### 🏗️ Build dependencies
+
+- 🦬 C/C++ compiler & build tools
+  - `build-essential` on Debian/Ubuntu Linux
+  - `base-devel` on Arch Linux
+
+- 🐍 Python 3
 
 ## 👀 Get folder ready
 
@@ -69,6 +80,14 @@ cd calckey/
 ```sh
 # nvm install 18 && nvm alias default 18 && nvm use 18
 corepack enable
+```
+
+## 🐘 Create database
+
+Assuming you set up PostgreSQL correctly, all you have to run is:
+
+```sh
+psql postgres -c "create database calckey with encoding = 'UTF8';"
 ```
 
 ## 💅 Customize
