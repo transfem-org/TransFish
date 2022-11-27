@@ -3,6 +3,7 @@
 	v-if="canRenote"
 	ref="buttonRef"
 	class="eddddedb _button canRenote"
+	v-tooltip.noDelay.bottom="i18n.ts.renote"
 	@click="renote(false, $event)"
 >
 	<i class="ph-repeat-bold ph-lg"></i>

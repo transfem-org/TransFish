@@ -81,21 +81,21 @@
 					</MkA>
 				</div>
 				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
-				<button class="button _button" @click="reply()">
+				<button class="button _button" v-tooltip.noDelay.bottom="i18n.ts.reply" @click="reply()">
 					<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
 					<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
 					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
 				</button>
 				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
-				<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" @click="react()">
+				<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" v-tooltip.noDelay.bottom="i18n.ts.reaction" @click="react()">
 					<i class="ph-smiley-bold ph-lg"></i>
 				</button>
 				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
 					<i class="ph-minus-bold ph-lg"></i>
 				</button>
 				<XQuoteButton class="button" :note="appearNote"/>
-				<button ref="menuButton" class="button _button" @click="menu()">
+				<button ref="menuButton" class="button _button" v-tooltip.noDelay.bottom="i18n.ts.more" @click="menu()">
 					<i class="ph-dots-three-outline-bold ph-lg"></i>
 				</button>
 			</footer>
