@@ -97,6 +97,7 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 
 - To add custom CSS for all users, edit `./custom/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
+- To add custom locales, create a directory `/locales/custom/` and place custom locale files in there. If you name your custom locale the same as an existing locale, it will overwrite it. If you give it a unique name, it will be added to the list.
 - To update custom assets without rebuilding, just run `yarn run gulp`.
 
 ## 🧑‍🔬 Configuring a new instance
