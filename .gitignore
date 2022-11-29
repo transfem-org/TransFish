@@ -52,6 +52,7 @@ api-docs.json
 ormconfig.json
 /custom
 packages/backend/assets/instance.css
+/locales/custom
 
 # blender backups
 *.blend1
