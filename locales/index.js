@@ -23,7 +23,7 @@ fs.readdirSync(__dirname).forEach((file) => {
 	}
 })
 
-fs.readdirSync(__dirname + '/custom').forEach((file) => {
+fs.readdirSync(__dirname + '/../custom/locales').forEach((file) => {
 	if (file.includes('.yml')){
 		file = file.slice(0, file.indexOf('.'))
 		languages_custom.push(file);
@@ -40,7 +40,7 @@ const primaries = {
 const clean = (text) => text.replace(new RegExp(String.fromCodePoint(0x08), 'g'), '');
 
 const locales = languages.reduce((a, c) => (a[c] = yaml.load(clean(fs.readFileSync(`${__dirname}/${c}.yml`, 'utf-8'))) || {}, a), {});
-const locales_custom = languages_custom.reduce((a, c) => (a[c] = yaml.load(clean(fs.readFileSync(`${__dirname}/custom/${c}.yml`, 'utf-8'))) || {}, a), {});
+const locales_custom = languages_custom.reduce((a, c) => (a[c] = yaml.load(clean(fs.readFileSync(`${__dirname}/../custom/locales/${c}.yml`, 'utf-8'))) || {}, a), {});
 Object.assign(locales, locales_custom)
 
 module.exports = Object.entries(locales)
