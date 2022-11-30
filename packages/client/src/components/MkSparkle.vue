@@ -65,18 +65,18 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from 'vue';
+import { reducedMotion } from '@/scripts/reduced-motion';
 
 const particles = ref([]);
 const el = ref<HTMLElement>();
 const width = ref(0);
 const height = ref(0);
 const colors = ['#eb6f92', '#9ccfd8', '#f6c177', '#f6c177', '#f6c177'];
-const reducedQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 let stop = false;
 let ro: ResizeObserver | undefined;
 
 onMounted(() => {
-	if (!reducedQuery.matches) {
+	if (!reducedMotion()) {
 		ro = new ResizeObserver((entries, observer) => {
 			width.value = el.value?.offsetWidth + 64;
 			height.value = el.value?.offsetHeight + 64;
