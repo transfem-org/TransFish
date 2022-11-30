@@ -158,8 +158,8 @@ const props = withDefaults(defineProps<{
 }
 
 @media(prefers-reduced-motion) {
-	span[class^='mfm'], div[class*=' mfm'] {
-		animation: none;
+	span[class^='mfm'], span[class*=' mfm'] {
+		animation: none !important;
 	}
 }
 </style>
