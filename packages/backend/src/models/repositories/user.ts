@@ -1,16 +1,38 @@
-import { EntityRepository, Repository, In, Not } from 'typeorm';
+import {In, Not} from 'typeorm';
 import Ajv from 'ajv';
-import { User, ILocalUser, IRemoteUser } from '@/models/entities/user.js';
+import {ILocalUser, IRemoteUser, User} from '@/models/entities/user.js';
 import config from '@/config/index.js';
-import { Packed } from '@/misc/schema.js';
-import { awaitAll, Promiseable } from '@/prelude/await-all.js';
-import { populateEmojis } from '@/misc/populate-emojis.js';
-import { getAntennas } from '@/misc/antenna-cache.js';
-import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const.js';
-import { Cache } from '@/misc/cache.js';
-import { db } from '@/db/postgre.js';
-import { Instance } from '../entities/instance.js';
-import { Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages, Announcements, AnnouncementReads, Antennas, AntennaNotes, ChannelFollowings, Instances, DriveFiles } from '../index.js';
+import {Packed} from '@/misc/schema.js';
+import {awaitAll, Promiseable} from '@/prelude/await-all.js';
+import {populateEmojis} from '@/misc/populate-emojis.js';
+import {getAntennas} from '@/misc/antenna-cache.js';
+import {USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD} from '@/const.js';
+import {Cache} from '@/misc/cache.js';
+import {db} from '@/db/postgre.js';
+import {Instance} from '../entities/instance.js';
+import {resolveUser} from "@/remote/resolve-user";
+import {URL} from "url";
+import {
+	AnnouncementReads,
+	Announcements,
+	AntennaNotes,
+	Blockings,
+	ChannelFollowings,
+	DriveFiles,
+	Followings,
+	FollowRequests,
+	Instances,
+	MessagingMessages,
+	Mutings,
+	Notes,
+	NoteUnreads,
+	Notifications,
+	Pages,
+	UserGroupJoinings,
+	UserNotePinings,
+	UserProfiles,
+	UserSecurityKeys
+} from '../index.js';
 
 const userInstanceCache = new Cache<Instance | null>(1000 * 60 * 60 * 3);
 
@@ -154,6 +176,23 @@ export const UserRepository = db.getRepository(User).extend({
 		} : {});
 
 		return count > 0;
+	},
+
+	async userFromURI(uri: string): Promise<User | null> {
+		if (uri.startsWith(config.url + '/')) {
+			const id = uri.split('/').pop();
+			if (id == undefined) return null;
+			return await resolveUser(id, null);
+		}
+
+		let url = new URL(uri);
+		let userTag = url.pathname;
+
+		if (userTag.startsWith("@")) {
+			userTag = userTag.substring(1);
+		}
+
+		return await resolveUser(userTag, url.host);
 	},
 
 	async getHasUnreadAntenna(userId: User['id']): Promise<boolean> {
@@ -320,6 +359,8 @@ export const UserRepository = db.getRepository(User).extend({
 			...(opts.detail ? {
 				url: profile!.url,
 				uri: user.uri,
+				movedTo: user.movedToUri ? await this.userFromURI(user.movedToUri) : null,
+				alsoKnownAs: user.alsoKnownAs,
 				createdAt: user.createdAt.toISOString(),
 				updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,
 				lastFetchedAt: user.lastFetchedAt ? user.lastFetchedAt.toISOString() : null,

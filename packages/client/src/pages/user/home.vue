@@ -8,6 +8,7 @@
 
 			<div class="profile">
 				<MkRemoteCaution v-if="user.host != null" :href="user.url" class="warn"/>
+				<MkMoved v-if="user.movedTo" :acct="user.movedTo" />
 
 				<div :key="user.id" class="_block main">
 					<div class="banner-container" :style="style">
@@ -119,6 +120,7 @@ import MkFolder from '@/components/MkFolder.vue';
 import MkRemoteCaution from '@/components/MkRemoteCaution.vue';
 import MkTab from '@/components/MkTab.vue';
 import MkInfo from '@/components/MkInfo.vue';
+import MkMoved from '@/components/MkMoved.vue';
 import { getScrollPosition } from '@/scripts/scroll';
 import { getUserMenu } from '@/scripts/get-user-menu';
 import number from '@/filters/number';
