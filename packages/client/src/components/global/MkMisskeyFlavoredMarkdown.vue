@@ -156,6 +156,12 @@ const props = withDefaults(defineProps<{
 	0% { filter: hue-rotate(0deg) contrast(150%) saturate(150%); }
 	100% { filter: hue-rotate(360deg) contrast(150%) saturate(150%); }
 }
+
+@media(prefers-reduced-motion) {
+	div[class^='mfm'], div[class*=' mfm'] {
+		animation: none;
+	}
+}
 </style>
 
 <style lang="scss" scoped>
