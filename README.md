@@ -20,6 +20,7 @@
   - Improved UI/UX (especially on mobile)
   - Improved notifications
   - Improved instance security
+  - Improved accessibility
   - Recommended Instances timeline
   - OCR image captioning
   - New and improved Groups
