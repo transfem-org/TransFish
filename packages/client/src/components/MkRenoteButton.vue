@@ -55,29 +55,45 @@ useTooltip(buttonRef, async (showing) => {
 
 const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
-	if (defaultStore.state.seperateRenoteQuote) {
-		os.api('notes/create', {
-			renoteId: props.note.id,
-			visibility: props.note.visibility,
-		});
-		const el = ev && (ev.currentTarget ?? ev.target) as HTMLElement | null | undefined;
-		if (el) {
-			const rect = el.getBoundingClientRect();
-			const x = rect.left + (el.offsetWidth / 2);
-			const y = rect.top + (el.offsetHeight / 2);
-			os.popup(Ripple, { x, y }, {}, 'end');
-		}
-	} else {
-		os.popupMenu([{
-			text: i18n.ts.renote,
-			icon: 'ph-repeat-bold ph-lg',
+	let buttonActions = [{
+		text: i18n.ts.renote,
+		icon: 'ph-repeat-bold ph-lg',
+		action: () => {
+			os.api('notes/create', {
+				renoteId: props.note.id,
+				visibility: props.note.visibility,
+			});
+			const el = ev && (ev.currentTarget ?? ev.target) as HTMLElement | null | undefined;
+			if (el) {
+				const rect = el.getBoundingClientRect();
+				const x = rect.left + (el.offsetWidth / 2);
+				const y = rect.top + (el.offsetHeight / 2);
+				os.popup(Ripple, { x, y }, {}, 'end');
+			}
+		},
+	}];
+	let users;
+	os.api('notes/renotes', {
+		noteId: props.note.id,
+		limit: 11,
+	}).then((renotes) => { 
+		users = renotes.map(x => x.user);
+	});
+	const hasRenotedBefore = users.includes($i);
+	
+	if (hasRenotedBefore) {
+		buttonActions.push({
+			text: i18n.ts.unrenote,
+			icon: 'ph-eraser-bold ph-lg',
 			action: () => {
-				os.api('notes/create', {
-					renoteId: props.note.id,
-					visibility: props.note.visibility,
+				os.api('notes/unrenote', {
+					noteId: props.note.id,
 				});
 			},
-		}, {
+		});
+	}
+	if (!defaultStore.state.seperateRenoteQuote) {
+		buttonActions.push({
 			text: i18n.ts.quote,
 			icon: 'ph-quotes-bold ph-lg',
 			action: () => {
@@ -85,10 +101,9 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 					renote: props.note,
 				});
 			},
-		}], buttonRef.value, {
-			viaKeyboard,
 		});
 	}
+	os.popupMenu(buttonActions, buttonRef.value, { viaKeyboard });
 };
 </script>
 
