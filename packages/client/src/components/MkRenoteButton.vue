@@ -77,8 +77,8 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		limit: 11,
 	});
 
-	const users = renotes.map(x => x.user);
-	const hasRenotedBefore = users.includes($i);
+	const users = renotes.map(x => x.user.id);
+	const hasRenotedBefore = users.includes($i.id);
 	
 	if (hasRenotedBefore) {
 		buttonActions.push({
