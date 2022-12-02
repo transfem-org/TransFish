@@ -53,7 +53,7 @@ useTooltip(buttonRef, async (showing) => {
 	}, {}, 'closed');
 });
 
-const renote = (viaKeyboard = false, ev?: MouseEvent) => {
+const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
 	let buttonActions = [{
 		text: i18n.ts.renote,
@@ -72,13 +72,12 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 			}
 		},
 	}];
-	let users;
-	os.api('notes/renotes', {
+	const renotes = await os.api('notes/renotes', {
 		noteId: props.note.id,
 		limit: 11,
-	}).then((renotes) => { 
-		users = renotes.map(x => x.user);
 	});
+
+	const users = renotes.map(x => x.user);
 	const hasRenotedBefore = users.includes($i);
 	
 	if (hasRenotedBefore) {
