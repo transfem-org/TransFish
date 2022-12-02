@@ -55,6 +55,15 @@ useTooltip(buttonRef, async (showing) => {
 
 const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
+
+	const renotes = await os.api('notes/renotes', {
+		noteId: props.note.id,
+		limit: 11,
+	});
+
+	const users = renotes.map(x => x.user.id);
+	const hasRenotedBefore = users.includes($i.id);
+
 	let buttonActions = [{
 		text: i18n.ts.renote,
 		icon: 'ph-repeat-bold ph-lg',
@@ -73,26 +82,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 			}
 		},
 	}];
-	const renotes = await os.api('notes/renotes', {
-		noteId: props.note.id,
-		limit: 11,
-	});
 
-	const users = renotes.map(x => x.user.id);
-	const hasRenotedBefore = users.includes($i.id);
-	
-	if (hasRenotedBefore) {
-		buttonActions.push({
-			text: i18n.ts.unrenote,
-			icon: 'ph-trash-bold ph-lg',
-			danger: true,
-			action: () => {
-				os.api('notes/unrenote', {
-					noteId: props.note.id,
-				});
-			},
-		});
-	}
 	if (!defaultStore.state.seperateRenoteQuote) {
 		buttonActions.push({
 			text: i18n.ts.quote,
@@ -101,6 +91,19 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 			action: () => {
 				os.post({
 					renote: props.note,
+				});
+			},
+		});
+	}
+
+	if (hasRenotedBefore) {
+		buttonActions.push({
+			text: i18n.ts.unrenote,
+			icon: 'ph-trash-bold ph-lg',
+			danger: true,
+			action: () => {
+				os.api('notes/unrenote', {
+					noteId: props.note.id,
 				});
 			},
 		});
