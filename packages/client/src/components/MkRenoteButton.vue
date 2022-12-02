@@ -58,6 +58,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	let buttonActions = [{
 		text: i18n.ts.renote,
 		icon: 'ph-repeat-bold ph-lg',
+		danger: false,
 		action: () => {
 			os.api('notes/create', {
 				renoteId: props.note.id,
@@ -83,7 +84,8 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	if (hasRenotedBefore) {
 		buttonActions.push({
 			text: i18n.ts.unrenote,
-			icon: 'ph-eraser-bold ph-lg',
+			icon: 'ph-trash-bold ph-lg',
+			danger: true,
 			action: () => {
 				os.api('notes/unrenote', {
 					noteId: props.note.id,
@@ -95,6 +97,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		buttonActions.push({
 			text: i18n.ts.quote,
 			icon: 'ph-quotes-bold ph-lg',
+			danger: false,
 			action: () => {
 				os.post({
 					renote: props.note,
