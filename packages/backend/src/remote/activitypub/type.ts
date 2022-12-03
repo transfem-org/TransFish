@@ -160,7 +160,7 @@ export interface IActor extends IObject {
 	alsoKnownAs?: string[];
 	discoverable?: boolean;
 	inbox: string;
-	sharedInbox?: string;	// 後方互換性のため
+	sharedInbox?: string;	// backward compatibility.. ig
 	publicKey?: {
 		id: string;
 		publicKeyPem: string;
@@ -283,6 +283,7 @@ export interface IFlag extends IActivity {
 
 export interface IMove extends IActivity {
 	type: 'Move';
+	target: IObject | string;
 }
 
 export const isCreate = (object: IObject): object is ICreate => getApType(object) === 'Create';
@@ -299,3 +300,4 @@ export const isLike = (object: IObject): object is ILike => getApType(object) ==
 export const isAnnounce = (object: IObject): object is IAnnounce => getApType(object) === 'Announce';
 export const isBlock = (object: IObject): object is IBlock => getApType(object) === 'Block';
 export const isFlag = (object: IObject): object is IFlag => getApType(object) === 'Flag';
+export const isMove = (object: IObject): object is IMove => getApType(object) === 'Move';
