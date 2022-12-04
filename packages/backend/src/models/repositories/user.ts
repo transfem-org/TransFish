@@ -1,17 +1,18 @@
-import {In, Not} from 'typeorm';
+import { URL } from 'url';
+import { In, Not } from 'typeorm';
 import Ajv from 'ajv';
-import {ILocalUser, IRemoteUser, User} from '@/models/entities/user.js';
+import type { ILocalUser, IRemoteUser } from '@/models/entities/user.js';
+import { User } from '@/models/entities/user.js';
 import config from '@/config/index.js';
-import {Packed} from '@/misc/schema.js';
-import {awaitAll, Promiseable} from '@/prelude/await-all.js';
-import {populateEmojis} from '@/misc/populate-emojis.js';
-import {getAntennas} from '@/misc/antenna-cache.js';
-import {USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD} from '@/const.js';
-import {Cache} from '@/misc/cache.js';
-import {db} from '@/db/postgre.js';
-import {Instance} from '../entities/instance.js';
-import {resolveUser} from "@/remote/resolve-user";
-import {URL} from "url";
+import type { Packed } from '@/misc/schema.js';
+import type { Promiseable } from '@/prelude/await-all.js';
+import { awaitAll } from '@/prelude/await-all.js';
+import { populateEmojis } from '@/misc/populate-emojis.js';
+import { getAntennas } from '@/misc/antenna-cache.js';
+import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const.js';
+import { Cache } from '@/misc/cache.js';
+import { db } from '@/db/postgre.js';
+import { resolveUser } from '@/remote/resolve-user.js';
 import {
 	AnnouncementReads,
 	Announcements,
@@ -31,14 +32,15 @@ import {
 	UserGroupJoinings,
 	UserNotePinings,
 	UserProfiles,
-	UserSecurityKeys
+	UserSecurityKeys,
 } from '../index.js';
+import type { Instance } from '../entities/instance.js';
 
 const userInstanceCache = new Cache<Instance | null>(1000 * 60 * 60 * 3);
 
 type IsUserDetailed<Detailed extends boolean> = Detailed extends true ? Packed<'UserDetailed'> : Packed<'UserLite'>;
 type IsMeAndIsUserDetailed<ExpectsMe extends boolean | null, Detailed extends boolean> =
-	Detailed extends true ? 
+	Detailed extends true ?
 		ExpectsMe extends true ? Packed<'MeDetailed'> :
 		ExpectsMe extends false ? Packed<'UserDetailedNotMe'> :
 		Packed<'UserDetailed'> :
@@ -185,10 +187,10 @@ export const UserRepository = db.getRepository(User).extend({
 			return await resolveUser(id, null);
 		}
 
-		let url = new URL(uri);
+		const url = new URL(uri);
 		let userTag = url.pathname;
 
-		if (userTag.startsWith("@")) {
+		if (userTag.startsWith('@')) {
 			userTag = userTag.substring(1);
 		}
 
