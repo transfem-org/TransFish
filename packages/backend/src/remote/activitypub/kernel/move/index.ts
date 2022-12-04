@@ -3,13 +3,13 @@ import { IRemoteUser, User } from '@/models/entities/user.js';
 import DbResolver from '@/remote/activitypub/db-resolver.js';
 import { getRemoteUser } from '@/server/api/common/getters.js';
 import { updatePerson } from '@/remote/activitypub/models/person.js';
-import { Followings, Users } from '@/models';
-import { makePaginationQuery } from '@/server/api/common/make-pagination-query';
+import { Followings, Users } from '@/models.js';
+import { makePaginationQuery } from '@/server/api/common/make-pagination-query.js';
 import deleteFollowing from '@/services/following/delete.js';
 import create from '@/services/following/create.js';
-import { IdentifiableError } from '@/misc/identifiable-error';
-import { ApiError } from '@/server/api/error';
-import { meta } from '@/server/api/endpoints/following/create';
+import { IdentifiableError } from '@/misc/identifiable-error.js';
+import { ApiError } from '@/server/api/error.js';
+import { meta } from '@/server/api/endpoints/following/create.js';
 import { IObject, IActor } from '../../type.js';
 import type { IMove } from '../../type.js';
 
