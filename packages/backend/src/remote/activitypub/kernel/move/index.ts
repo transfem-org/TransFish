@@ -3,7 +3,7 @@ import { IRemoteUser, User } from '@/models/entities/user.js';
 import DbResolver from '@/remote/activitypub/db-resolver.js';
 import { getRemoteUser } from '@/server/api/common/getters.js';
 import { updatePerson } from '@/remote/activitypub/models/person.js';
-import { Followings, Users } from '@/models.js';
+import { Followings, Users } from '@/models';
 import { makePaginationQuery } from '@/server/api/common/make-pagination-query.js';
 import deleteFollowing from '@/services/following/delete.js';
 import create from '@/services/following/create.js';
