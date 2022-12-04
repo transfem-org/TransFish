@@ -24,20 +24,29 @@
 							{{ i18n.ts._aboutMisskey.source }}
 							<template #suffix>Codeberg</template>
 						</FormLink>
+						<FormLink to="https://liberapay.com/ThatOneCalculator" external>
+							<template #icon><i class="ph-money-bold ph-lg"></i></template>
+							{{ i18n.ts._aboutMisskey.donate }}
+							<template #suffix>Donate</template>
+						</FormLink>
 					</div>
 				</FormSection>
 				<FormSection>
 					<template #label>{{ i18n.ts._aboutMisskey.contributors }}</template>
 					<div class="_formLinks">
-						<FormLink to="https://codeberg.org/thatonecalculator" external>ThatOneCalculator (fork developer)</FormLink>
-						<FormLink to="https://github.com/syuilo" external>Syuilo (Misskey developer)</FormLink>
+						<FormLink to="/@t1c@i.calckey.cloud"><Mfm :text="'$[sparkle @t1c@i.calckey.cloud] (Main fork developer)'"/></FormLink>
+						<FormLink to="/@syuilo@misskey.io"><Mfm :text="'@syuilo@misskey.io (Misskey developer)'"/></FormLink>
 						<FormLink to="https://www.youtube.com/c/Henkiwashere" external>Henki (error images artist)</FormLink>
 					</div>
 					<template #caption><MkLink url="https://codeberg.org/thatonecalculator/calckey/activity">{{ i18n.ts._aboutMisskey.allContributors }}</MkLink></template>
 				</FormSection>
 				<FormSection>
 					<template #label><Mfm text="$[jelly ❤]"/> {{ i18n.ts._aboutMisskey.patrons }}</template>
-					<div v-for="patron in patrons" :key="patron">{{ patron }}</div>
+					<MkSparkle>
+						<div v-for="patron in patrons" :key="patron" style="margin-bottom: 0.5rem">
+							<Mfm :text="`${patron}`"/>
+						</div>
+					</MkSparkle>
 					<template #caption>{{ i18n.ts._aboutMisskey.morePatrons }}</template>
 				</FormSection>
 			</div>
@@ -53,92 +62,14 @@ import FormLink from '@/components/form/link.vue';
 import FormSection from '@/components/form/section.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkLink from '@/components/MkLink.vue';
+import MkSparkle from '@/components/MkSparkle.vue';
 import { physics } from '@/scripts/physics';
 import { i18n } from '@/i18n';
 import { defaultStore } from '@/store';
 import * as os from '@/os';
 import { definePageMetadata } from '@/scripts/page-metadata';
 
-const patrons = [
-	'まっちゃとーにゅ',
-	'mametsuko',
-	'noellabo',
-	'AureoleArk',
-	'Gargron',
-	'Nokotaro Takeda',
-	'Suji Yan',
-	'oi_yekssim',
-	'regtan',
-	'Hekovic',
-	'nenohi',
-	'Gitmo Life Services',
-	'naga_rus',
-	'Efertone',
-	'Melilot',
-	'motcha',
-	'nanami kan',
-	'sevvie Rose',
-	'Hayato Ishikawa',
-	'Puniko',
-	'skehmatics',
-	'Quinton Macejkovic',
-	'YUKIMOCHI',
-	'dansup',
-	'mewl hayabusa',
-	'Emilis',
-	'Fristi',
-	'makokunsan',
-	'chidori ninokura',
-	'Peter G.',
-	'見当かなみ',
-	'natalie',
-	'Maronu',
-	'Steffen K9',
-	'takimura',
-	'sikyosyounin',
-	'Nesakko',
-	'YuzuRyo61',
-	'blackskye',
-	'sheeta.s',
-	'osapon',
-	'public_yusuke',
-	'CG',
-	'吴浥',
-	't_w',
-	'Jerry',
-	'nafuchoco',
-	'Takumi Sugita',
-	'GLaTAN',
-	'mkatze',
-	'kabo2468y',
-	'mydarkstar',
-	'Roujo',
-	'DignifiedSilence',
-	'uroco @99',
-	'totokoro',
-	'うし',
-	'kiritan',
-	'weepjp',
-	'Liaizon Wakest',
-	'Duponin',
-	'Blue',
-	'Naoki Hirayama',
-	'wara',
-	'Wataru Manji (manji0)',
-	'みなしま',
-	'kanoy',
-	'xianon',
-	'Denshi',
-	'Osushimaru',
-	'にょんへら',
-	'おのだい',
-	'Leni',
-	'oss',
-	'Weeble',
-	'蝉暮せせせ',
-	'ThatOneCalculator',
-	'pixeldesu',
-];
+const patrons = await os.api('patrons');
 
 let easterEggReady = false;
 let easterEggEmojis = $ref([]);

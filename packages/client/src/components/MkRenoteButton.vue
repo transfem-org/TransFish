@@ -2,6 +2,7 @@
 <button
 	v-if="canRenote"
 	ref="buttonRef"
+	v-tooltip.noDelay.bottom="i18n.ts.renote"
 	class="eddddedb _button canRenote"
 	@click="renote(false, $event)"
 >
@@ -15,7 +16,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import * as misskey from 'misskey-js';
+import type * as misskey from 'misskey-js';
 import Ripple from '@/components/MkRipple.vue';
 import XDetails from '@/components/MkUsersTooltip.vue';
 import { pleaseLogin } from '@/scripts/please-login';
@@ -23,7 +24,7 @@ import * as os from '@/os';
 import { $i } from '@/account';
 import { useTooltip } from '@/scripts/use-tooltip';
 import { i18n } from '@/i18n';
-import { defaultStore } from "@/store";
+import { defaultStore } from '@/store';
 
 const props = defineProps<{
 		note: misskey.entities.Note;
@@ -52,42 +53,62 @@ useTooltip(buttonRef, async (showing) => {
 	}, {}, 'closed');
 });
 
-const renote = (viaKeyboard = false, ev?: MouseEvent) => {
+const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
-	if (defaultStore.state.seperateRenoteQuote) {
-		os.api('notes/create', {
-			renoteId: props.note.id,
-			visibility: props.note.visibility,
-		});
-		const el = ev && (ev.currentTarget ?? ev.target) as HTMLElement | null | undefined;
-		if (el) {
-			const rect = el.getBoundingClientRect();
-			const x = rect.left + (el.offsetWidth / 2);
-			const y = rect.top + (el.offsetHeight / 2);
-			os.popup(Ripple, { x, y }, {}, 'end');
-		}
-	} else {
-		os.popupMenu([{
-			text: i18n.ts.renote,
-			icon: 'ph-repeat-bold ph-lg',
-			action: () => {
-				os.api('notes/create', {
-					renoteId: props.note.id,
-					visibility: props.note.visibility,
-				});
-			},
-		}, {
+
+	const renotes = await os.api('notes/renotes', {
+		noteId: props.note.id,
+		limit: 11,
+	});
+
+	const users = renotes.map(x => x.user.id);
+	const hasRenotedBefore = users.includes($i.id);
+
+	let buttonActions = [{
+		text: i18n.ts.renote,
+		icon: 'ph-repeat-bold ph-lg',
+		danger: false,
+		action: () => {
+			os.api('notes/create', {
+				renoteId: props.note.id,
+				visibility: props.note.visibility,
+			});
+			const el = ev && (ev.currentTarget ?? ev.target) as HTMLElement | null | undefined;
+			if (el) {
+				const rect = el.getBoundingClientRect();
+				const x = rect.left + (el.offsetWidth / 2);
+				const y = rect.top + (el.offsetHeight / 2);
+				os.popup(Ripple, { x, y }, {}, 'end');
+			}
+		},
+	}];
+
+	if (!defaultStore.state.seperateRenoteQuote) {
+		buttonActions.push({
 			text: i18n.ts.quote,
 			icon: 'ph-quotes-bold ph-lg',
+			danger: false,
 			action: () => {
 				os.post({
 					renote: props.note,
 				});
 			},
-		}], buttonRef.value, {
-			viaKeyboard,
 		});
 	}
+
+	if (hasRenotedBefore) {
+		buttonActions.push({
+			text: i18n.ts.unrenote,
+			icon: 'ph-trash-bold ph-lg',
+			danger: true,
+			action: () => {
+				os.api('notes/unrenote', {
+					noteId: props.note.id,
+				});
+			},
+		});
+	}
+	os.popupMenu(buttonActions, buttonRef.value, { viaKeyboard });
 };
 </script>
 

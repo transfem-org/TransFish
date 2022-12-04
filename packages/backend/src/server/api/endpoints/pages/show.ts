@@ -67,5 +67,9 @@ export default define(meta, paramDef, async (ps, user) => {
 		throw new ApiError(meta.errors.noSuchPage);
 	}
 
+	if (!page.isPublic && (user == null || (page.userId !== user.id))) {
+		throw new ApiError(meta.errors.noSuchPage);
+	}
+
 	return await Pages.pack(page, user);
 });

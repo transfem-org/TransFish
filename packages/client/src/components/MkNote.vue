@@ -71,21 +71,21 @@
 			</div>
 			<footer class="footer">
 				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
-				<button class="button _button" @click="reply()">
+				<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
 					<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
 					<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
 					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
 				</button>
 				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
-				<button v-if="appearNote.myReaction == null" ref="reactButton" class="button _button" @click="react()">
+				<button v-if="appearNote.myReaction == null" ref="reactButton" v-tooltip.noDelay.bottom="i18n.ts.reaction" class="button _button" @click="react()">
 					<i class="ph-smiley-bold ph-lg"></i>
 				</button>
 				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
 					<i class="ph-minus-bold ph-lg"></i>
 				</button>
 				<XQuoteButton class="button" :note="appearNote"/>
-				<button ref="menuButton" class="button _button" @click="menu()">
+				<button ref="menuButton" v-tooltip.noDelay.bottom="i18n.ts.more" class="button _button" @click="menu()">
 					<i class="ph-dots-three-outline-bold ph-lg"></i>
 				</button>
 			</footer>
@@ -135,6 +135,7 @@ import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
 import { notePage } from '@/filters/note';
+import { deepClone } from '@/scripts/clone';
 
 const router = useRouter();
 
@@ -145,12 +146,12 @@ const props = defineProps<{
 
 const inChannel = inject('inChannel', null);
 
-let note = $ref(JSON.parse(JSON.stringify(props.note)));
+let note = $ref(deepClone(props.note));
 
 // plugin
 if (noteViewInterruptors.length > 0) {
 	onMounted(async () => {
-		let result = JSON.parse(JSON.stringify(note));
+		let result = deepClone(note);
 		for (const interruptor of noteViewInterruptors) {
 			result = await interruptor.handler(result);
 		}
@@ -425,13 +426,18 @@ function readPromo() {
 	> .article {
 		display: flex;
 		padding: 28px 32px 18px;
+		cursor: pointer;
+
+		@media (pointer: coarse) {
+			cursor: default;
+		}
 
 		> .avatar {
 			flex-shrink: 0;
 			display: block;
 			margin: 0 14px 8px 0;
-			width: 58px;
-			height: 58px;
+			width: 52px;
+			height: 52px;
 			position: sticky;
 			/* For some reason this breaks avatar
 			positions on notes, commenting it for now */
@@ -612,7 +618,7 @@ function readPromo() {
 				margin: 0 10px 8px 0;
 				width: 46px;
 				height: 46px;
-				top: calc(14px + var(--stickyTop, 0px));
+				// top: calc(14px + var(--stickyTop, 0px));
 			}
 		}
 	}

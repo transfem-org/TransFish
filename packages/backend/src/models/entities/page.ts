@@ -40,6 +40,9 @@ export class Page {
 	@Column('boolean')
 	public alignCenter: boolean;
 
+	@Column('boolean')
+	public isPublic: boolean;
+
 	@Column('boolean', {
 		default: false,
 	})

@@ -1,12 +1,12 @@
 {
 	"name": "calckey",
-	"version": "12.119.0-calc.14.6",
+	"version": "12.119.0-calc.18",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
 		"url": "https://codeberg.org/thatonecalculator/calckey.git"
 	},
-	"packageManager": "yarn@3.2.4",
+	"packageManager": "yarn@3.3.0",
 	"workspaces": [
 		"packages/client",
 		"packages/backend",
@@ -42,7 +42,7 @@
 		"@bull-board/api": "^4.6.4",
 		"@bull-board/ui": "^4.6.4",
 		"@tensorflow/tfjs": "^3.21.0",
-		"eslint": "^8.27.0",
+		"eslint": "^8.28.0",
 		"execa": "5.1.1",
 		"gulp": "4.0.2",
 		"gulp-cssnano": "2.1.3",

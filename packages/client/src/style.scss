@@ -98,9 +98,9 @@ a {
 	-webkit-tap-highlight-color: transparent;
 }
 
-i {
-	transform: translateY(0.1em);
-}
+// i {
+// 	transform: translateY(0.1em);
+// }
 
 textarea, input {
 	tap-highlight-color: transparent;
@@ -565,6 +565,22 @@ hr {
 
 	to {
 		transform: scale3d(1, 1, 1);
+	}
+}
+
+@media(prefers-reduced-motion) {
+	@keyframes tada {
+		from {
+			transform: scale3d(1, 1, 1);
+		}
+
+		50% {
+			transform: scale3d(1.1, 1.1, 1.1);
+		}
+
+		to {
+			transform: scale3d(1, 1, 1);
+		}
 	}
 }
 

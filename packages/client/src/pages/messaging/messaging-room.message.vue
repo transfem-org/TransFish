@@ -1,6 +1,6 @@
 <template>
 <div v-size="{ max: [400, 500] }" class="thvuemwp" :class="{ isMe }">
-	<MkAvatar class="avatar" :user="message.user" :show-indicator="true"/>
+	<MkAvatar v-if="!isMe" class="avatar" :user="message.user" :show-indicator="true"/>
 	<div class="content">
 		<div class="balloon" :class="{ noText: message.text == null }">
 			<button v-if="isMe" class="delete-button" :title="i18n.ts.delete" @click="del">
@@ -38,7 +38,6 @@
 <script lang="ts" setup>
 import { } from 'vue';
 import * as mfm from 'mfm-js';
-import VuePlyr from 'vue-plyr';
 import type * as Misskey from 'misskey-js';
 import XMediaList from '@/components/MkMediaList.vue';
 import { extractUrlFromMfm } from '@/scripts/extract-url-from-mfm';
@@ -73,10 +72,10 @@ function del(): void {
 
 	> .avatar {
 		position: sticky;
-		top: calc(var(--stickyTop, 0px) + 16px);
+		top: calc(var(--stickyTop, 0px) + 20px);
 		display: block;
-		width: 54px;
-		height: 54px;
+		width: 45px;
+		height: 45px;
 		transition: all 0.1s ease;
 	}
 
@@ -91,14 +90,6 @@ function del(): void {
 			min-height: 38px;
 			border-radius: 16px;
 			max-width: 100%;
-
-			&:before {
-				content: "";
-				pointer-events: none;
-				display: block;
-				position: absolute;
-				top: 12px;
-			}
 
 			& + * {
 				clear: both;
@@ -222,7 +213,7 @@ function del(): void {
 			padding-right: 32px;
 
 			> .balloon {
-				$color: var(--messageBg);
+				$color: var(--X4);
 				background: $color;
 
 				&.noText {

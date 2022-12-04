@@ -16,7 +16,7 @@ gulp.task('copy:backend:views', () =>
 );
 
 gulp.task('copy:backend:custom', () =>
-	gulp.src('./custom/*').pipe(gulp.dest('./packages/backend/assets/'))
+	gulp.src('./custom/assets/*').pipe(gulp.dest('./packages/backend/assets/'))
 );
 
 gulp.task('copy:client:fonts', () =>
@@ -24,7 +24,7 @@ gulp.task('copy:client:fonts', () =>
 );
 
 gulp.task('copy:client:phosphor', () =>
-	gulp.src('./node_modules/phosphor-icons/src/css/*').pipe(gulp.dest('./built/_client_dist_/phosphor/'))
+	gulp.src('./node_modules/phosphor-icons/src/fonts/*').pipe(gulp.dest('./built/_client_dist_/phosphor/'))
 );
 
 gulp.task('copy:client:locales', cb => {
