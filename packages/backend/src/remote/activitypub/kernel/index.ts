@@ -1,5 +1,6 @@
+import type { CacheableRemoteUser } from '@/models/entities/user.js';
+import { toArray } from '@/prelude/array.js';
 import {
-	IObject,
 	isCreate,
 	isDelete,
 	isUpdate,
@@ -16,9 +17,10 @@ import {
 	isCollectionOrOrderedCollection,
 	isCollection,
 	isFlag,
-	isMove
+	isMove,
 } from '../type.js';
-import { CacheableRemoteUser } from '@/models/entities/user.js';
+import { apLogger } from '../logger.js';
+import Resolver from '../resolver.js';
 import create from './create/index.js';
 import performDeleteActivity from './delete/index.js';
 import performUpdateActivity from './update/index.js';
@@ -33,10 +35,8 @@ import add from './add/index.js';
 import remove from './remove/index.js';
 import block from './block/index.js';
 import flag from './flag/index.js';
-import { apLogger } from '../logger.js';
-import Resolver from '../resolver.js';
-import { toArray } from '@/prelude/array.js';
 import move from './move/index.js';
+import type { IObject } from '../type.js';
 
 export async function performActivity(actor: CacheableRemoteUser, activity: IObject) {
 	if (isCollectionOrOrderedCollection(activity)) {

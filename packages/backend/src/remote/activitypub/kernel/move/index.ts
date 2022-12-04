@@ -1,15 +1,17 @@
-import {CacheableRemoteUser, IRemoteUser, User} from '@/models/entities/user.js';
-import {IMove, IObject, IActor} from '../../type.js';
-import DbResolver from "@/remote/activitypub/db-resolver";
-import {getRemoteUser} from '@/server/api/common/getters.js';
+import type { CacheableRemoteUser } from '@/models/entities/user.js';
+import { IRemoteUser, User } from '@/models/entities/user.js';
+import DbResolver from '@/remote/activitypub/db-resolver';
+import { getRemoteUser } from '@/server/api/common/getters.js';
 import { updatePerson } from '@/remote/activitypub/models/person.js';
-import {Followings, Users} from "@/models";
-import {makePaginationQuery} from "@/server/api/common/make-pagination-query";
+import { Followings, Users } from '@/models';
+import { makePaginationQuery } from '@/server/api/common/make-pagination-query';
 import deleteFollowing from '@/services/following/delete.js';
 import create from '@/services/following/create.js';
-import {IdentifiableError} from "@/misc/identifiable-error";
-import {ApiError} from "@/server/api/error";
-import {meta} from "@/server/api/endpoints/following/create";
+import { IdentifiableError } from '@/misc/identifiable-error';
+import { ApiError } from '@/server/api/error';
+import { meta } from '@/server/api/endpoints/following/create';
+import { IObject, IActor } from '../../type.js';
+import type { IMove } from '../../type.js';
 
 export default async (actor: CacheableRemoteUser, activity: IMove): Promise<string> => {
 	// ※ There is a block target in activity.object, which should be a local user that exists.
@@ -22,19 +24,19 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 	if (!old_acc) new_acc = await getRemoteUser(<string>activity.actor);
 
 	if (!new_acc || new_acc.uri === null) {
-		return `move: new acc not found`;
+		return 'move: new acc not found';
 	}
 	if (!old_acc || old_acc.uri === null) {
-		return `move: old acc not found`;
+		return 'move: old acc not found';
 	}
 	await updatePerson(new_acc.uri);
 	await updatePerson(old_acc.uri);
 	new_acc = await getRemoteUser(new_acc.uri);
 	old_acc = await getRemoteUser(old_acc.uri);
 
-	if(old_acc === null || old_acc.uri === null || !new_acc?.alsoKnownAs?.includes(old_acc.uri)) return `move: accounts invalid`;
+	if (old_acc === null || old_acc.uri === null || !new_acc.alsoKnownAs?.includes(old_acc.uri)) return 'move: accounts invalid';
 
-	old_acc.movedToUri = new_acc?.uri
+	old_acc.movedToUri = new_acc.uri;
 
 	const query = makePaginationQuery(Followings.createQueryBuilder('following'))
 		.andWhere('following.followeeId = :userId', { userId: old_acc.id })
@@ -44,8 +46,8 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 		.getMany();
 
 	followings.forEach(following => {
-		if(!following.follower?.host) {
-			let follower = following.follower;
+		if (!following.follower?.host) {
+			const follower = following.follower;
 			deleteFollowing(follower!, old_acc!);
 			try {
 				create(follower!, new_acc!);
@@ -57,7 +59,7 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 				throw e;
 			}
 		}
-	})
+	});
 
-	return `ok`;
+	return 'ok';
 };
