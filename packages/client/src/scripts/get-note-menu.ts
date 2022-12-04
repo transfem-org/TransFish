@@ -8,6 +8,7 @@ import * as os from '@/os';
 import copyToClipboard from '@/scripts/copy-to-clipboard';
 import { url } from '@/config';
 import { noteActions } from '@/store';
+import { shareAvailable } from '@/scripts/share-available';
 
 export function getNoteMenu(props: {
 	note: misskey.entities.Note;
@@ -220,11 +221,11 @@ export function getNoteMenu(props: {
 					window.open(appearNote.url || appearNote.uri, '_blank');
 				},
 			} : undefined,
-			{
+			shareAvailable() ? {
 				icon: 'ph-share-network-bold ph-lg',
 				text: i18n.ts.share,
 				action: share,
-			},
+			} : undefined,
 			instance.translatorAvailable ? {
 				icon: 'ph-translate-bold ph-lg',
 				text: i18n.ts.translate,
