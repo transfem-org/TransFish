@@ -1,6 +1,6 @@
 import type { CacheableRemoteUser } from '@/models/entities/user.js';
 import { IRemoteUser, User } from '@/models/entities/user.js';
-import DbResolver from '@/remote/activitypub/db-resolver';
+import DbResolver from '@/remote/activitypub/db-resolver.js';
 import { getRemoteUser } from '@/server/api/common/getters.js';
 import { updatePerson } from '@/remote/activitypub/models/person.js';
 import { Followings, Users } from '@/models';
