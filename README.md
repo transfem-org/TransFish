@@ -20,6 +20,7 @@
   - Improved UI/UX (especially on mobile)
   - Improved notifications
   - Improved instance security
+  - Improved accessibility
   - Recommended Instances timeline
   - OCR image captioning
   - New and improved Groups
@@ -48,13 +49,27 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 ## 📦 Dependencies
 
-- At least 🐢 [NodeJS](https://nodejs.org/en/) v18.12.1 (v19.1.0 recommended)
-
+- 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19.1.0 recommended)
+  - Install with [nvm](https://github.com/nvm-sh/nvm)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
-
 - 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended)
 
-- 🛰️ (Optional, for non-Docker) [pm2](https://pm2.io/)
+### 😗 Optional dependencies
+
+- 📗 [FFmpeg](https://ffmpeg.org/) for video transcoding
+- 🔍 [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
+  - OpenSearch/Sonic are not supported as of right now
+- 🥡 Management (choose one of the following)
+  - 🛰️ [pm2](https://pm2.io/)
+  - 🐳 [Docker](https://docker.com)
+  - 📐 Service manager (systemd, openrc, etc)
+
+### 🏗️ Build dependencies
+
+- 🦬 C/C++ compiler & build tools
+  - `build-essential` on Debian/Ubuntu Linux
+  - `base-devel` on Arch Linux
+- 🐍 [Python 3](https://www.python.org/)
 
 ## 👀 Get folder ready
 
@@ -71,10 +86,19 @@ cd calckey/
 corepack enable
 ```
 
+## 🐘 Create database
+
+Assuming you set up PostgreSQL correctly, all you have to run is:
+
+```sh
+psql postgres -c "create database calckey with encoding = 'UTF8';"
+```
+
 ## 💅 Customize
 
-- To add custom CSS for all users, edit `./custom/instance.css`.
-- To add static assets (such as images for the splash screen), place them in the `./custom/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
+- To add custom CSS for all users, edit `./custom/assets/instance.css`.
+- To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
+- To add custom locales, place them in the `./custom/locales/` directory. If you name your custom locale the same as an existing locale, it will overwrite it. If you give it a unique name, it will be added to the list. Also make sure that the first part of the filename matches the locale you're basing it on. (Example: `en-FOO.yml`)
 - To update custom assets without rebuilding, just run `yarn run gulp`.
 
 ## 🧑‍🔬 Configuring a new instance
@@ -103,7 +127,7 @@ cp -r ../misskey/files . # if you don't use object storage
 
 ## 🚀 Build and launch!
 
-### 🐢 NodeJS
+### 🐢 NodeJS + pm2
 
 #### `git pull` and run these steps to update Calckey in the future!
 
@@ -133,6 +157,7 @@ docker-compose up -d
 
 - When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Calckey's control panel.
 - Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in $(seq 3000 4000); do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`
+- I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker. 
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off.
 - For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
 - For translations, make a [DeepL](https://deepl.com) account and generate an API key, then put it into Control Panel > General > DeepL Translation.

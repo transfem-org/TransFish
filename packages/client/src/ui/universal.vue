@@ -377,6 +377,10 @@ const wallpaper = localStorage.getItem('wallpaper') != null;
 
 			> .button-wrapper {
 
+				> i {
+					transform: translateY(0.05em);
+				}
+
 				&.on {
 					background-color: var(--accentedBg);
 					width: 100%;

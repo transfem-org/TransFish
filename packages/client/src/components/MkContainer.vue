@@ -178,6 +178,7 @@ export default defineComponent({
 
 			> ::v-deep(i) {
 				margin-right: 6px;
+				transform: translateY(0.1em);
 			}
 
 			&:empty {
