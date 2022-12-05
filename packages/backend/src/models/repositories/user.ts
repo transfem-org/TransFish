@@ -361,7 +361,7 @@ export const UserRepository = db.getRepository(User).extend({
 			...(opts.detail ? {
 				url: profile!.url,
 				uri: user.uri,
-				movedTo: user.movedToUri ? await this.userFromURI(user.movedToUri) : null,
+				movedToUri: user.movedToUri ? await this.userFromURI(user.movedToUri) : null,
 				alsoKnownAs: user.alsoKnownAs,
 				createdAt: user.createdAt.toISOString(),
 				updatedAt: user.updatedAt ? user.updatedAt.toISOString() : null,

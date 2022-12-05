@@ -71,7 +71,7 @@ export async function renderPerson(user: ILocalUser) {
 		image: banner ? renderImage(banner) : null,
 		tag,
 		manuallyApprovesFollowers: user.isLocked,
-		movedTo: user.moved_to_account_id,
+		movedToUri: user.moved_to_account_id,
 		discoverable: !!user.isExplorable,
 		publicKey: renderKey(user, keypair, `#main-key`),
 		isCat: user.isCat,

@@ -8,7 +8,7 @@
 
 			<div class="profile">
 				<MkRemoteCaution v-if="user.host != null" :href="user.url" class="warn"/>
-				<MkMoved v-if="user.movedTo" :acct="user.movedTo" />
+				<MkMoved v-if="user.movedToUri" :acct="user.movedToUri" />
 
 				<div :key="user.id" class="_block main">
 					<div class="banner-container" :style="style">

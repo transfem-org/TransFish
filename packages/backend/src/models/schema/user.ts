@@ -96,7 +96,7 @@ export const packedUserDetailedNotMeOnlySchema = {
 			format: 'uri',
 			nullable: true, optional: false,
 		},
-		movedTo: {
+		movedToUri: {
 			type: 'string',
 			format: 'uri',
 			nullable: true, optional: false,
