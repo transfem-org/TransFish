@@ -150,12 +150,12 @@ async function chooseList(ev: MouseEvent): Promise<void> {
 		icon: '',
 		to: `/timeline/list/${list.id}`,
 	}));
-	items.concat({
+	items.concat([{
 		type: 'link' as const,
 		text: i18n.ts.manageLists,
 		icon: 'ph-faders-horizontal-bold ph-lg',
 		to: '/my/antennas',
-	});
+	}]);
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
@@ -168,13 +168,13 @@ async function chooseAntenna(ev: MouseEvent): Promise<void> {
 		indicate: antenna.hasUnreadNote,
 		to: `/timeline/antenna/${antenna.id}`,
 	}));
-	items.concat({
+	items.concat([{
 		type: 'link' as const,
 		indicate: false,
 		text: i18n.ts.manageLists,
 		icon: 'ph-faders-horizontal-bold ph-lg',
 		to: '/my/antennas',
-	});
+	}]);
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
