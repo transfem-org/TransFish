@@ -69,6 +69,7 @@ export class User {
 	public followingCount: number;
 
 	@Column('varchar', {
+		length: 512,
 		nullable: true,
 		comment: 'The URI of the new account of the User',
 	})
