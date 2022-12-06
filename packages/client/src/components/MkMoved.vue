@@ -1,5 +1,5 @@
 <template>
-<div class="mkmoved _block"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>{{ i18n.ts.accountMoved }}<a class="link" :href="href">{{ acct }}</a></div>
+<div class="_block" :class="$style.mkmoved"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>{{ i18n.ts.accountMoved }}<MkA :class="$style.link" class="link" :to="href">{{ acct }}</MkA></div>
 </template>
 
 <script lang="ts" setup>
@@ -10,7 +10,7 @@ const props = defineProps<{
 const href = $computed(() => `/${props.acct}`);
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .mkmoved {
 	font-size: 0.8em;
 	padding: 16px;

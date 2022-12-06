@@ -88,7 +88,7 @@ export default define(meta, paramDef, async (ps, me) => {
 });
 
 /***
- * URIからUserかNoteを解決する
+ * Resolve User or Note from URI
  */
 async function fetchAny(uri: string, me: CacheableLocalUser | null | undefined): Promise<SchemaType<typeof meta['res']> | null> {
 	// ブロックしてたら中断
