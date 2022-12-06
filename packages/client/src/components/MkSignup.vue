@@ -4,7 +4,7 @@
 		<template #label>{{ i18n.ts.invitationCode }}</template>
 		<template #prefix><i class="ph-key-bold ph-lg"></i></template>
 	</MkInput>
-	<div v-if="instance.disableRegistration && invitationState === 'entered'">
+	<div v-if="!instance.disableRegistration || (instance.disableRegistration && invitationState === 'entered')">
 		<MkInput v-model="username" class="_formBlock" type="text" pattern="^[a-zA-Z0-9_]{1,20}$" :spellcheck="false" required data-cy-signup-username @update:modelValue="onChangeUsername">
 			<template #label>{{ i18n.ts.username }} <div v-tooltip:dialog="i18n.ts.usernameInfo" class="_button _help"><i class="ph-question-bold"></i></div></template>
 			<template #prefix>@</template>
