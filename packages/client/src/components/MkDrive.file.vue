@@ -40,7 +40,6 @@ import bytes from '@/filters/bytes';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
-import copyToClipboard from '@/scripts/copy-to-clipboard';
 
 const props = withDefaults(defineProps<{
 	file: Misskey.entities.DriveFile;
