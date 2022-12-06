@@ -4,6 +4,7 @@
 
 - MFM button
 - Sonic search support
+- Use Cassandra for storing notes
 - Classic mode make instance icon bring up new context menu
 - Exclude self from antenna
 - Backfill remote users
