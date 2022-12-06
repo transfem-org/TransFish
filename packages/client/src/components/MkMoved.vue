@@ -4,7 +4,6 @@
 
 <script lang="ts" setup>
 import { i18n } from '@/i18n';
-import { computed } from 'vue';
 const props = defineProps<{
 	acct: string;
 }>();
