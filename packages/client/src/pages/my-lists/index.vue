@@ -72,7 +72,7 @@ definePageMetadata({
 <style lang="scss" scoped>
 .qkcjvfiv {
 	> .buttonWrapper {
-		display: flex;
+		display: grid;
 		justify-content: center;
 
 		> .add {
