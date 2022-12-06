@@ -144,17 +144,17 @@ function top(): void {
 
 async function chooseList(ev: MouseEvent): Promise<void> {
 	const lists = await os.api('users/lists/list');
-	const items = lists.map((list) => ({
-		type: 'link' as const,
-		text: list.name,
-		icon: '',
-		to: `/timeline/list/${list.id}`,
-	})).unshift({
+	const items = [{
 		type: 'link' as const,
 		text: i18n.ts.manageLists,
 		icon: 'ph-faders-horizontal-bold ph-lg',
 		to: '/my/lists',
-	});
+	}].concat(lists.map((list) => ({
+		type: 'link' as const,
+		text: list.name,
+		icon: '',
+		to: `/timeline/list/${list.id}`,
+	})));
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
