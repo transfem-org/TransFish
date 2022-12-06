@@ -156,7 +156,7 @@ export interface IActor extends IObject {
 	name?: string;
 	preferredUsername?: string;
 	manuallyApprovesFollowers?: boolean;
-	movedToUri?: string;
+	movedTo?: string;
 	alsoKnownAs?: string[];
 	discoverable?: boolean;
 	inbox: string;
