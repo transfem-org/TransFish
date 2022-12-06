@@ -55,7 +55,7 @@
 					</div> -->
 				</div>
 				<MkAd :prefer="['horizontal', 'horizontal-big']"/>
-				<MkContainer :max-height="300" :foldable="true" class="other">
+				<MkContainer :max-height="300" :foldable="true" :expanded="false" class="other">
 					<template #header><i class="ph-clock-bold ph-lg"></i> {{ i18n.ts.recentPosts }}</template>
 					<MkPagination v-slot="{items}" :pagination="otherPostsPagination">
 						<MkPagePreview v-for="page in items" :key="page.id" :page="page" class="_gap"/>
