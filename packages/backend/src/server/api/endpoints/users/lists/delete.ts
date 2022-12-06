@@ -30,14 +30,18 @@ export const paramDef = {
 
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
-	const userList = await UserLists.findOneBy({
-		id: ps.listId,
+	while (await UserLists.findOneBy({
 		userId: user.id,
-	});
+	}) != null) {
+		const userList = await UserLists.findOneBy({
+			// id: ps.listId,
+			userId: user.id,
+		});
 
-	if (userList == null) {
-		throw new ApiError(meta.errors.noSuchList);
+		if (userList == null) {
+			throw new ApiError(meta.errors.noSuchList);
+		}
+
+		await UserLists.delete(userList.id);
 	}
-
-	await UserLists.delete(userList.id);
 });
