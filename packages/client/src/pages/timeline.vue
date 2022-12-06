@@ -160,19 +160,19 @@ async function chooseList(ev: MouseEvent): Promise<void> {
 
 async function chooseAntenna(ev: MouseEvent): Promise<void> {
 	const antennas = await os.api('antennas/list');
-	const items = antennas.map((antenna) => ({
-		type: 'link' as const,
-		text: antenna.name,
-		icon: '',
-		indicate: antenna.hasUnreadNote,
-		to: `/timeline/antenna/${antenna.id}`,
-	})).unshift({
+	const items = [{
 		type: 'link' as const,
 		indicate: false,
 		text: i18n.ts.manageAntennas,
 		icon: 'ph-faders-horizontal-bold ph-lg',
 		to: '/my/antennas',
-	});
+	}].concat(antennas.map((antenna) => ({
+		type: 'link' as const,
+		text: antenna.name,
+		icon: '',
+		indicate: antenna.hasUnreadNote,
+		to: `/timeline/antenna/${antenna.id}`,
+	})));
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
