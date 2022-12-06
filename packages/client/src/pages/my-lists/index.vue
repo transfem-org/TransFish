@@ -4,6 +4,7 @@
 	<MkSpacer :content-max="700">
 		<div class="qkcjvfiv">
 			<MkButton primary class="add" @click="create"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.createList }}</MkButton>
+			<MkButton @click="deleteAll"><i class="ph-trash-bold ph-lg"></i> {{ i18n.ts.deleteAll }}</MkButton>
 
 			<MkPagination v-slot="{items}" ref="pagingComponent" :pagination="pagination" class="lists _content">
 				<MkA v-for="list in items" :key="list.id" class="list _panel" :to="`/my/lists/${ list.id }`">
@@ -39,6 +40,17 @@ async function create() {
 	if (canceled) return;
 	await os.apiWithDialog('users/lists/create', { name: name });
 	pagingComponent.reload();
+}
+
+async function deleteAll() {
+	const { canceled } = await os.confirm({
+		type: 'warning',
+		text: i18n.t('removeAreYouSure', { x: 'all lists' }),
+	});
+	if (canceled) return;
+
+	await os.api('users/lists/delete-all');
+	os.success();
 }
 
 const headerActions = $computed(() => []);
