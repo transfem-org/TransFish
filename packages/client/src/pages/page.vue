@@ -15,6 +15,7 @@
 								<h1>{{ page.title }}</h1>
 							</div>
 							<div class="menu-actions">
+								<button v-tooltip="i18n.ts.copyUrl" @click="copyUrl" class="menu _button"><i class="ph-link-simple-bold ph-lg"/></button>
 								<MkA v-tooltip="i18n.ts._pages.viewSource" :to="`/@${username}/pages/${pageName}/view-source`" class="menu _button"><i class="ph-code-bold ph-lg"/></MkA>
 								<template v-if="$i && $i.id === page.userId">
 									<MkA v-tooltip="i18n.ts._pages.editPage" class="menu _button" :to="`/pages/edit/${page.id}`"><i class="ph-pencil-bold ph-lg"/></MkA>
@@ -80,6 +81,7 @@ import MkContainer from '@/components/MkContainer.vue';
 import MkPagination from '@/components/MkPagination.vue';
 import MkPagePreview from '@/components/MkPagePreview.vue';
 import { i18n } from '@/i18n';
+import copyToClipboard from '@/scripts/copy-to-clipboard';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { shareAvailable } from '@/scripts/share-available';
 
@@ -111,6 +113,11 @@ function fetchPage() {
 	}).catch(err => {
 		error = err;
 	});
+}
+
+function copyUrl() {
+	copyToClipboard(window.location.href);
+	os.success();
 }
 
 function getBgImg(): string {
