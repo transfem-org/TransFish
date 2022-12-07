@@ -60,12 +60,24 @@ const birthdaySchema = { type: 'string', pattern: /^([0-9]{4})-([0-9]{2})-([0-9]
 
 function isLocalUser(user: User): user is ILocalUser;
 function isLocalUser<T extends { host: User['host'] }>(user: T): user is T & { host: null; };
+/**
+ * Returns true if the user is local.
+ *
+ * @param user The user to check.
+ * @returns True if the user is local.
+ */
 function isLocalUser(user: User | { host: User['host'] }): boolean {
 	return user.host == null;
 }
 
 function isRemoteUser(user: User): user is IRemoteUser;
 function isRemoteUser<T extends { host: User['host'] }>(user: T): user is T & { host: string; };
+/**
+ * Returns true if the user is remote.
+ *
+ * @param user The user to check.
+ * @returns True if the user is remote.
+ */
 function isRemoteUser(user: User | { host: User['host'] }): boolean {
 	return !isLocalUser(user);
 }
