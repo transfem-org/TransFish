@@ -8,7 +8,7 @@
 
 			<div class="profile">
 				<MkRemoteCaution v-if="user.host != null" :href="user.url" class="warn"/>
-				<MkMoved v-if="user.movedToUri" :acct="user.movedToUri" />
+				<MkMoved v-if="user.movedToUri" :host="user.movedToUri.host" :acct="user.movedToUri.username" />
 
 				<div :key="user.id" class="_block main">
 					<div class="banner-container" :style="style">
@@ -130,6 +130,7 @@ import * as os from '@/os';
 import { useRouter } from '@/router';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
+import { host } from '@/config';
 
 const XPhotos = defineAsyncComponent(() => import('./index.photos.vue'));
 const XActivity = defineAsyncComponent(() => import('./index.activity.vue'));

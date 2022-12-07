@@ -1,11 +1,13 @@
 <template>
-<div class="_block" :class="$style.mkmoved"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>{{ i18n.ts.accountMoved }}<MkA :class="$style.link" class="link" :to="href">{{ acct }}</MkA></div>
+<div class="_block" :class="$style.mkmoved"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>{{ i18n.ts.accountMoved }}<MkMention :class="$style.link" class="link" :username="acct" :host="host"/></div>
 </template>
 
 <script lang="ts" setup>
 import { i18n } from '@/i18n';
+import MkMention from './MkMention.vue';
 const props = defineProps<{
 	acct: string;
+	host: string;
 }>();
 const href = $computed(() => `/${props.acct}`);
 </script>
