@@ -52,8 +52,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19 recommended)
   - Install with [nvm](https://github.com/nvm-sh/nvm)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
-- 🐲 At least [DragonflyDB](https://github.com/dragonflydb/dragonfly) v0.12 or at least [Redis](https://redis.io/) v6
-	- DragonflyDB is a drop-in replacement for Redis that's a lot faster, but will break Bull Dashoard.
+- 🍱 At least [Redis](https://redis.io/) v6 (v7 recommend)
 
 ### 😗 Optional dependencies
 
