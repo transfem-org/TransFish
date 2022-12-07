@@ -2,23 +2,28 @@
 
 ## Planned
 
-- MFM button
-- Sonic search support
-- Use Cassandra for storing notes
-- Federate with note edits
-- Classic mode make instance icon bring up new context menu
-- Exclude self from antenna
-- Backfill remote users
-- User "choices" (recommended users) like Mastodon and Soapbox
-- Option to publicize instance blocks
-- Fully revamp non-logged-in screen
-- Personal notes for all accounts
-- Non-nyaify cat mode
-- Timeline filters
-- Filter notifications by user
-- Join Reason system like Mastodon/Pleroma
-- Build flag to remove NSFW/AI stuff
-- [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
+- Stucture
+	- Sonic search support
+	- DragonflyDB support
+	- Use Cassandra for storing notes
+	- Rewrite backend in Rust and Axum
+- Function
+	- Federate with note edits
+	- User "choices" (recommended users) like Mastodon and Soapbox
+	- Join Reason system like Mastodon/Pleroma
+	- Option to publicize instance blocks
+	- Backfill remote users
+	- Build flag to remove NSFW/AI stuff
+	- Timeline filters
+	- Filter notifications by user
+	- Non-nyaify cat mode
+	- Exclude self from antenna
+- Form
+	- MFM button
+	- Personal notes for all accounts
+	- Fully revamp non-logged-in screen
+	- Classic mode make instance icon bring up new context menu
+	- [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
 
