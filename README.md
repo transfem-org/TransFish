@@ -52,7 +52,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19 recommended)
   - Install with [nvm](https://github.com/nvm-sh/nvm)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12
-- 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended) or [Titan](https://github.com/distributedio/titan)
+- 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended) or [DragonflyDB](https://github.com/dragonflydb/dragonfly)
 
 ### 😗 Optional dependencies
 
