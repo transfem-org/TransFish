@@ -12,7 +12,10 @@ import { getAntennas } from '@/misc/antenna-cache.js';
 import { USER_ACTIVE_THRESHOLD, USER_ONLINE_THRESHOLD } from '@/const.js';
 import { Cache } from '@/misc/cache.js';
 import { db } from '@/db/postgre.js';
-import { resolveUser } from '@/remote/resolve-user.js';
+import { isActor, getApId } from '@/remote/activitypub/type.js';
+import DbResolver from '@/remote/activitypub/db-resolver.js';
+import Resolver from '@/remote/activitypub/resolver.js';
+import { createPerson } from '@/remote/activitypub/models/person.js';
 import {
 	AnnouncementReads,
 	Announcements,
@@ -181,20 +184,24 @@ export const UserRepository = db.getRepository(User).extend({
 	},
 
 	async userFromURI(uri: string): Promise<User | null> {
-		if (uri.startsWith(config.url + '/')) {
-			const id = uri.split('/').pop();
-			if (id == undefined) return null;
-			return await resolveUser(id, null);
+		const dbResolver = new DbResolver();
+		let local = await dbResolver.getUserFromApId(uri);
+		if (local) {
+      return local;
+    }
+
+		// fetching Object once from remote
+		const resolver = new Resolver();
+		const object = await resolver.resolve(uri) as any;
+
+		// /@user If a URI other than the id is specified,
+		// the URI is determined here
+		if (uri !== object.id) {
+			local = await dbResolver.getUserFromApId(object.id);
+			if (local != null) return local;
 		}
 
-		const url = new URL(uri);
-		let userTag = url.pathname;
-
-		if (userTag.startsWith('@')) {
-			userTag = userTag.substring(1);
-		}
-
-		return await resolveUser(userTag, url.host);
+		return isActor(object) ? await createPerson(getApId(object)) : null;
 	},
 
 	async getHasUnreadAntenna(userId: User['id']): Promise<boolean> {
