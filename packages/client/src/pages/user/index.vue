@@ -112,7 +112,7 @@ definePageMetadata(
 	computed(() =>
 		user
 			? {
-				icon: 'fas fa-user',
+				icon: 'ph-user-bold ph-lg',
 				title: user.name
 					? `${user.name} (@${user.username})`
 					: `@${user.username}`,
