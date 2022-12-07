@@ -130,11 +130,11 @@ function onRead(ids): void {
 function startMenu(ev) {
 	os.popupMenu([{
 		text: i18n.ts.messagingWithUser,
-		icon: 'fas fa-user',
+		icon: 'ph-user-bold ph-lg',
 		action: () => { startUser(); },
 	}, {
 		text: i18n.ts.messagingWithGroup,
-		icon: 'fas fa-users',
+		icon: 'ph-users-three-bold ph-lg',
 		action: () => { startGroup(); },
 	}], ev.currentTarget ?? ev.target);
 }
