@@ -3,6 +3,7 @@
 ## Planned
 
 - Stucture
+	- Weblate project
 	- Sonic search support
 	- DragonflyDB support
 	- Use Cassandra for storing notes
