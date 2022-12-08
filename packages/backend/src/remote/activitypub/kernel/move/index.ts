@@ -55,10 +55,8 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 
 	old.movedToUri = new_acc.uri;
 
-	const query = Followings.createQueryBuilder('following')
-		.where('following.followeeId = :userId', { userId: old.id });
-
-	const followings = await query
+	const followings = await Followings.createQueryBuilder('following').select('*')
+		.where('following.followeeId = :userId', { userId: old.id })
 		.getMany();
 
 	followings.forEach(async following => {
