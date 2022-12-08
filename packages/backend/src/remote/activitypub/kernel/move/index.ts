@@ -48,15 +48,15 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 	await updatePerson(newUri);
 	await updatePerson(oldUri);
 
-	new_acc = await getRemoteUser(newUri);
-	old_acc = await getRemoteUser(oldUri);
+	new_acc = await dbResolver.getUserFromApId(newUri);
+	let old = await dbResolver.getUserFromApId(oldUri);
 
-	if (old_acc === null || old_acc.uri === null || !new_acc.alsoKnownAs?.includes(old_acc.uri)) return 'move: accounts invalid';
+	if (old === null || old.uri === null || !new_acc?.alsoKnownAs?.includes(old.uri)) return 'move: accounts invalid';
 
-	old_acc.movedToUri = new_acc.uri;
+	old.movedToUri = new_acc.uri;
 
 	const query = Followings.createQueryBuilder('following')
-		.where('following.followeeId = :userId', { userId: old_acc.id });
+		.where('following.followeeId = :userId', { userId: old.id });
 
 	const followings = await query
 		.getMany();
@@ -64,7 +64,7 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 	followings.forEach(async following => {
 		if (following.follower?.host) {
 			const follower = following.follower;
-			await deleteFollowing(follower!, old_acc!);
+			await deleteFollowing(follower!, old!);
 			try {
 				await create(follower!, new_acc!);
 			} catch (e) {
