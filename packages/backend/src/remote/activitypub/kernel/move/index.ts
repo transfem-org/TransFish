@@ -55,9 +55,8 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 
 	old_acc.movedToUri = new_acc.uri;
 
-	const query = makePaginationQuery(Followings.createQueryBuilder('following'))
-		.andWhere('following.followeeId = :userId', { userId: old_acc.id })
-		.innerJoinAndSelect('following.follower', 'follower');
+	const query = Followings.createQueryBuilder('following')
+		.where('following.followeeId = :userId', { userId: old_acc.id });
 
 	const followings = await query
 		.getMany();
