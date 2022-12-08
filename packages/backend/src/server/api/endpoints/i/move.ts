@@ -1,14 +1,9 @@
 import { In } from 'typeorm';
-import create from '@/services/note/create.js';
 import { User } from '@/models/entities/user.js';
 import { Users, DriveFiles, Notes, Channels, Blockings } from '@/models/index.js';
-import { DriveFile } from '@/models/entities/drive-file.js';
-import { Note } from '@/models/entities/note.js';
-import { Channel } from '@/models/entities/channel.js';
 import { ApiError } from '../../error.js';
 import define from '../../define.js';
 import { DAY } from '@/const.js';
-import { getNote } from '../../common/getters.js';
 
 export const meta = {
 	tags: ['notes'],
