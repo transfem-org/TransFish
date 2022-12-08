@@ -19,7 +19,7 @@ services:
 
   redis:
     restart: always
-    image: docker.io/redis:4.0-alpine
+    image: docker.io/redis:7.0-alpine
     networks:
       - network
     volumes:
