@@ -250,7 +250,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	}
 
-	// 投稿を作成
+	// Create a post
 	const note = await create(user, {
 		createdAt: new Date(),
 		files: files,
