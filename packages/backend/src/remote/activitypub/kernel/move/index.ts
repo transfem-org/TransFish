@@ -59,6 +59,8 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 		.where('following.followeeId = :userId', { userId: old.id })
 		.getMany();
 
+	console.log(followings);
+
 	followings.forEach(async following => {
 		if (following.follower?.host) {
 			const follower = following.follower;
