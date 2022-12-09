@@ -5,7 +5,7 @@
 - Stucture
 	- [Sonic](https://crates.io/crates/sonic-server) support as an ElasticSearch alternative
 	- [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
-	- Use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
+	- Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
 	- Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
 - Function
 	- Federate with note edits
