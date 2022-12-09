@@ -7,6 +7,7 @@ import { Followings, Users } from '@/models/index.js';
 import { makePaginationQuery } from '@/server/api/common/make-pagination-query.js';
 import deleteFollowing from '@/services/following/delete.js';
 import create from '@/services/following/create.js';
+import { getUser } from '../../common/getters.js';
 import { IdentifiableError } from '@/misc/identifiable-error.js';
 import { ApiError } from '@/server/api/error.js';
 import { meta } from '@/server/api/endpoints/following/create.js';
@@ -21,52 +22,51 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 	const resolver = new Resolver();
 	let new_acc = await dbResolver.getUserFromApId(activity.target);
 	let actor_new;
-	let actor_old;
 	if (!new_acc) actor_new = await resolver.resolve(<string>activity.target) as IActor;
-
-	let old_acc = actor;
-	if (!old_acc) actor_old = await resolver.resolve(<string>activity.actor) as IActor;
 
 	if ((!new_acc || new_acc.uri === null) && (!actor_new || actor_new.id === null)) {
 		return 'move: new acc not found';
 	}
-	if ((!old_acc || old_acc.uri === null) && (!actor_old || actor_old.id === null)) {
-		return 'move: old acc not found';
-	}
 
 	let newUri: string | null | undefined
-	let oldUri: string | null | undefined
 	newUri = new_acc ? new_acc.uri :
 		actor_new?.url?.toString();
 
-	oldUri = old_acc ? old_acc.uri :
-		actor_old?.url?.toString();
-
 	if(newUri === null || newUri === undefined) return 'move: new acc not found #2';
-	if(oldUri === null || oldUri === undefined) return 'move: old acc not found #2';
 
 	await updatePerson(newUri);
-	await updatePerson(oldUri);
+	await updatePerson(actor.uri!);
 
 	new_acc = await dbResolver.getUserFromApId(newUri);
-	let old = await dbResolver.getUserFromApId(oldUri);
+	let old = await dbResolver.getUserFromApId(actor.uri!);
 
 	if (old === null || old.uri === null || !new_acc?.alsoKnownAs?.includes(old.uri)) return 'move: accounts invalid';
 
 	old.movedToUri = new_acc.uri;
 
-	const followings = await Followings.createQueryBuilder('following').select('*')
-		.where('following.followeeId = :userId', { userId: old.id })
+	const followee = await getUser(actor.id).catch(e => {
+		if (e.id === '15348ddd-432d-49c2-8a5a-8069753becff') throw new ApiError(meta.errors.noSuchUser);
+		throw e;
+	});
+
+	const followeeNew = await getUser(new_acc.id).catch(e => {
+		if (e.id === '15348ddd-432d-49c2-8a5a-8069753becff') throw new ApiError(meta.errors.noSuchUser);
+		throw e;
+	});
+
+	const followings = await Followings.createQueryBuilder('following')
+		.where('following.followeeId = :userId', { userId: followee })
 		.getMany();
 
 	console.log(followings);
 
 	followings.forEach(async following => {
+		//if follower is local
 		if (!following.follower?.host) {
 			const follower = following.follower;
-			await deleteFollowing(follower!, old!);
+			await deleteFollowing(follower!, followee);
 			try {
-				await create(follower!, new_acc!);
+				await create(follower!, followeeNew);
 			} catch (e) {
 				if (e instanceof IdentifiableError) {
 					if (e.id === '710e8fb0-b8c3-4922-be49-d5d93d8e6a6e') return meta.errors.blocking;
