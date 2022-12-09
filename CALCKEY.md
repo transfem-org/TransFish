@@ -3,8 +3,8 @@
 ## Planned
 
 - Stucture
-	- [Sonic](https://github.com/valeriansaliou/sonic) support
-	- [DragonflyDB](https://github.com/dragonflydb/dragonfly) support
+	- [Sonic](https://crates.io/crates/sonic-server) support
+	- [DragonflyDB](https://dragonflydb.io/) support
 	- Use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
 	- Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
 - Function
