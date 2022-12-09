@@ -58,12 +58,16 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 		followeeId: followee.id,
 	});
 
+	//TODO remove this
 	console.log(followings);
 
 	followings.forEach(async following => {
 		//if follower is local
-		if (!following.follower?.host) {
-			const follower = following.follower;
+		if (!following.followerHost) {
+			const follower = await getUser(following.followerId).catch(e => {
+				if (e.id === '15348ddd-432d-49c2-8a5a-8069753becff') throw new ApiError(meta.errors.noSuchUser);
+				throw e;
+			});
 			await deleteFollowing(follower!, followee);
 			try {
 				await create(follower!, followeeNew);
