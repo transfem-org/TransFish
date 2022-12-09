@@ -3,8 +3,8 @@
 ## Planned
 
 - Stucture
-	- [Sonic](https://crates.io/crates/sonic-server) support
-	- [DragonflyDB](https://dragonflydb.io/) support
+	- [Sonic](https://crates.io/crates/sonic-server) support as an ElasticSearch alternative
+	- [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
 	- Use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
 	- Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
 - Function
