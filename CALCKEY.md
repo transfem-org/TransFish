@@ -3,11 +3,10 @@
 ## Planned
 
 - Stucture
-	- Weblate project
-	- Sonic search support
-	- DragonflyDB support
-	- Use Cassandra for storing notes
-	- Rewrite backend in Rust and Axum
+	- [Sonic](https://github.com/valeriansaliou/sonic) support
+	- [DragonflyDB](https://github.com/dragonflydb/dragonfly) support
+	- Use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
+	- Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
 - Function
 	- Federate with note edits
 	- User "choices" (recommended users) like Mastodon and Soapbox
@@ -29,6 +28,7 @@
 ## Work in progress
 
 - Account migration
+- Weblate project
 - Link verification
 - Better Messaging UI
 - Better API Documentation
