@@ -7,7 +7,7 @@ import { Followings, Users } from '@/models/index.js';
 import { makePaginationQuery } from '@/server/api/common/make-pagination-query.js';
 import deleteFollowing from '@/services/following/delete.js';
 import create from '@/services/following/create.js';
-import { getUser } from '../../common/getters.js';
+import { getUser } from '@/server/api/common/getters.js';
 import { IdentifiableError } from '@/misc/identifiable-error.js';
 import { ApiError } from '@/server/api/error.js';
 import { meta } from '@/server/api/endpoints/following/create.js';
