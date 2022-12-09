@@ -54,9 +54,9 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 		throw e;
 	});
 
-	const followings = await Followings.createQueryBuilder('following')
-		.where('following.followeeId = :userId', { userId: followee })
-		.getMany();
+	const followings = await Followings.findBy({
+		followeeId: followee.id,
+	});
 
 	console.log(followings);
 
