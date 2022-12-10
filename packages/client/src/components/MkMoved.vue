@@ -1,8 +1,8 @@
 <template>
-<div class="_block msjugskdqo">
+<div class="msjugskd _block">
 	<i class="ph-airplane-takeoff-bold ph-lg" style="margin-right: 8px;"/>
 	{{ i18n.ts.accountMoved }}
-	<MkMention :class="$style.link" class="link" :username="acct" :host="host"/>
+	<MkMention class="link" :username="acct" :host="host"/>
 </div>
 </template>
 
@@ -16,12 +16,11 @@ defineProps<{
 }>();
 </script>
 
-<style lang="scss" module>
-.msjugskdqo {
-	font-size: 0.8em;
+<style lang="scss" scoped>
+.msjugskd {
 	padding: 16px;
-	background: var(--infoBg);
-	color: var(--infoFg);
+	background: var(--infoWarnBg);
+	color: var(--error);
 
 	> .link {
 		margin-left: 4px;
