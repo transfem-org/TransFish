@@ -20,7 +20,7 @@
 			<swiper-slide>
 				<div class="rknalgpo liked">
 					<MkPagination v-slot="{items}" :pagination="likedPagesPagination">
-						<MkPagePreview v-for="like in items" :key="like.id" class="ckltabjg" :page="like"/>
+						<MkPagePreview v-for="like in items" :key="like.page.id" class="ckltabjg" :page="like.page"/>
 					</MkPagination>
 				</div>
 			</swiper-slide>
@@ -116,6 +116,10 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+});
 </script>
 
 <style lang="scss" scoped>
