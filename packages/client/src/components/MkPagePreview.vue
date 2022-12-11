@@ -7,7 +7,7 @@
 		</header>
 		<p v-if="page.summary" :title="page.summary">{{ page.summary.length > 85 ? page.summary.slice(0, 85) + '…' : page.summary }}</p>
 		<footer>
-			<img class="icon" :src="page.user.avatarUrl"/>
+			<img class="icon" :src="page.user.avatarUrl" aria-label="none"/>
 			<p>{{ userName(page.user) }}</p>
 		</footer>
 	</article>
@@ -17,7 +17,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { userName } from '@/filters/user';
-import * as os from '@/os';
 
 export default defineComponent({
 	props: {
