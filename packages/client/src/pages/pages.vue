@@ -60,7 +60,7 @@ watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
 const featuredPagesPagination = {
 	endpoint: 'pages/featured' as const,
-	noPaging: true,
+	limit: 10,
 };
 const myPagesPagination = {
 	endpoint: 'i/pages' as const,
