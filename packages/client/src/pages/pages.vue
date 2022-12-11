@@ -28,7 +28,7 @@
 			<swiper-slide>
 				<div class="rknalgpo">
 					<MkPagination v-slot="{items}" :pagination="likedPagesPagination">
-						<MkPagePreview v-for="like in items" :key="like.page.id" class="ckltabjg" :page="like.page"/>
+						<MkPagePreview v-for="like in items" :key="like.id" class="ckltabjg" :page="like"/>
 					</MkPagination>
 				</div>
 			</swiper-slide>
@@ -64,11 +64,11 @@ const featuredPagesPagination = {
 };
 const myPagesPagination = {
 	endpoint: 'i/pages' as const,
-	limit: 5,
+	limit: 10,
 };
 const likedPagesPagination = {
 	endpoint: 'i/page-likes' as const,
-	limit: 5,
+	limit: 10,
 };
 
 function create() {
