@@ -121,5 +121,5 @@ export default define(meta, paramDef, async (ps, user) => {
 	// Publish meUpdated event
 	publishMainStream(user.id, 'meUpdated', iObj);
 
-	return true;
+	return iObj;
 });
