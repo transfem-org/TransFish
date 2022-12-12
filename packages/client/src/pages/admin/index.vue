@@ -95,7 +95,7 @@ const menuDef = $computed(() => [{
 		action: lookup,
 	}, ...(instance.disableRegistration ? [{
 		type: 'button',
-		icon: 'ph-user-bold ph-lg',
+		icon: 'ph-user-plus-bold ph-lg',
 		text: i18n.ts.invite,
 		action: invite,
 	}] : [])],
@@ -147,7 +147,7 @@ const menuDef = $computed(() => [{
 		to: '/admin/abuses',
 		active: currentPage?.route.name === 'abuses',
 	}],
-}, ...(instance.disableRegistration ? [{
+}, ...($i?.isAdmin ? [{
 	title: i18n.ts.settings,
 	items: [{
 		icon: 'ph-gear-six-bold ph-lg',
