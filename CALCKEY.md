@@ -3,27 +3,27 @@
 ## Planned
 
 - Stucture
-	- [Sonic](https://crates.io/crates/sonic-server) support as an ElasticSearch alternative
-	- [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
-	- Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
-	- Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
+  - [Sonic](https://crates.io/crates/sonic-server) support as an ElasticSearch alternative
+  - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
+  - Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
+  - Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
 - Function
-	- Federate with note edits
-	- User "choices" (recommended users) like Mastodon and Soapbox
-	- Join Reason system like Mastodon/Pleroma
-	- Option to publicize instance blocks
-	- Backfill remote users
-	- Build flag to remove NSFW/AI stuff
-	- Timeline filters
-	- Filter notifications by user
-	- Non-nyaify cat mode
-	- Exclude self from antenna
+  - Federate with note edits
+  - User "choices" (recommended users) like Mastodon and Soapbox
+  - Join Reason system like Mastodon/Pleroma
+  - Option to publicize instance blocks
+  - Backfill remote users
+  - Build flag to remove NSFW/AI stuff
+  - Timeline filters
+  - Filter notifications by user
+  - Non-nyaify cat mode
+  - Exclude self from antenna
 - Form
-	- MFM button
-	- Personal notes for all accounts
-	- Fully revamp non-logged-in screen
-	- Classic mode make instance icon bring up new context menu
-	- [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
+  - MFM button
+  - Personal notes for all accounts
+  - Fully revamp non-logged-in screen
+  - Classic mode make instance icon bring up new context menu
+  - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
 

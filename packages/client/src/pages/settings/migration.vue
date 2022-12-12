@@ -9,7 +9,7 @@
 		<FormButton primary danger @click="move(moveToAccount)">
 			{{ i18n.ts.moveAccount }}
 		</FormButton>
-		<div class="label">{{ i18n.ts.moveAccountDescription }}</div>
+		<div class="description">{{ i18n.ts.moveAccountDescription }}</div>
 	</FormSection>
 
 	<FormSection>
@@ -21,7 +21,7 @@
 		<FormButton class="button" inline primary @click="save(accountAlias)">
 			<i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}
 		</FormButton>
-		<div class="label">{{ i18n.ts.moveFromDescription }}</div>
+		<div class="description">{{ i18n.ts.moveFromDescription }}</div>
 	</FormSection>
 </div>
 </template>
@@ -59,3 +59,10 @@ definePageMetadata({
 	icon: 'ph-lock-bold ph-lg',
 });
 </script>
+
+<style lang="scss">
+.description {
+	font-size: .85em;
+	padding: 1rem;
+}
+</style>
