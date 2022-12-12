@@ -72,6 +72,7 @@ export async function renderPerson(user: ILocalUser) {
 		tag,
 		manuallyApprovesFollowers: user.isLocked,
 		movedToUri: user.movedToUri,
+		alsoKnownAs: user.alsoKnownAs,
 		discoverable: !!user.isExplorable,
 		publicKey: renderKey(user, keypair, '#main-key'),
 		isCat: user.isCat,

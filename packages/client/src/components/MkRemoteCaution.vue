@@ -15,6 +15,7 @@ defineProps<{
 	padding: 16px;
 	background: var(--infoWarnBg);
 	color: var(--infoWarnFg);
+	font-size: 0.85rem;
 
 	> .link {
 		margin-left: 4px;
