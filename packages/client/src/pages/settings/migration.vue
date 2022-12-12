@@ -40,7 +40,11 @@ async function save(): Promise<void> {
 }
 
 async function move(): Promise<void> {
-	// TODO: PROMPT FOR CONFIRMATION
+	const confirm = await os.confirm({
+		type: 'warning',
+		text: i18n.t('migrationConfirm', { account: moveToAccount.toString() }),
+	});
+	if (confirm.canceled) return;
 	os.api('i/move', {
 		moveToAccount: moveToAccount,
 	});
