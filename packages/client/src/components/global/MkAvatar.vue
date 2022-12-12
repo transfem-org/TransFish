@@ -110,8 +110,8 @@ watch(() => props.user.avatarBlurhash, () => {
 
 	&.cat {
 		&:before, &:after {
-			background: #df548f;
-			border: solid 4px currentColor;
+			background: #ebbcba;
+			border: solid 5px currentColor;
 			box-sizing: border-box;
 			content: '';
 			display: inline-block;
