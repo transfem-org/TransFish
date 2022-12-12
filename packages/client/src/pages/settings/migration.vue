@@ -6,8 +6,10 @@
 			<template #prefix><i class="ph-airplane-takeoff-bold ph-lg"></i></template>
 			<template #label>{{ i18n.ts.moveToLabel }}</template>
 		</FormInput>
-		<FormButton primary danger @click="move()">{{ i18n.ts.moveAccount }}</FormButton>
-		<template #caption>{{ i18n.ts.moveAccountDescription }}</template>
+		<FormButton primary danger @click="move(moveToAccount)">
+			{{ i18n.ts.moveAccount }}
+			<template #caption>{{ i18n.ts.moveAccountDescription }}</template>
+		</FormButton>
 	</FormSection>
 
 	<FormSection>
@@ -16,8 +18,10 @@
 			<template #prefix><i class="ph-airplane-landing-bold ph-lg"></i></template>
 			<template #label>{{ i18n.ts.moveFromLabel }}</template>
 		</FormInput>
-		<FormButton class="button" inline primary @click="save(accountAlias)"><i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}</FormButton>
-		<template #caption>{{ i18n.ts.moveFromDescription }}</template>
+		<FormButton class="button" inline primary @click="save(accountAlias)">
+			<i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}
+			<template #caption>{{ i18n.ts.moveFromDescription }}</template>
+		</FormButton>
 	</FormSection>
 </div>
 </template>
@@ -33,20 +37,20 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 let moveToAccount = $ref('');
 let accountAlias = $ref('');
 
-async function save(): Promise<void> {
+async function save(account): Promise<void> {
 	os.apiWithDialog('i/known-as', {
-		alsoKnownAs: accountAlias,
+		alsoKnownAs: account,
 	});
 }
 
-async function move(): Promise<void> {
+async function move(account): Promise<void> {
 	const confirm = await os.confirm({
 		type: 'warning',
-		text: i18n.t('migrationConfirm', { account: moveToAccount.toString() }),
+		text: i18n.t('migrationConfirm', { account: account.toString() }),
 	});
 	if (confirm.canceled) return;
 	os.api('i/move', {
-		moveToAccount: moveToAccount,
+		moveToAccount: account,
 	});
 }
 
