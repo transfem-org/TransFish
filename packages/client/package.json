@@ -19,7 +19,7 @@
 		"blurhash": "1.1.5",
 		"broadcast-channel": "4.18.1",
 		"browser-image-resizer": "https://github.com/misskey-dev/browser-image-resizer.git#commit=0380d12c8e736788ea7f4e6e985175521ea7b23c",
-		"calckey-js": "^0.0.15",
+		"calckey-js": "^0.0.16",
 		"chart.js": "4.0.1",
 		"chartjs-adapter-date-fns": "2.0.1",
 		"chartjs-plugin-gradient": "0.5.1",

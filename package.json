@@ -43,6 +43,7 @@
 		"@bull-board/api": "^4.6.4",
 		"@bull-board/ui": "^4.6.4",
 		"@tensorflow/tfjs": "^3.21.0",
+		"calckey-js": "^0.0.16",
 		"eslint": "^8.28.0",
 		"execa": "5.1.1",
 		"gulp": "4.0.2",

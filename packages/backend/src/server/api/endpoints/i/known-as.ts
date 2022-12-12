@@ -1,10 +1,9 @@
-import { In } from 'typeorm';
-import type { User } from '@/models/entities/user.js';
-import { Users, DriveFiles, Notes, Channels, Blockings } from '@/models/index.js';
+import type { User, UserDetailedNotMeOnly } from '@/models/entities/user.js';
+import { Users } from '@/models/index.js';
 import { resolveUser } from '@/remote/resolve-user.js';
 import acceptAllFollowRequests from '@/services/following/requests/accept-all.js';
 import { publishToFollowers } from '@/services/i/update.js';
-import { publishMainStream, publishUserEvent } from '@/services/stream.js';
+import { publishMainStream } from '@/services/stream.js';
 import { DAY } from '@/const.js';
 import { apiLogger } from '../../logger.js';
 import define from '../../define.js';
@@ -54,7 +53,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	const userAddress: string[] = unfiltered.split('@');
 
-	const knownAs: User = await resolveUser(userAddress[0], userAddress[1]).catch(e => {
+	const knownAs: UserDetailedNotMeOnly = await resolveUser(userAddress[0], userAddress[1]).catch(e => {
 		apiLogger.warn(`failed to resolve remote user: ${e}`);
 		throw new ApiError(meta.errors.noSuchUser);
 	});
