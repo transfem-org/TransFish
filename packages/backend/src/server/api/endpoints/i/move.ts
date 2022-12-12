@@ -17,7 +17,7 @@ export const meta = {
 
 	limit: {
 		duration: DAY,
-		max: 1,
+		max: 3,
 	},
 
 	errors: {
