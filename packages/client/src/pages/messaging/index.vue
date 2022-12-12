@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { markRaw, onMounted, onUnmounted, watch } from 'vue';
-import * as Acct from 'misskey-js/built/acct';
+import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import MkButton from '@/components/MkButton.vue';

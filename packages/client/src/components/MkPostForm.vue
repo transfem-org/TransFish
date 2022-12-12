@@ -69,7 +69,7 @@ import * as misskey from 'calckey-js';
 import insertTextAtCursor from 'insert-text-at-cursor';
 import { length } from 'stringz';
 import { toASCII } from 'punycode/';
-import * as Acct from 'misskey-js/built/acct';
+import * as Acct from 'calckey-js/built/acct';
 import { throttle } from 'throttle-debounce';
 import XNoteSimple from '@/components/MkNoteSimple.vue';
 import XNotePreview from '@/components/MkNotePreview.vue';
