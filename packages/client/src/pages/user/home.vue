@@ -7,6 +7,7 @@
 			<!-- <div class="punished" v-if="user.isSilenced"><i class="ph-warning-bold ph-lg" style="margin-right: 8px;"></i> {{ i18n.ts.userSilenced }}</div> -->
 
 			<div class="profile">
+				<MkMoved v-if="user.movedToUri" :host="user.movedToUri.host" :acct="user.movedToUri.username" />
 				<MkRemoteCaution v-if="user.host != null" :href="user.url" class="warn"/>
 
 				<div :key="user.id" class="_block main">
@@ -120,6 +121,7 @@ import MkFolder from '@/components/MkFolder.vue';
 import MkRemoteCaution from '@/components/MkRemoteCaution.vue';
 import MkTab from '@/components/MkTab.vue';
 import MkInfo from '@/components/MkInfo.vue';
+import MkMoved from '@/components/MkMoved.vue';
 import { getScrollPosition } from '@/scripts/scroll';
 import { getUserMenu } from '@/scripts/get-user-menu';
 import number from '@/filters/number';
@@ -128,6 +130,7 @@ import * as os from '@/os';
 import { useRouter } from '@/router';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
+import { host } from '@/config';
 
 const XPhotos = defineAsyncComponent(() => import('./index.photos.vue'));
 const XActivity = defineAsyncComponent(() => import('./index.activity.vue'));

@@ -19,6 +19,7 @@
 		"start:test": "yarn workspace backend run start:test",
 		"init": "yarn migrate",
 		"migrate": "yarn workspace backend run migrate",
+	"revertmigration": "yarn workspace backend run revertmigration",
 		"migrateandstart": "yarn migrate && yarn start",
 		"gulp": "gulp build",
 		"watch": "yarn dev",

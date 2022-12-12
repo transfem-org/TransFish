@@ -112,6 +112,7 @@ reactionSettingDescription2: "Ziehe um Anzuordnen, klicke um zu löschen, drück
 rememberNoteVisibility: "Notizsichtbarkeit merken"
 attachCancel: "Anhang entfernen"
 markAsSensitive: "Als NSFW markieren"
+accountMoved: "Benutzer hat zu einem anderen Account gewechselt."
 unmarkAsSensitive: "Als nicht NSFW markieren"
 enterFileName: "Dateinamen eingeben"
 mute: "Stummschalten"

@@ -49,9 +49,9 @@ export async function resolveUser(username: string, host: string | null): Promis
 		return await createPerson(self.href);
 	}
 
-	// ユーザー情報が古い場合は、WebFilgerからやりなおして返す
+	// If user information is out of date, return it by starting over from WebFilger
 	if (user.lastFetchedAt == null || Date.now() - user.lastFetchedAt.getTime() > 1000 * 60 * 60 * 24) {
-		// 繋がらないインスタンスに何回も試行するのを防ぐ, 後続の同様処理の連続試行を防ぐ ため 試行前にも更新する
+		// Prevent multiple attempts to connect to unconnected instances, update before each attempt to prevent subsequent similar attempts
 		await Users.update(user.id, {
 			lastFetchedAt: new Date(),
 		});
