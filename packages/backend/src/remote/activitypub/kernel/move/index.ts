@@ -58,9 +58,6 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 		followeeId: followee.id,
 	});
 
-	//TODO remove this
-	console.log(followings);
-
 	followings.forEach(async following => {
 		//if follower is local
 		if (!following.followerHost) {
@@ -71,13 +68,7 @@ export default async (actor: CacheableRemoteUser, activity: IMove): Promise<stri
 			await deleteFollowing(follower!, followee);
 			try {
 				await create(follower!, followeeNew);
-			} catch (e) {
-				if (e instanceof IdentifiableError) {
-					if (e.id === '710e8fb0-b8c3-4922-be49-d5d93d8e6a6e') return meta.errors.blocking;
-					if (e.id === '3338392a-f764-498d-8855-db939dcf8c48') return meta.errors.blocked;
-				}
-				return e;
-			}
+			} catch (e) { /* empty */ }
 		}
 	});
 

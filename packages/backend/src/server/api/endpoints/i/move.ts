@@ -7,7 +7,10 @@ import { genId } from '@/misc/gen-id.js';
 import define from '../../define.js';
 import { ApiError } from '../../error.js';
 import { apiLogger } from '../../logger.js';
-import { Users } from '@/models/index.js';
+import deleteFollowing from '@/services/following/delete.js';
+import create from '@/services/following/create.js';
+import { getUser } from '@/server/api/common/getters.js';
+import { Followings, Users } from '@/models/index.js';
 import { UserProfiles } from '@/models/index.js';
 import config from '@/config/index.js';
 import { publishMainStream } from '@/services/stream.js';
@@ -43,6 +46,11 @@ export const meta = {
 			message: 'Admins cant migrate.',
 			code: 'NOT_ADMIN_FORBIDDEN',
 			id: '4362e8dc-731f-4ad8-a694-be2a88922a24',
+		},
+		noSuchUser: {
+			message: 'No such user.',
+			code: 'NO_SUCH_USER',
+			id: 'fcd2eef9-a9b2-4c4f-8624-038099e90aa5',
 		},
 	},
 } as const;
@@ -120,6 +128,24 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	// Publish meUpdated event
 	publishMainStream(user.id, 'meUpdated', iObj);
+
+	const followings = await Followings.findBy({
+		followeeId: user.id,
+	});
+
+	followings.forEach(async following => {
+		//if follower is local
+		if (!following.followerHost) {
+			const follower = await getUser(following.followerId).catch(e => {
+				if (e.id === '15348ddd-432d-49c2-8a5a-8069753becff') throw new ApiError(meta.errors.noSuchUser);
+				throw e;
+			});
+			await deleteFollowing(follower!, user);
+			try {
+				await create(follower!, moveTo);
+			} catch (e) { /* empty */ }
+		}
+	});
 
 	return iObj;
 });
