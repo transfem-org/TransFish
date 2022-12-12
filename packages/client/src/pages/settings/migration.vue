@@ -2,7 +2,7 @@
 <div class="_formRoot">
 	<FormSection>
 		<template #label>{{ i18n.ts.moveTo }}</template>
-		<FormInput v-model="alsoKnownAs" class="_formBlock">
+		<FormInput v-model="moveToAccount" class="_formBlock">
 			<template #prefix><i class="ph-airplane-takeoff-bold ph-lg"></i></template>
 			<template #label>{{ i18n.ts.moveToLabel }}</template>
 		</FormInput>
@@ -30,19 +30,19 @@ import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 
-let alsoKnownAs = $ref('');
+let moveToAccount = $ref('');
 let accountAlias = $ref('');
 
 async function save(): Promise<void> {
-	// os.apiWithDialog('i/move', {
-	// 	alsoKnownAs: alsoKnownAs,
-	// });
+	os.apiWithDialog('i/known-as', {
+		alsoKnownAs: accountAlias,
+	});
 }
 
 async function move(): Promise<void> {
 	// TODO: PROMPT FOR CONFIRMATION
 	os.api('i/move', {
-		alsoKnownAs: alsoKnownAs,
+		moveToAccount: moveToAccount,
 	});
 }
 
