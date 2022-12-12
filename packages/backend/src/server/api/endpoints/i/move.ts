@@ -4,7 +4,6 @@ import { DAY } from '@/const.js';
 import DeliverManager from '@/remote/activitypub/deliver-manager.js';
 import { deliver } from '@/queue/index.js';
 import { renderActivity } from '@/remote/activitypub/renderer/index.js';
-import type { IActivity } from '@/remote/activitypub/type.js';
 import { genId } from '@/misc/gen-id.js';
 import define from '../../define.js';
 import { ApiError } from '../../error.js';
