@@ -7,8 +7,10 @@ import { genId } from '@/misc/gen-id.js';
 import define from '../../define.js';
 import { ApiError } from '../../error.js';
 import { apiLogger } from '../../logger.js';
+import { Users } from '@/models/index.js';
 import { UserProfiles } from '@/models/index.js';
 import config from '@/config/index.js';
+import { publishMainStream } from '@/services/stream.js';
 
 export const meta = {
 	tags: ['users'],
@@ -100,10 +102,24 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	if (!allowed || !toUrl || !fromUrl) throw new ApiError(meta.errors.remoteAccountForbids);
 
+	const updates = {} as Partial<User>;
+
+	if (!toUrl) toUrl = '';
+	updates.movedToUri = toUrl;
+
+	await Users.update(user.id, updates);
+	const iObj = await Users.pack<true, true>(user.id, user, {
+		detail: true,
+		includeSecrets: true,
+	});
+
 	const moveAct = moveActivity(toUrl, fromUrl);
 	const dm = new DeliverManager(user, moveAct);
 	dm.addFollowersRecipe();
 	dm.execute();
+
+	// Publish meUpdated event
+	publishMainStream(user.id, 'meUpdated', iObj);
 
 	return true;
 });
