@@ -49,7 +49,7 @@ async function move(account): Promise<void> {
 		text: i18n.t('migrationConfirm', { account: account.toString() }),
 	});
 	if (confirm.canceled) return;
-	os.api('i/move', {
+	os.apiWithDialog('i/move', {
 		moveToAccount: account,
 	});
 }

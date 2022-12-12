@@ -2,6 +2,7 @@ import type { User } from '@/models/entities/user.js';
 import { resolveUser } from '@/remote/resolve-user.js';
 import { DAY } from '@/const.js';
 import DeliverManager from '@/remote/activitypub/deliver-manager.js';
+import { deliver } from '@/queue/index.js';
 import { renderActivity } from '@/remote/activitypub/renderer/index.js';
 import type { IActivity } from '@/remote/activitypub/type.js';
 import define from '../../define.js';
@@ -51,10 +52,23 @@ export const paramDef = {
 	required: ['moveToAccount'],
 } as const;
 
+function moveActivity(to: User, from: User) {
+	const activity = {
+		id: 'foo',
+		actor: from,
+		type: 'Move',
+		object: from,
+		target: to,
+	} as any;
+
+	const content = renderActivity(activity);
+	deliver(to, content, from.inbox);
+}
+
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	if (!ps.moveToAccount) throw new ApiError(meta.errors.noSuchMoveTarget);
-	if(user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
+	if (user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
 
 	let unfiltered: string = ps.moveToAccount;
 
@@ -75,23 +89,10 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	if (!allowed || !moveTo.uri || !user.uri) throw new ApiError(meta.errors.remoteAccountForbids);
 
-	(async (): Promise<void> => {
-		const moveAct = await moveActivity(moveTo.uri!, user.uri!);
-		const dm = new DeliverManager(user, moveAct);
-		dm.addFollowersRecipe();
-		dm.execute();
-	})();
+	const moveAct = moveActivity(moveTo, user);
+	const dm = new DeliverManager(user, moveAct);
+	dm.addFollowersRecipe();
+	dm.execute();
+
 	return true;
 });
-
-async function moveActivity(to: string, from: string): Promise<IActivity | null> {
-	const activity = {
-		id: 'foo',
-		actor: from,
-		type: 'Move',
-		object: from,
-		target: to,
-	} as any;
-
-	return renderActivity(activity);
-}
