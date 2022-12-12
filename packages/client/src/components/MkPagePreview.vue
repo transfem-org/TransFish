@@ -1,5 +1,5 @@
 <template>
-<MkA :to="`/@${page.user.username}/pages/${page.name}`" class="vhpxefrj _block" tabindex="-1">
+<MkA :to="`/@${page.user.username}/pages/${page.name}`" class="vhpxefrj _block" tabindex="-1" :behavior="`${ui === 'deck' ? 'window' : null}`">
 	<div v-if="page.eyeCatchingImage" class="thumbnail" :style="`background-image: url('${page.eyeCatchingImage.thumbnailUrl}')`"></div>
 	<article>
 		<header>
@@ -14,21 +14,13 @@
 </MkA>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import { userName } from '@/filters/user';
+import { ui } from '@/config';
 
-export default defineComponent({
-	props: {
-		page: {
-			type: Object,
-			required: true,
-		},
-	},
-	methods: {
-		userName,
-	},
-});
+defineProps<{
+	page: any;
+}>();
 </script>
 
 <style lang="scss" scoped>
