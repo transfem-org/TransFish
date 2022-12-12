@@ -8,8 +8,8 @@
 		</FormInput>
 		<FormButton primary danger @click="move(moveToAccount)">
 			{{ i18n.ts.moveAccount }}
-			<template #caption>{{ i18n.ts.moveAccountDescription }}</template>
 		</FormButton>
+		<div class="label">{{ i18n.ts.moveAccountDescription }}</div>
 	</FormSection>
 
 	<FormSection>
@@ -20,8 +20,8 @@
 		</FormInput>
 		<FormButton class="button" inline primary @click="save(accountAlias)">
 			<i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}
-			<template #caption>{{ i18n.ts.moveFromDescription }}</template>
 		</FormButton>
+		<div class="label">{{ i18n.ts.moveFromDescription }}</div>
 	</FormSection>
 </div>
 </template>
@@ -59,41 +59,3 @@ definePageMetadata({
 	icon: 'ph-lock-bold ph-lg',
 });
 </script>
-
-	<style lang="scss" scoped>
-	.timnmucd {
-		padding: 16px;
-
-		&:first-child {
-			border-top-left-radius: 6px;
-			border-top-right-radius: 6px;
-		}
-
-		&:last-child {
-			border-bottom-left-radius: 6px;
-			border-bottom-right-radius: 6px;
-		}
-
-		&:not(:last-child) {
-			border-bottom: solid 0.5px var(--divider);
-		}
-
-		> header {
-			display: flex;
-			align-items: center;
-
-			> .icon {
-				width: 1em;
-				margin-right: 0.75em;
-
-				&.succ {
-					color: var(--success);
-				}
-
-				&.fail {
-					color: var(--error);
-				}
-			}
-		}
-	}
-	</style>
