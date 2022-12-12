@@ -27,7 +27,6 @@
 
 ## Work in progress
 
-- Account migration
 - Weblate project
 - Link verification
 - Better Messaging UI
@@ -44,6 +43,7 @@
   - Fix Dockerfile @hanna
   - Upgrade packages with security vunrabilities
 - Saner defaults
+- Fediverse account migration
 - Recommended instances timeline
 - OCR image captioning
 - Improve mobile UX

@@ -19,6 +19,7 @@
 - Notable differences:
   - Improved UI/UX (especially on mobile)
   - Improved notifications
+  - Fediverse account migration
   - Improved instance security
   - Improved accessibility
   - Recommended Instances timeline
