@@ -28,12 +28,12 @@ export const meta = {
 			id: 'b5c90186-4ab0-49c8-9bba-a1f76c202ba4',
 		},
 		remoteAccountForbids: {
-			message: 'Remote account doesn\'t have proper known As.',
+			message: 'Remote account doesn\'t have proper \'Known As\' alias. Did you remember to set it?',
 			code: 'REMOTE_ACCOUNT_FORBIDS',
 			id: 'b5c90186-4ab0-49c8-9bba-a1f766282ba4',
 		},
 		notRemote: {
-			message: 'User not remote.',
+			message: 'User is not remote. You can only migrate to other instances.',
 			code: 'NOT_REMOTE',
 			id: '4362f8dc-731f-4ad8-a694-be2a88922a24',
 		},
