@@ -18,7 +18,7 @@
 			<template #prefix><i class="ph-airplane-landing-bold ph-lg"></i></template>
 			<template #label>{{ i18n.ts.moveFromLabel }}</template>
 		</FormInput>
-		<FormButton class="button" inline primary @click="save(accountAlias)">
+		<FormButton class="button" inline primary @click="save(accountAlias.toString())">
 			<i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}
 		</FormButton>
 		<div class="description">{{ i18n.ts.moveFromDescription }}</div>
@@ -38,6 +38,9 @@ let moveToAccount = $ref('');
 let accountAlias = $ref('');
 
 async function save(account): Promise<void> {
+	console.log(accountAlias);
+	console.log(accountAlias.toString());
+	console.log(account);
 	os.apiWithDialog('i/known-as', {
 		alsoKnownAs: account,
 	});
