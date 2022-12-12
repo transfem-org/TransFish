@@ -29,6 +29,7 @@
 ## Work in progress
 
 - Weblate project
+- Customizable max note length
 - Link verification
 - Better Messaging UI
 - Better API Documentation
