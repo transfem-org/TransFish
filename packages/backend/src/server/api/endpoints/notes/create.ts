@@ -78,6 +78,12 @@ export const meta = {
 			code: 'YOU_HAVE_BEEN_BLOCKED',
 			id: 'b390d7e1-8a5e-46ed-b625-06271cafd3d3',
 		},
+
+		accountLocked: {
+			message: 'You migrated. Your account is now locked.',
+			code: 'ACCOUNT_LOCKED',
+			id: 'd390d7e1-8a5e-46ed-b625-06271cafd3d3',
+		},
 	},
 } as const;
 
@@ -163,6 +169,7 @@ export const paramDef = {
 
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
+	if(user.movedToUri) throw new ApiError(meta.errors.accountLocked);
 	let visibleUsers: User[] = [];
 	if (ps.visibleUserIds) {
 		visibleUsers = await Users.findBy({

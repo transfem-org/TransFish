@@ -35,6 +35,11 @@ export const meta = {
 			code: 'NOT_REMOTE',
 			id: '4362f8dc-731f-4ad8-a694-be2a88922a24',
 		},
+		adminForbidden: {
+			message: 'Adminds cant migrate.',
+			code: 'NOT_ADMIN_FORBIDDEN',
+			id: '4362e8dc-731f-4ad8-a694-be2a88922a24',
+		},
 	},
 } as const;
 
@@ -49,6 +54,7 @@ export const paramDef = {
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	if (!ps.moveToAccount) throw new ApiError(meta.errors.noSuchMoveTarget);
+	if(user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
 
 	let unfiltered: string = ps.moveToAccount;
 
