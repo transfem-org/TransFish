@@ -6,6 +6,8 @@ import { publishToFollowers } from '@/services/i/update.js';
 import { publishMainStream } from '@/services/stream.js';
 import { DAY } from '@/const.js';
 import { apiLogger } from '../../logger.js';
+import { UserProfiles } from '@/models/index.js';
+import config from '@/config/index.js';
 import define from '../../define.js';
 import { ApiError } from '../../error.js';
 
@@ -58,14 +60,19 @@ export default define(meta, paramDef, async (ps, user) => {
 		throw new ApiError(meta.errors.noSuchUser);
 	});
 
+	const profileTo = await UserProfiles.findOneByOrFail({ userId: knownAs.id });
+	let toUrl: string | null = profileTo.url;
+	if(!toUrl) {
+		toUrl = `${config.url}/@${knownAs.username}`;
+	}
+
 	const updates = {} as Partial<User>;
 
-	// FIXME: .uri is local uri, not remote uri!
-	if (!knownAs.uri) knownAs.uri = '';
+	if (!toUrl) toUrl = '';
 	if (updates.alsoKnownAs == null || updates.alsoKnownAs.length === 0) {
-		updates.alsoKnownAs = [knownAs.uri];
+		updates.alsoKnownAs = [toUrl];
 	} else {
-		updates.alsoKnownAs.push(knownAs.uri);
+		updates.alsoKnownAs.push(toUrl);
 	}
 
 	await Users.update(user.id, updates);

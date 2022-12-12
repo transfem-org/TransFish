@@ -2,12 +2,13 @@ import type { User } from '@/models/entities/user.js';
 import { resolveUser } from '@/remote/resolve-user.js';
 import { DAY } from '@/const.js';
 import DeliverManager from '@/remote/activitypub/deliver-manager.js';
-import { deliver } from '@/queue/index.js';
 import { renderActivity } from '@/remote/activitypub/renderer/index.js';
 import { genId } from '@/misc/gen-id.js';
 import define from '../../define.js';
 import { ApiError } from '../../error.js';
 import { apiLogger } from '../../logger.js';
+import { UserProfiles } from '@/models/index.js';
+import config from '@/config/index.js';
 
 export const meta = {
 	tags: ['users'],
@@ -52,17 +53,16 @@ export const paramDef = {
 	required: ['moveToAccount'],
 } as const;
 
-function moveActivity(to: User, from: User) {
+function moveActivity(toUrl: string, fromUrl: string) {
 	const activity = {
 		id: genId(),
-		actor: from,
+		actor: fromUrl,
 		type: 'Move',
-		object: from,
-		target: to,
+		object: fromUrl,
+		target: toUrl,
 	} as any;
 
-	const content = renderActivity(activity);
-	deliver(to, content, from.inbox);
+	return renderActivity(activity);
 }
 
 // eslint-disable-next-line import/no-default-export
@@ -80,16 +80,27 @@ export default define(meta, paramDef, async (ps, user) => {
 		apiLogger.warn(`failed to resolve remote user: ${e}`);
 		throw new ApiError(meta.errors.noSuchMoveTarget);
 	});
+	const profileFrom = await UserProfiles.findOneByOrFail({ userId: user.id });
+	let fromUrl: string | null = profileFrom.url;
+	if(!fromUrl) {
+		fromUrl = `${config.url}/@${user.username}`;
+	}
+
+	const profileTo = await UserProfiles.findOneByOrFail({ userId: moveTo.id });
+	let toUrl: string | null = profileTo.url;
+	if(!toUrl) {
+		toUrl = `${config.url}/@${moveTo.username}`;
+	}
 
 	let allowed = false;
 
 	moveTo.alsoKnownAs?.forEach(element => {
-		if (user.uri?.includes(element)) allowed = true;
+		if (fromUrl!.includes(element)) allowed = true;
 	});
 
-	if (!allowed || !moveTo.uri || !user.uri) throw new ApiError(meta.errors.remoteAccountForbids);
+	if (!allowed || !toUrl || !fromUrl) throw new ApiError(meta.errors.remoteAccountForbids);
 
-	const moveAct = moveActivity(moveTo, user);
+	const moveAct = moveActivity(toUrl, fromUrl);
 	const dm = new DeliverManager(user, moveAct);
 	dm.addFollowersRecipe();
 	dm.execute();
