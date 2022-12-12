@@ -31,6 +31,7 @@ import MkInfo from '@/components/MkInfo.vue';
 import { scroll } from '@/scripts/scroll';
 import { instance } from '@/instance';
 import { version } from '@/config';
+import { $i } from '@/account'
 import * as os from '@/os';
 import { lookupUser } from '@/scripts/lookup-user';
 import { defaultStore } from '@/store';
@@ -146,7 +147,7 @@ const menuDef = $computed(() => [{
 		to: '/admin/abuses',
 		active: currentPage?.route.name === 'abuses',
 	}],
-}, {
+}, ...(instance.disableRegistration ? [{
 	title: i18n.ts.settings,
 	items: [{
 		icon: 'ph-gear-six-bold ph-lg',
@@ -188,13 +189,8 @@ const menuDef = $computed(() => [{
 		text: i18n.ts.proxyAccount,
 		to: '/admin/proxy-account',
 		active: currentPage?.route.name === 'proxy-account',
-	}, {
-		icon: 'ph-gear-six-bold ph-lg',
-		text: i18n.ts.other,
-		to: '/admin/other-settings',
-		active: currentPage?.route.name === 'other-settings',
 	}],
-}, {
+}] : []), {
 	title: i18n.ts.info,
 	items: [{
 		icon: 'ph-database-bold ph-lg',
