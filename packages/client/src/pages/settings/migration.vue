@@ -38,9 +38,6 @@ let moveToAccount = $ref('');
 let accountAlias = $ref('');
 
 async function save(account): Promise<void> {
-	console.log(accountAlias);
-	console.log(accountAlias.toString());
-	console.log(account);
 	os.apiWithDialog('i/known-as', {
 		alsoKnownAs: account,
 	});

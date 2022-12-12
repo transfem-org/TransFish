@@ -28,7 +28,7 @@ export const meta = {
 			id: 'fcd2eef9-a9b2-4c4f-8624-038099e90aa5',
 		},
 		notRemote: {
-			message: 'User not remote.',
+			message: 'User is not remote. You can only migrate to other instances.',
 			code: 'NOT_REMOTE',
 			id: '4362f8dc-731f-4ad8-a694-be2a88922a24',
 		},
@@ -61,8 +61,13 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	const updates = {} as Partial<User>;
 
+	// FIXME: .uri is local uri, not remote uri!
 	if (!knownAs.uri) knownAs.uri = '';
-	updates.alsoKnownAs = [knownAs.uri];
+	if (updates.alsoKnownAs == null || updates.alsoKnownAs.length === 0) {
+		updates.alsoKnownAs = [knownAs.uri];
+	} else {
+		updates.alsoKnownAs.push(knownAs.uri);
+	}
 
 	await Users.update(user.id, updates);
 
