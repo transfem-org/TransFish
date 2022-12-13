@@ -1,3 +1,12 @@
+# 🐳 Docker Compose for Development
+
+```sh
+cd dev/
+docker-compose build
+docker-compose run --rm web yarn run init
+docker-compose up -d
+```
+
 # Running a Calckey instance with Docker
 
 ## Pre-built docker container

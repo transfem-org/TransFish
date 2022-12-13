@@ -143,16 +143,6 @@ pm2 start "NODE_ENV=production yarn start" --name Calckey
 
 [How to run Calckey with Docker](./docker-README.md).
 
-### 🐳 Docker Compose for Development
-
-
-```sh
-cd dev/
-docker-compose build
-docker-compose run --rm web yarn run init
-docker-compose up -d
-```
-
 ## 😉 Tips & Tricks
 
 - When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Calckey's control panel.
