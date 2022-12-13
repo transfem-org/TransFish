@@ -3,7 +3,7 @@ version: "3"
 services:
   web:
     image: docker.io/thatonecalculator/calckey
-    build: .
+    build: ..
     restart: always
     depends_on:
       - db
@@ -14,8 +14,8 @@ services:
     networks:
       - network
     volumes:
-      - ./files:/calckey/files
-      - ./.config:/calckey/.config:ro
+      - ../files:/calckey/files
+      - ../.config:/calckey/.config:ro
 
   redis:
     restart: always
@@ -23,7 +23,7 @@ services:
     networks:
       - network
     volumes:
-      - ./redis:/data
+      - ../redis:/data
 
   db:
     restart: always
@@ -31,9 +31,9 @@ services:
     networks:
       - network
     env_file:
-      - .config/docker.env
+      - ../.config/docker.env
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ../db:/var/lib/postgresql/data
 
 #  es:
 #    restart: always
