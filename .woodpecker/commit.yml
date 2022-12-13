@@ -1,0 +1,35 @@
+pipeline:
+  build:
+    image: node:${NODE_VERSION}
+    commands:
+      - corepack enable
+      - yarn install
+      - yarn build
+    environment:
+      - DATABASE=12
+  migrate:
+    image: node:19.2.0
+    commands:
+      - cp .config/ci.yml .config/default.yml
+      - corepack enable
+      - yarn install
+      - yarn migrate
+
+matrix:
+  NODE_VERSION:
+    - 18.12.1
+    - 19.2.0
+  DATABASE:
+    - 12
+    - 13
+    - 14
+    - latest
+
+services:
+  database:
+    image: postgres:${DATABASE}
+    environment:
+      - POSTGRES_PASSWORD=test
+
+branches:
+  include: [ master, develop, feature/* ]
