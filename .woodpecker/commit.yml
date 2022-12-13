@@ -7,6 +7,7 @@ pipeline:
       - yarn build
     environment:
       - DATABASE=12
+      - YARN_ENABLE_IMMUTABLE_INSTALLS=false
   migrate:
     image: node:19.2.0
     commands:
@@ -14,6 +15,8 @@ pipeline:
       - corepack enable
       - yarn install
       - yarn migrate
+    environment:
+      - YARN_ENABLE_IMMUTABLE_INSTALLS=false
 
 matrix:
   NODE_VERSION:
