@@ -11,9 +11,9 @@ You can find a `docker-compose.yml` file in the same folder as this `README`, al
 
 Rename the files:
 
-`mv .config/default_example.yml .config/default.yml`
+`cp .config/default_example.yml .config/default.yml`
 
-`mv .config/docker_example.env .config/docker.env`
+`cp .config/example.env .config/docker.env`
 
 then edit them according to your environment.
 You can configure `docker.env` with anything you like, but you will have to pay attention to the `default.yml` file:
