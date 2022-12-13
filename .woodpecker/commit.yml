@@ -24,8 +24,6 @@ matrix:
     - 19.2.0
   DATABASE:
     - 12
-    - 13
-    - 14
     - latest
 
 services:
@@ -33,6 +31,8 @@ services:
     image: postgres:${DATABASE}
     environment:
       - POSTGRES_PASSWORD=test
+  redis:
+    image: redis
 
 branches:
   include: [ master, develop, feature/* ]
