@@ -51,7 +51,7 @@ server {
     location / {
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
-        set $upstream_app chimkey_web_1;
+        set $upstream_app calckey_web_1;
         set $upstream_port 3000;
         set $upstream_proto http;
         proxy_pass $upstream_proto://$upstream_app:$upstream_port;
@@ -59,7 +59,7 @@ server {
     }
 }
 ```
-Note: Make sure you set `server_name` in the above to your domain.
+Note: Make sure you set `server_name` in the above to your domain, and `$upstream_app` to the name for your calckey container.
 
 Once you bring up both the `swag` reverse proxy container with the above configuration, and the `calckey` containers, you should be serving your instance and be able to browse to it at `https://yourdomain.whatever`.
 
