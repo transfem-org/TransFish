@@ -139,12 +139,13 @@ NODE_ENV=production yarn run rebuild && yarn run migrate
 pm2 start "NODE_ENV=production yarn start" --name Calckey
 ```
 
-### 🐋 Prebuilt Docker image
+### 🐋 Docker
 
-[thatonecalculator/calckey docker image](https://hub.docker.com/r/thatonecalculator/calckey) at Docker Hub. 
+[How to run Calckey with Docker](/docker-README.md).
 
 ### 🐳 Docker Compose
 
+Shorter version:
 ```sh
 docker-compose build
 docker-compose run --rm web yarn run init
