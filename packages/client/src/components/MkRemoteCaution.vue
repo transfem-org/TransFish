@@ -12,10 +12,10 @@ defineProps<{
 
 <style lang="scss" scoped>
 .jmgmzlwq {
-	font-size: 0.8em;
 	padding: 16px;
 	background: var(--infoWarnBg);
 	color: var(--infoWarnFg);
+	font-size: 0.85rem;
 
 	> .link {
 		margin-left: 4px;
