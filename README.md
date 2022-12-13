@@ -143,10 +143,11 @@ pm2 start "NODE_ENV=production yarn start" --name Calckey
 
 [How to run Calckey with Docker](./docker-README.md).
 
-### 🐳 Docker Compose
+### 🐳 Docker Compose for Development
 
-Shorter version:
+
 ```sh
+cd dev/
 docker-compose build
 docker-compose run --rm web yarn run init
 docker-compose up -d
