@@ -3,17 +3,17 @@
 ## Pre-built docker container
 [thatonecalculator/calckey](https://hub.docker.com/r/thatonecalculator/calckey)
 ## docker-compose
-You can find a `docker-compose.yml` file in the same folder as this `README`, along with a folder called `config` containing two **example** files needed to get the instance running:
-- config/docker.env (**db config settings**)
-- config/default.yml (**calckey instance settings**)
+You can find a `docker-compose.yml` file in the same folder as this `README`, along with a folder called `.config` containing two **example** files needed to get the instance running:
+- .config/docker.env (**db config settings**)
+- .config/default.yml (**calckey instance settings**)
 
 ## configuring calckey
 
 Rename the files:
 
-`mv config/default_example.yml default.yml`
+`mv .config/default_example.yml .config/default.yml`
 
-`mv config/docker_example.env docker.env`
+`mv .config/docker_example.env .config/docker.env`
 
 then edit them according to your environment.
 You can configure `docker.env` with anything you like, but you will have to pay attention to the `default.yml` file:
