@@ -16,6 +16,7 @@
 						<div class="fade"></div>
 						<div class="title">
 							<MkUserName class="name" :user="user" :nowrap="true"/>
+							<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
 							<div class="bottom">
 								<span class="username"><MkAcct :user="user" :detail="true"/></span>
 								<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-fill ph-lg"></i></span>
@@ -24,22 +25,24 @@
 								<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot-bold ph-lg"></i></span>
 							</div>
 						</div>
-						<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
-						<div class="actions">
-							<button class="menu _button" @click="menu"><i class="ph-dots-three-outline-bold ph-lg"></i></button>
-							<MkFollowButton v-if="$i != null && $i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
-							<!-- <MkFollowButton v-else-if="$i == null" :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/> -->
-						</div>
 					</div>
 					<MkAvatar class="avatar" :user="user" :disable-preview="true" :show-indicator="true"/>
 					<div class="title">
 						<MkUserName :user="user" :nowrap="false" class="name"/>
+						<span v-if="$i && $i.id != user.id && user.isFollowed" class="followedWindow">{{ i18n.ts.followsYou }}</span>
 						<div class="bottom">
 							<span class="username"><MkAcct :user="user" :detail="true"/></span>
 							<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-fill ph-lg"></i></span>
 							<span v-if="!user.isAdmin && user.isModerator" :title="i18n.ts.isModerator" style="color: var(--badge);"><i class="ph-bookmark-simple-bold"></i></span>
 							<span v-if="user.isLocked" :title="i18n.ts.isLocked"><i class="ph-lock-bold ph-lg"></i></span>
 							<span v-if="user.isBot" :title="i18n.ts.isBot"><i class="ph-robot-bold ph-lg"></i></span>
+						</div>
+					</div>
+					<div class="follow-container">
+						<div class="actions">
+							<MkFollowButton v-if="$i != null && $i.id != user.id" :user="user" :inline="true" :transparent="false" :full="true" class="koudoku"/>
+							<button class="menu _button" @click="menu"><i class="ph-dots-three-outline-bold ph-lg"></i></button>
+							<!-- <MkFollowButton v-else-if="$i == null" :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/> -->
 						</div>
 					</div>
 					<div class="description">
@@ -247,8 +250,8 @@ onUnmounted(() => {
 
 					> .followed {
 						position: absolute;
-						top: 12px;
-						left: 12px;
+						top: 10px;
+						left: 120px;
 						padding: 4px 8px;
 						color: #fff;
 						background: rgba(0, 0, 0, 0.7);
@@ -260,9 +263,6 @@ onUnmounted(() => {
 						position: absolute;
 						top: 12px;
 						right: 12px;
-						-webkit-backdrop-filter: var(--blur, blur(8px));
-						backdrop-filter: var(--blur, blur(8px));
-						background: rgba(0, 0, 0, 0.2);
 						padding: 8px;
 						border-radius: 24px;
 
@@ -272,6 +272,88 @@ onUnmounted(() => {
 							width: 31px;
 							color: #fff;
 							text-shadow: 0 0 8px #000;
+							font-size: 16px;
+						}
+
+						> .koudoku {
+							margin-left: 4px;
+							width: 31px;
+							vertical-align: bottom;
+						}
+					}
+
+					> .title {
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 100%;
+						padding: 0 0 8px 154px;
+						box-sizing: border-box;
+						color: #fff;
+
+						> .name {
+							display: block;
+							margin: 0;
+							line-height: 32px;
+							font-weight: bold;
+							font-size: 1.8em;
+							text-shadow: 0 0 8px #000;
+						}
+
+						> .followed {
+							position: absolute;
+							top: 8px;
+							left: 220px;
+							padding: 4px 8px;
+							color: #fff;
+							background: rgba(0, 0, 0, 0.6);
+							font-size: 0.7em;
+							border-radius: 24px;
+						}
+
+						> .bottom {
+							> * {
+								display: inline-block;
+								margin-right: 16px;
+								line-height: 20px;
+								opacity: 0.8;
+
+								&.username {
+									font-weight: bold;
+								}
+							}
+						}
+					}
+				}
+
+				> .follow-container {
+					position: relative;
+					height: 60px;
+					overflow: hidden;
+					background-size: cover;
+					background-position: center;
+
+					> .fade {
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 100%;
+						height: 78px;
+						background: linear-gradient(transparent, rgba(#000, 0.7));
+					}
+
+					> .actions {
+						position: absolute;
+						top: 12px;
+						right: 12px;
+						padding: 8px;
+						border-radius: 24px;
+
+						> .menu {
+							vertical-align: bottom;
+							height: 31px;
+							width: 31px;
+							color: --fg;
 							font-size: 16px;
 						}
 
@@ -320,6 +402,36 @@ onUnmounted(() => {
 					padding: 50px 8px 16px 8px;
 					font-weight: bold;
 					border-bottom: solid 0.5px var(--divider);
+
+					> .name {
+							display: block;
+							margin: 0;
+							line-height: 32px;
+							font-weight: bold;
+							font-size: 1.8em;
+						}
+
+						> .followed {
+							position: absolute;
+							top: 8px;
+							left: 220px;
+							padding: 4px 8px;
+							color: #fff;
+							background: rgba(0, 0, 0, 0.6);
+							font-size: 0.7em;
+							border-radius: 24px;
+						}
+
+						> .followedWindow {
+							position: relative;
+							top: -25px;
+							left: 80px;
+							padding: 4px 8px;
+							color: #fff;
+							background: rgba(0, 0, 0, 0.6);
+							font-size: 0.7em;
+							border-radius: 24px;
+						}
 
 					> .bottom {
 						> * {
