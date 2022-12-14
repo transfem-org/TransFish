@@ -135,7 +135,7 @@ cp -r ../misskey/files . # if you don't use object storage
 ```sh
 # git pull
 yarn install
-NODE_ENV=production yarn run build && yarn run migrate
+NODE_ENV=production yarn run rebuild && yarn run migrate
 pm2 start "NODE_ENV=production yarn start" --name Calckey
 ```
 
