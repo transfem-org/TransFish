@@ -71,13 +71,19 @@ export async function renderPerson(user: ILocalUser) {
 		image: banner ? renderImage(banner) : null,
 		tag,
 		manuallyApprovesFollowers: user.isLocked,
-		movedTo: user.movedToUri,
-		alsoKnownAs: user.alsoKnownAs,
 		discoverable: !!user.isExplorable,
 		publicKey: renderKey(user, keypair, '#main-key'),
 		isCat: user.isCat,
 		attachment: attachment.length ? attachment : undefined,
 	} as any;
+
+	if (user.movedToUri) {
+		person.movedTo = user.movedToUri;
+	}
+
+	if (user.alsoKnownAs) {
+		person.alsoKnownAs = user.alsoKnownAs;
+	}
 
 	if (profile.birthday) {
 		person['vcard:bday'] = profile.birthday;
