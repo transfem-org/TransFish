@@ -53,10 +53,10 @@ export function validateNote(object: any, uri: string) {
 }
 
 /**
-  * Fetch Notes.
-  *
-  * If the target Note is registered in Calckey, it will be returned.
-  */
+ * Fetch Notes.
+ *
+ * If the target Note is registered in Calckey, it will be returned.
+ */
 export async function fetchNote(object: string | IObject): Promise<Note | null> {
 	const dbResolver = new DbResolver();
 	return await dbResolver.getNoteFromApId(object);
@@ -265,11 +265,11 @@ export async function createNote(value: string | IObject, resolver?: Resolver, s
 }
 
 /**
-  * Resolve Note.
-  *
-  * If the target Note is registered in Calckey, return it, otherwise
-  * Fetch from remote server, register with Calckey and return it.
-  */
+ * Resolve Note.
+ *
+ * If the target Note is registered in Calckey, return it, otherwise
+ * Fetch from remote server, register with Calckey and return it.
+ */
 export async function resolveNote(value: string | IObject, resolver?: Resolver): Promise<Note | null> {
 	const uri = typeof value === 'string' ? value : value.id;
 	if (uri == null) throw new Error('missing uri');

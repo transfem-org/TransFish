@@ -55,11 +55,11 @@ export async function createImage(actor: CacheableRemoteUser, value: any): Promi
 }
 
 /**
-  * Resolve Image.
-  *
-  * If the target Image is registered in Calckey, return it, otherwise
-  * Fetch from remote server, register with Calckey and return it.
-  */
+ * Resolve Image.
+ *
+ * If the target Image is registered in Calckey, return it, otherwise
+ * Fetch from remote server, register with Calckey and return it.
+ */
 export async function resolveImage(actor: CacheableRemoteUser, value: any): Promise<DriveFile> {
 	// TODO
 
