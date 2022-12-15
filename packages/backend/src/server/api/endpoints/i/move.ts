@@ -62,6 +62,11 @@ export const meta = {
 			code: "URI_NULL",
 			id: "95ba11b9-90e8-43a5-ba16-7acc1ab32e71",
 		},
+		alreadyMoved: {
+			message: "Account was already moved to another account.",
+			code: "ALREADY_MOVED",
+			id: "b234a14e-9ebe-4581-8000-074b3c215962",
+		},
 	},
 } as const;
 
@@ -89,6 +94,7 @@ function moveActivity(toUrl: string, fromUrl: string) {
 export default define(meta, paramDef, async (ps, user) => {
 	if (!ps.moveToAccount) throw new ApiError(meta.errors.noSuchMoveTarget);
 	if (user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
+	if (user.movedToUri) throw new ApiError(meta.errors.alreadyMoved);
 
 	let unfiltered: string = ps.moveToAccount;
 	if (!unfiltered) {
