@@ -32,8 +32,8 @@ export default async function() {
 		await workerMain();
 	}
 
-	// ユニットテスト時にMisskeyが子プロセスで起動された時のため
-	// それ以外のときは process.send は使えないので弾く
+	// For when Calckey is started in a child process during unit testing.
+        // Otherwise, process.send cannot be used, so start it.
 	if (process.send) {
 		process.send('ok');
 	}

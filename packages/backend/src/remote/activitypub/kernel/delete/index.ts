@@ -5,18 +5,19 @@ import { toSingle } from '@/prelude/array.js';
 import { deleteActor } from './actor.js';
 
 /**
- * 削除アクティビティを捌きます
+ * Handle delete activity
  */
 export default async (actor: CacheableRemoteUser, activity: IDelete): Promise<string> => {
 	if ('actor' in activity && actor.uri !== activity.actor) {
 		throw new Error('invalid actor');
 	}
 
-	// 削除対象objectのtype
+	// Type of object to be deleted
 	let formerType: string | undefined;
 
 	if (typeof activity.object === 'string') {
-		// typeが不明だけど、どうせ消えてるのでremote resolveしない
+	    // The type is unknown, but it has disappeared
+	    // anyway, so it does not remote resolve
 		formerType = undefined;
 	} else {
 		const object = activity.object as IObject;
@@ -29,12 +30,13 @@ export default async (actor: CacheableRemoteUser, activity: IDelete): Promise<st
 
 	const uri = getApId(activity.object);
 
-	// type不明でもactorとobjectが同じならばそれはPersonに違いない
+    // Even if type is unknown, if actor and object are the same,
+    // it must be `Person`.
 	if (!formerType && actor.uri === uri) {
 		formerType = 'Person';
 	}
 
-	// それでもなかったらおそらくNote
+	// If not, fallback to `Note`.
 	if (!formerType) {
 		formerType = 'Note';
 	}
