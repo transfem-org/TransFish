@@ -57,6 +57,11 @@ export const meta = {
 			code: "URI_NULL",
 			id: "bf326f31-d430-4f97-9933-5d61e4d48a23",
 		},
+		localUriNull: {
+			message: "Local User ActivityPup URI is null.",
+			code: "URI_NULL",
+			id: "95ba11b9-90e8-43a5-ba16-7acc1ab32e71",
+		},
 	},
 } as const;
 
@@ -101,7 +106,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	});
 	let fromUrl: string | null = user.uri;
 	if(!fromUrl) {
-		throw new ApiError(meta.errors.uriNull);
+		throw new ApiError(meta.errors.localUriNull);
 	}
 
 	let toUrl: string | null = moveTo.uri;
