@@ -23,7 +23,7 @@ export const meta = {
 
 	limit: {
 		duration: DAY,
-		max: 3,
+		max: 5,
 	},
 
 	errors: {
