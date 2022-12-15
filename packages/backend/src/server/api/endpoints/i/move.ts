@@ -52,6 +52,11 @@ export const meta = {
 			code: 'NO_SUCH_USER',
 			id: 'fcd2eef9-a9b2-4c4f-8624-038099e90aa5',
 		},
+		uriNull: {
+			message: "User ActivityPup URI is null.",
+			code: "URI_NULL",
+			id: "bf326f31-d430-4f97-9933-5d61e4d48a23",
+		},
 	},
 } as const;
 
@@ -81,25 +86,27 @@ export default define(meta, paramDef, async (ps, user) => {
 	if (user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
 
 	let unfiltered: string = ps.moveToAccount;
+	if (!unfiltered) {
+		throw new ApiError(meta.errors.noSuchMoveTarget);
+	}
 
+	if (unfiltered.startsWith('acct:')) unfiltered = unfiltered.substring(5);
 	if (unfiltered.startsWith('@')) unfiltered = unfiltered.substring(1);
 	if (!unfiltered.includes('@')) throw new ApiError(meta.errors.notRemote);
-	const userAddress: string[] = unfiltered.split('@');
 
+	const userAddress: string[] = unfiltered.split('@');
 	const moveTo: User = await resolveUser(userAddress[0], userAddress[1]).catch(e => {
 		apiLogger.warn(`failed to resolve remote user: ${e}`);
 		throw new ApiError(meta.errors.noSuchMoveTarget);
 	});
-	const profileFrom = await UserProfiles.findOneByOrFail({ userId: user.id });
-	let fromUrl: string | null = profileFrom.url;
+	let fromUrl: string | null = user.uri;
 	if(!fromUrl) {
-		fromUrl = `${config.url}/@${user.username}`;
+		throw new ApiError(meta.errors.uriNull);
 	}
 
-	const profileTo = await UserProfiles.findOneByOrFail({ userId: moveTo.id });
-	let toUrl: string | null = profileTo.url;
+	let toUrl: string | null = moveTo.uri;
 	if(!toUrl) {
-		toUrl = `${config.url}/@${moveTo.username}`;
+		throw new ApiError(meta.errors.uriNull);
 	}
 
 	let allowed = false;
