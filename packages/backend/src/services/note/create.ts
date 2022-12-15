@@ -116,7 +116,12 @@ class NotificationManager {
 
 			const threadMuted = await NoteThreadMutings.findOneBy({
 				userId: x.target,
-				threadId: this.note.threadId || this.note.id,
+				threadId: In([
+					// replies
+					this.note.threadId ?? this.note.id,
+					// renotes
+					this.note.renoteId ?? undefined
+				]),
 				mutingNotificationTypes: ArrayOverlap([x.reason]),
 			});
 
