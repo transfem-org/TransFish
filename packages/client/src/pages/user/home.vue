@@ -15,8 +15,10 @@
 						<div ref="bannerEl" class="banner" :style="style"></div>
 						<div class="fade"></div>
 						<div class="title">
-							<MkUserName class="name" :user="user" :nowrap="true"/>
-							<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
+							<div class="nameCollumn">
+								<MkUserName class="name" :user="user" :nowrap="true"/>
+								<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
+							</div>
 							<div class="bottom">
 								<span class="username"><MkAcct :user="user" :detail="true"/></span>
 								<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-fill ph-lg"></i></span>
@@ -28,8 +30,10 @@
 					</div>
 					<MkAvatar class="avatar" :user="user" :disable-preview="true" :show-indicator="true"/>
 					<div class="title">
-						<MkUserName :user="user" :nowrap="false" class="name"/>
-						<span v-if="$i && $i.id != user.id && user.isFollowed" class="followedWindow">{{ i18n.ts.followsYou }}</span>
+						<div class="nameCollumn">
+							<MkUserName class="name" :user="user" :nowrap="true"/>
+							<span v-if="$i && $i.id != user.id && user.isFollowed" class="followed">{{ i18n.ts.followsYou }}</span>
+						</div>
 						<div class="bottom">
 							<span class="username"><MkAcct :user="user" :detail="true"/></span>
 							<span v-if="user.isAdmin" :title="i18n.ts.isAdmin" style="color: var(--badge);"><i class="ph-bookmark-simple-fill ph-lg"></i></span>
@@ -291,8 +295,9 @@ onUnmounted(() => {
 						box-sizing: border-box;
 						color: #fff;
 
-						> .name {
+						> .nameCollumn {
 							display: block;
+							> .name {
 							margin: 0;
 							line-height: 32px;
 							font-weight: bold;
@@ -301,14 +306,16 @@ onUnmounted(() => {
 						}
 
 						> .followed {
-							position: absolute;
-							top: 8px;
-							left: 220px;
+							position: relative;
+							top: -4px;
+							left: 4px;
 							padding: 4px 8px;
 							color: #fff;
 							background: rgba(0, 0, 0, 0.6);
 							font-size: 0.7em;
 							border-radius: 24px;
+						}
+
 						}
 
 						> .bottom {
@@ -403,23 +410,28 @@ onUnmounted(() => {
 					font-weight: bold;
 					border-bottom: solid 0.5px var(--divider);
 
-					> .name {
+					> .nameCollumn {
 							display: block;
+							> .name {
 							margin: 0;
+							align-content: center;
 							line-height: 32px;
 							font-weight: bold;
 							font-size: 1.8em;
+							text-shadow: 0 0 8px #000;
 						}
 
 						> .followed {
-							position: absolute;
-							top: 8px;
-							left: 220px;
+							position: relative;
+							top: -4px;
+							left: 4px;
 							padding: 4px 8px;
 							color: #fff;
 							background: rgba(0, 0, 0, 0.6);
 							font-size: 0.7em;
 							border-radius: 24px;
+						}
+
 						}
 
 						> .followedWindow {
@@ -456,6 +468,9 @@ onUnmounted(() => {
 				> .description {
 					padding: 24px 24px 24px 154px;
 					font-size: 0.95em;
+					top: -65px;
+					position: relative;
+					max-width: 400px;
 
 					> .empty {
 						margin: 0;
@@ -576,6 +591,19 @@ onUnmounted(() => {
 
 				> .status {
 					padding: 16px;
+				}
+
+				> .description {
+          top: -55px;
+					position: relative;
+				}
+
+				> .follow-container {
+					overflow: visible !important;
+					> .actions {
+						top: -110px;
+						right: 0px;
+					}
 				}
 			}
 
