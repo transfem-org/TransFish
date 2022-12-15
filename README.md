@@ -1,4 +1,4 @@
-<div align="center">
+<a href="https://ci.codeberg.org/thatonecalculator/calckey"><img src="https://ci.codeberg.org/api/badges/thatonecalculator/calckey/status.svg" align="left" height="20px" alt="Calc (the Calckey mascot) smoking a fat dart"/></a><br/><div align="center">
 <a href="https://i.calckey.cloud/">
 	<img src="./.github/title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
 </a>
@@ -10,6 +10,7 @@
 <div>
 
 <img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px" alt="Calc (the Calckey mascot) smoking a fat dart"/>
+
 
 # ✨ About Calckey
 
