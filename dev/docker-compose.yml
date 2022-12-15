@@ -3,7 +3,8 @@ version: "3"
 services:
   web:
     image: docker.io/thatonecalculator/calckey
-    restart: unless-stopped
+    build: ..
+    restart: always
     depends_on:
       - db
       - redis
@@ -11,45 +12,39 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - calcnet
-#     - web
-    environment:
-      NODE_ENV: production
+      - network
     volumes:
-      - ./files:/calckey/files
-      - ./config:/calckey/.config:ro
+      - ../files:/calckey/files
+      - ../.config:/calckey/.config:ro
 
   redis:
-    restart: unless-stopped
+    restart: always
     image: docker.io/redis:7.0-alpine
     networks:
-      - calcnet
+      - network
     volumes:
-      - ./redis:/data
+      - ../redis:/data
 
   db:
-    restart: unless-stopped
+    restart: always
     image: docker.io/postgres:12.2-alpine
     networks:
-      - calcnet
+      - network
     env_file:
-      - config/docker.env
+      - ../.config/docker.env
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ../db:/var/lib/postgresql/data
 
 #  es:
-#   restart: unless-stopped
-#   image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
-#   environment:
+#    restart: always
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
+#    environment:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #      - "TAKE_FILE_OWNERSHIP=111"
 #    networks:
-#      - calcnet
+#      - network
 #    volumes:
 #      - ./elasticsearch:/usr/share/elasticsearch/data
 
 networks:
-  calcnet:
-    #  web:
-    #    external:
-    #      name: web
+  network:

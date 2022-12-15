@@ -98,7 +98,7 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 ## 💅 Customize
 
 - To add custom CSS for all users, edit `./custom/assets/instance.css`.
-- To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be avaliable on `https://yourinstance.tld/static-assets/filename.ext`.
+- To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be available on `https://yourinstance.tld/static-assets/filename.ext`.
 - To add custom locales, place them in the `./custom/locales/` directory. If you name your custom locale the same as an existing locale, it will overwrite it. If you give it a unique name, it will be added to the list. Also make sure that the first part of the filename matches the locale you're basing it on. (Example: `en-FOO.yml`)
 - To update custom assets without rebuilding, just run `yarn run gulp`.
 
@@ -139,20 +139,9 @@ NODE_ENV=production yarn run rebuild && yarn run migrate
 pm2 start "NODE_ENV=production yarn start" --name Calckey
 ```
 
-### 🐋 Prebuilt Docker image
+### 🐋 Docker
 
-```sh
-docker pull thatonecalculator/calckey
-docker up -d
-```
-
-### 🐳 Docker Compose
-
-```sh
-docker-compose build
-docker-compose run --rm web yarn run init
-docker-compose up -d
-```
+[How to run Calckey with Docker](./docker-README.md).
 
 ## 😉 Tips & Tricks
 
