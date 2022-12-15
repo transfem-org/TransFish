@@ -106,7 +106,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	});
 	let fromUrl: string | null = user.uri;
 	if(!fromUrl) {
-		throw new ApiError(meta.errors.localUriNull);
+		fromUrl = `${config.url}/users/${user.id}`;
 	}
 
 	let toUrl: string | null = moveTo.uri;
