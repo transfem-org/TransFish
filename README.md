@@ -7,8 +7,8 @@
 
 [![status-badge](https://ci.codeberg.org/api/badges/thatonecalculator/calckey/status.svg)](https://ci.codeberg.org/thatonecalculator/calckey)
 [![liberapay-badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
-[![version-badge](https://img.shields.io/docker/v/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
 [![docker-badge](https://img.shields.io/docker/pulls/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
+[![codeberg-badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-blue.svg?logo=codeberg&logoColor=white)](https://codeberg.org/thatonecalculator/calckey/)
 
 </div>
 
