@@ -148,7 +148,7 @@ export default defineComponent({
 			os.api('drive/files/caption-image', {
 				url: img.src,
 			}).then(text => {
-				insertTextAtCursor(text.slice(0, (512 - ta.value.length)));
+				insertTextAtCursor(ta, text.slice(0, (512 - ta.value.length)));
 			});
 		},
 	},
