@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-.fpezltsf {
+.jmgmzlwq {
 	padding: 16px;
 	font-size: 90%;
 	background: var(--infoWarnBg);
