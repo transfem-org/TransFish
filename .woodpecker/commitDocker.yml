@@ -1,11 +1,13 @@
 pipeline:
   docker-build:
-    image: woodpeckerci/plugin-docker-buildx
+    image: plugins/kaniko
     settings:
-      repo: codeberg.org/thatonecalculator/calckey
-      registry: codeberg.org
-      dry_run: true
-      output: type=oci,dest=thatonecalculator-calckey.tar
+      repo: thatonecalculator/calckey
+      tags: test
+      dockerfile: Dockerfile
+      no_push: true
+    when:
+      event: commit
 
 branches:
   include: [ master, develop ]
