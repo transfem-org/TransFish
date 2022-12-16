@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://i.calckey.cloud/">
-	<img src="./.github/title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
+	<img src="./title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
 </a>
 
 **🌎 **[Calckey](https://i.calckey.cloud/)** is an open source, decentralized social media platform that's free forever! 🚀**
