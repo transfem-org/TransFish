@@ -6,8 +6,6 @@ pipeline:
       tags: test
       dockerfile: Dockerfile
       no_push: true
-    when:
-      event: commit
 
 branches:
   include: [ master, develop ]
