@@ -21,7 +21,7 @@ defineProps<{
 	padding: 16px;
 	font-size: 90%;
 	background: var(--infoWarnBg);
-	color: var(--infoWarnFg);
+	color: var(--error);
 	border-radius: var(--radius);
 
 	> .link {
