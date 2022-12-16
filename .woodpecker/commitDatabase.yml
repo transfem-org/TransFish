@@ -1,13 +1,4 @@
 pipeline:
-  build:
-    image: node:${NODE_VERSION}
-    commands:
-      - corepack enable
-      - yarn install
-      - yarn build
-    environment:
-      - DATABASE=12
-      - YARN_ENABLE_IMMUTABLE_INSTALLS=false
   migrate:
     image: node:19.2.0
     commands:
@@ -18,14 +9,6 @@ pipeline:
     environment:
       - YARN_ENABLE_IMMUTABLE_INSTALLS=false
 
-matrix:
-  NODE_VERSION:
-    - 18.12.1
-    - 19.2.0
-  DATABASE:
-    - 12
-    - latest
-
 services:
   database:
     image: postgres:${DATABASE}
@@ -33,6 +16,11 @@ services:
       - POSTGRES_PASSWORD=test
   redis:
     image: redis
+
+matrix:
+  DATABASE:
+    - 12
+    - latest
 
 branches:
   include: [ master, develop, feature/* ]

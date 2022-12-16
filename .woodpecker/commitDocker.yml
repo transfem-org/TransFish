@@ -1,0 +1,11 @@
+pipeline:
+  docker-build:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: codeberg.org/thatonecalculator/calckey
+      registry: codeberg.org
+      dry_run: true
+      output: type=oci,dest=thatonecalculator-calckey.tar
+
+branches:
+  include: [ master, develop ]
