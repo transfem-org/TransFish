@@ -306,6 +306,7 @@ import * as ep___users_groups_transfer from './endpoints/users/groups/transfer.j
 import * as ep___users_groups_update from './endpoints/users/groups/update.js';
 import * as ep___users_lists_create from './endpoints/users/lists/create.js';
 import * as ep___users_lists_delete from './endpoints/users/lists/delete.js';
+import * as ep___users_lists_delete_all from './endpoints/users/lists/delete-all.js';
 import * as ep___users_lists_list from './endpoints/users/lists/list.js';
 import * as ep___users_lists_pull from './endpoints/users/lists/pull.js';
 import * as ep___users_lists_push from './endpoints/users/lists/push.js';
@@ -323,6 +324,10 @@ import * as ep___users_show from './endpoints/users/show.js';
 import * as ep___users_stats from './endpoints/users/stats.js';
 import * as ep___fetchRss from './endpoints/fetch-rss.js';
 import * as ep___admin_driveCapOverride from './endpoints/admin/drive-capacity-override.js';
+
+//Calckey Move
+import * as ep___i_move from './endpoints/i/move.js';
+import * as ep___i_known_as from './endpoints/i/known-as.js';
 
 const eps = [
 	['admin/meta', ep___admin_meta],
@@ -488,6 +493,8 @@ const eps = [
 	['hashtags/trend', ep___hashtags_trend],
 	['hashtags/users', ep___hashtags_users],
 	['i', ep___i],
+	['i/known-as', ep___i_known_as],
+	['i/move', ep___i_move],
 	['i/2fa/done', ep___i_2fa_done],
 	['i/2fa/key-done', ep___i_2fa_keyDone],
 	['i/2fa/password-less', ep___i_2fa_passwordLess],
@@ -631,6 +638,7 @@ const eps = [
 	['users/groups/update', ep___users_groups_update],
 	['users/lists/create', ep___users_lists_create],
 	['users/lists/delete', ep___users_lists_delete],
+	['users/lists/delete-all', ep___users_lists_delete_all],
 	['users/lists/list', ep___users_lists_list],
 	['users/lists/pull', ep___users_lists_pull],
 	['users/lists/push', ep___users_lists_push],
