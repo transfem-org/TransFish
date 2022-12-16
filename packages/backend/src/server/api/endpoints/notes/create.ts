@@ -169,7 +169,7 @@ export const paramDef = {
 
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
-	if(user.movedToUri) throw new ApiError(meta.errors.accountLocked);
+	if(user.movedToUri != null) throw new ApiError(meta.errors.accountLocked);
 	let visibleUsers: User[] = [];
 	if (ps.visibleUserIds) {
 		visibleUsers = await Users.findBy({
