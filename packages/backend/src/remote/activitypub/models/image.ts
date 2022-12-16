@@ -39,8 +39,8 @@ export async function createImage(actor: CacheableRemoteUser, value: any): Promi
 	});
 
 	if (file.isLink) {
-	    // If the URL is different, it means that the same image was previously
-	    // registered with a different URL, so update the URL
+	  // If the URL is different, it means that the same image was previously
+	  // registered with a different URL, so update the URL
 		if (file.url !== image.url) {
 			await DriveFiles.update({ id: file.id }, {
 				url: image.url,

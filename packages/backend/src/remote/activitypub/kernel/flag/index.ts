@@ -7,8 +7,8 @@ import { genId } from '@/misc/gen-id.js';
 
 export default async (actor: CacheableRemoteUser, activity: IFlag): Promise<string> => {
 	// The object is `(User | Note) | (User | Note) []`, but it cannot be
-        // matched with all patterns of the DB schema, so the target user is the first
-        // user and it is stored as a comment.
+  // matched with all patterns of the DB schema, so the target user is the first
+  // user and it is stored as a comment.
 	const uris = getApIds(activity.object);
 
 	const userIds = uris.filter(uri => uri.startsWith(config.url + '/users/')).map(uri => uri.split('/').pop()!);

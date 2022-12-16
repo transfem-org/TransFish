@@ -101,10 +101,10 @@ function validateActor(x: IObject, uri: string): IActor {
 }
 
 /**
-  * Fetch a Person.
-  *
-  * If the target Person is registered in Calckey, it will be returned.
-  */
+ * Fetch a Person.
+ *
+ * If the target Person is registered in Calckey, it will be returned.
+ */
 export async function fetchPerson(uri: string, resolver?: Resolver): Promise<CacheableUser | null> {
 	if (typeof uri !== 'string') throw new Error('uri is not string');
 
