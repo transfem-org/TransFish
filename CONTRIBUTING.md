@@ -5,7 +5,8 @@ We're glad you're interested in contributing Calckey! In this document you will 
 
 You can contribute without knowing how to code by helping translate here:
 
-[![Translation status](https://hosted.weblate.org/widgets/calckey/-/multi-auto.svg)](https://hosted.weblate.org/engage/calckey/)
+[![Translation status](https://hosted.weblate.org/widgets/calckey/-/287x66-grey.png)](https://hosted.weblate.org/engage/calckey/)
+[![Translation bars](https://hosted.weblate.org/widgets/calckey/-/multi-auto.svg)](https://hosted.weblate.org/engage/calckey/)
 
 ## Roadmap
 See [ROADMAP.md](./ROADMAP.md)
