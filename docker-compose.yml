@@ -29,7 +29,7 @@ services:
 
   db:
     restart: unless-stopped
-    image: docker.io/postgres:12.2-alpine
+    image: docker.io/postgres:13.9-alpine
     networks:
       - calcnet
     env_file:

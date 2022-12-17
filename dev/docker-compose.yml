@@ -27,7 +27,7 @@ services:
 
   db:
     restart: always
-    image: docker.io/postgres:12.2-alpine
+    image: docker.io/postgres:13.9-alpine
     networks:
       - network
     env_file:
