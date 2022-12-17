@@ -49,6 +49,7 @@
 - 📜 Instance list: <https://calckey.fediverse.observer/list>
 - 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
 - 🐋 Docker Hub: <https://hub.docker.com/r/thatonecalculator/calckey>
+- ✍️ Weblate: <https://hosted.weblate.org/engage/calckey/>
 
 # 🌠 Getting started
 
@@ -63,13 +64,13 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 ### 😗 Optional dependencies
 
-- 📗 [FFmpeg](https://ffmpeg.org/) for video transcoding
-- 🔍 [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
+- [FFmpeg](https://ffmpeg.org/) for video transcoding
+- [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
   - OpenSearch/Sonic are not supported as of right now
-- 🥡 Management (choose one of the following)
+- Management (choose one of the following)
   - 🛰️ [pm2](https://pm2.io/)
   - 🐳 [Docker](https://docker.com)
-  - 📐 Service manager (systemd, openrc, etc)
+  - Service manager (systemd, openrc, etc)
 
 ### 🏗️ Build dependencies
 
