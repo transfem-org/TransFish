@@ -9,7 +9,7 @@ services:
       - redis
 #      - es
     ports:
-      - "3000:3000"
+      - "4000:4000"
     networks:
       - calcnet
 #     - web
@@ -33,7 +33,7 @@ services:
     networks:
       - calcnet
     env_file:
-      - config/docker.env
+      - .config/docker.env
     volumes:
       - ./db:/var/lib/postgresql/data
 
