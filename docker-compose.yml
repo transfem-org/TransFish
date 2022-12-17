@@ -17,7 +17,7 @@ services:
       NODE_ENV: production
     volumes:
       - ./files:/calckey/files
-      - ./config:/calckey/.config:ro
+      - ./.config:/calckey/.config:ro
 
   redis:
     restart: unless-stopped
