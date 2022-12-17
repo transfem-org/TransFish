@@ -29,6 +29,11 @@
 							{{ i18n.ts._aboutMisskey.donate }}
 							<template #suffix>Donate</template>
 						</FormLink>
+						<FormLink to="https://hosted.weblate.org/engage/calckey/" external>
+							<template #icon><i class="ph-translate-bold ph-lg"></i></template>
+							{{ i18n.ts._aboutMisskey.translation }}
+							<template #suffix>Translate</template>
+						</FormLink>
 					</div>
 				</FormSection>
 				<FormSection>
