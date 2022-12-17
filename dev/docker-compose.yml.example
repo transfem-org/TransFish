@@ -4,6 +4,7 @@ services:
   web:
     image: docker.io/thatonecalculator/calckey
     build: ..
+    container_name: calckey_web
     restart: always
     depends_on:
       - db
@@ -13,12 +14,14 @@ services:
       - "3000:3000"
     networks:
       - network
+#      - web
     volumes:
       - ../files:/calckey/files
       - ../.config:/calckey/.config:ro
 
   redis:
     restart: always
+    container_name: calckey_redis
     image: docker.io/redis:7.0-alpine
     networks:
       - network
@@ -27,6 +30,7 @@ services:
 
   db:
     restart: always
+    container_name: calckey_db
     image: docker.io/postgres:12.2-alpine
     networks:
       - network
@@ -48,3 +52,6 @@ services:
 
 networks:
   network:
+#  web:
+#    external:
+#      name: web
