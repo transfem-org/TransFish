@@ -4,6 +4,9 @@
 
 # Intelij-IDEA
 /.idea
+packages/backend/.idea/backend.iml
+packages/backend/.idea/modules.xml
+packages/backend/.idea/vcs.xml
 
 # Node.js
 node_modules
@@ -62,8 +65,3 @@ packages/backend/assets/instance.css
 *.blend3
 *.blend4
 *.blend5
-
-#intelij stuff
-packages/backend/.idea/backend.iml
-packages/backend/.idea/modules.xml
-packages/backend/.idea/vcs.xml
