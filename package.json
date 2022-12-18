@@ -14,7 +14,7 @@
 	],
 	"private": true,
 	"scripts": {
-		"rebuild": "yarn clean && yarn build",
+		"rebuild": "yarn clean && yarn workspaces foreach run build && yarn run gulp",
 		"build": "yarn workspaces foreach run build && yarn run gulp",
 		"start": "yarn workspace backend run start",
 		"start:test": "yarn workspace backend run start:test",
