@@ -5,11 +5,11 @@
 
 **🌎 **[Calckey](https://i.calckey.cloud/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
-[![status-badge](https://ci.codeberg.org/api/badges/thatonecalculator/calckey/status.svg)](https://ci.codeberg.org/thatonecalculator/calckey)
+[![status-badge](https://ci.codeberg.org/api/badges/calckey/calckey/status.svg)](https://ci.codeberg.org/calckey/calckey)
 [![liberapay-badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
 [![translate-badge](https://hosted.weblate.org/widgets/calckey/-/svg-badge.svg)](https://hosted.weblate.org/engage/calckey/)
 [![docker-badge](https://img.shields.io/docker/pulls/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
-[![codeberg-badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-blue.svg?logo=codeberg&logoColor=white)](https://codeberg.org/thatonecalculator/calckey/)
+[![codeberg-badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-blue.svg?logo=codeberg&logoColor=white)](https://codeberg.org/calckey/calckey/)
 
 </div>
 
@@ -82,7 +82,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 ## 👀 Get folder ready
 
 ```sh
-git clone https://codeberg.org/thatonecalculator/calckey.git
+git clone https://codeberg.org/calckey/calckey.git
 cd calckey/
 # git checkout main # if you want only stable versions
 ```

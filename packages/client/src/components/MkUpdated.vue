@@ -21,7 +21,7 @@ const modal = ref<InstanceType<typeof MkModal>>();
 
 const whatIsNew = () => {
 	modal.value.close();
-	window.open('https://codeberg.org/thatonecalculator/calckey/releases', '_blank');
+	window.open('https://codeberg.org/calckey/calckey/releases', '_blank');
 };
 </script>
 
