@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="instanceIcon" :src="defaultStore.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon"/>
+							<img :src="defaultStore.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -186,21 +186,19 @@ function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
 
-onMounted(() => {
-	instanceIcon.addEventListener('click', async () => {
-		iconClicks++;
+async function easterEgg() {
+	iconClicks++;
+	instanceIcon.style.animation = 'unset';
+	await sleep(0.1);
+	const normalizedCount = (iconClicks % 3) + 1;
+	instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
+	if (iconClicks % 3 === 0) {
+		defaultStore.set('woozyMode', !defaultStore.woozyMode);
+		await sleep(0.4);
 		instanceIcon.style.animation = 'unset';
-		await sleep(0.1);
-		const normalizedCount = (iconClicks % 3) + 1;
-		instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
-		if (iconClicks % 3 === 0) {
-			defaultStore.set('woozyMode', !defaultStore.woozyMode);
-			await sleep(0.4);
-			instanceIcon.style.animation = 'unset';
-			instanceIcon.style.animation = 'swpinY 0.9s 1';
-		}
-	});
-});
+		instanceIcon.style.animation = 'swpinY 0.9s 1';
+	}
+}
 
 </script>
 
