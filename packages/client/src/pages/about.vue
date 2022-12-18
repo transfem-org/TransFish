@@ -170,15 +170,17 @@ async function sleep(seconds) {
 	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
 
-async function easterEgg(): Promise<void> {
+function easterEgg() {
 	iconClicks++;
 	instanceIcon.style.animation = 'unset';
-	await sleep(0.1);
+	console.log(iconClicks);
+	sleep(0.1);
 	const normalizedCount = (iconClicks % 3) + 1;
 	instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
 	if (iconClicks % 3 === 0) {
+		console.log('here');
 		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
-		await sleep(0.4);
+		sleep(0.4);
 		instanceIcon.style.animation = 'unset';
 		instanceIcon.style.animation = 'swpinY 0.9s 1';
 	}
