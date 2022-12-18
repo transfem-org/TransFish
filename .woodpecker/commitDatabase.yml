@@ -24,4 +24,4 @@ matrix:
     - latest
 
 branches:
-  include: [ master, develop, feature/* ]
+  include: [ main, develop, feature/* ]
