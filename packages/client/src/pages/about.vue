@@ -172,6 +172,10 @@ async function sleep(seconds) {
 	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
 
+if (defaultStore.state.woozyMode) {
+	instanceIcon.src = '/static-assets/woozy.png';
+}
+
 function easterEgg() {
 	iconClicks++;
 	instanceIconAnimation = 'noAnimation';
