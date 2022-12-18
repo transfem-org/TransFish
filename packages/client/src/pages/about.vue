@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="icon" :src="defaultStore.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon"/>
+							<img ref="instanceIcon" :src="defaultStore.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -120,7 +120,7 @@ withDefaults(defineProps<{
 });
 
 let stats = $ref(null);
-let icon = $ref<HTMLElement>(null);
+let instanceIcon = $ref<HTMLImageElement>();
 let iconClicks = 0;
 let tabs = ['overview', 'emojis', 'charts'];
 let tab = $ref(tabs[0]);
@@ -187,16 +187,17 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	icon.addEventListener('click', async () => {
+	instanceIcon.addEventListener('click', async () => {
 		iconClicks++;
-		icon.style.animation = 'unset';
+		instanceIcon.style.animation = 'unset';
 		await sleep(0.1);
-		icon.style.animation = `iconShake${(iconClicks % 3) + 1} 1 0.3s`;
+		const normalizedCount = (iconClicks % 3) + 1;
+		instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
 		if (iconClicks % 3 === 0) {
 			defaultStore.set('woozyMode', !defaultStore.woozyMode);
-			await sleep(1.5);
-			icon.style.animation = 'unset';
-			icon.style.animation = 'swpinY 1 0.6s';
+			await sleep(0.4);
+			instanceIcon.style.animation = 'unset';
+			instanceIcon.style.animation = 'swpinY 0.9s 1';
 		}
 	});
 });
