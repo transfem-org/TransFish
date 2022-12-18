@@ -122,7 +122,7 @@ withDefaults(defineProps<{
 
 let stats = $ref(null);
 let instanceIcon = $ref<HTMLImageElement>();
-let instanceIconAnimation = $ref('none');
+let instanceIconAnimation = 'none';
 let iconClicks = 0;
 let tabs = ['overview', 'emojis', 'charts'];
 let tab = $ref(tabs[0]);
