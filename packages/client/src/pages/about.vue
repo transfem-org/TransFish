@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="instanceIcon" :src="!defaultStore.state.woozyMode ? '/static-assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
+							<img ref="instanceIcon" :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -109,6 +109,7 @@ import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import { iAmModerator } from '@/account';
+import { instance } from '@/instance';
 import { defaultStore } from '@/store';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
@@ -172,7 +173,7 @@ async function sleep(seconds) {
 
 function easterEgg() {
 	iconClicks++;
-	instanceIcon.style.animation = 'unset';
+	instanceIcon.style.animation = '';
 	console.log(iconClicks);
 	sleep(0.1);
 	const normalizedCount = (iconClicks % 3) + 1;
@@ -181,8 +182,14 @@ function easterEgg() {
 		console.log('here');
 		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
 		sleep(0.4);
-		instanceIcon.style.animation = 'unset';
+		instanceIcon.style.animation = '';
 		instanceIcon.style.animation = 'swpinY 0.9s 1';
+		if (iconClicks % 6 === 0) {
+			instanceIcon.src = instance.iconUrl || instance.faviconUrl || '/favicon.ico'
+		}
+		else {
+			instanceIcon.src = '/static-assets/woozy.png';
+		}
 	}
 }
 
