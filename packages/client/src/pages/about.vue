@@ -173,17 +173,17 @@ async function sleep(seconds) {
 
 function easterEgg() {
 	iconClicks++;
-	instanceIcon.style.animation = '';
+	instanceIcon.style.setProperty('--icon-animation', 'none');
 	console.log(iconClicks);
 	sleep(0.1);
 	const normalizedCount = (iconClicks % 3) + 1;
-	instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
+	instanceIcon.style.setProperty('--icon-animation', `iconShake${normalizedCount} 0.${normalizedCount}s`);
 	if (iconClicks % 3 === 0) {
 		console.log('here');
 		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
 		sleep(0.4);
-		instanceIcon.style.animation = '';
-		instanceIcon.style.animation = 'swpinY 0.9s 1';
+		instanceIcon.style.setProperty('--icon-animation', 'none');
+		instanceIcon.style.setProperty('--icon-animation', 'swpinY 0.9s');
 		if (iconClicks % 6 === 0) {
 			instanceIcon.src = instance.iconUrl || instance.faviconUrl || '/favicon.ico'
 		}
@@ -258,6 +258,10 @@ function syncSlide(index) {
 	100% { transform: perspective(128px) rotateY(360deg); }
 }
 
+:root {
+	--icon-animation: none;
+}
+
 .fwhjspax {
 	text-align: center;
 	border-radius: 10px;
@@ -273,6 +277,7 @@ function syncSlide(index) {
 			margin: 16px auto 0 auto;
 			height: 64px;
 			border-radius: 8px;
+			animation: var(--icon-animation);
 		}
 
 		> .name {
