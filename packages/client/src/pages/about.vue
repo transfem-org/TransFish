@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="instanceIcon" :src="$store.state.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
+							<img ref="instanceIcon" :src="defaultStore.state.woozyMode === true ? '/static-assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -166,6 +166,10 @@ definePageMetadata(computed(() => ({
 	icon: 'ph-info-bold ph-lg',
 })));
 
+async function sleep(seconds) {
+	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
 async function easterEgg(): Promise<void> {
 	iconClicks++;
 	instanceIcon.style.animation = 'unset';
@@ -181,10 +185,6 @@ async function easterEgg(): Promise<void> {
 }
 
 let swiperRef = null;
-
-async function sleep(seconds) {
-	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
-}
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
