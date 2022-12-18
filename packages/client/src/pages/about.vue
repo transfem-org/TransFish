@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="instanceIcon" :src="defaultStore.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
+							<img ref="instanceIcon" :src="$store.state.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -125,7 +125,6 @@ let iconClicks = 0;
 let tabs = ['overview', 'emojis', 'charts'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
-watch(defaultStore.woozyMode, () => {});
 
 if (iAmModerator) tabs.push('federation');
 
@@ -174,7 +173,7 @@ async function easterEgg(): Promise<void> {
 	const normalizedCount = (iconClicks % 3) + 1;
 	instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
 	if (iconClicks % 3 === 0) {
-		defaultStore.set('woozyMode', !defaultStore.woozyMode);
+		defaultStore.state.set('woozyMode', !defaultStore.state.woozyMode);
 		await sleep(0.4);
 		instanceIcon.style.animation = 'unset';
 		instanceIcon.style.animation = 'swpinY 0.9s 1';
