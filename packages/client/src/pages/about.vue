@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="instanceIcon" :src="defaultStore.state.woozyMode === true ? '/static-assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
+							<img ref="instanceIcon" :src="!defaultStore.state.woozyMode ? '/static-assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -177,7 +177,7 @@ async function easterEgg(): Promise<void> {
 	const normalizedCount = (iconClicks % 3) + 1;
 	instanceIcon.style.animation = `iconShake${normalizedCount} 0.${normalizedCount}s 1`;
 	if (iconClicks % 3 === 0) {
-		defaultStore.state.set('woozyMode', !defaultStore.state.woozyMode);
+		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
 		await sleep(0.4);
 		instanceIcon.style.animation = 'unset';
 		instanceIcon.style.animation = 'swpinY 0.9s 1';
