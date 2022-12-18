@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img ref="instanceIcon" :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" @click="easterEgg"/>
+							<img ref="instanceIcon" :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon" :class="instanceIconAnimation" @click="easterEgg"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -174,17 +174,17 @@ async function sleep(seconds) {
 
 function easterEgg() {
 	iconClicks++;
-	instanceIconAnimation = 'none';
-	console.log(iconClicks);
+	instanceIconAnimation = 'noAnimation';
+	console.log(instanceIconAnimation);
 	sleep(0.1);
 	const normalizedCount = (iconClicks % 3) + 1;
-	instanceIconAnimation = `iconShake${normalizedCount} 0.${normalizedCount}s`;
+	instanceIconAnimation = `shake${normalizedCount}`;
 	if (iconClicks % 3 === 0) {
-		console.log('here');
 		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
 		sleep(0.4);
-		instanceIconAnimation = 'none';
-		instanceIconAnimation = 'swpinY 0.9s';
+		instanceIconAnimation = 'noAnimation';
+		instanceIconAnimation = 'doSpinY';
+		console.log(instanceIconAnimation);
 		if (iconClicks % 6 === 0) {
 			instanceIcon.src = instance.iconUrl || instance.faviconUrl || '/favicon.ico'
 		}
@@ -274,7 +274,26 @@ function syncSlide(index) {
 			margin: 16px auto 0 auto;
 			height: 64px;
 			border-radius: 8px;
-			animation: v-bind('instanceIconAnimation');
+
+			&.noAnimation {
+				animation: none;
+			}
+
+			&.shake1 {
+				animation: iconShake1 0.1s 1;
+			}
+
+			&.shake2 {
+				animation: iconShake2 0.2s 1;
+			}
+
+			&.shake3 {
+				animation: iconShake3 0.3s 1;
+			}
+
+			&.doSpinY {
+				animation: spinY 0.9s 1;
+			}
 		}
 
 		> .name {
