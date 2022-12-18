@@ -14,7 +14,7 @@
 				<div class="_formRoot">
 					<div class="_formBlock fwhjspax" :style="{ backgroundImage: `url(${ $instance.bannerUrl })` }">
 						<div class="content">
-							<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
+							<img ref="icon" :src="defaultStore.woozyMode ? '/assets/woozy.png' : $instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" aria-label="none" class="icon"/>
 							<div class="name">
 								<b>{{ $instance.name || host }}</b>
 							</div>
@@ -113,16 +113,19 @@ import { defaultStore } from '@/store';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
 	initialTab?: string;
 }>(), {
 	initialTab: 'overview',
 });
 
 let stats = $ref(null);
+let icon = $ref<HTMLElement>(null);
+let iconClicks = 0;
 let tabs = ['overview', 'emojis', 'charts'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
+watch(defaultStore.woozyMode, () => {});
 
 if (iAmModerator) tabs.push('federation');
 
@@ -166,6 +169,10 @@ definePageMetadata(computed(() => ({
 
 let swiperRef = null;
 
+async function sleep(seconds) {
+	return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
 	syncSlide(tabs.indexOf(tab));
@@ -178,9 +185,72 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+onMounted(() => {
+	icon.addEventListener('click', async () => {
+		iconClicks++;
+		icon.style.animation = 'unset';
+		await sleep(0.1);
+		icon.style.animation = `iconShake${(iconClicks % 3) + 1} 1 0.3s`;
+		if (iconClicks % 3 === 0) {
+			defaultStore.set('woozyMode', !defaultStore.woozyMode);
+			await sleep(1.5);
+			icon.style.animation = 'unset';
+			icon.style.animation = 'swpinY 1 0.6s';
+		}
+	});
+});
+
 </script>
 
 <style lang="scss" scoped>
+@keyframes iconShake1 {
+	0% { transform: translate(2px, 0px) rotate(-1deg) }
+	10% { transform: translate(2px, -3px) rotate(5deg) }
+	20% { transform: translate(-1px, -3px) rotate(3deg) }
+	30% { transform: translate(-2px, 0px) rotate(-1deg) }
+	40% { transform: translate(-2px, -1px) rotate(4deg) }
+	50% { transform: translate(-1px, -1px) rotate(1deg) }
+	60% { transform: translate(-2px, 0px) rotate(-8deg) }
+	70% { transform: translate(1px, 2px) rotate(-2deg) }
+	80% { transform: translate(-1px, 2px) rotate(4deg) }
+	90% { transform: translate(-1px, 1px) rotate(11deg) }
+	100% { transform: translate(-3px, -3px) rotate(-5deg) }
+}
+
+@keyframes iconShake2 {
+	0% { transform: translate(-1px, 5px) rotate(33deg) }
+	10% { transform: translate(-2px, 7px) rotate(20deg) }
+	20% { transform: translate(8px, 5px) rotate(31deg) }
+	30% { transform: translate(-2px, 5px) rotate(3deg) }
+	40% { transform: translate(4px, 6px) rotate(16deg) }
+	50% { transform: translate(8px, -3px) rotate(19deg) }
+	60% { transform: translate(7px, -2px) rotate(0deg) }
+	70% { transform: translate(4px, 4px) rotate(8deg) }
+	80% { transform: translate(7px, -3px) rotate(13deg) }
+	90% { transform: translate(6px, 7px) rotate(4deg) }
+	100% { transform: translate(4px, -2px) rotate(-2deg) }
+}
+
+@keyframes iconShake3 {
+	0% { transform: translate(12px, -2px) rotate(57deg) }
+	10% { transform: translate(10px, 2px) rotate(12deg) }
+	20% { transform: translate(10px, 4px) rotate(3deg) }
+	30% { transform: translate(17px, 11px) rotate(15deg) }
+	40% { transform: translate(12px, 20px) rotate(-11deg) }
+	50% { transform: translate(5px, 12px) rotate(43deg) }
+	60% { transform: translate(16px, 8px) rotate(-4deg) }
+	70% { transform: translate(14px, 11px) rotate(22deg) }
+	80% { transform: translate(9px, 19px) rotate(-3deg) }
+	90% { transform: translate(0px, 12px) rotate(-3deg) }
+	100% { transform: translate(17px, 3px) rotate(57deg) }
+}
+
+@keyframes spinY {
+	0% { transform: perspective(128px) rotateY(0deg); }
+	100% { transform: perspective(128px) rotateY(360deg); }
+}
+
 .fwhjspax {
 	text-align: center;
 	border-radius: 10px;
