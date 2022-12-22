@@ -7,10 +7,10 @@ import Router from '@koa/router';
 import multer from '@koa/multer';
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
-
 import { Instances, AccessTokens, Users } from '@/models/index.js';
 import config from '@/config/index.js';
 import endpoints from './endpoints.js';
+import compatibility from './compatibility.js';
 import handler from './api-handler.js';
 import signup from './private/signup.js';
 import signin from './private/signin.js';
@@ -34,7 +34,10 @@ app.use(async (ctx, next) => {
 
 app.use(bodyParser({
 	// リクエストが multipart/form-data でない限りはJSONだと見なす
-	detectJSON: ctx => !ctx.is('multipart/form-data'),
+	detectJSON: ctx => !(
+		ctx.is('multipart/form-data') ||
+		ctx.is('application/x-www-form-urlencoded')
+	)
 }));
 
 // Init multer instance
@@ -52,7 +55,7 @@ const router = new Router();
 /**
  * Register endpoint handlers
  */
-for (const endpoint of endpoints) {
+for (const endpoint of [...endpoints, ...compatibility]) {
 	if (endpoint.meta.requireFile) {
 		router.post(`/${endpoint.name}`, upload.single('file'), handler.bind(null, endpoint));
 	} else {
