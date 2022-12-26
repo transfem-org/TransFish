@@ -2,7 +2,7 @@ import { db } from '@/db/postgre.js';
 import { Instance } from '@/models/entities/instance.js';
 import { Packed } from '@/misc/schema.js';
 import { fetchMeta } from '@/misc/fetch-meta.js';
-import { shouldBlockInstance } from '@/misc/should-block-instance';
+import { shouldBlockInstance } from '@/misc/should-block-instance.js';
 
 export const InstanceRepository = db.getRepository(Instance).extend({
 	async pack(
