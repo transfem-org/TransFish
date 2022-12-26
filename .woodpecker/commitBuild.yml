@@ -4,7 +4,7 @@ pipeline:
     commands:
       - corepack enable
       - yarn set version berry
-      - yarn install --frozen-lockfile
+      - yarn install --immutable
       - yarn build
 
 matrix:
