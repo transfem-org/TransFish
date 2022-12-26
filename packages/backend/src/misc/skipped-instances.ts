@@ -3,6 +3,7 @@ import { fetchMeta } from '@/misc/fetch-meta.js';
 import { Instances } from '@/models/index.js';
 import { Instance } from '@/models/entities/instance.js';
 import { DAY } from '@/const.js';
+import { shouldBlockInstance } from './should-block-instance';
 
 // Threshold from last contact after which an instance will be considered
 // "dead" and should no longer get activities delivered to it.
@@ -14,11 +15,12 @@ const deadThreshold = 7 * DAY;
  * @param hosts array of punycoded instance hosts
  * @returns array of punycoed instance hosts that should be skipped (subset of hosts parameter)
  */
-export async function skippedInstances(hosts: Array<Instace['host']>): Array<Instance['host']> {
+export async function skippedInstances(hosts: Instance['host'][]): Promise<Instance['host'][]> {
 	// first check for blocked instances since that info may already be in memory
-	const { blockedHosts } = await fetchMeta();
-
-	const skipped = hosts.filter(host => blockedHosts.includes(host));
+	const meta = await fetchMeta();
+	const shouldSkip = await Promise.all(hosts.map(host => shouldBlockInstance(host, meta)));
+	const skipped = hosts.filter((_, i) => shouldSkip[i]);
+	
 	// if possible return early and skip accessing the database
 	if (skipped.length === hosts.length) return hosts;	
 
@@ -47,7 +49,7 @@ export async function skippedInstances(hosts: Array<Instace['host']>): Array<Ins
  * @param host punycoded instance host
  * @returns whether the given host should be skipped
  */
-export async function shouldSkipInstance(host: Instance['host']): boolean {
+export async function shouldSkipInstance(host: Instance['host']): Promise<boolean> {
 	const skipped = await skippedInstances([host]);
 	return skipped.length > 0;
 }
