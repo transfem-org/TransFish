@@ -1,0 +1,9 @@
+pipeline:
+  build:
+    image: node:latest
+    commands:
+      - corepack enable
+      - yarn install --frozen-lockfile
+
+when:
+  event: pull_request

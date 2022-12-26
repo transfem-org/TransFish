@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:19-alpine
 ENV YARN_CHECKSUM_BEHAVIOR=update
 ARG NODE_ENV=production
 WORKDIR /calckey
@@ -15,9 +15,8 @@ RUN corepack enable
 RUN yarn set version berry
 RUN yarn plugin import workspace-tools
 
-# Install Dependencies
-RUN yarn install
-RUN yarn rebuild
+# Build project (pnp dependencies are installed)
+RUN yarn run rebuild
 
 # Remove git files
 RUN rm -rf .git
