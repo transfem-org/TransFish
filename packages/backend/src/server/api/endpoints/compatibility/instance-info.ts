@@ -181,7 +181,7 @@ const getContact = async (
 		following_count: user.followingCount,
 		statuses_count: user.notesCount,
 		last_status_at: user.lastActiveDate?.toISOString(),
-		emojis: emojis ? user.emojis.map(e => ({
+		emojis: emojis ? user.emojis.filter(e => e in emojis).map(e => ({
 			shortcode: e,
 			static_url: `${config.url}/files/${emojis[e].publicUrl}`,
 			url: `${config.url}/files/${emojis[e].publicUrl}`,
