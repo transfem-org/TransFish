@@ -1,0 +1,10 @@
+pipeline:
+  build:
+    image: node:latest
+    commands:
+      - corepack enable
+      - yarn set version berry
+      - yarn install --immutable
+
+when:
+  event: pull_request

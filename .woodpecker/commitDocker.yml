@@ -9,3 +9,6 @@ pipeline:
 
 branches:
   include: [ main, develop ]
+
+depends_on:
+  - prSecurityCheck

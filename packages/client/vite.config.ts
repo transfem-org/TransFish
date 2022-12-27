@@ -69,5 +69,8 @@ export default defineConfig(({ command, mode }) => {
 			sourcemap: process.env.NODE_ENV !== 'production',
 			reportCompressedSize: false,
 		},
+		optimizeDeps: {
+			auto: true
+		},
 	};
 });
