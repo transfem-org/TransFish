@@ -14,6 +14,3 @@ matrix:
 
 branches:
   include: [ main, develop, feature/* ]
-
-depends_on:
-  - prSecurityCheck
