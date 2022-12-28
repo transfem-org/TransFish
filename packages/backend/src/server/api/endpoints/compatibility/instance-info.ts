@@ -184,7 +184,7 @@ const getContact = async (
 		emojis: emojis ? user.emojis.filter(e => e in emojis).map(e => ({
 			shortcode: e,
 			static_url: emojis[e].publicUrl,
-			url: emojis[e].publicUrl,
+			url: emojis[e].originalUrl,
 			visible_in_picker: true,
 		})) : [],
 	};
