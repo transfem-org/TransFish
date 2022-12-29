@@ -6,7 +6,7 @@ import { URL } from 'url';
 import { toPuny } from '@/misc/convert-host.js';
 import DbResolver from '@/remote/activitypub/db-resolver.js';
 import { getApId } from '@/remote/activitypub/type.js';
-import { shouldBlockInstance } from '@/misc/should-block-instance';
+import { shouldBlockInstance } from '@/misc/should-block-instance.js';
 
 
 export default async function checkFetch(req: IncomingMessage): Promise<number> {
