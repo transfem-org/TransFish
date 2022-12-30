@@ -70,7 +70,7 @@ async function doMarkRead() {
 		return true
 	}
 
-	throw new Error(i18n.ts.failedToMarkAsRead);
+	throw new Error('Failed to mark all as read');
 }
 
 async function markRead() {
