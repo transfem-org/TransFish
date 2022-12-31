@@ -61,6 +61,23 @@ function settings() {
 	router.push(`/my/antennas/${props.antennaId}`);
 }
 
+async function doMarkRead() {
+	const ret = await os.api('antennas/mark-read', {
+		antennaId: props.antennaId,
+	});
+
+	if (ret) {
+		return true
+	}
+
+	throw new Error('Failed to mark all as read');
+}
+
+async function markRead() {
+	await os.promiseDialog(doMarkRead());
+	router.push(`/my/antennas`);
+}
+
 function focus() {
 	tlEl.focus();
 }
@@ -79,6 +96,10 @@ const headerActions = $computed(() => antenna ? [{
 	icon: 'ph-gear-six-bold ph-lg',
 	text: i18n.ts.settings,
 	handler: settings,
+}, {
+	icon: 'ph-checks-bold ph-lg',
+	text: i18n.ts.markAllAsRead,
+	handler: markRead,
 }] : []);
 
 const headerTabs = $computed(() => []);
