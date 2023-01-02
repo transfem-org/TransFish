@@ -466,11 +466,10 @@ onUnmounted(() => {
 				}
 
 				> .description {
-					padding: 24px 24px 24px 154px;
+					padding: 72px 12px 2px 24px;
 					font-size: 0.95em;
 					top: -65px;
 					position: relative;
-					max-width: 400px;
 
 					> .empty {
 						margin: 0;
