@@ -50,12 +50,13 @@
 - 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
 - 🐋 Docker Hub: <https://hub.docker.com/r/thatonecalculator/calckey>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/calckey/>
+- 📦 Yunohost: <https://github.com/YunoHost-Apps/calckey_ynh>
 
 # 🌠 Getting started
 
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
-## 📦 Dependencies
+## 🧑‍💻 Dependencies
 
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19 recommended)
   - Install with [nvm](https://github.com/nvm-sh/nvm)
