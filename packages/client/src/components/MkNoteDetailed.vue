@@ -465,13 +465,39 @@ if (appearNote.replyId) {
 
 		> .main {
 
+			> .header {
+				display: contents;
+			}
+
 			> :not(.ticker) {
-				grid-column: 1 / span 3;
+				grid-column: 1 / 3;
 				width: 100%;
 				max-width: 100%;
-				// overflow hidden
 			}
+
+			> .name, .info {
+				grid-row: 1;
+			}
+
+			> .username, .ticker {
+				grid-row: 2;
+				align-self: flex-start;
+			}
+
+			> .name {
+				font-size: 1.2em !important;
+			}
+
+			> .ticker {
+				font-size: 0.9em;
+			}
+
 			> .body {
+				margin-top: .2em;
+				overflow: hidden;
+				margin-inline: -100px;
+				padding-inline: 100px;
+
 				> .cw {
 					cursor: default;
 					display: block;

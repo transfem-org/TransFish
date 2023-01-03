@@ -438,7 +438,7 @@ function readPromo() {
 			flex-shrink: 0;
 			display: block;
 			margin: 0 14px 8px 0;
-			grid-row: 1 / span 2;
+			grid-row: 1 / 2;
 			width: 48px;
 			height: 48px;
 			position: relative;
@@ -471,7 +471,7 @@ function readPromo() {
 			}
 
 			> .name {
-				font-size: 1.2em;
+				font-size: 1.2em !important;
 			}
 
 			> .ticker {

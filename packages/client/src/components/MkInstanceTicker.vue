@@ -6,7 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-import { } from 'vue';
 import { instanceName } from '@/config';
 import { instance as Instance } from '@/instance';
 
@@ -28,7 +27,7 @@ const instance = props.instance ?? {
 const themeColor = instance.themeColor ?? '#777777';
 
 const bg = {
-	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}00)`
+	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}11)`,
 };
 </script>
 
@@ -40,7 +39,6 @@ const bg = {
 	justify-self: flex-end;
 	padding: .1em .7em;
 	border-radius: 100px;
-	background-color: var(--accentedBg);
 	font-size: .8em;
 	text-shadow: 0 2px 2px black;
 
