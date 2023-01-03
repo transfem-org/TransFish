@@ -1,9 +1,10 @@
 <template>
 <header class="kkwtjztg">
 	<MkA v-user-preview="note.user.id" class="name" :to="userPage(note.user)">
-		<MkUserName :user="note.user"/>
+		<MkUserName :user="note.user" class="mkusername">
+			<span v-if="note.user.isBot" class="is-bot">bot</span>
+		</MkUserName>
 	</MkA>
-	<div v-if="note.user.isBot" class="is-bot">bot</div>
 	<div class="username"><MkAcct :user="note.user"/></div>
 	<div class="info">
 		<MkA class="created-at" :to="notePage(note)">
@@ -50,19 +51,19 @@ defineProps<{
 		text-decoration: none;
 		text-overflow: ellipsis;
 
+		>.mkusername >.is-bot {
+			flex-shrink: 0;
+			align-self: center;
+			margin: 0 .5em 0 0;
+			padding: 1px 6px;
+			font-size: 80%;
+			border: solid 0.5px var(--divider);
+			border-radius: 3px;
+		}
+
 		&:hover {
 			text-decoration: underline;
 		}
-	}
-
-	> .is-bot {
-		flex-shrink: 0;
-		align-self: center;
-		margin: 0 .5em 0 0;
-		padding: 1px 6px;
-		font-size: 80%;
-		border: solid 0.5px var(--divider);
-		border-radius: 3px;
 	}
 
 	> .username {
