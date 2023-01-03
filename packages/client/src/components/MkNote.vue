@@ -456,7 +456,7 @@ function readPromo() {
 			}
 
 			> :not(.ticker) {
-				grid-column: 1 / 3;
+				grid-column: 1 / span 3;
 				width: 100%;
 				max-width: 100%;
 			}
