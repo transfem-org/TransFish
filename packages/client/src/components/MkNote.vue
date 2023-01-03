@@ -451,9 +451,11 @@ function readPromo() {
 			min-width: 0;
 			display: contents;
 
-			> .header {
+			> header.header {
 				display: contents;
+			}
 
+			> .header {
 				> .name, .info {
 					grid-row: 1;
 				}
