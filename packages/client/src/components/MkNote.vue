@@ -424,9 +424,11 @@ function readPromo() {
 	}
 
 	> .article {
-		display: flex;
 		padding: 28px 32px 18px;
 		cursor: pointer;
+		display: grid;
+		align-items: center;
+		grid-template-columns: 58px;
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -436,20 +438,42 @@ function readPromo() {
 			flex-shrink: 0;
 			display: block;
 			margin: 0 14px 8px 0;
-			width: 52px;
-			height: 52px;
-			position: sticky;
+			grid-row: 1 / span 2;
+			width: 48px;
+			height: 48px;
+			position: relative;
 			/* For some reason this breaks avatar
 			positions on notes, commenting it for now */
 			/* top: var(--stickyTop, 0px); */
+			top: 0;
 			left: 0;
 		}
 
 		> .main {
 			flex: 1;
 			min-width: 0;
+			display: contents;
+
+			> .header {
+				display: contents;
+			}
+
+			> .name, .info {
+				grid-row: 1;
+			}
+
+			> .username, .ticker {
+				grid-row: 2;
+				font-size: .9em;
+				align-self: flex-start;
+			}
 
 			> .body {
+				margin-top: .2em;
+				overflow: hidden;
+				margin-inline: -100px;
+				padding-inline: 100px;
+
 				> .cw {
 					cursor: default;
 					display: block;

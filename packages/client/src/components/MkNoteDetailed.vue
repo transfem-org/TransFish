@@ -405,19 +405,28 @@ if (appearNote.replyId) {
 	}
 
 	> .article {
-		padding: 32px;
-		font-size: 1.2em;
+		padding: 28px 32px 18px;
+		cursor: pointer;
+		display: grid;
+		align-items: center;
+		grid-template-columns: 58px;
 
 		> .header {
 			display: flex;
 			position: relative;
 			margin-bottom: 16px;
+			display: contents;
 
 			> .avatar {
-				display: block;
 				flex-shrink: 0;
-				width: 52px;
-				height: 52px;
+				display: block;
+				margin: 0 14px 8px 0;
+				grid-row: 1 / span 2;
+				width: 48px;
+				height: 48px;
+				position: relative;
+				top: 0;
+				left: 0;
 			}
 
 			> .body {
@@ -427,6 +436,10 @@ if (appearNote.replyId) {
 				justify-content: center;
 				padding-left: 16px;
 				font-size: 0.95em;
+				margin-top: .2em;
+				overflow: hidden;
+				margin-inline: -100px;
+				padding-inline: 100px;
 
 				> .top {
 					> .name {
