@@ -465,9 +465,14 @@ function readPromo() {
 				max-width: 100%;
 			}
 
+			> .name, .info {
+				grid-row: 1;
+			}
+
 			> .username, .ticker {
 				grid-row: 2;
 				align-self: flex-start;
+				margin-left: auto;
 			}
 
 			> .ticker {
