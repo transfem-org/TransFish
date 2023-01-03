@@ -464,6 +464,13 @@ if (appearNote.replyId) {
 		}
 
 		> .main {
+
+			> :not(.ticker) {
+				grid-column: 1 / span 3;
+				width: 100%;
+				max-width: 100%;
+				// overflow hidden
+			}
 			> .body {
 				> .cw {
 					cursor: default;

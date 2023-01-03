@@ -458,6 +458,13 @@ function readPromo() {
 				display: contents;
 			}
 
+			> :not(.ticker) {
+				grid-column: 1 / span 3;
+				width: 100%;
+				max-width: 100%;
+				// overflow hidden
+			}
+
 			> .name, .info {
 				grid-row: 1;
 			}
