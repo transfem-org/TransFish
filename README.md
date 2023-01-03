@@ -92,7 +92,7 @@ cd calckey/
 ## 📩 Install dependencies
 
 ```sh
-# nvm install 18 && nvm alias default 18 && nvm use 18
+# nvm install 19 && nvm use 19
 corepack enable
 ```
 
