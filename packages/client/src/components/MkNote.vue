@@ -453,6 +453,10 @@ function readPromo() {
 
 			> .header {
 				display: contents;
+
+				> .name, .info {
+					grid-row: 1;
+				}
 			}
 
 			> :not(.ticker) {
@@ -461,17 +465,9 @@ function readPromo() {
 				max-width: 100%;
 			}
 
-			> .name, .info {
-				grid-row: 1;
-			}
-
 			> .username, .ticker {
 				grid-row: 2;
 				align-self: flex-start;
-			}
-
-			> .name {
-				font-size: 1.2em !important;
 			}
 
 			> .ticker {

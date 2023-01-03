@@ -45,7 +45,7 @@ defineProps<{
 		margin: 0 .5em 0 0;
 		padding: 0;
 		overflow: hidden;
-		font-size: 1em;
+		font-size: 1.2em;
 		font-weight: bold;
 		text-decoration: none;
 		text-overflow: ellipsis;
