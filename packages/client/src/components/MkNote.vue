@@ -459,6 +459,12 @@ function readPromo() {
 				> .name, .info {
 					grid-row: 1;
 				}
+
+				> .username {
+					grid-row: 2;
+					align-self: flex-start;
+					margin-left: auto;
+				}
 			}
 
 			> :not(.ticker) {
@@ -471,7 +477,7 @@ function readPromo() {
 				grid-row: 1;
 			}
 
-			> .username, .ticker {
+			> .ticker {
 				grid-row: 2;
 				align-self: flex-start;
 				margin-left: auto;
