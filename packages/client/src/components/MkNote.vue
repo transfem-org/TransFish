@@ -442,9 +442,6 @@ function readPromo() {
 			width: 48px;
 			height: 48px;
 			position: relative;
-			/* For some reason this breaks avatar
-			positions on notes, commenting it for now */
-			/* top: var(--stickyTop, 0px); */
 			top: 0;
 			left: 0;
 		}
@@ -459,10 +456,9 @@ function readPromo() {
 			}
 
 			> :not(.ticker) {
-				grid-column: 1 / span 3;
+				grid-column: 1 / 3;
 				width: 100%;
 				max-width: 100%;
-				// overflow hidden
 			}
 
 			> .name, .info {
@@ -474,8 +470,8 @@ function readPromo() {
 				align-self: flex-start;
 			}
 
-			> .username {
-				font-size: 1.1em;
+			> .name {
+				font-size: 1.2em;
 			}
 
 			> .ticker {
