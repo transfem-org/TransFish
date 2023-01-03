@@ -471,8 +471,15 @@ function readPromo() {
 
 			> .username, .ticker {
 				grid-row: 2;
-				font-size: .9em;
 				align-self: flex-start;
+			}
+
+			> .username {
+				font-size: 1.1em;
+			}
+
+			> .ticker {
+				font-size: 0.9em;
 			}
 
 			> .body {
