@@ -75,7 +75,6 @@ async function doMarkRead() {
 
 async function markRead() {
 	await os.promiseDialog(doMarkRead());
-	router.push(`/my/antennas`);
 }
 
 function focus() {
@@ -97,7 +96,7 @@ const headerActions = $computed(() => antenna ? [{
 	text: i18n.ts.settings,
 	handler: settings,
 }, {
-	icon: 'ph-checks-bold ph-lg',
+	icon: 'ph-check-bold ph-lg',
 	text: i18n.ts.markAllAsRead,
 	handler: markRead,
 }] : []);
