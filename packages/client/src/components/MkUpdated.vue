@@ -23,8 +23,13 @@ import { version } from '@/config';
 import { i18n } from '@/i18n';
 import * as os from '@/os';
 
-const data = await os.api('release');
-const newRelease = (version === data.version);
+let newRelease = false;
+let data;
+os.api('latest-version').then(res => {
+	data = res;
+	newRelease = (version === data?.version);
+});
+
 </script>
 
 <style lang="scss" scoped>
