@@ -13,14 +13,17 @@
 	<FormLink to="/registry" class="_formBlock"><template #icon><i class="ph-gear-six-bold ph-lg"></i></template>{{ i18n.ts.registry }}</FormLink>
 
 	<FormLink to="/settings/delete-account" class="_formBlock"><template #icon><i class="ph-warning-bold ph-lg"></i></template>{{ i18n.ts.closeAccount }}</FormLink>
+
+	<MkButton @click="updatePopup()">Test update modal</MkButton>
 </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 import FormSwitch from '@/components/form/switch.vue';
 import FormLink from '@/components/form/link.vue';
 import * as os from '@/os';
+import { popup } from '@/os';
 import { defaultStore } from '@/store';
 import { $i } from '@/account';
 import { i18n } from '@/i18n';
@@ -34,6 +37,10 @@ function onChangeInjectFeaturedNote(v) {
 	}).then((i) => {
 		$i!.injectFeaturedNote = i.injectFeaturedNote;
 	});
+}
+
+function updatePopup() {
+	popup(defineAsyncComponent(() => import('@/components/MkUpdated.vue')), {}, {}, 'closed');
 }
 
 const headerActions = $computed(() => []);

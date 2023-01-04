@@ -3,7 +3,8 @@
 	<div class="ewlycnyt">
 		<div class="title"><MkSparkle>{{ i18n.ts.misskeyUpdated }}</MkSparkle></div>
 		<div class="version">✨ {{ version }} 🚀</div>
-		<div v-if="newRelease" class="releaseNotes">
+		<!-- v-if="newRelease" -->
+		<div class="releaseNotes">
 			<Mfm :text="data.notes"/>
 			<div v-if="data.screenshots.length > 0" style="max-width: 500">
 				<img v-for="i in data.screenshots" :key="i" :src="i"/>
