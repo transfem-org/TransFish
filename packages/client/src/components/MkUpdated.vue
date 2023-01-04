@@ -27,6 +27,7 @@ let newRelease = false;
 let data;
 os.api('latest-version').then(res => {
 	data = res;
+	console.log(data);
 	newRelease = (version === data?.version);
 });
 
