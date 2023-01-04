@@ -1,16 +1,15 @@
 <template>
-<MkModal ref="modal" :z-priority="'middle'" @click="$refs.modal.close()" @closed="$emit('closed')">
+<MkModal ref="modal" :z-priority="'middle'" @click="modal.close()" @closed="$emit('closed')">
 	<div class="ewlycnyt">
 		<div class="title"><MkSparkle>{{ i18n.ts.misskeyUpdated }}</MkSparkle></div>
 		<div class="version">✨ {{ version }} 🚀</div>
-		<!-- v-if="newRelease" -->
-		<div class="releaseNotes">
+		<div v-if="newRelease" class="releaseNotes">
 			<Mfm :text="data.notes"/>
 			<div v-if="data.screenshots.length > 0" style="max-width: 500">
 				<img v-for="i in data.screenshots" :key="i" :src="i"/>
 			</div>
 		</div>
-		<MkButton class="gotIt" primary full @click="$refs.modal.close()">{{ i18n.ts.gotIt }}</MkButton>
+		<MkButton class="gotIt" primary full @click="modal.close()">{{ i18n.ts.gotIt }}</MkButton>
 	</div>
 </MkModal>
 </template>
@@ -22,6 +21,8 @@ import MkButton from '@/components/MkButton.vue';
 import { version } from '@/config';
 import { i18n } from '@/i18n';
 import * as os from '@/os';
+
+const modal = $ref<InstanceType<typeof MkModal>>();
 
 let newRelease = false;
 let data;
