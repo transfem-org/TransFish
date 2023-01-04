@@ -36,7 +36,6 @@ defineProps<{
 	justify-self: flex-end;
 	padding: .1em .7em;
 	border-radius: 100px;
-	background-color: var(--bg);
 	font-size: .8em;
 	text-shadow: 0 2px 2px var(--shadow);
 
