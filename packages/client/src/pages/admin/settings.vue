@@ -167,6 +167,15 @@
 							<template #label>Pro account</template>
 						</FormSwitch>
 					</FormSection>
+
+					<FormSection>
+						<template #label>GifBox integration</template>
+
+						<FormInput v-model="gifboxAuthKey" class="_formBlock">
+							<template #prefix><i class="ph-key-bold ph-lg"></i></template>
+							<template #label>GifBox Auth Key</template>
+						</FormInput>
+					</FormSection>
 				</div>
 			</FormSuspense>
 		</MkSpacer>
@@ -217,6 +226,7 @@ let swPublicKey: any = $ref(null);
 let swPrivateKey: any = $ref(null);
 let deeplAuthKey: string = $ref('');
 let deeplIsPro: boolean = $ref(false);
+let gifboxAuthKey: string = $ref('');
 
 async function init() {
 	const meta = await os.api('admin/meta');
@@ -249,6 +259,7 @@ async function init() {
 	swPrivateKey = meta.swPrivateKey;
 	deeplAuthKey = meta.deeplAuthKey;
 	deeplIsPro = meta.deeplIsPro;
+	gifboxAuthKey = meta.gifboxAuthKey;
 }
 
 function save() {
@@ -282,6 +293,7 @@ function save() {
 		swPrivateKey,
 		deeplAuthKey,
 		deeplIsPro,
+		gifboxAuthKey,
 	}).then(() => {
 		fetchInstance();
 	});

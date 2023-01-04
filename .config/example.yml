@@ -185,6 +185,10 @@ id: 'aid'
 #  connnectOverProxy: false
 #  setPublicReadOnUpload: true
 #  s3ForcePathStyle: true
+#gifbox:
+#  managed: true
+#  authKey: ''
+#
 
 # !!!!!!!!!!
 # >>>>>> AGAIN, NORMAL SELF-HOSTERS, STAY AWAY! <<<<<<

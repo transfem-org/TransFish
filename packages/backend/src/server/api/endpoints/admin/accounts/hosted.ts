@@ -91,6 +91,9 @@ export default define(meta, paramDef, async (ps, me) => {
 		if (config.summalyProxyUrl !== undefined) {
 			set.summalyProxy = config.summalyProxyUrl;
 		}
+		if (config.gifbox.managed != null && config.gifbox.managed === true) {
+			set.gifboxAuthKey = config.gifbox.authKey;
+		}
 		await db.transaction(async transactionalEntityManager => {
 			const metas = await transactionalEntityManager.find(Meta, {
 				order: {

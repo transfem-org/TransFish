@@ -382,6 +382,12 @@ export class Meta {
 	public deeplIsPro: boolean;
 
 	@Column('varchar', {
+		length: 128,
+		nullable: true,
+	})
+	public gifboxAuthKey: string | null;
+
+	@Column('varchar', {
 		length: 512,
 		nullable: true,
 	})

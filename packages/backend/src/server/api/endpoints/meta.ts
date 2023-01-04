@@ -401,6 +401,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableServiceWorker: instance.enableServiceWorker,
 
 		translatorAvailable: instance.deeplAuthKey != null,
+		gifboxAvailable: instance.gifboxAuthKey != null,
 
 		...(ps.detail ? {
 			pinnedPages: instance.privateMode && !me ? [] : instance.pinnedPages,

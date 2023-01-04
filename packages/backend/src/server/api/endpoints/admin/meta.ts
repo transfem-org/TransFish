@@ -422,6 +422,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableDiscordIntegration: instance.enableDiscordIntegration,
 		enableServiceWorker: instance.enableServiceWorker,
 		translatorAvailable: instance.deeplAuthKey != null,
+		gifboxAvailable: instance.gifboxAuthKey != null,
 		pinnedPages: instance.pinnedPages,
 		pinnedClipId: instance.pinnedClipId,
 		cacheRemoteFiles: instance.cacheRemoteFiles,
@@ -471,6 +472,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		objectStorageS3ForcePathStyle: instance.objectStorageS3ForcePathStyle,
 		deeplAuthKey: instance.deeplAuthKey,
 		deeplIsPro: instance.deeplIsPro,
+		gifboxAuthKey: instance.gifboxAuthKey,
 		enableIpLogging: instance.enableIpLogging,
 		enableActiveEmailValidation: instance.enableActiveEmailValidation,
 	};

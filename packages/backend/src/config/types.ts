@@ -97,6 +97,10 @@ export type Source = {
 		setPublicReadOnUpload?: boolean;
 		s3ForcePathStyle?: boolean;
 	};
+	gifbox: {
+		managed?: boolean;
+		authKey?: string;
+	};
 	summalyProxyUrl?: string;
 };
 

@@ -80,6 +80,7 @@ export const paramDef = {
 		summalyProxy: { type: 'string', nullable: true },
 		deeplAuthKey: { type: 'string', nullable: true },
 		deeplIsPro: { type: 'boolean' },
+		gifboxAuthKey: { type: 'string', nullable: true },
 		enableTwitterIntegration: { type: 'boolean' },
 		twitterConsumerKey: { type: 'string', nullable: true },
 		twitterConsumerSecret: { type: 'string', nullable: true },
@@ -463,6 +464,14 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (ps.deeplIsPro !== undefined) {
 		set.deeplIsPro = ps.deeplIsPro;
+	}
+
+	if (ps.gifboxAuthKey !== undefined) {
+		if (ps.gifboxAuthKey === '') {
+			set.gifboxAuthKey = null;
+		} else {
+			set.gifboxAuthKey = ps.gifboxAuthKey;
+		}
 	}
 
 	if (ps.enableIpLogging !== undefined) {
