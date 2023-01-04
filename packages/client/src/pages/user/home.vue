@@ -275,7 +275,7 @@ onUnmounted(() => {
 							height: 31px;
 							width: 31px;
 							color: #fff;
-							text-shadow: 0 0 8px #000;
+							text-shadow: 0 0 8px var(--shadow);
 							font-size: 16px;
 						}
 
@@ -386,7 +386,7 @@ onUnmounted(() => {
 							line-height: 32px;
 							font-weight: bold;
 							font-size: 1.8em;
-							text-shadow: 0 0 8px #000;
+							text-shadow: 0 0 8px var(--shadow);
 						}
 
 						> .bottom {
@@ -419,7 +419,7 @@ onUnmounted(() => {
 							line-height: 32px;
 							font-weight: bold;
 							font-size: 1.8em;
-							text-shadow: 0 0 8px #000;
+							text-shadow: 0 0 8px var(--shadow);
 						}
 
 						> .followed {
