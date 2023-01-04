@@ -41,6 +41,8 @@ export const renderActivity = (x: any): IActivity | null => {
 				'_misskey_votes': 'misskey:_misskey_votes',
 				'_misskey_talk': 'misskey:_misskey_talk',
 				'isCat': 'misskey:isCat',
+				// Fedibird
+				fedibird: 'http://fedibird.com/ns#',
 				// vcard
 				vcard: 'http://www.w3.org/2006/vcard/ns#',
 			},
