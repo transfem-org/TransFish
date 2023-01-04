@@ -53,7 +53,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	if (file == null) throw new ApiError(meta.errors.noSuchFile);
 	//if (!file.type.endsWith('/csv')) throw new ApiError(meta.errors.unexpectedFileType);
-	if (file.size > 50000) throw new ApiError(meta.errors.tooBigFile);
+	if (file.size > 2_000_000) throw new ApiError(meta.errors.tooBigFile);
 	if (file.size === 0) throw new ApiError(meta.errors.emptyFile);
 
 	createImportFollowingJob(user, file.id);
