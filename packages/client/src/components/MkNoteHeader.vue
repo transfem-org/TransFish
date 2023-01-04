@@ -71,6 +71,9 @@ defineProps<{
 		margin: 0 .5em 0 0;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		grid-row: 2;
+		align-self: flex-start;
+		margin-left: auto;
 	}
 
 	> .info {
