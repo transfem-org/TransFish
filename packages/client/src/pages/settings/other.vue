@@ -22,6 +22,7 @@
 import { computed, defineAsyncComponent } from 'vue';
 import FormSwitch from '@/components/form/switch.vue';
 import FormLink from '@/components/form/link.vue';
+import MkButton from '@/components/MkButton.vue';
 import * as os from '@/os';
 import { popup } from '@/os';
 import { defaultStore } from '@/store';
