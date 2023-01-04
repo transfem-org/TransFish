@@ -54,6 +54,7 @@ const bg = {
 		vertical-align: top;
 		font-weight: bold;
 		text-overflow: clip;
+		text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg), -1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
 	}
 }
 </style>
