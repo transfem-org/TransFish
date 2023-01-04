@@ -16,27 +16,14 @@ All changes from v13.0.0 onwards, for a full list of differences read [CALCKEY.m
 
 - Fix: overlapping user follow button in mobile view
 
-- Fix mobile button
-
-- Fix shadows
-
-
-### Documentation
-
-- Docker immutable install
+- Fix: Add .js to the end of two type-scripts, fixing a critical error that crashes calckey ([#9347](https://github.com/orhun/git-cliff/issues/9347))
 
 
 ### Features
 
 - New post style
 
-- Add checks to resolver and performOneActivity
-
-- Add .js to the end of two type-scripts, fixing a critical error that crashes calckey
-
 - Add antenna mark read functionality
-
-- Add .js to the end of two type-scripts, fixing a critical error that crashes calckey ([#9347](https://github.com/orhun/git-cliff/issues/9347))
 
 - Automatic changelog generation using git cliffy
 
@@ -166,26 +153,13 @@ All changes from v13.0.0 onwards, for a full list of differences read [CALCKEY.m
 
 - Fix: actually set in-dm to be true if in dm
 
-- Fix serviceworker
-
 - Fix: don't do icon transform by default
 
 - Fix problems from #9146
 
-
-- Fix ap person to db model
-
-fixed entries of movedToUri and added entries of alsoKnownAs
-
 - Fix more icons
 
 - Fix remote move queue
-
-- Fix queue?
-
-- Fixed stupidness again
-
-- Fix ??
 
 - Fix import
 
@@ -195,25 +169,7 @@ fixed entries of movedToUri and added entries of alsoKnownAs
 
 - Fix liked pages endpoint
 
-- Fix??
-
 - Fix remote move queue
-
-- Fix queue?
-
-maybe pls
-
-debug log
-
-fixed stupidness again
-
-fix ??
-
-fix import
-
-im a idiot lol
-
-make remote mig work
 
 - Fix path
 
@@ -225,13 +181,7 @@ make remote mig work
 
 - Fix: migration labels
 
-- Fix: label
-
 - Fix ckjs
-
-- Fix calckeyjs
-
-- Fix calckey-js | fix migration url
 
 - Fix locale
 
@@ -350,8 +300,6 @@ It's "available". Thank you luke :P
 
 - Feat: :sparkles: Add delete all lists
 
-- Add ui back
-
 - Add local move follower migration
 
 - Feat: customizable max note length
@@ -382,15 +330,9 @@ It's "available". Thank you luke :P
 
 - Perf: :zap: load icons css last
 
-- Perf: :zap: load icons css last
-
 
 ### Refactor
-
-- Refactor readme
 
 - Refactor: :alembic: try `active-class`
 
 - Refactor: :recycle: Replace all `$ts` with i18n
-
-- Refactor
