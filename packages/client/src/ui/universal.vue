@@ -86,6 +86,8 @@ import type { PageMetadata } from '@/scripts/page-metadata';
 import { instanceName } from '@/config';
 import { StickySidebar } from '@/scripts/sticky-sidebar';
 import XDrawerMenu from '@/ui/_common_/navbar-for-mobile.vue';
+import MkButton from '@/components/MkButton.vue';
+
 import * as os from '@/os';
 import { defaultStore } from '@/store';
 import { navbarItemDef } from '@/navbar';
