@@ -16,9 +16,12 @@ export const paramDef = {
 
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async () => {
+	let release;
+	
 	await fetch('https://codeberg.org/calckey/calckey/raw/branch/develop/release.json')
 		.then((response) => response.json())
 		.then((data) => {
-			return data;
+			release = data;
 		});
+	return release;
 });
