@@ -19,31 +19,31 @@
 	<button v-if="!isDesktop && !isMobile" class="widgetButton _button" @click="widgetsShowing = true"><i class="ph-stack-bold ph-lg"></i></button>
 
 	<div v-if="isMobile" class="buttons">
-		<MkButton class="button nav _button" @click="drawerMenuShowing = true">
+		<button class="button nav _button" @click="drawerMenuShowing = true">
 			<div class="button-wrapper">
 				<i class="ph-list-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
-		</MkButton>
-		<MkButton class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/'); updateButtonState();">
+		</button>
+		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 0 ? 'on' : ''">
 				<i class="ph-house-bold ph-lg"></i>
 			</div>
-		</MkButton>
-		<MkButton class="button notifications _button" @click="mainRouter.push('/my/notifications'); updateButtonState();">
+		</button>
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 1 ? 'on' : ''">
 				<i class="ph-bell-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
-		</MkButton>
-		<MkButton class="button messaging _button" @click="mainRouter.push('/my/messaging'); updateButtonState();">
+		</button>
+		<button class="button messaging _button" @click="mainRouter.push('/my/messaging'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 2 ? 'on' : ''">
 				<i class="ph-chats-teardrop-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle-fill"></i></span>
 			</div>
-		</MkButton>
-		<MkButton class="button widget _button" @click="widgetsShowing = true">
+		</button>
+		<button class="button widget _button" @click="widgetsShowing = true">
 			<div class="button-wrapper">
 				<i class="ph-stack-bold ph-lg"></i>
 			</div>
-		</MkButton>
+		</button>
 	</div>
 
 	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="ph-pencil-bold ph-lg"></i></button>
@@ -86,7 +86,6 @@ import type { PageMetadata } from '@/scripts/page-metadata';
 import { instanceName } from '@/config';
 import { StickySidebar } from '@/scripts/sticky-sidebar';
 import XDrawerMenu from '@/ui/_common_/navbar-for-mobile.vue';
-import MkButton from '@/components/MkButton.vue';
 import * as os from '@/os';
 import { defaultStore } from '@/store';
 import { navbarItemDef } from '@/navbar';
