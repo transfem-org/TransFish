@@ -38,7 +38,7 @@ defineProps<{
 	border-radius: 100px;
 	background-color: var(--bg);
 	font-size: .8em;
-	text-shadow: 0 2px 2px black;
+	text-shadow: 0 2px 2px var(--shadow);
 
 	> .name {
 		flex-shrink: 1;

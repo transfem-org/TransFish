@@ -302,7 +302,7 @@ onUnmounted(() => {
 							line-height: 32px;
 							font-weight: bold;
 							font-size: 1.8em;
-							text-shadow: 0 0 8px #000;
+							text-shadow: 0 0 8px var(--shadow);
 						}
 
 						> .followed {
