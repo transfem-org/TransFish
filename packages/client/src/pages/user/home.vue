@@ -227,7 +227,7 @@ onUnmounted(() => {
 						background-color: #26233a;
 						background-size: cover;
 						background-position: center;
-						box-shadow: 0 0 128px rgba(0, 0, 0, 0.5) inset;
+						box-shadow: 0 0 128px var(--shadow) inset;
 						will-change: background-position;
 
 						&::after {

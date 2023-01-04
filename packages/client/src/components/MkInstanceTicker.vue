@@ -40,7 +40,8 @@ const bg = {
 	padding: .1em .7em;
 	border-radius: 100px;
 	font-size: .8em;
-	text-shadow: 0 2px 2px black;
+	text-shadow: 0 2px 2px var(--shadow);
+	overflow: hidden;
 
 	> .icon {
 		height: 100%;
