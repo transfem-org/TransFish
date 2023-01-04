@@ -73,7 +73,6 @@ defineProps<{
 		text-overflow: ellipsis;
 		grid-row: 2;
 		align-self: flex-start;
-		margin-left: auto;
 	}
 
 	> .info {
