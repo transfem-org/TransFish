@@ -26,9 +26,14 @@
 <script lang="ts" setup>
 import { } from 'vue';
 import type * as misskey from 'calckey-js';
+import { defaultStore, noteViewInterruptors } from '@/store';
 import MkVisibility from '@/components/MkVisibility.vue';
+import MkInstanceTicker from '@/components/MkInstanceTicker.vue';
 import { notePage } from '@/filters/note';
 import { userPage } from '@/filters/user';
+
+const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && appearNote.user.instance);
+
 
 defineProps<{
 	note: misskey.entities.Note;
@@ -49,13 +54,15 @@ defineProps<{
 	> .avatar {
 		width: 3.7em;
 		height: 3.7em;
-		margin-right: 8px;
+		margin-right: 1em;
 	}
 	> .user-info {
+		width: 0;
 		flex-grow: 1;
+		line-height: 1.5;
 		> div {
 			display: flex;
-			
+			align-items: center;
 		}
 		.name {
 			flex: 1 1 0px;
