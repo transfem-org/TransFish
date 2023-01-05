@@ -1,6 +1,6 @@
 import { computed, reactive } from 'vue';
-import * as Misskey from 'calckey-js';
 import { api } from './os';
+import type * as Misskey from 'calckey-js';
 
 // TODO: 他のタブと永続化されたstateを同期
 
@@ -14,7 +14,7 @@ export const instance: Misskey.entities.InstanceMetadata = reactive(instanceData
 
 export async function fetchInstance() {
 	const meta = await api('meta', {
-		detail: false
+		detail: false,
 	});
 
 	for (const [k, v] of Object.entries(meta)) {

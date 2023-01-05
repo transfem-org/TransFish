@@ -18,7 +18,7 @@ export const paramDef = {
 		disableLocalTimeline: { type: 'boolean', nullable: true },
 		disableRecommendedTimeline: { type: 'boolean', nullable: true },
 		disableGlobalTimeline: { type: 'boolean', nullable: true },
-		useStarForReactionFallback: { type: 'boolean', nullable: true },
+		defaultReaction: { type: 'string', nullable: true },
 		recommendedInstances: { type: 'array', nullable: true, items: {
 			type: 'string',
 		} },
@@ -141,8 +141,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		set.disableGlobalTimeline = ps.disableGlobalTimeline;
 	}
 
-	if (typeof ps.useStarForReactionFallback === 'boolean') {
-		set.useStarForReactionFallback = ps.useStarForReactionFallback;
+	if (typeof ps.defaultReaction === 'string') {
+		set.defaultReaction = ps.defaultReaction;
 	}
 
 	if (Array.isArray(ps.pinnedUsers)) {

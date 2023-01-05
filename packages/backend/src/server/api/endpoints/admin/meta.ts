@@ -159,10 +159,6 @@ export const meta = {
 				type: 'string',
 				optional: false, nullable: true,
 			},
-			userStarForReactionFallback: {
-				type: 'boolean',
-				optional: true, nullable: false,
-			},
 			recommendedInstances: {
 				type: 'array',
 				optional: true, nullable: false,
@@ -368,6 +364,10 @@ export const meta = {
 				type: 'boolean',
 				optional: true, nullable: false,
 			},
+			defaultReaction: {
+				type: 'string',
+				optional: false, nullable: false,
+			},
 		},
 	},
 } as const;
@@ -425,7 +425,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		pinnedPages: instance.pinnedPages,
 		pinnedClipId: instance.pinnedClipId,
 		cacheRemoteFiles: instance.cacheRemoteFiles,
-		useStarForReactionFallback: instance.useStarForReactionFallback,
+		defaultReaction: instance.defaultReaction,
 		recommendedInstances: instance.recommendedInstances,
 		pinnedUsers: instance.pinnedUsers,
 		customMOTD: instance.customMOTD,

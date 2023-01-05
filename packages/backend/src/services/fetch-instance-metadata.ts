@@ -1,12 +1,13 @@
-import { DOMWindow, JSDOM } from 'jsdom';
+import { URL } from 'node:url';
+import { JSDOM } from 'jsdom';
 import fetch from 'node-fetch';
 import tinycolor from 'tinycolor2';
 import { getJson, getHtml, getAgentByUrl } from '@/misc/fetch.js';
-import { Instance } from '@/models/entities/instance.js';
+import type { Instance } from '@/models/entities/instance.js';
 import { Instances } from '@/models/index.js';
 import { getFetchInstanceMetadataLock } from '@/misc/app-lock.js';
 import Logger from './logger.js';
-import { URL } from 'node:url';
+import type { DOMWindow } from 'jsdom';
 
 const logger = new Logger('metadata', 'cyan');
 
@@ -198,7 +199,7 @@ async function fetchIconUrl(instance: Instance, doc: DOMWindow['document'] | nul
 				links.find(link => link.relList.contains('apple-touch-icon'))?.href,
 				links.find(link => link.relList.contains('icon'))?.href,
 			]
-			.find(href => href);
+				.find(href => href);
 
 		if (href) {
 			return (new URL(href, url)).href;
@@ -235,7 +236,7 @@ async function getSiteName(info: NodeInfo | null, doc: DOMWindow['document'] | n
 	}
 
 	if (manifest) {
-		return manifest?.name || manifest?.short_name;
+		return manifest.name || manifest.short_name;
 	}
 
 	return null;
@@ -261,7 +262,7 @@ async function getDescription(info: NodeInfo | null, doc: DOMWindow['document'] 
 	}
 
 	if (manifest) {
-		return manifest?.name || manifest?.short_name;
+		return manifest.name || manifest.short_name;
 	}
 
 	return null;

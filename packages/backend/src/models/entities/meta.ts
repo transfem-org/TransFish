@@ -57,10 +57,10 @@ export class Meta {
 	})
 	public disableGlobalTimeline: boolean;
 
-	@Column('boolean', {
-		default: false,
+	@Column('varchar', {
+		length: 256, default: '⭐',
 	})
-	public useStarForReactionFallback: boolean;
+	public defaultReaction: string;
 
 	@Column('varchar', {
 		length: 64, array: true, default: '{}',

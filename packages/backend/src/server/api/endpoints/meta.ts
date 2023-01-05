@@ -309,6 +309,11 @@ export const meta = {
 				optional: true, nullable: false,
 				default: false,
 			},
+			defaultReaction: {
+				type: 'string',
+				optional: 'false', nullable: false,
+				default: '⭐',
+			},
 		},
 	},
 } as const;
@@ -401,6 +406,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableServiceWorker: instance.enableServiceWorker,
 
 		translatorAvailable: instance.deeplAuthKey != null,
+		defaultReaction: instance.defaultReaction,
 
 		...(ps.detail ? {
 			pinnedPages: instance.privateMode && !me ? [] : instance.pinnedPages,
