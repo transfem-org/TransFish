@@ -1,6 +1,5 @@
 <template>
 <header class="kkwtjztg">
-	<MkAvatar class="avatar" :user="note.user"/>
 	<div class="user-info">
 		<div>
 			<MkA v-user-preview="note.user.id" class="name" :to="userPage(note.user)">
@@ -8,15 +7,15 @@
 					<span v-if="note.user.isBot" class="is-bot">bot</span>
 				</MkUserName>
 			</MkA>
+			<div class="username"><MkAcct :user="note.user"/></div>
+		</div>
+		<div>
 			<div class="info">
 				<MkA class="created-at" :to="notePage(note)">
 					<MkTime :time="note.createdAt"/>
 				</MkA>
 				<MkVisibility :note="note"/>
 			</div>
-		</div>
-		<div>
-			<div class="username"><MkAcct :user="note.user"/></div>
 			<MkInstanceTicker v-if="showTicker" class="ticker" :instance="note.user.instance"/>
 		</div>
 	</div>
@@ -60,17 +59,40 @@ defineProps<{
 		width: 0;
 		flex-grow: 1;
 		line-height: 1.5;
+		display: flex;
+		font-size: 1.2em;
 		> div {
-			display: flex;
-			align-items: center;
+			&:first-child {
+				flex-grow: 1;
+				width: 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			&:last-child {
+				max-width: 50%;
+				gap: .2em .5em;
+			}
+			.article > .main & {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				.username {
+					font-size: .9em;
+				}
+				&:last-child {
+					align-items: flex-end;
+				}
+				> * {
+					max-width: 100%;
+				}
+			}
 		}
 		.name {
-			flex: 1 1 0px;
-			display: block;
+			// flex: 1 1 0px;
+			display: inline;
 			margin: 0 .5em 0 0;
 			padding: 0;
 			overflow: hidden;
-			font-size: 1.2em;
 			font-weight: bold;
 			text-decoration: none;
 			text-overflow: ellipsis;
@@ -91,7 +113,7 @@ defineProps<{
 		}
 
 		.username {
-			flex: 1 1 0px;
+			display: inline;
 			margin: 0 .5em 0 0;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -99,9 +121,24 @@ defineProps<{
 		}
 
 		.info {
+			display: inline-flex;
 			flex-shrink: 0;
-			margin-left: auto;
+			margin-left: .5em;
 			font-size: 0.9em;
+			.created-at {
+				max-width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+
+		.ticker {
+			display: inline-flex;
+			margin-left: .5em;
+			vertical-align: middle;
+			> .name {
+				display: none;
+			}
 		}
 	}
 }

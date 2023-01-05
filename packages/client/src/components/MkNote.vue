@@ -33,7 +33,10 @@
 	</div>
 	<article class="article" @contextmenu.stop="onContextmenu" @click.self="router.push(notePage(appearNote))">
 		<div class="main" @click.self="router.push(notePage(appearNote))">
-			<XNoteHeader class="header" :note="appearNote" :mini="true"/>
+			<div class="header-container">
+				<MkAvatar class="avatar" :user="note.user"/>
+				<XNoteHeader class="header" :note="appearNote" :mini="true"/>
+			</div>
 			<div class="body">
 				<p v-if="appearNote.cw != null" class="cw">
 					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
@@ -429,23 +432,29 @@ function readPromo() {
 			cursor: default;
 		}
 
-		> .avatar {
-			flex-shrink: 0;
-			display: block;
-			margin: 0 14px 8px 0;
-			width: 48px;
-			height: 48px;
-			position: relative;
-			top: 0;
-			left: 0;
+		.header-container {
+			display: flex;
+			> .avatar {
+				flex-shrink: 0;
+				display: block;
+				margin: 0 14px 8px 0;
+				width: 48px;
+				height: 48px;
+				position: relative;
+				top: 0;
+				left: 0;
+			}
+			> .header {
+				width: 0;
+				flex-grow: 1;
+			}
 		}
-
 		> .main {
 			flex: 1;
 			min-width: 0;
 
 			> .body {
-				margin-top: .7em;
+				margin-top: .2em;
 				overflow: hidden;
 				margin-inline: -100px;
 				padding-inline: 100px;
@@ -535,7 +544,7 @@ function readPromo() {
 					}
 
 					> .files {
-						margin-top: .7em;
+						margin-top: .4em;
 						margin-bottom: .4em;
 					}
 					> .url-preview {

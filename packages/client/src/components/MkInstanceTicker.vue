@@ -33,28 +33,36 @@ const bg = {
 
 <style lang="scss" scoped>
 .hpaizdrt {
-	$height: 1.1rem;
-
-	height: $height;
+	display: flex;
+	align-items: center;
+	height: 1.1em;
 	justify-self: flex-end;
-	padding: .1em .7em;
+	padding: .1em .4em;
 	border-radius: 100px;
 	font-size: .8em;
 	text-shadow: 0 2px 2px var(--shadow);
 	overflow: hidden;
+	.header > .body & {
+		width: max-content;
+		max-width: 100%;
+	}
 
 	> .icon {
 		height: 100%;
 	}
 
 	> .name {
+		display: none;
 		margin-left: 4px;
-		line-height: $height;
-		font-size: 0.9em;
+		font-size: 0.85em;
 		vertical-align: top;
 		font-weight: bold;
-		text-overflow: clip;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg), -1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
+		.article > .main &, .header > .body & {
+			display: unset;
+		}
 	}
 }
 </style>
