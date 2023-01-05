@@ -58,6 +58,8 @@
 
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
+[![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
+
 ## 🧑‍💻 Dependencies
 
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19 recommended)
