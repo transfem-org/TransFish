@@ -32,10 +32,9 @@
 		</div>
 	</div>
 	<article class="article" @contextmenu.stop="onContextmenu" @click.self="router.push(notePage(appearNote))">
-		<MkAvatar class="avatar" :user="appearNote.user"/>
+		<!-- <MkAvatar class="avatar" :user="appearNote.user"/> -->
 		<div class="main" @click.self="router.push(notePage(appearNote))">
 			<XNoteHeader class="header" :note="appearNote" :mini="true"/>
-			<MkInstanceTicker v-if="showTicker" class="ticker" :instance="appearNote.user.instance"/>
 			<div class="body">
 				<p v-if="appearNote.cw != null" class="cw">
 					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
@@ -426,9 +425,6 @@ function readPromo() {
 	> .article {
 		padding: 28px 32px 18px;
 		cursor: pointer;
-		display: grid;
-		align-items: center;
-		grid-template-columns: 58px;
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -438,7 +434,6 @@ function readPromo() {
 			flex-shrink: 0;
 			display: block;
 			margin: 0 14px 8px 0;
-			grid-row: 1 / span 2;
 			width: 48px;
 			height: 48px;
 			position: relative;
@@ -449,38 +444,9 @@ function readPromo() {
 		> .main {
 			flex: 1;
 			min-width: 0;
-			display: contents;
-
-			> header.header {
-				display: contents;
-			
-				> .name, .info {
-					grid-row: 1;
-				}
-			}
-
-			> :not(.ticker) {
-				grid-column: 1 / span 3;
-				width: 100%;
-				max-width: 100%;
-			}
-
-			> .name, .info {
-				grid-row: 1;
-			}
-
-			> .ticker {
-				grid-row: 2;
-				align-self: flex-start;
-				margin-left: auto;
-			}
-
-			> .ticker {
-				font-size: 0.9em;
-			}
 
 			> .body {
-				margin-top: .2em;
+				margin-top: .7em;
 				overflow: hidden;
 				margin-inline: -100px;
 				padding-inline: 100px;
@@ -569,6 +535,10 @@ function readPromo() {
 						}
 					}
 
+					> .files {
+						margin-top: .7em;
+						margin-bottom: .4em;
+					}
 					> .url-preview {
 						margin-top: 8px;
 					}
