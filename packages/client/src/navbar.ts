@@ -36,7 +36,7 @@ export const navbarItemDef = reactive({
 	},
 	explore: {
 		title: 'explore',
-		icon: 'ph-hash-bold ph-lg',
+		icon: 'ph-compass-bold ph-lg',
 		to: '/explore',
 	},
 	announcements: {
