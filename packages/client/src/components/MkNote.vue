@@ -10,25 +10,27 @@
 	:class="{ renote: isRenote }"
 >
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
-	<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i> {{ i18n.ts.pinnedNote }}</div>
-	<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
-	<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
-	<div v-if="isRenote" class="renote">
-		<MkAvatar class="avatar" :user="note.user"/>
-		<i class="ph-repeat-bold ph-lg"></i>
-		<I18n :src="i18n.ts.renotedBy" tag="span">
-			<template #user>
-				<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
-					<MkUserName :user="note.user"/>
-				</MkA>
-			</template>
-		</I18n>
-		<div class="info">
-			<button ref="renoteTime" class="_button time" @click="showRenoteMenu()">
-				<i v-if="isMyRenote" class="ph-dots-three-outline-bold ph-lg dropdownIcon"></i>
-				<MkTime :time="note.createdAt"/>
-			</button>
-			<MkVisibility :note="note"/>
+	<div class="note-context">
+		<div class="line"></div>
+		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i> {{ i18n.ts.pinnedNote }}</div>
+		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
+		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
+		<div v-if="isRenote" class="renote">
+			<i class="ph-repeat-bold ph-lg"></i>
+			<I18n :src="i18n.ts.renotedBy" tag="span">
+				<template #user>
+					<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
+						<MkUserName :user="note.user"/>
+					</MkA>
+				</template>
+			</I18n>
+			<div class="info">
+				<button ref="renoteTime" class="_button time" @click="showRenoteMenu()">
+					<i v-if="isMyRenote" class="ph-dots-three-outline-bold ph-lg dropdownIcon"></i>
+					<MkTime :time="note.createdAt"/>
+				</button>
+				<MkVisibility :note="note"/>
+			</div>
 		</div>
 	</div>
 	<article class="article" @contextmenu.stop="onContextmenu" @click.self="router.push(notePage(appearNote))">
@@ -44,7 +46,6 @@
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content" :class="{ collapsed, isLong }">
 					<div class="text" @click.self="router.push(notePage(appearNote))">
-						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="ph-arrow-bend-up-left-bold ph-lg"></i></MkA>
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<a v-if="appearNote.renote != null" class="rp">RN:</a>
 						<div v-if="translating || translation" class="translation">
@@ -345,83 +346,105 @@ function readPromo() {
 		opacity: 1;
 	}
 
-	> .info {
-		display: flex;
-		align-items: center;
-		padding: 16px 32px 8px 32px;
-		line-height: 24px;
-		font-size: 90%;
-		white-space: pre;
-		color: #f6c177;
-
-		> i {
-			margin-right: 4px;
-		}
-
-		> .hide {
-			margin-left: auto;
-			color: inherit;
-		}
-	}
-
-	> .info + .article {
-		padding-top: 8px;
-	}
-
 	> .reply-to {
-		opacity: 0.7;
-		padding-bottom: 0;
+		& + .note-context {
+			.line::before {
+				content: "";
+				display: block;
+				margin-bottom: -15px;
+				width: 2px;
+				background-color: var(--accentDarken);
+				margin-inline: auto;
+			}
+		}
 	}
 
-	> .renote {
+	.note-context {
+		padding: 0 32px 0 32px;
 		display: flex;
-		align-items: center;
-		padding: 16px 32px 8px 32px;
-		line-height: 28px;
-		white-space: pre;
-		color: var(--renote);
-
-		> .avatar {
-			flex-shrink: 0;
-			display: inline-block;
-			width: 28px;
-			height: 28px;
-			margin: 0 8px 0 0;
-			border-radius: 6px;
+		&:first-child {
+			margin-top: 16px;
 		}
-
-		> i {
-			margin-right: 4px;
+		> :not(.line) {
+			width: 0;
+			flex-grow: 1;
+			position: relative;
+			margin-bottom: -15px;
 		}
+		> .line {
+			width: var(--avatar-size);
+			display: flex;
+			margin-right: 14px;
+			margin-top: 0;
+			flex-grow: 0;
+		}
+		
+		> div > i {
+			position: absolute;
+			right: 100%;
+		}
+		> .info {
+			display: flex;
+			align-items: center;
+			line-height: 24px;
+			font-size: 90%;
+			white-space: pre;
+			color: #f6c177;
 
-		> span {
-			overflow: hidden;
-			flex-shrink: 1;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+			> i {
+				margin-right: 4px;
+			}
 
-			> .name {
-				font-weight: bold;
+			> .hide {
+				margin-left: auto;
+				color: inherit;
 			}
 		}
 
-		> .info {
-			margin-left: auto;
-			font-size: 0.9em;
 
-			> .time {
-				flex-shrink: 0;
-				color: inherit;
+		> .renote {
+			display: flex;
+			align-items: center;
+			line-height: 28px;
+			white-space: pre;
+			color: var(--renote);
 
-				> .dropdownIcon {
-					margin-right: 4px;
+			
+			> i {
+				margin-right: 4px;
+			}
+
+			> span {
+				overflow: hidden;
+				flex-shrink: 1;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				
+				> .name {
+					font-weight: bold;
+				}
+			}
+
+			> .info {
+				margin-left: auto;
+				font-size: 0.9em;
+
+				> .time {
+					flex-shrink: 0;
+					color: inherit;
+					display: inline-flex;
+					align-items: center;
+					> .dropdownIcon {
+						margin-right: 4px;
+					}
 				}
 			}
 		}
-	}
 
-	> .renote + .article {
-		padding-top: 8px;
+		& + .article {
+			padding-top: 10px;
+		}
+
 	}
 
 	> .article {
@@ -437,9 +460,9 @@ function readPromo() {
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
-				margin: 0 14px 8px 0;
-				width: 48px;
-				height: 48px;
+				margin: 0 14px 0 0;
+				width: var(--avatar-size);
+				height: var(--avatar-size);
 				position: relative;
 				top: 0;
 				left: 0;
@@ -454,10 +477,8 @@ function readPromo() {
 			min-width: 0;
 
 			> .body {
-				margin-top: .2em;
+				margin-top: .7em;
 				overflow: hidden;
-				margin-inline: -100px;
-				padding-inline: 100px;
 
 				> .cw {
 					cursor: default;
@@ -606,31 +627,19 @@ function readPromo() {
 
 	&.max-width_500px {
 		font-size: 0.9em;
-
-		> .article {
-			> .avatar {
-				width: 50px;
-				height: 50px;
-			}
-		}
+		// --avatar-size: 50px;
 	}
 
 	&.max-width_450px {
-		> .renote {
-			padding: 8px 16px 0 16px;
+		--avatar-size: 46px;
+		> .note-context {
+			padding-inline: 16px;
 		}
-
-		> .info {
-			padding: 8px 16px 0 16px;
-		}
-
 		> .article {
 			padding: 14px 16px 9px;
 
-			> .avatar {
-				margin: 0 10px 8px 0;
-				width: 46px;
-				height: 46px;
+			> .main > .header-container > .avatar {
+				margin-right: 10px;
 				// top: calc(14px + var(--stickyTop, 0px));
 			}
 		}
@@ -651,11 +660,8 @@ function readPromo() {
 	}
 
 	&.max-width_300px {
+		--avatar-size: 40px;
 		> .article {
-			> .avatar {
-				width: 44px;
-				height: 44px;
-			}
 
 			> .main {
 				> .footer {

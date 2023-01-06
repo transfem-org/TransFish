@@ -1,7 +1,10 @@
 <template>
 <div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1 }">
 	<div class="main" @click="router.push(notePage(note.reply))">
-		<MkAvatar class="avatar" :user="note.user"/>
+		<div class="avatar-container">
+			<MkAvatar class="avatar" :user="note.user"/>
+			<div class="line"></div>
+		</div>
 		<div class="body">
 			<XNoteHeader class="header" :note="note" :mini="true"/>
 			<div class="body">
@@ -56,11 +59,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
-	font-size: 0.9em;
 
-	&.max-width_450px {
-		padding: 14px 16px;
-	}
 
 	&.children {
 		padding: 10px 0 0 16px;
@@ -75,13 +74,15 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	> .main {
 		display: flex;
 
-		> .avatar {
-			flex-shrink: 0;
-			display: block;
-			margin: 0 8px 0 0;
-			width: 38px;
-			height: 38px;
-			border-radius: 8px;
+		> .avatar-container {
+			> .avatar {
+				flex-shrink: 0;
+				display: block;
+				margin: 0 8px 0 0;
+				width: 38px;
+				height: 38px;
+				border-radius: 8px;
+			}
 		}
 
 		> .body {
@@ -128,6 +129,46 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 
 	> .more {
 		padding: 10px 0 0 16px;
+	}
+
+	&.reply-to:first-child {
+		> .main {
+			> .avatar-container .avatar, > .body {
+				opacity: .8;
+			}
+			> .avatar-container .line {
+				// background: linear-gradient(var(--accentedBg),var(--accentDarken));
+				mask: linear-gradient(rgba(0,0,0,0.8), black);
+			}
+		}
+	}
+	&.reply-to, &.reply-to-more {
+		.avatar-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-right: 14px;
+			width: var(--avatar-size);
+			> .avatar {
+				width: var(--avatar-size);
+				height: var(--avatar-size);
+				margin: 0;
+			}
+			> .line {
+				background-color: var(--accentDarken);
+				width: 2px;
+				flex-grow: 1;
+				margin-bottom: -30px;
+			}
+		}
+	}
+
+	&.max-width_450px {
+		padding: 14px 16px;
+		margin-bottom: 0 !important;
+		> .main > .avatar-container {
+			margin-right: 10px;
+		}
 	}
 }
 </style>

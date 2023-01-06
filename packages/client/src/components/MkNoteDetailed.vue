@@ -340,12 +340,11 @@ if (appearNote.replyId) {
 	}
 
 	> .reply-to {
-		opacity: 0.7;
-		padding-bottom: 0;
+		margin-bottom: -16px;
 	}
 
 	> .reply-to-more {
-		opacity: 0.7;
+		// opacity: 0.7;
 		cursor: pointer;
 
 		@media (pointer: coarse) {
@@ -416,8 +415,8 @@ if (appearNote.replyId) {
 			> .avatar {
 				display: block;
 				flex-shrink: 0;
-				width: 52px;
-				height: 52px;
+				width: var(--avatar-size);
+				height: var(--avatar-size);
 			}
 
 			> .body {
@@ -425,7 +424,7 @@ if (appearNote.replyId) {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				padding-left: 16px;
+				padding-left: 14px;
 				font-size: 0.95em;
 
 				> .top {
@@ -574,12 +573,8 @@ if (appearNote.replyId) {
 
 		> .article {
 			padding: 16px;
-
-			> .header {
-				> .avatar {
-					width: 50px;
-					height: 50px;
-				}
+			> .header > .body {
+				padding-left: 10px;
 			}
 		}
 	}
@@ -602,12 +597,6 @@ if (appearNote.replyId) {
 		font-size: 0.825em;
 
 		> .article {
-			> .header {
-				> .avatar {
-					width: 50px;
-					height: 50px;
-				}
-			}
 
 			> .main {
 				> .footer {
