@@ -363,13 +363,14 @@ function readPromo() {
 		padding: 0 32px 0 32px;
 		display: flex;
 		&:first-child {
-			margin-top: 10px;
+			margin-top: 15px;
 		}
 		> :not(.line) {
 			width: 0;
 			flex-grow: 1;
 			position: relative;
-			margin-bottom: -15px;
+			margin-bottom: -10px;
+			line-height: 28px;
 		}
 		> .line {
 			width: var(--avatar-size);
@@ -386,7 +387,6 @@ function readPromo() {
 		> .info {
 			display: flex;
 			align-items: center;
-			line-height: 24px;
 			font-size: 90%;
 			white-space: pre;
 			color: #f6c177;
@@ -405,7 +405,6 @@ function readPromo() {
 		> .renote {
 			display: flex;
 			align-items: center;
-			line-height: 28px;
 			white-space: pre;
 			color: var(--renote);
 
@@ -428,6 +427,7 @@ function readPromo() {
 			> .info {
 				margin-left: auto;
 				font-size: 0.9em;
+				display: flex;
 
 				> .time {
 					flex-shrink: 0;
@@ -437,6 +437,10 @@ function readPromo() {
 					> .dropdownIcon {
 						margin-right: 4px;
 					}
+				}
+				> span {
+					display: flex;
+					align-items: center;
 				}
 			}
 		}
@@ -448,7 +452,7 @@ function readPromo() {
 	}
 
 	> .article {
-		padding: 28px 32px 18px;
+		padding: 28px 32px 10px;
 		cursor: pointer;
 
 		@media (pointer: coarse) {

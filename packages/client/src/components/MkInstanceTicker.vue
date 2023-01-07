@@ -27,7 +27,7 @@ const instance = props.instance ?? {
 const themeColor = instance.themeColor ?? '#777777';
 
 const bg = {
-	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}11)`,
+	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}99)`,
 };
 </script>
 
@@ -37,7 +37,7 @@ const bg = {
 	align-items: center;
 	height: 1.1em;
 	justify-self: flex-end;
-	padding: .1em .4em;
+	padding: .2em .4em;
 	border-radius: 100px;
 	font-size: .8em;
 	text-shadow: 0 2px 2px var(--shadow);

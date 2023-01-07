@@ -76,9 +76,6 @@ defineProps<{
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
-				.username {
-					font-size: .9em;
-				}
 				&:last-child {
 					align-items: flex-end;
 				}
@@ -118,6 +115,7 @@ defineProps<{
 			overflow: hidden;
 			text-overflow: ellipsis;
 			align-self: flex-start;
+			font-size: .9em;
 		}
 
 		.info {
