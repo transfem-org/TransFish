@@ -12,7 +12,7 @@
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
 	<div class="note-context">
 		<div class="line"></div>
-		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i> {{ i18n.ts.pinnedNote }}</div>
+		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
 		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
 		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
 		<div v-if="isRenote" class="renote">
@@ -363,7 +363,7 @@ function readPromo() {
 		padding: 0 32px 0 32px;
 		display: flex;
 		&:first-child {
-			margin-top: 16px;
+			margin-top: 10px;
 		}
 		> :not(.line) {
 			width: 0;
@@ -634,6 +634,10 @@ function readPromo() {
 		--avatar-size: 46px;
 		> .note-context {
 			padding-inline: 16px;
+			margin-top: 0;
+			> :not(.line) {
+				margin-top: 10px;
+			}
 		}
 		> .article {
 			padding: 14px 16px 9px;
