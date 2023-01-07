@@ -438,10 +438,6 @@ function readPromo() {
 						margin-right: 4px;
 					}
 				}
-				> span {
-					display: flex;
-					align-items: center;
-				}
 			}
 		}
 
