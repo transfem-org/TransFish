@@ -137,8 +137,8 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 				opacity: .8;
 			}
 			> .avatar-container .line {
-				// background: linear-gradient(var(--accentedBg),var(--accentDarken));
 				mask: linear-gradient(rgba(0,0,0,0.8), black);
+				-webkit-mask: linear-gradient(rgba(0,0,0,0.8), black);
 			}
 		}
 	}
