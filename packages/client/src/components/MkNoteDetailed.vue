@@ -54,7 +54,6 @@
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content">
 					<div class="text" @click.self="router.push(notePage(appearNote))">
-						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="ph-arrow-bend-up-left-bold ph-lg"></i></MkA>
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<a v-if="appearNote.renote != null" class="rp">RN:</a>
 						<div v-if="translating || translation" class="translation">
