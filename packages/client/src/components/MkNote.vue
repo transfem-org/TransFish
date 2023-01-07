@@ -373,7 +373,7 @@ function readPromo() {
 			line-height: 28px;
 		}
 		> .line {
-			width: var(--avatar-size);
+			width: var(--avatarSize);
 			display: flex;
 			margin-right: 14px;
 			margin-top: 0;
@@ -448,7 +448,7 @@ function readPromo() {
 	}
 
 	> .article {
-		padding: 28px 32px 10px;
+		padding: 28px 32px 16px;
 		cursor: pointer;
 
 		@media (pointer: coarse) {
@@ -461,8 +461,8 @@ function readPromo() {
 				flex-shrink: 0;
 				display: block;
 				margin: 0 14px 0 0;
-				width: var(--avatar-size);
-				height: var(--avatar-size);
+				width: var(--avatarSize);
+				height: var(--avatarSize);
 				position: relative;
 				top: 0;
 				left: 0;
@@ -627,11 +627,10 @@ function readPromo() {
 
 	&.max-width_500px {
 		font-size: 0.9em;
-		// --avatar-size: 50px;
 	}
 
 	&.max-width_450px {
-		--avatar-size: 46px;
+		--avatarSize: 46px;
 		> .note-context {
 			padding-inline: 16px;
 			margin-top: 0;
@@ -664,7 +663,7 @@ function readPromo() {
 	}
 
 	&.max-width_300px {
-		--avatar-size: 40px;
+		--avatarSize: 40px;
 		> .article {
 
 			> .main {

@@ -148,10 +148,10 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			flex-direction: column;
 			align-items: center;
 			margin-right: 14px;
-			width: var(--avatar-size);
+			width: var(--avatarSize);
 			> .avatar {
-				width: var(--avatar-size);
-				height: var(--avatar-size);
+				width: var(--avatarSize);
+				height: var(--avatarSize);
 				margin: 0;
 			}
 			> .line {
