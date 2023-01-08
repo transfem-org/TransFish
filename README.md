@@ -60,9 +60,9 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 ## 🔰 Easy installers
 
-[![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
+[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://codeberg.org/calckey/ubuntu-bash-install)
 
-[![Install on Ubuntu](https://codeberg.org/calckey/ubuntu-bash-install)](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)
+[![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
 
 
 ## 🧑‍💻 Dependencies
