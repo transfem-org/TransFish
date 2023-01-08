@@ -363,7 +363,7 @@ function readPromo() {
 		padding: 0 32px 0 32px;
 		display: flex;
 		&:first-child {
-			margin-top: 15px;
+			margin-top: 20px;
 		}
 		> :not(.line) {
 			width: 0;
@@ -639,7 +639,7 @@ function readPromo() {
 			}
 		}
 		> .article {
-			padding: 14px 16px 9px;
+			padding: 16px 16px 9px;
 
 			> .main > .header-container > .avatar {
 				margin-right: 10px;

@@ -345,6 +345,9 @@ if (appearNote.replyId) {
 	> .reply-to-more {
 		// opacity: 0.7;
 		cursor: pointer;
+		&:first-child {
+			padding-top: 30px;
+		}
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -419,6 +422,7 @@ if (appearNote.replyId) {
 			}
 
 			> .body {
+				width: 0;
 				flex: 1;
 				display: flex;
 				flex-direction: column;
@@ -427,8 +431,12 @@ if (appearNote.replyId) {
 				font-size: 0.95em;
 
 				> .top {
+					display: flex;
+					align-items: center;
 					> .name {
 						font-weight: bold;
+						overflow: hidden;
+						text-overflow: ellipsis;
 					}
 
 					> .is-bot {
@@ -566,6 +574,10 @@ if (appearNote.replyId) {
 	}
 
 	&.max-width_450px {
+
+		> .reply-to-more:first-child {
+			padding-top: 14px;
+		}
 		> .renote {
 			padding: 8px 16px 0 16px;
 		}

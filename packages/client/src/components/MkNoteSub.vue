@@ -75,10 +75,10 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		display: flex;
 
 		> .avatar-container {
+			margin-right: 8px;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
-				margin: 0 8px 0 0;
 				width: 38px;
 				height: 38px;
 				border-radius: 8px;
@@ -132,6 +132,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	}
 
 	&.reply-to:first-child {
+		padding-top: 30px;
 		> .main {
 			> .avatar-container .avatar, > .body {
 				opacity: .8;
@@ -164,7 +165,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	}
 
 	&.max-width_450px {
-		padding: 14px 16px;
+		padding: 14px 16px !important;
 		margin-bottom: 0 !important;
 		> .main > .avatar-container {
 			margin-right: 10px;
