@@ -17,7 +17,7 @@ RUN yarn install --immutable
 RUN yarn plugin import workspace-tools
 
 # Build project (pnp dependencies are installed)
-RUN yarn run rebuild
+RUN yarn run build
 
 # Remove git files
 RUN rm -rf .git
