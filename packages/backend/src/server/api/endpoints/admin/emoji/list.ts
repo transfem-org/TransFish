@@ -2,6 +2,7 @@ import define from "../../../define.js";
 import { Emojis } from "@/models/index.js";
 import { makePaginationQuery } from "../../../common/make-pagination-query.js";
 import type { Emoji } from "@/models/entities/emoji.js";
+//import { sqlLikeEscape } from "@/misc/sql-like-escape";
 
 export const meta = {
 	tags: ["admin"],
@@ -96,7 +97,7 @@ export default define(meta, paramDef, async (ps) => {
 	let emojis: Emoji[];
 
 	if (ps.query) {
-		//q.andWhere('emoji.name ILIKE :q', { q: `%${ps.query}%` });
+		//q.andWhere('emoji.name ILIKE :q', { q: `%${sqlLikeEscape(ps.query)}%` });
 		//const emojis = await q.take(ps.limit).getMany();
 
 		emojis = await q.getMany();
