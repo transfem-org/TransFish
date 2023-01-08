@@ -13,11 +13,12 @@ RUN apk add git ffmpeg tini alpine-sdk python3
 # Configure corepack and yarn
 RUN corepack enable
 RUN yarn set version berry
+RUN yarn install --immutable
 RUN yarn plugin import workspace-tools
 
 # Install Dependencies
-RUN yarn install
-RUN yarn rebuild
+RUN yarn run build
+
 
 # Remove git files
 RUN rm -rf .git
