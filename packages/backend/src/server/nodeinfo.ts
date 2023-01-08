@@ -42,6 +42,7 @@ const nodeinfo2 = async () => {
 			name: 'calckey',
 			version: config.version,
 			repository: meta.repositoryUrl,
+			homepage: 'https://calckey.cloud',
 		},
 		protocols: ['activitypub'],
 		services: {
