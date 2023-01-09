@@ -31,7 +31,7 @@ import MkInstanceTicker from '@/components/MkInstanceTicker.vue';
 import { notePage } from '@/filters/note';
 import { userPage } from '@/filters/user';
 
-const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && appearNote.user.instance);
+const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && note.user.instance);
 
 
 defineProps<{
