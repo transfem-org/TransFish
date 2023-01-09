@@ -133,15 +133,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 
 	&.reply-to:first-child {
 		padding-top: 30px;
-		> .main {
-			> .avatar-container .avatar, > .body {
-				opacity: .8;
-			}
-			> .avatar-container .line {
-				mask: linear-gradient(rgba(0,0,0,0.8), black);
-				-webkit-mask: linear-gradient(rgba(0,0,0,0.8), black);
-			}
-		}
 	}
 	&.reply-to, &.reply-to-more {
 		.avatar-container {
