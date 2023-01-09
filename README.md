@@ -64,6 +64,8 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 [![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
 
+[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/cd3e87f7-d7e4-41a2-bbbf-bd1aa6962e96.png)](https://aur.archlinux.org/packages/calckey)
+
 
 ## 🧑‍💻 Dependencies
 
