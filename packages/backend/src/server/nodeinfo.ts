@@ -11,11 +11,12 @@ const router = new Router();
 const nodeinfo2_1path = '/nodeinfo/2.1';
 const nodeinfo2_0path = '/nodeinfo/2.0';
 
+// to cleo: leave this http or bonks
 export const links = [{
-	rel: 'https://nodeinfo.diaspora.software/ns/schema/2.1',
+	rel: 'http://nodeinfo.diaspora.software/ns/schema/2.1',
 	href: config.url + nodeinfo2_1path
 }, {
-	rel: 'https://nodeinfo.diaspora.software/ns/schema/2.0',
+	rel: 'http://nodeinfo.diaspora.software/ns/schema/2.0',
 	href: config.url + nodeinfo2_0path,
 }];
 
