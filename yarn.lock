@@ -1804,7 +1804,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.11.18":
+"@types/node@npm:18.11.18, @types/node@npm:^18.11.18":
   version: 18.11.18
   resolution: "@types/node@npm:18.11.18"
   checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
@@ -3123,7 +3123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.25.0":
+"axios@npm:^0.25, axios@npm:^0.25.0":
   version: 0.25.0
   resolution: "axios@npm:0.25.0"
   dependencies:
@@ -3834,6 +3834,7 @@ __metadata:
     "@tensorflow/tfjs": ^3.21.0
     "@types/gulp": 4.0.10
     "@types/gulp-rename": 2.0.1
+    "@types/node": ^18.11.18
     "@typescript-eslint/parser": 5.46.1
     calckey-js: ^0.0.20
     cross-env: 7.0.3
@@ -3852,6 +3853,7 @@ __metadata:
     seedrandom: ^3.0.5
     start-server-and-test: 1.15.2
     typescript: 4.9.4
+    vite-plugin-webfont-dl: ^3.4.3
     vue-eslint-parser: ^9.1.0
   languageName: unknown
   linkType: soft
@@ -4155,6 +4157,15 @@ __metadata:
     isobject: ^3.0.0
     static-extend: ^0.1.1
   checksum: be108900801e639e50f96a7e4bfa8867c753a7750a7603879f3981f8b0a89cba657497a2d5f40cd4ea557ff15d535a100818bb486baf6e26fe5d7872e75f1078
+  languageName: node
+  linkType: hard
+
+"clean-css@npm:^5.3":
+  version: 5.3.1
+  resolution: "clean-css@npm:5.3.1"
+  dependencies:
+    source-map: ~0.6.0
+  checksum: 860696c60503cbfec480b5f92f62729246304b55950571af7292f2687b57f86b277f2b9fefe6f64643d409008018b78383972b55c2cc859792dcc8658988fb16
   languageName: node
   linkType: hard
 
@@ -11815,7 +11826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picocolors@npm:^1.0.0":
+"picocolors@npm:^1.0, picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
   checksum: a2e8092dd86c8396bdba9f2b5481032848525b3dc295ce9b57896f931e63fc16f79805144321f72976383fc249584672a75cc18d6777c6b757603f372f745981
@@ -13925,7 +13936,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.6.0, source-map@npm:^0.6.1, source-map@npm:~0.6.1":
+"source-map@npm:^0.6.0, source-map@npm:^0.6.1, source-map@npm:~0.6.0, source-map@npm:~0.6.1":
   version: 0.6.1
   resolution: "source-map@npm:0.6.1"
   checksum: 59ce8640cf3f3124f64ac289012c2b8bd377c238e316fb323ea22fbfe83da07d81e000071d7242cad7a23cd91c7de98e4df8830ec3f133cb6133a5f6e9f67bc2
@@ -15632,6 +15643,19 @@ __metadata:
     remove-trailing-separator: ^1.0.1
     replace-ext: ^1.0.0
   checksum: 1f663973f1362f2d074b554f79ff7673187667082373b3d3e628beb1fc2a7ff33024f10b492fbd8db421a09ea3b7b22c3d3de4a0f0e73ead7b4685af570b906f
+  languageName: node
+  linkType: hard
+
+"vite-plugin-webfont-dl@npm:^3.4.3":
+  version: 3.4.3
+  resolution: "vite-plugin-webfont-dl@npm:3.4.3"
+  dependencies:
+    axios: ^0.25
+    clean-css: ^5.3
+    picocolors: ^1.0
+  peerDependencies:
+    vite: ^2 || ^3 || ^4
+  checksum: cc890e30765f05039414299afc0d9894c72d5b832510144c27abf535cc16d342f8e57f4a4a310e010a5eb69e361d9fd7a5f8002de5c8d01f9bdb4edffcd2b8a9
   languageName: node
   linkType: hard
 
