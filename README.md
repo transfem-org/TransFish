@@ -163,7 +163,7 @@ pm2 start "NODE_ENV=production yarn start" --name Calckey
 ## 😉 Tips & Tricks
 
 - When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Calckey's control panel.
-- Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in $(seq 3000 4000); do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`
+- Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Replace 3000 with the minimum port and 4000 with the maximum port if you need it.
 - I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker. 
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off.
 - For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
