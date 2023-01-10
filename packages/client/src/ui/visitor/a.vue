@@ -125,7 +125,9 @@ export default defineComponent({
 		},
 
 		help() {
-			window.open('https://misskey-hub.net/docs/keyboard-shortcut.md', '_blank');
+			// TODO(thatonecalculator): popup with keybinds
+			// window.open('https://misskey-hub.net/docs/keyboard-shortcut.md', '_blank');
+			console.log('d = dark/light mode, s = search, p = post :3');
 		},
 	},
 });

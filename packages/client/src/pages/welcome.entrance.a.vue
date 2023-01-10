@@ -123,12 +123,6 @@ function showMenu(ev) {
 		action: () => {
 			os.pageWindow('/about-calckey');
 		},
-	}, null, {
-		text: i18n.ts.help,
-		icon: 'ph-question-bold ph-lg',
-		action: () => {
-			window.open('https://misskey-hub.net/help.md', '_blank');
-		},
 	}], ev.currentTarget ?? ev.target);
 }
 </script>
