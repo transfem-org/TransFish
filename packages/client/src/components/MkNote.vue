@@ -595,7 +595,6 @@ function readPromo() {
 			> .footer {
 				display: flex;
 				flex-wrap: wrap;
-				margin-left: -.5em;
 				> .button {
 					margin: 0;
 					padding: 8px;
@@ -603,7 +602,9 @@ function readPromo() {
 					flex-grow: 1;
 					max-width: 3.5em;
 					min-width: max-content;
-
+					&:first-of-type {
+						margin-left: -.5em;
+					}
 					&:hover {
 						color: var(--fgHighlighted);
 					}
