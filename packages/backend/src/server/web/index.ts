@@ -22,11 +22,11 @@ import { Users, Notes, UserProfiles, Pages, Channels, Clips, GalleryPosts } from
 import * as Acct from '@/misc/acct.js';
 import { getNoteSummary } from '@/misc/get-note-summary.js';
 import { queues } from '@/queue/queues.js';
+import { MINUTE, DAY } from '@/const.js';
 import { genOpenapiSpec } from '../api/openapi/gen-spec.js';
 import { urlPreviewHandler } from './url-preview.js';
 import { manifestHandler } from './manifest.js';
 import packFeed from './feed.js';
-import { MINUTE, DAY } from '@/const.js';
 
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(_filename);
@@ -185,8 +185,8 @@ router.get('/twemoji-badge/(.*)', async ctx => {
 });
 
 // ServiceWorker
-router.get(`/sw.js`, async ctx => {
-	await send(ctx as any, `/sw.js`, {
+router.get('/sw.js', async ctx => {
+	await send(ctx as any, '/sw.js', {
 		root: swAssets,
 		maxage: 10 * MINUTE,
 	});
@@ -232,43 +232,8 @@ const getFeed = async (acct: string) => {
 	return user && await packFeed(user);
 };
 
-// As the /@user[.json|.rss|.atom]/sub endpoint is complicated, we will use a regex to switch between them.
-const reUser = new RegExp(`^/@(?<user>[^/]+?)(?:\.(?<feed>json|rss|atom))?(?:/(?<sub>[^/]+))?$`);
-router.get(reUser, async (ctx, next) => {
-	const groups = reUser.exec(ctx.originalUrl)?.groups;
-	if (!groups) {
-		await next();
-		return;
-	}
-
-	ctx.params = groups;
-
-	console.log(ctx, ctx.params)
-	if (groups.feed) {
-		if (groups.sub) {
-			await next();
-			return;
-		}
-
-		switch (groups.feed) {
-			case 'json':
-				await jsonFeed(ctx, next);
-				break;
-			case 'rss':
-				await rssFeed(ctx, next);
-				break;
-			case 'atom':
-				await atomFeed(ctx, next);
-				break;
-		}
-		return;
-	}
-
-	await userPage(ctx, next);
-});
-
 // Atom
-const atomFeed: Router.Middleware = async ctx => {
+router.get('/@:user.atom', async ctx => {
 	const feed = await getFeed(ctx.params.user);
 
 	if (feed) {
@@ -277,10 +242,10 @@ const atomFeed: Router.Middleware = async ctx => {
 	} else {
 		ctx.status = 404;
 	}
-};
+});
 
 // RSS
-const rssFeed: Router.Middleware = async ctx => {
+router.get('/@:user.rss', async ctx => {
 	const feed = await getFeed(ctx.params.user);
 
 	if (feed) {
@@ -289,10 +254,10 @@ const rssFeed: Router.Middleware = async ctx => {
 	} else {
 		ctx.status = 404;
 	}
-};
+});
 
 // JSON
-const jsonFeed: Router.Middleware = async ctx => {
+router.get('/@:user.json', async ctx => {
 	const feed = await getFeed(ctx.params.user);
 
 	if (feed) {
@@ -301,47 +266,43 @@ const jsonFeed: Router.Middleware = async ctx => {
 	} else {
 		ctx.status = 404;
 	}
-};
+});
 
 //#region SSR (for crawlers)
 // User
-const userPage: Router.Middleware = async (ctx, next) => {
-	const userParam = ctx.params.user;
-	const subParam = ctx.params.sub;
-	const { username, host } = Acct.parse(userParam);
-
+router.get(['/@:user', '/@:user/:sub'], async (ctx, next) => {
+	const { username, host } = Acct.parse(ctx.params.user);
 	const user = await Users.findOneBy({
 		usernameLower: username.toLowerCase(),
 		host: host ?? IsNull(),
 		isSuspended: false,
 	});
 
-	if (user === null) {
+	if (user != null) {
+		const profile = await UserProfiles.findOneByOrFail({ userId: user.id });
+		const meta = await fetchMeta();
+		const me = profile.fields
+			? profile.fields
+				.filter(filed => filed.value != null && filed.value.match(/^https?:/))
+				.map(field => field.value)
+			: [];
+
+		await ctx.render('user', {
+			user, profile, me,
+			avatarUrl: await Users.getAvatarUrl(user),
+			sub: ctx.params.sub,
+			instanceName: meta.name || 'Calckey',
+			icon: meta.iconUrl,
+			themeColor: meta.themeColor,
+			privateMode: meta.privateMode,
+		});
+		ctx.set('Cache-Control', 'public, max-age=15');
+	} else {
+		// リモートユーザーなので
+		// モデレータがAPI経由で参照可能にするために404にはしない
 		await next();
-		return;
 	}
-
-	const profile = await UserProfiles.findOneByOrFail({ userId: user.id });
-	const meta = await fetchMeta();
-	const me = profile.fields
-		? profile.fields
-			.filter(filed => filed.value != null && filed.value.match(/^https?:/))
-			.map(field => field.value)
-		: [];
-
-	const userDetail = {
-		user, profile, me,
-		avatarUrl: await Users.getAvatarUrl(user),
-		sub: subParam,
-		instanceName: meta.name || 'Calckey',
-		icon: meta.iconUrl,
-		themeColor: meta.themeColor,
-		privateMode: meta.privateMode,
-	};
-
-	await ctx.render('user', userDetail);
-	ctx.set('Cache-Control', 'public, max-age=15');
-};
+});
 
 router.get('/users/:user', async ctx => {
 	const user = await Users.findOneBy({
