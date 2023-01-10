@@ -593,14 +593,16 @@ function readPromo() {
 			}
 
 			> .footer {
+				display: flex;
+				flex-wrap: wrap;
+				margin-left: -.5em;
 				> .button {
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
-
-					&:not(:last-child) {
-						margin-right: 16px;
-					}
+					flex-grow: 1;
+					max-width: 3.5em;
+					min-width: max-content;
 
 					&:hover {
 						color: var(--fgHighlighted);
@@ -647,34 +649,10 @@ function readPromo() {
 		}
 	}
 
-	&.max-width_350px {
-		> .article {
-			> .main {
-				> .footer {
-					> .button {
-						&:not(:last-child) {
-							margin-right: 18px;
-						}
-					}
-				}
-			}
-		}
-	}
+
 
 	&.max-width_300px {
 		--avatarSize: 40px;
-		> .article {
-
-			> .main {
-				> .footer {
-					> .button {
-						&:not(:last-child) {
-							margin-right: 12px;
-						}
-					}
-				}
-			}
-		}
 	}
 }
 
