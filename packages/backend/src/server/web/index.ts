@@ -385,6 +385,8 @@ router.get('/notes/:note', async (ctx, next) => {
 
 		return;
 	}
+		//TODO: remove. public test.
+		ctx.set('Debug-Serve', 'public, max-age=15');
 
 	await next();
 });
