@@ -385,8 +385,36 @@ router.get('/notes/:note', async (ctx, next) => {
 
 		return;
 	}
-		//TODO: remove. public test.
-		ctx.set('Debug-Serve', 'public, max-age=15');
+
+	await next();
+});
+
+router.get('/posts/:note', async (ctx, next) => {
+	const note = await Notes.findOneBy({
+		id: ctx.params.note,
+		visibility: In(['public', 'home']),
+	});
+
+	if (note) {
+		const _note = await Notes.pack(note);
+		const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
+		const meta = await fetchMeta();
+		await ctx.render('note', {
+			note: _note,
+			profile,
+			avatarUrl: await Users.getAvatarUrl(await Users.findOneByOrFail({ id: note.userId })),
+			// TODO: Let locale changeable by instance setting
+			summary: getNoteSummary(_note),
+			instanceName: meta.name || 'Calckey',
+			icon: meta.iconUrl,
+			privateMode: meta.privateMode,
+			themeColor: meta.themeColor,
+		});
+
+		ctx.set('Cache-Control', 'public, max-age=15');
+
+		return;
+	}
 
 	await next();
 });
@@ -433,7 +461,7 @@ router.get('/@:user/pages/:page', async (ctx, next) => {
 });
 
 // Clip
-// TODO: 非publicなclipのハンドリング
+// TODO: handling of private clips
 router.get('/clips/:clip', async (ctx, next) => {
 	const clip = await Clips.findOneBy({
 		id: ctx.params.clip,
@@ -550,7 +578,7 @@ router.get('/flush', async ctx => {
 	await ctx.render('flush');
 });
 
-// streamingに非WebSocketリクエストが来た場合にbase htmlをキャシュ付きで返すと、Proxy等でそのパスがキャッシュされておかしくなる
+// If a non-WebSocket request comes in to streaming and base html is returned with cache, the path will be cached by Proxy, etc. and it will be wrong.
 router.get('/streaming', async ctx => {
 	ctx.status = 503;
 	ctx.set('Cache-Control', 'private, max-age=0');
