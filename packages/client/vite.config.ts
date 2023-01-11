@@ -1,43 +1,17 @@
+import * as fs from 'fs';
 import pluginVue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 
-import webfontDownload from 'vite-plugin-webfont-dl';
 import locales from '../../locales';
 import meta from '../../package.json';
 import pluginJson5 from './vite.json5';
 
 const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.json5', '.svg', '.sass', '.scss', '.css', '.vue'];
 
-const hash = (str: string, seed = 0): number => {
-	let h1 = 0xdeadbeef ^ seed,
-		h2 = 0x41c6ce57 ^ seed;
-	for (let i = 0, ch; i < str.length; i++) {
-		ch = str.charCodeAt(i);
-		h1 = Math.imul(h1 ^ ch, 2654435761);
-		h2 = Math.imul(h2 ^ ch, 1597334677);
-	}
-	
-	h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-	h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-	
-	return 4294967296 * (2097151 & h2) + (h1 >>> 0);
-};
-
-const BASE62_DIGITS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-function toBase62(n: number): string {
-	if (n === 0) {
-		return '0';
-	}
-	let result = ''; 
-	while (n > 0) {
-		result = BASE62_DIGITS[n % BASE62_DIGITS.length] + result;
-		n = Math.floor(n / BASE62_DIGITS.length);
-	}
-	
-	return result;
-}
-
 export default defineConfig(({ command, mode }) => {
+	fs.mkdirSync(__dirname + '/../../built', { recursive: true });
+	fs.writeFileSync(__dirname + '/../../built/meta.json', JSON.stringify({ version: meta.version }), 'utf-8');
+
 	return {
 		base: '/assets/',
 
@@ -46,7 +20,6 @@ export default defineConfig(({ command, mode }) => {
 				reactivityTransform: true,
 			}),
 			pluginJson5(),
-			webfontDownload(),
 		],
 
 		resolve: {
@@ -55,14 +28,6 @@ export default defineConfig(({ command, mode }) => {
 				'@/': __dirname + '/src/',
 				'/client-assets/': __dirname + '/assets/',
 				'/static-assets/': __dirname + '/../backend/assets/',
-			},
-		},
-
-		css: {
-			modules: {
-				generateScopedName: (name, filename, css) => {
-					return 'x' + toBase62(hash(`${filename} ${name}`)).substring(0, 4);
-				},
 			},
 		},
 
@@ -81,9 +46,10 @@ export default defineConfig(({ command, mode }) => {
 
 		build: {
 			target: [
-				'chrome108',
-				'firefox109',
-				'safari16',
+				'chrome100',
+				'firefox100',
+				'safari15',
+				'es2021', // TODO: keep this up to date
 			],
 			manifest: 'manifest.json',
 			rollupOptions: {
@@ -97,14 +63,15 @@ export default defineConfig(({ command, mode }) => {
 				},
 			},
 			cssCodeSplit: true,
+			assetsInlineLimit: 0,
 			outDir: __dirname + '/../../built/_client_dist_',
 			assetsDir: '.',
 			emptyOutDir: false,
-			sourcemap: process.env.NODE_ENV === 'development',
-			reportCompressedSize: true,
+			sourcemap: process.env.NODE_ENV !== 'production',
+			reportCompressedSize: false,
 		},
 		optimizeDeps: {
-			auto: true,
+			auto: true
 		},
 	};
 });
