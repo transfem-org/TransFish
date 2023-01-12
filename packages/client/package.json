@@ -4,7 +4,6 @@
 	"scripts": {
 		"watch": "vite build --watch --mode development",
 		"build": "vite build",
-		"devBuild": "vite build --mode development",
 		"lint": "eslint --quiet \"src/**/*.{ts,vue}\""
 	},
 	"dependencies": {
