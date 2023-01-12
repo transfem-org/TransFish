@@ -64,6 +64,7 @@ const props = withDefaults(defineProps<{
 	pagination: Paging;
 	disableAutoLoad?: boolean;
 	displayLimit?: number;
+	reloadKey?: number;
 }>(), {
 	displayLimit: 30,
 });

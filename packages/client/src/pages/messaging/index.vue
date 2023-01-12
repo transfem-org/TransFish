@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, onMounted, onUnmounted, watch } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch, ref } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -59,10 +59,15 @@ const router = useRouter();
 
 let messages = $ref([]);
 let connection = $ref(null);
+const reloadingKey = ref(0);
 
 const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
+
+const forceRerender = () => {
+  reloadingKey.value += 1;
+};
 
 const headerActions = $computed(() => [{
 	asFullButton: true,
@@ -112,6 +117,7 @@ function onMessage(message): void {
 		messages = messages.filter(m => m.groupId !== message.groupId);
 		messages.unshift(message);
 	}
+	forceRerender();
 }
 
 function onRead(ids): void {
@@ -183,11 +189,12 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+	syncSlide(tabs.indexOf(swiperRef?.activeIndex));
 
 	connection = markRaw(stream.useChannel('messagingIndex'));
 
 	connection.on('message', onMessage);
+	connection.on('messagingMessage', onMessage);
 	connection.on('read', onRead);
 
 	os.api('messaging/history', { group: false, limit: 5 }).then(userMessages => {
