@@ -14,8 +14,8 @@
 				<swiper-slide>
 					<div class="_content yweeujhr dms">
 						<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						<MkPagination v-slot="{items}" :pagination="dmsPagination">
-							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						<MkPagination v-slot="{items}" :pagination="dmsPagination" :reloadKey="reloadingKey">
+							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message" :reloadKey="reloadingKey"/>
 						</MkPagination>
 					</div>
 				</swiper-slide>
@@ -25,8 +25,8 @@
 							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
 							<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						</div>
-						<MkPagination v-slot="{items}" :pagination="groupsPagination">
-							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						<MkPagination v-slot="{items}" :pagination="groupsPagination" :reloadKey="reloadingKey">
+							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message" :reloadKey="reloadingKey"/>
 						</MkPagination>
 					</div>
 				</swiper-slide>
