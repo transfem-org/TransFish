@@ -45,13 +45,13 @@ export type Paging<E extends keyof misskey.Endpoints = keyof misskey.Endpoints> 
 	params?: misskey.Endpoints[E]['req'] | ComputedRef<misskey.Endpoints[E]['req']>;
 
 	/**
-	 * 検索APIのような、ページング不可なエンドポイントを利用する場合
-	 * (そのようなAPIをこの関数で使うのは若干矛盾してるけど)
+	 * When using non-pageable endpoints, such as the search API
+	 * (though it is somewhat inconsistent to use such an API with this function)
 	 */
 	noPaging?: boolean;
 
 	/**
-	 * items 配列の中身を逆順にする(新しい方が最後)
+	 * array items in reverse order (newest first)
 	 */
 	reversed?: boolean;
 
