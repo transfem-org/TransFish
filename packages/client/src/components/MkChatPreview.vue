@@ -56,7 +56,6 @@ const getAcct = Acct.toString;
 
 const props = defineProps<{
 	message: Record<string, any>;
-	reloadKey?: number;
 }>();
 
 function isMe(message): boolean {
