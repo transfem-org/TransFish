@@ -106,13 +106,14 @@ const init = async (): Promise<void> => {
 		}
 		if (!props.pagination.noPaging && (res.length > (props.pagination.limit || 10))) {
 			res.pop();
+			items.value = props.pagination.reversed ? [...res].reverse() : res;
 			more.value = true;
 		} else {
+			items.value = props.pagination.reversed ? [...res].reverse() : res;
 			more.value = false;
 		}
-		items.value = props.pagination.reversed ? [...res].reverse() : res;
-		if(props.pagination.externalItemArray) {
-			props.pagination.externalItemArray.value = items.value;
+		if(props.externalItemArray) {
+			props.externalItemArray.value = items.value;
 		}
 		offset.value = res.length;
 		error.value = false;
@@ -125,8 +126,8 @@ const init = async (): Promise<void> => {
 
 const reload = (): void => {
 	items.value = [];
-	if(props.pagination.externalItemArray) {
-		props.pagination.externalItemArray.value = [];
+	if(props.externalItemArray) {
+		props.externalItemArray.value = [];
 	}
 	init();
 };
@@ -186,13 +187,14 @@ const fetchMore = async (): Promise<void> => {
 		}
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
+			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = true;
 		} else {
+			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
 		}
-		items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
-		if(props.pagination.externalItemArray) {
-			props.pagination.externalItemArray.value = items.value;
+		if(props.externalItemArray) {
+			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
@@ -218,13 +220,14 @@ const fetchMoreAhead = async (): Promise<void> => {
 	}).then(res => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
+			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = true;
 		} else {
+			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
 		}
-		items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
-		if(props.pagination.externalItemArray) {
-			props.pagination.externalItemArray.value = items.value;
+		if(props.externalItemArray) {
+			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
@@ -251,7 +254,7 @@ const prepend = (item: Item): void => {
 						//items.value = items.value.slice(-props.displayLimit);
 						while (items.value.length >= props.displayLimit) {
 							items.value.shift();
-							if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.shift();
+							if(props.externalItemArray) props.externalItemArray.value.shift();
 						}
 						more.value = true;
 					}
@@ -259,13 +262,13 @@ const prepend = (item: Item): void => {
 			}
 		}
 		items.value.push(item);
-		if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.push(item);
+		if(props.externalItemArray) props.externalItemArray.value.push(item);
 		// TODO
 	} else {
 		// 初回表示時はunshiftだけでOK
 		if (!rootEl.value) {
 			items.value.unshift(item);
-			if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.unshift(item);
+			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
 			return;
 		}
 
@@ -274,7 +277,7 @@ const prepend = (item: Item): void => {
 		if (isTop) {
 			// Prepend the item
 			items.value.unshift(item);
-			if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.unshift(item);
+			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
 
 			// オーバーフローしたら古いアイテムは捨てる
 			if (items.value.length >= props.displayLimit) {
@@ -282,7 +285,7 @@ const prepend = (item: Item): void => {
 				//this.items = items.value.slice(0, props.displayLimit);
 				while (items.value.length >= props.displayLimit) {
 					items.value.pop();
-					if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.pop();
+					if(props.externalItemArray) props.externalItemArray.value.pop();
 				}
 				more.value = true;
 			}
@@ -300,7 +303,7 @@ const prepend = (item: Item): void => {
 
 const append = (item: Item): void => {
 	items.value.push(item);
-	if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.push(item);
+	if(props.externalItemArray) props.externalItemArray.value.push(item);
 };
 
 const removeItem = (finder: (item: Item) => boolean): boolean => {
@@ -310,7 +313,7 @@ const removeItem = (finder: (item: Item) => boolean): boolean => {
 	}
 
 	items.value.splice(i, 1);
-	if(props.pagination.externalItemArray) props.pagination.externalItemArray.value.splice(i, 1);
+	if(props.externalItemArray) props.externalItemArray.value.splice(i, 1);
 	return true;
 };
 
@@ -321,7 +324,7 @@ const updateItem = (id: Item['id'], replacer: (old: Item) => Item): boolean => {
 	}
 
 	items.value[i] = replacer(items.value[i]);
-	if(props.pagination.externalItemArray) props.pagination.externalItemArray.value[i] = items.value[i];
+	if(props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
 	return true;
 };
 
