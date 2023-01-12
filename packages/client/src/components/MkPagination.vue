@@ -57,8 +57,6 @@ export type Paging<E extends keyof misskey.Endpoints = keyof misskey.Endpoints> 
 	reversed?: boolean;
 
 	offsetMode?: boolean;
-
-	externalItemArray?: Ref<Array<any>>;
 };
 
 const SECOND_FETCH_LIMIT = 30;
@@ -68,6 +66,7 @@ const props = withDefaults(defineProps<{
 	disableAutoLoad?: boolean;
 	displayLimit?: number;
 	reloadKey?: number;
+	externalItemArray?: Ref<Array<any>>;
 }>(), {
 	displayLimit: 30,
 });
