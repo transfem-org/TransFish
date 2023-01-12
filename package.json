@@ -14,6 +14,7 @@
 	"scripts": {
 		"rebuild": "yarn clean && yarn workspaces foreach run build && yarn run gulp",
 		"build": "yarn workspaces foreach run build && yarn run gulp",
+		"devBuild": "yarn workspace backend run build && yarn workspace client run devBuild && yarn run gulp",
 		"start": "yarn workspace backend run start",
 		"start:test": "yarn workspace backend run start:test",
 		"init": "yarn migrate",
