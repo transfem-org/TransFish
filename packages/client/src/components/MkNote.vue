@@ -514,7 +514,11 @@ function readPromo() {
 						position: relative;
 						max-height: 9em;
 						overflow: hidden;
-
+						> .text {
+							max-height: 9em;
+							mask: linear-gradient(black calc(100% - 64px), transparent);
+							-webkit-mask: linear-gradient(black calc(100% - 64px), transparent);
+						}
 						> .fade {
 							display: block;
 							position: absolute;
@@ -522,7 +526,6 @@ function readPromo() {
 							left: 0;
 							width: 100%;
 							height: 64px;
-							background: linear-gradient(0deg, var(--panel), var(--X15));
 
 							> span {
 								display: inline-block;
