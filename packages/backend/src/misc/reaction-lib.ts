@@ -7,7 +7,7 @@ import { IsNull } from 'typeorm';
 
 const legacies: Record<string, string> = {
 	'like':     '👍',
-	'love':     '❤', // ここに記述する場合は異体字セレクタを入れない
+	'love':     '❤️', // ここに記述する場合は異体字セレクタを入れない <- not that good because modern browsers just display it as the red heart so just convert it to it to not end up with two seperate reactions of "the same emoji" for the user
 	'laugh':    '😆',
 	'hmm':      '🤔',
 	'surprise': '😮',
@@ -59,18 +59,18 @@ export async function toDbReaction(reaction?: string | null, reacterHost?: strin
 
 	reacterHost = toPunyNullable(reacterHost);
 
-	// 文字列タイプのリアクションを絵文字に変換
+	// Convert string-type reactions to pictograms
 	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 
-	// Unicode絵文字
-	const match = emojiRegex.exec(reaction);
+	// Unicode Pictograms
+	/*const match = emojiRegex.exec(reaction);
 	if (match) {
-		// 合字を含む1つの絵文字
+		// One pictogram with ligatures
 		const unicode = match[0];
 
-		// 異体字セレクタ除去
+		// variant character selector removal
 		return unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
-	}
+	}*/
 
 	const custom = reaction.match(/^:([\w+-]+)(?:@\.)?:$/);
 	if (custom) {
