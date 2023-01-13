@@ -1,22 +1,22 @@
 /* eslint-disable key-spacing */
-import { emojiRegex } from './emoji-regex.js';
-import { fetchMeta } from './fetch-meta.js';
-import { Emojis } from '@/models/index.js';
-import { toPunyNullable } from './convert-host.js';
-import { IsNull } from 'typeorm';
+import { emojiRegex } from "./emoji-regex.js";
+import { fetchMeta } from "./fetch-meta.js";
+import { Emojis } from "@/models/index.js";
+import { toPunyNullable } from "./convert-host.js";
+import { IsNull } from "typeorm";
 
 const legacies: Record<string, string> = {
-	'like':     '👍',
-	'love':     '❤️', // ここに記述する場合は異体字セレクタを入れない <- not that good because modern browsers just display it as the red heart so just convert it to it to not end up with two seperate reactions of "the same emoji" for the user
-	'laugh':    '😆',
-	'hmm':      '🤔',
-	'surprise': '😮',
-	'congrats': '🎉',
-	'angry':    '💢',
-	'confused': '😥',
-	'rip':      '😇',
-	'pudding':  '🍮',
-	'star':     '⭐',
+	like: "👍",
+	love: "❤️", // ここに記述する場合は異体字セレクタを入れない <- not that good because modern browsers just display it as the red heart so just convert it to it to not end up with two seperate reactions of "the same emoji" for the user
+	laugh: "😆",
+	hmm: "🤔",
+	surprise: "😮",
+	congrats: "🎉",
+	angry: "💢",
+	confused: "😥",
+	rip: "😇",
+	pudding: "🍮",
+	star: "⭐",
 };
 
 export async function getFallbackReaction(): Promise<string> {
@@ -54,7 +54,10 @@ export function convertLegacyReactions(reactions: Record<string, number>) {
 	return _reactions2;
 }
 
-export async function toDbReaction(reaction?: string | null, reacterHost?: string | null): Promise<string> {
+export async function toDbReaction(
+	reaction?: string | null,
+	reacterHost?: string | null,
+): Promise<string> {
 	if (reaction == null) return await getFallbackReaction();
 
 	reacterHost = toPunyNullable(reacterHost);
@@ -111,7 +114,7 @@ export function decodeReaction(str: string): DecodedReaction {
 		const host = custom[2] || null;
 
 		return {
-			reaction: `:${name}@${host || '.'}:`,	// ローカル分は@以降を省略するのではなく.にする
+			reaction: `:${name}@${host || "."}:`, // ローカル分は@以降を省略するのではなく.にする
 			name,
 			host,
 		};

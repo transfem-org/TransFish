@@ -101,7 +101,8 @@ cd calckey/
 
 ```sh
 # nvm install 19 && nvm use 19
-npm i -g pnpm
+corepack enable
+corepack prepare pnpm@latest --activate
 pnpm i
 ```
 
