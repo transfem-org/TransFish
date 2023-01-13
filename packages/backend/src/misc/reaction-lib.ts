@@ -62,18 +62,18 @@ export async function toDbReaction(
 
 	reacterHost = toPunyNullable(reacterHost);
 
-	// Convert string-type reactions to pictograms
+	// 文字列タイプのリアクションを絵文字に変換
 	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 
-	// Unicode Pictograms
-	/*const match = emojiRegex.exec(reaction);
+	// Unicode絵文字
+	const match = emojiRegex.exec(reaction);
 	if (match) {
-		// One pictogram with ligatures
+		// 合字を含む1つの絵文字
 		const unicode = match[0];
 
-		// variant character selector removal
+		// 異体字セレクタ除去
 		return unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
-	}*/
+	}
 
 	const custom = reaction.match(/^:([\w+-]+)(?:@\.)?:$/);
 	if (custom) {
