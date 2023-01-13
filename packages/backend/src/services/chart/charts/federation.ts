@@ -7,7 +7,7 @@ import { fetchMeta } from "@/misc/fetch-meta.js";
 /**
  * フェデレーションに関するチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class FederationChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema);

@@ -29,7 +29,7 @@ export const paramDef = {
 	required: ["token"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	// Fetch token
 	const session = await AuthSessions.findOneBy({ token: ps.token });

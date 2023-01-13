@@ -11,7 +11,7 @@ const year = 1000 * 60 * 60 * 24 * 365;
 /**
  * アクティブユーザーに関するチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class ActiveUsersChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema);

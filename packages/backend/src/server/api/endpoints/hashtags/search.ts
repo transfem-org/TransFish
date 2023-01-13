@@ -29,7 +29,7 @@ export const paramDef = {
 	required: ["query"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps) => {
 	const hashtags = await Hashtags.createQueryBuilder("tag")
 		.where("tag.name like :q", { q: `${ps.query.toLowerCase()}%` })

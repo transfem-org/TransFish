@@ -42,7 +42,7 @@ export const paramDef = {
 	required: ["session", "permission"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	// Generate access token
 	const accessToken = secureRndstr(32, true);

@@ -11,7 +11,6 @@ import { FILE_TYPE_BROWSERSAFE } from "@/const.js";
 import { serverLogger } from "../index.js";
 import { isMimeImage } from "@/misc/is-mime-image.js";
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export async function proxyMedia(ctx: Koa.Context) {
 	const url = "url" in ctx.query ? ctx.query.url : `https://${ctx.params.url}`;
 

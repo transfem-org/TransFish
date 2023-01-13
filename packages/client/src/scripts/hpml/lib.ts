@@ -472,7 +472,6 @@ export function initHpmlLib(
 	}/${date.getDate()}`;
 
 	// SHOULD be fine to ignore since it's intended + function shape isn't defined
-	// eslint-disable-next-line @typescript-eslint/ban-types
 	const funcs: Record<string, Function> = {
 		not: (a: boolean) => !a,
 		or: (a: boolean, b: boolean) => a || b,

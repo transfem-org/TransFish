@@ -46,7 +46,7 @@ export const paramDef = {
 	required: ["noteId", "reaction"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	if (user.movedToUri != null) throw new ApiError(meta.errors.accountLocked);
 	const note = await getNote(ps.noteId, user).catch((err) => {

@@ -7,7 +7,7 @@ import { name, schema } from "./entities/hashtag.js";
 /**
  * ハッシュタグに関するチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class HashtagChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema, true);

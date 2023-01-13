@@ -49,7 +49,7 @@ export const paramDef = {
 	required: ["alsoKnownAs"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	if (!ps.alsoKnownAs) throw new ApiError(meta.errors.noSuchUser);
 

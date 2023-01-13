@@ -76,7 +76,7 @@ export const paramDef = {
 	required: ["title", "name", "content", "variables", "script"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	let eyeCatchingImage = null;
 	if (ps.eyeCatchingImageId != null) {

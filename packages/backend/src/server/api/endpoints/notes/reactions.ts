@@ -49,7 +49,7 @@ export const paramDef = {
 	required: ["noteId"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	// check note visibility
 	const note = await getNote(ps.noteId, user).catch((err) => {

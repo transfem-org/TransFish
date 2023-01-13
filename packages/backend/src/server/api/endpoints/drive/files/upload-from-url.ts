@@ -38,7 +38,7 @@ export const paramDef = {
 	required: ["url"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	uploadFromUrl({
 		url: ps.url,

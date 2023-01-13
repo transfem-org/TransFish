@@ -139,7 +139,7 @@ export function getJsonSchema<S extends Schema>(
 /**
  * 様々なチャートの管理を司るクラス
  */
-// eslint-disable-next-line import/no-default-export
+
 export default abstract class Chart<T extends Schema> {
 	public schema: T;
 

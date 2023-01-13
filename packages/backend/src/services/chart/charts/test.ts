@@ -5,7 +5,7 @@ import { name, schema } from "./entities/test.js";
 /**
  * For testing
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class TestChart extends Chart<typeof schema> {
 	public total = 0; // publicにするのはテストのため
 

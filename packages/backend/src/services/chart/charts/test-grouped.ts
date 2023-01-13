@@ -5,7 +5,7 @@ import { name, schema } from "./entities/test-grouped.js";
 /**
  * For testing
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class TestGroupedChart extends Chart<typeof schema> {
 	private total = {} as Record<string, number>;
 

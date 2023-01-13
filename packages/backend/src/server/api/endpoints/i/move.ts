@@ -91,7 +91,7 @@ function moveActivity(toUrl: string, fromUrl: string) {
 	return renderActivity(activity);
 }
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	if (!ps.moveToAccount) throw new ApiError(meta.errors.noSuchMoveTarget);
 	if (user.isAdmin) throw new ApiError(meta.errors.adminForbidden);

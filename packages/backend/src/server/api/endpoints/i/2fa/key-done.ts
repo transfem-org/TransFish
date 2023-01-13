@@ -39,7 +39,7 @@ export const paramDef = {
 	],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	const profile = await UserProfiles.findOneByOrFail({ userId: user.id });
 
@@ -74,7 +74,6 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	const flags = attestation.authData[32];
 
-	// eslint:disable-next-line:no-bitwise
 	if (!(flags & 1)) {
 		throw new Error("user not present");
 	}

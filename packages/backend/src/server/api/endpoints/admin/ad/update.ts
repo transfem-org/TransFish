@@ -41,7 +41,7 @@ export const paramDef = {
 	],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, me) => {
 	const ad = await Ads.findOneBy({ id: ps.id });
 

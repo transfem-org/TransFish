@@ -29,7 +29,7 @@ export const paramDef = {
 	required: ["name"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	const userGroup = await UserGroups.insert({
 		id: genId(),

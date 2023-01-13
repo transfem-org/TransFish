@@ -32,7 +32,7 @@ export const paramDef = {
 	required: ["channelId"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, me) => {
 	const channel = await Channels.findOneBy({
 		id: ps.channelId,

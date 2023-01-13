@@ -7,7 +7,7 @@ import { name, schema } from "./entities/per-user-drive.js";
 /**
  * ユーザーごとのドライブに関するチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class PerUserDriveChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema, true);

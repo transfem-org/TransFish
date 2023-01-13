@@ -8,7 +8,7 @@ import { name, schema } from "./entities/per-user-notes.js";
 /**
  * ユーザーごとのノートに関するチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class PerUserNotesChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema, true);

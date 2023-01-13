@@ -4,14 +4,11 @@
 	"scripts": {
 		"watch": "node build.js watch",
 		"build": "node build.js",
-		"lint": "pnpm eslint --quiet src/**/*.{ts}"
+		"lint": "pnpm rome check src/**/*.{ts}"
 	},
 	"dependencies": {
 		"calckey-js": "^0.0.20",
 		"esbuild": "^0.15.18",
 		"idb-keyval": "^6.2.0"
-	},
-	"devDependencies": {
-		"eslint": "^8.31.0"
 	}
 }

@@ -8,7 +8,7 @@ import { name, schema } from "./entities/per-user-reactions.js";
 /**
  * ユーザーごとのリアクションに関するチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class PerUserReactionsChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema, true);

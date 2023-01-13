@@ -20,7 +20,7 @@ export const paramDef = {
 	required: ["required"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, me) => {
 	return ps;
 });

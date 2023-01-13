@@ -10,7 +10,8 @@ RUN apk update
 RUN apk add git ffmpeg tini alpine-sdk python3
 
 # Configure corepack and pnpm
-RUN npm i -g pnpm
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
 RUN pnpm i --frozen-lockfile
 ARG NODE_ENV=production
 

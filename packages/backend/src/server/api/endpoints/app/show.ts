@@ -29,7 +29,7 @@ export const paramDef = {
 	required: ["appId"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user, token) => {
 	const isSecure = user != null && token == null;
 

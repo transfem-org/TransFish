@@ -22,7 +22,7 @@ export const paramDef = {
 	required: ["span"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps) => {
 	return await usersChart.getChart(
 		ps.span,

@@ -53,7 +53,7 @@ export const paramDef = {
 	required: ["channelId"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, me) => {
 	const channel = await Channels.findOneBy({
 		id: ps.channelId,
@@ -67,7 +67,6 @@ export default define(meta, paramDef, async (ps, me) => {
 		throw new ApiError(meta.errors.accessDenied);
 	}
 
-	// eslint:disable-next-line:no-unnecessary-initializer
 	let banner = undefined;
 	if (ps.bannerId != null) {
 		banner = await DriveFiles.findOneBy({

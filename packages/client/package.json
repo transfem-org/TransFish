@@ -4,7 +4,7 @@
 	"scripts": {
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
-		"lint": "pnpm eslint --quiet \"src/**/*.{ts,vue}\""
+		"lint": "pnpm rome check \"src/**/*.{ts,vue}\""
 	},
 	"dependencies": {
 		"@discordapp/twemoji": "14.0.2",
@@ -76,13 +76,8 @@
 		"@types/throttle-debounce": "5.0.0",
 		"@types/tinycolor2": "1.4.3",
 		"@types/uuid": "8.3.4",
-		"@typescript-eslint/eslint-plugin": "5.46.1",
-		"@typescript-eslint/parser": "5.46.1",
 		"cross-env": "7.0.3",
 		"cypress": "10.11.0",
-		"eslint": "8.31.0",
-		"eslint-plugin-import": "2.26.0",
-		"eslint-plugin-vue": "9.8.0",
 		"rollup": "3.9.1",
 		"start-server-and-test": "1.15.2"
 	}

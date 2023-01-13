@@ -24,7 +24,7 @@ export const paramDef = {
 	type: "object",
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	while ((await UserLists.findOneBy({ userId: user.id })) != null) {
 		const userList = await UserLists.findOneBy({ userId: user.id });

@@ -300,14 +300,12 @@ async function* asyncIterateFrames(
 	});
 	command.run();
 	for (let i = 1; true; i++) {
-		// eslint-disable-line @typescript-eslint/no-unnecessary-condition
 		const current = `${i}.png`;
 		const next = `${i + 1}.png`;
 		const framePath = join(cwd, current);
 		if (await exists(join(cwd, next))) {
 			yield framePath;
 		} else if (!finished) {
-			// eslint-disable-line @typescript-eslint/no-unnecessary-condition
 			watcher.add(next);
 			await new Promise<void>((resolve, reject) => {
 				watcher.on("add", function onAdd(path) {

@@ -3,7 +3,8 @@ pipeline:
     image: node:latest
     commands:
       - cp .config/ci.yml .config/default.yml
-      - npm i -g pnpm
+      - corepack enable
+      - corepack prepare pnpm@latest --activate
       - pnpm i --frozen-lockfile
       - pnpm run build
       - pnpm run migrate

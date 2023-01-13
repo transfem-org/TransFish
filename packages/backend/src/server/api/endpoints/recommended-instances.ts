@@ -26,7 +26,7 @@ export const paramDef = {
 	required: [],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async () => {
 	const meta = await fetchMeta();
 	const instances = await Promise.all(meta.recommendedInstances.map((x) => x));

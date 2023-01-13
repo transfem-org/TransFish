@@ -9,7 +9,7 @@ import { name, schema } from "./entities/instance.js";
 /**
  * インスタンスごとのチャート
  */
-// eslint-disable-next-line import/no-default-export
+
 export default class InstanceChart extends Chart<typeof schema> {
 	constructor() {
 		super(name, schema, true);

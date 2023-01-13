@@ -50,7 +50,7 @@ export const paramDef = {
 	required: ["groupId", "userId"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, me) => {
 	// Fetch the group
 	const userGroup = await UserGroups.findOneBy({

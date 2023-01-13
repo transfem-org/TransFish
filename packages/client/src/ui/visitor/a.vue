@@ -4,7 +4,6 @@
 		<div>
 			<h1 v-if="meta"><img v-if="meta.logoImageUrl" class="logo" :src="meta.logoImageUrl"><span v-else class="text">{{ instanceName }}</span></h1>
 			<div v-if="meta" class="about">
-				<!-- eslint-disable-next-line vue/no-v-html -->
 				<div class="desc" v-html="meta.description || i18n.ts.introMisskey"></div>
 			</div>
 			<div class="action">
@@ -113,9 +112,9 @@ export default defineComponent({
 
 		changePage(page) {
 			if (page == null) return;
-			// eslint-disable-next-line no-undef
+			
 			if (page[symbols.PAGE_INFO]) {
-				// eslint-disable-next-line no-undef
+				
 				this.pageInfo = page[symbols.PAGE_INFO];
 			}
 		},

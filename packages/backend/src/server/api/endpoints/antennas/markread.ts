@@ -19,7 +19,7 @@ export const paramDef = {
 	required: ["antennaId"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, me) => {
 	const antenna = await Antennas.findOneBy({
 		userId: me.id,

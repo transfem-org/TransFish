@@ -22,7 +22,7 @@ export const paramDef = {
 	required: ["password"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	const freshUser = await Users.findOneByOrFail({ id: user.id });
 	const oldToken = freshUser.token;

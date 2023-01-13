@@ -54,7 +54,7 @@ export const paramDef = {
 	required: ["inbox"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps, user) => {
 	try {
 		if (new URL(ps.inbox).protocol !== "https:") throw new Error("https only");

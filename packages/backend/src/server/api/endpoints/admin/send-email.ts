@@ -18,7 +18,7 @@ export const paramDef = {
 	required: ["to", "subject", "text"],
 } as const;
 
-// eslint-disable-next-line import/no-default-export
+
 export default define(meta, paramDef, async (ps) => {
 	await sendEmail(ps.to, ps.subject, ps.text, ps.text);
 });
