@@ -209,7 +209,7 @@ const headerActions = $computed(() => [
 	{
 		icon: 'ph-flying-saucer-bold ph-lg',
 		title: i18n.ts.antennas,
-		text: i18n.ts.lists,
+		text: i18n.ts.antennas,
 		iconOnly: true,
 		handler: chooseAntenna,
 	} /* **TODO: fix timetravel** {
