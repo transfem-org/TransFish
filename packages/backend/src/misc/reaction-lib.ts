@@ -64,7 +64,7 @@ export async function toDbReaction(
 	// 文字列タイプのリアクションを絵文字に変換
 	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 
-	// Unicode Pictograms
+	// Unicode emoji
 	const match = emojiRegex.exec(reaction);
 	if (match) {
 		//return only first emoji
