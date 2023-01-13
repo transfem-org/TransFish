@@ -1,52 +1,60 @@
-import { Instances, NoteReactions, Notes, Users } from '@/models/index.js';
-import define from '../define.js';
-import { } from '@/services/chart/index.js';
-import { IsNull } from 'typeorm';
+import { Instances, NoteReactions, Notes, Users } from "@/models/index.js";
+import define from "../define.js";
+import {} from "@/services/chart/index.js";
+import { IsNull } from "typeorm";
 
 export const meta = {
 	requireCredential: false,
 	requireCredentialPrivateMode: true,
 
-	tags: ['meta'],
+	tags: ["meta"],
 
 	res: {
-		type: 'object',
-		optional: false, nullable: false,
+		type: "object",
+		optional: false,
+		nullable: false,
 		properties: {
 			notesCount: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 			originalNotesCount: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 			usersCount: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 			originalUsersCount: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 			instances: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 			driveUsageLocal: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 			driveUsageRemote: {
-				type: 'number',
-				optional: false, nullable: false,
+				type: "number",
+				optional: false,
+				nullable: false,
 			},
 		},
 	},
 } as const;
 
 export const paramDef = {
-	type: 'object',
+	type: "object",
 	properties: {},
 	required: [],
 } as const;

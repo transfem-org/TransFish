@@ -1,6 +1,6 @@
-import { createExportCustomEmojisJob } from '@/queue/index.js';
-import define from '../define.js';
-import { HOUR } from '@/const.js';
+import { createExportCustomEmojisJob } from "@/queue/index.js";
+import define from "../define.js";
+import { HOUR } from "@/const.js";
 
 export const meta = {
 	secure: true,
@@ -12,7 +12,7 @@ export const meta = {
 } as const;
 
 export const paramDef = {
-	type: 'object',
+	type: "object",
 	properties: {},
 	required: [],
 } as const;

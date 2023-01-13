@@ -1,36 +1,37 @@
-import define from '../../define.js';
-import { ApiError } from '../../error.js';
-import { Clips } from '@/models/index.js';
+import define from "../../define.js";
+import { ApiError } from "../../error.js";
+import { Clips } from "@/models/index.js";
 
 export const meta = {
-	tags: ['clips', 'account'],
+	tags: ["clips", "account"],
 
 	requireCredential: false,
 	requireCredentialPrivateMode: true,
 
-	kind: 'read:account',
+	kind: "read:account",
 
 	errors: {
 		noSuchClip: {
-			message: 'No such clip.',
-			code: 'NO_SUCH_CLIP',
-			id: 'c3c5fe33-d62c-44d2-9ea5-d997703f5c20',
+			message: "No such clip.",
+			code: "NO_SUCH_CLIP",
+			id: "c3c5fe33-d62c-44d2-9ea5-d997703f5c20",
 		},
 	},
 
 	res: {
-		type: 'object',
-		optional: false, nullable: false,
-		ref: 'Clip',
+		type: "object",
+		optional: false,
+		nullable: false,
+		ref: "Clip",
 	},
 } as const;
 
 export const paramDef = {
-	type: 'object',
+	type: "object",
 	properties: {
-		clipId: { type: 'string', format: 'misskey:id' },
+		clipId: { type: "string", format: "misskey:id" },
 	},
-	required: ['clipId'],
+	required: ["clipId"],
 } as const;
 
 // eslint-disable-next-line import/no-default-export
@@ -44,7 +45,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		throw new ApiError(meta.errors.noSuchClip);
 	}
 
-	if (!clip.isPublic && (me == null || (clip.userId !== me.id))) {
+	if (!clip.isPublic && (me == null || clip.userId !== me.id)) {
 		throw new ApiError(meta.errors.noSuchClip);
 	}
 

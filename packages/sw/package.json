@@ -4,7 +4,7 @@
 	"scripts": {
 		"watch": "node build.js watch",
 		"build": "node build.js",
-		"lint": "eslint --quiet src/**/*.{ts}"
+		"lint": "pnpm eslint --quiet src/**/*.{ts}"
 	},
 	"dependencies": {
 		"calckey-js": "^0.0.20",

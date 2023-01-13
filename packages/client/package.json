@@ -4,7 +4,7 @@
 	"scripts": {
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
-		"lint": "eslint --quiet \"src/**/*.{ts,vue}\""
+		"lint": "pnpm eslint --quiet \"src/**/*.{ts,vue}\""
 	},
 	"dependencies": {
 		"@discordapp/twemoji": "14.0.2",

@@ -1,26 +1,28 @@
-import define from '../../define.js';
-import { Clips } from '@/models/index.js';
+import define from "../../define.js";
+import { Clips } from "@/models/index.js";
 
 export const meta = {
-	tags: ['clips', 'account'],
+	tags: ["clips", "account"],
 
 	requireCredential: true,
 
-	kind: 'read:account',
+	kind: "read:account",
 
 	res: {
-		type: 'array',
-		optional: false, nullable: false,
+		type: "array",
+		optional: false,
+		nullable: false,
 		items: {
-			type: 'object',
-			optional: false, nullable: false,
-			ref: 'Clip',
+			type: "object",
+			optional: false,
+			nullable: false,
+			ref: "Clip",
 		},
 	},
 } as const;
 
 export const paramDef = {
-	type: 'object',
+	type: "object",
 	properties: {},
 	required: [],
 } as const;
@@ -31,5 +33,5 @@ export default define(meta, paramDef, async (ps, me) => {
 		userId: me.id,
 	});
 
-	return await Promise.all(clips.map(x => Clips.pack(x)));
+	return await Promise.all(clips.map((x) => Clips.pack(x)));
 });

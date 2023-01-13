@@ -59,6 +59,7 @@
 		"cross-env": "7.0.3",
 		"cypress": "10.11.0",
 		"install-peers": "^1.0.4",
+		"rome": "^11.0.0",
 		"start-server-and-test": "1.15.2",
 		"typescript": "4.9.4",
 		"vue-eslint-parser": "^9.1.0"

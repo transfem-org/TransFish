@@ -1,6 +1,6 @@
-import define from '../../define.js';
-import { createExportFollowingJob } from '@/queue/index.js';
-import { HOUR } from '@/const.js';
+import define from "../../define.js";
+import { createExportFollowingJob } from "@/queue/index.js";
+import { HOUR } from "@/const.js";
 
 export const meta = {
 	secure: true,
@@ -12,10 +12,10 @@ export const meta = {
 } as const;
 
 export const paramDef = {
-	type: 'object',
+	type: "object",
 	properties: {
-		excludeMuting: { type: 'boolean', default: false },
-		excludeInactive: { type: 'boolean', default: false },
+		excludeMuting: { type: "boolean", default: false },
+		excludeInactive: { type: "boolean", default: false },
 	},
 	required: [],
 } as const;

@@ -1,6 +1,7 @@
-import config from '@/config/index.js';
+import config from "@/config/index.js";
 
-export const MAX_NOTE_TEXT_LENGTH = config.maxNoteLength != null ? config.maxNoteLength : 3000;
+export const MAX_NOTE_TEXT_LENGTH =
+	config.maxNoteLength != null ? config.maxNoteLength : 3000;
 
 export const SECOND = 1000;
 export const SEC = 1000;
@@ -17,39 +18,39 @@ export const USER_ACTIVE_THRESHOLD = 1000 * 60 * 60 * 24 * 3; // 3days
 // SVGはXSSを生むので許可しない
 export const FILE_TYPE_BROWSERSAFE = [
 	// Images
-	'image/png',
-	'image/gif',
-	'image/jpeg',
-	'image/webp',
-	'image/apng',
-	'image/bmp',
-	'image/tiff',
-	'image/x-icon',
+	"image/png",
+	"image/gif",
+	"image/jpeg",
+	"image/webp",
+	"image/apng",
+	"image/bmp",
+	"image/tiff",
+	"image/x-icon",
 
 	// OggS
-	'audio/opus',
-	'video/ogg',
-	'audio/ogg',
-	'application/ogg',
+	"audio/opus",
+	"video/ogg",
+	"audio/ogg",
+	"application/ogg",
 
 	// ISO/IEC base media file format
-	'video/quicktime',
-	'video/mp4',
-	'audio/mp4',
-	'video/x-m4v',
-	'audio/x-m4a',
-	'video/3gpp',
-	'video/3gpp2',
+	"video/quicktime",
+	"video/mp4",
+	"audio/mp4",
+	"video/x-m4v",
+	"audio/x-m4a",
+	"video/3gpp",
+	"video/3gpp2",
 
-	'video/mpeg',
-	'audio/mpeg',
+	"video/mpeg",
+	"audio/mpeg",
 
-	'video/webm',
-	'audio/webm',
+	"video/webm",
+	"audio/webm",
 
-	'audio/aac',
-	'audio/x-flac',
-	'audio/vnd.wave',
+	"audio/aac",
+	"audio/x-flac",
+	"audio/vnd.wave",
 ];
 /*
 https://github.com/sindresorhus/file-type/blob/main/supported.js
