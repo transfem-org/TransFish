@@ -1,7 +1,8 @@
-import * as fs from 'node:fs';
-import { createTempDir } from '@/misc/create-temp.js';
-import { IImage, convertToJpeg } from './image-processor.js';
-import FFmpeg from 'fluent-ffmpeg';
+import * as fs from "node:fs";
+import { createTempDir } from "@/misc/create-temp.js";
+import type { IImage } from "./image-processor.js";
+import { convertToJpeg } from "./image-processor.js";
+import FFmpeg from "fluent-ffmpeg";
 
 export async function GenerateVideoThumbnail(source: string): Promise<IImage> {
 	const [dir, cleanup] = await createTempDir();
@@ -11,14 +12,14 @@ export async function GenerateVideoThumbnail(source: string): Promise<IImage> {
 			FFmpeg({
 				source,
 			})
-			.on('end', res)
-			.on('error', rej)
-			.screenshot({
-				folder: dir,
-				filename: 'out.png',	// must have .png extension
-				count: 1,
-				timestamps: ['5%'],
-			});
+				.on("end", res)
+				.on("error", rej)
+				.screenshot({
+					folder: dir,
+					filename: "out.png", // must have .png extension
+					count: 1,
+					timestamps: ["5%"],
+				});
 		});
 
 		// JPEGに変換 (Webpでもいいが、MastodonはWebpをサポートせず表示できなくなる)

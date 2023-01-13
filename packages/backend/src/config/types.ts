@@ -47,7 +47,7 @@ export type Source = {
 
 	id: string;
 
-	outgoingAddressFamily?: 'ipv4' | 'ipv6' | 'dual';
+	outgoingAddressFamily?: "ipv4" | "ipv6" | "dual";
 
 	deliverJobConcurrency?: number;
 	inboxJobConcurrency?: number;
@@ -81,7 +81,6 @@ export type Source = {
 		user?: string;
 		pass?: string;
 		useImplicitSslTls?: boolean;
-
 	};
 	objectStorage: {
 		managed?: boolean;

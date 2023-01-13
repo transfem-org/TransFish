@@ -14,8 +14,8 @@
 				<swiper-slide>
 					<div class="_content yweeujhr dms">
 						<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						<MkPagination v-slot="{items}" :pagination="dmsPagination">
-							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						<MkPagination v-slot="{}" :externalItemArray="messages" :pagination="dmsPagination">
+							<MkChatPreview v-for="message in messages" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
 					</div>
 				</swiper-slide>
@@ -25,8 +25,8 @@
 							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
 							<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						</div>
-						<MkPagination v-slot="{items}" :pagination="groupsPagination">
-							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						<MkPagination v-slot="{}" :externalItemArray="groupMessages" :pagination="groupsPagination">
+							<MkChatPreview v-for="message in groupMessages" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
 					</div>
 				</swiper-slide>
@@ -58,6 +58,7 @@ import 'swiper/scss/virtual';
 const router = useRouter();
 
 let messages = $ref([]);
+let groupMessages = $ref([]);
 let connection = $ref(null);
 
 const tabs = ['dms', 'groups'];
@@ -109,8 +110,8 @@ function onMessage(message): void {
 
 		messages.unshift(message);
 	} else if (message.groupId) {
-		messages = messages.filter(m => m.groupId !== message.groupId);
-		messages.unshift(message);
+		groupMessages = groupMessages.filter(m => m.groupId !== message.groupId);
+		groupMessages.unshift(message);
 	}
 }
 
@@ -183,11 +184,12 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+	syncSlide(tabs.indexOf(swiperRef?.activeIndex));
 
 	connection = markRaw(stream.useChannel('messagingIndex'));
 
 	connection.on('message', onMessage);
+	connection.on('messagingMessage', onMessage);
 	connection.on('read', onRead);
 
 	os.api('messaging/history', { group: false, limit: 5 }).then(userMessages => {

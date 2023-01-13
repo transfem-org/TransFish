@@ -59,6 +59,24 @@
 					</FormSection>
 
 					<FormSection>
+						<MkRadios v-model="defaultReaction" class="_formBlock">
+							<template #label>{{ i18n.ts.defaultReaction }}</template>
+							<option value="⭐">
+								<MkEmoji class="emoji" emoji="⭐" style="height: 1.7em"/>
+							</option>
+							<option value="👍">
+								<MkEmoji class="emoji" emoji="👍" style="height: 1.7em"/>
+							</option>
+							<option value="❤️">
+								<MkEmoji class="emoji" emoji="❤️" style="height: 1.7em"/>
+							</option>
+							<option value="custom">
+								<FormInput v-model="defaultReactionCustom" class="_formBlock" :small="true" :placeholder="`:custom:`" style="margin: 0 0 !important"/>
+							</option>
+						</MkRadios>
+					</FormSection>
+
+					<FormSection>
 						<template #label>{{ i18n.ts.theme }}</template>
 
 						<FormInput v-model="iconUrl" class="_formBlock">
@@ -184,7 +202,7 @@
 </template>
 
 <script lang="ts" setup>
-import { } from 'vue';
+import { ref } from 'vue';
 import FormSwitch from '@/components/form/switch.vue';
 import FormInput from '@/components/form/input.vue';
 import FormTextarea from '@/components/form/textarea.vue';
@@ -192,6 +210,7 @@ import FormInfo from '@/components/MkInfo.vue';
 import FormSection from '@/components/form/section.vue';
 import FormSplit from '@/components/form/split.vue';
 import FormSuspense from '@/components/form/suspense.vue';
+import MkRadios from '@/components/form/radios.vue';
 import * as os from '@/os';
 import { fetchInstance } from '@/instance';
 import { i18n } from '@/i18n';
@@ -227,6 +246,8 @@ let swPrivateKey: any = $ref(null);
 let deeplAuthKey: string = $ref('');
 let deeplIsPro: boolean = $ref(false);
 let gifboxAuthKey: string = $ref('');
+let defaultReaction: string = $ref('');
+let defaultReactionCustom: string = $ref('');
 
 async function init() {
 	const meta = await os.api('admin/meta');
@@ -260,9 +281,14 @@ async function init() {
 	deeplAuthKey = meta.deeplAuthKey;
 	deeplIsPro = meta.deeplIsPro;
 	gifboxAuthKey = meta.gifboxAuthKey;
+	defaultReaction = ['⭐', '👍', '❤️'].includes(meta.defaultReaction) ? meta.defaultReaction : 'custom';
+	defaultReactionCustom = ['⭐', '👍', '❤️'].includes(meta.defaultReaction) ? '' : meta.defaultReaction;
 }
 
 function save() {
+	if (defaultReaction === 'custom') {
+		defaultReaction = defaultReactionCustom;
+	}
 	os.apiWithDialog('admin/update-meta', {
 		name,
 		description,
@@ -294,6 +320,7 @@ function save() {
 		deeplAuthKey,
 		deeplIsPro,
 		gifboxAuthKey,
+		defaultReaction,
 	}).then(() => {
 		fetchInstance();
 	});

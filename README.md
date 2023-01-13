@@ -58,6 +58,13 @@
 
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
+## 🔰 Easy installers
+
+If you have access to a server that supports one of the sources below, I recommend you use it! Note that these methods *won't* allow you to migrate from Misskey without manual intervention.
+
+[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://codeberg.org/calckey/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/calckey)　　[![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
+
+
 ## 🧑‍💻 Dependencies
 
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.12.1 (v19 recommended)
@@ -95,6 +102,8 @@ cd calckey/
 ```sh
 # nvm install 19 && nvm use 19
 corepack enable
+corepack prepare pnpm@latest --activate
+pnpm i
 ```
 
 ## 🐘 Create database
@@ -110,7 +119,7 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 - To add custom CSS for all users, edit `./custom/assets/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be available on `https://yourinstance.tld/static-assets/filename.ext`.
 - To add custom locales, place them in the `./custom/locales/` directory. If you name your custom locale the same as an existing locale, it will overwrite it. If you give it a unique name, it will be added to the list. Also make sure that the first part of the filename matches the locale you're basing it on. (Example: `en-FOO.yml`)
-- To update custom assets without rebuilding, just run `yarn run gulp`.
+- To update custom assets without rebuilding, just run `pnpm run gulp`.
 
 ## 🧑‍🔬 Configuring a new instance
 
@@ -124,7 +133,7 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 
 ```sh
 cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, add `docker.env` if you use Docker
-cp -r ../misskey/files . # if you don't use object storage
+cp -r ../misskey/files .
 ```
 
 ## 🍀 NGINX
@@ -144,9 +153,8 @@ cp -r ../misskey/files . # if you don't use object storage
 
 ```sh
 # git pull
-yarn install
-NODE_ENV=production yarn run rebuild && yarn run migrate
-pm2 start "NODE_ENV=production yarn start" --name Calckey
+NODE_ENV=production pnpm install && pnpm run build && pnpm run migrate
+pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 ```
 
 ### 🐋 Docker
@@ -156,7 +164,7 @@ pm2 start "NODE_ENV=production yarn start" --name Calckey
 ## 😉 Tips & Tricks
 
 - When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Calckey's control panel.
-- Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in $(seq 3000 4000); do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`
+- Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Replace 3000 with the minimum port and 4000 with the maximum port if you need it.
 - I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker. 
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off.
 - For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
