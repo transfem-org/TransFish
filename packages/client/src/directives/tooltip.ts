@@ -89,5 +89,6 @@ export default {
 	unmounted(el, binding, vn) {
 		const self = el._tooltipDirective_;
 		window.clearInterval(self.checkTimer);
+		self._close();
 	},
 } as Directive;
