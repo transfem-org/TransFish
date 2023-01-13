@@ -1,4 +1,3 @@
-/* eslint-disable key-spacing */
 import { emojiRegex } from "./emoji-regex.js";
 import { fetchMeta } from "./fetch-meta.js";
 import { Emojis } from "@/models/index.js";
