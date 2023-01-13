@@ -41,7 +41,7 @@
 ## Implemented
 
 - A lot of general bugfixes
-- Yarn 3
+- pnpm instead of yarn
   - Fix Dockerfile @hanna
   - Upgrade packages with security vunrabilities
 - Saner defaults

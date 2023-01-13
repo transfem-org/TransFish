@@ -3,11 +3,10 @@ pipeline:
     image: node:latest
     commands:
       - cp .config/ci.yml .config/default.yml
-      - corepack enable
-      - yarn set version berry
-      - yarn install --immutable
-      - yarn run build
-      - yarn migrate
+      - npm i -g pnpm
+      - pnpm i --frozen-lockfile
+      - pnpm run build
+      - pnpm run migrate
 
 services:
   database:
