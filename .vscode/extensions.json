@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin",
-    "arcanis.vscode-zipfs"
+    "arcanis.vscode-zipfs",
+		"Orta.vscode-twoslash-queries"
   ]
 }
