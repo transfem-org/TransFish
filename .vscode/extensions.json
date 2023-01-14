@@ -2,7 +2,7 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "eg2.vscode-npm-script",
-    "dbaeumer.vscode-eslint",
+    "rome.rome",
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin",
     "arcanis.vscode-zipfs",
