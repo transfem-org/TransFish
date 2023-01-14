@@ -167,7 +167,7 @@ pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 - Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Replace 3000 with the minimum port and 4000 with the maximum port if you need it.
 - I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker. 
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off.
-- For push notifications, run `npx web-push generate-vapid-keys`, the put the public and private keys into Control Panel > General > ServiceWorker.
+- For push notifications, run `npx web-push generate-vapid-keys`, then put the public and private keys into Control Panel > General > ServiceWorker.
 - For translations, make a [DeepL](https://deepl.com) account and generate an API key, then put it into Control Panel > General > DeepL Translation.
 - To add another admin account:
   - Go to the user's page > 3 Dots > About > Moderation > turn on "Moderator"
