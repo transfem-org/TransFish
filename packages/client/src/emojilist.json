@@ -1265,7 +1265,7 @@
 	{ "category": "symbols", "char": "☸", "name": "wheel_of_dharma", "keywords": ["hinduism", "buddhism", "sikhism", "jainism"] },
 	{ "category": "symbols", "char": "✡", "name": "star_of_david", "keywords": ["judaism"] },
 	{ "category": "symbols", "char": "🔯", "name": "six_pointed_star", "keywords": ["purple-square", "religion", "jewish", "hexagram"] },
-	{ "category": "symbols", "char": "🕎", "name": "menorah", "keywords": ["hanukkah", "candles", "jewish"] },
+	{ "category": "symbols", "char": "🕎", "name": "menorah", "keywords": ["purple-square", "hanukkah", "candles", "jewish"] },
 	{ "category": "symbols", "char": "☯", "name": "yin_yang", "keywords": ["balance"] },
 	{ "category": "symbols", "char": "☦", "name": "orthodox_cross", "keywords": ["suppedaneum", "religion"] },
 	{ "category": "symbols", "char": "🛐", "name": "place_of_worship", "keywords": ["religion", "church", "temple", "prayer"] },
