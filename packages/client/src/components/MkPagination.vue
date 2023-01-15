@@ -93,7 +93,7 @@ const init = async (): Promise<void> => {
 	fetching.value = true;
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: props.pagination.noPaging ? (props.pagination.limit || 10) : (props.pagination.limit || 10) + 1,
 	}).then(res => {
 		for (let i = 0; i < res.length; i++) {
@@ -132,10 +132,10 @@ const reload = (): void => {
 	init();
 };
 
-const refresh = async (): void => {
+const refresh = async (): Promise<void> => {
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: items.value.length + 1,
 		offset: 0,
 	}).then(res => {
@@ -167,7 +167,7 @@ const fetchMore = async (): Promise<void> => {
 	backed.value = true;
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: SECOND_FETCH_LIMIT + 1,
 		...(props.pagination.offsetMode ? {
 			offset: offset.value,
@@ -208,7 +208,7 @@ const fetchMoreAhead = async (): Promise<void> => {
 	moreFetching.value = true;
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: SECOND_FETCH_LIMIT + 1,
 		...(props.pagination.offsetMode ? {
 			offset: offset.value,
