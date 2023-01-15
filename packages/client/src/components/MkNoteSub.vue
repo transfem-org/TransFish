@@ -147,10 +147,17 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 				margin: 0;
 			}
 			> .line {
-				background-color: var(--accentDarken);
-				width: 2px;
+				width: var(--avatarSize);
+				display: flex;
 				flex-grow: 1;
-				margin-bottom: -30px;
+				&::before {
+					content: "";
+					display: block;
+					margin-bottom: -30px;
+					width: 2px;
+					background-color: var(--accentDarken);
+					margin-inline: auto;
+				}
 			}
 		}
 	}
