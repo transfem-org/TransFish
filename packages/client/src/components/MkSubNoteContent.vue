@@ -65,7 +65,11 @@ const collapsed = $ref(props.note.cw == null && isLong);
 		position: relative;
 		max-height: 9em;
 		overflow: hidden;
-
+		> .body {
+			max-height: 9em;
+			mask: linear-gradient(black calc(100% - 64px), transparent);
+			-webkit-mask: linear-gradient(black calc(100% - 64px), transparent);
+		}
 		> .fade {
 			display: block;
 			position: absolute;
@@ -73,7 +77,6 @@ const collapsed = $ref(props.note.cw == null && isLong);
 			left: 0;
 			width: 100%;
 			height: 64px;
-			background: linear-gradient(0deg, var(--panel), var(--X15));
 
 			> span {
 				display: inline-block;
