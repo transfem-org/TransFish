@@ -394,14 +394,14 @@ export class Meta {
 
 	@Column('varchar', {
 		length: 512,
-		default: 'https://codeberg.org/calckey/calckey',
+		default: 'https://lavaforge.org/calckey/calckey',
 		nullable: false,
 	})
 	public repositoryUrl: string;
 
 	@Column('varchar', {
 		length: 512,
-		default: 'https://codeberg.org/calckey/calckey/issues/new',
+		default: 'https://lavaforge.org/calckey/calckey/issues/new',
 		nullable: true,
 	})
 	public feedbackUrl: string | null;

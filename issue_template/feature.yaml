@@ -64,7 +64,7 @@ body:
     id: terms
     attributes:
       label: Contribution Guidelines
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
+      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://lavaforge.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
       options:
         - label: I agree to follow this project's Contribution Guidelines
           required: true

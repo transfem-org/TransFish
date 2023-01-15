@@ -48,7 +48,7 @@ function greet() {
 				136,
 				0,
 			)(
-				" If you like Calckey, please consider starring or contributing to the repo. https://codeberg.org/calckey/calckey",
+				" If you like Calckey, please consider starring or contributing to the repo. https://lavaforge.org/calckey/calckey",
 			),
 		);
 

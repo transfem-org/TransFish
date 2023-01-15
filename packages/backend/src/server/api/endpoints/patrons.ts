@@ -18,7 +18,7 @@ export const paramDef = {
 export default define(meta, paramDef, async () => {
 	let patrons;
 	await fetch(
-		"https://codeberg.org/calckey/calckey/raw/branch/develop/patrons.json",
+		"https://lavaforge.org/calckey/calckey/raw/branch/develop/patrons.json",
 	)
 		.then((response) => response.json())
 		.then((data) => {

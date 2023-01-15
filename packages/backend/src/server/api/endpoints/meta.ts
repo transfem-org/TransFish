@@ -68,13 +68,13 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://codeberg.org/calckey/calckey",
+				default: "https://lavaforge.org/calckey/calckey",
 			},
 			feedbackUrl: {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://codeberg.org/calckey/calckey/issues",
+				default: "https://lavaforge.org/calckey/calckey/issues",
 			},
 			defaultDarkTheme: {
 				type: "string",
