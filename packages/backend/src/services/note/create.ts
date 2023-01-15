@@ -252,13 +252,12 @@ export default async (
 		let mentionedUsers = data.apMentions;
 
 		// Parse MFM if needed
-		if (!((tags && emojis ) && mentionedUsers)) {
+		if (!(tags && emojis && mentionedUsers)) {
 			const tokens = data.text ? mfm.parse(data.text)! : [];
 			const cwTokens = data.cw ? mfm.parse(data.cw)! : [];
-			const choiceTokens =
-				data.poll?.choices
-					? concat(data.poll.choices.map((choice) => mfm.parse(choice)!))
-					: [];
+			const choiceTokens = data.poll?.choices
+				? concat(data.poll.choices.map((choice) => mfm.parse(choice)!))
+				: [];
 
 			const combinedTokens = tokens.concat(cwTokens).concat(choiceTokens);
 
@@ -534,13 +533,13 @@ export default async (
 					}
 
 					// 投稿がリプライかつ投稿者がローカルユーザーかつリプライ先の投稿の投稿者がリモートユーザーなら配送
-					if (data.reply?.userHost !== null) {
+					if (data.reply && data.reply.userHost !== null) {
 						const u = await Users.findOneBy({ id: data.reply.userId });
 						if (u && Users.isRemoteUser(u)) dm.addDirectRecipe(u);
 					}
 
 					// 投稿がRenoteかつ投稿者がローカルユーザーかつRenote元の投稿の投稿者がリモートユーザーなら配送
-					if (data.renote?.userHost !== null) {
+					if (data.renote && data.renote.userHost !== null) {
 						const u = await Users.findOneBy({ id: data.renote.userId });
 						if (u && Users.isRemoteUser(u)) dm.addDirectRecipe(u);
 					}

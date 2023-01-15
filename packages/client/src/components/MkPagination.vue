@@ -33,17 +33,17 @@
 
 <script lang="ts" setup>
 import { computed, ComputedRef, isRef, markRaw, onActivated, onDeactivated, Ref, ref, watch } from 'vue';
-import * as misskey from 'calckey-js';
+import * as calckey from 'calckey-js';
 import * as os from '@/os';
 import { onScrollTop, isTopVisible, getScrollPosition, getScrollContainer } from '@/scripts/scroll';
 import MkButton from '@/components/MkButton.vue';
 import { i18n } from '@/i18n';
 import { ItemHolder } from 'photoswipe';
 
-export type Paging<E extends keyof misskey.Endpoints = keyof misskey.Endpoints> = {
+export type Paging<E extends keyof calckey.Endpoints = keyof calckey.Endpoints> = {
 	endpoint: E;
 	limit: number;
-	params?: misskey.Endpoints[E]['req'] | ComputedRef<misskey.Endpoints[E]['req']>;
+	params?: calckey.Endpoints[E]['req'] | ComputedRef<calckey.Endpoints[E]['req']>;
 
 	/**
 	 * When using non-pageable endpoints, such as the search API
@@ -363,7 +363,7 @@ defineExpose({
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 0.125s ease;
+	transition: opacity 0.15s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
