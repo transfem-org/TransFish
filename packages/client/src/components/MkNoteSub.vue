@@ -1,6 +1,6 @@
 <template>
 <div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1 }">
-	<div class="main" @click="router.push(notePage(note.reply))">
+	<div class="main" @click="router.push(notePage(note))">
 		<div class="avatar-container">
 			<MkAvatar class="avatar" :user="note.user"/>
 			<div class="line"></div>
