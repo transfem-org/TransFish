@@ -1330,7 +1330,6 @@ _widgets:
   serverMetric: "Server metrics"
   aiscript: "AiScript console"
   userList: "User list"
-  userList: "User list"
   _userList:
     chooseList: "Select a list"
 _cw:
