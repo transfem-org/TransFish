@@ -14,7 +14,7 @@
 	<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
 	<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
 	<div v-if="isRenote" class="renote">
-		<MkAvatar class="avatar" :user="note.user"/>
+		<!-- <MkAvatar class="avatar" :user="note.user"/> -->
 		<i class="ph-repeat-bold ph-lg"></i>
 		<I18n :src="i18n.ts.renotedBy" tag="span">
 			<template #user>
@@ -45,7 +45,7 @@
 					<div class="text" @click.self="router.push(notePage(appearNote))">
 						<MkA v-if="appearNote.replyId" class="reply" :to="`/notes/${appearNote.replyId}`"><i class="ph-arrow-bend-up-left-bold ph-lg"></i></MkA>
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
-						<a v-if="appearNote.renote != null" class="rp">RN:</a>
+						<!-- <a v-if="appearNote.renote != null" class="rp">RN:</a> -->
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
 							<div v-else class="translated">
