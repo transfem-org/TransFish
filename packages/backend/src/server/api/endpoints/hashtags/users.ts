@@ -47,7 +47,6 @@ export const paramDef = {
 	required: ["tag", "sort"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = Users.createQueryBuilder("user").where(
 		":tag = ANY(user.tags)",

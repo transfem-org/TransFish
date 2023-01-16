@@ -92,9 +92,9 @@ function PEMString(pemBuffer: Buffer, type = "CERTIFICATE") {
 		start += 64;
 	}
 
-	return (
-		`-----BEGIN ${type}-----\n${keyParts.join("\n")}\n-----END ${type}-----\n`
-	);
+	return `-----BEGIN ${type}-----\n${keyParts.join(
+		"\n",
+	)}\n-----END ${type}-----\n`;
 }
 
 export function hash(data: Buffer) {

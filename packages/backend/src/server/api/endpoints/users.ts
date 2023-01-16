@@ -58,7 +58,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = Users.createQueryBuilder("user");
 	query.where("user.isExplorable = TRUE");

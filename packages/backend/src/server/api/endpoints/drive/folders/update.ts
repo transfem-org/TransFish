@@ -48,7 +48,6 @@ export const paramDef = {
 	required: ["folderId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// Fetch folder
 	const folder = await DriveFolders.findOneBy({

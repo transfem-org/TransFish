@@ -16,7 +16,6 @@ export const paramDef = {
 	required: ["fileId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	createImportCustomEmojisJob(user, ps.fileId);
 });

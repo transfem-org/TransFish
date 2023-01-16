@@ -31,7 +31,6 @@ export const paramDef = {
 	],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	await Ads.insert({
 		id: genId(),

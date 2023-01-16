@@ -27,7 +27,6 @@ export const paramDef = {
 	required: ["id"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const emoji = await Emojis.findOneBy({ id: ps.id });
 

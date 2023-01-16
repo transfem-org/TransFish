@@ -30,7 +30,6 @@ export const paramDef = {
 	required: ["fileId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const file = await DriveFiles.findOneBy({ id: ps.fileId });
 

@@ -54,7 +54,6 @@ export const paramDef = {
 	required: ["inbox"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	try {
 		if (new URL(ps.inbox).protocol !== "https:") throw new Error("https only");

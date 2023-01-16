@@ -42,7 +42,6 @@ export const paramDef = {
 	],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	if ("notificationId" in ps)
 		return readNotification(user.id, [ps.notificationId]);

@@ -83,8 +83,8 @@ export const defaultStore = markRaw(
 		menu: {
 			where: "deviceAccount",
 			default: [
-				"notifications", undefined
-				,
+				"notifications",
+				undefined,
 				"followRequests",
 				"messaging",
 				"explore",

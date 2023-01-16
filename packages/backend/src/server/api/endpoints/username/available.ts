@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["username"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	// Get exist
 	const exist = await Users.countBy({

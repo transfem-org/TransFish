@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["appId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user, token) => {
 	const isSecure = user != null && token == null;
 

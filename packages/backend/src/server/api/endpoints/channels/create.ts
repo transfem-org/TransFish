@@ -42,7 +42,6 @@ export const paramDef = {
 	required: ["name"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	let banner = null;
 	if (ps.bannerId != null) {

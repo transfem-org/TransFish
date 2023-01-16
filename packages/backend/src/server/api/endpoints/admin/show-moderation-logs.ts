@@ -66,7 +66,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const query = makePaginationQuery(
 		ModerationLogs.createQueryBuilder("report"),

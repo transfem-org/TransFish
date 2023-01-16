@@ -66,7 +66,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const follower = user;
 

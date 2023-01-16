@@ -26,7 +26,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async () => {
 	const meta = await fetchMeta();
 	const icons = await Promise.all(meta.customSplashIcons.map((x) => x));

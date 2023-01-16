@@ -23,7 +23,7 @@ export function setVolume(
 }
 
 export function play(type: string) {
-	const sound = ColdDeviceStorage.get((`sound_${type}`) as any);
+	const sound = ColdDeviceStorage.get(`sound_${type}` as any);
 	if (sound.type == null) return;
 	playFile(sound.type, sound.volume);
 }

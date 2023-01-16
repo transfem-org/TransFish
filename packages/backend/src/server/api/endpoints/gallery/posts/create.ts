@@ -48,7 +48,6 @@ export const paramDef = {
 	required: ["title", "fileIds"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const files = (
 		await Promise.all(

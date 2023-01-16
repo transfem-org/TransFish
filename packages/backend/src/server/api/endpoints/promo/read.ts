@@ -26,7 +26,6 @@ export const paramDef = {
 	required: ["noteId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const note = await getNote(ps.noteId, user).catch((err) => {
 		if (err.id === "9725d0ce-ba28-4dde-95a7-2cbb2c15de24")

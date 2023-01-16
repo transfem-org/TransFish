@@ -33,7 +33,6 @@ export const paramDef = {
 	required: ["tag"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const hashtag = await Hashtags.findOneBy({
 		name: normalizeForSearch(ps.tag),

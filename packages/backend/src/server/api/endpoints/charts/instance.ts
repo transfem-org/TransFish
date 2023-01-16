@@ -23,7 +23,6 @@ export const paramDef = {
 	required: ["span", "host"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	return await instanceChart.getChart(
 		ps.span,

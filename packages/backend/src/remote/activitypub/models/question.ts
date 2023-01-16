@@ -34,7 +34,7 @@ export async function extractPollFromQuestion(
 	);
 
 	const votes = question[multiple ? "anyOf" : "oneOf"]!.map(
-		(x, i) => (x.replies?.totalItems) || x._misskey_votes || 0,
+		(x, i) => x.replies?.totalItems || x._misskey_votes || 0,
 	);
 
 	return {

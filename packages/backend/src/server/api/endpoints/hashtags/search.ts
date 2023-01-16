@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["query"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const hashtags = await Hashtags.createQueryBuilder("tag")
 		.where("tag.name like :q", { q: `${ps.query.toLowerCase()}%` })

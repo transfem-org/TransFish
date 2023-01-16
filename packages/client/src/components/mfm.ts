@@ -102,10 +102,11 @@ export default defineComponent({
 							switch (token.props.name) {
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style =
-										`font-size: 150%;${(this.$store.state.animatedMfm
+									style = `font-size: 150%;${
+										this.$store.state.animatedMfm
 											? `animation: tada ${speed} linear infinite both;`
-											: "")}`;
+											: ""
+									}`;
 									break;
 								}
 								case "jelly": {

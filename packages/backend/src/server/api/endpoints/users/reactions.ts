@@ -46,7 +46,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const profile = await UserProfiles.findOneByOrFail({ userId: ps.userId });
 

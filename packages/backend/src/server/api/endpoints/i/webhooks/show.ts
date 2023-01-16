@@ -26,7 +26,6 @@ export const paramDef = {
 	required: ["webhookId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const webhook = await Webhooks.findOneBy({
 		id: ps.webhookId,

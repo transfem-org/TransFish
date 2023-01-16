@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["invitationId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// Fetch the invitation
 	const invitation = await UserGroupInvitations.findOneBy({

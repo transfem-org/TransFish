@@ -16,7 +16,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async () => {
 	const count = await Users.countBy({
 		lastActiveDate: MoreThan(new Date(Date.now() - USER_ONLINE_THRESHOLD)),

@@ -28,7 +28,6 @@ export const paramDef = {
 	required: ["name"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const userList = await UserLists.insert({
 		id: genId(),

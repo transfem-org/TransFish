@@ -33,7 +33,6 @@ export const paramDef = {
 	required: ["antennaId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	// Fetch the antenna
 	const antenna = await Antennas.findOneBy({

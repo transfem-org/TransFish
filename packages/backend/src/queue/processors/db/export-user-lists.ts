@@ -61,8 +61,10 @@ export async function exportUserLists(
 		stream.end();
 		logger.succ(`Exported to: ${path}`);
 
-		const fileName =
-			`user-lists-${dateFormat(new Date(), "yyyy-MM-dd-HH-mm-ss")}.csv`;
+		const fileName = `user-lists-${dateFormat(
+			new Date(),
+			"yyyy-MM-dd-HH-mm-ss",
+		)}.csv`;
 		const driveFile = await addFile({
 			user,
 			path,

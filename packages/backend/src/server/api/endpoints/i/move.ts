@@ -91,7 +91,6 @@ function moveActivity(toUrl: string, fromUrl: string) {
 	return renderActivity(activity);
 }
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	if (!ps.moveToAccount) throw new ApiError(meta.errors.noSuchMoveTarget);
 	if (user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
@@ -129,7 +128,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		if (fromUrl!.includes(element)) allowed = true;
 	});
 
-	if (!((allowed && toUrl ) && fromUrl))
+	if (!(allowed && toUrl && fromUrl))
 		throw new ApiError(meta.errors.remoteAccountForbids);
 
 	const updates = {} as Partial<User>;

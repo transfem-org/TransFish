@@ -42,7 +42,6 @@ export const paramDef = {
 	required: ["session", "permission"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// Generate access token
 	const accessToken = secureRndstr(32, true);

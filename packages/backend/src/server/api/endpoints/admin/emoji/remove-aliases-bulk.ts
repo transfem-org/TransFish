@@ -31,7 +31,6 @@ export const paramDef = {
 	required: ["ids", "aliases"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const emojis = await Emojis.findBy({
 		id: In(ps.ids),

@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["uri"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const resolver = new Resolver();
 	const object = await resolver.resolve(ps.uri);

@@ -27,7 +27,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// Fetch follower
 	const follower = await getUser(ps.userId).catch((e) => {

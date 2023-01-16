@@ -85,6 +85,10 @@ export default function (app: App) {
 		"MkwAiscript",
 		defineAsyncComponent(() => import("./aiscript.vue")),
 	);
+	app.component(
+		"MkwUserList",
+		defineAsyncComponent(() => import("./user-list.vue")),
+	);
 }
 
 export const widgets = [
@@ -109,4 +113,5 @@ export const widgets = [
 	"jobQueue",
 	"button",
 	"aiscript",
+	"userList",
 ];

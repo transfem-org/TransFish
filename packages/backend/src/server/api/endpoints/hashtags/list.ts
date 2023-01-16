@@ -48,7 +48,6 @@ export const paramDef = {
 	required: ["sort"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = Hashtags.createQueryBuilder("tag");
 

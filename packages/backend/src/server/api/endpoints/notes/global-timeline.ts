@@ -51,11 +51,10 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const m = await fetchMeta();
 	if (m.disableGlobalTimeline) {
-		if (user == null || (!(user.isAdmin || user.isModerator))) {
+		if (user == null || !(user.isAdmin || user.isModerator)) {
 			throw new ApiError(meta.errors.gtlDisabled);
 		}
 	}

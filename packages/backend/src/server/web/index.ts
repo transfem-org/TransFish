@@ -264,7 +264,7 @@ const getFeed = async (acct: string) => {
 
 // As the /@user[.json|.rss|.atom]/sub endpoint is complicated, we will use a regex to switch between them.
 const reUser = new RegExp(
-	"^/@(?<user>[^/]+?)(?:\.(?<feed>json|rss|atom))?(?:/(?<sub>[^/]+))?$",
+	"^/@(?<user>[^/]+?)(?:.(?<feed>json|rss|atom))?(?:/(?<sub>[^/]+))?$",
 );
 router.get(reUser, async (ctx, next) => {
 	const groups = reUser.exec(ctx.originalUrl)?.groups;
@@ -616,8 +616,8 @@ router.get("/cli", async (ctx) => {
 });
 
 const override = (source: string, target: string, depth = 0) =>
-	[undefined
-		,
+	[
+		undefined,
 		...target.split("/").filter((x) => x),
 		...source
 			.split("/")

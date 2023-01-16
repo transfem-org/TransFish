@@ -56,7 +56,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	// Lookup user
 	const user = await getUser(ps.userId).catch((e) => {

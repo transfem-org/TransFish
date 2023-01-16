@@ -93,8 +93,10 @@ export async function exportNotes(
 		stream.end();
 		logger.succ(`Exported to: ${path}`);
 
-		const fileName =
-			`notes-${dateFormat(new Date(), "yyyy-MM-dd-HH-mm-ss")}.json`;
+		const fileName = `notes-${dateFormat(
+			new Date(),
+			"yyyy-MM-dd-HH-mm-ss",
+		)}.json`;
 		const driveFile = await addFile({
 			user,
 			path,

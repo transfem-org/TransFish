@@ -22,7 +22,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const query = RegistryItems.createQueryBuilder("item")
 		.select("item.key")

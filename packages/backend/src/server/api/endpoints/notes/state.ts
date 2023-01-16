@@ -44,7 +44,6 @@ export const paramDef = {
 	required: ["noteId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const note = await getNote(ps.noteId, user);
 

@@ -40,7 +40,6 @@ export const paramDef = {
 	required: ["endpoint", "auth", "publickey"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// if already subscribed
 	const exist = await SwSubscriptions.findOneBy({

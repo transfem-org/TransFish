@@ -49,7 +49,6 @@ export const paramDef = {
 	required: ["noteId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// check note visibility
 	const note = await getNote(ps.noteId, user).catch((err) => {

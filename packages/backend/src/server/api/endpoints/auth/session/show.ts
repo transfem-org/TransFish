@@ -49,7 +49,6 @@ export const paramDef = {
 	required: ["token"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// Lookup session
 	const session = await AuthSessions.findOneBy({

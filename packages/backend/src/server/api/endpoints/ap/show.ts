@@ -83,7 +83,6 @@ export const paramDef = {
 	required: ["uri"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const object = await fetchAny(ps.uri, me);
 	if (object) {

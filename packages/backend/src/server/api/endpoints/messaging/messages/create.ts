@@ -94,7 +94,6 @@ export const paramDef = {
 	],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	let recipientUser: User | null;
 	let recipientGroup: UserGroup | null;

@@ -38,14 +38,13 @@ export async function renderPerson(user: ILocalUser) {
 			attachment.push({
 				type: "PropertyValue",
 				name: field.name,
-				value:
-					field.value?.match(/^https?:/)
-						? `<a href="${
-								new URL(field.value).href
-						  }" rel="me nofollow noopener" target="_blank">${
-								new URL(field.value).href
-						  }</a>`
-						: field.value,
+				value: field.value?.match(/^https?:/)
+					? `<a href="${
+							new URL(field.value).href
+					  }" rel="me nofollow noopener" target="_blank">${
+							new URL(field.value).href
+					  }</a>`
+					: field.value,
 			});
 		}
 	}

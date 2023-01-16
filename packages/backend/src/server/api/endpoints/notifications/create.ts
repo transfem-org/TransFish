@@ -21,7 +21,6 @@ export const paramDef = {
 	required: ["body"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user, token) => {
 	createNotification(user.id, "app", {
 		appAccessTokenId: token ? token.id : null,

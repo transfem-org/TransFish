@@ -32,7 +32,6 @@ export const paramDef = {
 	required: ["name"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const clip = await Clips.insert({
 		id: genId(),

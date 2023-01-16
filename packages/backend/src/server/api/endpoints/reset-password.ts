@@ -23,7 +23,6 @@ export const paramDef = {
 	required: ["token", "password"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const req = await PasswordResetRequests.findOneByOrFail({
 		token: ps.token,

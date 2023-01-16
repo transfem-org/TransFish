@@ -19,7 +19,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const user = await Users.findOneByOrFail({ id: ps.userId });
 	if (user.isDeleted) {

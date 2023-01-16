@@ -36,7 +36,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(
 		DriveFiles.createQueryBuilder("file"),

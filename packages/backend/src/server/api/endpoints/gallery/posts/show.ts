@@ -32,7 +32,6 @@ export const paramDef = {
 	required: ["postId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const post = await GalleryPosts.findOneBy({
 		id: ps.postId,

@@ -108,7 +108,8 @@ export default class extends Channel {
 
 		// Remove not typing users
 		for (const [userId, date] of Object.entries(this.typers)) {
-			if (now.getTime() - date.getTime() > 5000) this.typers[userId] = undefined;
+			if (now.getTime() - date.getTime() > 5000)
+				this.typers[userId] = undefined;
 		}
 
 		const users = await Users.packMany(Object.keys(this.typers), null, {

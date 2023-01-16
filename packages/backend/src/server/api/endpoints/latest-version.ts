@@ -13,7 +13,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async () => {
 	let tag_name;
 	await fetch(

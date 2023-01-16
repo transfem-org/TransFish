@@ -21,7 +21,6 @@ export const paramDef = {
 	required: ["reportId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const report = await AbuseUserReports.findOneByOrFail({ id: ps.reportId });
 

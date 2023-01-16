@@ -17,7 +17,6 @@ export const paramDef = {
 	required: ["endpoint"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	await SwSubscriptions.delete({
 		userId: user.id,

@@ -69,7 +69,7 @@ export function fromHtml(html: string, hashtagNames?: string[]): string {
 				) {
 					text += txt;
 					// メンション
-				} else if (txt.startsWith("@") && !(rel?.value.match(/^me /))) {
+				} else if (txt.startsWith("@") && !rel?.value.match(/^me /)) {
 					const part = txt.split("@");
 
 					if (part.length === 2 && href) {

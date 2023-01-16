@@ -31,7 +31,6 @@ export const paramDef = {
 	required: ["md5"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const files = await DriveFiles.findBy({
 		md5: ps.md5,

@@ -33,7 +33,6 @@ export const paramDef = {
 	required: ["username", "email"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const user = await Users.findOneBy({
 		usernameLower: ps.username.toLowerCase(),

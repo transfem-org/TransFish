@@ -22,7 +22,6 @@ export const paramDef = {
 	required: ["span"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	return await usersChart.getChart(
 		ps.span,

@@ -23,7 +23,6 @@ export const paramDef = {
 	required: ["span", "tag"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	return await hashtagChart.getChart(
 		ps.span,

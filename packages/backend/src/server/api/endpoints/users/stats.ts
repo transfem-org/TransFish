@@ -146,7 +146,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const user = await Users.findOneBy({ id: ps.userId });
 	if (user == null) {

@@ -27,7 +27,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const antennas = await Antennas.findBy({
 		userId: me.id,

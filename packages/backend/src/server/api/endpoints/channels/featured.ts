@@ -26,7 +26,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = Channels.createQueryBuilder("channel")
 		.where("channel.lastNotedAt IS NOT NULL")

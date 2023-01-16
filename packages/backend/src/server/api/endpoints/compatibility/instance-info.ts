@@ -30,7 +30,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async () => {
 	const now = Date.now();
 	const [meta, total, localPosts, instanceCount, firstAdmin, emojis] =

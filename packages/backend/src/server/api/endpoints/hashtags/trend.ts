@@ -66,7 +66,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async () => {
 	const instance = await fetchMeta(true);
 	const hiddenTags = instance.hiddenTags.map((t) => normalizeForSearch(t));

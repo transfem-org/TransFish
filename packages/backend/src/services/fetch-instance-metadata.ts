@@ -213,11 +213,7 @@ async function fetchIconUrl(
 	doc: DOMWindow["document"] | null,
 	manifest: Record<string, any> | null,
 ): Promise<string | null> {
-	if (
-		manifest?.icons &&
-		manifest.icons.length > 0 &&
-		manifest.icons[0].src
-	) {
+	if (manifest?.icons && manifest.icons.length > 0 && manifest.icons[0].src) {
 		const url = `https://${instance.host}`;
 		return new URL(manifest.icons[0].src, url).href;
 	}

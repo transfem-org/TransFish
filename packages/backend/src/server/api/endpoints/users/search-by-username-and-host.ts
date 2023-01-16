@@ -38,7 +38,6 @@ export const paramDef = {
 
 // TODO: avatar,bannerをJOINしたいけどエラーになる
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const activeThreshold = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30); // 30日
 

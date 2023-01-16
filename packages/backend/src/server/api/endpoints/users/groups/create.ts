@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["name"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const userGroup = await UserGroups.insert({
 		id: genId(),

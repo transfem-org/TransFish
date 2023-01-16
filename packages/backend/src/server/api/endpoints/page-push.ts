@@ -26,7 +26,6 @@ export const paramDef = {
 	required: ["pageId", "event"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const page = await Pages.findOneBy({ id: ps.pageId });
 	if (page == null) {

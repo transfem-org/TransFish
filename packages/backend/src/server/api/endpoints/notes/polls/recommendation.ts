@@ -29,7 +29,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const query = Polls.createQueryBuilder("poll")
 		.where("poll.userHost IS NULL")

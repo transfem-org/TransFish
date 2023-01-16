@@ -58,7 +58,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const m = await fetchMeta();
 	if (m.disableLocalTimeline && !user.isAdmin && !user.isModerator) {

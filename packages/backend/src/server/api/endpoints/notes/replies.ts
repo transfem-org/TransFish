@@ -35,7 +35,6 @@ export const paramDef = {
 	required: ["noteId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const query = makePaginationQuery(
 		Notes.createQueryBuilder("note"),

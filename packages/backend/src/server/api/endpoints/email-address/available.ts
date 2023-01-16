@@ -33,7 +33,6 @@ export const paramDef = {
 	required: ["emailAddress"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	return await validateEmailForAccount(ps.emailAddress);
 });

@@ -34,7 +34,6 @@ export const paramDef = {
 	required: ["name", "description", "permission"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	if (user?.movedToUri != null)
 		return await Apps.pack("", null, {

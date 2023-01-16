@@ -79,7 +79,6 @@ export const paramDef = {
 	],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	if (ps.userId != null) {
 		// Fetch recipient (user)

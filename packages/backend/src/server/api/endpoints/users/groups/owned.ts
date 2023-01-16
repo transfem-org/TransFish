@@ -29,7 +29,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const userGroups = await UserGroups.findBy({
 		userId: me.id,

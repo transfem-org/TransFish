@@ -38,7 +38,6 @@ export const paramDef = {
 	required: ["url"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	uploadFromUrl({
 		url: ps.url,

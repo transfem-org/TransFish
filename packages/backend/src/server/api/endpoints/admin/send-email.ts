@@ -18,7 +18,6 @@ export const paramDef = {
 	required: ["to", "subject", "text"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	await sendEmail(ps.to, ps.subject, ps.text, ps.text);
 });

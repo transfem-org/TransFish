@@ -32,7 +32,6 @@ export const paramDef = {
 	required: ["host"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = makePaginationQuery(
 		Users.createQueryBuilder("user"),

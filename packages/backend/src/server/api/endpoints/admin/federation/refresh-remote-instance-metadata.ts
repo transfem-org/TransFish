@@ -18,7 +18,6 @@ export const paramDef = {
 	required: ["host"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const instance = await Instances.findOneBy({ host: toPuny(ps.host) });
 

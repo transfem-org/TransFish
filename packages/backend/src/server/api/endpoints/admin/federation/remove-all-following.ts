@@ -17,7 +17,6 @@ export const paramDef = {
 	required: ["host"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const followings = await Followings.findBy({
 		followerHost: ps.host,

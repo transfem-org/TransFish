@@ -76,7 +76,6 @@ export const paramDef = {
 	required: ["title", "name", "content", "variables", "script"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	let eyeCatchingImage = null;
 	if (ps.eyeCatchingImageId != null) {

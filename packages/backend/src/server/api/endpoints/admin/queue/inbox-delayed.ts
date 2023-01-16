@@ -37,7 +37,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const jobs = await inboxQueue.getJobs(["delayed"]);
 

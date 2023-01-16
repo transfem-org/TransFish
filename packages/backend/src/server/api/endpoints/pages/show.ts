@@ -45,7 +45,6 @@ export const paramDef = {
 	],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	let page: Page | null = null;
 

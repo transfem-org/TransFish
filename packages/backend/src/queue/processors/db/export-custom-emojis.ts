@@ -108,8 +108,10 @@ export async function exportCustomEmojis(
 	archiveStream.on("close", async () => {
 		logger.succ(`Exported to: ${archivePath}`);
 
-		const fileName =
-			`custom-emojis-${dateFormat(new Date(), "yyyy-MM-dd-HH-mm-ss")}.zip`;
+		const fileName = `custom-emojis-${dateFormat(
+			new Date(),
+			"yyyy-MM-dd-HH-mm-ss",
+		)}.zip`;
 		const driveFile = await addFile({
 			user,
 			path: archivePath,

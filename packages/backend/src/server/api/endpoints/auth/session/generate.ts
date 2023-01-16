@@ -46,7 +46,6 @@ export const paramDef = {
 	required: ["appSecret"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	// Lookup app
 	const app = await Apps.findOneBy({

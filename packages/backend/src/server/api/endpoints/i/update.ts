@@ -134,7 +134,6 @@ export const paramDef = {
 	},
 } as const;
 
-
 export default define(meta, paramDef, async (ps, _user, token) => {
 	const user = await Users.findOneByOrFail({ id: _user.id });
 	const isSecure = token == null;

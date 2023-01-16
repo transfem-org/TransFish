@@ -34,7 +34,6 @@ export const paramDef = {
 	required: ["clipId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	// Fetch the clip
 	const clip = await Clips.findOneBy({

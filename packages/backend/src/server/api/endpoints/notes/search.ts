@@ -58,7 +58,6 @@ export const paramDef = {
 	required: ["query"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	if (es == null) {
 		const query = makePaginationQuery(

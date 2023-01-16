@@ -20,7 +20,6 @@ export const paramDef = {
 	required: ["required"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	return ps;
 });

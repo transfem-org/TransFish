@@ -53,7 +53,6 @@ export const paramDef = {
 	required: ["channelId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const channel = await Channels.findOneBy({
 		id: ps.channelId,

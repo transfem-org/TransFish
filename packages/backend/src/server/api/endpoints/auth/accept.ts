@@ -29,7 +29,6 @@ export const paramDef = {
 	required: ["token"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	// Fetch token
 	const session = await AuthSessions.findOneBy({ token: ps.token });

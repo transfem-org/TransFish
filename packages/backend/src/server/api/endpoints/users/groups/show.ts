@@ -35,7 +35,6 @@ export const paramDef = {
 	required: ["groupId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	// Fetch the group
 	const userGroup = await UserGroups.findOneBy({

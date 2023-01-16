@@ -24,17 +24,17 @@ export default async function (query: string): Promise<IWebFinger> {
 function genUrl(query: string) {
 	if (query.match(/^https?:\/\//)) {
 		const u = new URL(query);
-		return (
-			`${u.protocol}//${u.hostname}/.well-known/webfinger?${urlQuery({ resource: query })}`
-		);
+		return `${u.protocol}//${u.hostname}/.well-known/webfinger?${urlQuery({
+			resource: query,
+		})}`;
 	}
 
 	const m = query.match(/^([^@]+)@(.*)/);
 	if (m) {
 		const hostname = m[2];
-		return (
-			`https://${hostname}/.well-known/webfinger?${urlQuery({ resource: `acct:${query}` })}`
-		);
+		return `https://${hostname}/.well-known/webfinger?${urlQuery({
+			resource: `acct:${query}`,
+		})}`;
 	}
 
 	throw new Error(`Invalid query (${query})`);

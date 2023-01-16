@@ -38,7 +38,6 @@ export const paramDef = {
 	required: ["name"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const files = await DriveFiles.findBy({
 		name: ps.name,

@@ -74,7 +74,6 @@ export const paramDef = {
 	required: ["noteId", "choice"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	const createdAt = new Date();
 

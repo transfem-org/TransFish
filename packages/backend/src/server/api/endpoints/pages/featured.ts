@@ -26,7 +26,6 @@ export const paramDef = {
 	required: [],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = Pages.createQueryBuilder("page")
 		.where("page.visibility = 'public'")

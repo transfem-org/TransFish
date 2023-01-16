@@ -16,7 +16,6 @@ export const paramDef = {
 	required: ["inbox"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	return await removeRelay(ps.inbox);
 });

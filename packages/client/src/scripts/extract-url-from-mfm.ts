@@ -12,7 +12,7 @@ export function extractUrlFromMfm(
 	const urlNodes = mfm.extract(nodes, (node) => {
 		return (
 			node.type === "url" ||
-			(node.type === "link" && (!(respectSilentFlag && node.props.silent)))
+			(node.type === "link" && !(respectSilentFlag && node.props.silent))
 		);
 	});
 	const urls: string[] = unique(urlNodes.map((x) => x.props.url));

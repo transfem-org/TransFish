@@ -50,7 +50,6 @@ export const paramDef = {
 	required: ["listId", "userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	// Fetch the list
 	const userList = await UserLists.findOneBy({

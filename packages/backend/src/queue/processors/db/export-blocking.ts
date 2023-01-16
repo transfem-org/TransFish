@@ -85,8 +85,10 @@ export async function exportBlocking(
 		stream.end();
 		logger.succ(`Exported to: ${path}`);
 
-		const fileName =
-			`blocking-${dateFormat(new Date(), "yyyy-MM-dd-HH-mm-ss")}.csv`;
+		const fileName = `blocking-${dateFormat(
+			new Date(),
+			"yyyy-MM-dd-HH-mm-ss",
+		)}.csv`;
 		const driveFile = await addFile({
 			user,
 			path,

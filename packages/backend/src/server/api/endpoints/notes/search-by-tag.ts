@@ -69,7 +69,6 @@ export const paramDef = {
 	],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const query = makePaginationQuery(
 		Notes.createQueryBuilder("note"),

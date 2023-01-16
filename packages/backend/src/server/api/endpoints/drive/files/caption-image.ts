@@ -25,7 +25,6 @@ export const paramDef = {
 	required: ["url"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const worker = createWorker({
 		logger: (m) => console.log(m),

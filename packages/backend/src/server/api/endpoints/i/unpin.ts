@@ -34,7 +34,6 @@ export const paramDef = {
 	required: ["noteId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, user) => {
 	await removePinned(user, ps.noteId).catch((e) => {
 		if (e.id === "b302d4cf-c050-400a-bbb3-be208681f40c")

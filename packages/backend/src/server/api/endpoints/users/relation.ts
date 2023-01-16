@@ -130,7 +130,6 @@ export const paramDef = {
 	required: ["userId"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps, me) => {
 	const ids = Array.isArray(ps.userId) ? ps.userId : [ps.userId];
 

@@ -21,7 +21,6 @@ export const paramDef = {
 	required: ["url"],
 } as const;
 
-
 export default define(meta, paramDef, async (ps) => {
 	const res = await getResponse({
 		url: ps.url,
