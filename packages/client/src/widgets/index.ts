@@ -96,6 +96,7 @@ export const widgets = [
 	"notifications",
 	"timeline",
 	"calendar",
+	"userList",
 	"rss",
 	"rssTicker",
 	"trends",
@@ -113,5 +114,4 @@ export const widgets = [
 	"jobQueue",
 	"button",
 	"aiscript",
-	"userList",
 ];
