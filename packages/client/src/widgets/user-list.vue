@@ -1,7 +1,6 @@
 <template>
 	<MkContainer :show-header="widgetProps.showHeader" class="mkw-userList">
-		<template #icon><i class="ph-user-list-bold ph-lg"></i></template>
-		<template #header>{{ list ? list.name : i18n.ts._widgets.userList }}</template>
+		<template #header><i class="ph-user-list-bold ph-lg"></i> {{ list ? list.name : i18n.ts._widgets.userList }}</template>
 		<template #func="{ buttonStyleClass }"><button class="_button" :class="buttonStyleClass" @click="configure()"><i class="ph-gear-six-bold ph-lg"></i></button></template>
 	
 		<div class="wsdlkfj">
@@ -10,7 +9,7 @@
 			</div>
 			<MkLoading v-else-if="fetching"/>
 			<div v-else class="users">
-				<MkAvatars :user-ids="users"/>
+				<MkAvatars :user-ids="users" class="userAvatars"/>
 			</div>
 		</div>
 	</MkContainer>
@@ -94,26 +93,10 @@ defineExpose<WidgetComponentExpose>({
 });
 </script>
 	
-	<style lang="scss" module>
+<style lang="scss" module>
 .wsdlkfj {
 	> .init {
 		padding: 16px;
-	}
-	> .users {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(30px, 40px));
-		grid-gap: 12px;
-		place-content: center;
-		padding: 16px;
-		> .user {
-			width: 100%;
-			height: 100%;
-			aspect-ratio: 1;
-			> .avatar {
-				width: 100%;
-				height: 100%;
-			}
-		}
 	}
 }
 </style>
