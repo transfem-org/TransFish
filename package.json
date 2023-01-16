@@ -1,12 +1,12 @@
 {
 	"name": "calckey",
-	"version": "13.0.7-rc",
+	"version": "13.0.8-rc",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
 		"url": "https://lavaforge.org/calckey/calckey.git"
 	},
-	"packageManager": "pnpm@7.24.3",
+	"packageManager": "pnpm@7.25.0",
 	"private": true,
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm -r run build && pnpm run gulp",
