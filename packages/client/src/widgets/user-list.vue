@@ -10,9 +10,7 @@
 			</div>
 			<MkLoading v-else-if="fetching"/>
 			<div v-else class="users">
-				<span v-for="user in users" :key="user.id" class="user">
-					<MkAvatar :user="user" class="avatar" indicator link preview/>
-				</span>
+				<MkAvatars :user-ids="users"/>
 			</div>
 		</div>
 	</MkContainer>
@@ -22,6 +20,7 @@
 import { useWidgetPropsManager, Widget, WidgetComponentExpose } from './widget';
 import { GetFormResultType } from '@/scripts/form';
 import MkContainer from '@/components/MkContainer.vue';
+import MkAvatars from '@/components/MkAvatars.vue';
 import * as os from '@/os';
 import { useInterval } from '@/scripts/use-interval';
 import { i18n } from '@/i18n';
@@ -79,7 +78,7 @@ const fetch = () => {
 		os.api('users/show', {
 			userIds: list.userIds,
 		}).then(_users => {
-			users = _users;
+			users = list.userIds;
 			fetching = false;
 		});
 	});
