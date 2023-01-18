@@ -278,17 +278,6 @@ const prepend = (item: Item): void => {
 			// Prepend the item
 			items.value.unshift(item);
 			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
-
-			// オーバーフローしたら古いアイテムは捨てる
-			if (items.value.length >= props.displayLimit) {
-				// このやり方だとVue 3.2以降アニメーションが動かなくなる
-				//this.items = items.value.slice(0, props.displayLimit);
-				while (items.value.length >= props.displayLimit) {
-					items.value.pop();
-					if(props.externalItemArray) props.externalItemArray.value.pop();
-				}
-				more.value = true;
-			}
 		} else {
 			queue.value.push(item);
 			onScrollTop(rootEl.value, () => {
@@ -308,7 +297,8 @@ const append = (item: Item): void => {
 
 const removeItem = (finder: (item: Item) => boolean): boolean => {
 	const i = items.value.findIndex(finder);
-	if (i === -1) {
+	const j = props.externalItemArray?.findIndex(finder);
+	if (i === -1 && j === -1) {
 		return false;
 	}
 
@@ -319,7 +309,8 @@ const removeItem = (finder: (item: Item) => boolean): boolean => {
 
 const updateItem = (id: Item['id'], replacer: (old: Item) => Item): boolean => {
 	const i = items.value.findIndex(item => item.id === id);
-	if (i === -1) {
+	const j = props.externalItemArray?.findIndex(item => item.id === id);
+	if (i === -1 && j === -1) {
 		return false;
 	}
 
