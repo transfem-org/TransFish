@@ -89,14 +89,14 @@ definePageMetadata({
 
 const dmsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 15,
+	limit: 100,
 	params: {
 		group: false,
 	},
 };
 const groupsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 5,
+	limit: 30,
 	params: {
 		group: true,
 	},
