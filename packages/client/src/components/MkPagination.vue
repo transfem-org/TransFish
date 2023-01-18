@@ -33,25 +33,26 @@
 
 <script lang="ts" setup>
 import { computed, ComputedRef, isRef, markRaw, onActivated, onDeactivated, Ref, ref, watch } from 'vue';
-import * as misskey from 'calckey-js';
+import * as calckey from 'calckey-js';
 import * as os from '@/os';
 import { onScrollTop, isTopVisible, getScrollPosition, getScrollContainer } from '@/scripts/scroll';
 import MkButton from '@/components/MkButton.vue';
 import { i18n } from '@/i18n';
+import { ItemHolder } from 'photoswipe';
 
-export type Paging<E extends keyof misskey.Endpoints = keyof misskey.Endpoints> = {
+export type Paging<E extends keyof calckey.Endpoints = keyof calckey.Endpoints> = {
 	endpoint: E;
 	limit: number;
-	params?: misskey.Endpoints[E]['req'] | ComputedRef<misskey.Endpoints[E]['req']>;
+	params?: calckey.Endpoints[E]['req'] | ComputedRef<calckey.Endpoints[E]['req']>;
 
 	/**
-	 * 検索APIのような、ページング不可なエンドポイントを利用する場合
-	 * (そのようなAPIをこの関数で使うのは若干矛盾してるけど)
+	 * When using non-pageable endpoints, such as the search API
+	 * (though it is somewhat inconsistent to use such an API with this function)
 	 */
 	noPaging?: boolean;
 
 	/**
-	 * items 配列の中身を逆順にする(新しい方が最後)
+	 * array items in reverse order (newest first)
 	 */
 	reversed?: boolean;
 
@@ -64,6 +65,7 @@ const props = withDefaults(defineProps<{
 	pagination: Paging;
 	disableAutoLoad?: boolean;
 	displayLimit?: number;
+	externalItemArray?: Ref<Array<any>>;
 }>(), {
 	displayLimit: 30,
 });
@@ -91,7 +93,7 @@ const init = async (): Promise<void> => {
 	fetching.value = true;
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: props.pagination.noPaging ? (props.pagination.limit || 10) : (props.pagination.limit || 10) + 1,
 	}).then(res => {
 		for (let i = 0; i < res.length; i++) {
@@ -110,6 +112,9 @@ const init = async (): Promise<void> => {
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
 			more.value = false;
 		}
+		if(props.externalItemArray) {
+			props.externalItemArray.value = items.value;
+		}
 		offset.value = res.length;
 		error.value = false;
 		fetching.value = false;
@@ -121,13 +126,16 @@ const init = async (): Promise<void> => {
 
 const reload = (): void => {
 	items.value = [];
+	if(props.externalItemArray) {
+		props.externalItemArray.value = [];
+	}
 	init();
 };
 
-const refresh = async (): void => {
+const refresh = async (): Promise<void> => {
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: items.value.length + 1,
 		offset: 0,
 	}).then(res => {
@@ -159,7 +167,7 @@ const fetchMore = async (): Promise<void> => {
 	backed.value = true;
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: SECOND_FETCH_LIMIT + 1,
 		...(props.pagination.offsetMode ? {
 			offset: offset.value,
@@ -185,6 +193,9 @@ const fetchMore = async (): Promise<void> => {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
 		}
+		if(props.externalItemArray) {
+			props.externalItemArray.value = items.value;
+		}
 		offset.value += res.length;
 		moreFetching.value = false;
 	}, err => {
@@ -197,7 +208,7 @@ const fetchMoreAhead = async (): Promise<void> => {
 	moreFetching.value = true;
 	const params = props.pagination.params ? isRef(props.pagination.params) ? props.pagination.params.value : props.pagination.params : {};
 	await os.api(props.pagination.endpoint, {
-		...params,
+		...(params as object),
 		limit: SECOND_FETCH_LIMIT + 1,
 		...(props.pagination.offsetMode ? {
 			offset: offset.value,
@@ -214,6 +225,9 @@ const fetchMoreAhead = async (): Promise<void> => {
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
+		}
+		if(props.externalItemArray) {
+			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
@@ -240,6 +254,7 @@ const prepend = (item: Item): void => {
 						//items.value = items.value.slice(-props.displayLimit);
 						while (items.value.length >= props.displayLimit) {
 							items.value.shift();
+							if(props.externalItemArray) props.externalItemArray.value.shift();
 						}
 						more.value = true;
 					}
@@ -247,11 +262,13 @@ const prepend = (item: Item): void => {
 			}
 		}
 		items.value.push(item);
+		if(props.externalItemArray) props.externalItemArray.value.push(item);
 		// TODO
 	} else {
 		// 初回表示時はunshiftだけでOK
 		if (!rootEl.value) {
 			items.value.unshift(item);
+			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
 			return;
 		}
 
@@ -260,6 +277,7 @@ const prepend = (item: Item): void => {
 		if (isTop) {
 			// Prepend the item
 			items.value.unshift(item);
+			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
 
 			// オーバーフローしたら古いアイテムは捨てる
 			if (items.value.length >= props.displayLimit) {
@@ -267,6 +285,7 @@ const prepend = (item: Item): void => {
 				//this.items = items.value.slice(0, props.displayLimit);
 				while (items.value.length >= props.displayLimit) {
 					items.value.pop();
+					if(props.externalItemArray) props.externalItemArray.value.pop();
 				}
 				more.value = true;
 			}
@@ -284,6 +303,7 @@ const prepend = (item: Item): void => {
 
 const append = (item: Item): void => {
 	items.value.push(item);
+	if(props.externalItemArray) props.externalItemArray.value.push(item);
 };
 
 const removeItem = (finder: (item: Item) => boolean): boolean => {
@@ -293,6 +313,7 @@ const removeItem = (finder: (item: Item) => boolean): boolean => {
 	}
 
 	items.value.splice(i, 1);
+	if(props.externalItemArray) props.externalItemArray.value.splice(i, 1);
 	return true;
 };
 
@@ -303,6 +324,7 @@ const updateItem = (id: Item['id'], replacer: (old: Item) => Item): boolean => {
 	}
 
 	items.value[i] = replacer(items.value[i]);
+	if(props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
 	return true;
 };
 
@@ -341,7 +363,7 @@ defineExpose({
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 0.125s ease;
+	transition: opacity 0.15s ease;
 }
 .fade-enter-from,
 .fade-leave-to {

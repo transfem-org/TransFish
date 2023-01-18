@@ -11,7 +11,7 @@
 				<MkInfo v-if="noMaintainerInformation" warn class="info">{{ i18n.ts.noMaintainerInformationWarning }} <MkA to="/admin/settings" class="_link">{{ i18n.ts.configure }}</MkA></MkInfo>
 				<MkInfo v-if="noBotProtection" warn class="info">{{ i18n.ts.noBotProtectionWarning }} <MkA to="/admin/security" class="_link">{{ i18n.ts.configure }}</MkA></MkInfo>
 				<MkInfo v-if="noEmailServer" warn class="info">{{ i18n.ts.noEmailServerWarning }} <MkA to="/admin/email-settings" class="_link">{{ i18n.ts.configure }}</MkA></MkInfo>
-				<MkInfo v-if="updateAvailable" warn class="info">{{ i18n.ts.updateAvailable }} <a href="https://codeberg.org/calckey/calckey/releases" target="_bank" class="_link">{{ i18n.ts.check }}</a></MkInfo>
+				<MkInfo v-if="updateAvailable" warn class="info">{{ i18n.ts.updateAvailable }} <a href="https://lavaforge.org/calckey/calckey/releases" target="_bank" class="_link">{{ i18n.ts.check }}</a></MkInfo>
 
 				<MkSuperMenu :def="menuDef" :grid="currentPage?.route.name == null"></MkSuperMenu>
 			</div>
@@ -72,9 +72,9 @@ os.api('admin/abuse-user-reports', {
 
 if (defaultStore.state.showAdminUpdates) {
 	os.api('latest-version').then(res => {
-		const cleanRes = res?.tag_name.replace(/[^0-9]/g, '');
-		const cleanVersion = version.replace(/[^0-9]/g, '');
-		if (cleanRes !== cleanVersion) {
+		const cleanRes = parseInt(res?.tag_name.replace(/[^0-9]/g, ''));
+		const cleanVersion = parseInt(version.replace(/[^0-9]/g, ''));
+		if (cleanRes > cleanVersion) {
 			updateAvailable = true;
 		}
 	});
