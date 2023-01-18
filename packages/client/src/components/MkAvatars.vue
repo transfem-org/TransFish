@@ -1,7 +1,7 @@
 <template>
 <div class="defgtij">
-	<div v-for="user in users" :key="user.id" class="avatar">
-		<MkAvatar :user="user" :show-indicator="true"/>
+	<div v-for="user in users" :key="user.id" class="avatar-holder">
+		<MkAvatar :user="user" :show-indicator="true" class="avatar"/>
 	</div>
 </div>
 </template>
@@ -31,10 +31,14 @@ onMounted(async () => {
 	grid-template-columns: repeat(auto-fill, minmax(30px, 40px));
 	place-content: center;
 
-	> .avatar {
-		width: 100%;
-		height: 100%;
+	> .avatar-holder {
 		aspect-ratio: 1;
+
+		> .avatar {
+			width: 100%;
+			height: 100%;
+			aspect-ratio: 1;
+		}
 	}
 }
 </style>
