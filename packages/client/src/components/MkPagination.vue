@@ -1,34 +1,37 @@
 <template>
-<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
-	<MkLoading v-if="fetching"/>
+	<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
+		<MkLoading v-if="fetching" />
 
-	<MkError v-else-if="error" @retry="init()"/>
+		<MkError v-else-if="error" @retry="init()" />
 
-	<div v-else-if="empty" key="_empty_" class="empty">
-		<slot name="empty">
-			<div class="_fullinfo">
-				<img src="/static-assets/badges/info.png" class="_ghost" alt="Error"/>
-				<div>{{ i18n.ts.nothing }}</div>
+		<div v-else-if="empty" key="_empty_" class="empty">
+			<slot name="empty">
+				<div class="_fullinfo">
+					<img src="/static-assets/badges/info.png" class="_ghost" alt="Error" />
+					<div>{{ i18n.ts.nothing }}</div>
+				</div>
+			</slot>
+		</div>
+
+		<div v-else ref="rootEl">
+			<div v-show="pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
+				<MkButton v-if="!moreFetching" class="button" :disabled="moreFetching"
+					:style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMoreAhead">
+					{{ i18n.ts.loadMore }}
+				</MkButton>
+				<MkLoading v-else class="loading" />
 			</div>
-		</slot>
-	</div>
-
-	<div v-else ref="rootEl">
-		<div v-show="pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
-			<MkButton v-if="!moreFetching" class="button" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMoreAhead">
-				{{ i18n.ts.loadMore }}
-			</MkButton>
-			<MkLoading v-else class="loading"/>
+			<slot :items="items"></slot>
+			<div v-show="!pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
+				<MkButton v-if="!moreFetching"
+					v-appear="($store.state.enableInfiniteScroll && !disableAutoLoad) ? fetchMore : null" class="button"
+					:disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMore">
+					{{ i18n.ts.loadMore }}
+				</MkButton>
+				<MkLoading v-else class="loading" />
+			</div>
 		</div>
-		<slot :items="items"></slot>
-		<div v-show="!pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
-			<MkButton v-if="!moreFetching" v-appear="($store.state.enableInfiniteScroll && !disableAutoLoad) ? fetchMore : null" class="button" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMore">
-				{{ i18n.ts.loadMore }}
-			</MkButton>
-			<MkLoading v-else class="loading"/>
-		</div>
-	</div>
-</transition>
+	</transition>
 </template>
 
 <script lang="ts" setup>
@@ -74,7 +77,7 @@ const emit = defineEmits<{
 	(ev: 'queue', count: number): void;
 }>();
 
-type Item = { id: string; [another: string]: unknown; };
+type Item = { id: string;[another: string]: unknown; };
 
 const rootEl = ref<HTMLElement>();
 const items = ref<Item[]>([]);
@@ -112,7 +115,7 @@ const init = async (): Promise<void> => {
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
 			more.value = false;
 		}
-		if(props.externalItemArray) {
+		if (props.externalItemArray) {
 			props.externalItemArray.value = items.value;
 		}
 		offset.value = res.length;
@@ -126,7 +129,7 @@ const init = async (): Promise<void> => {
 
 const reload = (): void => {
 	items.value = [];
-	if(props.externalItemArray) {
+	if (props.externalItemArray) {
 		props.externalItemArray.value = [];
 	}
 	init();
@@ -193,7 +196,7 @@ const fetchMore = async (): Promise<void> => {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
 		}
-		if(props.externalItemArray) {
+		if (props.externalItemArray) {
 			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
@@ -220,14 +223,17 @@ const fetchMoreAhead = async (): Promise<void> => {
 	}).then(res => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = true;
 		} else {
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
-		}
-		if(props.externalItemArray) {
-			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
@@ -254,7 +260,7 @@ const prepend = (item: Item): void => {
 						//items.value = items.value.slice(-props.displayLimit);
 						while (items.value.length >= props.displayLimit) {
 							items.value.shift();
-							if(props.externalItemArray) props.externalItemArray.value.shift();
+							if (props.externalItemArray) props.externalItemArray.value.shift();
 						}
 						more.value = true;
 					}
@@ -262,13 +268,13 @@ const prepend = (item: Item): void => {
 			}
 		}
 		items.value.push(item);
-		if(props.externalItemArray) props.externalItemArray.value.push(item);
+		if (props.externalItemArray) props.externalItemArray.value.push(item);
 		// TODO
 	} else {
 		// 初回表示時はunshiftだけでOK
 		if (!rootEl.value) {
 			items.value.unshift(item);
-			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
+			if (props.externalItemArray) props.externalItemArray.value.unshift(item);
 			return;
 		}
 
@@ -277,7 +283,7 @@ const prepend = (item: Item): void => {
 		if (isTop) {
 			// Prepend the item
 			items.value.unshift(item);
-			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
+			if (props.externalItemArray) props.externalItemArray.value.unshift(item);
 		} else {
 			queue.value.push(item);
 			onScrollTop(rootEl.value, () => {
@@ -292,7 +298,7 @@ const prepend = (item: Item): void => {
 
 const append = (item: Item): void => {
 	items.value.push(item);
-	if(props.externalItemArray) props.externalItemArray.value.push(item);
+	if (props.externalItemArray) props.externalItemArray.value.push(item);
 };
 
 const removeItem = (finder: (item: Item) => boolean): boolean => {
@@ -303,7 +309,7 @@ const removeItem = (finder: (item: Item) => boolean): boolean => {
 	}
 
 	items.value.splice(i, 1);
-	if(props.externalItemArray) props.externalItemArray.value.splice(i, 1);
+	if (props.externalItemArray) props.externalItemArray.value.splice(i, 1);
 	return true;
 };
 
@@ -315,7 +321,7 @@ const updateItem = (id: Item['id'], replacer: (old: Item) => Item): boolean => {
 	}
 
 	items.value[i] = replacer(items.value[i]);
-	if(props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
+	if (props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
 	return true;
 };
 
@@ -356,13 +362,14 @@ defineExpose({
 .fade-leave-active {
 	transition: opacity 0.15s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
 }
 
 .cxiknjgy {
-	> .button {
+	>.button {
 		margin-left: auto;
 		margin-right: auto;
 	}
