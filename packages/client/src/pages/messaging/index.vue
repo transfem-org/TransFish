@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, onMounted, onUnmounted, watch } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch, computed } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -93,17 +93,19 @@ definePageMetadata({
 
 const dmsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 99,
-	params: {
+	limit: 20,
+	params: computed(() => ({
 		group: false,
-	},
+	})),
+	offsetMode: true,
 };
 const groupsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 30,
-	params: {
+	limit: 10,
+	params: computed(() => ({
 		group: true,
-	},
+	})),
+	offsetMode: true,
 };
 
 function onMessage(message): void {
