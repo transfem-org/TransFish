@@ -223,16 +223,16 @@ const fetchMoreAhead = async (): Promise<void> => {
 	}).then(res => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
+			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			if (props.externalItemArray) {
 				props.externalItemArray.value = items.value;
 			}
-			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = true;
 		} else {
+			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			if (props.externalItemArray) {
 				props.externalItemArray.value = items.value;
 			}
-			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
 			more.value = false;
 		}
 		offset.value += res.length;
