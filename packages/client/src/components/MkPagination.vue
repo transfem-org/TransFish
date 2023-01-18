@@ -110,13 +110,16 @@ const init = async (): Promise<void> => {
 		if (!props.pagination.noPaging && (res.length > (props.pagination.limit || 10))) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = false;
-		}
-		if (props.externalItemArray) {
-			props.externalItemArray.value = items.value;
 		}
 		offset.value = res.length;
 		error.value = false;
@@ -191,13 +194,16 @@ const fetchMore = async (): Promise<void> => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = false;
-		}
-		if (props.externalItemArray) {
-			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
