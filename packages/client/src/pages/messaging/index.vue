@@ -213,11 +213,16 @@ onUnmounted(() => {
 	if (connection) connection.dispose();
 });
 
-/*
+// temporary hot fix of the temporary hot fix
+let alreadyInit = $ref(false);
+
 onActivated(() => {
-	paginationComponentUser.reload();
-	paginationComponentGroup.reload();
-});*/
+	if (!alreadyInit.value) alreadyInit.value = true;
+	else {
+		paginationComponentUser.reload();
+		paginationComponentGroup.reload();
+	}
+});
 </script>
 
 <style lang="scss" scoped>
