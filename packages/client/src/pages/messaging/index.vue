@@ -64,7 +64,6 @@ const router = useRouter();
 let messages = $ref([]);
 let groupMessages = $ref([]);
 let connection = $ref(null);
-
 let paginationComponentUser = $ref<InstanceType<typeof MkPagination>>();
 let paginationComponentGroup = $ref<InstanceType<typeof MkPagination>>();
 
