@@ -69,6 +69,7 @@ const props = withDefaults(defineProps<{
 	disableAutoLoad?: boolean;
 	displayLimit?: number;
 	externalItemArray?: Ref<Array<any>>;
+	disableReload?: boolean;
 }>(), {
 	displayLimit: 30,
 });
@@ -345,7 +346,7 @@ init();
 
 onActivated(() => {
 	isBackTop.value = false;
-	if(alreadyInitedOnce.value) {
+	if(alreadyInitedOnce.value && (!props.disableReload || !props.disableReload.value)) {
 		reload();
 	}
 });
