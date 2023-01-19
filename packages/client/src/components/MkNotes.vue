@@ -1,5 +1,5 @@
 <template>
-<MkPagination ref="pagingComponent" :pagination="pagination">
+<MkPagination ref="pagingComponent" :pagination="pagination" disableReload="true">
 	<template #empty>
 		<div class="_fullinfo">
 			<img src="/static-assets/badges/info.png" class="_ghost" alt="Info"/>
