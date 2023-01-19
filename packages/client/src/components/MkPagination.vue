@@ -90,6 +90,7 @@ const backed = ref(false); // 遡り中か否か
 const isBackTop = ref(false);
 const empty = computed(() => items.value.length === 0);
 const error = ref(false);
+const alreadyInitedOnce = ref(false);
 
 const init = async (): Promise<void> => {
 	queue.value = [];
@@ -344,10 +345,14 @@ init();
 
 onActivated(() => {
 	isBackTop.value = false;
+	if(alreadyInitedOnce.value) {
+		reload();
+	}
 });
 
 onDeactivated(() => {
 	isBackTop.value = window.scrollY === 0;
+	alreadyInitedOnce.value = true;
 });
 
 defineExpose({
