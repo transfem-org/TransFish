@@ -13,8 +13,8 @@
 							<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{
 								i18n.ts.startMessaging
 							}}</MkButton>
-							<MkPagination v-slot="{ items }" :externalItemArray="messages" :pagination="dmsPagination">
-								<MkChatPreview v-for="message in messages" :key="message.id" class="yweeujhr message _block"
+							<MkPagination v-slot="{ items }" :pagination="dmsPagination">
+								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
 									:message="message" />
 							</MkPagination>
 						</div>
@@ -28,8 +28,8 @@
 									i18n.ts.startMessaging
 								}}</MkButton>
 							</div>
-							<MkPagination v-slot="{ items }" :externalItemArray="groupMessages" :pagination="groupsPagination">
-								<MkChatPreview v-for="message in groupMessages" :key="message.id" class="yweeujhr message _block"
+							<MkPagination v-slot="{ items }" :pagination="groupsPagination">
+								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
 									:message="message" />
 							</MkPagination>
 						</div>
