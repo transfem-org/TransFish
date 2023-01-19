@@ -213,10 +213,11 @@ onUnmounted(() => {
 	if (connection) connection.dispose();
 });
 
+/*
 onActivated(() => {
 	paginationComponentUser.reload();
 	paginationComponentGroup.reload();
-});
+});*/
 </script>
 
 <style lang="scss" scoped>
