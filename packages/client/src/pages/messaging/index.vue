@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, onMounted, onUnmounted, watch, computed, onActivated } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch, computed, onActivated, onDeactivated } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -217,11 +217,14 @@ onUnmounted(() => {
 let alreadyInit = $ref(false);
 
 onActivated(() => {
-	if (!alreadyInit.value) alreadyInit.value = true;
-	else {
+	if (alreadyInit.value) {
 		paginationComponentUser.reload();
 		paginationComponentGroup.reload();
 	}
+});
+
+onDeactivated(() => {
+	alreadyInit.value = true;
 });
 </script>
 
