@@ -13,7 +13,7 @@
 							<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{
 								i18n.ts.startMessaging
 							}}</MkButton>
-							<MkPagination v-slot="{ items }" ref="paginationComponentUser" :pagination="dmsPagination">
+							<MkPagination v-slot="{ items }" :pagination="dmsPagination">
 								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
 									:message="message" />
 							</MkPagination>
@@ -28,7 +28,7 @@
 									i18n.ts.startMessaging
 								}}</MkButton>
 							</div>
-							<MkPagination v-slot="{ items }" ref="paginationComponentGroup" :pagination="groupsPagination">
+							<MkPagination v-slot="{ items }" :pagination="groupsPagination">
 								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
 									:message="message" />
 							</MkPagination>
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, onMounted, onUnmounted, watch, computed, onActivated } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch, computed } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -64,9 +64,6 @@ const router = useRouter();
 let messages = $ref([]);
 let groupMessages = $ref([]);
 let connection = $ref(null);
-
-let paginationComponentUser = $ref<InstanceType<typeof MkPagination>>();
-let paginationComponentGroup = $ref<InstanceType<typeof MkPagination>>();
 
 const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
@@ -212,11 +209,6 @@ onMounted(() => {
 
 onUnmounted(() => {
 	if (connection) connection.dispose();
-});
-
-onActivated(() => {
-	paginationComponentUser.reload();
-	paginationComponentGroup.reload();
 });
 </script>
 
