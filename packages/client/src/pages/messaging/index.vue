@@ -62,6 +62,7 @@ import 'swiper/scss/virtual';
 const router = useRouter();
 
 let messages = $ref([]);
+let groupMessages = $ref([]);
 let connection = $ref(null);
 let paginationComponentUser = $ref<InstanceType<typeof MkPagination>>();
 let paginationComponentGroup = $ref<InstanceType<typeof MkPagination>>();
@@ -117,10 +118,9 @@ function onMessage(message): void {
 
 		messages.unshift(message);
 	} else if (message.groupId) {
-		messages = messages.filter(m => m.groupId !== message.groupId);
-		messages.unshift(message);
+		groupMessages = groupMessages.filter(m => m.groupId !== message.groupId);
+		groupMessages.unshift(message);
 	}
-	forceRerender();
 }
 
 function onRead(ids): void {
