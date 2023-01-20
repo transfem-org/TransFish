@@ -460,7 +460,7 @@ export const routes = [
 			{
 				path: "/ads",
 				name: "ads",
-				component: page(() => import("./pages/admin/ads.vue")),
+				component: page(() => import("./pages/admin/promotions.vue")),
 			},
 			{
 				path: "/database",

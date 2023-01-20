@@ -4,7 +4,7 @@
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
-		"url": "https://lavaforge.org/calckey/calckey.git"
+		"url": "https://codeberg.org/calckey/calckey.git"
 	},
 	"packageManager": "pnpm@7.25.0",
 	"private": true,

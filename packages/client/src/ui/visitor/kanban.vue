@@ -28,7 +28,7 @@
 				</div>
 				<div v-if="poweredBy" class="powered-by">
 					<b><MkA to="/">{{ host }}</MkA></b>
-					<small>Powered by <a href="https://lavaforge.org/calckey/calckey" target="_blank">Calckey</a></small>
+					<small>Powered by <a href="https://codeberg.org/calckey/calckey" target="_blank">Calckey</a></small>
 				</div>
 			</template>
 		</div>
