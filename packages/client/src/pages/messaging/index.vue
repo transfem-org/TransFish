@@ -14,7 +14,7 @@
 				<swiper-slide>
 					<div class="_content yweeujhr dms">
 						<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
-						<MkPagination v-slot="{items}" :externalItemArray="messages" :pagination="dmsPagination">
+						<MkPagination v-slot="{}" :externalItemArray="messages" :pagination="dmsPagination">
 							<MkChatPreview v-for="message in messages" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
 					</div>
@@ -25,7 +25,7 @@
 							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
 							<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						</div>
-						<MkPagination v-slot="{items}" :externalItemArray="groupMessages" :pagination="groupsPagination">
+						<MkPagination v-slot="{}" :externalItemArray="groupMessages" :pagination="groupsPagination">
 							<MkChatPreview v-for="message in groupMessages" :key="message.id" class="yweeujhr message _block" :message="message"/>
 						</MkPagination>
 					</div>
