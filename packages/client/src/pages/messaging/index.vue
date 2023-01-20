@@ -13,7 +13,7 @@
 							<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{
 								i18n.ts.startMessaging
 							}}</MkButton>
-							<MkPagination v-slot="{ items }" :pagination="dmsPagination">
+							<MkPagination v-slot="{ items }" ref="paginationComponentUser" :pagination="dmsPagination">
 								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
 									:message="message" />
 							</MkPagination>
@@ -28,7 +28,7 @@
 									i18n.ts.startMessaging
 								}}</MkButton>
 							</div>
-							<MkPagination v-slot="{ items }" :pagination="groupsPagination">
+							<MkPagination v-slot="{ items }" ref="paginationComponentGroup" :pagination="groupsPagination">
 								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
 									:message="message" />
 							</MkPagination>
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, onMounted, onUnmounted, watch, computed } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch, computed, onActivated, onDeactivated } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -211,6 +211,20 @@ onMounted(() => {
 
 onUnmounted(() => {
 	if (connection) connection.dispose();
+});
+
+// temporary hot fix of the temporary hot fix
+let alreadyInit = $ref(false);
+
+onActivated(() => {
+	if (alreadyInit.value) {
+		paginationComponentUser.reload();
+		paginationComponentGroup.reload();
+	}
+});
+
+onDeactivated(() => {
+	alreadyInit.value = true;
 });
 </script>
 
