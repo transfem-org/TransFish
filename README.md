@@ -64,6 +64,9 @@ If you have access to a server that supports one of the sources below, I recomme
 
 [![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://codeberg.org/calckey/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/calckey)　　[![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
 
+### 🐋 Docker
+
+[How to run Calckey with Docker](./docker-README.md).
 
 ## 🧑‍💻 Dependencies
 
@@ -103,7 +106,8 @@ cd calckey/
 # nvm install 19 && nvm use 19
 corepack enable
 corepack prepare pnpm@latest --activate
-pnpm i
+# To build without TensorFlow, append --no-optional
+pnpm i # --no-optional
 ```
 
 ## 🐘 Create database
@@ -156,10 +160,6 @@ cp -r ../misskey/files .
 NODE_ENV=production pnpm install && pnpm run build && pnpm run migrate
 pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 ```
-
-### 🐋 Docker
-
-[How to run Calckey with Docker](./docker-README.md).
 
 ## 😉 Tips & Tricks
 
