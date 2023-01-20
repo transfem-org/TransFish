@@ -41,7 +41,6 @@ import * as os from '@/os';
 import { onScrollTop, isTopVisible, getScrollPosition, getScrollContainer } from '@/scripts/scroll';
 import MkButton from '@/components/MkButton.vue';
 import { i18n } from '@/i18n';
-import { ItemHolder } from 'photoswipe';
 
 export type Paging<E extends keyof calckey.Endpoints = keyof calckey.Endpoints> = {
 	endpoint: E;
@@ -110,15 +109,9 @@ const init = async (): Promise<void> => {
 		if (!props.pagination.noPaging && (res.length > (props.pagination.limit || 10))) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
-			if (props.externalItemArray) {
-				props.externalItemArray.value = items.value;
-			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
-			if (props.externalItemArray) {
-				props.externalItemArray.value = items.value;
-			}
 			more.value = false;
 		}
 		offset.value = res.length;
@@ -132,9 +125,6 @@ const init = async (): Promise<void> => {
 
 const reload = (): void => {
 	items.value = [];
-	if (props.externalItemArray) {
-		props.externalItemArray.value = [];
-	}
 	init();
 };
 
@@ -194,15 +184,9 @@ const fetchMore = async (): Promise<void> => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
-			if (props.externalItemArray) {
-				props.externalItemArray.value = items.value;
-			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
-			if (props.externalItemArray) {
-				props.externalItemArray.value = items.value;
-			}
 			more.value = false;
 		}
 		offset.value += res.length;
@@ -230,15 +214,9 @@ const fetchMoreAhead = async (): Promise<void> => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
-			if (props.externalItemArray) {
-				props.externalItemArray.value = items.value;
-			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
-			if (props.externalItemArray) {
-				props.externalItemArray.value = items.value;
-			}
 			more.value = false;
 		}
 		offset.value += res.length;
@@ -266,7 +244,6 @@ const prepend = (item: Item): void => {
 						//items.value = items.value.slice(-props.displayLimit);
 						while (items.value.length >= props.displayLimit) {
 							items.value.shift();
-							if (props.externalItemArray) props.externalItemArray.value.shift();
 						}
 						more.value = true;
 					}
@@ -274,13 +251,11 @@ const prepend = (item: Item): void => {
 			}
 		}
 		items.value.push(item);
-		if (props.externalItemArray) props.externalItemArray.value.push(item);
 		// TODO
 	} else {
 		// 初回表示時はunshiftだけでOK
 		if (!rootEl.value) {
 			items.value.unshift(item);
-			if (props.externalItemArray) props.externalItemArray.value.unshift(item);
 			return;
 		}
 
@@ -289,7 +264,16 @@ const prepend = (item: Item): void => {
 		if (isTop) {
 			// Prepend the item
 			items.value.unshift(item);
-			if (props.externalItemArray) props.externalItemArray.value.unshift(item);
+
+			// オーバーフローしたら古いアイテムは捨てる
+			if (items.value.length >= props.displayLimit) {
+				// このやり方だとVue 3.2以降アニメーションが動かなくなる
+				//this.items = items.value.slice(0, props.displayLimit);
+				while (items.value.length >= props.displayLimit) {
+					items.value.pop();
+				}
+				more.value = true;
+			}
 		} else {
 			queue.value.push(item);
 			onScrollTop(rootEl.value, () => {
@@ -304,18 +288,15 @@ const prepend = (item: Item): void => {
 
 const append = (item: Item): void => {
 	items.value.push(item);
-	if (props.externalItemArray) props.externalItemArray.value.push(item);
 };
 
 const removeItem = (finder: (item: Item) => boolean): boolean => {
 	const i = items.value.findIndex(finder);
 	const j = props.externalItemArray?.findIndex(finder);
-	if (i === -1 && j === -1) {
 		return false;
 	}
 
 	items.value.splice(i, 1);
-	if (props.externalItemArray) props.externalItemArray.value.splice(i, 1);
 	return true;
 };
 
@@ -327,7 +308,6 @@ const updateItem = (id: Item['id'], replacer: (old: Item) => Item): boolean => {
 	}
 
 	items.value[i] = replacer(items.value[i]);
-	if (props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
 	return true;
 };
 
