@@ -64,11 +64,11 @@ export async function toDbReaction(
 	// 文字列タイプのリアクションを絵文字に変換
 	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 
-	// Unicode emoji
+	// Unicode絵文字
 	const match = emojiRegex.exec(reaction);
 	if (match) {
-		//return only first emoji
-		return match[0];
+		const unicode = match[0];
+		return unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
 	}
 
 	const custom = reaction.match(/^:([\w+-]+)(?:@\.)?:$/);

@@ -1,34 +1,37 @@
 <template>
-<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
-	<MkLoading v-if="fetching"/>
+	<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
+		<MkLoading v-if="fetching" />
 
-	<MkError v-else-if="error" @retry="init()"/>
+		<MkError v-else-if="error" @retry="init()" />
 
-	<div v-else-if="empty" key="_empty_" class="empty">
-		<slot name="empty">
-			<div class="_fullinfo">
-				<img src="/static-assets/badges/info.png" class="_ghost" alt="Error"/>
-				<div>{{ i18n.ts.nothing }}</div>
+		<div v-else-if="empty" key="_empty_" class="empty">
+			<slot name="empty">
+				<div class="_fullinfo">
+					<img src="/static-assets/badges/info.png" class="_ghost" alt="Error" />
+					<div>{{ i18n.ts.nothing }}</div>
+				</div>
+			</slot>
+		</div>
+
+		<div v-else ref="rootEl">
+			<div v-show="pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
+				<MkButton v-if="!moreFetching" class="button" :disabled="moreFetching"
+					:style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMoreAhead">
+					{{ i18n.ts.loadMore }}
+				</MkButton>
+				<MkLoading v-else class="loading" />
 			</div>
-		</slot>
-	</div>
-
-	<div v-else ref="rootEl">
-		<div v-show="pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
-			<MkButton v-if="!moreFetching" class="button" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMoreAhead">
-				{{ i18n.ts.loadMore }}
-			</MkButton>
-			<MkLoading v-else class="loading"/>
+			<slot :items="items"></slot>
+			<div v-show="!pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
+				<MkButton v-if="!moreFetching"
+					v-appear="($store.state.enableInfiniteScroll && !disableAutoLoad) ? fetchMore : null" class="button"
+					:disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMore">
+					{{ i18n.ts.loadMore }}
+				</MkButton>
+				<MkLoading v-else class="loading" />
+			</div>
 		</div>
-		<slot :items="items"></slot>
-		<div v-show="!pagination.reversed && more" key="_more_" class="cxiknjgy _gap">
-			<MkButton v-if="!moreFetching" v-appear="($store.state.enableInfiniteScroll && !disableAutoLoad) ? fetchMore : null" class="button" :disabled="moreFetching" :style="{ cursor: moreFetching ? 'wait' : 'pointer' }" primary @click="fetchMore">
-				{{ i18n.ts.loadMore }}
-			</MkButton>
-			<MkLoading v-else class="loading"/>
-		</div>
-	</div>
-</transition>
+	</transition>
 </template>
 
 <script lang="ts" setup>
@@ -66,6 +69,7 @@ const props = withDefaults(defineProps<{
 	disableAutoLoad?: boolean;
 	displayLimit?: number;
 	externalItemArray?: Ref<Array<any>>;
+	disableReload?: boolean;
 }>(), {
 	displayLimit: 30,
 });
@@ -74,7 +78,7 @@ const emit = defineEmits<{
 	(ev: 'queue', count: number): void;
 }>();
 
-type Item = { id: string; [another: string]: unknown; };
+type Item = { id: string;[another: string]: unknown; };
 
 const rootEl = ref<HTMLElement>();
 const items = ref<Item[]>([]);
@@ -87,6 +91,7 @@ const backed = ref(false); // 遡り中か否か
 const isBackTop = ref(false);
 const empty = computed(() => items.value.length === 0);
 const error = ref(false);
+const alreadyInitedOnce = ref(false);
 
 const init = async (): Promise<void> => {
 	queue.value = [];
@@ -107,13 +112,16 @@ const init = async (): Promise<void> => {
 		if (!props.pagination.noPaging && (res.length > (props.pagination.limit || 10))) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse() : res;
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = false;
-		}
-		if(props.externalItemArray) {
-			props.externalItemArray.value = items.value;
 		}
 		offset.value = res.length;
 		error.value = false;
@@ -126,7 +134,7 @@ const init = async (): Promise<void> => {
 
 const reload = (): void => {
 	items.value = [];
-	if(props.externalItemArray) {
+	if (props.externalItemArray) {
 		props.externalItemArray.value = [];
 	}
 	init();
@@ -188,13 +196,16 @@ const fetchMore = async (): Promise<void> => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = false;
-		}
-		if(props.externalItemArray) {
-			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
@@ -221,13 +232,16 @@ const fetchMoreAhead = async (): Promise<void> => {
 		if (res.length > SECOND_FETCH_LIMIT) {
 			res.pop();
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = true;
 		} else {
 			items.value = props.pagination.reversed ? [...res].reverse().concat(items.value) : items.value.concat(res);
+			if (props.externalItemArray) {
+				props.externalItemArray.value = items.value;
+			}
 			more.value = false;
-		}
-		if(props.externalItemArray) {
-			props.externalItemArray.value = items.value;
 		}
 		offset.value += res.length;
 		moreFetching.value = false;
@@ -254,7 +268,7 @@ const prepend = (item: Item): void => {
 						//items.value = items.value.slice(-props.displayLimit);
 						while (items.value.length >= props.displayLimit) {
 							items.value.shift();
-							if(props.externalItemArray) props.externalItemArray.value.shift();
+							if (props.externalItemArray) props.externalItemArray.value.shift();
 						}
 						more.value = true;
 					}
@@ -262,13 +276,13 @@ const prepend = (item: Item): void => {
 			}
 		}
 		items.value.push(item);
-		if(props.externalItemArray) props.externalItemArray.value.push(item);
+		if (props.externalItemArray) props.externalItemArray.value.push(item);
 		// TODO
 	} else {
 		// 初回表示時はunshiftだけでOK
 		if (!rootEl.value) {
 			items.value.unshift(item);
-			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
+			if (props.externalItemArray) props.externalItemArray.value.unshift(item);
 			return;
 		}
 
@@ -277,18 +291,7 @@ const prepend = (item: Item): void => {
 		if (isTop) {
 			// Prepend the item
 			items.value.unshift(item);
-			if(props.externalItemArray) props.externalItemArray.value.unshift(item);
-
-			// オーバーフローしたら古いアイテムは捨てる
-			if (items.value.length >= props.displayLimit) {
-				// このやり方だとVue 3.2以降アニメーションが動かなくなる
-				//this.items = items.value.slice(0, props.displayLimit);
-				while (items.value.length >= props.displayLimit) {
-					items.value.pop();
-					if(props.externalItemArray) props.externalItemArray.value.pop();
-				}
-				more.value = true;
-			}
+			if (props.externalItemArray) props.externalItemArray.value.unshift(item);
 		} else {
 			queue.value.push(item);
 			onScrollTop(rootEl.value, () => {
@@ -303,28 +306,30 @@ const prepend = (item: Item): void => {
 
 const append = (item: Item): void => {
 	items.value.push(item);
-	if(props.externalItemArray) props.externalItemArray.value.push(item);
+	if (props.externalItemArray) props.externalItemArray.value.push(item);
 };
 
 const removeItem = (finder: (item: Item) => boolean): boolean => {
 	const i = items.value.findIndex(finder);
-	if (i === -1) {
+	const j = props.externalItemArray?.findIndex(finder);
+	if (i === -1 && j === -1) {
 		return false;
 	}
 
 	items.value.splice(i, 1);
-	if(props.externalItemArray) props.externalItemArray.value.splice(i, 1);
+	if (props.externalItemArray) props.externalItemArray.value.splice(i, 1);
 	return true;
 };
 
 const updateItem = (id: Item['id'], replacer: (old: Item) => Item): boolean => {
 	const i = items.value.findIndex(item => item.id === id);
-	if (i === -1) {
+	const j = props.externalItemArray?.findIndex(item => item.id === id);
+	if (i === -1 && j === -1) {
 		return false;
 	}
 
 	items.value[i] = replacer(items.value[i]);
-	if(props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
+	if (props.externalItemArray) props.externalItemArray.value[i] = items.value[i];
 	return true;
 };
 
@@ -341,10 +346,14 @@ init();
 
 onActivated(() => {
 	isBackTop.value = false;
+	if(alreadyInitedOnce.value && (!props.disableReload || !props.disableReload.value)) {
+		reload();
+	}
 });
 
 onDeactivated(() => {
 	isBackTop.value = window.scrollY === 0;
+	alreadyInitedOnce.value = true;
 });
 
 defineExpose({
@@ -365,13 +374,14 @@ defineExpose({
 .fade-leave-active {
 	transition: opacity 0.15s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
 }
 
 .cxiknjgy {
-	> .button {
+	>.button {
 		margin-left: auto;
 		margin-right: auto;
 	}

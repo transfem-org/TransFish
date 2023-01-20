@@ -6,12 +6,12 @@
 **🌎 **[Calckey](https://i.calckey.cloud/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
 [![no github badge](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page/)
-[![status badge](https://ci.lavaforge.org/api/badges/calckey/calckey/status.svg)](https://ci.lavaforge.org/calckey/calckey)
+[![status badge](https://ci.codeberg.org/api/badges/calckey/calckey/status.svg)](https://ci.codeberg.org/calckey/calckey)
 [![liberapay badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
 [![translate-badge](https://hosted.weblate.org/widgets/calckey/-/svg-badge.svg)](https://hosted.weblate.org/engage/calckey/)
 [![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
-[![lavaforge badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-lavaforge-FF8066.svg?logo=lavaforge&logoColor=white)](https://lavaforge.org/calckey/calckey/)
+[![lavaforge badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-lavaforge-FF8066.svg?logo=lavaforge&logoColor=white)](https://codeberg.org/calckey/calckey/)
 
 </div>
 
@@ -92,7 +92,7 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 👀 Get folder ready
 
 ```sh
-git clone https://lavaforge.org/calckey/calckey.git
+git clone https://codeberg.org/calckey/calckey.git
 cd calckey/
 # git checkout main # if you want only stable versions
 ```
