@@ -1,43 +1,39 @@
 <template>
-	<MkStickyContainer>
-		<template #header>
-			<MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs" />
-		</template>
-		<div>
-			<MkSpacer :content-max="800">
-				<swiper :modules="[Virtual]" :space-between="20" :virtual="true"
-					:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)" @swiper="setSwiperRef"
-					@slide-change="onSlideChange">
-					<swiper-slide>
-						<div class="_content yweeujhr dms">
-							<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{
-								i18n.ts.startMessaging
-							}}</MkButton>
-							<MkPagination v-slot="{ items }" :externalItemArray="messages" :pagination="dmsPagination">
-								<MkChatPreview v-for="message in messages" :key="message.id" class="yweeujhr message _block"
-									:message="message" />
-							</MkPagination>
+<MkStickyContainer>
+	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+	<div>
+		<MkSpacer :content-max="800">
+			<swiper
+				:modules="[Virtual]"
+				:space-between="20"
+				:virtual="true"
+				:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
+				@swiper="setSwiperRef"
+				@slide-change="onSlideChange"
+			>
+				<swiper-slide>
+					<div class="_content yweeujhr dms">
+						<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkPagination v-slot="{items}" :externalItemArray="messages" :pagination="dmsPagination">
+							<MkChatPreview v-for="message in messages" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						</MkPagination>
+					</div>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="_content yweeujhr groups">
+						<div class="groupsbuttons">
+							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
+							<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						</div>
-					</swiper-slide>
-					<swiper-slide>
-						<div class="_content yweeujhr groups">
-							<div class="groupsbuttons">
-								<MkButton primary class="start" :link="true" to="/my/groups"><i
-										class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
-								<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{
-									i18n.ts.startMessaging
-								}}</MkButton>
-							</div>
-							<MkPagination v-slot="{ items }" :externalItemArray="groupMessages" :pagination="groupsPagination">
-								<MkChatPreview v-for="message in groupMessages" :key="message.id" class="yweeujhr message _block"
-									:message="message" />
-							</MkPagination>
-						</div>
-					</swiper-slide>
-				</swiper>
-			</MkSpacer>
-		</div>
-	</MkStickyContainer>
+						<MkPagination v-slot="{items}" :externalItemArray="groupMessages" :pagination="groupsPagination">
+							<MkChatPreview v-for="message in groupMessages" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						</MkPagination>
+					</div>
+				</swiper-slide>
+			</swiper>
+		</MkSpacer>
+	</div>
+</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
@@ -110,7 +106,7 @@ function onMessage(message): void {
 	if (message.recipientId) {
 		messages = messages.filter(m => !(
 			(m.recipientId === message.recipientId && m.userId === message.userId) ||
-			(m.recipientId === message.userId && m.userId === message.recipientId)));
+				(m.recipientId === message.userId && m.userId === message.recipientId)));
 
 		messages.unshift(message);
 	} else if (message.groupId) {
@@ -210,17 +206,17 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.yweeujhr {
-	>.start {
-		margin: 0 auto var(--margin) auto;
-	}
+	<style lang="scss" scoped>
+	.yweeujhr {
+		> .start {
+			margin: 0 auto var(--margin) auto;
+		}
 
-	>.groupsbuttons {
-		max-width: 100%;
-		display: flex;
-		justify-content: center;
-		margin-bottom: 1rem;
+		> .groupsbuttons {
+			max-width: 100%;
+			display: flex;
+			justify-content: center;
+			margin-bottom: 1rem;
+		}
 	}
-}
-</style>
+	</style>
