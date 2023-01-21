@@ -1,6 +1,6 @@
 <template>
 <div v-size="{ min: [350, 500] }" class="yohlumlk">
-	<!-- <MkAvatar class="avatar" :user="note.user"/> -->
+	<MkAvatar class="avatar" :user="note.user"/>
 	<div class="main">
 		<XNoteHeader class="header" :note="note" :mini="true"/>
 		<div class="body">
