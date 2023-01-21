@@ -68,7 +68,7 @@ export async function toDbReaction(
 	const match = emojiRegex.exec(reaction);
 	if (match) {
 		const unicode = match[0];
-		return unicode.match('\u200d') ? unicode : unicode.replace(/\ufe0f/g, '');
+		return unicode.match("\u200d") ? unicode : unicode.replace(/\ufe0f/g, "");
 	}
 
 	const custom = reaction.match(/^:([\w+-]+)(?:@\.)?:$/);

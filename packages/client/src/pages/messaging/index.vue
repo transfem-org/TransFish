@@ -1,47 +1,43 @@
 <template>
-	<MkStickyContainer>
-		<template #header>
-			<MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs" />
-		</template>
-		<div>
-			<MkSpacer :content-max="800">
-				<swiper :modules="[Virtual]" :space-between="20" :virtual="true"
-					:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)" @swiper="setSwiperRef"
-					@slide-change="onSlideChange">
-					<swiper-slide>
-						<div class="_content yweeujhr dms">
-							<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{
-								i18n.ts.startMessaging
-							}}</MkButton>
-							<MkPagination v-slot="{ items }" :pagination="dmsPagination">
-								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
-									:message="message" />
-							</MkPagination>
+<MkStickyContainer>
+	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+	<div>
+		<MkSpacer :content-max="800">
+			<swiper
+				:modules="[Virtual]"
+				:space-between="20"
+				:virtual="true"
+				:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
+				@swiper="setSwiperRef"
+				@slide-change="onSlideChange"
+			>
+				<swiper-slide>
+					<div class="_content yweeujhr dms">
+						<MkButton primary class="start" @click="startUser"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
+						<MkPagination v-slot="{items}" :pagination="dmsPagination">
+							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						</MkPagination>
+					</div>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="_content yweeujhr groups">
+						<div class="groupsbuttons">
+							<MkButton primary class="start" :link="true" to="/my/groups"><i class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
+							<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.startMessaging }}</MkButton>
 						</div>
-					</swiper-slide>
-					<swiper-slide>
-						<div class="_content yweeujhr groups">
-							<div class="groupsbuttons">
-								<MkButton primary class="start" :link="true" to="/my/groups"><i
-										class="ph-user-circle-gear-bold ph-lg"></i> {{ i18n.ts.manageGroups }}</MkButton>
-								<MkButton primary class="start" @click="startGroup"><i class="ph-plus-bold ph-lg"></i> {{
-									i18n.ts.startMessaging
-								}}</MkButton>
-							</div>
-							<MkPagination v-slot="{ items }" :pagination="groupsPagination">
-								<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block"
-									:message="message" />
-							</MkPagination>
-						</div>
-					</swiper-slide>
-				</swiper>
-			</MkSpacer>
-		</div>
-	</MkStickyContainer>
+						<MkPagination v-slot="{items}" :pagination="groupsPagination">
+							<MkChatPreview v-for="message in items" :key="message.id" class="yweeujhr message _block" :message="message"/>
+						</MkPagination>
+					</div>
+				</swiper-slide>
+			</swiper>
+		</MkSpacer>
+	</div>
+</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import { markRaw, onMounted, onUnmounted, watch, computed } from 'vue';
+import { markRaw, onMounted, onUnmounted, watch } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -63,8 +59,6 @@ const router = useRouter();
 
 let messages = $ref([]);
 let connection = $ref(null);
-let paginationComponentUser = $ref<InstanceType<typeof MkPagination>>();
-let paginationComponentGroup = $ref<InstanceType<typeof MkPagination>>();
 
 const tabs = ['dms', 'groups'];
 let tab = $ref(tabs[0]);
@@ -94,33 +88,30 @@ definePageMetadata({
 
 const dmsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 20,
-	params: computed(() => ({
+	limit: 15,
+	params: {
 		group: false,
-	})),
-	offsetMode: true,
+	},
 };
 const groupsPagination = {
 	endpoint: 'messaging/history' as const,
-	limit: 10,
-	params: computed(() => ({
+	limit: 5,
+	params: {
 		group: true,
-	})),
-	offsetMode: true,
+	},
 };
 
 function onMessage(message): void {
 	if (message.recipientId) {
 		messages = messages.filter(m => !(
 			(m.recipientId === message.recipientId && m.userId === message.userId) ||
-			(m.recipientId === message.userId && m.userId === message.recipientId)));
+				(m.recipientId === message.userId && m.userId === message.recipientId)));
 
 		messages.unshift(message);
 	} else if (message.groupId) {
 		messages = messages.filter(m => m.groupId !== message.groupId);
 		messages.unshift(message);
 	}
-	forceRerender();
 }
 
 function onRead(ids): void {
@@ -192,12 +183,11 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	syncSlide(tabs.indexOf(swiperRef?.activeIndex));
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
 
 	connection = markRaw(stream.useChannel('messagingIndex'));
 
 	connection.on('message', onMessage);
-	connection.on('messagingMessage', onMessage);
 	connection.on('read', onRead);
 
 	os.api('messaging/history', { group: false, limit: 5 }).then(userMessages => {
@@ -214,17 +204,17 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.yweeujhr {
-	>.start {
-		margin: 0 auto var(--margin) auto;
-	}
+	<style lang="scss" scoped>
+	.yweeujhr {
+		> .start {
+			margin: 0 auto var(--margin) auto;
+		}
 
-	>.groupsbuttons {
-		max-width: 100%;
-		display: flex;
-		justify-content: center;
-		margin-bottom: 1rem;
+		> .groupsbuttons {
+			max-width: 100%;
+			display: flex;
+			justify-content: center;
+			margin-bottom: 1rem;
+		}
 	}
-}
-</style>
+	</style>
