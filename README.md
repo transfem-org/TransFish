@@ -95,7 +95,7 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 👀 Get folder ready
 
 ```sh
-git clone https://codeberg.org/calckey/calckey.git
+git clone --depth 1 https://codeberg.org/calckey/calckey.git
 cd calckey/
 # git checkout main # if you want only stable versions
 ```
