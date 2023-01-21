@@ -30,14 +30,19 @@ import MkVisibility from '@/components/MkVisibility.vue';
 import MkInstanceTicker from '@/components/MkInstanceTicker.vue';
 import { notePage } from '@/filters/note';
 import { userPage } from '@/filters/user';
+import { deepClone } from '@/scripts/clone';
+
+const props = defineProps<{
+	note: misskey.entities.Note;
+	pinned?: boolean;
+}>();
+
+let note = $ref(deepClone(props.note));
 
 const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && note.user.instance);
 
 
-defineProps<{
-	note: misskey.entities.Note;
-	pinned?: boolean;
-}>();
+
 </script>
 
 <style lang="scss" scoped>
