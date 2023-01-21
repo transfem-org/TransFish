@@ -64,6 +64,12 @@ export type Source = {
 	mediaProxy?: string;
 	proxyRemoteFiles?: boolean;
 
+	twa: {
+		nameSpace?: string;
+		packageName?: string;
+		sha256CertFingerprints?: string[];
+	};
+
 	// Managed hosting stuff
 	maxUserSignups?: number;
 	isManagedHosting?: boolean;
