@@ -24,8 +24,8 @@
 			<button class="_button _acrylic menu" @click="showMenu"><i class="ph-dots-three-outline-bold ph-lg"></i></button>
 			<div class="fg">
 				<h1>
-					<img class="logo" v-if="meta.logoImageUrl" :src="meta.logoImageUrl"><span v-else class="text">{{ instanceName }}</span>
-					<span class="text">{{ instanceName }}</span>
+					<img class="logo" v-if="meta.logoImageUrl" :src="meta.logoImageUrl">
+					<span v-else class="text">{{ instanceName }}</span>
 				</h1>
 				<div class="about">
 					<div class="desc" v-html="meta.description || i18n.ts.headlineMisskey"></div>
