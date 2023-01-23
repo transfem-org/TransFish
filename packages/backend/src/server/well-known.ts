@@ -74,7 +74,7 @@ router.get("/.well-known/host-meta.json", async (ctx) => {
 	};
 });
 
-if (config.twa.nameSpace != null) {
+if (config.twa != null) {
 	router.get("/.well-known/assetlinks.json", async (ctx) => {
 		ctx.set("Content-Type", "application/json");
 		ctx.body = [
