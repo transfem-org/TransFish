@@ -2,9 +2,9 @@
 	"name": "sw",
 	"private": true,
 	"scripts": {
-		"watch": "node build.js watch",
-		"build": "node build.js",
-		"lint": "pnpm rome check src/**/*.{ts}"
+		"build": "pnpm swc src -d built -D",
+		"watch": "pnpm swc src -d built -D -w",
+		"lint": "pnpm rome check \"src/**/*.ts\""
 	},
 	"dependencies": {
 		"calckey-js": "^0.0.20",
