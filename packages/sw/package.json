@@ -8,7 +8,6 @@
 	},
 	"dependencies": {
 		"calckey-js": "^0.0.20",
-		"esbuild": "^0.15.18",
 		"idb-keyval": "^6.2.0"
 	}
 }
