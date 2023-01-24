@@ -1,6 +1,6 @@
 <template>
 <div class="hpaizdrt" :style="bg">
-	<img v-if="instance.faviconUrl" class="icon" :src="instance.faviconUrl" aria-hidden="true"/>
+	<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true"/>
 	<span class="name">{{ instance.name }}</span>
 </div>
 </template>
@@ -8,6 +8,7 @@
 <script lang="ts" setup>
 import { instanceName } from '@/config';
 import { instance as Instance } from '@/instance';
+import { getProxiedImageUrlNullable } from '@/scripts/media-proxy';
 
 const props = defineProps<{
 	instance?: {
@@ -29,6 +30,10 @@ const themeColor = instance.themeColor ?? '#777777';
 const bg = {
 	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}11)`,
 };
+
+function getInstanceIcon(instance): string {
+	return getProxiedImageUrlNullable(instance.iconUrl, 'preview') ?? getProxiedImageUrlNullable(instance.faviconUrl, 'preview') ?? '/client-assets/dummy.png';
+}
 </script>
 
 <style lang="scss" scoped>
