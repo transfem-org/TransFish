@@ -31,7 +31,7 @@ const computedStyle = getComputedStyle(document.documentElement);
 const themeColor = instance.themeColor ?? computedStyle.getPropertyValue('--bg');
 
 const bg = {
-	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}55)`,
+	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}33)`,
 };
 
 function getInstanceIcon(instance): string {
@@ -57,6 +57,7 @@ function getInstanceIcon(instance): string {
 
 	> .icon {
 		height: 100%;
+		border-radius: 0.3rem;
 	}
 
 	> .name {
