@@ -50,6 +50,7 @@ function getInstanceIcon(instance): string {
 
 	> .icon {
 		height: 100%;
+		border-radius: 0.3rem;
 	}
 
 	> .name {
