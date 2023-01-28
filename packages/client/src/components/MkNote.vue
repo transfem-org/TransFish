@@ -14,7 +14,7 @@
 		<div class="line"></div>
 		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
 		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
-		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i> {{ i18n.ts.pinnedNote }}</div>
+		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
 		<div v-if="isRenote" class="renote">
 			<i class="ph-repeat-bold ph-lg"></i>
 			<I18n :src="i18n.ts.renotedBy" tag="span">
