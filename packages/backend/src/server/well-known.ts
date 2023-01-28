@@ -74,6 +74,22 @@ router.get("/.well-known/host-meta.json", async (ctx) => {
 	};
 });
 
+if (config.twa != null) {
+	router.get("/.well-known/assetlinks.json", async (ctx) => {
+		ctx.set("Content-Type", "application/json");
+		ctx.body = [
+			{
+				relation: ["delegate_permission/common.handle_all_urls"],
+				target: {
+					namespace: config.twa.nameSpace,
+					package_name: config.twa.packageName,
+					sha256_cert_fingerprints: config.twa.sha256CertFingerprints,
+				},
+			},
+		];
+	});
+}
+
 router.get("/.well-known/nodeinfo", async (ctx) => {
 	ctx.body = { links };
 });
