@@ -336,7 +336,6 @@ if (appearNote.replyId) {
 	&:hover > .article > .main > .footer > .button {
 		opacity: 1;
 	}
-
 	> .reply-to {
 		margin-bottom: -16px;
 	}
@@ -344,9 +343,6 @@ if (appearNote.replyId) {
 	> .reply-to-more {
 		// opacity: 0.7;
 		cursor: pointer;
-		&:first-child {
-			padding-top: 30px;
-		}
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -562,7 +558,7 @@ if (appearNote.replyId) {
 
 	> .reply, .reply-to, .reply-to-more {
 		transition: background-color 0.25s ease-in-out;
-
+		
 		&:hover {
 			background-color: var(--panelHighlight);
 		}

@@ -351,7 +351,7 @@ function readPromo() {
 			.line::before {
 				content: "";
 				display: block;
-				margin-bottom: -15px;
+				margin-bottom: -10px;
 				width: 2px;
 				background-color: var(--accentDarken);
 				margin-inline: auto;
@@ -442,7 +442,7 @@ function readPromo() {
 		}
 
 		& + .article {
-			padding-top: 10px;
+			padding-top: 10px !important;
 		}
 
 	}

@@ -89,7 +89,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			flex: 1;
 			min-width: 0;
 			cursor: pointer;
-
 			@media (pointer: coarse) {
 				cursor: default;
 			}
@@ -131,10 +130,11 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		padding: 10px 0 0 16px;
 	}
 
-	&.reply-to:first-child {
-		padding-top: 30px;
-	}
 	&.reply-to, &.reply-to-more {
+		padding-bottom: 0;
+		&:first-child {
+			padding-top: 30px;
+		}
 		.avatar-container {
 			display: flex;
 			flex-direction: column;
@@ -153,18 +153,27 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 				&::before {
 					content: "";
 					display: block;
-					margin-bottom: -30px;
 					width: 2px;
 					background-color: var(--accentDarken);
 					margin-inline: auto;
+					.note > & {
+						margin-bottom: -16px;
+					}
 				}
 			}
+		}
+		> .main > .body {
+			padding-bottom: 16px;
 		}
 	}
 
 	&.max-width_450px {
-		padding: 14px 16px !important;
-		margin-bottom: 0 !important;
+		padding: 14px 16px;
+		&.reply-to, &.reply-to-more {
+			padding-top: 14px !important;
+			padding-bottom: 0 !important;
+			margin-bottom: 0 !important;
+		}
 		> .main > .avatar-container {
 			margin-right: 10px;
 		}
