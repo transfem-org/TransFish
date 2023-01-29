@@ -30,11 +30,7 @@ import { IdentifiableError } from "@/misc/identifiable-error.js";
 import { getS3 } from "./s3.js";
 import { InternalStorage } from "./internal-storage.js";
 import type { IImage } from "./image-processor.js";
-import {
-	convertSharpToJpeg,
-	convertSharpToWebp,
-	convertSharpToPng,
-} from "./image-processor.js";
+import { convertSharpToWebp } from "./image-processor.js";
 import { driveLogger } from "./logger.js";
 import { GenerateVideoThumbnail } from "./generate-video-thumbnail.js";
 import { deleteFile } from "./delete-file.js";
@@ -75,8 +71,8 @@ async function save(
 			if (type === "image/vnd.mozilla.apng") ext = ".apng";
 		}
 
-		// 拡張子からContent-Typeを設定してそうな挙動を示すオブジェクトストレージ (upcloud?) も存在するので、
-		// 許可されているファイル形式でしか拡張子をつけない
+		// Some cloud providers (notably upcloud) will infer the content-type based
+		// on extension, so we remove extensions from non-browser-safe types.
 		if (!FILE_TYPE_BROWSERSAFE.includes(type)) {
 			ext = "";
 		}
@@ -282,13 +278,13 @@ export async function generateAlts(
 
 		try {
 			if (["image/jpeg"].includes(type)) {
-				webpublic = await convertSharpToJpeg(img, 2048, 2048);
+				webpublic = await convertSharpToWebp(img, 2048, 2048);
 			} else if (["image/webp"].includes(type)) {
-				webpublic = await convertSharpToPng(img, 2048, 2048);
+				webpublic = await convertSharpToWebp(img, 2048, 2048);
 			} else if (["image/png"].includes(type)) {
-				webpublic = await convertSharpToPng(img, 2048, 2048);
+				webpublic = await convertSharpToWebp(img, 2048, 2048, 100);
 			} else if (["image/svg+xml"].includes(type)) {
-				webpublic = await convertSharpToPng(img, 2048, 2048);
+				webpublic = await convertSharpToWebp(img, 2048, 2048);
 			} else {
 				logger.debug("web image not created (not an required image)");
 			}
@@ -315,7 +311,7 @@ export async function generateAlts(
 				"image/avif",
 			].includes(type)
 		) {
-			thumbnail = await convertSharpToWebp(img, 498, 280);
+			thumbnail = await convertSharpToWebp(img, 996, 560);
 		} else {
 			logger.debug("thumbnail not created (not an required file)");
 		}
