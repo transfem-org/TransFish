@@ -1,28 +1,41 @@
 <template>
-<MkModal ref="modal" :z-priority="'middle'" @click="$refs.modal.close()" @closed="$emit('closed')">
+<MkModal ref="modal" :z-priority="'middle'" @click="modal.close()" @closed="$emit('closed')">
 	<div class="ewlycnyt">
 		<div class="title"><MkSparkle>{{ i18n.ts.misskeyUpdated }}</MkSparkle></div>
 		<div class="version">✨ {{ version }} 🚀</div>
-		<MkButton full @click="whatIsNew">{{ i18n.ts.whatIsNew }}</MkButton>
-		<MkButton class="gotIt" primary full @click="$refs.modal.close()">{{ i18n.ts.gotIt }}</MkButton>
+		<div v-if="newRelease" class="releaseNotes">
+			<Mfm :text="data.notes"/>
+			<div v-if="data.screenshots.length > 0" style="max-width: 500">
+				<img v-for="i in data.screenshots" :key="i" :src="i"/>
+			</div>
+		</div>
+		<MkButton class="gotIt" primary full @click="modal.close()">{{ i18n.ts.gotIt }}</MkButton>
 	</div>
 </MkModal>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 import MkModal from '@/components/MkModal.vue';
-import MkButton from '@/components/MkButton.vue';
 import MkSparkle from '@/components/MkSparkle.vue';
+import MkButton from '@/components/MkButton.vue';
 import { version } from '@/config';
 import { i18n } from '@/i18n';
+import * as os from '@/os';
 
-const modal = ref<InstanceType<typeof MkModal>>();
+const modal = $ref<InstanceType<typeof MkModal>>();
 
-const whatIsNew = () => {
-	modal.value.close();
-	window.open('https://codeberg.org/calckey/calckey/releases', '_blank');
-};
+let newRelease = $ref(false);
+let data = $ref(Object);
+
+os.api('release').then(res => {
+	data = res;
+	newRelease = (version === data?.version);
+});
+console.log(`Version: ${version}`)
+console.log(`Data version: ${data.version}`)
+console.log(newRelease)
+console.log(data);
+
 </script>
 
 <style lang="scss" scoped>
@@ -46,6 +59,13 @@ const whatIsNew = () => {
 
 	> .gotIt {
 		margin: 8px 0 0 0;
+	}
+
+	> .releaseNotes {
+
+		> img {
+			border-radius: 10px;
+		}
 	}
 }
 </style>

@@ -46,10 +46,10 @@ export default defineConfig(({ command, mode }) => {
 
 		build: {
 			target: [
-				'chrome100',
-				'firefox100',
-				'safari15',
-				'es2017', // TODO: そのうち消す
+				'chrome108',
+				'firefox109',
+				'safari16',
+				'es2022',
 			],
 			manifest: 'manifest.json',
 			rollupOptions: {
@@ -63,11 +63,15 @@ export default defineConfig(({ command, mode }) => {
 				},
 			},
 			cssCodeSplit: true,
+			assetsInlineLimit: 0,
 			outDir: __dirname + '/../../built/_client_dist_',
 			assetsDir: '.',
 			emptyOutDir: false,
-			sourcemap: process.env.NODE_ENV !== 'production',
+			sourcemap: process.env.NODE_ENV === 'development',
 			reportCompressedSize: false,
+		},
+		optimizeDeps: {
+			auto: true,
 		},
 	};
 });

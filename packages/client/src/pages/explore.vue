@@ -46,12 +46,9 @@ import XUsers from './explore.users.vue';
 import type MkFolder from '@/components/MkFolder.vue';
 import MkInput from '@/components/form/input.vue';
 import MkRadios from '@/components/form/radios.vue';
-import number from '@/filters/number';
-import * as os from '@/os';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import { i18n } from '@/i18n';
-import { instance } from '@/instance';
 import XUserList from '@/components/MkUserList.vue';
 import { defaultStore } from '@/store';
 import 'swiper/scss';
@@ -100,7 +97,7 @@ const headerTabs = $computed(() => [{
 
 definePageMetadata(computed(() => ({
 	title: i18n.ts.explore,
-	icon: 'ph-hash-bold ph-lg',
+	icon: 'ph-compass-bold ph-lg',
 })));
 
 let swiperRef = null;

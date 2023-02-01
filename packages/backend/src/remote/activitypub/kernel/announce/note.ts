@@ -1,63 +1,75 @@
-import Resolver from '../../resolver.js';
-import post from '@/services/note/create.js';
-import { CacheableRemoteUser } from '@/models/entities/user.js';
-import { IAnnounce, getApId } from '../../type.js';
-import { fetchNote, resolveNote } from '../../models/note.js';
-import { apLogger } from '../../logger.js';
-import { extractDbHost } from '@/misc/convert-host.js';
-import { fetchMeta } from '@/misc/fetch-meta.js';
-import { getApLock } from '@/misc/app-lock.js';
-import { parseAudience } from '../../audience.js';
-import { StatusError } from '@/misc/fetch.js';
-import { Notes } from '@/models/index.js';
+import type Resolver from "../../resolver.js";
+import post from "@/services/note/create.js";
+import type { CacheableRemoteUser } from "@/models/entities/user.js";
+import type { IAnnounce } from "../../type.js";
+import { getApId } from "../../type.js";
+import { fetchNote, resolveNote } from "../../models/note.js";
+import { apLogger } from "../../logger.js";
+import { extractDbHost } from "@/misc/convert-host.js";
+import { getApLock } from "@/misc/app-lock.js";
+import { parseAudience } from "../../audience.js";
+import { StatusError } from "@/misc/fetch.js";
+import { Notes } from "@/models/index.js";
+import { shouldBlockInstance } from "@/misc/should-block-instance.js";
 
 const logger = apLogger;
 
 /**
- * アナウンスアクティビティを捌きます
+ * Handle announcement activities
  */
-export default async function(resolver: Resolver, actor: CacheableRemoteUser, activity: IAnnounce, targetUri: string): Promise<void> {
+export default async function (
+	resolver: Resolver,
+	actor: CacheableRemoteUser,
+	activity: IAnnounce,
+	targetUri: string,
+): Promise<void> {
 	const uri = getApId(activity);
 
 	if (actor.isSuspended) {
 		return;
 	}
 
-	// アナウンス先をブロックしてたら中断
-	const meta = await fetchMeta();
-	if (meta.blockedHosts.includes(extractDbHost(uri))) return;
+	// Interrupt if you block the announcement destination
+	if (await shouldBlockInstance(extractDbHost(uri))) return;
 
 	const unlock = await getApLock(uri);
 
 	try {
-		// 既に同じURIを持つものが登録されていないかチェック
+		// Check if something with the same URI is already registered
 		const exist = await fetchNote(uri);
 		if (exist) {
 			return;
 		}
 
-		// Announce対象をresolve
+		// Resolve Announce target
 		let renote;
 		try {
 			renote = await resolveNote(targetUri);
 		} catch (e) {
-			// 対象が4xxならスキップ
+			// Skip if target is 4xx
 			if (e instanceof StatusError) {
 				if (e.isClientError) {
 					logger.warn(`Ignored announce target ${targetUri} - ${e.statusCode}`);
 					return;
 				}
 
-				logger.warn(`Error in announce target ${targetUri} - ${e.statusCode || e}`);
+				logger.warn(
+					`Error in announce target ${targetUri} - ${e.statusCode || e}`,
+				);
 			}
 			throw e;
 		}
 
-		if (!await Notes.isVisibleForMe(renote, actor.id)) return 'skip: invalid actor for this activity';
+		if (!(await Notes.isVisibleForMe(renote, actor.id)))
+			return "skip: invalid actor for this activity";
 
 		logger.info(`Creating the (Re)Note: ${uri}`);
 
-		const activityAudience = await parseAudience(actor, activity.to, activity.cc);
+		const activityAudience = await parseAudience(
+			actor,
+			activity.to,
+			activity.cc,
+		);
 
 		await post(actor, {
 			createdAt: activity.published ? new Date(activity.published) : null,

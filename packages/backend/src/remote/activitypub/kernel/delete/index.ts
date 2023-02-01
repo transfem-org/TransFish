@@ -1,22 +1,27 @@
-import deleteNote from './note.js';
-import { CacheableRemoteUser } from '@/models/entities/user.js';
-import { IDelete, getApId, isTombstone, IObject, validPost, validActor } from '../../type.js';
-import { toSingle } from '@/prelude/array.js';
-import { deleteActor } from './actor.js';
+import type { CacheableRemoteUser } from "@/models/entities/user.js";
+import { toSingle } from "@/prelude/array.js";
+import { getApId, isTombstone, validPost, validActor } from "../../type.js";
+import deleteNote from "./note.js";
+import { deleteActor } from "./actor.js";
+import type { IDelete, IObject } from "../../type.js";
 
 /**
- * 削除アクティビティを捌きます
+ * Handle delete activity
  */
-export default async (actor: CacheableRemoteUser, activity: IDelete): Promise<string> => {
-	if ('actor' in activity && actor.uri !== activity.actor) {
-		throw new Error('invalid actor');
+export default async (
+	actor: CacheableRemoteUser,
+	activity: IDelete,
+): Promise<string> => {
+	if ("actor" in activity && actor.uri !== activity.actor) {
+		throw new Error("invalid actor");
 	}
 
-	// 削除対象objectのtype
+	// Type of object to be deleted
 	let formerType: string | undefined;
 
-	if (typeof activity.object === 'string') {
-		// typeが不明だけど、どうせ消えてるのでremote resolveしない
+	if (typeof activity.object === "string") {
+		// The type is unknown, but it has disappeared
+		// anyway, so it does not remote resolve
 		formerType = undefined;
 	} else {
 		const object = activity.object as IObject;
@@ -29,14 +34,15 @@ export default async (actor: CacheableRemoteUser, activity: IDelete): Promise<st
 
 	const uri = getApId(activity.object);
 
-	// type不明でもactorとobjectが同じならばそれはPersonに違いない
+	// Even if type is unknown, if actor and object are the same,
+	// it must be `Person`.
 	if (!formerType && actor.uri === uri) {
-		formerType = 'Person';
+		formerType = "Person";
 	}
 
-	// それでもなかったらおそらくNote
+	// If not, fallback to `Note`.
 	if (!formerType) {
-		formerType = 'Note';
+		formerType = "Note";
 	}
 
 	if (validPost.includes(formerType)) {
