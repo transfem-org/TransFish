@@ -36,6 +36,7 @@ export default defineComponent({
 	> button {
 		flex: 1;
 		padding: 10px 8px;
+		margin: 0 8px;
 		border-radius: var(--radius);
 
 		&:disabled {
