@@ -153,7 +153,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 				&::before {
 					content: "";
 					display: block;
-					width: 1px;
+					width: 2px;
 					background-color: var(--divider);
 					margin-inline: auto;
 					.note > & {

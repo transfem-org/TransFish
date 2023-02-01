@@ -352,7 +352,7 @@ function readPromo() {
 				content: "";
 				display: block;
 				margin-bottom: -10px;
-				width: 1px;
+				width: 2px;
 				background-color: var(--divider);
 				margin-inline: auto;
 			}
