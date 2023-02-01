@@ -28,9 +28,12 @@ let newRelease = false;
 let data;
 os.api('release').then(res => {
 	data = res;
-	console.log(data);
 	newRelease = (version === data?.version);
 });
+console.log(`Version: ${version}`)
+console.log(`Data version: ${data.version}`)
+console.log(newRelease)
+console.log(data);
 
 </script>
 

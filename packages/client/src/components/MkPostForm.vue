@@ -91,7 +91,7 @@ import { instance } from '@/instance';
 import { $i, getAccounts, openAccountMenu as openAccountMenu_ } from '@/account';
 import { uploadFile } from '@/scripts/upload';
 import { deepClone } from '@/scripts/clone';
-import MfmCheatSheet from '@/pages/mfm-cheat-sheet.vue';
+import XCheatSheet from '@/components/MkCheatSheetDialog.vue';
 
 const modal = inject('modal');
 
@@ -627,7 +627,7 @@ async function insertEmoji(ev: MouseEvent) {
 }
 
 async function openCheatSheet(ev: MouseEvent) {
-  window.open(url + '/mfm-cheat-sheet', '_blank');
+  os.popup(XCheatSheet, {}, {}, 'closed');
 }
 
 function showActions(ev) {
