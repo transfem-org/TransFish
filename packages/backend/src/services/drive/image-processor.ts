@@ -25,7 +25,7 @@ export async function convertSharpToWebp(
 	height: number,
 	quality: number = 85,
 ): Promise<IImage> {
-		const data = await sharp
+	const data = await sharp
 		.resize(width, height, {
 			fit: "inside",
 			withoutEnlargement: true,
