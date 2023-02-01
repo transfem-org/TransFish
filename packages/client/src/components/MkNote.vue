@@ -352,8 +352,8 @@ function readPromo() {
 				content: "";
 				display: block;
 				margin-bottom: -10px;
-				width: 2px;
-				background-color: var(--accentDarken);
+				width: 0.5px;
+				background-color: var(--divider);
 				margin-inline: auto;
 			}
 		}

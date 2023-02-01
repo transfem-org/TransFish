@@ -53,3 +53,7 @@ packages/backend/assets/instance.css
 *.blend3
 *.blend4
 *.blend5
+
+# old yarn
+.yarn
+yarn*
