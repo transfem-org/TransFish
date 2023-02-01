@@ -36,7 +36,7 @@
 	<article class="article" @contextmenu.stop="onContextmenu" @click.self="router.push(notePage(appearNote))">
 		<div class="main" @click.self="router.push(notePage(appearNote))">
 			<div class="header-container">
-				<MkAvatar class="avatar" :user="note.user"/>
+				<MkAvatar class="avatar" :user="appearNote.user"/>
 				<XNoteHeader class="header" :note="appearNote" :mini="true"/>
 			</div>
 			<div class="body">
