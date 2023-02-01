@@ -5,7 +5,7 @@
 	@close="dialog?.close()"
 	@closed="$emit('closed')"
 >
-	<template #header>{{ i18n.ts._tutorial.title }}</template>
+	<template #header>{{ i18n.ts._mfm.cheatSheet }}</template>
 
 	<div class="_monolithic_">
 		<div class="_section">
