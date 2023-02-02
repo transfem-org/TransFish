@@ -9,15 +9,15 @@ import type { CacheableRemoteUser } from "@/models/entities/user.js";
 import { htmlToMfm } from "../misc/html-to-mfm.js";
 import { extractApHashtags } from "./tag.js";
 import { unique, toArray, toSingle } from "@/prelude/array.js";
-import { extractPollFromQuestion } from "./question.js";
+import { extractPollFromQuestion, updateQuestion } from "./question.js";
 import vote from "@/services/note/polls/vote.js";
 import { apLogger } from "../logger.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import { deliverQuestionUpdate } from "@/services/note/polls/update.js";
 import { extractDbHost, toPuny } from "@/misc/convert-host.js";
-import { Emojis, Polls, MessagingMessages } from "@/models/index.js";
+import { Emojis, Polls, MessagingMessages, Notes } from "@/models/index.js";
 import type { Note } from "@/models/entities/note.js";
-import type { IObject, IPost } from "../type.js";
+import type { IObject, IPost, IUpdate } from "../type.js";
 import {
 	getOneApId,
 	getApId,
@@ -348,6 +348,33 @@ export async function createNote(
 		},
 		silent,
 	);
+}
+
+/**
+ * Update info of Post
+ * @param uri URI of AP post object
+ * @returns true if updated
+ */
+export async function updatePost(activity: IUpdate, value: any, resolver?: Resolver) {
+
+	const uri = typeof value === "string" ? value : value.id;
+
+	// Skip if URI points to this server
+	if (uri.startsWith(`${config.url}/`)) throw new Error("uri points local");
+
+	//#region Already registered with this server?
+	const note = await Notes.findOneBy({ uri });
+	if (note == null) throw new Error("Post is not registed");
+	//#endregion
+
+	// resolve new Post object
+	if (resolver == null) resolver = new Resolver();
+	const post = (await resolver.resolve(value)) as IPost;
+
+	if (post.type == "Question") {
+		updateQuestion(value, resolver, note);
+	}
+
 }
 
 /**

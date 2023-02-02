@@ -148,6 +148,7 @@ export interface IQuestion extends IObject {
 	};
 	_misskey_quote?: string;
 	quoteUrl?: string;
+	quoteUri?: string;
 	oneOf?: IQuestionChoice[];
 	anyOf?: IQuestionChoice[];
 	endTime?: Date;

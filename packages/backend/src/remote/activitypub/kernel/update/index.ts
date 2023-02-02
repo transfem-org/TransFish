@@ -1,10 +1,10 @@
 import type { CacheableRemoteUser } from "@/models/entities/user.js";
-import type { IUpdate } from "../../type.js";
+import type { IPost, IUpdate } from "../../type.js";
 import { getApType, isActor } from "../../type.js";
 import { apLogger } from "../../logger.js";
-import { updateQuestion } from "../../models/question.js";
 import Resolver from "../../resolver.js";
 import { updatePerson } from "../../models/person.js";
+import { updatePost } from "../../models/note.js";
 
 /**
  * Handler for the Update activity
@@ -29,10 +29,17 @@ export default async (
 	if (isActor(object)) {
 		await updatePerson(actor.uri!, resolver, object);
 		return "ok: Person updated";
-	} else if (getApType(object) === "Question") {
-		await updateQuestion(object, resolver).catch((e) => console.log(e));
-		return "ok: Question updated";
-	} else {
-		return `skip: Unknown type: ${getApType(object)}`;
+	}
+
+	switch (getApType(object)) {
+		case 'Question':
+		case 'Note':
+		case 'Article':
+		case 'Document':
+		case 'Page':
+			await updatePost(activity, object as IPost, resolver);
+			return `ok: Post updated`;
+		default:
+			return `skip: Unknown type: ${getApType(object)}`;
 	}
 };

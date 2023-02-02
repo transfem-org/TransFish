@@ -50,26 +50,17 @@ export async function extractPollFromQuestion(
  * @param uri URI of AP Question object
  * @returns true if updated
  */
-export async function updateQuestion(value: any, resolver?: Resolver) {
+export async function updateQuestion(value: any, resolver: Resolver, note: any) {
 	const uri = typeof value === "string" ? value : value.id;
 
-	// Skip if URI points to this server
-	if (uri.startsWith(`${config.url}/`)) throw new Error("uri points local");
-
 	//#region Already registered with this server?
-	const note = await Notes.findOneBy({ uri });
-	if (note == null) throw new Error("Question is not registed");
-
 	const poll = await Polls.findOneBy({ noteId: note.id });
 	if (poll == null) throw new Error("Question is not registed");
 	//#endregion
 
 	// resolve new Question object
-	if (resolver == null) resolver = new Resolver();
 	const question = (await resolver.resolve(value)) as IQuestion;
 	apLogger.debug(`fetched question: ${JSON.stringify(question, null, 2)}`);
-
-	if (question.type !== "Question") throw new Error("object is not a Question");
 
 	const apChoices = question.oneOf || question.anyOf;
 
