@@ -605,6 +605,7 @@ function readPromo() {
 					opacity: 0.7;
 					flex-grow: 1;
 					max-width: 3.5em;
+					width: max-content;
 					min-width: max-content;
 					&:first-of-type {
 						margin-left: -.5em;
