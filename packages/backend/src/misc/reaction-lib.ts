@@ -35,6 +35,12 @@ export function convertLegacyReactions(reactions: Record<string, number>) {
 			} else {
 				_reactions[legacies[reaction]] = reactions[reaction];
 			}
+		} else if (reaction === "♥️") {
+			if (_reactions["❤️"]) {
+				_reactions["❤️"] += reactions[reaction];
+			} else {
+				_reactions["❤️"] = reactions[reaction];
+			}
 		} else {
 			if (_reactions[reaction]) {
 				_reactions[reaction] += reactions[reaction];
@@ -61,15 +67,10 @@ export async function toDbReaction(
 
 	reacterHost = toPunyNullable(reacterHost);
 
-	// 文字列タイプのリアクションを絵文字に変換
+	// Convert string-type reactions to unicode
 	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
-
-	// Unicode絵文字
-	const match = emojiRegex.exec(reaction);
-	if (match) {
-		const unicode = match[0];
-		return unicode.match("\u200d") ? unicode : unicode.replace(/\ufe0f/g, "");
-	}
+	// Convert old heart to new
+	if (reaction === "♥️") return "❤️";
 
 	const custom = reaction.match(/^:([\w+-]+)(?:@\.)?:$/);
 	if (custom) {

@@ -1496,7 +1496,7 @@
 	{ "category": "symbols", "char": "🀄", "name": "mahjong", "keywords": ["game", "play", "chinese", "kanji"] },
 	{ "category": "symbols", "char": "♠️", "name": "spades", "keywords": ["poker", "cards", "suits", "magic"] },
 	{ "category": "symbols", "char": "♣️", "name": "clubs", "keywords": ["poker", "cards", "magic", "suits"] },
-	{ "category": "symbols", "char": "♥️", "name": "hearts", "keywords": ["poker", "cards", "magic", "suits"] },
+	{ "category": "symbols", "char": "❤️", "name": "hearts", "keywords": ["poker", "cards", "magic", "suits"] },
 	{ "category": "symbols", "char": "♦️", "name": "diamonds", "keywords": ["poker", "cards", "magic", "suits"] },
 	{ "category": "symbols", "char": "🎴", "name": "flower_playing_cards", "keywords": ["game", "sunset", "red"] },
 	{ "category": "symbols", "char": "💭", "name": "thought_balloon", "keywords": ["bubble", "cloud", "speech", "thinking", "dream"] },
