@@ -381,8 +381,7 @@ function readPromo() {
 		}
 		
 		> div > i {
-			position: absolute;
-			right: 100%;
+			margin-left: -.5px;
 		}
 		> .info {
 			display: flex;
@@ -605,6 +604,7 @@ function readPromo() {
 					opacity: 0.7;
 					flex-grow: 1;
 					max-width: 3.5em;
+					width: max-content;
 					min-width: max-content;
 					&:first-of-type {
 						margin-left: -.5em;
@@ -637,11 +637,15 @@ function readPromo() {
 
 	&.max-width_450px {
 		--avatarSize: 46px;
+		padding-top: 6px;
 		> .note-context {
 			padding-inline: 16px;
 			margin-top: 0;
 			> :not(.line) {
-				margin-top: 10px;
+				margin-top: 5px;
+			}
+			> .line {
+				margin-right: 10px;
 			}
 		}
 		> .article {
