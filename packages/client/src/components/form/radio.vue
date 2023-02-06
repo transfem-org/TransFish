@@ -68,6 +68,9 @@ function toggle(): void {
 	&:hover {
 		border-color: var(--inputBorderHover) !important;
 	}
+	&:focus-within {
+		outline: auto;
+	}
 
 	&.checked {
 		background-color: var(--accentedBg) !important;

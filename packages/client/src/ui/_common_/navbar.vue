@@ -341,8 +341,6 @@ function more(ev: MouseEvent) {
 					padding-left: 30px;
 					line-height: 2.85rem;
 					margin-bottom: 0.5rem;
-					text-overflow: ellipsis;
-					overflow: hidden;
 					white-space: nowrap;
 					width: 100%;
 					text-align: left;
@@ -368,6 +366,8 @@ function more(ev: MouseEvent) {
 					> .text {
 						position: relative;
 						font-size: 0.9em;
+						overflow: hidden;
+						text-overflow: ellipsis;
 					}
 
 					&:hover {
@@ -380,7 +380,7 @@ function more(ev: MouseEvent) {
 						color: var(--navActive);
 					}
 
-					&:hover, &.active {
+					&:hover, &:focus-within, &.active {
 						color: var(--accent);
 						transition: all 0.4s ease;
 
@@ -560,6 +560,13 @@ function more(ev: MouseEvent) {
 					}
 				}
 			}
+		}
+	}
+
+	.item {
+		outline: none;
+		&:focus-visible:before {
+			outline: auto;
 		}
 	}
 }
