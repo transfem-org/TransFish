@@ -71,6 +71,12 @@ export async function toDbReaction(
 	if (Object.keys(legacies).includes(reaction)) return legacies[reaction];
 	// Convert old heart to new
 	if (reaction === "♥️") return "❤️";
+	// Allow unicode reactions
+	const match = emojiRegex.exec(reaction);
+	if (match) {
+		const unicode = match[0];
+		return unicode;
+	}
 
 	// Allow unicode reactions
 	const match = emojiRegex.exec(reaction);
