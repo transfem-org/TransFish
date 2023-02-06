@@ -5,9 +5,9 @@
 		<div class="version">✨ {{ version }} 🚀</div>
 		<div v-if="newRelease" class="releaseNotes">
 			<Mfm :text="data.notes"/>
-			<!-- <div v-if="data.screenshots.length > 0" style="max-width: 500">
+			<div v-if="data.screenshots.length > 0" style="max-width: 500">
 				<img v-for="i in data.screenshots" :key="i" :src="i"/>
-			</div> -->
+			</div>
 		</div>
 		<MkButton class="gotIt" primary full @click="modal.close()">{{ i18n.ts.gotIt }}</MkButton>
 	</div>
@@ -24,13 +24,17 @@ import * as os from '@/os';
 
 const modal = $ref<InstanceType<typeof MkModal>>();
 
-let newRelease = false;
-let data;
+let newRelease = $ref(false);
+let data = $ref(Object);
+
 os.api('release').then(res => {
 	data = res;
-	console.log(data);
 	newRelease = (version === data?.version);
 });
+console.log(`Version: ${version}`)
+console.log(`Data version: ${data.version}`)
+console.log(newRelease)
+console.log(data);
 
 </script>
 

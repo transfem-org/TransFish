@@ -31,9 +31,9 @@ export async function proxyMedia(ctx: Koa.Context) {
 		let image: IImage;
 
 		if ("static" in ctx.query && isConvertibleImage) {
-			image = await convertToWebp(path, 498, 280);
+			image = await convertToWebp(path, 996, 560);
 		} else if ("preview" in ctx.query && isConvertibleImage) {
-			image = await convertToWebp(path, 200, 200);
+			image = await convertToWebp(path, 400, 400);
 		} else if ("badge" in ctx.query) {
 			if (!isConvertibleImage) {
 				// 画像でないなら404でお茶を濁す

@@ -11,7 +11,7 @@
 [![translate-badge](https://hosted.weblate.org/widgets/calckey/-/svg-badge.svg)](https://hosted.weblate.org/engage/calckey/)
 [![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
-[![lavaforge badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-lavaforge-FF8066.svg?logo=lavaforge&logoColor=white)](https://codeberg.org/calckey/calckey/)
+[![Codeberg badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-4793CC.svg?logo=codeberg&logoColor=white)](https://codeberg.org/calckey/calckey/)
 
 </div>
 
@@ -45,7 +45,7 @@
 
 - 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
   - Donate publicly to get your name on the Patron list!
-- 🚢 Flagship instance: <https://i.calckey.cloud>
+- 🚢 Flagship instance: <https://calckey.social>
 - 📣 Official account: <https://i.calckey.cloud/@calckey>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
 - 📜 Instance list: <https://calckey.fediverse.observer/list>
