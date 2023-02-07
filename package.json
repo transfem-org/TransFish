@@ -20,6 +20,7 @@
 		"gulp": "gulp build",
 		"watch": "pnpm run dev",
 		"dev": "pnpm node ./scripts/dev.js",
+		"dev:staging": "NODE_OPTIONS=--max_old_space_size=3072 NODE_ENV=development pnpm run build && pnpm run start",
 		"lint": "pnpm -r run lint",
 		"cy:open": "cypress open --browser --e2e --config-file=cypress.config.ts",
 		"cy:run": "cypress run",

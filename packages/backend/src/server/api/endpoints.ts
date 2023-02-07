@@ -765,17 +765,17 @@ export interface IEndpointMeta {
 }
 
 export interface IEndpoint {
-	name: string;
-	exec: any;
-	meta: IEndpointMeta;
-	params: Schema;
+	name: string,
+	exec: any, // TODO: may be obosolete @ThatOneCalculator
+	meta: IEndpointMeta,
+	params: Schema,
 }
 
-const endpoints: IEndpoint[] = eps.map(([name, ep]) => {
+const endpoints: IEndpoint[] = (eps as [string, any]).map(([name, ep]) => {
 	return {
 		name: name,
 		exec: ep.default,
-		meta: ep.meta || {},
+		meta: ep.meta ?? {},
 		params: ep.paramDef,
 	};
 });

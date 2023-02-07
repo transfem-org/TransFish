@@ -20,6 +20,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
+import megalodon, { MegalodonInterface } from 'megalodon';
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
 import wellKnown from "./well-known.js";
@@ -130,6 +131,26 @@ router.get("/verify-email/:code", async (ctx) => {
 		);
 	} else {
 		ctx.status = 404;
+	}
+});
+
+router.get("/oauth/authorize", async (ctx) => {
+	const client_id = ctx.request.query.client_id;
+	console.log(ctx.request.req);
+	ctx.redirect(Buffer.from(client_id?.toString() || '', 'base64').toString());
+});
+
+router.get("/oauth/token", async (ctx) => {
+	const body: any = ctx.request.body
+	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
+	const generator = (megalodon as any).default;
+	const client = generator('misskey', BASE_URL, null) as MegalodonInterface;
+	try {
+		ctx.body = await client.fetchAccessToken(null, body.client_secret, body.code);
+	} catch (err: any) {
+		console.error(err);
+		ctx.status = 401;
+		ctx.body = err.response.data;
 	}
 });
 
