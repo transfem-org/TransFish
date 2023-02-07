@@ -88,23 +88,23 @@ export function apiMastodonCompatible(router: Router): void {
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e)
-			reply.code(401);
+			ctx.status = 401;
 			return e.response.data;
 		}
 	});
 
 
 	router.get('/v1/custom_emojis', async (ctx) => {
-		const BASE_URL = request.protocol + '://' + request.hostname;
-		const accessTokens = request.headers.authorization;
+		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
+		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getInstanceCustomEmojis();
-			return data.data;
+			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e)
-			reply.code(401);
-			return e.response.data;
+			ctx.status = 401;
+			ctx.body = e.response.data;
 		}
 	});
 
