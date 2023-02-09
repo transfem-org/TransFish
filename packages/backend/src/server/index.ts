@@ -21,7 +21,7 @@ import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
 const { koaBody } = require('koa-body');
-import megalodon, { MegalodonInterface } from 'megalodon';
+import megalodon, { MegalodonInterface } from '@cutls/megalodon';
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
 import wellKnown from "./well-known.js";
