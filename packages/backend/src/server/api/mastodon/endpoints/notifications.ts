@@ -8,7 +8,7 @@ function toLimitToInt(q: any) {
     return q
 }
 
-export function apiNotificationMastodon(router: Router): void {
+export function apiNotificationsMastodon(router: Router): void {
 
 	router.get('/v1/notifications', koaBody(), async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
