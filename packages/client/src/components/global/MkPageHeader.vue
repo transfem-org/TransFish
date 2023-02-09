@@ -19,7 +19,7 @@
 		<div ref="tabsEl" v-if="hasTabs" class="tabs">
 			<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
 				<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
-				<span v-if="(deviceKind !== 'desktop' && !tab.iconOnly) || isTouchUsing || (!tab.iconOnly && !narrow)" class="title">{{ tab.title }}</span>
+				<span v-if="deviceKind !== 'desktop' || isTouchUsing || (!tab.iconOnly && !narrow)" class="title">{{ tab.title }}</span>
 			</button>
 			<div ref="tabHighlightEl" class="highlight"></div>
 		</div>
