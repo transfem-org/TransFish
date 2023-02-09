@@ -34,9 +34,11 @@
 			<button class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button help" data-cy-open-post-form @click="openHelpMenu">
-				<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
-			</button>
+			<div class="help">
+				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button" @click="openHelpMenu">
+					<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -210,6 +212,13 @@ function more() {
 				> .text {
 					position: relative;
 				}
+			}
+
+			> .help {
+				align-items: center;
+				display: flex;
+				padding: 10px;
+				justify-content: center;
 			}
 
 			> .instance {

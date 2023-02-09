@@ -44,9 +44,11 @@
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<button v-tooltip.noDelay.right="i18n.ts.info" class="item _button info" @click="openInfoMenu">
-				<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
-			</button>
+			<div class="help">
+				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button" @click="openHelpMenu">
+					<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
+				</button>
+			</div>
 			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button> -->
@@ -296,7 +298,7 @@ function more(ev: MouseEvent) {
 						margin-left: 1rem;
 					}
 				}
-				> .info {
+				> .help {
 					align-items: center;
 					display: flex;
 					padding: 10px;
