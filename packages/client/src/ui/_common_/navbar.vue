@@ -165,10 +165,15 @@ function openHelpMenu(ev: MouseEvent) {
 				icon: 'ph-terminal-window-bold ph-lg',
 			}, {
 				text: i18n.ts.document,
-				icon: 'ph-plugs-bold ph-lg',
+				icon: 'ph-file-doc-bold ph-lg',
 				action: () => {
 					window.open('/api-doc', '_blank');
 				},
+			}, {
+				type: 'link',
+				to: '/scratchpad',
+				text: 'AiScript Scratchpad',
+				icon: 'ph-scribble-loop-bold ph-lg',
 			}]
 		}], ev.currentTarget ?? ev.target, {
 		align: 'left',
