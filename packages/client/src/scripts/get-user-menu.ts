@@ -128,7 +128,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		await os.apiWithDialog(user.isBlocking ? "blocking/delete" : "blocking/create", {
 			userId: user.id,
 		})
-			user.isBlocking = !user.isBlocking;
+		user.isBlocking = !user.isBlocking;
 		await os.api(user.isBlocking ? "mute/create" : "mute/delete", {
 			userId: user.id,
 		})
@@ -136,7 +136,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		if (user.isBlocking) {
 			await os.api('following/delete', {
 				userId: user.id,
-		});
+			});
 			user.isFollowing = false
 		}
 	}
@@ -261,6 +261,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 			{
 				icon: user.isMuted ? "ph-eye-bold ph-lg" : "ph-eye-slash-bold ph-lg",
 				text: user.isMuted ? i18n.ts.unmute : i18n.ts.mute,
+				hidden: user.isBlocking === true,
 				action: toggleMute,
 			},
 			{
