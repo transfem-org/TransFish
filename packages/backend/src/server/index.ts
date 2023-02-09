@@ -20,7 +20,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
-const { koaBody } = require('koa-body');
+import { koaBody } from 'koa-body';
 import megalodon, { MegalodonInterface } from '@cutls/megalodon';
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
