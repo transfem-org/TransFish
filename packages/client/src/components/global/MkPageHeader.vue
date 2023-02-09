@@ -1,5 +1,8 @@
 <template>
 <div v-if="show" ref="el" class="fdidabkb" :class="{ slim: narrow, thin: thin_ }" :style="{ background: bg }" @click="onClick">
+	<div v-if="narrow" class="buttons left" @click="openAccountMenu">
+		<MkAvatar v-if="props.displayMyAvatar && $i" class="avatar" :user="$i" :disable-preview="true"/>
+	</div>
 	<template v-if="metadata">
 		<div v-if="!hideTitle" class="titleContainer" @click="showTabsPopup">
 			<MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
@@ -16,7 +19,7 @@
 		<div ref="tabsEl" v-if="hasTabs" class="tabs">
 			<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
 				<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
-				<span v-if="deviceKind !== 'desktop' || isTouchUsing || (!tab.iconOnly && !narrow)" class="title">{{ tab.title }}</span>
+				<span v-if="(deviceKind !== 'desktop' && !tab.iconOnly) || isTouchUsing || (!tab.iconOnly && !narrow)" class="title">{{ tab.title }}</span>
 			</button>
 			<div ref="tabHighlightEl" class="highlight"></div>
 		</div>
