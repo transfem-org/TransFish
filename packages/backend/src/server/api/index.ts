@@ -32,7 +32,7 @@ app.use(
 // No caching
 app.use(async (ctx, next) => {
 	ctx.set("Cache-Control", "private, max-age=0, must-revalidate");
-	//await next();
+	await next();
 });
 
 app.use(
