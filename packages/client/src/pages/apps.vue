@@ -13,32 +13,59 @@
 					<div class="_formLinks">
 						<FormLink to="https://kaiteki.app" external>
 							<template #icon>
-								<i class="ph-device-mobile-bold ph-xl"/>
-								<i class="ph-android-logo-bold ph-lg"/>
-								<span> </span>
-								<i class="ph-desktop-bold ph-xl"/>
-								<i class="ph-windows-logo-bold ph-lg"/>
-								<i class="ph-linux-logo-bold ph-lg"/>
+								<i class="ph-android-logo-bold ph-xl"/>
+								<i class="ph-windows-logo-bold ph-xl"/>
+								<i class="ph-linux-logo-bold ph-xl"/>
 							</template>
 							{{ i18n.ts._apps.kaiteki }}
-							<template #suffix>{{ i18n.ts._apps.firstClass }}</template>
+							<template #suffix>{{ i18n.ts._apps.firstClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
 					</div>
 				</FormSection>
 				<FormSection>
-					<template #label>{{ i18n.ts._apps.crossPlatform }}</template>
+					<template #label>{{ i18n.ts._apps.mobile }}</template>
 					<div class="_formLinks">
-						<FormLink to="https://kaiteki.app" external>
+						<FormLink to="https://play.google.com/store/apps/details?id=jp.panta.misskeyandroidclient" external>
 							<template #icon>
-								<i class="ph-device-mobile-bold ph-xl"/>
-								<i class="ph-android-logo-bold ph-lg"/>
-								<span> </span>
-								<i class="ph-desktop-bold ph-xl"/>
-								<i class="ph-windows-logo-bold ph-lg"/>
-								<i class="ph-linux-logo-bold ph-lg"/>
+								<i class="ph-android-logo-bold ph-xl"/>
 							</template>
-							{{ i18n.ts._apps.kaiteki }}
-							<template #suffix>{{ i18n.ts._apps.firstClass }}</template>
+							{{ i18n.ts._apps.milktea }}
+							<template #suffix>{{ i18n.ts._apps.firstClass }}, {{ i18n.ts._apps.free }}</template>
+						</FormLink>
+						<FormLink to="https://play.google.com/store/apps/details?id=jp.juggler.subwaytooter&gl=US" external>
+							<template #icon>
+								<i class="ph-android-logo-bold ph-xl"/>
+							</template>
+							{{ i18n.ts._apps.subwayTooter }}
+							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
+						</FormLink>
+						<FormLink to="https://apps.apple.com/app/kimis-a-client-for-misskey/id1667275125" external>
+							<template #icon>
+								<i class="ph-apple-logo-bold ph-xl"/>
+							</template>
+							{{ i18n.ts._apps.kimis }}
+							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.paid }}</template>
+						</FormLink>
+					</div>
+				</FormSection>
+				<FormSection>
+					<template #label>{{ i18n.ts._apps.desktop }}</template>
+					<div class="_formLinks">
+						<FormLink to="https://thedesk.top/" external>
+							<template #icon>
+								<i class="ph-apple-logo-bold ph-xl"/>
+								<i class="ph-windows-logo-bold ph-xl"/>
+								<i class="ph-linux-logo-bold ph-xl"/>
+							</template>
+							{{ i18n.ts._apps.theDesk }}
+							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
+						</FormLink>
+						<FormLink to="https://github.com/AsPulse/lesskey" external>
+							<template #icon>
+								<i class="ph-terminal-window-bold ph-xl"/>
+							</template>
+							{{ i18n.ts._apps.lesskey }}
+							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
 					</div>
 				</FormSection>
