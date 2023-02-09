@@ -1,6 +1,6 @@
-import { ApiError } from "../../error.js";
-import define from "../../define.js";
-import { Items } from "@/";
+import { ApiError } from "../../../error.js";
+import define from "../../../define.js";
+import { RegistryItems } from "../../../../../models/index.js";
 
 export const meta = {
 	requireCredential: true,
@@ -34,7 +34,7 @@ export const paramDef = {
 
 export default define(meta, paramDef, async (ps, user) => {
 	if (ps.key !== "reactions") return;
-	const query = Items.createQueryBuilder("item")
+	const query = RegistryItems.createQueryBuilder("item")
 		.where("item.domain IS NULL")
 		.andWhere("item.userId = :userId", { userId: user.id })
 		.andWhere("item.key = :key", { key: ps.key })
