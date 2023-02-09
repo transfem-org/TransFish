@@ -78,6 +78,7 @@
 <script lang="ts" setup>
 import FormLink from '@/components/form/link.vue';
 import FormSection from '@/components/form/section.vue';
+import MkButton from '@/components/MkButton.vue';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import '@khmyznikov/pwa-install';
