@@ -236,6 +236,7 @@ importers:
       '@tensorflow/tfjs': 4.2.0_seedrandom@3.0.5
       ajv: 8.11.2
       archiver: 5.3.1
+      autobind-decorator: 2.4.0
       autolinker: 4.0.0
       autwh: 0.1.0
       aws-sdk: 2.1277.0
@@ -371,7 +372,6 @@ importers:
       '@types/web-push': 3.3.2
       '@types/websocket': 1.0.5
       '@types/ws': 8.5.3
-      autobind-decorator: 2.4.0
       cross-env: 7.0.3
       eslint: 8.31.0
       execa: 6.1.0
@@ -3343,7 +3343,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: true
@@ -6309,19 +6309,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.15.2_debug@4.3.4:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4
-    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
