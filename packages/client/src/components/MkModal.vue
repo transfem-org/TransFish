@@ -214,7 +214,6 @@ const align = () => {
 const onOpened = () => {
 	emit('opened');
 
-	// content?.focus()
 	// モーダルコンテンツにマウスボタンが押され、コンテンツ外でマウスボタンが離されたときにモーダルバックグラウンドクリックと判定させないためにマウスイベントを監視しフラグ管理する
 	const el = content!.children[0];
 	el.addEventListener('mousedown', ev => {
