@@ -299,14 +299,6 @@ function more(ev: MouseEvent) {
 						}
 					}
 
-					> .info {
-						margin: 10px;
-						align-items: center;
-						display: flex;
-						padding: 10px;
-						justify-content: center;
-					}
-
 					> .icon, > .text {
 						position: relative;
 						left: 3rem;
@@ -317,7 +309,13 @@ function more(ev: MouseEvent) {
 					> .text {
 						margin-left: 1rem;
 					}
-
+				}
+				> .info {
+					margin: 10px;
+					align-items: center;
+					display: flex;
+					padding: 10px;
+					justify-content: center;
 				}
 
 				> .instance {
