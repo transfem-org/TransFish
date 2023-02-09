@@ -146,7 +146,7 @@ function openHelpMenu(ev: MouseEvent) {
 		to: '/about-calckey',
 	}, {
 		type: 'link',
-		text: i18n.ts.mobileApps,
+		text: i18n.ts._apps.apps,
 		icon: 'ph-device-mobile-bold ph-lg',
 		to: '/apps',
 	}], ev.currentTarget ?? ev.target, {
