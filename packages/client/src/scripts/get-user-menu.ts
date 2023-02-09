@@ -125,11 +125,20 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		)
 			return;
 
-		os.apiWithDialog(user.isBlocking ? "blocking/delete" : "blocking/create", {
+		await os.apiWithDialog(user.isBlocking ? "blocking/delete" : "blocking/create", {
 			userId: user.id,
-		}).then(() => {
+		})
 			user.isBlocking = !user.isBlocking;
+		await os.api(user.isBlocking ? "mute/create" : "mute/delete", {
+			userId: user.id,
+		})
+		user.isMuted = user.isBlocking;
+		if (user.isBlocking) {
+			await os.api('following/delete', {
+				userId: user.id,
 		});
+			user.isFollowing = false
+		}
 	}
 
 	async function toggleSilence() {
