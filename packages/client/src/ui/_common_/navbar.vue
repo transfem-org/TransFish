@@ -44,9 +44,17 @@
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
+			<div>
+				<button v-tooltip.noDelay.right="i18n.ts.info" class="item _button post" data-cy-open-post-form @click="openInfoMenu">
+					<i class="icon ph-info-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
+				</button>
+				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button post" data-cy-open-post-form @click="openHelpMenu">
+					<i class="icon ph-question-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
+				</button>
+			</div>
+			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
-			</button>
+			</button> -->
 			<!-- <button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
 				<MkAvatar :user="$i" class="account"/><MkAcct class="text" :user="$i"/>
 			</button> -->
@@ -122,7 +130,7 @@ function openAccountMenu(ev: MouseEvent) {
 	}, ev);
 }
 
-function openInstanceMenu(ev: MouseEvent) {
+function openHelpMenu(ev: MouseEvent) {
 	os.popupMenu([{
 		text: instance.name ?? host,
 		type: 'label',
@@ -131,11 +139,26 @@ function openInstanceMenu(ev: MouseEvent) {
 		text: i18n.ts.instanceInfo,
 		icon: 'ph-info-bold ph-lg',
 		to: '/about',
-	}, null, {
-		type: 'parent',
-		text: i18n.ts.help,
-		icon: 'ph-question-bold ph-lg',
-		children: [{
+	}, {
+		type: 'link',
+		text: i18n.ts.aboutMisskey,
+		icon: 'ph-lightbulb-bold ph-lg',
+		to: '/about-calckey',
+	}, {
+		type: 'link',
+		text: i18n.ts.mobileApps,
+		icon: 'ph-device-mobile-bold ph-lg',
+		to: '/apps',
+	}], ev.currentTarget ?? ev.target, {
+		align: 'left',
+	});
+}
+
+function openInfoMenu(ev: MouseEvent) {
+	os.popupMenu([{
+		text: instance.name ?? host,
+		type: 'label',
+	}, {
 			type: 'link',
 			to: '/mfm-cheat-sheet',
 			text: i18n.ts._mfm.cheatSheet,
@@ -158,20 +181,7 @@ function openInstanceMenu(ev: MouseEvent) {
 			to: '/api-console',
 			text: 'API Console',
 			icon: 'ph-terminal-window-bold ph-lg',
-		}, null, {
-			text: i18n.ts.document,
-			icon: 'ph-question-bold ph-lg',
-			action: () => {
-				window.open('https://misskey-hub.net/help.html', '_blank');
-			},
-		}],
-	}, {
-		type: 'link',
-		text: i18n.ts.aboutMisskey,
-		to: '/about-calckey',
-	}], ev.currentTarget ?? ev.target, {
-		align: 'left',
-	});
+		},
 }
 
 function more(ev: MouseEvent) {
