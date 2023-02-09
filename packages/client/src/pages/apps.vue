@@ -89,7 +89,7 @@ const headerTabs = $computed(() => []);
 
 function installPwa(ev: MouseEvent) {
 	const pwaInstall = document.getElementsByTagName('pwa-install')[0];
-	pwaInstall.install();
+	pwaInstall.showDialog();
 }
 
 definePageMetadata({
