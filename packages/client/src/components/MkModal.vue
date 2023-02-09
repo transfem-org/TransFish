@@ -3,6 +3,7 @@
 	<div v-show="manualShowing != null ? manualShowing : showing" v-hotkey.global="keymap" class="qzhlnise" :class="{ drawer: type === 'drawer', dialog: type === 'dialog' || type === 'dialog:top', popup: type === 'popup' }" :style="{ zIndex, pointerEvents: (manualShowing != null ? manualShowing : showing) ? 'auto' : 'none', '--transformOrigin': transformOrigin }">
 		<div class="bg _modalBg" :class="{ transparent: transparentBg && (type === 'popup') }" :style="{ zIndex }" @click="onBgClick" @contextmenu.prevent.stop="() => {}"></div>
 		<div ref="content" class="content" :class="{ fixed, top: type === 'dialog:top' }" :style="{ zIndex }" @click.self="onBgClick" tabindex="-1" v-focus>
+		<div ref="content" class="content" :class="{ fixed, top: type === 'dialog:top' }" :style="{ zIndex }" @click.self="onBgClick" tabindex="-1" v-focus>
 			<slot :max-height="maxHeight" :type="type"></slot>
 		</div>
 	</div>
@@ -329,6 +330,7 @@ defineExpose({
 
 .qzhlnise {
 	> .content {
+		border-radius: var(--radius);
 		border-radius: var(--radius);
 	}
 	> .bg {
