@@ -182,6 +182,7 @@ function openInfoMenu(ev: MouseEvent) {
 			text: 'API Console',
 			icon: 'ph-terminal-window-bold ph-lg',
 		},
+	]);
 }
 
 function more(ev: MouseEvent) {
