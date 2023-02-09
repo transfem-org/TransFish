@@ -44,14 +44,9 @@
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<div class="info">
-				<button v-tooltip.noDelay.right="i18n.ts.info" class="item _button help" style="margin-right: 10px" data-cy-open-post-form @click="openInfoMenu">
-					<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
-				</button>
-				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button help" style="margin-left: 10px" data-cy-open-post-form @click="openHelpMenu">
-					<i class="icon ph-question-bold ph-xl ph-fw ph-lg"></i>
-				</button>
-			</div>
+			<button v-tooltip.noDelay.right="i18n.ts.info" class="item _button info" @click="openInfoMenu">
+				<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
+			</button>
 			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button> -->
@@ -149,21 +144,7 @@ function openHelpMenu(ev: MouseEvent) {
 		text: i18n.ts._apps.apps,
 		icon: 'ph-device-mobile-bold ph-lg',
 		to: '/apps',
-	}], ev.currentTarget ?? ev.target, {
-		align: 'left',
-	});
-}
-
-function openInfoMenu(ev: MouseEvent) {
-	os.popupMenu([{
-		text: instance.name ?? host,
-		type: 'label',
 	}, {
-			type: 'link',
-			to: '/mfm-cheat-sheet',
-			text: i18n.ts._mfm.cheatSheet,
-			icon: 'ph-code-bold ph-lg',
-		}, {
 			type: 'button',
 			action: async () => {
 				defaultStore.set('tutorial', 0);
@@ -171,18 +152,23 @@ function openInfoMenu(ev: MouseEvent) {
 			},
 			text: i18n.ts.replayTutorial,
 			icon: 'ph-circle-wavy-question-bold ph-lg',
-		}, {
-			type: 'link',
-			to: '/scratchpad',
-			text: i18n.ts.scratchpad,
-			icon: 'ph-terminal-window-bold ph-lg',
-		}, {
-			type: 'link',
-			to: '/api-console',
-			text: 'API Console',
-			icon: 'ph-terminal-window-bold ph-lg',
-		},
-	], ev.currentTarget ?? ev.target, {
+		}, null, {
+			type: 'parent',
+			text: i18n.ts.developer,
+			icon: 'ph-code-bold ph-lg',
+			children: [{
+				type: 'link',
+				to: '/api-console',
+				text: 'API Console',
+				icon: 'ph-terminal-window-bold ph-lg',
+			}, {
+				text: i18n.ts.document,
+				icon: 'ph-plugs-bold ph-lg',
+				action: () => {
+					window.open('/api-doc', '_blank');
+				},
+			}]
+		}], ev.currentTarget ?? ev.target, {
 		align: 'left',
 	});
 }
@@ -311,7 +297,6 @@ function more(ev: MouseEvent) {
 					}
 				}
 				> .info {
-					margin: 10px;
 					align-items: center;
 					display: flex;
 					padding: 10px;
