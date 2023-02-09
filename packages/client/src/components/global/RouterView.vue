@@ -1,7 +1,7 @@
 <template>
 <KeepAlive :max="defaultStore.state.numberOfPageCache">
 	<Suspense>
-		<component :is="currentPageComponent" :key="key" v-bind="Object.fromEntries(currentPageProps)"/>
+		<component :is="currentPageComponent" :key="key" v-bind="Object.fromEntries(currentPageProps)" tabindex="-1" v-focus/>
 
 		<template #fallback>
 			<MkLoading/>
