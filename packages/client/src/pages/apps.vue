@@ -4,12 +4,12 @@
 	<div style="overflow: clip;">
 		<MkSpacer :content-max="600" :margin-min="20">
 			<div class="_formRoot">
-				<div class="_formBlock" style="text-align: center;">
-					<pwa-install/>
-					<MkButton primary rounded inline @click="installPwa">{{ i18n.ts._apps.pwa }}</MkButton>
-				</div>
 				<FormSection>
 					<template #label>{{ i18n.ts._apps.crossPlatform }}</template>
+					<div class="_formBlock" style="text-align: center;">
+						<pwa-install/>
+						<MkButton primary rounded inline @click="installPwa">{{ i18n.ts._apps.pwa }}</MkButton>
+					</div>
 					<div class="_formLinks">
 						<FormLink to="https://kaiteki.app" external>
 							<template #icon>
@@ -39,13 +39,13 @@
 							{{ i18n.ts._apps.subwayTooter }}
 							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
-						<FormLink to="https://apps.apple.com/app/kimis-a-client-for-misskey/id1667275125" external>
+						<!-- <FormLink to="https://apps.apple.com/app/kimis-a-client-for-misskey/id1667275125" external>
 							<template #icon>
 								<i class="ph-apple-logo-bold ph-xl"/>
 							</template>
 							{{ i18n.ts._apps.kimis }}
 							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.paid }}</template>
-						</FormLink>
+						</FormLink> -->
 					</div>
 				</FormSection>
 				<FormSection>
