@@ -44,12 +44,12 @@
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
 				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
-			<div>
-				<button v-tooltip.noDelay.right="i18n.ts.info" class="item _button post" data-cy-open-post-form @click="openInfoMenu">
-					<i class="icon ph-info-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
+			<div class="info">
+				<button v-tooltip.noDelay.right="i18n.ts.info" class="item _button help" style="margin-right: 10px" data-cy-open-post-form @click="openInfoMenu">
+					<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
 				</button>
-				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button post" data-cy-open-post-form @click="openHelpMenu">
-					<i class="icon ph-question-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
+				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button help" style="margin-left: 10px" data-cy-open-post-form @click="openHelpMenu">
+					<i class="icon ph-question-bold ph-xl ph-fw ph-lg"></i>
 				</button>
 			</div>
 			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
@@ -182,7 +182,9 @@ function openInfoMenu(ev: MouseEvent) {
 			text: 'API Console',
 			icon: 'ph-terminal-window-bold ph-lg',
 		},
-	]);
+	], ev.currentTarget ?? ev.target, {
+		align: 'left',
+	});
 }
 
 function more(ev: MouseEvent) {
@@ -295,6 +297,14 @@ function more(ev: MouseEvent) {
 							background: var(--accentLighten);
 							transition: all 0.4s ease;
 						}
+					}
+
+					> .info {
+						margin: 10px;
+						align-items: center;
+						display: flex;
+						padding: 10px;
+						justify-content: center;
 					}
 
 					> .icon, > .text {
