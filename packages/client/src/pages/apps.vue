@@ -49,7 +49,7 @@
 					</div>
 				</FormSection>
 				<FormSection>
-					<template #label>{{ i18n.ts._apps.desktop }}</template>
+					<template #label>{{ i18n.ts.desktop }}</template>
 					<div class="_formLinks">
 						<FormLink to="https://thedesk.top/" external>
 							<template #icon>
