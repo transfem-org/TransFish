@@ -40,7 +40,14 @@ app.use(async (ctx, next) => {
 app.use(formidable());
 
 app.use(
-	bodyParser(),
+	bodyParser({
+		// リクエストが multipart/form-data でない限りはJSONだと見なす
+		detectJSON: (ctx) =>
+			!(
+				ctx.is("multipart/form-data") ||
+				ctx.is("application/x-www-form-urlencoded")
+			),
+	}),
 );
 
 // Init multer instance
