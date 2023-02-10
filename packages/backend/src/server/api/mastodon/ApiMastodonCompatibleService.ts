@@ -5,7 +5,7 @@ import { apiAccountMastodon } from './endpoints/account.js';
 import { apiStatusMastodon } from './endpoints/status.js';
 import { apiFilterMastodon } from './endpoints/filter.js';
 import { apiTimelineMastodon } from './endpoints/timeline.js';
-import { apiNotificationMastodon } from './endpoints/notifications.js';
+import { apiNotificationsMastodon } from './endpoints/notifications.js';
 import { apiSearchMastodon } from './endpoints/search.js';
 import { getInstance } from './endpoints/meta.js';
 
