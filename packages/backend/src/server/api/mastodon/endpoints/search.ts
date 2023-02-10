@@ -1,10 +1,11 @@
 import megalodon, { MegalodonInterface } from '@cutls/megalodon';
 import Router from "@koa/router";
+import { koaBody } from 'koa-body';
 import { getClient } from '../ApiMastodonCompatibleService.js';
 
 export function apiSearchMastodon(router: Router): void {
 
-	router.get('/v1/search', async (ctx) => {
+	router.get('/v1/search',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
