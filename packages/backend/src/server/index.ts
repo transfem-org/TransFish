@@ -141,7 +141,7 @@ router.get("/oauth/authorize", async (ctx) => {
 	ctx.redirect(Buffer.from(client_id?.toString() || '', 'base64').toString());
 });
 
-router.post("/oauth/token", async (ctx) => {
+router.get("/oauth/token", koaBody(), async (ctx) => {
 	const body: any = ctx.request.body;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;

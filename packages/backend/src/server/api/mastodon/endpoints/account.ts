@@ -33,7 +33,7 @@ export function apiAccountMastodon(router: Router): void {
             ctx.body = e.response.data;
         }
     });
-    router.patch('/v1/accounts/update_credentials', async (ctx) => {
+    router.patch('/v1/accounts/update_credentials', koaBody(), async (ctx) => {
         const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
         const accessTokens = ctx.headers.authorization;
         const client = getClient(BASE_URL, accessTokens);
@@ -177,7 +177,7 @@ export function apiAccountMastodon(router: Router): void {
             ctx.body = e.response.data;
         }
     });
-    router.post<{ Params: { id: string } }>('/v1/accounts/:id/mute',  async (ctx) => {
+    router.post<{ Params: { id: string } }>('/v1/accounts/:id/mute', koaBody(), async (ctx) => {
         const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
         const accessTokens = ctx.headers.authorization;
         const client = getClient(BASE_URL, accessTokens);
