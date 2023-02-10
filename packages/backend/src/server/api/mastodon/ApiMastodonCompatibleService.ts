@@ -23,7 +23,7 @@ export function apiMastodonCompatible(router: Router): void {
 	apiStatusMastodon(router)
 	apiFilterMastodon(router)
 	apiTimelineMastodon(router)
-	apiNotificationMastodon(router)
+	apiNotificationsMastodon(router)
 	apiSearchMastodon(router)
 
 	router.get('/v1/custom_emojis', async (ctx) => {
