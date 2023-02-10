@@ -42,7 +42,7 @@ const writeScope = [
 
 export function apiAuthMastodon(router: Router): void {
 
-	router.post('/v1/apps',  async (ctx) => {
+	router.post('/v1/apps', koaBody({ multipart: true }), async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
