@@ -73,7 +73,6 @@ const router = new Router();
 const mastoRouter = new Router();
 
 mastoRouter.use(koaBody({ 
-	multipart: true,
 	urlencoded: true
 }));
 
