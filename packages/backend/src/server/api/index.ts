@@ -60,7 +60,7 @@ router.use(
 	}),
 );
 
-mastoRouter.use(koaBody());
+mastoRouter.use(koaBody({ multipart: true }));
 
 apiMastodonCompatible(mastoRouter);
 

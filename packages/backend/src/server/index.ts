@@ -72,7 +72,7 @@ app.use(mount("/proxy", proxyServer));
 const router = new Router();
 const mastoRouter = new Router();
 
-mastoRouter.use(koaBody());
+mastoRouter.use(koaBody({ multipart: true }));
 
 // Routing
 router.use(activityPub.routes());
