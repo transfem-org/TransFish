@@ -123,7 +123,7 @@ export async function createNote(
 
 	// Skip if author is suspended.
 	if (actor.isSuspended) {
-		logger.debug(`User ${`${actor.usernameLower}@${actor.host}`} suspended; discarding.`)
+		logger.debug(`User ${actor.usernameLower}@${actor.host} suspended; discarding.`)
 		return null;
 	}
 
