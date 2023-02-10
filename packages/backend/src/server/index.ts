@@ -29,7 +29,7 @@ import fileServer from "./file/index.js";
 import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
-import koaBody from "koa-body";
+import {koaBody} from "koa-body";
 
 export const serverLogger = new Logger("server", "gray", false);
 

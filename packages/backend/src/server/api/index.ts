@@ -19,7 +19,7 @@ import signupPending from "./private/signup-pending.js";
 import discord from "./service/discord.js";
 import github from "./service/github.js";
 import twitter from "./service/twitter.js";
-import koaBody from "koa-body";
+import {koaBody} from "koa-body";
 
 // Init app
 const app = new Koa();
