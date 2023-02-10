@@ -39,6 +39,7 @@ app.use(async (ctx, next) => {
 // Init router
 const router = new Router();
 const mastoRouter = new Router();
+const errorRouter = new Router();
 
 // Init multer instance
 const upload = multer({
@@ -60,7 +61,10 @@ router.use(
 	}),
 );
 
-mastoRouter.use(koaBody({ multipart: true }));
+mastoRouter.use(koaBody({ 
+	multipart: true,
+	urlencoded: true
+}));
 
 apiMastodonCompatible(mastoRouter);
 
@@ -148,12 +152,13 @@ router.post("/miauth/:session/check", async (ctx) => {
 });
 
 // Return 404 for unknown API
-router.all("(.*)", async (ctx) => {
+errorRouter.all("(.*)", async (ctx) => {
 	ctx.status = 404;
 });
 
 // Register router
-app.use(router.routes());
 app.use(mastoRouter.routes());
+app.use(router.routes());
+app.use(errorRouter.routes());
 
 export default app;

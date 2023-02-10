@@ -72,7 +72,10 @@ app.use(mount("/proxy", proxyServer));
 const router = new Router();
 const mastoRouter = new Router();
 
-mastoRouter.use(koaBody({ multipart: true }));
+mastoRouter.use(koaBody({ 
+	multipart: true,
+	urlencoded: true
+}));
 
 // Routing
 router.use(activityPub.routes());
@@ -174,8 +177,8 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 });
 
 // Register router
-app.use(router.routes());
 app.use(mastoRouter.routes());
+app.use(router.routes());
 
 app.use(mount(webServer));
 
