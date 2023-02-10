@@ -164,7 +164,6 @@ importers:
       koa-send: 5.0.1
       koa-slow: 2.1.0
       koa-views: 7.0.2
-      koa2-formidable: ^1.0.3
       mfm-js: 0.23.2
       mime-types: 2.1.35
       mocha: 10.2.0
@@ -279,7 +278,6 @@ importers:
       koa-send: 5.0.1
       koa-slow: 2.1.0
       koa-views: 7.0.2_6tybghmia4wsnt33xeid7y4rby
-      koa2-formidable: 1.0.3
       mfm-js: 0.23.2
       mime-types: 2.1.35
       multer: 1.4.4-lts.1
@@ -6372,11 +6370,6 @@ packages:
     dependencies:
       fetch-blob: 3.2.0
 
-  /formidable/1.2.6:
-    resolution: {integrity: sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==}
-    deprecated: 'Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau'
-    dev: false
-
   /formidable/2.1.1:
     resolution: {integrity: sha512-0EcS9wCFEzLvfiks7omJ+SiYJAiD+TzK4Pcw1UlUoGnhUxDcMKjt0P7x8wEb0u6OHu8Nb98WG3nxtlF5C7bvUQ==}
     dependencies:
@@ -8386,12 +8379,6 @@ packages:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /koa2-formidable/1.0.3:
-    resolution: {integrity: sha512-m80sje/vb4mvhZn7HbZPwYHnsGjKL+oJ4OasNbH+jdvjIddVMPmugmmBwPnMYDGaMnL0tT9mJrfKRcp8MMdNyQ==}
-    dependencies:
-      formidable: 1.2.6
     dev: false
 
   /ky-universal/0.10.1_ky@0.30.0:

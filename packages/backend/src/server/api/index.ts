@@ -6,7 +6,6 @@ import Koa from "koa";
 import Router from "@koa/router";
 import multer from "@koa/multer";
 import bodyParser from "koa-bodyparser";
-const formidable = require('koa2-formidable')
 import cors from "@koa/cors";
 import { apiMastodonCompatible } from './mastodon/ApiMastodonCompatibleService.js';
 import { Instances, AccessTokens, Users } from "@/models/index.js";
@@ -24,6 +23,15 @@ import twitter from "./service/twitter.js";
 // Init app
 const app = new Koa();
 
+// Init multer instance
+const upload = multer({
+	storage: multer.diskStorage({}),
+	limits: {
+		fileSize: config.maxFileSize || 262144000,
+		files: 1,
+	},
+});
+
 app.use(
 	cors({
 		origin: "*",
@@ -36,8 +44,6 @@ app.use(async (ctx, next) => {
 	await next();
 });
 
-app.use(formidable());
-
 app.use(
 	bodyParser({
 		// リクエストが multipart/form-data でない限りはJSONだと見なす
@@ -49,14 +55,9 @@ app.use(
 	}),
 );
 
-// Init multer instance
-const upload = multer({
-	storage: multer.diskStorage({}),
-	limits: {
-		fileSize: config.maxFileSize || 262144000,
-		files: 1,
-	},
-});
+app.use(
+	upload.any()
+);
 
 // Init router
 const router = new Router();
@@ -70,7 +71,6 @@ for (const endpoint of [...endpoints, ...compatibility]) {
 	if (endpoint.meta.requireFile) {
 		router.post(
 			`/${endpoint.name}`,
-			upload.single("file"),
 			handler.bind(null, endpoint),
 		);
 	} else {
