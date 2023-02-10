@@ -146,8 +146,7 @@ router.post("/oauth/token", koaBody({
 	multipart: true
 }), async (ctx) => {
 	const body: any = ctx.request.body;
-	//const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
-	const BASE_URL = "http://localhost:3000";
+	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
 	const client = generator('misskey', BASE_URL, null) as MegalodonInterface;
 	const m = body.code.match(/^[a-zA-Z0-9-]+/);

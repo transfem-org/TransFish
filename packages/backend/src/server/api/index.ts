@@ -12,6 +12,7 @@ import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
 import endpoints from "./endpoints.js";
 import compatibility from "./compatibility.js";
+import {koaBody} from "koa-body";
 import handler from "./api-handler.js";
 import signup from "./private/signup.js";
 import signin from "./private/signin.js";
@@ -34,6 +35,13 @@ app.use(async (ctx, next) => {
 	ctx.set("Cache-Control", "private, max-age=0, must-revalidate");
 	await next();
 });
+
+app.use(
+	koaBody({
+		json: false,
+		multipart: true
+	})
+);
 
 app.use(
 	bodyParser({
