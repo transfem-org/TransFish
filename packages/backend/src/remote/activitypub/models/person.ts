@@ -197,7 +197,7 @@ export async function createPerson(
 
 	const url = getOneApHrefNullable(person.url);
 
-	if (url && !url.startsWith('https://')) {
+	if (url && !url.startsWith("https://")) {
 		throw new Error(`unexpected shcema of person url: ${url}`);
 	}
 
@@ -395,7 +395,7 @@ export async function updatePerson(
 
 	const url = getOneApHrefNullable(person.url);
 
-	if (url && !url.startsWith('https://')) {
+	if (url && !url.startsWith("https://")) {
 		throw new Error(`unexpected shcema of person url: ${url}`);
 	}
 

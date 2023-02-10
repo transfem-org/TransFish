@@ -20,7 +20,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
-import megalodon, { MegalodonInterface } from '@cutls/megalodon';
+import megalodon, { MegalodonInterface } from "@cutls/megalodon";
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
 import wellKnown from "./well-known.js";
@@ -29,7 +29,7 @@ import fileServer from "./file/index.js";
 import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
-import {koaBody} from "koa-body";
+import { koaBody } from "koa-body";
 
 export const serverLogger = new Logger("server", "gray", false);
 
@@ -141,26 +141,30 @@ router.get("/verify-email/:code", async (ctx) => {
 mastoRouter.get("/oauth/authorize", async (ctx) => {
 	const client_id = ctx.request.query.client_id;
 	console.log(ctx.request.req);
-	ctx.redirect(Buffer.from(client_id?.toString() || '', 'base64').toString());
+	ctx.redirect(Buffer.from(client_id?.toString() || "", "base64").toString());
 });
 
 mastoRouter.post("/oauth/token", async (ctx) => {
 	const body: any = ctx.request.body;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
-	const client = generator('misskey', BASE_URL, null) as MegalodonInterface;
+	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
 	const m = body.code.match(/^[a-zA-Z0-9-]+/);
 	if (!m.length) {
-		ctx.body = {error: 'Invalid code'}
-		return
+		ctx.body = { error: "Invalid code" };
+		return;
 	}
 	try {
-		const atData = await client.fetchAccessToken(null, body.client_secret, m[0]);
+		const atData = await client.fetchAccessToken(
+			null,
+			body.client_secret,
+			m[0],
+		);
 		ctx.body = {
 			access_token: atData.accessToken,
-			token_type: 'Bearer',
-			scope: 'read write follow',
-			created_at: new Date().getTime() / 1000
+			token_type: "Bearer",
+			scope: "read write follow",
+			created_at: new Date().getTime() / 1000,
 		};
 	} catch (err: any) {
 		console.error(err);

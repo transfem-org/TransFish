@@ -7,7 +7,7 @@ import Router from "@koa/router";
 import multer from "@koa/multer";
 import bodyParser from "koa-bodyparser";
 import cors from "@koa/cors";
-import { apiMastodonCompatible } from './mastodon/ApiMastodonCompatibleService.js';
+import { apiMastodonCompatible } from "./mastodon/ApiMastodonCompatibleService.js";
 import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
 import endpoints from "./endpoints.js";
@@ -19,7 +19,7 @@ import signupPending from "./private/signup-pending.js";
 import discord from "./service/discord.js";
 import github from "./service/github.js";
 import twitter from "./service/twitter.js";
-import {koaBody} from "koa-body";
+import { koaBody } from "koa-body";
 
 // Init app
 const app = new Koa();
