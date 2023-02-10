@@ -20,7 +20,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
-import { koaBody } from 'koa-body';
+import {koaBody} from "koa-body";
 import megalodon, { MegalodonInterface } from '@cutls/megalodon';
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
@@ -141,7 +141,10 @@ router.get("/oauth/authorize", async (ctx) => {
 	ctx.redirect(Buffer.from(client_id?.toString() || '', 'base64').toString());
 });
 
-router.get("/oauth/token", koaBody(), async (ctx) => {
+router.post("/oauth/token", koaBody({
+	json: false,
+	multipart: true
+}), async (ctx) => {
 	const body: any = ctx.request.body;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;

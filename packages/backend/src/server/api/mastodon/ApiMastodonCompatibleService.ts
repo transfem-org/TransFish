@@ -5,7 +5,7 @@ import { apiAccountMastodon } from './endpoints/account.js';
 import { apiStatusMastodon } from './endpoints/status.js';
 import { apiFilterMastodon } from './endpoints/filter.js';
 import { apiTimelineMastodon } from './endpoints/timeline.js';
-import { apiNotificationsMastodon } from './endpoints/notifications.js';
+import { apiNotificationMastodon } from './endpoints/notifications.js';
 import { apiSearchMastodon } from './endpoints/search.js';
 import { getInstance } from './endpoints/meta.js';
 
@@ -23,7 +23,7 @@ export function apiMastodonCompatible(router: Router): void {
 	apiStatusMastodon(router)
 	apiFilterMastodon(router)
 	apiTimelineMastodon(router)
-	apiNotificationsMastodon(router)
+	apiNotificationMastodon(router)
 	apiSearchMastodon(router)
 
 	router.get('/v1/custom_emojis', async (ctx) => {
