@@ -19,18 +19,10 @@ import signupPending from "./private/signup-pending.js";
 import discord from "./service/discord.js";
 import github from "./service/github.js";
 import twitter from "./service/twitter.js";
+import koaBody from "koa-body";
 
 // Init app
 const app = new Koa();
-
-// Init multer instance
-const upload = multer({
-	storage: multer.diskStorage({}),
-	limits: {
-		fileSize: config.maxFileSize || 262144000,
-		files: 1,
-	},
-});
 
 app.use(
 	cors({
@@ -44,7 +36,20 @@ app.use(async (ctx, next) => {
 	await next();
 });
 
-app.use(
+// Init router
+const router = new Router();
+const mastoRouter = new Router();
+
+// Init multer instance
+const upload = multer({
+	storage: multer.diskStorage({}),
+	limits: {
+		fileSize: config.maxFileSize || 262144000,
+		files: 1,
+	},
+});
+
+router.use(
 	bodyParser({
 		// リクエストが multipart/form-data でない限りはJSONだと見なす
 		detectJSON: (ctx) =>
@@ -55,10 +60,9 @@ app.use(
 	}),
 );
 
-// Init router
-const router = new Router();
+mastoRouter.use(koaBody());
 
-apiMastodonCompatible(router);
+apiMastodonCompatible(mastoRouter);
 
 /**
  * Register endpoint handlers
@@ -150,5 +154,6 @@ router.all("(.*)", async (ctx) => {
 
 // Register router
 app.use(router.routes());
+app.use(mastoRouter.routes());
 
 export default app;

@@ -29,6 +29,7 @@ import fileServer from "./file/index.js";
 import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
+import koaBody from "koa-body";
 
 export const serverLogger = new Logger("server", "gray", false);
 
@@ -69,6 +70,9 @@ app.use(mount("/proxy", proxyServer));
 
 // Init router
 const router = new Router();
+const mastoRouter = new Router();
+
+mastoRouter.use(koaBody());
 
 // Routing
 router.use(activityPub.routes());
@@ -134,13 +138,13 @@ router.get("/verify-email/:code", async (ctx) => {
 	}
 });
 
-router.get("/oauth/authorize", async (ctx) => {
+mastoRouter.get("/oauth/authorize", async (ctx) => {
 	const client_id = ctx.request.query.client_id;
 	console.log(ctx.request.req);
 	ctx.redirect(Buffer.from(client_id?.toString() || '', 'base64').toString());
 });
 
-router.post("/oauth/token", async (ctx) => {
+mastoRouter.post("/oauth/token", async (ctx) => {
 	const body: any = ctx.request.body;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
@@ -167,6 +171,7 @@ router.post("/oauth/token", async (ctx) => {
 
 // Register router
 app.use(router.routes());
+app.use(mastoRouter.routes());
 
 app.use(mount(webServer));
 
