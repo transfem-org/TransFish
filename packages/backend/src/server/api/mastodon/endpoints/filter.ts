@@ -5,7 +5,7 @@ import { getClient } from '../ApiMastodonCompatibleService.js';
 
 export function apiFilterMastodon(router: Router): void {
 
-	router.get('/v1/filters', koaBody(), async (ctx) => {
+	router.get('/v1/filters',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -20,7 +20,7 @@ export function apiFilterMastodon(router: Router): void {
 		}
 	});
 
-	router.get('/v1/filters/:id', koaBody(), async (ctx) => {
+	router.get('/v1/filters/:id',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -35,7 +35,7 @@ export function apiFilterMastodon(router: Router): void {
 		}
 	});
 
-	router.post('/v1/filters', koaBody(), async (ctx) => {
+	router.post('/v1/filters',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -50,7 +50,7 @@ export function apiFilterMastodon(router: Router): void {
 		}
 	});
 
-	router.post('/v1/filters/:id', koaBody(), async (ctx) => {
+	router.post('/v1/filters/:id',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -65,7 +65,7 @@ export function apiFilterMastodon(router: Router): void {
 		}
 	});
 
-	router.delete('/v1/filters/:id', koaBody(), async (ctx) => {
+	router.delete('/v1/filters/:id',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
