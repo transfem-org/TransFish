@@ -12,7 +12,6 @@ import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
 import endpoints from "./endpoints.js";
 import compatibility from "./compatibility.js";
-import {koaBody} from "koa-body";
 import handler from "./api-handler.js";
 import signup from "./private/signup.js";
 import signin from "./private/signin.js";
@@ -23,6 +22,15 @@ import twitter from "./service/twitter.js";
 
 // Init app
 const app = new Koa();
+
+// Init multer instance
+const upload = multer({
+	storage: multer.diskStorage({}),
+	limits: {
+		fileSize: config.maxFileSize || 262144000,
+		files: 1,
+	},
+});
 
 app.use(
 	cors({
@@ -37,13 +45,6 @@ app.use(async (ctx, next) => {
 });
 
 app.use(
-	koaBody({
-		json: false,
-		multipart: true
-	})
-);
-
-app.use(
 	bodyParser({
 		// リクエストが multipart/form-data でない限りはJSONだと見なす
 		detectJSON: (ctx) =>
@@ -54,14 +55,9 @@ app.use(
 	}),
 );
 
-// Init multer instance
-const upload = multer({
-	storage: multer.diskStorage({}),
-	limits: {
-		fileSize: config.maxFileSize || 262144000,
-		files: 1,
-	},
-});
+app.use(
+	upload.any()
+);
 
 // Init router
 const router = new Router();
@@ -75,7 +71,6 @@ for (const endpoint of [...endpoints, ...compatibility]) {
 	if (endpoint.meta.requireFile) {
 		router.post(
 			`/${endpoint.name}`,
-			upload.single("file"),
 			handler.bind(null, endpoint),
 		);
 	} else {
