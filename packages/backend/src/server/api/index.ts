@@ -55,10 +55,6 @@ app.use(
 	}),
 );
 
-app.use(
-	upload.any()
-);
-
 // Init router
 const router = new Router();
 
@@ -71,6 +67,7 @@ for (const endpoint of [...endpoints, ...compatibility]) {
 	if (endpoint.meta.requireFile) {
 		router.post(
 			`/${endpoint.name}`,
+			upload.single("file"),
 			handler.bind(null, endpoint),
 		);
 	} else {
