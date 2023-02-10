@@ -10,7 +10,7 @@ function toLimitToInt(q: any) {
 
 export function apiNotificationsMastodon(router: Router): void {
 
-	router.get('/v1/notifications', async (ctx) => {
+	router.get('/v1/notifications',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -35,7 +35,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		}
 	});
 
-	router.get('/v1/notification/:id', async (ctx) => {
+	router.get('/v1/notification/:id',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -56,7 +56,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		}
 	});
 
-	router.post('/v1/notifications/clear', async (ctx) => {
+	router.post('/v1/notifications/clear',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -71,7 +71,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		}
 	});
 
-	router.post('/v1/notification/:id/dismiss', koaBody({ multipart: true }), async (ctx) => {
+	router.post('/v1/notification/:id/dismiss',  async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
