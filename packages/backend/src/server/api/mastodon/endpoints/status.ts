@@ -1,5 +1,4 @@
 import Router from "@koa/router";
-import { koaBody } from 'koa-body';
 import megalodon, { MegalodonInterface } from '@cutls/megalodon';
 import { getClient } from '../ApiMastodonCompatibleService.js';
 import fs from 'fs'
@@ -11,7 +10,7 @@ import axios from 'axios';
 const pump = promisify(pipeline);
 
 export function apiStatusMastodon(router: Router): void {
-    router.post('/v1/statuses', koaBody({ multipart: true }), async (ctx, reply) => {
+    router.post('/v1/statuses', async (ctx, reply) => {
         const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
         const accessTokens = ctx.headers.authorization;
         const client = getClient(BASE_URL, accessTokens);
@@ -284,7 +283,7 @@ export function apiStatusMastodon(router: Router): void {
             ctx.body = e.response.data;
         }
     });
-    router.put<{ Params: { id: string } }>('/v1/media/:id', koaBody({ multipart: true }), async (ctx, reply) => {
+    router.put<{ Params: { id: string } }>('/v1/media/:id',async (ctx, reply) => {
         const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
         const accessTokens = ctx.headers.authorization;
         const client = getClient(BASE_URL, accessTokens);
@@ -310,7 +309,7 @@ export function apiStatusMastodon(router: Router): void {
             ctx.body = e.response.data;
         }
     });
-    router.post<{ Params: { id: string } }>('/v1/polls/:id/votes', koaBody({ multipart: true }), async (ctx, reply) => {
+    router.post<{ Params: { id: string } }>('/v1/polls/:id/votes', async (ctx, reply) => {
         const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
         const accessTokens = ctx.headers.authorization;
         const client = getClient(BASE_URL, accessTokens);

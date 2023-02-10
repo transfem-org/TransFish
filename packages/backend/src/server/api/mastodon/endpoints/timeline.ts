@@ -1,5 +1,4 @@
 import Router from "@koa/router";
-import { koaBody } from 'koa-body';
 import megalodon, { Entity, MegalodonInterface } from '@cutls/megalodon';
 import { getClient } from '../ApiMastodonCompatibleService.js'
 import { statusModel } from './status.js';
