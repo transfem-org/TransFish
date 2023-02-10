@@ -6,7 +6,8 @@ import Koa from "koa";
 import Router from "@koa/router";
 import multer from "@koa/multer";
 import bodyParser from "koa-bodyparser";
-const formidable = require('koa2-formidable')
+// @ts-ignore
+import formidable from 'koa2-formidable'
 import cors from "@koa/cors";
 import { apiMastodonCompatible } from './mastodon/ApiMastodonCompatibleService.js';
 import { Instances, AccessTokens, Users } from "@/models/index.js";
