@@ -123,7 +123,8 @@ export async function createNote(
 
 	// Skip if author is suspended.
 	if (actor.isSuspended) {
-		throw new Error("actor has been suspended");
+		logger.debug(`User ${actor.usernameLower}@${actor.host} suspended; discarding.`)
+		return null;
 	}
 
 	const noteAudience = await parseAudience(actor, note.to, note.cc);
