@@ -135,7 +135,7 @@ export async function createNote(
 			logger.warn('Note somehow made before Activitypub was created; discarding');
 			return null;
 		}
-		if (DateChecker < FutureCheck) {
+		if (DateChecker > FutureCheck) {
 			logger.warn('Note somehow made after today; discarding')
 			return null;
 		}
