@@ -39,7 +39,7 @@
 		"@bull-board/api": "^4.10.2",
 		"@bull-board/ui": "^4.10.2",
 		"@tensorflow/tfjs": "^3.21.0",
-		"calckey-js": "^0.0.20",
+		"calckey-js": "^0.0.22",
 		"js-yaml": "4.1.0",
 		"phosphor-icons": "^1.4.2",
 		"seedrandom": "^3.0.5"
