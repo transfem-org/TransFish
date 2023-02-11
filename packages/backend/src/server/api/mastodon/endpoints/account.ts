@@ -70,11 +70,11 @@ export function apiAccountMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.searchAccount((ctx.query.acct || '').toString(), {
+				const data = await client.search((ctx.query.acct || '').toString(), "accounts", {
 					resolve: true
 				});
-				ctx.body = data.data[0];
-				if (data.data.length === 0) {
+				ctx.body = data.data.accounts[0];
+				if (data.data.accounts.length === 0) {
 					ctx.status = 404;
 					ctx.body = {
 						error: `Record (${ctx.query.acct}) not found`
