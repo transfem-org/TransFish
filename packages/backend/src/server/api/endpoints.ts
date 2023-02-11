@@ -222,6 +222,7 @@ import * as ep___messaging_messages_create from "./endpoints/messaging/messages/
 import * as ep___messaging_messages_delete from "./endpoints/messaging/messages/delete.js";
 import * as ep___messaging_messages_read from "./endpoints/messaging/messages/read.js";
 import * as ep___meta from "./endpoints/meta.js";
+import * as ep___sounds from "./endpoints/get-sounds.js";
 import * as ep___miauth_genToken from "./endpoints/miauth/gen-token.js";
 import * as ep___mute_create from "./endpoints/mute/create.js";
 import * as ep___mute_delete from "./endpoints/mute/delete.js";
@@ -668,6 +669,7 @@ const eps = [
 	["users/stats", ep___users_stats],
 	["admin/drive-capacity-override", ep___admin_driveCapOverride],
 	["fetch-rss", ep___fetchRss],
+	["get-sounds", ep___sounds]
 ];
 
 export interface IEndpointMeta {

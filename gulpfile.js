@@ -15,8 +15,9 @@ gulp.task('copy:backend:views', () =>
 	gulp.src('./packages/backend/src/server/web/views/**/*').pipe(gulp.dest('./packages/backend/built/server/web/views'))
 );
 
+
 gulp.task('copy:backend:custom', () =>
-	gulp.src('./custom/assets/*').pipe(gulp.dest('./packages/backend/assets/'))
+	gulp.src('./custom/assets/**/*').pipe(gulp.dest('./packages/backend/assets/'))
 );
 
 gulp.task('copy:client:fonts', () =>
