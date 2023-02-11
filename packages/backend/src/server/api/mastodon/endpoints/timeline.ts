@@ -6,8 +6,9 @@ import Autolinker from "autolinker";
 import { ParsedUrlQuery } from "querystring";
 
 export function toLimitToInt(q: ParsedUrlQuery) {
+	let object: any = q;
 	if (q.limit)
-		if (typeof q.limit === "string") q.limit = parseInt(q.limit, 10).toString();
+		if (typeof q.limit === "string") object.limit = parseInt(q.limit, 10);
 	return q;
 }
 
