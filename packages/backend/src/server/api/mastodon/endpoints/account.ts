@@ -63,20 +63,31 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
+	router.get(
+		"/v1/accounts/lookup",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getAccount(( || '').toString());
+				ctx.body = data.data;
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id",
 		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
-			let req_user = ctx.query.acct;
-			if (!req_user) {
-				req_user = ctx.params.id;
-			} else {
-				req_user = req_user.toString();
-			}
 			try {
-				const data = await client.getAccount(req_user);
+				const data = await client.getAccount(ctx.params.id);
 				ctx.body = data.data;
 			} catch (e: any) {
 				console.error(e);
