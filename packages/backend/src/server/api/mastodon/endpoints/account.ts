@@ -1,6 +1,4 @@
-import megalodon, { MegalodonInterface } from "@cutls/megalodon";
 import Router from "@koa/router";
-import { koaBody } from "koa-body";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { toLimitToInt } from "./timeline.js";
 
@@ -22,7 +20,7 @@ const relationshopModel = {
 }
 
 export function apiAccountMastodon(router: Router): void {
-	router.get("/v1/accounts/verify_credentials", async (ctx, next) => {
+	router.get("/v1/accounts/verify_credentials", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -67,7 +65,7 @@ export function apiAccountMastodon(router: Router): void {
 	});
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -84,7 +82,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id/statuses",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -104,7 +102,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id/followers",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -124,7 +122,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id/following",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -144,7 +142,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id/lists",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -161,7 +159,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/accounts/:id/follow",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -180,7 +178,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/accounts/:id/unfollow",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -199,7 +197,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/accounts/:id/block",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -216,7 +214,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/accounts/:id/unblock",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -253,7 +251,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/accounts/:id/unmute",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -268,7 +266,7 @@ export function apiAccountMastodon(router: Router): void {
 			}
 		},
 	);
-	router.get("/v1/accounts/relationships", async (ctx, next) => {
+	router.get("/v1/accounts/relationships", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -286,7 +284,7 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	router.get("/v1/bookmarks", async (ctx, next) => {
+	router.get("/v1/bookmarks", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -300,7 +298,7 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	router.get("/v1/favourites", async (ctx, next) => {
+	router.get("/v1/favourites", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -314,7 +312,7 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	router.get("/v1/mutes", async (ctx, next) => {
+	router.get("/v1/mutes", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -328,7 +326,7 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	router.get("/v1/blocks", async (ctx, next) => {
+	router.get("/v1/blocks", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -342,7 +340,7 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	router.get("/v1/follow_ctxs", async (ctx, next) => {
+	router.get("/v1/follow_ctxs", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -360,7 +358,7 @@ export function apiAccountMastodon(router: Router): void {
 	});
 	router.post<{ Params: { id: string } }>(
 		"/v1/follow_ctxs/:id/authorize",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -377,7 +375,7 @@ export function apiAccountMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/follow_ctxs/:id/reject",
-		async (ctx, next) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
