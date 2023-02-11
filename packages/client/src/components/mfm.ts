@@ -377,15 +377,7 @@ export default defineComponent({
 
 						case "quote": {
 							if (!this.nowrap) {
-								return [
-									h(
-										"div",
-										{
-											class: "quote",
-										},
-										genEl(token.children),
-									),
-								];
+								return [h("blockquote", genEl(token.children))];
 							} else {
 								return [
 									h(

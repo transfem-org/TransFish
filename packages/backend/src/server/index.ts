@@ -20,6 +20,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
+import megalodon, { MegalodonInterface } from "@cutls/megalodon";
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
 import wellKnown from "./well-known.js";
@@ -28,6 +29,7 @@ import fileServer from "./file/index.js";
 import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
+import { koaBody } from "koa-body";
 
 export const serverLogger = new Logger("server", "gray", false);
 
@@ -68,6 +70,11 @@ app.use(mount("/proxy", proxyServer));
 
 // Init router
 const router = new Router();
+const mastoRouter = new Router();
+
+mastoRouter.use(koaBody({ 
+	urlencoded: true
+}));
 
 // Routing
 router.use(activityPub.routes());
@@ -133,7 +140,52 @@ router.get("/verify-email/:code", async (ctx) => {
 	}
 });
 
+mastoRouter.get("/oauth/authorize", async (ctx) => {
+	const client_id = ctx.request.query.client_id;
+	console.log(ctx.request.req);
+	ctx.redirect(Buffer.from(client_id?.toString() || "", "base64").toString());
+});
+
+mastoRouter.post("/oauth/token", async (ctx) => {
+	const body: any = ctx.request.body;
+	let client_id: any = ctx.request.query.client_id;
+	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
+	const generator = (megalodon as any).default;
+	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
+	let m = null;
+	if (body.code) {
+		m = body.code.match(/^[a-zA-Z0-9-]+/);
+		if (!m.length) {
+			ctx.body = { error: "Invalid code" };
+			return;
+		}
+	} 
+	if (client_id instanceof Array) {
+		client_id = client_id.toString();;
+	} else if (!client_id) {
+		client_id = null;
+	}
+	try {
+		const atData = await client.fetchAccessToken(
+			client_id,
+			body.client_secret,
+			m ? m[0] : '',
+		);
+		ctx.body = {
+			access_token: atData.accessToken,
+			token_type: "Bearer",
+			scope: "read write follow",
+			created_at: Math.floor(new Date().getTime() / 1000),
+		};
+	} catch (err: any) {
+		console.error(err);
+		ctx.status = 401;
+		ctx.body = err.response.data;
+	}
+});
+
 // Register router
+app.use(mastoRouter.routes());
 app.use(router.routes());
 
 app.use(mount(webServer));

@@ -16,10 +16,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="tabs">
+		<div ref="tabsEl" v-if="hasTabs" class="tabs">
 			<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
 				<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
-				<span v-if="!tab.iconOnly && !narrow" class="title">{{ tab.title }}</span>
+				<span v-if="deviceKind !== 'desktop' || isTouchUsing || (!tab.iconOnly && !narrow)" class="title">{{ tab.title }}</span>
 			</button>
 			<div ref="tabHighlightEl" class="highlight"></div>
 		</div>
@@ -39,6 +39,8 @@ import { popupMenu } from '@/os';
 import { scrollToTop } from '@/scripts/scroll';
 import { i18n } from '@/i18n';
 import { globalEvents } from '@/events';
+import { deviceKind } from '@/scripts/device-kind';
+import { isTouchUsing } from '@/scripts/touch';
 import { injectPageMetadata } from '@/scripts/page-metadata';
 import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
 
@@ -74,6 +76,7 @@ const thin_ = props.thin || inject('shouldHeaderThin', false);
 const el = $ref<HTMLElement | null>(null);
 const tabRefs = {};
 const tabHighlightEl = $ref<HTMLElement | null>(null);
+const tabsEl = $ref<HTMLElement | null>(null);
 const bg = ref(null);
 let narrow = $ref(false);
 const height = ref(0);
@@ -150,10 +153,12 @@ onMounted(() => {
 			if (tabEl && tabHighlightEl) {
 				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
 				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
-				const parentRect = tabEl.parentElement.getBoundingClientRect();
+				const parentRect = tabsEl.getBoundingClientRect();
 				const rect = tabEl.getBoundingClientRect();
+				const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
 				tabHighlightEl.style.width = rect.width + 'px';
-				tabHighlightEl.style.left = (rect.left - parentRect.left) + 'px';
+				tabHighlightEl.style.left = left + 'px';
+				tabsEl.scrollTo({left: left - 80, behavior: "smooth"});
 			}
 		});
 	}, {
@@ -199,8 +204,6 @@ onUnmounted(() => {
 	}
 
 	&.slim {
-		text-align: center;
-
 		> .titleContainer {
 			flex: 1;
 			margin: 0 auto;
@@ -213,13 +216,26 @@ onUnmounted(() => {
 				margin-right: auto;
 			}
 		}
+		> .tabs {
+			padding-inline: 12px;
+			mask: linear-gradient(to right, black 80%, transparent);
+			-webkit-mask: linear-gradient(to right, black 80%, transparent);
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+			&::after { // Force right padding
+				content: "";
+				display: inline-block;
+				min-width: 20%;
+			}
+		}
 	}
 
 	> .buttons {
 		--margin: 8px;
 		display: flex;
     align-items: center;
-		min-width: var(--height);
 		height: var(--height);
 		margin: 0 var(--margin);
 
@@ -242,7 +258,7 @@ onUnmounted(() => {
 		}
 
 		&:empty {
-			width: var(--height);
+			display: none;
 		}
 
 		> .button {
@@ -331,16 +347,18 @@ onUnmounted(() => {
 		position: relative;
 		width: 100%;
 		font-size: 1em;
-		overflow: auto;
+		overflow-x: auto;
 		white-space: nowrap;
 
 		> .tab {
-			display: inline-block;
+			display: inline-flex;
+			align-items: center;
 			position: relative;
 			padding: 0 10px;
 			height: 100%;
 			font-weight: normal;
 			opacity: 0.7;
+			transition: color .2s, opacity .2s;
 
 			&:hover {
 				opacity: 1;
@@ -348,6 +366,8 @@ onUnmounted(() => {
 
 			&.active {
 				opacity: 1;
+				color: var(--accent);
+				font-weight: 600;
 			}
 
 			> .icon + .title {

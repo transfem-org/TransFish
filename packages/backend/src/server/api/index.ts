@@ -7,6 +7,7 @@ import Router from "@koa/router";
 import multer from "@koa/multer";
 import bodyParser from "koa-bodyparser";
 import cors from "@koa/cors";
+import { apiMastodonCompatible } from "./mastodon/ApiMastodonCompatibleService.js";
 import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
 import endpoints from "./endpoints.js";
@@ -18,6 +19,7 @@ import signupPending from "./private/signup-pending.js";
 import discord from "./service/discord.js";
 import github from "./service/github.js";
 import twitter from "./service/twitter.js";
+import { koaBody } from "koa-body";
 
 // Init app
 const app = new Koa();
@@ -34,16 +36,10 @@ app.use(async (ctx, next) => {
 	await next();
 });
 
-app.use(
-	bodyParser({
-		// リクエストが multipart/form-data でない限りはJSONだと見なす
-		detectJSON: (ctx) =>
-			!(
-				ctx.is("multipart/form-data") ||
-				ctx.is("application/x-www-form-urlencoded")
-			),
-	}),
-);
+// Init router
+const router = new Router();
+const mastoRouter = new Router();
+const errorRouter = new Router();
 
 // Init multer instance
 const upload = multer({
@@ -54,8 +50,23 @@ const upload = multer({
 	},
 });
 
-// Init router
-const router = new Router();
+router.use(
+	bodyParser({
+		// リクエストが multipart/form-data でない限りはJSONだと見なす
+		detectJSON: (ctx) =>
+			!(
+				ctx.is("multipart/form-data") ||
+				ctx.is("application/x-www-form-urlencoded")
+			),
+	}),
+);
+
+mastoRouter.use(koaBody({ 
+	multipart: true,
+	urlencoded: true
+}));
+
+apiMastodonCompatible(mastoRouter);
 
 /**
  * Register endpoint handlers
@@ -141,11 +152,13 @@ router.post("/miauth/:session/check", async (ctx) => {
 });
 
 // Return 404 for unknown API
-router.all("(.*)", async (ctx) => {
+errorRouter.all("(.*)", async (ctx) => {
 	ctx.status = 404;
 });
 
 // Register router
+app.use(mastoRouter.routes());
 app.use(router.routes());
+app.use(errorRouter.routes());
 
 export default app;
