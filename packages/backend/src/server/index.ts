@@ -175,7 +175,7 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 			access_token: atData.accessToken,
 			token_type: "Bearer",
 			scope: "read write follow",
-			created_at: new Date().getTime() / 1000,
+			created_at: Math.floor(new Date().getTime() / 1000),
 		};
 	} catch (err: any) {
 		console.error(err);
