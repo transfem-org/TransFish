@@ -163,7 +163,7 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 		const atData = await client.fetchAccessToken(
 			null,
 			body.client_secret,
-			m[0],
+			m ? m[0] : null,
 		);
 		ctx.body = {
 			access_token: atData.accessToken,
