@@ -115,6 +115,16 @@ export async function createNote(
 
 	logger.info(`Creating the Note: ${note.id}`);
 
+	// Skip if note is made before 2007 (1yr before Fedi was created)
+	if (note.published) {
+		const DateChecker = new Date(note.published)
+		if (DateChecker.getFullYear() < 2007) {
+			logger.warn('Note somehow made before Activitypub was created; discarding');
+			return null;
+		}
+	}
+
+
 	// Fetch author
 	const actor = (await resolvePerson(
 		getOneApId(note.attributedTo),
