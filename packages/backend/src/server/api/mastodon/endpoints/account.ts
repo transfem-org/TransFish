@@ -63,6 +63,31 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
+	router.get(
+		"/v1/accounts/lookup",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.searchAccount((ctx.query.acct || '').toString(), {
+					resolve: true
+				});
+				ctx.body = data.data[0];
+				if (data.data.length === 0) {
+					ctx.status = 404;
+					ctx.body = {
+						error: "Record not found"
+					}
+				}
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id",
 		async (ctx) => {
