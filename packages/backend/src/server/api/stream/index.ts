@@ -152,7 +152,7 @@ export default class Connection {
 		} catch (e) {
 			return;
 		}
-		
+
 		const simpleObj = objs[0];
 		if (simpleObj.stream) {
 			// is Mastodon Compatible

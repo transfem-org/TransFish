@@ -198,7 +198,7 @@ import * as ep___i_readAnnouncement from "./endpoints/i/read-announcement.js";
 import * as ep___i_regenerateToken from "./endpoints/i/regenerate-token.js";
 import * as ep___i_registry_getAll from "./endpoints/i/registry/get-all.js";
 import * as ep___i_registry_getDetail from "./endpoints/i/registry/get-detail.js";
-import * as ep___i_registry_getUnsecure from './endpoints/i/registry/get-unsecure.js';
+import * as ep___i_registry_getUnsecure from "./endpoints/i/registry/get-unsecure.js";
 import * as ep___i_registry_get from "./endpoints/i/registry/get.js";
 import * as ep___i_registry_keysWithType from "./endpoints/i/registry/keys-with-type.js";
 import * as ep___i_registry_keys from "./endpoints/i/registry/keys.js";
@@ -767,10 +767,10 @@ export interface IEndpointMeta {
 }
 
 export interface IEndpoint {
-	name: string,
-	exec: any, // TODO: may be obosolete @ThatOneCalculator
-	meta: IEndpointMeta,
-	params: Schema,
+	name: string;
+	exec: any; // TODO: may be obosolete @ThatOneCalculator
+	meta: IEndpointMeta;
+	params: Schema;
 }
 
 const endpoints: IEndpoint[] = (eps as [string, any]).map(([name, ep]) => {
