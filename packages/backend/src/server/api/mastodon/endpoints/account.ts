@@ -77,7 +77,7 @@ export function apiAccountMastodon(router: Router): void {
 				if (data.data.length === 0) {
 					ctx.status = 404;
 					ctx.body = {
-						error: "Record not found"
+						error: `Record (${ctx.query.acct}) not found`
 					}
 				}
 			} catch (e: any) {
