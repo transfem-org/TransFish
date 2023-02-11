@@ -435,7 +435,7 @@ export function statusModel(
 			id: "9arzuvv0sw",
 			username: "ReactionBot",
 			acct: "ReactionBot",
-			display_name: "ReactionOfThisPost",
+			display_name: "ReactionsToThisPost",
 			locked: false,
 			created_at: now,
 			followers_count: 0,
