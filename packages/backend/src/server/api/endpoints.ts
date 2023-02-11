@@ -669,7 +669,7 @@ const eps = [
 	["users/stats", ep___users_stats],
 	["admin/drive-capacity-override", ep___admin_driveCapOverride],
 	["fetch-rss", ep___fetchRss],
-	["get-sounds", ep___sounds]
+	["get-sounds", ep___sounds],
 ];
 
 export interface IEndpointMeta {

@@ -14,15 +14,17 @@ export const paramDef = {
 } as const;
 
 export default define(meta, paramDef, async () => {
-	const music_files: (string|null)[] = [null, ];
-	const directory = (await readdir('./assets/sounds', { withFileTypes: true }))
-		.filter(potentialFolder => potentialFolder.isDirectory())
+	const music_files: (string | null)[] = [null];
+	const directory = (
+		await readdir("./assets/sounds", { withFileTypes: true })
+	).filter((potentialFolder) => potentialFolder.isDirectory());
 	for await (const folder of directory) {
-		const files = (await readdir(`./assets/sounds/${folder.name}`))
-		.filter(potentialSong => potentialSong.endsWith('.mp3'))
+		const files = (await readdir(`./assets/sounds/${folder.name}`)).filter(
+			(potentialSong) => potentialSong.endsWith(".mp3"),
+		);
 		for await (const file of files) {
-			music_files.push(`${folder.name}/${file.replace('.mp3','')}`);
+			music_files.push(`${folder.name}/${file.replace(".mp3", "")}`);
 		}
 	}
-	return music_files
+	return music_files;
 });
