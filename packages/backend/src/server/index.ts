@@ -151,11 +151,14 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
 	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
-	const m = body.code.match(/^[a-zA-Z0-9-]+/);
-	if (!m.length) {
-		ctx.body = { error: "Invalid code" };
-		return;
-	}
+	let m = null;
+	if (body.code) {
+		m = body.code.match(/^[a-zA-Z0-9-]+/);
+		if (!m.length) {
+			ctx.body = { error: "Invalid code" };
+			return;
+		}
+	} 
 	try {
 		const atData = await client.fetchAccessToken(
 			null,
