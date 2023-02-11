@@ -70,7 +70,7 @@ export function apiAccountMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.getAccount(( || '').toString());
+				const data = await client.getAccount((ctx.query.acct || '').toString());
 				ctx.body = data.data;
 			} catch (e: any) {
 				console.error(e);
