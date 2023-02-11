@@ -1294,6 +1294,7 @@ _auth:
   pleaseGoBack: "Please go back to the application"
   callback: "Returning to the application"
   denied: "Access denied"
+  copyAsk: "Please paste the following authorization code to the application"
 _antennaSources:
   all: "All posts"
   homeTimeline: "Posts from followed users"

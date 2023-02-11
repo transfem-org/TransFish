@@ -58,10 +58,7 @@ export function apiAuthMastodon(router: Router): void {
 			}
 			const scopeArr = Array.from(pushScope);
 
-			let red = body.redirect_uris;
-			if (red === "urn:ietf:wg:oauth:2.0:oob") {
-				red = "https://thedesk.top/hello.html";
-			}
+			const red = body.redirect_uris;
 			const appData = await client.registerApp(body.client_name, {
 				scopes: scopeArr,
 				redirect_uris: red,
