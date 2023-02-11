@@ -67,7 +67,7 @@ export default defineComponent({
 				font-size: 0.9em;
 				margin-bottom: 0.3rem;
 
-				&:hover {
+				&:hover, &:focus-visible {
 					text-decoration: none;
 					background: var(--panelHighlight);
 				}
