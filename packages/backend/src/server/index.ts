@@ -148,6 +148,7 @@ mastoRouter.get("/oauth/authorize", async (ctx) => {
 
 mastoRouter.post("/oauth/token", async (ctx) => {
 	const body: any = ctx.request.body;
+	let client_id: any = ctx.request.query.client_id;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
 	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
@@ -159,11 +160,16 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 			return;
 		}
 	} 
+	if (client_id instanceof Array) {
+		client_id = client_id.toString();;
+	} else if (!client_id) {
+		client_id = null;
+	}
 	try {
 		const atData = await client.fetchAccessToken(
-			null,
+			client_id,
 			body.client_secret,
-			m ? m[0] : null,
+			m ? m[0] : '',
 		);
 		ctx.body = {
 			access_token: atData.accessToken,
