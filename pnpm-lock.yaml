@@ -57,7 +57,7 @@ importers:
       '@bull-board/api': ^4.6.4
       '@bull-board/koa': ^4.6.4
       '@bull-board/ui': ^4.6.4
-      '@cutls/megalodon': 5.1.15
+      '@cutls/megalodon': 5.1.16
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@koa/cors': 3.4.3
@@ -223,7 +223,7 @@ importers:
       '@bull-board/api': 4.10.2
       '@bull-board/koa': 4.10.2_6tybghmia4wsnt33xeid7y4rby
       '@bull-board/ui': 4.10.2
-      '@cutls/megalodon': 5.1.15
+      '@cutls/megalodon': 5.1.16
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@koa/cors': 3.4.3
@@ -847,8 +847,8 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  /@cutls/megalodon/5.1.15:
-    resolution: {integrity: sha512-4+mIKUYYr2CLY3idSxXk56WSTG9ww3opeenmsPRxftTwcjQTYxGntNkWmJWEbzeJ4rPslnvpwD7cFR62bPf41g==}
+  /@cutls/megalodon/5.1.16:
+    resolution: {integrity: sha512-s2U3qjcs86v0/p0EPwlQqSMh4UhAqTNxu8xUVsPvzrwXr5TrrJ5AVKunBm5582AEkx47nZkqm/98ZF2iHb0GtQ==}
     engines: {node: '>=15.0.0'}
     dependencies:
       '@types/oauth': 0.9.1

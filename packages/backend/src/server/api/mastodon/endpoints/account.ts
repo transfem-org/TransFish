@@ -4,6 +4,23 @@ import { koaBody } from "koa-body";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { toLimitToInt } from "./timeline.js";
 
+const relationshopModel = {
+	id: '',
+	following: false,
+	followed_by: false,
+	delivery_following: false,
+	blocking: false,
+	blocked_by: false,
+	muting: false,
+	muting_notifications: false,
+	requested: false,
+	domain_blocking: false,
+	showing_reblogs: false,
+	endorsed: false,
+	notifying: false,
+	note: ''
+}
+
 export function apiAccountMastodon(router: Router): void {
 	router.get("/v1/accounts/verify_credentials", async (ctx, next) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
@@ -258,6 +275,8 @@ export function apiAccountMastodon(router: Router): void {
 		try {
 			const idsRaw = (ctx.query as any)["id[]"];
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
+			relationshopModel.id = idsRaw || '1'
+			if (!idsRaw) return [relationshopModel]
 			const data = (await client.getRelationships(ids)) as any;
 			ctx.body = data.data;
 		} catch (e: any) {
