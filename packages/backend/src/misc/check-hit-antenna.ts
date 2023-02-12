@@ -79,7 +79,14 @@ export async function checkHitAntenna(
 				getFullApAccount(noteUser.username, noteUser.host).toLowerCase(),
 			)
 		)
-			return false;
+		return false;
+	} else if (antenna.src === "instances") {
+		const instances = antenna.instances
+			.filter(x => x !== "")
+			.map(host => {
+				return host.toLowerCase();
+			});
+		if (!instances.includes(noteUser.host?.toLowerCase() ?? "")) return false;
 	}
 
 	const keywords = antenna.keywords

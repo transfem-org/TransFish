@@ -11,6 +11,7 @@
 			<option value="users">{{ i18n.ts._antennaSources.users }}</option>
 			<!--<option value="list">{{ i18n.ts._antennaSources.userList }}</option>-->
 			<!--<option value="group">{{ i18n.ts._antennaSources.userGroup }}</option>-->
+			<option value="instances">{{ i18n.ts._antennaSources.instances }}</option>
 		</MkSelect>
 		<MkSelect v-if="src === 'list'" v-model="userListId" class="_formBlock">
 			<template #label>{{ i18n.ts.userList }}</template>
@@ -23,6 +24,10 @@
 		<MkTextarea v-else-if="src === 'users'" v-model="users" class="_formBlock">
 			<template #label>{{ i18n.ts.users }}</template>
 			<template #caption>{{ i18n.ts.antennaUsersDescription }} <button class="_textButton" @click="addUser">{{ i18n.ts.addUser }}</button></template>
+		</MkTextarea>
+		<MkTextarea v-else-if="src === 'instances'" v-model="instances" class="_formBlock">
+			<template #label>{{ i18n.ts.instances }}</template>
+			<template #caption>{{ i18n.ts.antennaInstancesDescription }} <button class="_textButton" @click="addInstance">{{ i18n.ts.addInstance }}</button></template>
 		</MkTextarea>
 		<MkSwitch v-model="withReplies" class="_formBlock">{{ i18n.ts.withReplies }}</MkSwitch>
 		<MkTextarea v-model="keywords" class="_formBlock">
@@ -70,6 +75,7 @@ let src: string = $ref(props.antenna.src);
 let userListId: any = $ref(props.antenna.userListId);
 let userGroupId: any = $ref(props.antenna.userGroupId);
 let users: string = $ref(props.antenna.users.join('\n'));
+let instances: string = $ref(props.antenna.instances.join('\n'));
 let keywords: string = $ref(props.antenna.keywords.map(x => x.join(' ')).join('\n'));
 let excludeKeywords: string = $ref(props.antenna.excludeKeywords.map(x => x.join(' ')).join('\n'));
 let caseSensitive: boolean = $ref(props.antenna.caseSensitive);
@@ -103,6 +109,7 @@ async function saveAntenna() {
 		notify,
 		caseSensitive,
 		users: users.trim().split('\n').map(x => x.trim()),
+		instances: instances.trim().split('\n').map(x => x.trim()),
 		keywords: keywords.trim().split('\n').map(x => x.trim().split(' ')),
 		excludeKeywords: excludeKeywords.trim().split('\n').map(x => x.trim().split(' ')),
 	};
@@ -137,6 +144,14 @@ function addUser() {
 		users = users.trim();
 		users += '\n@' + Acct.toString(user as any);
 		users = users.trim();
+	});
+}
+
+function addInstance() {
+	os.selectInstance().then(instance => {
+		instances = instances.trim();
+		instances += '\n' + instance.host;
+		instances = instances.trim();
 	});
 }
 </script>
