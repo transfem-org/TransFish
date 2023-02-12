@@ -17,6 +17,7 @@ import { i18n } from '@/i18n';
 const paginationForLocal = {
 	endpoint: 'notes/featured' as const,
 	limit: 10,
+	origin: 'local',
 	offsetMode: true,
 };
 
@@ -33,5 +34,5 @@ const paginationForRemote = {
 // 	offsetMode: true,
 // };
 
-let tab = $ref('notes');
+let tab = $ref('local');
 </script>
