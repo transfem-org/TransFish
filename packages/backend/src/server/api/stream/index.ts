@@ -24,7 +24,7 @@ import { readNotification } from "../common/read-notification.js";
 import channels from "./channels/index.js";
 import type Channel from "./channel.js";
 import type { StreamEventEmitter, StreamMessages } from "./types.js";
-import { Converter } from "@cutls/megalodon";
+import { Converter } from "@calckey/megalodon";
 import { getClient } from "../mastodon/ApiMastodonCompatibleService.js";
 import { toTextWithReaction } from "../mastodon/endpoints/timeline.js";
 

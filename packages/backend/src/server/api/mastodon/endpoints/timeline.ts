@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import megalodon, { Entity, MegalodonInterface } from "@cutls/megalodon";
+import megalodon, { Entity, MegalodonInterface } from "@calckey/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { statusModel } from "./status.js";
 import Autolinker from "autolinker";

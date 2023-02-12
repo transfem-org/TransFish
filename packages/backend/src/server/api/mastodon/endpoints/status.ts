@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import megalodon, { MegalodonInterface } from "@cutls/megalodon";
+import megalodon, { MegalodonInterface } from "@calckey/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import fs from "fs";
 import { pipeline } from "node:stream";

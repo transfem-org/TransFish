@@ -1,4 +1,4 @@
-import { Entity } from "@cutls/megalodon";
+import { Entity } from "@calckey/megalodon";
 // TODO: add calckey features
 export function getInstance(response: Entity.Instance) {
 	return {
