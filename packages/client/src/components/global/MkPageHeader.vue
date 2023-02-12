@@ -7,7 +7,7 @@
 		<div v-if="!hideTitle" class="titleContainer" @click="showTabsPopup">
 			<MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
 				<i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
-	
+
 				<div class="title">
 					<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
 					<div v-else-if="metadata.title && !(tabs != null && tabs.length > 0 && narrow)" class="title">{{ metadata.title }}</div>
@@ -31,284 +31,226 @@
 		</div>
 	</div>
 </template>
-	
+
 <script lang="ts" setup>
-	import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick, reactive } from 'vue';
-	import tinycolor from 'tinycolor2';
-	import { popupMenu } from '@/os';
-	import { scrollToTop } from '@/scripts/scroll';
-	import { i18n } from '@/i18n';
-	import { globalEvents } from '@/events';
-	import { deviceKind } from '@/scripts/device-kind';
-	import { isTouchUsing } from '@/scripts/touch';
-	import { injectPageMetadata } from '@/scripts/page-metadata';
-	import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
-	
-	type Tab = {
-		key?: string | null;
-		title: string;
-		icon?: string;
-		iconOnly?: boolean;
-		onClick?: (ev: MouseEvent) => void;
-	};
-	
-	const props = defineProps<{
-		tabs?: Tab[];
-		tab?: string;
-		actions?: {
-			text: string;
-			icon: string;
-			handler: (ev: MouseEvent) => void;
-		}[];
-		thin?: boolean;
-		displayMyAvatar?: boolean;
-	}>();
-	
-	const emit = defineEmits<{
-		(ev: 'update:tab', key: string);
-	}>();
-	
-	const metadata = injectPageMetadata();
-	
-	const hideTitle = inject('shouldOmitHeaderTitle', false);
-	const thin_ = props.thin || inject('shouldHeaderThin', false);
-	
-	const el = $ref<HTMLElement | null>(null);
-	const tabRefs = {};
-	const tabHighlightEl = $ref<HTMLElement | null>(null);
-	const tabsEl = $ref<HTMLElement | null>(null);
-	const bg = ref(null);
-	let narrow = $ref(false);
-	const height = ref(0);
-	const hasTabs = $computed(() => props.tabs && props.tabs.length > 0);
-	const hasActions = $computed(() => props.actions && props.actions.length > 0);
-	const show = $computed(() => {
-		return !hideTitle || hasTabs || hasActions;
-	});
-	
-	const openAccountMenu = (ev: MouseEvent) => {
-		openAccountMenu_({
-			withExtraOperation: true,
-		}, ev);
-	};
-	
-	const showTabsPopup = (ev: MouseEvent) => {
-		if (!hasTabs) return;
-		if (!narrow) return;
+import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick, reactive } from 'vue';
+import tinycolor from 'tinycolor2';
+import { popupMenu } from '@/os';
+import { scrollToTop } from '@/scripts/scroll';
+import { globalEvents } from '@/events';
+import { deviceKind } from '@/scripts/device-kind';
+import { isTouchUsing } from '@/scripts/touch';
+import { injectPageMetadata } from '@/scripts/page-metadata';
+import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
+
+type Tab = {
+	key?: string | null;
+	title: string;
+	icon?: string;
+	iconOnly?: boolean;
+	onClick?: (ev: MouseEvent) => void;
+};
+
+const props = defineProps<{
+	tabs?: Tab[];
+	tab?: string;
+	actions?: {
+		text: string;
+		icon: string;
+		handler: (ev: MouseEvent) => void;
+	}[];
+	thin?: boolean;
+	displayMyAvatar?: boolean;
+}>();
+
+const emit = defineEmits<{
+	(ev: 'update:tab', key: string);
+}>();
+
+const metadata = injectPageMetadata();
+
+const hideTitle = inject('shouldOmitHeaderTitle', false);
+const thin_ = props.thin || inject('shouldHeaderThin', false);
+
+const el = $ref<HTMLElement | null>(null);
+const tabRefs = {};
+const tabHighlightEl = $ref<HTMLElement | null>(null);
+const tabsEl = $ref<HTMLElement | null>(null);
+const bg = ref(null);
+let narrow = $ref(false);
+const height = ref(0);
+const hasTabs = $computed(() => props.tabs && props.tabs.length > 0);
+const hasActions = $computed(() => props.actions && props.actions.length > 0);
+const show = $computed(() => {
+	return !hideTitle || hasTabs || hasActions;
+});
+
+const openAccountMenu = (ev: MouseEvent) => {
+	openAccountMenu_({
+		withExtraOperation: true,
+	}, ev);
+};
+
+const showTabsPopup = (ev: MouseEvent) => {
+	if (!hasTabs) return;
+	if (!narrow) return;
+	ev.preventDefault();
+	ev.stopPropagation();
+	const menu = props.tabs.map(tab => ({
+		text: tab.title,
+		icon: tab.icon,
+		active: tab.key != null && tab.key === props.tab,
+		action: (ev) => {
+			onTabClick(tab, ev);
+		},
+	}));
+	popupMenu(menu, ev.currentTarget ?? ev.target);
+};
+
+const preventDrag = (ev: TouchEvent) => {
+	ev.stopPropagation();
+};
+
+const onClick = () => {
+	scrollToTop(el, { behavior: 'smooth' });
+};
+
+function onTabMousedown(tab: Tab, ev: MouseEvent): void {
+	// ユーザビリティの観点からmousedown時にはonClickは呼ばない
+	if (tab.key) {
+		emit('update:tab', tab.key);
+	}
+}
+
+function onTabClick(tab: Tab, ev: MouseEvent): void {
+	if (tab.onClick) {
 		ev.preventDefault();
 		ev.stopPropagation();
-		const menu = props.tabs.map(tab => ({
-			text: tab.title,
-			icon: tab.icon,
-			active: tab.key != null && tab.key === props.tab,
-			action: (ev) => {
-				onTabClick(tab, ev);
-			},
-		}));
-		popupMenu(menu, ev.currentTarget ?? ev.target);
-	};
-	
-	const preventDrag = (ev: TouchEvent) => {
-		ev.stopPropagation();
-	};
-	
-	const onClick = () => {
-		scrollToTop(el, { behavior: 'smooth' });
-	};
-	
-	function onTabMousedown(tab: Tab, ev: MouseEvent): void {
-		// ユーザビリティの観点からmousedown時にはonClickは呼ばない
-		if (tab.key) {
-			emit('update:tab', tab.key);
-		}
+		tab.onClick(ev);
 	}
-	
-	function onTabClick(tab: Tab, ev: MouseEvent): void {
-		if (tab.onClick) {
-			ev.preventDefault();
-			ev.stopPropagation();
-			tab.onClick(ev);
-		}
-		if (tab.key) {
-			emit('update:tab', tab.key);
-		}
+	if (tab.key) {
+		emit('update:tab', tab.key);
 	}
-	
-	const calcBg = () => {
-		const rawBg = metadata?.bg || 'var(--bg)';
-		const tinyBg = tinycolor(rawBg.startsWith('var(') ? getComputedStyle(document.documentElement).getPropertyValue(rawBg.slice(4, -1)) : rawBg);
-		tinyBg.setAlpha(0.85);
-		bg.value = tinyBg.toRgbString();
-	};
-	
-	let ro: ResizeObserver | null;
-	
-	onMounted(() => {
-		calcBg();
-		globalEvents.on('themeChanged', calcBg);
-	
-		watch(() => [props.tab, props.tabs], () => {
-			nextTick(() => {
-				const tabEl = tabRefs[props.tab];
-				if (tabEl && tabHighlightEl) {
-					// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
-					// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
-					tabEl.addEventListener("transitionend", () => {
-						const parentRect = tabsEl.getBoundingClientRect();
-						const rect = tabEl.getBoundingClientRect();
-						const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
-						tabHighlightEl.style.width = rect.width + 'px';
-						tabHighlightEl.style.left = left + 'px';
-						tabsEl?.scrollTo({left: left - 80, behavior: "smooth"});
-					})
-				}
-			});
-		}, {
-			immediate: true,
+}
+
+const calcBg = () => {
+	const rawBg = metadata?.bg || 'var(--bg)';
+	const tinyBg = tinycolor(rawBg.startsWith('var(') ? getComputedStyle(document.documentElement).getPropertyValue(rawBg.slice(4, -1)) : rawBg);
+	tinyBg.setAlpha(0.85);
+	bg.value = tinyBg.toRgbString();
+};
+
+let ro: ResizeObserver | null;
+
+onMounted(() => {
+	calcBg();
+	globalEvents.on('themeChanged', calcBg);
+
+	watch(() => [props.tab, props.tabs], () => {
+		nextTick(() => {
+			const tabEl = tabRefs[props.tab];
+			if (tabEl && tabHighlightEl) {
+				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
+				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
+				tabEl.addEventListener("transitionend", () => {
+					const parentRect = tabsEl.getBoundingClientRect();
+					const rect = tabEl.getBoundingClientRect();
+					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
+					tabHighlightEl.style.width = rect.width + 'px';
+					tabHighlightEl.style.left = left + 'px';
+					tabsEl?.scrollTo({left: left - 80, behavior: "smooth"});
+				})
+			}
 		});
-	
-		if (el && el.parentElement) {
-			narrow = el.parentElement.offsetWidth < 500;
-			ro = new ResizeObserver((entries, observer) => {
-				if (el.parentElement && document.body.contains(el)) {
-					narrow = el.parentElement.offsetWidth < 500;
-				}
-			});
-			ro.observe(el.parentElement);
-		}
+	}, {
+		immediate: true,
 	});
-	
-	onUnmounted(() => {
-		globalEvents.off('themeChanged', calcBg);
-		if (ro) ro.disconnect();
-	});
+
+	if (el && el.parentElement) {
+		narrow = el.parentElement.offsetWidth < 500;
+		ro = new ResizeObserver((entries, observer) => {
+			if (el.parentElement && document.body.contains(el)) {
+				narrow = el.parentElement.offsetWidth < 500;
+			}
+		});
+		ro.observe(el.parentElement);
+	}
+});
+
+onUnmounted(() => {
+	globalEvents.off('themeChanged', calcBg);
+	if (ro) ro.disconnect();
+});
 </script>
-	
+
 <style lang="scss" scoped>
-	.fdidabkb {
-		--height: 55px;
-		display: flex;
-		width: 100%;
-		-webkit-backdrop-filter: var(--blur, blur(15px));
-		backdrop-filter: var(--blur, blur(15px));
-		border-bottom: solid 0.5px var(--divider);
-		contain: strict;
-		height: var(--height);
-	
-		&.thin {
-			--height: 45px;
-	
-			> .buttons {
-				> .button {
-					font-size: 0.9em;
-				}
-			}
-		}
-	
-		&.slim {
-			> .titleContainer {
-				flex: 1;
-				margin: 0 auto;
-	
-				> *:first-child {
-					margin-left: auto;
-				}
-	
-				> *:last-child {
-					margin-right: auto;
-				}
-			}
-			> .tabs {
-				padding-inline: 12px;
-				mask: linear-gradient(to right, black 80%, transparent);
-				-webkit-mask: linear-gradient(to right, black 80%, transparent);
-				scrollbar-width: none;
-				&::-webkit-scrollbar {
-					display: none;
-				}
-				&::after { // Force right padding
-					content: "";
-					display: inline-block;
-					min-width: 20%;
-				}
-				> .tab {
-					&:not(.active) > .title {
-						font-size: 0;
-						opacity: 0;
-						margin-inline: 0;
-						transition: font-size .2s, opacity .1s;
-					}
-				}
-			}
-		}
-	
+.fdidabkb {
+	--height: 55px;
+	display: flex;
+	width: 100%;
+	-webkit-backdrop-filter: var(--blur, blur(15px));
+	backdrop-filter: var(--blur, blur(15px));
+	border-bottom: solid 0.5px var(--divider);
+	contain: strict;
+	height: var(--height);
+
+	&.thin {
+		--height: 45px;
+
 		> .buttons {
-			--margin: 8px;
-			display: flex;
-			align-items: center;
-			height: var(--height);
-			margin: 0 var(--margin);
-	
-			&.left {
-				margin-right: auto;
-	
-				> .avatar {
-					$size: 32px;
-					display: inline-block;
-					width: $size;
-					height: $size;
-					vertical-align: bottom;
-					margin: 0 8px;
-					pointer-events: none;
-				}
+			> .button {
+				font-size: 0.9em;
 			}
-	
-			&.right {
+		}
+	}
+
+	&.slim {
+		> .titleContainer {
+			flex: 1;
+			margin: 0 auto;
+
+			> *:first-child {
 				margin-left: auto;
 			}
-	
-			&:empty {
+
+			> *:last-child {
+				margin-right: auto;
+			}
+		}
+		> .tabs {
+			padding-inline: 12px;
+			mask: linear-gradient(to right, black 80%, transparent);
+			-webkit-mask: linear-gradient(to right, black 80%, transparent);
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
 				display: none;
 			}
-	
-			> .button {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: calc(var(--height) - (var(--margin) * 2));
-				width: calc(var(--height) - (var(--margin) * 2));
-				box-sizing: border-box;
-				position: relative;
-				border-radius: 5px;
-	
-				&:hover {
-					background: rgba(0, 0, 0, 0.05);
-				}
-	
-				&.highlighted {
-					color: var(--accent);
-				}
+			&::after { // Force right padding
+				content: "";
+				display: inline-block;
+				min-width: 20%;
 			}
-	
-			> .fullButton {
-				& + .fullButton {
-					margin-left: 12px;
+			> .tab {
+				&:not(.active) > .title {
+					font-size: 0;
+					opacity: 0;
+					margin-inline: 0;
+					transition: font-size .2s, opacity .1s;
 				}
 			}
 		}
-	
-		> .titleContainer {
-			display: flex;
-			align-items: center;
-			max-width: 400px;
-			overflow: auto;
-			white-space: nowrap;
-			text-align: left;
-			font-weight: bold;
-			flex-shrink: 0;
-			margin-left: 24px;
-			margin-right: 1rem;
-	
+	}
+
+	> .buttons {
+		--margin: 8px;
+		display: flex;
+		align-items: center;
+		height: var(--height);
+		margin: 0 var(--margin);
+
+		&.left {
+			margin-right: auto;
+
 			> .avatar {
 				$size: 32px;
 				display: inline-block;
@@ -318,86 +260,143 @@
 				margin: 0 8px;
 				pointer-events: none;
 			}
-	
-			> .icon {
-				margin-right: 8px;
-				width: 16px;
-				text-align: center;
-				transform: translate(0em);
+		}
+
+		&.right {
+			margin-left: auto;
+		}
+
+		&:empty {
+			display: none;
+		}
+
+		> .button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: calc(var(--height) - (var(--margin) * 2));
+			width: calc(var(--height) - (var(--margin) * 2));
+			box-sizing: border-box;
+			position: relative;
+			border-radius: 5px;
+
+			&:hover {
+				background: rgba(0, 0, 0, 0.05);
 			}
-	
-			> .title {
-				min-width: 0;
+
+			&.highlighted {
+				color: var(--accent);
+			}
+		}
+
+		> .fullButton {
+			& + .fullButton {
+				margin-left: 12px;
+			}
+		}
+	}
+
+	> .titleContainer {
+		display: flex;
+		align-items: center;
+		max-width: 400px;
+		overflow: auto;
+		white-space: nowrap;
+		text-align: left;
+		font-weight: bold;
+		flex-shrink: 0;
+		margin-left: 24px;
+		margin-right: 1rem;
+
+		> .avatar {
+			$size: 32px;
+			display: inline-block;
+			width: $size;
+			height: $size;
+			vertical-align: bottom;
+			margin: 0 8px;
+			pointer-events: none;
+		}
+
+		> .icon {
+			margin-right: 8px;
+			width: 16px;
+			text-align: center;
+			transform: translate(0em);
+		}
+
+		> .title {
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			line-height: 1.1;
+
+			> .subtitle {
+				opacity: 0.6;
+				font-size: 0.8em;
+				font-weight: normal;
+				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				white-space: nowrap;
-				line-height: 1.1;
-	
-				> .subtitle {
-					opacity: 0.6;
-					font-size: 0.8em;
-					font-weight: normal;
-					white-space: nowrap;
-					overflow: hidden;
-					text-overflow: ellipsis;
-	
-					&.activeTab {
-						text-align: center;
-	
-						> .chevron {
-							display: inline-block;
-							margin-left: 6px;
-						}
+
+				&.activeTab {
+					text-align: center;
+
+					> .chevron {
+						display: inline-block;
+						margin-left: 6px;
 					}
 				}
 			}
 		}
-	
-		> .tabs {
+	}
+
+	> .tabs {
+		position: relative;
+		width: 100%;
+		font-size: 1em;
+		overflow-x: auto;
+		white-space: nowrap;
+
+		> .tab {
+			display: inline-flex;
+			align-items: center;
 			position: relative;
-			width: 100%;
-			font-size: 1em;
-			overflow-x: auto;
-			white-space: nowrap;
-	
-			> .tab {
-				display: inline-flex;
-				align-items: center;
-				position: relative;
-				padding: 0 10px;
-				height: 100%;
-				font-weight: normal;
-				opacity: 0.7;
-				transition: color .2s, opacity .2s;
-	
-				&:hover {
-					opacity: 1;
-				}
-	
-				&.active {
-					opacity: 1;
-					color: var(--accent);
-					font-weight: 600;
-				}
-	
-				> .icon + .title {
-					margin-left: 8px;
-				}
-				> .title {
-					transition: font-size .2s, opacity .2s .15s;
-				}
+			padding: 0 10px;
+			height: 100%;
+			font-weight: normal;
+			opacity: 0.7;
+			transition: color .2s, opacity .2s;
+
+			&:hover {
+				opacity: 1;
 			}
-	
-			> .highlight {
-				position: absolute;
-				bottom: 0;
-				height: 3px;
-				background: var(--accent);
-				border-radius: 999px;
-				transition: width .2s, left .2s;
-				transition-timing-function: cubic-bezier(0,0,0,1.2);
-				pointer-events: none;
+
+			&.active {
+				opacity: 1;
+				color: var(--accent);
+				font-weight: 600;
+			}
+
+			> .icon + .title {
+				margin-left: 8px;
+			}
+			> .title {
+				transition: font-size .2s, opacity .2s .15s;
 			}
 		}
+
+		> .highlight {
+			position: absolute;
+			bottom: 0;
+			height: 3px;
+			background: var(--accent);
+			border-radius: 999px;
+			transition: width .2s, left .2s;
+			transition-timing-function: cubic-bezier(0,0,0,1.2);
+			pointer-events: none;
+		}
 	}
+}
 </style>
