@@ -50,32 +50,8 @@ const sounds = ref({
 	channel: ColdDeviceStorage.get('sound_channel'),
 });
 
-const soundsTypes = [
-	null,
-	'syuilo/up',
-	'syuilo/down',
-	'syuilo/pope1',
-	'syuilo/pope2',
-	'syuilo/waon',
-	'syuilo/popo',
-	'syuilo/triple',
-	'syuilo/poi1',
-	'syuilo/poi2',
-	'syuilo/pirori',
-	'syuilo/pirori-wet',
-	'syuilo/pirori-square-wet',
-	'syuilo/square-pico',
-	'syuilo/reverved',
-	'syuilo/ryukyu',
-	'syuilo/kick',
-	'syuilo/snare',
-	'syuilo/queue-jammed',
-	'aisha/1',
-	'aisha/2',
-	'aisha/3',
-	'noizenecio/kick_gaba',
-	'noizenecio/kick_gaba2',
-];
+const soundsTypes = await os.api('get-sounds')
+
 
 async function edit(type) {
 	const { canceled, result } = await os.form(i18n.t('_sfx.' + type), {

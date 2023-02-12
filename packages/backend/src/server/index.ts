@@ -20,7 +20,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
-import megalodon, { MegalodonInterface } from "@cutls/megalodon";
+import megalodon, { MegalodonInterface } from "@calckey/megalodon";
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
 import wellKnown from "./well-known.js";
@@ -72,9 +72,11 @@ app.use(mount("/proxy", proxyServer));
 const router = new Router();
 const mastoRouter = new Router();
 
-mastoRouter.use(koaBody({ 
-	urlencoded: true
-}));
+mastoRouter.use(
+	koaBody({
+		urlencoded: true,
+	}),
+);
 
 // Routing
 router.use(activityPub.routes());
@@ -159,9 +161,9 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 			ctx.body = { error: "Invalid code" };
 			return;
 		}
-	} 
+	}
 	if (client_id instanceof Array) {
-		client_id = client_id.toString();;
+		client_id = client_id.toString();
 	} else if (!client_id) {
 		client_id = null;
 	}
@@ -169,7 +171,7 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 		const atData = await client.fetchAccessToken(
 			client_id,
 			body.client_secret,
-			m ? m[0] : '',
+			m ? m[0] : "",
 		);
 		ctx.body = {
 			access_token: atData.accessToken,

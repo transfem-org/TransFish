@@ -37,7 +37,10 @@ export const paramDef = {
 	type: "object",
 	properties: {
 		name: { type: "string", minLength: 1, maxLength: 100 },
-		src: { type: "string", enum: ["home", "all", "users", "list", "group"] },
+		src: {
+			type: "string",
+			enum: ["home", "all", "users", "list", "group", "instances"],
+		},
 		userListId: { type: "string", format: "misskey:id", nullable: true },
 		userGroupId: { type: "string", format: "misskey:id", nullable: true },
 		keywords: {
@@ -64,6 +67,12 @@ export const paramDef = {
 				type: "string",
 			},
 		},
+		instances: {
+			type: "array",
+			items: {
+				type: "string",
+			},
+		},
 		caseSensitive: { type: "boolean" },
 		withReplies: { type: "boolean" },
 		withFile: { type: "boolean" },
@@ -75,6 +84,7 @@ export const paramDef = {
 		"keywords",
 		"excludeKeywords",
 		"users",
+		"instances",
 		"caseSensitive",
 		"withReplies",
 		"withFile",
@@ -118,6 +128,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		keywords: ps.keywords,
 		excludeKeywords: ps.excludeKeywords,
 		users: ps.users,
+		instances: ps.instances,
 		caseSensitive: ps.caseSensitive,
 		withReplies: ps.withReplies,
 		withFile: ps.withFile,

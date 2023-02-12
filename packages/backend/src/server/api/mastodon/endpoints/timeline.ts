@@ -1,13 +1,14 @@
 import Router from "@koa/router";
-import megalodon, { Entity, MegalodonInterface } from "@cutls/megalodon";
+import megalodon, { Entity, MegalodonInterface } from "@calckey/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { statusModel } from "./status.js";
 import Autolinker from "autolinker";
 import { ParsedUrlQuery } from "querystring";
 
 export function toLimitToInt(q: ParsedUrlQuery) {
+	let object: any = q;
 	if (q.limit)
-		if (typeof q.limit === "string") q.limit = parseInt(q.limit, 10).toString();
+		if (typeof q.limit === "string") object.limit = parseInt(q.limit, 10);
 	return q;
 }
 

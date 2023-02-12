@@ -122,25 +122,25 @@ export async function createNote(
 	}
 
 	logger.debug(`Note fetched: ${JSON.stringify(note, null, 2)}`);
-
 	logger.info(`Creating the Note: ${note.id}`);
 
 	// Skip if note is made before 2007 (1yr before Fedi was created)
 	// OR skip if note is made 3 days in advance
 	if (note.published) {
-		const DateChecker = new Date(note.published)
-		const FutureCheck = new Date()
-		FutureCheck.setDate(FutureCheck.getDate() + 3) // Allow some wiggle room for misconfigured hosts
+		const DateChecker = new Date(note.published);
+		const FutureCheck = new Date();
+		FutureCheck.setDate(FutureCheck.getDate() + 3); // Allow some wiggle room for misconfigured hosts
 		if (DateChecker.getFullYear() < 2007) {
-			logger.warn('Note somehow made before Activitypub was created; discarding');
+			logger.warn(
+				"Note somehow made before Activitypub was created; discarding",
+			);
 			return null;
 		}
 		if (DateChecker > FutureCheck) {
-			logger.warn('Note somehow made after today; discarding')
+			logger.warn("Note somehow made after today; discarding");
 			return null;
 		}
 	}
-
 
 	// Fetch author
 	const actor = (await resolvePerson(
