@@ -1,6 +1,10 @@
 import * as mfm from "mfm-js";
 import es from "../../db/elasticsearch.js";
-import { publishMainStream, publishNotesStream, publishNoteStream } from "@/services/stream.js";
+import {
+	publishMainStream,
+	publishNotesStream,
+	publishNoteStream,
+} from "@/services/stream.js";
 import DeliverManager from "@/remote/activitypub/deliver-manager.js";
 import renderNote from "@/remote/activitypub/renderer/note.js";
 import renderCreate from "@/remote/activitypub/renderer/create.js";

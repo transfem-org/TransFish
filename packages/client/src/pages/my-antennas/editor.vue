@@ -142,7 +142,7 @@ async function deleteAntenna() {
 function addUser() {
 	os.selectUser().then(user => {
 		users = users.trim();
-		users += '\n@' + Acct.toString(user as any);
+		users += `\n@${Acct.toString(user as any)}`;
 		users = users.trim();
 	});
 }

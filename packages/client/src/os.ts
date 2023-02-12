@@ -548,7 +548,9 @@ export async function selectUser() {
 export async function selectInstance(): Promise<Misskey.entities.Instance> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkInstanceSelectDialog.vue")),
+			defineAsyncComponent(
+				() => import("@/components/MkInstanceSelectDialog.vue"),
+			),
 			{},
 			{
 				ok: (instance) => {
