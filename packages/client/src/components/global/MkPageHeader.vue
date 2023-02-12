@@ -152,14 +152,16 @@ onMounted(() => {
 			if (tabEl && tabHighlightEl) {
 				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
 				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
-				tabEl.addEventListener("transitionend", () => {
+				function transition() {
 					const parentRect = tabsEl.getBoundingClientRect();
 					const rect = tabEl.getBoundingClientRect();
 					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
 					tabHighlightEl.style.width = rect.width + 'px';
 					tabHighlightEl.style.left = left + 'px';
 					tabsEl?.scrollTo({left: left - 80, behavior: "smooth"});
-				})
+					tabEl.removeEventListener("transitionend", transition);
+				}
+				tabEl.addEventListener("transitionend", transition);
 			}
 		});
 	}, {
