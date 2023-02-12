@@ -24,8 +24,10 @@ const paginationForLocal = {
 const paginationForRemote = {
 	endpoint: 'notes/featured' as const,
 	limit: 10,
-	origin: 'remote',
 	offsetMode: true,
+	params: {
+		origin: 'remote',
+	}
 }
 
 // const paginationForRemote = {
