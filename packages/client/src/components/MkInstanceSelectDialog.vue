@@ -50,11 +50,14 @@ let instances: Instance[] = $ref([]);
 let selected: Instance | null = $ref(null);
 let dialogEl = $ref<InstanceType<typeof XModalWindow>>();
 
+let searchOrderLatch = 0;
 const search = () => {
 	if (hostname === '') {
 		instances = [];
 		return;
 	}
+
+	const searchId = ++searchOrderLatch;
 	os.api('federation/instances', {
 		host: hostname,
 		limit: 10,
@@ -62,6 +65,7 @@ const search = () => {
 		suspended: false,
 		sort: '+pubSub',
 	}).then(_instances => {
+		if (searchId !== searchOrderLatch) return;
 		instances = _instances.map(x => ({
 			id: x.id,
 			host: x.host,
