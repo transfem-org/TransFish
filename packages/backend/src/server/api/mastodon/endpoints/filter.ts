@@ -1,4 +1,4 @@
-import megalodon, { MegalodonInterface } from "@cutls/megalodon";
+import megalodon, { MegalodonInterface } from "@calckey/megalodon";
 import Router from "@koa/router";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 

@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import megalodon, { MegalodonInterface } from "@cutls/megalodon";
+import megalodon, { MegalodonInterface } from "@calckey/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import fs from "fs";
 import { pipeline } from "node:stream";
@@ -435,7 +435,7 @@ export function statusModel(
 			id: "9arzuvv0sw",
 			username: "ReactionBot",
 			acct: "ReactionBot",
-			display_name: "ReactionOfThisPost",
+			display_name: "ReactionsToThisPost",
 			locked: false,
 			created_at: now,
 			followers_count: 0,

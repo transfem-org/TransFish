@@ -61,10 +61,12 @@ router.use(
 	}),
 );
 
-mastoRouter.use(koaBody({ 
-	multipart: true,
-	urlencoded: true
-}));
+mastoRouter.use(
+	koaBody({
+		multipart: true,
+		urlencoded: true,
+	}),
+);
 
 apiMastodonCompatible(mastoRouter);
 
