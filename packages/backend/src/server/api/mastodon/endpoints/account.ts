@@ -312,7 +312,7 @@ export function apiAccountMastodon(router: Router): void {
 			console.error(e);
 			console.error(e.response.data);
 			ctx.status = 401;
-			ctx.body = { ...e.response.data, ...{user: users?.toString()} };
+			ctx.body = { ...e.response.data, ...{user: users ? users : 'null'} };
 		}
 	});
 	router.get("/v1/bookmarks", async (ctx) => {
