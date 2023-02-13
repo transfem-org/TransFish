@@ -41,7 +41,7 @@
 import { onMounted, watch } from 'vue';
 import * as misskey from 'calckey-js';
 import MkModalWindow from '@/components/MkModalWindow.vue';
-import MkReactionIcon from '@/components/MkReactionIcon.vue';
+import XReactionIcon from '@/components/MkReactionIcon.vue';
 import MkUserCardMini from '@/components/MkUserCardMini.vue';
 import { userPage } from '@/filters/user';
 import { i18n } from '@/i18n';
