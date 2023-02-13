@@ -1,4 +1,7 @@
+import { Users } from "@/models/index.js";
+import { resolveUser } from "@/remote/resolve-user.js";
 import Router from "@koa/router";
+import { FindOptionsWhere, IsNull } from "typeorm";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { toLimitToInt } from "./timeline.js";
 
@@ -68,9 +71,22 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getAccount(
-				`@${(ctx.query.acct || "").toString()}`,
-			);
+			let userArray = ctx.query.acct?.toString().split("@");
+			let userid;
+			if (userArray === undefined) {
+				ctx.status = 401;
+				ctx.body = { error: "no user specified"};
+				return;
+			}
+			if (userArray.length === 1) {
+				const q: FindOptionsWhere<User> = { usernameLower: userArray[0].toLowerCase(), host: IsNull() };
+
+				const user = await Users.findOneBy(q);
+				userid = user?.id;
+			} else {
+				userid = (await resolveUser(userArray[0], userArray[1])).id;
+			}
+			const data = await client.getAccount(userid ? userid : '');
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
