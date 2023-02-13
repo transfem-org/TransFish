@@ -12,15 +12,6 @@ export function limitToInt(q: ParsedUrlQuery) {
 	return q;
 }
 
-export function argsToBools(q: ParsedUrlQuery) {
-	let object: any = q;
-	if (q.only_media)
-		if (typeof q.only_media === "string") object.only_media = q.only_media.toLowerCase() === "true";
-	if (q.exclude_replies)
-		if (typeof q.exclude_replies === "string") object.exclude_replies = q.exclude_replies.toLowerCase() === "true";
-	return q;
-}
-
 export function toTextWithReaction(status: Entity.Status[], host: string) {
 	return status.map((t) => {
 		if (!t) return statusModel(null, null, [], "no content");

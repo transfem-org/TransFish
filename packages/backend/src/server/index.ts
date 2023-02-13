@@ -30,8 +30,58 @@ import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
 import { koaBody } from "koa-body";
+import { ParsedUrlQuery } from "node:querystring";
 
 export const serverLogger = new Logger("server", "gray", false);
+
+const stringToBoolean = (stringValue: string) => {
+	switch(stringValue?.toLowerCase()?.trim()){
+			case "true": 
+			case "yes": 
+			case "1": 
+				return true;
+
+			case "false": 
+			case "no": 
+			case "0": 
+			case null: 
+			case undefined:
+				return false;
+
+			default: 
+				return JSON.parse(stringValue);
+	}
+}
+
+const objectParser = (object: Object): Object => {
+	const newObject: any = {};
+
+	for (const key in object) {
+		const value = object[key];
+
+		if (typeof value === "object") {
+			newObject[key] = objectParser(value);
+		} else if (typeof value === "string") {
+			newObject[key] = stringToBoolean(value);
+		}
+	}
+
+	return newObject;
+};
+
+const queryParser = (object: ParsedUrlQuery): ParsedUrlQuery => {
+	const newObject = object;
+
+	for (const key in object) {
+		const value = object[key];
+
+		if (typeof value === "string") {
+			newObject[key] = stringToBoolean(value);
+		}
+	}
+
+	return newObject;
+};
 
 // Init app
 const app = new Koa();
@@ -80,6 +130,7 @@ mastoRouter.use(
 
 mastoRouter.use(async (ctx, next) => {
 	if (ctx.request.query) {
+		ctx.request.query = queryParser(ctx.request.query)
 		if (!ctx.request.body || Object.keys(ctx.request.body).length === 0) {
 			ctx.request.body = ctx.request.query
 		} else {
