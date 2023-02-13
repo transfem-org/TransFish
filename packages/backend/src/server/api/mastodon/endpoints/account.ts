@@ -311,8 +311,9 @@ export function apiAccountMastodon(router: Router): void {
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
+			e.response.data.user = users ? users : 'null';
 			ctx.status = 401;
-			ctx.body = { ...e.response.data, ...{user: users ? users : 'null'} };
+			ctx.body = e.response.data;
 		}
 	});
 	router.get("/v1/bookmarks", async (ctx) => {
