@@ -15,9 +15,11 @@ export function limitToInt(q: ParsedUrlQuery) {
 export function argsToBools(q: ParsedUrlQuery) {
 	let object: any = q;
 	if (q.only_media)
-		if (typeof q.only_media === "string") object.only_media = q.only_media.toLowerCase() === "true";
+		if (typeof q.only_media === "string")
+			object.only_media = q.only_media.toLowerCase() === "true";
 	if (q.exclude_replies)
-		if (typeof q.exclude_replies === "string") object.exclude_replies = q.exclude_replies.toLowerCase() === "true";
+		if (typeof q.exclude_replies === "string")
+			object.exclude_replies = q.exclude_replies.toLowerCase() === "true";
 	return q;
 }
 
@@ -143,9 +145,7 @@ export function apiTimelineMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getConversationTimeline(
-				limitToInt(ctx.query),
-			);
+			const data = await client.getConversationTimeline(limitToInt(ctx.query));
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);

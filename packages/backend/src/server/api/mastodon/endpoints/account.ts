@@ -75,18 +75,21 @@ export function apiAccountMastodon(router: Router): void {
 			let userid;
 			if (userArray === undefined) {
 				ctx.status = 401;
-				ctx.body = { error: "no user specified"};
+				ctx.body = { error: "no user specified" };
 				return;
 			}
 			if (userArray.length === 1) {
-				const q: FindOptionsWhere<User> = { usernameLower: userArray[0].toLowerCase(), host: IsNull() };
+				const q: FindOptionsWhere<User> = {
+					usernameLower: userArray[0].toLowerCase(),
+					host: IsNull(),
+				};
 
 				const user = await Users.findOneBy(q);
 				userid = user?.id;
 			} else {
 				userid = (await resolveUser(userArray[0], userArray[1])).id;
 			}
-			const data = await client.getAccount(userid ? userid : '');
+			const data = await client.getAccount(userid ? userid : "");
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
@@ -311,7 +314,7 @@ export function apiAccountMastodon(router: Router): void {
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
-			e.response.data.user = users ? users : 'null';
+			e.response.data.user = users ? users : "null";
 			ctx.status = 401;
 			ctx.body = e.response.data;
 		}
