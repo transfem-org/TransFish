@@ -77,10 +77,12 @@ const type = $computed(() => {
 
 let contentClicking = false;
 
+const focusedElement = document.activeElement;
 const close = () => {
 	if (props.src) props.src.style.pointerEvents = 'auto';
 	showing = false;
 	emit('close');
+	focusedElement.focus();
 };
 
 const onBgClick = () => {
