@@ -308,7 +308,10 @@ export function apiAccountMastodon(router: Router): void {
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
 			users = ids;
 			relationshopModel.id = idsRaw?.toString() || "1";
-			if (!ids) return [relationshopModel];
+			if (!ids) {
+				ctx.body = [relationshopModel];
+				return;
+			}
 			const data = await client.getRelationships(ids);
 			ctx.body = data.data;
 		} catch (e: any) {
