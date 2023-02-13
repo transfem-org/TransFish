@@ -1,7 +1,7 @@
 <template>
 <div tabindex="-1" v-focus>
 	<div
-		ref="itemsEl" v-hotkey="keymap"
+		ref="itemsEl"
 		class="rrevdjwt _popup _shadow"
 		:class="{ center: align === 'center', asDrawer }"
 		:style="{ width: (width && !asDrawer) ? width + 'px' : '', maxHeight: maxHeight ? maxHeight + 'px' : '' }"
@@ -83,12 +83,6 @@ let itemsEl = $ref<HTMLDivElement>();
 let items2: InnerMenuItem[] = $ref([]);
 
 let child = $ref<InstanceType<typeof XChild>>();
-
-let keymap = computed(() => ({
-	'up|k|shift+tab': focusUp,
-	'down|j|tab': focusDown,
-	'esc': close,
-}));
 
 let childShowingItem = $ref<MenuItem | null>();
 
