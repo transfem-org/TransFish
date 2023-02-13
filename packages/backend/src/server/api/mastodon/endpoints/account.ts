@@ -301,12 +301,12 @@ export function apiAccountMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		let users;
 		try {
-			const idsRaw = (ctx.query as any)["id[]"];
+			const idsRaw = ctx.query["id[]"];
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
 			users = ids;
-			relationshopModel.id = idsRaw || "1";
+			relationshopModel.id = idsRaw?.toString() || "1";
 			if (!idsRaw) return [relationshopModel];
-			const data = (await client.getRelationships(ids)) as any;
+			const data = (await client.getRelationships(ids ? ids : [])) as any;
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
