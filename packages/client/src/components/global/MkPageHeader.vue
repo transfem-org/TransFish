@@ -144,6 +144,7 @@ onMounted(() => {
 	calcBg();
 	globalEvents.on('themeChanged', calcBg);
 	
+	
 	watch(() => [props.tab, props.tabs], () => {
 		nextTick(() => {
 			const tabEl = tabRefs[props.tab];
@@ -153,10 +154,14 @@ onMounted(() => {
 				setTimeout(() => {
 					const parentRect = tabsEl.getBoundingClientRect();
 					const rect = tabEl.getBoundingClientRect();
+					const tabSizeX = tabEl.scrollWidth;
 					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
-					tabHighlightEl.style.width = rect.width + 'px';
-					tabHighlightEl.style.left = left + 'px';
-					tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
+					tabEl.style = "--width: " + tabSizeX + "px";
+					tabHighlightEl.style.width = tabSizeX + 'px';
+					tabHighlightEl.style.transform = 'translateX(' + left + 'px)';
+					window.requestAnimationFrame(() => {
+						tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
+					})
 				}, 200);
 			}
 		});
@@ -189,7 +194,6 @@ onUnmounted(() => {
 	-webkit-backdrop-filter: var(--blur, blur(15px));
 	backdrop-filter: var(--blur, blur(15px));
 	border-bottom: solid 0.5px var(--divider);
-	contain: strict;
 	height: var(--height);
 
 	&.thin {
@@ -348,6 +352,7 @@ onUnmounted(() => {
 		font-size: 1em;
 		overflow-x: auto;
 		white-space: nowrap;
+		contain: strict;
 
 		> .tab {
 			display: inline-flex;
@@ -357,7 +362,9 @@ onUnmounted(() => {
 			height: 100%;
 			font-weight: normal;
 			opacity: 0.7;
-			transition: color .2s, opacity .2s;
+			width: 38px;
+			overflow: hidden;
+			transition: color .2s, opacity .2s, width .2s;
 
 			&:hover {
 				opacity: 1;
@@ -367,29 +374,28 @@ onUnmounted(() => {
 				opacity: 1;
 				color: var(--accent);
 				font-weight: 600;
+				width: var(--width);
+			}
+			&:not(.active) > .title {
+				opacity: 0;
 			}
 
 			> .icon + .title {
 				margin-left: 8px;
 			}
 			> .title {
-				transition: font-size .2s, opacity .2s .15s;
-			}
-			&:not(.active) > .title {
-				font-size: 0;
-				opacity: 0;
-				margin-inline: 0;
-				transition: font-size .2s, opacity .1s;
+				transition: font-size .2s, opacity .2s;
 			}
 		}
 
 		> .highlight {
 			position: absolute;
 			bottom: 0;
+			left: 0;
 			height: 3px;
 			background: var(--accent);
 			border-radius: 999px;
-			transition: width .2s, left .2s;
+			transition: width .2s, transform .2s;
 			transition-timing-function: cubic-bezier(0,0,0,1.2);
 			pointer-events: none;
 		}
