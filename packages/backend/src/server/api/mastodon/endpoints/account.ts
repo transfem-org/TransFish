@@ -299,9 +299,11 @@ export function apiAccountMastodon(router: Router): void {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
+		let users;
 		try {
 			const idsRaw = (ctx.query as any)["id[]"];
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
+			users = ids;
 			relationshopModel.id = idsRaw || "1";
 			if (!idsRaw) return [relationshopModel];
 			const data = (await client.getRelationships(ids)) as any;
@@ -310,7 +312,7 @@ export function apiAccountMastodon(router: Router): void {
 			console.error(e);
 			console.error(e.response.data);
 			ctx.status = 401;
-			ctx.body = e.response.data;
+			ctx.body = { ...e.response.data, ...{user: users} };
 		}
 	});
 	router.get("/v1/bookmarks", async (ctx) => {
