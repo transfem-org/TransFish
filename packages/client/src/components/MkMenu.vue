@@ -1,13 +1,13 @@
 <template>
 <div tabindex="-1" v-focus>
-	<FocusTrap v-bind:active="isActive">
-		<div
-			ref="itemsEl"
-			class="rrevdjwt _popup _shadow"
-			:class="{ center: align === 'center', asDrawer }"
-			:style="{ width: (width && !asDrawer) ? width + 'px' : '', maxHeight: maxHeight ? maxHeight + 'px' : '' }"
-			@contextmenu.self="e => e.preventDefault()"
-		>
+	<div
+	ref="itemsEl"
+	class="rrevdjwt _popup _shadow"
+	:class="{ center: align === 'center', asDrawer }"
+	:style="{ width: (width && !asDrawer) ? width + 'px' : '', maxHeight: maxHeight ? maxHeight + 'px' : '' }"
+	@contextmenu.self="e => e.preventDefault()"
+	>
+		<FocusTrap v-bind:active="isActive">
 			<template v-for="(item, i) in items2">
 				<div v-if="item === null" class="divider"></div>
 				<span v-else-if="item.type === 'label'" class="label item">
@@ -49,8 +49,8 @@
 			<span v-if="items2.length === 0" class="none item">
 				<span>{{ i18n.ts.none }}</span>
 			</span>
-		</div>
-	</FocusTrap>
+		</FocusTrap>
+	</div>
 	<div v-if="childMenu" class="child">
 		<XChild ref="child" :items="childMenu" :target-element="childTarget" :root-element="itemsEl" showing @actioned="childActioned"/>
 	</div>
