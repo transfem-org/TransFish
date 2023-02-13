@@ -78,6 +78,17 @@ mastoRouter.use(
 	}),
 );
 
+mastoRouter.use(async (ctx, next) => {
+	if (ctx.request.query) {
+		if (!ctx.request.body || Object.keys(ctx.request.body).length === 0) {
+			ctx.request.body = ctx.request.query
+		} else {
+			ctx.request.body = {...ctx.request.body, ...ctx.request.query}
+		}
+	}
+	await next();
+});
+
 // Routing
 router.use(activityPub.routes());
 router.use(nodeinfo.routes());
