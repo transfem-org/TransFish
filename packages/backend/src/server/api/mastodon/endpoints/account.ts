@@ -308,13 +308,12 @@ export function apiAccountMastodon(router: Router): void {
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
 			users = ids;
 			relationshopModel.id = idsRaw?.toString() || "1";
-			if (!idsRaw) return [relationshopModel];
-			const data = (await client.getRelationships(ids ? ids : [])) as any;
+			if (!ids) return [relationshopModel];
+			const data = await client.getRelationships(ids);
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
-			e.response.data.user = users ? users : "null";
 			ctx.status = 401;
 			ctx.body = e.response.data;
 		}
