@@ -254,6 +254,35 @@ export default defineComponent({
 									style = `transform: ${rotate}(${degrees}deg); transform-origin: center center;`;
 									break;
 								}
+								case "position": {
+									if (!defaultStore.state.advancedMfm) break;
+									const x = parseFloat(token.props.args.x ?? "0");
+									const y = parseFloat(token.props.args.y ?? "0");
+									style = `transform: translateX(${x}em) translateY(${y}em);`;
+									break;
+								}
+								case "scale": {
+									if (!defaultStore.state.advancedMfm) {
+										style = "";
+										break;
+									}
+									const x = Math.min(parseFloat(token.props.args.x ?? "1"), 5);
+									const y = Math.min(parseFloat(token.props.args.y ?? "1"), 5);
+									style = `transform: scale(${x}, ${y});`;
+									break;
+								}
+								case "fg": {
+									let color = token.props.args.color;
+									if (!/^[0-9a-f]{3,6}$/i.test(color)) color = "f00";
+									style = `color: #${color};`;
+									break;
+								}
+								case "bg": {
+									let color = token.props.args.color;
+									if (!/^[0-9a-f]{3,6}$/i.test(color)) color = "f00";
+									style = `background-color: #${color};`;
+									break;
+								}
 							}
 							if (style == null) {
 								return h("span", {}, [
