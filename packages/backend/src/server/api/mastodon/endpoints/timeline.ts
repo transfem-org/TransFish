@@ -5,10 +5,19 @@ import { statusModel } from "./status.js";
 import Autolinker from "autolinker";
 import { ParsedUrlQuery } from "querystring";
 
-export function toLimitToInt(q: ParsedUrlQuery) {
+export function limitToInt(q: ParsedUrlQuery) {
 	let object: any = q;
 	if (q.limit)
 		if (typeof q.limit === "string") object.limit = parseInt(q.limit, 10);
+	return q;
+}
+
+export function argsToBools(q: ParsedUrlQuery) {
+	let object: any = q;
+	if (q.only_media)
+		if (typeof q.only_media === "string") object.only_media = q.only_media.toLowerCase() === "true";
+	if (q.exclude_replies)
+		if (typeof q.exclude_replies === "string") object.exclude_replies = q.exclude_replies.toLowerCase() === "true";
 	return q;
 }
 
@@ -62,8 +71,8 @@ export function apiTimelineMastodon(router: Router): void {
 		try {
 			const query: any = ctx.query;
 			const data = query.local
-				? await client.getLocalTimeline(toLimitToInt(query))
-				: await client.getPublicTimeline(toLimitToInt(query));
+				? await client.getLocalTimeline(limitToInt(query))
+				: await client.getPublicTimeline(limitToInt(query));
 			ctx.body = toTextWithReaction(data.data, ctx.hostname);
 		} catch (e: any) {
 			console.error(e);
@@ -81,7 +90,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.getTagTimeline(
 					ctx.params.hashtag,
-					toLimitToInt(ctx.query),
+					limitToInt(ctx.query),
 				);
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {
@@ -99,7 +108,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.getHomeTimeline(toLimitToInt(ctx.query));
+				const data = await client.getHomeTimeline(limitToInt(ctx.query));
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {
 				console.error(e);
@@ -118,7 +127,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.getListTimeline(
 					ctx.params.listId,
-					toLimitToInt(ctx.query),
+					limitToInt(ctx.query),
 				);
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {
@@ -135,7 +144,7 @@ export function apiTimelineMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getConversationTimeline(
-				toLimitToInt(ctx.query),
+				limitToInt(ctx.query),
 			);
 			ctx.body = data.data;
 		} catch (e: any) {

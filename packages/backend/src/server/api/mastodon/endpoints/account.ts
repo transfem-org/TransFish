@@ -3,7 +3,7 @@ import { resolveUser } from "@/remote/resolve-user.js";
 import Router from "@koa/router";
 import { FindOptionsWhere, IsNull } from "typeorm";
 import { getClient } from "../ApiMastodonCompatibleService.js";
-import { toLimitToInt } from "./timeline.js";
+import { argsToBools, limitToInt } from "./timeline.js";
 
 const relationshopModel = {
 	id: "",
@@ -118,7 +118,7 @@ export function apiAccountMastodon(router: Router): void {
 			try {
 				const data = await client.getAccountStatuses(
 					ctx.params.id,
-					toLimitToInt(ctx.query as any),
+					argsToBools(limitToInt(ctx.query as any)),
 				);
 				ctx.body = data.data;
 			} catch (e: any) {
