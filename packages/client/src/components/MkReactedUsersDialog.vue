@@ -17,10 +17,10 @@
 			<template v-else>
 				<div :class="$style.tabs">
 					<button v-for="reaction in reactions" :key="reaction" :class="[$style.tab, { [$style.tabActive]: tab === reaction }]" class="_button" @click="tab = reaction">
-						<XReactionIcon
+						<MkReactionIcon
 							ref="reactionRef"
 							:reaction="reaction ? reaction.replace(/^:(\w+):$/, ':$1@.:') : reaction"
-							:custom-emojis="reactions"
+							:custom-emojis="note.emojis"
 						/>
 						<span style="margin-left: 4px;">{{ note.reactions[reaction] }}</span>
 					</button>
@@ -41,7 +41,7 @@
 import { onMounted, watch } from 'vue';
 import * as misskey from 'calckey-js';
 import MkModalWindow from '@/components/MkModalWindow.vue';
-import XReactionIcon from '@/components/MkReactionIcon.vue';
+import MkReactionIcon from '@/components/MkReactionIcon.vue';
 import MkUserCardMini from '@/components/MkUserCardMini.vue';
 import { userPage } from '@/filters/user';
 import { i18n } from '@/i18n';
