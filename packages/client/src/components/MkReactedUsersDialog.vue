@@ -17,7 +17,11 @@
 			<template v-else>
 				<div :class="$style.tabs">
 					<button v-for="reaction in reactions" :key="reaction" :class="[$style.tab, { [$style.tabActive]: tab === reaction }]" class="_button" @click="tab = reaction">
-						<MkReactionIcon :reaction="reaction"/>
+						<XReactionIcon
+							ref="reactionRef"
+							:reaction="reaction ? reaction.replace(/^:(\w+):$/, ':$1@.:') : reaction"
+							:custom-emojis="reactions"
+						/>
 						<span style="margin-left: 4px;">{{ note.reactions[reaction] }}</span>
 					</button>
 				</div>
