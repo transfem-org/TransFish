@@ -3,17 +3,6 @@ import VueRouter from "vue-router"
 import { $i, iAmModerator } from "@/account";
 import MkLoading from "@/pages/_loading_.vue";
 import MkError from "@/pages/_error_.vue";
-import { api } from "@/os";
-
-function getGuestTimelineStatus() {
-	api("meta", {
-		detail: false,
-	}).then((meta) => {
-		return meta.enableGuestTimeline;
-	});
-}
-
-const guestTimeline = getGuestTimelineStatus();
 
 const page = (loader: AsyncComponentLoader<any>) =>
 	defineAsyncComponent({
