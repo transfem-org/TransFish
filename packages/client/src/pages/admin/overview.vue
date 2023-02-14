@@ -1,55 +1,55 @@
 <template>
 	<MkSpacer :content-max="1000">
 		<div ref="rootEl" class="edbbcaef">
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Stats</template>
 				<XStats/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Active users</template>
 				<XActiveUsers/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Heatmap</template>
 				<XHeatmap/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Moderators</template>
 				<XModerators/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Federation</template>
 				<XFederation/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Instances</template>
 				<XInstances/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Ap requests</template>
 				<XApRequests/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>New users</template>
 				<XUsers/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Deliver queue</template>
 				<XQueue domain="deliver"/>
-			</MkFoldableSection>
+			</MkFolder>
 
-			<MkFoldableSection class="item">
+			<MkFolder class="item">
 				<template #header>Inbox queue</template>
 				<XQueue domain="inbox"/>
-			</MkFoldableSection>
+			</MkFolder>
 		</div>
 	</MkSpacer>
 </template>
@@ -73,7 +73,7 @@ import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { defaultStore } from '@/store';
 import MkFileListForAdmin from '@/components/MkFileListForAdmin.vue';
-import MkFoldableSection from '@/components/MkFoldableSection.vue';
+import MkFolder from '@/components/MkFolder.vue';
 
 const rootEl = $shallowRef<HTMLElement>();
 let serverInfo: any = $ref(null);
