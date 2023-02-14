@@ -129,6 +129,55 @@
 					</div>
 				</div>
 			</div>
+			<div class="item">
+				<template #header>Stats</template>
+				<XStats/>
+			</div>
+
+			<div class="item">
+				<template #header>Active users</template>
+				<XActiveUsers/>
+			</div>
+
+			<div class="item">
+				<template #header>Heatmap</template>
+				<XHeatmap/>
+			</div>
+
+			<div class="item">
+				<template #header>Moderators</template>
+				<XModerators/>
+			</div>
+
+			<div class="item">
+				<template #header>Federation</template>
+				<XFederation/>
+			</div>
+
+			<div class="item">
+				<template #header>Instances</template>
+				<XInstances/>
+			</div>
+
+			<div class="item">
+				<template #header>Ap requests</template>
+				<XApRequests/>
+			</div>
+
+			<div class="item">
+				<template #header>New users</template>
+				<XUsers/>
+			</div>
+
+			<div class="item">
+				<template #header>Deliver queue</template>
+				<XQueue domain="deliver"/>
+			</div>
+
+			<div class="item">
+				<template #header>Inbox queue</template>
+				<XQueue domain="inbox"/>
+			</div>
 		</div>
 	</div>
 </MkSpacer>
@@ -159,6 +208,12 @@ import MagicGrid from 'magic-grid';
 import XMetrics from './metrics.vue';
 import XFederation from './overview.federation.vue';
 import XQueueChart from './overview.queue-chart.vue';
+import XApRequests from './overview.ap-requests.vue';
+import XUsers from './overview.users.vue';
+import XActiveUsers from './overview.active-users.vue';
+import XStats from './overview.stats.vue';
+import XModerators from './overview.moderators.vue';
+import XHeatmap from './overview.heatmap.vue';
 import XUser from './overview.user.vue';
 import XPie from './overview.pie.vue';
 import MkNumberDiff from '@/components/MkNumberDiff.vue';

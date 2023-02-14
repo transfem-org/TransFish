@@ -417,6 +417,7 @@ importers:
       calckey-js: ^0.0.22
       chart.js: 4.1.1
       chartjs-adapter-date-fns: 2.0.1
+      chartjs-chart-matrix: ^2.0.1
       chartjs-plugin-gradient: 0.5.1
       chartjs-plugin-zoom: 1.2.1
       compare-versions: 5.0.3
@@ -464,6 +465,7 @@ importers:
       vuedraggable: 4.1.0
     dependencies:
       '@khmyznikov/pwa-install': 0.2.0
+      chartjs-chart-matrix: 2.0.1_chart.js@4.1.1
     devDependencies:
       '@discordapp/twemoji': 14.0.2
       '@rollup/plugin-alias': 3.1.9_rollup@3.9.1
@@ -1266,7 +1268,6 @@ packages:
 
   /@kurkle/color/0.3.2:
     resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
-    dev: true
 
   /@lit-labs/ssr-dom-shim/1.0.0:
     resolution: {integrity: sha512-ic93MBXfApIFTrup4a70M/+ddD8xdt2zxxj9sRwHQzhS9ag/syqkD8JPdTXsc1gUy2K8TTirhlCqyTEM/sifNw==}
@@ -3387,7 +3388,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: true
@@ -4007,7 +4008,6 @@ packages:
     engines: {pnpm: ^7.0.0}
     dependencies:
       '@kurkle/color': 0.3.2
-    dev: true
 
   /chartjs-adapter-date-fns/2.0.1_chart.js@4.1.1:
     resolution: {integrity: sha512-v3WV9rdnQ05ce3A0ZCjzUekJCAbfm6+3HqSoeY2BIkdMYZoYr/4T+ril1tZyDl869lz6xdNVMXejUFT9YKpw4A==}
@@ -4016,6 +4016,14 @@ packages:
     dependencies:
       chart.js: 4.1.1
     dev: true
+
+  /chartjs-chart-matrix/2.0.1_chart.js@4.1.1:
+    resolution: {integrity: sha512-BGfeY+/PHnITyDlc7WfnKJ1RyOfgOzIqWp/gxzzl7pUjyoGzHDcw51qd2xJF9gdT9Def7ZwOnOMm8GJUXDxI0w==}
+    peerDependencies:
+      chart.js: '>=3.0.0'
+    dependencies:
+      chart.js: 4.1.1
+    dev: false
 
   /chartjs-plugin-gradient/0.5.1_chart.js@4.1.1:
     resolution: {integrity: sha512-vhwlYGZWan4MGZZ4Wj64Y4aIql1uCPCU1JcggLWn3cgYEv4G7pXp1YgM4XH5ugmyn6BVCgQqAhiJ2h6hppzHmQ==}
@@ -6372,6 +6380,19 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}

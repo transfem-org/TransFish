@@ -32,6 +32,19 @@
 			<div class="chart">
 				<MkChart :src="chartSrc" :span="chartSpan" :limit="chartLimit" :detailed="detailed"></MkChart>
 			</div>
+			<div class="item">
+				<template #header>Active users heatmap</template>
+				<MkSelect v-model="heatmapSrc" style="margin: 0 0 12px 0;">
+					<option value="active-users">Active users</option>
+					<option value="notes">Notes</option>
+					<option value="ap-requests-inbox-received">AP Requests: inboxReceived</option>
+					<option value="ap-requests-deliver-succeeded">AP Requests: deliverSucceeded</option>
+					<option value="ap-requests-deliver-failed">AP Requests: deliverFailed</option>
+				</MkSelect>
+				<div class="_panel heatmap">
+					<MkHeatmap :src="heatmapSrc"/>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="subpub">
@@ -69,6 +82,7 @@ import {
 } from 'chart.js';
 import MkSelect from '@/components/form/select.vue';
 import MkChart from '@/components/MkChart.vue';
+import MkHeatmap from '@/components/MkHeatmap.vue';
 import { useChartTooltip } from '@/scripts/use-chart-tooltip';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
@@ -98,13 +112,18 @@ const props = withDefaults(defineProps<{
 	chartLimit: 90,
 });
 
-const chartSpan = $ref<'hour' | 'day'>('hour');
-const chartSrc = $ref('active-users');
+let chartSpan = $ref<'hour' | 'day'>('hour');
+let chartSrc = $ref('active-users');
+let heatmapSrc = $ref('active-users');
 let subDoughnutEl = $ref<HTMLCanvasElement>();
 let pubDoughnutEl = $ref<HTMLCanvasElement>();
 
-const { handler: externalTooltipHandler1 } = useChartTooltip();
-const { handler: externalTooltipHandler2 } = useChartTooltip();
+const { handler: externalTooltipHandler1 } = useChartTooltip({
+	position: 'middle',
+});
+const { handler: externalTooltipHandler2 } = useChartTooltip({
+	position: 'middle',
+});
 
 function createDoughnut(chartEl, tooltip, data) {
 	const chartInstance = new Chart(chartEl, {
@@ -188,6 +207,10 @@ onMounted(() => {
 		> .body {
 			> .chart {
 				padding: 8px 0 0 0;
+			}
+			> .heatmap {
+				padding: 12px;
+				margin-bottom: 12px;
 			}
 		}
 	}
