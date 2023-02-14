@@ -68,8 +68,8 @@ onMounted(async () => {
 	const raw = await os.api('charts/ap-request', { limit: chartLimit, span: 'day' });
 
 	const vLineColor = defaultStore.state.darkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
-	const succColor = '#87e000';
-	const failColor = '#ff4400';
+	const succColor = '#9ccfd8';
+	const failColor = '#f6c177';
 
 	const succMax = Math.max(...raw.deliverSucceeded);
 	const failMax = Math.max(...raw.deliverFailed);
@@ -190,7 +190,7 @@ onMounted(async () => {
 				borderWidth: 0,
 				borderJoinStyle: 'round',
 				borderRadius: 4,
-				backgroundColor: '#0cc2d6',
+				backgroundColor: '#c4a7e7',
 				barPercentage: 0.8,
 				categoryPercentage: 0.9,
 				fill: true,
@@ -264,7 +264,7 @@ onMounted(async () => {
 		},
 		plugins: [chartVLine(vLineColor)],
 	});
-	
+
 	fetching = false;
 });
 </script>

@@ -32,7 +32,7 @@
 			</MkFolder>
 
 			<MkFolder class="item">
-				<template #header>Ap requests</template>
+				<template #header>Fediverse Requests</template>
 				<XApRequests/>
 			</MkFolder>
 
