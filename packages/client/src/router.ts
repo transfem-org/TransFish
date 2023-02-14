@@ -1,10 +1,9 @@
 import { AsyncComponentLoader, defineAsyncComponent, inject } from "vue";
-import { Router } from "@/nirax";
+import VueRouter from "vue-router"
 import { $i, iAmModerator } from "@/account";
 import MkLoading from "@/pages/_loading_.vue";
 import MkError from "@/pages/_error_.vue";
 import { api } from "@/os";
-import { ui } from "@/config";
 
 function getGuestTimelineStatus() {
 	api("meta", {
@@ -637,19 +636,13 @@ export const routes = [
 	},
 ];
 
-export const mainRouter = new Router(
+export const mainRouter = VueRouter.createRouter({
 	routes,
-	location.pathname + location.search + location.hash,
-);
-
-window.history.replaceState(
-	{ key: mainRouter.getCurrentKey() },
-	"",
-	location.href,
-);
+	history: VueRouter.createWebHistory(),
+});
 
 // TODO: このファイルでスクロール位置も管理する設計だとdeckに対応できないのでなんとかする
-// スクロール位置取得+スクロール位置設定関数をprovideする感じでも良いかも
+// スクロール位置取得+スクロール位置設定関数をprovideする感じでも良いかも <- indeed, we figured that out too ~ CLEO
 
 const scrollPosStore = new Map<string, number>();
 
@@ -657,40 +650,6 @@ window.setInterval(() => {
 	scrollPosStore.set(window.history.state?.key, window.scrollY);
 }, 1000);
 
-mainRouter.addListener("push", (ctx) => {
-	window.history.pushState({ key: ctx.key }, "", ctx.path);
-	const scrollPos = scrollPosStore.get(ctx.key) ?? 0;
-	window.scroll({ top: scrollPos, behavior: "instant" });
-	if (scrollPos !== 0) {
-		window.setTimeout(() => {
-			// 遷移直後はタイミングによってはコンポーネントが復元し切ってない可能性も考えられるため少し時間を空けて再度スクロール
-			window.scroll({ top: scrollPos, behavior: "instant" });
-		}, 100);
-	}
-});
-
-mainRouter.addListener("replace", (ctx) => {
-	window.history.replaceState({ key: ctx.key }, "", ctx.path);
-});
-
-mainRouter.addListener("same", () => {
-	window.scroll({ top: 0, behavior: "smooth" });
-});
-
-window.addEventListener("popstate", (event) => {
-	mainRouter.replace(
-		location.pathname + location.search + location.hash,
-		event.state?.key,
-		false,
-	);
-	const scrollPos = scrollPosStore.get(event.state?.key) ?? 0;
-	window.scroll({ top: scrollPos, behavior: "instant" });
-	window.setTimeout(() => {
-		// 遷移直後はタイミングによってはコンポーネントが復元し切ってない可能性も考えられるため少し時間を空けて再度スクロール
-		window.scroll({ top: scrollPos, behavior: "instant" });
-	}, 100);
-});
-
-export function useRouter(): Router {
-	return inject<Router | null>("router", null) ?? mainRouter;
+export function useRouter(): VueRouter.Router {
+	return inject<VueRouter.Router | null>("router", null) ?? mainRouter;
 }
