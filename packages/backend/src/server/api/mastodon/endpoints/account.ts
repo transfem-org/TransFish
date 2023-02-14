@@ -304,17 +304,19 @@ export function apiAccountMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		let users;
 		try {
-			const idsRaw = ctx.query["id[]"];
+			const idsRaw = ctx.request.body?["id[]"] : null;
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
 			users = ids;
 			relationshopModel.id = idsRaw?.toString() || "1";
-			if (!idsRaw) return [relationshopModel];
-			const data = (await client.getRelationships(ids ? ids : [])) as any;
+			if (!(idsRaw && ids)) {
+				ctx.body = [relationshopModel];
+				return;
+			}
+			const data = await client.getRelationships(ids);
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
-			e.response.data.user = users ? users : "null";
 			ctx.status = 401;
 			ctx.body = e.response.data;
 		}

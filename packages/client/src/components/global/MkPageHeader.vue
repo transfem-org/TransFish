@@ -144,21 +144,20 @@ onMounted(() => {
 	calcBg();
 	globalEvents.on('themeChanged', calcBg);
 	
-	
 	watch(() => [props.tab, props.tabs], () => {
 		nextTick(() => {
 			const tabEl = tabRefs[props.tab];
 			if (tabEl && tabHighlightEl) {
 				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
 				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
+				const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
+				tabEl.style = `--width: ${tabSizeX}px`;
 				setTimeout(() => {
 					const parentRect = tabsEl.getBoundingClientRect();
 					const rect = tabEl.getBoundingClientRect();
-					const tabSizeX = tabEl.scrollWidth;
 					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
-					tabEl.style = "--width: " + tabSizeX + "px";
 					tabHighlightEl.style.width = tabSizeX + 'px';
-					tabHighlightEl.style.transform = 'translateX(' + left + 'px)';
+					tabHighlightEl.style.transform = `translateX(${left}px)`;
 					window.requestAnimationFrame(() => {
 						tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
 					})
@@ -358,11 +357,12 @@ onUnmounted(() => {
 			display: inline-flex;
 			align-items: center;
 			position: relative;
-			padding: 0 10px;
+			border-inline: 10px solid transparent;
 			height: 100%;
 			font-weight: normal;
 			opacity: 0.7;
 			width: 38px;
+			--width: 38px;
 			overflow: hidden;
 			transition: color .2s, opacity .2s, width .2s;
 
@@ -384,7 +384,7 @@ onUnmounted(() => {
 				margin-left: 8px;
 			}
 			> .title {
-				transition: font-size .2s, opacity .2s;
+				transition: opacity .2s;
 			}
 		}
 
