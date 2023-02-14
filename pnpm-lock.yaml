@@ -427,6 +427,7 @@ importers:
       date-fns: 2.29.3
       escape-regexp: 0.0.1
       eventemitter3: 4.0.7
+      gsap: ^3.11.4
       idb-keyval: 6.2.0
       insert-text-at-cursor: 0.3.0
       json5: 2.2.3
@@ -466,6 +467,7 @@ importers:
     dependencies:
       '@khmyznikov/pwa-install': 0.2.0
       chartjs-chart-matrix: 2.0.1_chart.js@4.1.1
+      gsap: 3.11.4
     devDependencies:
       '@discordapp/twemoji': 14.0.2
       '@rollup/plugin-alias': 3.1.9_rollup@3.9.1
@@ -6913,6 +6915,10 @@ packages:
 
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
+
+  /gsap/3.11.4:
+    resolution: {integrity: sha512-McHhEguHyExMMnjqKA8G+7TvxmlKQGMbjgwAilnFe1e4id7V/tFveRQ2YMZhTYu0oxHGWvbPltdVYQOu3z1SCA==}
+    dev: false
 
   /gulp-cli/2.3.0:
     resolution: {integrity: sha512-zzGBl5fHo0EKSXsHzjspp3y5CONegCm8ErO5Qh0UzFzk2y4tMvzLWhoDokADbarfZRL2pGpRp7yt6gfJX4ph7A==}
