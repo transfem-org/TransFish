@@ -29,8 +29,9 @@ import { url } from '@/config';
 import * as os from '@/os';
 import { mainRouter, routes } from '@/router';
 import { i18n } from '@/i18n';
-import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
-import { Router } from '@/nirax';
+import { PageMetadata, provideMetadataReceiver } from '@/scripts/page-metadata';
+
+import VueRouter from "vue-router"
 
 const props = defineProps<{
 	initialPath: string;
@@ -41,11 +42,11 @@ defineEmits<{
 	(ev: 'click'): void;
 }>();
 
-const router = new Router(routes, props.initialPath);
-
-router.addListener('push', ctx => {
-
-});
+const router = VueRouter.createRouter({
+  // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+  history: VueRouter.createWebHashHistory(),
+  routes, // short for `routes: routes`
+})
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 let rootEl = $ref();

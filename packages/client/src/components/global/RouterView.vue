@@ -1,7 +1,7 @@
 <template>
 <KeepAlive :max="defaultStore.state.numberOfPageCache">
 	<Suspense>
-		<component :is="currentPageComponent" :key="key" v-bind="Object.fromEntries(currentPageProps)"/>
+		<component/>
 
 		<template #fallback>
 			<MkLoading/>
@@ -12,11 +12,12 @@
 
 <script lang="ts" setup>
 import { inject, nextTick, onBeforeUnmount, onMounted, onUnmounted, provide, watch } from 'vue';
-import { Resolved, Router } from '@/nirax';
 import { defaultStore } from '@/store';
 
+import VueRouter from "vue-router"
+
 const props = defineProps<{
-	router?: Router;
+	router?: VueRouter.Router;
 }>();
 
 const router = props.router ?? inject('router');
@@ -27,35 +28,4 @@ if (router == null) {
 
 const currentDepth = inject('routerCurrentDepth', 0);
 provide('routerCurrentDepth', currentDepth + 1);
-
-function resolveNested(current: Resolved, d = 0): Resolved | null {
-	if (d === currentDepth) {
-		return current;
-	} else {
-		if (current.child) {
-			return resolveNested(current.child, d + 1);
-		} else {
-			return null;
-		}
-	}
-}
-
-const current = resolveNested(router.current)!;
-let currentPageComponent = $shallowRef(current.route.component);
-let currentPageProps = $ref(current.props);
-let key = $ref(current.route.path + JSON.stringify(Object.fromEntries(current.props)));
-
-function onChange({ resolved, key: newKey }) {
-	const current = resolveNested(resolved);
-	if (current == null) return;
-	currentPageComponent = current.route.component;
-	currentPageProps = current.props;
-	key = current.route.path + JSON.stringify(Object.fromEntries(current.props));
-}
-
-router.addListener('change', onChange);
-
-onBeforeUnmount(() => {
-	router.removeListener('change', onChange);
-});
 </script>

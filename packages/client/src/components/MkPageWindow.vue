@@ -32,9 +32,10 @@ import copyToClipboard from '@/scripts/copy-to-clipboard';
 import { url } from '@/config';
 import * as os from '@/os';
 import { mainRouter, routes } from '@/router';
-import { Router } from '@/nirax';
 import { i18n } from '@/i18n';
 import { PageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
+
+import VueRouter from "vue-router"
 
 const props = defineProps<{
 	initialPath: string;
@@ -44,40 +45,15 @@ defineEmits<{
 	(ev: 'closed'): void;
 }>();
 
-const router = new Router(routes, props.initialPath);
+const router = VueRouter.createRouter({
+  // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+  history: VueRouter.createWebHashHistory(),
+  routes, // short for `routes: routes`
+})
 
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 let windowEl = $ref<InstanceType<typeof XWindow>>();
-const history = $ref<{ path: string; key: any; }[]>([{
-	path: router.getCurrentPath(),
-	key: router.getCurrentKey(),
-}]);
-const buttonsLeft = $computed(() => {
-	const buttons = [];
-
-	if (history.length > 1) {
-		buttons.push({
-			icon: 'ph-caret-left-bold ph-lg',
-			onClick: back,
-		});
-	}
-
-	return buttons;
-});
-const buttonsRight = $computed(() => {
-	const buttons = [{
-		icon: 'ph-arrows-out-simple-bold ph-lg',
-		title: i18n.ts.showInPage,
-		onClick: expand,
-	}];
-
-	return buttons;
-});
-
-router.addListener('push', ctx => {
-	history.push({ path: ctx.path, key: ctx.key });
-});
-
+	
 provide('router', router);
 provideMetadataReceiver((info) => {
 	pageMetadata = info;

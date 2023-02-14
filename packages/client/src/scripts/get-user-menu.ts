@@ -7,9 +7,9 @@ import * as os from "@/os";
 import { userActions } from "@/store";
 import { $i, iAmModerator } from "@/account";
 import { mainRouter } from "@/router";
-import { Router } from "@/nirax";
+import VueRouter from "vue-router"
 
-export function getUserMenu(user, router: Router = mainRouter) {
+export function getUserMenu(user, router: VueRouter.Router = mainRouter) {
 	const meId = $i ? $i.id : null;
 
 	async function pushList() {
