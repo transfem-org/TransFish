@@ -57,10 +57,10 @@ const label =
 	'?' as never;
 
 const color =
-	props.type === 'process' ? '#00E396' :
-	props.type === 'active' ? '#00BCD4' :
-	props.type === 'delayed' ? '#E53935' :
-	props.type === 'waiting' ? '#FFB300' :
+	props.type === 'process' ? '#c4a7e7' :
+	props.type === 'active' ? '#31748f' :
+	props.type === 'delayed' ? '#eb6f92' :
+	props.type === 'waiting' ? '#f6c177' :
 	'?' as never;
 
 onMounted(() => {

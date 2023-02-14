@@ -53,8 +53,8 @@ async function renderChart() {
 
 	const vLineColor = defaultStore.state.darkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
 
-	const colorRead = '#3498db';
-	const colorWrite = '#2ecc71';
+	const colorRead = '#eb6f92';
+	const colorWrite = '#f6c177';
 
 	const max = Math.max(...raw.read);
 
