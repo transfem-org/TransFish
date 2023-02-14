@@ -34,7 +34,7 @@
 			</div>
 			<div class="item">
 				<template #header>Active users heatmap</template>
-				<MkSelect v-model="heatmapSrc" style="margin: 0 0 12px 0;">
+				<MkSelect v-model="heatmapSrc" style="margin: 0 0 10px 0;">
 					<option value="active-users">Active users</option>
 					<option value="notes">Notes</option>
 					<option value="ap-requests-inbox-received">AP Requests: inboxReceived</option>
@@ -114,7 +114,7 @@ const props = withDefaults(defineProps<{
 
 let chartSpan = $ref<'hour' | 'day'>('hour');
 let chartSrc = $ref('active-users');
-let heatmapSrc = $ref('active-users');
+// let heatmapSrc = $ref('active-users');
 let subDoughnutEl = $ref<HTMLCanvasElement>();
 let pubDoughnutEl = $ref<HTMLCanvasElement>();
 
