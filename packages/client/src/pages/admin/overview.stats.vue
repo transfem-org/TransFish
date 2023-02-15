@@ -134,7 +134,7 @@ onMounted(async () => {
 
 			&.online {
 				> .icon {
-					background: #907aa9;
+					background: #907aa955;
 					color: #c4a7e7;
 				}
 			}
