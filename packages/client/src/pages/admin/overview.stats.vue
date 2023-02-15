@@ -106,28 +106,28 @@ onMounted(async () => {
 
 			&.users {
 				> .icon {
-					background: #56949f;
+					background: #56949f55;
 					color: #9ccfd8;
 				}
 			}
 
 			&.notes {
 				> .icon {
-					background: #286983;
+					background: #28698355;
 					color: #31748f;
 				}
 			}
 
 			&.instances {
 				> .icon {
-					background: #d7827e;
+					background: #d7827e55;
 					color: #ebbcba;
 				}
 			}
 
 			&.emojis {
 				> .icon {
-					background: #ea9d34;
+					background: #ea9d3455;
 						color: #f6c177;
 				}
 			}

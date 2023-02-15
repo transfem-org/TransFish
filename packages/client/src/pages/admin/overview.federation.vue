@@ -147,14 +147,14 @@ onMounted(async () => {
 
 				&.sub {
 					> .icon {
-						background: #907aa9;
+						background: #907aa955;
 						color: #c4a7e7;
 					}
 				}
 
 				&.pub {
 					> .icon {
-						background: #56949f;
+						background: #56949f55;
 						color: #9ccfd8;
 					}
 				}
