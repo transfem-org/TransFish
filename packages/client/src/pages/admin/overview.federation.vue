@@ -16,7 +16,7 @@
 		</div>
 		<div v-if="!fetching" class="items">
 			<div class="item _panel sub">
-				<div class="icon"><i class="ti ti-world-download"></i></div>
+				<div class="icon"><i class="ph-download-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						{{ number(federationSubActive) }}
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="item _panel pub">
-				<div class="icon"><i class="ti ti-world-upload"></i></div>
+				<div class="icon"><i class="ph-upload-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						{{ number(federationPubActive) }}
@@ -59,7 +59,7 @@ let federationSubActiveDiff = $ref<number | null>(null);
 let fetching = $ref(true);
 
 const { handler: externalTooltipHandler } = useChartTooltip();
-	
+
 onMounted(async () => {
 	const chart = await os.apiGet('charts/federation', { limit: 2, span: 'day' });
 	federationPubActive = chart.pubActive[0];
@@ -147,15 +147,15 @@ onMounted(async () => {
 
 				&.sub {
 					> .icon {
-						background: #d5ba0026;
-						color: #dfc300;
+						background: #907aa9;
+						color: #c4a7e7;
 					}
 				}
 
 				&.pub {
 					> .icon {
-						background: #00cf2326;
-						color: #00cd5b;
+						background: #56949f;
+						color: #9ccfd8;
 					}
 				}
 

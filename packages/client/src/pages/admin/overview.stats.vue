@@ -4,7 +4,7 @@
 		<MkLoading v-if="fetching"/>
 		<div v-else :class="$style.root">
 			<div class="item _panel users">
-				<div class="icon"><i class="ti ti-users"></i></div>
+				<div class="icon"><i class="ph-users-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="stats.originalUsersCount" style="margin-right: 0.5em;"/>
@@ -14,17 +14,17 @@
 				</div>
 			</div>
 			<div class="item _panel notes">
-				<div class="icon"><i class="ti ti-pencil"></i></div>
+				<div class="icon"><i class="ph-pencil-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="stats.originalNotesCount" style="margin-right: 0.5em;"/>
 						<MkNumberDiff v-tooltip="i18n.ts.dayOverDayChanges" class="diff" :value="notesComparedToThePrevDay"></MkNumberDiff>
 					</div>
-					<div class="label">Notes</div>
+					<div class="label">Posts</div>
 				</div>
 			</div>
 			<div class="item _panel instances">
-				<div class="icon"><i class="ti ti-planet"></i></div>
+				<div class="icon"><i class="ph-planet-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="stats.instances" style="margin-right: 0.5em;"/>
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="item _panel online">
-				<div class="icon"><i class="ti ti-access-point"></i></div>
+				<div class="icon"><i class="ph-broadcast-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="onlineUsersCount" style="margin-right: 0.5em;"/>
@@ -106,36 +106,36 @@ onMounted(async () => {
 
 			&.users {
 				> .icon {
-					background: #0088d726;
-					color: #3d96c1;
+					background: #56949f;
+					color: #9ccfd8;
 				}
 			}
 
 			&.notes {
 				> .icon {
-					background: #86b30026;
-					color: #86b300;
+					background: #286983;
+					color: #31748f;
 				}
 			}
 
 			&.instances {
 				> .icon {
-					background: #e96b0026;
-					color: #d76d00;
+					background: #d7827e;
+					color: #ebbcba;
 				}
 			}
 
 			&.emojis {
 				> .icon {
-					background: #d5ba0026;
-						color: #dfc300;
+					background: #ea9d34;
+						color: #f6c177;
 				}
 			}
 
 			&.online {
 				> .icon {
-					background: #8a00d126;
-					color: #c01ac3;
+					background: #907aa9;
+					color: #c4a7e7;
 				}
 			}
 
