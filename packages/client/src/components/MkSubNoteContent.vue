@@ -5,9 +5,9 @@
 		<MkA v-if="note.replyId" class="reply" :to="`/notes/${note.replyId}`"><i class="ph-arrow-bend-up-left-bold ph-lg"></i></MkA>
 		<Mfm v-if="note.text" :text="note.text" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">{{ i18n.ts.quoteAttached }}: ...</MkA>
+		<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
 	</div>
 	<div v-if="note.files.length > 0">
-		<summary>({{ i18n.t('withNFiles', { n: note.files.length }) }})</summary>
 		<XMediaList :media-list="note.files"/>
 	</div>
 	<div v-if="note.poll">
@@ -26,8 +26,11 @@
 <script lang="ts" setup>
 import { } from 'vue';
 import * as misskey from 'calckey-js';
+import * as mfm from 'mfm-js';
 import XMediaList from '@/components/MkMediaList.vue';
 import XPoll from '@/components/MkPoll.vue';
+import MkUrlPreview from '@/components/MkUrlPreview.vue';
+import { extractUrlFromMfm } from '@/scripts/extract-url-from-mfm';
 import { i18n } from '@/i18n';
 
 const props = defineProps<{
@@ -42,6 +45,9 @@ const isLong = (
 	)
 );
 const collapsed = $ref(props.note.cw == null && isLong);
+const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : null;
+console.log(props.note.text);
+
 </script>
 
 <style lang="scss" scoped>
