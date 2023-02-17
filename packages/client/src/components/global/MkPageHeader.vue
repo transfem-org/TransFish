@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick, reactive } from 'vue';
+import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick } from 'vue';
 import tinycolor from 'tinycolor2';
 import { popupMenu } from '@/os';
 import { scrollToTop } from '@/scripts/scroll';
@@ -71,17 +71,17 @@ const metadata = injectPageMetadata();
 const hideTitle = inject('shouldOmitHeaderTitle', false);
 const thin_ = props.thin || inject('shouldHeaderThin', false);
 
-const el = $ref<HTMLElement | null>(null);
-const tabRefs = {};
-const tabHighlightEl = $ref<HTMLElement | null>(null);
-const tabsEl = $ref<HTMLElement | null>(null);
-const bg = ref(null);
-let narrow = $ref(false);
+const el = ref<HTMLElement | null>(null);
+const tabRefs: Record<string, HTMLElement> = {};
+const tabHighlightEl = ref<HTMLElement | null>(null);
+const tabsEl = ref<HTMLElement | null>(null);
+const bg = ref<string | null>(null);
+const narrow = ref(false);
 const height = ref(0);
-const hasTabs = $computed(() => props.tabs && props.tabs.length > 0);
-const hasActions = $computed(() => props.actions && props.actions.length > 0);
-const show = $computed(() => {
-	return !hideTitle || hasTabs || hasActions;
+const hasTabs = computed(() => props.tabs && props.tabs.length > 0);
+const hasActions = computed(() => props.actions && props.actions.length > 0);
+const show = computed(() => {
+	return !hideTitle || hasTabs.value || hasActions.value;
 });
 
 const openAccountMenu = (ev: MouseEvent) => {
@@ -91,11 +91,11 @@ const openAccountMenu = (ev: MouseEvent) => {
 };
 
 const showTabsPopup = (ev: MouseEvent) => {
-	if (!hasTabs) return;
-	if (!narrow) return;
+	if (!hasTabs.value) return;
+	if (!narrow.value) return;
 	ev.preventDefault();
 	ev.stopPropagation();
-	const menu = props.tabs.map(tab => ({
+	const menu = props.tabs!.map(tab => ({
 		text: tab.title,
 		icon: tab.icon,
 		active: tab.key != null && tab.key === props.tab,
@@ -111,7 +111,7 @@ const preventDrag = (ev: TouchEvent) => {
 };
 
 const onClick = () => {
-	scrollToTop(el, { behavior: 'smooth' });
+	scrollToTop(el.value!, { behavior: 'smooth' });
 };
 
 function onTabMousedown(tab: Tab, ev: MouseEvent): void {
@@ -142,42 +142,42 @@ const calcBg = () => {
 let ro: ResizeObserver | null;
 
 onMounted(() => {
-	calcBg();
-	globalEvents.on('themeChanged', calcBg);
-	
-	watch(() => [props.tab, props.tabs], () => {
-		nextTick(() => {
-			const tabEl = tabRefs[props.tab];
-			if (tabEl && tabHighlightEl) {
-				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
-				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
-				const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
-				tabEl.style = `--width: ${tabSizeX}px`;
-				setTimeout(() => {
-					const parentRect = tabsEl.getBoundingClientRect();
-					const rect = tabEl.getBoundingClientRect();
-					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
-					tabHighlightEl.style.width = tabSizeX + 'px';
-					tabHighlightEl.style.transform = `translateX(${left}px)`;
-					window.requestAnimationFrame(() => {
-						tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
-					})
-				}, 200);
-			}
-		});
-	}, {
-		immediate: true,
-	});
+  calcBg();
+  globalEvents.on('themeChanged', calcBg);
 
-	if (el && el.parentElement) {
-		narrow = el.parentElement.offsetWidth < 500;
-		ro = new ResizeObserver((entries, observer) => {
-			if (el.parentElement && document.body.contains(el)) {
-				narrow = el.parentElement.offsetWidth < 500;
-			}
-		});
-		ro.observe(el.parentElement);
-	}
+  const updateTabHighlight = () => {
+    nextTick(() => {
+      const tabEl = tabRefs[props.tab];
+      if (tabEl && tabHighlightEl) {
+        const tabSizeX = tabEl.scrollWidth + 20;
+        tabEl.style.setProperty('--width', `${tabSizeX}px`);
+
+        const parentRect = tabsEl.getBoundingClientRect();
+        const rect = tabEl.getBoundingClientRect();
+        const left = (rect.left - parentRect.left + tabsEl.scrollLeft);
+        tabHighlightEl.style.width = `${tabSizeX}px`;
+        tabHighlightEl.style.transform = `translateX(${left}px)`;
+        tabsEl.scrollTo({left: left - 60, behavior: "smooth"});
+      }
+    });
+  };
+
+  const updateTab = () => {
+    emit('update:tab', props.tab);
+  };
+
+  watch(() => [props.tab, props.tabs], updateTabHighlight, { immediate: true });
+  watch(() => props.tab, updateTab);
+
+  if (el && el.parentElement) {
+    narrow.value = el.parentElement.offsetWidth < 500;
+    ro = new ResizeObserver((entries, observer) => {
+      if (el.parentElement && document.body.contains(el)) {
+        narrow.value = el.parentElement.offsetWidth < 500;
+      }
+    });
+    ro.observe(el.parentElement);
+  }
 });
 
 onUnmounted(() => {
