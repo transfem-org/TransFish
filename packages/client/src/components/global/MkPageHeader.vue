@@ -1,36 +1,35 @@
 <template>
-  <div ref="el" class="fdidabkb" :class="classes" :style="{ background: bg }" @click="onClick">
-    <div v-show="narrow" class="buttons left" @click="openAccountMenu">
-      <MkAvatar v-if="displayMyAvatar && user" class="avatar" :user="user" :disable-preview="true"/>
-    </div>
-    <template v-if="hasTabs">
-      <div v-show="!hideTitle" class="titleContainer" @click="showTabsPopup">
-        <MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
-        <i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
-        <div class="title">
-          <MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
-          <div v-else-if="metadata.title && !hasTabs && !narrow" class="title">{{ metadata.title }}</div>
-          <div v-show="!narrow && metadata.subtitle" class="subtitle">{{ metadata.subtitle }}</div>
-        </div>
-      </div>
-      <div ref="tabsEl" class="tabs" v-show="hasTabs">
-        <button v-for="tab in tabs" :key="tab.key" ref="tabRefs[tab.key]" v-tooltip.noDelay="tab.title"
-          class="tab _button" :class="{ active: isActiveTab(tab) }" @mousedown="onTabMousedown(tab)"
-          @click="onTabClick(tab)">
-          <i v-if="tab.icon && !tab.iconOnly" class="icon" :class="tab.icon"></i>
-          <span class="title">{{ tab.title }}</span>
-        </button>
-        <div ref="tabHighlightEl" class="highlight"></div>
-      </div>
-    </template>
-    <div v-show="hasActions" class="buttons right">
-      <button v-for="(action, index) in actions" :key="index" v-tooltip.noDelay="action.text"
-        class="_button button" :class="{ highlighted: action.highlighted }" @click.stop="action.handler"
-        @touchstart="preventDrag">
-        <i :class="action.icon"></i>
-      </button>
-    </div>
-  </div>
+	<div v-if="show" ref="el" class="fdidabkb" :class="{ slim: narrow, thin: thin_ }" :style="{ background: bg }" @click="onClick">
+		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
+		<MkAvatar v-if="props.displayMyAvatar && $i" class="avatar" :user="$i" :disable-preview="true"/>
+	</div>
+	<template v-if="metadata">
+		<div v-if="!hideTitle" class="titleContainer" @click="showTabsPopup">
+			<MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
+				<i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
+
+				<div class="title">
+					<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
+					<div v-else-if="metadata.title && !(tabs != null && tabs.length > 0 && narrow)" class="title">{{ metadata.title }}</div>
+					<div v-if="!narrow && metadata.subtitle" class="subtitle">
+						{{ metadata.subtitle }}
+					</div>
+				</div>
+			</div>
+			<div ref="tabsEl" v-if="hasTabs" class="tabs">
+				<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
+					<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
+					<span class="title">{{ tab.title }}</span>
+				</button>
+				<div ref="tabHighlightEl" class="highlight"></div>
+			</div>
+		</template>
+		<div class="buttons right">
+			<template v-for="action in actions">
+				<button v-tooltip.noDelay="action.text" class="_button button" :class="{ highlighted: action.highlighted }" @click.stop="action.handler" @touchstart="preventDrag"><i :class="action.icon"></i></button>
+			</template>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -142,42 +141,42 @@ const calcBg = () => {
 let ro: ResizeObserver | null;
 
 onMounted(() => {
-	calcBg();
-	globalEvents.on('themeChanged', calcBg);
-	
-	watch(() => [props.tab, props.tabs], () => {
-		nextTick(() => {
-			const tabEl = tabRefs[props.tab];
-			if (tabEl && tabHighlightEl) {
-				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
-				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
-				const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
-				tabEl.style = `--width: ${tabSizeX}px`;
-				setTimeout(() => {
-					const parentRect = tabsEl.getBoundingClientRect();
-					const rect = tabEl.getBoundingClientRect();
-					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
-					tabHighlightEl.style.width = tabSizeX + 'px';
-					tabHighlightEl.style.transform = `translateX(${left}px)`;
-					window.requestAnimationFrame(() => {
-						tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
-					})
-				}, 200);
-			}
-		});
-	}, {
-		immediate: true,
-	});
+  calcBg();
+  globalEvents.on('themeChanged', calcBg);
 
-	if (el && el.parentElement) {
-		narrow = el.parentElement.offsetWidth < 500;
-		ro = new ResizeObserver((entries, observer) => {
-			if (el.parentElement && document.body.contains(el)) {
-				narrow = el.parentElement.offsetWidth < 500;
-			}
-		});
-		ro.observe(el.parentElement);
-	}
+  const updateTabHighlight = () => {
+    nextTick(() => {
+      const tabEl = tabRefs[props.tab];
+      if (tabEl && tabHighlightEl) {
+        const tabSizeX = tabEl.scrollWidth + 20;
+        tabEl.style.setProperty('--width', `${tabSizeX}px`);
+
+        const parentRect = tabsEl.getBoundingClientRect();
+        const rect = tabEl.getBoundingClientRect();
+        const left = (rect.left - parentRect.left + tabsEl.scrollLeft);
+        tabHighlightEl.style.width = `${tabSizeX}px`;
+        tabHighlightEl.style.transform = `translateX(${left}px)`;
+        tabsEl.scrollTo({left: left - 60, behavior: "smooth"});
+      }
+    });
+  };
+
+  const updateTab = () => {
+    emit('update:tab', props.tab);
+  };
+
+  watch(() => [props.tab, props.tabs], updateTabHighlight, { immediate: true });
+  watch(() => props.tab, updateTab);
+
+  if (el && el.parentElement) {
+    narrow.value = el.parentElement.offsetWidth < 500;
+    ro = new ResizeObserver((entries, observer) => {
+      if (el.parentElement && document.body.contains(el)) {
+        narrow.value = el.parentElement.offsetWidth < 500;
+      }
+    });
+    ro.observe(el.parentElement);
+  }
 });
 
 onUnmounted(() => {
