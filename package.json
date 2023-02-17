@@ -29,7 +29,7 @@
 		"test": "pnpm run mocha",
 		"format": "gulp format",
 		"clean": "pnpm node ./scripts/clean.js",
-		"clean-all": "pnpm node ./scripts/clean-all.js",
+	"clean-all": "pnpm node ./scripts/clean-all.js",
 		"cleanall": "pnpm run clean-all"
 	},
 	"resolutions": {
