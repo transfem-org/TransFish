@@ -16,10 +16,14 @@
 					<MkSubNoteContent class="text" :note="note"/>
 				</div>
 			</div>
+			<MkNoteFooter :note="note" :conversation="conversation"></MkNoteFooter>
 		</div>
 	</div>
 	<template v-if="conversation">
-		<template v-if="depth < 5">
+		<template v-if="depth < 5 && replies.length == 1">
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth"/>
+		</template>
+		<template v-else-if="depth < 5">
 			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1"/>
 		</template>
 		<div v-else-if="replies.length > 0" class="more">
@@ -35,6 +39,7 @@ import * as misskey from 'calckey-js';
 import XNoteHeader from '@/components/MkNoteHeader.vue';
 import MkSubNoteContent from '@/components/MkSubNoteContent.vue';
 import XCwButton from '@/components/MkCwButton.vue';
+import MkNoteFooter from '@/components/MkNoteFooter.vue';
 import { notePage } from '@/filters/note';
 import { useRouter } from '@/router';
 import * as os from '@/os';
@@ -122,8 +127,11 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	}
 
 	> .reply, > .more {
-		border-left: solid 0.5px var(--divider);
+		// border-left: solid 0.5px var(--divider);
 		margin-top: 10px;
+		&.single {
+			padding: 0 !important;
+		}
 	}
 
 	> .more {

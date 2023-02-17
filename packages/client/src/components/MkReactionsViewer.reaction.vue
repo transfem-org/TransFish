@@ -97,6 +97,7 @@ useTooltip(buttonRef, async (showing) => {
 	margin: 2px;
 	padding: 0 6px;
 	border-radius: 4px;
+	pointer-events: all;
 
 	&.canToggle {
 		background: rgba(0, 0, 0, 0.05);

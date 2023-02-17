@@ -53,7 +53,7 @@
 					<XCwButton v-model="showContent" :note="appearNote"/>
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content">
-					<div class="text" @click.self="router.push(notePage(appearNote))">
+					<div class="text">
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>

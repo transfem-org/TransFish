@@ -71,26 +71,7 @@
 				</div>
 				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
-			<footer class="footer">
-				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
-				<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
-					<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
-					<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
-					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
-				</button>
-				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
-				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
-				<button v-if="appearNote.myReaction == null" ref="reactButton" v-tooltip.noDelay.bottom="i18n.ts.reaction" class="button _button" @click="react()">
-					<i class="ph-smiley-bold ph-lg"></i>
-				</button>
-				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
-					<i class="ph-minus-bold ph-lg"></i>
-				</button>
-				<XQuoteButton class="button" :note="appearNote"/>
-				<button ref="menuButton" v-tooltip.noDelay.bottom="i18n.ts.more" class="button _button" @click="menu()">
-					<i class="ph-dots-three-outline-bold ph-lg"></i>
-				</button>
-			</footer>
+			<MkNoteFooter :note="appearNote"></MkNoteFooter>
 		</div>
 	</article>
 </div>
@@ -113,15 +94,12 @@ import type * as misskey from 'calckey-js';
 import MkNoteSub from '@/components/MkNoteSub.vue';
 import XNoteHeader from '@/components/MkNoteHeader.vue';
 import XNoteSimple from '@/components/MkNoteSimple.vue';
-import XReactionsViewer from '@/components/MkReactionsViewer.vue';
 import XMediaList from '@/components/MkMediaList.vue';
 import XCwButton from '@/components/MkCwButton.vue';
+import MkNoteFooter from '@/components/MkNoteFooter.vue';
 import XPoll from '@/components/MkPoll.vue';
-import XStarButton from '@/components/MkStarButton.vue';
 import XRenoteButton from '@/components/MkRenoteButton.vue';
-import XQuoteButton from '@/components/MkQuoteButton.vue';
 import MkUrlPreview from '@/components/MkUrlPreview.vue';
-import MkInstanceTicker from '@/components/MkInstanceTicker.vue';
 import MkVisibility from '@/components/MkVisibility.vue';
 import { pleaseLogin } from '@/scripts/please-login';
 import { focusPrev, focusNext } from '@/scripts/focus';
@@ -170,7 +148,6 @@ const isRenote = (
 
 const el = ref<HTMLElement>();
 const menuButton = ref<HTMLElement>();
-const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
@@ -187,7 +164,6 @@ const muted = ref(checkWordMute(appearNote, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const urls = appearNote.text ? extractUrlFromMfm(mfm.parse(appearNote.text)) : null;
-const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultStore.state.instanceTicker === 'remote' && appearNote.user.instance);
 
 const keymap = {
 	'r': () => reply(true),
@@ -226,14 +202,6 @@ function react(viaKeyboard = false): void {
 		});
 	}, () => {
 		focus();
-	});
-}
-
-function undoReact(note): void {
-	const oldReaction = note.myReaction;
-	if (!oldReaction) return;
-	os.api('notes/reactions/delete', {
-		noteId: note.id,
 	});
 }
 
@@ -592,36 +560,6 @@ function readPromo() {
 				> .channel {
 					opacity: 0.7;
 					font-size: 80%;
-				}
-			}
-
-			> .footer {
-				display: flex;
-				flex-wrap: wrap;
-				> .button {
-					margin: 0;
-					padding: 8px;
-					opacity: 0.7;
-					flex-grow: 1;
-					max-width: 3.5em;
-					width: max-content;
-					min-width: max-content;
-					&:first-of-type {
-						margin-left: -.5em;
-					}
-					&:hover {
-						color: var(--fgHighlighted);
-					}
-
-					> .count {
-						display: inline;
-						margin: 0 0 0 8px;
-						opacity: 0.7;
-					}
-
-					&.reacted {
-						color: var(--accent);
-					}
 				}
 			}
 		}
