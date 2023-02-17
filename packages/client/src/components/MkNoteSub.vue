@@ -13,7 +13,7 @@
 					<XCwButton v-model="showContent" :note="note"/>
 				</p>
 				<div v-show="note.cw == null || showContent" class="content" @click="router.push(notePage(note))">
-					<MkSubNoteContent class="text" :note="note"/>
+					<MkSubNoteContent class="text" :note="note" :detailed="true"/>
 				</div>
 			</div>
 			<MkNoteFooter :note="note" :conversation="conversation"></MkNoteFooter>

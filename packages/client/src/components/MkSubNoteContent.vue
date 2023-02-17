@@ -5,7 +5,12 @@
 		<MkA v-if="note.replyId" class="reply" :to="`/notes/${note.replyId}`"><i class="ph-arrow-bend-up-left-bold ph-lg"></i></MkA>
 		<Mfm v-if="note.text" :text="note.text" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">{{ i18n.ts.quoteAttached }}: ...</MkA>
-		<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
+		<template v-if="detailed">
+			<!-- <div v-if="note.renoteId" class="renote">
+				<XNoteSimple :note="note.renote"/>
+			</div> -->
+			<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
+		</template>
 	</div>
 	<div v-if="note.files.length > 0">
 		<XMediaList :media-list="note.files"/>
@@ -27,6 +32,7 @@
 import { } from 'vue';
 import * as misskey from 'calckey-js';
 import * as mfm from 'mfm-js';
+import XNoteSimple from '@/components/MkNoteSimple.vue';
 import XMediaList from '@/components/MkMediaList.vue';
 import XPoll from '@/components/MkPoll.vue';
 import MkUrlPreview from '@/components/MkUrlPreview.vue';
@@ -35,8 +41,8 @@ import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	note: misskey.entities.Note;
+	detailed?: boolean;
 }>();
-
 
 const isLong = (
 	props.note.cw == null && props.note.text != null && (
@@ -46,7 +52,6 @@ const isLong = (
 );
 const collapsed = $ref(props.note.cw == null && isLong);
 const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : null;
-console.log(props.note.text);
 
 </script>
 
