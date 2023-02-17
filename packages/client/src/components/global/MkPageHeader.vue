@@ -1,40 +1,39 @@
 <template>
-  <div ref="el" class="fdidabkb" :class="classes" :style="{ background: bg }" @click="onClick">
-    <div v-show="narrow" class="buttons left" @click="openAccountMenu">
-      <MkAvatar v-if="displayMyAvatar && user" class="avatar" :user="user" :disable-preview="true"/>
-    </div>
-    <template v-if="hasTabs">
-      <div v-show="!hideTitle" class="titleContainer" @click="showTabsPopup">
-        <MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
-        <i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
-        <div class="title">
-          <MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
-          <div v-else-if="metadata.title && !hasTabs && !narrow" class="title">{{ metadata.title }}</div>
-          <div v-show="!narrow && metadata.subtitle" class="subtitle">{{ metadata.subtitle }}</div>
-        </div>
-      </div>
-      <div ref="tabsEl" class="tabs" v-show="hasTabs">
-        <button v-for="tab in tabs" :key="tab.key" ref="tabRefs[tab.key]" v-tooltip.noDelay="tab.title"
-          class="tab _button" :class="{ active: isActiveTab(tab) }" @mousedown="onTabMousedown(tab)"
-          @click="onTabClick(tab)">
-          <i v-if="tab.icon && !tab.iconOnly" class="icon" :class="tab.icon"></i>
-          <span class="title">{{ tab.title }}</span>
-        </button>
-        <div ref="tabHighlightEl" class="highlight"></div>
-      </div>
-    </template>
-    <div v-show="hasActions" class="buttons right">
-      <button v-for="(action, index) in actions" :key="index" v-tooltip.noDelay="action.text"
-        class="_button button" :class="{ highlighted: action.highlighted }" @click.stop="action.handler"
-        @touchstart="preventDrag">
-        <i :class="action.icon"></i>
-      </button>
-    </div>
-  </div>
+	<div v-if="show" ref="el" class="fdidabkb" :class="{ slim: narrow, thin: thin_ }" :style="{ background: bg }" @click="onClick">
+		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
+		<MkAvatar v-if="props.displayMyAvatar && $i" class="avatar" :user="$i" :disable-preview="true"/>
+	</div>
+	<template v-if="metadata">
+		<div v-if="!hideTitle" class="titleContainer" @click="showTabsPopup">
+			<MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
+				<i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
+
+				<div class="title">
+					<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
+					<div v-else-if="metadata.title && !(tabs != null && tabs.length > 0 && narrow)" class="title">{{ metadata.title }}</div>
+					<div v-if="!narrow && metadata.subtitle" class="subtitle">
+						{{ metadata.subtitle }}
+					</div>
+				</div>
+			</div>
+			<div ref="tabsEl" v-if="hasTabs" class="tabs">
+				<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
+					<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
+					<span class="title">{{ tab.title }}</span>
+				</button>
+				<div ref="tabHighlightEl" class="highlight"></div>
+			</div>
+		</template>
+		<div class="buttons right">
+			<template v-for="action in actions">
+				<button v-tooltip.noDelay="action.text" class="_button button" :class="{ highlighted: action.highlighted }" @click.stop="action.handler" @touchstart="preventDrag"><i :class="action.icon"></i></button>
+			</template>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick } from 'vue';
+import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick, reactive } from 'vue';
 import tinycolor from 'tinycolor2';
 import { popupMenu } from '@/os';
 import { scrollToTop } from '@/scripts/scroll';
@@ -71,17 +70,17 @@ const metadata = injectPageMetadata();
 const hideTitle = inject('shouldOmitHeaderTitle', false);
 const thin_ = props.thin || inject('shouldHeaderThin', false);
 
-const el = ref<HTMLElement | null>(null);
-const tabRefs: Record<string, HTMLElement> = {};
-const tabHighlightEl = ref<HTMLElement | null>(null);
-const tabsEl = ref<HTMLElement | null>(null);
-const bg = ref<string | null>(null);
-const narrow = ref(false);
+const el = $ref<HTMLElement | null>(null);
+const tabRefs = {};
+const tabHighlightEl = $ref<HTMLElement | null>(null);
+const tabsEl = $ref<HTMLElement | null>(null);
+const bg = ref(null);
+let narrow = $ref(false);
 const height = ref(0);
-const hasTabs = computed(() => props.tabs && props.tabs.length > 0);
-const hasActions = computed(() => props.actions && props.actions.length > 0);
-const show = computed(() => {
-	return !hideTitle || hasTabs.value || hasActions.value;
+const hasTabs = $computed(() => props.tabs && props.tabs.length > 0);
+const hasActions = $computed(() => props.actions && props.actions.length > 0);
+const show = $computed(() => {
+	return !hideTitle || hasTabs || hasActions;
 });
 
 const openAccountMenu = (ev: MouseEvent) => {
@@ -91,11 +90,11 @@ const openAccountMenu = (ev: MouseEvent) => {
 };
 
 const showTabsPopup = (ev: MouseEvent) => {
-	if (!hasTabs.value) return;
-	if (!narrow.value) return;
+	if (!hasTabs) return;
+	if (!narrow) return;
 	ev.preventDefault();
 	ev.stopPropagation();
-	const menu = props.tabs!.map(tab => ({
+	const menu = props.tabs.map(tab => ({
 		text: tab.title,
 		icon: tab.icon,
 		active: tab.key != null && tab.key === props.tab,
@@ -111,7 +110,7 @@ const preventDrag = (ev: TouchEvent) => {
 };
 
 const onClick = () => {
-	scrollToTop(el.value!, { behavior: 'smooth' });
+	scrollToTop(el, { behavior: 'smooth' });
 };
 
 function onTabMousedown(tab: Tab, ev: MouseEvent): void {
@@ -131,11 +130,6 @@ function onTabClick(tab: Tab, ev: MouseEvent): void {
 		emit('update:tab', tab.key);
 	}
 }
-
-const isActiveTab = (index: number) => {
-  const activeTab = tabRefs[props.tab]?.value ?? 0;
-  return index === activeTab;
-};
 
 const calcBg = () => {
 	const rawBg = metadata?.bg || 'var(--bg)';
