@@ -32,17 +32,23 @@ export const paramDef = {
 } as const;
 
 export default define(meta, paramDef, async (ps, me) => {
-	const query = ChannelFollowings.createQueryBuilder('following').andWhere({ followerId: me.id });
+	const query = ChannelFollowings.createQueryBuilder("following").andWhere({
+		followerId: me.id,
+	});
 	if (ps.sinceId) {
-		query.andWhere('following."followeeId" > :sinceId', { sinceId: ps.sinceId });
+		query.andWhere('following."followeeId" > :sinceId', {
+			sinceId: ps.sinceId,
+		});
 	}
 	if (ps.untilId) {
-		query.andWhere('following."followeeId" < :untilId', { untilId: ps.untilId });
+		query.andWhere('following."followeeId" < :untilId', {
+			untilId: ps.untilId,
+		});
 	}
 	if (ps.sinceId && !ps.untilId) {
-		query.orderBy('following."followeeId"', 'ASC');
+		query.orderBy('following."followeeId"', "ASC");
 	} else {
-		query.orderBy('following."followeeId"', 'DESC');
+		query.orderBy('following."followeeId"', "DESC");
 	}
 
 	const followings = await query.take(ps.limit).getMany();
