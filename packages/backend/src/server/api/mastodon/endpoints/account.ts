@@ -317,9 +317,11 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
-			console.error(e.response.data);
+			let data = e.response.data;
+			data.users = users;
+			console.error(data);
 			ctx.status = 401;
-			ctx.body = e.response.data;
+			ctx.body = data;
 		}
 	});
 	router.get("/v1/bookmarks", async (ctx) => {
