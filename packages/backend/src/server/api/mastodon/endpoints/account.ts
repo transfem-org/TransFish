@@ -305,7 +305,7 @@ export function apiAccountMastodon(router: Router): void {
 		let users;
 		try {
 			// TODO: this should be body
-			const idsRaw = ctx.request.query ? ["id[]"] : null;
+			const idsRaw = ctx.request.query ? ctx.request.query["id[]"] : null;
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
 			users = ids;
 			relationshopModel.id = idsRaw?.toString() || "1";
