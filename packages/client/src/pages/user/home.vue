@@ -164,10 +164,10 @@ const age = $computed(() => {
 });
 
 const timeForThem = $computed(() => {
-	const tzInfo = cityTimezones.lookupViaCity(props.user.location!);
+	const tzInfo = cityTimezones.lookupViaCity(props.user.location!.replace(/\s.*/,''));
 	if (tzInfo.length == 0) return "";
-	const theirTz = tzInfo[0].timezone;
-	const theirTime = new Date().toLocaleString("en-US", { timeZone: theirTz, hour12: true })
+	const tz = tzInfo[0].timezone;
+	const theirTime = new Date().toLocaleString("en-US", { timeZone: tz, hour12: true })
 	return ` (${theirTime.split(",")[1].trim().split(":")[0]} ${theirTime.split(" ")[1].slice(-2)})`
 })
 
