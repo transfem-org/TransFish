@@ -414,6 +414,17 @@ defineExpose({
 				-webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 16px, rgba(0,0,0,1) calc(100% - 16px), rgba(0,0,0,0) 100%);
 				mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 16px, rgba(0,0,0,1) calc(100% - 16px), rgba(0,0,0,0) 100%);
 			}
+
+			> ::v-deep(*) {
+				margin: auto;
+			}
+
+			&.top {
+				> ::v-deep(*) {
+					margin-top: 0;
+				}
+			}
+
 		}
 	}
 
@@ -441,6 +452,10 @@ defineExpose({
 			left: 0;
 			right: 0;
 			margin: auto;
+
+			> ::v-deep(*) {
+				margin: auto;
+			}
 		}
 	}
 }
