@@ -143,7 +143,7 @@ let ro: ResizeObserver | null;
 onMounted(() => {
 	calcBg();
 	globalEvents.on('themeChanged', calcBg);
-	
+
 	watch(() => [props.tab, props.tabs], () => {
 		nextTick(() => {
 			const tabEl = tabRefs[props.tab];
