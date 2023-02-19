@@ -429,6 +429,7 @@ importers:
       escape-regexp: 0.0.1
       eventemitter3: 4.0.7
       gsap: ^3.11.4
+      hammerjs: ^2.0.8
       idb-keyval: 6.2.0
       insert-text-at-cursor: 0.3.0
       json5: 2.2.3
@@ -447,7 +448,6 @@ importers:
       start-server-and-test: 1.15.2
       strict-event-emitter-types: 2.0.0
       stringz: 2.1.0
-      swiper: ^8.4.5
       syuilo-password-strength: 0.0.1
       textarea-caret: 3.1.0
       three: 0.146.0
@@ -505,6 +505,7 @@ importers:
       escape-regexp: 0.0.1
       eventemitter3: 4.0.7
       gsap: 3.11.4
+      hammerjs: 2.0.8
       idb-keyval: 6.2.0
       insert-text-at-cursor: 0.3.0
       json5: 2.2.3
@@ -523,7 +524,6 @@ importers:
       start-server-and-test: 1.15.2
       strict-event-emitter-types: 2.0.0
       stringz: 2.1.0
-      swiper: 8.4.5
       syuilo-password-strength: 0.0.1
       textarea-caret: 3.1.0
       three: 0.146.0
@@ -3392,7 +3392,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: true
@@ -5437,12 +5437,6 @@ packages:
       domhandler: 5.0.3
       entities: 4.4.0
 
-  /dom7/4.0.4:
-    resolution: {integrity: sha512-DSSgBzQ4rJWQp1u6o+3FVwMNnT5bzQbMb+o31TjYYeRi05uAcpF8koxdfzeoe5ElzPmua7W7N28YJhF7iEKqIw==}
-    dependencies:
-      ssr-window: 4.0.2
-    dev: true
-
   /domelementtype/1.3.1:
     resolution: {integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==}
     dev: false
@@ -6391,6 +6385,19 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -11694,10 +11701,6 @@ packages:
       safer-buffer: 2.1.2
       tweetnacl: 0.14.5
 
-  /ssr-window/4.0.2:
-    resolution: {integrity: sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==}
-    dev: true
-
   /ssri/9.0.1:
     resolution: {integrity: sha512-o57Wcn66jMQvfHG1FlYbWeZWW/dHZhJXjpIcTfXldXEk5nz5lStPo3mK0OJQfGR3RbZUlbISexbljkJzuEj/8Q==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -11976,15 +11979,6 @@ packages:
     dependencies:
       '@swc/core': 1.3.26
       webpack: 5.75.0_@swc+core@1.3.26
-    dev: true
-
-  /swiper/8.4.5:
-    resolution: {integrity: sha512-zveyEFBBv4q1sVkbJHnuH4xCtarKieavJ4SxP0QEHvdpPLJRuD7j/Xg38IVVLbp7Db6qrPsLUePvxohYx39Agw==}
-    engines: {node: '>= 4.7.0'}
-    requiresBuild: true
-    dependencies:
-      dom7: 4.0.4
-      ssr-window: 4.0.2
     dev: true
 
   /symbol-tree/3.2.4:

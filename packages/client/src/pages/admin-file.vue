@@ -78,8 +78,7 @@
 
 <script lang="ts" setup>
 import { computed, watch } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkSwitch from '@/components/form/switch.vue';
 import MkObjectView from '@/components/MkObjectView.vue';
@@ -96,8 +95,7 @@ import { deviceKind } from '@/scripts/device-kind';
 import { acct } from '@/filters/user';
 import { iAmAdmin, iAmModerator } from '@/account';
 import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 let tabs = ['overview'];
 if (iAmModerator) tabs.push('ip');

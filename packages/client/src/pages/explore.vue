@@ -39,8 +39,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, onMounted } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import XFeatured from './explore.featured.vue';
 import XUsers from './explore.users.vue';
 import type MkFolder from '@/components/MkFolder.vue';
@@ -51,8 +50,7 @@ import { deviceKind } from '@/scripts/device-kind';
 import { i18n } from '@/i18n';
 import XUserList from '@/components/MkUserList.vue';
 import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 const props = defineProps<{
 	tag?: string;

@@ -39,8 +39,7 @@
 <script lang="ts" setup>
 import { markRaw, onMounted, onUnmounted, watch } from 'vue';
 import * as Acct from 'calckey-js/built/acct';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkChatPreview from '@/components/MkChatPreview.vue';
 import MkPagination from '@/components/MkPagination.vue';
@@ -52,8 +51,7 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { $i } from '@/account';
 import { deviceKind } from '@/scripts/device-kind';
 import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 const router = useRouter();
 

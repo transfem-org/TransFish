@@ -41,8 +41,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, onMounted } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import MkPagePreview from '@/components/MkPagePreview.vue';
 import MkPagination from '@/components/MkPagination.vue';
 import MkButton from '@/components/MkButton.vue';
@@ -51,8 +50,7 @@ import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 const router = useRouter();
 

@@ -32,15 +32,8 @@
 				/>
 			</div> *v-else on next div* -->
 			<div class="tl _block">
-				<swiper
-					:modules="[Virtual]"
-					:space-between="20"
-					:virtual="true"
-					:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
-					@swiper="setSwiperRef"
-					@slide-change="onSlideChange"
-				>
-					<swiper-slide
+				<MkSwiper :views="timelines">
+					<template
 						v-for="index in timelines"
 						:key="index"
 						:virtual-index="index"
@@ -53,8 +46,8 @@
 							:sound="true"
 							@queue="queueUpdated"
 						/>
-					</swiper-slide>
-				</swiper>
+					</template>
+				</MkSwiper>
 			</div>
 		</div>
 	</MkSpacer>
@@ -63,8 +56,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, ref, onMounted } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import XTutorial from '@/components/MkTutorialDialog.vue';
 import XTimeline from '@/components/MkTimeline.vue';
 import XPostForm from '@/components/MkPostForm.vue';
@@ -76,8 +68,7 @@ import { instance } from '@/instance';
 import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 if (defaultStore.reactiveState.tutorial.value !== -1) {
 	os.popup(XTutorial, {}, {}, 'closed');

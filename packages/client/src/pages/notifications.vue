@@ -36,8 +36,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import { notificationTypes } from 'calckey-js';
 import XNotifications from '@/components/MkNotifications.vue';
 import XNotes from '@/components/MkNotes.vue';
@@ -46,8 +45,7 @@ import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 const tabs = ['all', 'unread', 'mentions', 'directNotes'];
 let tab = $ref(tabs[0]);

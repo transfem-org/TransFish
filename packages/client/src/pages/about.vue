@@ -92,8 +92,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import XEmojis from './about.emojis.vue';
 import XFederation from './about.federation.vue';
 import { version, instanceName , host } from '@/config';
@@ -111,8 +110,7 @@ import { deviceKind } from '@/scripts/device-kind';
 import { iAmModerator } from '@/account';
 import { instance } from '@/instance';
 import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 
 withDefaults(defineProps<{
 	initialTab?: string;

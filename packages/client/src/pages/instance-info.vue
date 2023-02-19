@@ -133,8 +133,7 @@
 
 <script lang="ts" setup>
 import { watch } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import MkSwiper from '@/components/MkSwiper.vue';
 import type * as misskey from 'calckey-js';
 import MkChart from '@/components/MkChart.vue';
 import MkObjectView from '@/components/MkObjectView.vue';
@@ -154,8 +153,7 @@ import { defaultStore } from '@/store';
 import { i18n } from '@/i18n';
 import MkUserCardMini from '@/components/MkUserCardMini.vue';
 import MkPagination from '@/components/MkPagination.vue';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+
 import { getProxiedImageUrlNullable } from '@/scripts/media-proxy';
 
 const props = defineProps<{
