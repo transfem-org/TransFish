@@ -63,7 +63,7 @@ console.log(data);
 	margin: 8px 0 0 0;
 }
 
-> .releaseNotes {
+.releaseNotes {
 	> img {
 		border-radius: 10px;
 	}
