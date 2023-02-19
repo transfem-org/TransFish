@@ -1,15 +1,15 @@
 <template>
-<MkModal ref="modal" :z-priority="'middle'" @click="modal.close()" @closed="$emit('closed')">
-	<div class="ewlycnyt">
-		<div class="title"><MkSparkle>{{ i18n.ts.misskeyUpdated }}</MkSparkle></div>
-		<div class="version">✨ {{ version }} 🚀</div>
-		<div v-if="newRelease" class="releaseNotes">
+<MkModal ref="modal" :z-priority="'middle'" @click="$refs.modal.close()" @closed="$emit('closed')">
+	<div :class="$style.root">
+		<div :class="$style.title"><MkSparkle>{{ i18n.ts.misskeyUpdated }}</MkSparkle></div>
+		<div :class="$style.version">✨ {{ version }} 🚀</div>
+		<div v-if="newRelease" :class="$style.releaseNotes">
 			<Mfm :text="data.notes"/>
 			<div v-if="data.screenshots.length > 0" style="max-width: 500">
 				<img v-for="i in data.screenshots" :key="i" :src="i" alt="screenshot"/>
 			</div>
 		</div>
-		<MkButton class="gotIt" primary full @click="modal.close()">{{ i18n.ts.gotIt }}</MkButton>
+		<MkButton :class="$style.gotIt" primary full @click="$refs.modal.close()">{{ i18n.ts.gotIt }}</MkButton>
 	</div>
 </MkModal>
 </template>
@@ -39,7 +39,8 @@ console.log(data);
 </script>
 
 <style lang="scss" scoped>
-.ewlycnyt {
+.root {
+	margin: auto;
 	position: relative;
 	padding: 32px;
 	min-width: 320px;
@@ -48,24 +49,23 @@ console.log(data);
 	text-align: center;
 	background: var(--panel);
 	border-radius: var(--radius);
+}
 
-	> .title {
-		font-weight: bold;
-	}
+.title {
+	font-weight: bold;
+}
 
-	> .version {
-		margin: 1em 0;
-	}
+.version {
+	margin: 1em 0;
+}
 
-	> .gotIt {
-		margin: 8px 0 0 0;
-	}
+.gotIt {
+	margin: 8px 0 0 0;
+}
 
-	> .releaseNotes {
-
-		> img {
-			border-radius: 10px;
-		}
+> .releaseNotes {
+	> img {
+		border-radius: 10px;
 	}
 }
 </style>
