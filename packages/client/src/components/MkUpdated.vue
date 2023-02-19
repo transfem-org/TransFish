@@ -40,7 +40,7 @@ console.log(data);
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .root {
 	margin: auto;
 	position: relative;
