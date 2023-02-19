@@ -223,6 +223,19 @@ export function getNoteMenu(props: {
 		});
 	}
 
+	function showReactions(): void {
+		os.popup(
+			defineAsyncComponent(
+				() => import("@/components/MkReactedUsersDialog.vue"),
+			),
+			{
+				noteId: appearNote.id,
+			},
+			{},
+			"closed",
+		);
+	}
+
 	async function translate(): Promise<void> {
 		if (props.translation.value != null) return;
 		props.translating.value = true;
@@ -252,6 +265,11 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
+			{
+				icon: "ph-smiley-bold ph-lg",
+				text: i18n.ts.reaction,
+				action: showReactions,
+			},
 			{
 				icon: "ph-clipboard-text-bold ph-lg",
 				text: i18n.ts.copyContent,

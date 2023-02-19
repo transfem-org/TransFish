@@ -97,8 +97,9 @@ If you have access to a server that supports one of the sources below, I recomme
 ```sh
 git clone --depth 1 https://codeberg.org/calckey/calckey.git
 cd calckey/
-# git checkout main # if you want only stable versions
 ```
+
+By default, you're on the development branch. Run `git checkout beta` or `git checkout main` to switch to the Beta/Main branches.
 
 ## 📩 Install dependencies
 
@@ -123,6 +124,8 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 - To add custom CSS for all users, edit `./custom/assets/instance.css`.
 - To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be available on `https://yourinstance.tld/static-assets/filename.ext`.
 - To add custom locales, place them in the `./custom/locales/` directory. If you name your custom locale the same as an existing locale, it will overwrite it. If you give it a unique name, it will be added to the list. Also make sure that the first part of the filename matches the locale you're basing it on. (Example: `en-FOO.yml`)
+- To add custom error images, place them in the `./custom/assets/badges` directory, replacing the files already there.
+- To add custom sounds, place only mp3 files in the `./custom/assets/sounds` directory.
 - To update custom assets without rebuilding, just run `pnpm run gulp`.
 
 ## 🧑‍🔬 Configuring a new instance

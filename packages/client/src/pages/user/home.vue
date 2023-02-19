@@ -44,7 +44,7 @@
 					</div>
 					<div class="follow-container">
 						<div class="actions">
-							<MkFollowButton v-if="$i != null && $i.id != user.id" :user="user" :inline="true" :transparent="false" :full="!narrow" class="koudoku"/>
+							<MkFollowButton v-if="$i != null && $i.id != user.id" :user="user" @refresh="emit('refresh')" :inline="true" :transparent="false" :full="!narrow" class="koudoku"/>
 							<button class="menu _button" @click="menu"><i class="ph-dots-three-outline-bold ph-lg"></i></button>
 							<!-- <MkFollowButton v-else-if="$i == null" :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/> -->
 						</div>
@@ -56,7 +56,7 @@
 					<div class="fields system">
 						<dl v-if="user.location" class="field">
 							<dt class="name"><i class="ph-map-pin-bold ph-lg ph-fw ph-lg"></i> {{ i18n.ts.location }}</dt>
-							<dd class="value">{{ user.location }}</dd>
+							<dd class="value">{{ user.location }}{{ timeForThem }}</dd>
 						</dl>
 						<dl v-if="user.birthday" class="field">
 							<dt class="name"><i class="ph-cake-bold ph-lg ph-fw ph-lg"></i> {{ i18n.ts.birthday }}</dt>
@@ -117,31 +117,29 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, inject, onMounted, onUnmounted, watch } from 'vue';
+import { defineAsyncComponent, onMounted, onUnmounted } from 'vue';
 import calcAge from 's-age';
+import cityTimezones from 'city-timezones';
 import XUserTimeline from './index.timeline.vue';
 import type * as misskey from 'calckey-js';
 import XNote from '@/components/MkNote.vue';
 import MkFollowButton from '@/components/MkFollowButton.vue';
-import MkContainer from '@/components/MkContainer.vue';
-import MkFolder from '@/components/MkFolder.vue';
 import MkRemoteCaution from '@/components/MkRemoteCaution.vue';
-import MkTab from '@/components/MkTab.vue';
 import MkInfo from '@/components/MkInfo.vue';
 import MkMoved from '@/components/MkMoved.vue';
 import { getScrollPosition } from '@/scripts/scroll';
 import { getUserMenu } from '@/scripts/get-user-menu';
 import number from '@/filters/number';
-import { userPage, acct as getAcct } from '@/filters/user';
+import { userPage } from '@/filters/user';
 import * as os from '@/os';
 import { useRouter } from '@/router';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
-import { host } from '@/config';
 
 const XPhotos = defineAsyncComponent(() => import('./index.photos.vue'));
 const XActivity = defineAsyncComponent(() => import('./index.activity.vue'));
 
+const emit = defineEmits(['refresh']);
 const props = withDefaults(defineProps<{
 	user: misskey.entities.UserDetailed;
 }>(), {
@@ -164,6 +162,14 @@ const style = $computed(() => {
 const age = $computed(() => {
 	return calcAge(props.user.birthday);
 });
+
+const timeForThem = $computed(() => {
+	const tzInfo = cityTimezones.lookupViaCity(props.user.location!.replace(/\s.*/,''));
+	if (tzInfo.length == 0) return "";
+	const tz = tzInfo[0].timezone;
+	const theirTime = new Date().toLocaleString("en-US", { timeZone: tz, hour12: true })
+	return ` (${theirTime.split(",")[1].trim().split(":")[0]} ${theirTime.split(" ")[1].slice(-2)})`
+})
 
 function menu(ev) {
 	os.popupMenu(getUserMenu(props.user, router), ev.currentTarget ?? ev.target);

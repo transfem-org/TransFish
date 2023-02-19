@@ -142,6 +142,8 @@ import { i18n } from '@/i18n';
 import { getNoteMenu } from '@/scripts/get-note-menu';
 import { useNoteCapture } from '@/scripts/use-note-capture';
 import { deepClone } from '@/scripts/clone';
+import { stream } from '@/stream';
+import { NoteUpdatedEvent } from 'calckey-js/built/streaming.types';
 
 const router = useRouter();
 
@@ -302,6 +304,31 @@ if (appearNote.replyId) {
 		conversation.value = res.reverse();
 	});
 }
+
+function onNoteReplied(noteData: NoteUpdatedEvent): void {
+	const { type, id, body } = noteData;
+	if (type === 'replied' && id === appearNote.id) {
+		const { id: createdId } = body;
+
+		os.api('notes/show', {
+			noteId: createdId,
+		}).then(note => {
+			if (note.replyId === appearNote.id) {
+				replies.value.unshift(note);
+				directReplies.value.unshift(note);
+			}
+		});
+	}
+	
+}
+
+onMounted(() => {
+	stream.on("noteUpdated", onNoteReplied);
+});
+
+onUnmounted(() => {
+	stream.off("noteUpdated", onNoteReplied);
+});
 </script>
 
 <style lang="scss" scoped>

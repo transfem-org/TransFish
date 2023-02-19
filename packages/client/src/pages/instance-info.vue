@@ -13,7 +13,7 @@
 			<swiper-slide>
 				<div class="_formRoot">
 					<div class="fnfelxur">
-						<img :src="instance.iconUrl || instance.faviconUrl" alt="" class="icon"/>
+						<img :src="faviconUrl" alt="" class="icon"/>
 						<span class="name">{{ instance.name || `(${i18n.ts.unknown})` }}</span>
 					</div>
 					<MkKeyValue :copy="host" oneline style="margin: 1em 0;">
@@ -156,6 +156,7 @@ import MkUserCardMini from '@/components/MkUserCardMini.vue';
 import MkPagination from '@/components/MkPagination.vue';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
+import { getProxiedImageUrlNullable } from '@/scripts/media-proxy';
 
 const props = defineProps<{
 	host: string;
@@ -171,6 +172,7 @@ let meta = $ref<misskey.entities.DetailedInstanceMetadata | null>(null);
 let instance = $ref<misskey.entities.Instance | null>(null);
 let suspended = $ref(false);
 let isBlocked = $ref(false);
+let faviconUrl = $ref(null);
 
 const usersPagination = {
 	endpoint: iAmModerator ? 'admin/show-users' : 'users' as const,
@@ -189,6 +191,7 @@ async function fetch() {
 	});
 	suspended = instance.isSuspended;
 	isBlocked = instance.isBlocked;
+	faviconUrl = getProxiedImageUrlNullable(instance.faviconUrl, 'preview') ?? getProxiedImageUrlNullable(instance.iconUrl, 'preview');
 }
 
 async function toggleBlock(ev) {

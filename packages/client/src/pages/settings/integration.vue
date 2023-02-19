@@ -1,12 +1,5 @@
 <template>
 <div class="_formRoot">
-	<FormSection v-if="instance.enableTwitterIntegration">
-		<template #label><i class="ph-twitter-logo-bold ph-lg"></i> Twitter</template>
-		<p v-if="integrations.twitter">{{ i18n.ts.connectedTo }}: <a :href="`https://twitter.com/${integrations.twitter.screenName}`" rel="nofollow noopener" target="_blank">@{{ integrations.twitter.screenName }}</a></p>
-		<MkButton v-if="integrations.twitter" danger @click="disconnectTwitter">{{ i18n.ts.disconnectService }}</MkButton>
-		<MkButton v-else primary @click="connectTwitter">{{ i18n.ts.connectService }}</MkButton>
-	</FormSection>
-
 	<FormSection v-if="instance.enableDiscordIntegration">
 		<template #label><i class="ph-discord-logo-bold ph-lg"></i> Discord</template>
 		<p v-if="integrations.discord">{{ i18n.ts.connectedTo }}: <a :href="`https://discord.com/users/${integrations.discord.id}`" rel="nofollow noopener" target="_blank">@{{ integrations.discord.username }}#{{ integrations.discord.discriminator }}</a></p>
