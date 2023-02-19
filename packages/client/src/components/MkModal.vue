@@ -7,9 +7,9 @@
 		:leave-to-class="$style['transition_' + transitionName + '_leaveTo']"
 		:duration="transitionDuration" appear @after-leave="emit('closed')" @enter="emit('opening')" @after-enter="onOpened"
 	>
-		<div v-show="manualShowing != null ? manualShowing : showing" v-hotkey.global="keymap" :class="[$style.root, { [$style.drawer]: type === 'drawer', [$style.dialog]: type === 'dialog', [$style.popup]: type === 'popup' }]" :style="{ zIndex, pointerEvents: (manualShowing != null ? manualShowing : showing) ? 'auto' : 'none', '--transformOrigin': transformOrigin }">
+		<div v-show="manualShowing != null ? manualShowing : showing" v-hotkey.global="keymap" :class="[$style.root, { [$style.drawer]: type === 'drawer', [$style.dialog]: type === 'dialog' || type === 'dialog:top', [$style.popup]: type === 'popup' }]" :style="{ zIndex, pointerEvents: (manualShowing != null ? manualShowing : showing) ? 'auto' : 'none', '--transformOrigin': transformOrigin }">
 			<div class="_modalBg data-cy-bg" :class="[$style.bg, { [$style.bgTransparent]: isEnableBgTransparent, 'data-cy-transparent': isEnableBgTransparent }]" :style="{ zIndex }" @click="onBgClick" @mousedown="onBgClick" @contextmenu.prevent.stop="() => {}"></div>
-			<div ref="content" :class="[$style.content, { [$style.fixed]: fixed }]" :style="{ zIndex }" @click.self="onBgClick">
+			<div ref="content" :class="[$style.content, { [$style.fixed]: fixed, top: type === 'dialog:top' }]" :style="{ zIndex }" @click.self="onBgClick">
 				<slot :max-height="maxHeight" :type="type"></slot>
 			</div>
 		</div>
@@ -33,7 +33,7 @@ function getFixedContainer(el: Element | null): Element | null {
 	}
 }
 
-type ModalTypes = 'popup' | 'dialog' | 'drawer';
+type ModalTypes = 'popup' | 'dialog' | 'dialog:top' | 'drawer';
 
 const props = withDefaults(defineProps<{
 	manualShowing?: boolean | null;
@@ -194,21 +194,21 @@ const align = () => {
 		}
 	} else {
 		// 画面から横にはみ出る場合
-		if (left + width - window.pageXOffset > window.innerWidth) {
-			left = window.innerWidth - width + window.pageXOffset - 1;
+		if (left + width - window.scrollX > window.innerWidth) {
+			left = window.innerWidth - width + window.scrollX - 1;
 		}
 
 		const underSpace = (window.innerHeight - MARGIN) - (top - window.pageYOffset);
 		const upperSpace = (srcRect.top - MARGIN);
 
 		// 画面から縦にはみ出る場合
-		if (top + height - window.pageYOffset > (window.innerHeight - MARGIN)) {
+		if (top + height - window.scrollY > (window.innerHeight - MARGIN)) {
 			if (props.noOverlap && props.anchor.x === 'center') {
 				if (underSpace >= (upperSpace / 3)) {
 					maxHeight = underSpace;
 				} else {
 					maxHeight = upperSpace;
-					top = window.pageYOffset + ((upperSpace + MARGIN) - height);
+					top = window.scrollY + ((upperSpace + MARGIN) - height);
 				}
 			} else {
 				top = (window.innerHeight - MARGIN) - height + window.pageYOffset - 1;
