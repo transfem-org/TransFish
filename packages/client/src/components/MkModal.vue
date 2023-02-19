@@ -341,12 +341,12 @@ defineExpose({
 .transition_modal-popup_enterActive,
 .transition_modal-popup_leaveActive {
 	> .bg {
-		transition: opacity 0.1s !important;
+		transition: opacity 0.2s !important;
 	}
 
 	> .content {
 		transform-origin: var(--transformOrigin);
-		transition: opacity 0.1s cubic-bezier(0, 0, 0.2, 1), transform 0.1s cubic-bezier(0, 0, 0.2, 1) !important;
+		transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1), transform 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
 	}
 }
 .transition_modal-popup_enterFrom,
