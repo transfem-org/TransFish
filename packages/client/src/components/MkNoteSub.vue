@@ -1,5 +1,6 @@
 <template>
-<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1 }">
+<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart:replies.length == 1 }">
+	<div v-if="conversation && depth > 1" class="line"></div>
 	<div class="main" @click="router.push(notePage(note))">
 		<div class="avatar-container">
 			<MkAvatar class="avatar" :user="note.user"/>
@@ -20,8 +21,8 @@
 		</div>
 	</div>
 	<template v-if="conversation">
-		<template v-if="depth < 5 && replies.length == 1">
-			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth"/>
+		<template v-if="replies.length == 1">
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth + 1"/>
 		</template>
 		<template v-else-if="depth < 5">
 			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1"/>
@@ -67,7 +68,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 
 
 	&.children {
-		padding: 10px 0 0 16px;
+		padding: 10px 0 0 var(--avatarSize);
 		font-size: 1em;
 		cursor: auto;
 
@@ -143,35 +144,59 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		&:first-child {
 			padding-top: 30px;
 		}
-		.avatar-container {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin-right: 14px;
-			width: var(--avatarSize);
-			> .avatar {
-				width: var(--avatarSize);
-				height: var(--avatarSize);
-				margin: 0;
-			}
-			> .line {
-				width: var(--avatarSize);
+		> .main > .body {
+			padding-bottom: 16px;
+		}
+	}
+	
+	// Reply Lines
+	&.reply, &.reply-to, &.reply-to-more {
+		> .main {
+			> .avatar-container {
 				display: flex;
-				flex-grow: 1;
-				&::before {
-					content: "";
-					display: block;
-					width: 2px;
-					background-color: var(--divider);
-					margin-inline: auto;
-					.note > & {
-						margin-bottom: -16px;
-					}
+				flex-direction: column;
+				align-items: center;
+				margin-right: 14px;
+				width: var(--avatarSize);
+				> .avatar {
+					width: var(--avatarSize);
+					height: var(--avatarSize);
+					margin: 0;
 				}
 			}
 		}
-		> .main > .body {
-			padding-bottom: 16px;
+		.line {
+			width: var(--avatarSize);
+			display: flex;
+			flex-grow: 1;
+			&::before {
+				content: "";
+				display: block;
+				width: 2px;
+				background-color: var(--divider);
+				background-color: white; // FOr now
+				margin-inline: auto;
+				.note > & {
+					margin-bottom: -16px;
+				}
+			}
+		}
+	}
+	.reply:last-child, &.reply:not(.children) {	// Hide line in last reply of thread
+		> .main:last-child > .avatar-container > .line { 
+			display: none;
+		}
+	}
+	.reply.children:not(:last-child) { // Line that goes through multiple replies
+		position: relative;
+		> .line {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+		}
+		&:not(.single):not(.singleStart) > .main > .avatar-container > .line {
+			display: none;
 		}
 	}
 

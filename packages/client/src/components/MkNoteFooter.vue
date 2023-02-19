@@ -126,7 +126,7 @@ function blur() {
 .footer {
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: .4em;
+	// margin-top: .4em;
 	pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 
 	> .button {
