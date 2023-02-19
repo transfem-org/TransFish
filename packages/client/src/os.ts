@@ -7,8 +7,8 @@ import * as Misskey from "calckey-js";
 import { apiUrl, url } from "@/config";
 import MkPostFormDialog from "@/components/MkPostFormDialog.vue";
 import MkWaitingDialog from "@/components/MkWaitingDialog.vue";
-import MkToast from '@/components/MkToast.vue';
-import MkDialog from '@/components/MkDialog.vue';
+import MkToast from "@/components/MkToast.vue";
+import MkDialog from "@/components/MkDialog.vue";
 import { MenuItem } from "@/types/menu";
 import { $i } from "@/account";
 
@@ -248,41 +248,56 @@ export function modalPageWindow(path: string) {
 }
 
 export function toast(message: string) {
-	popup(MkToast, {
-		message,
-	}, {}, 'closed');
+	popup(
+		MkToast,
+		{
+			message,
+		},
+		{},
+		"closed",
+	);
 }
 
 export function alert(props: {
-	type?: 'error' | 'info' | 'success' | 'warning' | 'waiting' | 'question';
+	type?: "error" | "info" | "success" | "warning" | "waiting" | "question";
 	title?: string | null;
 	text?: string | null;
 }): Promise<void> {
 	return new Promise((resolve, reject) => {
-		popup(MkDialog, props, {
-			done: result => {
-				resolve();
+		popup(
+			MkDialog,
+			props,
+			{
+				done: (result) => {
+					resolve();
+				},
 			},
-		}, 'closed');
+			"closed",
+		);
 	});
 }
 
 export function confirm(props: {
-	type: 'error' | 'info' | 'success' | 'warning' | 'waiting' | 'question';
+	type: "error" | "info" | "success" | "warning" | "waiting" | "question";
 	title?: string | null;
 	text?: string | null;
 	okText?: string;
 	cancelText?: string;
 }): Promise<{ canceled: boolean }> {
 	return new Promise((resolve, reject) => {
-		popup(MkDialog, {
-			...props,
-			showCancelButton: true,
-		}, {
-			done: result => {
-				resolve(result ? result : { canceled: true });
+		popup(
+			MkDialog,
+			{
+				...props,
+				showCancelButton: true,
 			},
-		}, 'closed');
+			{
+				done: (result) => {
+					resolve(result ? result : { canceled: true });
+				},
+			},
+			"closed",
+		);
 	});
 }
 
