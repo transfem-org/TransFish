@@ -15,6 +15,7 @@
 </template>
 
 <script lang="ts" setup>
+import { shallowRef } from 'vue';
 import MkModal from '@/components/MkModal.vue';
 import MkSparkle from '@/components/MkSparkle.vue';
 import MkButton from '@/components/MkButton.vue';
@@ -22,7 +23,7 @@ import { version } from '@/config';
 import { i18n } from '@/i18n';
 import * as os from '@/os';
 
-const modal = $ref<InstanceType<typeof MkModal>>();
+const modal = shallowRef<InstanceType<typeof MkModal>>();
 
 let newRelease = $ref(false);
 let data = $ref(Object);
@@ -31,6 +32,7 @@ os.api('release').then(res => {
 	data = res;
 	newRelease = (version === data?.version);
 });
+
 console.log(`Version: ${version}`)
 console.log(`Data version: ${data.version}`)
 console.log(newRelease)

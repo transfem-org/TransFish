@@ -251,6 +251,16 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 
 	// クライアントが更新されたか？
 	const lastVersion = localStorage.getItem("lastVersion");
+
+	// TESTING
+
+	popup(
+		defineAsyncComponent(() => import("@/components/MkUpdated.vue")),
+		{},
+		{},
+		"closed",
+	);
+
 	if (lastVersion !== version) {
 		localStorage.setItem("lastVersion", version);
 
