@@ -128,8 +128,14 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		}
 	}
 
-	&.reply :deep(.footer) {
-		font-size: .9em;
+	&.reply {
+		--avatarSize: 38px;
+		.avatar-container {
+			margin-right: 8px !important;
+		}
+		:deep(.footer) {
+			font-size: .9em;
+		}
 	}
 	> .reply, > .more {
 		margin-top: 10px;
