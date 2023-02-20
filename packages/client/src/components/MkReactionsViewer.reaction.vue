@@ -120,6 +120,7 @@ useTooltip(buttonRef, async (showing) => {
 
 		> .count {
 			color: var(--fgOnAccent);
+			font-weight: 600;
 		}
 
 		> .icon {
