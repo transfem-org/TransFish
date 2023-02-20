@@ -65,10 +65,11 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
-
+	--divider: rgba(255,255,255,0.5); // for now
 
 	&.children {
-		padding: 10px 0 0 var(--avatarSize);
+		padding: 10px 0 0 var(--indent);
+		padding-left: var(--indent) !important;
 		font-size: 1em;
 		cursor: auto;
 
@@ -127,8 +128,10 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		}
 	}
 
+	&.reply :deep(.footer) {
+		font-size: .9em;
+	}
 	> .reply, > .more {
-		// border-left: solid 0.5px var(--divider);
 		margin-top: 10px;
 		&.single {
 			padding: 0 !important;
@@ -144,13 +147,14 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		&:first-child {
 			padding-top: 30px;
 		}
-		> .main > .body {
-			padding-bottom: 16px;
+		.line::before {
+			margin-bottom: -16px;
 		}
 	}
 	
 	// Reply Lines
 	&.reply, &.reply-to, &.reply-to-more {
+		--indent: var(--avatarSize);
 		> .main {
 			> .avatar-container {
 				display: flex;
@@ -172,14 +176,14 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			&::before {
 				content: "";
 				display: block;
-				width: 2px;
-				background-color: var(--divider);
-				background-color: white; // FOr now
+				border-left: 2px solid var(--divider);
 				margin-inline: auto;
-				.note > & {
-					margin-bottom: -16px;
-				}
 			}
+		}
+	}
+	&.single, &.singleStart {
+		> .main > .avatar-container > .line::before {
+			margin-bottom: -10px;
 		}
 	}
 	.reply:last-child, &.reply:not(.children) {	// Hide line in last reply of thread
@@ -194,9 +198,31 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			top: 0;
 			left: 0;
 			bottom: 0;
+			&::before {
+				margin-top: -10px;
+			}
 		}
 		&:not(.single):not(.singleStart) > .main > .avatar-container > .line {
 			display: none;
+		}
+	}
+	// Reply line connectors
+	.reply.children:not(.single) {
+		position: relative;
+		> .line {
+			position: absolute;
+			left: 0;
+			&::after {
+				content: "";
+				position: absolute;
+				border-left: 2px solid var(--divider);
+				border-bottom: 2px solid var(--divider);
+				margin-left: calc(var(--avatarSize) / 2 - 1px);
+				margin-top: -20px;
+				width: calc(var(--indent) / 3);
+				height: calc((var(--avatarSize) / 2) + 20px);
+				border-bottom-left-radius: calc(var(--indent) / 3);
+			}
 		}
 	}
 
