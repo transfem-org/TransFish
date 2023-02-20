@@ -5,13 +5,13 @@
 		<MkA v-if="note.replyId" class="reply" :to="`/notes/${note.replyId}`"><i class="ph-arrow-bend-up-left-bold ph-lg"></i></MkA>
 		<Mfm v-if="note.text" :text="note.text" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">{{ i18n.ts.quoteAttached }}: ...</MkA>
-		<template v-if="detailed">
-			<!-- <div v-if="note.renoteId" class="renote">
-				<XNoteSimple :note="note.renote"/>
-			</div> -->
-			<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
-		</template>
 	</div>
+	<template v-if="detailed">
+		<!-- <div v-if="note.renoteId" class="renote">
+			<XNoteSimple :note="note.renote"/>
+		</div> -->
+		<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
+	</template>
 	<div v-if="note.files.length > 0">
 		<XMediaList :media-list="note.files"/>
 	</div>
@@ -58,7 +58,7 @@ const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : n
 <style lang="scss" scoped>
 .wrmlmaau {
 	overflow-wrap: break-word;
-
+	
 	> .body {
 		> .reply {
 			margin-right: 6px;

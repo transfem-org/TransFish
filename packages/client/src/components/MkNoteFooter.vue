@@ -1,6 +1,6 @@
 <template>
 	<footer ref="el" class="footer" @click.stop.prevent>
-		<XReactionsViewer v-if="!conversation" ref="reactionsViewer" :note="appearNote"/>
+		<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
 		<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
 			<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
 			<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
@@ -18,7 +18,6 @@
 		<button ref="menuButton" v-tooltip.noDelay.bottom="i18n.ts.more" class="button _button" @click="menu()">
 			<i class="ph-dots-three-outline-bold ph-lg"></i>
 		</button>
-		<XReactionsViewer v-if="conversation" ref="reactionsViewer" :note="appearNote"/>
 	</footer>
 </template>
 
@@ -41,7 +40,6 @@ import { useNoteCapture } from '@/scripts/use-note-capture';
 
 const props = defineProps<{
 	note: misskey.entities.Note;
-	conversation?: misskey.entities.Note[];
 }>();
 
 let note = $ref(deepClone(props.note));

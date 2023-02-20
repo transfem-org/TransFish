@@ -17,7 +17,7 @@
 					<MkSubNoteContent class="text" :note="note" :detailed="true"/>
 				</div>
 			</div>
-			<MkNoteFooter :note="note" :conversation="conversation"></MkNoteFooter>
+			<MkNoteFooter :note="note"></MkNoteFooter>
 		</div>
 	</div>
 	<template v-if="conversation">
@@ -65,7 +65,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
-	// --divider: rgba(255,255,255,0.5); // for now
 
 	&.children {
 		padding: 10px 0 0 var(--indent);
