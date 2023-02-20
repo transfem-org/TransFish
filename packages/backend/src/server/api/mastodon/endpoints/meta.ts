@@ -1,6 +1,9 @@
 import { Entity } from "@calckey/megalodon";
+import { fetchMeta } from "@/misc/fetch-meta.js";
+
 // TODO: add calckey features
-export function getInstance(response: Entity.Instance) {
+export async function getInstance(response: Entity.Instance) {
+	const meta = await fetchMeta(true);
 	return {
 		uri: response.uri,
 		title: response.title || "",
@@ -11,8 +14,8 @@ export function getInstance(response: Entity.Instance) {
 		urls: response.urls,
 		stats: response.stats,
 		thumbnail: response.thumbnail || "",
-		languages: ["en", "de", "ja"],
-		registrations: response.registrations,
+		languages: meta.langs,
+		registrations: !meta.disableRegistration || response.registrations,
 		approval_required: !response.registrations,
 		invites_enabled: response.registrations,
 		configuration: {
@@ -77,17 +80,17 @@ export function getInstance(response: Entity.Instance) {
 			bot: true,
 			discoverable: false,
 			group: false,
-			created_at: "1971-01-01T00:00:00.000Z",
-			note: "",
-			url: "https://http.cat/404",
-			avatar: "https://http.cat/404",
-			avatar_static: "https://http.cat/404",
+			created_at: Math.floor(new Date().getTime() / 1000),
+			note: "Please refer to the original instance for the actual admin contact.",
+			url: "/",
+			avatar: "/static-assets/badges/info.png",
+			avatar_static: "/static-assets/badges/info.png",
 			header: "https://http.cat/404",
 			header_static: "https://http.cat/404",
 			followers_count: -1,
 			following_count: 0,
 			statuses_count: 0,
-			last_status_at: "1971-01-01T00:00:00.000Z",
+			last_status_at: Math.floor(new Date().getTime() / 1000),
 			noindex: true,
 			emojis: [],
 			fields: [],

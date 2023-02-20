@@ -54,7 +54,7 @@ export function apiMastodonCompatible(router: Router): void {
 		// displayed without being logged in
 		try {
 			const data = await client.getInstance();
-			ctx.body = getInstance(data.data);
+			ctx.body = await getInstance(data.data);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;

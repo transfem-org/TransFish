@@ -122,7 +122,6 @@ export async function createNote(
 	}
 
 	logger.debug(`Note fetched: ${JSON.stringify(note, null, 2)}`);
-
 	logger.info(`Creating the Note: ${note.id}`);
 
 	// Skip if note is made before 2007 (1yr before Fedi was created)

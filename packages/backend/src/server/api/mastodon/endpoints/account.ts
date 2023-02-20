@@ -98,20 +98,23 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	router.get<{ Params: { id: string } }>("/v1/accounts/:id", async (ctx) => {
-		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-		const accessTokens = ctx.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		try {
-			const data = await client.getAccount(ctx.params.id);
-			ctx.body = data.data;
-		} catch (e: any) {
-			console.error(e);
-			console.error(e.response.data);
-			ctx.status = 401;
-			ctx.body = e.response.data;
-		}
-	});
+	router.get<{ Params: { id: string } }>(
+		"/v1/accounts/:id(^.*\\d.*$)",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getAccount(ctx.params.id);
+				ctx.body = data.data;
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id/statuses",
 		async (ctx) => {
@@ -304,11 +307,12 @@ export function apiAccountMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		let users;
 		try {
-			const idsRaw = ctx.request.body ? ["id[]"] : null;
+			// TODO: this should be body
+			const idsRaw = ctx.request.query ? ctx.request.query["id[]"] : null;
 			const ids = typeof idsRaw === "string" ? [idsRaw] : idsRaw;
 			users = ids;
 			relationshopModel.id = idsRaw?.toString() || "1";
-			if (!(idsRaw && ids)) {
+			if (!idsRaw) {
 				ctx.body = [relationshopModel];
 				return;
 			}
@@ -316,9 +320,11 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
-			console.error(e.response.data);
+			let data = e.response.data;
+			data.users = users;
+			console.error(data);
 			ctx.status = 401;
-			ctx.body = e.response.data;
+			ctx.body = data;
 		}
 	});
 	router.get("/v1/bookmarks", async (ctx) => {

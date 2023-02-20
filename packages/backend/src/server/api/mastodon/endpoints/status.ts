@@ -404,7 +404,7 @@ async function getFirstReaction(
 ) {
 	const accessTokenArr = accessTokens?.split(" ") ?? [null];
 	const accessToken = accessTokenArr[accessTokenArr.length - 1];
-	let react = "👍";
+	let react = "⭐";
 	try {
 		const api = await axios.post(`${BASE_URL}/api/i/registry/get-unsecure`, {
 			scope: ["client", "base"],
@@ -412,7 +412,7 @@ async function getFirstReaction(
 			i: accessToken,
 		});
 		const reactRaw = api.data;
-		react = Array.isArray(reactRaw) ? api.data[0] : "👍";
+		react = Array.isArray(reactRaw) ? api.data[0] : "⭐";
 		console.log(api.data);
 		return react;
 	} catch (e) {
@@ -426,16 +426,16 @@ export function statusModel(
 	emojis: MastodonEntity.Emoji[],
 	content: string,
 ) {
-	const now = "1970-01-02T00:00:00.000Z";
+	const now = Math.floor(new Date().getTime() / 1000);
 	return {
 		id: "9atm5frjhb",
 		uri: "https://http.cat/404", // ""
 		url: "https://http.cat/404", // "",
 		account: {
 			id: "9arzuvv0sw",
-			username: "ReactionBot",
-			acct: "ReactionBot",
-			display_name: "ReactionsToThisPost",
+			username: "Reactions",
+			acct: "Reactions",
+			display_name: "Reactions to this post",
 			locked: false,
 			created_at: now,
 			followers_count: 0,
@@ -443,8 +443,8 @@ export function statusModel(
 			statuses_count: 0,
 			note: "",
 			url: "https://http.cat/404",
-			avatar: "https://http.cat/404",
-			avatar_static: "https://http.cat/404",
+			avatar: "/static-assets/badges/info.png",
+			avatar_static: "/static-assets/badges/info.png",
 			header: "https://http.cat/404", // ""
 			header_static: "https://http.cat/404", // ""
 			emojis: [],

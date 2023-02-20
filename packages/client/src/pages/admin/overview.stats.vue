@@ -106,35 +106,35 @@ onMounted(async () => {
 
 			&.users {
 				> .icon {
-					background: #56949f55;
+					background: #56949f22;
 					color: #9ccfd8;
 				}
 			}
 
 			&.notes {
 				> .icon {
-					background: #28698355;
+					background: #28698322;
 					color: #31748f;
 				}
 			}
 
 			&.instances {
 				> .icon {
-					background: #d7827e55;
+					background: #d7827e22;
 					color: #ebbcba;
 				}
 			}
 
 			&.emojis {
 				> .icon {
-					background: #ea9d3455;
+					background: #ea9d3422;
 						color: #f6c177;
 				}
 			}
 
 			&.online {
 				> .icon {
-					background: #907aa955;
+					background: #907aa922;
 					color: #c4a7e7;
 				}
 			}

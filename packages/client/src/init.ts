@@ -251,6 +251,7 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 
 	// クライアントが更新されたか？
 	const lastVersion = localStorage.getItem("lastVersion");
+
 	if (lastVersion !== version) {
 		localStorage.setItem("lastVersion", version);
 

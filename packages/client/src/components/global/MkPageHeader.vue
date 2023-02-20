@@ -141,32 +141,32 @@ const calcBg = () => {
 let ro: ResizeObserver | null;
 
 onMounted(() => {
-  calcBg();
-  globalEvents.on('themeChanged', calcBg);
+	calcBg();
+	globalEvents.on('themeChanged', calcBg);
 
-  const updateTabHighlight = () => {
-    nextTick(() => {
-      const tabEl = tabRefs[props.tab];
-      if (tabEl && tabHighlightEl) {
-        const tabSizeX = tabEl.scrollWidth + 20;
-        tabEl.style.setProperty('--width', `${tabSizeX}px`);
-
-        const parentRect = tabsEl.getBoundingClientRect();
-        const rect = tabEl.getBoundingClientRect();
-        const left = (rect.left - parentRect.left + tabsEl.scrollLeft);
-        tabHighlightEl.style.width = `${tabSizeX}px`;
-        tabHighlightEl.style.transform = `translateX(${left}px)`;
-        tabsEl.scrollTo({left: left - 60, behavior: "smooth"});
-      }
-    });
-  };
-
-  const updateTab = () => {
-    emit('update:tab', props.tab);
-  };
-
-  watch(() => [props.tab, props.tabs], updateTabHighlight, { immediate: true });
-  watch(() => props.tab, updateTab);
+	watch(() => [props.tab, props.tabs], () => {
+		nextTick(() => {
+			const tabEl = tabRefs[props.tab];
+			if (tabEl && tabHighlightEl) {
+				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
+				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
+				const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
+				tabEl.style = `--width: ${tabSizeX}px`;
+				setTimeout(() => {
+					const parentRect = tabsEl.getBoundingClientRect();
+					const rect = tabEl.getBoundingClientRect();
+					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
+					tabHighlightEl.style.width = tabSizeX + 'px';
+					tabHighlightEl.style.transform = `translateX(${left}px)`;
+					window.requestAnimationFrame(() => {
+						tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
+					})
+				}, 200);
+			}
+		});
+	}, {
+		immediate: true,
+	});
 
   if (el && el.parentElement) {
     narrow.value = el.parentElement.offsetWidth < 500;

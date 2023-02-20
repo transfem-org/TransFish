@@ -1400,6 +1400,7 @@ _profile:
   metadataContent: "Content"
   changeAvatar: "Change avatar"
   changeBanner: "Change banner"
+  locationDescription: "If entered properly, this will display your local time to other users."
 _exportOrImport:
   allNotes: "All posts"
   followingList: "Followed users"
