@@ -3,7 +3,8 @@
 ## Misskey v13 and above
 
 ```sh
-git apply docs/mkv13.patch
+wget -O mkv13.patch https://codeberg.org/calckey/calckey/raw/branch/develop/docs/mkv13.patch
+git apply mkv13.patch
 
 cd packages/backend
 
