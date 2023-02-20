@@ -65,7 +65,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
-	--divider: rgba(255,255,255,0.5); // for now
+	// --divider: rgba(255,255,255,0.5); // for now
 
 	&.children {
 		padding: 10px 0 0 var(--indent);
@@ -182,7 +182,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			&::before {
 				content: "";
 				display: block;
-				border-left: 2px solid var(--divider);
+				border-left: 2px solid var(--accent);
 				margin-inline: auto;
 			}
 		}
@@ -221,11 +221,11 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--divider);
-				border-bottom: 2px solid var(--divider);
-				margin-left: calc(var(--avatarSize) / 2 - 1px);
+				border-left: 2px solid var(--accent);
+				border-bottom: 2px solid var(--accent);
+				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				margin-top: -20px;
-				width: calc(var(--indent) / 3);
+				width: calc(var(--indent) / 2);
 				height: calc((var(--avatarSize) / 2) + 20px);
 				border-bottom-left-radius: calc(var(--indent) / 3);
 			}
