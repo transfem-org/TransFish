@@ -42,8 +42,13 @@ const bgCss = bg.toRgbString();
 <style lang="scss" scoped>
 .akbvjaqn {
 	display: inline-block;
-	padding: 4px 8px 4px 4px;
+	padding: 2px 8px 2px 2px;
+	margin-block: 2px;
 	border-radius: 999px;
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: clip;
+	text-overflow: ellipsis;
 	color: var(--mention);
 
 	&.isMe {
