@@ -1,9 +1,13 @@
 import { Entity } from "@calckey/megalodon";
 import { fetchMeta } from "@/misc/fetch-meta.js";
+import { Users, Notes } from "@/models/index.js";
+import { IsNull, MoreThan } from "typeorm";
 
 // TODO: add calckey features
 export async function getInstance(response: Entity.Instance) {
 	const meta = await fetchMeta(true);
+	const totalUsers = Users.count({ where: { host: IsNull() } });
+	const totalStatuses = Notes.count({ where: { userHost: IsNull() } });
 	return {
 		uri: response.uri,
 		title: response.title || "",
@@ -12,7 +16,11 @@ export async function getInstance(response: Entity.Instance) {
 		email: response.email || "",
 		version: "3.0.0 compatible (Calckey)",
 		urls: response.urls,
-		stats: response.stats,
+		stats: {
+			user_count: totalUsers,
+			status_count: totalStatuses,
+			domain_count: response.stats.domain_count
+		},
 		thumbnail: response.thumbnail || "",
 		languages: meta.langs,
 		registrations: !meta.disableRegistration || response.registrations,
