@@ -171,6 +171,7 @@ errorRouter.all("(.*)", async (ctx) => {
 
 // Register router
 app.use(mastoRouter.routes());
+app.use(mastoRouter.allowedMethods());
 app.use(router.routes());
 app.use(errorRouter.routes());
 

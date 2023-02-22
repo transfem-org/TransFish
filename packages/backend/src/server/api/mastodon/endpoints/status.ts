@@ -289,14 +289,16 @@ export function apiStatusMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const multipartData = await ctx.file;
+			let multipartData = await ctx.request.files;
 			if (!multipartData) {
 				ctx.body = { error: "No image" };
+				ctx.status = 401;
 				return;
 			}
-			const [path] = await createTemp();
-			await pump(multipartData.buffer, fs.createWriteStream(path));
-			const image = fs.readFileSync(path);
+			if ((multipartData as any).file) {
+				multipartData = (multipartData as any).file;
+			}
+			const image = fs.readFileSync((multipartData as any).path);
 			const data = await client.uploadMedia(image);
 			ctx.body = data.data;
 		} catch (e: any) {
@@ -313,6 +315,7 @@ export function apiStatusMastodon(router: Router): void {
 			const multipartData = await ctx.file;
 			if (!multipartData) {
 				ctx.body = { error: "No image" };
+				ctx.status = 401;
 				return;
 			}
 			const [path] = await createTemp();
