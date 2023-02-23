@@ -1,24 +1,7 @@
 import Router from "@koa/router";
-import megalodon, { MegalodonInterface } from "@calckey/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
-import fs from "fs";
-import { pipeline } from "node:stream";
-import { promisify } from "node:util";
-import { createTemp } from "@/misc/create-temp.js";
-import config from "@/config/index.js";
-import multer from "@koa/multer";
-import { emojiRegex, emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
+import { emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
 import axios from "axios";
-const pump = promisify(pipeline);
-
-// Init multer instance
-const upload = multer({
-	storage: multer.diskStorage({}),
-	limits: {
-		fileSize: config.maxFileSize || 262144000,
-		files: 1,
-	},
-});
 
 export function apiStatusMastodon(router: Router): void {
 	router.post("/v1/statuses", async (ctx) => {
@@ -295,46 +278,6 @@ export function apiStatusMastodon(router: Router): void {
 			}
 		},
 	);
-	router.post("/v1/media", upload.single("file"), async (ctx) => {
-		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-		const accessTokens = ctx.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		try {
-			let multipartData = await ctx.request.file;
-			if (!multipartData) {
-				ctx.body = { error: "No image" };
-				ctx.status = 401;
-				return;
-			}
-			const image = fs.readFileSync((multipartData).path);
-			const data = await client.uploadMedia(image);
-			ctx.body = data.data;
-		} catch (e: any) {
-			console.error(e);
-			ctx.status = 401;
-			ctx.body = e.response.data;
-		}
-	});
-	router.post("/v2/media", upload.single("file"), async (ctx) => {
-		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-		const accessTokens = ctx.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		try {
-			let multipartData = await ctx.request.file;
-			if (!multipartData) {
-				ctx.body = { error: "No image" };
-				ctx.status = 401;
-				return;
-			}
-			const image = fs.readFileSync((multipartData).path);
-			const data = await client.uploadMedia(image);
-			ctx.body = data.data;
-		} catch (e: any) {
-			console.error(e);
-			ctx.status = 401;
-			ctx.body = e.response.data;
-		}
-	});
 	router.get<{ Params: { id: string } }>(
 		"/v1/media/:id",
 		async (ctx) => {

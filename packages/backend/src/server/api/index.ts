@@ -7,7 +7,7 @@ import Router from "@koa/router";
 import multer from "@koa/multer";
 import bodyParser from "koa-bodyparser";
 import cors from "@koa/cors";
-import { apiMastodonCompatible } from "./mastodon/ApiMastodonCompatibleService.js";
+import { apiMastodonCompatible, getClient } from "./mastodon/ApiMastodonCompatibleService.js";
 import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
 import endpoints from "./endpoints.js";
@@ -39,6 +39,7 @@ app.use(async (ctx, next) => {
 // Init router
 const router = new Router();
 const mastoRouter = new Router();
+const mastoFileRouter = new Router();
 const errorRouter = new Router();
 
 // Init multer instance
@@ -67,6 +68,48 @@ mastoRouter.use(
 		urlencoded: true,
 	}),
 );
+
+
+mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
+	const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+	const accessTokens = ctx.headers.authorization;
+	const client = getClient(BASE_URL, accessTokens);
+	try {
+		let multipartData = await ctx.request.file;
+		if (!multipartData) {
+			ctx.body = { error: "No image" };
+			ctx.status = 401;
+			return;
+		}
+		const image = fs.readFileSync((multipartData).path);
+		const data = await client.uploadMedia(image);
+		ctx.body = data.data;
+	} catch (e: any) {
+		console.error(e);
+		ctx.status = 401;
+		ctx.body = e.response.data;
+	}
+});
+mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
+	const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+	const accessTokens = ctx.headers.authorization;
+	const client = getClient(BASE_URL, accessTokens);
+	try {
+		let multipartData = await ctx.request.file;
+		if (!multipartData) {
+			ctx.body = { error: "No image" };
+			ctx.status = 401;
+			return;
+		}
+		const image = fs.readFileSync((multipartData).path);
+		const data = await client.uploadMedia(image);
+		ctx.body = data.data;
+	} catch (e: any) {
+		console.error(e);
+		ctx.status = 401;
+		ctx.body = e.response.data;
+	}
+});
 
 mastoRouter.use(async (ctx, next) => {
 	if (ctx.request.query) {
@@ -170,6 +213,7 @@ errorRouter.all("(.*)", async (ctx) => {
 });
 
 // Register router
+app.use(mastoFileRouter.routes());
 app.use(mastoRouter.routes());
 app.use(mastoRouter.allowedMethods());
 app.use(router.routes());
