@@ -66,7 +66,7 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ### 🐋 Docker
 
-[How to run Calckey with Docker](./docker-README.md).
+[How to run Calckey with Docker](./docs/docker.md).
 
 ## 🧑‍💻 Dependencies
 
@@ -136,12 +136,7 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 
 ## 🚚 Migrating from Misskey to Calckey
 
-> ⚠️ Because of their changes, migrating from Foundkey is not supported.
-
-```sh
-cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, add `docker.env` if you use Docker
-cp -r ../misskey/files .
-```
+For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](./docs/migrate.md).
 
 ## 🍀 NGINX
 

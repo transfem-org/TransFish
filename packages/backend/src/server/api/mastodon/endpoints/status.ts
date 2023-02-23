@@ -1,16 +1,10 @@
 import Router from "@koa/router";
-import megalodon, { MegalodonInterface } from "@calckey/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
-import fs from "fs";
-import { pipeline } from "node:stream";
-import { promisify } from "node:util";
-import { createTemp } from "@/misc/create-temp.js";
-import { emojiRegex, emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
+import { emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
 import axios from "axios";
-const pump = promisify(pipeline);
 
 export function apiStatusMastodon(router: Router): void {
-	router.post("/v1/statuses", async (ctx, reply) => {
+	router.post("/v1/statuses", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
@@ -52,7 +46,7 @@ export function apiStatusMastodon(router: Router): void {
 	});
 	router.get<{ Params: { id: string } }>(
 		"/v1/statuses/:id",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -68,7 +62,7 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.delete<{ Params: { id: string } }>(
 		"/v1/statuses/:id",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -90,7 +84,7 @@ export function apiStatusMastodon(router: Router): void {
 	}
 	router.get<{ Params: { id: string } }>(
 		"/v1/statuses/:id/context",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -123,7 +117,7 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/statuses/:id/reblogged_by",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -139,13 +133,13 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/statuses/:id/favourited_by",
-		async (ctx, reply) => {
+		async (ctx) => {
 			ctx.body = [];
 		},
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/favourite",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -167,7 +161,7 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/unfavourite",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -185,7 +179,7 @@ export function apiStatusMastodon(router: Router): void {
 
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/reblog",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -202,7 +196,7 @@ export function apiStatusMastodon(router: Router): void {
 
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/unreblog",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -219,7 +213,7 @@ export function apiStatusMastodon(router: Router): void {
 
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/bookmark",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -236,7 +230,7 @@ export function apiStatusMastodon(router: Router): void {
 
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/unbookmark",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -253,7 +247,7 @@ export function apiStatusMastodon(router: Router): void {
 
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/pin",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -270,7 +264,7 @@ export function apiStatusMastodon(router: Router): void {
 
 	router.post<{ Params: { id: string } }>(
 		"/v1/statuses/:id/unpin",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -284,51 +278,9 @@ export function apiStatusMastodon(router: Router): void {
 			}
 		},
 	);
-	router.post("/v1/media", async (ctx, reply) => {
-		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-		const accessTokens = ctx.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		try {
-			const multipartData = await ctx.file;
-			if (!multipartData) {
-				ctx.body = { error: "No image" };
-				return;
-			}
-			const [path] = await createTemp();
-			await pump(multipartData.buffer, fs.createWriteStream(path));
-			const image = fs.readFileSync(path);
-			const data = await client.uploadMedia(image);
-			ctx.body = data.data;
-		} catch (e: any) {
-			console.error(e);
-			ctx.status = 401;
-			ctx.body = e.response.data;
-		}
-	});
-	router.post("/v2/media", async (ctx, reply) => {
-		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-		const accessTokens = ctx.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		try {
-			const multipartData = await ctx.file;
-			if (!multipartData) {
-				ctx.body = { error: "No image" };
-				return;
-			}
-			const [path] = await createTemp();
-			await pump(multipartData.buffer, fs.createWriteStream(path));
-			const image = fs.readFileSync(path);
-			const data = await client.uploadMedia(image);
-			ctx.body = data.data;
-		} catch (e: any) {
-			console.error(e);
-			ctx.status = 401;
-			ctx.body = e.response.data;
-		}
-	});
 	router.get<{ Params: { id: string } }>(
 		"/v1/media/:id",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -344,7 +296,7 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.put<{ Params: { id: string } }>(
 		"/v1/media/:id",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -363,7 +315,7 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.get<{ Params: { id: string } }>(
 		"/v1/polls/:id",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
@@ -379,7 +331,7 @@ export function apiStatusMastodon(router: Router): void {
 	);
 	router.post<{ Params: { id: string } }>(
 		"/v1/polls/:id/votes",
-		async (ctx, reply) => {
+		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);

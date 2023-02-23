@@ -1,9 +1,13 @@
 import { Entity } from "@calckey/megalodon";
 import { fetchMeta } from "@/misc/fetch-meta.js";
+import { Users, Notes } from "@/models/index.js";
+import { IsNull, MoreThan } from "typeorm";
 
 // TODO: add calckey features
 export async function getInstance(response: Entity.Instance) {
 	const meta = await fetchMeta(true);
+	const totalUsers = Users.count({ where: { host: IsNull() } });
+	const totalStatuses = Notes.count({ where: { userHost: IsNull() } });
 	return {
 		uri: response.uri,
 		title: response.title || "",
@@ -12,7 +16,11 @@ export async function getInstance(response: Entity.Instance) {
 		email: response.email || "",
 		version: "3.0.0 compatible (Calckey)",
 		urls: response.urls,
-		stats: response.stats,
+		stats: {
+			user_count: (await totalUsers),
+			status_count: (await totalStatuses),
+			domain_count: response.stats.domain_count
+		},
 		thumbnail: response.thumbnail || "",
 		languages: meta.langs,
 		registrations: !meta.disableRegistration || response.registrations,
@@ -80,17 +88,17 @@ export async function getInstance(response: Entity.Instance) {
 			bot: true,
 			discoverable: false,
 			group: false,
-			created_at: Math.floor(new Date().getTime() / 1000),
-			note: "Please refer to the original instance for the actual admin contact.",
-			url: "/",
-			avatar: "/static-assets/badges/info.png",
-			avatar_static: "/static-assets/badges/info.png",
+			created_at: new Date().toISOString(),
+			note: "<p>Please refer to the original instance for the actual admin contact.</p>",
+			url: `${response.uri}/`,
+			avatar: `${response.uri}/static-assets/badges/info.png`,
+			avatar_static: `${response.uri}/static-assets/badges/info.png`,
 			header: "https://http.cat/404",
 			header_static: "https://http.cat/404",
 			followers_count: -1,
 			following_count: 0,
 			statuses_count: 0,
-			last_status_at: Math.floor(new Date().getTime() / 1000),
+			last_status_at: new Date().toISOString(),
 			noindex: true,
 			emojis: [],
 			fields: [],
