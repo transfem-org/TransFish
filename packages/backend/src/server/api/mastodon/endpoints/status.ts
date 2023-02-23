@@ -5,6 +5,7 @@ import fs from "fs";
 import { pipeline } from "node:stream";
 import { promisify } from "node:util";
 import { createTemp } from "@/misc/create-temp.js";
+import multer from "@koa/multer";
 import { emojiRegex, emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
 import axios from "axios";
 const pump = promisify(pipeline);
