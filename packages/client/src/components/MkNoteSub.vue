@@ -66,7 +66,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 .wrpstxzv {
 	padding: 16px 32px;
 	content-visibility: auto;
-
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
@@ -141,6 +140,9 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		margin-top: 10px;
 		&.single {
 			padding: 0 !important;
+			> .line {
+				display: none;
+			}
 		}
 	}
 
@@ -160,7 +162,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	
 	// Reply Lines
 	&.reply, &.reply-to, &.reply-to-more {
-		--indent: var(--avatarSize);
+		--indent: calc(var(--avatarSize) - 5px);
 		> .main {
 			> .avatar-container {
 				display: flex;
@@ -176,20 +178,30 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			}
 		}
 		.line {
+			position: relative;
 			width: var(--avatarSize);
 			display: flex;
 			flex-grow: 1;
+			margin-bottom: -10px;
 			&::before {
 				content: "";
-				display: block;
-				border-left: 2px solid var(--accent);
-				margin-inline: auto;
+				position: absolute;
+				border-left: 2px solid var(--divider);
+				margin-left: calc((var(--avatarSize) / 2) - 1px);
+				width: calc(var(--indent) / 2);
+				inset-block: 0;
+				min-height: 8px;
 			}
 		}
 	}
+	&.reply-to, &.reply-to-more {
+		> .main > .avatar-container > .line {
+			margin-bottom: 0px !important;
+		}
+	}
 	&.single, &.singleStart {
-		> .main > .avatar-container > .line::before {
-			margin-bottom: -10px;
+		> .main > .avatar-container > .line {
+			margin-bottom: -10px !important;
 		}
 	}
 	.reply.children:not(:last-child) { // Line that goes through multiple replies
@@ -199,9 +211,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			top: 0;
 			left: 0;
 			bottom: 0;
-			&::before {
-				margin-top: -10px;
-			}
 		}
 	}
 	// Reply line connectors
@@ -210,17 +219,22 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		> .line {
 			position: absolute;
 			left: 0;
+			top: 0;
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--accent);
-				border-bottom: 2px solid var(--accent);
+				border-left: 2px solid var(--divider);
+				border-bottom: 2px solid var(--divider);
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
-				margin-top: -20px;
 				width: calc(var(--indent) / 2);
-				height: calc((var(--avatarSize) / 2) + 20px);
-				border-bottom-left-radius: calc(var(--indent) / 3);
+				height: calc((var(--avatarSize) / 2));
+				border-bottom-left-radius: calc(var(--indent) / 2);
+				top: 8px;
 			}
+		}
+		&:not(:last-child) > .line::after {
+			mask: linear-gradient(to right, transparent 2px, black 2px);
+			-webkit-mask: linear-gradient(to right, transparent 2px, black 2px);
 		}
 	}
 
