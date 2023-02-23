@@ -17,8 +17,8 @@ export async function getInstance(response: Entity.Instance) {
 		version: "3.0.0 compatible (Calckey)",
 		urls: response.urls,
 		stats: {
-			user_count: totalUsers,
-			status_count: totalStatuses,
+			user_count: (await totalUsers),
+			status_count: (await totalStatuses),
 			domain_count: response.stats.domain_count
 		},
 		thumbnail: response.thumbnail || "",
