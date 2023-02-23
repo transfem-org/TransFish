@@ -1,10 +1,10 @@
 <template>
-<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart:replies.length == 1 }">
+<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart: replies.length == 1 }">
 	<div v-if="conversation && depth > 1" class="line"></div>
 	<div class="main" @click="router.push(notePage(note))">
 		<div class="avatar-container">
 			<MkAvatar class="avatar" :user="note.user"/>
-			<div class="line"></div>
+			<div v-if="(!conversation) || replies.length > 0" class="line"></div>
 		</div>
 		<div class="body">
 			<XNoteHeader class="header" :note="note" :mini="true"/>
@@ -22,7 +22,7 @@
 	</div>
 	<template v-if="conversation">
 		<template v-if="replies.length == 1">
-			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth + 1"/>
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth"/>
 		</template>
 		<template v-else-if="depth < 5">
 			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1"/>
@@ -192,11 +192,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			margin-bottom: -10px;
 		}
 	}
-	.reply:last-child, &.reply:not(.children) {	// Hide line in last reply of thread
-		> .main:last-child > .avatar-container > .line { 
-			display: none;
-		}
-	}
 	.reply.children:not(:last-child) { // Line that goes through multiple replies
 		position: relative;
 		> .line {
@@ -207,9 +202,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			&::before {
 				margin-top: -10px;
 			}
-		}
-		&:not(.single):not(.singleStart) > .main > .avatar-container > .line {
-			display: none;
 		}
 	}
 	// Reply line connectors
