@@ -82,8 +82,7 @@ mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
 			ctx.status = 401;
 			return;
 		}
-		const image = fs.readFileSync((multipartData).path);
-		const data = await client.uploadMedia(image);
+		const data = await client.uploadMedia(multipartData.buffer);
 		ctx.body = data.data;
 	} catch (e: any) {
 		console.error(e);
@@ -102,8 +101,7 @@ mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
 			ctx.status = 401;
 			return;
 		}
-		const image = fs.readFileSync((multipartData).path);
-		const data = await client.uploadMedia(image);
+		const data = await client.uploadMedia(multipartData.buffer);
 		ctx.body = data.data;
 	} catch (e: any) {
 		console.error(e);
