@@ -186,7 +186,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			&::before {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--divider);
+				border-left: 2px solid var(--X13);
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				inset-block: 0;
@@ -223,8 +223,8 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--divider);
-				border-bottom: 2px solid var(--divider);
+				border-left: 2px solid var(--X13);
+				border-bottom: 2px solid var(--X13);
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				height: calc((var(--avatarSize) / 2));
