@@ -89,6 +89,7 @@ export async function getInstance(response: Entity.Instance) {
 			discoverable: false,
 			group: false,
 			created_at: Math.floor(new Date().getTime() / 1000),
+			createdAt: Math.floor(new Date().getTime() / 1000),
 			note: "Please refer to the original instance for the actual admin contact.",
 			url: "/",
 			avatar: "/static-assets/badges/info.png",
