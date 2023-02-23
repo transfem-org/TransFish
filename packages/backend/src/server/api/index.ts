@@ -10,6 +10,7 @@ import cors from "@koa/cors";
 import { apiMastodonCompatible, getClient } from "./mastodon/ApiMastodonCompatibleService.js";
 import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
+import fs from "fs";
 import endpoints from "./endpoints.js";
 import compatibility from "./compatibility.js";
 import handler from "./api-handler.js";
