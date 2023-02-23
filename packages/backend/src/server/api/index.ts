@@ -76,13 +76,13 @@ mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
 	const accessTokens = ctx.headers.authorization;
 	const client = getClient(BASE_URL, accessTokens);
 	try {
-		let multipartData = await ctx.request.file;
+		let multipartData = await ctx.file;
 		if (!multipartData) {
 			ctx.body = { error: "No image" };
 			ctx.status = 401;
 			return;
 		}
-		const data = await client.uploadMedia(multipartData);
+		const data = await client.uploadMedia(multipartData.buffer);
 		ctx.body = data.data;
 	} catch (e: any) {
 		console.error(e);
@@ -95,13 +95,13 @@ mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
 	const accessTokens = ctx.headers.authorization;
 	const client = getClient(BASE_URL, accessTokens);
 	try {
-		let multipartData = await ctx.request.file;
+		let multipartData = await ctx.file;
 		if (!multipartData) {
 			ctx.body = { error: "No image" };
 			ctx.status = 401;
 			return;
 		}
-		const data = await client.uploadMedia(multipartData);
+		const data = await client.uploadMedia(multipartData.buffer);
 		ctx.body = data.data;
 	} catch (e: any) {
 		console.error(e);
