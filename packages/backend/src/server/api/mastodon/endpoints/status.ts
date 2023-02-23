@@ -335,7 +335,6 @@ export function apiStatusMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
-	});
 	router.get<{ Params: { id: string } }>(
 		"/v1/media/:id",
 		async (ctx) => {
