@@ -214,9 +214,10 @@ onUnmounted(() => {
 		border: 1px solid var(--divider);
 		border-radius: 8px;
 		overflow: hidden;
-
-		&:hover {
+		transition: background .2s;
+		&:hover, &:focus-within {
 			text-decoration: none;
+			background-color: var(--panelHighlight);
 			> article > header > h1 {
 				text-decoration: underline;
 			}

@@ -72,6 +72,10 @@ const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : n
 		}
 	}
 
+	> .mk-url-preview {
+		margin-top: 8px;
+	}
+
 	&.collapsed {
 		position: relative;
 		max-height: 9em;
