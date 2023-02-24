@@ -25,7 +25,7 @@
 				</template>
 			</I18n>
 			<div class="info">
-				<button ref="renoteTime" class="_button time" @click="showRenoteMenu()">
+				<button ref="renoteTime" class="_button time" @click.stop="showRenoteMenu()">
 					<i v-if="isMyRenote" class="ph-dots-three-outline-bold ph-lg dropdownIcon"></i>
 					<MkTime :time="note.createdAt"/>
 				</button>
@@ -33,24 +33,24 @@
 			</div>
 		</div>
 	</div>
-	<article class="article" @contextmenu.stop="onContextmenu" @click.self="router.push(notePage(appearNote))">
-		<div class="main" @click.self="router.push(notePage(appearNote))">
+	<article class="article" @contextmenu.stop="onContextmenu" @click="router.push(notePage(appearNote))">
+		<div class="main">
 			<div class="header-container">
 				<MkAvatar class="avatar" :user="appearNote.user"/>
 				<XNoteHeader class="header" :note="appearNote" :mini="true"/>
 			</div>
 			<div class="body">
 				<p v-if="appearNote.cw != null" class="cw">
-					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis" @click.stop/>
 					<XCwButton v-model="showContent" :note="appearNote"/>
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content" :class="{ collapsed, isLong }">
-					<div class="text" @click.self="router.push(notePage(appearNote))">
-						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+					<div class="text">
+						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis" @click.stop/>
 						<!-- <a v-if="appearNote.renote != null" class="rp">RN:</a> -->
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
-							<div v-else class="translated">
+							<div v-else class="translated" @click.stop>
 								<b>{{ i18n.t('translatedFrom', { x: translation.sourceLang }) }}: </b>
 								<Mfm :text="translation.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 							</div>
@@ -62,14 +62,14 @@
 					<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
 					<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
 					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
-					<button v-if="isLong && collapsed" class="fade _button" @click.stop.prevent="collapsed = false">
+					<button v-if="isLong && collapsed" class="fade _button" @click.stop="collapsed = false">
 						<span>{{ i18n.ts.showMore }}</span>
 					</button>
-					<button v-else-if="isLong && !collapsed" class="showLess _button" @click.stop.prevent="collapsed = true">
+					<button v-else-if="isLong && !collapsed" class="showLess _button" @click.stop="collapsed = true">
 						<span>{{ i18n.ts.showLess }}</span>
 					</button>
 				</div>
-				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
+				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`" @click.stop><i class="ph-television-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
 			<MkNoteFooter :note="appearNote"></MkNoteFooter>
 		</div>
