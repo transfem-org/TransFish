@@ -13,20 +13,12 @@
 				</MkInput>
 				<FormRadios v-model="ad.place" class="_formBlock">
 					<template #label>Form</template>
-					<option value="square">square</option>
-					<option value="horizontal">horizontal</option>
-					<option value="horizontal-big">horizontal-big</option>
+					<option value="widget">widget</option>
+					<option value="inline">inline</option>
+					<option value="inline-big">inline-big</option>
 				</FormRadios>
-				<!--
-			<div style="margin: 32px 0;">
-				{{ i18n.ts.priority }}
-				<MkRadio v-model="ad.priority" value="high">{{ i18n.ts.high }}</MkRadio>
-				<MkRadio v-model="ad.priority" value="middle">{{ i18n.ts.middle }}</MkRadio>
-				<MkRadio v-model="ad.priority" value="low">{{ i18n.ts.low }}</MkRadio>
-			</div>
-			-->
 				<FormSplit>
-					<MkInput v-model="ad.ratio" type="number">
+					<MkInput :disabled="ad.place === 'widget'" v-model="ad.ratio" type="number">
 						<template #label>{{ i18n.ts.ratio }}</template>
 					</MkInput>
 					<MkInput v-model="ad.expiresAt" type="date">
@@ -56,23 +48,29 @@ import FormSplit from '@/components/form/split.vue';
 import * as os from '@/os';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import { formatDateTimeString } from '@/scripts/format-time-string';
 
 let ads: any[] = $ref([]);
 
 os.api('admin/ad/list').then(adsResponse => {
 	ads = adsResponse;
+	// The date format should be changed to yyyy-MM-dd in order to be properly displayed
+	for (let i in ads) {
+		ads[i].expiresAt = ads[i].expiresAt.substr(0, 10);
+	}
 });
 
 function add() {
+	const tomorrow = formatDateTimeString(new Date(new Date().setDate(new Date().getDate() + 1)), 'yyyy-MM-dd');
 	ads.unshift({
 		id: null,
 		memo: '',
-		place: 'square',
+		place: 'widget',
 		priority: 'middle',
 		ratio: 1,
 		url: '',
 		imageUrl: null,
-		expiresAt: null,
+		expiresAt: tomorrow,
 	});
 }
 
