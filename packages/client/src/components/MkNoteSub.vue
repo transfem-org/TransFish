@@ -240,6 +240,10 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 
 	&.max-width_450px {
 		padding: 14px 16px;
+		&.reply {
+			--avatarSize: 28px;
+			--indent: calc(var(--avatarSize) - 8px);
+		}
 		&.reply-to, &.reply-to-more {
 			padding-top: 14px !important;
 			padding-bottom: 0 !important;
