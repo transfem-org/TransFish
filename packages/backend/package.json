@@ -8,6 +8,7 @@
 		"start:test": "NODE_ENV=test pnpm node ./built/index.js",
 		"migrate": "typeorm migration:run -d ormconfig.js",
 		"revertmigration": "typeorm migration:revert -d ormconfig.js",
+		"check:connect": "node ./check_connect.js",
 		"build": "pnpm swc src -d built -D",
 		"watch": "pnpm swc src -d built -D -w",
 		"lint": "pnpm rome check \"src/**/*.ts\"",

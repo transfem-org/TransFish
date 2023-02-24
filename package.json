@@ -11,7 +11,7 @@
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm -r run build && pnpm run gulp",
 		"build": "pnpm -r run build && pnpm run gulp",
-		"start": "pnpm --filter backend run start",
+		"start": "pnpm check:connect && pnpm --filter backend run start",
 		"start:test": "pnpm --filter backend run start:test",
 		"init": "pnpm run migrate",
 		"migrate": "pnpm --filter backend run migrate",
