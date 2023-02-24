@@ -291,7 +291,7 @@ function blur() {
 os.api('notes/children', {
 	noteId: appearNote.id,
 	limit: 30,
-	depth: 6,
+	depth: 12,
 }).then(res => {
 	replies.value = res;
 	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id).reverse();
@@ -599,6 +599,10 @@ onUnmounted(() => {
 		font-size: 0.9em;
 	}
 
+	@media (max-width: 500px) {
+		margin-inline: -24px;
+	}
+
 	&.max-width_450px {
 
 		> .reply-to-more:first-child {
@@ -614,6 +618,10 @@ onUnmounted(() => {
 				padding-left: 10px;
 			}
 		}
+	}
+
+	@media (max-width: 400px) {
+		margin-inline: -12px;
 	}
 
 	&.max-width_350px {
