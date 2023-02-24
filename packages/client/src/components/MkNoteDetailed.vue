@@ -68,7 +68,7 @@
 					</div>
 					<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
 					<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="true" class="url-preview"/>
-					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
+					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote" @click.stop="router.push(notePage(appearNote.renote))"/></div>
 				</div>
 				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
@@ -530,6 +530,10 @@ onUnmounted(() => {
 							padding: 16px;
 							border: solid 1px var(--renote);
 							border-radius: 8px;
+							transition: background .2s;
+							&:hover, &:focus-within {
+								background-color: var(--panelHighlight);
+							}
 						}
 					}
 				}

@@ -61,7 +61,7 @@
 					</div>
 					<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
 					<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
-					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
+					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote" @click.stop="router.push(notePage(appearNote.renote))"/></div>
 					<button v-if="isLong && collapsed" class="fade _button" @click.stop="collapsed = false">
 						<span>{{ i18n.ts.showMore }}</span>
 					</button>
@@ -555,6 +555,10 @@ function readPromo() {
 							padding: 16px;
 							border: solid 1px var(--renote);
 							border-radius: 8px;
+							transition: background .2s;
+							&:hover, &:focus-within {
+								background-color: var(--panelHighlight);
+							}
 						}
 					}
 				}
