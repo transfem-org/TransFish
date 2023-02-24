@@ -294,7 +294,7 @@ os.api('notes/children', {
 	depth: 6,
 }).then(res => {
 	replies.value = res;
-	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id);
+	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id).reverse();
 });
 
 if (appearNote.replyId) {

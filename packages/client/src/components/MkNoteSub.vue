@@ -59,7 +59,7 @@ const props = withDefaults(defineProps<{
 });
 
 let showContent = $ref(false);
-const replies: misskey.entities.Note[] = props.conversation?.filter(item => item.replyId === props.note.id || item.renoteId === props.note.id) ?? [];
+const replies: misskey.entities.Note[] = props.conversation?.filter(item => item.replyId === props.note.id || item.renoteId === props.note.id).reverse() ?? [];
 </script>
 
 <style lang="scss" scoped>
