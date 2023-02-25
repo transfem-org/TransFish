@@ -615,3 +615,18 @@ hr {
     transform:  scaleX(1.00) scaleY(1.00) ;
   }
 }
+
+@media(prefers-reduced-motion: no-preference) {
+	@keyframes scaleIn {
+		from {
+			transform: scale(0);
+			opacity: 0;
+		}
+	}
+	@keyframes scaleInSmall {
+		from {
+			transform: scale(.8);
+			opacity: 0;
+		}
+	}
+}

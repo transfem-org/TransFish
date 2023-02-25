@@ -98,7 +98,20 @@ useTooltip(buttonRef, async (showing) => {
 	padding: 0 6px;
 	border-radius: 4px;
 	pointer-events: all;
-
+	animation: scaleInSmall .3s cubic-bezier(0,0,0,1.2);
+	:deep(.mk-emoji) {
+		animation: scaleIn .4s cubic-bezier(0,0,0,1.5);
+		transition: transform .4s cubic-bezier(0,0,0,6);
+	}
+	&.reacted :deep(.mk-emoji) {
+		transition: transform .4s cubic-bezier(0,0,0,1);
+	}
+	&:active {
+		:deep(.mk-emoji) {
+			transition: transform .4s cubic-bezier(0,0,0,1);
+			transform: scale(.85);
+		}
+	}
 	&.canToggle {
 		background: rgba(0, 0, 0, 0.05);
 
