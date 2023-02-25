@@ -135,6 +135,7 @@ function blur() {
 		width: max-content;
 		min-width: max-content;
 		pointer-events: all;
+		transition: opacity .2s;
 		&:first-of-type {
 			margin-left: -.5em;
 		}

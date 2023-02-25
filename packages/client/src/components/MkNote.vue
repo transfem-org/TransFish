@@ -312,10 +312,14 @@ function readPromo() {
 		}
 	}
 
-	&:hover > .article > .main > .footer > .button {
-		opacity: 1;
+	& > .article > .main {
+		&:hover, &:focus-within {
+			:deep(.footer .button) {
+				opacity: 1;
+			}
+		}
 	}
-
+	
 	> .reply-to {
 		& + .note-context {
 			.line::before {

@@ -136,11 +136,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		:deep(.footer) {
 			font-size: .9em;
 		}
-		> .main:hover {
-			:deep(.footer .button) {
-				opacity: 1;
-			}
-		}
 	}
 	> .reply, > .more {
 		margin-top: 10px;
@@ -169,6 +164,14 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		i {
 			font-size: 1em !important;
 			vertical-align: middle !important;
+		}
+	}
+
+	&.reply, &.reply-to, &.reply-to-more {
+		> .main:hover, > .main:focus-within {
+			:deep(.footer .button) {
+				opacity: 1;
+			}
 		}
 	}
 
