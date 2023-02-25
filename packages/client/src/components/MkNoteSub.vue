@@ -28,6 +28,7 @@
 			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1"/>
 		</template>
 		<div v-else-if="replies.length > 0" class="more">
+			<div class="line"></div>
 			<MkA class="text _link" :to="notePage(note)">{{ i18n.ts.continueThread }} <i class="ph-caret-double-right-bold ph-lg"></i></MkA>
 		</div>
 	</template>
@@ -135,6 +136,11 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		:deep(.footer) {
 			font-size: .9em;
 		}
+		> .main:hover {
+			:deep(.footer .button) {
+				opacity: 1;
+			}
+		}
 	}
 	> .reply, > .more {
 		margin-top: 10px;
@@ -147,7 +153,23 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	}
 
 	> .more {
-		padding: 10px 0 0 16px;
+		display: flex;
+		padding-block: 10px;
+		font-weight: 600;
+		> .line {
+			flex-grow: 0 !important;
+			margin-top: -10px !important;
+			margin-bottom: 10px !important;
+			margin-right: 10px !important;
+			&::before {
+				border-left-style: dashed !important;
+				border-bottom-left-radius: 100px !important;
+			}
+		}
+		i {
+			font-size: 1em !important;
+			vertical-align: middle !important;
+		}
 	}
 
 	&.reply-to, &.reply-to-more {

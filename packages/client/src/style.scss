@@ -479,6 +479,7 @@ hr {
 }
 
 ._link {
+	position: relative;
 	color: var(--link);
 
 	&:after {
