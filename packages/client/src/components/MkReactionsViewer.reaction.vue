@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUpdated, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import * as misskey from 'calckey-js';
 import XDetails from '@/components/MkReactionsViewer.details.vue';
 import XReactionIcon from '@/components/MkReactionIcon.vue';
