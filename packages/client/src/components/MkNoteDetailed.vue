@@ -335,7 +335,6 @@ onUnmounted(() => {
 .lxwezrsl {
 	position: relative;
 	transition: box-shadow 0.1s ease;
-	overflow: hidden;
 	contain: content;
 
 	&:focus-visible {
@@ -582,9 +581,7 @@ onUnmounted(() => {
 	> .reply {
 		border-top: solid 0.5px var(--divider);
 		cursor: pointer;
-		&:not(:last-child) {
-			padding-bottom: 4px;
-		}
+		padding-bottom: 4px;
 		@media (pointer: coarse) {
 			cursor: default;
 		}
@@ -608,9 +605,9 @@ onUnmounted(() => {
 			&::before {
 				inset: 0px 8px;
 			}
-		}
-		&.reply-to-more:first-of-type::before {
-			top: 12px;
+			&:first-of-type::before {
+				top: 12px;
+			}
 		}
 		// &::after {
 		// 	content: "";
