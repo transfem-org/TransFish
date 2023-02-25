@@ -36,8 +36,6 @@ NODE_ENV=production pnpm run migrate
 # build using prefered method
 ```
 
-NODE_ENV=production pnpm run migrate
-# build using prefered method
 ## Foundkey
 
 ```sh
