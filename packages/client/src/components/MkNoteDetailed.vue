@@ -611,16 +611,16 @@ onUnmounted(() => {
 		&.reply-to-more:first-of-type::before {
 			top: 12px;
 		}
-		&::after {
-			content: "";
-			position: absolute;
-			inset: -9999px;
-			background: var(--modalBg);
-			opacity: 0;
-			z-index: -2;
-			pointer-events: none;
-			transition: opacity .2s;
-		}
+		// &::after {
+		// 	content: "";
+		// 	position: absolute;
+		// 	inset: -9999px;
+		// 	background: var(--modalBg);
+		// 	opacity: 0;
+		// 	z-index: -2;
+		// 	pointer-events: none;
+		// 	transition: opacity .2s;
+		// }
 		&.more::before {
 			inset: 0 !important;
 		}
