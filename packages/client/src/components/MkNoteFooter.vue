@@ -4,7 +4,12 @@
 		<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
 			<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
 			<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
-			<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
+			<template v-if="directReplies > 0">
+				<p class="count">{{ directReplies }}</p>
+			</template>
+			<template v-else-if="appearNote.repliesCount > 0">
+				<p class="count">{{ appearNote.repliesCount }}</p>
+			</template>
 		</button>
 		<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 		<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
@@ -40,6 +45,7 @@ import { useNoteCapture } from '@/scripts/use-note-capture';
 
 const props = defineProps<{
 	note: misskey.entities.Note;
+	directReplies;
 }>();
 
 let note = $ref(deepClone(props.note));

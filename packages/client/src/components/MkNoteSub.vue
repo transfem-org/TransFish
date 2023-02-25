@@ -17,7 +17,7 @@
 					<MkSubNoteContent class="text" :note="note" :detailed="true"/>
 				</div>
 			</div>
-			<MkNoteFooter :note="note"></MkNoteFooter>
+			<MkNoteFooter :note="note" :directReplies="replies.length"></MkNoteFooter>
 		</div>
 	</div>
 	<template v-if="conversation">
