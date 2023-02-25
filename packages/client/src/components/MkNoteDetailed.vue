@@ -430,6 +430,7 @@ onUnmounted(() => {
 	> .article {
 		padding: 32px;
 		font-size: 1.2em;
+		overflow: clip;
 
 		> .header {
 			display: flex;

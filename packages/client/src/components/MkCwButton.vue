@@ -36,6 +36,8 @@ const toggle = () => {
 
 <style lang="scss" scoped>
 .nrvgflfu {
+	position: relative;
+	z-index: 2;
 	display: inline-block;
 	padding: 4px 8px;
 	font-size: 0.8em;

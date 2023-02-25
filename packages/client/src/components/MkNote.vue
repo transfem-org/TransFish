@@ -451,7 +451,6 @@ function readPromo() {
 
 			> .body {
 				margin-top: .7em;
-				overflow: hidden;
 
 				> .cw {
 					cursor: default;

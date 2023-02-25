@@ -47,6 +47,8 @@ const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultS
 
 <style lang="scss" scoped>
 .kkwtjztg {
+	position: relative;
+	z-index: 2;
 	display: flex;
 	align-items: center;
 	white-space: nowrap;

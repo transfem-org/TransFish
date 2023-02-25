@@ -122,6 +122,8 @@ function blur() {
 
 <style lang="scss" scoped>
 .footer {
+	position: relative;
+	z-index: 2;
 	display: flex;
 	flex-wrap: wrap;
 	pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
