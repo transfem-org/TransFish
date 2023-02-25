@@ -271,7 +271,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			margin-right: 10px;
 		}
 	}
-	@media (max-width: 450px) {
+	@media (max-width: 500px) {
 		padding: 14px 16px;
 		&.reply {
 			--avatarSize: 24px;
