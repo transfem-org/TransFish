@@ -19,6 +19,8 @@ git remote set-url origin https://codeberg.org/calckey/calckey.git
 git fetch
 git checkout main # or beta or develop
 git pull --ff
+
+NODE_ENV=production pnpm run migrate
 # build using prefered method
 ```
 
@@ -29,9 +31,13 @@ git remote set-url origin https://codeberg.org/calckey/calckey.git
 git fetch
 git checkout main # or beta or develop
 git pull --ff
+
+NODE_ENV=production pnpm run migrate
 # build using prefered method
 ```
 
+NODE_ENV=production pnpm run migrate
+# build using prefered method
 ## Foundkey
 
 ```sh
@@ -48,5 +54,7 @@ git remote set-url origin https://codeberg.org/calckey/calckey.git
 git fetch
 git checkout main # or beta or develop
 git pull --ff
+
+NODE_ENV=production pnpm run migrate
 # build using prefered method
 ```
