@@ -66,7 +66,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
-	content-visibility: auto;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
