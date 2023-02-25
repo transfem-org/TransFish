@@ -1,5 +1,5 @@
 <template>
-<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart: replies.length == 1 }">
+<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart: replies.length == 1, firstColumn: depth == 1 && conversation }">
 	<div v-if="conversation && depth > 1" class="line"></div>
 	<div class="main" @click="router.push(notePage(note))">
 		<div class="avatar-container">
@@ -252,8 +252,17 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 	@media (max-width: 450px) {
 		padding: 14px 16px;
 		&.reply {
-			--avatarSize: 28px;
-			--indent: calc(var(--avatarSize) - 8px);
+			--avatarSize: 24px;
+			--indent: calc(var(--avatarSize) - 4px);
+		}
+		&.firstColumn {
+			> .main, > .line, > .children:not(.single) > .line {
+				--avatarSize: 35px;
+				--indent: 35px;
+			}
+			> .children:not(.single) {
+				padding-left: 28px !important;
+			}
 		}
 	}
 }
