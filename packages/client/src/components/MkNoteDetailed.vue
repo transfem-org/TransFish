@@ -581,19 +581,66 @@ onUnmounted(() => {
 	> .reply {
 		border-top: solid 0.5px var(--divider);
 		cursor: pointer;
-
+		&:not(:last-child) {
+			padding-bottom: 4px;
+		}
 		@media (pointer: coarse) {
 			cursor: default;
 		}
 	}
 
-	> .reply, .reply-to, .reply-to-more {
-		transition: background-color 0.25s ease-in-out;
-		
-		&:hover {
-			background-color: var(--panelHighlight);
+	// Hover
+	.reply :deep(.main), .reply-to, .reply-to-more, :deep(.more) {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -12px -24px;
+			bottom: -0px;
+			background: var(--panelHighlight);
+			border-radius: var(--radius);
+			opacity: 0;
+			transition: opacity .2s;
+			z-index: -1;
 		}
+		&.reply-to, &.reply-to-more {
+			&::before {
+				inset: 0px 8px;
+			}
+		}
+		&.reply-to-more:first-of-type::before {
+			top: 12px;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			inset: -9999px;
+			background: var(--modalBg);
+			opacity: 0;
+			z-index: -2;
+			pointer-events: none;
+			transition: opacity .2s;
+		}
+		&.more::before {
+			inset: 0 !important;
+		}
+		&:hover, &:focus-within {
+			&::before {
+				opacity: 1;
+			}
+		}
+		// @media (pointer: coarse) {
+		// 	&:has(.button:focus-within) {
+		// 		z-index: 2;
+		// 		--X13: transparent;
+		// 		&::after {
+		// 			opacity: 1;
+		// 			backdrop-filter: var(--modalBgFilter);
+		// 		}
+		// 	}
+		// }
 	}
+	
 
 	&.max-width_500px {
 		font-size: 0.9em;
