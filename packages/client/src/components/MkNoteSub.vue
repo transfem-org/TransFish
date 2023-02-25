@@ -67,7 +67,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 .wrpstxzv {
 	padding: 16px 32px;
 	content-visibility: auto;
-	overflow: clip;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
@@ -97,6 +96,7 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			flex: 1;
 			min-width: 0;
 			cursor: pointer;
+			overflow: clip;
 			@media (pointer: coarse) {
 				cursor: default;
 			}
