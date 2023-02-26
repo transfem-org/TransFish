@@ -2,8 +2,7 @@
 	<footer ref="el" class="footer" @click.stop>
 		<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
 		<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
-			<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
-			<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
+			<i class="ph-arrow-bend-up-left-bold ph-lg"></i>
 			<template v-if="directReplies > 0">
 				<p class="count">{{ directReplies }}</p>
 			</template>
