@@ -1,5 +1,5 @@
 <template>
-<div v-size="{ max: [450] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart: replies.length == 1, firstColumn: depth == 1 && conversation }">
+<div v-size="{ max: [450, 500] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart: replies.length == 1, firstColumn: depth == 1 && conversation }">
 	<div v-if="conversation && depth > 1" class="line"></div>
 	<div class="main" @click="router.push(notePage(note))">
 		<div class="avatar-container">
@@ -269,7 +269,25 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		}
 	}
 
+	&.max-width_500px {
+		:not(.reply) > & {
+			.reply {
+				--avatarSize: 24px;
+				--indent: calc(var(--avatarSize) - 4px);
+			}
+			&.firstColumn {
+				> .main, > .line, > .children:not(.single) > .line {
+					--avatarSize: 35px;
+					--indent: 35px;
+				}
+				> .children:not(.single) {
+					padding-left: 28px !important;
+				}
+			}
+		}
+	}
 	&.max-width_450px {
+		padding: 14px 16px;
 		&.reply-to, &.reply-to-more {
 			padding: 14px 16px;
 			padding-top: 14px !important;
@@ -278,24 +296,6 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 		}
 		> .main > .avatar-container {
 			margin-right: 10px;
-		}
-	}
-	@media (max-width: 450px) {
-		padding: 14px 16px;
-	}
-	@media (max-width: 500px) {
-		&.reply {
-			--avatarSize: 24px;
-			--indent: calc(var(--avatarSize) - 4px);
-		}
-		&.firstColumn {
-			> .main, > .line, > .children:not(.single) > .line {
-				--avatarSize: 35px;
-				--indent: 35px;
-			}
-			> .children:not(.single) {
-				padding-left: 28px !important;
-			}
 		}
 	}
 }

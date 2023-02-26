@@ -648,13 +648,9 @@ onUnmounted(() => {
 	&.max-width_500px {
 		font-size: 0.9em;
 	}
-
-	@media (max-width: 500px) {
-		margin-inline: -24px;
-	}
-
+	
 	&.max-width_450px {
-
+		
 		> .reply-to-more:first-child {
 			padding-top: 14px;
 		}
@@ -668,10 +664,6 @@ onUnmounted(() => {
 				padding-left: 10px;
 			}
 		}
-	}
-
-	@media (max-width: 400px) {
-		margin-inline: -12px;
 	}
 
 	&.max-width_350px {

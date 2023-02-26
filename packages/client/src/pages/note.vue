@@ -2,7 +2,7 @@
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
 	<MkSpacer :content-max="800">
-		<div class="fcuexfpr">
+		<div class="fcuexfpr" v-size="{ max: [500, 350] }">
 			<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 				<div v-if="note" class="note">
 					<div v-if="showNext" class="_gap">
@@ -201,6 +201,12 @@ definePageMetadata(computed(() => note ? {
 				}
 			}
 		}
+	}
+	&.max-width_500px > .note {
+		margin-inline: -24px;
+	}
+	&.max-width_350px > .note {
+		margin-inline: -12px;
 	}
 }
 </style>
