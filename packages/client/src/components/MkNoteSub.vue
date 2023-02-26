@@ -95,6 +95,10 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			flex: 1;
 			min-width: 0;
 			cursor: pointer;
+			margin: -200px;
+			padding: 200px;
+			margin-bottom: 0;
+			padding-bottom: 0;
 			overflow: clip;
 			@media (pointer: coarse) {
 				cursor: default;
