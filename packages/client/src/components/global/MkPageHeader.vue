@@ -168,15 +168,15 @@ onMounted(() => {
 		immediate: true,
 	});
 
-  if (el && el.parentElement) {
-    narrow = el.parentElement.offsetWidth < 500;
-    ro = new ResizeObserver((entries, observer) => {
-      if (el.parentElement && document.body.contains(el)) {
-        narrow = el.parentElement.offsetWidth < 500;
-      }
-    });
-    ro.observe(el.parentElement);
-  }
+	if (el && el.parentElement) {
+		narrow = el.parentElement.offsetWidth < 500;
+		ro = new ResizeObserver((entries, observer) => {
+			if (el.parentElement && document.body.contains(el)) {
+				narrow = el.parentElement.offsetWidth < 500;
+			}
+		});
+		ro.observe(el.parentElement);
+	}
 });
 
 onUnmounted(() => {
