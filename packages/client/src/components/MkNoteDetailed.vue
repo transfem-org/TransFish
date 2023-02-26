@@ -428,6 +428,10 @@ onUnmounted(() => {
 
 	> .article {
 		padding: 32px;
+		padding-bottom: 6px;
+		&:last-child {
+			padding-bottom: 24px;
+		}
 		font-size: 1.2em;
 		overflow: clip;
 
@@ -581,7 +585,8 @@ onUnmounted(() => {
 	> .reply {
 		border-top: solid 0.5px var(--divider);
 		cursor: pointer;
-		padding-bottom: 4px;
+		padding-top: 24px;
+		padding-bottom: 10px;
 		@media (pointer: coarse) {
 			cursor: default;
 		}
