@@ -87,7 +87,7 @@ useTooltip(buttonRef, async (showing) => {
 	&.newlyAdded {
 		animation: scaleInSmall .3s cubic-bezier(0,0,0,1.2);
 		:deep(.mk-emoji) {
-			animation: scaleIn .4s cubic-bezier(0,0,0,1.5);
+			animation: scaleIn .4s cubic-bezier(0.7, 0, 0, 1.5);
 		}
 	}
 	:deep(.mk-emoji) {
