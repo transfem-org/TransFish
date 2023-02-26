@@ -169,10 +169,10 @@ onMounted(() => {
 	});
 
   if (el && el.parentElement) {
-    narrow.value = el.parentElement.offsetWidth < 500;
+    narrow = el.parentElement.offsetWidth < 500;
     ro = new ResizeObserver((entries, observer) => {
       if (el.parentElement && document.body.contains(el)) {
-        narrow.value = el.parentElement.offsetWidth < 500;
+        narrow = el.parentElement.offsetWidth < 500;
       }
     });
     ro.observe(el.parentElement);
