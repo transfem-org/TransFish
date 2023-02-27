@@ -171,6 +171,17 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			font-size: 1em !important;
 			vertical-align: middle !important;
 		}
+		a {
+			position: static;
+			&::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+			}
+			&::after {
+				content: unset;
+			}
+		}
 	}
 
 	&.reply, &.reply-to, &.reply-to-more {
