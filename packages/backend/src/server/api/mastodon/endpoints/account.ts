@@ -71,26 +71,8 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			let userArray = ctx.query.acct?.toString().split("@");
-			let userid;
-			if (userArray === undefined) {
-				ctx.status = 401;
-				ctx.body = { error: "no user specified" };
-				return;
-			}
-			if (userArray.length === 1) {
-				const q: FindOptionsWhere<User> = {
-					usernameLower: userArray[0].toLowerCase(),
-					host: IsNull(),
-				};
-
-				const user = await Users.findOneBy(q);
-				userid = user?.id;
-			} else {
-				userid = (await resolveUser(userArray[0], userArray[1])).id;
-			}
-			const data = await client.getAccount(userid ? userid : "");
-			ctx.body = data.data;
+			const data = await client.search((request.query as any).acct, 'accounts');
+			ctx.body = data.data.accounts[0];
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);

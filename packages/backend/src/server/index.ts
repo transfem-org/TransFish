@@ -154,24 +154,29 @@ router.get("/verify-email/:code", async (ctx) => {
 });
 
 mastoRouter.get("/oauth/authorize", async (ctx) => {
-	const client_id = ctx.request.query.client_id;
+	const { client_id, state, redirect_uri } = ctx.request.query.client_id;
 	console.log(ctx.request.req);
-	ctx.redirect(Buffer.from(client_id?.toString() || "", "base64").toString());
+	const param = state ? `state=${state}&mastodon=true` : "mastodon=true";
+	ctx.redirect(`${Buffer.from(client_id || '', 'base64').toString()}?${param}`);
 });
 
 mastoRouter.post("/oauth/token", async (ctx) => {
-	const body: any = ctx.request.body;
+	const body: any = ctx.request.body || ctx.request.query;
+	console.log('token-request', body)
 	let client_id: any = ctx.request.query.client_id;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
 	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
 	let m = null;
+	let token = null;
 	if (body.code) {
-		m = body.code.match(/^[a-zA-Z0-9-]+/);
+		m = body.code.match(/^([a-zA-Z0-9]{8})([a-zA-Z0-9]{4})([a-zA-Z0-9]{4})([a-zA-Z0-9]{4})([a-zA-Z0-9]{12})/);
 		if (!m.length) {
 			ctx.body = { error: "Invalid code" };
 			return;
 		}
+		token = `${m[1]}-${m[2]}-${m[3]}-${m[4]}-${m[5]}`
+		console.log(body.code, token)
 	}
 	if (client_id instanceof Array) {
 		client_id = client_id.toString();
@@ -182,14 +187,16 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 		const atData = await client.fetchAccessToken(
 			client_id,
 			body.client_secret,
-			m ? m[0] : "",
+			token ? token : "",
 		);
-		ctx.body = {
+		const ret = {
 			access_token: atData.accessToken,
 			token_type: "Bearer",
-			scope: "read write follow",
+			scope: body.scope || 'read write follow push',
 			created_at: Math.floor(new Date().getTime() / 1000),
 		};
+		console.log('token-response', ret)
+		ctx.body = ret;
 	} catch (err: any) {
 		console.error(err);
 		ctx.status = 401;

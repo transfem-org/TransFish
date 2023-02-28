@@ -44,12 +44,10 @@ const writeScope = [
 export function apiAuthMastodon(router: Router): void {
 	router.post("/v1/apps", async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
-		const accessTokens = ctx.request.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		const body: any = ctx.request.body;
+		const client = getClient(BASE_URL, '');
+		const body: any = ctx.request.body || ctx.request.query;
 		try {
 			let scope = body.scopes;
-			console.log(body);
 			if (typeof scope === "string") scope = scope.split(" ");
 			const pushScope = new Set<string>();
 			for (const s of scope) {
@@ -64,14 +62,16 @@ export function apiAuthMastodon(router: Router): void {
 				redirect_uris: red,
 				website: body.website,
 			});
-			ctx.body = {
-				id: appData.id,
+			const returns = {
+				id: Math.floor(Math.random() * 100).toString(),
 				name: appData.name,
-				website: appData.website,
+				website: body.website,
 				redirect_uri: red,
 				client_id: Buffer.from(appData.url || "").toString("base64"),
-				client_secret: appData.clientSecret,
+				client_secret: appData.clientSecret
 			};
+			console.log(returns)
+			ctx.body = returns;
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;

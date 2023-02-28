@@ -9,7 +9,9 @@ export function limitToInt(q: ParsedUrlQuery) {
 	let object: any = q;
 	if (q.limit)
 		if (typeof q.limit === "string") object.limit = parseInt(q.limit, 10);
-	return q;
+	if (q.offset)
+		if (typeof q.offset === "string") object.offset = parseInt(q.offset, 10);
+	return object;
 }
 
 export function argsToBools(q: ParsedUrlQuery) {
@@ -26,12 +28,29 @@ export function argsToBools(q: ParsedUrlQuery) {
 export function toTextWithReaction(status: Entity.Status[], host: string) {
 	return status.map((t) => {
 		if (!t) return statusModel(null, null, [], "no content");
+		t.quote = null as any;
 		if (!t.emoji_reactions) return t;
 		if (t.reblog) t.reblog = toTextWithReaction([t.reblog], host)[0];
-		const reactions = t.emoji_reactions.map(
-			(r) => `${r.name.replace("@.", "")} (${r.count}${r.me ? "* " : ""})`,
-		);
-		//t.emojis = getEmoji(t.content, host)
+		const reactions = t.emoji_reactions.map((r) => {
+			const emojiNotation = r.url ? `:${r.name.replace('@.', '')}:` : r.name
+			return `${emojiNotation} (${r.count}${r.me ? `* ` : ''})`
+		});
+		const reaction = t.emoji_reactions as Entity.Reaction[];
+		const emoji = t.emojis || []
+		for (const r of reaction) {
+				if (!r.url) continue
+				emoji.push({
+						'shortcode': r.name,
+						'url': r.url,
+						'static_url': r.url,
+						'visible_in_picker': true,
+				},)
+		}
+		const isMe = reaction.findIndex((r) => r.me) > -1;
+		const total = reaction.reduce((sum, reaction) => sum + reaction.count, 0);
+		t.favourited = isMe;
+		t.favourites_count = total;
+		t.emojis = emoji
 		t.content = `<p>${autoLinker(t.content, host)}</p><p>${reactions.join(
 			", ",
 		)}</p>`;
@@ -103,7 +122,7 @@ export function apiTimelineMastodon(router: Router): void {
 			}
 		},
 	);
-	router.get<{ Params: { hashtag: string } }>(
+	router.get(
 		"/v1/timelines/home",
 		async (ctx, reply) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;

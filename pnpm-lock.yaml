@@ -100,6 +100,7 @@ importers:
       '@types/pug': 2.0.6
       '@types/punycode': 2.1.0
       '@types/qrcode': 1.5.0
+      '@types/qs': 6.9.7
       '@types/random-seed': 0.3.3
       '@types/ratelimiter': 3.4.4
       '@types/redis': 4.0.11
@@ -183,6 +184,7 @@ importers:
       punycode: 2.1.1
       pureimage: 0.3.15
       qrcode: 1.5.1
+      qs: 6.9.7
       random-seed: 0.3.0
       ratelimiter: 3.4.1
       re2: 1.18.0
@@ -295,6 +297,7 @@ importers:
       punycode: 2.1.1
       pureimage: 0.3.15
       qrcode: 1.5.1
+      qs: 6.9.7
       random-seed: 0.3.0
       ratelimiter: 3.4.1
       re2: 1.18.0
@@ -357,6 +360,7 @@ importers:
       '@types/pug': 2.0.6
       '@types/punycode': 2.1.0
       '@types/qrcode': 1.5.0
+      '@types/qs': 6.9.7
       '@types/random-seed': 0.3.3
       '@types/ratelimiter': 3.4.4
       '@types/redis': 4.0.11
@@ -4264,7 +4268,7 @@ packages:
     resolution: {integrity: sha512-sX/LQ7LqUhgyaxzbe7IqwPeTr2yfpfUIQ/dgpKo6ZI4y4lpQA0YxAomWIY+7I7rHWcG02PG+OuPREzMW/5tszQ==}
     dependencies:
       inflation: 2.0.0
-      qs: 6.11.0
+      qs: 6.9.7
       raw-body: 2.5.1
       type-is: 1.6.18
     dev: false
@@ -4273,7 +4277,7 @@ packages:
     resolution: {integrity: sha512-m7pOT6CdLN7FuXUcpuz/8lfQ/L77x8SchHCF4G0RBTJO20Wzmhn5Sp4/5WsKy8OSpifBSUrmg83qEqaDHdyFuQ==}
     dependencies:
       inflation: 2.0.0
-      qs: 6.11.0
+      qs: 6.9.7
       raw-body: 2.5.1
       type-is: 1.6.18
     dev: false
@@ -10688,6 +10692,11 @@ packages:
 
   /qs/6.5.3:
     resolution: {integrity: sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==}
+    engines: {node: '>=0.6'}
+    dev: false
+
+  /qs/6.9.7:
+    resolution: {integrity: sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==}
     engines: {node: '>=0.6'}
     dev: false
 
