@@ -45,7 +45,7 @@ export function apiSearchMastodon(router: Router): void {
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = (401);
-			ctx.body e.response.data;
+			ctx.body = e.response.data;
 		}
 	});
 	router.get("/v1/trends/statuses", async (ctx) => {
