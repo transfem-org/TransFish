@@ -30,7 +30,7 @@ import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
 import { koaBody } from "koa-body";
-import * as removeTrailingSlash from "koa-remove-trailing-slashes";
+import removeTrailingSlash from "koa-remove-trailing-slashes";
 
 export const serverLogger = new Logger("server", "gray", false);
 
