@@ -30,12 +30,15 @@ import proxyServer from "./proxy/index.js";
 import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
 import { koaBody } from "koa-body";
+import * as removeTrailingSlash from "koa-remove-trailing-slashes";
 
 export const serverLogger = new Logger("server", "gray", false);
 
 // Init app
 const app = new Koa();
 app.proxy = true;
+
+app.use(removeTrailingSlash());
 
 if (!["production", "test"].includes(process.env.NODE_ENV || "")) {
 	// Logger
@@ -154,10 +157,15 @@ router.get("/verify-email/:code", async (ctx) => {
 });
 
 mastoRouter.get("/oauth/authorize", async (ctx) => {
-	const { client_id, state, redirect_uri } = ctx.request.query.client_id;
+	const { client_id, state, redirect_uri } = ctx.request.query;
 	console.log(ctx.request.req);
-	const param = state ? `state=${state}&mastodon=true` : "mastodon=true";
-	ctx.redirect(`${Buffer.from(client_id || '', 'base64').toString()}?${param}`);
+	let param = "mastodon=true";
+	if (state)
+		param += `&state=${state}`;
+	if (redirect_uri)
+		param += `&redirect_uri=${redirect_uri}`;
+	const client = client_id? client_id : "";
+	ctx.redirect(`${Buffer.from(client.toString(), 'base64').toString()}?${param}`);
 });
 
 mastoRouter.post("/oauth/token", async (ctx) => {

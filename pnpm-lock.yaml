@@ -162,6 +162,7 @@ importers:
       koa-json-body: 5.3.0
       koa-logger: 3.2.1
       koa-mount: 4.0.0
+      koa-remove-trailing-slashes: 2.0.3
       koa-send: 5.0.1
       koa-slow: 2.1.0
       koa-views: 7.0.2
@@ -277,6 +278,7 @@ importers:
       koa-json-body: 5.3.0
       koa-logger: 3.2.1
       koa-mount: 4.0.0
+      koa-remove-trailing-slashes: 2.0.3
       koa-send: 5.0.1
       koa-slow: 2.1.0
       koa-views: 7.0.2_6tybghmia4wsnt33xeid7y4rby
@@ -8264,6 +8266,10 @@ packages:
       koa-compose: 4.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /koa-remove-trailing-slashes/2.0.3:
+    resolution: {integrity: sha512-NFFF9Sl1wxFo5h0I3OzrHDINdFPaqG+Hx19590F7PNOcmm7yYeFW71p4XicVuSovbcx75GWGb3fi6N6kI6E/3g==}
     dev: false
 
   /koa-router/10.1.1:
