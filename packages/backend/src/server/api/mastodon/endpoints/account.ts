@@ -42,6 +42,7 @@ export function apiAccountMastodon(router: Router): void {
 				sensitive: false,
 				language: "",
 			};
+			console.log(acct);
 			ctx.body = acct;
 		} catch (e: any) {
 			console.error(e);
@@ -126,7 +127,7 @@ export function apiAccountMastodon(router: Router): void {
 			try {
 				const data = await client.getAccountFollowers(
 					ctx.params.id,
-					ctx.query as any,
+					limitToInt(ctx.query as any),
 				);
 				ctx.body = data.data;
 			} catch (e: any) {
@@ -146,7 +147,7 @@ export function apiAccountMastodon(router: Router): void {
 			try {
 				const data = await client.getAccountFollowing(
 					ctx.params.id,
-					ctx.query as any,
+					limitToInt(ctx.query as any),
 				);
 				ctx.body = data.data;
 			} catch (e: any) {
