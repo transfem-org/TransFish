@@ -78,6 +78,7 @@ const mastoRouter = new Router();
 mastoRouter.use(
 	koaBody({
 		urlencoded: true,
+		multipart: true,
 	}),
 );
 
@@ -171,6 +172,7 @@ mastoRouter.get("/oauth/authorize", async (ctx) => {
 mastoRouter.post("/oauth/token", async (ctx) => {
 	const body: any = ctx.request.body || ctx.request.query;
 	console.log('token-request', body)
+	console.log('token-query', ctx.request.query)
 	let client_id: any = ctx.request.query.client_id;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
@@ -178,13 +180,14 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 	let m = null;
 	let token = null;
 	if (body.code) {
-		m = body.code.match(/^([a-zA-Z0-9]{8})([a-zA-Z0-9]{4})([a-zA-Z0-9]{4})([a-zA-Z0-9]{4})([a-zA-Z0-9]{12})/);
-		if (!m.length) {
-			ctx.body = { error: "Invalid code" };
-			return;
-		}
-		token = `${m[1]}-${m[2]}-${m[3]}-${m[4]}-${m[5]}`
+		//m = body.code.match(/^([a-zA-Z0-9]{8})([a-zA-Z0-9]{4})([a-zA-Z0-9]{4})([a-zA-Z0-9]{4})([a-zA-Z0-9]{12})/);
+		//if (!m.length) {
+		//	ctx.body = { error: "Invalid code" };
+		//	return;
+		//}
+		//token = `${m[1]}-${m[2]}-${m[3]}-${m[4]}-${m[5]}`
 		console.log(body.code, token)
+		token = body.code
 	}
 	if (client_id instanceof Array) {
 		client_id = client_id.toString();
