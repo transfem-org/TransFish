@@ -89,9 +89,7 @@ export default defineComponent({
 			const isMastodon = !!getUrlParams().mastodon
 			if (this.session.app.callbackUrl && isMastodon) {
 				const stateParam = !!getUrlParams().state ? `&state=$(getUrlParams().state)` : ''; 
-				const tokenRaw = this.session.token
-				const token = tokenRaw.replaceAll('-', '')
-				location.href = `${this.session.app.callbackUrl}?code=${tokenRaw}${stateParam}`;
+				location.href = `${this.session.app.callbackUrl}?code=${this.session.token}${stateParam}`;
 			} else if (this.session.app.callbackUrl) {
 				const url = new URL(this.session.app.callbackUrl);
 				if (['javascript:', 'file:', 'data:', 'mailto:', 'tel:'].includes(url.protocol)) throw new Error('invalid url');
