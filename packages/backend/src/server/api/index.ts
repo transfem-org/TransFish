@@ -22,6 +22,32 @@ import github from "./service/github.js";
 import twitter from "./service/twitter.js";
 import { koaBody } from "koa-body";
 
+export enum IdType {
+	CalckeyId,
+	MastodonId
+};
+
+export function convertId(idIn: string, idConvertTo: IdType ) {
+	let idArray = []
+	switch (idConvertTo) {
+		case IdType.CalckeyId:
+			idArray = [...idIn].map(item => item.charCodeAt(0));
+			idArray = idArray.map(item => {
+				if (item.toString().length < 3) {
+					return `0${item.toString()}`
+				}
+				else return item.toString()
+			});
+			return idArray.join('');
+		case IdType.MastodonId:
+			for (let i = 0; i < idIn.length; i += 3) {
+				idArray.push(idIn.slice(i, i+3));
+			}
+			idArray = idArray.map(item => String.fromCharCode(item));
+			return idArray.join('');
+	}
+};
+
 // Init app
 const app = new Koa();
 
