@@ -119,7 +119,8 @@ function more() {
 
 			> .post {
 				position: relative;
-				display: block;
+				display: flex;
+				align-items: center;
 				width: 100%;
 				height: 40px;
 				color: var(--fgOnAccent);
