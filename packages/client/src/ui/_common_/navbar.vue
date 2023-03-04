@@ -209,12 +209,13 @@ function more(ev: MouseEvent) {
 
 				> .post {
 					position: relative;
-					display: block;
 					width: 100%;
 					height: 40px;
 					color: var(--fgOnAccent);
 					font-weight: bold;
 					text-align: left;
+					display: flex;
+					align-items: center;
 
 					&:before {
 						content: "";
