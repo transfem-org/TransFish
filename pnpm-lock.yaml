@@ -396,6 +396,7 @@ importers:
     specifiers:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': ^0.2.0
+      '@phosphor-icons/web': ^2.0.1
       '@rollup/plugin-alias': 3.1.9
       '@rollup/plugin-json': 4.1.0
       '@rollup/pluginutils': ^4.2.1
@@ -469,6 +470,8 @@ importers:
       vue-plyr: ^7.0.0
       vue-prism-editor: 2.0.0-alpha.2
       vuedraggable: 4.1.0
+    dependencies:
+      '@phosphor-icons/web': 2.0.1
     devDependencies:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': 0.2.0
@@ -1421,6 +1424,10 @@ packages:
       assert-plus: 1.0.0
       jsprim: 1.4.2
       sshpk: 1.17.0
+    dev: false
+
+  /@phosphor-icons/web/2.0.1:
+    resolution: {integrity: sha512-lxNCH+c1HXMSi2L1bDe8yFFSK5rVavsn1WKAyyRX/yuaGdEIf+iE3ypb1DDGKsorPQN1jENv5cRElhDyfa5k0w==}
     dev: false
 
   /@redis/bloom/1.1.0_@redis+client@1.4.2:

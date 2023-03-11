@@ -34,9 +34,9 @@
 		"calckey-js": "^0.0.22",
 		"chart.js": "4.1.1",
 		"chartjs-adapter-date-fns": "2.0.1",
+		"chartjs-chart-matrix": "^2.0.1",
 		"chartjs-plugin-gradient": "0.5.1",
 		"chartjs-plugin-zoom": "1.2.1",
-		"chartjs-chart-matrix": "^2.0.1",
 		"city-timezones": "^1.2.1",
 		"compare-versions": "5.0.3",
 		"cropperjs": "2.0.0-beta.2",
@@ -82,5 +82,8 @@
 		"vue-plyr": "^7.0.0",
 		"vue-prism-editor": "2.0.0-alpha.2",
 		"vuedraggable": "4.1.0"
+	},
+	"dependencies": {
+		"@phosphor-icons/web": "^2.0.1"
 	}
 }
