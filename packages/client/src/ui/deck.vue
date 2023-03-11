@@ -48,9 +48,9 @@
 	</div>
 
 	<div v-if="isMobile" class="buttons">
-		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list ph-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span></button>
+		<button class="button nav _button" @click="drawerMenuShowing = true"><i class="ph-list ph-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle ph-fill"></i></span></button>
 		<button class="button home _button" @click="mainRouter.push('/')"><i class="ph-house ph-bold ph-lg"></i></button>
-		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell ph-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span></button>
+		<button class="button notifications _button" @click="mainRouter.push('/my/notifications')"><i class="ph-bell ph-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle ph-fill"></i></span></button>
 		<button class="button post _button" @click="os.post()"><i class="ph-pencil ph-bold ph-lg"></i></button>
 	</div>
 

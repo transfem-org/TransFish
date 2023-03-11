@@ -9,7 +9,7 @@
 				<div v-if="item === '-'" class="divider"></div>
 				<component :is="navbarItemDef[item].to ? 'MkA' : 'button'" v-else-if="navbarItemDef[item] && (navbarItemDef[item].show !== false)" v-click-anime v-tooltip="$ts[navbarItemDef[item].title]" class="item _button" :class="item" active-class="active" :to="navbarItemDef[item].to" v-on="navbarItemDef[item].action ? { click: navbarItemDef[item].action } : {}">
 					<i class="ph-fw ph-lg" :class="navbarItemDef[item].icon"></i>
-					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="ph-circle-fill"></i></span>
+					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="ph-circle ph-fill"></i></span>
 				</component>
 			</template>
 			<div class="divider"></div>
@@ -18,7 +18,7 @@
 			</MkA>
 			<button v-click-anime class="item _button" @click="more">
 				<i class="ph-dots-three-outline ph-bold ph-lg ph-fw ph-lg"></i>
-				<span v-if="otherNavItemIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
+				<span v-if="otherNavItemIndicated" class="indicator"><i class="ph-circle ph-fill"></i></span>
 			</button>
 		</div>
 		<div class="right">

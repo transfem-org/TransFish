@@ -18,7 +18,7 @@
 						</div>
 						<div class="actions">
 							<div class="like">
-								<MkButton v-if="post.isLiked" v-tooltip="i18n.ts._gallery.unlike" class="button" primary @click="unlike()"><i class="ph-heart-fill ph-lg"></i><span v-if="post.likedCount > 0" class="count">{{ post.likedCount }}</span></MkButton>
+								<MkButton v-if="post.isLiked" v-tooltip="i18n.ts._gallery.unlike" class="button" primary @click="unlike()"><i class="ph-heart ph-fill ph-lg"></i><span v-if="post.likedCount > 0" class="count">{{ post.likedCount }}</span></MkButton>
 								<MkButton v-else v-tooltip="i18n.ts._gallery.like" class="button" @click="like()"><i class="ph-heart ph-bold"></i><span v-if="post.likedCount > 0" class="count">{{ post.likedCount }}</span></MkButton>
 							</div>
 							<div class="other">

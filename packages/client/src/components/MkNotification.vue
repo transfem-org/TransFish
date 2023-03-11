@@ -33,14 +33,14 @@
 			<MkTime v-if="withTime" :time="notification.createdAt" class="time"/>
 		</header>
 		<MkA v-if="notification.type === 'reaction'" class="text" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 			<Mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="!full" :custom-emojis="notification.note.emojis"/>
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 		</MkA>
 		<MkA v-if="notification.type === 'renote'" class="text" :to="notePage(notification.note)" :title="getNoteSummary(notification.note.renote)">
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 			<Mfm :text="getNoteSummary(notification.note.renote)" :plain="true" :nowrap="!full" :custom-emojis="notification.note.renote.emojis"/>
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 		</MkA>
 		<MkA v-if="notification.type === 'reply'" class="text" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
 			<Mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="!full" :custom-emojis="notification.note.emojis"/>
@@ -52,14 +52,14 @@
 			<Mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="!full" :custom-emojis="notification.note.emojis"/>
 		</MkA>
 		<MkA v-if="notification.type === 'pollVote'" class="text" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 			<Mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="!full" :custom-emojis="notification.note.emojis"/>
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 		</MkA>
 		<MkA v-if="notification.type === 'pollEnded'" class="text" :to="notePage(notification.note)" :title="getNoteSummary(notification.note)">
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 			<Mfm :text="getNoteSummary(notification.note)" :plain="true" :nowrap="!full" :custom-emojis="notification.note.emojis"/>
-			<i class="ph-quotes-fill ph-lg"></i>
+			<i class="ph-quotes ph-fill ph-lg"></i>
 		</MkA>
 		<span v-if="notification.type === 'follow'" class="text" style="opacity: 0.6;">{{ i18n.ts.youGotNewFollower }}<div v-if="full"><MkFollowButton :user="notification.user" :full="true"/></div></span>
 		<span v-if="notification.type === 'followRequestAccepted'" class="text" style="opacity: 0.6;">{{ i18n.ts.followRequestAccepted }}</span>

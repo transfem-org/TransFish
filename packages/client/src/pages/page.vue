@@ -30,7 +30,7 @@
 					</div>
 					<div class="actions">
 						<div class="like">
-							<MkButton v-if="page.isLiked" v-tooltip="i18n.ts._pages.unlike" class="button" primary @click="unlike()"><i class="ph-heart-fill ph-lg"></i><span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span></MkButton>
+							<MkButton v-if="page.isLiked" v-tooltip="i18n.ts._pages.unlike" class="button" primary @click="unlike()"><i class="ph-heart ph-fill ph-lg"></i><span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span></MkButton>
 							<MkButton v-else v-tooltip="i18n.ts._pages.like" class="button" @click="like()"><i class="ph-heart ph-bold"></i><span v-if="page.likedCount > 0" class="count">{{ page.likedCount }}</span></MkButton>
 						</div>
 						<div class="other">

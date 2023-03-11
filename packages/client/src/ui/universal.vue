@@ -21,7 +21,7 @@
 	<div v-if="isMobile" class="buttons">
 		<button class="button nav _button" @click="drawerMenuShowing = true">
 			<div class="button-wrapper">
-				<i class="ph-list ph-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle-fill"></i></span>
+				<i class="ph-list ph-bold ph-lg"></i><span v-if="menuIndicated" class="indicator"><i class="ph-circle ph-fill"></i></span>
 			</div>
 		</button>
 		<button class="button home _button" @click="mainRouter.currentRoute.value.name === 'index' ? top() : mainRouter.push('/'); updateButtonState();">
@@ -31,12 +31,12 @@
 		</button>
 		<button class="button notifications _button" @click="mainRouter.push('/my/notifications'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 1 ? 'on' : ''">
-				<i class="ph-bell ph-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle-fill"></i></span>
+				<i class="ph-bell ph-bold ph-lg"></i><span v-if="$i?.hasUnreadNotification" class="indicator"><i class="ph-circle ph-fill"></i></span>
 			</div>
 		</button>
 		<button class="button messaging _button" @click="mainRouter.push('/my/messaging'); updateButtonState();">
 			<div class="button-wrapper" :class="buttonAnimIndex === 2 ? 'on' : ''">
-				<i class="ph-chats-teardrop ph-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle-fill"></i></span>
+				<i class="ph-chats-teardrop ph-bold ph-lg"></i><span v-if="$i?.hasUnreadMessagingMessage" class="indicator"><i class="ph-circle ph-fill"></i></span>
 			</div>
 		</button>
 		<button class="button widget _button" @click="widgetsShowing = true">
