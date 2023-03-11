@@ -32,13 +32,13 @@
 							{{ i18n.ts._apps.milktea }}
 							<template #suffix>{{ i18n.ts._apps.firstClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
-						<FormLink to="https://play.google.com/store/apps/details?id=jp.juggler.subwaytooter&gl=US" external>
+						<!-- <FormLink to="https://play.google.com/store/apps/details?id=jp.juggler.subwaytooter&gl=US" external>
 							<template #icon>
 								<i class="ph-android-logo-bold ph-xl"/>
 							</template>
 							{{ i18n.ts._apps.subwayTooter }}
 							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
-						</FormLink>
+						</FormLink> -->
 						<!-- <FormLink to="https://apps.apple.com/app/kimis-a-client-for-misskey/id1667275125" external>
 							<template #icon>
 								<i class="ph-apple-logo-bold ph-xl"/>
@@ -60,11 +60,11 @@
 							{{ i18n.ts._apps.theDesk }}
 							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
-						<FormLink to="https://github.com/AsPulse/lesskey" external>
+						<FormLink to="https://uboar.github.io/missli/" external>
 							<template #icon>
-								<i class="ph-terminal-window-bold ph-xl"/>
+								<i class="ph-globe-bold ph-xl"/>
 							</template>
-							{{ i18n.ts._apps.lesskey }}
+							{{ i18n.ts._apps.missLi }}
 							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
 					</div>
