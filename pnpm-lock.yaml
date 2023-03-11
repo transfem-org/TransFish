@@ -396,7 +396,7 @@ importers:
     specifiers:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': ^0.2.0
-      '@phosphor-icons/web': ^2.0.1
+      '@phosphor-icons/web': ^2.0.2
       '@rollup/plugin-alias': 3.1.9
       '@rollup/plugin-json': 4.1.0
       '@rollup/pluginutils': ^4.2.1
@@ -470,11 +470,10 @@ importers:
       vue-plyr: ^7.0.0
       vue-prism-editor: 2.0.0-alpha.2
       vuedraggable: 4.1.0
-    dependencies:
-      '@phosphor-icons/web': 2.0.1
     devDependencies:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': 0.2.0
+      '@phosphor-icons/web': 2.0.2
       '@rollup/plugin-alias': 3.1.9_rollup@3.9.1
       '@rollup/plugin-json': 4.1.0_rollup@3.9.1
       '@rollup/pluginutils': 4.2.1
@@ -1426,9 +1425,9 @@ packages:
       sshpk: 1.17.0
     dev: false
 
-  /@phosphor-icons/web/2.0.1:
-    resolution: {integrity: sha512-lxNCH+c1HXMSi2L1bDe8yFFSK5rVavsn1WKAyyRX/yuaGdEIf+iE3ypb1DDGKsorPQN1jENv5cRElhDyfa5k0w==}
-    dev: false
+  /@phosphor-icons/web/2.0.2:
+    resolution: {integrity: sha512-CbCor9mjRC+GWhHYqyrixtyMKgPnJDPBxR/MxiJ0Fyo//699s1k/f72+DvZuMebH7JQK3IHKwLl4uQ5L4e/5iw==}
+    dev: true
 
   /@redis/bloom/1.1.0_@redis+client@1.4.2:
     resolution: {integrity: sha512-9QovlxmpRtvxVbN0UBcv8WfdSMudNZZTFqCsnBszcQXqaZb/TVe30ScgGEO7u1EAIacTPAo7/oCYjYAxiHLanQ==}

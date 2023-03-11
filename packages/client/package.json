@@ -9,6 +9,7 @@
 	"devDependencies": {
 		"@discordapp/twemoji": "14.0.2",
 		"@khmyznikov/pwa-install": "^0.2.0",
+		"@phosphor-icons/web": "^2.0.2",
 		"@rollup/plugin-alias": "3.1.9",
 		"@rollup/plugin-json": "4.1.0",
 		"@rollup/pluginutils": "^4.2.1",
@@ -82,8 +83,5 @@
 		"vue-plyr": "^7.0.0",
 		"vue-prism-editor": "2.0.0-alpha.2",
 		"vuedraggable": "4.1.0"
-	},
-	"dependencies": {
-		"@phosphor-icons/web": "^2.0.1"
 	}
 }
