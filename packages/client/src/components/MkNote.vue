@@ -12,11 +12,11 @@
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
 	<div class="note-context">
 		<div class="line"></div>
-		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
-		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
-		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
+		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x ph-bold ph-lg"></i></button></div>
+		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning ph-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
+		<div v-if="pinned" class="info"><i class="ph-push-pin ph-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
 		<div v-if="isRenote" class="renote">
-			<i class="ph-repeat-bold ph-lg"></i>
+			<i class="ph-repeat ph-bold ph-lg"></i>
 			<I18n :src="i18n.ts.renotedBy" tag="span">
 				<template #user>
 					<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
@@ -26,7 +26,7 @@
 			</I18n>
 			<div class="info">
 				<button ref="renoteTime" class="_button time" @click="showRenoteMenu()">
-					<i v-if="isMyRenote" class="ph-dots-three-outline-bold ph-lg dropdownIcon"></i>
+					<i v-if="isMyRenote" class="ph-dots-three-outline ph-bold ph-lg dropdownIcon"></i>
 					<MkTime :time="note.createdAt"/>
 				</button>
 				<MkVisibility :note="note"/>
@@ -69,26 +69,26 @@
 						<span>{{ i18n.ts.showLess }}</span>
 					</button>
 				</div>
-				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
+				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television ph-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
 			<footer class="footer">
 				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
 				<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
-					<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left-bold ph-lg"></i></template>
-					<template v-else><i class="ph-arrow-bend-up-left-bold ph-lg"></i></template>
+					<template v-if="appearNote.reply"><i class="ph-arrow-u-up-left ph-bold ph-lg"></i></template>
+					<template v-else><i class="ph-arrow-bend-up-left ph-bold ph-lg"></i></template>
 					<p v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</p>
 				</button>
 				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
 				<button v-if="appearNote.myReaction == null" ref="reactButton" v-tooltip.noDelay.bottom="i18n.ts.reaction" class="button _button" @click="react()">
-					<i class="ph-smiley-bold ph-lg"></i>
+					<i class="ph-smiley ph-bold ph-lg"></i>
 				</button>
 				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
-					<i class="ph-minus-bold ph-lg"></i>
+					<i class="ph-minus ph-bold ph-lg"></i>
 				</button>
 				<XQuoteButton class="button" :note="appearNote"/>
 				<button ref="menuButton" v-tooltip.noDelay.bottom="i18n.ts.more" class="button _button" @click="menu()">
-					<i class="ph-dots-three-outline-bold ph-lg"></i>
+					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 				</button>
 			</footer>
 		</div>
@@ -267,7 +267,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 	if (!isMyRenote) return;
 	os.popupMenu([{
 		text: i18n.ts.unrenote,
-		icon: 'ph-trash-bold ph-lg',
+		icon: 'ph-trash ph-bold ph-lg',
 		danger: true,
 		action: () => {
 			os.api('notes/delete', {

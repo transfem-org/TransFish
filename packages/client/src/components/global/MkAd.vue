@@ -3,7 +3,7 @@
 	<div v-if="!showMenu" class="main" :class="chosen.place">
 		<a :href="chosen.url" target="_blank">
 			<img :src="chosen.imageUrl">
-			<button class="_button menu" @click.prevent.stop="toggleMenu"><span class="ph-info-bold ph-lg info-circle"></span></button>
+			<button class="_button menu" @click.prevent.stop="toggleMenu"><span class="ph-info ph-bold ph-lg info-circle"></span></button>
 		</a>
 	</div>
 	<div v-else class="menu">

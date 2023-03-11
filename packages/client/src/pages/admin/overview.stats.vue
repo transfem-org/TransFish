@@ -4,7 +4,7 @@
 		<MkLoading v-if="fetching"/>
 		<div v-else :class="$style.root">
 			<div class="item _panel users">
-				<div class="icon"><i class="ph-users-bold ph-xl"></i></div>
+				<div class="icon"><i class="ph-users ph-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="stats.originalUsersCount" style="margin-right: 0.5em;"/>
@@ -14,7 +14,7 @@
 				</div>
 			</div>
 			<div class="item _panel notes">
-				<div class="icon"><i class="ph-pencil-bold ph-xl"></i></div>
+				<div class="icon"><i class="ph-pencil ph-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="stats.originalNotesCount" style="margin-right: 0.5em;"/>
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<div class="item _panel instances">
-				<div class="icon"><i class="ph-planet-bold ph-xl"></i></div>
+				<div class="icon"><i class="ph-planet ph-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="stats.instances" style="margin-right: 0.5em;"/>
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="item _panel online">
-				<div class="icon"><i class="ph-broadcast-bold ph-xl"></i></div>
+				<div class="icon"><i class="ph-broadcast ph-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						<MkNumber :value="onlineUsersCount" style="margin-right: 0.5em;"/>

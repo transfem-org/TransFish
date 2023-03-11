@@ -2,8 +2,8 @@
 	<div class="efzpzdvf">
 		<MkAd class="a" :prefer="['widget']"/>
 		<XWidgets :edit="editMode" :widgets="defaultStore.reactiveState.widgets.value" @add-widget="addWidget" @remove-widget="removeWidget" @update-widget="updateWidget" @update-widgets="updateWidgets" @exit="editMode = false"/>
-		<button v-if="editMode" class="_textButton" style="font-size: 0.9em;" @click="editMode = false"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.editWidgetsExit }}</button>
-		<button v-else class="_textButton mk-widget-edit" style="font-size: 0.9em;" @click="editMode = true"><i class="ph-pencil-bold ph-lg"></i> {{ i18n.ts.editWidgets }}</button>
+		<button v-if="editMode" class="_textButton" style="font-size: 0.9em;" @click="editMode = false"><i class="ph-check ph-bold ph-lg"></i> {{ i18n.ts.editWidgetsExit }}</button>
+		<button v-else class="_textButton mk-widget-edit" style="font-size: 0.9em;" @click="editMode = true"><i class="ph-pencil ph-bold ph-lg"></i> {{ i18n.ts.editWidgets }}</button>
 	</div>
 </template>
 

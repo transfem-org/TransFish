@@ -9,7 +9,7 @@
 		</div>
 		<div class="middle">
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.timeline" class="item index" active-class="active" to="/" exact>
-				<i class="icon ph-house-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.timeline }}</span>
+				<i class="icon ph-house ph-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.timeline }}</span>
 			</MkA>
 			<template v-for="item in menu">
 				<div v-if="item === '-'" class="divider"></div>
@@ -30,23 +30,23 @@
 			</template>
 			<div class="divider"></div>
 			<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime v-tooltip.noDelay.right="i18n.ts.controlPanel" class="item _button" active-class="active" to="/admin">
-				<span v-if="thereIsUnresolvedAbuseReport || noMaintainerInformation || noBotProtection || noEmailServer || updateAvailable" class="indicator"></span><i class="icon ph-door-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
+				<span v-if="thereIsUnresolvedAbuseReport || noMaintainerInformation || noBotProtection || noEmailServer || updateAvailable" class="indicator"></span><i class="icon ph-door ph-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
 			</MkA>
 			<button v-click-anime class="item _button" @click="more">
-				<i class="icon ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.more }}</span>
+				<i class="icon ph-dots-three-outline ph-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.more }}</span>
 				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon ph-circle-fill"></i></span>
 			</button>
 			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.settings" class="item _button" active-class="active" to="/settings">
-				<i class="icon ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.settings }}</span>
+				<i class="icon ph-gear-six ph-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.settings }}</span>
 			</MkA>
 		</div>
 		<div class="bottom">
 			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
-				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
+				<i class="icon ph-pencil ph-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
 			</button>
 			<!-- <div class="help">
 				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button" @click="openHelpMenu">
-					<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
+					<i class="icon ph-info ph-bold ph-xl ph-fw ph-lg"></i>
 				</button>
 			</div> -->
 			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
