@@ -23,7 +23,6 @@ importers:
       gulp-terser: 2.1.0
       install-peers: ^1.0.4
       js-yaml: 4.1.0
-      phosphor-icons: ^1.4.2
       rome: ^11.0.0
       seedrandom: ^3.0.5
       start-server-and-test: 1.15.2
@@ -34,7 +33,6 @@ importers:
       '@tensorflow/tfjs': 3.21.0_seedrandom@3.0.5
       calckey-js: 0.0.22
       js-yaml: 4.1.0
-      phosphor-icons: 1.4.2
       seedrandom: 3.0.5
     devDependencies:
       '@types/gulp': 4.0.10
@@ -3398,7 +3396,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: true
@@ -6397,6 +6395,19 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -10058,10 +10069,6 @@ packages:
     resolution: {integrity: sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==}
     dependencies:
       split2: 4.1.0
-    dev: false
-
-  /phosphor-icons/1.4.2:
-    resolution: {integrity: sha512-vDyuRWLSEb87dxpoOGpP1GCjr/TFzA0Ljt0TtJcwXO7/iPdSZW0e/2m1jsANH1ML5ZyZXcjeWx6pzT0A0tgYDA==}
     dev: false
 
   /photoswipe/5.3.4:
