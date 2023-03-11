@@ -104,7 +104,7 @@ function onContextmenu(ev: MouseEvent) {
 		type: 'label',
 		text: path,
 	}, {
-		icon: fullView ? 'ph-arrows-in-simple-bold ph-lg' : 'ph-arrows-out-simple ph-bold ph-lg',
+		icon: fullView ? 'ph-arrows-in-simple ph-bold ph-lg' : 'ph-arrows-out-simple ph-bold ph-lg',
 		text: fullView ? i18n.ts.quitFullView : i18n.ts.fullView,
 		action: () => {
 			fullView = !fullView;

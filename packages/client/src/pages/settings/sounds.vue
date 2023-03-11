@@ -38,7 +38,7 @@ const masterVolume = computed({
 	},
 });
 
-const volumeIcon = computed(() => masterVolume.value === 0 ? 'ph-speaker-none-bold ph-lg' : 'ph-speaker-high ph-bold ph-lg');
+const volumeIcon = computed(() => masterVolume.value === 0 ? 'ph-speaker-none ph-bold ph-lg' : 'ph-speaker-high ph-bold ph-lg');
 
 const sounds = ref({
 	note: ColdDeviceStorage.get('sound_note'),

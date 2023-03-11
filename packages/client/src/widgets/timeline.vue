@@ -9,7 +9,7 @@
 			<i v-else-if="widgetProps.src === 'list'" class="ph-list-bullets ph-bold ph-lg"></i>
 			<i v-else-if="widgetProps.src === 'antenna'" class="ph-television ph-bold ph-lg"></i>
 			<span style="margin-left: 8px;">{{ widgetProps.src === 'list' ? widgetProps.list.name : widgetProps.src === 'antenna' ? widgetProps.antenna.name : i18n.t('_timelines.' + widgetProps.src) }}</span>
-			<i :class="menuOpened ? 'ph-caret-up-bold ph-lg' : 'ph-caret-down ph-bold ph-lg'" style="margin-left: 8px;"></i>
+			<i :class="menuOpened ? 'ph-caret-up ph-bold ph-lg' : 'ph-caret-down ph-bold ph-lg'" style="margin-left: 8px;"></i>
 		</button>
 	</template>
 

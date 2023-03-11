@@ -119,7 +119,7 @@ export default defineComponent({
 				action: () => { this.rename(file); },
 			}, {
 				text: file.isSensitive ? i18n.ts.unmarkAsSensitive : i18n.ts.markAsSensitive,
-				icon: file.isSensitive ? 'ph-eye-slash-bold ph-lg' : 'ph-eye ph-bold ph-lg',
+				icon: file.isSensitive ? 'ph-eye-slash ph-bold ph-lg' : 'ph-eye ph-bold ph-lg',
 				action: () => { this.toggleSensitive(file); },
 			}, {
 				text: i18n.ts.describeFile,

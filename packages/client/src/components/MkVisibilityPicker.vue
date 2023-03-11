@@ -36,7 +36,7 @@
 					<span :class="$style.itemTitle">{{ i18n.ts._visibility.localOnly }}</span>
 					<span :class="$style.itemDescription">{{ i18n.ts._visibility.localOnlyDescription }}</span>
 				</div>
-				<div :class="$style.toggle"><i :class="localOnly ? 'ph-toggle-right-bold ph-lg' : 'ph-toggle-left ph-bold ph-lg'"></i></div>
+				<div :class="$style.toggle"><i :class="localOnly ? 'ph-toggle-right ph-bold ph-lg' : 'ph-toggle-left ph-bold ph-lg'"></i></div>
 			</button>
 		</div>
 	</MkModal>

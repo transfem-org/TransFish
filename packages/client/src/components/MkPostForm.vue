@@ -22,7 +22,7 @@
 				<span v-if="visibility === 'specified'"><i class="ph-envelope-simple-open ph-bold ph-lg"></i></span>
 			</button>
 			<button v-tooltip="i18n.ts.previewNoteText" class="_button preview" :class="{ active: showPreview }" @click="showPreview = !showPreview"><i class="ph-file-code ph-bold ph-lg"></i></button>
-			<button class="submit _buttonGradate" :disabled="!canPost" data-cy-open-post-form-submit @click="post">{{ submitText }}<i :class="reply ? 'ph-arrow-bend-up-left-bold ph-lg' : renote ? 'ph-quotes ph-bold ph-lg' : 'ph-paper-plane-tilt ph-bold ph-lg'"></i></button>
+			<button class="submit _buttonGradate" :disabled="!canPost" data-cy-open-post-form-submit @click="post">{{ submitText }}<i :class="reply ? 'ph-arrow-bend-up-left ph-bold ph-lg' : renote ? 'ph-quotes ph-bold ph-lg' : 'ph-paper-plane-tilt ph-bold ph-lg'"></i></button>
 		</div>
 	</header>
 	<div class="form" :class="{ fixed }">
