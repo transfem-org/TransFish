@@ -396,7 +396,7 @@ importers:
     specifiers:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': ^0.2.0
-      '@phosphor-icons/web': ^2.0.2
+      '@phosphor-icons/web': ^2.0.3
       '@rollup/plugin-alias': 3.1.9
       '@rollup/plugin-json': 4.1.0
       '@rollup/pluginutils': ^4.2.1
@@ -473,7 +473,7 @@ importers:
     devDependencies:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': 0.2.0
-      '@phosphor-icons/web': 2.0.2
+      '@phosphor-icons/web': 2.0.3
       '@rollup/plugin-alias': 3.1.9_rollup@3.9.1
       '@rollup/plugin-json': 4.1.0_rollup@3.9.1
       '@rollup/pluginutils': 4.2.1
@@ -1425,8 +1425,8 @@ packages:
       sshpk: 1.17.0
     dev: false
 
-  /@phosphor-icons/web/2.0.2:
-    resolution: {integrity: sha512-CbCor9mjRC+GWhHYqyrixtyMKgPnJDPBxR/MxiJ0Fyo//699s1k/f72+DvZuMebH7JQK3IHKwLl4uQ5L4e/5iw==}
+  /@phosphor-icons/web/2.0.3:
+    resolution: {integrity: sha512-9oYmohi2fo87w3DbtfjBoJxrklVojgXq2wuGcqxKccj2TxMq7UIusKDrGUZYOQHM9pUKkh+kvfmutETMGDR6gg==}
     dev: true
 
   /@redis/bloom/1.1.0_@redis+client@1.4.2:
@@ -4861,6 +4861,12 @@ packages:
   /core-js/3.27.1:
     resolution: {integrity: sha512-GutwJLBChfGCpwwhbYoqfv03LAfmiz7e7D/BNxzeMxwQf10GRSzqiOjx7AmtEk+heiD/JWmBuyBPgFtx0Sg1ww==}
     requiresBuild: true
+    dev: false
+
+  /core-js/3.29.0:
+    resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
+    requiresBuild: true
+    dev: true
 
   /core-util-is/1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
@@ -13575,7 +13581,7 @@ packages:
     name: plyr
     version: 3.7.0
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.29.0
       custom-event-polyfill: 1.0.7
       loadjs: 4.2.0
       rangetouch: 2.0.1
