@@ -31,6 +31,7 @@ import webServer from "./web/index.js";
 import { initializeStreamingServer } from "./api/streaming.js";
 import { koaBody } from "koa-body";
 import removeTrailingSlash from "koa-remove-trailing-slashes";
+import {v4 as uuid} from "uuid";
 
 export const serverLogger = new Logger("server", "gray", false);
 
@@ -171,9 +172,19 @@ mastoRouter.get("/oauth/authorize", async (ctx) => {
 
 mastoRouter.post("/oauth/token", async (ctx) => {
 	const body: any = ctx.request.body || ctx.request.query;
-	console.log('token-request', body)
-	console.log('token-query', ctx.request.query)
-	let client_id: any = ctx.request.query.client_id;
+	console.log('token-request', body);
+	console.log('token-query', ctx.request.query);
+	if (body.redirect_uri.startsWith('com.tapbots') && body.grant_type === 'client_credentials') {
+		const ret = {
+			access_token: uuid(),
+			token_type: "Bearer",
+			scope: "read",
+			created_at: Math.floor(new Date().getTime() / 1000),
+		};
+		ctx.body = ret;
+		return;
+	}
+	let client_id: any = body.client_id;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
 	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
