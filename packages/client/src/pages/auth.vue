@@ -88,11 +88,8 @@ export default defineComponent({
 			const getUrlParams = () => window.location.search.substring(1).split('&').reduce((result, query) => { const [k, v] = query.split('='); result[k] = decodeURI(v); return result; }, {});
 			const isMastodon = !!getUrlParams().mastodon
 			if (this.session.app.callbackUrl && isMastodon) {
-				const state = getUrlParams().state
-				const stateParam = `&state=${state}`
-				const tokenRaw = this.session.token
-				const token = tokenRaw.replaceAll('-', '')
-				location.href = `${this.session.app.callbackUrl}?code=${token}${stateParam}`;
+				const stateParam = !!getUrlParams().state ? `&state=$(getUrlParams().state)` : ''; 
+				location.href = `${this.session.app.callbackUrl}?code=${this.session.token}${stateParam}`;
 			} else if (this.session.app.callbackUrl) {
 				const url = new URL(this.session.app.callbackUrl);
 				if (['javascript:', 'file:', 'data:', 'mailto:', 'tel:'].includes(url.protocol)) throw new Error('invalid url');
