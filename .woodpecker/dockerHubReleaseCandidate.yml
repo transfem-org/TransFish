@@ -3,7 +3,7 @@ pipeline:
     image: plugins/kaniko
     settings:
       repo: thatonecalculator/calckey
-      tags: latest
+      tags: rc
       dockerfile: Dockerfile
       username:
         # Secret 'docker_username' needs to be set in the CI settings
@@ -12,4 +12,4 @@ pipeline:
         # Secret 'docker_password' needs to be set in the CI settings
         from_secret: docker_password
 
-branches: main
+branches: beta
