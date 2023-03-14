@@ -32,20 +32,13 @@
 							{{ i18n.ts._apps.milktea }}
 							<template #suffix>{{ i18n.ts._apps.firstClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
-						<!-- <FormLink to="https://play.google.com/store/apps/details?id=jp.juggler.subwaytooter&gl=US" external>
-							<template #icon>
-								<i class="ph-android-logo ph-bold ph-xl"/>
-							</template>
-							{{ i18n.ts._apps.subwayTooter }}
-							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.free }}</template>
-						</FormLink> -->
-						<!-- <FormLink to="https://apps.apple.com/app/kimis-a-client-for-misskey/id1667275125" external>
+						<FormLink to="https://testflight.apple.com/join/xNdgUbh6" external>
 							<template #icon>
 								<i class="ph-apple-logo ph-bold ph-xl"/>
 							</template>
-							{{ i18n.ts._apps.kimis }}
-							<template #suffix>{{ i18n.ts._apps.secondClass }}, {{ i18n.ts._apps.paid }}</template>
-						</FormLink> -->
+							{{ i18n.ts._apps.mona }}
+							<template #suffix>{{ i18n.ts._apps.thirdClass }}, {{ i18n.ts._apps.paid }}</template>
+						</FormLink>
 					</div>
 				</FormSection>
 				<FormSection>
