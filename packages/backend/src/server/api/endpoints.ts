@@ -198,6 +198,7 @@ import * as ep___i_readAnnouncement from "./endpoints/i/read-announcement.js";
 import * as ep___i_regenerateToken from "./endpoints/i/regenerate-token.js";
 import * as ep___i_registry_getAll from "./endpoints/i/registry/get-all.js";
 import * as ep___i_registry_getDetail from "./endpoints/i/registry/get-detail.js";
+import * as ep___i_registry_getUnsecure from "./endpoints/i/registry/get-unsecure.js";
 import * as ep___i_registry_get from "./endpoints/i/registry/get.js";
 import * as ep___i_registry_keysWithType from "./endpoints/i/registry/keys-with-type.js";
 import * as ep___i_registry_keys from "./endpoints/i/registry/keys.js";
@@ -221,6 +222,7 @@ import * as ep___messaging_messages_create from "./endpoints/messaging/messages/
 import * as ep___messaging_messages_delete from "./endpoints/messaging/messages/delete.js";
 import * as ep___messaging_messages_read from "./endpoints/messaging/messages/read.js";
 import * as ep___meta from "./endpoints/meta.js";
+import * as ep___sounds from "./endpoints/get-sounds.js";
 import * as ep___miauth_genToken from "./endpoints/miauth/gen-token.js";
 import * as ep___mute_create from "./endpoints/mute/create.js";
 import * as ep___mute_delete from "./endpoints/mute/delete.js";
@@ -538,6 +540,7 @@ const eps = [
 	["i/regenerate-token", ep___i_regenerateToken],
 	["i/registry/get-all", ep___i_registry_getAll],
 	["i/registry/get-detail", ep___i_registry_getDetail],
+	["i/registry/get-unsecure", ep___i_registry_getUnsecure],
 	["i/registry/get", ep___i_registry_get],
 	["i/registry/keys-with-type", ep___i_registry_keysWithType],
 	["i/registry/keys", ep___i_registry_keys],
@@ -666,6 +669,7 @@ const eps = [
 	["users/stats", ep___users_stats],
 	["admin/drive-capacity-override", ep___admin_driveCapOverride],
 	["fetch-rss", ep___fetchRss],
+	["get-sounds", ep___sounds],
 ];
 
 export interface IEndpointMeta {
@@ -766,16 +770,16 @@ export interface IEndpointMeta {
 
 export interface IEndpoint {
 	name: string;
-	exec: any;
+	exec: any; // TODO: may be obosolete @ThatOneCalculator
 	meta: IEndpointMeta;
 	params: Schema;
 }
 
-const endpoints: IEndpoint[] = eps.map(([name, ep]) => {
+const endpoints: IEndpoint[] = (eps as [string, any]).map(([name, ep]) => {
 	return {
 		name: name,
 		exec: ep.default,
-		meta: ep.meta || {},
+		meta: ep.meta ?? {},
 		params: ep.paramDef,
 	};
 });

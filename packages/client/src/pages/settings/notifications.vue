@@ -1,6 +1,6 @@
 <template>
 <div class="_formRoot">
-	<FormLink class="_formBlock" @click="configure"><template #icon><i class="ph-gear-six-bold ph-lg"></i></template>{{ i18n.ts.notificationSetting }}</FormLink>
+	<FormLink class="_formBlock" @click="configure"><template #icon><i class="ph-gear-six ph-bold ph-lg"></i></template>{{ i18n.ts.notificationSetting }}</FormLink>
 	<FormSection>
 		<FormLink class="_formBlock" @click="readAllNotifications">{{ i18n.ts.markAsReadAllNotifications }}</FormLink>
 		<FormLink class="_formBlock" @click="readAllUnreadNotes">{{ i18n.ts.markAsReadAllUnreadNotes }}</FormLink>
@@ -55,6 +55,6 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.notifications,
-	icon: 'ph-bell-bold ph-lg',
+	icon: 'ph-bell ph-bold ph-lg',
 });
 </script>

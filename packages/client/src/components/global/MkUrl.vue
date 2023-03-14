@@ -14,7 +14,7 @@
 	<span v-if="pathname != ''" class="pathname">{{ self ? pathname.substr(1) : pathname }}</span>
 	<span class="query">{{ query }}</span>
 	<span class="hash">{{ hash }}</span>
-	<i v-if="target === '_blank'" class="ph-arrow-square-out-bold ph-lg icon"></i>
+	<i v-if="target === '_blank'" class="ph-arrow-square-out ph-bold ph-lg icon"></i>
 </component>
 </template>
 
@@ -33,6 +33,7 @@ const props = defineProps<{
 
 const self = props.url.startsWith(local);
 const url = new URL(props.url);
+if (!['http:', 'https:'].includes(url.protocol)) throw new Error('invalid url');
 const el = ref();
 
 useTooltip(el, (showing) => {
