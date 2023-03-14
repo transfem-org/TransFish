@@ -37,7 +37,7 @@
 								<i class="ph-apple-logo ph-bold ph-xl"/>
 							</template>
 							{{ i18n.ts._apps.mona }}
-							<template #suffix>{{ i18n.ts._apps.thirdClass }}, {{ i18n.ts._apps.paid }}</template>
+							<template #suffix>{{ i18n.ts._apps.thirdClass }}, {{ i18n.ts._apps.free }}</template>
 						</FormLink>
 					</div>
 				</FormSection>
