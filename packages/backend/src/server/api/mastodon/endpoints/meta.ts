@@ -10,18 +10,18 @@ export async function getInstance(response: Entity.Instance) {
 	const totalStatuses = Notes.count({ where: { userHost: IsNull() } });
 	return {
 		uri: response.uri,
-		title: response.title || "",
-		short_description: response.description || "",
-		description: response.description || "",
+		title: response.title || "Calckey",
+		short_description: response.description.substring(0, 50) || "See real server website",
+		description: response.description || "This is a vanilla Calckey Instance. It doesnt seem to have a description. BTW you are using the Mastodon api to access this server :)",
 		email: response.email || "",
-		version: "3.0.0 compatible (Calckey)",
+		version: "3.0.0 compatible (3.5+ Calckey)", //I hope this version string is correct, we will need to test it.
 		urls: response.urls,
 		stats: {
 			user_count: (await totalUsers),
 			status_count: (await totalStatuses),
 			domain_count: response.stats.domain_count
 		},
-		thumbnail: response.thumbnail || "",
+		thumbnail: response.thumbnail || 'https://http.cat/404',
 		languages: meta.langs,
 		registrations: !meta.disableRegistration || response.registrations,
 		approval_required: !response.registrations,

@@ -3,7 +3,7 @@
 	<div v-if="!showMenu" class="main" :class="chosen.place">
 		<a :href="chosen.url" target="_blank">
 			<img :src="chosen.imageUrl">
-			<button class="_button menu" @click.prevent.stop="toggleMenu"><span class="ph-info-bold ph-lg info-circle"></span></button>
+			<button class="_button menu" @click.prevent.stop="toggleMenu"><span class="ph-info ph-bold ph-lg info-circle"></span></button>
 		</a>
 	</div>
 	<div v-else class="menu">
@@ -56,10 +56,13 @@ const choseAd = (): Ad | null => {
 	}
 
 	const lowPriorityAds = ads.filter(ad => ad.ratio === 0);
+	const widgetAds = ads.filter(ad => ad.place === 'widget');
 	ads = ads.filter(ad => ad.ratio !== 0);
-
-	if (ads.length === 0) {
-		if (lowPriorityAds.length !== 0) {
+	
+	if (widgetAds.length !== 0) {
+			return widgetAds;
+	} else if (ads.length === 0) {
+		 if (lowPriorityAds.length !== 0) {
 			return lowPriorityAds[Math.floor(Math.random() * lowPriorityAds.length)];
 		} else {
 			return null;
@@ -132,7 +135,7 @@ function reduceFrequency(): void {
 			}
 		}
 
-		&.square {
+		&.widget {
 			> a ,
 			> a > img {
 				max-width: min(300px, 100%);
@@ -140,7 +143,7 @@ function reduceFrequency(): void {
 			}
 		}
 
-		&.horizontal {
+		&.inline {
 			padding: 8px;
 
 			> a ,
@@ -150,7 +153,7 @@ function reduceFrequency(): void {
 			}
 		}
 
-		&.horizontal-big {
+		&.inline-big {
 			padding: 8px;
 
 			> a ,

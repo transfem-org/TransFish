@@ -41,25 +41,25 @@ function onContextmenu(ev) {
 		type: 'label',
 		text: props.to,
 	}, {
-		icon: 'ph-browser-bold ph-lg',
+		icon: 'ph-browser ph-bold ph-lg',
 		text: i18n.ts.openInWindow,
 		action: () => {
 			os.pageWindow(props.to);
 		},
 	}, {
-		icon: 'ph-arrows-out-simple-bold ph-lg',
+		icon: 'ph-arrows-out-simple ph-bold ph-lg',
 		text: i18n.ts.showInPage,
 		action: () => {
 			router.push(props.to, 'forcePage');
 		},
 	}, null, {
-		icon: 'ph-arrow-square-out-bold ph-lg',
+		icon: 'ph-arrow-square-out ph-bold ph-lg',
 		text: i18n.ts.openInNewTab,
 		action: () => {
 			window.open(props.to, '_blank');
 		},
 	}, {
-		icon: 'ph-link-simple-bold ph-lg',
+		icon: 'ph-link-simple ph-bold ph-lg',
 		text: i18n.ts.copyLink,
 		action: () => {
 			copyToClipboard(`${url}${props.to}`);

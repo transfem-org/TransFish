@@ -29,7 +29,7 @@
 		</template>
 		<div v-else-if="replies.length > 0" class="more">
 			<div class="line"></div>
-			<MkA class="text _link" :to="notePage(note)">{{ i18n.ts.continueThread }} <i class="ph-caret-double-right-bold ph-lg"></i></MkA>
+			<MkA class="text _link" :to="notePage(note)">{{ i18n.ts.continueThread }} <i class="ph-caret-double-right ph-bold ph-lg"></i></MkA>
 		</div>
 	</template>
 </div>

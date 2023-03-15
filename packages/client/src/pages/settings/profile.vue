@@ -23,13 +23,13 @@
 
 	<FormInput v-model="profile.location" manual-save class="_formBlock">
 		<template #label>{{ i18n.ts.location }}</template>
-		<template #prefix><i class="ph-map-pin-bold ph-lg"></i></template>
+		<template #prefix><i class="ph-map-pin ph-bold ph-lg"></i></template>
 		<template #caption>{{ i18n.ts._profile.locationDescription }}</template>
 	</FormInput>
 
 	<FormInput v-model="profile.birthday" type="date" manual-save class="_formBlock">
 		<template #label>{{ i18n.ts.birthday }}</template>
-		<template #prefix><i class="ph-cake-bold ph-lg"></i></template>
+		<template #prefix><i class="ph-cake ph-bold ph-lg"></i></template>
 	</FormInput>
 
 	<FormSelect v-model="profile.lang" class="_formBlock">
@@ -39,7 +39,7 @@
 
 	<FormSlot class="_formBlock">
 		<FormFolder>
-			<template #icon><i class="ph-table-bold ph-lg"></i></template>
+			<template #icon><i class="ph-table ph-bold ph-lg"></i></template>
 			<template #label>{{ i18n.ts._profile.metadataEdit }}</template>
 
 			<div class="_formRoot">
@@ -51,8 +51,8 @@
 						<template #label>{{ i18n.ts._profile.metadataContent }} #{{ i + 1 }}</template>
 					</FormInput>
 				</FormSplit>
-				<MkButton :disabled="fields.length >= 16" inline style="margin-right: 8px;" @click="addField"><i class="ph-plus-bold ph-lg"></i> {{ i18n.ts.add }}</MkButton>
-				<MkButton inline primary @click="saveFields"><i class="ph-check-bold ph-lg"></i> {{ i18n.ts.save }}</MkButton>
+				<MkButton :disabled="fields.length >= 16" inline style="margin-right: 8px;" @click="addField"><i class="ph-plus ph-bold ph-lg"></i> {{ i18n.ts.add }}</MkButton>
+				<MkButton inline primary @click="saveFields"><i class="ph-check ph-bold ph-lg"></i> {{ i18n.ts.save }}</MkButton>
 			</div>
 		</FormFolder>
 		<template #caption>{{ i18n.ts._profile.metadataDescription }}</template>
@@ -191,7 +191,7 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.profile,
-	icon: 'ph-user-bold ph-lg',
+	icon: 'ph-user ph-bold ph-lg',
 });
 </script>
 

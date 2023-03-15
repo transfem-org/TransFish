@@ -43,8 +43,8 @@
 		<MkSwitch v-model="notify" class="_formBlock">{{ i18n.ts.notifyAntenna }}</MkSwitch>
 	</div>
 	<div class="actions">
-		<MkButton inline primary @click="saveAntenna()"><i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}</MkButton>
-		<MkButton v-if="antenna.id != null" inline danger @click="deleteAntenna()"><i class="ph-trash-bold ph-lg"></i> {{ i18n.ts.delete }}</MkButton>
+		<MkButton inline primary @click="saveAntenna()"><i class="ph-floppy-disk-back ph-bold ph-lg"></i> {{ i18n.ts.save }}</MkButton>
+		<MkButton v-if="antenna.id != null" inline danger @click="deleteAntenna()"><i class="ph-trash ph-bold ph-lg"></i> {{ i18n.ts.delete }}</MkButton>
 	</div>
 </div>
 </template>

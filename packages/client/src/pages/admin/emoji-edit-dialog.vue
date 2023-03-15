@@ -22,7 +22,7 @@
 				<template #label>{{ i18n.ts.tags }}</template>
 				<template #caption>{{ i18n.ts.setMultipleBySeparatingWithSpace }}</template>
 			</MkInput>
-			<MkButton danger @click="del()"><i class="ph-trash-bold ph-lg"></i> {{ i18n.ts.delete }}</MkButton>
+			<MkButton danger @click="del()"><i class="ph-trash ph-bold ph-lg"></i> {{ i18n.ts.delete }}</MkButton>
 		</div>
 	</div>
 </XModalWindow>

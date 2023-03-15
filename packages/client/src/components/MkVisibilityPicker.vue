@@ -2,28 +2,28 @@
 	<MkModal ref="modal" :z-priority="'high'" :src="src" @click="modal.close()" @closed="emit('closed')">
 		<div class="_popup" :class="$style.root">
 			<button key="public" class="_button" :class="[$style.item, { [$style.active]: v === 'public' }]" data-index="1" @click="choose('public')">
-				<div :class="$style.icon"><i class="ph-planet-bold ph-lg"></i></div>
+				<div :class="$style.icon"><i class="ph-planet ph-bold ph-lg"></i></div>
 				<div :class="$style.body">
 					<span :class="$style.itemTitle">{{ i18n.ts._visibility.public }}</span>
 					<span :class="$style.itemDescription">{{ i18n.ts._visibility.publicDescription }}</span>
 				</div>
 			</button>
 			<button key="home" class="_button" :class="[$style.item, { [$style.active]: v === 'home' }]" data-index="2" @click="choose('home')">
-				<div :class="$style.icon"><i class="ph-house-bold ph-lg"></i></div>
+				<div :class="$style.icon"><i class="ph-house ph-bold ph-lg"></i></div>
 				<div :class="$style.body">
 					<span :class="$style.itemTitle">{{ i18n.ts._visibility.home }}</span>
 					<span :class="$style.itemDescription">{{ i18n.ts._visibility.homeDescription }}</span>
 				</div>
 			</button>
 			<button key="followers" class="_button" :class="[$style.item, { [$style.active]: v === 'followers' }]" data-index="3" @click="choose('followers')">
-				<div :class="$style.icon"><i class="ph-lock-simple-open-bold ph-lg"></i></div>
+				<div :class="$style.icon"><i class="ph-lock-simple-open ph-bold ph-lg"></i></div>
 				<div :class="$style.body">
 					<span :class="$style.itemTitle">{{ i18n.ts._visibility.followers }}</span>
 					<span :class="$style.itemDescription">{{ i18n.ts._visibility.followersDescription }}</span>
 				</div>
 			</button>
 			<button key="specified" :disabled="localOnly" class="_button" :class="[$style.item, { [$style.active]: v === 'specified' }]" data-index="4" @click="choose('specified')">
-				<div :class="$style.icon"><i class="ph-envelope-simple-open-bold ph-lg"></i></div>
+				<div :class="$style.icon"><i class="ph-envelope-simple-open ph-bold ph-lg"></i></div>
 				<div :class="$style.body">
 					<span :class="$style.itemTitle">{{ i18n.ts._visibility.specified }}</span>
 					<span :class="$style.itemDescription">{{ i18n.ts._visibility.specifiedDescription }}</span>
@@ -31,12 +31,12 @@
 			</button>
 			<div :class="$style.divider"></div>
 			<button key="localOnly" class="_button" :class="[$style.item, $style.localOnly, { [$style.active]: localOnly }]" data-index="5" @click="localOnly = !localOnly">
-				<div :class="$style.icon"><i class="ph-hand-fist-bold ph-lg"></i></div>
+				<div :class="$style.icon"><i class="ph-hand-fist ph-bold ph-lg"></i></div>
 				<div :class="$style.body">
 					<span :class="$style.itemTitle">{{ i18n.ts._visibility.localOnly }}</span>
 					<span :class="$style.itemDescription">{{ i18n.ts._visibility.localOnlyDescription }}</span>
 				</div>
-				<div :class="$style.toggle"><i :class="localOnly ? 'ph-toggle-right-bold ph-lg' : 'ph-toggle-left-bold ph-lg'"></i></div>
+				<div :class="$style.toggle"><i :class="localOnly ? 'ph-toggle-right ph-bold ph-lg' : 'ph-toggle-left ph-bold ph-lg'"></i></div>
 			</button>
 		</div>
 	</MkModal>

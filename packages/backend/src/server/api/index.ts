@@ -22,6 +22,35 @@ import github from "./service/github.js";
 import twitter from "./service/twitter.js";
 import { koaBody } from "koa-body";
 
+export enum IdType {
+	CalckeyId,
+	MastodonId
+};
+
+export function convertId(idIn: string, idConvertTo: IdType ) {
+	let idArray = []
+	switch (idConvertTo) {
+		case IdType.MastodonId:
+			idArray = [...idIn].map(item => item.charCodeAt(0));
+			idArray = idArray.map(item => {
+				if (item.toString().length < 3) {
+					return `0${item.toString()}`
+				}
+				else return item.toString()
+			});
+			return idArray.join('');
+		case IdType.CalckeyId:
+			for (let i = 0; i < idIn.length; i += 3) {
+				if ((idIn.length % 3) !== 0) {
+					idIn = `0${idIn}`
+				}
+				idArray.push(idIn.slice(i, i+3));
+			}
+			idArray = idArray.map(item => String.fromCharCode(item));
+			return idArray.join('');
+	}
+};
+
 // Init app
 const app = new Koa();
 
@@ -82,7 +111,7 @@ mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
 			ctx.status = 401;
 			return;
 		}
-		const data = await client.uploadMedia(multipartData.buffer);
+		const data = await client.uploadMedia(multipartData);
 		ctx.body = data.data;
 	} catch (e: any) {
 		console.error(e);
@@ -101,7 +130,7 @@ mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
 			ctx.status = 401;
 			return;
 		}
-		const data = await client.uploadMedia(multipartData.buffer);
+		const data = await client.uploadMedia(multipartData);
 		ctx.body = data.data;
 	} catch (e: any) {
 		console.error(e);

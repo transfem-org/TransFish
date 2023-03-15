@@ -12,11 +12,11 @@
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
 	<div class="note-context">
 		<div class="line"></div>
-		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x-bold ph-lg"></i></button></div>
-		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
-		<div v-if="pinned" class="info"><i class="ph-push-pin-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
+		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x ph-bold ph-lg"></i></button></div>
+		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning ph-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
+		<div v-if="pinned" class="info"><i class="ph-push-pin ph-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
 		<div v-if="isRenote" class="renote">
-			<i class="ph-repeat-bold ph-lg"></i>
+			<i class="ph-repeat ph-bold ph-lg"></i>
 			<I18n :src="i18n.ts.renotedBy" tag="span">
 				<template #user>
 					<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
@@ -26,7 +26,7 @@
 			</I18n>
 			<div class="info">
 				<button ref="renoteTime" class="_button time" @click.stop="showRenoteMenu()">
-					<i v-if="isMyRenote" class="ph-dots-three-outline-bold ph-lg dropdownIcon"></i>
+					<i v-if="isMyRenote" class="ph-dots-three-outline ph-bold ph-lg dropdownIcon"></i>
 					<MkTime :time="note.createdAt"/>
 				</button>
 				<MkVisibility :note="note"/>
@@ -69,7 +69,7 @@
 						<span>{{ i18n.ts.showLess }}</span>
 					</button>
 				</div>
-				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`" @click.stop><i class="ph-television-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
+				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`" @click.stop><i class="ph-television ph-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
 			<MkNoteFooter :note="appearNote"></MkNoteFooter>
 		</div>
@@ -235,7 +235,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 	if (!isMyRenote) return;
 	os.popupMenu([{
 		text: i18n.ts.unrenote,
-		icon: 'ph-trash-bold ph-lg',
+		icon: 'ph-trash ph-bold ph-lg',
 		danger: true,
 		action: () => {
 			os.api('notes/delete', {

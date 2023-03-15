@@ -1,7 +1,7 @@
 <template>
 <MkModal ref="modal" :prefer-type="'dialog'" :z-priority="'high'" @click="success ? done() : () => {}" @closed="emit('closed')">
 	<div :class="[$style.root, { [$style.iconOnly]: (text == null) || success }]">
-		<i v-if="success" :class="[$style.icon, $style.success]" class="ph-check-bold ph-lg"></i>
+		<i v-if="success" :class="[$style.icon, $style.success]" class="ph-check ph-bold ph-lg"></i>
 		<MkLoading v-else :class="[$style.icon, $style.waiting]" :em="true"/>
 		<div v-if="text && !success" :class="$style.text">{{ text }}<MkEllipsis/></div>
 	</div>

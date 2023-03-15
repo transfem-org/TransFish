@@ -23,7 +23,6 @@ importers:
       gulp-terser: 2.1.0
       install-peers: ^1.0.4
       js-yaml: 4.1.0
-      phosphor-icons: ^1.4.2
       rome: ^11.0.0
       seedrandom: ^3.0.5
       start-server-and-test: 1.15.2
@@ -34,7 +33,6 @@ importers:
       '@tensorflow/tfjs': 3.21.0_seedrandom@3.0.5
       calckey-js: 0.0.22
       js-yaml: 4.1.0
-      phosphor-icons: 1.4.2
       seedrandom: 3.0.5
     devDependencies:
       '@types/gulp': 4.0.10
@@ -100,6 +98,7 @@ importers:
       '@types/pug': 2.0.6
       '@types/punycode': 2.1.0
       '@types/qrcode': 1.5.0
+      '@types/qs': 6.9.7
       '@types/random-seed': 0.3.3
       '@types/ratelimiter': 3.4.4
       '@types/redis': 4.0.11
@@ -161,6 +160,7 @@ importers:
       koa-json-body: 5.3.0
       koa-logger: 3.2.1
       koa-mount: 4.0.0
+      koa-remove-trailing-slashes: 2.0.3
       koa-send: 5.0.1
       koa-slow: 2.1.0
       koa-views: 7.0.2
@@ -183,6 +183,7 @@ importers:
       punycode: 2.1.1
       pureimage: 0.3.15
       qrcode: 1.5.1
+      qs: 6.9.7
       random-seed: 0.3.0
       ratelimiter: 3.4.1
       re2: 1.18.0
@@ -275,6 +276,7 @@ importers:
       koa-json-body: 5.3.0
       koa-logger: 3.2.1
       koa-mount: 4.0.0
+      koa-remove-trailing-slashes: 2.0.3
       koa-send: 5.0.1
       koa-slow: 2.1.0
       koa-views: 7.0.2_6tybghmia4wsnt33xeid7y4rby
@@ -295,6 +297,7 @@ importers:
       punycode: 2.1.1
       pureimage: 0.3.15
       qrcode: 1.5.1
+      qs: 6.9.7
       random-seed: 0.3.0
       ratelimiter: 3.4.1
       re2: 1.18.0
@@ -357,6 +360,7 @@ importers:
       '@types/pug': 2.0.6
       '@types/punycode': 2.1.0
       '@types/qrcode': 1.5.0
+      '@types/qs': 6.9.7
       '@types/random-seed': 0.3.3
       '@types/ratelimiter': 3.4.4
       '@types/redis': 4.0.11
@@ -392,6 +396,7 @@ importers:
     specifiers:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': ^0.2.0
+      '@phosphor-icons/web': ^2.0.3
       '@rollup/plugin-alias': 3.1.9
       '@rollup/plugin-json': 4.1.0
       '@rollup/pluginutils': ^4.2.1
@@ -468,6 +473,7 @@ importers:
     devDependencies:
       '@discordapp/twemoji': 14.0.2
       '@khmyznikov/pwa-install': 0.2.0
+      '@phosphor-icons/web': 2.0.3
       '@rollup/plugin-alias': 3.1.9_rollup@3.9.1
       '@rollup/plugin-json': 4.1.0_rollup@3.9.1
       '@rollup/pluginutils': 4.2.1
@@ -1418,6 +1424,10 @@ packages:
       jsprim: 1.4.2
       sshpk: 1.17.0
     dev: false
+
+  /@phosphor-icons/web/2.0.3:
+    resolution: {integrity: sha512-9oYmohi2fo87w3DbtfjBoJxrklVojgXq2wuGcqxKccj2TxMq7UIusKDrGUZYOQHM9pUKkh+kvfmutETMGDR6gg==}
+    dev: true
 
   /@redis/bloom/1.1.0_@redis+client@1.4.2:
     resolution: {integrity: sha512-9QovlxmpRtvxVbN0UBcv8WfdSMudNZZTFqCsnBszcQXqaZb/TVe30ScgGEO7u1EAIacTPAo7/oCYjYAxiHLanQ==}
@@ -3392,7 +3402,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: true
@@ -4264,7 +4274,7 @@ packages:
     resolution: {integrity: sha512-sX/LQ7LqUhgyaxzbe7IqwPeTr2yfpfUIQ/dgpKo6ZI4y4lpQA0YxAomWIY+7I7rHWcG02PG+OuPREzMW/5tszQ==}
     dependencies:
       inflation: 2.0.0
-      qs: 6.11.0
+      qs: 6.9.7
       raw-body: 2.5.1
       type-is: 1.6.18
     dev: false
@@ -4273,7 +4283,7 @@ packages:
     resolution: {integrity: sha512-m7pOT6CdLN7FuXUcpuz/8lfQ/L77x8SchHCF4G0RBTJO20Wzmhn5Sp4/5WsKy8OSpifBSUrmg83qEqaDHdyFuQ==}
     dependencies:
       inflation: 2.0.0
-      qs: 6.11.0
+      qs: 6.9.7
       raw-body: 2.5.1
       type-is: 1.6.18
     dev: false
@@ -4851,6 +4861,12 @@ packages:
   /core-js/3.27.1:
     resolution: {integrity: sha512-GutwJLBChfGCpwwhbYoqfv03LAfmiz7e7D/BNxzeMxwQf10GRSzqiOjx7AmtEk+heiD/JWmBuyBPgFtx0Sg1ww==}
     requiresBuild: true
+    dev: false
+
+  /core-js/3.29.0:
+    resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
+    requiresBuild: true
+    dev: true
 
   /core-util-is/1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
@@ -6391,6 +6407,19 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -8262,6 +8291,10 @@ packages:
       - supports-color
     dev: false
 
+  /koa-remove-trailing-slashes/2.0.3:
+    resolution: {integrity: sha512-NFFF9Sl1wxFo5h0I3OzrHDINdFPaqG+Hx19590F7PNOcmm7yYeFW71p4XicVuSovbcx75GWGb3fi6N6kI6E/3g==}
+    dev: false
+
   /koa-router/10.1.1:
     resolution: {integrity: sha512-z/OzxVjf5NyuNO3t9nJpx7e1oR3FSBAauiwXtMQu4ppcnuNZzTaQ4p21P8A6r2Es8uJJM339oc4oVW+qX7SqnQ==}
     engines: {node: '>= 8.0.0'}
@@ -10050,10 +10083,6 @@ packages:
       split2: 4.1.0
     dev: false
 
-  /phosphor-icons/1.4.2:
-    resolution: {integrity: sha512-vDyuRWLSEb87dxpoOGpP1GCjr/TFzA0Ljt0TtJcwXO7/iPdSZW0e/2m1jsANH1ML5ZyZXcjeWx6pzT0A0tgYDA==}
-    dev: false
-
   /photoswipe/5.3.4:
     resolution: {integrity: sha512-SN+RWHqxJvdwzXJsh8KrG+ajjPpdTX5HpKglEd0k9o6o5fW+QHPkW8//Bo11MB+NQwTa/hFw8BDv2EdxiDXjNw==}
     engines: {node: '>= 0.12.0'}
@@ -10688,6 +10717,11 @@ packages:
 
   /qs/6.5.3:
     resolution: {integrity: sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==}
+    engines: {node: '>=0.6'}
+    dev: false
+
+  /qs/6.9.7:
+    resolution: {integrity: sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==}
     engines: {node: '>=0.6'}
     dev: false
 
@@ -13547,7 +13581,7 @@ packages:
     name: plyr
     version: 3.7.0
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.29.0
       custom-event-polyfill: 1.0.7
       loadjs: 4.2.0
       rangetouch: 2.0.1

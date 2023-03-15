@@ -16,7 +16,7 @@
 		</div>
 		<div v-if="!fetching" class="items">
 			<div class="item _panel sub">
-				<div class="icon"><i class="ph-download-bold ph-xl"></i></div>
+				<div class="icon"><i class="ph-download ph-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						{{ number(federationSubActive) }}
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="item _panel pub">
-				<div class="icon"><i class="ph-upload-bold ph-xl"></i></div>
+				<div class="icon"><i class="ph-upload ph-bold ph-xl"></i></div>
 				<div class="body">
 					<div class="value">
 						{{ number(federationPubActive) }}

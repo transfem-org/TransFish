@@ -86,7 +86,11 @@ export default defineComponent({
 		accepted() {
 			this.state = 'accepted';
 			const getUrlParams = () => window.location.search.substring(1).split('&').reduce((result, query) => { const [k, v] = query.split('='); result[k] = decodeURI(v); return result; }, {});
-			if (this.session.app.callbackUrl) {
+			const isMastodon = !!getUrlParams().mastodon
+			if (this.session.app.callbackUrl && isMastodon) {
+				const stateParam = !!getUrlParams().state ? `&state=$(getUrlParams().state)` : ''; 
+				location.href = `${this.session.app.callbackUrl}?code=${this.session.token}${stateParam}`;
+			} else if (this.session.app.callbackUrl) {
 				const url = new URL(this.session.app.callbackUrl);
 				if (['javascript:', 'file:', 'data:', 'mailto:', 'tel:'].includes(url.protocol)) throw new Error('invalid url');
 				if (this.session.app.callbackUrl === "urn:ietf:wg:oauth:2.0:oob") {

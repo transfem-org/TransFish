@@ -2,6 +2,12 @@ import Router from "@koa/router";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
 import axios from "axios";
+import querystring from 'node:querystring'
+import qs from 'qs'
+function normalizeQuery(data: any) {
+    const str = querystring.stringify(data);
+    return qs.parse(str);
+}
 
 export function apiStatusMastodon(router: Router): void {
 	router.post("/v1/statuses", async (ctx) => {
@@ -9,9 +15,12 @@ export function apiStatusMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const body: any = ctx.request.body;
+			let body: any = ctx.request.body;
+			if ((!body.poll && body['poll[options][]']) || (!body.media_ids && body['media_ids[]'])) {
+				body = normalizeQuery(body)
+			}
 			const text = body.status;
-			const removed = text.replace(/@\S+/g, "").replaceAll(" ", "");
+			const removed = text.replace(/@\S+/g, "").replace(/\s|​/g, '')
 			const isDefaultEmoji = emojiRegexAtStartToEnd.test(removed);
 			const isCustomEmoji = /^:[a-zA-Z0-9@_]+:$/.test(removed);
 			if ((body.in_reply_to_id && isDefaultEmoji) || isCustomEmoji) {
@@ -35,7 +44,9 @@ export function apiStatusMastodon(router: Router): void {
 				}
 			}
 			if (!body.media_ids) body.media_ids = undefined;
-			if (body.media_ids && !body.media_ids.length) body.media_ids = undefined;
+			if (body.media_ids && !body.media_ids.length) body.media_ids = undefined;		             
+			const { sensitive } = body
+			body.sensitive = typeof sensitive === 'string' ? sensitive === 'true' : sensitive
 			const data = await client.postStatus(text, body);
 			ctx.body = data.data;
 		} catch (e: any) {
@@ -70,7 +81,7 @@ export function apiStatusMastodon(router: Router): void {
 				const data = await client.deleteStatus(ctx.params.id);
 				ctx.body = data.data;
 			} catch (e: any) {
-				console.error(e);
+				console.error(e.response.data, request.params.id);
 				ctx.status = 401;
 				ctx.body = e.response.data;
 			}
@@ -430,6 +441,6 @@ export function statusModel(
 		pinned: false,
 		emoji_reactions: [],
 		bookmarked: false,
-		quote: false,
+		quote: null,
 	};
 }

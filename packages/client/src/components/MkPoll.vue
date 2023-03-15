@@ -4,7 +4,7 @@
 		<li v-for="(choice, i) in note.poll.choices" :key="i" :class="{ voted: choice.voted }" @click.stop="vote(i)">
 			<div class="backdrop" :style="{ 'width': `${showResult ? (choice.votes / total * 100) : 0}%` }"></div>
 			<span>
-				<template v-if="choice.isVoted"><i class="ph-check-bold ph-lg"></i></template>
+				<template v-if="choice.isVoted"><i class="ph-check ph-bold ph-lg"></i></template>
 				<Mfm :text="choice.text" :plain="true" :custom-emojis="note.emojis"/>
 				<span v-if="showResult" class="votes">({{ i18n.t('_poll.votesCount', { n: choice.votes }) }})</span>
 			</span>
