@@ -324,9 +324,9 @@ function readPromo() {
 				content: "";
 				display: block;
 				margin-bottom: -10px;
-				width: 2px;
-				background-color: var(--divider);
-				margin-inline: auto;
+				margin-top: 16px;
+				border-left: 2px solid var(--divider);
+				margin-left: calc((var(--avatarSize) / 2) - 1px);
 			}
 		}
 	}
