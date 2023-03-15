@@ -2,7 +2,7 @@
 	<footer ref="el" class="footer" @click.stop>
 		<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
 		<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
-			<i class="ph-arrow-bend-up-left-bold ph-lg"></i>
+			<i class="ph-arrow-bend-up-left ph-bold ph-lg"></i>
 			<template v-if="directReplies > 0">
 				<p class="count">{{ directReplies }}</p>
 			</template>
@@ -13,14 +13,14 @@
 		<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
 		<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
 		<button v-if="appearNote.myReaction == null" ref="reactButton" v-tooltip.noDelay.bottom="i18n.ts.reaction" class="button _button" @click="react()">
-			<i class="ph-smiley-bold ph-lg"></i>
+			<i class="ph-smiley ph-bold ph-lg"></i>
 		</button>
 		<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
-			<i class="ph-minus-bold ph-lg"></i>
+			<i class="ph-minus ph-bold ph-lg"></i>
 		</button>
 		<XQuoteButton class="button" :note="appearNote"/>
 		<button ref="menuButton" v-tooltip.noDelay.bottom="i18n.ts.more" class="button _button" @click="menu()">
-			<i class="ph-dots-three-outline-bold ph-lg"></i>
+			<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 		</button>
 	</footer>
 </template>
