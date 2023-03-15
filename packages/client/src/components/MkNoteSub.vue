@@ -286,14 +286,14 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 				--avatarSize: 24px;
 				--indent: calc(var(--avatarSize) - 4px);
 			}
-			&.firstColumn {
-				> .main, > .line, > .children:not(.single) > .line {
-					--avatarSize: 35px;
-					--indent: 35px;
-				}
-				> .children:not(.single) {
-					padding-left: 28px !important;
-				}
+		}
+		.firstColumn {
+			> .main, > .line, > .children:not(.single) > .line {
+				--avatarSize: 35px;
+				--indent: 35px;
+			}
+			> .children:not(.single) {
+				padding-left: 28px !important;
 			}
 		}
 	}
