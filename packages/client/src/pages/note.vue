@@ -202,11 +202,13 @@ definePageMetadata(computed(() => note ? {
 			}
 		}
 	}
-	&.max-width_500px > .note {
-		margin-inline: -24px;
-	}
-	&.max-width_350px > .note {
-		margin-inline: -12px;
+	#calckey_app > :not(.mk-deck) {
+		&.max-width_500px > .note {
+			margin-inline: -24px;
+		}
+		&.max-width_350px > .note {
+			margin-inline: -12px;
+		}
 	}
 }
 </style>
