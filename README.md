@@ -155,7 +155,8 @@ For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](
 
 ```sh
 # git pull
-NODE_ENV=production pnpm install && pnpm run build && pnpm run migrate
+pnpm install
+NODE_ENV=production pnpm run build && pnpm run migrate
 pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 ```
 
