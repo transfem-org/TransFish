@@ -78,9 +78,6 @@ async function accept(): Promise<void> {
 	}
 }
 
-	state = 'denied';
-}
-
 function onLogin(res): void {
 	login(res.i);
 }
