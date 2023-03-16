@@ -92,8 +92,8 @@ export function apiTimelineMastodon(router: Router): void {
 		try {
 			const query: any = ctx.query;
 			const data = query.local
-				? await client.getLocalTimeline(limitToInt(query))
-				: await client.getPublicTimeline(limitToInt(query));
+				? await client.getLocalTimeline(argsToBools(limitToInt(query)))
+				: await client.getPublicTimeline(argsToBools(limitToInt(query)));
 			ctx.body = toTextWithReaction(data.data, ctx.hostname);
 		} catch (e: any) {
 			console.error(e);
@@ -111,7 +111,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.getTagTimeline(
 					ctx.params.hashtag,
-					limitToInt(ctx.query),
+					argsToBools(limitToInt(ctx.query)),
 				);
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {
