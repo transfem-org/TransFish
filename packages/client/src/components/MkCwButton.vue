@@ -44,6 +44,7 @@ const toggle = () => {
 	padding: 6px 10px;
 	width: 90%;
 	border-radius: 10px;
+	border: 1px solid var(--divider);
 	margin-top: 10px;
 	margin-bottom: 10px;
 	transition: background-color 0.25s ease-in-out;
