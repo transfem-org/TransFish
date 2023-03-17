@@ -79,34 +79,13 @@ export function getNoteMenu(props: {
 		);
 	}
 
-	function muteThread(): void {
-		// show global settings by default
-		const includingTypes = misskey.notificationTypes.filter(x => !$i.mutingNotificationTypes.includes(x));
-		os.popup(defineAsyncComponent(() => import('@/components/MkNotificationSettingWindow.vue')), {
-			includingTypes,
-			showGlobalToggle: false,
-			message: i18n.ts.threadMuteNotificationsDesc,
-			notificationTypes: misskey.noteNotificationTypes,
-		}, {
-			done: async (res) => {
-				const { includingTypes: value } = res;
-				let mutingNotificationTypes: string[] | undefined;
-				if (value != null) {
-					mutingNotificationTypes = misskey.noteNotificationTypes.filter(x => !value.includes(x))
-				}
-
-				await os.apiWithDialog('notes/thread-muting/create', {
-					noteId: appearNote.id,
-					mutingNotificationTypes,
-				});
-			}
-		}, 'closed');
-	}
-
-	function unmuteThread(): void {
-		os.apiWithDialog('notes/thread-muting/delete', {
-			noteId: appearNote.id
-		});
+	function toggleThreadMute(mute: boolean): void {
+		os.apiWithDialog(
+			mute ? "notes/thread-muting/create" : "notes/thread-muting/delete",
+			{
+				noteId: appearNote.id,
+			},
+		);
 	}
 
 	function copyContent(): void {
@@ -343,47 +322,33 @@ export function getNoteMenu(props: {
 				text: i18n.ts.clip,
 				action: () => clip(),
 			},
-			(appearNote.userId !== $i.id) ? statePromise.then(state => state.isWatching ? {
-				icon: 'ph-eye-slash ph-bold ph-lg',
-				text: i18n.ts.unwatch,
-				action: () => toggleWatch(false),
-			} : {
-				icon: 'ph-eye ph-bold ph-lg',
-				text: i18n.ts.watch,
-				action: () => toggleWatch(true),
-			}) : undefined,
-			statePromise.then(state => state.isMutedThread ? {
-				icon: 'ph-speaker-high ph-bold ph-lg',
-				text: i18n.ts.unmuteThread,
-				action: () => unmuteThread(),
-			} : {
-				icon: 'ph-speaker-x ph-bold ph-lg',
-				text: i18n.ts.muteThread,
-				action: () => muteThread(),
-			}),
-			appearNote.userId === $i.id ? ($i.pinnedNoteIds || []).includes(appearNote.id) ? {
-				icon: 'ph-push-pin ph-bold ph-lg',
-				text: i18n.ts.unpin,
-				action: () => togglePin(false),
-			} : {
-				icon: 'ph-push-pin ph-bold ph-lg',
-				text: i18n.ts.pin,
-				action: () => togglePin(true),
-			} : undefined,
-			...(appearNote.userId !== $i.id ? [
-				null,
-				{
-					icon: 'fas fa-exclamation-circle',
-					text: i18n.ts.reportAbuse,
-					action: () => {
-						const u = appearNote.url || appearNote.uri || `${url}/notes/${appearNote.id}`;
-						os.popup(defineAsyncComponent(() => import('@/components/abuse-report-window.vue')), {
-							user: appearNote.user,
-							urls: [u],
-						}, {}, 'closed');
-					},
-				}]
-			: []
+			appearNote.userId !== $i.id
+				? statePromise.then((state) =>
+						state.isWatching
+							? {
+									icon: "ph-eye-slash ph-bold ph-lg",
+									text: i18n.ts.unwatch,
+									action: () => toggleWatch(false),
+							  }
+							: {
+									icon: "ph-eye ph-bold ph-lg",
+									text: i18n.ts.watch,
+									action: () => toggleWatch(true),
+							  },
+				  )
+				: undefined,
+			statePromise.then((state) =>
+				state.isMutedThread
+					? {
+							icon: "ph-speaker-loud ph-bold ph-lg",
+							text: i18n.ts.unmuteThread,
+							action: () => toggleThreadMute(false),
+					  }
+					: {
+							icon: "ph-speaker-x ph-bold ph-lg",
+							text: i18n.ts.muteThread,
+							action: () => toggleThreadMute(true),
+					  },
 			),
 			appearNote.userId === $i.id
 				? ($i.pinnedNoteIds || []).includes(appearNote.id)
