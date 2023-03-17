@@ -15,13 +15,16 @@ export function limitToInt(q: ParsedUrlQuery) {
 }
 
 export function argsToBools(q: ParsedUrlQuery) {
+	// Values taken from https://docs.joinmastodon.org/client/intro/#boolean
+	const toBoolean = (value: string) => !['0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF'].includes(value);
+
 	let object: any = q;
 	if (q.only_media)
 		if (typeof q.only_media === "string")
-			object.only_media = q.only_media.toLowerCase() === "true";
+			object.only_media = toBoolean(q.only_media);
 	if (q.exclude_replies)
 		if (typeof q.exclude_replies === "string")
-			object.exclude_replies = q.exclude_replies.toLowerCase() === "true";
+			object.exclude_replies = toBoolean(q.exclude_replies);
 	return q;
 }
 

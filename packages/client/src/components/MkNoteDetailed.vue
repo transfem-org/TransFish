@@ -53,7 +53,7 @@
 					<XCwButton v-model="showContent" :note="appearNote"/>
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content">
-					<div class="text" @click.self="router.push(notePage(appearNote))">
+					<div class="text">
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
@@ -68,7 +68,7 @@
 					</div>
 					<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
 					<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="true" class="url-preview"/>
-					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
+					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote" @click.stop="router.push(notePage(appearNote.renote))"/></div>
 				</div>
 				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television ph-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
@@ -291,17 +291,17 @@ function blur() {
 os.api('notes/children', {
 	noteId: appearNote.id,
 	limit: 30,
-	depth: 6,
+	depth: 12,
 }).then(res => {
 	replies.value = res;
-	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id);
+	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id).reverse();
 });
 
 if (appearNote.replyId) {
 	os.api('notes/conversation', {
 		noteId: appearNote.replyId,
 	}).then(res => {
-		conversation.value = res.reverse();
+		conversation.value = res;
 	});
 }
 
@@ -335,7 +335,6 @@ onUnmounted(() => {
 .lxwezrsl {
 	position: relative;
 	transition: box-shadow 0.1s ease;
-	overflow: hidden;
 	contain: content;
 
 	&:focus-visible {
@@ -429,7 +428,12 @@ onUnmounted(() => {
 
 	> .article {
 		padding: 32px;
+		padding-bottom: 6px;
+		&:last-child {
+			padding-bottom: 24px;
+		}
 		font-size: 1.2em;
+		overflow: clip;
 
 		> .header {
 			display: flex;
@@ -530,6 +534,10 @@ onUnmounted(() => {
 							padding: 16px;
 							border: solid 1px var(--renote);
 							border-radius: 8px;
+							transition: background .2s;
+							&:hover, &:focus-within {
+								background-color: var(--panelHighlight);
+							}
 						}
 					}
 				}
@@ -577,26 +585,72 @@ onUnmounted(() => {
 	> .reply {
 		border-top: solid 0.5px var(--divider);
 		cursor: pointer;
-
+		padding-top: 24px;
+		padding-bottom: 10px;
 		@media (pointer: coarse) {
 			cursor: default;
 		}
 	}
 
-	> .reply, .reply-to, .reply-to-more {
-		transition: background-color 0.25s ease-in-out;
-		
-		&:hover {
-			background-color: var(--panelHighlight);
+	// Hover
+	.reply :deep(.main), .reply-to, .reply-to-more, :deep(.more) {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -12px -24px;
+			bottom: -0px;
+			background: var(--panelHighlight);
+			border-radius: var(--radius);
+			opacity: 0;
+			transition: opacity .2s;
+			z-index: -1;
 		}
+		&.reply-to, &.reply-to-more {
+			&::before {
+				inset: 0px 8px;
+			}
+			&:first-of-type::before {
+				top: 12px;
+			}
+		}
+		// &::after {
+		// 	content: "";
+		// 	position: absolute;
+		// 	inset: -9999px;
+		// 	background: var(--modalBg);
+		// 	opacity: 0;
+		// 	z-index: -2;
+		// 	pointer-events: none;
+		// 	transition: opacity .2s;
+		// }
+		&.more::before {
+			inset: 0 !important;
+		}
+		&:hover, &:focus-within {
+			&::before {
+				opacity: 1;
+			}
+		}
+		// @media (pointer: coarse) {
+		// 	&:has(.button:focus-within) {
+		// 		z-index: 2;
+		// 		--X13: transparent;
+		// 		&::after {
+		// 			opacity: 1;
+		// 			backdrop-filter: var(--modalBgFilter);
+		// 		}
+		// 	}
+		// }
 	}
+	
 
 	&.max-width_500px {
 		font-size: 0.9em;
 	}
-
+	
 	&.max-width_450px {
-
+		
 		> .reply-to-more:first-child {
 			padding-top: 14px;
 		}
