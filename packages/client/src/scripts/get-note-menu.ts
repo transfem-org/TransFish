@@ -81,18 +81,18 @@ export function getNoteMenu(props: {
 
 	function muteThread(): void {
 		// show global settings by default
-		const includingTypes = foundkey.notificationTypes.filter(x => !$i.mutingNotificationTypes.includes(x));
+		const includingTypes = misskey.notificationTypes.filter(x => !$i.mutingNotificationTypes.includes(x));
 		os.popup(defineAsyncComponent(() => import('@/components/MkNotificationSettingWindow.vue')), {
 			includingTypes,
 			showGlobalToggle: false,
 			message: i18n.ts.threadMuteNotificationsDesc,
-			notificationTypes: foundkey.noteNotificationTypes,
+			notificationTypes: misskey.noteNotificationTypes,
 		}, {
 			done: async (res) => {
 				const { includingTypes: value } = res;
 				let mutingNotificationTypes: string[] | undefined;
 				if (value != null) {
-					mutingNotificationTypes = foundkey.noteNotificationTypes.filter(x => !value.includes(x))
+					mutingNotificationTypes = misskey.noteNotificationTypes.filter(x => !value.includes(x))
 				}
 
 				await os.apiWithDialog('notes/thread-muting/create', {
