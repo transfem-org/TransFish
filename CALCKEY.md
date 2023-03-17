@@ -108,6 +108,10 @@
   - Allows custom emoji
 - Fix lint errors
 - Use Rome instead of ESLint
+- Mastodon API support
+- More antenna options
+- New dashboard
+- Backfill follower counts
 - MissV: [fix Misskey Forkbomb](https://code.vtopia.live/Vtopia/MissV/commit/40b23c070bd4adbb3188c73546c6c625138fb3c1)
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)

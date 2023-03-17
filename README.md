@@ -34,6 +34,8 @@
   - OCR image captioning
   - New and improved Groups
   - Better intro tutorial
+  - Compatibility with Mastodon clients/apps
+  - Backfill user information
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)
 
