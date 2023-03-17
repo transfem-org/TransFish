@@ -154,3 +154,4 @@
 	- 923c93da1228458dd65be47483c198a1a9191bcf: use await for notes.countBy
 	- ca90cedba0a0704b503c2778694230f5a7dfbace: server: reduce dead instance detection to 7 days
 	- e9ab42c10afb4e27516c2d2b5e3e06630efe9edd: Alt text in image viewer
+	- 6d58d5ed3b2edcbd1296118201e3f0e2b42f8f52: Mute renotes
