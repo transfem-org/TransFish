@@ -14,7 +14,6 @@ import {
 	Emojis,
 	Blockings,
 } from "@/models/index.js";
-import { IsNull, Not } from "typeorm";
 import { perUserReactionsChart } from "@/services/chart/index.js";
 import { genId } from "@/misc/gen-id.js";
 import { createNotification } from "../../create-notification.js";
