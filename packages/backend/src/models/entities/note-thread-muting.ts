@@ -30,10 +30,4 @@ export class NoteThreadMuting {
 		length: 256,
 	})
 	public threadId: string;
-
-	@Column('enum', {
-		array: true,
-		default: [],
-	})
-	public mutingNotificationTypes: any;
 }
