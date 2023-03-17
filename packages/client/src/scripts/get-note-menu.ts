@@ -82,7 +82,7 @@ export function getNoteMenu(props: {
 	function muteThread(): void {
 		// show global settings by default
 		const includingTypes = foundkey.notificationTypes.filter(x => !$i.mutingNotificationTypes.includes(x));
-		os.popup(defineAsyncComponent(() => import('@/components/notification-setting-window.vue')), {
+		os.popup(defineAsyncComponent(() => import('@/components/MkNotificationSettingWindow.vue')), {
 			includingTypes,
 			showGlobalToggle: false,
 			message: i18n.ts.threadMuteNotificationsDesc,
