@@ -338,8 +338,13 @@ export function apiAccountMastodon(router: Router): void {
 				ctx.body = [relationshipModel];
 				return;
 			}
+
+			let reqIds = [];
+			for (let i = 0; i < ids.length; i++) {
+				reqIds.push(convertId(ids[i], IdType.CalckeyId));
+			}
 			
-			const data = await client.getRelationships(ids);
+			const data = await client.getRelationships(reqIds);
 			let resp = data.data;
 			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
 				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
