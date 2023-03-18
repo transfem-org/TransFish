@@ -33,10 +33,10 @@ export function apiAccountMastodon(router: Router): void {
 			let acct = data.data;
 			acct.id = convertId(acct.id, IdType.MastodonId);
 			acct.url = `${BASE_URL}/@${acct.url}`;
-			acct.note = "";
+			acct.note = acct.note || "";
 			acct.avatar_static = acct.avatar;
-			acct.header = acct.header || "";
-			acct.header_static = acct.header || "";
+			acct.header = acct.header || "https://http.cat/404";
+			acct.header_static = acct.header || "https://http.cat/404";
 			acct.source = {
 				note: acct.note,
 				fields: acct.fields,
