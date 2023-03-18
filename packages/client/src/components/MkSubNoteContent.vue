@@ -2,16 +2,13 @@
 <div class="wrmlmaau" :class="{ collapsed, isLong }">
 	<div class="body">
 		<span v-if="note.deletedAt" style="opacity: 0.5">({{ i18n.ts.deleted }})</span>
-		<MkA v-if="note.replyId" class="reply" :to="`/notes/${note.replyId}`"><i class="ph-arrow-bend-up-left ph-bold ph-lg"></i></MkA>
+		<template v-if="!note.cw">
+			<i v-if="note.replyId" class="ph-arrow-bend-up-left ph-bold ph-lg reply-icon"></i>
+			<i v-if="note.renoteId != parentId" class="ph-quotes ph-bold ph-lg reply-icon"></i>
+		</template>
 		<Mfm v-if="note.text" :text="note.text" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">{{ i18n.ts.quoteAttached }}: ...</MkA>
 	</div>
-	<template v-if="detailed">
-		<!-- <div v-if="note.renoteId" class="renote">
-			<XNoteSimple :note="note.renote"/>
-		</div> -->
-		<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
-	</template>
 	<div v-if="note.files.length > 0">
 		<XMediaList :media-list="note.files"/>
 	</div>
@@ -19,6 +16,12 @@
 		<summary>{{ i18n.ts.poll }}</summary>
 		<XPoll :note="note"/>
 	</div>
+	<template v-if="detailed">
+		<!-- <div v-if="note.renoteId" class="renote">
+			<XNoteSimple :note="note.renote"/>
+		</div> -->
+		<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="false" class="url-preview"/>
+	</template>
 	<button v-if="isLong && collapsed" class="fade _button" @click.stop="collapsed = false">
 		<span>{{ i18n.ts.showMore }}</span>
 	</button>
@@ -41,6 +44,7 @@ import { i18n } from '@/i18n';
 
 const props = defineProps<{
 	note: misskey.entities.Note;
+	parentId?;
 	detailed?: boolean;
 }>();
 
@@ -60,7 +64,7 @@ const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : n
 	overflow-wrap: break-word;
 	
 	> .body {
-		> .reply {
+		> .reply-icon {
 			margin-right: 6px;
 			color: var(--accent);
 		}

@@ -10,11 +10,13 @@
 			<XNoteHeader class="header" :note="note" :mini="true"/>
 			<div class="body">
 				<p v-if="note.cw != null" class="cw">
+					<i v-if="note.replyId" class="ph-arrow-bend-up-left ph-bold ph-lg reply-icon"></i>
+					<i v-if="note.renoteId != parentId" class="ph-quotes ph-bold ph-lg reply-icon"></i>
 					<Mfm v-if="note.cw != ''" class="text" :text="note.cw" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 					<XCwButton v-model="showContent" :note="note"/>
 				</p>
 				<div v-show="note.cw == null || showContent" class="content" @click="router.push(notePage(note))">
-					<MkSubNoteContent class="text" :note="note" :detailed="true"/>
+					<MkSubNoteContent class="text" :note="note" :detailed="true" :parentId="note.parentId"/>
 				</div>
 			</div>
 			<MkNoteFooter :note="note" :directReplies="replies.length"></MkNoteFooter>
@@ -22,10 +24,10 @@
 	</div>
 	<template v-if="conversation">
 		<template v-if="replies.length == 1">
-			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth"/>
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth" :parentId="note.replyId"/>
 		</template>
 		<template v-else-if="depth < 5">
-			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1"/>
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1" :parentId="note.replyId"/>
 		</template>
 		<div v-else-if="replies.length > 0" class="more">
 			<div class="line"></div>
@@ -52,6 +54,7 @@ const router = useRouter();
 const props = withDefaults(defineProps<{
 	note: misskey.entities.Note;
 	conversation?: misskey.entities.Note[];
+	parentId?;
 
 	// how many notes are in between this one and the note being viewed in detail
 	depth?: number;
@@ -115,7 +118,10 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 					margin: 0;
 					padding: 0;
 					overflow-wrap: break-word;
-
+					> .reply-icon {
+						margin-right: 6px;
+						color: var(--accent);
+					}
 					> .text {
 						margin-right: 8px;
 					}
