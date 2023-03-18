@@ -51,13 +51,6 @@ const props = defineProps<{
 
 let channel = $ref(null);
 let showBanner = $ref(true);
-const pagination = {
-	endpoint: 'channels/timeline' as const,
-	limit: 10,
-	params: computed(() => ({
-		channelId: props.channelId,
-	})),
-};
 
 watch(() => props.channelId, async () => {
 	channel = await os.api('channels/show', {
@@ -66,14 +59,23 @@ watch(() => props.channelId, async () => {
 }, { immediate: true });
 
 function edit() {
-	router.push(`/channels/${channel.id}/edit`);
+	router.push(`/channels/${channel?.id}/edit`);
 }
 
-const headerActions = $computed(() => channel && channel.userId ? [{
-	icon: 'ph-gear-six ph-bold ph-lg',
-	text: i18n.ts.edit,
-	handler: edit,
-}] : null);
+const headerActions = $computed(() =>  [
+	...(
+		channel
+		&& channel?.userId === $i?.id
+		? [
+			{
+				icon: 'ph-gear-six ph-bold ph-lg',
+				text: i18n.ts.edit,
+				handler: edit,
+			}
+		]
+		: []
+	),
+]);
 
 const headerTabs = $computed(() => []);
 
