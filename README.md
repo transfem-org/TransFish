@@ -36,6 +36,7 @@
   - Better intro tutorial
   - Compatibility with Mastodon clients/apps
   - Backfill user information
+  - Sonic search
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)
 
