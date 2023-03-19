@@ -10,13 +10,17 @@
 			<XNoteHeader class="header" :note="note" :mini="true"/>
 			<div class="body">
 				<p v-if="note.cw != null" class="cw">
-					<i v-if="note.replyId" class="ph-arrow-bend-up-left ph-bold ph-lg reply-icon"></i>
-					<i v-if="note.renoteId != parentId" class="ph-quotes ph-bold ph-lg reply-icon"></i>
+					<MkA v-if="note.replyId"  :to="`/notes/${note.replyId}`" class="reply-icon" @click.stop>
+						<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
+					</MkA>
+					<MkA v-if="conversation && note.renoteId && note.renoteId != parentId" :to="`/notes/${note.renoteId}`" class="reply-icon" @click.stop>
+						<i class="ph-quotes ph-bold ph-lg"></i>
+					</MkA>
 					<Mfm v-if="note.cw != ''" class="text" :text="note.cw" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 					<XCwButton v-model="showContent" :note="note"/>
 				</p>
 				<div v-show="note.cw == null || showContent" class="content" @click="router.push(notePage(note))">
-					<MkSubNoteContent class="text" :note="note" :detailed="true" :parentId="note.parentId"/>
+					<MkSubNoteContent class="text" :note="note" :detailed="true" :parentId="note.parentId" :conversation="conversation"/>
 				</div>
 			</div>
 			<MkNoteFooter :note="note" :directReplies="replies.length"></MkNoteFooter>
@@ -112,16 +116,24 @@ const replies: misskey.entities.Note[] = props.conversation?.filter(item => item
 			}
 
 			> .body {
+				:deep(.reply-icon) {
+					display: inline-block;
+					border-radius: 6px;
+					padding: .2em .2em;
+					margin-right: .2em;
+					color: var(--accent);
+					transition: background .2s;
+					&:hover, &:focus {
+						background: var(--buttonHoverBg);
+					}
+				}
 				> .cw {
 					cursor: default;
 					display: block;
 					margin: 0;
 					padding: 0;
 					overflow-wrap: break-word;
-					> .reply-icon {
-						margin-right: 6px;
-						color: var(--accent);
-					}
+
 					> .text {
 						margin-right: 8px;
 					}
