@@ -14,6 +14,7 @@ main {
 }
 #tl > div > header {
 	font-weight: 700;
+	display: inline-flex;
 }
 
 img {
@@ -26,14 +27,13 @@ img {
 	text-align: center;
 }
 
-* {
-	font-family: BIZ UDGothic, Roboto, HelveticaNeue, Arial, sans-serif;
-}
 #calckey_app {
 	display: none !important;
 }
+
 body,
 html {
+	font-family: BIZ UDGothic, Roboto, HelveticaNeue, Arial, sans-serif;
 	background-color: #191724;
 	color: #e0def4;
 	justify-content: center;

@@ -49,7 +49,7 @@ window.onload = async () => {
 			const name = document.createElement("p");
 			const avatar = document.createElement("img")
 			name.textContent = `${note.user.name} @${note.user.username}`;
-			avatar.src = note.user.avatar;
+			avatar.src = note.user.avatarUrl;
 			const text = document.createElement("div");
 			text.textContent = `${note.text}`;
 			el.appendChild(header);
