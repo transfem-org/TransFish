@@ -14,9 +14,11 @@
 			</div>
 			<header v-if="title" :class="$style.title"><Mfm :text="title"/></header>
 			<div v-if="text" :class="$style.text"><Mfm :text="text"/></div>
-			<MkInput v-if="input" v-model="inputValue" autofocus :type="input.type || 'text'" :placeholder="input.placeholder || undefined" @keydown="onInputKeydown">
+			<MkInput v-if="input && input.type !== 'paragraph'" v-model="inputValue" autofocus :type="input.type || 'text'" :placeholder="input.placeholder || undefined" @keydown="onInputKeydown">
 				<template v-if="input.type === 'password'" #prefix><i class="ph-password ph-bold ph-lg"></i></template>
 			</MkInput>
+			<MkTextarea v-if="input && input.type === 'paragraph'" v-model="inputValue" autofocus :type="paragraph" :placeholder="input.placeholder || undefined">
+			</MkTextarea>
 			<MkSelect v-if="select" v-model="selectedValue" autofocus>
 				<template v-if="select.items">
 					<option v-for="item in select.items" :value="item.value">{{ item.text }}</option>
@@ -49,6 +51,7 @@ import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue';
 import MkModal from '@/components/MkModal.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkInput from '@/components/form/input.vue';
+import MkTextarea from '@/components/form/textarea.vue';
 import MkSelect from '@/components/form/select.vue';
 import { i18n } from '@/i18n';
 

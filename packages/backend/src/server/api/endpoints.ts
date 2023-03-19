@@ -29,6 +29,7 @@ import * as ep___admin_emoji_list from "./endpoints/admin/emoji/list.js";
 import * as ep___admin_emoji_removeAliasesBulk from "./endpoints/admin/emoji/remove-aliases-bulk.js";
 import * as ep___admin_emoji_setAliasesBulk from "./endpoints/admin/emoji/set-aliases-bulk.js";
 import * as ep___admin_emoji_setCategoryBulk from "./endpoints/admin/emoji/set-category-bulk.js";
+import * as ep___admin_emoji_setLicenseBulk from "./endpoints/admin/emoji/set-license-bulk.js";
 import * as ep___admin_emoji_update from "./endpoints/admin/emoji/update.js";
 import * as ep___admin_federation_deleteAllFiles from "./endpoints/admin/federation/delete-all-files.js";
 import * as ep___admin_federation_refreshRemoteInstanceMetadata from "./endpoints/admin/federation/refresh-remote-instance-metadata.js";
@@ -131,6 +132,7 @@ import * as ep___drive_folders_show from "./endpoints/drive/folders/show.js";
 import * as ep___drive_folders_update from "./endpoints/drive/folders/update.js";
 import * as ep___drive_stream from "./endpoints/drive/stream.js";
 import * as ep___emailAddress_available from "./endpoints/email-address/available.js";
+import * as ep___emoji from "./endpoints/emoji.js";
 import * as ep___endpoint from "./endpoints/endpoint.js";
 import * as ep___endpoints from "./endpoints/endpoints.js";
 import * as ep___exportCustomEmojis from "./endpoints/export-custom-emojis.js";
@@ -363,6 +365,7 @@ const eps = [
 	["admin/emoji/remove-aliases-bulk", ep___admin_emoji_removeAliasesBulk],
 	["admin/emoji/set-aliases-bulk", ep___admin_emoji_setAliasesBulk],
 	["admin/emoji/set-category-bulk", ep___admin_emoji_setCategoryBulk],
+	["admin/emoji/set-license-bulk", ep___admin_emoji_setLicenseBulk],
 	["admin/emoji/update", ep___admin_emoji_update],
 	["admin/federation/delete-all-files", ep___admin_federation_deleteAllFiles],
 	[
@@ -471,6 +474,7 @@ const eps = [
 	["drive/folders/update", ep___drive_folders_update],
 	["drive/stream", ep___drive_stream],
 	["email-address/available", ep___emailAddress_available],
+	["emoji", ep___emoji],
 	["endpoint", ep___endpoint],
 	["endpoints", ep___endpoints],
 	["export-custom-emojis", ep___exportCustomEmojis],
