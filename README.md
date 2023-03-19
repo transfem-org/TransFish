@@ -80,8 +80,9 @@ If you have access to a server that supports one of the sources below, I recomme
 ### 😗 Optional dependencies
 
 - [FFmpeg](https://ffmpeg.org/) for video transcoding
-- [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
-  - OpenSearch/Sonic are not supported as of right now
+- Full text search (choost one of the following)
+  - 🦔 [Sonic](https://crates.io/crates/sonic-server) (highly recommended!)
+  - [ElasticSearch](https://www.elastic.co/elasticsearch/)
 - Management (choose one of the following)
   - 🛰️ [pm2](https://pm2.io/)
   - 🐳 [Docker](https://docker.com)
@@ -120,6 +121,17 @@ Assuming you set up PostgreSQL correctly, all you have to run is:
 ```sh
 psql postgres -c "create database calckey with encoding = 'UTF8';"
 ```
+
+In Calckey's directory, fill out the `db` section of `.config/default.yml` with the correct information, where the `db` key is `calckey`.
+
+## 🦔 Set up search
+
+Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#installation)
+
+If you use IPv4: in Sonic's directory, edit the `config.cfg` file to change `inet` to `"0.0.0.0:1491"`.
+
+In Calckey's directory, fill out the `sonic` section of `.config/default.yml` with the correct information.
+
 
 ## 💅 Customize
 
