@@ -3,8 +3,12 @@
 	<div class="body">
 		<span v-if="note.deletedAt" style="opacity: 0.5">({{ i18n.ts.deleted }})</span>
 		<template v-if="!note.cw">
-			<i v-if="note.replyId" class="ph-arrow-bend-up-left ph-bold ph-lg reply-icon"></i>
-			<i v-if="note.renoteId != parentId" class="ph-quotes ph-bold ph-lg reply-icon"></i>
+			<MkA v-if="note.replyId"  :to="`/notes/${note.replyId}`" class="reply-icon" @click.stop>
+				<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
+			</MkA>
+			<MkA v-if="conversation && note.renoteId && note.renoteId != parentId" :to="`/notes/${note.renoteId}`" class="reply-icon" @click.stop>
+				<i class="ph-quotes ph-bold ph-lg"></i>
+			</MkA>
 		</template>
 		<Mfm v-if="note.text" :text="note.text" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 		<MkA v-if="note.renoteId" class="rp" :to="`/notes/${note.renoteId}`">{{ i18n.ts.quoteAttached }}: ...</MkA>
@@ -45,6 +49,7 @@ import { i18n } from '@/i18n';
 const props = defineProps<{
 	note: misskey.entities.Note;
 	parentId?;
+	conversation?;
 	detailed?: boolean;
 }>();
 
@@ -64,10 +69,6 @@ const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : n
 	overflow-wrap: break-word;
 	
 	> .body {
-		> .reply-icon {
-			margin-right: 6px;
-			color: var(--accent);
-		}
 
 		> .rp {
 			margin-left: 4px;
