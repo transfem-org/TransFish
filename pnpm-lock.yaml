@@ -465,6 +465,7 @@ importers:
       uuid: 9.0.0
       vanilla-tilt: 1.8.0
       vite: ^4.1.1
+      vite-plugin-compression: ^0.5.1
       vue: 3.2.45
       vue-isyourpasswordsafe: ^2.0.0
       vue-plyr: ^7.0.0
@@ -542,6 +543,7 @@ importers:
       uuid: 9.0.0
       vanilla-tilt: 1.8.0
       vite: 4.1.1_sass@1.57.1
+      vite-plugin-compression: 0.5.1_vite@4.1.1
       vue: 3.2.45
       vue-isyourpasswordsafe: 2.0.0
       vue-plyr: 7.0.0
@@ -3402,7 +3404,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: true
@@ -6407,6 +6409,19 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -6500,6 +6515,15 @@ packages:
 
   /fs-constants/1.0.0:
     resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
+
+  /fs-extra/10.1.0:
+    resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
 
   /fs-extra/8.1.0:
     resolution: {integrity: sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g==}
@@ -12907,6 +12931,19 @@ packages:
       cloneable-readable: 1.1.3
       remove-trailing-separator: 1.1.0
       replace-ext: 1.0.1
+    dev: true
+
+  /vite-plugin-compression/0.5.1_vite@4.1.1:
+    resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==}
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      chalk: 4.1.2
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      vite: 4.1.1_sass@1.57.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /vite/4.1.1_sass@1.57.1:
