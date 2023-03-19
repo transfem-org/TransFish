@@ -488,8 +488,8 @@ export const UserRepository = db.getRepository(User).extend({
 						birthday: profile!.birthday,
 						lang: profile!.lang,
 						fields: profile!.fields,
-						followersCount: followersCount || '?',
-						followingCount: followingCount || '?',
+						followersCount: followersCount || 0,
+						followingCount: followingCount || 0,
 						notesCount: user.notesCount,
 						pinnedNoteIds: pins.map((pin) => pin.noteId),
 						pinnedNotes: Notes.packMany(
