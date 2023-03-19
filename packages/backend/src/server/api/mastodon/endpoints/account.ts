@@ -33,10 +33,10 @@ export function apiAccountMastodon(router: Router): void {
 			let acct = data.data;
 			acct.id = convertId(acct.id, IdType.MastodonId);
 			acct.url = `${BASE_URL}/@${acct.url}`;
-			acct.note = "";
+			acct.note = acct.note || "";
 			acct.avatar_static = acct.avatar;
-			acct.header = acct.header || "";
-			acct.header_static = acct.header || "";
+			acct.header = acct.header || "https://http.cat/404";
+			acct.header_static = acct.header || "https://http.cat/404";
 			acct.source = {
 				note: acct.note,
 				fields: acct.fields,
@@ -338,8 +338,13 @@ export function apiAccountMastodon(router: Router): void {
 				ctx.body = [relationshipModel];
 				return;
 			}
+
+			let reqIds = [];
+			for (let i = 0; i < ids.length; i++) {
+				reqIds.push(convertId(ids[i], IdType.CalckeyId));
+			}
 			
-			const data = await client.getRelationships(ids);
+			const data = await client.getRelationships(reqIds);
 			let resp = data.data;
 			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
 				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);

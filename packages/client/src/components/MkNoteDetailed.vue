@@ -301,7 +301,7 @@ if (appearNote.replyId) {
 	os.api('notes/conversation', {
 		noteId: appearNote.replyId,
 	}).then(res => {
-		conversation.value = res;
+		conversation.value = res.reverse();
 	});
 }
 

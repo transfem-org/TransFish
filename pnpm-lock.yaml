@@ -55,7 +55,7 @@ importers:
       '@bull-board/api': ^4.6.4
       '@bull-board/koa': ^4.6.4
       '@bull-board/ui': ^4.6.4
-      '@calckey/megalodon': 5.1.2
+      '@calckey/megalodon': 5.1.21
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@koa/cors': 3.4.3
@@ -224,7 +224,7 @@ importers:
       '@bull-board/api': 4.10.2
       '@bull-board/koa': 4.10.2_6tybghmia4wsnt33xeid7y4rby
       '@bull-board/ui': 4.10.2
-      '@calckey/megalodon': 5.1.2
+      '@calckey/megalodon': 5.1.21
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@koa/cors': 3.4.3
@@ -759,8 +759,8 @@ packages:
       '@bull-board/api': 4.10.2
     dev: false
 
-  /@calckey/megalodon/5.1.2:
-    resolution: {integrity: sha512-bUjPOfASy8X2NxdBvYDOWN9Rw/KdkfbTxy5vMQBcrGXepFbT4M+00blEYNc00Uu/epwH9YoNqpQC8PKQr/WU4w==}
+  /@calckey/megalodon/5.1.21:
+    resolution: {integrity: sha512-wThdyNb/UofklvYzyeFNQwxJNHqaSLD+z0glQLzV1tmAvSB0EZOL0D15dvpdB0LED0Q2rpJlwaonejkTI9JQhA==}
     engines: {node: '>=15.0.0'}
     dependencies:
       '@types/oauth': 0.9.1
@@ -3402,7 +3402,7 @@ packages:
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: true
@@ -6407,19 +6407,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
-
-  /follow-redirects/1.15.2_debug@4.3.4:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4
-    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}

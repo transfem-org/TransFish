@@ -105,7 +105,12 @@ export function apiStatusMastodon(router: Router): void {
 				const id = ctx.params.id;
 				const data = await client.getStatusContext(id, limitToInt(ctx.query as any));
 				const status = await client.getStatus(id);
-				const reactionsAxios = await axios.get(
+				let reqInstance = axios.create({
+					headers: {
+						Authorization : ctx.headers.authorization
+					}
+				});
+				const reactionsAxios = await reqInstance.get(
 					`${BASE_URL}/api/notes/reactions?noteId=${id}`,
 				);
 				const reactions: IReaction[] = reactionsAxios.data;
