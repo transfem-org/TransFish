@@ -1,7 +1,7 @@
 <template>
 <MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :content-max="800" :marginMin="0">
+	<MkSpacer :content-max="800" :marginMin="6">
 		<div class="fcuexfpr">
 			<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 				<div v-if="note" class="note">

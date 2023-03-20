@@ -69,11 +69,21 @@ const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : n
 	overflow-wrap: break-word;
 	
 	> .body {
-
 		> .rp {
 			margin-left: 4px;
 			font-style: oblique;
 			color: var(--renote);
+		}
+		.reply-icon {
+			display: inline-block;
+			border-radius: 6px;
+			padding: .2em .2em;
+			margin-right: .2em;
+			color: var(--accent);
+			transition: background .2s;
+			&:hover, &:focus {
+				background: var(--buttonHoverBg);
+			}
 		}
 	}
 

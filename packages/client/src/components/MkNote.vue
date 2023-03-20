@@ -72,7 +72,28 @@
 				</div>
 				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`" @click.stop><i class="ph-television ph-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
-			<MkNoteFooter :note="appearNote"></MkNoteFooter>
+			<footer ref="el" class="footer" @click.stop>
+				<XReactionsViewer ref="reactionsViewer" :note="appearNote"/>
+				<button v-tooltip.noDelay.bottom="i18n.ts.reply" class="button _button" @click="reply()">
+					<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
+					<template v-if="appearNote.repliesCount > 0">
+						<p class="count">{{ appearNote.repliesCount }}</p>
+					</template>
+				</button>
+				<XRenoteButton ref="renoteButton" class="button" :note="appearNote" :count="appearNote.renoteCount"/>
+				<XStarButton v-if="appearNote.myReaction == null" ref="starButton" class="button" :note="appearNote"/>
+				<button v-if="appearNote.myReaction == null" ref="reactButton" v-tooltip.noDelay.bottom="i18n.ts.reaction" class="button _button" @click="react()">
+					<i class="ph-smiley ph-bold ph-lg"></i>
+				</button>
+				<button v-if="appearNote.myReaction != null" ref="reactButton" class="button _button reacted" @click="undoReact(appearNote)">
+					<i class="ph-minus ph-bold ph-lg"></i>
+				</button>
+				<XQuoteButton class="button" :note="appearNote"/>
+				<button ref="menuButton" v-tooltip.noDelay.bottom="i18n.ts.more" class="button _button" @click="menu()">
+					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
+				</button>
+			</footer>
+			<!-- <MkNoteFooter :note="appearNote"></MkNoteFooter> -->
 		</div>
 	</article>
 </div>
@@ -97,9 +118,11 @@ import XNoteHeader from '@/components/MkNoteHeader.vue';
 import XNoteSimple from '@/components/MkNoteSimple.vue';
 import XMediaList from '@/components/MkMediaList.vue';
 import XCwButton from '@/components/MkCwButton.vue';
-import MkNoteFooter from '@/components/MkNoteFooter.vue';
 import XPoll from '@/components/MkPoll.vue';
 import XRenoteButton from '@/components/MkRenoteButton.vue';
+import XReactionsViewer from '@/components/MkReactionsViewer.vue';
+import XStarButton from '@/components/MkStarButton.vue';
+import XQuoteButton from '@/components/MkQuoteButton.vue';
 import MkUrlPreview from '@/components/MkUrlPreview.vue';
 import MkVisibility from '@/components/MkVisibility.vue';
 import { pleaseLogin } from '@/scripts/please-login';
@@ -149,6 +172,7 @@ const isRenote = (
 
 const el = ref<HTMLElement>();
 const menuButton = ref<HTMLElement>();
+const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
@@ -203,6 +227,14 @@ function react(viaKeyboard = false): void {
 		});
 	}, () => {
 		focus();
+	});
+}
+
+function undoReact(note): void {
+	const oldReaction = note.myReaction;
+	if (!oldReaction) return;
+	os.api('notes/reactions/delete', {
+		noteId: note.id,
 	});
 }
 
@@ -578,8 +610,44 @@ function readPromo() {
 					font-size: 80%;
 				}
 			}
+			> .footer {
+				position: relative;
+				z-index: 2;
+				display: flex;
+				flex-wrap: wrap;
+				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
+
+				> .button {
+					margin: 0;
+					padding: 8px;
+					opacity: 0.7;
+					flex-grow: 1;
+					max-width: 3.5em;
+					width: max-content;
+					min-width: max-content;
+					pointer-events: all;
+					transition: opacity .2s;
+					&:first-of-type {
+						margin-left: -.5em;
+					}
+					&:hover {
+						color: var(--fgHighlighted);
+					}
+
+					> .count {
+						display: inline;
+						margin: 0 0 0 8px;
+						opacity: 0.7;
+					}
+
+					&.reacted {
+						color: var(--accent);
+					}
+				}
+			}
 		}
 	}
+	
 
 	> .reply {
 		border-top: solid 0.5px var(--divider);
