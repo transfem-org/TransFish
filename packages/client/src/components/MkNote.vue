@@ -33,7 +33,7 @@
 			</div>
 		</div>
 	</div>
-	<article class="article" @contextmenu.stop="onContextmenu" @click="router.push(notePage(appearNote))">
+	<article class="article" @contextmenu.stop="onContextmenu" @click="noteClick">
 		<div class="main">
 			<div class="header-container">
 				<MkAvatar class="avatar" :user="appearNote.user"/>
@@ -41,16 +41,16 @@
 			</div>
 			<div class="body">
 				<p v-if="appearNote.cw != null" class="cw">
-					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis" @click.stop/>
+					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :custom-emojis="appearNote.emojis" :i="$i"/>
 					<XCwButton v-model="showContent" :note="appearNote"/>
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content" :class="{ collapsed, isLong }">
 					<div class="text">
-						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis" @click.stop/>
+						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<!-- <a v-if="appearNote.renote != null" class="rp">RN:</a> -->
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
-							<div v-else class="translated" @click.stop>
+							<div v-else class="translated">
 								<b>{{ i18n.t('translatedFrom', { x: translation.sourceLang }) }}: </b>
 								<Mfm :text="translation.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 							</div>
@@ -262,6 +262,14 @@ function focusBefore() {
 
 function focusAfter() {
 	focusNext(el.value);
+}
+
+function noteClick(e) {
+	if (document.getSelection().type === 'Range') {
+		e.stopPropagation();
+	} else {
+		router.push(notePage(appearNote))
+	}
 }
 
 function readPromo() {

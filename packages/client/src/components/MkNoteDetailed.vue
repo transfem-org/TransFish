@@ -9,8 +9,8 @@
 	:tabindex="!isDeleted ? '-1' : null"
 	:class="{ renote: isRenote }"
 >
-	<MkNoteSub v-for="note in conversation" :key="note.id" class="reply-to-more" :note="note" @click.self="router.push(notePage(note))"/>
-	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to" @click.self="router.push(notePage(appearNote))"/>
+	<MkNoteSub v-for="note in conversation" :key="note.id" class="reply-to-more" :note="note"/>
+	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
 	<div v-if="isRenote" class="renote">
 		<MkAvatar class="avatar" :user="note.user"/>
 		<i class="ph-repeat ph-bold ph-lg"></i>
@@ -29,7 +29,7 @@
 			<MkVisibility :note="note"/>
 		</div>
 	</div>
-	<article class="article" @contextmenu.stop="onContextmenu">
+	<article ref="noteEl" class="article" @contextmenu.stop="onContextmenu" tabindex="-1">
 		<header class="header">
 			<MkAvatar class="avatar" :user="appearNote.user" :show-indicator="true"/>
 			<div class="body">
@@ -99,7 +99,7 @@
 			</footer>
 		</div>
 	</article>
-	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies" @click.self="router.push(notePage(note))"/>
+	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
 </div>
 <div v-else class="_panel muted" @click="muted = false">
 	<I18n :src="i18n.ts.userSaysSomething" tag="small">
@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onMounted, onUnmounted, reactive, ref } from 'vue';
+import { computed, inject, onMounted, onUnmounted, onUpdated, reactive, ref } from 'vue';
 import * as mfm from 'mfm-js';
 import type * as misskey from 'calckey-js';
 import MkNoteSub from '@/components/MkNoteSub.vue';
@@ -175,6 +175,7 @@ const isRenote = (
 );
 
 const el = ref<HTMLElement>();
+const noteEl = $ref();
 const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
@@ -192,6 +193,8 @@ const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultS
 const conversation = ref<misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
 const directReplies = ref<misskey.entities.Note[]>([]);
+let isScrolling;
+
 
 const keymap = {
 	'r': () => reply(true),
@@ -281,11 +284,11 @@ function showRenoteMenu(viaKeyboard = false): void {
 }
 
 function focus() {
-	el.value.focus();
+	noteEl.focus();
 }
 
 function blur() {
-	el.value.blur();
+	noteEl.blur();
 }
 
 os.api('notes/children', {
@@ -302,6 +305,7 @@ if (appearNote.replyId) {
 		noteId: appearNote.replyId,
 	}).then(res => {
 		conversation.value = res.reverse();
+		focus();
 	});
 }
 
@@ -322,13 +326,26 @@ function onNoteReplied(noteData: NoteUpdatedEvent): void {
 	
 }
 
+document.addEventListener("wheel", () => {
+	isScrolling = true;
+})
+
 onMounted(() => {
 	stream.on("noteUpdated", onNoteReplied);
+	isScrolling = false;
+	noteEl.scrollIntoView();
 });
+
+onUpdated(() => {
+	if (!isScrolling) {
+		noteEl.scrollIntoView()
+	}
+})
 
 onUnmounted(() => {
 	stream.off("noteUpdated", onNoteReplied);
 });
+
 </script>
 
 <style lang="scss" scoped>
@@ -434,7 +451,8 @@ onUnmounted(() => {
 		}
 		font-size: 1.2em;
 		overflow: clip;
-
+		outline: none;
+		scroll-margin-top: calc(var(--stickyTop) + 20vh);
 		> .header {
 			display: flex;
 			position: relative;
