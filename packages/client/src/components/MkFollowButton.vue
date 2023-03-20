@@ -144,13 +144,12 @@ onBeforeUnmount(() => {
 	display: inline-block;
 	font-weight: bold;
 	color: var(--accent);
-	background: transparent;
 	border: solid 1px var(--accent);
 	padding: 0;
 	height: 31px;
 	font-size: 16px;
 	border-radius: 32px;
-	background: #fff;
+	background: var(--accentedBg);
 
 	&.full {
 		padding: 0 8px 0 12px;
