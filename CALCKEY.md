@@ -3,21 +3,17 @@
 ## Planned
 
 - Stucture
-  - [Sonic](https://crates.io/crates/sonic-server) support as an ElasticSearch alternative
   - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
   - Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
   - Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
 - Function
   - Federate with note edits
-  - Admin customizable max note length (100-8000)
   - User "choices" (recommended users) like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize instance blocks
-  - Backfill remote users
   - Build flag to remove NSFW/AI stuff
   - Timeline filters
   - Filter notifications by user
-  - Non-nyaify cat mode
   - Exclude self from antenna
 - Form
   - MFM button
@@ -37,6 +33,7 @@
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility
+- Non-nyaify cat mode
 
 ## Implemented
 
