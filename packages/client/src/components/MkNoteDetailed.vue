@@ -48,8 +48,9 @@
 		</header>
 		<div class="main">
 			<div class="body">
-				<p v-if="appearNote.cw != null" class="cw">
+				< v-if="appearNote.cw != null" class="cw">
 					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+					<br/>
 					<XCwButton v-model="showContent" :note="appearNote"/>
 				</p>
 				<div v-show="appearNote.cw == null || showContent" class="content">
