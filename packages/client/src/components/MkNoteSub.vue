@@ -1,7 +1,7 @@
 <template>
 <div v-size="{ max: [450, 500] }" class="wrpstxzv" :class="{ children: depth > 1, singleStart: replies.length == 1, firstColumn: depth == 1 && conversation }">
 	<div v-if="conversation && depth > 1" class="line"></div>
-	<div class="main" @click="router.push(notePage(note))">
+	<div class="main" @click="noteClick">
 		<div class="avatar-container">
 			<MkAvatar class="avatar" :user="note.user"/>
 			<div v-if="(!conversation) || replies.length > 0" class="line"></div>
@@ -19,7 +19,7 @@
 					<Mfm v-if="note.cw != ''" class="text" :text="note.cw" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
 					<XCwButton v-model="showContent" :note="note"/>
 				</p>
-				<div v-show="note.cw == null || showContent" class="content" @click="router.push(notePage(note))">
+				<div v-show="note.cw == null || showContent" class="content">
 					<MkSubNoteContent class="text" :note="note" :detailed="true" :parentId="note.parentId" :conversation="conversation"/>
 				</div>
 			</div>
@@ -68,6 +68,14 @@ const props = withDefaults(defineProps<{
 
 let showContent = $ref(false);
 const replies: misskey.entities.Note[] = props.conversation?.filter(item => item.replyId === props.note.id || item.renoteId === props.note.id).reverse() ?? [];
+
+function noteClick(e) {
+	if (document.getSelection().type === 'Range') {
+		e.stopPropagation();
+	} else {
+		router.push(notePage(props.note))
+	}
+}
 </script>
 
 <style lang="scss" scoped>
