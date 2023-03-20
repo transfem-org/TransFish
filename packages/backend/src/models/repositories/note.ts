@@ -12,7 +12,6 @@ import {
 	Channels,
 } from "../index.js";
 import type { Packed } from "@/misc/schema.js";
-import { nyaize } from "@/misc/nyaize.js";
 import { awaitAll } from "@/prelude/await-all.js";
 import {
 	convertLegacyReaction,
@@ -263,7 +262,7 @@ export const NoteRepository = db.getRepository(Note).extend({
 				: {}),
 		});
 
-		if (packed.user.isCat && packed.text) {
+		/* if (packed.user.isCat && packed.text) {
 			const tokens = packed.text ? mfm.parse(packed.text) : [];
 			mfm.inspect(tokens, (node) => {
 				if (node.type === "text") {
@@ -272,7 +271,7 @@ export const NoteRepository = db.getRepository(Note).extend({
 				}
 			});
 			packed.text = mfm.toString(tokens);
-		}
+		} */
 
 		return packed;
 	},
