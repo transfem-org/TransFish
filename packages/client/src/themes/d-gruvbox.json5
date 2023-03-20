@@ -2,7 +2,7 @@
 	id: '256a2e52-440f-4a00-8a76-c93501354dfb',
 	base: 'dark',
 	desc: 'Misskey gruvbox-dark-medium theme. Inspired by https://github.com/morhetz/gruvbox',
-	name: 'misskey-gruvbox-dark-medium',
+	name: 'Gruvbox Dark Medium',
 	props: {
 		bg: '#282828',
 		fg: '#ebdbb2',

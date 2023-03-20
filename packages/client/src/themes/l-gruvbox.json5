@@ -2,7 +2,7 @@
 	id: '9be7b20e-58b4-4bd2-8b1d-49d41a676685',
 	base: 'light',
 	desc: 'Misskey gruvbox-light-medium theme. Inspired by https://github.com/morhetz/gruvbox',
-	name: 'misskey-gruvbox-light-medium',
+	name: 'Gruvbox Light Medium',
 	props: {
 		bg: '#fbf1c7',
 		fg: '#3c3836',
