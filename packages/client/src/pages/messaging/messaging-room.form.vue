@@ -57,7 +57,7 @@ const typing = throttle(3000, () => {
 });
 
 let draftKey = $computed(() => props.user ? 'user:' + props.user.id : 'group:' + props.group?.id);
-let canSend = $computed(() => (text != null && text !== '') || file != null);
+let canSend = $computed(() => (text != null && text.trim() !== '') || file != null);
 
 watch([$$(text), $$(file)], saveDraft);
 
