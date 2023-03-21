@@ -1,21 +1,28 @@
 <template>
-<div v-if="chosen && defaultStore.state.showAds" class="qiivuoyo">
-	<div v-if="!showMenu" class="main" :class="chosen.place">
-		<a :href="chosen.url" target="_blank">
-			<img :src="chosen.imageUrl">
-			<button class="_button menu" @click.prevent.stop="toggleMenu"><span class="ph-info ph-bold ph-lg info-circle"></span></button>
-		</a>
-	</div>
-	<div v-else class="menu">
-		<div class="body">
-			<div>Ads by {{ host }}</div>
-			<!--<MkButton class="button" primary>{{ i18n.ts._ad.like }}</MkButton>-->
-			<MkButton v-if="chosen.ratio !== 0" class="button" @click="reduceFrequency">{{ i18n.ts._ad.reduceFrequencyOfThisAd }}</MkButton>
-			<button class="_textButton" @click="toggleMenu">{{ i18n.ts._ad.back }}</button>
+	<div v-if="chosen && chosen.length > 0 && defaultStore.state.showAds" v-for="chosenItem in chosen" class="qiivuoyo">
+		<div v-if="!showMenu" class="main" :class="chosenItem.place">
+			<a :href="chosenItem.url" target="_blank">
+				<img :src="chosenItem.imageUrl">
+			</a>
 		</div>
 	</div>
-</div>
-<div v-else></div>
+	<div v-else-if="chosen && defaultStore.state.showAds" class="qiivuoyo">
+		<div v-if="!showMenu" class="main" :class="chosen.place">
+			<a :href="chosen.url" target="_blank">
+				<img :src="chosen.imageUrl">
+				<button class="_button menu" @click.prevent.stop="toggleMenu"><span class="ph-info ph-bold ph-lg info-circle"></span></button>
+			</a>
+		</div>
+		<div v-else class="menu">
+			<div class="body">
+				<div>Ads by {{ host }}</div>
+				<!--<MkButton class="button" primary>{{ i18n.ts._ad.like }}</MkButton>-->
+				<MkButton v-if="chosen.ratio !== 0" class="button" @click="reduceFrequency">{{ i18n.ts._ad.reduceFrequencyOfThisAd }}</MkButton>
+				<button class="_textButton" @click="toggleMenu">{{ i18n.ts._ad.back }}</button>
+			</div>
+		</div>
+	</div>
+	<div v-else></div>
 </template>
 
 <script lang="ts" setup>
