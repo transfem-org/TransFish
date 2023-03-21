@@ -359,6 +359,40 @@ export function inputText(props: {
 	});
 }
 
+export function inputParagraph(props: {
+	title?: string | null;
+	text?: string | null;
+	placeholder?: string | null;
+	default?: string | null;
+}): Promise<
+	| { canceled: true; result: undefined }
+	| {
+			canceled: false;
+			result: string;
+	  }
+> {
+	return new Promise((resolve, reject) => {
+		popup(
+			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			{
+				title: props.title,
+				text: props.text,
+				input: {
+					type: "paragraph",
+					placeholder: props.placeholder,
+					default: props.default,
+				},
+			},
+			{
+				done: (result) => {
+					resolve(result ? result : { canceled: true });
+				},
+			},
+			"closed",
+		);
+	});
+}
+
 export function inputNumber(props: {
 	title?: string | null;
 	text?: string | null;

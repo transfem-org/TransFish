@@ -22,7 +22,7 @@
 				<span v-if="visibility === 'specified'"><i class="ph-envelope-simple-open ph-bold ph-lg"></i></span>
 			</button>
 			<button v-tooltip="i18n.ts.previewNoteText" class="_button preview" :class="{ active: showPreview }" @click="showPreview = !showPreview"><i class="ph-file-code ph-bold ph-lg"></i></button>
-			<button class="submit _buttonGradate" :disabled="!canPost" data-cy-open-post-form-submit @click="post">{{ submitText }}<i :class="reply ? 'ph-arrow-bend-up-left ph-bold ph-lg' : renote ? 'ph-quotes ph-bold ph-lg' : 'ph-paper-plane-tilt ph-bold ph-lg'"></i></button>
+			<button class="submit _buttonGradate" :disabled="!canPost" data-cy-open-post-form-submit @click="post">{{ submitText }}<i :class="reply ? 'ph-arrow-u-up-left ph-bold ph-lg' : renote ? 'ph-quotes ph-bold ph-lg' : 'ph-paper-plane-tilt ph-bold ph-lg'"></i></button>
 		</div>
 	</header>
 	<div class="form" :class="{ fixed }">
@@ -91,6 +91,7 @@ import { instance } from '@/instance';
 import { $i, getAccounts, openAccountMenu as openAccountMenu_ } from '@/account';
 import { uploadFile } from '@/scripts/upload';
 import { deepClone } from '@/scripts/clone';
+import { nyaize } from '@/scripts/nyaize';
 import XCheatSheet from '@/components/MkCheatSheetDialog.vue';
 
 const modal = inject('modal');
@@ -582,6 +583,10 @@ async function post() {
 		}
 	}
 
+	if ($i?.isCat) {
+		postData.text = nyaize(`${postData.text}`);
+	}
+
 	let token = undefined;
 
 	if (postAccount) {
@@ -796,6 +801,8 @@ onMounted(() => {
 			}
 
 			> .submit {
+				display: inline-flex;
+				align-items: center;
 				margin: 16px 16px 16px 0;
 				padding: 0 12px;
 				line-height: 34px;

@@ -45,12 +45,27 @@ window.onload = async () => {
 		const tl = document.getElementById("tl");
 		for (const note of notes) {
 			const el = document.createElement("div");
-			const name = document.createElement("header");
+			const header = document.createElement("header");
+			const name = document.createElement("p");
+			const avatar = document.createElement("img")
 			name.textContent = `${note.user.name} @${note.user.username}`;
+			avatar.src = note.user.avatarUrl;
+			avatar.style = 'height: 40px'
 			const text = document.createElement("div");
 			text.textContent = `${note.text}`;
-			el.appendChild(name);
-			el.appendChild(text);
+			el.appendChild(header);
+			header.appendChild(avatar);
+			header.appendChild(name);
+			if (note.text) {
+				el.appendChild(text);
+			}
+			if (note.files) {
+				for (const file of note.files) {
+					const img = document.createElement("img");
+					img.src = file.properties.thumbnailUrl;
+					el.appendChild(img)
+				}
+			}
 			tl.appendChild(el);
 		}
 	});

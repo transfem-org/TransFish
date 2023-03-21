@@ -4,6 +4,8 @@ import { emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
 import axios from "axios";
 import querystring from 'node:querystring'
 import qs from 'qs'
+import { limitToInt } from "./timeline.js";
+
 function normalizeQuery(data: any) {
     const str = querystring.stringify(data);
     return qs.parse(str);
@@ -101,9 +103,14 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const id = ctx.params.id;
-				const data = await client.getStatusContext(id, ctx.query as any);
+				const data = await client.getStatusContext(id, limitToInt(ctx.query as any));
 				const status = await client.getStatus(id);
-				const reactionsAxios = await axios.get(
+				let reqInstance = axios.create({
+					headers: {
+						Authorization : ctx.headers.authorization
+					}
+				});
+				const reactionsAxios = await reqInstance.get(
 					`${BASE_URL}/api/notes/reactions?noteId=${id}`,
 				);
 				const reactions: IReaction[] = reactionsAxios.data;

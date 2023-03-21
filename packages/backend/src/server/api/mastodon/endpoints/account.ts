@@ -33,10 +33,10 @@ export function apiAccountMastodon(router: Router): void {
 			let acct = data.data;
 			acct.id = convertId(acct.id, IdType.MastodonId);
 			acct.url = `${BASE_URL}/@${acct.url}`;
-			acct.note = "";
+			acct.note = acct.note || "";
 			acct.avatar_static = acct.avatar;
-			acct.header = acct.header || "";
-			acct.header_static = acct.header || "";
+			acct.header = acct.header || "https://http.cat/404";
+			acct.header_static = acct.header || "https://http.cat/404";
 			acct.source = {
 				note: acct.note,
 				fields: acct.fields,
@@ -338,8 +338,13 @@ export function apiAccountMastodon(router: Router): void {
 				ctx.body = [relationshipModel];
 				return;
 			}
+
+			let reqIds = [];
+			for (let i = 0; i < ids.length; i++) {
+				reqIds.push(convertId(ids[i], IdType.CalckeyId));
+			}
 			
-			const data = await client.getRelationships(ids);
+			const data = await client.getRelationships(reqIds);
 			let resp = data.data;
 			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
 				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
@@ -359,7 +364,7 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = (await client.getBookmarks(ctx.query as any)) as any;
+			const data = (await client.getBookmarks(limitToInt(ctx.query as any))) as any;
 			let resp = data.data;
 			for (let statIdx = 0; statIdx < resp.length; statIdx++) {
 				resp[statIdx].id = convertId(resp[statIdx].id, IdType.MastodonId);
@@ -383,7 +388,7 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getFavourites(ctx.query as any);
+			const data = await client.getFavourites(limitToInt(ctx.query as any));
 			let resp = data.data;
 			for (let statIdx = 0; statIdx < resp.length; statIdx++) {
 				resp[statIdx].id = convertId(resp[statIdx].id, IdType.MastodonId);
@@ -407,7 +412,7 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getMutes(ctx.query as any);
+			const data = await client.getMutes(limitToInt(ctx.query as any));
 			let resp = data.data;
 			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
 				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
@@ -425,7 +430,7 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getBlocks(ctx.query as any);
+			const data = await client.getBlocks(limitToInt(ctx.query as any));
 			let resp = data.data;
 			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
 				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);

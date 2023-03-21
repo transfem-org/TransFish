@@ -167,8 +167,8 @@ const timeForThem = $computed(() => {
 	const tzInfo = cityTimezones.lookupViaCity(props.user.location!.replace(/\s.*/,''));
 	if (tzInfo.length == 0) return "";
 	const tz = tzInfo[0].timezone;
-	const theirTime = new Date().toLocaleString("en-US", { timeZone: tz, hour12: true })
-	return ` (${theirTime.split(",")[1].trim().split(":")[0]} ${theirTime.split(" ")[1].slice(-2)})`
+	const theirTime = new Date().toLocaleString("en-US", { timeZone: tz, hour12: false });
+	return ` (${theirTime.split(",")[1].trim().split(":")[0]}:${theirTime.split(" ")[1].slice(-5,-3)})`;
 })
 
 function menu(ev) {

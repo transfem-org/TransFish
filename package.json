@@ -1,12 +1,12 @@
 {
 	"name": "calckey",
-	"version": "13.2.0-beta",
+	"version": "13.2.0-beta2",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
 		"url": "https://codeberg.org/calckey/calckey.git"
 	},
-	"packageManager": "pnpm@7.27.1",
+	"packageManager": "pnpm@7.29.3",
 	"private": true,
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm -r run build && pnpm run gulp",

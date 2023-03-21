@@ -9,8 +9,8 @@
 	:tabindex="!isDeleted ? '-1' : null"
 	:class="{ renote: isRenote }"
 >
-	<MkNoteSub v-for="note in conversation" :key="note.id" class="reply-to-more" :note="note" @click.self="router.push(notePage(note))"/>
-	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to" @click.self="router.push(notePage(appearNote))"/>
+	<MkNoteSub v-for="note in conversation" :key="note.id" class="reply-to-more" :note="note"/>
+	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
 	<div v-if="isRenote" class="renote">
 		<MkAvatar class="avatar" :user="note.user"/>
 		<i class="ph-repeat ph-bold ph-lg"></i>
@@ -29,7 +29,7 @@
 			<MkVisibility :note="note"/>
 		</div>
 	</div>
-	<article class="article" @contextmenu.stop="onContextmenu">
+	<article ref="noteEl" class="article" @contextmenu.stop="onContextmenu" tabindex="-1">
 		<header class="header">
 			<MkAvatar class="avatar" :user="appearNote.user" :show-indicator="true"/>
 			<div class="body">
@@ -48,12 +48,13 @@
 		</header>
 		<div class="main">
 			<div class="body">
-				<p v-if="appearNote.cw != null" class="cw">
+				<div v-if="appearNote.cw != null" class="cw">
 					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
+					<br/>
 					<XCwButton v-model="showContent" :note="appearNote"/>
-				</p>
+				</div>
 				<div v-show="appearNote.cw == null || showContent" class="content">
-					<div class="text" @click.self="router.push(notePage(appearNote))">
+					<div class="text">
 						<Mfm v-if="appearNote.text" :text="appearNote.text" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 						<div v-if="translating || translation" class="translation">
 							<MkLoading v-if="translating" mini/>
@@ -68,7 +69,7 @@
 					</div>
 					<XPoll v-if="appearNote.poll" ref="pollViewer" :note="appearNote" class="poll"/>
 					<MkUrlPreview v-for="url in urls" :key="url" :url="url" :compact="true" :detail="true" class="url-preview"/>
-					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote"/></div>
+					<div v-if="appearNote.renote" class="renote"><XNoteSimple :note="appearNote.renote" @click.stop="router.push(notePage(appearNote.renote))"/></div>
 				</div>
 				<MkA v-if="appearNote.channel && !inChannel" class="channel" :to="`/channels/${appearNote.channel.id}`"><i class="ph-television ph-bold ph-lg"></i> {{ appearNote.channel.name }}</MkA>
 			</div>
@@ -99,7 +100,7 @@
 			</footer>
 		</div>
 	</article>
-	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies" @click.self="router.push(notePage(note))"/>
+	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
 </div>
 <div v-else class="_panel muted" @click="muted = false">
 	<I18n :src="i18n.ts.userSaysSomething" tag="small">
@@ -113,7 +114,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onMounted, onUnmounted, reactive, ref } from 'vue';
+import { computed, inject, onMounted, onUnmounted, onUpdated, reactive, ref } from 'vue';
 import * as mfm from 'mfm-js';
 import type * as misskey from 'calckey-js';
 import MkNoteSub from '@/components/MkNoteSub.vue';
@@ -175,6 +176,7 @@ const isRenote = (
 );
 
 const el = ref<HTMLElement>();
+const noteEl = $ref();
 const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
@@ -192,6 +194,8 @@ const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultS
 const conversation = ref<misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
 const directReplies = ref<misskey.entities.Note[]>([]);
+let isScrolling;
+
 
 const keymap = {
 	'r': () => reply(true),
@@ -281,20 +285,20 @@ function showRenoteMenu(viaKeyboard = false): void {
 }
 
 function focus() {
-	el.value.focus();
+	noteEl.focus();
 }
 
 function blur() {
-	el.value.blur();
+	noteEl.blur();
 }
 
 os.api('notes/children', {
 	noteId: appearNote.id,
 	limit: 30,
-	depth: 6,
+	depth: 12,
 }).then(res => {
 	replies.value = res;
-	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id);
+	directReplies.value = res.filter(note => note.replyId === appearNote.id || note.renoteId === appearNote.id).reverse();
 });
 
 if (appearNote.replyId) {
@@ -302,6 +306,7 @@ if (appearNote.replyId) {
 		noteId: appearNote.replyId,
 	}).then(res => {
 		conversation.value = res.reverse();
+		focus();
 	});
 }
 
@@ -322,20 +327,32 @@ function onNoteReplied(noteData: NoteUpdatedEvent): void {
 	
 }
 
+document.addEventListener("wheel", () => {
+	isScrolling = true;
+})
+
 onMounted(() => {
 	stream.on("noteUpdated", onNoteReplied);
+	isScrolling = false;
+	noteEl.scrollIntoView();
 });
+
+onUpdated(() => {
+	if (!isScrolling) {
+		noteEl.scrollIntoView()
+	}
+})
 
 onUnmounted(() => {
 	stream.off("noteUpdated", onNoteReplied);
 });
+
 </script>
 
 <style lang="scss" scoped>
 .lxwezrsl {
 	position: relative;
 	transition: box-shadow 0.1s ease;
-	overflow: hidden;
 	contain: content;
 
 	&:focus-visible {
@@ -429,8 +446,14 @@ onUnmounted(() => {
 
 	> .article {
 		padding: 32px;
+		padding-bottom: 6px;
+		&:last-child {
+			padding-bottom: 24px;
+		}
 		font-size: 1.2em;
-
+		overflow: clip;
+		outline: none;
+		scroll-margin-top: calc(var(--stickyTop) + 20vh);
 		> .header {
 			display: flex;
 			position: relative;
@@ -530,6 +553,10 @@ onUnmounted(() => {
 							padding: 16px;
 							border: solid 1px var(--renote);
 							border-radius: 8px;
+							transition: background .2s;
+							&:hover, &:focus-within {
+								background-color: var(--panelHighlight);
+							}
 						}
 					}
 				}
@@ -577,26 +604,72 @@ onUnmounted(() => {
 	> .reply {
 		border-top: solid 0.5px var(--divider);
 		cursor: pointer;
-
+		padding-top: 24px;
+		padding-bottom: 10px;
 		@media (pointer: coarse) {
 			cursor: default;
 		}
 	}
 
-	> .reply, .reply-to, .reply-to-more {
-		transition: background-color 0.25s ease-in-out;
-		
-		&:hover {
-			background-color: var(--panelHighlight);
+	// Hover
+	.reply :deep(.main), .reply-to, .reply-to-more, :deep(.more) {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -12px -24px;
+			bottom: -0px;
+			background: var(--panelHighlight);
+			border-radius: var(--radius);
+			opacity: 0;
+			transition: opacity .2s;
+			z-index: -1;
 		}
+		&.reply-to, &.reply-to-more {
+			&::before {
+				inset: 0px 8px;
+			}
+			&:first-of-type::before {
+				top: 12px;
+			}
+		}
+		// &::after {
+		// 	content: "";
+		// 	position: absolute;
+		// 	inset: -9999px;
+		// 	background: var(--modalBg);
+		// 	opacity: 0;
+		// 	z-index: -2;
+		// 	pointer-events: none;
+		// 	transition: opacity .2s;
+		// }
+		&.more::before {
+			inset: 0 !important;
+		}
+		&:hover, &:focus-within {
+			&::before {
+				opacity: 1;
+			}
+		}
+		// @media (pointer: coarse) {
+		// 	&:has(.button:focus-within) {
+		// 		z-index: 2;
+		// 		--X13: transparent;
+		// 		&::after {
+		// 			opacity: 1;
+		// 			backdrop-filter: var(--modalBgFilter);
+		// 		}
+		// 	}
+		// }
 	}
+	
 
 	&.max-width_500px {
 		font-size: 0.9em;
 	}
-
+	
 	&.max-width_450px {
-
+		
 		> .reply-to-more:first-child {
 			padding-top: 14px;
 		}

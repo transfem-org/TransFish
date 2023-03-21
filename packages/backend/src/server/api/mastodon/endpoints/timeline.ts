@@ -15,13 +15,16 @@ export function limitToInt(q: ParsedUrlQuery) {
 }
 
 export function argsToBools(q: ParsedUrlQuery) {
+	// Values taken from https://docs.joinmastodon.org/client/intro/#boolean
+	const toBoolean = (value: string) => !['0', 'f', 'F', 'false', 'FALSE', 'off', 'OFF'].includes(value);
+
 	let object: any = q;
 	if (q.only_media)
 		if (typeof q.only_media === "string")
-			object.only_media = q.only_media.toLowerCase() === "true";
+			object.only_media = toBoolean(q.only_media);
 	if (q.exclude_replies)
 		if (typeof q.exclude_replies === "string")
-			object.exclude_replies = q.exclude_replies.toLowerCase() === "true";
+			object.exclude_replies = toBoolean(q.exclude_replies);
 	return q;
 }
 
@@ -92,8 +95,8 @@ export function apiTimelineMastodon(router: Router): void {
 		try {
 			const query: any = ctx.query;
 			const data = query.local
-				? await client.getLocalTimeline(limitToInt(query))
-				: await client.getPublicTimeline(limitToInt(query));
+				? await client.getLocalTimeline(argsToBools(limitToInt(query)))
+				: await client.getPublicTimeline(argsToBools(limitToInt(query)));
 			ctx.body = toTextWithReaction(data.data, ctx.hostname);
 		} catch (e: any) {
 			console.error(e);
@@ -111,7 +114,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.getTagTimeline(
 					ctx.params.hashtag,
-					limitToInt(ctx.query),
+					argsToBools(limitToInt(ctx.query)),
 				);
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {

@@ -1,5 +1,6 @@
 import * as mfm from "mfm-js";
 import es from "../../db/elasticsearch.js";
+import sonic from "../../db/sonic.js";
 import {
 	publishMainStream,
 	publishNotesStream,
@@ -588,7 +589,7 @@ export default async (
 		}
 
 		// Register to search database
-		index(note);
+		await index(note);
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
@@ -728,18 +729,34 @@ async function insertNote(
 	}
 }
 
-function index(note: Note) {
-	if (note.text == null || config.elasticsearch == null) return;
+export async function index(note: Note): Promise<void> {
+	if (!note.text) return;
 
-	es!.index({
-		index: config.elasticsearch.index || "misskey_note",
-		id: note.id.toString(),
-		body: {
-			text: normalizeForSearch(note.text),
-			userId: note.userId,
-			userHost: note.userHost,
-		},
-	});
+	if (config.elasticsearch && es) {
+		es.index({
+			index: config.elasticsearch.index || "misskey_note",
+			id: note.id.toString(),
+			body: {
+				text: normalizeForSearch(note.text),
+				userId: note.userId,
+				userHost: note.userHost,
+			},
+		});
+	}
+
+	if (sonic) {
+		await sonic.ingest.push(
+			sonic.collection,
+			sonic.bucket,
+			JSON.stringify({
+				id: note.id,
+				userId: note.userId,
+				userHost: note.userHost,
+				channelId: note.channelId,
+			}),
+			note.text,
+		);
+	}
 }
 
 async function notifyToWatchersOfRenotee(
