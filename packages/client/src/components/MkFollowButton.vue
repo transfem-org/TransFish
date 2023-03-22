@@ -149,7 +149,7 @@ onBeforeUnmount(() => {
 	height: 31px;
 	font-size: 16px;
 	border-radius: 32px;
-	background: var(--accentedBg);
+	background: var(--bg);
 
 	&.full {
 		padding: 0 8px 0 12px;
