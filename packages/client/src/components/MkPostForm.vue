@@ -583,7 +583,7 @@ async function post() {
 		}
 	}
 
-	if ($i?.isCat) {
+	if ($i?.isCat && (postData.text != null || postData.text!.length === 0)) {
 		postData.text = nyaize(`${postData.text}`);
 	}
 
