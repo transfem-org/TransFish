@@ -174,7 +174,7 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 	const body: any = ctx.request.body || ctx.request.query;
 	console.log('token-request', body);
 	console.log('token-query', ctx.request.query);
-	if (body.redirect_uri.startsWith('com.tapbots') && body.grant_type === 'client_credentials') {
+	if (body.grant_type === 'client_credentials') {
 		const ret = {
 			access_token: uuid(),
 			token_type: "Bearer",
