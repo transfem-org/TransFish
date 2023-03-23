@@ -304,6 +304,7 @@ os.api('notes/children', {
 if (appearNote.replyId) {
 	os.api('notes/conversation', {
 		noteId: appearNote.replyId,
+		limit: 30,
 	}).then(res => {
 		conversation.value = res.reverse();
 		focus();

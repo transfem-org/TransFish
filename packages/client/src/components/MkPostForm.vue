@@ -91,7 +91,6 @@ import { instance } from '@/instance';
 import { $i, getAccounts, openAccountMenu as openAccountMenu_ } from '@/account';
 import { uploadFile } from '@/scripts/upload';
 import { deepClone } from '@/scripts/clone';
-import { nyaize } from '@/scripts/nyaize';
 import XCheatSheet from '@/components/MkCheatSheetDialog.vue';
 
 const modal = inject('modal');
@@ -581,10 +580,6 @@ async function post() {
 		for (const interruptor of notePostInterruptors) {
 			postData = await interruptor.handler(deepClone(postData));
 		}
-	}
-
-	if ($i?.isCat) {
-		postData.text = nyaize(`${postData.text}`);
 	}
 
 	let token = undefined;

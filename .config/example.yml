@@ -62,16 +62,6 @@ redis:
   #prefix: example-prefix
   #db: 1
 
-#   ┌─────────────────────────────┐
-#───┘ Elasticsearch configuration └─────────────────────────────
-
-#elasticsearch:
-#  host: localhost
-#  port: 9200
-#  ssl: false
-#  user: 
-#  pass: 
-
 #   ┌─────────────────────┐
 #───┘ Sonic configuration └─────────────────────────────────────
 
@@ -81,6 +71,16 @@ redis:
 #  auth: SecretPassword
 #  collection: notes
 #  bucket: default
+
+#   ┌─────────────────────────────┐
+#───┘ Elasticsearch configuration └─────────────────────────────
+
+#elasticsearch:
+#  host: localhost
+#  port: 9200
+#  ssl: false
+#  user: 
+#  pass: 
 
 #   ┌───────────────┐
 #───┘ ID generation └───────────────────────────────────────────
