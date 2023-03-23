@@ -20,6 +20,12 @@
 		<option value="desktop"><i class="ph-desktop ph-bold ph-lg"/> {{ i18n.ts.desktop }}</option>
 	</FormRadios>
 
+	<FormRadios v-model="showLocalPostsInTimeline" class="_formBlock">
+		<template #label>{{ i18n.ts.showLocalPosts }}</template>
+		<option value="home"><i class="ph-house ph-bold ph-lg"/> {{ i18n.ts.homeTimeline }}</option>
+		<option value="social"><i class="ph-handshake ph-bold ph-lg"/> {{ i18n.ts.socialTimeline }}</option>
+	</FormRadios>
+
 	<FormSwitch v-model="showFixedPostForm" class="_formBlock">{{ i18n.ts.showFixedPostForm }}</FormSwitch>
 
 	<FormSection>
@@ -127,6 +133,7 @@ async function reloadAsk() {
 }
 
 const overridedDeviceKind = computed(defaultStore.makeGetterSetter('overridedDeviceKind'));
+const showLocalPostsInTimeline = computed(defaultStore.makeGetterSetter('showLocalPostsInTimeline'));
 const serverDisconnectedBehavior = computed(defaultStore.makeGetterSetter('serverDisconnectedBehavior'));
 const reduceAnimation = computed(defaultStore.makeGetterSetter('animation', v => !v, v => !v));
 const useBlurEffectForModal = computed(defaultStore.makeGetterSetter('useBlurEffectForModal'));
@@ -183,6 +190,7 @@ watch([
 	showGapBetweenNotesInTimeline,
 	instanceTicker,
 	overridedDeviceKind,
+	showLocalPostsInTimeline,
 	showAds,
 	showUpdates,
 	swipeOnDesktop,
