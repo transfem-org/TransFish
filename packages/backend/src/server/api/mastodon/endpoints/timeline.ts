@@ -43,10 +43,11 @@ export function toTextWithReaction(status: Entity.Status[], host: string) {
 		for (const r of reaction) {
 				if (!r.url) continue
 				emoji.push({
-						'shortcode': r.name,
-						'url': r.url,
-						'static_url': r.url,
-						'visible_in_picker': true,
+					'shortcode': r.name,
+					'url': r.url,
+					'static_url': r.url,
+					'visible_in_picker': true,
+					category: ""
 				},)
 		}
 		const isMe = reaction.findIndex((r) => r.me) > -1;
