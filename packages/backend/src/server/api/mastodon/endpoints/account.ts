@@ -32,6 +32,7 @@ export function apiAccountMastodon(router: Router): void {
 			const data = await client.verifyAccountCredentials();
 			let acct = data.data;
 			acct.id = convertId(acct.id, IdType.MastodonId);
+			acct.display_name = acct.display_name || acct.username;
 			acct.url = `${BASE_URL}/@${acct.url}`;
 			acct.note = acct.note || "";
 			acct.avatar_static = acct.avatar;
