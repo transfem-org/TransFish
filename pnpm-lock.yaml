@@ -55,7 +55,7 @@ importers:
       '@bull-board/api': ^4.6.4
       '@bull-board/koa': ^4.6.4
       '@bull-board/ui': ^4.6.4
-      '@calckey/megalodon': 5.1.22
+      '@calckey/megalodon': 5.1.23
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@koa/cors': 3.4.3
@@ -225,7 +225,7 @@ importers:
       '@bull-board/api': 4.10.2
       '@bull-board/koa': 4.10.2_6tybghmia4wsnt33xeid7y4rby
       '@bull-board/ui': 4.10.2
-      '@calckey/megalodon': 5.1.22
+      '@calckey/megalodon': 5.1.23
       '@discordapp/twemoji': 14.0.2
       '@elastic/elasticsearch': 7.17.0
       '@koa/cors': 3.4.3
@@ -763,8 +763,8 @@ packages:
       '@bull-board/api': 4.10.2
     dev: false
 
-  /@calckey/megalodon/5.1.22:
-    resolution: {integrity: sha512-/wJ4XPyTL2RXGj7Tawy6uT3Imlh78zwpse6xf+m6loZXlpROxdSKJTq87+ffmAJHDoS6gHPTOfYdIxE699oTww==}
+  /@calckey/megalodon/5.1.23:
+    resolution: {integrity: sha512-08/1e1q4D/6d2hYoBU6zyLXIj2cCC8/aYc1QKueGV02wGhJcOJ5Ceu01d8wGyt0bOzOmy+MIOy/1Ms3dARx2qg==}
     engines: {node: '>=15.0.0'}
     dependencies:
       '@types/oauth': 0.9.1
