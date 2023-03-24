@@ -47,7 +47,7 @@
 	</div>
 
 	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="ph-pencil ph-bold ph-lg"></i></button>
-	<button v-if="isMobile && mainRouter.currentRoute.value.name === '/my/messaging'" ref="chatButton" class="postButton button post _button" @click="messagingStart()"><i class="ph-user-plus ph-bold ph-lg"></i></button>
+	<button v-if="isMobile && mainRouter.currentRoute.value.name === '/my/messaging'" ref="postButton" class="postButton button post _button" @click="messagingStart()"><i class="ph-user-plus ph-bold ph-lg"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -117,7 +117,6 @@ const drawerMenuShowing = ref(false);
 let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
 const widgetsEl = $ref<HTMLElement>();
 const postButton = $ref<HTMLElement>();
-const chatButton = $ref<HTMLElement>();
 const widgetsShowing = $ref(false);
 
 provide('router', mainRouter);
@@ -259,7 +258,7 @@ function top() {
 }
 
 const wallpaper = localStorage.getItem('wallpaper') != null;
-
+console.log(mainRouter.currentRoute.value.name);
 </script>
 
 <style lang="scss" scoped>
