@@ -47,7 +47,7 @@
 	</div>
 
 	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="ph-pencil ph-bold ph-lg"></i></button>
-	<button v-if="isMobile && mainRouter.currentRoute.value.name === '/my/messaging'" ref="postButton" class="postButton button post _button" @click="messagingStart()"><i class="ph-user-plus ph-bold ph-lg"></i></button>
+	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'messaging'" ref="postButton" class="postButton button post _button" @click="messagingStart()"><i class="ph-user-plus ph-bold ph-lg"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
