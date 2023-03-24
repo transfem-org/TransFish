@@ -47,7 +47,7 @@
 	</div>
 
 	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'index'" ref="postButton" class="postButton button post _button" @click="os.post()"><i class="ph-pencil ph-bold ph-lg"></i></button>
-	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'messaging'" ref="postButton" class="postButton button post _button" @click="messagingStart()"><i class="ph-user-plus ph-bold ph-lg"></i></button>
+	<button v-if="isMobile && mainRouter.currentRoute.value.name === 'messaging'" ref="postButton" class="postButton button post _button" @click="messagingStart"><i class="ph-user-plus ph-bold ph-lg"></i></button>
 
 	<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 		<div
@@ -184,6 +184,10 @@ function messagingStart(ev) {
 		text: i18n.ts.messagingWithGroup,
 		icon: 'ph-users-three ph-bold ph-lg',
 		action: () => { startGroup(); },
+	}, {
+		text: i18n.ts.manageGroups,
+		icon: 'ph-user-circle-gear ph-bold ph-lg',
+		action: () => { mainRouter.push('/my/groups'); },
 	}], ev.currentTarget ?? ev.target);
 }
 
@@ -212,7 +216,7 @@ async function startGroup(): void {
 		})),
 	});
 	if (canceled) return;
-	router.push(`/my/messaging/group/${group.id}`);
+	mainRouter.push(`/my/messaging/group/${group.id}`);
 }
 
 onMounted(() => {
