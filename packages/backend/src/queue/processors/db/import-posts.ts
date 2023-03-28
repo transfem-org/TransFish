@@ -1,7 +1,7 @@
 import { IsNull } from "typeorm";
 import follow from "@/services/following/create.js";
 
-import * as Post from "@/misc/posts.js";
+import * as Post from "@/misc/post.js";
 import create from "@/services/note/create.js";
 import { downloadTextFile } from "@/misc/download-text-file.js";
 import { Users, DriveFiles } from "@/models/index.js";
