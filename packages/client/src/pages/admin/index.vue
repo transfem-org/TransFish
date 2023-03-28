@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, inject, nextTick, onMounted, onUnmounted, provide, watch } from 'vue';
+import { defineAsyncComponent, inject, nextTick, onMounted, onUnmounted, onActivated, provide, watch, ref } from 'vue';
 import { i18n } from '@/i18n';
 import MkSuperMenu from '@/components/MkSuperMenu.vue';
 import MkInfo from '@/components/MkInfo.vue';
@@ -39,7 +39,7 @@ import { useRouter } from '@/router';
 import { definePageMetadata, provideMetadataReceiver, setPageMetadata } from '@/scripts/page-metadata';
 
 const isEmpty = (x: string | null) => x == null || x === '';
-
+const el = ref<HTMLElement | null>(null);
 const router = useRouter();
 
 const indexInfo = {
@@ -54,7 +54,6 @@ let INFO = $ref(indexInfo);
 let childInfo = $ref(null);
 let narrow = $ref(false);
 let view = $ref(null);
-let el = $ref(null);
 let pageProps = $ref({});
 let noMaintainerInformation = isEmpty(instance.maintainerName) || isEmpty(instance.maintainerEmail);
 let noBotProtection = !instance.disableRegistration && !instance.enableHcaptcha && !instance.enableRecaptcha;
@@ -207,11 +206,19 @@ watch(narrow, () => {
 });
 
 onMounted(() => {
-	ro.observe(el);
+	ro.observe(el.value);
 
-	narrow = el.offsetWidth < NARROW_THRESHOLD;
+	narrow = el.value.offsetWidth < NARROW_THRESHOLD;
 	if (currentPage?.route.name == null && !narrow) {
 		router.push('/admin/overview');
+	}
+});
+
+onActivated(() => {
+	narrow = el.value.offsetWidth < NARROW_THRESHOLD;
+
+	if (!narrow && currentPage?.route.name == null) {
+		router.replace('/admin/overview');
 	}
 });
 
