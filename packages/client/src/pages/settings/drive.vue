@@ -23,11 +23,11 @@
 	</FormSection>
 
 	<FormSection>
-		<FormLink @click="chooseUploadFolder()">
+		<FormButton @click="chooseUploadFolder()">
 			{{ i18n.ts.uploadFolder }}
 			<template #suffix>{{ uploadFolder ? uploadFolder.name : '-' }}</template>
 			<template #suffixIcon><i class="ph-folder-notch-open ph-bold ph-lg"></i></template>
-		</FormLink>
+		</FormButton>
 		<FormSwitch v-model="keepOriginalUploading" class="_formBlock">
 			<template #label>{{ i18n.ts.keepOriginalUploading }}</template>
 			<template #caption>{{ i18n.ts.keepOriginalUploadingDescription }}</template>
@@ -47,6 +47,7 @@
 import { computed, ref } from 'vue';
 import tinycolor from 'tinycolor2';
 import FormLink from '@/components/form/link.vue';
+import FormButton from '@/components/MkButton.vue';
 import FormSwitch from '@/components/form/switch.vue';
 import FormSection from '@/components/form/section.vue';
 import MkKeyValue from '@/components/MkKeyValue.vue';
