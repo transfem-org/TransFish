@@ -15,7 +15,7 @@ export async function importPosts(
 	job: Bull.Job<DbUserImportJobData>,
 	done: any,
 ): Promise<void> {
-	logger.info(`Importing following of ${job.data.user.id} ...`);
+	logger.info(`Importing posts of ${job.data.user.id} ...`);
 
 	const user = await Users.findOneBy({ id: job.data.user.id });
 	if (user == null) {
@@ -39,12 +39,17 @@ export async function importPosts(
 		for (const post of JSON.parse(csv)) {
 			try {
 				if (post.replyId != null) {
+					logger.info(`Is reply, skip [${linenum}] ...`);
 					continue;
 				}
 				if (post.renoteId != null) {
+					logger.info(`Is boost, skip [${linenum}] ...`);
 					continue;
 				}
-				if (post.visibility !== "public") continue;
+				if (post.visibility !== "public") {
+					logger.info(`Is non-public, skip [${linenum}] ...`);
+					continue;
+				}
 				const { text, cw, localOnly, createdAt } = Post.parse(post);
 
 				logger.info(`Posting[${linenum}] ...`);
