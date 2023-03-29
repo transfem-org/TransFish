@@ -80,34 +80,39 @@ export async function importPosts(
 			}
 		} else {
 			for (const post of parsed.orderedItems) {
-				linenum++;
-				if (post.inReplyTo != null) {
-					logger.info(`Is reply, skip [${linenum}] ...`);
-					continue;
+				try {
+					linenum++;
+					if (post.inReplyTo != null) {
+						logger.info(`Is reply, skip [${linenum}] ...`);
+						continue;
+					}
+					if (post.directMessage) {
+						logger.info(`Is dm, skip [${linenum}] ...`);
+						continue;
+					}
+					const text = htmlToMfm(post.content, post.tag);
+					logger.info(`Posting[${linenum}] ...`);
+	
+					const note = await create(user, {
+						createdAt: new Date(post.published),
+						files: undefined,
+						poll: undefined,
+						text: text || undefined,
+						reply: null,
+						renote: null,
+						cw: post.sensitive,
+						localOnly: false,
+						visibility: "public",
+						visibleUsers: [],
+						channel: null,
+						apMentions: null,
+						apHashtags: undefined,
+						apEmojis: undefined,
+					});
+				} catch (e) {
+					logger.warn(`Error in line:${linenum} ${e}`);
 				}
-				if (post.directMessage) {
-					logger.info(`Is dm, skip [${linenum}] ...`);
-					continue;
-				}
-				const text = htmlToMfm(post.content, post.tag);
-				logger.info(`Posting[${linenum}] ...`);
-
-				const note = await create(user, {
-					createdAt: new Date(post.published),
-					files: undefined,
-					poll: undefined,
-					text: text || undefined,
-					reply: null,
-					renote: null,
-					cw: post.sensitive,
-					localOnly: false,
-					visibility: "public",
-					visibleUsers: [],
-					channel: null,
-					apMentions: null,
-					apHashtags: undefined,
-					apEmojis: undefined,
-				});
+				
 			}
 		}
 	} catch (e) {
