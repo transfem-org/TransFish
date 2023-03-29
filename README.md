@@ -66,7 +66,7 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ### 🐋 Docker
 
-[How to run Calckey with Docker](./docs/docker.md).
+[How to run Calckey with Docker](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
 
 ## 🧑‍💻 Dependencies
 
