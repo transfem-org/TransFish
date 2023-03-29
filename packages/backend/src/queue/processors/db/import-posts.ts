@@ -39,6 +39,7 @@ export async function importPosts(
 	try {
 		const parsed = JSON.parse(json);
 		if (parsed instanceof Array) {
+			logger.info("Parsing key style posts");
 			for (const post of JSON.parse(json)) {
 				try {
 					linenum++;
@@ -78,7 +79,8 @@ export async function importPosts(
 					logger.warn(`Error in line:${linenum} ${e}`);
 				}
 			}
-		} else {
+		} else if (parsed instanceof Object) {
+			logger.info("Parsing animal style posts");
 			for (const post of parsed.orderedItems) {
 				try {
 					linenum++;
@@ -112,7 +114,6 @@ export async function importPosts(
 				} catch (e) {
 					logger.warn(`Error in line:${linenum} ${e}`);
 				}
-				
 			}
 		}
 	} catch (e) {
