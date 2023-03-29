@@ -84,7 +84,7 @@ export async function importPosts(
 			for (const post of parsed.orderedItems) {
 				try {
 					linenum++;
-					if (post.inReplyTo != null) {
+					if (post.object.inReplyTo != null) {
 						logger.info(`Is reply, skip [${linenum}] ...`);
 						continue;
 					}
@@ -94,7 +94,7 @@ export async function importPosts(
 					}
 					let text;
 					try {
-						text = htmlToMfm(post.content, post.tag);
+						text = htmlToMfm(post.object.content, post.object.tag);
 					} catch (e) {
 						logger.warn(`Error while parsing text in line ${linenum}: ${e}`);
 						continue;
@@ -102,7 +102,7 @@ export async function importPosts(
 					logger.info(`Posting[${linenum}] ...`);
 	
 					const note = await create(user, {
-						createdAt: new Date(post.published),
+						createdAt: new Date(post.object.published),
 						files: undefined,
 						poll: undefined,
 						text: text || undefined,
