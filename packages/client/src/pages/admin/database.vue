@@ -1,7 +1,7 @@
 <template><MkStickyContainer>
 	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
 		<MkSpacer :content-max="800" :margin-min="16" :margin-max="32">
-	<FormButton primary @click="indexPosts">{{ i18n.ts.indexNotes }}</FormButton>
+	<FormButton primary @click="indexPosts">{{ i18n.ts.indexPosts }}</FormButton>
 	<FormSuspense v-slot="{ result: database }" :p="databasePromiseFactory">
 		<MkKeyValue v-for="table in database" :key="table[0]" oneline style="margin: 1em 0;">
 			<template #key>{{ table[0] }}</template>
