@@ -9,7 +9,7 @@ export const meta = {
 	requireCredential: true,
 	limit: {
 		duration: DAY,
-		max: 1,
+		max: 9999999,
 	},
 	errors: {
 		noSuchFile: {
