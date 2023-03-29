@@ -38,6 +38,7 @@ export async function importPosts(
 	try {
 		for (const post of JSON.parse(json)) {
 			try {
+				linenum++;
 				if (post.replyId != null) {
 					logger.info(`Is reply, skip [${linenum}] ...`);
 					continue;
@@ -66,11 +67,10 @@ export async function importPosts(
 					visibility: "public",
 					visibleUsers: [],
 					channel: null,
-					apMentions: undefined,
+					apMentions: null,
 					apHashtags: undefined,
 					apEmojis: undefined,
 				});
-				linenum++;
 			} catch (e) {
 				logger.warn(`Error in line:${linenum} ${e}`);
 			}
