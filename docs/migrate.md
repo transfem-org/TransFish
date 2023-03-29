@@ -42,6 +42,8 @@ ALTER TABLE "instance" ADD COLUMN "latestStatus" character varying(512);
 ALTER TABLE "instance" ADD COLUMN "lastCommunicatedAt" date;
 ```
 
+then quit with `\q`, and restart Calckey.
+
 ## Misskey v12.119 and before
 
 ```sh
