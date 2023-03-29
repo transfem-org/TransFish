@@ -70,6 +70,7 @@ export async function importPosts(
 					apHashtags: undefined,
 					apEmojis: undefined,
 				});
+				linenum++;
 			} catch (e) {
 				logger.warn(`Error in line:${linenum} ${e}`);
 			}
