@@ -92,7 +92,13 @@ export async function importPosts(
 						logger.info(`Is dm, skip [${linenum}] ...`);
 						continue;
 					}
-					const text = htmlToMfm(post.content, post.tag);
+					let text;
+					try {
+						text = htmlToMfm(post.content, post.tag);
+					} catch (e) {
+						logger.warn(`Error while parsing text in line ${linenum}: ${e}`);
+						continue;
+					}
 					logger.info(`Posting[${linenum}] ...`);
 	
 					const note = await create(user, {
