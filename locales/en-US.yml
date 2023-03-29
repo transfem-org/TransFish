@@ -939,6 +939,9 @@ moveFromDescription: "This will set an alias of your old account so that you can
 migrationConfirm: "Are you absolutely sure you want to migrate your acccount to {account}? Once you do this, you won't be able to reverse it, and you won't be able to use your account normally again.\nAlso, please ensure that you've set this current account as the account you're moving from."
 defaultReaction: "Default emoji reaction for outgoing and incoming posts"
 license: "License"
+indexPost: "Index posts"
+indexFrom: "Index from Post ID onwards (leave blank to index every post)"
+indexNotice: "Now indexing. This will probably take a while, please don't restart your server for at least an hour."
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing NSFW media via Machine Learning. This will slightly increase the load on the server."

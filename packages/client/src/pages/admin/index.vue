@@ -188,16 +188,14 @@ const menuDef = $computed(() => [{
 		text: i18n.ts.proxyAccount,
 		to: '/admin/proxy-account',
 		active: currentPage?.route.name === 'proxy-account',
-	}],
-}] : []), {
-	title: i18n.ts.info,
-	items: [{
+	},
+	{
 		icon: 'ph-database ph-bold ph-lg',
 		text: i18n.ts.database,
 		to: '/admin/database',
 		active: currentPage?.route.name === 'database',
 	}],
-}]);
+}] : [])]);
 
 watch(narrow, () => {
 	if (currentPage?.route.name == null && !narrow) {
