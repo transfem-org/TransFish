@@ -7,6 +7,11 @@
 			<template #icon><i class="ph-download-simple ph-bold ph-lg"></i></template>
 			<MkButton primary :class="$style.button" inline @click="exportNotes()"><i class="ph-download-simple ph-bold ph-lg"></i> {{ i18n.ts.export }}</MkButton>
 		</FormFolder>
+		<FormFolder class="_formBlock">
+			<template #label>{{ i18n.ts.import }}</template>
+			<template #icon><i class="ph-upload-simple ph-bold ph-lg"></i></template>
+			<MkButton primary :class="$style.button" inline @click="importPosts($event)"><i class="ph-upload-simple ph-bold ph-lg"></i> {{ i18n.ts.import }}</MkButton>
+		</FormFolder>
 	</FormSection>
 	<FormSection>
 		<template #label>{{ i18n.ts._exportOrImport.followingList }}</template>
@@ -106,6 +111,11 @@ const onError = (ev) => {
 
 const exportNotes = () => {
 	os.api('i/export-notes', {}).then(onExportSuccess).catch(onError);
+};
+
+const importPosts = async (ev) => {
+	const file = await selectFile(ev.currentTarget ?? ev.target);
+	os.api('i/import-posts', { fileId: file.id }).then(onImportSuccess).catch(onError);
 };
 
 const exportFollowing = () => {

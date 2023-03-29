@@ -314,6 +314,23 @@ export function createImportFollowingJob(
 	);
 }
 
+export function createImportPostsJob(
+	user: ThinUser,
+	fileId: DriveFile["id"],
+) {
+	return dbQueue.add(
+		"importPosts",
+		{
+			user: user,
+			fileId: fileId,
+		},
+		{
+			removeOnComplete: true,
+			removeOnFail: true,
+		},
+	);
+}
+
 export function createImportMutingJob(user: ThinUser, fileId: DriveFile["id"]) {
 	return dbQueue.add(
 		"importMuting",
