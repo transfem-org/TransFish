@@ -31,12 +31,12 @@ export async function importPosts(
 		return;
 	}
 
-	const csv = await downloadTextFile(file.url);
+	const json = await downloadTextFile(file.url);
 
 	let linenum = 0;
 
-	if (file.type.endsWith("json")) {
-		for (const post of JSON.parse(csv)) {
+	try {
+		for (const post of JSON.parse(json)) {
 			try {
 				if (post.replyId != null) {
 					logger.info(`Is reply, skip [${linenum}] ...`);
@@ -74,6 +74,9 @@ export async function importPosts(
 				logger.warn(`Error in line:${linenum} ${e}`);
 			}
 		}
+	} catch (e) {
+		// handle error
+		logger.warn(`Error reading: ${e}`);
 	}
 
 	logger.succ("Imported");
