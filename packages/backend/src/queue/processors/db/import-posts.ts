@@ -8,6 +8,7 @@ import { Users, DriveFiles } from "@/models/index.js";
 import type { DbUserImportJobData } from "@/queue/types.js";
 import { queueLogger } from "../../logger.js";
 import type Bull from "bull";
+import { htmlToMfm } from "@/remote/activitypub/misc/html-to-mfm.js";
 
 const logger = queueLogger.createSubLogger("import-posts");
 
@@ -36,34 +37,70 @@ export async function importPosts(
 	let linenum = 0;
 
 	try {
-		for (const post of JSON.parse(json)) {
-			try {
+		const parsed = JSON.parse(json);
+		if (parsed instanceof Array) {
+			for (const post of JSON.parse(json)) {
+				try {
+					linenum++;
+					if (post.replyId != null) {
+						logger.info(`Is reply, skip [${linenum}] ...`);
+						continue;
+					}
+					if (post.renoteId != null) {
+						logger.info(`Is boost, skip [${linenum}] ...`);
+						continue;
+					}
+					if (post.visibility !== "public") {
+						logger.info(`Is non-public, skip [${linenum}] ...`);
+						continue;
+					}
+					const { text, cw, localOnly, createdAt } = Post.parse(post);
+
+					logger.info(`Posting[${linenum}] ...`);
+
+					const note = await create(user, {
+						createdAt: createdAt,
+						files: undefined,
+						poll: undefined,
+						text: text || undefined,
+						reply: null,
+						renote: null,
+						cw: cw,
+						localOnly,
+						visibility: "public",
+						visibleUsers: [],
+						channel: null,
+						apMentions: null,
+						apHashtags: undefined,
+						apEmojis: undefined,
+					});
+				} catch (e) {
+					logger.warn(`Error in line:${linenum} ${e}`);
+				}
+			}
+		} else {
+			for (const post of parsed.orderedItems) {
 				linenum++;
-				if (post.replyId != null) {
+				if (post.inReplyTo != null) {
 					logger.info(`Is reply, skip [${linenum}] ...`);
 					continue;
 				}
-				if (post.renoteId != null) {
-					logger.info(`Is boost, skip [${linenum}] ...`);
+				if (post.directMessage) {
+					logger.info(`Is dm, skip [${linenum}] ...`);
 					continue;
 				}
-				if (post.visibility !== "public") {
-					logger.info(`Is non-public, skip [${linenum}] ...`);
-					continue;
-				}
-				const { text, cw, localOnly, createdAt } = Post.parse(post);
-
+				const text = htmlToMfm(post.content, post.tag);
 				logger.info(`Posting[${linenum}] ...`);
 
 				const note = await create(user, {
-					createdAt: createdAt,
+					createdAt: new Date(post.published),
 					files: undefined,
 					poll: undefined,
 					text: text || undefined,
 					reply: null,
 					renote: null,
-					cw: cw,
-					localOnly,
+					cw: post.sensitive,
+					localOnly: false,
 					visibility: "public",
 					visibleUsers: [],
 					channel: null,
@@ -71,8 +108,6 @@ export async function importPosts(
 					apHashtags: undefined,
 					apEmojis: undefined,
 				});
-			} catch (e) {
-				logger.warn(`Error in line:${linenum} ${e}`);
 			}
 		}
 	} catch (e) {
