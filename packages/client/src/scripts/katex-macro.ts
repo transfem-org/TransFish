@@ -244,7 +244,7 @@ function expandKaTeXMacroOnce(src: string, macros: { [name: string]: KaTeXMacro 
 			}
 
 			if (nextOpenBracketPos === endPos)
-				return [fallback, false];  // there is no open bracket
+				continue;  // there is no open bracket
 
 			macroNameCandidate += src[nextOpenBracketPos];
 
