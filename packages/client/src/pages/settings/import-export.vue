@@ -119,7 +119,7 @@ const exportNotes = () => {
 
 const importPosts = async (ev) => {
 	const file = await selectFile(ev.currentTarget ?? ev.target);
-	os.api('i/import-posts', { fileId: file.id, signatureCheck: signatureCheck }).then(onImportSuccess).catch(onError);
+	os.api('i/import-posts', { fileId: file.id, signatureCheck: signatureCheck.value }).then(onImportSuccess).catch(onError);
 };
 
 const exportFollowing = () => {
