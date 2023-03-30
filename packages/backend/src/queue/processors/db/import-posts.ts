@@ -44,15 +44,12 @@ export async function importPosts(
 				try {
 					linenum++;
 					if (post.replyId != null) {
-						logger.info(`Is reply, skip [${linenum}] ...`);
 						continue;
 					}
 					if (post.renoteId != null) {
-						logger.info(`Is boost, skip [${linenum}] ...`);
 						continue;
 					}
 					if (post.visibility !== "public") {
-						logger.info(`Is non-public, skip [${linenum}] ...`);
 						continue;
 					}
 					const { text, cw, localOnly, createdAt } = Post.parse(post);
@@ -85,18 +82,15 @@ export async function importPosts(
 				try {
 					linenum++;
 					if (post.object.inReplyTo != null) {
-						logger.info(`Is reply, skip [${linenum}] ...`);
 						continue;
 					}
 					if (post.directMessage) {
-						logger.info(`Is dm, skip [${linenum}] ...`);
 						continue;
 					}
 					let text;
 					try {
 						text = htmlToMfm(post.object.content, post.object.tag);
 					} catch (e) {
-						logger.warn(`Error while parsing text in line ${linenum}: ${e}`);
 						continue;
 					}
 					logger.info(`Posting[${linenum}] ...`);
