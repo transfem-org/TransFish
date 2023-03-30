@@ -87,6 +87,11 @@ export async function importPosts(
 					if (post.directMessage) {
 						continue;
 					}
+					if (job.data.signatureCheck) {
+						if(!post.signature) {
+							continue;
+						}
+					}
 					let text;
 					try {
 						text = htmlToMfm(post.object.content, post.object.tag);
