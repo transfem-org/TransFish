@@ -11,7 +11,7 @@
 			<template #label>{{ i18n.ts.import }}</template>
 			<template #icon><i class="ph-upload-simple ph-bold ph-lg"></i></template>
 			<FormSwitch v-model="signatureCheck" class="_formBlock">
-				Mastodon import?
+				Mastodon import? (not Akkoma!)
 			</FormSwitch>
 			<MkButton primary :class="$style.button" inline @click="importPosts($event)"><i class="ph-upload-simple ph-bold ph-lg"></i> {{ i18n.ts.import }}</MkButton>
 		</FormFolder>
