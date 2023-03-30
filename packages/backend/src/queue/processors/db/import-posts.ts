@@ -71,7 +71,7 @@ export async function importPosts(
 						visibility: "public",
 						visibleUsers: [],
 						channel: null,
-						apMentions: null,
+						apMentions: new Array(0),
 						apHashtags: undefined,
 						apEmojis: undefined,
 					});
@@ -113,7 +113,7 @@ export async function importPosts(
 						visibility: "public",
 						visibleUsers: [],
 						channel: null,
-						apMentions: null,
+						apMentions: new Array(0),
 						apHashtags: undefined,
 						apEmojis: undefined,
 					});
