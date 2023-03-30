@@ -289,6 +289,10 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: false,
 		},
+		enableCustomKaTeXMacro: {
+			where: "device",
+			default: false,
+		},
 	}),
 );
 
