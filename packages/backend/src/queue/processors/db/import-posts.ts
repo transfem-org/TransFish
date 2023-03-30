@@ -5,7 +5,7 @@ import * as Post from "@/misc/post.js";
 import create from "@/services/note/create.js";
 import { downloadTextFile } from "@/misc/download-text-file.js";
 import { Users, DriveFiles } from "@/models/index.js";
-import type { DbUserImportJobData } from "@/queue/types.js";
+import type { DbUserImportPostsJobData } from "@/queue/types.js";
 import { queueLogger } from "../../logger.js";
 import type Bull from "bull";
 import { htmlToMfm } from "@/remote/activitypub/misc/html-to-mfm.js";
@@ -13,7 +13,7 @@ import { htmlToMfm } from "@/remote/activitypub/misc/html-to-mfm.js";
 const logger = queueLogger.createSubLogger("import-posts");
 
 export async function importPosts(
-	job: Bull.Job<DbUserImportJobData>,
+	job: Bull.Job<DbUserImportPostsJobData>,
 	done: any,
 ): Promise<void> {
 	logger.info(`Importing posts of ${job.data.user.id} ...`);

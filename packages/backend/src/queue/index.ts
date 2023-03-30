@@ -317,12 +317,14 @@ export function createImportFollowingJob(
 export function createImportPostsJob(
 	user: ThinUser,
 	fileId: DriveFile["id"],
+	signatureCheck: boolean,
 ) {
 	return dbQueue.add(
 		"importPosts",
 		{
 			user: user,
 			fileId: fileId,
+			signatureCheck: signatureCheck,
 		},
 		{
 			removeOnComplete: true,

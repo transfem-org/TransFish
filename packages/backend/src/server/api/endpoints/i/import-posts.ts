@@ -30,6 +30,7 @@ export const paramDef = {
 	type: "object",
 	properties: {
 		fileId: { type: "string", format: "misskey:id" },
+		signatureCheck: { type: "boolean" },
 	},
 	required: ["fileId"],
 } as const;
@@ -39,5 +40,5 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	if (file == null) throw new ApiError(meta.errors.noSuchFile);
 	if (file.size === 0) throw new ApiError(meta.errors.emptyFile);
-	createImportPostsJob(user, file.id);
+	createImportPostsJob(user, file.id, ps.signatureCheck);
 });
