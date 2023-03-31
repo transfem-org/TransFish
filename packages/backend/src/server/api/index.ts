@@ -7,7 +7,10 @@ import Router from "@koa/router";
 import multer from "@koa/multer";
 import bodyParser from "koa-bodyparser";
 import cors from "@koa/cors";
-import { apiMastodonCompatible, getClient } from "./mastodon/ApiMastodonCompatibleService.js";
+import {
+	apiMastodonCompatible,
+	getClient,
+} from "./mastodon/ApiMastodonCompatibleService.js";
 import { Instances, AccessTokens, Users } from "@/models/index.js";
 import config from "@/config/index.js";
 import fs from "fs";
@@ -21,10 +24,10 @@ import discord from "./service/discord.js";
 import github from "./service/github.js";
 import twitter from "./service/twitter.js";
 import { koaBody } from "koa-body";
-import { convertId, IdConvertType as IdType } from "native-utils"
+import { convertId, IdConvertType as IdType } from "native-utils";
 
 // re-export native rust id conversion (function and enum)
-export  { IdType, convertId };
+export { IdType, convertId };
 
 // Init app
 const app = new Koa();
@@ -73,7 +76,6 @@ mastoRouter.use(
 		urlencoded: true,
 	}),
 );
-
 
 mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
 	const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;

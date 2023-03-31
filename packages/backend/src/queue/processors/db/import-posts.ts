@@ -88,7 +88,7 @@ export async function importPosts(
 						continue;
 					}
 					if (job.data.signatureCheck) {
-						if(!post.signature) {
+						if (!post.signature) {
 							continue;
 						}
 					}
@@ -99,7 +99,7 @@ export async function importPosts(
 						continue;
 					}
 					logger.info(`Posting[${linenum}] ...`);
-	
+
 					const note = await create(user, {
 						createdAt: new Date(post.object.published),
 						files: undefined,

@@ -136,7 +136,9 @@ export const routes = [
 			{
 				path: "/custom-katex-macro",
 				name: "custom-katex-macro",
-				component: page(() => import("./pages/settings/custom-katex-macro.vue")),
+				component: page(
+					() => import("./pages/settings/custom-katex-macro.vue"),
+				),
 			},
 			{
 				path: "/account-info",
@@ -243,7 +245,9 @@ export const routes = [
 			{
 				path: "/custom-katex-macro",
 				name: "general",
-				component: page(() => import("./pages/settings/custom-katex-macro.vue")),
+				component: page(
+					() => import("./pages/settings/custom-katex-macro.vue"),
+				),
 			},
 			{
 				path: "/accounts",

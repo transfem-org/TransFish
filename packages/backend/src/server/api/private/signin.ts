@@ -12,7 +12,11 @@ import {
 } from "@/models/index.js";
 import type { ILocalUser } from "@/models/entities/user.js";
 import { genId } from "@/misc/gen-id.js";
-import { comparePassword, hashPassword, isOldAlgorithm } from '@/misc/password.js';
+import {
+	comparePassword,
+	hashPassword,
+	isOldAlgorithm,
+} from "@/misc/password.js";
 import { verifyLogin, hash } from "../2fa.js";
 import { randomBytes } from "node:crypto";
 import { IsNull } from "typeorm";
