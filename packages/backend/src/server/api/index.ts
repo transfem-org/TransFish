@@ -21,35 +21,10 @@ import discord from "./service/discord.js";
 import github from "./service/github.js";
 import twitter from "./service/twitter.js";
 import { koaBody } from "koa-body";
+import { convertId, IdConvertType as IdType } from "native-utils"
 
-export enum IdType {
-	CalckeyId,
-	MastodonId
-};
-
-export function convertId(idIn: string, idConvertTo: IdType ) {
-	let idArray = []
-	switch (idConvertTo) {
-		case IdType.MastodonId:
-			idArray = [...idIn].map(item => item.charCodeAt(0));
-			idArray = idArray.map(item => {
-				if (item.toString().length < 3) {
-					return `0${item.toString()}`
-				}
-				else return item.toString()
-			});
-			return idArray.join('');
-		case IdType.CalckeyId:
-			for (let i = 0; i < idIn.length; i += 3) {
-				if ((idIn.length % 3) !== 0) {
-					idIn = `0${idIn}`
-				}
-				idArray.push(idIn.slice(i, i+3));
-			}
-			idArray = idArray.map(item => String.fromCharCode(item));
-			return idArray.join('');
-	}
-};
+// re-export native rust id conversion (function and enum)
+export  { IdType, convertId };
 
 // Init app
 const app = new Koa();

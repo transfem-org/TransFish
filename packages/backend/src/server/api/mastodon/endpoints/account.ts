@@ -89,7 +89,7 @@ export function apiAccountMastodon(router: Router): void {
 		}
 	});
 	router.get<{ Params: { id: string } }>(
-		"/v1/accounts/:id(^.*\\d.*$)",
+		"/v1/accounts/:id",
 		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 			const accessTokens = ctx.headers.authorization;
