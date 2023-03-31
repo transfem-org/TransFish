@@ -76,3 +76,7 @@ git pull --ff
 NODE_ENV=production pnpm run migrate
 # build using prefered method
 ```
+
+## Reverse
+
+You ***cannot*** migrate back to Misskey from Calckey due to re-hashing passwords on signin with argon2. You can migrate from to Calckey to Foundkey, though.
