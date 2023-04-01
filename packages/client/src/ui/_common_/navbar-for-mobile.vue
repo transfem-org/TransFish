@@ -173,6 +173,7 @@ function more() {
 					display: block;
 					text-align: center;
 					width: 100%;
+					margin-top: 1rem;
 
 					> .icon {
 						display: inline-block;
