@@ -1,10 +1,10 @@
 <template>
 <div class="_formRoot">
-	<FormLink class="_formBlock" @click="configure"><template #icon><i class="ph-gear-six ph-bold ph-lg"></i></template>{{ i18n.ts.notificationSetting }}</FormLink>
+	<FormButton class="_formBlock" @click="configure"><template #icon><i class="ph-gear-six ph-bold ph-lg"></i></template>{{ i18n.ts.notificationSetting }}</FormButton>
 	<FormSection>
-		<FormLink class="_formBlock" @click="readAllNotifications">{{ i18n.ts.markAsReadAllNotifications }}</FormLink>
-		<FormLink class="_formBlock" @click="readAllUnreadNotes">{{ i18n.ts.markAsReadAllUnreadNotes }}</FormLink>
-		<FormLink class="_formBlock" @click="readAllMessagingMessages">{{ i18n.ts.markAsReadAllTalkMessages }}</FormLink>
+		<ForFormButtonmLink class="_formBlock" @click="readAllNotifications">{{ i18n.ts.markAsReadAllNotifications }}</ForFormButtonmLink>
+		<FormButton class="_formBlock" @click="readAllUnreadNotes">{{ i18n.ts.markAsReadAllUnreadNotes }}</FormButton>
+		<FormButton class="_formBlock" @click="readAllMessagingMessages">{{ i18n.ts.markAsReadAllTalkMessages }}</FormButton>
 	</FormSection>
 </div>
 </template>
