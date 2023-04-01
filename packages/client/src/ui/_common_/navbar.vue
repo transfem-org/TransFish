@@ -439,6 +439,20 @@ function more(ev: MouseEvent) {
 					}
 				}
 
+				> .help {
+					position: relative;
+					display: block;
+					text-align: center;
+					width: 100%;
+					margin-top: 1rem;
+
+					> .icon {
+						display: inline-block;
+						width: 38px;
+						aspect-ratio: 1;
+					}
+				}
+
 				> .instance {
 					position: relative;
 					display: block;
