@@ -14,7 +14,7 @@
 					<XNotes ref="notes" :pagination="notesPagination"/>
 				</swiper-slide>
 				<swiper-slide>
-					<XUserList ref="searchEl" class="_gap" :pagination="usersPagination"/>
+					<XUserList ref="users" class="_gap" :pagination="usersPagination"/>
 				</swiper-slide>
 			</swiper>
 	</MkSpacer>
@@ -26,6 +26,7 @@ import { computed, watch, onMounted } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XNotes from '@/components/MkNotes.vue';
+import XUserList from '@/components/MkUserList.vue';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { defaultStore } from '@/store';
@@ -55,16 +56,16 @@ const usersPagination = {
 	})),
 };
 
-const tabs = ['search', 'users'];
+const tabs = ['notes', 'users'];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
 const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => [ {
-	key: 'search',
+	key: 'notes',
 	icon: 'ph-magnifying-glass ph-bold ph-lg',
-	title: i18n.ts.search,
+	title: i18n.ts.notes,
 }, {
 	key: 'users',
 	icon: 'ph-users ph-bold ph-lg',
