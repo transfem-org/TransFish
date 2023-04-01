@@ -46,18 +46,16 @@
 			</section>
 
 			<section>
-				<div v-once class="group">
-					<header><i class="ph-alarm ph-bold ph-fw ph-lg"></i> {{ i18n.ts.recentUsed }}</header>
-					<div class="body">
-						<button
-							v-for="emoji in recentlyUsedEmojis"
-							:key="emoji"
-							class="_button item"
-							@click="chosen(emoji, $event)"
-						>
-							<MkEmoji class="emoji" :emoji="emoji" :normal="true"/>
-						</button>
-					</div>
+				<header><i class="ph-alarm ph-bold ph-fw ph-lg"></i> {{ i18n.ts.recentUsed }}</header>
+				<div class="body">
+					<button
+						v-for="emoji in recentlyUsedEmojis"
+						:key="emoji"
+						class="_button item"
+						@click="chosen(emoji, $event)"
+					>
+						<MkEmoji class="emoji" :emoji="emoji" :normal="true"/>
+					</button>
 				</div>
 			</section>
 		</div>
