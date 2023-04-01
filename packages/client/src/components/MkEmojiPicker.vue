@@ -46,7 +46,7 @@
 			</section>
 
 			<section>
-				<header><i class="ph-alarm ph-bold ph-fw ph-lg"></i> {{ i18n.ts.recentUsed }}</header>
+				<header class="_acrylic"><i class="ph-alarm ph-bold ph-fw ph-lg"></i> {{ i18n.ts.recentUsed }}</header>
 				<div class="body">
 					<button
 						v-for="emoji in recentlyUsedEmojis"
