@@ -91,6 +91,7 @@ export const defaultStore = markRaw(
 				"favorites",
 				"channels",
 				"search",
+				"ui",
 			],
 		},
 		visibility: {
