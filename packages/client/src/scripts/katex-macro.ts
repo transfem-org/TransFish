@@ -264,6 +264,8 @@ function expandKaTeXMacroOnce(
 			}
 		}
 
+		if (!macros.hasOwnProperty(macroName)) return [fallback, false];
+
 		const numArgs: number = macros[macroName].args;
 		const openBracket: string = macroName.slice(-1);
 
