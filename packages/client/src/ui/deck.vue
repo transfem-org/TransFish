@@ -211,6 +211,7 @@ function changeProfile(ev: MouseEvent) {
 }
 
 async function deleteProfile() {
+	console.log(deckStore.state.profile)
 	const { canceled } = await os.confirm({
 		type: 'warning',
 		text: i18n.t('deleteAreYouSure', { x: deckStore.state.profile }),
@@ -347,7 +348,8 @@ async function deleteProfile() {
 						align-items: center;
 						justify-content: center;
 						border-radius: 10px;
-						margin: -0.5rem;
+						margin: -0.35rem;
+						transform: scale(0.8);
 					}
 				}
 
