@@ -83,12 +83,6 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, computed, provide, watch } from 'vue';
-import 'prismjs';
-import { highlight, languages } from 'prismjs/components/prism-core';
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/themes/prism-okaidia.css';
-import 'vue-prism-editor/dist/prismeditor.min.css';
 import { v4 as uuid } from 'uuid';
 import XVariable from './page-editor.script-block.vue';
 import XBlocks from './page-editor.blocks.vue';
@@ -355,10 +349,6 @@ function setEyeCatchingImage(img) {
 
 function removeEyeCatchingImage() {
 	eyeCatchingImageId = null;
-}
-
-function highlighter(code) {
-	return highlight(code, languages.js, 'javascript');
 }
 
 async function init() {

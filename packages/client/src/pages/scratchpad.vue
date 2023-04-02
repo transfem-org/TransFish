@@ -1,7 +1,7 @@
 <template>
 <div class="iltifgqe">
 	<div class="editor _panel _gap">
-		<PrismEditor v-model="code" class="_code code" :highlight="highlighter" :line-numbers="false"/>
+		<PrismEditor v-model="code" class="_code code" style="height: 30vh" :highlight="highlighter" :line-numbers="false"/>
 		<MkButton style="position: absolute; top: 8px; right: 8px;" primary @click="run()"><i class="ph-play ph-bold ph-lg"></i></MkButton>
 	</div>
 
