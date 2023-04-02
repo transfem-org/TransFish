@@ -3,7 +3,7 @@ FROM node:19-alpine as build
 WORKDIR /calckey
 
 # Install compilation dependencies
-RUN apk add --no-cache --no-progress git alpine-sdk python3 rust cargo
+RUN apk add --no-cache --no-progress git alpine-sdk python3 rust cargo vips
 
 # Copy only the dependency-related files first, to cache efficiently
 COPY package.json pnpm*.yaml ./
