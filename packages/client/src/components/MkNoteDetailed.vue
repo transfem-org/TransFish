@@ -352,6 +352,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .lxwezrsl {
+	font-size: 1.05em;
 	position: relative;
 	transition: box-shadow 0.1s ease;
 	contain: content;
@@ -451,7 +452,7 @@ onUnmounted(() => {
 		&:last-child {
 			padding-bottom: 24px;
 		}
-		font-size: 1.2em;
+		font-size: 1.1em;
 		overflow: clip;
 		outline: none;
 		scroll-margin-top: calc(var(--stickyTop) + 20vh);
