@@ -211,7 +211,6 @@ function changeProfile(ev: MouseEvent) {
 }
 
 async function deleteProfile() {
-	console.log(deckStore.state.profile)
 	const { canceled } = await os.confirm({
 		type: 'warning',
 		text: i18n.t('deleteAreYouSure', { x: deckStore.state.profile }),
