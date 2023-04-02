@@ -13,6 +13,7 @@
 				<MkLoading v-else-if="type === 'waiting'" :class="$style.iconInner" :em="true"/>
 			</div>
 			<header v-if="title" :class="$style.title"><Mfm :text="title"/></header>
+			<header v-if="title == null && input.type === 'password'" :class="$style.title"><Mfm :text="i18n.ts.password"/></header>
 			<div v-if="text" :class="$style.text"><Mfm :text="text"/></div>
 			<MkInput v-if="input && input.type !== 'paragraph'" v-model="inputValue" autofocus :type="input.type || 'text'" :placeholder="input.placeholder || undefined" @keydown="onInputKeydown">
 				<template v-if="input.type === 'password'" #prefix><i class="ph-password ph-bold ph-lg"></i></template>

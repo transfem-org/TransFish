@@ -4,7 +4,9 @@
 	<template v-if="$i.twoFactorEnabled">
 		<p>{{ i18n.ts._2fa.alreadyRegistered }}</p>
 		<MkButton @click="unregister">{{ i18n.ts.unregister }}</MkButton>
+	</template>
 
+	<template>
 		<template v-if="supportsCredentials">
 			<hr class="totp-method-sep">
 
@@ -20,7 +22,7 @@
 
 			<MkSwitch v-if="$i.securityKeysList.length > 0" v-model="usePasswordLessLogin" @update:modelValue="updatePasswordLessLogin">{{ i18n.ts.passwordLessLogin }}</MkSwitch>
 
-			<MkInfo v-if="registration && registration.error" warn>{{ i18n.ts.error }} {{ registration.error }}</MkInfo>
+			<MkInfo v-if="registration && registration.error" style="margin-bottom: 1rem;" warn>{{ i18n.ts.error }}: {{ registration.error }}</MkInfo>
 			<MkButton v-if="!registration || registration.error" @click="addSecurityKey">{{ i18n.ts._2fa.registerKey }}</MkButton>
 
 			<ol v-if="registration && !registration.error">
@@ -45,7 +47,7 @@
 			<li>
 				<I18n :src="i18n.ts._2fa.step1" tag="span">
 					<template #a>
-						<a href="https://authy.com/" rel="noopener" target="_blank" class="_link">Authy</a>
+						<a href="https://authpass.app/" rel="noopener" target="_blank" class="_link">AuthPass</a>
 					</template>
 					<template #b>
 						<a href="https://support.google.com/accounts/answer/1066447" rel="noopener" target="_blank" class="_link">Google Authenticator</a>
@@ -140,7 +142,7 @@ function registerKey() {
 		attestationObject: hexify(registration.value.credential.response.attestationObject)
 	}).then(key => {
 		registration.value = null;
-		key.lastUsed = new Date();
+		key!.lastUsed = new Date();
 		os.success();
 	});
 }

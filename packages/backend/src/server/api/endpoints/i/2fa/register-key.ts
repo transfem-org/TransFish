@@ -32,9 +32,9 @@ export default define(meta, paramDef, async (ps, user) => {
 		throw new Error("incorrect password");
 	}
 
-	if (!profile.twoFactorEnabled) {
-		throw new Error("2fa not enabled");
-	}
+	// if (!profile.twoFactorEnabled) {
+	// 	throw new Error("2fa not enabled");
+	// }
 
 	// 32 byte challenge
 	const entropy = await randomBytes(32);
