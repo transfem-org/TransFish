@@ -274,6 +274,7 @@ function more(ev: MouseEvent) {
 					text-align: center;
 					width: 100%;
 					margin-top: 1rem;
+					color: var(--navFg);
 
 					> .icon {
 						display: inline-block;
@@ -445,6 +446,7 @@ function more(ev: MouseEvent) {
 					text-align: center;
 					width: 100%;
 					margin-top: 1rem;
+					color: var(--navFg);
 
 					> .icon {
 						display: inline-block;
