@@ -1,5 +1,5 @@
 <template>
-<div class="dkgtipfy" :class="{ wallpaper }">
+<div class="dkgtipfy" :class="{ wallpaper, isMobile }">
 	<XSidebar v-if="!isMobile" class="sidebar"/>
 
 	<MkStickyContainer class="contents">
@@ -319,6 +319,10 @@ console.log(mainRouter.currentRoute.value.name);
 	box-sizing: border-box;
 	display: flex;
 
+	--stickyBottom: 1em;
+	&.isMobile {
+		--stickyBottom: 6rem;
+	}
 	&.wallpaper {
 		background: var(--wallpaperOverlay);
 		//backdrop-filter: var(--blur, blur(4px));
@@ -363,7 +367,7 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 
 	> .postButton, .widgetButton {
-		bottom: 6rem;
+		bottom: var(--stickyBottom);
 		right: 1.5rem;
 		height: 4rem;
 		width: 4rem;

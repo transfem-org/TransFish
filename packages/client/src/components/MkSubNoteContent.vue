@@ -130,7 +130,7 @@ const urls = props.note.text ? extractUrlFromMfm(mfm.parse(props.note.text)) : n
 			width: 100%;
 			margin-top: 1em;
 			position: sticky;
-			bottom: 1em;
+			bottom: var(--stickyBottom);
 
 			> span {
 				display: inline-block;

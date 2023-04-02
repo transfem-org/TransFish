@@ -10,16 +10,16 @@
 	:class="{ renote: isRenote }"
 >
 	<MkNoteSub v-if="appearNote.reply" :note="appearNote.reply" class="reply-to"/>
-	<div class="note-context">
+	<div class="note-context" @click="noteClick">
 		<div class="line"></div>
-		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x ph-bold ph-lg"></i></button></div>
+		<div v-if="appearNote._prId_" class="info"><i class="ph-megaphone-simple-bold ph-lg"></i> {{ i18n.ts.promotion }}<button class="_textButton hide" @click.stop="readPromo()">{{ i18n.ts.hideThisNote }} <i class="ph-x ph-bold ph-lg"></i></button></div>
 		<div v-if="appearNote._featuredId_" class="info"><i class="ph-lightning ph-bold ph-lg"></i> {{ i18n.ts.featured }}</div>
 		<div v-if="pinned" class="info"><i class="ph-push-pin ph-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}</div>
 		<div v-if="isRenote" class="renote">
 			<i class="ph-repeat ph-bold ph-lg"></i>
 			<I18n :src="i18n.ts.renotedBy" tag="span">
 				<template #user>
-					<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)">
+					<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)" @click.stop>
 						<MkUserName :user="note.user"/>
 					</MkA>
 				</template>
@@ -93,7 +93,6 @@
 					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 				</button>
 			</footer>
-			<!-- <MkNoteFooter :note="appearNote"></MkNoteFooter> -->
 		</div>
 	</article>
 </div>
@@ -418,8 +417,8 @@ function readPromo() {
 			align-items: center;
 			white-space: pre;
 			color: var(--renote);
+			cursor: pointer;
 
-			
 			> i {
 				margin-right: 4px;
 			}
@@ -504,7 +503,7 @@ function readPromo() {
 							width: 100%;
 							margin-top: 1em;
 							position: sticky;
-							bottom: 1em;
+							bottom: var(--stickyBottom);
 
 							> span {
 								display: inline-block;
@@ -663,6 +662,9 @@ function readPromo() {
 			}
 			> .line {
 				margin-right: 10px;
+				&::before {
+					margin-top: 8px;
+				}
 			}
 		}
 		> .article {
