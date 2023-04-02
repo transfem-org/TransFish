@@ -343,6 +343,11 @@ async function deleteProfile() {
 					> .new {
 						font-size: 20px;
 						background-color: var(--accentedBg);
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border-radius: 10px;
+						margin: -0.5rem;
 					}
 				}
 
