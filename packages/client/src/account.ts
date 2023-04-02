@@ -3,20 +3,35 @@ import * as misskey from "calckey-js";
 import { showSuspendedDialog } from "./scripts/show-suspended-dialog";
 import { i18n } from "./i18n";
 import { del, get, set } from "@/scripts/idb-proxy";
+// #v-ifdef VITE_CAPACITOR
+// #v-else
 import { apiUrl } from "@/config";
+// #v-endif
 import { waiting, api, popup, popupMenu, success, alert } from "@/os";
 import { unisonReload, reloadChannel } from "@/scripts/unison-reload";
 
 // TODO: 他のタブと永続化されたstateを同期
 
 type Account = misskey.entities.MeDetailed;
-
+// #v-ifdef VITE_CAPACITOR
+let accountData = null;
+try {
+  accountData = JSON.parse(localStorage.getItem("account"));
+} catch (e) {
+  localStorage.removeItem("account");
+  window.location.reload();
+}
+// #v-else
 const accountData = localStorage.getItem("account");
-
+// #v-endif
 // TODO: 外部からはreadonlyに
+// #v-ifdef VITE_CAPACITOR
+export const $i = accountData ? reactive(accountData as Account) : null;
+// #v-else
 export const $i = accountData
 	? reactive(JSON.parse(accountData) as Account)
 	: null;
+// #v-endif
 
 export const iAmModerator = $i != null && ($i.isAdmin || $i.isModerator);
 export const iAmAdmin = $i?.isAdmin;
@@ -28,7 +43,8 @@ export async function signout() {
 	await removeAccount($i.id);
 
 	const accounts = await getAccounts();
-
+// #v-ifdef VITE_CAPACITOR
+// #v-else
 	//#region Remove service worker registration
 	try {
 		if (navigator.serviceWorker.controller) {
@@ -54,23 +70,40 @@ export async function signout() {
 		}
 	} catch (err) {}
 	//#endregion
+// #v-endif
 
 	document.cookie = "igi=; path=/";
 
+	// #v-ifdef VITE_CAPACITOR
+	if (accounts.length > 0) login(accounts[0].token, accounts[0].instanceUrl);
+	// #v-else
 	if (accounts.length > 0) login(accounts[0].token);
+	// #v-endif
 	else unisonReload("/");
 }
 
 export async function getAccounts(): Promise<
+	// #v-ifdef VITE_CAPACITOR
+	{ id: Account["id"]; token: Account["token"]; instanceUrl: string }[]
+	// #v-else
 	{ id: Account["id"]; token: Account["token"] }[]
+	// #v-endif
 > {
 	return (await get("accounts")) || [];
 }
 
+// #v-ifdef VITE_CAPACITOR
+export async function addAccount(id: Account["id"], token: Account["token"], instanceUrl: string) {
+// #v-else
 export async function addAccount(id: Account["id"], token: Account["token"]) {
+// #v-endif
 	const accounts = await getAccounts();
 	if (!accounts.some((x) => x.id === id)) {
+		// #v-ifdef VITE_CAPACITOR
+		await set("accounts", accounts.concat([{ id, token, instanceUrl }]));
+		// #v-else
 		await set("accounts", accounts.concat([{ id, token }]));
+		// #v-endif
 	}
 }
 
@@ -117,7 +150,32 @@ function fetchAccount(token: string): Promise<Account> {
 	});
 }
 
-export function updateAccount(accountData) {
+function fetchAccount(
+  token: string,
+  instanceUrl: string
+): Promise<Account & { instanceUrl: string }> {
+  return new misskey.api.APIClient({ origin: instanceUrl, credential: token })
+    .request("i")
+    .then((res) => {
+      return { ...(res as Account), token, instanceUrl };
+    })
+    .catch((res) => {
+      if (res.error.id === "a8c724b3-6e9c-4b46-b1a8-bc3ed6258370") {
+        showSuspendedDialog().then(() => {
+          signout();
+        });
+      } else {
+        alert({
+          type: "error",
+          title: i18n.ts.failedToFetchAccountInformation,
+          text: JSON.stringify(res.error),
+        });
+      }
+      return Promise.reject(res);
+    });
+}
+
+export function updateAccount(accountData: Object) {
 	for (const [key, value] of Object.entries(accountData)) {
 		$i[key] = value;
 	}
@@ -125,16 +183,44 @@ export function updateAccount(accountData) {
 }
 
 export function refreshAccount() {
+	// #v-ifdef VITE_CAPACITOR
+	return fetchAccount($i.token, $i.instanceUrl).then(updateAccount);
+	// #v-else
 	return fetchAccount($i.token).then(updateAccount);
+	// #v-endif
 }
 
+// #v-ifdef VITE_CAPACITOR
+export async function login(token: Account["token"], instanceUrl: string, redirect?: string) {
+// #v-else
 export async function login(token: Account["token"], redirect?: string) {
+// #v-endif
 	waiting();
+	// #v-ifdef VITE_CAPACITOR
+	if (_DEV_) console.log("logging as token ", token, instanceUrl);
+  const me = await fetchAccount(token, instanceUrl);
+	// #v-else
 	if (_DEV_) console.log("logging as token ", token);
 	const me = await fetchAccount(token);
+	// #v-endif
 	localStorage.setItem("account", JSON.stringify(me));
+	// #v-ifdef VITE_CAPACITOR
+	localStorage.setItem(
+	    "instance",
+	    JSON.stringify(
+	      await new misskey.api.APIClient({
+	        origin: instanceUrl,
+	        credential: token,
+	      }).request("meta")
+	    )
+	  );
+	// #v-endif
 	document.cookie = `token=${token}; path=/; max-age=31536000`; // bull dashboardの認証とかで使う
+	// #v-ifdef VITE_CAPACITOR
+	await addAccount(me.id, token, instanceUrl);
+	// #v-else
 	await addAccount(me.id, token);
+	// #v-endif
 
 	if (redirect) {
 		// 他のタブは再読み込みするだけ
@@ -162,7 +248,11 @@ export async function openAccountMenu(
 			{},
 			{
 				done: (res) => {
+					// #v-ifdef VITE_CAPACITOR
+					addAccount(res.id, res.i, res.instanceUrl);
+					// #v-else
 					addAccount(res.id, res.i);
+					// #v-endif
 					success();
 				},
 			},
@@ -176,8 +266,13 @@ export async function openAccountMenu(
 			{},
 			{
 				done: (res) => {
+					// #v-ifdef VITE_CAPACITOR
+					addAccount(res.id, res.i, res.instanceUrl);
+          switchAccountWithToken(res.i, res.instanceUrl);
+					// #v-else
 					addAccount(res.id, res.i);
 					switchAccountWithToken(res.i);
+					// #v-endif
 				},
 			},
 			"closed",
@@ -186,12 +281,23 @@ export async function openAccountMenu(
 
 	async function switchAccount(account: misskey.entities.UserDetailed) {
 		const storedAccounts = await getAccounts();
+		// #v-ifdef VITE_CAPACITOR
+		const acc = storedAccounts.find((x) => x.id === account.id);
+    localStorage.removeItem("lastEmojisFetchedAt");
+    switchAccountWithToken(acc.token, acc.instanceUrl);
+		// #v-else
 		const token = storedAccounts.find((x) => x.id === account.id).token;
 		switchAccountWithToken(token);
+		// #v-endif
 	}
 
+	// #v-ifdef VITE_CAPACITOR
+	function switchAccountWithToken(token: string, instanceUrl: string) {
+	  login(token, instanceUrl);
+  // #v-else
 	function switchAccountWithToken(token: string) {
 		login(token);
+	// #v-endif
 	}
 
 	const storedAccounts = await getAccounts().then((accounts) =>

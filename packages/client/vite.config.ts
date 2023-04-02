@@ -6,21 +6,25 @@ import locales from '../../locales';
 import meta from '../../package.json';
 import pluginJson5 from './vite.json5';
 import viteCompression from 'vite-plugin-compression';
+import ConditionalCompile from "vite-plugin-conditional-compiler";
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.json5', '.svg', '.sass', '.scss', '.css', '.vue'];
 
 export default defineConfig(({ command, mode }) => {
-	fs.mkdirSync(__dirname + '/../../built', { recursive: true });
-	fs.writeFileSync(__dirname + '/../../built/meta.json', JSON.stringify({ version: meta.version }), 'utf-8');
+	fs.mkdirSync(`${__dirname}/../../built`, { recursive: true });
+	fs.writeFileSync(`${__dirname}/../../built/meta.json`, JSON.stringify({ version: meta.version }), 'utf-8');
 
 	return {
 		base: '/assets/',
 
 		plugins: [
+			ConditionalCompile(),
 			pluginVue({
 				reactivityTransform: true,
 			}),
 			pluginJson5(),
+			tsconfigPaths(),
 			viteCompression({
 				algorithm: 'brotliCompress'
 			}),
@@ -29,9 +33,9 @@ export default defineConfig(({ command, mode }) => {
 		resolve: {
 			extensions,
 			alias: {
-				'@/': __dirname + '/src/',
-				'/client-assets/': __dirname + '/assets/',
-				'/static-assets/': __dirname + '/../backend/assets/',
+				'@/': `${__dirname}/src/`,
+				'/client-assets/': `${__dirname}/assets/`,
+				'/static-assets/': `${__dirname}/../backend/assets/`,
 			},
 		},
 
@@ -58,6 +62,7 @@ export default defineConfig(({ command, mode }) => {
 			manifest: 'manifest.json',
 			rollupOptions: {
 				input: {
+					index: 'index.html',
 					app: './src/init.ts',
 				},
 				output: {
@@ -68,7 +73,7 @@ export default defineConfig(({ command, mode }) => {
 			},
 			cssCodeSplit: true,
 			assetsInlineLimit: 0,
-			outDir: __dirname + '/../../built/_client_dist_',
+			outDir: `${__dirname}/../../built/_client_dist_`,
 			assetsDir: '.',
 			emptyOutDir: false,
 			sourcemap: process.env.NODE_ENV === 'development',

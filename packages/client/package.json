@@ -4,9 +4,14 @@
 	"scripts": {
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
-		"lint": "pnpm rome check \"src/**/*.{ts,vue}\""
+		"mobilebuild": "pnpm vite build --mode mobile && pnpm run mobilecopy && npx cap sync",
+		"mobilecopy": "pnpm node ../../scripts/mobilebuild.js",
+		"lint": "pnpm rome check \"src/**/*.{ts,vue}\"",
+		"ios": "npx cap open ios",
+		"android": "studio android"
 	},
 	"devDependencies": {
+		"@capacitor/cli": "^4.7.3",
 		"@discordapp/twemoji": "14.0.2",
 		"@khmyznikov/pwa-install": "^0.2.0",
 		"@phosphor-icons/web": "^2.0.3",
@@ -79,10 +84,23 @@
 		"vanilla-tilt": "1.8.0",
 		"vite": "^4.1.1",
 		"vite-plugin-compression": "^0.5.1",
+		"vite-plugin-conditional-compiler": "^0.1.1",
+		"vite-tsconfig-paths": "^4.0.7",
 		"vue": "3.2.45",
 		"vue-isyourpasswordsafe": "^2.0.0",
 		"vue-plyr": "^7.0.0",
 		"vue-prism-editor": "2.0.0-alpha.2",
 		"vuedraggable": "4.1.0"
+	},
+	"dependencies": {
+		"@capacitor/android": "^4.7.3",
+		"@capacitor/app": "^4.1.1",
+		"@capacitor/core": "^4.7.3",
+		"@capacitor/device": "^4.1.0",
+		"@capacitor/ios": "^4.7.3",
+		"@capacitor/preferences": "^4.0.2",
+		"@capacitor/push-notifications": "^4.1.2",
+		"@capacitor/status-bar": "^4.1.1",
+		"onesignal-cordova-plugin": "^3.3.1"
 	}
 }

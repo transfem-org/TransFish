@@ -50,8 +50,24 @@ import { reloadChannel } from "@/scripts/unison-reload";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { getUrlWithoutLoginId } from "@/scripts/login-id";
 import { getAccountFromId } from "@/scripts/get-account-from-id";
-
+import { Device } from "@capacitor/device";
+import { App } from "@capacitor/app";
+import lightTheme from "@/themes/_light.json5";
+export let storedDeviceInfo: Object;
+// #v-ifdef VITE_CAPACITOR
+const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
+// #v-endif
 (async () => {
+	// #v-ifdef VITE_CAPACITOR
+	const res = await Device.getInfo();
+  console.log(res);
+  storedDeviceInfo = res;
+	if (!localStorage.getItem("lang")) {
+		localStorage.setItem("lang", (await Device.getLanguageCode()).value ||
+		"en-US");
+		window.location.reload();
+	}
+	// #v-endif
 	console.info(`Calckey v${version}`);
 
 	if (_DEV_) {
@@ -104,8 +120,13 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	});
 	//#endregion
 
+	let isMobileApp = false;
+	// #v-ifdef VITE_CAPACITOR
+	isMobileApp = false;
+	// #v-endif
+
 	// If mobile, insert the viewport meta tag
-	if (["smartphone", "tablet"].includes(deviceKind)) {
+	if (isMobileApp || ["smartphone", "tablet"].includes(deviceKind)) {
 		const viewport = document.getElementsByName("viewport").item(0);
 		viewport.setAttribute(
 			"content",
@@ -118,6 +139,22 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	//#region Set lang attr
 	const html = document.documentElement;
 	html.setAttribute("lang", lang);
+	// #v-ifdef VITE_CAPACITOR
+	html.setAttribute("class", res.platform);
+	const css = localStorage.getItem("customCss") || "";
+  if (css) {
+    const cssNode = document.createElement("style");
+    const cssTextNode = document.createTextNode(css);
+    cssNode.appendChild(cssTextNode);
+    document.body.appendChild(cssNode);
+  }
+
+  if (defaultStore.reactiveState.darkMode.value) {
+    const style = document.createElement("style");
+    style.innerText = "    --bg: rgb(12, 18, 16);";
+    document.head.appendChild(style);
+  }
+	// #v-endif
 	//#endregion
 
 	//#region loginId
@@ -131,6 +168,9 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			const account = await getAccountFromId(loginId);
 			if (account) {
 				await login(account.token, target);
+				// #v-ifdef VITE_CAPACITOR
+				await afterLoginSetup();
+				// #v-endif
 			}
 		}
 
@@ -145,7 +185,10 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			console.log("account cache found. refreshing...");
 		}
 
-		refreshAccount();
+		await refreshAccount();
+		// #v-ifdef VITE_CAPACITOR
+		await afterLoginSetup();
+		// #v-endif
 	} else {
 		if (_DEV_) {
 			console.log("no account cache found.");
@@ -171,6 +214,7 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			if (_DEV_) {
 				console.log("not signed in");
 			}
+			applyTheme(lightTheme);
 		}
 	}
 	//#endregion
