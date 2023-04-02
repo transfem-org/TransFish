@@ -556,7 +556,11 @@ export default abstract class Chart<T extends Schema> {
 
 			// bake unique count
 			for (const [k, v] of Object.entries(finalDiffs)) {
-				if (this.schema[k].uniqueIncrement && Array.isArray(v) && v.length > 0) {
+				if (
+					this.schema[k].uniqueIncrement &&
+					Array.isArray(v) &&
+					v.length > 0
+				) {
 					const name = (columnPrefix +
 						k.replaceAll(".", columnDot)) as keyof Columns<T>;
 					const tempColumnName = (uniqueTempColumnPrefix +
@@ -660,7 +664,7 @@ export default abstract class Chart<T extends Schema> {
 
 		const startTime = Date.now();
 		await Promise.all(
-			groups.map((group) => 
+			groups.map((group) =>
 				limit(() =>
 					Promise.all([
 						this.claimCurrentLog(group, "hour"),
