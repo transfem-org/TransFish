@@ -6,6 +6,7 @@
   - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
   - Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
   - Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
+  - Use [Magic ReGeXP](https://regexp.dev/) for ReGeX 🦄
 - Function
   - Federate with note edits
   - User "choices" (recommended users) like Mastodon and Soapbox
