@@ -10,6 +10,8 @@ COPY package.json pnpm*.yaml ./
 COPY packages/backend/package.json packages/backend/package.json
 COPY packages/client/package.json packages/client/package.json
 COPY packages/sw/package.json packages/sw/package.json
+COPY packages/backend/native-utils/package.json packages/backend/native-utils/package.json
+COPY packages/backend/native-utils/**/*/package.json packages/backend/native-utils/**/*/package.json
 
 # Configure corepack and pnpm
 RUN corepack enable
