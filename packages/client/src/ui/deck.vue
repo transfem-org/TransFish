@@ -35,7 +35,7 @@
 			<div class="sideMenu">
 				<div class="top">
 					<button v-tooltip.noDelay.left="`${i18n.ts._deck.profile}: ${deckStore.state.profile}`" class="_button button" @click="changeProfile"><i class="ph-caret-down ph-bold ph-lg"></i></button>
-					<button v-tooltip.noDelay.left="i18n.ts._deck.deleteProfile" class="_button button" @click="deleteProfile"><i class="ph-trash ph-bold ph-lg"></i></button>
+					<button v-if="deckStore.state.profile !== 'default'" v-tooltip.noDelay.left="i18n.ts._deck.deleteProfile" class="_button button" @click="deleteProfile"><i class="ph-trash ph-bold ph-lg"></i></button>
 				</div>
 				<div class="middle">
 					<button v-tooltip.noDelay.left="i18n.ts._deck.addColumn" class="_button button new" @click="addColumn"><i class="ph-plus ph-bold ph-lg"></i></button>
