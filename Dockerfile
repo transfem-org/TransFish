@@ -11,7 +11,8 @@ COPY packages/backend/package.json packages/backend/package.json
 COPY packages/client/package.json packages/client/package.json
 COPY packages/sw/package.json packages/sw/package.json
 COPY packages/backend/native-utils/package.json packages/backend/native-utils/package.json
-COPY packages/backend/native-utils/**/*/package.json packages/backend/native-utils/**/*/package.json
+COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
+COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
 
 # Configure corepack and pnpm
 RUN corepack enable
