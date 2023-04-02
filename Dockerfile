@@ -48,6 +48,8 @@ COPY --from=build /calckey/packages/client/node_modules /calckey/packages/client
 COPY --from=build /calckey/built /calckey/built
 COPY --from=build /calckey/packages/backend/built /calckey/packages/backend/built
 COPY --from=build /calckey/packages/backend/assets/instance.css /calckey/packages/backend/assets/instance.css
+COPY --from=build /calckey/packages/backend/native-utils/built /calckey/packages/backend/native-utils/built
+COPY --from=build /calckey/packages/backend/native-utils/target /calckey/packages/backend/native-utils/target
 
 RUN corepack enable
 ENTRYPOINT [ "/sbin/tini", "--" ]
