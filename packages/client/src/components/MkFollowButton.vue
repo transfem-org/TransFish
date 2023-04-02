@@ -141,7 +141,9 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .kpoogebi {
 	position: relative;
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	font-weight: bold;
 	color: var(--accent);
 	border: solid 1px var(--accent);
