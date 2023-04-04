@@ -290,6 +290,8 @@ import * as ep___resetDb from "./endpoints/reset-db.js";
 import * as ep___resetPassword from "./endpoints/reset-password.js";
 import * as ep___serverInfo from "./endpoints/server-info.js";
 import * as ep___stats from "./endpoints/stats.js";
+import * as ep___sw_show_registration from './endpoints/sw/show-registration.js';
+import * as ep___sw_update_registration from './endpoints/sw/update-registration.js';
 import * as ep___sw_register from "./endpoints/sw/register.js";
 import * as ep___sw_unregister from "./endpoints/sw/unregister.js";
 import * as ep___test from "./endpoints/test.js";
@@ -637,6 +639,8 @@ const eps = [
 	["stats", ep___stats],
 	["sw/register", ep___sw_register],
 	["sw/unregister", ep___sw_unregister],
+	['sw/show-registration', ep___sw_show_registration],
+	['sw/update-registration', ep___sw_update_registration],
 	["test", ep___test],
 	["username/available", ep___username_available],
 	["users", ep___users],

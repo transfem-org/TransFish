@@ -106,6 +106,7 @@
 						<MkSparkle>
 							<h3>{{ i18n.ts._tutorial.step6_4 }} <Mfm text="$[shake 🚀]"></Mfm></h3>
 						</MkSparkle>
+						<MkPushNotificationAllowButton primary show-only-to-register/>
 					</div>
 				</Transition>
 			</div>
@@ -122,6 +123,7 @@ import MkButton from '@/components/MkButton.vue';
 import XFeaturedUsers from '@/pages/explore.users.vue';
 import XPostForm from '@/components/MkPostForm.vue';
 import MkSparkle from '@/components/MkSparkle.vue';
+import MkPushNotificationAllowButton from '@/components/MkPushNotificationAllowButton.vue';
 import { defaultStore } from '@/store';
 import { i18n } from '@/i18n';
 import { $i } from '@/account';
