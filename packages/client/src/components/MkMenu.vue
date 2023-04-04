@@ -34,6 +34,9 @@
 			</a>
 			<button v-else-if="item.type === 'user' && !items.hidden" :tabindex="i" class="_button item" :class="{ active: item.active }" :disabled="item.active" @click="clicked(item.action, $event)" @mouseenter.passive="onItemMouseEnter(item)" @mouseleave.passive="onItemMouseLeave(item)">
 				<MkAvatar :user="item.user" class="avatar"/><MkUserName :user="item.user"/>
+				// #v-ifdef VITE_CAPACITOR
+				[{{ item.user.host }}]
+				// #v-endif
 				<span v-if="item.indicate" class="indicator"><i class="ph-circle ph-fill"></i></span>
 			</button>
 			<span v-else-if="item.type === 'switch'" :tabindex="i" class="item" @mouseenter.passive="onItemMouseEnter(item)" @mouseleave.passive="onItemMouseLeave(item)">

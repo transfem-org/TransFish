@@ -73,7 +73,11 @@ export default defineComponent({
 		MkButton,
 		XNote,
 		MkFeaturedPhotos,
+		// #v-ifdef VITE_CAPACITOR
+		//...
+		// #v-else
 		XTimeline,
+		// #v-endif
 	},
 
 	data() {

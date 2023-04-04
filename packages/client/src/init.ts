@@ -50,10 +50,11 @@ import { reloadChannel } from "@/scripts/unison-reload";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { getUrlWithoutLoginId } from "@/scripts/login-id";
 import { getAccountFromId } from "@/scripts/get-account-from-id";
-import { Device } from "@capacitor/device";
+import { Device, DeviceInfo } from "@capacitor/device";
 import { App } from "@capacitor/app";
-import lightTheme from "@/themes/_light.json5";
-export let storedDeviceInfo: Object;
+import lightThemeDefault from "@/themes/_light.json5";
+import OneSignal from "onesignal-cordova-plugin";
+export let storedDeviceInfo: DeviceInfo;
 // #v-ifdef VITE_CAPACITOR
 const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 // #v-endif
@@ -122,7 +123,7 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 
 	let isMobileApp = false;
 	// #v-ifdef VITE_CAPACITOR
-	isMobileApp = false;
+	isMobileApp = true;
 	// #v-endif
 
 	// If mobile, insert the viewport meta tag
@@ -214,11 +215,13 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 			if (_DEV_) {
 				console.log("not signed in");
 			}
-			applyTheme(lightTheme);
+			applyTheme(lightThemeDefault);
 		}
 	}
 	//#endregion
-
+	// #v-ifdef VITE_CAPACITOR
+	//...
+	// #v-else
 	const fetchInstanceMetaPromise = fetchInstance();
 
 	fetchInstanceMetaPromise.then(() => {
@@ -227,7 +230,7 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 		// Init service worker
 		initializeSw();
 	});
-
+	// #v-endif
 	const app = createApp(
 		window.location.search === "?zen"
 			? defineAsyncComponent(() => import("@/ui/zen.vue"))
@@ -287,7 +290,11 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 	window.onerror = null;
 	window.onunhandledrejection = null;
 
+// #v-ifdef VITE_CAPACITOR
+//...
+// #v-else
 	reactionPicker.init();
+// #v-endif	
 
 	if (splash) {
 		splash.style.opacity = "0";
@@ -324,6 +331,45 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 			console.error(err);
 		}
 	}
+
+	// #v-ifdef VITE_CAPACITOR
+	App.addListener("backButton", (canGoBack) => {
+		if (canGoBack) {
+			history.back();
+		} else {
+			App.exitApp();
+		}
+	});
+})();
+
+async function afterLoginSetup() {
+	if (!$i) return;
+	const hotkeys = {
+		d: (): void => {
+			defaultStore.set("darkMode", !defaultStore.state.darkMode);
+		},
+		s: search,
+		["p|n"]: post,
+	};
+
+	//shortcut
+	document.addEventListener("keydown", makeHotkey(hotkeys));
+	reactionPicker.init();
+	const fetchInstanceMetaPromise = fetchInstance();
+
+	fetchInstanceMetaPromise.then(() => {
+		localStorage.setItem("v", instance.version);
+
+		// Init service worker
+		initializeSw();
+	});
+
+	applyTheme(
+		defaultStore.reactiveState.darkMode.value ?
+		ColdDeviceStorage.get("darkTheme") :
+		ColdDeviceStorage.get("lightTheme")
+	)
+	// #v-endif
 
 	// NOTE: この処理は必ず↑のクライアント更新時処理より後に来ること(テーマ再構築のため)
 	watch(
@@ -365,6 +411,9 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 	});
 	//#endregion
 
+	// #v-ifdef VITE_CAPACITOR
+	//...
+	// #v-else
 	fetchInstanceMetaPromise.then(() => {
 		if (defaultStore.state.themeInitial) {
 			if (instance.defaultLightTheme != null)
@@ -380,6 +429,7 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 			defaultStore.set("themeInitial", false);
 		}
 	});
+	// #v-endif
 
 	watch(
 		defaultStore.reactiveState.useBlurEffectForModal,
@@ -436,12 +486,16 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 		});
 	}
 
+	// #v-ifdef VITE_CAPACITOR
+	//...
+	// #v-else
 	const hotkeys = {
 		d: (): void => {
 			defaultStore.set("darkMode", !defaultStore.state.darkMode);
 		},
 		s: search,
 	};
+	// #v-endif
 
 	if ($i) {
 		// only add post shortcuts if logged in
@@ -544,6 +598,45 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 		});
 	}
 
+// #v-ifdef VITE_CAPACITOR
+	if (storedDeviceInfo.platform === "web") return;
+	OneSignal.setAppId(onesignal_app_id);
+	const deviceId = await Device.getId();
+	OneSignal.setExternalUserId(deviceId.uuid);
+	/*const res = await fetch(import.meta.env.VITE_NOTIFICATION_TOKEN_ENDPOINT, {
+		method: "POST", // *GET, POST, PUT, DELETE, etc.
+		mode: "cors", // no-cors, *cors, same-origin
+		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+		credentials: "same-origin", // include, *same-origin, omit
+		headers: {
+			"Content-Type": "application/json",
+		},
+		redirect: "follow", // manual, *follow, error
+		referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+		body: JSON.stringify({
+			misskey_token: $i.token,
+			device_id: deviceId.uuid,
+			instance_url: $i.instanceUrl,
+		}),
+	}).catch((err) => {
+		console.error(err);
+		// throw err
+	});
+	console.info(res);*/
+	OneSignal.setNotificationOpenedHandler(function (jsonData) {
+		console.log(`notificationOpenedCallback: ${JSON.stringify(jsonData)}`);
+	});
+	// Prompts the user for notification permissions.
+	//    * Since this shows a generic native prompt, we recommend instead using an In-App Message to prompt for notification permission (See step 7) to better communicate to your users what notifications they will get.
+	OneSignal.promptForPushNotificationsWithUserResponse(function (accepted) {
+		console.log(`User accepted notifications: ${accepted}`);
+	});
+// #v-endif
+
 	// shortcut
 	document.addEventListener("keydown", makeHotkey(hotkeys));
+// #v-ifdef VITE_CAPACITOR
+}
+// #v-else
 })();
+// #v-endif

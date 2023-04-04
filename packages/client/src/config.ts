@@ -1,11 +1,20 @@
+import { $i } from "@/account";
+// #v-ifdef VITE_CAPACITOR
+const address = $i ? new URL($i.instanceUrl) : null;
+// #v-else
 const address = new URL(location.href);
+// #v-endif
 const siteName = (
 	document.querySelector('meta[property="og:site_name"]') as HTMLMetaElement
 )?.content;
 
-export const host = address.host;
-export const hostname = address.hostname;
+export const host = address?.host;
+export const hostname = address?.hostname;
+// #v-ifdef VITE_CAPACITOR
+export const url = $i?.instanceUrl;
+// #v-else
 export const url = address.origin;
+// #v-endif
 export const apiUrl = `${url}/api`;
 export const wsUrl = `${url
 	.replace("http://", "ws://")

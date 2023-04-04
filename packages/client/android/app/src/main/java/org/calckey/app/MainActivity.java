@@ -1,6 +1,13 @@
 package org.calckey.app;
 
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.webkit.WebSettings;
+
 import com.getcapacitor.BridgeActivity;
+import com.getcapacitor.Plugin;
+
+import java.util.ArrayList;
 
 public class MainActivity extends BridgeActivity {
 	void setDarkMode() {
@@ -33,16 +40,5 @@ public class MainActivity extends BridgeActivity {
   public void onResume() {
     super.onResume();
     setDarkMode();
-  }
-
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    // Initializes the Bridge
-    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
-      // Additional plugins you've installed go here
-      // Ex: add(TotallyAwesomePlugin.class);
-    }});
   }
 }

@@ -1,6 +1,12 @@
 <template>
 <img v-if="customEmoji" class="mk-emoji custom" :class="{ normal, noStyle }" :src="url" :alt="alt" :title="alt" decoding="async"/>
-<img v-else-if="char && !useOsNativeEmojis" class="mk-emoji" :src="url" :alt="alt" :title="alt" decoding="async"/>
+<img v-else-if="char && !useOsNativeEmojis" class="mk-emoji" 
+// #v-ifdef VITE_CAPACITOR
+	:src="char2path(char)"
+	// #v-else
+	:src="url"
+	// #v-endif
+ 	:alt="alt" :title="alt" decoding="async"/>
 <span v-else-if="char && useOsNativeEmojis">{{ char }}</span>
 <span v-else>{{ emoji }}</span>
 </template>
@@ -12,6 +18,7 @@ import { getStaticImageUrl } from '@/scripts/get-static-image-url';
 import { char2filePath } from '@/scripts/twemoji-base';
 import { defaultStore } from '@/store';
 import { instance } from '@/instance';
+import { url as instanceUrl } from "@/config";
 
 const props = defineProps<{
 	emoji: string;
@@ -28,7 +35,10 @@ const ce = computed(() => props.customEmojis ?? instance.emojis ?? []);
 const customEmoji = computed(() => isCustom.value ? ce.value.find(x => x.name === props.emoji.substr(1, props.emoji.length - 2)) : null);
 const url = computed(() => {
 	if (char.value) {
+// #v-ifdef VITE_CAPACITOR
+// #v-else
 		return char2filePath(char.value);
+// #v-endif
 	} else {
 		return defaultStore.state.disableShowingAnimatedImages
 			? getStaticImageUrl(customEmoji.value.url)

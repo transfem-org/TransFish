@@ -1,4 +1,56 @@
 <template>
+// #v-ifdef VITE_CAPACITOR
+  <form class="eppvobhk" :class="{ signing }" @submit.prevent="onSubmit">
+    <div class="normal-signin">
+      {{ i18n.ts.ririca.instance }}
+      <MkSelect v-model="instanceUrl" large :model-value="instances[0]?.url">
+        <option value="other">
+          {{ i18n.ts.ririca.selectInstanceYourself }}
+        </option>
+        <option
+          v-for="(instance, i) in instances"
+          :key="instance.url"
+          :value="instance.url"
+          :selected="i === 0"
+        >
+          {{ instance.name }}
+        </option>
+      </MkSelect>
+      <template v-if="instanceUrl === 'other'">
+        URL
+			<MkInput
+          v-model="instanceUrlOther"
+					:spellcheck="false"
+					autofocus
+					required
+			/>
+      </template>
+      {{ i18n.ts.ririca.accessToken }}
+      <MkInput
+        v-model="token"
+        :spellcheck="false"
+        autofocus
+        required
+        data-cy-signin-username
+      ></MkInput>
+      <MkButton
+        class="_formBlock"
+        type="submit"
+        primary
+        :disabled="signing"
+        style="margin: 0 auto"
+      >
+        {{ signing ? i18n.ts.loggingIn : i18n.ts.login }}
+      </MkButton>
+		</div>
+    <div style="display: flex; justify-content: center"></div>
+       <a
+        href="https://misskey.io/notes/99l9jqqun2"
+        target="_blank"
+        style="color: var(--link); text-align: center"
+        >{{ i18n.ts.ririca.howToCreateToken }}</a>
+</form>
+// #v-else
 <form class="eppvobhk _monolithic_" :class="{ signing, totpLogin }" @submit.prevent="onSubmit">
 	<div class="auth _section _formRoot">
 		<div v-show="withAvatar" class="avatar" :style="{ backgroundImage: user ? `url('${ user.avatarUrl }')` : null, marginBottom: message ? '1.5em' : null }"></div>
@@ -46,9 +98,11 @@
 		<a v-if="meta && meta.enableDiscordIntegration" class="_borderButton _gap" :href="`${apiUrl}/signin/discord`"><i class="ph-discord-logo ph-bold ph-lg" style="margin-right: 4px;"></i>{{ i18n.t('signinWith', { x: 'Discord' }) }}</a>
 	</div>
 </form>
+// #v-endif
 </template>
 
 <script lang="ts" setup>
+import MkSelect from "@/components/form/select.vue";
 import { defineAsyncComponent } from 'vue';
 import { toUnicode } from 'punycode/';
 import { showSuspendedDialog } from '../scripts/show-suspended-dialog';
@@ -67,13 +121,22 @@ let user = $ref(null);
 let username = $ref('');
 let password = $ref('');
 let token = $ref('');
+// #v-ifdef VITE_CAPACITOR
+//...
+// #v-else
 let host = $ref(toUnicode(configHost));
 let totpLogin = $ref(false);
+// #v-endif
 let credential = $ref(null);
 let challengeData = $ref(null);
 let queryingKey = $ref(false);
 let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
+
+// #v-ifdef VITE_CAPACITOR
+const instanceUrl = $ref("");
+const instanceUrlOther = $ref("");
+// #v-endif
 
 const meta = $computed(() => instance);
 
@@ -111,10 +174,24 @@ function onUsernameChange() {
 
 function onLogin(res) {
 	if (props.autoSet) {
+		// #v-ifdef VITE_CAPACITOR
+		return login(res.i, res.instance);
+		// #v-else
 		return login(res.i);
+		// #v-endif
 	}
 }
-
+// #v-ifdef VITE_CAPACITOR
+const instanceUrlResult = $computed(() => {
+  if (instanceUrl === "other") {
+    // うっかりhttps://を入れてもreplaceされるから大丈夫
+    // new URL.origin
+    return new URL("https://" + instanceUrlOther.replace("https://", ""))
+      .origin;
+  }
+  return "https://" + instanceUrl;
+});
+// #v-endif
 function queryKey() {
 	queryingKey = true;
 	return navigator.credentials.get({
@@ -145,8 +222,13 @@ function queryKey() {
 			'g-recaptcha-response': reCaptchaResponse,
 		});
 	}).then(res => {
+		// #v-ifdef VITE_CAPACITOR
+		emit("login", { ...res, instance: instanceUrl });
+		return onLogin({ ...res, instance: instanceUrl });
+		// #v-else
 		emit('login', res);
 		return onLogin(res);
+		// #v-endif
 	}).catch(err => {
 		if (err === null) return;
 		os.alert({
@@ -160,6 +242,11 @@ function queryKey() {
 function onSubmit() {
 	signing = true;
 	console.log('submit');
+	// #v-ifdef VITE_CAPACITOR
+	if (!token.valueOf()) {
+    login(token, instanceUrlResult);
+    signing = false;
+	// #v-else
 	if (!totpLogin && user && user.twoFactorEnabled) {
 		if (window.PublicKeyCredential && user.securityKeys) {
 			os.api('signin', {
@@ -188,6 +275,7 @@ function onSubmit() {
 			emit('login', res);
 			onLogin(res);
 		}).catch(loginFailed);
+		// #v-endif
 	}
 }
 
@@ -240,6 +328,15 @@ function resetPassword() {
 	os.popup(defineAsyncComponent(() => import('@/components/MkForgotPassword.vue')), {}, {
 	}, 'closed');
 }
+
+// #v-ifdef VITE_CAPACITOR
+let instances = $ref([]);
+fetch("https://api.calckey.org/instances.json").then((res) => {
+  res.json().then((data) => {
+    instances = data.instancesInfos;
+  });
+});
+// #v-endif
 </script>
 
 <style lang="scss" scoped>

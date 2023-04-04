@@ -15,6 +15,9 @@ import lightTheme from "@/themes/_light.json5";
 import darkTheme from "@/themes/_dark.json5";
 import { deepClone } from "./clone";
 
+import { StatusBar, Style } from "@capacitor/status-bar";
+import { storedDeviceInfo } from "@/init";
+
 export const themeProps = Object.keys(lightTheme.props).filter(
 	(key) => !key.startsWith("X"),
 );
@@ -140,6 +143,13 @@ function compile(theme: Theme): Record<string, string> {
 					return color.saturate(arg);
 			}
 		}
+		// #v-ifdef VITE_CAPACITOR
+		if (storedDeviceInfo.platform === "ios") {
+			StatusBar.setStyle({
+			  style: theme.base === "dark" ? Style.Dark : Style.Light,
+			});
+		}
+		// #v-endif
 
 		// other case
 		return tinycolor(val);

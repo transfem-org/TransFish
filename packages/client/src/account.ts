@@ -4,6 +4,7 @@ import { showSuspendedDialog } from "./scripts/show-suspended-dialog";
 import { i18n } from "./i18n";
 import { del, get, set } from "@/scripts/idb-proxy";
 // #v-ifdef VITE_CAPACITOR
+//...
 // #v-else
 import { apiUrl } from "@/config";
 // #v-endif
@@ -44,6 +45,7 @@ export async function signout() {
 
 	const accounts = await getAccounts();
 // #v-ifdef VITE_CAPACITOR
+//...
 // #v-else
 	//#region Remove service worker registration
 	try {
@@ -117,7 +119,32 @@ export async function removeAccount(id: Account["id"]) {
 	if (accounts.length > 0) await set("accounts", accounts);
 	else await del("accounts");
 }
-
+// #v-ifdef VITE_CAPACITOR
+function fetchAccount(
+  token: string,
+  instanceUrl: string
+): Promise<Account & { instanceUrl: string }> {
+  return new misskey.api.APIClient({ origin: instanceUrl, credential: token })
+    .request("i")
+    .then((res) => {
+      return { ...(res as Account), token, instanceUrl };
+    })
+    .catch((res) => {
+      if (res.error.id === "a8c724b3-6e9c-4b46-b1a8-bc3ed6258370") {
+        showSuspendedDialog().then(() => {
+          signout();
+        });
+      } else {
+        alert({
+          type: "error",
+          title: i18n.ts.failedToFetchAccountInformation,
+          text: JSON.stringify(res.error),
+        });
+      }
+      return Promise.reject(res);
+    });
+}
+// #v-else
 function fetchAccount(token: string): Promise<Account> {
 	return new Promise((done, fail) => {
 		// Fetch user
@@ -149,32 +176,7 @@ function fetchAccount(token: string): Promise<Account> {
 			.catch(fail);
 	});
 }
-
-function fetchAccount(
-  token: string,
-  instanceUrl: string
-): Promise<Account & { instanceUrl: string }> {
-  return new misskey.api.APIClient({ origin: instanceUrl, credential: token })
-    .request("i")
-    .then((res) => {
-      return { ...(res as Account), token, instanceUrl };
-    })
-    .catch((res) => {
-      if (res.error.id === "a8c724b3-6e9c-4b46-b1a8-bc3ed6258370") {
-        showSuspendedDialog().then(() => {
-          signout();
-        });
-      } else {
-        alert({
-          type: "error",
-          title: i18n.ts.failedToFetchAccountInformation,
-          text: JSON.stringify(res.error),
-        });
-      }
-      return Promise.reject(res);
-    });
-}
-
+// #v-endif
 export function updateAccount(accountData: Object) {
 	for (const [key, value] of Object.entries(accountData)) {
 		$i[key] = value;
@@ -325,11 +327,30 @@ export async function openAccountMenu(
 	const accountItemPromises = storedAccounts.map(
 		(a) =>
 			new Promise((res) => {
+				// #v-ifdef VITE_CAPACITOR
+				const client = new misskey.api.APIClient({
+					 origin: a.instanceUrl,
+					  credential: a.token,
+				});
+				client
+          .request("users/show", {
+            userIds: [a.id],
+          })
+          .then((accounts) => {
+            const account = accounts.find((x) => x.id === a.id);
+            if (account == null) return res(null);
+
+            client.request("meta").then((meta) => {
+              res(createItem({ ...account, host: meta.name }));
+            });
+          });
+				// #v-else
 				accountsPromise.then((accounts) => {
 					const account = accounts.find((x) => x.id === a.id);
 					if (account == null) return res(null);
 					res(createItem(account));
 				});
+				// #v-endif
 			}),
 	);
 
@@ -357,12 +378,16 @@ export async function openAccountMenu(
 									showSigninDialog();
 								},
 							},
+							// #v-ifdef VITE_CAPACITOR
+							//...
+							// #v-else
 							{
 								text: i18n.ts.createAccount,
 								action: () => {
 									createAccount();
 								},
 							},
+							// #v-endif
 						],
 					},
 					{

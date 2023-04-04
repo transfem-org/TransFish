@@ -78,6 +78,9 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
+// #v-ifdef VITE_CAPACITOR
+import { Camera } from "@capacitor/camera";
+// #v-endif
 
 if (defaultStore.reactiveState.tutorial.value !== -1) {
 	os.popup(XTutorial, {}, {}, 'closed');
@@ -338,6 +341,13 @@ function syncSlide(index) {
 onMounted(() => {
 	syncSlide(timelines.indexOf(swiperRef.activeIndex));
 });
+
+// #v-ifdef VITE_CAPACITOR
+const permissionState = await Camera.checkPermissions();
+if (!permissionState.camera) {
+  Camera.requestPermissions({ permissions: ["photos", "camera"] });
+}
+// #v-endif
 
 </script>
 

@@ -1,8 +1,16 @@
 <template>
+	// #v-ifdef VITE_CAPACITOR
+<div class="rsqzvsbo">
+	// #v-else
 <div v-if="meta" class="rsqzvsbo">
+	// #v-endif
 	<div class="top">
+		// #v-ifdef VITE_CAPACITOR
+		//...
+		// #v-else
 		<MkFeaturedPhotos class="bg"/>
 		<XTimeline class="tl"/>
+		// #v-endif
 		<div class="shape1"></div>
 		<div class="shape2"></div>
 		<img src="/client-assets/misskey.svg" class="misskey"/>
@@ -20,20 +28,46 @@
 			<MkEmoji :normal="true" :no-style="true" emoji="🍮"/>
 		</div>
 		<div class="main">
+			// #v-ifdef VITE_CAPACITOR
+			//...
+			// #v-else
 			<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
+			// #v-endif
 			<button class="_button _acrylic menu" @click="showMenu"><i class="ph-dots-three-outline ph-bold ph-lg"></i></button>
 			<div class="fg">
 				<h1>
+					// #v-ifdef VITE_CAPACITOR
+					<span class="text">Calckey Mobile</span>
+					// #v-else
 					<img class="logo" v-if="meta.logoImageUrl" :src="meta.logoImageUrl">
 					<span v-else class="text">{{ instanceName }}</span>
+					// #v-endif
 				</h1>
 				<div class="about">
+					// #v-ifdef VITE_CAPACITOR
+					<div class="desc" v-html="i18n.ts.headlineMisskey"></div>
+					// #v-else
 					<div class="desc" v-html="meta.description || i18n.ts.headlineMisskey"></div>
+					// #v-endif
 				</div>
 				<div class="action">
+					// #v-ifdef VITE_CAPACITOR
+					<div>
+              <input id="term" v-model="isTerm" type="checkbox" /><label
+                for="term"
+              >
+                Agree to Privacy Policy and Terms of Use</label
+              ><br />
+              <a href="https://riinswork.space/missRirica/privacy/">
+                Read Privacy Policy and Terms of Use
+              </a>
+            </div>
+					<MkButton inline rounded data-cy-signin :disabled="!isTerm" @click="signin()">{{ i18n.ts.login }}</MkButton>
+					// #v-else
 					<MkButton inline rounded gradate data-cy-signup style="margin-right: 12px;" @click="signup()">{{ i18n.ts.signup }}</MkButton>
 					<MkButton inline rounded data-cy-signin @click="signin()">{{ i18n.ts.login }}</MkButton>
 					<MkButton inline rounded style="margin-left: 12px; margin-top: 12px;" onclick="window.location.href='/explore'">Explore</MkButton>
+					// #v-endif
 				</div>
 			</div>
 		</div>
@@ -60,16 +94,23 @@ import MkButton from '@/components/MkButton.vue';
 import XNote from '@/components/MkNote.vue';
 import MkFeaturedPhotos from '@/components/MkFeaturedPhotos.vue';
 import { host, instanceName } from '@/config';
+import { ref, watch } from "vue";
 import * as os from '@/os';
-import number from '@/filters/number';
 import { i18n } from '@/i18n';
+import { langs as _langs } from "@/config";
 
+const langs = ref(_langs);
+const lang = ref(localStorage.getItem("lang"));
+
+let isTerm = $ref();
 let meta = $ref();
 let stats = $ref();
 let tags = $ref();
 let onlineUsersCount = $ref();
 let instances = $ref();
-
+// #v-ifdef VITE_CAPACITOR
+//...
+// #v-else
 os.api('meta', { detail: true }).then(_meta => {
 	meta = _meta;
 });
@@ -95,19 +136,22 @@ os.api('federation/instances', {
 }).then(_instances => {
 	instances = _instances;
 });
-
+// #v-endif
 function signin() {
 	os.popup(XSigninDialog, {
 		autoSet: true,
 	}, {}, 'closed');
 }
 
+// #v-ifdef VITE_CAPACITOR
+//...
+// #v-else
 function signup() {
 	os.popup(XSignupDialog, {
 		autoSet: true,
 	}, {}, 'closed');
 }
-
+// #v-endif
 function showMenu(ev) {
 	os.popupMenu([{
 		text: i18n.ts.instanceInfo,
@@ -123,6 +167,34 @@ function showMenu(ev) {
 		},
 	}], ev.currentTarget ?? ev.target);
 }
+// #v-ifdef VITE_CAPACITOR
+watch(lang, () => {
+  localStorage.setItem("lang", lang.value as string);
+  localStorage.removeItem("locale");
+});
+
+watch([lang], async () => {
+  await reloadAsk();
+});
+
+async function reloadAsk() {
+  const { canceled } = await os.confirm({
+    type: "info",
+    text: i18n.ts.reloadToApplySetting,
+  });
+  if (canceled) return;
+
+  unisonReload();
+}
+
+function unisonReload(path?: string) {
+  if (path !== undefined) {
+    location.href = path;
+  } else {
+    location.reload();
+  }
+}
+// #v-endif
 </script>
 
 <style lang="scss" scoped>
