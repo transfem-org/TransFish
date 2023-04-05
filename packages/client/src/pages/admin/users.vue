@@ -1,7 +1,7 @@
 <template>
 <div>
 	<MkStickyContainer>
-		<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true" :show-back-button="true"/></template>
+		<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
 		<MkSpacer :content-max="900">
 			<div class="lknzcolw">
 				<div class="users">
