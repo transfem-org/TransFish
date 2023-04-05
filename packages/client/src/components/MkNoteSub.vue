@@ -7,25 +7,25 @@
 	<div v-if="conversation && depth > 1" class="line"></div>
 	<div class="main" @click="noteClick">
 		<div class="avatar-container">
-			<MkAvatar class="avatar" :user="note.user"/>
+			<MkAvatar class="avatar" :user="appearNote.user"/>
 			<div v-if="(!conversation) || replies.length > 0" class="line"></div>
 		</div>
 		<div class="body">
 			<XNoteHeader class="header" :note="note" :mini="true"/>
 			<div class="body">
-				<p v-if="note.cw != null" class="cw">
-					<MkA v-if="note.replyId"  :to="`/notes/${note.replyId}`" class="reply-icon" @click.stop>
+				<p v-if="appearNote.cw != null" class="cw">
+					<MkA v-if="appearNote.replyId"  :to="`/notes/${appearNote.replyId}`" class="reply-icon" @click.stop>
 						<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
 					</MkA>
-					<MkA v-if="conversation && note.renoteId && note.renoteId != parentId && !note.replyId" :to="`/notes/${note.renoteId}`" class="reply-icon" @click.stop>
+					<MkA v-if="conversation && appearNote.renoteId && appearNote.renoteId != parentId && !appearNote.replyId" :to="`/notes/${appearNote.renoteId}`" class="reply-icon" @click.stop>
 						<i class="ph-quotes ph-bold ph-lg"></i>
 					</MkA>
-					<Mfm v-if="note.cw != ''" class="text" :text="note.cw" :author="note.user" :i="$i" :custom-emojis="note.emojis"/>
+					<Mfm v-if="appearNote.cw != ''" class="text" :text="appearNote.cw" :author="appearNote.user" :i="$i" :custom-emojis="appearNote.emojis"/>
 					<br/>
 					<XCwButton v-model="showContent" :note="note"/>
 				</p>
-				<div v-show="note.cw == null || showContent" class="content">
-					<MkSubNoteContent class="text" :note="note" :detailed="true" :parentId="note.parentId" :conversation="conversation"/>
+				<div v-show="appearNote.cw == null || showContent" class="content">
+					<MkSubNoteContent class="text" :note="note" :detailed="true" :parentId="appearNote.parentId" :conversation="conversation"/>
 				</div>
 				<div v-if="translating || translation" class="translation">
 					<MkLoading v-if="translating" mini/>
@@ -56,15 +56,14 @@
 					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 				</button>
 			</footer>
-			<!-- <MkNoteFooter :note="note" :directReplies="replies.length"></MkNoteFooter> -->
 		</div>
 	</div>
 	<template v-if="conversation">
 		<template v-if="replies.length == 1">
-			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth" :parentId="note.replyId"/>
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply single" :conversation="conversation" :depth="depth" :parentId="appearNote.replyId"/>
 		</template>
 		<template v-else-if="depth < 5">
-			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1" :parentId="note.replyId"/>
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" class="reply" :conversation="conversation" :depth="depth + 1" :parentId="appearNote.replyId"/>
 		</template>
 		<div v-else-if="replies.length > 0" class="more">
 			<div class="line"></div>
@@ -456,6 +455,26 @@ function noteClick(e) {
 			mask: linear-gradient(to right, transparent 2px, black 2px);
 			-webkit-mask: linear-gradient(to right, transparent 2px, black 2px);
 		}
+	}
+	// End Reply Divider
+	.children > .main:last-child {
+		padding-bottom: 1em;
+		&::before {
+			bottom: 1em;
+		}
+		// &::after {
+		// 	content: "";
+		// 	border-top: 1px solid var(--X13);
+		// 	position: absolute;
+		// 	bottom: 0;
+		// 	margin-left: calc(var(--avatarSize) + 12px);
+		// 	inset-inline: 0;
+		// }
+	}
+	&.firstColumn > .children:last-child > .main {
+		padding-bottom: 0 !important;
+		&::before { bottom: 0 !important }
+		// &::after { content: unset }
 	}
 
 	&.max-width_500px {

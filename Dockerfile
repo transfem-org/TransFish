@@ -3,7 +3,7 @@ FROM node:19-alpine as build
 WORKDIR /calckey
 
 # Install compilation dependencies
-RUN apk add --no-cache --no-progress git alpine-sdk python3 rust cargo
+RUN apk add --no-cache --no-progress git alpine-sdk python3 rust cargo vips
 
 # Copy only the dependency-related files first, to cache efficiently
 COPY package.json pnpm*.yaml ./
@@ -11,7 +11,8 @@ COPY packages/backend/package.json packages/backend/package.json
 COPY packages/client/package.json packages/client/package.json
 COPY packages/sw/package.json packages/sw/package.json
 COPY packages/backend/native-utils/package.json packages/backend/native-utils/package.json
-COPY packages/backend/native-utils/**/*/package.json packages/backend/native-utils/**/*/package.json
+COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
+COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
 
 # Configure corepack and pnpm
 RUN corepack enable
@@ -47,6 +48,8 @@ COPY --from=build /calckey/packages/client/node_modules /calckey/packages/client
 COPY --from=build /calckey/built /calckey/built
 COPY --from=build /calckey/packages/backend/built /calckey/packages/backend/built
 COPY --from=build /calckey/packages/backend/assets/instance.css /calckey/packages/backend/assets/instance.css
+COPY --from=build /calckey/packages/backend/native-utils/built /calckey/packages/backend/native-utils/built
+COPY --from=build /calckey/packages/backend/native-utils/target /calckey/packages/backend/native-utils/target
 
 RUN corepack enable
 ENTRYPOINT [ "/sbin/tini", "--" ]

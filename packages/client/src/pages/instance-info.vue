@@ -35,8 +35,10 @@
 
 					<FormSection v-if="iAmModerator">
 						<template #label>Moderation</template>
-						<FormSwitch v-model="suspended" class="_formBlock" @update:modelValue="toggleSuspend">{{ i18n.ts.stopActivityDelivery }}</FormSwitch>
-						<FormSwitch v-model="isBlocked" class="_formBlock" @update:modelValue="toggleBlock">{{ i18n.ts.blockThisInstance }}</FormSwitch>
+						<FormSuspense :p="init">
+							<FormSwitch v-model="suspended" class="_formBlock" @update:modelValue="toggleSuspend">{{ i18n.ts.stopActivityDelivery }}</FormSwitch>
+							<FormSwitch v-model="isBlocked" class="_formBlock" @update:modelValue="toggleBlock">{{ i18n.ts.blockThisInstance }}</FormSwitch>
+						</FormSuspense>
 						<MkButton @click="refreshMetadata"><i class="ph-arrows-clockwise ph-bold ph-lg"></i> Refresh metadata</MkButton>
 					</FormSection>
 
@@ -158,6 +160,13 @@ import 'swiper/scss';
 import 'swiper/scss/virtual';
 import { getProxiedImageUrlNullable } from '@/scripts/media-proxy';
 
+type AugmentedInstanceMetadata = misskey.entities.DetailedInstanceMetadata & {
+	blockedHosts: string[];
+};
+type AugmentedInstance = misskey.entities.Instance & {
+	isBlocked: boolean;
+};
+
 const props = defineProps<{
 	host: string;
 }>();
@@ -168,8 +177,8 @@ let tab = $ref(tabs[0]);
 watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
 
 let chartSrc = $ref('instance-requests');
-let meta = $ref<misskey.entities.DetailedInstanceMetadata | null>(null);
-let instance = $ref<misskey.entities.Instance | null>(null);
+let meta = $ref<AugmentedInstanceMetadata | null>(null);
+let instance = $ref<AugmentedInstance | null>(null);
 let suspended = $ref(false);
 let isBlocked = $ref(false);
 let faviconUrl = $ref(null);
@@ -185,19 +194,34 @@ const usersPagination = {
 	offsetMode: true,
 };
 
-async function fetch() {
-	instance = await os.api('federation/show-instance', {
-		host: props.host,
-	});
-	suspended = instance.isSuspended;
-	isBlocked = instance.isBlocked;
-	faviconUrl = getProxiedImageUrlNullable(instance.faviconUrl, 'preview') ?? getProxiedImageUrlNullable(instance.iconUrl, 'preview');
+async function init() {
+	meta = await os.api('admin/meta');
 }
 
-async function toggleBlock(ev) {
+async function fetch() {
+	instance = (await os.api('federation/show-instance', {
+		host: props.host,
+	})) as AugmentedInstance;
+	suspended = instance.isSuspended;
+	isBlocked = instance.isBlocked;
+	faviconUrl =
+		getProxiedImageUrlNullable(instance.faviconUrl, 'preview') ??
+		getProxiedImageUrlNullable(instance.iconUrl, 'preview');
+}
+
+async function toggleBlock() {
 	if (meta == null) return;
+	if (!instance) {
+		throw new Error(`Instance info not loaded`);
+	}
+	let blockedHosts: string[];
+	if (isBlocked) {
+		blockedHosts = meta.blockedHosts.concat([instance.host]);
+	} else {
+		blockedHosts = meta.blockedHosts.filter((x) => x !== instance!.host);
+	}
 	await os.api('admin/update-meta', {
-		blockedHosts: isBlocked ? meta.blockedHosts.concat([instance.host]) : meta.blockedHosts.filter(x => x !== instance.host),
+		blockedHosts,
 	});
 }
 
