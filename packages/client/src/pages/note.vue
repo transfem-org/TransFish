@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :display-back-button="true"/></template>
 	<MkSpacer :content-max="800" :marginMin="6">
 		<div class="fcuexfpr">
 			<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
