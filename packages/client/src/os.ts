@@ -16,7 +16,7 @@ export const pendingApiRequestsCount = ref(0);
 
 const apiClient = new Misskey.api.APIClient({
 	// #v-ifdef VITE_CAPACITOR
-	origin: $i?.instanceUrl || window.location.origin,
+	origin: $i?.instanceUrl || url || window.location.origin,
 	// #v-else
 	origin: url,
 	// #v-endif

@@ -1,6 +1,6 @@
 import { $i } from "@/account";
 // #v-ifdef VITE_CAPACITOR
-const address = $i ? new URL($i.instanceUrl) : null;
+const address = $i ? new URL($i.instanceUrl) : "localhost";
 // #v-else
 const address = new URL(location.href);
 // #v-endif
