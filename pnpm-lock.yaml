@@ -593,38 +593,38 @@ importers:
   packages/client:
     dependencies:
       '@capacitor/android':
-        specifier: ^4.7.3
+        specifier: ^4.0.0
         version: 4.7.3(@capacitor/core@4.7.3)
       '@capacitor/app':
-        specifier: ^4.1.1
+        specifier: ^4.0.0
         version: 4.1.1(@capacitor/core@4.7.3)
       '@capacitor/camera':
-        specifier: ^4.1.4
+        specifier: ^4.0.0
         version: 4.1.4(@capacitor/core@4.7.3)
       '@capacitor/core':
-        specifier: ^4.7.3
+        specifier: ^4.0.0
         version: 4.7.3
       '@capacitor/device':
-        specifier: ^4.1.0
+        specifier: ^4.0.0
         version: 4.1.0(@capacitor/core@4.7.3)
       '@capacitor/ios':
-        specifier: ^4.7.3
+        specifier: ^4.0.0
         version: 4.7.3(@capacitor/core@4.7.3)
       '@capacitor/preferences':
-        specifier: ^4.0.2
+        specifier: ^4.0.0
         version: 4.0.2(@capacitor/core@4.7.3)
       '@capacitor/push-notifications':
-        specifier: ^4.1.2
+        specifier: ^4.0.0
         version: 4.1.2(@capacitor/core@4.7.3)
       '@capacitor/status-bar':
-        specifier: ^4.1.1
+        specifier: ^4.0.0
         version: 4.1.1(@capacitor/core@4.7.3)
       onesignal-cordova-plugin:
         specifier: ^3.3.1
         version: 3.3.1
     devDependencies:
       '@capacitor/cli':
-        specifier: ^4.7.3
+        specifier: ^4.0.0
         version: 4.7.3
       '@discordapp/twemoji':
         specifier: 14.0.2
