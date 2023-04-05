@@ -1,16 +1,14 @@
 <template>
-<div>
-	<MkSpacer :content-max="800">
-		<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
+<MkSpacer :content-max="800">
+	<div class="pages-user-clips">
+		<MkPagination v-slot="{items}" ref="list" :pagination="pagination" class="list">
 			<MkA v-for="item in items" :key="item.id" :to="`/clips/${item.id}`" class="item _panel _gap">
-				<div class="_panel">
-					<b>{{ item.name }}</b>
-					<Mfm v-if="item.description" class="description" :text="item.description"/>
-				</div>
+				<b>{{ item.name }}</b>
+				<div v-if="item.description" class="description">{{ item.description }}</div>
 			</MkA>
 		</MkPagination>
-	</MkSpacer>
-</div>
+	</div>
+</MkSpacer>
 </template>
 
 <script lang="ts" setup>
@@ -32,5 +30,18 @@ const pagination = {
 </script>
 
 <style lang="scss" scoped>
+.pages-user-clips {
+	> .list {
+		> .item {
+			display: block;
+			padding: 16px;
 
+			> .description {
+				margin-top: 8px;
+				padding-top: 8px;
+				border-top: solid 0.5px var(--divider);
+			}
+		}
+	}
+}
 </style>

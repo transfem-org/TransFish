@@ -1,11 +1,9 @@
 <template>
-<div>
-	<MkSpacer :content-max="800">
-		<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
-			<MkPagePreview v-for="page in items" :key="page.id" :page="page" class="_gap"/>
-		</MkPagination>
-	</MkSpacer>
-</div>
+<MkSpacer :content-max="800">
+	<MkPagination v-slot="{items}" ref="list" :pagination="pagination">
+		<MkPagePreview v-for="page in items" :key="page.id" :page="page" class="_gap"/>
+	</MkPagination>
+</MkSpacer>
 </template>
 
 <script lang="ts" setup>

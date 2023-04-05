@@ -41,6 +41,7 @@ import { scrollToTop } from '@/scripts/scroll';
 import { globalEvents } from '@/events';
 import { injectPageMetadata } from '@/scripts/page-metadata';
 import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
+import { i18n } from '@/i18n';
 
 type Tab = {
 	key?: string | null;
@@ -140,6 +141,10 @@ function onTabClick(tab: Tab, ev: MouseEvent): void {
 	if (tab.key) {
 		emit('update:tab', tab.key);
 	}
+}
+
+function goBack(): void {
+	window.history.back();
 }
 
 const calcBg = () => {
