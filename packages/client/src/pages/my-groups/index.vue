@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :show-back-button="true"/></template>
 	<MkSpacer :content-max="800" :margin-min="20">
 		<MkButton primary style="margin: 0 auto var(--margin) auto;" @click="create"><i class="ph-plus ph-bold ph-lg"></i> {{ i18n.ts.createGroup }}</MkButton>
 		<MkPagination v-slot="{items}" ref="owned" :pagination="ownedPagination">

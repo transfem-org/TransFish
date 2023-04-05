@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
 	<MkSpacer :content-max="700">
 		<div class="ieepwinx">
 			<MkButton :link="true" to="/my/antennas/create" primary class="add"><i class="ph-plus ph-bold ph-lg"></i> {{ i18n.ts.add }}</MkButton>

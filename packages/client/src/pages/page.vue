@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
 	<MkSpacer :content-max="800">
 		<transition :name="$store.state.animation ? 'fade' : ''" mode="out-in">
 			<div v-if="page" :key="page.id" v-size="{ max: [450] }" class="xcukqgmh">
