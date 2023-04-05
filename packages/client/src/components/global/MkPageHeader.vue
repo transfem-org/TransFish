@@ -1,6 +1,6 @@
 <template>
 	<div v-if="show" ref="el" class="fdidabkb" :class="{ slim: narrow, thin: thin_ }" :style="{ background: bg }" @click="onClick">
-		<i @click="window.history.back()" v-if="props.displayBackButton" v-tooltip.noDelay="i18n.ts.goBack" class="icon backButton ph-caret-left ph-bold ph-lg"></i>
+		<i @click="goBack()" v-if="props.displayBackButton" v-tooltip.noDelay="i18n.ts.goBack" class="icon backButton ph-caret-left ph-bold ph-lg"></i>
 		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
 			<MkAvatar v-if="props.displayMyAvatar && $i" class="avatar" :user="$i" :disable-preview="true"/>
 		</div>
@@ -119,6 +119,15 @@ function onTabMousedown(tab: Tab, ev: MouseEvent): void {
 	// ユーザビリティの観点からmousedown時にはonClickは呼ばない
 	if (tab.key) {
 		emit('update:tab', tab.key);
+	}
+}
+
+function goBack() {
+	try {
+		history.back();
+	}
+	catch {
+		window.history.back()
 	}
 }
 
