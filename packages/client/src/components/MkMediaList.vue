@@ -126,16 +126,6 @@ onMounted(() => {
 			return;
 		}
 	});
-
-	lightbox.on('beforeOpen', () => {
-		history.pushState(null, '', '#pswp');
-	});
-
-	lightbox.on('close', () => {
-		if (window.location.hash === '#pswp') {
-			history.back();
-		}
-	});
 });
 
 const previewable = (file: misskey.entities.DriveFile): boolean => {
