@@ -5,7 +5,7 @@
 			v-model:tab="tab"
 			:actions="headerActions"
 			:tabs="headerTabs"
-			:show-back-button="true"
+			:display-back-button="true"
 		/>
 	</template>
 	<div>

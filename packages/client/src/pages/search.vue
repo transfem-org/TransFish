@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
+	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs" :display-back-button="true"/></template>
 	<MkSpacer :content-max="800">
 		<swiper
 				:modules="[Virtual]"

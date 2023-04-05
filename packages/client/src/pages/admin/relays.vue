@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :display-back-button="true"/></template>
 	<MkSpacer :content-max="800">
 		<div v-for="relay in relays" :key="relay.inbox" class="relaycxt _panel _block" style="padding: 16px;">
 			<div>{{ relay.inbox }}</div>

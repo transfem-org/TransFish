@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
+	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :display-back-button="true"/></template>
 	<MkSpacer :content-max="900">
 		<div class="ztgjmzrw">
 			<section v-for="announcement in announcements" class="_card _gap announcements">
