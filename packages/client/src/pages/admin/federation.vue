@@ -1,7 +1,7 @@
 <template>
 <div>
 	<MkStickyContainer>
-		<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+		<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
 		<MkSpacer :content-max="900">
 			<XFederation/>
 		</MkSpacer>

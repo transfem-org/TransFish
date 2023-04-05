@@ -1,6 +1,6 @@
 <template>
 <MkStickyContainer>
-	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs"/></template>
+	<template #header><MkPageHeader v-model:tab="tab" :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
 	<MkSpacer :content-max="800">
 		<XQueue v-if="tab === 'deliver'" domain="deliver"/>
 		<XQueue v-else-if="tab === 'inbox'" domain="inbox"/>

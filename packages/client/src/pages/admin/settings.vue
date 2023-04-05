@@ -1,7 +1,7 @@
 <template>
 <div>
 	<MkStickyContainer>
-		<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
+		<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs" :show-back-button="true"/></template>
 		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
 			<FormSuspense :p="init">
 				<div class="_formRoot">
