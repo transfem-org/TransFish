@@ -1,6 +1,7 @@
 <template>
 	<div v-if="show" ref="el" class="fdidabkb" :class="{ slim: narrow, thin: thin_ }" :style="{ background: bg }" @click="onClick">
 		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
+		<i @click="history.back()" v-if="props.displayBackButton" class="icon ph-caret-left ph-bold ph-lg"></i>
 		<MkAvatar v-if="props.displayMyAvatar && $i" class="avatar" :user="$i" :disable-preview="true"/>
 	</div>
 	<template v-if="metadata">
@@ -59,6 +60,7 @@ const props = defineProps<{
 	}[];
 	thin?: boolean;
 	displayMyAvatar?: boolean;
+	displayBackButton?: boolean;
 }>();
 
 const emit = defineEmits<{
