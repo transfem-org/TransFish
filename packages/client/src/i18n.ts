@@ -1,8 +1,9 @@
 import { markRaw } from "vue";
-import { locale } from "@/config";
 import { I18n } from "@/scripts/i18n";
 
-export const i18n = markRaw(new I18n(locale));
+const locale = JSON.parse(localStorage.getItem("locale"));
+const loader = new I18n(locale);
+export const i18n = markRaw(loader);
 
 // このファイルに書きたくないけどここに書かないと何故かVeturが認識しない
 declare module "@vue/runtime-core" {

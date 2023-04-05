@@ -3,6 +3,8 @@ import pluginVue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 
 import locales from '../../locales';
+import { dependencies } from './package.json';
+
 import meta from '../../package.json';
 import pluginJson5 from './vite.json5';
 import viteCompression from 'vite-plugin-compression';
@@ -54,9 +56,6 @@ export default defineConfig(({ command, mode }) => {
 
 		build: {
 			target: [
-				'chrome87',
-				'firefox78',
-				'safari14',
 				'es2017',
 			],
 			manifest: 'manifest.json',
@@ -67,8 +66,8 @@ export default defineConfig(({ command, mode }) => {
 				},
 				output: {
 					manualChunks: {
-						vue: ['vue'],
-					},
+						vendor: ['vue'],
+					}
 				},
 			},
 			cssCodeSplit: true,

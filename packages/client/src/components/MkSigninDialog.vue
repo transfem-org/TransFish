@@ -5,7 +5,7 @@
 	@close="onClose"
 	@closed="emit('closed')"
 >
-	<template #header>{{ i18n.ts.login }}</template>
+	<template #header>Login</template>
 
 	<MkSignin :auto-set="autoSet" :message="message" @login="onLogin"/>
 </XModalWindow>

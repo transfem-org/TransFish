@@ -2,10 +2,10 @@
 // #v-ifdef VITE_CAPACITOR
   <form class="eppvobhk" :class="{ signing }" @submit.prevent="onSubmit">
     <div class="normal-signin">
-      {{ i18n.ts.ririca.instance }}
+      Instance
       <MkSelect v-model="instanceUrl" large :model-value="instances[0]?.url">
         <option value="other">
-          {{ i18n.ts.ririca.selectInstanceYourself }}
+          Select other instance
         </option>
         <option
           v-for="(instance, i) in instances"
@@ -25,7 +25,7 @@
 					required
 			/>
       </template>
-      {{ i18n.ts.ririca.accessToken }}
+      Access Token
       <MkInput
         v-model="token"
         :spellcheck="false"
@@ -40,7 +40,7 @@
         :disabled="signing"
         style="margin: 0 auto"
       >
-        {{ signing ? i18n.ts.loggingIn : i18n.ts.login }}
+        {{ signing ? "Logging in" : "Login" }}
       </MkButton>
 		</div>
     <div style="display: flex; justify-content: center"></div>
@@ -48,7 +48,7 @@
         href="https://misskey.io/notes/99l9jqqun2"
         target="_blank"
         style="color: var(--link); text-align: center"
-        >{{ i18n.ts.ririca.howToCreateToken }}</a>
+        >How to create a access token</a>
 </form>
 // #v-else
 <form class="eppvobhk _monolithic_" :class="{ signing, totpLogin }" @submit.prevent="onSubmit">
@@ -243,7 +243,7 @@ function onSubmit() {
 	signing = true;
 	console.log('submit');
 	// #v-ifdef VITE_CAPACITOR
-	if (!token.valueOf()) {
+	if (token.valueOf()) {
     login(token, instanceUrlResult);
     signing = false;
 	// #v-else
@@ -331,7 +331,12 @@ function resetPassword() {
 
 // #v-ifdef VITE_CAPACITOR
 let instances = $ref([]);
-fetch("https://api.calckey.org/instances.json").then((res) => {
+fetch("https://api.calckey.org/instances.json", {
+  mode: 'cors',
+  headers: {
+    'Access-Control-Allow-Origin':'*'
+  }
+}).then((res) => {
   res.json().then((data) => {
     instances = data.instancesInfos;
   });

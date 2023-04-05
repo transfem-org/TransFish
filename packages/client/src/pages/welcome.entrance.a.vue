@@ -6,7 +6,7 @@
 	// #v-endif
 	<div class="top">
 		// #v-ifdef VITE_CAPACITOR
-		//...
+		<!-- aaa -->
 		// #v-else
 		<MkFeaturedPhotos class="bg"/>
 		<XTimeline class="tl"/>
@@ -29,7 +29,7 @@
 		</div>
 		<div class="main">
 			// #v-ifdef VITE_CAPACITOR
-			//...
+			<!-- aaa -->
 			// #v-else
 			<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			// #v-endif
@@ -45,24 +45,27 @@
 				</h1>
 				<div class="about">
 					// #v-ifdef VITE_CAPACITOR
-					<div class="desc" v-html="i18n.ts.headlineMisskey"></div>
+					<div class="desc">🌎 Calckey is an open source, decentralized social media platform that's free forever! 🚀</div>
 					// #v-else
 					<div class="desc" v-html="meta.description || i18n.ts.headlineMisskey"></div>
 					// #v-endif
 				</div>
 				<div class="action">
 					// #v-ifdef VITE_CAPACITOR
-					<div>
-              <input id="term" v-model="isTerm" type="checkbox" /><label
-                for="term"
+					<MkButton inline rounded data-cy-signin @click="signin()">Login</MkButton>
+					<MkSelect v-model="lang">
+              <template #label>{{ i18n.ts.uiLanguage }}</template>
+              <p>{{ lang }}</p>
+              <p>{{ langs }}</p>
+              <option
+                v-for="x in langs"
+                :key="x[0]"
+                :value="x[0]"
+                :selected="x[0] === lang"
               >
-                Agree to Privacy Policy and Terms of Use</label
-              ><br />
-              <a href="https://riinswork.space/missRirica/privacy/">
-                Read Privacy Policy and Terms of Use
-              </a>
-            </div>
-					<MkButton inline rounded data-cy-signin :disabled="!isTerm" @click="signin()">{{ i18n.ts.login }}</MkButton>
+                {{ x[1] }}
+              </option>
+            </MkSelect>
 					// #v-else
 					<MkButton inline rounded gradate data-cy-signup style="margin-right: 12px;" @click="signup()">{{ i18n.ts.signup }}</MkButton>
 					<MkButton inline rounded data-cy-signin @click="signin()">{{ i18n.ts.login }}</MkButton>
@@ -90,6 +93,7 @@ import XTimeline from './welcome.timeline.vue';
 import MarqueeText from '@/components/MkMarquee.vue';
 import XSigninDialog from '@/components/MkSigninDialog.vue';
 import XSignupDialog from '@/components/MkSignupDialog.vue';
+import MkSelect from '@/components/form/select.vue';
 import MkButton from '@/components/MkButton.vue';
 import XNote from '@/components/MkNote.vue';
 import MkFeaturedPhotos from '@/components/MkFeaturedPhotos.vue';

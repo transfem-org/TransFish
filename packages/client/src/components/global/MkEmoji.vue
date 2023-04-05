@@ -2,7 +2,7 @@
 <img v-if="customEmoji" class="mk-emoji custom" :class="{ normal, noStyle }" :src="url" :alt="alt" :title="alt" decoding="async"/>
 <img v-else-if="char && !useOsNativeEmojis" class="mk-emoji" 
 // #v-ifdef VITE_CAPACITOR
-	:src="char2path(char)"
+	:src="char2filePath(char)"
 	// #v-else
 	:src="url"
 	// #v-endif
@@ -36,13 +36,15 @@ const customEmoji = computed(() => isCustom.value ? ce.value.find(x => x.name ==
 const url = computed(() => {
 	if (char.value) {
 // #v-ifdef VITE_CAPACITOR
+//...
 // #v-else
 		return char2filePath(char.value);
 // #v-endif
 	} else {
-		return defaultStore.state.disableShowingAnimatedImages
+		const rawUrl = defaultStore.state.disableShowingAnimatedImages
 			? getStaticImageUrl(customEmoji.value.url)
 			: customEmoji.value.url;
+		return rawUrl.startsWith("http") ? rawUrl : instanceUrl + rawUrl;
 	}
 });
 const alt = computed(() => customEmoji.value ? `:${customEmoji.value.name}:` : char.value);
