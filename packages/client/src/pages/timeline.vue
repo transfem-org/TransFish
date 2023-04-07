@@ -49,7 +49,7 @@
 						<XTimeline
 							ref="tl"
 							class="tl"
-							:src="forYouSrc"
+							:src="forYouTab"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -65,7 +65,7 @@
 							v-else
 							ref="tl"
 							class="tl"
-							:src="discoverSrc"
+							:src="discoverTab"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -95,9 +95,6 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
-
-let forYouTab = $ref('home');
-let discoverTab = $ref('hot');
 
 if (defaultStore.reactiveState.tutorial.value !== -1) {
 	os.popup(XTutorial, {}, {}, 'closed');
@@ -168,18 +165,18 @@ const src = $computed({
 		syncSlide(timelines.indexOf(x));
 	},
 });
-const forYouSrc = $computed({
+const forYouTab = $computed({
 	get: () => defaultStore.reactiveState.forYouTl.value.src,
 	set: (x) => saveForYouSrc(x),
 });
-const discoverSrc = $computed({
+const discoverTab = $computed({
 	get: () => defaultStore.reactiveState.discoverTl.value.src,
 	set: (x) => saveDiscoverSrc(x),
 });
 
 watch($$(src), () => (queue = 0));
-watch($$(forYouSrc), () => (queue = 0));
-watch($$(discoverSrc), () => (queue = 0));
+watch($$(forYouTab), () => (queue = 0));
+watch($$(discoverTab), () => (queue = 0));
 
 function queueUpdated(q: number): void {
 	queue = q;
