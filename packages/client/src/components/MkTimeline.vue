@@ -94,7 +94,8 @@ if (props.src === 'antenna') {
 	query = {
 		origin: 'combined',
 		offsetMode: true,
-		days: 30,
+		days: 10,
+		limit: 20,
 	}
 	connection = stream.useChannel('main');
 	connection.on('note', prepend);
