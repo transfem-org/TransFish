@@ -13,7 +13,6 @@
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize instance blocks
   - Build flag to remove NSFW/AI stuff
-  - Timeline filters
   - Filter notifications by user
   - Exclude self from antenna
 - Form
@@ -34,7 +33,7 @@
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility
-- Non-nyaify cat mode
+- Timeline filters
 
 ## Implemented
 
@@ -114,6 +113,11 @@
 - Compile time compression
 - Sonic search
 - Popular color schemes, including Nord, Gruvbox, and Catppuccin
+- Non-nyaify cat mode
+
+## Implemented (remote)
+
+
 - MissV: [fix Misskey Forkbomb](https://code.vtopia.live/Vtopia/MissV/commit/40b23c070bd4adbb3188c73546c6c625138fb3c1)
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)
