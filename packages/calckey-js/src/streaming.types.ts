@@ -1,4 +1,15 @@
-import { Antenna, CustomEmoji, DriveFile, MeDetailed, MessagingMessage, Note, Notification, PageEvent, User, UserGroup } from './entities';
+import {
+	Antenna,
+	CustomEmoji,
+	DriveFile,
+	MeDetailed,
+	MessagingMessage,
+	Note,
+	Notification,
+	PageEvent,
+	User,
+	UserGroup,
+} from "./entities";
 
 type FIXME = any;
 
@@ -15,12 +26,12 @@ export type Channels = {
 			unfollow: (payload: User) => void; // 自分が他人をフォロー解除したとき
 			meUpdated: (payload: MeDetailed) => void;
 			pageEvent: (payload: PageEvent) => void;
-			urlUploadFinished: (payload: { marker: string; file: DriveFile; }) => void;
+			urlUploadFinished: (payload: { marker: string; file: DriveFile }) => void;
 			readAllNotifications: () => void;
 			unreadNotification: (payload: Notification) => void;
-			unreadMention: (payload: Note['id']) => void;
+			unreadMention: (payload: Note["id"]) => void;
 			readAllUnreadMentions: () => void;
-			unreadSpecifiedNote: (payload: Note['id']) => void;
+			unreadSpecifiedNote: (payload: Note["id"]) => void;
 			readAllUnreadSpecifiedNotes: () => void;
 			readAllMessagingMessages: () => void;
 			messagingMessage: (payload: MessagingMessage) => void;
@@ -29,7 +40,7 @@ export type Channels = {
 			unreadAntenna: (payload: Antenna) => void;
 			readAllAnnouncements: () => void;
 			readAllChannels: () => void;
-			unreadChannel: (payload: Note['id']) => void;
+			unreadChannel: (payload: Note["id"]) => void;
 			myTokenRegenerated: () => void;
 			reversiNoInvites: () => void;
 			reversiInvited: (payload: FIXME) => void;
@@ -81,18 +92,18 @@ export type Channels = {
 	};
 	messaging: {
 		params: {
-			otherparty?: User['id'] | null;
-			group?: UserGroup['id'] | null;
+			otherparty?: User["id"] | null;
+			group?: UserGroup["id"] | null;
 		};
 		events: {
 			message: (payload: MessagingMessage) => void;
-			deleted: (payload: MessagingMessage['id']) => void;
-			read: (payload: MessagingMessage['id'][]) => void;
+			deleted: (payload: MessagingMessage["id"]) => void;
+			read: (payload: MessagingMessage["id"][]) => void;
 			typers: (payload: User[]) => void;
 		};
 		receives: {
 			read: {
-				id: MessagingMessage['id'];
+				id: MessagingMessage["id"];
 			};
 		};
 	};
@@ -122,40 +133,45 @@ export type Channels = {
 	};
 };
 
-export type NoteUpdatedEvent = {
-	id: Note['id'];
-	type: 'reacted';
-	body: {
-		reaction: string;
-		userId: User['id'];
-	};
-} | {
-	id: Note['id'];
-	type: 'unreacted';
-	body: {
-		reaction: string;
-		userId: User['id'];
-	};
-} | {
-	id: Note['id'];
-	type: 'deleted';
-	body: {
-		deletedAt: string;
-	};
-} | {
-	id: Note['id'];
-	type: 'pollVoted';
-	body: {
-		choice: number;
-		userId: User['id'];
-	};
-} | {
-    id: Note['id'];
-    type: 'replied';
-    body: {
-        id: Note['id'];
-    };
-};
+export type NoteUpdatedEvent =
+	| {
+			id: Note["id"];
+			type: "reacted";
+			body: {
+				reaction: string;
+				userId: User["id"];
+			};
+	  }
+	| {
+			id: Note["id"];
+			type: "unreacted";
+			body: {
+				reaction: string;
+				userId: User["id"];
+			};
+	  }
+	| {
+			id: Note["id"];
+			type: "deleted";
+			body: {
+				deletedAt: string;
+			};
+	  }
+	| {
+			id: Note["id"];
+			type: "pollVoted";
+			body: {
+				choice: number;
+				userId: User["id"];
+			};
+	  }
+	| {
+			id: Note["id"];
+			type: "replied";
+			body: {
+				id: Note["id"];
+			};
+	  };
 
 export type BroadcastEvents = {
 	noteUpdated: (payload: NoteUpdatedEvent) => void;

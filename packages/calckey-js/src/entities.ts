@@ -11,7 +11,7 @@ export type UserLite = {
 	username: string;
 	host: string | null;
 	name: string;
-	onlineStatus: 'online' | 'active' | 'offline' | 'unknown';
+	onlineStatus: "online" | "active" | "offline" | "unknown";
 	avatarUrl: string;
 	avatarBlurhash: string;
 	alsoKnownAs: string[];
@@ -21,12 +21,12 @@ export type UserLite = {
 		url: string;
 	}[];
 	instance?: {
-		name: Instance['name'];
-		softwareName: Instance['softwareName'];
-		softwareVersion: Instance['softwareVersion'];
-		iconUrl: Instance['iconUrl'];
-		faviconUrl: Instance['faviconUrl'];
-		themeColor: Instance['themeColor'];
+		name: Instance["name"];
+		softwareName: Instance["softwareName"];
+		softwareVersion: Instance["softwareVersion"];
+		iconUrl: Instance["iconUrl"];
+		faviconUrl: Instance["faviconUrl"];
+		themeColor: Instance["themeColor"];
 	};
 };
 
@@ -37,8 +37,8 @@ export type UserDetailed = UserLite & {
 	birthday: string | null;
 	createdAt: DateString;
 	description: string | null;
-	ffVisibility: 'public' | 'followers' | 'private';
-	fields: {name: string; value: string}[];
+	ffVisibility: "public" | "followers" | "private";
+	fields: { name: string; value: string }[];
 	followersCount: number;
 	followingCount: number;
 	hasPendingFollowRequestFromYou: boolean;
@@ -77,12 +77,12 @@ export type UserList = {
 	id: ID;
 	createdAt: DateString;
 	name: string;
-	userIds: User['id'][];
+	userIds: User["id"][];
 };
 
 export type MeDetailed = UserDetailed & {
-	avatarId: DriveFile['id'];
-	bannerId: DriveFile['id'];
+	avatarId: DriveFile["id"];
+	bannerId: DriveFile["id"];
 	autoAcceptFollowed: boolean;
 	alwaysMarkNsfw: boolean;
 	carefulBot: boolean;
@@ -133,15 +133,15 @@ export type Note = {
 	text: string | null;
 	cw: string | null;
 	user: User;
-	userId: User['id'];
+	userId: User["id"];
 	reply?: Note;
-	replyId: Note['id'];
+	replyId: Note["id"];
 	renote?: Note;
-	renoteId: Note['id'];
+	renoteId: Note["id"];
 	files: DriveFile[];
-	fileIds: DriveFile['id'][];
-	visibility: 'public' | 'home' | 'followers' | 'specified';
-	visibleUserIds?: User['id'][];
+	fileIds: DriveFile["id"][];
+	visibility: "public" | "home" | "followers" | "specified";
+	visibleUserIds?: User["id"][];
 	localOnly?: boolean;
 	myReaction?: string;
 	reactions: Record<string, number>;
@@ -176,75 +176,87 @@ export type Notification = {
 	id: ID;
 	createdAt: DateString;
 	isRead: boolean;
-} & ({
-	type: 'reaction';
-	reaction: string;
-	user: User;
-	userId: User['id'];
-	note: Note;
-} | {
-	type: 'reply';
-	user: User;
-	userId: User['id'];
-	note: Note;
-} | {
-	type: 'renote';
-	user: User;
-	userId: User['id'];
-	note: Note;
-} | {
-	type: 'quote';
-	user: User;
-	userId: User['id'];
-	note: Note;
-} | {
-	type: 'mention';
-	user: User;
-	userId: User['id'];
-	note: Note;
-} | {
-	type: 'pollVote';
-	user: User;
-	userId: User['id'];
-	note: Note;
-} | {
-	type: 'follow';
-	user: User;
-	userId: User['id'];
-} | {
-	type: 'followRequestAccepted';
-	user: User;
-	userId: User['id'];
-} | {
-	type: 'receiveFollowRequest';
-	user: User;
-	userId: User['id'];
-} | {
-	type: 'groupInvited';
-	invitation: UserGroup;
-	user: User;
-	userId: User['id'];
-} | {
-	type: 'app';
-	header?: string | null;
-	body: string;
-	icon?: string | null;
-});
+} & (
+	| {
+			type: "reaction";
+			reaction: string;
+			user: User;
+			userId: User["id"];
+			note: Note;
+	  }
+	| {
+			type: "reply";
+			user: User;
+			userId: User["id"];
+			note: Note;
+	  }
+	| {
+			type: "renote";
+			user: User;
+			userId: User["id"];
+			note: Note;
+	  }
+	| {
+			type: "quote";
+			user: User;
+			userId: User["id"];
+			note: Note;
+	  }
+	| {
+			type: "mention";
+			user: User;
+			userId: User["id"];
+			note: Note;
+	  }
+	| {
+			type: "pollVote";
+			user: User;
+			userId: User["id"];
+			note: Note;
+	  }
+	| {
+			type: "follow";
+			user: User;
+			userId: User["id"];
+	  }
+	| {
+			type: "followRequestAccepted";
+			user: User;
+			userId: User["id"];
+	  }
+	| {
+			type: "receiveFollowRequest";
+			user: User;
+			userId: User["id"];
+	  }
+	| {
+			type: "groupInvited";
+			invitation: UserGroup;
+			user: User;
+			userId: User["id"];
+	  }
+	| {
+			type: "app";
+			header?: string | null;
+			body: string;
+			icon?: string | null;
+	  }
+);
 
 export type MessagingMessage = {
 	id: ID;
 	createdAt: DateString;
 	file: DriveFile | null;
-	fileId: DriveFile['id'] | null;
+	fileId: DriveFile["id"] | null;
 	isRead: boolean;
-	reads: User['id'][];
+	reads: User["id"][];
 	text: string | null;
 	user: User;
-	userId: User['id'];
+	userId: User["id"];
 	recipient?: User | null;
-	recipientId: User['id'] | null;
+	recipientId: User["id"] | null;
 	group?: UserGroup | null;
-	groupId: UserGroup['id'] | null;
+	groupId: UserGroup["id"] | null;
 };
 
 export type CustomEmoji = {
@@ -325,7 +337,7 @@ export type Page = {
 	id: ID;
 	createdAt: DateString;
 	updatedAt: DateString;
-	userId: User['id'];
+	userId: User["id"];
 	user: User;
 	content: Record<string, any>[];
 	variables: Record<string, any>[];
@@ -336,7 +348,7 @@ export type Page = {
 	alignCenter: boolean;
 	font: string;
 	script: string;
-	eyeCatchingImageId: DriveFile['id'] | null;
+	eyeCatchingImageId: DriveFile["id"] | null;
 	eyeCatchingImage: DriveFile | null;
 	attachedFiles: any;
 	likedCount: number;
@@ -344,10 +356,10 @@ export type Page = {
 };
 
 export type PageEvent = {
-	pageId: Page['id'];
+	pageId: Page["id"];
 	event: string;
 	var: any;
-	userId: User['id'];
+	userId: User["id"];
 	user: User;
 };
 
@@ -367,7 +379,7 @@ export type Antenna = {
 	name: string;
 	keywords: string[][]; // TODO
 	excludeKeywords: string[][]; // TODO
-	src: 'home' | 'all' | 'users' | 'list' | 'group' | 'instances';
+	src: "home" | "all" | "users" | "list" | "group" | "instances";
 	userListId: ID | null; // TODO
 	userGroupId: ID | null; // TODO
 	users: string[]; // TODO
@@ -394,7 +406,7 @@ export type Clip = TODO;
 export type NoteFavorite = {
 	id: ID;
 	createdAt: DateString;
-	noteId: Note['id'];
+	noteId: Note["id"];
 	note: Note;
 };
 
@@ -412,8 +424,8 @@ export type Channel = {
 export type Following = {
 	id: ID;
 	createdAt: DateString;
-	followerId: User['id'];
-	followeeId: User['id'];
+	followerId: User["id"];
+	followeeId: User["id"];
 };
 
 export type FollowingFolloweePopulated = Following & {
@@ -427,7 +439,7 @@ export type FollowingFollowerPopulated = Following & {
 export type Blocking = {
 	id: ID;
 	createdAt: DateString;
-	blockeeId: User['id'];
+	blockeeId: User["id"];
 	blockee: UserDetailed;
 };
 
@@ -469,10 +481,10 @@ export type Signin = {
 };
 
 export type UserSorting =
-	| '+follower'
-	| '-follower'
-	| '+createdAt'
-	| '-createdAt'
-	| '+updatedAt'
-	| '-updatedAt';
-export type OriginType = 'combined' | 'local' | 'remote';
+	| "+follower"
+	| "-follower"
+	| "+createdAt"
+	| "-createdAt"
+	| "+updatedAt"
+	| "-updatedAt";
+export type OriginType = "combined" | "local" | "remote";

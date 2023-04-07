@@ -1,7 +1,7 @@
 /*
-* For a detailed explanation regarding each configuration property and type check, visit:
-* https://jestjs.io/docs/en/configuration.html
-*/
+ * For a detailed explanation regarding each configuration property and type check, visit:
+ * https://jestjs.io/docs/en/configuration.html
+ */
 
 export default {
 	// All imported modules in your tests should be mocked automatically
@@ -117,9 +117,7 @@ export default {
 	// rootDir: undefined,
 
 	// A list of paths to directories that Jest should use to search for files in
-	roots: [
-		"<rootDir>"
-	],
+	roots: ["<rootDir>"],
 
 	// Allows you to use a custom runner instead of Jest's default test runner
 	// runner: "jest-runner",
@@ -149,7 +147,7 @@ export default {
 	testMatch: [
 		"**/__tests__/**/*.[jt]s?(x)",
 		"**/?(*.)+(spec|test).[tj]s?(x)",
-		"<rootDir>/test/**/*"
+		"<rootDir>/test/**/*",
 	],
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
@@ -174,7 +172,7 @@ export default {
 
 	// A map from regular expressions to paths to transformers
 	transform: {
-		"^.+\\.(ts|tsx)$": "ts-jest"
+		"^.+\\.(ts|tsx)$": "ts-jest",
 	},
 
 	// An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
