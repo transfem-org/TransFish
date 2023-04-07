@@ -31,11 +31,11 @@ export default defineComponent({
 	display: flex;
 	font-size: 90%;
 	border-radius: var(--radius);
-	padding: 10px 8px;
+	margin-top: -10px;
 
 	> button {
 		flex: 1;
-		padding: 10px 8px;
+		padding: 6px;
 		margin: 0 8px;
 		border-radius: var(--radius);
 
@@ -60,14 +60,6 @@ export default defineComponent({
 
 		> .icon {
 			margin-right: 6px;
-		}
-	}
-
-	&.max-width_500px {
-		font-size: 80%;
-
-		> button {
-			padding: 11px 8px;
 		}
 	}
 }
