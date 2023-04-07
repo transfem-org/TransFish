@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-// import XNotes from '@/components/MkNotes.vue';
 import XTimeline from '@/components/MkTimeline.vue';
 import MkTab from '@/components/MkTab.vue';
 import { defaultStore } from '@/store';

@@ -1,14 +1,14 @@
 <template>
-<XNotes ref="tlComponent" :no-gap="!$store.state.showGapBetweenNotesInTimeline" :pagination="pagination" @queue="emit('queue', $event)"/>
+<XNotes ref="tlComponent" :no-gap="!defaultStore.state.showGapBetweenNotesInTimeline" :pagination="pagination" @queue="emit('queue', $event)"/>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, provide, onUnmounted } from 'vue';
+import { computed, provide, onUnmounted } from 'vue';
 import XNotes from '@/components/MkNotes.vue';
-import * as os from '@/os';
 import { stream } from '@/stream';
 import * as sound from '@/scripts/sound';
 import { $i } from '@/account';
+import { defaultStore } from '@/store';
 
 const props = defineProps<{
 	src: string;
@@ -88,6 +88,13 @@ if (props.src === 'antenna') {
 } else if (props.src === 'global') {
 	endpoint = 'notes/global-timeline';
 	connection = stream.useChannel('globalTimeline');
+	connection.on('note', prepend);
+} else if (props.src === 'featured') {
+	endpoint = 'notes/featured';
+	query = {
+		origin: 'combined',
+	}
+	connection = stream.useChannel('main');
 	connection.on('note', prepend);
 } else if (props.src === 'mentions') {
 	endpoint = 'notes/mentions';
