@@ -47,9 +47,26 @@
 							<option v-if="isLocalTimelineAvailable">{{ i18n.ts._timelines.local }}</option>
 						</MkTab>
 						<XTimeline
+							v-if="forYouTab === 'social'"
 							ref="tl"
 							class="tl"
-							:src="forYouTab"
+							src="social"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+						<XTimeline
+							v-else-if="forYouTab === 'home'"
+							ref="tl"
+							class="tl"
+							src="home"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+						<XTimeline
+							v-else-if="forYouTab === 'local'"
+							ref="tl"
+							class="tl"
+							src="local"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -62,10 +79,18 @@
 						</MkTab>
 						<XNotes v-if="discoverTab === 'hot'" :pagination="hotPagination"/>
 						<XTimeline
-							v-else
+							v-else-if="discoverTab === 'recommended'"
 							ref="tl"
 							class="tl"
-							:src="discoverTab"
+							src="recommended"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+						<XTimeline
+							v-else-if="discoverTab === 'global'"
+							ref="tl"
+							class="tl"
+							src="global"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -85,6 +110,7 @@ import XTutorial from '@/components/MkTutorialDialog.vue';
 import XTimeline from '@/components/MkTimeline.vue';
 import MkTab from '@/components/MkTab.vue';
 import XPostForm from '@/components/MkPostForm.vue';
+import XNotes from '@/components/MkNotes.vue';
 import { scroll } from '@/scripts/scroll';
 import * as os from '@/os';
 import { defaultStore } from '@/store';
@@ -133,7 +159,6 @@ if (isGlobalTimelineAvailable) {
 
 let tab = $ref(timelines[0]);
 watch($$(tab), () => (syncSlide(timelines.indexOf(tab))));
-
 
 const hotPagination = {
 	endpoint: 'notes/featured' as const,
