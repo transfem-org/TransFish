@@ -9,7 +9,7 @@
 			v-if="tab === 'hot'"
 			ref="tl"
 			class="tl"
-			src="hot"
+			src="featured"
 			:sound="true"
 		/>
 		<XTimeline
