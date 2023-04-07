@@ -110,7 +110,7 @@
 			</MkA>
 		</template>
 		<template #reason>
-			<b class="_mfm_blur_">{{ muted.matched.join(", ") }}</b>
+			<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 		</template>
 	</I18n>
 </div>
@@ -354,15 +354,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
-._mfm_blur_ {
-	filter: blur(6px);
-	transition: filter 0.3s;
-
-	&:hover {
-		filter: blur(0px);
-	}
-}
-
 .lxwezrsl {
 	font-size: 1.05em;
 	position: relative;

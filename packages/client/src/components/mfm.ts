@@ -14,6 +14,7 @@ import MkA from "@/components/global/MkA.vue";
 import { host } from "@/config";
 import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { reducedMotion } from "@/scripts/reduced-motion";
+import { defaultStore } from "@/store";
 
 export default defineComponent({
 	props: {
@@ -103,7 +104,7 @@ export default defineComponent({
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									style = `font-size: 150%;${
-										this.$store.state.animatedMfm
+										defaultStore.state.animatedMfm
 											? `animation: tada ${speed} linear infinite both;`
 											: ""
 									}`;
@@ -112,7 +113,7 @@ export default defineComponent({
 								case "jelly": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: mfm-rubberBand ${speed} linear infinite both;`
 											: "";
 									break;
@@ -120,7 +121,7 @@ export default defineComponent({
 								case "twitch": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: mfm-twitch ${speed} ease infinite;`
 											: "";
 									break;
@@ -128,7 +129,7 @@ export default defineComponent({
 								case "shake": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: mfm-shake ${speed} ease infinite;`
 											: "";
 									break;
@@ -146,7 +147,7 @@ export default defineComponent({
 										: "mfm-spin";
 									const speed = validTime(token.props.args.speed) || "1.5s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: ${anime} ${speed} linear infinite; animation-direction: ${direction};`
 											: "";
 									break;
@@ -154,7 +155,7 @@ export default defineComponent({
 								case "jump": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: mfm-jump ${speed} linear infinite;`
 											: "";
 									break;
@@ -162,7 +163,7 @@ export default defineComponent({
 								case "bounce": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: mfm-bounce ${speed} linear infinite; transform-origin: center bottom;`
 											: "";
 									break;
@@ -170,13 +171,13 @@ export default defineComponent({
 								case "rainbow": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									style =
-										this.$store.state.animatedMfm && !reducedMotion()
+										defaultStore.state.animatedMfm && !reducedMotion()
 											? `animation: mfm-rainbow ${speed} linear infinite;`
 											: "";
 									break;
 								}
 								case "sparkle": {
-									if (!(this.$store.state.animatedMfm || reducedMotion())) {
+									if (!(defaultStore.state.animatedMfm || reducedMotion())) {
 										return genEl(token.children);
 									}
 									return h(MkSparkle, {}, genEl(token.children));
@@ -239,7 +240,7 @@ export default defineComponent({
 									return h(
 										"span",
 										{
-											class: "_mfm_blur_",
+											class: "_blur_text",
 										},
 										genEl(token.children),
 									);

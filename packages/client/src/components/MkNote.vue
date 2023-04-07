@@ -104,7 +104,7 @@
 			</MkA>
 		</template>
 		<template #reason>
-			<b>{{ muted.matched.join(", ") }}</b>
+			<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 		</template>
 	</I18n>
 </div>
