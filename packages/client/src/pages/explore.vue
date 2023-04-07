@@ -10,12 +10,12 @@
 				:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
-			>
-				<swiper-slide>
-					<XFeatured/>
-				</swiper-slide>
+				>
 				<swiper-slide>
 					<XUsers/>
+				</swiper-slide>
+				<swiper-slide>
+					<XFeatured/>
 				</swiper-slide>
 			</swiper>
 		</MkSpacer>

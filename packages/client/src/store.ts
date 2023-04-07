@@ -125,11 +125,24 @@ export const defaultStore = markRaw(
 		tl: {
 			where: "deviceAccount",
 			default: {
-				src: "home" as "home" | "local" | "social" | "global",
+				src: "forYou" as "forYou" | "discover",
 				arg: null,
 			},
 		},
-
+		forYouTl: {
+			where: "deviceAccount",
+			default: {
+				src: "social" as "home" | "local" | "social",
+				arg: null,
+			},
+		},
+		discoverTl: {
+			where: "deviceAccount",
+			default: {
+				src: "hot" as "hot" | "recommended" | "global",
+				arg: null,
+			},
+		},
 		overridedDeviceKind: {
 			where: "device",
 			default: null as null | "smartphone" | "tablet" | "desktop",

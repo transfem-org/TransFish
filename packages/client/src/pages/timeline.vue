@@ -39,17 +39,33 @@
 					:allow-touch-move="!(deviceKind === 'desktop' && !defaultStore.state.swipeOnDesktop)"
 					@swiper="setSwiperRef"
 					@slide-change="onSlideChange"
-				>
-					<swiper-slide
-						v-for="index in timelines"
-						:key="index"
-						:virtual-index="index"
 					>
+					<swiper-slide>
+						<MkTab v-model="forYouTab" style="margin-bottom: var(--margin);">
+							<option v-if="isLocalTimelineAvailable">{{ i18n.ts._timelines.social }}</option>
+							<option>{{ i18n.ts._timelines.home }}</option>
+							<option v-if="isLocalTimelineAvailable">{{ i18n.ts._timelines.local }}</option>
+						</MkTab>
 						<XTimeline
 							ref="tl"
-							:key="src"
 							class="tl"
-							:src="src"
+							:src="forYouSrc"
+							:sound="true"
+							@queue="queueUpdated"
+						/>
+					</swiper-slide>
+					<swiper-slide>
+						<MkTab v-model="discoverTab" style="margin-bottom: var(--margin);">
+							<option>{{ i18n.ts._timelines.hot }}</option>
+							<option v-if="isRecommendedTimelineAvailable">{{ i18n.ts._timelines.recommended }}</option>
+							<option v-if="isGlobalTimelineAvailable">{{ i18n.ts._timelines.global }}</option>
+						</MkTab>
+						<XNotes v-if="discoverTab === 'hot'" :pagination="hotPagination"/>
+						<XTimeline
+							v-else
+							ref="tl"
+							class="tl"
+							:src="discoverSrc"
 							:sound="true"
 							@queue="queueUpdated"
 						/>
@@ -67,6 +83,7 @@ import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTutorial from '@/components/MkTutorialDialog.vue';
 import XTimeline from '@/components/MkTimeline.vue';
+import MkTab from '@/components/MkTab.vue';
 import XPostForm from '@/components/MkPostForm.vue';
 import { scroll } from '@/scripts/scroll';
 import * as os from '@/os';
@@ -78,6 +95,9 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
 import 'swiper/scss/virtual';
+
+let forYouTab = $ref('home');
+let discoverTab = $ref('hot');
 
 if (defaultStore.reactiveState.tutorial.value !== -1) {
 	os.popup(XTutorial, {}, {}, 'closed');
@@ -94,19 +114,32 @@ const keymap = {
 	t: focus,
 };
 
-let timelines = ['home'];
+let timelines = ['forYou']
+
+if (isRecommendedTimelineAvailable || isGlobalTimelineAvailable) {
+	timelines.push('explore');
+}
+
+let forYouTimelines = ['home'];
+let discoverTimelines = ['hot'];
 
 if (isLocalTimelineAvailable) {
-	timelines.push('local');
+	forYouTimelines.push('local');
+	forYouTimelines.push('social');
 }
 if (isRecommendedTimelineAvailable) {
-	timelines.push('recommended');
-}
-if (isLocalTimelineAvailable) {
-	timelines.push('social');
+	discoverTimelines.push('recommended');
 }
 if (isGlobalTimelineAvailable) {
-	timelines.push('global');
+	discoverTimelines.push('global');
+}
+
+const hotPagination = {
+	endpoint: 'notes/featured' as const,
+	limit: 20,
+	params: {
+		origin: 'combined',
+	}
 }
 
 const MOBILE_THRESHOLD = 500;
@@ -131,15 +164,25 @@ const src = $computed({
 		syncSlide(timelines.indexOf(x));
 	},
 });
+const forYouSrc = $computed({
+	get: () => defaultStore.reactiveState.forYouTl.value.src,
+	set: (x) => saveForYouSrc(x),
+});
+const discoverSrc = $computed({
+	get: () => defaultStore.reactiveState.discoverTl.value.src,
+	set: (x) => saveDiscoverSrc(x),
+});
 
 watch($$(src), () => (queue = 0));
+watch($$(forYouSrc), () => (queue = 0));
+watch($$(discoverSrc), () => (queue = 0));
 
 function queueUpdated(q: number): void {
 	queue = q;
 }
 
 function top(): void {
-	scroll(rootEl, { top: 0 });
+	scroll(rootEl!, { top: 0 });
 }
 
 async function chooseList(ev: MouseEvent): Promise<void> {
@@ -177,21 +220,28 @@ async function chooseAntenna(ev: MouseEvent): Promise<void> {
 }
 
 function saveSrc(
-	newSrc: 'home' | 'local' | 'recommended' | 'social' | 'global',
+	newSrc: 'forYou' | 'discover',
 ): void {
 	defaultStore.set('tl', {
 		...defaultStore.state.tl,
 		src: newSrc,
 	});
 }
-
-async function timetravel(): Promise<void> {
-	const { canceled, result: date } = await os.inputDate({
-		title: i18n.ts.date,
-	});
-	if (canceled) return;
-
-	tlComponent.timetravel(date);
+function saveForYouSrc(
+	newSrc: 'home' | 'local' | 'social',
+): void {
+	defaultStore.set('forYouTl', {
+		...defaultStore.state.forYouTl,
+		src: newSrc
+	})
+}
+function saveDiscoverSrc(
+	newSrc: 'hot' | 'recommended' | 'global',
+): void {
+	defaultStore.set('discoverTl', {
+		...defaultStore.state.discoverTl,
+		src: newSrc
+	})
 }
 
 function focus(): void {
@@ -222,66 +272,24 @@ const headerActions = $computed(() => [
 
 const headerTabs = $computed(() => [
 	{
-		key: 'home',
-		title: i18n.ts._timelines.home,
+		key: 'forYou',
+		title: i18n.ts._timelines.forYou,
 		icon: 'ph-house ph-bold ph-lg',
-		iconOnly: true,
 	},
-	...(isLocalTimelineAvailable
-		? [
-			{
-				key: 'local',
-				title: i18n.ts._timelines.local,
-				icon: 'ph-users ph-bold ph-lg',
-				iconOnly: true,
-			},
-		]
-		: []),
-	...(isRecommendedTimelineAvailable
-		? [
-			{
-				key: 'recommended',
-				title: i18n.ts._timelines.recommended,
-				icon: 'ph-thumbs-up ph-bold ph-lg',
-				iconOnly: true,
-			},
-		]
-		: []),
-	...(isLocalTimelineAvailable
-		? [
-			{
-				key: 'social',
-				title: i18n.ts._timelines.social,
-				icon: 'ph-handshake ph-bold ph-lg',
-				iconOnly: true,
-			},
-		]
-		: []),
-	...(isGlobalTimelineAvailable
-		? [
-			{
-				key: 'global',
-				title: i18n.ts._timelines.global,
-				icon: 'ph-planet ph-bold ph-lg',
-				iconOnly: true,
-			},
-		]
-		: []),
+	{
+		key: 'discover',
+		title: i18n.ts._timelines.discover,
+		icon: 'ph-planet ph-bold ph-lg',
+	}
 ]);
 
 definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.timeline,
 		icon:
-			src === 'local'
-				? 'ph-users ph-bold ph-lg'
-				: src === 'social'
-					? 'ph-handshake ph-bold ph-lg'
-					: src === 'recommended'
-						? 'ph-thumbs-up ph-bold ph-lg'
-						: src === 'global'
-							? 'ph-planet ph-bold ph-lg'
-							: 'ph-house ph-bold ph-lg',
+			src === 'discover'
+				? 'ph-planet ph-bold ph-lg'
+				: 'ph-house ph-bold ph-lg',
 	})),
 );
 
