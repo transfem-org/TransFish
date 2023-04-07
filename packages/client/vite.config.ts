@@ -27,9 +27,13 @@ export default defineConfig(({ command, mode }) => {
 			}),
 			pluginJson5(),
 			tsconfigPaths(),
+			// #v-ifdef VITE_CAPACITOR
+			// ...
+			// #v-else
 			viteCompression({
 				algorithm: 'brotliCompress'
 			}),
+			// #v-endif
 		],
 
 		resolve: {

@@ -123,15 +123,6 @@ function onTabMousedown(tab: Tab, ev: MouseEvent): void {
 	}
 }
 
-function goBack() {
-	try {
-		history.back();
-	}
-	catch {
-		window.history.back()
-	}
-}
-
 function onTabClick(tab: Tab, ev: MouseEvent): void {
 	if (tab.onClick) {
 		ev.preventDefault();
