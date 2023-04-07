@@ -11,7 +11,7 @@
 	<MkSpacer :content-max="800">
 		<div ref="rootEl" v-hotkey.global="keymap" class="cmuxhskf">
 			<XPostForm
-				v-if="$store.reactiveState.showFixedPostForm.value"
+				v-if="defaultStore.reactiveState.showFixedPostForm.value"
 				class="post-form _block"
 				fixed
 			/>
@@ -41,59 +41,10 @@
 					@slide-change="onSlideChange"
 					>
 					<swiper-slide>
-						<MkTab v-model="forYouTab" style="margin-bottom: var(--margin);">
-							<option v-if="isLocalTimelineAvailable">{{ i18n.ts._timelines.social }}</option>
-							<option>{{ i18n.ts._timelines.home }}</option>
-							<option v-if="isLocalTimelineAvailable">{{ i18n.ts._timelines.local }}</option>
-						</MkTab>
-						<XTimeline
-							v-if="forYouTab === 'social'"
-							ref="tl"
-							class="tl"
-							src="social"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-						<XTimeline
-							v-else-if="forYouTab === 'home'"
-							ref="tl"
-							class="tl"
-							src="home"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-						<XTimeline
-							v-else-if="forYouTab === 'local'"
-							ref="tl"
-							class="tl"
-							src="local"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
+						<XForYou/>
 					</swiper-slide>
 					<swiper-slide>
-						<MkTab v-model="discoverTab" style="margin-bottom: var(--margin);">
-							<option>{{ i18n.ts._timelines.hot }}</option>
-							<option v-if="isRecommendedTimelineAvailable">{{ i18n.ts._timelines.recommended }}</option>
-							<option v-if="isGlobalTimelineAvailable">{{ i18n.ts._timelines.global }}</option>
-						</MkTab>
-						<XNotes v-if="discoverTab === 'hot'" :pagination="hotPagination"/>
-						<XTimeline
-							v-else-if="discoverTab === 'recommended'"
-							ref="tl"
-							class="tl"
-							src="recommended"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
-						<XTimeline
-							v-else-if="discoverTab === 'global'"
-							ref="tl"
-							class="tl"
-							src="global"
-							:sound="true"
-							@queue="queueUpdated"
-						/>
+						<XDiscover/>
 					</swiper-slide>
 				</swiper>
 			</div>
@@ -103,20 +54,17 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref, onMounted } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import XTutorial from '@/components/MkTutorialDialog.vue';
-import XTimeline from '@/components/MkTimeline.vue';
-import MkTab from '@/components/MkTab.vue';
 import XPostForm from '@/components/MkPostForm.vue';
-import XNotes from '@/components/MkNotes.vue';
+import XForYou from './timeline.foryou.vue';
+import XDiscover from './timeline.discover.vue';
 import { scroll } from '@/scripts/scroll';
 import * as os from '@/os';
 import { defaultStore } from '@/store';
 import { i18n } from '@/i18n';
-import { instance } from '@/instance';
-import { $i } from '@/account';
 import { definePageMetadata } from '@/scripts/page-metadata';
 import { deviceKind } from '@/scripts/device-kind';
 import 'swiper/scss';
@@ -126,47 +74,7 @@ if (defaultStore.reactiveState.tutorial.value !== -1) {
 	os.popup(XTutorial, {}, {}, 'closed');
 }
 
-const isLocalTimelineAvailable =
-	!instance.disableLocalTimeline ||
-	($i != null && ($i.isModerator || $i.isAdmin));
-const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline;
-const isGlobalTimelineAvailable =
-	!instance.disableGlobalTimeline ||
-	($i != null && ($i.isModerator || $i.isAdmin));
-const keymap = {
-	t: focus,
-};
-
-let timelines = ['forYou'];
-
-if (isRecommendedTimelineAvailable || isGlobalTimelineAvailable) {
-	timelines.push('explore');
-}
-
-let forYouTimelines = ['home'];
-let discoverTimelines = ['hot'];
-
-if (isLocalTimelineAvailable) {
-	forYouTimelines.push('local');
-	forYouTimelines.push('social');
-}
-if (isRecommendedTimelineAvailable) {
-	discoverTimelines.push('recommended');
-}
-if (isGlobalTimelineAvailable) {
-	discoverTimelines.push('global');
-}
-
-let tab = $ref(timelines[0]);
-watch($$(tab), () => (syncSlide(timelines.indexOf(tab))));
-
-const hotPagination = {
-	endpoint: 'notes/featured' as const,
-	limit: 20,
-	params: {
-		origin: 'combined',
-	}
-}
+let timelines = ['forYou', 'discover'];
 
 const MOBILE_THRESHOLD = 500;
 
@@ -179,7 +87,6 @@ window.addEventListener('resize', () => {
 		(deviceKind === 'smartphone' || window.innerWidth <= MOBILE_THRESHOLD);
 });
 
-const tlComponent = $ref<InstanceType<typeof XTimeline>>();
 const rootEl = $ref<HTMLElement>();
 
 let queue = $ref(0);
@@ -190,22 +97,6 @@ const src = $computed({
 		syncSlide(timelines.indexOf(x));
 	},
 });
-const forYouTab = $computed({
-	get: () => defaultStore.reactiveState.forYouTl.value.src,
-	set: (x) => saveForYouSrc(x),
-});
-const discoverTab = $computed({
-	get: () => defaultStore.reactiveState.discoverTl.value.src,
-	set: (x) => saveDiscoverSrc(x),
-});
-
-watch($$(src), () => (queue = 0));
-watch($$(forYouTab), () => (queue = 0));
-watch($$(discoverTab), () => (queue = 0));
-
-function queueUpdated(q: number): void {
-	queue = q;
-}
 
 function top(): void {
 	scroll(rootEl!, { top: 0 });
@@ -253,14 +144,7 @@ function saveSrc(
 		src: newSrc,
 	});
 }
-function saveForYouSrc(
-	newSrc: 'home' | 'local' | 'social',
-): void {
-	defaultStore.set('forYouTl', {
-		...defaultStore.state.forYouTl,
-		src: newSrc
-	})
-}
+
 function saveDiscoverSrc(
 	newSrc: 'hot' | 'recommended' | 'global',
 ): void {
@@ -268,10 +152,6 @@ function saveDiscoverSrc(
 		...defaultStore.state.discoverTl,
 		src: newSrc
 	})
-}
-
-function focus(): void {
-	tlComponent.focus();
 }
 
 const headerActions = $computed(() => [
