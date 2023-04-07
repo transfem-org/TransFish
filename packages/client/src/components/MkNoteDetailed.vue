@@ -1,6 +1,6 @@
 <template>
 <div
-	v-if="!muted"
+	v-if="!muted.muted"
 	v-show="!isDeleted"
 	ref="el"
 	v-hotkey="keymap"
@@ -102,12 +102,15 @@
 	</article>
 	<MkNoteSub v-for="note in directReplies" :key="note.id" :note="note" class="reply" :conversation="replies"/>
 </div>
-<div v-else class="_panel muted" @click="muted = false">
-	<I18n :src="i18n.ts.userSaysSomething" tag="small">
+<div v-else class="_panel muted" @click="muted.muted = false">
+	<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
 		<template #name>
 			<MkA v-user-preview="appearNote.userId" class="name" :to="userPage(appearNote.user)">
 				<MkUserName :user="appearNote.user"/>
 			</MkA>
+		</template>
+		<template #reason>
+			<b>{{ muted.matched.join(", ") }}</b>
 		</template>
 	</I18n>
 </div>
@@ -130,7 +133,7 @@ import MkUrlPreview from '@/components/MkUrlPreview.vue';
 import MkInstanceTicker from '@/components/MkInstanceTicker.vue';
 import MkVisibility from '@/components/MkVisibility.vue';
 import { pleaseLogin } from '@/scripts/please-login';
-import { checkWordMute } from '@/scripts/check-word-mute';
+import { getWordMute } from '@/scripts/check-word-mute';
 import { userPage } from '@/filters/user';
 import { notePage } from '@/filters/note';
 import { useRouter } from '@/router';
@@ -186,7 +189,7 @@ let appearNote = $computed(() => isRenote ? note.renote as misskey.entities.Note
 const isMyRenote = $i && ($i.id === note.userId);
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(checkWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const urls = appearNote.text ? extractUrlFromMfm(mfm.parse(appearNote.text)).slice(0, 5) : null;

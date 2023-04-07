@@ -1,6 +1,6 @@
 <template>
 <div
-	v-if="!muted"
+	v-if="!muted.muted"
 	v-show="!isDeleted"
 	ref="el"
 	v-hotkey="keymap"
@@ -96,12 +96,15 @@
 		</div>
 	</article>
 </div>
-<div v-else class="muted" @click="muted = false">
-	<I18n :src="i18n.ts.userSaysSomething" tag="small">
+<div v-else class="muted" @click="muted.muted = false">
+	<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
 		<template #name>
 			<MkA v-user-preview="appearNote.userId" class="name" :to="userPage(appearNote.user)">
 				<MkUserName :user="appearNote.user"/>
 			</MkA>
+		</template>
+		<template #reason>
+			<b>{{ muted.matched.join(", ") }}</b>
 		</template>
 	</I18n>
 </div>
@@ -126,7 +129,7 @@ import MkUrlPreview from '@/components/MkUrlPreview.vue';
 import MkVisibility from '@/components/MkVisibility.vue';
 import { pleaseLogin } from '@/scripts/please-login';
 import { focusPrev, focusNext } from '@/scripts/focus';
-import { checkWordMute } from '@/scripts/check-word-mute';
+import { getWordMute } from '@/scripts/check-word-mute';
 import { useRouter } from '@/router';
 import { userPage } from '@/filters/user';
 import * as os from '@/os';
@@ -184,7 +187,7 @@ const isLong = (appearNote.cw == null && appearNote.text != null && (
 ));
 const collapsed = ref(appearNote.cw == null && isLong);
 const isDeleted = ref(false);
-const muted = ref(checkWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const urls = appearNote.text ? extractUrlFromMfm(mfm.parse(appearNote.text)).slice(0, 5) : null;
