@@ -19,6 +19,9 @@ const paginationForLocal = {
 	limit: 10,
 	origin: 'local',
 	offsetMode: true,
+	params: {
+		days: 14,
+	}
 };
 
 const paginationForRemote = {
@@ -27,6 +30,7 @@ const paginationForRemote = {
 	offsetMode: true,
 	params: {
 		origin: 'remote',
+		days: 7,
 	}
 }
 

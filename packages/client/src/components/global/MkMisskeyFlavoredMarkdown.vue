@@ -22,15 +22,6 @@ const props = withDefaults(defineProps<{
 </script>
 
 <style lang="scss">
-._mfm_blur_ {
-	filter: blur(6px);
-	transition: filter 0.3s;
-
-	&:hover {
-		filter: blur(0px);
-	}
-}
-
 .mfm-x2 {
 	--mfm-zoom-size: 200%;
 }

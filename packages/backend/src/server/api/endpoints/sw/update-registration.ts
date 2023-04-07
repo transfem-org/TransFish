@@ -13,7 +13,7 @@ export const paramDef = {
 	type: "object",
 	properties: {
 		endpoint: { type: "string" },
-		sendReadMessage: { type: 'boolean' },
+		sendReadMessage: { type: "boolean" },
 	},
 	required: ["endpoint"],
 } as const;
