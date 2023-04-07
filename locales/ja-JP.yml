@@ -1460,11 +1460,13 @@ _instanceCharts:
   files: "ファイル数の増減"
   filesTotal: "ファイル数の累積"
 _timelines:
-  home: "ホーム"
+  home: "フォロー"
+  forYou: "ホーム"
   local: "ローカル"
   recommended: "おすすめ"
   social: "ソーシャル"
   global: "グローバル"
+  hot: "トレンド"
 _pages:
   newPage: "ページの作成"
   editPage: "ページの編集"

@@ -1457,13 +1457,13 @@ _instanceCharts:
   files: "Difference in the number of files"
   filesTotal: "Cumulative number of files"
 _timelines:
-  home: "Home"
+  home: "Follows"
   local: "Local"
   recommended: "Recommended"
   social: "Social"
   global: "Global"
   hot: "Hot"
-  forYou: "For You"
+  forYou: "Home"
   discover: "Discover"
 _pages:
   newPage: "Create a new Page"
