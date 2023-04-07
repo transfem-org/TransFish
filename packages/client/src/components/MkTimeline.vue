@@ -93,6 +93,8 @@ if (props.src === 'antenna') {
 	endpoint = 'notes/featured';
 	query = {
 		origin: 'combined',
+		offsetMode: true,
+		days: 30,
 	}
 	connection = stream.useChannel('main');
 	connection.on('note', prepend);
