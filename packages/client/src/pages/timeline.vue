@@ -114,7 +114,7 @@ const keymap = {
 	t: focus,
 };
 
-let timelines = ['forYou']
+let timelines = ['forYou'];
 
 if (isRecommendedTimelineAvailable || isGlobalTimelineAvailable) {
 	timelines.push('explore');
@@ -133,6 +133,10 @@ if (isRecommendedTimelineAvailable) {
 if (isGlobalTimelineAvailable) {
 	discoverTimelines.push('global');
 }
+
+let tab = $ref(timelines[0]);
+watch($$(tab), () => (syncSlide(timelines.indexOf(tab))));
+
 
 const hotPagination = {
 	endpoint: 'notes/featured' as const,
