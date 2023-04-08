@@ -1,11 +1,11 @@
 <template>
-<XModalWindow
-	ref="dialog"
-	:width="400"
-	@close="onClose"
-	@closed="emit('closed')"
->
-	<template #header>Login</template>
+	<XModalWindow
+		ref="dialog"
+		:width="400"
+		@close="onClose"
+		@closed="emit('closed')"
+	>
+		<template #header>Login</template>
 
 		<MkSignin :auto-set="autoSet" :message="message" @login="onLogin" />
 	</XModalWindow>

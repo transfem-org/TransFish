@@ -67,22 +67,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref, onMounted } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import XTutorial from '@/components/MkTutorialDialog.vue';
-import XTimeline from '@/components/MkTimeline.vue';
-import XPostForm from '@/components/MkPostForm.vue';
-import { scroll } from '@/scripts/scroll';
-import * as os from '@/os';
-import { defaultStore } from '@/store';
-import { i18n } from '@/i18n';
-import { instance } from '@/instance';
-import { $i } from '@/account';
-import { definePageMetadata } from '@/scripts/page-metadata';
-import { deviceKind } from '@/scripts/device-kind';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+import { computed, watch, ref, onMounted } from "vue";
+import { Virtual } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import XTutorial from "@/components/MkTutorialDialog.vue";
+import XTimeline from "@/components/MkTimeline.vue";
+import XPostForm from "@/components/MkPostForm.vue";
+import { scroll } from "@/scripts/scroll";
+import * as os from "@/os";
+import { defaultStore } from "@/store";
+import { i18n } from "@/i18n";
+import { instance } from "@/instance";
+import { $i } from "@/account";
+import { definePageMetadata } from "@/scripts/page-metadata";
+import { deviceKind } from "@/scripts/device-kind";
+import "swiper/scss";
+import "swiper/scss/virtual";
 // #v-ifdef VITE_CAPACITOR
 import { Camera } from "@capacitor/camera";
 // #v-endif
@@ -371,10 +371,9 @@ onMounted(() => {
 // #v-ifdef VITE_CAPACITOR
 const permissionState = await Camera.checkPermissions();
 if (!permissionState.camera) {
-  Camera.requestPermissions({ permissions: ["photos", "camera"] });
+	Camera.requestPermissions({ permissions: ["photos", "camera"] });
 }
 // #v-endif
-
 </script>
 
 <style lang="scss" scoped>

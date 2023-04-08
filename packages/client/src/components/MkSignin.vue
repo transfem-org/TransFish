@@ -1,88 +1,91 @@
 <template>
-// #v-ifdef VITE_CAPACITOR
-  <form class="eppvobhk" :class="{ signing }" @submit.prevent="onSubmit">
-    <div class="normal-signin">
-      Instance
-      <MkSelect v-model="instanceUrl" large :model-value="instances[0]?.url">
-        <option value="other">
-          Select other instance
-        </option>
-        <option
-          v-for="(instance, i) in instances"
-          :key="instance.url"
-          :value="instance.url"
-          :selected="i === 0"
-        >
-          {{ instance.name }}
-        </option>
-      </MkSelect>
-      <template v-if="instanceUrl === 'other'">
-        URL
-			<MkInput
-          v-model="instanceUrlOther"
+	<!-- #v-ifdef VITE_CAPACITOR -->
+	<form class="eppvobhk" :class="{ signing }" @submit.prevent="onSubmit">
+		<div class="normal-signin">
+			Instance
+			<MkSelect
+				v-model="instanceUrl"
+				large
+				:model-value="instances[0]?.url"
+			>
+				<option value="other">Select other instance</option>
+				<option
+					v-for="(instance, i) in instances"
+					:key="instance.url"
+					:value="instance.url"
+					:selected="i === 0"
+				>
+					{{ instance.name }}
+				</option>
+			</MkSelect>
+			<template v-if="instanceUrl === 'other'">
+				URL
+				<MkInput
+					v-model="instanceUrlOther"
 					:spellcheck="false"
 					autofocus
 					required
-			/>
-      </template>
-      Access Token
-      <MkInput
-        v-model="token"
-        :spellcheck="false"
-        autofocus
-        required
-        data-cy-signin-username
-      ></MkInput>
-      <MkButton
-        class="_formBlock"
-        type="submit"
-        primary
-        :disabled="signing"
-        style="margin: 0 auto"
-      >
-        {{ signing ? "Logging in" : "Login" }}
-      </MkButton>
+				/>
+			</template>
+			Access Token
+			<MkInput
+				v-model="token"
+				:spellcheck="false"
+				autofocus
+				required
+				data-cy-signin-username
+			></MkInput>
+			<MkButton
+				class="_formBlock"
+				type="submit"
+				primary
+				:disabled="signing"
+				style="margin: 0 auto"
+			>
+				{{ signing ? "Logging in" : "Login" }}
+			</MkButton>
 		</div>
-    <div style="display: flex; justify-content: center"></div>
-       <a
-        href="https://misskey.io/notes/99l9jqqun2"
-        target="_blank"
-        style="color: var(--link); text-align: center"
-        >How to create a access token</a>
-</form>
-// #v-else
-<form class="eppvobhk _monolithic_" :class="{ signing, totpLogin }" @submit.prevent="onSubmit">
-	<div class="auth _section _formRoot">
-		<div v-show="withAvatar" class="avatar" :style="{ backgroundImage: user ? `url('${ user.avatarUrl }')` : null, marginBottom: message ? '1.5em' : null }"></div>
-		<MkInfo v-if="message">
-			{{ message }}
-		</MkInfo>
-		<div v-if="!totpLogin" class="normal-signin">
-			<MkInput v-model="username" class="_formBlock" :placeholder="i18n.ts.username" type="text" pattern="^[a-zA-Z0-9_]+$" :spellcheck="false" autofocus required data-cy-signin-username @update:modelValue="onUsernameChange">
-				<template #prefix>@</template>
-				<template #suffix>@{{ host }}</template>
-			</MkInput>
-			<MkInput v-if="!user || user && !user.usePasswordLessLogin" v-model="password" class="_formBlock" :placeholder="i18n.ts.password" type="password" :with-password-toggle="true" required data-cy-signin-password>
-				<template #prefix><i class="ph-lock ph-bold ph-lg"></i></template>
-				<template #caption><button class="_textButton" type="button" @click="resetPassword">{{ i18n.ts.forgotPassword }}</button></template>
-			</MkInput>
-			<MkButton class="_formBlock" type="submit" primary :disabled="signing" style="margin: 1rem auto;">{{ signing ? i18n.ts.loggingIn : i18n.ts.login }}</MkButton>
-		</div>
-		<div v-if="totpLogin" class="2fa-signin" :class="{ securityKeys: user && user.securityKeys }">
-			<div v-if="user && user.securityKeys" class="twofa-group tap-group">
-				<p>{{ i18n.ts.tapSecurityKey }}</p>
-				<MkButton v-if="!queryingKey" @click="queryKey">
-					{{ i18n.ts.retry }}
-				</MkButton>
-			</div>
-			<div v-if="user && user.securityKeys" class="or-hr">
-				<p class="or-msg">{{ i18n.ts.or }}</p>
-			</div>
-			<div class="twofa-group totp-group">
-				<p style="margin-bottom:0;">{{ i18n.ts.twoStepAuthentication }}</p>
-				<MkInput v-if="user && user.usePasswordLessLogin" v-model="password" type="password" :with-password-toggle="true" required>
-					<template #label>{{ i18n.ts.password }}</template>
-					<template #prefix><i class="ph-lock ph-bold ph-lg"></i></template>
+		<div style="display: flex; justify-content: center"></div>
+		<a
+			href="https://misskey.io/notes/99l9jqqun2"
+			target="_blank"
+			style="color: var(--link); text-align: center"
+			>How to create a access token</a
+		>
+	</form>
+	<!-- #v-else -->
+	<form
+		class="eppvobhk _monolithic_"
+		:class="{ signing, totpLogin }"
+		@submit.prevent="onSubmit"
+	>
+		<div class="auth _section _formRoot">
+			<div
+				v-show="withAvatar"
+				class="avatar"
+				:style="{
+					backgroundImage: user ? `url('${user.avatarUrl}')` : null,
+					marginBottom: message ? '1.5em' : null,
+				}"
+			></div>
+			<MkInfo v-if="message">
+				{{ message }}
+			</MkInfo>
+			<div v-if="!totpLogin" class="normal-signin">
+				<MkInput
+					v-model="username"
+					class="_formBlock"
+					:placeholder="i18n.ts.username"
+					type="text"
+					pattern="^[a-zA-Z0-9_]+$"
+					:spellcheck="false"
+					autofocus
+					required
+					data-cy-signin-username
+					@update:modelValue="onUsernameChange"
+				>
+					<template #prefix>@</template>
+					<template #suffix>@{{ host }}</template>
 				</MkInput>
 				<MkInput
 					v-if="!user || (user && !user.usePasswordLessLogin)"
@@ -150,38 +153,132 @@
 						></template>
 					</MkInput>
 					<MkInput
-						v-model="token"
-						type="text"
-						pattern="^[0-9]{6}$"
-						autocomplete="off"
-						:spellcheck="false"
+						v-if="!user || (user && !user.usePasswordLessLogin)"
+						v-model="password"
+						class="_formBlock"
+						:placeholder="i18n.ts.password"
+						type="password"
+						:with-password-toggle="true"
 						required
+						data-cy-signin-password
 					>
-						<template #label>{{ i18n.ts.token }}</template>
 						<template #prefix
-							><i class="ph-poker-chip ph-bold ph-lg"></i
+							><i class="ph-lock ph-bold ph-lg"></i
 						></template>
+						<template #caption
+							><button
+								class="_textButton"
+								type="button"
+								@click="resetPassword"
+							>
+								{{ i18n.ts.forgotPassword }}
+							</button></template
+						>
 					</MkInput>
 					<MkButton
+						class="_formBlock"
 						type="submit"
-						:disabled="signing"
 						primary
-						style="margin: 0 auto"
+						:disabled="signing"
+						style="margin: 1rem auto"
 						>{{
 							signing ? i18n.ts.loggingIn : i18n.ts.login
 						}}</MkButton
 					>
 				</div>
+				<div
+					v-if="totpLogin"
+					class="2fa-signin"
+					:class="{ securityKeys: user && user.securityKeys }"
+				>
+					<div
+						v-if="user && user.securityKeys"
+						class="twofa-group tap-group"
+					>
+						<p>{{ i18n.ts.tapSecurityKey }}</p>
+						<MkButton v-if="!queryingKey" @click="queryKey">
+							{{ i18n.ts.retry }}
+						</MkButton>
+					</div>
+					<div v-if="user && user.securityKeys" class="or-hr">
+						<p class="or-msg">{{ i18n.ts.or }}</p>
+					</div>
+					<div class="twofa-group totp-group">
+						<p style="margin-bottom: 0">
+							{{ i18n.ts.twoStepAuthentication }}
+						</p>
+						<MkInput
+							v-if="user && user.usePasswordLessLogin"
+							v-model="password"
+							type="password"
+							:with-password-toggle="true"
+							required
+						>
+							<template #label>{{ i18n.ts.password }}</template>
+							<template #prefix
+								><i class="ph-lock ph-bold ph-lg"></i
+							></template>
+						</MkInput>
+						<MkInput
+							v-model="token"
+							type="text"
+							pattern="^[0-9]{6}$"
+							autocomplete="off"
+							:spellcheck="false"
+							required
+						>
+							<template #label>{{ i18n.ts.token }}</template>
+							<template #prefix
+								><i class="ph-poker-chip ph-bold ph-lg"></i
+							></template>
+						</MkInput>
+						<MkButton
+							type="submit"
+							:disabled="signing"
+							primary
+							style="margin: 0 auto"
+							>{{
+								signing ? i18n.ts.loggingIn : i18n.ts.login
+							}}</MkButton
+						>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="social _section">
-		<a v-if="meta && meta.enableTwitterIntegration" class="_borderButton _gap" :href="`${apiUrl}/signin/twitter`"><i class="ph-twitter-logo ph-bold ph-lg" style="margin-right: 4px;"></i>{{ i18n.t('signinWith', { x: 'Twitter' }) }}</a>
-		<a v-if="meta && meta.enableGithubIntegration" class="_borderButton _gap" :href="`${apiUrl}/signin/github`"><i class="ph-github-logo ph-bold ph-lg" style="margin-right: 4px;"></i>{{ i18n.t('signinWith', { x: 'GitHub' }) }}</a>
-		<a v-if="meta && meta.enableDiscordIntegration" class="_borderButton _gap" :href="`${apiUrl}/signin/discord`"><i class="ph-discord-logo ph-bold ph-lg" style="margin-right: 4px;"></i>{{ i18n.t('signinWith', { x: 'Discord' }) }}</a>
-	</div>
-</form>
-// #v-endif
+		<div class="social _section">
+			<a
+				v-if="meta && meta.enableTwitterIntegration"
+				class="_borderButton _gap"
+				:href="`${apiUrl}/signin/twitter`"
+				><i
+					class="ph-twitter-logo ph-bold ph-lg"
+					style="margin-right: 4px"
+				></i
+				>{{ i18n.t("signinWith", { x: "Twitter" }) }}</a
+			>
+			<a
+				v-if="meta && meta.enableGithubIntegration"
+				class="_borderButton _gap"
+				:href="`${apiUrl}/signin/github`"
+				><i
+					class="ph-github-logo ph-bold ph-lg"
+					style="margin-right: 4px"
+				></i
+				>{{ i18n.t("signinWith", { x: "GitHub" }) }}</a
+			>
+			<a
+				v-if="meta && meta.enableDiscordIntegration"
+				class="_borderButton _gap"
+				:href="`${apiUrl}/signin/discord`"
+				><i
+					class="ph-discord-logo ph-bold ph-lg"
+					style="margin-right: 4px"
+				></i
+				>{{ i18n.t("signinWith", { x: "Discord" }) }}</a
+			>
+		</div>
+	</form>
+	<!-- #v-endif -->
 </template>
 
 <script lang="ts" setup>

@@ -1,12 +1,12 @@
 <template>
-// #v-ifdef VITE_CAPACITOR
+<!-- #v-ifdef VITE_CAPACITOR -->
 <XEntrance />
-// #v-else
+<!-- #v-else -->
 <div v-if="meta">
 	<XSetup v-if="meta.requireSetup"/>
 	<XEntrance v-else/>
 </div>
-// #v-endif
+<!-- #v-endif -->
 </template>
 
 <script lang="ts" setup>

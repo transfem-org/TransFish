@@ -1,16 +1,16 @@
 <template>
-	// #v-ifdef VITE_CAPACITOR
+	<!-- #v-ifdef VITE_CAPACITOR -->
 <div class="rsqzvsbo">
-	// #v-else
+	<!-- #v-else -->
 <div v-if="meta" class="rsqzvsbo">
-	// #v-endif
+	<!-- #v-endif -->
 	<div class="top">
-		// #v-ifdef VITE_CAPACITOR
+		<!-- #v-ifdef VITE_CAPACITOR -->
 		<!-- aaa -->
-		// #v-else
+		<!-- #v-else -->
 		<MkFeaturedPhotos class="bg"/>
 		<XTimeline class="tl"/>
-		// #v-endif
+		<!-- #v-endif -->
 		<div class="shape1"></div>
 		<div class="shape2"></div>
 		<img src="/client-assets/misskey.svg" class="misskey"/>
@@ -28,30 +28,30 @@
 			<MkEmoji :normal="true" :no-style="true" emoji="🍮"/>
 		</div>
 		<div class="main">
-			// #v-ifdef VITE_CAPACITOR
+			<!-- #v-ifdef VITE_CAPACITOR -->
 			<!-- aaa -->
-			// #v-else
+			<!-- #v-else -->
 			<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
-			// #v-endif
+			<!-- #v-endif -->
 			<button class="_button _acrylic menu" @click="showMenu"><i class="ph-dots-three-outline ph-bold ph-lg"></i></button>
 			<div class="fg">
 				<h1>
-					// #v-ifdef VITE_CAPACITOR
+					<!-- #v-ifdef VITE_CAPACITOR -->
 					<span class="text">Calckey Mobile</span>
-					// #v-else
+					<!-- #v-else -->
 					<img class="logo" v-if="meta.logoImageUrl" :src="meta.logoImageUrl">
 					<span v-else class="text">{{ instanceName }}</span>
-					// #v-endif
+					<!-- #v-endif -->
 				</h1>
 				<div class="about">
-					// #v-ifdef VITE_CAPACITOR
+					<!-- #v-ifdef VITE_CAPACITOR -->
 					<div class="desc">🌎 Calckey is an open source, decentralized social media platform that's free forever! 🚀</div>
-					// #v-else
+					<!-- #v-else -->
 					<div class="desc" v-html="meta.description || i18n.ts.headlineMisskey"></div>
-					// #v-endif
+					<!-- #v-endif -->
 				</div>
 				<div class="action">
-					// #v-ifdef VITE_CAPACITOR
+					<!-- #v-ifdef VITE_CAPACITOR -->
 					<MkButton inline rounded data-cy-signin @click="signin()">Login</MkButton>
 					<MkSelect v-model="lang">
               <template #label>{{ i18n.ts.uiLanguage }}</template>
@@ -66,11 +66,11 @@
                 {{ x[1] }}
               </option>
             </MkSelect>
-					// #v-else
+					<!-- #v-else -->
 					<MkButton inline rounded gradate data-cy-signup style="margin-right: 12px;" @click="signup()">{{ i18n.ts.signup }}</MkButton>
 					<MkButton inline rounded data-cy-signin @click="signin()">{{ i18n.ts.login }}</MkButton>
 					<MkButton inline rounded style="margin-left: 12px; margin-top: 12px;" onclick="window.location.href='/explore'">Explore</MkButton>
-					// #v-endif
+					<!-- #v-endif -->
 				</div>
 			</div>
 			<div v-if="instances" class="federation">
