@@ -1,18 +1,12 @@
 <template>
-	<div
-		ref="rootEl"
-		class="_section"
-		@dragover.prevent.stop="onDragover"
-		@drop.prevent.stop="onDrop"
-	>
-		<div class="_content mk-messaging-room">
-			<template #header
-				><MkPageHeader
-					:actions="headerActions"
-					:tabs="headerTabs"
-					:display-back-button="true"
-			/></template>
-			<MkSpacer :content-max="800">
+	<MkStickyContainer>
+		<template #header
+			><MkPageHeader
+				:actions="headerActions"
+				:tabs="headerTabs"
+				:display-back-button="true"
+		/></template>
+			<MkSpacer :content-max="800" class="mk-messaging-room">
 				<div class="body">
 					<MkPagination
 						v-if="pagination"
@@ -93,8 +87,7 @@
 					/>
 				</footer>
 			</MkSpacer>
-		</div>
-	</div>
+	</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
@@ -362,9 +355,6 @@ XMessage:last-of-type {
 }
 
 .mk-messaging-room {
-	position: relative;
-	overflow: auto;
-
 	> .body {
 		.more {
 			display: block;
