@@ -333,13 +333,6 @@ const headerTabs = $computed(() => []);
 
 onMounted(() => {
 	fetch();
-	definePageMetadata(
-		computed(() => ({
-			title: group != null ? group.name : user?.name,
-			icon: "ph-chats-teardrop ph-bold ph-lg",
-			avatar: group != null ? null : user,
-		}))
-	);
 });
 
 onBeforeUnmount(() => {
@@ -347,6 +340,15 @@ onBeforeUnmount(() => {
 	document.removeEventListener("visibilitychange", onVisibilitychange);
 	if (scrollRemove) scrollRemove();
 });
+
+await fetch();
+definePageMetadata(
+		computed(() => ({
+			title: group != null ? group.name : user?.name,
+			icon: "ph-chats-teardrop ph-bold ph-lg",
+			avatar: group != null ? null : user,
+		}))
+	);
 </script>
 
 <style lang="scss" scoped>
