@@ -6,6 +6,7 @@ import android.webkit.WebSettings;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
+import com.jakewharton.processphoenix.ProcessPhoenix;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,10 @@ public class MainActivity extends BridgeActivity {
       this.bridge.getWebView().evaluateJavascript("document.body.classList.toggle('dark', false);", null);
     }
   }
+
+	public void restartApp() {
+		ProcessPhoenix.triggerRebirth(this.getApplicationContext());
+	}
 
   @Override
   public void onStart() {

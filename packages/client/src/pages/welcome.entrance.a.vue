@@ -219,9 +219,9 @@ async function reloadAsk() {
 
 function unisonReload(path?: string) {
   if (path !== undefined) {
-    location.href = path;
+    document.location.href = path;
   } else {
-    location.reload();
+    document.location.reload();
   }
 }
 // #v-endif

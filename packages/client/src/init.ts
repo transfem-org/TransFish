@@ -16,6 +16,7 @@ const res = await Device.getInfo();
 	storedDeviceInfo = res;
 	if (!localStorage.getItem("lang")) {
 		localStorage.setItem("lang", "en-US");
+		document.location.href = '/';
 	}
 	const lang: string = localStorage.getItem("lang") || "";
 	const lang_res = await fetch(`/assets/locales/${lang}.${version}.json`);
@@ -229,7 +230,11 @@ const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 				console.log("not signed in");
 			}
 			// #v-ifdef VITE_CAPACITOR
-			applyTheme(lightThemeDefault);
+			applyTheme(
+				defaultStore.reactiveState.darkMode.value ?
+				ColdDeviceStorage.get("darkTheme") :
+				ColdDeviceStorage.get("lightTheme")
+			)
 			// #v-endif
 		}
 	}
