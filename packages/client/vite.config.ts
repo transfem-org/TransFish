@@ -79,7 +79,7 @@ export default defineConfig(({ command, mode }) => {
 		},
 
 		build: {
-			target: ["es2017"],
+			target: ["esnext"],
 			manifest: "manifest.json",
 			rollupOptions: {
 				input: {

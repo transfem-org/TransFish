@@ -15,7 +15,7 @@ export const url = $i?.instanceUrl;
 // #v-else
 export const url = address.origin;
 // #v-endif
-export const apiUrl = url + "/api";
+export const apiUrl = `${url}/api`;
 export const lang = localStorage.getItem("lang");
 export const langs = _LANGS_;
 export const locale = JSON.parse(localStorage.getItem("locale"));

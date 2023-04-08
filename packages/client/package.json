@@ -4,7 +4,7 @@
   "scripts": {
     "watch": "pnpm vite build --watch --mode development",
     "build": "pnpm vite build",
-    "mobilebuild": "pnpm vite build --mode mobile && pnpm run mobilecopy && npx cap sync",
+    "mobilebuild": "pnpm vite build --mode mobile && pnpm -w run gulp && pnpm run mobilecopy && npx cap sync",
     "mobilecopy": "pnpm node ../../scripts/mobilebuild.js",
     "lint": "pnpm rome check \"src/**/*.{ts,vue}\"",
 		"format": "pnpm prettier --write '**/*.vue'",

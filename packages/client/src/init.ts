@@ -5,8 +5,27 @@
 // https://vitejs.dev/config/build-options.html#build-modulepreload
 import "vite/modulepreload-polyfill";
 
+import { Device, DeviceInfo } from "@capacitor/device";
+export let storedDeviceInfo: DeviceInfo;
+
 // #v-ifdef VITE_CAPACITOR
 console.log("Compiled for Capacitor");
+const res = await Device.getInfo();
+{
+	console.log(res);
+	storedDeviceInfo = res;
+	if (!localStorage.getItem("lang")) {
+		localStorage.setItem("lang", "en-US");
+	}
+	const lang: string = localStorage.getItem("lang") || "";
+	const lang_res = await fetch(`/assets/locales/${lang}.${version}.json`);
+	if (lang_res.status === 200) {
+		localStorage.setItem("lang", lang);
+		localStorage.setItem("locale", await lang_res.text());
+		localStorage.setItem("localeVersion", version);
+	}
+}
+
 // #v-else
 console.log("Compiled for Web");
 // #v-endif
@@ -56,25 +75,13 @@ import { reloadChannel } from "@/scripts/unison-reload";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { getUrlWithoutLoginId } from "@/scripts/login-id";
 import { getAccountFromId } from "@/scripts/get-account-from-id";
-import { Device, DeviceInfo } from "@capacitor/device";
 import { App } from "@capacitor/app";
 import lightThemeDefault from "@/themes/l-rosepinedawn.json5";
 import OneSignal from "onesignal-cordova-plugin";
-export let storedDeviceInfo: DeviceInfo;
 // #v-ifdef VITE_CAPACITOR
 const onesignal_app_id = "efe09597-0778-4156-97b7-0bf8f52c21a7";
 // #v-endif
 (async () => {
-	// #v-ifdef VITE_CAPACITOR
-	const res = await Device.getInfo();
-  console.log(res);
-  storedDeviceInfo = res;
-	if (!localStorage.getItem("lang")) {
-		localStorage.setItem("lang", (await Device.getLanguageCode()).value ||
-		"en-US");
-		window.location.reload();
-	}
-	// #v-endif
 	console.info(`Calckey v${version}`);
 
 	if (_DEV_) {
