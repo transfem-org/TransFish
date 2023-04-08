@@ -1,7 +1,11 @@
 <template>
 	<MkStickyContainer>
 		<template #header>
-			<MkPageHeader :actions="headerActions" :tabs="headerTabs" />
+			<MkPageHeader
+				:actions="headerActions"
+				:tabs="headerTabs"
+				:display-back-button="true"
+			/>
 		</template>
 		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
 			<FormSuspense :p="init">
