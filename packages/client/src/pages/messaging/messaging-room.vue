@@ -6,6 +6,12 @@
 		@drop.prevent.stop="onDrop"
 	>
 		<div class="_content mk-messaging-room">
+			<template #header
+				><MkPageHeader
+					:actions="headerActions"
+					:tabs="headerTabs"
+					:display-back-button="true"
+			/></template>
 			<MkSpacer :content-max="800">
 				<div class="body">
 					<MkPagination
@@ -328,12 +334,17 @@ function onVisibilitychange() {
 	}
 }
 
+const headerActions = $computed(() => []);
+
+const headerTabs = $computed(() => []);
+
 onMounted(() => {
 	fetch();
 	definePageMetadata(
 		computed(() => ({
 			title: group != null ? group.name : user?.name,
 			icon: "ph-chats-teardrop ph-bold ph-lg",
+			avatar: group != null ? null : user,
 		}))
 	);
 });
