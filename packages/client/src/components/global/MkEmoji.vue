@@ -1,19 +1,32 @@
 <template>
-<img v-if="customEmoji" class="mk-emoji custom" :class="{ normal, noStyle }" :src="url" :alt="alt" :title="alt" decoding="async"/>
-<img v-else-if="char && !useOsNativeEmojis" class="mk-emoji" 
-	:src="char2filePath(char) || url"
- 	:alt="alt" :title="alt" decoding="async"/>
-<span v-else-if="char && useOsNativeEmojis">{{ char }}</span>
-<span v-else>{{ emoji }}</span>
+	<img
+		v-if="customEmoji"
+		class="mk-emoji custom"
+		:class="{ normal, noStyle }"
+		:src="url"
+		:alt="alt"
+		:title="alt"
+		decoding="async"
+	/>
+	<img
+		v-else-if="char && !useOsNativeEmojis"
+		class="mk-emoji"
+		:src="char2filePath(char) || url"
+		:alt="alt"
+		:title="alt"
+		decoding="async"
+	/>
+	<span v-else-if="char && useOsNativeEmojis">{{ char }}</span>
+	<span v-else>{{ emoji }}</span>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
-import { CustomEmoji } from 'calckey-js/built/entities';
-import { getStaticImageUrl } from '@/scripts/get-static-image-url';
-import { char2filePath } from '@/scripts/twemoji-base';
-import { defaultStore } from '@/store';
-import { instance } from '@/instance';
+import { computed, ref, watch } from "vue";
+import { CustomEmoji } from "calckey-js/built/entities";
+import { getStaticImageUrl } from "@/scripts/get-static-image-url";
+import { char2filePath } from "@/scripts/twemoji-base";
+import { defaultStore } from "@/store";
+import { instance } from "@/instance";
 import { url as instanceUrl } from "@/config";
 
 const props = defineProps<{
@@ -39,11 +52,11 @@ const customEmoji = computed(() =>
 );
 const url = computed(() => {
 	if (char.value) {
-// #v-ifdef VITE_CAPACITOR
-//...
-// #v-else
+		// #v-ifdef VITE_CAPACITOR
+		//...
+		// #v-else
 		return char2filePath(char.value);
-// #v-endif
+		// #v-endif
 	} else {
 		const rawUrl = defaultStore.state.disableShowingAnimatedImages
 			? getStaticImageUrl(customEmoji.value.url)
