@@ -10,7 +10,7 @@ import getUserName from "@/scripts/get-user-name";
 import { I18n } from "@/scripts/i18n";
 import { getAccountFromId } from "@/scripts/get-account-from-id";
 import { char2fileName } from "@/scripts/twemoji-base";
-import * as url from "@/scripts/url";
+import * as urlObject from "@/scripts/url";
 
 const iconUrl = (name: string) =>
 	`/static-assets/notification-badges/${name}.png`;
@@ -178,7 +178,7 @@ async function composeNotification<K extends keyof pushNotificationDataMap>(
 								badge = u.href;
 							} else {
 								const dummy = `${u.host}${u.pathname}`; // 拡張子がないとキャッシュしてくれないCDNがあるので
-								badge = `${origin}/proxy/${dummy}?${url.query({
+								badge = `${origin}/proxy/${dummy}?${urlObject.query({
 									url: u.href,
 									badge: "1",
 								})}`;

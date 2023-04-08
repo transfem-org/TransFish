@@ -1,3 +1,4 @@
+import { url } from "@/config";
 import { ColdDeviceStorage } from "@/store";
 
 const cache = new Map<string, HTMLAudioElement>();
@@ -7,7 +8,7 @@ export function getAudio(file: string, useCache = true): HTMLAudioElement {
 	if (useCache && cache.has(file)) {
 		audio = cache.get(file);
 	} else {
-		audio = new Audio(`/static-assets/sounds/${file}.mp3`);
+		audio = new Audio(`${url}+/static-assets/sounds/${file}.mp3`);
 		if (useCache) cache.set(file, audio);
 	}
 	return audio;
