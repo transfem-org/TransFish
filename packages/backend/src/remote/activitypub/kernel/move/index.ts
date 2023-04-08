@@ -19,13 +19,17 @@ export default async (
 	// fetch the new and old accounts
 	const targetUri = getApHrefNullable(activity.target);
 	if (!targetUri) return "move: target uri is null";
-	const new_acc = await resolvePerson(targetUri);
+	let new_acc = await resolvePerson(targetUri);
 	if (!actor.uri) return "move: actor uri is null";
-	const old_acc = await resolvePerson(actor.uri);
+	let old_acc = await resolvePerson(actor.uri);
 
 	// update them if they're remote
 	if (new_acc.uri) await updatePerson(new_acc.uri);
 	if (old_acc.uri) await updatePerson(old_acc.uri);
+
+	// retrieve updated users
+	new_acc = await resolvePerson(targetUri);
+	old_acc = await resolvePerson(actor.uri);
 
 	// check if alsoKnownAs of the new account is valid
 	let isValidMove = true;
