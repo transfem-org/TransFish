@@ -24,18 +24,18 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, onMounted } from 'vue';
-import { Virtual } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import XFeatured from './explore.featured.vue';
-import XUsers from './explore.users.vue';
-import type MkFolder from '@/components/MkFolder.vue';
-import { definePageMetadata } from '@/scripts/page-metadata';
-import { deviceKind } from '@/scripts/device-kind';
-import { i18n } from '@/i18n';
-import { defaultStore } from '@/store';
-import 'swiper/scss';
-import 'swiper/scss/virtual';
+import { computed, watch, onMounted } from "vue";
+import { Virtual } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import XFeatured from "./explore.featured.vue";
+import XUsers from "./explore.users.vue";
+import type MkFolder from "@/components/MkFolder.vue";
+import { definePageMetadata } from "@/scripts/page-metadata";
+import { deviceKind } from "@/scripts/device-kind";
+import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
+import "swiper/scss";
+import "swiper/scss/virtual";
 
 const props = defineProps<{
 	tag?: string;
@@ -43,13 +43,16 @@ const props = defineProps<{
 
 const tabs = ['users', 'featured'];
 let tab = $ref(tabs[0]);
-watch($$(tab), () => (syncSlide(tabs.indexOf(tab))));
+watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 
 let tagsEl = $ref<InstanceType<typeof MkFolder>>();
 
-watch(() => props.tag, () => {
-	if (tagsEl) tagsEl.toggleContent(props.tag == null);
-});
+watch(
+	() => props.tag,
+	() => {
+		if (tagsEl) tagsEl.toggleContent(props.tag == null);
+	}
+);
 
 const headerActions = $computed(() => []);
 
@@ -63,10 +66,12 @@ const headerTabs = $computed(() => [{
 	title: i18n.ts.featured,
 }]);
 
-definePageMetadata(computed(() => ({
-	title: i18n.ts.explore,
-	icon: 'ph-compass ph-bold ph-lg',
-})));
+definePageMetadata(
+	computed(() => ({
+		title: i18n.ts.explore,
+		icon: "ph-compass ph-bold ph-lg",
+	}))
+);
 
 let swiperRef = null;
 
@@ -86,5 +91,4 @@ function syncSlide(index) {
 onMounted(() => {
 	syncSlide(tabs.indexOf(swiperRef.activeIndex));
 });
-
 </script>
