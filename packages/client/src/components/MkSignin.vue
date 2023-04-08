@@ -410,34 +410,22 @@ function queryKey() {
 				"g-recaptcha-response": reCaptchaResponse,
 			});
 		})
-		.then((res) => {
-			emit("login", res);
+		.then(res => {
+			// #v-ifdef VITE_CAPACITOR
+			emit("login", { ...res, instance: instanceUrl });
+			return onLogin({ ...res, instance: instanceUrl });
+			// #v-else
+			emit('login', res);
 			return onLogin(res);
-		})
-		.catch((err) => {
+			// #v-endif
+		}).catch(err => {
 			if (err === null) return;
 			os.alert({
-				type: "error",
+				type: 'error',
 				text: i18n.ts.signinFailed,
 			});
 			signing = false;
 		});
-	}).then(res => {
-		// #v-ifdef VITE_CAPACITOR
-		emit("login", { ...res, instance: instanceUrl });
-		return onLogin({ ...res, instance: instanceUrl });
-		// #v-else
-		emit('login', res);
-		return onLogin(res);
-		// #v-endif
-	}).catch(err => {
-		if (err === null) return;
-		os.alert({
-			type: 'error',
-			text: i18n.ts.signinFailed,
-		});
-		signing = false;
-	});
 }
 
 function onSubmit() {

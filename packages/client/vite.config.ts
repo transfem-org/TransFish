@@ -34,24 +34,25 @@ export default defineConfig(({ command, mode }) => {
 		"utf-8",
 	);
 
+	const plugins = [
+		ConditionalCompile(),
+		pluginVue({
+			reactivityTransform: true,
+		}),
+		pluginJson5(),
+		tsconfigPaths()
+	];
+
+	if (!process.env.VITE_CAPACITOR) {
+		plugins.push(viteCompression({
+			algorithm: "brotliCompress",
+		}));
+	}
+
 	return {
 		base: "/assets/",
 
-		plugins: [
-			ConditionalCompile(),
-			pluginVue({
-				reactivityTransform: true,
-			}),
-			pluginJson5(),
-			tsconfigPaths(),
-			// #v-ifdef VITE_CAPACITOR
-			// ...
-			// #v-else
-			viteCompression({
-				algorithm: "brotliCompress",
-			}),
-			// #v-endif
-		],
+		plugins,
 
 		resolve: {
 			extensions,
