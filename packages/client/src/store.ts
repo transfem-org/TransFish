@@ -1,7 +1,6 @@
 import { markRaw, ref } from "vue";
 import { Storage } from "./pizzax";
 import { Theme } from "./scripts/theme";
-import { deviceKind } from "@/scripts/device-kind";
 
 export const postFormActions = [];
 export const userActions = [];
@@ -18,8 +17,6 @@ const menuOptions = [
 	"channels",
 	"search",
 ];
-
-if (deviceKind === "desktop") menuOptions.push("ui");
 
 // TODO: それぞれいちいちwhereとかdefaultというキーを付けなきゃいけないの冗長なのでなんとかする(ただ型定義が面倒になりそう)
 //       あと、現行の定義の仕方なら「whereが何であるかに関わらずキー名の重複不可」という制約を付けられるメリットもあるからそのメリットを引き継ぐ方法も考えないといけない
