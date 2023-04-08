@@ -40,6 +40,7 @@
 		"@bull-board/ui": "^4.10.2",
 		"@napi-rs/cli": "^2.15.0",
 		"@tensorflow/tfjs": "^3.21.0",
+		"calckey-js": "^0.0.22",
 		"js-yaml": "4.1.0",
 		"seedrandom": "^3.0.5"
 	},

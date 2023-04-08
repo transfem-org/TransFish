@@ -10,7 +10,6 @@ COPY package.json pnpm*.yaml ./
 COPY packages/backend/package.json packages/backend/package.json
 COPY packages/client/package.json packages/client/package.json
 COPY packages/sw/package.json packages/sw/package.json
-COPY packages/calckey-js/package.json packages/calckey-js/package.json
 COPY packages/backend/native-utils/package.json packages/backend/native-utils/package.json
 COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
 COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
@@ -44,7 +43,6 @@ COPY --from=build /calckey/node_modules /calckey/node_modules
 COPY --from=build /calckey/packages/backend/node_modules /calckey/packages/backend/node_modules
 COPY --from=build /calckey/packages/sw/node_modules /calckey/packages/sw/node_modules
 COPY --from=build /calckey/packages/client/node_modules /calckey/packages/client/node_modules
-COPY --from=build /calckey/packages/calckey-js/node_modules /calckey/packages/calckey-js/node_modules
 
 # Copy the finished compiled files
 COPY --from=build /calckey/built /calckey/built
