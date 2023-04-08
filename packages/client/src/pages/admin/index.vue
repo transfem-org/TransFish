@@ -182,6 +182,12 @@ const menuDef = $computed(() => [
 				active: currentPage?.route.name === "emojis",
 			},
 			{
+				icon: "ph-hash ph-bold ph-lg",
+				text: i18n.ts.hashtags,
+				to: "/admin/hashtags",
+				active: currentPage?.route.name === "hashtags",
+			},
+			{
 				icon: "ph-planet ph-bold ph-lg",
 				text: i18n.ts.federation,
 				to: "/admin/federation",
