@@ -1,6 +1,6 @@
 import { $i } from "@/account";
 // #v-ifdef VITE_CAPACITOR
-const address = $i ? new URL($i.instanceUrl) : new URL("http://localhost");
+const address = $i ? new URL($i.instanceUrl) : null;
 // #v-else
 const address = new URL(location.href);
 // #v-endif
@@ -15,11 +15,9 @@ export const url = $i?.instanceUrl;
 // #v-else
 export const url = address.origin;
 // #v-endif
-export const apiUrl = `${url ? url : "http://localhost"}/api`;
+export const apiUrl = url + "/api";
 export const wsUrl = `${
-	url
-		? url.replace("http://", "ws://").replace("https://", "wss://")
-		: "ws://localhost"
+	url.replace("http://", "ws://").replace("https://", "wss://")
 }/streaming`;
 export const lang = localStorage.getItem("lang");
 export const langs = _LANGS_;
