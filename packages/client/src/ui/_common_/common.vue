@@ -11,15 +11,13 @@
 
 	<XStreamIndicator />
 
-	<!-- <div v-if="pendingApiRequestsCount > 0" id="wait"></div> -->
-
 	<div v-if="dev" id="devTicker"><span>DEV BUILD</span></div>
 </template>
 
 <script lang="ts" setup>
 import { defineAsyncComponent } from "vue";
 import { swInject } from "./sw-inject";
-import { popup, popups, pendingApiRequestsCount } from "@/os";
+import { popup, popups } from "@/os";
 import { uploads } from "@/scripts/upload";
 import * as sound from "@/scripts/sound";
 import { $i } from "@/account";

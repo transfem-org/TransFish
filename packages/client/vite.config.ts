@@ -43,7 +43,7 @@ export default defineConfig(({ command, mode }) => {
 		tsconfigPaths()
 	];
 
-	if (!process.env.VITE_CAPACITOR) {
+	if (process.env.VITE_CAPACITOR !== "true") {
 		plugins.push(viteCompression({
 			algorithm: "brotliCompress",
 		}));

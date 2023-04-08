@@ -4,7 +4,7 @@ import { Component, markRaw, Ref, ref, defineAsyncComponent } from "vue";
 import { EventEmitter } from "eventemitter3";
 import insertTextAtCursor from "insert-text-at-cursor";
 import * as Misskey from "calckey-js";
-import { apiUrl, url } from "@/config";
+import { url } from "@/config";
 import MkPostFormDialog from "@/components/MkPostFormDialog.vue";
 import MkWaitingDialog from "@/components/MkWaitingDialog.vue";
 import MkToast from "@/components/MkToast.vue";
@@ -12,9 +12,16 @@ import MkDialog from "@/components/MkDialog.vue";
 import { MenuItem } from "@/types/menu";
 import { $i } from "@/account";
 
-export const pendingApiRequestsCount = ref(0);
-
 const apiClient = new Misskey.api.APIClient({
+	// #v-ifdef VITE_CAPACITOR
+	origin: $i?.instanceUrl || window.location.origin,
+	// #v-else
+	origin: url,
+	// #v-endif
+	credential: $i?.token,
+});
+
+const noCredentialApi = new Misskey.api.APIClient({
 	// #v-ifdef VITE_CAPACITOR
 	origin: $i?.instanceUrl || window.location.origin,
 	// #v-else
@@ -23,99 +30,42 @@ const apiClient = new Misskey.api.APIClient({
 });
 
 export const api = ((
-	endpoint: string,
+	endpoint: keyof Misskey.Endpoints,
 	data: Record<string, any> = {},
 	token?: string | null | undefined,
 ) => {
-	pendingApiRequestsCount.value++;
 
-	const onFinally = () => {
-		pendingApiRequestsCount.value--;
-	};
+	return apiClient.request(endpoint, data);
 
-	const authorizationToken = token ?? $i?.token ?? undefined;
-	const authorization = authorizationToken
-		? `Bearer ${authorizationToken}`
-		: undefined;
-
-	const promise = new Promise((resolve, reject) => {
-		fetch(endpoint.indexOf("://") > -1 ? endpoint : `${apiUrl}/${endpoint}`, {
-			method: "POST",
-			body: JSON.stringify(data),
-			credentials: "omit",
-			cache: "no-cache",
-			headers: authorization ? { authorization } : {},
-		})
-			.then(async (res) => {
-				const body = res.status === 204 ? null : await res.json();
-
-				if (res.status === 200) {
-					resolve(body);
-				} else if (res.status === 204) {
-					resolve();
-				} else {
-					reject(body.error);
-				}
-			})
-			.catch(reject);
-	});
-
-	promise.then(onFinally, onFinally);
-
-	return promise;
 }) as typeof apiClient.request;
 
 export const apiGet = ((
-	endpoint: string,
+	endpoint: keyof Misskey.Endpoints,
 	data: Record<string, any> = {},
 	token?: string | null | undefined,
 ) => {
-	pendingApiRequestsCount.value++;
-
-	const onFinally = () => {
-		pendingApiRequestsCount.value--;
-	};
 
 	const query = new URLSearchParams(data);
 
-	const authorizationToken = token ?? $i?.token ?? undefined;
-	const authorization = authorizationToken
-		? `Bearer ${authorizationToken}`
-		: undefined;
-
 	const promise = new Promise((resolve, reject) => {
-		// Send request
-		fetch(`${apiUrl}/${endpoint}?${query}`, {
-			method: "GET",
-			credentials: "omit",
-			cache: "default",
-			headers: authorization ? { authorization } : {},
-		})
-			.then(async (res) => {
-				const body = res.status === 204 ? null : await res.json();
-
-				if (res.status === 200) {
-					resolve(body);
-				} else if (res.status === 204) {
-					resolve();
-				} else {
-					reject(body.error);
-				}
-			})
-			.catch(reject);
-	});
-
-	promise.then(onFinally, onFinally);
+			// Send request
+			apiClient
+				.request(endpoint, { ...data })
+				.then(async (res) => {
+					resolve(res);
+				})
+				.catch(reject);
+		});
 
 	return promise;
 }) as typeof apiClient.request;
 
 export const apiWithDialog = ((
-	endpoint: string,
+	endpoint: keyof Misskey.Endpoints,
 	data: Record<string, any> = {},
 	token?: string | null | undefined,
 ) => {
-	const promise = api(endpoint, data, token);
+	const promise = api(endpoint, data);
 	promiseDialog(promise, null, (err) => {
 		alert({
 			type: "error",
