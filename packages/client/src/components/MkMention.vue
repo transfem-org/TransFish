@@ -10,7 +10,7 @@
 	>
 		<!-- #v-ifdef VITE_CAPACITOR -->
 		<img
-			:class="$style.icon"
+			class="icon"
 			:src="`${$i.instanceUrl}/avatar/@${username}@${host}`"
 			alt=""
 		/>
