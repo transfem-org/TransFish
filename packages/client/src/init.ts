@@ -24,7 +24,6 @@ const res = await Device.getInfo();
 		localStorage.setItem("lang", lang);
 		localStorage.setItem("locale", await lang_res.text());
 		localStorage.setItem("localeVersion", version);
-		document.location.href = '/';
 	}
 }
 
