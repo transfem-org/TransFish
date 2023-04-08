@@ -2,14 +2,14 @@ import * as fs from "fs";
 import pluginVue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 
-import locales from '../../locales';
-import { dependencies } from './package.json';
+import locales from "../../locales";
+import { dependencies } from "./package.json";
 
-import meta from '../../package.json';
-import pluginJson5 from './vite.json5';
-import viteCompression from 'vite-plugin-compression';
+import meta from "../../package.json";
+import pluginJson5 from "./vite.json5";
+import viteCompression from "vite-plugin-compression";
 import ConditionalCompile from "vite-plugin-conditional-compiler";
-import tsconfigPaths from 'vite-tsconfig-paths'
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const extensions = [
 	".ts",
@@ -28,7 +28,11 @@ const extensions = [
 
 export default defineConfig(({ command, mode }) => {
 	fs.mkdirSync(`${__dirname}/../../built`, { recursive: true });
-	fs.writeFileSync(`${__dirname}/../../built/meta.json`, JSON.stringify({ version: meta.version }), 'utf-8');
+	fs.writeFileSync(
+		`${__dirname}/../../built/meta.json`,
+		JSON.stringify({ version: meta.version }),
+		"utf-8",
+	);
 
 	return {
 		base: "/assets/",
@@ -52,9 +56,9 @@ export default defineConfig(({ command, mode }) => {
 		resolve: {
 			extensions,
 			alias: {
-				'@/': `${__dirname}/src/`,
-				'/client-assets/': `${__dirname}/assets/`,
-				'/static-assets/': `${__dirname}/../backend/assets/`,
+				"@/": `${__dirname}/src/`,
+				"/client-assets/": `${__dirname}/assets/`,
+				"/static-assets/": `${__dirname}/../backend/assets/`,
 			},
 		},
 
@@ -74,25 +78,23 @@ export default defineConfig(({ command, mode }) => {
 		},
 
 		build: {
-			target: [
-				'es2017',
-			],
-			manifest: 'manifest.json',
+			target: ["es2017"],
+			manifest: "manifest.json",
 			rollupOptions: {
 				input: {
-					index: 'index.html',
-					app: './src/init.ts',
+					index: "index.html",
+					app: "./src/init.ts",
 				},
 				output: {
 					manualChunks: {
-						vendor: ['vue'],
-					}
+						vendor: ["vue"],
+					},
 				},
 			},
 			cssCodeSplit: true,
 			assetsInlineLimit: 0,
 			outDir: `${__dirname}/../../built/_client_dist_`,
-			assetsDir: '.',
+			assetsDir: ".",
 			emptyOutDir: false,
 			sourcemap: process.env.NODE_ENV === "development",
 			reportCompressedSize: false,

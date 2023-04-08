@@ -12,4 +12,3 @@ declare module "@vue/runtime-core" {
 		$ts: typeof i18n["locale"];
 	}
 }
-

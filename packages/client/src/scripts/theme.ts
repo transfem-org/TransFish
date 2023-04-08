@@ -146,7 +146,7 @@ function compile(theme: Theme): Record<string, string> {
 		// #v-ifdef VITE_CAPACITOR
 		if (storedDeviceInfo.platform === "ios") {
 			StatusBar.setStyle({
-			  style: theme.base === "dark" ? Style.Dark : Style.Light,
+				style: theme.base === "dark" ? Style.Dark : Style.Light,
 			});
 		}
 		// #v-endif

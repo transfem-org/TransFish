@@ -16,9 +16,11 @@ export const url = $i?.instanceUrl;
 export const url = address.origin;
 // #v-endif
 export const apiUrl = `${url ? url : "http://localhost"}/api`;
-export const wsUrl = `${url ? url
-	.replace("http://", "ws://")
-	.replace("https://", "wss://") : "ws://localhost"}/streaming`;
+export const wsUrl = `${
+	url
+		? url.replace("http://", "ws://").replace("https://", "wss://")
+		: "ws://localhost"
+}/streaming`;
 export const lang = localStorage.getItem("lang");
 export const langs = _LANGS_;
 export const locale = JSON.parse(localStorage.getItem("locale"));
