@@ -7,8 +7,9 @@
     "mobilebuild": "pnpm vite build --mode mobile && pnpm run mobilecopy && npx cap sync",
     "mobilecopy": "pnpm node ../../scripts/mobilebuild.js",
     "lint": "pnpm rome check \"src/**/*.{ts,vue}\"",
+		"format": "pnpm prettier --write '**/*.vue'",
     "ios": "npx cap open ios",
-    "android": "studio android"
+    "android": "npx cap open android"
   },
   "devDependencies": {
     "@capacitor/cli": "^4.0.0",

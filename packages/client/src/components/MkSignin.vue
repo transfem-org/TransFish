@@ -84,11 +84,94 @@
 					<template #label>{{ i18n.ts.password }}</template>
 					<template #prefix><i class="ph-lock ph-bold ph-lg"></i></template>
 				</MkInput>
-				<MkInput v-model="token" type="text" pattern="^[0-9]{6}$" autocomplete="off" :spellcheck="false" required>
-					<template #label>{{ i18n.ts.token }}</template>
-					<template #prefix><i class="ph-poker-chip ph-bold ph-lg"></i></template>
+				<MkInput
+					v-if="!user || (user && !user.usePasswordLessLogin)"
+					v-model="password"
+					class="_formBlock"
+					:placeholder="i18n.ts.password"
+					type="password"
+					:with-password-toggle="true"
+					required
+					data-cy-signin-password
+				>
+					<template #prefix
+						><i class="ph-lock ph-bold ph-lg"></i
+					></template>
+					<template #caption
+						><button
+							class="_textButton"
+							type="button"
+							@click="resetPassword"
+						>
+							{{ i18n.ts.forgotPassword }}
+						</button></template
+					>
 				</MkInput>
-				<MkButton type="submit" :disabled="signing" primary style="margin: 0 auto;">{{ signing ? i18n.ts.loggingIn : i18n.ts.login }}</MkButton>
+				<MkButton
+					class="_formBlock"
+					type="submit"
+					primary
+					:disabled="signing"
+					style="margin: 1rem auto"
+					>{{ signing ? i18n.ts.loggingIn : i18n.ts.login }}</MkButton
+				>
+			</div>
+			<div
+				v-if="totpLogin"
+				class="2fa-signin"
+				:class="{ securityKeys: user && user.securityKeys }"
+			>
+				<div
+					v-if="user && user.securityKeys"
+					class="twofa-group tap-group"
+				>
+					<p>{{ i18n.ts.tapSecurityKey }}</p>
+					<MkButton v-if="!queryingKey" @click="queryKey">
+						{{ i18n.ts.retry }}
+					</MkButton>
+				</div>
+				<div v-if="user && user.securityKeys" class="or-hr">
+					<p class="or-msg">{{ i18n.ts.or }}</p>
+				</div>
+				<div class="twofa-group totp-group">
+					<p style="margin-bottom: 0">
+						{{ i18n.ts.twoStepAuthentication }}
+					</p>
+					<MkInput
+						v-if="user && user.usePasswordLessLogin"
+						v-model="password"
+						type="password"
+						:with-password-toggle="true"
+						required
+					>
+						<template #label>{{ i18n.ts.password }}</template>
+						<template #prefix
+							><i class="ph-lock ph-bold ph-lg"></i
+						></template>
+					</MkInput>
+					<MkInput
+						v-model="token"
+						type="text"
+						pattern="^[0-9]{6}$"
+						autocomplete="off"
+						:spellcheck="false"
+						required
+					>
+						<template #label>{{ i18n.ts.token }}</template>
+						<template #prefix
+							><i class="ph-poker-chip ph-bold ph-lg"></i
+						></template>
+					</MkInput>
+					<MkButton
+						type="submit"
+						:disabled="signing"
+						primary
+						style="margin: 0 auto"
+						>{{
+							signing ? i18n.ts.loggingIn : i18n.ts.login
+						}}</MkButton
+					>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -141,7 +224,7 @@ const instanceUrlOther = $ref("");
 const meta = $computed(() => instance);
 
 const emit = defineEmits<{
-	(ev: 'login', v: any): void;
+	(ev: "login", v: any): void;
 }>();
 
 const props = defineProps({
@@ -158,18 +241,21 @@ const props = defineProps({
 	message: {
 		type: String,
 		required: false,
-		default: '',
+		default: "",
 	},
 });
 
 function onUsernameChange() {
-	os.api('users/show', {
+	os.api("users/show", {
 		username: username,
-	}).then(userResponse => {
-		user = userResponse;
-	}, () => {
-		user = null;
-	});
+	}).then(
+		(userResponse) => {
+			user = userResponse;
+		},
+		() => {
+			user = null;
+		}
+	);
 }
 
 function onLogin(res) {
@@ -194,32 +280,50 @@ const instanceUrlResult = $computed(() => {
 // #v-endif
 function queryKey() {
 	queryingKey = true;
-	return navigator.credentials.get({
-		publicKey: {
-			challenge: byteify(challengeData.challenge, 'base64'),
-			allowCredentials: challengeData.securityKeys.map(key => ({
-				id: byteify(key.id, 'hex'),
-				type: 'public-key',
-				transports: ['usb', 'nfc', 'ble', 'internal'],
-			})),
-			timeout: 60 * 1000,
-		},
-	}).catch(() => {
-		queryingKey = false;
-		return Promise.reject(null);
-	}).then(credential => {
-		queryingKey = false;
-		signing = true;
-		return os.api('signin', {
-			username,
-			password,
-			signature: hexify(credential.response.signature),
-			authenticatorData: hexify(credential.response.authenticatorData),
-			clientDataJSON: hexify(credential.response.clientDataJSON),
-			credentialId: credential.id,
-			challengeId: challengeData.challengeId,
-			'hcaptcha-response': hCaptchaResponse,
-			'g-recaptcha-response': reCaptchaResponse,
+	return navigator.credentials
+		.get({
+			publicKey: {
+				challenge: byteify(challengeData.challenge, "base64"),
+				allowCredentials: challengeData.securityKeys.map((key) => ({
+					id: byteify(key.id, "hex"),
+					type: "public-key",
+					transports: ["usb", "nfc", "ble", "internal"],
+				})),
+				timeout: 60 * 1000,
+			},
+		})
+		.catch(() => {
+			queryingKey = false;
+			return Promise.reject(null);
+		})
+		.then((credential) => {
+			queryingKey = false;
+			signing = true;
+			return os.api("signin", {
+				username,
+				password,
+				signature: hexify(credential.response.signature),
+				authenticatorData: hexify(
+					credential.response.authenticatorData
+				),
+				clientDataJSON: hexify(credential.response.clientDataJSON),
+				credentialId: credential.id,
+				challengeId: challengeData.challengeId,
+				"hcaptcha-response": hCaptchaResponse,
+				"g-recaptcha-response": reCaptchaResponse,
+			});
+		})
+		.then((res) => {
+			emit("login", res);
+			return onLogin(res);
+		})
+		.catch((err) => {
+			if (err === null) return;
+			os.alert({
+				type: "error",
+				text: i18n.ts.signinFailed,
+			});
+			signing = false;
 		});
 	}).then(res => {
 		// #v-ifdef VITE_CAPACITOR
@@ -249,27 +353,29 @@ function onSubmit() {
 	// #v-else
 	if (!totpLogin && user && user.twoFactorEnabled) {
 		if (window.PublicKeyCredential && user.securityKeys) {
-			os.api('signin', {
+			os.api("signin", {
 				username,
 				password,
-				'hcaptcha-response': hCaptchaResponse,
-				'g-recaptcha-response': reCaptchaResponse,
-			}).then(res => {
-				totpLogin = true;
-				signing = false;
-				challengeData = res;
-				return queryKey();
-			}).catch(loginFailed);
+				"hcaptcha-response": hCaptchaResponse,
+				"g-recaptcha-response": reCaptchaResponse,
+			})
+				.then((res) => {
+					totpLogin = true;
+					signing = false;
+					challengeData = res;
+					return queryKey();
+				})
+				.catch(loginFailed);
 		} else {
 			totpLogin = true;
 			signing = false;
 		}
 	} else {
-		os.api('signin', {
+		os.api("signin", {
 			username,
 			password,
-			'hcaptcha-response': hCaptchaResponse,
-			'g-recaptcha-response': reCaptchaResponse,
+			"hcaptcha-response": hCaptchaResponse,
+			"g-recaptcha-response": reCaptchaResponse,
 			token: user && user.twoFactorEnabled ? token : undefined,
 		}).then(res => {
 			emit('login', res);
@@ -281,29 +387,29 @@ function onSubmit() {
 
 function loginFailed(err) {
 	switch (err.id) {
-		case '6cc579cc-885d-43d8-95c2-b8c7fc963280': {
+		case "6cc579cc-885d-43d8-95c2-b8c7fc963280": {
 			os.alert({
-				type: 'error',
+				type: "error",
 				title: i18n.ts.loginFailed,
 				text: i18n.ts.noSuchUser,
 			});
 			break;
 		}
-		case '932c904e-9460-45b7-9ce6-7ed33be7eb2c': {
+		case "932c904e-9460-45b7-9ce6-7ed33be7eb2c": {
 			os.alert({
-				type: 'error',
+				type: "error",
 				title: i18n.ts.loginFailed,
 				text: i18n.ts.incorrectPassword,
 			});
 			break;
 		}
-		case 'e03a5f46-d309-4865-9b69-56282d94e1eb': {
+		case "e03a5f46-d309-4865-9b69-56282d94e1eb": {
 			showSuspendedDialog();
 			break;
 		}
-		case '22d05606-fbcf-421a-a2db-b32610dcfd1b': {
+		case "22d05606-fbcf-421a-a2db-b32610dcfd1b": {
 			os.alert({
-				type: 'error',
+				type: "error",
 				title: i18n.ts.loginFailed,
 				text: i18n.ts.rateLimitExceeded,
 			});
@@ -312,7 +418,7 @@ function loginFailed(err) {
 		default: {
 			console.log(err);
 			os.alert({
-				type: 'error',
+				type: "error",
 				title: i18n.ts.loginFailed,
 				text: JSON.stringify(err),
 			});
@@ -325,8 +431,12 @@ function loginFailed(err) {
 }
 
 function resetPassword() {
-	os.popup(defineAsyncComponent(() => import('@/components/MkForgotPassword.vue')), {}, {
-	}, 'closed');
+	os.popup(
+		defineAsyncComponent(() => import("@/components/MkForgotPassword.vue")),
+		{},
+		{},
+		"closed"
+	);
 }
 
 // #v-ifdef VITE_CAPACITOR

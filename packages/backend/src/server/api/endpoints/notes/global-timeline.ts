@@ -8,6 +8,7 @@ import { generateMutedUserQuery } from "../../common/generate-muted-user-query.j
 import { generateRepliesQuery } from "../../common/generate-replies-query.js";
 import { generateMutedNoteQuery } from "../../common/generate-muted-note-query.js";
 import { generateBlockedUserQuery } from "../../common/generate-block-query.js";
+import { generateMutedUserRenotesQueryForNotes } from "../../common/generated-muted-renote-query.js";
 
 export const meta = {
 	tags: ["notes"],
@@ -86,6 +87,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		generateMutedUserQuery(query, user);
 		generateMutedNoteQuery(query, user);
 		generateBlockedUserQuery(query, user);
+		generateMutedUserRenotesQueryForNotes(query, user);
 	}
 
 	if (ps.withFiles) {
@@ -98,7 +100,7 @@ export default define(meta, paramDef, async (ps, user) => {
 			activeUsersChart.read(user);
 		}
 	});
-	
+
 	// We fetch more than requested because some may be filtered out, and if there's less than
 	// requested, the pagination stops.
 	const found = [];
@@ -106,7 +108,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	let skip = 0;
 	while (found.length < ps.limit) {
 		const notes = await query.take(take).skip(skip).getMany();
-		found.push(...await Notes.packMany(notes, user))
+		found.push(...(await Notes.packMany(notes, user)));
 		skip += take;
 		if (notes.length < take) break;
 	}

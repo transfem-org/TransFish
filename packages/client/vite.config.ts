@@ -1,6 +1,6 @@
-import * as fs from 'fs';
-import pluginVue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
+import * as fs from "fs";
+import pluginVue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
 
 import locales from '../../locales';
 import { dependencies } from './package.json';
@@ -11,14 +11,27 @@ import viteCompression from 'vite-plugin-compression';
 import ConditionalCompile from "vite-plugin-conditional-compiler";
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.json5', '.svg', '.sass', '.scss', '.css', '.vue'];
+const extensions = [
+	".ts",
+	".tsx",
+	".js",
+	".jsx",
+	".mjs",
+	".json",
+	".json5",
+	".svg",
+	".sass",
+	".scss",
+	".css",
+	".vue",
+];
 
 export default defineConfig(({ command, mode }) => {
 	fs.mkdirSync(`${__dirname}/../../built`, { recursive: true });
 	fs.writeFileSync(`${__dirname}/../../built/meta.json`, JSON.stringify({ version: meta.version }), 'utf-8');
 
 	return {
-		base: '/assets/',
+		base: "/assets/",
 
 		plugins: [
 			ConditionalCompile(),
@@ -31,7 +44,7 @@ export default defineConfig(({ command, mode }) => {
 			// ...
 			// #v-else
 			viteCompression({
-				algorithm: 'brotliCompress'
+				algorithm: "brotliCompress",
 			}),
 			// #v-endif
 		],
@@ -47,13 +60,15 @@ export default defineConfig(({ command, mode }) => {
 
 		define: {
 			_VERSION_: JSON.stringify(meta.version),
-			_LANGS_: JSON.stringify(Object.entries(locales).map(([k, v]) => [k, v._lang_])),
+			_LANGS_: JSON.stringify(
+				Object.entries(locales).map(([k, v]) => [k, v._lang_]),
+			),
 			_ENV_: JSON.stringify(process.env.NODE_ENV),
-			_DEV_: process.env.NODE_ENV !== 'production',
-			_PERF_PREFIX_: JSON.stringify('Misskey:'),
-			_DATA_TRANSFER_DRIVE_FILE_: JSON.stringify('mk_drive_file'),
-			_DATA_TRANSFER_DRIVE_FOLDER_: JSON.stringify('mk_drive_folder'),
-			_DATA_TRANSFER_DECK_COLUMN_: JSON.stringify('mk_deck_column'),
+			_DEV_: process.env.NODE_ENV !== "production",
+			_PERF_PREFIX_: JSON.stringify("Misskey:"),
+			_DATA_TRANSFER_DRIVE_FILE_: JSON.stringify("mk_drive_file"),
+			_DATA_TRANSFER_DRIVE_FOLDER_: JSON.stringify("mk_drive_folder"),
+			_DATA_TRANSFER_DECK_COLUMN_: JSON.stringify("mk_deck_column"),
 			__VUE_OPTIONS_API__: true,
 			__VUE_PROD_DEVTOOLS__: false,
 		},
@@ -79,8 +94,11 @@ export default defineConfig(({ command, mode }) => {
 			outDir: `${__dirname}/../../built/_client_dist_`,
 			assetsDir: '.',
 			emptyOutDir: false,
-			sourcemap: process.env.NODE_ENV === 'development',
+			sourcemap: process.env.NODE_ENV === "development",
 			reportCompressedSize: false,
+			commonjsOptions: {
+				include: [/calckey-js/, /node_modules/],
+			},
 		},
 		optimizeDeps: {
 			auto: true,

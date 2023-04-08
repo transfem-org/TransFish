@@ -209,11 +209,11 @@ export default define(meta, paramDef, async (ps, me) => {
 	}
 
 	if (Array.isArray(ps.blockedHosts)) {
-		let lastValue = '';
-		set.blockedHosts = ps.blockedHosts.sort().filter(h => {
+		let lastValue = "";
+		set.blockedHosts = ps.blockedHosts.sort().filter((h) => {
 			const lv = lastValue;
 			lastValue = h;
-			return h !== '' && h !== lv;
+			return h !== "" && h !== lv;
 		});
 	}
 

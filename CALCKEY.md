@@ -5,15 +5,14 @@
 - Stucture
   - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
   - Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
-  - Rewrite backend in Rust and [Axum](https://github.com/tokio-rs/axum)
-  - Use [Magic ReGeXP](https://regexp.dev/) for ReGeX 🦄
+  - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
+  - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
   - Federate with note edits
   - User "choices" (recommended users) like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize instance blocks
   - Build flag to remove NSFW/AI stuff
-  - Timeline filters
   - Filter notifications by user
   - Exclude self from antenna
 - Form
@@ -21,6 +20,7 @@
   - Personal notes for all accounts
   - Fully revamp non-logged-in screen
   - Classic mode make instance icon bring up new context menu
+  - Lookup/details for post/file/instance
   - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
@@ -34,7 +34,7 @@
 - Admin custom CSS
 - Add back time machine (jump to date)
 - Improve accesibility
-- Non-nyaify cat mode
+- Timeline filters
 
 ## Implemented
 
@@ -114,6 +114,11 @@
 - Compile time compression
 - Sonic search
 - Popular color schemes, including Nord, Gruvbox, and Catppuccin
+- Non-nyaify cat mode
+
+## Implemented (remote)
+
+
 - MissV: [fix Misskey Forkbomb](https://code.vtopia.live/Vtopia/MissV/commit/40b23c070bd4adbb3188c73546c6c625138fb3c1)
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
 - [Tapping avatar in mobile opens account modal](https://github.com/misskey-dev/misskey/pull/9056)

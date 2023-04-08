@@ -73,17 +73,26 @@
 					// #v-endif
 				</div>
 			</div>
-		</div>
-		<div v-if="instances" class="federation">
-			<MarqueeText :duration="40">
-				<MkA v-for="instance in instances" :key="instance.id" :class="$style.federationInstance" @click="signup()">
-					<img v-if="instance.iconUrl" class="icon" :src="instance.iconUrl" alt=""/>
-					<span class="name _monospace">{{ instance.host }}</span>
-				</MkA>
-			</MarqueeText>
+			<div v-if="instances" class="federation">
+				<MarqueeText :duration="40">
+					<MkA
+						v-for="instance in instances"
+						:key="instance.id"
+						:class="$style.federationInstance"
+						@click="signup()"
+					>
+						<img
+							v-if="instance.iconUrl"
+							class="icon"
+							:src="instance.iconUrl"
+							alt=""
+						/>
+						<span class="name _monospace">{{ instance.host }}</span>
+					</MkA>
+				</MarqueeText>
+			</div>
 		</div>
 	</div>
-</div>
 </template>
 
 <script lang="ts" setup>
@@ -119,57 +128,73 @@ os.api('meta', { detail: true }).then(_meta => {
 	meta = _meta;
 });
 
-os.api('stats').then(_stats => {
+os.api("stats").then((_stats) => {
 	stats = _stats;
 });
 
-os.api('get-online-users-count').then(res => {
+os.api("get-online-users-count").then((res) => {
 	onlineUsersCount = res.count;
 });
 
-os.api('hashtags/list', {
-	sort: '+mentionedLocalUsers',
+os.api("hashtags/list", {
+	sort: "+mentionedLocalUsers",
 	limit: 8,
-}).then(_tags => {
+}).then((_tags) => {
 	tags = _tags;
 });
 
-os.api('federation/instances', {
-	sort: '+pubSub',
+os.api("federation/instances", {
+	sort: "+pubSub",
 	limit: 20,
-}).then(_instances => {
+}).then((_instances) => {
 	instances = _instances;
 });
 // #v-endif
 function signin() {
-	os.popup(XSigninDialog, {
-		autoSet: true,
-	}, {}, 'closed');
+	os.popup(
+		XSigninDialog,
+		{
+			autoSet: true,
+		},
+		{},
+		"closed"
+	);
 }
 
 // #v-ifdef VITE_CAPACITOR
 //...
 // #v-else
 function signup() {
-	os.popup(XSignupDialog, {
-		autoSet: true,
-	}, {}, 'closed');
+	os.popup(
+		XSignupDialog,
+		{
+			autoSet: true,
+		},
+		{},
+		"closed"
+	);
 }
 // #v-endif
 function showMenu(ev) {
-	os.popupMenu([{
-		text: i18n.ts.instanceInfo,
-		icon: 'ph-info ph-bold ph-lg',
-		action: () => {
-			os.pageWindow('/about');
-		},
-	}, {
-		text: i18n.ts.aboutMisskey,
-		icon: 'ph-info ph-bold ph-lg',
-		action: () => {
-			os.pageWindow('/about-calckey');
-		},
-	}], ev.currentTarget ?? ev.target);
+	os.popupMenu(
+		[
+			{
+				text: i18n.ts.instanceInfo,
+				icon: "ph-info ph-bold ph-lg",
+				action: () => {
+					os.pageWindow("/about");
+				},
+			},
+			{
+				text: i18n.ts.aboutMisskey,
+				icon: "ph-info ph-bold ph-lg",
+				action: () => {
+					os.pageWindow("/about-calckey");
+				},
+			},
+		],
+		ev.currentTarget ?? ev.target
+	);
 }
 // #v-ifdef VITE_CAPACITOR
 watch(lang, () => {
@@ -227,8 +252,20 @@ function unisonReload(path?: string) {
 			width: 500px;
 			height: calc(100% - 128px);
 			overflow: hidden;
-			-webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 128px, rgba(0,0,0,1) calc(100% - 128px), rgba(0,0,0,0) 100%);
-			mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 128px, rgba(0,0,0,1) calc(100% - 128px), rgba(0,0,0,0) 100%);
+			-webkit-mask-image: linear-gradient(
+				0deg,
+				rgba(0, 0, 0, 0) 0%,
+				rgba(0, 0, 0, 1) 128px,
+				rgba(0, 0, 0, 1) calc(100% - 128px),
+				rgba(0, 0, 0, 0) 100%
+			);
+			mask-image: linear-gradient(
+				0deg,
+				rgba(0, 0, 0, 0) 0%,
+				rgba(0, 0, 0, 1) 128px,
+				rgba(0, 0, 0, 1) calc(100% - 128px),
+				rgba(0, 0, 0, 0) 100%
+			);
 
 			@media (max-width: 1200px) {
 				display: none;

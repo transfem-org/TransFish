@@ -22,7 +22,7 @@ import { definePageMetadata } from '@/scripts/page-metadata';
 
 let meta = $ref(null);
 
-os.api('meta', { detail: true }).then(res => {
+os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 });
 

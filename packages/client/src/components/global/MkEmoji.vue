@@ -28,11 +28,19 @@ const props = defineProps<{
 	isReaction?: boolean;
 }>();
 
-const isCustom = computed(() => props.emoji.startsWith(':'));
-const char = computed(() => isCustom.value ? null : props.emoji);
-const useOsNativeEmojis = computed(() => defaultStore.state.useOsNativeEmojis && !props.isReaction);
+const isCustom = computed(() => props.emoji.startsWith(":"));
+const char = computed(() => (isCustom.value ? null : props.emoji));
+const useOsNativeEmojis = computed(
+	() => defaultStore.state.useOsNativeEmojis && !props.isReaction
+);
 const ce = computed(() => props.customEmojis ?? instance.emojis ?? []);
-const customEmoji = computed(() => isCustom.value ? ce.value.find(x => x.name === props.emoji.substr(1, props.emoji.length - 2)) : null);
+const customEmoji = computed(() =>
+	isCustom.value
+		? ce.value.find(
+				(x) => x.name === props.emoji.substr(1, props.emoji.length - 2)
+		  )
+		: null
+);
 const url = computed(() => {
 	if (char.value) {
 // #v-ifdef VITE_CAPACITOR
@@ -47,7 +55,9 @@ const url = computed(() => {
 		return rawUrl.startsWith("http") ? rawUrl : instanceUrl + rawUrl;
 	}
 });
-const alt = computed(() => customEmoji.value ? `:${customEmoji.value.name}:` : char.value);
+const alt = computed(() =>
+	customEmoji.value ? `:${customEmoji.value.name}:` : char.value
+);
 </script>
 
 <style lang="scss" scoped>
