@@ -1,42 +1,19 @@
 <template>
-<div class="_formRoot">
-	<FormSelect v-model="lang" class="_formBlock">
-		<template #label>{{ i18n.ts.uiLanguage }}</template>
-		<option v-for="x in langs" :key="x[0]" :value="x[0]">{{ x[1] }}</option>
-		<template #caption>
-			<I18n :src="i18n.ts.i18nInfo" tag="span">
-				<template #link>
-					<MkLink url="https://hosted.weblate.org/engage/calckey/">Weblate</MkLink>
-				</template>
-			</I18n>
-		</template>
-	</FormSelect>
-
-	<FormRadios v-model="overridedDeviceKind" class="_formBlock">
-		<template #label>{{ i18n.ts.overridedDeviceKind }}</template>
-		<option :value="null">{{ i18n.ts.auto }}</option>
-		<option value="smartphone"><i class="ph-device-mobile ph-bold ph-lg"/> {{ i18n.ts.smartphone }}</option>
-		<option value="tablet"><i class="ph-device-tablet ph-bold ph-lg"/> {{ i18n.ts.tablet }}</option>
-		<option value="desktop"><i class="ph-desktop ph-bold ph-lg"/> {{ i18n.ts.desktop }}</option>
-	</FormRadios>
-
-	<FormSwitch v-model="showFixedPostForm" class="_formBlock">{{ i18n.ts.showFixedPostForm }}</FormSwitch>
-
-	<FormSection>
-		<template #label>{{ i18n.ts.behavior }}</template>
-		<FormSwitch v-model="imageNewTab" class="_formBlock">{{ i18n.ts.openImageInNewTab }}</FormSwitch>
-		<FormSwitch v-model="enableInfiniteScroll" class="_formBlock">{{ i18n.ts.enableInfiniteScroll }}</FormSwitch>
-		<FormSwitch v-model="useReactionPickerForContextMenu" class="_formBlock">{{ i18n.ts.useReactionPickerForContextMenu }}</FormSwitch>
-		<FormSwitch v-model="swipeOnDesktop" class="_formBlock">{{ i18n.ts.swipeOnDesktop }}</FormSwitch>
-		<FormSwitch v-model="enterSendsMessage" class="_formBlock">{{ i18n.ts.enterSendsMessage }}</FormSwitch>
-		<FormSwitch v-model="disablePagesScript" class="_formBlock">{{ i18n.ts.disablePagesScript }}</FormSwitch>
-
-		<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
-			<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
-			<option value="reload">{{ i18n.ts._serverDisconnectedBehavior.reload }}</option>
-			<option value="dialog">{{ i18n.ts._serverDisconnectedBehavior.dialog }}</option>
-			<option value="quiet">{{ i18n.ts._serverDisconnectedBehavior.quiet }}</option>
-			<option value="nothing">{{ i18n.ts._serverDisconnectedBehavior.nothing }}</option>
+	<div class="_formRoot">
+		<FormSelect v-model="lang" class="_formBlock">
+			<template #label>{{ i18n.ts.uiLanguage }}</template>
+			<option v-for="x in langs" :key="x[0]" :value="x[0]">
+				{{ x[1] }}
+			</option>
+			<template #caption>
+				<I18n :src="i18n.ts.i18nInfo" tag="span">
+					<template #link>
+						<MkLink url="https://hosted.weblate.org/engage/calckey/"
+							>Weblate</MkLink
+						>
+					</template>
+				</I18n>
+			</template>
 		</FormSelect>
 
 		<FormRadios v-model="overridedDeviceKind" class="_formBlock">
@@ -52,17 +29,6 @@
 			</option>
 			<option value="desktop">
 				<i class="ph-desktop ph-bold ph-lg" /> {{ i18n.ts.desktop }}
-			</option>
-		</FormRadios>
-
-		<FormRadios v-model="showLocalPostsInTimeline" class="_formBlock">
-			<template #label>{{ i18n.ts.showLocalPosts }}</template>
-			<option value="home">
-				<i class="ph-house ph-bold ph-lg" /> {{ i18n.ts.homeTimeline }}
-			</option>
-			<option value="social">
-				<i class="ph-handshake ph-bold ph-lg" />
-				{{ i18n.ts.socialTimeline }}
 			</option>
 		</FormRadios>
 
@@ -108,6 +74,71 @@
 					{{ i18n.ts._serverDisconnectedBehavior.nothing }}
 				</option>
 			</FormSelect>
+
+			<FormRadios v-model="overridedDeviceKind" class="_formBlock">
+				<template #label>{{ i18n.ts.overridedDeviceKind }}</template>
+				<option :value="null">{{ i18n.ts.auto }}</option>
+				<option value="smartphone">
+					<i class="ph-device-mobile ph-bold ph-lg" />
+					{{ i18n.ts.smartphone }}
+				</option>
+				<option value="tablet">
+					<i class="ph-device-tablet ph-bold ph-lg" />
+					{{ i18n.ts.tablet }}
+				</option>
+				<option value="desktop">
+					<i class="ph-desktop ph-bold ph-lg" /> {{ i18n.ts.desktop }}
+				</option>
+			</FormRadios>
+
+			<FormSwitch v-model="showFixedPostForm" class="_formBlock">{{
+				i18n.ts.showFixedPostForm
+			}}</FormSwitch>
+
+			<FormSection>
+				<template #label>{{ i18n.ts.behavior }}</template>
+				<FormSwitch v-model="imageNewTab" class="_formBlock">{{
+					i18n.ts.openImageInNewTab
+				}}</FormSwitch>
+				<FormSwitch v-model="enableInfiniteScroll" class="_formBlock">{{
+					i18n.ts.enableInfiniteScroll
+				}}</FormSwitch>
+				<FormSwitch
+					v-model="useReactionPickerForContextMenu"
+					class="_formBlock"
+					>{{ i18n.ts.useReactionPickerForContextMenu }}</FormSwitch
+				>
+				<FormSwitch v-model="swipeOnDesktop" class="_formBlock">{{
+					i18n.ts.swipeOnDesktop
+				}}</FormSwitch>
+				<FormSwitch v-model="enterSendsMessage" class="_formBlock">{{
+					i18n.ts.enterSendsMessage
+				}}</FormSwitch>
+				<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
+					i18n.ts.disablePagesScript
+				}}</FormSwitch>
+
+				<FormSelect
+					v-model="serverDisconnectedBehavior"
+					class="_formBlock"
+				>
+					<template #label>{{
+						i18n.ts.whenServerDisconnected
+					}}</template>
+					<option value="reload">
+						{{ i18n.ts._serverDisconnectedBehavior.reload }}
+					</option>
+					<option value="dialog">
+						{{ i18n.ts._serverDisconnectedBehavior.dialog }}
+					</option>
+					<option value="quiet">
+						{{ i18n.ts._serverDisconnectedBehavior.quiet }}
+					</option>
+					<option value="nothing">
+						{{ i18n.ts._serverDisconnectedBehavior.nothing }}
+					</option>
+				</FormSelect>
+			</FormSection>
 		</FormSection>
 
 		<FormSection>
@@ -260,32 +291,76 @@ async function reloadAsk() {
 	unisonReload();
 }
 
-const overridedDeviceKind = computed(defaultStore.makeGetterSetter('overridedDeviceKind'));
-const serverDisconnectedBehavior = computed(defaultStore.makeGetterSetter('serverDisconnectedBehavior'));
-const reduceAnimation = computed(defaultStore.makeGetterSetter('animation', v => !v, v => !v));
-const useBlurEffectForModal = computed(defaultStore.makeGetterSetter('useBlurEffectForModal'));
-const useBlurEffect = computed(defaultStore.makeGetterSetter('useBlurEffect'));
-const showGapBetweenNotesInTimeline = computed(defaultStore.makeGetterSetter('showGapBetweenNotesInTimeline'));
-const showAds = computed(defaultStore.makeGetterSetter('showAds'));
-const disableAnimatedMfm = computed(defaultStore.makeGetterSetter('animatedMfm', v => !v, v => !v));
-const useOsNativeEmojis = computed(defaultStore.makeGetterSetter('useOsNativeEmojis'));
-const disableDrawer = computed(defaultStore.makeGetterSetter('disableDrawer'));
-const disableShowingAnimatedImages = computed(defaultStore.makeGetterSetter('disableShowingAnimatedImages'));
-const loadRawImages = computed(defaultStore.makeGetterSetter('loadRawImages'));
-const imageNewTab = computed(defaultStore.makeGetterSetter('imageNewTab'));
-const nsfw = computed(defaultStore.makeGetterSetter('nsfw'));
-const disablePagesScript = computed(defaultStore.makeGetterSetter('disablePagesScript'));
-const showFixedPostForm = computed(defaultStore.makeGetterSetter('showFixedPostForm'));
-const numberOfPageCache = computed(defaultStore.makeGetterSetter('numberOfPageCache'));
-const instanceTicker = computed(defaultStore.makeGetterSetter('instanceTicker'));
-const enableInfiniteScroll = computed(defaultStore.makeGetterSetter('enableInfiniteScroll'));
-const enterSendsMessage = computed(defaultStore.makeGetterSetter('enterSendsMessage'));
-const useReactionPickerForContextMenu = computed(defaultStore.makeGetterSetter('useReactionPickerForContextMenu'));
-const seperateRenoteQuote = computed(defaultStore.makeGetterSetter('seperateRenoteQuote'));
-const squareAvatars = computed(defaultStore.makeGetterSetter('squareAvatars'));
-const showUpdates = computed(defaultStore.makeGetterSetter('showUpdates'));
-const swipeOnDesktop = computed(defaultStore.makeGetterSetter('swipeOnDesktop'));
-const showAdminUpdates = computed(defaultStore.makeGetterSetter('showAdminUpdates'));
+const overridedDeviceKind = computed(
+	defaultStore.makeGetterSetter("overridedDeviceKind")
+);
+const serverDisconnectedBehavior = computed(
+	defaultStore.makeGetterSetter("serverDisconnectedBehavior")
+);
+const reduceAnimation = computed(
+	defaultStore.makeGetterSetter(
+		"animation",
+		(v) => !v,
+		(v) => !v
+	)
+);
+const useBlurEffectForModal = computed(
+	defaultStore.makeGetterSetter("useBlurEffectForModal")
+);
+const useBlurEffect = computed(defaultStore.makeGetterSetter("useBlurEffect"));
+const showGapBetweenNotesInTimeline = computed(
+	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
+);
+const showAds = computed(defaultStore.makeGetterSetter("showAds"));
+const disableAnimatedMfm = computed(
+	defaultStore.makeGetterSetter(
+		"animatedMfm",
+		(v) => !v,
+		(v) => !v
+	)
+);
+const useOsNativeEmojis = computed(
+	defaultStore.makeGetterSetter("useOsNativeEmojis")
+);
+const disableDrawer = computed(defaultStore.makeGetterSetter("disableDrawer"));
+const disableShowingAnimatedImages = computed(
+	defaultStore.makeGetterSetter("disableShowingAnimatedImages")
+);
+const loadRawImages = computed(defaultStore.makeGetterSetter("loadRawImages"));
+const imageNewTab = computed(defaultStore.makeGetterSetter("imageNewTab"));
+const nsfw = computed(defaultStore.makeGetterSetter("nsfw"));
+const disablePagesScript = computed(
+	defaultStore.makeGetterSetter("disablePagesScript")
+);
+const showFixedPostForm = computed(
+	defaultStore.makeGetterSetter("showFixedPostForm")
+);
+const numberOfPageCache = computed(
+	defaultStore.makeGetterSetter("numberOfPageCache")
+);
+const instanceTicker = computed(
+	defaultStore.makeGetterSetter("instanceTicker")
+);
+const enableInfiniteScroll = computed(
+	defaultStore.makeGetterSetter("enableInfiniteScroll")
+);
+const enterSendsMessage = computed(
+	defaultStore.makeGetterSetter("enterSendsMessage")
+);
+const useReactionPickerForContextMenu = computed(
+	defaultStore.makeGetterSetter("useReactionPickerForContextMenu")
+);
+const seperateRenoteQuote = computed(
+	defaultStore.makeGetterSetter("seperateRenoteQuote")
+);
+const squareAvatars = computed(defaultStore.makeGetterSetter("squareAvatars"));
+const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
+const swipeOnDesktop = computed(
+	defaultStore.makeGetterSetter("swipeOnDesktop")
+);
+const showAdminUpdates = computed(
+	defaultStore.makeGetterSetter("showAdminUpdates")
+);
 
 watch(lang, () => {
 	localStorage.setItem("lang", lang.value as string);
@@ -308,23 +383,26 @@ watch(useSystemFont, () => {
 	}
 });
 
-watch([
-	lang,
-	fontSize,
-	useSystemFont,
-	enableInfiniteScroll,
-	squareAvatars,
-	showGapBetweenNotesInTimeline,
-	instanceTicker,
-	overridedDeviceKind,
-	showAds,
-	showUpdates,
-	swipeOnDesktop,
-	seperateRenoteQuote,
-	showAdminUpdates,
-], async () => {
-	await reloadAsk();
-});
+watch(
+	[
+		lang,
+		fontSize,
+		useSystemFont,
+		enableInfiniteScroll,
+		squareAvatars,
+		showGapBetweenNotesInTimeline,
+		instanceTicker,
+		overridedDeviceKind,
+		showAds,
+		showUpdates,
+		swipeOnDesktop,
+		seperateRenoteQuote,
+		showAdminUpdates,
+	],
+	async () => {
+		await reloadAsk();
+	}
+);
 
 const headerActions = $computed(() => []);
 

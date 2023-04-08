@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { computed, provide, onUnmounted } from "vue";
 import XNotes from "@/components/MkNotes.vue";
-import  { defaultStore } from "@/store";
+import { defaultStore } from "@/store";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
 import { $i } from "@/account";
@@ -97,14 +97,14 @@ if (props.src === "antenna") {
 	endpoint = "notes/global-timeline";
 	connection = stream.useChannel("globalTimeline");
 	connection.on("note", prepend);
-} else if (props.src === 'featured') {
-	endpoint = 'notes/featured';
+} else if (props.src === "featured") {
+	endpoint = "notes/featured";
 	query = {
-		origin: 'combined',
+		origin: "combined",
 		offsetMode: true,
 		days: 5,
 		limit: 10,
-	}
+	};
 } else if (props.src === "mentions") {
 	endpoint = "notes/mentions";
 	connection = stream.useChannel("main");
