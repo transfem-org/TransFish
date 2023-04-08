@@ -27,7 +27,7 @@
 		"e2e": "start-server-and-test start:test http://localhost:61812 cy:run",
 		"mocha": "pnpm --filter backend run mocha",
 		"test": "pnpm run mocha",
-		"format": "gulp format",
+		"format": "pnpm rome format packages/**/* --write && pnpm --filter client run format",
 		"clean": "pnpm node ./scripts/clean.js",
 		"clean-all": "pnpm node ./scripts/clean-all.js",
 		"cleanall": "pnpm run clean-all"

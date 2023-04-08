@@ -1,24 +1,78 @@
 <template>
-	<div v-if="show" ref="el" class="fdidabkb" :class="{ slim: narrow, thin: thin_ }" :style="{ background: bg }" @click="onClick">
-		<i @click="goBack()" v-if="props.displayBackButton" v-tooltip.noDelay="i18n.ts.goBack" class="icon backButton ph-caret-left ph-bold ph-lg"></i>
+	<div
+		v-if="show"
+		ref="el"
+		class="fdidabkb"
+		:class="{ slim: narrow, thin: thin_ }"
+		:style="{ background: bg }"
+		@click="onClick"
+	>
+		<i
+			@click="goBack()"
+			v-if="props.displayBackButton"
+			v-tooltip.noDelay="i18n.ts.goBack"
+			class="icon backButton ph-caret-left ph-bold ph-lg"
+		></i>
 		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
-			<MkAvatar v-if="props.displayMyAvatar && $i" class="avatar" :user="$i" :disable-preview="true"/>
+			<MkAvatar
+				v-if="props.displayMyAvatar && $i"
+				class="avatar"
+				:user="$i"
+				:disable-preview="true"
+			/>
 		</div>
-	<template v-if="metadata">
-		<div v-if="!hideTitle" class="titleContainer" @click="showTabsPopup">
-			<MkAvatar v-if="metadata.avatar" class="avatar" :user="metadata.avatar" :disable-preview="true" :show-indicator="true"/>
-				<i v-else-if="metadata.icon && !narrow" class="icon" :class="metadata.icon"></i>
+		<template v-if="metadata">
+			<div
+				v-if="!hideTitle"
+				class="titleContainer"
+				@click="showTabsPopup"
+			>
+				<MkAvatar
+					v-if="metadata.avatar"
+					class="avatar"
+					:user="metadata.avatar"
+					:disable-preview="true"
+					:show-indicator="true"
+				/>
+				<i
+					v-else-if="metadata.icon && !narrow"
+					class="icon"
+					:class="metadata.icon"
+				></i>
 
 				<div class="title">
-					<MkUserName v-if="metadata.userName" :user="metadata.userName" :nowrap="true" class="title"/>
-					<div v-else-if="metadata.title && !(tabs != null && tabs.length > 0 && narrow)" class="title">{{ metadata.title }}</div>
+					<MkUserName
+						v-if="metadata.userName"
+						:user="metadata.userName"
+						:nowrap="true"
+						class="title"
+					/>
+					<div
+						v-else-if="
+							metadata.title &&
+							!(tabs != null && tabs.length > 0 && narrow)
+						"
+						class="title"
+					>
+						{{ metadata.title }}
+					</div>
 					<div v-if="!narrow && metadata.subtitle" class="subtitle">
 						{{ metadata.subtitle }}
 					</div>
 				</div>
 			</div>
 			<div ref="tabsEl" v-if="hasTabs" class="tabs">
-				<button v-for="tab in tabs" :ref="(el) => tabRefs[tab.key] = el" v-tooltip.noDelay="tab.title" class="tab _button" :class="{ active: tab.key != null && tab.key === props.tab }" @mousedown="(ev) => onTabMousedown(tab, ev)" @click="(ev) => onTabClick(tab, ev)">
+				<button
+					v-for="tab in tabs"
+					:ref="(el) => (tabRefs[tab.key] = el)"
+					v-tooltip.noDelay="tab.title"
+					class="tab _button"
+					:class="{
+						active: tab.key != null && tab.key === props.tab,
+					}"
+					@mousedown="(ev) => onTabMousedown(tab, ev)"
+					@click="(ev) => onTabClick(tab, ev)"
+				>
 					<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
 					<span class="title">{{ tab.title }}</span>
 				</button>
@@ -27,21 +81,39 @@
 		</template>
 		<div class="buttons right">
 			<template v-for="action in actions">
-				<button v-tooltip.noDelay="action.text" class="_button button" :class="{ highlighted: action.highlighted }" @click.stop="action.handler" @touchstart="preventDrag"><i :class="action.icon"></i></button>
+				<button
+					v-tooltip.noDelay="action.text"
+					class="_button button"
+					:class="{ highlighted: action.highlighted }"
+					@click.stop="action.handler"
+					@touchstart="preventDrag"
+				>
+					<i :class="action.icon"></i>
+				</button>
 			</template>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, inject, watch, shallowReactive, nextTick, reactive } from 'vue';
-import tinycolor from 'tinycolor2';
-import { popupMenu } from '@/os';
-import { scrollToTop } from '@/scripts/scroll';
-import { globalEvents } from '@/events';
-import { injectPageMetadata } from '@/scripts/page-metadata';
-import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
-import { i18n } from '@/i18n';
+import {
+	computed,
+	onMounted,
+	onUnmounted,
+	ref,
+	inject,
+	watch,
+	shallowReactive,
+	nextTick,
+	reactive,
+} from "vue";
+import tinycolor from "tinycolor2";
+import { popupMenu } from "@/os";
+import { scrollToTop } from "@/scripts/scroll";
+import { globalEvents } from "@/events";
+import { injectPageMetadata } from "@/scripts/page-metadata";
+import { $i, openAccountMenu as openAccountMenu_ } from "@/account";
+import { i18n } from "@/i18n";
 
 type Tab = {
 	key?: string | null;
@@ -65,13 +137,13 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-	(ev: 'update:tab', key: string);
+	(ev: "update:tab", key: string);
 }>();
 
 const metadata = injectPageMetadata();
 
-const hideTitle = inject('shouldOmitHeaderTitle', false);
-const thin_ = props.thin || inject('shouldHeaderThin', false);
+const hideTitle = inject("shouldOmitHeaderTitle", false);
+const thin_ = props.thin || inject("shouldHeaderThin", false);
 
 const el = $ref<HTMLElement | null>(null);
 const tabRefs = {};
@@ -87,9 +159,12 @@ const show = $computed(() => {
 });
 
 const openAccountMenu = (ev: MouseEvent) => {
-	openAccountMenu_({
-		withExtraOperation: true,
-	}, ev);
+	openAccountMenu_(
+		{
+			withExtraOperation: true,
+		},
+		ev
+	);
 };
 
 const showTabsPopup = (ev: MouseEvent) => {
@@ -97,7 +172,7 @@ const showTabsPopup = (ev: MouseEvent) => {
 	if (!narrow) return;
 	ev.preventDefault();
 	ev.stopPropagation();
-	const menu = props.tabs.map(tab => ({
+	const menu = props.tabs.map((tab) => ({
 		text: tab.title,
 		icon: tab.icon,
 		active: tab.key != null && tab.key === props.tab,
@@ -113,13 +188,13 @@ const preventDrag = (ev: TouchEvent) => {
 };
 
 const onClick = () => {
-	scrollToTop(el, { behavior: 'smooth' });
+	scrollToTop(el, { behavior: "smooth" });
 };
 
 function onTabMousedown(tab: Tab, ev: MouseEvent): void {
 	// ユーザビリティの観点からmousedown時にはonClickは呼ばない
 	if (tab.key) {
-		emit('update:tab', tab.key);
+		emit("update:tab", tab.key);
 	}
 }
 
@@ -130,7 +205,7 @@ function onTabClick(tab: Tab, ev: MouseEvent): void {
 		tab.onClick(ev);
 	}
 	if (tab.key) {
-		emit('update:tab', tab.key);
+		emit("update:tab", tab.key);
 	}
 }
 
@@ -139,8 +214,14 @@ function goBack(): void {
 }
 
 const calcBg = () => {
-	const rawBg = metadata?.bg || 'var(--bg)';
-	const tinyBg = tinycolor(rawBg.startsWith('var(') ? getComputedStyle(document.documentElement).getPropertyValue(rawBg.slice(4, -1)) : rawBg);
+	const rawBg = metadata?.bg || "var(--bg)";
+	const tinyBg = tinycolor(
+		rawBg.startsWith("var(")
+			? getComputedStyle(document.documentElement).getPropertyValue(
+					rawBg.slice(4, -1)
+			  )
+			: rawBg
+	);
 	tinyBg.setAlpha(0.85);
 	bg.value = tinyBg.toRgbString();
 };
@@ -149,31 +230,39 @@ let ro: ResizeObserver | null;
 
 onMounted(() => {
 	calcBg();
-	globalEvents.on('themeChanged', calcBg);
+	globalEvents.on("themeChanged", calcBg);
 
-	watch(() => [props.tab, props.tabs], () => {
-		nextTick(() => {
-			const tabEl = tabRefs[props.tab];
-			if (tabEl && tabHighlightEl) {
-				// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
-				// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
-				const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
-				tabEl.style = `--width: ${tabSizeX}px`;
-				setTimeout(() => {
-					const parentRect = tabsEl.getBoundingClientRect();
-					const rect = tabEl.getBoundingClientRect();
-					const left = (rect.left - parentRect.left + tabsEl?.scrollLeft);
-					tabHighlightEl.style.width = tabSizeX + 'px';
-					tabHighlightEl.style.transform = `translateX(${left}px)`;
-					window.requestAnimationFrame(() => {
-						tabsEl?.scrollTo({left: left - 60, behavior: "smooth"});
-					})
-				}, 200);
-			}
-		});
-	}, {
-		immediate: true,
-	});
+	watch(
+		() => [props.tab, props.tabs],
+		() => {
+			nextTick(() => {
+				const tabEl = tabRefs[props.tab];
+				if (tabEl && tabHighlightEl) {
+					// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
+					// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
+					const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
+					tabEl.style = `--width: ${tabSizeX}px`;
+					setTimeout(() => {
+						const parentRect = tabsEl.getBoundingClientRect();
+						const rect = tabEl.getBoundingClientRect();
+						const left =
+							rect.left - parentRect.left + tabsEl?.scrollLeft;
+						tabHighlightEl.style.width = tabSizeX + "px";
+						tabHighlightEl.style.transform = `translateX(${left}px)`;
+						window.requestAnimationFrame(() => {
+							tabsEl?.scrollTo({
+								left: left - 60,
+								behavior: "smooth",
+							});
+						});
+					}, 200);
+				}
+			});
+		},
+		{
+			immediate: true,
+		}
+	);
 
 	if (el && el.parentElement) {
 		narrow = el.parentElement.offsetWidth < 500;
@@ -187,7 +276,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-	globalEvents.off('themeChanged', calcBg);
+	globalEvents.off("themeChanged", calcBg);
 	if (ro) ro.disconnect();
 });
 </script>
@@ -227,8 +316,18 @@ onUnmounted(() => {
 		}
 		> .tabs {
 			padding-inline: 12px;
-			mask: linear-gradient(to right, transparent, black 10px 80%, transparent);
-			-webkit-mask: linear-gradient(to right, transparent, black 10px 80%, transparent);
+			mask: linear-gradient(
+				to right,
+				transparent,
+				black 10px 80%,
+				transparent
+			);
+			-webkit-mask: linear-gradient(
+				to right,
+				transparent,
+				black 10px 80%,
+				transparent
+			);
 			margin-left: -10px;
 			padding-left: 22px;
 			scrollbar-width: none;
@@ -238,7 +337,8 @@ onUnmounted(() => {
 			&::-webkit-scrollbar {
 				display: none;
 			}
-			&::after { // Force right padding
+			&::after {
+				// Force right padding
 				content: "";
 				display: inline-block;
 				min-width: 20%;
@@ -393,7 +493,7 @@ onUnmounted(() => {
 			width: 38px;
 			--width: 38px;
 			overflow: hidden;
-			transition: color .2s, opacity .2s, width .2s;
+			transition: color 0.2s, opacity 0.2s, width 0.2s;
 
 			&:hover {
 				opacity: 1;
@@ -413,7 +513,7 @@ onUnmounted(() => {
 				margin-left: 8px;
 			}
 			> .title {
-				transition: opacity .2s;
+				transition: opacity 0.2s;
 			}
 		}
 
@@ -424,8 +524,8 @@ onUnmounted(() => {
 			height: 3px;
 			background: var(--accent);
 			border-radius: 999px;
-			transition: width .2s, transform .2s;
-			transition-timing-function: cubic-bezier(0,0,0,1.2);
+			transition: width 0.2s, transform 0.2s;
+			transition-timing-function: cubic-bezier(0, 0, 0, 1.2);
 			pointer-events: none;
 		}
 	}

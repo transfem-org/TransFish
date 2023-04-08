@@ -788,6 +788,12 @@ importers:
       photoswipe:
         specifier: 5.3.4
         version: 5.3.4
+      prettier:
+        specifier: 2.8.7
+        version: 2.8.7
+      prettier-plugin-vue:
+        specifier: 1.1.6
+        version: 1.1.6
       prismjs:
         specifier: 1.29.0
         version: 1.29.0
@@ -12361,6 +12367,18 @@ packages:
   /prepend-http@2.0.0:
     resolution: {integrity: sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /prettier-plugin-vue@1.1.6:
+    resolution: {integrity: sha512-trQ/oY+6hSsGe2zPIFThXMIM0TbxMEbk2VOrKjwHWuSz7OEo0rnumbz9a47OxVPCaAnGY9vZG8qDTiTmk9bq0A==}
+    dependencies:
+      prettier: 2.8.7
+    dev: true
+
+  /prettier@2.8.7:
+    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-bytes@5.6.0:

@@ -4,7 +4,8 @@
 	"scripts": {
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
-		"lint": "pnpm rome check \"src/**/*.{ts,vue}\""
+		"lint": "pnpm rome check \"src/**/*.{ts,vue}\"",
+		"format": "pnpm prettier --write '**/*.vue'"
 	},
 	"devDependencies": {
 		"@discordapp/twemoji": "14.0.2",
@@ -54,6 +55,8 @@
 		"matter-js": "0.18.0",
 		"mfm-js": "0.23.2",
 		"photoswipe": "5.3.4",
+		"prettier": "2.8.7",
+		"prettier-plugin-vue": "1.1.6",
 		"prismjs": "1.29.0",
 		"punycode": "2.1.1",
 		"querystring": "0.2.1",

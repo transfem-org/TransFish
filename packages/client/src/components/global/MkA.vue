@@ -1,26 +1,35 @@
 <template>
-<a :href="to" :class="active ? activeClass : null" @click="nav" @contextmenu.prevent.stop="onContextmenu" @click.stop>
-	<slot></slot>
-</a>
+	<a
+		:href="to"
+		:class="active ? activeClass : null"
+		@click="nav"
+		@contextmenu.prevent.stop="onContextmenu"
+		@click.stop
+	>
+		<slot></slot>
+	</a>
 </template>
 
 <script lang="ts" setup>
-import { inject } from 'vue';
-import * as os from '@/os';
-import copyToClipboard from '@/scripts/copy-to-clipboard';
-import { url } from '@/config';
-import { popout as popout_ } from '@/scripts/popout';
-import { i18n } from '@/i18n';
-import { useRouter } from '@/router';
+import { inject } from "vue";
+import * as os from "@/os";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
+import { popout as popout_ } from "@/scripts/popout";
+import { i18n } from "@/i18n";
+import { useRouter } from "@/router";
 
-const props = withDefaults(defineProps<{
-	to: string;
-	activeClass?: null | string;
-	behavior?: null | 'window' | 'browser' | 'modalWindow';
-}>(), {
-	activeClass: null,
-	behavior: null,
-});
+const props = withDefaults(
+	defineProps<{
+		to: string;
+		activeClass?: null | string;
+		behavior?: null | "window" | "browser" | "modalWindow";
+	}>(),
+	{
+		activeClass: null,
+		behavior: null,
+	}
+);
 
 const router = useRouter();
 
@@ -36,35 +45,45 @@ const active = $computed(() => {
 
 function onContextmenu(ev) {
 	const selection = window.getSelection();
-	if (selection && selection.toString() !== '') return;
-	os.contextMenu([{
-		type: 'label',
-		text: props.to,
-	}, {
-		icon: 'ph-browser ph-bold ph-lg',
-		text: i18n.ts.openInWindow,
-		action: () => {
-			os.pageWindow(props.to);
-		},
-	}, {
-		icon: 'ph-arrows-out-simple ph-bold ph-lg',
-		text: i18n.ts.showInPage,
-		action: () => {
-			router.push(props.to, 'forcePage');
-		},
-	}, null, {
-		icon: 'ph-arrow-square-out ph-bold ph-lg',
-		text: i18n.ts.openInNewTab,
-		action: () => {
-			window.open(props.to, '_blank');
-		},
-	}, {
-		icon: 'ph-link-simple ph-bold ph-lg',
-		text: i18n.ts.copyLink,
-		action: () => {
-			copyToClipboard(`${url}${props.to}`);
-		},
-	}], ev);
+	if (selection && selection.toString() !== "") return;
+	os.contextMenu(
+		[
+			{
+				type: "label",
+				text: props.to,
+			},
+			{
+				icon: "ph-browser ph-bold ph-lg",
+				text: i18n.ts.openInWindow,
+				action: () => {
+					os.pageWindow(props.to);
+				},
+			},
+			{
+				icon: "ph-arrows-out-simple ph-bold ph-lg",
+				text: i18n.ts.showInPage,
+				action: () => {
+					router.push(props.to, "forcePage");
+				},
+			},
+			null,
+			{
+				icon: "ph-arrow-square-out ph-bold ph-lg",
+				text: i18n.ts.openInNewTab,
+				action: () => {
+					window.open(props.to, "_blank");
+				},
+			},
+			{
+				icon: "ph-link-simple ph-bold ph-lg",
+				text: i18n.ts.copyLink,
+				action: () => {
+					copyToClipboard(`${url}${props.to}`);
+				},
+			},
+		],
+		ev
+	);
 }
 
 function openWindow() {
@@ -83,15 +102,15 @@ function nav(ev: MouseEvent) {
 	if (!ev.ctrlKey) {
 		ev.preventDefault();
 
-		if (props.behavior === 'browser') {
+		if (props.behavior === "browser") {
 			location.href = props.to;
 			return;
 		}
 
 		if (props.behavior) {
-			if (props.behavior === 'window') {
+			if (props.behavior === "window") {
 				return openWindow();
-			} else if (props.behavior === 'modalWindow') {
+			} else if (props.behavior === "modalWindow") {
 				return modalWindow();
 			}
 		}
@@ -100,7 +119,7 @@ function nav(ev: MouseEvent) {
 			return openWindow();
 		}
 
-		router.push(props.to, ev.ctrlKey ? 'forcePage' : null);
+		router.push(props.to, ev.ctrlKey ? "forcePage" : null);
 	}
 }
 </script>
