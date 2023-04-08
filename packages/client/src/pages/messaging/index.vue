@@ -121,12 +121,15 @@ window.addEventListener("resize", () => {
 		deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD;
 });
 
+async function readAllMessagingMessages() {
+	await os.api("i/read-all-messaging-messages");
+}
+
 const headerActions = $computed(() => [
 	{
-		asFullButton: true,
-		icon: "ph-plus ph-bold ph-lg",
-		text: i18n.ts.addUser,
-		handler: startMenu,
+		icon: "ph-check ph-bold ph-lg",
+		text: i18n.ts.markAllAsRead,
+		handler: readAllMessagingMessages,
 	},
 ]);
 
