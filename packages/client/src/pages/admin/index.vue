@@ -182,12 +182,6 @@ const menuDef = $computed(() => [
 				active: currentPage?.route.name === "emojis",
 			},
 			{
-				icon: "ph-hash ph-bold ph-lg",
-				text: i18n.ts.hashtags,
-				to: "/admin/hashtags",
-				active: currentPage?.route.name === "hashtags",
-			},
-			{
 				icon: "ph-planet ph-bold ph-lg",
 				text: i18n.ts.federation,
 				to: "/admin/federation",
@@ -274,6 +268,12 @@ const menuDef = $computed(() => [
 							to: "/admin/instance-block",
 							active:
 								currentPage?.route.name === "instance-block",
+						},
+						{
+							icon: "ph-hash ph-bold ph-lg",
+							text: i18n.ts.hiddenTags,
+							to: "/admin/hashtags",
+							active: currentPage?.route.name === "hashtags",
 						},
 						{
 							icon: "ph-ghost ph-bold ph-lg",
