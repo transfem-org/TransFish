@@ -337,7 +337,8 @@ export const packedUserDetailedNotMeOnlySchema = {
 		},
 		isRenoteMuted: {
 			type: "boolean",
-			nullable: false, optional: true,
+			nullable: false,
+			optional: true,
 		},
 		//#endregion
 	},

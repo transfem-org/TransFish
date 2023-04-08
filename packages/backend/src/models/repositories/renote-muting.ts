@@ -10,7 +10,8 @@ export const RenoteMutingRepository = db.getRepository(RenoteMuting).extend({
 		src: RenoteMuting["id"] | RenoteMuting,
 		me?: { id: User["id"] } | null | undefined,
 	): Promise<Packed<"RenoteMuting">> {
-		const muting = typeof src === "object" ? src : await this.findOneByOrFail({ id: src });
+		const muting =
+			typeof src === "object" ? src : await this.findOneByOrFail({ id: src });
 
 		return await awaitAll({
 			id: muting.id,
@@ -22,10 +23,7 @@ export const RenoteMutingRepository = db.getRepository(RenoteMuting).extend({
 		});
 	},
 
-	packMany(
-		mutings: any[],
-		me: { id: User["id"] },
-	) {
-		return Promise.all(mutings.map(x => this.pack(x, me)));
+	packMany(mutings: any[], me: { id: User["id"] }) {
+		return Promise.all(mutings.map((x) => this.pack(x, me)));
 	},
 });

@@ -118,9 +118,12 @@ export function getUserMenu(user, router: Router = mainRouter) {
 	}
 
 	async function toggleRenoteMute(): Promise<void> {
-		os.apiWithDialog(user.isRenoteMuted ? "renote-mute/delete" : "renote-mute/create", {
-			userId: user.id,
-		}).then(() => {
+		os.apiWithDialog(
+			user.isRenoteMuted ? "renote-mute/delete" : "renote-mute/create",
+			{
+				userId: user.id,
+			},
+		).then(() => {
 			user.isRenoteMuted = !user.isRenoteMuted;
 		});
 	}

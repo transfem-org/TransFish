@@ -59,7 +59,8 @@ export const meta = {
 					},
 					isRenoteMuted: {
 						type: "boolean",
-						optional: false, nullable: false,
+						optional: false,
+						nullable: false,
 					},
 				},
 			},
@@ -113,7 +114,8 @@ export const meta = {
 						},
 						isRenoteMuted: {
 							type: "boolean",
-							optional: false, nullable: false,
+							optional: false,
+							nullable: false,
 						},
 					},
 				},

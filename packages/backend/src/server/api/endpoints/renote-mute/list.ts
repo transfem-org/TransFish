@@ -11,10 +11,12 @@ export const meta = {
 
 	res: {
 		type: "array",
-		optional: false, nullable: false,
+		optional: false,
+		nullable: false,
 		items: {
 			type: "object",
-			optional: false, nullable: false,
+			optional: false,
+			nullable: false,
 			ref: "RenoteMuting",
 		},
 	},
@@ -32,12 +34,13 @@ export const paramDef = {
 
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, me) => {
-	const query = makePaginationQuery(RenoteMutings.createQueryBuilder("muting"), ps.sinceId, ps.untilId)
-		.andWhere("muting.muterId = :meId", { meId: me.id });
+	const query = makePaginationQuery(
+		RenoteMutings.createQueryBuilder("muting"),
+		ps.sinceId,
+		ps.untilId,
+	).andWhere("muting.muterId = :meId", { meId: me.id });
 
-	const mutings = await query
-		.take(ps.limit)
-		.getMany();
+	const mutings = await query.take(ps.limit).getMany();
 
 	return await RenoteMutings.packMany(mutings, me);
 });
