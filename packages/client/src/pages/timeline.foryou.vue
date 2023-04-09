@@ -1,35 +1,39 @@
 <template>
 	<MkSpacer :content-max="800">
-		<MkTab v-model="tab" style="margin-bottom: var(--margin)">
-			<option v-if="isLocalTimelineAvailable" value="social">
-				{{ i18n.ts._timelines.social }}
-			</option>
-			<option value="home">{{ i18n.ts._timelines.home }}</option>
-			<option value="local" v-if="isLocalTimelineAvailable">
-				{{ i18n.ts._timelines.local }}
-			</option>
-		</MkTab>
-		<XTimeline
-			v-if="tab === 'social'"
-			ref="tl"
-			class="tl"
-			src="social"
-			:sound="true"
-		/>
-		<XTimeline
-			v-else-if="tab === 'home'"
-			ref="tl"
-			class="tl"
-			src="home"
-			:sound="true"
-		/>
-		<XTimeline
-			v-else-if="tab === 'local'"
-			ref="tl"
-			class="tl"
-			src="local"
-			:sound="true"
-		/>
+		<MkStickyContainer style="margin: 10px; top: 62px">
+			<template #header>
+				<MkTab v-model="tab" style="margin-bottom: var(--margin)">
+					<option v-if="isLocalTimelineAvailable" value="social">
+						{{ i18n.ts._timelines.social }}
+					</option>
+					<option value="home">{{ i18n.ts._timelines.home }}</option>
+					<option value="local" v-if="isLocalTimelineAvailable">
+						{{ i18n.ts._timelines.local }}
+					</option>
+				</MkTab>
+				<XTimeline
+					v-if="tab === 'social'"
+					ref="tl"
+					class="tl"
+					src="social"
+					:sound="true"
+				/>
+				<XTimeline
+					v-else-if="tab === 'home'"
+					ref="tl"
+					class="tl"
+					src="home"
+					:sound="true"
+				/>
+				<XTimeline
+					v-else-if="tab === 'local'"
+					ref="tl"
+					class="tl"
+					src="local"
+					:sound="true"
+				/>
+			</template>
+		</MkStickyContainer>
 	</MkSpacer>
 </template>
 

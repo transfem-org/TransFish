@@ -51,7 +51,6 @@ export default defineComponent({
 	display: flex;
 	font-size: 90%;
 	border-radius: var(--radius);
-	margin-top: -10px;
 
 	> button {
 		flex: 1;
