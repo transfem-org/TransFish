@@ -1,6 +1,6 @@
 <template>
-	<MkStickyContainer style="margin: 10px; top: 62px">
-		<template #header>
+	<MkStickyContainer>
+		<template #header style="margin: 10px; top: 62px">
 			<MkTab v-model="include" :class="$style.tab">
 				<option :value="null">{{ i18n.ts.notes }}</option>
 				<option value="replies">{{ i18n.ts.notesAndReplies }}</option>

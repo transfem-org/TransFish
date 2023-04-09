@@ -1,7 +1,7 @@
 <template>
 	<MkSpacer :content-max="800">
-		<MkStickyContainer style="margin: 10px; top: 62px">
-			<template #header>
+		<MkStickyContainer>
+			<template #header style="margin: 10px; top: 62px">
 				<MkTab v-model="tab" style="margin-bottom: var(--margin)">
 					<option value="hot">{{ i18n.ts._timelines.hot }}</option>
 					<option v-if="isRecommendedTimelineAvailable" value="recommended">
