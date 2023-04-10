@@ -50,7 +50,9 @@ export default defineComponent({
 	render() {
 		if (this.text == null || this.text === "") return;
 
-		const ast = (this.plain ? mfm.parseSimple : mfm.parse)(this.text, {
+		const isPlain = this.plain;
+
+		const ast = (isPlain ? mfm.parseSimple : mfm.parse)(this.text, {
 			fnNameList: MFM_TAGS,
 		});
 
@@ -61,7 +63,7 @@ export default defineComponent({
 
 		const genEl = (ast: mfm.MfmNode[]) =>
 			concat(
-				ast.map((token): VNode[] => {
+				ast.map((token, index): VNode[] => {
 					switch (token.type) {
 						case "text": {
 							const text = token.props.text.replace(/(\r\n|\n|\r)/g, "\n");
@@ -459,6 +461,38 @@ export default defineComponent({
 						}
 
 						case "search": {
+							// Disable "search" keyword
+							// (see the issue #9816 on Codeberg)
+							if (token.props.content.endsWith("search")) {
+								const sentinel = "#";
+								let ast2 = (isPlain ? mfm.parseSimple : mfm.parse)(
+									token.props.content.slice(0, -6) + sentinel,
+									{
+										fnNameList: MFM_TAGS,
+									},
+								);
+								if (
+									ast2[ast2.length - 1].type === "text" &&
+									ast2[ast2.length - 1].props.text.endsWith(sentinel)
+								) {
+									ast2[ast2.length - 1].props.text = ast2[
+										ast2.length - 1
+									].props.text.slice(0, -1);
+								}
+
+								let prefix = "\n";
+								if (
+									index === 0 ||
+									["blockCode", "mathBlock", "search", "quote"].includes(
+										ast[index - 1].type,
+									)
+								) {
+									prefix = "";
+								}
+
+								return [prefix, ...genEl(ast2), "search\n"];
+							}
+
 							return [
 								h(MkGoogle, {
 									key: Math.random(),
