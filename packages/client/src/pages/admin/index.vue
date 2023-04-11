@@ -359,6 +359,32 @@ const invite = () => {
 		});
 };
 
+async function lookupNote() {
+	const { canceled, result: q } = await os.inputText({
+		title: i18n.ts.noteId,
+	});
+	if (canceled) return;
+
+	os.api(
+		"notes/show",
+		q.startsWith("http://") || q.startsWith("https://")
+			? { url: q.trim() }
+			: { noteId: q.trim() },
+	)
+		.then((note) => {
+			os.pageWindow(`/notes/${note.id}`);
+		})
+		.catch((err) => {
+			if (err.code === "NO_SUCH_NOTE") {
+				os.alert({
+					type: "error",
+					text: i18n.ts.notFound,
+				});
+			}
+		});
+}
+
+
 const lookup = (ev) => {
 	os.popupMenu(
 		[
@@ -373,7 +399,7 @@ const lookup = (ev) => {
 				text: i18n.ts.note,
 				icon: "ph-pencil ph-bold ph-lg",
 				action: () => {
-					alert("TODO");
+					lookupNote();
 				},
 			},
 			{
