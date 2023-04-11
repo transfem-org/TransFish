@@ -86,7 +86,7 @@ import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import MkSelect from "@/components/form/select.vue";
 import MkFileListForAdmin from "@/components/MkFileListForAdmin.vue";
-import bytes from "@/filters/bytes";
+import { lookupFile } from "@/scripts/lookup-file";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -118,41 +118,11 @@ function clear() {
 	});
 }
 
-function show(file) {
-	os.pageWindow(`/admin/file/${file.id}`);
-}
-
-async function find() {
-	const { canceled, result: q } = await os.inputText({
-		title: i18n.ts.fileIdOrUrl,
-		allowEmpty: false,
-	});
-	if (canceled) return;
-
-	os.api(
-		"admin/drive/show-file",
-		q.startsWith("http://") || q.startsWith("https://")
-			? { url: q.trim() }
-			: { fileId: q.trim() }
-	)
-		.then((file) => {
-			show(file);
-		})
-		.catch((err) => {
-			if (err.code === "NO_SUCH_FILE") {
-				os.alert({
-					type: "error",
-					text: i18n.ts.notFound,
-				});
-			}
-		});
-}
-
 const headerActions = $computed(() => [
 	{
 		text: i18n.ts.lookup,
 		icon: "ph-magnifying-glass ph-bold ph-lg",
-		handler: find,
+		handler: lookupFile,
 	},
 	{
 		text: i18n.ts.clearCachedFiles,

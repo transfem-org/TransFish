@@ -79,6 +79,8 @@ import { version } from "@/config";
 import { $i } from "@/account";
 import * as os from "@/os";
 import { lookupUser } from "@/scripts/lookup-user";
+import { lookupFile } from "@/scripts/lookup-file";
+import { lookupInstance } from "@/scripts/lookup-instance";
 import { defaultStore } from "@/store";
 import { useRouter } from "@/router";
 import {
@@ -371,14 +373,14 @@ const lookup = (ev) => {
 				text: i18n.ts.file,
 				icon: "ph-cloud ph-bold ph-lg",
 				action: () => {
-					alert("TODO");
+					lookupFile();
 				},
 			},
 			{
 				text: i18n.ts.instance,
 				icon: "ph-planet ph-bold ph-lg",
 				action: () => {
-					alert("TODO");
+					lookupInstance();
 				},
 			},
 		],
