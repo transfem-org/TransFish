@@ -111,6 +111,9 @@
 - New dashboard
 - Backfill follower counts
 - Improved emoji licensing
+  - This feature was ported from Misskey.
+    - https://github.com/misskey-dev/misskey/commit/8ae9d2eaa8b0842671558370f787902e94b7f5a3: enhance: カスタム絵文字にライセンス情報を付与できるように
+    - https://github.com/misskey-dev/misskey/commit/ed51209172441927d24339f0759a5badbee3c9b6: 絵文字のライセンスを表示できるように
 - Compile time compression
 - Sonic search
 - Popular color schemes, including Nord, Gruvbox, and Catppuccin
@@ -160,3 +163,4 @@
 	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/ca90cedba0a0704b503c2778694230f5a7dfbace: server: reduce dead instance detection to 7 days
 	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/e9ab42c10afb4e27516c2d2b5e3e06630efe9edd: Alt text in image viewer
 	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/ed9d4023d41bba7c4ac53a1a3422246feed37de2: add argon2 support
+	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/c414f24a2c123774246c7eca65edda4d3afaf8b3: feat: per-user renote muting
