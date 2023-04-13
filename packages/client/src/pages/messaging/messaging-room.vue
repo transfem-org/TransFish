@@ -6,87 +6,87 @@
 				:tabs="headerTabs"
 				:display-back-button="true"
 		/></template>
-			<MkSpacer :content-max="800" class="mk-messaging-room">
-				<div class="body">
-					<MkPagination
-						v-if="pagination"
-						ref="pagingComponent"
-						:key="userAcct || groupId"
-						:pagination="pagination"
-					>
-						<template #empty>
-							<div class="_fullinfo">
-								<img
-									src="/static-assets/badges/info.png"
-									class="_ghost"
-									alt="Info"
-								/>
-								<div>{{ i18n.ts.noMessagesYet }}</div>
-							</div>
-						</template>
-						<template
-							#default="{ items: messages, fetching: pFetching }"
-						>
-							<XList
-								v-if="messages.length > 0"
-								v-slot="{ item: message }"
-								:class="{
-									messages: true,
-									'deny-move-transition': pFetching,
-								}"
-								:items="messages"
-								direction="up"
-								reversed
-							>
-								<XMessage
-									:key="message.id"
-									:message="message"
-									:is-group="group != null"
-								/>
-							</XList>
-						</template>
-					</MkPagination>
-				</div>
-				<footer>
-					<div v-if="typers.length > 0" class="typers">
-						<I18n
-							:src="i18n.ts.typingUsers"
-							text-tag="span"
-							class="users"
-						>
-							<template #users>
-								<b
-									v-for="typer in typers"
-									:key="typer.id"
-									class="user"
-									>{{ typer.username }}</b
-								>
-							</template>
-						</I18n>
-						<MkEllipsis />
-					</div>
-					<transition :name="animation ? 'fade' : ''">
-						<div v-show="showIndicator" class="new-message">
-							<button
-								class="_buttonPrimary"
-								@click="onIndicatorClick"
-							>
-								<i
-									class="fas ph-fw ph-lg ph-arrow-circle-down ph-bold ph-lg"
-								></i
-								>{{ i18n.ts.newMessageExists }}
-							</button>
+		<MkSpacer :content-max="800" class="mk-messaging-room">
+			<div class="body">
+				<MkPagination
+					v-if="pagination"
+					ref="pagingComponent"
+					:key="userAcct || groupId"
+					:pagination="pagination"
+				>
+					<template #empty>
+						<div class="_fullinfo">
+							<img
+								src="/static-assets/badges/info.png"
+								class="_ghost"
+								alt="Info"
+							/>
+							<div>{{ i18n.ts.noMessagesYet }}</div>
 						</div>
-					</transition>
-					<XForm
-						v-if="!fetching"
-						ref="formEl"
-						:user="user"
-						:group="group"
-						class="form"
-					/>
-				</footer>
-			</MkSpacer>
+					</template>
+					<template
+						#default="{ items: messages, fetching: pFetching }"
+					>
+						<XList
+							v-if="messages.length > 0"
+							v-slot="{ item: message }"
+							:class="{
+								messages: true,
+								'deny-move-transition': pFetching,
+							}"
+							:items="messages"
+							direction="up"
+							reversed
+						>
+							<XMessage
+								:key="message.id"
+								:message="message"
+								:is-group="group != null"
+							/>
+						</XList>
+					</template>
+				</MkPagination>
+			</div>
+			<footer>
+				<div v-if="typers.length > 0" class="typers">
+					<I18n
+						:src="i18n.ts.typingUsers"
+						text-tag="span"
+						class="users"
+					>
+						<template #users>
+							<b
+								v-for="typer in typers"
+								:key="typer.id"
+								class="user"
+								>{{ typer.username }}</b
+							>
+						</template>
+					</I18n>
+					<MkEllipsis />
+				</div>
+				<transition :name="animation ? 'fade' : ''">
+					<div v-show="showIndicator" class="new-message">
+						<button
+							class="_buttonPrimary"
+							@click="onIndicatorClick"
+						>
+							<i
+								class="fas ph-fw ph-lg ph-arrow-circle-down ph-bold ph-lg"
+							></i
+							>{{ i18n.ts.newMessageExists }}
+						</button>
+					</div>
+				</transition>
+				<XForm
+					v-if="!fetching"
+					ref="formEl"
+					:user="user"
+					:group="group"
+					class="form"
+				/>
+			</footer>
+		</MkSpacer>
 	</MkStickyContainer>
 </template>
 
@@ -343,12 +343,12 @@ onBeforeUnmount(() => {
 
 await fetch();
 definePageMetadata(
-		computed(() => ({
-			title: group != null ? group.name : user?.name,
-			icon: "ph-chats-teardrop ph-bold ph-lg",
-			avatar: group != null ? null : user,
-		}))
-	);
+	computed(() => ({
+		title: group != null ? group.name : user?.name,
+		icon: "ph-chats-teardrop ph-bold ph-lg",
+		avatar: group != null ? null : user,
+	}))
+);
 </script>
 
 <style lang="scss" scoped>

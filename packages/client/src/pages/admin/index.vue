@@ -161,12 +161,12 @@ const menuDef = $computed(() => [
 						},
 				  ]
 				: []),
-				{
-					type: "button",
-					icon: "ph-list-magnifying-glass ph-bold ph-lg",
-					text: i18n.ts.indexPosts,
-					action: indexPosts,
-				},
+			{
+				type: "button",
+				icon: "ph-list-magnifying-glass ph-bold ph-lg",
+				text: i18n.ts.indexPosts,
+				action: indexPosts,
+			},
 		],
 	},
 	{
@@ -369,7 +369,7 @@ async function lookupNote() {
 		"notes/show",
 		q.startsWith("http://") || q.startsWith("https://")
 			? { url: q.trim() }
-			: { noteId: q.trim() },
+			: { noteId: q.trim() }
 	)
 		.then((note) => {
 			os.pageWindow(`/notes/${note.id}`);
@@ -383,7 +383,6 @@ async function lookupNote() {
 			}
 		});
 }
-
 
 const lookup = (ev) => {
 	os.popupMenu(

@@ -9,7 +9,9 @@ export async function lookupInstance() {
 
 	os.api(
 		"federation/show-instance",
-		q.startsWith("http://") || q.startsWith("https://") ? { host: q.replace("https://", "") } : { host: q }
+		q.startsWith("http://") || q.startsWith("https://")
+			? { host: q.replace("https://", "") }
+			: { host: q },
 	)
 		.then((instance) => {
 			os.pageWindow(`/instance-info/${instance.host}`);
