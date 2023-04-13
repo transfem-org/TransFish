@@ -19,12 +19,6 @@ export const meta = {
 			id: "6fef56f3-e765-4957-88e5-c6f65329b8a5",
 		},
 
-		muteeIsYourself: {
-			message: "Mutee is yourself.",
-			code: "MUTEE_IS_YOURSELF",
-			id: "a4619cb2-5f23-484b-9301-94c903074e10",
-		},
-
 		alreadyMuting: {
 			message: "You are already muting that user.",
 			code: "ALREADY_MUTING",
@@ -44,11 +38,6 @@ export const paramDef = {
 // eslint-disable-next-line import/no-default-export
 export default define(meta, paramDef, async (ps, user) => {
 	const muter = user;
-
-	// 自分自身
-	if (user.id === ps.userId) {
-		throw new ApiError(meta.errors.muteeIsYourself);
-	}
 
 	// Get mutee
 	const mutee = await getUser(ps.userId).catch((e) => {
