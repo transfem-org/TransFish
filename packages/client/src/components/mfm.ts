@@ -52,9 +52,7 @@ export default defineComponent({
 
 		const isPlain = this.plain;
 
-		const ast = (isPlain ? mfm.parseSimple : mfm.parse)(this.text, {
-			fnNameList: MFM_TAGS,
-		});
+		const ast = (isPlain ? mfm.parseSimple : mfm.parse)(this.text);
 
 		const validTime = (t: string | null | undefined) => {
 			if (t == null) return null;
@@ -467,9 +465,6 @@ export default defineComponent({
 								const sentinel = "#";
 								let ast2 = (isPlain ? mfm.parseSimple : mfm.parse)(
 									token.props.content.slice(0, -6) + sentinel,
-									{
-										fnNameList: MFM_TAGS,
-									},
 								);
 								if (
 									ast2[ast2.length - 1].type === "text" &&
