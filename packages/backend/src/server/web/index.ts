@@ -98,11 +98,12 @@ app.use(
 
 // Favicon Router
 app.use(async (ctx, next) => {
-        if (ctx.path != '/favicon.ico') return next()
-        const meta = await fetchMeta();
-        if (meta.iconUrl === "") ctx.body = readFileSync(`${_dirname}/../../../assets/favicon.ico`);
-        else ctx.redirect(meta.iconUrl)
-})
+	if (ctx.path != "/favicon.ico") return next();
+	const meta = await fetchMeta();
+	if (meta.iconUrl === "")
+		ctx.body = readFileSync(`${_dirname}/../../../assets/favicon.ico`);
+	else ctx.redirect(meta.iconUrl);
+});
 
 // Common request handler
 app.use(async (ctx, next) => {
