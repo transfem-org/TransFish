@@ -374,6 +374,8 @@ const timeForThem = $computed(() => {
 		if (tzInfo.length == 0) continue;
 
 		const tz = tzInfo[0].timezone;
+		if (!tz) continue;
+
 		const theirTime = new Date().toLocaleString("en-US", {
 			timeZone: tz,
 			hour12: false,
