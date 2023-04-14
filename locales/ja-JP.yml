@@ -1423,7 +1423,7 @@ _profile:
   metadataContent: "内容"
   changeAvatar: "アバター画像を変更"
   changeBanner: "バナー画像を変更"
-  locationDescription: "正しく入力すると、あなたの現地時間が他のユーザーに表示されます。"
+  locationDescription: "英語表記の都市名から始まる内容を入力すると、現地時間がユーザーページに表示されます。"
 _exportOrImport:
   allNotes: "全ての投稿"
   followingList: "フォロー"
