@@ -363,10 +363,12 @@ const timeForThem = $computed(() => {
 			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.].*/,
 			""
 		),
-		props.user.location!.replace(
-			/[^A-Za-z0-9ÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.\s].*/,
-			""
-		),
+		props.user
+			.location!.replace(
+				/[^A-Za-z0-9ÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.\s].*/,
+				""
+			)
+			.trim(),
 	];
 
 	for (const city of maybeCityNames) {
