@@ -355,20 +355,20 @@ const age = $computed(() => {
 const timeForThem = $computed(() => {
 	const maybeCityNames = [
 		props.user.location!,
-		props.user.location!.replace(
-			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź].*/,
-			""
-		),
-		props.user.location!.replace(
-			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.].*/,
-			""
-		),
 		props.user
 			.location!.replace(
 				/[^A-Za-z0-9ÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.\s].*/,
 				""
 			)
 			.trim(),
+		props.user.location!.replace(
+			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.].*/,
+			""
+		),
+		props.user.location!.replace(
+			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź].*/,
+			""
+		),
 	];
 
 	for (const city of maybeCityNames) {
