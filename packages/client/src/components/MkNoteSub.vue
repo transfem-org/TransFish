@@ -142,27 +142,31 @@
 			</div>
 		</div>
 		<template v-if="conversation">
-			<template v-if="replies.length == 1">
-				<MkNoteSub
-					v-for="reply in replies"
-					:key="reply.id"
-					:note="reply"
-					class="reply single"
-					:conversation="conversation"
-					:depth="depth"
-					:parentId="appearNote.replyId"
-				/>
-			</template>
-			<template v-else-if="depth < 5">
-				<MkNoteSub
-					v-for="reply in replies"
-					:key="reply.id"
-					:note="reply"
-					class="reply"
-					:conversation="conversation"
-					:depth="depth + 1"
-					:parentId="appearNote.replyId"
-				/>
+			<template v-if="replyLevel < 11 && depth < 5">
+				<template v-if="replies.length == 1">
+					<MkNoteSub
+						v-for="reply in replies"
+						:key="reply.id"
+						:note="reply"
+						class="reply single"
+						:conversation="conversation"
+						:depth="depth"
+						:replyLevel="replyLevel + 1"
+						:parentId="appearNote.replyId"
+					/>
+				</template>
+				<template v-else>
+					<MkNoteSub
+						v-for="reply in replies"
+						:key="reply.id"
+						:note="reply"
+						class="reply"
+						:conversation="conversation"
+						:depth="depth + 1"
+						:replyLevel="replyLevel + 1"
+						:parentId="appearNote.replyId"
+					/>
+				</template>
 			</template>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
@@ -206,9 +210,12 @@ const props = withDefaults(
 
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
+		// the actual reply level of this note within the conversation thread
+		replyLevel?: number;
 	}>(),
 	{
 		depth: 1,
+		replyLevel: 1,
 	}
 );
 
