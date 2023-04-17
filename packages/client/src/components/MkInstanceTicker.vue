@@ -1,6 +1,6 @@
 <template>
-	<div class="hpaizdrt" ref="ticker" :style="bg">
-		<img v-tooltip="capitalize(instance.softwareName)" class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
+	<div class="hpaizdrt" v-tooltip="capitalize(instance.softwareName)"  ref="ticker" :style="bg">
+		<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
 		<span class="name">{{ instance.name }}</span>
 	</div>
 </template>
