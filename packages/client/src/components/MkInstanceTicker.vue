@@ -1,6 +1,6 @@
 <template>
 	<div class="hpaizdrt" ref="ticker" :style="bg">
-		<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
+		<img v-tooltip="instance.softwareName" class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
 		<span class="name">{{ instance.name }}</span>
 	</div>
 </template>
@@ -15,6 +15,7 @@ const props = defineProps<{
 		faviconUrl?: string;
 		name: string;
 		themeColor?: string;
+		softwareName?: string;
 	};
 }>();
 
@@ -29,6 +30,7 @@ const instance = props.instance ?? {
 			'meta[name="theme-color-orig"]'
 		) as HTMLMetaElement
 	)?.content,
+	software: Instance.softwareName || "Calckey",
 };
 
 const computedStyle = getComputedStyle(document.documentElement);
