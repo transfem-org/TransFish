@@ -15,7 +15,7 @@
 				<div class="about">
 					<div
 						class="desc"
-						v-html="meta.description || i18n.ts.headlineMisskey"
+						v-html="meta.description || i18n.ts.headlineCalckey"
 					></div>
 				</div>
 				<div class="action">
@@ -156,7 +156,7 @@ export default defineComponent({
 						},
 					},
 					{
-						text: i18n.ts.aboutMisskey,
+						text: i18n.ts.aboutCalckey,
 						icon: "ph-info ph-bold ph-lg",
 						action: () => {
 							os.pageWindow("/about-calckey");

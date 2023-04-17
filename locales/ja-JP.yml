@@ -1,7 +1,7 @@
 ---
 _lang_: "日本語"
-headlineMisskey: "ずっと無料でオープンソースの非中央集権型ソーシャルメディアプラットフォーム🚀"
-introMisskey: "ようこそ！Calckeyは、オープンソースの非中央集権型ソーシャルメディアプラットフォームです。\nいま起こっていることを共有したり、あなたについて皆に発信しましょう📡\n「リアクション」機能で、皆の投稿に素早く反応を追加できます👍\n新しい世界を探検しよう🚀"
+headlineCalckey: "ずっと無料でオープンソースの非中央集権型ソーシャルメディアプラットフォーム🚀"
+introCalckey: "ようこそ！Calckeyは、オープンソースの非中央集権型ソーシャルメディアプラットフォームです。\nいま起こっていることを共有したり、あなたについて皆に発信しましょう📡\n「リアクション」機能で、皆の投稿に素早く反応を追加できます👍\n新しい世界を探検しよう🚀"
 monthAndDay: "{month}月 {day}日"
 search: "検索"
 notifications: "通知"
@@ -390,7 +390,7 @@ exploreFediverse: "Fediverseを探索"
 popularTags: "人気のタグ"
 userList: "リスト"
 about: "情報"
-aboutMisskey: "Calckeyについて"
+aboutCalckey: "Calckeyについて"
 administrator: "管理者"
 token: "トークン"
 twoStepAuthentication: "二段階認証"
@@ -1033,7 +1033,7 @@ _registry:
   keys: "キー"
   domain: "ドメイン"
   createKey: "キーを作成"
-_aboutMisskey:
+_aboutCalckey:
   about: "Calckeyは、2022年に生まれたThatOneCalculatorによるMisskeyのforkです。"
   contributors: "主なコントリビューター"
   allContributors: "全てのコントリビューター"
@@ -1048,7 +1048,7 @@ _nsfw:
   force: "常にメディアを隠す"
 _mfm:
   cheatSheet: "MFMチートシート"
-  intro: "MFMは、MisskeyやCalckey、Akkomaなどの様々な場所で使用できるマークアップ言語です。ここでは、MFMで使用可能な構文一覧が確認できます。"
+  intro: "MFMは、CalckeyやCalckey、Akkomaなどの様々な場所で使用できるマークアップ言語です。ここでは、MFMで使用可能な構文一覧が確認できます。"
   dummy: "CalckeyでFediverseの世界が広がります"
   mention: "メンション"
   mentionDescription: "アットマーク + ユーザー名で、特定のユーザーを示せます。"

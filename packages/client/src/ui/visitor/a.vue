@@ -16,7 +16,7 @@
 				<div v-if="meta" class="about">
 					<div
 						class="desc"
-						v-html="meta.description || i18n.ts.introMisskey"
+						v-html="meta.description || i18n.ts.introCalckey"
 					></div>
 				</div>
 				<div class="action">
