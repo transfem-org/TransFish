@@ -262,7 +262,7 @@ function openInstanceMenu(ev: MouseEvent) {
 			},
 			{
 				type: "link",
-				text: i18n.ts.aboutCalckey,
+				text: i18n.ts.aboutMisskey,
 				to: "/about-calckey",
 			},
 		],

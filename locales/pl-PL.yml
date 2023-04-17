@@ -1,6 +1,6 @@
 _lang_: "Polski"
-headlineCalckey: "Otwartoźródłowa, zdecentralizowana sieć społecznościowa, która zawsze będzie darmowa! 🚀"
-introCalckey: "Hej! Calckey to otwartoźródłowa oraz zdecentralizowana sieć społecznościowa, która zawsze będzie darmowa! 🚀"
+headlineMisskey: "Otwartoźródłowa, zdecentralizowana sieć społecznościowa, która zawsze będzie darmowa! 🚀"
+introMisskey: "Hej! Calckey to otwartoźródłowa oraz zdecentralizowana sieć społecznościowa, która zawsze będzie darmowa! 🚀"
 monthAndDay: "{month}-{day}"
 search: "Szukaj"
 notifications: "Powiadomienia"
@@ -374,7 +374,7 @@ exploreFediverse: "Eksploruj Fediwersum"
 popularTags: "Tagi na czasie"
 userList: "Listy"
 about: "Informacje"
-aboutCalckey: "O Calckey"
+aboutMisskey: "O Calckey"
 administrator: "Admin"
 token: "Token"
 twoStepAuthentication: "Uwierzytelnianie dwuskładnikowe"
@@ -918,8 +918,8 @@ _registry:
   keys: "Klucz"
   domain: "Domena"
   createKey: "Utwórz klucz"
-_aboutCalckey:
-  about: "Calckey jest forkiem Calckey utworzonym przez ThatOneCalculator, rozwijanym od 2022."
+_aboutMisskey:
+  about: "Calckey jest forkiem Misskey utworzonym przez ThatOneCalculator, rozwijanym od 2022."
   contributors: "Główni twórcy"
   allContributors: "Wszyscy twórcy"
   source: "Kod źródłowy"
@@ -933,7 +933,7 @@ _nsfw:
   force: "Ukrywaj wszystkie media"
 _mfm:
   cheatSheet: "Ściąga MFM"
-  intro: "MFM jest językiem składniowym używanym przez m.in. Calckey, forki *key (w tym Calckey), oraz Akkomę, który może być użyty w wielu miejscach. Tu znajdziesz listę wszystkich możliwych elementów składni MFM."
+  intro: "MFM jest językiem składniowym używanym przez m.in. Misskey, forki *key (w tym Calckey), oraz Akkomę, który może być użyty w wielu miejscach. Tu znajdziesz listę wszystkich możliwych elementów składni MFM."
   dummy: "Calckey rozszerza świat Fediwersum"
   mention: "Wspomnij"
   mentionDescription: "Używając znaku @ i nazwy użytkownika, możesz określić danego użytkownika."
@@ -1821,7 +1821,7 @@ proxyAccountDescription: Konto proxy jest kontem które w określonych sytuacjac
   użytkownika nie zostanie dostarczona na oś czasu. W takim razie, użytkownika zaobserwuje
   konto proxy.
 objectStorageBaseUrlDesc: "URL stosowany jako odniesienie. Podaj URL twojego CDN, albo proxy, jeśli używasz któregokolwiek.\nDla S3 użyj 'https://<bucket>.s3.amazonaws.com', a dla GCS i jego odpowiedników użyj 'https://storage.googleapis.com/<bucket>', itd."
-sendErrorReportsDescription: "Gdy ta opcja jest włączona, szczegółowe informacje o błędach będą udostępnianie z Calckey gdy wystąpi problem, pomagając w ulepszaniu Calckey.\nZawrze to informacje takie jak wersja twojego systemu operacyjnego, przeglądarki, Twoja aktywność na Calckey itd."
+sendErrorReportsDescription: "Gdy ta opcja jest włączona, szczegółowe informacje o błędach będą udostępnianie z Calckey gdy wystąpi problem, pomagając w ulepszaniu Misskey.\nZawrze to informacje takie jak wersja twojego systemu operacyjnego, przeglądarki, Twoja aktywność na Calckey itd."
 privateModeInfo: Jeśli włączone, tylko dopuszczone instancje będą mogły federować
   z Twoją instancją. Wszystkie posty będą ukryte przed publiką.
 oneHour: Godzina

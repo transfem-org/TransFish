@@ -42,7 +42,7 @@
 						/></span>
 					</div>
 					<div class="_formBlock" style="text-align: center">
-						{{ i18n.ts._aboutCalckey.about }}<br /><a
+						{{ i18n.ts._aboutMisskey.about }}<br /><a
 							href="https://codeberg.org/calckey/calckey"
 							target="_blank"
 							class="_link"
@@ -63,7 +63,7 @@
 								<template #icon
 									><i class="ph-code ph-bold ph-lg"></i
 								></template>
-								{{ i18n.ts._aboutCalckey.source }}
+								{{ i18n.ts._aboutMisskey.source }}
 								<template #suffix>Codeberg</template>
 							</FormLink>
 							<FormLink
@@ -73,7 +73,7 @@
 								<template #icon
 									><i class="ph-money ph-bold ph-lg"></i
 								></template>
-								{{ i18n.ts._aboutCalckey.donate }}
+								{{ i18n.ts._aboutMisskey.donate }}
 								<template #suffix>Donate</template>
 							</FormLink>
 							<FormLink
@@ -83,14 +83,14 @@
 								<template #icon
 									><i class="ph-translate ph-bold ph-lg"></i
 								></template>
-								{{ i18n.ts._aboutCalckey.translation }}
+								{{ i18n.ts._aboutMisskey.translation }}
 								<template #suffix>Translate</template>
 							</FormLink>
 						</div>
 					</FormSection>
 					<FormSection>
 						<template #label>{{
-							i18n.ts._aboutCalckey.contributors
+							i18n.ts._aboutMisskey.contributors
 						}}</template>
 						<div class="_formLinks">
 							<FormLink to="/@kainoa@calckey.social"
@@ -118,7 +118,7 @@
 							><MkLink
 								url="https://codeberg.org/calckey/calckey/activity"
 								>{{
-									i18n.ts._aboutCalckey.allContributors
+									i18n.ts._aboutMisskey.allContributors
 								}}</MkLink
 							></template
 						>
@@ -126,7 +126,7 @@
 					<FormSection>
 						<template #label
 							><Mfm text="$[jelly ❤]" />
-							{{ i18n.ts._aboutCalckey.patrons }}</template
+							{{ i18n.ts._aboutMisskey.patrons }}</template
 						>
 						<MkSparkle>
 							<div
@@ -138,7 +138,7 @@
 							</div>
 						</MkSparkle>
 						<template #caption>{{
-							i18n.ts._aboutCalckey.morePatrons
+							i18n.ts._aboutMisskey.morePatrons
 						}}</template>
 					</FormSection>
 				</div>
@@ -209,7 +209,7 @@ const headerActions = $computed(() => []);
 const headerTabs = $computed(() => []);
 
 definePageMetadata({
-	title: i18n.ts.aboutCalckey,
+	title: i18n.ts.aboutMisskey,
 	icon: null,
 });
 </script>
