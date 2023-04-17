@@ -57,20 +57,12 @@ function getInstanceIcon(instance): string {
 	display: flex;
 	align-items: center;
 	height: 1.1em;
-	display: flex;
-	align-items: center;
-	height: 1.1em;
 	justify-self: flex-end;
-	padding: 0.2em 0.4em;
 	padding: 0.2em 0.4em;
 	border-radius: 100px;
 	font-size: 0.8em;
 	text-shadow: 0 2px 2px var(--shadow);
 	overflow: hidden;
-	.header > .body & {
-		width: max-content;
-		max-width: 100%;
-	}
 	.header > .body & {
 		width: max-content;
 		max-width: 100%;
@@ -83,22 +75,14 @@ function getInstanceIcon(instance): string {
 
 	> .name {
 		display: none;
-		display: none;
 		margin-left: 4px;
-		font-size: 0.85em;
 		font-size: 0.85em;
 		vertical-align: top;
 		font-weight: bold;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 		text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg),
 			-1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
-		.article > .main &,
-		.header > .body & {
-			display: unset;
-		}
 		.article > .main &,
 		.header > .body & {
 			display: unset;
