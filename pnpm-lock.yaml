@@ -236,6 +236,9 @@ importers:
       koa-mount:
         specifier: 4.0.0
         version: 4.0.0
+      koa-remove-trailing-slashes:
+        specifier: 2.0.3
+        version: 2.0.3
       koa-send:
         specifier: 5.0.1
         version: 5.0.1
@@ -9856,6 +9859,10 @@ packages:
       koa-compose: 4.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /koa-remove-trailing-slashes@2.0.3:
+    resolution: {integrity: sha512-NFFF9Sl1wxFo5h0I3OzrHDINdFPaqG+Hx19590F7PNOcmm7yYeFW71p4XicVuSovbcx75GWGb3fi6N6kI6E/3g==}
     dev: false
 
   /koa-router@10.1.1:

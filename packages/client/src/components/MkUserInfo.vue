@@ -34,15 +34,15 @@
 		<div class="status">
 			<div>
 				<p>{{ i18n.ts.notes }}</p>
-				<MkNumber :value="user.notesCount" />
+				<MkNumber :value="user.notesCount"/>
 			</div>
 			<div>
 				<p>{{ i18n.ts.following }}</p>
-				<MkNumber :value="user.followingCount" />
+				<MkNumber :value="user.followingCount"/>
 			</div>
 			<div>
 				<p>{{ i18n.ts.followers }}</p>
-				<MkNumber :value="user.followersCount" />
+				<MkNumber :value="user.followersCount"/>
 			</div>
 		</div>
 		<MkFollowButton

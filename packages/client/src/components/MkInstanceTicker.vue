@@ -1,10 +1,5 @@
 <template>
-	<div
-		class="hpaizdrt"
-		v-tooltip="capitalize(instance.softwareName)"
-		ref="ticker"
-		:style="bg"
-	>
+	<div class="hpaizdrt" v-tooltip="capitalize(instance.softwareName)"  ref="ticker" :style="bg">
 		<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
 		<span class="name">{{ instance.name }}</span>
 	</div>
@@ -38,7 +33,7 @@ const instance = props.instance ?? {
 	software: Instance.softwareName || "Calckey",
 };
 
-const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);
+const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1)
 
 const computedStyle = getComputedStyle(document.documentElement);
 const themeColor =
