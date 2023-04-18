@@ -1917,3 +1917,5 @@ showAds: Mostrar Anuncios
 enterSendsMessage: Presione "RETORNO" en los mensajes para enviar el mensaje (para
   apagarlo es Ctrl + RETORNO)
 recommendedInstances: Instancias Recomendadas
+instanceSecurity: Seguridad de la instancia
+seperateRenoteQuote: Separar impulsados y Citar botones
