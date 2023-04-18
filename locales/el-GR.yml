@@ -271,7 +271,7 @@ details: "Λεπτομέρειες"
 install: "Εγκαταστήστε"
 uninstall: "Απεγκατάσταση"
 manage: "Διαχείριση"
-smtpHost: "Φιλοξενεί"
+smtpHost: "Φιλοξενεί (Host)"
 smtpUser: "Όνομα μέλους"
 smtpPass: "Κωδικός"
 notificationSetting: "Ρυθμίσεις ειδοποιήσεων"
@@ -301,7 +301,7 @@ searchByGoogle: "Αναζήτηση"
 file: "Αρχεία"
 recommended: "Προτεινόμενα"
 cannotUploadBecauseNoFreeSpace: "Το ανέβασμα απέτυχε λόγω ανεπαρκούς Αποθηκευτικού\
-  \ Χώρου"
+  \ Χώρου."
 _email:
   _follow:
     title: "Έχετε ένα νέο ακόλουθο"
@@ -527,7 +527,7 @@ display: Προβολή
 send: Αποστολή
 behavior: Συμπεριφορά
 useGlobalSetting: Χρήση παγκόσμιων ρυθμίσεων
-abuseMarkAsResolved: Επισήμανση της αναφοράς ως επιλυμένη
+abuseMarkAsResolved: Επισήμανση της αναφοράς ως επιλυμένης
 openInNewTab: Άνοιγμα σε νέα καρτέλα
 _sensitiveMediaDetection:
   setSensitiveFlagAutomatically: Επισήμανση ως ευαίσθητο περιεχόμενο (NSFW)
@@ -542,7 +542,7 @@ addItem: Προσθήκη αντικειμένου
 disablePlayer: Κλείσιμο προβολής βίντεο
 describeFile: Προσθήκη περιγραφής
 enterFileDescription: Πληκτρολογήστε περιγραφή
-author: Συντάκτης
+author: Συντάκτης/τρια
 setMultipleBySeparatingWithSpace: Διαχωρίστε πολλαπλές καταχωρήσεις με κενά.
 random: Τυχαίο
 accountInfo: Πληροφορίες Λογαριασμού
@@ -585,7 +585,7 @@ renameFolder: Μετονομασία φακέλου
 recentUsed: Χρησιμοποιήθηκαν πρόσφατα
 deleteAllFilesConfirm: Σίγουρα θέλετε να διαγράψετε όλα τα αρχεία;
 removeAllFollowing: Διακοπή ακολούθησης όλων των ακολουθούμενων μελών
-userSilenced: Αυτό το μέλος είναι υπό σίγαση.
+userSilenced: Αυτό το μέλος είναι υπό σιώπηση.
 makeActive: Ενεργοποίηση
 create: Δημιουργία
 reportAbuseOf: Αναφορά {name}
@@ -779,3 +779,42 @@ unsilence: Αναίρεση σιώπησης
 administrator: Διαχειριστής/στρια
 passwordLessLogin: Σύνδεση χωρίς κωδικό
 reduceUiAnimation: Ελάττωση των κινούμενων εικόνων
+serviceworkerInfo: Πρέπει να είναι ενεργοποιημένο για ειδοποιήσεις push.
+expandTweet: Διεύρυνση τουιτ
+themeEditor: Επεξεργασία θεμάτων
+deck: Ντεκ
+undeck: Έξοδος από το Ντεκ
+useFullReactionPicker: Χρήση επιλογέα αντιδράσεων πλήρους μεγέθους
+tokenRequested: Παροχή πρόσβασης στον λογαριασμό
+emailServer: Σέρβερ email
+enableEmail: Ενεργοποίηση του email distribution
+emailAddress: Διεύθυνση email
+emailConfigInfo: Χρησιμοποιείται για επιβεβαίωση του email σας κατά την εγγραφή ή
+  αν ξεχάσετε τον κωδικό σας
+regenerateLoginToken: Επαναδημιουργία token σύνδεσης
+fileIdOrUrl: Ταυτότητα αρχείου (ID) ή διεύθυνση URL
+typingUsers: '{users} πληκτρολογεί'
+yourAccountSuspendedDescription: Αυτός ο λογαριασμός έχει αποβληθεί λόγω μη συμμόρφωσης
+  με τους κανόνες του σέρβερ ή κάτι παρόμοιο. Επικοινωνήστε με τον διαχειριστή/στρια
+  αν θα θέλατε έναν πιο λεπτομερή λόγο. Παρακαλούμε μη δημιουργήσετε νέο λογαριασμό.
+inboxUrl: Διεύθυνση URL των Εισερχομένων
+generateAccessToken: Δημιουργία token πρόσβασης
+emptyToDisableSmtpAuth: Αφήστε το όνομα μέλους και τον κωδικό άδεια για να απενεργοποιήσετε
+  την επαλήθευση SMTP
+instanceMute: Σιγάσεις instance
+userSaysSomethingReason: '{name} είπε {reason}'
+logs: Αρχεία καταγραφής
+abuseReported: Η αναφορά σας στάλθηκε. Ευχαριστούμε πολύ.
+reporter: Έκανε την αναφορά
+reporteeOrigin: Καταγωγή αναφερόμενου λογαριασμού
+reporterOrigin: Καταγωγή λογαριασμού που έκανε την αναφορά
+forwardReport: Προώθηση της αναφοράς στο απομακρυσμένο instance
+openInSideView: Άνοιγμα σε προβολή παράθεσης
+delayed: Με καθυστέρηση
+useGlobalSettingDesc: Αν ενεργοποιηθεί, οι ρυθμίσεις ειδοποιήσεων του λογαριασμού
+  σας θα χρησιμοποιηθούν. Αν απενεργοποιηθεί, μπορούν να γίνουν ανεξάρτητες ρυθμίσεις.
+fillAbuseReportDescription: Παρακαλούμε συμπληρώστε λεπτομέρειες σχετικά με αυτή την
+  αναφορά. Αν πρόκειται για συγκεκριμένη δημοσίευση, παρακαλούμε συμπεριλάβετε τη
+  διεύθυνση URL της δημοσίευσης.
+forwardReportIsAnonymous: Αντί για τον λογαριασμό σας, μία ανώνυμη αναφορά από λογαριασμό
+  του συστήματος θα εμφανιστεί στο απομακρυσμένο instance.
