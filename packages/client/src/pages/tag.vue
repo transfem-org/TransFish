@@ -75,8 +75,18 @@ watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 
 const headerActions = $computed(() => []);
 
-const headerTabs = $computed(() => []);
-
+const headerTabs = $computed(() => [
+	{
+		key: "notes",
+		icon: "ph-note ph-bold ph-lg",
+		title: i18n.ts.notes,
+	},
+	{
+		key: "users",
+		icon: "ph-users ph-bold ph-lg",
+		title: i18n.ts.users,
+	},
+]);
 let swiperRef = null;
 
 function setSwiperRef(swiper) {
