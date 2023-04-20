@@ -1162,6 +1162,7 @@ _serverDisconnectedBehavior:
   reload: "Recargar automáticamente"
   dialog: "Mostrar diálogo de advertencia"
   quiet: "Advertencia discreta"
+  nothing: Hacer nada
 _channel:
   create: "Crear canal"
   edit: "Editar canal"
@@ -1418,6 +1419,8 @@ _widgets:
   aiscript: "Consola de AiScript"
   aichan: "indigo"
   userList: Lista Usuarios
+  _userList:
+    chooseList: Seleccione una lista
 _cw:
   hide: "Ocultar"
   show: "Ver más"
@@ -1479,6 +1482,8 @@ _profile:
   metadataContent: "Contenido"
   changeAvatar: "Cambiar avatar"
   changeBanner: "Cambiar banner"
+  locationDescription: Si ingresas tu ciudad primero, el tiempo local tuyo será visible
+    para otros usuarios.
 _exportOrImport:
   allNotes: "Todas las notas"
   followingList: "Siguiendo"
@@ -1919,3 +1924,7 @@ enterSendsMessage: Presione "RETORNO" en los mensajes para enviar el mensaje (pa
 recommendedInstances: Instancias Recomendadas
 instanceSecurity: Seguridad de la instancia
 seperateRenoteQuote: Separar impulsados y Citar botones
+_messaging:
+  groups: Grupos
+  dms: Privado
+pushNotification: Notificaciones
