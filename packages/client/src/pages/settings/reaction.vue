@@ -86,6 +86,14 @@
 				</div>
 			</FormSection>
 		</div>
+		<div v-else>
+			<FormSwitch
+				v-model="showEmojisInReactionNotifications"
+				class="_formBlock"
+			>
+				{{ i18n.ts.showEmojisInReactionNotifications }}
+			</FormSwitch>
+		</div>
 	</div>
 </template>
 
@@ -131,6 +139,9 @@ const reactionPickerUseDrawerForMobile = $computed(
 );
 const enableEmojiReactions = $computed(
 	defaultStore.makeGetterSetter("enableEmojiReactions")
+);
+const showEmojisInReactionNotifications = $computed(
+	defaultStore.makeGetterSetter("showEmojisInReactionNotifications")
 );
 
 function save() {

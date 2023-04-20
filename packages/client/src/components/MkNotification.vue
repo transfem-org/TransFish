@@ -66,8 +66,7 @@
 				<!-- notification.reaction が null になることはまずないが、ここでoptional chaining使うと一部ブラウザで刺さるので念の為 -->
 				<XReactionIcon
 					v-else-if="
-						notification.type === 'reaction' &&
-						defaultStore.state.enableEmojiReactions
+						showEmojiReactions && notification.type === 'reaction'
 					"
 					ref="reactionRef"
 					:reaction="
@@ -83,8 +82,7 @@
 				/>
 				<XReactionIcon
 					v-else-if="
-						notification.type === 'reaction' &&
-						!defaultStore.state.enableEmojiReactions
+						!showEmojiReactions && notification.type === 'reaction'
 					"
 					:reaction="defaultReaction"
 					:no-style="true"
@@ -301,6 +299,9 @@ const props = withDefaults(
 const elRef = ref<HTMLElement>(null);
 const reactionRef = ref(null);
 
+const showEmojiReactions =
+	defaultStore.state.enableEmojiReactions ||
+	defaultStore.state.showEmojisInReactionNotifications;
 const defaultReaction = ["⭐", "👍", "❤️"].includes(instance.defaultReaction)
 	? instance.defaultReaction
 	: "⭐";
