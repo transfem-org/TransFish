@@ -367,11 +367,7 @@ export default defineComponent({
 									MkA,
 									{
 										key: Math.random(),
-										to: this.isNote
-											? `/tags/${encodeURIComponent(token.props.hashtag)}`
-											: `/explore/tags/${encodeURIComponent(
-													token.props.hashtag,
-											  )}`,
+										to: `/tags/${encodeURIComponent(token.props.hashtag)}`,
 										style: "color:var(--hashtag);",
 									},
 									`#${token.props.hashtag}`,
