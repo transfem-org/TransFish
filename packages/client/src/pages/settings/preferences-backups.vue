@@ -114,6 +114,7 @@ const defaultStoreSaveKeys: (keyof (typeof defaultStore)["state"])[] = [
 	"swipeOnDesktop",
 	"showAdminUpdates",
 	"enableCustomKaTeXMacro",
+	"enableEmojiReactions",
 ];
 const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	"lightTheme",

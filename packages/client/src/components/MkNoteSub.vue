@@ -87,6 +87,7 @@
 				</div>
 				<footer class="footer" @click.stop>
 					<XReactionsViewer
+						v-if="enableEmojiReactions"
 						ref="reactionsViewer"
 						:note="appearNote"
 					/>
@@ -106,14 +107,32 @@
 						:note="appearNote"
 						:count="appearNote.renoteCount"
 					/>
+					<XStarButtonNoEmoji
+						v-if="!enableEmojiReactions"
+						class="button"
+						:note="appearNote"
+						:count="
+							Object.values(appearNote.reactions).reduce(
+								(partialSum, val) => partialSum + val,
+								0
+							)
+						"
+						:reacted="appearNote.myReaction != null"
+					/>
 					<XStarButton
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="starButton"
 						class="button"
 						:note="appearNote"
 					/>
 					<button
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="reactButton"
 						v-tooltip.noDelay.bottom="i18n.ts.reaction"
 						class="button _button"
@@ -122,7 +141,10 @@
 						<i class="ph-smiley ph-bold ph-lg"></i>
 					</button>
 					<button
-						v-if="appearNote.myReaction != null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction != null
+						"
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
@@ -187,6 +209,7 @@ import XNoteHeader from "@/components/MkNoteHeader.vue";
 import MkSubNoteContent from "@/components/MkSubNoteContent.vue";
 import XReactionsViewer from "@/components/MkReactionsViewer.vue";
 import XStarButton from "@/components/MkStarButton.vue";
+import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
@@ -199,6 +222,7 @@ import { reactionPicker } from "@/scripts/reaction-picker";
 import { i18n } from "@/i18n";
 import { deepClone } from "@/scripts/clone";
 import { useNoteCapture } from "@/scripts/use-note-capture";
+import { defaultStore } from "@/store";
 
 const router = useRouter();
 
@@ -247,6 +271,7 @@ const replies: misskey.entities.Note[] =
 				item.renoteId === props.note.id
 		)
 		.reverse() ?? [];
+const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 
 useNoteCapture({
 	rootEl: el,

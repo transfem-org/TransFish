@@ -116,11 +116,11 @@ rememberNoteVisibility: "Θυμήσου τις ρυθμίσεις ορατότη
 attachCancel: "Αφαίρεση επισυναπτόμενου"
 enterFileName: "Πληκτρολογήστε όνομα αρχείου"
 mute: "Σίγαση"
-unmute: "Άρση σίγασης"
+unmute: "Διακοπή σίγασης"
 block: "Μπλοκάρισμα"
-unblock: "Άρση μπλοκαρίσματος"
+unblock: "Διακοπή μπλοκαρίσματος"
 suspend: "Αποβολή"
-unsuspend: "Άρση αποβολής"
+unsuspend: "Διακοπή αποβολής"
 blockConfirm: "Θέλετε σίγουρα να μπλοκάρετε αυτόν τον λογαριασμό;"
 unblockConfirm: "Θέλετε σίγουρα να ξεμπλοκάρετε αυτόν τον λογαριασμό;"
 suspendConfirm: "Θέλετε σίγουρα να αποβάλετε αυτόν τον λογαριασμό;"
@@ -187,8 +187,8 @@ birthday: "Γενέθλια"
 registeredDate: "Έγινε μέλος στις"
 location: "Τοποθεσία"
 theme: "Θέματα"
-light: "Ανοιχτόχρωμο"
-dark: "Σκούρο"
+light: "Φωτεινό"
+dark: "Σκοτεινό"
 drive: "Αποθηκευτικός Χώρος"
 fileName: "Όνομα αρχείου"
 selectFile: "Επιλέξτε ένα αρχείο"
@@ -200,12 +200,12 @@ addFile: "Προσθέστε ένα αρχείο"
 emptyDrive: "Ο Αποθηκευτικός Χώρος σας είναι άδειος"
 copyUrl: "Αντιγραφή διεύθυνσης URL"
 rename: "Μετονομασία"
-avatar: "Εικόνα προφίλ"
+avatar: "Άβαταρ"
 banner: "Εξώφυλλο"
 reload: "Ανανέωση"
 doNothing: "Αγνόηση"
 watch: "Παρακολούθηση"
-unwatch: "Άρση παρακολούθησης"
+unwatch: "Διακοπή παρακολούθησης"
 accept: "Αποδοχή"
 reject: "Απόρριψη"
 normal: "Κανονικό"
@@ -221,18 +221,18 @@ registration: "Εγγραφή"
 pinnedPages: "Καρφιτσωμένες Σελίδες"
 pinnedNotes: "Καρφιτσωμένες δημοσιεύσεις"
 antennas: "Αντένες"
-manageAntennas: "Διαχείρισης Αντενών"
+manageAntennas: "Διαχείριση Αντενών"
 name: "Όνομα"
 antennaSource: "Πηγή Αντένας"
 antennaKeywords: "Λέξεις-κλειδιά για παρακολούθηση"
 antennaExcludeKeywords: "Λέξεις-κλειδιά για εξαίρεση"
 notifyAntenna: "Ειδοποίηση για νέες δημοσιεύσεις"
-withFileAntenna: "Μόνο σημειώματα με αρχεία"
+withFileAntenna: "Μόνο δημοσιεύσεις με αρχεία"
 caseSensitive: "Διάκριση Πεζών-Κεφαλαίων"
 popularTags: "Δημοφιλείς ετικέτες"
 userList: "Λίστες"
 about: "Σχετικά με"
-moderator: "Συντονιστής"
+moderator: "Συντονιστής/στρια"
 moderation: "Συντονισμός"
 cacheClear: "Εκκαθάριση προσωρινής μνήμης (cache)"
 markAsReadAllNotifications: "Σημειώστε όλες τις ειδοποιήσεις ως διαβασμένες"
@@ -271,7 +271,7 @@ details: "Λεπτομέρειες"
 install: "Εγκαταστήστε"
 uninstall: "Απεγκατάσταση"
 manage: "Διαχείριση"
-smtpHost: "Φιλοξενεί"
+smtpHost: "Φιλοξενεί (Host)"
 smtpUser: "Όνομα μέλους"
 smtpPass: "Κωδικός"
 notificationSetting: "Ρυθμίσεις ειδοποιήσεων"
@@ -301,7 +301,7 @@ searchByGoogle: "Αναζήτηση"
 file: "Αρχεία"
 recommended: "Προτεινόμενα"
 cannotUploadBecauseNoFreeSpace: "Το ανέβασμα απέτυχε λόγω ανεπαρκούς Αποθηκευτικού\
-  \ Χώρου"
+  \ Χώρου."
 _email:
   _follow:
     title: "Έχετε ένα νέο ακόλουθο"
@@ -381,6 +381,7 @@ _visibility:
 _profile:
   name: "Όνομα"
   username: "Όνομα μέλους"
+  changeAvatar: Αλλαγή άβαταρ
 _exportOrImport:
   allNotes: "Όλα τα σημειώματα"
   followingList: "Ακολουθεί"
@@ -411,10 +412,10 @@ _notification:
     reply: "Απάντηση"
     renote: "Κοινοποίηση σημειώματος"
 _deck:
-  widgetsIntroduction: "Παρακαλούμε επιλέξτε \"Επεξεργασία μαραφετίων\" στο μενού\
-    \ και προσθέστε μαραφέτι."
+  widgetsIntroduction: "Παρακαλούμε επιλέξτε \"Επεξεργασία πρόσθετων\" στο μενού και\
+    \ προσθέστε μαραφέτι."
   _columns:
-    widgets: "Μαραφέτια"
+    widgets: "Πρόσθετα"
     notifications: "Ειδοποιήσεις"
     tl: "Χρονολόγιο"
     antenna: "Αντένες"
@@ -431,7 +432,7 @@ exploreUsersCount: Υπάρχουν {count} μέλη
 help: Βοήθεια
 inputNewFileName: Πληκτρολογήστε ένα νέο όνομα αρχείου
 nothing: Δεν υπάρχει τίποτα να δείτε εδώ
-newNoteRecived: Δεν υπάρχουν νέες δημοσιεύσεις
+newNoteRecived: Υπάρχουν νέες δημοσιεύσεις
 passwordMatched: Ταιριάζει
 unmarkAsSensitive: Αναίρεση επισήμανσης ως Ευαίσθητο Περιεχόμενο (NSFW)
 withNFiles: '{n} αρχείο(-α)'
@@ -444,10 +445,10 @@ monthX: '{month}'
 markAsReadAllTalkMessages: Σημειώστε όλα τα μηνύματα ως διαβασμένα
 inputMessageHere: Γράψτε εδώ το μήνυμά σας
 close: Κλείσιμο
-newMessageExists: Δεν υπάρχουν νέα μηνύματα
+newMessageExists: Υπάρχουν νέα μηνύματα
 usernameInvalidFormat: Μπορείτε να χρησιμοποιήσετε κεφαλαία και μικρά γράμματα, αριθμούς,
   και κάτω παύλες.
-tooShort: Πολύ μικρό
+tooShort: Πολύ σύντομο
 passwordNotMatched: Δεν ταιριάζει
 existingAccount: Υπάρχων λογαριασμός
 deleteAll: Διαγραφή όλων
@@ -500,10 +501,10 @@ nUsersMentioned: Έχει αναφερθεί από {n} μέλη
 notFound: Δεν βρέθηκε
 markAsReadAllUnreadNotes: Σημειώστε όλες τις δημοσιεύσεις ως διαβασμένες
 invites: Προσκλήσεις
-quoteQuestion: Επισύναψη ως παράθεση;
+quoteQuestion: Να προστεθεί ως Παράθεση;
 noMessagesYet: Δεν υπάρχουν μηνύματα ακόμη
 onlyOneFileCanBeAttached: Μπορείτε να επισυνάψετε μόνο ένα αρχείο σε ένα μήνυμα
-tooLong: Πολύ μεγάλο
+tooLong: Υπερβολικά μακροσκελές
 or: Ή
 language: Γλώσσα
 groupInvited: Προσκληθήκατε σε μία ομάδα
@@ -526,7 +527,7 @@ display: Προβολή
 send: Αποστολή
 behavior: Συμπεριφορά
 useGlobalSetting: Χρήση παγκόσμιων ρυθμίσεων
-abuseMarkAsResolved: Επισήμανση της αναφοράς ως επιλυμένη
+abuseMarkAsResolved: Επισήμανση της αναφοράς ως επιλυμένης
 openInNewTab: Άνοιγμα σε νέα καρτέλα
 _sensitiveMediaDetection:
   setSensitiveFlagAutomatically: Επισήμανση ως ευαίσθητο περιεχόμενο (NSFW)
@@ -539,9 +540,9 @@ optional: Προαιρετικό
 renotesCount: Αριθμός προωθήσεων σε δημοσιεύσεις άλλων
 addItem: Προσθήκη αντικειμένου
 disablePlayer: Κλείσιμο προβολής βίντεο
-describeFile: Προσθήκη λεζάντας
-enterFileDescription: Πληκτρολογήστε λεζάντα
-author: Συντάκτης
+describeFile: Προσθήκη περιγραφής
+enterFileDescription: Πληκτρολογήστε περιγραφή
+author: Συντάκτης/τρια
 setMultipleBySeparatingWithSpace: Διαχωρίστε πολλαπλές καταχωρήσεις με κενά.
 random: Τυχαίο
 accountInfo: Πληροφορίες Λογαριασμού
@@ -554,7 +555,7 @@ editProfile: Επεξεργασία προφίλ
 pinLimitExceeded: Δεν μπορείτε να καρφιτσώσετε άλλες δημοσιεύσεις
 currentPassword: Τρέχων κωδικός
 newPassword: Νέος κωδικός
-newPasswordRetype: Ξαναγράψτε τον νέο κωδικό
+newPasswordRetype: Ξαναπληκτρολογήστε τον νέο κωδικό
 notesAndReplies: Δημοσιεύσεις και απαντήσεις
 popularUsers: Δημοφιλή μέλη
 share: Κοινοποίηση
@@ -583,8 +584,8 @@ folderName: Όνομα φακέλου
 renameFolder: Μετονομασία φακέλου
 recentUsed: Χρησιμοποιήθηκαν πρόσφατα
 deleteAllFilesConfirm: Σίγουρα θέλετε να διαγράψετε όλα τα αρχεία;
-removeAllFollowing: Άρση ακολούθησης όλων των ακολουθούμενων μελών
-userSilenced: Αυτό το μέλος είναι υπό σίγαση.
+removeAllFollowing: Διακοπή ακολούθησης όλων των ακολουθούμενων μελών
+userSilenced: Αυτό το μέλος είναι υπό σιώπηση.
 makeActive: Ενεργοποίηση
 create: Δημιουργία
 reportAbuseOf: Αναφορά {name}
@@ -615,7 +616,7 @@ selectInstance: Επιλέξτε ένα instance
 latestRequestSentAt: Τελευταίο αίτημα στάλθηκε
 hiddenTags: Κρυμμένες Ετικέτες (Hashtags)
 noInstances: Δεν υπάρχουν instances
-renoteUnmute: Άρση σίγασης προωθήσεων
+renoteUnmute: Διακοπή σίγασης προωθήσεων
 flagAsBotDescription: Ενεργοποιήστε αυτή την επιλογή αν αυτός ο λογαριασμός ελέγχεται
   από ένα πρόγραμμα. Αν ενεργοποιηθεί, θα λειτουργεί σαν σημάδι για τους προγραμματιστές,
   ώστε να αποφύγουν ατέρμονη αλληλεπίδραση με άλλα bots και για να ρυθμίσει τα εσωτερικά
@@ -625,6 +626,195 @@ flagShowTimelineRepliesDescription: Εμφάνιση απαντήσεων μελ
 latestRequestReceivedAt: Τελευταίο αίτημα ελήφθη
 blockThisInstance: Μπλοκάρισμα αυτού του instance
 clearQueueConfirmText: Τυχόν δημοσιεύσεις στην ουρά που δεν έχουν αποσταλεί δεν θα
-  ομοσπονδιοποιηθούν. Συνήθως αυτή η λειτουργία δεν χρειάζεται.
+  ομοσπονδοποιηθούν. Συνήθως αυτή η λειτουργία δεν χρειάζεται.
 clearCachedFilesConfirm: Σίγουρα θέλετε να διαγράψετε όλα τα προσωρινά αποθηκευμένα
   απομακρυσμένα αρχεία;
+default: Προεπιλεγμένο
+defaultValueIs: 'Προεπιλεγμένο: {value}'
+noJobs: Δεν υπάρχουν εργασίες (jobs)
+federating: Ομοσπονδοποιείται
+blocked: Μπλοκαρισμένο
+suspended: Σε αποβολή
+instanceFollowing: Ακολουθεί στο instance
+instanceFollowers: Ακόλουθοι του instance
+instanceUsers: Μέλη αυτού του instance
+retypedNotMatch: Οι καταχωρήσεις δεν ταιριάζουν.
+usernameOrUserId: Όνομα μέλους ή ταυτότητα μέλους (id)
+removeAreYouSure: Θέλετε σίγουρα να αφαιρέσετε το "{x}";
+deleteAreYouSure: Θέλετε σίγουρα να διαγράψετε το "{x}";
+resetAreYouSure: Σίγουρα επανεκκίνηση;
+uploadFromUrlMayTakeTime: Ίσως πάρει λίγο χρόνο μέχρι το ανέβασμα να ολοκληρωθεί.
+noMoreHistory: Δεν υπάρχει περαιτέρω ιστορικό
+agreeTo: Συμφωνώ στο {0}
+yearsOld: '{age} ετών'
+themeForDarkMode: Θέμα για τη Σκοτεινή Λειτουργία
+syncDeviceDarkMode: Συγχρονισμός της Σκοτεινής Λειτουργίας με τις ρυθμίσεις της συσκευής
+  σας
+inputNewDescription: Προσθέστε νέα περιγραφή
+whenServerDisconnected: Όταν χάνεται η σύνδεση στον σέρβερ
+disconnectedFromServer: Η σύνδεση στον σέρβερ έχει χαθεί
+instanceDescription: Περιγραφή instance
+maintainerEmail: Διεύθυνση email προγραμματιστή/στριας
+yearX: '{year}'
+enableGlobalTimeline: Ενεργοποίηση παγκόσμιου χρονολογίου
+enableLocalTimeline: Ενεργοποίηση τοπικού χρονολογίου
+enableRegistration: Ενεργοποίηση εγγραφής νέων μελών
+invite: Πρόσκληση
+disablingTimelinesInfo: Οι Διαχειρίστριες-ες και οι Συντονιστές-στριες θα έχουν πάντα
+  πρόσβαση σε όλα τα χρονολόγια, ακόμα κι αν δεν είναι ενεργοποιημένα.
+inMb: Σε megabytes
+iconUrl: Διεύθυνση URL εικονιδίου
+bannerUrl: Διεύθυνση URL εικόνας Εξώφυλλου
+pinnedUsers: Καρφιτσωμένα μέλη
+hcaptchaSiteKey: Κλειδί του site
+recaptcha: Προστασία reCAPTCHA
+enableServiceworker: Ενεργοποίηση Ειδοποιήσεων Push για τον browser σας
+recentlyDiscoveredUsers: Μέλη που ανακαλύφθηκαν πρόσφατα
+twoStepAuthentication: Επαλήθευση δύο παραγόντων
+securityKey: Κλειδί ασφάλειας
+registerSecurityKey: Καταχωρήστε ένα κλειδί ασφάλειας
+resetPassword: Επαναφορά κωδικού
+newPasswordIs: Ο νέος κωδικός είναι "{password}"
+uploadFolder: Προεπιλεγμένος φάκελος για ανέβασμα αρχείων
+joinedGroups: Οι ομάδες που είστε μέλος
+checking: Έλεγχος...
+invitationCode: Κωδικός πρόσκλησης
+normalPassword: Μέτριος κωδικός
+weakPassword: Αδύναμος κωδικός
+strongPassword: Δυνατός κωδικός
+signinWith: Συνδεθείτε με {x}
+tapSecurityKey: Βάλτε το κλειδί ασφάλειας
+signinFailed: Αδυναμία σύνδεσης. Το όνομα μέλους ή ο κωδικός είναι λάθος.
+aboutX: Σχετικά με {x}
+useOsNativeEmojis: Χρήση των Emoji του λειτουργικού συστήματος
+uiLanguage: Γλώσσα διεπαφής
+disableDrawer: Να μη χρησιμοποιούνται μενού σε στιλ συρταριού
+noHistory: Δεν υπάρχει διαθέσιμο ιστορικό
+joinOrCreateGroup: Λάβετε πρόσκληση για μία ομάδα ή δημιουργήστε τη δική σας.
+docSource: Πηγή αυτού του εγγράφου
+regenerate: Επαναδημιουργία
+fontSize: Μέγεθος γραμματοσειράς
+noFollowRequests: Δεν έχετε αιτήματα ακολούθησης σε αναμονή
+dashboard: Ταμπλό
+clientSettings: Ρυθμίσεις διεπαφής
+numberOfDays: Αριθμός ημερών
+hideThisNote: Απόκρυψη αυτής της δημοσίευσης
+showFeaturedNotesInTimeline: Εμφάνιση προτεινόμενων δημοσιεύσεων στα χρονολόγια
+objectStorage: Αποθήκευση Object Storage
+useObjectStorage: Χρήση object storage
+objectStorageBucket: ''
+showFixedPostForm: Εμφάνιση της φόρμας δημοσίευσης στο πάνω μέρος των χρονολογίων
+none: Κανένα
+unableToProcess: Η επιχείρηση ήταν αδύνατο να ολοκληρωθεί
+installedApps: Εφαρμογές με εξουσιοδότηση
+state: Κατάσταση
+installedDate: Εξουσιοδοτήθηκε στις
+lastUsedDate: Χρησιμοποιήθηκε τελευταία φορά στις
+scratchpadDescription: Το σημειωματάριο παρέχει ένα περιβάλλον για πειραματισμό με
+  AiScript. Σε αυτό μπορείτε να γράψετε, να εκτελέσετε, και να δοκιμάσετε τα αποτελέσματα
+  της αλληλεπίδρασης του AiScript με το Calckey.
+scratchpad: Σημειωματάριο
+output: Αποτέλεσμα
+updateRemoteUser: Ανανέωση πληροφοριών απομακρυσμένου μέλους
+disablePagesScript: Απενεργοποίηση του AiScript στις Σελίδες
+removeAllFollowingDescription: Η εκτέλεση θα διακόψη την ακολούθηση όλων των μελών
+  από {host}. Παρακαλούμε εκτελέστε το αν το instance π.χ. δεν υπάρχει πια.
+caption: Αυτόματη Περιγραφή
+all: Όλα
+subscribing: Εγγραφή σε συνδρομή
+publishing: Δημοσιεύεται
+notResponding: Δεν αποκρίνεται
+keepOriginalUploadingDescription: Αποθηκεύει το πρωτότυπο αρχείο όπως είναι. Αν απενεργοποιηθεί,
+  μία έκδοση για προβολή στο ίντερνετ θα δημιουργηθεί κατά το ανέβασμα.
+lookup: Αναζήτηση
+lightThemes: Φωτεινά θέματα
+darkThemes: Σκοτεινά θέματα
+inputNewFolderName: Πληκτρολογήστε ένα νέο όνομα φακέλου
+hasChildFilesOrFolders: Εφόσον αυτός ο φάκελος δεν είναι άδειος, δεν μπορεί να διαγραφεί.
+integration: Ενσωματώσεις
+enableRecommendedTimeline: Ενεργοποίηση χρονολογίου προτεινόμενων
+driveCapacityPerLocalAccount: Μέγεθος Αποθηκευτικού Χώρου ανά τοπικό μέλος
+driveCapacityPerRemoteAccount: Μέγεθος Αποθηκευτικού Χώρου ανά απομακρυσμένο μέλος
+basicInfo: Βασικές πληροφορίες
+pinnedClipId: Ταυτότητα (id) του κλιπ για καρφίτσωμα
+hcaptcha: Προστασία hCaptcha
+enableHcaptcha: Ενεργοποίηση hCaptcha
+hcaptchaSecretKey: Μυστικό κλειδί
+enableRecaptcha: Ενεργοποίηση reCAPTCHA
+recaptchaSiteKey: Κλειδί του site
+recaptchaSecretKey: Μυστικό κλειδί
+antennaKeywordsDescription: Διαχωρίστε με κενά για συνθήκη ΚΑΙ ή με αλλαγή γραμμής
+  για συνθήκη Ή.
+antennaUsersDescription: Παραθέστε ένα όνομα μέλους ανά γραμμή
+antennaInstancesDescription: Παραθέστε ένα instance host ανά γραμμή
+withReplies: Να περιλαμβάνονται οι απαντήσεις
+withFiles: Να περιλαμβάνουν αρχεία
+silence: Σιώπηση
+silenceConfirm: Θέλετε σίγουρα να σιωπήσετε αυτό το μέλος;
+unsilenceConfirm: Σίγουρα θέλετε να αναιρέσετε τη σιώπηση αυτού του μέλους;
+securityKeyName: Όνομα κλειδιού
+lastUsed: Τελευταία χρήση
+unregister: Απεγγραφή
+notFoundDescription: Δεν ήταν δυνατό να βρεθεί σελίδα που να ανταποκρίνεται σε αυτή
+  τη διεύθυνση URL.
+signinHistory: Ιστορικό συνδέσεων
+disableAnimatedMfm: Απενεργοποίηση του MFM με κίνηση
+dayOverDayChanges: Αλλαγές την τελευταία ημέρα
+promotion: Προμοταρισμένα
+promote: Προμοτάρισμα
+squareAvatars: Εμφάνιση τετραγωνισμένων άβαταρ
+aboutMisskey: Σχετικά με το Calckey
+maintainerName: Προγραμματιστής/στρια
+uploadFromUrlRequested: Το ανέβασμα ζητήθηκε
+themeForLightMode: Θέμα για τη Φωτεινή Λειτουργία
+circularReferenceFolder: Ο φάκελος του προορισμού είναι υποφάκελος του φακέλου που
+  θέλετε να μετακινήσετε.
+backgroundImageUrl: Διεύθυνση URL εικόνας φόντου
+pinnedUsersDescription: Παραθέστε τα ονόματα μελών που θα είναι καρφιτσωμένα στην
+  καρτέλα "Εξερεύνηση" χωρίζοντάς τα με αλλαγή γραμμής.
+openImageInNewTab: Άνοιγμα εικόνων σε νέα καρτέλα
+weekOverWeekChanges: Αλλαγές την τελευταία εβδομάδα
+exploreFediverse: Εξερευνήστε το Fediverse
+unsilence: Αναίρεση σιώπησης
+administrator: Διαχειριστής/στρια
+passwordLessLogin: Σύνδεση χωρίς κωδικό
+reduceUiAnimation: Ελάττωση των κινούμενων εικόνων
+serviceworkerInfo: Πρέπει να είναι ενεργοποιημένο για ειδοποιήσεις push.
+expandTweet: Διεύρυνση τουιτ
+themeEditor: Επεξεργασία θεμάτων
+deck: Ντεκ
+undeck: Έξοδος από το Ντεκ
+useFullReactionPicker: Χρήση επιλογέα αντιδράσεων πλήρους μεγέθους
+tokenRequested: Παροχή πρόσβασης στον λογαριασμό
+emailServer: Σέρβερ email
+enableEmail: Ενεργοποίηση του email distribution
+emailAddress: Διεύθυνση email
+emailConfigInfo: Χρησιμοποιείται για επιβεβαίωση του email σας κατά την εγγραφή ή
+  αν ξεχάσετε τον κωδικό σας
+regenerateLoginToken: Επαναδημιουργία token σύνδεσης
+fileIdOrUrl: Ταυτότητα αρχείου (ID) ή διεύθυνση URL
+typingUsers: '{users} πληκτρολογεί'
+yourAccountSuspendedDescription: Αυτός ο λογαριασμός έχει αποβληθεί λόγω μη συμμόρφωσης
+  με τους κανόνες του σέρβερ ή κάτι παρόμοιο. Επικοινωνήστε με τον διαχειριστή/στρια
+  αν θα θέλατε έναν πιο λεπτομερή λόγο. Παρακαλούμε μη δημιουργήσετε νέο λογαριασμό.
+inboxUrl: Διεύθυνση URL των Εισερχομένων
+generateAccessToken: Δημιουργία token πρόσβασης
+emptyToDisableSmtpAuth: Αφήστε το όνομα μέλους και τον κωδικό άδεια για να απενεργοποιήσετε
+  την επαλήθευση SMTP
+instanceMute: Σιγάσεις instance
+userSaysSomethingReason: '{name} είπε {reason}'
+logs: Αρχεία καταγραφής
+abuseReported: Η αναφορά σας στάλθηκε. Ευχαριστούμε πολύ.
+reporter: Έκανε την αναφορά
+reporteeOrigin: Καταγωγή αναφερόμενου λογαριασμού
+reporterOrigin: Καταγωγή λογαριασμού που έκανε την αναφορά
+forwardReport: Προώθηση της αναφοράς στο απομακρυσμένο instance
+openInSideView: Άνοιγμα σε προβολή παράθεσης
+delayed: Με καθυστέρηση
+useGlobalSettingDesc: Αν ενεργοποιηθεί, οι ρυθμίσεις ειδοποιήσεων του λογαριασμού
+  σας θα χρησιμοποιηθούν. Αν απενεργοποιηθεί, μπορούν να γίνουν ανεξάρτητες ρυθμίσεις.
+fillAbuseReportDescription: Παρακαλούμε συμπληρώστε λεπτομέρειες σχετικά με αυτή την
+  αναφορά. Αν πρόκειται για συγκεκριμένη δημοσίευση, παρακαλούμε συμπεριλάβετε τη
+  διεύθυνση URL της δημοσίευσης.
+forwardReportIsAnonymous: Αντί για τον λογαριασμό σας, μία ανώνυμη αναφορά από λογαριασμό
+  του συστήματος θα εμφανιστεί στο απομακρυσμένο instance.

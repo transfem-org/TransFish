@@ -179,6 +179,7 @@
 						</MkA>
 					</div>
 					<XReactionsViewer
+						v-if="enableEmojiReactions"
 						ref="reactionsViewer"
 						:note="appearNote"
 					/>
@@ -203,14 +204,32 @@
 						:note="appearNote"
 						:count="appearNote.renoteCount"
 					/>
+					<XStarButtonNoEmoji
+						v-if="!enableEmojiReactions"
+						class="button"
+						:note="appearNote"
+						:count="
+							Object.values(appearNote.reactions).reduce(
+								(partialSum, val) => partialSum + val,
+								0
+							)
+						"
+						:reacted="appearNote.myReaction != null"
+					/>
 					<XStarButton
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="starButton"
 						class="button"
 						:note="appearNote"
 					/>
 					<button
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="reactButton"
 						v-tooltip.noDelay.bottom="i18n.ts.reaction"
 						class="button _button"
@@ -219,7 +238,10 @@
 						<i class="ph-smiley ph-bold ph-lg"></i>
 					</button>
 					<button
-						v-if="appearNote.myReaction != null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction != null
+						"
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
@@ -283,6 +305,7 @@ import XMediaList from "@/components/MkMediaList.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import XPoll from "@/components/MkPoll.vue";
 import XStarButton from "@/components/MkStarButton.vue";
+import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
@@ -315,6 +338,8 @@ const props = defineProps<{
 const inChannel = inject("inChannel", null);
 
 let note = $ref(deepClone(props.note));
+
+const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 
 // plugin
 if (noteViewInterruptors.length > 0) {
