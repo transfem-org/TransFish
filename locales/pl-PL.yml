@@ -1924,7 +1924,7 @@ objectStorageBaseUrlDesc: "URL stosowany jako odniesienie. Podaj URL twojego CDN
   \ itd."
 sendErrorReportsDescription: "Gdy ta opcja jest włączona, szczegółowe informacje o\
   \ błędach będą udostępnianie z Calckey gdy wystąpi problem, pomagając w ulepszaniu\
-  \ Misskey.\nZawrze to informacje takie jak wersja twojego systemu operacyjnego,\
+  \ Calckey.\nZawrze to informacje takie jak wersja twojego systemu operacyjnego,\
   \ przeglądarki, Twoja aktywność na Calckey itd."
 privateModeInfo: Jeśli włączone, tylko dopuszczone instancje będą mogły federować
   z Twoją instancją. Wszystkie posty będą ukryte przed publiką.
@@ -1980,14 +1980,14 @@ showAdminUpdates: Wskaż, że jest dostępna nowa wersja Calckey (tylko dla admi
 hiddenTags: Ukryte hashtagi
 userSaysSomethingReason: '{name} powiedział* {reason}'
 customKaTeXMacroDescription: 'Skonfiguruj makra, aby łatwo pisać wyrażenia matematyczne!
-  Notacja jest zgodna z definicjami poleceń LaTeXa i zapisywana jest jako \newcommand{\nazwa}[numer
-  argumentów]{treść}. Na przykład, \newcommand{\add}[2]{#1 + #2} rozszerzy \add{3}{foo}
-  do 3 + foo. Nawiasy klamrowe otaczające nazwę makra mogą być zmienione na nawiasy
-  okrągłe lub kwadratowe. Wpłynie to na nawiasy używane dla argumentów. W każdym wierszu
-  można zdefiniować jedno (i tylko jedno) makro i nie można przerwać linii w środku
-  definicji. Nieprawidłowe linie są po prostu ignorowane. Obsługiwane są tylko proste
-  funkcje podstawiania łańcuchów; nie można tu stosować zaawansowanej składni, takiej
-  jak warunkowe rozgałęzienia.'
+  Notacja jest zgodna z definicjami poleceń LaTeXa i zapisywana jest jako \newcommand{\nazwa}{treść}
+  lub \newcommand{\nazwa}[numer argumentów]{treść}. Na przykład, \newcommand{\add}[2]{#1
+  + #2} rozszerzy \add{3}{foo} do 3 + foo. Nawiasy klamrowe otaczające nazwę makra
+  mogą być zmienione na nawiasy okrągłe lub kwadratowe. Wpłynie to na nawiasy używane
+  dla argumentów. W każdym wierszu można zdefiniować jedno (i tylko jedno) makro i
+  nie można przerwać linii w środku definicji. Nieprawidłowe linie są po prostu ignorowane.
+  Obsługiwane są tylko proste funkcje podstawiania łańcuchów; nie można tu stosować
+  zaawansowanej składni, takiej jak warunkowe rozgałęzienia.'
 secureModeInfo: Nie odsyłaj bez dowodu przy żądaniu z innych instancji.
 preferencesBackups: Kopie zapasowe ustawień
 undeck: Opuść tablicę
@@ -1997,3 +1997,5 @@ lastCommunication: Ostatnie połączenie
 emailRequiredForSignup: Wymagaj adresu email przy rejestracji
 themeColor: Kolor znacznika instancji
 instanceDefaultLightTheme: Domyślny jasny motyw instancji
+enableEmojiReactions: Włącz reakcje emoji
+showEmojisInReactionNotifications: Pokazuj emoji w powiadomieniach reakcyjnych
