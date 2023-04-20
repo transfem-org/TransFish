@@ -37,10 +37,11 @@ export const serverLogger = new Logger("server", "gray", false);
 const app = new Koa();
 app.proxy = true;
 
-// Replace trailing slashes 
+// Replace trailing slashes
 app.use(async (ctx, next) => {
-	if (ctx.request.path !== "/" && ctx.request.path.endsWith('/')) return ctx.redirect(ctx.request.path.replace(/\/$/, ""))
-	else await next()
+	if (ctx.request.path !== "/" && ctx.request.path.endsWith("/"))
+		return ctx.redirect(ctx.request.path.replace(/\/$/, ""));
+	else await next();
 });
 
 if (!["production", "test"].includes(process.env.NODE_ENV || "")) {

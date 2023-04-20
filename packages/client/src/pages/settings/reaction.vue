@@ -2,7 +2,6 @@
 	<div class="_formRoot">
 		<FormSwitch v-model="enableEmojiReactions" class="_formBlock">
 			{{ i18n.ts.enableEmojiReactions }}
-			<template #caption>{{ i18n.ts.needReloadToApply }}</template>
 		</FormSwitch>
 
 		<div v-if="enableEmojiReactions">
@@ -104,6 +103,17 @@ import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deepClone } from "@/scripts/clone";
+import { unisonReload } from "@/scripts/unison-reload";
+
+async function reloadAsk() {
+	const { canceled } = await os.confirm({
+		type: "info",
+		text: i18n.ts.reloadToApplySetting,
+	});
+	if (canceled) return;
+
+	unisonReload();
+}
 
 let reactions = $ref(deepClone(defaultStore.state.reactions));
 
@@ -184,6 +194,10 @@ watch(
 		deep: true,
 	}
 );
+
+watch(enableEmojiReactions, async () => {
+	await reloadAsk();
+});
 
 const headerActions = $computed(() => []);
 
