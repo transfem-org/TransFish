@@ -87,6 +87,7 @@ const headerTabs = $computed(() => [
 		title: i18n.ts.users,
 	},
 ]);
+
 let swiperRef = null;
 
 function setSwiperRef(swiper) {
@@ -105,7 +106,6 @@ function syncSlide(index) {
 onMounted(() => {
 	syncSlide(tabs.indexOf(swiperRef.activeIndex));
 });
-
 
 definePageMetadata(
 	computed(() => ({
