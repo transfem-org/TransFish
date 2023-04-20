@@ -46,7 +46,7 @@ import { defaultStore } from "@/store";
 import "swiper/scss";
 import "swiper/scss/virtual";
 
-const tabs = ["featured", "users"];
+const tabs = ["users", "featured"];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 
