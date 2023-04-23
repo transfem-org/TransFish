@@ -4,7 +4,10 @@
 			<template #header style="margin: 10px; top: 62px">
 				<MkTab v-model="tab" style="margin-bottom: var(--margin)">
 					<option value="hot">{{ i18n.ts._timelines.hot }}</option>
-					<option v-if="isRecommendedTimelineAvailable" value="recommended">
+					<option
+						v-if="isRecommendedTimelineAvailable"
+						value="recommended"
+					>
 						{{ i18n.ts._timelines.recommended }}
 					</option>
 					<option v-if="isGlobalTimelineAvailable" value="global">
