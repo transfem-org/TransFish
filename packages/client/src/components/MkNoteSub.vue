@@ -21,51 +21,12 @@
 			<div class="body">
 				<XNoteHeader class="header" :note="note" :mini="true" />
 				<div class="body">
-					<p v-if="appearNote.cw != null" class="cw">
-						<MkA
-							v-if="appearNote.replyId"
-							:to="`/notes/${appearNote.replyId}`"
-							class="reply-icon"
-							@click.stop
-						>
-							<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
-						</MkA>
-						<MkA
-							v-if="
-								conversation &&
-								appearNote.renoteId &&
-								appearNote.renoteId != parentId &&
-								!appearNote.replyId
-							"
-							:to="`/notes/${appearNote.renoteId}`"
-							class="reply-icon"
-							@click.stop
-						>
-							<i class="ph-quotes ph-bold ph-lg"></i>
-						</MkA>
-						<Mfm
-							v-if="appearNote.cw != ''"
-							class="text"
-							:text="appearNote.cw"
-							:author="appearNote.user"
-							:i="$i"
-							:custom-emojis="appearNote.emojis"
-						/>
-						<br />
-						<XCwButton v-model="showContent" :note="note" />
-					</p>
-					<div
-						v-show="appearNote.cw == null || showContent"
-						class="content"
-					>
-						<MkSubNoteContent
-							class="text"
-							:note="note"
-							:detailed="true"
-							:parentId="appearNote.parentId"
-							:conversation="conversation"
-						/>
-					</div>
+					<MkSubNoteContent
+						class="text"
+						:note="note"
+						:parentId="appearNote.parentId"
+						:conversation="conversation"
+					/>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
 						<div v-else class="translated">
@@ -212,7 +173,6 @@ import XStarButton from "@/components/MkStarButton.vue";
 import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
-import XCwButton from "@/components/MkCwButton.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getNoteMenu } from "@/scripts/get-note-menu";
 import { notePage } from "@/filters/note";
@@ -262,7 +222,6 @@ let appearNote = $computed(() =>
 const isDeleted = ref(false);
 const translation = ref(null);
 const translating = ref(false);
-let showContent = $ref(false);
 const replies: misskey.entities.Note[] =
 	props.conversation
 		?.filter(
@@ -400,35 +359,6 @@ function noteClick(e) {
 			}
 
 			> .body {
-				.reply-icon {
-					display: inline-block;
-					border-radius: 6px;
-					padding: 0.2em 0.2em;
-					margin-right: 0.2em;
-					color: var(--accent);
-					transition: background 0.2s;
-					&:hover,
-					&:focus {
-						background: var(--buttonHoverBg);
-					}
-				}
-				> .cw {
-					cursor: default;
-					display: block;
-					margin: 0;
-					padding: 0;
-					overflow-wrap: break-word;
-
-					> .text {
-						margin-right: 8px;
-					}
-				}
-				> .content {
-					> .text {
-						margin: 0;
-						padding: 0;
-					}
-				}
 				> .translation {
 					border: solid 0.5px var(--divider);
 					border-radius: var(--radius);
