@@ -864,7 +864,7 @@ privateModeInfo: "When enabled, only whitelisted instances can federate with you
   \ instances. All posts will be hidden from the public."
 allowedInstances: "Whitelisted Instances"
 allowedInstancesDescription: "Hosts of instances to be whitelisted for federation,\
-  \ each seperated by a new line (only applies in private mode)."
+  \ each separated by a new line (only applies in private mode)."
 previewNoteText: "Show preview"
 customCss: "Custom CSS"
 customCssWarn: "This setting should only be used if you know what it does. Entering\
@@ -872,7 +872,7 @@ customCssWarn: "This setting should only be used if you know what it does. Enter
 global: "Global"
 recommended: "Recommended"
 squareAvatars: "Display squared avatars"
-seperateRenoteQuote: "Seperate boost and quote buttons"
+seperateRenoteQuote: "Separate boost and quote buttons"
 sent: "Sent"
 received: "Received"
 searchResult: "Search results"
@@ -983,7 +983,8 @@ failedToUpload: "Upload failed"
 cannotUploadBecauseInappropriate: "This file could not be uploaded because parts of\
   \ it have been detected as potentially NSFW."
 cannotUploadBecauseNoFreeSpace: "Upload failed due to lack of Drive capacity."
-cannotUploadBecauseExceedsFileSizeLimit: "This file could not be uploaded because it exceeds the maximum allowed size."
+cannotUploadBecauseExceedsFileSizeLimit: "This file could not be uploaded because\
+  \ it exceeds the maximum allowed size."
 beta: "Beta"
 enableAutoSensitive: "Automatic NSFW-Marking"
 enableAutoSensitiveDescription: "Allows automatic detection and marking of NSFW media\
@@ -1020,7 +1021,7 @@ customSplashIconsDescription: "URLs for custom splash screen icons separated by 
   \ sure the images are on a static URL, preferably all resized to 192x192."
 showUpdates: "Show a popup when Calckey updates"
 recommendedInstances: "Recommended instances"
-recommendedInstancesDescription: "Recommended instances seperated by line breaks to\
+recommendedInstancesDescription: "Recommended instances separated by line breaks to\
   \ appear in the recommended timeline. Do NOT add `https://`, ONLY the domain."
 caption: "Auto Caption"
 splash: "Splash Screen"
