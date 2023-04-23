@@ -1,14 +1,14 @@
 <template>
 	<button
 		class="_button"
-		:class="{showLess: modelValue, fade: !modelValue}"
+		:class="{ showLess: modelValue, fade: !modelValue }"
 		@click.stop="toggle"
 	>
-		<span>{{ modelValue ? i18n.ts._cw.hide : i18n.ts._cw.show }}
+		<span
+			>{{ modelValue ? i18n.ts._cw.hide : i18n.ts._cw.show }}
 			<span v-if="!modelValue">{{ label }}</span>
 		</span>
 	</button>
-
 </template>
 
 <script lang="ts" setup>
@@ -51,14 +51,14 @@ const toggle = () => {
 	> span {
 		background: var(--cwBg) !important;
 		color: var(--cwFg);
-		transition: background .2s, color .2s;
+		transition: background 0.2s, color 0.2s;
 		> span {
 			font-weight: 500;
 			&::before {
-				content: "("
+				content: "(";
 			}
 			&::after {
-				content: ")"
+				content: ")";
 			}
 		}
 	}

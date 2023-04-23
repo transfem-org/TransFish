@@ -30,10 +30,11 @@
 			:custom-emojis="note.emojis"
 		/>
 	</p>
-	<div
-		class="wrmlmaau"
-	>
-		<div class="content" :class="{ collapsed, isLong, showContent: note.cw && !showContent }">
+	<div class="wrmlmaau">
+		<div
+			class="content"
+			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
+		>
 			<div class="body">
 				<span v-if="note.deletedAt" style="opacity: 0.5"
 					>({{ i18n.ts.deleted }})</span
@@ -68,13 +69,16 @@
 					:i="$i"
 					:custom-emojis="note.emojis"
 				/>
-				<MkA v-if="!detailed && note.renoteId" class="rp" :to="`/notes/${note.renoteId}`"
+				<MkA
+					v-if="!detailed && note.renoteId"
+					class="rp"
+					:to="`/notes/${note.renoteId}`"
 					>{{ i18n.ts.quoteAttached }}: ...</MkA
 				>
 				<div v-if="note.files.length > 0" class="files">
 					<XMediaList :media-list="note.files" />
 				</div>
-				<XPoll v-if="note.poll" :note="note" class="poll"/>
+				<XPoll v-if="note.poll" :note="note" class="poll" />
 				<template v-if="detailed">
 					<MkUrlPreview
 						v-for="url in urls"
@@ -84,8 +88,12 @@
 						:detail="false"
 						class="url-preview"
 					/>
-					<div v-if="note.renote" class="renote" @click.stop="emit('push', note.renote)">
-						<XNoteSimple :note="note.renote"/>
+					<div
+						v-if="note.renote"
+						class="renote"
+						@click.stop="emit('push', note.renote)"
+					>
+						<XNoteSimple :note="note.renote" />
 					</div>
 				</template>
 			</div>
@@ -132,19 +140,17 @@ const emit = defineEmits<{
 	(ev: "push", v): void;
 }>();
 
-
-const isLong = !props.detailedView && (
-		props.note.cw == null &&
-		props.note.text != null &&
-		(props.note.text.split("\n").length > 9 || props.note.text.length > 500)
-	);
+const isLong =
+	!props.detailedView &&
+	props.note.cw == null &&
+	props.note.text != null &&
+	(props.note.text.split("\n").length > 9 || props.note.text.length > 500);
 const collapsed = $ref(props.note.cw == null && isLong);
 const urls = props.note.text
 	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
 	: null;
-	
-let showContent = $ref(false);
 
+let showContent = $ref(false);
 </script>
 
 <style lang="scss" scoped>
@@ -155,7 +161,8 @@ let showContent = $ref(false);
 	margin-right: 0.2em;
 	color: var(--accent);
 	transition: background 0.2s;
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		background: var(--buttonHoverBg);
 	}
 }
@@ -174,7 +181,7 @@ let showContent = $ref(false);
 	.content {
 		overflow-wrap: break-word;
 		> .body {
-			transition: filter .1s;
+			transition: filter 0.1s;
 			> .rp {
 				margin-left: 4px;
 				font-style: oblique;
@@ -199,7 +206,7 @@ let showContent = $ref(false);
 			> .url-preview {
 				margin-top: 8px;
 			}
-		
+
 			> .poll {
 				font-size: 80%;
 			}
@@ -217,18 +224,19 @@ let showContent = $ref(false);
 					}
 				}
 			}
-
 		}
-	
 
-		
-		&.collapsed, &.showContent {
+		&.collapsed,
+		&.showContent {
 			position: relative;
 			max-height: calc(9em + 50px);
 			> .body {
 				max-height: inherit;
 				mask: linear-gradient(black calc(100% - 64px), transparent);
-				-webkit-mask: linear-gradient(black calc(100% - 64px), transparent);
+				-webkit-mask: linear-gradient(
+					black calc(100% - 64px),
+					transparent
+				);
 				padding-inline: 50px;
 				margin-inline: -50px;
 				margin-top: -50px;
@@ -262,7 +270,7 @@ let showContent = $ref(false);
 				> span {
 					display: inline-block;
 					background: var(--panel);
-					padding: .4em 1em;
+					padding: 0.4em 1em;
 					font-size: 0.8em;
 					border-radius: 999px;
 					box-shadow: 0 2px 6px rgb(0 0 0 / 20%);

@@ -96,7 +96,7 @@ export function uploadFile(
 
 					if (xhr.status === 413) {
 						alert({
-							type: 'error',
+							type: "error",
 							title: i18n.ts.failedToUpload,
 							text: i18n.ts.cannotUploadBecauseExceedsFileSizeLimit,
 						});

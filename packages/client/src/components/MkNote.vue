@@ -85,10 +85,7 @@
 						:parentId="appearNote.parentId"
 						@push="(e) => router.push(notePage(e))"
 					></MkSubNoteContent>
-					<div
-						v-if="translating || translation"
-						class="translation"
-					>
+					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
 						<div v-else class="translated">
 							<b
@@ -117,10 +114,7 @@
 				</div>
 				<div v-if="detailedView" class="info">
 					<MkA class="created-at" :to="notePage(appearNote)">
-						<MkTime
-							:time="appearNote.createdAt"
-							mode="absolute"
-						/>
+						<MkTime :time="appearNote.createdAt" mode="absolute" />
 					</MkA>
 				</div>
 				<footer ref="el" class="footer" @click.stop>
@@ -670,7 +664,7 @@ function readPromo() {
 				display: flex;
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
-				margin-top: .4em;
+				margin-top: 0.4em;
 				> .button {
 					margin: 0;
 					padding: 8px;

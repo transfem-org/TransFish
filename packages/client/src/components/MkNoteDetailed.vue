@@ -20,7 +20,7 @@
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		
+
 		<div ref="noteEl" class="article" tabindex="-1">
 			<MkNote
 				@contextmenu.stop="onContextmenu"
