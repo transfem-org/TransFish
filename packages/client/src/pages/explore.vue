@@ -22,10 +22,10 @@
 					@slide-change="onSlideChange"
 				>
 					<swiper-slide>
-						<XFeatured />
+						<XUsers />
 					</swiper-slide>
 					<swiper-slide>
-						<XUsers />
+						<XFeatured />
 					</swiper-slide>
 				</swiper>
 			</MkSpacer>
@@ -54,14 +54,14 @@ const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => [
 	{
-		key: "featured",
-		icon: "ph-lightning ph-bold ph-lg",
-		title: i18n.ts.featured,
-	},
-	{
 		key: "users",
 		icon: "ph-users ph-bold ph-lg",
 		title: i18n.ts.users,
+	},
+	{
+		key: "featured",
+		icon: "ph-lightning ph-bold ph-lg",
+		title: i18n.ts.featured,
 	},
 ]);
 
