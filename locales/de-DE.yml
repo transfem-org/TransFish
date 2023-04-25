@@ -741,8 +741,8 @@ noCrawle: "Crawler-Indexierung ablehnen"
 noCrawleDescription: "Suchmaschinen bitten, die eigene Profilseite, Notizen, Seiten\
   \ usw. nicht zu indexieren."
 lockedAccountInfo: "Auch wenn du Follow-Anfragen auf manuelle Bestätigung setzt, wird\
-  \ jede deiner Notizen öffentlich sichtbar sein, sofern du ihre Notizsichtbarkeit\
-  \ nicht auf \"Nur Follower\" setzt."
+  \ jeder deiner Posts öffentlich sichtbar sein, sofern du ihre Sichtbarkeit nicht\
+  \ auf \"Nur Follower\" setzt."
 alwaysMarkSensitive: "Medien standardmäßig als NSFW markieren"
 loadRawImages: "Anstatt Vorschaubilder immer Originalbilder anzeigen"
 disableShowingAnimatedImages: "Animierte Bilder nicht abspielen"
@@ -778,10 +778,10 @@ nUsers: "{n} Benutzer"
 nNotes: "{n} Notizen"
 sendErrorReports: "Fehlerberichte senden"
 sendErrorReportsDescription: "Ist diese Option aktiviert, so werden beim Auftreten\
-  \ von Fehlern detaillierte Fehlerinformationen an Misskey weitergegeben, was zur\
-  \ Verbesserung der Qualität von Misskey beiträgt.\nEnthalten in diesen Informationen\
+  \ von Fehlern detaillierte Fehlerinformationen an Calckey weitergegeben, was zur\
+  \ Verbesserung der Qualität von Calckey beiträgt.\nEnthalten in diesen Informationen\
   \ sind u.a. die Version deines Betriebssystems, welchen Browser du verwendest und\
-  \ ein Verlauf deiner Aktivitäten innerhalb Misskey."
+  \ ein Verlauf deiner Aktivitäten innerhalb Calckey."
 myTheme: "Mein Farbschema"
 backgroundColor: "Hintergrundfarbe"
 accentColor: "Akzentfarbe"
@@ -1913,3 +1913,17 @@ enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
+hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
+  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.'
+addInstance: Instanz hinzufügen
+flagSpeakAsCatDescription: Deine Posts werden im Katzenmodus "nya-ifiziert"
+hiddenTags: Versteckte Hashtags
+antennaInstancesDescription: Nenne einen Instanzen-Host pro Zeile
+secureModeInfo: Bei Anfragen an andere Instanzen nicht ohne Nachweis zurücksenden.
+renoteMute: Boosts stummschalten
+renoteUnmute: Boosts aktivieren
+noInstances: Es gibt keine Instanzen
+privateModeInfo: Wenn diese Option aktiviert ist, können nur Instanzen auf der Whitelist
+  mit Deinen Instanzen föderieren. Alle Beiträge werden für die Öffentlichkeit verborgen.
+allowedInstances: Instanzen auf der Whitelist
+selectInstance: Wähle eine Instanz
