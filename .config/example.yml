@@ -113,14 +113,9 @@ id: 'aid'
 reservedUsernames:
   - root
   - admin
+  - administrator
+  - me
   - system
-  - test
-  - proxy
-  - relay
-  - mod
-  - moderator
-  - info
-  - information
 
 # Whether disable HSTS
 #disableHsts: true
