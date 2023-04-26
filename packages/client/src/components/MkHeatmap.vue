@@ -113,7 +113,7 @@ async function renderChart() {
 		values = raw.deliverFailed;
 	} else if (props.src === "my-notes") {
 		const raw = await os.api("charts/user/notes", {
-			limit: 7 * 21,
+			limit: chartLimit,
 			span: "day",
 			userId: $i.id,
 		});
