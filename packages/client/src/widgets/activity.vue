@@ -14,7 +14,7 @@
 		></template>
 
 		<div v-if="widgetProps.newStyle">
-			<MkHeatmap src="notes-user" />
+			<MkHeatmap src="user-notes" />
 		</div>
 		<div v-else>
 			<MkLoading v-if="fetching" />
