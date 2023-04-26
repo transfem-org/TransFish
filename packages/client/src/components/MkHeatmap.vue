@@ -43,6 +43,8 @@ const { handler: externalTooltipHandler } = useChartTooltip({
 	position: "middle",
 });
 
+const addArrays = (arr1: number[], arr2: number[], arr3: number[]) => (arr1.length === arr2.length && arr2.length === arr3.length) ? arr1.map((val, i) => val + arr2[i] + arr3[i]) : null;
+
 async function renderChart() {
 	if (chartInstance) {
 		chartInstance.destroy();
@@ -115,13 +117,7 @@ async function renderChart() {
 			span: "day",
 			userId: $i.id,
 		});
-		values = raw.diffs.normal.map((_, i) => ({
-			total:
-				raw.diffs.normal[i] + raw.diffs.reply[i] + raw.diffs.renote[i],
-				notes: raw.diffs.normal[i],
-				replies: raw.diffs.reply[i],
-				renotes: raw.diffs.renote[i],
-		}));
+		values = addArrays(raw.diffs.normal, raw.diffs.reply, raw.diffs.renote);
 	}
 
 	fetching = false;
