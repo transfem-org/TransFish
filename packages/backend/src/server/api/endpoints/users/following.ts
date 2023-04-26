@@ -41,7 +41,7 @@ export const meta = {
 			message: "Cannot find the following.",
 			code: "CANNOT_FIND",
 			id: "7a55f0d7-8e06-4a7e-9c77-ee7d59b25a82",
-		}
+		},
 	},
 } as const;
 

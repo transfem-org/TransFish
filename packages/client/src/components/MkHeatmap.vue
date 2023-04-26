@@ -109,13 +109,19 @@ async function renderChart() {
 			span: "day",
 		});
 		values = raw.deliverFailed;
-	} else if (props.src === "user-notes") {
+	} else if (props.src === "my-notes") {
 		const raw = await os.api("charts/user/notes", {
 			limit: 7 * 21,
 			span: "day",
 			userId: $i.id,
 		});
-		values = raw.total;
+		values = raw.diffs.normal.map((_, i) => ({
+			total:
+				raw.diffs.normal[i] + raw.diffs.reply[i] + raw.diffs.renote[i],
+				notes: raw.diffs.normal[i],
+				replies: raw.diffs.reply[i],
+				renotes: raw.diffs.renote[i],
+		}));
 	}
 
 	fetching = false;

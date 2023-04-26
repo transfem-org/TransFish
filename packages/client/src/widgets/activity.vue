@@ -9,12 +9,16 @@
 			>{{ i18n.ts._widgets.activity }}</template
 		>
 		<template #func
-			><button v-if="!widgetProps.newStyle" class="_button" @click="toggleView()">
+			><button
+				v-if="!widgetProps.newStyle"
+				class="_button"
+				@click="toggleView()"
+			>
 				<i class="ph-sort-ascending ph-bold ph-lg"></i></button
 		></template>
 
 		<div v-if="widgetProps.newStyle">
-			<MkHeatmap src="user-notes" />
+			<MkHeatmap src="my-notes" />
 		</div>
 		<div v-else>
 			<MkLoading v-if="fetching" />
