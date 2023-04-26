@@ -25,6 +25,7 @@ import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 import { chartVLine } from "@/scripts/chart-vline";
 import { alpha } from "@/scripts/color";
 import { initChart } from "@/scripts/init-chart";
+import { $i } from "@/account";
 
 initChart();
 
@@ -108,6 +109,13 @@ async function renderChart() {
 			span: "day",
 		});
 		values = raw.deliverFailed;
+	} else if (props.src === "user-notes") {
+		const raw = await os.api("charts/user/notes", {
+			limit: 7 * 21,
+			span: "day",
+			userId: $i.id,
+		});
+		values = raw.total;
 	}
 
 	fetching = false;
