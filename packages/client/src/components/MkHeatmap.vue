@@ -43,7 +43,10 @@ const { handler: externalTooltipHandler } = useChartTooltip({
 	position: "middle",
 });
 
-const addArrays = (arr1: number[], arr2: number[], arr3: number[]) => (arr1.length === arr2.length && arr2.length === arr3.length) ? arr1.map((val, i) => val + arr2[i] + arr3[i]) : null;
+const addArrays = (arr1: number[], arr2: number[], arr3: number[]) =>
+	arr1.length === arr2.length && arr2.length === arr3.length
+		? arr1.map((val, i) => val + arr2[i] + arr3[i])
+		: null;
 
 async function renderChart() {
 	if (chartInstance) {
