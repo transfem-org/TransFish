@@ -251,13 +251,17 @@ let showContent = $ref(false);
 					min-height: 2em;
 					max-height: 5em;
 					filter: blur(4px);
+					:deep(span) {
+						animation: none !important;
+						transform: none !important;
+					}
+					:deep(img) {
+						filter: blur(12px);
+					}
 				}
 				:deep(.fade) {
 					inset: 0;
 					top: 40px;
-				}
-				:deep(span) {
-					animation: none !important;
 				}
 			}
 
