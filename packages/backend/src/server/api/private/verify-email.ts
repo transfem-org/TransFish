@@ -7,9 +7,7 @@ export default async (ctx: Koa.Context) => {
 
 	const code = body["code"];
 
-	const profile = await UserProfiles.findOneBy({
-		emailVerifyCode: ctx.params.code,
-	});
+	const profile = await UserProfiles.findOneByOrFail({ emailVerifyCode: code });
 
 	if (profile != null) {
 		ctx.body = "Verify succeeded!";
