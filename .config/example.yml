@@ -147,6 +147,7 @@ reservedUsernames:
 #proxy: http://127.0.0.1:3128
 
 #proxyBypassHosts: [
+#  'web.kaiteki.app',
 #  'example.com',
 #  '192.0.2.8'
 #]
