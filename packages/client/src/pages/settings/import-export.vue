@@ -28,7 +28,7 @@
 					<option value="calckey">Calckey/Misskey</option>
 					<option value="mastodon">Mastodon</option>
 					<option :disabled="true" value="akkoma">
-						Akkoma (soon)
+						Pleroma/Akkoma (soon)
 					</option>
 					<option :disabled="true" value="twitter">
 						Twitter (soon)
