@@ -127,40 +127,6 @@ router.get("/identicon/:x", async (ctx) => {
 	ctx.body = fs.createReadStream(temp).on("close", () => cleanup());
 });
 
-router.get("/verify-email/:code", async (ctx) => {
-	const profile = await UserProfiles.findOneBy({
-		emailVerifyCode: ctx.params.code,
-	});
-
-	if (profile != null) {
-		ctx.body = "Verify succeeded!";
-		ctx.status = 200;
-
-		await UserProfiles.update(
-			{ userId: profile.userId },
-			{
-				emailVerified: true,
-				emailVerifyCode: null,
-			},
-		);
-
-		publishMainStream(
-			profile.userId,
-			"meUpdated",
-			await Users.pack(
-				profile.userId,
-				{ id: profile.userId },
-				{
-					detail: true,
-					includeSecrets: true,
-				},
-			),
-		);
-	} else {
-		ctx.status = 404;
-	}
-});
-
 mastoRouter.get("/oauth/authorize", async (ctx) => {
 	const { client_id, state, redirect_uri } = ctx.request.query;
 	console.log(ctx.request.req);
