@@ -34,16 +34,7 @@ export async function sendEmail(
 
 	try {
 		// TODO: htmlサニタイズ
-		const info = await transporter.sendMail({
-			from: meta.email!,
-			to: to,
-			subject: subject,
-			text: text,
-			html: `<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>${subject}</title>
+		const style = `
 		<style>
 			html {
 				background: #191724;
@@ -101,9 +92,21 @@ export async function sendEmail(
 				nav > a {
 					color: #6e6a86;
 				}
-		</style>
+		</style>`
+		const info = await transporter.sendMail({
+			from: meta.email!,
+			to: to,
+			subject: subject,
+			text: text,
+			html: `<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>${subject}</title>
+		${style}
 	</head>
 	<body>
+		${style}
 		<main>
 			<header>
 				<img src="${meta.logoImageUrl || meta.iconUrl || iconUrl}" height="100"/>
