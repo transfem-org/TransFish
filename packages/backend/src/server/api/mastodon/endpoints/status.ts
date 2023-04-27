@@ -388,7 +388,7 @@ export function statusModel(
 	emojis: MastodonEntity.Emoji[],
 	content: string,
 ) {
-	const now = Math.floor(new Date().getTime() / 1000);
+	const now = new Date().toISOString();
 	return {
 		id: "9atm5frjhb",
 		uri: "https://http.cat/404", // ""
