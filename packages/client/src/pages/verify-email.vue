@@ -9,6 +9,9 @@ import { onMounted } from "vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
+import { useRouter } from "@/router";
+
+const router = useRouter();
 
 const props = defineProps<{
 	code: string;
@@ -22,7 +25,7 @@ onMounted(async () => {
 	await os.api("verify-email", {
 		code: props.code,
 	});
-	window.location.href = "/";
+	router.push("/");
 });
 
 const headerActions = $computed(() => []);
