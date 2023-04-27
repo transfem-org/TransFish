@@ -19,9 +19,10 @@ onMounted(async () => {
 		type: "info",
 		text: i18n.t("clickToFinishEmailVerification", { ok: i18n.ts.gotIt }),
 	});
-	await os.apiWithDialog("verify-email", {
+	await os.api("verify-email", {
 		code: props.code,
 	});
+	window.location.href = "/";
 });
 
 const headerActions = $computed(() => []);
