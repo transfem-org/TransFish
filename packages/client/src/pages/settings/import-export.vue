@@ -27,8 +27,12 @@
 				<FormRadios v-model="importType" class="_formBlock">
 					<option value="calckey">Calckey/Misskey</option>
 					<option value="mastodon">Mastodon</option>
-					<option disabled value="akkoma">Akkoma (soon)</option>
-					<option disabled value="mastodon">Twitter (soon)</option>
+					<option :disabled="true" value="akkoma">
+						Akkoma (soon)
+					</option>
+					<option :disabled="true" value="twitter">
+						Twitter (soon)
+					</option>
 				</FormRadios>
 				<MkButton
 					primary
