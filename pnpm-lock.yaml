@@ -227,6 +227,9 @@ importers:
       koa-bodyparser:
         specifier: 4.3.0
         version: 4.3.0
+      koa-favicon:
+        specifier: 2.1.0
+        version: 2.1.0
       koa-json-body:
         specifier: 5.3.0
         version: 5.3.0
@@ -236,6 +239,9 @@ importers:
       koa-mount:
         specifier: 4.0.0
         version: 4.0.0
+      koa-remove-trailing-slashes:
+        specifier: 2.0.3
+        version: 2.0.3
       koa-send:
         specifier: 5.0.1
         version: 5.0.1
@@ -9835,6 +9841,12 @@ packages:
       koa-compose: 4.1.0
     dev: false
 
+  /koa-favicon@2.1.0:
+    resolution: {integrity: sha512-LvukcooYjxKtnZq0RXdBup+JDhaHwLgnLlDHB/xvjwQEjbc4rbp/0WkmOzpOvaHujc+fIwPear0dpKX1V+dHVg==}
+    dependencies:
+      mz: 2.7.0
+    dev: false
+
   /koa-json-body@5.3.0:
     resolution: {integrity: sha512-M2P3zLOs2XiYCpJLGSTXOKij4u5vJ8pbAMXXarXQnwsx4DwDav9qn081tYI2RdZ79B159Pdk4bRfvwl/sazL8A==}
     engines: {node: '>= 4.0.0'}
@@ -9860,6 +9872,10 @@ packages:
       koa-compose: 4.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /koa-remove-trailing-slashes@2.0.3:
+    resolution: {integrity: sha512-NFFF9Sl1wxFo5h0I3OzrHDINdFPaqG+Hx19590F7PNOcmm7yYeFW71p4XicVuSovbcx75GWGb3fi6N6kI6E/3g==}
     dev: false
 
   /koa-router@10.1.1:
