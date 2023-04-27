@@ -183,6 +183,7 @@ import MkButton from "@/components/MkButton.vue";
 import FormSection from "@/components/form/section.vue";
 import FormFolder from "@/components/form/folder.vue";
 import FormSwitch from "@/components/form/switch.vue";
+import FormRadios from "@/components/form/radios.vue";
 import * as os from "@/os";
 import { selectFile } from "@/scripts/select-file";
 import { i18n } from "@/i18n";
