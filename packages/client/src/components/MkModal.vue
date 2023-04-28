@@ -35,6 +35,8 @@
 					: 'none',
 				'--transformOrigin': transformOrigin,
 			}"
+			tabindex="-1"
+			v-focus
 		>
 			<div
 				class="_modalBg data-cy-bg"
@@ -50,17 +52,19 @@
 				@mousedown="onBgClick"
 				@contextmenu.prevent.stop="() => {}"
 			></div>
-			<div
-				ref="content"
-				:class="[
-					$style.content,
-					{ [$style.fixed]: fixed, top: type === 'dialog:top' },
-				]"
-				:style="{ zIndex }"
-				@click.self="onBgClick"
-			>
-				<slot :max-height="maxHeight" :type="type"></slot>
-			</div>
+			<focus-trap v-model:active="isActive">
+				<div
+					ref="content"
+					:class="[
+						$style.content,
+						{ [$style.fixed]: fixed, top: type === 'dialog:top' },
+					]"
+					:style="{ zIndex }"
+					@click.self="onBgClick"
+				>
+					<slot :max-height="maxHeight" :type="type"></slot>
+				</div>
+			</focus-trap>
 		</div>
 	</Transition>
 </template>
