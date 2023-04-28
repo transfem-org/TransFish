@@ -17,6 +17,7 @@ import {
 } from "@/prelude/time.js";
 import { getChartInsertLock } from "@/misc/app-lock.js";
 import { db } from "@/db/postgre.js";
+import promiseLimit from "promise-limit";
 
 const logger = new Logger("chart", "white", process.env.NODE_ENV !== "test");
 
@@ -472,7 +473,8 @@ export default abstract class Chart<T extends Schema> {
 	protected commit(diff: Commit<T>, group: string | null = null): void {
 		for (const [k, v] of Object.entries(diff)) {
 			if (v == null || v === 0 || (Array.isArray(v) && v.length === 0))
-				diff[k] = undefined;
+				// rome-ignore lint/performance/noDelete: needs to be deleted not just set to undefined
+				delete diff[k];
 		}
 		this.buffer.push({
 			diff,
@@ -554,7 +556,11 @@ export default abstract class Chart<T extends Schema> {
 
 			// bake unique count
 			for (const [k, v] of Object.entries(finalDiffs)) {
-				if (this.schema[k].uniqueIncrement) {
+				if (
+					this.schema[k].uniqueIncrement &&
+					Array.isArray(v) &&
+					v.length > 0
+				) {
 					const name = (columnPrefix +
 						k.replaceAll(".", columnDot)) as keyof Columns<T>;
 					const tempColumnName = (uniqueTempColumnPrefix +
@@ -646,15 +652,31 @@ export default abstract class Chart<T extends Schema> {
 			);
 		};
 
-		const groups = removeDuplicates(this.buffer.map((log) => log.group));
+		const startCount = this.buffer.length;
 
+		const groups = removeDuplicates(this.buffer.map((log) => log.group));
+		const groupCount = groups.length;
+
+		// Limit the number of concurrent chart update queries executed on the database
+		// to 25 at a time, so as avoid excessive IO spinlocks like when 8k queries are
+		// sent out at once.
+		const limit = promiseLimit(25);
+
+		const startTime = Date.now();
 		await Promise.all(
 			groups.map((group) =>
-				Promise.all([
-					this.claimCurrentLog(group, "hour"),
-					this.claimCurrentLog(group, "day"),
-				]).then(([logHour, logDay]) => update(logHour, logDay)),
+				limit(() =>
+					Promise.all([
+						this.claimCurrentLog(group, "hour"),
+						this.claimCurrentLog(group, "day"),
+					]).then(([logHour, logDay]) => update(logHour, logDay)),
+				),
 			),
+		);
+
+		const duration = Date.now() - startTime;
+		logger.info(
+			`Saved ${startCount} (${groupCount} unique) ${this.name} items in ${duration}ms (${this.buffer.length} remaining)`,
 		);
 	}
 

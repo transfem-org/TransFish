@@ -28,6 +28,7 @@ import {
 	Instances,
 	MessagingMessages,
 	Mutings,
+	RenoteMutings,
 	Notes,
 	NoteUnreads,
 	Notifications,
@@ -66,7 +67,7 @@ const nameSchema = { type: "string", minLength: 1, maxLength: 50 } as const;
 const descriptionSchema = {
 	type: "string",
 	minLength: 1,
-	maxLength: 500,
+	maxLength: 2048,
 } as const;
 const locationSchema = { type: "string", minLength: 1, maxLength: 50 } as const;
 const birthdaySchema = {
@@ -165,6 +166,13 @@ export const UserRepository = db.getRepository(User).extend({
 				take: 1,
 			}).then((n) => n > 0),
 			isMuted: Mutings.count({
+				where: {
+					muterId: me,
+					muteeId: target,
+				},
+				take: 1,
+			}).then((n) => n > 0),
+			isRenoteMuted: RenoteMutings.count({
 				where: {
 					muterId: me,
 					muteeId: target,
@@ -438,6 +446,7 @@ export const UserRepository = db.getRepository(User).extend({
 			isModerator: user.isModerator || falsy,
 			isBot: user.isBot || falsy,
 			isCat: user.isCat || falsy,
+			speakAsCat: user.speakAsCat || falsy,
 			instance: user.host
 				? userInstanceCache
 						.fetch(
@@ -584,6 +593,7 @@ export const UserRepository = db.getRepository(User).extend({
 						isBlocking: relation.isBlocking,
 						isBlocked: relation.isBlocked,
 						isMuted: relation.isMuted,
+						isRenoteMuted: relation.isRenoteMuted,
 				  }
 				: {}),
 		} as Promiseable<Packed<"User">> as Promiseable<

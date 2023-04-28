@@ -32,6 +32,13 @@ export type Source = {
 		pass?: string;
 		index?: string;
 	};
+	sonic: {
+		host: string;
+		port: number;
+		auth?: string;
+		collection?: string;
+		bucket?: string;
+	};
 
 	proxy?: string;
 	proxySmtp?: string;
@@ -70,10 +77,13 @@ export type Source = {
 		sha256CertFingerprints?: string[];
 	};
 
+	reservedUsernames?: string[];
+
 	// Managed hosting stuff
 	maxUserSignups?: number;
 	isManagedHosting?: boolean;
 	maxNoteLength?: number;
+	maxCaptionLength?: number;
 	deepl: {
 		managed?: boolean;
 		authKey?: string;

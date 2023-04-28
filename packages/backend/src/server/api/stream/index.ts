@@ -7,6 +7,7 @@ import {
 	Users,
 	Followings,
 	Mutings,
+	RenoteMutings,
 	UserProfiles,
 	ChannelFollowings,
 	Blockings,
@@ -36,13 +37,14 @@ export default class Connection {
 	public userProfile?: UserProfile | null;
 	public following: Set<User["id"]> = new Set();
 	public muting: Set<User["id"]> = new Set();
+	public renoteMuting: Set<User["id"]> = new Set();
 	public blocking: Set<User["id"]> = new Set(); // "被"blocking
 	public followingChannels: Set<ChannelModel["id"]> = new Set();
 	public token?: AccessToken;
 	private wsConnection: websocket.connection;
 	public subscriber: StreamEventEmitter;
 	private channels: Channel[] = [];
-	private subscribingNotes: any = {};
+	private subscribingNotes: Map<string, number> = new Map();
 	private cachedNotes: Packed<"Note">[] = [];
 	private isMastodonCompatible: boolean = false;
 	private host: string;
@@ -80,6 +82,7 @@ export default class Connection {
 		if (this.user) {
 			this.updateFollowing();
 			this.updateMuting();
+			this.updateRenoteMuting();
 			this.updateBlocking();
 			this.updateFollowingChannels();
 			this.updateUserProfile();
@@ -114,6 +117,7 @@ export default class Connection {
 				this.muting.delete(data.body.id);
 				break;
 
+			// TODO: renote mute events
 			// TODO: block events
 
 			case "followChannel":
@@ -339,13 +343,10 @@ export default class Connection {
 	private onSubscribeNote(payload: any) {
 		if (!payload.id) return;
 
-		if (this.subscribingNotes[payload.id] == null) {
-			this.subscribingNotes[payload.id] = 0;
-		}
+		const current = this.subscribingNotes.get(payload.id) || 0;
+		this.subscribingNotes.set(payload.id, current + 1);
 
-		this.subscribingNotes[payload.id]++;
-
-		if (this.subscribingNotes[payload.id] === 1) {
+		if (!current) {
 			this.subscriber.on(`noteStream:${payload.id}`, this.onNoteStreamMessage);
 		}
 	}
@@ -356,11 +357,13 @@ export default class Connection {
 	private onUnsubscribeNote(payload: any) {
 		if (!payload.id) return;
 
-		this.subscribingNotes[payload.id]--;
-		if (this.subscribingNotes[payload.id] <= 0) {
-			this.subscribingNotes[payload.id] = undefined;
+		const current = this.subscribingNotes.get(payload.id) || 0;
+		if (current <= 1) {
+			this.subscribingNotes.delete(payload.id);
 			this.subscriber.off(`noteStream:${payload.id}`, this.onNoteStreamMessage);
+			return;
 		}
+		this.subscribingNotes.set(payload.id, current - 1);
 	}
 
 	private async onNoteStreamMessage(data: StreamMessages["note"]["payload"]) {
@@ -414,12 +417,13 @@ export default class Connection {
 				const client = getClient(this.host, this.accessToken);
 				client.getStatus(payload.id).then((data) => {
 					const newPost = toTextWithReaction([data.data], this.host);
+					const targetPost = newPost[0];
 					for (const stream of this.currentSubscribe) {
 						this.wsConnection.send(
 							JSON.stringify({
 								stream,
 								event: "status.update",
-								payload: JSON.stringify(newPost[0]),
+								payload: JSON.stringify(targetPost),
 							}),
 						);
 					}
@@ -562,6 +566,17 @@ export default class Connection {
 		});
 
 		this.muting = new Set<string>(mutings.map((x) => x.muteeId));
+	}
+
+	private async updateRenoteMuting() {
+		const renoteMutings = await RenoteMutings.find({
+			where: {
+				muterId: this.user!.id,
+			},
+			select: ["muteeId"],
+		});
+
+		this.renoteMuting = new Set<string>(renoteMutings.map((x) => x.muteeId));
 	}
 
 	private async updateBlocking() {

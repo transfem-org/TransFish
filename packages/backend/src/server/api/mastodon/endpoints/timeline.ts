@@ -5,22 +5,57 @@ import { statusModel } from "./status.js";
 import Autolinker from "autolinker";
 import { ParsedUrlQuery } from "querystring";
 
-export function toLimitToInt(q: ParsedUrlQuery) {
+export function limitToInt(q: ParsedUrlQuery) {
 	let object: any = q;
 	if (q.limit)
 		if (typeof q.limit === "string") object.limit = parseInt(q.limit, 10);
+	if (q.offset)
+		if (typeof q.offset === "string") object.offset = parseInt(q.offset, 10);
+	return object;
+}
+
+export function argsToBools(q: ParsedUrlQuery) {
+	// Values taken from https://docs.joinmastodon.org/client/intro/#boolean
+	const toBoolean = (value: string) =>
+		!["0", "f", "F", "false", "FALSE", "off", "OFF"].includes(value);
+
+	let object: any = q;
+	if (q.only_media)
+		if (typeof q.only_media === "string")
+			object.only_media = toBoolean(q.only_media);
+	if (q.exclude_replies)
+		if (typeof q.exclude_replies === "string")
+			object.exclude_replies = toBoolean(q.exclude_replies);
 	return q;
 }
 
 export function toTextWithReaction(status: Entity.Status[], host: string) {
 	return status.map((t) => {
 		if (!t) return statusModel(null, null, [], "no content");
+		t.quote = null as any;
 		if (!t.emoji_reactions) return t;
 		if (t.reblog) t.reblog = toTextWithReaction([t.reblog], host)[0];
-		const reactions = t.emoji_reactions.map(
-			(r) => `${r.name.replace("@.", "")} (${r.count}${r.me ? "* " : ""})`,
-		);
-		//t.emojis = getEmoji(t.content, host)
+		const reactions = t.emoji_reactions.map((r) => {
+			const emojiNotation = r.url ? `:${r.name.replace("@.", "")}:` : r.name;
+			return `${emojiNotation} (${r.count}${r.me ? `* ` : ""})`;
+		});
+		const reaction = t.emoji_reactions as Entity.Reaction[];
+		const emoji = t.emojis || [];
+		for (const r of reaction) {
+			if (!r.url) continue;
+			emoji.push({
+				shortcode: r.name,
+				url: r.url,
+				static_url: r.url,
+				visible_in_picker: true,
+				category: "",
+			});
+		}
+		const isMe = reaction.findIndex((r) => r.me) > -1;
+		const total = reaction.reduce((sum, reaction) => sum + reaction.count, 0);
+		t.favourited = isMe;
+		t.favourites_count = total;
+		t.emojis = emoji;
 		t.content = `<p>${autoLinker(t.content, host)}</p><p>${reactions.join(
 			", ",
 		)}</p>`;
@@ -62,8 +97,8 @@ export function apiTimelineMastodon(router: Router): void {
 		try {
 			const query: any = ctx.query;
 			const data = query.local
-				? await client.getLocalTimeline(toLimitToInt(query))
-				: await client.getPublicTimeline(toLimitToInt(query));
+				? await client.getLocalTimeline(argsToBools(limitToInt(query)))
+				: await client.getPublicTimeline(argsToBools(limitToInt(query)));
 			ctx.body = toTextWithReaction(data.data, ctx.hostname);
 		} catch (e: any) {
 			console.error(e);
@@ -81,7 +116,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.getTagTimeline(
 					ctx.params.hashtag,
-					toLimitToInt(ctx.query),
+					argsToBools(limitToInt(ctx.query)),
 				);
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {
@@ -92,23 +127,20 @@ export function apiTimelineMastodon(router: Router): void {
 			}
 		},
 	);
-	router.get<{ Params: { hashtag: string } }>(
-		"/v1/timelines/home",
-		async (ctx, reply) => {
-			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-			const accessTokens = ctx.headers.authorization;
-			const client = getClient(BASE_URL, accessTokens);
-			try {
-				const data = await client.getHomeTimeline(toLimitToInt(ctx.query));
-				ctx.body = toTextWithReaction(data.data, ctx.hostname);
-			} catch (e: any) {
-				console.error(e);
-				console.error(e.response.data);
-				ctx.status = 401;
-				ctx.body = e.response.data;
-			}
-		},
-	);
+	router.get("/v1/timelines/home", async (ctx, reply) => {
+		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+		const accessTokens = ctx.headers.authorization;
+		const client = getClient(BASE_URL, accessTokens);
+		try {
+			const data = await client.getHomeTimeline(limitToInt(ctx.query));
+			ctx.body = toTextWithReaction(data.data, ctx.hostname);
+		} catch (e: any) {
+			console.error(e);
+			console.error(e.response.data);
+			ctx.status = 401;
+			ctx.body = e.response.data;
+		}
+	});
 	router.get<{ Params: { listId: string } }>(
 		"/v1/timelines/list/:listId",
 		async (ctx, reply) => {
@@ -118,7 +150,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.getListTimeline(
 					ctx.params.listId,
-					toLimitToInt(ctx.query),
+					limitToInt(ctx.query),
 				);
 				ctx.body = toTextWithReaction(data.data, ctx.hostname);
 			} catch (e: any) {
@@ -134,9 +166,7 @@ export function apiTimelineMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getConversationTimeline(
-				toLimitToInt(ctx.query),
-			);
+			const data = await client.getConversationTimeline(limitToInt(ctx.query));
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
@@ -181,7 +211,7 @@ export function apiTimelineMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.createList((ctx.query as any).title);
+			const data = await client.createList((ctx.request.body as any).title);
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
@@ -197,7 +227,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.updateList(ctx.params.id, ctx.query as any);
+				const data = await client.updateList(ctx.params.id, (ctx.request.body as any).title);
 				ctx.body = data.data;
 			} catch (e: any) {
 				console.error(e);

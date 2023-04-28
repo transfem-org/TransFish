@@ -198,7 +198,37 @@ export async function createPerson(
 	const url = getOneApHrefNullable(person.url);
 
 	if (url && !url.startsWith("https://")) {
-		throw new Error(`unexpected shcema of person url: ${url}`);
+		throw new Error(`unexpected schema of person url: ${url}`);
+	}
+
+	let followersCount: number | undefined;
+
+	if (typeof person.followers === "string") {
+		try {
+			let data = await fetch(person.followers, {
+				headers: { Accept: "application/json" },
+			});
+			let json_data = JSON.parse(await data.text());
+
+			followersCount = json_data.totalItems;
+		} catch {
+			followersCount = undefined;
+		}
+	}
+
+	let followingCount: number | undefined;
+
+	if (typeof person.following === "string") {
+		try {
+			let data = await fetch(person.following, {
+				headers: { Accept: "application/json" },
+			});
+			let json_data = JSON.parse(await data.text());
+
+			followingCount = json_data.totalItems;
+		} catch (e) {
+			followingCount = undefined;
+		}
 	}
 
 	// Create user
@@ -228,6 +258,22 @@ export async function createPerson(
 					followersUri: person.followers
 						? getApId(person.followers)
 						: undefined,
+					followersCount:
+						followersCount !== undefined
+							? followersCount
+							: person.followers &&
+							  typeof person.followers !== "string" &&
+							  isCollectionOrOrderedCollection(person.followers)
+							? person.followers.totalItems
+							: undefined,
+					followingCount:
+						followingCount !== undefined
+							? followingCount
+							: person.following &&
+							  typeof person.following !== "string" &&
+							  isCollectionOrOrderedCollection(person.following)
+							? person.following.totalItems
+							: undefined,
 					featured: person.featured ? getApId(person.featured) : undefined,
 					uri: person.id,
 					tags,
@@ -396,7 +442,37 @@ export async function updatePerson(
 	const url = getOneApHrefNullable(person.url);
 
 	if (url && !url.startsWith("https://")) {
-		throw new Error(`unexpected shcema of person url: ${url}`);
+		throw new Error(`unexpected schema of person url: ${url}`);
+	}
+
+	let followersCount: number | undefined;
+
+	if (typeof person.followers === "string") {
+		try {
+			let data = await fetch(person.followers, {
+				headers: { Accept: "application/json" },
+			});
+			let json_data = JSON.parse(await data.text());
+
+			followersCount = json_data.totalItems;
+		} catch {
+			followersCount = undefined;
+		}
+	}
+
+	let followingCount: number | undefined;
+
+	if (typeof person.following === "string") {
+		try {
+			let data = await fetch(person.following, {
+				headers: { Accept: "application/json" },
+			});
+			let json_data = JSON.parse(await data.text());
+
+			followingCount = json_data.totalItems;
+		} catch {
+			followingCount = undefined;
+		}
 	}
 
 	const updates = {
@@ -406,6 +482,22 @@ export async function updatePerson(
 			person.sharedInbox ||
 			(person.endpoints ? person.endpoints.sharedInbox : undefined),
 		followersUri: person.followers ? getApId(person.followers) : undefined,
+		followersCount:
+			followersCount !== undefined
+				? followersCount
+				: person.followers &&
+				  typeof person.followers !== "string" &&
+				  isCollectionOrOrderedCollection(person.followers)
+				? person.followers.totalItems
+				: undefined,
+		followingCount:
+			followingCount !== undefined
+				? followingCount
+				: person.following &&
+				  typeof person.following !== "string" &&
+				  isCollectionOrOrderedCollection(person.following)
+				? person.following.totalItems
+				: undefined,
 		featured: person.featured,
 		emojis: emojiNames,
 		name: truncate(person.name, nameLength),
@@ -413,8 +505,8 @@ export async function updatePerson(
 		isBot: getApType(object) === "Service",
 		isCat: (person as any).isCat === true,
 		isLocked: !!person.manuallyApprovesFollowers,
-		movedToUri: person.movedTo,
-		alsoKnownAs: person.alsoKnownAs,
+		movedToUri: person.movedTo || null,
+		alsoKnownAs: person.alsoKnownAs || null,
 		isExplorable: !!person.discoverable,
 	} as Partial<User>;
 

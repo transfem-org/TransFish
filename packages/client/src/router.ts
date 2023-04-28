@@ -134,6 +134,13 @@ export const routes = [
 				component: page(() => import("./pages/settings/custom-css.vue")),
 			},
 			{
+				path: "/custom-katex-macro",
+				name: "custom-katex-macro",
+				component: page(
+					() => import("./pages/settings/custom-katex-macro.vue"),
+				),
+			},
+			{
 				path: "/account-info",
 				name: "account-info",
 				component: page(() => import("./pages/settings/account-info.vue")),
@@ -236,6 +243,13 @@ export const routes = [
 				component: page(() => import("./pages/settings/custom-css.vue")),
 			},
 			{
+				path: "/custom-katex-macro",
+				name: "general",
+				component: page(
+					() => import("./pages/settings/custom-katex-macro.vue"),
+				),
+			},
+			{
 				path: "/accounts",
 				name: "profile",
 				component: page(() => import("./pages/settings/accounts.vue")),
@@ -268,6 +282,10 @@ export const routes = [
 	{
 		path: "/signup-complete/:code",
 		component: page(() => import("./pages/signup-complete.vue")),
+	},
+	{
+		path: "/verify-email/:code",
+		component: page(() => import("./pages/verify-email.vue")),
 	},
 	{
 		path: "/announcements",
@@ -435,6 +453,11 @@ export const routes = [
 				path: "/users",
 				name: "users",
 				component: page(() => import("./pages/admin/users.vue")),
+			},
+			{
+				path: "/hashtags",
+				name: "hashtags",
+				component: page(() => import("./pages/admin/hashtags.vue")),
 			},
 			{
 				path: "/emojis",

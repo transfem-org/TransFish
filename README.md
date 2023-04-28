@@ -34,6 +34,9 @@
   - OCR image captioning
   - New and improved Groups
   - Better intro tutorial
+  - Compatibility with Mastodon clients/apps
+  - Backfill user information
+  - Sonic search
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)
 
@@ -66,7 +69,7 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ### 🐋 Docker
 
-[How to run Calckey with Docker](./docker-README.md).
+[How to run Calckey with Docker](./docs/docker.md).
 
 ## 🧑‍💻 Dependencies
 
@@ -78,8 +81,9 @@ If you have access to a server that supports one of the sources below, I recomme
 ### 😗 Optional dependencies
 
 - [FFmpeg](https://ffmpeg.org/) for video transcoding
-- [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
-  - OpenSearch/Sonic are not supported as of right now
+- Full text search (choost one of the following)
+  - 🦔 [Sonic](https://crates.io/crates/sonic-server) (highly recommended!)
+  - [ElasticSearch](https://www.elastic.co/elasticsearch/)
 - Management (choose one of the following)
   - 🛰️ [pm2](https://pm2.io/)
   - 🐳 [Docker](https://docker.com)
@@ -87,6 +91,7 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ### 🏗️ Build dependencies
 
+- 🦀 [Rust toolchain](https://www.rust-lang.org/)
 - 🦬 C/C++ compiler & build tools
   - `build-essential` on Debian/Ubuntu Linux
   - `base-devel` on Arch Linux
@@ -119,6 +124,17 @@ Assuming you set up PostgreSQL correctly, all you have to run is:
 psql postgres -c "create database calckey with encoding = 'UTF8';"
 ```
 
+In Calckey's directory, fill out the `db` section of `.config/default.yml` with the correct information, where the `db` key is `calckey`.
+
+## 🦔 Set up search
+
+Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#installation)
+
+If you use IPv4: in Sonic's directory, edit the `config.cfg` file to change `inet` to `"0.0.0.0:1491"`.
+
+In Calckey's directory, fill out the `sonic` section of `.config/default.yml` with the correct information.
+
+
 ## 💅 Customize
 
 - To add custom CSS for all users, edit `./custom/assets/instance.css`.
@@ -136,12 +152,7 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 
 ## 🚚 Migrating from Misskey to Calckey
 
-> ⚠️ Because of their changes, migrating from Foundkey is not supported.
-
-```sh
-cp ../misskey/.config/default.yml ./.config/default.yml # replace `../misskey/` with misskey path, add `docker.env` if you use Docker
-cp -r ../misskey/files .
-```
+For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](./docs/migrate.md).
 
 ## 🍀 NGINX
 
@@ -160,7 +171,8 @@ cp -r ../misskey/files .
 
 ```sh
 # git pull
-NODE_ENV=production pnpm install && pnpm run build && pnpm run migrate
+pnpm install
+NODE_ENV=production pnpm run build && pnpm run migrate
 pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 ```
 

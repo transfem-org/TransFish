@@ -66,6 +66,11 @@ export const packedUserLiteSchema = {
 			nullable: false,
 			optional: true,
 		},
+		speakAsCat: {
+			type: "boolean",
+			nullable: false,
+			optional: true,
+		},
 		emojis: {
 			type: "array",
 			nullable: false,
@@ -326,6 +331,11 @@ export const packedUserDetailedNotMeOnlySchema = {
 			optional: true,
 		},
 		isMuted: {
+			type: "boolean",
+			nullable: false,
+			optional: true,
+		},
+		isRenoteMuted: {
 			type: "boolean",
 			nullable: false,
 			optional: true,

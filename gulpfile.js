@@ -24,10 +24,6 @@ gulp.task('copy:client:fonts', () =>
 	gulp.src('./packages/client/node_modules/three/examples/fonts/**/*').pipe(gulp.dest('./built/_client_dist_/fonts/'))
 );
 
-gulp.task('copy:client:phosphor', () =>
-	gulp.src('./node_modules/phosphor-icons/src/fonts/*').pipe(gulp.dest('./built/_client_dist_/phosphor/'))
-);
-
 gulp.task('copy:client:locales', cb => {
 	fs.mkdirSync('./built/_client_dist_/locales', { recursive: true });
 
@@ -59,7 +55,7 @@ gulp.task('build:backend:style', () => {
 });
 
 gulp.task('build', gulp.parallel(
-	'copy:client:locales', 'copy:backend:views', 'copy:backend:custom', 'build:backend:script', 'build:backend:style', 'copy:client:fonts', 'copy:client:phosphor'
+	'copy:client:locales', 'copy:backend:views', 'copy:backend:custom', 'build:backend:script', 'build:backend:style', 'copy:client:fonts'
 ));
 
 gulp.task('default', gulp.task('build'));

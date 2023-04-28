@@ -29,6 +29,7 @@ import * as ep___admin_emoji_list from "./endpoints/admin/emoji/list.js";
 import * as ep___admin_emoji_removeAliasesBulk from "./endpoints/admin/emoji/remove-aliases-bulk.js";
 import * as ep___admin_emoji_setAliasesBulk from "./endpoints/admin/emoji/set-aliases-bulk.js";
 import * as ep___admin_emoji_setCategoryBulk from "./endpoints/admin/emoji/set-category-bulk.js";
+import * as ep___admin_emoji_setLicenseBulk from "./endpoints/admin/emoji/set-license-bulk.js";
 import * as ep___admin_emoji_update from "./endpoints/admin/emoji/update.js";
 import * as ep___admin_federation_deleteAllFiles from "./endpoints/admin/federation/delete-all-files.js";
 import * as ep___admin_federation_refreshRemoteInstanceMetadata from "./endpoints/admin/federation/refresh-remote-instance-metadata.js";
@@ -50,6 +51,7 @@ import * as ep___admin_relays_list from "./endpoints/admin/relays/list.js";
 import * as ep___admin_relays_remove from "./endpoints/admin/relays/remove.js";
 import * as ep___admin_resetPassword from "./endpoints/admin/reset-password.js";
 import * as ep___admin_resolveAbuseUserReport from "./endpoints/admin/resolve-abuse-user-report.js";
+import * as ep___admin_search_indexAll from "./endpoints/admin/search/index-all.js";
 import * as ep___admin_sendEmail from "./endpoints/admin/send-email.js";
 import * as ep___admin_serverInfo from "./endpoints/admin/server-info.js";
 import * as ep___admin_showModerationLogs from "./endpoints/admin/show-moderation-logs.js";
@@ -131,6 +133,7 @@ import * as ep___drive_folders_show from "./endpoints/drive/folders/show.js";
 import * as ep___drive_folders_update from "./endpoints/drive/folders/update.js";
 import * as ep___drive_stream from "./endpoints/drive/stream.js";
 import * as ep___emailAddress_available from "./endpoints/email-address/available.js";
+import * as ep___emoji from "./endpoints/emoji.js";
 import * as ep___endpoint from "./endpoints/endpoint.js";
 import * as ep___endpoints from "./endpoints/endpoints.js";
 import * as ep___exportCustomEmojis from "./endpoints/export-custom-emojis.js";
@@ -179,6 +182,7 @@ import * as ep___i_exportBlocking from "./endpoints/i/export-blocking.js";
 import * as ep___i_exportFollowing from "./endpoints/i/export-following.js";
 import * as ep___i_exportMute from "./endpoints/i/export-mute.js";
 import * as ep___i_exportNotes from "./endpoints/i/export-notes.js";
+import * as ep___i_importPosts from "./endpoints/i/import-posts.js";
 import * as ep___i_exportUserLists from "./endpoints/i/export-user-lists.js";
 import * as ep___i_favorites from "./endpoints/i/favorites.js";
 import * as ep___i_gallery_likes from "./endpoints/i/gallery/likes.js";
@@ -227,6 +231,9 @@ import * as ep___miauth_genToken from "./endpoints/miauth/gen-token.js";
 import * as ep___mute_create from "./endpoints/mute/create.js";
 import * as ep___mute_delete from "./endpoints/mute/delete.js";
 import * as ep___mute_list from "./endpoints/mute/list.js";
+import * as ep___renote_mute_create from "./endpoints/renote-mute/create.js";
+import * as ep___renote_mute_delete from "./endpoints/renote-mute/delete.js";
+import * as ep___renote_mute_list from "./endpoints/renote-mute/list.js";
 import * as ep___my_apps from "./endpoints/my/apps.js";
 import * as ep___notes from "./endpoints/notes.js";
 import * as ep___notes_children from "./endpoints/notes/children.js";
@@ -286,6 +293,8 @@ import * as ep___resetDb from "./endpoints/reset-db.js";
 import * as ep___resetPassword from "./endpoints/reset-password.js";
 import * as ep___serverInfo from "./endpoints/server-info.js";
 import * as ep___stats from "./endpoints/stats.js";
+import * as ep___sw_show_registration from "./endpoints/sw/show-registration.js";
+import * as ep___sw_update_registration from "./endpoints/sw/update-registration.js";
 import * as ep___sw_register from "./endpoints/sw/register.js";
 import * as ep___sw_unregister from "./endpoints/sw/unregister.js";
 import * as ep___test from "./endpoints/test.js";
@@ -363,6 +372,7 @@ const eps = [
 	["admin/emoji/remove-aliases-bulk", ep___admin_emoji_removeAliasesBulk],
 	["admin/emoji/set-aliases-bulk", ep___admin_emoji_setAliasesBulk],
 	["admin/emoji/set-category-bulk", ep___admin_emoji_setCategoryBulk],
+	["admin/emoji/set-license-bulk", ep___admin_emoji_setLicenseBulk],
 	["admin/emoji/update", ep___admin_emoji_update],
 	["admin/federation/delete-all-files", ep___admin_federation_deleteAllFiles],
 	[
@@ -390,6 +400,7 @@ const eps = [
 	["admin/relays/remove", ep___admin_relays_remove],
 	["admin/reset-password", ep___admin_resetPassword],
 	["admin/resolve-abuse-user-report", ep___admin_resolveAbuseUserReport],
+	["admin/search/index-all", ep___admin_search_indexAll],
 	["admin/send-email", ep___admin_sendEmail],
 	["admin/server-info", ep___admin_serverInfo],
 	["admin/show-moderation-logs", ep___admin_showModerationLogs],
@@ -471,6 +482,7 @@ const eps = [
 	["drive/folders/update", ep___drive_folders_update],
 	["drive/stream", ep___drive_stream],
 	["email-address/available", ep___emailAddress_available],
+	["emoji", ep___emoji],
 	["endpoint", ep___endpoint],
 	["endpoints", ep___endpoints],
 	["export-custom-emojis", ep___exportCustomEmojis],
@@ -521,6 +533,7 @@ const eps = [
 	["i/export-following", ep___i_exportFollowing],
 	["i/export-mute", ep___i_exportMute],
 	["i/export-notes", ep___i_exportNotes],
+	["i/import-posts", ep___i_importPosts],
 	["i/export-user-lists", ep___i_exportUserLists],
 	["i/favorites", ep___i_favorites],
 	["i/gallery/likes", ep___i_gallery_likes],
@@ -616,6 +629,9 @@ const eps = [
 	["ping", ep___ping],
 	["pinned-users", ep___pinnedUsers],
 	["recommended-instances", ep___recommendedInstances],
+	["renote-mute/create", ep___renote_mute_create],
+	["renote-mute/delete", ep___renote_mute_delete],
+	["renote-mute/list", ep___renote_mute_list],
 	["custom-motd", ep___customMOTD],
 	["custom-splash-icons", ep___customSplashIcons],
 	["latest-version", ep___latestVersion],
@@ -629,6 +645,8 @@ const eps = [
 	["stats", ep___stats],
 	["sw/register", ep___sw_register],
 	["sw/unregister", ep___sw_unregister],
+	["sw/show-registration", ep___sw_show_registration],
+	["sw/update-registration", ep___sw_update_registration],
 	["test", ep___test],
 	["username/available", ep___username_available],
 	["users", ep___users],

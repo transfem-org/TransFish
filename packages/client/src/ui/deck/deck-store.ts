@@ -108,11 +108,25 @@ export async function getProfiles(): Promise<string[]> {
 	});
 }
 
-export async function deleteProfile(key: string): Promise<void> {
+export async function deleteProfile(key: string): Promise<any> {
 	return await api("i/registry/remove", {
 		scope: ["client", "deck", "profiles"],
 		key: key,
 	});
+}
+
+export async function renameProfile(oldKey: string, newKey: string) {
+	if (oldKey === newKey) return;
+
+	await api("i/registry/set", {
+		scope: ["client", "deck", "profiles"],
+		key: newKey,
+		value: { columns: deckStore.state.columns, layout: deckStore.state.layout },
+	});
+	deckStore.set("profile", newKey);
+	saveDeck();
+
+	deleteProfile(oldKey);
 }
 
 export function addColumn(column: Column) {

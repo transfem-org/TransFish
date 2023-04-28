@@ -12,6 +12,24 @@
 		--margin: var(--marginHalf);
 	}
 
+	// https://larsenwork.com/easing-gradients/
+	--gradient: hsl(0, 0%, 0%) 0%,
+		hsla(0, 0%, 0%, 0.987) 8.1%,
+		hsla(0, 0%, 0%, 0.951) 15.5%,
+		hsla(0, 0%, 0%, 0.896) 22.5%,
+		hsla(0, 0%, 0%, 0.825) 29%,
+		hsla(0, 0%, 0%, 0.741) 35.3%,
+		hsla(0, 0%, 0%, 0.648) 41.2%,
+		hsla(0, 0%, 0%, 0.55) 47.1%,
+		hsla(0, 0%, 0%, 0.45) 52.9%,
+		hsla(0, 0%, 0%, 0.352) 58.8%,
+		hsla(0, 0%, 0%, 0.259) 64.7%,
+		hsla(0, 0%, 0%, 0.175) 71%,
+		hsla(0, 0%, 0%, 0.104) 77.5%,
+		hsla(0, 0%, 0%, 0.049) 84.5%,
+		hsla(0, 0%, 0%, 0.013) 91.9%,
+		hsla(0, 0%, 0%, 0) 100%;
+
 	//--ad: rgb(255 169 0 / 10%);
 }
 
@@ -36,32 +54,6 @@ html {
 	text-size-adjust: 100%;
 	tab-size: 2;
 
-	&, * {
-		scrollbar-color: var(--scrollbarHandle) inherit;
-		scrollbar-width: thin;
-
-		&::-webkit-scrollbar {
-			width: 6px;
-			height: 6px;
-		}
-
-		&::-webkit-scrollbar-track {
-			background: inherit;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: var(--scrollbarHandle);
-
-			&:hover {
-				background: var(--scrollbarHandleHover);
-			}
-
-			&:active {
-				background: var(--accent);
-			}
-		}
-	}
-
 	&.f-1 {
 		font-size: 15px;
 	}
@@ -78,6 +70,37 @@ html {
 		font-family: sans-serif;
 	}
 }
+body::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+
+}
+body::-webkit-scrollbar-thumb {
+	border-radius: 100px;
+	background-clip: content-box;
+	border: 3px solid transparent;
+}
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-track {
+	background: inherit;
+}
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbarHandle);
+	min-height: 80px;
+
+	&:hover {
+		background: var(--scrollbarHandleHover);
+		background-clip: content-box;
+	}
+
+	&:active {
+		background: var(--accent);
+		background-clip: content-box;
+	}
+}
 
 html._themeChanging_ {
 	&, * {
@@ -88,7 +111,6 @@ html._themeChanging_ {
 html, body {
 	margin: 0;
 	padding: 0;
-	scroll-behavior: smooth;
 }
 
 a {
@@ -153,6 +175,10 @@ hr {
 
 ._shadow {
 	box-shadow: 0px 4px 32px var(--shadow) !important;
+}
+
+.swiper {
+	overflow: clip !important;
 }
 
 ._button {
@@ -475,6 +501,7 @@ hr {
 }
 
 ._link {
+	position: relative;
 	color: var(--link);
 
 	&:after {
@@ -508,6 +535,10 @@ hr {
 	font-size: 14px;
 	line-height: 1.5;
 	padding: 5px;
+}
+
+.prism-editor__container {
+	height: 100%;
 }
 
 .prism-editor__textarea:focus {
@@ -605,4 +636,98 @@ hr {
   100% {
     transform:  scaleX(1.00) scaleY(1.00) ;
   }
+}
+
+.ph-xxs {
+  font-size: 0.5em;
+}
+
+.ph-xs {
+  font-size: 0.75em;
+}
+
+.ph-sm {
+  font-size: 0.875em;
+}
+
+.ph-lg {
+  font-size: 1.3333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.ph-xl {
+  font-size: 1.5em;
+  line-height: 0.6666em;
+  vertical-align: -0.075em;
+}
+
+.ph-1x {
+  font-size: 1em;
+}
+
+.ph-2x {
+  font-size: 2em;
+}
+
+.ph-3x {
+  font-size: 3em;
+}
+
+.ph-4x {
+  font-size: 4em;
+}
+
+.ph-5x {
+  font-size: 5em;
+}
+
+.ph-6x {
+  font-size: 6em;
+}
+
+.ph-7x {
+  font-size: 7em;
+}
+
+.ph-8x {
+  font-size: 8em;
+}
+
+.ph-9x {
+  font-size: 9em;
+}
+
+.ph-10x {
+  font-size: 10em;
+}
+
+.ph-fw {
+  text-align: center;
+  width: 1.25em;
+	display: inline-flex;
+}
+
+._blur_text {
+	filter: blur(6px);
+	transition: filter 0.3s;
+
+	&:hover {
+		filter: blur(0px);
+	}
+}
+
+@media(prefers-reduced-motion: no-preference) {
+	@keyframes scaleIn {
+		from {
+			transform: scale(0);
+			opacity: 0;
+		}
+	}
+	@keyframes scaleInSmall {
+		from {
+			transform: scale(.8);
+			opacity: 0;
+		}
+	}
 }

@@ -8,6 +8,16 @@ export const noteActions = [];
 export const noteViewInterruptors = [];
 export const notePostInterruptors = [];
 
+const menuOptions = [
+	"notifications",
+	"followRequests",
+	"messaging",
+	"explore",
+	"favorites",
+	"channels",
+	"search",
+];
+
 // TODO: それぞれいちいちwhereとかdefaultというキーを付けなきゃいけないの冗長なのでなんとかする(ただ型定義が面倒になりそう)
 //       あと、現行の定義の仕方なら「whereが何であるかに関わらずキー名の重複不可」という制約を付けられるメリットもあるからそのメリットを引き継ぐ方法も考えないといけない
 export const defaultStore = markRaw(
@@ -82,16 +92,7 @@ export const defaultStore = markRaw(
 		},
 		menu: {
 			where: "deviceAccount",
-			default: [
-				"notifications",
-				undefined,
-				"followRequests",
-				"messaging",
-				"explore",
-				"favorites",
-				"channels",
-				"search",
-			],
+			default: menuOptions,
 		},
 		visibility: {
 			where: "deviceAccount",
@@ -132,6 +133,10 @@ export const defaultStore = markRaw(
 		overridedDeviceKind: {
 			where: "device",
 			default: null as null | "smartphone" | "tablet" | "desktop",
+		},
+		showLocalPostsInTimeline: {
+			where: "device",
+			default: "home" as "home" | "social",
 		},
 		serverDisconnectedBehavior: {
 			where: "device",
@@ -285,6 +290,18 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: false,
 		},
+		enableCustomKaTeXMacro: {
+			where: "device",
+			default: false,
+		},
+		enableEmojiReactions: {
+			where: "account",
+			default: true,
+		},
+		showEmojisInReactionNotifications: {
+			where: "account",
+			default: true,
+		},
 	}),
 );
 
@@ -315,7 +332,7 @@ export class ColdDeviceStorage {
 		plugins: [] as Plugin[],
 		mediaVolume: 0.5,
 		sound_masterVolume: 0.3,
-		sound_note: { type: "None", volume: 0 },
+		sound_note: { type: "none", volume: 0 },
 		sound_noteMy: { type: "syuilo/up", volume: 1 },
 		sound_notification: { type: "syuilo/pope2", volume: 1 },
 		sound_chat: { type: "syuilo/pope1", volume: 1 },

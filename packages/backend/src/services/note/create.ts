@@ -1,5 +1,6 @@
 import * as mfm from "mfm-js";
 import es from "../../db/elasticsearch.js";
+import sonic from "../../db/sonic.js";
 import {
 	publishMainStream,
 	publishNotesStream,
@@ -52,7 +53,7 @@ import { Poll } from "@/models/entities/poll.js";
 import { createNotification } from "../create-notification.js";
 import { isDuplicateKeyValueError } from "@/misc/is-duplicate-key-value-error.js";
 import { checkHitAntenna } from "@/misc/check-hit-antenna.js";
-import { checkWordMute } from "@/misc/check-word-mute.js";
+import { getWordMute } from "@/misc/check-word-mute.js";
 import { addNoteToAntenna } from "../add-note-to-antenna.js";
 import { countSameRenotes } from "@/misc/count-same-renotes.js";
 import { deliverToRelays } from "../relay.js";
@@ -342,9 +343,9 @@ export default async (
 			)
 			.then((us) => {
 				for (const u of us) {
-					checkWordMute(note, { id: u.userId }, u.mutedWords).then(
+					getWordMute(note, { id: u.userId }, u.mutedWords).then(
 						(shouldMute) => {
-							if (shouldMute) {
+							if (shouldMute.muted) {
 								MutedNotes.insert({
 									id: genId(),
 									userId: u.userId,
@@ -588,7 +589,7 @@ export default async (
 		}
 
 		// Register to search database
-		index(note);
+		await index(note);
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
@@ -728,18 +729,34 @@ async function insertNote(
 	}
 }
 
-function index(note: Note) {
-	if (note.text == null || config.elasticsearch == null) return;
+export async function index(note: Note): Promise<void> {
+	if (!note.text) return;
 
-	es!.index({
-		index: config.elasticsearch.index || "misskey_note",
-		id: note.id.toString(),
-		body: {
-			text: normalizeForSearch(note.text),
-			userId: note.userId,
-			userHost: note.userHost,
-		},
-	});
+	if (config.elasticsearch && es) {
+		es.index({
+			index: config.elasticsearch.index || "misskey_note",
+			id: note.id.toString(),
+			body: {
+				text: normalizeForSearch(note.text),
+				userId: note.userId,
+				userHost: note.userHost,
+			},
+		});
+	}
+
+	if (sonic) {
+		await sonic.ingest.push(
+			sonic.collection,
+			sonic.bucket,
+			JSON.stringify({
+				id: note.id,
+				userId: note.userId,
+				userHost: note.userHost,
+				channelId: note.channelId,
+			}),
+			note.text,
+		);
+	}
 }
 
 async function notifyToWatchersOfRenotee(

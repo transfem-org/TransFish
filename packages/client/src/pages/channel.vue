@@ -1,47 +1,116 @@
 <template>
-<MkStickyContainer>
-	<template #header><MkPageHeader :actions="headerActions" :tabs="headerTabs"/></template>
-	<MkSpacer :content-max="700">
-		<div v-if="channel">
-			<div class="wpgynlbz _panel _gap" :class="{ hide: !showBanner }">
-				<XChannelFollowButton :channel="channel" :full="true" class="subscribe"/>
-				<button class="_button toggle" @click="() => showBanner = !showBanner">
-					<template v-if="showBanner"><i class="ph-caret-up-bold ph-lg"></i></template>
-					<template v-else><i class="ph-caret-down-bold ph-lg"></i></template>
-				</button>
-				<div v-if="!showBanner" class="hideOverlay">
-				</div>
-				<div :style="{ backgroundImage: channel.bannerUrl ? `url(${channel.bannerUrl})` : null }" class="banner">
-					<div class="status">
-						<div><i class="ph-users-bold ph-lg ph-fw ph-lg"></i><I18n :src="i18n.ts._channel.usersCount" tag="span" style="margin-left: 4px;"><template #n><b>{{ channel.usersCount }}</b></template></I18n></div>
-						<div><i class="ph-pencil-bold ph-lg ph-fw ph-lg"></i><I18n :src="i18n.ts._channel.notesCount" tag="span" style="margin-left: 4px;"><template #n><b>{{ channel.notesCount }}</b></template></I18n></div>
+	<MkStickyContainer>
+		<template #header
+			><MkPageHeader
+				:actions="headerActions"
+				:tabs="headerTabs"
+				:display-back-button="true"
+		/></template>
+		<MkSpacer :content-max="700">
+			<div v-if="channel">
+				<div
+					class="wpgynlbz _panel _gap"
+					:class="{ hide: !showBanner }"
+				>
+					<XChannelFollowButton
+						:channel="channel"
+						:full="true"
+						class="subscribe"
+					/>
+					<button
+						class="_button toggle"
+						@click="() => (showBanner = !showBanner)"
+					>
+						<template v-if="showBanner"
+							><i class="ph-caret-up ph-bold ph-lg"></i
+						></template>
+						<template v-else
+							><i class="ph-caret-down ph-bold ph-lg"></i
+						></template>
+					</button>
+					<div v-if="!showBanner" class="hideOverlay"></div>
+					<div
+						:style="{
+							backgroundImage: channel.bannerUrl
+								? `url(${channel.bannerUrl})`
+								: null,
+						}"
+						class="banner"
+					>
+						<div class="status">
+							<div>
+								<i
+									class="ph-users ph-bold ph-lg ph-fw ph-lg"
+								></i
+								><I18n
+									:src="i18n.ts._channel.usersCount"
+									tag="span"
+									style="margin-left: 4px"
+									><template #n
+										><b>{{
+											channel.usersCount
+										}}</b></template
+									></I18n
+								>
+							</div>
+							<div>
+								<i
+									class="ph-pencil ph-bold ph-lg ph-fw ph-lg"
+								></i
+								><I18n
+									:src="i18n.ts._channel.notesCount"
+									tag="span"
+									style="margin-left: 4px"
+									><template #n
+										><b>{{
+											channel.notesCount
+										}}</b></template
+									></I18n
+								>
+							</div>
+						</div>
+						<div class="fade"></div>
 					</div>
-					<div class="fade"></div>
+					<div v-if="channel.description" class="description">
+						<Mfm
+							:text="channel.description"
+							:is-note="false"
+							:i="$i"
+						/>
+					</div>
 				</div>
-				<div v-if="channel.description" class="description">
-					<Mfm :text="channel.description" :is-note="false" :i="$i"/>
-				</div>
+
+				<XPostForm
+					v-if="$i"
+					:channel="channel"
+					class="post-form _panel _gap"
+					fixed
+				/>
+
+				<XTimeline
+					:key="channelId"
+					class="_gap"
+					src="channel"
+					:channel="channelId"
+					@before="before"
+					@after="after"
+				/>
 			</div>
-
-			<XPostForm v-if="$i" :channel="channel" class="post-form _panel _gap" fixed/>
-
-			<XTimeline :key="channelId" class="_gap" src="channel" :channel="channelId" @before="before" @after="after"/>
-		</div>
-	</MkSpacer>
-</MkStickyContainer>
+		</MkSpacer>
+	</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch } from 'vue';
-import MkContainer from '@/components/MkContainer.vue';
-import XPostForm from '@/components/MkPostForm.vue';
-import XTimeline from '@/components/MkTimeline.vue';
-import XChannelFollowButton from '@/components/MkChannelFollowButton.vue';
-import * as os from '@/os';
-import { useRouter } from '@/router';
-import { $i } from '@/account';
-import { i18n } from '@/i18n';
-import { definePageMetadata } from '@/scripts/page-metadata';
+import { computed, inject, watch } from "vue";
+import MkContainer from "@/components/MkContainer.vue";
+import XPostForm from "@/components/MkPostForm.vue";
+import XTimeline from "@/components/MkTimeline.vue";
+import XChannelFollowButton from "@/components/MkChannelFollowButton.vue";
+import * as os from "@/os";
+import { useRouter } from "@/router";
+import { $i } from "@/account";
+import { i18n } from "@/i18n";
+import { definePageMetadata } from "@/scripts/page-metadata";
 
 const router = useRouter();
 
@@ -51,36 +120,45 @@ const props = defineProps<{
 
 let channel = $ref(null);
 let showBanner = $ref(true);
-const pagination = {
-	endpoint: 'channels/timeline' as const,
-	limit: 10,
-	params: computed(() => ({
-		channelId: props.channelId,
-	})),
-};
 
-watch(() => props.channelId, async () => {
-	channel = await os.api('channels/show', {
-		channelId: props.channelId,
-	});
-}, { immediate: true });
+watch(
+	() => props.channelId,
+	async () => {
+		channel = await os.api("channels/show", {
+			channelId: props.channelId,
+		});
+	},
+	{ immediate: true }
+);
 
 function edit() {
-	router.push(`/channels/${channel.id}/edit`);
+	router.push(`/channels/${channel?.id}/edit`);
 }
 
-const headerActions = $computed(() => channel && channel.userId ? [{
-	icon: 'ph-gear-six-bold ph-lg',
-	text: i18n.ts.edit,
-	handler: edit,
-}] : null);
+const headerActions = $computed(() => [
+	...(channel && channel?.userId === $i?.id
+		? [
+				{
+					icon: "ph-gear-six ph-bold ph-lg",
+					text: i18n.ts.edit,
+					handler: edit,
+				},
+		  ]
+		: []),
+]);
 
 const headerTabs = $computed(() => []);
 
-definePageMetadata(computed(() => channel ? {
-	title: channel.name,
-	icon: 'ph-television-bold ph-lg',
-} : null));
+definePageMetadata(
+	computed(() =>
+		channel
+			? {
+					title: channel.name,
+					icon: "ph-television ph-bold ph-lg",
+			  }
+			: null
+	)
+);
 </script>
 
 <style lang="scss" scoped>
@@ -97,7 +175,7 @@ definePageMetadata(computed(() => channel ? {
 	> .toggle {
 		position: absolute;
 		z-index: 2;
-    top: 8px;
+		top: 8px;
 		right: 8px;
 		font-size: 1.2em;
 		width: 48px;
@@ -105,12 +183,12 @@ definePageMetadata(computed(() => channel ? {
 		color: #fff;
 		background: rgba(0, 0, 0, 0.5);
 		border-radius: 100%;
-		
+
 		> i {
 			vertical-align: middle;
 		}
 	}
-	
+
 	> .banner {
 		position: relative;
 		height: 200px;
