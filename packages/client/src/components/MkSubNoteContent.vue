@@ -35,7 +35,11 @@
 			class="content"
 			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
 		>
-			<div class="body">
+			<XCwButton ref="cwButton" v-if="note.cw && !showContent" v-model="showContent" :note="note" v-on:keydown="focusFooter" />
+			<div 
+				class="body"
+				v-bind="{ 'aria-label': !showContent ? '' : null, 'tabindex': !showContent ? '-1' : null }"
+			>
 				<span v-if="note.deletedAt" style="opacity: 0.5"
 					>({{ i18n.ts.deleted }})</span
 				>
@@ -96,6 +100,11 @@
 						<XNoteSimple :note="note.renote" />
 					</div>
 				</template>
+				<div
+					v-if="!showContent"
+					tabindex="0"
+					v-on:focus="cwButton?.focus()"
+				></div>
 			</div>
 			<button
 				v-if="isLong && collapsed"
@@ -111,13 +120,13 @@
 			>
 				<span>{{ i18n.ts.showLess }}</span>
 			</button>
-			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
+			<XCwButton v-if="note.cw && showContent" v-model="showContent" :note="note" />
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
+import { ref } from "vue"; 
 import * as misskey from "calckey-js";
 import * as mfm from "mfm-js";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
@@ -138,8 +147,10 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	(ev: "push", v): void;
+	(ev: "focusfooter"): void;
 }>();
 
+const cwButton = ref<HTMLElement>(); 
 const isLong =
 	!props.detailedView &&
 	props.note.cw == null &&
@@ -151,6 +162,13 @@ const urls = props.note.text
 	: null;
 
 let showContent = $ref(false);
+
+
+function focusFooter(ev) {
+	if (ev.key == "Tab" && !ev.getModifierState("Shift")) {
+		emit("focusfooter");
+	}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -242,6 +260,9 @@ let showContent = $ref(false);
 				margin-top: -50px;
 				padding-top: 50px;
 				overflow: hidden;
+				user-select: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
 			}
 			&.collapsed > .body {
 				box-sizing: border-box;
@@ -271,6 +292,7 @@ let showContent = $ref(false);
 				bottom: 0;
 				left: 0;
 				width: 100%;
+				z-index: 2;
 				> span {
 					display: inline-block;
 					background: var(--panel);
@@ -279,7 +301,7 @@ let showContent = $ref(false);
 					border-radius: 999px;
 					box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
 				}
-				&:hover {
+				&:hover, &:focus {
 					> span {
 						background: var(--panelHighlight);
 					}
