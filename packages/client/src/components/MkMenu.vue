@@ -46,6 +46,7 @@
 							v-if="item.avatar"
 							:user="item.avatar"
 							class="avatar"
+							disableLink
 						/>
 						<span :style="item.textStyle || ''">{{ item.text }}</span>
 						<span v-if="item.indicate" class="indicator"
@@ -88,7 +89,7 @@
 						@mouseenter.passive="onItemMouseEnter(item)"
 						@mouseleave.passive="onItemMouseLeave(item)"
 					>
-						<MkAvatar :user="item.user" class="avatar" /><MkUserName
+						<MkAvatar :user="item.user" class="avatar" disableLink /><MkUserName
 							:user="item.user"
 						/>
 						<span v-if="item.indicate" class="indicator"
@@ -157,6 +158,7 @@
 							v-if="item.avatar"
 							:user="item.avatar"
 							class="avatar"
+							disableLink
 						/>
 						<span :style="item.textStyle || ''">{{ item.text }}</span>
 						<span v-if="item.indicate" class="indicator"

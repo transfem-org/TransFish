@@ -8,6 +8,7 @@
 			<MkAvatar :user="$i" class="avatar" /><MkAcct
 				class="text"
 				:user="$i"
+				disableLink
 			/>
 		</button>
 		<div class="post" data-cy-open-post-form @click="post">
