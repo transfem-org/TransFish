@@ -188,6 +188,7 @@ function close(opts: { useSendAnimation?: boolean } = {}) {
 function onBgClick() {
 	if (contentClicking) return;
 	emit("click");
+	focusedElement.focus();
 }
 
 if (type === "drawer") {
