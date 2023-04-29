@@ -113,14 +113,9 @@ id: 'aid'
 reservedUsernames:
   - root
   - admin
+  - administrator
+  - me
   - system
-  - test
-  - proxy
-  - relay
-  - mod
-  - moderator
-  - info
-  - information
 
 # Whether disable HSTS
 #disableHsts: true
@@ -152,6 +147,7 @@ reservedUsernames:
 #proxy: http://127.0.0.1:3128
 
 #proxyBypassHosts: [
+#  'web.kaiteki.app',
 #  'example.com',
 #  '192.0.2.8'
 #]

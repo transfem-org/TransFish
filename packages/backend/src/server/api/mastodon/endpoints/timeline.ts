@@ -211,7 +211,7 @@ export function apiTimelineMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.createList((ctx.query as any).title);
+			const data = await client.createList((ctx.request.body as any).title);
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
@@ -227,7 +227,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.updateList(ctx.params.id, ctx.query as any);
+				const data = await client.updateList(ctx.params.id, (ctx.request.body as any).title);
 				ctx.body = data.data;
 			} catch (e: any) {
 				console.error(e);

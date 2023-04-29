@@ -91,6 +91,44 @@ export function apiAccountMastodon(router: Router): void {
 			ctx.body = e.response.data;
 		}
 	});
+	router.get("/v1/accounts/relationships", async (ctx) => {
+		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+		const accessTokens = ctx.headers.authorization;
+		const client = getClient(BASE_URL, accessTokens);
+		let users;
+		try {
+			// TODO: this should be body
+			let ids = ctx.request.query ? ctx.request.query["id[]"] : null;
+			if (typeof ids === "string") {
+				ids = [ids];
+			}
+			users = ids;
+			relationshipModel.id = ids?.toString() || "1";
+			if (!ids) {
+				ctx.body = [relationshipModel];
+				return;
+			}
+
+			let reqIds = [];
+			for (let i = 0; i < ids.length; i++) {
+				reqIds.push(convertId(ids[i], IdType.CalckeyId));
+			}
+
+			const data = await client.getRelationships(reqIds);
+			let resp = data.data;
+			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
+				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
+			}
+			ctx.body = resp;
+		} catch (e: any) {
+			console.error(e);
+			let data = e.response.data;
+			data.users = users;
+			console.error(data);
+			ctx.status = 401;
+			ctx.body = data;
+		}
+	});
 	router.get<{ Params: { id: string } }>("/v1/accounts/:id", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;
@@ -340,44 +378,6 @@ export function apiAccountMastodon(router: Router): void {
 			}
 		},
 	);
-	router.get("/v1/accounts/relationships", async (ctx) => {
-		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
-		const accessTokens = ctx.headers.authorization;
-		const client = getClient(BASE_URL, accessTokens);
-		let users;
-		try {
-			// TODO: this should be body
-			let ids = ctx.request.query ? ctx.request.query["id[]"] : null;
-			if (typeof ids === "string") {
-				ids = [ids];
-			}
-			users = ids;
-			relationshipModel.id = ids?.toString() || "1";
-			if (!ids) {
-				ctx.body = [relationshipModel];
-				return;
-			}
-
-			let reqIds = [];
-			for (let i = 0; i < ids.length; i++) {
-				reqIds.push(convertId(ids[i], IdType.CalckeyId));
-			}
-
-			const data = await client.getRelationships(reqIds);
-			let resp = data.data;
-			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-			}
-			ctx.body = resp;
-		} catch (e: any) {
-			console.error(e);
-			let data = e.response.data;
-			data.users = users;
-			console.error(data);
-			ctx.status = 401;
-			ctx.body = data;
-		}
-	});
 	router.get("/v1/bookmarks", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;

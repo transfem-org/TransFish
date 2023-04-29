@@ -35,7 +35,11 @@
 			class="content"
 			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
 		>
-			<div class="body">
+			<XCwButton ref="cwButton" v-if="note.cw && !showContent" v-model="showContent" :note="note" v-on:keydown="focusFooter" />
+			<div 
+				class="body"
+				v-bind="{ 'aria-label': !showContent ? '' : null, 'tabindex': !showContent ? '-1' : null }"
+			>
 				<span v-if="note.deletedAt" style="opacity: 0.5"
 					>({{ i18n.ts.deleted }})</span
 				>
@@ -96,34 +100,27 @@
 						<XNoteSimple :note="note.renote" />
 					</div>
 				</template>
+				<div
+					v-if="note.cw && !showContent"
+					tabindex="0"
+					v-on:focus="cwButton?.focus()"
+				></div>
 			</div>
-			<button
-				v-if="isLong && collapsed"
-				class="fade _button"
-				@click.stop="collapsed = false"
-			>
-				<span>{{ i18n.ts.showMore }}</span>
-			</button>
-			<button
-				v-if="isLong && !collapsed"
-				class="showLess _button"
-				@click.stop="collapsed = true"
-			>
-				<span>{{ i18n.ts.showLess }}</span>
-			</button>
-			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
+			<XShowMoreButton v-if="isLong" v-model="collapsed"></XShowMoreButton>
+			<XCwButton v-if="note.cw && showContent" v-model="showContent" :note="note" />
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
+import { ref } from "vue"; 
 import * as misskey from "calckey-js";
 import * as mfm from "mfm-js";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
+import XShowMoreButton from "./MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { i18n } from "@/i18n";
@@ -138,19 +135,29 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	(ev: "push", v): void;
+	(ev: "focusfooter"): void;
 }>();
 
+const cwButton = ref<HTMLElement>(); 
 const isLong =
 	!props.detailedView &&
 	props.note.cw == null &&
 	props.note.text != null &&
 	(props.note.text.split("\n").length > 9 || props.note.text.length > 500);
 const collapsed = $ref(props.note.cw == null && isLong);
+
 const urls = props.note.text
 	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
 	: null;
 
 let showContent = $ref(false);
+
+
+function focusFooter(ev) {
+	if (ev.key == "Tab" && !ev.getModifierState("Shift")) {
+		emit("focusfooter");
+	}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -242,6 +249,9 @@ let showContent = $ref(false);
 				margin-top: -50px;
 				padding-top: 50px;
 				overflow: hidden;
+				user-select: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
 			}
 			&.collapsed > .body {
 				box-sizing: border-box;
@@ -263,43 +273,6 @@ let showContent = $ref(false);
 					inset: 0;
 					top: 40px;
 				}
-			}
-
-			:deep(.fade) {
-				display: block;
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				> span {
-					display: inline-block;
-					background: var(--panel);
-					padding: 0.4em 1em;
-					font-size: 0.8em;
-					border-radius: 999px;
-					box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
-				}
-				&:hover {
-					> span {
-						background: var(--panelHighlight);
-					}
-				}
-			}
-		}
-
-		:deep(.showLess) {
-			width: 100%;
-			margin-top: 1em;
-			position: sticky;
-			bottom: var(--stickyBottom);
-
-			> span {
-				display: inline-block;
-				background: var(--panel);
-				padding: 6px 10px;
-				font-size: 0.8em;
-				border-radius: 999px;
-				box-shadow: 0 0 7px 7px var(--bg);
 			}
 		}
 	}
