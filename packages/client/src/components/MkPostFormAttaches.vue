@@ -198,7 +198,6 @@ export default defineComponent({
 			height: 64px;
 			margin-right: 4px;
 			border-radius: 4px;
-			overflow: hidden;
 			cursor: move;
 
 			&:hover > .remove {
