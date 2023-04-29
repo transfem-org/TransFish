@@ -6,7 +6,7 @@
 		@keyup.esc="$emit('close')"
 		@closed="$emit('closed')"
 	>
-		<focus-trap v-model:active="isActive">
+		<FocusTrap v-model:active="isActive">
 			<div
 				ref="rootEl"
 				class="ebkgoccj"
@@ -21,6 +21,7 @@
 						: '100%',
 				}"
 				@keydown="onKeydown"
+				tabindex="-1"
 			>
 				<div ref="headerEl" class="header">
 					<button
@@ -53,7 +54,7 @@
 					<slot :width="bodyWidth" :height="bodyHeight"></slot>
 				</div>
 			</div>
-		</focus-trap>
+		</FocusTrap>
 	</MkModal>
 </template>
 

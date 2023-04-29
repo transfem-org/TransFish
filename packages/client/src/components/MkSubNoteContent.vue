@@ -101,7 +101,7 @@
 					</div>
 				</template>
 				<div
-					v-if="!showContent"
+					v-if="note.cw && !showContent"
 					tabindex="0"
 					v-on:focus="cwButton?.focus()"
 				></div>

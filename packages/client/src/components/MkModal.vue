@@ -18,7 +18,7 @@
 		@enter="emit('opening')"
 		@after-enter="onOpened"
 	>
-		<focus-trap v-model:active="isActive">
+		<FocusTrap v-model:active="isActive">
 			<div
 				v-show="manualShowing != null ? manualShowing : showing"
 				v-hotkey.global="keymap"
@@ -66,7 +66,7 @@
 					<slot :max-height="maxHeight" :type="type"></slot>
 				</div>
 			</div>
-		</focus-trap>
+		</FocusTrap>
 	</Transition>
 </template>
 
@@ -187,8 +187,8 @@ function close(opts: { useSendAnimation?: boolean } = {}) {
 
 function onBgClick() {
 	if (contentClicking) return;
-	emit("click");
 	focusedElement.focus();
+	emit("click");
 }
 
 if (type === "drawer") {
