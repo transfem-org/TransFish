@@ -335,6 +335,7 @@ function more(ev: MouseEvent) {
 					}
 
 					&:hover,
+					&:focus-within,
 					&.active {
 						&:before {
 							background: var(--accentLighten);
@@ -428,7 +429,8 @@ function more(ev: MouseEvent) {
 						text-overflow: ellipsis;
 					}
 
-					&:hover {
+					&:hover,
+					&:focus-within {
 						text-decoration: none;
 						color: var(--navHoverFg);
 						transition: all 0.4s ease;
@@ -530,6 +532,7 @@ function more(ev: MouseEvent) {
 					}
 
 					&:hover,
+					&:focus-within,
 					&.active {
 						&:before {
 							background: var(--accentLighten);
@@ -615,6 +618,7 @@ function more(ev: MouseEvent) {
 					}
 
 					&:hover,
+					&:focus-within,
 					&.active {
 						text-decoration: none;
 						color: var(--accent);
