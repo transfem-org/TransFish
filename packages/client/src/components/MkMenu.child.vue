@@ -1,6 +1,5 @@
 <template>
-	<FocusTrap v-bind:active="isActive">
-		<div ref="el" class="sfhdhdhr" tabindex="-1">
+	<div ref="el" class="sfhdhdhr" tabindex="-1">
 			<MkMenu
 				ref="menu"
 				:items="items"
@@ -10,7 +9,6 @@
 				@close="onChildClosed"
 			/>
 		</div>
-	</FocusTrap>
 </template>
 
 <script lang="ts" setup>
@@ -25,8 +23,6 @@ import {
 } from "vue";
 import MkMenu from "./MkMenu.vue";
 import { MenuItem } from "@/types/menu";
-import { FocusTrap } from 'focus-trap-vue';
-import * as os from "@/os";
 
 const props = defineProps<{
 	items: MenuItem[];
