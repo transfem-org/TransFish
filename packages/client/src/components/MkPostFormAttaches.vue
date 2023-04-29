@@ -154,22 +154,22 @@ export default defineComponent({
 								? i18n.ts.unmarkAsSensitive
 								: i18n.ts.markAsSensitive,
 							icon: file.isSensitive
-								? "ph-eye-slash ph-bold ph-lg"
-								: "ph-eye ph-bold ph-lg",
+								? "ph-eye ph-bold ph-lg"
+								: "ph-eye-slash ph-bold ph-lg",
 							action: () => {
 								this.toggleSensitive(file);
 							},
 						},
 						{
 							text: i18n.ts.describeFile,
-							icon: "ph-cursor-text ph-bold ph-lg",
+							icon: "ph-subtitles ph-bold ph-lg",
 							action: () => {
 								this.describe(file);
 							},
 						},
 						{
 							text: i18n.ts.attachCancel,
-							icon: "ph-circle-wavy-warning ph-bold ph-lg",
+							icon: "ph-x ph-bold ph-lg",
 							action: () => {
 								this.detachMedia(file.id);
 							},
