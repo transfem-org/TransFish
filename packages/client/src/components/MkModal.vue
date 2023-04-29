@@ -490,6 +490,7 @@ defineExpose({
 }
 
 .root {
+	outline: none;
 	&.dialog {
 		> .content {
 			position: fixed;
