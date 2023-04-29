@@ -1,6 +1,6 @@
 <template>
 	<FocusTrap v-bind:active="isActive">
-	<div tabindex="-1" v-focus>
+		<div tabindex="-1" v-focus>
 			<div
 				ref="itemsEl"
 				class="rrevdjwt _popup _shadow"
