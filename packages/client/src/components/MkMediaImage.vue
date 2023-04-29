@@ -138,9 +138,9 @@ watch(
 		background-position: center;
 		background-size: contain;
 		background-repeat: no-repeat;
-		&:focus {
+		box-sizing: border-box;
+		&:focus-visible {
 			border: 2px solid var(--accent);
-			box-sizing: border-box;
 		}
 
 		> .gif {
