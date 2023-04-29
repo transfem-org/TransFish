@@ -1,6 +1,6 @@
 <template>
 	<FocusTrap v-bind:active="isActive">
-		<div ref="el" class="sfhdhdhr">
+		<div ref="el" class="sfhdhdhr" tabindex="-1">
 			<MkMenu
 				ref="menu"
 				:items="items"

@@ -4,6 +4,7 @@
 			class="omfetrab"
 			:class="['s' + size, 'w' + width, 'h' + height, { asDrawer }]"
 			:style="{ maxHeight: maxHeight ? maxHeight + 'px' : undefined }"
+			tabindex="-1"
 		>
 			<input
 				ref="search"
