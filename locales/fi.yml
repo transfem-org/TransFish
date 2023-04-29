@@ -1,1 +1,43 @@
-{}
+username: Käyttäjänimi
+fetchingAsApObject: Hae Fedeversestä
+gotIt: Selvä!
+cancel: Peruuta
+enterUsername: Anna käyttäjänimi
+renotedBy: Buustannut {käyttäjä}
+noNotes: Ei lähetyksiä
+noNotifications: Ei ilmoituksia
+instance: Instanssi
+settings: Asetukset
+basicSettings: Perusasetukset
+otherSettings: Muut asetukset
+openInWindow: Avaa ikkunaan
+profile: Profiili
+timeline: Aikajana
+noAccountDescription: Käyttäjä ei ole vielä kirjoittanut kuvaustaan vielä.
+login: Kirjaudu sisään
+loggingIn: Kirjautuu sisään
+logout: Kirjaudu ulos
+uploading: Tallentaa ylös...
+save: Tallenna
+favorites: Kirjanmerkit
+unfavorite: Poista kirjanmerkeistä
+favorited: Lisätty kirjanmerkkeihin.
+alreadyFavorited: Lisätty jo kirjanmerkkeihin.
+cantFavorite: Ei voitu lisätä kirjanmerkkeihin.
+pin: Kiinnitä profiiliin
+unpin: Irroita profiilista
+delete: Poista
+forgotPassword: Unohtunut salasana
+search: Etsi
+notifications: Ilmoitukset
+password: Salasana
+ok: OK
+noThankYou: Ei kiitos
+signup: Rekisteröidy
+users: Käyttäjät
+addUser: Lisää käyttäjä
+addInstance: Lisää instanssi
+favorite: Lisää kirjanmerkkeihin
+copyContent: Kopioi sisältö
+deleteAndEdit: Poista ja muokkaa
+copyLink: Kopioi linkki
