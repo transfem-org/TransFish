@@ -3,7 +3,7 @@ fetchingAsApObject: Hae Fedeversestä
 gotIt: Selvä!
 cancel: Peruuta
 enterUsername: Anna käyttäjänimi
-renotedBy: Buustannut {käyttäjä}
+renotedBy: Buustannut {user}
 noNotes: Ei lähetyksiä
 noNotifications: Ei ilmoituksia
 instance: Instanssi
@@ -220,3 +220,4 @@ clearQueueConfirmText: Mitkään välittämättömät lähetykset, jotka ovat jo
   federoidu. Yleensä tätä toimintoa ei tarvita.
 blockedInstancesDescription: Lista instanssien isäntänimistä, jotka haluat estää.
   Listatut instanssit eivät kykene kommunikoimaan enää tämän instanssin kanssa.
+_lang_: Suomi
