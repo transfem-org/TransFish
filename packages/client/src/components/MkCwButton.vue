@@ -84,6 +84,7 @@ defineExpose({
 		bottom: 0;
 		left: 0;
 		width: 100%;
+		z-index: 2;
 		> span {
 			display: inline-block;
 			background: var(--panel);
@@ -92,7 +93,7 @@ defineExpose({
 			border-radius: 999px;
 			box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
 		}
-		&:hover {
+		&:hover, &:focus {
 			> span {
 				background: var(--panelHighlight);
 			}
