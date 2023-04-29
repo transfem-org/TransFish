@@ -55,7 +55,7 @@
 					:class="{ active: showPreview }"
 					@click="showPreview = !showPreview"
 				>
-					<i class="ph-file-code ph-bold ph-lg"></i>
+					<i class="ph-binoculars ph-bold ph-lg"></i>
 				</button>
 				<button
 					class="submit _buttonGradate"
