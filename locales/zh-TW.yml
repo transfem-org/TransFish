@@ -1014,7 +1014,7 @@ _mfm:
   inlineMath: "數學公式(內嵌)"
   inlineMathDescription: "顯示內嵌的KaTex數學公式。"
   blockMath: "數學公式(方塊)"
-  blockMathDescription: "以區塊顯示複數行的KaTex數學式。"
+  blockMathDescription: "以區塊顯示KaTex數學式。"
   quote: "引用"
   quoteDescription: "可以用來表示引用的内容。"
   emoji: "自訂表情符號"

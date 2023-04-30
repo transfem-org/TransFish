@@ -1197,7 +1197,7 @@ _mfm:
   inlineMath: "Math (Inline)"
   inlineMathDescription: "Display math formulas (KaTeX) in-line"
   blockMath: "Math (Block)"
-  blockMathDescription: "Display multi-line math formulas (KaTeX) in a block"
+  blockMathDescription: "Display math formulas (KaTeX) in a block"
   quote: "Quote"
   quoteDescription: "Displays content as a quote."
   emoji: "Custom Emoji"
