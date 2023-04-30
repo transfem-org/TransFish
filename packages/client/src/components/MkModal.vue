@@ -14,59 +14,54 @@
 		:duration="transitionDuration"
 		appear
 		@after-leave="emit('closed')"
-		@keyup.esc="emit('click')"
 		@enter="emit('opening')"
 		@after-enter="onOpened"
 	>
-		<FocusTrap v-model:active="isActive">
+		<div
+			v-show="manualShowing != null ? manualShowing : showing"
+			v-hotkey.global="keymap"
+			:class="[
+				$style.root,
+				{
+					[$style.drawer]: type === 'drawer',
+					[$style.dialog]: type === 'dialog' || type === 'dialog:top',
+					[$style.popup]: type === 'popup',
+				},
+			]"
+			:style="{
+				zIndex,
+				pointerEvents: (manualShowing != null ? manualShowing : showing)
+					? 'auto'
+					: 'none',
+				'--transformOrigin': transformOrigin,
+			}"
+		>
 			<div
-				v-show="manualShowing != null ? manualShowing : showing"
-				v-hotkey.global="keymap"
+				class="_modalBg data-cy-bg"
 				:class="[
-					$style.root,
+					$style.bg,
 					{
-						[$style.drawer]: type === 'drawer',
-						[$style.dialog]: type === 'dialog' || type === 'dialog:top',
-						[$style.popup]: type === 'popup',
+						[$style.bgTransparent]: isEnableBgTransparent,
+						'data-cy-transparent': isEnableBgTransparent,
 					},
 				]"
-				:style="{
-					zIndex,
-					pointerEvents: (manualShowing != null ? manualShowing : showing)
-						? 'auto'
-						: 'none',
-					'--transformOrigin': transformOrigin,
-				}"
-				tabindex="-1"
-				v-focus
+				:style="{ zIndex }"
+				@click="onBgClick"
+				@mousedown="onBgClick"
+				@contextmenu.prevent.stop="() => {}"
+			></div>
+			<div
+				ref="content"
+				:class="[
+					$style.content,
+					{ [$style.fixed]: fixed, top: type === 'dialog:top' },
+				]"
+				:style="{ zIndex }"
+				@click.self="onBgClick"
 			>
-				<div
-					class="_modalBg data-cy-bg"
-					:class="[
-						$style.bg,
-						{
-							[$style.bgTransparent]: isEnableBgTransparent,
-							'data-cy-transparent': isEnableBgTransparent,
-						},
-					]"
-					:style="{ zIndex }"
-					@click="onBgClick"
-					@mousedown="onBgClick"
-					@contextmenu.prevent.stop="() => {}"
-				></div>
-				<div
-					ref="content"
-					:class="[
-						$style.content,
-						{ [$style.fixed]: fixed, top: type === 'dialog:top' },
-					]"
-					:style="{ zIndex }"
-					@click.self="onBgClick"
-				>
-					<slot :max-height="maxHeight" :type="type"></slot>
-				</div>
+				<slot :max-height="maxHeight" :type="type"></slot>
 			</div>
-		</FocusTrap>
+		</div>
 	</Transition>
 </template>
 
@@ -76,7 +71,6 @@ import * as os from "@/os";
 import { isTouchUsing } from "@/scripts/touch";
 import { defaultStore } from "@/store";
 import { deviceKind } from "@/scripts/device-kind";
-import { FocusTrap } from 'focus-trap-vue';
 
 function getFixedContainer(el: Element | null): Element | null {
 	if (el == null || el.tagName === "BODY") return null;
@@ -172,7 +166,6 @@ let transitionDuration = $computed(() =>
 
 let contentClicking = false;
 
-const focusedElement = document.activeElement;
 function close(opts: { useSendAnimation?: boolean } = {}) {
 	if (opts.useSendAnimation) {
 		useSendAnime = true;
@@ -182,12 +175,10 @@ function close(opts: { useSendAnimation?: boolean } = {}) {
 	if (props.src) props.src.style.pointerEvents = "auto";
 	showing = false;
 	emit("close");
-	focusedElement.focus();
 }
 
 function onBgClick() {
 	if (contentClicking) return;
-	focusedElement.focus();
 	emit("click");
 }
 
@@ -490,7 +481,6 @@ defineExpose({
 }
 
 .root {
-	outline: none;
 	&.dialog {
 		> .content {
 			position: fixed;

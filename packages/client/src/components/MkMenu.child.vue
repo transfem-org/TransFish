@@ -1,14 +1,14 @@
 <template>
-	<div ref="el" class="sfhdhdhr" tabindex="-1">
-			<MkMenu
-				ref="menu"
-				:items="items"
-				:align="align"
-				:width="width"
-				:as-drawer="false"
-				@close="onChildClosed"
-			/>
-		</div>
+	<div ref="el" class="sfhdhdhr">
+		<MkMenu
+			ref="menu"
+			:items="items"
+			:align="align"
+			:width="width"
+			:as-drawer="false"
+			@close="onChildClosed"
+		/>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -23,6 +23,7 @@ import {
 } from "vue";
 import MkMenu from "./MkMenu.vue";
 import { MenuItem } from "@/types/menu";
+import * as os from "@/os";
 
 const props = defineProps<{
 	items: MenuItem[];

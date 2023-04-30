@@ -76,32 +76,23 @@ export default {
 			ev.preventDefault();
 		});
 
-		function showTooltip() {
-			window.clearTimeout(self.showTimer);
-			window.clearTimeout(self.hideTimer);
-			self.showTimer = window.setTimeout(self.show, delay);
-		}
-		function hideTooltip() {
-			window.clearTimeout(self.showTimer);
-			window.clearTimeout(self.hideTimer);
-			self.hideTimer = window.setTimeout(self.close, delay);
-		}
-
 		el.addEventListener(
-			start, showTooltip,
-			{ passive: true },
-		);
-		el.addEventListener(
-			"focusin", showTooltip,
+			start,
+			() => {
+				window.clearTimeout(self.showTimer);
+				window.clearTimeout(self.hideTimer);
+				self.showTimer = window.setTimeout(self.show, delay);
+			},
 			{ passive: true },
 		);
 
 		el.addEventListener(
-			end, hideTooltip,
-			{ passive: true },
-		);
-		el.addEventListener(
-			"focusout", hideTooltip,
+			end,
+			() => {
+				window.clearTimeout(self.showTimer);
+				window.clearTimeout(self.hideTimer);
+				self.hideTimer = window.setTimeout(self.close, delay);
+			},
 			{ passive: true },
 		);
 

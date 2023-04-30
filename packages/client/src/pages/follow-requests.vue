@@ -23,7 +23,6 @@
 								class="avatar"
 								:user="req.follower"
 								:show-indicator="true"
-								disableLink
 							/>
 							<div class="body">
 								<div class="name">

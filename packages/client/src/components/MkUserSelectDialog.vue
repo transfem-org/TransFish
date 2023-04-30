@@ -46,7 +46,6 @@
 							:user="user"
 							class="avatar"
 							:show-indicator="true"
-							disableLink
 						/>
 						<div class="body">
 							<MkUserName :user="user" class="name" />
@@ -74,7 +73,6 @@
 							:user="user"
 							class="avatar"
 							:show-indicator="true"
-							disableLink
 						/>
 						<div class="body">
 							<MkUserName :user="user" class="name" />

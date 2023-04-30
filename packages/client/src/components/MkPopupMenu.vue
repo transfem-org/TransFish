@@ -7,8 +7,6 @@
 		:transparent-bg="true"
 		@click="modal.close()"
 		@closed="emit('closed')"
-		tabindex="-1"
-		v-focus
 	>
 		<MkMenu
 			:items="items"
