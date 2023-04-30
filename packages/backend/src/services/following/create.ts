@@ -235,7 +235,9 @@ export default async function (
 		followee.isLocked ||
 		(followeeProfile.carefulBot && follower.isBot) ||
 		(Users.isLocalUser(follower) && Users.isRemoteUser(followee)) ||
-		(Users.isRemoteUser(follower) && Users.isLocalUser(followee) && await shouldSilenceInstance(follower.host))
+		(Users.isRemoteUser(follower) &&
+			Users.isLocalUser(followee) &&
+			(await shouldSilenceInstance(follower.host)))
 	) {
 		let autoAccept = false;
 

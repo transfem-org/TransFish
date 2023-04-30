@@ -167,8 +167,8 @@ export default async (
 	data: Option,
 	silent = false,
 ) =>
-// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
-new  Promise<Note>(async (res, rej) => {
+	// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
+	new Promise<Note>(async (res, rej) => {
 		// If you reply outside the channel, match the scope of the target.
 		// TODO (I think it's a process that could be done on the client side, but it's server side for now.)
 		if (
@@ -205,7 +205,8 @@ new  Promise<Note>(async (res, rej) => {
 			data.visibility = "home";
 		}
 
-		const inSilencedInstance = Users.isRemoteUser(user) && await shouldSilenceInstance(user.host);
+		const inSilencedInstance =
+			Users.isRemoteUser(user) && (await shouldSilenceInstance(user.host));
 
 		// Enforce home visibility if the user is in a silenced instance.
 		if (data.visibility === "public" && inSilencedInstance) {
@@ -320,8 +321,10 @@ new  Promise<Note>(async (res, rej) => {
 		if (inSilencedInstance) {
 			const relations = await Followings.findBy([
 				{ followeeId: user.id, followerHost: IsNull() }, // a local user following the silenced user
-			]).then(rels => rels.map(rel => rel.followerId));
-			mentionedUsers = mentionedUsers.filter(mentioned => relations.includes(mentioned.id));
+			]).then((rels) => rels.map((rel) => rel.followerId));
+			mentionedUsers = mentionedUsers.filter((mentioned) =>
+				relations.includes(mentioned.id),
+			);
 		}
 
 		const note = await insertNote(user, data, tags, emojis, mentionedUsers);

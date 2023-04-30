@@ -1,7 +1,10 @@
 import { db } from "@/db/postgre.js";
 import { Instance } from "@/models/entities/instance.js";
 import type { Packed } from "@/misc/schema.js";
-import { shouldBlockInstance, shouldSilenceInstance } from "@/misc/should-block-instance.js";
+import {
+	shouldBlockInstance,
+	shouldSilenceInstance,
+} from "@/misc/should-block-instance.js";
 
 export const InstanceRepository = db.getRepository(Instance).extend({
 	async pack(instance: Instance): Promise<Packed<"FederationInstance">> {

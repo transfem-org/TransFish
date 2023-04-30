@@ -9,13 +9,21 @@
 		/></template>
 		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
 			<FormSuspense :p="init">
-				<FormTextarea v-if="tab === 'block'" v-model="blockedHosts" class="_formBlock">
+				<FormTextarea
+					v-if="tab === 'block'"
+					v-model="blockedHosts"
+					class="_formBlock"
+				>
 					<span>{{ i18n.ts.blockedInstances }}</span>
 					<template #caption>{{
 						i18n.ts.blockedInstancesDescription
 					}}</template>
 				</FormTextarea>
-				<FormTextarea v-else-if="tab === 'silence'" v-model="silencedHosts" class="_formBlock">
+				<FormTextarea
+					v-else-if="tab === 'silence'"
+					v-model="silencedHosts"
+					class="_formBlock"
+				>
 					<span>{{ i18n.ts.silencedInstances }}</span>
 					<template #caption>{{
 						i18n.ts.silencedInstancesDescription

@@ -32,6 +32,7 @@ export async function shouldSilenceInstance(
 ): Promise<boolean> {
 	const { silencedHosts } = meta ?? (await fetchMeta());
 	return silencedHosts.some(
-		(silencedHost) => host === silencedHost || host.endsWith(`.${silencedHost}`),
+		(silencedHost) =>
+			host === silencedHost || host.endsWith(`.${silencedHost}`),
 	);
 }
