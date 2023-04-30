@@ -675,3 +675,48 @@ useGlobalSetting: Fes servir els ajustos globals
 useGlobalSettingDesc: Si s'activa, es faran servir els ajustos de notificacions del
   teu compte. Si es desactiva , es poden fer configuracions individuals.
 other: Altres
+menu: Menú
+addItem: Afegeix un element
+divider: Divisor
+relays: Relés
+addRelay: Afegeix un Relé
+inboxUrl: Adreça de la safata d'entrada
+addedRelays: Relés afegits
+serviceworkerInfo: Ha de estar activat per les notificacions push.
+poll: Enquesta
+deletedNote: Article eliminat
+disablePlayer: Tancar el reproductor de vídeo
+fileIdOrUrl: ID o adreça URL del fitxer
+behavior: Comportament
+regenerateLoginTokenDescription: Regenera el token que es fa servir de manera interna
+  durant l'inici de sessió. Normalment això no és necessari. Si es torna a genera
+  el token, es tancarà la sessió a tots els dispositius.
+setMultipleBySeparatingWithSpace: Separa diferents entrades amb espais.
+reportAbuseOf: Informa sobre {name}
+sample: Exemple
+abuseReports: Informes
+reportAbuse: Informe
+reporter: Informador
+reporterOrigin: Origen d'el informador
+forwardReport: Envia l'informe a una instancia remota
+abuseReported: El teu informe ha sigut enviat. Moltes gràcies.
+reporteeOrigin: Origen de l'informe
+send: Enviar
+abuseMarkAsResolved: Marcar l'informe com a resolt
+visibility: Visibilitat
+useCw: Amaga el contingut
+enablePlayer: Obre el reproductor de vídeo
+yourAccountSuspendedDescription: Aquest compte ha sigut suspesa per no seguir els
+  termes de servei del servidor o quelcom similar. Contacte amb l'administrador si
+  vols conèixer la raó amb més detall. Si us plau no facis un compte nou.
+invisibleNote: Article ocult
+enableInfiniteScroll: Carregar més de forma automàtica
+fillAbuseReportDescription: Si us plau omple els detalls sobre aquest informe. Si
+  es sobre un article en concret, si us plau inclou l'adreça URL.
+forwardReportIsAnonymous: Com a informador a l'instància remota no es mostrarà el
+  teu compte, si no un compte anònim.
+openInNewTab: Obrir en una pestanya nova
+openInSideView: Obrir a la vista lateral
+defaultNavigationBehaviour: Navegació per defecte
+editTheseSettingsMayBreakAccount: Si edites aquestes configuracions pots fer mal bé
+  el teu compte.

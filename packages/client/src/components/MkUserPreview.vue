@@ -55,7 +55,20 @@
 						:custom-emojis="user.emojis"
 					/>
 				</div>
-				<XShowMoreButton v-if="isLong" v-model="collapsed"></XShowMoreButton>
+				<button
+					v-if="isLong && collapsed"
+					class="fade _button"
+					@click.stop="collapsed = false"
+				>
+					<span>{{ i18n.ts.showMore }}</span>
+				</button>
+				<button
+					v-if="isLong && !collapsed"
+					class="showLess _button"
+					@click.stop="collapsed = true"
+				>
+					<span>{{ i18n.ts.showLess }}</span>
+				</button>
 				<div v-if="user.fields.length > 0" class="fields">
 					<dl
 						v-for="(field, i) in user.fields"
@@ -115,7 +128,6 @@ import * as Acct from "calckey-js/built/acct";
 import type * as misskey from "calckey-js";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { userPage } from "@/filters/user";
-import XShowMoreButton from "./MkShowMoreButton.vue";
 import * as os from "@/os";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";

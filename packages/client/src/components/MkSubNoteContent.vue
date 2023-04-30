@@ -120,7 +120,6 @@ import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
-import XShowMoreButton from "./MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { i18n } from "@/i18n";
@@ -145,7 +144,6 @@ const isLong =
 	props.note.text != null &&
 	(props.note.text.split("\n").length > 9 || props.note.text.length > 500);
 const collapsed = $ref(props.note.cw == null && isLong);
-
 const urls = props.note.text
 	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
 	: null;
@@ -273,6 +271,43 @@ function focusFooter(ev) {
 					inset: 0;
 					top: 40px;
 				}
+			}
+
+			:deep(.fade) {
+				display: block;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				> span {
+					display: inline-block;
+					background: var(--panel);
+					padding: 0.4em 1em;
+					font-size: 0.8em;
+					border-radius: 999px;
+					box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+				}
+				&:hover {
+					> span {
+						background: var(--panelHighlight);
+					}
+				}
+			}
+		}
+
+		:deep(.showLess) {
+			width: 100%;
+			margin-top: 1em;
+			position: sticky;
+			bottom: var(--stickyBottom);
+
+			> span {
+				display: inline-block;
+				background: var(--panel);
+				padding: 6px 10px;
+				font-size: 0.8em;
+				border-radius: 999px;
+				box-shadow: 0 0 7px 7px var(--bg);
 			}
 		}
 	}
