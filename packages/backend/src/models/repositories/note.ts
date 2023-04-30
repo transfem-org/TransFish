@@ -239,7 +239,7 @@ export const NoteRepository = db.getRepository(Note).extend({
 
 			...(opts.detail
 				? {
-							reply: note.replyId
+						reply: note.replyId
 							? this.pack(note.reply || note.replyId, me, {
 									detail: false,
 									_hint_: options?._hint_,
