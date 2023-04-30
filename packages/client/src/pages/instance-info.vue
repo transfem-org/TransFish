@@ -337,7 +337,7 @@
 import { watch } from "vue";
 import { Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import type * as misskey from "calckey-js";
+import type * as calckey from "calckey-js";
 import MkChart from "@/components/MkChart.vue";
 import MkObjectView from "@/components/MkObjectView.vue";
 import FormLink from "@/components/form/link.vue";
@@ -360,11 +360,11 @@ import "swiper/scss";
 import "swiper/scss/virtual";
 import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
 
-type AugmentedInstanceMetadata = misskey.entities.DetailedInstanceMetadata & {
+type AugmentedInstanceMetadata = calckey.entities.DetailedInstanceMetadata & {
 	blockedHosts: string[];
 	silencedHosts: string[];
 };
-type AugmentedInstance = misskey.entities.Instance & {
+type AugmentedInstance = calckey.entities.Instance & {
 	isBlocked: boolean;
 	isSilenced: boolean;
 };
@@ -397,11 +397,8 @@ const usersPagination = {
 	offsetMode: true,
 };
 
-async function init() {
-	meta = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
-}
-
 async function fetch() {
+	meta = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
 	instance = (await os.api("federation/show-instance", {
 		host: props.host,
 	})) as AugmentedInstance;
