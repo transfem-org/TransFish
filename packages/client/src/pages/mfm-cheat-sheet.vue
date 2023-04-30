@@ -2,7 +2,7 @@
 	<MkStickyContainer>
 		<template #header><MkPageHeader /></template>
 		<MkSpacer :content-max="800">
-			<div class="mwysmxbg">
+			<div :class="$style.root">
 				<div>{{ i18n.ts._mfm.intro }}</div>
 				<br />
 				<div class="section _block">
@@ -478,8 +478,8 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" scoped>
-.mwysmxbg {
+<style lang="scss" module>
+.root {
 	background: var(--bg);
 
 	> .section {
