@@ -145,6 +145,9 @@ export interface NoteStreamTypes {
 	replied: {
 		id: Note["id"];
 	};
+	updated: {
+		updatedAt: Note["updatedAt"];
+	};
 }
 type NoteStreamEventTypes = {
 	[key in keyof NoteStreamTypes]: {

@@ -1,22 +1,32 @@
 import promiseLimit from "promise-limit";
-
+import * as mfm from "mfm-js";
 import config from "@/config/index.js";
 import Resolver from "../resolver.js";
 import post from "@/services/note/create.js";
+import { extractMentionedUsers } from "@/services/note/create.js";
 import { resolvePerson } from "./person.js";
 import { resolveImage } from "./image.js";
-import type { CacheableRemoteUser } from "@/models/entities/user.js";
+import type {
+	ILocalUser,
+	CacheableRemoteUser,
+} from "@/models/entities/user.js";
 import { htmlToMfm } from "../misc/html-to-mfm.js";
 import { extractApHashtags } from "./tag.js";
 import { unique, toArray, toSingle } from "@/prelude/array.js";
-import { extractPollFromQuestion } from "./question.js";
+import { extractPollFromQuestion, updateQuestion } from "./question.js";
 import vote from "@/services/note/polls/vote.js";
 import { apLogger } from "../logger.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import { deliverQuestionUpdate } from "@/services/note/polls/update.js";
 import { extractDbHost, toPuny } from "@/misc/convert-host.js";
-import { Emojis, Polls, MessagingMessages } from "@/models/index.js";
-import type { Note } from "@/models/entities/note.js";
+import {
+	Emojis,
+	Polls,
+	MessagingMessages,
+	Notes,
+	NoteEdits,
+} from "@/models/index.js";
+import type { IMentionedRemoteUsers, Note } from "@/models/entities/note.js";
 import type { IObject, IPost } from "../type.js";
 import {
 	getOneApId,
@@ -28,7 +38,6 @@ import {
 } from "../type.js";
 import type { Emoji } from "@/models/entities/emoji.js";
 import { genId } from "@/misc/gen-id.js";
-import { fetchMeta } from "@/misc/fetch-meta.js";
 import { getApLock } from "@/misc/app-lock.js";
 import { createMessage } from "@/services/messages/create.js";
 import { parseAudience } from "../audience.js";
@@ -36,6 +45,10 @@ import { extractApMentions } from "./mention.js";
 import DbResolver from "../db-resolver.js";
 import { StatusError } from "@/misc/fetch.js";
 import { shouldBlockInstance } from "@/misc/should-block-instance.js";
+import { publishNoteStream } from "@/services/stream.js";
+import { extractHashtags } from "@/misc/extract-hashtags.js";
+import { UserProfiles } from "@/models/index.js";
+import { In } from "typeorm";
 
 const logger = apLogger;
 
@@ -496,4 +509,205 @@ export async function extractEmojis(
 			);
 		}),
 	);
+}
+
+type TagDetail = {
+	type: string;
+	name: string;
+};
+
+export async function updateNote(value: string | IObject, resolver?: Resolver) {
+	const uri = typeof value === "string" ? value : value.id;
+	if (!uri) throw new Error("Missing note uri");
+
+	// Skip if URI points to this server
+	if (uri.startsWith(`${config.url}/`)) throw new Error("uri points local");
+
+	// A new resolver is created if not specified
+	if (resolver == null) resolver = new Resolver();
+
+	// Resolve the updated Note object
+	const post = (await resolver.resolve(value)) as IPost;
+
+	const actor = (await resolvePerson(
+		getOneApId(post.attributedTo),
+		resolver,
+	)) as CacheableRemoteUser;
+
+	// Already registered with this server?
+	const note = await Notes.findOneBy({ uri });
+	if (note == null) {
+		return await createNote(post, resolver);
+	}
+
+	// Text parsing
+	let text: string | null = null;
+	if (
+		post.source?.mediaType === "text/x.misskeymarkdown" &&
+		typeof post.source?.content === "string"
+	) {
+		text = post.source.content;
+	} else if (typeof post._misskey_content !== "undefined") {
+		text = post._misskey_content;
+	} else if (typeof post.content === "string") {
+		text = htmlToMfm(post.content, post.tag);
+	}
+
+	const cw = post.sensitive && post.summary;
+
+	// File parsing
+	const fileList = post.attachment
+		? Array.isArray(post.attachment)
+			? post.attachment
+			: [post.attachment]
+		: [];
+	const files = fileList.map((f) => (f.sensitive = post.sensitive));
+
+	// Fetch files
+	const limit = promiseLimit(2);
+
+	const driveFiles = (
+		await Promise.all(
+			fileList.map(
+				(x) => limit(() => resolveImage(actor, x)) as Promise<DriveFile>,
+			),
+		)
+	).filter((file) => file != null);
+	const fileIds = driveFiles.map((file) => file.id);
+	const fileTypes = driveFiles.map((file) => file.type);
+
+	const apEmojis = (
+		await extractEmojis(post.tag || [], actor.host).catch((e) => [])
+	).map((emoji) => emoji.name);
+	const apMentions = await extractApMentions(post.tag);
+	const apHashtags = await extractApHashtags(post.tag);
+
+	const poll = await extractPollFromQuestion(post, resolver).catch(
+		() => undefined,
+	);
+
+	const choices = poll?.choices.map((choice) => mfm.parse(choice)).flat() ?? [];
+
+	const tokens = mfm
+		.parse(text || "")
+		.concat(mfm.parse(cw || ""))
+		.concat(choices);
+
+	const hashTags: string[] = apHashtags || extractHashtags(tokens);
+
+	const mentionUsers =
+		apMentions || (await extractMentionedUsers(actor, tokens));
+
+	const mentionUserIds = mentionUsers.map((user) => user.id);
+	const remoteUsers = mentionUsers.filter((user) => user.host != null);
+	const remoteUserIds = remoteUsers.map((user) => user.id);
+	const remoteProfiles = await UserProfiles.findBy({
+		userId: In(remoteUserIds),
+	});
+	const mentionedRemoteUsers = remoteUsers.map((user) => {
+		const profile = remoteProfiles.find(
+			(profile) => profile.userId === user.id,
+		);
+		return {
+			username: user.username,
+			host: user.host ?? null,
+			uri: user.uri,
+			url: profile ? profile.url : undefined,
+		} as IMentionedRemoteUsers[0];
+	});
+
+	let updating = false;
+	const update = {} as Partial<Note>;
+	if (text && text !== note.text) {
+		update.text = text;
+		updating = true;
+	}
+	if (cw !== note.cw) {
+		update.cw = cw ? cw : null;
+		updating = true;
+	}
+	if (fileIds.sort().join(",") !== note.fileIds.sort().join(",")) {
+		update.fileIds = fileIds;
+		update.attachedFileTypes = fileTypes;
+		updating = true;
+	}
+
+	if (hashTags.sort().join(",") !== note.tags.sort().join(",")) {
+		update.tags = hashTags;
+		updating = true;
+	}
+
+	if (mentionUserIds.sort().join(",") !== note.mentions.sort().join(",")) {
+		update.mentions = mentionUserIds;
+		update.mentionedRemoteUsers = JSON.stringify(mentionedRemoteUsers);
+		updating = true;
+	}
+
+	if (apEmojis.sort().join(",") !== note.emojis.sort().join(",")) {
+		update.emojis = apEmojis;
+		updating = true;
+	}
+
+	if (note.hasPoll !== !!poll) {
+		update.hasPoll = !!poll;
+		updating = true;
+	}
+
+	if (poll) {
+		const dbPoll = await Polls.findOneBy({ noteId: note.id });
+		if (dbPoll == null) {
+			await Polls.insert({
+				noteId: note.id,
+				choices: poll?.choices,
+				multiple: poll?.multiple,
+				votes: poll?.votes,
+				expiresAt: poll?.expiresAt,
+				noteVisibility: note.visibility,
+				userId: actor.id,
+				userHost: actor.host,
+			});
+			updating = true;
+		} else if (
+			dbPoll.multiple !== poll.multiple ||
+			dbPoll.expiresAt !== poll.expiresAt ||
+			dbPoll.noteVisibility !== note.visibility ||
+			dbPoll.votes.length !== poll.votes?.length ||
+			JSON.stringify(dbPoll.choices) !== JSON.stringify(poll.choices)
+		) {
+			await Polls.update(
+				{ noteId: note.id },
+				{
+					choices: poll?.choices,
+					multiple: poll?.multiple,
+					votes: poll?.votes,
+					expiresAt: poll?.expiresAt,
+					noteVisibility: note.visibility,
+				},
+			);
+			updating = true;
+		}
+	}
+
+	// Update Note
+	if (updating) {
+		update.updatedAt = new Date();
+
+		// Save updated note to the database
+		await Notes.update({ uri }, update);
+
+		// Save an edit history for the previous note
+		await NoteEdits.insert({
+			id: genId(),
+			noteId: note.id,
+			text: note.text,
+			cw: note.cw,
+			fileIds: note.fileIds,
+			updatedAt: update.updatedAt,
+		});
+
+		// Publish update event for the updated note details
+		publishNoteStream(note.id, "updated", {
+			updatedAt: update.updatedAt,
+		});
+	}
 }

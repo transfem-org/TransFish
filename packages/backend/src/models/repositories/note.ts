@@ -235,10 +235,11 @@ export const NoteRepository = db.getRepository(Note).extend({
 			mentions: note.mentions.length > 0 ? note.mentions : undefined,
 			uri: note.uri || undefined,
 			url: note.url || undefined,
+			updatedAt: note.updatedAt?.toISOString() || undefined,
 
 			...(opts.detail
 				? {
-						reply: note.replyId
+							reply: note.replyId
 							? this.pack(note.reply || note.replyId, me, {
 									detail: false,
 									_hint_: options?._hint_,
