@@ -231,7 +231,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		set.silencedHosts = ps.silencedHosts.sort().filter((h) => {
 			const lv = lastValue;
 			lastValue = h;
-			return h !== "" && h !== lv && !set.blockedHosts?.includes(h);
+			return h !== "" && h !== lv;
 		});
 	}
 
