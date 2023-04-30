@@ -1083,7 +1083,7 @@ _mfm:
   inlineMath: "数式(インライン)"
   inlineMathDescription: "数式(KaTeX)をインラインで表示します。"
   blockMath: "数式(ブロック)"
-  blockMathDescription: "複数行の数式(KaTeX)をブロックで表示します。"
+  blockMathDescription: "数式(KaTeX)をブロックで表示します。"
   quote: "引用"
   quoteDescription: "内容が引用であることを示せます。"
   emoji: "カスタム絵文字"
@@ -1124,6 +1124,7 @@ _mfm:
   rotateDescription: "指定した角度で回転させます。"
   plain: "プレーン"
   plainDescription: "内側の構文を全て無効にします。"
+  position: 位置
 _instanceTicker:
   none: "表示しない"
   remote: "リモートユーザーに表示"
@@ -1132,7 +1133,7 @@ _serverDisconnectedBehavior:
   reload: "自動でリロード"
   dialog: "ダイアログで警告"
   quiet: "控えめに警告"
-  nothing: "何も起こらない"
+  nothing: "何もしない"
 _channel:
   create: "チャンネルを作成"
   edit: "チャンネルを編集"

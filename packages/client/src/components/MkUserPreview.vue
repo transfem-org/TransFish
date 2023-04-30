@@ -46,7 +46,10 @@
 					/></MkA>
 					<p class="username"><MkAcct :user="user" /></p>
 				</div>
-				<div class="description" :class="{ collapsed: isLong && collapsed }">
+				<div
+					class="description"
+					:class="{ collapsed: isLong && collapsed }"
+				>
 					<Mfm
 						v-if="user.description"
 						:text="user.description"
@@ -149,14 +152,15 @@ let user = $ref<misskey.entities.UserDetailed | null>(null);
 let top = $ref(0);
 let left = $ref(0);
 
-
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
 
 onMounted(() => {
 	if (typeof props.q === "object") {
 		user = props.q;
-		isLong = (user.description.split("\n").length > 9 || user.description.length > 400);
+		isLong =
+			user.description.split("\n").length > 9 ||
+			user.description.length > 400;
 	} else {
 		const query = props.q.startsWith("@")
 			? Acct.parse(props.q.substr(1))
@@ -165,10 +169,11 @@ onMounted(() => {
 		os.api("users/show", query).then((res) => {
 			if (!props.showing) return;
 			user = res;
-			isLong = (user.description.split("\n").length > 9 || user.description.length > 400);
+			isLong =
+				user.description.split("\n").length > 9 ||
+				user.description.length > 400;
 		});
 	}
-	
 
 	const rect = props.source.getBoundingClientRect();
 	const x =
@@ -313,7 +318,7 @@ onMounted(() => {
 
 		> .fields {
 			padding: 0 16px;
-			font-size: .8em;
+			font-size: 0.8em;
 			margin-top: 1em;
 
 			> .field {

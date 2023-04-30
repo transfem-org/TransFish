@@ -4,7 +4,9 @@ import { emojiRegexAtStartToEnd } from "@/misc/emoji-regex.js";
 import axios from "axios";
 import querystring from "node:querystring";
 import qs from "qs";
-import { limitToInt } from "./timeline.js";
+import { convertTimelinesArgsId, limitToInt } from "./timeline.js";
+import { convertId, IdType } from "../../index.js";
+import { convertAccount, convertAttachment, convertPoll, convertStatus } from "../converters.js";
 
 function normalizeQuery(data: any) {
 	const str = querystring.stringify(data);
@@ -18,6 +20,8 @@ export function apiStatusMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			let body: any = ctx.request.body;
+			if (body.in_reply_to_id)
+				body.in_reply_to_id = convertId(body.in_reply_to_id, IdType.CalckeyId);
 			if (
 				(!body.poll && body["poll[options][]"]) ||
 				(!body.media_ids && body["media_ids[]"])
@@ -54,7 +58,7 @@ export function apiStatusMastodon(router: Router): void {
 			body.sensitive =
 				typeof sensitive === "string" ? sensitive === "true" : sensitive;
 			const data = await client.postStatus(text, body);
-			ctx.body = data.data;
+			ctx.body = convertStatus(data.data);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -66,8 +70,10 @@ export function apiStatusMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getStatus(ctx.params.id);
-			ctx.body = data.data;
+			const data = await client.getStatus(
+				convertId(ctx.params.id, IdType.CalckeyId),
+			);
+			ctx.body = convertStatus(data.data);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -79,7 +85,9 @@ export function apiStatusMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.deleteStatus(ctx.params.id);
+			const data = await client.deleteStatus(
+				convertId(ctx.params.id, IdType.CalckeyId)
+			);
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e.response.data, request.params.id);
@@ -100,10 +108,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const id = ctx.params.id;
+				const id = convertId(ctx.params.id, IdType.CalckeyId);
 				const data = await client.getStatusContext(
 					id,
-					limitToInt(ctx.query as any),
+					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
 				const status = await client.getStatus(id);
 				let reqInstance = axios.create({
@@ -126,6 +134,8 @@ export function apiStatusMastodon(router: Router): void {
 						text,
 					),
 				);
+				data.data.ancestors = data.data.ancestors.map(status => convertStatus(status));
+				data.data.descendants = data.data.descendants.map(status => convertStatus(status));
 				ctx.body = data.data;
 			} catch (e: any) {
 				console.error(e);
@@ -141,8 +151,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.getStatusRebloggedBy(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.getStatusRebloggedBy(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = data.data.map(account => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -165,11 +177,11 @@ export function apiStatusMastodon(router: Router): void {
 			const react = await getFirstReaction(BASE_URL, accessTokens);
 			try {
 				const a = (await client.createEmojiReaction(
-					ctx.params.id,
+					convertId(ctx.params.id, IdType.CalckeyId),
 					react,
 				)) as any;
 				//const data = await client.favouriteStatus(ctx.params.id) as any;
-				ctx.body = a.data;
+				ctx.body = convertStatus(a.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -186,8 +198,11 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			const react = await getFirstReaction(BASE_URL, accessTokens);
 			try {
-				const data = await client.deleteEmojiReaction(ctx.params.id, react);
-				ctx.body = data.data;
+				const data = await client.deleteEmojiReaction(
+					convertId(ctx.params.id, IdType.CalckeyId),
+					react
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -203,8 +218,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.reblogStatus(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.reblogStatus(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -220,8 +237,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.unreblogStatus(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.unreblogStatus(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -237,8 +256,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.bookmarkStatus(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.bookmarkStatus(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -254,8 +275,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = (await client.unbookmarkStatus(ctx.params.id)) as any;
-				ctx.body = data.data;
+				const data = await client.unbookmarkStatus(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -271,8 +294,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.pinStatus(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.pinStatus(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -288,8 +313,10 @@ export function apiStatusMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.unpinStatus(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.unpinStatus(
+					convertId(ctx.params.id, IdType.CalckeyId)
+				);
+				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -302,8 +329,10 @@ export function apiStatusMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getMedia(ctx.params.id);
-			ctx.body = data.data;
+			const data = await client.getMedia(
+				convertId(ctx.params.id, IdType.CalckeyId)
+			);
+			ctx.body = convertAttachment(data.data);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -316,10 +345,10 @@ export function apiStatusMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.updateMedia(
-				ctx.params.id,
+				convertId(ctx.params.id, IdType.CalckeyId),
 				ctx.request.body as any,
 			);
-			ctx.body = data.data;
+			ctx.body = convertAttachment(data.data);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -331,8 +360,10 @@ export function apiStatusMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getPoll(ctx.params.id);
-			ctx.body = data.data;
+			const data = await client.getPoll(
+				convertId(ctx.params.id, IdType.CalckeyId)
+			);
+			ctx.body = convertPoll(data.data);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -347,10 +378,10 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.votePoll(
-					ctx.params.id,
+					convertId(ctx.params.id, IdType.CalckeyId),
 					(ctx.request.body as any).choices,
 				);
-				ctx.body = data.data;
+				ctx.body = convertPoll(data.data);
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
