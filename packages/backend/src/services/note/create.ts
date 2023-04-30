@@ -207,7 +207,7 @@ new  Promise<Note>(async (res, rej) => {
 
 		const inSilencedInstance = Users.isRemoteUser(user) && await shouldSilenceInstance(user.host);
 
-		// If the
+		// Enforce home visibility if the user is in a silenced instance.
 		if (data.visibility === "public" && inSilencedInstance) {
 			data.visibility = "home";
 		}
