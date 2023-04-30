@@ -132,9 +132,9 @@ const pagination = {
 			: state === "suspended"
 			? { suspended: true }
 			: state === "blocked"
-			? { silenced: true }
-			: state === "silenced"
 			? { blocked: true }
+			: state === "silenced"
+			? { silenced: true }
 			: state === "notResponding"
 			? { notResponding: true }
 			: {}),
