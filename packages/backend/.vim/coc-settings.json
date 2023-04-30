@@ -1,0 +1,5 @@
+{
+  "workspace.workspaceFolderCheckCwd": false,
+	"rust-analyzer.check.command": "clippy",
+	"rust-analyzer.check.extraArgs": "--profile test"
+}

@@ -1,0 +1,7 @@
+# 
+*.profraw
+*.profdata
+
+# rust build dir
+target/
+
