@@ -1,7 +1,7 @@
 <template>
 	<div class="vjoppmmu">
 		<template v-if="edit">
-			<header tabindex="-1" v-focus>
+			<header>
 				<MkSelect
 					v-model="widgetAdderSelected"
 					style="margin-bottom: var(--margin)"

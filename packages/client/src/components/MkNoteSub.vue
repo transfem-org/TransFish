@@ -26,7 +26,6 @@
 						:note="note"
 						:parentId="appearNote.parentId"
 						:conversation="conversation"
-						@focusfooter="footerEl.focus()"
 					/>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
@@ -47,7 +46,7 @@
 						</div>
 					</div>
 				</div>
-				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
+				<footer class="footer" @click.stop>
 					<XReactionsViewer
 						v-if="enableEmojiReactions"
 						ref="reactionsViewer"
@@ -213,7 +212,6 @@ const isRenote =
 	note.poll == null;
 
 const el = ref<HTMLElement>();
-const footerEl = ref<HTMLElement>();
 const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();

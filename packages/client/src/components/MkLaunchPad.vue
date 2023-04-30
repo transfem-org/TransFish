@@ -139,7 +139,7 @@ function close() {
 			height: 100px;
 			border-radius: 10px;
 
-			&:hover, &:focus-visible {
+			&:hover {
 				color: var(--accent);
 				background: var(--accentedBg);
 				text-decoration: none;

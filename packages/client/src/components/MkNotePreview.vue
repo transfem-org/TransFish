@@ -1,6 +1,6 @@
 <template>
 	<div v-size="{ min: [350, 500] }" class="fefdfafb">
-		<MkAvatar class="avatar" :user="$i" disableLink />
+		<MkAvatar class="avatar" :user="$i" />
 		<div class="main">
 			<div class="header">
 				<MkUserName :user="$i" />

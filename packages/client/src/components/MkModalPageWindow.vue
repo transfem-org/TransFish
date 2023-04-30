@@ -158,7 +158,6 @@ function onContextmenu(ev: MouseEvent) {
 	flex-direction: column;
 	contain: content;
 	border-radius: var(--radius);
-	margin: auto;
 
 	--root-margin: 24px;
 

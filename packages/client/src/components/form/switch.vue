@@ -99,9 +99,6 @@ const toggle = () => {
 			border-color: var(--inputBorderHover) !important;
 		}
 	}
-	&:focus-within > .button {
-		outline: auto;
-	}
 
 	> .label {
 		margin-left: 12px;
