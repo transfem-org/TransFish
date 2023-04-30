@@ -2,7 +2,7 @@
 	<MkStickyContainer>
 		<template #header><MkPageHeader /></template>
 		<MkSpacer :content-max="800">
-			<div class="mwysmxbg">
+			<div :class="$style.root">
 				<div>{{ i18n.ts._mfm.intro }}</div>
 				<br />
 				<div class="section _block">
@@ -132,6 +132,18 @@
 						<div class="preview">
 							<Mfm :text="preview_inlineMath" />
 							<MkTextarea v-model="preview_inlineMath"
+								><template #label>MFM</template></MkTextarea
+							>
+						</div>
+					</div>
+				</div>
+				<div class="section _block">
+					<div class="title">{{ i18n.ts._mfm.blockMath }}</div>
+					<div class="content">
+						<p>{{ i18n.ts._mfm.blockMathDescription }}</p>
+						<div class="preview">
+							<Mfm :text="preview_blockMath" />
+							<MkTextarea v-model="preview_blockMath"
 								><template #label>MFM</template></MkTextarea
 							>
 						</div>
@@ -427,8 +439,9 @@ let preview_blockCode = $ref(
 	'```\n~ (#i, 100) {\n\t<: ? ((i % 15) = 0) "FizzBuzz"\n\t\t.? ((i % 3) = 0) "Fizz"\n\t\t.? ((i % 5) = 0) "Buzz"\n\t\t. i\n}\n```'
 );
 let preview_inlineMath = $ref("\\(x= \\frac{-b' \\pm \\sqrt{(b')^2-ac}}{a}\\)");
+let preview_blockMath = $ref("\\[x= \\frac{-b' \\pm \\sqrt{(b')^2-ac}}{a}\\]");
 let preview_quote = $ref(`> ${i18n.ts._mfm.dummy}`);
-let preview_search = $ref(`${i18n.ts._mfm.dummy} 検索`);
+let preview_search = $ref(`${i18n.ts._mfm.dummy} [search]\n${i18n.ts._mfm.dummy} [検索]\n${i18n.ts._mfm.dummy} 検索`);
 let preview_jelly = $ref("$[jelly 🍮] $[jelly.speed=5s 🍮]");
 let preview_tada = $ref("$[tada 🍮] $[tada.speed=5s 🍮]");
 let preview_jump = $ref("$[jump 🍮] $[jump.speed=5s 🍮]");
@@ -465,8 +478,8 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" scoped>
-.mwysmxbg {
+<style lang="scss" module>
+.root {
 	background: var(--bg);
 
 	> .section {

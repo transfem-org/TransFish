@@ -1079,7 +1079,7 @@ _mfm:
   inlineMath: "数式(インライン)"
   inlineMathDescription: "数式(KaTeX)をインラインで表示します。"
   blockMath: "数式(ブロック)"
-  blockMathDescription: "複数行の数式(KaTeX)をブロックで表示します。"
+  blockMathDescription: "数式(KaTeX)をブロックで表示します。"
   quote: "引用"
   quoteDescription: "内容が引用であることを示せます。"
   emoji: "カスタム絵文字"
