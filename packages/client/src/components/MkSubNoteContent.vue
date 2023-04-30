@@ -35,10 +35,19 @@
 			class="content"
 			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
 		>
-			<XCwButton ref="cwButton" v-if="note.cw && !showContent" v-model="showContent" :note="note" v-on:keydown="focusFooter" />
-			<div 
+			<XCwButton
+				ref="cwButton"
+				v-if="note.cw && !showContent"
+				v-model="showContent"
+				:note="note"
+				v-on:keydown="focusFooter"
+			/>
+			<div
 				class="body"
-				v-bind="{ 'aria-label': !showContent ? '' : null, 'tabindex': !showContent ? '-1' : null }"
+				v-bind="{
+					'aria-label': !showContent ? '' : null,
+					tabindex: !showContent ? '-1' : null,
+				}"
 			>
 				<span v-if="note.deletedAt" style="opacity: 0.5"
 					>({{ i18n.ts.deleted }})</span
@@ -106,14 +115,21 @@
 					v-on:focus="cwButton?.focus()"
 				></div>
 			</div>
-			<XShowMoreButton v-if="isLong" v-model="collapsed"></XShowMoreButton>
-			<XCwButton v-if="note.cw && showContent" v-model="showContent" :note="note" />
+			<XShowMoreButton
+				v-if="isLong"
+				v-model="collapsed"
+			></XShowMoreButton>
+			<XCwButton
+				v-if="note.cw && showContent"
+				v-model="showContent"
+				:note="note"
+			/>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue"; 
+import { ref } from "vue";
 import * as misskey from "calckey-js";
 import * as mfm from "mfm-js";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
@@ -137,7 +153,7 @@ const emit = defineEmits<{
 	(ev: "focusfooter"): void;
 }>();
 
-const cwButton = ref<HTMLElement>(); 
+const cwButton = ref<HTMLElement>();
 const isLong =
 	!props.detailedView &&
 	props.note.cw == null &&
@@ -149,7 +165,6 @@ const urls = props.note.text
 	: null;
 
 let showContent = $ref(false);
-
 
 function focusFooter(ev) {
 	if (ev.key == "Tab" && !ev.getModifierState("Shift")) {

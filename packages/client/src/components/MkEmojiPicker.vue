@@ -174,7 +174,7 @@ import { deviceKind } from "@/scripts/device-kind";
 import { emojiCategories, instance } from "@/instance";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
-import { FocusTrap } from 'focus-trap-vue';
+import { FocusTrap } from "focus-trap-vue";
 
 const props = withDefaults(
 	defineProps<{

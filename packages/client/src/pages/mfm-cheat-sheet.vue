@@ -441,7 +441,9 @@ let preview_blockCode = $ref(
 let preview_inlineMath = $ref("\\(x= \\frac{-b' \\pm \\sqrt{(b')^2-ac}}{a}\\)");
 let preview_blockMath = $ref("\\[x= \\frac{-b' \\pm \\sqrt{(b')^2-ac}}{a}\\]");
 let preview_quote = $ref(`> ${i18n.ts._mfm.dummy}`);
-let preview_search = $ref(`${i18n.ts._mfm.dummy} [search]\n${i18n.ts._mfm.dummy} [検索]\n${i18n.ts._mfm.dummy} 検索`);
+let preview_search = $ref(
+	`${i18n.ts._mfm.dummy} [search]\n${i18n.ts._mfm.dummy} [検索]\n${i18n.ts._mfm.dummy} 検索`
+);
 let preview_jelly = $ref("$[jelly 🍮] $[jelly.speed=5s 🍮]");
 let preview_tada = $ref("$[tada 🍮] $[tada.speed=5s 🍮]");
 let preview_jump = $ref("$[jump 🍮] $[jump.speed=5s 🍮]");
@@ -463,9 +465,15 @@ let preview_x4 = $ref("$[x4 🍮]");
 let preview_blur = $ref(`$[blur ${i18n.ts._mfm.dummy}]`);
 let preview_rainbow = $ref("$[rainbow 🍮] $[rainbow.speed=5s 🍮]");
 let preview_sparkle = $ref("$[sparkle 🍮]");
-let preview_rotate = $ref("$[rotate 🍮]\n$[rotate.deg=45 🍮]\n$[rotate.x,deg=45 Hello, world!]");
-let preview_position = $ref("$[position.y=-1 Positioning]\n$[position.x=-1 Positioning]");
-let preview_scale = $ref("$[scale.x=1.3 Scaling]\n$[scale.x=1.3,y=2 Scaling]\n$[scale.y=0.3 Tiny scaling]");
+let preview_rotate = $ref(
+	"$[rotate 🍮]\n$[rotate.deg=45 🍮]\n$[rotate.x,deg=45 Hello, world!]"
+);
+let preview_position = $ref(
+	"$[position.y=-1 Positioning]\n$[position.x=-1 Positioning]"
+);
+let preview_scale = $ref(
+	"$[scale.x=1.3 Scaling]\n$[scale.x=1.3,y=2 Scaling]\n$[scale.y=0.3 Tiny scaling]"
+);
 let preview_fg = $ref("$[fg.color=ff0000 Text color]");
 let preview_bg = $ref("$[bg.color=ff0000 Background color]");
 let preview_plain = $ref(

@@ -28,7 +28,7 @@ const emit = defineEmits<{
 	(ev: "update:modelValue", v: boolean): void;
 }>();
 
-const el = ref<HTMLElement>(); 
+const el = ref<HTMLElement>();
 
 const label = computed(() => {
 	return concat([
@@ -52,7 +52,7 @@ function focus() {
 }
 
 defineExpose({
-	focus
+	focus,
 });
 </script>
 
@@ -73,7 +73,8 @@ defineExpose({
 			}
 		}
 	}
-	&:hover > span, &:focus > span {
+	&:hover > span,
+	&:focus > span {
 		background: var(--cwFg) !important;
 		color: var(--cwBg) !important;
 	}
@@ -93,7 +94,8 @@ defineExpose({
 			border-radius: 999px;
 			box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
 		}
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			> span {
 				background: var(--panelHighlight);
 			}

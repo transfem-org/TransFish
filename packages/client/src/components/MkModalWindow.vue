@@ -60,7 +60,7 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from "vue";
-import { FocusTrap } from 'focus-trap-vue';
+import { FocusTrap } from "focus-trap-vue";
 import MkModal from "./MkModal.vue";
 
 const props = withDefaults(

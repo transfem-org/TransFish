@@ -279,7 +279,7 @@ const isRenote =
 	note.poll == null;
 
 const el = ref<HTMLElement>();
-const footerEl = ref<HTMLElement>(); 
+const footerEl = ref<HTMLElement>();
 const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
