@@ -1,6 +1,6 @@
 <template>
-	<FocusTrap v-bind:active="isActive">
-		<div tabindex="-1" v-focus>
+	<FocusTrap :active="false" ref="focusTrap">
+		<div tabindex="-1">
 			<div
 				ref="itemsEl"
 				class="rrevdjwt _popup _shadow"
@@ -206,6 +206,7 @@ import { i18n } from "@/i18n";
 import { FocusTrap } from 'focus-trap-vue';
 
 const XChild = defineAsyncComponent(() => import("./MkMenu.child.vue"));
+const focusTrap = ref();
 
 const props = defineProps<{
 	items: MenuItem[];
@@ -316,6 +317,8 @@ function focusDown() {
 }
 
 onMounted(() => {
+	focusTrap.value.activate();
+
 	if (props.viaKeyboard) {
 		nextTick(() => {
 			focusNext(itemsEl.children[0], true, false);
