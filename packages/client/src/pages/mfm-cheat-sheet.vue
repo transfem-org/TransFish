@@ -441,7 +441,7 @@ let preview_blockCode = $ref(
 let preview_inlineMath = $ref("\\(x= \\frac{-b' \\pm \\sqrt{(b')^2-ac}}{a}\\)");
 let preview_blockMath = $ref("\\[x= \\frac{-b' \\pm \\sqrt{(b')^2-ac}}{a}\\]");
 let preview_quote = $ref(`> ${i18n.ts._mfm.dummy}`);
-let preview_search = $ref(`${i18n.ts._mfm.dummy} 検索`);
+let preview_search = $ref(`${i18n.ts._mfm.dummy} [search]\n${i18n.ts._mfm.dummy} [検索]\n${i18n.ts._mfm.dummy} 検索`);
 let preview_jelly = $ref("$[jelly 🍮] $[jelly.speed=5s 🍮]");
 let preview_tada = $ref("$[tada 🍮] $[tada.speed=5s 🍮]");
 let preview_jump = $ref("$[jump 🍮] $[jump.speed=5s 🍮]");
