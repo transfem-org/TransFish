@@ -39,7 +39,7 @@ import {
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { App } from "@/models/entities/app.js";
-import { Not, In } from "typeorm";
+import { Not, In, IsNull } from "typeorm";
 import type { User, ILocalUser, IRemoteUser } from "@/models/entities/user.js";
 import { genId } from "@/misc/gen-id.js";
 import {
@@ -66,6 +66,7 @@ import { Cache } from "@/misc/cache.js";
 import type { UserProfile } from "@/models/entities/user-profile.js";
 import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
+import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -166,7 +167,8 @@ export default async (
 	data: Option,
 	silent = false,
 ) =>
-	new Promise<Note>(async (res, rej) => {
+// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
+new  Promise<Note>(async (res, rej) => {
 		// If you reply outside the channel, match the scope of the target.
 		// TODO (I think it's a process that could be done on the client side, but it's server side for now.)
 		if (
@@ -200,6 +202,13 @@ export default async (
 			data.visibility === "public" &&
 			data.channel == null
 		) {
+			data.visibility = "home";
+		}
+
+		const inSilencedInstance = Users.isRemoteUser(user) && await shouldSilenceInstance(user.host);
+
+		// If the
+		if (data.visibility === "public" && inSilencedInstance) {
 			data.visibility = "home";
 		}
 
@@ -305,6 +314,14 @@ export default async (
 					await Users.findOneByOrFail({ id: data.reply!.userId }),
 				);
 			}
+		}
+
+		// Remove from mention the local users who aren't following the remote user in the silenced instance.
+		if (inSilencedInstance) {
+			const relations = await Followings.findBy([
+				{ followeeId: user.id, followerHost: IsNull() }, // a local user following the silenced user
+			]).then(rels => rels.map(rel => rel.followerId));
+			mentionedUsers = mentionedUsers.filter(mentioned => relations.includes(mentioned.id));
 		}
 
 		const note = await insertNote(user, data, tags, emojis, mentionedUsers);
