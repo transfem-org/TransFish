@@ -2,12 +2,15 @@
 	<MkStickyContainer>
 		<template #header
 			><MkPageHeader
-				v-model:tab="tab"
 				:actions="headerActions"
 				:tabs="headerTabs"
 				:display-back-button="true"
 		/></template>
 		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
+			<MkTab v-model="tab" class="_formBlock">
+				<option value="block">{{ i18n.ts.blockedInstances }}</option>
+				<option value="silence">{{ i18n.ts.silencedInstances }}</option>
+			</MkTab>
 			<FormSuspense :p="init">
 				<FormTextarea
 					v-if="tab === 'block'"
@@ -44,6 +47,7 @@ import {} from "vue";
 import FormButton from "@/components/MkButton.vue";
 import FormTextarea from "@/components/form/textarea.vue";
 import FormSuspense from "@/components/form/suspense.vue";
+import MkTab from "@/components/MkTab.vue";
 import * as os from "@/os";
 import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
@@ -72,18 +76,7 @@ function save() {
 
 const headerActions = $computed(() => []);
 
-const headerTabs = $computed(() => [
-	{
-		key: "block",
-		title: i18n.ts.block,
-		icon: "ph-prohibit ph-bold ph-lg",
-	},
-	{
-		key: "silence",
-		title: i18n.ts.silence,
-		icon: "ph-eye-slash ph-bold ph-lg",
-	},
-]);
+const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.instanceBlocking,
