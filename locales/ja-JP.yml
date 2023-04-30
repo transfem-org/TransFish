@@ -1120,6 +1120,7 @@ _mfm:
   rotateDescription: "指定した角度で回転させます。"
   plain: "プレーン"
   plainDescription: "内側の構文を全て無効にします。"
+  position: 位置
 _instanceTicker:
   none: "表示しない"
   remote: "リモートユーザーに表示"
@@ -1128,7 +1129,7 @@ _serverDisconnectedBehavior:
   reload: "自動でリロード"
   dialog: "ダイアログで警告"
   quiet: "控えめに警告"
-  nothing: "何も起こらない"
+  nothing: "何もしない"
 _channel:
   create: "チャンネルを作成"
   edit: "チャンネルを編集"
