@@ -12,7 +12,6 @@ import {
 	Notes,
 	Emojis,
 	Blockings,
-	Followings,
 } from "@/models/index.js";
 import { IsNull, Not } from "typeorm";
 import { perUserReactionsChart } from "@/services/chart/index.js";
@@ -22,7 +21,6 @@ import deleteReaction from "./delete.js";
 import { isDuplicateKeyValueError } from "@/misc/is-duplicate-key-value-error.js";
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
-import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 
 export default async (
 	user: { id: User["id"]; host: User["host"] },
@@ -121,24 +119,7 @@ export default async (
 	});
 
 	// Create notification if the reaction target is a local user.
-	if (
-		note.userHost === null &&
-		// if a local user reacted, or
-		(Users.isLocalUser(user) ||
-			// if a remote user not in a silenced instance reacted
-			(Users.isRemoteUser(user) &&
-			// if a remote user is in a silenced instance and the target is a local follower.
-				!(
-					(await shouldSilenceInstance(user.host)) &&
-					!(await Followings.exist({
-						where: {
-							followerId: note.userId,
-							followerHost: IsNull(),
-							followeeId: user.id,
-						},
-					}))
-				)))
-	) {
+	if (note.userHost === null) {
 		createNotification(note.userId, "reaction", {
 			notifierId: user.id,
 			note: note,

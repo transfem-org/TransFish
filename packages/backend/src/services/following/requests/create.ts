@@ -80,7 +80,13 @@ export default async function (
 	}
 
 	if (Users.isLocalUser(follower) && Users.isRemoteUser(followee)) {
-		const content = renderActivity(renderFollow(follower, followee, requestId ?? `${config.url}/follows/${followRequest.id}`));
+		const content = renderActivity(
+			renderFollow(
+				follower,
+				followee,
+				requestId ?? `${config.url}/follows/${followRequest.id}`,
+			),
+		);
 		deliver(follower, content, followee.inbox);
 	}
 }

@@ -205,11 +205,12 @@ export default async (
 			data.visibility = "home";
 		}
 
-		const inSilencedInstance =
-			Users.isRemoteUser(user) && (await shouldSilenceInstance(user.host));
-
 		// Enforce home visibility if the user is in a silenced instance.
-		if (data.visibility === "public" && inSilencedInstance) {
+		if (
+			data.visibility === "public" &&
+			Users.isRemoteUser(user) &&
+			(await shouldSilenceInstance(user.host))
+		) {
 			data.visibility = "home";
 		}
 
@@ -315,16 +316,6 @@ export default async (
 					await Users.findOneByOrFail({ id: data.reply!.userId }),
 				);
 			}
-		}
-
-		// Remove from mention the local users who aren't following the remote user in the silenced instance.
-		if (inSilencedInstance) {
-			const relations = await Followings.findBy([
-				{ followeeId: user.id, followerHost: IsNull() }, // a local user following the silenced user
-			]).then((rels) => rels.map((rel) => rel.followerId));
-			mentionedUsers = mentionedUsers.filter((mentioned) =>
-				relations.includes(mentioned.id),
-			);
 		}
 
 		const note = await insertNote(user, data, tags, emojis, mentionedUsers);
