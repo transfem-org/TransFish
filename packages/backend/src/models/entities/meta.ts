@@ -97,6 +97,11 @@ export class Meta {
 	})
 	public blockedHosts: string[];
 
+	@Column('varchar', {
+		length: 256, array: true, default: '{}',
+	})
+	public silencedHosts: string[];
+
 	@Column('boolean', {
 		default: false,
 	})
@@ -385,6 +390,18 @@ export class Meta {
 		default: false,
 	})
 	public deeplIsPro: boolean;
+
+	@Column('varchar', {
+		length: 512,
+		nullable: true,
+	})
+	public libreTranslateApiUrl: string | null;
+
+	@Column('varchar', {
+		length: 128,
+		nullable: true,
+	})
+	public libreTranslateApiKey: string | null;
 
 	@Column('varchar', {
 		length: 512,

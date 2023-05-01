@@ -259,6 +259,16 @@ export const meta = {
 					nullable: false,
 				},
 			},
+			silencedHosts: {
+				type: "array",
+				optional: true,
+				nullable: false,
+				items: {
+					type: "string",
+					optional: false,
+					nullable: false,
+				},
+			},
 			allowedHosts: {
 				type: "array",
 				optional: true,
@@ -512,7 +522,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableGithubIntegration: instance.enableGithubIntegration,
 		enableDiscordIntegration: instance.enableDiscordIntegration,
 		enableServiceWorker: instance.enableServiceWorker,
-		translatorAvailable: instance.deeplAuthKey != null,
+		translatorAvailable:
+			instance.deeplAuthKey != null || instance.libreTranslateApiUrl != null,
 		pinnedPages: instance.pinnedPages,
 		pinnedClipId: instance.pinnedClipId,
 		cacheRemoteFiles: instance.cacheRemoteFiles,
@@ -523,6 +534,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		customSplashIcons: instance.customSplashIcons,
 		hiddenTags: instance.hiddenTags,
 		blockedHosts: instance.blockedHosts,
+		silencedHosts: instance.silencedHosts,
 		allowedHosts: instance.allowedHosts,
 		privateMode: instance.privateMode,
 		secureMode: instance.secureMode,
@@ -564,6 +576,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		objectStorageS3ForcePathStyle: instance.objectStorageS3ForcePathStyle,
 		deeplAuthKey: instance.deeplAuthKey,
 		deeplIsPro: instance.deeplIsPro,
+		libreTranslateApiUrl: instance.libreTranslateApiUrl,
+		libreTranslateApiKey: instance.libreTranslateApiKey,
 		enableIpLogging: instance.enableIpLogging,
 		enableActiveEmailValidation: instance.enableActiveEmailValidation,
 	};

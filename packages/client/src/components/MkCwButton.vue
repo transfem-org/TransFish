@@ -1,5 +1,6 @@
 <template>
 	<button
+		ref="el"
 		class="_button"
 		:class="{ showLess: modelValue, fade: !modelValue }"
 		@click.stop="toggle"
@@ -12,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { length } from "stringz";
 import * as misskey from "calckey-js";
 import { concat } from "@/scripts/array";
@@ -26,6 +27,8 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(ev: "update:modelValue", v: boolean): void;
 }>();
+
+const el = ref<HTMLElement>();
 
 const label = computed(() => {
 	return concat([
@@ -43,6 +46,14 @@ const label = computed(() => {
 const toggle = () => {
 	emit("update:modelValue", !props.modelValue);
 };
+
+function focus() {
+	el.value.focus();
+}
+
+defineExpose({
+	focus,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +73,8 @@ const toggle = () => {
 			}
 		}
 	}
-	&:hover > span {
+	&:hover > span,
+	&:focus > span {
 		background: var(--cwFg) !important;
 		color: var(--cwBg) !important;
 	}
@@ -73,6 +85,7 @@ const toggle = () => {
 		bottom: 0;
 		left: 0;
 		width: 100%;
+		z-index: 2;
 		> span {
 			display: inline-block;
 			background: var(--panel);
@@ -81,7 +94,8 @@ const toggle = () => {
 			border-radius: 999px;
 			box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
 		}
-		&:hover {
+		&:hover,
+		&:focus {
 			> span {
 				background: var(--panelHighlight);
 			}
