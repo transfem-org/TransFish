@@ -89,7 +89,7 @@
 				/>
 			</div>
 		</div>
-		<div class="tail" :class="{ collapsed }">
+		<div class="tail">
 			<header>
 				<span v-if="notification.type === 'pollEnded'">{{
 					i18n.ts._notification.pollEnded
@@ -112,11 +112,11 @@
 				v-if="notification.type === 'reaction'"
 				class="text"
 				:to="notePage(notification.note)"
-				:title="summary"
+				:title="getNoteSummary(notification.note)"
 			>
 				<i class="ph-quotes ph-fill ph-lg"></i>
 				<Mfm
-					:text="summary"
+					:text="getNoteSummary(notification.note)"
 					:plain="true"
 					:nowrap="!full"
 					:custom-emojis="notification.note.emojis"
@@ -142,10 +142,10 @@
 				v-if="notification.type === 'reply'"
 				class="text"
 				:to="notePage(notification.note)"
-				:title="summary"
+				:title="getNoteSummary(notification.note)"
 			>
 				<Mfm
-					:text="summary"
+					:text="getNoteSummary(notification.note)"
 					:plain="true"
 					:nowrap="!full"
 					:custom-emojis="notification.note.emojis"
@@ -155,10 +155,10 @@
 				v-if="notification.type === 'mention'"
 				class="text"
 				:to="notePage(notification.note)"
-				:title="summary"
+				:title="getNoteSummary(notification.note)"
 			>
 				<Mfm
-					:text="summary"
+					:text="getNoteSummary(notification.note)"
 					:plain="true"
 					:nowrap="!full"
 					:custom-emojis="notification.note.emojis"
@@ -168,10 +168,10 @@
 				v-if="notification.type === 'quote'"
 				class="text"
 				:to="notePage(notification.note)"
-				:title="summary"
+				:title="getNoteSummary(notification.note)"
 			>
 				<Mfm
-					:text="summary"
+					:text="getNoteSummary(notification.note)"
 					:plain="true"
 					:nowrap="!full"
 					:custom-emojis="notification.note.emojis"
@@ -181,11 +181,11 @@
 				v-if="notification.type === 'pollVote'"
 				class="text"
 				:to="notePage(notification.note)"
-				:title="summary"
+				:title="getNoteSummary(notification.note)"
 			>
 				<i class="ph-quotes ph-fill ph-lg"></i>
 				<Mfm
-					:text="summary"
+					:text="getNoteSummary(notification.note)"
 					:plain="true"
 					:nowrap="!full"
 					:custom-emojis="notification.note.emojis"
@@ -196,11 +196,11 @@
 				v-if="notification.type === 'pollEnded'"
 				class="text"
 				:to="notePage(notification.note)"
-				:title="summary"
+				:title="getNoteSummary(notification.note)"
 			>
 				<i class="ph-quotes ph-fill ph-lg"></i>
 				<Mfm
-					:text="summary"
+					:text="getNoteSummary(notification.note)"
 					:plain="true"
 					:nowrap="!full"
 					:custom-emojis="notification.note.emojis"
@@ -264,7 +264,6 @@
 			<span v-if="notification.type === 'app'" class="text">
 				<Mfm :text="notification.body" :nowrap="!full" />
 			</span>
-			<xShowMoreButton v-if="isLong" v-model="collapsed"></xShowMoreButton>
 		</div>
 	</div>
 </template>
@@ -275,7 +274,6 @@ import * as misskey from "calckey-js";
 import XReactionIcon from "@/components/MkReactionIcon.vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import XReactionTooltip from "@/components/MkReactionTooltip.vue";
-import XShowMoreButton from "./MkShowMoreButton.vue";
 import { getNoteSummary } from "@/scripts/get-note-summary";
 import { notePage } from "@/filters/note";
 import { userPage } from "@/filters/user";
@@ -301,19 +299,12 @@ const props = withDefaults(
 const elRef = ref<HTMLElement>(null);
 const reactionRef = ref(null);
 
-const summary = getNoteSummary(props.notification.note);
-
 const showEmojiReactions =
 	defaultStore.state.enableEmojiReactions ||
 	defaultStore.state.showEmojisInReactionNotifications;
 const defaultReaction = ["⭐", "👍", "❤️"].includes(instance.defaultReaction)
 	? instance.defaultReaction
 	: "⭐";
-const isLong = (summary.split("\n").length > 3 || summary.length > 200);
-const collapsed = $ref(isLong);
-
-
-
 
 let readObserver: IntersectionObserver | undefined;
 let connection;
@@ -495,7 +486,6 @@ useTooltip(reactionRef, (showing) => {
 	}
 
 	> .tail {
-		position: relative;
 		flex: 1;
 		min-width: 0;
 
@@ -535,17 +525,6 @@ useTooltip(reactionRef, (showing) => {
 			> i:last-child {
 				margin-left: 4px;
 			}
-		}
-		&.collapsed > .text {
-			display: block;
-			position: relative;
-			max-height: calc(4em + 50px);
-			overflow: hidden;
-			mask: linear-gradient(black calc(100% - 64px), transparent);
-			-webkit-mask: linear-gradient(
-				black calc(100% - 64px),
-				transparent
-			);
 		}
 	}
 }
