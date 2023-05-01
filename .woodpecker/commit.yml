@@ -2,6 +2,9 @@ pipeline:
   testCommit:
     image: node:latest
     commands:
+      - apt-get update
+      - apt-get install -y cargo
+      - rm -rf /var/lib/apt/lists/*
       - cp .config/ci.yml .config/default.yml
       - corepack enable
       - corepack prepare pnpm@latest --activate
