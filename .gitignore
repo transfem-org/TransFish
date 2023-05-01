@@ -56,3 +56,7 @@ packages/backend/assets/sounds/None.mp3
 # old yarn
 .yarn
 yarn*
+
+# Nix Development shell items
+.devenv
+.direnv
