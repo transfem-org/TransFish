@@ -39,7 +39,7 @@ import {
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { App } from "@/models/entities/app.js";
-import { Not, In } from "typeorm";
+import { Not, In, IsNull } from "typeorm";
 import type { User, ILocalUser, IRemoteUser } from "@/models/entities/user.js";
 import { genId } from "@/misc/gen-id.js";
 import {
@@ -66,6 +66,7 @@ import { Cache } from "@/misc/cache.js";
 import type { UserProfile } from "@/models/entities/user-profile.js";
 import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
+import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -166,6 +167,7 @@ export default async (
 	data: Option,
 	silent = false,
 ) =>
+	// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
 	new Promise<Note>(async (res, rej) => {
 		// If you reply outside the channel, match the scope of the target.
 		// TODO (I think it's a process that could be done on the client side, but it's server side for now.)
@@ -199,6 +201,15 @@ export default async (
 			user.isSilenced &&
 			data.visibility === "public" &&
 			data.channel == null
+		) {
+			data.visibility = "home";
+		}
+
+		// Enforce home visibility if the user is in a silenced instance.
+		if (
+			data.visibility === "public" &&
+			Users.isRemoteUser(user) &&
+			(await shouldSilenceInstance(user.host))
 		) {
 			data.visibility = "home";
 		}
