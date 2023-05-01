@@ -227,12 +227,14 @@ export default async function (
 	});
 
 	// フォロー対象が鍵アカウントである or
+	// The follower is silenced, or
 	// フォロワーがBotであり、フォロー対象がBotからのフォローに慎重である or
 	// フォロワーがローカルユーザーであり、フォロー対象がリモートユーザーである or
 	// The follower is remote, the followee is local, and the follower is in a silenced instance.
 	// 上記のいずれかに当てはまる場合はすぐフォローせずにフォローリクエストを発行しておく
 	if (
 		followee.isLocked ||
+		follower.isSilenced ||
 		(followeeProfile.carefulBot && follower.isBot) ||
 		(Users.isLocalUser(follower) && Users.isRemoteUser(followee)) ||
 		(Users.isRemoteUser(follower) &&
