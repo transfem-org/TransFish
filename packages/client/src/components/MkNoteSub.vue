@@ -183,6 +183,7 @@ import { reactionPicker } from "@/scripts/reaction-picker";
 import { i18n } from "@/i18n";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { defaultStore } from "@/store";
+import { deepClone } from "@/scripts/clone";
 
 const router = useRouter();
 
@@ -203,7 +204,7 @@ const props = withDefaults(
 	}
 );
 
-let note = $ref(props.note);
+let note = $ref(deepClone(props.note));
 
 const isRenote =
 	note.renote != null &&
@@ -236,6 +237,7 @@ const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 useNoteCapture({
 	rootEl: el,
 	note: $$(appearNote),
+	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
