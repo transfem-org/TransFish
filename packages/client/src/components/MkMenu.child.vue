@@ -1,14 +1,14 @@
 <template>
 	<div ref="el" class="sfhdhdhr" tabindex="-1">
-			<MkMenu
-				ref="menu"
-				:items="items"
-				:align="align"
-				:width="width"
-				:as-drawer="false"
-				@close="onChildClosed"
-			/>
-		</div>
+		<MkMenu
+			ref="menu"
+			:items="items"
+			:align="align"
+			:width="width"
+			:as-drawer="false"
+			@close="onChildClosed"
+		/>
+	</div>
 </template>
 
 <script lang="ts" setup>

@@ -12,7 +12,12 @@
 					class="user"
 					:to="`/user-info/${user.id}`"
 				>
-					<MkAvatar :user="user" class="avatar" indicator disableLink />
+					<MkAvatar
+						:user="user"
+						class="avatar"
+						indicator
+						disableLink
+					/>
 				</MkA>
 			</div>
 		</Transition>

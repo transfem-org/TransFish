@@ -3,8 +3,14 @@ import { resolveUser } from "@/remote/resolve-user.js";
 import Router from "@koa/router";
 import { FindOptionsWhere, IsNull } from "typeorm";
 import { getClient } from "../ApiMastodonCompatibleService.js";
-import { argsToBools, limitToInt } from "./timeline.js";
+import { argsToBools, convertTimelinesArgsId, limitToInt } from "./timeline.js";
 import { convertId, IdType } from "../../index.js";
+import {
+	convertAccount,
+	convertList,
+	convertRelationship,
+	convertStatus,
+} from "../converters.js";
 
 const relationshipModel = {
 	id: "",
@@ -62,9 +68,7 @@ export function apiAccountMastodon(router: Router): void {
 			const data = await client.updateCredentials(
 				(ctx.request as any).body as any,
 			);
-			let resp = data.data;
-			resp.id = convertId(resp.id, IdType.MastodonId);
-			ctx.body = resp;
+			ctx.body = convertAccount(data.data);
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -81,9 +85,7 @@ export function apiAccountMastodon(router: Router): void {
 				(ctx.request.query as any).acct,
 				"accounts",
 			);
-			let resp = data.data.accounts[0];
-			resp.id = convertId(resp.id, IdType.MastodonId);
-			ctx.body = resp;
+			ctx.body = convertAccount(data.data.accounts[0]);
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -115,11 +117,9 @@ export function apiAccountMastodon(router: Router): void {
 			}
 
 			const data = await client.getRelationships(reqIds);
-			let resp = data.data;
-			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-			}
-			ctx.body = resp;
+			ctx.body = data.data.map((relationship) =>
+				convertRelationship(relationship),
+			);
 		} catch (e: any) {
 			console.error(e);
 			let data = e.response.data;
@@ -136,9 +136,7 @@ export function apiAccountMastodon(router: Router): void {
 		try {
 			const calcId = convertId(ctx.params.id, IdType.CalckeyId);
 			const data = await client.getAccount(calcId);
-			let resp = data.data;
-			resp.id = convertId(resp.id, IdType.MastodonId);
-			ctx.body = resp;
+			ctx.body = convertAccount(data.data);
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -155,27 +153,9 @@ export function apiAccountMastodon(router: Router): void {
 			try {
 				const data = await client.getAccountStatuses(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					argsToBools(limitToInt(ctx.query as any)),
+					convertTimelinesArgsId(argsToBools(limitToInt(ctx.query as any))),
 				);
-				let resp = data.data;
-				for (let statIdx = 0; statIdx < resp.length; statIdx++) {
-					resp[statIdx].id = convertId(resp[statIdx].id, IdType.MastodonId);
-					resp[statIdx].in_reply_to_account_id = resp[statIdx]
-						.in_reply_to_account_id
-						? convertId(resp[statIdx].in_reply_to_account_id, IdType.MastodonId)
-						: null;
-					resp[statIdx].in_reply_to_id = resp[statIdx].in_reply_to_id
-						? convertId(resp[statIdx].in_reply_to_id, IdType.MastodonId)
-						: null;
-					let mentions = resp[statIdx].mentions;
-					for (let mtnIdx = 0; mtnIdx < mentions.length; mtnIdx++) {
-						resp[statIdx].mentions[mtnIdx].id = convertId(
-							mentions[mtnIdx].id,
-							IdType.MastodonId,
-						);
-					}
-				}
-				ctx.body = resp;
+				ctx.body = data.data.map((status) => convertStatus(status));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -193,13 +173,9 @@ export function apiAccountMastodon(router: Router): void {
 			try {
 				const data = await client.getAccountFollowers(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					limitToInt(ctx.query as any),
+					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
-				let resp = data.data;
-				for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-					resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-				}
-				ctx.body = resp;
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -217,13 +193,9 @@ export function apiAccountMastodon(router: Router): void {
 			try {
 				const data = await client.getAccountFollowing(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					limitToInt(ctx.query as any),
+					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
-				let resp = data.data;
-				for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-					resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-				}
-				ctx.body = resp;
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -239,8 +211,10 @@ export function apiAccountMastodon(router: Router): void {
 			const accessTokens = ctx.headers.authorization;
 			const client = getClient(BASE_URL, accessTokens);
 			try {
-				const data = await client.getAccountLists(ctx.params.id);
-				ctx.body = data.data;
+				const data = await client.getAccountLists(
+					convertId(ctx.params.id, IdType.CalckeyId),
+				);
+				ctx.body = data.data.map((list) => convertList(list));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -259,9 +233,8 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.followAccount(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				let acct = data.data;
+				let acct = convertRelationship(data.data);
 				acct.following = true;
-				acct.id = convertId(acct.id, IdType.MastodonId);
 				ctx.body = acct;
 			} catch (e: any) {
 				console.error(e);
@@ -281,8 +254,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.unfollowAccount(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				let acct = data.data;
-				acct.id = convertId(acct.id, IdType.MastodonId);
+				let acct = convertRelationship(data.data);
 				acct.following = false;
 				ctx.body = acct;
 			} catch (e: any) {
@@ -303,9 +275,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.blockAccount(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				let resp = data.data;
-				resp.id = convertId(resp.id, IdType.MastodonId);
-				ctx.body = resp;
+				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -324,9 +294,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.unblockAccount(
 					convertId(ctx.params.id, IdType.MastodonId),
 				);
-				let resp = data.data;
-				resp.id = convertId(resp.id, IdType.MastodonId);
-				ctx.body = resp;
+				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -346,9 +314,7 @@ export function apiAccountMastodon(router: Router): void {
 					convertId(ctx.params.id, IdType.CalckeyId),
 					(ctx.request as any).body as any,
 				);
-				let resp = data.data;
-				resp.id = convertId(resp.id, IdType.MastodonId);
-				ctx.body = resp;
+				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -367,9 +333,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.unmuteAccount(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				let resp = data.data;
-				resp.id = convertId(resp.id, IdType.MastodonId);
-				ctx.body = resp;
+				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -383,28 +347,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = (await client.getBookmarks(
-				limitToInt(ctx.query as any),
-			)) as any;
-			let resp = data.data;
-			for (let statIdx = 0; statIdx < resp.length; statIdx++) {
-				resp[statIdx].id = convertId(resp[statIdx].id, IdType.MastodonId);
-				resp[statIdx].in_reply_to_account_id = resp[statIdx]
-					.in_reply_to_account_id
-					? convertId(resp[statIdx].in_reply_to_account_id, IdType.MastodonId)
-					: null;
-				resp[statIdx].in_reply_to_id = resp[statIdx].in_reply_to_id
-					? convertId(resp[statIdx].in_reply_to_id, IdType.MastodonId)
-					: null;
-				let mentions = resp[statIdx].mentions;
-				for (let mtnIdx = 0; mtnIdx < mentions.length; mtnIdx++) {
-					resp[statIdx].mentions[mtnIdx].id = convertId(
-						mentions[mtnIdx].id,
-						IdType.MastodonId,
-					);
-				}
-			}
-			ctx.body = resp;
+			const data = await client.getBookmarks(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -417,26 +363,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getFavourites(limitToInt(ctx.query as any));
-			let resp = data.data;
-			for (let statIdx = 0; statIdx < resp.length; statIdx++) {
-				resp[statIdx].id = convertId(resp[statIdx].id, IdType.MastodonId);
-				resp[statIdx].in_reply_to_account_id = resp[statIdx]
-					.in_reply_to_account_id
-					? convertId(resp[statIdx].in_reply_to_account_id, IdType.MastodonId)
-					: null;
-				resp[statIdx].in_reply_to_id = resp[statIdx].in_reply_to_id
-					? convertId(resp[statIdx].in_reply_to_id, IdType.MastodonId)
-					: null;
-				let mentions = resp[statIdx].mentions;
-				for (let mtnIdx = 0; mtnIdx < mentions.length; mtnIdx++) {
-					resp[statIdx].mentions[mtnIdx].id = convertId(
-						mentions[mtnIdx].id,
-						IdType.MastodonId,
-					);
-				}
-			}
-			ctx.body = resp;
+			const data = await client.getFavourites(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -449,12 +379,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getMutes(limitToInt(ctx.query as any));
-			let resp = data.data;
-			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-			}
-			ctx.body = resp;
+			const data = await client.getMutes(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((account) => convertAccount(account));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -467,12 +395,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getBlocks(limitToInt(ctx.query as any));
-			let resp = data.data;
-			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-			}
-			ctx.body = resp;
+			const data = await client.getBlocks(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((account) => convertAccount(account));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -488,11 +414,7 @@ export function apiAccountMastodon(router: Router): void {
 			const data = await client.getFollowRequests(
 				((ctx.query as any) || { limit: 20 }).limit,
 			);
-			let resp = data.data;
-			for (let acctIdx = 0; acctIdx < resp.length; acctIdx++) {
-				resp[acctIdx].id = convertId(resp[acctIdx].id, IdType.MastodonId);
-			}
-			ctx.body = resp;
+			ctx.body = data.data.map((account) => convertAccount(account));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -510,9 +432,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.acceptFollowRequest(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				let resp = data.data;
-				resp.id = convertId(resp.id, IdType.MastodonId);
-				ctx.body = resp;
+				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -531,9 +451,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.rejectFollowRequest(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				let resp = data.data;
-				resp.id = convertId(resp.id, IdType.MastodonId);
-				ctx.body = resp;
+				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);

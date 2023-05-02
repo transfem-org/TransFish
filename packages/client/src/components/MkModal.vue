@@ -26,13 +26,16 @@
 					$style.root,
 					{
 						[$style.drawer]: type === 'drawer',
-						[$style.dialog]: type === 'dialog' || type === 'dialog:top',
+						[$style.dialog]:
+							type === 'dialog' || type === 'dialog:top',
 						[$style.popup]: type === 'popup',
 					},
 				]"
 				:style="{
 					zIndex,
-					pointerEvents: (manualShowing != null ? manualShowing : showing)
+					pointerEvents: (
+						manualShowing != null ? manualShowing : showing
+					)
 						? 'auto'
 						: 'none',
 					'--transformOrigin': transformOrigin,
@@ -76,7 +79,7 @@ import * as os from "@/os";
 import { isTouchUsing } from "@/scripts/touch";
 import { defaultStore } from "@/store";
 import { deviceKind } from "@/scripts/device-kind";
-import { FocusTrap } from 'focus-trap-vue';
+import { FocusTrap } from "focus-trap-vue";
 
 function getFixedContainer(el: Element | null): Element | null {
 	if (el == null || el.tagName === "BODY") return null;

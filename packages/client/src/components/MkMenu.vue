@@ -1,6 +1,6 @@
 <template>
-	<FocusTrap v-bind:active="isActive">
-		<div tabindex="-1" v-focus>
+	<FocusTrap :active="false" ref="focusTrap">
+		<div tabindex="-1">
 			<div
 				ref="itemsEl"
 				class="rrevdjwt _popup _shadow"
@@ -14,7 +14,9 @@
 				<template v-for="(item, i) in items2">
 					<div v-if="item === null" class="divider"></div>
 					<span v-else-if="item.type === 'label'" class="label item">
-						<span :style="item.textStyle || ''">{{ item.text }}</span>
+						<span :style="item.textStyle || ''">{{
+							item.text
+						}}</span>
 					</span>
 					<span
 						v-else-if="item.type === 'pending'"
@@ -48,7 +50,9 @@
 							class="avatar"
 							disableLink
 						/>
-						<span :style="item.textStyle || ''">{{ item.text }}</span>
+						<span :style="item.textStyle || ''">{{
+							item.text
+						}}</span>
 						<span v-if="item.indicate" class="indicator"
 							><i class="ph-circle ph-fill"></i
 						></span>
@@ -75,7 +79,9 @@
 								:class="icon"
 							></i>
 						</span>
-						<span :style="item.textStyle || ''">{{ item.text }}</span>
+						<span :style="item.textStyle || ''">{{
+							item.text
+						}}</span>
 						<span v-if="item.indicate" class="indicator"
 							><i class="ph-circle ph-fill"></i
 						></span>
@@ -89,9 +95,11 @@
 						@mouseenter.passive="onItemMouseEnter(item)"
 						@mouseleave.passive="onItemMouseLeave(item)"
 					>
-						<MkAvatar :user="item.user" class="avatar" disableLink /><MkUserName
+						<MkAvatar
 							:user="item.user"
-						/>
+							class="avatar"
+							disableLink
+						/><MkUserName :user="item.user" />
 						<span v-if="item.indicate" class="indicator"
 							><i class="ph-circle ph-fill"></i
 						></span>
@@ -129,9 +137,13 @@
 								:class="icon"
 							></i>
 						</span>
-						<span :style="item.textStyle || ''">{{ item.text }}</span>
+						<span :style="item.textStyle || ''">{{
+							item.text
+						}}</span>
 						<span class="caret"
-							><i class="ph-caret-right ph-bold ph-lg ph-fw ph-lg"></i
+							><i
+								class="ph-caret-right ph-bold ph-lg ph-fw ph-lg"
+							></i
 						></span>
 					</button>
 					<button
@@ -161,7 +173,9 @@
 							class="avatar"
 							disableLink
 						/>
-						<span :style="item.textStyle || ''">{{ item.text }}</span>
+						<span :style="item.textStyle || ''">{{
+							item.text
+						}}</span>
 						<span v-if="item.indicate" class="indicator"
 							><i class="ph-circle ph-fill"></i
 						></span>
@@ -203,9 +217,10 @@ import FormSwitch from "@/components/form/switch.vue";
 import { MenuItem, InnerMenuItem, MenuPending, MenuAction } from "@/types/menu";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-import { FocusTrap } from 'focus-trap-vue';
+import { FocusTrap } from "focus-trap-vue";
 
 const XChild = defineAsyncComponent(() => import("./MkMenu.child.vue"));
+const focusTrap = ref();
 
 const props = defineProps<{
 	items: MenuItem[];
@@ -316,6 +331,8 @@ function focusDown() {
 }
 
 onMounted(() => {
+	focusTrap.value.activate();
+
 	if (props.viaKeyboard) {
 		nextTick(() => {
 			focusNext(itemsEl.children[0], true, false);
@@ -380,7 +397,8 @@ onBeforeUnmount(() => {
 			transform: translateY(0em);
 		}
 
-		&:not(:disabled):hover, &:focus-visible {
+		&:not(:disabled):hover,
+		&:focus-visible {
 			color: var(--accent);
 			text-decoration: none;
 

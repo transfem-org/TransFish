@@ -399,28 +399,33 @@ router.get("/notes/:note", async (ctx, next) => {
 		visibility: In(["public", "home"]),
 	});
 
-	if (note) {
-		const _note = await Notes.pack(note);
-		const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
-		const meta = await fetchMeta();
-		await ctx.render("note", {
-			note: _note,
-			profile,
-			avatarUrl: await Users.getAvatarUrl(
-				await Users.findOneByOrFail({ id: note.userId }),
-			),
-			// TODO: Let locale changeable by instance setting
-			summary: getNoteSummary(_note),
-			instanceName: meta.name || "Calckey",
-			icon: meta.iconUrl,
-			privateMode: meta.privateMode,
-			themeColor: meta.themeColor,
-		});
+	try {
+		if (note) {
+			const _note = await Notes.pack(note);
 
-		ctx.set("Cache-Control", "public, max-age=15");
+			const profile = await UserProfiles.findOneByOrFail({
+				userId: note.userId,
+			});
+			const meta = await fetchMeta();
+			await ctx.render("note", {
+				note: _note,
+				profile,
+				avatarUrl: await Users.getAvatarUrl(
+					await Users.findOneByOrFail({ id: note.userId }),
+				),
+				// TODO: Let locale changeable by instance setting
+				summary: getNoteSummary(_note),
+				instanceName: meta.name || "Calckey",
+				icon: meta.iconUrl,
+				privateMode: meta.privateMode,
+				themeColor: meta.themeColor,
+			});
 
-		return;
-	}
+			ctx.set("Cache-Control", "public, max-age=15");
+
+			return;
+		}
+	} catch {}
 
 	await next();
 });

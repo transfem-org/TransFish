@@ -440,7 +440,7 @@ function more(ev: MouseEvent) {
 						color: var(--navActive);
 					}
 
-					&:hover, 
+					&:hover,
 					&:focus-within,
 					&.active {
 						color: var(--accent);
