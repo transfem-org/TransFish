@@ -510,7 +510,7 @@ function readPromo() {
 				display: block;
 				margin-bottom: -10px;
 				margin-top: 16px;
-				border-left: 2px solid var(--divider);
+				border-left: 2px solid var(--X13);
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 			}
 		}
