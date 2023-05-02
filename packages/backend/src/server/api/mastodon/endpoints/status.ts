@@ -6,7 +6,12 @@ import querystring from "node:querystring";
 import qs from "qs";
 import { convertTimelinesArgsId, limitToInt } from "./timeline.js";
 import { convertId, IdType } from "../../index.js";
-import { convertAccount, convertAttachment, convertPoll, convertStatus } from "../converters.js";
+import {
+	convertAccount,
+	convertAttachment,
+	convertPoll,
+	convertStatus,
+} from "../converters.js";
 
 function normalizeQuery(data: any) {
 	const str = querystring.stringify(data);
@@ -86,7 +91,7 @@ export function apiStatusMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.deleteStatus(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			ctx.body = data.data;
 		} catch (e: any) {
@@ -134,8 +139,12 @@ export function apiStatusMastodon(router: Router): void {
 						text,
 					),
 				);
-				data.data.ancestors = data.data.ancestors.map(status => convertStatus(status));
-				data.data.descendants = data.data.descendants.map(status => convertStatus(status));
+				data.data.ancestors = data.data.ancestors.map((status) =>
+					convertStatus(status),
+				);
+				data.data.descendants = data.data.descendants.map((status) =>
+					convertStatus(status),
+				);
 				ctx.body = data.data;
 			} catch (e: any) {
 				console.error(e);
@@ -152,9 +161,9 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getStatusRebloggedBy(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				ctx.body = data.data.map(account => convertAccount(account));
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -200,7 +209,7 @@ export function apiStatusMastodon(router: Router): void {
 			try {
 				const data = await client.deleteEmojiReaction(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					react
+					react,
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -219,7 +228,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.reblogStatus(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -238,7 +247,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.unreblogStatus(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -257,7 +266,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.bookmarkStatus(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -276,7 +285,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.unbookmarkStatus(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -295,7 +304,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.pinStatus(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -314,7 +323,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.unpinStatus(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertStatus(data.data);
 			} catch (e: any) {
@@ -330,7 +339,7 @@ export function apiStatusMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getMedia(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			ctx.body = convertAttachment(data.data);
 		} catch (e: any) {
@@ -361,7 +370,7 @@ export function apiStatusMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getPoll(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			ctx.body = convertPoll(data.data);
 		} catch (e: any) {

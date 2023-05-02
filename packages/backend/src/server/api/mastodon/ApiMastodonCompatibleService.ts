@@ -70,7 +70,9 @@ export function apiMastodonCompatible(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getInstanceAnnouncements();
-			ctx.body = data.data.map(announcement => convertAnnouncement(announcement));
+			ctx.body = data.data.map((announcement) =>
+				convertAnnouncement(announcement),
+			);
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -104,7 +106,7 @@ export function apiMastodonCompatible(router: Router): void {
 		// displayed without being logged in
 		try {
 			const data = await client.getFilters();
-			ctx.body = data.data.map(filter => convertFilter(filter));
+			ctx.body = data.data.map((filter) => convertFilter(filter));
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;

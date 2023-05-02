@@ -115,7 +115,10 @@
 					v-on:focus="cwButton?.focus()"
 				></div>
 			</div>
-			<XShowMoreButton v-if="isLong" v-model="collapsed"></XShowMoreButton>
+			<XShowMoreButton
+				v-if="isLong"
+				v-model="collapsed"
+			></XShowMoreButton>
 			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
 		</div>
 	</div>

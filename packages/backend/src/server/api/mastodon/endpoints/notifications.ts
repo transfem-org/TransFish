@@ -17,7 +17,9 @@ export function apiNotificationsMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		const body: any = ctx.request.body;
 		try {
-			const data = await client.getNotifications(convertTimelinesArgsId(toLimitToInt(ctx.query)));
+			const data = await client.getNotifications(
+				convertTimelinesArgsId(toLimitToInt(ctx.query)),
+			);
 			const notfs = data.data;
 			const ret = notfs.map((n) => {
 				n = convertNotification(n);
@@ -47,7 +49,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const dataRaw = await client.getNotification(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			const data = convertNotification(dataRaw.data);
 			if (data.type !== "follow" && data.type !== "follow_request") {
@@ -85,7 +87,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const data = await client.dismissNotification(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			ctx.body = data.data;
 		} catch (e: any) {

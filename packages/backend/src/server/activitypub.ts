@@ -10,7 +10,13 @@ import { renderPerson } from "@/remote/activitypub/renderer/person.js";
 import renderEmoji from "@/remote/activitypub/renderer/emoji.js";
 import { inbox as processInbox } from "@/queue/index.js";
 import { isSelfHost, toPuny } from "@/misc/convert-host.js";
-import { Notes, Users, Emojis, NoteReactions, FollowRequests } from "@/models/index.js";
+import {
+	Notes,
+	Users,
+	Emojis,
+	NoteReactions,
+	FollowRequests,
+} from "@/models/index.js";
 import type { ILocalUser, User } from "@/models/entities/user.js";
 import { renderLike } from "@/remote/activitypub/renderer/like.js";
 import { getUserKeypair } from "@/misc/keypair-store.js";
@@ -330,40 +336,43 @@ router.get("/likes/:like", async (ctx) => {
 });
 
 // follow
-router.get("/follows/:follower/:followee", async (ctx: Router.RouterContext) => {
-	const verify = await checkFetch(ctx.req);
-	if (verify !== 200) {
-		ctx.status = verify;
-		return;
-	}
-	// This may be used before the follow is completed, so we do not
-	// check if the following exists.
+router.get(
+	"/follows/:follower/:followee",
+	async (ctx: Router.RouterContext) => {
+		const verify = await checkFetch(ctx.req);
+		if (verify !== 200) {
+			ctx.status = verify;
+			return;
+		}
+		// This may be used before the follow is completed, so we do not
+		// check if the following exists.
 
-	const [follower, followee] = await Promise.all([
-		Users.findOneBy({
-			id: ctx.params.follower,
-			host: IsNull(),
-		}),
-		Users.findOneBy({
-			id: ctx.params.followee,
-			host: Not(IsNull()),
-		}),
-	]);
+		const [follower, followee] = await Promise.all([
+			Users.findOneBy({
+				id: ctx.params.follower,
+				host: IsNull(),
+			}),
+			Users.findOneBy({
+				id: ctx.params.followee,
+				host: Not(IsNull()),
+			}),
+		]);
 
-	if (follower == null || followee == null) {
-		ctx.status = 404;
-		return;
-	}
+		if (follower == null || followee == null) {
+			ctx.status = 404;
+			return;
+		}
 
-	ctx.body = renderActivity(renderFollow(follower, followee));
-	const meta = await fetchMeta();
-	if (meta.secureMode || meta.privateMode) {
-		ctx.set("Cache-Control", "private, max-age=0, must-revalidate");
-	} else {
-		ctx.set("Cache-Control", "public, max-age=180");
-	}
-	setResponseType(ctx);
-});
+		ctx.body = renderActivity(renderFollow(follower, followee));
+		const meta = await fetchMeta();
+		if (meta.secureMode || meta.privateMode) {
+			ctx.set("Cache-Control", "private, max-age=0, must-revalidate");
+		} else {
+			ctx.set("Cache-Control", "public, max-age=180");
+		}
+		setResponseType(ctx);
+	},
+);
 
 // follow request
 router.get("/follows/:followRequestId", async (ctx: Router.RouterContext) => {

@@ -5,7 +5,12 @@ import { FindOptionsWhere, IsNull } from "typeorm";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { argsToBools, convertTimelinesArgsId, limitToInt } from "./timeline.js";
 import { convertId, IdType } from "../../index.js";
-import { convertAccount, convertList, convertRelationship, convertStatus } from "../converters.js";
+import {
+	convertAccount,
+	convertList,
+	convertRelationship,
+	convertStatus,
+} from "../converters.js";
 
 const relationshipModel = {
 	id: "",
@@ -112,7 +117,9 @@ export function apiAccountMastodon(router: Router): void {
 			}
 
 			const data = await client.getRelationships(reqIds);
-			ctx.body = data.data.map(relationship => convertRelationship(relationship));
+			ctx.body = data.data.map((relationship) =>
+				convertRelationship(relationship),
+			);
 		} catch (e: any) {
 			console.error(e);
 			let data = e.response.data;
@@ -148,7 +155,7 @@ export function apiAccountMastodon(router: Router): void {
 					convertId(ctx.params.id, IdType.CalckeyId),
 					convertTimelinesArgsId(argsToBools(limitToInt(ctx.query as any))),
 				);
-				ctx.body = data.data.map(status => convertStatus(status));
+				ctx.body = data.data.map((status) => convertStatus(status));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -168,7 +175,7 @@ export function apiAccountMastodon(router: Router): void {
 					convertId(ctx.params.id, IdType.CalckeyId),
 					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
-				ctx.body = data.data.map(account => convertAccount(account));
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -188,7 +195,7 @@ export function apiAccountMastodon(router: Router): void {
 					convertId(ctx.params.id, IdType.CalckeyId),
 					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
-				ctx.body = data.data.map(account => convertAccount(account));
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -205,9 +212,9 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountLists(
-					convertId(ctx.params.id, IdType.CalckeyId)
+					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				ctx.body = data.data.map(list => convertList(list));
+				ctx.body = data.data.map((list) => convertList(list));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -340,10 +347,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = (await client.getBookmarks(
+			const data = await client.getBookmarks(
 				convertTimelinesArgsId(limitToInt(ctx.query as any)),
-			));
-			ctx.body = data.data.map(status => convertStatus(status));
+			);
+			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -356,8 +363,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getFavourites(convertTimelinesArgsId(limitToInt(ctx.query as any)));
-			ctx.body = data.data.map(status => convertStatus(status));
+			const data = await client.getFavourites(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -370,8 +379,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getMutes(convertTimelinesArgsId(limitToInt(ctx.query as any)));
-			ctx.body = data.data.map(account => convertAccount(account));
+			const data = await client.getMutes(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((account) => convertAccount(account));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -384,8 +395,10 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getBlocks(convertTimelinesArgsId(limitToInt(ctx.query as any)));
-			ctx.body = data.data.map(account => convertAccount(account));
+			const data = await client.getBlocks(
+				convertTimelinesArgsId(limitToInt(ctx.query as any)),
+			);
+			ctx.body = data.data.map((account) => convertAccount(account));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -401,7 +414,7 @@ export function apiAccountMastodon(router: Router): void {
 			const data = await client.getFollowRequests(
 				((ctx.query as any) || { limit: 20 }).limit,
 			);
-			ctx.body = data.data.map(account => convertAccount(account));
+			ctx.body = data.data.map((account) => convertAccount(account));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);

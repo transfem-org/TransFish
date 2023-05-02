@@ -87,23 +87,11 @@ export default {
 			self.hideTimer = window.setTimeout(self.close, delay);
 		}
 
-		el.addEventListener(
-			start, showTooltip,
-			{ passive: true },
-		);
-		el.addEventListener(
-			"focusin", showTooltip,
-			{ passive: true },
-		);
+		el.addEventListener(start, showTooltip, { passive: true });
+		el.addEventListener("focusin", showTooltip, { passive: true });
 
-		el.addEventListener(
-			end, hideTooltip,
-			{ passive: true },
-		);
-		el.addEventListener(
-			"focusout", hideTooltip,
-			{ passive: true },
-		);
+		el.addEventListener(end, hideTooltip, { passive: true });
+		el.addEventListener("focusout", hideTooltip, { passive: true });
 
 		el.addEventListener("click", () => {
 			window.clearTimeout(self.showTimer);

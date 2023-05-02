@@ -12,7 +12,7 @@ export function apiFilterMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const data = await client.getFilters();
-			ctx.body = data.data.map(filter => convertFilter(filter));
+			ctx.body = data.data.map((filter) => convertFilter(filter));
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -27,7 +27,7 @@ export function apiFilterMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const data = await client.getFilter(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			ctx.body = convertFilter(data.data);
 		} catch (e: any) {
@@ -78,7 +78,7 @@ export function apiFilterMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const data = await client.deleteFilter(
-				convertId(ctx.params.id, IdType.CalckeyId)
+				convertId(ctx.params.id, IdType.CalckeyId),
 			);
 			ctx.body = data.data;
 		} catch (e: any) {

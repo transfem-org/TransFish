@@ -1,3 +1,3 @@
 export default {
-	mounted: (el) => el.focus()
-}
+	mounted: (el) => el.focus(),
+};

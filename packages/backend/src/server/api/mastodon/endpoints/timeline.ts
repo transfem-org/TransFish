@@ -109,9 +109,13 @@ export function apiTimelineMastodon(router: Router): void {
 		try {
 			const query: any = ctx.query;
 			const data = query.local
-				? await client.getLocalTimeline(convertTimelinesArgsId(argsToBools(limitToInt(query))))
-				: await client.getPublicTimeline(convertTimelinesArgsId(argsToBools(limitToInt(query))));
-			let resp = data.data.map(status => convertStatus(status));
+				? await client.getLocalTimeline(
+						convertTimelinesArgsId(argsToBools(limitToInt(query))),
+				  )
+				: await client.getPublicTimeline(
+						convertTimelinesArgsId(argsToBools(limitToInt(query))),
+				  );
+			let resp = data.data.map((status) => convertStatus(status));
 			ctx.body = toTextWithReaction(resp, ctx.hostname);
 		} catch (e: any) {
 			console.error(e);
@@ -131,7 +135,7 @@ export function apiTimelineMastodon(router: Router): void {
 					ctx.params.hashtag,
 					convertTimelinesArgsId(argsToBools(limitToInt(ctx.query))),
 				);
-				let resp = data.data.map(status => convertStatus(status));
+				let resp = data.data.map((status) => convertStatus(status));
 				ctx.body = toTextWithReaction(resp, ctx.hostname);
 			} catch (e: any) {
 				console.error(e);
@@ -146,8 +150,10 @@ export function apiTimelineMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getHomeTimeline(convertTimelinesArgsId(limitToInt(ctx.query)));
-			let resp = data.data.map(status => convertStatus(status));
+			const data = await client.getHomeTimeline(
+				convertTimelinesArgsId(limitToInt(ctx.query)),
+			);
+			let resp = data.data.map((status) => convertStatus(status));
 			ctx.body = toTextWithReaction(resp, ctx.hostname);
 		} catch (e: any) {
 			console.error(e);
@@ -167,7 +173,7 @@ export function apiTimelineMastodon(router: Router): void {
 					convertId(ctx.params.listId, IdType.CalckeyId),
 					convertTimelinesArgsId(limitToInt(ctx.query)),
 				);
-				let resp = data.data.map(status => convertStatus(status));
+				let resp = data.data.map((status) => convertStatus(status));
 				ctx.body = toTextWithReaction(resp, ctx.hostname);
 			} catch (e: any) {
 				console.error(e);
@@ -182,7 +188,9 @@ export function apiTimelineMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const data = await client.getConversationTimeline(convertTimelinesArgsId(limitToInt(ctx.query)));
+			const data = await client.getConversationTimeline(
+				convertTimelinesArgsId(limitToInt(ctx.query)),
+			);
 			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
@@ -197,7 +205,7 @@ export function apiTimelineMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getLists();
-			ctx.body = data.data.map(list => convertList(list));
+			ctx.body = data.data.map((list) => convertList(list));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -247,7 +255,7 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.updateList(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					(ctx.request.body as any).title
+					(ctx.request.body as any).title,
 				);
 				ctx.body = convertList(data.data);
 			} catch (e: any) {
@@ -288,7 +296,7 @@ export function apiTimelineMastodon(router: Router): void {
 					convertId(ctx.params.id, IdType.CalckeyId),
 					convertTimelinesArgsId(ctx.query as any),
 				);
-				ctx.body = data.data.map(account => convertAccount(account));
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -306,7 +314,9 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.addAccountsToList(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					(ctx.query.account_ids as string[]).map(id => convertId(id, IdType.CalckeyId)),
+					(ctx.query.account_ids as string[]).map((id) =>
+						convertId(id, IdType.CalckeyId),
+					),
 				);
 				ctx.body = data.data;
 			} catch (e: any) {
@@ -326,7 +336,9 @@ export function apiTimelineMastodon(router: Router): void {
 			try {
 				const data = await client.deleteAccountsFromList(
 					convertId(ctx.params.id, IdType.CalckeyId),
-					(ctx.query.account_ids as string[]).map(id => convertId(id, IdType.CalckeyId)),
+					(ctx.query.account_ids as string[]).map((id) =>
+						convertId(id, IdType.CalckeyId),
+					),
 				);
 				ctx.body = data.data;
 			} catch (e: any) {

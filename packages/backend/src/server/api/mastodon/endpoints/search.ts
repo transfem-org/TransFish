@@ -32,14 +32,16 @@ export function apiSearchMastodon(router: Router): void {
 			const type = query.type;
 			if (type) {
 				const data = await client.search(query.q, type, query);
-				ctx.body = data.data.accounts.map(account => convertAccount(account));
+				ctx.body = data.data.accounts.map((account) => convertAccount(account));
 			} else {
 				const acct = await client.search(query.q, "accounts", query);
 				const stat = await client.search(query.q, "statuses", query);
 				const tags = await client.search(query.q, "hashtags", query);
 				ctx.body = {
-					accounts: acct.data.accounts.map(account => convertAccount(account)),
-					statuses: stat.data.statuses.map(status => convertStatus(status)),
+					accounts: acct.data.accounts.map((account) =>
+						convertAccount(account),
+					),
+					statuses: stat.data.statuses.map((status) => convertStatus(status)),
 					hashtags: tags.data.hashtags,
 				};
 			}
@@ -58,7 +60,7 @@ export function apiSearchMastodon(router: Router): void {
 				ctx.request.hostname,
 				accessTokens,
 			);
-			ctx.body = data.map(status => convertStatus(status));
+			ctx.body = data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;
@@ -76,7 +78,7 @@ export function apiSearchMastodon(router: Router): void {
 				accessTokens,
 				query.limit || 20,
 			);
-			data = data.map(suggestion => {
+			data = data.map((suggestion) => {
 				suggestion.account = convertAccount(suggestion.account);
 				return suggestion;
 			});

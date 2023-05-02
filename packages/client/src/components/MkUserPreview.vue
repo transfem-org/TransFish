@@ -58,7 +58,10 @@
 						:custom-emojis="user.emojis"
 					/>
 				</div>
-				<XShowMoreButton v-if="isLong" v-model="collapsed"></XShowMoreButton>
+				<XShowMoreButton
+					v-if="isLong"
+					v-model="collapsed"
+				></XShowMoreButton>
 				<div v-if="user.fields.length > 0" class="fields">
 					<dl
 						v-for="(field, i) in user.fields"

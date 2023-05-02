@@ -402,8 +402,10 @@ router.get("/notes/:note", async (ctx, next) => {
 	try {
 		if (note) {
 			const _note = await Notes.pack(note);
-			
-			const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
+
+			const profile = await UserProfiles.findOneByOrFail({
+				userId: note.userId,
+			});
 			const meta = await fetchMeta();
 			await ctx.render("note", {
 				note: _note,
