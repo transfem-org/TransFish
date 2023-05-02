@@ -510,7 +510,7 @@ function readPromo() {
 				display: block;
 				margin-bottom: -10px;
 				margin-top: 16px;
-				border-left: 2px solid var(--divider);
+				border-left: 2px solid var(--X13);
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 			}
 		}
@@ -627,14 +627,11 @@ function readPromo() {
 
 			> .body {
 				margin-top: 0.7em;
-
-				> .content {
-					> .translation {
-						border: solid 0.5px var(--divider);
-						border-radius: var(--radius);
-						padding: 12px;
-						margin-top: 8px;
-					}
+				> .translation {
+					border: solid 0.5px var(--divider);
+					border-radius: var(--radius);
+					padding: 12px;
+					margin-top: 8px;
 				}
 				> .renote {
 					padding-top: 8px;
