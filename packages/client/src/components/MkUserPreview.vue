@@ -46,7 +46,10 @@
 					/></MkA>
 					<p class="username"><MkAcct :user="user" /></p>
 				</div>
-				<div class="description" :class="{ collapsed: isLong && collapsed }">
+				<div
+					class="description"
+					:class="{ collapsed: isLong && collapsed }"
+				>
 					<Mfm
 						v-if="user.description"
 						:text="user.description"
@@ -55,20 +58,10 @@
 						:custom-emojis="user.emojis"
 					/>
 				</div>
-				<button
-					v-if="isLong && collapsed"
-					class="fade _button"
-					@click.stop="collapsed = false"
-				>
-					<span>{{ i18n.ts.showMore }}</span>
-				</button>
-				<button
-					v-if="isLong && !collapsed"
-					class="showLess _button"
-					@click.stop="collapsed = true"
-				>
-					<span>{{ i18n.ts.showLess }}</span>
-				</button>
+				<XShowMoreButton
+					v-if="isLong"
+					v-model="collapsed"
+				></XShowMoreButton>
 				<div v-if="user.fields.length > 0" class="fields">
 					<dl
 						v-for="(field, i) in user.fields"
@@ -128,6 +121,7 @@ import * as Acct from "calckey-js/built/acct";
 import type * as misskey from "calckey-js";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { userPage } from "@/filters/user";
+import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import * as os from "@/os";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
@@ -149,14 +143,15 @@ let user = $ref<misskey.entities.UserDetailed | null>(null);
 let top = $ref(0);
 let left = $ref(0);
 
-
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
 
 onMounted(() => {
 	if (typeof props.q === "object") {
 		user = props.q;
-		isLong = (user.description.split("\n").length > 9 || user.description.length > 400);
+		isLong =
+			user.description.split("\n").length > 9 ||
+			user.description.length > 400;
 	} else {
 		const query = props.q.startsWith("@")
 			? Acct.parse(props.q.substr(1))
@@ -165,10 +160,11 @@ onMounted(() => {
 		os.api("users/show", query).then((res) => {
 			if (!props.showing) return;
 			user = res;
-			isLong = (user.description.split("\n").length > 9 || user.description.length > 400);
+			isLong =
+				user.description.split("\n").length > 9 ||
+				user.description.length > 400;
 		});
 	}
-	
 
 	const rect = props.source.getBoundingClientRect();
 	const x =
@@ -313,7 +309,7 @@ onMounted(() => {
 
 		> .fields {
 			padding: 0 16px;
-			font-size: .8em;
+			font-size: 0.8em;
 			margin-top: 1em;
 
 			> .field {

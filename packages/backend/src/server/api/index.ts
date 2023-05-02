@@ -29,6 +29,7 @@ import {
 	convertId,
 	IdConvertType as IdType,
 } from "../../../native-utils/built/index.js";
+import { convertAttachment } from "./mastodon/converters.js";
 
 // re-export native rust id conversion (function and enum)
 export { IdType, convertId };
@@ -93,7 +94,7 @@ mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
 			return;
 		}
 		const data = await client.uploadMedia(multipartData);
-		ctx.body = data.data;
+		ctx.body = convertAttachment(data.data as Entity.Attachment);
 	} catch (e: any) {
 		console.error(e);
 		ctx.status = 401;
@@ -112,7 +113,7 @@ mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
 			return;
 		}
 		const data = await client.uploadMedia(multipartData);
-		ctx.body = data.data;
+		ctx.body = convertAttachment(data.data as Entity.Attachment);
 	} catch (e: any) {
 		console.error(e);
 		ctx.status = 401;

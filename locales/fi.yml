@@ -1,3 +1,4 @@
+_lang_: "Suomi"
 username: Käyttäjänimi
 fetchingAsApObject: Hae Fedeversestä
 gotIt: Selvä!
@@ -220,4 +221,3 @@ clearQueueConfirmText: Mitkään välittämättömät lähetykset, jotka ovat jo
   federoidu. Yleensä tätä toimintoa ei tarvita.
 blockedInstancesDescription: Lista instanssien isäntänimistä, jotka haluat estää.
   Listatut instanssit eivät kykene kommunikoimaan enää tämän instanssin kanssa.
-_lang_: Suomi
