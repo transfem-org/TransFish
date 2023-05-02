@@ -121,6 +121,7 @@ import * as Acct from "calckey-js/built/acct";
 import type * as misskey from "calckey-js";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { userPage } from "@/filters/user";
+import XShowMoreButton from "./MkShowMoreButton.vue";
 import * as os from "@/os";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
