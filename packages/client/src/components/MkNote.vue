@@ -259,8 +259,8 @@ const props = defineProps<{
 
 const inChannel = inject("inChannel", null);
 
-let note = $ref(deepClone(props.note));
-
+let note = $ref(props.note);
+``
 // plugin
 if (noteViewInterruptors.length > 0) {
 	onMounted(async () => {
