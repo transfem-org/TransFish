@@ -14,8 +14,8 @@ ok: "OK"
 gotIt: "Ho he entès!"
 cancel: "Cancel·lar"
 enterUsername: "Introdueix el teu nom d'usuari"
-renotedBy: "Resignat per {user}"
-noNotes: "Cap publicació"
+renotedBy: "Impulsat per {user}"
+noNotes: "Cap nota"
 noNotifications: "Cap notificació"
 instance: "Instància"
 settings: "Preferències"
@@ -46,7 +46,7 @@ copyLink: "Còpia l'enllaç"
 delete: "Esborra"
 deleteAndEdit: "Esborrar i edita"
 deleteAndEditConfirm: "Estàs segur que vols esborrar aquesta nota i editar-la? Perdràs\
-  \ totes les reaccions, resignats i respostes."
+  \ totes les reaccions, impulsos i respostes."
 addToList: "Afegir a la llista"
 sendMessage: "Enviar un missatge"
 copyUsername: "Còpia nom d'usuari"
@@ -73,8 +73,8 @@ exportRequested: "Has sol·licitat una exportació. Això pot trigar una estona.
 importRequested: "Has sol·licitat una importació. Això pot trigar una estona."
 lists: "Llistes"
 noLists: "No tens cap llista"
-note: "Publicació"
-notes: "Publicacions"
+note: "Nota"
+notes: "Notes"
 following: "Seguint"
 followers: "Seguidors"
 followsYou: "Et segueix"
@@ -94,8 +94,8 @@ enterListName: "Introdueix un nom per a la llista"
 privacy: "Privadesa"
 makeFollowManuallyApprove: "Les sol·licituds de seguiment requereixen aprovació"
 defaultNoteVisibility: "Visibilitat per defecte"
-follow: "Seguint"
-followRequest: "Enviar la sol·licitud de seguiment"
+follow: "Seguir"
+followRequest: "Enviar sol·licitud de seguiment"
 followRequests: "Sol·licituds de seguiment"
 unfollow: "Deixar de seguir"
 followRequestPending: "Sol·licituds de seguiment pendents"
@@ -116,11 +116,11 @@ reaction: "Reaccions"
 reactionSetting: "Reaccions a mostrar al selector de reaccions"
 reactionSettingDescription2: "Arrossega per reordenar, fes clic per suprimir, prem\
   \ \"+\" per afegir."
-rememberNoteVisibility: "Recorda la configuració de visibilitat de les publicacions"
+rememberNoteVisibility: "Recorda la configuració de visibilitat de les notes"
 attachCancel: "Eliminar el fitxer adjunt"
 markAsSensitive: "Marcar com a NSFW"
-unmarkAsSensitive: "Deixar de marcar com a sensible"
-enterFileName: "Defineix nom del fitxer"
+unmarkAsSensitive: "Deixar de marcar com a NSFW"
+enterFileName: "Introdueix un nom de fitxer"
 mute: "Silencia"
 unmute: "Deixa de silenciar"
 block: "Bloqueja"
@@ -740,9 +740,9 @@ _deck:
   renameProfile: Canvia el nom de l'espai de treball
   nameAlreadyExists: Aquest nom d'espai de treball ja existeix.
 blockConfirm: Estás segur que vols bloquejar aquest compte?
-unsuspendConfirm: Estás segur que vols treure la suspensió d'aquesta compte?
-unblockConfirm: Estás segur que vols treure el bloqueig d'aquesta compte?
-suspendConfirm: Estás segur que vols suspendre aquesta compte?
+unsuspendConfirm: Estás segur que vols treure la suspensió d'aquest compte?
+unblockConfirm: Estás segur que vols treure el bloqueig d'aquest compte?
+suspendConfirm: Estás segur que vols suspendre aquest compte?
 selectList: Selecciona una llista
 selectAntenna: Selecciona una antena
 selectWidget: Selecciona un giny
@@ -751,13 +751,12 @@ editWidgetsExit: Fet
 customEmojis: Emoji personalitzat
 cacheRemoteFilesDescription: Quant aquesta opció es deshabilitada, els fitxers remots
   es carregant directament de l'instància remota. Deshabilitar això farà que baixi
-  l'ús d'emmagatzematge, però incrementa el tràfic, perquè les previsualitzacions
-  no es generarán.
+  l'ús d'emmagatzematge, però incrementa el tràfic, perquè les miniatures no es generarán.
 flagAsBot: Marca aquest compte com un bot
 flagAsBotDescription: Activa aquesta opció si aquest compte és controlat per un programa.
-  Si s'activa, això actuarà com una bandera per a altres desenvolupadors i prevenir
-  cadenes de interaccions infinites amb altres bots a més d'ajustar els sistemes interns
-  de Calckey per tractar aquest compte com un bot.
+  Si s'activa, això actuarà com una bandera per a altres desenvolupadors i ajuda a
+  prevenir cadenes de interaccions infinites amb altres bots a més d'ajustar els sistemes
+  interns de Calckey per tractar aquest compte com un bot.
 flagAsCat: Ets un gat? 🐱
 flagShowTimelineReplies: Mostrar respostes a la línea de temps
 flagAsCatDescription: Guanyaràs unes orelles de gat i parlares com un gat!
@@ -794,7 +793,7 @@ network: Xarxa
 disk: Disc
 instanceInfo: Informació de l'instància
 statistics: Estadístiques
-clearCachedFiles: Neteja memòria cau
+clearCachedFiles: Neteja la memòria cau
 clearQueueConfirmText: Qualsevol nota que continuï a la cua sense entrega no será
   federada. Normalment aquesta operació no es necessària.
 clearCachedFilesConfirm: Segur que vols esborrar els fitxers remots de la memòria
@@ -930,17 +929,17 @@ enableGlobalTimeline: Activa la línea de temps global
 disablingTimelinesInfo: Els Administradors i Moderadors sempre tenen accés a totes
   les líneas temporals, inclòs si hi són desactivades.
 showLess: Tanca
-clearQueue: Neteja cua
+clearQueue: Neteja la cua
 uploadFromUrlMayTakeTime: Pot trigar un temps fins que la pujada es completi.
 noThankYou: No, gràcies
-addInstance: Afegeix una instància
+addInstance: Afegir una instància
 emoji: Emoji
 emojis: Emoji
 emojiName: Nom del emoji
 emojiUrl: URL del emoji
 addEmoji: Afegir
 settingGuide: Configuració recomenada
-searchWith: 'Buscar: {q}'
+searchWith: 'Cercar: {q}'
 youHaveNoLists: No tens cap llista
 flagSpeakAsCat: Parla com un gat
 selectInstance: Selecciona una instància
@@ -952,10 +951,9 @@ blockedInstances: Instàncies Bloquejades
 blockedInstancesDescription: Llista les adreces de les instàncies que vols bloquejar.
   Les instàncies de la llista no podrán comunicarse amb aquesta instància.
 hiddenTags: Etiquetes Ocultes
-hiddenTagsDescription: 'Enumereu els etiquetes (sense el #) de les etiquetes que voleu
-  ocultar de tendències i explorar. Les etiquetes ocultes encara es poden descobrir
-  per altres mitjans. Les instàncies bloquejades no es veuen afectades encara que
-  s''enumeren aquí.'
+hiddenTagsDescription: 'Enumereu les etiquetes (sense el #) que voleu ocultar de tendències
+  i explorar. Les etiquetes ocultes encara es poden descobrir per altres mitjans.
+  Les instàncies bloquejades no es veuen afectades encara que s''enumerin aquí.'
 noInstances: No hi han instàncies
 defaultValueIs: 'Per defecte: {value}'
 suspended: Suspès
@@ -976,8 +974,8 @@ enableEmojiReactions: Activa reaccions amb emojis
 blockThisInstance: Bloqueja aquesta instància
 registration: Registre
 showEmojisInReactionNotifications: Mostra els emojis a les notificacions de les reaccions
-renoteMute: Silencia les renotas
-renoteUnmute: Treu el silenci a les renotas
+renoteMute: Silencia els impulsos
+renoteUnmute: Treu el silenci als impulsos
 cacheRemoteFiles: Fitxers remots a la memoria cau
 federation: Federació
 registeredAt: Registrat a
@@ -1579,9 +1577,9 @@ driveFilesCount: Nombre de fitxers el Disk
 silencedInstances: Instàncies silenciades
 silenceThisInstance: Silencia la instància
 silencedInstancesDescription: Llista amb els noms de les instàncies que vols silenciar.
-  Les comptes en les instàncies silenciades seran tractades com "Silenciades", només
-  poden fer sol·licitud de seguiments, i no poden mencionar comptes locals si no les
-  segueixen. Això no afectarà les instàncies silenciades.
+  Els comptes en les instàncies silenciades seran tractades com "Silenciades", només
+  poden fer sol·licituds de seguiments, i no poden mencionar comptes locals si no
+  les segueixen. Això no afectarà les instàncies bloquejades.
 objectStorageEndpointDesc: Deixa això buit si fas servir AWS, S3, d'una altre manera
   específica un "endpoint" com a '<host>' o '<host>:<port>', depend del proveïdor
   que facis servir.
@@ -1762,7 +1760,7 @@ useDrawerReactionPickerForMobile: Mostra el selector de reaccions com a calaix a
   mòbil
 welcomeBackWithName: Benvingut de nou, {name}
 showLocalPosts: 'Mostra les notes locals a:'
-homeTimeline: Línea de temps Local
+homeTimeline: Línea de temps Inicial
 socialTimeline: Línea de temps Social
 themeColor: Color del Ticker de la instància
 size: Mida

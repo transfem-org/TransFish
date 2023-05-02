@@ -75,8 +75,8 @@ files: Tiedostot
 download: Lataa
 unfollowConfirm: Oletko varma, ettet halua seurata enää käyttäjää {name}?
 noLists: Sinulla ei ole listoja
-note: Lähetys
-notes: Lähetykset
+note: Viesti
+notes: Viestit
 following: Seuraa
 createList: Luo lista
 manageLists: Hallitse listoja
@@ -221,3 +221,176 @@ clearQueueConfirmText: Mitkään välittämättömät lähetykset, jotka ovat jo
   federoidu. Yleensä tätä toimintoa ei tarvita.
 blockedInstancesDescription: Lista instanssien isäntänimistä, jotka haluat estää.
   Listatut instanssit eivät kykene kommunikoimaan enää tämän instanssin kanssa.
+security: Turvallisuus
+retypedNotMatch: Syöte ei kelpaa.
+fromDrive: Asemasta
+keepOriginalUploading: Säilytä alkuperäinen kuva
+uploadFromUrlDescription: Tiedoston URL, jonka haluat ylösladata
+themeForLightMode: Teema vaaleassa tilassa
+theme: Teemat
+themeForDarkMode: Teema tummassa tilassa
+drive: Asema
+darkThemes: Tummat teemat
+copyUrl: Kopioi URL-linkki
+rename: Uudelleennimeä
+maintainerName: Ylläpitäjä
+maintainerEmail: Ylläpitäjän sähköposti
+tosUrl: Palvelun ehdot URL-linkki
+thisYear: Vuosi
+backgroundImageUrl: Taustakuvan URL-linkki
+basicInfo: Perustiedot
+pinnedPagesDescription: Kirjoita niiden sivujen polut, jotka haluat liittää tämän
+  instanssin yläsivulle rivinvaihdoin erotettuna.
+hcaptchaSiteKey: Sivuston avain
+hcaptchaSecretKey: Salausavain
+silencedInstances: Hiljennetyt instanssit
+muteAndBlock: Hiljennykset ja estetyt
+mutedUsers: Hiljennetyt käyttäjät
+blockedUsers: Estetyt käyttäjät
+noUsers: Ei yhtään käyttäjää
+noInstances: Ei yhtään instanssia
+editProfile: Muokkaa profiilia
+noteDeleteConfirm: Oletko varma, että haluat poistaa tämän viestin?
+pinLimitExceeded: Et voi kiinnittää enempää viestejä
+intro: Calckey -asennus valmis! Ole hyvä ja luo admin-käyttäjä.
+done: Valmis
+processing: Suorittaa...
+preview: Esikatselu
+default: Oletus
+defaultValueIs: 'Oletus: {value}'
+noCustomEmojis: Ei emojia
+noJobs: Ei töitä
+federating: Federoi
+blocked: Estetty
+silenced: Hiljennetty
+suspended: Keskeytetty
+all: Kaikki
+publishing: Julkaisee
+subscribing: Tilaa
+notResponding: Ei vastaa
+instanceFollowing: Seuraa instanssia
+instanceFollowers: Instanssin seuraajat
+instanceUsers: Instanssin käyttäjät
+changePassword: Muuta salasana
+newPasswordRetype: Uudelleensyötä uusi salasana
+more: Lisää!
+featured: Esillä
+usernameOrUserId: Käyttäjänimi tai käyttäjä id
+noSuchUser: Käyttäjää ei löydy
+lookup: Hae
+announcements: Tiedoitteet
+imageUrl: Kuva URL-linkki
+removed: Onnistuneesti poistettu
+removeAreYouSure: Oletko varma, että haluat poistaa " {x}"?
+resetAreYouSure: Haluatko nollata?
+saved: Tallennettu
+messaging: Juttele
+upload: Lataa ylös
+fromUrl: URL:stä
+uploadFromUrl: Ylöslataa URL:stä
+uploadFromUrlRequested: Ylöslataus pyydetty
+uploadFromUrlMayTakeTime: Voi viedä hetki, kun ylöslataus on valmis.
+explore: Selaa
+messageRead: Lue
+noMoreHistory: Ei lisää historiaa
+startMessaging: Aloita uusi juttelu
+manageGroups: Hallitse ryhmiä
+nUsersRead: lukenut {n}
+agreeTo: Hyväksyn {0}
+tos: Palvelun ehdot
+start: Aloita
+home: Koti
+remoteUserCaution: Etäkäyttäjän tiedot saattavat olla puutteellisia.
+light: Vaalea
+dark: Tumma
+lightThemes: Vaaleat teemat
+syncDeviceDarkMode: Synkronoi tumma tila laitteen asetuksen mukaan
+fileName: Tiedostonimi
+selectFile: Valitse tiedosto
+selectFiles: Valitse tiedostot
+selectFolder: Valitse kansio
+selectFolders: Valitse kansiot
+renameFile: Uudelleennimeä tiedosto
+folderName: Kansionimi
+createFolder: Luo kansio
+renameFolder: Uudelleennimeä kansio
+deleteFolder: Poista kansio
+addFile: Lisää tiedosto
+emptyDrive: Asemasi on tyhjä
+emptyFolder: Tämä kansio on tyhjä
+unableToDelete: Ei voitu poistaa
+inputNewFileName: Syötä uusi tiedostonimi
+inputNewDescription: Syötä uusi kuvateksti
+inputNewFolderName: Syötä uusi kansionimi
+hasChildFilesOrFolders: Koska kansio ei ole tyhjä, sitä ei voi poistaa.
+avatar: Kuvake
+banner: Banneri
+nsfw: Herkkää sisältöä (NSFW)
+whenServerDisconnected: Kun yhteys palvelimeen menetetään
+disconnectedFromServer: Yhteys palvelimeen katkennut
+reload: Päivitä
+doNothing: Hylkää
+reloadConfirm: Haluaisitko päivittää aikajanan?
+unwatch: Lopeta katselu
+watch: Katsele
+accept: Hyväksy
+reject: Hylkää
+normal: Normaali
+instanceName: Instanssin nimi
+thisMonth: Kuukausi
+today: Tänään
+monthX: '{month}'
+connectService: Yhdistä
+disconnectService: Katkaise yhteys
+enableLocalTimeline: Ota käyttöön paikallinen aikajana
+enableGlobalTimeline: Ota käyttöön globaali aikajana
+enableRecommendedTimeline: Ota käyttöön suositellut -aikajana
+registration: Rekisteröinti
+enableRegistration: Ota käyttöön uuden käyttäjän rekisteröinti
+driveCapacityPerLocalAccount: Aseman kapasiteetti paikallista käyttäjää kohti
+driveCapacityPerRemoteAccount: Aseman kapasiteetti etäkäyttäjää kohti
+inMb: megatavuissa
+bannerUrl: Bannerikuvan URL-linkki
+pinnedUsers: Kiinnitetyt käyttäjät
+pinnedPages: Kiinnitetyt sivut
+pinnedClipId: Kiinnitettävän leikkeen ID
+enableHcaptcha: Ota käyttöön hCaptcha-tunnistus
+recaptcha: CAPTCHA uudelleen
+enableRecaptcha: Ota käyttöön CAPTCHA uudelleen
+recaptchaSiteKey: Sivuston avain
+recaptchaSecretKey: Salausavain
+silenceThisInstance: Hiljennä tämä instanssi
+silencedInstancesDescription: Lista isäntänimistä, joka haluat hiljentää. Tilejä listassa
+  kohdellaan "hiljennettynä", ne voivat tehdä seuraajapyyntöjä ja eivät voi tehdä
+  mainintoja paikallistileistä jossei seurattu. Tämä ei vaikuta estettyihin instansseihin.
+hiddenTagsDescription: 'Listaa aihetunnisteet (ilman #-merkkiä) aihetunnisteet, jotka
+  haluat piilottaa trendauksesta ja etsinnästä. Piilotetut aihetunnisteet ovat kuitenkin
+  löydettävissä muilla keinoilla. Estetyt instanssit eivät vaikuta, vaikka listattu
+  tähän.'
+currentPassword: Nykyinen salasana
+newPassword: Uusi salasana
+attachFile: Liitetyt tiedostot
+keepOriginalUploadingDescription: Tallentaa alkuperäisen kuvan sellaisenaan. Jos kytketty
+  päältä, webissä näytettävä versio luodaan ylöslatauksen yhteydessä.
+remove: Poista
+circularReferenceFolder: Kohdekansio on kansion alikansio, jonka haluat siirtää.
+deleteAreYouSure: Oletko varma, että haluat poistaa kokonaan" {x}"?
+yearsOld: '{age} vuotias'
+activity: Aktiivisuus
+images: Kuvat
+birthday: Syntymäpäivä
+registeredDate: Liittynyt
+location: Sijainti
+disablingTimelinesInfo: Järjestelmänvalvojilla ja moderaattoreilla on aina pääsy kaikille
+  aikajanoille, vaikka olisikin poistettu käytöstä.
+dayX: '{day}'
+yearX: '{year}'
+pages: Sivut
+integration: Integraatiot
+instanceDescription: Instanssin kuvaus
+invite: Kutsu
+iconUrl: Ikoni URL-linkki
+pinnedUsersDescription: Listaa käyttäjänimet eroteltuna rivivaihdoin kiinnittääksesi
+  ne "Selaa" välilehteen.
+pinnedNotes: Kiinnitetyt viestit
+hcaptcha: hCaptcha-tunnistus
