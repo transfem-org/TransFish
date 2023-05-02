@@ -627,14 +627,11 @@ function readPromo() {
 
 			> .body {
 				margin-top: 0.7em;
-
-				> .content {
-					> .translation {
-						border: solid 0.5px var(--divider);
-						border-radius: var(--radius);
-						padding: 12px;
-						margin-top: 8px;
-					}
+				> .translation {
+					border: solid 0.5px var(--divider);
+					border-radius: var(--radius);
+					padding: 12px;
+					margin-top: 8px;
 				}
 				> .renote {
 					padding-top: 8px;
