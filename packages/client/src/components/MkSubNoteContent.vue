@@ -132,7 +132,7 @@ import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
-import XShowMoreButton from "./MkShowMoreButton.vue";
+import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { i18n } from "@/i18n";
