@@ -72,6 +72,7 @@ import { PasswordResetRequest } from "@/models/entities/password-reset-request.j
 import { UserPending } from "@/models/entities/user-pending.js";
 import { Webhook } from "@/models/entities/webhook.js";
 import { UserIp } from "@/models/entities/user-ip.js";
+import { NoteEdit } from "@/models/entities/note-edit.js";
 
 import { entities as charts } from "@/services/chart/entities.js";
 import { envOption } from "../env.js";
@@ -140,6 +141,7 @@ export const entities = [
 	RenoteMuting,
 	Blocking,
 	Note,
+	NoteEdit,
 	NoteFavorite,
 	NoteReaction,
 	NoteWatching,

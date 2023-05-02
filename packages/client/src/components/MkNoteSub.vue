@@ -181,7 +181,6 @@ import { useRouter } from "@/router";
 import * as os from "@/os";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { i18n } from "@/i18n";
-import { deepClone } from "@/scripts/clone";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { defaultStore } from "@/store";
 
@@ -204,7 +203,7 @@ const props = withDefaults(
 	}
 );
 
-let note = $ref(deepClone(props.note));
+let note = $ref(props.note);
 
 const isRenote =
 	note.renote != null &&
@@ -241,15 +240,12 @@ useNoteCapture({
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
-	os.post(
-		{
-			reply: appearNote,
-			animation: !viaKeyboard,
-		},
-		() => {
-			focus();
-		}
-	);
+	os.post({
+		reply: appearNote,
+		animation: !viaKeyboard,
+	}).then(() => {
+		focus();
+	});
 }
 
 function react(viaKeyboard = false): void {

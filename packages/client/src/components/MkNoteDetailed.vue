@@ -108,7 +108,7 @@ const props = defineProps<{
 
 const inChannel = inject("inChannel", null);
 
-let note = $ref(deepClone(props.note));
+let note = $ref(props.note);
 
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 
@@ -174,15 +174,12 @@ useNoteCapture({
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
-	os.post(
-		{
-			reply: appearNote,
-			animation: !viaKeyboard,
-		},
-		() => {
-			focus();
-		}
-	);
+	os.post({
+		reply: appearNote,
+		animation: !viaKeyboard,
+	}).then(() => {
+		focus();
+	});
 }
 
 function react(viaKeyboard = false): void {
@@ -309,19 +306,65 @@ if (appearNote.replyId) {
 	});
 }
 
-function onNoteReplied(noteData: NoteUpdatedEvent): void {
+async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
 	const { type, id, body } = noteData;
-	if (type === "replied" && id === appearNote.id) {
-		const { id: createdId } = body;
 
-		os.api("notes/show", {
-			noteId: createdId,
-		}).then((note) => {
-			if (note.replyId === appearNote.id) {
-				replies.value.unshift(note);
-				directReplies.value.unshift(note);
+	let found = -1;
+	if (id === appearNote.id) {
+		found = 0;
+	} else {
+		for (let i = 0; i < replies.value.length; i++) {
+			const reply = replies.value[i];
+			if (reply.id === id) {
+				found = i + 1;
+				break;
 			}
-		});
+		}
+	}
+
+	if (found === -1) {
+		return;
+	}
+
+	switch (type) {
+		case "replied":
+			const { id: createdId } = body;
+			const replyNote = await os.api("notes/show", {
+				noteId: createdId,
+			});
+
+			replies.value.splice(found, 0, replyNote);
+			if (found === 0) {
+				directReplies.value.unshift(replyNote);
+			}
+			break;
+
+		case "updated":
+			let updatedNote = appearNote;
+			if (found > 0) {
+				updatedNote = replies.value[found - 1];
+			}
+
+			const editedNote = await os.api("notes/show", {
+				noteId: id,
+			});
+
+			const keys = new Set<string>();
+			Object.keys(editedNote)
+				.concat(Object.keys(updatedNote))
+				.forEach((key) => keys.add(key));
+			keys.forEach((key) => {
+				updatedNote[key] = editedNote[key];
+			});
+			break;
+
+		case "deleted":
+			if (found === 0) {
+				isDeleted.value = true;
+			} else {
+				replies.value.splice(found - 1, 1);
+			}
+			break;
 	}
 }
 
@@ -330,19 +373,19 @@ document.addEventListener("wheel", () => {
 });
 
 onMounted(() => {
-	stream.on("noteUpdated", onNoteReplied);
+	stream.on("noteUpdated", onNoteUpdated);
 	isScrolling = false;
-	noteEl.scrollIntoView();
+	noteEl?.scrollIntoView();
 });
 
 onUpdated(() => {
 	if (!isScrolling) {
-		noteEl.scrollIntoView();
+		noteEl?.scrollIntoView();
 	}
 });
 
 onUnmounted(() => {
-	stream.off("noteUpdated", onNoteReplied);
+	stream.off("noteUpdated", onNoteUpdated);
 });
 </script>
 
