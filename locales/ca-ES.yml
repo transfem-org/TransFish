@@ -65,8 +65,8 @@ import: "Importar"
 export: "Exportar"
 files: "Fitxers"
 download: "Descarregar"
-driveFileDeleteConfirm: "Estàs segur que vols suprimir el fitxer \"{name}\"? Les publicacions\
-  \ associades a aquest fitxer adjunt també es suprimiran."
+driveFileDeleteConfirm: "Estàs segur que vols esborrar el fitxer \"{nom}\"? S'eliminarà\
+  \ de totes les notes que el continguin com a fitxer adjunt."
 unfollowConfirm: "Estàs segur que vols deixar de seguir {name}?"
 exportRequested: "Has sol·licitat una exportació. Això pot trigar una estona. S'afegirà\
   \ al teu Disc un cop completada."
@@ -214,36 +214,193 @@ _mfm:
   searchDescription: Mostra un quadre de cerca amb el text introduït prèviament.
   flip: Capgirar
   flipDescription: Capgira el contingut horitzontalment o verticalment.
+  plainDescription: Desactiva els efectes de tots els MFM continguts en aquest efecte
+    MFM.
+  scale: Escala
+  foreground: Color de primer pla
+  background: Color de fons
+  backgroundDescription: Canvia el color de fons del text.
+  scaleDescription: Escala el contingut en una quantitat especificada.
+  foregroundDescription: Canvia el color de primer pla del text.
+  plain: Pla
 _theme:
   keys:
     mention: "Menció"
     renote: "Impulsar"
+    fg: Text
+    navBg: Fons de la barra lateral
+    navFg: Text de la barra lateral
+    navHoverFg: Text de la barra lateral (Hover)
+    hashtag: Etiquetes
+    mentionMe: Mencions (Jo)
+    infoBg: Fons de l'informació
+    infoFg: Text informatiu
+    toastBg: Fons de notificació
+    listItemHoverBg: Fons de la llista d'elements (Hover)
+    driveFolderBg: Fons de la carpeta Disc
+    wallpaperOverlay: Superposició de fons de pantalla
+    badge: Distintiu
+    accentLighten: Accent (Lluminós)
+    accentDarken: Accent (enfosquit)
+    fgHighlighted: Text ressaltat
+    indicator: Indicador
+    focus: Centrar-se
+    panel: Panell
+    navIndicator: Indicador de la barra lateral
+    accent: Accent
+    header: Encapçalament
+    navActive: Text de la barra lateral (Active)
+    link: Enllaç
+    modalBg: Fons del modal
+    divider: Divisor
+    scrollbarHandle: Mànec de la barra de desplaçament
+    scrollbarHandleHover: Mànec de la barra de desplaçament (Hover)
+    dateLabelFg: Text de l'etiqueta de data
+    infoWarnBg: Fons d'advertència
+    cwBg: Fons del botó CW
+    cwFg: Text del botó CW
+    messageBg: Fons del xat
+    infoWarnFg: Text d'advertència
+    bg: Fons
+    shadow: Ombra
+    cwHoverBg: Fons del botó CW (Hover)
+    toastFg: Text de notificació
+    buttonHoverBg: Fons del botó (Hover)
+    inputBorder: Vora del camp d'entrada
+    buttonBg: Fons del botó
+  description: Descripció
+  installed: "{name} s'ha instal·lat"
+  installedThemes: Temes instal·lats
+  builtinThemes: Temes integrats
+  alreadyInstalled: Aquest tema ja està instal·lat
+  invalid: El format d'aquest tema no és vàlid
+  make: Fes un tema
+  defaultValue: 'Per defecte: {value}'
+  color: Color
+  refProp: Fes referència a una propietat
+  refConst: Fes referència a una constant
+  key: Clau
+  func: Funcions
+  funcKind: Tipus de funció
+  argument: Argument
+  basedProp: Propietat de referència
+  importInfo: Si introdueixes el codi de tema aquí, podeu importar-lo a l'editor de
+    temes
+  inputConstantName: Introdueix un nom per a aquesta constant
+  addConstant: Afegir una constant
+  code: Codi del tema
+  alpha: Opacitat
+  deleteConstantConfirm: De debò vols esborrar la constant {const}?
+  manage: Gestionar temes
+  explore: Explora Temes
+  darken: Enfosquir
+  base: Fundament
+  constant: Constant
+  lighten: Clar
+  install: Instal·lar un tema
 _sfx:
   note: "Posts"
   notification: "Notificacions"
+  antenna: Antenes
+  channel: Notificacions del canal
+  noteMy: Nota propia
+  chat: Xat
+  chatBg: Fons del xat
 _2fa:
   step2Url: "També pots inserir aquest enllaç i utilitzes una aplicació d'escriptori:"
+  alreadyRegistered: Ja heu registrat un dispositiu d'autenticació de dos factors.
+  registerDevice: Registrar un dispositiu nou
+  securityKeyInfo: A més de l'autenticació d'empremta digital o PIN, també podeu configurar
+    l'autenticació mitjançant claus de seguretat de maquinari compatibles amb FIDO2
+    per protegir encara més el vostre compte.
+  step4: A partir d'ara, qualsevol intent d'inici de sessió futur demanarà aquest
+    token d'inici de sessió.
+  registerKey: Registra una clau de seguretat
+  step1: En primer lloc, instal·la una aplicació d'autenticació (com ara {a} o {b})
+    al dispositiu.
+  step2: A continuació, escaneja el codi QR que es mostra en aquesta pantalla.
+  step3: Introdueix el token que t'ha proporcionat l'aplicació per finalitzar la configuració.
 _widgets:
   notifications: "Notificacions"
   timeline: "Línia de temps"
+  unixClock: Rellotge UNIX
+  federation: Federació
+  instanceCloud: Núvol d'instàncies
+  trends: Tendència
+  clock: Rellotge
+  calendar: Calendari
+  activity: Activitat
+  photos: Fotos
+  rssTicker: Ticker RSS
+  onlineUsers: Usuaris en línia
+  memo: Notes adhesives
+  digitalClock: Rellotge digital
+  postForm: Formulari de notes
+  slideshow: Presentació de diapositives
+  serverMetric: Mètriques del servidor
+  userList: Llista d'usuaris
+  rss: Lector d'RSS
+  jobQueue: Cua de treball
+  _userList:
+    chooseList: Selecciona una llista
+  aiscript: Consola AiScript
+  button: Botó
 _cw:
   show: "Carregar més"
+  files: '{count} fitxers'
+  hide: Amaga
+  chars: '{count} caràcters'
 _visibility:
   followers: "Seguidors"
+  publicDescription: La teva nota serà visible per a tots els usuaris
+  localOnly: Només Local
+  specified: Directe
+  home: Sense llistar
+  homeDescription: Publica només a la línea de temps local
+  followersDescription: Fes visible només per als teus seguidors
+  specifiedDescription: Fer visible només per a usuaris determinats
+  public: Públic
+  localOnlyDescription: No és visible per als usuaris remots
 _profile:
   username: "Nom d'usuari"
+  metadataEdit: Editar informació addicional
+  youCanIncludeHashtags: També pots incloure etiquetes al teu perfil.
+  metadata: Informació adicional
+  description: Perfil
+  metadataLabel: Etiqueta
+  metadataContent: Contingut
+  changeAvatar: Canvia l'avatar
+  changeBanner: Canvia el banner
+  locationDescription: Si primer introduïu la vostra ciutat, es mostrarà l'hora local
+    a altres usuaris.
+  name: Nom
+  metadataDescription: Fent servir això, podràs mostrar camps d'informació addicionals
+    al vostre perfil.
 _exportOrImport:
   followingList: "Seguint"
   muteList: "Silencia"
   blockingList: "Bloqueja"
   userLists: "Llistes"
+  excludeMutingUsers: Exclou els usuaris silenciats
+  allNotes: Totes les notes
+  excludeInactiveUsers: Exclou usuaris inactius
 _pages:
   script:
     categories:
       list: "Llistes"
+      flow: Control de flux
+      random: Aleatori
+      value: Valors
+      fn: Funcions
+      text: Operacions de text
+      convert: Transformacions
+      logical: Operació lògica
+      operation: Càlcul
+      comparison: Comparació
     blocks:
       _join:
         arg1: "Llistes"
+        arg2: Separador
       _randomPick:
         arg1: "Llistes"
       _dailyRandomPick:
@@ -253,6 +410,7 @@ _pages:
         arg1: Llavor
       _pick:
         arg1: "Llistes"
+        arg2: Posició
       _listLen:
         arg1: "Llistes"
       add: Afegir
@@ -345,8 +503,179 @@ _pages:
         arg2: Probabilitat
       seedRandomPick: Tria aleatòriament de la llista (amb llavor)
       multiply: Multiplicar
+      text: Text
+      _strPick:
+        arg1: Text
+        arg2: Ubicació de la cadena
+      strPick: Extreure cadena
+      strReplace: Cadena de substitució
+      _strReplace:
+        arg1: Text
+        arg3: Substitueix per
+        arg2: Text a substituir
+      strReverse: Voltejar text
+      _strReverse:
+        arg1: Text
+      join: Concatenació de textos
+      pick: Selecciona de la llista
+      listLen: Obtenir la longitud de la llista
+      stringToNumber: Text a número
+      number: Número
+      _stringToNumber:
+        arg1: Text
+      splitStrByLine: Dividir el text per salts de línia
+      _fn:
+        slots: Ranures
+        slots-info: Separa cada ranura amb un salt de línia
+        arg1: Sortida
+      aiScriptVar: Variable AiScript
+      fn: Funció
+      for: Repetir
+      _numberToString:
+        arg1: Número
+      _DRPWPM:
+        arg1: Llista de text
+      numberToString: Número a text
+      _splitStrByLine:
+        arg1: Text
+      ref: Variable
+      DRPWPM: Tria aleatòriament d'una llista ponderada (Canvis un cop al dia per
+        a cada usuari)
+      _for:
+        arg1: Nombre de vegades a repetir
+        arg2: Acció
+      strLen: Longitud del text
+      multiLineText: Text (multilínia)
+      _strLen:
+        arg1: Text
+      textList: Llista de text
+      _textList:
+        info: Separa cada ranura amb un salt de línia
     types:
       array: "Llistes"
+      stringArray: Llista de text
+      boolean: Bandera
+      string: Text
+      number: Número
+    emptySlot: Ranura buida
+    enviromentVariables: Variables d'entorn
+    pageVariables: Variables de pàgina
+    argVariables: Ranures d'entrada
+    thereIsEmptySlot: L'espai {slot} està buit!
+    typeError: L'espai {slot} accepta valors del tipus "{expect}", però el valor proporcionat
+      és del tipus "{actual}"!
+  newPage: Crea una pàgina nova
+  editPage: Edita aquesta pàgina
+  readPage: S'està veient la font d'aquesta pàgina
+  created: Pàgina creada correctament
+  updated: Pàgina editada correctament
+  invalidNameText: Assegurat que el títol de la pàgina no estigui buit
+  editThisPage: Edita aquesta pàgina
+  deleted: Pàgina suprimida correctament
+  pageSetting: Configuració de la pàgina
+  nameAlreadyExists: L'URL de la pàgina especificat ja existeix
+  invalidNameTitle: L'URL de la pàgina especificat no és vàlid
+  viewPage: Consulta la teva pàgina
+  like: M'agrada
+  viewSource: Veure la font
+  summary: Resum de la pàgina
+  alignCenter: Centrar elements
+  hideTitleWhenPinned: Amaga el títol de la pàgina quan estigui fixat al perfil
+  font: Tipus de lletra
+  fontSerif: Serif
+  fontSansSerif: Sans Serif
+  eyeCatchingImageSet: Estableix una miniatura
+  eyeCatchingImageRemove: Suprimeix la miniatura
+  chooseBlock: Afegeix un bloc
+  selectType: Selecciona un tipus
+  enterVariableName: Introduïu un nom de variable
+  blocks:
+    section: Secció
+    text: Text
+    textarea: Àrea de text
+    image: Imatges
+    if: Si
+    _if:
+      variable: Variable
+    post: Formulari de notes
+    _post:
+      text: Contingut
+      attachCanvasImage: Adjuntar imatge de llenç
+      canvasId: ID del llenç
+    _textInput:
+      name: Nom de la variable
+      text: Títol
+      default: Valor per defecte
+    textInput: Entrada de text
+    _textareaInput:
+      name: Nom de la variable
+      text: Títol
+      default: Valor per defecte
+    textareaInput: Entrada de text multilínia
+    numberInput: Entrada numèrica
+    _note:
+      id: ID de la nota
+      idDescription: També podeu enganxar l'URL de la nota aquí.
+      detailed: Vista detallada
+    switch: Canviar
+    canvas: Llenç
+    _canvas:
+      id: Identificador de llenç
+      width: Amplada
+      height: Alçada
+    note: Nota incrustada
+    _counter:
+      name: Nom de la variable
+      text: Títol
+      inc: Pas
+    _button:
+      text: Títol
+      colored: De colors
+      action: Comportament quan es prem el botó
+      _action:
+        _dialog:
+          content: Contingut
+        resetRandom: Restableix la llavor aleatòria
+        pushEvent: Envia un esdeveniment
+        _pushEvent:
+          event: Nom de l'esdeveniment
+          message: Missatge que s'ha de mostrar quan s'activa
+          variable: Variable per enviar
+          no-variable: Cap
+        dialog: Mostra un diàleg
+        callAiScript: Invoca AiScript
+        _callAiScript:
+          functionName: Nom de la funció
+    _switch:
+      default: Valor per defecte
+      name: Nom de la variable
+      text: Títol
+    counter: Comptador
+    _numberInput:
+      name: Nom de la variable
+      text: Títol
+      default: Valor per defecte
+    button: Botó
+    _radioButton:
+      name: Nom de la variable
+      title: Títol
+      values: Llista d'opcions separades per salts de línia
+      default: Valor per defecte
+    radioButton: Elecció
+  variableNameIsAlreadyUsed: Aquest nom de variable ja està en ús
+  contentBlocks: Contingut
+  inputBlocks: Entrada
+  specialBlocks: Especial
+  variables: Variables
+  title: Títol
+  url: URL de la pàgina
+  unlike: Elimina m'agrada
+  my: Les meves pàgines
+  liked: Pàgines que m'han agradat
+  content: Bloc de pàgines
+  featured: Popular
+  inspector: Inspector
+  contents: Contingut
 _notification:
   youWereFollowed: "t'ha seguit"
   _types:
@@ -355,15 +684,61 @@ _notification:
     renote: "Impulsos"
     quote: "Citar"
     reaction: "Reaccions"
+    all: Tots
+    reply: Respostes
+    pollEnded: S'acaben les enquestes
+    receiveFollowRequest: S'han rebut peticions de seguiment
+    followRequestAccepted: Sol·licituds de seguiment acceptades
+    groupInvited: Invitacions per a grups
+    app: Notificacions d'aplicacions enllaçades
+    pollVote: Votacions a les enquestes
   _actions:
     reply: "Respondre"
     renote: "Impulsos"
+    followBack: et va seguir de tornada
+  youGotQuote: "{name} t'ha citat"
+  fileUploaded: El fitxer s'ha penjat correctament
+  youGotMention: "{nom} t'ha esmentat"
+  youGotReply: "{name} t'ha respost"
+  youRenoted: Impuls de {name}
+  youGotPoll: '{name} ha votat a la teva enquesta'
+  youGotMessagingMessageFromUser: "{name} t'ha enviat un missatge de xat"
+  youGotMessagingMessageFromGroup: S'ha enviat un missatge de xat al grup {name}
+  youReceivedFollowRequest: Has rebut una sol·licitud de seguiment
+  yourFollowRequestAccepted: S'ha acceptat la vostra sol·licitud de seguiment
+  pollEnded: Es resultat de la enquesta ja està disponible
+  emptyPushNotificationMessage: Les notificacions push s'han actualitzat
+  youWereInvitedToGroup: "{userName} t'ha convidat a un grup"
 _deck:
   _columns:
     notifications: "Notificacions"
     tl: "Línia de temps"
     list: "Llistes"
     mentions: "Mencions"
+    widgets: Ginys
+    main: Principal
+    antenna: Antenes
+    direct: Missatges directes
+  alwaysShowMainColumn: Mostra sempre la columna principal
+  columnAlign: Alinear columnes
+  introduction: Crea la interfície perfecta per a tu organitzant columnes lliurement!
+  swapRight: Canvia amb la columna de la dreta
+  swapUp: Canvia amb la columna de d'alt
+  swapDown: Canvia amb la columna de sota
+  stackLeft: Apilar amb la columna de l'esquerra
+  popRight: Treu a la dreta
+  profile: Espai de treball
+  newProfile: Nou espai de treball
+  deleteProfile: Suprimir l'espai de treball
+  introduction2: Feu clic al + a la dreta de la pantalla per afegir noves columnes
+    sempre que vulgueu.
+  widgetsIntroduction: Selecciona "Editar ginys" al menú de columnes i afegeix un
+    giny.
+  addColumn: Afegeix una columna
+  configureColumn: Configuració de columnes
+  swapLeft: Canvia amb la columna de l'esquerra
+  renameProfile: Canvia el nom de l'espai de treball
+  nameAlreadyExists: Aquest nom d'espai de treball ja existeix.
 blockConfirm: Estás segur que vols bloquejar aquest compte?
 unsuspendConfirm: Estás segur que vols treure la suspensió d'aquesta compte?
 unblockConfirm: Estás segur que vols treure el bloqueig d'aquesta compte?
@@ -577,9 +952,10 @@ blockedInstances: Instàncies Bloquejades
 blockedInstancesDescription: Llista les adreces de les instàncies que vols bloquejar.
   Les instàncies de la llista no podrán comunicarse amb aquesta instància.
 hiddenTags: Etiquetes Ocultes
-hiddenTagsDescription: 'Llista de les etiquetes (sense el #) que vulguis amagar de
-  les tendències i el explorador. Les etiquetes amagades es poden descobrir per altres
-  mitjans.'
+hiddenTagsDescription: 'Enumereu els etiquetes (sense el #) de les etiquetes que voleu
+  ocultar de tendències i explorar. Les etiquetes ocultes encara es poden descobrir
+  per altres mitjans. Les instàncies bloquejades no es veuen afectades encara que
+  s''enumeren aquí.'
 noInstances: No hi han instàncies
 defaultValueIs: 'Per defecte: {value}'
 suspended: Suspès
@@ -632,7 +1008,7 @@ pinnedClipId: ID del clip que vols fixar
 hcaptcha: hCaptcha
 manageAntennas: Gestiona les Antenes
 name: Nom
-notesAndReplies: Articles i respostes
+notesAndReplies: Notes i respostes
 silence: Posa en silenci
 withFiles: Amb fitxers
 popularUsers: Usuaris populars
@@ -939,7 +1315,7 @@ enabled: Activat
 configure: Configurar
 noBotProtectionWarning: La protecció contra bots no està configurada.
 ads: Anuncis
-ratio: Ratio
+ratio: Ràtio
 global: Global
 sent: Enviat
 received: Rebut
@@ -1422,3 +1798,244 @@ indexFrom: Índex a partir de l'identificador de notes (deixeu en blanc per inde
   cada publicació)
 indexNotice: Ara indexant. Això probablement trigarà una estona, si us plau, no reinicieu
   el servidor durant almenys una hora.
+_instanceTicker:
+  none: No mostrar mai
+  remote: Mostra per a usuaris remots
+  always: Mostra sempre
+_serverDisconnectedBehavior:
+  nothing: No fer res
+  quiet: Mostra un avís discret
+  reload: Torna a carregar automàticament
+  dialog: Mostra el diàleg d'avís
+_channel:
+  create: Crea un canal
+  edit: Edita el canal
+  setBanner: Establir bàner
+  removeBanner: Suprimeix el bàner
+  featured: Tendència
+  owned: Propietari
+  usersCount: '{n} Participants'
+  following: Seguit
+  notesCount: '{n} Notes'
+_instanceMute:
+  instanceMuteDescription: Això silenciarà les notes o els impulsos de les instàncies
+    indicades, incloses les dels usuaris que responguin a un usuari des d'una instància
+    silenciada.
+  title: Amaga les notes de les instàncies de la llista.
+  instanceMuteDescription2: Separar amb noves línies
+  heading: Llista d'instàncies que cal silenciar
+_ago:
+  future: Futur
+  justNow: Ara mateix
+  minutesAgo: Fa {n}m
+  hoursAgo: Fa {n}h
+  daysAgo: Fa {n}d
+  secondsAgo: Fa {n}s
+  weeksAgo: Fa {n}s
+  monthsAgo: Fa {n}me
+  yearsAgo: Fa {n}a
+_time:
+  second: Segon(s)
+  minute: Minut(s)
+  hour: Hora(s)
+  day: Dia(s)
+_tutorial:
+  step5_4: La línea de temps Local de {icon} és on pots veure notes de tots els altres
+    usuaris en aquesta instància.
+  step5_2: La teva instància té activades {timelines} diferents.
+  step5_3: La línia de temps d'Inici {icon} és on pots veure notes dels comptes que
+    seguiu i de tots els altres en aquest cas. Si prefereixes que la teva línia de
+    temps d'inici només mostri notes dels comptes que seguiu, podeu canviar-ho fàcilment
+    a Configuració!
+  step5_6: La línia de temps de Recomanats {icon} és on pots veure les notes de les
+    instàncies que els administradors recomanen.
+  step5_7: La línia de temps Global {icon} és on pots veure les notes de totes les
+    altres instàncies connectades.
+  step6_1: Aleshores, què és aquest lloc?
+  step6_4: Ara ves, explora i diverteix-te!
+  step1_2: Anem a fer la configuració. Estaràs en funcionament en un tres i no res!
+  title: Com utilitzar Calckey
+  step1_1: Benvingut!
+  step2_1: En primer lloc, empleneu el vostre perfil.
+  step4_1: Anem a treure't allà fora.
+  step5_5: La línea de temps Social {icon} és on només pots veure notes dels comptes
+    que segueixes.
+  step6_3: Cada servidor funciona de diferents maneres, i no tots els servidors executen
+    Calckey. Aquest sí que sí! És una mica complicat, però ho aconseguiràs en poc
+    temps.
+  step2_2: Proporcionar informació sobre qui sou facilitarà que altres puguin saber
+    si volen veure les vostres notes o seguir-vos.
+  step3_1: Ara toca seguir a algunes persones!
+  step3_2: "Les teves líneas de temps domèstiques i socials es basen en qui seguiu,\
+    \ així que proveu de seguir un parell de comptes per començar.\nFeu clic al cercle\
+    \ més situat a la part superior dreta d'un perfil per seguir-los."
+  step4_2: Per a la vostra primera nota, a algunes persones els agrada fer una nota
+    de {introduction} o un senzill "Hola món!"
+  step5_1: Línies de temps, línies de temps a tot arreu!
+  step6_2: Bé, no només t'has unit a Calckey. T'has unit a un portal al Fediverse,
+    una xarxa interconnectada de milers de servidors, anomenats "instàncies".
+_permissions:
+  "read:account": Consulta la informació del teu compte
+  "read:blocks": Consulta la teva llista d'usuaris bloquejats
+  "write:account": Editar la informació del compte
+  "read:drive": Accedir als fitxers i carpetes del Disc
+  "read:messaging": Consulta els teus xats
+  "write:following": Segueix o deixa de seguir altres comptes
+  "write:mutes": Editar la teva llista d'usuaris silenciats
+  "read:notifications": Consulta les teves notificacions
+  "write:notifications": Gestiona les teves notificacions
+  "write:user-groups": Editar o suprimir grups d'usuaris
+  "write:blocks": Editar la llista d'usuaris bloquejats
+  "write:notes": Redactar o suprimir notes
+  "write:channels": Editar els teus canals
+  "read:gallery-likes": Consulta la llista de notes de la galeria que t'agraden
+  "write:drive": Editar o suprimir fitxers i carpetes del Disc
+  "read:favorites": Consulta la teva llista d'adreces d'interès
+  "write:favorites": Editeu la teva llista d'adreces d'interès
+  "write:messaging": Escriu o suprimeix missatges de xat
+  "read:mutes": Consulta la teva llista d'usuaris silenciats
+  "write:reactions": Edita les teves reaccions
+  "write:votes": Vota en una enquesta
+  "write:pages": Editeu o suprimeix la teva pàgina
+  "write:page-likes": Editar les pàgines que t'agraden
+  "read:user-groups": Consulta els teus grups d'usuaris
+  "read:channels": Consulta els teus canals
+  "read:gallery": Consulta la teva galeria
+  "write:gallery": Edita la teva galeria
+  "write:gallery-likes": Edita la llista de notes de la galeria que t'agraden
+  "read:following": Consulta la informació sobre a qui segueixes
+  "read:reactions": Consulta les teves reaccions
+  "read:pages": Consulta la teva pàgina
+  "read:page-likes": Veure les pàgines que t'agraden
+_poll:
+  noOnlyOneChoice: Calen almenys dues opcions
+  canMultipleVote: Permet seleccionar diverses opcions
+  expiration: Finalitzar l'enquesta
+  after: Acaba després...
+  duration: Durada
+  votesCount: '{n} vots'
+  totalVotes: '{n} vots en total'
+  showResult: Veure resultats
+  choiceN: Opció {n}
+  noMore: No es poden afegir més opcions
+  infinite: Mai
+  at: Acaba el...
+  deadlineDate: Data de finalització
+  deadlineTime: Temps
+  remainingHours: Queden {h} hora(s) {m} minut(s)
+  remainingDays: Queden {d} dia(s) {h} hores
+  remainingMinutes: Queden {m} minut(s) {s} segons
+  voted: Votat
+  closed: S'ha acabat
+  remainingSeconds: Queden {s} segons
+  vote: Vota
+_postForm:
+  _placeholders:
+    d: Què vols dir?
+    e: Comença a escriure...
+    f: Esperant que escriguis...
+    b: Què passa al teu voltant?
+    c: En què penses?
+    a: Què et portes entre mans?
+  quotePlaceholder: Cita aquesta nota...
+  replyPlaceholder: Respon a aquesta nota...
+  channelPlaceholder: Publica en un canal...
+_charts:
+  federation: Federació
+  usersIncDec: Diferència en el nombre d'usuaris
+  apRequest: Sol·licituds
+  usersTotal: Nombre total d'usuaris
+  activeUsers: Usuaris actius
+  notesIncDec: Diferència en el nombre de notes
+  localNotesIncDec: Diferència en el nombre de notes locals
+  remoteNotesIncDec: Diferència en el nombre de notes remotes
+  notesTotal: Nombre total de notes
+  filesIncDec: Diferència en el nombre de fitxers
+  filesTotal: Nombre total de fitxers
+  storageUsageTotal: Ús total d'emmagatzematge
+  storageUsageIncDec: Diferència en l'ús d'emmagatzematge
+_instanceCharts:
+  requests: Sol·licituds
+  users: Diferència en el nombre d'usuaris
+  usersTotal: Nombre acumulat d'usuaris
+  notes: Diferència en el nombre de notes
+  ffTotal: Nombre acumulat d'usuaris seguits/seguidors seguits
+  cacheSize: Diferència en la mida de la memòria cau
+  cacheSizeTotal: Mida total acumulada de la memòria cau
+  files: Diferència en el nombre de fitxers
+  filesTotal: Nombre acumulat de fitxers
+  notesTotal: Nombre acumulat de notes
+  ff: "Diferència en el nombre d'usuaris seguits/seguidors seguits "
+_timelines:
+  home: Inici
+  local: Local
+  recommended: Recomanat
+  social: Social
+  global: Global
+_menuDisplay:
+  hide: Amagar
+  top: Superior
+  sideFull: Costat
+  sideIcon: Costat (Icones)
+_wordMute:
+  muteWords: Paraules silenciades
+  muteWordsDescription: Separeu amb espais per a una condició AND o amb salts de línia
+    per a una condició OR.
+  soft: Suau
+  hard: Dur
+  muteWordsDescription2: Envolta les paraules clau amb barres inclinades per utilitzar
+    expressions regulars.
+  softDescription: Amaga les publicacions que compleixen les condicions establertes
+    de la línia de temps.
+  hardDescription: Evita que les publicacions que compleixin les condicions establertes
+    s'afegeixin a la línia de temps. A més, aquestes publicacions no s'afegiran a
+    la línia de temps encara que es modifiquin les condicions.
+  mutedNotes: Notes silenciades
+_auth:
+  shareAccessAsk: Estàs segur que vols autoritzar aquesta aplicació per accedir al
+    teu compte?
+  shareAccess: Vols autoritzar "{name}" per accedir a aquest compte?
+  permissionAsk: Aquesta aplicació sol·licita els següents permisos
+  callback: Tornant a l'aplicació
+  denied: Accés denegat
+  pleaseGoBack: Si us plau, torneu a l'aplicació
+  copyAsk: Enganxeu el següent codi d'autorització a l'aplicació
+_weekday:
+  wednesday: Dimecres
+  saturday: Dissabte
+  monday: Dilluns
+  tuesday: Dimarts
+  friday: Divendres
+  sunday: Diumenge
+  thursday: Dijous
+_messaging:
+  groups: Grups
+  dms: Privat
+_antennaSources:
+  all: Totes les notes
+  homeTimeline: Notes dels usuaris que segueixes
+  users: Notes d'usuaris concrets
+  userGroup: Notes d'usuaris d'un grup determinat
+  userList: Notes d'una llista determinada d'usuaris
+  instances: Notes de tots els usuaris d'una instància
+_relayStatus:
+  requesting: Pendent
+  accepted: Acceptat
+  rejected: Rebutjat
+_apps:
+  crossPlatform: Multiplataforma
+  mobile: Mòbil
+  firstParty: Primer partit
+  secondClass: Segona classe
+  thirdClass: Tercera classe
+  pwa: Instal·lar PWA
+  kaiteki: Kaiteki
+  milktea: Milktea
+  missLi: MissLi
+  mona: Mona
+  lesskey: Lesskey
+  firstClass: Primera classe
+  free: Gratuït
+  paid: Pagament
+  theDesk: TheDesk
+  apps: Aplicacions
