@@ -589,6 +589,12 @@ export async function updateNote(value: string | IObject, resolver?: Resolver) {
 							update.comment = altText;
 						}
 
+						// Don't unmark previously marked sensitive files,
+						// but if edited post contains sensitive marker, update it.
+						if (post.sensitive && !file.isSensitive) {
+							update.isSensitive = post.sensitive;
+						}
+
 						if (notEmpty(update)) {
 							await DriveFiles.update(file.id, update);
 							publishing = true;
