@@ -1263,7 +1263,7 @@ switchUi: Interfície d'usuari
 createNewClip: Crear un clip nou
 unclip: Treure clip
 public: Públic
-renotesCount: Nombre de impulsos fets
+renotesCount: Nombre d'impulsos fets
 sentReactionsCount: Nombre de reaccions fetes
 receivedReactionsCount: Nombre de reaccions rebudes
 pollVotesCount: Nombre de vots fets en enquestes
