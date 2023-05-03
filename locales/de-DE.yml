@@ -1,10 +1,8 @@
 _lang_: "Deutsch"
-headlineMisskey: "Ein durch Posts verbundenes Netzwerk"
-introMisskey: "Willkommen! Calckey ist eine dezentralisierte Open-Source Microblogging-Platform.\n\
-  Verfasse „Posts“ um mitzuteilen, was gerade passiert oder um Ereignisse mit anderen\
-  \ zu teilen. \U0001F4E1\nMit „Reaktionen“ kannst du außerdem schnell deine Gefühle\
-  \ über Posts anderer Benutzer zum Ausdruck bringen. \U0001F44D\nEine neue Welt wartet\
-  \ auf dich! \U0001F680"
+headlineMisskey: "Eine dezentralisierte Open-Source Social Media Plattform, die für\
+  \ immer gratis bleibt! \U0001F680"
+introMisskey: "Willkommen! Calckey ist eine dezentralisierte Open-Source Social Media\
+  \ Plattform, die für immer gratis bleibt!\U0001F680"
 monthAndDay: "{day}.{month}."
 search: "Suchen"
 notifications: "Benachrichtigungen"
@@ -26,9 +24,9 @@ otherSettings: "Weitere Einstellungen"
 openInWindow: "In einem Fenster öffnen"
 profile: "Profil"
 timeline: "Chronik"
-noAccountDescription: "Dieser Nutzer hat seine Profilbeschreibung noch nicht ausgefüllt"
+noAccountDescription: "Dieser Nutzer hat seine Profilbeschreibung noch nicht ausgefüllt."
 login: "Anmelden"
-loggingIn: "Du wirst angemeldet …"
+loggingIn: "Du wirst angemeldet"
 logout: "Abmelden"
 signup: "Registrieren"
 uploading: "Wird hochgeladen …"
@@ -57,7 +55,7 @@ reply: "Antworten"
 loadMore: "Mehr laden"
 showMore: "Mehr anzeigen"
 showLess: "Schließen"
-youGotNewFollower: "ist dir gefolgt"
+youGotNewFollower: "folgt dir nun"
 receiveFollowRequest: "Follow-Anfrage erhalten"
 followRequestAccepted: "Follow-Anfrage akzeptiert"
 mention: "Erwähnung"
@@ -68,8 +66,8 @@ import: "Import"
 export: "Export"
 files: "Dateien"
 download: "Herunterladen"
-driveFileDeleteConfirm: "Möchtest du die Datei „{name}“ wirklich löschen? Notizen\
-  \ mit dieser Datei werden ebenso verschwinden."
+driveFileDeleteConfirm: "Möchtest du die Datei „{name}“ wirklich löschen? Es wird\
+  \ aus allen Notizen entfernt, die es als Anhang enthalten."
 unfollowConfirm: "Möchtest du {name} nicht mehr folgen?"
 exportRequested: "Du hast einen Export angefragt. Dies kann etwas Zeit in Anspruch\
   \ nehmen. Sobald der Export abgeschlossen ist, wird er deiner Drive hinzugefügt."
@@ -120,11 +118,11 @@ add: "Hinzufügen"
 reaction: "Reaktionen"
 reactionSetting: "In der Reaktionsauswahl anzuzeigende Reaktionen"
 reactionSettingDescription2: "Ziehe um Anzuordnen, klicke um zu löschen, drücke „+“\
-  \ um hinzuzufügen"
+  \ um hinzuzufügen."
 rememberNoteVisibility: "Notizsichtbarkeit merken"
 attachCancel: "Anhang entfernen"
 markAsSensitive: "Als NSFW markieren"
-accountMoved: "Benutzer hat zu einem anderen Account gewechselt."
+accountMoved: "Benutzer hat zu einem anderen Account gewechselt:"
 unmarkAsSensitive: "Als nicht NSFW markieren"
 enterFileName: "Dateinamen eingeben"
 mute: "Stummschalten"
@@ -157,7 +155,7 @@ cacheRemoteFilesDescription: "Ist diese Einstellung deaktiviert, so werden Datei
 flagAsBot: "Als Bot markieren"
 flagAsBotDescription: "Aktiviere diese Option, falls dieses Benutzerkonto durch ein\
   \ Programm gesteuert wird. Falls aktiviert, agiert es als Flag für andere Entwickler\
-  \ zur Verhinderung von endlosen Kettenreaktionen mit anderen Bots und lässt Misskeys\
+  \ zur Verhinderung von endlosen Kettenreaktionen mit anderen Bots und lässt Calckeys\
   \ interne Systeme dieses Benutzerkonto als Bot behandeln."
 flagAsCat: "Als Katze markieren"
 flagAsCatDescription: "Aktiviere diese Option, um dieses Benutzerkonto als Katze zu\
@@ -228,8 +226,8 @@ blockedUsers: "Blockierte Benutzer"
 noUsers: "Keine Benutzer gefunden"
 editProfile: "Profil bearbeiten"
 noteDeleteConfirm: "Möchtest du diese Notiz wirklich löschen?"
-pinLimitExceeded: "Du kannst nicht noch mehr Notizen anheften."
-intro: "Misskey ist installiert! Lass uns nun ein Administratorkonto einrichten."
+pinLimitExceeded: "Du kannst nicht noch mehr Notizen anheften"
+intro: "Calckey ist installiert! Lass uns nun ein Administratorkonto einrichten."
 done: "Fertig"
 processing: "In Bearbeitung …"
 preview: "Vorschau"
@@ -374,7 +372,7 @@ pinnedUsersDescription: "Gib durch Leerzeichen getrennte Benutzer an, die an die
   Erkunden\"-Seite angeheftet werden sollen."
 pinnedPages: "Angeheftete Seiten"
 pinnedPagesDescription: "Gib durch Leerzeilen getrennte Pfäde zu Seiten an, die an\
-  \ die Startseite dieser Instanz angeheftet werden sollen.\n"
+  \ die Startseite dieser Instanz angeheftet werden sollen."
 pinnedClipId: "ID des anzuheftenden Clips"
 pinnedNotes: "Angeheftete Notizen"
 hcaptcha: "hCaptcha"
@@ -396,7 +394,7 @@ antennaKeywords: "Zu beobachtende Schlüsselwörter"
 antennaExcludeKeywords: "Zu ignorierende Schlüsselwörter"
 antennaKeywordsDescription: "Zum Nutzen einer \"UND\"-Verknüpfung Einträge mit Leerzeichen\
   \ trennen, zum Nutzen einer \"ODER\"-Verknüpfung Einträge mit einem Zeilenumbruch\
-  \ trennen"
+  \ trennen."
 notifyAntenna: "Über neue Notizen benachrichtigen"
 withFileAntenna: "Nur Notizen mit Dateien"
 enableServiceworker: "Push-Benachrichtigungen im Browser aktivieren"
@@ -420,7 +418,7 @@ exploreFediverse: "Das Fediverse erkunden"
 popularTags: "Beliebte Schlagwörter"
 userList: "Liste"
 about: "Über"
-aboutMisskey: "Über Misskey"
+aboutMisskey: "Über Calckey"
 administrator: "Administrator"
 token: "Token"
 twoStepAuthentication: "Zwei-Faktor-Authentifizierung"
@@ -477,7 +475,7 @@ checking: "Wird überprüft …"
 available: "Verfügbar"
 unavailable: "Unverfügbar"
 usernameInvalidFormat: "Du kannst Klein- und Großbuchstaben, Zahlen sowie Unterstriche\
-  \ verwenden"
+  \ verwenden."
 tooShort: "Zu kurz"
 tooLong: "Zu lang"
 weakPassword: "Schwaches Passwort"
@@ -528,7 +526,7 @@ objectStorage: "Object Storage"
 useObjectStorage: "Object Storage verwenden"
 objectStorageBaseUrl: "Basis-URL"
 objectStorageBaseUrlDesc: "Die als Referenz verwendete URL. Verwendest du einen CDN\
-  \ oder Proxy, gib dessen URL an. Für S3 verwende 'https://<bucket>.s3.amazonaws.com'.\
+  \ oder Proxy, gib dessen URL an. \nFür S3 verwende 'https://<bucket>.s3.amazonaws.com'.\
   \ Für GCS o.ä. verwende 'https://storage.googleapis.com/<bucket>'."
 objectStorageBucket: "Bucket"
 objectStorageBucketDesc: "Bitte gib den Namen des Buckets an, der bei deinem Anbieter\
@@ -576,7 +574,7 @@ ascendingOrder: "Aufsteigende Reihenfolge"
 descendingOrder: "Absteigende Reihenfolge"
 scratchpad: "Testumgebung"
 scratchpadDescription: "Die Testumgebung bietet einen Bereich für AiScript-Experimente.\
-  \ Dort kannst du AiScript schreiben, ausführen sowie dessen Auswirkungen auf Misskey\
+  \ Dort kannst du AiScript schreiben, ausführen sowie dessen Auswirkungen auf Calckey\
   \ überprüfen."
 output: "Ausgabe"
 script: "Skript"
@@ -652,7 +650,7 @@ smtpPass: "Passwort"
 emptyToDisableSmtpAuth: "Benutzername und Passwort leer lassen, um SMTP-Verifizierung\
   \ zu deaktivieren"
 smtpSecure: "Für SMTP-Verbindungen implizit SSL/TLS verwenden"
-smtpSecureInfo: "Schalte dies aus, falls du STARTTLS verwendest."
+smtpSecureInfo: "Schalte dies aus, falls du STARTTLS verwendest"
 testEmail: "Emailversand testen"
 wordMute: "Wortstummschaltung"
 regexpError: "Fehler in einem regulären Ausdruck"
@@ -705,7 +703,7 @@ defaultNavigationBehaviour: "Standardnavigationsverhalten"
 editTheseSettingsMayBreakAccount: "Bei Bearbeitung dieser Einstellungen besteht die\
   \ Gefahr, dein Benutzerkonto zu beschädigen."
 instanceTicker: "Instanz-Informationen von Notizen"
-waitingFor: "Warte auf {x} …"
+waitingFor: "Warte auf {x}"
 random: "Zufällig"
 system: "System"
 switchUi: "Layout"
@@ -810,7 +808,7 @@ emailNotification: "Email-Benachrichtigungen"
 publish: "Veröffentlichen"
 inChannelSearch: "In Kanal suchen"
 useReactionPickerForContextMenu: "Reaktionsauswahl durch Rechtsklick öffnen"
-typingUsers: "{users} ist/sind am schreiben …"
+typingUsers: "{users} ist/sind am schreiben"
 jumpToSpecifiedDate: "Zu bestimmtem Datum springen"
 showingPastTimeline: "Es wird eine alte Chronik angezeigt"
 clear: "Zurückkehren"
@@ -876,11 +874,11 @@ hashtags: "Hashtags"
 troubleshooting: "Problembehandlung"
 useBlurEffect: "Weichzeichnungseffekt in der Benutzeroberfläche verwenden"
 learnMore: "Mehr erfahren"
-misskeyUpdated: "Misskey wurde aktualisiert!"
+misskeyUpdated: "Calckey wurde aktualisiert!"
 whatIsNew: "Änderungen anzeigen"
 translate: "Übersetzen"
 translatedFrom: "Aus {x} übersetzt"
-accountDeletionInProgress: "Die Löschung deines Benutzerkontos ist momentan in Bearbeitung."
+accountDeletionInProgress: "Die Löschung deines Benutzerkontos ist momentan in Bearbeitung"
 usernameInfo: "Ein Name, durch den dein Benutzerkonto auf diesem Server identifiziert\
   \ werden kann. Du kannst das Alphabet (a~z, A~Z), Ziffern (0~9) oder Unterstriche\
   \ (_) verwenden. Benutzernamen können später nicht geändert werden."
@@ -967,7 +965,7 @@ statusbar: "Statusleiste"
 pleaseSelect: "Wähle eine Option"
 reverse: "Umkehren"
 colored: "Farbig"
-refreshInterval: "Aktualisierungsrate"
+refreshInterval: "Aktualisierungsrate "
 label: "Beschriftung"
 type: "Art"
 speed: "Geschwindigkeit"
@@ -1079,7 +1077,7 @@ _preferencesBackups:
   createdAt: "Erstellt am: {date} {time}"
   updatedAt: "Aktualisiert am: {date} {time}"
   cannotLoad: "Laden fehlgeschlagen"
-  invalidFile: "Ungültiges Dateiformat."
+  invalidFile: "Ungültiges Dateiformat"
 _registry:
   scope: "Scope"
   key: "Schlüssel"
@@ -1087,13 +1085,13 @@ _registry:
   domain: "Domain"
   createKey: "Schlüssel erstellen"
 _aboutMisskey:
-  about: "Misskey ist Open-Source-Software, welche von syuilo seit 2014 entwickelt\
+  about: "Calckey ist ein Fork von Misskey, der seit 2022 von ThatOneCalculator entwickelt\
     \ wird."
   contributors: "Hauptmitwirkende"
   allContributors: "Alle Mitwirkenden"
   source: "Quellcode"
-  translation: "Misskey übersetzen"
-  donate: "An Misskey spenden"
+  translation: "Calckey übersetzen"
+  donate: "An Calckey spenden"
   morePatrons: "Wir schätzen ebenso die Unterstützung vieler anderer hier nicht gelisteter\
     \ Personen sehr. Danke! \U0001F970"
   patrons: "UnterstützerInnen"
@@ -1106,7 +1104,7 @@ _mfm:
   intro: "MFM ist eine Misskey-exklusive Markup-Sprache, die in Misskey an vielen\
     \ Stellen verwendet werden kann. Hier kannst du eine Liste von verfügbarer MFM-Syntax\
     \ einsehen."
-  dummy: "Misskey erweitert die Welt des Fediverse"
+  dummy: "Calckey erweitert die Welt des Fediverse"
   mention: "Erwähnung"
   mentionDescription: "Mit At-Zeichen und Benutzername kann ein individueller Nutzer\
     \ angegeben werden."
@@ -1128,9 +1126,9 @@ _mfm:
   blockCodeDescription: "Syntax-Hervorhebung für mehrzeiligen (Programm-)Code als\
     \ Block anzeigen."
   inlineMath: "Mathe (Eingebettet)"
-  inlineMathDescription: "Mathematische Formeln (KaTeX) eingebettet anzeigen."
+  inlineMathDescription: "Mathematische Formeln (KaTeX) eingebettet anzeigen"
   blockMath: "Mathe (Block)"
-  blockMathDescription: "Mehrzeilige mathematische Formeln (KaTeX) als Block einbetten."
+  blockMathDescription: "Mathematische Formeln (KaTeX) als Block einbetten"
   quote: "Zitationen"
   quoteDescription: "Inhalt als Zitat anzeigen."
   emoji: "Benutzerdefinierte Emojis"
@@ -1143,7 +1141,7 @@ _mfm:
   jelly: "Animation (Dehnen)"
   jellyDescription: "Verleiht Inhalt eine sich dehnende Animation."
   tada: "Animation (Tada)"
-  tadaDescription: "Verleiht Inhalt eine Animation mit \"Tada!\"-Gefühl"
+  tadaDescription: "Verleiht Inhalt eine Animation mit \"Tada!\"-Gefühl."
   jump: "Animation (Sprung)"
   jumpDescription: "Verleiht Inhalt eine springende Animation."
   bounce: "Animation (Federn)"
@@ -1325,14 +1323,18 @@ _tutorial:
     \ erkennen, ob sie deine Notizen sehen oder dir folgen wollen."
   step3_1: "Jetzt ist es Zeit, einigen Leuten zu folgen!"
   step3_2: "Deine Home- und Social-Timeline basiert darauf, wem du folgst, also folge\
-    \ für den Anfang ein paar Accounts."
+    \ für den Anfang ein paar Accounts.\nKlicke das Plus Symbol oben links in einem\
+    \ Profil um es zu folgen."
   step4_1: "Wir bringen dich nach draußen."
   step4_2: "Für deinen ersten Beitrag machen manche Leute gerne einen {introduction}\
     \ Beitrag oder ein einfaches \"Hallo Welt!\""
   step5_1: "Timelines, Timelines überall!"
   step5_2: "Deine Instanz hat {Zeitleisten} verschiedene Zeitleisten aktiviert."
   step5_3: "Die Zeitleiste Home {icon} ist die Zeitleiste, in der du die Beiträge\
-    \ deiner Follower sehen kannst."
+    \ der Accounts sehen kannst, denen du folgst und von jedem anderen auf dieser\
+    \ Instanz. Solltest du bevorzugen, dass deine Home Zeitleiste nur Beiträge von\
+    \ den Accounts enthält, denen du folgst, kannst du das ganz einfach in den Einstellungen\
+    \ ändern!"
   step5_4: "In der lokalen {Icon} Zeitleiste kannst du die Beiträge aller anderen\
     \ Mitglieder dieser Instanz sehen."
   step5_5: "In der Zeitleiste Empfohlen {icon} kannst du Beiträge von Instanzen sehen,\
@@ -1486,7 +1488,7 @@ _visibility:
 _postForm:
   replyPlaceholder: "Dieser Notiz antworten …"
   quotePlaceholder: "Diese Notiz zitieren …"
-  channelPlaceholder: "In einen Kanal senden"
+  channelPlaceholder: "In einen Kanal senden..."
   _placeholders:
     a: "Was machst du momentan?"
     b: "Was ist um dich herum los?"
@@ -1535,7 +1537,7 @@ _instanceCharts:
   usersTotal: "Gesamtanzahl an Benutzern"
   notes: "Unterschied in der Anzahl an Notizen"
   notesTotal: "Gesamtanzahl an Notizen"
-  ff: "Unterschied in der Anzahl an gefolgten Benutzern und Followern"
+  ff: "Unterschied in der Anzahl an gefolgten Benutzern und Followern "
   ffTotal: "Gesamtanzahl an gefolgten Benutzern und Followern"
   cacheSize: "Unterschied in der Größe des Caches"
   cacheSizeTotal: "Gesamtgröße des Caches"
@@ -1851,7 +1853,7 @@ _notification:
   youGotMessagingMessageFromUser: "{name} hat dir eine Chatnachricht gesendet"
   youGotMessagingMessageFromGroup: "In die Gruppe {name} wurde eine Chatnachricht\
     \ gesendet"
-  youWereFollowed: "ist dir gefolgt"
+  youWereFollowed: "folgt dir nun"
   youReceivedFollowRequest: "Du hast eine Follow-Anfrage erhalten"
   yourFollowRequestAccepted: "Deine Follow-Anfrage wurde akzeptiert"
   youWereInvitedToGroup: "{userName} hat dich in eine Gruppe eingeladen"
@@ -1914,7 +1916,8 @@ flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
 hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
-  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.'
+  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.
+  Blockierte Instanzen sind nicht betroffen, auch wenn sie hier aufgeführt sind.'
 addInstance: Instanz hinzufügen
 flagSpeakAsCatDescription: Deine Posts werden im Katzenmodus "nya-ifiziert"
 hiddenTags: Versteckte Hashtags
@@ -1927,3 +1930,7 @@ privateModeInfo: Wenn diese Option aktiviert ist, können nur Instanzen auf der 
   mit Deinen Instanzen föderieren. Alle Beiträge werden für die Öffentlichkeit verborgen.
 allowedInstances: Instanzen auf der Whitelist
 selectInstance: Wähle eine Instanz
+silencedInstancesDescription: Liste die Hostnamen der Instanzen auf, die du stummschalten
+  möchtest. Konten in den aufgelisteten Instanzen werden als "Stumm" behandelt, können
+  nur Follow-Anfragen stellen und können keine lokalen Konten erwähnen, wenn sie nicht
+  gefolgt werden. Dies wirkt sich nicht auf die blockierten Instanzen aus.
