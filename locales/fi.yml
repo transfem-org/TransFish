@@ -813,3 +813,7 @@ createdAt: Luotu
 youAreRunningUpToDateClient: Käytössäsi on asiakasohjelman uusin versio.
 needReloadToApply: Uudelleenlataus vaaditaan, jotta tämä näkyy.
 showingPastTimeline: Näytetään parhaillaan vanhaa aikajanaa
+userPagePinTip: Voit näyttää viestit täällä valitsemalla yksittäisten viestien valikosta
+  "Kiinnitä profiiliin".
+notSpecifiedMentionWarning: Tämä viesti sisältää mainintoja käyttäjistä, joita ei
+  ole mainittu vastaanottajina
