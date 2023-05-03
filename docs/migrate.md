@@ -1,6 +1,6 @@
 # 🚚 Migrating from Misskey to Calckey
 
-The following process may not work depending on your environment and version of Misskey.
+The following procedure may not work depending on your environment and version of Misskey.
 
 **Make sure you**
 - **stopped all master and worker processes of Misskey.**
