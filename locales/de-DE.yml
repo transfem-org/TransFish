@@ -1934,3 +1934,9 @@ silencedInstancesDescription: Liste die Hostnamen der Instanzen auf, die du stum
   möchtest. Konten in den aufgelisteten Instanzen werden als "Stumm" behandelt, können
   nur Follow-Anfragen stellen und können keine lokalen Konten erwähnen, wenn sie nicht
   gefolgt werden. Dies wirkt sich nicht auf die blockierten Instanzen aus.
+editNote: Notiz bearbeiten
+edited: Bearbeitet
+silenceThisInstance: Diese Instanz stummschalten
+silencedInstances: Stummgeschaltete Instanzen
+silenced: Stummgeschaltet
+deleted: Gelöscht
