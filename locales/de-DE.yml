@@ -1,4 +1,4 @@
-_lang_: "Deutsch"
+_lang_: "Englisch"
 headlineMisskey: "Eine dezentralisierte Open-Source Social Media Plattform, die für\
   \ immer gratis bleibt! \U0001F680"
 introMisskey: "Willkommen! Calckey ist eine dezentralisierte Open-Source Social Media\
@@ -834,7 +834,7 @@ active: "Aktiv"
 offline: "Offline"
 notRecommended: "Nicht empfohlen"
 botProtection: "Schutz vor Bots"
-instanceBlocking: "Blockierte Instanzen"
+instanceBlocking: "Instanz Sperren/Stummschalten"
 selectAccount: "Benutzerkonto auswählen"
 switchAccount: "Konto wechseln"
 enabled: "Aktiviert"
@@ -905,7 +905,7 @@ unmuteThread: "Threadstummschaltung aufheben"
 ffVisibility: "Sichtbarkeit von Gefolgten/Followern"
 ffVisibilityDescription: "Konfiguriere wer sehen kann, wem du folgst sowie wer dir\
   \ folgt."
-continueThread: "Weiteren Threadverlauf anzeigen"
+continueThread: "Nachricht fortsetzen"
 deleteAccountConfirm: "Dein Benutzerkonto wird unwiderruflich gelöscht. Trotzdem fortfahren?"
 incorrectPassword: "Falsches Passwort."
 voteConfirm: "Wirklich für „{choice}“ abstimmen?"
@@ -921,14 +921,14 @@ overridedDeviceKind: "Gerätetyp"
 smartphone: "Smartphone"
 tablet: "Tablet"
 auto: "Automatisch"
-themeColor: "Farbe der Instanz-Information"
+themeColor: "Farbe des Instanz-Tickers"
 size: "Größe"
 numberOfColumn: "Spaltenanzahl"
 searchByGoogle: "Suchen"
 instanceDefaultLightTheme: "Instanzweites Standardfarbschema (Hell)"
 instanceDefaultDarkTheme: "Instanzweites Standardfarbschema (Dunkel)"
 instanceDefaultThemeDescription: "Gib den Farbschemencode im Objektformat ein."
-mutePeriod: "Stummschaltungsdauer"
+mutePeriod: "Dauer der Stummschaltung"
 indefinitely: "Dauerhaft"
 tenMinutes: "10 Minuten"
 oneHour: "Eine Stunde"
@@ -937,12 +937,12 @@ oneWeek: "Eine Woche"
 reflectMayTakeTime: "Es kann etwas dauern, bis sich dies widerspiegelt."
 failedToFetchAccountInformation: "Benutzerkontoinformationen konnten nicht abgefragt\
   \ werden"
-rateLimitExceeded: "Versuchsanzahl überschritten"
+rateLimitExceeded: "Anzahl der Versuche überschritten"
 cropImage: "Bild zuschneiden"
 cropImageAsk: "Möchtest du das Bild zuschneiden?"
 file: "Datei"
-recentNHours: "Letzten {n} Stunden"
-recentNDays: "Letzten {n} Tage"
+recentNHours: "Die letzten {n} Stunden"
+recentNDays: "Die letzten {n} Tage"
 noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
 recommended: "Empfehlung"
@@ -1940,3 +1940,13 @@ silenceThisInstance: Diese Instanz stummschalten
 silencedInstances: Stummgeschaltete Instanzen
 silenced: Stummgeschaltet
 deleted: Gelöscht
+breakFollowConfirm: Sind sie sicher, dass sie eine(n) Follower entfernen möchten?
+unsubscribePushNotification: Push-Benachrichtigungen deaktivieren
+pushNotificationAlreadySubscribed: Push-Benachrichtigungen sind bereits aktiviert
+pushNotificationNotSupported: Dein Browser oder die Instanz unterstützt keine Push-Benachrichtigungen
+pushNotification: Push-Benachrichtigungen
+subscribePushNotification: Push-Benachrichtigungen aktivieren
+showLocalPosts: 'Zeige lokale Beiträge in:'
+homeTimeline: Start timeline
+cannotUploadBecauseExceedsFileSizeLimit: Die Datei konnte nicht hochgeladen werden,
+  da sie die maximal zulässige Größe überschreitet
