@@ -12,10 +12,6 @@ type UserLike = {
 	id: User["id"];
 };
 
-function escapeRegExp(x: string): string {
-	return x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
-}
-
 function checkWordMute(
 	note: NoteLike,
 	mutedWords: Array<string | string[]>,
@@ -34,7 +30,7 @@ function checkWordMute(
 
 			// This should never happen due to input sanitisation.
 			if (!regexp) {
-				console.warn(`Found invalid regex in word mutes: ${mutePattern}`);
+				console.warn(`Found invalid regex in word mutes: ${filter}`);
 				return false;
 			}
 
@@ -63,8 +59,8 @@ export async function getWordHardMute(
 	if (mutedWords.length > 0) {
 		return (
 			checkWordMute(note, mutedWords) ||
-			checkWordMute(reply, mutedWords) ||
-			checkWordMute(renote, mutedWords)
+			checkWordMute(note.reply, mutedWords) ||
+			checkWordMute(note.renote, mutedWords)
 		);
 	}
 
