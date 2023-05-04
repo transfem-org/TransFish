@@ -1,9 +1,7 @@
 <template>
 	<p>{{ i18n.ts.signupsDisabled }}</p>
 	<a href="https://calckey.org/join">
-		<MkButton rounded gradate
-			>{{ i18n.ts.findOtherInstance }}
-		</MkButton>
+		<MkButton rounded gradate>{{ i18n.ts.findOtherInstance }} </MkButton>
 	</a>
 	<form
 		class="qlvuhzng _formRoot"
@@ -498,6 +496,7 @@ function onSubmit(): void {
 
 <style lang="scss" scoped>
 .qlvuhzng {
+	margin-top: 1rem;
 	.captcha {
 		margin: 16px 0;
 	}
