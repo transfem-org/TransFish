@@ -46,7 +46,7 @@ function checkWordMute(note: NoteLike): Muted {
 	}
 }
 
-export function getWordMute(
+export function getWordSoftMute(
 	note: Record<string, any>,
 	me: Record<string, any> | null | undefined,
 	mutedWords: Array<string | string[]>,

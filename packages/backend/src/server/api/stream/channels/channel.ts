@@ -1,7 +1,7 @@
 import Channel from "../channel.js";
 import { Users } from "@/models/index.js";
 import { isUserRelated } from "@/misc/is-user-related.js";
-import { getWordMute } from "@/misc/check-word-mute.js";
+import { getWordHardMute } from "@/misc/check-word-mute.js";
 import type { User } from "@/models/entities/user.js";
 import type { StreamMessages } from "../types.js";
 import type { Packed } from "@/misc/schema.js";
@@ -42,7 +42,7 @@ export default class extends Channel {
 
 		if (
 			this.userProfile &&
-			(await getWordMute(note, this.user, this.userProfile.mutedWords))
+			(await getWordHardMute(note, this.user, this.userProfile.mutedWords))
 		)
 			return;
 

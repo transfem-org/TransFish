@@ -56,7 +56,7 @@ function checkWordMute(note: NoteLike): boolean {
 	return notMuted;
 }
 
-export async function getWordMute(
+export async function getWordHardMute(
 	note: NoteLike,
 	me: UserLike | null | undefined,
 	mutedWords: Array<string | string[]>,

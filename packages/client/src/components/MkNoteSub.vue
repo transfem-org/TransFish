@@ -193,7 +193,7 @@ import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getNoteMenu } from "@/scripts/get-note-menu";
-import { getWordMute } from "@/scripts/check-word-mute";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
 import * as os from "@/os";
@@ -255,7 +255,7 @@ let appearNote = $computed(() =>
 	isRenote ? (note.renote as misskey.entities.Note) : note
 );
 const isDeleted = ref(false);
-const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const replies: misskey.entities.Note[] =

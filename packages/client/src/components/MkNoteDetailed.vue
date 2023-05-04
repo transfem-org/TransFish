@@ -83,7 +83,7 @@ import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import MkInstanceTicker from "@/components/MkInstanceTicker.vue";
 import MkVisibility from "@/components/MkVisibility.vue";
 import { pleaseLogin } from "@/scripts/please-login";
-import { getWordMute } from "@/scripts/check-word-mute";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { userPage } from "@/filters/user";
 import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
@@ -156,7 +156,7 @@ let appearNote = $computed(() =>
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const urls = appearNote.text
