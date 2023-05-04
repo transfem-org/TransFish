@@ -30,6 +30,7 @@ import { packedFederationInstanceSchema } from "@/models/schema/federation-insta
 import { packedQueueCountSchema } from "@/models/schema/queue.js";
 import { packedGalleryPostSchema } from "@/models/schema/gallery-post.js";
 import { packedEmojiSchema } from "@/models/schema/emoji.js";
+import { packedNoteEdit } from "@/models/schema/note-edit.js";
 
 export const refs = {
 	UserLite: packedUserLiteSchema,
@@ -45,6 +46,7 @@ export const refs = {
 	App: packedAppSchema,
 	MessagingMessage: packedMessagingMessageSchema,
 	Note: packedNoteSchema,
+	NoteEdit: packedNoteEdit,
 	NoteReaction: packedNoteReactionSchema,
 	NoteFavorite: packedNoteFavoriteSchema,
 	Notification: packedNotificationSchema,

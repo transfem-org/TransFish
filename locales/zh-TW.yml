@@ -756,7 +756,7 @@ active: "最近活躍"
 offline: "離線"
 notRecommended: "不推薦"
 botProtection: "Bot防護"
-instanceBlocking: "已封鎖的實例"
+instanceBlocking: "聯邦封鎖/靜音"
 selectAccount: "選擇帳戶"
 switchAccount: "切換帳戶"
 enabled: "已啟用"
@@ -1808,3 +1808,6 @@ logoImageUrl: 圖標網址
 addInstance: 增加一個實例
 noInstances: 沒有實例
 flagSpeakAsCat: 像貓一樣地說話
+silenceThisInstance: 靜音此實例
+silencedInstances: 已靜音的實例
+silenced: 已靜音

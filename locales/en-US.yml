@@ -46,9 +46,12 @@ unpin: "Unpin from profile"
 copyContent: "Copy contents"
 copyLink: "Copy link"
 delete: "Delete"
+deleted: "Deleted"
 deleteAndEdit: "Delete and edit"
 deleteAndEditConfirm: "Are you sure you want to delete this post and edit it? You\
   \ will lose all reactions, boosts and replies to it."
+editNote: "Edit note"
+edited: "Edited"
 addToList: "Add to list"
 sendMessage: "Send a message"
 copyUsername: "Copy username"
@@ -68,8 +71,8 @@ import: "Import"
 export: "Export"
 files: "Files"
 download: "Download"
-driveFileDeleteConfirm: "Are you sure you want to delete the file \"{name}\"? It\
-  \ will be removed from all posts that contain it as an attachment."
+driveFileDeleteConfirm: "Are you sure you want to delete the file \"{name}\"? It will\
+  \ be removed from all posts that contain it as an attachment."
 unfollowConfirm: "Are you sure that you want to unfollow {name}?"
 exportRequested: "You've requested an export. This may take a while. It will be added\
   \ to your Drive once completed."
@@ -221,7 +224,9 @@ blockedInstancesDescription: "List the hostnames of the instances that you want 
   \ block. Listed instances will no longer be able to communicate with this instance."
 silencedInstances: "Silenced Instances"
 silencedInstancesDescription: "List the hostnames of the instances that you want to\
-  \ silence. Accounts in the listed instances are treated as \"Silenced\", can only make follow requests, and cannot mention local accounts if not followed. This will not affect the blocked instances."
+  \ silence. Accounts in the listed instances are treated as \"Silenced\", can only\
+  \ make follow requests, and cannot mention local accounts if not followed. This\
+  \ will not affect the blocked instances."
 hiddenTags: "Hidden Hashtags"
 hiddenTagsDescription: "List the hashtags (without the #) of the hashtags you wish\
   \ to hide from trending and explore. Hidden hashtags are still discoverable via\
@@ -1405,12 +1410,12 @@ _tutorial:
   step2_1: "First, please fill out your profile."
   step2_2: "Providing some information about who you are will make it easier for others\
     \ to tell if they want to see your posts or follow you."
-  step3_1: "Now time to follow some people!"
+  step3_1: "Now it's time to follow some people!"
   step3_2: "Your home and social timelines are based off of who you follow, so try\
     \ following a couple accounts to get started.\nClick the plus circle on the top\
     \ right of a profile to follow them."
   step4_1: "Let's get you out there."
-  step4_2: "For your first post, some people like to made a {introduction} post or\
+  step4_2: "For your first post, some people like to make an {introduction} post or\
     \ a simple \"Hello world!\""
   step5_1: "Timelines, timelines everywhere!"
   step5_2: "Your instance has {timelines} different timelines enabled."

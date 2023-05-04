@@ -200,9 +200,9 @@ import * as os from "@/os";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
-import { deepClone } from "@/scripts/clone";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { defaultStore } from "@/store";
+import { deepClone } from "@/scripts/clone";
 
 const router = useRouter();
 
@@ -271,19 +271,17 @@ const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 useNoteCapture({
 	rootEl: el,
 	note: $$(appearNote),
+	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
-	os.post(
-		{
-			reply: appearNote,
-			animation: !viaKeyboard,
-		},
-		() => {
-			focus();
-		}
-	);
+	os.post({
+		reply: appearNote,
+		animation: !viaKeyboard,
+	}).then(() => {
+		focus();
+	});
 }
 
 function react(viaKeyboard = false): void {

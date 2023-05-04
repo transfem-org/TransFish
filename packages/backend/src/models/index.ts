@@ -67,11 +67,13 @@ import { UserPending } from "./entities/user-pending.js";
 import { InstanceRepository } from "./repositories/instance.js";
 import { Webhook } from "./entities/webhook.js";
 import { UserIp } from "./entities/user-ip.js";
+import { NoteEdit } from "./entities/note-edit.js";
 
 export const Announcements = db.getRepository(Announcement);
 export const AnnouncementReads = db.getRepository(AnnouncementRead);
 export const Apps = AppRepository;
 export const Notes = NoteRepository;
+export const NoteEdits = db.getRepository(NoteEdit);
 export const NoteFavorites = NoteFavoriteRepository;
 export const NoteWatchings = db.getRepository(NoteWatching);
 export const NoteThreadMutings = db.getRepository(NoteThreadMuting);

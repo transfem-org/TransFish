@@ -14,8 +14,8 @@ ok: "OK"
 gotIt: "Ho he entès!"
 cancel: "Cancel·lar"
 enterUsername: "Introdueix el teu nom d'usuari"
-renotedBy: "Resignat per {user}"
-noNotes: "Cap publicació"
+renotedBy: "Impulsat per {user}"
+noNotes: "Cap nota"
 noNotifications: "Cap notificació"
 instance: "Instància"
 settings: "Preferències"
@@ -46,7 +46,7 @@ copyLink: "Còpia l'enllaç"
 delete: "Esborra"
 deleteAndEdit: "Esborrar i edita"
 deleteAndEditConfirm: "Estàs segur que vols esborrar aquesta nota i editar-la? Perdràs\
-  \ totes les reaccions, resignats i respostes."
+  \ totes les reaccions, impulsos i respostes."
 addToList: "Afegir a la llista"
 sendMessage: "Enviar un missatge"
 copyUsername: "Còpia nom d'usuari"
@@ -73,8 +73,8 @@ exportRequested: "Has sol·licitat una exportació. Això pot trigar una estona.
 importRequested: "Has sol·licitat una importació. Això pot trigar una estona."
 lists: "Llistes"
 noLists: "No tens cap llista"
-note: "Publicació"
-notes: "Publicacions"
+note: "Nota"
+notes: "Notes"
 following: "Seguint"
 followers: "Seguidors"
 followsYou: "Et segueix"
@@ -94,18 +94,18 @@ enterListName: "Introdueix un nom per a la llista"
 privacy: "Privadesa"
 makeFollowManuallyApprove: "Les sol·licituds de seguiment requereixen aprovació"
 defaultNoteVisibility: "Visibilitat per defecte"
-follow: "Seguint"
-followRequest: "Enviar la sol·licitud de seguiment"
+follow: "Seguir"
+followRequest: "Enviar sol·licitud de seguiment"
 followRequests: "Sol·licituds de seguiment"
 unfollow: "Deixar de seguir"
 followRequestPending: "Sol·licituds de seguiment pendents"
 enterEmoji: "Introduir un emoji"
-renote: "Impulsà"
+renote: "Impuls"
 unrenote: "Anul·lar impuls"
 renoted: "Impulsat."
-cantRenote: "Aquesta publicació no pot ser impulsada."
+cantRenote: "Aquesta nota no pot ser impulsada."
 cantReRenote: "No es pot impulsar un impuls."
-quote: "Citar"
+quote: "Cita"
 pinnedNote: "Publicació fixada"
 pinned: "Fixar al perfil"
 you: "Tu"
@@ -116,17 +116,17 @@ reaction: "Reaccions"
 reactionSetting: "Reaccions a mostrar al selector de reaccions"
 reactionSettingDescription2: "Arrossega per reordenar, fes clic per suprimir, prem\
   \ \"+\" per afegir."
-rememberNoteVisibility: "Recorda la configuració de visibilitat de les publicacions"
+rememberNoteVisibility: "Recorda la configuració de visibilitat de les notes"
 attachCancel: "Eliminar el fitxer adjunt"
 markAsSensitive: "Marcar com a NSFW"
-unmarkAsSensitive: "Deixar de marcar com a sensible"
-enterFileName: "Defineix nom del fitxer"
+unmarkAsSensitive: "Desmarcar com a NSFW"
+enterFileName: "Introdueix un nom de fitxer"
 mute: "Silencia"
 unmute: "Deixa de silenciar"
 block: "Bloqueja"
 unblock: "Desbloqueja"
 suspend: "Suspèn"
-unsuspend: "Deixa de suspendre"
+unsuspend: "Treu la suspensió"
 instances: "Instàncies"
 remove: "Eliminar"
 nsfw: "NSFW"
@@ -134,7 +134,7 @@ pinnedNotes: "Publicació fixada"
 userList: "Llistes"
 smtpUser: "Nom d'usuari"
 smtpPass: "Contrasenya"
-user: "Usuaris"
+user: "Usuari"
 searchByGoogle: "Cercar"
 file: "Fitxers"
 _email:
@@ -151,10 +151,9 @@ _mfm:
   intro: MFM és un llenguatge de marques utilitzat a Misskey, Calckey, Akkoma i més
     que es pot utilitzar en molts llocs. Aquí podeu veure una llista de tota la sintaxi
     MFM disponible.
-  hashtagDescription: Podeu especificar un hashtag mitjançant un signe de coixinet
-    i un text.
+  hashtagDescription: Podeu especificar una etiqueta mitjançant un coixinet i un text.
   url: URL
-  urlDescription: Es poden mostrar URL.
+  urlDescription: Es poden mostrar URLS.
   link: Enllaç
   linkDescription: Parts específiques del text es poden mostrar com a URL.
   bold: Negreta
@@ -299,7 +298,7 @@ _theme:
   lighten: Clar
   install: Instal·lar un tema
 _sfx:
-  note: "Posts"
+  note: "Nota nova"
   notification: "Notificacions"
   antenna: Antenes
   channel: Notificacions del canal
@@ -740,9 +739,9 @@ _deck:
   renameProfile: Canvia el nom de l'espai de treball
   nameAlreadyExists: Aquest nom d'espai de treball ja existeix.
 blockConfirm: Estás segur que vols bloquejar aquest compte?
-unsuspendConfirm: Estás segur que vols treure la suspensió d'aquesta compte?
-unblockConfirm: Estás segur que vols treure el bloqueig d'aquesta compte?
-suspendConfirm: Estás segur que vols suspendre aquesta compte?
+unsuspendConfirm: Estás segur que vols treure la suspensió d'aquest compte?
+unblockConfirm: Estás segur que vols treure el bloqueig d'aquest compte?
+suspendConfirm: Estás segur que vols suspendre aquest compte?
 selectList: Selecciona una llista
 selectAntenna: Selecciona una antena
 selectWidget: Selecciona un giny
@@ -751,13 +750,12 @@ editWidgetsExit: Fet
 customEmojis: Emoji personalitzat
 cacheRemoteFilesDescription: Quant aquesta opció es deshabilitada, els fitxers remots
   es carregant directament de l'instància remota. Deshabilitar això farà que baixi
-  l'ús d'emmagatzematge, però incrementa el tràfic, perquè les previsualitzacions
-  no es generarán.
+  l'ús d'emmagatzematge, però incrementa el tràfic, perquè les miniatures no es generarán.
 flagAsBot: Marca aquest compte com un bot
 flagAsBotDescription: Activa aquesta opció si aquest compte és controlat per un programa.
-  Si s'activa, això actuarà com una bandera per a altres desenvolupadors i prevenir
-  cadenes de interaccions infinites amb altres bots a més d'ajustar els sistemes interns
-  de Calckey per tractar aquest compte com un bot.
+  Si s'activa, això actuarà com una bandera per a altres desenvolupadors i ajuda a
+  prevenir cadenes de interaccions infinites amb altres bots a més d'ajustar els sistemes
+  interns de Calckey per tractar aquest compte com un bot.
 flagAsCat: Ets un gat? 🐱
 flagShowTimelineReplies: Mostrar respostes a la línea de temps
 flagAsCatDescription: Guanyaràs unes orelles de gat i parlares com un gat!
@@ -767,7 +765,7 @@ general: General
 autoAcceptFollowed: Aprova automàticament les peticions de seguiment d'usuaris que
   segueixes
 accountMoved: "L'usuari s'ha mogut a un compte nou:"
-addAccount: Afegir compte
+addAccount: Afegir un compte
 loginFailed: No s'ha pogut iniciar sessió
 showOnRemote: Veure a l'instància remota
 wallpaper: Fons de pantalla
@@ -794,7 +792,7 @@ network: Xarxa
 disk: Disc
 instanceInfo: Informació de l'instància
 statistics: Estadístiques
-clearCachedFiles: Neteja memòria cau
+clearCachedFiles: Neteja la memòria cau
 clearQueueConfirmText: Qualsevol nota que continuï a la cua sense entrega no será
   federada. Normalment aquesta operació no es necessària.
 clearCachedFilesConfirm: Segur que vols esborrar els fitxers remots de la memòria
@@ -858,14 +856,14 @@ agreeTo: Estic d'acord amb {0}
 activity: Activitat
 home: Inici
 remoteUserCaution: L'informació d'usuaris remots pot estar incompleta.
-themeForDarkMode: En Mode Fosc fes servir el tema
+themeForDarkMode: Tema a fer servir en mode fosc
 light: Clar
 registeredDate: Data de registre
 dark: Fosc
 lightThemes: Temes clars
 location: Lloc
 theme: Temes
-themeForLightMode: En Mode Clar fes servir el tema
+themeForLightMode: Tema a fer servir en mode clar
 drive: Disc
 selectFile: Tria un fitxer
 selectFiles: Tria fitxers
@@ -930,17 +928,17 @@ enableGlobalTimeline: Activa la línea de temps global
 disablingTimelinesInfo: Els Administradors i Moderadors sempre tenen accés a totes
   les líneas temporals, inclòs si hi són desactivades.
 showLess: Tanca
-clearQueue: Neteja cua
+clearQueue: Neteja la cua
 uploadFromUrlMayTakeTime: Pot trigar un temps fins que la pujada es completi.
 noThankYou: No, gràcies
-addInstance: Afegeix una instància
+addInstance: Afegir una instància
 emoji: Emoji
 emojis: Emoji
 emojiName: Nom del emoji
 emojiUrl: URL del emoji
 addEmoji: Afegir
 settingGuide: Configuració recomenada
-searchWith: 'Buscar: {q}'
+searchWith: 'Cercar: {q}'
 youHaveNoLists: No tens cap llista
 flagSpeakAsCat: Parla com un gat
 selectInstance: Selecciona una instància
@@ -952,10 +950,9 @@ blockedInstances: Instàncies Bloquejades
 blockedInstancesDescription: Llista les adreces de les instàncies que vols bloquejar.
   Les instàncies de la llista no podrán comunicarse amb aquesta instància.
 hiddenTags: Etiquetes Ocultes
-hiddenTagsDescription: 'Enumereu els etiquetes (sense el #) de les etiquetes que voleu
-  ocultar de tendències i explorar. Les etiquetes ocultes encara es poden descobrir
-  per altres mitjans. Les instàncies bloquejades no es veuen afectades encara que
-  s''enumeren aquí.'
+hiddenTagsDescription: 'Enumereu les etiquetes (sense el #) que voleu ocultar de tendències
+  i explorar. Les etiquetes ocultes encara es poden descobrir per altres mitjans.
+  Les instàncies bloquejades no es veuen afectades encara que s''enumerin aquí.'
 noInstances: No hi han instàncies
 defaultValueIs: 'Per defecte: {value}'
 suspended: Suspès
@@ -976,8 +973,8 @@ enableEmojiReactions: Activa reaccions amb emojis
 blockThisInstance: Bloqueja aquesta instància
 registration: Registre
 showEmojisInReactionNotifications: Mostra els emojis a les notificacions de les reaccions
-renoteMute: Silencia les renotas
-renoteUnmute: Treu el silenci a les renotas
+renoteMute: Silencia els impulsos
+renoteUnmute: Treu el silenci als impulsos
 cacheRemoteFiles: Fitxers remots a la memoria cau
 federation: Federació
 registeredAt: Registrat a
@@ -1003,7 +1000,7 @@ pages: Pàgines
 disconnectService: Desconnectar
 connectService: Connectar
 enableLocalTimeline: Activa la línea de temps local
-enableRecommendedTimeline: Activa la línea de temps de recomanats
+enableRecommendedTimeline: Activa la línea de temps de recomanacions
 pinnedClipId: ID del clip que vols fixar
 hcaptcha: hCaptcha
 manageAntennas: Gestiona les Antenes
@@ -1034,7 +1031,7 @@ notFoundDescription: No es pot trobar cap pàgina que correspongui a aquesta adr
 uploadFolder: Carpeta per defecte per pujar arxius
 cacheClear: Netejar la memòria cau
 markAsReadAllNotifications: Marca totes les notificacions com llegides
-markAsReadAllUnreadNotes: Marca totes les publicacions com a llegides
+markAsReadAllUnreadNotes: Marca totes les notes com a llegides
 markAsReadAllTalkMessages: Marca tots els missatges com llegits
 help: Ajuda
 inputMessageHere: Escriu aquí el missatge
@@ -1053,7 +1050,7 @@ text: Text
 enable: Activar
 next: Següent
 retype: Torna a entrar
-noteOf: Publicat per {user}
+noteOf: Nota de {user}
 inviteToGroup: Invitar a un grup
 quoteAttached: Cita
 quoteQuestion: Adjuntar com a cita?
@@ -1078,7 +1075,7 @@ groupInvited: T'han invitat a un grup
 aboutX: Sobre {x}
 youHaveNoGroups: No tens grups
 disableDrawer: No facis servir els menús amb estil de calaix
-noHistory: No ha historial disponible
+noHistory: No hi ha historial disponible
 signinHistory: Historial d'inicis de sessió
 disableAnimatedMfm: Desactiva les animacions amb MFM
 doing: Processant...
@@ -1103,8 +1100,8 @@ promotion: Promogut
 promote: Promoure
 numberOfDays: Nombre de dies
 objectStorageBaseUrl: Adreça URL base
-hideThisNote: Amaga aquest article
-showFeaturedNotesInTimeline: Mostra els articles destacats a la línea de temps
+hideThisNote: Amaga aquesta nota
+showFeaturedNotesInTimeline: Mostra les notes destacades a les líneas de temps
 objectStorage: Emmagatzematge d'objectes
 useObjectStorage: Fes servir l'emmagatzema d'objectes
 expandTweet: Amplia el tuit
@@ -1114,7 +1111,7 @@ leaveConfirm: Hi han canvis que no s'han desat. Els vols descartar?
 manage: Administració
 plugins: Afegits
 preferencesBackups: Preferències de còpies de seguretat
-undeck: Treure el Deck
+undeck: Treure el Taulell
 useBlurEffectForModal: Fes servir efectes de difuminació en les finestres modals
 useFullReactionPicker: Fes servir el selector de reaccions a tamany complert
 deck: Taulell
@@ -1174,14 +1171,14 @@ large: Gran
 notificationSetting: Preferències de notificacions
 makeActive: Activar
 notificationSettingDesc: Tria el tipus de notificació que es veure.
-notifyAntenna: Notificar noves articles
-withFileAntenna: Només articles amb fitxers
+notifyAntenna: Notificar noves notes
+withFileAntenna: Només notes amb fitxers
 enableServiceworker: Activa les notificacions push per al teu navegador
 antennaUsersDescription: Escriu un nom d'usuari per línea
 antennaInstancesDescription: Escriu la adreça d'una instància per línea
 tags: Etiquetes
 antennaSource: Font de la antena
-antennaKeywords: Paraules claus a escolta
+antennaKeywords: Paraules claus a escoltar
 antennaExcludeKeywords: Paraules clau a excluir
 antennaKeywordsDescription: Separades amb espais per fer una condició AND i amb una
   línea nova per fer una condició OR.
@@ -1200,8 +1197,8 @@ tapSecurityKey: Escriu la teva clau de seguretat
 nUsersMentioned: Esmentat per {n} usuari(s)
 securityKey: Clau de seguretat
 resetPassword: Restablir contrasenya
-describeFile: Afegeix un subtítol
-enterFileDescription: Entra un subtítol
+describeFile: Afegeix una descripció
+enterFileDescription: Entra una descripció
 author: Autor
 disableAll: Desactiva tots
 userSaysSomethingReason: '{name} va dir {reason}'
@@ -1221,7 +1218,7 @@ inboxUrl: Adreça de la safata d'entrada
 addedRelays: Relés afegits
 serviceworkerInfo: Ha de estar activat per les notificacions push.
 poll: Enquesta
-deletedNote: Article eliminat
+deletedNote: Nota esborrada
 disablePlayer: Tancar el reproductor de vídeo
 fileIdOrUrl: ID o adreça URL del fitxer
 behavior: Comportament
@@ -1229,7 +1226,7 @@ regenerateLoginTokenDescription: Regenera el token que es fa servir de manera in
   durant l'inici de sessió. Normalment això no és necessari. Si es torna a genera
   el token, es tancarà la sessió a tots els dispositius.
 setMultipleBySeparatingWithSpace: Separa diferents entrades amb espais.
-reportAbuseOf: Informa sobre {name}
+reportAbuseOf: Informa d'un abús de {name}
 sample: Exemple
 abuseReports: Informes
 reportAbuse: Informe
@@ -1243,13 +1240,13 @@ abuseMarkAsResolved: Marcar l'informe com a resolt
 visibility: Visibilitat
 useCw: Amaga el contingut
 enablePlayer: Obre el reproductor de vídeo
-yourAccountSuspendedDescription: Aquest compte ha sigut suspesa per no seguir els
-  termes de servei del servidor o quelcom similar. Contacte amb l'administrador si
-  vols conèixer la raó amb més detall. Si us plau no facis un compte nou.
-invisibleNote: Article ocult
+yourAccountSuspendedDescription: Aquest compte ha sigut suspès per no seguir els termes
+  de servei d'aquest servidor o quelcom similar. Contacte amb l'administrador si vols
+  conèixer la raó amb més detall. Si us plau no facis un compte nou.
+invisibleNote: Nota oculta
 enableInfiniteScroll: Carregar més de forma automàtica
 fillAbuseReportDescription: Si us plau omple els detalls sobre aquest informe. Si
-  es sobre un article en concret, si us plau inclou l'adreça URL.
+  es sobre una nota en concret, si us plau, inclou l'adreça URL.
 forwardReportIsAnonymous: Com a informador a l'instància remota no es mostrarà el
   teu compte, si no un compte anònim.
 openInNewTab: Obrir en una pestanya nova
@@ -1266,7 +1263,7 @@ switchUi: Interfície d'usuari
 createNewClip: Crear un clip nou
 unclip: Treure clip
 public: Públic
-renotesCount: Nombre de re-notes fetes
+renotesCount: Nombre d'impulsos fets
 sentReactionsCount: Nombre de reaccions fetes
 receivedReactionsCount: Nombre de reaccions rebudes
 pollVotesCount: Nombre de vots fets en enquestes
@@ -1278,14 +1275,14 @@ driveUsage: Espai fet servir al Disk
 noCrawleDescription: No permetre que els buscadors guardin la informació de les pàgines
   de perfil, notes, Pàgines, etc.
 alwaysMarkSensitive: Marcar per defecte com a NSFW
-lockedAccountInfo: Només si has configurat la visibilitat del compte per "Només seguidors"
-  les teves notes no serem visibles per a ningú, inclús si has d'aprovar els teus
-  seguiments manualment.
+lockedAccountInfo: Si has configurat la visibilitat del compte per "Només seguidors"
+  les teves notes no seren visibles per a ningú més, inclús si has d'aprovar els teus
+  seguidors manualment.
 disableShowingAnimatedImages: No reproduir les imatges animades
 verificationEmailSent: S'ha enviat correu electrònic de verificació. Si us plau segueix
   les instruccions per completar la verificació.
 notSet: Sense especificar
-emailVerified: Correu electrònic enviat
+emailVerified: El correu electrònic s'ha verificat
 loadRawImages: Carregar les imatges originals en comptes de mostrar les miniatures
 noteFavoritesCount: Nombre de notes afegides a favorits
 useSystemFont: Fes servir la font per defecte del sistema
@@ -1327,7 +1324,7 @@ breakFollow: Suprimeix el seguidor
 makeReactionsPublicDescription: Això farà que la llista de totes les vostres reaccions
   passades sigui visible públicament.
 hide: Amagar
-leaveGroupConfirm: Estàs segur que vols deixar "{nom}"?
+leaveGroupConfirm: Estàs segur que vols deixar "{name}"?
 voteConfirm: Vols confirmar el teu vot per a "{choice}"?
 leaveGroup: Sortir del grup
 rateLimitExceeded: S'ha excedit el límit proporcionat
@@ -1454,7 +1451,7 @@ _registry:
 silenced: Silenciat
 objectStorageUseSSL: Fes servir SSL
 yourAccountSuspendedTitle: Aquest compte està suspès
-i18nInfo: Calckey està sent traduïts a diversos idiomes per voluntaris. Pots ajudar
+i18nInfo: Calckey està sent traduït a diversos idiomes per voluntaris. Pots ajudar
   {link}.
 manageAccessTokens: Administrar tokens d'accés
 accountInfo: Informació del compte
@@ -1498,15 +1495,15 @@ shareWithNote: Comparteix amb una nota
 expiration: Data límit
 memo: Memo
 priority: Prioritat
-high: Alt
+high: Alta
 middle: Mitjana
 low: Baixa
 emailNotConfiguredWarning: L'adreça de correu electrònic no està definida.
 instanceSecurity: Seguretat de la instància
 privateMode: Mode Privat
 allowedInstances: Instàncies a la llista blanca
-allowedInstancesDescription: Amfitrions d'instàncies a la llista blanca per a la federació,
-  cadascuna separat per una línia nova (només s'aplica en mode privat).
+allowedInstancesDescription: Llista blanca de Hosts amb qui federar, cadascún separat
+  per una línia nova (només s'aplica en mode privat).
 previewNoteText: Mostra la vista prèvia
 customCss: CSS personalitzat
 recommended: Recomanat
@@ -1550,8 +1547,8 @@ remoteOnly: Només remotes
 failedToUpload: S'ha produït un error en la càrrega
 cannotUploadBecauseInappropriate: Aquest fitxer no s'ha pogut carregar perquè s'han
   detectat parts d'aquest com a potencialment NSFW.
-cannotUploadBecauseNoFreeSpace: La pujada ha fallat a causa de la manca de capacitat
-  del Disc.
+cannotUploadBecauseNoFreeSpace: La pujada ha fallat a causa de la manca d'espai al
+  Disc.
 enableAutoSensitive: Marcatge automàtic NSFW
 moveTo: Mou el compte actual al compte nou
 customKaTeXMacro: Macros KaTeX personalitzats
@@ -1575,19 +1572,19 @@ desktop: Escritori
 notesCount: Nombre de notes
 confirmToUnclipAlreadyClippedNote: Aquesta nota ja és al clip "{name}". Vols treure'l
   d'aquest clip?
-driveFilesCount: Nombre de fitxers el Disk
+driveFilesCount: Nombre de fitxers al Disk
 silencedInstances: Instàncies silenciades
 silenceThisInstance: Silencia la instància
 silencedInstancesDescription: Llista amb els noms de les instàncies que vols silenciar.
-  Les comptes en les instàncies silenciades seran tractades com "Silenciades", només
-  poden fer sol·licitud de seguiments, i no poden mencionar comptes locals si no les
-  segueixen. Això no afectarà les instàncies silenciades.
+  Els comptes en les instàncies silenciades seran tractades com "Silenciades", només
+  poden fer sol·licituds de seguiments, i no poden mencionar comptes locals si no
+  les segueixen. Això no afectarà les instàncies bloquejades.
 objectStorageEndpointDesc: Deixa això buit si fas servir AWS, S3, d'una altre manera
   específica un "endpoint" com a '<host>' o '<host>:<port>', depend del proveïdor
   que facis servir.
 objectStorageRegionDesc: Especifica una regió com a 'xx-east-1'. Si el teu proveïdor
   no distingeix entre regions, deixa això en buit o pots escriure 'us-east-1'.
-userPagePinTip: Pots mostrar notes aquí escollint "Pin al perfil" dintre del menú
+userPagePinTip: Pots mostrar notes aquí escollint "Fixar al perfil" dintre del menú
   de cada nota.
 userInfo: Informació d'usuari
 hideOnlineStatusDescription: Amagant el teu estat en línea redueix la comoditat d'ús
@@ -1599,10 +1596,10 @@ secureMode: Mode segur (Recuperació Autoritzada)
 customCssWarn: Aquesta configuració només s'ha d'utilitzar si sabeu què fa. La introducció
   de valors indeguts pot provocar que el client deixi de funcionar amb normalitat.
 squareAvatars: Mostra avatars quadrats
-secureModeInfo: Quan sol·liciteu des d'altres instàncies, no envieu de tornada sense
-  prova.
+secureModeInfo: Quan es faci una solicitut d'altres instàncies no contestar sense
+  una prova.
 privateModeInfo: Quan està activat, només les instàncies de la llista blanca es poden
-  federar amb les vostres instàncies. Totes les publicacions s'amagaran al públic.
+  federar amb les vostres instàncies. Totes les notes s'amagaran al públic.
 useBlurEffect: Utilitzeu efectes de desenfocament a la interfície d'usuari
 accountDeletionInProgress: La supressió del compte està en curs
 unmuteThread: Desfés el silenci al fil
@@ -1633,7 +1630,8 @@ none: Res
 showInPage: Mostrar a la página
 popout: Apareixa
 volume: Volum
-objectStorageUseSSLDesc: Desactiva això si no fas servir HTTP per les connexions API
+objectStorageUseSSLDesc: Desactiva això si no fas servir HTTPS per les connexions
+  API
 objectStorageUseProxy: Conectarse mitjançant un Proxy
 objectStorageUseProxyDesc: Desactiva això si no faràs servir un servidor Proxy per
   conexions API
@@ -1668,12 +1666,12 @@ disablePagesScript: Desactivar AiScript a les pàgines
 updateRemoteUser: Actualitzar la informació de l'usuari remot
 deleteAllFiles: Esborrar tots els fitxers
 deleteAllFilesConfirm: Segur que vols esborrar tots els fitxers?
-removeAllFollowing: Deixar de seguir a tots els usuaris
+removeAllFollowing: Deixar de seguir a tots els que segueixis
 accentColor: Color principal
 textColor: Color del text
 value: Valor
-sendErrorReportsDescription: "Quant està activat, es compartirà amb els desenvolupadors\
-  \ de Calckey quant aparegui un problema quan ajudarà a millorar la qualitat.\nAixò\
+sendErrorReportsDescription: "Quant està activat quant aparegui un error, es compartirà\
+  \ amb els desenvolupadors de Calckey, que ajudarà a millorar la qualitat.\nAixò\
   \ inclourà informació com la versió del teu sistema operatiu, el navegador que estiguis\
   \ fent servir, la teva activitat a Calckey, etc."
 myTheme: El meu tema
@@ -1681,7 +1679,7 @@ backgroundColor: Color de fons
 saveAs: Desa com...
 advanced: Avançat
 invalidValue: Valor invàlid.
-createdAt: Dada de creació
+createdAt: Data de creació
 updatedAt: Data d'actualització
 saveConfirm: Desa canvis?
 deleteConfirm: De veritat ho vols esborrar?
@@ -1715,15 +1713,15 @@ sendPushNotificationReadMessageCaption: Es mostrarà una notificació amb el tex
 showAds: Mostrar anuncis
 enterSendsMessage: Pren retorn al formulari del missatge per enviar (quant no s'activa
   es Ctrl + Return)
-customMOTD: MOTD personalitzat (missatges de la pantalla d'inici)
-customMOTDDescription: Missatges personalitzats per al MOTD (pantalla de presentació)
-  separats per salts de línia es mostraran aleatòriament cada vegada que un usuari
+customMOTD: MOTD personalitzat (missatges de la pantalla de benvinguda)
+customMOTDDescription: Missatges personalitzats per al MOTD (pantalla de benvinguda)
+  separats per salts de línia, es mostraran aleatòriament cada vegada que un usuari
   carrega/recarrega la pàgina.
-customSplashIcons: Icones personalitzades de la pantalla d'inici (urls)
-customSplashIconsDescription: La URL de les icones de pantalla de presentació personalitzades
-  separades per salts de línia es mostraran aleatòriament cada vegada que un usuari
-  carrega/recarrega la pàgina. Si us plau, assegureu-vos que les imatges estiguin
-  en una URL estàtica, preferiblement totes a la mida de 192 x 192.
+customSplashIcons: Icones personalitzades de la pantalla de benvinguda (urls)
+customSplashIconsDescription: Les URLS de les icones personalitzades a la pantalla
+  de benvinguda separades per salts de línia. Es mostraran aleatòriament cada vegada
+  que un usuari carrega/recarrega la pàgina. Si us plau, assegureu-vos que les imatges
+  estiguin en una URL estàtica, preferiblement amb imatges amb la de 192 x 192.
 moveFrom: Mou a aquest compte des d'un compte anterior
 moveFromLabel: 'Compte des del qual us moveu:'
 migrationConfirm: "Esteu absolutament segur que voleu migrar el vostre compte a {account}?\
@@ -1753,7 +1751,7 @@ showingPastTimeline: Ara es mostra un línea de temps antiga
 clear: Tornar
 markAllAsRead: Marcar tot com a llegit
 recentPosts: Pàgines recents
-noMaintainerInformationWarning: La informació del responsable no està configurada.
+noMaintainerInformationWarning: La informació de l'administrador no està configurada.
 resolved: Resolt
 unresolved: Sense resoldre
 filter: Filtre
@@ -1762,14 +1760,14 @@ useDrawerReactionPickerForMobile: Mostra el selector de reaccions com a calaix a
   mòbil
 welcomeBackWithName: Benvingut de nou, {name}
 showLocalPosts: 'Mostra les notes locals a:'
-homeTimeline: Línea de temps Local
+homeTimeline: Línea de temps Inicial
 socialTimeline: Línea de temps Social
 themeColor: Color del Ticker de la instància
 size: Mida
 numberOfColumn: Nombre de columnes
 numberOfPageCache: Nombre de pàgines emmagatzemades a la memòria cau
 numberOfPageCacheDescription: L'augment d'aquest nombre millorarà la comoditat dels
-  usuaris, però provocarà més càrrega del servidor i més memòria per utilitzar-la.
+  usuaris, però provocarà més càrrega del servidor i utilitzarà més memòria.
 logoutConfirm: Vols tancar la sessió?
 lastActiveDate: Data d'últim ús
 statusbar: Barra d'estat
@@ -1791,7 +1789,7 @@ subscribePushNotification: Activar les notificacions push
 unsubscribePushNotification: Desactivar les notificacions push
 pushNotificationAlreadySubscribed: Les notificacions push ja estan activades
 pushNotificationNotSupported: El vostre navegador o instància no admet notificacions
-  automàtiques
+  push
 license: Llicència
 indexPosts: Índex de notes
 indexFrom: Índex a partir de l'identificador de notes (deixeu en blanc per indexar
@@ -1869,8 +1867,8 @@ _tutorial:
   step3_2: "Les teves líneas de temps domèstiques i socials es basen en qui seguiu,\
     \ així que proveu de seguir un parell de comptes per començar.\nFeu clic al cercle\
     \ més situat a la part superior dreta d'un perfil per seguir-los."
-  step4_2: Per a la vostra primera nota, a algunes persones els agrada fer una nota
-    de {introduction} o un senzill "Hola món!"
+  step4_2: A algunes persones els agrada fer una nota de {introduction} o un senzill
+    "Hola món!"
   step5_1: Línies de temps, línies de temps a tot arreu!
   step6_2: Bé, no només t'has unit a Calckey. T'has unit a un portal al Fediverse,
     una xarxa interconnectada de milers de servidors, anomenats "instàncies".
@@ -1888,7 +1886,7 @@ _permissions:
   "write:blocks": Editar la llista d'usuaris bloquejats
   "write:notes": Redactar o suprimir notes
   "write:channels": Editar els teus canals
-  "read:gallery-likes": Consulta la llista de notes de la galeria que t'agraden
+  "read:gallery-likes": Consulta la llista de notes que t'agraden de la galeria
   "write:drive": Editar o suprimir fitxers i carpetes del Disc
   "read:favorites": Consulta la teva llista d'adreces d'interès
   "write:favorites": Editeu la teva llista d'adreces d'interès
@@ -1896,13 +1894,13 @@ _permissions:
   "read:mutes": Consulta la teva llista d'usuaris silenciats
   "write:reactions": Edita les teves reaccions
   "write:votes": Vota en una enquesta
-  "write:pages": Editeu o suprimeix la teva pàgina
+  "write:pages": Edita o suprimeix la teva pàgina
   "write:page-likes": Editar les pàgines que t'agraden
   "read:user-groups": Consulta els teus grups d'usuaris
   "read:channels": Consulta els teus canals
   "read:gallery": Consulta la teva galeria
   "write:gallery": Edita la teva galeria
-  "write:gallery-likes": Edita la llista de notes de la galeria que t'agraden
+  "write:gallery-likes": Edita la llista de notes que t'agraden de la galeria
   "read:following": Consulta la informació sobre a qui segueixes
   "read:reactions": Consulta les teves reaccions
   "read:pages": Consulta la teva pàgina
@@ -2039,3 +2037,6 @@ _apps:
   paid: Pagament
   theDesk: TheDesk
   apps: Aplicacions
+deleted: Esborrat
+editNote: Editar nota
+edited: Editat

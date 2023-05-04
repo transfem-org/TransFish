@@ -100,9 +100,9 @@
 							<FormLink to="/@cleo@bz.pawdev.me"
 								><Mfm :text="'@cleo@bz.pawdev.me (Maintainer)'"
 							/></FormLink>
-							<FormLink to="/@panos@i.calckey.cloud"
+							<FormLink to="/@panos@calckey.social"
 								><Mfm
-									:text="'@panos@i.calckey.cloud (Management)'"
+									:text="'@panos@calckey.social (Project Coordinator)'"
 							/></FormLink>
 							<FormLink to="/@freeplay@bz.pawdev.me"
 								><Mfm
