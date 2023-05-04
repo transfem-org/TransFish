@@ -21,9 +21,9 @@ function checkWordMute(
 	const text = ((note.cw ?? "") + " " + (note.text ?? "")).trim();
 	if (text === "") return false;
 
-	const matched = mutedWords.some(filter => {
+	const matched = mutedWords.some((filter) => {
 		if (Array.isArray(filter)) {
-			return filter.every(keyword => text.includes(keyword));
+			return filter.every((keyword) => text.includes(keyword));
 		} else {
 			// represents RegExp
 			const regexp = filter.match(/^\/(.+)\/(.*)$/);
