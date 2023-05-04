@@ -56,7 +56,7 @@ function checkWordMute(
 		}
 	}
 
-	return NotMuted;
+	return false;
 }
 
 export async function getWordHardMute(
