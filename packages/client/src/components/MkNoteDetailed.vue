@@ -111,18 +111,14 @@ const inChannel = inject("inChannel", null);
 let note = $ref(deepClone(props.note));
 
 const softMuteReasonI18nSrc = (what?: string) => {
-	if (what === "note")
-		return i18n.ts.userSaysSomethingReason;
-	if (what === "reply")
-		return i18n.ts.userSaysSomethingReasonReply;
-	if (what === "renote")
-		return i18n.ts.userSaysSomethingReasonRenote;
-	if (what === "quote")
-		return i18n.ts.userSaysSomethingReasonQuote;
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
 
 	// I don't think here is reachable, but just in case
 	return i18n.ts.userSaysSomething;
-}
+};
 
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 
@@ -156,7 +152,9 @@ let appearNote = $computed(() =>
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(
+	getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords)
+);
 const translation = ref(null);
 const translating = ref(false);
 const urls = appearNote.text

@@ -1,7 +1,7 @@
 export type Muted = {
 	muted: boolean;
 	matched: string[];
-	what?: string;  // "note" || "reply" || "renote" || "quote"
+	what?: string; // "note" || "reply" || "renote" || "quote"
 };
 
 const NotMuted = { muted: false, matched: [] };
@@ -74,7 +74,7 @@ export function getWordSoftMute(
 		if (note.renote) {
 			let renoteMuted = checkWordMute(note.renote);
 			if (renoteMuted.muted) {
-				renoteMuted.what = (note.text == null ? "renote" : "quote");
+				renoteMuted.what = note.text == null ? "renote" : "quote";
 				return renoteMuted;
 			}
 		}

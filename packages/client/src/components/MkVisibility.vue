@@ -1,6 +1,6 @@
 <template>
 	<span v-if="note.visibility !== 'public'" :class="$style.visibility">
-		<i 
+		<i
 			v-if="note.visibility === 'home'"
 			class="ph-house ph-bold ph-lg"
 			v-tooltip="i18n.ts._visibility.home"
@@ -17,7 +17,7 @@
 		></i>
 	</span>
 	<span v-if="note.localOnly" :class="$style.localOnly"
-		><i 
+		><i
 			class="ph-hand-fist ph-bold ph-lg"
 			v-tooltip="i18n.ts._visibility.localOnly"
 		></i

@@ -226,18 +226,14 @@ const props = withDefaults(
 let note = $ref(deepClone(props.note));
 
 const softMuteReasonI18nSrc = (what?: string) => {
-	if (what === "note")
-		return i18n.ts.userSaysSomethingReason;
-	if (what === "reply")
-		return i18n.ts.userSaysSomethingReasonReply;
-	if (what === "renote")
-		return i18n.ts.userSaysSomethingReasonRenote;
-	if (what === "quote")
-		return i18n.ts.userSaysSomethingReasonQuote;
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
 
 	// I don't think here is reachable, but just in case
 	return i18n.ts.userSaysSomething;
-}
+};
 
 const isRenote =
 	note.renote != null &&
@@ -255,7 +251,9 @@ let appearNote = $computed(() =>
 	isRenote ? (note.renote as misskey.entities.Note) : note
 );
 const isDeleted = ref(false);
-const muted = ref(getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(
+	getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords)
+);
 const translation = ref(null);
 const translating = ref(false);
 const replies: misskey.entities.Note[] =

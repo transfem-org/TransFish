@@ -67,7 +67,7 @@ export async function getWordHardMute(
 	}
 
 	if (mutedWords.length > 0) {
-		return checkWordMute(note) || checkWordMute(reply) || checkWordMute(renote)
+		return checkWordMute(note) || checkWordMute(reply) || checkWordMute(renote);
 	}
 
 	return false;
