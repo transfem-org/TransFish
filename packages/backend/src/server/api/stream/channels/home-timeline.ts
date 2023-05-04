@@ -64,7 +64,7 @@ export default class extends Channel {
 		// そのためレコードが存在するかのチェックでは不十分なので、改めてgetWordMuteを呼んでいる
 		if (
 			this.userProfile &&
-			(await getWordMute(note, this.user, this.userProfile.mutedWords)).muted
+			(await getWordMute(note, this.user, this.userProfile.mutedWords))
 		)
 			return;
 

@@ -356,7 +356,7 @@ export default async (
 				for (const u of us) {
 					getWordMute(note, { id: u.userId }, u.mutedWords).then(
 						(shouldMute) => {
-							if (shouldMute.muted) {
+							if (shouldMute) {
 								MutedNotes.insert({
 									id: genId(),
 									userId: u.userId,
