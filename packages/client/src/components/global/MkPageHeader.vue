@@ -7,24 +7,24 @@
 		:style="{ background: bg }"
 		@click="onClick"
 	>
-		<i
-			@click="goBack()"
-			v-if="props.displayBackButton"
-			v-tooltip.noDelay="i18n.ts.goBack"
-			class="icon backButton ph-caret-left ph-bold ph-lg"
-		></i>
-		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
-			<MkAvatar
-				v-if="props.displayMyAvatar && $i"
-				class="avatar"
-				:user="$i"
-				:disable-preview="true"
-				disableLink
-			/>
-		</div>
-		<template v-if="metadata">
+		<div class="left">
+			<i
+				@click="goBack()"
+				v-if="props.displayBackButton"
+				v-tooltip.noDelay="i18n.ts.goBack"
+				class="icon backButton ph-caret-left ph-bold ph-lg"
+			></i>
+			<div v-if="narrow" class="buttons left" @click="openAccountMenu">
+				<MkAvatar
+					v-if="props.displayMyAvatar && $i"
+					class="avatar"
+					:user="$i"
+					:disable-preview="true"
+					disableLink
+				/>
+			</div>
 			<div
-				v-if="!hideTitle"
+				v-if="!hideTitle && metadata"
 				class="titleContainer"
 				@click="showTabsPopup"
 			>
@@ -63,7 +63,9 @@
 					</div>
 				</div>
 			</div>
-			<div ref="tabsEl" v-if="hasTabs" class="tabs">
+		</div>
+		<template v-if="metadata">
+			<div ref="tabsEl" v-if="hasTabs" class="tabs" :class="{collapse: hasTabs && tabs.length > 3}">
 				<button
 					v-for="tab in tabs"
 					:ref="(el) => (tabRefs[tab.key] = el)"
@@ -215,25 +217,9 @@ function goBack(): void {
 	window.history.back();
 }
 
-const calcBg = () => {
-	const rawBg = metadata?.bg || "var(--bg)";
-	const tinyBg = tinycolor(
-		rawBg.startsWith("var(")
-			? getComputedStyle(document.documentElement).getPropertyValue(
-					rawBg.slice(4, -1)
-			  )
-			: rawBg
-	);
-	tinyBg.setAlpha(0.85);
-	bg.value = tinyBg.toRgbString();
-};
-
 let ro: ResizeObserver | null;
 
 onMounted(() => {
-	calcBg();
-	globalEvents.on("themeChanged", calcBg);
-
 	watch(
 		() => [props.tab, props.tabs],
 		() => {
@@ -243,7 +229,9 @@ onMounted(() => {
 					// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
 					// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
 					const tabSizeX = tabEl.scrollWidth + 20; // + the tab's padding
-					tabEl.style = `--width: ${tabSizeX}px`;
+					if (props.tabs.length > 3) {
+						tabEl.style = `--width: ${tabSizeX}px`;
+					}
 					setTimeout(() => {
 						const parentRect = tabsEl.getBoundingClientRect();
 						const rect = tabEl.getBoundingClientRect();
@@ -278,7 +266,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-	globalEvents.off("themeChanged", calcBg);
 	if (ro) ro.disconnect();
 });
 </script>
@@ -288,15 +275,32 @@ onUnmounted(() => {
 	--height: 55px;
 	display: flex;
 	width: 100%;
-	-webkit-backdrop-filter: var(--blur, blur(15px));
-	backdrop-filter: var(--blur, blur(15px));
-	border-bottom: solid 0.5px var(--divider);
 	height: var(--height);
+	max-width: 850px;
+	margin: auto;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-bottom: solid 0.5px var(--divider);
+		-webkit-backdrop-filter: var(--blur, blur(15px));
+		backdrop-filter: var(--blur, blur(15px));
+		z-index: -1;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: var(--bg);
+		opacity: .85;
+		z-index: -2;
+	}
 
 	&.thin {
 		--height: 45px;
 
-		> .buttons {
+		.buttons {
 			> .button {
 				font-size: 0.9em;
 			}
@@ -304,7 +308,7 @@ onUnmounted(() => {
 	}
 
 	&.slim {
-		> .titleContainer {
+		> .left > .titleContainer {
 			flex: 1;
 			margin: 0 auto;
 
@@ -348,14 +352,9 @@ onUnmounted(() => {
 		}
 	}
 
-	> .buttons {
-		--margin: 8px;
+	> .left {
 		display: flex;
-		align-items: center;
-		height: var(--height);
-		margin: 0 var(--margin);
-
-		&.left {
+		> .buttons {
 			margin-right: auto;
 
 			> .avatar {
@@ -368,13 +367,17 @@ onUnmounted(() => {
 				pointer-events: none;
 			}
 		}
+	}
+
+	> .buttons {
+		--margin: 8px;
+		display: flex;
+		align-items: center;
+		height: var(--height);
+		margin: 0 var(--margin);
 
 		&.right {
-			margin-left: auto;
-		}
-
-		&:empty {
-			display: none;
+			justify-content: flex-end;
 		}
 
 		> .button {
@@ -410,7 +413,7 @@ onUnmounted(() => {
 		margin-left: 1rem;
 	}
 
-	> .titleContainer {
+	> .left > .titleContainer {
 		display: flex;
 		align-items: center;
 		max-width: 400px;
@@ -466,23 +469,39 @@ onUnmounted(() => {
 		}
 	}
 
+	> .buttons, > .left {
+		width: 20%;
+	}
+
 	> .tabs {
 		position: relative;
-		width: 100%;
 		font-size: 1em;
 		overflow-x: auto;
 		white-space: nowrap;
 		contain: strict;
-
-		&::before {
-			content: "";
-			display: inline-block;
-			height: 40%;
-			border-left: 1px solid var(--divider);
-			margin-right: 1em;
-			margin-left: 10px;
-			vertical-align: -1px;
+		display: flex;
+		flex-grow: 1;
+		justify-content: center;
+		&.collapse {
+			--width: 38px;
+			> .tab {
+				width: 38px;
+				min-width: unset !important;
+				&:not(.active) > .title {
+					opacity: 0;
+				}
+			}
 		}
+
+		// &::before {
+		// 	content: "";
+		// 	display: inline-block;
+		// 	height: 40%;
+		// 	border-left: 1px solid var(--divider);
+		// 	margin-right: 1em;
+		// 	margin-left: 10px;
+		// 	vertical-align: -1px;
+		// }
 
 		> .tab {
 			display: inline-flex;
@@ -490,10 +509,9 @@ onUnmounted(() => {
 			position: relative;
 			border-inline: 10px solid transparent;
 			height: 100%;
+			min-width: max-content;
 			font-weight: normal;
 			opacity: 0.7;
-			width: 38px;
-			--width: 38px;
 			overflow: hidden;
 			transition: color 0.2s, opacity 0.2s, width 0.2s;
 
@@ -507,9 +525,6 @@ onUnmounted(() => {
 				font-weight: 600;
 				width: var(--width);
 			}
-			&:not(.active) > .title {
-				opacity: 0;
-			}
 
 			> .icon + .title {
 				margin-left: 8px;
@@ -518,7 +533,6 @@ onUnmounted(() => {
 				transition: opacity 0.2s;
 			}
 		}
-
 		> .highlight {
 			position: absolute;
 			bottom: 0;
