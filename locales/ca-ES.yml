@@ -924,7 +924,7 @@ enableHcaptcha: Activa hCaptcha
 hcaptchaSiteKey: Clau del lloc
 hcaptchaSecretKey: Clau secreta
 recaptcha: reCAPTCHA
-enableGlobalTimeline: Activa la línea de temps global
+enableGlobalTimeline: Activa la línia de temps global
 disablingTimelinesInfo: Els Administradors i Moderadors sempre tenen accés a totes
   les líneas temporals, inclòs si hi són desactivades.
 showLess: Tanca
@@ -1205,8 +1205,8 @@ userSaysSomethingReason: '{name} va dir {reason}'
 display: Visualització
 channel: Canals
 create: Crear
-useGlobalSetting: Fes servir els ajustos globals
-useGlobalSettingDesc: Si s'activa, es faran servir els ajustos de notificacions del
+useGlobalSetting: Fes servir els ajusts globals
+useGlobalSettingDesc: Si s'activa, es faran servir els ajusts de notificacions del
   teu compte. Si es desactiva , es poden fer configuracions individuals.
 other: Altres
 menu: Menú
