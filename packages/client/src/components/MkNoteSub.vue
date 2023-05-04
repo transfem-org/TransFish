@@ -196,6 +196,7 @@ import { getNoteMenu } from "@/scripts/get-note-menu";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
+import { userPage } from "@/filters/user";
 import * as os from "@/os";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { $i } from "@/account";
