@@ -25,38 +25,29 @@ function checkWordMute(
 	const text = ((note.cw ?? "") + " " + (note.text ?? "")).trim();
 	if (text === "") return false;
 
-	for (const mutePattern of mutedWords) {
-		let mute: RE2;
-		let matched: string[];
-		if (Array.isArray(mutePattern)) {
-			matched = mutePattern.filter((keyword) => keyword !== "");
-
-			if (matched.length === 0) {
-				continue;
-			}
-			mute = new RE2(
-				`\\b${matched.map(escapeRegExp).join("\\b.*\\b")}\\b`,
-				"g",
-			);
+	const matched = mutedWords.some(filter => {
+		if (Array.isArray(filter)) {
+			return filter.every(keyword => text.includes(keyword));
 		} else {
-			const regexp = mutePattern.match(/^\/(.+)\/(.*)$/);
+			// represents RegExp
+			const regexp = filter.match(/^\/(.+)\/(.*)$/);
+
 			// This should never happen due to input sanitisation.
 			if (!regexp) {
 				console.warn(`Found invalid regex in word mutes: ${mutePattern}`);
-				continue;
+				return false;
 			}
-			mute = new RE2(regexp[1], regexp[2]);
-			matched = [mutePattern];
-		}
 
-		try {
-			if (mute.test(text)) return true;
-		} catch (err) {
-			// This should never happen due to input sanitisation.
+			try {
+				return new RE2(regexp[1], regexp[2]).test(text);
+			} catch (err) {
+				// This should never happen due to input sanitisation.
+				return false;
+			}
 		}
-	}
+	});
 
-	return false;
+	return matched;
 }
 
 export async function getWordHardMute(
