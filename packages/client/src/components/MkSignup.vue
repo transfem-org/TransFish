@@ -1,15 +1,15 @@
 <template>
+	<p>{{ i18n.ts.signupsDisabled }}</p>
+	<a href="https://calckey.org/join">
+		<MkButton rounded gradate
+			>{{ i18n.ts.findOtherInstance }}
+		</MkButton>
+	</a>
 	<form
 		class="qlvuhzng _formRoot"
 		autocomplete="new-password"
 		@submit.prevent="onSubmit"
 	>
-		<p>{{ i18n.ts.signupsDisabled }}</p>
-		<a href="https://calckey.org/join">
-			<MkButton rounded gradate
-				>{{ i18n.ts.findOtherInstance }}
-			</MkButton>
-		</a>
 		<MkInput
 			v-if="instance.disableRegistration"
 			v-model="invitationCode"
