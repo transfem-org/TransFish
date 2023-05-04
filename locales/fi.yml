@@ -171,8 +171,8 @@ searchUser: Etsi käyttäjää
 showLess: Sulje
 youGotNewFollower: seurasi sinua
 directNotes: Yksityisviestit
-driveFileDeleteConfirm: Oletko varma, että haluat poistaa tiedoston " {name}"? Lähetykset,
-  jotka sisältyvät tiedostoon, poistuvat myös.
+driveFileDeleteConfirm: Oletko varma, että haluat poistaa tiedoston " {name}"? Se
+  poistetaan kaikista viesteistä, jotka sisältävät sen liitetiedostona.
 importRequested: Olet pyytänyt viemistä. Tämä voi viedä hetken.
 exportRequested: Olet pyytänyt tuomista. Tämä voi viedä hetken. Se lisätään asemaan
   kun tuonti valmistuu.
@@ -817,3 +817,105 @@ userPagePinTip: Voit näyttää viestit täällä valitsemalla yksittäisten vie
   "Kiinnitä profiiliin".
 notSpecifiedMentionWarning: Tämä viesti sisältää mainintoja käyttäjistä, joita ei
   ole mainittu vastaanottajina
+name: Nimi
+allowedInstances: Sallitut (whitelisted) instanssit
+hashtags: Aihetunnisteet
+troubleshooting: Vianetsintä
+received: Vastaanotettu
+searchResult: Hakutulokset
+filter: Suodatin
+antennas: Antennit
+noMaintainerInformationWarning: Ylläpitäjän tietoja ei ole konfiguroitu.
+controlPanel: Hallintapaneeli
+manageAccounts: Hallitse tilejä
+makeReactionsPublic: Aseta reaktiohistoria julkiseksi
+unread: Lukematon
+deleted: Poistettu
+editNote: Muokkaa viestiä
+edited: Muokattu
+avoidMultiCaptchaConfirm: Useiden Captcha-järjestelmien käyttö voi aiheuttaa häiriöitä
+  niiden välillä. Haluatko poistaa käytöstä muut tällä hetkellä käytössä olevat Captcha-järjestelmät?
+  Jos haluat, että ne pysyvät käytössä, paina peruutusnäppäintä.
+manageAntennas: Hallitse antenneja
+info: Tietoja
+userInfo: Käyttäjätiedot
+unknown: Tuntematon
+onlineStatus: Online-tila
+hideOnlineStatus: Piilota Online-tila
+hideOnlineStatusDescription: Online-tilasi piilottaminen vähentää joidenkin toimintojen,
+  kuten haun, käyttömukavuutta.
+online: Online
+active: Aktiivinen
+offline: Offline
+botProtection: Botti-suojaus
+instanceBlocking: Federaatio Esto/Hiljennys
+enabled: Otettu käyttöön
+quickAction: Pikatoiminnot
+user: Käyttäjä
+accounts: Tilit
+switch: Vaihda
+noBotProtectionWarning: Botti-suojausta ei ole konfiguroitu.
+configure: Konfiguroi
+postToGallery: Luo uusi galleriaviesti
+gallery: Galleria
+recentPosts: Viimeaikaiset sivut
+popularPosts: Suositut sivut
+ads: Mainokset
+expiration: Aikaraja
+memo: Muistio
+priority: Prioriteetti
+high: Korkea
+middle: Keskitaso
+low: Alhainen
+emailNotConfiguredWarning: Sähköpostiosoitetta ei ole asetettu.
+ratio: Suhde
+secureMode: Suojattu moodi (Valtuutettu nouto)
+instanceSecurity: Instanssiturvallisuus
+allowedInstancesDescription: Federaatiota varten sallitulle listalle (whitelisted)
+  otettavien instanssien isännät, kukin erotettuna uudella rivillä (sovelletaan vain
+  yksityisessä tilassa).
+previewNoteText: Näytä esikatselu
+customCss: Kustomoitu CSS
+customCssWarn: Tätä asetusta tulisi käyttää vain, jos tiedät, mitä se tekee. Vääränlaisten
+  arvojen syöttäminen voi aiheuttaa sen, että asiakasohjelma lakkaa toimimasta normaalisti.
+recommended: Suositeltu
+squareAvatars: Näytä neliön malliset kuvakkeet
+seperateRenoteQuote: Erilliset buustaa ja lainaa -napit
+sent: Lähetetty
+useBlurEffect: Käytä blur-efektejä käyttöliittymässä
+misskeyUpdated: Calckey on päivitetty!
+whatIsNew: Näytä muutokset
+translate: Käännä
+translatedFrom: Käännetty kielestä {x}
+accountDeletionInProgress: Tilin poistaminen on parhaillaan menossa
+usernameInfo: Nimi, joka erottaa tilisi muista tällä palvelimella olevista tileistä.  Voit
+  käyttää aakkosia (a~z, A~Z), numeroita (0~9) tai alaviivoja (_). Käyttäjätunnuksia
+  ei voi muuttaa myöhemmin.
+aiChanMode: Ai-chan klassisessa käyttöliittymässä
+keepCw: Pidä sisältövaroitukset
+pubSub: Pub/Sub tilit
+lastCommunication: Viimeisin kommunikaatio
+unresolved: Ratkaisematon
+breakFollow: Poista seuraaja
+breakFollowConfirm: Oletko varma, että haluat poistaa seuraajan?
+itsOn: Otettu käyttöön
+itsOff: Poistettu käytöstä
+emailRequiredForSignup: Vaadi sähköpostiosoitetta sisäänkirjautumiseen
+makeReactionsPublicDescription: Tämä laittaa viimeisimmät reaktiosi julkisesti näkyväksi.
+classic: Klassinen
+muteThread: Mykistä lanka
+unmuteThread: Poista langan mykistys
+ffVisibility: Seurataan/Seurattavien näkyvyys
+notRecommended: Ei suositeltu
+disabled: Poistettu käytöstä
+selectAccount: Valitse tili
+switchAccount: Vaihda tili
+administration: Hallinta
+shareWithNote: Jaa viestin kanssa
+secureModeInfo: Kun pyydät muista instansseista, älä lähetä takaisin ilman todisteita.
+privateMode: Yksityinen moodi
+privateModeInfo: Kun tämä on käytössä, vain sallittujen (whitelisted) luetteloon merkityt
+  instanssit voivat liittyä instansseihisi. Kaikki viestit piilotetaan yleisöltä.
+global: Globaali
+resolved: Ratkaistu
+learnMore: Opi lisää
