@@ -16,7 +16,10 @@ function escapeRegExp(x: string): string {
 	return x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
 
-function checkWordMute(note: NoteLike): boolean {
+function checkWordMute(
+	note: NoteLike,
+	mutedWords: Array<string | string[]>,
+): boolean {
 	if (note == null) return false;
 
 	const text = ((note.cw ?? "") + " " + (note.text ?? "")).trim();
@@ -67,7 +70,11 @@ export async function getWordHardMute(
 	}
 
 	if (mutedWords.length > 0) {
-		return checkWordMute(note) || checkWordMute(reply) || checkWordMute(renote);
+		return (
+			checkWordMute(note, mutedWords) ||
+			checkWordMute(reply, mutedWords) ||
+			checkWordMute(renote, mutedWords)
+		);
 	}
 
 	return false;

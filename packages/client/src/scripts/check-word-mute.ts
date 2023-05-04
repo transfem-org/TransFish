@@ -10,7 +10,10 @@ function escapeRegExp(x: string) {
 	return x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
 
-function checkWordMute(note: NoteLike): Muted {
+function checkWordMute(
+	note: NoteLike,
+	mutedWords: Array<string | string[]>,
+): Muted {
 	const text = ((note.cw ?? "") + " " + (note.text ?? "")).trim();
 	if (text === "") return NotMuted;
 
@@ -57,14 +60,14 @@ export function getWordSoftMute(
 	}
 
 	if (mutedWords.length > 0) {
-		let noteMuted = checkWordMute(note);
+		let noteMuted = checkWordMute(note, mutedWords);
 		if (noteMuted.muted) {
 			noteMuted.what = "note";
 			return noteMuted;
 		}
 
 		if (note.reply) {
-			let replyMuted = checkWordMute(note.reply);
+			let replyMuted = checkWordMute(note.reply, mutedWords);
 			if (replyMuted.muted) {
 				replyMuted.what = "reply";
 				return replyMuted;
@@ -72,7 +75,7 @@ export function getWordSoftMute(
 		}
 
 		if (note.renote) {
-			let renoteMuted = checkWordMute(note.renote);
+			let renoteMuted = checkWordMute(note.renote, mutedWords);
 			if (renoteMuted.muted) {
 				renoteMuted.what = note.text == null ? "renote" : "quote";
 				return renoteMuted;
