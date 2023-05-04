@@ -4,6 +4,10 @@
 		autocomplete="new-password"
 		@submit.prevent="onSubmit"
 	>
+		<p>{{ i18n.ts.signupsDisabled }}</p>
+		<MkButton rounded gradate link to="https://calckey.org/join"
+			>{{ i18n.ts.findOtherInstance }}
+		</MkButton>
 		<MkInput
 			v-if="instance.disableRegistration"
 			v-model="invitationCode"
