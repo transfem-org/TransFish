@@ -15,7 +15,7 @@ gotIt: "Ho he entès!"
 cancel: "Cancel·lar"
 enterUsername: "Introdueix el teu nom d'usuari"
 renotedBy: "Impulsat per {user}"
-noNotes: "Cap nota"
+noNotes: "Cap publicació"
 noNotifications: "Cap notificació"
 instance: "Instància"
 settings: "Preferències"
@@ -45,8 +45,8 @@ copyContent: "Còpia el contingut"
 copyLink: "Còpia l'enllaç"
 delete: "Esborra"
 deleteAndEdit: "Esborrar i edita"
-deleteAndEditConfirm: "Estàs segur que vols esborrar aquesta nota i editar-la? Perdràs\
-  \ totes les reaccions, impulsos i respostes."
+deleteAndEditConfirm: "Estàs segur que vols esborrar aquesta publicació i editar-la?\
+  \ Perdràs totes les reaccions, impulsos i respostes."
 addToList: "Afegir a la llista"
 sendMessage: "Enviar un missatge"
 copyUsername: "Còpia nom d'usuari"
@@ -73,7 +73,7 @@ exportRequested: "Has sol·licitat una exportació. Això pot trigar una estona.
 importRequested: "Has sol·licitat una importació. Això pot trigar una estona."
 lists: "Llistes"
 noLists: "No tens cap llista"
-note: "Nota"
+note: "Publicació"
 notes: "Notes"
 following: "Seguint"
 followers: "Seguidors"
@@ -103,7 +103,7 @@ enterEmoji: "Introduir un emoji"
 renote: "Impuls"
 unrenote: "Anul·lar impuls"
 renoted: "Impulsat."
-cantRenote: "Aquesta nota no pot ser impulsada."
+cantRenote: "Aquesta publicació no es pot impulsar."
 cantReRenote: "No es pot impulsar un impuls."
 quote: "Cita"
 pinnedNote: "Publicació fixada"
@@ -130,7 +130,7 @@ unsuspend: "Treu la suspensió"
 instances: "Instàncies"
 remove: "Eliminar"
 nsfw: "NSFW"
-pinnedNotes: "Publicació fixada"
+pinnedNotes: "Publicacions fixades"
 userList: "Llistes"
 smtpUser: "Nom d'usuari"
 smtpPass: "Contrasenya"
@@ -298,11 +298,11 @@ _theme:
   lighten: Clar
   install: Instal·lar un tema
 _sfx:
-  note: "Nota nova"
+  note: "Publicació nova"
   notification: "Notificacions"
   antenna: Antenes
   channel: Notificacions del canal
-  noteMy: Nota propia
+  noteMy: Publicació propia
   chat: Xat
   chatBg: Fons del xat
 _2fa:
@@ -351,7 +351,7 @@ _cw:
   chars: '{count} caràcters'
 _visibility:
   followers: "Seguidors"
-  publicDescription: La teva nota serà visible per a tots els usuaris
+  publicDescription: La teva publicació serà visible per a tots els usuaris
   localOnly: Només Local
   specified: Directe
   home: Sense llistar
@@ -613,8 +613,8 @@ _pages:
     textareaInput: Entrada de text multilínia
     numberInput: Entrada numèrica
     _note:
-      id: ID de la nota
-      idDescription: També podeu enganxar l'URL de la nota aquí.
+      id: ID de la publicació
+      idDescription: També podeu enganxar l'URL de la publicació aquí.
       detailed: Vista detallada
     switch: Canviar
     canvas: Llenç
@@ -622,7 +622,7 @@ _pages:
       id: Identificador de llenç
       width: Amplada
       height: Alçada
-    note: Nota incrustada
+    note: Publicació incrustada
     _counter:
       name: Nom de la variable
       text: Títol
@@ -793,14 +793,14 @@ disk: Disc
 instanceInfo: Informació de l'instància
 statistics: Estadístiques
 clearCachedFiles: Neteja la memòria cau
-clearQueueConfirmText: Qualsevol nota que continuï a la cua sense entrega no será
-  federada. Normalment aquesta operació no es necessària.
+clearQueueConfirmText: Qualsevol publicació que continuï a la cua sense entregar no
+  será federada. Normalment aquesta operació no es necessària.
 clearCachedFilesConfirm: Segur que vols esborrar els fitxers remots de la memòria
   cau?
 blockedUsers: Usuaris blocats
 noUsers: No hi han usuaris
 editProfile: Editar perfil
-noteDeleteConfirm: Segur que vols esborrar aquesta nota?
+noteDeleteConfirm: Segur que vols esborrar aquesta publicació?
 pinLimitExceeded: No pots fixar més notes
 muteAndBlock: Silenciats i Bloquejats
 mutedUsers: Usuaris silenciats
@@ -1050,7 +1050,7 @@ text: Text
 enable: Activar
 next: Següent
 retype: Torna a entrar
-noteOf: Nota de {user}
+noteOf: Publicació de {user}
 inviteToGroup: Invitar a un grup
 quoteAttached: Cita
 quoteQuestion: Adjuntar com a cita?
@@ -1100,7 +1100,7 @@ promotion: Promogut
 promote: Promoure
 numberOfDays: Nombre de dies
 objectStorageBaseUrl: Adreça URL base
-hideThisNote: Amaga aquesta nota
+hideThisNote: Amaga aquesta publicació
 showFeaturedNotesInTimeline: Mostra les notes destacades a les líneas de temps
 objectStorage: Emmagatzematge d'objectes
 useObjectStorage: Fes servir l'emmagatzema d'objectes
@@ -1218,7 +1218,7 @@ inboxUrl: Adreça de la safata d'entrada
 addedRelays: Relés afegits
 serviceworkerInfo: Ha de estar activat per les notificacions push.
 poll: Enquesta
-deletedNote: Nota esborrada
+deletedNote: Publicació esborrada
 disablePlayer: Tancar el reproductor de vídeo
 fileIdOrUrl: ID o adreça URL del fitxer
 behavior: Comportament
@@ -1243,10 +1243,10 @@ enablePlayer: Obre el reproductor de vídeo
 yourAccountSuspendedDescription: Aquest compte ha sigut suspès per no seguir els termes
   de servei d'aquest servidor o quelcom similar. Contacte amb l'administrador si vols
   conèixer la raó amb més detall. Si us plau no facis un compte nou.
-invisibleNote: Nota oculta
+invisibleNote: Publicació oculta
 enableInfiniteScroll: Carregar més de forma automàtica
 fillAbuseReportDescription: Si us plau omple els detalls sobre aquest informe. Si
-  es sobre una nota en concret, si us plau, inclou l'adreça URL.
+  es sobre una publicació en concret, si us plau, inclou l'adreça URL.
 forwardReportIsAnonymous: Com a informador a l'instància remota no es mostrarà el
   teu compte, si no un compte anònim.
 openInNewTab: Obrir en una pestanya nova
@@ -1474,8 +1474,8 @@ followersCount: Nombre de seguidors
 goBack: Enrera
 quitFullView: Sortí de la vista complerta
 addDescription: Afegeix una descripció
-notSpecifiedMentionWarning: Aquesta nota conté mencions a usuaris no inclosos com
-  a destinataris
+notSpecifiedMentionWarning: Aquesta publicació conté mencions a usuaris no inclosos
+  com a destinataris
 info: Sobre
 hideOnlineStatus: Amagar l'estat de conexió
 onlineStatus: Estat de conexió
@@ -1491,7 +1491,7 @@ administration: Administració
 switch: Canviar
 gallery: Galeria
 popularPosts: Pàgines populars
-shareWithNote: Comparteix amb una nota
+shareWithNote: Comparteix amb una publicació
 expiration: Data límit
 memo: Memo
 priority: Prioritat
@@ -1570,8 +1570,8 @@ unlikeConfirm: Vols treure el teu m'agrada?
 fullView: Vista complerta
 desktop: Escritori
 notesCount: Nombre de notes
-confirmToUnclipAlreadyClippedNote: Aquesta nota ja és al clip "{name}". Vols treure'l
-  d'aquest clip?
+confirmToUnclipAlreadyClippedNote: Aquesta publicació ja és al clip "{name}". La vols
+  treure d'aquest clip?
 driveFilesCount: Nombre de fitxers al Disk
 silencedInstances: Instàncies silenciades
 silenceThisInstance: Silencia la instància
@@ -1584,14 +1584,14 @@ objectStorageEndpointDesc: Deixa això buit si fas servir AWS, S3, d'una altre m
   que facis servir.
 objectStorageRegionDesc: Especifica una regió com a 'xx-east-1'. Si el teu proveïdor
   no distingeix entre regions, deixa això en buit o pots escriure 'us-east-1'.
-userPagePinTip: Pots mostrar notes aquí escollint "Fixar al perfil" dintre del menú
-  de cada nota.
+userPagePinTip: Pots mostrar publicacions aquí escollint "Fixar al perfil" dintre
+  del menú de cada publicació.
 userInfo: Informació d'usuari
 hideOnlineStatusDescription: Amagant el teu estat en línea redueix la comoditat d'ús
   d'algunes característiques com ara la recerca.
 active: Actiu
 accounts: Comptes
-postToGallery: Crea una nova nota a la galeria
+postToGallery: Crea una publicació nova a la galeria
 secureMode: Mode segur (Recuperació Autoritzada)
 customCssWarn: Aquesta configuració només s'ha d'utilitzar si sabeu què fa. La introducció
   de valors indeguts pot provocar que el client deixi de funcionar amb normalitat.
@@ -1638,7 +1638,7 @@ objectStorageUseProxyDesc: Desactiva això si no faràs servir un servidor Proxy
 objectStorageSetPublicRead: Fixar com a "public-read" al pujar
 serverLogs: Registres del servidor
 deleteAll: Esborrar tot
-showFixedPostForm: Mostrar el formulari de publicació al principi de la línea de temps
+showFixedPostForm: Mostrar el formulari de notes al principi de la línia de temps
 unableToProcess: Aquesta operació no es pot acabar
 recentUsed: Fet servir fa poc
 install: Instal·lar
@@ -1730,7 +1730,7 @@ migrationConfirm: "Esteu absolutament segur que voleu migrar el vostre compte a 
   \ actual com el compte del qual us moveu."
 defaultReaction: Reacció d'emoji predeterminada per a notes sortints i entrants
 enableCustomKaTeXMacro: Activa les macros KaTeX personalitzades
-noteId: ID de la nota
+noteId: ID de la publicació
 _nsfw:
   respect: Amaga els mitjans NSFW
   ignore: No amagueu els mitjans NSFW
@@ -1792,8 +1792,8 @@ pushNotificationNotSupported: El vostre navegador o instància no admet notifica
   push
 license: Llicència
 indexPosts: Índex de notes
-indexFrom: Índex a partir de l'identificador de notes (deixeu en blanc per indexar
-  cada publicació)
+indexFrom: Índex a partir de l'ID de Publicacions (deixeu en blanc per indexar cada
+  publicació)
 indexNotice: Ara indexant. Això probablement trigarà una estona, si us plau, no reinicieu
   el servidor durant almenys una hora.
 _instanceTicker:
@@ -1867,8 +1867,8 @@ _tutorial:
   step3_2: "Les teves líneas de temps domèstiques i socials es basen en qui seguiu,\
     \ així que proveu de seguir un parell de comptes per començar.\nFeu clic al cercle\
     \ més situat a la part superior dreta d'un perfil per seguir-los."
-  step4_2: A algunes persones els agrada fer una nota de {introduction} o un senzill
-    "Hola món!"
+  step4_2: A algunes persones els agrada fer una publicació de {introduction} o un
+    senzill "Hola món!"
   step5_1: Línies de temps, línies de temps a tot arreu!
   step6_2: Bé, no només t'has unit a Calckey. T'has unit a un portal al Fediverse,
     una xarxa interconnectada de milers de servidors, anomenats "instàncies".
@@ -1935,8 +1935,8 @@ _postForm:
     b: Què passa al teu voltant?
     c: En què penses?
     a: Què et portes entre mans?
-  quotePlaceholder: Cita aquesta nota...
-  replyPlaceholder: Respon a aquesta nota...
+  quotePlaceholder: Cita aquesta publicació...
+  replyPlaceholder: Respon a aquesta publicació...
   channelPlaceholder: Publica en un canal...
 _charts:
   federation: Federació
@@ -1983,11 +1983,11 @@ _wordMute:
   hard: Dur
   muteWordsDescription2: Envolta les paraules clau amb barres inclinades per utilitzar
     expressions regulars.
-  softDescription: Amaga les publicacions que compleixen les condicions establertes
-    de la línia de temps.
-  hardDescription: Evita que les publicacions que compleixin les condicions establertes
-    s'afegeixin a la línia de temps. A més, aquestes publicacions no s'afegiran a
-    la línia de temps encara que es modifiquin les condicions.
+  softDescription: Amaga les notes que compleixen les condicions establertes de la
+    línia de temps.
+  hardDescription: Evita que les notes que compleixin les condicions establertes s'afegeixin
+    a la línia de temps. A més, aquestes notes no s'afegiran a la línia de temps encara
+    que es modifiquin les condicions.
   mutedNotes: Notes silenciades
 _auth:
   shareAccessAsk: Estàs segur que vols autoritzar aquesta aplicació per accedir al
@@ -2038,5 +2038,9 @@ _apps:
   theDesk: TheDesk
   apps: Aplicacions
 deleted: Esborrat
-editNote: Editar nota
+editNote: Edita la nota
 edited: Editat
+findOtherInstance: Cercar un altre servidor
+signupsDisabled: Actualment, les inscripcions en aquest servidor estan desactivades,
+  però sempre podeu registrar-vos en un altre servidor. Si teniu un codi d'invitació
+  per a aquest servidor, introduïu-lo a continuació.
