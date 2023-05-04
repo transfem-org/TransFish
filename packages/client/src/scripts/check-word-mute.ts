@@ -47,6 +47,8 @@ function checkWordMute(
 			// This should never happen due to input sanitisation.
 		}
 	}
+
+	return NotMuted;
 }
 
 export function getWordSoftMute(
