@@ -198,7 +198,7 @@
 		</article>
 	</div>
 	<div v-else class="muted" @click="muted.muted = false">
-		<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
 					v-user-preview="appearNote.userId"
@@ -260,6 +260,20 @@ const props = defineProps<{
 const inChannel = inject("inChannel", null);
 
 let note = $ref(deepClone(props.note));
+
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note")
+		return i18n.ts.userSaysSomethingReason;
+	if (what === "reply")
+		return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote")
+		return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote")
+		return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+}
 
 // plugin
 if (noteViewInterruptors.length > 0) {
