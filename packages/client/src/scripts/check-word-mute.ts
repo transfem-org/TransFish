@@ -68,19 +68,19 @@ export function getWordSoftMute(
 			return noteMuted;
 		}
 
-		if (note.reply) {
-			let replyMuted = checkWordMute(note.reply, mutedWords);
-			if (replyMuted.muted) {
-				replyMuted.what = "reply";
-				return replyMuted;
-			}
-		}
-
 		if (note.renote) {
 			let renoteMuted = checkWordMute(note.renote, mutedWords);
 			if (renoteMuted.muted) {
 				renoteMuted.what = note.text == null ? "renote" : "quote";
 				return renoteMuted;
+			}
+		}
+
+		if (note.reply) {
+			let replyMuted = checkWordMute(note.reply, mutedWords);
+			if (replyMuted.muted) {
+				replyMuted.what = "reply";
+				return replyMuted;
 			}
 		}
 	}
