@@ -42,27 +42,11 @@
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
-					v-user-preview="
-						['renote', 'quote'].includes(muted.what)
-							? note.userId
-							: appearNote.userId
-					"
+					v-user-preview="note.userId"
 					class="name"
-					:to="
-						userPage(
-							['renote', 'quote'].includes(muted.what)
-								? note.user
-								: appearNote.user
-						)
-					"
+					:to="userPage(note.user)"
 				>
-					<MkUserName
-						:user="
-							['renote', 'quote'].includes(muted.what)
-								? note.user
-								: appearNote.user
-						"
-					/>
+					<MkUserName :user="note.user" />
 				</MkA>
 			</template>
 			<template #reason>
