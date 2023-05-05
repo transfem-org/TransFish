@@ -15,7 +15,7 @@ gotIt: "Verstanden!"
 cancel: "Abbrechen"
 enterUsername: "Nutzername eingeben"
 renotedBy: "Geteilt von {user}"
-noNotes: "Keine Nachrichten"
+noNotes: "Keine Beiträge"
 noNotifications: "Keine Benachrichtigungen"
 instance: "Instanz"
 settings: "Einstellungen"
@@ -23,7 +23,7 @@ basicSettings: "Grundeinstellungen"
 otherSettings: "Weitere Einstellungen"
 openInWindow: "In einem Fenster öffnen"
 profile: "Profil"
-timeline: "Chronik"
+timeline: "Timeline"
 noAccountDescription: "Dieser Nutzer hat seine Profilbeschreibung noch nicht ausgefüllt."
 login: "Anmelden"
 loggingIn: "Du wirst angemeldet"
@@ -45,8 +45,8 @@ copyContent: "Inhalt kopieren"
 copyLink: "Link kopieren"
 delete: "Löschen"
 deleteAndEdit: "Löschen und Bearbeiten"
-deleteAndEditConfirm: "Möchtest du diese Nachricht wirklich löschen und bearbeiten?\
-  \ Alle Reaktionen, Renotes und Antworten dieser Nachricht werden verloren gehen."
+deleteAndEditConfirm: "Möchtest du diesen Beitrag wirklich löschen und bearbeiten?\
+  \ Alle Rückmeldungen, Renotes und Antworten dieses Beitrages werden verloren gehen."
 addToList: "Zu Liste hinzufügen"
 sendMessage: "Eine Mitteilung senden"
 copyUsername: "Nutzernamen kopieren"
@@ -67,7 +67,7 @@ export: "Export"
 files: "Dateien"
 download: "Herunterladen"
 driveFileDeleteConfirm: "Möchtest du die Datei „{name}“ wirklich löschen? Es wird\
-  \ aus allen Nachrichten entfernt, die es als Anhang enthalten."
+  \ aus allen Beiträgen entfernt, die die Datei als Anhang enthalten."
 unfollowConfirm: "Bist du dir sicher, daß du {name} nicht mehr folgen möchtest?"
 exportRequested: "Du hast einen Export angefragt. Dies kann etwas Zeit in Anspruch\
   \ nehmen. Sobald der Export abgeschlossen ist, wird er deinem Laufwerk hinzugefügt."
@@ -75,8 +75,8 @@ importRequested: "Du hast einen Import angefragt. Dies kann etwas Zeit in Anspru
   \ nehmen."
 lists: "Listen"
 noLists: "Du hast keine Listen angelegt"
-note: "Nachricht"
-notes: "Nachrichten"
+note: "Beitrag"
+notes: "Beiträge"
 following: "Folgen"
 followers: "Gefolgt von"
 followsYou: "Folgt dir"
@@ -106,8 +106,8 @@ enterEmoji: "Gib ein Emoji ein"
 renote: "Teilen"
 unrenote: "Teilen widerrufen"
 renoted: "Geteilt"
-cantRenote: "Teilen dieser Nachricht nicht möglich."
-cantReRenote: "Das Teilen einer bereits geteilten Nachricht ist nicht möglich."
+cantRenote: "Teilen dieses Beitrages nicht möglich."
+cantReRenote: "Das Teilen einer bereits geteilten Beitrages ist nicht möglich."
 quote: "Zitieren"
 pinnedNote: "Angehefteter Beitrag"
 pinned: "An das Profil anheften"
@@ -354,10 +354,10 @@ pages: "Seiten"
 integration: "Integration"
 connectService: "Verbinden"
 disconnectService: "Trennen"
-enableLocalTimeline: "Lokale Chronik aktivieren"
-enableGlobalTimeline: "Globale Chronik aktivieren"
+enableLocalTimeline: "Lokale Timeline aktivieren"
+enableGlobalTimeline: "Globale Timeline aktivieren"
 disablingTimelinesInfo: "Administratoren und Moderatoren haben immer Zugriff auf alle\
-  \ Chroniken, auch wenn diese deaktiviert sind."
+  \ Timelines, auch wenn diese deaktiviert sind."
 registration: "Registrieren"
 enableRegistration: "Registration neuer Nutzer erlauben"
 invite: "Einladen"
@@ -375,7 +375,7 @@ pinnedPages: "Angeheftete Seiten"
 pinnedPagesDescription: "Gib durch Leerzeilen getrennte Pfäde zu Seiten an, die an\
   \ die Startseite dieser Instanz angeheftet werden sollen."
 pinnedClipId: "ID des anzuheftenden Clips"
-pinnedNotes: "Angeheftete Notizen"
+pinnedNotes: "Angeheftete Beiträge"
 hcaptcha: "hCaptcha"
 enableHcaptcha: "hCaptcha aktivieren"
 hcaptchaSiteKey: "Site key"
@@ -396,15 +396,15 @@ antennaExcludeKeywords: "Zu ignorierende Schlüsselwörter"
 antennaKeywordsDescription: "Zum Nutzen einer \"UND\"-Verknüpfung Einträge mit Leerzeichen\
   \ trennen, zum Nutzen einer \"ODER\"-Verknüpfung Einträge mit einem Zeilenumbruch\
   \ trennen."
-notifyAntenna: "Über neue Notizen benachrichtigen"
-withFileAntenna: "Nur Notizen mit Dateien"
+notifyAntenna: "Über neue Beiträge benachrichtigen"
+withFileAntenna: "Nur Beiträge mit Dateien"
 enableServiceworker: "Push-Benachrichtigungen im Browser aktivieren"
 antennaUsersDescription: "Nutzernamen getrennt durch Zeilenumbrüche angeben"
 caseSensitive: "Groß-/Kleinschreibung unterscheiden"
 withReplies: "Antworten beinhalten"
 connectedTo: "Mit folgenden Nutzerkonten verknüpft"
-notesAndReplies: "Notizen und Antworten"
-withFiles: "Notizen mit Dateien"
+notesAndReplies: "Beiträge und Antworten"
+withFiles: "Beiträge mit Dateien"
 silence: "Instanzweit stummschalten"
 silenceConfirm: "Möchtest du diesen Nutzer wirklich instanzweit stummschalten?"
 unsilence: "Instanzweite Stummschaltung aufheben"
@@ -441,10 +441,10 @@ notFoundDescription: "Es konnte keine Seite unter dieser URL gefunden werden."
 uploadFolder: "Standardordner für Uploads"
 cacheClear: "Cache leeren"
 markAsReadAllNotifications: "Alle Benachrichtigungen als gelesen markieren"
-markAsReadAllUnreadNotes: "Alle Notizen als gelesen markieren"
+markAsReadAllUnreadNotes: "Alle Beiträge als gelesen markieren"
 markAsReadAllTalkMessages: "Alle Chats als gelesen markieren"
 help: "Hilfe"
-inputMessageHere: "Hier Nachricht eingeben"
+inputMessageHere: "Hier Beitrag eingeben"
 close: "Schließen"
 group: "Gruppe"
 groups: "Gruppen"
@@ -462,13 +462,13 @@ text: "Text"
 enable: "Aktivieren"
 next: "Weiter"
 retype: "Erneut eingeben"
-noteOf: "Notiz von {user}"
+noteOf: "Beitrag von {user}"
 inviteToGroup: "Zu Gruppe einladen"
 quoteAttached: "Zitat"
 quoteQuestion: "Als Zitat anhängen?"
-noMessagesYet: "Noch keine Nachrichten vorhanden"
+noMessagesYet: "Noch keine Beiträge vorhanden"
 newMessageExists: "Du hast eine neue Nachricht"
-onlyOneFileCanBeAttached: "Es kann pro Nachricht nur eine Datei angehängt werden"
+onlyOneFileCanBeAttached: "Es kann pro Beitrag nur eine Datei angehängt werden"
 signinRequired: "Bitte registriere oder melde dich an, um fortzufahren"
 invitations: "Einladungen"
 invitationCode: "Einladungscode"
@@ -521,8 +521,8 @@ accountSettings: "Nutzerkonto-Einstellungen"
 promotion: "Werbung"
 promote: "Werbung schalten"
 numberOfDays: "Anzahl der Tage"
-hideThisNote: "Diese Notiz verstecken"
-showFeaturedNotesInTimeline: "Beliebte Notizen in der Chronik anzeigen"
+hideThisNote: "Diesen Beitrag verstecken"
+showFeaturedNotesInTimeline: "Beliebte Beiträge in der Timeline anzeigen"
 objectStorage: "Object Storage"
 useObjectStorage: "Object Storage verwenden"
 objectStorageBaseUrl: "Basis-URL"
@@ -550,8 +550,8 @@ objectStorageUseProxyDesc: "Deaktiviere dies, falls du keinen Proxy für den Obj
 objectStorageSetPublicRead: "Bei Upload auf \"public-read\" stellen"
 serverLogs: "Serverprotokolle"
 deleteAll: "Alle löschen"
-showFixedPostForm: "Bereich zum Schreiben neuer Notizen am Anfang der Chronik anzeigen"
-newNoteRecived: "Es gibt neue Notizen"
+showFixedPostForm: "Bereich zum Schreiben neuer Beiträge am Anfang der Timeline anzeigen"
+newNoteRecived: "Es gibt neue Beiträge"
 sounds: "Töne"
 listen: "Anhören"
 none: "Nichts"
@@ -600,8 +600,8 @@ addRelay: "Relay hinzufügen"
 inboxUrl: "inbox-URL"
 addedRelays: "Hinzugefügte Relays"
 serviceworkerInfo: "Muss für Push-Benachrichtigungen aktiviert sein."
-deletedNote: "Gelöschte Notiz"
-invisibleNote: "Private Notiz"
+deletedNote: "Gelöschter Beitrag"
+invisibleNote: "Privater Beitrag"
 enableInfiniteScroll: "Automatisch mehr laden"
 visibility: "Sichtbarkeit"
 poll: "Umfrage"
@@ -687,7 +687,8 @@ abuseReports: "Meldungen"
 reportAbuse: "Melden"
 reportAbuseOf: "{name} melden"
 fillAbuseReportDescription: "Bitte gib zusätzliche Informationen zu dieser Meldung\
-  \ an. Falls es sich um eine spezielle Notiz handelt, bitte gib dessen URL an."
+  \ an. Falls es sich um einen ungewöhnlichen Beitrag handelt, gib bitte dessen URL\
+  \ an."
 abuseReported: "Deine Meldung wurde versendet. Vielen Dank."
 reporter: "Melder"
 reporteeOrigin: "Herkunft des Gemeldeten"
@@ -702,7 +703,7 @@ openInSideView: "In Seitenansicht öffnen"
 defaultNavigationBehaviour: "Standardnavigationsverhalten"
 editTheseSettingsMayBreakAccount: "Bei Bearbeitung dieser Einstellungen besteht die\
   \ Gefahr, dein Nutzerkonto zu beschädigen."
-instanceTicker: "Instanz-Informationen von Notizen"
+instanceTicker: "Instanz-Informationen zu Beiträgen"
 waitingFor: "Warte auf {x}"
 random: "Zufällig"
 system: "System"
@@ -713,14 +714,14 @@ createNew: "Neu erstellen"
 optional: "Optional"
 createNewClip: "Neuen Clip erstellen"
 unclip: "Aus Clip entfernen"
-confirmToUnclipAlreadyClippedNote: "Diese Notiz ist bereits im \"{name}\" Clip enthalten.\
-  \ Möchtest du sie aus diesem Clip entfernen?"
+confirmToUnclipAlreadyClippedNote: "Dieser Beitrag ist bereits im \"{name}\" Clip\
+  \ enthalten. Möchtest du ihn aus diesem Clip entfernen?"
 public: "Öffentlich"
 i18nInfo: "Calckey wird durch freiwillige Helfer in viele verschiedene Sprachen übersetzt.\
   \ Auf {link} kannst du mithelfen."
 manageAccessTokens: "Zugriffstokens verwalten"
 accountInfo: "Nutzerkonto-Informationen"
-notesCount: "Anzahl der Notizen"
+notesCount: "Anzahl der Beiträge"
 repliesCount: "Anzahl gesendeter Antworten"
 renotesCount: "Anzahl getätigter Renotes"
 repliedCount: "Anzahl erhaltener Antworten"
@@ -736,7 +737,7 @@ no: "Nein"
 driveFilesCount: "Anzahl der Dateien in Drive"
 driveUsage: "Drive-Auslastung"
 noCrawle: "Crawler-Indexierung ablehnen"
-noCrawleDescription: "Suchmaschinen bitten, die eigene Profilseite, Notizen, Seiten\
+noCrawleDescription: "Suchmaschinen bitten, die eigene Profilseite, Beiträge, Seiten\
   \ usw. nicht zu indexieren."
 lockedAccountInfo: "Auch wenn du Follow-Anfragen auf manuelle Bestätigung setzt, wird\
   \ jeder deiner Posts öffentlich sichtbar sein, sofern du ihre Sichtbarkeit nicht\
@@ -748,7 +749,7 @@ verificationEmailSent: "Eine Bestätigungsmail wurde an deine Email-Adresse vers
   \ Besuche den dort enthaltenen Link, um die Verifizierung abzuschließen."
 notSet: "Nicht konfiguriert"
 emailVerified: "Email-Adresse bestätigt"
-noteFavoritesCount: "Anzahl an als Favorit markierter Notizen"
+noteFavoritesCount: "Anzahl der favorisierten Beiträge"
 pageLikesCount: "Anzahl an als \"Gefällt mir\" markierter Seiten"
 pageLikedCount: "Anzahl erhaltener \"Gefällt mir\" auf Seiten"
 contact: "Kontakt"
@@ -759,7 +760,7 @@ developer: "Entwickler"
 makeExplorable: "Nutzerkonto in „Erkunden“ sichtbar machen"
 makeExplorableDescription: "Wenn diese Option deaktiviert ist, ist dein Nutzerkonto\
   \ nicht im „Erkunden“-Bereich sichtbar."
-showGapBetweenNotesInTimeline: "Abstände zwischen Notizen auf der Chronik anzeigen"
+showGapBetweenNotesInTimeline: "Abstände zwischen Beiträgen in der Timeline anzeigen"
 duplicate: "Duplizieren"
 left: "Links"
 center: "Mittig"
@@ -773,7 +774,7 @@ showTitlebar: "Titelleiste anzeigen"
 clearCache: "Cache leeren"
 onlineUsersCount: "{n} Nutzer sind online"
 nUsers: "{n} Nutzer"
-nNotes: "{n} Notizen"
+nNotes: "{n} Beiträge"
 sendErrorReports: "Fehlerberichte senden"
 sendErrorReportsDescription: "Ist diese Option aktiviert, so werden beim Auftreten\
   \ von Fehlern detaillierte Fehlerinformationen an Calckey weitergegeben, was zur\
@@ -810,7 +811,7 @@ inChannelSearch: "In Kanal suchen"
 useReactionPickerForContextMenu: "Reaktionsauswahl durch Rechtsklick öffnen"
 typingUsers: "{users} ist/sind am schreiben"
 jumpToSpecifiedDate: "Zu bestimmtem Datum springen"
-showingPastTimeline: "Es wird eine alte Chronik angezeigt"
+showingPastTimeline: "Es wird eine alte Timeline angezeigt"
 clear: "Zurückkehren"
 markAllAsRead: "Alle als gelesen markieren"
 goBack: "Zurück"
@@ -818,9 +819,9 @@ unlikeConfirm: "\"Gefällt mir\" wirklich entfernen?"
 fullView: "Vollansicht"
 quitFullView: "Vollansicht verlassen"
 addDescription: "Beschreibung hinzufügen"
-userPagePinTip: "Um Notizen hier erscheinen zu lassen, drücke \"An dein Profil anheften\"\
-  \ im Menü individueller Notizen."
-notSpecifiedMentionWarning: "Diese Notiz enthält Erwähnungen von Nutzern, die nicht\
+userPagePinTip: "Um Beiträge hier erscheinen zu lassen, drücke \"An dein Profil anheften\"\
+  \ im Menü individueller Beiträge."
+notSpecifiedMentionWarning: "Dieser Beitrag enthält Erwähnungen von Nutzern, die nicht\
   \ als Empfänger ausgewählt sind"
 info: "Über"
 userInfo: "Nutzerinformation"
@@ -851,7 +852,7 @@ postToGallery: "Neuen Galeriebeitrag erstellen"
 gallery: "Galerie"
 recentPosts: "Neue Beiträge"
 popularPosts: "Beliebte Beiträge"
-shareWithNote: "Mit Notiz teilen"
+shareWithNote: "Mit Beitrag teilen"
 ads: "Werbung"
 expiration: "Frist"
 memo: "Merkzettel"
@@ -905,7 +906,7 @@ unmuteThread: "Threadstummschaltung aufheben"
 ffVisibility: "Sichtbarkeit von Gefolgten/Followern"
 ffVisibilityDescription: "Konfiguriere wer sehen kann, wem du folgst sowie wer dir\
   \ folgt."
-continueThread: "Nachricht fortsetzen"
+continueThread: "Beitrag fortsetzen"
 deleteAccountConfirm: "Dein Nutzerkonto wird unwiderruflich gelöscht. Trotzdem fortfahren?"
 incorrectPassword: "Falsches Passwort."
 voteConfirm: "Wirklich für „{choice}“ abstimmen?"
@@ -1191,7 +1192,7 @@ _channel:
   owned: "In Besitz"
   following: "Gefolgt"
   usersCount: "{n} Teilnehmer"
-  notesCount: "{n} Notizen"
+  notesCount: "{n} Beiträge"
 _menuDisplay:
   sideFull: "Seitlich"
   sideIcon: "Seitlich (Icons)"
@@ -1204,20 +1205,20 @@ _wordMute:
     \ trennen."
   muteWordsDescription2: "Umgib Schlüsselworter mit Schrägstrichen, um Reguläre Ausdrücke\
     \ zu verwenden."
-  softDescription: "Notizen, die die angegebenen Konditionen erfüllen, in der Chronik\
+  softDescription: "Beiträge, die die angegebenen Konditionen erfüllen, in der Timeline\
     \ ausblenden."
-  hardDescription: "Verhindern, dass Notizen, die die angegebenen Konditionen erfüllen,\
-    \ der Chronik hinzugefügt werden. Zudem werden diese Notizen auch nicht der Chronik\
-    \ hinzugefügt, falls die Konditionen geändert werden."
+  hardDescription: "Verhindern, dass Beiträge, die die angegebenen Konditionen erfüllen,\
+    \ der Timeline hinzugefügt werden. Zudem werden diese Beiträge auch nicht der\
+    \ Timeline hinzugefügt, falls die Konditionen geändert werden."
   soft: "Leicht"
   hard: "Schwer"
-  mutedNotes: "Stummgeschaltete Notizen"
+  mutedNotes: "Stummgeschaltete Beiträge"
 _instanceMute:
-  instanceMuteDescription: "Schaltet alle Nachrichten/boosts stumm, die von den gelisteten\
+  instanceMuteDescription: "Schaltet alle Beiträge/boosts stumm, die von den gelisteten\
     \ Instanzen stammen, inklusive Antworten von Nutzern an einen Nutzer einer stummgeschalteten\
     \ Instanz."
   instanceMuteDescription2: "Instanzen getrennt durch Zeilenumbrüchen angeben"
-  title: "Blendet Notizen von stummgeschalteten Instanzen aus."
+  title: "Blendet Beiträge von stummgeschalteten Instanzen aus."
   heading: "Liste der stummzuschaltenden Instanzen"
 _theme:
   explore: "Farbschemata erforschen"
@@ -1294,8 +1295,8 @@ _theme:
     accentLighten: "Akzent (Erhellt)"
     fgHighlighted: "Hervorgehobener Text"
 _sfx:
-  note: "Notizen"
-  noteMy: "Meine Notizen"
+  note: "Beiträge"
+  noteMy: "Meine Beiträge"
   notification: "Benachrichtigungen"
   chat: "Chat"
   chatBg: "Chat (Hintergrund)"
@@ -1322,7 +1323,7 @@ _tutorial:
   step1_2: "Wir werden Sie einrichten. Sie werden im Handumdrehen einsatzbereit sein!"
   step2_1: "Bitte füllen Sie zuerst Ihr Profil aus."
   step2_2: "Wenn du ein paar Angaben zu deiner Person machst, können andere leichter\
-    \ erkennen, ob sie deine Notizen sehen oder dir folgen wollen."
+    \ erkennen, ob sie deine Beiträge sehen oder dir folgen wollen."
   step3_1: "Jetzt ist es Zeit, einigen Leuten zu folgen!"
   step3_2: "Deine Home- und Social-Timeline basiert darauf, wem du folgst, also folge\
     \ für den Anfang ein paar Accounts.\nKlicke das Plus Symbol oben links in einem\
@@ -1375,15 +1376,15 @@ _permissions:
   "write:blocks": "Die Liste deiner blockierten Nutzer bearbeiten"
   "read:drive": "Deine Drive-Dateien und Ordner lesen"
   "write:drive": "Deine Drive-Dateien und Ordner bearbeiten oder löschen"
-  "read:favorites": "Deine Favoriten-Liste lesen"
-  "write:favorites": "Deine Favoriten-Liste bearbeiten"
+  "read:favorites": "Deine Lesezeichen-Liste lesen"
+  "write:favorites": "Deine Lesezeichen-Liste bearbeiten"
   "read:following": "Die Liste der Nutzer, denen du folgst, lesen"
   "write:following": "Anderen Nutzern folgen oder entfolgen"
   "read:messaging": "Chats lesen"
   "write:messaging": "Chats bedienen"
   "read:mutes": "Stummschaltungen lesen"
   "write:mutes": "Stummschaltungen bearbeiten"
-  "write:notes": "Notizen schreiben oder löschen"
+  "write:notes": "Beiträge schreiben oder löschen"
   "read:notifications": "Benachrichtigungen lesen"
   "write:notifications": "Benachrichtigungen bedienen"
   "read:reactions": "Reaktionen lesen"
@@ -1414,11 +1415,11 @@ _auth:
   denied: "Zugriff verweigert"
   copyAsk: Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein
 _antennaSources:
-  all: "Alle Notizen"
-  homeTimeline: "Notizen von Nutzern, denen gefolgt wird"
-  users: "Notizen von einem oder mehreren angegebenen Nutzern"
-  userList: "Notizen von allen Nutzern einer Liste"
-  userGroup: "Notizen von allen Nutzern einer Gruppe"
+  all: "Alle Beiträge"
+  homeTimeline: "Beiträge von Nutzern, denen gefolgt wird"
+  users: "Beiträge von einem oder mehreren angegebenen Nutzern"
+  userList: "Beiträge von allen Nutzern einer Liste"
+  userGroup: "Beiträge von allen Nutzern einer Gruppe"
   instances: Beiträge von allen Nutzern auf einer Instanz
 _weekday:
   sunday: "Sonntag"
@@ -1431,7 +1432,7 @@ _weekday:
 _widgets:
   memo: "Merkzettel"
   notifications: "Benachrichtigungen"
-  timeline: "Chronik"
+  timeline: "Timeline"
   calendar: "Kalender"
   trends: "Trends"
   clock: "Uhr"
@@ -1443,7 +1444,7 @@ _widgets:
   unixClock: "UNIX-Uhr"
   federation: "Föderation"
   instanceCloud: "Instanzwolke"
-  postForm: "Notizfenster"
+  postForm: "Beitragsfeld"
   slideshow: "Diashow"
   button: "Knopf"
   onlineUsers: "Nutzer Online"
@@ -1483,9 +1484,9 @@ _poll:
   remainingSeconds: "{s} Sekunde(n) verbleibend"
 _visibility:
   public: "Öffentlich"
-  publicDescription: "Deine Notiz wird global für alle Nutzer sichtbar sein"
+  publicDescription: "Dein Beitrag wird global für alle Nutzer sichtbar sein"
   home: "Startseite"
-  homeDescription: "Notiz nur in die Startseiten-Chronik schicken"
+  homeDescription: "Beitrag nur auf der Startseite anzeigen"
   followers: "Follower"
   followersDescription: "Nur für Follower sichtbar"
   specified: "Direkt"
@@ -1493,8 +1494,8 @@ _visibility:
   localOnly: "Nur Lokal"
   localOnlyDescription: "Unsichtbar für Nutzer anderer Instanzen"
 _postForm:
-  replyPlaceholder: "Dieser Notiz antworten …"
-  quotePlaceholder: "Diese Notiz zitieren …"
+  replyPlaceholder: "Diesem Beitrag antworten …"
+  quotePlaceholder: "Diesen Beitrag zitieren …"
   channelPlaceholder: "In einen Kanal senden..."
   _placeholders:
     a: "Was machst du momentan?"
@@ -1517,7 +1518,7 @@ _profile:
   changeAvatar: "Profilbild ändern"
   changeBanner: "Banner ändern"
 _exportOrImport:
-  allNotes: "Alle Notizen"
+  allNotes: "Alle Beiträge"
   followingList: "Gefolgte Nutzer"
   muteList: "Stummschaltungen"
   blockingList: "Blockierungen"
@@ -1530,10 +1531,10 @@ _charts:
   usersIncDec: "Unterschied in der Anzahl von Nutzern"
   usersTotal: "Anzahl aller Nutzer"
   activeUsers: "Aktive Nutzer"
-  notesIncDec: "Unterschied in der Anzahl an Notizen"
-  localNotesIncDec: "Unterschied in der Anzahl an lokalen Notizen"
-  remoteNotesIncDec: "Unterschied in der Anzahl an Notizen von fremden Instanzen"
-  notesTotal: "Anzahl aller Notizen"
+  notesIncDec: "Unterschied bei der Anzahl an Beiträgen"
+  localNotesIncDec: "Unterschied bei der Anzahl an lokalen Beiträgen"
+  remoteNotesIncDec: "Unterschied bei der Anzahl an Beiträgen von fremden Instanzen"
+  notesTotal: "Anzahl aller Beiträge"
   filesIncDec: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Anzahl aller Dateien"
   storageUsageIncDec: "Unterschied in der Höhe der Speichernutzung"
@@ -1542,8 +1543,8 @@ _instanceCharts:
   requests: "Anfragen"
   users: "Unterschied in der Anzahl an Nutzern"
   usersTotal: "Gesamtanzahl an Nutzern"
-  notes: "Unterschied in der Anzahl an Notizen"
-  notesTotal: "Gesamtanzahl an Notizen"
+  notes: "Unterschied in der Anzahl an Beiträgen"
+  notesTotal: "Gesamtanzahl der Beiträge"
   ff: "Unterschied in der Anzahl an gefolgten Nutzern und Followern "
   ffTotal: "Gesamtanzahl an gefolgten Nutzern und Followern"
   cacheSize: "Unterschied in der Größe des Caches"
@@ -1605,7 +1606,7 @@ _pages:
     if: "Falls"
     _if:
       variable: "Variable"
-    post: "Notizfenster"
+    post: "Beitragsfeld"
     _post:
       text: "Inhalt"
       attachCanvasImage: "Leinwandbild anfügen"
@@ -1630,10 +1631,10 @@ _pages:
       id: "Leinwand-ID"
       width: "Breite"
       height: "Höhe"
-    note: "Eingebettete Notiz"
+    note: "Eingebetteter Beitrag"
     _note:
-      id: "Notiz-ID"
-      idDescription: "Du kannst alternativ auch die Notiz-URL angeben."
+      id: "Beitrags-ID"
+      idDescription: "Du kannst alternativ auch die Beitrags-URL angeben."
       detailed: "Detailierte Ansicht"
     switch: "Fallunterscheidung"
     _switch:
@@ -1657,7 +1658,7 @@ _pages:
         pushEvent: "Ein Event senden"
         _pushEvent:
           event: "Eventname"
-          message: "Nachricht, die bei Auslösung des Events angezeigt werden soll"
+          message: "Meldung, die bei Aktivierung angezeigt werden soll"
           variable: "Variable, die gesendet werden soll"
           no-variable: "Keine"
         callAiScript: "AiScript ausführen"
@@ -1855,7 +1856,7 @@ _notification:
   youGotMention: "{name} hat dich erwähnt"
   youGotReply: "{name} hat dir geantwortet"
   youGotQuote: "{name} hat dich zitiert"
-  youRenoted: "Renote deiner Notiz von {name}"
+  youRenoted: "Renote deines Beitrages von {name}"
   youGotPoll: "{name} hat in deiner Umfrage abgestimmt"
   youGotMessagingMessageFromUser: "{name} hat dir eine Chatnachricht gesendet"
   youGotMessagingMessageFromGroup: "In die Gruppe {name} wurde eine Chatnachricht\
@@ -1907,7 +1908,7 @@ _deck:
     main: "Hauptspalte"
     widgets: "Widgets"
     notifications: "Benachrichtigungen"
-    tl: "Chronik"
+    tl: "Timeline"
     antenna: "Antennen"
     list: "Listen"
     mentions: "Erwähnungen"
@@ -1941,7 +1942,7 @@ silencedInstancesDescription: Liste die Hostnamen der Instanzen auf, die du stum
   möchtest. Konten in den aufgelisteten Instanzen werden als "Stumm" behandelt, können
   nur Follow-Anfragen stellen und können keine lokalen Konten erwähnen, wenn sie nicht
   gefolgt werden. Dies wirkt sich nicht auf die blockierten Instanzen aus.
-editNote: Notiz bearbeiten
+editNote: Beitrag bearbeiten
 edited: Bearbeitet
 silenceThisInstance: Diese Instanz stummschalten
 silencedInstances: Stummgeschaltete Instanzen
@@ -1969,7 +1970,7 @@ _apps:
   mobile: Mobilgeräte
   paid: Zahlungspflichtige
   free: Kostenlose
-defaultReaction: Standard-Emoji-Reaktion für ausgehende und eingehende Nachrichten
+defaultReaction: Standard-Emoji-Reaktion für ausgehende und eingehende Beiträge
 moveTo: Umzug des Nutzerkontos zu einem neuen Nutzerkonto
 moveToLabel: 'Nutzerkonto zu dem sie umziehen:'
 moveAccountDescription: 'Dieser Vorgang kann nicht rückgängig gemacht werden! Stellen
@@ -1978,13 +1979,13 @@ moveAccountDescription: 'Dieser Vorgang kann nicht rückgängig gemacht werden! 
   wie folgt ein: @name@instance.xyz'
 findOtherInstance: Einen anderen Server finden
 sendPushNotificationReadMessage: Löschung der Push-Benachrichtigungen sobald die entsprechenden
-  Benachrichtigungen oder Nachrichten gelesen wurden.
+  Benachrichtigungen oder Beiträge gelesen wurden.
 signupsDisabled: Anmeldungen auf diesem Server sind momentan nicht möglich, sie können
   sich jedoch jederzeit auf einem anderen Server anmelden! Wenn Sie einen Einladungscode
   für diesen Server haben, geben Sie ihn bitte unten ein
 swipeOnDesktop: Am Desktop PC das Wischen wie bei mobilen Geräten zulassen
-enterSendsMessage: Drücken sie zur Nachrichtenübermittlung die Eingabetaste (Strg-Taste
-  ausgeschaltet), die Nachricht wird dann gesendet.
+enterSendsMessage: Drücken sie zum Senden des Beitrages die Eingabetaste (Strg-Taste
+  ausgeschaltet)
 showUpdates: Zeigt ein Popup an, wenn Calckey aktualisiert wird.
 socialTimeline: Soziale Zeitleiste
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
