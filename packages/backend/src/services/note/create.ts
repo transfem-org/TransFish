@@ -355,7 +355,7 @@ export default async (
 			)
 			.then((us) => {
 				for (const u of us) {
-					getWordHardMute(note, { id: u.userId }, u.mutedWords).then(
+					getWordHardMute(data, { id: u.userId }, u.mutedWords).then(
 						(shouldMute) => {
 							if (shouldMute) {
 								MutedNotes.insert({
