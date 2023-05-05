@@ -22,8 +22,8 @@
 							v-if="note.updatedAt"
 							:time="note.updatedAt"
 							mode="none"
-							>(<i class="ph-pencil-line ph-bold"></i
-							>{{ i18n.ts.edited }})</MkTime
+							> (<i class="ph-pencil-line ph-bold"></i
+							> {{ i18n.ts.edited }})</MkTime
 						>
 					</MkA>
 					<MkVisibility :note="note" />
