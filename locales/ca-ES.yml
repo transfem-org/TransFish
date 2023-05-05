@@ -1311,7 +1311,7 @@ switchAccount: Canvia de compte
 enabled: Activat
 configure: Configurar
 noBotProtectionWarning: La protecció contra bots no està configurada.
-ads: Anuncis
+ads: Publicitat
 ratio: Ràtio
 global: Global
 sent: Enviat
@@ -1710,7 +1710,7 @@ sendPushNotificationReadMessage: Suprimeix les notificacions push un cop s'hagin
 sendPushNotificationReadMessageCaption: Es mostrarà una notificació amb el text "{emptyPushNotificationMessage}"
   durant un breu temps. Això pot augmentar l'ús de la bateria del vostre dispositiu,
   si escau.
-showAds: Mostrar anuncis
+showAds: Mostrar publicitat
 enterSendsMessage: Pren retorn al formulari del missatge per enviar (quant no s'activa
   es Ctrl + Return)
 customMOTD: MOTD personalitzat (missatges de la pantalla de benvinguda)
