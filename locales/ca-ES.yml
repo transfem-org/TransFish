@@ -2044,3 +2044,6 @@ findOtherInstance: Cercar un altre servidor
 signupsDisabled: Actualment, les inscripcions en aquest servidor estan desactivades,
   però sempre podeu registrar-vos en un altre servidor. Si teniu un codi d'invitació
   per a aquest servidor, introduïu-lo a continuació.
+userSaysSomethingReasonQuote: '{name} ha citat una publicació que conté {reason}'
+userSaysSomethingReasonReply: '{name} ha respost a una publicació que conté {reason}'
+userSaysSomethingReasonRenote: '{name} ha impulsat una publicació que conté {reason}'
