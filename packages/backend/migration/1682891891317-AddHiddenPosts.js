@@ -8,6 +8,8 @@ export class AddHiddenPosts1682891891317 {
 	}
 
 	async down(queryRunner) {
-		await queryRunner.query(`ALTER TYPE note_visibility_enum REMOVE VALUE IF EXISTS 'hidden'`);
+		await queryRunner.query(
+			`ALTER TYPE note_visibility_enum REMOVE VALUE IF EXISTS 'hidden'`,
+		);
 	}
 }

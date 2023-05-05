@@ -704,7 +704,8 @@ export async function updateNote(value: string | IObject, resolver?: Resolver) {
 					multiple: poll?.multiple,
 					votes: poll?.votes,
 					expiresAt: poll?.expiresAt,
-					noteVisibility: note.visibility === "hidden" ? "home" : note.visibility,
+					noteVisibility:
+						note.visibility === "hidden" ? "home" : note.visibility,
 				},
 			);
 			updating = true;
