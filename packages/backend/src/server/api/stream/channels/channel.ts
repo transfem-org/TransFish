@@ -1,7 +1,6 @@
 import Channel from "../channel.js";
 import { Users } from "@/models/index.js";
 import { isUserRelated } from "@/misc/is-user-related.js";
-import { getWordHardMute } from "@/misc/check-word-mute.js";
 import type { User } from "@/models/entities/user.js";
 import type { StreamMessages } from "../types.js";
 import type { Packed } from "@/misc/schema.js";
@@ -38,12 +37,6 @@ export default class extends Channel {
 		if (isUserRelated(note, this.blocking)) return;
 
 		if (note.renote && !note.text && isUserRelated(note, this.renoteMuting))
-			return;
-
-		if (
-			this.userProfile &&
-			(await getWordHardMute(note, this.user, this.userProfile.mutedWords))
-		)
 			return;
 
 		this.connection.cacheNote(note);
