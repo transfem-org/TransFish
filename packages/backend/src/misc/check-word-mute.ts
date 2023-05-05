@@ -42,7 +42,7 @@ function checkWordMute(
 			}
 
 			try {
-				if (new RegExp(regexp[1], regexp[2]).test(text)) return true;
+				if (new RE2(regexp[1], regexp[2]).test(text)) return true;
 			} catch (err) {
 				// This should never happen due to input sanitisation.
 			}
