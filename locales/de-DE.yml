@@ -1994,3 +1994,7 @@ _messaging:
   groups: Gruppen
 recommendedInstances: Empfohlene Instanzen
 logoImageUrl: URL des Logo-Bildes
+userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {reason}
+  beinhaltet'
+userSaysSomethingReasonRenote: '{name} hat einen Beitrag geteilt der {reason} beinhaltet'
+userSaysSomethingReasonQuote: '{name} hat einen Beitrag zitiert der {reason} beinhaltet'
