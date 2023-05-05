@@ -128,6 +128,7 @@ export default define(meta, paramDef, async (ps, user) => {
 			);
 		}
 	}
+	query.andWhere("note.visibility != 'hidden'");
 	//#endregion
 
 	process.nextTick(() => {

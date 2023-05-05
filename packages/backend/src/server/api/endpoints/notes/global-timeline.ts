@@ -98,6 +98,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	if (ps.withFiles) {
 		query.andWhere("note.fileIds != '{}'");
 	}
+	query.andWhere("note.visibility != 'hidden'");
 	//#endregion
 
 	process.nextTick(() => {
