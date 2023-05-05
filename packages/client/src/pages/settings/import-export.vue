@@ -16,7 +16,7 @@
 					{{ i18n.ts.export }}</MkButton
 				>
 			</FormFolder>
-			<!-- <FormFolder class="_formBlock">
+			<FormFolder class="_formBlock">
 				<template #label>{{ i18n.ts.import }}</template>
 				<template #icon
 					><i class="ph-upload-simple ph-bold ph-lg"></i
@@ -24,10 +24,10 @@
 				<FormRadios v-model="importType" class="_formBlock">
 					<option value="calckey">Calckey/Misskey</option>
 					<option value="mastodon">Mastodon</option>
-					<option :disabled="true" value="akkoma">
+					<option disabled="true" value="akkoma">
 						Pleroma/Akkoma (soon)
 					</option>
-					<option :disabled="true" value="twitter">
+					<option disabled="true" value="twitter">
 						Twitter (soon)
 					</option>
 				</FormRadios>
@@ -39,7 +39,7 @@
 					><i class="ph-upload-simple ph-bold ph-lg"></i>
 					{{ i18n.ts.import }}</MkButton
 				>
-			</FormFolder> -->
+			</FormFolder>
 		</FormSection>
 		<FormSection>
 			<template #label>{{

@@ -533,7 +533,7 @@ const eps = [
 	["i/export-following", ep___i_exportFollowing],
 	["i/export-mute", ep___i_exportMute],
 	["i/export-notes", ep___i_exportNotes],
-	// ["i/import-posts", ep___i_importPosts],
+	["i/import-posts", ep___i_importPosts],
 	["i/export-user-lists", ep___i_exportUserLists],
 	["i/favorites", ep___i_favorites],
 	["i/gallery/likes", ep___i_gallery_likes],
