@@ -201,11 +201,27 @@
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
-					v-user-preview="appearNote.userId"
+					v-user-preview="
+						['renote', 'quote'].includes(muted.what)
+							? note.userId
+							: appearNote.userId
+					"
 					class="name"
-					:to="userPage(appearNote.user)"
+					:to="
+						userPage(
+							['renote', 'quote'].includes(muted.what)
+								? note.user
+								: appearNote.user
+						)
+					"
 				>
-					<MkUserName :user="appearNote.user" />
+					<MkUserName
+						:user="
+							['renote', 'quote'].includes(muted.what)
+								? note.user
+								: appearNote.user
+						"
+					/>
 				</MkA>
 			</template>
 			<template #reason>
@@ -301,9 +317,7 @@ let appearNote = $computed(() =>
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(
-	getWordSoftMute(appearNote, $i, defaultStore.state.mutedWords)
-);
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
