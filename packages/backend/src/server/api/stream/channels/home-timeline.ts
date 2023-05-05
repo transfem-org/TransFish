@@ -20,6 +20,7 @@ export default class extends Channel {
 	}
 
 	private async onNote(note: Packed<"Note">) {
+		if (note.visibility === "hidden") return;
 		if (note.channelId) {
 			if (!this.followingChannels.has(note.channelId)) return;
 		} else {
