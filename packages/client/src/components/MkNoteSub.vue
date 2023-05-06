@@ -69,6 +69,7 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
+						:renoteCw="note.cw"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
