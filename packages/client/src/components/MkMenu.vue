@@ -37,13 +37,6 @@
 							class="ph-fw ph-lg"
 							:class="item.icon"
 						></i>
-						<span v-else-if="item.icons">
-							<i
-								v-for="icon in item.icons"
-								class="ph-fw ph-lg"
-								:class="icon"
-							></i>
-						</span>
 						<MkAvatar
 							v-if="item.avatar"
 							:user="item.avatar"
@@ -72,13 +65,6 @@
 							class="ph-fw ph-lg"
 							:class="item.icon"
 						></i>
-						<span v-else-if="item.icons">
-							<i
-								v-for="icon in item.icons"
-								class="ph-fw ph-lg"
-								:class="icon"
-							></i>
-						</span>
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
@@ -130,13 +116,6 @@
 							class="ph-fw ph-lg"
 							:class="item.icon"
 						></i>
-						<span v-else-if="item.icons">
-							<i
-								v-for="icon in item.icons"
-								class="ph-fw ph-lg"
-								:class="icon"
-							></i>
-						</span>
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
@@ -160,13 +139,6 @@
 							class="ph-fw ph-lg"
 							:class="item.icon"
 						></i>
-						<span v-else-if="item.icons">
-							<i
-								v-for="icon in item.icons"
-								class="ph-fw ph-lg"
-								:class="icon"
-							></i>
-						</span>
 						<MkAvatar
 							v-if="item.avatar"
 							:user="item.avatar"

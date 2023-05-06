@@ -56,18 +56,6 @@ export type MenuButton = {
 	avatar?: Misskey.entities.User;
 	action: MenuAction;
 };
-export type MenuButtonMultipleIcons = {
-	type?: "button";
-	text: string;
-	textStyle?: string;
-	icons: string[];
-	indicate?: boolean;
-	danger?: boolean;
-	active?: boolean;
-	hidden?: boolean;
-	avatar?: Misskey.entities.User;
-	action: MenuAction;
-};
 export type MenuParent = {
 	type: "parent";
 	text: string;
@@ -87,7 +75,6 @@ type OuterMenuItem =
 	| MenuUser
 	| MenuSwitch
 	| MenuButton
-	| MenuButtonMultipleIcons
 	| MenuParent;
 type OuterPromiseMenuItem = Promise<
 	| MenuLabel
@@ -96,7 +83,6 @@ type OuterPromiseMenuItem = Promise<
 	| MenuUser
 	| MenuSwitch
 	| MenuButton
-	| MenuButtonMultipleIcons
 	| MenuParent
 >;
 export type MenuItem = OuterMenuItem | OuterPromiseMenuItem;
@@ -109,5 +95,4 @@ export type InnerMenuItem =
 	| MenuUser
 	| MenuSwitch
 	| MenuButton
-	| MenuButtonMultipleIcons
 	| MenuParent;
