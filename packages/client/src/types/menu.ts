@@ -77,13 +77,7 @@ type OuterMenuItem =
 	| MenuButton
 	| MenuParent;
 type OuterPromiseMenuItem = Promise<
-	| MenuLabel
-	| MenuLink
-	| MenuA
-	| MenuUser
-	| MenuSwitch
-	| MenuButton
-	| MenuParent
+	MenuLabel | MenuLink | MenuA | MenuUser | MenuSwitch | MenuButton | MenuParent
 >;
 export type MenuItem = OuterMenuItem | OuterPromiseMenuItem;
 export type InnerMenuItem =

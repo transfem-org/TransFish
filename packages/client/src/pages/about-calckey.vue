@@ -67,7 +67,7 @@
 								<template #suffix>Codeberg</template>
 							</FormLink>
 							<FormLink
-								to="https://liberapay.com/ThatOneCalculator"
+								to="https://opencollective.com/calckey"
 								external
 							>
 								<template #icon
@@ -132,9 +132,12 @@
 							<span
 								v-for="patron in patrons"
 								:key="patron"
-								style="margin-bottom: 0.5rem"
+								style="
+									margin-bottom: 0.5rem;
+									margin-right: 0.5rem;
+								"
 							>
-								<Mfm :text="`${patron}` " />
+								<Mfm :text="`${patron}`" />
 							</span>
 						</MkSparkle>
 						<template #caption>{{
