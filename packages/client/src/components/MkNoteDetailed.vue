@@ -557,10 +557,6 @@ onUnmounted(() => {
 		// }
 	}
 
-	&.max-width_500px {
-		font-size: 0.9em;
-	}
-
 	&.max-width_450px {
 		> .reply-to-more:first-child {
 			padding-top: 14px;
