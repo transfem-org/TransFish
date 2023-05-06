@@ -606,7 +606,8 @@ export default async (
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
-	if (data.localOnly) return null;
+	if (data.localOnly ||
+		note.visibility !== "hidden") return null;
 
 	const content =
 		data.renote &&
