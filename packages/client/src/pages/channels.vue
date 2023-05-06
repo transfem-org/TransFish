@@ -30,7 +30,7 @@
 								type="search"
 							>
 								<template #prefix
-									><i class="ti ti-search"></i
+									><i class="ph-search ph-bold ph-lg"></i
 								></template>
 							</MkInput>
 							<MkRadios
@@ -201,7 +201,7 @@ const headerTabs = $computed(() => [
 	{
 		key: "search",
 		title: i18n.ts.search,
-		icon: "ti ti-search",
+		icon: "ph-search ph-bold ph-lg",
 	},
 	{
 		key: "featured",
