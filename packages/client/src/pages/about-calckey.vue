@@ -129,13 +129,13 @@
 							{{ i18n.ts._aboutMisskey.patrons }}</template
 						>
 						<MkSparkle>
-							<div
+							<span
 								v-for="patron in patrons"
 								:key="patron"
 								style="margin-bottom: 0.5rem"
 							>
-								<Mfm :text="`${patron}`" />
-							</div>
+								<Mfm :text="`${patron}` " />
+							</span>
 						</MkSparkle>
 						<template #caption>{{
 							i18n.ts._aboutMisskey.morePatrons
