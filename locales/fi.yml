@@ -919,3 +919,53 @@ privateModeInfo: Kun tämä on käytössä, vain sallittujen (whitelisted) luett
 global: Globaali
 resolved: Ratkaistu
 learnMore: Opi lisää
+continueThread: Jatka lankaa
+file: Tiedosto
+cropImageAsk: Haluatko rajata tätä kuvaa?
+recentNHours: Viimeiset {n} tuntia
+rateLimitExceeded: Nopeusraja ylittynyt
+cropImage: Rajaa kuvaa
+socialTimeline: Sosiaalinen aikajana
+themeColor: Instanssi Ticker Väri
+check: Tarkista
+ffVisibilityDescription: Antaa sinun konfiguroida, kuka voi nähdä ketä seuraat ja
+  kuka seuraa sinua.
+homeTimeline: Koti aikajana
+size: Koko
+showLocalPosts: 'Näytä paikalliset viestit:'
+oneDay: Päivä
+instanceDefaultDarkTheme: Instanssikattava tumma oletusteema
+recentNDays: Viimeiset {n} päivää
+reflectMayTakeTime: Voi kestää jonkin aikaa, ennen kuin tämä näkyy.
+failedToFetchAccountInformation: Ei voitu hakea tietoja
+requireAdminForView: Sinun tulee kirjautua järjestelmänvalvojana nähdäksesi tämän.
+driveCapOverrideCaption: Resetoi oletusarvoon syöttämällä arvo 0 tai alempi.
+isSystemAccount: Järjestelmän luoma ja automaattisesti käyttämä tili.
+userSaysSomethingReasonReply: '{name} vastasi viestiin sisältäen {reason}'
+userSaysSomethingReasonRenote: '{name} buustasi viestiin sisältäen {reason}'
+voteConfirm: Vahvista äänesi vaihtoehdolle "{choice}"?
+hide: Piilota
+leaveGroup: Poistu ryhmästä
+leaveGroupConfirm: Oletko varma, että haluat poistua ryhmästä "{name}"?
+welcomeBackWithName: Tervetuloa takaisin, {name}
+clickToFinishEmailVerification: Klikkaa [{ok}] viimeistelläksesi sähköpostivahvistuksen.
+overridedDeviceKind: Laitetyyppi
+tablet: Tabletti
+numberOfColumn: Sarakkeiden määrä
+searchByGoogle: Etsi
+mutePeriod: Vaiennuksen kesto
+indefinitely: Pysyvästi
+tenMinutes: 10 minuuttia
+oneHour: Tunti
+thereIsUnresolvedAbuseReportWarning: On ratkaisemattomia raportteja.
+driveCapOverrideLabel: Muuta aseman kapasiteetti tälle käyttäjälle
+userSaysSomethingReasonQuote: '{name} lainasi viestiä sisältäen {reason}'
+deleteAccountConfirm: Tämä peruuttamattomasti poistaa tilisi. Jatketaanko?
+incorrectPassword: Väärä salasana.
+useDrawerReactionPickerForMobile: Näytä reaktiovalitsin mobiilissa laatikkomallisena
+smartphone: Älypuhelin
+auto: Automaattinen
+oneWeek: Viikko
+instanceDefaultLightTheme: Instanssin kattava vaalea oletusteema
+instanceDefaultThemeDescription: Anna teemakoodi objektiformaatille.
+noEmailServerWarning: Sähköpostipalvelinta ei konfiguroituna.
