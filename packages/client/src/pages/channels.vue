@@ -23,18 +23,44 @@
 				<swiper-slide>
 					<div class="_content grwlizim search">
 						<div class="gaps">
-							<MkInput v-model="searchQuery" :large="true" :autofocus="true" type="search">
-								<template #prefix><i class="ti ti-search"></i></template>
+							<MkInput
+								v-model="searchQuery"
+								:large="true"
+								:autofocus="true"
+								type="search"
+							>
+								<template #prefix
+									><i class="ti ti-search"></i
+								></template>
 							</MkInput>
-							<MkRadios v-model="searchType" @update:model-value="search()">
-								<option value="nameAndDescription">{{ i18n.ts._channel.nameAndDescription }}</option>
-								<option value="nameOnly">{{ i18n.ts._channel.nameOnly }}</option>
+							<MkRadios
+								v-model="searchType"
+								@update:model-value="search()"
+							>
+								<option value="nameAndDescription">
+									{{ i18n.ts._channel.nameAndDescription }}
+								</option>
+								<option value="nameOnly">
+									{{ i18n.ts._channel.nameOnly }}
+								</option>
 							</MkRadios>
-							<MkButton large primary gradate rounded @click="search">{{ i18n.ts.search }}</MkButton>
+							<MkButton
+								large
+								primary
+								gradate
+								rounded
+								@click="search"
+								>{{ i18n.ts.search }}</MkButton
+							>
 						</div>
 						<MkFoldableSection v-if="channelPagination">
-							<template #header>{{ i18n.ts.searchResult }}</template>
-							<MkChannelList :key="key" :pagination="channelPagination"/>
+							<template #header>{{
+								i18n.ts.searchResult
+							}}</template>
+							<MkChannelList
+								:key="key"
+								:pagination="channelPagination"
+							/>
 						</MkFoldableSection>
 					</div>
 				</swiper-slide>
@@ -96,12 +122,12 @@ import { computed, onMounted, defineComponent, inject, watch } from "vue";
 import { Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkChannelPreview from "@/components/MkChannelPreview.vue";
-import MkChannelList from '@/components/MkChannelList.vue';
+import MkChannelList from "@/components/MkChannelList.vue";
 import MkPagination from "@/components/MkPagination.vue";
-import MkInput from '@/components/MkInput.vue';
-import MkRadios from '@/components/MkRadios.vue';
+import MkInput from "@/components/MkInput.vue";
+import MkRadios from "@/components/MkRadios.vue";
 import MkButton from "@/components/MkButton.vue";
-import MkFoldableSection from '@/components/MkFoldableSection.vue';
+import MkFoldableSection from "@/components/MkFoldableSection.vue";
 import { useRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
@@ -120,14 +146,14 @@ const props = defineProps<{
 	query: string;
 	type?: string;
 }>();
-let key = $ref('');
-let tab = $ref('search');
-let searchQuery = $ref('');
-let searchType = $ref('nameAndDescription');
+let key = $ref("");
+let tab = $ref("search");
+let searchQuery = $ref("");
+let searchType = $ref("nameAndDescription");
 let channelPagination = $ref();
 onMounted(() => {
-	searchQuery = props.query ?? '';
-	searchType = props.type ?? 'nameAndDescription';
+	searchQuery = props.query ?? "";
+	searchType = props.type ?? "nameAndDescription";
 });
 
 const featuredPagination = {
@@ -146,10 +172,10 @@ const ownedPagination = {
 
 async function search() {
 	const query = searchQuery.toString().trim();
-	if (query == null || query === '') return;
+	if (query == null || query === "") return;
 	const type = searchType.toString().trim();
 	channelPagination = {
-		endpoint: 'channels/search',
+		endpoint: "channels/search",
 		limit: 10,
 		params: {
 			query: searchQuery,
@@ -173,9 +199,9 @@ const headerActions = $computed(() => [
 
 const headerTabs = $computed(() => [
 	{
-		key: 'search',
+		key: "search",
 		title: i18n.ts.search,
-		icon: 'ti ti-search',
+		icon: "ti ti-search",
 	},
 	{
 		key: "featured",
