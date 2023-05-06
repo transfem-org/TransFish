@@ -158,8 +158,7 @@ flagAsBotDescription: "Aktiviere diese Option, falls dieses Nutzerkonto durch ei
   \ zur Verhinderung von endlosen Kettenreaktionen mit anderen Bots und lässt Calckeys\
   \ interne Systeme dieses Nutzerkonto als Bot behandeln."
 flagAsCat: "Bist du eine Katze? \U0001F63A"
-flagAsCatDescription: "Aktiviere diese Option, um dieses Nutzerkonto als Katze zu\
-  \ markieren."
+flagAsCatDescription: "Du bekommst Katzenohren und sprichst wie eine Katze!"
 flagShowTimelineReplies: "Antworten in der Timeline anzeigen"
 flagShowTimelineRepliesDescription: "Zeigt Antworten von Nutzern auf Beiträge anderer\
   \ Nutzer in der Timeline an, wenn diese Option aktiviert ist."
