@@ -41,7 +41,7 @@ const cwInput = ref<string>(props.renoteCw ?? "");
 
 const canRenote = computed(
 	() =>
-		["public", "home","hidden"].includes(props.note.visibility) ||
+		["public", "home", "hidden"].includes(props.note.visibility) ||
 		props.note.userId === $i.id
 );
 
@@ -83,7 +83,10 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 
 	let buttonActions: Array<MenuItem> = [];
 
-	if (props.note.visibility === "public" || props.note.visibility === "hidden") {
+	if (
+		props.note.visibility === "public" ||
+		props.note.visibility === "hidden"
+	) {
 		buttonActions.push({
 			text: i18n.ts.renote,
 			textStyle: "font-weight: bold",
@@ -111,7 +114,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		});
 	}
 
-	if (["public", "home","hidden"].includes(props.note.visibility)) {
+	if (["public", "home", "hidden"].includes(props.note.visibility)) {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.home})`,
 			icon: "ph-house ph-bold ph-lg",
@@ -198,6 +201,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 			type: "switch",
 			ref: addCw,
 			text: "Add content warning",
+			hidden: addCw,
 		});
 
 		buttonActions.push({
@@ -238,7 +242,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 			},
 		});
 	}
-	
+
 	os.popupMenu(buttonActions, buttonRef.value, {
 		viaKeyboard,
 	});
