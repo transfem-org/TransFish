@@ -45,7 +45,10 @@ const canRenote = computed(
 		props.note.userId === $i.id
 );
 
-const getCw = () => (addCw.value ? cwInput.value : props.note.cw ?? undefined);
+const getCw = () =>
+	addCw.value && cwInput.value !== ""
+		? cwInput.value
+		: props.note.cw ?? undefined;
 
 useTooltip(buttonRef, async (showing) => {
 	const renotes = await os.api("notes/renotes", {
@@ -85,7 +88,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 
 	if (
 		props.note.visibility === "public" ||
-		props.note.visibility === "hidden"
+		props.note.visibil	ity === "hidden"
 	) {
 		buttonActions.push({
 			text: i18n.ts.renote,
