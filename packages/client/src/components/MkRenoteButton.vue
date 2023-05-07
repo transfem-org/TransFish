@@ -39,6 +39,11 @@ const canRenote = computed(
 		props.note.userId === $i.id
 );
 
+// const getCw = () =>
+// 	addCw.value && cwInput.value !== ""
+// 		? cwInput.value
+// 		: props.note.cw ?? undefined;
+
 useTooltip(buttonRef, async (showing) => {
 	const renotes = await os.api("notes/renotes", {
 		noteId: props.note.id,

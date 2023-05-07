@@ -274,6 +274,7 @@ const props = withDefaults(
 		instant?: boolean;
 		fixed?: boolean;
 		autofocus?: boolean;
+		editId?: misskey.entities.Note["id"];
 	}>(),
 	{
 		initialVisibleUsers: () => [],
@@ -334,6 +335,10 @@ const typing = throttle(3000, () => {
 });
 
 const draftKey = $computed((): string => {
+	if (props.editId) {
+		return `edit:${props.editId}`;
+	}
+
 	let key = props.channel ? `channel:${props.channel.id}` : "";
 
 	if (props.renote) {
@@ -368,7 +373,9 @@ const placeholder = $computed((): string => {
 });
 
 const submitText = $computed((): string => {
-	return props.renote
+	return props.editId
+		? i18n.ts.edit
+		: props.renote
 		? i18n.ts.quote
 		: props.reply
 		? i18n.ts.reply
@@ -809,6 +816,7 @@ async function post() {
 	const processedText = preprocess(text);
 
 	let postData = {
+		editId: props.editId ? props.editId : undefined,
 		text: processedText === "" ? undefined : processedText,
 		fileIds: files.length > 0 ? files.map((f) => f.id) : undefined,
 		replyId: props.reply ? props.reply.id : undefined,
@@ -854,7 +862,7 @@ async function post() {
 	}
 
 	posting = true;
-	os.api("notes/create", postData, token)
+	os.api(postData.editId ? "notes/edit" : "notes/create", postData, token)
 		.then(() => {
 			clear();
 			nextTick(() => {
