@@ -5,7 +5,7 @@
 			cwHighlight,
 		}"
 	>
-		<p v-if="cw" class="cw">
+		<p v-if="cw != null" class="cw">
 			<MkA
 				v-if="!detailed && appearNote.replyId"
 				:to="`/notes/${appearNote.replyId}`"
@@ -27,9 +27,8 @@
 			>
 				<i class="ph-quotes ph-bold ph-lg"></i>
 			</MkA>
-			<i v-if="cw" class="cw-icon ph-fill ph-shield-warning ph-lg"></i>
 			<Mfm
-				v-if="cw"
+				v-if="cw != ''"
 				class="text"
 				:text="cw"
 				:author="appearNote.user"
@@ -221,24 +220,21 @@ function focusFooter(ev) {
 	> .text {
 		margin-right: 8px;
 		padding-inline-start: 0.25em;
-		font-weight: 900;
 	}
 }
 .cwHighlight.hasCw {
-	outline: 1px dotted var(--fg);
+	outline: 1px dotted var(--cwFg);
 	border-radius: 5px;
 	> .wrmlmaau {
 		padding-inline-start: 0.25em;
 	}
 	> .cw {
-		background-color: var(--fg);
-		color: var(--bg);
+		background-color: var(--cwFg);
+		color: var(--cwBg);
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
-		> .reply-icon,
-		> .cw-icon {
-			padding-inline-start: 0.25em;
-			color: var(--bg);
+		> .reply-icon {
+			color: var(--cwBg);
 		}
 	}
 }
