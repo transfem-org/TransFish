@@ -1815,6 +1815,8 @@ _channel:
   usersCount: '{n} Participants'
   following: Seguit
   notesCount: '{n} Notes'
+  nameAndDescription: Nom i descripció
+  nameOnly: Només nom
 _instanceMute:
   instanceMuteDescription: Això silenciarà les notes o els impulsos de les instàncies
     indicades, incloses les dels usuaris que responguin a un usuari des d'una instància
@@ -2047,3 +2049,4 @@ signupsDisabled: Actualment, les inscripcions en aquest servidor estan desactiva
 userSaysSomethingReasonQuote: '{name} ha citat una publicació que conté {reason}'
 userSaysSomethingReasonReply: '{name} ha respost a una publicació que conté {reason}'
 userSaysSomethingReasonRenote: '{name} ha impulsat una publicació que conté {reason}'
+highlightCw: Ressalta el contingut de les publicacions advertides
