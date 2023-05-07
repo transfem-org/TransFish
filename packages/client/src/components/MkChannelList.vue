@@ -3,8 +3,9 @@
 		<template #empty>
 			<div class="_fullinfo">
 				<img
-					src="https://xn--931a.moe/assets/info.jpg"
+					src="/static-assets/badges/info.png"
 					class="_ghost"
+					:alt="i18n.ts.notFound"
 				/>
 				<div>{{ i18n.ts.notFound }}</div>
 			</div>
