@@ -22,39 +22,39 @@
 			>
 				<swiper-slide>
 					<div class="_content grwlizim search">
-							<MkInput
-								v-model="searchQuery"
-								:large="true"
-								:autofocus="true"
-								type="search"
-							>
-								<template #prefix
-									><i
-										class="ph-magnifying-glass ph-bold ph-lg"
-									></i
-								></template>
-							</MkInput>
-							<MkRadios
-								v-model="searchType"
-								@update:model-value="search()"
-								class="_gap"
-							>
-								<option value="nameAndDescription">
-									{{ i18n.ts._channel.nameAndDescription }}
-								</option>
-								<option value="nameOnly">
-									{{ i18n.ts._channel.nameOnly }}
-								</option>
-							</MkRadios>
-							<MkButton
-								large
-								primary
-								gradate
-								rounded
-								@click="search"
-								class="_gap"
-								>{{ i18n.ts.search }}</MkButton
-							>
+						<MkInput
+							v-model="searchQuery"
+							:large="true"
+							:autofocus="true"
+							type="search"
+						>
+							<template #prefix
+								><i
+									class="ph-magnifying-glass ph-bold ph-lg"
+								></i
+							></template>
+						</MkInput>
+						<MkRadios
+							v-model="searchType"
+							@update:model-value="search()"
+							class="_gap"
+						>
+							<option value="nameAndDescription">
+								{{ i18n.ts._channel.nameAndDescription }}
+							</option>
+							<option value="nameOnly">
+								{{ i18n.ts._channel.nameOnly }}
+							</option>
+						</MkRadios>
+						<MkButton
+							large
+							primary
+							gradate
+							rounded
+							@click="search"
+							class="_gap"
+							>{{ i18n.ts.search }}</MkButton
+						>
 						<MkFoldableSection v-if="channelPagination">
 							<template #header>{{
 								i18n.ts.searchResult

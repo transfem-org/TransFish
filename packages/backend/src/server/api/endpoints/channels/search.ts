@@ -65,7 +65,5 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	const channels = await query.take(ps.limit).getMany();
 
-	return await Promise.all(
-		channels.map((x) => Channels.pack(x, me)),
-	);
+	return await Promise.all(channels.map((x) => Channels.pack(x, me)));
 });
