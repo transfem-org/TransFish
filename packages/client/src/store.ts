@@ -146,10 +146,6 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
-		highlightCw: {
-			where: "device",
-			default: false,
-		},
 		nsfw: {
 			where: "device",
 			default: "respect" as "respect" | "force" | "ignore",

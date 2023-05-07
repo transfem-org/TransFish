@@ -16,7 +16,7 @@ export default async function renderNote(
 	dive = true,
 	isTalk = false,
 ): Promise<Record<string, unknown>> {
-	note.visibility = note.visibility === "hidden" ? "home" : note.visibility;
+	note.visibility =  note.visibility === "hidden" ? "home" : note.visibility;
 	const getPromisedFiles = async (ids: string[]) => {
 		if (!ids || ids.length === 0) return [];
 		const items = await DriveFiles.findBy({ id: In(ids) });

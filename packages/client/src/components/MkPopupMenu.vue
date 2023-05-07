@@ -17,19 +17,17 @@
 			:max-height="maxHeight"
 			:as-drawer="type === 'drawer'"
 			class="sfhdhdhq"
-			:class="{
-				drawer: type === 'drawer',
-				...classMap(classes),
-			}"
+			:class="{ drawer: type === 'drawer' }"
 			@close="modal.close()"
 		/>
 	</MkModal>
 </template>
 
 <script lang="ts" setup>
+import {} from "vue";
 import MkModal from "./MkModal.vue";
 import MkMenu from "./MkMenu.vue";
-import { MenuClasses, MenuItem } from "@/types/menu";
+import { MenuItem } from "@/types/menu";
 
 defineProps<{
 	items: MenuItem[];
@@ -37,7 +35,6 @@ defineProps<{
 	width?: number;
 	viaKeyboard?: boolean;
 	src?: any;
-	classes?: MenuClasses;
 }>();
 
 const emit = defineEmits<{
@@ -45,18 +42,6 @@ const emit = defineEmits<{
 }>();
 
 let modal = $ref<InstanceType<typeof MkModal>>();
-
-function classMap(classes?: MenuClasses) {
-	if (!classes) return {};
-
-	return (Array.isArray(classes) ? classes : classes.value).reduce(
-		(acc, cls) => {
-			acc[cls] = true;
-			return acc;
-		},
-		{}
-	);
-}
 </script>
 
 <style lang="scss" scoped>

@@ -79,7 +79,7 @@
 				<div class="body">
 					<MkSubNoteContent
 						class="text"
-						:note="note"
+						:note="appearNote"
 						:detailed="true"
 						:detailedView="detailedView"
 						:parentId="appearNote.parentId"
@@ -139,7 +139,6 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
-						:renoteCw="note.cw"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
