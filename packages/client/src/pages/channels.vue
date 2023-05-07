@@ -49,8 +49,6 @@
 						<MkButton
 							large
 							primary
-							gradate
-							rounded
 							@click="search"
 							class="_gap"
 							>{{ i18n.ts.search }}</MkButton
@@ -71,6 +69,7 @@
 						<MkPagination
 							v-slot="{ items }"
 							:pagination="featuredPagination"
+							:disable-auto-load="true"
 						>
 							<MkChannelPreview
 								v-for="channel in items"
@@ -86,6 +85,7 @@
 						<MkPagination
 							v-slot="{ items }"
 							:pagination="followingPagination"
+							:disable-auto-load="true"
 						>
 							<MkChannelPreview
 								v-for="channel in items"
@@ -104,6 +104,7 @@
 						<MkPagination
 							v-slot="{ items }"
 							:pagination="ownedPagination"
+							:disable-auto-load="true"
 						>
 							<MkChannelPreview
 								v-for="channel in items"
