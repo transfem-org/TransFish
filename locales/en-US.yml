@@ -1283,6 +1283,8 @@ _channel:
   following: "Followed"
   usersCount: "{n} Participants"
   notesCount: "{n} Posts"
+  nameAndDescription: "Name and description"
+  nameOnly: "Name only"
 _messaging:
   dms: "Private"
   groups: "Groups"

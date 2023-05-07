@@ -89,6 +89,7 @@ import * as ep___channels_featured from "./endpoints/channels/featured.js";
 import * as ep___channels_follow from "./endpoints/channels/follow.js";
 import * as ep___channels_followed from "./endpoints/channels/followed.js";
 import * as ep___channels_owned from "./endpoints/channels/owned.js";
+import * as ep___channels_search from "./endpoints/channels/search.js";
 import * as ep___channels_show from "./endpoints/channels/show.js";
 import * as ep___channels_timeline from "./endpoints/channels/timeline.js";
 import * as ep___channels_unfollow from "./endpoints/channels/unfollow.js";
@@ -438,6 +439,7 @@ const eps = [
 	["channels/follow", ep___channels_follow],
 	["channels/followed", ep___channels_followed],
 	["channels/owned", ep___channels_owned],
+	["channels/search", ep___channels_search],
 	["channels/show", ep___channels_show],
 	["channels/timeline", ep___channels_timeline],
 	["channels/unfollow", ep___channels_unfollow],
