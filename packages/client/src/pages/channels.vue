@@ -46,13 +46,9 @@
 								{{ i18n.ts._channel.nameOnly }}
 							</option>
 						</MkRadios>
-						<MkButton
-							large
-							primary
-							@click="search"
-							class="_gap"
-							>{{ i18n.ts.search }}</MkButton
-						>
+						<MkButton large primary @click="search" class="_gap">{{
+							i18n.ts.search
+						}}</MkButton>
 						<MkFoldableSection v-if="channelPagination">
 							<template #header>{{
 								i18n.ts.searchResult
@@ -79,17 +75,17 @@
 							/>
 						</MkPagination> -->
 						<MkChannelList
-								key="featured"
-								:pagination="featuredPagination"
-							/>
+							key="featured"
+							:pagination="featuredPagination"
+						/>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
 					<div class="_content grwlizim following">
 						<MkChannelList
-								key="following"
-								:pagination="followingPagination"
-							/>
+							key="following"
+							:pagination="followingPagination"
+						/>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
@@ -98,9 +94,9 @@
 							><i class="ph-plus ph-bold ph-lg"></i
 						></MkButton>
 						<MkChannelList
-								key="owned"
-								:pagination="ownedPagination"
-							/>
+							key="owned"
+							:pagination="ownedPagination"
+						/>
 					</div>
 				</swiper-slide>
 			</swiper>
