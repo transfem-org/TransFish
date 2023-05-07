@@ -17,7 +17,7 @@ enterUsername: "Nutzername eingeben"
 renotedBy: "Geteilt von {user}"
 noNotes: "Keine Beiträge"
 noNotifications: "Keine Benachrichtigungen"
-instance: "Instanz"
+instance: "Server"
 settings: "Einstellungen"
 basicSettings: "Grundeinstellungen"
 otherSettings: "Weitere Einstellungen"
@@ -147,11 +147,11 @@ emojiName: "Emoji-Name"
 emojiUrl: "Emoji-URL"
 addEmoji: "Emoji hinzufügen"
 settingGuide: "Empfohlene Einstellungen"
-cacheRemoteFiles: "Dateien von fremden Instanzen im Cache speichern"
+cacheRemoteFiles: "Dateien von fremden Servern im Cache speichern"
 cacheRemoteFilesDescription: "Ist diese Einstellung deaktiviert, so werden Dateien\
-  \ fremder Instanzen direkt von dort geladen. Hierdurch wird Speicherplatz auf diesem\
-  \ Server gespart, aber durch fehlende Generierung von Vorschaubildern mehr Bandbreite\
-  \ verwendet."
+  \ von anderen Servern direkt von dort geladen. Hierdurch wird Speicherplatz auf\
+  \ diesem Server eingespart, aber durch die fehlende Generierung von Vorschaubildern\
+  \ mehr Bandbreite benötigt."
 flagAsBot: "Nutzerkonto als Bot kennzeichnen"
 flagAsBotDescription: "Aktiviere diese Option, falls dieses Nutzerkonto durch ein\
   \ Programm gesteuert wird. Falls aktiviert, agiert es als Flag für andere Entwickler\
@@ -175,18 +175,18 @@ searchWith: "Suchen: {q}"
 youHaveNoLists: "Du hast keine Listen angelegt"
 followConfirm: "Möchtest du {name} wirklich folgen?"
 proxyAccount: "Proxy-Konto"
-proxyAccountDescription: "Ein Proxy-Nutzerkonto ist ein Nutzerkonto, das sich für\
-  \ Nutzer unter bestimmten Konditionen wie ein Follower aus einer fremden Instanz\
-  \ verhält. Zum Beispiel wird die Aktivität eines Nutzers aus einer fremden Instanz\
-  \ nicht an diese Instanz übermittelt, falls es keinen Nutzer dieser Instanz gibt,\
-  \ der diesem Nutzer aus fremder Instanz folgt. In diesem Fall folgt stattdessen\
+proxyAccountDescription: "Ein Proxy-Konto ist ein Nutzerkonto, das sich für Nutzer\
+  \ unter bestimmten Konditionen wie ein Follower von einem anderen Server verhält.\
+  \ Zum Beispiel wird die Aktivität eines Nutzers von einem anderen Server nicht an\
+  \ diesen Server übermittelt, falls es keinen Nutzer von diesem Server gibt, der\
+  \ diesem Nutzer von einem anderen Server folgt. In diesem Fall folgt stattdessen\
   \ das Proxy-Nutzerkonto."
 host: "Hostname"
 selectUser: "Nutzer auswählen"
 recipient: "Empfänger"
 annotation: "Anmerkungen"
 federation: "Föderation"
-instances: "Instanzen"
+instances: "Server"
 registeredAt: "Registriert am"
 latestRequestSentAt: "Letzte Anfrage gesendet"
 latestRequestReceivedAt: "Letzte Anfrage erhalten"
@@ -196,7 +196,7 @@ charts: "Diagramme"
 perHour: "Pro Stunde"
 perDay: "Pro Tag"
 stopActivityDelivery: "Beenden Sie das Senden von Aktivitäten"
-blockThisInstance: "Diese Instanz blockieren"
+blockThisInstance: "Diesen Server blockieren"
 operations: "Tätigkeiten"
 software: "Software"
 version: "Version"
@@ -207,19 +207,19 @@ jobQueue: "Auftragswarteschlange"
 cpuAndMemory: "CPU und Arbeitsspeicher"
 network: "Netzwerk"
 disk: "Festplatte"
-instanceInfo: "Instanzinformationen"
+instanceInfo: "Serverinformationen"
 statistics: "Statistiken"
 clearQueue: "Warteschlange leeren"
 clearQueueConfirmTitle: "Möchtest du die Warteschlange wirklich leeren?"
 clearQueueConfirmText: "Alle noch nicht gesendete Beiträge in der Warteschlange werden\
   \ nicht veröffentlicht. Normalerweise ist dieser Vorgang nicht erforderlich."
 clearCachedFiles: "Cache leeren"
-clearCachedFilesConfirm: "Sollen alle im Cache gespeicherten Dateien von anderen Instanzen\
-  \ wirklich gelöscht werden?"
-blockedInstances: "Blockierte Instanzen"
-blockedInstancesDescription: "Gib die Hostnamen der Instanzen, welche blockiert werden\
-  \ sollen, durch Zeilenumbrüche getrennt an. Blockierte Instanzen können mit dieser\
-  \ instanz nicht mehr kommunizieren."
+clearCachedFilesConfirm: "Sind Sie sicher, dass Sie alle im Cache zwischengespeicherten\
+  \ Dateien löschen möchten?"
+blockedInstances: "Blockierte Server"
+blockedInstancesDescription: "Geben Sie die Hostnamen der Server, getrennt durch einen\
+  \ Zeilenumbruch, an, die Sie blockieren möchten. Aufgelistete (blockierte) Server\
+  \ können nicht mehr mit diesem Server kommunizieren."
 muteAndBlock: "Stummschaltungen und Blockierungen"
 mutedUsers: "Stummgeschaltete Nutzer"
 blockedUsers: "Blockierte Nutzer"
@@ -242,9 +242,9 @@ all: "Alles"
 subscribing: "Wird abonniert"
 publishing: "Wird veröffentlicht"
 notResponding: "Antwortet nicht"
-instanceFollowing: "Gefolgt auf der Instanz"
-instanceFollowers: "Follower der Instanz"
-instanceUsers: "Nutzer der Instanz"
+instanceFollowing: "Gefolgt auf dem Server"
+instanceFollowers: "Follower des Servers"
+instanceUsers: "Nutzer dieses Servers"
 changePassword: "Passwort ändern"
 security: "Sicherheit"
 retypedNotMatch: "Die Eingaben stimmen nicht überein."
@@ -286,7 +286,7 @@ agreeTo: "Ich stimme {0} zu"
 tos: "Nutzungsbedingungen"
 start: "Anfangen"
 home: "Startseite"
-remoteUserCaution: "Informationen von fremden Instanzen sind möglicherweise unvollständig."
+remoteUserCaution: "Informationen von Nutzern anderer Server sind möglicherweise unvollständig."
 activity: "Aktivität"
 images: "Bilder"
 birthday: "Geburtstag"
@@ -338,8 +338,8 @@ unwatch: "Nicht mehr beobachten"
 accept: "Akzeptieren"
 reject: "Ablehnen"
 normal: "Normal"
-instanceName: "Name der Instanz"
-instanceDescription: "Beschreibung der Instanz"
+instanceName: "Name des Servers"
+instanceDescription: "Beschreibung des Servers"
 maintainerName: "Betreiber"
 maintainerEmail: "Betreiber-Email"
 tosUrl: "URL der Nutzungsbedingungen"
@@ -361,7 +361,7 @@ registration: "Registrieren"
 enableRegistration: "Registration neuer Nutzer erlauben"
 invite: "Einladen"
 driveCapacityPerLocalAccount: "Drive-Kapazität pro lokalem Nutzerkonto"
-driveCapacityPerRemoteAccount: "Drive-Kapazität pro Nutzer fremder Instanzen"
+driveCapacityPerRemoteAccount: "Laufwerkskapazität pro Remote-Nutzer"
 inMb: "In Megabytes"
 iconUrl: "Icon-URL (favicon etc)"
 bannerUrl: "Banner-URL"
@@ -973,7 +973,7 @@ slow: "Langsam"
 fast: "Schnell"
 sensitiveMediaDetection: "Erkennung von NSFW-Medien"
 localOnly: "Nur Lokal"
-remoteOnly: "Nur für fremde Instanzen"
+remoteOnly: "Nur für andere/fremde Server"
 failedToUpload: "Hochladen fehlgeschlagen"
 cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Anteile\
   \ der Datei als möglicherweise NSFW festgestellt wurden."
@@ -1419,7 +1419,7 @@ _antennaSources:
   users: "Beiträge von einem oder mehreren angegebenen Nutzern"
   userList: "Beiträge von allen Nutzern einer Liste"
   userGroup: "Beiträge von allen Nutzern einer Gruppe"
-  instances: Beiträge von allen Nutzern auf einer Instanz
+  instances: Beiträge von allen Nutzern auf einem Server
 _weekday:
   sunday: "Sonntag"
   monday: "Montag"
@@ -1442,7 +1442,7 @@ _widgets:
   digitalClock: "Digitaluhr"
   unixClock: "UNIX-Uhr"
   federation: "Föderation"
-  instanceCloud: "Instanzwolke"
+  instanceCloud: "Server-Cloud"
   postForm: "Beitragsfeld"
   slideshow: "Diashow"
   button: "Knopf"
@@ -1926,32 +1926,33 @@ userSaysSomethingReason: '{name} sagte {reason}'
 hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
   verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.
   Blockierte Instanzen sind nicht betroffen, auch wenn sie hier aufgeführt sind.'
-addInstance: Instanz hinzufügen
+addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Posts werden im Katzenmodus "nya-ifiziert"
 hiddenTags: Versteckte Hashtags
-antennaInstancesDescription: Nenne einen Instanzen-Host pro Zeile
+antennaInstancesDescription: Nenne einen Servernamen pro Zeile
 secureModeInfo: Bei Anfragen an andere Instanzen nicht ohne Nachweis zurücksenden.
 renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
-noInstances: Es gibt keine Instanzen
-privateModeInfo: Wenn diese Option aktiviert ist, können nur Instanzen auf der Whitelist
-  mit Deinen Instanzen föderieren. Alle Beiträge werden für die Öffentlichkeit verborgen.
-allowedInstances: Instanzen auf der Whitelist
-selectInstance: Wähle eine Instanz
+noInstances: Es gibt keine Server
+privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
+  eingestufte Server mit deinem Server föderieren. Alle Beiträge werden für die Öffentlichkeit
+  verborgen.
+allowedInstances: Vertrauenswürdige Server
+selectInstance: Wähle einen Server
 silencedInstancesDescription: Liste die Hostnamen der Instanzen auf, die du stummschalten
   möchtest. Konten in den aufgelisteten Instanzen werden als "Stumm" behandelt, können
   nur Follow-Anfragen stellen und können keine lokalen Konten erwähnen, wenn sie nicht
   gefolgt werden. Dies wirkt sich nicht auf die blockierten Instanzen aus.
 editNote: Beitrag bearbeiten
 edited: Bearbeitet
-silenceThisInstance: Diese Instanz stummschalten
-silencedInstances: Stummgeschaltete Instanzen
+silenceThisInstance: Diesen Server stummschalten
+silencedInstances: Stummgeschaltete Server
 silenced: Stummgeschaltet
 deleted: Gelöscht
 breakFollowConfirm: Sind sie sicher, dass sie eine(n) Follower entfernen möchten?
 unsubscribePushNotification: Push-Benachrichtigungen deaktivieren
 pushNotificationAlreadySubscribed: Push-Benachrichtigungen sind bereits aktiviert
-pushNotificationNotSupported: Dein Browser oder die Instanz unterstützt keine Push-Benachrichtigungen
+pushNotificationNotSupported: Dein Browser oder der Server unterstützt keine Push-Benachrichtigungen
 pushNotification: Push-Benachrichtigungen
 subscribePushNotification: Push-Benachrichtigungen aktivieren
 showLocalPosts: 'Zeige lokale Beiträge in:'
