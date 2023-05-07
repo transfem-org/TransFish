@@ -361,6 +361,7 @@ function noteClick(e) {
 
 	> .main {
 		display: flex;
+		cursor: pointer;
 
 		> .avatar-container {
 			margin-right: 8px;
@@ -376,7 +377,6 @@ function noteClick(e) {
 		> .body {
 			flex: 1;
 			min-width: 0;
-			cursor: pointer;
 			margin: 0 -200px;
 			padding: 0 200px;
 			overflow: clip;
