@@ -4,6 +4,7 @@
 		ref="buttonRef"
 		v-tooltip.noDelay.bottom="i18n.ts.renote"
 		class="eddddedb _button canRenote"
+		:class="{ addCw }"
 		@click="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
@@ -25,19 +26,26 @@ import { $i } from "@/account";
 import { useTooltip } from "@/scripts/use-tooltip";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
+import { MenuItem } from "@/types/menu";
+import { add } from "date-fns";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	count: number;
+	renoteCw?: string | null;
 }>();
 
 const buttonRef = ref<HTMLElement>();
+const addCw = ref<boolean>(!!props.renoteCw);
+const cwInput = ref<string>(props.renoteCw ?? "");
 
 const canRenote = computed(
 	() =>
-		["public", "home","hidden"].includes(props.note.visibility) ||
+		["public", "home", "hidden"].includes(props.note.visibility) ||
 		props.note.userId === $i.id
 );
+
+const getCw = () => (addCw.value ? cwInput.value : props.note.cw ?? undefined);
 
 useTooltip(buttonRef, async (showing) => {
 	const renotes = await os.api("notes/renotes", {
@@ -73,9 +81,12 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	const users = renotes.map((x) => x.user.id);
 	const hasRenotedBefore = users.includes($i.id);
 
-	let buttonActions = [];
+	let buttonActions: Array<MenuItem> = [];
 
-	if (props.note.visibility === "public" || props.note.visibility === "hidden") {
+	if (
+		props.note.visibility === "public" ||
+		props.note.visibility === "hidden"
+	) {
 		buttonActions.push({
 			text: i18n.ts.renote,
 			textStyle: "font-weight: bold",
@@ -85,6 +96,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
 					visibility: "public",
+					cw: getCw(),
 				});
 				const el =
 					ev &&
@@ -102,7 +114,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		});
 	}
 
-	if (["public", "home","hidden"].includes(props.note.visibility)) {
+	if (["public", "home", "hidden"].includes(props.note.visibility)) {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.home})`,
 			icon: "ph-house ph-bold ph-lg",
@@ -111,6 +123,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
 					visibility: "home",
+					cw: getCw(),
 				});
 				const el =
 					ev &&
@@ -138,6 +151,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "specified",
 					visibleUserIds: props.note.visibleUserIds,
+					cw: getCw(),
 				});
 				const el =
 					ev &&
@@ -162,6 +176,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
 					visibility: "followers",
+					cw: getCw(),
 				});
 				const el =
 					ev &&
@@ -179,7 +194,30 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		});
 	}
 
-	if (!defaultStore.state.seperateRenoteQuote) {
+	const showQuote = !defaultStore.state.seperateRenoteQuote;
+
+	if (!props.note.cw || props.note.cw === "") {
+		buttonActions.push({
+			type: "switch",
+			ref: addCw,
+			text: "Add content warning",
+			hidden: addCw,
+		});
+
+		buttonActions.push({
+			type: "input",
+			ref: cwInput,
+			placeholder: "Content warning",
+			required: true,
+			visible: addCw,
+		});
+
+		if (showQuote || hasRenotedBefore) {
+			buttonActions.push(null);
+		}
+	}
+
+	if (showQuote) {
 		buttonActions.push({
 			text: i18n.ts.quote,
 			icon: "ph-quotes ph-bold ph-lg",
@@ -204,7 +242,10 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 			},
 		});
 	}
-	os.popupMenu(buttonActions, buttonRef.value, { viaKeyboard });
+
+	os.popupMenu(buttonActions, buttonRef.value, {
+		viaKeyboard,
+	});
 };
 </script>
 

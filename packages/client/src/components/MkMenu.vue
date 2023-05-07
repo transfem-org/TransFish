@@ -13,6 +13,12 @@
 			>
 				<template v-for="(item, i) in items2">
 					<div v-if="item === null" class="divider"></div>
+					<template
+						v-else-if="
+							item.hidden ||
+							(item.visible !== undefined && !item.visible)
+						"
+					/>
 					<span v-else-if="item.type === 'label'" class="label item">
 						<span :style="item.textStyle || ''">{{
 							item.text
@@ -21,6 +27,7 @@
 					<span
 						v-else-if="item.type === 'pending'"
 						class="pending item"
+						:class="classMap(item.classes)"
 					>
 						<span><MkEllipsis /></span>
 					</span>
@@ -28,6 +35,7 @@
 						v-else-if="item.type === 'link'"
 						:to="item.to"
 						class="_button item"
+						:class="classMap(item.classes)"
 						@click.passive="close(true)"
 						@mouseenter.passive="onItemMouseEnter(item)"
 						@mouseleave.passive="onItemMouseLeave(item)"
@@ -56,6 +64,7 @@
 						:target="item.target"
 						:download="item.download"
 						class="_button item"
+						:class="classMap(item.classes)"
 						@click="close(true)"
 						@mouseenter.passive="onItemMouseEnter(item)"
 						@mouseleave.passive="onItemMouseLeave(item)"
@@ -73,9 +82,12 @@
 						></span>
 					</a>
 					<button
-						v-else-if="item.type === 'user' && !items.hidden"
+						v-else-if="item.type === 'user'"
 						class="_button item"
-						:class="{ active: item.active }"
+						:class="{
+							active: item.active,
+							...classMap(item.classes),
+						}"
 						:disabled="item.active"
 						@click="clicked(item.action, $event)"
 						@mouseenter.passive="onItemMouseEnter(item)"
@@ -93,6 +105,7 @@
 					<span
 						v-else-if="item.type === 'switch'"
 						class="item"
+						:class="classMap(item.classes)"
 						@mouseenter.passive="onItemMouseEnter(item)"
 						@mouseleave.passive="onItemMouseLeave(item)"
 					>
@@ -104,10 +117,29 @@
 							>{{ item.text }}</FormSwitch
 						>
 					</span>
+					<span
+						v-else-if="item.type === 'input'"
+						:tabindex="i"
+						class="item"
+						:class="classMap(item.classes)"
+						@mouseenter.passive="onItemMouseEnter(item)"
+						@mouseleave.passive="onItemMouseLeave(item)"
+					>
+						<FormInput
+							v-model="item.ref"
+							:disabled="item.disabled"
+							class="form-input"
+							:required="item.required"
+							:placeholder="item.placeholder"
+						/>
+					</span>
 					<button
 						v-else-if="item.type === 'parent'"
 						class="_button item parent"
-						:class="{ childShowing: childShowingItem === item }"
+						:class="{
+							childShowing: childShowingItem === item,
+							...classMap(item.classes),
+						}"
 						@mouseenter="showChildren(item, $event)"
 						@click="showChildren(item, $event)"
 					>
@@ -126,9 +158,13 @@
 						></span>
 					</button>
 					<button
-						v-else-if="!item.hidden"
+						v-else
 						class="_button item"
-						:class="{ danger: item.danger, active: item.active }"
+						:class="{
+							danger: item.danger,
+							active: item.active,
+							...classMap(item.classes),
+						}"
 						:disabled="item.active"
 						@click="clicked(item.action, $event)"
 						@mouseenter.passive="onItemMouseEnter(item)"
@@ -186,7 +222,14 @@ import {
 } from "vue";
 import { focusPrev, focusNext } from "@/scripts/focus";
 import FormSwitch from "@/components/form/switch.vue";
-import { MenuItem, InnerMenuItem, MenuPending, MenuAction } from "@/types/menu";
+import FormInput from "@/components/form/input.vue";
+import {
+	MenuItem,
+	InnerMenuItem,
+	MenuPending,
+	MenuAction,
+	MenuClasses,
+} from "@/types/menu";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { FocusTrap } from "focus-trap-vue";
@@ -243,6 +286,18 @@ watch(
 
 let childMenu = $ref<MenuItem[] | null>();
 let childTarget = $ref<HTMLElement | null>();
+
+function classMap(classes?: MenuClasses) {
+	if (!classes) return {};
+
+	return (Array.isArray(classes) ? classes : classes.value).reduce(
+		(acc, cls) => {
+			acc[cls] = true;
+			return acc;
+		},
+		{}
+	);
+}
 
 function closeChild() {
 	childMenu = null;

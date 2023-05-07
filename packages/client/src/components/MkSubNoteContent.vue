@@ -1,125 +1,136 @@
 <template>
-	<p v-if="note.cw != null" class="cw">
-		<MkA
-			v-if="!detailed && note.replyId"
-			:to="`/notes/${note.replyId}`"
-			class="reply-icon"
-			@click.stop
-		>
-			<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
-		</MkA>
-		<MkA
-			v-if="
-				conversation &&
-				note.renoteId &&
-				note.renoteId != parentId &&
-				!note.replyId
-			"
-			:to="`/notes/${note.renoteId}`"
-			class="reply-icon"
-			@click.stop
-		>
-			<i class="ph-quotes ph-bold ph-lg"></i>
-		</MkA>
-		<Mfm
-			v-if="note.cw != ''"
-			class="text"
-			:text="note.cw"
-			:author="note.user"
-			:i="$i"
-			:custom-emojis="note.emojis"
-		/>
-	</p>
-	<div class="wrmlmaau">
-		<div
-			class="content"
-			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
-		>
-			<XCwButton
-				ref="cwButton"
-				v-if="note.cw && !showContent"
-				v-model="showContent"
-				:note="note"
-				v-on:keydown="focusFooter"
-			/>
-			<div
-				class="body"
-				v-bind="{
-					'aria-label': !showContent ? '' : null,
-					tabindex: !showContent ? '-1' : null,
-				}"
+	<div
+		:class="{
+			hasCw: !!cw,
+			cwHighlight,
+		}"
+	>
+		<p v-if="cw != null" class="cw">
+			<MkA
+				v-if="!detailed && appearNote.replyId"
+				:to="`/notes/${appearNote.replyId}`"
+				class="reply-icon"
+				@click.stop
 			>
-				<span v-if="note.deletedAt" style="opacity: 0.5"
-					>({{ i18n.ts.deleted }})</span
-				>
-				<template v-if="!note.cw">
-					<MkA
-						v-if="!detailed && note.replyId"
-						:to="`/notes/${note.replyId}`"
-						class="reply-icon"
-						@click.stop
-					>
-						<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
-					</MkA>
-					<MkA
-						v-if="
-							conversation &&
-							note.renoteId &&
-							note.renoteId != parentId &&
-							!note.replyId
-						"
-						:to="`/notes/${note.renoteId}`"
-						class="reply-icon"
-						@click.stop
-					>
-						<i class="ph-quotes ph-bold ph-lg"></i>
-					</MkA>
-				</template>
-				<Mfm
-					v-if="note.text"
-					:text="note.text"
-					:author="note.user"
-					:i="$i"
-					:custom-emojis="note.emojis"
+				<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
+			</MkA>
+			<MkA
+				v-if="
+					conversation &&
+					appearNote.renoteId &&
+					appearNote.renoteId != parentId &&
+					!appearNote.replyId
+				"
+				:to="`/notes/${appearNote.renoteId}`"
+				class="reply-icon"
+				@click.stop
+			>
+				<i class="ph-quotes ph-bold ph-lg"></i>
+			</MkA>
+			<Mfm
+				v-if="cw != ''"
+				class="text"
+				:text="cw"
+				:author="appearNote.user"
+				:i="$i"
+				:custom-emojis="appearNote.emojis"
+			/>
+		</p>
+		<div class="wrmlmaau">
+			<div
+				class="content"
+				:class="{ collapsed, isLong, showContent: cw && !showContent }"
+			>
+				<XCwButton
+					ref="cwButton"
+					v-if="cw && !showContent"
+					v-model="showContent"
+					:note="appearNote"
+					v-on:keydown="focusFooter"
 				/>
-				<MkA
-					v-if="!detailed && note.renoteId"
-					class="rp"
-					:to="`/notes/${note.renoteId}`"
-					>{{ i18n.ts.quoteAttached }}: ...</MkA
-				>
-				<div v-if="note.files.length > 0" class="files">
-					<XMediaList :media-list="note.files" />
-				</div>
-				<XPoll v-if="note.poll" :note="note" class="poll" />
-				<template v-if="detailed">
-					<MkUrlPreview
-						v-for="url in urls"
-						:key="url"
-						:url="url"
-						:compact="true"
-						:detail="false"
-						class="url-preview"
-					/>
-					<div
-						v-if="note.renote"
-						class="renote"
-						@click.stop="emit('push', note.renote)"
-					>
-						<XNoteSimple :note="note.renote" />
-					</div>
-				</template>
 				<div
-					v-if="note.cw && !showContent"
-					tabindex="0"
-					v-on:focus="cwButton?.focus()"
-				></div>
+					class="body"
+					v-bind="{
+						'aria-label': !showContent ? '' : null,
+						tabindex: !showContent ? '-1' : null,
+					}"
+				>
+					<span v-if="appearNote.deletedAt" style="opacity: 0.5"
+						>({{ i18n.ts.deleted }})</span
+					>
+					<template v-if="!cw">
+						<MkA
+							v-if="!detailed && appearNote.replyId"
+							:to="`/notes/${appearNote.replyId}`"
+							class="reply-icon"
+							@click.stop
+						>
+							<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
+						</MkA>
+						<MkA
+							v-if="
+								conversation &&
+								appearNote.renoteId &&
+								appearNote.renoteId != parentId &&
+								!appearNote.replyId
+							"
+							:to="`/notes/${appearNote.renoteId}`"
+							class="reply-icon"
+							@click.stop
+						>
+							<i class="ph-quotes ph-bold ph-lg"></i>
+						</MkA>
+					</template>
+					<Mfm
+						v-if="appearNote.text"
+						:text="appearNote.text"
+						:author="appearNote.user"
+						:i="$i"
+						:custom-emojis="appearNote.emojis"
+					/>
+					<MkA
+						v-if="!detailed && appearNote.renoteId"
+						class="rp"
+						:to="`/notes/${appearNote.renoteId}`"
+						>{{ i18n.ts.quoteAttached }}: ...</MkA
+					>
+					<div v-if="appearNote.files.length > 0" class="files">
+						<XMediaList :media-list="appearNote.files" />
+					</div>
+					<XPoll
+						v-if="appearNote.poll"
+						:note="appearNote"
+						class="poll"
+					/>
+					<template v-if="detailed">
+						<MkUrlPreview
+							v-for="url in urls"
+							:key="url"
+							:url="url"
+							:compact="true"
+							:detail="false"
+							class="url-preview"
+						/>
+						<div
+							v-if="appearNote.renote"
+							class="renote"
+							@click.stop="emit('push', appearNote.renote)"
+						>
+							<XNoteSimple :note="appearNote.renote" />
+						</div>
+					</template>
+					<div
+						v-if="cw && !showContent"
+						tabindex="0"
+						v-on:focus="cwButton?.focus()"
+					></div>
+				</div>
+				<XShowMoreButton
+					v-if="isLong"
+					v-model="collapsed"
+				></XShowMoreButton>
+				<XCwButton v-if="cw" v-model="showContent" :note="appearNote" />
 			</div>
-			<XShowMoreButton
-				v-if="isLong"
-				v-model="collapsed"
-			></XShowMoreButton>
-			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
 		</div>
 	</div>
 </template>
@@ -136,6 +147,7 @@ import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -150,16 +162,30 @@ const emit = defineEmits<{
 	(ev: "focusfooter"): void;
 }>();
 
+const note = props.note;
+
+const isRenote =
+	note.renote != null &&
+	note.text == null &&
+	note.fileIds.length === 0 &&
+	note.poll == null;
+
+let appearNote = $computed(() =>
+	isRenote ? (note.renote as misskey.entities.Note) : note
+);
+let cw = $computed(() => appearNote.cw || note.cw);
+const cwHighlight = defaultStore.state.highlightCw;
+
 const cwButton = ref<HTMLElement>();
 const isLong =
 	!props.detailedView &&
-	props.note.cw == null &&
-	props.note.text != null &&
-	(props.note.text.split("\n").length > 9 || props.note.text.length > 500);
-const collapsed = $ref(props.note.cw == null && isLong);
+	!cw &&
+	appearNote.text != null &&
+	(appearNote.text.split("\n").length > 9 || appearNote.text.length > 500);
+const collapsed = $ref(!cw && isLong);
 
-const urls = props.note.text
-	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
+const urls = appearNote.text
+	? extractUrlFromMfm(mfm.parse(appearNote.text)).slice(0, 5)
 	: null;
 
 let showContent = $ref(false);
@@ -193,6 +219,23 @@ function focusFooter(ev) {
 	overflow-wrap: break-word;
 	> .text {
 		margin-right: 8px;
+		padding-inline-start: 0.25em;
+	}
+}
+.cwHighlight.hasCw {
+	outline: 1px dotted var(--cwFg);
+	border-radius: 5px;
+	> .wrmlmaau {
+		padding-inline-start: 0.25em;
+	}
+	> .cw {
+		background-color: var(--cwFg);
+		color: var(--cwBg);
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		> .reply-icon {
+			color: var(--cwBg);
+		}
 	}
 }
 .wrmlmaau {
@@ -224,11 +267,9 @@ function focusFooter(ev) {
 			> .url-preview {
 				margin-top: 8px;
 			}
-
 			> .poll {
 				font-size: 80%;
 			}
-
 			> .renote {
 				padding-top: 8px;
 				> * {
@@ -243,7 +284,6 @@ function focusFooter(ev) {
 				}
 			}
 		}
-
 		&.collapsed,
 		&.showContent {
 			position: relative;
