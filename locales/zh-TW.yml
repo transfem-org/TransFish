@@ -1073,6 +1073,8 @@ _channel:
   following: "關注中"
   usersCount: "有{n}人參與"
   notesCount: "有{n}個貼文"
+  nameAndDescription: "名稱與說明"
+  nameOnly: "僅名稱"
 _menuDisplay:
   sideFull: "側向"
   sideIcon: "側向（圖示）"
