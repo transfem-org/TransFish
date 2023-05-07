@@ -66,7 +66,7 @@
 				</swiper-slide>
 				<swiper-slide>
 					<div class="_content grwlizim featured">
-						<MkPagination
+						<!-- <MkPagination
 							v-slot="{ items }"
 							:pagination="featuredPagination"
 							:disable-auto-load="true"
@@ -77,23 +77,19 @@
 								class="_gap"
 								:channel="channel"
 							/>
-						</MkPagination>
+						</MkPagination> -->
+						<MkChannelList
+								key="featured"
+								:pagination="featuredPagination"
+							/>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
 					<div class="_content grwlizim following">
-						<MkPagination
-							v-slot="{ items }"
-							:pagination="followingPagination"
-							:disable-auto-load="true"
-						>
-							<MkChannelPreview
-								v-for="channel in items"
-								:key="channel.id"
-								class="_gap"
-								:channel="channel"
+						<MkChannelList
+								key="following"
+								:pagination="followingPagination"
 							/>
-						</MkPagination>
 					</div>
 				</swiper-slide>
 				<swiper-slide>
@@ -101,18 +97,10 @@
 						<MkButton class="new" @click="create()"
 							><i class="ph-plus ph-bold ph-lg"></i
 						></MkButton>
-						<MkPagination
-							v-slot="{ items }"
-							:pagination="ownedPagination"
-							:disable-auto-load="true"
-						>
-							<MkChannelPreview
-								v-for="channel in items"
-								:key="channel.id"
-								class="_gap"
-								:channel="channel"
+						<MkChannelList
+								key="owned"
+								:pagination="ownedPagination"
 							/>
-						</MkPagination>
 					</div>
 				</swiper-slide>
 			</swiper>
