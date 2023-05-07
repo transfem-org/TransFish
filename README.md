@@ -116,6 +116,17 @@ corepack prepare pnpm@latest --activate
 pnpm i # --no-optional
 ```
 
+### pm2
+
+To install pm2 run:
+
+```
+npm i -g pm2
+pm2 install pm2-logrotate
+```
+
+[`pm2-logrotate`](https://github.com/keymetrics/pm2-logrotate/blob/master/README.md) ensures that log files don't infinitely gather size, as Calckey produces a lot of logs.
+
 ## 🐘 Create database
 
 Assuming you set up PostgreSQL correctly, all you have to run is:
