@@ -22,7 +22,6 @@
 			>
 				<swiper-slide>
 					<div class="_content grwlizim search">
-						<div class="gaps">
 							<MkInput
 								v-model="searchQuery"
 								:large="true"
@@ -30,12 +29,15 @@
 								type="search"
 							>
 								<template #prefix
-									><i class="ph-search ph-bold ph-lg"></i
+									><i
+										class="ph-magnifying-glass ph-bold ph-lg"
+									></i
 								></template>
 							</MkInput>
 							<MkRadios
 								v-model="searchType"
 								@update:model-value="search()"
+								class="_gap"
 							>
 								<option value="nameAndDescription">
 									{{ i18n.ts._channel.nameAndDescription }}
@@ -50,9 +52,9 @@
 								gradate
 								rounded
 								@click="search"
+								class="_gap"
 								>{{ i18n.ts.search }}</MkButton
 							>
-						</div>
 						<MkFoldableSection v-if="channelPagination">
 							<template #header>{{
 								i18n.ts.searchResult
@@ -124,10 +126,10 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import MkChannelPreview from "@/components/MkChannelPreview.vue";
 import MkChannelList from "@/components/MkChannelList.vue";
 import MkPagination from "@/components/MkPagination.vue";
-import MkInput from "@/components/MkInput.vue";
-import MkRadios from "@/components/MkRadios.vue";
+import MkInput from "@/components/form/input.vue";
+import MkRadios from "@/components/form/radios.vue";
 import MkButton from "@/components/MkButton.vue";
-import MkFoldableSection from "@/components/MkFoldableSection.vue";
+import MkFolder from "@/components/MkFolder.vue";
 import { useRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
@@ -147,7 +149,6 @@ const props = defineProps<{
 	type?: string;
 }>();
 let key = $ref("");
-let tab = $ref("search");
 let searchQuery = $ref("");
 let searchType = $ref("nameAndDescription");
 let channelPagination = $ref();
@@ -201,7 +202,7 @@ const headerTabs = $computed(() => [
 	{
 		key: "search",
 		title: i18n.ts.search,
-		icon: "ph-search ph-bold ph-lg",
+		icon: "ph-magnifying-glass ph-bold ph-lg",
 	},
 	{
 		key: "featured",
