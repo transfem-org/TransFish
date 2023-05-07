@@ -88,7 +88,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 
 	if (
 		props.note.visibility === "public" ||
-		props.note.visibil	ity === "hidden"
+		props.note.visibility === "hidden"
 	) {
 		buttonActions.push({
 			text: i18n.ts.renote,
