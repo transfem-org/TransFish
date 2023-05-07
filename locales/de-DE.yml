@@ -122,7 +122,7 @@ reactionSettingDescription2: "Ziehe um Anzuordnen, klicke um zu löschen, drück
 rememberNoteVisibility: "Einstellungen für die Sichtbarkeit von Beiträgen speichern"
 attachCancel: "Anhang entfernen"
 markAsSensitive: "Als NSFW kennzeichnen"
-accountMoved: "Der Nutzer ist zu einer neuen Instanz umgezogen:"
+accountMoved: "Der Nutzer ist zu einem neuen Server umgezogen:"
 unmarkAsSensitive: "NSFW Kennzeichnung aufheben"
 enterFileName: "Dateinamen eingeben"
 mute: "Stummschalten"
@@ -371,8 +371,8 @@ pinnedUsers: "Angeheftete Nutzer"
 pinnedUsersDescription: "Gib durch Leerzeichen getrennte Nutzer an, die an die \"\
   Erkunden\"-Seite angeheftet werden sollen."
 pinnedPages: "Angeheftete Seiten"
-pinnedPagesDescription: "Gib durch Leerzeilen getrennte Pfäde zu Seiten an, die an\
-  \ die Startseite dieser Instanz angeheftet werden sollen."
+pinnedPagesDescription: "Geben Sie die Pfade der Seiten, getrennt durch Zeilenumbrüche,\
+  \ ein, die Sie an die oberste Startseite dieses Servers anheften möchten."
 pinnedClipId: "ID des anzuheftenden Clips"
 pinnedNotes: "Angeheftete Beiträge"
 hcaptcha: "hCaptcha"
@@ -404,11 +404,11 @@ withReplies: "Antworten beinhalten"
 connectedTo: "Mit folgenden Nutzerkonten verknüpft"
 notesAndReplies: "Beiträge und Antworten"
 withFiles: "Beiträge mit Dateien"
-silence: "Instanzweit stummschalten"
-silenceConfirm: "Möchtest du diesen Nutzer wirklich instanzweit stummschalten?"
-unsilence: "Instanzweite Stummschaltung aufheben"
-unsilenceConfirm: "Möchtest du die instanzweite Stummschaltung dieses Nutzers wirklich\
-  \ aufheben?"
+silence: "stummschalten"
+silenceConfirm: "Sind Sie sicher, dass Sie diesen Benutzer Stummschalten möchten?"
+unsilence: "Stummschaltung aufheben"
+unsilenceConfirm: "Sind Sie sicher, dass Sie die Stummschaltung dieses Benutzers rückgängig\
+  \ machen wollen?"
 popularUsers: "Beliebte Nutzer"
 recentlyUpdatedUsers: "Vor kurzem aktive Nutzer"
 recentlyRegisteredUsers: "Vor kurzem registrierte Nutzer"
@@ -583,8 +583,8 @@ updateRemoteUser: "Nutzerinformationen aktualisieren"
 deleteAllFiles: "Alle Dateien löschen"
 deleteAllFilesConfirm: "Möchtest du wirklich alle Dateien löschen?"
 removeAllFollowing: "Allen gefolgten Nutzern entfolgen"
-removeAllFollowingDescription: "Dies entfolgt allen Nutzerkonten von {host}. Bitte\
-  \ führe dies durch, falls diese Instanz z.B. nicht mehr existiert."
+removeAllFollowingDescription: "Wenn Sie dies ausführen, werden alle Konten von {host}\
+  \ entfolgt. Bitte führen Sie dies aus, wenn der Server z.B. nicht mehr existiert."
 userSuspended: "Dieser Nutzer wurde gesperrt."
 userSilenced: "Dieser Nutzer wurde instanzweit stummgeschaltet."
 yourAccountSuspendedTitle: "Dieses Nutzerkonto ist gesperrt"
@@ -655,7 +655,7 @@ wordMute: "Wortfilter"
 regexpError: "Fehler in einem regulären Ausdruck"
 regexpErrorDescription: "Im regulären Ausdruck deines {tab}en Wortfilters ist ein\
   \ Fehler aufgetreten:"
-instanceMute: "Instanzstummschaltungen"
+instanceMute: "Server-Stummschaltungen"
 userSaysSomething: "{name} hat etwas gesagt"
 makeActive: "Aktivieren"
 display: "Anzeigeart"
@@ -692,9 +692,9 @@ abuseReported: "Deine Meldung wurde versendet. Vielen Dank."
 reporter: "Melder"
 reporteeOrigin: "Herkunft des Gemeldeten"
 reporterOrigin: "Herkunft des Meldenden"
-forwardReport: "Meldung an fremde Instanz weiterleiten"
-forwardReportIsAnonymous: "Anstatt deines Nutzerkontos wird bei der fremden Instanz\
-  \ ein anonymes Systemkonto als Melder angezeigt."
+forwardReport: "Einen Bericht auch an den beteiligten anderen Server weiterleiten"
+forwardReportIsAnonymous: "Anstelle Ihres Nutzerkontos wird ein anonymes Systemkonto\
+  \ als Berichterstatter auf dem beteiligten anderen Server angezeigt."
 send: "Senden"
 abuseMarkAsResolved: "Meldung als gelöst markieren"
 openInNewTab: "In neuem Tab öffnen"
@@ -702,7 +702,7 @@ openInSideView: "In Seitenansicht öffnen"
 defaultNavigationBehaviour: "Standardnavigationsverhalten"
 editTheseSettingsMayBreakAccount: "Bei Bearbeitung dieser Einstellungen besteht die\
   \ Gefahr, dein Nutzerkonto zu beschädigen."
-instanceTicker: "Instanz-Informationen zu Beiträgen"
+instanceTicker: "Serveranzeige zu Beiträgen"
 waitingFor: "Warte auf {x}"
 random: "Zufällig"
 system: "System"
@@ -803,7 +803,7 @@ capacity: "Kapazität"
 inUse: "Verwendet"
 editCode: "Code bearbeiten"
 apply: "Anwenden"
-receiveAnnouncementFromInstance: "Benachrichtigungen von dieser Instanz empfangen"
+receiveAnnouncementFromInstance: "Benachrichtigungen von diesem Server empfangen"
 emailNotification: "Email-Benachrichtigungen"
 publish: "Veröffentlichen"
 inChannelSearch: "In Kanal suchen"
@@ -834,7 +834,7 @@ active: "Aktiv"
 offline: "Offline"
 notRecommended: "Nicht empfohlen"
 botProtection: "Schutz vor Bots"
-instanceBlocking: "Instanz Sperren/Stummschalten"
+instanceBlocking: "Föderierte Blockieren/Stummschalten"
 selectAccount: "Nutzerkonto auswählen"
 switchAccount: "Konto wechseln"
 enabled: "Aktiviert"
@@ -921,12 +921,12 @@ overridedDeviceKind: "Gerätetyp"
 smartphone: "Smartphone"
 tablet: "Tablet"
 auto: "Automatisch"
-themeColor: "Farbe des Instanz-Tickers"
+themeColor: "Farbe der Laufschrift (Ticker)"
 size: "Größe"
 numberOfColumn: "Spaltenanzahl"
 searchByGoogle: "Suchen"
-instanceDefaultLightTheme: "Instanzweites Standardfarbschema (Hell)"
-instanceDefaultDarkTheme: "Instanzweites Standardfarbschema (Dunkel)"
+instanceDefaultLightTheme: "Standard-Farbschema auf diesem Server: \"Hell\""
+instanceDefaultDarkTheme: "Standard-Farbschema auf diesem Server: \"Dunkel\""
 instanceDefaultThemeDescription: "Gib den Farbschemencode im Objektformat ein."
 mutePeriod: "Dauer der Stummschaltung"
 indefinitely: "Dauerhaft"
@@ -981,10 +981,9 @@ cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da d
   \ Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
 enableAutoSensitive: "NSFW-Automarkierung"
-enableAutoSensitiveDescription: "Setzt soweit möglich durch Verwendung von Machine\
-  \ Learning automatisch NSFW-Markierungen für Medien, die NSFW-Anteile beinhalten.\
-  \ Auch wenn du diese Option deaktiviert hast, ist sie möglicherweise auf Instanzebene\
-  \ aktiviert."
+enableAutoSensitiveDescription: "Erlaubt, wo möglich, die automatische Erkennung und\
+  \ Kennzeichnung von NSFW-Medien durch maschinelles Lernen. Auch wenn diese Option\
+  \ deaktiviert ist, kann sie über den Server aktiviert sein."
 activeEmailValidationDescription: "Aktivert strengere Überprüfung von E-Mail-Adressen,\
   \ d.h. Testen auf Wegwerfadressen und darauf, ob mit der Adresse tatsächlich kommuniziert\
   \ werden kann. Ist dies deaktiviert, so wird nur das Format der E-Mail überprüft."
@@ -1041,8 +1040,9 @@ _forgotPassword:
     \ wird ein Link gesendet, mit dem du dein Passwort zurücksetzen kannst."
   ifNoEmail: "Solltest du bei der Registrierung keine Email-Adresse angegeben haben,\
     \ wende dich bitte an den Administrator."
-  contactAdmin: "Diese Instanz unterstützt die Verwendung von Email-Adressen nicht.\
-    \ Wende dich an den Administrator, um dein Passwort zurückzusetzen."
+  contactAdmin: "Dieser Server unterstützt die Verwendung von Email-Adressen nicht.\
+    \ Kontaktiere bitte den Server-Administrator, um dein Passwort zurücksetzen zu\
+    \ lassen."
 _gallery:
   my: "Meine Galerie"
   liked: "Mit \"Gefällt mir\" markierte Beiträge"
@@ -1176,7 +1176,7 @@ _mfm:
   background: Hintergrundfarbe
 _instanceTicker:
   none: "Nie anzeigen"
-  remote: "Für Nutzer fremder Instanzen anzeigen"
+  remote: "Für Nutzer eines anderen Servers anzeigen"
   always: "Immer anzeigen"
 _serverDisconnectedBehavior:
   reload: "Automatisch aktualisieren"
@@ -1214,11 +1214,11 @@ _wordMute:
   mutedNotes: "Stummgeschaltete Beiträge"
 _instanceMute:
   instanceMuteDescription: "Schaltet alle Beiträge/boosts stumm, die von den gelisteten\
-    \ Instanzen stammen, inklusive Antworten von Nutzern an einen Nutzer einer stummgeschalteten\
-    \ Instanz."
-  instanceMuteDescription2: "Instanzen getrennt durch Zeilenumbrüchen angeben"
-  title: "Blendet Beiträge von stummgeschalteten Instanzen aus."
-  heading: "Liste der stummzuschaltenden Instanzen"
+    \ Servern stammen, inklusive Antworten von Nutzern an einen Nutzer eines stummgeschalteten\
+    \ Servers."
+  instanceMuteDescription2: "Mit Zeilenumbrüchen trennen"
+  title: "Blendet Beiträge von aufgelisteten Servern aus."
+  heading: "Liste der stummzuschaltenden Server"
 _theme:
   explore: "Farbschemata erforschen"
   install: "Farbschemata installieren"
@@ -1331,28 +1331,27 @@ _tutorial:
   step4_2: "Für deinen ersten Beitrag machen manche Leute gerne einen {introduction}\
     \ Beitrag oder ein einfaches \"Hallo Welt!\""
   step5_1: "Timelines, Timelines überall!"
-  step5_2: "Deine Instanz hat {Zeitleisten} verschiedene Zeitleisten aktiviert."
-  step5_3: "Die Zeitleiste Home {icon} ist die Zeitleiste, in der du die Beiträge\
-    \ der Accounts sehen kannst, denen du folgst und von jedem anderen auf dieser\
-    \ Instanz. Solltest du bevorzugen, dass deine Home Zeitleiste nur Beiträge von\
-    \ den Accounts enthält, denen du folgst, kannst du das ganz einfach in den Einstellungen\
-    \ ändern!"
-  step5_4: "In der lokalen {Icon} Zeitleiste kannst du die Beiträge aller anderen\
-    \ Mitglieder dieser Instanz sehen."
-  step5_5: "In der Zeitleiste Empfohlen {icon} kannst du Beiträge von Instanzen sehen,\
-    \ die von den Administratoren empfohlen werden."
-  step5_6: "In der sozialen {icon} Zeitleiste kannst du Beiträge von Freunden deiner\
-    \ Follower sehen."
-  step5_7: "In der globalen {icon} Zeitleiste kannst du Beiträge von allen anderen\
-    \ verbundenen Instanzen sehen."
+  step5_2: "Dein Server hat {timelines} verschiedene Timelines aktiviert."
+  step5_3: "Die Startseite {icon} ist die Timeline, in der du die Beiträge der Nutzerkonten\
+    \ sehen kannst, denen du folgst und von jedem anderen auf diesem Server. Solltest\
+    \ du bevorzugen, dass deine Startseite nur Beiträge von den Nutzerkonten enthält,\
+    \ denen du folgst, kannst du das ganz einfach in den Einstellungen ändern!"
+  step5_4: "In der lokalen {Icon} Timeline kannst du die Beiträge aller anderen Mitglieder\
+    \ dieses Servers sehen."
+  step5_5: "Die Timeline \"Sozial\" {icon} zeigt dir ausschließlich Beiträge von Nutzerkonten\
+    \ denen Du folgst."
+  step5_6: "In der Timeline \"Empfehlungen\" {icon} kannst du Beiträge von Servern\
+    \ sehen, die dir von den Server-Administratoren empfohlen/vorgeschlagen werden."
+  step5_7: "In der globalen Timeline {icon} können Sie Beiträge von jedem anderen\
+    \ verbundenen Server sehen."
   step6_1: "Also, was ist das hier?"
-  step6_2: "Nun, du bist nicht nur Calckey beigetreten. Du bist einem Portal zum Fediversum\
-    \ beigetreten, einem zusammenhängenden Netzwerk von Tausenden von Servern, genannt\
-    \ \"Instanzen\"."
-  step6_3: "Jeder Server funktioniert auf unterschiedliche Weise, und nicht auf allen\
-    \ Servern läuft Calckey. Dieser hier aber schon! Es ist ein bisschen kompliziert,\
-    \ aber du wirst den Dreh schnell raus haben."
-  step6_4: "Jetzt geh, erkunde und hab Spaß!"
+  step6_2: "Schön, mit Deiner Anmeldung zu Calckey bist Du gleichzeitig einem Portal\
+    \ zum Fediverse beigetreten, einem Netzwerk mit Tausenden von verbundenen Servern\
+    \ (häufig noch als \"Instanzen\" bezeichnet)."
+  step6_3: "Jeder der Server funktioniert auf unterschiedliche Weise, und nicht alle\
+    \ Server führen Calckey aus. Dieser jedoch schon! Es ist zu Beginn vielleicht\
+    \ ein wenig kompliziert, aber Sie werden in kürzester Zeit den Dreh raus haben."
+  step6_4: "Jetzt bist Du startbereit, entdecke die Möglichkeiten und hab Spaß dabei!"
 _2fa:
   alreadyRegistered: "Du hast bereits ein Gerät für Zwei-Faktor-Authentifizierung\
     \ registriert."
@@ -1491,7 +1490,7 @@ _visibility:
   specified: "Direkt"
   specifiedDescription: "Nur für bestimmte Nutzer sichtbar"
   localOnly: "Nur Lokal"
-  localOnlyDescription: "Unsichtbar für Nutzer anderer Instanzen"
+  localOnlyDescription: "Unsichtbar für Nutzer anderer Server"
 _postForm:
   replyPlaceholder: "Diesem Beitrag antworten …"
   quotePlaceholder: "Diesen Beitrag zitieren …"
@@ -1532,7 +1531,7 @@ _charts:
   activeUsers: "Aktive Nutzer"
   notesIncDec: "Unterschied bei der Anzahl an Beiträgen"
   localNotesIncDec: "Unterschied bei der Anzahl an lokalen Beiträgen"
-  remoteNotesIncDec: "Unterschied bei der Anzahl an Beiträgen von fremden Instanzen"
+  remoteNotesIncDec: "Differenz zur Anzahl von Beiträgen von anderen Servern."
   notesTotal: "Anzahl aller Beiträge"
   filesIncDec: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Anzahl aller Dateien"
@@ -1915,7 +1914,7 @@ _deck:
     direct: "Direktnachrichten"
 enableRecommendedTimeline: Empfohlenen Zeitplan aktivieren
 secureMode: Sicherer Modus (Autorisierter Abruf)
-instanceSecurity: Instanzsicherheit
+instanceSecurity: Serversicherheit
 manageGroups: Gruppen verwalten
 noThankYou: Nein, danke
 privateMode: Privater Modus
@@ -1925,12 +1924,12 @@ showEmojisInReactionNotifications: Emojis in Rückmeldungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
 hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
   verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.
-  Blockierte Instanzen sind nicht betroffen, auch wenn sie hier aufgeführt sind.'
+  Blockierte Server sind nicht betroffen, auch wenn sie hier aufgeführt sind.'
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Posts werden im Katzenmodus "nya-ifiziert"
 hiddenTags: Versteckte Hashtags
 antennaInstancesDescription: Nenne einen Servernamen pro Zeile
-secureModeInfo: Bei Anfragen an andere Instanzen nicht ohne Nachweis zurücksenden.
+secureModeInfo: Bei Anfragen an andere Server nicht ohne Nachweis zurücksenden.
 renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Es gibt keine Server
@@ -1939,10 +1938,11 @@ privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswür
   verborgen.
 allowedInstances: Vertrauenswürdige Server
 selectInstance: Wähle einen Server
-silencedInstancesDescription: Liste die Hostnamen der Instanzen auf, die du stummschalten
-  möchtest. Konten in den aufgelisteten Instanzen werden als "Stumm" behandelt, können
-  nur Follow-Anfragen stellen und können keine lokalen Konten erwähnen, wenn sie nicht
-  gefolgt werden. Dies wirkt sich nicht auf die blockierten Instanzen aus.
+silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
+  möchtest. Nutzerkonten in den aufgelisteten Servern werden als "Stumm" behandelt,
+  können nur Follow-Anfragen stellen und können keine lokalen Nutzerkonten erwähnen,
+  wenn sie nicht gefolgt werden. Dies wirkt sich nicht auf die blockierten Server
+  aus.
 editNote: Beitrag bearbeiten
 edited: Bearbeitet
 silenceThisInstance: Diesen Server stummschalten
@@ -1992,7 +1992,7 @@ socialTimeline: Soziale Zeitleiste
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
   groups: Gruppen
-recommendedInstances: Empfohlene Instanzen
+recommendedInstances: Empfohlene Server
 logoImageUrl: URL des Logo-Bildes
 userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {reason}
   beinhaltet'
