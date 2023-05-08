@@ -450,7 +450,9 @@ export default async (
 				}
 			}
 
-			publishNotesStream(note);
+			if (!dontFederateInitially) {
+				publishNotesStream(note);
+			}
 			if (note.replyId != null) {
 				// Only provide the reply note id here as the recipient may not be authorized to see the note.
 				publishNoteStream(note.replyId, "replied", {
