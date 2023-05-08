@@ -82,7 +82,7 @@
 			<div v-if="quoteId" class="with-quote">
 				<i class="ph-quotes ph-bold ph-lg"></i>
 				{{ i18n.ts.quoteAttached
-				}}<button @click="quoteId = null">
+				}}<button class="_button" @click="quoteId = null">
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>
 			</div>
@@ -1112,11 +1112,16 @@ onMounted(() => {
 		}
 
 		> .with-quote {
-			margin: 0 0 8px 0;
+			display: flex;
+			align-items: center;
+			gap: .4em;
+			margin-inline: 24px;
+			margin-bottom: 12px;
 			color: var(--accent);
 
 			> button {
-				padding: 4px 8px;
+				display: flex;
+				padding: 0;
 				color: var(--accentAlpha04);
 
 				&:hover {
