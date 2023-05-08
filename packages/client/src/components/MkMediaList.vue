@@ -4,7 +4,6 @@
 			v-for="media in mediaList.filter((media) => !previewable(media))"
 			:key="media.id"
 			:media="media"
-			@click.stop
 		/>
 		<div
 			v-if="mediaList.filter((media) => previewable(media)).length > 0"
@@ -16,6 +15,7 @@
 				:data-count="
 					mediaList.filter((media) => previewable(media)).length
 				"
+				@click.stop
 			>
 				<template
 					v-for="media in mediaList.filter((media) =>
@@ -26,7 +26,6 @@
 						v-if="media.type.startsWith('video')"
 						:key="media.id"
 						:video="media"
-						@click.stop
 					/>
 					<XImage
 						v-else-if="media.type.startsWith('image')"
@@ -35,7 +34,6 @@
 						:data-id="media.id"
 						:image="media"
 						:raw="raw"
-						@click.stop
 					/>
 				</template>
 			</div>

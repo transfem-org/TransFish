@@ -471,15 +471,15 @@ onUnmounted(() => {
 	> .article {
 		padding-block: 28px 6px;
 		padding-top: 12px;
+		&:last-child {
+			padding-bottom: 24px;
+		}
 		font-size: 1.1rem;
 		overflow: clip;
 		outline: none;
 		scroll-margin-top: calc(var(--stickyTop) + 20vh);
 		:deep(.article) {
 			cursor: unset;
-		}
-		&:first-of-type {
-			padding-top: 28px;
 		}
 	}
 
