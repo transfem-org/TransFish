@@ -10,6 +10,7 @@ import { queueLogger } from "../../logger.js";
 import type Bull from "bull";
 import { htmlToMfm } from "@/remote/activitypub/misc/html-to-mfm.js";
 import { resolveNote } from "@/remote/activitypub/models/note.js";
+import { Note } from "@/models/entities/note.js";
 
 const logger = queueLogger.createSubLogger("import-posts");
 
@@ -82,7 +83,7 @@ export async function importPosts(
 			for (const post of parsed.orderedItems) {
 				try {
 					linenum++;
-					let reply = null;
+					let reply: Note | null = null;
 					if (post.object.inReplyTo != null) {
 						reply = await resolveNote(post.object.inReplyTo);
 					}
