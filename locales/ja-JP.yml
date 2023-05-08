@@ -1837,23 +1837,6 @@ _deck:
     list: "リスト"
     mentions: "あなた宛て"
     direct: "ダイレクト"
-_apps:
-  apps: "アプリ"
-  crossPlatform: "クロスプラットフォーム"
-  mobile: "モバイル"
-  firstParty: "ファーストパーティ"
-  firstClass: "対応度◎"
-  secondClass: "対応度○"
-  thirdClass: "対応度△"
-  free: "無料"
-  paid: "有料"
-  pwa: "PWAをインストール"
-  kaiteki: "Kaiteki"
-  milktea: "Milktea"
-  missLi: "MissLi"
-  mona: "Mona"
-  theDesk: "TheDesk"
-  lesskey: "Lesskey"
 noteId: 投稿のID
 hiddenTagsDescription: 'トレンドと「みつける」から除外したいハッシュタグを（先頭の # を除いて）改行区切りで入力してください。この設定はトレンドと「みつける」以外には影響しません。'
 hiddenTags: 非表示にするハッシュタグ

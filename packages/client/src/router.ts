@@ -196,11 +196,6 @@ export const routes = [
 				component: page(() => import("./pages/settings/api.vue")),
 			},
 			{
-				path: "/apps",
-				name: "api",
-				component: page(() => import("./pages/settings/apps.vue")),
-			},
-			{
 				path: "/webhook/edit/:webhookId",
 				name: "webhook",
 				component: page(() => import("./pages/settings/webhook.edit.vue")),
@@ -299,10 +294,6 @@ export const routes = [
 	{
 		path: "/about-calckey",
 		component: page(() => import("./pages/about-calckey.vue")),
-	},
-	{
-		path: "/apps",
-		component: page(() => import("./pages/apps.vue")),
 	},
 	{
 		path: "/theme-editor",

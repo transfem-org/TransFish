@@ -28,7 +28,7 @@ export function openHelpMenu_(ev: MouseEvent) {
 				type: "link",
 				text: i18n.ts._apps.apps,
 				icon: "ph-device-mobile ph-bold ph-lg",
-				to: "/apps",
+				to: "https://calckey.org/apps",
 			},
 			{
 				type: "button",

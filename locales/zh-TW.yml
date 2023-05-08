@@ -1790,10 +1790,6 @@ moveAccountDescription: '這個過程是不可逆的。 在遷移前，請確保
 moveFrom: 由舊帳戶移至此帳戶
 moveFromDescription: '這將為你的舊帳戶設置一個別名(Alias)，以便你可以從該帳戶轉移到當前帳戶。 在你的舊帳戶移動之前請執行此操作。 請輸入帳戶標籤
   (格式: @person@instance.com)'
-_apps:
-  crossPlatform: 跨平台
-  free: 免費
-  paid: 付費
 enableEmojiReactions: 啟用表情符號反應
 breakFollowConfirm: 您確定要移除該關注者嗎？
 socialTimeline: 社交時間軸

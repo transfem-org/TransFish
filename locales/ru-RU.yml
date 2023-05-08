@@ -1937,23 +1937,6 @@ _preferencesBackups:
   cannotLoad: Загрузка не удалась
   invalidFile: Неправильный формат файла
 enableEmojiReactions: Включить эмодзи реакции
-_apps:
-  paid: Платные
-  lesskey: Lesskey
-  pwa: Установить PWA
-  free: Бесплатные
-  apps: Приложения
-  crossPlatform: Кроссплатформенные
-  mobile: Мобильные
-  firstParty: От разработчиков
-  firstClass: Первый класс
-  thirdClass: Третий класс
-  kaiteki: Kaiteki
-  milktea: Milktea
-  missLi: MissLi
-  mona: Mona
-  theDesk: TheDesk
-  secondClass: Второй класс
 migrationConfirm: "Вы абсолютно уверены что хотите мигрировать ваш аккаунт на {account}?\
   \ Как только вы сделаете, вы не сможете отменить это и не сможете нормально использовать\
   \ аккаунт снова.\nТакже, пожалуйста, убедитесь, что вы установили эту текущую учетную\
