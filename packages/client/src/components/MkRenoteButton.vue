@@ -103,7 +103,10 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	}
 
 	if (["public", "home"].includes(props.note.visibility)) {
+		buttonActions.push({
+			text: `${i18n.ts.renote} (${i18n.ts._visibility.home})`,
 			icon: "ph-house ph-bold ph-lg",
+			danger: false,
 			action: () => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
