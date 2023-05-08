@@ -81,7 +81,7 @@ export async function importPosts(
 		} else if (parsed instanceof Object) {
 			logger.info("Parsing animal style posts");
 			for (const post of parsed.orderedItems) {
-				async () =>{
+				async () => {
 					try {
 						linenum++;
 						let reply: Note | null = null;
@@ -103,7 +103,7 @@ export async function importPosts(
 							return;
 						}
 						logger.info(`Posting[${linenum}] ...`);
-	
+
 						const note = await create(user, {
 							createdAt: new Date(post.object.published),
 							files: undefined,
@@ -123,7 +123,7 @@ export async function importPosts(
 					} catch (e) {
 						logger.warn(`Error in line:${linenum} ${e}`);
 					}
-				}
+				};
 			}
 		}
 	} catch (e) {
