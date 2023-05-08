@@ -63,9 +63,7 @@
 					>
 					<small
 						>Powered by
-						<a
-							href="https://calckey.org/"
-							target="_blank"
+						<a href="https://calckey.org/" target="_blank"
 							>Calckey</a
 						></small
 					>

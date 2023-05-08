@@ -398,7 +398,8 @@ const usersPagination = {
 };
 
 async function fetch() {
-	if (iAmAdmin) meta = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
+	if (iAmAdmin)
+		meta = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
 	instance = (await os.api("federation/show-instance", {
 		host: props.host,
 	})) as AugmentedInstance;
