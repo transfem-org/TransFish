@@ -9,6 +9,7 @@ import type { DbUserImportPostsJobData } from "@/queue/types.js";
 import { queueLogger } from "../../logger.js";
 import type Bull from "bull";
 import { htmlToMfm } from "@/remote/activitypub/misc/html-to-mfm.js";
+import { resolveNote } from "@/remote/activitypub/models/note.js";
 
 const logger = queueLogger.createSubLogger("import-posts");
 
@@ -81,8 +82,9 @@ export async function importPosts(
 			for (const post of parsed.orderedItems) {
 				try {
 					linenum++;
+					let reply = null;
 					if (post.object.inReplyTo != null) {
-						continue;
+						reply = await resolveNote(post.object.inReplyTo);
 					}
 					if (post.directMessage) {
 						continue;
@@ -105,7 +107,7 @@ export async function importPosts(
 						files: undefined,
 						poll: undefined,
 						text: text || undefined,
-						reply: null,
+						reply,
 						renote: null,
 						cw: post.sensitive,
 						localOnly: false,
