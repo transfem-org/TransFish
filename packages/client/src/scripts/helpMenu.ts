@@ -26,7 +26,7 @@ export function openHelpMenu_(ev: MouseEvent) {
 			},
 			{
 				type: "button",
-				text: i18n.ts._apps.apps,
+				text: i18n.ts.apps,
 				icon: "ph-device-mobile ph-bold ph-lg",
 				action: () => {
 					window.open("https://calckey.org/", "_blank");
