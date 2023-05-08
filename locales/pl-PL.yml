@@ -1894,23 +1894,6 @@ indexNotice: Indeksuję. Zapewne zajmie to chwilę, nie restartuj serwera przez 
 customKaTeXMacro: Niestandardowe makra KaTeX
 enableCustomKaTeXMacro: Włącz niestandardowe makra KaTeX
 noteId: ID wpisu
-_apps:
-  apps: Aplikacje
-  crossPlatform: Wieloplatformowe
-  mobile: Mobilne
-  firstParty: Oficjalne
-  firstClass: Pierwszej klasy
-  secondClass: Drugiej klasy
-  thirdClass: Trzeciej klasy
-  free: Darmowe
-  paid: Płatne
-  pwa: Zainstaluj PWA
-  kaiteki: Kaiteki
-  milktea: Milktea
-  missLi: MissLi
-  mona: Mona
-  theDesk: TheDesk
-  lesskey: Lesskey
 hiddenTagsDescription: 'Wypisz tagi (bez #) hashtagów które masz zamiar ukryć z "Na
   czasie" i "Eksploruj". Na ukryte hashtagi można dalej wejść innymi sposobami.'
 proxyAccountDescription: Konto proxy jest kontem które w określonych sytuacjach zachowuje

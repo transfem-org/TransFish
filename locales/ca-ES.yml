@@ -2022,23 +2022,6 @@ _relayStatus:
   requesting: Pendent
   accepted: Acceptat
   rejected: Rebutjat
-_apps:
-  crossPlatform: Multiplataforma
-  mobile: Mòbil
-  firstParty: Primer partit
-  secondClass: Segona classe
-  thirdClass: Tercera classe
-  pwa: Instal·lar PWA
-  kaiteki: Kaiteki
-  milktea: Milktea
-  missLi: MissLi
-  mona: Mona
-  lesskey: Lesskey
-  firstClass: Primera classe
-  free: Gratuït
-  paid: Pagament
-  theDesk: TheDesk
-  apps: Aplicacions
 deleted: Esborrat
 editNote: Edita la nota
 edited: Editat

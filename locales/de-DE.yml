@@ -1961,16 +1961,6 @@ cannotUploadBecauseExceedsFileSizeLimit: Die Datei konnte nicht hochgeladen werd
   da sie die maximal zulässige Größe überschreitet
 moveFromLabel: 'Nutzerkonto von dem Sie umziehen:'
 moveAccount: Nutzerkonto umziehen!
-_apps:
-  mona: Mona
-  missLi: MissLi
-  thirdClass: Drittrangig
-  milktea: Milktea
-  theDesk: TheDesk
-  lesskey: Lesskey
-  mobile: Mobilgeräte
-  paid: Zahlungspflichtige
-  free: Kostenlose
 defaultReaction: Standard-Emoji-Reaktion für ausgehende und eingehende Beiträge
 moveTo: Umzug des Nutzerkontos zu einem neuen Nutzerkonto
 moveToLabel: 'Nutzerkonto zu dem sie umziehen:'

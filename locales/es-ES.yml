@@ -1900,18 +1900,6 @@ moveFrom: Mueve a esta cuenta de una cuenta antigua
 moveFromLabel: 'La cuenta que estás moviendo de:'
 moveAccountDescription: ''
 license: Licencia
-_apps:
-  apps: Aplicaciones
-  crossPlatform: Plataforma Cruzada
-  mobile: Teléfono móvil
-  secondClass: Segunda clase
-  lesskey: ''
-  firstClass: Primera clase
-  thirdClass: Tercera clase
-  theDesk: ''
-  pwa: Instalar PWA
-  free: Gratis
-  paid: Pagado
 noThankYou: No gracias
 userSaysSomethingReason: '{name} dijo {reason}'
 hiddenTags: Etiquetas Ocultas
