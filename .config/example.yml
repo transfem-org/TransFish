@@ -110,12 +110,13 @@ id: 'aid'
 #maxCaptionLength: 1500
 
 # Reserved usernames that only the administrator can register with
-reservedUsernames:
-  - root
-  - admin
-  - administrator
-  - me
-  - system
+reservedUsernames: [
+  'root',
+  'admin',
+  'administrator',
+  'me',
+  'system'
+]
 
 # Whether disable HSTS
 #disableHsts: true

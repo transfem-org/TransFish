@@ -188,6 +188,7 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 		margin-top: 4px;
 		border-radius: var(--radius);
 		overflow: hidden;
+		pointer-events: none;
 
 		&:before {
 			content: "";
@@ -207,6 +208,7 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 			> * {
 				overflow: hidden;
 				border-radius: 6px;
+				pointer-events: all;
 			}
 
 			&[data-count="1"] {
