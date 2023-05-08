@@ -86,9 +86,9 @@ error: "Fehler"
 somethingHappened: "Ein Fehler ist aufgetreten"
 retry: "Wiederholen"
 pageLoadError: "Beim Laden der Seite ist ein Fehler aufgetreten."
-pageLoadErrorDescription: "Dies wird in der Regel verursacht durch einen Netzwerkfehler\
-  \ oder den Browser-Cache.\nVersuchen sie den Browser-Cache zu leeren, nachdem Sie\
-  \ eine Weile gewartet haben, versuchen Sie es erneut."
+pageLoadErrorDescription: "Dies wird in der Regel durch Netzwerkfehler oder den Cache\
+  \ des Browsers verursacht. Versuchen Sie, den Cache zu leeren, und versuchen Sie\
+  \ es dann erneut, nachdem Sie eine Weile gewartet haben"
 serverIsDead: "Der Server antwortet nicht. Bitte warte einen Moment und versuche es\
   \ dann erneut."
 youShouldUpgradeClient: "Bitte aktualisiere diese Seite, um eine neuere Version deines\
@@ -522,18 +522,18 @@ promote: "Werbung schalten"
 numberOfDays: "Anzahl der Tage"
 hideThisNote: "Diesen Beitrag verstecken"
 showFeaturedNotesInTimeline: "Beliebte Beiträge in der Timeline anzeigen"
-objectStorage: "Object Storage"
+objectStorage: "Objektspeicher"
 useObjectStorage: "Object Storage verwenden"
 objectStorageBaseUrl: "Basis-URL"
 objectStorageBaseUrlDesc: "Die als Referenz verwendete URL. Verwendest du einen CDN\
   \ oder Proxy, gib dessen URL an. \nFür S3 verwende 'https://<bucket>.s3.amazonaws.com'.\
   \ Für GCS o.ä. verwende 'https://storage.googleapis.com/<bucket>'."
-objectStorageBucket: "Bucket"
+objectStorageBucket: "Eimer"
 objectStorageBucketDesc: "Bitte gib den Namen des Buckets an, der bei deinem Anbieter\
   \ verwendet wird."
 objectStoragePrefix: "Prefix"
 objectStoragePrefixDesc: "Dateien werden in Ordnern unter diesem Prefix gespeichert."
-objectStorageEndpoint: "Endpoint"
+objectStorageEndpoint: "Limit"
 objectStorageEndpointDesc: "Im Falle von S3 leerlassen, für andere Anbieter den relevanten\
   \ Endpoint im Format „<host>“ oder „<host>:<port>“ angeben."
 objectStorageRegion: "Region"
@@ -710,7 +710,7 @@ switchUi: "Layout"
 desktop: "Desktop"
 clip: "Clip erstellen"
 createNew: "Neu erstellen"
-optional: "Optional"
+optional: "optional"
 createNewClip: "Neuen Clip erstellen"
 unclip: "Aus Clip entfernen"
 confirmToUnclipAlreadyClippedNote: "Dieser Beitrag ist bereits im \"{name}\" Clip\
@@ -946,7 +946,7 @@ recentNDays: "Die letzten {n} Tage"
 noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
 recommended: "Empfehlung"
-check: "Check"
+check: "Kontrolle"
 driveCapOverrideLabel: "Die Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität\
   \ auf den Standard zurückzusetzen."
@@ -1304,13 +1304,13 @@ _sfx:
 _ago:
   future: "Zukunft"
   justNow: "Gerade eben"
-  secondsAgo: "vor {n} Sekunde(n)"
-  minutesAgo: "vor {n} Minute(n)"
-  hoursAgo: "vor {n} Stunde(n)"
-  daysAgo: "vor {n} Tag(en)"
-  weeksAgo: "vor {n} Woche(n)"
-  monthsAgo: "vor {n} Monat(en)"
-  yearsAgo: "vor {n} Jahr(en)"
+  secondsAgo: "vor {n} s"
+  minutesAgo: "vor {n} min"
+  hoursAgo: "vor {n} h"
+  daysAgo: "vor {n} T"
+  weeksAgo: "vor {n} W"
+  monthsAgo: "vor {n} M"
+  yearsAgo: "vor {n} J"
 _time:
   second: "Sekunde(n)"
   minute: "Minute(n)"
@@ -1323,13 +1323,13 @@ _tutorial:
   step2_1: "Bitte füllen Sie zuerst Ihr Profil aus."
   step2_2: "Wenn du ein paar Angaben zu deiner Person machst, können andere leichter\
     \ erkennen, ob sie deine Beiträge sehen oder dir folgen wollen."
-  step3_1: "Jetzt ist es Zeit, einigen Leuten zu folgen!"
+  step3_1: "Jetzt ist es an der Zeit, einigen Leuten zu folgen!"
   step3_2: "Deine Home- und Social-Timeline basiert darauf, wem du folgst, also folge\
     \ für den Anfang ein paar Accounts.\nKlicke das Plus Symbol oben links in einem\
     \ Profil um es zu folgen."
   step4_1: "Wir bringen dich nach draußen."
-  step4_2: "Für deinen ersten Beitrag machen manche Leute gerne einen {introduction}\
-    \ Beitrag oder ein einfaches \"Hallo Welt!\""
+  step4_2: "Für Ihren ersten Beitrag machen einige Leute gerne einen {introduction}-Beitrag\
+    \ oder ein einfaches \"Hallo Welt!\""
   step5_1: "Timelines, Timelines überall!"
   step5_2: "Dein Server hat {timelines} verschiedene Timelines aktiviert."
   step5_3: "Die Startseite {icon} ist die Timeline, in der du die Beiträge der Nutzerkonten\
@@ -1435,7 +1435,7 @@ _widgets:
   trends: "Trends"
   clock: "Uhr"
   rss: "RSS-Reader"
-  rssTicker: "RSS-Ticker"
+  rssTicker: "RSS-Laufschrift (Ticker)"
   activity: "Aktivität"
   photos: "Fotos"
   digitalClock: "Digitaluhr"
@@ -1483,7 +1483,7 @@ _poll:
 _visibility:
   public: "Öffentlich"
   publicDescription: "Dein Beitrag wird global für alle Nutzer sichtbar sein"
-  home: "Startseite"
+  home: "nicht aufgelistet"
   homeDescription: "Beitrag nur auf der Startseite anzeigen"
   followers: "Follower"
   followersDescription: "Nur für Follower sichtbar"
@@ -1585,7 +1585,7 @@ _pages:
   hideTitleWhenPinned: "Seitentitel wenn angeheftet ausblenden"
   font: "Schriftart"
   fontSerif: "Serif"
-  fontSansSerif: "Sans Serif"
+  fontSansSerif: "sans-serif"
   eyeCatchingImageSet: "Vorschaubild festlegen"
   eyeCatchingImageRemove: "Vorschaubild entfernen"
   chooseBlock: "Block hinzufügen"
@@ -1895,9 +1895,9 @@ _deck:
   swapDown: "Mit unterer Spalte tauschen"
   stackLeft: "Auf linke Spalte stapeln"
   popRight: "Nach rechts vom Stapel nehmen"
-  profile: "Profil"
-  newProfile: "Neues Profil"
-  deleteProfile: "Profil löschen"
+  profile: "Arbeitsbereich"
+  newProfile: "Neuer Arbeitsbereich"
+  deleteProfile: "Arbeitsbereich löschen"
   introduction: "Erstelle eine auf dich zugeschneiderte Benutzeroberfläche durch das\
     \ Aneinanderreihen von Spalten!"
   introduction2: "Klicke auf das + rechts um wann immer du möchtest neue Spalten hinzuzufügen."
