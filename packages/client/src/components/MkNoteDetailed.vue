@@ -345,7 +345,7 @@ async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
 
 			replies.value.splice(found, 0, replyNote);
 			if (found === 0) {
-				directReplies.value.unshift(replyNote);
+				directReplies.value.push(replyNote);
 			}
 			break;
 
