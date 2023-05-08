@@ -112,7 +112,7 @@ mod tests {
         assert_eq!(
             config,
             Config {
-                url: String::from("https://example.tld/"),
+                url: Host("https://example.tld/".into()),
                 port: 3000,
                 db: db::DbConfig {
                     host: String::from("localhost"),

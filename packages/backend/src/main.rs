@@ -1,3 +1,6 @@
+
+use std::path::Path;
+
 mod config;
 
 fn main() {
@@ -6,4 +9,6 @@ fn main() {
     // ENV
 
     // get config
+
+    config::init_config(Path::new(""));
 }
