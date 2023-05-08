@@ -2033,3 +2033,4 @@ userSaysSomethingReasonQuote: '{name} ha citat una publicació que conté {reaso
 userSaysSomethingReasonReply: '{name} ha respost a una publicació que conté {reason}'
 userSaysSomethingReasonRenote: '{name} ha impulsat una publicació que conté {reason}'
 highlightCw: Ressalta el contingut de les publicacions advertides
+apps: Aplicacions

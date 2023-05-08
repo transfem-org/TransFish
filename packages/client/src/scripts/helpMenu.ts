@@ -25,10 +25,12 @@ export function openHelpMenu_(ev: MouseEvent) {
 				to: "/about-calckey",
 			},
 			{
-				type: "link",
+				type: "button",
 				text: i18n.ts._apps.apps,
 				icon: "ph-device-mobile ph-bold ph-lg",
-				to: "https://calckey.org/apps",
+				action: () => {
+					window.open('https://calckey.org/', '_blank');
+				},
 			},
 			{
 				type: "button",
