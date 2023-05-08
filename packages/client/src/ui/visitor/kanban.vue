@@ -70,7 +70,7 @@
 						<small
 							>Powered by
 							<a
-								href="https://codeberg.org/calckey/calckey"
+								href="https://calckey.org/"
 								target="_blank"
 								>Calckey</a
 							></small

@@ -43,7 +43,7 @@
 					</div>
 					<div class="_formBlock" style="text-align: center">
 						{{ i18n.ts._aboutMisskey.about }}<br /><a
-							href="https://codeberg.org/calckey/calckey"
+							href="https://calckey.org/"
 							target="_blank"
 							class="_link"
 							>{{ i18n.ts.learnMore }}</a
