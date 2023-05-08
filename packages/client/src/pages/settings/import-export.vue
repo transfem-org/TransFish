@@ -24,7 +24,7 @@
 				<FormRadios v-model="importType" class="_formBlock">
 					<option value="calckey">Calckey/Misskey</option>
 					<option value="mastodon">Mastodon/Akkoma/Pleroma</option>
-					<option class="disabled" :disabled="true" value="twitter">
+					<option :disabled="true" value="twitter">
 						Twitter (soon)
 					</option>
 				</FormRadios>
