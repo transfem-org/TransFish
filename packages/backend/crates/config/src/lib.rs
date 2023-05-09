@@ -5,9 +5,9 @@ use std::path::Path;
 
 use once_cell::sync::OnceCell;
 
-mod cfg;
+mod data;
 
-pub use cfg::*;
+pub use data::*;
 
 // Config Errors
 #[derive(Debug)]
@@ -76,18 +76,6 @@ mod tests {
         path::PathBuf,
     };
 
-    struct Guard(PathBuf);
-
-    impl Drop for Guard {
-        fn drop(&mut self) {
-            println!("removing temp file...");
-            match remove_file(&self.0) {
-                Ok(_) => println!("Successfully removed file"),
-                Err(e) => println!("Could not remove file: {}", e),
-            }
-        }
-    }
-
     use super::*;
 
     #[test]
@@ -97,11 +85,37 @@ mod tests {
 
     #[test]
     fn parses_test_config() {
+        struct Guard(PathBuf);
+
+        impl Drop for Guard {
+            fn drop(&mut self) {
+                println!("removing temp file...");
+                match remove_file(&self.0) {
+                    Ok(_) => println!("Successfully removed file"),
+                    Err(e) => println!("Could not remove file: {}", e),
+                }
+            }
+        }
+
         // setup test temp config
         let mut temp_file = std::env::temp_dir();
         temp_file.push(Path::new("calckey.test.config"));
 
-        let err = File::create(&temp_file).unwrap().write_all(br"");
+        let err = File::create(&temp_file).unwrap().write_all(
+            br"
+url: https://example.tld/
+port: 3000
+db:
+  host: localhost
+  port: 5432
+  db: calckey
+  user: example-calckey-user
+  pass: example-calckey-pass
+redis:
+  host: localhost
+  port: 6379
+",
+        );
 
         let _g = Guard(temp_file.clone());
 
@@ -112,20 +126,31 @@ mod tests {
         assert_eq!(
             config,
             Config {
-                url: Host("https://example.tld/".into()),
+                url: Host(Some("https".into()), "example.tld".into()),
                 port: 3000,
                 db: db::DbConfig {
-                    host: String::from("localhost"),
+                    host: Host(None, "localhost".into()),
                     port: 5432,
                     db: String::from("calckey"),
                     user: String::from("example-calckey-user"),
                     pass: String::from("example-calckey-pass"),
                     disable_cache: true,
-                    extra: db::Extra { extra: true }
-                }
+                    extra: db::Extra { ssl: true }
+                },
+                repository_url: None,
+                feedback_url: None,
+                redis: redis::RedisConfig {
+                    host: Host(None, "localhost".into()),
+                    port: 6379,
+                    family: IpFamily::Both,
+                    pass: None,
+                    prefix: None,
+                    db: 0,
+                },
+                max_note_length: MaxNoteLength(3000),
+                max_caption_length: MaxCommentLength(1500),
+                cluster_limit: None
             }
         );
-
-        remove_file(&temp_file).unwrap();
     }
 }

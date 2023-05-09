@@ -1,14 +1,17 @@
 
-use std::path::Path;
+use std::{path::Path, error::Error};
 
-mod config;
+#[cfg(debug_assertions)]
+extern crate config;
 
-fn main() {
+fn main() -> Result<(), Box<dyn Error>> {
     // bootstrap
 
     // ENV
 
     // get config
 
-    config::init_config(Path::new(""));
+    config::init_config(Path::new(""))?;
+
+    Ok(())
 }

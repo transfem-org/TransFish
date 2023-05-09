@@ -106,7 +106,7 @@ id: 'aid'
 # Max note length, should be < 8000.
 #maxNoteLength: 3000
 
-# Maximum lenght of an image caption or file comment (default 1500, max 8192)
+# Maximum length of an image caption or file comment (default 1500, max 8192)
 #maxCaptionLength: 1500
 
 # Whether disable HSTS

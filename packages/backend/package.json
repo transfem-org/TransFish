@@ -3,11 +3,11 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"start": "cargo run --profile $( [ ${NODE_ENV:=dev} = 'production' ] && echo 'release' || echo $NODE_ENV )",
+		"start": "cargo run --profile ${NODE_ENV:=development}",
 		"start:test": "NODE_ENV=test pnpm node ./built/index.js",
 		"check": "cargo check",
 		"migrate": "cargo run --bin migrate",
-		"build": "cargo build --profile $( [ ${NODE_ENV:=dev} = 'production' ] && echo 'release' || echo $NODE_ENV )",
+		"build": "cargo build --profile ${NODE_ENV:=development}",
 		"revertmigration": "typeorm migration:revert -d ormconfig.js",
 		"lint": "cargo check",
 		"test": "cargo test --workspace"
