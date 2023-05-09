@@ -874,7 +874,7 @@ instanceSecurity: "Instance Security"
 secureModeInfo: "When requesting from other instances, do not send back without proof."
 privateMode: "Private Mode"
 privateModeInfo: "When enabled, only whitelisted instances can federate with your\
-  \ instances. All posts will be hidden from the public."
+  \ instance. All posts will be hidden from the public."
 allowedInstances: "Whitelisted Instances"
 allowedInstancesDescription: "Hosts of instances to be whitelisted for federation,\
   \ each separated by a new line (only applies in private mode)."
@@ -1077,7 +1077,9 @@ customKaTeXMacroDescription: "Set up macros to write mathematical expressions ea
   \ supported; advanced syntax, such as conditional branching, cannot be used here."
 enableCustomKaTeXMacro: "Enable custom KaTeX macros"
 noteId: "Post ID"
-signupsDisabled: "Signups on this server are currently disabled, but you can always sign up at another server! If you have an invitation code for this server, please enter it below."
+signupsDisabled: "Signups on this server are currently disabled, but you can always\
+  \ sign up at another server! If you have an invitation code for this server, please\
+  \ enter it below."
 findOtherInstance: "Find another server"
 apps: "Apps"
 
