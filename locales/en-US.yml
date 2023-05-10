@@ -1083,6 +1083,9 @@ signupsDisabled: "Signups on this server are currently disabled, but you can alw
 findOtherInstance: "Find another server"
 apps: "Apps"
 sendModMail: "Send Moderation Notice"
+preventAiLearning: "Prevent AI bot scraping"
+preventAiLearningDescription: "Request third-party AI language models not to study content you upload, such as posts and images."
+
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing\
