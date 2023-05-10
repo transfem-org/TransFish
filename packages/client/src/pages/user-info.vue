@@ -499,7 +499,7 @@ async function sendModMail() {
 	if (canceled) return;
 	await os.apiWithDialog("admin/send-mod-mail", {
 		userId: user.id,
-		text: result,
+		comment: result,
 	});
 }
 
