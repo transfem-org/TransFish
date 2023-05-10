@@ -213,14 +213,16 @@
 							v-if="user.host == null && iAmModerator"
 							inline
 							@click="sendModMail"
-							>{{ i18n.ts.sendModMail }}</FormButton
+							><i class="ph-warning-diamond ph-bold ph-lg"></i>
+							{{ i18n.ts.sendModMail }}</FormButton
 						>
 						<FormButton
 							v-if="$i.isAdmin"
 							inline
 							danger
 							@click="deleteAccount"
-							>{{ i18n.ts.deleteAccount }}</FormButton
+							><i class="ph-user-minus ph-bold ph-lg"></i>
+							{{ i18n.ts.deleteAccount }}</FormButton
 						>
 					</div>
 					<FormTextarea
