@@ -1,8 +1,9 @@
 <template>
-	<div
+	<section
 		v-size="{ max: [310, 500] }"
 		class="gafaadew"
 		:class="{ modal, _popup: modal }"
+		:aria-label="i18n.ts._pages.blocks.post"
 		@dragover.stop="onDragover"
 		@dragenter="onDragenter"
 		@dragleave="onDragleave"
@@ -218,7 +219,7 @@
 				/>
 			</datalist>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script lang="ts" setup>

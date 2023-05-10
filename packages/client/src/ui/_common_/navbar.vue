@@ -1,5 +1,5 @@
 <template>
-	<div class="mvcprjjd" :class="{ iconOnly }">
+	<header class="mvcprjjd" :class="{ iconOnly }">
 		<div class="body">
 			<div class="top">
 				<div
@@ -22,7 +22,7 @@
 					/><!-- <MkAcct class="text" :user="$i"/> -->
 				</button>
 			</div>
-			<div class="middle">
+			<nav class="middle">
 				<MkA
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.timeline"
@@ -111,7 +111,7 @@
 					<i class="icon ph-gear-six ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.settings }}</span>
 				</MkA>
-			</div>
+			</nav>
 			<div class="bottom">
 				<button
 					v-tooltip.noDelay.right="i18n.ts.note"
@@ -137,7 +137,7 @@
 			</button> -->
 			</div>
 		</div>
-	</div>
+	</header>
 </template>
 
 <script lang="ts" setup>
