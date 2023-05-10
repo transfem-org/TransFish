@@ -146,7 +146,7 @@ Choose between NGINX or Apache (we recommend NGINX)
 
 - Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
 - Edit `calckey.nginx.conf` to reflect your instance properly
-- Run `sudo cp ./calckey.nginx.conf ../sites-enabled/`
+- Run `sudo ln -s ./calckey.nginx.conf ../sites-enabled/calckey.nginx.conf`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
 
 ### Apache 2
