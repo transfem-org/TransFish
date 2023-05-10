@@ -1114,7 +1114,7 @@ onMounted(() => {
 		> .with-quote {
 			display: flex;
 			align-items: center;
-			gap: .4em;
+			gap: 0.4em;
 			margin-inline: 24px;
 			margin-bottom: 12px;
 			color: var(--accent);

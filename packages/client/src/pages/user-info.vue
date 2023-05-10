@@ -501,7 +501,7 @@ async function sendModMail() {
 		userId: user.id,
 		text: result,
 	});
-};
+}
 
 async function deleteAllFiles() {
 	const confirm = await os.confirm({
