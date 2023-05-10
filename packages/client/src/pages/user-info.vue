@@ -218,6 +218,12 @@
 							>{{ i18n.ts.deleteAccount }}</FormButton
 						>
 					</div>
+					<MkButton
+						v-if="user.host == null && iAmModerator"
+						inline
+						@click="sendModMail"
+						>{{ i18n.ts.sendModMail }}</MkButton
+					>
 					<FormTextarea
 						v-model="moderationNote"
 						manual-save
@@ -485,6 +491,17 @@ async function toggleModerator(v) {
 	});
 	await refreshUser();
 }
+
+async function sendModMail() {
+	const { canceled, result } = await os.inputParagraph({
+		title: "Mod mail",
+	});
+	if (canceled) return;
+	await os.apiWithDialog("admin/send-mod-mail", {
+		userId: user.id,
+		text: result,
+	});
+};
 
 async function deleteAllFiles() {
 	const confirm = await os.confirm({

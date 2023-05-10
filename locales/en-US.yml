@@ -1080,6 +1080,7 @@ noteId: "Post ID"
 signupsDisabled: "Signups on this server are currently disabled, but you can always sign up at another server! If you have an invitation code for this server, please enter it below."
 findOtherInstance: "Find another server"
 apps: "Apps"
+sendModMail: "Send Moderation Notice"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing\
