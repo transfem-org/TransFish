@@ -136,7 +136,7 @@ unblockConfirm: "Möchtest du diese Blockierung wirklich aufheben?"
 suspendConfirm: "Möchtest du diesen Nutzer wirklich sperren?"
 unsuspendConfirm: "Möchtest du diesen Nutzer wirklich entsperren?"
 selectList: "Liste auswählen"
-selectAntenna: "Antenne auswählen"
+selectAntenna: "News-Picker auswählen"
 selectWidget: "Widget auswählen"
 editWidgets: "Widgets bearbeiten"
 editWidgetsExit: "Fertig"
@@ -285,7 +285,7 @@ nUsersRead: "Von {n} Nutzern gelesen"
 agreeTo: "Ich stimme {0} zu"
 tos: "Nutzungsbedingungen"
 start: "Anfangen"
-home: "Startseite"
+home: "Home"
 remoteUserCaution: "Informationen von Nutzern anderer Server sind möglicherweise unvollständig."
 activity: "Aktivität"
 images: "Bilder"
@@ -386,10 +386,10 @@ recaptchaSecretKey: "Secret key"
 avoidMultiCaptchaConfirm: "Das Verwenden von mehreren Captcha-Systemen kann zu Störungen\
   \ führen. Sollen die anderen Systeme deaktiviert werden? Durch Abbrechen können\
   \ mehrere Systeme aktiviert bleiben."
-antennas: "Antennen"
-manageAntennas: "Antennen verwalten"
+antennas: "News-Picker"
+manageAntennas: "News-Picker verwalten"
 name: "Name"
-antennaSource: "Antennenquelle"
+antennaSource: "Quellen der News-Picker"
 antennaKeywords: "Zu beobachtende Schlüsselwörter"
 antennaExcludeKeywords: "Zu ignorierende Schlüsselwörter"
 antennaKeywordsDescription: "Zum Nutzen einer \"UND\"-Verknüpfung Einträge mit Leerzeichen\
@@ -665,7 +665,7 @@ overview: "Übersicht"
 logs: "Logs"
 delayed: "Verzögert"
 database: "Datenbank"
-channel: "Kanäle"
+channel: "Channels"
 create: "Erstellen"
 notificationSetting: "Benachrichtigungseinstellungen"
 notificationSettingDesc: "Wähle die Art der anzuzeigenden Benachrichtigungen."
@@ -1299,7 +1299,7 @@ _sfx:
   notification: "Benachrichtigungen"
   chat: "Chat"
   chatBg: "Chat (Hintergrund)"
-  antenna: "Antennen"
+  antenna: "News-Picker"
   channel: "Kanalbenachrichtigung"
 _ago:
   future: "Zukunft"
@@ -1332,10 +1332,11 @@ _tutorial:
     \ oder ein einfaches \"Hallo Welt!\""
   step5_1: "Timelines, Timelines überall!"
   step5_2: "Dein Server hat {timelines} verschiedene Timelines aktiviert."
-  step5_3: "Die Startseite {icon} ist die Timeline, in der du die Beiträge der Nutzerkonten\
-    \ sehen kannst, denen du folgst und von jedem anderen auf diesem Server. Solltest\
-    \ du bevorzugen, dass deine Startseite nur Beiträge von den Nutzerkonten enthält,\
-    \ denen du folgst, kannst du das ganz einfach in den Einstellungen ändern!"
+  step5_3: "Die Home Timeline {icon} ist die Timeline, in der du die Beiträge der\
+    \ Nutzerkonten sehen kannst, denen du folgst und von jedem anderen auf diesem\
+    \ Server. Solltest du bevorzugen, dass deine Home Timeline nur Beiträge von den\
+    \ Nutzerkonten enthält, denen du folgst, kannst du das ganz einfach in den Einstellungen\
+    \ ändern!"
   step5_4: "In der lokalen {Icon} Timeline kannst du die Beiträge aller anderen Mitglieder\
     \ dieses Servers sehen."
   step5_5: "Die Timeline \"Sozial\" {icon} zeigt dir ausschließlich Beiträge von Nutzerkonten\
@@ -1394,8 +1395,8 @@ _permissions:
   "write:page-likes": "Liste der Seiten, die mir gefallen, bearbeiten"
   "read:user-groups": "Nutzergruppen lesen"
   "write:user-groups": "Nutzergruppen bearbeiten oder löschen"
-  "read:channels": "Kanäle lesen"
-  "write:channels": "Kanäle bedienen"
+  "read:channels": "Channels lesen"
+  "write:channels": "Channels bedienen"
   "read:gallery": "Beiträge deiner Galerie lesen"
   "write:gallery": "Deine Galerie bearbeiten"
   "read:gallery-likes": "Liste deiner mit \"Gefällt mir\" markierten Galerie-Beiträge\
@@ -1484,7 +1485,7 @@ _visibility:
   public: "Öffentlich"
   publicDescription: "Dein Beitrag wird global für alle Nutzer sichtbar sein"
   home: "nicht aufgelistet"
-  homeDescription: "Beitrag nur auf der Startseite anzeigen"
+  homeDescription: "Beitrag nur auf der Home Timeline anzeigen"
   followers: "Follower"
   followersDescription: "Nur für Follower sichtbar"
   specified: "Direkt"
@@ -1550,8 +1551,8 @@ _instanceCharts:
   files: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Gesamtanzahl an Dateien"
 _timelines:
-  home: "Startseite"
-  local: "Lokal"
+  home: "Home Timeline"
+  local: "Lokale Timeline"
   social: "Sozial"
   global: "Global"
   recommended: Empfehlungen
@@ -1908,7 +1909,7 @@ _deck:
     widgets: "Widgets"
     notifications: "Benachrichtigungen"
     tl: "Timeline"
-    antenna: "Antennen"
+    antenna: "News-Picker"
     list: "Listen"
     mentions: "Erwähnungen"
     direct: "Direktnachrichten"
@@ -1956,7 +1957,7 @@ pushNotificationNotSupported: Dein Browser oder der Server unterstützt keine Pu
 pushNotification: Push-Benachrichtigungen
 subscribePushNotification: Push-Benachrichtigungen aktivieren
 showLocalPosts: 'Zeige lokale Beiträge in:'
-homeTimeline: Startseite
+homeTimeline: Home Timeline
 cannotUploadBecauseExceedsFileSizeLimit: Die Datei konnte nicht hochgeladen werden,
   da sie die maximal zulässige Größe überschreitet
 moveFromLabel: 'Nutzerkonto von dem Sie umziehen:'
@@ -1978,7 +1979,7 @@ swipeOnDesktop: Am Desktop PC das Wischen wie bei mobilen Geräten zulassen
 enterSendsMessage: Drücken sie zum Senden des Beitrages die Eingabetaste (Strg-Taste
   ausgeschaltet)
 showUpdates: Zeigt ein Popup an, wenn Calckey aktualisiert wird.
-socialTimeline: Soziale Zeitleiste
+socialTimeline: Social Timeline
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
   groups: Gruppen
