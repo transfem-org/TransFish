@@ -69,8 +69,8 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ## 🛳️ Containerization
 
-- [🐳 How to run Calckey with Docker](https://codeberg.org/calckey/calckey/src/branch/develop/docs/docker.md).
-- [🛞 How to run Calckey with Kubernetes/Helm](https://codeberg.org/calckey/calckey/src/branch/develop/kubernetes.md).
+- [🐳 How to run Calckey with Docker](https://codeberg.org/calckey/calckey/src/branch/develop/docs/docker.md)
+- [🛞 How to run Calckey with Kubernetes/Helm](https://codeberg.org/calckey/calckey/src/branch/develop/docs/kubernetes.md)
 
 ## 🧑‍💻 Dependencies
 
