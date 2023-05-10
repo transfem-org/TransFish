@@ -1,5 +1,5 @@
 <template>
-	<div
+	<header
 		v-if="show"
 		ref="el"
 		class="fdidabkb"
@@ -63,7 +63,7 @@
 					</div>
 				</div>
 			</div>
-			<div ref="tabsEl" v-if="hasTabs" class="tabs">
+			<nav ref="tabsEl" v-if="hasTabs" class="tabs">
 				<button
 					v-for="tab in tabs"
 					:ref="(el) => (tabRefs[tab.key] = el)"
@@ -79,7 +79,7 @@
 					<span class="title">{{ tab.title }}</span>
 				</button>
 				<div ref="tabHighlightEl" class="highlight"></div>
-			</div>
+			</nav>
 		</template>
 		<div class="buttons right">
 			<template v-for="action in actions">
@@ -94,7 +94,7 @@
 				</button>
 			</template>
 		</div>
-	</div>
+	</header>
 </template>
 
 <script lang="ts" setup>
