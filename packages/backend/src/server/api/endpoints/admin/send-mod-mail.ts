@@ -11,7 +11,7 @@ export const meta = {
 	requireCredential: true,
 	requireModerator: true,
 
-	description: "Send a mod mail.",
+	description: "Send a moderation notice.",
 
 	errors: {
 		noSuchUser: {

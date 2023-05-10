@@ -495,7 +495,7 @@ async function toggleModerator(v) {
 
 async function sendModMail() {
 	const { canceled, result } = await os.inputParagraph({
-		title: "Mod mail",
+		title: "Moderation Notice",
 	});
 	if (canceled) return;
 	await os.apiWithDialog("admin/send-mod-mail", {
