@@ -45,8 +45,8 @@ export async function sendEmail(
 		<title>${subject}</title>
 	</head>
 	<body style="background: #191724; padding: 16px; margin: 0; font-family: sans-serif; font-size: 14px;">
-		<main style="max-width: 500px; margin: 0 auto; background: #1f1d2e; color: #e0def4;">
-			<header style="padding: 32px; background: #31748f; color: #e0def4; display: flex;">
+		<main style="max-width: 500px; margin: 0 auto; background: #1f1d2e; color: #e0def4; border-radius: 20px;">
+			<header style="padding: 32px; background: #31748f; color: #e0def4; display: flex; border-radius: 20px;">
 				<img src="${meta.logoImageUrl || meta.iconUrl || iconUrl}" style="max-width: 128px; max-height: 72px; vertical-align: bottom; margin-right: 16px;"/>
 				<h1 style="margin: 0 0 1em 0;">${meta.name}</h1>
 			</header>
