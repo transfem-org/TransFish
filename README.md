@@ -168,31 +168,25 @@ In Calckey's directory, fill out the `sonic` section of `.config/default.yml` wi
 
 For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
 
-## 🌐 Web proxy
+## Web proxy
 
-### 🍀 Nginx (recommended)
+Choose between NGINX or Apache (we recommend NGINX)
+
+### 🍀 NGINX
 
 - Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
 - Edit `calckey.nginx.conf` to reflect your instance properly
 - Run `sudo ln -s ./calckey.nginx.conf ../sites-enabled/calckey.nginx.conf`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
 
-### 🪶 Apache
+### Apache 2
 
 - Run `sudo cp ./calckey.apache.conf /etc/apache2/sites-available/ && cd /etc/apache2/sites-available/`
 - Edit `calckey.apache.conf` to reflect your instance properly
 - Run `sudo a2ensite calckey.apache` to enable the site
 - Run `sudo service apache2 restart` to reload apache2 configuration
 
-### 🦦 Caddy
-
-- Add the following block to your `Caddyfile`, replacing `example.tld` with your own domain:
-```caddy
-example.tld {
-    reverse_proxy http://127.0.0.1:3000
-}
-```
-- Reload your caddy configuration
+</details>
 
 ## 🚀 Build and launch!
 
