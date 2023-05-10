@@ -211,6 +211,12 @@
 							{{ i18n.ts.resetPassword }}</FormButton
 						>
 						<FormButton
+							v-if="user.host == null && iAmModerator"
+							inline
+							@click="sendModMail"
+							>{{ i18n.ts.sendModMail }}</FormButton
+						>
+						<FormButton
 							v-if="$i.isAdmin"
 							inline
 							danger
@@ -218,12 +224,6 @@
 							>{{ i18n.ts.deleteAccount }}</FormButton
 						>
 					</div>
-					<MkButton
-						v-if="user.host == null && iAmModerator"
-						inline
-						@click="sendModMail"
-						>{{ i18n.ts.sendModMail }}</MkButton
-					>
 					<FormTextarea
 						v-model="moderationNote"
 						manual-save
