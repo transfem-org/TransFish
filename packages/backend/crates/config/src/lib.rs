@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::{self, Read};
 use std::path::Path;
 
+use data::env::Environment;
 use once_cell::sync::OnceCell;
 
 mod data;
@@ -59,7 +60,9 @@ fn fetch_config(path: &Path) -> Result<Config, Error> {
 static CONFIG: OnceCell<Config> = OnceCell::new();
 
 pub fn init_config(cfg_path: &Path) -> Result<(), Error> {
-    let config = fetch_config(cfg_path)?;
+    let mut config = fetch_config(cfg_path)?;
+    config.env = Environment {};
+
     CONFIG.get_or_init(move || config);
     Ok(())
 }
@@ -149,7 +152,8 @@ redis:
                 },
                 max_note_length: MaxNoteLength(3000),
                 max_caption_length: MaxCommentLength(1500),
-                cluster_limit: None
+                cluster_limit: None,
+                env: Environment {  },
             }
         );
     }

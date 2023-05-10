@@ -1,4 +1,4 @@
-use serde::{de::Visitor, Deserialize};
+use serde::Deserialize;
 
 type Port = u16;
 
@@ -22,6 +22,7 @@ impl<'de> Deserialize<'de> for IpFamily {
     {
         struct IpFamilyVisitor;
 
+        use serde::de::Visitor;
         impl<'de> Visitor<'de> for IpFamilyVisitor {
             type Value = IpFamily;
 
@@ -61,6 +62,7 @@ impl<'de> Deserialize<'de> for Host {
     {
         struct HostVisitor;
 
+        use serde::de::Visitor;
         impl<'de> Visitor<'de> for HostVisitor {
             type Value = Host;
 
@@ -135,6 +137,8 @@ pub struct Config {
     //    pub email: Option<email::Email>,
     //    pub object_storage: Option<object_storage::ObjectStorageConfig>,
     //    pub summaly_proxy_url: Option<Host>,
+    #[serde(skip)]
+    pub env: env::Environment,
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
@@ -171,8 +175,8 @@ pub mod db {
 
     impl Default for Extra {
         fn default() -> Self {
-        Self { ssl: true }
-    }
+            Self { ssl: true }
+        }
     }
 }
 
@@ -244,6 +248,14 @@ pub mod twa {
 
     #[derive(Debug, PartialEq, Deserialize)]
     pub struct TWAConfig {}
+}
+
+/// Environment variables set when initialized
+pub mod env {
+    use super::*;
+
+    #[derive(Debug, PartialEq, Deserialize, Default)]
+    pub struct Environment {}
 }
 
 impl Default for MaxNoteLength {
