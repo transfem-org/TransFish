@@ -7,6 +7,7 @@
 
 [![no github badge](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page/)
 [![status badge](https://ci.codeberg.org/api/badges/calckey/calckey/status.svg)](https://ci.codeberg.org/calckey/calckey)
+[![opencollective badge](https://opencollective.com/calckey/tiers/badge.svg)](https://opencollective.com/Calckey)
 [![liberapay badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
 [![translate-badge](https://hosted.weblate.org/widgets/calckey/-/svg-badge.svg)](https://hosted.weblate.org/engage/calckey/)
 [![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
@@ -46,6 +47,7 @@
 
 # 🥂 Links
 
+- 💸 OpenCollective: <https://opencollective.com/Calckey>
 - 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
   - Donate publicly to get your name on the Patron list!
 - 🚢 Flagship instance: <https://calckey.social>
