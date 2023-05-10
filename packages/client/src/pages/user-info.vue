@@ -205,7 +205,6 @@
 						<FormButton
 							v-if="user.host == null && iAmModerator"
 							inline
-							style="margin-right: 8px"
 							@click="resetPassword"
 							><i class="ph-key ph-bold ph-lg"></i>
 							{{ i18n.ts.resetPassword }}</FormButton
