@@ -3,7 +3,7 @@
 		v-size="{ max: [310, 500] }"
 		class="gafaadew"
 		:class="{ modal, _popup: modal }"
-		:aria-label="i18n.ts.blocks.post"
+		:aria-label="i18n.ts._pages.blocks.post"
 		@dragover.stop="onDragover"
 		@dragenter="onDragenter"
 		@dragleave="onDragleave"

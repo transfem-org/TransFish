@@ -7,12 +7,17 @@
 		:style="{ background: bg }"
 		@click="onClick"
 	>
-		<i
-			@click="goBack()"
+		<button
 			v-if="props.displayBackButton"
+			class="_button button icon backButton"
+			@click.stop="goBack()"
+			@touchstart="preventDrag"
 			v-tooltip.noDelay="i18n.ts.goBack"
-			class="icon backButton ph-caret-left ph-bold ph-lg"
-		></i>
+		>
+			<i
+				class="ph-caret-left ph-bold ph-lg"
+			></i>
+		</button>
 		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
 			<MkAvatar
 				v-if="props.displayMyAvatar && $i"
@@ -377,7 +382,7 @@ onUnmounted(() => {
 			display: none;
 		}
 
-		> .button {
+		> .button/*, @at-root .backButton*/ { /* I don't know how to get this to work */
 			display: flex;
 			align-items: center;
 			justify-content: center;
