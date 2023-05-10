@@ -1931,7 +1931,8 @@ flagSpeakAsCatDescription: Vos messages seront nyanifiés en mode chat
 hiddenTags: Hashtags cachés
 hiddenTagsDescription: "Lister les hashtags (sans le #) que vous souhaitez cacher\
   \ de tendances et explorer. Les hashtags cachés sont toujours découvrables par d'autres\
-  \ moyens."
+  \ moyens. Les instances bloqués ne sont pas ne sont pas affectés, même si ils sont\
+  \ présent dans cette liste."
 antennaInstancesDescription: Lister un hôte d'instance par ligne
 userSaysSomethingReason: '{name} a dit {reason}'
 breakFollowConfirm: Êtes vous sur de vouloir retirer l'abonné ?
@@ -2000,3 +2001,7 @@ customKaTeXMacroDescription: "Définissez des macros pour écrire des expression
   \ Seulement de simples fonctions de substitution de chaines sont supportées; la\
   \ syntaxe avancée, telle que la ramification conditionnelle, ne peut pas être utilisée\
   \ ici."
+enableRecommendedTimeline: Activer la chronologie recommandée
+silenceThisInstance: Ne plus montrer cet instance
+silencedInstances: Instances silencieuses
+silenced: Silencieux
