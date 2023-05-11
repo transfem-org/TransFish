@@ -13,9 +13,7 @@
 			class="columns"
 			:class="{ fullView, withGlobalHeader: showMenuOnTop }"
 		>
-			<div v-if="!showMenuOnTop" class="sidebar">
-				<XSidebar />
-			</div>
+			<XSidebar v-if="!showMenuOnTop"/>
 			<div v-else ref="widgetsLeft" class="widgets left">
 				<XWidgets
 					:place="'left'"
@@ -57,7 +55,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, markRaw, ref, onMounted, provide } from "vue";
-import XSidebar from "./classic.sidebar.vue";
+import XSidebar from "./_common_/navbar.vue";
 import XCommon from "./_common_/common.vue";
 import type { ComputedRef } from "vue";
 import type { PageMetadata } from "@/scripts/page-metadata";
@@ -236,6 +234,9 @@ onMounted(() => {
 	min-height: calc(var(--vh, 1vh) * 100);
 	box-sizing: border-box;
 
+	--navBg: transparent;
+	--X14: var(--acrylicBg);
+
 	&.wallpaper {
 		background: var(--wallpaperOverlay);
 		//backdrop-filter: var(--blur, blur(4px));
@@ -250,7 +251,7 @@ onMounted(() => {
 		&.fullView {
 			margin: 0;
 
-			> .sidebar {
+			> :deep(.sidebar) {
 				display: none;
 			}
 
@@ -263,6 +264,50 @@ onMounted(() => {
 				border-radius: 0;
 				box-shadow: none;
 				width: 100%;
+			}
+		}
+
+		> :deep(.sidebar) {
+			margin-left: -200px;
+			padding-left: 200px;
+			box-sizing: content-box;
+			.banner {
+				pointer-events: none;
+				mask: radial-gradient(farthest-side at top, hsl(0, 0%, 0%) 0%,
+					hsla(0, 0%, 0%, 0.987) 0.3%,
+					hsla(0, 0%, 0%, 0.951) 1.4%,
+					hsla(0, 0%, 0%, 0.896) 3.2%,
+					hsla(0, 0%, 0%, 0.825) 5.8%,
+					hsla(0, 0%, 0%, 0.741) 9.3%,
+					hsla(0, 0%, 0%, 0.648) 13.6%,
+					hsla(0, 0%, 0%, 0.55) 18.9%,
+					hsla(0, 0%, 0%, 0.45) 25.1%,
+					hsla(0, 0%, 0%, 0.352) 32.4%,
+					hsla(0, 0%, 0%, 0.259) 40.7%,
+					hsla(0, 0%, 0%, 0.175) 50.2%,
+					hsla(0, 0%, 0%, 0.104) 60.8%,
+					hsla(0, 0%, 0%, 0.049) 72.6%,
+					hsla(0, 0%, 0%, 0.013) 85.7%,
+					hsla(0, 0%, 0%, 0) 100%) !important;
+				-webkit-mask: radial-gradient(farthest-side at top, hsl(0, 0%, 0%) 0%,
+					hsla(0, 0%, 0%, 0.987) 0.3%,
+					hsla(0, 0%, 0%, 0.951) 1.4%,
+					hsla(0, 0%, 0%, 0.896) 3.2%,
+					hsla(0, 0%, 0%, 0.825) 5.8%,
+					hsla(0, 0%, 0%, 0.741) 9.3%,
+					hsla(0, 0%, 0%, 0.648) 13.6%,
+					hsla(0, 0%, 0%, 0.55) 18.9%,
+					hsla(0, 0%, 0%, 0.45) 25.1%,
+					hsla(0, 0%, 0%, 0.352) 32.4%,
+					hsla(0, 0%, 0%, 0.259) 40.7%,
+					hsla(0, 0%, 0%, 0.175) 50.2%,
+					hsla(0, 0%, 0%, 0.104) 60.8%,
+					hsla(0, 0%, 0%, 0.049) 72.6%,
+					hsla(0, 0%, 0%, 0.013) 85.7%,
+					hsla(0, 0%, 0%, 0) 100%) !important;
+				width: 125% !important;
+				left: -12.5% !important;
+				height: 125% !important;
 			}
 		}
 
@@ -292,10 +337,6 @@ onMounted(() => {
 			}
 		}
 
-		> .sidebar {
-			margin-top: 16px;
-		}
-
 		&.withGlobalHeader {
 			> .main {
 				margin-top: 0;
@@ -313,7 +354,7 @@ onMounted(() => {
 		@media (max-width: 850px) {
 			margin: 0;
 
-			> .sidebar {
+			> :deep(.sidebar) {
 				border-right: solid 0.5px var(--divider);
 			}
 
