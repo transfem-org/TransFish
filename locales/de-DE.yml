@@ -1989,3 +1989,30 @@ userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {rea
   beinhaltet'
 userSaysSomethingReasonRenote: '{name} hat einen Beitrag geteilt der {reason} beinhaltet'
 userSaysSomethingReasonQuote: '{name} hat einen Beitrag zitiert der {reason} beinhaltet'
+seperateRenoteQuote: Getrennte Boost- und Zitat-Schaltflächen
+showAds: Anzeigen anzeigen
+splash: Begrüßungsbildschirm
+customSplashIconsDescription: URLs für benutzerdefinierte Splash-Screen-Symbole, die
+  durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
+  werden, wenn ein Benutzer die Seite lädt/neu lädt. Bitte stelle sicher, dass die
+  Bilder unter einer statischen URL stehen, vorzugsweise alle in der Größe 192x192.
+sendPushNotificationReadMessageCaption: Eine Benachrichtigung mit dem Text "{emptyPushNotificationMessage}"
+  wird für kurze Zeit angezeigt. Dies kann ggf. den Akkuverbrauch Ihres Geräts erhöhen.
+customSplashIcons: Benutzerdefinierte Begrüßungsbildschirmsymbole (URLs)
+adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wissen,
+  was sie tut. Die Eingabe falscher Werte kann dazu führen, dass ALLE Clients nicht
+  mehr normal funktionieren. Bitte stellen Sie sicher, dass Ihr CSS ordnungsgemäß
+  funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
+customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
+allowedInstancesDescription: Hosts von Instanzen, die für den Verbund auf die Whitelist
+  gesetzt werden sollen, jeweils durch eine neue Zeile getrennt (gilt nur im privaten
+  Modus).
+migration: Migration
+updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
+showAdminUpdates: Anzeigen, dass eine neue Calckey-Version verfügbar ist (nur Administrator)
+customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (Begrüßungsbildschirm),
+  die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
+  werden, wenn ein Benutzer die Seite (neu) lädt.
+recommendedInstancesDescription: Empfohlene Instanzen, die durch Zeilenumbrüche getrennt
+  sind, werden in der empfohlenen Zeitachse angezeigt. Fügen Sie NICHT "https://"
+  hinzu, sondern NUR die Domain.
