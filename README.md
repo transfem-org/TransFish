@@ -83,6 +83,7 @@ If you have access to a server that supports one of the sources below, I recomme
 - Web Proxy (one of the following)
   - 🍀 Nginx (recommended)
   - 🪶 Apache
+  - 🦦 Caddy
 
 ### 😗 Optional dependencies
 
@@ -183,7 +184,15 @@ For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](
 - Run `sudo a2ensite calckey.apache` to enable the site
 - Run `sudo service apache2 restart` to reload apache2 configuration
 
-</details>
+### 🦦 Caddy
+
+- Add the following block to your `Caddyfile`, replacing `example.tld` with your own domain:
+```caddy
+example.tld {
+    reverse_proxy http://127.0.0.1:3000
+}
+```
+- Reload your caddy configuration
 
 ## 🚀 Build and launch!
 
