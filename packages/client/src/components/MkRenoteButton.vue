@@ -182,23 +182,24 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	if (canRenote) {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts.local})`,
-			icon: "ph-hand-first ph-bold ph-lg",
+			icon: "ph-hand-fist ph-bold ph-lg",
 			danger: false,
 			action: () => {
-				os.api("notes/create",
+				os.api(
+					"notes/create",
 					props.note.visibility === "specified"
-				? {
-						renoteId: props.note.id,
-						visibility: props.note.visibility,
-						visibleUserIds: props.note.visibleUserIds,
-						localOnly: true,
-					}
-				: {
-						renoteId: props.note.id,
-						visibility: props.note.visibility,
-						localOnly: true,
-					}
-				});
+						? {
+								renoteId: props.note.id,
+								visibility: props.note.visibility,
+								visibleUserIds: props.note.visibleUserIds,
+								localOnly: true,
+						  }
+						: {
+								renoteId: props.note.id,
+								visibility: props.note.visibility,
+								localOnly: true,
+						  }
+				);
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
