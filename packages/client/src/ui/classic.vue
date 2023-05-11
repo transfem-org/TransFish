@@ -72,7 +72,7 @@ import {
 import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 const XHeaderMenu = defineAsyncComponent(() => import("./classic.header.vue"));
-const XWidgets = defineAsyncComponent(() => import("./classic.widgets.vue"));
+const XWidgets = defineAsyncComponent(() => import("./universal.widgets.vue"));
 
 const DESKTOP_THRESHOLD = 1100;
 
@@ -101,7 +101,7 @@ provide("shouldSpacerMin", true);
 function attachSticky(el) {
 	const sticky = new StickySidebar(
 		el,
-		defaultStore.state.menuDisplay === "top" ? 0 : 16,
+		defaultStore.state.menuDisplay === 0,
 		defaultStore.state.menuDisplay === "top" ? 60 : 0
 	); // TODO: ヘッダーの高さを60pxと決め打ちしているのを直す
 	window.addEventListener(
@@ -282,7 +282,6 @@ onMounted(() => {
 		> .widgets {
 			//--panelBorder: none;
 			width: 300px;
-			margin-top: 16px;
 
 			@media (max-width: $widgets-hide-threshold) {
 				display: none;
