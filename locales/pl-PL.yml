@@ -1921,7 +1921,7 @@ sendErrorReportsDescription: "Gdy ta opcja jest włączona, szczegółowe inform
   \ Calckey.\nZawrze to informacje takie jak wersja twojego systemu operacyjnego,\
   \ przeglądarki, Twoja aktywność na Calckey itd."
 privateModeInfo: Jeśli włączone, tylko dopuszczone instancje będą mogły federować
-  z Twoją instancją. Wszystkie posty będą ukryte przed publiką.
+  z Twoją instancją. Wszystkie posty będą jedynie widoczne na Twojej instancji.
 oneHour: Godzina
 oneDay: Dzień
 oneWeek: Tydzień
@@ -2012,3 +2012,4 @@ silencedInstancesDescription: Wymień nazwy domenowe instancji, które chcesz wy
   są obserwowane. To nie będzie miało wpływu na zablokowane instancje.
 cannotUploadBecauseExceedsFileSizeLimit: Ten plik nie mógł być przesłany, ponieważ
   jego wielkość przekracza dozwolony limit.
+sendModMail: Wyślij Powiadomienie Moderacyjne
