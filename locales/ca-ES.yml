@@ -1599,7 +1599,7 @@ squareAvatars: Mostra avatars quadrats
 secureModeInfo: Quan es faci una solicitut d'altres instàncies no contestar sense
   una prova.
 privateModeInfo: Quan està activat, només les instàncies de la llista blanca es poden
-  federar amb les vostres instàncies. Totes les notes s'amagaran al públic.
+  federar amb la vostra instància. Totes les publicacions s'amagaran al públic.
 useBlurEffect: Utilitzeu efectes de desenfocament a la interfície d'usuari
 accountDeletionInProgress: La supressió del compte està en curs
 unmuteThread: Desfés el silenci al fil
@@ -2034,3 +2034,4 @@ userSaysSomethingReasonReply: '{name} ha respost a una publicació que conté {r
 userSaysSomethingReasonRenote: '{name} ha impulsat una publicació que conté {reason}'
 highlightCw: Ressalta el contingut de les publicacions advertides
 apps: Aplicacions
+sendModMail: Envia avís de moderació

@@ -270,7 +270,7 @@ upload: "Hochladen"
 keepOriginalUploading: "Originalbild speichern"
 keepOriginalUploadingDescription: "Speichert das Originalbild so, wie es ist. Ist\
   \ dies deaktiviert, wird eine Version zum Anzeigen im Internet generiert."
-fromDrive: "Aus Drive"
+fromDrive: "Aus dem Cloud-Drive"
 fromUrl: "Von einer URL"
 uploadFromUrl: "Von einer URL hochladen"
 uploadFromUrlDescription: "URL der hochzuladenden Datei"
@@ -301,7 +301,7 @@ dark: "Dunkel"
 lightThemes: "Helle Farbschemata"
 darkThemes: "Dunkle Farbschemata"
 syncDeviceDarkMode: "Einstellung deines Geräts übernehmen"
-drive: "Drive"
+drive: "Cloud-Drive"
 fileName: "Dateiname"
 selectFile: "Datei auswählen"
 selectFiles: "Dateien auswählen"
@@ -313,7 +313,7 @@ createFolder: "Ordner erstellen"
 renameFolder: "Ordner umbenennen"
 deleteFolder: "Ordner löschen"
 addFile: "Datei hinzufügen"
-emptyDrive: "Deine Drive ist leer"
+emptyDrive: "Deine Cloud-Drive ist leer"
 emptyFolder: "Dieser Ordner ist leer"
 unableToDelete: "Nicht löschbar"
 inputNewFileName: "Gib einen neuen Dateinamen ein"
@@ -349,18 +349,18 @@ today: "Heute"
 dayX: "{day}"
 monthX: "{month}"
 yearX: "{year}"
-pages: "Seiten"
+pages: "Nutzer-Seiten"
 integration: "Integration"
 connectService: "Verbinden"
 disconnectService: "Trennen"
-enableLocalTimeline: "Lokale Timeline aktivieren"
-enableGlobalTimeline: "Globale Timeline aktivieren"
+enableLocalTimeline: "Local-Timeline aktivieren"
+enableGlobalTimeline: "Global-Timeline aktivieren"
 disablingTimelinesInfo: "Administratoren und Moderatoren haben immer Zugriff auf alle\
   \ Timelines, auch wenn diese deaktiviert sind."
 registration: "Registrieren"
 enableRegistration: "Registration neuer Nutzer erlauben"
 invite: "Einladen"
-driveCapacityPerLocalAccount: "Drive-Kapazität pro lokalem Nutzerkonto"
+driveCapacityPerLocalAccount: "Cloud-Drive-Kapazität pro lokalem Nutzerkonto"
 driveCapacityPerRemoteAccount: "Laufwerkskapazität pro Remote-Nutzer"
 inMb: "In Megabytes"
 iconUrl: "Icon-URL (favicon etc)"
@@ -370,8 +370,8 @@ basicInfo: "Grundlegende Informationen"
 pinnedUsers: "Angeheftete Nutzer"
 pinnedUsersDescription: "Gib durch Leerzeichen getrennte Nutzer an, die an die \"\
   Erkunden\"-Seite angeheftet werden sollen."
-pinnedPages: "Angeheftete Seiten"
-pinnedPagesDescription: "Geben Sie die Pfade der Seiten, getrennt durch Zeilenumbrüche,\
+pinnedPages: "Angeheftete Nutzer-Seiten"
+pinnedPagesDescription: "Geben Sie die Pfade der Nutzer-Seiten, getrennt durch Zeilenumbrüche,\
   \ ein, die Sie an die oberste Startseite dieses Servers anheften möchten."
 pinnedClipId: "ID des anzuheftenden Clips"
 pinnedNotes: "Angeheftete Beiträge"
@@ -733,10 +733,10 @@ pollVotesCount: "Anzahl gesendeter Antworten auf Umfragen"
 pollVotedCount: "Anzahl erhaltener Antworten auf Umfragen"
 yes: "Ja"
 no: "Nein"
-driveFilesCount: "Anzahl der Dateien in Drive"
-driveUsage: "Drive-Auslastung"
+driveFilesCount: "Anzahl der Dateien in Cloud-Drive"
+driveUsage: "Cloud-Drive-Auslastung"
 noCrawle: "Crawler-Indexierung ablehnen"
-noCrawleDescription: "Suchmaschinen bitten, die eigene Profilseite, Beiträge, Seiten\
+noCrawleDescription: "Suchmaschinen bitten, die eigene Profilseite, Beiträge, Nutzer-Seiten\
   \ usw. nicht zu indexieren."
 lockedAccountInfo: "Auch wenn du Follow-Anfragen auf manuelle Bestätigung setzt, wird\
   \ jeder deiner Posts öffentlich sichtbar sein, sofern du ihre Sichtbarkeit nicht\
@@ -749,8 +749,8 @@ verificationEmailSent: "Eine Bestätigungsmail wurde an deine Email-Adresse vers
 notSet: "Nicht konfiguriert"
 emailVerified: "Email-Adresse bestätigt"
 noteFavoritesCount: "Anzahl der favorisierten Beiträge"
-pageLikesCount: "Anzahl an als \"Gefällt mir\" markierter Seiten"
-pageLikedCount: "Anzahl erhaltener \"Gefällt mir\" auf Seiten"
+pageLikesCount: "Anzahl an als \"Gefällt mir\" markierter Nutzer-Seiten"
+pageLikedCount: "Anzahl erhaltener \"Gefällt mir\" auf Nutzer-Seiten"
 contact: "Kontakt"
 useSystemFont: "Standardschriftart des Systems verwenden"
 clips: "Clips"
@@ -847,8 +847,8 @@ switch: "Wechseln"
 noMaintainerInformationWarning: "Betreiberinformationen sind nicht konfiguriert."
 noBotProtectionWarning: "Schutz vor Bots ist nicht konfiguriert."
 configure: "Konfigurieren"
-postToGallery: "Neuen Galeriebeitrag erstellen"
-gallery: "Galerie"
+postToGallery: "Erstelle einen neuen Bilder-Galerie-Beitrag"
+gallery: "Bilder-Galerie"
 recentPosts: "Neue Beiträge"
 popularPosts: "Beliebte Beiträge"
 shareWithNote: "Mit Beitrag teilen"
@@ -947,7 +947,7 @@ noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
 recommended: "Empfehlung"
 check: "Kontrolle"
-driveCapOverrideLabel: "Die Drive-Kapazität dieses Nutzers verändern"
+driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität\
   \ auf den Standard zurückzusetzen."
 requireAdminForView: "Melde dich mit einem Administratorkonto an, um dies einzusehen."
@@ -978,7 +978,7 @@ failedToUpload: "Hochladen fehlgeschlagen"
 cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Anteile\
   \ der Datei als möglicherweise NSFW festgestellt wurden."
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein\
-  \ Drive-Speicherplatz aufgebraucht ist."
+  \ Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
 enableAutoSensitive: "NSFW-Automarkierung"
 enableAutoSensitiveDescription: "Erlaubt, wo möglich, die automatische Erkennung und\
@@ -1044,7 +1044,7 @@ _forgotPassword:
     \ Kontaktiere bitte den Server-Administrator, um dein Passwort zurücksetzen zu\
     \ lassen."
 _gallery:
-  my: "Meine Galerie"
+  my: "Meine Bilder-Galerie"
   liked: "Mit \"Gefällt mir\" markierte Beiträge"
   like: "Gefällt mir"
   unlike: "\"Gefällt mir\" entfernen"
@@ -1286,7 +1286,7 @@ _theme:
     buttonHoverBg: "Hintergrund von Schaltflächen (Mouseover)"
     inputBorder: "Rahmen von Eingabefeldern"
     listItemHoverBg: "Hintergrund von Listeneinträgen (Mouseover)"
-    driveFolderBg: "Hintergrund von Drive-Ordnern"
+    driveFolderBg: "Hintergrund von Cloud-Drive-Ordnern"
     wallpaperOverlay: "Hintergrundbild-Overlay"
     badge: "Wappen"
     messageBg: "Hintergrund von Chats"
@@ -1325,26 +1325,26 @@ _tutorial:
     \ erkennen, ob sie deine Beiträge sehen oder dir folgen wollen."
   step3_1: "Jetzt ist es an der Zeit, einigen Leuten zu folgen!"
   step3_2: "Deine Home- und Social-Timeline basiert darauf, wem du folgst, also folge\
-    \ für den Anfang ein paar Accounts.\nKlicke das Plus Symbol oben links in einem\
-    \ Profil um es zu folgen."
+    \ für den Anfang ein paar Nutzerkonten.\nKlicke das Plus Symbol oben links in\
+    \ einem Profil um ihm zu folgen."
   step4_1: "Wir bringen dich nach draußen."
   step4_2: "Für Ihren ersten Beitrag machen einige Leute gerne einen {introduction}-Beitrag\
     \ oder ein einfaches \"Hallo Welt!\""
   step5_1: "Timelines, Timelines überall!"
   step5_2: "Dein Server hat {timelines} verschiedene Timelines aktiviert."
-  step5_3: "Die Home Timeline {icon} ist die Timeline, in der du die Beiträge der\
+  step5_3: "Die {icon} Home-Timeline ist die Timeline, in der du die Beiträge der\
     \ Nutzerkonten sehen kannst, denen du folgst und von jedem anderen auf diesem\
-    \ Server. Solltest du bevorzugen, dass deine Home Timeline nur Beiträge von den\
+    \ Server. Solltest du bevorzugen, dass deine Home-Timeline nur Beiträge von den\
     \ Nutzerkonten enthält, denen du folgst, kannst du das ganz einfach in den Einstellungen\
     \ ändern!"
-  step5_4: "In der lokalen {Icon} Timeline kannst du die Beiträge aller anderen Mitglieder\
+  step5_4: "In der {Icon} Local-Timeline kannst du die Beiträge aller anderen Mitglieder\
     \ dieses Servers sehen."
-  step5_5: "Die Timeline \"Sozial\" {icon} zeigt dir ausschließlich Beiträge von Nutzerkonten\
+  step5_5: "Die {icon} Social-Timeline zeigt dir ausschließlich Beiträge von Nutzerkonten\
     \ denen Du folgst."
-  step5_6: "In der Timeline \"Empfehlungen\" {icon} kannst du Beiträge von Servern\
-    \ sehen, die dir von den Server-Administratoren empfohlen/vorgeschlagen werden."
-  step5_7: "In der globalen Timeline {icon} können Sie Beiträge von jedem anderen\
-    \ verbundenen Server sehen."
+  step5_6: "In der {icon} Empfehlungen-Timeline kannst du Beiträge von Servern sehen,\
+    \ die dir von den Server-Administratoren empfohlen/vorgeschlagen werden."
+  step5_7: "In der {icon} Global-Timeline können Sie Beiträge von jedem anderen verbundenen\
+    \ Server im fediverse sehen."
   step6_1: "Also, was ist das hier?"
   step6_2: "Schön, mit Deiner Anmeldung zu Calckey bist Du gleichzeitig einem Portal\
     \ zum Fediverse beigetreten, einem Netzwerk mit Tausenden von verbundenen Servern\
@@ -1373,8 +1373,8 @@ _permissions:
   "write:account": "Deine Nutzerkontoinformationen bearbeiten"
   "read:blocks": "Die Liste deiner blockierten Nutzer lesen"
   "write:blocks": "Die Liste deiner blockierten Nutzer bearbeiten"
-  "read:drive": "Deine Drive-Dateien und Ordner lesen"
-  "write:drive": "Deine Drive-Dateien und Ordner bearbeiten oder löschen"
+  "read:drive": "Deine Cloud-Drive-Dateien und Ordner lesen"
+  "write:drive": "Deine Cloud-Drive-Dateien und Ordner bearbeiten oder löschen"
   "read:favorites": "Deine Lesezeichen-Liste lesen"
   "write:favorites": "Deine Lesezeichen-Liste bearbeiten"
   "read:following": "Die Liste der Nutzer, denen du folgst, lesen"
@@ -1389,19 +1389,19 @@ _permissions:
   "read:reactions": "Reaktionen lesen"
   "write:reactions": "Reaktionen bedienen"
   "write:votes": "Umfragen bedienen"
-  "read:pages": "Deine Seiten lesen"
-  "write:pages": "Deine Seiten bearbeiten oder löschen"
-  "read:page-likes": "Liste der Seiten, die mir gefallen, lesen"
-  "write:page-likes": "Liste der Seiten, die mir gefallen, bearbeiten"
+  "read:pages": "Deine Nutzer-Seiten lesen"
+  "write:pages": "Deine Nutzer-Seiten bearbeiten oder löschen"
+  "read:page-likes": "Liste der Nutzer-Seiten, die mir gefallen, lesen"
+  "write:page-likes": "Liste der Nutzer-Seiten, die mir gefallen, bearbeiten"
   "read:user-groups": "Nutzergruppen lesen"
   "write:user-groups": "Nutzergruppen bearbeiten oder löschen"
   "read:channels": "Channels lesen"
   "write:channels": "Channels bedienen"
-  "read:gallery": "Beiträge deiner Galerie lesen"
-  "write:gallery": "Deine Galerie bearbeiten"
-  "read:gallery-likes": "Liste deiner mit \"Gefällt mir\" markierten Galerie-Beiträge\
+  "read:gallery": "Beiträge deiner Bilder-Galerie lesen"
+  "write:gallery": "Deine Bilder-Galerie bearbeiten"
+  "read:gallery-likes": "Liste deiner mit \"Gefällt mir\" markierten Bilder-Galerie-Beiträge\
     \ lesen"
-  "write:gallery-likes": "Liste deiner mit \"Gefällt mir\" markierten Galerie-Beiträge\
+  "write:gallery-likes": "Liste deiner mit \"Gefällt mir\" markierten Bilder-Galerie-Beiträge\
     \ bearbeiten"
 _auth:
   shareAccess: "Möchtest du „{name}“ authorisieren, auf dieses Nutzerkonto zugreifen\
@@ -1485,7 +1485,7 @@ _visibility:
   public: "Öffentlich"
   publicDescription: "Dein Beitrag wird global für alle Nutzer sichtbar sein"
   home: "nicht aufgelistet"
-  homeDescription: "Beitrag nur auf der Home Timeline anzeigen"
+  homeDescription: "Beitrag nur auf der Home-Timeline anzeigen"
   followers: "Follower"
   followersDescription: "Nur für Follower sichtbar"
   specified: "Direkt"
@@ -1551,10 +1551,10 @@ _instanceCharts:
   files: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Gesamtanzahl an Dateien"
 _timelines:
-  home: "Home Timeline"
-  local: "Lokale Timeline"
-  social: "Sozial"
-  global: "Global"
+  home: "Home-Timeline"
+  local: "Local-Timeline"
+  social: "Social-Timeline"
+  global: "Global-Timeline"
   recommended: Empfehlungen
 _pages:
   newPage: "Seite erstellen"
@@ -1572,18 +1572,18 @@ _pages:
   viewPage: "Seite anschauen"
   like: "Gefällt mir"
   unlike: "\"Gefällt mir\" entfernen"
-  my: "Meine Seiten"
-  liked: "Seiten, die mir gefallen"
+  my: "Meine Nutzer-Seiten"
+  liked: "Nutzer-Seiten, die mir gefallen"
   featured: "Beliebt"
   inspector: "Inspektor"
   contents: "Inhalte"
   content: "Seitenblock"
   variables: "Variablen"
   title: "Titel"
-  url: "Seiten-URL"
+  url: "Nutzer-Seiten-URL"
   summary: "Zusammenfassung"
   alignCenter: "Zentrieren"
-  hideTitleWhenPinned: "Seitentitel wenn angeheftet ausblenden"
+  hideTitleWhenPinned: "Nutzer-Seitentitel wenn angeheftet ausblenden"
   font: "Schriftart"
   fontSerif: "Serif"
   fontSansSerif: "sans-serif"
@@ -1957,7 +1957,7 @@ pushNotificationNotSupported: Dein Browser oder der Server unterstützt keine Pu
 pushNotification: Push-Benachrichtigungen
 subscribePushNotification: Push-Benachrichtigungen aktivieren
 showLocalPosts: 'Zeige lokale Beiträge in:'
-homeTimeline: Home Timeline
+homeTimeline: Home-Timeline
 cannotUploadBecauseExceedsFileSizeLimit: Die Datei konnte nicht hochgeladen werden,
   da sie die maximal zulässige Größe überschreitet
 moveFromLabel: 'Nutzerkonto von dem Sie umziehen:'
@@ -1979,7 +1979,7 @@ swipeOnDesktop: Am Desktop PC das Wischen wie bei mobilen Geräten zulassen
 enterSendsMessage: Drücken sie zum Senden des Beitrages die Eingabetaste (Strg-Taste
   ausgeschaltet)
 showUpdates: Zeigt ein Popup an, wenn Calckey aktualisiert wird.
-socialTimeline: Social Timeline
+socialTimeline: Social-Timeline
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
   groups: Gruppen
