@@ -83,14 +83,11 @@ If you have access to a server that supports one of the sources below, I recomme
 - Web Proxy (one of the following)
   - 🍀 Nginx (recommended)
   - 🪶 Apache
-  - 🦦 Caddy
 
 ### 😗 Optional dependencies
 
 - [FFmpeg](https://ffmpeg.org/) for video transcoding
-- Full text search (one of the following)
-  - 🦔 [Sonic](https://crates.io/crates/sonic-server) (recommended)
-  - [ElasticSearch](https://www.elastic.co/elasticsearch/)
+- [ElasticSearch](https://www.elastic.co/elasticsearch/) for full-text search
 
 ### 🏗️ Build dependencies
 
@@ -168,18 +165,16 @@ In Calckey's directory, fill out the `sonic` section of `.config/default.yml` wi
 
 For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
 
-## Web proxy
+## 🌐 Web proxy
 
-Choose between NGINX or Apache (we recommend NGINX)
-
-### 🍀 NGINX
+### 🍀 Nginx (recommended)
 
 - Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
 - Edit `calckey.nginx.conf` to reflect your instance properly
 - Run `sudo ln -s ./calckey.nginx.conf ../sites-enabled/calckey.nginx.conf`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
 
-### Apache 2
+### 🪶 Apache
 
 - Run `sudo cp ./calckey.apache.conf /etc/apache2/sites-available/ && cd /etc/apache2/sites-available/`
 - Edit `calckey.apache.conf` to reflect your instance properly
