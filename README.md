@@ -168,12 +168,23 @@ In Calckey's directory, fill out the `sonic` section of `.config/default.yml` wi
 
 For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
 
-## 🍀 NGINX
+## Web proxy
+
+Choose between NGINX or Apache (we recommend NGINX)
+
+### 🍀 NGINX
 
 - Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
 - Edit `calckey.nginx.conf` to reflect your instance properly
-- Run `sudo cp ./calckey.nginx.conf ../sites-enabled/`
+- Run `sudo ln -s ./calckey.nginx.conf ../sites-enabled/calckey.nginx.conf`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
+
+### Apache 2
+
+- Run `sudo cp ./calckey.apache.conf /etc/apache2/sites-available/ && cd /etc/apache2/sites-available/`
+- Edit `calckey.apache.conf` to reflect your instance properly
+- Run `sudo a2ensite calckey.apache` to enable the site
+- Run `sudo service apache2 restart` to reload apache2 configuration
 
 </details>
 
@@ -194,7 +205,7 @@ pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 
 - When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Calckey's control panel.
 - Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Replace 3000 with the minimum port and 4000 with the maximum port if you need it.
-- I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker. 
+- I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker.
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off.
 - For push notifications, run `npx web-push generate-vapid-keys`, then put the public and private keys into Control Panel > General > ServiceWorker.
 - For translations, make a [DeepL](https://deepl.com) account and generate an API key, then put it into Control Panel > General > DeepL Translation.
