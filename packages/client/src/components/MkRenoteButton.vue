@@ -179,6 +179,42 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		});
 	}
 
+	if (canRenote) {
+		buttonActions.push({
+			text: `${i18n.ts.renote} (${i18n.ts.local})`,
+			icon: "ph-hand-first ph-bold ph-lg",
+			danger: false,
+			action: () => {
+				os.api("notes/create",
+					props.note.visibility === "specified"
+				? {
+						renoteId: props.note.id,
+						visibility: props.note.visibility,
+						visibleUserIds: props.note.visibleUserIds,
+						localOnly: true,
+					}
+				: {
+						renoteId: props.note.id,
+						visibility: props.note.visibility,
+						localOnly: true,
+					}
+				});
+				const el =
+					ev &&
+					((ev.currentTarget ?? ev.target) as
+						| HTMLElement
+						| null
+						| undefined);
+				if (el) {
+					const rect = el.getBoundingClientRect();
+					const x = rect.left + el.offsetWidth / 2;
+					const y = rect.top + el.offsetHeight / 2;
+					os.popup(Ripple, { x, y }, {}, "end");
+				}
+			},
+		});
+	}
+
 	if (!defaultStore.state.seperateRenoteQuote) {
 		buttonActions.push({
 			text: i18n.ts.quote,
