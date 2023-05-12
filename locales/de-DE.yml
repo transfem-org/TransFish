@@ -517,8 +517,8 @@ dayOverDayChanges: "Veränderung zu Gestern"
 appearance: "Aussehen"
 clientSettings: "Client-Einstellungen"
 accountSettings: "Nutzerkonto-Einstellungen"
-promotion: "Werbung"
-promote: "Werbung schalten"
+promotion: "geworben"
+promote: "Werben"
 numberOfDays: "Anzahl der Tage"
 hideThisNote: "Diesen Beitrag verstecken"
 showFeaturedNotesInTimeline: "Beliebte Beiträge in der Timeline anzeigen"
@@ -852,7 +852,7 @@ gallery: "Bilder-Galerie"
 recentPosts: "Neue Beiträge"
 popularPosts: "Beliebte Beiträge"
 shareWithNote: "Mit Beitrag teilen"
-ads: "Werbung"
+ads: "Werbeanzeigen"
 expiration: "Frist"
 memo: "Merkzettel"
 priority: "Priorität"
@@ -1034,7 +1034,7 @@ _accountDelete:
   inProgress: "Löschung in Bearbeitung"
 _ad:
   back: "Zurück"
-  reduceFrequencyOfThisAd: "Diese Werbung weniger anzeigen"
+  reduceFrequencyOfThisAd: "Diese Werbeanzeige weniger anzeigen"
 _forgotPassword:
   enterEmail: "Gib die Email-Adresse ein, mit der du dich registriert hast. An diese\
     \ wird ein Link gesendet, mit dem du dein Passwort zurücksetzen kannst."
@@ -1174,6 +1174,10 @@ _mfm:
     \ befindet."
   foreground: Vordergrundfarbe
   background: Hintergrundfarbe
+  positionDescription: Verschieben Sie Inhalte um einen bestimmten Betrag
+  position: Position
+  scale: Maßstab
+  scaleDescription: Skaliere den Inhalt um einen bestimmten Betrag.
 _instanceTicker:
   none: "Nie anzeigen"
   remote: "Für Nutzer eines anderen Servers anzeigen"
@@ -1989,3 +1993,51 @@ userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {rea
   beinhaltet'
 userSaysSomethingReasonRenote: '{name} hat einen Beitrag geteilt der {reason} beinhaltet'
 userSaysSomethingReasonQuote: '{name} hat einen Beitrag zitiert der {reason} beinhaltet'
+seperateRenoteQuote: Getrennte Boost- und Zitat-Schaltflächen
+showAds: Anzeigen anzeigen
+splash: Begrüßungsbildschirm
+customSplashIconsDescription: URLs für benutzerdefinierte Splash-Screen-Symbole, die
+  durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
+  werden, wenn ein Benutzer die Seite lädt/neu lädt. Bitte stelle sicher, dass die
+  Bilder unter einer statischen URL stehen, vorzugsweise alle in der Größe 192x192.
+sendPushNotificationReadMessageCaption: Eine Benachrichtigung mit dem Text "{emptyPushNotificationMessage}"
+  wird für kurze Zeit angezeigt. Dies kann ggf. den Akkuverbrauch Ihres Geräts erhöhen.
+customSplashIcons: Benutzerdefinierte Begrüßungsbildschirmsymbole (URLs)
+adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wissen,
+  was sie tut. Die Eingabe falscher Werte kann dazu führen, dass ALLE Clients nicht
+  mehr normal funktionieren. Bitte stellen Sie sicher, dass Ihr CSS ordnungsgemäß
+  funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
+customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
+allowedInstancesDescription: Hosts von Instanzen, die für den Verbund auf die Whitelist
+  gesetzt werden sollen, jeweils durch eine neue Zeile getrennt (gilt nur im privaten
+  Modus).
+migration: Migration
+updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
+showAdminUpdates: Anzeigen, dass eine neue Calckey-Version verfügbar ist (nur Administrator)
+customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (Begrüßungsbildschirm),
+  die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
+  werden, wenn ein Benutzer die Seite (neu) lädt.
+recommendedInstancesDescription: Empfohlene Instanzen, die durch Zeilenumbrüche getrennt
+  sind, werden in der empfohlenen Zeitachse angezeigt. Fügen Sie NICHT "https://"
+  hinzu, sondern NUR die Domain.
+sendModMail: Moderationshinweis senden
+moveFromDescription: 'Dadurch wird ein Alias Ihres alten  Nutzerkontos festgelegt,
+  sodass Sie von ihrem bisherigen Konto zu diesem Nutzerkonto wechseln können. Tun
+  Sie dies, BEVOR Sie von Ihrem bisherigen Nutzerkonto hierhin wechseln. Bitte geben
+  Sie den Namen des Nutzerkontos wie folgt ein: person@server.xyz'
+preventAiLearning: KI gestütztes bot-scraping unterdrücken
+preventAiLearningDescription: Fordern Sie KI-Sprachmodelle von Drittanbietern auf,
+  die von Ihnen hochgeladenen Inhalte, wie z. B. Beiträge und Bilder, nicht zu untersuchen.
+license: Genehmigung
+indexPosts: Gelistete Beiträge
+migrationConfirm: "Sind Sie absolut sicher, dass Sie Ihr Nutzerkonto zu diesem {account}\
+  \ umziehen möchten? Sobald Sie dies bestätigt haben, kann dies nicht mehr rückgängig\
+  \ gemacht werden und Ihr Nutzerkonto kann nicht mehr von ihnen genutzt werden.\n\
+  Stellen Sie außerdem sicher, dass Sie dieses Nutzerkonto als das Konto festgelegt\
+  \ haben, von dem Sie umziehen."
+noteId: Beitrags-ID
+customKaTeXMacro: Individuelle KaTeX Makros
+enableCustomKaTeXMacro: Individuelle KaTeX-Makros aktivieren
+replayTutorial: Wiederhole die Benutzeranleitung
+apps: Apps
+caption: Automatische Untertitelung
