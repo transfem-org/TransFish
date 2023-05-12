@@ -1,5 +1,5 @@
 <template>
-	<header class="mvcprjjd" :class="{ iconOnly }">
+	<header class="mvcprjjd sidebar" :class="{ iconOnly }">
 		<div class="body">
 			<div class="top">
 				<div
@@ -122,6 +122,7 @@
 					<i class="icon ph-pencil ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.note }}</span>
 				</button>
+				<pwa-install />
 				<button
 					v-tooltip.noDelay.right="i18n.ts.help"
 					class="item _button help"
@@ -150,6 +151,7 @@ import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
 import { version } from "@/config";
+import "@khmyznikov/pwa-install";
 
 const isEmpty = (x: string | null) => x == null || x === "";
 
@@ -236,23 +238,22 @@ function more(ev: MouseEvent) {
 .mvcprjjd {
 	$nav-width: 250px;
 	$nav-icon-only-width: 80px;
-
 	flex: 0 0 $nav-width;
 	width: $nav-width;
 	box-sizing: border-box;
 
 	> .body {
-		position: fixed;
+		position: sticky;
 		top: 0;
-		left: 0;
-		z-index: 1001;
 		width: $nav-icon-only-width;
 		// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 		height: calc(var(--vh, 1vh) * 100);
 		box-sizing: border-box;
 		overflow: auto;
 		overflow-x: clip;
-		background: var(--navBg);
+		#calckey_app > :not(.wallpaper) & {
+			background: var(--navBg);
+		}
 		contain: strict;
 		display: flex;
 		flex-direction: column;
@@ -260,17 +261,15 @@ function more(ev: MouseEvent) {
 
 	&:not(.iconOnly) {
 		> .body {
+			margin-left: -200px;
+			padding-left: 200px;
+			box-sizing: content-box;
 			width: $nav-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
+				position: relative;
 				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
-
 				> .banner {
 					position: absolute;
 					top: 0;
@@ -298,12 +297,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					position: relative;
@@ -474,13 +468,7 @@ function more(ev: MouseEvent) {
 			width: $nav-icon-only-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
-				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .account {
 					display: block;
@@ -497,12 +485,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					display: block;

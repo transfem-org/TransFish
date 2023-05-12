@@ -32,6 +32,8 @@
 							# Add additional packages to our environment
 							packages = [
 								pkgs.nodePackages.pnpm
+
+								pkgs.python3
 							];
 							# No need to warn on a new version, we'll update as needed.
 							devenv.warnOnNewVersion = false;
@@ -43,6 +45,18 @@
 							# Enable stable Rust for the backend
 							languages.rust.enable = true;
 							languages.rust.version = "stable";
+							processes = {
+								dev-server.exec = "pnpm run dev";
+							};
+							scripts = {
+								build.exec = "pnpm run build";
+								clean.exec = "pnpm run clean";
+								clear-state.exec = "rm -rf .devenv/state/redis .devenv/state/postgres";
+								format.exec = "pnpm run format";
+								install-deps.exec = "pnpm install";
+								migrate.exec = "pnpm run migrate";
+								prepare-config.exec = "cp .config/devenv.yml .config/default.yml";
+							};
 							services = {
 								postgres = {
 									enable = true;
