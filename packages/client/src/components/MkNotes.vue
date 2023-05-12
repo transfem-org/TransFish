@@ -58,7 +58,7 @@ defineExpose({
 .giivymft {
 	&.noGap {
 		> .notes {
-			background: var(--panel);
+			background: var(--panel) !important;
 			border-radius: var(--radius);
 		}
 	}
