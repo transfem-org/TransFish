@@ -239,7 +239,13 @@ onMounted(() => {
 
 	&.wallpaper {
 		background: var(--wallpaperOverlay);
-		//backdrop-filter: var(--blur, blur(4px));
+		:deep(main) {
+			background: var(--acrylicBg) !important;
+			backdrop-filter: blur(12px);
+		}
+		:deep(.tl), :deep(.notes) {
+			background: none !important;
+		}
 	}
 
 	> .columns {

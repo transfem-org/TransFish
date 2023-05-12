@@ -464,13 +464,11 @@ console.log(mainRouter.currentRoute.value.name);
 	> .contents {
 		width: 100%;
 		min-width: 0;
-		background: var(--bg);
 	}
 
 	> .widgets {
 		padding: 0 var(--margin);
 		border-left: solid 0.5px var(--divider);
-		background: var(--bg);
 
 		@media (max-width: $widgets-hide-threshold) {
 			display: none;

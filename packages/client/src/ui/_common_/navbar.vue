@@ -249,7 +249,9 @@ function more(ev: MouseEvent) {
 		box-sizing: border-box;
 		overflow: auto;
 		overflow-x: clip;
-		background: var(--navBg);
+		#calckey_app > :not(.wallpaper) & {
+			background: var(--navBg);
+		}
 		contain: strict;
 		display: flex;
 		flex-direction: column;
@@ -293,12 +295,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					position: relative;
