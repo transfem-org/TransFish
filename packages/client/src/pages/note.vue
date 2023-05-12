@@ -218,7 +218,9 @@ definePageMetadata(
 }
 
 .fcuexfpr {
-	background: var(--bg);
+	#calckey_app > :not(.wallpaper) & {
+		background: var(--bg);
+	}
 
 	> .note {
 		> .main {
