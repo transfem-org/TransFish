@@ -23,7 +23,7 @@ basicSettings: "Grundeinstellungen"
 otherSettings: "Weitere Einstellungen"
 openInWindow: "In einem Fenster öffnen"
 profile: "Profil"
-timeline: "Timeline"
+timeline: "Timelines"
 noAccountDescription: "Dieser Nutzer hat seine Profilbeschreibung noch nicht ausgefüllt."
 login: "Anmelden"
 loggingIn: "Du wirst angemeldet"
@@ -88,71 +88,71 @@ retry: "Wiederholen"
 pageLoadError: "Beim Laden der Seite ist ein Fehler aufgetreten."
 pageLoadErrorDescription: "Dies wird in der Regel durch Netzwerkfehler oder den Cache\
   \ des Browsers verursacht. Versuchen Sie, den Cache zu leeren, und versuchen Sie\
-  \ es dann erneut, nachdem Sie eine Weile gewartet haben"
+  \ es dann erneut, nachdem Sie eine Weile gewartet haben."
 serverIsDead: "Der Server antwortet nicht. Bitte warte einen Moment und versuche es\
   \ dann erneut."
 youShouldUpgradeClient: "Bitte aktualisiere diese Seite, um eine neuere Version deines\
   \ Clients zu verwenden."
 enterListName: "Gib einen Namen für die Liste ein"
 privacy: "Privatsphäre"
-makeFollowManuallyApprove: "Follow-Anfragen erfordern eine Genehmigung"
-defaultNoteVisibility: "Standardsichtbarkeit"
+makeFollowManuallyApprove: "Folgeanfragen bedürfen der Genehmigung"
+defaultNoteVisibility: "Standard-Sichtbarkeit"
 follow: "Folge ich"
 followRequest: "Follow anfragen"
 followRequests: "Follow-Anfragen"
-unfollow: "Entfolgen"
-followRequestPending: "Follow-Anfrage ausstehend"
-enterEmoji: "Gib ein Emoji ein"
-renote: "Teilen"
-unrenote: "Teilen widerrufen"
-renoted: "Geteilt"
-cantRenote: "Teilen dieses Beitrages nicht möglich."
-cantReRenote: "Das Teilen einer bereits geteilten Beitrages ist nicht möglich."
+unfollow: "Nicht mehr folgen"
+followRequestPending: "Follow-up-Anfrage ausstehend"
+enterEmoji: "Ein Emoji eingeben"
+renote: "Boost"
+unrenote: "Boost zurücknehmen"
+renoted: "Geboostet"
+cantRenote: "Dieser Beitrag kann nicht geboostet werden."
+cantReRenote: "Ein Boost kann nicht geboostet werden."
 quote: "Zitieren"
-pinnedNote: "Angehefteter Beitrag"
+pinnedNote: "Angepinnter Beitrag"
 pinned: "An das Profil anheften"
 you: "Du"
 clickToShow: "Zum Anzeigen anklicken"
 sensitive: "NSFW"
 add: "Hinzufügen"
-reaction: "Rückmeldungen"
-reactionSetting: "Rückmeldungen die im Rückmeldungsfeld angezeigt werden sollen."
-reactionSettingDescription2: "Ziehe um Anzuordnen, klicke um zu löschen, drücke „+“\
-  \ um hinzuzufügen."
+reaction: "Reaktionen"
+reactionSetting: "Reaktionen, die in der Reaktionsauswahl angezeigt werden sollen"
+reactionSettingDescription2: "Ziehen Sie, um neu zu ordnen,\nklicken Sie, um zu löschen,\n\
+  drücken Sie \"+\", um hinzuzufügen."
 rememberNoteVisibility: "Einstellungen für die Sichtbarkeit von Beiträgen speichern"
 attachCancel: "Anhang entfernen"
 markAsSensitive: "Als NSFW kennzeichnen"
-accountMoved: "Der Nutzer ist zu einem neuen Server umgezogen:"
+accountMoved: "Der Nutzer ist zu einem neuen Konto umgezogen:"
 unmarkAsSensitive: "NSFW Kennzeichnung aufheben"
-enterFileName: "Dateinamen eingeben"
+enterFileName: "Dateiname eingeben"
 mute: "Stummschalten"
 unmute: "Stummschaltung aufheben"
 block: "Blockieren"
 unblock: "Blockierung aufheben"
-suspend: "Sperren"
-unsuspend: "Sperrung aufheben"
-blockConfirm: "Möchtest du diesen Nutzer wirklich blockieren?"
-unblockConfirm: "Möchtest du diese Blockierung wirklich aufheben?"
-suspendConfirm: "Möchtest du diesen Nutzer wirklich sperren?"
-unsuspendConfirm: "Möchtest du diesen Nutzer wirklich entsperren?"
-selectList: "Liste auswählen"
+suspend: "Suspendieren"
+unsuspend: "Suspendierung aufheben"
+blockConfirm: "Sind Sie sicher, dass Sie dieses Konto sperren wollen?"
+unblockConfirm: "Sind Sie sicher, dass Sie die Sperrung dieses Kontos aufheben wollen?"
+suspendConfirm: "Sind Sie sicher, dass Sie dieses Konto sperren wollen?"
+unsuspendConfirm: "Sind Sie sicher, dass Sie dieses Konto entsperren wollen?"
+selectList: "Wählen Sie eine Liste aus"
 selectAntenna: "News-Picker auswählen"
-selectWidget: "Widget auswählen"
+selectWidget: "Ein Widget auswählen"
 editWidgets: "Widgets bearbeiten"
-editWidgetsExit: "Fertig"
-customEmojis: "Benutzerdefinierte Emojis"
+editWidgetsExit: "Erledigt"
+customEmojis: "Benutzerdefinierte Emoji"
 emoji: "Emoji"
-emojis: "Emojis"
+emojis: "Emoji"
 emojiName: "Emoji-Name"
 emojiUrl: "Emoji-URL"
 addEmoji: "Emoji hinzufügen"
 settingGuide: "Empfohlene Einstellungen"
-cacheRemoteFiles: "Dateien von fremden Servern im Cache speichern"
+cacheRemoteFiles: "Cache für entfernte Dateien"
 cacheRemoteFilesDescription: "Ist diese Einstellung deaktiviert, so werden Dateien\
   \ von anderen Servern direkt von dort geladen. Hierdurch wird Speicherplatz auf\
   \ diesem Server eingespart, aber durch die fehlende Generierung von Vorschaubildern\
   \ mehr Bandbreite benötigt."
-flagAsBot: "Nutzerkonto als Bot kennzeichnen"
+flagAsBot: "Dieses Nutzerkonto als Bot kennzeichnen"
 flagAsBotDescription: "Aktiviere diese Option, falls dieses Nutzerkonto durch ein\
   \ Programm gesteuert wird. Falls aktiviert, agiert es als Flag für andere Entwickler\
   \ zur Verhinderung von endlosen Kettenreaktionen mit anderen Bots und lässt Calckeys\
@@ -161,19 +161,19 @@ flagAsCat: "Bist du eine Katze? \U0001F63A"
 flagAsCatDescription: "Du bekommst Katzenohren und sprichst wie eine Katze!"
 flagShowTimelineReplies: "Antworten in der Timeline anzeigen"
 flagShowTimelineRepliesDescription: "Zeigt Antworten von Nutzern auf Beiträge anderer\
-  \ Nutzer in der Timeline an, wenn diese Option aktiviert ist."
-autoAcceptFollowed: "Genehmigen Sie automatisch Follow-Anfragen von Nutzern, denen\
+  \ Nutzer in der Timeline an, wenn diese Funktion aktiviert ist."
+autoAcceptFollowed: "Automatisches Genehmigen von Folgeanfragen von Benutzern, denen\
   \ Sie folgen"
 addAccount: "Nutzerkonto hinzufügen"
 loginFailed: "Anmeldung fehlgeschlagen"
-showOnRemote: "Auf Ursprungsinstanz ansehen"
+showOnRemote: "Ansicht auf dem Herkunftsserver"
 general: "Allgemein"
-wallpaper: "Hintergrund"
-setWallpaper: "Hintergrund festlegen"
-removeWallpaper: "Hintergrund löschen"
+wallpaper: "Hintergrundbild"
+setWallpaper: "Hintergrundbild festlegen"
+removeWallpaper: "Hintergrundbild entfernen"
 searchWith: "Suchen: {q}"
-youHaveNoLists: "Du hast keine Listen angelegt"
-followConfirm: "Möchtest du {name} wirklich folgen?"
+youHaveNoLists: "Sie haben keine Listen"
+followConfirm: "Sind Sie sicher, dass Sie {name} folgen möchten?"
 proxyAccount: "Proxy-Konto"
 proxyAccountDescription: "Ein Proxy-Konto ist ein Nutzerkonto, das sich für Nutzer\
   \ unter bestimmten Konditionen wie ein Follower von einem anderen Server verhält.\
@@ -181,41 +181,41 @@ proxyAccountDescription: "Ein Proxy-Konto ist ein Nutzerkonto, das sich für Nut
   \ diesen Server übermittelt, falls es keinen Nutzer von diesem Server gibt, der\
   \ diesem Nutzer von einem anderen Server folgt. In diesem Fall folgt stattdessen\
   \ das Proxy-Nutzerkonto."
-host: "Hostname"
-selectUser: "Nutzer auswählen"
+host: "Host"
+selectUser: "Wählen Sie einen Nutzer"
 recipient: "Empfänger"
 annotation: "Anmerkungen"
 federation: "Föderation"
 instances: "Server"
-registeredAt: "Registriert am"
+registeredAt: "Registriert unter"
 latestRequestSentAt: "Letzte Anfrage gesendet"
-latestRequestReceivedAt: "Letzte Anfrage erhalten"
-latestStatus: "Aktueller Status"
-storageUsage: "Speichernutzung"
+latestRequestReceivedAt: "Letzte erhaltene Anfrage"
+latestStatus: "Aktueller Stand"
+storageUsage: "Nutzung des Speichers"
 charts: "Diagramme"
 perHour: "Pro Stunde"
 perDay: "Pro Tag"
-stopActivityDelivery: "Beenden Sie das Senden von Aktivitäten"
+stopActivityDelivery: "Sendeaktivitäten einstellen"
 blockThisInstance: "Diesen Server blockieren"
 operations: "Tätigkeiten"
 software: "Software"
 version: "Version"
 metadata: "Metadaten"
 withNFiles: "{n} Datei(en)"
-monitor: "Beobachten"
+monitor: "Überwachung"
 jobQueue: "Auftragswarteschlange"
-cpuAndMemory: "CPU und Arbeitsspeicher"
+cpuAndMemory: "CPU und Speicher"
 network: "Netzwerk"
 disk: "Festplatte"
 instanceInfo: "Serverinformationen"
 statistics: "Statistiken"
-clearQueue: "Warteschlange leeren"
-clearQueueConfirmTitle: "Möchtest du die Warteschlange wirklich leeren?"
-clearQueueConfirmText: "Alle noch nicht gesendete Beiträge in der Warteschlange werden\
-  \ nicht veröffentlicht. Normalerweise ist dieser Vorgang nicht erforderlich."
+clearQueue: "Warteschlange löschen"
+clearQueueConfirmTitle: "Sind Sie sicher, dass Sie die Warteschlange löschen wollen?"
+clearQueueConfirmText: "Nicht zugestellte Beiträge, die in der Warteschlange verbleiben,\
+  \ werden nicht föderiert. Normalerweise ist dieser Vorgang nicht erforderlich."
 clearCachedFiles: "Cache leeren"
 clearCachedFilesConfirm: "Sind Sie sicher, dass Sie alle im Cache zwischengespeicherten\
-  \ Dateien löschen möchten?"
+  \ Dateien löschen wollen?"
 blockedInstances: "Blockierte Server"
 blockedInstancesDescription: "Geben Sie die Hostnamen der Server, getrennt durch einen\
   \ Zeilenumbruch, an, die Sie blockieren möchten. Aufgelistete (blockierte) Server\
@@ -223,26 +223,27 @@ blockedInstancesDescription: "Geben Sie die Hostnamen der Server, getrennt durch
 muteAndBlock: "Stummschaltungen und Blockierungen"
 mutedUsers: "Stummgeschaltete Nutzer"
 blockedUsers: "Blockierte Nutzer"
-noUsers: "Keine Nutzer gefunden"
+noUsers: "Es sind keine Nutzer vorhanden"
 editProfile: "Profil bearbeiten"
-noteDeleteConfirm: "Möchtest du diesen Beitrag wirklich löschen?"
-pinLimitExceeded: "Du kannst keine weiteren Beiträge mehr anheften"
-intro: "Calckey ist installiert! Lass uns nun ein Administratorkonto einrichten."
-done: "Fertig"
+noteDeleteConfirm: "Sind Sie sicher, dass Sie diesen Beitrag löschen wollen?"
+pinLimitExceeded: "Sie können keine weiteren Beiträge anpinnen"
+intro: "Die Installation von Calckey ist abgeschlossen! Bitte erstellen Sie einen\
+  \ Admin-Benutzer."
+done: "Erledigt"
 processing: "In Bearbeitung …"
 preview: "Vorschau"
 default: "Standard"
-defaultValueIs: "Standardwert: {value}"
-noCustomEmojis: "Keine benutzerdefinierten Emojis gefunden"
+defaultValueIs: "Der Standardwert ist: {value}"
+noCustomEmojis: "Es gibt keine benutzerdefinierten Emoji"
 noJobs: "Keine Jobs vorhanden"
 federating: "Wird föderiert"
 blocked: "Blockiert"
-suspended: "Gesperrt"
+suspended: "suspendiert"
 all: "Alles"
-subscribing: "Wird abonniert"
-publishing: "Wird veröffentlicht"
+subscribing: "Registrieren"
+publishing: "Veröffentlichen"
 notResponding: "Antwortet nicht"
-instanceFollowing: "Gefolgt auf dem Server"
+instanceFollowing: "Auf dem Server folgen"
 instanceFollowers: "Follower des Servers"
 instanceUsers: "Nutzer dieses Servers"
 changePassword: "Passwort ändern"
@@ -251,49 +252,50 @@ retypedNotMatch: "Die Eingaben stimmen nicht überein."
 currentPassword: "Aktuelles Passwort"
 newPassword: "Neues Passwort"
 newPasswordRetype: "Neues Passwort bestätigen"
-attachFile: "Datei anhängen"
+attachFile: "Dateien anhängen"
 more: "Mehr!"
-featured: "Beliebt"
+featured: "Ausgewählt"
 usernameOrUserId: "Nutzername oder Nutzer-ID"
 noSuchUser: "Nutzer nicht gefunden"
-lookup: "Anfragen"
-announcements: "Ankündigungen"
+lookup: "Suche nach"
+announcements: "Bekanntmachungen"
 imageUrl: "Bild-URL"
 remove: "Löschen"
 removed: "Erfolgreich gelöscht"
-removeAreYouSure: "Möchtest du „{x}“ wirklich entfernen?"
-deleteAreYouSure: "Möchtest du „{x}“ wirklich löschen?"
+removeAreYouSure: "Sind Sie sicher, dass Sie \"{x}\" entfernen wollen?"
+deleteAreYouSure: "Sind Sie sicher, dass Sie \"{x}\" löschen wollen?"
 resetAreYouSure: "Wirklich zurücksetzen?"
-saved: "Erfolgreich gespeichert"
+saved: "Gespeichert"
 messaging: "Chat"
 upload: "Hochladen"
-keepOriginalUploading: "Originalbild speichern"
-keepOriginalUploadingDescription: "Speichert das Originalbild so, wie es ist. Ist\
-  \ dies deaktiviert, wird eine Version zum Anzeigen im Internet generiert."
-fromDrive: "Aus dem Cloud-Drive"
+keepOriginalUploading: "Originalbild behalten"
+keepOriginalUploadingDescription: "Speichert das ursprünglich hochgeladene Bild so,\
+  \ wie es ist. Wenn diese Option deaktiviert ist, wird beim Hochladen eine Version\
+  \ für die Anzeige im Web erstellt."
+fromDrive: "Vom Laufwerk"
 fromUrl: "Von einer URL"
 uploadFromUrl: "Von einer URL hochladen"
-uploadFromUrlDescription: "URL der hochzuladenden Datei"
+uploadFromUrlDescription: "URL der Datei, die Sie hochladen wollen"
 uploadFromUrlRequested: "Upload angefordert"
-uploadFromUrlMayTakeTime: "Es kann eine Weile dauern, bis das Hochladen abgeschlossen\
+uploadFromUrlMayTakeTime: "Es kann einige Zeit dauern, bis das Hochladen abgeschlossen\
   \ ist."
 explore: "Erkunden"
 messageRead: "Gelesen"
-noMoreHistory: "Kein weiterer Verlauf vorhanden"
-startMessaging: "Neuen Chat erstellen"
-nUsersRead: "Von {n} Nutzern gelesen"
+noMoreHistory: "Es gibt keine weitere Historie"
+startMessaging: "Einen neuen Chat beginnen"
+nUsersRead: "Gelesen von {n}"
 agreeTo: "Ich stimme {0} zu"
 tos: "Nutzungsbedingungen"
-start: "Anfangen"
+start: "Beginnen Sie"
 home: "Home"
-remoteUserCaution: "Informationen von Nutzern anderer Server sind möglicherweise unvollständig."
+remoteUserCaution: "Informationen von Remote-Nutzern können unvollständig sein."
 activity: "Aktivität"
 images: "Bilder"
 birthday: "Geburtstag"
 yearsOld: "{age} Jahre alt"
-registeredDate: "Registrationsdatum"
+registeredDate: "Registriert am"
 location: "Ort"
-theme: "Farbschema"
+theme: "Themen"
 themeForLightMode: "Helles Farbschema"
 themeForDarkMode: "Dunkles Farbschema"
 light: "Hell"
@@ -847,7 +849,7 @@ switch: "Wechseln"
 noMaintainerInformationWarning: "Betreiberinformationen sind nicht konfiguriert."
 noBotProtectionWarning: "Schutz vor Bots ist nicht konfiguriert."
 configure: "Konfigurieren"
-postToGallery: "Erstelle einen neuen Bilder-Galerie-Beitrag"
+postToGallery: "Erstelle einen neuen Beitrag zur Bilder-Galerie"
 gallery: "Bilder-Galerie"
 recentPosts: "Neue Beiträge"
 popularPosts: "Beliebte Beiträge"
@@ -1101,9 +1103,9 @@ _nsfw:
   force: "Alle Medien verbergen"
 _mfm:
   cheatSheet: "MFM Spickzettel"
-  intro: "MFM ist eine Misskey-exklusive Markup-Sprache, die in Misskey an vielen\
-    \ Stellen verwendet werden kann. Hier kannst du eine Liste von verfügbarer MFM-Syntax\
-    \ einsehen."
+  intro: "MFM ist eine Markup-Sprache, die in Misskey, Calckey, Akkoma und anderen\
+    \ Programmen verwendet wird und an vielen Stellen eingesetzt werden kann. Hier\
+    \ können Sie eine Liste aller verfügbaren MFM-Syntaxe einsehen."
   dummy: "Calckey erweitert die Welt des Fediverse"
   mention: "Erwähnung"
   mentionDescription: "Mit At-Zeichen und Nutzername kann ein individueller Nutzer\
@@ -1174,10 +1176,12 @@ _mfm:
     \ befindet."
   foreground: Vordergrundfarbe
   background: Hintergrundfarbe
-  positionDescription: Verschieben Sie Inhalte um einen bestimmten Betrag
+  positionDescription: Inhalt um einen bestimmten Betrag verschieben.
   position: Position
   scale: Maßstab
   scaleDescription: Skaliere den Inhalt um einen bestimmten Betrag.
+  foregroundDescription: Ändern der Vordergrundfarbe von Text.
+  backgroundDescription: Ändern der Hintergrundfarbe von Text
 _instanceTicker:
   none: "Nie anzeigen"
   remote: "Für Nutzer eines anderen Servers anzeigen"
@@ -1186,6 +1190,7 @@ _serverDisconnectedBehavior:
   reload: "Automatisch aktualisieren"
   dialog: "Warnungsfenster zeigen"
   quiet: "Unaufdringlich warnen"
+  nothing: Nichts ändern
 _channel:
   create: "Kanal erstellen"
   edit: "Kanal bearbeiten"
@@ -1196,6 +1201,8 @@ _channel:
   following: "Gefolgt"
   usersCount: "{n} Teilnehmer"
   notesCount: "{n} Beiträge"
+  nameAndDescription: Name und Beschreibung
+  nameOnly: Nur den Namen
 _menuDisplay:
   sideFull: "Seitlich"
   sideIcon: "Seitlich (Icons)"
@@ -1520,6 +1527,8 @@ _profile:
   metadataContent: "Inhalt"
   changeAvatar: "Profilbild ändern"
   changeBanner: "Banner ändern"
+  locationDescription: Wenn Sie Ihren Ort zuerst eingeben, wird für andere Benutzer
+    die Ortszeit angezeigt.
 _exportOrImport:
   allNotes: "Alle Beiträge"
   followingList: "Gefolgte Nutzer"
@@ -1555,10 +1564,10 @@ _instanceCharts:
   files: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Gesamtanzahl an Dateien"
 _timelines:
-  home: "Home-Timeline"
-  local: "Local-Timeline"
-  social: "Social-Timeline"
-  global: "Global-Timeline"
+  home: "Home-TL"
+  local: "Local-TL"
+  social: "Social-TL"
+  global: "Global-TL"
   recommended: Empfehlungen
 _pages:
   newPage: "Seite erstellen"
@@ -1917,21 +1926,23 @@ _deck:
     list: "Listen"
     mentions: "Erwähnungen"
     direct: "Direktnachrichten"
+  renameProfile: Arbeitsbereich umbenennen
+  nameAlreadyExists: Der Name für den Arbeitsbereich ist bereits vorhanden.
 enableRecommendedTimeline: Empfohlenen Zeitplan aktivieren
 secureMode: Sicherer Modus (Autorisierter Abruf)
 instanceSecurity: Serversicherheit
 manageGroups: Gruppen verwalten
 noThankYou: Nein, danke
 privateMode: Privater Modus
-enableEmojiReactions: Emoji-Rückmeldungen aktivieren
+enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
-showEmojisInReactionNotifications: Emojis in Rückmeldungen anzeigen
+showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
 hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
   verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.
   Blockierte Server sind nicht betroffen, auch wenn sie hier aufgeführt sind.'
 addInstance: Server hinzufügen
-flagSpeakAsCatDescription: Deine Posts werden im Katzenmodus "nya-ifiziert"
+flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
 antennaInstancesDescription: Nenne einen Servernamen pro Zeile
 secureModeInfo: Bei Anfragen an andere Server nicht ohne Nachweis zurücksenden.
@@ -1963,7 +1974,7 @@ subscribePushNotification: Push-Benachrichtigungen aktivieren
 showLocalPosts: 'Zeige lokale Beiträge in:'
 homeTimeline: Home-Timeline
 cannotUploadBecauseExceedsFileSizeLimit: Die Datei konnte nicht hochgeladen werden,
-  da sie die maximal zulässige Größe überschreitet
+  da sie die maximal zulässige Größe überschreitet.
 moveFromLabel: 'Nutzerkonto von dem Sie umziehen:'
 moveAccount: Nutzerkonto umziehen!
 defaultReaction: Standard-Emoji-Reaktion für ausgehende und eingehende Beiträge
@@ -1976,17 +1987,18 @@ moveAccountDescription: 'Dieser Vorgang kann nicht rückgängig gemacht werden! 
 findOtherInstance: Einen anderen Server finden
 sendPushNotificationReadMessage: Löschung der Push-Benachrichtigungen sobald die entsprechenden
   Benachrichtigungen oder Beiträge gelesen wurden.
-signupsDisabled: Anmeldungen auf diesem Server sind momentan nicht möglich, sie können
-  sich jedoch jederzeit auf einem anderen Server anmelden! Wenn Sie einen Einladungscode
-  für diesen Server haben, geben Sie ihn bitte unten ein
+signupsDisabled: Derzeit sind keine Anmeldungen auf diesem Server möglich! Anmeldungen
+  auf anderen Servern sind jedoch möglich! Wenn Sie einen Einladungscode für diesen
+  Server haben, geben Sie ihn bitte unten ein.
 swipeOnDesktop: Am Desktop PC das Wischen wie bei mobilen Geräten zulassen
 enterSendsMessage: Drücken sie zum Senden des Beitrages die Eingabetaste (Strg-Taste
   ausgeschaltet)
-showUpdates: Zeigt ein Popup an, wenn Calckey aktualisiert wird.
+showUpdates: Zeigt ein Popup-Fenster an, wenn Calckey aktualisiert wird.
 socialTimeline: Social-Timeline
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
   groups: Gruppen
+  dms: Persönlich
 recommendedInstances: Empfohlene Server
 logoImageUrl: URL des Logo-Bildes
 userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {reason}
@@ -2021,7 +2033,7 @@ recommendedInstancesDescription: Empfohlene Instanzen, die durch Zeilenumbrüche
   sind, werden in der empfohlenen Zeitachse angezeigt. Fügen Sie NICHT "https://"
   hinzu, sondern NUR die Domain.
 sendModMail: Moderationshinweis senden
-moveFromDescription: 'Dadurch wird ein Alias Ihres alten  Nutzerkontos festgelegt,
+moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt,
   sodass Sie von ihrem bisherigen Konto zu diesem Nutzerkonto wechseln können. Tun
   Sie dies, BEVOR Sie von Ihrem bisherigen Nutzerkonto hierhin wechseln. Bitte geben
   Sie den Namen des Nutzerkontos wie folgt ein: person@server.xyz'
@@ -2041,3 +2053,4 @@ enableCustomKaTeXMacro: Individuelle KaTeX-Makros aktivieren
 replayTutorial: Wiederhole die Benutzeranleitung
 apps: Apps
 caption: Automatische Untertitelung
+pwa: PWA installieren
