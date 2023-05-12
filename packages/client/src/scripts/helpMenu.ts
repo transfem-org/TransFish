@@ -28,7 +28,7 @@ export function openHelpMenu_(ev: MouseEvent) {
 			{
 				type: "button",
 				text: i18n.ts.pwa,
-				icon: "ph-export ph-bold ph-lg",
+				icon: "ph-plus-square ph-bold ph-lg",
 				action: () => {
 					document.getElementsByTagName("pwa-install")[0].showDialog();
 				}
