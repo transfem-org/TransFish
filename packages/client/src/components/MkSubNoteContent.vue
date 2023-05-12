@@ -33,7 +33,7 @@
 	<div class="wrmlmaau">
 		<div
 			class="content"
-			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
+			:class="{ collapsed, isLong, showContent: note.cw && !showContent, disableAnim: disableMfm }"
 		>
 			<XCwButton
 				ref="cwButton"
@@ -120,6 +120,17 @@
 				v-model="collapsed"
 			></XShowMoreButton>
 			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
+			<MkButton
+				v-if="hasMfm"
+				@click.stop="toggleMfm"
+			>
+				<template v-if="disableMfm">
+					<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
+				</template>
+				<template v-else>
+					<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
+				</template>
+			</MkButton>
 		</div>
 	</div>
 </template>
@@ -128,13 +139,16 @@
 import { ref } from "vue";
 import * as misskey from "calckey-js";
 import * as mfm from "mfm-js";
+import * as os from "@/os";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
+import MkButton from "@/components/MkButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
+import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
 
 const props = defineProps<{
@@ -163,6 +177,26 @@ const urls = props.note.text
 	: null;
 
 let showContent = $ref(false);
+
+const mfms = props.note.text ? extractMfmWithAnimation(mfm.parse(props.note.text)) : null;
+
+const hasMfm = $ref(mfms.length > 0);
+
+let disableMfm = $ref(hasMfm);
+
+async function toggleMfm() {
+	if (disableMfm) {
+		const { canceled } = await os.confirm({
+			type: "warning",
+			text: i18n.ts._mfm.warn,
+		});
+		if (canceled) return;
+
+		disableMfm = false;
+	} else {
+		disableMfm = true;
+	}
+}
 
 function focusFooter(ev) {
 	if (ev.key == "Tab" && !ev.getModifierState("Shift")) {
@@ -193,6 +227,12 @@ function focusFooter(ev) {
 	overflow-wrap: break-word;
 	> .text {
 		margin-right: 8px;
+	}
+}
+
+.mfm-warning {
+	button {
+		padding: 1em;
 	}
 }
 .wrmlmaau {
@@ -285,6 +325,11 @@ function focusFooter(ev) {
 					top: 40px;
 				}
 			}
+		}
+
+		&.disableAnim :deep(*) {
+			animation: none !important;
+			transition: none !important;
 		}
 	}
 }
