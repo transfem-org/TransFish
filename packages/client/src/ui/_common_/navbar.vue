@@ -466,13 +466,7 @@ function more(ev: MouseEvent) {
 			width: $nav-icon-only-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
-				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .account {
 					display: block;
@@ -489,12 +483,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					display: block;
