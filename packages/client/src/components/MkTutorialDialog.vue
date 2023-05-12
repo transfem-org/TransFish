@@ -180,6 +180,13 @@
 								primary
 								show-only-to-register
 							/>
+							<pwa-install />
+							<MkButton
+								primary
+								inline
+								@click="installPwa"
+								>{{ i18n.ts.pwa }}</MkButton
+							>
 						</div>
 					</Transition>
 				</div>
@@ -201,6 +208,7 @@ import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { instance } from "@/instance";
+import "@khmyznikov/pwa-install";
 
 const isLocalTimelineAvailable =
 	!instance.disableLocalTimeline ||
@@ -242,6 +250,11 @@ const tutorial = computed({
 		defaultStore.set("tutorial", value);
 	},
 });
+
+function installPwa(ev: MouseEvent) {
+	const pwaInstall = document.getElementsByTagName("pwa-install")[0];
+	pwaInstall.showDialog();
+}
 
 function close(res) {
 	tutorial.value = -1;
