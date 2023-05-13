@@ -235,11 +235,6 @@ function focusFooter(ev) {
 	}
 }
 
-.mfm-warning {
-	button {
-		padding: 1em;
-	}
-}
 .wrmlmaau {
 	.content {
 		overflow-wrap: break-word;
@@ -332,9 +327,8 @@ function focusFooter(ev) {
 			}
 		}
 
-		&.disableAnim :deep(*) {
+		&.disableAnim :deep(span) {
 			animation: none !important;
-			transition: none !important;
 		}
 	}
 	> :deep(button) {
