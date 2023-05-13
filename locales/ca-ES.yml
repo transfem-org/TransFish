@@ -222,6 +222,10 @@ _mfm:
   scaleDescription: Escala el contingut en una quantitat especificada.
   foregroundDescription: Canvia el color de primer pla del text.
   plain: Pla
+  stop: Parar MFM
+  play: Posar en marxa MFM
+  warn: MFM pot contenir animacions cridaneres o que es mouen ràpidament
+  alwaysPlay: Reprodueix automàticament tots els MFM animats
 _theme:
   keys:
     mention: "Menció"
@@ -2039,3 +2043,9 @@ preventAiLearning: Evita l'indexació dels bots
 preventAiLearningDescription: Sol·liciteu que els models de llenguatge d'IA de tercers
   no estudiïn el contingut que pengeu, com ara publicacions i imatges.
 pwa: Instal·lar PWA
+_experiments:
+  alpha: Alfa
+  beta: Beta
+  release: Publicà
+  enablePostEditing: Activà l'edició de publicacions
+  title: Experiments
