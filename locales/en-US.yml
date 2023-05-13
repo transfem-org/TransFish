@@ -2013,5 +2013,5 @@ _experiments:
   alpha: "Alpha"
   beta: "Beta"
   release: "Release"
-  enableExperimentalPostEditing: "Enable experimental post editing"
-  experimentalPostEditingCaption: "Enables the option for users to edit their posts in post options"
+  enablePostEditing: "Enable post editing"
+  postEditingCaption: "Shows the option for users to edit their existing posts via the post options menu"

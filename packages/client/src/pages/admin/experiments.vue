@@ -9,19 +9,19 @@
 		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
 			<FormSuspense :p="init">
 				<FormSwitch
-					v-model="enableExperimentalPostEditing"
+					v-model="enablePostEditing"
 					@update:modelValue="save"
 					class="_formBlock"
 				>
 					<template #label>
 						<i class="ph-pencil-line ph-bold ph-lg"></i>
-						{{ i18n.ts._experiments.enableExperimentalPostEditing }}
+						{{ i18n.ts._experiments.enablePostEditing }}
 						<span class="level alpha">
 							({{ i18n.ts._experiments.alpha }})</span
 						>
 					</template>
 					<template #caption>{{
-						i18n.ts._experiments.experimentalPostEditingCaption
+						i18n.ts._experiments.postEditingCaption
 					}}</template>
 				</FormSwitch>
 			</FormSuspense>
@@ -39,7 +39,7 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let enableExperimentalPostEditing = $ref(false);
+let enablePostEditing = $ref(false);
 let meta = $ref<MetaExperiments | null>(null);
 
 type MetaExperiments = {
@@ -52,14 +52,13 @@ async function init() {
 	meta = (await os.api("admin/meta")) as MetaExperiments;
 	if (!meta) return;
 
-	enableExperimentalPostEditing =
-		meta.experimentalFeatures?.postEditing ?? false;
+	enablePostEditing = meta.experimentalFeatures?.postEditing ?? false;
 }
 
 function save() {
 	const experiments: MetaExperiments = {
 		experimentalFeatures: {
-			postEditing: enableExperimentalPostEditing,
+			postEditing: enablePostEditing,
 		},
 	};
 	os.apiWithDialog("admin/update-meta", experiments).then(() => {
