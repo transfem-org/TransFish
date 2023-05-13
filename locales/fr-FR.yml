@@ -1905,7 +1905,7 @@ _preferencesBackups:
   noBackups: Aucune sauvegarde n'existe. Vous pouvez sauvegarder les paramètres de
     votre client sur ce serveur en utilisant "Créer une nouvelle sauvegarde".
   createdAt: 'Crée le : {date} {time}'
-  renameConfirm: Renommer la sauvegarde "{old}" à "{new}" ?
+  renameConfirm: Renommer la sauvegarde "{old}" en "{new}" ?
   list: Sauvegardes créées
   saveNew: Faire une nouvelle sauvegarde
   loadFile: Charger depuis le fichier
