@@ -2008,3 +2008,10 @@ _deck:
     list: "List"
     mentions: "Mentions"
     direct: "Direct messages"
+_experiments:
+  title: "Experiments"
+  alpha: "Alpha"
+  beta: "Beta"
+  release: "Release"
+  enableExperimentalPostEditing: "Enable experimental post editing"
+  experimentalPostEditingCaption: "Enables the option for users to edit their posts in post options"

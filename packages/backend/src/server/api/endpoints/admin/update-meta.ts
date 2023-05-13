@@ -170,6 +170,13 @@ export const paramDef = {
 		objectStorageS3ForcePathStyle: { type: "boolean" },
 		enableIpLogging: { type: "boolean" },
 		enableActiveEmailValidation: { type: "boolean" },
+		experimentalFeatures: {
+			type: "object",
+			nullable: true,
+			properties: {
+				postEditing: { type: "boolean" },
+			},
+		},
 	},
 	required: [],
 } as const;
