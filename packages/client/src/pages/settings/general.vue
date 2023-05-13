@@ -95,7 +95,10 @@
 			<FormSwitch v-model="autoplayMfm" class="_formBlock">
 				{{ i18n.ts._mfm.alwaysPlay }}
 				<template #caption>
-					<i class="ph-warning ph-bold ph-lg" style="color: var(--warn)"></i>
+					<i
+						class="ph-warning ph-bold ph-lg"
+						style="color: var(--warn)"
+					></i>
 					{{ i18n.ts._mfm.warn }}
 				</template>
 			</FormSwitch>

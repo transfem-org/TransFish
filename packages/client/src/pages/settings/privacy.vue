@@ -61,8 +61,11 @@
 			<template #caption>{{ i18n.ts.noCrawleDescription }}</template>
 		</FormSwitch>
 		<FormSwitch v-model="preventAiLearning" @update:model-value="save()">
-			{{ i18n.ts.preventAiLearning }}<span class="_beta">{{ i18n.ts.beta }}</span>
-			<template #caption>{{ i18n.ts.preventAiLearningDescription }}</template>
+			{{ i18n.ts.preventAiLearning
+			}}<span class="_beta">{{ i18n.ts.beta }}</span>
+			<template #caption>{{
+				i18n.ts.preventAiLearningDescription
+			}}</template>
 		</FormSwitch>
 		<FormSwitch
 			v-model="isExplorable"

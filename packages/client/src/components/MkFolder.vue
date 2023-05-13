@@ -146,8 +146,18 @@ export default defineComponent({
 		backdrop-filter: var(--blur, blur(20px));
 		margin-inline: -12px;
 		padding-inline: 12px;
-		mask: linear-gradient(to right, transparent, black 12px calc(100% - 12px), transparent);
-		-webkit-mask: linear-gradient(to right, transparent, black 12px calc(100% - 12px), transparent);
+		mask: linear-gradient(
+			to right,
+			transparent,
+			black 12px calc(100% - 12px),
+			transparent
+		);
+		-webkit-mask: linear-gradient(
+			to right,
+			transparent,
+			black 12px calc(100% - 12px),
+			transparent
+		);
 
 		> .title {
 			margin: 0;

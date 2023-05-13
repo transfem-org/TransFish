@@ -192,7 +192,8 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (typeof ps.autoAcceptFollowed === "boolean")
 		profileUpdates.autoAcceptFollowed = ps.autoAcceptFollowed;
 	if (typeof ps.noCrawle === "boolean") profileUpdates.noCrawle = ps.noCrawle;
-	if (typeof ps.preventAiLearning === "boolean") profileUpdates.preventAiLearning = ps.preventAiLearning;
+	if (typeof ps.preventAiLearning === "boolean")
+		profileUpdates.preventAiLearning = ps.preventAiLearning;
 	if (typeof ps.isCat === "boolean") updates.isCat = ps.isCat;
 	if (typeof ps.speakAsCat === "boolean") updates.speakAsCat = ps.speakAsCat;
 	if (typeof ps.injectFeaturedNote === "boolean")

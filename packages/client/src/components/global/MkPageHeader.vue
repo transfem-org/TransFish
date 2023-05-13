@@ -14,9 +14,7 @@
 			@touchstart="preventDrag"
 			v-tooltip.noDelay="i18n.ts.goBack"
 		>
-			<i
-				class="ph-caret-left ph-bold ph-lg"
-			></i>
+			<i class="ph-caret-left ph-bold ph-lg"></i>
 		</button>
 		<div v-if="narrow" class="buttons left" @click="openAccountMenu">
 			<MkAvatar
@@ -382,7 +380,8 @@ onUnmounted(() => {
 			display: none;
 		}
 
-		> .button/*, @at-root .backButton*/ { /* I don't know how to get this to work */
+		> .button/*, @at-root .backButton*/ {
+			/* I don't know how to get this to work */
 			display: flex;
 			align-items: center;
 			justify-content: center;

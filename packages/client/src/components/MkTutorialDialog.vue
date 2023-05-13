@@ -49,7 +49,7 @@
 							</h2>
 							<h3>{{ i18n.ts._tutorial.step1_1 }}</h3>
 							<div>{{ i18n.ts._tutorial.step1_2 }}</div>
-							<!-- TODO: move to new slide -->
+							<!-- TODO: move to own slide -->
 							<!-- <FormSwitch v-model="autoplayMfm" class="_formBlock">
 								{{ i18n.ts._mfm.alwaysPlay }}
 								<template #caption>
@@ -191,7 +191,7 @@
 								primary
 								show-only-to-register
 							/>
-						</div>
+						</section>
 					</Transition>
 				</div>
 			</div>

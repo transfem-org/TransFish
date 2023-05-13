@@ -13,7 +13,7 @@
 			class="columns"
 			:class="{ fullView, withGlobalHeader: showMenuOnTop }"
 		>
-			<XSidebar v-if="!showMenuOnTop"/>
+			<XSidebar v-if="!showMenuOnTop" />
 			<div v-else ref="widgetsLeft" class="widgets left">
 				<XWidgets
 					:place="'left'"
@@ -243,7 +243,8 @@ onMounted(() => {
 			background: var(--acrylicBg) !important;
 			backdrop-filter: blur(12px);
 		}
-		:deep(.tl), :deep(.notes) {
+		:deep(.tl),
+		:deep(.notes) {
 			background: none !important;
 		}
 	}
@@ -279,7 +280,9 @@ onMounted(() => {
 			box-sizing: content-box;
 			.banner {
 				pointer-events: none;
-				mask: radial-gradient(farthest-side at top, hsl(0, 0%, 0%) 0%,
+				mask: radial-gradient(
+					farthest-side at top,
+					hsl(0, 0%, 0%) 0%,
 					hsla(0, 0%, 0%, 0.987) 0.3%,
 					hsla(0, 0%, 0%, 0.951) 1.4%,
 					hsla(0, 0%, 0%, 0.896) 3.2%,
@@ -294,8 +297,11 @@ onMounted(() => {
 					hsla(0, 0%, 0%, 0.104) 60.8%,
 					hsla(0, 0%, 0%, 0.049) 72.6%,
 					hsla(0, 0%, 0%, 0.013) 85.7%,
-					hsla(0, 0%, 0%, 0) 100%) !important;
-				-webkit-mask: radial-gradient(farthest-side at top, hsl(0, 0%, 0%) 0%,
+					hsla(0, 0%, 0%, 0) 100%
+				) !important;
+				-webkit-mask: radial-gradient(
+					farthest-side at top,
+					hsl(0, 0%, 0%) 0%,
 					hsla(0, 0%, 0%, 0.987) 0.3%,
 					hsla(0, 0%, 0%, 0.951) 1.4%,
 					hsla(0, 0%, 0%, 0.896) 3.2%,
@@ -310,7 +316,8 @@ onMounted(() => {
 					hsla(0, 0%, 0%, 0.104) 60.8%,
 					hsla(0, 0%, 0%, 0.049) 72.6%,
 					hsla(0, 0%, 0%, 0.013) 85.7%,
-					hsla(0, 0%, 0%, 0) 100%) !important;
+					hsla(0, 0%, 0%, 0) 100%
+				) !important;
 				width: 125% !important;
 				left: -12.5% !important;
 				height: 125% !important;

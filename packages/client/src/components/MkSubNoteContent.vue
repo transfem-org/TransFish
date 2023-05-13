@@ -33,7 +33,12 @@
 	<div class="wrmlmaau">
 		<div
 			class="content"
-			:class="{ collapsed, isLong, showContent: note.cw && !showContent, disableAnim: disableMfm }"
+			:class="{
+				collapsed,
+				isLong,
+				showContent: note.cw && !showContent,
+				disableAnim: disableMfm,
+			}"
 		>
 			<XCwButton
 				ref="cwButton"
@@ -179,7 +184,9 @@ const urls = props.note.text
 
 let showContent = $ref(false);
 
-const mfms = props.note.text ? extractMfmWithAnimation(mfm.parse(props.note.text)) : null;
+const mfms = props.note.text
+	? extractMfmWithAnimation(mfm.parse(props.note.text))
+	: null;
 
 const hasMfm = $ref(mfms.length > 0);
 
@@ -193,7 +200,7 @@ async function toggleMfm() {
 				text: i18n.ts._mfm.warn,
 			});
 			if (canceled) return;
-			
+
 			defaultStore.set("animatedMfmWarnShown", true);
 		}
 
