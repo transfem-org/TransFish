@@ -66,7 +66,7 @@ import: "インポート"
 export: "エクスポート"
 files: "ファイル"
 download: "ダウンロード"
-driveFileDeleteConfirm: "ファイル「{name}」を削除しますか？このファイルを添付した投稿も消えます。"
+driveFileDeleteConfirm: "ファイル「{name}」を削除しますか？これにより、このファイルが添付されている投稿も削除されます。"
 unfollowConfirm: "{name}さんのフォローを解除しますか？"
 exportRequested: "エクスポートをリクエストしました。これには時間がかかる場合があります。エクスポートが終わると、「ドライブ」に追加されます。"
 importRequested: "インポートをリクエストしました。これには時間がかかる場合があります。"
@@ -815,7 +815,7 @@ customCssWarn: "この設定は必ず知識のある方が行ってください�
 global: "グローバル"
 recommended: "推奨"
 squareAvatars: "アイコンを四角形で表示"
-seperateRenoteQuote: "ブーストと引用ボタンを分ける"
+seperateRenoteQuote: "ブーストと引用のボタンを分ける"
 sent: "送信"
 received: "受信"
 searchResult: "検索結果"
@@ -945,7 +945,7 @@ customSplashIconsDescription: "ユーザがページをロード/リロードす
   \ URL。画像は静的なURLで、できればすべて192x192にリサイズしてください。"
 showUpdates: "Calckeyの更新時にポップアップを表示する"
 recommendedInstances: "おすすめインスタンス"
-recommendedInstancesDescription: "おすすめタイムラインに表示される、改行で区切られたインスタンス。`https://`を追加しないでください。ドメインのみを追加してください。"
+recommendedInstancesDescription: "おすすめタイムラインに表示するインスタンスを改行区切りで入力してください。`https://`は書かず、ドメインのみを入力してください。"
 caption: "自動キャプション"
 splash: "スプラッシュスクリーン"
 updateAvailable: "アップデートがありますよ！"
@@ -962,7 +962,7 @@ moveFrom: "別のアカウントからこのアカウントに引っ越す"
 moveFromLabel: "引っ越し元のアカウント："
 moveFromDescription: "別のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。必ず引っ越しを実行する前に作成してください！引っ越し元のアカウントをこのように入力してください：@person@instance.com"
 migrationConfirm: "本当にこのアカウントを {account} に引っ越しますか？一度引っ越しを行うと取り消せず、二度とこのアカウントを元の状態で使用できなくなります。\n\
-  また、引っ越し先のアカウントでエイリアスを作成したことを確認してください。"
+  この操作を行う前に引っ越し先のアカウントでエイリアスを作成する必要があります。エイリアスが作成されているか、必ず確認してください。"
 defaultReaction: "リモートとローカルの投稿に対するデフォルトの絵文字リアクション"
 license: "ライセンス"
 indexPosts: "投稿をインデックス"
@@ -1130,6 +1130,17 @@ _mfm:
   plain: "プレーン"
   plainDescription: "内側の構文を全て無効にします。"
   position: 位置
+  stop: MFMアニメーションを停止
+  alwaysPlay: MFMアニメーションを自動再生する
+  play: MFMアニメーションを再生
+  warn: MFMアニメーションは激しい動きを含む可能性があります。
+  positionDescription: 位置を指定した値だけずらします。
+  foreground: 文字色
+  backgroundDescription: 背景の色を変更します。
+  background: 背景色
+  scale: 拡大・縮小
+  scaleDescription: 大きさを指定した値に拡大・縮小します。
+  foregroundDescription: 文字の色を変更します。
 _instanceTicker:
   none: "表示しない"
   remote: "リモートユーザーに表示"
@@ -1843,3 +1854,14 @@ noteId: 投稿のID
 hiddenTagsDescription: 'トレンドと「みつける」から除外したいハッシュタグを（先頭の # を除いて）改行区切りで入力してください。この設定はトレンドと「みつける」以外には影響しません。'
 hiddenTags: 非表示にするハッシュタグ
 apps: "アプリ"
+_experiments:
+  enablePostEditing: 投稿の編集機能を有効にする
+  title: 試験的な機能
+  postEditingCaption: 投稿のメニューに既存の投稿を編集するボタンを表示します。
+sendModMail: モデレーションノートを送る
+deleted: 削除済み
+editNote: 投稿を編集
+edited: 編集済み
+signupsDisabled: 
+  現在、このサーバーでは新規登録が一般開放されていません。招待コードをお持ちの場合には、以下の欄に入力してください。招待コードをお持ちでない場合にも、新規登録を開放している他のサーバーには入れますよ！
+findOtherInstance: 他のサーバーを探す
