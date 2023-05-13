@@ -145,6 +145,7 @@ export type Note = {
 	visibility: "public" | "home" | "followers" | "specified";
 	visibleUserIds?: User["id"][];
 	localOnly?: boolean;
+	channel?: Channel["id"];
 	myReaction?: string;
 	reactions: Record<string, number>;
 	renoteCount: number;
@@ -164,6 +165,7 @@ export type Note = {
 	}[];
 	uri?: string;
 	url?: string;
+	updatedAt?: DateString;
 	isHidden?: boolean;
 };
 

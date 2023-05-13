@@ -25,6 +25,7 @@ import { $i } from "@/account";
 import { useTooltip } from "@/scripts/use-tooltip";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
+import { MenuItem } from "@/types/menu";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -73,7 +74,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	const users = renotes.map((x) => x.user.id);
 	const hasRenotedBefore = users.includes($i.id);
 
-	let buttonActions = [];
+	let buttonActions: Array<MenuItem> = [];
 
 	if (props.note.visibility === "public") {
 		buttonActions.push({
