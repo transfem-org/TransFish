@@ -16,8 +16,8 @@
 					<template #label>
 						<i class="ph-pencil-line ph-bold ph-lg"></i>
 						{{ i18n.ts._experiments.enablePostEditing }}
-						<span class="level alpha">
-							({{ i18n.ts._experiments.alpha }})</span
+						<span class="_beta">
+							{{ i18n.ts.beta }}</span
 						>
 					</template>
 					<template #caption>{{
@@ -75,20 +75,3 @@ definePageMetadata({
 	icon: "ph-flask ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped>
-.level {
-	font-size: 0.8em;
-	color: var(--color-gray-500);
-	text-transform: uppercase;
-	&.alpha {
-		color: #f59e0b;
-	}
-	&.beta {
-		color: #0ea5e9;
-	}
-	&.release {
-		color: #10b981;
-	}
-}
-</style>
