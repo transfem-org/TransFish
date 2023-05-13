@@ -23,5 +23,9 @@ queue  = { path = "crates/queue" }
 config = { path = "crates/config" }
 macros = { path = "crates/macros" }
 lazy_static = "1.4.0"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+tokio = { version = "1.28.1", features = ["full"] }
+anyhow = "1.0.71"
 
 [dev-dependencies]
