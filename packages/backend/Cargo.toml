@@ -21,6 +21,7 @@ server = { path = "crates/server" }
 logging = { path = "crates/logging" }
 queue  = { path = "crates/queue" }
 config = { path = "crates/config" }
+macros = { path = "crates/macros" }
 lazy_static = "1.4.0"
 
 [dev-dependencies]

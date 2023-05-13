@@ -3,7 +3,8 @@ use std::{
     path::{Path, PathBuf},
 };
 
-extern crate config;
+#[macro_use]
+extern crate macros;
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     env::set_var(
