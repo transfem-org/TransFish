@@ -591,5 +591,6 @@ export default define(meta, paramDef, async (ps, me) => {
 		libreTranslateApiKey: instance.libreTranslateApiKey,
 		enableIpLogging: instance.enableIpLogging,
 		enableActiveEmailValidation: instance.enableActiveEmailValidation,
+		experimentalFeatures: instance.experimentalFeatures,
 	};
 });

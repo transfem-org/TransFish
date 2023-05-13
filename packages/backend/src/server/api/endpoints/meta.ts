@@ -525,6 +525,8 @@ export default define(meta, paramDef, async (ps, me) => {
 			serviceWorker: instance.enableServiceWorker,
 			miauth: true,
 		};
+
+		response.experimentalFeatures = instance.experimentalFeatures;
 	}
 
 	return response;
