@@ -564,6 +564,10 @@ export default define(meta, paramDef, async (ps, me) => {
 		set.enableActiveEmailValidation = ps.enableActiveEmailValidation;
 	}
 
+	if (ps.experimentalFeatures !== undefined) {
+		set.experimentalFeatures = ps.experimentalFeatures || undefined;
+	}
+
 	await db.transaction(async (transactionalEntityManager) => {
 		const metas = await transactionalEntityManager.find(Meta, {
 			order: {
