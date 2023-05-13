@@ -49,13 +49,14 @@
 							</h2>
 							<h3>{{ i18n.ts._tutorial.step1_1 }}</h3>
 							<div>{{ i18n.ts._tutorial.step1_2 }}</div>
-							<FormSwitch v-model="autoplayMfm" class="_formBlock">
+							<!-- TODO: move to new slide -->
+							<!-- <FormSwitch v-model="autoplayMfm" class="_formBlock">
 								{{ i18n.ts._mfm.alwaysPlay }}
 								<template #caption>
 									<i class="ph-warning ph-bold ph-lg" style="color: var(--warn)"></i>
 									{{ i18n.ts._mfm.warn }}
 								</template>
-							</FormSwitch>
+							</FormSwitch> -->
 							<FormSwitch v-model="reduceAnimation" class="_formBlock">
 								{{ i18n.ts.reduceUiAnimation }}
 							</FormSwitch>
