@@ -1,23 +1,31 @@
 <template>
 	<MkStickyContainer>
-		<FormSuspense :p="init">
-			<FormSwitch
-				v-model="enableExperimentalPostEditing"
-				@update:modelValue="save"
-				class="_formBlock"
-			>
-				<template #label
-					><i class="ph-pencil-line ph-bold ph-lg"></i
-					>{{ i18n.ts._experiments.enableExperimentalPostEditing
-					}}<span class="level alpha"
-						>({{ i18n.ts._experiments.alpha }})</span
-					></template
+		<template #header
+			><MkPageHeader
+				:actions="headerActions"
+				:tabs="headerTabs"
+				:display-back-button="true"
+		/></template>
+		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
+			<FormSuspense :p="init">
+				<FormSwitch
+					v-model="enableExperimentalPostEditing"
+					@update:modelValue="save"
+					class="_formBlock"
 				>
-				<template #caption>{{
-					i18n.ts._experiments.experimentalPostEditingCaption
-				}}</template>
-			</FormSwitch>
-		</FormSuspense>
+					<template #label>
+						<i class="ph-pencil-line ph-bold ph-lg"></i>
+						{{ i18n.ts._experiments.enableExperimentalPostEditing }}
+						<span class="level alpha">
+							({{ i18n.ts._experiments.alpha }})</span
+						>
+					</template>
+					<template #caption>{{
+						i18n.ts._experiments.experimentalPostEditingCaption
+					}}</template>
+				</FormSwitch>
+			</FormSuspense>
+		</MkSpacer>
 	</MkStickyContainer>
 </template>
 
@@ -58,6 +66,10 @@ function save() {
 		fetchInstance();
 	});
 }
+
+const headerActions = $computed(() => []);
+
+const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._experiments.title,
