@@ -87,7 +87,7 @@ manageLists: "Gérer les listes"
 error: "Erreur"
 somethingHappened: "Une erreur est survenue"
 retry: "Réessayer"
-pageLoadError: "Le chargement de la page a échoué"
+pageLoadError: "Le chargement de la page a échoué."
 pageLoadErrorDescription: "Cela est généralement causé par le cache du navigateur\
   \ ou par un problème réseau. Veuillez vider votre cache ou attendre un peu et réessayer."
 serverIsDead: "Le serveur ne répond pas. Patientez quelques instants puis essayez\
@@ -106,7 +106,7 @@ followRequestPending: "Demande d'abonnement en attente de confirmation"
 enterEmoji: "Insérer un émoji"
 renote: "Renoter"
 unrenote: "Annuler la Renote"
-renoted: "Renoté !"
+renoted: "Renoté."
 cantRenote: "Ce message ne peut pas être renoté."
 cantReRenote: "Impossible de renoter une Renote."
 quote: "Citer"
@@ -767,7 +767,7 @@ nUsers: "{n} utilisateur·rice·s"
 nNotes: "{n} Notes"
 sendErrorReports: "Envoyer les rapports d’erreur"
 sendErrorReportsDescription: "Si vous activez l'envoi des rapports d'erreur, vous\
-  \ contribuerez à améliorer la qualité de Misskey grâce au partage d'informations\
+  \ contribuerez à améliorer la qualité de Calckey grâce au partage d'informations\
   \ détaillées sur les erreurs lorsqu'un problème survient.\nCela inclut des informations\
   \ telles que la version de votre système d'exploitation, le type de navigateur que\
   \ vous utilisez, votre historique d'activité, etc."
@@ -825,7 +825,7 @@ active: "Actif·ve"
 offline: "Hors ligne"
 notRecommended: "Déconseillé"
 botProtection: "Protection contre les bots"
-instanceBlocking: "Instances bloquées"
+instanceBlocking: "Instances bloquées/mise en sourdine"
 selectAccount: "Sélectionner un compte"
 switchAccount: "Changer de compte"
 enabled: "Activé"
@@ -1080,6 +1080,7 @@ _mfm:
   plainDescription: Désactiver les effets de tous les MFM contenus dans cet effet
     MFM.
   rotateDescription: Pivoter le contenu d'un angle spécifique.
+  position: Position
 _instanceTicker:
   none: "Cacher "
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
@@ -1099,6 +1100,7 @@ _channel:
   following: "Abonné·e"
   usersCount: "{n} Participant·e·s"
   notesCount: "{n} Notes"
+  nameAndDescription: Nom et description
 _menuDisplay:
   sideFull: "Latéral"
   sideIcon: "Latéral (icônes)"
@@ -1243,10 +1245,10 @@ _tutorial:
     \ de vos followers."
   step5_4: "La timeline locale {icon} est l'endroit où vous pouvez voir les messages\
     \ de tout le monde sur cette instance."
-  step5_5: "La timeline {icon} recommandée est l'endroit où vous pouvez voir les messages\
-    \ des instances que les administrateurs recommandent."
-  step5_6: "La timeline {icon} sociale est l'endroit où vous pouvez voir les publications\
-    \ des amis de vos followers."
+  step5_5: "La chronologie {icon} sociale est l'endroit où vous pouvez voir uniquement\
+    \ les publications des comptes que vous suivez."
+  step5_6: "La chronologie {icon} recommandée est l'endroit où vous pouvez voir les\
+    \ publications des instances recommandées par les administrateurs."
   step5_7: "La timeline globale {icon} est l'endroit où vous pouvez voir les messages\
     \ de toutes les autres instances connectées."
   step6_1: "Alors quel est cet endroit ?"
@@ -1349,6 +1351,10 @@ _widgets:
   serverMetric: "Statistiques du serveur"
   aiscript: "Console AiScript"
   aichan: "Ai"
+  userList: Liste d'utilisateurs
+  _userList:
+    chooseList: Sélectionner une liste
+  unixClock: Horloge UNIX
 _cw:
   hide: "Masquer"
   show: "Afficher plus …"
@@ -1411,6 +1417,8 @@ _profile:
   metadataContent: "Contenu"
   changeAvatar: "Changer l'image de profil"
   changeBanner: "Changer de bannière"
+  locationDescription: Si vous entrez votre ville en premier, votre heure locale sera
+    affiché aux autres utilisateurs.
 _exportOrImport:
   allNotes: "Toutes les notes"
   followingList: "Abonnements"
@@ -1450,6 +1458,7 @@ _timelines:
   local: "Local"
   social: "Social"
   global: "Global"
+  recommended: Recommandée
 _pages:
   newPage: "Créer une page"
   editPage: "Modifier une page"
@@ -1775,6 +1784,7 @@ _notification:
     followRequestAccepted: "Demande d'abonnement acceptée"
     groupInvited: "Invitation à un groupe"
     app: "Notifications provenant des apps"
+    pollEnded: Fin du sondage
   _actions:
     followBack: "Suivre"
     reply: "Répondre"
@@ -1799,6 +1809,10 @@ _deck:
     list: "Listes"
     mentions: "Mentions"
     direct: "Direct"
+  introduction: Créer l'interface parfaite pour vous en arrangeant les colonnes librement
+    !
+  introduction2: Cliquer sur le + sur la droite de l'écran pour ajouter de nouvelles
+    colonnes à tout moment.
 keepOriginalUploadingDescription: Enregistrer l'image originale telle quelle. Si désactivé,
   une version à afficher sur le web sera générée au chargement.
 manageGroups: Gérer les groupes
@@ -1873,11 +1887,11 @@ adminCustomCssWarn: Ce paramètre ne devrait être utilisé que si vous savez ce
   de fonctionner. Assurez-vous que votre CSS fonctionne correctement en l'essayant
   dans vos paramètres utilisateur.
 swipeOnDesktop: Permettre le style de glissement de fenêtre de mobile sur PC
-moveFromLabel: 'Compte depuis lequel vous migrez :'
+moveFromLabel: 'Compte depuis lequel vous migrez :'
 migrationConfirm: "Êtes-vous absolument certain⋅e que vous voulez migrer votre compte\
   \ vers {account} ? Une fois fait, vous ne pourrez pas revenir en arrière, et vous\
   \ ne pourrez plus utiliser le compte actuel normalement à nouveau.\nAussi, assurez-vous\
-  \ d'avoir configuré le compte courant comme le compte depuis lequel vous migrez."
+  \ d'avoir configuré le compte actuel comme le compte depuis lequel vous migrez."
 _preferencesBackups:
   updatedAt: 'Mis à jour le : {date} {time}'
   cannotLoad: Le chargement a échoué
@@ -1956,9 +1970,9 @@ customSplashIconsDescription: URLs pour les icônes personnalisées de l'écran 
   (re)chargement de page. Assurez-vous que les images sont sur des URL statiques,
   de préférence toutes de taille 192x192.
 updateAvailable: Une mise à jour est peut-être disponible !
-accountMoved: "L'utilisateur a migré vers un nouveau compte:"
+accountMoved: "L'utilisateur a migré vers un nouveau compte :"
 enableEmojiReactions: Activer les réactions par émojis
-showEmojisInReactionNotifications: Montrer les émojis dans les notifications de réaction
+showEmojisInReactionNotifications: Montrer les émojis dans les notifications de réactions
 renoteUnmute: Notifier les renotes
 selectInstance: Choisir une instance
 noInstances: Il n'y a aucune instance
@@ -2010,3 +2024,14 @@ editNote: Modifier note
 edited: Modifié
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
   personnes aux publications des autres.
+_experiments:
+  alpha: Alpha
+  beta: Beta
+  enablePostEditing: Autoriser l'édition de note
+  title: Expérimentations
+findOtherInstance: Trouver un autre serveur
+userSaysSomethingReasonQuote: '{name} a cité une note contenant {reason}'
+signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés, mais
+  vous pouvez toujours vous inscrire sur un autre serveur ! Si vous avez un code d'invitation
+  pour ce serveur, entrez-le ci-dessous s'il vous plait.
+apps: Applications
