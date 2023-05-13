@@ -2036,4 +2036,4 @@ signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés,
   pour ce serveur, entrez-le ci-dessous s'il vous plait.
 apps: Applications
 userSaysSomethingReasonReply: '{noms} a répondu à une note contenant {raison}'
-defaultValueIs: 'défaut: {valeur}'
+defaultValueIs: 'défaut : {valeur}'
