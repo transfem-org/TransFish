@@ -523,10 +523,9 @@ export default define(meta, paramDef, async (ps, me) => {
 			github: instance.enableGithubIntegration,
 			discord: instance.enableDiscordIntegration,
 			serviceWorker: instance.enableServiceWorker,
+			postEditing: instance.experimentalFeatures?.postEditing || false,
 			miauth: true,
 		};
-
-		response.experimentalFeatures = instance.experimentalFeatures;
 	}
 
 	return response;

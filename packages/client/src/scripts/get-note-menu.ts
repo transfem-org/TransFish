@@ -421,7 +421,7 @@ export function getNoteMenu(props: {
 
 			null,
 
-			instance.experimentalFeatures?.postEditing && isAppearAuthor
+			instance.features.postEditing && isAppearAuthor
 				? {
 						icon: "ph-pencil-line ph-bold ph-lg",
 						text: i18n.ts.edit,
@@ -430,7 +430,7 @@ export function getNoteMenu(props: {
 				  }
 				: undefined,
 
-			instance.experimentalFeatures?.postEditing
+			instance.features.postEditing
 				? {
 						icon: "ph-copy ph-bold ph-lg",
 						text: i18n.ts.duplicate,

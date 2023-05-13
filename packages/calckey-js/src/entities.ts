@@ -304,7 +304,6 @@ export type LiteInstanceMetadata = {
 		url: string;
 		imageUrl: string;
 	}[];
-	experimentalFeatures?: Record<string, any>;
 };
 
 export type DetailedInstanceMetadata = LiteInstanceMetadata & {
