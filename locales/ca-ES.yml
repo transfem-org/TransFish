@@ -2049,3 +2049,5 @@ _experiments:
   release: Publicà
   enablePostEditing: Activà l'edició de publicacions
   title: Experiments
+  postEditingCaption: Mostra l'opció perquè els usuaris editin les seves publicacions
+    existents mitjançant el menú d'opcions de publicació
