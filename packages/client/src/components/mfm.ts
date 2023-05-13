@@ -151,7 +151,7 @@ export default defineComponent({
 									break;
 								}
 								case "sparkle": {
-									if (!(defaultStore.state.animatedMfm || reducedMotion())) {
+									if (reducedMotion()) {
 										return genEl(token.children);
 									}
 									return h(MkSparkle, {}, genEl(token.children));

@@ -187,11 +187,15 @@ let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
 
 async function toggleMfm() {
 	if (disableMfm) {
-		const { canceled } = await os.confirm({
-			type: "warning",
-			text: i18n.ts._mfm.warn,
-		});
-		if (canceled) return;
+		if (!defaultStore.state.animatedMfmWarnShown) {
+			const { canceled } = await os.confirm({
+				type: "warning",
+				text: i18n.ts._mfm.warn,
+			});
+			if (canceled) return;
+			
+			defaultStore.set("animatedMfmWarnShown", true);
+		}
 
 		disableMfm = false;
 	} else {
