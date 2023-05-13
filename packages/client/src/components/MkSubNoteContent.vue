@@ -120,18 +120,18 @@
 				v-model="collapsed"
 			></XShowMoreButton>
 			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
-			<MkButton
-				v-if="hasMfm && defaultStore.state.animatedMfm"
-				@click.stop="toggleMfm"
-			>
-				<template v-if="disableMfm">
-					<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
-				</template>
-				<template v-else>
-					<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
-				</template>
-			</MkButton>
 		</div>
+		<MkButton
+			v-if="hasMfm && defaultStore.state.animatedMfm"
+			@click.stop="toggleMfm"
+		>
+			<template v-if="disableMfm">
+				<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
+			</template>
+			<template v-else>
+				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
+			</template>
+		</MkButton>
 	</div>
 </template>
 
@@ -184,8 +184,6 @@ const mfms = props.note.text ? extractMfmWithAnimation(mfm.parse(props.note.text
 const hasMfm = $ref(mfms.length > 0);
 
 let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
-
-console.log(disableMfm + " " + props.note.id + " " + defaultStore.state.animatedMfm);
 
 async function toggleMfm() {
 	if (disableMfm) {
@@ -334,6 +332,9 @@ function focusFooter(ev) {
 			animation: none !important;
 			transition: none !important;
 		}
+	}
+	> :deep(button) {
+		margin-top: 10px;
 	}
 }
 </style>
