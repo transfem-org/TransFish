@@ -57,7 +57,8 @@ export default defineComponent({
 							MkRadio,
 							{
 								key: option.key,
-								value: option.props.value,
+								value: option.props?.value,
+								disabled: option.props?.disabled,
 								modelValue: this.value,
 								"onUpdate:modelValue": (value) =>
 									(this.value = value),

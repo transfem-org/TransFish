@@ -23,11 +23,10 @@
 				></template>
 				<FormRadios v-model="importType" class="_formBlock">
 					<option value="calckey">Calckey/Misskey</option>
-					<option value="mastodon">Mastodon</option>
-					<option disabled="true" value="akkoma">
-						Pleroma/Akkoma (soon)
+					<option value="mastodon">
+						Mastodon/Akkoma/Pleroma (only outbox.json)
 					</option>
-					<option disabled="true" value="twitter">
+					<option :disabled="true" value="twitter">
 						Twitter (soon)
 					</option>
 				</FormRadios>

@@ -874,7 +874,7 @@ instanceSecurity: "Instance Security"
 secureModeInfo: "When requesting from other instances, do not send back without proof."
 privateMode: "Private Mode"
 privateModeInfo: "When enabled, only whitelisted instances can federate with your\
-  \ instances. All posts will be hidden from the public."
+  \ instance. All posts will be hidden from the public."
 allowedInstances: "Whitelisted Instances"
 allowedInstancesDescription: "Hosts of instances to be whitelisted for federation,\
   \ each separated by a new line (only applies in private mode)."
@@ -886,7 +886,6 @@ global: "Global"
 recommended: "Recommended"
 squareAvatars: "Display squared avatars"
 seperateRenoteQuote: "Separate boost and quote buttons"
-highlightCw: "Highlight content warned posts"
 sent: "Sent"
 received: "Received"
 searchResult: "Search results"
@@ -1078,8 +1077,15 @@ customKaTeXMacroDescription: "Set up macros to write mathematical expressions ea
   \ supported; advanced syntax, such as conditional branching, cannot be used here."
 enableCustomKaTeXMacro: "Enable custom KaTeX macros"
 noteId: "Post ID"
-signupsDisabled: "Signups on this server are currently disabled, but you can always sign up at another server! If you have an invitation code for this server, please enter it below."
+signupsDisabled: "Signups on this server are currently disabled, but you can always\
+  \ sign up at another server! If you have an invitation code for this server, please\
+  \ enter it below."
 findOtherInstance: "Find another server"
+apps: "Apps"
+sendModMail: "Send Moderation Notice"
+preventAiLearning: "Prevent AI bot scraping"
+preventAiLearningDescription: "Request third-party AI language models not to study content you upload, such as posts and images."
+
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing\
@@ -1187,6 +1193,10 @@ _nsfw:
   ignore: "Don't hide NSFW media"
   force: "Hide all media"
 _mfm:
+  play: "Play MFM"
+  stop: "Stop MFM"
+  warn: "MFM may contain rapidly moving or flashy animations"
+  alwaysPlay: "Always autoplay all animated MFM"
   cheatSheet: "MFM Cheatsheet"
   intro: "MFM is a markup language used on Misskey, Calckey, Akkoma, and more that\
     \ can be used in many places. Here you can view a list of all available MFM syntax."
@@ -1998,20 +2008,3 @@ _deck:
     list: "List"
     mentions: "Mentions"
     direct: "Direct messages"
-_apps:
-  apps: "Apps"
-  crossPlatform: "Cross platform"
-  mobile: "Mobile"
-  firstParty: "First party"
-  firstClass: "First class"
-  secondClass: "Second class"
-  thirdClass: "Third class"
-  free: "Free"
-  paid: "Paid"
-  pwa: "Install PWA"
-  kaiteki: "Kaiteki"
-  milktea: "Milktea"
-  missLi: "MissLi"
-  mona: "Mona"
-  theDesk: "TheDesk"
-  lesskey: "Lesskey"

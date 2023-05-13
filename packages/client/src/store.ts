@@ -146,10 +146,6 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
-		highlightCw: {
-			where: "device",
-			default: false,
-		},
 		nsfw: {
 			where: "device",
 			default: "respect" as "respect" | "force" | "ignore",
@@ -161,6 +157,10 @@ export const defaultStore = markRaw(
 		animatedMfm: {
 			where: "device",
 			default: true,
+		},
+		animatedMfmWarnShown: {
+			where: "device",
+			default: false,
 		},
 		loadRawImages: {
 			where: "device",

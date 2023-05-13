@@ -12,7 +12,7 @@
 		<MkNoteSub
 			v-for="note in conversation"
 			:key="note.id"
-			class="reply-to-more"
+			class="reply-to"
 			:note="note"
 		/>
 		<MkNoteSub
@@ -345,7 +345,7 @@ async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
 
 			replies.value.splice(found, 0, replyNote);
 			if (found === 0) {
-				directReplies.value.unshift(replyNote);
+				directReplies.value.push(replyNote);
 			}
 			break;
 
@@ -414,15 +414,7 @@ onUnmounted(() => {
 	}
 	> .reply-to {
 		margin-bottom: -16px;
-	}
-
-	> .reply-to-more {
-		// opacity: 0.7;
-		cursor: pointer;
-
-		@media (pointer: coarse) {
-			cursor: default;
-		}
+		padding-bottom: 16px;
 	}
 
 	> .renote {
@@ -478,15 +470,16 @@ onUnmounted(() => {
 
 	> .article {
 		padding-block: 28px 6px;
-		&:last-child {
-			padding-bottom: 24px;
-		}
-		font-size: 1.1em;
+		padding-top: 12px;
+		font-size: 1.1rem;
 		overflow: clip;
 		outline: none;
 		scroll-margin-top: calc(var(--stickyTop) + 20vh);
 		:deep(.article) {
 			cursor: unset;
+		}
+		&:first-of-type {
+			padding-top: 28px;
 		}
 	}
 
@@ -503,7 +496,6 @@ onUnmounted(() => {
 	// Hover
 	.reply :deep(.main),
 	.reply-to,
-	.reply-to-more,
 	:deep(.more) {
 		position: relative;
 		&::before {
@@ -517,13 +509,18 @@ onUnmounted(() => {
 			transition: opacity 0.2s;
 			z-index: -1;
 		}
-		&.reply-to,
-		&.reply-to-more {
+		&.reply-to {
 			&::before {
 				inset: 0px 8px;
 			}
+			&:not(.max-width_450px)::before {
+				bottom: 12px;
+			}
 			&:first-of-type::before {
 				top: 12px;
+			}
+			&.reply.max-width_500px:first-of-type::before {
+				top: 4px;
 			}
 		}
 		// &::after {
@@ -557,8 +554,11 @@ onUnmounted(() => {
 		// }
 	}
 
+	&.max-width_500px {
+		font-size: 0.9em;
+	}
 	&.max-width_450px {
-		> .reply-to-more:first-child {
+		> .reply-to:first-child {
 			padding-top: 14px;
 		}
 		> .renote {

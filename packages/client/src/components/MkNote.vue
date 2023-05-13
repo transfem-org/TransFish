@@ -79,7 +79,7 @@
 				<div class="body">
 					<MkSubNoteContent
 						class="text"
-						:note="note"
+						:note="appearNote"
 						:detailed="true"
 						:detailedView="detailedView"
 						:parentId="appearNote.parentId"
@@ -139,7 +139,6 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
-						:renoteCw="note.cw"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
@@ -198,7 +197,7 @@
 			</div>
 		</article>
 	</div>
-	<div v-else class="muted" @click="muted.muted = false">
+	<button v-else class="muted _button" @click="muted.muted = false">
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
@@ -213,7 +212,7 @@
 				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 			</template>
 		</I18n>
-	</div>
+	</button>
 </template>
 
 <script lang="ts" setup>
@@ -748,5 +747,6 @@ function readPromo() {
 	padding: 8px;
 	text-align: center;
 	opacity: 0.7;
+	width: 100%;
 }
 </style>

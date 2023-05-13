@@ -92,9 +92,16 @@
 			<FormSwitch v-model="showAds" class="_formBlock">{{
 				i18n.ts.showAds
 			}}</FormSwitch>
-			<FormSwitch v-model="disableAnimatedMfm" class="_formBlock">{{
-				i18n.ts.disableAnimatedMfm
-			}}</FormSwitch>
+			<FormSwitch v-model="autoplayMfm" class="_formBlock">
+				{{ i18n.ts._mfm.alwaysPlay }}
+				<template #caption>
+					<i
+						class="ph-warning ph-bold ph-lg"
+						style="color: var(--warn)"
+					></i>
+					{{ i18n.ts._mfm.warn }}
+				</template>
+			</FormSwitch>
 			<FormSwitch v-model="reduceAnimation" class="_formBlock">{{
 				i18n.ts.reduceUiAnimation
 			}}</FormSwitch>
@@ -122,9 +129,6 @@
 			}}</FormSwitch>
 			<FormSwitch v-model="seperateRenoteQuote" class="_formBlock">{{
 				i18n.ts.seperateRenoteQuote
-			}}</FormSwitch>
-			<FormSwitch v-model="highlightCw" class="_formBlock">{{
-				i18n.ts.highlightCw
 			}}</FormSwitch>
 			<FormSwitch v-model="useSystemFont" class="_formBlock">{{
 				i18n.ts.useSystemFont
@@ -264,7 +268,7 @@ const showGapBetweenNotesInTimeline = computed(
 	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
 );
 const showAds = computed(defaultStore.makeGetterSetter("showAds"));
-const disableAnimatedMfm = computed(
+const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
 		(v) => !v,
@@ -305,7 +309,6 @@ const useReactionPickerForContextMenu = computed(
 const seperateRenoteQuote = computed(
 	defaultStore.makeGetterSetter("seperateRenoteQuote")
 );
-const highlightCw = computed(defaultStore.makeGetterSetter("highlightCw"));
 const squareAvatars = computed(defaultStore.makeGetterSetter("squareAvatars"));
 const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
 const swipeOnDesktop = computed(
