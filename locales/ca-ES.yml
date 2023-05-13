@@ -2035,3 +2035,7 @@ userSaysSomethingReasonRenote: '{name} ha impulsat una publicació que conté {r
 highlightCw: Ressalta el contingut de les publicacions advertides
 apps: Aplicacions
 sendModMail: Envia avís de moderació
+preventAiLearning: Evita l'indexació dels bots
+preventAiLearningDescription: Sol·liciteu que els models de llenguatge d'IA de tercers
+  no estudiïn el contingut que pengeu, com ara publicacions i imatges.
+pwa: Instal·lar PWA
