@@ -92,9 +92,13 @@
 			<FormSwitch v-model="showAds" class="_formBlock">{{
 				i18n.ts.showAds
 			}}</FormSwitch>
-			<FormSwitch v-model="disableAnimatedMfm" class="_formBlock">{{
-				i18n.ts.disableAnimatedMfm
-			}}</FormSwitch>
+			<FormSwitch v-model="autoplayMfm" class="_formBlock">
+				{{ i18n.ts._mfm.alwaysPlay }}
+				<template #caption>
+					<i class="ph-warning ph-bold ph-lg" style="color: var(--warn)"></i>
+					{{ i18n.ts._mfm.warn }}
+				</template>
+			</FormSwitch>
 			<FormSwitch v-model="reduceAnimation" class="_formBlock">{{
 				i18n.ts.reduceUiAnimation
 			}}</FormSwitch>
@@ -261,7 +265,7 @@ const showGapBetweenNotesInTimeline = computed(
 	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
 );
 const showAds = computed(defaultStore.makeGetterSetter("showAds"));
-const disableAnimatedMfm = computed(
+const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
 		(v) => !v,

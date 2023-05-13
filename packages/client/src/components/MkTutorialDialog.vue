@@ -41,16 +41,26 @@
 							{{ i18n.ts.next }}</MkButton
 						>
 					</div>
-					<h2 class="_title title">
-						<i class="ph-info ph-bold ph-lg"></i>
-						{{ i18n.ts._tutorial.title }}
-					</h2>
 					<Transition name="fade">
-						<div v-if="tutorial === 0" key="1" class="_content">
+						<section v-if="tutorial === 0" key="1" class="_content">
+							<h2 class="_title title">
+								<i class="ph-info ph-bold ph-lg"></i>
+								{{ i18n.ts._tutorial.title }}
+							</h2>
 							<h3>{{ i18n.ts._tutorial.step1_1 }}</h3>
 							<div>{{ i18n.ts._tutorial.step1_2 }}</div>
-						</div>
-						<div
+							<FormSwitch v-model="autoplayMfm" class="_formBlock">
+								{{ i18n.ts._mfm.alwaysPlay }}
+								<template #caption>
+									<i class="ph-warning ph-bold ph-lg" style="color: var(--warn)"></i>
+									{{ i18n.ts._mfm.warn }}
+								</template>
+							</FormSwitch>
+							<FormSwitch v-model="reduceAnimation" class="_formBlock">
+								{{ i18n.ts.reduceUiAnimation }}
+							</FormSwitch>
+						</section>
+						<section
 							v-else-if="tutorial === 1"
 							key="2"
 							class="_content"
@@ -60,8 +70,8 @@
 							<br />
 							<XSettings :save-button="true" />
 							<br />
-						</div>
-						<div
+						</section>
+						<section
 							v-else-if="tutorial === 2"
 							key="3"
 							class="_content"
@@ -74,8 +84,8 @@
 								><i class="ph-check ph-bold ph-lg"></i>
 								{{ i18n.ts.next }}</MkButton
 							>
-						</div>
-						<div
+						</section>
+						<section
 							v-else-if="tutorial === 3"
 							key="4"
 							class="_content"
@@ -90,8 +100,8 @@
 							</I18n>
 							<br />
 							<XPostForm class="post-form _block" />
-						</div>
-						<div
+						</section>
+						<section
 							v-else-if="tutorial === 4"
 							key="5"
 							class="_content"
@@ -160,8 +170,8 @@
 									</I18n>
 								</li>
 							</ul>
-						</div>
-						<div
+						</section>
+						<section
 							v-else-if="tutorial === 5"
 							key="6"
 							class="_content"
@@ -187,7 +197,7 @@
 								@click="installPwa"
 								>{{ i18n.ts.pwa }}</MkButton
 							>
-						</div>
+						</section>
 					</Transition>
 				</div>
 			</div>
@@ -196,7 +206,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { reactive, computed } from "vue";
 import XSettings from "@/pages/settings/profile.vue";
 import XModalWindow from "@/components/MkModalWindow.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -204,6 +214,7 @@ import XFeaturedUsers from "@/pages/explore.users.vue";
 import XPostForm from "@/components/MkPostForm.vue";
 import MkSparkle from "@/components/MkSparkle.vue";
 import MkPushNotificationAllowButton from "@/components/MkPushNotificationAllowButton.vue";
+import FormSwitch from "@/components/form/switch.vue";
 import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
@@ -250,6 +261,21 @@ const tutorial = computed({
 		defaultStore.set("tutorial", value);
 	},
 });
+
+const autoplayMfm = computed(
+	defaultStore.makeGetterSetter(
+		"animatedMfm",
+		(v) => !v,
+		(v) => !v
+	)
+);
+const reduceAnimation = computed(
+	defaultStore.makeGetterSetter(
+		"animation",
+		(v) => !v,
+		(v) => !v
+	)
+);
 
 function installPwa(ev: MouseEvent) {
 	const pwaInstall = document.getElementsByTagName("pwa-install")[0];

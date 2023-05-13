@@ -33,7 +33,7 @@
 	<div class="wrmlmaau">
 		<div
 			class="content"
-			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
+			:class="{ collapsed, isLong, showContent: note.cw && !showContent, disableAnim: disableMfm }"
 		>
 			<XCwButton
 				ref="cwButton"
@@ -121,6 +121,17 @@
 			></XShowMoreButton>
 			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
 		</div>
+		<MkButton
+			v-if="hasMfm && defaultStore.state.animatedMfm"
+			@click.stop="toggleMfm"
+		>
+			<template v-if="disableMfm">
+				<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
+			</template>
+			<template v-else>
+				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
+			</template>
+		</MkButton>
 	</div>
 </template>
 
@@ -128,14 +139,18 @@
 import { ref } from "vue";
 import * as misskey from "calckey-js";
 import * as mfm from "mfm-js";
+import * as os from "@/os";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
+import MkButton from "@/components/MkButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
+import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -163,6 +178,30 @@ const urls = props.note.text
 	: null;
 
 let showContent = $ref(false);
+
+const mfms = props.note.text ? extractMfmWithAnimation(mfm.parse(props.note.text)) : null;
+
+const hasMfm = $ref(mfms.length > 0);
+
+let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
+
+async function toggleMfm() {
+	if (disableMfm) {
+		if (!defaultStore.state.animatedMfmWarnShown) {
+			const { canceled } = await os.confirm({
+				type: "warning",
+				text: i18n.ts._mfm.warn,
+			});
+			if (canceled) return;
+			
+			defaultStore.set("animatedMfmWarnShown", true);
+		}
+
+		disableMfm = false;
+	} else {
+		disableMfm = true;
+	}
+}
 
 function focusFooter(ev) {
 	if (ev.key == "Tab" && !ev.getModifierState("Shift")) {
@@ -195,6 +234,7 @@ function focusFooter(ev) {
 		margin-right: 8px;
 	}
 }
+
 .wrmlmaau {
 	.content {
 		overflow-wrap: break-word;
@@ -286,6 +326,13 @@ function focusFooter(ev) {
 				}
 			}
 		}
+
+		&.disableAnim :deep(span) {
+			animation: none !important;
+		}
+	}
+	> :deep(button) {
+		margin-top: 10px;
 	}
 }
 </style>
