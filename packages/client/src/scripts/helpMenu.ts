@@ -4,7 +4,6 @@ import { host } from "@/config";
 import * as os from "@/os";
 import XTutorial from "../components/MkTutorialDialog.vue";
 import { i18n } from "@/i18n";
-import "@khmyznikov/pwa-install";
 
 export function openHelpMenu_(ev: MouseEvent) {
 	os.popupMenu(
@@ -24,14 +23,6 @@ export function openHelpMenu_(ev: MouseEvent) {
 				text: i18n.ts.aboutMisskey,
 				icon: "ph-lightbulb ph-bold ph-lg",
 				to: "/about-calckey",
-			},
-			{
-				type: "button",
-				text: i18n.ts.pwa,
-				icon: "ph-export ph-bold ph-lg",
-				action: () => {
-					document.getElementsByTagName("pwa-install")[0].showDialog();
-				}
 			},
 			{
 				type: "button",

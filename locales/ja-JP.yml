@@ -975,7 +975,6 @@ customKaTeXMacroDescription: "数式入力を楽にするためのマクロを�
 enableCustomKaTeXMacro: "カスタムKaTeXマクロを有効にする"
 preventAiLearning: "AIによる学習を防止"
 preventAiLearningDescription: "投稿したノート、添付した画像などのコンテンツを学習の対象にしないようAIに要求します。これはnoaiフラグをHTMLレスポンスに含めることによって実現されます。"
-pwa: "PWAをインストール"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"

@@ -122,7 +122,6 @@
 					<i class="icon ph-pencil ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.note }}</span>
 				</button>
-				<pwa-install />
 				<button
 					v-tooltip.noDelay.right="i18n.ts.help"
 					class="item _button help"
@@ -151,7 +150,6 @@ import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
 import { version } from "@/config";
-import "@khmyznikov/pwa-install";
 
 const isEmpty = (x: string | null) => x == null || x === "";
 
