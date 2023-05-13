@@ -2035,3 +2035,5 @@ signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés,
   vous pouvez toujours vous inscrire sur un autre serveur ! Si vous avez un code d'invitation
   pour ce serveur, entrez-le ci-dessous s'il vous plait.
 apps: Applications
+userSaysSomethingReasonReply: '{noms} a répondu à une note contenant {raison}'
+defaultValueIs: 'défaut: {valeur}'
