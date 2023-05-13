@@ -1196,6 +1196,7 @@ _mfm:
   play: "Play MFM"
   stop: "Stop MFM"
   warn: "MFM may contain rapidly moving or flashy animations"
+  alwaysPlay: "Always autoplay all MFM"
   cheatSheet: "MFM Cheatsheet"
   intro: "MFM is a markup language used on Misskey, Calckey, Akkoma, and more that\
     \ can be used in many places. Here you can view a list of all available MFM syntax."

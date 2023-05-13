@@ -121,7 +121,7 @@
 			></XShowMoreButton>
 			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
 			<MkButton
-				v-if="hasMfm"
+				v-if="hasMfm && defaultStore.state.animatedMfm"
 				@click.stop="toggleMfm"
 			>
 				<template v-if="disableMfm">
@@ -150,6 +150,7 @@ import MkButton from "@/components/MkButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -182,7 +183,9 @@ const mfms = props.note.text ? extractMfmWithAnimation(mfm.parse(props.note.text
 
 const hasMfm = $ref(mfms.length > 0);
 
-let disableMfm = $ref(hasMfm);
+let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
+
+console.log(disableMfm + " " + props.note.id + " " + defaultStore.state.animatedMfm);
 
 async function toggleMfm() {
 	if (disableMfm) {
