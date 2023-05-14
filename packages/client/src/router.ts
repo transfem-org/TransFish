@@ -63,6 +63,10 @@ export const routes = [
 		component: page(() => import("./pages/instance-info.vue")),
 	},
 	{
+		path: "/public/local",
+		component: page(() => import("./pages/no-graze.vue")),
+	},
+	{
 		name: "settings",
 		path: "/settings",
 		component: page(() => import("./pages/settings/index.vue")),
