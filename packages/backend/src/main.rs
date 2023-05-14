@@ -26,6 +26,9 @@ fn main() -> Result<(), Box<dyn error::Error>> {
             .join("default.yml"),
     )?;
 
-    println!("{:?}", config::get_config()?);
+    eprintln!("{:?}", config::get_config()?);
+
+    server::init()?;
+
     Ok(())
 }
