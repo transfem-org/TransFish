@@ -210,10 +210,6 @@ provideMetadataReceiver((info) => {
 	}
 });
 
-if (ui === "classic") {
-	provide("shouldSpacerMin", true);
-}
-
 const menuIndicated = computed(() => {
 	for (const def in navbarItemDef) {
 		if (def === "notifications") continue; // 通知は下にボタンとして表示されてるから
