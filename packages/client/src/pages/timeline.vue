@@ -99,32 +99,16 @@ const keymap = {
 	t: focus,
 };
 
-let timelines = [];
-
-if (
-	isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-) {
-	timelines.push("social");
-} else {
-	timelines.push("home");
-}
+let timelines = ['home'];
 
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
 }
-
-if (
-	isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-) {
-	timelines.push("home");
-} else if (isLocalTimelineAvailable) {
-	timelines.push("social");
-}
-
 if (isRecommendedTimelineAvailable) {
 	timelines.push("recommended");
+}
+if (isLocalTimelineAvailable) {
+	timelines.push('social');
 }
 if (isGlobalTimelineAvailable) {
 	timelines.push("global");
@@ -249,53 +233,19 @@ const headerActions = $computed(() => [
 }*/,
 ]);
 
-// Swap home timeline with social's functionality
-
 const headerTabs = $computed(() => [
-	...(isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-		? [
-				{
-					key: "social",
-					title: i18n.ts._timelines.home,
-					icon: "ph-house ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: [
-				{
-					key: "home",
-					title: i18n.ts._timelines.home,
-					icon: "ph-house ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]),
+	{
+		key: 'home',
+		title: i18n.ts._timelines.home,
+		icon: 'ph-house ph-bold ph-lg',
+		iconOnly: true,
+	},
 	...(isLocalTimelineAvailable
 		? [
 				{
 					key: "local",
 					title: i18n.ts._timelines.local,
 					icon: "ph-users ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: []),
-	...(isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-		? [
-				{
-					key: "home",
-					title: i18n.ts._timelines.social,
-					icon: "ph-handshake ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: isLocalTimelineAvailable
-		? [
-				{
-					key: "social",
-					title: i18n.ts._timelines.social,
-					icon: "ph-handshake ph-bold ph-lg",
 					iconOnly: true,
 				},
 		  ]
@@ -309,6 +259,16 @@ const headerTabs = $computed(() => [
 					iconOnly: true,
 				},
 		  ]
+		: []),
+	...(isLocalTimelineAvailable
+		? [
+			{
+				key: 'social',
+				title: i18n.ts._timelines.social,
+				icon: 'ph-handshake ph-bold ph-lg',
+				iconOnly: true,
+			},
+		]
 		: []),
 	...(isGlobalTimelineAvailable
 		? [
@@ -326,22 +286,16 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.timeline,
 		icon:
-			src === "local"
-				? "ph-users ph-bold ph-lg"
-				: src === "social" &&
-				  defaultStore.state.showLocalPostsInTimeline === "home"
-				? "ph-house ph-bold ph-lg"
-				: src === "social"
-				? "ph-handshake ph-bold ph-lg"
-				: src === "recommended"
-				? "ph-thumbs-up ph-bold ph-lg"
-				: src === "global"
-				? "ph-planet ph-bold ph-lg"
-				: src === "home" &&
-				  defaultStore.state.showLocalPostsInTimeline === "home"
-				? "ph-handshake ph-bold ph-lg"
-				: "ph-house ph-bold ph-lg",
-	}))
+			src === 'local'
+				? 'ph-users ph-bold ph-lg'
+				: src === 'social'
+					? 'ph-handshake ph-bold ph-lg'
+					: src === 'recommended'
+						? 'ph-thumbs-up ph-bold ph-lg'
+						: src === 'global'
+							? 'ph-planet ph-bold ph-lg'
+							: 'ph-house ph-bold ph-lg',
+	})),
 );
 
 let swiperRef: any = null;

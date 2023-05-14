@@ -247,9 +247,6 @@ async function reloadAsk() {
 const overridedDeviceKind = computed(
 	defaultStore.makeGetterSetter("overridedDeviceKind")
 );
-const showLocalPostsInTimeline = computed(
-	defaultStore.makeGetterSetter("showLocalPostsInTimeline")
-);
 const serverDisconnectedBehavior = computed(
 	defaultStore.makeGetterSetter("serverDisconnectedBehavior")
 );
@@ -349,12 +346,12 @@ watch(
 		showGapBetweenNotesInTimeline,
 		instanceTicker,
 		overridedDeviceKind,
-		showLocalPostsInTimeline,
 		showAds,
 		showUpdates,
 		swipeOnDesktop,
 		seperateRenoteQuote,
 		showAdminUpdates,
+		autoplayMfm,
 	],
 	async () => {
 		await reloadAsk();
