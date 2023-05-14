@@ -58,6 +58,7 @@ async function setAntenna() {
 	});
 	if (canceled) return;
 	updateColumn(props.column.id, {
+		name: antenna.name,
 		antennaId: antenna.id,
 	});
 }
