@@ -955,8 +955,7 @@ blockedInstancesDescription: Llista les adreces de les instàncies que vols bloq
   Les instàncies de la llista no podrán comunicarse amb aquesta instància.
 hiddenTags: Etiquetes amagades
 hiddenTagsDescription: 'Enumereu les etiquetes (sense el #) que voleu ocultar de tendències
-  i explorar. Les etiquetes ocultes encara es poden descobrir per altres mitjans.
-  Les instàncies bloquejades no es veuen afectades encara que s''enumerin aquí.'
+  i explorar. Les etiquetes ocultes encara es poden descobrir per altres mitjans.'
 noInstances: No hi ha cap instància
 defaultValueIs: 'Per defecte: {value}'
 suspended: Suspès
@@ -2051,3 +2050,5 @@ _experiments:
   title: Experiments
   postEditingCaption: Mostra l'opció perquè els usuaris editin les seves publicacions
     existents mitjançant el menú d'opcions de publicació
+noGraze: Si us plau, desactiva l'extensió del navegador "Graze for Mastodon", ja que
+  interfereix amb Calckey.
