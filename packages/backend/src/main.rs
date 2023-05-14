@@ -17,18 +17,14 @@ fn main() -> anyhow::Result<()> {
     );
 
     // logging
-    let is_debug = match env::var_os("NODE_ENV") {
-        None => true,
-        Some(val) => val != "production",
-    };
     let subscriber = tracing_subscriber::fmt();
-    if is_debug {
+    if is_release!() {
+        subscriber.with_max_level(tracing::Level::INFO).init();
+    } else {
         subscriber
             .with_max_level(tracing::Level::DEBUG)
             .pretty()
             .init();
-    } else {
-        subscriber.with_max_level(tracing::Level::INFO).init();
     }
 
     // bootstrap

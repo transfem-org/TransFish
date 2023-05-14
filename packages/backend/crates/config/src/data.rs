@@ -112,13 +112,20 @@ pub struct Config {
     #[serde(default)]
     pub max_caption_length: MaxCommentLength,
     //    pub disable_hsts: bool,
-    pub cluster_limit: Option<u16>,
-    //    pub deliver_job_concurrency: u16,
-    //    pub inbox_job_concurrency: u16,
-    //    pub deliver_job_per_sec: u16,
-    //    pub inbox_job_per_sec: u16,
-    //    pub deliver_job_max_attempts: u16,
-    //    pub inbox_job_max_attempts: u16,
+    #[serde(default = "cluster_limit_default")]
+    pub cluster_limit: u16,
+    #[serde(default = "deliver_job_default")]
+    pub deliver_job_concurrency: u16,
+    #[serde(default = "inbox_job_default")]
+    pub inbox_job_concurrency: u16,
+    #[serde(default = "deliver_job_default")]
+    pub deliver_job_per_sec: u16,
+    #[serde(default = "inbox_job_default")]
+    pub inbox_job_per_sec: u16,
+    #[serde(default = "deliver_job_attempts_default")]
+    pub deliver_job_max_attempts: u16,
+    #[serde(default = "inbox_job_attempts_default")]
+    pub inbox_job_max_attempts: u16,
     //    pub outgoing_address_family: IpFamily,
     //    pub syslog: syslog::SyslogConfig,
     //    pub proxy: Option<Host>,
@@ -182,6 +189,8 @@ pub mod db {
 
 /// redis config
 pub mod redis {
+    use url::Url;
+
     use super::*;
 
     #[derive(Debug, PartialEq, Deserialize)]
@@ -195,6 +204,13 @@ pub mod redis {
         pub prefix: Option<String>,
         #[serde(default)]
         pub db: u8,
+    }
+
+    impl From<&RedisConfig> for Url {
+        fn from(value: &RedisConfig) -> Self {
+            Url::parse(&format!("redis://{}:{}", value.host.1, value.port))
+                .expect("Invalid redis host and port")
+        }
     }
 }
 
@@ -268,6 +284,26 @@ impl Default for MaxCommentLength {
     fn default() -> Self {
         Self(1500)
     }
+}
+
+fn cluster_limit_default() -> u16 {
+    1
+}
+
+fn deliver_job_default() -> u16 {
+    128
+}
+
+fn deliver_job_attempts_default() -> u16 {
+    12
+}
+
+fn inbox_job_default() -> u16 {
+    16
+}
+
+fn inbox_job_attempts_default() -> u16 {
+    8
 }
 
 fn true_fn() -> bool {
