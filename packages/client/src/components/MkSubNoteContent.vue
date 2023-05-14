@@ -340,6 +340,8 @@ function focusFooter(ev) {
 	}
 	> :deep(button) {
 		margin-top: 10px;
+		margin-left: 0;
+		margin-right: .4rem;
 	}
 }
 </style>
