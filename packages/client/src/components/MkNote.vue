@@ -748,5 +748,9 @@ function readPromo() {
 	text-align: center;
 	opacity: 0.7;
 	width: 100%;
+
+	._blur_text {
+		pointer-events: auto;
+	}
 }
 </style>
