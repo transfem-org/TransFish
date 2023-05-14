@@ -472,6 +472,7 @@ console.log(mainRouter.currentRoute.value.name);
 			box-sizing: content-box;
 			.banner {
 				pointer-events: none;
+				top: -20% !important;
 				mask: radial-gradient(
 					farthest-side at top,
 					hsl(0, 0%, 0%) 0%,
@@ -512,7 +513,7 @@ console.log(mainRouter.currentRoute.value.name);
 				) !important;
 				width: 125% !important;
 				left: -12.5% !important;
-				height: 125% !important;
+				height: 145% !important;
 			}
 		}
 
