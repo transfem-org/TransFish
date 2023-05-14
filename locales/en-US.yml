@@ -230,7 +230,7 @@ silencedInstancesDescription: "List the hostnames of the instances that you want
 hiddenTags: "Hidden Hashtags"
 hiddenTagsDescription: "List the hashtags (without the #) of the hashtags you wish\
   \ to hide from trending and explore. Hidden hashtags are still discoverable via\
-  \ other means. Blocked instances are not affected even if listed here."
+  \ other means."
 muteAndBlock: "Mutes and Blocks"
 mutedUsers: "Muted users"
 blockedUsers: "Blocked users"
@@ -1084,7 +1084,8 @@ findOtherInstance: "Find another server"
 apps: "Apps"
 sendModMail: "Send Moderation Notice"
 preventAiLearning: "Prevent AI bot scraping"
-preventAiLearningDescription: "Request third-party AI language models not to study content you upload, such as posts and images."
+preventAiLearningDescription: "Request third-party AI language models not to study\
+  \ content you upload, such as posts and images."
 
 
 _sensitiveMediaDetection:
@@ -2011,4 +2012,5 @@ _deck:
 _experiments:
   title: "Experiments"
   enablePostEditing: "Enable post editing"
-  postEditingCaption: "Shows the option for users to edit their existing posts via the post options menu"
+  postEditingCaption: "Shows the option for users to edit their existing posts via\
+    \ the post options menu"
