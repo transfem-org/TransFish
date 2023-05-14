@@ -1,4 +1,3 @@
-use std::fmt::Display;
 use std::fs::File;
 use std::io::{self, Read};
 use std::path::Path;
@@ -11,43 +10,15 @@ mod data;
 pub use data::*;
 
 // Config Errors
-#[derive(Debug)]
+#[derive(thiserror::Error, Debug)]
 pub enum Error {
+    #[error("The configuration has not been initialized yet")]
     Uninitialized,
-    Deserialize(serde_yaml::Error),
-    FileError(io::Error),
+    #[error("Error when parsing config file: {0}")]
+    Deserialize(#[from] serde_yaml::Error),
+    #[error("Error when reading config file: {0}")]
+    FileError(#[from] io::Error),
 }
-
-macro_rules! generate_error_impl {
-    ($t:ident, $o:ty) => {
-        impl From<$o> for Error {
-            fn from(value: $o) -> Self {
-                Self::$t(value)
-            }
-        }
-    };
-}
-
-impl Display for Error {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        use Error::*;
-
-        f.write_str(&{
-            match self {
-                Uninitialized => {
-                    format!("The configuration has not been initialized yet: {:?}", self)
-                }
-                Deserialize(e) => format!("Error when parsing config file: {}", e),
-                FileError(e) => format!("Error when reading config file: {}", e),
-            }
-        })
-    }
-}
-
-generate_error_impl!(FileError, io::Error);
-generate_error_impl!(Deserialize, serde_yaml::Error);
-
-impl std::error::Error for Error {}
 
 // Functions
 fn fetch_config(path: &Path) -> Result<Config, Error> {
@@ -152,8 +123,14 @@ redis:
                 },
                 max_note_length: MaxNoteLength(3000),
                 max_caption_length: MaxCommentLength(1500),
-                cluster_limit: None,
-                env: Environment {  },
+                cluster_limit: 1,
+                env: Environment {},
+                deliver_job_concurrency: 128,
+                inbox_job_concurrency: 16,
+                deliver_job_per_sec: 128,
+                inbox_job_per_sec: 16,
+                deliver_job_max_attempts: 12,
+                inbox_job_max_attempts: 8,
             }
         );
     }
