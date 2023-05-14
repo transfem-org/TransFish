@@ -7,8 +7,7 @@ use tracing::debug;
 #[macro_use]
 extern crate macros;
 
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
+fn main() -> anyhow::Result<()> {
     env::set_var(
         "CK_REPO_DIR",
         PathBuf::from(env!("PWD"))
