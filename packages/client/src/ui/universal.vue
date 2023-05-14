@@ -462,7 +462,9 @@ console.log(mainRouter.currentRoute.value.name);
 
 	&.centered {
 		justify-content: center;
-		--navBg: transparent;
+		&:not(.isMobile) {
+			--navBg: transparent;
+		}
 
 		> :deep(.sidebar:not(.iconOnly)) {
 			margin-left: -200px;
