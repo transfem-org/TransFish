@@ -57,7 +57,10 @@
 									{{ i18n.ts._mfm.warn }}
 								</template>
 							</FormSwitch> -->
-							<FormSwitch v-model="reduceAnimation" class="_formBlock">
+							<FormSwitch
+								v-model="reduceAnimation"
+								class="_formBlock"
+							>
 								{{ i18n.ts.reduceUiAnimation }}
 							</FormSwitch>
 						</section>

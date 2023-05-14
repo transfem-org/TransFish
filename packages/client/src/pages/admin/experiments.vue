@@ -16,9 +16,7 @@
 					<template #label>
 						<i class="ph-pencil-line ph-bold ph-lg"></i>
 						{{ i18n.ts._experiments.enablePostEditing }}
-						<span class="_beta">
-							{{ i18n.ts.beta }}</span
-						>
+						<span class="_beta"> {{ i18n.ts.beta }}</span>
 					</template>
 					<template #caption>{{
 						i18n.ts._experiments.postEditingCaption
