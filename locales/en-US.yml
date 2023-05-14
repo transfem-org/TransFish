@@ -919,7 +919,7 @@ manageAccounts: "Manage Accounts"
 makeReactionsPublic: "Set reaction history to public"
 makeReactionsPublicDescription: "This will make the list of all your past reactions\
   \ publicly visible."
-classic: "Classic"
+classic: "Centered"
 muteThread: "Mute thread"
 unmuteThread: "Unmute thread"
 ffVisibility: "Follows/Followers Visibility"
