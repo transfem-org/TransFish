@@ -314,9 +314,7 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	syncSlide(
-		timelines.indexOf(defaultStore.state.tl?.src || swiperRef.activeIndex)
-	);
+	syncSlide(timelines.indexOf(swiperRef.activeIndex));
 });
 </script>
 
