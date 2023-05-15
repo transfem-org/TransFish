@@ -24,10 +24,12 @@ export async function importMastoPost(
 		reply = await resolveNote(post.object.inReplyTo);
 	}
 	if (post.directMessage) {
+    done();
 		return;
 	}
 	if (job.data.signatureCheck) {
 		if (!post.signature) {
+       done();
 			return;
 		}
 	}
@@ -35,6 +37,7 @@ export async function importMastoPost(
 	try {
 		text = htmlToMfm(post.object.content, post.object.tag);
 	} catch (e) {
+    done();
 		return;
 	}
 
