@@ -237,7 +237,6 @@ function save() {
 		isBot: !!profile.isBot,
 		isCat: !!profile.isCat,
 		speakAsCat: !!profile.speakAsCat,
-		showTimelineReplies: !!profile.showTimelineReplies,
 	});
 }
 

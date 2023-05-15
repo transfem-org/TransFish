@@ -240,6 +240,20 @@ const useSystemFont = ref(localStorage.getItem("useSystemFont") != null);
 const profile = reactive({
 	showTimelineReplies: $i?.showTimelineReplies,
 });
+watch(
+	() => profile,
+	() => {
+		save();
+	},
+	{
+		deep: true,
+	}
+);
+function save() {
+	os.apiWithDialog("i/update", {
+		showTimelineReplies: !!profile.showTimelineReplies,
+	});
+}
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
