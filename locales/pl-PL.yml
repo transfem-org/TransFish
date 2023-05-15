@@ -1069,6 +1069,8 @@ _mfm:
   sparkleDescription: "Nadaje zawartości efekt lśniącego brokatu."
   rotate: "Obrót"
   rotateDescription: "Obraca zawartość o określony kąt."
+  fade: "Znikać"
+  fadeDescription: "Pojawia się i znika zawartość."
   plain: "Zwyczajny"
   plainDescription: "Wyłącza efekty wszystkich MFM zawartych w tym efekcie MFM."
   inlineCodeDescription: Wyświetla podświetlanie składni dla kodu (programu) w linii.

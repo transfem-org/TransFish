@@ -1043,6 +1043,8 @@ _mfm:
   sparkleDescription: "ให้เนื้อหานั้นมีเอฟเฟกต์แบบอนุภาคประกาย"
   rotate: "หมุนหน้าจอ"
   rotateDescription: "เปลี่ยนเนื้อหาตามด้วยมุมที่ระบุไว้"
+  fade: "เลือนหายไป"
+  fadeDescription: "เลือนเนื้อหาเข้าและออก"
   plain: "เรียบง่าย"
   plainDescription: "ปิดการใช้งานเอฟเฟกต์ของ MFM ทั้งหมดที่มีอยู่ในเอฟเฟกต์ MFM นี้"
 _instanceTicker:

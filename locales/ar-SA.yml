@@ -919,6 +919,8 @@ _mfm:
   rainbowDescription: "اجعل المحتوى يظهر بألوان الطيف"
   rotate: "تدوير"
   rotateDescription: "يُدير المحتوى بزاوية معيّنة."
+  fade: "يختفي"
+  fadeDescription: "يتلاشى المحتوى للداخل والخارج."
 _instanceTicker:
   none: "لا تظهره بتاتًا"
   remote: "أظهر للمستخدمين البِعاد"

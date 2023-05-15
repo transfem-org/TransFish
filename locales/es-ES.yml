@@ -1151,6 +1151,8 @@ _mfm:
   sparkleDescription: "Aplica un efecto de partículas parpadeantes"
   rotate: "Rotar"
   rotateDescription: "Rota el contenido a un ángulo especificado."
+  fade: "Desvanecerse"
+  fadeDescription: "Desvanece el contenido hacia adentro y hacia afuera."
   plain: "Plano"
   plainDescription: "Desactiva los efectos de todo el contenido MFM con este efecto\
     \ MFM."
