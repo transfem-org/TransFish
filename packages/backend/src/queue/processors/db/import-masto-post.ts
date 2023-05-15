@@ -37,8 +37,7 @@ export async function importMastoPost(
 	try {
 		text = htmlToMfm(post.object.content, post.object.tag);
 	} catch (e) {
-    done();
-		return;
+		throw e;
 	}
 
 	const note = await create(user, {
