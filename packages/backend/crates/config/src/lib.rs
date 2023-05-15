@@ -43,7 +43,7 @@ pub fn get_config() -> Result<&'static Config, Error> {
 }
 
 #[cfg(test)]
-mod tests {
+pub mod tests {
     use std::{
         fs::{remove_file, File},
         io::Write,
@@ -123,7 +123,7 @@ redis:
                 },
                 max_note_length: MaxNoteLength(3000),
                 max_caption_length: MaxCommentLength(1500),
-                cluster_limit: 1,
+                cluster_limit: None,
                 env: Environment {},
                 deliver_job_concurrency: 128,
                 inbox_job_concurrency: 16,

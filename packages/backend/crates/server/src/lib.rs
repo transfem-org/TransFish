@@ -19,7 +19,7 @@ pub fn init() -> Result<(), Box<dyn error::Error>> {
     let rt = rt.enable_all();
 
     if let Some(n) = get_config()?.cluster_limit {
-        rt.worker_threads(n as usize);
+        rt.worker_threads(n);
     }
 
     let rt = rt.build()?;

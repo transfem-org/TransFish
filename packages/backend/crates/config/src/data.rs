@@ -112,8 +112,7 @@ pub struct Config {
     #[serde(default)]
     pub max_caption_length: MaxCommentLength,
     //    pub disable_hsts: bool,
-    #[serde(default = "cluster_limit_default")]
-    pub cluster_limit: u16,
+    pub cluster_limit: Option<usize>,
     #[serde(default = "deliver_job_default")]
     pub deliver_job_concurrency: u16,
     #[serde(default = "inbox_job_default")]
