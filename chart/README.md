@@ -1,6 +1,6 @@
 # calckey
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: rc](https://img.shields.io/badge/AppVersion-rc-informational?style=flat-square)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: rc](https://img.shields.io/badge/AppVersion-rc-informational?style=flat-square)
 
 A fun, new, open way to experience social media https://calckey.org
 
@@ -22,8 +22,14 @@ A fun, new, open way to experience social media https://calckey.org
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | calckey.allowedPrivateNetworks | list | `[]` | If you want to allow calckey to connect to private ips, enter the cidrs here. |
+| calckey.deepl.authKey | string | `""` |  |
+| calckey.deepl.isPro | bool | `false` |  |
+| calckey.deepl.managed | bool | `false` |  |
 | calckey.domain | string | `"calckey.local"` |  |
 | calckey.isManagedHosting | bool | `true` |  |
+| calckey.libreTranslate.apiKey | string | `""` |  |
+| calckey.libreTranslate.apiUrl | string | `""` |  |
+| calckey.libreTranslate.managed | bool | `false` |  |
 | calckey.objectStorage.access_key | string | `""` |  |
 | calckey.objectStorage.access_secret | string | `""` |  |
 | calckey.objectStorage.baseUrl | string | `""` |  |
@@ -44,7 +50,7 @@ A fun, new, open way to experience social media https://calckey.org
 | calckey.smtp.port | int | `587` |  |
 | calckey.smtp.server | string | `"smtp.mailgun.org"` |  |
 | calckey.smtp.useImplicitSslTls | bool | `false` |  |
-| elasticsearch | object | `{"auth":null,"enabled":false,"hostname":"","port":9200,"ssl":false}` | https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch#parameters |
+| elasticsearch | object | `{"auth":{},"enabled":false,"hostname":"","port":9200,"ssl":false}` | https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch#parameters |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"docker.io/thatonecalculator/calckey"` |  |
