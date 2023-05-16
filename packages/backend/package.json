@@ -10,6 +10,6 @@
 		"build": "cargo build --profile ${NODE_ENV:=development}",
 		"revertmigration": "typeorm migration:revert -d ormconfig.js",
 		"lint": "cargo check",
-		"test": "CK_TEST_CONFIG='../../.config/test.yml' cargo test --workspace"
+		"test": "CK_TEST_CONFIG=\"$(pwd)/../../.config/ci.yml\" cargo test --workspace"
 	}
 }

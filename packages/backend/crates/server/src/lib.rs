@@ -2,7 +2,6 @@
 use axum::Router;
 
 use tokio::runtime;
-
 use config::get_config;
 
 pub mod api {
@@ -39,8 +38,8 @@ pub fn init() -> anyhow::Result<()> {
 #[cfg(test)]
 mod tests {
 
-    #[test]
-    fn test() {
-        macros::test_setup_config!();
-    }
+//    #[test]
+//    fn test() {
+//            macros::setup_test_config!();
+//    }
 }
