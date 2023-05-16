@@ -36,3 +36,13 @@ pub fn init() -> anyhow::Result<()> {
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use std::{env, path::Path};
+
+    #[test]
+    fn test() {
+        macros::test_setup_config!();
+    }
+}

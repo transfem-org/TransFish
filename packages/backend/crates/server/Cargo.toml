@@ -9,4 +9,5 @@ edition = "2021"
 axum = "0.6.18"
 tokio = { version = "1.28.1", features = ["full"] }
 config = { path = "../config" }
+macros = { path = "../macros" }
 anyhow = "1.0.71"
