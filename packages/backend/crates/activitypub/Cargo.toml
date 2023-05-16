@@ -1,0 +1,16 @@
+[package]
+name = "activitypub"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.71"
+async-trait = "0.1.68"
+displaydoc = "0.2.4"
+parse-display = "0.8.0"
+serde = { version = "1.0.163", features = ["derive"] }
+serde_json = { version = "1.0.96", features = ["preserve_order"] }
+thiserror = "1.0.40"
+url = { version = "2.3.1", features = ["serde"] }
