@@ -12,7 +12,7 @@ pub mod api {
 
 pub enum Error {}
 
-pub fn init() -> Result<(), Box<dyn error::Error>> {
+pub fn init() -> anyhow::Result<()> {
     // initialize tokio runtime
     let mut rt = runtime::Builder::new_multi_thread();
 
@@ -30,7 +30,8 @@ pub fn init() -> Result<(), Box<dyn error::Error>> {
         axum::Server::bind(&format!("127.0.0.1:{}", get_config()?.port).parse()?)
             .serve(app.into_make_service())
             .await?;
-        Result::<(), Box<dyn error::Error>>::Ok(())
+        anyhow::Result::<()>::Ok(()) // FIXME: for some reason I can't figure out the syntax for a
+                                     // return type on an `async {}` block
     })?;
 
     Ok(())
