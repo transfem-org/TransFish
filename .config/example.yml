@@ -124,6 +124,9 @@ reservedUsernames: [
 # Number of worker processes
 #clusterLimit: 1
 
+# Worker only mode
+#onlyQueueProcessor: 1
+
 # Job concurrency per worker
 # deliverJobConcurrency: 128
 # inboxJobConcurrency: 16
