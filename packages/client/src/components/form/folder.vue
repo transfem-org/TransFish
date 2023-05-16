@@ -26,6 +26,8 @@ defineProps<{
 <style lang="scss" scoped>
 .dwzlatin {
 	display: block;
+	overflow: clip;
+	border-radius: 6px;
 
 	> .header {
 		display: flex;
@@ -34,7 +36,6 @@ defineProps<{
 		box-sizing: border-box;
 		padding: 12px 14px 12px 14px;
 		background: var(--buttonBg);
-		border-radius: 6px;
 
 		&:hover {
 			text-decoration: none;
