@@ -7,11 +7,11 @@
 					><i class="ph-airplane-takeoff ph-bold ph-lg"></i
 				></template>
 				<template #label>{{ i18n.ts.moveToLabel }}</template>
+				<template #caption>{{ i18n.ts.moveAccountDescription }}</template>
 			</FormInput>
 			<FormButton primary danger @click="move(moveToAccount)">
 				{{ i18n.ts.moveAccount }}
 			</FormButton>
-			<div class="description">{{ i18n.ts.moveAccountDescription }}</div>
 		</FormSection>
 
 		<FormSection>
@@ -21,6 +21,7 @@
 					><i class="ph-airplane-landing ph-bold ph-lg"></i
 				></template>
 				<template #label>{{ i18n.ts.moveFromLabel }}</template>
+				<template #caption>{{ i18n.ts.moveFromDescription }}</template>
 			</FormInput>
 			<FormButton
 				class="button"
@@ -31,7 +32,6 @@
 				<i class="ph-floppy-disk-back ph-bold ph-lg"></i>
 				{{ i18n.ts.save }}
 			</FormButton>
-			<div class="description">{{ i18n.ts.moveFromDescription }}</div>
 		</FormSection>
 	</div>
 </template>
@@ -69,10 +69,3 @@ definePageMetadata({
 	icon: "ph-lock ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss">
-.description {
-	font-size: 0.85em;
-	padding: 1rem;
-}
-</style>

@@ -530,7 +530,7 @@ console.log(mainRouter.currentRoute.value.name);
 			}
 			:deep(.tl),
 			:deep(.notes) {
-				background: none !important;
+				background: none;
 			}
 		}
 	}

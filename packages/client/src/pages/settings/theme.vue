@@ -135,6 +135,12 @@
 				>
 			</div>
 		</FormSection>
+		<FormSection>
+			<FormLink to="/settings/custom-css" class="_formBlock"
+				><template #icon><i class="ph-code ph-bold ph-lg"></i></template
+				>{{ i18n.ts.customCss }}</FormLink
+			>
+		</FormSection>
 
 		<FormButton
 			v-if="wallpaper == null"

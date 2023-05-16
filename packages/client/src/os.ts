@@ -191,6 +191,11 @@ export function claimZIndex(
 	return zIndexes[priority];
 }
 
+let uniqueId = 0;
+export function getUniqueId(): string {
+	return uniqueId++ + '';
+}
+
 export async function popup(
 	component: Component,
 	props: Record<string, any>,

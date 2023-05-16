@@ -43,10 +43,6 @@
 			</option>
 		</FormRadios>
 
-		<FormSwitch v-model="showFixedPostForm" class="_formBlock">{{
-			i18n.ts.showFixedPostForm
-		}}</FormSwitch>
-
 		<FormSection>
 			<template #label>{{ i18n.ts.behavior }}</template>
 			<FormSwitch v-model="imageNewTab" class="_formBlock">{{
@@ -69,6 +65,13 @@
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
+			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
+			>{{ i18n.ts.flagShowTimelineReplies
+			}}<template #caption
+				>{{ i18n.ts.flagShowTimelineRepliesDescription }}
+				{{ i18n.ts.reflectMayTakeTime }}</template
+			></FormSwitch
+		>
 
 			<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
 				<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
@@ -88,10 +91,7 @@
 		</FormSection>
 
 		<FormSection>
-			<template #label>{{ i18n.ts.appearance }}</template>
-			<FormSwitch v-model="showAds" class="_formBlock">{{
-				i18n.ts.showAds
-			}}</FormSwitch>
+			<template #label>{{ i18n.ts.accessibility }}</template>
 			<FormSwitch v-model="autoplayMfm" class="_formBlock">
 				{{ i18n.ts._mfm.alwaysPlay }}
 				<template #caption>
@@ -104,6 +104,33 @@
 			</FormSwitch>
 			<FormSwitch v-model="reduceAnimation" class="_formBlock">{{
 				i18n.ts.reduceUiAnimation
+			}}</FormSwitch>
+			<FormSwitch
+				v-model="disableShowingAnimatedImages"
+				class="_formBlock"
+				>{{ i18n.ts.disableShowingAnimatedImages }}</FormSwitch
+			>
+			<FormRadios v-model="fontSize" class="_formBlock">
+				<template #label>{{ i18n.ts.fontSize }}</template>
+				<option :value="null">
+					<span style="font-size: 14px">Aa</span>
+				</option>
+				<option value="1">
+					<span style="font-size: 15px">Aa</span>
+				</option>
+				<option value="2">
+					<span style="font-size: 16px">Aa</span>
+				</option>
+				<option value="3">
+					<span style="font-size: 17px">Aa</span>
+				</option>
+			</FormRadios>
+		</FormSection>
+
+		<FormSection>
+			<template #label>{{ i18n.ts.appearance }}</template>
+			<FormSwitch v-model="showAds" class="_formBlock">{{
+				i18n.ts.showAds
 			}}</FormSwitch>
 			<FormSwitch v-model="useBlurEffect" class="_formBlock">{{
 				i18n.ts.useBlurEffect
@@ -119,11 +146,6 @@
 			<FormSwitch v-model="loadRawImages" class="_formBlock">{{
 				i18n.ts.loadRawImages
 			}}</FormSwitch>
-			<FormSwitch
-				v-model="disableShowingAnimatedImages"
-				class="_formBlock"
-				>{{ i18n.ts.disableShowingAnimatedImages }}</FormSwitch
-			>
 			<FormSwitch v-model="squareAvatars" class="_formBlock">{{
 				i18n.ts.squareAvatars
 			}}</FormSwitch>
@@ -145,43 +167,29 @@
 			<FormSwitch v-model="showUpdates" class="_formBlock">{{
 				i18n.ts.showUpdates
 			}}</FormSwitch>
+			<FormSwitch v-model="showFixedPostForm" class="_formBlock">{{
+				i18n.ts.showFixedPostForm
+			}}</FormSwitch>
 			<FormSwitch
 				v-if="$i?.isAdmin"
 				v-model="showAdminUpdates"
 				class="_formBlock"
 				>{{ i18n.ts.showAdminUpdates }}</FormSwitch
 			>
+			<FormSelect v-model="instanceTicker" class="_formBlock">
+				<template #label>{{ i18n.ts.instanceTicker }}</template>
+				<option value="none">{{ i18n.ts._instanceTicker.none }}</option>
+				<option value="remote">{{ i18n.ts._instanceTicker.remote }}</option>
+				<option value="always">{{ i18n.ts._instanceTicker.always }}</option>
+			</FormSelect>
 
-			<FormRadios v-model="fontSize" class="_formBlock">
-				<template #label>{{ i18n.ts.fontSize }}</template>
-				<option :value="null">
-					<span style="font-size: 14px">Aa</span>
-				</option>
-				<option value="1">
-					<span style="font-size: 15px">Aa</span>
-				</option>
-				<option value="2">
-					<span style="font-size: 16px">Aa</span>
-				</option>
-				<option value="3">
-					<span style="font-size: 17px">Aa</span>
-				</option>
-			</FormRadios>
+			<FormSelect v-model="nsfw" class="_formBlock">
+				<template #label>{{ i18n.ts.nsfw }}</template>
+				<option value="respect">{{ i18n.ts._nsfw.respect }}</option>
+				<option value="ignore">{{ i18n.ts._nsfw.ignore }}</option>
+				<option value="force">{{ i18n.ts._nsfw.force }}</option>
+			</FormSelect>
 		</FormSection>
-
-		<FormSelect v-model="instanceTicker" class="_formBlock">
-			<template #label>{{ i18n.ts.instanceTicker }}</template>
-			<option value="none">{{ i18n.ts._instanceTicker.none }}</option>
-			<option value="remote">{{ i18n.ts._instanceTicker.remote }}</option>
-			<option value="always">{{ i18n.ts._instanceTicker.always }}</option>
-		</FormSelect>
-
-		<FormSelect v-model="nsfw" class="_formBlock">
-			<template #label>{{ i18n.ts.nsfw }}</template>
-			<option value="respect">{{ i18n.ts._nsfw.respect }}</option>
-			<option value="ignore">{{ i18n.ts._nsfw.ignore }}</option>
-			<option value="force">{{ i18n.ts._nsfw.force }}</option>
-		</FormSelect>
 
 		<FormRange
 			v-model="numberOfPageCache"
@@ -201,11 +209,6 @@
 			i18n.ts.deck
 		}}</FormLink>
 
-		<FormLink to="/settings/custom-css" class="_formBlock"
-			><template #icon><i class="ph-code ph-bold ph-lg"></i></template
-			>{{ i18n.ts.customCss }}</FormLink
-		>
-
 		<FormLink to="/settings/custom-katex-macro" class="_formBlock"
 			><template #icon><i class="ph-radical ph-bold ph-lg"></i></template
 			>{{ i18n.ts.customKaTeXMacro }}</FormLink
@@ -214,7 +217,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
+import { reactive, computed, ref, watch } from "vue";
 import { $i } from "@/account";
 import FormSwitch from "@/components/form/switch.vue";
 import FormSelect from "@/components/form/select.vue";
@@ -233,6 +236,24 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 const lang = ref(localStorage.getItem("lang"));
 const fontSize = ref(localStorage.getItem("fontSize"));
 const useSystemFont = ref(localStorage.getItem("useSystemFont") != null);
+
+const profile = reactive({
+	showTimelineReplies: $i?.showTimelineReplies,
+});
+watch(
+	() => profile,
+	() => {
+		save();
+	},
+	{
+		deep: true,
+	}
+);
+function save() {
+	os.apiWithDialog("i/update", {
+		showTimelineReplies: !!profile.showTimelineReplies,
+	});
+}
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
