@@ -1,4 +1,3 @@
-use std::error;
 
 use axum::Router;
 
@@ -39,7 +38,6 @@ pub fn init() -> anyhow::Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use std::{env, path::Path};
 
     #[test]
     fn test() {

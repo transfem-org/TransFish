@@ -285,10 +285,6 @@ impl Default for MaxCommentLength {
     }
 }
 
-fn cluster_limit_default() -> u16 {
-    1
-}
-
 fn deliver_job_default() -> u16 {
     128
 }
