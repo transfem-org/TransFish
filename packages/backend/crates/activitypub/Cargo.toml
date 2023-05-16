@@ -14,3 +14,11 @@ serde = { version = "1.0.163", features = ["derive"] }
 serde_json = { version = "1.0.96", features = ["preserve_order"] }
 thiserror = "1.0.40"
 url = { version = "2.3.1", features = ["serde"] }
+derive_builder = "0.12.0"
+reqwest = { version = "0.11.17", features = [
+	"json",
+	"stream",
+	"rustls",
+	"rustls-native-certs",
+] }
+reqwest-middleware = "0.2.2"
