@@ -29,7 +29,7 @@ use serde::{Deserialize, Deserializer};
 /// ]}"#)?;
 /// assert_eq!(multiple.to.len(), 2);
 /// Ok::<(), anyhow::Error>(())
-pub(crate) fn deserialize_one_or_many<'de, T, D>(deserializer: D) -> Result<Vec<T>, D::Error>
+pub fn deserialize_one_or_many<'de, T, D>(deserializer: D) -> Result<Vec<T>, D::Error>
 where
     T: Deserialize<'de>,
     D: Deserializer<'de>,
@@ -64,7 +64,7 @@ where
 ///
 /// let note = serde_json::from_str::<Note>(r#"{"to": ["https://example.com/u/alice"] }"#);
 /// assert!(note.is_ok());
-pub(crate) fn deserialize_one<'de, T, D>(deserializer: D) -> Result<T, D::Error>
+pub fn deserialize_one<'de, T, D>(deserializer: D) -> Result<T, D::Error>
 where
     T: Deserialize<'de>,
     D: Deserializer<'de>,
@@ -109,7 +109,7 @@ where
 /// }"#);
 /// assert_eq!(note.unwrap().source, None);
 /// # Ok::<(), anyhow::Error>(())
-pub(crate) fn deserialize_skip_error<'de, T, D>(deserializer: D) -> Result<T, D::Error>
+pub fn deserialize_skip_error<'de, T, D>(deserializer: D) -> Result<T, D::Error>
 where
     T: Deserialize<'de> + Default,
     D: Deserializer<'de>,

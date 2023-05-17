@@ -1,10 +1,13 @@
+// GNU Affero General Public License v3.0
+// https://github.com/LemmyNet/activitypub-federation-rust
+
 //! Error messages returned by this library
 
 use displaydoc::Display;
 
 /// Error messages returned by this library
 #[derive(thiserror::Error, Debug, Display)]
-pub(crate) enum Error {
+pub enum Error {
     /// Requested object was not found in local database
     NotFound,
     /// Request limit was reached during fetch
@@ -13,8 +16,8 @@ pub(crate) enum Error {
     ResponseBodyLimit,
     /// Object to be fetched was deleted
     ObjectDeleted,
-    /// Url in object was invalid
-    UrlVerificationError,
+    /// Url in object was invalid: {0}
+    UrlVerificationError(&'static str),
     /// Incoming activity has invalid digest for body
     ActivityBodyDigestInvalid,
     /// Incoming activity has invalid signature
@@ -27,7 +30,7 @@ pub(crate) enum Error {
 }
 
 impl Error {
-    pub(crate) fn other<T>(error: T) -> Self
+    pub fn other<T>(error: T) -> Self
     where
         T: Into<anyhow::Error>,
     {

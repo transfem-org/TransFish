@@ -17,20 +17,17 @@
 //! # Ok::<(), anyhow::Error>(())
 //! ```
 
-use crate::{
-    activity_queue::create_activity_queue, error::Error,
-    protocol::verification::verify_domains_match, traits::ActivityHandler,
+use crate::federation::{
+    error::Error, protocol::verification::verify_domains_match, traits::ActivityHandler,
 };
 use async_trait::async_trait;
 use derive_builder::Builder;
+use dyn_clone::{clone_trait_object, DynClone};
 use reqwest_middleware::ClientWithMiddleware;
 use serde::de::DeserializeOwned;
 use std::{
     ops::Deref,
-    sync::{
-        atomic::{AtomicU32, Ordering},
-        Arc,
-    },
+    sync::atomic::{AtomicU32, Ordering},
     time::Duration,
 };
 use url::Url;
@@ -65,16 +62,21 @@ pub struct FederationConfig<T: Clone> {
     /// use the same as timeout when sending
     #[builder(default = "Duration::from_secs(10)")]
     pub(crate) request_timeout: Duration,
+    /// Function used to verify that urls are valid, See [UrlVerifier] for details.
+    #[builder(default = "Box::new(DefaultUrlVerifier())")]
+    pub(crate) url_verifier: Box<dyn UrlVerifier + Sync>,
     /// Enable to sign HTTP signatures according to draft 10, which does not include (created) and
     /// (expires) fields. This is required for compatibility with some software like Pleroma.
     /// <https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-10>
     /// <https://git.pleroma.social/pleroma/pleroma/-/issues/2939>
     #[builder(default = "false")]
     pub(crate) http_signature_compat: bool,
-    // Queue for sending outgoing activities. Only optional to make builder work, its always
-    // present once constructed.
+    /* TODO: store queue handler if necessary
+    /// Queue for sending outgoing activities. Only optional to make builder work, its always
+    /// present once constructed.
     // #[builder(setter(skip))]
     // pub(crate) activity_queue: Option<Arc<Manager>>,
+     */
 }
 
 impl<T: Clone> FederationConfig<T> {
@@ -169,23 +171,24 @@ impl<T: Clone> FederationConfigBuilder<T> {
     /// Constructs a new config instance with the values supplied to builder.
     ///
     /// Values which are not explicitly specified use the defaults. Also initializes the
-    /// queue for outgoing activities, which is stored internally in the config struct.
+    /// queue for activities, which is stored internally in the config struct.
     pub fn build(&mut self) -> Result<FederationConfig<T>, FederationConfigBuilderError> {
         let mut config = self.partial_build()?;
-        let stats_handler = background_jobs::metrics::install().ok();
-        config.queue_metrics = if let Some(stats) = stats_handler {
-            Some(Arc::new(stats))
-        } else {
-            None
-        };
-        let queue = create_activity_queue(
-            config.client.clone(),
-            config.worker_count,
-            config.request_timeout,
-            config.debug,
-            config.queue_db.to_owned(),
-        );
-        config.activity_queue = Some(Arc::new(queue));
+        /* TODO: queue initialization here */
+        // let stats_handler = background_jobs::metrics::install().ok();
+        // config.queue_metrics = if let Some(stats) = stats_handler {
+        //     Some(Arc::new(stats))
+        // } else {
+        //     None
+        // };
+        // let queue = create_activity_queue(
+        //     config.client.clone(),
+        //     config.worker_count,
+        //     config.request_timeout,
+        //     config.debug,
+        //     config.queue_db.to_owned(),
+        // );
+        // config.activity_queue = Some(Arc::new(queue));
         Ok(config)
     }
 }
@@ -197,6 +200,59 @@ impl<T: Clone> Deref for FederationConfig<T> {
         &self.app_data
     }
 }
+
+/// Handler for validating URLs.
+///
+/// This is used for implementing domain blocklists and similar functionality. It is called
+/// with the ID of newly received activities, when fetching remote data from a given URL
+/// and before sending an activity to a given inbox URL. If processing for this domain/URL should
+/// be aborted, return an error. In case of `Ok(())`, processing continues.
+///
+/// ```
+/// # use async_trait::async_trait;
+/// # use url::Url;
+/// # use activitypub_federation::config::UrlVerifier;
+/// # #[derive(Clone)]
+/// # struct DatabaseConnection();
+/// # async fn get_blocklist(_: &DatabaseConnection) -> Vec<String> {
+/// #     vec![]
+/// # }
+/// #[derive(Clone)]
+/// struct Verifier {
+///     db_connection: DatabaseConnection,
+/// }
+///
+/// #[async_trait]
+/// impl UrlVerifier for Verifier {
+///     async fn verify(&self, url: &Url) -> Result<(), &'static str> {
+///         let blocklist = get_blocklist(&self.db_connection).await;
+///         let domain = url.domain().unwrap().to_string();
+///         if blocklist.contains(&domain) {
+///             Err("Domain is blocked")
+///         } else {
+///             Ok(())
+///         }
+///     }
+/// }
+/// ```
+#[async_trait]
+pub trait UrlVerifier: DynClone + Send {
+    /// Should return Ok iff the given url is valid for processing.
+    async fn verify(&self, url: &Url) -> Result<(), &'static str>;
+}
+
+/// Default URL verifier which does nothing.
+#[derive(Clone)]
+struct DefaultUrlVerifier();
+
+#[async_trait]
+impl UrlVerifier for DefaultUrlVerifier {
+    async fn verify(&self, _url: &Url) -> Result<(), &'static str> {
+        Ok(())
+    }
+}
+
+clone_trait_object!(UrlVerifier);
 
 /// Stores data for handling one specific HTTP request.
 ///

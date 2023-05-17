@@ -22,8 +22,9 @@
 //! Ok::<(), serde_json::error::Error>(())
 //! ```
 
-use crate::federation::protocol::helper::deserialize_one_or_many;
-use crate::{config::Data, traits::ActivityHandler};
+use crate::federation::{
+    config::Data, protocol::helper::deserialize_one_or_many, traits::ActivityHandler,
+};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use url::Url;
