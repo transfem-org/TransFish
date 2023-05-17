@@ -1,6 +1,6 @@
 use std::{
     env, fmt,
-    path::{Path, PathBuf},
+    path::{Path, PathBuf}, io::stdout,
 };
 use tracing::debug;
 
@@ -17,15 +17,13 @@ fn main() -> anyhow::Result<()> {
     );
 
     // logging
-    let subscriber = tracing_subscriber::fmt();
-    if is_release!() {
-        subscriber.with_max_level(tracing::Level::INFO).init();
+    let subscriber = logging::Logger::new(if is_release!() {
+        tracing::Level::INFO
     } else {
-        subscriber
-            .with_max_level(tracing::Level::DEBUG)
-            .pretty()
-            .init();
-    }
+        tracing::Level::DEBUG
+    }, stdout());
+
+    tracing::subscriber::set_global_default(subscriber)?;
 
     // bootstrap
 
@@ -39,7 +37,7 @@ fn main() -> anyhow::Result<()> {
     debug!(target: "config", path = ?config_path, "Loading yaml file");
     config::init_config(config_path)?;
 
-    eprintln!("{:?}", config::get_config()?);
+    debug!(config_file = ?config::get_config());
 
     server::init()?;
 
