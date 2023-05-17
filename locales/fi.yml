@@ -254,7 +254,7 @@ noteDeleteConfirm: Oletko varma, että haluat poistaa tämän viestin?
 pinLimitExceeded: Et voi kiinnittää enempää viestejä
 intro: Calckey -asennus valmis! Ole hyvä ja luo admin-käyttäjä.
 done: Valmis
-processing: Suorittaa...
+processing: Suorittaa
 preview: Esikatselu
 default: Oletus
 defaultValueIs: 'Oletus: {value}'

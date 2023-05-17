@@ -986,7 +986,7 @@ _registry:
   domain: "Домен"
   createKey: "Новый ключ"
 _aboutMisskey:
-  about: "Calckey это форк Misskey, сделанный ThatOneCalculator, разработка которого\
+  about: "Calckey это форк Calckey, сделанный ThatOneCalculator, разработка которого\
     \ началась с 2022."
   contributors: "Основные соавторы"
   allContributors: "Все соавторы"
@@ -1002,7 +1002,7 @@ _nsfw:
   force: "Скрывать вообще все файлы"
 _mfm:
   cheatSheet: "Подсказка по разметке MFM"
-  intro: "MFM — язык оформления текста,используемый в Misskey, Calckey, Akkoma и готов\
+  intro: "MFM — язык оформления текста,используемый в Calckey, Calckey, Akkoma и готов\
     \ для применения во многих местах. На этой странице собраны и кратко изложены\
     \ способы его использовать."
   dummy: "Calckey расширяет границы Федиверса"

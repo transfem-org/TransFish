@@ -1,6 +1,6 @@
 _lang_: "Français"
 headlineMisskey: "Réseau relié par des notes"
-introMisskey: "Bienvenue ! Misskey est un service de microblogage décentralisé, libre\
+introMisskey: "Bienvenue ! Calckey est un service de microblogage décentralisé, libre\
   \ et ouvert.\nÉcrivez des « notes » et partagez ce qui se passe à l’instant présent,\
   \ autour de vous avec les autres \U0001F4E1\nLa fonction « réactions », vous permet\
   \ également d’ajouter une réaction rapide aux notes des autres utilisateur·rice·s\
@@ -158,7 +158,7 @@ flagAsBot: "Ce compte est un robot"
 flagAsBotDescription: "Si ce compte est géré de manière automatisée, choisissez cette\
   \ option. Si elle est activée, elle agira comme un marqueur pour les autres développeurs\
   \ afin d'éviter des chaînes d'interaction sans fin avec d'autres robots et d'ajuster\
-  \ les systèmes internes de Misskey pour traiter ce compte comme un robot."
+  \ les systèmes internes de Calckey pour traiter ce compte comme un robot."
 flagAsCat: "Ce compte est un chat"
 flagAsCatDescription: "Activer l'option \" Je suis un chat \" pour ce compte."
 flagShowTimelineReplies: "Afficher les réponses dans le fil"
@@ -226,7 +226,7 @@ noUsers: "Il n’y a pas d’utilisateur·rice·s"
 editProfile: "Modifier votre profil"
 noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer cette note ?"
 pinLimitExceeded: "Vous ne pouvez plus épingler d’autres notes."
-intro: "L’installation de Misskey est terminée ! Veuillez créer un compte administrateur."
+intro: "L’installation de Calckey est terminée ! Veuillez créer un compte administrateur."
 done: "Terminé"
 processing: "Traitement en cours"
 preview: "Aperçu"
@@ -414,7 +414,7 @@ exploreFediverse: "Explorer le Fediverse"
 popularTags: "Mots-clés populaires"
 userList: "Listes"
 about: "Informations"
-aboutMisskey: "À propos de Misskey"
+aboutMisskey: "À propos de Calckey"
 administrator: "Administrateur"
 token: "Jeton"
 twoStepAuthentication: "Authentification à deux facteurs"
@@ -573,7 +573,7 @@ descendingOrder: "Descendant"
 scratchpad: "ScratchPad"
 scratchpadDescription: "ScratchPad fournit un environnement expérimental pour AiScript.\
   \ Vous pouvez vérifier la rédaction de votre code, sa bonne exécution et le résultat\
-  \ de son interaction avec Misskey."
+  \ de son interaction avec Calckey."
 output: "Sortie"
 script: "Script"
 disablePagesScript: "Désactiver AiScript sur les Pages"
@@ -866,7 +866,7 @@ hashtags: "Hashtags"
 troubleshooting: "Résolution de problèmes"
 useBlurEffect: "Utiliser des effets de flou dans l'interface"
 learnMore: "Plus d'informations"
-misskeyUpdated: "Misskey a été mis à jour !"
+misskeyUpdated: "Calckey a été mis à jour !"
 whatIsNew: "Voir les derniers changements"
 translate: "Traduire"
 translatedFrom: "Traduit depuis {x}"
@@ -999,8 +999,8 @@ _aboutMisskey:
   contributors: "Principaux contributeurs"
   allContributors: "Tous les contributeurs"
   source: "Code source"
-  translation: "Traduire Misskey"
-  donate: "Soutenir Misskey"
+  translation: "Traduire Calckey"
+  donate: "Soutenir Calckey"
   morePatrons: "Nous apprécions vraiment le soutien de nombreuses autres personnes\
     \ non mentionnées ici. Merci à toutes et à tous ! \U0001F970"
   patrons: "Contributeurs"
@@ -1010,9 +1010,9 @@ _nsfw:
   force: "Cacher tous les médias"
 _mfm:
   cheatSheet: "Antisèche MFM"
-  intro: "MFM est un langage Markdown spécifique utilisable ici et là dans Misskey.\
+  intro: "MFM est un langage Markdown spécifique utilisable ici et là dans Calckey.\
     \ Vous pouvez vérifier ici les structures utilisables avec MFM."
-  dummy: "La Fédiverse s'agrandit avec Misskey"
+  dummy: "La Fédiverse s'agrandit avec Calckey"
   mention: "Mentionner"
   mentionDescription: "Vous pouvez afficher un utilisateur spécifique en indiquant\
     \ une arobase suivie d'un nom d'utilisateur"

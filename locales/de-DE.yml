@@ -230,7 +230,7 @@ pinLimitExceeded: "Sie können keine weiteren Beiträge anpinnen"
 intro: "Die Installation von Calckey ist abgeschlossen! Bitte erstellen Sie einen\
   \ Admin-Benutzer."
 done: "Erledigt"
-processing: "In Bearbeitung …"
+processing: "In Bearbeitung"
 preview: "Vorschau"
 default: "Standard"
 defaultValueIs: "Der Standardwert ist: {value}"

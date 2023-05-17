@@ -1006,7 +1006,7 @@ _nsfw:
   force: "Ukrywaj wszystkie media"
 _mfm:
   cheatSheet: "Ściąga MFM"
-  intro: "MFM jest językiem składniowym używanym przez m.in. Misskey, forki *key (w\
+  intro: "MFM jest językiem składniowym używanym przez m.in. Calckey, forki *key (w\
     \ tym Calckey), oraz Akkomę, który może być użyty w wielu miejscach. Tu znajdziesz\
     \ listę wszystkich możliwych elementów składni MFM."
   dummy: "Calckey rozszerza świat Fediwersum"
