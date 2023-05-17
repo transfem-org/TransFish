@@ -108,6 +108,7 @@ onMounted(() => {
 				  },
 		imageClickAction: "close",
 		tapAction: "toggle-controls",
+		preloadFirstSlide: false,
 		pswpModule: PhotoSwipe,
 	});
 
@@ -162,7 +163,22 @@ onMounted(() => {
 		});
 	});
 
+	lightbox.on("afterInit", () => {
+		history.pushState(null, "", location.href);
+		addEventListener("popstate", close);
+	})
+	lightbox.on("close", () => {
+		removeEventListener("popstate", close);
+		history.back();
+	})
+
 	lightbox.init();
+
+	function close() {
+		removeEventListener("popstate", close);
+		history.forward();
+		lightbox.pswp.close();
+	}
 });
 
 const previewable = (file: misskey.entities.DriveFile): boolean => {
