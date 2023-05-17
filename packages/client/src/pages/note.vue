@@ -26,6 +26,7 @@
 								v-if="!showNext && hasNext"
 								class="load next"
 								@click="showNext = true"
+								v-tooltip="i18n.ts.loadMore"
 								><i class="ph-caret-up ph-bold ph-lg"></i
 							></MkButton>
 							<div class="note _gap">
@@ -74,6 +75,7 @@
 								v-if="!showPrev && hasPrev"
 								class="load prev"
 								@click="showPrev = true"
+								v-tooltip="i18n.ts.loadMore"
 								><i class="ph-caret-down ph-bold ph-lg"></i
 							></MkButton>
 						</div>
@@ -193,8 +195,8 @@ definePageMetadata(
 	computed(() =>
 		note
 			? {
-					title: i18n.ts.note,
-					subtitle: new Date(note.createdAt).toLocaleString(),
+					title: note.user.name,
+					subtitle: `@${note.user.username}@${note.user.host}`,
 					avatar: note.user,
 					path: `/notes/${note.id}`,
 					share: {
