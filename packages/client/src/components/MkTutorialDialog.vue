@@ -103,7 +103,7 @@
 								</template>
 							</I18n>
 							<br />
-							<XPostForm class="post-form _block" />
+							<XPostForm class="post-form _block" :show-mfm-cheat-sheet="false"/>
 						</section>
 						<section
 							v-else-if="tutorial === 4"

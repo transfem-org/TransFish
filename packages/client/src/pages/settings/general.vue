@@ -55,12 +55,12 @@
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
 			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
-			>{{ i18n.ts.flagShowTimelineReplies
-			}}<template #caption
-				>{{ i18n.ts.flagShowTimelineRepliesDescription }}
-				{{ i18n.ts.reflectMayTakeTime }}</template
-			></FormSwitch
-		>
+				>{{ i18n.ts.flagShowTimelineReplies
+				}}<template #caption
+					>{{ i18n.ts.flagShowTimelineRepliesDescription }}
+					{{ i18n.ts.reflectMayTakeTime }}</template
+				></FormSwitch
+			>
 
 			<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
 				<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
@@ -168,8 +168,12 @@
 			<FormSelect v-model="instanceTicker" class="_formBlock">
 				<template #label>{{ i18n.ts.instanceTicker }}</template>
 				<option value="none">{{ i18n.ts._instanceTicker.none }}</option>
-				<option value="remote">{{ i18n.ts._instanceTicker.remote }}</option>
-				<option value="always">{{ i18n.ts._instanceTicker.always }}</option>
+				<option value="remote">
+					{{ i18n.ts._instanceTicker.remote }}
+				</option>
+				<option value="always">
+					{{ i18n.ts._instanceTicker.always }}
+				</option>
 			</FormSelect>
 
 			<FormSelect v-model="nsfw" class="_formBlock">

@@ -24,12 +24,12 @@ export async function importMastoPost(
 		reply = await resolveNote(post.object.inReplyTo);
 	}
 	if (post.directMessage) {
-    done();
+		done();
 		return;
 	}
 	if (job.data.signatureCheck) {
 		if (!post.signature) {
-       done();
+			done();
 			return;
 		}
 	}

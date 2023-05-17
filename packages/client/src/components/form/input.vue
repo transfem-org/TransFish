@@ -3,7 +3,9 @@
 		<label>
 			<div class="label"><slot name="label"></slot></div>
 			<div class="input" :class="{ inline, disabled, focused }">
-				<div ref="prefixEl" class="prefix"><slot name="prefix"></slot></div>
+				<div ref="prefixEl" class="prefix">
+					<slot name="prefix"></slot>
+				</div>
 				<input
 					ref="inputEl"
 					v-model="v"
@@ -26,7 +28,9 @@
 				<datalist v-if="datalist" :id="id">
 					<option v-for="data in datalist" :value="data" />
 				</datalist>
-				<div ref="suffixEl" class="suffix"><slot name="suffix"></slot></div>
+				<div ref="suffixEl" class="suffix">
+					<slot name="suffix"></slot>
+				</div>
 			</div>
 			<div class="caption"><slot name="caption"></slot></div>
 		</label>
@@ -183,25 +187,25 @@ onMounted(() => {
 			font-size: 0.85em;
 			padding: 0 0 8px 0;
 			user-select: none;
-	
+
 			&:empty {
 				display: none;
 			}
 		}
-	
+
 		> .caption {
 			font-size: 0.85em;
 			padding: 8px 0 0 0;
 			color: var(--fgTransparentWeak);
-	
+
 			&:empty {
 				display: none;
 			}
 		}
-	
+
 		> .input {
 			position: relative;
-	
+
 			> input {
 				appearance: none;
 				-webkit-appearance: none;
@@ -221,12 +225,12 @@ onMounted(() => {
 				box-shadow: none;
 				box-sizing: border-box;
 				transition: border-color 0.1s ease-out;
-	
+
 				&:hover {
 					border-color: var(--inputBorderHover) !important;
 				}
 			}
-	
+
 			> .prefix,
 			> .suffix {
 				display: flex;
@@ -238,11 +242,11 @@ onMounted(() => {
 				font-size: 1em;
 				height: v-bind("height + 'px'");
 				pointer-events: none;
-	
+
 				&:empty {
 					display: none;
 				}
-	
+
 				> * {
 					display: inline-block;
 					min-width: 16px;
@@ -252,32 +256,32 @@ onMounted(() => {
 					text-overflow: ellipsis;
 				}
 			}
-	
+
 			> .prefix {
 				left: 0;
 				padding-right: 6px;
 			}
-	
+
 			> .suffix {
 				right: 0;
 				padding-left: 6px;
 			}
-	
+
 			&.inline {
 				display: inline-block;
 				margin: 0;
 			}
-	
+
 			&.focused {
 				> input {
 					border-color: var(--accent) !important;
 					//box-shadow: 0 0 0 4px var(--focus);
 				}
 			}
-	
+
 			&.disabled {
 				opacity: 0.7;
-	
+
 				&,
 				* {
 					cursor: not-allowed !important;

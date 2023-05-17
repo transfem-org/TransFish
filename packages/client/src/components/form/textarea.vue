@@ -209,14 +209,14 @@ export default defineComponent({
 			font-size: 0.85em;
 			padding: 8px 0 0 0;
 			color: var(--fgTransparentWeak);
-	
+
 			&:empty {
 				display: none;
 			}
 		}
-			> .input {
+		> .input {
 			position: relative;
-	
+
 			> textarea {
 				appearance: none;
 				-webkit-appearance: none;
@@ -238,33 +238,33 @@ export default defineComponent({
 				box-shadow: none;
 				box-sizing: border-box;
 				transition: border-color 0.1s ease-out;
-	
+
 				&:hover {
 					border-color: var(--inputBorderHover) !important;
 				}
 			}
-	
+
 			&.focused {
 				> textarea {
 					border-color: var(--accent) !important;
 				}
 			}
-	
+
 			&.disabled {
 				opacity: 0.7;
-	
+
 				&,
 				* {
 					cursor: not-allowed !important;
 				}
 			}
-	
+
 			&.tall {
 				> textarea {
 					min-height: 200px;
 				}
 			}
-	
+
 			&.pre {
 				> textarea {
 					white-space: pre;
@@ -272,7 +272,6 @@ export default defineComponent({
 			}
 		}
 	}
-
 
 	> .save {
 		margin: 8px 0 0 0;

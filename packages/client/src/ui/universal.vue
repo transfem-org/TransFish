@@ -1,5 +1,8 @@
 <template>
-	<div class="dkgtipfy" :class="{ wallpaper, isMobile, centered: ui === 'classic' }">
+	<div
+		class="dkgtipfy"
+		:class="{ wallpaper, isMobile, centered: ui === 'classic' }"
+	>
 		<XSidebar v-if="!isMobile" class="sidebar" />
 
 		<MkStickyContainer class="contents">

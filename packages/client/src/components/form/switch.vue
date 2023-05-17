@@ -6,9 +6,7 @@
 			:disabled="disabled"
 			v-on:change="(x) => toggle(x)"
 		/>
-		<div
-			class="button"
-		>
+		<div class="button">
 			<div class="knob"></div>
 		</div>
 		<span class="label">

@@ -1,10 +1,6 @@
 <template>
-	<label
-		v-adaptive-border
-		class="novjtctn"
-		:class="{ disabled, checked }"
-	>
-		<input 
+	<label v-adaptive-border class="novjtctn" :class="{ disabled, checked }">
+		<input
 			type="radio"
 			:disabled="disabled"
 			:checked="checked"

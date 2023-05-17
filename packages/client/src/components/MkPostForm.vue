@@ -204,6 +204,7 @@
 					<i class="ph-plug ph-bold ph-lg"></i>
 				</button>
 				<button
+					v-if="showMfmCheatsheet"
 					v-tooltip="i18n.ts._mfm.cheatSheet"
 					class="_button right"
 					@click="openCheatSheet"
@@ -275,11 +276,13 @@ const props = withDefaults(
 		instant?: boolean;
 		fixed?: boolean;
 		autofocus?: boolean;
+		showMfmCheatSheet?: boolean;
 		editId?: misskey.entities.Note["id"];
 	}>(),
 	{
 		initialVisibleUsers: () => [],
 		autofocus: true,
+		showMfmCheatSheet: true,
 	}
 );
 

@@ -9,7 +9,9 @@
 				@click.prevent="onClick"
 				tabindex="-1"
 			>
-				<div ref="prefixEl" class="prefix"><slot name="prefix"></slot></div>
+				<div ref="prefixEl" class="prefix">
+					<slot name="prefix"></slot>
+				</div>
 				<select
 					ref="inputEl"
 					v-model="v"
@@ -199,34 +201,34 @@ const onClick = (ev: MouseEvent) => {
 			font-size: 0.85em;
 			padding: 0 0 8px 0;
 			user-select: none;
-	
+
 			&:empty {
 				display: none;
 			}
 		}
-	
+
 		> .caption {
 			font-size: 0.85em;
 			padding: 8px 0 0 0;
 			color: var(--fgTransparentWeak);
-	
+
 			&:empty {
 				display: none;
 			}
 		}
-	
+
 		> .input {
 			position: relative;
 			cursor: pointer;
 			margin-left: 0.2rem;
 			margin-right: 0.2rem;
-	
+
 			&:hover {
 				> .select {
 					border-color: var(--inputBorderHover) !important;
 				}
 			}
-	
+
 			> .select {
 				appearance: none;
 				-webkit-appearance: none;
@@ -250,7 +252,7 @@ const onClick = (ev: MouseEvent) => {
 				pointer-events: none;
 				user-select: none;
 			}
-	
+
 			> .prefix,
 			> .suffix {
 				display: flex;
@@ -262,11 +264,11 @@ const onClick = (ev: MouseEvent) => {
 				font-size: 1em;
 				height: v-bind("height + 'px'");
 				pointer-events: none;
-	
+
 				&:empty {
 					display: none;
 				}
-	
+
 				> * {
 					display: inline-block;
 					min-width: 16px;
@@ -276,31 +278,31 @@ const onClick = (ev: MouseEvent) => {
 					text-overflow: ellipsis;
 				}
 			}
-	
+
 			> .prefix {
 				left: 0;
 				padding-right: 6px;
 			}
-	
+
 			> .suffix {
 				right: 0;
 				padding-left: 6px;
 			}
-	
+
 			&.inline {
 				display: inline-block;
 				margin: 0;
 			}
-	
+
 			&.focused {
 				> select {
 					border-color: var(--accent) !important;
 				}
 			}
-	
+
 			&.disabled {
 				opacity: 0.7;
-	
+
 				&,
 				* {
 					cursor: not-allowed !important;

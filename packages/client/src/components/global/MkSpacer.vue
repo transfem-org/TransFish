@@ -35,7 +35,7 @@ const adjust = (rect: { width: number; height: number }) => {
 		margin = props.marginMin;
 		return;
 	}
-	if ( ui === "classic" ) {
+	if (ui === "classic") {
 		margin = 12;
 		return;
 	}

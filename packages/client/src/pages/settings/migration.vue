@@ -7,7 +7,9 @@
 					><i class="ph-airplane-takeoff ph-bold ph-lg"></i
 				></template>
 				<template #label>{{ i18n.ts.moveToLabel }}</template>
-				<template #caption>{{ i18n.ts.moveAccountDescription }}</template>
+				<template #caption>{{
+					i18n.ts.moveAccountDescription
+				}}</template>
 			</FormInput>
 			<FormButton primary danger @click="move(moveToAccount)">
 				{{ i18n.ts.moveAccount }}

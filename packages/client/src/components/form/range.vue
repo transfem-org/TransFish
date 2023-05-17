@@ -17,13 +17,10 @@
 					@blur="tooltipHide"
 					@mouseenter="tooltipShow"
 					@mouseleave="tooltipHide"
-					@input="(x) => inputVal = x.target.value"
+					@input="(x) => (inputVal = x.target.value)"
 				/>
-				<datalist 
-					v-if="showTicks && steps"
-					:id="id"
-				>
-					<option 
+				<datalist v-if="showTicks && steps" :id="id">
+					<option
 						v-for="i in steps + 1"
 						:value="i"
 						:label="i.toString()"
@@ -97,7 +94,6 @@ function tooltipShow() {
 function tooltipHide() {
 	tooltipShowing.value = false;
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -163,19 +159,33 @@ function tooltipHide() {
 				width: 100%;
 				background: none;
 
-				&::-webkit-slider-runnable-track { @include track }
-				&::-moz-range-track { @include track }
-				&::-ms-track { @include track }
+				&::-webkit-slider-runnable-track {
+					@include track;
+				}
+				&::-moz-range-track {
+					@include track;
+				}
+				&::-ms-track {
+					@include track;
+				}
 
-				&::-moz-range-progress { @include fill }
-  			&::-ms-fill-lower { @include fill }
+				&::-moz-range-progress {
+					@include fill;
+				}
+				&::-ms-fill-lower {
+					@include fill;
+				}
 
 				&::-webkit-slider-thumb {
 					margin-top: -6.5px;
-					@include thumb 
+					@include thumb;
 				}
-				&::-moz-range-thumb { @include thumb }
-				&::-ms-thumb { @include thumb }
+				&::-moz-range-thumb {
+					@include thumb;
+				}
+				&::-ms-thumb {
+					@include thumb;
+				}
 			}
 		}
 	}
