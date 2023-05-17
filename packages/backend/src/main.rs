@@ -1,8 +1,9 @@
 use std::{
     env, fmt,
-    path::{Path, PathBuf}, io::stdout,
+    io::stdout,
+    path::{Path, PathBuf},
 };
-use tracing::debug;
+use tracing::{debug, error};
 
 #[macro_use]
 extern crate macros;
@@ -17,13 +18,22 @@ fn main() -> anyhow::Result<()> {
     );
 
     // logging
-    let subscriber = logging::Logger::new(if is_release!() {
-        tracing::Level::INFO
-    } else {
-        tracing::Level::DEBUG
-    }, stdout());
+    let subscriber = logging::Logger::new(
+        if is_release!() {
+            tracing::Level::INFO
+        } else {
+            tracing::Level::TRACE
+        },
+        stdout(),
+    );
 
     tracing::subscriber::set_global_default(subscriber)?;
+
+    tracing::info!("info");
+    tracing::trace!("trace");
+    tracing::debug!("debug");
+    tracing::warn!("warn");
+    tracing::error!("error");
 
     // bootstrap
 
@@ -39,7 +49,9 @@ fn main() -> anyhow::Result<()> {
 
     debug!(config_file = ?config::get_config());
 
-    server::init()?;
+    if let Err(e) = server::init() {
+        error!("Fatal error in server core: {}", e);
+    }
 
     Ok(())
 }

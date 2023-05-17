@@ -3,6 +3,8 @@ use axum::Router;
 use config::get_config;
 use tokio::runtime;
 
+use tracing::info;
+
 pub mod api {
     pub mod routes;
 }
@@ -11,6 +13,7 @@ pub enum Error {}
 
 pub fn init() -> anyhow::Result<()> {
     // initialize tokio runtime
+    info!("Initializing tokio runtime");
     let mut rt = runtime::Builder::new_multi_thread();
 
     let rt = rt.enable_all();
@@ -23,12 +26,13 @@ pub fn init() -> anyhow::Result<()> {
 
     let app = Router::new().nest("/api", api::routes::routes());
 
+    type Result = anyhow::Result<()>;
+
     rt.block_on(async {
         axum::Server::bind(&format!("127.0.0.1:{}", get_config()?.port).parse()?)
             .serve(app.into_make_service())
             .await?;
-        anyhow::Result::<()>::Ok(()) // FIXME: for some reason I can't figure out the syntax for a
-                                     // return type on an `async {}` block
+        Result::Ok(())
     })?;
 
     Ok(())
