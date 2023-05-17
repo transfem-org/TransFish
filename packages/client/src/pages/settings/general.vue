@@ -32,17 +32,6 @@
 			</option>
 		</FormRadios>
 
-		<FormRadios v-model="showLocalPostsInTimeline" class="_formBlock">
-			<template #label>{{ i18n.ts.showLocalPosts }}</template>
-			<option value="home">
-				<i class="ph-house ph-bold ph-lg" /> {{ i18n.ts.homeTimeline }}
-			</option>
-			<option value="social">
-				<i class="ph-handshake ph-bold ph-lg" />
-				{{ i18n.ts.socialTimeline }}
-			</option>
-		</FormRadios>
-
 		<FormSection>
 			<template #label>{{ i18n.ts.behavior }}</template>
 			<FormSwitch v-model="imageNewTab" class="_formBlock">{{
