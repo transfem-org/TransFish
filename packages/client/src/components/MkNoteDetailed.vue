@@ -10,11 +10,13 @@
 		:class="{ renote: isRenote }"
 	>
 		<MkNoteSub
+			v-if="conversation"
 			v-for="note in conversation"
 			:key="note.id"
 			class="reply-to"
 			:note="note"
 		/>
+		<MkLoading v-else-if="appearNote.reply" mini />
 		<MkNoteSub
 			v-if="appearNote.reply"
 			:note="appearNote.reply"
@@ -31,12 +33,14 @@
 		</div>
 
 		<MkNoteSub
+			v-if="directReplies"
 			v-for="note in directReplies"
 			:key="note.id"
 			:note="note"
 			class="reply"
 			:conversation="replies"
 		/>
+		<MkLoading v-else-if="appearNote.repliesCount > 0" />
 	</div>
 	<div v-else class="_panel muted" @click="muted.muted = false">
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
@@ -66,31 +70,18 @@ import {
 	reactive,
 	ref,
 } from "vue";
-import * as mfm from "mfm-js";
 import type * as misskey from "calckey-js";
 import MkNote from "@/components/MkNote.vue";
 import MkNoteSub from "@/components/MkNoteSub.vue";
-import XNoteSimple from "@/components/MkNoteSimple.vue";
-import XReactionsViewer from "@/components/MkReactionsViewer.vue";
-import XMediaList from "@/components/MkMediaList.vue";
-import XCwButton from "@/components/MkCwButton.vue";
-import XPoll from "@/components/MkPoll.vue";
 import XStarButton from "@/components/MkStarButton.vue";
-import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
-import XQuoteButton from "@/components/MkQuoteButton.vue";
-import MkUrlPreview from "@/components/MkUrlPreview.vue";
-import MkInstanceTicker from "@/components/MkInstanceTicker.vue";
-import MkVisibility from "@/components/MkVisibility.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { userPage } from "@/filters/user";
-import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
 import * as os from "@/os";
 import { defaultStore, noteViewInterruptors } from "@/store";
 import { reactionPicker } from "@/scripts/reaction-picker";
-import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { getNoteMenu } from "@/scripts/get-note-menu";
@@ -99,14 +90,10 @@ import { deepClone } from "@/scripts/clone";
 import { stream } from "@/stream";
 import { NoteUpdatedEvent } from "calckey-js/built/streaming.types";
 
-const router = useRouter();
-
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 }>();
-
-const inChannel = inject("inChannel", null);
 
 let note = $ref(deepClone(props.note));
 
@@ -119,8 +106,6 @@ const softMuteReasonI18nSrc = (what?: string) => {
 	// I don't think here is reachable, but just in case
 	return i18n.ts.userSaysSomething;
 };
-
-const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 
 // plugin
 if (noteViewInterruptors.length > 0) {
@@ -155,16 +140,9 @@ const isDeleted = ref(false);
 const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
-const urls = appearNote.text
-	? extractUrlFromMfm(mfm.parse(appearNote.text)).slice(0, 5)
-	: null;
-const showTicker =
-	defaultStore.state.instanceTicker === "always" ||
-	(defaultStore.state.instanceTicker === "remote" &&
-		appearNote.user.instance);
-const conversation = ref<misskey.entities.Note[]>([]);
+let conversation = $ref<null | misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
-const directReplies = ref<misskey.entities.Note[]>([]);
+let directReplies = $ref<null | misskey.entities.Note[]>([]);
 let isScrolling;
 
 const keymap = {
@@ -260,29 +238,6 @@ function menu(viaKeyboard = false): void {
 	).then(focus);
 }
 
-function showRenoteMenu(viaKeyboard = false): void {
-	if (!isMyRenote) return;
-	os.popupMenu(
-		[
-			{
-				text: i18n.ts.unrenote,
-				icon: "ph-trash ph-bold ph-lg",
-				danger: true,
-				action: () => {
-					os.api("notes/delete", {
-						noteId: note.id,
-					});
-					isDeleted.value = true;
-				},
-			},
-		],
-		renoteTime.value,
-		{
-			viaKeyboard: viaKeyboard,
-		}
-	);
-}
-
 function focus() {
 	noteEl.focus();
 }
@@ -291,13 +246,14 @@ function blur() {
 	noteEl.blur();
 }
 
+directReplies = null;
 os.api("notes/children", {
 	noteId: appearNote.id,
 	limit: 30,
 	depth: 12,
 }).then((res) => {
 	replies.value = res;
-	directReplies.value = res
+	directReplies = res
 		.filter(
 			(note) =>
 				note.replyId === appearNote.id ||
@@ -306,12 +262,13 @@ os.api("notes/children", {
 		.reverse();
 });
 
+conversation = null;
 if (appearNote.replyId) {
 	os.api("notes/conversation", {
 		noteId: appearNote.replyId,
 		limit: 30,
 	}).then((res) => {
-		conversation.value = res.reverse();
+		conversation = res.reverse();
 		focus();
 	});
 }
@@ -345,7 +302,7 @@ async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
 
 			replies.value.splice(found, 0, replyNote);
 			if (found === 0) {
-				directReplies.value.push(replyNote);
+				directReplies.push(replyNote);
 			}
 			break;
 
