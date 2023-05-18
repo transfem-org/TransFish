@@ -6,4 +6,4 @@ pub(crate) mod reqwest_shim;
 pub(crate) mod traits;
 
 /// Mime type for Activitypub data, used for `Accept` and `Content-Type` HTTP headers
-pub static FEDERATION_CONTENT_TYPE: &str = "application/activity+json";
+pub(crate) static FEDERATION_CONTENT_TYPE: &str = "application/activity+json";

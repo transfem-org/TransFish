@@ -1,4 +1,4 @@
-//! Used to queue inbox and outbox tasks
+//! Used to queue sending activity
 
 use crate::{
     error::Error,
@@ -39,7 +39,7 @@ pub struct SendActivityTask {
 pub trait QueueManager: DynClone + Send {
     /// Called in [crate::queue::send_activity], and would call
     /// [crate::queue::do_send] inside to send activity to remote servers.
-    async fn queue_send(&self, task: SendActivityTask) -> Result<(), Error>;
+    async fn queue_deliver(&self, task: SendActivityTask) -> Result<(), Error>;
 }
 
 clone_trait_object!(QueueManager);
@@ -96,7 +96,7 @@ where
             }
         } else {
             debug!(task = ?message, "Queue sending activity");
-            data.config.queue_manager.queue_send(message).await?;
+            data.config.queue_manager.queue_deliver(message).await?;
         }
     }
 
