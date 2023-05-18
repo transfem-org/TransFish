@@ -24,7 +24,7 @@ pub enum Error {
     ActivitySignatureInvalid,
     /// Failed to resolve actor via webfinger
     WebfingerResolveFailed,
-    /// Json in object was invalid: {0}
+    /// Json in request/response was invalid: {0}
     JsonError(#[from] serde_json::Error),
     /// Other errors which are not explicitly handled
     #[error(transparent)]

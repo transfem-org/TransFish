@@ -37,7 +37,7 @@ pub struct SendActivityTask {
 
 #[async_trait]
 pub trait QueueManager: DynClone + Send {
-    /// This function is called in [crate::queue::send_activity], and would call
+    /// Called in [crate::queue::send_activity], and would call
     /// [crate::queue::do_send] inside to send activity to remote servers.
     async fn queue_send(&self, task: SendActivityTask) -> Result<(), Error>;
 }
@@ -50,7 +50,7 @@ clone_trait_object!(QueueManager);
 /// - `private_key`: Private key belonging to the actor who sends the activity, for signing HTTP
 ///                  signature. Generated with [crate::http_signatures::generate_actor_keypair].
 /// - `inboxes`: List of actor inboxes that should receive the activity. Should be built by calling
-///              [crate::traits::Actor::shared_inbox_or_inbox] for each target actor.
+///              [crate::federation::traits::Actor::shared_inbox_or_inbox] for each target actor.
 pub async fn send_activity<Activity, Datatype, ActorType>(
     activity: Activity,
     actor: &ActorType,
@@ -95,6 +95,7 @@ where
                 warn!("{}", e);
             }
         } else {
+            debug!(task = ?message, "Queue sending activity");
             data.config.queue_manager.queue_send(message).await?;
         }
     }
