@@ -129,34 +129,19 @@
 			</div>
 		</div>
 		<template v-if="conversation">
-			<template v-if="replyLevel < 11 && depth < 5">
-				<template v-if="replies.length == 1">
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply single"
-						:conversation="conversation"
-						:depth="depth"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-						:detailedView="detailedView"
-					/>
-				</template>
-				<template v-else>
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply"
-						:conversation="conversation"
-						:depth="depth + 1"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-						:detailedView="detailedView"
-					/>
-				</template>
-			</template>
+			<MkNoteSub
+				v-if="replyLevel < 11 && depth < 5"
+				v-for="reply in replies"
+				:key="reply.id"
+				:note="reply"
+				class="reply"
+				:class="{single: replies.length == 1}"
+				:conversation="conversation"
+				:depth="replies.lenght == 1 ? depth : depth + 1"
+				:replyLevel="replyLevel + 1"
+				:parentId="appearNote.replyId"
+				:detailedView="detailedView"
+			/>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
 				<MkA class="text _link" :to="notePage(note)"
