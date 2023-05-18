@@ -177,10 +177,10 @@ let contentClicking = false;
 
 const focusedElement = document.activeElement;
 function close(ev, opts: { useSendAnimation?: boolean } = {}) {
-	removeEventListener("popstate", close);
-	if (props.preferType == "dialog") {
-		history.forward();
-	}
+	// removeEventListener("popstate", close);
+	// if (props.preferType == "dialog") {
+	// 	history.forward();
+	// }
 	if (opts.useSendAnimation) {
 		useSendAnime = true;
 	}
@@ -358,10 +358,10 @@ const onOpened = () => {
 		},
 		{ passive: true }
 	);
-	if (props.preferType == "dialog") {
-		history.pushState(null, "", location.href);
-	}
-	addEventListener("popstate", close);
+	// if (props.preferType == "dialog") {
+	// 	history.pushState(null, "", location.href);
+	// }
+	// addEventListener("popstate", close);
 };
 
 onMounted(() => {
@@ -388,10 +388,10 @@ onMounted(() => {
 	});
 });
 onUnmounted(() => {
-	removeEventListener("popstate", close);
-	if (props.preferType == "dialog") {
-		history.back();
-	}
+	// removeEventListener("popstate", close);
+	// if (props.preferType == "dialog") {
+	// 	history.back();
+	// }
 });
 
 defineExpose({
