@@ -27,12 +27,12 @@ use url::Url;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct SendActivityTask {
-    actor_id: Url,
-    activity_id: Url,
-    activity: String,
-    inbox: Url,
-    private_key: String,
-    http_signature_compat: bool,
+    pub actor_id: Url,
+    pub activity_id: Url,
+    pub activity: String,
+    pub inbox: Url,
+    pub private_key: String,
+    pub http_signature_compat: bool,
 }
 
 #[async_trait]
