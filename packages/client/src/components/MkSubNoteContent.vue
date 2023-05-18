@@ -40,6 +40,12 @@
 				disableAnim: disableMfm,
 			}"
 		>
+			<XShowMoreButton
+				ref="showMoreButton"
+				v-if="isLong && collapsed"
+				v-model="collapsed"
+				v-on:keydown="focusFooter"
+			></XShowMoreButton>
 			<XCwButton
 				ref="cwButton"
 				v-if="note.cw && !showContent"
@@ -50,7 +56,7 @@
 			<div
 				class="body"
 				v-bind="{
-					'aria-label': !showContent ? '' : null,
+					'aria-hidden': !showContent ? 'true' : null,
 					tabindex: !showContent ? '-1' : null,
 				}"
 			>
@@ -115,16 +121,16 @@
 					</div>
 				</template>
 				<div
-					v-if="note.cw && !showContent"
+					v-if="note.cw && !showContent || showMoreButton && collapsed"
 					tabindex="0"
-					v-on:focus="cwButton?.focus()"
+					v-on:focus="cwButton?.focus(); showMoreButton?.focus()"
 				></div>
 			</div>
 			<XShowMoreButton
-				v-if="isLong"
+				v-if="isLong && !collapsed"
 				v-model="collapsed"
 			></XShowMoreButton>
-			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
+			<XCwButton v-if="note.cw && showContent" v-model="showContent" :note="note" />
 		</div>
 		<MkButton
 			v-if="hasMfm && defaultStore.state.animatedMfm"
@@ -171,6 +177,7 @@ const emit = defineEmits<{
 }>();
 
 const cwButton = ref<HTMLElement>();
+const showMoreButton = ref<HTMLElement>();
 const isLong =
 	!props.detailedView &&
 	props.note.cw == null &&

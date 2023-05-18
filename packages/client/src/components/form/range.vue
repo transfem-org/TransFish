@@ -15,6 +15,8 @@
 					v-on:change="(x) => onChange(x)"
 					@focus="tooltipShow"
 					@blur="tooltipHide"
+					@touchstart="tooltipShow"
+					@touchend="tooltipHide"
 					@mouseenter="tooltipShow"
 					@mouseleave="tooltipHide"
 					@input="(x) => (inputVal = x.target.value)"
