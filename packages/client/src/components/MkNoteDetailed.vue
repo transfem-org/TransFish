@@ -15,20 +15,22 @@
 			:key="note.id"
 			class="reply-to"
 			:note="note"
+			:detailedView="true"
 		/>
 		<MkLoading v-else-if="appearNote.reply" mini />
 		<MkNoteSub
 			v-if="appearNote.reply"
 			:note="appearNote.reply"
 			class="reply-to"
+			:detailedView="true"
 		/>
 
-		<div ref="noteEl" class="article" tabindex="-1">
+		<div ref="noteEl" class="article" tabindex="-1" :id="appearNote.id">
 			<MkNote
 				@contextmenu.stop="onContextmenu"
 				tabindex="-1"
 				:note="appearNote"
-				:detailedView="true"
+				detailedView
 			></MkNote>
 		</div>
 
@@ -39,6 +41,7 @@
 			:note="note"
 			class="reply"
 			:conversation="replies"
+			:detailedView="true"
 		/>
 		<MkLoading v-else-if="appearNote.repliesCount > 0" />
 	</div>
@@ -329,6 +332,9 @@ onMounted(() => {
 onUpdated(() => {
 	if (!isScrolling) {
 		noteEl?.scrollIntoView();
+		if (location.hash) {
+			location.replace(location.hash); // Jump to highlighted reply
+		}
 	}
 });
 
@@ -509,6 +515,14 @@ onUnmounted(() => {
 		// 		}
 		// 	}
 		// }
+	}
+	:deep(.reply:target > .main),
+	:deep(.reply-to:target) {
+		z-index: 2;
+		&::before {
+			outline: auto;
+			opacity: 1;
+		}
 	}
 
 	&.max-width_500px {

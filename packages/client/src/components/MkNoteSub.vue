@@ -4,6 +4,8 @@
 		ref="el"
 		v-size="{ max: [450, 500] }"
 		class="wrpstxzv"
+		:id="detailedView ? appearNote.id : null"
+		tabindex="-1"
 		:class="{
 			children: depth > 1,
 			singleStart: replies.length == 1,
@@ -138,6 +140,7 @@
 						:depth="depth"
 						:replyLevel="replyLevel + 1"
 						:parentId="appearNote.replyId"
+						:detailedView="detailedView"
 					/>
 				</template>
 				<template v-else>
@@ -150,6 +153,7 @@
 						:depth="depth + 1"
 						:replyLevel="replyLevel + 1"
 						:parentId="appearNote.replyId"
+						:detailedView="detailedView"
 					/>
 				</template>
 			</template>
@@ -212,6 +216,7 @@ const props = withDefaults(
 		note: misskey.entities.Note;
 		conversation?: misskey.entities.Note[];
 		parentId?;
+		detailedView?;
 
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
@@ -348,6 +353,7 @@ function noteClick(e) {
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
+	outline: none;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;

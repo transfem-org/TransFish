@@ -5,6 +5,7 @@
 				:actions="headerActions"
 				:tabs="headerTabs"
 				:display-back-button="true"
+				:to="`#${noteId}`"
 		/></template>
 		<MkSpacer :content-max="800" :marginMin="6">
 			<div class="fcuexfpr">
@@ -26,7 +27,7 @@
 								v-if="!showNext && hasNext"
 								class="load next"
 								@click="showNext = true"
-								v-tooltip="i18n.ts.loadMore"
+								v-tooltip="`${i18n.ts.loadMore} (${i18n.ts.newer})`"
 								><i class="ph-caret-up ph-bold ph-lg"></i
 							></MkButton>
 							<div class="note _gap">
@@ -75,7 +76,7 @@
 								v-if="!showPrev && hasPrev"
 								class="load prev"
 								@click="showPrev = true"
-								v-tooltip="i18n.ts.loadMore"
+								v-tooltip="`${i18n.ts.loadMore} (${i18n.ts.older})`"
 								><i class="ph-caret-down ph-bold ph-lg"></i
 							></MkButton>
 						</div>
@@ -217,6 +218,10 @@ definePageMetadata(
 .fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
+}
+
+:global(html, body) {
+	scroll-behavior: smooth;
 }
 
 .fcuexfpr {

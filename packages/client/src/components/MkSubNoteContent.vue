@@ -2,7 +2,8 @@
 	<p v-if="note.cw != null" class="cw">
 		<MkA
 			v-if="!detailed && note.replyId"
-			:to="`/notes/${note.replyId}`"
+			:to="`#${note.replyId}`"
+			behavior="browser"
 			class="reply-icon"
 			@click.stop
 		>
@@ -16,6 +17,7 @@
 				!note.replyId
 			"
 			:to="`/notes/${note.renoteId}`"
+			v-tooltip="i18n.ts.jumpToReply"
 			class="reply-icon"
 			@click.stop
 		>
@@ -60,7 +62,9 @@
 				<template v-if="!note.cw">
 					<MkA
 						v-if="!detailed && note.replyId"
-						:to="`/notes/${note.replyId}`"
+						:to="`#${note.replyId}`"
+						behavior="browser"
+						v-tooltip="i18n.ts.jumpToReply"
 						class="reply-icon"
 						@click.stop
 					>

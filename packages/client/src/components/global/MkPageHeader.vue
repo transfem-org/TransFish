@@ -139,6 +139,7 @@ const props = defineProps<{
 	thin?: boolean;
 	displayMyAvatar?: boolean;
 	displayBackButton?: boolean;
+	to?: string;
 }>();
 
 const emit = defineEmits<{
@@ -193,7 +194,11 @@ const preventDrag = (ev: TouchEvent) => {
 };
 
 const onClick = () => {
-	scrollToTop(el, { behavior: "smooth" });
+	if (props.to) {
+		location.href = props.to;
+	} else {
+		scrollToTop(el, { behavior: "smooth" });
+	}
 };
 
 function onTabMousedown(tab: Tab, ev: MouseEvent): void {
