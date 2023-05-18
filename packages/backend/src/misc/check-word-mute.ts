@@ -19,7 +19,9 @@ function checkWordMute(
 ): boolean {
 	if (note == null) return false;
 
-	const text = `${note.cw ?? ""} ${note.text ?? ""} ${note.files.map((f) => f.comment ?? "").join(" ")}`.trim();
+	const text = `${note.cw ?? ""} ${note.text ?? ""} ${note.files
+		.map((f) => f.comment ?? "")
+		.join(" ")}`.trim();
 	if (text === "") return false;
 
 	for (const mutePattern of mutedWords) {
