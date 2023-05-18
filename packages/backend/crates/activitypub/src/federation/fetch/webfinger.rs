@@ -1,9 +1,9 @@
 // GNU Affero General Public License v3.0
 // https://github.com/LemmyNet/activitypub-federation-rust
 
+use crate::error::{Error, Error::WebfingerResolveFailed};
 use crate::federation::{
     config::Data,
-    error::{Error, Error::WebfingerResolveFailed},
     fetch::{fetch_object_http, object_id::ObjectId},
     traits::{Actor, LocalActor, Object},
     FEDERATION_CONTENT_TYPE,
@@ -31,11 +31,8 @@ pub async fn webfinger_resolve_actor<T: Clone, Kind>(
 where
     Kind: Object + Actor + Send + 'static + Object<DataType = T>,
     for<'de2> <Kind as Object>::Kind: serde::Deserialize<'de2>,
-    <Kind as Object>::Error: From<crate::federation::error::Error>
-        + From<anyhow::Error>
-        + From<url::ParseError>
-        + Send
-        + Sync,
+    <Kind as Object>::Error:
+        From<crate::error::Error> + From<anyhow::Error> + From<url::ParseError> + Send + Sync,
 {
     let (_, domain) = identifier
         .splitn(2, '@')

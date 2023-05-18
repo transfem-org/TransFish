@@ -8,10 +8,8 @@
 //! [receive_activity (actix-web)](crate::actix_web::inbox::receive_activity) /
 //! [receive_activity (axum)](crate::axum::inbox::receive_activity).
 
-use crate::federation::{
-    error::{Error, Error::ActivitySignatureInvalid},
-    protocol::public_key::main_key_id,
-};
+use crate::error::{Error, Error::ActivitySignatureInvalid};
+use crate::federation::protocol::public_key::main_key_id;
 use base64::{engine::general_purpose::STANDARD as Base64, Engine};
 use http::{header::HeaderName, uri::PathAndQuery, HeaderValue, Method, Uri};
 use http_signature_normalization_reqwest::prelude::{Config, SignExt};

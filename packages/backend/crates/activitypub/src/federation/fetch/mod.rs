@@ -3,9 +3,10 @@
 
 //! Utilities for fetching data from other servers
 
+use crate::error::Error;
 use crate::federation::{
-    config::Data, error::Error, http_signature::sign_request, reqwest_shim::ResponseExt,
-    traits::LocalActor, FEDERATION_CONTENT_TYPE,
+    config::Data, http_signature::sign_request, reqwest_shim::ResponseExt, traits::LocalActor,
+    FEDERATION_CONTENT_TYPE,
 };
 use http::{HeaderMap, HeaderName, HeaderValue, StatusCode};
 use httpdate::fmt_http_date;

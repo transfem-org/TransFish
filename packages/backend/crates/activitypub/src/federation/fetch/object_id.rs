@@ -1,9 +1,9 @@
 // GNU Affero General Public License v3.0
 // https://github.com/LemmyNet/activitypub-federation-rust
 
+use crate::error::Error;
 use crate::federation::{
     config::Data,
-    error::Error,
     fetch::fetch_object_http,
     traits::{LocalActor, Object},
 };

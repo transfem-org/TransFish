@@ -1,4 +1,4 @@
-use crate::federation::error::Error;
+use crate::error::Error;
 use bytes::{BufMut, Bytes, BytesMut};
 use futures_core::{ready, stream::BoxStream, Stream};
 use pin_project_lite::pin_project;

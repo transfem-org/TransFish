@@ -17,9 +17,9 @@
 //! # Ok::<(), anyhow::Error>(())
 //! ```
 
-use crate::federation::{
-    error::Error, protocol::verification::verify_domains_match, traits::ActivityHandler,
-};
+use crate::error::Error;
+use crate::federation::{protocol::verification::verify_domains_match, traits::ActivityHandler};
+use crate::queue::QueueManager;
 use async_trait::async_trait;
 use derive_builder::Builder;
 use dyn_clone::{clone_trait_object, DynClone};
@@ -43,16 +43,13 @@ pub struct FederationConfig<T: Clone> {
     /// or configuration.
     pub(crate) app_data: T,
     /// Maximum number of outgoing HTTP requests per incoming HTTP request. See
-    /// [crate::fetch::object_id::ObjectId] for more details.
+    /// [crate::federation::fetch::object_id::ObjectId] for more details.
     #[builder(default = "20")]
     pub(crate) http_fetch_limit: u32,
     #[builder(default = "reqwest::Client::default().into()")]
     /// HTTP client used for all outgoing requests. Middleware can be used to add functionality
     /// like log tracing or retry of failed requests.
     pub(crate) client: ClientWithMiddleware,
-    /// Number of worker threads for sending outgoing activities
-    #[builder(default = "64")]
-    pub(crate) worker_count: u64,
     /// Run library in debug mode. This allows usage of http and localhost urls. It also sends
     /// outgoing activities synchronously, not in background thread. This helps to make tests
     /// more consistent. Do not use for production.
@@ -71,12 +68,8 @@ pub struct FederationConfig<T: Clone> {
     /// <https://git.pleroma.social/pleroma/pleroma/-/issues/2939>
     #[builder(default = "false")]
     pub(crate) http_signature_compat: bool,
-    /* TODO: store queue handler if necessary
-    /// Queue for sending outgoing activities. Only optional to make builder work, its always
-    /// present once constructed.
-    // #[builder(setter(skip))]
-    // pub(crate) activity_queue: Option<Arc<Manager>>,
-     */
+    /// Queue for sending outgoing activities.
+    pub(crate) queue_manager: Box<dyn QueueManager + Sync>,
 }
 
 impl<T: Clone> FederationConfig<T> {

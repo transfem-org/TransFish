@@ -1,5 +1,4 @@
 pub(crate) mod config;
-pub(crate) mod error;
 pub(crate) mod fetch;
 pub(crate) mod http_signature;
 pub(crate) mod protocol;

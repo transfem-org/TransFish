@@ -3,7 +3,7 @@
 
 //! Verify that received data is valid
 
-use crate::federation::error::Error;
+use crate::error::Error;
 use url::Url;
 
 /// Check that both urls have the same domain. If not, return UrlVerificationError.
