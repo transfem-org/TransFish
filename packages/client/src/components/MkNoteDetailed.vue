@@ -97,7 +97,7 @@
 			:pagination="pagination"
 		> -->
 			<MkUserCardMini
-				v-if="tab === 'renotes' && appearNote.renoteCount > 0"
+				v-if="tab === 'renotes' && renotes"
 				v-for="item in renotes"
 				:key="item.user.id"
 				:user="item.user"
