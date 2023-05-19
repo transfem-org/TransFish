@@ -15,32 +15,128 @@
 			:key="note.id"
 			class="reply-to"
 			:note="note"
+			:detailedView="true"
 		/>
 		<MkLoading v-else-if="appearNote.reply" mini />
 		<MkNoteSub
 			v-if="appearNote.reply"
 			:note="appearNote.reply"
 			class="reply-to"
+			:detailedView="true"
 		/>
 
-		<div ref="noteEl" class="article" tabindex="-1">
-			<MkNote
-				@contextmenu.stop="onContextmenu"
-				tabindex="-1"
-				:note="appearNote"
-				:detailedView="true"
-			></MkNote>
-		</div>
+		<MkNote
+			ref="noteEl"
+			@contextmenu.stop="onContextmenu"
+			tabindex="-1"
+			:note="appearNote"
+			detailedView
+		></MkNote>
+
+		<MkTab 
+			v-model="tab"
+			:style="'chips'"
+			@update:modelValue="loadTab"
+		>
+			<option value="replies">
+				<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
+				<template v-if="appearNote.repliesCount > 0">
+					<span class="count">{{ appearNote.repliesCount }}</span>
+				</template>
+				{{ i18n.ts._notification._types.reply }}
+			</option>
+			<option value="renotes">
+				<i class="ph-repeat ph-bold ph-lg"></i>
+				<template v-if="appearNote.renoteCount > 0">
+					<span class="count">{{ appearNote.renoteCount }}</span>
+				</template>
+				{{ i18n.ts._notification._types.renote }}
+			</option>
+			<option value="quotes">
+				<i class="ph-quotes ph-bold ph-lg"></i>
+				<template v-if="directQuotes?.length > 0">
+					<span class="count">{{ directQuotes.length }}</span>
+				</template>
+				{{ i18n.ts._notification._types.quote }}
+			</option>
+			<option value="clips">
+				<i class="ph-paperclip ph-bold ph-lg"></i>
+				<template v-if="clips?.length > 0">
+					<span class="count">{{ clips.length }}</span>
+				</template>
+				{{ i18n.ts.clips }}
+			</option>
+		</MkTab>
 
 		<MkNoteSub
-			v-if="directReplies"
+			v-if="directReplies && tab === 'replies'"
 			v-for="note in directReplies"
 			:key="note.id"
 			:note="note"
 			class="reply"
 			:conversation="replies"
+			:detailedView="true"
 		/>
-		<MkLoading v-else-if="appearNote.repliesCount > 0" />
+		<MkLoading v-else-if="tab === 'replies' && appearNote.repliesCount > 0" />
+		
+		<MkNoteSub
+			v-if="directQuotes && tab === 'quotes'"
+			v-for="note in directQuotes"
+			:key="note.id"
+			:note="note"
+			class="reply"
+			:conversation="directQuotes"
+			:detailedView="true"
+		/>
+		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
+		
+		<!-- <MkPagination
+			v-if="tab === 'renotes'"
+			v-slot="{ items }"
+			ref="pagingComponent"
+			:pagination="pagination"
+		> -->
+			<MkUserCardMini
+				v-if="tab === 'renotes' && renotes"
+				v-for="item in renotes"
+				:key="item.user.id"
+				:user="item.user"
+				:with-chart="false"
+			/>
+		<!-- </MkPagination> -->
+		<MkLoading v-else-if="tab === 'renotes' && appearNote.renoteCount > 0" />
+
+		<div
+			v-if="tab === 'clips' && clips.length > 0"
+			class="_content clips"
+		>
+			<MkA
+				v-for="item in clips"
+				:key="item.id"
+				:to="`/clips/${item.id}`"
+				class="item _panel"
+			>
+				<b>{{ item.name }}</b>
+				<div
+					v-if="item.description"
+					class="description"
+				>
+					{{ item.description }}
+				</div>
+				<div class="user">
+					<MkAvatar
+						:user="item.user"
+						class="avatar"
+						:show-indicator="true"
+					/>
+					<MkUserName
+						:user="item.user"
+						:nowrap="false"
+					/>
+				</div>
+			</MkA>
+		</div>
+		<MkLoading v-else-if="tab === 'clips' && clips.length > 0" />
 	</div>
 	<div v-else class="_panel muted" @click="muted.muted = false">
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
@@ -70,15 +166,17 @@ import {
 	reactive,
 	ref,
 } from "vue";
-import type * as misskey from "calckey-js";
+import * as misskey from "calckey-js";
+import MkTab from "@/components/MkTab.vue";
 import MkNote from "@/components/MkNote.vue";
 import MkNoteSub from "@/components/MkNoteSub.vue";
 import XStarButton from "@/components/MkStarButton.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
+import MkPagination from "@/components/MkPagination.vue";
+import MkUserCardMini from "@/components/MkUserCardMini.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { userPage } from "@/filters/user";
-import { useRouter } from "@/router";
 import * as os from "@/os";
 import { defaultStore, noteViewInterruptors } from "@/store";
 import { reactionPicker } from "@/scripts/reaction-picker";
@@ -89,11 +187,14 @@ import { useNoteCapture } from "@/scripts/use-note-capture";
 import { deepClone } from "@/scripts/clone";
 import { stream } from "@/stream";
 import { NoteUpdatedEvent } from "calckey-js/built/streaming.types";
+import appear from "@/directives/appear";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 }>();
+
+let tab = $ref("replies");
 
 let note = $ref(deepClone(props.note));
 
@@ -143,6 +244,9 @@ const translating = ref(false);
 let conversation = $ref<null | misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
 let directReplies = $ref<null | misskey.entities.Note[]>([]);
+let directQuotes = $ref<null | misskey.entities.Note[]>([]);
+let clips = $ref();
+let renotes = $ref();
 let isScrolling;
 
 const keymap = {
@@ -256,10 +360,14 @@ os.api("notes/children", {
 	directReplies = res
 		.filter(
 			(note) =>
-				note.replyId === appearNote.id ||
-				note.renoteId === appearNote.id
+				note.replyId === appearNote.id
 		)
 		.reverse();
+	directQuotes = res
+		.filter(
+			(note) =>
+				note.renoteId === appearNote.id
+		);
 });
 
 conversation = null;
@@ -271,6 +379,33 @@ if (appearNote.replyId) {
 		conversation = res.reverse();
 		focus();
 	});
+}
+
+clips = null;
+os.api("notes/clips", {
+	noteId: appearNote.id,
+}).then((res) => {
+	clips = res;
+});
+
+// const pagination = {
+// 	endpoint: "notes/renotes",
+// 	noteId: appearNote.id,
+// 	limit: 10,
+// };
+
+// const pagingComponent = $ref<InstanceType<typeof MkPagination>>();
+
+renotes = null;
+function loadTab() {
+	if (tab === "renotes" && !renotes) {
+		os.api("notes/renotes", {
+			noteId: appearNote.id,
+			limit: 100,
+		}).then((res) => {
+			renotes = res;
+		})
+	}
 }
 
 async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
@@ -323,12 +458,15 @@ document.addEventListener("wheel", () => {
 onMounted(() => {
 	stream.on("noteUpdated", onNoteUpdated);
 	isScrolling = false;
-	noteEl?.scrollIntoView();
+	noteEl.scrollIntoView();
 });
 
 onUpdated(() => {
 	if (!isScrolling) {
-		noteEl?.scrollIntoView();
+		noteEl.scrollIntoView();
+		if (location.hash) {
+			location.replace(location.hash); // Jump to highlighted reply
+		}
 	}
 });
 
@@ -366,78 +504,34 @@ onUnmounted(() => {
 		}
 	}
 
-	&:hover > .article > .main > .footer > .button {
-		opacity: 1;
-	}
 	> .reply-to {
 		margin-bottom: -16px;
 		padding-bottom: 16px;
 	}
 
-	> .renote {
-		display: flex;
-		align-items: center;
-		padding: 16px 32px 8px 32px;
-		line-height: 28px;
-		white-space: pre;
-		color: var(--renote);
-
-		> .avatar {
-			flex-shrink: 0;
-			display: inline-block;
-			width: 28px;
-			height: 28px;
-			margin: 0 8px 0 0;
-			border-radius: 6px;
-		}
-
-		> i {
-			margin-right: 4px;
-		}
-
-		> span {
-			overflow: hidden;
-			flex-shrink: 1;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-
-			> .name {
-				font-weight: bold;
-			}
-		}
-
-		> .info {
-			margin-left: auto;
-			font-size: 0.9em;
-
-			> .time {
-				flex-shrink: 0;
-				color: inherit;
-
-				> .dropdownIcon {
-					margin-right: 4px;
-				}
-			}
-		}
-	}
-
-	> .renote + .article {
-		padding-top: 8px;
-	}
-
-	> .article {
-		padding-block: 28px 6px;
+	> :deep(.note-container) {
+		padding-block: 28px 0;
 		padding-top: 12px;
 		font-size: 1.1rem;
 		overflow: clip;
 		outline: none;
 		scroll-margin-top: calc(var(--stickyTop) + 20vh);
-		:deep(.article) {
+		.article {
 			cursor: unset;
+			padding-bottom: 0;
 		}
 		&:first-of-type {
 			padding-top: 28px;
 		}
+	}
+
+	> :deep(.chips) {
+		padding: 6px 32px 12px;
+	}
+	> :deep(.user-card-mini) {
+		padding-inline: 32px;
+		border-top: 1px solid var(--divider);
+		border-radius: 0;
 	}
 
 	> .reply {
@@ -510,6 +604,14 @@ onUnmounted(() => {
 		// 	}
 		// }
 	}
+	:deep(.reply:target > .main),
+	:deep(.reply-to:target) {
+		z-index: 2;
+		&::before {
+			outline: auto;
+			opacity: 1;
+		}
+	}
 
 	&.max-width_500px {
 		font-size: 0.9em;
@@ -518,46 +620,20 @@ onUnmounted(() => {
 		> .reply-to:first-child {
 			padding-top: 14px;
 		}
-		> .renote {
-			padding: 8px 16px 0 16px;
-		}
 
-		> .article {
+		> :deep(.note-container) {
 			padding: 6px 0 0 0;
 			> .header > .body {
 				padding-left: 10px;
 			}
 		}
-	}
-
-	&.max-width_350px {
-		> .article {
-			> .main {
-				> .footer {
-					> .button {
-						&:not(:last-child) {
-							margin-right: 18px;
-						}
-					}
-				}
-			}
+		> .clips, > .chips, > :deep(.user-card-mini) {
+			padding-inline: 16px !important;
 		}
 	}
 
 	&.max-width_300px {
 		font-size: 0.825em;
-
-		> .article {
-			> .main {
-				> .footer {
-					> .button {
-						&:not(:last-child) {
-							margin-right: 12px;
-						}
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -565,5 +641,37 @@ onUnmounted(() => {
 	padding: 8px;
 	text-align: center;
 	opacity: 0.7;
+}
+
+.clips { // want to redesign at some point
+	padding: 24px 32px;
+	padding-top: 0;
+	> .item {
+		display: block;
+		padding: 16px;
+		// background: var(--buttonBg);
+		border: 1px solid var(--divider);
+		margin-bottom: var(--margin);
+		transition: background .2s;
+		&:hover, &:focus-within {
+			background: var(--panelHighlight);
+		}
+
+		> .description {
+			padding: 8px 0;
+		}
+
+		> .user {
+			$height: 32px;
+			padding-top: 16px;
+			border-top: solid 0.5px var(--divider);
+			line-height: $height;
+
+			> .avatar {
+				width: $height;
+				height: $height;
+			}
+		}
+	}
 }
 </style>

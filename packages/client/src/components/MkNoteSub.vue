@@ -4,6 +4,8 @@
 		ref="el"
 		v-size="{ max: [450, 500] }"
 		class="wrpstxzv"
+		:id="detailedView ? appearNote.id : null"
+		tabindex="-1"
 		:class="{
 			children: depth > 1,
 			singleStart: replies.length == 1,
@@ -127,32 +129,19 @@
 			</div>
 		</div>
 		<template v-if="conversation">
-			<template v-if="replyLevel < 11 && depth < 5">
-				<template v-if="replies.length == 1">
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply single"
-						:conversation="conversation"
-						:depth="depth"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-				<template v-else>
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply"
-						:conversation="conversation"
-						:depth="depth + 1"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-			</template>
+			<MkNoteSub
+				v-if="replyLevel < 11 && depth < 5"
+				v-for="reply in replies"
+				:key="reply.id"
+				:note="reply"
+				class="reply"
+				:class="{single: replies.length == 1}"
+				:conversation="conversation"
+				:depth="replies.lenght == 1 ? depth : depth + 1"
+				:replyLevel="replyLevel + 1"
+				:parentId="appearNote.replyId"
+				:detailedView="detailedView"
+			/>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
 				<MkA class="text _link" :to="notePage(note)"
@@ -212,6 +201,7 @@ const props = withDefaults(
 		note: misskey.entities.Note;
 		conversation?: misskey.entities.Note[];
 		parentId?;
+		detailedView?;
 
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
@@ -348,6 +338,7 @@ function noteClick(e) {
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
+	outline: none;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
