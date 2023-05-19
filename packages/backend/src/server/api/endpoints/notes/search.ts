@@ -2,8 +2,9 @@ import { In } from "typeorm";
 import { Notes } from "@/models/index.js";
 import { Note } from "@/models/entities/note.js";
 import config from "@/config/index.js";
-import es from "../../../../db/elasticsearch.js";
-import sonic from "../../../../db/sonic.js";
+import es from "@/db/elasticsearch.js";
+import sonic from "@/db/sonic.js";
+import meilisearch from "@/db/meilisearch.js";
 import define from "../../define.js";
 import { makePaginationQuery } from "../../common/make-pagination-query.js";
 import { generateVisibilityQuery } from "../../common/generate-visibility-query.js";
@@ -61,7 +62,7 @@ export const paramDef = {
 } as const;
 
 export default define(meta, paramDef, async (ps, me) => {
-	if (es == null && sonic == null) {
+	if (es == null && sonic == null && meilisearch == null) {
 		const query = makePaginationQuery(
 			Notes.createQueryBuilder("note"),
 			ps.sinceId,
@@ -95,6 +96,31 @@ export default define(meta, paramDef, async (ps, me) => {
 		if (me) generateBlockedUserQuery(query, me);
 
 		const notes: Note[] = await query.take(ps.limit).getMany();
+
+		return await Notes.packMany(notes, me);
+	} else if (meilisearch) {
+		//search in meilisearch
+		const result = await meilisearch.index("notes").search(ps.query, {
+			limit: ps.limit,
+			offset: ps.offset,
+			filters: ps.userId
+				? `userId = ${ps.userId}`
+				: ps.channelId
+				? `channelId = ${ps.channelId}`
+				: undefined,
+		});
+
+		const ids = result.hits.map((hit) => hit.id);
+
+		// Fetch the notes from the database until we have enough to satisfy the limit
+		const notes: Note[] = await Notes.find({
+			where: {
+				id: In(ids),
+			},
+			order: {
+				id: "DESC",
+			},
+		});
 
 		return await Notes.packMany(notes, me);
 	} else if (sonic) {

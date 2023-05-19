@@ -186,6 +186,7 @@
 		"execa": "6.1.0",
 		"json5": "2.2.3",
 		"json5-loader": "4.0.1",
+		"meilisearch": "^0.32.3",
 		"mocha": "10.2.0",
 		"pug": "3.0.2",
 		"strict-event-emitter-types": "2.0.0",

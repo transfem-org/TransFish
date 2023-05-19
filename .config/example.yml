@@ -82,6 +82,15 @@ redis:
 #  user:
 #  pass:
 
+#   ┌───────────────────────────┐
+#───┘ MeiliSearch configuration └─────────────────────────────
+
+#meilisearch:
+#  host: meilisearch
+#  port: 7700
+#  apiKey: ''
+#  ssl: false
+
 #   ┌───────────────┐
 #───┘ ID generation └───────────────────────────────────────────
 

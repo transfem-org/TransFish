@@ -33,6 +33,7 @@ coverage
 built
 db
 elasticsearch
+meili_data
 redis
 npm-debug.log
 *.pem

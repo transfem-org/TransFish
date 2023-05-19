@@ -164,6 +164,15 @@ redis:
 #  collection: notes
 #  bucket: default
 
+#   ┌───────────────────────────┐
+#───┘ MeiliSearch configuration └─────────────────────────────
+
+#meilisearch:
+#  host: meilisearch
+#  port: 7700
+#  apiKey: ''
+#  ssl: false
+
 #   ┌─────────────────────────────┐
 #───┘ Elasticsearch configuration └─────────────────────────────
 

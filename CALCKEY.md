@@ -124,6 +124,7 @@
 - Improve system emails
 - Mod mail
 - Focus trapping and button labels
+- Meilisearch
 
 ## Implemented (remote)
 

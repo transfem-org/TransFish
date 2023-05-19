@@ -1,6 +1,7 @@
 import * as mfm from "mfm-js";
-import es from "../../db/elasticsearch.js";
-import sonic from "../../db/sonic.js";
+import es from "@/db/elasticsearch.js";
+import sonic from "@/db/sonic.js";
+import meilisearch from "@/db/meilisearch.js";
 import {
 	publishMainStream,
 	publishNotesStream,
@@ -775,6 +776,22 @@ export async function index(note: Note): Promise<void> {
 			}),
 			note.text,
 		);
+	}
+
+	if (meilisearch) {
+		await meilisearch.index("notes").addDocuments([
+			{
+				id: note.id.toString(),
+				text: note.text,
+				userId: note.userId,
+				userHost: note.userHost,
+				channelId: note.channelId,
+				cw: note.cw,
+				createdAt: note.createdAt.getTime(),
+			},
+		], {
+			primaryKey: 'id',
+		});
 	}
 }
 

@@ -28,6 +28,12 @@ redis:
 #  user:
 #  pass:
 
+#meilisearch
+# host: localhost
+# port: 7700
+# ssl: false
+# apiKey: ''
+
 id: 'aid'
 
 reservedUsernames:
