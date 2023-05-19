@@ -168,11 +168,11 @@ onMounted(() => {
 		addEventListener("popstate", close);
 		// This is a workaround. Not sure why, but when clicking to open, it doesn't move focus to the photoswipe. Preventing using esc to close. However when using keyboard to open it already focuses the lightbox fine.
 		lightbox.pswp.element.focus();
-	})
+	});
 	lightbox.on("close", () => {
 		removeEventListener("popstate", close);
 		history.back();
-	})
+	});
 
 	lightbox.init();
 

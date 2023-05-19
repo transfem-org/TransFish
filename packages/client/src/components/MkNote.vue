@@ -130,7 +130,9 @@
 						@click="reply()"
 					>
 						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-						<template v-if="appearNote.repliesCount > 0 && !detailedView">
+						<template
+							v-if="appearNote.repliesCount > 0 && !detailedView"
+						>
 							<p class="count">{{ appearNote.repliesCount }}</p>
 						</template>
 					</button>
@@ -672,7 +674,7 @@ defineExpose({
 				display: flex;
 				justify-content: space-between;
 				flex-wrap: wrap;
-				gap: .7em;
+				gap: 0.7em;
 				margin-top: 16px;
 				opacity: 0.7;
 				font-size: 0.9em;

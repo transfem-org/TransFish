@@ -1,5 +1,10 @@
 <template>
-	<button ref="el" class="_button" :class="{ fade: modelValue, showLess: !modelValue }" @click.stop="toggle">
+	<button
+		ref="el"
+		class="_button"
+		:class="{ fade: modelValue, showLess: !modelValue }"
+		@click.stop="toggle"
+	>
 		<span>{{ modelValue ? i18n.ts.showMore : i18n.ts.showLess }}</span>
 	</button>
 </template>

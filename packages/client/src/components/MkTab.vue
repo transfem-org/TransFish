@@ -16,10 +16,7 @@ export default defineComponent({
 		return h(
 			"div",
 			{
-				class: [
-					"pxhvhrfw",
-					{ chips: this.style === "chips" },
-				],
+				class: ["pxhvhrfw", { chips: this.style === "chips" }],
 				role: "tablist",
 			},
 			options.map((option) =>
@@ -30,7 +27,10 @@ export default defineComponent({
 							class: "_button",
 							role: "tab",
 							key: option.key,
-							'aria-selected': this.modelValue === option.props?.value ? "true" : "false",
+							"aria-selected":
+								this.modelValue === option.props?.value
+									? "true"
+									: "false",
 							onClick: () => {
 								this.$emit(
 									"update:modelValue",
@@ -87,7 +87,7 @@ export default defineComponent({
 
 	&.chips {
 		padding: 12px 32px;
-		font-size: .85em;
+		font-size: 0.85em;
 		overflow-x: auto;
 		> button {
 			display: flex;
@@ -96,11 +96,11 @@ export default defineComponent({
 			flex: unset;
 			margin: 0;
 			margin-right: 8px;
-			padding: .5em 1em;
+			padding: 0.5em 1em;
 			border-radius: 100px;
 			background: var(--buttonBg);
 			> i {
-				margin-top: -.1em;
+				margin-top: -0.1em;
 			}
 		}
 	}

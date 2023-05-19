@@ -34,7 +34,8 @@ const props = defineProps<{
 	position: relative;
 	height: 200px;
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		text-decoration: none;
 		color: var(--accent);
 

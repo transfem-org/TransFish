@@ -33,11 +33,7 @@
 			detailedView
 		></MkNote>
 
-		<MkTab 
-			v-model="tab"
-			:style="'chips'"
-			@update:modelValue="loadTab"
-		>
+		<MkTab v-model="tab" :style="'chips'" @update:modelValue="loadTab">
 			<option value="replies">
 				<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
 				<template v-if="appearNote.repliesCount > 0">
@@ -77,8 +73,10 @@
 			:conversation="replies"
 			:detailedView="true"
 		/>
-		<MkLoading v-else-if="tab === 'replies' && appearNote.repliesCount > 0" />
-		
+		<MkLoading
+			v-else-if="tab === 'replies' && appearNote.repliesCount > 0"
+		/>
+
 		<MkNoteSub
 			v-if="directQuotes && tab === 'quotes'"
 			v-for="note in directQuotes"
@@ -89,27 +87,26 @@
 			:detailedView="true"
 		/>
 		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
-		
+
 		<!-- <MkPagination
 			v-if="tab === 'renotes'"
 			v-slot="{ items }"
 			ref="pagingComponent"
 			:pagination="pagination"
 		> -->
-			<MkUserCardMini
-				v-if="tab === 'renotes' && renotes"
-				v-for="item in renotes"
-				:key="item.user.id"
-				:user="item.user"
-				:with-chart="false"
-			/>
+		<MkUserCardMini
+			v-if="tab === 'renotes' && renotes"
+			v-for="item in renotes"
+			:key="item.user.id"
+			:user="item.user"
+			:with-chart="false"
+		/>
 		<!-- </MkPagination> -->
-		<MkLoading v-else-if="tab === 'renotes' && appearNote.renoteCount > 0" />
+		<MkLoading
+			v-else-if="tab === 'renotes' && appearNote.renoteCount > 0"
+		/>
 
-		<div
-			v-if="tab === 'clips' && clips.length > 0"
-			class="_content clips"
-		>
+		<div v-if="tab === 'clips' && clips.length > 0" class="_content clips">
 			<MkA
 				v-for="item in clips"
 				:key="item.id"
@@ -117,10 +114,7 @@
 				class="item _panel"
 			>
 				<b>{{ item.name }}</b>
-				<div
-					v-if="item.description"
-					class="description"
-				>
+				<div v-if="item.description" class="description">
 					{{ item.description }}
 				</div>
 				<div class="user">
@@ -129,10 +123,7 @@
 						class="avatar"
 						:show-indicator="true"
 					/>
-					<MkUserName
-						:user="item.user"
-						:nowrap="false"
-					/>
+					<MkUserName :user="item.user" :nowrap="false" />
 				</div>
 			</MkA>
 		</div>
@@ -358,16 +349,9 @@ os.api("notes/children", {
 }).then((res) => {
 	replies.value = res;
 	directReplies = res
-		.filter(
-			(note) =>
-				note.replyId === appearNote.id
-		)
+		.filter((note) => note.replyId === appearNote.id)
 		.reverse();
-	directQuotes = res
-		.filter(
-			(note) =>
-				note.renoteId === appearNote.id
-		);
+	directQuotes = res.filter((note) => note.renoteId === appearNote.id);
 });
 
 conversation = null;
@@ -404,7 +388,7 @@ function loadTab() {
 			limit: 100,
 		}).then((res) => {
 			renotes = res;
-		})
+		});
 	}
 }
 
@@ -627,7 +611,9 @@ onUnmounted(() => {
 				padding-left: 10px;
 			}
 		}
-		> .clips, > .chips, > :deep(.user-card-mini) {
+		> .clips,
+		> .chips,
+		> :deep(.user-card-mini) {
 			padding-inline: 16px !important;
 		}
 	}
@@ -643,7 +629,8 @@ onUnmounted(() => {
 	opacity: 0.7;
 }
 
-.clips { // want to redesign at some point
+.clips {
+	// want to redesign at some point
 	padding: 24px 32px;
 	padding-top: 0;
 	> .item {
@@ -652,8 +639,9 @@ onUnmounted(() => {
 		// background: var(--buttonBg);
 		border: 1px solid var(--divider);
 		margin-bottom: var(--margin);
-		transition: background .2s;
-		&:hover, &:focus-within {
+		transition: background 0.2s;
+		&:hover,
+		&:focus-within {
 			background: var(--panelHighlight);
 		}
 

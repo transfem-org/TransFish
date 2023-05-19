@@ -29,7 +29,8 @@ import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
 import { acct, userPage } from "@/filters/user";
 
-const props = withDefaults(defineProps<{
+const props = withDefaults(
+	defineProps<{
 		user: misskey.entities.User;
 		withChart?: boolean;
 	}>(),
@@ -63,7 +64,7 @@ if (props.withChart) {
 	padding: 16px;
 	background: var(--panel);
 	border-radius: 8px;
-	transition: background .2s;
+	transition: background 0.2s;
 
 	> :global(.avatar) {
 		display: block;
@@ -104,7 +105,8 @@ if (props.withChart) {
 		height: 30px;
 	}
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		background: var(--panelHighlight);
 	}
 

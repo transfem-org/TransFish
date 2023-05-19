@@ -135,7 +135,7 @@
 				:key="reply.id"
 				:note="reply"
 				class="reply"
-				:class="{single: replies.length == 1}"
+				:class="{ single: replies.length == 1 }"
 				:conversation="conversation"
 				:depth="replies.lenght == 1 ? depth : depth + 1"
 				:replyLevel="replyLevel + 1"

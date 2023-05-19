@@ -125,16 +125,26 @@
 					</div>
 				</template>
 				<div
-					v-if="note.cw && !showContent || showMoreButton && collapsed"
+					v-if="
+						(note.cw && !showContent) ||
+						(showMoreButton && collapsed)
+					"
 					tabindex="0"
-					v-on:focus="cwButton?.focus(); showMoreButton?.focus()"
+					v-on:focus="
+						cwButton?.focus();
+						showMoreButton?.focus();
+					"
 				></div>
 			</div>
 			<XShowMoreButton
 				v-if="isLong && !collapsed"
 				v-model="collapsed"
 			></XShowMoreButton>
-			<XCwButton v-if="note.cw && showContent" v-model="showContent" :note="note" />
+			<XCwButton
+				v-if="note.cw && showContent"
+				v-model="showContent"
+				:note="note"
+			/>
 		</div>
 		<MkButton
 			v-if="hasMfm && defaultStore.state.animatedMfm"

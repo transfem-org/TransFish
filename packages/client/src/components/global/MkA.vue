@@ -99,7 +99,6 @@ function popout() {
 
 function nav(ev: MouseEvent) {
 	if (!ev.ctrlKey && props.behavior !== "browser") {
-
 		ev.preventDefault();
 
 		if (props.behavior) {
