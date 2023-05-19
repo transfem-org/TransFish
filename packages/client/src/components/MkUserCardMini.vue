@@ -1,10 +1,11 @@
 <template>
-	<div
+	<MkA
 		class="user-card-mini"
 		:class="[
 			$style.root,
 			{ yellow: user.isSilenced, red: user.isSuspended, gray: false },
 		]"
+		:to="userPage(user)"
 	>
 		<MkAvatar
 			class="avatar"
@@ -19,14 +20,14 @@
 			>
 		</div>
 		<MkMiniChart v-if="chartValues" class="chart" :src="chartValues" />
-	</div>
+	</MkA>
 </template>
 
 <script lang="ts" setup>
 import * as misskey from "calckey-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
-import { acct } from "@/filters/user";
+import { acct, userPage } from "@/filters/user";
 
 const props = withDefaults(defineProps<{
 		user: misskey.entities.User;
@@ -62,6 +63,7 @@ if (props.withChart) {
 	padding: 16px;
 	background: var(--panel);
 	border-radius: 8px;
+	transition: background .2s;
 
 	> :global(.avatar) {
 		display: block;
@@ -100,6 +102,10 @@ if (props.withChart) {
 
 	> :global(.chart) {
 		height: 30px;
+	}
+
+	&:hover, &:focus {
+		background: var(--panelHighlight);
 	}
 
 	&:global(.yellow) {
