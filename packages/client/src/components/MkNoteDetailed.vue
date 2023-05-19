@@ -61,7 +61,7 @@
 			</option>
 			<option value="clips">
 				<i class="ph-paperclip ph-bold ph-lg"></i>
-				<template v-if="clips.length > 0">
+				<template v-if="clips?.length > 0">
 					<span class="count">{{ clips.length }}</span>
 				</template>
 				{{ i18n.ts.clips }}
