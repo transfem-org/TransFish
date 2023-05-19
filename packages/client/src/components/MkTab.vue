@@ -20,21 +20,17 @@ export default defineComponent({
 					"pxhvhrfw",
 					{ chips: this.style === "chips" },
 				],
+				role: "tablist",
 			},
 			options.map((option) =>
 				withDirectives(
 					h(
 						"button",
 						{
-							class: [
-								"_button",
-								{
-									active:
-										this.modelValue === option.props?.value,
-								},
-							],
+							class: "_button",
+							role: "tab",
 							key: option.key,
-							disabled: this.modelValue === option.props?.value,
+							'aria-selected': this.modelValue === option.props?.value ? "true" : "false",
 							onClick: () => {
 								this.$emit(
 									"update:modelValue",
@@ -70,12 +66,12 @@ export default defineComponent({
 			cursor: default;
 		}
 
-		&.active {
+		&[aria-selected="true"] {
 			color: var(--accent);
 			background: var(--accentedBg) !important;
 		}
 
-		&:not(.active):hover {
+		&:not([aria-selected="true"]):hover {
 			color: var(--fgHighlighted);
 			background: var(--panelHighlight);
 		}
