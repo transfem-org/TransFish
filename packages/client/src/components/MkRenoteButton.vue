@@ -7,7 +7,7 @@
 		@click="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
-		<p v-if="count > 0" class="count">{{ count }}</p>
+		<p v-if="count > 0 && !detailedView" class="count">{{ count }}</p>
 	</button>
 	<button v-else class="eddddedb _button">
 		<i class="ph-prohibit ph-bold ph-lg"></i>
@@ -30,6 +30,7 @@ import { MenuItem } from "@/types/menu";
 const props = defineProps<{
 	note: misskey.entities.Note;
 	count: number;
+	detailedView?;
 }>();
 
 const buttonRef = ref<HTMLElement>();

@@ -1,5 +1,6 @@
 <template>
 	<div
+		class="user-card-mini"
 		:class="[
 			$style.root,
 			{ yellow: user.isSilenced, red: user.isSuspended, gray: false },

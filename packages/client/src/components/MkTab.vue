@@ -6,6 +6,9 @@ export default defineComponent({
 		modelValue: {
 			required: true,
 		},
+		style: {
+			required: false,
+		},
 	},
 	render() {
 		const options = this.$slots.default();
@@ -13,7 +16,10 @@ export default defineComponent({
 		return h(
 			"div",
 			{
-				class: "pxhvhrfw",
+				class: [
+					"pxhvhrfw",
+					{ chips: this.style === "chips" },
+				],
 			},
 			options.map((option) =>
 				withDirectives(
@@ -66,7 +72,7 @@ export default defineComponent({
 
 		&.active {
 			color: var(--accent);
-			background: var(--accentedBg);
+			background: var(--accentedBg) !important;
 		}
 
 		&:not(.active):hover {
@@ -80,6 +86,26 @@ export default defineComponent({
 
 		> .icon {
 			margin-right: 6px;
+		}
+	}
+
+	&.chips {
+		padding: 12px 32px;
+		font-size: .85em;
+		overflow-x: auto;
+		> button {
+			display: flex;
+			gap: 6px;
+			align-items: center;
+			flex: unset;
+			margin: 0;
+			margin-right: 8px;
+			padding: .5em 1em;
+			border-radius: 100px;
+			background: var(--buttonBg);
+			> i {
+				margin-top: -.1em;
+			}
 		}
 	}
 

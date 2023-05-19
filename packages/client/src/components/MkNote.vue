@@ -5,7 +5,7 @@
 		ref="el"
 		v-hotkey="keymap"
 		v-size="{ max: [500, 450, 350, 300] }"
-		class="tkcbzcuz"
+		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
 	>
@@ -104,6 +104,11 @@
 							/>
 						</div>
 					</div>
+				</div>
+				<div v-if="detailedView" class="info">
+					<MkA class="created-at" :to="notePage(appearNote)">
+						<MkTime :time="appearNote.createdAt" mode="absolute" />
+					</MkA>
 					<MkA
 						v-if="appearNote.channel && !inChannel"
 						class="channel"
@@ -112,11 +117,6 @@
 						><i class="ph-television ph-bold ph-lg"></i>
 						{{ appearNote.channel.name }}</MkA
 					>
-				</div>
-				<div v-if="detailedView" class="info">
-					<MkA class="created-at" :to="notePage(appearNote)">
-						<MkTime :time="appearNote.createdAt" mode="absolute" />
-					</MkA>
 				</div>
 				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
 					<XReactionsViewer
@@ -130,7 +130,7 @@
 						@click="reply()"
 					>
 						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-						<template v-if="appearNote.repliesCount > 0">
+						<template v-if="appearNote.repliesCount > 0 && !detailedView">
 							<p class="count">{{ appearNote.repliesCount }}</p>
 						</template>
 					</button>
@@ -139,6 +139,7 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
+						:detailedView="detailedView"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
@@ -450,6 +451,10 @@ function focusAfter() {
 	focusNext(el.value);
 }
 
+function scrollIntoView() {
+	el.value.scrollIntoView();
+}
+
 function noteClick(e) {
 	if (document.getSelection().type === "Range" || props.detailedView) {
 		e.stopPropagation();
@@ -464,6 +469,12 @@ function readPromo() {
 	});
 	isDeleted.value = true;
 }
+
+defineExpose({
+	focus,
+	blur,
+	scrollIntoView,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -656,14 +667,13 @@ function readPromo() {
 						}
 					}
 				}
-
-				> .channel {
-					opacity: 0.7;
-					font-size: 80%;
-				}
 			}
 			> .info {
-				margin-block: 16px;
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: .7em;
+				margin-top: 16px;
 				opacity: 0.7;
 				font-size: 0.9em;
 			}
