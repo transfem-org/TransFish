@@ -133,6 +133,7 @@
 		<MkButton
 			v-if="hasMfm && defaultStore.state.animatedMfm"
 			@click.stop="toggleMfm"
+			:mini="true"
 		>
 			<template v-if="disableMfm">
 				<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
