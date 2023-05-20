@@ -33,7 +33,7 @@
 			detailedView
 		></MkNote>
 
-		<MkTab v-model="tab" :style="'chips'" @update:modelValue="loadTab">
+		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
 			<option value="replies">
 				<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
 				<template v-if="appearNote.repliesCount > 0">
