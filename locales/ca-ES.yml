@@ -2051,3 +2051,6 @@ _experiments:
 noGraze: Si us plau, desactiva l'extensió del navegador "Graze for Mastodon", ja que
   interfereix amb Calckey.
 accessibility: Accessibilitat
+jumpToReply: Vés a la resposta
+newer: Més nou
+older: Més antic
