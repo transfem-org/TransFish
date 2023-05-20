@@ -492,3 +492,7 @@ export type UserSorting =
 	| "+updatedAt"
 	| "-updatedAt";
 export type OriginType = "combined" | "local" | "remote";
+
+export type MetaExperimentalFeatures = {
+	postEditing: boolean;
+};

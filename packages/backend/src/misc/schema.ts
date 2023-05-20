@@ -31,6 +31,7 @@ import { packedQueueCountSchema } from "@/models/schema/queue.js";
 import { packedGalleryPostSchema } from "@/models/schema/gallery-post.js";
 import { packedEmojiSchema } from "@/models/schema/emoji.js";
 import { packedNoteEdit } from "@/models/schema/note-edit.js";
+import { packedMetaExperimentalFeatures } from "@/models/schema/meta-experimental-features.js";
 
 export const refs = {
 	UserLite: packedUserLiteSchema,
@@ -65,6 +66,7 @@ export const refs = {
 	FederationInstance: packedFederationInstanceSchema,
 	GalleryPost: packedGalleryPostSchema,
 	Emoji: packedEmojiSchema,
+	MetaExperimentalFeatures: packedMetaExperimentalFeatures,
 };
 
 export type Packed<x extends keyof typeof refs> = SchemaType<typeof refs[x]>;
