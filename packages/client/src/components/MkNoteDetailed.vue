@@ -55,6 +55,13 @@
 				</template>
 				{{ i18n.ts._notification._types.quote }}
 			</option>
+			<option value="reactions">
+				<i class="ph-smiley ph-bold ph-lg"></i>
+				<template v-if="reactionsCount > 0">
+					<span class="count">{{ reactionsCount }}</span>
+				</template>
+				{{ i18n.ts.reaction }}
+			</option>
 			<option value="clips">
 				<i class="ph-paperclip ph-bold ph-lg"></i>
 				<template v-if="clips?.length > 0">
@@ -128,6 +135,11 @@
 			</MkA>
 		</div>
 		<MkLoading v-else-if="tab === 'clips' && clips.length > 0" />
+
+		<MkReactedUsers
+			v-if="tab === 'reactions' && reactionsCount > 0"
+			:note-id="appearNote.id"
+		></MkReactedUsers>
 	</div>
 	<div v-else class="_panel muted" @click="muted.muted = false">
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
@@ -165,6 +177,7 @@ import XStarButton from "@/components/MkStarButton.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
+import MkReactedUsers from "@/components/MkReactedUsers.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { userPage } from "@/filters/user";
@@ -239,6 +252,8 @@ let directQuotes = $ref<null | misskey.entities.Note[]>([]);
 let clips = $ref();
 let renotes = $ref();
 let isScrolling;
+
+const reactionsCount = Object.values(props.note.reactions).reduce((x,y) => x + y, 0);
 
 const keymap = {
 	r: () => reply(true),
@@ -509,13 +524,21 @@ onUnmounted(() => {
 		}
 	}
 
-	> :deep(.chips) {
-		padding: 6px 32px 12px;
+	> :deep(.chips), {
+		padding-block: 6px 12px;
+		padding-left: 32px;
+		&:last-child {
+			margin-bottom: 12px;
+		}
 	}
-	> :deep(.user-card-mini) {
+	> :deep(.user-card-mini), 
+	> :deep(.reacted-users > *) {
 		padding-inline: 32px;
 		border-top: 1px solid var(--divider);
 		border-radius: 0;
+	}
+	> :deep(.reacted-users > div) {
+		padding-block: 12px;
 	}
 
 	> .reply {
@@ -612,9 +635,12 @@ onUnmounted(() => {
 			}
 		}
 		> .clips,
-		> .chips,
-		> :deep(.user-card-mini) {
+		> :deep(.user-card-mini),
+		> :deep(.reacted-users > *) {
 			padding-inline: 16px !important;
+		}
+		> .chips {
+			padding-left: 16px !important;
 		}
 	}
 
