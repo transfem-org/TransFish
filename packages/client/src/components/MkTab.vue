@@ -89,6 +89,12 @@ export default defineComponent({
 		padding: 12px 32px;
 		font-size: 0.85em;
 		overflow-x: auto;
+		mask: linear-gradient(to right, black calc(100% - 90px), transparent);
+		-webkit-mask: linear-gradient(to right, black calc(100% - 90px), transparent);
+		padding-right: 90px !important;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 		> button {
 			display: flex;
 			gap: 6px;
@@ -101,6 +107,9 @@ export default defineComponent({
 			background: var(--buttonBg);
 			> i {
 				margin-top: -0.1em;
+			}
+			> .count {
+				margin-right: -.2em;
 			}
 		}
 	}
