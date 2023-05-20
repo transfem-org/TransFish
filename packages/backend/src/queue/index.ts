@@ -567,6 +567,12 @@ export default function () {
 		},
 	);
 
+	systemQueue.add(
+		"setLocalEmojiSizes",
+		{},
+		{ removeOnComplete: true, removeOnFail: true },
+	);
+
 	processSystemQueue(systemQueue);
 }
 
