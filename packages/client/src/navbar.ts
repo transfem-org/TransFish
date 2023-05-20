@@ -34,7 +34,7 @@ export const navbarItemDef = reactive({
 	followRequests: {
 		title: "followRequests",
 		icon: "ph-hand-waving ph-bold ph-lg",
-		show: computed(() => $i?.isLocked),
+		show: computed(() => $i?.isLocked || $i?.hasPendingReceivedFollowRequest),
 		indicated: computed(() => $i?.hasPendingReceivedFollowRequest),
 		to: "/my/follow-requests",
 	},

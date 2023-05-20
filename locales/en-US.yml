@@ -1088,6 +1088,7 @@ preventAiLearning: "Prevent AI bot scraping"
 preventAiLearningDescription: "Request third-party AI language models not to study\
   \ content you upload, such as posts and images."
 noGraze: "Please disable the \"Graze for Mastodon\" browser extension, as it interferes with Calckey."
+silencedWarning: "This page is showing because these usera are from servers your admin silenced, so they may potentially be spam."
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing\
