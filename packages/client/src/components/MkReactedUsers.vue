@@ -1,49 +1,39 @@
 <template>
 	<div v-if="note" class="_gaps reacted-users">
-		<div v-if="reactions.length === 0" class="_fullinfo">
-			<img
-				src="/static-assets/badges/info.png"
-				class="_ghost"
-				alt="Info"
-			/>
-			<div>{{ i18n.ts.nothing }}</div>
+		<div :class="$style.tabs">
+			<button
+				v-for="reaction in reactions"
+				:key="reaction"
+				:class="[
+					$style.tab,
+					{ [$style.tabActive]: tab === reaction },
+				]"
+				class="_button"
+				@click="tab = reaction"
+			>
+				<MkReactionIcon
+					ref="reactionRef"
+					:reaction="
+						reaction
+							? reaction.replace(
+									/^:(\w+):$/,
+									':$1@.:'
+								)
+							: reaction
+					"
+					:custom-emojis="note.emojis"
+				/>
+				<span style="margin-left: 4px">{{
+					note.reactions[reaction]
+				}}</span>
+			</button>
 		</div>
-		<template v-else>
-			<div :class="$style.tabs">
-				<button
-					v-for="reaction in reactions"
-					:key="reaction"
-					:class="[
-						$style.tab,
-						{ [$style.tabActive]: tab === reaction },
-					]"
-					class="_button"
-					@click="tab = reaction"
-				>
-					<MkReactionIcon
-						ref="reactionRef"
-						:reaction="
-							reaction
-								? reaction.replace(
-										/^:(\w+):$/,
-										':$1@.:'
-									)
-								: reaction
-						"
-						:custom-emojis="note.emojis"
-					/>
-					<span style="margin-left: 4px">{{
-						note.reactions[reaction]
-					}}</span>
-				</button>
-			</div>
-			<MkUserCardMini
-				v-for="user in users"
-				:key="user.id"
-				:user="user"
-				:with-chart="false" 
-			/>
-		</template>
+		<MkUserCardMini
+			v-for="user in users"
+			:key="user.id"
+			:user="user"
+			:with-chart="false" 
+		/>
 	</div>
 	<div v-else>
 		<MkLoading />
@@ -55,7 +45,6 @@ import { onMounted, watch } from "vue";
 import * as misskey from "calckey-js";
 import MkReactionIcon from "@/components/MkReactionIcon.vue";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
-import { userPage } from "@/filters/user";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 

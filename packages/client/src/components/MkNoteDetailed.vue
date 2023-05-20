@@ -137,7 +137,7 @@
 		<MkLoading v-else-if="tab === 'clips' && clips.length > 0" />
 
 		<MkReactedUsers
-			v-if="tab === 'reactions'"
+			v-if="tab === 'reactions' && reactionsCount > 0"
 			:note-id="appearNote.id"
 		></MkReactedUsers>
 	</div>
@@ -253,7 +253,7 @@ let clips = $ref();
 let renotes = $ref();
 let isScrolling;
 
-const reactionsCount = Object.values(props.note.reactions).reduce((x,y) => x + y);
+const reactionsCount = Object.values(props.note.reactions).reduce((x,y) => x + y, 0);
 
 const keymap = {
 	r: () => reply(true),
