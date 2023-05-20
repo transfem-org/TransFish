@@ -17,7 +17,7 @@
 				!note.replyId
 			"
 			:to="`/notes/${note.renoteId}`"
-			v-tooltip="i18n.ts.jumpToReply"
+			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
 			@click.stop
 		>
@@ -70,7 +70,7 @@
 						v-if="!detailed && note.replyId"
 						:to="`#${note.replyId}`"
 						behavior="browser"
-						v-tooltip="i18n.ts.jumpToReply"
+						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
 						@click.stop
 					>
