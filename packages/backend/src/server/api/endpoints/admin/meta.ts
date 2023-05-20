@@ -479,6 +479,7 @@ export const meta = {
 					postEditing: {
 						type: "boolean",
 					}
+				}
 			},
 		},
 	},
