@@ -93,10 +93,10 @@
 			</component>
 		</transition>
 		<div v-if="tweetId" class="expandTweet">
-			<a @click="tweetExpanded = true">
+			<MkButton mini rounded @click="tweetExpanded = true">
 				<i class="ph-twitter-logo ph-bold ph-lg"></i>
 				{{ i18n.ts.expandTweet }}
-			</a>
+			</MkButton>
 		</div>
 	</div>
 </template>
