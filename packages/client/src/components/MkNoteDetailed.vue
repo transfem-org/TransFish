@@ -527,6 +527,9 @@ onUnmounted(() => {
 	> :deep(.chips), {
 		padding-block: 6px 12px;
 		padding-left: 32px;
+		&:last-child {
+			margin-bottom: 12px;
+		}
 	}
 	> :deep(.user-card-mini), 
 	> :deep(.reacted-users > *) {
