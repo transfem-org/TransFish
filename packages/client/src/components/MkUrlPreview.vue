@@ -105,6 +105,7 @@
 import { onMounted, onUnmounted } from "vue";
 import { url as local, lang } from "@/config";
 import { i18n } from "@/i18n";
+import MkButton from "@/components/MkButton.vue";
 
 const props = withDefaults(
 	defineProps<{
