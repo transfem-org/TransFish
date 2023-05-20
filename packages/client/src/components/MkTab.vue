@@ -16,7 +16,10 @@ export default defineComponent({
 		return h(
 			"div",
 			{
-				class: ["pxhvhrfw", { chips: this.style === "chips" }],
+				class: ["pxhvhrfw", 
+					{ chips: this.style === "chips" },
+					{ underline: this.style === "underline" }
+				],
 				role: "tablist",
 			},
 			options.map((option) =>
@@ -85,7 +88,7 @@ export default defineComponent({
 		}
 	}
 
-	&.chips {
+	&.chips, &.underline {
 		padding: 12px 32px;
 		font-size: 0.85em;
 		overflow-x: auto;
@@ -114,6 +117,22 @@ export default defineComponent({
 			}
 			> .count {
 				margin-right: -0.2em;
+			}
+		}
+	}
+
+	&.underline {
+		padding-block: 0 !important;
+		margin-bottom: -1px;
+		button {
+			background: none !important;
+			border-radius: 0 !important;
+			padding-block: 10px !important;
+			border-bottom: 2px solid transparent;
+			&[aria-selected="true"] {
+				background: none !important;
+				font-weight: 700;
+				border-bottom-color: var(--accent);
 			}
 		}
 	}
