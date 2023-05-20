@@ -253,7 +253,10 @@ let clips = $ref();
 let renotes = $ref();
 let isScrolling;
 
-const reactionsCount = Object.values(props.note.reactions).reduce((x,y) => x + y, 0);
+const reactionsCount = Object.values(props.note.reactions).reduce(
+	(x, y) => x + y,
+	0
+);
 
 const keymap = {
 	r: () => reply(true),
@@ -524,14 +527,14 @@ onUnmounted(() => {
 		}
 	}
 
-	> :deep(.chips), {
+	> :deep(.chips) {
 		padding-block: 6px 12px;
 		padding-left: 32px;
 		&:last-child {
 			margin-bottom: 12px;
 		}
 	}
-	> :deep(.user-card-mini), 
+	> :deep(.user-card-mini),
 	> :deep(.reacted-users > *) {
 		padding-inline: 32px;
 		border-top: 1px solid var(--divider);

@@ -478,8 +478,8 @@ export const meta = {
 				properties: {
 					postEditing: {
 						type: "boolean",
-					}
-				}
+					},
+				},
 			},
 		},
 	},

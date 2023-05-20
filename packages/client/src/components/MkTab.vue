@@ -90,7 +90,11 @@ export default defineComponent({
 		font-size: 0.85em;
 		overflow-x: auto;
 		mask: linear-gradient(to right, black calc(100% - 90px), transparent);
-		-webkit-mask: linear-gradient(to right, black calc(100% - 90px), transparent);
+		-webkit-mask: linear-gradient(
+			to right,
+			black calc(100% - 90px),
+			transparent
+		);
 		padding-right: 90px !important;
 		&::-webkit-scrollbar {
 			display: none;
@@ -109,7 +113,7 @@ export default defineComponent({
 				margin-top: -0.1em;
 			}
 			> .count {
-				margin-right: -.2em;
+				margin-right: -0.2em;
 			}
 		}
 	}

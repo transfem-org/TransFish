@@ -4,10 +4,7 @@
 			<button
 				v-for="reaction in reactions"
 				:key="reaction"
-				:class="[
-					$style.tab,
-					{ [$style.tabActive]: tab === reaction },
-				]"
+				:class="[$style.tab, { [$style.tabActive]: tab === reaction }]"
 				class="_button"
 				@click="tab = reaction"
 			>
@@ -15,10 +12,7 @@
 					ref="reactionRef"
 					:reaction="
 						reaction
-							? reaction.replace(
-									/^:(\w+):$/,
-									':$1@.:'
-								)
+							? reaction.replace(/^:(\w+):$/, ':$1@.:')
 							: reaction
 					"
 					:custom-emojis="note.emojis"
@@ -32,7 +26,7 @@
 			v-for="user in users"
 			:key="user.id"
 			:user="user"
-			:with-chart="false" 
+			:with-chart="false"
 		/>
 	</div>
 	<div v-else>

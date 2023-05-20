@@ -14,10 +14,7 @@
 					</div>
 				</template>
 				<template #default="{ items }">
-					<MkInfo
-						v-if="$i?.isLocked === false"
-						warn
-						class="info"
+					<MkInfo v-if="$i?.isLocked === false" warn class="info"
 						>{{ i18n.ts.silencedWarning }}
 					</MkInfo>
 					<div class="mk-follow-requests">
