@@ -35,30 +35,35 @@
 
 		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
 			<option value="replies">
+				<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
 				<template v-if="appearNote.repliesCount > 0">
 					<span class="count">{{ appearNote.repliesCount }}</span>
 				</template>
 				{{ i18n.ts._notification._types.reply }}
 			</option>
 			<option value="renotes">
+				<i class="ph-repeat ph-bold ph-lg"></i>
 				<template v-if="appearNote.renoteCount > 0">
 					<span class="count">{{ appearNote.renoteCount }}</span>
 				</template>
 				{{ i18n.ts._notification._types.renote }}
 			</option>
 			<option value="quotes">
+				<i class="ph-quotes ph-bold ph-lg"></i>
 				<template v-if="directQuotes?.length > 0">
 					<span class="count">{{ directQuotes.length }}</span>
 				</template>
 				{{ i18n.ts._notification._types.quote }}
 			</option>
 			<option value="reactions">
+				<i class="ph-smiley ph-bold ph-lg"></i>
 				<template v-if="reactionsCount > 0">
 					<span class="count">{{ reactionsCount }}</span>
 				</template>
 				{{ i18n.ts.reaction }}
 			</option>
 			<option value="clips">
+				<i class="ph-paperclip ph-bold ph-lg"></i>
 				<template v-if="clips?.length > 0">
 					<span class="count">{{ clips.length }}</span>
 				</template>
