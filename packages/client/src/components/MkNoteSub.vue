@@ -137,7 +137,7 @@
 				class="reply"
 				:class="{ single: replies.length == 1 }"
 				:conversation="conversation"
-				:depth="replies.lenght == 1 ? depth : depth + 1"
+				:depth="replies.length == 1 ? depth : depth + 1"
 				:replyLevel="replyLevel + 1"
 				:parentId="appearNote.replyId"
 				:detailedView="detailedView"
