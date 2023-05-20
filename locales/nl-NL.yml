@@ -1,5 +1,6 @@
 _lang_: "Nederlands"
-headlineMisskey: "Netwerk verbonden door notities"
+headlineMisskey: "Een open source, gedecentraliseerd, social media platform dat voor
+  altijd gratis is! 🚀"
 introMisskey: "Welkom! Calckey is een open source, gedecentraliseerde microblogdienst.\n
   Maak \"notities\" om je gedachten te delen met iedereen om je heen. 📡\nMet \"reacties\"\
   \ kun je ook snel je mening geven over berichten van anderen. 👍\nLaten we een nieuwe
@@ -55,7 +56,7 @@ searchUser: "Zoeken een gebruiker"
 reply: "Antwoord"
 loadMore: "Laad meer"
 showMore: "Toon meer"
-youGotNewFollower: "volgde jou"
+youGotNewFollower: "volgt jou"
 receiveFollowRequest: "Volgverzoek ontvangen"
 followRequestAccepted: "Volgverzoek geaccepteerd"
 mention: "Vermelding"
@@ -80,7 +81,7 @@ following: "Volgend"
 followers: "Volgers"
 followsYou: "Volgt jou"
 createList: "Creëer lijst"
-manageLists: "Beheren lijsten"
+manageLists: "Lijsten beheren"
 error: "Fout"
 somethingHappened: "Er is iets misgegaan."
 retry: "Probeer opnieuw"
@@ -160,7 +161,7 @@ proxyAccountDescription: "Een proxy-account is een account dat onder bepaalde vo
   proxy-account volgt in plaats daarvan."
 host: "Server"
 selectUser: "Kies een gebruiker"
-recipient: "Ontvanger"
+recipient: "Ontvanger(s)"
 annotation: "Reacties"
 federation: "Federatie"
 instances: "Server"
@@ -248,7 +249,7 @@ keepOriginalUploadingDescription: "Bewaar de originele versie bij het uploaden v
   afbeeldingen. Indien uitgeschakeld, wordt bij het uploaden een alternatieve versie
   voor webpublicatie genereert."
 fromDrive: "Van schijf"
-fromUrl: "Van  URL"
+fromUrl: "Van URL"
 uploadFromUrl: "Uploaden vanaf een URL"
 uploadFromUrlDescription: "URL van het bestand dat je wil uploaden"
 uploadFromUrlRequested: "Uploadverzoek"
@@ -332,7 +333,7 @@ cropImageAsk: "Bijsnijdengevraagd"
 file: "Bestanden"
 _email:
   _follow:
-    title: "volgde jou"
+    title: "Je hebt een nieuwe volger"
 _mfm:
   mention: "Vermelding"
   quote: "Quote"
@@ -391,7 +392,7 @@ _pages:
     types:
       array: "Lijsten"
 _notification:
-  youWereFollowed: "volgde jou"
+  youWereFollowed: "volgt jou"
   _types:
     follow: "Volgend"
     mention: "Vermelding"
@@ -428,3 +429,73 @@ noThankYou: Nee bedankt
 addInstance: Voeg een server toe
 enableEmojiReactions: Schakel emoji reacties in
 editWidgets: Bewerk widgets
+thisYear: Jaar
+thisMonth: Maand
+registration: Registreren
+_ffVisibility:
+  public: Openbaar
+  private: Privé
+  followers: Alleen zichtbaar voor volgers
+noInstances: Er zijn geen servers
+_signup:
+  almostThere: Bijna klaar
+  emailAddressInfo: Voer je emailadres in. Deze zal niet openbaar gemaakt worden.
+_ad:
+  back: Terug
+  reduceFrequencyOfThisAd: Toon deze advertentie minder
+pushNotificationNotSupported: Je browser of server ondersteunt geen pushmeldingen
+sendPushNotificationReadMessage: Verwijder pushmeldingen wanneer de relevante meldingen
+  of berichten zijn gelezen
+customEmojis: Custom emoji
+cacheRemoteFiles: Cache externe bestanden
+hiddenTags: Verborgen hashtags
+enableRecommendedTimeline: Schakel aanbevolen tijdlijn in
+_forgotPassword:
+  enterEmail: Voer het emailadres in dat je gebruikte om te registreren. Een link
+    waarmee je je wachtwoord opnieuw kunt instellen zal daar naartoe gestuurd worden.
+jumpToReply: Spring naar Antwoord
+newer: nieuwer
+older: ouder
+selectInstance: Kies een server
+defaultValueIs: 'Standaard: {value}'
+reload: Hernieuwen
+doNothing: Negeren
+today: Vandaag
+inputNewDescription: Voer een nieuw onderschrift in
+inputNewFolderName: Voer een nieuwe mapnaam in
+circularReferenceFolder: De bestemmingsmap is een submap van de map die je wil verplaatsen.
+hasChildFilesOrFolders: Omdat deze map niet leeg is, kan deze niet verwijderd worden.
+enableLocalTimeline: Schakel lokale tijdlijn in
+enableGlobalTimeline: Schakel globale tijdlijn in
+enableRegistration: Nieuwe gebruikersregistratie inschakelen
+invite: Uitnodigen
+move: Verplaatsen
+showAds: Toon advertenties
+pushNotification: Pushmeldingen
+_gallery:
+  my: Mijn Gallerij
+reactionSetting: Reacties om te tonen in het reactie selectie menu
+dayX: '{day}'
+renoteMute: Demp boosts
+reloadConfirm: Wil je de tijdlijn hernieuwen?
+watch: Volgen
+unwatch: Ontvolgen
+accept: Accepteren
+reject: Afwijzen
+normal: Normaal
+pages: Pagina's
+integration: Integraties
+connectService: Koppelen
+monthX: '{month}'
+yearX: '{year}'
+instanceName: Servernaam
+instanceDescription: Server omschrijving
+maintainerName: Onderhouder
+maintainerEmail: Onderhouder email
+tosUrl: Algemene Voorwaarden URL
+disconnectService: Ontkoppelen
+unread: Ongelezen
+manageGroups: Beheer groepen
+subscribePushNotification: Pushmeldingen inschakelen
+unsubscribePushNotification: Pushmeldingen uitschakelen
+pushNotificationAlreadySubscribed: Pushmeldingen zijn al ingeschakeld
