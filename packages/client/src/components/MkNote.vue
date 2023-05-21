@@ -1,19 +1,8 @@
 <template>
-	<div
-		v-if="!muted.muted"
-		v-show="!isDeleted"
-		ref="el"
-		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350, 300] }"
-		class="tkcbzcuz note-container"
-		:tabindex="!isDeleted ? '-1' : null"
-		:class="{ renote: isRenote }"
-	>
-		<MkNoteSub
-			v-if="appearNote.reply && !detailedView"
-			:note="appearNote.reply"
-			class="reply-to"
-		/>
+	<div :aria-label="accessibleLabel" v-if="!muted.muted" v-show="!isDeleted" ref="el" v-hotkey="keymap"
+		v-size="{ max: [500, 450, 350, 300] }" class="tkcbzcuz note-container" :tabindex="!isDeleted ? '-1' : null"
+		:class="{ renote: isRenote }">
+		<MkNoteSub v-if="appearNote.reply && !detailedView" :note="appearNote.reply" class="reply-to" />
 		<div v-if="!detailedView" class="note-context" @click="noteClick">
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
@@ -472,6 +461,21 @@ function readPromo() {
 	isDeleted.value = true;
 }
 
+let accessibleLabel: string = getAccessibleLabel();
+
+function getAccessibleLabel(): string {
+	let label = `${note.user.name ? note.user.name : note.user.username}: `;
+	if (note.cw && note.isHidden) {
+		label += `Content Warning: ${note.cw}`;
+
+	} else {
+		label += `${note.text}`;
+	}
+
+
+	label += `${note.createdAt.toLocaleUpperCase()}`;
+	return label;
+}
 defineExpose({
 	focus,
 	blur,
