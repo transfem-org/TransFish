@@ -58,7 +58,7 @@
 			<div
 				class="body"
 				v-bind="{
-					'aria-hidden': !showContent ? 'true' : null,
+					'aria-hidden': note.cw && !showContent ? 'true' : null,
 					tabindex: !showContent ? '-1' : null,
 				}"
 			>
