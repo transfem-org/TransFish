@@ -86,6 +86,10 @@ export default defineComponent({
 		> .icon {
 			margin-right: 6px;
 		}
+
+		&:empty {
+			display: none !important;
+		}
 	}
 
 	&.chips, &.underline {

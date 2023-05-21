@@ -34,39 +34,29 @@
 		></MkNote>
 
 		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
-			<option value="replies">
+			<option value="replies" v-if="appearNote.repliesCount > 0">
 				<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-				<template v-if="appearNote.repliesCount > 0">
-					<span class="count">{{ appearNote.repliesCount }}</span>
-				</template>
+				<span class="count">{{ appearNote.repliesCount }}</span>
 				{{ i18n.ts._notification._types.reply }}
 			</option>
-			<option value="renotes">
+			<option value="renotes" v-if="appearNote.renoteCount > 0">
 				<i class="ph-repeat ph-bold ph-lg"></i>
-				<template v-if="appearNote.renoteCount > 0">
-					<span class="count">{{ appearNote.renoteCount }}</span>
-				</template>
+				<span class="count">{{ appearNote.renoteCount }}</span>
 				{{ i18n.ts._notification._types.renote }}
 			</option>
-			<option value="quotes">
-				<i class="ph-quotes ph-bold ph-lg"></i>
-				<template v-if="directQuotes?.length > 0">
-					<span class="count">{{ directQuotes.length }}</span>
-				</template>
-				{{ i18n.ts._notification._types.quote }}
-			</option>
-			<option value="reactions">
+			<option value="reactions" v-if="reactionsCount > 0">
 				<i class="ph-smiley ph-bold ph-lg"></i>
-				<template v-if="reactionsCount > 0">
-					<span class="count">{{ reactionsCount }}</span>
-				</template>
+				<span class="count">{{ reactionsCount }}</span>
 				{{ i18n.ts.reaction }}
 			</option>
-			<option value="clips">
+			<option value="quotes" v-if="directQuotes?.length > 0">
+				<i class="ph-quotes ph-bold ph-lg"></i>
+				<span class="count">{{ directQuotes.length }}</span>
+				{{ i18n.ts._notification._types.quote }}
+			</option>
+			<option value="clips" v-if="clips?.length > 0">
 				<i class="ph-paperclip ph-bold ph-lg"></i>
-				<template v-if="clips?.length > 0">
-					<span class="count">{{ clips.length }}</span>
-				</template>
+				<span class="count">{{ clips.length }}</span>
 				{{ i18n.ts.clips }}
 			</option>
 		</MkTab>
@@ -518,6 +508,10 @@ onUnmounted(() => {
 		overflow: clip;
 		outline: none;
 		scroll-margin-top: calc(var(--stickyTop) + 20vh);
+		&:not(:last-child) {
+			border-bottom: 1px solid var(--divider);
+			margin-bottom: 4px;
+		}
 		.article {
 			cursor: unset;
 			padding-bottom: 0;
