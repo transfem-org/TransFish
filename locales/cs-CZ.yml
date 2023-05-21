@@ -663,7 +663,6 @@ _mfm:
   blur: "Rozmazání"
   font: "Font"
   rainbow: "Duha"
-  fade: "Slábnout"
 _channel:
   featured: "Trendy"
 _menuDisplay:

@@ -1038,8 +1038,6 @@ _mfm:
   sparkleDescription: "Obsahu dodá trblietajúci efekt."
   rotate: "Otáčať"
   rotateDescription: "Otočí obsah o určitý uhol."
-  fade: "Vyblednúť"
-  fadeDescription: "Mizne obsah dovnútra a von."
   plain: "Obyčajné"
   plainDescription: "Bez akejkoľvej syntaxe"
 _instanceTicker:

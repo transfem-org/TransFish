@@ -974,8 +974,6 @@ _mfm:
   sparkleDescription: "বিষয়বস্তুকে একটি চিকচিকে কণা প্রভাব দেয়।"
   rotate: "ঘুরান"
   rotateDescription: "বিষয়বস্তুকে একটি নির্দিষ্ট কোনে ঘুরায়।"
-  fade: "বিবর্ণ"
-  fadeDescription: "ভিতরে এবং বাইরে বিষয়বস্তু বিবর্ণ।"
 _instanceTicker:
   none: "দেখাবেন না"
   remote: "রিমোট ব্যাবহারকারীদের জন্য দেখান"

@@ -1043,8 +1043,6 @@ _mfm:
   sparkleDescription: "Làm cho nội dung hiệu ứng hạt lấp lánh."
   rotate: "Xoay"
   rotateDescription: "Xoay nội dung theo một góc cụ thể."
-  fade: "Phai màu"
-  fadeDescription: "Làm mờ dần nội dung trong và ngoài."
   plain: "Đơn giản"
   plainDescription: "Vô hiệu hóa mọi hiệu ứng MFM chứa trong hiệu ứng MFM này."
 _instanceTicker:

@@ -1050,8 +1050,6 @@ _mfm:
   sparkleDescription: "添加发光粒子效果。"
   rotate: "旋转"
   rotateDescription: "旋转指定的角度。"
-  fade: "褪色"
-  fadeDescription: "淡入和淡出内容。"
   plain: "简洁"
   plainDescription: "禁用所有内部语法。"
 _instanceTicker:

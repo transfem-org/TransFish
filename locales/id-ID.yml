@@ -1074,8 +1074,6 @@ _mfm:
   sparkleDescription: "Memberikan konten efek partikel kelap-kelip."
   rotate: "Putar"
   rotateDescription: "Putar konten sesuai sudut yang ditentukan."
-  fade: "Memudar"
-  fadeDescription: "Memudar konten masuk dan keluar."
 _instanceTicker:
   none: "Jangan tampilkan"
   remote: "Tampilkan untuk pengguna luar"

@@ -1052,8 +1052,6 @@ _mfm:
   sparkleDescription: "添加閃閃發光的粒子效果。"
   rotate: "旋轉"
   rotateDescription: "以指定的角度旋轉。"
-  fade: "褪色"
-  fadeDescription: "淡入和淡出內容。"
   plain: "簡潔"
   plainDescription: "停用全部的內部語法。"
   play: 播放 MFM

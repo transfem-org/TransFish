@@ -824,8 +824,6 @@ _mfm:
   font: "Шрифт"
   fontDescription: "Встановлює шрифт для контенту."
   rotate: "Обертати"
-  fade: "Зникати"
-  fadeDescription: "Розмиває вміст."
 _instanceTicker:
   none: "Не відображати"
   remote: "Відображати для віддалених користувачів"

@@ -1128,8 +1128,6 @@ _mfm:
   sparkleDescription: "キラキラしたパーティクルのエフェクトを追加します。"
   rotate: "回転"
   rotateDescription: "指定した角度で回転させます。"
-  fade: "フェード"
-  fadeDescription: "コンテンツをフェードインおよびフェードアウトします。"
   plain: "プレーン"
   plainDescription: "内側の構文を全て無効にします。"
   position: 位置
