@@ -636,7 +636,7 @@ onUnmounted(() => {
 		> :deep(.reacted-users > *) {
 			padding-inline: 16px !important;
 		}
-		> .chips {
+		> :deep(.underline) {
 			padding-left: 16px !important;
 		}
 	}
