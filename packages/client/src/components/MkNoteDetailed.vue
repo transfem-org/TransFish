@@ -626,7 +626,7 @@ onUnmounted(() => {
 		}
 
 		> :deep(.note-container) {
-			padding: 6px 0 0 0;
+			padding: 12px 0 0 0;
 			> .header > .body {
 				padding-left: 10px;
 			}
