@@ -60,6 +60,26 @@ export default class Logger {
 		if (!this.store) store = false;
 		if (level === "debug") store = false;
 
+		// filter out logs based on config log level
+		if (config.logLevel === "error" && level !== "error") return;
+		if (config.logLevel === "warn" && level !== "error" && level !== "warning")
+			return;
+		if (
+			config.logLevel === "info" &&
+			level !== "error" &&
+			level !== "warning" &&
+			level !== "info"
+		)
+			return;
+		if (
+			config.logLevel === "debug" &&
+			level !== "error" &&
+			level !== "warning" &&
+			level !== "info" &&
+			level !== "debug"
+		)
+			return;
+
 		if (this.parentLogger) {
 			this.parentLogger.log(
 				level,

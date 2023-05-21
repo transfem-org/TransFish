@@ -87,6 +87,8 @@ export type Source = {
 
 	reservedUsernames?: string[];
 
+	logLevel?: "error" | "warn" | "info" | "debug" | "trace";
+
 	// Managed hosting stuff
 	maxUserSignups?: number;
 	isManagedHosting?: boolean;

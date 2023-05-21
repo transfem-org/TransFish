@@ -100,29 +100,34 @@ export default define(meta, paramDef, async (ps, me) => {
 		return await Notes.packMany(notes, me);
 	} else if (meilisearch) {
 		//search in meilisearch
-		const result = await meilisearch.index("notes").search(ps.query, {
-			limit: ps.limit,
-			offset: ps.offset,
-			filters: ps.userId
-				? `userId = ${ps.userId}`
-				: ps.channelId
-				? `channelId = ${ps.channelId}`
-				: undefined,
-		});
+		try {
+			const result = await meilisearch.index("notes").search(ps.query, {
+				limit: ps.limit,
+				offset: ps.offset,
+				filters: ps.userId,
+				// ? `userId = ${ps.userId}`
+				// : ps.channelId
+				// ? `channelId = ${ps.channelId}`
+				// : undefined,
+			});
 
-		const ids = result.hits.map((hit) => hit.id);
+			const ids = result.hits.map((hit: { id: string }) => hit.id);
 
-		// Fetch the notes from the database until we have enough to satisfy the limit
-		const notes: Note[] = await Notes.find({
-			where: {
-				id: In(ids),
-			},
-			order: {
-				id: "DESC",
-			},
-		});
+			// Fetch the notes from the database until we have enough to satisfy the limit
+			const notes: Note[] = await Notes.find({
+				where: {
+					id: In(ids),
+				},
+				order: {
+					id: "DESC",
+				},
+			});
 
-		return await Notes.packMany(notes, me);
+			return await Notes.packMany(notes, me);
+		} catch (e) {
+			console.error(e);
+			return [];
+		}
 	} else if (sonic) {
 		let start = 0;
 		const chunkSize = 100;

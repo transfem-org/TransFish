@@ -779,19 +779,22 @@ export async function index(note: Note): Promise<void> {
 	}
 
 	if (meilisearch) {
-		await meilisearch.index("notes").addDocuments([
+		await meilisearch.index("notes").addDocuments(
+			[
+				{
+					id: note.id.toString(),
+					text: note.text,
+					userId: note.userId,
+					userHost: note.userHost,
+					channelId: note.channelId,
+					cw: note.cw,
+					createdAt: note.createdAt.getTime(),
+				},
+			],
 			{
-				id: note.id.toString(),
-				text: note.text,
-				userId: note.userId,
-				userHost: note.userHost,
-				channelId: note.channelId,
-				cw: note.cw,
-				createdAt: note.createdAt.getTime(),
+				primaryKey: "id",
 			},
-		], {
-			primaryKey: 'id',
-		});
+		);
 	}
 }
 
