@@ -461,21 +461,27 @@ function readPromo() {
 	isDeleted.value = true;
 }
 
-let accessibleLabel: string = getAccessibleLabel();
-
-function getAccessibleLabel(): string {
-	let label = `${note.user.name ? note.user.name : note.user.username}: `;
-	if (note.cw && note.isHidden) {
-		label += `Content Warning: ${note.cw}`;
-
+const accessibleLabel = computed(() => {
+	let label = `${props.note.user.username}; `;
+	if (props.note.renote) {
+		label += `boosted ${props.note.renote.user.username}; `;
+		if (props.note.renote.cw) {
+			label += `content warning: ${props.note.renote.cw}; `;
+		} else {
+			label += `${props.note.renote.text}; `;
+		}
 	} else {
-		label += `${note.text}`;
+		if (props.note.cw) {
+			label += `content warning: ${props.note.cw}; `;
+		} else {
+			label += `${props.note.text}; `;
+		}
 	}
-
-
-	label += `${note.createdAt.toLocaleUpperCase()}`;
+	const date = new Date(props.note.createdAt);
+	label += `${date.toDateString()}`;
 	return label;
-}
+})
+
 defineExpose({
 	focus,
 	blur,
