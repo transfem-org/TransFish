@@ -464,7 +464,7 @@ function readPromo() {
 const accessibleLabel = computed(() => {
 	let label = `${props.note.user.username}; `;
 	if (props.note.renote) {
-		label += `boosted ${props.note.renote.user.username}; `;
+		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
 		if (props.note.renote.cw) {
 			label += `content warning: ${props.note.renote.cw}; `;
 		} else {
@@ -478,7 +478,7 @@ const accessibleLabel = computed(() => {
 		}
 	}
 	const date = new Date(props.note.createdAt);
-	label += `${date.toDateString()}`;
+	label += `${date.toLocaleTimeString()}`;
 	return label;
 })
 
