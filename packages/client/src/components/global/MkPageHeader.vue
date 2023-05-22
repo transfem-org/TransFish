@@ -308,10 +308,6 @@ onUnmounted(() => {
 		.titleContainer {
 			min-width: 0;
 		}
-		.buttons:empty {
-			width: 0;
-			flex-basis: 0;
-		}
 	}
 
 	&::before {
@@ -412,7 +408,6 @@ onUnmounted(() => {
 			font-weight: bold;
 			flex-shrink: 0;
 			margin-right: 1rem;
-			max-width: 20vw;
 	
 			> .avatar {
 				$size: 32px;
@@ -462,15 +457,20 @@ onUnmounted(() => {
 	> .left, > .right {
 		flex-basis: 100%;
 		flex-shrink: 9999;
+		overflow: hidden;
 	}
 	> .left {
 		// margin-right: auto;
 		min-width: 20%;
+		margin-left: -10px;
+		padding-left: 10px;
 		// min-width: max-content;
 	}
 	> .right {
 		// margin-left: auto;
 		min-width: max-content;
+		margin-right: -10px;
+		padding-right: 10px;
 	}
 
 	> .tabs {
