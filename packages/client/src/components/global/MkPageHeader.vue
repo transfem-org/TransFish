@@ -347,6 +347,7 @@ onUnmounted(() => {
 			> .avatar {
 				width: 32px;
 				height: 32px;
+				margin-left: var(--margin);
 			}
 		}
 	}
