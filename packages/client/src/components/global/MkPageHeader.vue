@@ -3,7 +3,7 @@
 		v-if="show"
 		ref="el"
 		class="fdidabkb"
-		:class="{ thin: thin_ }"
+		:class="{ thin: thin_, tabs: tabs?.length > 0 }"
 		:style="{ background: bg }"
 		@click="onClick"
 	>
@@ -300,13 +300,31 @@ onUnmounted(() => {
 	box-sizing: border-box;
 	overflow: hidden;
 	@media (max-width: 500px) {
-		padding-inline: 12px;
+		padding-inline: 12p
+	}
+	@media (max-width: 700px) {
 		> .left {
-			// flex-basis: unset !important;
-			min-width: max-content !important;
+			min-width: unset !important;
+			max-width: 40%;
 		}
-		.titleContainer {
-			min-width: 0;
+		> .left, > .right {
+			flex: unset !important;
+		}
+		&:not(.tabs) {
+			> .left {
+				width: 0 !important;
+				flex-grow: 1 !important;
+				max-width: unset !important;
+			}
+		}
+		&.tabs {
+			> .left {
+				flex-shrink: 0 !important;
+			}
+
+			.buttons ~ .titleContainer > .title {
+				display: none;
+			}
 		}
 	}
 
@@ -461,11 +479,9 @@ onUnmounted(() => {
 		overflow: hidden;
 	}
 	> .left {
-		// margin-right: auto;
 		min-width: 20%;
 		margin-left: -10px;
 		padding-left: 10px;
-		// min-width: max-content;
 	}
 	> .right {
 		// margin-left: auto;
@@ -519,6 +535,7 @@ onUnmounted(() => {
 			opacity: 0.7;
 			overflow: hidden;
 			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width .2s;
+			--width: max-content;
 
 			&:hover {
 				opacity: 1;
