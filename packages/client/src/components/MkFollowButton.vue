@@ -11,41 +11,43 @@
 		}"
 		:disabled="wait"
 		@click="onClick"
-		:aria-label=" `${state} ${user.name || user.username}` "
+		:aria-label="`${state} ${user.name || user.username}`"
 	>
 		<template v-if="!wait">
 			<template v-if="isBlocking">
-				<span v-if="full">{{ state = i18n.ts.blocked }}</span
+				<span v-if="full">{{ (state = i18n.ts.blocked) }}</span
 				><i class="ph-prohibit ph-bold ph-lg"></i>
 			</template>
 			<template
 				v-else-if="hasPendingFollowRequestFromYou && user.isLocked"
 			>
-				<span v-if="full">{{ state = i18n.ts.followRequestPending }}</span
+				<span v-if="full">{{
+					(state = i18n.ts.followRequestPending)
+				}}</span
 				><i class="ph-hourglass-medium ph-bold ph-lg"></i>
 			</template>
 			<template
 				v-else-if="hasPendingFollowRequestFromYou && !user.isLocked"
 			>
 				<!-- つまりリモートフォローの場合。 -->
-				<span v-if="full">{{ state = i18n.ts.processing }}</span
+				<span v-if="full">{{ (state = i18n.ts.processing) }}</span
 				><i class="ph-circle-notch ph-bold ph-lg fa-pulse"></i>
 			</template>
 			<template v-else-if="isFollowing">
-				<span v-if="full">{{ state = i18n.ts.unfollow }}</span
+				<span v-if="full">{{ (state = i18n.ts.unfollow) }}</span
 				><i class="ph-minus ph-bold ph-lg"></i>
 			</template>
 			<template v-else-if="!isFollowing && user.isLocked">
-				<span v-if="full">{{ state = i18n.ts.followRequest }}</span
+				<span v-if="full">{{ (state = i18n.ts.followRequest) }}</span
 				><i class="ph-plus ph-bold ph-lg"></i>
 			</template>
 			<template v-else-if="!isFollowing && !user.isLocked">
-				<span v-if="full">{{ state = i18n.ts.follow }}</span
+				<span v-if="full">{{ (state = i18n.ts.follow) }}</span
 				><i class="ph-plus ph-bold ph-lg"></i>
 			</template>
 		</template>
 		<template v-else>
-			<span v-if="full">{{ state = i18n.ts.processing }}</span
+			<span v-if="full">{{ (state = i18n.ts.processing) }}</span
 			><i class="ph-circle-notch ph-bold ph-lg fa-pulse ph-fw ph-lg"></i>
 		</template>
 	</button>
@@ -176,7 +178,7 @@ onBeforeUnmount(() => {
 	background: var(--bg);
 
 	&.full {
-		padding: 0.2em .7em;
+		padding: 0.2em 0.7em;
 		width: auto;
 		font-size: 14px;
 	}

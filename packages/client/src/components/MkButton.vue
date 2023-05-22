@@ -194,7 +194,7 @@ function onMousedown(evt: MouseEvent): void {
 
 	&.mini {
 		padding: 4px 8px;
-		font-size: max(12px, .9em);
+		font-size: max(12px, 0.9em);
 		border-radius: 100px;
 	}
 

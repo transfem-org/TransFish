@@ -16,9 +16,10 @@ export default defineComponent({
 		return h(
 			"div",
 			{
-				class: ["pxhvhrfw", 
+				class: [
+					"pxhvhrfw",
 					{ chips: this.style === "chips" },
-					{ underline: this.style === "underline" }
+					{ underline: this.style === "underline" },
 				],
 				role: "tablist",
 			},
@@ -92,7 +93,8 @@ export default defineComponent({
 		}
 	}
 
-	&.chips, &.underline {
+	&.chips,
+	&.underline {
 		padding: 12px 32px;
 		font-size: 0.85em;
 		overflow-x: auto;
