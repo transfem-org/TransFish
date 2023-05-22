@@ -1,19 +1,8 @@
 <template>
-	<div
-		v-if="!muted.muted"
-		v-show="!isDeleted"
-		ref="el"
-		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350, 300] }"
-		class="tkcbzcuz note-container"
-		:tabindex="!isDeleted ? '-1' : null"
-		:class="{ renote: isRenote }"
-	>
-		<MkNoteSub
-			v-if="appearNote.reply && !detailedView"
-			:note="appearNote.reply"
-			class="reply-to"
-		/>
+	<div :aria-label="accessibleLabel" v-if="!muted.muted" v-show="!isDeleted" ref="el" v-hotkey="keymap"
+		v-size="{ max: [500, 450, 350, 300] }" class="tkcbzcuz note-container" :tabindex="!isDeleted ? '-1' : null"
+		:class="{ renote: isRenote }">
+		<MkNoteSub v-if="appearNote.reply && !detailedView" :note="appearNote.reply" class="reply-to" />
 		<div v-if="!detailedView" class="note-context" @click="noteClick">
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
@@ -29,79 +18,47 @@
 				{{ i18n.ts.featured }}
 			</div>
 			<div v-if="pinned" class="info">
-				<i class="ph-push-pin ph-bold ph-lg"></i
-				>{{ i18n.ts.pinnedNote }}
+				<i class="ph-push-pin ph-bold ph-lg"></i>{{ i18n.ts.pinnedNote }}
 			</div>
 			<div v-if="isRenote" class="renote">
 				<i class="ph-repeat ph-bold ph-lg"></i>
 				<I18n :src="i18n.ts.renotedBy" tag="span">
 					<template #user>
-						<MkA
-							v-user-preview="note.userId"
-							class="name"
-							:to="userPage(note.user)"
-							@click.stop
-						>
+						<MkA v-user-preview="note.userId" class="name" :to="userPage(note.user)" @click.stop>
 							<MkUserName :user="note.user" />
 						</MkA>
 					</template>
 				</I18n>
 				<div class="info">
-					<button
-						ref="renoteTime"
-						class="_button time"
-						@click.stop="showRenoteMenu()"
-					>
-						<i
-							v-if="isMyRenote"
-							class="ph-dots-three-outline ph-bold ph-lg dropdownIcon"
-						></i>
+					<button ref="renoteTime" class="_button time" @click.stop="showRenoteMenu()">
+						<i v-if="isMyRenote" class="ph-dots-three-outline ph-bold ph-lg dropdownIcon"></i>
 						<MkTime :time="note.createdAt" />
 					</button>
 					<MkVisibility :note="note" />
 				</div>
 			</div>
 		</div>
-		<article
-			class="article"
-			@contextmenu.stop="onContextmenu"
-			@click="noteClick"
-		>
+		<article class="article" @contextmenu.stop="onContextmenu" @click="noteClick">
 			<div class="main">
 				<div class="header-container">
 					<MkAvatar class="avatar" :user="appearNote.user" />
-					<XNoteHeader
-						class="header"
-						:note="appearNote"
-						:mini="true"
-					/>
+					<XNoteHeader class="header" :note="appearNote" :mini="true" />
 				</div>
 				<div class="body">
-					<MkSubNoteContent
-						class="text"
-						:note="appearNote"
-						:detailed="true"
-						:detailedView="detailedView"
-						:parentId="appearNote.parentId"
-						@push="(e) => router.push(notePage(e))"
-						@focusfooter="footerEl.focus()"
-					></MkSubNoteContent>
+					<MkSubNoteContent class="text" :note="appearNote" :detailed="true" :detailedView="detailedView"
+						:parentId="appearNote.parentId" @push="(e) => router.push(notePage(e))"
+						@focusfooter="footerEl.focus()" @expanded="(e) => setPostExpanded(e)"></MkSubNoteContent>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
 						<div v-else class="translated">
-							<b
-								>{{
-									i18n.t("translatedFrom", {
-										x: translation.sourceLang,
-									})
-								}}:
+							<b>{{
+								i18n.t("translatedFrom", {
+									x: translation.sourceLang,
+								})
+							}}:
 							</b>
-							<Mfm
-								:text="translation.text"
-								:author="appearNote.user"
-								:i="$i"
-								:custom-emojis="appearNote.emojis"
-							/>
+							<Mfm :text="translation.text" :author="appearNote.user" :i="$i"
+								:custom-emojis="appearNote.emojis" />
 						</div>
 					</div>
 				</div>
@@ -471,6 +428,39 @@ function readPromo() {
 	});
 	isDeleted.value = true;
 }
+
+let postIsExpanded = ref(false);
+
+function setPostExpanded(val: boolean) {
+	postIsExpanded.value = val;
+}
+
+const accessibleLabel = computed(() => {
+	let label = `${props.note.user.username}; `;
+	if (props.note.renote) {
+		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
+		if (props.note.renote.cw) {
+			label += `${i18n.t('cw')}: ${props.note.renote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${props.note.renote.text}; `;	
+			}
+		} else {
+			label += `${props.note.renote.text}; `;
+		}
+	} else {
+		if (props.note.cw) {
+			label += `${i18n.t("cw")}: ${props.note.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${props.note.text}; `;
+			}
+		} else {
+			label += `${props.note.text}; `;
+		}
+	}
+	const date = new Date(props.note.createdAt);
+	label += `${date.toLocaleTimeString()}`;
+	return label;
+})
 
 defineExpose({
 	focus,
