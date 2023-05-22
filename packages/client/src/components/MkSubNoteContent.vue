@@ -54,6 +54,7 @@
 				v-model="showContent"
 				:note="note"
 				v-on:keydown="focusFooter"
+				v-on:update:model-value="(val) => emit('expanded', val)"
 			/>
 			<div
 				class="body"
@@ -190,6 +191,7 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(ev: "push", v): void;
 	(ev: "focusfooter"): void;
+	(ev: "expanded", v): void;
 }>();
 
 const cwButton = ref<HTMLElement>();
