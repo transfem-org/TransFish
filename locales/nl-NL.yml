@@ -13,7 +13,7 @@ password: "Wachtwoord"
 forgotPassword: "Wachtwoord vergeten"
 fetchingAsApObject: "Ophalen vanuit de Fediverse"
 ok: "Ok"
-gotIt: "Begrepen"
+gotIt: "Begrepen!"
 cancel: "Annuleren"
 enterUsername: "Voer een gebruikersnaam in"
 renotedBy: "Hergedeeld door {user}"
@@ -51,8 +51,8 @@ deleteAndEditConfirm: "Weet je zeker dat je deze post wilt verwijderen en dan be
   Je verliest alle reacties, boosts en antwoorden erop."
 addToList: "Aan lijst toevoegen"
 sendMessage: "Verstuur bericht"
-copyUsername: "Kopiëren gebruikersnaam "
-searchUser: "Zoeken een gebruiker"
+copyUsername: "Gebruikersnaam kopiëren"
+searchUser: "Zoek een gebruiker"
 reply: "Antwoord"
 loadMore: "Laad meer"
 showMore: "Toon meer"
@@ -517,3 +517,5 @@ withFileAntenna: Alleen posts met bestanden
 enableServiceworker: Schakel pushmeldingen voor je browser in
 renoteUnmute: Ontdemp boosts
 jumpToPrevious: Spring naar vorige
+caseSensitive: Hoofdlettergevoelig
+cw: Inhoudswaarschuwing
