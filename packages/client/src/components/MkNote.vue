@@ -429,10 +429,10 @@ function readPromo() {
 	isDeleted.value = true;
 }
 
-let postIsExpanded = false;
+let postIsExpanded = ref(false);
 
 function setPostExpanded(val: boolean) {
-	postIsExpanded = val;
+	postIsExpanded.value = val;
 }
 
 const accessibleLabel = computed(() => {
@@ -440,8 +440,8 @@ const accessibleLabel = computed(() => {
 	if (props.note.renote) {
 		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
 		if (props.note.renote.cw) {
-			label += `content warning: ${props.note.renote.cw}; `;
-			if (postIsExpanded) {
+			label += `${i18n.t('cw')}: ${props.note.renote.cw}; `;
+			if (postIsExpanded.value) {
 				label += `${props.note.renote.text}; `;	
 			}
 		} else {
@@ -450,7 +450,7 @@ const accessibleLabel = computed(() => {
 	} else {
 		if (props.note.cw) {
 			label += `${i18n.t("cw")}: ${props.note.cw}; `;
-			if (postIsExpanded) {
+			if (postIsExpanded.value) {
 				label += `${props.note.text}; `;
 			}
 		} else {
