@@ -334,7 +334,7 @@ _widgets:
   calendar: Calendari
   activity: Activitat
   photos: Fotos
-  rssTicker: Ticker RSS
+  rssTicker: Teletip RSS
   onlineUsers: Usuaris en línia
   memo: Notes adhesives
   digitalClock: Rellotge digital
@@ -1765,7 +1765,7 @@ welcomeBackWithName: Benvingut de nou, {name}
 showLocalPosts: 'Mostra les notes locals a:'
 homeTimeline: Línea de temps Inicial
 socialTimeline: Línea de temps Social
-themeColor: Color del Ticker del servidor
+themeColor: Color del Teletip del servidor
 size: Mida
 numberOfColumn: Nombre de columnes
 numberOfPageCache: Nombre de pàgines emmagatzemades a la memòria cau
@@ -2054,3 +2054,5 @@ accessibility: Accessibilitat
 jumpToReply: Vés a la resposta
 newer: Més nou
 older: Més antic
+silencedWarning: S'està mostrant aquesta pàgina per què aquest usuari és d'un servidor
+  que l'administrador a silenciat, així que pot ser spam.
