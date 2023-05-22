@@ -129,7 +129,6 @@ import {
 	nextTick,
 	reactive,
 } from "vue";
-import tinycolor from "tinycolor2";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { popupMenu } from "@/os";
 import { scrollToTop } from "@/scripts/scroll";
@@ -257,15 +256,11 @@ onMounted(() => {
 						tabEl.style = `--width: ${tabSizeX}px`;
 					}
 					setTimeout(() => {
-						const parentRect = tabsEl.getBoundingClientRect();
-						const rect = tabEl.getBoundingClientRect();
-						const left =
-							rect.left - parentRect.left + tabsEl?.scrollLeft;
 						tabHighlightEl.style.width = tabSizeX + "px";
-						tabHighlightEl.style.transform = `translateX(${left}px)`;
+						tabHighlightEl.style.transform = `translateX(${tabEl.offsetLeft}px)`;
 						window.requestAnimationFrame(() => {
 							tabsEl?.scrollTo({
-								left: left - 60,
+								left: tabEl.offsetLeft - 60,
 								behavior: "smooth",
 							});
 						});
