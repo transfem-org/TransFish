@@ -1704,7 +1704,9 @@ oneWeek: Una setmana
 reflectMayTakeTime: Pot trigar una mica a reflectir-se.
 thereIsUnresolvedAbuseReportWarning: Hi ha informes sense resoldre.
 driveCapOverrideLabel: Canvieu la capacitat del disc per a aquest usuari
-isSystemAccount: Un compte creat i operat automàticament pel sistema.
+isSystemAccount: Aquest compte és creat i operat automàticament pel sistema. Si us
+  plau, no modereu, editeu, suprimiu o modifiqueu aquest compte de cap forma, o podria
+  trencar el vostre servidor.
 typeToConfirm: Introduïu {x} per confirmar
 deleteAccount: Suprimeix el compte
 document: Documentació
@@ -2056,3 +2058,4 @@ newer: Més nou
 older: Més antic
 silencedWarning: S'està mostrant aquesta pàgina per què aquest usuari és d'un servidor
   que l'administrador a silenciat, així que pot ser spam.
+jumpToPrevious: Vés a l'anterior
