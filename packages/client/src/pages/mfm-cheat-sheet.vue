@@ -416,19 +416,9 @@
 					<div class="content">
 						<p>{{ i18n.ts._mfm.plainDescription }}</p>
 						<div class="preview">
-							<Mfm :text="preview_plain" />
-							<MkTextarea v-model="preview_plain"
-								><span>MFM</span></MkTextarea
-							>
+							<Mfm :text="preview_plain"/>
+							<MkTextarea v-model="preview_plain"><span>MFM</span></MkTextarea>
 						</div>
-			</div>
-			<div class="section _block">
-				<div class="title">{{ i18n.ts._mfm.plain }}</div>
-				<div class="content">
-					<p>{{ i18n.ts._mfm.plainDescription }}</p>
-					<div class="preview">
-						<Mfm :text="preview_plain"/>
-						<MkTextarea v-model="preview_plain"><span>MFM</span></MkTextarea>
 					</div>
 				</div>
 			</div>
