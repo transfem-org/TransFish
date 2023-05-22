@@ -85,6 +85,18 @@
 			</nav>
 		</template>
 		<div class="buttons right">
+			<template v-if="metadata.avatar">
+				<MkFollowButton
+					v-if="narrow"
+					:user="metadata.avatar"
+					:full="false"
+				></MkFollowButton>
+				<MkFollowButton
+					v-else
+					:user="metadata.avatar"
+					:full="true"
+				></MkFollowButton>
+			</template>
 			<template v-for="action in actions">
 				<button
 					v-tooltip.noDelay="action.text"
@@ -113,6 +125,7 @@ import {
 	reactive,
 } from "vue";
 import tinycolor from "tinycolor2";
+import MkFollowButton from "@/components/MkFollowButton.vue";
 import { popupMenu } from "@/os";
 import { scrollToTop } from "@/scripts/scroll";
 import { globalEvents } from "@/events";
@@ -379,6 +392,9 @@ onUnmounted(() => {
 
 		&.right {
 			margin-left: auto;
+			:deep(.follow-button) {
+				margin-right: 6px;
+			}
 		}
 
 		&:empty {

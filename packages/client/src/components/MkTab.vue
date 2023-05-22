@@ -86,6 +86,10 @@ export default defineComponent({
 		> .icon {
 			margin-right: 6px;
 		}
+
+		&:empty {
+			display: none !important;
+		}
 	}
 
 	&.chips, &.underline {
@@ -124,6 +128,7 @@ export default defineComponent({
 	&.underline {
 		padding-block: 0 !important;
 		margin-bottom: -1px;
+		border-radius: 0;
 		button {
 			background: none !important;
 			border-radius: 0 !important;
