@@ -518,7 +518,7 @@ onUnmounted(() => {
 			cursor: unset;
 			padding-bottom: 0;
 		}
-		&:first-of-type {
+		&:first-child {
 			padding-top: 28px;
 		}
 	}
