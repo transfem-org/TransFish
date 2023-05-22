@@ -1,6 +1,5 @@
 import { defineAsyncComponent, Ref, inject } from "vue";
 import * as misskey from "calckey-js";
-import { pleaseLogin } from "./please-login";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
@@ -12,7 +11,7 @@ import { shareAvailable } from "@/scripts/share-available";
 
 export function getNoteMenu(props: {
 	note: misskey.entities.Note;
-	menuButton: Ref<HTMLElement>;
+	menuButton: Ref<HTMLElement | undefined>;
 	translation: Ref<any>;
 	translating: Ref<boolean>;
 	isDeleted: Ref<boolean>;
@@ -58,6 +57,16 @@ export function getNoteMenu(props: {
 				reply: appearNote.reply,
 				channel: appearNote.channel,
 			});
+		});
+	}
+
+	function edit(): void {
+		os.post({
+			initialNote: appearNote,
+			renote: appearNote.renote,
+			reply: appearNote.reply,
+			channel: appearNote.channel,
+			editId: appearNote.id,
 		});
 	}
 
@@ -221,19 +230,6 @@ export function getNoteMenu(props: {
 		});
 	}
 
-	function showReactions(): void {
-		os.popup(
-			defineAsyncComponent(
-				() => import("@/components/MkReactedUsersDialog.vue"),
-			),
-			{
-				noteId: appearNote.id,
-			},
-			{},
-			"closed",
-		);
-	}
-
 	async function translate(): Promise<void> {
 		if (props.translation.value != null) return;
 		props.translating.value = true;
@@ -251,6 +247,9 @@ export function getNoteMenu(props: {
 			noteId: appearNote.id,
 		});
 
+		const isAppearAuthor = appearNote.userId === $i.id;
+		const isModerator = $i.isAdmin || $i.isModerator;
+
 		menu = [
 			...(props.currentClipPage?.value.userId === $i.id
 				? [
@@ -263,11 +262,13 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
-			{
-				icon: "ph-smiley ph-bold ph-lg",
-				text: i18n.ts.reaction,
-				action: showReactions,
-			},
+			instance.features.postEditing && isAppearAuthor
+				? {
+						icon: "ph-pencil-line ph-bold ph-lg",
+						text: i18n.ts.edit,
+						action: edit,
+				  }
+				: undefined,
 			{
 				icon: "ph-clipboard-text ph-bold ph-lg",
 				text: i18n.ts.copyContent,
@@ -320,7 +321,7 @@ export function getNoteMenu(props: {
 				text: i18n.ts.clip,
 				action: () => clip(),
 			},
-			appearNote.userId !== $i.id
+			!isAppearAuthor
 				? statePromise.then((state) =>
 						state.isWatching
 							? {
@@ -348,7 +349,7 @@ export function getNoteMenu(props: {
 							action: () => toggleThreadMute(true),
 					  },
 			),
-			appearNote.userId === $i.id
+			isAppearAuthor
 				? ($i.pinnedNoteIds || []).includes(appearNote.id)
 					? {
 							icon: "ph-push-pin ph-bold ph-lg",
@@ -371,7 +372,7 @@ export function getNoteMenu(props: {
 			}]
 			: []
 		),*/
-			...(appearNote.userId !== $i.id
+			...(!isAppearAuthor
 				? [
 						null,
 						{
@@ -397,24 +398,25 @@ export function getNoteMenu(props: {
 						},
 				  ]
 				: []),
-			...(appearNote.userId === $i.id || $i.isModerator || $i.isAdmin
-				? [
-						null,
-						appearNote.userId === $i.id
-							? {
-									icon: "ph-eraser ph-bold ph-lg",
-									text: i18n.ts.deleteAndEdit,
-									action: delEdit,
-							  }
-							: undefined,
-						{
-							icon: "ph-trash ph-bold ph-lg",
-							text: i18n.ts.delete,
-							danger: true,
-							action: del,
-						},
-				  ]
-				: []),
+
+			null,
+
+			isAppearAuthor || isModerator
+				? {
+						icon: "ph-trash ph-bold ph-lg",
+						text: i18n.ts.delete,
+						danger: true,
+						action: del,
+				  }
+				: undefined,
+
+			isAppearAuthor
+				? {
+						icon: "ph-eraser ph-bold ph-lg",
+						text: i18n.ts.deleteAndEdit,
+						action: delEdit,
+				  }
+				: undefined,
 		].filter((x) => x !== undefined);
 	} else {
 		menu = [

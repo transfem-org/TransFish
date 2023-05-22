@@ -1,8 +1,9 @@
 <template>
-	<div
+	<section
 		v-size="{ max: [310, 500] }"
 		class="gafaadew"
 		:class="{ modal, _popup: modal }"
+		:aria-label="i18n.ts._pages.blocks.post"
 		@dragover.stop="onDragover"
 		@dragenter="onDragenter"
 		@dragleave="onDragleave"
@@ -82,7 +83,7 @@
 			<div v-if="quoteId" class="with-quote">
 				<i class="ph-quotes ph-bold ph-lg"></i>
 				{{ i18n.ts.quoteAttached
-				}}<button @click="quoteId = null">
+				}}<button class="_button" @click="quoteId = null">
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>
 			</div>
@@ -202,6 +203,7 @@
 				>
 					<i class="ph-plug ph-bold ph-lg"></i>
 				</button>
+				<!--	v-if="showMfmCheatsheet" -->
 				<button
 					v-tooltip="i18n.ts._mfm.cheatSheet"
 					class="_button right"
@@ -218,7 +220,7 @@
 				/>
 			</datalist>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script lang="ts" setup>
@@ -274,10 +276,13 @@ const props = withDefaults(
 		instant?: boolean;
 		fixed?: boolean;
 		autofocus?: boolean;
+		showMfmCheatSheet?: boolean;
+		editId?: misskey.entities.Note["id"];
 	}>(),
 	{
 		initialVisibleUsers: () => [],
 		autofocus: true,
+		showMfmCheatSheet: true,
 	}
 );
 
@@ -334,6 +339,10 @@ const typing = throttle(3000, () => {
 });
 
 const draftKey = $computed((): string => {
+	if (props.editId) {
+		return `edit:${props.editId}`;
+	}
+
 	let key = props.channel ? `channel:${props.channel.id}` : "";
 
 	if (props.renote) {
@@ -368,7 +377,9 @@ const placeholder = $computed((): string => {
 });
 
 const submitText = $computed((): string => {
-	return props.renote
+	return props.editId
+		? i18n.ts.edit
+		: props.renote
 		? i18n.ts.quote
 		: props.reply
 		? i18n.ts.reply
@@ -809,6 +820,7 @@ async function post() {
 	const processedText = preprocess(text);
 
 	let postData = {
+		editId: props.editId ? props.editId : undefined,
 		text: processedText === "" ? undefined : processedText,
 		fileIds: files.length > 0 ? files.map((f) => f.id) : undefined,
 		replyId: props.reply ? props.reply.id : undefined,
@@ -854,7 +866,7 @@ async function post() {
 	}
 
 	posting = true;
-	os.api("notes/create", postData, token)
+	os.api(postData.editId ? "notes/edit" : "notes/create", postData, token)
 		.then(() => {
 			clear();
 			nextTick(() => {
@@ -1112,11 +1124,16 @@ onMounted(() => {
 		}
 
 		> .with-quote {
-			margin: 0 0 8px 0;
+			display: flex;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline: 24px;
+			margin-bottom: 12px;
 			color: var(--accent);
 
 			> button {
-				padding: 4px 8px;
+				display: flex;
+				padding: 0;
 				color: var(--accentAlpha04);
 
 				&:hover {

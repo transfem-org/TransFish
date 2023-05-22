@@ -1,18 +1,16 @@
 <template>
-	<div
-		v-adaptive-border
-		class="novjtctn"
-		:class="{ disabled, checked }"
-		:aria-checked="checked"
-		:aria-disabled="disabled"
-		@click="toggle"
-	>
-		<input type="radio" :disabled="disabled" />
+	<label v-adaptive-border class="novjtctn" :class="{ disabled, checked }">
+		<input
+			type="radio"
+			:disabled="disabled"
+			:checked="checked"
+			v-on:change="(x) => toggle(x)"
+		/>
 		<span class="button">
 			<span></span>
 		</span>
 		<span class="label"><slot></slot></span>
-	</div>
+	</label>
 </template>
 
 <script lang="ts" setup>
@@ -30,7 +28,7 @@ const emit = defineEmits<{
 
 let checked = $computed(() => props.modelValue === props.value);
 
-function toggle(): void {
+function toggle(x) {
 	if (props.disabled) return;
 	emit("update:modelValue", props.value);
 }
@@ -93,8 +91,8 @@ function toggle(): void {
 
 	> input {
 		position: absolute;
-		width: 0;
-		height: 0;
+		width: 18px;
+		height: 18px;
 		opacity: 0;
 		margin: 0;
 	}
@@ -107,6 +105,7 @@ function toggle(): void {
 		border: solid 2px var(--inputBorder);
 		border-radius: 100%;
 		transition: inherit;
+		pointer-events: none;
 
 		&:after {
 			content: "";

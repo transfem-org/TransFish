@@ -60,6 +60,16 @@ export const meta = {
 					optional: false,
 					nullable: true,
 				},
+				width: {
+					type: "number",
+					optional: false,
+					nullable: true,
+				},
+				height: {
+					type: "number",
+					optional: false,
+					nullable: true,
+				},
 			},
 		},
 	},

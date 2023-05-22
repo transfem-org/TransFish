@@ -7,7 +7,7 @@
 		@click="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
-		<p v-if="count > 0" class="count">{{ count }}</p>
+		<p v-if="count > 0 && !detailedView" class="count">{{ count }}</p>
 	</button>
 	<button v-else class="eddddedb _button">
 		<i class="ph-prohibit ph-bold ph-lg"></i>
@@ -25,10 +25,12 @@ import { $i } from "@/account";
 import { useTooltip } from "@/scripts/use-tooltip";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
+import { MenuItem } from "@/types/menu";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	count: number;
+	detailedView?;
 }>();
 
 const buttonRef = ref<HTMLElement>();
@@ -73,7 +75,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	const users = renotes.map((x) => x.user.id);
 	const hasRenotedBefore = users.includes($i.id);
 
-	let buttonActions = [];
+	let buttonActions: Array<MenuItem> = [];
 
 	if (props.note.visibility === "public") {
 		buttonActions.push({
@@ -105,7 +107,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	if (["public", "home"].includes(props.note.visibility)) {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.home})`,
-			icons: ["ph-repeat ph-bold ph-lg", "ph-house ph-bold ph-lg"],
+			icon: "ph-house ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
@@ -131,10 +133,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	if (props.note.visibility === "specified") {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts.recipient})`,
-			icons: [
-				"ph-repeat ph-bold ph-lg",
-				"ph-envelope-simple-open ph-bold ph-lg",
-			],
+			icon: "ph-envelope-simple-open ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
@@ -159,16 +158,50 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	} else {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.followers})`,
-			icons: [
-				"ph-repeat ph-bold ph-lg",
-				"ph-lock-simple-open ph-bold ph-lg",
-			],
+			icon: "ph-lock-simple-open ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
 					visibility: "followers",
 				});
+				const el =
+					ev &&
+					((ev.currentTarget ?? ev.target) as
+						| HTMLElement
+						| null
+						| undefined);
+				if (el) {
+					const rect = el.getBoundingClientRect();
+					const x = rect.left + el.offsetWidth / 2;
+					const y = rect.top + el.offsetHeight / 2;
+					os.popup(Ripple, { x, y }, {}, "end");
+				}
+			},
+		});
+	}
+
+	if (canRenote) {
+		buttonActions.push({
+			text: `${i18n.ts.renote} (${i18n.ts.local})`,
+			icon: "ph-hand-fist ph-bold ph-lg",
+			danger: false,
+			action: () => {
+				os.api(
+					"notes/create",
+					props.note.visibility === "specified"
+						? {
+								renoteId: props.note.id,
+								visibility: props.note.visibility,
+								visibleUserIds: props.note.visibleUserIds,
+								localOnly: true,
+						  }
+						: {
+								renoteId: props.note.id,
+								visibility: props.note.visibility,
+								localOnly: true,
+						  }
+				);
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as

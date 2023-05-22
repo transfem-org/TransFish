@@ -5,6 +5,7 @@
 				:actions="headerActions"
 				:tabs="headerTabs"
 				:display-back-button="true"
+				:to="`#${noteId}`"
 		/></template>
 		<MkSpacer :content-max="800" :marginMin="6">
 			<div class="fcuexfpr">
@@ -26,8 +27,10 @@
 								v-if="!showNext && hasNext"
 								class="load next"
 								@click="showNext = true"
-								><i class="ph-caret-up ph-bold ph-lg"></i
-							></MkButton>
+							>
+								<i class="ph-caret-up ph-bold ph-lg"></i>
+								{{ `${i18n.ts.loadMore} (${i18n.ts.newer})` }}
+							</MkButton>
 							<div class="note _gap">
 								<MkRemoteCaution
 									v-if="note.user.host != null"
@@ -39,43 +42,14 @@
 									class="note"
 								/>
 							</div>
-							<div
-								v-if="clips && clips.length > 0"
-								class="_content clips _gap"
-							>
-								<div class="title">{{ i18n.ts.clip }}</div>
-								<MkA
-									v-for="item in clips"
-									:key="item.id"
-									:to="`/clips/${item.id}`"
-									class="item _panel _gap"
-								>
-									<b>{{ item.name }}</b>
-									<div
-										v-if="item.description"
-										class="description"
-									>
-										{{ item.description }}
-									</div>
-									<div class="user">
-										<MkAvatar
-											:user="item.user"
-											class="avatar"
-											:show-indicator="true"
-										/>
-										<MkUserName
-											:user="item.user"
-											:nowrap="false"
-										/>
-									</div>
-								</MkA>
-							</div>
 							<MkButton
 								v-if="!showPrev && hasPrev"
 								class="load prev"
 								@click="showPrev = true"
-								><i class="ph-caret-down ph-bold ph-lg"></i
-							></MkButton>
+							>
+								<i class="ph-caret-down ph-bold ph-lg"></i>
+								{{ `${i18n.ts.loadMore} (${i18n.ts.older})` }}
+							</MkButton>
 						</div>
 
 						<div v-if="showPrev" class="_gap">
@@ -111,7 +85,6 @@ const props = defineProps<{
 }>();
 
 let note = $ref<null | misskey.entities.Note>();
-let clips = $ref();
 let hasPrev = $ref(false);
 let hasNext = $ref(false);
 let showPrev = $ref(false);
@@ -157,9 +130,6 @@ function fetchNote() {
 		.then((res) => {
 			note = res;
 			Promise.all([
-				os.api("notes/clips", {
-					noteId: note.id,
-				}),
 				os.api("users/notes", {
 					userId: note.userId,
 					untilId: note.id,
@@ -170,8 +140,7 @@ function fetchNote() {
 					sinceId: note.id,
 					limit: 1,
 				}),
-			]).then(([_clips, prev, next]) => {
-				clips = _clips;
+			]).then(([prev, next]) => {
 				hasPrev = prev.length !== 0;
 				hasNext = next.length !== 0;
 			});
@@ -193,7 +162,7 @@ definePageMetadata(
 	computed(() =>
 		note
 			? {
-					title: i18n.ts.note,
+					title: i18n.t("noteOf", { user: note.user.name }),
 					subtitle: new Date(note.createdAt).toLocaleString(),
 					avatar: note.user,
 					path: `/notes/${note.id}`,
@@ -218,7 +187,9 @@ definePageMetadata(
 }
 
 .fcuexfpr {
-	background: var(--bg);
+	#calckey_app > :not(.wallpaper) & {
+		background: var(--bg);
+	}
 
 	> .note {
 		> .main {
@@ -240,34 +211,6 @@ definePageMetadata(
 				> .note {
 					border-radius: var(--radius);
 					background: var(--panel);
-				}
-			}
-
-			> .clips {
-				> .title {
-					font-weight: bold;
-					padding: 12px;
-				}
-
-				> .item {
-					display: block;
-					padding: 16px;
-
-					> .description {
-						padding: 8px 0;
-					}
-
-					> .user {
-						$height: 32px;
-						padding-top: 16px;
-						border-top: solid 0.5px var(--divider);
-						line-height: $height;
-
-						> .avatar {
-							width: $height;
-							height: $height;
-						}
-					}
 				}
 			}
 		}

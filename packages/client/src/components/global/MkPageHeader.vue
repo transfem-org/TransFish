@@ -1,5 +1,5 @@
 <template>
-	<div
+	<header
 		v-if="show"
 		ref="el"
 		class="fdidabkb"
@@ -8,12 +8,15 @@
 		@click="onClick"
 	>
 		<div class="left">
-			<i
-				@click="goBack()"
+			<button
 				v-if="props.displayBackButton"
+				class="_button button icon backButton"
+				@click.stop="goBack()"
+				@touchstart="preventDrag"
 				v-tooltip.noDelay="i18n.ts.goBack"
-				class="icon backButton ph-caret-left ph-bold ph-lg"
-			></i>
+			>
+				<i class="ph-caret-left ph-bold ph-lg"></i>
+			</button>
 			<div v-if="narrow" class="buttons left" @click="openAccountMenu">
 				<MkAvatar
 					v-if="props.displayMyAvatar && $i"
@@ -65,7 +68,7 @@
 			</div>
 		</div>
 		<template v-if="metadata">
-			<div ref="tabsEl" v-if="hasTabs" class="tabs" :class="{collapse: hasTabs && tabs.length > 3}">
+			<nav ref="tabsEl" v-if="hasTabs" class="tabs" :class="{collapse: hasTabs && tabs.length > 3}">
 				<button
 					v-for="tab in tabs"
 					:ref="(el) => (tabRefs[tab.key] = el)"
@@ -81,9 +84,21 @@
 					<span class="title">{{ tab.title }}</span>
 				</button>
 				<div ref="tabHighlightEl" class="highlight"></div>
-			</div>
+			</nav>
 		</template>
 		<div class="buttons right">
+			<template v-if="metadata.avatar">
+				<MkFollowButton
+					v-if="narrow"
+					:user="metadata.avatar"
+					:full="false"
+				></MkFollowButton>
+				<MkFollowButton
+					v-else
+					:user="metadata.avatar"
+					:full="true"
+				></MkFollowButton>
+			</template>
 			<template v-for="action in actions">
 				<button
 					v-tooltip.noDelay="action.text"
@@ -96,7 +111,7 @@
 				</button>
 			</template>
 		</div>
-	</div>
+	</header>
 </template>
 
 <script lang="ts" setup>
@@ -112,6 +127,7 @@ import {
 	reactive,
 } from "vue";
 import tinycolor from "tinycolor2";
+import MkFollowButton from "@/components/MkFollowButton.vue";
 import { popupMenu } from "@/os";
 import { scrollToTop } from "@/scripts/scroll";
 import { globalEvents } from "@/events";
@@ -138,6 +154,7 @@ const props = defineProps<{
 	thin?: boolean;
 	displayMyAvatar?: boolean;
 	displayBackButton?: boolean;
+	to?: string;
 }>();
 
 const emit = defineEmits<{
@@ -192,7 +209,11 @@ const preventDrag = (ev: TouchEvent) => {
 };
 
 const onClick = () => {
-	scrollToTop(el, { behavior: "smooth" });
+	if (props.to) {
+		location.href = props.to;
+	} else {
+		scrollToTop(el, { behavior: "smooth" });
+	}
 };
 
 function onTabMousedown(tab: Tab, ev: MouseEvent): void {
@@ -378,9 +399,18 @@ onUnmounted(() => {
 
 		&.right {
 			justify-content: flex-end;
+			margin-left: auto;
+			:deep(.follow-button) {
+				margin-right: 6px;
+			}
 		}
 
-		> .button {
+		&:empty {
+			display: none;
+		}
+
+		> .button/*, @at-root .backButton*/ {
+			/* I don't know how to get this to work */
 			display: flex;
 			align-items: center;
 			justify-content: center;

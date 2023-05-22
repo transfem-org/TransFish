@@ -1,6 +1,6 @@
 import type Bull from "bull";
 import * as fs from "node:fs";
-import unzipper from "unzipper";
+import AdmZip from "adm-zip";
 
 import { queueLogger } from "../../logger.js";
 import { createTempDir } from "@/misc/create-temp.js";
@@ -10,6 +10,7 @@ import type { DbUserImportJobData } from "@/queue/types.js";
 import { addFile } from "@/services/drive/add-file.js";
 import { genId } from "@/misc/gen-id.js";
 import { db } from "@/db/postgre.js";
+import probeImageSize from "probe-image-size";
 
 const logger = queueLogger.createSubLogger("import-custom-emojis");
 
@@ -47,8 +48,9 @@ export async function importCustomEmojis(
 
 	const outputPath = `${path}/emojis`;
 	const unzipStream = fs.createReadStream(destPath);
-	const extractor = unzipper.Extract({ path: outputPath });
-	extractor.on("close", async () => {
+	const zip = new AdmZip(destPath);
+	zip.extractAllToAsync(outputPath, true, false, async (error) => {
+		if (error) throw error;
 		const metaRaw = fs.readFileSync(`${outputPath}/meta.json`, "utf-8");
 		const meta = JSON.parse(metaRaw);
 
@@ -65,7 +67,10 @@ export async function importCustomEmojis(
 				name: record.fileName,
 				force: true,
 			});
-			const emoji = await Emojis.insert({
+			const file = fs.createReadStream(emojiPath);
+			const size = await probeImageSize(file);
+			file.destroy();
+			await Emojis.insert({
 				id: genId(),
 				updatedAt: new Date(),
 				name: emojiInfo.name,
@@ -76,6 +81,8 @@ export async function importCustomEmojis(
 				publicUrl: driveFile.webpublicUrl ?? driveFile.url,
 				type: driveFile.webpublicType ?? driveFile.type,
 				license: emojiInfo.license,
+				width: size.width || null,
+				height: size.height || null,
 			}).then((x) => Emojis.findOneByOrFail(x.identifiers[0]));
 		}
 
@@ -86,6 +93,5 @@ export async function importCustomEmojis(
 		logger.succ("Imported");
 		done();
 	});
-	unzipStream.pipe(extractor);
 	logger.succ(`Unzipping to ${outputPath}`);
 }

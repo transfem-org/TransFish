@@ -1,8 +1,11 @@
 <template>
-	<div
+	<article
+		v-if="!muted.muted || muted.what === 'reply'"
 		ref="el"
 		v-size="{ max: [450, 500] }"
 		class="wrpstxzv"
+		:id="detailedView ? appearNote.id : null"
+		tabindex="-1"
 		:class="{
 			children: depth > 1,
 			singleStart: replies.length == 1,
@@ -126,32 +129,19 @@
 			</div>
 		</div>
 		<template v-if="conversation">
-			<template v-if="replyLevel < 11 && depth < 5">
-				<template v-if="replies.length == 1">
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply single"
-						:conversation="conversation"
-						:depth="depth"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-				<template v-else>
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply"
-						:conversation="conversation"
-						:depth="depth + 1"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-			</template>
+			<MkNoteSub
+				v-if="replyLevel < 11 && depth < 5"
+				v-for="reply in replies"
+				:key="reply.id"
+				:note="reply"
+				class="reply"
+				:class="{ single: replies.length == 1 }"
+				:conversation="conversation"
+				:depth="replies.length == 1 ? depth : depth + 1"
+				:replyLevel="replyLevel + 1"
+				:parentId="appearNote.replyId"
+				:detailedView="detailedView"
+			/>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
 				<MkA class="text _link" :to="notePage(note)"
@@ -160,6 +150,22 @@
 				></MkA>
 			</div>
 		</template>
+	</article>
+	<div v-else class="muted" @click="muted.muted = false">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
+			<template #name>
+				<MkA
+					v-user-preview="note.userId"
+					class="name"
+					:to="userPage(note.user)"
+				>
+					<MkUserName :user="note.user" />
+				</MkA>
+			</template>
+			<template #reason>
+				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
+			</template>
+		</I18n>
 	</div>
 </template>
 
@@ -176,13 +182,17 @@ import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getNoteMenu } from "@/scripts/get-note-menu";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
+import { userPage } from "@/filters/user";
 import * as os from "@/os";
 import { reactionPicker } from "@/scripts/reaction-picker";
+import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { defaultStore } from "@/store";
+import { deepClone } from "@/scripts/clone";
 
 const router = useRouter();
 
@@ -191,6 +201,7 @@ const props = withDefaults(
 		note: misskey.entities.Note;
 		conversation?: misskey.entities.Note[];
 		parentId?;
+		detailedView?;
 
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
@@ -203,7 +214,17 @@ const props = withDefaults(
 	}
 );
 
-let note = $ref(props.note);
+let note = $ref(deepClone(props.note));
+
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
 
 const isRenote =
 	note.renote != null &&
@@ -221,6 +242,7 @@ let appearNote = $computed(() =>
 	isRenote ? (note.renote as misskey.entities.Note) : note
 );
 const isDeleted = ref(false);
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const replies: misskey.entities.Note[] =
@@ -236,6 +258,7 @@ const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
 useNoteCapture({
 	rootEl: el,
 	note: $$(appearNote),
+	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
@@ -315,6 +338,7 @@ function noteClick(e) {
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
+	outline: none;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
@@ -328,6 +352,7 @@ function noteClick(e) {
 
 	> .main {
 		display: flex;
+		cursor: pointer;
 
 		> .avatar-container {
 			margin-right: 8px;
@@ -343,7 +368,6 @@ function noteClick(e) {
 		> .body {
 			flex: 1;
 			min-width: 0;
-			cursor: pointer;
 			margin: 0 -200px;
 			padding: 0 200px;
 			overflow: clip;
@@ -612,5 +636,11 @@ function noteClick(e) {
 			margin-right: 10px;
 		}
 	}
+}
+
+.muted {
+	padding: 8px;
+	text-align: center;
+	opacity: 0.7;
 }
 </style>

@@ -3,7 +3,7 @@
 		:is="self ? 'MkA' : 'a'"
 		ref="el"
 		class="ieqqeuvs _link"
-		:[attr]="self ? url.substr(local.length) : url"
+		:[attr]="self ? props.url.substring(local.length) : props.url"
 		:rel="rel"
 		:target="target"
 		@contextmenu.stop="() => {}"
@@ -18,7 +18,7 @@
 			<span class="self">{{ hostname }}</span>
 		</template>
 		<span v-if="pathname != ''" class="pathname">{{
-			self ? pathname.substr(1) : pathname
+			self ? pathname.substring(1) : pathname
 		}}</span>
 		<span class="query">{{ query }}</span>
 		<span class="hash">{{ hash }}</span>

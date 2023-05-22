@@ -1,11 +1,12 @@
 <template>
 	<div
+		:aria-label="accessibleLabel"
 		v-if="!muted.muted"
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
 		v-size="{ max: [500, 450, 350, 300] }"
-		class="tkcbzcuz"
+		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
 	>
@@ -85,6 +86,7 @@
 						:parentId="appearNote.parentId"
 						@push="(e) => router.push(notePage(e))"
 						@focusfooter="footerEl.focus()"
+						@expanded="(e) => setPostExpanded(e)"
 					></MkSubNoteContent>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
@@ -104,6 +106,11 @@
 							/>
 						</div>
 					</div>
+				</div>
+				<div v-if="detailedView" class="info">
+					<MkA class="created-at" :to="notePage(appearNote)">
+						<MkTime :time="appearNote.createdAt" mode="absolute" />
+					</MkA>
 					<MkA
 						v-if="appearNote.channel && !inChannel"
 						class="channel"
@@ -112,11 +119,6 @@
 						><i class="ph-television ph-bold ph-lg"></i>
 						{{ appearNote.channel.name }}</MkA
 					>
-				</div>
-				<div v-if="detailedView" class="info">
-					<MkA class="created-at" :to="notePage(appearNote)">
-						<MkTime :time="appearNote.createdAt" mode="absolute" />
-					</MkA>
 				</div>
 				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
 					<XReactionsViewer
@@ -130,7 +132,9 @@
 						@click="reply()"
 					>
 						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-						<template v-if="appearNote.repliesCount > 0">
+						<template
+							v-if="appearNote.repliesCount > 0 && !detailedView"
+						>
 							<p class="count">{{ appearNote.repliesCount }}</p>
 						</template>
 					</button>
@@ -139,6 +143,7 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
+						:detailedView="detailedView"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
@@ -197,22 +202,22 @@
 			</div>
 		</article>
 	</div>
-	<div v-else class="muted" @click="muted.muted = false">
-		<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
+	<button v-else class="muted _button" @click="muted.muted = false">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
-					v-user-preview="appearNote.userId"
+					v-user-preview="note.userId"
 					class="name"
-					:to="userPage(appearNote.user)"
+					:to="userPage(note.user)"
 				>
-					<MkUserName :user="appearNote.user" />
+					<MkUserName :user="note.user" />
 				</MkA>
 			</template>
 			<template #reason>
 				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 			</template>
 		</I18n>
-	</div>
+	</button>
 </template>
 
 <script lang="ts" setup>
@@ -236,7 +241,7 @@ import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import MkVisibility from "@/components/MkVisibility.vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { focusPrev, focusNext } from "@/scripts/focus";
-import { getWordMute } from "@/scripts/check-word-mute";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { useRouter } from "@/router";
 import { userPage } from "@/filters/user";
 import * as os from "@/os";
@@ -259,7 +264,17 @@ const props = defineProps<{
 
 const inChannel = inject("inChannel", null);
 
-let note = $ref(props.note);
+let note = $ref(deepClone(props.note));
+
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
 
 // plugin
 if (noteViewInterruptors.length > 0) {
@@ -291,7 +306,7 @@ let appearNote = $computed(() =>
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
@@ -440,6 +455,10 @@ function focusAfter() {
 	focusNext(el.value);
 }
 
+function scrollIntoView() {
+	el.value.scrollIntoView();
+}
+
 function noteClick(e) {
 	if (document.getSelection().type === "Range" || props.detailedView) {
 		e.stopPropagation();
@@ -454,6 +473,45 @@ function readPromo() {
 	});
 	isDeleted.value = true;
 }
+
+let postIsExpanded = ref(false);
+
+function setPostExpanded(val: boolean) {
+	postIsExpanded.value = val;
+}
+
+const accessibleLabel = computed(() => {
+	let label = `${props.note.user.username}; `;
+	if (props.note.renote) {
+		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
+		if (props.note.renote.cw) {
+			label += `${i18n.t("cw")}: ${props.note.renote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${props.note.renote.text}; `;
+			}
+		} else {
+			label += `${props.note.renote.text}; `;
+		}
+	} else {
+		if (props.note.cw) {
+			label += `${i18n.t("cw")}: ${props.note.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${props.note.text}; `;
+			}
+		} else {
+			label += `${props.note.text}; `;
+		}
+	}
+	const date = new Date(props.note.createdAt);
+	label += `${date.toLocaleTimeString()}`;
+	return label;
+});
+
+defineExpose({
+	focus,
+	blur,
+	scrollIntoView,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -646,14 +704,13 @@ function readPromo() {
 						}
 					}
 				}
-
-				> .channel {
-					opacity: 0.7;
-					font-size: 80%;
-				}
 			}
 			> .info {
-				margin-block: 16px;
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 0.7em;
+				margin-top: 16px;
 				opacity: 0.7;
 				font-size: 0.9em;
 			}
@@ -737,5 +794,10 @@ function readPromo() {
 	padding: 8px;
 	text-align: center;
 	opacity: 0.7;
+	width: 100%;
+
+	._blur_text {
+		pointer-events: auto;
+	}
 }
 </style>

@@ -2,7 +2,8 @@
 	<p v-if="note.cw != null" class="cw">
 		<MkA
 			v-if="!detailed && note.replyId"
-			:to="`/notes/${note.replyId}`"
+			:to="`#${note.replyId}`"
+			behavior="browser"
 			class="reply-icon"
 			@click.stop
 		>
@@ -16,6 +17,7 @@
 				!note.replyId
 			"
 			:to="`/notes/${note.renoteId}`"
+			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
 			@click.stop
 		>
@@ -33,19 +35,31 @@
 	<div class="wrmlmaau">
 		<div
 			class="content"
-			:class="{ collapsed, isLong, showContent: note.cw && !showContent }"
+			:class="{
+				collapsed,
+				isLong,
+				showContent: note.cw && !showContent,
+				disableAnim: disableMfm,
+			}"
 		>
+			<XShowMoreButton
+				ref="showMoreButton"
+				v-if="isLong && collapsed"
+				v-model="collapsed"
+				v-on:keydown="focusFooter"
+			></XShowMoreButton>
 			<XCwButton
 				ref="cwButton"
 				v-if="note.cw && !showContent"
 				v-model="showContent"
 				:note="note"
 				v-on:keydown="focusFooter"
+				v-on:update:model-value="(val) => emit('expanded', val)"
 			/>
 			<div
 				class="body"
 				v-bind="{
-					'aria-label': !showContent ? '' : null,
+					'aria-hidden': note.cw && !showContent ? 'true' : null,
 					tabindex: !showContent ? '-1' : null,
 				}"
 			>
@@ -55,7 +69,9 @@
 				<template v-if="!note.cw">
 					<MkA
 						v-if="!detailed && note.replyId"
-						:to="`/notes/${note.replyId}`"
+						:to="`#${note.replyId}`"
+						behavior="browser"
+						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
 						@click.stop
 					>
@@ -110,17 +126,40 @@
 					</div>
 				</template>
 				<div
-					v-if="note.cw && !showContent"
+					v-if="
+						(note.cw && !showContent) ||
+						(showMoreButton && collapsed)
+					"
 					tabindex="0"
-					v-on:focus="cwButton?.focus()"
+					v-on:focus="
+						cwButton?.focus();
+						showMoreButton?.focus();
+					"
 				></div>
 			</div>
 			<XShowMoreButton
-				v-if="isLong"
+				v-if="isLong && !collapsed"
 				v-model="collapsed"
 			></XShowMoreButton>
-			<XCwButton v-if="note.cw" v-model="showContent" :note="note" />
+			<XCwButton
+				v-if="note.cw && showContent"
+				v-model="showContent"
+				:note="note"
+			/>
 		</div>
+		<MkButton
+			v-if="hasMfm && defaultStore.state.animatedMfm"
+			@click.stop="toggleMfm"
+			mini
+			rounded
+		>
+			<template v-if="disableMfm">
+				<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
+			</template>
+			<template v-else>
+				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
+			</template>
+		</MkButton>
 	</div>
 </template>
 
@@ -128,14 +167,18 @@
 import { ref } from "vue";
 import * as misskey from "calckey-js";
 import * as mfm from "mfm-js";
+import * as os from "@/os";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
+import MkButton from "@/components/MkButton.vue";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
+import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -148,9 +191,11 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(ev: "push", v): void;
 	(ev: "focusfooter"): void;
+	(ev: "expanded", v): void;
 }>();
 
 const cwButton = ref<HTMLElement>();
+const showMoreButton = ref<HTMLElement>();
 const isLong =
 	!props.detailedView &&
 	props.note.cw == null &&
@@ -163,6 +208,32 @@ const urls = props.note.text
 	: null;
 
 let showContent = $ref(false);
+
+const mfms = props.note.text
+	? extractMfmWithAnimation(mfm.parse(props.note.text))
+	: null;
+
+const hasMfm = $ref(mfms && mfms.length > 0);
+
+let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
+
+async function toggleMfm() {
+	if (disableMfm) {
+		if (!defaultStore.state.animatedMfmWarnShown) {
+			const { canceled } = await os.confirm({
+				type: "warning",
+				text: i18n.ts._mfm.warn,
+			});
+			if (canceled) return;
+
+			defaultStore.set("animatedMfmWarnShown", true);
+		}
+
+		disableMfm = false;
+	} else {
+		disableMfm = true;
+	}
+}
 
 function focusFooter(ev) {
 	if (ev.key == "Tab" && !ev.getModifierState("Shift")) {
@@ -195,6 +266,7 @@ function focusFooter(ev) {
 		margin-right: 8px;
 	}
 }
+
 .wrmlmaau {
 	.content {
 		overflow-wrap: break-word;
@@ -286,6 +358,15 @@ function focusFooter(ev) {
 				}
 			}
 		}
+
+		&.disableAnim :deep(span) {
+			animation: none !important;
+		}
+	}
+	> :deep(button) {
+		margin-top: 10px;
+		margin-left: 0;
+		margin-right: 0.4rem;
 	}
 }
 </style>

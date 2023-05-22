@@ -191,6 +191,11 @@ export function claimZIndex(
 	return zIndexes[priority];
 }
 
+let uniqueId = 0;
+export function getUniqueId(): string {
+	return uniqueId++ + "";
+}
+
 export async function popup(
 	component: Component,
 	props: Record<string, any>,
@@ -227,7 +232,11 @@ export async function popup(
 
 export function pageWindow(path: string) {
 	popup(
-		defineAsyncComponent(() => import("@/components/MkPageWindow.vue")),
+		defineAsyncComponent({
+			loader: () => import("@/components/MkPageWindow.vue"),
+			loadingComponent: MkWaitingDialog,
+			delay: 1000,
+		}),
 		{
 			initialPath: path,
 		},
@@ -238,7 +247,11 @@ export function pageWindow(path: string) {
 
 export function modalPageWindow(path: string) {
 	popup(
-		defineAsyncComponent(() => import("@/components/MkModalPageWindow.vue")),
+		defineAsyncComponent({
+			loader: () => import("@/components/MkModalPageWindow.vue"),
+			loadingComponent: MkWaitingDialog,
+			delay: 1000,
+		}),
 		{
 			initialPath: path,
 		},
@@ -308,7 +321,11 @@ export function yesno(props: {
 }): Promise<{ canceled: boolean }> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				...props,
 				showCancelButton: true,
@@ -339,7 +356,11 @@ export function inputText(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
@@ -373,7 +394,11 @@ export function inputParagraph(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
@@ -407,7 +432,11 @@ export function inputNumber(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
@@ -441,7 +470,11 @@ export function inputDate(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
@@ -496,7 +529,11 @@ export function select<C = any>(
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
@@ -523,7 +560,11 @@ export function success() {
 			showing.value = false;
 		}, 1000);
 		popup(
-			defineAsyncComponent(() => import("@/components/MkWaitingDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkWaitingDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				success: true,
 				showing: showing,
@@ -540,7 +581,11 @@ export function waiting() {
 	return new Promise((resolve, reject) => {
 		const showing = ref(true);
 		popup(
-			defineAsyncComponent(() => import("@/components/MkWaitingDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkWaitingDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				success: false,
 				showing: showing,
@@ -556,7 +601,11 @@ export function waiting() {
 export function form(title, form) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkFormDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkFormDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{ title, form },
 			{
 				done: (result) => {
@@ -571,7 +620,11 @@ export function form(title, form) {
 export async function selectUser() {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkUserSelectDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkUserSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{},
 			{
 				ok: (user) => {
@@ -586,9 +639,11 @@ export async function selectUser() {
 export async function selectInstance(): Promise<Misskey.entities.Instance> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkInstanceSelectDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkInstanceSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{},
 			{
 				ok: (instance) => {
@@ -603,9 +658,11 @@ export async function selectInstance(): Promise<Misskey.entities.Instance> {
 export async function selectDriveFile(multiple: boolean) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkDriveSelectDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDriveSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				type: "file",
 				multiple,
@@ -625,9 +682,11 @@ export async function selectDriveFile(multiple: boolean) {
 export async function selectDriveFolder(multiple: boolean) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkDriveSelectDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDriveSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				type: "folder",
 				multiple,
@@ -647,9 +706,11 @@ export async function selectDriveFolder(multiple: boolean) {
 export async function pickEmoji(src: HTMLElement | null, opts) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkEmojiPickerDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkEmojiPickerDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				src,
 				...opts,
@@ -672,7 +733,11 @@ export async function cropImage(
 ): Promise<Misskey.entities.DriveFile> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkCropperDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkCropperDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				file: image,
 				aspectRatio: options.aspectRatio,
@@ -736,7 +801,11 @@ export async function openEmojiPicker(
 	});
 
 	openingEmojiPicker = await popup(
-		defineAsyncComponent(() => import("@/components/MkEmojiPickerDialog.vue")),
+		defineAsyncComponent({
+			loader: () => import("@/components/MkEmojiPickerDialog.vue"),
+			loadingComponent: MkWaitingDialog,
+			delay: 1000,
+		}),
 		{
 			src,
 			...opts,
@@ -769,7 +838,11 @@ export function popupMenu(
 	return new Promise((resolve, reject) => {
 		let dispose;
 		popup(
-			defineAsyncComponent(() => import("@/components/MkPopupMenu.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkPopupMenu.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				items,
 				src,
@@ -797,7 +870,11 @@ export function contextMenu(
 	return new Promise((resolve, reject) => {
 		let dispose;
 		popup(
-			defineAsyncComponent(() => import("@/components/MkContextMenu.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkContextMenu.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				items,
 				ev,
