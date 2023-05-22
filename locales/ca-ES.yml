@@ -1290,7 +1290,7 @@ loadRawImages: Carregar les imatges originals en comptes de mostrar les miniatur
 noteFavoritesCount: Nombre de notes afegides a favorits
 useSystemFont: Fes servir la font per defecte del sistema
 contact: Contacte
-clips: Clips
+clips: Retalls
 experimentalFeatures: Característiques experimentals
 developer: Desenvolupador
 makeExplorableDescription: Si desactives aquesta funció el teu compte no sortirà a
@@ -1496,7 +1496,7 @@ gallery: Galeria
 popularPosts: Pàgines populars
 shareWithNote: Comparteix amb una publicació
 expiration: Data límit
-memo: Memo
+memo: Recordatori
 priority: Prioritat
 high: Alta
 middle: Mitjana
@@ -1537,7 +1537,7 @@ incorrectPassword: Contrasenya incorrecta.
 clickToFinishEmailVerification: Feu clic a [{ok}] per completar la verificació del
   correu electrònic.
 overridedDeviceKind: Tipus de dispositiu
-smartphone: Smartphone
+smartphone: Telèfon intel·ligent
 tablet: Tauleta
 auto: Automàtic
 recentNHours: Últimes {n} hores
@@ -1625,7 +1625,7 @@ customKaTeXMacroDescription: "Configura macros per escriure expressions matemàt
 objectStorageRegion: Regió
 objectStoragePrefix: Prefix
 objectStoragePrefixDesc: Els fitxers es guardaran dins de carpetes amb aquest prefix.
-objectStorageEndpoint: Endpoint
+objectStorageEndpoint: Extrem
 newNoteRecived: Hi han notes noves
 sounds: Sons
 listen: Escoltar
@@ -1748,7 +1748,7 @@ reverse: Revés
 objectStorageBucket: Cubell
 objectStorageBucketDesc: Si us plau específica el nom del cubell que faràs servir
   al teu proveïdor.
-clip: Clip
+clip: Retall
 createNew: Crear una nova
 optional: Opcional
 jumpToSpecifiedDate: Vés a una data concreta
@@ -2059,3 +2059,4 @@ older: Més antic
 silencedWarning: S'està mostrant aquesta pàgina per què aquest usuari és d'un servidor
   que l'administrador a silenciat, així que pot ser spam.
 jumpToPrevious: Vés a l'anterior
+cw: Avís de contingut

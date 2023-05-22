@@ -253,6 +253,16 @@ export default defineComponent({
 									style = `background-color: #${color};`;
 									break;
 								}
+								case "fade": {
+									const direction = token.props.args.out
+										? "alternate-reverse"
+										: "alternate";
+									const speed = validTime(token.props.args.speed) || "1.5s";
+									style =
+										this.$store.state.animatedMfm && !reducedMotion()
+											? `animation: mfm-fade ${speed} linear infinite; animation-direction: ${direction};`
+											: "";
+								}
 							}
 							if (style == null) {
 								return h("span", {}, [
