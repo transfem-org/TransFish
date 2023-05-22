@@ -35,15 +35,7 @@
 
 		<MkTab
 			v-model="tab"
-			:style="
-				appearNote.repliesCount > 0 &&
-				appearNote.renoteCount > 0 &&
-				reactionsCount > 0 &&
-				directQuotes?.length > 0 &&
-				clips?.length > 0
-					? 'underline'
-					: ''
-			"
+			:style="'underline'"
 			@update:modelValue="loadTab"
 		>
 			<option value="replies">
