@@ -33,14 +33,12 @@
 			detailedView
 		></MkNote>
 
-		<MkTab
-			v-model="tab"
-			:style="'underline'"
-			@update:modelValue="loadTab"
-		>
+		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
 			<option value="replies">
 				<!-- <i class="ph-arrow-u-up-left ph-bold ph-lg"></i> -->
-				<span v-if="appearNote.repliesCount > 0" class="count">{{ appearNote.repliesCount }}</span>
+				<span v-if="appearNote.repliesCount > 0" class="count">{{
+					appearNote.repliesCount
+				}}</span>
 				{{ i18n.ts._notification._types.reply }}
 			</option>
 			<option value="renotes" v-if="appearNote.renoteCount > 0">
