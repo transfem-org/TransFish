@@ -472,7 +472,7 @@ const accessibleLabel = computed(() => {
 		}
 	} else {
 		if (props.note.cw) {
-			label += `content warning: ${props.note.cw}; `;
+			label += `${i18n.t("cw")}: ${props.note.cw}; `;
 		} else {
 			label += `${props.note.text}; `;
 		}
