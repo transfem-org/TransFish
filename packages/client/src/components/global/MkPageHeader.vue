@@ -3,27 +3,28 @@
 		v-if="show"
 		ref="el"
 		class="fdidabkb"
-		:class="{ slim: narrow, thin: thin_ }"
+		:class="{ thin: thin_ }"
 		:style="{ background: bg }"
 		@click="onClick"
 	>
 		<div class="left">
-			<button
-				v-if="props.displayBackButton"
-				class="_button button icon backButton"
-				@click.stop="goBack()"
-				@touchstart="preventDrag"
-				v-tooltip.noDelay="i18n.ts.goBack"
-			>
-				<i class="ph-caret-left ph-bold ph-lg"></i>
-			</button>
-			<div v-if="narrow" class="buttons left" @click="openAccountMenu">
+			<div class="buttons">
+				<button
+					v-if="props.displayBackButton"
+					class="_button button icon backButton"
+					@click.stop="goBack()"
+					@touchstart="preventDrag"
+					v-tooltip.noDelay="i18n.ts.goBack"
+				>
+					<i class="ph-caret-left ph-bold ph-lg"></i>
+				</button>
 				<MkAvatar
-					v-if="props.displayMyAvatar && $i"
-					class="avatar"
+					v-if="narrow && props.displayMyAvatar && $i"
+					class="avatar button"
 					:user="$i"
 					:disable-preview="true"
 					disableLink
+					@click.stop="openAccountMenu"
 				/>
 			</div>
 			<div
@@ -92,11 +93,13 @@
 					v-if="narrow"
 					:user="metadata.avatar"
 					:full="false"
+					class="fullButton"
 				></MkFollowButton>
 				<MkFollowButton
 					v-else
 					:user="metadata.avatar"
 					:full="true"
+					class="fullButton"
 				></MkFollowButton>
 			</template>
 			<template v-for="action in actions">
@@ -295,10 +298,26 @@ onUnmounted(() => {
 .fdidabkb {
 	--height: 55px;
 	display: flex;
+	justify-content: space-between;
 	width: 100%;
 	height: var(--height);
-	max-width: 850px;
-	margin: auto;
+	padding-inline: 24px;
+	box-sizing: border-box;
+	overflow: hidden;
+	@media (max-width: 500px) {
+		padding-inline: 12px;
+		> .left {
+			// flex-basis: unset !important;
+			min-width: max-content !important;
+		}
+		.titleContainer {
+			min-width: 0;
+		}
+		.buttons:empty {
+			width: 0;
+			flex-basis: 0;
+		}
+	}
 
 	&::before {
 		content: "";
@@ -328,85 +347,31 @@ onUnmounted(() => {
 		}
 	}
 
-	&.slim {
-		> .left > .titleContainer {
-			flex: 1;
-			margin: 0 auto;
-
-			> *:first-child {
-				margin-left: auto;
-			}
-
-			> *:last-child {
-				margin-right: auto;
-			}
-		}
-		> .tabs {
-			padding-inline: 12px;
-			mask: linear-gradient(
-				to right,
-				transparent,
-				black 10px 80%,
-				transparent
-			);
-			-webkit-mask: linear-gradient(
-				to right,
-				transparent,
-				black 10px 80%,
-				transparent
-			);
-			margin-left: -10px;
-			padding-left: 22px;
-			scrollbar-width: none;
-			&::before {
-				content: unset;
-			}
-			&::-webkit-scrollbar {
-				display: none;
-			}
-			&::after {
-				// Force right padding
-				content: "";
-				display: inline-block;
-				min-width: 20%;
-			}
-		}
-	}
-
 	> .left {
 		display: flex;
 		> .buttons {
-			margin-right: auto;
-
+			&:not(:empty) {
+				margin-left: calc(0px - var(--margin));
+			}
 			> .avatar {
-				$size: 32px;
-				display: inline-block;
-				width: $size;
-				height: $size;
-				vertical-align: bottom;
-				margin: 0 8px;
-				pointer-events: none;
+				width: 32px;
+				height: 32px;
 			}
 		}
 	}
 
-	> .buttons {
+	.buttons {
 		--margin: 8px;
 		display: flex;
 		align-items: center;
 		height: var(--height);
-		margin: 0 var(--margin);
-
 		&.right {
 			justify-content: flex-end;
-			margin-left: auto;
-			:deep(.follow-button) {
-				margin-right: 6px;
+			// margin-right: calc(0px - var(--margin));
+			// margin-left: var(--margin);
+			> .button:last-child {
+				margin-right: calc(0px - var(--margin));
 			}
-		}
-
-		&:empty {
-			display: none;
 		}
 
 		> .button/*, @at-root .backButton*/ {
@@ -436,71 +401,81 @@ onUnmounted(() => {
 		}
 	}
 
-	> .backButton {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-left: 1rem;
-	}
-
-	> .left > .titleContainer {
-		display: flex;
-		align-items: center;
-		max-width: 400px;
-		overflow: auto;
-		white-space: nowrap;
-		text-align: left;
-		font-weight: bold;
-		flex-shrink: 0;
-		margin-left: 24px;
-		margin-right: 1rem;
-
-		> .avatar {
-			$size: 32px;
-			display: inline-block;
-			width: $size;
-			height: $size;
-			vertical-align: bottom;
-			margin: 0 8px;
-			pointer-events: none;
+	> .left {
+		> .backButton {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
-
-		> .icon {
-			margin-right: 8px;
-			width: 16px;
-			text-align: center;
-			transform: translate(0em);
-		}
-
-		> .title {
-			min-width: 0;
-			overflow: hidden;
-			text-overflow: ellipsis;
+		> .titleContainer {
+			display: flex;
+			align-items: center;
+			max-width: 400px;
+			overflow: auto;
 			white-space: nowrap;
-			line-height: 1.1;
-
-			> .subtitle {
-				opacity: 0.6;
-				font-size: 0.8em;
-				font-weight: normal;
-				white-space: nowrap;
+			text-align: left;
+			font-weight: bold;
+			flex-shrink: 0;
+			margin-right: 1rem;
+			max-width: 20vw;
+	
+			> .avatar {
+				$size: 32px;
+				display: inline-block;
+				width: $size;
+				height: $size;
+				vertical-align: bottom;
+				margin: 0 8px;
+				pointer-events: none;
+			}
+	
+			> .icon {
+				margin-right: 8px;
+				width: 16px;
+				text-align: center;
+			}
+	
+			> .title {
+				min-width: 0;
 				overflow: hidden;
 				text-overflow: ellipsis;
-
-				&.activeTab {
-					text-align: center;
-
-					> .chevron {
-						display: inline-block;
-						margin-left: 6px;
+				white-space: nowrap;
+				line-height: 1.1;
+	
+				> .subtitle {
+					opacity: 0.6;
+					font-size: 0.8em;
+					font-weight: normal;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+	
+					&.activeTab {
+						text-align: center;
+	
+						> .chevron {
+							display: inline-block;
+							margin-left: 6px;
+						}
 					}
 				}
 			}
 		}
 	}
 
-	> .buttons, > .left {
-		width: 20%;
+
+	> .left, > .right {
+		flex-basis: 100%;
+		flex-shrink: 9999;
+	}
+	> .left {
+		// margin-right: auto;
+		min-width: 20%;
+		// min-width: max-content;
+	}
+	> .right {
+		// margin-left: auto;
+		min-width: max-content;
 	}
 
 	> .tabs {
@@ -508,30 +483,34 @@ onUnmounted(() => {
 		font-size: 1em;
 		overflow-x: auto;
 		white-space: nowrap;
-		contain: strict;
+		contain: content;
 		display: flex;
-		flex-grow: 1;
-		justify-content: center;
+		padding-inline: 20px;
+		margin-inline: -20px;
+		mask: linear-gradient(
+			to right,
+			transparent,
+			black 20px calc(100% - 20px),
+			transparent
+		);
+		-webkit-mask: linear-gradient(
+			to right,
+			transparent,
+			black 20px calc(100% - 20px),
+			transparent
+		);
+		scrollbar-width: none;
+
 		&.collapse {
 			--width: 38px;
 			> .tab {
 				width: 38px;
-				min-width: unset !important;
+				min-width: 38px !important;
 				&:not(.active) > .title {
 					opacity: 0;
 				}
 			}
 		}
-
-		// &::before {
-		// 	content: "";
-		// 	display: inline-block;
-		// 	height: 40%;
-		// 	border-left: 1px solid var(--divider);
-		// 	margin-right: 1em;
-		// 	margin-left: 10px;
-		// 	vertical-align: -1px;
-		// }
 
 		> .tab {
 			display: inline-flex;
@@ -543,7 +522,7 @@ onUnmounted(() => {
 			font-weight: normal;
 			opacity: 0.7;
 			overflow: hidden;
-			transition: color 0.2s, opacity 0.2s, width 0.2s;
+			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width .2s;
 
 			&:hover {
 				opacity: 1;
@@ -554,6 +533,7 @@ onUnmounted(() => {
 				color: var(--accent);
 				font-weight: 600;
 				width: var(--width);
+				min-width: var(--width) !important;
 			}
 
 			> .icon + .title {
