@@ -264,8 +264,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(@types/koa@2.13.5)(ejs@3.1.8)(pug@3.0.2)
       mfm-js:
-        specifier: 0.23.2
-        version: 0.23.2
+        specifier: 0.23.3
+        version: 0.23.3
       mime-types:
         specifier: 2.1.35
         version: 2.1.35
@@ -10424,17 +10424,10 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /mfm-js@0.23.2:
-    resolution: {integrity: sha512-lfYvsMr6FIYbt0ZDL+nY+GWWqmcXpe9jrYLBLy5vvQHwGfPALpx43uNHj8hZsakgM82hPMo/zdx0e9tj+4Z4IA==}
-    dependencies:
-      twemoji-parser: 14.0.0
-    dev: false
-
   /mfm-js@0.23.3:
     resolution: {integrity: sha512-o8scYmbey6rMUmWAlT3k3ntt6khaCLdxlmHhAWV5wTTMj2OK1atQvZfRUq0SIVm1Jig08qlZg/ps71xUqrScNA==}
     dependencies:
       twemoji-parser: 14.0.0
-    dev: true
 
   /micromatch@3.1.10:
     resolution: {integrity: sha512-MWikgl9n9M3w+bpsY3He8L+w9eF9338xRl8IAO5viDizwSzziFEyUzo2xrrloB64ADbTf8uA8vRqqttDTOmccg==}
