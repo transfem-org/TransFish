@@ -2054,3 +2054,7 @@ apps: Apps
 caption: Automatische Untertitelung
 pwa: PWA installieren
 cw: Inhaltswarnung
+older: älter
+newer: neuer
+accessibility: Erreichbarkeit
+jumpToPrevious: Zum Vorherigen springen
