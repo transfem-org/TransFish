@@ -69,7 +69,12 @@
 			</div>
 		</div>
 		<template v-if="metadata">
-			<nav ref="tabsEl" v-if="hasTabs" class="tabs" :class="{collapse: hasTabs && tabs.length > 3}">
+			<nav
+				ref="tabsEl"
+				v-if="hasTabs"
+				class="tabs"
+				:class="{ collapse: hasTabs && tabs.length > 3 }"
+			>
 				<button
 					v-for="tab in tabs"
 					:ref="(el) => (tabRefs[tab.key] = el)"
@@ -300,14 +305,15 @@ onUnmounted(() => {
 	box-sizing: border-box;
 	overflow: hidden;
 	@media (max-width: 500px) {
-		padding-inline: 12p
+		padding-inline: 12p;
 	}
 	@media (max-width: 700px) {
 		> .left {
 			min-width: unset !important;
 			max-width: 40%;
 		}
-		> .left, > .right {
+		> .left,
+		> .right {
 			flex: unset !important;
 		}
 		&:not(.tabs) {
@@ -342,7 +348,7 @@ onUnmounted(() => {
 		position: absolute;
 		inset: 0;
 		background: var(--bg);
-		opacity: .85;
+		opacity: 0.85;
 		z-index: -2;
 	}
 
@@ -427,7 +433,7 @@ onUnmounted(() => {
 			font-weight: bold;
 			flex-shrink: 0;
 			margin-right: 1rem;
-	
+
 			> .avatar {
 				$size: 32px;
 				display: inline-block;
@@ -437,20 +443,20 @@ onUnmounted(() => {
 				margin: 0 8px;
 				pointer-events: none;
 			}
-	
+
 			> .icon {
 				margin-right: 8px;
 				width: 16px;
 				text-align: center;
 			}
-	
+
 			> .title {
 				min-width: 0;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 				line-height: 1.1;
-	
+
 				> .subtitle {
 					opacity: 0.6;
 					font-size: 0.8em;
@@ -458,10 +464,10 @@ onUnmounted(() => {
 					white-space: nowrap;
 					overflow: hidden;
 					text-overflow: ellipsis;
-	
+
 					&.activeTab {
 						text-align: center;
-	
+
 						> .chevron {
 							display: inline-block;
 							margin-left: 6px;
@@ -472,8 +478,8 @@ onUnmounted(() => {
 		}
 	}
 
-
-	> .left, > .right {
+	> .left,
+	> .right {
 		flex-basis: 100%;
 		flex-shrink: 9999;
 		overflow: hidden;
@@ -534,7 +540,7 @@ onUnmounted(() => {
 			font-weight: normal;
 			opacity: 0.7;
 			overflow: hidden;
-			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width .2s;
+			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width 0.2s;
 			--width: max-content;
 
 			&:hover {
