@@ -614,3 +614,22 @@ moderator: Moderator
 invitations: Uitnodigingen
 tooLong: Te lang
 doing: Verwerken...
+silencedInstances: Gedempte Servers
+cacheRemoteFilesDescription: Als deze instelling is uitgeschakeld, worden externe
+  bestanden direct van de externe server geladen. Het uitschakelen zal opslagruimte
+  verminderen, maar verkeer zal toenemen, omdat er geen thumbnails gemaakt zullen
+  worden.
+flagSpeakAsCatDescription: Je posts zullen worden ge-'nyanified' als je in kat-modus
+  zit
+avoidMultiCaptchaConfirm: Het gebruik van meerdere Captcha systemen kan voor storing
+  zorgen tussen ze. Wil je de andere actieve Captcha systemen uitschakelen? Als je
+  ze ingeschakeld wilt houden, klik op annuleren.
+silence: Dempen
+silenceConfirm: Weet je zeker dat je deze gebruiker wilt dempen?
+unsilence: Ontdempen
+unsilenceConfirm: Weet je zeker dat je het dempen van deze gebruiker ongedaan wilt
+  maken?
+silenceThisInstance: Demp deze server
+silenced: Gedempt
+disablingTimelinesInfo: Beheerders en moderators zullen altijd toegang hebben tot
+  alle tijdlijnen, zelfs als deze uitgeschakeld zijn.
