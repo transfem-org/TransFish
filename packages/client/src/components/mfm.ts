@@ -156,6 +156,14 @@ export default defineComponent({
 									}
 									return h(MkSparkle, {}, genEl(token.children));
 								}
+								case "fade": {
+									const direction = token.props.args.out
+										? "alternate-reverse"
+										: "alternate";
+									const speed = validTime(token.props.args.speed) || "1.5s";
+									style = `animation: mfm-fade ${speed} linear infinite; animation-direction: ${direction};`;
+									break;
+								}
 								case "flip": {
 									const transform =
 										token.props.args.h && token.props.args.v
@@ -252,16 +260,6 @@ export default defineComponent({
 									if (!/^[0-9a-f]{3,6}$/i.test(color)) color = "f00";
 									style = `background-color: #${color};`;
 									break;
-								}
-								case "fade": {
-									const direction = token.props.args.out
-										? "alternate-reverse"
-										: "alternate";
-									const speed = validTime(token.props.args.speed) || "1.5s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-fade ${speed} linear infinite; animation-direction: ${direction};`
-											: "";
 								}
 							}
 							if (style == null) {
