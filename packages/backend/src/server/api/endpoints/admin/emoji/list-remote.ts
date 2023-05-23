@@ -2,7 +2,7 @@ import define from "../../../define.js";
 import { Emojis } from "@/models/index.js";
 import { toPuny } from "@/misc/convert-host.js";
 import { makePaginationQuery } from "../../../common/make-pagination-query.js";
-import { sqlLikeEscape } from "@/misc/sql-like-escape";
+import { sqlLikeEscape } from "@/misc/sql-like-escape.js";
 
 export const meta = {
 	tags: ["admin"],

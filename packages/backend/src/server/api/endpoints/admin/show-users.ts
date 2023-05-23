@@ -1,6 +1,6 @@
 import { Users } from "@/models/index.js";
 import define from "../../define.js";
-import { sqlLikeEscape } from "@/misc/sql-like-escape";
+import { sqlLikeEscape } from "@/misc/sql-like-escape.js";
 
 export const meta = {
 	tags: ["admin"],
