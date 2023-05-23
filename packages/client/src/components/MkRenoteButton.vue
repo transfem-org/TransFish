@@ -69,11 +69,11 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 
 	const renotes = await os.api("notes/renotes", {
 		noteId: props.note.id,
-		limit: 11,
+		userId: $i.id,
+		limit: 1,
 	});
 
-	const users = renotes.map((x) => x.user.id);
-	const hasRenotedBefore = users.includes($i.id);
+	const hasRenotedBefore = renotes.length > 0;
 
 	let buttonActions: Array<MenuItem> = [];
 

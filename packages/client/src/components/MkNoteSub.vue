@@ -1,5 +1,5 @@
 <template>
-	<div
+	<article
 		v-if="!muted.muted || muted.what === 'reply'"
 		ref="el"
 		v-size="{ max: [450, 500] }"
@@ -150,7 +150,7 @@
 				></MkA>
 			</div>
 		</template>
-	</div>
+	</article>
 	<div v-else class="muted" @click="muted.muted = false">
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>

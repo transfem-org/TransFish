@@ -13,7 +13,7 @@ password: "Wachtwoord"
 forgotPassword: "Wachtwoord vergeten"
 fetchingAsApObject: "Ophalen vanuit de Fediverse"
 ok: "Ok"
-gotIt: "Begrepen"
+gotIt: "Begrepen!"
 cancel: "Annuleren"
 enterUsername: "Voer een gebruikersnaam in"
 renotedBy: "Hergedeeld door {user}"
@@ -47,12 +47,12 @@ copyContent: "Kopiëren inhoud"
 copyLink: "Kopiëren link"
 delete: "Verwijderen"
 deleteAndEdit: "Verwijderen en bewerken"
-deleteAndEditConfirm: "Weet je zeker dat je deze notitie wilt verwijderen en dan bewerken?
-  Je verliest alle reacties, herdelingen en antwoorden erop."
+deleteAndEditConfirm: "Weet je zeker dat je deze post wilt verwijderen en dan bewerken?
+  Je verliest alle reacties, boosts en antwoorden erop."
 addToList: "Aan lijst toevoegen"
 sendMessage: "Verstuur bericht"
-copyUsername: "Kopiëren gebruikersnaam "
-searchUser: "Zoeken een gebruiker"
+copyUsername: "Gebruikersnaam kopiëren"
+searchUser: "Zoek een gebruiker"
 reply: "Antwoord"
 loadMore: "Laad meer"
 showMore: "Toon meer"
@@ -68,7 +68,7 @@ export: "Export"
 files: "Bestanden"
 download: "Downloaden"
 driveFileDeleteConfirm: "Weet je zeker dat je het bestand \"{name}\" wilt verwijderen?
-  Notities met dit bestand als bijlage worden ook verwijderd."
+  Posts met dit bestand als bijlage worden ook verwijderd."
 unfollowConfirm: "Weet je zeker dat je {name} wilt ontvolgen?"
 exportRequested: "Je hebt een export aangevraagd. Dit kan een tijdje duren. Het wordt
   toegevoegd aan je Drive zodra het is voltooid."
@@ -101,13 +101,13 @@ followRequests: "Volgverzoeken"
 unfollow: "Ontvolgen"
 followRequestPending: "Wachten op goedkeuring volgverzoek"
 enterEmoji: "Voer een emoji in"
-renote: "Herdelen"
+renote: "Boost"
 unrenote: "Stop herdelen"
-renoted: "Herdeeld"
-cantRenote: "Dit bericht kan niet worden herdeeld"
-cantReRenote: "Een herdeling kan niet worden herdeeld"
+renoted: "Boosted."
+cantRenote: "Dit bericht kan niet worden geboost."
+cantReRenote: "Een boost kan niet worden geboost."
 quote: "Quote"
-pinnedNote: "Vastgemaakte notitie"
+pinnedNote: "Vastgemaakte post"
 pinned: "Vastmaken aan profielpagina"
 you: "Jij"
 clickToShow: "Klik om te bekijken"
@@ -116,7 +116,7 @@ add: "Toevoegen"
 reaction: "Reacties"
 reactionSettingDescription2: "Sleep om opnieuw te ordenen, Klik om te verwijderen,
   Druk op \"+\" om toe te voegen"
-rememberNoteVisibility: "Vergeet niet de notitie zichtbaarheidsinstellingen"
+rememberNoteVisibility: "Onthoud post zichtbaarheidsinstellingen"
 attachCancel: "Verwijder bijlage"
 markAsSensitive: "Markeren als NSFW"
 unmarkAsSensitive: "Geen NSFW"
@@ -139,8 +139,8 @@ flagAsCat: "Markeer dit account als een kat."
 flagAsCatDescription: "Zet deze vlag aan als je wilt aangeven dat dit account een
   kat is."
 flagShowTimelineReplies: "Toon antwoorden op de tijdlijn"
-flagShowTimelineRepliesDescription: "Als je dit vlag aanzet, toont de tijdlijn ook
-  antwoorden op andere en niet alleen jouw eigen notities."
+flagShowTimelineRepliesDescription: "Als je deze vlag aanzet, toont de tijdlijn ook
+  antwoorden op andere en niet alleen jouw eigen post."
 autoAcceptFollowed: "Accepteer verzoeken om jezelf te volgen vanzelf als je de verzoeker
   al volgt"
 addAccount: "Account toevoegen"
@@ -203,8 +203,8 @@ mutedUsers: "Gedempte gebruikers"
 blockedUsers: "Geblokkeerde gebruikers"
 noUsers: "Er zijn geen gebruikers."
 editProfile: "Bewerk Profiel"
-noteDeleteConfirm: "Ben je zeker dat je dit bericht wil verwijderen?"
-pinLimitExceeded: "Je kunt geen berichten meer vastprikken"
+noteDeleteConfirm: "Ben je zeker dat je deze post wil verwijderen?"
+pinLimitExceeded: "Je kunt geen posts meer vastprikken"
 intro: "Installatie van Calckey geëindigd! Maak nu een beheerder aan."
 done: "Klaar"
 processing: "Bezig met verwerken"
@@ -499,3 +499,23 @@ manageGroups: Beheer groepen
 subscribePushNotification: Pushmeldingen inschakelen
 unsubscribePushNotification: Pushmeldingen uitschakelen
 pushNotificationAlreadySubscribed: Pushmeldingen zijn al ingeschakeld
+antennaSource: Antenne bron
+antennaKeywords: Trefwoorden om naar te luisteren
+antennaExcludeKeywords: Trefwoorden om te negeren
+driveCapacityPerRemoteAccount: Schijfruimte per externe gebruiker
+backgroundImageUrl: Achtergrondafbeelding URL
+basicInfo: Basis informatie
+pinnedUsers: Vastgezette gebruikers
+pinnedPages: Vastgezette Pagina's
+driveCapacityPerLocalAccount: Schijfruimte per lokale gebruiker
+iconUrl: Icoon URL
+bannerUrl: Banner afbeelding URL
+manageAntennas: Beheer Antennes
+name: Naam
+notifyAntenna: Meld nieuwe posts
+withFileAntenna: Alleen posts met bestanden
+enableServiceworker: Schakel pushmeldingen voor je browser in
+renoteUnmute: Ontdemp boosts
+jumpToPrevious: Spring naar vorige
+caseSensitive: Hoofdlettergevoelig
+cw: Inhoudswaarschuwing

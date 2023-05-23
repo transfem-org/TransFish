@@ -17,7 +17,7 @@
 				!note.replyId
 			"
 			:to="`/notes/${note.renoteId}`"
-			v-tooltip="i18n.ts.jumpToReply"
+			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
 			@click.stop
 		>
@@ -54,11 +54,12 @@
 				v-model="showContent"
 				:note="note"
 				v-on:keydown="focusFooter"
+				v-on:update:model-value="(val) => emit('expanded', val)"
 			/>
 			<div
 				class="body"
 				v-bind="{
-					'aria-hidden': !showContent ? 'true' : null,
+					'aria-hidden': note.cw && !showContent ? 'true' : null,
 					tabindex: !showContent ? '-1' : null,
 				}"
 			>
@@ -70,7 +71,7 @@
 						v-if="!detailed && note.replyId"
 						:to="`#${note.replyId}`"
 						behavior="browser"
-						v-tooltip="i18n.ts.jumpToReply"
+						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
 						@click.stop
 					>
@@ -190,6 +191,7 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(ev: "push", v): void;
 	(ev: "focusfooter"): void;
+	(ev: "expanded", v): void;
 }>();
 
 const cwButton = ref<HTMLElement>();

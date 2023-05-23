@@ -1,5 +1,6 @@
 <template>
 	<div
+		:aria-label="accessibleLabel"
 		v-if="!muted.muted"
 		v-show="!isDeleted"
 		ref="el"
@@ -85,6 +86,7 @@
 						:parentId="appearNote.parentId"
 						@push="(e) => router.push(notePage(e))"
 						@focusfooter="footerEl.focus()"
+						@expanded="(e) => setPostExpanded(e)"
 					></MkSubNoteContent>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
@@ -471,6 +473,39 @@ function readPromo() {
 	});
 	isDeleted.value = true;
 }
+
+let postIsExpanded = ref(false);
+
+function setPostExpanded(val: boolean) {
+	postIsExpanded.value = val;
+}
+
+const accessibleLabel = computed(() => {
+	let label = `${props.note.user.username}; `;
+	if (props.note.renote) {
+		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
+		if (props.note.renote.cw) {
+			label += `${i18n.t("cw")}: ${props.note.renote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${props.note.renote.text}; `;
+			}
+		} else {
+			label += `${props.note.renote.text}; `;
+		}
+	} else {
+		if (props.note.cw) {
+			label += `${i18n.t("cw")}: ${props.note.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${props.note.text}; `;
+			}
+		} else {
+			label += `${props.note.text}; `;
+		}
+	}
+	const date = new Date(props.note.createdAt);
+	label += `${date.toLocaleTimeString()}`;
+	return label;
+});
 
 defineExpose({
 	focus,
