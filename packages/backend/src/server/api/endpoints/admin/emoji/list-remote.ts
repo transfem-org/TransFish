@@ -107,7 +107,9 @@ export default define(meta, paramDef, async (ps) => {
 	}
 
 	if (ps.query) {
-		q.andWhere('emoji.name like :query', { query: `%${sqlLikeEscape(ps.query)}%` });
+		q.andWhere("emoji.name like :query", {
+			query: `%${sqlLikeEscape(ps.query)}%`,
+		});
 	}
 
 	const emojis = await q.orderBy("emoji.id", "DESC").take(ps.limit).getMany();

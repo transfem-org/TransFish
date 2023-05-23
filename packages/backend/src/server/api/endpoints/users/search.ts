@@ -78,7 +78,9 @@ export default define(meta, paramDef, async (ps, me) => {
 		const nameQuery = Users.createQueryBuilder("user")
 			.where(
 				new Brackets((qb) => {
-					qb.where("user.name ILIKE :query", { query: `%${sqlLikeEscape(ps.query)}%` });
+					qb.where("user.name ILIKE :query", {
+						query: `%${sqlLikeEscape(ps.query)}%`,
+					});
 
 					// Also search username if it qualifies as username
 					if (Users.validateLocalUsername(ps.query)) {

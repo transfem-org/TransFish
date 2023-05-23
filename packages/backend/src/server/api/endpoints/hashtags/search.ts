@@ -32,7 +32,9 @@ export const paramDef = {
 
 export default define(meta, paramDef, async (ps) => {
 	const hashtags = await Hashtags.createQueryBuilder("tag")
-		.where("tag.name like :q", { q: `${sqlLikeEscape(ps.query.toLowerCase())}%` })
+		.where("tag.name like :q", {
+			q: `${sqlLikeEscape(ps.query.toLowerCase())}%`,
+		})
 		.orderBy("tag.count", "DESC")
 		.groupBy("tag.id")
 		.take(ps.limit)
