@@ -5,7 +5,7 @@
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350, 300] }"
+		v-size="{ max: [500, 450, 350] }"
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"

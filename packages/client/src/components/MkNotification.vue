@@ -1,7 +1,7 @@
 <template>
 	<div
 		ref="elRef"
-		v-size="{ max: [500, 600] }"
+		v-size="{ max: [500, 450] }"
 		class="qglefbjs notification"
 		:class="notification.type"
 	>
@@ -392,14 +392,13 @@ useTooltip(reactionRef, (showing) => {
 	display: flex;
 	contain: content;
 
-	&.max-width_600px {
-		padding: 16px;
-		font-size: 0.9em;
-	}
 
 	&.max-width_500px {
-		padding: 12px;
-		font-size: 0.85em;
+		padding-block: 16px;
+		font-size: 0.9em;
+	}
+	&.max-width_450px {
+		padding: 12px 16px;
 	}
 
 	> .head {
