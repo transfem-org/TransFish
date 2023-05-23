@@ -1,5 +1,4 @@
-import { AiScript, utils, values } from "@syuilo/aiscript";
-import { deserialize } from "@syuilo/aiscript/built/serializer";
+import { Interpreter, utils, values } from "@syuilo/aiscript";
 import { jsToVal } from "@syuilo/aiscript/built/interpreter/util";
 import { createAiScriptEnv } from "@/scripts/aiscript/api";
 import { inputText } from "@/os";
@@ -11,12 +10,12 @@ import {
 	userActions,
 } from "@/store";
 
-const pluginContexts = new Map<string, AiScript>();
+const pluginContexts = new Map<string, Interpreter>();
 
 export function install(plugin) {
 	console.info("Plugin installed:", plugin.name, `v${plugin.version}`);
 
-	const aiscript = new AiScript(
+	const aiscript = new Interpreter(
 		createPluginEnv({
 			plugin: plugin,
 			storageKey: `plugins:${plugin.id}`,
@@ -40,7 +39,7 @@ export function install(plugin) {
 
 	initPlugin({ plugin, aiscript });
 
-	aiscript.exec(deserialize(plugin.ast));
+	aiscript.exec(plugin.ast);
 }
 
 function createPluginEnv(opts) {

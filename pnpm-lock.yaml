@@ -114,8 +114,8 @@ importers:
         specifier: 9.1.2
         version: 9.1.2
       '@syuilo/aiscript':
-        specifier: 0.11.1
-        version: 0.11.1
+        specifier: 0.13.3
+        version: 0.13.3
       '@tensorflow/tfjs':
         specifier: ^4.2.0
         version: 4.2.0(seedrandom@3.0.5)
@@ -678,8 +678,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
       '@syuilo/aiscript':
-        specifier: 0.11.1
-        version: 0.11.1
+        specifier: ^0.13.3
+        version: 0.13.3
       '@types/escape-regexp':
         specifier: 0.0.1
         version: 0.0.1
@@ -2720,14 +2720,13 @@ packages:
     resolution: {integrity: sha512-rNcJsBxS70+pv8YUWwf5fRlWX6JoY/HJc25HD/F8m6Kv7XhJdqPPMhyX6TKkUBPAG7TWlZYoxa+rHAjPy4Cj3Q==}
     requiresBuild: true
 
-  /@syuilo/aiscript@0.11.1:
-    resolution: {integrity: sha512-chwOIA3yLUKvOB0G611hjLArKTeOWNmTm3lHERSaDW1d+dS6do56naX6Lkwy2UpnwWC0qzeNSgg35elk6t2gZg==}
+  /@syuilo/aiscript@0.13.3:
+    resolution: {integrity: sha512-0YFlWA+7YhyRRsp+9Nl72SoSUg5ghskthjCdLvj4qdGyLedeyanKZWJlH2A9d47Nes03UYY8CRDsMHHv64IWcg==}
     dependencies:
       autobind-decorator: 2.4.0
-      chalk: 4.0.0
       seedrandom: 3.0.5
       stringz: 2.1.0
-      uuid: 7.0.3
+      uuid: 9.0.0
 
   /@szmarczak/http-timer@4.0.6:
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
@@ -5166,13 +5165,6 @@ packages:
       escape-string-regexp: 1.0.5
       supports-color: 5.5.0
 
-  /chalk@4.0.0:
-    resolution: {integrity: sha512-N9oWFcegS0sFr9oh1oz2d7Npos6vNoWW9HvtCg5N1KRFpUhaAhvTv5Y58g880fZaEYSNm3qDz8SU1UrGvp+n7A==}
-    engines: {node: '>=10'}
-    dependencies:
-      ansi-styles: 4.3.0
-      supports-color: 7.2.0
-
   /chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -5880,8 +5872,8 @@ packages:
     requiresBuild: true
     dev: false
 
-  /core-js@3.30.1:
-    resolution: {integrity: sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ==}
+  /core-js@3.30.2:
+    resolution: {integrity: sha512-uBJiDmwqsbJCWHAwjrx3cvjbMXP7xD72Dmsn5LOJpiRmE3WbBbN5rCqQ2Qh6Ek6/eOrjlWngEynBWo4VxerQhg==}
     requiresBuild: true
     dev: true
 
@@ -7564,7 +7556,7 @@ packages:
     resolution: {integrity: sha512-+vSd9frUnapVC2RZYfL3FCB2p3g4TBhaUmrsWlSudsGdnxIuUvBB2QM1VZeBtc49QFwrp+wQLrDs3+xxDgI5gQ==}
     engines: {node: '>= 0.10'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       through2: 2.0.5
     dev: true
 
@@ -14464,10 +14456,6 @@ packages:
     hasBin: true
     dev: false
 
-  /uuid@7.0.3:
-    resolution: {integrity: sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==}
-    hasBin: true
-
   /uuid@8.0.0:
     resolution: {integrity: sha512-jOXGuXZAWdsTH7eZLtyXMqUb9EcWMGZNbL9YcGBJl4MH4nrxHmZJhEHvyLFrkxo+28uLb/NYRcStH48fnD0Vzw==}
     hasBin: true
@@ -14571,7 +14559,7 @@ packages:
     dependencies:
       append-buffer: 1.0.2
       convert-source-map: 1.9.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       normalize-path: 2.1.1
       now-and-later: 2.0.1
       remove-bom-buffer: 3.0.0
@@ -15309,7 +15297,7 @@ packages:
     name: plyr
     version: 3.7.0
     dependencies:
-      core-js: 3.30.1
+      core-js: 3.30.2
       custom-event-polyfill: 1.0.7
       loadjs: 4.2.0
       rangetouch: 2.0.1

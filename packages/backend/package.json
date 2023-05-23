@@ -35,7 +35,7 @@
 		"@peertube/http-signature": "1.7.0",
 		"@redocly/openapi-core": "1.0.0-beta.120",
 		"@sinonjs/fake-timers": "9.1.2",
-		"@syuilo/aiscript": "0.11.1",
+		"@syuilo/aiscript": "0.13.3",
 		"@tensorflow/tfjs": "^4.2.0",
 		"adm-zip": "^0.5.10",
 		"ajv": "8.11.2",

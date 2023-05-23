@@ -22,7 +22,7 @@ import {
 	onUnmounted,
 	PropType,
 } from "vue";
-import { parse } from "@syuilo/aiscript";
+import { Parser } from "@syuilo/aiscript";
 import XBlock from "./page.block.vue";
 import { Hpml } from "@/scripts/hpml/evaluator";
 import { url } from "@/config";
@@ -51,8 +51,9 @@ export default defineComponent({
 			nextTick(() => {
 				if (props.page.script && hpml.aiscript) {
 					let ast;
+					const parser = new Parser()
 					try {
-						ast = parse(props.page.script);
+						ast = parser.parse(props.page.script);
 					} catch (err) {
 						console.error(err);
 						/*os.alert({
