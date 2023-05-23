@@ -226,6 +226,8 @@ _mfm:
   play: Posar en marxa MFM
   warn: MFM pot contenir animacions cridaneres o que es mouen ràpidament
   alwaysPlay: Reprodueix automàticament tots els MFM animats
+  fade: Esvair
+  fadeDescription: Esvaeix el contingut cap a dintre i cap en fora.
 _theme:
   keys:
     mention: "Menció"
