@@ -1962,6 +1962,9 @@ _notification:
   youWereInvitedToGroup: "{userName} invited you to a group"
   pollEnded: "Poll results have become available"
   emptyPushNotificationMessage: "Push notifications have been updated"
+  reacted: "reacted to your post"
+  renoted: "boosted your post"
+  voted: "voted on your poll"
   _types:
     all: "All"
     follow: "New followers"
