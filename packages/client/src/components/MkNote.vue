@@ -690,7 +690,7 @@ defineExpose({
 	}
 
 	> .article {
-		overflow: hidden;
+		overflow: clip;
 		padding: 4px 32px 10px;
 		cursor: pointer;
 
