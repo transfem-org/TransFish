@@ -116,7 +116,7 @@ async function run() {
 	} catch (error) {
 		os.alert({
 			type: "error",
-			text: "Syntax error :(",
+			text: "Syntax error",
 		});
 		return;
 	}

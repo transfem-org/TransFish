@@ -54,7 +54,7 @@ async function install() {
 	} catch (err) {
 		os.alert({
 			type: "error",
-			text: "Syntax error :(",
+			text: "Syntax error",
 		});
 		return;
 	}
@@ -63,7 +63,7 @@ async function install() {
 	if (meta == null) {
 		os.alert({
 			type: "error",
-			text: "No metadata found :(",
+			text: "No metadata found",
 		});
 		return;
 	}
@@ -72,7 +72,7 @@ async function install() {
 	if (metadata == null) {
 		os.alert({
 			type: "error",
-			text: "No metadata found :(",
+			text: "No metadata found",
 		});
 		return;
 	}
@@ -82,7 +82,7 @@ async function install() {
 	if (name == null || version == null || author == null) {
 		os.alert({
 			type: "error",
-			text: "Required property not found :(",
+			text: "Required property not found",
 		});
 		return;
 	}

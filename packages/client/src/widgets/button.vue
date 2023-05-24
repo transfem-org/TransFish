@@ -88,7 +88,7 @@ const run = async () => {
 	} catch (err) {
 		os.alert({
 			type: "error",
-			text: "Syntax error :(",
+			text: `Syntax error: ${err.message}`,
 		});
 		return;
 	}
