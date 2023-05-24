@@ -108,7 +108,7 @@ cd calckey/
 ```
 
 > **Note**
-> By default, you're on the main branch. Run `git checkout beta` or `git checkout develop` to switch to the Beta/Develop branches.
+> By default, you're on the develop branch. Run `git checkout main` or `git checkout beta` to switch to the Main/Beta branches.
 
 ## 📩 Install dependencies
 
