@@ -337,7 +337,7 @@ function onContextmenu(ev: MouseEvent): void {
 	} else {
 		os.contextMenu(
 			[
-				{
+			{
 					type: "label",
 					text: notePage(appearNote),
 				},
@@ -348,20 +348,20 @@ function onContextmenu(ev: MouseEvent): void {
 						os.pageWindow(notePage(appearNote));
 					},
 				},
-				{
+				notePage(appearNote) != location.pathname ? {
 					icon: "ph-arrows-out-simple ph-bold ph-lg",
 					text: i18n.ts.showInPage,
 					action: () => {
 						router.push(notePage(appearNote), "forcePage");
 					},
-				},
+				} : undefined,
 				null,
 				{
+					type: "a",
 					icon: "ph-arrow-square-out ph-bold ph-lg",
 					text: i18n.ts.openInNewTab,
-					action: () => {
-						window.open(notePage(appearNote), "_blank");
-					},
+					href: notePage(appearNote),
+					target: "_blank",
 				},
 				{
 					icon: "ph-link-simple ph-bold ph-lg",
@@ -370,6 +370,13 @@ function onContextmenu(ev: MouseEvent): void {
 						copyToClipboard(`${url}${notePage(appearNote)}`);
 					},
 				},
+				note.user.host != null ? {
+					type: "a",
+					icon: "ph-arrow-square-up-right ph-bold ph-lg",
+					text: i18n.ts.showOnRemote,
+					href: note.url ?? note.uri ?? "",
+					target: "_blank",
+				} : undefined,
 			],
 			ev
 		);
