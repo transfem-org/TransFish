@@ -82,7 +82,7 @@
 			:key="note.id"
 			:note="note"
 			class="reply"
-			:conversation="directQuotes"
+			:conversation="replies"
 			:detailedView="true"
 		/>
 		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
@@ -357,6 +357,12 @@ os.api("notes/children", {
 	limit: 30,
 	depth: 12,
 }).then((res) => {
+	res = res.reduce((acc, note) => {
+		if (note.userId == appearNote.userId) {
+			return [...acc, note];
+		}
+		return [note, ...acc];
+	}, []);
 	replies.value = res;
 	directReplies = res
 		.filter((note) => note.replyId === appearNote.id)
