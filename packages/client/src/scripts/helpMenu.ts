@@ -25,10 +25,12 @@ export function openHelpMenu_(ev: MouseEvent) {
 				to: "/about-calckey",
 			},
 			{
-				type: "link",
+				type: "button",
 				text: i18n.ts.tos,
 				icon: "ph-scroll ph-bold ph-lg",
-				to: instance.tosUrl,
+				action: () => {
+					window.open(instance.tosUrl, "_blank");
+				},
 			},
 			{
 				type: "button",
