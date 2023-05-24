@@ -40,6 +40,12 @@ export type Source = {
 		bucket?: string;
 	};
 
+	meilisearch: {
+		host: string;
+		port: number;
+		apiKey?: string;
+	};
+
 	proxy?: string;
 	proxySmtp?: string;
 	proxyBypassHosts?: string[];
