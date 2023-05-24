@@ -1,5 +1,5 @@
 <template>
-	<div class="mkw-button">
+	<div data-cy-mkw-button class="mkw-button">
 		<MkButton :primary="widgetProps.colored" full @click="run">
 			{{ widgetProps.label }}
 		</MkButton>
@@ -7,8 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, watch } from "vue";
-import { Interpreter, Parser, utils } from "@syuilo/aiscript";
+import { Interpreter, Parser } from "@syuilo/aiscript";
 import {
 	useWidgetPropsManager,
 	Widget,
@@ -36,17 +35,14 @@ const widgetPropsDef = {
 	script: {
 		type: "string" as const,
 		multiline: true,
-		default: 'Mk:dialog("hello" "world")',
+		default: 'Mk:dialog("Hello" "world")',
 	},
 };
 
 type WidgetProps = GetFormResultType<typeof widgetPropsDef>;
 
-// 現時点ではvueの制限によりimportしたtypeをジェネリックに渡せない
-//const props = defineProps<WidgetComponentProps<WidgetProps>>();
-//const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
-const props = defineProps<{ widget?: Widget<WidgetProps> }>();
-const emit = defineEmits<{ (ev: "updateProps", props: WidgetProps) }>();
+const props = defineProps<WidgetComponentProps<WidgetProps>>();
+const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
 
 const { widgetProps, configure } = useWidgetPropsManager(
 	name,
@@ -54,6 +50,8 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	props,
 	emit
 );
+
+const parser = new Parser();
 
 const run = async () => {
 	const aiscript = new Interpreter(
@@ -67,7 +65,11 @@ const run = async () => {
 					os.inputText({
 						title: q,
 					}).then(({ canceled, result: a }) => {
-						ok(a);
+						if (canceled) {
+							ok("");
+						} else {
+							ok(a);
+						}
 					});
 				});
 			},
@@ -81,7 +83,6 @@ const run = async () => {
 	);
 
 	let ast;
-	const parser = new Parser()
 	try {
 		ast = parser.parse(widgetProps.script);
 	} catch (err) {
@@ -107,8 +108,3 @@ defineExpose<WidgetComponentExpose>({
 	id: props.widget ? props.widget.id : null,
 });
 </script>
-
-<style lang="scss" scoped>
-.mkw-button {
-}
-</style>

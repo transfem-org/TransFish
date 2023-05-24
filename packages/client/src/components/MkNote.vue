@@ -256,7 +256,6 @@ import { useNoteCapture } from "@/scripts/use-note-capture";
 import { notePage } from "@/filters/note";
 import { deepClone } from "@/scripts/clone";
 
-
 const router = useRouter();
 
 const props = defineProps<{

@@ -124,7 +124,7 @@ const run = async () => {
 	);
 
 	let ast;
-	const parser = new Parser()
+	const parser = new Parser();
 	try {
 		ast = parser.parse(widgetProps.script);
 	} catch (err) {

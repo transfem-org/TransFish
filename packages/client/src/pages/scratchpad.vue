@@ -68,7 +68,7 @@ watch(code, () => {
 
 async function run() {
 	logs.value = [];
-	const parser = new Parser()
+	const parser = new Parser();
 	const aiscript = new Interpreter(
 		createAiScriptEnv({
 			storageKey: "scratchpad",

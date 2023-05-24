@@ -48,7 +48,7 @@ function installPlugin({ id, meta, ast, token }) {
 
 async function install() {
 	let ast;
-	const parser = new Parser()
+	const parser = new Parser();
 	try {
 		ast = parser.parse(code.value);
 	} catch (err) {

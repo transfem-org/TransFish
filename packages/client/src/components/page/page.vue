@@ -51,7 +51,7 @@ export default defineComponent({
 			nextTick(() => {
 				if (props.page.script && hpml.aiscript) {
 					let ast;
-					const parser = new Parser()
+					const parser = new Parser();
 					try {
 						ast = parser.parse(props.page.script);
 					} catch (err) {
