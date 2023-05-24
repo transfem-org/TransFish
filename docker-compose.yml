@@ -40,14 +40,18 @@ services:
     volumes:
       - ./db:/var/lib/postgresql/data
 
-  sonic:
-    restart: unless-stopped
-    image: docker.io/valeriansaliou/sonic:v1.4.0
+  meilisearch:
+    container_name: meilisearch
+    image: getmeili/meilisearch:v0.25.2
+    environment:
+      - MEILI_ENV=${MEILI_ENV:-development}
+    ports:
+      - "7700:7700"
     networks:
-      - calcnet
+      - meilisearch
     volumes:
-      - ./sonic:/var/lib/sonic/store
-      - ./sonic/config.cfg:/etc/sonic.cfg
+      - ./data.ms:/data.ms
+    restart: unless-stopped
 
 networks:
   calcnet:
