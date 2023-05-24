@@ -551,7 +551,7 @@ onUnmounted(() => {
 	}
 
 	// Hover
-	.reply :deep(.main),
+	:deep(.reply > .main),
 	.reply-to,
 	:deep(.more) {
 		position: relative;
