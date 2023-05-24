@@ -807,6 +807,9 @@ defineExpose({
 		}
 		> .article {
 			padding: 4px 16px 8px;
+			&:first-child, &:nth-child(2) {
+				padding-top: 104px;
+			}
 			> .main > .header-container > .avatar {
 				margin-right: 10px;
 				// top: calc(14px + var(--stickyTop, 0px));

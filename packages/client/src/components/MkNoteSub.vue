@@ -673,6 +673,10 @@ function noteClick(e) {
 		> .main > .avatar-container {
 			margin-right: 10px;
 		}
+		&:first-child > .main > .body {
+			margin-top: -20px;
+			padding-top: 22px;
+		}
 	}
 }
 
