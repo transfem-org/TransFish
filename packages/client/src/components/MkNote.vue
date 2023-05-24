@@ -239,6 +239,8 @@ import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import MkVisibility from "@/components/MkVisibility.vue";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
 import { focusPrev, focusNext } from "@/scripts/focus";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
@@ -253,6 +255,7 @@ import { getNoteMenu } from "@/scripts/get-note-menu";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { notePage } from "@/filters/note";
 import { deepClone } from "@/scripts/clone";
+
 
 const router = useRouter();
 
@@ -386,16 +389,43 @@ function onContextmenu(ev: MouseEvent): void {
 		react();
 	} else {
 		os.contextMenu(
-			getNoteMenu({
-				note: note,
-				translating,
-				translation,
-				menuButton,
-				isDeleted,
-				currentClipPage,
-			}),
+			[
+				{
+					type: "label",
+					text: notePage(appearNote),
+				},
+				{
+					icon: "ph-browser ph-bold ph-lg",
+					text: i18n.ts.openInWindow,
+					action: () => {
+						os.pageWindow(notePage(appearNote));
+					},
+				},
+				{
+					icon: "ph-arrows-out-simple ph-bold ph-lg",
+					text: i18n.ts.showInPage,
+					action: () => {
+						router.push(notePage(appearNote), "forcePage");
+					},
+				},
+				null,
+				{
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.openInNewTab,
+					action: () => {
+						window.open(notePage(appearNote), "_blank");
+					},
+				},
+				{
+					icon: "ph-link-simple ph-bold ph-lg",
+					text: i18n.ts.copyLink,
+					action: () => {
+						copyToClipboard(`${url}${notePage(appearNote)}`);
+					},
+				},
+			],
 			ev
-		).then(focus);
+		);
 	}
 }
 
@@ -596,6 +626,7 @@ defineExpose({
 			margin-right: 14px;
 			margin-top: 0;
 			flex-grow: 0;
+			pointer-events: none;
 		}
 
 		> div > i {
@@ -659,7 +690,7 @@ defineExpose({
 	}
 
 	> .article {
-		overflow: hidden;
+		overflow: clip;
 		padding: 4px 32px 10px;
 		cursor: pointer;
 

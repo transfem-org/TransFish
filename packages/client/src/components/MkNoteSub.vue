@@ -11,6 +11,7 @@
 			singleStart: replies.length == 1,
 			firstColumn: depth == 1 && conversation,
 		}"
+		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
 		<div class="main" @click="noteClick">
@@ -180,6 +181,8 @@ import XStarButton from "@/components/MkStarButton.vue";
 import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getNoteMenu } from "@/scripts/get-note-menu";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
@@ -316,6 +319,61 @@ function menu(viaKeyboard = false): void {
 			viaKeyboard,
 		}
 	).then(focus);
+}
+
+function onContextmenu(ev: MouseEvent): void {
+	const isLink = (el: HTMLElement) => {
+		if (el.tagName === "A") return true;
+		if (el.parentElement) {
+			return isLink(el.parentElement);
+		}
+	};
+	if (isLink(ev.target)) return;
+	if (window.getSelection().toString() !== "") return;
+
+	if (defaultStore.state.useReactionPickerForContextMenu) {
+		ev.preventDefault();
+		react();
+	} else {
+		os.contextMenu(
+			[
+				{
+					type: "label",
+					text: notePage(appearNote),
+				},
+				{
+					icon: "ph-browser ph-bold ph-lg",
+					text: i18n.ts.openInWindow,
+					action: () => {
+						os.pageWindow(notePage(appearNote));
+					},
+				},
+				{
+					icon: "ph-arrows-out-simple ph-bold ph-lg",
+					text: i18n.ts.showInPage,
+					action: () => {
+						router.push(notePage(appearNote), "forcePage");
+					},
+				},
+				null,
+				{
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.openInNewTab,
+					action: () => {
+						window.open(notePage(appearNote), "_blank");
+					},
+				},
+				{
+					icon: "ph-link-simple ph-bold ph-lg",
+					text: i18n.ts.copyLink,
+					action: () => {
+						copyToClipboard(`${url}${notePage(appearNote)}`);
+					},
+				},
+			],
+			ev
+		);
+	}
 }
 
 function focus() {
@@ -562,6 +620,7 @@ function noteClick(e) {
 			display: flex;
 			flex-grow: 1;
 			margin-bottom: -10px;
+			pointer-events: none;
 			&::before {
 				content: "";
 				position: absolute;
