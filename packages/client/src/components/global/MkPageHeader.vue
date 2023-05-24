@@ -532,6 +532,9 @@ onUnmounted(() => {
 				}
 			}
 		}
+		&:not(.collapse) > .tab {
+			--width: max-content !important;
+		}
 
 		> .tab {
 			display: inline-flex;
