@@ -395,7 +395,8 @@ function noteClick(e) {
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 
-				> .button {
+				> :deep(.button) {
+					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
@@ -404,9 +405,27 @@ function noteClick(e) {
 					width: max-content;
 					min-width: max-content;
 					pointer-events: all;
+					height: auto;
 					transition: opacity 0.2s;
+					&::before {
+						content: "";
+						position: absolute;
+						inset: 0;
+						bottom: 2px;
+						background: var(--panel);
+						z-index: -1;
+						transition: background .2s;
+					}
 					&:first-of-type {
 						margin-left: -0.5em;
+						&::before {
+							border-radius: 100px 0 0 100px;
+						}
+					}
+					&:last-of-type {
+						&::before {
+							border-radius: 0 100px 100px 0;
+						}
 					}
 					&:hover {
 						color: var(--fgHighlighted);
@@ -425,9 +444,24 @@ function noteClick(e) {
 			}
 		}
 	}
-	&:first-child > .main > .body {
-		margin-top: -200px;
-		padding-top: 200px;
+
+	&.reply > .main {
+		margin-inline: -200px;
+		padding-inline: 200px;
+		&::before {
+			inset-inline: 176px !important;
+		}
+	}
+	&.reply, &.reply-to {
+		> .main > .body {
+			margin-right: -24px;
+			padding-right: 24px;
+			margin-top: -12px;
+			padding-top: 12px;
+			margin-left: calc(0px - var(--avatarSize) - 32px);
+			padding-left: calc(var(--avatarSize) + 32px);
+			border-radius: var(--radius);
+		}
 	}
 	&.reply {
 		--avatarSize: 38px;
@@ -451,6 +485,8 @@ function noteClick(e) {
 		padding-block: 10px;
 		font-weight: 600;
 		> .line {
+			position: relative;
+			z-index: 2;
 			flex-grow: 0 !important;
 			margin-top: -10px !important;
 			margin-bottom: 10px !important;
@@ -520,6 +556,7 @@ function noteClick(e) {
 		}
 		.line {
 			position: relative;
+			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
 			flex-grow: 1;
@@ -562,6 +599,7 @@ function noteClick(e) {
 		position: relative;
 		> .line {
 			position: absolute;
+			z-index: 2;
 			left: 0;
 			top: 0;
 			&::after {
@@ -634,6 +672,10 @@ function noteClick(e) {
 		}
 		> .main > .avatar-container {
 			margin-right: 10px;
+		}
+		&:first-child > .main > .body {
+			margin-top: -20px;
+			padding-top: 22px;
 		}
 	}
 }
