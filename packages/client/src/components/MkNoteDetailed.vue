@@ -595,6 +595,7 @@ onUnmounted(() => {
 		}
 		&:hover,
 		&:focus-within {
+			--panel: var(--panelHighlight);
 			&::before {
 				opacity: 1;
 			}

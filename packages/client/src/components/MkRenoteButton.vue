@@ -3,7 +3,7 @@
 		v-if="canRenote"
 		ref="buttonRef"
 		v-tooltip.noDelay.bottom="i18n.ts.renote"
-		class="eddddedb _button canRenote"
+		class="button _button canRenote"
 		@click="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
@@ -248,25 +248,12 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 </script>
 
 <style lang="scss" scoped>
-.eddddedb {
-	display: inline-block;
-	height: 32px;
-	margin: 2px;
-	padding: 0 6px;
-	border-radius: 4px;
-
+.button {
 	&:not(.canRenote) {
 		cursor: default;
 	}
-
 	&.renoted {
 		background: var(--accent);
-	}
-
-	> .count {
-		display: inline;
-		margin-left: 8px;
-		opacity: 0.7;
 	}
 }
 </style>

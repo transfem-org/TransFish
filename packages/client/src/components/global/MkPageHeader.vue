@@ -518,6 +518,9 @@ onUnmounted(() => {
 			transparent
 		);
 		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 
 		&.collapse {
 			--width: 38px;
@@ -541,7 +544,7 @@ onUnmounted(() => {
 			opacity: 0.7;
 			overflow: hidden;
 			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width 0.2s;
-			--width: max-content;
+			--width: 38px;
 
 			&:hover {
 				opacity: 1;
