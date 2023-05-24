@@ -25,6 +25,12 @@ export function openHelpMenu_(ev: MouseEvent) {
 				to: "/about-calckey",
 			},
 			{
+				type: "link",
+				text: i18n.ts.tos,
+				icon: "ph-scroll ph-bold ph-lg",
+				to: instance.tosUrl,
+			},
+			{
 				type: "button",
 				text: i18n.ts.apps,
 				icon: "ph-device-mobile ph-bold ph-lg",
