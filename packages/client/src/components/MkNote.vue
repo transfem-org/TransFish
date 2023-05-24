@@ -575,6 +575,8 @@ defineExpose({
 	}
 
 	.note-context {
+		position: relative;
+		z-index: 2;
 		padding: 0 32px 0 32px;
 		display: flex;
 		&:first-child {
@@ -587,6 +589,8 @@ defineExpose({
 			line-height: 28px;
 		}
 		> .line {
+			position: relative;
+			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
 			margin-right: 14px;
@@ -655,8 +659,14 @@ defineExpose({
 	}
 
 	> .article {
+		overflow: hidden;
 		padding: 4px 32px 10px;
 		cursor: pointer;
+
+		&:first-child, &:nth-child(2) {
+			margin-top: -100px;
+			padding-top: 104px;
+		}
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -721,7 +731,8 @@ defineExpose({
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 				margin-top: 0.4em;
-				> .button {
+				> :deep(.button) {
+					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
@@ -730,9 +741,27 @@ defineExpose({
 					width: max-content;
 					min-width: max-content;
 					pointer-events: all;
+					height: auto;
 					transition: opacity 0.2s;
+					&::before {
+						content: "";
+						position: absolute;
+						inset: 0;
+						bottom: 2px;
+						background: var(--panel);
+						z-index: -1;
+						transition: background .2s;
+					}
 					&:first-of-type {
 						margin-left: -0.5em;
+						&::before {
+							border-radius: 100px 0 0 100px;
+						}
+					}
+					&:last-of-type {
+						&::before {
+							border-radius: 0 100px 100px 0;
+						}
 					}
 					&:hover {
 						color: var(--fgHighlighted);

@@ -243,6 +243,10 @@ function focusFooter(ev) {
 </script>
 
 <style lang="scss" scoped>
+:deep(a) {
+	position: relative;
+	z-index: 2;
+}
 .reply-icon {
 	display: inline-block;
 	border-radius: 6px;
