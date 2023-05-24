@@ -102,7 +102,7 @@ unfollow: "Ontvolgen"
 followRequestPending: "Wachten op goedkeuring volgverzoek"
 enterEmoji: "Voer een emoji in"
 renote: "Boost"
-unrenote: "Stop herdelen"
+unrenote: "Boost intrekken"
 renoted: "Boosted."
 cantRenote: "Dit bericht kan niet worden geboost."
 cantReRenote: "Een boost kan niet worden geboost."
@@ -145,7 +145,7 @@ autoAcceptFollowed: "Accepteer verzoeken om jezelf te volgen vanzelf als je de v
   al volgt"
 addAccount: "Account toevoegen"
 loginFailed: "Aanmelding mislukt."
-showOnRemote: "Toon op de externe instantie."
+showOnRemote: "Bekijk op de externe server"
 general: "Algemeen"
 wallpaper: "Achtergrond"
 setWallpaper: "Achtergrond instellen"
@@ -164,7 +164,7 @@ selectUser: "Kies een gebruiker"
 recipient: "Ontvanger(s)"
 annotation: "Reacties"
 federation: "Federatie"
-instances: "Server"
+instances: "Servers"
 registeredAt: "Geregistreerd op"
 latestRequestSentAt: "Laatste aanvraag verstuurd"
 latestRequestReceivedAt: "Laatste aanvraag ontvangen"
@@ -189,8 +189,8 @@ instanceInfo: "Serverinformatie"
 statistics: "Statistieken"
 clearQueue: "Wachtrij wissen"
 clearQueueConfirmTitle: "Weet je zeker dat je de wachtrji leeg wil maken?"
-clearQueueConfirmText: "Niet-bezorgde biljetten die nog in de wachtrij staan, worden
-  niet gefedereerd. Meestal is deze operatie niet nodig."
+clearQueueConfirmText: "Niet-bezorgde posts die nog in de wachtrij staan, worden niet
+  gefedereerd. Meestal is deze operatie niet nodig."
 clearCachedFiles: "Cache opschonen"
 clearCachedFilesConfirm: "Weet je zeker dat je alle externe bestanden in de cache
   wilt verwijderen?"
@@ -519,3 +519,117 @@ renoteUnmute: Ontdemp boosts
 jumpToPrevious: Spring naar vorige
 caseSensitive: Hoofdlettergevoelig
 cw: Inhoudswaarschuwing
+recaptcha: reCAPTCHA
+enableRecaptcha: reCAPTCHA inschakelen
+recaptchaSiteKey: Site sleutel
+notFoundDescription: Een pagina met deze URL kon niet worden gevonden.
+uploadFolder: Standaard map voor uploads
+markAsReadAllNotifications: Markeer alle notificaties als gelezen
+text: Tekst
+enable: Inschakelen
+or: Of
+language: Taal
+securityKey: Veiligheidssleutel
+groupInvited: Je bent voor een groep uitgenodigd
+docSource: Bron van dit document
+createAccount: Maak account aan
+groupName: Groepsnaam
+members: Leden
+messagingWithUser: Privé chat
+messagingWithGroup: Groepschat
+title: Titel
+createGroup: Maak een groep
+ownedGroups: Beheerde groepen
+invites: Uitnodigingen
+useOsNativeEmojis: Gebruik je standaard besturingssysteem Emojis
+disableDrawer: Gebruik niet de lade-stijl menus
+joinOrCreateGroup: Krijg een uitnodiging voor een groep of maak er zelf eentje aan.
+noHistory: Geen geschiedenis beschikbaar
+signinHistory: Inloggeschiedenis
+available: Beschikbaar
+unavailable: Niet beschikbaar
+tooShort: Te kort
+signinFailed: Niet gelukt om in te loggen. Gebruikersnaam of wachtwoord is incorrect.
+tapSecurityKey: Tik je veiligheidssleutel aan
+recaptchaSecretKey: Geheime sleutel
+antennas: Antennes
+antennaUsersDescription: Zet één gebruikersnaam per regel neer
+notesAndReplies: Posts en antwoorden
+withFiles: Met bestanden
+popularUsers: Populaire gebruikers
+recentlyUpdatedUsers: Recente actieve gebruikers
+recentlyRegisteredUsers: Nieuwe gebruikers
+recentlyDiscoveredUsers: Nieuwe ontdekte gebruikers
+exploreUsersCount: Er zijn {count} gebruikers
+about: Over
+exploreFediverse: Ontdek de Fediverse
+popularTags: Populaire labels
+moderation: Moderatie
+nUsersMentioned: Genoemd door {n} gebruikers
+markAsReadAllUnreadNotes: Markeer alle posts als gelezen
+markAsReadAllTalkMessages: Markeer alle berichten als gelezen
+help: Help
+inputMessageHere: Schrijf hier je bericht
+close: Sluiten
+group: Groep
+groups: Groepen
+newMessageExists: Er zijn nieuwe berichten
+next: Volgende
+noteOf: Post door {user}
+inviteToGroup: Nodig uit voor de groep
+quoteAttached: Quote
+noMessagesYet: Nog geen berichten
+weakPassword: Zwak wachtwoord
+normalPassword: Middelmatig wachtwoord
+strongPassword: Sterk wachtwoord
+onlyOneFileCanBeAttached: Je kan maar één bestand toevoegen aan je bericht
+invitationCode: Uitnodigingscode
+checking: Controleren...
+uiLanguage: Gebruikersinterface taal
+aboutX: Over {x}
+youHaveNoGroups: Je hebt geen groepen
+disableAnimatedMfm: Schakel MFM met animaties uit
+passwordMatched: Komt overeen
+passwordNotMatched: Komt niet overeen
+signinWith: Log in met {x}
+fontSize: Tekstgrootte
+openImageInNewTab: Open afbeeldingen in een nieuwe tab
+category: Categorie
+tags: Labels
+existingAccount: Bestaand account
+regenerate: Hernieuwen
+dayOverDayChanges: Verschillen met gisteren
+appearance: Uiterlijk
+local: Lokaal
+remote: Extern
+total: Totaal
+weekOverWeekChanges: Verschillen met vorige week
+hcaptcha: hCaptcha
+enableHcaptcha: hCaptcha inschakelen
+hcaptchaSiteKey: Site sleutel
+hcaptchaSecretKey: Geheime sleutel
+withReplies: Met antwoorden
+twoStepAuthentication: Tweefactorauthenticatie
+moderator: Moderator
+invitations: Uitnodigingen
+tooLong: Te lang
+doing: Verwerken...
+silencedInstances: Gedempte Servers
+cacheRemoteFilesDescription: Als deze instelling is uitgeschakeld, worden externe
+  bestanden direct van de externe server geladen. Het uitschakelen zal opslagruimte
+  verminderen, maar verkeer zal toenemen, omdat er geen thumbnails gemaakt zullen
+  worden.
+flagSpeakAsCatDescription: Je posts zullen worden ge-'nyanified' als je in kat-modus
+  zit
+avoidMultiCaptchaConfirm: Het gebruik van meerdere Captcha systemen kan voor storing
+  zorgen tussen ze. Wil je de andere actieve Captcha systemen uitschakelen? Als je
+  ze ingeschakeld wilt houden, klik op annuleren.
+silence: Dempen
+silenceConfirm: Weet je zeker dat je deze gebruiker wilt dempen?
+unsilence: Ontdempen
+unsilenceConfirm: Weet je zeker dat je het dempen van deze gebruiker ongedaan wilt
+  maken?
+silenceThisInstance: Demp deze server
+silenced: Gedempt
+disablingTimelinesInfo: Beheerders en moderators zullen altijd toegang hebben tot
+  alle tijdlijnen, zelfs als deze uitgeschakeld zijn.

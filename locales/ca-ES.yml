@@ -226,6 +226,8 @@ _mfm:
   play: Posar en marxa MFM
   warn: MFM pot contenir animacions cridaneres o que es mouen ràpidament
   alwaysPlay: Reprodueix automàticament tots els MFM animats
+  fade: Esvair
+  fadeDescription: Esvaeix el contingut cap a dintre i cap en fora.
 _theme:
   keys:
     mention: "Menció"
@@ -712,6 +714,9 @@ _notification:
   pollEnded: Es resultat de la enquesta ja està disponible
   emptyPushNotificationMessage: Les notificacions push s'han actualitzat
   youWereInvitedToGroup: "{userName} t'ha convidat a un grup"
+  reacted: Ha reaccionat a la teva publicació
+  renoted: Ha impulsat la teva publicació
+  voted: Ha votat a la teva enquesta
 _deck:
   _columns:
     notifications: "Notificacions"
