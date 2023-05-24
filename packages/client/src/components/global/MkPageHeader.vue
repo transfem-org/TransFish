@@ -518,6 +518,9 @@ onUnmounted(() => {
 			transparent
 		);
 		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 
 		&.collapse {
 			--width: 38px;
