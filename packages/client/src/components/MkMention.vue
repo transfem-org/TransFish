@@ -55,7 +55,6 @@ const isMe =
 	$i &&
 	`@${props.username}@${toUnicode(props.host)}` ===
 		`@${$i.username}@${toUnicode(localHost)}`.toLowerCase();
-
 </script>
 
 <style lang="scss" scoped>

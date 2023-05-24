@@ -663,7 +663,8 @@ defineExpose({
 		padding: 4px 32px 10px;
 		cursor: pointer;
 
-		&:first-child, &:nth-child(2) {
+		&:first-child,
+		&:nth-child(2) {
 			margin-top: -100px;
 			padding-top: 104px;
 		}
@@ -750,7 +751,7 @@ defineExpose({
 						bottom: 2px;
 						background: var(--panel);
 						z-index: -1;
-						transition: background .2s;
+						transition: background 0.2s;
 					}
 					&:first-of-type {
 						margin-left: -0.5em;
@@ -807,7 +808,8 @@ defineExpose({
 		}
 		> .article {
 			padding: 4px 16px 8px;
-			&:first-child, &:nth-child(2) {
+			&:first-child,
+			&:nth-child(2) {
 				padding-top: 104px;
 			}
 			> .main > .header-container > .avatar {

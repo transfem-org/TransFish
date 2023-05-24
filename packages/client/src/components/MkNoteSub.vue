@@ -414,7 +414,7 @@ function noteClick(e) {
 						bottom: 2px;
 						background: var(--panel);
 						z-index: -1;
-						transition: background .2s;
+						transition: background 0.2s;
 					}
 					&:first-of-type {
 						margin-left: -0.5em;
@@ -452,7 +452,8 @@ function noteClick(e) {
 			inset-inline: 176px !important;
 		}
 	}
-	&.reply, &.reply-to {
+	&.reply,
+	&.reply-to {
 		> .main > .body {
 			margin-right: -24px;
 			padding-right: 24px;

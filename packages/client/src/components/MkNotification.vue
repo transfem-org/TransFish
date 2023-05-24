@@ -130,7 +130,7 @@
 				:to="notePage(notification.note)"
 				:title="getNoteSummary(notification.note.renote)"
 			>
-			<span>{{ i18n.ts._notification.renoted }}</span>
+				<span>{{ i18n.ts._notification.renoted }}</span>
 				<i class="ph-quotes ph-fill ph-lg"></i>
 				<Mfm
 					:text="getNoteSummary(notification.note.renote)"
@@ -392,7 +392,6 @@ useTooltip(reactionRef, (showing) => {
 	display: flex;
 	contain: content;
 
-
 	&.max-width_500px {
 		padding-block: 16px;
 		font-size: 0.9em;
@@ -513,13 +512,15 @@ useTooltip(reactionRef, (showing) => {
 			white-space: nowrap;
 			display: -webkit-box;
 			-webkit-line-clamp: 3;
-			-webkit-box-orient: vertical;  
+			-webkit-box-orient: vertical;
 			overflow: hidden;
 			text-overflow: ellipsis;
 
 			> span:first-child {
-				opacity: .7;
-				&::after { content: ": " }
+				opacity: 0.7;
+				&::after {
+					content: ": ";
+				}
 			}
 
 			> i {
