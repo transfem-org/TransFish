@@ -32,7 +32,7 @@
 				/>
 			</div> *v-else on next div* -->
 				<div class="tl _block">
-					<swiper
+					<swiper :touch-angle="25" :threshold="10" :centeredSlides="true"
 						:modules="[Virtual]"
 						:space-between="20"
 						:virtual="true"
@@ -44,9 +44,6 @@
 						"
 						@swiper="setSwiperRef"
 						@slide-change="onSlideChange"
-						:touch-angle="25"
-						:threshold="10"
-						:centeredSlides="true"
 					>
 						<swiper-slide
 							v-for="index in timelines"
