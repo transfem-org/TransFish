@@ -3,16 +3,11 @@
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
 			<p>Server Status: {{ available }}</p>
-			<p>Total: {{ bytes(total_size, 1) }}</p>
+			<p>Total: {{ bytes(total_size, 2) }}</p>
 			<p>Posts Indexed: {{ index_count }}</p>
 		</div>
 	</div>
 	<br />
-	<div class="ms_stats">
-		<p>MeiliSearch</p>
-
-	</div>
-
 </template>
 
 <script lang="ts" setup>
