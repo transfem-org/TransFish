@@ -28,7 +28,7 @@ mod tests {
     use super::get_database;
 
     #[test]
-    fn can_get_mock_without_initialization() {
-        assert!(get_database().is_ok());
+    fn can_get_mock() {
+        get_database().unwrap().as_mock_connection();
     }
 }
