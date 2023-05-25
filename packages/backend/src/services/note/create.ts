@@ -749,7 +749,7 @@ async function insertNote(
 	}
 }
 
-export async function index(note: Note): Promise<void> {
+export async function index(note: Note, reindexing: boolean): Promise<void> {
 	if (!note.text) return;
 
 	if (config.elasticsearch && es) {
@@ -778,7 +778,7 @@ export async function index(note: Note): Promise<void> {
 		);
 	}
 
-	if (meilisearch) {
+	if (meilisearch && !reindexing) {
 		await meilisearch.ingestNote(note);
 	}
 }

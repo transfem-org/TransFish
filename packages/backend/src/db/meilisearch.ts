@@ -97,36 +97,48 @@ export default hasConfig ? {
 			filter: constructedFilters
 		});
 	},
-	ingestNote: (note : Note) => {
-		logger.info("Indexing note in MeiliSearch: " + note.id);
-
-		let attachmentType = "";
-		if (note.attachedFileTypes.length > 0) {
-			attachmentType = note.attachedFileTypes[0].split("/")[0];
-			switch (attachmentType) {
-				case "image":
-				case "video":
-				case "audio":
-				case "text":
-					break;
-				default:
-					attachmentType = "file"
-					break
-			}
+	ingestNote: (note: Note | Note[]) => {
+		if (note instanceof Note) {
+			note = [note];
 		}
 
-		return posts.addDocuments([
-			{
-				id: note.id.toString(),
-				text: note.text,
-				userId: note.userId,
-				userHost: note.userHost,
-				channelId: note.channelId,
-				mediaAttachment: attachmentType,
-				userName: note.user?.username,
-				createdAt: note.createdAt.getTime() / 1000 // division by 1000 is necessary because Node returns in ms-accuracy
+		let indexingBatch: MeilisearchNote[] = [];
+
+		note.forEach(note => {
+
+			let attachmentType = "";
+			if (note.attachedFileTypes.length > 0) {
+				attachmentType = note.attachedFileTypes[0].split("/")[0];
+				switch (attachmentType) {
+					case "image":
+					case "video":
+					case "audio":
+					case "text":
+						break;
+					default:
+						attachmentType = "file"
+						break
+				}
 			}
-		]);
+
+			indexingBatch.push({
+					id: note.id.toString(),
+					text: note.text ? note.text : "",
+					userId: note.userId,
+					userHost: note.userHost ? note.userHost : "",
+					channelId: note.channelId ? note.channelId : "",
+					mediaAttachment: attachmentType,
+					userName: note.user?.username ? note.user.username : "",
+					createdAt: note.createdAt.getTime() / 1000 // division by 1000 is necessary because Node returns in ms-accuracy
+				}
+			)
+		});
+
+		let indexingIDs = indexingBatch.map(note => note.id);
+
+		logger.info("Indexing notes in MeiliSearch: " + indexingIDs.join(","));
+
+		return posts.addDocuments(indexingBatch);
 	},
 	serverStats: async () => {
 		let health : Health = await client.health();
