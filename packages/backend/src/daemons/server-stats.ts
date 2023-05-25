@@ -1,7 +1,7 @@
 import si from "systeminformation";
 import Xev from "xev";
 import * as osUtils from "os-utils";
-import meilisearch from "../db/meilisearch";
+import meilisearch from "../db/meilisearch.js";
 
 const ev = new Xev();
 

@@ -1,7 +1,7 @@
 import * as os from "node:os";
 import si from "systeminformation";
 import define from "../define.js";
-import meilisearch from "../../../db/meilisearch";
+import meilisearch from "../../../db/meilisearch.js";
 
 export const meta = {
 	requireCredential: false,
