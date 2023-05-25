@@ -633,3 +633,13 @@ silenceThisInstance: Demp deze server
 silenced: Gedempt
 disablingTimelinesInfo: Beheerders en moderators zullen altijd toegang hebben tot
   alle tijdlijnen, zelfs als deze uitgeschakeld zijn.
+accountSettings: Account Instellingen
+numberOfDays: Aantal dagen
+hideThisNote: Verberg deze post
+dashboard: Dashboard
+accessibility: Toegankelijkheid
+promotion: Gepromoot
+promote: Promoten
+objectStorage: Objectopslag
+useObjectStorage: Gebruik objectopslag
+objectStorageBaseUrl: Basis -URL
