@@ -305,7 +305,10 @@ onUnmounted(() => {
 	box-sizing: border-box;
 	overflow: hidden;
 	@media (max-width: 500px) {
-		padding-inline: 12p;
+		padding-inline: 16px;
+		&.tabs > .buttons > :deep(.follow-button > span) {
+			display: none;
+		}
 	}
 	@media (max-width: 700px) {
 		> .left {
@@ -432,8 +435,6 @@ onUnmounted(() => {
 			text-align: left;
 			font-weight: bold;
 			flex-shrink: 0;
-			margin-right: 1rem;
-
 			> .avatar {
 				$size: 32px;
 				display: inline-block;
