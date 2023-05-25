@@ -3,6 +3,9 @@ edition = "2021"
 name = "native-utils"
 version = "0.0.0"
 
+[workspace]
+members = ["crates/*"]
+
 [lib]
 crate-type = ["cdylib"]
 
