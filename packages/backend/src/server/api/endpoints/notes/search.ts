@@ -179,7 +179,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		// Use meilisearch to fetch and step through all search results that could match the requirements
 		const ids = [];
 		while (true) {
-			const results = await meilisearch.search(ps.query, start, chunkSize);
+			const results = await meilisearch.search(ps.query, chunkSize, start);
 
 			start += chunkSize;
 
@@ -188,19 +188,17 @@ export default define(meta, paramDef, async (ps, me) => {
 			}
 
 			const res = results.hits
-				.filter((key) => {
-					let note = key as MeilisearchNote;
-
-					if (ps.userId && note.userId !== ps.userId) {
+				.filter((key: MeilisearchNote) => {
+					if (ps.userId && key.userId !== ps.userId) {
 						return false;
 					}
-					if (ps.channelId && note.channelId !== ps.channelId) {
+					if (ps.channelId && key.channelId !== ps.channelId) {
 						return false;
 					}
-					if (ps.sinceId && note.id <= ps.sinceId) {
+					if (ps.sinceId && key.id <= ps.sinceId) {
 						return false;
 					}
-					if (ps.untilId && note.id >= ps.untilId) {
+					if (ps.untilId && key.id >= ps.untilId) {
 						return false;
 					}
 					return true;

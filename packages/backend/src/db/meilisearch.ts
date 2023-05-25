@@ -17,8 +17,8 @@ const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
 const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
 
 const client = new MeiliSearch({
-	host: 'http://127.0.0.1:7700',
-	apiKey: 'masterKey',
+	host: `http://${host}:${port}`,
+	apiKey: auth,
 })
 
 const posts = client.index('posts');
@@ -39,6 +39,8 @@ export type MeilisearchNote = {
 export default hasConfig ? {
 	search: (query : string, limit : number, offset : number) => {
 		logger.info(`Searching for ${query}`);
+		logger.info(`Limit: ${limit}`);
+		logger.info(`Offset: ${offset}`);
 
 		return posts.search(query, {
 			limit: limit,
