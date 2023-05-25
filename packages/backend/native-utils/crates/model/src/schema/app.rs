@@ -1,12 +1,11 @@
 use jsonschema::JSONSchema;
 use once_cell::sync::Lazy;
 use schemars::JsonSchema;
-use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
 use super::Schema;
 
-#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, ToSchema)]
+#[derive(Debug, JsonSchema, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct App {
     pub id: String,
@@ -20,7 +19,7 @@ pub struct App {
 }
 
 /// This represents `permissions` in `packages/calckey-js/src/consts.ts`.
-#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, ToSchema)]
+#[derive(Debug, JsonSchema, ToSchema)]
 pub enum Permission {
     #[serde(rename = "read:account")]
     ReadAccount,

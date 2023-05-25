@@ -1,25 +1,26 @@
 use jsonschema::JSONSchema;
 use once_cell::sync::Lazy;
+use parse_display::FromStr;
 use schemars::JsonSchema;
-use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-use super::Schema;
+use super::{Keyword, Schema, StringList};
+use crate::entity::sea_orm_active_enums::AntennaSrcEnum;
 
-#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, ToSchema)]
+#[derive(Debug, JsonSchema, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct Antenna {
     pub id: String,
     pub created_at: chrono::DateTime<chrono::Utc>,
     pub name: String,
-    pub keywords: Vec<Vec<String>>,
-    pub exclude_keywords: Vec<Vec<String>>,
+    pub keywords: Keyword,
+    pub exclude_keywords: Keyword,
     #[schema(inline)]
-    pub src: AntennaSrcEnum,
+    pub src: AntennaSrc,
     pub user_list_id: Option<String>,
     pub user_group_id: Option<String>,
-    pub users: Vec<String>,
-    pub instances: Vec<String>,
+    pub users: StringList,
+    pub instances: StringList,
     #[serde(default)]
     pub case_sensitive: bool,
     #[serde(default)]
@@ -32,9 +33,10 @@ pub struct Antenna {
     pub has_unread_note: bool,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema, ToSchema)]
+#[derive(Debug, FromStr, JsonSchema, ToSchema)]
 #[serde(rename_all = "lowercase")]
-pub enum AntennaSrcEnum {
+#[display(style = "lowercase")]
+pub enum AntennaSrc {
     Home,
     All,
     Users,
@@ -43,9 +45,18 @@ pub enum AntennaSrcEnum {
     Instances,
 }
 
-impl Schema<Self> for Antenna {}
+impl TryFrom<AntennaSrcEnum> for AntennaSrc {
+    type Error = parse_display::ParseError;
 
+    fn try_from(value: AntennaSrcEnum) -> Result<Self, Self::Error> {
+        value.to_string().parse()
+    }
+}
+
+// ---- TODO: could be macro
+impl Schema<Self> for Antenna {}
 pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| Antenna::validator());
+// ----
 
 #[cfg(test)]
 mod tests {
