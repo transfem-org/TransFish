@@ -41,9 +41,6 @@ export type MeilisearchNote = {
 
 export default hasConfig ? {
 	search: (query : string, limit : number, offset : number) => {
-		logger.info(`Searching for ${query}`);
-		logger.info(`Limit: ${limit}`);
-		logger.info(`Offset: ${offset}`);
 
 		/// Advanced search syntax
 		/// from:user => filter by user + optional domain
@@ -88,7 +85,13 @@ export default hasConfig ? {
 			return true;
 		})
 
-		return posts.search(query, {
+		logger.info(`Searching for ${query}`);
+		logger.info(`Limit: ${limit}`);
+		logger.info(`Offset: ${offset}`);
+		logger.info(`Filters: ${constructedFilters}`)
+
+
+		return posts.search(splitSearch.join(" "), {
 			limit: limit,
 			offset: offset,
 			filter: constructedFilters
