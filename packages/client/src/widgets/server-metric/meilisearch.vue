@@ -23,9 +23,9 @@ const props = defineProps<{
 	meta: any; // TODO
 }>();
 
-const total_size = $computed(() => props.meta.meilisearch.total);
+const total_size = $computed(() => props.meta.meilisearch.size);
 const index_count = $computed(() => props.meta.meilisearch.indexed_count);
-const available = $computed(() => props.meta.meilisearch.available);
+const available = $computed(() => props.meta.meilisearch.health);
 </script>
 
 <style lang="scss" scoped>

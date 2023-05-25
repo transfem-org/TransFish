@@ -9,11 +9,6 @@
 		</div>
 	</div>
 	<br />
-	<div class="ms_stats">
-		<p>MeiliSearch</p>
-
-	</div>
-
 </template>
 
 <script lang="ts" setup>
@@ -32,18 +27,6 @@ const available = $computed(() => props.meta.fs.total - props.meta.fs.used);
 </script>
 
 <style lang="scss" scoped>
-.ms_stats {
-	padding: 16px;
-
-	> div {
-		> p {
-			&:first-child {
-				font-weight: bold;
-				margin-bottom: 4px;
-			}
-		}
-	}
-}
 .zbwaqsat {
 	display: flex;
 	padding: 16px;
