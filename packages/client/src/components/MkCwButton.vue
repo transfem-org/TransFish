@@ -59,7 +59,7 @@ defineExpose({
 <style lang="scss" scoped>
 ._button {
 	font-weight: 700;
-	z-index: 2;
+	z-index: 5;
 	> span {
 		background: var(--cwBg) !important;
 		color: var(--cwFg);

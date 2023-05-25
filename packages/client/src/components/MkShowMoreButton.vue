@@ -41,7 +41,7 @@ defineExpose({
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	z-index: 2;
+	z-index: 5;
 	> span {
 		display: inline-block;
 		background: var(--panel);
