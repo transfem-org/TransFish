@@ -569,7 +569,7 @@ onUnmounted(() => {
 			background: var(--panelHighlight);
 			border-radius: var(--radius);
 			opacity: 0;
-			transition: opacity 0.2s;
+			transition: opacity 0.2s, background 0.2s;
 			z-index: -1;
 		}
 		&.reply-to {
@@ -604,6 +604,7 @@ onUnmounted(() => {
 			--panel: var(--panelHighlight);
 			&::before {
 				opacity: 1;
+				background: var(--panelHighlight) !important;
 			}
 		}
 		// @media (pointer: coarse) {
@@ -623,6 +624,7 @@ onUnmounted(() => {
 		&::before {
 			outline: auto;
 			opacity: 1;
+			background: none;
 		}
 	}
 	
