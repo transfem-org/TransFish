@@ -1,4 +1,4 @@
-import { MeiliSearch } from 'meilisearch';
+import {Health, MeiliSearch, Stats } from 'meilisearch';
 import { dbLogger } from "./logger.js";
 
 import config from "@/config/index.js";
@@ -16,7 +16,7 @@ const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
 const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
 const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
 
-const client = new MeiliSearch({
+const client : MeiliSearch = new MeiliSearch({
 	host: `http://${host}:${port}`,
 	apiKey: auth,
 })
@@ -58,6 +58,16 @@ export default hasConfig ? {
 				userHost: note.userHost,
 				channelId: note.channelId,
 			}
-		])
+		]);
 	},
+	serverStats: async () => {
+		let health : Health = await client.health();
+		let stats: Stats = await client.getStats();
+
+		return {
+			health: health.status,
+			size: stats.databaseSize,
+			indexed_count: stats.indexes["posts"].numberOfDocuments
+		}
+	}
 } : null;
