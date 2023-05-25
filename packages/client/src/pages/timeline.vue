@@ -44,6 +44,9 @@
 						"
 						@swiper="setSwiperRef"
 						@slide-change="onSlideChange"
+						:touch-angle="25"
+						:threshold="10"
+						:centeredSlides="true"
 					>
 						<swiper-slide
 							v-for="index in timelines"
@@ -51,6 +54,7 @@
 							:virtual-index="index"
 						>
 							<XTimeline
+								v-if="index == timelines[swiperRef.activeIndex]"
 								ref="tl"
 								:key="src"
 								class="tl"
