@@ -1,11 +1,13 @@
 pub mod error;
 
-use once_cell::sync::OnceCell;
-use sea_orm::{Database, DatabaseConnection};
+use once_cell::sync::{Lazy, OnceCell};
+use sea_orm::{Database, DatabaseBackend, DatabaseConnection, MockDatabase};
 
 use crate::error::Error;
 
 static DB_CONN: OnceCell<DatabaseConnection> = OnceCell::new();
+static DB_MOCK: Lazy<DatabaseConnection> =
+    Lazy::new(|| MockDatabase::new(DatabaseBackend::Postgres).into_connection());
 
 pub async fn init_database(connection_uri: impl Into<String>) -> Result<(), Error> {
     let conn = Database::connect(connection_uri.into()).await?;
@@ -14,5 +16,19 @@ pub async fn init_database(connection_uri: impl Into<String>) -> Result<(), Erro
 }
 
 pub fn get_database() -> Result<&'static DatabaseConnection, Error> {
-    DB_CONN.get().ok_or(Error::Uninitialized)
+    if cfg!(test) {
+        Ok(&DB_MOCK)
+    } else {
+        DB_CONN.get().ok_or(Error::Uninitialized)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::get_database;
+
+    #[test]
+    fn can_get_mock_without_initialization() {
+        assert!(get_database().is_ok());
+    }
 }
