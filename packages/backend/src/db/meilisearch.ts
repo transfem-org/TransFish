@@ -3,7 +3,6 @@ import { dbLogger } from "./logger.js";
 
 import config from "@/config/index.js";
 import {Note} from "@/models/entities/note";
-import {normalizeForSearch} from "@/misc/normalize-for-search";
 
 const logger = dbLogger.createSubLogger("meilisearch", "gray", false);
 
@@ -16,7 +15,7 @@ const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
 const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
 const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
 
-const client : MeiliSearch = new MeiliSearch({
+const client: MeiliSearch = new MeiliSearch({
 	host: `http://${host}:${port}`,
 	apiKey: auth,
 })
@@ -24,6 +23,8 @@ const client : MeiliSearch = new MeiliSearch({
 const posts = client.index('posts');
 
 posts.updateSearchableAttributes(['text']);
+
+posts.updateFilterableAttributes(["userId", "userHost", "mediaAttachment"])
 
 logger.info("Connected to MeiliSearch");
 
@@ -34,6 +35,7 @@ export type MeilisearchNote = {
 	userId: string;
 	userHost: string;
 	channelId: string;
+	mediaAttachment: string;
 }
 
 export default hasConfig ? {
@@ -42,13 +44,52 @@ export default hasConfig ? {
 		logger.info(`Limit: ${limit}`);
 		logger.info(`Offset: ${offset}`);
 
+		/// Advanced search syntax
+		/// from:user => filter by user + optional domain
+		/// has:image/video/audio/text/file => filter by attachment types
+		/// domain:domain.com => filter by domain
+
+		let constructedFilters: string[] = [];
+
+		let splitSearch = query.split(" ");
+		splitSearch.forEach(term => {
+			if (term.startsWith("has:")) {
+				let fileType = term.slice(4);
+				constructedFilters.push(`mediaAttachment = "${fileType}"`)
+			}
+			if (term.startsWith("from:")) {
+				let user = term.slice(5);
+				constructedFilters.push(`userId = ${user}`)
+			}
+			if (term.startsWith("domain:")) {
+				let domain = term.slice(7);
+				constructedFilters.push(`userHost = ${domain}`)
+			}
+		})
+
 		return posts.search(query, {
 			limit: limit,
 			offset: offset,
+			filter: constructedFilters
 		});
 	},
 	ingestNote: (note : Note) => {
 		logger.info("Indexing note in MeiliSearch: " + note.id);
+
+		let attachmentType = "";
+		if (note.attachedFileTypes.length > 0) {
+			attachmentType = note.attachedFileTypes[0].split("/")[0];
+			switch (attachmentType) {
+				case "image":
+				case "video":
+				case "audio":
+				case "text":
+					break;
+				default:
+					attachmentType = "file"
+					break
+			}
+		}
 
 		return posts.addDocuments([
 			{
@@ -57,6 +98,7 @@ export default hasConfig ? {
 				userId: note.userId,
 				userHost: note.userHost,
 				channelId: note.channelId,
+				mediaAttachment: attachmentType
 			}
 		]);
 	},
