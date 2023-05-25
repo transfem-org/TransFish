@@ -3,6 +3,7 @@ import { dbLogger } from "./logger.js";
 
 import config from "@/config/index.js";
 import {Note} from "@/models/entities/note.js";
+import * as url from "url";
 
 const logger = dbLogger.createSubLogger("meilisearch", "gray", false);
 
@@ -121,14 +122,14 @@ export default hasConfig ? {
 				}
 			}
 
-			indexingBatch.push({
+			indexingBatch.push(<MeilisearchNote>{
 					id: note.id.toString(),
 					text: note.text ? note.text : "",
 					userId: note.userId,
-					userHost: note.userHost ? note.userHost : "",
+					userHost: note.userHost !== "" ? note.userHost : url.parse(config.host).host,
 					channelId: note.channelId ? note.channelId : "",
 					mediaAttachment: attachmentType,
-					userName: note.user?.username ? note.user.username : "",
+					userName: note.user?.usernameLower ?? "UNKNOWN",
 					createdAt: note.createdAt.getTime() / 1000 // division by 1000 is necessary because Node returns in ms-accuracy
 				}
 			)
