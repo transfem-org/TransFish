@@ -138,7 +138,9 @@ export default hasConfig ? {
 
 		logger.info("Indexing notes in MeiliSearch: " + indexingIDs.join(","));
 
-		return posts.addDocuments(indexingBatch);
+		return posts.addDocuments(indexingBatch, {
+			primaryKey: "id"
+		});
 	},
 	serverStats: async () => {
 		let health : Health = await client.health();
