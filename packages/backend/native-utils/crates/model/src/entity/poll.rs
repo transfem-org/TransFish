@@ -2,9 +2,8 @@
 
 use super::sea_orm_active_enums::PollNotevisibilityEnum;
 use sea_orm::entity::prelude::*;
-use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "poll")]
 pub struct Model {
     #[sea_orm(column_name = "noteId", primary_key, auto_increment = false, unique)]
