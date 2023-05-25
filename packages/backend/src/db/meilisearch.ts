@@ -22,20 +22,21 @@ const client: MeiliSearch = new MeiliSearch({
 
 const posts = client.index('posts');
 
-posts.updateSearchableAttributes(['text']);
+posts.updateSearchableAttributes(['text']).catch((e) => logger.error(`Setting searchable attr failed, searches won't work: ${e}`));
 
-posts.updateFilterableAttributes(["userId", "userHost", "mediaAttachment"])
+posts.updateFilterableAttributes(["userName", "userHost", "mediaAttachment", "createdAt"]).catch((e) => logger.error(`Setting filterable attr failed, advanced searches won't work: ${e}`));
 
 logger.info("Connected to MeiliSearch");
-
 
 export type MeilisearchNote = {
 	id: string;
 	text: string;
 	userId: string;
 	userHost: string;
+	userName: string;
 	channelId: string;
 	mediaAttachment: string;
+	createdAt: number
 }
 
 export default hasConfig ? {
@@ -48,23 +49,43 @@ export default hasConfig ? {
 		/// from:user => filter by user + optional domain
 		/// has:image/video/audio/text/file => filter by attachment types
 		/// domain:domain.com => filter by domain
+		/// before:Date => show posts made before Date
+		/// after: Date => show posts made after Date
+
 
 		let constructedFilters: string[] = [];
 
 		let splitSearch = query.split(" ");
-		splitSearch.forEach(term => {
+
+		// Detect search operators and remove them from the actual query
+		splitSearch.filter(term => {
 			if (term.startsWith("has:")) {
 				let fileType = term.slice(4);
 				constructedFilters.push(`mediaAttachment = "${fileType}"`)
-			}
-			if (term.startsWith("from:")) {
+				return false;
+			} else if (term.startsWith("from:")) {
 				let user = term.slice(5);
-				constructedFilters.push(`userId = ${user}`)
-			}
-			if (term.startsWith("domain:")) {
+				constructedFilters.push(`userName = ${user}`)
+				return false;
+			} else if (term.startsWith("domain:")) {
 				let domain = term.slice(7);
 				constructedFilters.push(`userHost = ${domain}`)
+				return false;
+			} else if (term.startsWith("after:")) {
+				let timestamp = term.slice(6);
+				// Try to parse the timestamp as JavaScript Date
+				let date = Date.parse(timestamp);
+				if (isNaN(date)) return false;
+				constructedFilters.push(`createdAt > ${date}`)
+			} else if (term.startsWith("before:")) {
+				let timestamp = term.slice(7);
+				// Try to parse the timestamp as JavaScript Date
+				let date = Date.parse(timestamp);
+				if (isNaN(date)) return false;
+				constructedFilters.push(`createdAt < ${date}`)
 			}
+
+			return true;
 		})
 
 		return posts.search(query, {
@@ -98,7 +119,9 @@ export default hasConfig ? {
 				userId: note.userId,
 				userHost: note.userHost,
 				channelId: note.channelId,
-				mediaAttachment: attachmentType
+				mediaAttachment: attachmentType,
+				userName: note.user?.username,
+				createdAt: note.createdAt.getTime() / 1000 // division by 1000 is necessary because Node returns in ms-accuracy
 			}
 		]);
 	},
