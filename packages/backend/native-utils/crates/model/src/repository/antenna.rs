@@ -1,5 +1,5 @@
-use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 use async_trait::async_trait;
+use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 
 use crate::entity::{antenna, antenna_note, user_group_joining};
 use crate::error::Error;
