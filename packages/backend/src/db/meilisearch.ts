@@ -2,7 +2,7 @@ import {Health, MeiliSearch, Stats } from 'meilisearch';
 import { dbLogger } from "./logger.js";
 
 import config from "@/config/index.js";
-import {Note} from "@/models/entities/note";
+import {Note} from "@/models/entities/note.js";
 
 const logger = dbLogger.createSubLogger("meilisearch", "gray", false);
 
