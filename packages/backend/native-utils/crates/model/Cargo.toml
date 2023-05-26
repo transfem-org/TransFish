@@ -23,4 +23,3 @@ utoipa = "3.3.0"
 
 [dev-dependencies]
 database = { path = "../database", features = ["mock"] }
-sea-orm = { version = "0.11.3", features = ["postgres-array", "sqlx-postgres", "runtime-tokio-rustls", "mock"] }
