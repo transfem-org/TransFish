@@ -235,14 +235,14 @@ default: "Standard"
 defaultValueIs: "Der Standardwert ist: {value}"
 noCustomEmojis: "Es gibt keine benutzerdefinierten Emoji"
 noJobs: "Keine Jobs vorhanden"
-federating: "Wird föderiert"
+federating: "Eine Verknüpfung wird hergestellt"
 blocked: "Blockiert"
 suspended: "suspendiert"
 all: "Alles"
 subscribing: "Registrieren"
 publishing: "Veröffentlichen"
 notResponding: "Antwortet nicht"
-instanceFollowing: "Auf dem Server folgen"
+instanceFollowing: "Dem Server folgen"
 instanceFollowers: "Follower des Servers"
 instanceUsers: "Nutzer dieses Servers"
 changePassword: "Passwort ändern"
@@ -339,8 +339,8 @@ unwatch: "Nicht mehr beobachten"
 accept: "Akzeptieren"
 reject: "Ablehnen"
 normal: "Normal"
-instanceName: "Name des Servers"
-instanceDescription: "Beschreibung des Servers"
+instanceName: "Server-Name"
+instanceDescription: "Server-Beschreibung"
 maintainerName: "Betreiber"
 maintainerEmail: "Betreiber-Email"
 tosUrl: "URL der Nutzungsbedingungen"
@@ -693,9 +693,9 @@ abuseReported: "Deine Meldung wurde versendet. Vielen Dank."
 reporter: "Melder"
 reporteeOrigin: "Herkunft des Gemeldeten"
 reporterOrigin: "Herkunft des Meldenden"
-forwardReport: "Einen Bericht auch an den beteiligten anderen Server weiterleiten"
+forwardReport: "Einen Meldung zusätzlich an den mit-beteiligten Server senden"
 forwardReportIsAnonymous: "Anstelle Ihres Nutzerkontos wird ein anonymes Systemkonto
-  als Berichterstatter auf dem beteiligten anderen Server angezeigt."
+  als Hinweisgeber auf dem mit-beteiligten Server angezeigt."
 send: "Senden"
 abuseMarkAsResolved: "Meldung als gelöst markieren"
 openInNewTab: "In neuem Tab öffnen"
@@ -835,7 +835,7 @@ active: "Aktiv"
 offline: "Offline"
 notRecommended: "Nicht empfohlen"
 botProtection: "Schutz vor Bots"
-instanceBlocking: "Föderierte Blockieren/Stummschalten"
+instanceBlocking: "Verknüpfte Server verwalten"
 selectAccount: "Nutzerkonto auswählen"
 switchAccount: "Konto wechseln"
 enabled: "Aktiviert"
@@ -900,7 +900,7 @@ manageAccounts: "Nutzerkonten verwalten"
 makeReactionsPublic: "Reaktionsverlauf veröffentlichen"
 makeReactionsPublicDescription: "Jeder wird die Liste deiner gesendeten Reaktionen
   einsehen können."
-classic: "Classic"
+classic: "Mittig/zentriert"
 muteThread: "Thread stummschalten"
 unmuteThread: "Threadstummschaltung aufheben"
 ffVisibility: "Sichtbarkeit von Gefolgten/Followern"
@@ -946,14 +946,15 @@ recentNHours: "Die letzten {n} Stunden"
 recentNDays: "Die letzten {n} Tage"
 noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
-recommended: "Empfehlung"
+recommended: "Interessantes"
 check: "Kontrolle"
 driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität
   auf den Standard zurückzusetzen."
 requireAdminForView: "Melde dich mit einem Administratorkonto an, um dies einzusehen."
-isSystemAccount: "Ein Nutzerkonto, dass durch das System erstellt und automatisch
-  kontrolliert wird."
+isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwaltet.
+  Bitte moderieren, bearbeiten, löschen oder manipulieren Sie dieses Konto nicht,
+  da es sonst zu einem Server-Absturz kommen könnte."
 typeToConfirm: "Bitte gib zur Bestätigung {x} ein"
 deleteAccount: "Nutzerkonto löschen"
 document: "Dokumentation"
@@ -1040,9 +1041,9 @@ _forgotPassword:
   enterEmail: "Gib die Email-Adresse ein, mit der du dich registriert hast. An diese
     wird ein Link gesendet, mit dem du dein Passwort zurücksetzen kannst."
   ifNoEmail: "Solltest du bei der Registrierung keine Email-Adresse angegeben haben,
-    wende dich bitte an den Administrator."
-  contactAdmin: "Dieser Server unterstützt die Verwendung von Email-Adressen nicht.
-    Kontaktiere bitte den Server-Administrator, um dein Passwort zurücksetzen zu lassen."
+    wende dich bitte an den Server-Administrator."
+  contactAdmin: "Dieser Server unterstützt keine Verwendung von Email-Adressen. Kontaktiere
+    bitte den Server-Administrator, um dein Passwort zurücksetzen zu lassen."
 _gallery:
   my: "Meine Bilder-Galerie"
   liked: "Mit \"Gefällt mir\" markierte Beiträge"
@@ -1229,7 +1230,7 @@ _instanceMute:
     Servers."
   instanceMuteDescription2: "Mit Zeilenumbrüchen trennen"
   title: "Blendet Beiträge von aufgelisteten Servern aus."
-  heading: "Liste der stummzuschaltenden Server"
+  heading: "Liste der Server die stummgeschaltet werden sollen"
 _theme:
   explore: "Farbkombinationen finden"
   install: "Eine Farbkombination installieren"
@@ -1344,21 +1345,19 @@ _tutorial:
   step5_1: "Timelines, Timelines überall!"
   step5_2: "Dein Server hat {timelines} verschiedene Timelines aktiviert."
   step5_3: "Die {icon} Home-Timeline ist die Timeline, in der du die Beiträge der
-    Nutzerkonten sehen kannst, denen du folgst und von jedem anderen auf diesem Server.
-    Solltest du bevorzugen, dass deine Home-Timeline nur Beiträge von den Nutzerkonten
-    enthält, denen du folgst, kannst du das ganz einfach in den Einstellungen ändern!"
-  step5_4: "In der {Icon} Local-Timeline kannst du die Beiträge aller anderen Mitglieder
-    dieses Servers sehen."
-  step5_5: "Die {icon} Social-Timeline zeigt dir ausschließlich Beiträge von Nutzerkonten
-    denen Du folgst."
-  step5_6: "In der {icon} Empfehlungen-Timeline kannst du Beiträge von Servern sehen,
-    die dir von den Server-Administratoren empfohlen/vorgeschlagen werden."
+    Nutzerkonten sehen kannst, denen du folgst."
+  step5_4: "In der {Icon} Local-Timeline kannst du die Beiträge von jedem/jeder sehen
+    der/die auf diesem Server registriert ist."
+  step5_5: "Die Social-Timeline {icon} ist eine Kombination aus der Home-Timeline
+    und der Local-Timeline."
+  step5_6: "In der {icon} \"Interessantes\"-Timeline können sie Beiträge von Servern
+    sehen, die von den Server-Administratoren vorgeschlagen werden."
   step5_7: "In der {icon} Global-Timeline können Sie Beiträge von jedem anderen verbundenen
     Server im fediverse sehen."
   step6_1: "Also, was ist das hier?"
-  step6_2: "Schön, mit Deiner Anmeldung zu Calckey bist Du gleichzeitig einem Portal
-    zum Fediverse beigetreten, einem Netzwerk mit Tausenden von verbundenen Servern
-    (häufig noch als \"Instanzen\" bezeichnet)."
+  step6_2: "Mit Deiner Anmeldung zu Calckey bist Du gleichzeitig einem Portal zum
+    Fediverse beigetreten, einem Netzwerk mit Tausenden von, miteinander verbundenen,
+    Servern."
   step6_3: "Jeder der Server funktioniert auf unterschiedliche Weise, und nicht alle
     Server führen Calckey aus. Dieser jedoch schon! Es ist zu Beginn vielleicht ein
     wenig kompliziert, aber Sie werden in kürzester Zeit den Dreh raus haben."
@@ -1567,7 +1566,7 @@ _timelines:
   local: "Local-TL"
   social: "Social-TL"
   global: "Global-TL"
-  recommended: Empfehlungen
+  recommended: Interessantes
 _pages:
   newPage: "Seite erstellen"
   editPage: "Seite bearbeiten"
@@ -1927,7 +1926,7 @@ _deck:
     direct: "Direktnachrichten"
   renameProfile: Arbeitsbereich umbenennen
   nameAlreadyExists: Der Name für den Arbeitsbereich ist bereits vorhanden.
-enableRecommendedTimeline: Empfohlenen Zeitplan aktivieren
+enableRecommendedTimeline: '"Interessantes"-Timline einschalten'
 secureMode: Sicherer Modus (Autorisierter Abruf)
 instanceSecurity: Serversicherheit
 manageGroups: Gruppen verwalten
@@ -1937,22 +1936,22 @@ enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
-hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
-  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.
-  Blockierte Server sind nicht betroffen, auch wenn sie hier aufgeführt sind.'
+hiddenTagsDescription: 'Gib hier die Hashtags (ohne #) an, die du vom "Trending and
+  Explore" ausschließen möchtest. Versteckte Hashtags sind immer noch über andere
+  Wege auffindbar.'
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
-antennaInstancesDescription: Nenne einen Servernamen pro Zeile
+antennaInstancesDescription: Nenne einen Server-Namen pro Zeile
 secureModeInfo: Bei Anfragen an andere Server nicht ohne Nachweis zurücksenden.
 renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Es gibt keine Server
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
-  eingestufte Server mit deinem Server föderieren. Alle Beiträge werden für die Öffentlichkeit
-  verborgen.
+  eingestufte Server mit diesem Server verknüpft werden. Alle Beiträge werden für
+  die Öffentlichkeit verborgen.
 allowedInstances: Vertrauenswürdige Server
-selectInstance: Wähle einen Server
+selectInstance: Wähle einen Server aus
 silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
   möchtest. Nutzerkonten in den aufgelisteten Servern werden als "Stumm" behandelt,
   können nur Follow-Anfragen stellen und können keine lokalen Nutzerkonten erwähnen,
@@ -1967,7 +1966,7 @@ deleted: Gelöscht
 breakFollowConfirm: Sind sie sicher, dass sie eine(n) Follower entfernen möchten?
 unsubscribePushNotification: Push-Benachrichtigungen deaktivieren
 pushNotificationAlreadySubscribed: Push-Benachrichtigungen sind bereits aktiviert
-pushNotificationNotSupported: Dein Browser oder der Server unterstützt keine Push-Benachrichtigungen
+pushNotificationNotSupported: Ihr Browser oder der Server unterstützt keine Push-Benachrichtigungen
 pushNotification: Push-Benachrichtigungen
 subscribePushNotification: Push-Benachrichtigungen aktivieren
 showLocalPosts: 'Zeige lokale Beiträge in:'
@@ -2019,23 +2018,23 @@ adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wiss
   mehr normal funktionieren. Bitte stellen Sie sicher, dass Ihr CSS ordnungsgemäß
   funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
 customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
-allowedInstancesDescription: Hosts von Instanzen, die für den Verbund auf die Whitelist
-  gesetzt werden sollen, jeweils durch eine neue Zeile getrennt (gilt nur im privaten
-  Modus).
+allowedInstancesDescription: Hosts von Servern, die für den Verbund auf die Liste
+  vertrauenswürdiger Server gesetzt werden sollen, werden jeweils durch eine neue
+  Zeile getrennt (gilt nur im privaten Modus).
 migration: Migration
 updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
 showAdminUpdates: Anzeigen, dass eine neue Calckey-Version verfügbar ist (nur Administrator)
 customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (Begrüßungsbildschirm),
   die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
   werden, wenn ein Benutzer die Seite (neu) lädt.
-recommendedInstancesDescription: Empfohlene Instanzen, die durch Zeilenumbrüche getrennt
-  sind, werden in der empfohlenen Zeitachse angezeigt. Fügen Sie NICHT "https://"
+recommendedInstancesDescription: Empfohlene Server, die durch Zeilenumbrüche getrennt
+  sind, werden in der "Interessantes"-Timeline angezeigt. Fügen Sie NICHT "https://"
   hinzu, sondern NUR die Domain.
 sendModMail: Moderationshinweis senden
 moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt,
   sodass Sie von ihrem bisherigen Konto zu diesem Nutzerkonto wechseln können. Tun
   Sie dies, BEVOR Sie von Ihrem bisherigen Nutzerkonto hierhin wechseln. Bitte geben
-  Sie den Namen des Nutzerkontos wie folgt ein: person@server.xyz'
+  Sie den Namen des Nutzerkontos wie folgt ein: @person@server.xyz'
 preventAiLearning: KI gestütztes bot-scraping unterdrücken
 preventAiLearningDescription: Fordern Sie KI-Sprachmodelle von Drittanbietern auf,
   die von Ihnen hochgeladenen Inhalte, wie z. B. Beiträge und Bilder, nicht zu untersuchen.
@@ -2058,3 +2057,5 @@ older: älter
 newer: neuer
 accessibility: Erreichbarkeit
 jumpToPrevious: Zum Vorherigen springen
+silencedWarning: Diese Meldung wird angezeigt, weil diese Nutzer von Servern stammen,
+  die Ihr Administrator abgeschaltet hat, so dass es sich möglicherweise um Spam handelt.
