@@ -59,7 +59,7 @@ export default hasConfig ? {
 		let splitSearch = query.split(" ");
 
 		// Detect search operators and remove them from the actual query
-		splitSearch.filter(term => {
+		splitSearch = splitSearch.filter(term => {
 			if (term.startsWith("has:")) {
 				let fileType = term.slice(4);
 				constructedFilters.push(`mediaAttachment = "${fileType}"`)
