@@ -39,7 +39,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	let pain = host === "relay.fedi.buzz";
 	let i = 0;
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox a " + i);
 		i += 1;
 	}
 
@@ -49,7 +49,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		return `Blocked request: ${host}`;
 	}
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox b " + i);
 		i += 1;
 	}
 
@@ -58,7 +58,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		return `Blocked request: ${host}`;
 	}
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox c " + i);
 		i += 1;
 	}
 
@@ -67,13 +67,13 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		return `Old keyId is no longer supported. ${keyIdLower}`;
 	}
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox d " + i);
 		i += 1;
 	}
 
 	const dbResolver = new DbResolver();
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox e " + i);
 		i += 1;
 	}
 
@@ -83,7 +83,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		key: UserPublickey | null;
 	} | null = await dbResolver.getAuthUserFromKeyId(signature.keyId);
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox f " + i);
 		i += 1;
 	}
 
@@ -105,7 +105,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	}
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox g " + i);
 		i += 1;
 	}
 
@@ -115,7 +115,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	}
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox h " + i);
 		i += 1;
 	}
 
@@ -125,7 +125,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	}
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox i " + i);
 		i += 1;
 	}
 	// HTTP-Signatureの検証
@@ -135,7 +135,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	);
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox j " + i);
 		i += 1;
 	}
 	// また、signatureのsignerは、activity.actorと一致する必要がある
@@ -147,7 +147,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 			}
 			
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox k " + i);
 		i += 1;
 	}
 
@@ -158,7 +158,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 				await resolvePerson(candicate).catch(() => null);
 			}
 			if(pain) {
-				logger.warn("Inbox " + i);
+				logger.warn("Inbox l " + i);
 				i += 1;
 			}
 
@@ -170,7 +170,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 				return "skip: LD-Signatureのユーザーが取得できませんでした";
 			}
 			if(pain) {
-				logger.warn("Inbox " + i);
+				logger.warn("Inbox m " + i);
 				i += 1;
 			}
 
@@ -178,7 +178,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 				return "skip: LD-SignatureのユーザーはpublicKeyを持っていませんでした";
 			}
 			if(pain) {
-				logger.warn("Inbox " + i);
+				logger.warn("Inbox n " + i);
 				i += 1;
 			}
 
@@ -191,7 +191,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 				return "skip: LD-Signatureの検証に失敗しました";
 			}
 			if(pain) {
-				logger.warn("Inbox " + i);
+				logger.warn("Inbox o " + i);
 				i += 1;
 			}
 
@@ -200,7 +200,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 				return `skip: LD-Signature user(${authUser.user.uri}) !== activity.actor(${activity.actor})`;
 			}
 			if(pain) {
-				logger.warn("Inbox " + i);
+				logger.warn("Inbox p " + i);
 				i += 1;
 			}
 
@@ -210,12 +210,12 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 				return `Blocked request: ${ldHost}`;
 			}
 			if(pain) {
-				logger.warn("Inbox " + i);
+				logger.warn("Inbox ü " + i);
 				i += 1;
 			}
 		} else {
 			if(pain) {
-				logger.warn("Inbox error " + i);
+				logger.warn("Inbox error q " + i);
 				i += 1;
 			}
 			return `skip: http-signature verification failed and no LD-Signature. keyId=${signature.keyId}`;
@@ -223,7 +223,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	}
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox r " + i);
 		i += 1;
 	}
 	// activity.idがあればホストが署名者のホストであることを確認する
@@ -236,7 +236,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	}
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox u " + i);
 		i += 1;
 	}
 	// Update stats
@@ -255,14 +255,14 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	});
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox v " + i);
 		i += 1;
 	}
 	// アクティビティを処理
 	await perform(authUser.user, activity);
 
 	if(pain) {
-		logger.warn("Inbox " + i);
+		logger.warn("Inbox w " + i);
 		i += 1;
 	}
 	return "ok";
