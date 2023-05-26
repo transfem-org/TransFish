@@ -27,7 +27,7 @@
 					class="_formBlock"
 				>
 					<template #label>
-						<i class="ph-pencil-line ph-bold ph-lg"></i>
+						<i class="ph-download-simple ph-bold ph-lg"></i>
 						{{ i18n.ts._experiments.enablePostImports }}
 					</template>
 					<template #caption>{{

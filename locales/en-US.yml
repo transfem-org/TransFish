@@ -1090,7 +1090,6 @@ preventAiLearningDescription: "Request third-party AI language models not to stu
   \ content you upload, such as posts and images."
 noGraze: "Please disable the \"Graze for Mastodon\" browser extension, as it interferes with Calckey."
 silencedWarning: "This page is showing because these usera are from servers your admin silenced, so they may potentially be spam."
-
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing\
     \ NSFW media via Machine Learning. This will slightly increase the load on the\
@@ -2017,4 +2016,8 @@ _experiments:
   title: "Experiments"
   enablePostEditing: "Enable post editing"
   postEditingCaption: "Shows the option for users to edit their existing posts via\
-    \ the post options menu"
+    \ the post options menu."
+  enablePostImports: "Enable post imports"
+  postImportsDescription: "Allows users to import their posts from past Calckey,\
+    \ Misskey, Mastodon, Akkoma, and Pleroma accounts. It may cause slowdowns during\
+    \ load if your queue is bottlenecked."
