@@ -39,6 +39,7 @@ export default async function indexAllNotes(
 				order: {
 					id: 1,
 				},
+				relations: ["user"]
 			});
 		} catch (e) {
 			logger.error(`Failed to query notes ${e}`);

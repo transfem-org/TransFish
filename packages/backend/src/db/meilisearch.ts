@@ -1,9 +1,12 @@
-import {Health, MeiliSearch, Stats } from 'meilisearch';
-import { dbLogger } from "./logger.js";
+import {Health, MeiliSearch, Stats} from 'meilisearch';
+import {dbLogger} from "./logger.js";
 
 import config from "@/config/index.js";
 import {Note} from "@/models/entities/note.js";
 import * as url from "url";
+import {User} from "@/models/entities/user.js";
+import {Users} from "@/models/index.js";
+
 
 const logger = dbLogger.createSubLogger("meilisearch", "gray", false);
 
@@ -98,14 +101,21 @@ export default hasConfig ? {
 			filter: constructedFilters
 		});
 	},
-	ingestNote: (note: Note | Note[]) => {
-		if (note instanceof Note) {
-			note = [note];
+	ingestNote: async (ingestNotes: Note | Note[]) => {
+		if (ingestNotes instanceof Note) {
+			ingestNotes = [ingestNotes];
 		}
 
 		let indexingBatch: MeilisearchNote[] = [];
 
-		note.forEach(note => {
+		for (let note of ingestNotes) {
+			if (note.user === undefined) {
+				let user = await Users.findOne({
+					where: {
+						id: note.userId
+					}
+				});
+			}
 
 			let attachmentType = "";
 			if (note.attachedFileTypes.length > 0) {
@@ -129,11 +139,11 @@ export default hasConfig ? {
 					userHost: note.userHost !== "" ? note.userHost : url.parse(config.host).host,
 					channelId: note.channelId ? note.channelId : "",
 					mediaAttachment: attachmentType,
-					userName: note.user?.usernameLower ?? "UNKNOWN",
+					userName: note.user?.username ?? "UNKNOWN",
 					createdAt: note.createdAt.getTime() / 1000 // division by 1000 is necessary because Node returns in ms-accuracy
 				}
 			)
-		});
+		}
 
 		let indexingIDs = indexingBatch.map(note => note.id);
 
