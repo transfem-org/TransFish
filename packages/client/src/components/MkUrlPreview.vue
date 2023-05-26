@@ -92,7 +92,7 @@
 				</article>
 			</component>
 		</transition>
-		<div v-if="tweetId" class="expandTweet">
+		<div v-if="tweetId" class="expand-tweet">
 			<MkButton mini rounded @click="tweetExpanded = true">
 				<i class="ph-twitter-logo ph-bold ph-lg"></i>
 				{{ i18n.ts.expandTweet }}
@@ -226,6 +226,10 @@ onUnmounted(() => {
 }
 
 .mk-url-preview {
+	> .expand-tweet {
+		margin-top: 1rem;
+	}
+
 	&.max-width_400px {
 		> .link {
 			font-size: 12px;
