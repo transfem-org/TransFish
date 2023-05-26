@@ -8,7 +8,6 @@
 			<p>Used: {{ bytes(used, 1) }}</p>
 		</div>
 	</div>
-	<br />
 </template>
 
 <script lang="ts" setup>
