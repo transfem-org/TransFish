@@ -162,12 +162,16 @@ definePageMetadata(
 	computed(() =>
 		note
 			? {
-					title: i18n.t("noteOf", { user: note.user.name || note.user.username }),
+					title: i18n.t("noteOf", {
+						user: note.user.name || note.user.username,
+					}),
 					subtitle: new Date(note.createdAt).toLocaleString(),
 					avatar: note.user,
 					path: `/notes/${note.id}`,
 					share: {
-						title: i18n.t("noteOf", { user: note.user.name || note.user.username }),
+						title: i18n.t("noteOf", {
+							user: note.user.name || note.user.username,
+						}),
 						text: note.text,
 					},
 			  }

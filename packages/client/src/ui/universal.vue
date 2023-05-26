@@ -461,7 +461,7 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 	&:not(.isMobile) {
 		> .contents {
-			border-right: .5px solid var(--divider);
+			border-right: 0.5px solid var(--divider);
 		}
 	}
 	&.wallpaper {
@@ -473,7 +473,7 @@ console.log(mainRouter.currentRoute.value.name);
 		&:not(.isMobile) {
 			--navBg: transparent;
 			> .contents {
-				border-inline: .5px solid var(--divider);
+				border-inline: 0.5px solid var(--divider);
 				margin-inline: -1px;
 			}
 		}

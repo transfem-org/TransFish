@@ -240,7 +240,7 @@ export const NoteRepository = db.getRepository(Note).extend({
 			...(meId
 				? {
 						myReaction: populateMyReaction(note, meId, options?._hint_),
-					}
+				  }
 				: {}),
 
 			...(opts.detail

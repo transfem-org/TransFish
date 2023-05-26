@@ -627,7 +627,7 @@ onUnmounted(() => {
 			background: none;
 		}
 	}
-	
+
 	&.max-width_450px {
 		> .reply-to:first-child {
 			padding-top: 14px;

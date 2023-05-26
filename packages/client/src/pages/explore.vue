@@ -8,7 +8,10 @@
 		/></template>
 		<div class="lznhrdub">
 			<MkSpacer :content-max="1200">
-				<swiper :touch-angle="25" :threshold="10" :centeredSlides="true"
+				<swiper
+					:touch-angle="25"
+					:threshold="10"
+					:centeredSlides="true"
 					:modules="[Virtual]"
 					:space-between="20"
 					:virtual="true"
