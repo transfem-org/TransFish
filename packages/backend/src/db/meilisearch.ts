@@ -115,6 +115,7 @@ export default hasConfig ? {
 						id: note.userId
 					}
 				});
+				note.user = user;
 			}
 
 			let attachmentType = "";
