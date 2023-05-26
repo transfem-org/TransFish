@@ -28,6 +28,7 @@
 							#default="{ items: messages, fetching: pFetching }"
 						>
 							<XList
+							aria-live="polite"
 								v-if="messages.length > 0"
 								v-slot="{ item: message }"
 								:class="{
