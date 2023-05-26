@@ -28,7 +28,7 @@
 					<MkSubNoteContent
 						class="text"
 						:note="note"
-						:parentId="appearNote.parentId"
+						:parentId="parentId"
 						:conversation="conversation"
 						@focusfooter="footerEl.focus()"
 					/>
@@ -140,7 +140,7 @@
 				:conversation="conversation"
 				:depth="replies.length == 1 ? depth : depth + 1"
 				:replyLevel="replyLevel + 1"
-				:parentId="appearNote.replyId"
+				:parentId="appearNote.id"
 				:detailedView="detailedView"
 			/>
 			<div v-else-if="replies.length > 0" class="more">
