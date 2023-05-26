@@ -172,7 +172,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		}
 
 		return found;
-	} else if(meilisearch) {
+	} else if (meilisearch) {
 		let start = 0;
 		const chunkSize = 100;
 
@@ -236,7 +236,6 @@ export default define(meta, paramDef, async (ps, me) => {
 		}
 
 		return found;
-
 	} else {
 		const userQuery =
 			ps.userId != null

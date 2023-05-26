@@ -3,7 +3,7 @@ import type Bull from "bull";
 import { queueLogger } from "../../logger.js";
 import { Notes } from "@/models/index.js";
 import { MoreThan } from "typeorm";
-import { index } from "@/services/note/create.js";
+import {index} from "@/services/note/create.js";
 import {Note} from "@/models/entities/note.js";
 import meilisearch from "../../../db/meilisearch.js";
 
@@ -33,13 +33,13 @@ export default async function indexAllNotes(
 		try {
 			notes = await Notes.find({
 				where: {
-					...(cursor ? { id: MoreThan(cursor) } : {}),
+					...(cursor ? {id: MoreThan(cursor)} : {}),
 				},
 				take: take,
 				order: {
 					id: 1,
 				},
-				relations: ["user"]
+				relations: ["user"],
 			});
 		} catch (e) {
 			logger.error(`Failed to query notes ${e}`);
@@ -62,7 +62,7 @@ export default async function indexAllNotes(
 			const chunk = notes.slice(i, i + batch);
 
 			if (meilisearch) {
-				await meilisearch.ingestNote(chunk)
+				await meilisearch.ingestNote(chunk);
 			}
 
 			await Promise.all(chunk.map((note) => index(note, true)));

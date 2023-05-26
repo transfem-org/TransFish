@@ -41,7 +41,7 @@ export default function () {
 				r: round(Math.max(0, fsStats.rIO_sec ?? 0)),
 				w: round(Math.max(0, fsStats.wIO_sec ?? 0)),
 			},
-			meilisearch: meilisearchStats
+			meilisearch: meilisearchStats,
 		};
 		ev.emit("serverStats", stats);
 		log.unshift(stats);

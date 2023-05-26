@@ -6,12 +6,13 @@ export async function search() {
 	const { canceled, result: query } = await os.inputText({
 		title: i18n.ts.search,
 		placeholder: "Enter search terms...",
-		text: "Advanced search operators\n" +
+		text:
+			"Advanced search operators\n" +
 			"from:user => filter by user\n" +
 			"has:image/video/audio/text/file => filter by attachment types\n" +
 			"domain:domain.com => filter by domain\n" +
 			"before:Date => show posts made before Date\n" +
-			"after:Date => show posts made after Date"
+			"after:Date => show posts made after Date",
 	});
 	if (canceled || query == null || query === "") return;
 

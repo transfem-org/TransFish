@@ -34,8 +34,7 @@ export default define(meta, paramDef, async () => {
 			total: fsStats[0].size,
 			used: fsStats[0].used,
 		},
-		meilisearch: meilisearchStats
-
+		meilisearch: meilisearchStats,
 	};
 });
 
