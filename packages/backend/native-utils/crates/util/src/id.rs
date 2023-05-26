@@ -1,31 +1,39 @@
-use chrono::{DateTime, Utc};
-use radix_fmt::radix_36;
+//! ID generation utility based on [cuid2]
 
-const TIME_2000: i64 = 946_684_800_000;
+use cuid2::CuidConstructor;
+use once_cell::sync::OnceCell;
 
-/// FIXME: Should we continue aid, or use other (more secure and scalable) guids
-/// such as [Cuid2](https://github.com/paralleldrive/cuid2)?
-pub fn create_aid(date: DateTime<Utc>) -> String {
-    let time = date.timestamp_millis() - TIME_2000;
-    let time = if time < 0 { 0 } else { time };
-    let num: i16 = rand::random();
-    let mut noise = format!("{:0>2}", radix_36(num).to_string());
-    let noise = noise.split_off(noise.len() - 2);
-    format!("{:0>8}{}", radix_36(time).to_string(), noise,)
+#[derive(thiserror::Error, Debug, PartialEq, Eq)]
+#[error("ID generator has not been initialized yet")]
+pub struct ErrorUninitialized;
+
+static GENERATOR: OnceCell<CuidConstructor> = OnceCell::new();
+
+pub fn init_id(length: u16) {
+    GENERATOR.get_or_init(move || CuidConstructor::new().with_length(length));
+}
+
+pub fn create_id() -> Result<String, ErrorUninitialized> {
+    match GENERATOR.get() {
+        None => Err(ErrorUninitialized),
+        Some(gen) => Ok(gen.create_id()),
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use chrono::{TimeZone, Utc};
+    use std::thread;
 
-    use super::create_aid;
+    use crate::id;
 
     #[test]
-    fn generate_aid() {
-        let date = Utc.with_ymd_and_hms(2023, 5, 25, 11, 49, 37).unwrap();
-        let aid = create_aid(date);
-        assert_eq!(aid.len(), 10);
-        assert!(aid.starts_with("9f6mynag"));
-        assert_ne!(create_aid(Utc::now()), create_aid(Utc::now()));
+    fn can_generate() {
+        assert_eq!(id::create_id(), Err(id::ErrorUninitialized));
+        id::init_id(12);
+        assert_eq!(id::create_id().unwrap().len(), 12);
+        assert_ne!(id::create_id().unwrap(), id::create_id().unwrap());
+        let id1 = thread::spawn(|| id::create_id().unwrap());
+        let id2 = thread::spawn(|| id::create_id().unwrap());
+        assert_ne!(id1.join().unwrap(), id2.join().unwrap())
     }
 }
