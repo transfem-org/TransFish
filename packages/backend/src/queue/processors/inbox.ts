@@ -145,12 +145,21 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 			if (activity.signature.type !== "RsaSignature2017") {
 				return `skip: unsupported LD-signature type ${activity.signature.type}`;
 			}
+			
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 
 			// activity.signature.creator: https://example.oom/users/user#main-key
 			// みたいになっててUserを引っ張れば公開キーも入ることを期待する
 			if (activity.signature.creator) {
 				const candicate = activity.signature.creator.replace(/#.*/, "");
 				await resolvePerson(candicate).catch(() => null);
+			}
+			if(pain) {
+				logger.warn("Inbox " + i);
+				i += 1;
 			}
 
 			// keyIdからLD-Signatureのユーザーを取得
@@ -160,9 +169,17 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 			if (authUser == null) {
 				return "skip: LD-Signatureのユーザーが取得できませんでした";
 			}
+			if(pain) {
+				logger.warn("Inbox " + i);
+				i += 1;
+			}
 
 			if (authUser.key == null) {
 				return "skip: LD-SignatureのユーザーはpublicKeyを持っていませんでした";
+			}
+			if(pain) {
+				logger.warn("Inbox " + i);
+				i += 1;
 			}
 
 			// LD-Signature検証
@@ -173,10 +190,18 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 			if (!verified) {
 				return "skip: LD-Signatureの検証に失敗しました";
 			}
+			if(pain) {
+				logger.warn("Inbox " + i);
+				i += 1;
+			}
 
 			// もう一度actorチェック
 			if (authUser.user.uri !== activity.actor) {
 				return `skip: LD-Signature user(${authUser.user.uri}) !== activity.actor(${activity.actor})`;
+			}
+			if(pain) {
+				logger.warn("Inbox " + i);
+				i += 1;
 			}
 
 			// ブロックしてたら中断
@@ -184,7 +209,15 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 			if (await shouldBlockInstance(ldHost, meta)) {
 				return `Blocked request: ${ldHost}`;
 			}
+			if(pain) {
+				logger.warn("Inbox " + i);
+				i += 1;
+			}
 		} else {
+			if(pain) {
+				logger.warn("Inbox error " + i);
+				i += 1;
+			}
 			return `skip: http-signature verification failed and no LD-Signature. keyId=${signature.keyId}`;
 		}
 	}
