@@ -9,6 +9,7 @@
 		<div class="lznhrdub">
 			<MkSpacer :content-max="1200">
 				<swiper
+					:round-lengths="true"
 					:touch-angle="25"
 					:threshold="10"
 					:centeredSlides="true"

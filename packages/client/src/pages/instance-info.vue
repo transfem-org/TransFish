@@ -13,6 +13,7 @@
 			:margin-max="32"
 		>
 			<swiper
+				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
 				:centeredSlides="true"

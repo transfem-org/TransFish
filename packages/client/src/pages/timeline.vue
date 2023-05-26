@@ -33,6 +33,7 @@
 			</div> *v-else on next div* -->
 				<div class="tl _block">
 					<swiper
+						:round-lengths="true"
 						:touch-angle="25"
 						:threshold="10"
 						:centeredSlides="true"

@@ -8,6 +8,7 @@
 		/></template>
 		<MkSpacer :content-max="600" :margin-min="20">
 			<swiper
+				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
 				:centeredSlides="true"
