@@ -78,18 +78,20 @@ export default hasConfig ? {
 				let date = Date.parse(timestamp);
 				if (isNaN(date)) return false;
 				constructedFilters.push(`createdAt > ${date}`)
+				return false;
 			} else if (term.startsWith("before:")) {
 				let timestamp = term.slice(7);
 				// Try to parse the timestamp as JavaScript Date
 				let date = Date.parse(timestamp);
 				if (isNaN(date)) return false;
 				constructedFilters.push(`createdAt < ${date}`)
+				return false;
 			}
 
 			return true;
 		})
 
-		logger.info(`Searching for ${query}`);
+		logger.info(`Searching for ${splitSearch.join(" ")}`);
 		logger.info(`Limit: ${limit}`);
 		logger.info(`Offset: ${offset}`);
 		logger.info(`Filters: ${constructedFilters}`)
