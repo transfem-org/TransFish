@@ -36,31 +36,56 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	logger.debug(JSON.stringify(info, null, 2));
 	//#endregion
 	const host = toPuny(new URL(signature.keyId).hostname);
-	logger.warn("Inbox by " + host);
+	let pain = host === "relay.fedi.buzz";
+	let i = 0;
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 
 	// interrupt if blocked
 	const meta = await fetchMeta();
 	if (await shouldBlockInstance(host, meta)) {
 		return `Blocked request: ${host}`;
 	}
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 
 	// only whitelisted instances in private mode
 	if (meta.privateMode && !meta.allowedHosts.includes(host)) {
 		return `Blocked request: ${host}`;
+	}
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
 	}
 
 	const keyIdLower = signature.keyId.toLowerCase();
 	if (keyIdLower.startsWith("acct:")) {
 		return `Old keyId is no longer supported. ${keyIdLower}`;
 	}
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 
 	const dbResolver = new DbResolver();
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 
 	// HTTP-Signature keyId from DB
 	let authUser: {
 		user: CacheableRemoteUser;
 		key: UserPublickey | null;
 	} | null = await dbResolver.getAuthUserFromKeyId(signature.keyId);
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 
 	// keyIdでわからなければ、activity.actorを元にDBから取得 || activity.actorを元にリモートから取得
 	if (authUser == null) {
@@ -79,9 +104,19 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		}
 	}
 
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
+
 	// それでもわからなければ終了
 	if (authUser == null) {
 		return "skip: failed to resolve user";
+	}
+
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
 	}
 
 	// publicKey がなくても終了
@@ -89,12 +124,20 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		return "skip: failed to resolve user publicKey";
 	}
 
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 	// HTTP-Signatureの検証
 	const httpSignatureValidated = httpSignature.verifySignature(
 		signature,
 		authUser.key.keyPem,
 	);
 
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 	// また、signatureのsignerは、activity.actorと一致する必要がある
 	if (!httpSignatureValidated || authUser.user.uri !== activity.actor) {
 		// 一致しなくても、でもLD-Signatureがありそうならそっちも見る
@@ -146,6 +189,10 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		}
 	}
 
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 	// activity.idがあればホストが署名者のホストであることを確認する
 	if (typeof activity.id === "string") {
 		const signerHost = extractDbHost(authUser.user.uri!);
@@ -155,6 +202,10 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		}
 	}
 
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 	// Update stats
 	registerOrFetchInstanceDoc(authUser.user.host).then((i) => {
 		Instances.update(i.id, {
@@ -170,7 +221,16 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 		federationChart.inbox(i.host);
 	});
 
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 	// アクティビティを処理
 	await perform(authUser.user, activity);
+
+	if(pain) {
+		logger.warn("Inbox " + i);
+		i += 1;
+	}
 	return "ok";
 };
