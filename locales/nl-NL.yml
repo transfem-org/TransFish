@@ -646,3 +646,5 @@ objectStorageBaseUrl: Basis -URL
 objectStorageUseSSLDesc: Schakel dit uit als je geen HTTPS voor je API connecties
   gebruikt
 objectStorageUseProxy: Verbind over Proxy
+objectStorageUseProxyDesc: Schakel dit uit als je geen Proxy voor je API connecties
+  gebruikt
