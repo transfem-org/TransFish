@@ -1,10 +1,7 @@
 <template>
 	<p v-if="note.cw != null" class="cw">
 		<MkA
-			v-if="
-				conversation &&
-				note.renoteId == parentId
-			"
+			v-if="conversation && note.renoteId == parentId"
 			:to="`#${parentId}`"
 			behavior="browser"
 			class="reply-icon"
@@ -67,10 +64,7 @@
 				>
 				<template v-if="!note.cw">
 					<MkA
-						v-if="
-							conversation &&
-							note.renoteId == parentId
-						"
+						v-if="conversation && note.renoteId == parentId"
 						:to="`#${parentId}`"
 						behavior="browser"
 						class="reply-icon"
