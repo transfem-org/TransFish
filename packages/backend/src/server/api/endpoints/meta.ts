@@ -524,6 +524,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			discord: instance.enableDiscordIntegration,
 			serviceWorker: instance.enableServiceWorker,
 			postEditing: instance.experimentalFeatures?.postEditing || false,
+			postImports: instance.experimentalFeatures?.postImports || false,
 			miauth: true,
 		};
 	}
