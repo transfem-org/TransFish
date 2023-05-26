@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
       - redis
-      - sonic
+      - meilisearch
     ports:
       - "3000:3000"
     networks:
@@ -42,15 +42,15 @@ services:
 
   meilisearch:
     container_name: meilisearch
-    image: getmeili/meilisearch:v0.25.2
+    image: getmeili/meilisearch:v1.1.1
     environment:
       - MEILI_ENV=${MEILI_ENV:-development}
     ports:
       - "7700:7700"
     networks:
-      - meilisearch
+      - calcnet
     volumes:
-      - ./data.ms:/data.ms
+      - ./meili_data:/meili_data
     restart: unless-stopped
 
 networks:
