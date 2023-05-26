@@ -36,6 +36,7 @@ export default async (job: Bull.Job<InboxJobData>): Promise<string> => {
 	logger.debug(JSON.stringify(info, null, 2));
 	//#endregion
 	const host = toPuny(new URL(signature.keyId).hostname);
+	logger.warn("Inbox by " + host);
 
 	// interrupt if blocked
 	const meta = await fetchMeta();
