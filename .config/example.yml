@@ -87,7 +87,7 @@ redis:
 #meilisearch:
 #  host: meilisearch
 #  port: 7700
-#  pass:
+#  apiKey:
 
 #   ┌───────────────┐
 #───┘ ID generation └───────────────────────────────────────────
