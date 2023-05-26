@@ -1,27 +1,26 @@
 <template>
 	<p v-if="note.cw != null" class="cw">
 		<MkA
-			v-if="!detailed && note.replyId"
-			:to="`#${note.replyId}`"
+			v-if="
+				conversation &&
+				note.renoteId == parentId
+			"
+			:to="`#${parentId}`"
 			behavior="browser"
 			class="reply-icon"
 			@click.stop
 		>
-			<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
+			<i class="ph-quotes ph-bold ph-lg"></i>
 		</MkA>
 		<MkA
-			v-if="
-				conversation &&
-				note.renoteId &&
-				note.renoteId != parentId &&
-				!note.replyId
-			"
-			:to="`/notes/${note.renoteId}`"
+			v-else-if="!detailed && note.replyId"
+			:to="`#${note.replyId}`"
+			behavior="browser"
 			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
 			@click.stop
 		>
-			<i class="ph-quotes ph-bold ph-lg"></i>
+			<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
 		</MkA>
 		<Mfm
 			v-if="note.cw != ''"
@@ -68,7 +67,19 @@
 				>
 				<template v-if="!note.cw">
 					<MkA
-						v-if="!detailed && note.replyId"
+						v-if="
+							conversation &&
+							note.renoteId == parentId
+						"
+						:to="`#${parentId}`"
+						behavior="browser"
+						class="reply-icon"
+						@click.stop
+					>
+						<i class="ph-quotes ph-bold ph-lg"></i>
+					</MkA>
+					<MkA
+						v-else-if="!detailed && note.replyId"
 						:to="`#${note.replyId}`"
 						behavior="browser"
 						v-tooltip="i18n.ts.jumpToPrevious"
@@ -76,19 +87,6 @@
 						@click.stop
 					>
 						<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
-					</MkA>
-					<MkA
-						v-if="
-							conversation &&
-							note.renoteId &&
-							note.renoteId != parentId &&
-							!note.replyId
-						"
-						:to="`/notes/${note.renoteId}`"
-						class="reply-icon"
-						@click.stop
-					>
-						<i class="ph-quotes ph-bold ph-lg"></i>
 					</MkA>
 				</template>
 				<Mfm

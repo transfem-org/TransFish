@@ -71,6 +71,7 @@
 			class="reply"
 			:conversation="replies"
 			:detailedView="true"
+			:parentId="appearNote.id"
 		/>
 		<MkLoading
 			v-else-if="tab === 'replies' && appearNote.repliesCount > 0"
@@ -84,6 +85,7 @@
 			class="reply"
 			:conversation="replies"
 			:detailedView="true"
+			:parentId="appearNote.id"
 		/>
 		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
 
