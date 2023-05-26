@@ -85,6 +85,10 @@ async function meilisearchStatus() {
 	if (meilisearch) {
 		return meilisearch.serverStats();
 	} else {
-		return null;
+		return {
+			health: "unconfigured",
+			size: 0,
+			indexed_count: 0,
+		};
 	}
 }

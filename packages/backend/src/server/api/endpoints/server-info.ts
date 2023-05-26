@@ -34,7 +34,6 @@ export default define(meta, paramDef, async () => {
 			total: fsStats[0].size,
 			used: fsStats[0].used,
 		},
-		meilisearch: meilisearchStats,
 	};
 });
 
@@ -42,6 +41,10 @@ async function meilisearchStatus() {
 	if (meilisearch) {
 		return meilisearch.serverStats();
 	} else {
-		return null;
+		return {
+			health: "unconfigured",
+			size: 0,
+			indexed_count: 0,
+		};
 	}
 }

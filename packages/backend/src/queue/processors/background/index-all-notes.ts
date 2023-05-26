@@ -1,8 +1,8 @@
 import type Bull from "bull";
 
-import { queueLogger } from "../../logger.js";
-import { Notes } from "@/models/index.js";
-import { MoreThan } from "typeorm";
+import {queueLogger} from "../../logger.js";
+import {Notes} from "@/models/index.js";
+import {MoreThan} from "typeorm";
 import {index} from "@/services/note/create.js";
 import {Note} from "@/models/entities/note.js";
 import meilisearch from "../../../db/meilisearch.js";
