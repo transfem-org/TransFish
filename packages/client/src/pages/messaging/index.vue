@@ -8,7 +8,7 @@
 		/></template>
 		<div>
 			<MkSpacer :content-max="800">
-				<swiper
+				<swiper :touch-angle="25" :threshold="10" :centeredSlides="true"
 					:modules="[Virtual]"
 					:space-between="20"
 					:virtual="true"

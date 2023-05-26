@@ -243,7 +243,7 @@ function focusFooter(ev) {
 </script>
 
 <style lang="scss" scoped>
-:deep(a) {
+:deep(a, button) {
 	position: relative;
 	z-index: 2;
 }
