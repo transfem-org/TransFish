@@ -150,8 +150,6 @@ export default hasConfig ? {
 
 		let indexingIDs = indexingBatch.map(note => note.id);
 
-		logger.info("Indexing notes in MeiliSearch: " + indexingIDs.join(","));
-
 		return posts.addDocuments(indexingBatch, {
 			primaryKey: "id"
 		});
