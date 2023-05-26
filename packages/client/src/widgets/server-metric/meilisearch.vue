@@ -2,9 +2,9 @@
 	<div class="ms_stats">
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
-			<p>Server Status: {{ available }}</p>
-			<p>Total: {{ bytes(total_size, 2) }}</p>
-			<p>Posts Indexed: {{ index_count }}</p>
+			<p>{{ i18n.ts._widgets.meiliStatus }}: {{ available }}</p>
+			<p>{{ i18n.ts._widgets.meiliSize }}: {{ bytes(total_size, 2) }}</p>
+			<p>{{ i18n.ts._widgets.meiliIndexCount }}: {{ index_count }}</p>
 		</div>
 	</div>
 	<br />
@@ -13,6 +13,7 @@
 <script lang="ts" setup>
 import {} from "vue";
 import bytes from "@/filters/bytes";
+import {i18n} from "@/i18n";
 
 const props = defineProps<{
 	meta: any; // TODO
