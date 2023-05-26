@@ -87,6 +87,7 @@ redis:
 #meilisearch:
 #  host: meilisearch
 #  port: 7700
+#  ssl: false
 #  apiKey:
 
 #   ┌───────────────┐

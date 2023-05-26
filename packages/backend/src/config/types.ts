@@ -39,11 +39,11 @@ export type Source = {
 		collection?: string;
 		bucket?: string;
 	};
-
 	meilisearch: {
 		host: string;
 		port: number;
 		apiKey?: string;
+		ssl: boolean
 	};
 
 	proxy?: string;

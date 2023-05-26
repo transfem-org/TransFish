@@ -20,9 +20,10 @@ const hasConfig =
 const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
 const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
 const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
+const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
 
 const client: MeiliSearch = new MeiliSearch({
-	host: `http://${host}:${port}`,
+	host: `${ssl ? "https" : "http"}://${host}:${port}`,
 	apiKey: auth,
 });
 
