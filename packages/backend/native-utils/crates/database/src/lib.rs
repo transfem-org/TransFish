@@ -22,12 +22,12 @@ mod tests {
     use crate::{error::Error, init_database};
 
     #[test]
-    fn error_uninitialized() {
+    fn unit_lib_error_uninitialized() {
         assert_eq!(get_database().unwrap_err(), Error::Uninitialized);
     }
 
     #[tokio::test]
-    async fn connect_in_memory_sqlite() -> Result<(), Error> {
+    async fn unit_lib_connect_in_memory_sqlite() -> Result<(), Error> {
         init_database("sqlite::memory:").await?;
         get_database()?;
         Ok(())

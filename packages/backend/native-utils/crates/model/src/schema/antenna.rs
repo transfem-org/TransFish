@@ -7,7 +7,7 @@ use utoipa::ToSchema;
 use super::{Keyword, Schema, StringList};
 use crate::entity::sea_orm_active_enums::AntennaSrcEnum;
 
-#[derive(Debug, JsonSchema, ToSchema)]
+#[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct Antenna {
     pub id: String,
@@ -33,9 +33,10 @@ pub struct Antenna {
     pub has_unread_note: bool,
 }
 
-#[derive(Debug, FromStr, JsonSchema, ToSchema)]
-#[serde(rename_all = "lowercase")]
-#[display(style = "lowercase")]
+#[derive(Clone, Debug, FromStr, PartialEq, Eq, JsonSchema, ToSchema)]
+#[serde(rename_all = "camelCase")]
+#[display(style = "camelCase")]
+#[display("'{}'")]
 pub enum AntennaSrc {
     Home,
     All,
@@ -62,10 +63,18 @@ pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| Antenna::validator());
 mod tests {
     use serde_json::json;
 
+    use crate::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::antenna::AntennaSrc};
+
     use super::VALIDATOR;
 
     #[test]
-    fn valid() {
+    fn unit_schema_src_from_active_enum() {
+        let src = AntennaSrc::try_from(AntennaSrcEnum::All).unwrap();
+        assert_eq!(src, AntennaSrc::All);
+    }
+
+    #[test]
+    fn unit_schema_antenna_valid() {
         let instance = json!({
             "id": "9f4x0bkx1u",
             "createdAt": "2023-05-24T06:56:14.323Z",
@@ -89,7 +98,7 @@ mod tests {
     }
 
     #[test]
-    fn invalid() {
+    fn unit_schema_antenna_invalid() {
         let instance = json!({
             // "id" is required
             "id": null,

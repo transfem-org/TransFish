@@ -5,7 +5,7 @@ use utoipa::ToSchema;
 
 use super::Schema;
 
-#[derive(Debug, JsonSchema, ToSchema)]
+#[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
 #[serde(rename_all = "camelCase")]
 pub struct App {
     pub id: String,
@@ -19,7 +19,7 @@ pub struct App {
 }
 
 /// This represents `permissions` in `packages/calckey-js/src/consts.ts`.
-#[derive(Debug, JsonSchema, ToSchema)]
+#[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
 pub enum Permission {
     #[serde(rename = "read:account")]
     ReadAccount,
@@ -96,12 +96,12 @@ pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| App::validator());
 #[cfg(test)]
 mod tests {
     #[test]
-    fn valid() {
+    fn unit_schema_app_valid() {
         todo!();
     }
 
     #[test]
-    fn invalid() {
+    fn unit_shcmea_app_invalid() {
         todo!();
     }
 }

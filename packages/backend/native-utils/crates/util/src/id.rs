@@ -27,7 +27,7 @@ mod tests {
     use crate::id;
 
     #[test]
-    fn can_generate() {
+    fn unit_id_can_generate() {
         assert_eq!(id::create_id(), Err(id::ErrorUninitialized));
         id::init_id(12);
         assert_eq!(id::create_id().unwrap().len(), 12);

@@ -15,7 +15,7 @@ mod tests {
     use super::gen_string;
 
     #[test]
-    fn can_generate_string() {
+    fn unit_random_can_generate_string() {
         assert_eq!(gen_string(16).len(), 16);
         assert_ne!(gen_string(16), gen_string(16));
         let s1 = thread::spawn(|| gen_string(16));

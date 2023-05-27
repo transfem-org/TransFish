@@ -6,6 +6,6 @@ use schemars::JsonSchema;
 use crate::error::Error;
 
 #[async_trait]
-trait Repository<T: JsonSchema> {
+pub trait Repository<T: JsonSchema> {
     async fn pack(self) -> Result<T, Error>;
 }
