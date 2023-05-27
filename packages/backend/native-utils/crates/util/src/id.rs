@@ -21,13 +21,13 @@ pub fn create_id() -> Result<String, ErrorUninitialized> {
 }
 
 #[cfg(test)]
-mod tests {
+mod unit_test {
     use std::thread;
 
     use crate::id;
 
     #[test]
-    fn unit_id_can_generate() {
+    fn can_generate_unique_ids() {
         assert_eq!(id::create_id(), Err(id::ErrorUninitialized));
         id::init_id(12);
         assert_eq!(id::create_id().unwrap().len(), 12);

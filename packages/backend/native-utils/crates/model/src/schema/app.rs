@@ -94,14 +94,14 @@ impl Schema<Self> for App {}
 pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| App::validator());
 
 #[cfg(test)]
-mod tests {
+mod unit_test {
     #[test]
-    fn unit_schema_app_valid() {
+    fn valid() {
         todo!();
     }
 
     #[test]
-    fn unit_shcmea_app_invalid() {
+    fn invalid() {
         todo!();
     }
 }

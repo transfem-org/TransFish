@@ -40,7 +40,7 @@
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version",
-    "cargo:unit": "cargo test --workspace unit",
-    "cargo:integration": "cargo test --workspace inte -- --test-threads=1"
+    "cargo:unit": "cargo test --workspace unit_test",
+    "cargo:integration": "cargo test --workspace it_test -- --test-threads=1"
   }
 }

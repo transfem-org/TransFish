@@ -81,8 +81,12 @@ async fn setup_model(db: &DatabaseConnection) {
     .expect("Unable to setup predefined models");
 }
 
-#[tokio::test]
-async fn inte_common_prepare_and_cleanup() {
-    prepare().await;
-    cleanup().await;
+mod it_test {
+    use super::{cleanup, prepare};
+
+    #[tokio::test]
+    async fn can_prepare_and_cleanup() {
+        prepare().await;
+        cleanup().await;
+    }
 }

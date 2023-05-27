@@ -60,7 +60,7 @@ pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| Antenna::validator());
 // ----
 
 #[cfg(test)]
-mod tests {
+mod unit_test {
     use serde_json::json;
 
     use crate::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::antenna::AntennaSrc};
@@ -68,13 +68,13 @@ mod tests {
     use super::VALIDATOR;
 
     #[test]
-    fn unit_schema_src_from_active_enum() {
+    fn src_from_active_enum() {
         let src = AntennaSrc::try_from(AntennaSrcEnum::All).unwrap();
         assert_eq!(src, AntennaSrc::All);
     }
 
     #[test]
-    fn unit_schema_antenna_valid() {
+    fn antenna_valid() {
         let instance = json!({
             "id": "9f4x0bkx1u",
             "createdAt": "2023-05-24T06:56:14.323Z",
@@ -98,7 +98,7 @@ mod tests {
     }
 
     #[test]
-    fn unit_schema_antenna_invalid() {
+    fn antenna_invalid() {
         let instance = json!({
             // "id" is required
             "id": null,

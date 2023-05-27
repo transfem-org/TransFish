@@ -9,13 +9,13 @@ pub fn gen_string(length: u16) -> String {
 }
 
 #[cfg(test)]
-mod tests {
+mod unit_test {
     use std::thread;
 
     use super::gen_string;
 
     #[test]
-    fn unit_random_can_generate_string() {
+    fn can_generate_unique_strings() {
         assert_eq!(gen_string(16).len(), 16);
         assert_ne!(gen_string(16), gen_string(16));
         let s1 = thread::spawn(|| gen_string(16));

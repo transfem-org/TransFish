@@ -17,12 +17,12 @@ pub fn get_database() -> Result<&'static DatabaseConnection, Error> {
 }
 
 #[cfg(test)]
-mod tests {
+mod unit_test {
     use super::get_database;
     use crate::error::Error;
 
     #[test]
-    fn unit_lib_error_uninitialized() {
+    fn error_uninitialized() {
         assert_eq!(get_database().unwrap_err(), Error::Uninitialized);
     }
 }
