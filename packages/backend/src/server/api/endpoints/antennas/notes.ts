@@ -81,7 +81,8 @@ export default define(meta, paramDef, async (ps, user) => {
 		.leftJoinAndSelect("renote.user", "renoteUser")
 		.leftJoinAndSelect("renoteUser.avatar", "renoteUserAvatar")
 		.leftJoinAndSelect("renoteUser.banner", "renoteUserBanner")
-		.andWhere("antennaNote.antennaId = :antennaId", { antennaId: antenna.id });
+		.andWhere("antennaNote.antennaId = :antennaId", { antennaId: antenna.id })
+		.andWhere("note.visibility != 'home'");
 
 	generateVisibilityQuery(query, user);
 	generateMutedUserQuery(query, user);
