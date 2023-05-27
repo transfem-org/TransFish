@@ -3,7 +3,7 @@ headlineMisskey: "Eine dezentralisierte Open-Source Social Media Plattform, die 
   immer gratis bleibt! 🚀"
 introMisskey: "Willkommen! Calckey ist eine dezentralisierte Open-Source Social Media
   Plattform, die für immer gratis bleibt!🚀"
-monthAndDay: "{day}.{month}."
+monthAndDay: "{month}/{day}"
 search: "Suchen"
 notifications: "Benachrichtigungen"
 username: "Nutzername"
@@ -66,7 +66,7 @@ import: "Import"
 export: "Export"
 files: "Dateien"
 download: "Herunterladen"
-driveFileDeleteConfirm: "Möchtest du die Datei „{name}“ wirklich löschen? Es wird
+driveFileDeleteConfirm: "Möchtest du die Datei \"{name}\" wirklich löschen? Es wird
   aus allen Beiträgen entfernt, die die Datei als Anhang enthalten."
 unfollowConfirm: "Bist du dir sicher, daß du {name} nicht mehr folgen möchtest?"
 exportRequested: "Du hast einen Export angefragt. Dies kann etwas Zeit in Anspruch
@@ -150,8 +150,8 @@ settingGuide: "Empfohlene Einstellungen"
 cacheRemoteFiles: "Cache für entfernte Dateien"
 cacheRemoteFilesDescription: "Ist diese Einstellung deaktiviert, so werden Dateien
   von anderen Servern direkt von dort geladen. Hierdurch wird Speicherplatz auf diesem
-  Server eingespart, aber durch die fehlende Generierung von Vorschaubildern mehr
-  Bandbreite benötigt."
+  Server eingespart, aber durch die fehlende Generierung von Vorschaubildern wird
+  mehr Bandbreite benötigt."
 flagAsBot: "Dieses Nutzerkonto als Bot kennzeichnen"
 flagAsBotDescription: "Aktiviere diese Option, falls dieses Nutzerkonto durch ein
   Programm gesteuert wird. Falls aktiviert, agiert es als Flag für andere Entwickler
@@ -166,7 +166,7 @@ autoAcceptFollowed: "Automatisches Genehmigen von Folgeanfragen von Benutzern, d
   Sie folgen"
 addAccount: "Nutzerkonto hinzufügen"
 loginFailed: "Anmeldung fehlgeschlagen"
-showOnRemote: "Ansicht auf dem Herkunftsserver"
+showOnRemote: "Zur Ansicht auf dem Herkunftsserver"
 general: "Allgemein"
 wallpaper: "Hintergrundbild"
 setWallpaper: "Hintergrundbild festlegen"
@@ -242,7 +242,7 @@ all: "Alles"
 subscribing: "Registrieren"
 publishing: "Veröffentlichen"
 notResponding: "Antwortet nicht"
-instanceFollowing: "Dem Server folgen"
+instanceFollowing: "Folgen auf dem Server"
 instanceFollowers: "Follower des Servers"
 instanceUsers: "Nutzer dieses Servers"
 changePassword: "Passwort ändern"
@@ -253,7 +253,7 @@ newPassword: "Neues Passwort"
 newPasswordRetype: "Neues Passwort bestätigen"
 attachFile: "Dateien anhängen"
 more: "Mehr!"
-featured: "Ausgewählt"
+featured: "Besonderheiten"
 usernameOrUserId: "Nutzername oder Nutzer-ID"
 noSuchUser: "Nutzer nicht gefunden"
 lookup: "Suche nach"
@@ -372,8 +372,9 @@ pinnedUsers: "Angeheftete Nutzer"
 pinnedUsersDescription: "Gib durch Leerzeichen getrennte Nutzer an, die an die \"\
   Erkunden\"-Seite angeheftet werden sollen."
 pinnedPages: "Angeheftete Nutzer-Seiten"
-pinnedPagesDescription: "Geben Sie die Pfade der Nutzer-Seiten, getrennt durch Zeilenumbrüche,
-  ein, die Sie an die oberste Startseite dieses Servers anheften möchten."
+pinnedPagesDescription: "Geben Sie die Dateipfade, getrennt durch Zeilenumbrüche,
+  derjenigen Seiten ein, die Sie an die obere Seitenbegrenzung des Servers anpinnen
+  möchten."
 pinnedClipId: "ID des anzuheftenden Clips"
 pinnedNotes: "Angeheftete Beiträge"
 hcaptcha: "hCaptcha"
@@ -585,7 +586,7 @@ deleteAllFiles: "Alle Dateien löschen"
 deleteAllFilesConfirm: "Möchtest du wirklich alle Dateien löschen?"
 removeAllFollowing: "Allen gefolgten Nutzern entfolgen"
 removeAllFollowingDescription: "Wenn Sie dies ausführen, werden alle Konten von {host}
-  entfolgt. Bitte führen Sie dies aus, wenn der Server z.B. nicht mehr existiert."
+  entfolgt. Bitte führen Sie dies aus, wenn der Server beispielsweise nicht mehr existiert."
 userSuspended: "Dieser Nutzer wurde gesperrt."
 userSilenced: "Dieser Nutzer wurde instanzweit stummgeschaltet."
 yourAccountSuspendedTitle: "Dieses Nutzerkonto ist gesperrt"
@@ -922,7 +923,7 @@ overridedDeviceKind: "Gerätetyp"
 smartphone: "Smartphone"
 tablet: "Tablet"
 auto: "Automatisch"
-themeColor: "Farbe der Laufschrift (Ticker)"
+themeColor: "Farbe der Ticker-Laufschrift"
 size: "Größe"
 numberOfColumn: "Spaltenanzahl"
 searchByGoogle: "Suchen"
@@ -958,7 +959,7 @@ isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwalte
 typeToConfirm: "Bitte gib zur Bestätigung {x} ein"
 deleteAccount: "Nutzerkonto löschen"
 document: "Dokumentation"
-numberOfPageCache: "Seitencachegröße"
+numberOfPageCache: "Anzahl der zwischengespeicherten Seiten"
 numberOfPageCacheDescription: "Das Erhöhen dieses Caches führt zu einer angenehmerern
   Nutzererfahrung, erhöht aber Serverlast und Arbeitsspeicherauslastung."
 logoutConfirm: "Wirklich abmelden?"
@@ -967,7 +968,7 @@ statusbar: "Statusleiste"
 pleaseSelect: "Wähle eine Option"
 reverse: "Umkehren"
 colored: "Farbig"
-refreshInterval: "Aktualisierungsrate "
+refreshInterval: "Aktualisierungsintervall "
 label: "Beschriftung"
 type: "Art"
 speed: "Geschwindigkeit"
@@ -982,7 +983,7 @@ cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein
   Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
-enableAutoSensitive: "NSFW-Automarkierung"
+enableAutoSensitive: "Selbstständige NSFW-Kennzeichnung"
 enableAutoSensitiveDescription: "Erlaubt, wo möglich, die automatische Erkennung und
   Kennzeichnung von NSFW-Medien durch maschinelles Lernen. Auch wenn diese Option
   deaktiviert ist, kann sie über den Server aktiviert sein."
@@ -1001,7 +1002,7 @@ _sensitiveMediaDetection:
   sensitivityDescription: "Durch das Senken der Sensitivität kann die Anzahl an Fehlerkennungen
     (sog. false positives) reduziert werden. Durch ein Erhöhen dieser kann die Anzahl
     an verpassten Erkennungen (sog. false negatives) reduziert werden."
-  setSensitiveFlagAutomatically: "Als NSFW markieren"
+  setSensitiveFlagAutomatically: "Als NSFW kennzeichnen"
   setSensitiveFlagAutomaticallyDescription: "Die Resultate der internen Erkennung
     werden beibehalten, auch wenn diese Option deaktiviert ist."
   analyzeVideos: "Videoanalyse aktivieren"
@@ -1056,7 +1057,7 @@ _email:
     title: "Du hast eine Follow-Anfrage erhalten"
 _plugin:
   install: "Plugins installieren"
-  installWarn: "Installiere bitte nur vertrauenswürdige Plugins."
+  installWarn: "Bitte nur vertrauenswürdige Plugins installieren."
   manage: "Plugins verwalten"
 _preferencesBackups:
   list: "Erstellte Backups"
@@ -1097,8 +1098,8 @@ _aboutMisskey:
     Personen sehr. Danke! 🥰"
   patrons: "UnterstützerInnen"
 _nsfw:
-  respect: "Als NSFW markierte Bilder verbergen"
-  ignore: "Als NSFW markierte Bilder nicht verbergen"
+  respect: "Mit NSFW gekennzeichnete Bilder verbergen"
+  ignore: "Mit NSFW gekennzeichnete Bilder nicht verbergen"
   force: "Alle Medien verbergen"
 _mfm:
   cheatSheet: "MFM Spickzettel"
@@ -1183,6 +1184,10 @@ _mfm:
   scaleDescription: Skaliere den Inhalt um einen bestimmten Betrag.
   foregroundDescription: Ändern der Vordergrundfarbe von Text.
   backgroundDescription: Ändern der Hintergrundfarbe von Text
+  play: MFM abspielen
+  stop: MFM anhalten
+  warn: MFM können schnell bewegte oder anderweitig auffallende Animationen enthalten
+  alwaysPlay: Alle animierten MFM immer automatisch abspielen
 _instanceTicker:
   none: "Nie anzeigen"
   remote: "Für Nutzer eines anderen Servers anzeigen"
@@ -1225,7 +1230,7 @@ _wordMute:
   hard: "Schwer"
   mutedNotes: "Stummgeschaltete Beiträge"
 _instanceMute:
-  instanceMuteDescription: "Schaltet alle Beiträge/boosts stumm, die von den gelisteten
+  instanceMuteDescription: "Schaltet alle Beiträge/Boosts stumm, die von den gelisteten
     Servern stammen, inklusive Antworten von Nutzern an einen Nutzer eines stummgeschalteten
     Servers."
   instanceMuteDescription2: "Mit Zeilenumbrüchen trennen"
@@ -1896,7 +1901,9 @@ _notification:
     followBack: "folgt dir nun auch"
     reply: "Antworten"
     renote: "Renote"
-  voted: Haben an Ihrer Umfrage teilgenommen
+  voted: haben an Ihrer Umfrage teilgenommen
+  reacted: hat auf Ihren Beitrag reagiert
+  renoted: hat Ihren Beitrag geteilt
 _deck:
   alwaysShowMainColumn: "Hauptspalte immer zeigen"
   columnAlign: "Spaltenausrichtung"
@@ -1937,9 +1944,9 @@ enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
-hiddenTagsDescription: 'Gib hier die Hashtags (ohne #) an, die du vom "Trending and
-  Explore" ausschließen möchtest. Versteckte Hashtags sind immer noch über andere
-  Wege auffindbar.'
+hiddenTagsDescription: 'Geben sie hier die Schlagworte (ohne #hashtag) an, die vom
+  "Trending and Explore" ausgeschlossen werden sollen. Versteckte Schlagworte sind
+  immer noch über andere Wege auffindbar.'
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
@@ -1947,7 +1954,7 @@ antennaInstancesDescription: Geben sie einen Server-Namen pro Zeile ein
 secureModeInfo: Bei Anfragen an andere Server nicht ohne Nachweis zurücksenden.
 renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
-noInstances: Es gibt keine Server
+noInstances: Keine Server gefunden
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
   eingestufte Server mit diesem Server verknüpft werden. Alle Beiträge werden für
   die Öffentlichkeit verborgen.
@@ -2061,6 +2068,23 @@ jumpToPrevious: Zum Vorherigen springen
 silencedWarning: Diese Meldung wird angezeigt, weil diese Nutzer von Servern stammen,
   die Ihr Administrator abgeschaltet hat, so dass es sich möglicherweise um Spam handelt.
 _experiments:
-  enablePostEditing: Beitragsbearbeitung einschalten
+  enablePostEditing: Beitragsbearbeitung ermöglichen
+  title: Funktionstests
+  postEditingCaption: Zeigt die Option für Nutzer an, ihre bestehenden Beiträge über
+    das Menü "Beitragsoptionen" zu bearbeiten
 noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
   die Funktion von Calckey stört.
+indexFrom: Index ab Beitrags-ID (leer lassen, um jeden Beitrag zu indizieren)
+indexNotice: Jetzt wird indiziert. Dies wird wahrscheinlich eine Weile dauern, bitte
+  starten Sie Ihren Server für mindestens eine Stunde nicht neu.
+customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
+  zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
+  \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
+  geschrieben.\nZum Beispiel wird\n\\newcommand{\\add}[2]{#1 + #2} \\add{3}{foo} um
+  3 + foo erweitert.\nDie geschweiften Klammern, die den Makronamen umgeben, können
+  in runde oder eckige Klammern geändert werden. Dies hat Auswirkungen auf die Klammern,
+  die für die Argumente verwendet werden. Pro Zeile kann ein (und nur ein) Makro definiert
+  werden, und Sie können die Zeile nicht mitten in der Definition umbrechen. Ungültige
+  Zeilen werden einfach ignoriert. Es werden nur einfache Funktionen zur Substitution
+  von Zeichenketten unterstützt; erweiterte Syntax, wie z. B. bedingte Verzweigungen,
+  können hier nicht verwendet werden."
