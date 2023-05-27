@@ -946,7 +946,7 @@ recentNHours: "Die letzten {n} Stunden"
 recentNDays: "Die letzten {n} Tage"
 noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
-recommended: "Admin-Tipps TL"
+recommended: "Empfehlungen TL"
 check: "Kontrolle"
 driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität
@@ -1350,7 +1350,7 @@ _tutorial:
     der/die auf diesem Server registriert ist."
   step5_5: "Die Social-Timeline {icon} ist eine Kombination aus der Home-Timeline
     und der Local-Timeline."
-  step5_6: "In der {icon} \"Admin-Tipps\"-Timeline können sie Beiträge von Servern
+  step5_6: "In der {icon} \"Empfehlungen\"-Timeline können sie Beiträge von Servern
     sehen, die von den Server-Administratoren vorgeschlagen werden."
   step5_7: "In der {icon} Global-Timeline können Sie Beiträge von allen verknüpften
     Servern aus dem Fediverse sehen."
@@ -1566,7 +1566,7 @@ _timelines:
   local: "Local-TL"
   social: "Social-TL"
   global: "Global-TL"
-  recommended: Admin-Tipps-TL
+  recommended: Empfehlungen-TL
 _pages:
   newPage: "Neue Seite erstellen"
   editPage: "Seite bearbeiten"
@@ -1927,7 +1927,7 @@ _deck:
     direct: "Direktnachrichten"
   renameProfile: Arbeitsbereich umbenennen
   nameAlreadyExists: Der Name für den Arbeitsbereich ist bereits vorhanden.
-enableRecommendedTimeline: '"Admin-Tipps"-Timline einschalten'
+enableRecommendedTimeline: '"Empfehlungen"-Timline einschalten'
 secureMode: Sicherer Modus (Autorisierter Abruf)
 instanceSecurity: Server-Sicherheit
 manageGroups: Gruppen verwalten
@@ -2029,7 +2029,7 @@ customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (
   die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
   werden, wenn ein Benutzer die Seite (neu) lädt.
 recommendedInstancesDescription: Empfohlene Server, die durch Zeilenumbrüche getrennt
-  sind, werden in der "Admin-Tipps"-Timeline angezeigt. Fügen Sie NICHT "https://"
+  sind, werden in der "Empfehlungen"-Timeline angezeigt. Fügen Sie NICHT "https://"
   hinzu, sondern NUR die Domain.
 sendModMail: Moderationshinweis senden
 moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt,
