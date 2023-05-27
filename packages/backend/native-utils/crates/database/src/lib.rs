@@ -19,17 +19,10 @@ pub fn get_database() -> Result<&'static DatabaseConnection, Error> {
 #[cfg(test)]
 mod tests {
     use super::get_database;
-    use crate::{error::Error, init_database};
+    use crate::error::Error;
 
     #[test]
     fn unit_lib_error_uninitialized() {
         assert_eq!(get_database().unwrap_err(), Error::Uninitialized);
-    }
-
-    #[tokio::test]
-    async fn unit_lib_connect_in_memory_sqlite() -> Result<(), Error> {
-        init_database("sqlite::memory:").await?;
-        get_database()?;
-        Ok(())
     }
 }

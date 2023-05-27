@@ -39,6 +39,8 @@
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
-    "version": "napi version"
+    "version": "napi version",
+    "cargo:unit": "cargo test --workspace unit",
+    "cargo:integration": "cargo test --workspace inte -- --test-threads=1"
   }
 }
