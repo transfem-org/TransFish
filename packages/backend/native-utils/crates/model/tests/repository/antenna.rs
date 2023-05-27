@@ -11,7 +11,6 @@ mod it_test {
     #[tokio::test]
     async fn can_pack() {
         prepare().await;
-
         let db = database::get_database().unwrap();
 
         let alice_antenna = user::Entity::find()
@@ -58,5 +57,10 @@ mod it_test {
         );
 
         cleanup().await;
+    }
+
+    #[tokio::test]
+    async fn unread_note() {
+        todo!();
     }
 }
