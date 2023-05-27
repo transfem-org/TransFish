@@ -235,7 +235,7 @@ default: "Standard"
 defaultValueIs: "Der Standardwert ist: {value}"
 noCustomEmojis: "Es gibt keine benutzerdefinierten Emoji"
 noJobs: "Keine Jobs vorhanden"
-federating: "Eine Verknüpfung wird hergestellt"
+federating: "Eine Verbindung zum Server wird hergestellt"
 blocked: "Blockiert"
 suspended: "suspendiert"
 all: "Alles"
@@ -703,7 +703,7 @@ openInSideView: "In Seitenansicht öffnen"
 defaultNavigationBehaviour: "Standardnavigationsverhalten"
 editTheseSettingsMayBreakAccount: "Bei Bearbeitung dieser Einstellungen besteht die
   Gefahr, dein Nutzerkonto zu beschädigen."
-instanceTicker: "Serveranzeige zu Beiträgen"
+instanceTicker: "Zeige zu einem Beitrag den Herkunfts-Server an"
 waitingFor: "Warte auf {x}"
 random: "Zufällig"
 system: "System"
@@ -835,7 +835,7 @@ active: "Aktiv"
 offline: "Offline"
 notRecommended: "Nicht empfohlen"
 botProtection: "Schutz vor Bots"
-instanceBlocking: "Verknüpfte Server verwalten"
+instanceBlocking: "Verbundene Server verwalten"
 selectAccount: "Nutzerkonto auswählen"
 switchAccount: "Konto wechseln"
 enabled: "Aktiviert"
@@ -1352,8 +1352,8 @@ _tutorial:
     und der Local-Timeline."
   step5_6: "In der {icon} \"Interessantes\"-Timeline können sie Beiträge von Servern
     sehen, die von den Server-Administratoren vorgeschlagen werden."
-  step5_7: "In der {icon} Global-Timeline können Sie Beiträge von jedem anderen verbundenen
-    Server im fediverse sehen."
+  step5_7: "In der {icon} Global-Timeline können Sie Beiträge von allen verknüpften
+    Servern aus dem Fediverse sehen."
   step6_1: "Also, was ist das hier?"
   step6_2: "Mit Deiner Anmeldung zu Calckey bist Du gleichzeitig einem Portal zum
     Fediverse beigetreten, einem Netzwerk mit Tausenden von, miteinander verbundenen,
@@ -1896,6 +1896,7 @@ _notification:
     followBack: "folgt dir nun auch"
     reply: "Antworten"
     renote: "Renote"
+  voted: Haben an Ihrer Umfrage teilgenommen
 _deck:
   alwaysShowMainColumn: "Hauptspalte immer zeigen"
   columnAlign: "Spaltenausrichtung"
@@ -1928,7 +1929,7 @@ _deck:
   nameAlreadyExists: Der Name für den Arbeitsbereich ist bereits vorhanden.
 enableRecommendedTimeline: '"Interessantes"-Timline einschalten'
 secureMode: Sicherer Modus (Autorisierter Abruf)
-instanceSecurity: Serversicherheit
+instanceSecurity: Server-Sicherheit
 manageGroups: Gruppen verwalten
 noThankYou: Nein, danke
 privateMode: Privater Modus
@@ -1942,7 +1943,7 @@ hiddenTagsDescription: 'Gib hier die Hashtags (ohne #) an, die du vom "Trending 
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
-antennaInstancesDescription: Nenne einen Server-Namen pro Zeile
+antennaInstancesDescription: Geben sie einen Server-Namen pro Zeile ein
 secureModeInfo: Bei Anfragen an andere Server nicht ohne Nachweis zurücksenden.
 renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
@@ -1981,7 +1982,7 @@ moveToLabel: 'Nutzerkonto zu dem sie umziehen:'
 moveAccountDescription: 'Dieser Vorgang kann nicht rückgängig gemacht werden! Stellen
   sie vor dem Umzug dieses Nutzerkontos sicher, dass Sie einen Namen für Ihr neues
   Nutzerkonto eingerichtet haben. Bitte geben sie die Bezeichnung des neuen Nutzerkontos
-  wie folgt ein: @name@instance.xyz'
+  wie folgt ein: @name@server.xyz'
 findOtherInstance: Einen anderen Server finden
 sendPushNotificationReadMessage: Löschung der Push-Benachrichtigungen sobald die entsprechenden
   Benachrichtigungen oder Beiträge gelesen wurden.
@@ -2018,9 +2019,9 @@ adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wiss
   mehr normal funktionieren. Bitte stellen Sie sicher, dass Ihr CSS ordnungsgemäß
   funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
 customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
-allowedInstancesDescription: Hosts von Servern, die für den Verbund auf die Liste
-  vertrauenswürdiger Server gesetzt werden sollen, werden jeweils durch eine neue
-  Zeile getrennt (gilt nur im privaten Modus).
+allowedInstancesDescription: Hosts von Servern, die zur Verbindung auf die Liste vertrauenswürdiger
+  Server gesetzt werden sollen, werden jeweils durch eine neue Zeile getrennt eingegeben
+  (gilt nur im privaten Modus).
 migration: Migration
 updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
 showAdminUpdates: Anzeigen, dass eine neue Calckey-Version verfügbar ist (nur Administrator)
@@ -2059,3 +2060,7 @@ accessibility: Erreichbarkeit
 jumpToPrevious: Zum Vorherigen springen
 silencedWarning: Diese Meldung wird angezeigt, weil diese Nutzer von Servern stammen,
   die Ihr Administrator abgeschaltet hat, so dass es sich möglicherweise um Spam handelt.
+_experiments:
+  enablePostEditing: Beitragsbearbeitung einschalten
+noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
+  die Funktion von Calckey stört.
