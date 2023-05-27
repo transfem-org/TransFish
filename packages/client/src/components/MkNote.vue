@@ -424,12 +424,12 @@ function onContextmenu(ev: MouseEvent): void {
 						copyToClipboard(`${url}${notePage(appearNote)}`);
 					},
 				},
-				note.user.host != null
+				appearNote.user.host != null
 					? {
 							type: "a",
 							icon: "ph-arrow-square-up-right ph-bold ph-lg",
 							text: i18n.ts.showOnRemote,
-							href: note.url ?? note.uri ?? "",
+							href: appearNote.url ?? appearNote.uri ?? "",
 							target: "_blank",
 					  }
 					: undefined,
@@ -521,28 +521,28 @@ function setPostExpanded(val: boolean) {
 }
 
 const accessibleLabel = computed(() => {
-	let label = `${props.note.user.username}; `;
-	if (props.note.renote) {
-		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
-		if (props.note.renote.cw) {
-			label += `${i18n.t("cw")}: ${props.note.renote.cw}; `;
+	let label = `${appearNote.user.username}; `;
+	if (appearNote.renote) {
+		label += `${i18n.t("renoted")} ${appearNote.renote.user.username}; `;
+		if (appearNote.renote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.renote.cw}; `;
 			if (postIsExpanded.value) {
-				label += `${props.note.renote.text}; `;
+				label += `${appearNote.renote.text}; `;
 			}
 		} else {
-			label += `${props.note.renote.text}; `;
+			label += `${appearNote.renote.text}; `;
 		}
 	} else {
-		if (props.note.cw) {
-			label += `${i18n.t("cw")}: ${props.note.cw}; `;
+		if (appearNote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.cw}; `;
 			if (postIsExpanded.value) {
-				label += `${props.note.text}; `;
+				label += `${appearNote.text}; `;
 			}
 		} else {
-			label += `${props.note.text}; `;
+			label += `${appearNote.text}; `;
 		}
 	}
-	const date = new Date(props.note.createdAt);
+	const date = new Date(appearNote.createdAt);
 	label += `${date.toLocaleTimeString()}`;
 	return label;
 });
