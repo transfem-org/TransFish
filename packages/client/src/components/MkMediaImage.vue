@@ -1,7 +1,6 @@
 <template>
 	<button v-if="hide" class="qjewsnkg" @click="hide = false">
 		<ImgWithBlurhash
-			class="bg"
 			:hash="image.blurhash"
 			:title="image.comment"
 			:alt="image.comment"
@@ -82,20 +81,17 @@ watch(
 	all: unset;
 	position: relative;
 
-	> .bg {
-		filter: brightness(0.5);
-	}
-
 	> .text {
-		position: absolute;
-		left: 0;
-		top: 0;
+		position: relative;
 		width: 100%;
 		height: 100%;
 		z-index: 1;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: 30px;
+		box-sizing: border-box;
+		background: rgba(0,0,0,0.5);
 
 		> .wrapper {
 			display: table-cell;
@@ -112,7 +108,6 @@ watch(
 
 .gqnyydlz {
 	position: relative;
-	//box-shadow: 0 0 0 1px var(--divider) inset;
 	background: var(--bg);
 
 	> .hide {
