@@ -44,7 +44,7 @@
 						><i class="ph-house ph-bold ph-lg"></i
 					></span>
 					<span v-if="visibility === 'followers'"
-						><i class="ph-lock-simple-open ph-bold ph-lg"></i
+						><i class="ph-lock ph-bold ph-lg"></i
 					></span>
 					<span v-if="visibility === 'specified'"
 						><i class="ph-envelope-simple-open ph-bold ph-lg"></i
