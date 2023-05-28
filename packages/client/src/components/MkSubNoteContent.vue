@@ -390,6 +390,7 @@ function focusFooter(ev) {
 			background: var(--panel);
 			mask: linear-gradient(to top, var(--gradient));
 			-webkit-mask: linear-gradient(to top, var(--gradient));
+			transition: background .2s;
 		}
 	}
 }
