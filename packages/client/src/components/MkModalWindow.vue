@@ -26,6 +26,7 @@
 				<div ref="headerEl" class="header">
 					<button
 						v-if="withOkButton"
+						:aria-label="i18n.t('close')"
 						class="_button"
 						@click="$emit('close')"
 					>
@@ -36,6 +37,7 @@
 					</span>
 					<button
 						v-if="!withOkButton"
+						:aria-label="i18n.t('close')"
 						class="_button"
 						@click="$emit('close')"
 					>
@@ -43,6 +45,7 @@
 					</button>
 					<button
 						v-if="withOkButton"
+						:aria-label="i18n.t('ok')"
 						class="_button"
 						:disabled="okButtonDisabled"
 						@click="$emit('ok')"
@@ -61,6 +64,7 @@
 <script lang="ts" setup>
 import { FocusTrap } from "focus-trap-vue";
 import MkModal from "./MkModal.vue";
+import { i18n } from "@/i18n";
 
 const props = withDefaults(
 	defineProps<{
