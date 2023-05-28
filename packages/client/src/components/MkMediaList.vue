@@ -6,13 +6,9 @@
 			:media="media"
 		/>
 		<div
-			v-if="mediaList.filter((media) => previewable(media)).length > 0"
+			v-if="previewableCount > 0"
 			class="grid-container"
-			:data-count="
-				mediaList.filter((media) => previewable(media)).length < 5
-				? mediaList.filter((media) => previewable(media)).length
-				: null
-			"
+			:data-count="previewableCount < 5 ? previewableCount : null"
 			:class="{ dmWidth: inDm }"
 		>
 			<div
@@ -193,6 +189,7 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 		FILE_TYPE_BROWSERSAFE.includes(file.type)
 	);
 };
+const previewableCount = props.mediaList.filter((media) => previewable(media)).length;
 </script>
 
 <style lang="scss" scoped>
