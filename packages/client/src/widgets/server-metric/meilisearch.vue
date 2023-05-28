@@ -11,17 +11,32 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
+import {onBeforeUnmount, onMounted} from "vue";
 import bytes from "@/filters/bytes";
 import {i18n} from "@/i18n";
 
 const props = defineProps<{
-	meta: any; // TODO
+	connection: any;
+	meta: any;
 }>();
 
-const total_size = $computed(() => props.meta.meilisearch.size);
-const index_count = $computed(() => props.meta.meilisearch.indexed_count);
-const available = $computed(() => props.meta.meilisearch.health);
+let total_size: number = $ref(0);
+let index_count: number = $ref(0);
+let available: string = $ref("unavailable");
+
+function onStats(stats) {
+	total_size = stats.meilisearch.size;
+	index_count = stats.meilisearch.indexed_count;
+	available = stats.meilisearch.available;
+}
+
+onMounted(() => {
+	props.connection.on("stats", onStats);
+});
+
+onBeforeUnmount(() => {
+	props.connection.off("stats", onStats);
+});
 </script>
 
 <style lang="scss" scoped>
