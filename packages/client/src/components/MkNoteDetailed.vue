@@ -17,10 +17,10 @@
 			:note="note"
 			:detailedView="true"
 		/>
-		<MkLoading v-else-if="appearNote.reply" mini />
+		<MkLoading v-else-if="note.reply" mini />
 		<MkNoteSub
-			v-if="appearNote.reply"
-			:note="appearNote.reply"
+			v-if="note.reply"
+			:note="note.reply"
 			class="reply-to"
 			:detailedView="true"
 		/>
@@ -29,21 +29,21 @@
 			ref="noteEl"
 			@contextmenu.stop="onContextmenu"
 			tabindex="-1"
-			:note="appearNote"
+			:note="note"
 			detailedView
 		></MkNote>
 
 		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
 			<option value="replies">
 				<!-- <i class="ph-arrow-u-up-left ph-bold ph-lg"></i> -->
-				<span v-if="appearNote.repliesCount > 0" class="count">{{
-					appearNote.repliesCount
+				<span v-if="note.repliesCount > 0" class="count">{{
+					note.repliesCount
 				}}</span>
 				{{ i18n.ts._notification._types.reply }}
 			</option>
-			<option value="renotes" v-if="appearNote.renoteCount > 0">
+			<option value="renotes" v-if="note.renoteCount > 0">
 				<!-- <i class="ph-repeat ph-bold ph-lg"></i> -->
-				<span class="count">{{ appearNote.renoteCount }}</span>
+				<span class="count">{{ note.renoteCount }}</span>
 				{{ i18n.ts._notification._types.renote }}
 			</option>
 			<option value="reactions" v-if="reactionsCount > 0">
@@ -71,10 +71,10 @@
 			class="reply"
 			:conversation="replies"
 			:detailedView="true"
-			:parentId="appearNote.id"
+			:parentId="note.id"
 		/>
 		<MkLoading
-			v-else-if="tab === 'replies' && appearNote.repliesCount > 0"
+			v-else-if="tab === 'replies' && note.repliesCount > 0"
 		/>
 
 		<MkNoteSub
@@ -85,7 +85,7 @@
 			class="reply"
 			:conversation="replies"
 			:detailedView="true"
-			:parentId="appearNote.id"
+			:parentId="note.id"
 		/>
 		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
 
@@ -104,7 +104,7 @@
 		/>
 		<!-- </MkPagination> -->
 		<MkLoading
-			v-else-if="tab === 'renotes' && appearNote.renoteCount > 0"
+			v-else-if="tab === 'renotes' && note.renoteCount > 0"
 		/>
 
 		<div v-if="tab === 'clips' && clips.length > 0" class="_content clips">
@@ -132,7 +132,7 @@
 
 		<MkReactedUsers
 			v-if="tab === 'reactions' && reactionsCount > 0"
-			:note-id="appearNote.id"
+			:note-id="note.id"
 		></MkReactedUsers>
 	</div>
 	<div v-else class="_panel muted" @click="muted.muted = false">
@@ -217,23 +217,11 @@ if (noteViewInterruptors.length > 0) {
 	});
 }
 
-const isRenote =
-	note.renote != null &&
-	note.text == null &&
-	note.fileIds.length === 0 &&
-	note.poll == null;
-
 const el = ref<HTMLElement>();
 const noteEl = $ref();
 const menuButton = ref<HTMLElement>();
-const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
-const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
-let appearNote = $computed(() =>
-	isRenote ? (note.renote as misskey.entities.Note) : note
-);
-const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
 const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
@@ -263,14 +251,14 @@ const keymap = {
 
 useNoteCapture({
 	rootEl: el,
-	note: $$(appearNote),
+	note: $$(note),
 	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
 	os.post({
-		reply: appearNote,
+		reply: note,
 		animation: !viaKeyboard,
 	}).then(() => {
 		focus();
@@ -284,7 +272,7 @@ function react(viaKeyboard = false): void {
 		reactButton.value,
 		(reaction) => {
 			os.api("notes/reactions/create", {
-				noteId: appearNote.id,
+				noteId: note.id,
 				reaction: reaction,
 			});
 		},
@@ -355,27 +343,27 @@ function blur() {
 
 directReplies = null;
 os.api("notes/children", {
-	noteId: appearNote.id,
+	noteId: note.id,
 	limit: 30,
 	depth: 12,
 }).then((res) => {
 	res = res.reduce((acc, note) => {
-		if (note.userId == appearNote.userId) {
+		if (note.userId == note.userId) {
 			return [...acc, note];
 		}
 		return [note, ...acc];
 	}, []);
 	replies.value = res;
 	directReplies = res
-		.filter((note) => note.replyId === appearNote.id)
+		.filter((note) => note.replyId === note.id)
 		.reverse();
-	directQuotes = res.filter((note) => note.renoteId === appearNote.id);
+	directQuotes = res.filter((note) => note.renoteId === note.id);
 });
 
 conversation = null;
-if (appearNote.replyId) {
+if (note.replyId) {
 	os.api("notes/conversation", {
-		noteId: appearNote.replyId,
+		noteId: note.replyId,
 		limit: 30,
 	}).then((res) => {
 		conversation = res.reverse();
@@ -385,14 +373,14 @@ if (appearNote.replyId) {
 
 clips = null;
 os.api("notes/clips", {
-	noteId: appearNote.id,
+	noteId: note.id,
 }).then((res) => {
 	clips = res;
 });
 
 // const pagination = {
 // 	endpoint: "notes/renotes",
-// 	noteId: appearNote.id,
+// 	noteId: note.id,
 // 	limit: 10,
 // };
 
@@ -402,7 +390,7 @@ renotes = null;
 function loadTab() {
 	if (tab === "renotes" && !renotes) {
 		os.api("notes/renotes", {
-			noteId: appearNote.id,
+			noteId: note.id,
 			limit: 100,
 		}).then((res) => {
 			renotes = res;
@@ -414,7 +402,7 @@ async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
 	const { type, id, body } = noteData;
 
 	let found = -1;
-	if (id === appearNote.id) {
+	if (id === note.id) {
 		found = 0;
 	} else {
 		for (let i = 0; i < replies.value.length; i++) {
