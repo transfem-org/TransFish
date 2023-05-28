@@ -179,7 +179,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		// Use meilisearch to fetch and step through all search results that could match the requirements
 		const ids = [];
 		while (true) {
-			const results = await meilisearch.search(ps.query, chunkSize, start);
+			const results = await meilisearch.search(ps.query, chunkSize, start, me);
 
 			start += chunkSize;
 
