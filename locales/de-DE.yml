@@ -1178,6 +1178,8 @@ _mfm:
   background: Hintergrundfarbe
   positionDescription: Inhalt um einen bestimmten Betrag verschieben.
   position: Position
+  cropDescription: Inhalt zuschneiden.
+  crop: Zuschneiden
   scale: Maßstab
   scaleDescription: Skaliere den Inhalt um einen bestimmten Betrag.
   foregroundDescription: Ändern der Vordergrundfarbe von Text.

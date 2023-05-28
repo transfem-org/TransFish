@@ -1270,6 +1270,8 @@ _mfm:
   fadeDescription: "Fades content in and out."
   position: "Position"
   positionDescription: "Move content by a specified amount."
+  crop: "Crop"
+  cropDescription: "Crop content."
   scale: "Scale"
   scaleDescription: "Scale content by a specified amount."
   foreground: "Foreground color"
