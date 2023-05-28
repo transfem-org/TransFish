@@ -122,6 +122,7 @@ onMounted(() => {
 	&.mini {
 		:deep(.plyr:not(:fullscreen)) {
 			min-width: unset !important;
+			.plyr__control--overlaid,
 			.plyr__progress__container,
 			.plyr__volume,
 			[data-plyr="fullscreen"] {
