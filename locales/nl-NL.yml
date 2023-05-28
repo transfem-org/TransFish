@@ -648,3 +648,38 @@ objectStorageUseSSLDesc: Schakel dit uit als je geen HTTPS voor je API connectie
 objectStorageUseProxy: Verbind over Proxy
 objectStorageUseProxyDesc: Schakel dit uit als je geen Proxy voor je API connecties
   gebruikt
+sounds: Geluiden
+lastUsedDate: Laatst gebruikt op
+installedDate: Geautoriseerd op
+sort: Sorteren
+output: Uitvoer
+script: Script
+popout: Pop-out
+descendingOrder: Aflopend
+showInPage: Toon in de pagina
+chooseEmoji: Kies een emoji
+ascendingOrder: Oplopend
+volume: Volume
+masterVolume: Master volume
+details: Details
+unableToProcess: Deze operatie kon niet worden voltooid
+nothing: Niks te zien hier
+scratchpad: Kladblok
+recentUsed: Recentelijk gebruikt
+install: Installeer
+uninstall: Verwijderen
+installedApps: Geautoriseerde Applicaties
+state: Status
+updateRemoteUser: Update externe gebruikersinformatie
+listen: Luister
+none: Geen
+scratchpadDescription: Het kladblok is een omgeving voor AiScript experimenten. Je
+  kan hier schrijven, uitvoeren, en de resultaten bekijken van de interactie met Calckey.
+disablePagesScript: Zet AiScript op Pages uit
+deleteAllFiles: Verwijder alle bestanden
+deleteAllFilesConfirm: Weet je zeker dat je alle bestanden wil verwijderen?
+removeAllFollowing: Ontvolg alle gevolgde gebruikers
+serverLogs: Server logboek
+deleteAll: Verwijder alles
+showFixedPostForm: Toon het post formulier bovenaan de tijdlijn
+newNoteRecived: Er zijn nieuwe posts
