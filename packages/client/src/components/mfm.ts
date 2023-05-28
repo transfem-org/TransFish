@@ -243,6 +243,14 @@ export default defineComponent({
 									style = `transform: translateX(${x}em) translateY(${y}em);`;
 									break;
 								}
+								case "crop": {
+									const top = parseFloat(token.props.args.top ?? "0%");
+									const right = parseFloat(token.props.args.right ?? "0%");
+									const bottom = parseFloat(token.props.args.bottom ?? "0%");
+									const left = parseFloat(token.props.args.left ?? "0%");
+									style = `clip-path: inset(${top} ${right} ${bottom} ${left});`;
+									break;
+								}
 								case "scale": {
 									const x = Math.min(parseFloat(token.props.args.x ?? "1"), 5);
 									const y = Math.min(parseFloat(token.props.args.y ?? "1"), 5);
