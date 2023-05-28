@@ -102,6 +102,7 @@ const zIndex = os.claimZIndex("high");
 	border-top: none;
 }
 .mk-uploader > ol > li > .img {
+	position: relative;
 	display: block;
 	background-size: cover;
 	background-position: center center;

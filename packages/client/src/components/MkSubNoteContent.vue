@@ -151,6 +151,7 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
+		<div v-if="(isLong && !collapsed) || (props.note.cw && showContent)" class="fade"></div>
 	</div>
 </template>
 
@@ -370,6 +371,26 @@ function focusFooter(ev) {
 		margin-top: 10px;
 		margin-left: 0;
 		margin-right: 0.4rem;
+	}
+	> .fade {
+		position: absolute;
+		inset: 0;
+		bottom: -400px;
+		display: flex;
+		align-items: flex-end;
+		z-index: 4;
+		pointer-events: none;
+		&::before {
+			content: "";
+			display: block;
+			height: 100px;
+			position: sticky;
+			bottom: 0;
+			width: 100%;
+			background: var(--panel);
+			mask: linear-gradient(to top, var(--gradient));
+			-webkit-mask: linear-gradient(to top, var(--gradient));
+		}
 	}
 }
 </style>
