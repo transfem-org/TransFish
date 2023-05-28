@@ -102,9 +102,9 @@ defineExpose({
 	}
 	&.showLess {
 		width: 100%;
-		margin-top: 1em;
 		position: sticky;
-		bottom: var(--stickyBottom);
+		bottom: calc(var(--stickyBottom) - 1em);
+		padding: 20px;
 
 		> span {
 			display: inline-block;

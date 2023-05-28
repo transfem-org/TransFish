@@ -34,6 +34,7 @@
 			:class="{
 				collapsed,
 				isLong,
+				manyImages: note.files.length > 4,
 				showContent: note.cw && !showContent,
 				disableAnim: disableMfm,
 			}"
@@ -96,9 +97,7 @@
 					:to="`/notes/${note.renoteId}`"
 					>{{ i18n.ts.quoteAttached }}: ...</MkA
 				>
-				<div v-if="note.files.length > 0" class="files">
-					<XMediaList :media-list="note.files" />
-				</div>
+				<XMediaList v-if="note.files.length > 0" :media-list="note.files" />
 				<XPoll v-if="note.poll" :note="note" class="poll" />
 				<template v-if="detailed">
 					<MkUrlPreview
@@ -152,6 +151,7 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
+		<div v-if="(isLong && !collapsed) || (props.note.cw && showContent)" class="fade"></div>
 	</div>
 </template>
 
@@ -188,11 +188,14 @@ const emit = defineEmits<{
 
 const cwButton = ref<HTMLElement>();
 const showMoreButton = ref<HTMLElement>();
-const isLong =
-	!props.detailedView &&
-	props.note.cw == null &&
-	props.note.text != null &&
-	(props.note.text.split("\n").length > 9 || props.note.text.length > 500);
+const isLong = !props.detailedView
+	&& ( props.note.cw == null
+		&& (props.note.text != null
+			&& (props.note.text.split("\n").length > 9 || props.note.text.length > 500)
+		)
+		|| props.note.files.length > 4
+	);
+
 const collapsed = $ref(props.note.cw == null && isLong);
 
 const urls = props.note.text
@@ -285,7 +288,7 @@ function focusFooter(ev) {
 					background: var(--buttonHoverBg);
 				}
 			}
-			> .files {
+			> :deep(.files) {
 				margin-top: 0.4em;
 				margin-bottom: 0.4em;
 			}
@@ -332,26 +335,31 @@ function focusFooter(ev) {
 				-webkit-user-select: none;
 				-moz-user-select: none;
 			}
-			&.collapsed > .body {
+		}
+		&.collapsed {
+			&.manyImages {
+				max-height: calc(9em + 200px);
+			}
+			> .body {
 				box-sizing: border-box;
 			}
-			&.showContent {
-				> .body {
-					min-height: 2em;
-					max-height: 5em;
-					filter: blur(4px);
-					:deep(span) {
-						animation: none !important;
-						transform: none !important;
-					}
-					:deep(img) {
-						filter: blur(12px);
-					}
+		}
+		&.showContent {
+			> .body {
+				min-height: 2em;
+				max-height: 5em;
+				filter: blur(4px);
+				:deep(span) {
+					animation: none !important;
+					transform: none !important;
 				}
-				:deep(.fade) {
-					inset: 0;
-					top: 40px;
+				:deep(img) {
+					filter: blur(12px);
 				}
+			}
+			:deep(.fade) {
+				inset: 0;
+				top: 40px;
 			}
 		}
 
@@ -363,6 +371,27 @@ function focusFooter(ev) {
 		margin-top: 10px;
 		margin-left: 0;
 		margin-right: 0.4rem;
+	}
+	> .fade {
+		position: absolute;
+		inset: 0;
+		bottom: -400px;
+		display: flex;
+		align-items: flex-end;
+		z-index: 4;
+		pointer-events: none;
+		&::before {
+			content: "";
+			display: block;
+			height: 100px;
+			position: sticky;
+			bottom: 0;
+			width: 100%;
+			background: var(--panel);
+			mask: linear-gradient(to top, var(--gradient));
+			-webkit-mask: linear-gradient(to top, var(--gradient));
+			transition: background .2s;
+		}
 	}
 }
 </style>

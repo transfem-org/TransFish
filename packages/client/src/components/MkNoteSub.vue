@@ -435,6 +435,7 @@ function noteClick(e) {
 		}
 
 		> .body {
+			position: relative;
 			flex: 1;
 			min-width: 0;
 			margin: 0 -200px;
