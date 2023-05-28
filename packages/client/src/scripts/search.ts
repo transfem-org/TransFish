@@ -12,7 +12,10 @@ export async function search() {
 			"has:image/video/audio/text/file => filter by attachment types\n" +
 			"domain:domain.com => filter by domain\n" +
 			"before:Date => show posts made before Date\n" +
-			"after:Date => show posts made after Date",
+			"after:Date => show posts made after Date\n" +
+			'"text" => get posts with exact text between quotes\n' +
+			"filter:following => show results only from users you follow\n" +
+			"filter:followers => show results only from followers\n",
 	});
 	if (canceled || query == null || query === "") return;
 
