@@ -158,7 +158,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	} else {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.followers})`,
-			icon: "ph-lock-simple-open ph-bold ph-lg",
+			icon: "ph-lock ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
