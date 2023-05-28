@@ -13,7 +13,7 @@
 					:name="$store.state.animation ? 'fade' : ''"
 					mode="out-in"
 				>
-					<div v-if="appearNote" class="note">
+					<div v-if="note" class="note">
 						<div v-if="showNext" class="_gap">
 							<XNotes
 								class="_content"
@@ -33,12 +33,12 @@
 							</MkButton>
 							<div class="note _gap">
 								<MkRemoteCaution
-									v-if="appearNote.user.host != null"
-									:href="appearNote.url ?? appearNote.uri"
+									v-if="note.user.host != null"
+									:href="note.url ?? note.uri"
 								/>
 								<XNoteDetailed
-									:key="appearNote.id"
-									v-model:note="appearNote"
+									:key="note.id"
+									v-model:note="note"
 									class="note"
 								/>
 							</div>
@@ -71,6 +71,7 @@
 <script lang="ts" setup>
 import { computed, defineComponent, watch } from "vue";
 import * as misskey from "calckey-js";
+import XNote from "@/components/MkNote.vue";
 import XNoteDetailed from "@/components/MkNoteDetailed.vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
@@ -89,17 +90,15 @@ let hasNext = $ref(false);
 let showPrev = $ref(false);
 let showNext = $ref(false);
 let error = $ref();
-let isRenote = $ref(false);
-let appearNote = $ref<null | misskey.entities.Note>();
 
 const prevPagination = {
 	endpoint: "users/notes" as const,
 	limit: 10,
 	params: computed(() =>
-		appearNote
+		note
 			? {
-					userId: appearNote.userId,
-					untilId: appearNote.id,
+					userId: note.userId,
+					untilId: note.id,
 			  }
 			: null
 	),
@@ -110,10 +109,10 @@ const nextPagination = {
 	endpoint: "users/notes" as const,
 	limit: 10,
 	params: computed(() =>
-		appearNote
+		note
 			? {
-					userId: appearNote.userId,
-					sinceId: appearNote.id,
+					userId: note.userId,
+					sinceId: note.id,
 			  }
 			: null
 	),
@@ -130,13 +129,6 @@ function fetchNote() {
 	})
 		.then((res) => {
 			note = res;
-			isRenote =
-				note.renote != null &&
-				note.text == null &&
-				note.fileIds.length === 0 &&
-				note.poll == null;
-			appearNote = isRenote ? (note.renote as misskey.entities.Note) : note;
-			
 			Promise.all([
 				os.api("users/notes", {
 					userId: note.userId,
@@ -168,19 +160,19 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(
 	computed(() =>
-		appearNote
+		note
 			? {
 					title: i18n.t("noteOf", {
-						user: appearNote.user.name || appearNote.user.username,
+						user: note.user.name || note.user.username,
 					}),
-					subtitle: new Date(appearNote.createdAt).toLocaleString(),
-					avatar: appearNote.user,
-					path: `/notes/${appearNote.id}`,
+					subtitle: new Date(note.createdAt).toLocaleString(),
+					avatar: note.user,
+					path: `/notes/${note.id}`,
 					share: {
 						title: i18n.t("noteOf", {
-							user: appearNote.user.name || appearNote.user.username,
+							user: note.user.name || note.user.username,
 						}),
-						text: appearNote.text,
+						text: note.text,
 					},
 			  }
 			: null
