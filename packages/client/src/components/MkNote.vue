@@ -700,6 +700,7 @@ defineExpose({
 	}
 
 	> .article {
+		position: relative;
 		overflow: clip;
 		padding: 4px 32px 10px;
 		cursor: pointer;
