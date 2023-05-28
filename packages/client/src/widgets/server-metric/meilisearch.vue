@@ -27,7 +27,7 @@ let available: string = $ref("unavailable");
 function onStats(stats) {
 	total_size = stats.meilisearch.size;
 	index_count = stats.meilisearch.indexed_count;
-	available = stats.meilisearch.available;
+	available = stats.meilisearch.health;
 }
 
 onMounted(() => {
