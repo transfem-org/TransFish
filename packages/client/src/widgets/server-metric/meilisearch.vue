@@ -16,6 +16,7 @@ import { onBeforeUnmount, onMounted } from "vue";
 import bytes from "@/filters/bytes";
 import XPie from "./pie.vue";
 import { i18n } from "@/i18n";
+import * as os from "@/os";
 
 const props = defineProps<{
 	connection: any;
@@ -23,7 +24,7 @@ const props = defineProps<{
 }>();
 
 let progress: number = $ref(0);
-
+let serverStats = $ref(null);
 let total_size: number = $ref(0);
 let index_count: number = $ref(0);
 let available: string = $ref("unavailable");
@@ -32,10 +33,13 @@ function onStats(stats) {
 	total_size = stats.meilisearch.size;
 	index_count = stats.meilisearch.indexed_count;
 	available = stats.meilisearch.health;
-	progress = Math.floor((index_count / total_size) * 100);
+	progress = Math.floor((index_count / serverStats.notesCount) * 100);
 }
 
 onMounted(() => {
+	os.api("stats", {}).then((res) => {
+		serverStats = res;
+	});
 	props.connection.on("stats", onStats);
 });
 
