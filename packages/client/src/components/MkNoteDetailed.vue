@@ -73,9 +73,7 @@
 			:detailedView="true"
 			:parentId="note.id"
 		/>
-		<MkLoading
-			v-else-if="tab === 'replies' && note.repliesCount > 0"
-		/>
+		<MkLoading v-else-if="tab === 'replies' && note.repliesCount > 0" />
 
 		<MkNoteSub
 			v-if="directQuotes && tab === 'quotes'"
@@ -103,9 +101,7 @@
 			:with-chart="false"
 		/>
 		<!-- </MkPagination> -->
-		<MkLoading
-			v-else-if="tab === 'renotes' && note.renoteCount > 0"
-		/>
+		<MkLoading v-else-if="tab === 'renotes' && note.renoteCount > 0" />
 
 		<div v-if="tab === 'clips' && clips.length > 0" class="_content clips">
 			<MkA

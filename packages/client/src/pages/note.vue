@@ -135,8 +135,10 @@ function fetchNote() {
 				note.text == null &&
 				note.fileIds.length === 0 &&
 				note.poll == null;
-			appearNote = isRenote ? (note.renote as misskey.entities.Note) : note;
-			
+			appearNote = isRenote
+				? (note.renote as misskey.entities.Note)
+				: note;
+
 			Promise.all([
 				os.api("users/notes", {
 					userId: note.userId,
@@ -178,7 +180,9 @@ definePageMetadata(
 					path: `/notes/${appearNote.id}`,
 					share: {
 						title: i18n.t("noteOf", {
-							user: appearNote.user.name || appearNote.user.username,
+							user:
+								appearNote.user.name ||
+								appearNote.user.username,
 						}),
 						text: appearNote.text,
 					},

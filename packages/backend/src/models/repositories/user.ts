@@ -257,17 +257,22 @@ export const UserRepository = db.getRepository(User).extend({
 
 	async getHasUnreadAntenna(userId: User["id"]): Promise<boolean> {
 		try {
-  const myAntennas = (await getAntennas()).filter((a) => a.userId === userId);
+			const myAntennas = (await getAntennas()).filter(
+				(a) => a.userId === userId,
+			);
 
-		const unread =
-			myAntennas.length > 0
-				? await AntennaNotes.findOneBy({
-						antennaId: In(myAntennas.map((x) => x.id)),
-						read: false,
-				  })
-				: null;
+			const unread =
+				myAntennas.length > 0
+					? await AntennaNotes.findOneBy({
+							antennaId: In(myAntennas.map((x) => x.id)),
+							read: false,
+					  })
+					: null;
 
-		return unread != null; } catch(e) { return false; }
+			return unread != null;
+		} catch (e) {
+			return false;
+		}
 	},
 
 	async getHasUnreadChannel(userId: User["id"]): Promise<boolean> {

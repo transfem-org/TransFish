@@ -91,7 +91,7 @@ watch(
 		align-items: center;
 		padding: 30px;
 		box-sizing: border-box;
-		background: rgba(0,0,0,0.5);
+		background: rgba(0, 0, 0, 0.5);
 
 		> .wrapper {
 			display: table-cell;
