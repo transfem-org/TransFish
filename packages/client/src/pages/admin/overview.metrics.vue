@@ -62,7 +62,7 @@ import * as os from "@/os";
 import { i18n } from "@/i18n";
 
 const meta = await os.api("server-info", {});
-const serverStats = await os.api("stats", {});
+const serverStats = await os.api("stats");
 
 let cpuUsage: number = $ref(0);
 
