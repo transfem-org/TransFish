@@ -89,7 +89,8 @@ If you have access to a server that supports one of the sources below, I recomme
 
 - [FFmpeg](https://ffmpeg.org/) for video transcoding
 - Full text search (one of the following)
-  - 🦔 [Sonic](https://crates.io/crates/sonic-server) (recommended)
+  - 🦔 [Sonic](https://crates.io/crates/sonic-server)
+  - [MeiliSearch](https://www.meilisearch.com/)
   - [ElasticSearch](https://www.elastic.co/elasticsearch/)
 
 ### 🏗️ Build dependencies
