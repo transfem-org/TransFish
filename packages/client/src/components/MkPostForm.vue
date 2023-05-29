@@ -1030,6 +1030,8 @@ onMounted(() => {
 	}
 
 	> header {
+		display: flex;
+		flex-wrap: wrap;
 		z-index: 1000;
 		height: 66px;
 
