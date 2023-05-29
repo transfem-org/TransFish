@@ -3,16 +3,16 @@
 		<div
 			:class="$style.container"
 			:style="{
-				backgroundImage: instance.bannerUrl
-					? `url(${instance.bannerUrl})`
+				backgroundImage: $instance.bannerUrl
+					? `url(${$instance.bannerUrl})`
 					: null,
 			}"
 		>
 			<div :class="$style.iconContainer">
 				<img
 					:src="
-						instance.iconUrl ??
-						instance.faviconUrl ??
+						$instance.iconUrl ??
+						$instance.faviconUrl ??
 						'/favicon.ico'
 					"
 					alt=""
@@ -22,7 +22,7 @@
 			<div :class="$style.bodyContainer">
 				<div :class="$style.body">
 					<MkA :class="$style.name" to="/about" behavior="window">{{
-						instance.name
+						$instance.name
 					}}</MkA>
 					<div :class="$style.host">{{ host }}</div>
 				</div>
@@ -41,7 +41,6 @@ import {
 } from "./widget";
 import { GetFormResultType } from "@/scripts/form";
 import { host } from "@/config";
-import { instance } from "@/instance";
 
 const name = "serverInfo";
 
