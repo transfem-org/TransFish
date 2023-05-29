@@ -8,11 +8,7 @@
 		/></template>
 		<MkSpacer :content-max="700">
 			<div class="ieepwinx">
-				<MkInfo
-					class="_gap"
-					:icon="'flying-saucer'"
-					:card="true"
-				>
+				<MkInfo class="_gap" :icon="'flying-saucer'" :card="true">
 					<p>{{ i18n.ts.antennasDesc }}</p>
 					<MkButton
 						:link="true"
@@ -24,10 +20,7 @@
 					>
 				</MkInfo>
 				<div class="">
-					<MkPagination
-						ref="list"
-						:pagination="pagination"
-					>
+					<MkPagination ref="list" :pagination="pagination">
 						<template #default="{ items }">
 							<div v-for="antenna in items" :key="antenna.id">
 								<MkA
@@ -35,7 +28,9 @@
 									:link="true"
 									:to="`/timeline/antenna/${antenna.id}`"
 								>
-									<i class="ph-flying-saucer ph-bold ph-lg"></i
+									<i
+										class="ph-flying-saucer ph-bold ph-lg"
+									></i
 									><i
 										:class="`${
 											antenna.hasUnreadNote

@@ -1,9 +1,18 @@
 <template>
 	<div v-if="visible" class="info" :class="{ warn, card }">
 		<i v-if="warn" class="ph-warning ph-bold ph-lg"></i>
-		<i v-else class="ph-bold ph-lg" :class="icon ? `ph-${icon}` : 'ph-info'"></i>
+		<i
+			v-else
+			class="ph-bold ph-lg"
+			:class="icon ? `ph-${icon}` : 'ph-info'"
+		></i>
 		<slot></slot>
-		<button v-if="closeable" v-tooltip="i18n.ts.close" class="_button close" @click.stop="close">
+		<button
+			v-if="closeable"
+			v-tooltip="i18n.ts.close"
+			class="_button close"
+			@click.stop="close"
+		>
 			<i class="ph-x ph-bold ph-lg"></i>
 		</button>
 	</div>
@@ -30,7 +39,6 @@ function close() {
 	visible.value = false;
 	emit("close");
 }
-
 </script>
 
 <style lang="scss" scoped>

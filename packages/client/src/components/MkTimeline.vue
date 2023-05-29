@@ -1,8 +1,11 @@
 <template>
-	<MkInfo v-if="tlHint && !tlHintClosed" :closeable="true" class="_gap" @close="closeHint"> 
-		<I18n
-			:src="tlHint"
-		>
+	<MkInfo
+		v-if="tlHint && !tlHintClosed"
+		:closeable="true"
+		class="_gap"
+		@close="closeHint"
+	>
+		<I18n :src="tlHint">
 			<template #icon></template>
 		</I18n>
 	</MkInfo>
@@ -165,19 +168,19 @@ if (props.src === "antenna") {
 
 function closeHint() {
 	switch (props.src) {
-		case 'home':
+		case "home":
 			defaultStore.set("tlHomeHintClosed", true);
 			break;
-		case 'local':
+		case "local":
 			defaultStore.set("tlLocalHintClosed", true);
 			break;
-		case 'recommended':
+		case "recommended":
 			defaultStore.set("tlRecommendedHintClosed", true);
 			break;
-		case 'social':
+		case "social":
 			defaultStore.set("tlSocialHintClosed", true);
 			break;
-		case 'global':
+		case "global":
 			defaultStore.set("tlGlobalHintClosed", true);
 			break;
 	}
