@@ -15,51 +15,49 @@ const hasConfig =
 		config.meilisearch.port ||
 		config.meilisearch.apiKey);
 
-if (hasConfig) {
-	const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
-	const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
-	const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
-	const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
+const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
+const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
+const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
+const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
 
-	logger.info("Connecting to MeiliSearch");
+logger.info("Connecting to MeiliSearch");
 
-	const client: MeiliSearch = new MeiliSearch({
-		host: `${ssl ? "https" : "http"}://${host}:${port}`,
-		apiKey: auth,
-	});
+const client: MeiliSearch = new MeiliSearch({
+	host: `${ssl ? "https" : "http"}://${host}:${port}`,
+	apiKey: auth,
+});
 
-	const posts = client.index("posts");
+const posts = client.index("posts");
 
-	posts
-		.updateSearchableAttributes(["text"])
-		.catch((e) =>
-			logger.error(`Setting searchable attr failed, searches won't work: ${e}`),
-		);
+posts
+	.updateSearchableAttributes(["text"])
+	.catch((e) =>
+		logger.error(`Setting searchable attr failed, searches won't work: ${e}`),
+	);
 
-	posts
-		.updateFilterableAttributes([
-			"userName",
-			"userHost",
-			"mediaAttachment",
-			"createdAt",
-			"userId",
-		])
-		.catch((e) =>
-			logger.error(
-				`Setting filterable attr failed, advanced searches won't work: ${e}`,
-			),
-		);
+posts
+	.updateFilterableAttributes([
+		"userName",
+		"userHost",
+		"mediaAttachment",
+		"createdAt",
+		"userId",
+	])
+	.catch((e) =>
+		logger.error(
+			`Setting filterable attr failed, advanced searches won't work: ${e}`,
+		),
+	);
 
-	posts
-		.updateSortableAttributes(["createdAt"])
-		.catch((e) =>
-			logger.error(
-				`Setting sortable attr failed, placeholder searches won't sort properly: ${e}`,
-			),
-		);
+posts
+	.updateSortableAttributes(["createdAt"])
+	.catch((e) =>
+		logger.error(
+			`Setting sortable attr failed, placeholder searches won't sort properly: ${e}`,
+		),
+	);
 
-	logger.info("Connected to MeiliSearch");
-}
+logger.info("Connected to MeiliSearch");
 
 export type MeilisearchNote = {
 	id: string;
@@ -90,37 +88,37 @@ export default hasConfig
 				/// filter:following => show results only from users you follow
 				/// filter:followers => show results only from followers
 
-				let constructedFilters: string[] = [];
+				const constructedFilters: string[] = [];
 
-				let splitSearch = query.split(" ");
+				const splitSearch = query.split(" ");
 
 				// Detect search operators and remove them from the actual query
-				let filteredSearchTerms = (
+				const filteredSearchTerms = (
 					await Promise.all(
 						splitSearch.map(async (term) => {
 							if (term.startsWith("has:")) {
-								let fileType = term.slice(4);
+								const fileType = term.slice(4);
 								constructedFilters.push(`mediaAttachment = "${fileType}"`);
 								return null;
 							} else if (term.startsWith("from:")) {
-								let user = term.slice(5);
+								const user = term.slice(5);
 								constructedFilters.push(`userName = ${user}`);
 								return null;
 							} else if (term.startsWith("domain:")) {
-								let domain = term.slice(7);
+								const domain = term.slice(7);
 								constructedFilters.push(`userHost = ${domain}`);
 								return null;
 							} else if (term.startsWith("after:")) {
-								let timestamp = term.slice(6);
+								const timestamp = term.slice(6);
 								// Try to parse the timestamp as JavaScript Date
-								let date = Date.parse(timestamp);
+								const date = Date.parse(timestamp);
 								if (isNaN(date)) return null;
 								constructedFilters.push(`createdAt > ${date / 1000}`);
 								return null;
 							} else if (term.startsWith("before:")) {
-								let timestamp = term.slice(7);
+								const timestamp = term.slice(7);
 								// Try to parse the timestamp as JavaScript Date
-								let date = Date.parse(timestamp);
+								const date = Date.parse(timestamp);
 								if (isNaN(date)) return null;
 								constructedFilters.push(`createdAt < ${date / 1000}`);
 								return null;
@@ -128,7 +126,7 @@ export default hasConfig
 								// Check if we got a context user
 								if (userCtx) {
 									// Fetch user follows from DB
-									let followedUsers = await Followings.find({
+									const followedUsers = await Followings.find({
 										where: {
 											followerId: userCtx.id,
 										},
@@ -136,7 +134,7 @@ export default hasConfig
 											followeeId: true,
 										},
 									});
-									let followIDs = followedUsers.map((user) => user.followeeId);
+									const followIDs = followedUsers.map((user) => user.followeeId);
 
 									if (followIDs.length === 0) return null;
 
@@ -152,7 +150,7 @@ export default hasConfig
 								// Check if we got a context user
 								if (userCtx) {
 									// Fetch users follows from DB
-									let followedUsers = await Followings.find({
+									const followedUsers = await Followings.find({
 										where: {
 											followeeId: userCtx.id,
 										},
@@ -160,7 +158,7 @@ export default hasConfig
 											followerId: true,
 										},
 									});
-									let followIDs = followedUsers.map((user) => user.followerId);
+									const followIDs = followedUsers.map((user) => user.followerId);
 
 									if (followIDs.length === 0) return null;
 
@@ -179,7 +177,7 @@ export default hasConfig
 					)
 				).filter((term) => term !== null);
 
-				let sortRules = [];
+				const sortRules = [];
 
 				// An empty search term with defined filters means we have a placeholder search => https://www.meilisearch.com/docs/reference/api/search#placeholder-search
 				// These have to be ordered manually, otherwise the *oldest* posts are returned first, which we don't want
@@ -205,9 +203,9 @@ export default hasConfig
 					ingestNotes = [ingestNotes];
 				}
 
-				let indexingBatch: MeilisearchNote[] = [];
+				const indexingBatch: MeilisearchNote[] = [];
 
-				for (let note of ingestNotes) {
+				for (const note of ingestNotes) {
 					if (note.user === undefined) {
 						note.user = await Users.findOne({
 							where: {
@@ -255,8 +253,8 @@ export default hasConfig
 					);
 			},
 			serverStats: async () => {
-				let health: Health = await client.health();
-				let stats: Stats = await client.getStats();
+				const health: Health = await client.health();
+				const stats: Stats = await client.getStats();
 
 				return {
 					health: health.status,
