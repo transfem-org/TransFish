@@ -85,6 +85,7 @@
 		"koa-send": "5.0.1",
 		"koa-slow": "2.1.0",
 		"koa-views": "7.0.2",
+		"meilisearch": "0.32.4",
 		"mfm-js": "0.23.3",
 		"mime-types": "2.1.35",
 		"multer": "1.4.4-lts.1",

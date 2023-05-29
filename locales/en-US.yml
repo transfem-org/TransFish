@@ -5,6 +5,7 @@ introMisskey: "Welcome! Calckey is an open source, decentralized social media pl
   \ that's free forever! \U0001F680"
 monthAndDay: "{month}/{day}"
 search: "Search"
+search_placeholder: "Enter search terms..."
 notifications: "Notifications"
 username: "Username"
 password: "Password"
@@ -1551,6 +1552,10 @@ _widgets:
   serverInfo: "Server Info"
   _userList:
     chooseList: "Select a list"
+  meiliStatus: "Server Status"
+  meiliSize: "Index size"
+  meiliIndexCount: "Indexed posts"
+
 _cw:
   hide: "Hide"
   show: "Show content"
