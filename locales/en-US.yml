@@ -1451,7 +1451,7 @@ _tutorial:
     \ you follow."
   step5_4: "The Local {icon} timeline is where you can see posts from everyone else on this server."
   step5_5: "The Social {icon} timeline is a combination of the Home and Local timelines."
-  step5_6: "The Recommended {icon} timeline is where you can see posts from server\
+  step5_6: "The Recommended {icon} timeline is where you can see posts from servers\
     \ the admins recommend."
   step5_7: "The Global {icon} timeline is where you can see posts from every other\
     \ connected server."
