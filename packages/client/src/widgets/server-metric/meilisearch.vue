@@ -1,5 +1,6 @@
 <template>
 	<div class="ms_stats">
+		<XPie class="pie" :value="progress" />
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
 			<p>{{ i18n.ts._widgets.meiliStatus }}: {{ available }}</p>
@@ -13,12 +14,15 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted } from "vue";
 import bytes from "@/filters/bytes";
+import XPie from "./pie.vue";
 import { i18n } from "@/i18n";
 
 const props = defineProps<{
 	connection: any;
 	meta: any;
 }>();
+
+let progress: number = $ref(0);
 
 let total_size: number = $ref(0);
 let index_count: number = $ref(0);
@@ -28,6 +32,7 @@ function onStats(stats) {
 	total_size = stats.meilisearch.size;
 	index_count = stats.meilisearch.indexed_count;
 	available = stats.meilisearch.health;
+	progress = Math.floor((index_count / total_size) * 100);
 }
 
 onMounted(() => {
@@ -42,6 +47,12 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .ms_stats {
 	padding: 16px;
+
+	> .pie {
+		height: 82px;
+		flex-shrink: 0;
+		margin-right: 16px;
+	}
 
 	> div {
 		> p {
