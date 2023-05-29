@@ -1065,7 +1065,8 @@ migrationConfirm: "Are you absolutely sure you want to migrate your account to {
 defaultReaction: "Default emoji reaction for outgoing and incoming posts"
 license: "License"
 indexPosts: "Index Posts"
-indexFrom: "Index from Post ID onwards (leave blank to index every post)"
+indexFrom: "Index from Post ID onwards"
+indexFromDescription: "Leave blank to index every post"
 indexNotice: "Now indexing. This will probably take a while, please don't restart\
   \ your server for at least an hour."
 customKaTeXMacro: "Custom KaTeX macros"

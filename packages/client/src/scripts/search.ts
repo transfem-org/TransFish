@@ -3,16 +3,7 @@ import { i18n } from "@/i18n";
 import { mainRouter } from "@/router";
 
 export async function search() {
-	let searchOptions = "";
-
-	let meta = null;
-
-	os.api("server-info", {}).then((res) => {
-		meta = res;
-	});
-
-	if (meta.meilisearch.health === "available") {
-		searchOptions =
+	const searchOptions  =
 			"Advanced search operators\n" +
 			"from:user => filter by user\n" +
 			"has:image/video/audio/text/file => filter by attachment types\n" +
@@ -22,7 +13,7 @@ export async function search() {
 			'"text" => get posts with exact text between quotes\n' +
 			"filter:following => show results only from users you follow\n" +
 			"filter:followers => show results only from followers\n";
-	}
+
 	const { canceled, result: query } = await os.inputText({
 		title: i18n.ts.search,
 		placeholder: i18n.ts.searchPlaceholder,
