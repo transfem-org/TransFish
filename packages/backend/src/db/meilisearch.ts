@@ -262,5 +262,29 @@ export default hasConfig
 					indexed_count: stats.indexes["posts"].numberOfDocuments,
 				};
 			},
+			deleteNotes: async (note: Note | Note[] | string | string[]) => {
+				if (note instanceof Note) {
+					note = [note];
+				}
+				if (typeof note === "string") {
+					note = [note];
+				}
+
+				let deletionBatch = note.map((n) => {
+					if(n instanceof Note) {
+						return n.id;
+					}
+
+					if(n.length > 0) return n;
+
+					logger.error(`Failed to delete note from Meilisearch, invalid post ID: ${JSON.stringify(n)}`)
+
+					throw new Error(`Invalid note ID passed to meilisearch deleteNote: ${JSON.stringify(n)}`)
+				}).filter((el) => el !== null);
+
+				await posts.deleteDocuments(deletionBatch as string[]).then(() => {
+					logger.info(`submitted ${deletionBatch.length} large batch for deletion`)
+				});
+			},
 	  }
 	: null;
