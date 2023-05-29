@@ -1,13 +1,16 @@
-import { Health, MeiliSearch, Stats } from "meilisearch";
+import { Health, Index, MeiliSearch, Stats } from "meilisearch";
 import { dbLogger } from "./logger.js";
 
 import config from "@/config/index.js";
 import { Note } from "@/models/entities/note.js";
 import * as url from "url";
-import { ILocalUser, User } from "@/models/entities/user.js";
+import { ILocalUser } from "@/models/entities/user.js";
 import { Followings, Users } from "@/models/index.js";
 
 const logger = dbLogger.createSubLogger("meilisearch", "gray", false);
+
+let posts: Index;
+let client: MeiliSearch;
 
 const hasConfig =
 	config.meilisearch &&
@@ -15,49 +18,51 @@ const hasConfig =
 		config.meilisearch.port ||
 		config.meilisearch.apiKey);
 
-const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
-const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
-const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
-const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
+if(hasConfig) {
+	const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
+    const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
+    const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
+    const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
 
-logger.info("Connecting to MeiliSearch");
+    logger.info("Connecting to MeiliSearch");
 
-const client: MeiliSearch = new MeiliSearch({
-	host: `${ssl ? "https" : "http"}://${host}:${port}`,
-	apiKey: auth,
-});
+	client = new MeiliSearch({
+		host: `${ssl ? "https" : "http"}://${host}:${port}`,
+    	apiKey: auth,
+    });
 
-const posts = client.index("posts");
+	posts = client.index("posts");
 
-posts
-	.updateSearchableAttributes(["text"])
-	.catch((e) =>
-		logger.error(`Setting searchable attr failed, searches won't work: ${e}`),
-	);
+	posts
+    	.updateSearchableAttributes(["text"])
+    	.catch((e) =>
+    		logger.error(`Setting searchable attr failed, searches won't work: ${e}`),
+    	);
 
-posts
-	.updateFilterableAttributes([
-		"userName",
-		"userHost",
-		"mediaAttachment",
-		"createdAt",
-		"userId",
-	])
-	.catch((e) =>
-		logger.error(
-			`Setting filterable attr failed, advanced searches won't work: ${e}`,
-		),
-	);
+    posts
+    	.updateFilterableAttributes([
+    		"userName",
+    		"userHost",
+    		"mediaAttachment",
+    		"createdAt",
+    		"userId",
+    	])
+    	.catch((e) =>
+    		logger.error(
+    			`Setting filterable attr failed, advanced searches won't work: ${e}`,
+    		),
+    	);
 
-posts
-	.updateSortableAttributes(["createdAt"])
-	.catch((e) =>
-		logger.error(
-			`Setting sortable attr failed, placeholder searches won't sort properly: ${e}`,
-		),
-	);
+    posts
+    	.updateSortableAttributes(["createdAt"])
+    	.catch((e) =>
+    		logger.error(
+    			`Setting sortable attr failed, placeholder searches won't sort properly: ${e}`,
+    		),
+    	);
 
-logger.info("Connected to MeiliSearch");
+    logger.info("Connected to MeiliSearch");
+}
 
 export type MeilisearchNote = {
 	id: string;
