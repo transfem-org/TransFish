@@ -1,19 +1,34 @@
 <template>
-	<div class="info" :class="{ warn, card }">
+	<div v-if="visible" class="info" :class="{ warn, card }">
 		<i v-if="warn" class="ph-warning ph-bold ph-lg"></i>
 		<i v-else class="ph-bold ph-lg" :class="icon ? `ph-${icon}` : 'ph-info'"></i>
 		<slot></slot>
+		<button class="_button close" @click.stop="close">
+			<i class="ph-x ph-bold ph-lg"></i>
+		</button>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
+import { ref } from "vue";
+
+const visible = ref(true);
 
 defineProps<{
 	icon?: string;
 	warn?: boolean;
 	card?: boolean;
 }>();
+
+const emit = defineEmits<{
+	(ev: "close"): void;
+}>();
+
+function close() {
+	visible.value = false;
+	emit("close");
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -53,6 +68,10 @@ defineProps<{
 
 	> i {
 		margin-right: 4px;
+	}
+	> .close {
+		margin-left: auto;
+		float: right;
 	}
 }
 </style>
