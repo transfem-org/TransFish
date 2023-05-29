@@ -83,6 +83,7 @@ exportRequested: "You've requested an export. This may take a while. It will be 
   \ to your Drive once completed."
 importRequested: "You've requested an import. This may take a while."
 lists: "Lists"
+listsDesc: "Lists let you create timelines with specified users. They can be accessed from the timelines page."
 noLists: "You don't have any lists"
 note: "Post"
 notes: "Posts"

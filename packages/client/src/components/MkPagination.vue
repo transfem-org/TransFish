@@ -490,5 +490,8 @@ defineExpose({
 .list > :deep(._button) {
 	margin-inline: auto;
 	margin-bottom: 16px;
+	&:last-of-type:not(:first-child) {
+		margin-top: 16px;
+	}
 }
 </style>
