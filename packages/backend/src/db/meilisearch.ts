@@ -18,50 +18,50 @@ const hasConfig =
 		config.meilisearch.port ||
 		config.meilisearch.apiKey);
 
-if(hasConfig) {
+if (hasConfig) {
 	const host = hasConfig ? config.meilisearch.host ?? "localhost" : "";
-    const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
-    const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
-    const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
+	const port = hasConfig ? config.meilisearch.port ?? 7700 : 0;
+	const auth = hasConfig ? config.meilisearch.apiKey ?? "" : "";
+	const ssl = hasConfig ? config.meilisearch.ssl ?? false : false;
 
-    logger.info("Connecting to MeiliSearch");
+	logger.info("Connecting to MeiliSearch");
 
 	client = new MeiliSearch({
 		host: `${ssl ? "https" : "http"}://${host}:${port}`,
-    	apiKey: auth,
-    });
+		apiKey: auth,
+	});
 
 	posts = client.index("posts");
 
 	posts
-    	.updateSearchableAttributes(["text"])
-    	.catch((e) =>
-    		logger.error(`Setting searchable attr failed, searches won't work: ${e}`),
-    	);
+		.updateSearchableAttributes(["text"])
+		.catch((e) =>
+			logger.error(`Setting searchable attr failed, searches won't work: ${e}`),
+		);
 
-    posts
-    	.updateFilterableAttributes([
-    		"userName",
-    		"userHost",
-    		"mediaAttachment",
-    		"createdAt",
-    		"userId",
-    	])
-    	.catch((e) =>
-    		logger.error(
-    			`Setting filterable attr failed, advanced searches won't work: ${e}`,
-    		),
-    	);
+	posts
+		.updateFilterableAttributes([
+			"userName",
+			"userHost",
+			"mediaAttachment",
+			"createdAt",
+			"userId",
+		])
+		.catch((e) =>
+			logger.error(
+				`Setting filterable attr failed, advanced searches won't work: ${e}`,
+			),
+		);
 
-    posts
-    	.updateSortableAttributes(["createdAt"])
-    	.catch((e) =>
-    		logger.error(
-    			`Setting sortable attr failed, placeholder searches won't sort properly: ${e}`,
-    		),
-    	);
+	posts
+		.updateSortableAttributes(["createdAt"])
+		.catch((e) =>
+			logger.error(
+				`Setting sortable attr failed, placeholder searches won't sort properly: ${e}`,
+			),
+		);
 
-    logger.info("Connected to MeiliSearch");
+	logger.info("Connected to MeiliSearch");
 }
 
 export type MeilisearchNote = {
