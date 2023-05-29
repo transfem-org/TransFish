@@ -212,6 +212,11 @@ hr {
 		opacity: 0.5;
 		cursor: default;
 	}
+
+	> i:only-child {
+		display: block;
+		margin: auto;
+	}
 }
 
 ._buttonPrimary {
