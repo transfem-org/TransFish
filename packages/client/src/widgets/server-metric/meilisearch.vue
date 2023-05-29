@@ -33,7 +33,7 @@ function onStats(stats) {
 	total_size = stats.meilisearch.size;
 	index_count = stats.meilisearch.indexed_count;
 	available = stats.meilisearch.health;
-	progress = (index_count / serverStats.notesCount);
+	progress = index_count / serverStats.notesCount;
 }
 
 onMounted(() => {

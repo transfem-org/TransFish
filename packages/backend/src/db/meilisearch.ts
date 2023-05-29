@@ -134,7 +134,9 @@ export default hasConfig
 											followeeId: true,
 										},
 									});
-									const followIDs = followedUsers.map((user) => user.followeeId);
+									const followIDs = followedUsers.map(
+										(user) => user.followeeId,
+									);
 
 									if (followIDs.length === 0) return null;
 
@@ -158,7 +160,9 @@ export default hasConfig
 											followerId: true,
 										},
 									});
-									const followIDs = followedUsers.map((user) => user.followerId);
+									const followIDs = followedUsers.map(
+										(user) => user.followerId,
+									);
 
 									if (followIDs.length === 0) return null;
 
@@ -270,20 +274,32 @@ export default hasConfig
 					note = [note];
 				}
 
-				let deletionBatch = note.map((n) => {
-					if(n instanceof Note) {
-						return n.id;
-					}
+				let deletionBatch = note
+					.map((n) => {
+						if (n instanceof Note) {
+							return n.id;
+						}
 
-					if(n.length > 0) return n;
+						if (n.length > 0) return n;
 
-					logger.error(`Failed to delete note from Meilisearch, invalid post ID: ${JSON.stringify(n)}`)
+						logger.error(
+							`Failed to delete note from Meilisearch, invalid post ID: ${JSON.stringify(
+								n,
+							)}`,
+						);
 
-					throw new Error(`Invalid note ID passed to meilisearch deleteNote: ${JSON.stringify(n)}`)
-				}).filter((el) => el !== null);
+						throw new Error(
+							`Invalid note ID passed to meilisearch deleteNote: ${JSON.stringify(
+								n,
+							)}`,
+						);
+					})
+					.filter((el) => el !== null);
 
 				await posts.deleteDocuments(deletionBatch as string[]).then(() => {
-					logger.info(`submitted ${deletionBatch.length} large batch for deletion`)
+					logger.info(
+						`submitted ${deletionBatch.length} large batch for deletion`,
+					);
 				});
 			},
 	  }
