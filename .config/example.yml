@@ -88,13 +88,14 @@ redis:
 # No need to uncomment in most cases, but you may want to change
 # these settings if you plan to run a large and/or distributed server.
 
-# cuid: {
+# cuid:
 #   # Min 16, Max 24
-#   length: 16,
+#   length: 16
+#
 #   # Set this to a unique string across workers (e.g., machine's hostname)
 #   # if your workers are running in multiple hosts.
-#   fingerprint: "my-fingerperint",
-# }
+#   fingerprint: my-fingerprint
+
 
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
