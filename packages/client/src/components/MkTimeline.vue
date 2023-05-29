@@ -1,5 +1,5 @@
 <template>
-	<MkInfo v-if="tlHint && !tlHintClosed" class="_gap" @close="closeHint"> 
+	<MkInfo v-if="tlHint && !tlHintClosed" :closeable="true" class="_gap" @close="closeHint"> 
 		<I18n
 			:src="tlHint"
 		>

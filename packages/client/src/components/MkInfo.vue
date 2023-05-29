@@ -3,7 +3,7 @@
 		<i v-if="warn" class="ph-warning ph-bold ph-lg"></i>
 		<i v-else class="ph-bold ph-lg" :class="icon ? `ph-${icon}` : 'ph-info'"></i>
 		<slot></slot>
-		<button class="_button close" @click.stop="close">
+		<button v-if="closeable" class="_button close" @click.stop="close">
 			<i class="ph-x ph-bold ph-lg"></i>
 		</button>
 	</div>
@@ -18,6 +18,7 @@ defineProps<{
 	icon?: string;
 	warn?: boolean;
 	card?: boolean;
+	closeable?: boolean;
 }>();
 
 const emit = defineEmits<{
