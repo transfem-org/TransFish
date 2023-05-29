@@ -81,6 +81,7 @@ async function fs() {
 	return data || { rIO_sec: 0, wIO_sec: 0 };
 }
 
+// MEILI STAT
 async function meilisearchStatus() {
 	if (meilisearch) {
 		return meilisearch.serverStats();
