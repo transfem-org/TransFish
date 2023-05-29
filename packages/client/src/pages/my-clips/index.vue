@@ -14,10 +14,7 @@
 					class="list"
 				>
 					<template #empty>
-						<MkInfo
-							:icon="'paperclip'"
-							:card="true"
-						>
+						<MkInfo :icon="'paperclip'" :card="true">
 							<p>{{ i18n.ts.clipsDesc }}</p>
 						</MkInfo>
 					</template>

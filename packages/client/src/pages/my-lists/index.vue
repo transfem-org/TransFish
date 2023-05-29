@@ -8,11 +8,7 @@
 		/></template>
 		<MkSpacer :content-max="700">
 			<div class="qkcjvfiv">
-				<MkInfo
-					class="_gap"
-					:icon="'list-bullets'"
-					:card="true"
-				>
+				<MkInfo class="_gap" :icon="'list-bullets'" :card="true">
 					<p>{{ i18n.ts.listsDesc }}</p>
 					<MkButton primary class="add" @click="create"
 						><i class="ph-plus ph-bold ph-lg"></i>

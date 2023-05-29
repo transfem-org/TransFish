@@ -3,19 +3,17 @@
 		<div
 			:class="$style.container"
 			:style="{
-				backgroundImage: $instance.bannerUrl
-					? `url(${$instance.bannerUrl})`
-					: null,
+				backgroundImage: `url(${$instance.bannerUrl})`,
 			}"
 		>
 			<div :class="$style.iconContainer">
 				<img
 					:src="
-						$instance.iconUrl ??
-						$instance.faviconUrl ??
+						$instance.iconUrl ||
+						$instance.faviconUrl ||
 						'/favicon.ico'
 					"
-					alt=""
+					alt="Instance logo"
 					:class="$style.icon"
 				/>
 			</div>
@@ -107,7 +105,7 @@ defineExpose<WidgetComponentExpose>({
 		-1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
 }
 
-.host {
+.name {
 	font-weight: bold;
 }
 </style>

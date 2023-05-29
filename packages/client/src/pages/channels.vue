@@ -7,7 +7,9 @@
 				:tabs="headerTabs"
 		/></template>
 		<MkSpacer :content-max="700">
-			<MkInfo class="_gap" :warn="true">{{ i18n.ts.channelFederationWarn }}</MkInfo>
+			<MkInfo class="_gap" :warn="true">{{
+				i18n.ts.channelFederationWarn
+			}}</MkInfo>
 			<swiper
 				:round-lengths="true"
 				:touch-angle="25"
