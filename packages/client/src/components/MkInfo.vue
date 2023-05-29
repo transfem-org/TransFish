@@ -3,7 +3,7 @@
 		<i v-if="warn" class="ph-warning ph-bold ph-lg"></i>
 		<i v-else class="ph-bold ph-lg" :class="icon ? `ph-${icon}` : 'ph-info'"></i>
 		<slot></slot>
-		<button v-if="closeable" class="_button close" @click.stop="close">
+		<button v-if="closeable" v-tooltip="i18n.ts.close" class="_button close" @click.stop="close">
 			<i class="ph-x ph-bold ph-lg"></i>
 		</button>
 	</div>
@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import { i18n } from "@/i18n";
 
 const visible = ref(true);
 
