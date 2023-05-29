@@ -4,7 +4,7 @@ import { Note } from "@/models/entities/note.js";
 import config from "@/config/index.js";
 import es from "../../../../db/elasticsearch.js";
 import sonic from "../../../../db/sonic.js";
-import meilisearch, {MeilisearchNote} from "../../../../db/meilisearch.js";
+import meilisearch, { MeilisearchNote } from "../../../../db/meilisearch.js";
 import define from "../../define.js";
 import { makePaginationQuery } from "../../common/make-pagination-query.js";
 import { generateVisibilityQuery } from "../../common/generate-visibility-query.js";

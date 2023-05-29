@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import {onBeforeUnmount, onMounted} from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 import bytes from "@/filters/bytes";
-import {i18n} from "@/i18n";
+import { i18n } from "@/i18n";
 
 const props = defineProps<{
 	connection: any;

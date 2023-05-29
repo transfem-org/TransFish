@@ -5,7 +5,7 @@ import { mainRouter } from "@/router";
 export async function search() {
 	const { canceled, result: query } = await os.inputText({
 		title: i18n.ts.search,
-		placeholder: i18n.ts.search_placeholder,
+		placeholder: i18n.ts.searchPlaceholder,
 		text:
 			"Advanced search operators\n" +
 			"from:user => filter by user\n" +
