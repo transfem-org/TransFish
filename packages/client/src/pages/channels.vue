@@ -7,6 +7,7 @@
 				:tabs="headerTabs"
 		/></template>
 		<MkSpacer :content-max="700">
+			<MkInfo class="_gap" :warn="true">{{ i18n.ts.channelFederationWarn }}</MkInfo>
 			<swiper
 				:round-lengths="true"
 				:touch-angle="25"
@@ -119,6 +120,7 @@ import MkInput from "@/components/form/input.vue";
 import MkRadios from "@/components/form/radios.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkFolder from "@/components/MkFolder.vue";
+import MkInfo from "@/components/MkInfo.vue";
 import { useRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";

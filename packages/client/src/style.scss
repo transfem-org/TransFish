@@ -298,6 +298,9 @@ hr {
 
 ._gap {
 	margin: var(--margin) 0;
+	&:first-child {
+		margin-top: 0;
+	}
 }
 
 // TODO: 廃止
