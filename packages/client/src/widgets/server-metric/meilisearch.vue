@@ -1,6 +1,6 @@
 <template>
 	<div class="verusivbr">
-		<XPie class="pie" :value="progress" />
+		<XPie v-tooltip="i18n.ts.meiliIndexCount" class="pie" :value="progress" />
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
 			<p>{{ i18n.ts._widgets.meiliStatus }}: {{ available }}</p>
