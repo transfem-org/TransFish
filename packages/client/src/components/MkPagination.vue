@@ -17,7 +17,7 @@
 			</slot>
 		</div>
 
-		<div v-else ref="rootEl">
+		<div v-else ref="rootEl" class="list">
 			<div
 				v-show="pagination.reversed && more"
 				key="_more_"
@@ -486,5 +486,9 @@ defineExpose({
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
+.list > :deep(._button) {
+	margin-inline: auto;
+	margin-bottom: 16px;
 }
 </style>

@@ -8,43 +8,60 @@
 		/></template>
 		<MkSpacer :content-max="700">
 			<div class="ieepwinx">
-				<MkButton
-					:link="true"
-					to="/my/antennas/create"
-					primary
-					class="add"
-					><i class="ph-plus ph-bold ph-lg"></i>
-					{{ i18n.ts.add }}</MkButton
-				>
 
 				<div class="">
 					<MkPagination
-						v-slot="{ items }"
 						ref="list"
 						:pagination="pagination"
 					>
-						<div v-for="antenna in items" :key="antenna.id">
-							<MkA
-								class="uopelskx"
+						<template #empty>
+							<MkInfo
+								:icon="'flying-saucer'"
+								:card="true"
+							>
+								<p>{{ i18n.ts.antennasDesc }}</p>
+								<MkButton
+									:link="true"
+									to="/my/antennas/create"
+									primary
+									class="add"
+									><i class="ph-plus ph-bold ph-lg"></i>
+									{{ i18n.ts.add }}</MkButton
+								>
+							</MkInfo>
+						</template>
+						<template #default="{ items }">
+							<MkButton
 								:link="true"
-								:to="`/timeline/antenna/${antenna.id}`"
+								to="/my/antennas/create"
+								primary
+								class="add"
+								><i class="ph-plus ph-bold ph-lg"></i>
+								{{ i18n.ts.add }}</MkButton
 							>
-								<i class="ph-flying-saucer ph-bold ph-lg"></i
-								><i
-									:class="`${
-										antenna.hasUnreadNote
-											? 'ph-circle ph-fill'
-											: 'ph-check'
-									} ph-xs notify-icon`"
-								></i>
-							</MkA>
-							<MkA
-								class="ljoevbzj"
-								:to="`/my/antennas/${antenna.id}`"
-							>
-								<div class="name">{{ antenna.name }}</div>
-							</MkA>
-						</div>
+							<div v-for="antenna in items" :key="antenna.id">
+								<MkA
+									class="uopelskx"
+									:link="true"
+									:to="`/timeline/antenna/${antenna.id}`"
+								>
+									<i class="ph-flying-saucer ph-bold ph-lg"></i
+									><i
+										:class="`${
+											antenna.hasUnreadNote
+												? 'ph-circle ph-fill'
+												: 'ph-check'
+										} ph-xs notify-icon`"
+									></i>
+								</MkA>
+								<MkA
+									class="ljoevbzj"
+									:to="`/my/antennas/${antenna.id}`"
+								>
+									<div class="name">{{ antenna.name }}</div>
+								</MkA>
+							</div>
+						</template>
 					</MkPagination>
 				</div>
 			</div>
@@ -56,6 +73,7 @@
 import { onActivated, onDeactivated, ref } from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
+import MkInfo from "@/components/MkInfo.vue";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
@@ -101,10 +119,6 @@ definePageMetadata({
 
 <style lang="scss" scoped>
 .ieepwinx {
-	> .add {
-		margin: 0 auto 16px auto;
-	}
-
 	.uopelskx {
 		float: left;
 		min-width: 25px;
