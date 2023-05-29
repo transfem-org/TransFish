@@ -5,6 +5,7 @@ import { Notes } from "@/models/index.js";
 import { MoreThan } from "typeorm";
 import { index } from "@/services/note/create.js";
 import { Note } from "@/models/entities/note.js";
+import meilisearch from "../../../db/meilisearch.js";
 
 const logger = queueLogger.createSubLogger("index-all-notes");
 
@@ -38,6 +39,7 @@ export default async function indexAllNotes(
 				order: {
 					id: 1,
 				},
+				relations: ["user"],
 			});
 		} catch (e) {
 			logger.error(`Failed to query notes ${e}`);
@@ -58,7 +60,12 @@ export default async function indexAllNotes(
 
 		for (let i = 0; i < notes.length; i += batch) {
 			const chunk = notes.slice(i, i + batch);
-			await Promise.all(chunk.map((note) => index(note)));
+
+			if (meilisearch) {
+				await meilisearch.ingestNote(chunk);
+			}
+
+			await Promise.all(chunk.map((note) => index(note, true)));
 
 			indexedCount += chunk.length;
 			const pct = (indexedCount / total) * 100;

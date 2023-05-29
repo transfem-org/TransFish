@@ -75,11 +75,11 @@ const hide = ref(
 onMounted(() => {
 	mini.value = plyr.value.player.media.scrollWidth < 300;
 	if (mini.value) {
-		plyr.value.player.on('play', () => {
+		plyr.value.player.on("play", () => {
 			plyr.value.player.fullscreen.enter();
 		});
 	}
-})
+});
 </script>
 
 <style lang="scss" scoped>

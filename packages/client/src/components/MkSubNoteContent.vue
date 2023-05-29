@@ -97,7 +97,10 @@
 					:to="`/notes/${note.renoteId}`"
 					>{{ i18n.ts.quoteAttached }}: ...</MkA
 				>
-				<XMediaList v-if="note.files.length > 0" :media-list="note.files" />
+				<XMediaList
+					v-if="note.files.length > 0"
+					:media-list="note.files"
+				/>
 				<XPoll v-if="note.poll" :note="note" class="poll" />
 				<template v-if="detailed">
 					<MkUrlPreview
@@ -151,7 +154,10 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
-		<div v-if="(isLong && !collapsed) || (props.note.cw && showContent)" class="fade"></div>
+		<div
+			v-if="(isLong && !collapsed) || (props.note.cw && showContent)"
+			class="fade"
+		></div>
 	</div>
 </template>
 
@@ -188,13 +194,13 @@ const emit = defineEmits<{
 
 const cwButton = ref<HTMLElement>();
 const showMoreButton = ref<HTMLElement>();
-const isLong = !props.detailedView
-	&& ( props.note.cw == null
-		&& (props.note.text != null
-			&& (props.note.text.split("\n").length > 9 || props.note.text.length > 500)
-		)
-		|| props.note.files.length > 4
-	);
+const isLong =
+	!props.detailedView &&
+	((props.note.cw == null &&
+		props.note.text != null &&
+		(props.note.text.split("\n").length > 9 ||
+			props.note.text.length > 500)) ||
+		props.note.files.length > 4);
 
 const collapsed = $ref(props.note.cw == null && isLong);
 
@@ -238,7 +244,8 @@ function focusFooter(ev) {
 </script>
 
 <style lang="scss" scoped>
-:deep(a), :deep(button) {
+:deep(a),
+:deep(button) {
 	position: relative;
 	z-index: 2;
 }
@@ -390,7 +397,7 @@ function focusFooter(ev) {
 			background: var(--panel);
 			mask: linear-gradient(to top, var(--gradient));
 			-webkit-mask: linear-gradient(to top, var(--gradient));
-			transition: background .2s;
+			transition: background 0.2s;
 		}
 	}
 }

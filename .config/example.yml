@@ -82,23 +82,28 @@ redis:
 #  user:
 #  pass:
 
+#   ┌───────────────────────────┐
+#───┘ Meilisearch configuration └─────────────────────────────────────
+#meilisearch:
+#  host: meilisearch
+#  port: 7700
+#  ssl: false
+#  apiKey:
+
 #   ┌───────────────┐
 #───┘ ID generation └───────────────────────────────────────────
 
-# You can select the ID generation method.
-# You don't usually need to change this setting, but you can
-# change it according to your preferences.
+# No need to uncomment in most cases, but you may want to change
+# these settings if you plan to run a large and/or distributed server.
 
-# Available methods:
-# aid ... Short, Millisecond accuracy
-# meid ... Similar to ObjectID, Millisecond accuracy
-# ulid ... Millisecond accuracy
-# objectid ... This is left for backward compatibility
+# cuid:
+#   # Min 16, Max 24
+#   length: 16
+#
+#   # Set this to a unique string across workers (e.g., machine's hostname)
+#   # if your workers are running in multiple hosts.
+#   fingerprint: my-fingerprint
 
-# ONCE YOU HAVE STARTED THE INSTANCE, DO NOT CHANGE THE
-# ID SETTINGS AFTER THAT!
-
-id: 'aid'
 
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────

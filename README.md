@@ -89,7 +89,8 @@ If you have access to a server that supports one of the sources below, I recomme
 
 - [FFmpeg](https://ffmpeg.org/) for video transcoding
 - Full text search (one of the following)
-  - 🦔 [Sonic](https://crates.io/crates/sonic-server) (recommended)
+  - 🦔 [Sonic](https://crates.io/crates/sonic-server)
+  - [MeiliSearch](https://www.meilisearch.com/)
   - [ElasticSearch](https://www.elastic.co/elasticsearch/)
 
 ### 🏗️ Build dependencies
@@ -148,7 +149,11 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 
 In Calckey's directory, fill out the `db` section of `.config/default.yml` with the correct information, where the `db` key is `calckey`.
 
-## 🦔 Set up search
+## 🔎 Set up search
+
+### 🦔 Sonic
+
+Sonic is better suited for self hosters with smaller deployments. It's easier to use, uses almost no resources, and takes barely any any disk space.
 
 Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#installation)
 
@@ -157,6 +162,17 @@ Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#inst
 
 In Calckey's directory, fill out the `sonic` section of `.config/default.yml` with the correct information.
 
+### Meilisearch
+
+Meilisearch is better suited for larger deployments. It's faster but uses far more resources and disk space.
+
+Follow Meilisearch's [quick start guide](https://www.meilisearch.com/docs/learn/getting_started/quick_start)
+
+In Calckey's directory, fill out the `meilisearch` section of `.config/default.yml` with the correct information.
+
+### ElasticSearch
+
+Please don't use ElasticSearch unless you already have an ElasticSearch setup and want to continue using it for Calckey. ElasticSearch is slow, heavy, and offers very few benefits over Sonic/Meilisearch.
 
 ## 💅 Customize
 
