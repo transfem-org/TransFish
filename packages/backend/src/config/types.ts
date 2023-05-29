@@ -60,7 +60,10 @@ export type Source = {
 
 	onlyQueueProcessor?: boolean;
 
-	id: string;
+	cuid?: {
+		length?: number;
+		fingerprint?: string;
+	};
 
 	outgoingAddressFamily?: "ipv4" | "ipv6" | "dual";
 

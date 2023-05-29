@@ -1,27 +1,27 @@
-import { ulid } from "ulid";
-import { genAid } from "./id/aid.js";
-import { genMeid } from "./id/meid.js";
-import { genMeidg } from "./id/meidg.js";
-import { genObjectId } from "./id/object-id.js";
+import { init, createId } from "@paralleldrive/cuid2";
 import config from "@/config/index.js";
 
-const metohd = config.id.toLowerCase();
+const TIME2000 = 946684800000;
+const TIMESTAMP_LENGTH = 8;
 
+const length =
+	Math.min(Math.max(config.cuid?.length ?? 16, 16), 24) - TIMESTAMP_LENGTH;
+const fingerprint = `${config.cuid?.fingerprint ?? ""}${createId()}`;
+
+const genCuid2 = init({ length, fingerprint });
+
+/**
+ * The generated ID results in the form of `[8 chars timestamp] + [cuid2]`.
+ * The minimum and maximum lengths are 16 and 24, respectively.
+ * With the length of 16, namely 8 for cuid2, roughly 1427399 IDs are needed
+ * in the same millisecond to reach 50% chance of collision.
+ *
+ * Ref: https://github.com/paralleldrive/cuid2#parameterized-length
+ */
 export function genId(date?: Date): string {
-	if (!date || date > new Date()) date = new Date();
+	const now = (date ?? new Date()).getTime();
+	const time = Math.max(now - TIME2000, 0);
+	const timestamp = time.toString(36).padStart(TIMESTAMP_LENGTH, "0");
 
-	switch (metohd) {
-		case "aid":
-			return genAid(date);
-		case "meid":
-			return genMeid(date);
-		case "meidg":
-			return genMeidg(date);
-		case "ulid":
-			return ulid(date.getTime());
-		case "objectid":
-			return genObjectId(date);
-		default:
-			throw new Error("unrecognized id generation method");
-	}
+	return `${timestamp}${genCuid2()}`;
 }
