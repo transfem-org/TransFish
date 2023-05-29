@@ -8,37 +8,27 @@
 		/></template>
 		<MkSpacer :content-max="700">
 			<div class="ieepwinx">
-
+				<MkInfo
+					class="_gap"
+					:icon="'flying-saucer'"
+					:card="true"
+				>
+					<p>{{ i18n.ts.antennasDesc }}</p>
+					<MkButton
+						:link="true"
+						to="/my/antennas/create"
+						primary
+						class="add"
+						><i class="ph-plus ph-bold ph-lg"></i>
+						{{ i18n.ts.add }}</MkButton
+					>
+				</MkInfo>
 				<div class="">
 					<MkPagination
 						ref="list"
 						:pagination="pagination"
 					>
-						<template #empty>
-							<MkInfo
-								:icon="'flying-saucer'"
-								:card="true"
-							>
-								<p>{{ i18n.ts.antennasDesc }}</p>
-								<MkButton
-									:link="true"
-									to="/my/antennas/create"
-									primary
-									class="add"
-									><i class="ph-plus ph-bold ph-lg"></i>
-									{{ i18n.ts.add }}</MkButton
-								>
-							</MkInfo>
-						</template>
 						<template #default="{ items }">
-							<MkButton
-								:link="true"
-								to="/my/antennas/create"
-								primary
-								class="add"
-								><i class="ph-plus ph-bold ph-lg"></i>
-								{{ i18n.ts.add }}</MkButton
-							>
 							<div v-for="antenna in items" :key="antenna.id">
 								<MkA
 									class="uopelskx"
