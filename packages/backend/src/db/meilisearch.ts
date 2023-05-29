@@ -274,7 +274,7 @@ export default hasConfig
 					note = [note];
 				}
 
-				let deletionBatch = note
+				const deletionBatch = note
 					.map((n) => {
 						if (n instanceof Note) {
 							return n.id;
