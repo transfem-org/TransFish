@@ -1,5 +1,5 @@
 <template>
-	<div class="ms_stats">
+	<div class="verusivbr">
 		<XPie class="pie" :value="progress" />
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
@@ -33,7 +33,7 @@ function onStats(stats) {
 	total_size = stats.meilisearch.size;
 	index_count = stats.meilisearch.indexed_count;
 	available = stats.meilisearch.health;
-	progress = Math.floor((index_count / serverStats.notesCount) * 100);
+	progress = (index_count / serverStats.notesCount);
 }
 
 onMounted(() => {
@@ -49,7 +49,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.ms_stats {
+.verusivbr {
+	display: flex;
 	padding: 16px;
 
 	> .pie {
@@ -59,6 +60,8 @@ onBeforeUnmount(() => {
 	}
 
 	> div {
+		flex: 1;
+
 		> p {
 			margin: 0;
 			font-size: 0.8em;
