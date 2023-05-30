@@ -114,7 +114,7 @@ html, body {
 }
 
 .swiper-slide {
-	height: unset !important;
+	min-height: 100vh;
 }
 
 a {
