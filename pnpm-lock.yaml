@@ -217,8 +217,8 @@ importers:
         specifier: 0.1.2
         version: 0.1.2
       ioredis:
-        specifier: 5.2.4
-        version: 5.2.4
+        specifier: 5.3.2
+        version: 5.3.2
       ip-cidr:
         specifier: 3.0.11
         version: 3.0.11
@@ -398,7 +398,7 @@ importers:
         version: 14.0.0
       typeorm:
         specifier: 0.3.11
-        version: 0.3.11(ioredis@5.2.4)(pg@8.8.0)(ts-node@10.9.1)
+        version: 0.3.11(ioredis@5.3.2)(pg@8.8.0)(ts-node@10.9.1)
       ulid:
         specifier: 2.3.0
         version: 2.3.0
@@ -3217,7 +3217,7 @@ packages:
     resolution: {integrity: sha512-zJbJ3FVE17CNl5KXzdeSPtdltc4tMT3TzC6fxQS0sQngkbFZ6h+0uTafsRqu+eSLIugf6Yb0Ea0SUuRr42Nk9g==}
     deprecated: This is a stub types definition. ioredis provides its own type definitions, so you do not need this installed.
     dependencies:
-      ioredis: 5.2.4
+      ioredis: 5.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4990,7 +4990,7 @@ packages:
       cron-parser: 4.7.1
       debuglog: 1.0.1
       get-port: 5.1.1
-      ioredis: 5.2.4
+      ioredis: 5.3.2
       lodash: 4.17.21
       msgpackr: 1.8.1
       p-timeout: 3.2.0
@@ -8500,8 +8500,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ioredis@5.2.4:
-    resolution: {integrity: sha512-qIpuAEt32lZJQ0XyrloCRdlEdUUNGG9i0UOk6zgzK6igyudNWqEBxfH6OlbnOOoBBvr1WB02mm8fR55CnikRng==}
+  /ioredis@5.3.2:
+    resolution: {integrity: sha512-1DKMMzlIHM02eBBVOFQ1+AolGjs6+xEcM4PDL7NqOS6szq7H9jSaEkIUH6/a5Hl241LzW6JLSiAbNvTQjUupUA==}
     engines: {node: '>=12.22.0'}
     dependencies:
       '@ioredis/commands': 1.2.0
@@ -14246,7 +14246,7 @@ packages:
   /typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  /typeorm@0.3.11(ioredis@5.2.4)(pg@8.8.0)(ts-node@10.9.1):
+  /typeorm@0.3.11(ioredis@5.3.2)(pg@8.8.0)(ts-node@10.9.1):
     resolution: {integrity: sha512-pzdOyWbVuz/z8Ww6gqvBW4nylsM0KLdUCDExr2gR20/x1khGSVxQkjNV/3YqliG90jrWzrknYbYscpk8yxFJVg==}
     engines: {node: '>= 12.9.0'}
     hasBin: true
@@ -14313,7 +14313,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       dotenv: 16.0.3
       glob: 7.2.3
-      ioredis: 5.2.4
+      ioredis: 5.3.2
       js-yaml: 4.1.0
       mkdirp: 1.0.4
       pg: 8.8.0
