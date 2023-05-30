@@ -1,72 +1,52 @@
 <template>
-	<div class="_panel ntjkdlsfk" :class="$style.root">
-		<div class="container env">
-			<div class="body">
-				<div class="number _panel">
-					<div class="label">Calckey</div>
-					<div class="value _monospace">{{ version }}</div>
+	<div class="_panel" :class="$style.root">
+		<div class="ntjkdlsfk">
+			<div class="_panel">
+				<XPie class="pie" :value="cpuUsage" />
+				<div>
+					<p><i class="ph-cpu ph-bold ph-lg"></i>CPU</p>
+					<p>{{ meta.cpu.cores }} Logical cores</p>
+					<p>{{ meta.cpu.model }}</p>
 				</div>
-				<div v-if="serverInfo" class="number _panel">
-					<div class="label">Node.js</div>
-					<div class="value _monospace">{{ serverInfo.node }}</div>
-				</div>
-				<div v-if="serverInfo" class="number _panel">
-					<div class="label">PostgreSQL</div>
-					<div class="value _monospace">{{ serverInfo.psql }}</div>
-				</div>
-				<div v-if="serverInfo" class="number _panel">
-					<div class="label">Redis</div>
-					<div class="value _monospace">{{ serverInfo.redis }}</div>
-				</div>
-				<div class="_panel">
-					<XPie class="pie" :value="cpuUsage" />
-					<div>
-						<p><i class="ph-cpu ph-bold ph-lg"></i>CPU</p>
-						<p>{{ meta.cpu.cores }} Logical cores</p>
-						<p>{{ meta.cpu.model }}</p>
-					</div>
-				</div>
+			</div>
 
-				<div class="_panel">
-					<XPie class="pie" :value="memUsage" />
-					<div>
-						<p><i class="ph-microchip ph-bold ph-lg"></i>RAM</p>
-						<p>Total: {{ bytes(memTotal, 1) }}</p>
-						<p>Used: {{ bytes(memUsed, 1) }}</p>
-						<p>Free: {{ bytes(memFree, 1) }}</p>
-					</div>
+			<div class="_panel">
+				<XPie class="pie" :value="memUsage" />
+				<div>
+					<p><i class="ph-microchip ph-bold ph-lg"></i>RAM</p>
+					<p>Total: {{ bytes(memTotal, 1) }}</p>
+					<p>Used: {{ bytes(memUsed, 1) }}</p>
+					<p>Free: {{ bytes(memFree, 1) }}</p>
 				</div>
+			</div>
 
-				<div class="_panel">
-					<XPie class="pie" :value="diskUsage" />
-					<div>
-						<p><i class="ph-hard-drives ph-bold ph-lg"></i>Disk</p>
-						<p>Total: {{ bytes(diskTotal, 1) }}</p>
-						<p>Free: {{ bytes(diskAvailable, 1) }}</p>
-						<p>Used: {{ bytes(diskUsed, 1) }}</p>
-					</div>
+			<div class="_panel">
+				<XPie class="pie" :value="diskUsage" />
+				<div>
+					<p><i class="ph-hard-drives ph-bold ph-lg"></i>Disk</p>
+					<p>Total: {{ bytes(diskTotal, 1) }}</p>
+					<p>Free: {{ bytes(diskAvailable, 1) }}</p>
+					<p>Used: {{ bytes(diskUsed, 1) }}</p>
 				</div>
+			</div>
 
-				<div class="_panel">
-					<XPie class="pie" :value="meiliProgress" />
-					<div>
-						<p>
-							<i class="ph-file-search ph-bold ph-lg"></i
-							>MeiliSearch
-						</p>
-						<p>
-							{{ i18n.ts._widgets.meiliStatus }}:
-							{{ meiliAvailable }}
-						</p>
-						<p>
-							{{ i18n.ts._widgets.meiliSize }}:
-							{{ bytes(meiliTotalSize, 1) }}
-						</p>
-						<p>
-							{{ i18n.ts._widgets.meiliIndexCount }}:
-							{{ meiliIndexCount }}
-						</p>
-					</div>
+			<div class="_panel">
+				<XPie class="pie" :value="meiliProgress" />
+				<div>
+					<p>
+						<i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch
+					</p>
+					<p>
+						{{ i18n.ts._widgets.meiliStatus }}: {{ meiliAvailable }}
+					</p>
+					<p>
+						{{ i18n.ts._widgets.meiliSize }}:
+						{{ bytes(meiliTotalSize, 1) }}
+					</p>
+					<p>
+						{{ i18n.ts._widgets.meiliIndexCount }}:
+						{{ meiliIndexCount }}
+					</p>
 				</div>
 			</div>
 		</div>
@@ -80,11 +60,9 @@ import bytes from "@/filters/bytes";
 import { stream } from "@/stream";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-import { version } from "@/config";
 
 const meta = await os.api("server-info", {});
 const serverStats = await os.api("stats");
-const serverInfo = await os.api("admin/server-info");
 
 let cpuUsage: number = $ref(0);
 
@@ -138,45 +116,26 @@ onUnmounted(() => {
 	display: flex;
 	padding: 16px;
 
-	&.env {
-		> .body {
-			display: grid;
-			grid-gap: 16px;
-			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	> ._panel {
+		> .pie {
+			height: 82px;
+			flex-shrink: 0;
+			margin-right: 16px;
+		}
 
-			> .number {
-				padding: 14px 20px;
+		> div {
+			flex: 1;
 
-				> .label {
-					opacity: 0.7;
-					font-size: 0.8em;
-				}
+			> p {
+				margin: 0;
+				font-size: 0.8em;
 
-				> .value {
-					font-size: 1.1em;
-				}
-			}
+				&:first-child {
+					font-weight: bold;
+					margin-bottom: 4px;
 
-			> .pie {
-				height: 82px;
-				flex-shrink: 0;
-				margin-right: 16px;
-			}
-
-			> div {
-				flex: 1;
-
-				> p {
-					margin: 0;
-					font-size: 0.8em;
-
-					&:first-child {
-						font-weight: bold;
-						margin-bottom: 4px;
-
-						> i {
-							margin-right: 4px;
-						}
+					> i {
+						margin-right: 4px;
 					}
 				}
 			}
