@@ -227,7 +227,7 @@ onUnmounted(() => {
 
 .mk-url-preview {
 	> .expand-tweet {
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 	}
 
 	&.max-width_400px {
