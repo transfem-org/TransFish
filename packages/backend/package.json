@@ -23,9 +23,9 @@
 		"@tensorflow/tfjs-node": "3.21.1"
 	},
 	"dependencies": {
-		"@bull-board/api": "^4.6.4",
-		"@bull-board/koa": "^4.6.4",
-		"@bull-board/ui": "^4.6.4",
+		"@bull-board/api": "5.2.0",
+		"@bull-board/koa": "5.2.0",
+		"@bull-board/ui": "5.2.0",
 		"@calckey/megalodon": "5.2.0",
 		"@discordapp/twemoji": "14.0.2",
 		"@elastic/elasticsearch": "7.17.0",
