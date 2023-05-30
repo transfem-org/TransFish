@@ -61,6 +61,66 @@ if (hasConfig) {
 			),
 		);
 
+	posts
+		.updateStopWords([
+			"the",
+			"a",
+			"as",
+			"be",
+			"of",
+			"they",
+			"these",
+			"これ",
+			"それ",
+			"あれ",
+			"この",
+			"その",
+			"あの",
+			"ここ",
+			"そこ",
+			"あそこ",
+			"こちら",
+			"どこ",
+			"だれ",
+			"なに",
+			"なん",
+			"何",
+			"私",
+			"貴方",
+			"貴方方",
+			"我々",
+			"私達",
+			"あの人",
+			"あのか",
+			"彼女",
+			"彼",
+			"です",
+			"ありま",
+			"おりま",
+			"います",
+			"は",
+			"が",
+			"の",
+			"に",
+			"を",
+			"で",
+			"え",
+			"から",
+			"まで",
+			"より",
+			"も",
+			"どの",
+			"と",
+			"し",
+			"それで",
+			"しかし",
+		])
+		.catch((e) =>
+			logger.error(
+				`Failed to set Meilisearch stop words, database size will be larger: ${e}`,
+			),
+		);
+
 	logger.info("Connected to MeiliSearch");
 }
 
