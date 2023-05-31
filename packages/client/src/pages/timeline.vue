@@ -195,7 +195,7 @@ async function chooseAntenna(ev: MouseEvent): Promise<void> {
 }
 
 function saveSrc(
-	newSrc: "home" | "local" | "recommended" | "social" | "global"
+	newSrc: "home" | "local" | "social" | "recommended" | "global"
 ): void {
 	defaultStore.set("tl", {
 		...defaultStore.state.tl,
