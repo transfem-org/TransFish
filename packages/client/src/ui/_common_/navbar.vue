@@ -252,6 +252,9 @@ function more(ev: MouseEvent) {
 		#calckey_app > :not(.wallpaper) & {
 			background: var(--navBg);
 		}
+		#calckey_app > .wallpaper:not(.centered) & {
+			border-right: 1px solid var(--divider);
+		}
 		contain: strict;
 		display: flex;
 		flex-direction: column;

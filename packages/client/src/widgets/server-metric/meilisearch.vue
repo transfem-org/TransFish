@@ -1,11 +1,15 @@
 <template>
 	<div class="verusivbr">
-		<XPie class="pie" :value="progress" />
+		<XPie
+			v-tooltip="i18n.ts.meiliIndexCount"
+			class="pie"
+			:value="progress"
+		/>
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
 			<p>{{ i18n.ts._widgets.meiliStatus }}: {{ available }}</p>
-			<p>{{ i18n.ts._widgets.meiliSize }}: {{ bytes(total_size, 2) }}</p>
-			<p>{{ i18n.ts._widgets.meiliIndexCount }}: {{ index_count }}</p>
+			<p>{{ i18n.ts._widgets.meiliSize }}: {{ bytes(totalSize, 1) }}</p>
+			<p>{{ i18n.ts._widgets.meiliIndexCount }}: {{ indexCount }}</p>
 		</div>
 	</div>
 	<br />
@@ -25,15 +29,15 @@ const props = defineProps<{
 
 let progress: number = $ref(0);
 let serverStats = $ref(null);
-let total_size: number = $ref(0);
-let index_count: number = $ref(0);
+let totalSize: number = $ref(0);
+let indexCount: number = $ref(0);
 let available: string = $ref("unavailable");
 
 function onStats(stats) {
-	total_size = stats.meilisearch.size;
-	index_count = stats.meilisearch.indexed_count;
+	totalSize = stats.meilisearch.size;
+	indexCount = stats.meilisearch.indexed_count;
 	available = stats.meilisearch.health;
-	progress = index_count / serverStats.notesCount;
+	progress = indexCount / serverStats.notesCount;
 }
 
 onMounted(() => {

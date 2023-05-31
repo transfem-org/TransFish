@@ -1802,8 +1802,8 @@ pushNotificationNotSupported: El vostre navegador o servidor no admet notificaci
   push
 license: Llicència
 indexPosts: Índex de notes
-indexFrom: Índex a partir de l'ID de Publicacions (deixeu en blanc per indexar cada
-  publicació)
+indexFrom: Índex a partir de l'ID de Publicacions
+indexFromDescription: Deixeu en blanc per indexar cada publicació
 indexNotice: Ara indexant. Això probablement trigarà una estona, si us plau, no reinicieu
   el servidor durant almenys una hora.
 _instanceTicker:

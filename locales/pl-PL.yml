@@ -1898,7 +1898,8 @@ sendPushNotificationReadMessageCaption: Powiadomienie zawierające tekst "{empty
 defaultReaction: Domyślna reakcja emoji dla wychodzących i przychodzących wpisów
 license: Licencja
 indexPosts: Indeksuj wpisy
-indexFrom: Indeksuj wpisy od ID (zostaw puste dla indeksowania wszystkich wpisów)
+indexFrom: Indeksuj wpisy od ID
+indexFromDescription: Zostaw puste dla indeksowania wszystkich wpisów
 indexNotice: Indeksuję. Zapewne zajmie to chwilę, nie restartuj serwera przez co najmniej
   godzinę.
 customKaTeXMacro: Niestandardowe makra KaTeX
