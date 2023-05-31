@@ -109,11 +109,11 @@ let timelines = ["home"];
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
 }
-if (isRecommendedTimelineAvailable) {
-	timelines.push("recommended");
-}
 if (isLocalTimelineAvailable) {
 	timelines.push("social");
+}
+if (isRecommendedTimelineAvailable) {
+	timelines.push("recommended");
 }
 if (isGlobalTimelineAvailable) {
 	timelines.push("global");
@@ -255,22 +255,22 @@ const headerTabs = $computed(() => [
 				},
 		  ]
 		: []),
-	...(isRecommendedTimelineAvailable
-		? [
-				{
-					key: "recommended",
-					title: i18n.ts._timelines.recommended,
-					icon: "ph-thumbs-up ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: []),
 	...(isLocalTimelineAvailable
 		? [
 				{
 					key: "social",
 					title: i18n.ts._timelines.social,
 					icon: "ph-handshake ph-bold ph-lg",
+					iconOnly: true,
+				},
+		  ]
+		: []),
+	...(isRecommendedTimelineAvailable
+		? [
+				{
+					key: "recommended",
+					title: i18n.ts._timelines.recommended,
+					icon: "ph-thumbs-up ph-bold ph-lg",
 					iconOnly: true,
 				},
 		  ]
