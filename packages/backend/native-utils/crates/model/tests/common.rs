@@ -7,7 +7,6 @@ use model::entity::{antenna, sea_orm_active_enums::AntennaSrcEnum, user};
 use sea_orm::{
     ActiveModelTrait, ActiveValue::Set, DatabaseConnection, DbErr, EntityTrait, TransactionTrait,
 };
-use serde_json::json;
 use std::env;
 use util::{
     id::{create_id, init_id},
@@ -64,8 +63,16 @@ async fn setup_model(db: &DatabaseConnection) {
                 user_id: Set(user_id.to_owned()),
                 name: Set("Test Antenna".to_string()),
                 src: Set(AntennaSrcEnum::All),
-                keywords: Set(json!([["foo", "bar"], ["foobar"]])),
-                exclude_keywords: Set(json!([["abc"], ["def", "ghi"]])),
+                keywords: Set(vec![
+                    vec!["foo".to_string(), "bar".to_string()],
+                    vec!["foobar".to_string()],
+                ]
+                .into()),
+                exclude_keywords: Set(vec![
+                    vec!["abc".to_string()],
+                    vec!["def".to_string(), "ghi".to_string()],
+                ]
+                .into()),
                 with_file: Set(false),
                 notify: Set(true),
                 case_sensitive: Set(true),

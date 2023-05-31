@@ -3,7 +3,7 @@ use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 
 use crate::entity::{antenna, antenna_note, user_group_joining};
 use crate::error::Error;
-use crate::schema::{antenna::Antenna, json_to_keyword, json_to_string_list};
+use crate::schema::antenna::Antenna;
 
 use super::Repository;
 
@@ -30,13 +30,13 @@ impl Repository<Antenna> for antenna::Model {
             id: self.id,
             created_at: self.created_at.into(),
             name: self.name,
-            keywords: json_to_keyword(&self.keywords),
-            exclude_keywords: json_to_keyword(&self.exclude_keywords),
+            keywords: self.keywords,
+            exclude_keywords: self.exclude_keywords,
             src: self.src.try_into()?,
             user_list_id: self.user_list_id,
             user_group_id,
             users: self.users,
-            instances: json_to_string_list(&self.instances),
+            instances: self.instances,
             case_sensitive: self.case_sensitive,
             notify: self.notify,
             with_replies: self.with_replies,

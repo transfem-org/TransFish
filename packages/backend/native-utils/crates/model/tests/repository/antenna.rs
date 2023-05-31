@@ -38,16 +38,18 @@ mod it_test {
                 keywords: vec![
                     vec!["foo".to_string(), "bar".to_string()],
                     vec!["foobar".to_string()]
-                ],
+                ]
+                .into(),
                 exclude_keywords: vec![
                     vec!["abc".to_string()],
                     vec!["def".to_string(), "ghi".to_string()]
-                ],
+                ]
+                .into(),
                 src: schema::antenna::AntennaSrc::All,
                 user_list_id: None,
                 user_group_id: None,
-                users: vec![],
-                instances: vec![],
+                users: vec![].into(),
+                instances: vec![].into(),
                 case_sensitive: true,
                 notify: true,
                 with_replies: false,

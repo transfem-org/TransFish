@@ -33,6 +33,7 @@ pub mod migrations;
 pub mod moderation_log;
 pub mod muted_note;
 pub mod muting;
+pub mod newtype;
 pub mod note;
 pub mod note_edit;
 pub mod note_favorite;

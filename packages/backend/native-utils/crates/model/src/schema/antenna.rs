@@ -4,8 +4,8 @@ use parse_display::FromStr;
 use schemars::JsonSchema;
 use utoipa::ToSchema;
 
-use super::{Keyword, Schema, StringList};
-use crate::entity::sea_orm_active_enums::AntennaSrcEnum;
+use super::Schema;
+use crate::entity::{newtype, sea_orm_active_enums::AntennaSrcEnum};
 
 #[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
 #[serde(rename_all = "camelCase")]
@@ -13,14 +13,14 @@ pub struct Antenna {
     pub id: String,
     pub created_at: chrono::DateTime<chrono::Utc>,
     pub name: String,
-    pub keywords: Keyword,
-    pub exclude_keywords: Keyword,
+    pub keywords: newtype::Keyword,
+    pub exclude_keywords: newtype::Keyword,
     #[schema(inline)]
     pub src: AntennaSrc,
     pub user_list_id: Option<String>,
     pub user_group_id: Option<String>,
-    pub users: StringList,
-    pub instances: StringList,
+    pub users: newtype::StringVec,
+    pub instances: newtype::StringVec,
     #[serde(default)]
     pub case_sensitive: bool,
     #[serde(default)]
