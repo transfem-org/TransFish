@@ -98,12 +98,10 @@ export default define(meta, paramDef, async (ps, user) => {
 	const { username, host } = parse(ps.moveToAccount);
 	if (!host) throw new ApiError(meta.errors.notRemote);
 
-	const moveTo: User = await resolveUser(username, host).catch(
-		(e) => {
-			apiLogger.warn(`failed to resolve remote user: ${e}`);
-			throw new ApiError(meta.errors.noSuchMoveTarget);
-		},
-	);
+	const moveTo: User = await resolveUser(username, host).catch((e) => {
+		apiLogger.warn(`failed to resolve remote user: ${e}`);
+		throw new ApiError(meta.errors.noSuchMoveTarget);
+	});
 	let fromUrl: string | null = user.uri;
 	if (!fromUrl) {
 		fromUrl = `${config.url}/users/${user.id}`;

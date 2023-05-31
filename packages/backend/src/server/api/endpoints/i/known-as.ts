@@ -38,14 +38,14 @@ export const meta = {
 			id: "bf326f31-d430-4f97-9933-5d61e4d48a23",
 		},
 		alreadyMoved: {
-			message: 'You have already moved your account.',
-			code: 'ALREADY_MOVED',
-			id: '56f20ec9-fd06-4fa5-841b-edd6d7d4fa31',
+			message: "You have already moved your account.",
+			code: "ALREADY_MOVED",
+			id: "56f20ec9-fd06-4fa5-841b-edd6d7d4fa31",
 		},
 		yourself: {
-			message: 'You can\'t set yourself as your own alias.',
-			code: 'FORBIDDEN_TO_SET_YOURSELF',
-			id: '25c90186-4ab0-49c8-9bba-a1fa6c202ba4',
+			message: "You can't set yourself as your own alias.",
+			code: "FORBIDDEN_TO_SET_YOURSELF",
+			id: "25c90186-4ab0-49c8-9bba-a1fa6c202ba4",
 		},
 	},
 } as const;
@@ -54,10 +54,10 @@ export const paramDef = {
 	type: "object",
 	properties: {
 		alsoKnownAs: {
-			type: 'array',
+			type: "array",
 			maxItems: 10,
 			uniqueItems: true,
-			items: { type: 'string' },
+			items: { type: "string" },
 		},
 	},
 	required: ["alsoKnownAs"],
