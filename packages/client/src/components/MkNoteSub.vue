@@ -30,6 +30,7 @@
 						:note="note"
 						:parentId="parentId"
 						:conversation="conversation"
+						:detailedView="detailedView"
 						@focusfooter="footerEl.focus()"
 					/>
 					<div v-if="translating || translation" class="translation">

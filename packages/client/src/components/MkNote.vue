@@ -9,6 +9,7 @@
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
+		:id="appearNote.id"
 	>
 		<MkNoteSub
 			v-if="appearNote.reply && !detailedView"
