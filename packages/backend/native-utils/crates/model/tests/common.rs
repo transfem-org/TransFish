@@ -88,7 +88,7 @@ async fn setup_model(db: &DatabaseConnection) {
     .expect("Unable to setup predefined models");
 }
 
-mod it_test {
+mod int_test {
     use super::{cleanup, prepare};
 
     #[tokio::test]

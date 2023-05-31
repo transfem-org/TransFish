@@ -1,4 +1,4 @@
-mod it_test {
+mod int_test {
     use model::{
         entity::{antenna, user},
         repository::Repository,

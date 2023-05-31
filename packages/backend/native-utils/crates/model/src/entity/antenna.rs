@@ -17,7 +17,7 @@ pub struct Model {
     #[sea_orm(column_name = "userListId")]
     pub user_list_id: Option<String>,
     #[sea_orm(column_type = "JsonBinary")]
-    pub keywords: newtype::Keyword,
+    pub keywords: newtype::JsonKeyword,
     #[sea_orm(column_name = "withFile")]
     pub with_file: bool,
     pub expression: Option<String>,
@@ -28,11 +28,11 @@ pub struct Model {
     pub with_replies: bool,
     #[sea_orm(column_name = "userGroupJoiningId")]
     pub user_group_joining_id: Option<String>,
-    pub users: newtype::StringVec,
+    pub users: Vec<String>,
     #[sea_orm(column_name = "excludeKeywords", column_type = "JsonBinary")]
-    pub exclude_keywords: newtype::Keyword,
+    pub exclude_keywords: newtype::JsonKeyword,
     #[sea_orm(column_type = "JsonBinary")]
-    pub instances: newtype::StringVec,
+    pub instances: newtype::JsonStringVec,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

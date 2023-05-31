@@ -13,14 +13,14 @@ pub struct Antenna {
     pub id: String,
     pub created_at: chrono::DateTime<chrono::Utc>,
     pub name: String,
-    pub keywords: newtype::Keyword,
-    pub exclude_keywords: newtype::Keyword,
+    pub keywords: newtype::JsonKeyword,
+    pub exclude_keywords: newtype::JsonKeyword,
     #[schema(inline)]
     pub src: AntennaSrc,
     pub user_list_id: Option<String>,
     pub user_group_id: Option<String>,
-    pub users: newtype::StringVec,
-    pub instances: newtype::StringVec,
+    pub users: Vec<String>,
+    pub instances: newtype::JsonStringVec,
     #[serde(default)]
     pub case_sensitive: bool,
     #[serde(default)]
