@@ -173,7 +173,11 @@ function validate(profile: unknown): void {
 	if (!isObject(profile)) throw new Error("not an object");
 
 	// Check if unnecessary properties exist
-	if (Object.keys(profile).some((key) => !profileProps.includes(key) && key !== "host"))
+	if (
+		Object.keys(profile).some(
+			(key) => !profileProps.includes(key) && key !== "host"
+		)
+	)
 		throw new Error("Unnecessary properties exist");
 
 	if (!profile.name) throw new Error("Missing required prop: name");
