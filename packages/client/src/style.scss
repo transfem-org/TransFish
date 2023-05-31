@@ -229,6 +229,7 @@ hr {
 	box-sizing: border-box;
 	position: relative;
 	border-radius: 5px;
+	outline: none;
 
 	&::before {
 		content: "";
@@ -239,12 +240,13 @@ hr {
 		transition: background 0.2s;
 	}
 
-	&:hover:before {
-		// background: rgba(0, 0, 0, 0.05);
+	&:hover:before, &:focus::before, &.highlighted::before {
 		background: var(--buttonBg);
 	}
-
-	&.highlighted::before {
+	&:focus-visible::before {
+		outline: auto;
+	}
+	&.highlighted {
 		color: var(--accent);
 	}
 }
