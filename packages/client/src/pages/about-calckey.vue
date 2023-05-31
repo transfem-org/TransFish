@@ -104,9 +104,9 @@
 								><Mfm
 									:text="'@panos@calckey.social (Project Coordinator)'"
 							/></FormLink>
-							<FormLink to="/@freeplay@bz.pawdev.me"
+							<FormLink to="/@freeplay@calckey.social"
 								><Mfm
-									:text="'@freeplay@bz.pawdev.me (UI/UX Designer)'"
+									:text="'@freeplay@calckey.social (UI)'"
 							/></FormLink>
 							<FormLink
 								to="https://www.youtube.com/c/Henkiwashere"
