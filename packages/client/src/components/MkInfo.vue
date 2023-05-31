@@ -10,7 +10,7 @@
 		<button
 			v-if="closeable"
 			v-tooltip="i18n.ts.close"
-			class="_button close"
+			class="_buttonIcon close"
 			@click.stop="close"
 		>
 			<i class="ph-x ph-bold ph-lg"></i>
@@ -48,6 +48,9 @@ function close() {
 	background: var(--infoBg);
 	color: var(--infoFg);
 	border-radius: var(--radius);
+	display: flex;
+	align-items: center;
+	gap: .4em;
 
 	&.warn {
 		background: var(--infoWarnBg);
@@ -55,6 +58,7 @@ function close() {
 	}
 
 	&.card {
+		display: inline;
 		background: var(--panel);
 		color: var(--fg);
 		padding: 48px;

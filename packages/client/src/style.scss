@@ -219,6 +219,36 @@ hr {
 	}
 }
 
+._buttonIcon {
+	@extend ._button;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--height) - (var(--margin) * 2));
+	height: calc(var(--height) - (var(--margin) * 2));
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 5px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 2.7em;
+		height: 2.7em;
+		border-radius: inherit;
+		transition: background 0.2s;
+	}
+
+	&:hover:before {
+		// background: rgba(0, 0, 0, 0.05);
+		background: var(--buttonBg);
+	}
+
+	&.highlighted::before {
+		color: var(--accent);
+	}
+}
+
 ._buttonPrimary {
 	@extend ._button;
 	color: var(--fgOnAccent);
