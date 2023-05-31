@@ -58,7 +58,7 @@ function close() {
 	}
 
 	&.card {
-		display: inline;
+		display: block;
 		background: var(--panel);
 		color: var(--fg);
 		padding: 48px;
