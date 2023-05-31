@@ -258,7 +258,7 @@ export default hasConfig
 						primaryKey: "id",
 					})
 					.then(() =>
-						console.log(`sent ${indexingBatch.length} posts for indexing`),
+						logger.info(`sent ${indexingBatch.length} posts for indexing`),
 					);
 			},
 			serverStats: async () => {
