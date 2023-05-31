@@ -16,7 +16,7 @@ pub struct JsonStringVec(pub Vec<String>);
 impl_json_newtype!(JsonStringVec);
 
 cfg_if! {
-    if #[cfg(feature = "compat")] {
+    if #[cfg(feature = "legacy")] {
         pub type StringVec = Vec<String>;
     } else {
         pub type StringVec = JsonStringVec;
