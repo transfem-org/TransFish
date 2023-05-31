@@ -163,8 +163,8 @@ importers:
         specifier: 1.1.5
         version: 1.1.5
       bull:
-        specifier: 4.10.2
-        version: 4.10.2
+        specifier: 4.10.4
+        version: 4.10.4
       cacheable-lookup:
         specifier: 7.0.0
         version: 7.0.0
@@ -4983,8 +4983,8 @@ packages:
       node-gyp-build: 4.6.0
     dev: false
 
-  /bull@4.10.2:
-    resolution: {integrity: sha512-xa65xtWjQsLqYU/eNaXxq9VRG8xd6qNsQEjR7yjYuae05xKrzbVMVj2QgrYsTMmSs/vsqJjHqHSRRiW1+IkGXQ==}
+  /bull@4.10.4:
+    resolution: {integrity: sha512-o9m/7HjS/Or3vqRd59evBlWCXd9Lp+ALppKseoSKHaykK46SmRjAilX98PgmOz1yeVaurt8D5UtvEt4bUjM3eA==}
     engines: {node: '>=12'}
     dependencies:
       cron-parser: 4.7.1
@@ -4993,7 +4993,6 @@ packages:
       ioredis: 5.3.2
       lodash: 4.17.21
       msgpackr: 1.8.1
-      p-timeout: 3.2.0
       semver: 7.3.8
       uuid: 8.3.2
     transitivePeerDependencies:
@@ -11326,6 +11325,7 @@ packages:
   /p-finally@1.0.0:
     resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
     engines: {node: '>=4'}
+    dev: true
 
   /p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -11370,6 +11370,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       p-finally: 1.0.0
+    dev: true
 
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
