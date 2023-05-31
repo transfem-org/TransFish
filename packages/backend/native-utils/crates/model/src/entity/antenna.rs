@@ -28,7 +28,7 @@ pub struct Model {
     pub with_replies: bool,
     #[sea_orm(column_name = "userGroupJoiningId")]
     pub user_group_joining_id: Option<String>,
-    pub users: Vec<String>,
+    pub users: newtype::StringVec,
     #[sea_orm(column_name = "excludeKeywords", column_type = "JsonBinary")]
     pub exclude_keywords: newtype::JsonKeyword,
     #[sea_orm(column_type = "JsonBinary")]

@@ -5,7 +5,8 @@ mod repository;
 use chrono::Utc;
 use model::entity::{antenna, sea_orm_active_enums::AntennaSrcEnum, user};
 use sea_orm::{
-    ActiveModelTrait, ActiveValue::Set, DatabaseConnection, DbErr, EntityTrait, TransactionTrait,
+    ActiveModelTrait, ActiveValue::Set, ConnectionTrait, DbBackend, DbConn, DbErr, EntityTrait,
+    TransactionTrait,
 };
 use std::env;
 use util::{
@@ -24,6 +25,15 @@ async fn prepare() {
     setup_model(db).await;
 }
 
+async fn setup_schema(db: DbConn) {
+    // Setup Schema helper
+    let schema = sea_orm::Schema::new(DbBackend::Sqlite);
+    let stmt = schema.create_table_from_entity(antenna::Entity);
+    db.execute(db.get_database_backend().build(&stmt))
+        .await
+        .expect("Unable to initialize in-memoty sqlite");
+}
+
 /// Delete all entries in the database.
 async fn cleanup() {
     let db = database::get_database().unwrap();
@@ -39,7 +49,7 @@ async fn cleanup() {
     .expect("Unable to delete predefined models");
 }
 
-async fn setup_model(db: &DatabaseConnection) {
+async fn setup_model(db: &DbConn) {
     init_id(12);
 
     db.transaction::<_, (), DbErr>(|txn| {
@@ -89,11 +99,21 @@ async fn setup_model(db: &DatabaseConnection) {
 }
 
 mod int_test {
+    use sea_orm::Database;
+
+    use crate::setup_schema;
+
     use super::{cleanup, prepare};
 
     #[tokio::test]
     async fn can_prepare_and_cleanup() {
         prepare().await;
         cleanup().await;
+    }
+
+    #[tokio::test]
+    async fn can_setup_sqlite_schema() {
+        let db = Database::connect("sqlite::memory:").await.unwrap();
+        setup_schema(db).await;
     }
 }

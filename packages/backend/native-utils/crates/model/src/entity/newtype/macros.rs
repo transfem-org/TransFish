@@ -33,12 +33,12 @@ macro_rules! impl_json_newtype {
                 stringify!($a).to_owned()
             }
 
-            fn array_type() -> sea_orm::sea_query::ArrayType {
-                sea_orm::sea_query::ArrayType::Json
+            fn array_type() -> sea_query::ArrayType {
+                sea_query::ArrayType::Json
             }
 
             fn column_type() -> sea_query::ColumnType {
-                sea_query::ColumnType::Json
+                sea_query::ColumnType::JsonBinary
             }
         }
 

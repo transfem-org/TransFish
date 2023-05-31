@@ -1,10 +1,10 @@
 pub mod error;
 
-use sea_orm::{Database, DatabaseConnection};
+use sea_orm::{Database, DbConn};
 
 use crate::error::Error;
 
-static DB_CONN: once_cell::sync::OnceCell<DatabaseConnection> = once_cell::sync::OnceCell::new();
+static DB_CONN: once_cell::sync::OnceCell<DbConn> = once_cell::sync::OnceCell::new();
 
 pub async fn init_database(connection_uri: impl Into<String>) -> Result<(), Error> {
     let conn = Database::connect(connection_uri.into()).await?;
@@ -12,7 +12,7 @@ pub async fn init_database(connection_uri: impl Into<String>) -> Result<(), Erro
     Ok(())
 }
 
-pub fn get_database() -> Result<&'static DatabaseConnection, Error> {
+pub fn get_database() -> Result<&'static DbConn, Error> {
     DB_CONN.get().ok_or(Error::Uninitialized)
 }
 
