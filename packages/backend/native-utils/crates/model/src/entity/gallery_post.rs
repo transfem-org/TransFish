@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "gallery_post")]
 pub struct Model {
@@ -16,12 +18,12 @@ pub struct Model {
     #[sea_orm(column_name = "userId")]
     pub user_id: String,
     #[sea_orm(column_name = "fileIds")]
-    pub file_ids: Vec<String>,
+    pub file_ids: StringVec,
     #[sea_orm(column_name = "isSensitive")]
     pub is_sensitive: bool,
     #[sea_orm(column_name = "likedCount")]
     pub liked_count: i32,
-    pub tags: Vec<String>,
+    pub tags: StringVec,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

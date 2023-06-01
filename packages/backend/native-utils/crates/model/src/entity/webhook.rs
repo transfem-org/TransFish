@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "webhook")]
 pub struct Model {
@@ -12,7 +14,7 @@ pub struct Model {
     #[sea_orm(column_name = "userId")]
     pub user_id: String,
     pub name: String,
-    pub on: Vec<String>,
+    pub on: StringVec,
     pub url: String,
     pub secret: String,
     pub active: bool,

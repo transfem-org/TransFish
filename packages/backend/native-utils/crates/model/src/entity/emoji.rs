@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "emoji")]
 pub struct Model {
@@ -15,7 +17,7 @@ pub struct Model {
     pub original_url: String,
     pub uri: Option<String>,
     pub r#type: Option<String>,
-    pub aliases: Vec<String>,
+    pub aliases: StringVec,
     pub category: Option<String>,
     #[sea_orm(column_name = "publicUrl")]
     pub public_url: String,

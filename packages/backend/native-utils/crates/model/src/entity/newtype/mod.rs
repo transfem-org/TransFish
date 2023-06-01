@@ -15,10 +15,16 @@ impl_json_newtype!(JsonKeyword);
 pub struct JsonStringVec(pub Vec<String>);
 impl_json_newtype!(JsonStringVec);
 
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into)]
+pub struct JsonI32Vec(pub Vec<i32>);
+impl_json_newtype!(JsonI32Vec);
+
 cfg_if! {
     if #[cfg(feature = "legacy")] {
         pub type StringVec = Vec<String>;
+        pub type I32Vec = Vec<i32>;
     } else {
         pub type StringVec = JsonStringVec;
+        pub type I32Vec = JsonI32Vec;
     }
 }

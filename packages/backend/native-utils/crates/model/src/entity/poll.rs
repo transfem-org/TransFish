@@ -3,6 +3,8 @@
 use super::sea_orm_active_enums::PollNotevisibilityEnum;
 use sea_orm::entity::prelude::*;
 
+use super::newtype::{I32Vec, StringVec};
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "poll")]
 pub struct Model {
@@ -11,8 +13,8 @@ pub struct Model {
     #[sea_orm(column_name = "expiresAt")]
     pub expires_at: Option<DateTimeWithTimeZone>,
     pub multiple: bool,
-    pub choices: Vec<String>,
-    pub votes: Vec<i32>,
+    pub choices: StringVec,
+    pub votes: I32Vec,
     #[sea_orm(column_name = "noteVisibility")]
     pub note_visibility: PollNotevisibilityEnum,
     #[sea_orm(column_name = "userId")]

@@ -3,6 +3,8 @@
 use super::sea_orm_active_enums::UserProfileFfvisibilityEnum;
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "user_profile")]
 pub struct Model {
@@ -53,7 +55,7 @@ pub struct Model {
     #[sea_orm(column_name = "mutedWords", column_type = "JsonBinary")]
     pub muted_words: Json,
     #[sea_orm(column_name = "mutingNotificationTypes")]
-    pub muting_notification_types: Vec<String>,
+    pub muting_notification_types: StringVec,
     #[sea_orm(column_name = "noCrawle")]
     pub no_crawle: bool,
     #[sea_orm(column_name = "receiveAnnouncementEmail")]

@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "note_edit")]
 pub struct Model {
@@ -13,7 +15,7 @@ pub struct Model {
     pub text: Option<String>,
     pub cw: Option<String>,
     #[sea_orm(column_name = "fileIds")]
-    pub file_ids: Vec<String>,
+    pub file_ids: StringVec,
     #[sea_orm(column_name = "updatedAt")]
     pub updated_at: DateTimeWithTimeZone,
 }

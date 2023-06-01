@@ -3,6 +3,8 @@
 use super::sea_orm_active_enums::PageVisibilityEnum;
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "page")]
 pub struct Model {
@@ -28,7 +30,7 @@ pub struct Model {
     pub variables: Json,
     pub visibility: PageVisibilityEnum,
     #[sea_orm(column_name = "visibleUserIds")]
-    pub visible_user_ids: Vec<String>,
+    pub visible_user_ids: StringVec,
     #[sea_orm(column_name = "likedCount")]
     pub liked_count: i32,
     #[sea_orm(column_name = "hideTitleWhenPinned")]

@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "reversi_game")]
 pub struct Model {
@@ -29,7 +31,7 @@ pub struct Model {
     pub surrendered: Option<String>,
     #[sea_orm(column_type = "JsonBinary")]
     pub logs: Json,
-    pub map: Vec<String>,
+    pub map: StringVec,
     pub bw: String,
     #[sea_orm(column_name = "isLlotheo")]
     pub is_llotheo: bool,

@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "app")]
 pub struct Model {
@@ -14,7 +16,7 @@ pub struct Model {
     pub secret: String,
     pub name: String,
     pub description: String,
-    pub permission: Vec<String>,
+    pub permission: StringVec,
     #[sea_orm(column_name = "callbackUrl")]
     pub callback_url: Option<String>,
 }

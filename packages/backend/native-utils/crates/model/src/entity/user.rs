@@ -2,6 +2,8 @@
 
 use sea_orm::entity::prelude::*;
 
+use super::newtype::StringVec;
+
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "user")]
 pub struct Model {
@@ -27,7 +29,7 @@ pub struct Model {
     pub avatar_id: Option<String>,
     #[sea_orm(column_name = "bannerId", unique)]
     pub banner_id: Option<String>,
-    pub tags: Vec<String>,
+    pub tags: StringVec,
     #[sea_orm(column_name = "isSuspended")]
     pub is_suspended: bool,
     #[sea_orm(column_name = "isSilenced")]
@@ -42,7 +44,7 @@ pub struct Model {
     pub is_admin: bool,
     #[sea_orm(column_name = "isModerator")]
     pub is_moderator: bool,
-    pub emojis: Vec<String>,
+    pub emojis: StringVec,
     pub host: Option<String>,
     pub inbox: Option<String>,
     #[sea_orm(column_name = "sharedInbox")]
