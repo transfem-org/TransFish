@@ -598,6 +598,8 @@ scratchpadDescription: "The scratchpad provides an environment for AiScript expe
 output: "Output"
 script: "Script"
 disablePagesScript: "Disable AiScript on Pages"
+expandOnNoteClick: "Open post on click"
+expandOnNoteClickDesc: "If disabled, you can still open posts in the right-click menu or by clicking the timestamp."
 updateRemoteUser: "Update remote user information"
 deleteAllFiles: "Delete all files"
 deleteAllFilesConfirm: "Are you sure that you want to delete all files?"
