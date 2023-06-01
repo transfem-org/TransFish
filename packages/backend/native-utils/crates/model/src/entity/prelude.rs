@@ -50,8 +50,6 @@ pub use super::registration_ticket::Entity as RegistrationTicket;
 pub use super::registry_item::Entity as RegistryItem;
 pub use super::relay::Entity as Relay;
 pub use super::renote_muting::Entity as RenoteMuting;
-pub use super::reversi_game::Entity as ReversiGame;
-pub use super::reversi_matching::Entity as ReversiMatching;
 pub use super::signin::Entity as Signin;
 pub use super::sw_subscription::Entity as SwSubscription;
 pub use super::used_username::Entity as UsedUsername;

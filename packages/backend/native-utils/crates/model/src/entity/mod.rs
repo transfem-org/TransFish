@@ -53,8 +53,6 @@ pub mod registration_ticket;
 pub mod registry_item;
 pub mod relay;
 pub mod renote_muting;
-pub mod reversi_game;
-pub mod reversi_matching;
 pub mod sea_orm_active_enums;
 pub mod signin;
 pub mod sw_subscription;

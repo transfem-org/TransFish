@@ -31,7 +31,7 @@ async fn setup_schema(db: DbConn) {
     let stmt = schema.create_table_from_entity(antenna::Entity);
     db.execute(db.get_database_backend().build(&stmt))
         .await
-        .expect("Unable to initialize in-memoty sqlite");
+        .expect("Unable to setup schemas for in-memoty sqlite");
 }
 
 /// Delete all entries in the database.
@@ -101,9 +101,7 @@ async fn setup_model(db: &DbConn) {
 mod int_test {
     use sea_orm::Database;
 
-    use crate::setup_schema;
-
-    use super::{cleanup, prepare};
+    use super::{cleanup, prepare, setup_schema};
 
     #[tokio::test]
     async fn can_prepare_and_cleanup() {
