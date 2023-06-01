@@ -97,6 +97,7 @@ provideMetadataReceiver((info) => {
 	pageMetadata = info;
 });
 provide("shouldOmitHeaderTitle", true);
+provide("shouldBackButton", false);
 provide("shouldHeaderThin", true);
 
 const contextmenu = $computed(() => [

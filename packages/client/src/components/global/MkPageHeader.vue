@@ -10,7 +10,7 @@
 		<div class="left">
 			<div class="buttons">
 				<button
-					v-if="props.displayBackButton"
+					v-if="displayBackButton"
 					class="_buttonIcon button icon backButton"
 					@click.stop="goBack()"
 					@touchstart="preventDrag"
@@ -163,6 +163,8 @@ const props = defineProps<{
 	displayBackButton?: boolean;
 	to?: string;
 }>();
+
+const displayBackButton = props.displayBackButton && history.length > 2 && inject("shouldBackButton", true);
 
 const emit = defineEmits<{
 	(ev: "update:tab", key: string);
