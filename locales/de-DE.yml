@@ -25,9 +25,9 @@ openInWindow: "In einem Fenster öffnen"
 profile: "Profil"
 timeline: "Timelines"
 noAccountDescription: "Dieser Nutzer hat seine Profilbeschreibung noch nicht ausgefüllt."
-login: "Anmelden"
+login: "Login"
 loggingIn: "Du wirst angemeldet"
-logout: "Abmelden"
+logout: "Logout"
 signup: "Registrieren"
 uploading: "Wird hochgeladen …"
 save: "Speichern"
@@ -1571,7 +1571,7 @@ _timelines:
   local: "Local-TL"
   social: "Social-TL"
   global: "Global-TL"
-  recommended: Favoriten
+  recommended: Admin-Favoriten
 _pages:
   newPage: "Neue Seite erstellen"
   editPage: "Seite bearbeiten"
