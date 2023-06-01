@@ -2031,6 +2031,6 @@ _experiments:
   postEditingCaption: "Shows the option for users to edit their existing posts via\
     \ the post options menu."
   enablePostImports: "Enable post imports"
-  postImportsDescription: "Allows users to import their posts from past Calckey,\
+  postImportsCaption: "Allows users to import their posts from past Calckey,\
     \ Misskey, Mastodon, Akkoma, and Pleroma accounts. It may cause slowdowns during\
     \ load if your queue is bottlenecked."
