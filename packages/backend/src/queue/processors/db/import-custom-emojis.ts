@@ -112,6 +112,8 @@ export async function importCustomEmojis(
 			for (const emojiPath of containedEmojis) {
 				// strip extension and get filename to use as name
 				const name = path.basename(emojiPath, path.extname(emojiPath));
+				logger.info(`importing ${name}`)
+
 				await Emojis.delete({
 					name: name,
 				});
@@ -124,6 +126,8 @@ export async function importCustomEmojis(
 				const file = fs.createReadStream(emojiPath);
 				const size = await probeImageSize(file);
 				file.destroy();
+				logger.info(`emoji size: ${size.width}x${size.height}`)
+
 				await Emojis.insert({
 					id: genId(),
 					updatedAt: new Date(),
