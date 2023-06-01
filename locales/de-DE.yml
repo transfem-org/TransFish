@@ -1901,8 +1901,8 @@ _notification:
     followBack: "folgt dir nun auch"
     reply: "Antworten"
     renote: "Renote"
-  voted: haben an Ihrer Umfrage teilgenommen
-  reacted: hat auf Ihren Beitrag reagiert
+  voted: haben bei deiner Umfrage abgestimmt
+  reacted: hat auf deinen Beitrag reagiert
   renoted: hat Ihren Beitrag geteilt
 _deck:
   alwaysShowMainColumn: "Hauptspalte immer zeigen"
@@ -2004,7 +2004,7 @@ socialTimeline: Social-Timeline
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
   groups: Gruppen
-  dms: Persönlich
+  dms: Privat
 recommendedInstances: Empfohlene Server
 logoImageUrl: URL des Logo-Bildes
 userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {reason}
@@ -2074,9 +2074,9 @@ _experiments:
     das Menü "Beitragsoptionen" zu bearbeiten
 noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
   die Funktion von Calckey stört.
-indexFrom: Index ab Beitrags-ID (leer lassen, um jeden Beitrag zu indizieren)
-indexNotice: Jetzt wird indiziert. Dies wird wahrscheinlich eine Weile dauern, bitte
-  starten Sie Ihren Server für mindestens eine Stunde nicht neu.
+indexFrom: Indizieren ab Beitrags-ID (frei lassen, um jeden Beitrag zu indizieren)
+indexNotice: Indizierung gestartet. Dies wird wahrscheinlich eine Weile dauern. Bitte
+  starte den Server für mindestens eine Stunde nicht neu.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
   zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
   \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
