@@ -1,7 +1,7 @@
 use model::entity::{
     access_token, antenna, app, emoji, gallery_post, hashtag, messaging_message, meta,
     newtype::{I32Vec, StringVec},
-    note, note_edit, poll, registry_item, user, user_profile, webhook,
+    note, note_edit, page, poll, registry_item, user, user_profile, webhook,
 };
 use sea_orm_migration::{
     prelude::*,
@@ -181,37 +181,13 @@ impl MigrationTrait for Migration {
             note_edit,
             file_ids
         );
-
-        // Convert poll here because its primary key is not id, but note_id.
-        let query = select_query(Poll::Table, Poll::NoteId, Poll::Choices);
-        let res = get_vec::<Vec<String>>(db, query).await?;
-        convert_col(manager, Poll::Table, Poll::Choices).await?;
-        let poll_models: Vec<poll::ActiveModel> = res
-            .iter()
-            .map(|(id, r)| poll::ActiveModel {
-                note_id: sea_orm::Set(id.to_owned()),
-                choices: sea_orm::Set(StringVec::from(r.to_owned())),
-                ..Default::default()
-            })
-            .collect();
-        for model in poll_models {
-            poll::Entity::update(model).exec(db).await?;
-        }
-        let query = select_query(Poll::Table, Poll::NoteId, Poll::Votes);
-        let res = get_vec::<Vec<i32>>(db, query).await?;
-        convert_col(manager, Poll::Table, Poll::Votes).await?;
-        let poll_models: Vec<poll::ActiveModel> = res
-            .iter()
-            .map(|(id, r)| poll::ActiveModel {
-                note_id: sea_orm::Set(id.to_owned()),
-                votes: sea_orm::Set(I32Vec::from(r.to_owned())),
-                ..Default::default()
-            })
-            .collect();
-        for model in poll_models {
-            poll::Entity::update(model).exec(db).await?;
-        }
-
+        convert_to_stringvec_json!(
+            Page::Table,
+            Page::Id,
+            Page::VisibleUserIds,
+            page,
+            visible_user_ids
+        );
         convert_to_stringvec_json!(
             RegistryItem::Table,
             RegistryItem::Id,
@@ -221,14 +197,62 @@ impl MigrationTrait for Migration {
         );
         convert_to_stringvec_json!(User::Table, User::Id, User::Tags, user, tags);
         convert_to_stringvec_json!(User::Table, User::Id, User::Emojis, user, emojis);
-        convert_to_stringvec_json!(
-            UserProfile::Table,
-            UserProfile::Id,
-            UserProfile::MutingNotificationTypes,
-            user_profile,
-            muting_notification_types
-        );
         convert_to_stringvec_json!(Webhook::Table, Webhook::Id, Webhook::On, webhook, on);
+
+        // Convert poll here because its primary key is not id, but note_id.
+        let query = select_query(Poll::Table, Poll::NoteId, Poll::Choices);
+        let res = get_vec::<Vec<String>>(db, query).await?;
+        convert_col(manager, Poll::Table, Poll::Choices).await?;
+        let models: Vec<poll::ActiveModel> = res
+            .iter()
+            .map(|(id, r)| poll::ActiveModel {
+                note_id: sea_orm::Set(id.to_owned()),
+                choices: sea_orm::Set(StringVec::from(r.to_owned())),
+                ..Default::default()
+            })
+            .collect();
+        for model in models {
+            poll::Entity::update(model).exec(db).await?;
+        }
+        let query = select_query(Poll::Table, Poll::NoteId, Poll::Votes);
+        let res = get_vec::<Vec<i32>>(db, query).await?;
+        convert_col(manager, Poll::Table, Poll::Votes).await?;
+        let models: Vec<poll::ActiveModel> = res
+            .iter()
+            .map(|(id, r)| poll::ActiveModel {
+                note_id: sea_orm::Set(id.to_owned()),
+                votes: sea_orm::Set(I32Vec::from(r.to_owned())),
+                ..Default::default()
+            })
+            .collect();
+        for model in models {
+            poll::Entity::update(model).exec(db).await?;
+        }
+
+        // Convert user_profile here because its primary key is not id, but user_id.
+        let query = select_query(
+            UserProfile::Table,
+            UserProfile::UserId,
+            UserProfile::MutingNotificationTypes,
+        );
+        let res = get_vec::<Vec<String>>(db, query).await?;
+        convert_col(
+            manager,
+            UserProfile::Table,
+            UserProfile::MutingNotificationTypes,
+        )
+        .await?;
+        let models: Vec<user_profile::ActiveModel> = res
+            .iter()
+            .map(|(id, r)| user_profile::ActiveModel {
+                user_id: sea_orm::Set(id.to_owned()),
+                muting_notification_types: sea_orm::Set(StringVec::from(r.to_owned())),
+                ..Default::default()
+            })
+            .collect();
+        for model in models {
+            user_profile::Entity::update(model).exec(db).await?;
+        }
 
         Ok(())
     }
@@ -346,7 +370,7 @@ enum User {
 #[derive(Iden, Clone)]
 enum UserProfile {
     Table,
-    Id,
+    UserId,
     MutingNotificationTypes,
 }
 #[derive(Iden, Clone)]
