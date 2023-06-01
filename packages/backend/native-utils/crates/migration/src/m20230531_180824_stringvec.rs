@@ -16,13 +16,19 @@ pub struct Migration;
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
-            .drop_table(Table::drop().table(Alias::new("reversi_game")).to_owned())
+            .drop_table(
+                Table::drop()
+                    .if_exists()
+                    .table(ReversiGame::Table)
+                    .to_owned(),
+            )
             .await?;
 
         manager
             .drop_table(
                 Table::drop()
-                    .table(Alias::new("reversi_matching"))
+                    .if_exists()
+                    .table(ReversiMatching::Table)
                     .to_owned(),
             )
             .await?;
@@ -378,6 +384,14 @@ enum Webhook {
     Table,
     Id,
     On,
+}
+#[derive(Iden)]
+enum ReversiGame {
+    Table,
+}
+#[derive(Iden)]
+enum ReversiMatching {
+    Table,
 }
 
 fn select_query<T: Iden + 'static>(table: T, id: T, col: T) -> String {
