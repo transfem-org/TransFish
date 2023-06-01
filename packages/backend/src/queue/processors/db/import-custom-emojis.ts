@@ -106,9 +106,6 @@ export async function importCustomEmojis(
 				emoji.match(/\.(json)$/i),
 			);
 
-			// only go one layer deep, recursion would be weird
-			containedEmojis.filter((emoji) => !emoji.includes("/"));
-
 			for (const emojiPath of containedEmojis) {
 				// strip extension and get filename to use as name
 				const name = path.basename(emojiPath, path.extname(emojiPath));
