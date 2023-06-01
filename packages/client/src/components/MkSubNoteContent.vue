@@ -2,7 +2,9 @@
 	<p v-if="note.cw != null" class="cw">
 		<MkA
 			v-if="conversation && note.renoteId == parentId"
-			:to="detailedView ? `#${parentId}` : `${notePage(note)}#${parentId}`"
+			:to="
+				detailedView ? `#${parentId}` : `${notePage(note)}#${parentId}`
+			"
 			behavior="browser"
 			class="reply-icon"
 			@click.stop
@@ -11,7 +13,11 @@
 		</MkA>
 		<MkA
 			v-else-if="!detailed && note.replyId"
-			:to="detailedView ? `#${note.replyId}` :`${notePage(note)}#${note.replyId}`"
+			:to="
+				detailedView
+					? `#${note.replyId}`
+					: `${notePage(note)}#${note.replyId}`
+			"
 			behavior="browser"
 			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
@@ -66,7 +72,11 @@
 				<template v-if="!note.cw">
 					<MkA
 						v-if="conversation && note.renoteId == parentId"
-						:to="detailedView ? `#${parentId}` : `${notePage(note)}#${parentId}`"
+						:to="
+							detailedView
+								? `#${parentId}`
+								: `${notePage(note)}#${parentId}`
+						"
 						behavior="browser"
 						class="reply-icon"
 						@click.stop
@@ -75,7 +85,11 @@
 					</MkA>
 					<MkA
 						v-else-if="!detailed && note.replyId"
-						:to="detailedView ? `#${note.replyId}` :`${notePage(note)}#${note.replyId}`"
+						:to="
+							detailedView
+								? `#${note.replyId}`
+								: `${notePage(note)}#${note.replyId}`
+						"
 						behavior="browser"
 						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
@@ -178,7 +192,6 @@ import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
-
 
 const props = defineProps<{
 	note: misskey.entities.Note;

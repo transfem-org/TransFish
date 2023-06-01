@@ -50,7 +50,7 @@ function close() {
 	border-radius: var(--radius);
 	display: flex;
 	align-items: center;
-	gap: .4em;
+	gap: 0.4em;
 
 	&.warn {
 		background: var(--infoWarnBg);

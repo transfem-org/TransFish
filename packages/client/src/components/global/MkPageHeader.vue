@@ -164,7 +164,10 @@ const props = defineProps<{
 	to?: string;
 }>();
 
-const displayBackButton = props.displayBackButton && history.length > 2 && inject("shouldBackButton", true);
+const displayBackButton =
+	props.displayBackButton &&
+	history.length > 2 &&
+	inject("shouldBackButton", true);
 
 const emit = defineEmits<{
 	(ev: "update:tab", key: string);
