@@ -96,19 +96,16 @@ export async function importCustomEmojis(
 
 			let containedEmojis = fs.readdirSync(outputPath);
 
-			// Filter directories
-			containedEmojis = containedEmojis.filter(
-				(emoji) => !fs.lstatSync(`${outputPath}/${emoji}`).isDirectory(),
-			);
-
 			// Filter out accidental JSON files
 			containedEmojis = containedEmojis.filter((emoji) =>
-				emoji.match(/\.(json)$/i),
+				!emoji.match(/\.(json)$/i),
 			);
 
-			for (const emojiPath of containedEmojis) {
+			for (const emojiFilename of containedEmojis) {
 				// strip extension and get filename to use as name
-				const name = path.basename(emojiPath, path.extname(emojiPath));
+				const name = path.basename(emojiFilename, path.extname(emojiFilename));
+				const emojiPath = `${outputPath}/${emojiFilename}`;
+
 				logger.info(`importing ${name}`)
 
 				await Emojis.delete({
@@ -117,7 +114,7 @@ export async function importCustomEmojis(
 				const driveFile = await addFile({
 					user: null,
 					path: emojiPath,
-					name: path.basename(emojiPath),
+					name: path.basename(emojiFilename),
 					force: true,
 				});
 				const file = fs.createReadStream(emojiPath);
