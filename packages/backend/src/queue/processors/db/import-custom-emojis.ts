@@ -54,7 +54,7 @@ export async function importCustomEmojis(
 		if (error) throw error;
 
 		if (fs.existsSync(`${outputPath}/meta.json`)) {
-			logger.info("starting emoji import with metadata")
+			logger.info("starting emoji import with metadata");
 			const metaRaw = fs.readFileSync(`${outputPath}/meta.json`, "utf-8");
 			const meta = JSON.parse(metaRaw);
 
@@ -90,15 +90,15 @@ export async function importCustomEmojis(
 				}).then((x) => Emojis.findOneByOrFail(x.identifiers[0]));
 			}
 		} else {
-			logger.info("starting emoji import without metadata")
+			logger.info("starting emoji import without metadata");
 			// Since we lack metadata, we import into a randomized category name instead
 			let categoryName = genId();
 
 			let containedEmojis = fs.readdirSync(outputPath);
 
 			// Filter out accidental JSON files
-			containedEmojis = containedEmojis.filter((emoji) =>
-				!emoji.match(/\.(json)$/i),
+			containedEmojis = containedEmojis.filter(
+				(emoji) => !emoji.match(/\.(json)$/i),
 			);
 
 			for (const emojiFilename of containedEmojis) {
@@ -106,7 +106,7 @@ export async function importCustomEmojis(
 				const name = path.basename(emojiFilename, path.extname(emojiFilename));
 				const emojiPath = `${outputPath}/${emojiFilename}`;
 
-				logger.info(`importing ${name}`)
+				logger.info(`importing ${name}`);
 
 				await Emojis.delete({
 					name: name,
@@ -120,7 +120,7 @@ export async function importCustomEmojis(
 				const file = fs.createReadStream(emojiPath);
 				const size = await probeImageSize(file);
 				file.destroy();
-				logger.info(`emoji size: ${size.width}x${size.height}`)
+				logger.info(`emoji size: ${size.width}x${size.height}`);
 
 				await Emojis.insert({
 					id: genId(),
