@@ -162,6 +162,10 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
+		expandOnNoteClick: {
+			where: "device",
+			default: true,
+		},
 		nsfw: {
 			where: "device",
 			default: "respect" as "respect" | "force" | "ignore",

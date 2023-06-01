@@ -534,12 +534,8 @@ onUnmounted(() => {
 
 	> .reply {
 		border-top: solid 0.5px var(--divider);
-		cursor: pointer;
 		padding-top: 24px;
 		padding-bottom: 10px;
-		@media (pointer: coarse) {
-			cursor: default;
-		}
 	}
 
 	// Hover
