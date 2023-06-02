@@ -54,9 +54,11 @@
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
-			<FormSwitch v-model="expandOnNoteClick" class="_formBlock">{{ 
-				i18n.ts.expandOnNoteClick
-			}}<template #caption>{{ i18n.ts.expandOnNoteClickDesc }}</template>
+			<FormSwitch v-model="expandOnNoteClick" class="_formBlock"
+				>{{ i18n.ts.expandOnNoteClick
+				}}<template #caption>{{
+					i18n.ts.expandOnNoteClickDesc
+				}}</template>
 			</FormSwitch>
 			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
 				>{{ i18n.ts.flagShowTimelineReplies

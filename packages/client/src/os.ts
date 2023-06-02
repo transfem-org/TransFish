@@ -278,7 +278,7 @@ export function alert(props: {
 }): Promise<void> {
 	return new Promise((resolve, reject) => {
 		if (props.text == null && props.type === "error") {
-			props.text = "An unknown error occured!"
+			props.text = "An unknown error occured!";
 		}
 		popup(
 			MkDialog,
