@@ -91,7 +91,7 @@ mod unit_test {
                 assert_ne!(id::create_id().unwrap(), id::create_id().unwrap());
                 let id1 = thread::spawn(|| id::create_id().unwrap());
                 let id2 = thread::spawn(|| id::create_id().unwrap());
-                assert_ne!(id1.join().unwrap(), id2.join().unwrap())
+                assert_ne!(id1.join().unwrap(), id2.join().unwrap());
             }
         }
     }

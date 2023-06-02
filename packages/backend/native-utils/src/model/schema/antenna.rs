@@ -119,6 +119,7 @@ cfg_if! {
 
 #[cfg(test)]
 mod unit_test {
+    use cfg_if::cfg_if;
     use pretty_assertions::assert_eq;
     use serde_json::json;
 
@@ -129,7 +130,13 @@ mod unit_test {
     #[test]
     fn src_from_active_enum() {
         let src = AntennaSrc::try_from(AntennaSrcEnum::All).unwrap();
-        assert_eq!(src, AntennaSrc::All);
+        cfg_if! {
+            if #[cfg(feature = "napi")] {
+                assert_eq!(src, AntennaSrc::all);
+            } else {
+                assert_eq!(src, AntennaSrc::All);
+            }
+        }
     }
 
     #[test]
