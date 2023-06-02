@@ -14,7 +14,8 @@
 		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
-		<div class="main" 
+		<div
+			class="main"
 			@click="noteClick"
 			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
 		>

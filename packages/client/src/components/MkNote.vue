@@ -68,7 +68,9 @@
 			class="article"
 			@contextmenu.stop="onContextmenu"
 			@click="noteClick"
-			:style="{ cursor: expandOnNoteClick && !detailedView ? 'pointer' : '' }"
+			:style="{
+				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
+			}"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -503,7 +505,11 @@ function scrollIntoView() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range" || props.detailedView || !expandOnNoteClick) {
+	if (
+		document.getSelection().type === "Range" ||
+		props.detailedView ||
+		!expandOnNoteClick
+	) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(appearNote));
