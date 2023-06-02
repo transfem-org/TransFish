@@ -33,7 +33,7 @@ mod int_test {
             .await
             .expect("Unable to pack");
 
-        let result = schema::antenna::Antenna {
+        let result = schema::Antenna {
             id: alice_antenna.id,
             created_at: alice_antenna.created_at.into(),
             name: "Test Antenna".to_string(),
@@ -47,7 +47,7 @@ mod int_test {
                 vec!["def".to_string(), "ghi".to_string()],
             ]
             .into(),
-            src: schema::antenna::AntennaSrc::All,
+            src: schema::AntennaSrc::All,
             user_list_id: None,
             user_group_id: None,
             users: vec![].into(),

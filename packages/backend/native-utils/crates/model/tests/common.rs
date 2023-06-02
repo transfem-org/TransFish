@@ -1,3 +1,5 @@
+#![cfg(not(feature = "napi"))]
+
 extern crate model;
 
 mod repository;

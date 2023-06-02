@@ -47,10 +47,10 @@ pub enum AntennaSrc {
 }
 
 impl TryFrom<AntennaSrcEnum> for AntennaSrc {
-    type Error = parse_display::ParseError;
+    type Error = crate::error::Error;
 
     fn try_from(value: AntennaSrcEnum) -> Result<Self, Self::Error> {
-        value.to_string().parse()
+        value.to_string().parse().map_err(crate::error::Error::from)
     }
 }
 
@@ -63,7 +63,7 @@ pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| Antenna::validator());
 mod unit_test {
     use serde_json::json;
 
-    use crate::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::antenna::AntennaSrc};
+    use crate::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::AntennaSrc};
 
     use super::VALIDATOR;
 

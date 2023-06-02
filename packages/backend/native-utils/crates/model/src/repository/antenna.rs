@@ -1,9 +1,10 @@
 use async_trait::async_trait;
+use cfg_if::cfg_if;
 use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 
 use crate::entity::{antenna, antenna_note, user_group_joining};
 use crate::error::Error;
-use crate::schema::antenna::Antenna;
+use crate::schema::Antenna;
 
 use super::macros::impl_pack_by_id;
 use super::Repository;
@@ -27,9 +28,17 @@ impl Repository<Antenna> for antenna::Model {
             Some(m) => Some(m.user_group_id),
         };
 
+        cfg_if! {
+            if #[cfg(feature = "napi")] {
+                let created_at: String = self.created_at.to_rfc3339();
+            } else {
+                let created_at: chrono::DateTime<chrono::Utc> = self.created_at.into();
+            }
+        }
+
         Ok(Antenna {
             id: self.id,
-            created_at: self.created_at.into(),
+            created_at,
             name: self.name,
             keywords: self.keywords.into(),
             exclude_keywords: self.exclude_keywords.into(),
