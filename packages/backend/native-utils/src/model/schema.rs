@@ -5,19 +5,6 @@ use cfg_if::cfg_if;
 use jsonschema::JSONSchema;
 use schemars::{schema_for, JsonSchema};
 
-cfg_if! {
-    if #[cfg(feature = "napi")] {
-        mod napi;
-        pub use self::napi::antenna::Antenna;
-        pub use self::napi::antenna::AntennaSrc;
-    } else {
-        pub use antenna::Antenna;
-        pub use antenna::AntennaSrc;
-        pub use app::App;
-        pub use app::AppPermission;
-    }
-}
-
 /// Structs of schema defitions implement this trait in order to
 /// provide the JSON Schema validator [`jsonschema::JSONSchema`].
 pub trait Schema<T: JsonSchema> {
@@ -31,5 +18,17 @@ pub trait Schema<T: JsonSchema> {
             .with_draft(jsonschema::Draft::Draft7)
             .compile(&schema)
             .expect("Unable to compile schema")
+    }
+}
+
+cfg_if! {
+    if #[cfg(feature = "napi")] {
+        pub use antenna::napi::AntennaSchema as Antenna;
+        pub use antenna::napi::AntennaSrc;
+    } else {
+        pub use antenna::Antenna;
+        pub use antenna::AntennaSrc;
+        pub use app::App;
+        pub use app::AppPermission;
     }
 }
