@@ -1,14 +1,9 @@
-import { init, createId } from "@paralleldrive/cuid2";
 import config from "@/config/index.js";
+import { nativeCreateId, nativeInitIdGenerator } from "native-utils/built";
 
-const TIME2000 = 946684800000;
-const TIMESTAMP_LENGTH = 8;
-
-const length =
-	Math.min(Math.max(config.cuid?.length ?? 16, 16), 24) - TIMESTAMP_LENGTH;
-const fingerprint = `${config.cuid?.fingerprint ?? ""}${createId()}`;
-
-const genCuid2 = init({ length, fingerprint });
+const length = Math.min(Math.max(config.cuid?.length ?? 16, 16), 24);
+const fingerprint = config.cuid?.fingerprint ?? "";
+nativeInitIdGenerator(length, fingerprint);
 
 /**
  * The generated ID results in the form of `[8 chars timestamp] + [cuid2]`.
@@ -19,9 +14,5 @@ const genCuid2 = init({ length, fingerprint });
  * Ref: https://github.com/paralleldrive/cuid2#parameterized-length
  */
 export function genId(date?: Date): string {
-	const now = (date ?? new Date()).getTime();
-	const time = Math.max(now - TIME2000, 0);
-	const timestamp = time.toString(36).padStart(TIMESTAMP_LENGTH, "0");
-
-	return `${timestamp}${genCuid2()}`;
+	return nativeCreateId(BigInt((date ?? new Date()).getTime()));
 }
