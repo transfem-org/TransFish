@@ -59,7 +59,9 @@ export default defineComponent({
 		};
 		const validEase = (e: string | null | undefined) => {
 			if (e == null) return null;
-			return e.match(/\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) ? e : null;
+			return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
+				? (e.startsWith("steps") ? e : "cubic-bezier" + e)
+				: null
 		}
 
 		const genEl = (ast: mfm.MfmNode[]) =>
@@ -107,8 +109,8 @@ export default defineComponent({
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									const ease = validEase(token.props.args.ease) || "(0,0,1,1)";
-									style = `font-size: 150%; animation: tada ${speed} ${delay} cubic-bezier${ease} infinite both;`;
+									const ease = validEase(token.props.args.ease) || "linear";
+									style = `font-size: 150%; animation: tada ${speed} ${delay} ${ease} infinite both;`;
 									break;
 								}
 								case "jelly": {
