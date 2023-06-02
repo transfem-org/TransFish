@@ -5,6 +5,7 @@ use crate::entity::{antenna, antenna_note, user_group_joining};
 use crate::error::Error;
 use crate::schema::antenna::Antenna;
 
+use super::macros::impl_pack_by_id;
 use super::Repository;
 
 #[async_trait]
@@ -43,5 +44,9 @@ impl Repository<Antenna> for antenna::Model {
             with_file: self.with_file,
             has_unread_note,
         })
+    }
+
+    async fn pack_by_id(id: String) -> Result<Antenna, Error> {
+        impl_pack_by_id!(antenna::Entity, id)
     }
 }

@@ -6,7 +6,7 @@ use schemars::{schema_for, JsonSchema};
 
 /// Structs of schema defitions implement this trait in order to
 /// provide the JSON Schema validator [`jsonschema::JSONSchema`].
-trait Schema<T: JsonSchema> {
+pub trait Schema<T: JsonSchema> {
     /// Returns the validator of [JSON Schema Draft
     /// 7](https://json-schema.org/specification-links.html#draft-7) with the
     /// default settings of [`schemars::gen::SchemaSettings`].
