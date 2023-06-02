@@ -61,10 +61,10 @@ cfg_if! {
 
 #[cfg(test)]
 mod unit_test {
+    use crate::util::id;
     use cfg_if::cfg_if;
     use pretty_assertions::{assert_eq, assert_ne};
     use std::thread;
-    use crate::util::id;
 
     cfg_if! {
         if #[cfg(feature = "napi")] {

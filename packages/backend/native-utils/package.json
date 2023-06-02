@@ -40,6 +40,7 @@
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version",
+		"format": "cargo fmt",
     "cargo:unit": "cargo test unit_test",
     "cargo:integration": "cargo test --no-default-features -F noarray int_test -- --test-threads=1"
   }
