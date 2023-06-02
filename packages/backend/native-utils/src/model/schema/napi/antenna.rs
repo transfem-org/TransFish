@@ -1,8 +1,11 @@
-use napi::bindgen_prelude::{FromNapiValue, ToNapiValue};
+use napi::bindgen_prelude::*;
 use napi_derive::napi;
 use parse_display::FromStr;
 use schemars::JsonSchema;
 use utoipa::ToSchema;
+
+use crate::model::entity::antenna::Model;
+use crate::model::repository::Repository;
 
 #[napi]
 #[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
@@ -43,4 +46,12 @@ pub enum AntennaSrc {
     List,
     Group,
     Instances,
+}
+
+#[napi]
+impl Antenna {
+    #[napi]
+    pub async fn pack_by_id(id: String) -> napi::Result<Antenna> {
+        Model::pack_by_id(id).await.map_err(Into::into)
+    }
 }

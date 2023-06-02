@@ -1,19 +1,18 @@
 #![cfg(not(feature = "napi"))]
 
-extern crate model;
-
-mod repository;
+mod model;
 
 use chrono::Utc;
-use model::entity;
-use model::entity::sea_orm_active_enums::AntennaSrcEnum;
+use native_utils::database;
+use native_utils::model::entity;
+use native_utils::model::entity::sea_orm_active_enums::AntennaSrcEnum;
+use native_utils::util::{
+    id::{create_id, init_id},
+    random::gen_string,
+};
 use sea_orm::{
     sea_query::TableCreateStatement, ActiveModelTrait, ConnectionTrait, DbBackend, DbConn, DbErr,
     EntityTrait, IntoActiveModel, TransactionTrait,
-};
-use util::{
-    id::{create_id, init_id},
-    random::gen_string,
 };
 
 /// Insert predefined entries in the database.

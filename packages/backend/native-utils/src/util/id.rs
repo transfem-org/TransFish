@@ -25,7 +25,7 @@ mod unit_test {
     use pretty_assertions::{assert_eq, assert_ne};
     use std::thread;
 
-    use crate::id;
+    use crate::util::id;
 
     #[test]
     fn can_generate_unique_ids() {

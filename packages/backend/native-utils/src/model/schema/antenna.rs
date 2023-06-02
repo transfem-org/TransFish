@@ -5,7 +5,8 @@ use schemars::JsonSchema;
 use utoipa::ToSchema;
 
 use super::Schema;
-use crate::entity::sea_orm_active_enums::AntennaSrcEnum;
+use crate::model;
+use crate::model::entity::sea_orm_active_enums::AntennaSrcEnum;
 
 #[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
 #[serde(rename_all = "camelCase")]
@@ -47,10 +48,10 @@ pub enum AntennaSrc {
 }
 
 impl TryFrom<AntennaSrcEnum> for super::AntennaSrc {
-    type Error = crate::error::Error;
+    type Error = model::error::Error;
 
     fn try_from(value: AntennaSrcEnum) -> Result<Self, Self::Error> {
-        value.to_string().parse().map_err(crate::error::Error::from)
+        value.to_string().parse().map_err(model::error::Error::from)
     }
 }
 
@@ -64,7 +65,7 @@ mod unit_test {
     use pretty_assertions::assert_eq;
     use serde_json::json;
 
-    use crate::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::AntennaSrc};
+    use crate::model::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::AntennaSrc};
 
     use super::VALIDATOR;
 

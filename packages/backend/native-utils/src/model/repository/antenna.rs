@@ -2,9 +2,10 @@ use async_trait::async_trait;
 use cfg_if::cfg_if;
 use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 
-use crate::entity::{antenna, antenna_note, user_group_joining};
-use crate::error::Error;
-use crate::schema::Antenna;
+use crate::database;
+use crate::model::entity::{antenna, antenna_note, user_group_joining};
+use crate::model::error::Error;
+use crate::model::schema::Antenna;
 
 use super::macros::impl_pack_by_id;
 use super::Repository;

@@ -1,8 +1,7 @@
 pub mod error;
 
+use error::Error;
 use sea_orm::{Database, DbConn};
-
-use crate::error::Error;
 
 static DB_CONN: once_cell::sync::OnceCell<DbConn> = once_cell::sync::OnceCell::new();
 
@@ -18,8 +17,7 @@ pub fn get_database() -> Result<&'static DbConn, Error> {
 
 #[cfg(test)]
 mod unit_test {
-    use super::get_database;
-    use crate::error::Error;
+    use super::{error::Error, get_database};
 
     #[test]
     fn error_uninitialized() {

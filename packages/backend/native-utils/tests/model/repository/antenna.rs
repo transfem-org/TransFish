@@ -1,4 +1,6 @@
 mod int_test {
+    use native_utils::{database, model};
+
     use model::{
         entity::{antenna, user},
         repository::Repository,
