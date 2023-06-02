@@ -1,11 +1,18 @@
 use rand::{distributions::Alphanumeric, thread_rng, Rng};
 
+/// Generate random string based on [thread_rng] and [Alphanumeric].
 pub fn gen_string(length: u16) -> String {
     thread_rng()
         .sample_iter(Alphanumeric)
         .take(length.into())
         .map(char::from)
         .collect()
+}
+
+#[cfg(feature = "napi")]
+#[napi_derive::napi]
+pub fn native_random_str(length: u16) -> String {
+    gen_string(length)
 }
 
 #[cfg(test)]

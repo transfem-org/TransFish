@@ -23,8 +23,9 @@ pub trait Schema<T: JsonSchema> {
 
 cfg_if! {
     if #[cfg(feature = "napi")] {
-        pub use antenna::napi::AntennaSchema as Antenna;
-        pub use antenna::napi::AntennaSrc;
+        // Will be disabled once we completely migrate to rust
+        pub use antenna::NativeAntennaSchema as Antenna;
+        pub use antenna::NativeAntennaSrc as AntennaSrc;
     } else {
         pub use antenna::Antenna;
         pub use antenna::AntennaSrc;

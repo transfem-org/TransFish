@@ -34,13 +34,13 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release ./built/",
+    "build": "napi build --features napi --platform --release ./built/",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version",
     "cargo:unit": "cargo test unit_test",
-    "cargo:integration": "cargo test --no-default-features int_test -- --test-threads=1"
+    "cargo:integration": "cargo test --no-default-features -F noarray int_test -- --test-threads=1"
   }
 }
