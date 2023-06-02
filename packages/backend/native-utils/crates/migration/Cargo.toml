@@ -10,7 +10,7 @@ path = "src/lib.rs"
 
 [features]
 default = []
-convert = []
+convert = ["model/noarray"]
 
 [dependencies]
 async-std = { version = "1", features = ["attributes", "tokio1"] }

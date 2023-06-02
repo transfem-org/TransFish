@@ -20,11 +20,11 @@ pub struct JsonI32Vec(pub Vec<i32>);
 impl_json_newtype!(JsonI32Vec);
 
 cfg_if! {
-    if #[cfg(feature = "legacy")] {
-        pub type StringVec = Vec<String>;
-        pub type I32Vec = Vec<i32>;
-    } else {
+    if #[cfg(feature = "noarray")] {
         pub type StringVec = JsonStringVec;
         pub type I32Vec = JsonI32Vec;
+    } else {
+        pub type StringVec = Vec<String>;
+        pub type I32Vec = Vec<i32>;
     }
 }
