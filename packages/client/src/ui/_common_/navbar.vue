@@ -1,7 +1,7 @@
 <template>
 	<header class="mvcprjjd sidebar" :class="{ iconOnly }">
 		<div class="body">
-			<div class="top">
+			<div class="top" v-if="$i">
 				<div
 					class="banner"
 					:user="$i"
@@ -72,7 +72,7 @@
 				</template>
 				<div class="divider"></div>
 				<MkA
-					v-if="$i.isAdmin || $i.isModerator"
+					v-if="$i?.isAdmin || $i?.isModerator"
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.controlPanel"
 					class="item _button"
