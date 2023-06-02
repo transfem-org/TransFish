@@ -107,7 +107,7 @@ export default defineComponent({
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									const ease = validEase(token.props.args.ease) ?? "(0,0,1,1)";
+									const ease = validEase(token.props.args.ease) || "(0,0,1,1)";
 									style = `font-size: 150%; animation: tada ${speed} ${delay} cubic-bezier${ease} infinite both;`;
 									break;
 								}
