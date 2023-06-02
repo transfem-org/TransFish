@@ -4,6 +4,7 @@ mod int_test {
         repository::Repository,
         schema,
     };
+    use pretty_assertions::assert_eq;
     use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
 
     use crate::{cleanup, prepare};

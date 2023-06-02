@@ -46,7 +46,7 @@ pub enum AntennaSrc {
     Instances,
 }
 
-impl TryFrom<AntennaSrcEnum> for AntennaSrc {
+impl TryFrom<AntennaSrcEnum> for super::AntennaSrc {
     type Error = crate::error::Error;
 
     fn try_from(value: AntennaSrcEnum) -> Result<Self, Self::Error> {
@@ -55,12 +55,13 @@ impl TryFrom<AntennaSrcEnum> for AntennaSrc {
 }
 
 // ---- TODO: could be macro
-impl Schema<Self> for Antenna {}
-pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| Antenna::validator());
+impl Schema<Self> for super::Antenna {}
+pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| super::Antenna::validator());
 // ----
 
 #[cfg(test)]
 mod unit_test {
+    use pretty_assertions::assert_eq;
     use serde_json::json;
 
     use crate::{entity::sea_orm_active_enums::AntennaSrcEnum, schema::AntennaSrc};
@@ -128,20 +129,23 @@ mod unit_test {
         let result = VALIDATOR
             .validate(&instance)
             .expect_err("validation must fail");
-        let mut paths: Vec<String> = result.map(|e| e.schema_path.to_string()).collect();
+        let mut paths: Vec<String> = result
+            .map(|e| e.instance_path.to_string())
+            .filter(|e| !e.is_empty())
+            .collect();
         paths.sort();
         assert_eq!(
             paths,
             vec![
-                "/properties/caseSensitive/type",
-                "/properties/createdAt/format",
-                "/properties/excludeKeywords/type",
-                "/properties/id/type",
-                "/properties/keywords/type",
-                "/properties/src/enum",
-                "/properties/userListId/type",
-                "/properties/users/items/type",
-                "/required"
+                "/caseSensitive",
+                #[cfg(not(feature = "napi"))]
+                "/createdAt",
+                "/excludeKeywords",
+                "/id",
+                "/keywords",
+                "/src",
+                "/userListId",
+                "/users/0"
             ]
         );
     }

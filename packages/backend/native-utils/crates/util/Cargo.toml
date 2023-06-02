@@ -10,3 +10,6 @@ cuid2 = "0.1.0"
 once_cell = "1.17.1"
 rand = "0.8.5"
 thiserror = "1.0.40"
+
+[dev-dependencies]
+pretty_assertions = "1.3.0"

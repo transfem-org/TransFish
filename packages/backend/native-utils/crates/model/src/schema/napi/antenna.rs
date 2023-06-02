@@ -1,9 +1,8 @@
+use napi::bindgen_prelude::{FromNapiValue, ToNapiValue};
+use napi_derive::napi;
 use parse_display::FromStr;
 use schemars::JsonSchema;
 use utoipa::ToSchema;
-
-use napi::bindgen_prelude::{FromNapiValue, ToNapiValue};
-use napi_derive::napi;
 
 #[napi]
 #[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]

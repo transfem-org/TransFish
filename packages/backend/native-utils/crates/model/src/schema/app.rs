@@ -13,14 +13,14 @@ pub struct App {
     #[schemars(url)]
     pub callback_url: Option<String>,
     #[schema(inline)]
-    pub permission: Vec<Permission>,
+    pub permission: Vec<AppPermission>,
     pub secret: Option<String>,
     pub is_authorized: Option<bool>,
 }
 
 /// This represents `permissions` in `packages/calckey-js/src/consts.ts`.
 #[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
-pub enum Permission {
+pub enum AppPermission {
     #[serde(rename = "read:account")]
     ReadAccount,
     #[serde(rename = "write:account")]

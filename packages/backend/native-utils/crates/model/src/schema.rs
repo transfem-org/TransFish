@@ -8,11 +8,13 @@ use schemars::{schema_for, JsonSchema};
 cfg_if! {
     if #[cfg(feature = "napi")] {
         mod napi;
-        pub use napi::antenna::Antenna;
-        pub use napi::antenna::AntennaSrc;
+        pub use self::napi::antenna::Antenna;
+        pub use self::napi::antenna::AntennaSrc;
     } else {
         pub use antenna::Antenna;
         pub use antenna::AntennaSrc;
+        pub use app::App;
+        pub use app::AppPermission;
     }
 }
 
