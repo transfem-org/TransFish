@@ -168,10 +168,10 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
-		<div
+		<!-- <div
 			v-if="(isLong && !collapsed) || (props.note.cw && showContent)"
 			class="fade"
-		></div>
+		></div> -->
 	</div>
 </template>
 
