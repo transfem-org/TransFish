@@ -23,15 +23,15 @@
 # ✨ About Calckey
 
 - Calckey is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web UI, rich chatting, and much more!
-- Calckey adds many quality of life changes and bug fixes for users and instance admins alike.
+- Calckey adds many quality of life changes and bug fixes for users and server admins alike.
 - Read **[this document](./CALCKEY.md)** all for current and future differences.
 - Notable differences:
   - Improved UI/UX (especially on mobile)
   - Improved notifications
-  - Improved instance security
+  - Improved server security
   - Improved accessibility
   - Improved threads
-  - Recommended Instances timeline
+  - Recommended Servers timeline
   - OCR image captioning
   - New and improved Groups
   - Better intro tutorial
@@ -50,10 +50,10 @@
 - 💸 OpenCollective: <https://opencollective.com/Calckey>
 - 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
   - Donate publicly to get your name on the Patron list!
-- 🚢 Flagship instance: <https://calckey.social>
+- 🚢 Flagship server: <https://calckey.social>
 - 📣 Official account: <https://i.calckey.cloud/@calckey>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
-- 📜 Instance list: <https://calckey.fediverse.observer/list>
+- 📜 Server list: <https://calckey.fediverse.observer/list>
 - 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
 - 🐋 Docker Hub: <https://hub.docker.com/r/thatonecalculator/calckey>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/calckey/>
@@ -177,13 +177,13 @@ Please don't use ElasticSearch unless you already have an ElasticSearch setup an
 ## 💅 Customize
 
 - To add custom CSS for all users, edit `./custom/assets/instance.css`.
-- To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be available on `https://yourinstance.tld/static-assets/filename.ext`.
+- To add static assets (such as images for the splash screen), place them in the `./custom/assets/` directory. They'll then be available on `https://yourserver.tld/static-assets/filename.ext`.
 - To add custom locales, place them in the `./custom/locales/` directory. If you name your custom locale the same as an existing locale, it will overwrite it. If you give it a unique name, it will be added to the list. Also make sure that the first part of the filename matches the locale you're basing it on. (Example: `en-FOO.yml`)
 - To add custom error images, place them in the `./custom/assets/badges` directory, replacing the files already there.
 - To add custom sounds, place only mp3 files in the `./custom/assets/sounds` directory.
 - To update custom assets without rebuilding, just run `pnpm run gulp`.
 
-## 🧑‍🔬 Configuring a new instance
+## 🧑‍🔬 Configuring a new server
 
 - Run `cp .config/example.yml .config/default.yml`
 - Edit `.config/default.yml`, making sure to fill out required fields.
@@ -198,7 +198,7 @@ For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](
 ### 🍀 Nginx (recommended)
 
 - Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
-- Edit `calckey.nginx.conf` to reflect your instance properly
+- Edit `calckey.nginx.conf` to reflect your server properly
 - Run `sudo ln -s ./calckey.nginx.conf ../sites-enabled/calckey.nginx.conf`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
 
@@ -218,7 +218,7 @@ example.tld {
 > Apache has some known problems with Calckey. Only use it if you have to.
 
 - Run `sudo cp ./calckey.apache.conf /etc/apache2/sites-available/ && cd /etc/apache2/sites-available/`
-- Edit `calckey.apache.conf` to reflect your instance properly
+- Edit `calckey.apache.conf` to reflect your server properly
 - Run `sudo a2ensite calckey.apache` to enable the site
 - Run `sudo service apache2 restart` to reload apache2 configuration
 ## 🚀 Build and launch!

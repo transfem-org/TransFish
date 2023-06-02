@@ -59,7 +59,7 @@ representative at an online or offline event.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
+Servers of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
 @thatonecalculator on Codeberg,
 `@kainoa@calckey.social` on the Fediverse,
