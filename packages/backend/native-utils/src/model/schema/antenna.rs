@@ -70,7 +70,7 @@ cfg_if! {
         use crate::model::repository::Repository;
 
         /// For NAPI because [chrono] is not supported.
-        #[napi]
+        #[napi(object)]
         #[derive(Clone, Debug, PartialEq, Eq, JsonSchema, ToSchema)]
         #[serde(rename_all = "camelCase")]
         pub struct NativeAntennaSchema {
@@ -97,26 +97,22 @@ cfg_if! {
             pub has_unread_note: bool,
         }
 
-        #[napi]
+        #[napi(string_enum)]
         #[derive(Debug, FromStr, PartialEq, Eq, JsonSchema, ToSchema)]
-        #[serde(rename_all = "camelCase")]
-        #[display(style = "camelCase")]
         #[display("'{}'")]
+        #[allow(non_camel_case_types)]
         pub enum NativeAntennaSrc {
-            Home,
-            All,
-            Users,
-            List,
-            Group,
-            Instances,
+            home,
+            all,
+            users,
+            list,
+            group,
+            instances,
         }
 
         #[napi]
-        impl NativeAntennaSchema {
-            #[napi]
-            pub async fn pack_by_id(id: String) -> napi::Result<NativeAntennaSchema> {
-                antenna::Model::pack_by_id(id).await.map_err(Into::into)
-            }
+        pub async fn native_pack_antenna_by_id(id: String) -> napi::Result<NativeAntennaSchema> {
+            antenna::Model::pack_by_id(id).await.map_err(Into::into)
         }
     }
 }
