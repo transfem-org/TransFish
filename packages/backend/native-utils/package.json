@@ -23,8 +23,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@napi-rs/cli": "^2.15.0",
-    "ava": "^5.1.1"
+    "@napi-rs/cli": "2.15.0",
+    "ava": "5.1.1"
   },
   "ava": {
     "timeout": "3m"
@@ -40,7 +40,7 @@
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version",
-    "cargo:unit": "cargo test --workspace unit_test",
-    "cargo:integration": "cargo test --workspace int_test -- --test-threads=1"
+    "cargo:unit": "cargo test unit_test",
+    "cargo:integration": "cargo test --no-default-features int_test -- --test-threads=1"
   }
 }
