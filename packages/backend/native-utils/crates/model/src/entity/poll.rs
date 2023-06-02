@@ -5,7 +5,7 @@ use sea_orm::entity::prelude::*;
 
 use super::newtype::{I32Vec, StringVec};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Default)]
 #[sea_orm(table_name = "poll")]
 pub struct Model {
     #[sea_orm(column_name = "noteId", primary_key, auto_increment = false, unique)]

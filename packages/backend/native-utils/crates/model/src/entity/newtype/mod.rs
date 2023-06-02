@@ -7,15 +7,15 @@ use serde::{Deserialize, Serialize};
 
 use crate::impl_json_newtype;
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into, Default)]
 pub struct JsonKeyword(pub Vec<Vec<String>>);
 impl_json_newtype!(JsonKeyword);
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into, Default)]
 pub struct JsonStringVec(pub Vec<String>);
 impl_json_newtype!(JsonStringVec);
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, From, Into, Default)]
 pub struct JsonI32Vec(pub Vec<i32>);
 impl_json_newtype!(JsonI32Vec);
 

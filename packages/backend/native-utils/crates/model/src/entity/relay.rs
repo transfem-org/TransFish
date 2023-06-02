@@ -3,7 +3,7 @@
 use super::sea_orm_active_enums::RelayStatusEnum;
 use sea_orm::entity::prelude::*;
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Default)]
 #[sea_orm(table_name = "relay")]
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false)]

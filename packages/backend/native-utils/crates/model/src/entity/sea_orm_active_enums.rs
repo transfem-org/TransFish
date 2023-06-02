@@ -2,9 +2,10 @@
 
 use sea_orm::entity::prelude::*;
 
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(rs_type = "String", db_type = "Enum", enum_name = "antenna_src_enum")]
 pub enum AntennaSrcEnum {
+    #[default]
     #[sea_orm(string_value = "all")]
     All,
     #[sea_orm(string_value = "group")]
@@ -18,13 +19,14 @@ pub enum AntennaSrcEnum {
     #[sea_orm(string_value = "users")]
     Users,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
     enum_name = "meta_sensitivemediadetection_enum"
 )]
 pub enum MetaSensitivemediadetectionEnum {
+    #[default]
     #[sea_orm(string_value = "all")]
     All,
     #[sea_orm(string_value = "local")]
@@ -34,7 +36,7 @@ pub enum MetaSensitivemediadetectionEnum {
     #[sea_orm(string_value = "remote")]
     Remote,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
@@ -45,6 +47,7 @@ pub enum MetaSensitivemediadetectionsensitivityEnum {
     High,
     #[sea_orm(string_value = "low")]
     Low,
+    #[default]
     #[sea_orm(string_value = "medium")]
     Medium,
     #[sea_orm(string_value = "veryHigh")]
@@ -52,13 +55,14 @@ pub enum MetaSensitivemediadetectionsensitivityEnum {
     #[sea_orm(string_value = "veryLow")]
     VeryLow,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
     enum_name = "muted_note_reason_enum"
 )]
 pub enum MutedNoteReasonEnum {
+    #[default]
     #[sea_orm(string_value = "manual")]
     Manual,
     #[sea_orm(string_value = "other")]
@@ -68,7 +72,7 @@ pub enum MutedNoteReasonEnum {
     #[sea_orm(string_value = "word")]
     Word,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
@@ -81,12 +85,13 @@ pub enum NoteVisibilityEnum {
     Hidden,
     #[sea_orm(string_value = "home")]
     Home,
+    #[default]
     #[sea_orm(string_value = "public")]
     Public,
     #[sea_orm(string_value = "specified")]
     Specified,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
@@ -115,10 +120,11 @@ pub enum NotificationTypeEnum {
     ReceiveFollowRequest,
     #[sea_orm(string_value = "renote")]
     Renote,
+    #[default]
     #[sea_orm(string_value = "reply")]
     Reply,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
@@ -127,12 +133,13 @@ pub enum NotificationTypeEnum {
 pub enum PageVisibilityEnum {
     #[sea_orm(string_value = "followers")]
     Followers,
+    #[default]
     #[sea_orm(string_value = "public")]
     Public,
     #[sea_orm(string_value = "specified")]
     Specified,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
@@ -143,22 +150,24 @@ pub enum PollNotevisibilityEnum {
     Followers,
     #[sea_orm(string_value = "home")]
     Home,
+    #[default]
     #[sea_orm(string_value = "public")]
     Public,
     #[sea_orm(string_value = "specified")]
     Specified,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(rs_type = "String", db_type = "Enum", enum_name = "relay_status_enum")]
 pub enum RelayStatusEnum {
     #[sea_orm(string_value = "accepted")]
     Accepted,
     #[sea_orm(string_value = "rejected")]
     Rejected,
+    #[default]
     #[sea_orm(string_value = "requesting")]
     Requesting,
 }
-#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum)]
+#[derive(Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default)]
 #[sea_orm(
     rs_type = "String",
     db_type = "Enum",
@@ -169,6 +178,7 @@ pub enum UserProfileFfvisibilityEnum {
     Followers,
     #[sea_orm(string_value = "private")]
     Private,
+    #[default]
     #[sea_orm(string_value = "public")]
     Public,
 }

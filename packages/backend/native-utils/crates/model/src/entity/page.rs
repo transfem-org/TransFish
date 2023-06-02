@@ -5,7 +5,7 @@ use sea_orm::entity::prelude::*;
 
 use super::newtype::StringVec;
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Default)]
 #[sea_orm(table_name = "page")]
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false)]
