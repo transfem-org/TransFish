@@ -261,7 +261,7 @@
 					</div>
 				</div>
 
-				<div class="contents">
+				<div class="contents _gap">
 					<div v-if="user.pinnedNotes.length > 0" class="_gap">
 						<XNote
 							v-for="note in user.pinnedNotes"
