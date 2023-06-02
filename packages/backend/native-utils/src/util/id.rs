@@ -41,11 +41,13 @@ cfg_if! {
         use napi_derive::napi;
 
         const TIME_2000: u64 = 946_684_800_000;
+        const TIMESTAMP_LENGTH: u16 = 8;
 
         /// Calls [init_id] inside. Must be called before [native_create_id].
         #[napi]
         pub fn native_init_id_generator(length: u16, fingerprint: String) {
-            init_id(length, fingerprint);
+            // length to pass init_id shoule be greater than or equal to 8.
+            init_id(cmp::max(length - TIMESTAMP_LENGTH, 8), fingerprint);
         }
 
         /// Generates
@@ -59,19 +61,38 @@ cfg_if! {
 
 #[cfg(test)]
 mod unit_test {
+    use cfg_if::cfg_if;
     use pretty_assertions::{assert_eq, assert_ne};
     use std::thread;
-
     use crate::util::id;
 
-    #[test]
-    fn can_generate_unique_ids() {
-        assert_eq!(id::create_id(), Err(id::ErrorUninitialized));
-        id::init_id(12, "");
-        assert_eq!(id::create_id().unwrap().len(), 12);
-        assert_ne!(id::create_id().unwrap(), id::create_id().unwrap());
-        let id1 = thread::spawn(|| id::create_id().unwrap());
-        let id2 = thread::spawn(|| id::create_id().unwrap());
-        assert_ne!(id1.join().unwrap(), id2.join().unwrap())
+    cfg_if! {
+        if #[cfg(feature = "napi")] {
+            use chrono::Utc;
+
+            #[test]
+            fn can_generate_aid_compat_ids() {
+                id::native_init_id_generator(16, "".to_string());
+                let id1 = id::native_create_id(Utc::now().timestamp_millis().into());
+                assert_eq!(id1.len(), 16);
+                let id1 = id::native_create_id(Utc::now().timestamp_millis().into());
+                let id2 = id::native_create_id(Utc::now().timestamp_millis().into());
+                assert_ne!(id1, id2);
+                let id1 = thread::spawn(|| id::native_create_id(Utc::now().timestamp_millis().into()));
+                let id2 = thread::spawn(|| id::native_create_id(Utc::now().timestamp_millis().into()));
+                assert_ne!(id1.join().unwrap(), id2.join().unwrap());
+            }
+        } else {
+            #[test]
+            fn can_generate_unique_ids() {
+                assert_eq!(id::create_id(), Err(id::ErrorUninitialized));
+                id::init_id(12, "");
+                assert_eq!(id::create_id().unwrap().len(), 12);
+                assert_ne!(id::create_id().unwrap(), id::create_id().unwrap());
+                let id1 = thread::spawn(|| id::create_id().unwrap());
+                let id2 = thread::spawn(|| id::create_id().unwrap());
+                assert_ne!(id1.join().unwrap(), id2.join().unwrap())
+            }
+        }
     }
 }

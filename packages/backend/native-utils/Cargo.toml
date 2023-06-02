@@ -7,7 +7,7 @@ version = "0.0.0"
 members = ["migration/Cargo.toml"]
 
 [features]
-default = ["napi"]
+default = []
 noarray = []
 napi = ["dep:napi", "dep:napi-derive", "dep:radix_fmt"]
 

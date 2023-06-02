@@ -139,7 +139,7 @@ async fn cleanup() {
 }
 
 async fn setup_model(db: &DbConn) {
-    init_id(12);
+    init_id(12, "");
 
     db.transaction::<_, (), DbErr>(|txn| {
         Box::pin(async move {
