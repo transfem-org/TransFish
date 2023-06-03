@@ -24,7 +24,7 @@ export const getNoteSummary = (note: misskey.entities.Note): string => {
 	// ファイルが添付されているとき
 	if ((note.files || []).length !== 0) {
 		const len = note.files?.length;
-		summary += ` 📎 (${len !== 1 ? len : ''})`;
+		summary += ` 📎 (${len !== 1 ? len : ""})`;
 	}
 
 	// 投票が添付されているとき
