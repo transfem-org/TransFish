@@ -1,5 +1,3 @@
-#![cfg(feature = "convert")]
-
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use native_utils::model::entity::newtype::{I32Vec, StringVec};
 use sea_orm_migration::{
