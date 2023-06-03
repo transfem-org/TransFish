@@ -1239,7 +1239,7 @@ sample: Exemple
 abuseReports: Informes
 reportAbuse: Informe
 reporter: Informador
-reporterOrigin: Origen d'el informador
+reporterOrigin: Origen informador
 forwardReport: Envia l'informe a un servidor remot
 abuseReported: El teu informe ha sigut enviat. Moltes gràcies.
 reporteeOrigin: Origen de l'informe
