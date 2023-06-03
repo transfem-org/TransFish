@@ -450,7 +450,7 @@ import { i18n } from "@/i18n";
 import { instance } from "@/instance";
 
 defineProps<{
-	popup?: boolean
+	popup?: boolean;
 }>();
 
 let preview_mention = $ref("@example");

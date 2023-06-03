@@ -382,7 +382,7 @@ function onContextmenu(ev: MouseEvent): void {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === "A") return true;
 		// The Audio element's context menu is the browser default, such as for selecting playback speed.
-		if (el.tagName === 'AUDIO') return true;
+		if (el.tagName === "AUDIO") return true;
 		if (el.parentElement) {
 			return isLink(el.parentElement);
 		}
