@@ -37,10 +37,11 @@
     "build": "napi build --features napi --platform --release ./built/",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "ava",
+    "test": "pnpm run cargo:test && pnpm run build && ava",
     "universal": "napi universal",
     "version": "napi version",
 		"format": "cargo fmt --all",
+		"cargo:test": "pnpm run cargo:unit && pnpm run cargo:integration",
     "cargo:unit": "cargo test unit_test && cargo test -F napi unit_test",
     "cargo:integration": "cargo test -F noarray int_test -- --test-threads=1"
   }
