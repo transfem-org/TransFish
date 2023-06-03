@@ -506,6 +506,10 @@ function noteClick(e) {
 						color: var(--fgHighlighted);
 					}
 
+					> i {
+						display: inline !important;
+					}
+
 					> .count {
 						display: inline;
 						margin: 0 0 0 8px;
