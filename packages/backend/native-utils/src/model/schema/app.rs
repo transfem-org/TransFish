@@ -95,13 +95,53 @@ pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| App::validator());
 
 #[cfg(test)]
 mod unit_test {
+    use pretty_assertions::assert_eq;
+    use serde_json::json;
+
+    use crate::util::id::{create_id, init_id};
+    use crate::util::random::gen_string;
+
+    use super::VALIDATOR;
+
     #[test]
-    fn valid() {
-        todo!();
+    fn app_valid() {
+        init_id(12, "");
+        let instance = json!({
+            "id": create_id().unwrap(),
+            "name": "Test App",
+            "secret": gen_string(24),
+            "callbackUrl": "urn:ietf:wg:oauth:2.0:oob",
+            "permission": ["read:account", "write:account", "read:notes"],
+        });
+
+        assert!(VALIDATOR.is_valid(&instance));
     }
 
     #[test]
-    fn invalid() {
-        todo!();
+    fn app_invalid() {
+        init_id(12, "");
+        let instance = json!({
+            "id": create_id().unwrap(),
+            // "name" is required
+            "name": null,
+            // "permission" must be one of the app permissions
+            "permission": ["write:invalid_perm", "write:notes"],
+            // "secret" is a nullable string
+            "secret": 123,
+            // "is_authorized" is a nullable boolean
+            "isAuthorized": "true-ish",
+        });
+        let result = VALIDATOR
+            .validate(&instance)
+            .expect_err("validation must fail");
+        let mut paths: Vec<String> = result
+            .map(|e| e.instance_path.to_string())
+            .filter(|e| !e.is_empty())
+            .collect();
+        paths.sort();
+        assert_eq!(
+            paths,
+            vec!["/isAuthorized", "/name", "/permission/0", "/secret"]
+        );
     }
 }

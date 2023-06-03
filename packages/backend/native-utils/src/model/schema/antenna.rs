@@ -142,7 +142,7 @@ mod unit_test {
     #[test]
     fn antenna_valid() {
         let instance = json!({
-            "id": "9f4x0bkx1u",
+            "id": "9fil64s6g7cskdrb",
             "createdAt": "2023-05-24T06:56:14.323Z",
             "name": "Valid Antenna",
             "keywords": [["first", "keyword"], ["second"]],
@@ -150,7 +150,7 @@ mod unit_test {
             "src": "users",
             // "userListId" and "userGroupId" can be null or be omitted
             "userListId": null,
-            "users": ["9f4yjw6m13", "9f4yk2cp6d"],
+            "users": ["9fil64s6g7cskdrb", "9fil66brl1udxau2"],
             "instances": [],
             // "caseSensitive", "notify", "withReplies", "withFile", and
             // "hasUnreadNote" are false if ommited
@@ -175,14 +175,14 @@ mod unit_test {
             "keywords": "invalid keyword",
             // "excludeKeywords" is required
             "excludeKeywords": null,
-            // "src" should be one of "home", "all", "users", "list", "group", and
+            // "src" must be one of "home", "all", "users", "list", "group", and
             // "instances"
             "src": "invalid_src",
             // "userListId" is string
             "userListId": ["9f4ziiqfxw"],
             // "users" must be an array of strings
-            "users": [1, "9f4ykyuza6"],
-            "instances": ["9f4ykyuybo"],
+            "users": [1, "9fil64s6g7cskdrb"],
+            "instances": ["9fil65jzhtjpi3xn"],
             // "caseSensitive" is boolean
             "caseSensitive": 0,
             "notify": true,

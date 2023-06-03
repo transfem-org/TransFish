@@ -41,7 +41,7 @@
     "universal": "napi universal",
     "version": "napi version",
 		"format": "cargo fmt",
-    "cargo:unit": "cargo test unit_test",
-    "cargo:integration": "cargo test --no-default-features -F noarray int_test -- --test-threads=1"
+    "cargo:unit": "cargo test unit_test && cargo test -F napi unit_test",
+    "cargo:integration": "cargo test -F noarray int_test -- --test-threads=1"
   }
 }

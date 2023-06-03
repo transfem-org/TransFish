@@ -72,9 +72,9 @@ mod unit_test {
 
             #[test]
             fn can_generate_aid_compat_ids() {
-                id::native_init_id_generator(16, "".to_string());
+                id::native_init_id_generator(20, "".to_string());
                 let id1 = id::native_create_id(Utc::now().timestamp_millis().into());
-                assert_eq!(id1.len(), 16);
+                assert_eq!(id1.len(), 20);
                 let id1 = id::native_create_id(Utc::now().timestamp_millis().into());
                 let id2 = id::native_create_id(Utc::now().timestamp_millis().into());
                 assert_ne!(id1, id2);
