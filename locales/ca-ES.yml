@@ -791,7 +791,6 @@ selectUser: Selecciona un usuari
 latestStatus: Últim estat
 storageUsage: Ús del emmagatzematge
 metadata: Metadades
-withNFiles: '{n} fitxer(s)'
 monitor: Seguiment
 software: Programari
 version: Versió

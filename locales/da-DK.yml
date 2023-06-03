@@ -117,7 +117,6 @@ operations: Operationer
 software: Software
 metadata: Metadata
 version: Version
-withNFiles: '{n} fil(er)'
 monitor: Vagt
 jobQueue: Jobkø
 statistics: Statistik
