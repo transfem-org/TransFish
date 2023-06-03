@@ -134,7 +134,7 @@
 						</div>
 						<div class="follow-container">
 							<div class="actions">
-								<button class="menu _button" @click="menu">
+								<button class="menu _button" @click="menu" v-tooltip="i18n.ts.menu">
 									<i
 										class="ph-dots-three-outline ph-bold ph-lg"
 									></i>
