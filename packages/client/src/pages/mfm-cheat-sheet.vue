@@ -536,6 +536,7 @@ definePageMetadata({
 			> p {
 				margin: 0;
 				padding: 16px;
+				padding-top: 0;
 			}
 
 			> .preview {
