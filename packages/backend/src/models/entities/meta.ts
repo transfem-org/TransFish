@@ -162,7 +162,7 @@ export class Meta {
 	@Column("varchar", {
 		length: 512,
 		nullable: true,
-		default: "/assets/ai.png",
+		default: "/static-assets/badges/info.png",
 	})
 	public mascotImageUrl: string | null;
 
@@ -187,7 +187,7 @@ export class Meta {
 	@Column("varchar", {
 		length: 512,
 		nullable: true,
-		default: "https://xn--931a.moe/aiart/yubitun.png",
+		default: "/static-assets/badges/error.png",
 	})
 	public errorImageUrl: string | null;
 

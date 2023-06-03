@@ -6,7 +6,7 @@
 		@closed="$emit('closed')"
 	>
 		<template #header>{{ i18n.ts._mfm.cheatSheet }}</template>
-		<XCheatSheet :popup="true" style="background: var(--bg)"/>
+		<XCheatSheet :popup="true" style="background: var(--bg)" />
 	</XModalWindow>
 </template>
 
@@ -36,5 +36,4 @@ function close(res) {
 .fade-leave-to {
 	opacity: 0;
 }
-
 </style>

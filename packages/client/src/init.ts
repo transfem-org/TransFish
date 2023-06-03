@@ -27,7 +27,6 @@ import {
 	defineAsyncComponent,
 } from "vue";
 import { compareVersions } from "compare-versions";
-import JSON5 from "json5";
 
 import widgets from "@/widgets";
 import directives from "@/directives";
@@ -312,12 +311,12 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			if (instance.defaultLightTheme != null)
 				ColdDeviceStorage.set(
 					"lightTheme",
-					JSON5.parse(instance.defaultLightTheme),
+					JSON.parse(instance.defaultLightTheme),
 				);
 			if (instance.defaultDarkTheme != null)
 				ColdDeviceStorage.set(
 					"darkTheme",
-					JSON5.parse(instance.defaultDarkTheme),
+					JSON.parse(instance.defaultDarkTheme),
 				);
 			defaultStore.set("themeInitial", false);
 		}
