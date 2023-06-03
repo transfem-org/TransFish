@@ -51,10 +51,10 @@
 				<XQueue domain="inbox" />
 			</MkFolder>
 
-			<MkFolder class="item">
+			<!-- <MkFolder class="item">
 				<template #header>Server metrics</template>
 				<XMetrics domain="inbox" />
-			</MkFolder>
+			</MkFolder> -->
 		</div>
 	</MkSpacer>
 </template>
@@ -76,7 +76,7 @@ import XActiveUsers from "./overview.active-users.vue";
 import XStats from "./overview.stats.vue";
 import XModerators from "./overview.moderators.vue";
 import XHeatmap from "./overview.heatmap.vue";
-import XMetrics from "./overview.metrics.vue";
+// import XMetrics from "./overview.metrics.vue";
 import MkTagCloud from "@/components/MkTagCloud.vue";
 import { version, url } from "@/config";
 import * as os from "@/os";
