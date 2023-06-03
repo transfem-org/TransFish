@@ -4,7 +4,7 @@ name = "native-utils"
 version = "0.0.0"
 
 [workspace]
-members = ["migration/Cargo.toml"]
+members = ["migration"]
 
 [features]
 default = []

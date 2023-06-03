@@ -18,6 +18,7 @@ impl MigrationTrait for Migration {
             DbBackend::Postgres,
             Table::drop()
                 .table(ReversiGame::Table)
+                .if_exists()
                 .to_string(PostgresQueryBuilder),
         ))
         .await?;
@@ -25,6 +26,7 @@ impl MigrationTrait for Migration {
             DbBackend::Postgres,
             Table::drop()
                 .table(ReversiMatching::Table)
+                .if_exists()
                 .to_string(PostgresQueryBuilder),
         ))
         .await?;

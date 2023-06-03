@@ -10,12 +10,12 @@ path = "src/lib.rs"
 
 [features]
 default = []
-convert = ["model/noarray"]
+convert = ["dep:native-utils"]
 
 [dependencies]
 async-std = { version = "1", features = ["attributes", "tokio1"] }
 serde_json = "1.0.96"
-model = { path = "../model" }
+native-utils = { path = "../", optional = true }
 indicatif = { version = "0.17.4", features = ["tokio"] }
 tokio = { version = "1.28.2", features = ["full"] }
 futures = "0.3.28"
