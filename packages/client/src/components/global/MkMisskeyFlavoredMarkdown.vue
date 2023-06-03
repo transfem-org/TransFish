@@ -51,6 +51,9 @@ const props = withDefaults(
 		[style*="font-family:"] {
 			font-family: inherit !important;
 		}
+		[style*="clip-path:"] {
+			clip-path: none !important;
+		}
 	}
 }
 .content.advancedMfm,
