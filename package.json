@@ -1,6 +1,6 @@
 {
 	"name": "calckey",
-	"version": "14.0.0-dev35",
+	"version": "14.0.0-dev39",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
@@ -27,7 +27,7 @@
 		"e2e": "start-server-and-test start:test http://localhost:61812 cy:run",
 		"mocha": "pnpm --filter backend run mocha",
 		"test": "pnpm run mocha",
-		"format": "pnpm rome format packages/**/* --write && pnpm --filter client run format",
+		"format": "pnpm rome format packages/**/* --write && pnpm -r run format",
 		"clean": "pnpm node ./scripts/clean.js",
 		"clean-all": "pnpm node ./scripts/clean-all.js",
 		"cleanall": "pnpm run clean-all"
