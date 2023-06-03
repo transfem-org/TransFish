@@ -6,14 +6,14 @@
 					><i class="ph-house ph-bold ph-lg icon"></i
 					>{{ i18n.ts.home }}</MkA
 				>
-				<MkA
+				<!-- <MkA
 					v-if="isTimelineAvailable"
 					to="/timeline"
 					class="link"
 					active-class="active"
 					><i class="ph-chats-circle ph-bold ph-lg icon"></i
 					>{{ i18n.ts.timeline }}</MkA
-				>
+				> -->
 				<MkA to="/explore" class="link" active-class="active"
 					><i class="ph-compass ph-bold ph-lg icon"></i
 					>{{ i18n.ts.explore }}</MkA

@@ -26,6 +26,26 @@ export const defaultStore = markRaw(
 			where: "account",
 			default: 0,
 		},
+		tlHomeHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlLocalHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlRecommendedHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlSocialHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlGlobalHintClosed: {
+			where: "device",
+			default: false,
+		},
 		keepCw: {
 			where: "account",
 			default: true,
@@ -139,6 +159,10 @@ export const defaultStore = markRaw(
 			default: "nothing" as "nothing" | "quiet" | "reload" | "dialog",
 		},
 		seperateRenoteQuote: {
+			where: "device",
+			default: true,
+		},
+		expandOnNoteClick: {
 			where: "device",
 			default: true,
 		},

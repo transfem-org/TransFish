@@ -34,9 +34,7 @@
 		"tsd": "^0.19.1",
 		"typescript": "4.5.4"
 	},
-	"files": [
-		"built"
-	],
+	"files": ["built"],
 	"dependencies": {
 		"autobind-decorator": "^2.4.0",
 		"eventemitter3": "^4.0.7",

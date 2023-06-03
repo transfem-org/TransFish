@@ -11,10 +11,7 @@
 			:data-count="previewableCount < 5 ? previewableCount : null"
 			:class="{ dmWidth: inDm }"
 		>
-			<div
-				ref="gallery"
-				@click.stop
-			>
+			<div ref="gallery" @click.stop>
 				<template
 					v-for="media in mediaList.filter((media) =>
 						previewable(media)
@@ -189,7 +186,9 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 		FILE_TYPE_BROWSERSAFE.includes(file.type)
 	);
 };
-const previewableCount = props.mediaList.filter((media) => previewable(media)).length;
+const previewableCount = props.mediaList.filter((media) =>
+	previewable(media)
+).length;
 </script>
 
 <style lang="scss" scoped>
@@ -251,13 +250,13 @@ const previewableCount = props.mediaList.filter((media) => previewable(media)).l
 			display: grid;
 			grid-gap: 8px;
 
-			> div, > button {
+			> div,
+			> button {
 				overflow: hidden;
 				border-radius: 6px;
 				pointer-events: all;
 				min-height: 50px;
 			}
-
 
 			> :nth-child(1) {
 				grid-column: 1 / 2;

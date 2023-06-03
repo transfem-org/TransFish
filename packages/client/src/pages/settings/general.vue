@@ -54,6 +54,12 @@
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
+			<FormSwitch v-model="expandOnNoteClick" class="_formBlock"
+				>{{ i18n.ts.expandOnNoteClick
+				}}<template #caption>{{
+					i18n.ts.expandOnNoteClickDesc
+				}}</template>
+			</FormSwitch>
 			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
 				>{{ i18n.ts.flagShowTimelineReplies
 				}}<template #caption
@@ -299,6 +305,9 @@ const nsfw = computed(defaultStore.makeGetterSetter("nsfw"));
 const disablePagesScript = computed(
 	defaultStore.makeGetterSetter("disablePagesScript")
 );
+const expandOnNoteClick = computed(
+	defaultStore.makeGetterSetter("expandOnNoteClick")
+);
 const showFixedPostForm = computed(
 	defaultStore.makeGetterSetter("showFixedPostForm")
 );
@@ -366,6 +375,7 @@ watch(
 		seperateRenoteQuote,
 		showAdminUpdates,
 		autoplayMfm,
+		expandOnNoteClick,
 	],
 	async () => {
 		await reloadAsk();

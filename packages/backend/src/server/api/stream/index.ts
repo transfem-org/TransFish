@@ -394,7 +394,6 @@ export default class Connection {
 	 * クライアントにメッセージ送信
 	 */
 	public sendMessageToWs(type: string, payload: any) {
-		console.log(payload, this.isMastodonCompatible);
 		if (this.isMastodonCompatible) {
 			if (payload.type === "note") {
 				this.wsConnection.send(

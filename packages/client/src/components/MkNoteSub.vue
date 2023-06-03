@@ -14,7 +14,11 @@
 		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
-		<div class="main" @click="noteClick">
+		<div
+			class="main"
+			@click="noteClick"
+			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
+		>
 			<div class="avatar-container">
 				<MkAvatar class="avatar" :user="appearNote.user" />
 				<div
@@ -30,6 +34,7 @@
 						:note="note"
 						:parentId="parentId"
 						:conversation="conversation"
+						:detailedView="detailedView"
 						@focusfooter="footerEl.focus()"
 					/>
 					<div v-if="translating || translation" class="translation">
@@ -257,6 +262,7 @@ const replies: misskey.entities.Note[] =
 		)
 		.reverse() ?? [];
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 useNoteCapture({
 	rootEl: el,
@@ -396,7 +402,7 @@ function blur() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range") {
+	if (document.getSelection().type === "Range" || !expandOnNoteClick) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(props.note));
@@ -421,7 +427,6 @@ function noteClick(e) {
 
 	> .main {
 		display: flex;
-		cursor: pointer;
 
 		> .avatar-container {
 			margin-right: 8px;

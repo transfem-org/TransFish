@@ -114,7 +114,7 @@ html, body {
 }
 
 .swiper-slide {
-	height: unset !important;
+	min-height: 100vh;
 }
 
 a {
@@ -212,6 +212,43 @@ hr {
 		opacity: 0.5;
 		cursor: default;
 	}
+
+	> i:only-child {
+		display: block;
+		margin: auto;
+	}
+}
+
+._buttonIcon {
+	@extend ._button;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--height) - (var(--margin) * 2));
+	height: calc(var(--height) - (var(--margin) * 2));
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 5px;
+	outline: none;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 2.7em;
+		height: 2.7em;
+		border-radius: inherit;
+		transition: background 0.2s;
+	}
+
+	&:hover:before, &:focus::before, &.highlighted::before {
+		background: var(--buttonBg);
+	}
+	&:focus-visible::before {
+		outline: auto;
+	}
+	&.highlighted {
+		color: var(--accent);
+	}
 }
 
 ._buttonPrimary {
@@ -298,6 +335,9 @@ hr {
 
 ._gap {
 	margin: var(--margin) 0;
+	&:first-child {
+		margin-top: 0;
+	}
 }
 
 // TODO: 廃止

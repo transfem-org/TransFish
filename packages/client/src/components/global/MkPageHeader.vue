@@ -10,8 +10,8 @@
 		<div class="left">
 			<div class="buttons">
 				<button
-					v-if="props.displayBackButton"
-					class="_button button icon backButton"
+					v-if="displayBackButton"
+					class="_buttonIcon button icon backButton"
 					@click.stop="goBack()"
 					@touchstart="preventDrag"
 					v-tooltip.noDelay="i18n.ts.goBack"
@@ -110,7 +110,7 @@
 			<template v-for="action in actions">
 				<button
 					v-tooltip.noDelay="action.text"
-					class="_button button"
+					class="_buttonIcon button"
 					:class="{ highlighted: action.highlighted }"
 					@click.stop="action.handler"
 					@touchstart="preventDrag"
@@ -163,6 +163,11 @@ const props = defineProps<{
 	displayBackButton?: boolean;
 	to?: string;
 }>();
+
+const displayBackButton =
+	props.displayBackButton &&
+	history.length > 2 &&
+	inject("shouldBackButton", true);
 
 const emit = defineEmits<{
 	(ev: "update:tab", key: string);
@@ -390,26 +395,6 @@ onUnmounted(() => {
 			// margin-left: var(--margin);
 			> .button:last-child {
 				margin-right: calc(0px - var(--margin));
-			}
-		}
-
-		> .button/*, @at-root .backButton*/ {
-			/* I don't know how to get this to work */
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: calc(var(--height) - (var(--margin) * 2));
-			width: calc(var(--height) - (var(--margin) * 2));
-			box-sizing: border-box;
-			position: relative;
-			border-radius: 5px;
-
-			&:hover {
-				background: rgba(0, 0, 0, 0.05);
-			}
-
-			&.highlighted {
-				color: var(--accent);
 			}
 		}
 

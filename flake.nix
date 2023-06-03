@@ -41,7 +41,7 @@
 							languages.typescript.enable = true;
 							# Enable javascript for NPM and PNPM
 							languages.javascript.enable = true;
-							languages.javascript.package = pkgs.nodejs_19;
+							languages.javascript.package = pkgs.nodejs_18;
 							# Enable stable Rust for the backend
 							languages.rust.enable = true;
 							languages.rust.version = "stable";

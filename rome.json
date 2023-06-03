@@ -5,5 +5,18 @@
     "rules": {
       "recommended": true
     }
-  }
+  },
+	"formatter": {
+		"ignore": [
+			"packages/calckey-js/api-extractor.json",
+			"packages/*/tsconfig.json",
+			"packages/*/package-lock.json",
+			"packages/backend/src/server/web/manifest.ts",
+			"packages/backend/built/",
+			"packages/backend/nsfw-model/",
+			"packages/client/src/emojilist.json",
+			"*.md",
+			"*/.yml"
+		]
+	}
 }

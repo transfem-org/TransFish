@@ -64,7 +64,7 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "/assets/ai.png",
+				default: "/static-assets/badges/info.png",
 			},
 			bannerUrl: {
 				type: "string",
@@ -75,7 +75,7 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://xn--931a.moe/aiart/yubitun.png",
+				default: "/static-assets/badges/error.png",
 			},
 			iconUrl: {
 				type: "string",

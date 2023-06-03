@@ -2,7 +2,9 @@
 	<p v-if="note.cw != null" class="cw">
 		<MkA
 			v-if="conversation && note.renoteId == parentId"
-			:to="`#${parentId}`"
+			:to="
+				detailedView ? `#${parentId}` : `${notePage(note)}#${parentId}`
+			"
 			behavior="browser"
 			class="reply-icon"
 			@click.stop
@@ -11,7 +13,11 @@
 		</MkA>
 		<MkA
 			v-else-if="!detailed && note.replyId"
-			:to="`#${note.replyId}`"
+			:to="
+				detailedView
+					? `#${note.replyId}`
+					: `${notePage(note)}#${note.replyId}`
+			"
 			behavior="browser"
 			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
@@ -66,7 +72,11 @@
 				<template v-if="!note.cw">
 					<MkA
 						v-if="conversation && note.renoteId == parentId"
-						:to="`#${parentId}`"
+						:to="
+							detailedView
+								? `#${parentId}`
+								: `${notePage(note)}#${parentId}`
+						"
 						behavior="browser"
 						class="reply-icon"
 						@click.stop
@@ -75,7 +85,11 @@
 					</MkA>
 					<MkA
 						v-else-if="!detailed && note.replyId"
-						:to="`#${note.replyId}`"
+						:to="
+							detailedView
+								? `#${note.replyId}`
+								: `${notePage(note)}#${note.replyId}`
+						"
 						behavior="browser"
 						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
@@ -97,7 +111,10 @@
 					:to="`/notes/${note.renoteId}`"
 					>{{ i18n.ts.quoteAttached }}: ...</MkA
 				>
-				<XMediaList v-if="note.files.length > 0" :media-list="note.files" />
+				<XMediaList
+					v-if="note.files.length > 0"
+					:media-list="note.files"
+				/>
 				<XPoll v-if="note.poll" :note="note" class="poll" />
 				<template v-if="detailed">
 					<MkUrlPreview
@@ -151,7 +168,10 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
-		<div v-if="(isLong && !collapsed) || (props.note.cw && showContent)" class="fade"></div>
+		<!-- <div
+			v-if="(isLong && !collapsed) || (props.note.cw && showContent)"
+			class="fade"
+		></div> -->
 	</div>
 </template>
 
@@ -167,6 +187,7 @@ import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import MkButton from "@/components/MkButton.vue";
+import { notePage } from "@/filters/note";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
@@ -188,13 +209,13 @@ const emit = defineEmits<{
 
 const cwButton = ref<HTMLElement>();
 const showMoreButton = ref<HTMLElement>();
-const isLong = !props.detailedView
-	&& ( props.note.cw == null
-		&& (props.note.text != null
-			&& (props.note.text.split("\n").length > 9 || props.note.text.length > 500)
-		)
-		|| props.note.files.length > 4
-	);
+const isLong =
+	!props.detailedView &&
+	((props.note.cw == null &&
+		props.note.text != null &&
+		(props.note.text.split("\n").length > 9 ||
+			props.note.text.length > 500)) ||
+		props.note.files.length > 4);
 
 const collapsed = $ref(props.note.cw == null && isLong);
 
@@ -238,7 +259,8 @@ function focusFooter(ev) {
 </script>
 
 <style lang="scss" scoped>
-:deep(a), :deep(button) {
+:deep(a),
+:deep(button) {
 	position: relative;
 	z-index: 2;
 }
@@ -390,7 +412,7 @@ function focusFooter(ev) {
 			background: var(--panel);
 			mask: linear-gradient(to top, var(--gradient));
 			-webkit-mask: linear-gradient(to top, var(--gradient));
-			transition: background .2s;
+			transition: background 0.2s;
 		}
 	}
 }

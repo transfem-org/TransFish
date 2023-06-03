@@ -67,6 +67,7 @@ import type { UserProfile } from "@/models/entities/user-profile.js";
 import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
+import meilisearch from "../../db/meilisearch.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -748,7 +749,7 @@ async function insertNote(
 	}
 }
 
-export async function index(note: Note): Promise<void> {
+export async function index(note: Note, reindexing: boolean): Promise<void> {
 	if (!note.text) return;
 
 	if (config.elasticsearch && es) {
@@ -775,6 +776,10 @@ export async function index(note: Note): Promise<void> {
 			}),
 			note.text,
 		);
+	}
+
+	if (meilisearch && !reindexing) {
+		await meilisearch.ingestNote(note);
 	}
 }
 

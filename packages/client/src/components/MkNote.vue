@@ -9,6 +9,7 @@
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
+		:id="appearNote.id"
 	>
 		<MkNoteSub
 			v-if="appearNote.reply && !detailedView"
@@ -67,6 +68,9 @@
 			class="article"
 			@contextmenu.stop="onContextmenu"
 			@click="noteClick"
+			:style="{
+				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
+			}"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -312,6 +316,7 @@ const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 const keymap = {
 	r: () => reply(true),
@@ -376,6 +381,8 @@ const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 function onContextmenu(ev: MouseEvent): void {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === "A") return true;
+		// The Audio element's context menu is the browser default, such as for selecting playback speed.
+		if (el.tagName === "AUDIO") return true;
 		if (el.parentElement) {
 			return isLink(el.parentElement);
 		}
@@ -500,7 +507,11 @@ function scrollIntoView() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range" || props.detailedView) {
+	if (
+		document.getSelection().type === "Range" ||
+		props.detailedView ||
+		!expandOnNoteClick
+	) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(appearNote));
@@ -703,7 +714,6 @@ defineExpose({
 		position: relative;
 		overflow: clip;
 		padding: 4px 32px 10px;
-		cursor: pointer;
 
 		&:first-child,
 		&:nth-child(2) {

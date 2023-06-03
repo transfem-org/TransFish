@@ -11,6 +11,7 @@ import MkToast from "@/components/MkToast.vue";
 import MkDialog from "@/components/MkDialog.vue";
 import { MenuItem } from "@/types/menu";
 import { $i } from "@/account";
+import { i18n } from "./i18n";
 
 export const pendingApiRequestsCount = ref(0);
 
@@ -277,6 +278,9 @@ export function alert(props: {
 	text?: string | null;
 }): Promise<void> {
 	return new Promise((resolve, reject) => {
+		if (props.text == null && props.type === "error") {
+			props.text = i18n.ts.somethingHappened;
+		}
 		popup(
 			MkDialog,
 			props,
