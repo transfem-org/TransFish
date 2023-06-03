@@ -109,11 +109,11 @@ let timelines = ["home"];
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
 }
-if (isRecommendedTimelineAvailable) {
-	timelines.push("recommended");
-}
 if (isLocalTimelineAvailable) {
 	timelines.push("social");
+}
+if (isRecommendedTimelineAvailable) {
+	timelines.push("recommended");
 }
 if (isGlobalTimelineAvailable) {
 	timelines.push("global");
@@ -195,7 +195,7 @@ async function chooseAntenna(ev: MouseEvent): Promise<void> {
 }
 
 function saveSrc(
-	newSrc: "home" | "local" | "recommended" | "social" | "global"
+	newSrc: "home" | "local" | "social" | "recommended" | "global"
 ): void {
 	defaultStore.set("tl", {
 		...defaultStore.state.tl,
@@ -255,22 +255,22 @@ const headerTabs = $computed(() => [
 				},
 		  ]
 		: []),
-	...(isRecommendedTimelineAvailable
-		? [
-				{
-					key: "recommended",
-					title: i18n.ts._timelines.recommended,
-					icon: "ph-thumbs-up ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: []),
 	...(isLocalTimelineAvailable
 		? [
 				{
 					key: "social",
 					title: i18n.ts._timelines.social,
 					icon: "ph-handshake ph-bold ph-lg",
+					iconOnly: true,
+				},
+		  ]
+		: []),
+	...(isRecommendedTimelineAvailable
+		? [
+				{
+					key: "recommended",
+					title: i18n.ts._timelines.recommended,
+					icon: "ph-thumbs-up ph-bold ph-lg",
 					iconOnly: true,
 				},
 		  ]
