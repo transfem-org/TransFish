@@ -263,6 +263,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	&.renoted {
 		color: var(--accent) !important;
 		opacity: 1 !important;
+		font-weight: 700;
 	}
 }
 </style>
