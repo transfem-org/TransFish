@@ -1,8 +1,8 @@
 <template>
 	<MkStickyContainer>
-		<template #header><MkPageHeader /></template>
+		<template #header><MkPageHeader v-if="!popup" /></template>
 		<MkSpacer :content-max="800">
-			<div :class="$style.root">
+			<div class="mfm-cheat-sheet">
 				<div>{{ i18n.ts._mfm.intro }}</div>
 				<br />
 				<div class="section _block">
@@ -449,6 +449,10 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
 
+defineProps<{
+	popup?: boolean
+}>();
+
 let preview_mention = $ref("@example");
 let preview_hashtag = $ref("#test");
 let preview_link = $ref(`[${i18n.ts._mfm.dummy}](https://calckey.org)`);
@@ -514,10 +518,8 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" module>
-.root {
-	background: var(--bg);
-
+<style lang="scss" scoped>
+.mfm-cheat-sheet {
 	> .section {
 		> .title {
 			position: sticky;
