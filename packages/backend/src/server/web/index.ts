@@ -590,24 +590,6 @@ router.get("/channels/:channel", async (ctx, next) => {
 });
 //#endregion
 
-router.get("/_info_card_", async (ctx) => {
-	const meta = await fetchMeta(true);
-	if (meta.privateMode) {
-		ctx.status = 403;
-		return;
-	}
-
-	ctx.remove("X-Frame-Options");
-
-	await ctx.render("info-card", {
-		version: config.version,
-		host: config.host,
-		meta: meta,
-		originalUsersCount: await Users.countBy({ host: IsNull() }),
-		originalNotesCount: await Notes.countBy({ userHost: IsNull() }),
-	});
-});
-
 router.get("/bios", async (ctx) => {
 	await ctx.render("bios", {
 		version: config.version,
