@@ -1211,6 +1211,8 @@ _mfm:
   intro: "MFM is a markup language used on Misskey, Calckey, Akkoma, and more that\
     \ can be used in many places. Here you can view a list of all available MFM syntax."
   dummy: "Calckey expands the world of the Fediverse"
+  advanced: "Advanced MFM"
+  advancedDescription: "If disabled, only allows for basic markup unless animated MFM is playing"
   mention: "Mention"
   mentionDescription: "You can specify a user by using an At-Symbol and a username."
   hashtag: "Hashtag"
