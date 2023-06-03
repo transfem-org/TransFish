@@ -399,8 +399,6 @@ export function getNoteMenu(props: {
 				  ]
 				: []),
 
-			null,
-
 			isAppearAuthor || isModerator
 				? {
 						icon: "ph-trash ph-bold ph-lg",
