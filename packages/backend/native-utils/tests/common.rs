@@ -164,7 +164,7 @@ async fn setup_model(db: &DbConn) {
                 id: create_id().unwrap(),
                 created_at: Utc::now().into(),
                 user_id: user_id.to_owned(),
-                name: "Test Antenna".to_string(),
+                name: "Alice Antenna".to_string(),
                 src: AntennaSrcEnum::All,
                 keywords: vec![
                     vec!["foo".to_string(), "bar".to_string()],
@@ -181,6 +181,18 @@ async fn setup_model(db: &DbConn) {
                 ..Default::default()
             };
             antenna_model
+                .into_active_model()
+                .reset_all()
+                .insert(txn)
+                .await?;
+            let note_model = entity::note::Model {
+                id: create_id().unwrap(),
+                created_at: Utc::now().into(),
+                text: Some("Testing 123".to_string()),
+                user_id: user_id.to_owned(),
+                ..Default::default()
+            };
+            note_model
                 .into_active_model()
                 .reset_all()
                 .insert(txn)

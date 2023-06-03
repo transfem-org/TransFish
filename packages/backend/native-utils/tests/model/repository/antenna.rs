@@ -1,13 +1,13 @@
 mod int_test {
-    use native_utils::{database, model};
+    use native_utils::{database, model, util};
 
     use model::{
-        entity::{antenna, user},
+        entity::{antenna, antenna_note, note, user},
         repository::Repository,
         schema,
     };
     use pretty_assertions::assert_eq;
-    use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
+    use sea_orm::{ActiveModelTrait, ColumnTrait, EntityTrait, IntoActiveModel, QueryFilter};
 
     use crate::{cleanup, prepare};
 
@@ -39,7 +39,7 @@ mod int_test {
         let result = schema::Antenna {
             id: alice_antenna.id,
             created_at: alice_antenna.created_at.into(),
-            name: "Test Antenna".to_string(),
+            name: "Alice Antenna".to_string(),
             keywords: vec![
                 vec!["foo".to_string(), "bar".to_string()],
                 vec!["foobar".to_string()],
@@ -70,6 +70,49 @@ mod int_test {
 
     #[tokio::test]
     async fn unread_note() {
-        todo!();
+        prepare().await;
+        let db = database::get_database().unwrap();
+
+        let (alice, alice_antenna) = user::Entity::find()
+            .filter(user::Column::Username.eq("alice"))
+            .find_also_related(antenna::Entity)
+            .one(db)
+            .await
+            .unwrap()
+            .expect("alice not found");
+        let alice_antenna = alice_antenna.expect("alice's antenna not found");
+        let packed = alice_antenna
+            .to_owned()
+            .pack()
+            .await
+            .expect("Unable to pack");
+        assert_eq!(packed.has_unread_note, false);
+
+        let note_model = note::Entity::find()
+            .filter(note::Column::UserId.eq(alice.id))
+            .one(db)
+            .await
+            .unwrap()
+            .expect("note not found");
+        let antenna_note = antenna_note::Model {
+            id: util::id::create_id().unwrap(),
+            antenna_id: alice_antenna.id.to_owned(),
+            note_id: note_model.id.to_owned(),
+            read: false,
+        };
+        antenna_note
+            .into_active_model()
+            .reset_all()
+            .insert(db)
+            .await
+            .unwrap();
+        let packed = alice_antenna
+            .to_owned()
+            .pack()
+            .await
+            .expect("Unable to pack");
+        assert_eq!(packed.has_unread_note, true);
+
+        cleanup().await;
     }
 }
