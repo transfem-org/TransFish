@@ -18,8 +18,8 @@ importers:
         specifier: 5.2.0
         version: 5.2.0
       '@napi-rs/cli':
-        specifier: ^2.15.0
-        version: 2.15.0
+        specifier: ^2.16.1
+        version: 2.16.1
       '@tensorflow/tfjs':
         specifier: ^3.21.0
         version: 3.21.0(seedrandom@3.0.5)
@@ -190,8 +190,8 @@ importers:
         specifier: 0.5.4
         version: 0.5.4
       date-fns:
-        specifier: 2.29.3
-        version: 2.29.3
+        specifier: 2.30.0
+        version: 2.30.0
       deep-email-validator:
         specifier: 0.1.21
         version: 0.1.21
@@ -612,8 +612,8 @@ importers:
   packages/backend/native-utils:
     devDependencies:
       '@napi-rs/cli':
-        specifier: 2.15.0
-        version: 2.15.0
+        specifier: 2.16.1
+        version: 2.16.1
       ava:
         specifier: 5.1.1
         version: 5.1.1
@@ -754,20 +754,20 @@ importers:
         specifier: workspace:*
         version: link:../calckey-js
       chart.js:
-        specifier: 4.1.1
-        version: 4.1.1
+        specifier: 4.3.0
+        version: 4.3.0
       chartjs-adapter-date-fns:
-        specifier: 2.0.1
-        version: 2.0.1(chart.js@4.1.1)
+        specifier: 3.0.0
+        version: 3.0.0(chart.js@4.3.0)(date-fns@2.30.0)
       chartjs-chart-matrix:
         specifier: ^2.0.1
-        version: 2.0.1(chart.js@4.1.1)
+        version: 2.0.1(chart.js@4.3.0)
       chartjs-plugin-gradient:
-        specifier: 0.5.1
-        version: 0.5.1(chart.js@4.1.1)
+        specifier: 0.6.1
+        version: 0.6.1(chart.js@4.3.0)
       chartjs-plugin-zoom:
-        specifier: 1.2.1
-        version: 1.2.1(chart.js@4.1.1)
+        specifier: 2.0.1
+        version: 2.0.1(chart.js@4.3.0)
       city-timezones:
         specifier: ^1.2.1
         version: 1.2.1
@@ -784,8 +784,8 @@ importers:
         specifier: 10.11.0
         version: 10.11.0
       date-fns:
-        specifier: 2.29.3
-        version: 2.29.3
+        specifier: 2.30.0
+        version: 2.30.0
       escape-regexp:
         specifier: 0.0.1
         version: 0.0.1
@@ -1261,6 +1261,12 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.11
     dev: true
+
+  /@babel/runtime@7.22.3:
+    resolution: {integrity: sha512-XsDuspWKLUsxwCp6r7EhsExHtYfbe5oAGQ19kqngTdCPUoPQzOPdUbD/pB9PJiwb2ptYKQDjSJT3R6dC+EPqfQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
 
   /@babel/template@7.20.7:
     resolution: {integrity: sha512-8SegXApWe6VoNw0r9JHpSteLKTpTiLZ4rMlGIm9JQ18KiCtyQiAMEazujAHrUS5flrcqYZa75ukev3P6QmUwUw==}
@@ -2290,8 +2296,8 @@ packages:
     dev: false
     optional: true
 
-  /@napi-rs/cli@2.15.0:
-    resolution: {integrity: sha512-RDDr7ZF0cgbd37+NBGeQOjP7Tm/iNM+y3FmrT5bVQBXLePOTuKVC/dBsdN5UZv3Sl2XAwEvBfaGR90E0d8AA6g==}
+  /@napi-rs/cli@2.16.1:
+    resolution: {integrity: sha512-L0Gr5iEQIDEbvWdDr1HUaBOxBSHL1VZhWSk1oryawoT8qJIY+KGfLFelU+Qma64ivCPbxYpkfPoKYVG3rcoGIA==}
     engines: {node: '>= 10'}
     hasBin: true
 
@@ -5315,43 +5321,45 @@ packages:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
     dev: true
 
-  /chart.js@4.1.1:
-    resolution: {integrity: sha512-P0pCosNXp+LR8zO/QTkZKT6Hb7p0DPFtypEeVOf+6x06hX13NIb75R0DXUA4Ksx/+48chDQKtCCmRCviQRTqsA==}
-    engines: {pnpm: ^7.0.0}
+  /chart.js@4.3.0:
+    resolution: {integrity: sha512-ynG0E79xGfMaV2xAHdbhwiPLczxnNNnasrmPEXriXsPJGjmhOBYzFVEsB65w2qMDz+CaBJJuJD0inE/ab/h36g==}
+    engines: {pnpm: '>=7'}
     dependencies:
       '@kurkle/color': 0.3.2
     dev: true
 
-  /chartjs-adapter-date-fns@2.0.1(chart.js@4.1.1):
-    resolution: {integrity: sha512-v3WV9rdnQ05ce3A0ZCjzUekJCAbfm6+3HqSoeY2BIkdMYZoYr/4T+ril1tZyDl869lz6xdNVMXejUFT9YKpw4A==}
+  /chartjs-adapter-date-fns@3.0.0(chart.js@4.3.0)(date-fns@2.30.0):
+    resolution: {integrity: sha512-Rs3iEB3Q5pJ973J93OBTpnP7qoGwvq3nUnoMdtxO+9aoJof7UFcRbWcIDteXuYd1fgAvct/32T9qaLyLuZVwCg==}
     peerDependencies:
       chart.js: '>=2.8.0'
+      date-fns: '>=2.0.0'
     dependencies:
-      chart.js: 4.1.1
+      chart.js: 4.3.0
+      date-fns: 2.30.0
     dev: true
 
-  /chartjs-chart-matrix@2.0.1(chart.js@4.1.1):
+  /chartjs-chart-matrix@2.0.1(chart.js@4.3.0):
     resolution: {integrity: sha512-BGfeY+/PHnITyDlc7WfnKJ1RyOfgOzIqWp/gxzzl7pUjyoGzHDcw51qd2xJF9gdT9Def7ZwOnOMm8GJUXDxI0w==}
     peerDependencies:
       chart.js: '>=3.0.0'
     dependencies:
-      chart.js: 4.1.1
+      chart.js: 4.3.0
     dev: true
 
-  /chartjs-plugin-gradient@0.5.1(chart.js@4.1.1):
-    resolution: {integrity: sha512-vhwlYGZWan4MGZZ4Wj64Y4aIql1uCPCU1JcggLWn3cgYEv4G7pXp1YgM4XH5ugmyn6BVCgQqAhiJ2h6hppzHmQ==}
+  /chartjs-plugin-gradient@0.6.1(chart.js@4.3.0):
+    resolution: {integrity: sha512-TGHNIh8KqQMLdb+UfY80cBHYRyOC47eeokmgkeajRdKGbFt462lJiyiq4ZJ25fiM7BGsmzoBLhmVyEw4B3gQxw==}
     peerDependencies:
       chart.js: '>=2.6.0'
     dependencies:
-      chart.js: 4.1.1
+      chart.js: 4.3.0
     dev: true
 
-  /chartjs-plugin-zoom@1.2.1(chart.js@4.1.1):
-    resolution: {integrity: sha512-2zbWvw2pljrtMLMXkKw1uxYzAne5PtjJiOZftcut4Lo3Ee8qUt95RpMKDWrZ+pBZxZKQKOD/etdU4pN2jxZUmg==}
+  /chartjs-plugin-zoom@2.0.1(chart.js@4.3.0):
+    resolution: {integrity: sha512-ogOmLu6e+Q7E1XWOCOz9YwybMslz9qNfGV2a+qjfmqJYpsw5ZMoRHZBUyW+NGhkpQ5PwwPA/+rikHpBZb7PZuA==}
     peerDependencies:
-      chart.js: ^3.2.0
+      chart.js: '>=3.2.0'
     dependencies:
-      chart.js: 4.1.1
+      chart.js: 4.3.0
       hammerjs: 2.0.8
     dev: true
 
@@ -6332,9 +6340,11 @@ packages:
       whatwg-url: 11.0.0
     dev: false
 
-  /date-fns@2.29.3:
-    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+  /date-fns@2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
+    dependencies:
+      '@babel/runtime': 7.22.3
 
   /date-time@3.1.0:
     resolution: {integrity: sha512-uqCUKXE5q1PNBXjPqvwhwJf9SwMoAHBgWJ6DcrnS5o+W2JOiIILl0JEdVD8SGujrNS02GGxgwAg2PN2zONgtjg==}
@@ -14754,7 +14764,7 @@ packages:
       buffer: 6.0.3
       chalk: 4.1.2
       cli-highlight: 2.1.11
-      date-fns: 2.29.3
+      date-fns: 2.30.0
       debug: 4.3.4(supports-color@8.1.1)
       dotenv: 16.0.3
       glob: 7.2.3
