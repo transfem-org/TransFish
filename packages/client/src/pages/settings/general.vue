@@ -54,12 +54,6 @@
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
-			<FormSwitch v-model="expandOnNoteClick" class="_formBlock"
-				>{{ i18n.ts.expandOnNoteClick
-				}}<template #caption>{{
-					i18n.ts.expandOnNoteClickDesc
-				}}</template>
-			</FormSwitch>
 			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
 				>{{ i18n.ts.flagShowTimelineReplies
 				}}<template #caption
@@ -87,6 +81,18 @@
 
 		<FormSection>
 			<template #label>{{ i18n.ts.accessibility }}</template>
+			<FormSwitch v-model="expandOnNoteClick" class="_formBlock"
+				>{{ i18n.ts.expandOnNoteClick
+				}}<template #caption>{{
+					i18n.ts.expandOnNoteClickDesc
+				}}</template>
+			</FormSwitch>
+			<FormSwitch v-model="advancedMfm" class="_formBlock">
+				{{ i18n.ts._mfm.advanced
+				}}<template #caption>{{
+					i18n.ts._mfm.advancedDescription
+				}}</template>
+			</FormSwitch>
 			<FormSwitch v-model="autoplayMfm" class="_formBlock">
 				{{ i18n.ts._mfm.alwaysPlay }}
 				<template #caption>
@@ -285,6 +291,7 @@ const showGapBetweenNotesInTimeline = computed(
 	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
 );
 const showAds = computed(defaultStore.makeGetterSetter("showAds"));
+const advancedMfm = computed(defaultStore.makeGetterSetter("advancedMfm"));
 const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
@@ -374,6 +381,7 @@ watch(
 		swipeOnDesktop,
 		seperateRenoteQuote,
 		showAdminUpdates,
+		advancedMfm,
 		autoplayMfm,
 		expandOnNoteClick,
 	],
