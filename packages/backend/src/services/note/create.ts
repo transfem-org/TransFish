@@ -649,7 +649,7 @@ async function insertNote(
 	emojis: string[],
 	mentionedUsers: MinimumUser[],
 ) {
-	if (data.createdAt === null || data.createdAt === undefined ) {
+	if (data.createdAt === null || data.createdAt === undefined) {
 		data.createdAt = new Date();
 	}
 	const insert = new Note({
