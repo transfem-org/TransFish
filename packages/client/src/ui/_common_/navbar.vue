@@ -177,7 +177,7 @@ const calcViewState = () => {
 
 calcViewState();
 
-window.addEventListener("resize", calcViewState);
+matchMedia("(max-width: 1279px)").onchange = (mql) => calcViewState();
 
 watch(defaultStore.reactiveState.menuDisplay, () => {
 	calcViewState();
