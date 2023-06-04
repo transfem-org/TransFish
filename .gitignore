@@ -62,3 +62,7 @@ yarn*
 # Nix Development shell items
 .devenv
 .direnv
+
+# Cargo cache for Docker
+/.cargo-cache
+/.cargo-target
