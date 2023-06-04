@@ -92,7 +92,12 @@
 					><i class="icon ph-door ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.controlPanel }}</span>
 				</MkA>
-				<button v-click-anime class="item _button" @click="more">
+				<button 
+					v-click-anime
+					v-tooltip.noDelay.right="i18n.ts.more"
+					class="item _button"
+					@click="more"
+				>
 					<i
 						class="icon ph-dots-three-outline ph-bold ph-fw ph-lg"
 					></i
