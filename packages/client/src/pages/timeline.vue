@@ -152,8 +152,8 @@ function top(): void {
 	scroll(rootEl, { top: 0 });
 }
 
-async function chooseList(ev: MouseEvent): Promise<void> {
-	const lists = await os.api("users/lists/list");
+const lists = await os.api("users/lists/list");
+function chooseList(ev: MouseEvent) {
 	const items = [
 		{
 			type: "link" as const,
@@ -172,8 +172,8 @@ async function chooseList(ev: MouseEvent): Promise<void> {
 	os.popupMenu(items, ev.currentTarget ?? ev.target);
 }
 
-async function chooseAntenna(ev: MouseEvent): Promise<void> {
-	const antennas = await os.api("antennas/list");
+const antennas = await os.api("antennas/list");
+function chooseAntenna(ev: MouseEvent) {
 	const items = [
 		{
 			type: "link" as const,

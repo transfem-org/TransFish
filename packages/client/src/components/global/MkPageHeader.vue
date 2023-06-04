@@ -372,6 +372,7 @@ onUnmounted(() => {
 		display: flex;
 		> .buttons {
 			&:not(:empty) {
+				margin-right: 8px;
 				margin-left: calc(0px - var(--margin));
 			}
 			> .avatar {
@@ -424,7 +425,7 @@ onUnmounted(() => {
 				width: $size;
 				height: $size;
 				vertical-align: bottom;
-				margin: 0 8px;
+				margin-right: 8px;
 			}
 
 			> .icon {
