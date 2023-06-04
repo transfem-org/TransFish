@@ -8,7 +8,9 @@ services:
     depends_on:
       - db
       - redis
+### Uncomment one of the following to use a search engine
 #     - meilisearch
+#     - sonic
     ports:
       - "3000:3000"
     networks:
