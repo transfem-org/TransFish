@@ -36,9 +36,7 @@
 					v-if="metadata.avatar"
 					class="avatar"
 					:user="metadata.avatar"
-					:disable-preview="true"
 					:show-indicator="true"
-					disableLink
 				/>
 				<i
 					v-else-if="metadata.icon && !narrow"
@@ -427,7 +425,6 @@ onUnmounted(() => {
 				height: $size;
 				vertical-align: bottom;
 				margin: 0 8px;
-				pointer-events: none;
 			}
 
 			> .icon {

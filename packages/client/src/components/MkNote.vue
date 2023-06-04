@@ -572,6 +572,7 @@ defineExpose({
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
+	-webkit-tap-highlight-color: transparent;
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -818,6 +819,10 @@ defineExpose({
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {
