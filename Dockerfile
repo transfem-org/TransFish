@@ -36,7 +36,7 @@ FROM node:19-alpine
 WORKDIR /calckey
 
 # Install runtime dependencies
-RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip
+RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip rust cargo
 
 COPY . ./
 
