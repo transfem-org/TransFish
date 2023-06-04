@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 import type { ObjectStorageJobData } from "@/queue/types.js";
 import deleteFile from "./delete-file.js";
 import cleanRemoteFiles from "./clean-remote-files.js";

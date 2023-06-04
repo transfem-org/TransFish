@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 import indexAllNotes from "./index-all-notes.js";
 
 const jobs = {

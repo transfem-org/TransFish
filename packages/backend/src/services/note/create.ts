@@ -414,6 +414,7 @@ export default async (
 		if (data.poll?.expiresAt) {
 			const delay = data.poll.expiresAt.getTime() - Date.now();
 			endedPollNotificationQueue.add(
+				note.id,
 				{
 					noteId: note.id,
 				},

@@ -24,7 +24,7 @@ export default async function (
 
 		if (Users.isLocalUser(follower)) {
 			// 本来このチェックは不要だけどTSに怒られるので
-			deliver(follower, content, followee.inbox);
+			deliver(follower, content, followee.inbox, false);
 		}
 	}
 

@@ -40,7 +40,7 @@ export default async function (
 				followee,
 			),
 		);
-		deliver(followee, content, follower.inbox);
+		deliver(followee, content, follower.inbox, false);
 	}
 
 	Users.pack(followee.id, followee, {

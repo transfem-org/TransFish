@@ -43,7 +43,7 @@ export default async function (blocker: User, blockee: User) {
 
 	if (Users.isLocalUser(blocker) && Users.isRemoteUser(blockee)) {
 		const content = renderActivity(renderBlock(blocking));
-		deliver(blocker, content, blockee.inbox);
+		deliver(blocker, content, blockee.inbox, false);
 	}
 }
 
@@ -91,7 +91,7 @@ async function cancelRequest(follower: User, followee: User) {
 		const content = renderActivity(
 			renderUndo(renderFollow(follower, followee), follower),
 		);
-		deliver(follower, content, followee.inbox);
+		deliver(follower, content, followee.inbox, false);
 	}
 
 	// リモートからフォローリクエストを受けていたらReject送信
@@ -102,7 +102,7 @@ async function cancelRequest(follower: User, followee: User) {
 				followee,
 			),
 		);
-		deliver(followee, content, follower.inbox);
+		deliver(followee, content, follower.inbox, false);
 	}
 }
 
@@ -147,7 +147,7 @@ async function unFollow(follower: User, followee: User) {
 		const content = renderActivity(
 			renderUndo(renderFollow(follower, followee), follower),
 		);
-		deliver(follower, content, followee.inbox);
+		deliver(follower, content, followee.inbox, false);
 	}
 }
 

@@ -170,10 +170,10 @@ export async function deliverReadActivity(
 			undefined,
 			contents,
 		);
-		deliver(user, renderActivity(collection), recipient.inbox);
+		deliver(user, renderActivity(collection), recipient.inbox, false);
 	} else {
 		for (const content of contents) {
-			deliver(user, renderActivity(content), recipient.inbox);
+			deliver(user, renderActivity(content), recipient.inbox, false);
 		}
 	}
 }

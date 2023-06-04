@@ -36,6 +36,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			actor,
 			renderActivity(renderFlag(actor, [targetUser.uri!], report.comment)),
 			targetUser.inbox,
+			false,
 		);
 	}
 

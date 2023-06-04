@@ -41,7 +41,7 @@ export async function doPostSuspend(user: {
 		}
 
 		for (const inbox of queue) {
-			deliver(user, content, inbox);
+			deliver(user, content, inbox, true);
 		}
 	}
 }

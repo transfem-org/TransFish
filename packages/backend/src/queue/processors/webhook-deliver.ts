@@ -1,5 +1,5 @@
 import { URL } from "node:url";
-import type Bull from "bull";
+import * as Bull from "bullmq";
 import Logger from "@/services/logger.js";
 import type { WebhookDeliverJobData } from "../types.js";
 import { getResponse, StatusError } from "@/misc/fetch.js";
@@ -57,7 +57,9 @@ export default async (job: Bull.Job<WebhookDeliverJobData>) => {
 			}
 
 			// 5xx etc.
-			throw new Error(`${res.statusCode} ${res.statusMessage}`);
+			throw new Bull.UnrecoverableError(
+				`${res.statusCode} ${res.statusMessage}`,
+			);
 		} else {
 			// DNS error, socket error, timeout ...
 			throw res;

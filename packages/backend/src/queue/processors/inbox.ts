@@ -1,5 +1,5 @@
 import { URL } from "node:url";
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 import httpSignature from "@peertube/http-signature";
 import perform from "@/remote/activitypub/perform.js";
 import Logger from "@/services/logger.js";

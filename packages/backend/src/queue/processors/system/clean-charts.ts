@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 
 import { queueLogger } from "../../logger.js";
 import {
@@ -20,7 +20,6 @@ const logger = queueLogger.createSubLogger("clean-charts");
 
 export async function cleanCharts(
 	job: Bull.Job<Record<string, unknown>>,
-	done: any,
 ): Promise<void> {
 	logger.info("Clean charts...");
 
@@ -40,5 +39,4 @@ export async function cleanCharts(
 	]);
 
 	logger.succ("All charts successfully cleaned.");
-	done();
 }

@@ -1,31 +1,35 @@
-import Bull from "bull";
+import * as Bull from "bullmq";
 import config from "@/config/index.js";
+import { QUEUE, baseQueueOptions } from "@/queue/const.js";
 
-export function initialize<T>(name: string, limitPerSec = -1) {
-	return new Bull<T>(name, {
-		redis: {
+export function initialize<T>(name: string) {
+	return new Bull.Queue(name, {
+		connection: {
 			port: config.redis.port,
 			host: config.redis.host,
 			family: config.redis.family == null ? 0 : config.redis.family,
 			password: config.redis.pass,
 			db: config.redis.db || 0,
 		},
-		prefix: config.redis.prefix ? `${config.redis.prefix}:queue` : "queue",
-		limiter:
-			limitPerSec > 0
-				? {
-						max: limitPerSec,
-						duration: 1000,
-				  }
-				: undefined,
-		settings: {
-			stalledInterval: 60,
-			maxStalledCount: 2,
-			backoffStrategies: {
-				apBackoff,
-			},
-		},
 	});
+	// return new Bull<T>(name, {
+	// 	redis:
+	// 	prefix: config.redis.prefix ? `${config.redis.prefix}:queue` : "queue",
+	// 	limiter:
+	// 		limitPerSec > 0
+	// 			? {
+	// 					max: limitPerSec,
+	// 					duration: 1000,
+	// 			  }
+	// 			: undefined,
+	// 	settings: {
+	// 		stalledInterval: 60,
+	// 		maxStalledCount: 2,
+	// 		backoffStrategies: {
+	// 			apBackoff,
+	// 		},
+	// 	},
+	// });
 }
 
 // ref. https://github.com/misskey-dev/misskey/pull/7635#issue-971097019

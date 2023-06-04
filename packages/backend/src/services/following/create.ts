@@ -199,7 +199,7 @@ export default async function (
 		const content = renderActivity(
 			renderReject(renderFollow(follower, followee, requestId), followee),
 		);
-		deliver(followee, content, follower.inbox);
+		deliver(followee, content, follower.inbox, false);
 		return;
 	} else if (
 		Users.isRemoteUser(follower) &&
@@ -278,6 +278,6 @@ export default async function (
 		const content = renderActivity(
 			renderAccept(renderFollow(follower, followee, requestId), followee),
 		);
-		deliver(followee, content, follower.inbox);
+		deliver(followee, content, follower.inbox, false);
 	}
 }

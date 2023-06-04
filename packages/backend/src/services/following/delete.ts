@@ -72,7 +72,7 @@ export default async function (
 		const content = renderActivity(
 			renderUndo(renderFollow(follower, followee), follower),
 		);
-		deliver(follower, content, followee.inbox);
+		deliver(follower, content, followee.inbox, false);
 	}
 
 	if (Users.isLocalUser(followee) && Users.isRemoteUser(follower)) {
@@ -80,7 +80,7 @@ export default async function (
 		const content = renderActivity(
 			renderReject(renderFollow(follower, followee), followee),
 		);
-		deliver(followee, content, follower.inbox);
+		deliver(followee, content, follower.inbox, false);
 	}
 }
 

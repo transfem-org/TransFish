@@ -142,7 +142,7 @@ export async function createMessage(
 			renderCreate(await renderNote(note, false, true), note),
 		);
 
-		deliver(user, activity, recipientUser.inbox);
+		deliver(user, activity, recipientUser.inbox, false);
 	}
 	return messageObj;
 }

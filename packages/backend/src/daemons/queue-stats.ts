@@ -1,5 +1,8 @@
 import Xev from "xev";
 import { deliverQueue, inboxQueue } from "../queue/queues.js";
+import * as Bull from "bullmq";
+import config from "@/config/index.js";
+import { QUEUE, baseQueueOptions } from "@/queue/const.js";
 
 const ev = new Xev();
 
@@ -18,11 +21,20 @@ export default function () {
 	let activeDeliverJobs = 0;
 	let activeInboxJobs = 0;
 
-	deliverQueue.on("global:active", () => {
+	const deliverQueueEvents = new Bull.QueueEvents(
+		QUEUE.DELIVER,
+		baseQueueOptions(config, QUEUE.DELIVER),
+	);
+	const inboxQueueEvents = new Bull.QueueEvents(
+		QUEUE.INBOX,
+		baseQueueOptions(config, QUEUE.INBOX),
+	);
+
+	deliverQueueEvents.on("active", () => {
 		activeDeliverJobs++;
 	});
 
-	inboxQueue.on("global:active", () => {
+	inboxQueueEvents.on("active", () => {
 		activeInboxJobs++;
 	});
 

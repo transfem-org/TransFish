@@ -1,5 +1,5 @@
 import type { ObjectStorageFileJobData } from "@/queue/types.js";
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 import { deleteObjectStorageFile } from "@/services/drive/delete-file.js";
 
 export default async (job: Bull.Job<ObjectStorageFileJobData>) => {

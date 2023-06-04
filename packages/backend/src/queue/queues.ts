@@ -14,18 +14,18 @@ export const endedPollNotificationQueue =
 	initializeQueue<EndedPollNotificationJobData>("endedPollNotification");
 export const deliverQueue = initializeQueue<DeliverJobData>(
 	"deliver",
-	config.deliverJobPerSec || 128,
+	// config.deliverJobPerSec || 128,
 );
 export const inboxQueue = initializeQueue<InboxJobData>(
 	"inbox",
-	config.inboxJobPerSec || 16,
+	// config.inboxJobPerSec || 16,
 );
-export const dbQueue = initializeQueue<DbJobData>("db", 256);
+export const dbQueue = initializeQueue<DbJobData>("db", /*256*/);
 export const objectStorageQueue =
 	initializeQueue<ObjectStorageJobData>("objectStorage");
 export const webhookDeliverQueue = initializeQueue<WebhookDeliverJobData>(
 	"webhookDeliver",
-	64,
+	// 64,
 );
 export const backgroundQueue = initializeQueue<Record<string, unknown>>("bg");
 

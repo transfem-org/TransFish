@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 import { In } from "typeorm";
 import { Mutings } from "@/models/index.js";
 import { queueLogger } from "../../logger.js";
@@ -8,7 +8,6 @@ const logger = queueLogger.createSubLogger("check-expired-mutings");
 
 export async function checkExpiredMutings(
 	job: Bull.Job<Record<string, unknown>>,
-	done: any,
 ): Promise<void> {
 	logger.info("Checking expired mutings...");
 
@@ -29,5 +28,4 @@ export async function checkExpiredMutings(
 	}
 
 	logger.succ("All expired mutings checked.");
-	done();
 }

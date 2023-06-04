@@ -20,7 +20,7 @@ export function dateUTC(time: number[]): Date {
 			? Date.UTC(time[0], time[1], time[2], time[3], time[4], time[5], time[6])
 			: null;
 
-	if (!d) throw "wrong number of arguments";
+	if (!d) throw new Error("Wrong number of arguments");
 
 	return new Date(d);
 }

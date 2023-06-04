@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 
 import { queueLogger } from "../../logger.js";
 import { Notes } from "@/models/index.js";
@@ -11,7 +11,6 @@ const logger = queueLogger.createSubLogger("index-all-notes");
 
 export default async function indexAllNotes(
 	job: Bull.Job<Record<string, unknown>>,
-	done: () => void,
 ): Promise<void> {
 	logger.info("Indexing all notes...");
 
@@ -47,7 +46,7 @@ export default async function indexAllNotes(
 		}
 
 		if (notes.length === 0) {
-			job.progress(100);
+			job.updateProgress(100);
 			running = false;
 			break;
 		}
@@ -70,7 +69,7 @@ export default async function indexAllNotes(
 			indexedCount += chunk.length;
 			const pct = (indexedCount / total) * 100;
 			job.update({ indexedCount, cursor, total });
-			job.progress(+pct.toFixed(1));
+			job.updateProgress(+pct.toFixed(1));
 			logger.info(`Indexed notes ${indexedCount}/${total ? total : "?"}`);
 		}
 		cursor = notes[notes.length - 1].id;
@@ -81,6 +80,5 @@ export default async function indexAllNotes(
 		}
 	}
 
-	done();
 	logger.info("All notes have been indexed.");
 }

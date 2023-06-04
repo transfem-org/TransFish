@@ -1,6 +1,9 @@
 import type httpSignature from "@peertube/http-signature";
 import { v4 as uuid } from "uuid";
 
+import * as Bull from "bullmq";
+import { QUEUE, baseQueueOptions } from "./const.js";
+
 import config from "@/config/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { IActivity } from "@/remote/activitypub/type.js";
@@ -16,7 +19,6 @@ import processWebhookDeliver from "./processors/webhook-deliver.js";
 import processBackground from "./processors/background/index.js";
 import { endedPollNotification } from "./processors/ended-poll-notification.js";
 import { queueLogger } from "./logger.js";
-import { getJobInfo } from "./get-job-info.js";
 import {
 	systemQueue,
 	dbQueue,
@@ -29,6 +31,16 @@ import {
 } from "./queues.js";
 import type { ThinUser } from "./types.js";
 
+// ref. https://github.com/misskey-dev/misskey/pull/7635#issue-971097019
+function httpRelatedBackoff(attemptsMade: number) {
+	const baseDelay = 60 * 1000; // 1min
+	const maxBackoff = 8 * 60 * 60 * 1000; // 8hours
+	let backoff = (Math.pow(2, attemptsMade) - 1) * baseDelay;
+	backoff = Math.min(backoff, maxBackoff);
+	backoff += Math.round(backoff * Math.random() * 0.2);
+	return backoff;
+}
+
 function renderError(e: Error): any {
 	return {
 		stack: e.stack,
@@ -37,127 +49,78 @@ function renderError(e: Error): any {
 	};
 }
 
-const systemLogger = queueLogger.createSubLogger("system");
-const deliverLogger = queueLogger.createSubLogger("deliver");
-const webhookLogger = queueLogger.createSubLogger("webhook");
-const inboxLogger = queueLogger.createSubLogger("inbox");
-const dbLogger = queueLogger.createSubLogger("db");
-const objectStorageLogger = queueLogger.createSubLogger("objectStorage");
+const queueEventLogger = queueLogger.createSubLogger("queueEvent");
+const queues = [
+	{ queue: systemQueue, logger: systemLogger },
+	{ queue: dbQueue, logger: dbLogger },
+	{ queue: deliverQueue, logger: deliverLogger },
+	{ queue: inboxQueue, logger: inboxLogger },
+	{ queue: objectStorageQueue, logger: objectStorageLogger },
+	{ queue: endedPollNotificationQueue, logger: pollLogger },
+	{ queue: webhookDeliverQueue, logger: webhookLogger },
+	{ queue: backgroundQueue, logger: systemLogger },
+];
 
-systemQueue
-	.on("waiting", (jobId) => systemLogger.debug(`waiting id=${jobId}`))
-	.on("active", (job) => systemLogger.debug(`active id=${job.id}`))
-	.on("completed", (job, result) =>
-		systemLogger.debug(`completed(${result}) id=${job.id}`),
-	)
-	.on("failed", (job, err) =>
-		systemLogger.warn(`failed(${err}) id=${job.id}`, {
+queues.forEach(({ queue, logger }) => {
+	const queueName = queue.name;
+	const queueEvents = new Bull.QueueEvents(queueName);
+	queueEvents.on("waiting", (jobId) => queueEventLogger.debug(`waiting id=${jobId}`));
+	queueEvents.on("active", (job) => queueEventLogger.debug(`active id=${job.jobId}`));
+	queueEvents.on("completed", (job, result) =>
+		queueEventLogger.debug(`completed(${result}) id=${job.jobId}`),
+	);
+	queueEvents.on("failed", (job, err) =>
+		queueEventLogger.warn(`failed(${err}) id=${job.jobId}`, {
 			job,
 			e: renderError(err),
 		}),
-	)
-	.on("error", (job: any, err: Error) =>
-		systemLogger.error(`error ${err}`, { job, e: renderError(err) }),
-	)
-	.on("stalled", (job) => systemLogger.warn(`stalled id=${job.id}`));
-
-deliverQueue
-	.on("waiting", (jobId) => deliverLogger.debug(`waiting id=${jobId}`))
-	.on("active", (job) =>
-		deliverLogger.debug(`active ${getJobInfo(job, true)} to=${job.data.to}`),
-	)
-	.on("completed", (job, result) =>
-		deliverLogger.debug(
-			`completed(${result}) ${getJobInfo(job, true)} to=${job.data.to}`,
-		),
-	)
-	.on("failed", (job, err) =>
-		deliverLogger.warn(`failed(${err}) ${getJobInfo(job)} to=${job.data.to}`),
-	)
-	.on("error", (job: any, err: Error) =>
-		deliverLogger.error(`error ${err}`, { job, e: renderError(err) }),
-	)
-	.on("stalled", (job) =>
-		deliverLogger.warn(`stalled ${getJobInfo(job)} to=${job.data.to}`),
 	);
-
-inboxQueue
-	.on("waiting", (jobId) => inboxLogger.debug(`waiting id=${jobId}`))
-	.on("active", (job) => inboxLogger.debug(`active ${getJobInfo(job, true)}`))
-	.on("completed", (job, result) =>
-		inboxLogger.debug(`completed(${result}) ${getJobInfo(job, true)}`),
-	)
-	.on("failed", (job, err) =>
-		inboxLogger.warn(
-			`failed(${err}) ${getJobInfo(job)} activity=${
-				job.data.activity ? job.data.activity.id : "none"
-			}`,
-			{ job, e: renderError(err) },
-		),
-	)
-	.on("error", (job: any, err: Error) =>
-		inboxLogger.error(`error ${err}`, { job, e: renderError(err) }),
-	)
-	.on("stalled", (job) =>
-		inboxLogger.warn(
-			`stalled ${getJobInfo(job)} activity=${
-				job.data.activity ? job.data.activity.id : "none"
-			}`,
-		),
-	);
-
-dbQueue
-	.on("waiting", (jobId) => dbLogger.debug(`waiting id=${jobId}`))
-	.on("active", (job) => dbLogger.debug(`active id=${job.id}`))
-	.on("completed", (job, result) =>
-		dbLogger.debug(`completed(${result}) id=${job.id}`),
-	)
-	.on("failed", (job, err) =>
-		dbLogger.warn(`failed(${err}) id=${job.id}`, { job, e: renderError(err) }),
-	)
-	.on("error", (job: any, err: Error) =>
-		dbLogger.error(`error ${err}`, { job, e: renderError(err) }),
-	)
-	.on("stalled", (job) => dbLogger.warn(`stalled id=${job.id}`));
-
-objectStorageQueue
-	.on("waiting", (jobId) => objectStorageLogger.debug(`waiting id=${jobId}`))
-	.on("active", (job) => objectStorageLogger.debug(`active id=${job.id}`))
-	.on("completed", (job, result) =>
-		objectStorageLogger.debug(`completed(${result}) id=${job.id}`),
-	)
-	.on("failed", (job, err) =>
-		objectStorageLogger.warn(`failed(${err}) id=${job.id}`, {
-			job,
+	queueEvents.on("error", (err) =>
+		queueEventLogger.error(`error(${err})`, {
 			e: renderError(err),
 		}),
-	)
-	.on("error", (job: any, err: Error) =>
-		objectStorageLogger.error(`error ${err}`, { job, e: renderError(err) }),
-	)
-	.on("stalled", (job) => objectStorageLogger.warn(`stalled id=${job.id}`));
-
-webhookDeliverQueue
-	.on("waiting", (jobId) => webhookLogger.debug(`waiting id=${jobId}`))
-	.on("active", (job) =>
-		webhookLogger.debug(`active ${getJobInfo(job, true)} to=${job.data.to}`),
-	)
-	.on("completed", (job, result) =>
-		webhookLogger.debug(
-			`completed(${result}) ${getJobInfo(job, true)} to=${job.data.to}`,
-		),
-	)
-	.on("failed", (job, err) =>
-		webhookLogger.warn(`failed(${err}) ${getJobInfo(job)} to=${job.data.to}`),
-	)
-	.on("error", (job: any, err: Error) =>
-		webhookLogger.error(`error ${err}`, { job, e: renderError(err) }),
-	)
-	.on("stalled", (job) =>
-		webhookLogger.warn(`stalled ${getJobInfo(job)} to=${job.data.to}`),
 	);
+	queueEvents.on("stalled", (job) => queueEventLogger.warn(`stalled id=${job.jobId}`));
+});
 
-export function deliver(user: ThinUser, content: unknown, to: string | null) {
+// const processPair = ({ queue, processor }: { queue: Bull.Queue; processor: Function }) => {
+// 	new Bull.Worker(queue.name, (job) => processor(job), {
+// 		concurrency: 1,
+// 		...baseQueueOptions,
+		
+// 	});
+// };
+
+// const processors = [
+// 	{ queue: systemQueue, processor: processSystemQueue },
+// 	{ queue: dbQueue, processor: processDb },
+// 	{ queue: deliverQueue, processor: processDeliver },
+// 	{ queue: inboxQueue, processor: processInbox },
+// 	{ queue: objectStorageQueue, processor: processObjectStorage },
+// 	{ queue: endedPollNotificationQueue, processor: endedPollNotification },
+// 	{ queue: webhookDeliverQueue, processor: processWebhookDeliver },
+// 	{ queue: backgroundQueue, processor: processBackground },
+// ];
+
+// processors.forEach(processPair);
+
+// Make queue workers for each queue
+
+const systemQueueWorker = new Bull.Worker(QUEUE.SYSTEM, (job) => processSystemQueue(job), {
+  concurrency: 10,
+  limiter: {
+    duration: 1000,
+    max: 1,
+  },
+});
+
+
+export function deliver(
+	user: ThinUser,
+	content: IActivity | null,
+	to: string | null,
+	isSharedInbox: boolean,
+) {
 	if (content == null) return null;
 	if (to == null) return null;
 
@@ -167,15 +130,15 @@ export function deliver(user: ThinUser, content: unknown, to: string | null) {
 		},
 		content,
 		to,
+		isSharedInbox,
 	};
 
-	return deliverQueue.add(data, {
+	return deliverQueue.add(to, data, {
 		attempts: config.deliverJobMaxAttempts || 12,
-		timeout: 1 * 60 * 1000, // 1min
 		backoff: {
 			type: "apBackoff",
 		},
-		removeOnComplete: true,
+		removeOnComplete: 1000,
 		removeOnFail: true,
 	});
 }
@@ -528,8 +491,7 @@ export default function () {
 		"tickCharts",
 		{},
 		{
-			repeat: { cron: "55 * * * *" },
-			removeOnComplete: true,
+			repeat: { pattern: "55 * * * *" },
 		},
 	);
 
@@ -537,7 +499,7 @@ export default function () {
 		"resyncCharts",
 		{},
 		{
-			repeat: { cron: "0 0 * * *" },
+			repeat: { pattern: "0 0 * * *" },
 			removeOnComplete: true,
 		},
 	);
@@ -546,7 +508,7 @@ export default function () {
 		"cleanCharts",
 		{},
 		{
-			repeat: { cron: "0 0 * * *" },
+			repeat: { pattern: "0 0 * * *" },
 			removeOnComplete: true,
 		},
 	);
@@ -555,7 +517,7 @@ export default function () {
 		"clean",
 		{},
 		{
-			repeat: { cron: "0 0 * * *" },
+			repeat: { pattern: "0 0 * * *" },
 			removeOnComplete: true,
 		},
 	);
@@ -564,7 +526,7 @@ export default function () {
 		"checkExpiredMutings",
 		{},
 		{
-			repeat: { cron: "*/5 * * * *" },
+			repeat: { pattern: "*/5 * * * *" },
 			removeOnComplete: true,
 		},
 	);
@@ -572,7 +534,10 @@ export default function () {
 	systemQueue.add(
 		"setLocalEmojiSizes",
 		{},
-		{ removeOnComplete: true, removeOnFail: true },
+		{
+			removeOnComplete: true,
+			removeOnFail: true,
+		},
 	);
 
 	processSystemQueue(systemQueue);
@@ -582,10 +547,10 @@ export function destroy() {
 	deliverQueue.once("cleaned", (jobs, status) => {
 		deliverLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
 	});
-	deliverQueue.clean(0, "delayed");
+	deliverQueue.drain();
 
 	inboxQueue.once("cleaned", (jobs, status) => {
 		inboxLogger.succ(`Cleaned ${jobs.length} ${status} jobs`);
 	});
-	inboxQueue.clean(0, "delayed");
+	inboxQueue.drain();
 }

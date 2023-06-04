@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 
 import { queueLogger } from "../../logger.js";
 import {
@@ -20,7 +20,6 @@ const logger = queueLogger.createSubLogger("tick-charts");
 
 export async function tickCharts(
 	job: Bull.Job<Record<string, unknown>>,
-	done: any,
 ): Promise<void> {
 	logger.info("Tick charts...");
 
@@ -40,5 +39,4 @@ export async function tickCharts(
 	]);
 
 	logger.succ("All charts successfully ticked.");
-	done();
 }

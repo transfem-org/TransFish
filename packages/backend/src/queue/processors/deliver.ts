@@ -13,7 +13,7 @@ import { toPuny } from "@/misc/convert-host.js";
 import { StatusError } from "@/misc/fetch.js";
 import { shouldSkipInstance } from "@/misc/skipped-instances.js";
 import type { DeliverJobData } from "@/queue/types.js";
-import type Bull from "bull";
+import * as Bull from "bullmq";
 
 const logger = new Logger("deliver");
 
@@ -27,7 +27,7 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 
 	try {
 		if (latest !== (latest = JSON.stringify(job.data.content, null, 2))) {
-			logger.debug(`delivering ${latest}`);
+			logger.debug(`Delivering ${latest}`);
 		}
 
 		await request(job.data.user, job.data.to, job.data.content);
@@ -72,7 +72,9 @@ export default async (job: Bull.Job<DeliverJobData>) => {
 			}
 
 			// 5xx etc.
-			throw new Error(`${res.statusCode} ${res.statusMessage}`);
+			throw new Bull.UnrecoverableError(
+				`${res.statusCode} ${res.statusMessage}`,
+			);
 		} else {
 			// DNS error, socket error, timeout ...
 			throw res;

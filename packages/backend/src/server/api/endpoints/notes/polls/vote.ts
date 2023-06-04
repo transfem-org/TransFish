@@ -176,6 +176,7 @@ export default define(meta, paramDef, async (ps, user) => {
 			user,
 			renderActivity(await renderVote(user, vote, note, poll, pollOwner)),
 			pollOwner.inbox,
+			false,
 		);
 	}
 

@@ -331,7 +331,8 @@ export function launchServer(
 }
 
 export async function initTestDb(justBorrow = false, initEntities?: any[]) {
-	if (process.env.NODE_ENV !== "test") throw "NODE_ENV is not a test";
+	if (process.env.NODE_ENV !== "test")
+		throw new Error("NODE_ENV is not a test");
 
 	const db = new DataSource({
 		type: "postgres",

@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 
 import { queueLogger } from "../../logger.js";
 import { driveChart, notesChart, usersChart } from "@/services/chart/index.js";
@@ -7,7 +7,6 @@ const logger = queueLogger.createSubLogger("resync-charts");
 
 export async function resyncCharts(
 	job: Bull.Job<Record<string, unknown>>,
-	done: any,
 ): Promise<void> {
 	logger.info("Resync charts...");
 
@@ -20,5 +19,4 @@ export async function resyncCharts(
 	]);
 
 	logger.succ("All charts successfully resynced.");
-	done();
 }

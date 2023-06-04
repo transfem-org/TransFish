@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 import { IsNull } from "typeorm";
 import { Emojis } from "@/models/index.js";
 
@@ -9,7 +9,6 @@ const logger = queueLogger.createSubLogger("local-emoji-size");
 
 export async function setLocalEmojiSizes(
 	_job: Bull.Job<Record<string, unknown>>,
-	done: any,
 ): Promise<void> {
 	logger.info("Setting sizes of local emojis...");
 
@@ -38,5 +37,4 @@ export async function setLocalEmojiSizes(
 	}
 
 	logger.succ("Done.");
-	done();
 }

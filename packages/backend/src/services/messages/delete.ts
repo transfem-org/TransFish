@@ -42,7 +42,7 @@ async function postDeleteMessage(message: MessagingMessage) {
 					user,
 				),
 			);
-			deliver(user, activity, recipient.inbox);
+			deliver(user, activity, recipient.inbox, false);
 		}
 	} else if (message.groupId) {
 		publishGroupMessagingStream(message.groupId, "deleted", message.id);

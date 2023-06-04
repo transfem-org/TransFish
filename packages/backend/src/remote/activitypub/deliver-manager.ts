@@ -78,7 +78,7 @@ export default class DeliverManager {
 	public async execute() {
 		if (!Users.isLocalUser(this.actor)) return;
 
-		const inboxes = new Set<string>();
+		const inboxes = new Map<string, boolean>();
 
 		/*
 		build inbox list
@@ -90,7 +90,7 @@ export default class DeliverManager {
 			// followers deliver
 			// TODO: SELECT DISTINCT ON ("followerSharedInbox") "followerSharedInbox" みたいな問い合わせにすればよりパフォーマンス向上できそう
 			// ただ、sharedInboxがnullなリモートユーザーも稀におり、その対応ができなさそう？
-			const followers = (await Followings.find({
+			const followers = (await this.followingsRepository.find({
 				where: {
 					followeeId: this.actor.id,
 					followerHost: Not(IsNull()),
@@ -105,8 +105,8 @@ export default class DeliverManager {
 			}[];
 
 			for (const following of followers) {
-				const inbox = following.followerSharedInbox || following.followerInbox;
-				inboxes.add(inbox);
+				const inbox = following.followerSharedInbox ?? following.followerInbox;
+				inboxes.set(inbox, following.followerSharedInbox === null);
 			}
 		}
 
@@ -120,21 +120,12 @@ export default class DeliverManager {
 					// check that they actually have an inbox
 					recipe.to.inbox != null,
 			)
-			.forEach((recipe) => inboxes.add(recipe.to.inbox!));
-
-		const instancesToSkip = await skippedInstances(
-			// get (unique) list of hosts
-			Array.from(
-				new Set(Array.from(inboxes).map((inbox) => new URL(inbox).host)),
-			),
-		);
+			.forEach((recipe) => inboxes.set(recipe.to.inbox!, false));
 
 		// deliver
 		for (const inbox of inboxes) {
-			// skip instances as indicated
-			if (instancesToSkip.includes(new URL(inbox).host)) continue;
-
-			deliver(this.actor, this.activity, inbox);
+			// inbox[0]: inbox, inbox[1]: whether it is sharedInbox
+			deliver(this.actor, this.activity, inbox[0], inbox[1]);
 		}
 	}
 }

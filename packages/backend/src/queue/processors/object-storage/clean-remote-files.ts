@@ -1,4 +1,4 @@
-import type Bull from "bull";
+import type * as Bull from "bullmq";
 
 import { queueLogger } from "../../logger.js";
 import { deleteFileSync } from "@/services/drive/delete-file.js";
@@ -9,7 +9,6 @@ const logger = queueLogger.createSubLogger("clean-remote-files");
 
 export default async function cleanRemoteFiles(
 	job: Bull.Job<Record<string, unknown>>,
-	done: any,
 ): Promise<void> {
 	logger.info("Deleting cached remote files...");
 
@@ -30,7 +29,7 @@ export default async function cleanRemoteFiles(
 		});
 
 		if (files.length === 0) {
-			job.progress(100);
+			job.updateProgress(100);
 			break;
 		}
 
@@ -45,9 +44,8 @@ export default async function cleanRemoteFiles(
 			isLink: false,
 		});
 
-		job.progress(deletedCount / total);
+		job.updateProgress(deletedCount / total);
 	}
 
 	logger.succ("All cahced remote files has been deleted.");
-	done();
 }
