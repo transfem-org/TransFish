@@ -49,7 +49,11 @@
 					</MkPagination>
 				</div>
 				<footer>
-					<div v-if="typers.length > 0" class="typers" aria-live="polite">
+					<div
+						v-if="typers.length > 0"
+						class="typers"
+						aria-live="polite"
+					>
 						<I18n
 							:src="i18n.ts.typingUsers"
 							text-tag="span"
