@@ -213,8 +213,8 @@ const isLong =
 	!props.detailedView &&
 	((props.note.cw == null &&
 		props.note.text != null &&
-		(props.note.text.split("\n").length > 9 ||
-			props.note.text.length > 500)) ||
+		(props.note.text.split("\n").length > 10 ||
+			props.note.text.length > 800)) ||
 		props.note.files.length > 4);
 
 const collapsed = $ref(props.note.cw == null && isLong);
@@ -340,7 +340,7 @@ function focusFooter(ev) {
 		&.collapsed,
 		&.showContent {
 			position: relative;
-			max-height: calc(9em + 50px);
+			max-height: calc(15em + 100px);
 			> .body {
 				max-height: inherit;
 				mask: linear-gradient(black calc(100% - 64px), transparent);
@@ -360,7 +360,7 @@ function focusFooter(ev) {
 		}
 		&.collapsed {
 			&.manyImages {
-				max-height: calc(9em + 200px);
+				max-height: calc(15em + 250px);
 			}
 			> .body {
 				box-sizing: border-box;
