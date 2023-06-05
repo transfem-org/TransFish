@@ -57,12 +57,12 @@ export default defineComponent({
 			if (t == null) return null;
 			return t.match(/^[0-9.]+s$/) ? t : null;
 		};
-		const validEase = (e: string | null | undefined) => {
-			if (e == null) return null;
-			return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
-				? (e.startsWith("steps") ? e : "cubic-bezier" + e)
-				: null
-		}
+		// const validEase = (e: string | null | undefined) => {
+		// 	if (e == null) return null;
+		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
+		// 		? (e.startsWith("steps") ? e : "cubic-bezier" + e)
+		// 		: null
+		// }
 
 		const genEl = (ast: mfm.MfmNode[]) =>
 			concat(
@@ -109,8 +109,8 @@ export default defineComponent({
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									const ease = validEase(token.props.args.ease) || "linear";
-									style = `font-size: 150%; animation: tada ${speed} ${delay} ${ease} infinite both;`;
+									// const ease = validEase(token.props.args.ease) || "linear";
+									style = `font-size: 150%; animation: tada ${speed} ${delay} linear infinite both;`;
 									break;
 								}
 								case "jelly": {
