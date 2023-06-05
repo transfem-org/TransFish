@@ -7,9 +7,9 @@
 		:customEmojis="customEmojis"
 		:isNote="isNote"
 		class="mfm-object"
-		:class="{ 
-			nowrap, 
-			advancedMfm: defaultStore.state.advancedMfm
+		:class="{
+			nowrap,
+			advancedMfm: defaultStore.state.advancedMfm,
 		}"
 	/>
 </template>

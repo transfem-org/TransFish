@@ -29,8 +29,8 @@ export async function createImage(
 		throw new Error("invalid image: url not privided");
 	}
 
-	if (!image.url.startsWith("https://") && !image.url.startsWith("http://")) {
-		throw new Error("invalid image: unexpected shcema of url: " + image.url);
+	if (!(image.url.startsWith("https://") || image.url.startsWith("http://"))) {
+		throw new Error(`invalid image: unexpected shcema of url: ${image.url}`);
 	}
 
 	logger.info(`Creating the Image: ${image.url}`);

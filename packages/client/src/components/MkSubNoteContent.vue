@@ -42,7 +42,7 @@
 				isLong,
 				manyImages: note.files.length > 4,
 				showContent: note.cw && !showContent,
-				animatedMfm: !disableMfm
+				animatedMfm: !disableMfm,
 			}"
 		>
 			<XShowMoreButton
