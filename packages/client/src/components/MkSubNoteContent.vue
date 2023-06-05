@@ -42,8 +42,7 @@
 				isLong,
 				manyImages: note.files.length > 4,
 				showContent: note.cw && !showContent,
-				animatedMfm: !disableMfm,
-				advancedMfm,
+				animatedMfm: !disableMfm
 			}"
 		>
 			<XShowMoreButton
@@ -233,8 +232,6 @@ const mfms = props.note.text
 const hasMfm = $ref(mfms && mfms.length > 0);
 
 let disableMfm = $ref(defaultStore.state.animatedMfm);
-
-const advancedMfm = defaultStore.state.advancedMfm;
 
 async function toggleMfm() {
 	if (disableMfm) {

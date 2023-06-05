@@ -7,7 +7,7 @@
 				<br />
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.mention }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.mentionDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_mention" />
@@ -19,7 +19,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.hashtag }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.hashtagDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_hashtag" />
@@ -31,7 +31,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.link }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.linkDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_link" />
@@ -43,7 +43,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.emoji }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.emojiDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_emoji" />
@@ -55,7 +55,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.bold }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.boldDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_bold" />
@@ -67,7 +67,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.small }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.smallDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_small" />
@@ -79,7 +79,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.quote }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.quoteDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_quote" />
@@ -91,7 +91,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.center }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.centerDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_center" />
@@ -103,7 +103,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.inlineCode }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.inlineCodeDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_inlineCode" />
@@ -115,7 +115,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.blockCode }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.blockCodeDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_blockCode" />
@@ -127,7 +127,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.inlineMath }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.inlineMathDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_inlineMath" />
@@ -139,7 +139,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.blockMath }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.blockMathDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_blockMath" />
@@ -152,7 +152,7 @@
 				<!-- deprecated
 		<div class="section _block">
 			<div class="title">{{ i18n.ts._mfm.search }}</div>
-			<div class="content advancedMfm animatedMfm">
+			<div class="content">
 				<p>{{ i18n.ts._mfm.searchDescription }}</p>
 				<div class="preview">
 					<Mfm :text="preview_search"/>
@@ -163,7 +163,7 @@
 		-->
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.flip }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.flipDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_flip" />
@@ -175,7 +175,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.font }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.fontDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_font" />
@@ -187,7 +187,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.x2 }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.x2Description }}</p>
 						<div class="preview">
 							<Mfm :text="preview_x2" />
@@ -199,7 +199,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.x3 }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.x3Description }}</p>
 						<div class="preview">
 							<Mfm :text="preview_x3" />
@@ -211,7 +211,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.x4 }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.x4Description }}</p>
 						<div class="preview">
 							<Mfm :text="preview_x4" />
@@ -223,7 +223,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.blur }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.blurDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_blur" />
@@ -235,7 +235,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.jelly }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.jellyDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_jelly" />
@@ -247,7 +247,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.tada }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.tadaDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_tada" />
@@ -259,7 +259,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.jump }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.jumpDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_jump" />
@@ -271,7 +271,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.bounce }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.bounceDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_bounce" />
@@ -283,7 +283,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.spin }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.spinDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_spin" />
@@ -295,7 +295,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.shake }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.shakeDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_shake" />
@@ -307,7 +307,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.twitch }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.twitchDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_twitch" />
@@ -319,7 +319,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.rainbow }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.rainbowDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_rainbow" />
@@ -331,7 +331,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.sparkle }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.sparkleDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_sparkle" />
@@ -343,7 +343,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.rotate }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.rotateDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_rotate" />
@@ -355,7 +355,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.fade }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.fadeDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_fade" />
@@ -367,7 +367,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.crop }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.cropDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_crop" />
@@ -379,7 +379,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.position }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.positionDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_position" />
@@ -391,7 +391,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.scale }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.scaleDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_scale" />
@@ -403,7 +403,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.foreground }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.foregroundDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_fg" />
@@ -415,7 +415,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.background }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.backgroundDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_bg" />
@@ -427,7 +427,7 @@
 				</div>
 				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.plain }}</div>
-					<div class="content advancedMfm animatedMfm">
+					<div class="content">
 						<p>{{ i18n.ts._mfm.plainDescription }}</p>
 						<div class="preview">
 							<Mfm :text="preview_plain" />
