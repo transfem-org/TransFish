@@ -1,24 +1,29 @@
 use serde::Deserialize;
 use std::env;
 use std::fs;
+use urlencoding::encode;
 
 use sea_orm_migration::prelude::*;
 
 #[cfg(feature = "convert")]
 mod vec_to_json;
 
-#[async_std::main]
+#[tokio::main]
 async fn main() {
     let cwd = env::current_dir().unwrap();
     let yml = fs::File::open(cwd.join("../../.config/default.yml"))
-        .expect("Unable to read '.config/default.yml'");
-    let config: Config = serde_yaml::from_reader(yml).expect("Unable to parse");
+        .expect("Failed to open '.config/default.yml'");
+    let config: Config = serde_yaml::from_reader(yml).expect("Failed to parse yaml");
 
     env::set_var(
         "DATABASE_URL",
         format!(
             "postgres://{}:{}@{}:{}/{}",
-            config.db.user, config.db.pass, config.db.host, config.db.port, config.db.db
+            config.db.user,
+            encode(&config.db.pass),
+            config.db.host,
+            config.db.port,
+            config.db.db,
         ),
     );
 

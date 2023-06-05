@@ -13,7 +13,6 @@ default = []
 convert = ["dep:native-utils"]
 
 [dependencies]
-async-std = { version = "1", features = ["attributes", "tokio1"] }
 serde_json = "1.0.96"
 native-utils = { path = "../", optional = true }
 indicatif = { version = "0.17.4", features = ["tokio"] }
@@ -21,6 +20,7 @@ tokio = { version = "1.28.2", features = ["full"] }
 futures = "0.3.28"
 serde_yaml = "0.9.21"
 serde = { version = "1.0.163", features = ["derive"] }
+urlencoding = "2.1.2"
 
 [dependencies.sea-orm-migration]
 version = "0.11.0"
