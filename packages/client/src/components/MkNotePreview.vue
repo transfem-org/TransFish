@@ -6,7 +6,7 @@
 				<MkUserName :user="$i" />
 			</div>
 			<div class="body">
-				<div class="content">
+				<div class="content advancedMfm animatedMfm">
 					<Mfm :text="preprocess(text).trim()" :author="$i" :i="$i" />
 				</div>
 			</div>
