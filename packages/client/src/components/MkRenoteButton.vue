@@ -4,6 +4,7 @@
 		ref="buttonRef"
 		v-tooltip.noDelay.bottom="i18n.ts.renote"
 		class="button _button canRenote"
+		:class="{ renoted: hasRenotedBefore }"
 		@click="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
@@ -64,16 +65,17 @@ useTooltip(buttonRef, async (showing) => {
 	);
 });
 
-const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
+let hasRenotedBefore = $ref(false);
+os.api("notes/renotes", {
+	noteId: props.note.id,
+	userId: $i.id,
+	limit: 1,
+}).then((res) => {
+	hasRenotedBefore = res.length > 0;
+});
+
+const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
-
-	const renotes = await os.api("notes/renotes", {
-		noteId: props.note.id,
-		userId: $i.id,
-		limit: 1,
-	});
-
-	const hasRenotedBefore = renotes.length > 0;
 
 	let buttonActions: Array<MenuItem> = [];
 
@@ -88,6 +90,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "public",
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -114,6 +117,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "home",
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -141,6 +145,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					visibility: "specified",
 					visibleUserIds: props.note.visibleUserIds,
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -165,6 +170,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "followers",
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -202,6 +208,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 								localOnly: true,
 						  }
 				);
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -240,6 +247,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 				os.api("notes/unrenote", {
 					noteId: props.note.id,
 				});
+				hasRenotedBefore = false;
 			},
 		});
 	}
@@ -253,7 +261,9 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 		cursor: default;
 	}
 	&.renoted {
-		background: var(--accent);
+		color: var(--accent) !important;
+		opacity: 1 !important;
+		font-weight: 700;
 	}
 }
 </style>

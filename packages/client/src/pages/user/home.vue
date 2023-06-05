@@ -134,7 +134,11 @@
 						</div>
 						<div class="follow-container">
 							<div class="actions">
-								<button class="menu _button" @click="menu">
+								<button
+									class="menu _button"
+									@click="menu"
+									v-tooltip="i18n.ts.menu"
+								>
 									<i
 										class="ph-dots-three-outline ph-bold ph-lg"
 									></i>
@@ -261,7 +265,7 @@
 					</div>
 				</div>
 
-				<div class="contents">
+				<div class="contents _gap">
 					<div v-if="user.pinnedNotes.length > 0" class="_gap">
 						<XNote
 							v-for="note in user.pinnedNotes"

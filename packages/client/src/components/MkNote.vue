@@ -68,7 +68,9 @@
 			class="article"
 			@contextmenu.stop="onContextmenu"
 			@click="noteClick"
-			:style="{ cursor: expandOnNoteClick && !detailedView ? 'pointer' : '' }"
+			:style="{
+				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
+			}"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -379,6 +381,8 @@ const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 function onContextmenu(ev: MouseEvent): void {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === "A") return true;
+		// The Audio element's context menu is the browser default, such as for selecting playback speed.
+		if (el.tagName === "AUDIO") return true;
 		if (el.parentElement) {
 			return isLink(el.parentElement);
 		}
@@ -503,7 +507,11 @@ function scrollIntoView() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range" || props.detailedView || !expandOnNoteClick) {
+	if (
+		document.getSelection().type === "Range" ||
+		props.detailedView ||
+		!expandOnNoteClick
+	) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(appearNote));
@@ -564,6 +572,7 @@ defineExpose({
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
+	-webkit-tap-highlight-color: transparent;
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -810,6 +819,10 @@ defineExpose({
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {

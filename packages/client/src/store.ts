@@ -174,6 +174,10 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
+		advancedMfm: {
+			where: "device",
+			default: true,
+		},
 		animatedMfm: {
 			where: "device",
 			default: true,

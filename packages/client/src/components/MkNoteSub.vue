@@ -14,7 +14,8 @@
 		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
-		<div class="main" 
+		<div
+			class="main"
 			@click="noteClick"
 			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
 		>
@@ -503,6 +504,10 @@ function noteClick(e) {
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {

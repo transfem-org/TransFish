@@ -98,8 +98,7 @@
 									:text="'$[sparkle @kainoa@calckey.social] (Main developer)'"
 							/></FormLink>
 							<FormLink to="/@april@calckey.social"
-								><Mfm
-									:text="'@april@calckey.social (Backend)'"
+								><Mfm :text="'@april@calckey.social (Backend)'"
 							/></FormLink>
 							<FormLink to="/@freeplay@calckey.social"
 								><Mfm

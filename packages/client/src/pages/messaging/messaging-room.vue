@@ -28,6 +28,7 @@
 							#default="{ items: messages, fetching: pFetching }"
 						>
 							<XList
+								aria-live="polite"
 								v-if="messages.length > 0"
 								v-slot="{ item: message }"
 								:class="{
@@ -48,7 +49,11 @@
 					</MkPagination>
 				</div>
 				<footer>
-					<div v-if="typers.length > 0" class="typers">
+					<div
+						v-if="typers.length > 0"
+						class="typers"
+						aria-live="polite"
+					>
 						<I18n
 							:src="i18n.ts.typingUsers"
 							text-tag="span"

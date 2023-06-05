@@ -42,7 +42,8 @@
 				isLong,
 				manyImages: note.files.length > 4,
 				showContent: note.cw && !showContent,
-				disableAnim: disableMfm,
+				animatedMfm: !disableMfm,
+				advancedMfm,
 			}"
 		>
 			<XShowMoreButton
@@ -168,10 +169,10 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
-		<div
+		<!-- <div
 			v-if="(isLong && !collapsed) || (props.note.cw && showContent)"
 			class="fade"
-		></div>
+		></div> -->
 	</div>
 </template>
 
@@ -231,7 +232,9 @@ const mfms = props.note.text
 
 const hasMfm = $ref(mfms && mfms.length > 0);
 
-let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
+let disableMfm = $ref(defaultStore.state.animatedMfm);
+
+const advancedMfm = defaultStore.state.advancedMfm;
 
 async function toggleMfm() {
 	if (disableMfm) {
@@ -385,7 +388,7 @@ function focusFooter(ev) {
 			}
 		}
 
-		&.disableAnim :deep(span) {
+		&:not(.animatedMfm) :deep(span) {
 			animation: none !important;
 		}
 	}
