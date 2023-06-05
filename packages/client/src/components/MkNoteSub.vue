@@ -543,6 +543,14 @@ function noteClick(e) {
 			border-radius: var(--radius);
 		}
 	}
+	&.reply-to {
+		> .main > .body {
+			margin-left: calc(0px - var(--avatarSize) - 38px);
+			padding-left: calc(var(--avatarSize) + 38px);
+			margin-top: -16px;
+			padding-top: 16px;
+		}
+	}
 	&.reply {
 		--avatarSize: 38px;
 		.avatar-container {

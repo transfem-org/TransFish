@@ -348,10 +348,10 @@ function focusFooter(ev) {
 					black calc(100% - 64px),
 					transparent
 				);
-				padding-inline: 50px;
-				margin-inline: -50px;
-				margin-top: -50px;
-				padding-top: 50px;
+				padding-inline: 100px;
+				margin-inline: -100px;
+				margin-top: -100px;
+				padding-top: 100px;
 				overflow: hidden;
 				user-select: none;
 				-webkit-user-select: none;
