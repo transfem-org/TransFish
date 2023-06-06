@@ -1,6 +1,7 @@
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { mainRouter } from "@/router";
+// import { instance } from "@/instance";
 
 export async function search() {
 	// const searchOptions =
@@ -13,6 +14,8 @@ export async function search() {
 	// 	'"text" => get posts with exact text between quotes\n' +
 	// 	"filter:following => show results only from users you follow\n" +
 	// 	"filter:followers => show results only from followers\n";
+
+	// const searchFiltersAvailable = instance.searchFilters;
 
 	const { canceled, result: query } = await os.inputText({
 		title: i18n.ts.search,
