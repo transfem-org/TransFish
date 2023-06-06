@@ -47,6 +47,6 @@ export class noteRepliesFunction1658656633972 {
 	}
 
 	async down(queryRunner) {
-		await queryRunner.query("DROP FUNCTION note_replies");
+		await queryRunner.query(`DROP FUNCTION note_replies`);
 	}
 }

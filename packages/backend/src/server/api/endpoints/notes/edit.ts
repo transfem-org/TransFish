@@ -614,13 +614,13 @@ export default define(meta, paramDef, async (ps, user) => {
 			}
 
 			// Post is a reply and remote user is the contributor of the original post
-			if (note.reply?.userHost !== null) {
+			if (note.reply && note.reply.userHost !== null) {
 				const u = await Users.findOneBy({ id: note.reply.userId });
 				if (u && Users.isRemoteUser(u)) dm.addDirectRecipe(u);
 			}
 
 			// Post is a renote and remote user is the contributor of the original post
-			if (note.renote?.userHost !== null) {
+			if (note.renote && note.renote.userHost !== null) {
 				const u = await Users.findOneBy({ id: note.renote.userId });
 				if (u && Users.isRemoteUser(u)) dm.addDirectRecipe(u);
 			}
