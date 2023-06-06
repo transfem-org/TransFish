@@ -1,27 +1,29 @@
 <template>
 	<p v-if="note.cw != null" class="cw">
 		<MkA
-			v-if="!detailed && note.replyId"
-			:to="`#${note.replyId}`"
+			v-if="conversation && note.renoteId == parentId"
+			:to="
+				detailedView ? `#${parentId}` : `${notePage(note)}#${parentId}`
+			"
 			behavior="browser"
 			class="reply-icon"
 			@click.stop
 		>
-			<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
+			<i class="ph-quotes ph-bold ph-lg"></i>
 		</MkA>
 		<MkA
-			v-if="
-				conversation &&
-				note.renoteId &&
-				note.renoteId != parentId &&
-				!note.replyId
+			v-else-if="!detailed && note.replyId"
+			:to="
+				detailedView
+					? `#${note.replyId}`
+					: `${notePage(note)}#${note.replyId}`
 			"
-			:to="`/notes/${note.renoteId}`"
+			behavior="browser"
 			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
 			@click.stop
 		>
-			<i class="ph-quotes ph-bold ph-lg"></i>
+			<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
 		</MkA>
 		<Mfm
 			v-if="note.cw != ''"
@@ -38,8 +40,9 @@
 			:class="{
 				collapsed,
 				isLong,
+				manyImages: note.files.length > 4,
 				showContent: note.cw && !showContent,
-				disableAnim: disableMfm,
+				animatedMfm: !disableMfm,
 			}"
 		>
 			<XShowMoreButton
@@ -68,27 +71,31 @@
 				>
 				<template v-if="!note.cw">
 					<MkA
-						v-if="!detailed && note.replyId"
-						:to="`#${note.replyId}`"
+						v-if="conversation && note.renoteId == parentId"
+						:to="
+							detailedView
+								? `#${parentId}`
+								: `${notePage(note)}#${parentId}`
+						"
+						behavior="browser"
+						class="reply-icon"
+						@click.stop
+					>
+						<i class="ph-quotes ph-bold ph-lg"></i>
+					</MkA>
+					<MkA
+						v-else-if="!detailed && note.replyId"
+						:to="
+							detailedView
+								? `#${note.replyId}`
+								: `${notePage(note)}#${note.replyId}`
+						"
 						behavior="browser"
 						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
 						@click.stop
 					>
 						<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
-					</MkA>
-					<MkA
-						v-if="
-							conversation &&
-							note.renoteId &&
-							note.renoteId != parentId &&
-							!note.replyId
-						"
-						:to="`/notes/${note.renoteId}`"
-						class="reply-icon"
-						@click.stop
-					>
-						<i class="ph-quotes ph-bold ph-lg"></i>
 					</MkA>
 				</template>
 				<Mfm
@@ -104,9 +111,10 @@
 					:to="`/notes/${note.renoteId}`"
 					>{{ i18n.ts.quoteAttached }}: ...</MkA
 				>
-				<div v-if="note.files.length > 0" class="files">
-					<XMediaList :media-list="note.files" />
-				</div>
+				<XMediaList
+					v-if="note.files.length > 0"
+					:media-list="note.files"
+				/>
 				<XPoll v-if="note.poll" :note="note" class="poll" />
 				<template v-if="detailed">
 					<MkUrlPreview
@@ -160,6 +168,10 @@
 				<i class="ph-stop ph-bold"></i> {{ i18n.ts._mfm.stop }}
 			</template>
 		</MkButton>
+		<!-- <div
+			v-if="(isLong && !collapsed) || (props.note.cw && showContent)"
+			class="fade"
+		></div> -->
 	</div>
 </template>
 
@@ -175,6 +187,7 @@ import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";
 import MkButton from "@/components/MkButton.vue";
+import { notePage } from "@/filters/note";
 import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { extractMfmWithAnimation } from "@/scripts/extract-mfm";
 import { i18n } from "@/i18n";
@@ -198,9 +211,12 @@ const cwButton = ref<HTMLElement>();
 const showMoreButton = ref<HTMLElement>();
 const isLong =
 	!props.detailedView &&
-	props.note.cw == null &&
-	props.note.text != null &&
-	(props.note.text.split("\n").length > 9 || props.note.text.length > 500);
+	((props.note.cw == null &&
+		props.note.text != null &&
+		(props.note.text.split("\n").length > 10 ||
+			props.note.text.length > 800)) ||
+		props.note.files.length > 4);
+
 const collapsed = $ref(props.note.cw == null && isLong);
 
 const urls = props.note.text
@@ -215,7 +231,7 @@ const mfms = props.note.text
 
 const hasMfm = $ref(mfms && mfms.length > 0);
 
-let disableMfm = $ref(hasMfm && defaultStore.state.animatedMfm);
+let disableMfm = $ref(defaultStore.state.animatedMfm);
 
 async function toggleMfm() {
 	if (disableMfm) {
@@ -243,7 +259,8 @@ function focusFooter(ev) {
 </script>
 
 <style lang="scss" scoped>
-:deep(a) {
+:deep(a),
+:deep(button) {
 	position: relative;
 	z-index: 2;
 }
@@ -293,7 +310,7 @@ function focusFooter(ev) {
 					background: var(--buttonHoverBg);
 				}
 			}
-			> .files {
+			> :deep(.files) {
 				margin-top: 0.4em;
 				margin-bottom: 0.4em;
 			}
@@ -323,7 +340,7 @@ function focusFooter(ev) {
 		&.collapsed,
 		&.showContent {
 			position: relative;
-			max-height: calc(9em + 50px);
+			max-height: calc(15em + 100px);
 			> .body {
 				max-height: inherit;
 				mask: linear-gradient(black calc(100% - 64px), transparent);
@@ -331,39 +348,44 @@ function focusFooter(ev) {
 					black calc(100% - 64px),
 					transparent
 				);
-				padding-inline: 50px;
-				margin-inline: -50px;
-				margin-top: -50px;
-				padding-top: 50px;
+				padding-inline: 100px;
+				margin-inline: -100px;
+				margin-top: -100px;
+				padding-top: 100px;
 				overflow: hidden;
 				user-select: none;
 				-webkit-user-select: none;
 				-moz-user-select: none;
 			}
-			&.collapsed > .body {
+		}
+		&.collapsed {
+			&.manyImages {
+				max-height: calc(15em + 250px);
+			}
+			> .body {
 				box-sizing: border-box;
 			}
-			&.showContent {
-				> .body {
-					min-height: 2em;
-					max-height: 5em;
-					filter: blur(4px);
-					:deep(span) {
-						animation: none !important;
-						transform: none !important;
-					}
-					:deep(img) {
-						filter: blur(12px);
-					}
+		}
+		&.showContent {
+			> .body {
+				min-height: 2em;
+				max-height: 5em;
+				filter: blur(4px);
+				:deep(span) {
+					animation: none !important;
+					transform: none !important;
 				}
-				:deep(.fade) {
-					inset: 0;
-					top: 40px;
+				:deep(img) {
+					filter: blur(12px);
 				}
+			}
+			:deep(.fade) {
+				inset: 0;
+				top: 90px;
 			}
 		}
 
-		&.disableAnim :deep(span) {
+		&:not(.animatedMfm) :deep(span) {
 			animation: none !important;
 		}
 	}
@@ -371,6 +393,27 @@ function focusFooter(ev) {
 		margin-top: 10px;
 		margin-left: 0;
 		margin-right: 0.4rem;
+	}
+	> .fade {
+		position: absolute;
+		inset: 0;
+		bottom: -400px;
+		display: flex;
+		align-items: flex-end;
+		z-index: 4;
+		pointer-events: none;
+		&::before {
+			content: "";
+			display: block;
+			height: 100px;
+			position: sticky;
+			bottom: 0;
+			width: 100%;
+			background: var(--panel);
+			mask: linear-gradient(to top, var(--gradient));
+			-webkit-mask: linear-gradient(to top, var(--gradient));
+			transition: background 0.2s;
+		}
 	}
 }
 </style>

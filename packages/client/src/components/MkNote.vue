@@ -9,6 +9,7 @@
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
+		:id="appearNote.id"
 	>
 		<MkNoteSub
 			v-if="appearNote.reply && !detailedView"
@@ -67,6 +68,9 @@
 			class="article"
 			@contextmenu.stop="onContextmenu"
 			@click="noteClick"
+			:style="{
+				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
+			}"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -312,6 +316,7 @@ const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 const keymap = {
 	r: () => reply(true),
@@ -376,6 +381,8 @@ const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 function onContextmenu(ev: MouseEvent): void {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === "A") return true;
+		// The Audio element's context menu is the browser default, such as for selecting playback speed.
+		if (el.tagName === "AUDIO") return true;
 		if (el.parentElement) {
 			return isLink(el.parentElement);
 		}
@@ -400,20 +407,22 @@ function onContextmenu(ev: MouseEvent): void {
 						os.pageWindow(notePage(appearNote));
 					},
 				},
-				{
-					icon: "ph-arrows-out-simple ph-bold ph-lg",
-					text: i18n.ts.showInPage,
-					action: () => {
-						router.push(notePage(appearNote), "forcePage");
-					},
-				},
+				notePage(appearNote) != location.pathname
+					? {
+							icon: "ph-arrows-out-simple ph-bold ph-lg",
+							text: i18n.ts.showInPage,
+							action: () => {
+								router.push(notePage(appearNote), "forcePage");
+							},
+					  }
+					: undefined,
 				null,
 				{
+					type: "a",
 					icon: "ph-arrow-square-out ph-bold ph-lg",
 					text: i18n.ts.openInNewTab,
-					action: () => {
-						window.open(notePage(appearNote), "_blank");
-					},
+					href: notePage(appearNote),
+					target: "_blank",
 				},
 				{
 					icon: "ph-link-simple ph-bold ph-lg",
@@ -422,6 +431,15 @@ function onContextmenu(ev: MouseEvent): void {
 						copyToClipboard(`${url}${notePage(appearNote)}`);
 					},
 				},
+				appearNote.user.host != null
+					? {
+							type: "a",
+							icon: "ph-arrow-square-up-right ph-bold ph-lg",
+							text: i18n.ts.showOnRemote,
+							href: appearNote.url ?? appearNote.uri ?? "",
+							target: "_blank",
+					  }
+					: undefined,
 			],
 			ev
 		);
@@ -489,7 +507,11 @@ function scrollIntoView() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range" || props.detailedView) {
+	if (
+		document.getSelection().type === "Range" ||
+		props.detailedView ||
+		!expandOnNoteClick
+	) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(appearNote));
@@ -510,28 +532,28 @@ function setPostExpanded(val: boolean) {
 }
 
 const accessibleLabel = computed(() => {
-	let label = `${props.note.user.username}; `;
-	if (props.note.renote) {
-		label += `${i18n.t("renoted")} ${props.note.renote.user.username}; `;
-		if (props.note.renote.cw) {
-			label += `${i18n.t("cw")}: ${props.note.renote.cw}; `;
+	let label = `${appearNote.user.username}; `;
+	if (appearNote.renote) {
+		label += `${i18n.t("renoted")} ${appearNote.renote.user.username}; `;
+		if (appearNote.renote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.renote.cw}; `;
 			if (postIsExpanded.value) {
-				label += `${props.note.renote.text}; `;
+				label += `${appearNote.renote.text}; `;
 			}
 		} else {
-			label += `${props.note.renote.text}; `;
+			label += `${appearNote.renote.text}; `;
 		}
 	} else {
-		if (props.note.cw) {
-			label += `${i18n.t("cw")}: ${props.note.cw}; `;
+		if (appearNote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.cw}; `;
 			if (postIsExpanded.value) {
-				label += `${props.note.text}; `;
+				label += `${appearNote.text}; `;
 			}
 		} else {
-			label += `${props.note.text}; `;
+			label += `${appearNote.text}; `;
 		}
 	}
-	const date = new Date(props.note.createdAt);
+	const date = new Date(appearNote.createdAt);
 	label += `${date.toLocaleTimeString()}`;
 	return label;
 });
@@ -550,6 +572,7 @@ defineExpose({
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
+	-webkit-tap-highlight-color: transparent;
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -689,9 +712,9 @@ defineExpose({
 	}
 
 	> .article {
+		position: relative;
 		overflow: clip;
 		padding: 4px 32px 10px;
-		cursor: pointer;
 
 		&:first-child,
 		&:nth-child(2) {
@@ -796,6 +819,10 @@ defineExpose({
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {

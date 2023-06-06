@@ -14,7 +14,11 @@
 		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
-		<div class="main" @click="noteClick">
+		<div
+			class="main"
+			@click="noteClick"
+			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
+		>
 			<div class="avatar-container">
 				<MkAvatar class="avatar" :user="appearNote.user" />
 				<div
@@ -28,8 +32,9 @@
 					<MkSubNoteContent
 						class="text"
 						:note="note"
-						:parentId="appearNote.parentId"
+						:parentId="parentId"
 						:conversation="conversation"
+						:detailedView="detailedView"
 						@focusfooter="footerEl.focus()"
 					/>
 					<div v-if="translating || translation" class="translation">
@@ -140,7 +145,7 @@
 				:conversation="conversation"
 				:depth="replies.length == 1 ? depth : depth + 1"
 				:replyLevel="replyLevel + 1"
-				:parentId="appearNote.replyId"
+				:parentId="appearNote.id"
 				:detailedView="detailedView"
 			/>
 			<div v-else-if="replies.length > 0" class="more">
@@ -257,6 +262,7 @@ const replies: misskey.entities.Note[] =
 		)
 		.reverse() ?? [];
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 useNoteCapture({
 	rootEl: el,
@@ -348,20 +354,22 @@ function onContextmenu(ev: MouseEvent): void {
 						os.pageWindow(notePage(appearNote));
 					},
 				},
-				{
-					icon: "ph-arrows-out-simple ph-bold ph-lg",
-					text: i18n.ts.showInPage,
-					action: () => {
-						router.push(notePage(appearNote), "forcePage");
-					},
-				},
+				notePage(appearNote) != location.pathname
+					? {
+							icon: "ph-arrows-out-simple ph-bold ph-lg",
+							text: i18n.ts.showInPage,
+							action: () => {
+								router.push(notePage(appearNote), "forcePage");
+							},
+					  }
+					: undefined,
 				null,
 				{
+					type: "a",
 					icon: "ph-arrow-square-out ph-bold ph-lg",
 					text: i18n.ts.openInNewTab,
-					action: () => {
-						window.open(notePage(appearNote), "_blank");
-					},
+					href: notePage(appearNote),
+					target: "_blank",
 				},
 				{
 					icon: "ph-link-simple ph-bold ph-lg",
@@ -370,6 +378,15 @@ function onContextmenu(ev: MouseEvent): void {
 						copyToClipboard(`${url}${notePage(appearNote)}`);
 					},
 				},
+				note.user.host != null
+					? {
+							type: "a",
+							icon: "ph-arrow-square-up-right ph-bold ph-lg",
+							text: i18n.ts.showOnRemote,
+							href: note.url ?? note.uri ?? "",
+							target: "_blank",
+					  }
+					: undefined,
 			],
 			ev
 		);
@@ -385,7 +402,7 @@ function blur() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range") {
+	if (document.getSelection().type === "Range" || !expandOnNoteClick) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(props.note));
@@ -410,7 +427,6 @@ function noteClick(e) {
 
 	> .main {
 		display: flex;
-		cursor: pointer;
 
 		> .avatar-container {
 			margin-right: 8px;
@@ -424,6 +440,7 @@ function noteClick(e) {
 		}
 
 		> .body {
+			position: relative;
 			flex: 1;
 			min-width: 0;
 			margin: 0 -200px;
@@ -489,6 +506,10 @@ function noteClick(e) {
 						color: var(--fgHighlighted);
 					}
 
+					> i {
+						display: inline !important;
+					}
+
 					> .count {
 						display: inline;
 						margin: 0 0 0 8px;
@@ -520,6 +541,14 @@ function noteClick(e) {
 			margin-left: calc(0px - var(--avatarSize) - 32px);
 			padding-left: calc(var(--avatarSize) + 32px);
 			border-radius: var(--radius);
+		}
+	}
+	&.reply-to {
+		> .main > .body {
+			margin-left: calc(0px - var(--avatarSize) - 38px);
+			padding-left: calc(var(--avatarSize) + 38px);
+			margin-top: -16px;
+			padding-top: 16px;
 		}
 	}
 	&.reply {

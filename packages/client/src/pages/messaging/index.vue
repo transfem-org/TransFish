@@ -9,6 +9,10 @@
 		<div>
 			<MkSpacer :content-max="800">
 				<swiper
+					:round-lengths="true"
+					:touch-angle="25"
+					:threshold="10"
+					:centeredSlides="true"
 					:modules="[Virtual]"
 					:space-between="20"
 					:virtual="true"

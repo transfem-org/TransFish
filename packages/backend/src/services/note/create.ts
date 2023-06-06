@@ -67,6 +67,7 @@ import type { UserProfile } from "@/models/entities/user-profile.js";
 import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
+import meilisearch from "../../db/meilisearch.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -595,20 +596,20 @@ export default async (
 				lastNotedAt: new Date(),
 			});
 
-			const count = await Notes.countBy({
+			await Notes.countBy({
 				userId: user.id,
 				channelId: data.channel.id,
 			}).then((count) => {
 				// この処理が行われるのはノート作成後なので、ノートが一つしかなかったら最初の投稿だと判断できる
 				// TODO: とはいえノートを削除して何回も投稿すればその分だけインクリメントされる雑さもあるのでどうにかしたい
-				if (count === 1) {
-					Channels.increment({ id: data.channel!.id }, "usersCount", 1);
+				if (count === 1 && data.channel != null) {
+					Channels.increment({ id: data.channel.id }, "usersCount", 1);
 				}
 			});
 		}
 
 		// Register to search database
-		await index(note);
+		await index(note, false);
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
@@ -648,9 +649,12 @@ async function insertNote(
 	emojis: string[],
 	mentionedUsers: MinimumUser[],
 ) {
+	if (data.createdAt === null || data.createdAt === undefined) {
+		data.createdAt = new Date();
+	}
 	const insert = new Note({
-		id: genId(data.createdAt!),
-		createdAt: data.createdAt!,
+		id: genId(data.createdAt),
+		createdAt: data.createdAt,
 		fileIds: data.files ? data.files.map((file) => file.id) : [],
 		replyId: data.reply ? data.reply.id : null,
 		renoteId: data.renote ? data.renote.id : null,
@@ -667,7 +671,7 @@ async function insertNote(
 		tags: tags.map((tag) => normalizeForSearch(tag)),
 		emojis,
 		userId: user.id,
-		localOnly: data.localOnly!,
+		localOnly: data.localOnly || false,
 		visibility: data.visibility as any,
 		visibleUserIds:
 			data.visibility === "specified"
@@ -748,7 +752,7 @@ async function insertNote(
 	}
 }
 
-export async function index(note: Note): Promise<void> {
+export async function index(note: Note, reindexing: boolean): Promise<void> {
 	if (!note.text) return;
 
 	if (config.elasticsearch && es) {
@@ -775,6 +779,10 @@ export async function index(note: Note): Promise<void> {
 			}),
 			note.text,
 		);
+	}
+
+	if (meilisearch && !reindexing) {
+		await meilisearch.ingestNote(note);
 	}
 }
 

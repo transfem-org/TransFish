@@ -182,7 +182,6 @@ followsYou: Seuraa sinua
 pageLoadErrorDescription: Tämä yleensä johtuu verkkovirheistä tai selaimen välimuistista.
   Kokeile tyhjentämällä välimuisti ja yritä sitten hetken kuluttua uudelleen.
 enterListName: Anna listalle nimi
-withNFiles: '{n} tiedosto(t)'
 instanceInfo: Instanssin tiedot
 clearQueue: Tyhjennä jono
 suspendConfirm: Oletko varma, että haluat keskeyttää tämän tilin?

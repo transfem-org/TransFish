@@ -175,6 +175,7 @@ export const paramDef = {
 			nullable: true,
 			properties: {
 				postEditing: { type: "boolean" },
+				postImports: { type: "boolean" },
 			},
 		},
 	},

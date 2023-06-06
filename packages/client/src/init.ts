@@ -27,7 +27,6 @@ import {
 	defineAsyncComponent,
 } from "vue";
 import { compareVersions } from "compare-versions";
-import JSON5 from "json5";
 
 import widgets from "@/widgets";
 import directives from "@/directives";
@@ -103,17 +102,6 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 		document.documentElement.style.setProperty("--vh", `${vh}px`);
 	});
 	//#endregion
-
-	// If mobile, insert the viewport meta tag
-	if (["smartphone", "tablet"].includes(deviceKind)) {
-		const viewport = document.getElementsByName("viewport").item(0);
-		viewport.setAttribute(
-			"content",
-			`${viewport.getAttribute(
-				"content",
-			)}, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover`,
-		);
-	}
 
 	//#region Set lang attr
 	const html = document.documentElement;
@@ -311,12 +299,11 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	if (ColdDeviceStorage.get("syncDeviceDarkMode")) {
 		defaultStore.set("darkMode", isDeviceDarkmode());
 	}
-
-	window.matchMedia("(prefers-color-scheme: dark)").addListener((mql) => {
+	window.matchMedia("(prefers-color-scheme: dark)").onchange = (mql) => {
 		if (ColdDeviceStorage.get("syncDeviceDarkMode")) {
 			defaultStore.set("darkMode", mql.matches);
 		}
-	});
+	};
 	//#endregion
 
 	fetchInstanceMetaPromise.then(() => {
@@ -324,12 +311,12 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			if (instance.defaultLightTheme != null)
 				ColdDeviceStorage.set(
 					"lightTheme",
-					JSON5.parse(instance.defaultLightTheme),
+					JSON.parse(instance.defaultLightTheme),
 				);
 			if (instance.defaultDarkTheme != null)
 				ColdDeviceStorage.set(
 					"darkTheme",
-					JSON5.parse(instance.defaultDarkTheme),
+					JSON.parse(instance.defaultDarkTheme),
 				);
 			defaultStore.set("themeInitial", false);
 		}

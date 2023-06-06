@@ -167,7 +167,7 @@ async function connectDb(): Promise<void> {
 	}
 }
 
-async function spawnWorkers(limit: number = 1) {
+async function spawnWorkers(limit = 1) {
 	const workers = Math.min(limit, os.cpus().length);
 	bootLogger.info(`Starting ${workers} worker${workers === 1 ? "" : "s"}...`);
 	await Promise.all([...Array(workers)].map(spawnWorker));

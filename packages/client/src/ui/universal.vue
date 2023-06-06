@@ -15,10 +15,7 @@
 				:style="{ background: pageMetadata?.value?.bg }"
 				@contextmenu.stop="onContextmenu"
 			>
-				<div :class="$style.content">
-					<RouterView />
-				</div>
-				<div :class="$style.spacer"></div>
+				<RouterView />
 			</main>
 		</MkStickyContainer>
 
@@ -173,6 +170,7 @@ import type { PageMetadata } from "@/scripts/page-metadata";
 import { instanceName, ui } from "@/config";
 import { StickySidebar } from "@/scripts/sticky-sidebar";
 import XDrawerMenu from "@/ui/_common_/navbar-for-mobile.vue";
+import XSidebar from "@/ui/_common_/navbar.vue";
 import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { navbarItemDef } from "@/navbar";
@@ -186,7 +184,6 @@ import {
 import { deviceKind } from "@/scripts/device-kind";
 
 const XWidgets = defineAsyncComponent(() => import("./universal.widgets.vue"));
-const XSidebar = defineAsyncComponent(() => import("@/ui/_common_/navbar.vue"));
 const XStatusBars = defineAsyncComponent(
 	() => import("@/ui/_common_/statusbars.vue")
 );
@@ -462,6 +459,11 @@ console.log(mainRouter.currentRoute.value.name);
 	&.isMobile {
 		--stickyBottom: 6rem;
 	}
+	&:not(.isMobile) {
+		> .contents {
+			border-right: 0.5px solid var(--divider);
+		}
+	}
 	&.wallpaper {
 		background: var(--wallpaperOverlay);
 	}
@@ -470,6 +472,10 @@ console.log(mainRouter.currentRoute.value.name);
 		justify-content: center;
 		&:not(.isMobile) {
 			--navBg: transparent;
+			> .contents {
+				border-inline: 0.5px solid var(--divider);
+				margin-inline: -1px;
+			}
 		}
 
 		> :deep(.sidebar:not(.iconOnly)) {
@@ -545,18 +551,19 @@ console.log(mainRouter.currentRoute.value.name);
 		}
 	}
 
-	> .sidebar {
-		border-right: solid 0.5px var(--divider);
-	}
-
 	> .contents {
 		width: 100%;
 		min-width: 0;
+		$widgets-hide-threshold: 1090px;
+		@media (max-width: $widgets-hide-threshold) {
+			padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
+		}
 	}
 
 	> .widgets {
 		padding: 0 var(--margin);
-		border-left: solid 0.5px var(--divider);
+		width: 300px;
+		box-sizing: content-box;
 
 		@media (max-width: $widgets-hide-threshold) {
 			display: none;
@@ -731,15 +738,5 @@ console.log(mainRouter.currentRoute.value.name);
 	position: sticky;
 	top: 0;
 	left: 0;
-}
-
-.spacer {
-	$widgets-hide-threshold: 1090px;
-
-	height: calc(env(safe-area-inset-bottom, 0px) + 96px);
-
-	@media (min-width: ($widgets-hide-threshold + 1px)) {
-		display: none;
-	}
 }
 </style>

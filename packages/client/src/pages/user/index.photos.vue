@@ -98,6 +98,7 @@ onMounted(() => {
 		grid-gap: 6px;
 
 		> .img {
+			position: relative;
 			height: 128px;
 			border-radius: 6px;
 			overflow: clip;

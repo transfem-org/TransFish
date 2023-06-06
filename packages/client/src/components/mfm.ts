@@ -57,6 +57,12 @@ export default defineComponent({
 			if (t == null) return null;
 			return t.match(/^[0-9.]+s$/) ? t : null;
 		};
+		// const validEase = (e: string | null | undefined) => {
+		// 	if (e == null) return null;
+		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
+		// 		? (e.startsWith("steps") ? e : "cubic-bezier" + e)
+		// 		: null
+		// }
 
 		const genEl = (ast: mfm.MfmNode[]) =>
 			concat(
@@ -102,22 +108,27 @@ export default defineComponent({
 							switch (token.props.name) {
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style = `font-size: 150%; animation: tada ${speed} linear infinite both;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									// const ease = validEase(token.props.args.ease) || "linear";
+									style = `font-size: 150%; animation: tada ${speed} ${delay} linear infinite both;`;
 									break;
 								}
 								case "jelly": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style = `animation: mfm-rubberBand ${speed} linear infinite both;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-rubberBand ${speed} ${delay} linear infinite both;`;
 									break;
 								}
 								case "twitch": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
-									style = `animation: mfm-twitch ${speed} ease infinite;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-twitch ${speed} ${delay} ease infinite;`;
 									break;
 								}
 								case "shake": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
-									style = `animation: mfm-shake ${speed} ease infinite;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-shake ${speed} ${delay} ease infinite;`;
 									break;
 								}
 								case "spin": {
@@ -132,22 +143,26 @@ export default defineComponent({
 										? "mfm-spinY"
 										: "mfm-spin";
 									const speed = validTime(token.props.args.speed) || "1.5s";
-									style = `animation: ${anime} ${speed} linear infinite; animation-direction: ${direction};`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: ${anime} ${speed} ${delay} linear infinite; animation-direction: ${direction};`;
 									break;
 								}
 								case "jump": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
-									style = `animation: mfm-jump ${speed} linear infinite;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-jump ${speed} ${delay} linear infinite;`;
 									break;
 								}
 								case "bounce": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
-									style = `animation: mfm-bounce ${speed} linear infinite; transform-origin: center bottom;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-bounce ${speed} ${delay} linear infinite; transform-origin: center bottom;`;
 									break;
 								}
 								case "rainbow": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style = `animation: mfm-rainbow ${speed} linear infinite;`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-rainbow ${speed} ${delay} linear infinite;`;
 									break;
 								}
 								case "sparkle": {
@@ -161,7 +176,8 @@ export default defineComponent({
 										? "alternate-reverse"
 										: "alternate";
 									const speed = validTime(token.props.args.speed) || "1.5s";
-									style = `animation: mfm-fade ${speed} linear infinite; animation-direction: ${direction};`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									style = `animation: mfm-fade ${speed} ${delay} linear infinite; animation-direction: ${direction};`;
 									break;
 								}
 								case "flip": {
@@ -241,6 +257,14 @@ export default defineComponent({
 									const x = parseFloat(token.props.args.x ?? "0");
 									const y = parseFloat(token.props.args.y ?? "0");
 									style = `transform: translateX(${x}em) translateY(${y}em);`;
+									break;
+								}
+								case "crop": {
+									const top = parseFloat(token.props.args.top ?? "0");
+									const right = parseFloat(token.props.args.right ?? "0");
+									const bottom = parseFloat(token.props.args.bottom ?? "0");
+									const left = parseFloat(token.props.args.left ?? "0");
+									style = `clip-path: inset(${top}% ${right}% ${bottom}% ${left}%);`;
 									break;
 								}
 								case "scale": {
