@@ -52,7 +52,7 @@ import { UserProfiles } from "@/models/index.js";
 import { In } from "typeorm";
 import { DB_MAX_IMAGE_COMMENT_LENGTH } from "@/misc/hard-limits.js";
 import { truncate } from "@/misc/truncate.js";
-import { type Size, getEmojiSize } from "@/misc/emoji-meta.js";\
+import { type Size, getEmojiSize } from "@/misc/emoji-meta.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 
 const logger = apLogger;
