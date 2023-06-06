@@ -53,7 +53,7 @@ export const api = async (endpoint: string, params: any, me?: any) => {
 			beforeError: [
 				(error) => {
 					const { response } = error;
-					if (response?.body) console.warn(response.body);
+					if (response && response.body) console.warn(response.body);
 					return error;
 				},
 			],
@@ -316,7 +316,7 @@ export function launchServer(
 	moreProcess: () => Promise<void> = async () => {},
 ) {
 	return (done: (err?: Error) => any) => {
-		const p = childProcess.spawn("node", [`${_dirname}/../index.js`], {
+		const p = childProcess.spawn("node", [_dirname + "/../index.js"], {
 			stdio: ["inherit", "inherit", "inherit", "ipc"],
 			env: { NODE_ENV: "test", PATH: process.env.PATH },
 		});
@@ -340,8 +340,8 @@ export async function initTestDb(justBorrow = false, initEntities?: any[]) {
 		username: config.db.user,
 		password: config.db.pass,
 		database: config.db.db,
-		synchronize: !justBorrow,
-		dropSchema: !justBorrow,
+		synchronize: true && !justBorrow,
+		dropSchema: true && !justBorrow,
 		entities: initEntities || entities,
 	});
 
@@ -359,7 +359,7 @@ export function startServer(
 			rej("timeout to start");
 		}, timeout);
 
-		const p = childProcess.spawn("node", [`${_dirname}/../built/index.js`], {
+		const p = childProcess.spawn("node", [_dirname + "/../built/index.js"], {
 			stdio: ["inherit", "inherit", "inherit", "ipc"],
 			env: { NODE_ENV: "test", PATH: process.env.PATH },
 		});

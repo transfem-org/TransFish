@@ -599,7 +599,7 @@ describe("Streaming", () => {
 						chitose,
 						"hashtag",
 						({ type, body }) => {
-							if (type === "note") {
+							if (type == "note") {
 								assert.deepStrictEqual(body.text, "#foo");
 								ws.close();
 								done();
@@ -625,7 +625,7 @@ describe("Streaming", () => {
 						chitose,
 						"hashtag",
 						({ type, body }) => {
-							if (type === "note") {
+							if (type == "note") {
 								if (body.text === "#foo") fooCount++;
 								if (body.text === "#bar") barCount++;
 								if (body.text === "#foo #bar") fooBarCount++;
@@ -668,7 +668,7 @@ describe("Streaming", () => {
 						chitose,
 						"hashtag",
 						({ type, body }) => {
-							if (type === "note") {
+							if (type == "note") {
 								if (body.text === "#foo") fooCount++;
 								if (body.text === "#bar") barCount++;
 								if (body.text === "#foo #bar") fooBarCount++;
@@ -718,7 +718,7 @@ describe("Streaming", () => {
 						chitose,
 						"hashtag",
 						({ type, body }) => {
-							if (type === "note") {
+							if (type == "note") {
 								if (body.text === "#foo") fooCount++;
 								if (body.text === "#bar") barCount++;
 								if (body.text === "#foo #bar") fooBarCount++;

@@ -97,7 +97,7 @@
 
 	const fontSize = localStorage.getItem("fontSize");
 	if (fontSize) {
-		document.documentElement.classList.add(`f-${fontSize}`);
+		document.documentElement.classList.add("f-" + fontSize);
 	}
 
 	const useSystemFont = localStorage.getItem("useSystemFont");
@@ -292,7 +292,7 @@
 
 			const meta = await res.json();
 
-			if (meta.version !== v) {
+			if (meta.version != v) {
 				localStorage.setItem("v", meta.version);
 				refresh();
 			}
