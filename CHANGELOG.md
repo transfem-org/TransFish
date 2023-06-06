@@ -2,7 +2,18 @@
 
 All changes from v13.0.0 onwards, for a full list of differences read CALCKEY.md
 
-## [14.0.0-rc2] - 2023-06-06
+## [14.0.0-rc2c] - 2023-06-06
+
+### Bug Fixes
+
+- Fix: post editing meta
+- Fix: cw button position
+
+### Miscellaneous Tasks
+
+- Update cargo.lock
+
+## [14.0.0-rc2] - 2023-06-05
 
 ### Bug Fixes
 
