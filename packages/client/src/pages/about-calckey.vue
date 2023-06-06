@@ -97,16 +97,16 @@
 								><Mfm
 									:text="'$[sparkle @kainoa@calckey.social] (Main developer)'"
 							/></FormLink>
-							<FormLink to="/@cleo@bz.pawdev.me"
-								><Mfm :text="'@cleo@bz.pawdev.me (Maintainer)'"
+							<FormLink to="/@april@calckey.social"
+								><Mfm :text="'@april@calckey.social (Backend)'"
+							/></FormLink>
+							<FormLink to="/@freeplay@calckey.social"
+								><Mfm
+									:text="'@freeplay@calckey.social (UI/UX)'"
 							/></FormLink>
 							<FormLink to="/@panos@calckey.social"
 								><Mfm
 									:text="'@panos@calckey.social (Project Coordinator)'"
-							/></FormLink>
-							<FormLink to="/@freeplay@bz.pawdev.me"
-								><Mfm
-									:text="'@freeplay@bz.pawdev.me (UI/UX Designer)'"
 							/></FormLink>
 							<FormLink
 								to="https://www.youtube.com/c/Henkiwashere"

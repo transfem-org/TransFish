@@ -103,11 +103,7 @@ function isMe(message): boolean {
 		}
 
 		&:not(.isMe):not(.isRead) {
-			> div {
-				background-image: url("/client-assets/unread.svg");
-				background-repeat: no-repeat;
-				background-position: 0 center;
-			}
+			background-color: var(--accentedBg);
 		}
 
 		&:after {

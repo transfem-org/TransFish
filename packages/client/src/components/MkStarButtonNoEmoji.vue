@@ -35,7 +35,7 @@
 			></i>
 		</span>
 		<template v-if="count > 0"
-			><p :class="$style.count">{{ count }}</p></template
+			><p class="count">{{ count }}</p></template
 		>
 	</button>
 </template>

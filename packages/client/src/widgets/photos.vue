@@ -114,6 +114,7 @@ defineExpose<WidgetComponentExpose>({
 	}
 
 	.img {
+		position: relative;
 		border: solid 4px transparent;
 		border-radius: 8px;
 	}
@@ -126,6 +127,7 @@ defineExpose<WidgetComponentExpose>({
 	padding: 8px;
 
 	.img {
+		position: relative;
 		flex: 1 1 33%;
 		width: 33%;
 		height: 80px;

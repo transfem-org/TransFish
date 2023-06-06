@@ -59,7 +59,7 @@ defineExpose({
 <style lang="scss" scoped>
 ._button {
 	font-weight: 700;
-	z-index: 2;
+	z-index: 5;
 	> span {
 		background: var(--cwBg) !important;
 		color: var(--cwFg);
@@ -102,9 +102,9 @@ defineExpose({
 	}
 	&.showLess {
 		width: 100%;
-		margin-top: 1em;
 		position: sticky;
-		bottom: var(--stickyBottom);
+		bottom: calc(var(--stickyBottom) - 1em);
+		padding: 20px;
 
 		> span {
 			display: inline-block;

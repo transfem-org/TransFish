@@ -81,6 +81,18 @@
 
 		<FormSection>
 			<template #label>{{ i18n.ts.accessibility }}</template>
+			<FormSwitch v-model="expandOnNoteClick" class="_formBlock"
+				>{{ i18n.ts.expandOnNoteClick
+				}}<template #caption>{{
+					i18n.ts.expandOnNoteClickDesc
+				}}</template>
+			</FormSwitch>
+			<FormSwitch v-model="advancedMfm" class="_formBlock">
+				{{ i18n.ts._mfm.advanced
+				}}<template #caption>{{
+					i18n.ts._mfm.advancedDescription
+				}}</template>
+			</FormSwitch>
 			<FormSwitch v-model="autoplayMfm" class="_formBlock">
 				{{ i18n.ts._mfm.alwaysPlay }}
 				<template #caption>
@@ -279,6 +291,7 @@ const showGapBetweenNotesInTimeline = computed(
 	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
 );
 const showAds = computed(defaultStore.makeGetterSetter("showAds"));
+const advancedMfm = computed(defaultStore.makeGetterSetter("advancedMfm"));
 const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
@@ -298,6 +311,9 @@ const imageNewTab = computed(defaultStore.makeGetterSetter("imageNewTab"));
 const nsfw = computed(defaultStore.makeGetterSetter("nsfw"));
 const disablePagesScript = computed(
 	defaultStore.makeGetterSetter("disablePagesScript")
+);
+const expandOnNoteClick = computed(
+	defaultStore.makeGetterSetter("expandOnNoteClick")
 );
 const showFixedPostForm = computed(
 	defaultStore.makeGetterSetter("showFixedPostForm")
@@ -365,7 +381,9 @@ watch(
 		swipeOnDesktop,
 		seperateRenoteQuote,
 		showAdminUpdates,
+		advancedMfm,
 		autoplayMfm,
+		expandOnNoteClick,
 	],
 	async () => {
 		await reloadAsk();

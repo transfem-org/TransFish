@@ -33,6 +33,10 @@
 			</div> *v-else on next div* -->
 				<div class="tl _block">
 					<swiper
+						:round-lengths="true"
+						:touch-angle="25"
+						:threshold="10"
+						:centeredSlides="true"
 						:modules="[Virtual]"
 						:space-between="20"
 						:virtual="true"
@@ -51,6 +55,7 @@
 							:virtual-index="index"
 						>
 							<XTimeline
+								v-if="index == timelines[swiperRef.activeIndex]"
 								ref="tl"
 								:key="src"
 								class="tl"
@@ -104,11 +109,11 @@ let timelines = ["home"];
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
 }
-if (isRecommendedTimelineAvailable) {
-	timelines.push("recommended");
-}
 if (isLocalTimelineAvailable) {
 	timelines.push("social");
+}
+if (isRecommendedTimelineAvailable) {
+	timelines.push("recommended");
 }
 if (isGlobalTimelineAvailable) {
 	timelines.push("global");
@@ -147,50 +152,54 @@ function top(): void {
 	scroll(rootEl, { top: 0 });
 }
 
-async function chooseList(ev: MouseEvent): Promise<void> {
-	const lists = await os.api("users/lists/list");
-	const items = [
-		{
-			type: "link" as const,
-			text: i18n.ts.manageLists,
-			icon: "ph-faders-horizontal ph-bold ph-lg",
-			to: "/my/lists",
-		},
-	].concat(
-		lists.map((list) => ({
-			type: "link" as const,
-			text: list.name,
-			icon: "",
-			to: `/timeline/list/${list.id}`,
-		}))
-	);
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
+const lists = os.api("users/lists/list");
+async function chooseList(ev: MouseEvent) {
+	await lists.then((res) => {
+		const items = [
+			{
+				type: "link" as const,
+				text: i18n.ts.manageLists,
+				icon: "ph-faders-horizontal ph-bold ph-lg",
+				to: "/my/lists",
+			},
+		].concat(
+			res.map((list) => ({
+				type: "link" as const,
+				text: list.name,
+				icon: "",
+				to: `/timeline/list/${list.id}`,
+			}))
+		);
+		os.popupMenu(items, ev.currentTarget ?? ev.target);
+	});
 }
 
-async function chooseAntenna(ev: MouseEvent): Promise<void> {
-	const antennas = await os.api("antennas/list");
-	const items = [
-		{
-			type: "link" as const,
-			indicate: false,
-			text: i18n.ts.manageAntennas,
-			icon: "ph-faders-horizontal ph-bold ph-lg",
-			to: "/my/antennas",
-		},
-	].concat(
-		antennas.map((antenna) => ({
-			type: "link" as const,
-			text: antenna.name,
-			icon: "",
-			indicate: antenna.hasUnreadNote,
-			to: `/timeline/antenna/${antenna.id}`,
-		}))
-	);
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
+const antennas = os.api("antennas/list");
+async function chooseAntenna(ev: MouseEvent) {
+	await antennas.then((res) => {
+		const items = [
+			{
+				type: "link" as const,
+				indicate: false,
+				text: i18n.ts.manageAntennas,
+				icon: "ph-faders-horizontal ph-bold ph-lg",
+				to: "/my/antennas",
+			},
+		].concat(
+			res.map((antenna) => ({
+				type: "link" as const,
+				text: antenna.name,
+				icon: "",
+				indicate: antenna.hasUnreadNote,
+				to: `/timeline/antenna/${antenna.id}`,
+			}))
+		);
+		os.popupMenu(items, ev.currentTarget ?? ev.target);
+	});
 }
 
 function saveSrc(
-	newSrc: "home" | "local" | "recommended" | "social" | "global"
+	newSrc: "home" | "local" | "social" | "recommended" | "global"
 ): void {
 	defaultStore.set("tl", {
 		...defaultStore.state.tl,
@@ -250,22 +259,22 @@ const headerTabs = $computed(() => [
 				},
 		  ]
 		: []),
-	...(isRecommendedTimelineAvailable
-		? [
-				{
-					key: "recommended",
-					title: i18n.ts._timelines.recommended,
-					icon: "ph-thumbs-up ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: []),
 	...(isLocalTimelineAvailable
 		? [
 				{
 					key: "social",
 					title: i18n.ts._timelines.social,
 					icon: "ph-handshake ph-bold ph-lg",
+					iconOnly: true,
+				},
+		  ]
+		: []),
+	...(isRecommendedTimelineAvailable
+		? [
+				{
+					key: "recommended",
+					title: i18n.ts._timelines.recommended,
+					icon: "ph-thumbs-up ph-bold ph-lg",
 					iconOnly: true,
 				},
 		  ]

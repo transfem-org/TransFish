@@ -1,22 +1,17 @@
 <template>
-	<div class="hoawjimk">
+	<div class="hoawjimk files">
 		<XBanner
 			v-for="media in mediaList.filter((media) => !previewable(media))"
 			:key="media.id"
 			:media="media"
 		/>
 		<div
-			v-if="mediaList.filter((media) => previewable(media)).length > 0"
-			class="gird-container"
+			v-if="previewableCount > 0"
+			class="grid-container"
+			:data-count="previewableCount < 5 ? previewableCount : null"
 			:class="{ dmWidth: inDm }"
 		>
-			<div
-				ref="gallery"
-				:data-count="
-					mediaList.filter((media) => previewable(media)).length
-				"
-				@click.stop
-			>
+			<div ref="gallery" @click.stop>
 				<template
 					v-for="media in mediaList.filter((media) =>
 						previewable(media)
@@ -191,6 +186,9 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 		FILE_TYPE_BROWSERSAFE.includes(file.type)
 	);
 };
+const previewableCount = props.mediaList.filter((media) =>
+	previewable(media)
+).length;
 </script>
 
 <style lang="scss" scoped>
@@ -200,7 +198,7 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 		max-width: 40rem;
 	}
 
-	> .gird-container {
+	> .grid-container {
 		position: relative;
 		width: 100%;
 		margin-top: 4px;
@@ -208,71 +206,74 @@ const previewable = (file: misskey.entities.DriveFile): boolean => {
 		overflow: hidden;
 		pointer-events: none;
 
-		&:before {
-			content: "";
-			display: block;
+		&[data-count] {
 			padding-top: 56.25%; // 16:9;
+			> div {
+				position: absolute;
+				inset: 0;
+			}
+		}
+
+		&[data-count="1"] > div {
+			grid-template-rows: 1fr;
+		}
+
+		&[data-count="2"] > div {
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr;
+		}
+
+		&[data-count="3"] > div {
+			grid-template-columns: 1fr 0.5fr;
+			grid-template-rows: 1fr 1fr;
+
+			> *:nth-child(1) {
+				grid-row: 1 / 3;
+			}
+
+			> *:nth-child(3) {
+				grid-column: 2 / 3;
+				grid-row: 2 / 3;
+			}
+		}
+
+		&[data-count="4"] > div {
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 1fr;
+		}
+
+		&:not([data-count]) > div > div {
+			max-height: 300px;
 		}
 
 		> div {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
 			display: grid;
 			grid-gap: 8px;
 
-			> * {
+			> div,
+			> button {
 				overflow: hidden;
 				border-radius: 6px;
 				pointer-events: all;
+				min-height: 50px;
 			}
 
-			&[data-count="1"] {
-				grid-template-rows: 1fr;
-			}
-
-			&[data-count="2"] {
-				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr;
-			}
-
-			&[data-count="3"] {
-				grid-template-columns: 1fr 0.5fr;
-				grid-template-rows: 1fr 1fr;
-
-				> *:nth-child(1) {
-					grid-row: 1 / 3;
-				}
-
-				> *:nth-child(3) {
-					grid-column: 2 / 3;
-					grid-row: 2 / 3;
-				}
-			}
-
-			&[data-count="4"] {
-				grid-template-columns: 1fr 1fr;
-				grid-template-rows: 1fr 1fr;
-			}
-
-			> *:nth-child(1) {
+			> :nth-child(1) {
 				grid-column: 1 / 2;
 				grid-row: 1 / 2;
 			}
 
-			> *:nth-child(2) {
+			> :nth-child(2) {
 				grid-column: 2 / 3;
 				grid-row: 1 / 2;
 			}
 
-			> *:nth-child(3) {
+			> :nth-child(3) {
 				grid-column: 1 / 2;
 				grid-row: 2 / 3;
 			}
 
-			> *:nth-child(4) {
+			> :nth-child(4) {
 				grid-column: 2 / 3;
 				grid-row: 2 / 3;
 			}

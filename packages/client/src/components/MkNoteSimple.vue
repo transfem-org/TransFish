@@ -20,8 +20,6 @@ const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 }>();
-
-const showContent = $ref(false);
 </script>
 
 <style lang="scss" scoped>

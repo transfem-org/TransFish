@@ -39,6 +39,12 @@ export type Source = {
 		collection?: string;
 		bucket?: string;
 	};
+	meilisearch: {
+		host: string;
+		port: number;
+		apiKey?: string;
+		ssl: boolean;
+	};
 
 	proxy?: string;
 	proxySmtp?: string;
@@ -54,7 +60,10 @@ export type Source = {
 
 	onlyQueueProcessor?: boolean;
 
-	id: string;
+	cuid?: {
+		length?: number;
+		fingerprint?: string;
+	};
 
 	outgoingAddressFamily?: "ipv4" | "ipv6" | "dual";
 

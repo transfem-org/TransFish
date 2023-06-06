@@ -1,4 +1,4 @@
-# Running a Calckey instance with Kubernetes and Helm
+# Running a Calckey server with Kubernetes and Helm
 
 This is a [Helm](https://helm.sh/) chart directory in the root of the project
 that you can use to deploy calckey to a Kubernetes cluster
@@ -27,7 +27,7 @@ helm upgrade \
     -f .config/helm_values.yml
 ```
 
-4. Watch your calckey instance spin up:
+4. Watch your calckey server spin up:
 ```shell
 kubectl -n calckey get po -w
 ```

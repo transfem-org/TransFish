@@ -7,7 +7,7 @@ export class StickySidebar {
 	private isTop = false;
 	private isBottom = false;
 	private offsetTop: number;
-	private globalHeaderHeight: number = 59;
+	private globalHeaderHeight = 59;
 
 	constructor(
 		container: StickySidebar["container"],

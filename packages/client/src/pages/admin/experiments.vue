@@ -16,10 +16,22 @@
 					<template #label>
 						<i class="ph-pencil-line ph-bold ph-lg"></i>
 						{{ i18n.ts._experiments.enablePostEditing }}
-						<span class="_beta"> {{ i18n.ts.beta }}</span>
 					</template>
 					<template #caption>{{
 						i18n.ts._experiments.postEditingCaption
+					}}</template>
+				</FormSwitch>
+				<FormSwitch
+					v-model="enablePostImports"
+					@update:modelValue="save"
+					class="_formBlock"
+				>
+					<template #label>
+						<i class="ph-download-simple ph-bold ph-lg"></i>
+						{{ i18n.ts._experiments.enablePostImports }}
+					</template>
+					<template #caption>{{
+						i18n.ts._experiments.postImportsCaption
 					}}</template>
 				</FormSwitch>
 			</FormSuspense>
@@ -38,11 +50,13 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
 let enablePostEditing = $ref(false);
+let enablePostImports = $ref(false);
 let meta = $ref<MetaExperiments | null>(null);
 
 type MetaExperiments = {
 	experimentalFeatures?: {
 		postEditing?: boolean;
+		postImports?: boolean;
 	};
 };
 
@@ -51,12 +65,14 @@ async function init() {
 	if (!meta) return;
 
 	enablePostEditing = meta.experimentalFeatures?.postEditing ?? false;
+	enablePostImports = meta.experimentalFeatures?.postImports ?? false;
 }
 
 function save() {
 	const experiments: MetaExperiments = {
 		experimentalFeatures: {
 			postEditing: enablePostEditing,
+			postImports: enablePostImports,
 		},
 	};
 	os.apiWithDialog("admin/update-meta", experiments).then(() => {

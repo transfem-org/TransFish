@@ -11,7 +11,7 @@ import { Antenna } from "./antenna.js";
 import { id } from "../id.js";
 
 @Entity()
-@Index(['noteId', 'antennaId'], { unique: true })
+@Index(["noteId", "antennaId"], { unique: true })
 export class AntennaNote {
 	@PrimaryColumn(id())
 	public id: string;
@@ -19,12 +19,12 @@ export class AntennaNote {
 	@Index()
 	@Column({
 		...id(),
-		comment: 'The note ID.',
+		comment: "The note ID.",
 	})
 	public noteId: Note["id"];
 
-	@ManyToOne(type => Note, {
-		onDelete: 'CASCADE',
+	@ManyToOne((type) => Note, {
+		onDelete: "CASCADE",
 	})
 	@JoinColumn()
 	public note: Note | null;
@@ -32,18 +32,18 @@ export class AntennaNote {
 	@Index()
 	@Column({
 		...id(),
-		comment: 'The antenna ID.',
+		comment: "The antenna ID.",
 	})
 	public antennaId: Antenna["id"];
 
-	@ManyToOne(type => Antenna, {
-		onDelete: 'CASCADE',
+	@ManyToOne((type) => Antenna, {
+		onDelete: "CASCADE",
 	})
 	@JoinColumn()
 	public antenna: Antenna | null;
 
 	@Index()
-	@Column('boolean', {
+	@Column("boolean", {
 		default: false,
 	})
 	public read: boolean;

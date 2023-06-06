@@ -26,6 +26,26 @@ export const defaultStore = markRaw(
 			where: "account",
 			default: 0,
 		},
+		tlHomeHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlLocalHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlRecommendedHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlSocialHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlGlobalHintClosed: {
+			where: "device",
+			default: false,
+		},
 		keepCw: {
 			where: "account",
 			default: true,
@@ -142,11 +162,19 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
+		expandOnNoteClick: {
+			where: "device",
+			default: true,
+		},
 		nsfw: {
 			where: "device",
 			default: "respect" as "respect" | "force" | "ignore",
 		},
 		animation: {
+			where: "device",
+			default: true,
+		},
+		advancedMfm: {
 			where: "device",
 			default: true,
 		},
