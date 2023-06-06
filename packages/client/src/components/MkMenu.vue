@@ -365,10 +365,6 @@ onBeforeUnmount(() => {
 			position: relative;
 		}
 
-		> &.icon {
-			transform: translateY(0em);
-		}
-
 		&:not(:disabled):hover,
 		&:focus-visible {
 			color: var(--accent);

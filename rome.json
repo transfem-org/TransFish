@@ -16,6 +16,7 @@
 			"packages/backend/nsfw-model/",
 			"packages/client/src/emojilist.json",
 			"*.md",
+			"**/tsconfig.json",
 			"*/.yml"
 		]
 	}

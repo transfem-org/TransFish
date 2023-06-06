@@ -18,7 +18,7 @@
 		"lint": "pnpm rome check \"src/**/*.ts\"",
 		"mocha": "cross-env NODE_ENV=test TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
 		"test": "pnpm run mocha",
-		"format": "pnpm rome format * --write && pnpm rome check --apply-suggested *"
+		"format": "pnpm rome format * --write && pnpm rome check --apply *"
 	},
 	"resolutions": {
 		"chokidar": "^3.3.1"
@@ -132,7 +132,7 @@
 		"tinycolor2": "1.5.2",
 		"tmp": "0.2.1",
 		"twemoji-parser": "14.0.0",
-		"typeorm": "0.3.16",
+		"typeorm": "0.3.11",
 		"ulid": "2.3.0",
 		"uuid": "9.0.0",
 		"web-push": "3.6.1",
