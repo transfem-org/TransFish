@@ -13,16 +13,20 @@ block desc
 
 block og
 	unless privateMode
-		meta(property='og:type'        content='blog')
-		meta(property='og:title'       content= title)
-		meta(property='og:description' content= profile.description)
-		meta(property='og:url'         content= url)
-		meta(property='og:image'       content= avatarUrl)
+		meta(property='og:type' content='profile')
+		meta(property='og:title'         content= title)
+		meta(property='og:description'   content= profile.description)
+		meta(property='og:url'           content= url)
+		meta(property='og:image'         content= avatarUrl)
+		meta(property='profile:username' content= user.username)
 
 block meta
 	unless privateMode
 		if user.host || profile.noCrawle
 			meta(name='robots' content='noindex')
+		if profile.preventAiLearning
+			meta(name='robots' content='noai')
+			meta(name='robots' content='noimageai')
 
 		meta(name='misskey:user-username' content=user.username)
 		meta(name='misskey:user-id' content=user.id)

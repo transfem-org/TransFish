@@ -1,5 +1,5 @@
 <template>
-	<div class="mvcprjjd" :class="{ iconOnly }">
+	<header class="mvcprjjd sidebar" :class="{ iconOnly }">
 		<div class="body">
 			<div class="top">
 				<div
@@ -22,7 +22,7 @@
 					/><!-- <MkAcct class="text" :user="$i"/> -->
 				</button>
 			</div>
-			<div class="middle">
+			<nav class="middle">
 				<MkA
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.timeline"
@@ -92,7 +92,12 @@
 					><i class="icon ph-door ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.controlPanel }}</span>
 				</MkA>
-				<button v-click-anime class="item _button" @click="more">
+				<button
+					v-click-anime
+					v-tooltip.noDelay.right="i18n.ts.more"
+					class="item _button"
+					@click="more"
+				>
 					<i
 						class="icon ph-dots-three-outline ph-bold ph-fw ph-lg"
 					></i
@@ -111,7 +116,7 @@
 					<i class="icon ph-gear-six ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.settings }}</span>
 				</MkA>
-			</div>
+			</nav>
 			<div class="bottom">
 				<button
 					v-tooltip.noDelay.right="i18n.ts.note"
@@ -137,7 +142,7 @@
 			</button> -->
 			</div>
 		</div>
-	</div>
+	</header>
 </template>
 
 <script lang="ts" setup>
@@ -172,7 +177,7 @@ const calcViewState = () => {
 
 calcViewState();
 
-window.addEventListener("resize", calcViewState);
+matchMedia("(max-width: 1279px)").onchange = (mql) => calcViewState();
 
 watch(defaultStore.reactiveState.menuDisplay, () => {
 	calcViewState();
@@ -236,23 +241,25 @@ function more(ev: MouseEvent) {
 .mvcprjjd {
 	$nav-width: 250px;
 	$nav-icon-only-width: 80px;
-
 	flex: 0 0 $nav-width;
 	width: $nav-width;
 	box-sizing: border-box;
 
 	> .body {
-		position: fixed;
+		position: sticky;
 		top: 0;
-		left: 0;
-		z-index: 1001;
 		width: $nav-icon-only-width;
 		// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 		height: calc(var(--vh, 1vh) * 100);
 		box-sizing: border-box;
 		overflow: auto;
 		overflow-x: clip;
-		background: var(--navBg);
+		#calckey_app > :not(.wallpaper) & {
+			background: var(--navBg);
+		}
+		#calckey_app > .wallpaper:not(.centered) & {
+			border-right: 1px solid var(--divider);
+		}
 		contain: strict;
 		display: flex;
 		flex-direction: column;
@@ -260,17 +267,15 @@ function more(ev: MouseEvent) {
 
 	&:not(.iconOnly) {
 		> .body {
+			margin-left: -200px;
+			padding-left: 200px;
+			box-sizing: content-box;
 			width: $nav-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
+				position: relative;
 				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
-
 				> .banner {
 					position: absolute;
 					top: 0;
@@ -298,12 +303,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					position: relative;
@@ -396,7 +396,8 @@ function more(ev: MouseEvent) {
 
 				> .item {
 					position: relative;
-					display: block;
+					display: flex;
+					align-items: center;
 					padding-left: 30px;
 					line-height: 2.85rem;
 					margin-bottom: 0.5rem;
@@ -410,7 +411,6 @@ function more(ev: MouseEvent) {
 						position: relative;
 						width: 32px;
 						margin-right: 8px;
-						transform: translateY(0.15em);
 					}
 
 					> .indicator {
@@ -474,13 +474,7 @@ function more(ev: MouseEvent) {
 			width: $nav-icon-only-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
-				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .account {
 					display: block;
@@ -497,12 +491,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					display: block;
@@ -543,7 +532,6 @@ function more(ev: MouseEvent) {
 					> .icon {
 						position: relative;
 						color: var(--fgOnAccent);
-						transform: translate(0.15em, 0em);
 					}
 
 					> .text {

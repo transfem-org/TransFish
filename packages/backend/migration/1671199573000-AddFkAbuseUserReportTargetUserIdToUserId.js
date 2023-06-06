@@ -12,7 +12,7 @@ export class addFkAbuseUserReportTargetUserIdToUserId1671199573000 {
 
 	async down(queryRunner) {
 		await queryRunner.query(
-			`ALTER TABLE abuse_user_report DROP CONSTRAINT fk_7f4e851a35d81b64dda28eee0`,
+			"ALTER TABLE abuse_user_report DROP CONSTRAINT fk_7f4e851a35d81b64dda28eee0",
 		);
 	}
 }

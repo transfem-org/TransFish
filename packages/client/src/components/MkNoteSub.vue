@@ -1,16 +1,24 @@
 <template>
-	<div
+	<article
+		v-if="!muted.muted || muted.what === 'reply'"
 		ref="el"
 		v-size="{ max: [450, 500] }"
 		class="wrpstxzv"
+		:id="detailedView ? appearNote.id : null"
+		tabindex="-1"
 		:class="{
 			children: depth > 1,
 			singleStart: replies.length == 1,
 			firstColumn: depth == 1 && conversation,
 		}"
+		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
-		<div class="main" @click="noteClick">
+		<div
+			class="main"
+			@click="noteClick"
+			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
+		>
 			<div class="avatar-container">
 				<MkAvatar class="avatar" :user="appearNote.user" />
 				<div
@@ -24,8 +32,9 @@
 					<MkSubNoteContent
 						class="text"
 						:note="note"
-						:parentId="appearNote.parentId"
+						:parentId="parentId"
 						:conversation="conversation"
+						:detailedView="detailedView"
 						@focusfooter="footerEl.focus()"
 					/>
 					<div v-if="translating || translation" class="translation">
@@ -126,32 +135,19 @@
 			</div>
 		</div>
 		<template v-if="conversation">
-			<template v-if="replyLevel < 11 && depth < 5">
-				<template v-if="replies.length == 1">
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply single"
-						:conversation="conversation"
-						:depth="depth"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-				<template v-else>
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply"
-						:conversation="conversation"
-						:depth="depth + 1"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-			</template>
+			<MkNoteSub
+				v-if="replyLevel < 11 && depth < 5"
+				v-for="reply in replies"
+				:key="reply.id"
+				:note="reply"
+				class="reply"
+				:class="{ single: replies.length == 1 }"
+				:conversation="conversation"
+				:depth="replies.length == 1 ? depth : depth + 1"
+				:replyLevel="replyLevel + 1"
+				:parentId="appearNote.id"
+				:detailedView="detailedView"
+			/>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
 				<MkA class="text _link" :to="notePage(note)"
@@ -160,6 +156,22 @@
 				></MkA>
 			</div>
 		</template>
+	</article>
+	<div v-else class="muted" @click="muted.muted = false">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
+			<template #name>
+				<MkA
+					v-user-preview="note.userId"
+					class="name"
+					:to="userPage(note.user)"
+				>
+					<MkUserName :user="note.user" />
+				</MkA>
+			</template>
+			<template #reason>
+				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
+			</template>
+		</I18n>
 	</div>
 </template>
 
@@ -174,16 +186,21 @@ import XStarButton from "@/components/MkStarButton.vue";
 import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getNoteMenu } from "@/scripts/get-note-menu";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
+import { userPage } from "@/filters/user";
 import * as os from "@/os";
 import { reactionPicker } from "@/scripts/reaction-picker";
+import { $i } from "@/account";
 import { i18n } from "@/i18n";
-import { deepClone } from "@/scripts/clone";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { defaultStore } from "@/store";
+import { deepClone } from "@/scripts/clone";
 
 const router = useRouter();
 
@@ -192,6 +209,7 @@ const props = withDefaults(
 		note: misskey.entities.Note;
 		conversation?: misskey.entities.Note[];
 		parentId?;
+		detailedView?;
 
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
@@ -205,6 +223,16 @@ const props = withDefaults(
 );
 
 let note = $ref(deepClone(props.note));
+
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
 
 const isRenote =
 	note.renote != null &&
@@ -222,6 +250,7 @@ let appearNote = $computed(() =>
 	isRenote ? (note.renote as misskey.entities.Note) : note
 );
 const isDeleted = ref(false);
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const replies: misskey.entities.Note[] =
@@ -233,23 +262,22 @@ const replies: misskey.entities.Note[] =
 		)
 		.reverse() ?? [];
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 useNoteCapture({
 	rootEl: el,
 	note: $$(appearNote),
+	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
-	os.post(
-		{
-			reply: appearNote,
-			animation: !viaKeyboard,
-		},
-		() => {
-			focus();
-		}
-	);
+	os.post({
+		reply: appearNote,
+		animation: !viaKeyboard,
+	}).then(() => {
+		focus();
+	});
 }
 
 function react(viaKeyboard = false): void {
@@ -299,6 +327,72 @@ function menu(viaKeyboard = false): void {
 	).then(focus);
 }
 
+function onContextmenu(ev: MouseEvent): void {
+	const isLink = (el: HTMLElement) => {
+		if (el.tagName === "A") return true;
+		if (el.parentElement) {
+			return isLink(el.parentElement);
+		}
+	};
+	if (isLink(ev.target)) return;
+	if (window.getSelection().toString() !== "") return;
+
+	if (defaultStore.state.useReactionPickerForContextMenu) {
+		ev.preventDefault();
+		react();
+	} else {
+		os.contextMenu(
+			[
+				{
+					type: "label",
+					text: notePage(appearNote),
+				},
+				{
+					icon: "ph-browser ph-bold ph-lg",
+					text: i18n.ts.openInWindow,
+					action: () => {
+						os.pageWindow(notePage(appearNote));
+					},
+				},
+				notePage(appearNote) != location.pathname
+					? {
+							icon: "ph-arrows-out-simple ph-bold ph-lg",
+							text: i18n.ts.showInPage,
+							action: () => {
+								router.push(notePage(appearNote), "forcePage");
+							},
+					  }
+					: undefined,
+				null,
+				{
+					type: "a",
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.openInNewTab,
+					href: notePage(appearNote),
+					target: "_blank",
+				},
+				{
+					icon: "ph-link-simple ph-bold ph-lg",
+					text: i18n.ts.copyLink,
+					action: () => {
+						copyToClipboard(`${url}${notePage(appearNote)}`);
+					},
+				},
+				note.user.host != null
+					? {
+							type: "a",
+							icon: "ph-arrow-square-up-right ph-bold ph-lg",
+							text: i18n.ts.showOnRemote,
+							href: note.url ?? note.uri ?? "",
+							target: "_blank",
+					  }
+					: undefined,
+			],
+			ev
+		);
+	}
+}
+
 function focus() {
 	el.value.focus();
 }
@@ -308,7 +402,7 @@ function blur() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range") {
+	if (document.getSelection().type === "Range" || !expandOnNoteClick) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(props.note));
@@ -319,6 +413,7 @@ function noteClick(e) {
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
+	outline: none;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
@@ -345,9 +440,9 @@ function noteClick(e) {
 		}
 
 		> .body {
+			position: relative;
 			flex: 1;
 			min-width: 0;
-			cursor: pointer;
 			margin: 0 -200px;
 			padding: 0 200px;
 			overflow: clip;
@@ -375,7 +470,8 @@ function noteClick(e) {
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 
-				> .button {
+				> :deep(.button) {
+					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
@@ -384,12 +480,34 @@ function noteClick(e) {
 					width: max-content;
 					min-width: max-content;
 					pointer-events: all;
+					height: auto;
 					transition: opacity 0.2s;
+					&::before {
+						content: "";
+						position: absolute;
+						inset: 0;
+						bottom: 2px;
+						background: var(--panel);
+						z-index: -1;
+						transition: background 0.2s;
+					}
 					&:first-of-type {
 						margin-left: -0.5em;
+						&::before {
+							border-radius: 100px 0 0 100px;
+						}
+					}
+					&:last-of-type {
+						&::before {
+							border-radius: 0 100px 100px 0;
+						}
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {
@@ -405,9 +523,33 @@ function noteClick(e) {
 			}
 		}
 	}
-	&:first-child > .main > .body {
-		margin-top: -200px;
-		padding-top: 200px;
+
+	&.reply > .main {
+		margin-inline: -200px;
+		padding-inline: 200px;
+		&::before {
+			inset-inline: 176px !important;
+		}
+	}
+	&.reply,
+	&.reply-to {
+		> .main > .body {
+			margin-right: -24px;
+			padding-right: 24px;
+			margin-top: -12px;
+			padding-top: 12px;
+			margin-left: calc(0px - var(--avatarSize) - 32px);
+			padding-left: calc(var(--avatarSize) + 32px);
+			border-radius: var(--radius);
+		}
+	}
+	&.reply-to {
+		> .main > .body {
+			margin-left: calc(0px - var(--avatarSize) - 38px);
+			padding-left: calc(var(--avatarSize) + 38px);
+			margin-top: -16px;
+			padding-top: 16px;
+		}
 	}
 	&.reply {
 		--avatarSize: 38px;
@@ -431,6 +573,8 @@ function noteClick(e) {
 		padding-block: 10px;
 		font-weight: 600;
 		> .line {
+			position: relative;
+			z-index: 2;
 			flex-grow: 0 !important;
 			margin-top: -10px !important;
 			margin-bottom: 10px !important;
@@ -500,10 +644,12 @@ function noteClick(e) {
 		}
 		.line {
 			position: relative;
+			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
 			flex-grow: 1;
 			margin-bottom: -10px;
+			pointer-events: none;
 			&::before {
 				content: "";
 				position: absolute;
@@ -542,6 +688,7 @@ function noteClick(e) {
 		position: relative;
 		> .line {
 			position: absolute;
+			z-index: 2;
 			left: 0;
 			top: 0;
 			&::after {
@@ -615,6 +762,16 @@ function noteClick(e) {
 		> .main > .avatar-container {
 			margin-right: 10px;
 		}
+		&:first-child > .main > .body {
+			margin-top: -20px;
+			padding-top: 22px;
+		}
 	}
+}
+
+.muted {
+	padding: 8px;
+	text-align: center;
+	opacity: 0.7;
 }
 </style>

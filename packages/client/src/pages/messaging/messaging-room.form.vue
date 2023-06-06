@@ -17,16 +17,25 @@
 				{{ file.name }}
 			</div>
 			<div class="buttons">
-				<button class="_button" @click="chooseFile">
+				<button
+					class="_button"
+					@click="chooseFile"
+					:aria-label="i18n.t('attachFile')"
+				>
 					<i class="ph-upload ph-bold ph-lg"></i>
 				</button>
-				<button class="_button" @click="insertEmoji">
+				<button
+					class="_button"
+					@click="insertEmoji"
+					:aria-label="i18n.t('chooseEmoji')"
+				>
 					<i class="ph-smiley ph-bold ph-lg"></i>
 				</button>
 				<button
 					class="send _button"
 					:disabled="!canSend || sending"
 					:title="i18n.ts.send"
+					:aria-label="i18n.ts.send"
 					@click="send"
 				>
 					<template v-if="!sending"

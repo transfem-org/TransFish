@@ -92,11 +92,11 @@
 				</article>
 			</component>
 		</transition>
-		<div v-if="tweetId" class="expandTweet">
-			<a @click="tweetExpanded = true">
+		<div v-if="tweetId" class="expand-tweet">
+			<MkButton mini rounded @click="tweetExpanded = true">
 				<i class="ph-twitter-logo ph-bold ph-lg"></i>
 				{{ i18n.ts.expandTweet }}
-			</a>
+			</MkButton>
 		</div>
 	</div>
 </template>
@@ -105,6 +105,7 @@
 import { onMounted, onUnmounted } from "vue";
 import { url as local, lang } from "@/config";
 import { i18n } from "@/i18n";
+import MkButton from "@/components/MkButton.vue";
 
 const props = withDefaults(
 	defineProps<{
@@ -225,6 +226,10 @@ onUnmounted(() => {
 }
 
 .mk-url-preview {
+	> .expand-tweet {
+		margin-top: 0.5rem;
+	}
+
 	&.max-width_400px {
 		> .link {
 			font-size: 12px;

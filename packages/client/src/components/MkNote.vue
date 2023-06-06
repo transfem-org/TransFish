@@ -1,13 +1,15 @@
 <template>
 	<div
+		:aria-label="accessibleLabel"
 		v-if="!muted.muted"
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350, 300] }"
-		class="tkcbzcuz"
+		v-size="{ max: [500, 450, 350] }"
+		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
+		:id="appearNote.id"
 	>
 		<MkNoteSub
 			v-if="appearNote.reply && !detailedView"
@@ -66,6 +68,9 @@
 			class="article"
 			@contextmenu.stop="onContextmenu"
 			@click="noteClick"
+			:style="{
+				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
+			}"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -85,6 +90,7 @@
 						:parentId="appearNote.parentId"
 						@push="(e) => router.push(notePage(e))"
 						@focusfooter="footerEl.focus()"
+						@expanded="(e) => setPostExpanded(e)"
 					></MkSubNoteContent>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
@@ -104,6 +110,11 @@
 							/>
 						</div>
 					</div>
+				</div>
+				<div v-if="detailedView" class="info">
+					<MkA class="created-at" :to="notePage(appearNote)">
+						<MkTime :time="appearNote.createdAt" mode="absolute" />
+					</MkA>
 					<MkA
 						v-if="appearNote.channel && !inChannel"
 						class="channel"
@@ -112,11 +123,6 @@
 						><i class="ph-television ph-bold ph-lg"></i>
 						{{ appearNote.channel.name }}</MkA
 					>
-				</div>
-				<div v-if="detailedView" class="info">
-					<MkA class="created-at" :to="notePage(appearNote)">
-						<MkTime :time="appearNote.createdAt" mode="absolute" />
-					</MkA>
 				</div>
 				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
 					<XReactionsViewer
@@ -130,7 +136,9 @@
 						@click="reply()"
 					>
 						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-						<template v-if="appearNote.repliesCount > 0">
+						<template
+							v-if="appearNote.repliesCount > 0 && !detailedView"
+						>
 							<p class="count">{{ appearNote.repliesCount }}</p>
 						</template>
 					</button>
@@ -139,6 +147,7 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
+						:detailedView="detailedView"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
@@ -197,22 +206,22 @@
 			</div>
 		</article>
 	</div>
-	<div v-else class="muted" @click="muted.muted = false">
-		<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
+	<button v-else class="muted _button" @click="muted.muted = false">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
-					v-user-preview="appearNote.userId"
+					v-user-preview="note.userId"
 					class="name"
-					:to="userPage(appearNote.user)"
+					:to="userPage(note.user)"
 				>
-					<MkUserName :user="appearNote.user" />
+					<MkUserName :user="note.user" />
 				</MkA>
 			</template>
 			<template #reason>
 				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 			</template>
 		</I18n>
-	</div>
+	</button>
 </template>
 
 <script lang="ts" setup>
@@ -234,9 +243,11 @@ import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import MkVisibility from "@/components/MkVisibility.vue";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
 import { focusPrev, focusNext } from "@/scripts/focus";
-import { getWordMute } from "@/scripts/check-word-mute";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { useRouter } from "@/router";
 import { userPage } from "@/filters/user";
 import * as os from "@/os";
@@ -260,6 +271,16 @@ const props = defineProps<{
 const inChannel = inject("inChannel", null);
 
 let note = $ref(deepClone(props.note));
+
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
 
 // plugin
 if (noteViewInterruptors.length > 0) {
@@ -291,10 +312,11 @@ let appearNote = $computed(() =>
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 const keymap = {
 	r: () => reply(true),
@@ -359,6 +381,8 @@ const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 function onContextmenu(ev: MouseEvent): void {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === "A") return true;
+		// The Audio element's context menu is the browser default, such as for selecting playback speed.
+		if (el.tagName === "AUDIO") return true;
 		if (el.parentElement) {
 			return isLink(el.parentElement);
 		}
@@ -371,16 +395,54 @@ function onContextmenu(ev: MouseEvent): void {
 		react();
 	} else {
 		os.contextMenu(
-			getNoteMenu({
-				note: note,
-				translating,
-				translation,
-				menuButton,
-				isDeleted,
-				currentClipPage,
-			}),
+			[
+				{
+					type: "label",
+					text: notePage(appearNote),
+				},
+				{
+					icon: "ph-browser ph-bold ph-lg",
+					text: i18n.ts.openInWindow,
+					action: () => {
+						os.pageWindow(notePage(appearNote));
+					},
+				},
+				notePage(appearNote) != location.pathname
+					? {
+							icon: "ph-arrows-out-simple ph-bold ph-lg",
+							text: i18n.ts.showInPage,
+							action: () => {
+								router.push(notePage(appearNote), "forcePage");
+							},
+					  }
+					: undefined,
+				null,
+				{
+					type: "a",
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.openInNewTab,
+					href: notePage(appearNote),
+					target: "_blank",
+				},
+				{
+					icon: "ph-link-simple ph-bold ph-lg",
+					text: i18n.ts.copyLink,
+					action: () => {
+						copyToClipboard(`${url}${notePage(appearNote)}`);
+					},
+				},
+				appearNote.user.host != null
+					? {
+							type: "a",
+							icon: "ph-arrow-square-up-right ph-bold ph-lg",
+							text: i18n.ts.showOnRemote,
+							href: appearNote.url ?? appearNote.uri ?? "",
+							target: "_blank",
+					  }
+					: undefined,
+			],
 			ev
-		).then(focus);
+		);
 	}
 }
 
@@ -440,8 +502,16 @@ function focusAfter() {
 	focusNext(el.value);
 }
 
+function scrollIntoView() {
+	el.value.scrollIntoView();
+}
+
 function noteClick(e) {
-	if (document.getSelection().type === "Range" || props.detailedView) {
+	if (
+		document.getSelection().type === "Range" ||
+		props.detailedView ||
+		!expandOnNoteClick
+	) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(appearNote));
@@ -454,6 +524,45 @@ function readPromo() {
 	});
 	isDeleted.value = true;
 }
+
+let postIsExpanded = ref(false);
+
+function setPostExpanded(val: boolean) {
+	postIsExpanded.value = val;
+}
+
+const accessibleLabel = computed(() => {
+	let label = `${appearNote.user.username}; `;
+	if (appearNote.renote) {
+		label += `${i18n.t("renoted")} ${appearNote.renote.user.username}; `;
+		if (appearNote.renote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.renote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${appearNote.renote.text}; `;
+			}
+		} else {
+			label += `${appearNote.renote.text}; `;
+		}
+	} else {
+		if (appearNote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${appearNote.text}; `;
+			}
+		} else {
+			label += `${appearNote.text}; `;
+		}
+	}
+	const date = new Date(appearNote.createdAt);
+	label += `${date.toLocaleTimeString()}`;
+	return label;
+});
+
+defineExpose({
+	focus,
+	blur,
+	scrollIntoView,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -463,6 +572,7 @@ function readPromo() {
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
+	-webkit-tap-highlight-color: transparent;
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -510,13 +620,15 @@ function readPromo() {
 				display: block;
 				margin-bottom: -10px;
 				margin-top: 16px;
-				border-left: 2px solid var(--divider);
+				border-left: 2px solid var(--X13);
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 			}
 		}
 	}
 
 	.note-context {
+		position: relative;
+		z-index: 2;
 		padding: 0 32px 0 32px;
 		display: flex;
 		&:first-child {
@@ -529,11 +641,14 @@ function readPromo() {
 			line-height: 28px;
 		}
 		> .line {
+			position: relative;
+			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
 			margin-right: 14px;
 			margin-top: 0;
 			flex-grow: 0;
+			pointer-events: none;
 		}
 
 		> div > i {
@@ -597,8 +712,15 @@ function readPromo() {
 	}
 
 	> .article {
+		position: relative;
+		overflow: clip;
 		padding: 4px 32px 10px;
-		cursor: pointer;
+
+		&:first-child,
+		&:nth-child(2) {
+			margin-top: -100px;
+			padding-top: 104px;
+		}
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -627,14 +749,11 @@ function readPromo() {
 
 			> .body {
 				margin-top: 0.7em;
-
-				> .content {
-					> .translation {
-						border: solid 0.5px var(--divider);
-						border-radius: var(--radius);
-						padding: 12px;
-						margin-top: 8px;
-					}
+				> .translation {
+					border: solid 0.5px var(--divider);
+					border-radius: var(--radius);
+					padding: 12px;
+					margin-top: 8px;
 				}
 				> .renote {
 					padding-top: 8px;
@@ -649,14 +768,13 @@ function readPromo() {
 						}
 					}
 				}
-
-				> .channel {
-					opacity: 0.7;
-					font-size: 80%;
-				}
 			}
 			> .info {
-				margin-block: 16px;
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 0.7em;
+				margin-top: 16px;
 				opacity: 0.7;
 				font-size: 0.9em;
 			}
@@ -667,7 +785,8 @@ function readPromo() {
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 				margin-top: 0.4em;
-				> .button {
+				> :deep(.button) {
+					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
@@ -676,12 +795,34 @@ function readPromo() {
 					width: max-content;
 					min-width: max-content;
 					pointer-events: all;
+					height: auto;
 					transition: opacity 0.2s;
+					&::before {
+						content: "";
+						position: absolute;
+						inset: 0;
+						bottom: 2px;
+						background: var(--panel);
+						z-index: -1;
+						transition: background 0.2s;
+					}
 					&:first-of-type {
 						margin-left: -0.5em;
+						&::before {
+							border-radius: 100px 0 0 100px;
+						}
+					}
+					&:last-of-type {
+						&::before {
+							border-radius: 0 100px 100px 0;
+						}
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {
@@ -724,6 +865,10 @@ function readPromo() {
 		}
 		> .article {
 			padding: 4px 16px 8px;
+			&:first-child,
+			&:nth-child(2) {
+				padding-top: 104px;
+			}
 			> .main > .header-container > .avatar {
 				margin-right: 10px;
 				// top: calc(14px + var(--stickyTop, 0px));
@@ -740,5 +885,10 @@ function readPromo() {
 	padding: 8px;
 	text-align: center;
 	opacity: 0.7;
+	width: 100%;
+
+	._blur_text {
+		pointer-events: auto;
+	}
 }
 </style>

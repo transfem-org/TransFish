@@ -170,6 +170,14 @@ export const paramDef = {
 		objectStorageS3ForcePathStyle: { type: "boolean" },
 		enableIpLogging: { type: "boolean" },
 		enableActiveEmailValidation: { type: "boolean" },
+		experimentalFeatures: {
+			type: "object",
+			nullable: true,
+			properties: {
+				postEditing: { type: "boolean" },
+				postImports: { type: "boolean" },
+			},
+		},
 	},
 	required: [],
 } as const;
@@ -555,6 +563,10 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (ps.enableActiveEmailValidation !== undefined) {
 		set.enableActiveEmailValidation = ps.enableActiveEmailValidation;
+	}
+
+	if (ps.experimentalFeatures !== undefined) {
+		set.experimentalFeatures = ps.experimentalFeatures || undefined;
 	}
 
 	await db.transaction(async (transactionalEntityManager) => {

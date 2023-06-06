@@ -12,6 +12,7 @@ export const MFM_TAGS = [
 	"x4",
 	"scale",
 	"position",
+	"crop",
 	"fg",
 	"bg",
 	"font",
@@ -19,4 +20,5 @@ export const MFM_TAGS = [
 	"rainbow",
 	"sparkle",
 	"rotate",
+	"fade",
 ];

@@ -49,7 +49,7 @@ export function toTextWithReaction(status: Entity.Status[], host: string) {
 		if (t.reblog) t.reblog = toTextWithReaction([t.reblog], host)[0];
 		const reactions = t.emoji_reactions.map((r) => {
 			const emojiNotation = r.url ? `:${r.name.replace("@.", "")}:` : r.name;
-			return `${emojiNotation} (${r.count}${r.me ? `* ` : ""})`;
+			return `${emojiNotation} (${r.count}${r.me ? "* " : ""})`;
 		});
 		const reaction = t.emoji_reactions as Entity.Reaction[];
 		const emoji = t.emojis || [];

@@ -3,11 +3,12 @@
 		v-if="canRenote"
 		ref="buttonRef"
 		v-tooltip.noDelay.bottom="i18n.ts.renote"
-		class="eddddedb _button canRenote"
+		class="button _button canRenote"
+		:class="{ renoted: hasRenotedBefore }"
 		@click="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
-		<p v-if="count > 0" class="count">{{ count }}</p>
+		<p v-if="count > 0 && !detailedView" class="count">{{ count }}</p>
 	</button>
 	<button v-else class="eddddedb _button">
 		<i class="ph-prohibit ph-bold ph-lg"></i>
@@ -25,10 +26,12 @@ import { $i } from "@/account";
 import { useTooltip } from "@/scripts/use-tooltip";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
+import { MenuItem } from "@/types/menu";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	count: number;
+	detailedView?;
 }>();
 
 const buttonRef = ref<HTMLElement>();
@@ -62,18 +65,19 @@ useTooltip(buttonRef, async (showing) => {
 	);
 });
 
-const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
+let hasRenotedBefore = $ref(false);
+os.api("notes/renotes", {
+	noteId: props.note.id,
+	userId: $i.id,
+	limit: 1,
+}).then((res) => {
+	hasRenotedBefore = res.length > 0;
+});
+
+const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
 
-	const renotes = await os.api("notes/renotes", {
-		noteId: props.note.id,
-		limit: 11,
-	});
-
-	const users = renotes.map((x) => x.user.id);
-	const hasRenotedBefore = users.includes($i.id);
-
-	let buttonActions = [];
+	let buttonActions: Array<MenuItem> = [];
 
 	if (props.note.visibility === "public") {
 		buttonActions.push({
@@ -86,6 +90,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "public",
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -105,13 +110,14 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	if (["public", "home"].includes(props.note.visibility)) {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.home})`,
-			icons: ["ph-repeat ph-bold ph-lg", "ph-house ph-bold ph-lg"],
+			icon: "ph-house ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
 					visibility: "home",
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -131,10 +137,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	if (props.note.visibility === "specified") {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts.recipient})`,
-			icons: [
-				"ph-repeat ph-bold ph-lg",
-				"ph-envelope-simple-open ph-bold ph-lg",
-			],
+			icon: "ph-envelope-simple-open ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
@@ -142,6 +145,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 					visibility: "specified",
 					visibleUserIds: props.note.visibleUserIds,
 				});
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -159,16 +163,52 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 	} else {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts._visibility.followers})`,
-			icons: [
-				"ph-repeat ph-bold ph-lg",
-				"ph-lock-simple-open ph-bold ph-lg",
-			],
+			icon: "ph-lock ph-bold ph-lg",
 			danger: false,
 			action: () => {
 				os.api("notes/create", {
 					renoteId: props.note.id,
 					visibility: "followers",
 				});
+				hasRenotedBefore = true;
+				const el =
+					ev &&
+					((ev.currentTarget ?? ev.target) as
+						| HTMLElement
+						| null
+						| undefined);
+				if (el) {
+					const rect = el.getBoundingClientRect();
+					const x = rect.left + el.offsetWidth / 2;
+					const y = rect.top + el.offsetHeight / 2;
+					os.popup(Ripple, { x, y }, {}, "end");
+				}
+			},
+		});
+	}
+
+	if (canRenote) {
+		buttonActions.push({
+			text: `${i18n.ts.renote} (${i18n.ts.local})`,
+			icon: "ph-hand-fist ph-bold ph-lg",
+			danger: false,
+			action: () => {
+				os.api(
+					"notes/create",
+					props.note.visibility === "specified"
+						? {
+								renoteId: props.note.id,
+								visibility: props.note.visibility,
+								visibleUserIds: props.note.visibleUserIds,
+								localOnly: true,
+						  }
+						: {
+								renoteId: props.note.id,
+								visibility: props.note.visibility,
+								localOnly: true,
+						  }
+				);
+				hasRenotedBefore = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -207,6 +247,7 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 				os.api("notes/unrenote", {
 					noteId: props.note.id,
 				});
+				hasRenotedBefore = false;
 			},
 		});
 	}
@@ -215,25 +256,14 @@ const renote = async (viaKeyboard = false, ev?: MouseEvent) => {
 </script>
 
 <style lang="scss" scoped>
-.eddddedb {
-	display: inline-block;
-	height: 32px;
-	margin: 2px;
-	padding: 0 6px;
-	border-radius: 4px;
-
+.button {
 	&:not(.canRenote) {
 		cursor: default;
 	}
-
 	&.renoted {
-		background: var(--accent);
-	}
-
-	> .count {
-		display: inline;
-		margin-left: 8px;
-		opacity: 0.7;
+		color: var(--accent) !important;
+		opacity: 1 !important;
+		font-weight: 700;
 	}
 }
 </style>

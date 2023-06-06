@@ -14,7 +14,7 @@ block desc
 
 block og
 	unless privateMode
-		meta(property='og:type'        content='article')
+		meta(property='og:type' content='article')
 		meta(property='og:title'       content= title)
 		meta(property='og:description' content= post.description)
 		meta(property='og:url'         content= url)
@@ -24,6 +24,9 @@ block meta
 	unless privateMode
 		if user.host || profile.noCrawle
 			meta(name='robots' content='noindex')
+		if profile.preventAiLearning
+			meta(name='robots' content='noai')
+			meta(name='robots' content='noimageai')
 
 		meta(name='misskey:user-username' content=user.username)
 		meta(name='misskey:user-id' content=user.id)

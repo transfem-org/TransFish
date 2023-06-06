@@ -1,3 +1,4 @@
+import * as JSON5 from "json5";
 import { IsNull, MoreThan } from "typeorm";
 import config from "@/config/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
@@ -154,7 +155,7 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "/assets/ai.png",
+				default: "/static-assets/badges/info.png",
 			},
 			bannerUrl: {
 				type: "string",
@@ -165,7 +166,7 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://xn--931a.moe/aiart/yubitun.png",
+				default: "/static-assets/badges/error.png",
 			},
 			iconUrl: {
 				type: "string",
@@ -462,8 +463,13 @@ export default define(meta, paramDef, async (ps, me) => {
 		maxNoteTextLength: MAX_NOTE_TEXT_LENGTH, // 後方互換性のため
 		maxCaptionTextLength: MAX_CAPTION_TEXT_LENGTH,
 		emojis: instance.privateMode && !me ? [] : await Emojis.packMany(emojis),
-		defaultLightTheme: instance.defaultLightTheme,
-		defaultDarkTheme: instance.defaultDarkTheme,
+		// クライアントの手間を減らすためあらかじめJSONに変換しておく
+		defaultLightTheme: instance.defaultLightTheme
+			? JSON.stringify(JSON5.parse(instance.defaultLightTheme))
+			: null,
+		defaultDarkTheme: instance.defaultDarkTheme
+			? JSON.stringify(JSON5.parse(instance.defaultDarkTheme))
+			: null,
 		ads:
 			instance.privateMode && !me
 				? []
@@ -523,6 +529,8 @@ export default define(meta, paramDef, async (ps, me) => {
 			github: instance.enableGithubIntegration,
 			discord: instance.enableDiscordIntegration,
 			serviceWorker: instance.enableServiceWorker,
+			postEditing: instance.experimentalFeatures?.postEditing,
+			postImports: instance.experimentalFeatures?.postImports,
 			miauth: true,
 		};
 	}

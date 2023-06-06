@@ -1,8 +1,8 @@
 <template>
 	<MkStickyContainer>
-		<template #header><MkPageHeader /></template>
+		<template #header><MkPageHeader v-if="!popup" /></template>
 		<MkSpacer :content-max="800">
-			<div :class="$style.root">
+			<div class="mfm-cheat-sheet">
 				<div>{{ i18n.ts._mfm.intro }}</div>
 				<br />
 				<div class="section _block">
@@ -354,6 +354,30 @@
 					</div>
 				</div>
 				<div class="section _block">
+					<div class="title">{{ i18n.ts._mfm.fade }}</div>
+					<div class="content">
+						<p>{{ i18n.ts._mfm.fadeDescription }}</p>
+						<div class="preview">
+							<Mfm :text="preview_fade" />
+							<MkTextarea v-model="preview_fade"
+								><span>MFM</span></MkTextarea
+							>
+						</div>
+					</div>
+				</div>
+				<div class="section _block">
+					<div class="title">{{ i18n.ts._mfm.crop }}</div>
+					<div class="content">
+						<p>{{ i18n.ts._mfm.cropDescription }}</p>
+						<div class="preview">
+							<Mfm :text="preview_crop" />
+							<MkTextarea v-model="preview_crop"
+								><span>MFM</span></MkTextarea
+							>
+						</div>
+					</div>
+				</div>
+				<div class="section _block">
 					<div class="title">{{ i18n.ts._mfm.position }}</div>
 					<div class="content">
 						<p>{{ i18n.ts._mfm.positionDescription }}</p>
@@ -425,9 +449,13 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
 
+defineProps<{
+	popup?: boolean;
+}>();
+
 let preview_mention = $ref("@example");
 let preview_hashtag = $ref("#test");
-let preview_link = $ref(`[${i18n.ts._mfm.dummy}](https://example.com)`);
+let preview_link = $ref(`[${i18n.ts._mfm.dummy}](https://calckey.org)`);
 let preview_emoji = $ref(
 	instance.emojis.length ? `:${instance.emojis[0].name}:` : ":emojiname:"
 );
@@ -471,6 +499,9 @@ let preview_rotate = $ref(
 let preview_position = $ref(
 	"$[position.y=-1 Positioning]\n$[position.x=-1 Positioning]"
 );
+let preview_crop = $ref(
+	"$[crop.top=50 🍮] $[crop.right=50 🍮] $[crop.bottom=50 🍮] $[crop.left=50 🍮]"
+);
 let preview_scale = $ref(
 	"$[scale.x=1.3 Scaling]\n$[scale.x=1.3,y=2 Scaling]\n$[scale.y=0.3 Tiny scaling]"
 );
@@ -479,6 +510,7 @@ let preview_bg = $ref("$[bg.color=ff0000 Background color]");
 let preview_plain = $ref(
 	"<plain>**bold** @mention #hashtag `code` $[x2 🍮]</plain>"
 );
+let preview_fade = $ref("$[fade 🍮] $[fade.out 🍮] $[fade.speed=5s 🍮]");
 
 definePageMetadata({
 	title: i18n.ts._mfm.cheatSheet,
@@ -486,10 +518,8 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" module>
-.root {
-	background: var(--bg);
-
+<style lang="scss" scoped>
+.mfm-cheat-sheet {
 	> .section {
 		> .title {
 			position: sticky;
@@ -506,6 +536,7 @@ definePageMetadata({
 			> p {
 				margin: 0;
 				padding: 16px;
+				padding-top: 0;
 			}
 
 			> .preview {

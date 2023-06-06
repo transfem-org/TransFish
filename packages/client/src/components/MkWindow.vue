@@ -9,6 +9,7 @@
 			ref="rootEl"
 			class="ebkgocck"
 			:class="{ maximized }"
+			v-bind="$attrs"
 		>
 			<div
 				class="body _shadow _narrow_"
@@ -594,6 +595,11 @@ defineExpose({
 			overflow: auto;
 			background: var(--panel);
 		}
+	}
+
+	&.page-window > .body > .body {
+		background: var(--bg);
+		scrollbar-gutter: stable;
 	}
 
 	> .handle {

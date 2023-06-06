@@ -53,7 +53,7 @@ import { Poll } from "@/models/entities/poll.js";
 import { createNotification } from "../create-notification.js";
 import { isDuplicateKeyValueError } from "@/misc/is-duplicate-key-value-error.js";
 import { checkHitAntenna } from "@/misc/check-hit-antenna.js";
-import { getWordMute } from "@/misc/check-word-mute.js";
+import { getWordHardMute } from "@/misc/check-word-mute.js";
 import { addNoteToAntenna } from "../add-note-to-antenna.js";
 import { countSameRenotes } from "@/misc/count-same-renotes.js";
 import { deliverToRelays } from "../relay.js";
@@ -67,6 +67,7 @@ import type { UserProfile } from "@/models/entities/user-profile.js";
 import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
+import meilisearch from "../../db/meilisearch.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -163,12 +164,16 @@ export default async (
 		host: User["host"];
 		isSilenced: User["isSilenced"];
 		createdAt: User["createdAt"];
+		isBot: User["isBot"];
 	},
 	data: Option,
 	silent = false,
 ) =>
 	// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
 	new Promise<Note>(async (res, rej) => {
+		const dontFederateInitially =
+			data.localOnly || data.visibility === "hidden";
+
 		// If you reply outside the channel, match the scope of the target.
 		// TODO (I think it's a process that could be done on the client side, but it's server side for now.)
 		if (
@@ -195,6 +200,7 @@ export default async (
 		if (data.channel != null) data.visibility = "public";
 		if (data.channel != null) data.visibleUsers = [];
 		if (data.channel != null) data.localOnly = true;
+		if (data.visibility === "hidden") data.visibility = "public";
 
 		// enforce silent clients on server
 		if (
@@ -323,8 +329,8 @@ export default async (
 		res(note);
 
 		// 統計を更新
-		notesChart.update(note, true);
-		perUserNotesChart.update(user, note, true);
+		notesChart.update(note, true, user.isBot);
+		perUserNotesChart.update(user, note, true, user.isBot);
 
 		// Register host
 		if (Users.isRemoteUser(user)) {
@@ -354,9 +360,9 @@ export default async (
 			)
 			.then((us) => {
 				for (const u of us) {
-					getWordMute(note, { id: u.userId }, u.mutedWords).then(
+					getWordHardMute(data, { id: u.userId }, u.mutedWords).then(
 						(shouldMute) => {
-							if (shouldMute.muted) {
+							if (shouldMute) {
 								MutedNotes.insert({
 									id: genId(),
 									userId: u.userId,
@@ -399,6 +405,7 @@ export default async (
 		// この投稿を除く指定したユーザーによる指定したノートのリノートが存在しないとき
 		if (
 			data.renote &&
+			!user.isBot &&
 			(await countSameRenotes(user.id, data.renote.id, note.id)) === 0
 		) {
 			incRenoteCount(data.renote);
@@ -445,7 +452,9 @@ export default async (
 				}
 			}
 
-			publishNotesStream(note);
+			if (!dontFederateInitially) {
+				publishNotesStream(note);
+			}
 			if (note.replyId != null) {
 				// Only provide the reply note id here as the recipient may not be authorized to see the note.
 				publishNoteStream(note.replyId, "replied", {
@@ -544,7 +553,7 @@ export default async (
 			});
 
 			//#region AP deliver
-			if (Users.isLocalUser(user)) {
+			if (Users.isLocalUser(user) && !dontFederateInitially) {
 				(async () => {
 					const noteActivity = await renderNoteOrRenoteActivity(data, note);
 					const dm = new DeliverManager(user, noteActivity);
@@ -555,13 +564,13 @@ export default async (
 					}
 
 					// 投稿がリプライかつ投稿者がローカルユーザーかつリプライ先の投稿の投稿者がリモートユーザーなら配送
-					if (data.reply && data.reply.userHost !== null) {
+					if (data.reply?.userHost !== null) {
 						const u = await Users.findOneBy({ id: data.reply.userId });
 						if (u && Users.isRemoteUser(u)) dm.addDirectRecipe(u);
 					}
 
 					// 投稿がRenoteかつ投稿者がローカルユーザーかつRenote元の投稿の投稿者がリモートユーザーなら配送
-					if (data.renote && data.renote.userHost !== null) {
+					if (data.renote?.userHost !== null) {
 						const u = await Users.findOneBy({ id: data.renote.userId });
 						if (u && Users.isRemoteUser(u)) dm.addDirectRecipe(u);
 					}
@@ -587,20 +596,20 @@ export default async (
 				lastNotedAt: new Date(),
 			});
 
-			const count = await Notes.countBy({
+			await Notes.countBy({
 				userId: user.id,
 				channelId: data.channel.id,
 			}).then((count) => {
 				// この処理が行われるのはノート作成後なので、ノートが一つしかなかったら最初の投稿だと判断できる
 				// TODO: とはいえノートを削除して何回も投稿すればその分だけインクリメントされる雑さもあるのでどうにかしたい
-				if (count === 1) {
-					Channels.increment({ id: data.channel!.id }, "usersCount", 1);
+				if (count === 1 && data.channel != null) {
+					Channels.increment({ id: data.channel.id }, "usersCount", 1);
 				}
 			});
 		}
 
 		// Register to search database
-		await index(note);
+		await index(note, false);
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
@@ -640,9 +649,12 @@ async function insertNote(
 	emojis: string[],
 	mentionedUsers: MinimumUser[],
 ) {
+	if (data.createdAt === null || data.createdAt === undefined) {
+		data.createdAt = new Date();
+	}
 	const insert = new Note({
-		id: genId(data.createdAt!),
-		createdAt: data.createdAt!,
+		id: genId(data.createdAt),
+		createdAt: data.createdAt,
 		fileIds: data.files ? data.files.map((file) => file.id) : [],
 		replyId: data.reply ? data.reply.id : null,
 		renoteId: data.renote ? data.renote.id : null,
@@ -659,7 +671,7 @@ async function insertNote(
 		tags: tags.map((tag) => normalizeForSearch(tag)),
 		emojis,
 		userId: user.id,
-		localOnly: data.localOnly!,
+		localOnly: data.localOnly,
 		visibility: data.visibility as any,
 		visibleUserIds:
 			data.visibility === "specified"
@@ -740,7 +752,7 @@ async function insertNote(
 	}
 }
 
-export async function index(note: Note): Promise<void> {
+export async function index(note: Note, reindexing: boolean): Promise<void> {
 	if (!note.text) return;
 
 	if (config.elasticsearch && es) {
@@ -767,6 +779,10 @@ export async function index(note: Note): Promise<void> {
 			}),
 			note.text,
 		);
+	}
+
+	if (meilisearch && !reindexing) {
+		await meilisearch.ingestNote(note);
 	}
 }
 
@@ -857,7 +873,7 @@ function incNotesCountOfUser(user: { id: User["id"] }) {
 		.execute();
 }
 
-async function extractMentionedUsers(
+export async function extractMentionedUsers(
 	user: { host: User["host"] },
 	tokens: mfm.MfmNode[],
 ): Promise<User[]> {

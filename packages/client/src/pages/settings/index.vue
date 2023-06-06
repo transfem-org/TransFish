@@ -26,14 +26,14 @@
 							></MkSuperMenu>
 						</div>
 					</div>
-					<div
+					<section
 						v-if="!(narrow && currentPage?.route.name == null)"
 						class="main"
 					>
 						<div class="bkzroven">
 							<RouterView />
 						</div>
-					</div>
+					</section>
 				</div>
 			</div>
 		</MkSpacer>
@@ -224,7 +224,7 @@ const menuDef = computed(() => [
 				active: currentPage?.route.name === "api",
 			},
 			{
-				icon: "ph-lightning ph-bold ph-lg",
+				icon: "ph-webhooks-logo ph-bold ph-lg",
 				text: "Webhook",
 				to: "/settings/webhook",
 				active: currentPage?.route.name === "webhook",

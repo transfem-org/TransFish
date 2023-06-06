@@ -435,7 +435,6 @@ nothing: Δεν υπάρχει τίποτα να δείτε εδώ
 newNoteRecived: Υπάρχουν νέες δημοσιεύσεις
 passwordMatched: Ταιριάζει
 unmarkAsSensitive: Αναίρεση επισήμανσης ως Ευαίσθητο Περιεχόμενο (NSFW)
-withNFiles: '{n} αρχείο(-α)'
 blockedUsers: Μπλοκαρισμένα μέλη
 noteDeleteConfirm: Θέλετε σίγουρα να διαγράψετε αυτή τη δημοσίευση;
 preview: Προεπισκόπηση
@@ -489,7 +488,7 @@ perDay: Ανά Ημέρα
 software: Λογισμικό
 cpuAndMemory: CPU και Μνήμη
 noUsers: Δεν υπάρχουν μέλη
-processing: Επεξεργασία...
+processing: Επεξεργασία
 changePassword: Αλλαγή κωδικού
 security: Ασφάλεια
 featured: Προτεινόμενα

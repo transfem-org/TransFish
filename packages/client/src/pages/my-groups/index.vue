@@ -111,6 +111,10 @@ async function leave(group) {
 </script>
 
 <style lang="scss" scoped>
+._fullinfo {
+	display: none !important;
+}
+
 ._card {
 	margin-bottom: 1rem;
 	._title {

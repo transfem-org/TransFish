@@ -134,21 +134,23 @@
 						</div>
 						<div class="follow-container">
 							<div class="actions">
-								<MkFollowButton
-									v-if="$i != null && $i.id != user.id"
-									:user="user"
-									@refresh="emit('refresh')"
-									:inline="true"
-									:transparent="false"
-									:full="!narrow"
-									class="koudoku"
-								/>
-								<button class="menu _button" @click="menu">
+								<button
+									class="menu _button"
+									@click="menu"
+									v-tooltip="i18n.ts.menu"
+								>
 									<i
 										class="ph-dots-three-outline ph-bold ph-lg"
 									></i>
 								</button>
-								<!-- <MkFollowButton v-else-if="$i == null" :user="user" :remote="true" :inline="true" :transparent="false" :full="true" class="koudoku"/> -->
+								<MkFollowButton
+									:user="user"
+									@refresh="emit('refresh')"
+									:inline="true"
+									:transparent="false"
+									:full="true"
+									class="koudoku"
+								/>
 							</div>
 						</div>
 						<div class="description">
@@ -263,7 +265,7 @@
 					</div>
 				</div>
 
-				<div class="contents">
+				<div class="contents _gap">
 					<div v-if="user.pinnedNotes.length > 0" class="_gap">
 						<XNote
 							v-for="note in user.pinnedNotes"
@@ -491,29 +493,6 @@ onUnmounted(() => {
 						border-radius: 6px;
 					}
 
-					> .actions {
-						position: absolute;
-						top: 12px;
-						right: 12px;
-						padding: 8px;
-						border-radius: 24px;
-
-						> .menu {
-							vertical-align: bottom;
-							height: 31px;
-							width: 31px;
-							color: #fff;
-							text-shadow: 0 0 8px var(--shadow);
-							font-size: 16px;
-						}
-
-						> .koudoku {
-							margin-left: 4px;
-							width: 31px;
-							vertical-align: bottom;
-						}
-					}
-
 					> .title {
 						position: absolute;
 						bottom: 0;
@@ -582,22 +561,23 @@ onUnmounted(() => {
 
 					> .actions {
 						position: absolute;
-						top: 12px;
+						top: 6px;
 						right: 12px;
 						padding: 8px;
 						border-radius: 24px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
 
 						> .menu {
-							vertical-align: bottom;
 							height: 31px;
 							width: 31px;
 							color: --fg;
 							font-size: 16px;
 						}
 
-						> .koudoku {
-							margin-left: 4px;
-							vertical-align: bottom;
+						> :deep(.follow-button) {
+							margin-left: 8px;
 						}
 					}
 
@@ -798,6 +778,13 @@ onUnmounted(() => {
 
 				> .title {
 					display: block;
+					border-bottom: 0;
+					padding-bottom: 0;
+					> .bottom {
+						> .username {
+							margin-right: 0;
+						}
+					}
 				}
 
 				> .avatar {
@@ -823,15 +810,19 @@ onUnmounted(() => {
 				}
 
 				> .description {
-					top: -55px;
+					top: 0;
 					position: relative;
 				}
 
 				> .follow-container {
 					overflow: visible !important;
+					display: flex;
+					justify-content: center;
+					height: auto;
+					border-bottom: 1px solid var(--divider);
+					padding-bottom: 5px;
 					> .actions {
-						top: -110px;
-						right: 0px;
+						position: static;
 					}
 				}
 			}

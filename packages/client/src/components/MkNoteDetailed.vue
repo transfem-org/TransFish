@@ -10,43 +10,136 @@
 		:class="{ renote: isRenote }"
 	>
 		<MkNoteSub
+			v-if="conversation"
 			v-for="note in conversation"
 			:key="note.id"
-			class="reply-to-more"
-			:note="note"
-		/>
-		<MkNoteSub
-			v-if="appearNote.reply"
-			:note="appearNote.reply"
 			class="reply-to"
+			:note="note"
+			:detailedView="true"
+		/>
+		<MkLoading v-else-if="note.reply" mini />
+		<MkNoteSub
+			v-if="note.reply"
+			:note="note.reply"
+			class="reply-to"
+			:detailedView="true"
 		/>
 
-		<div ref="noteEl" class="article" tabindex="-1">
-			<MkNote
-				@contextmenu.stop="onContextmenu"
-				tabindex="-1"
-				:note="appearNote"
-				:detailedView="true"
-			></MkNote>
-		</div>
+		<MkNote
+			ref="noteEl"
+			@contextmenu.stop="onContextmenu"
+			tabindex="-1"
+			:note="note"
+			detailedView
+		></MkNote>
+
+		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
+			<option value="replies">
+				<!-- <i class="ph-arrow-u-up-left ph-bold ph-lg"></i> -->
+				<span v-if="note.repliesCount > 0" class="count">{{
+					note.repliesCount
+				}}</span>
+				{{ i18n.ts._notification._types.reply }}
+			</option>
+			<option value="renotes" v-if="note.renoteCount > 0">
+				<!-- <i class="ph-repeat ph-bold ph-lg"></i> -->
+				<span class="count">{{ note.renoteCount }}</span>
+				{{ i18n.ts._notification._types.renote }}
+			</option>
+			<option value="reactions" v-if="reactionsCount > 0">
+				<!-- <i class="ph-smiley ph-bold ph-lg"></i> -->
+				<span class="count">{{ reactionsCount }}</span>
+				{{ i18n.ts.reaction }}
+			</option>
+			<option value="quotes" v-if="directQuotes?.length > 0">
+				<!-- <i class="ph-quotes ph-bold ph-lg"></i> -->
+				<span class="count">{{ directQuotes.length }}</span>
+				{{ i18n.ts._notification._types.quote }}
+			</option>
+			<option value="clips" v-if="clips?.length > 0">
+				<!-- <i class="ph-paperclip ph-bold ph-lg"></i> -->
+				<span class="count">{{ clips.length }}</span>
+				{{ i18n.ts.clips }}
+			</option>
+		</MkTab>
 
 		<MkNoteSub
+			v-if="directReplies && tab === 'replies'"
 			v-for="note in directReplies"
 			:key="note.id"
 			:note="note"
 			class="reply"
 			:conversation="replies"
+			:detailedView="true"
+			:parentId="note.id"
 		/>
+		<MkLoading v-else-if="tab === 'replies' && note.repliesCount > 0" />
+
+		<MkNoteSub
+			v-if="directQuotes && tab === 'quotes'"
+			v-for="note in directQuotes"
+			:key="note.id"
+			:note="note"
+			class="reply"
+			:conversation="replies"
+			:detailedView="true"
+			:parentId="note.id"
+		/>
+		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
+
+		<!-- <MkPagination
+			v-if="tab === 'renotes'"
+			v-slot="{ items }"
+			ref="pagingComponent"
+			:pagination="pagination"
+		> -->
+		<MkUserCardMini
+			v-if="tab === 'renotes' && renotes"
+			v-for="item in renotes"
+			:key="item.user.id"
+			:user="item.user"
+			:with-chart="false"
+		/>
+		<!-- </MkPagination> -->
+		<MkLoading v-else-if="tab === 'renotes' && note.renoteCount > 0" />
+
+		<div v-if="tab === 'clips' && clips.length > 0" class="_content clips">
+			<MkA
+				v-for="item in clips"
+				:key="item.id"
+				:to="`/clips/${item.id}`"
+				class="item _panel"
+			>
+				<b>{{ item.name }}</b>
+				<div v-if="item.description" class="description">
+					{{ item.description }}
+				</div>
+				<div class="user">
+					<MkAvatar
+						:user="item.user"
+						class="avatar"
+						:show-indicator="true"
+					/>
+					<MkUserName :user="item.user" :nowrap="false" />
+				</div>
+			</MkA>
+		</div>
+		<MkLoading v-else-if="tab === 'clips' && clips.length > 0" />
+
+		<MkReactedUsers
+			v-if="tab === 'reactions' && reactionsCount > 0"
+			:note-id="note.id"
+		></MkReactedUsers>
 	</div>
 	<div v-else class="_panel muted" @click="muted.muted = false">
-		<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
-					v-user-preview="appearNote.userId"
+					v-user-preview="note.userId"
 					class="name"
-					:to="userPage(appearNote.user)"
+					:to="userPage(note.user)"
 				>
-					<MkUserName :user="appearNote.user" />
+					<MkUserName :user="note.user" />
 				</MkA>
 			</template>
 			<template #reason>
@@ -66,31 +159,21 @@ import {
 	reactive,
 	ref,
 } from "vue";
-import * as mfm from "mfm-js";
-import type * as misskey from "calckey-js";
+import * as misskey from "calckey-js";
+import MkTab from "@/components/MkTab.vue";
 import MkNote from "@/components/MkNote.vue";
 import MkNoteSub from "@/components/MkNoteSub.vue";
-import XNoteSimple from "@/components/MkNoteSimple.vue";
-import XReactionsViewer from "@/components/MkReactionsViewer.vue";
-import XMediaList from "@/components/MkMediaList.vue";
-import XCwButton from "@/components/MkCwButton.vue";
-import XPoll from "@/components/MkPoll.vue";
 import XStarButton from "@/components/MkStarButton.vue";
-import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
-import XQuoteButton from "@/components/MkQuoteButton.vue";
-import MkUrlPreview from "@/components/MkUrlPreview.vue";
-import MkInstanceTicker from "@/components/MkInstanceTicker.vue";
-import MkVisibility from "@/components/MkVisibility.vue";
+import MkPagination from "@/components/MkPagination.vue";
+import MkUserCardMini from "@/components/MkUserCardMini.vue";
+import MkReactedUsers from "@/components/MkReactedUsers.vue";
 import { pleaseLogin } from "@/scripts/please-login";
-import { getWordMute } from "@/scripts/check-word-mute";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { userPage } from "@/filters/user";
-import { notePage } from "@/filters/note";
-import { useRouter } from "@/router";
 import * as os from "@/os";
 import { defaultStore, noteViewInterruptors } from "@/store";
 import { reactionPicker } from "@/scripts/reaction-picker";
-import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { getNoteMenu } from "@/scripts/get-note-menu";
@@ -98,19 +181,26 @@ import { useNoteCapture } from "@/scripts/use-note-capture";
 import { deepClone } from "@/scripts/clone";
 import { stream } from "@/stream";
 import { NoteUpdatedEvent } from "calckey-js/built/streaming.types";
-
-const router = useRouter();
+import appear from "@/directives/appear";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 }>();
 
-const inChannel = inject("inChannel", null);
+let tab = $ref("replies");
 
 let note = $ref(deepClone(props.note));
 
-const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
 
 // plugin
 if (noteViewInterruptors.length > 0) {
@@ -123,39 +213,28 @@ if (noteViewInterruptors.length > 0) {
 	});
 }
 
-const isRenote =
-	note.renote != null &&
-	note.text == null &&
-	note.fileIds.length === 0 &&
-	note.poll == null;
-
 const el = ref<HTMLElement>();
 const noteEl = $ref();
 const menuButton = ref<HTMLElement>();
-const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
-const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
-let appearNote = $computed(() =>
-	isRenote ? (note.renote as misskey.entities.Note) : note
-);
-const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
-const urls = appearNote.text
-	? extractUrlFromMfm(mfm.parse(appearNote.text)).slice(0, 5)
-	: null;
-const showTicker =
-	defaultStore.state.instanceTicker === "always" ||
-	(defaultStore.state.instanceTicker === "remote" &&
-		appearNote.user.instance);
-const conversation = ref<misskey.entities.Note[]>([]);
+let conversation = $ref<null | misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
-const directReplies = ref<misskey.entities.Note[]>([]);
+let directReplies = $ref<null | misskey.entities.Note[]>([]);
+let directQuotes = $ref<null | misskey.entities.Note[]>([]);
+let clips = $ref();
+let renotes = $ref();
 let isScrolling;
+
+const reactionsCount = Object.values(props.note.reactions).reduce(
+	(x, y) => x + y,
+	0
+);
 
 const keymap = {
 	r: () => reply(true),
@@ -168,21 +247,18 @@ const keymap = {
 
 useNoteCapture({
 	rootEl: el,
-	note: $$(appearNote),
+	note: $$(note),
 	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
-	os.post(
-		{
-			reply: appearNote,
-			animation: !viaKeyboard,
-		},
-		() => {
-			focus();
-		}
-	);
+	os.post({
+		reply: note,
+		animation: !viaKeyboard,
+	}).then(() => {
+		focus();
+	});
 }
 
 function react(viaKeyboard = false): void {
@@ -192,7 +268,7 @@ function react(viaKeyboard = false): void {
 		reactButton.value,
 		(reaction) => {
 			os.api("notes/reactions/create", {
-				noteId: appearNote.id,
+				noteId: note.id,
 				reaction: reaction,
 			});
 		},
@@ -253,29 +329,6 @@ function menu(viaKeyboard = false): void {
 	).then(focus);
 }
 
-function showRenoteMenu(viaKeyboard = false): void {
-	if (!isMyRenote) return;
-	os.popupMenu(
-		[
-			{
-				text: i18n.ts.unrenote,
-				icon: "ph-trash ph-bold ph-lg",
-				danger: true,
-				action: () => {
-					os.api("notes/delete", {
-						noteId: note.id,
-					});
-					isDeleted.value = true;
-				},
-			},
-		],
-		renoteTime.value,
-		{
-			viaKeyboard: viaKeyboard,
-		}
-	);
-}
-
 function focus() {
 	noteEl.focus();
 }
@@ -284,44 +337,103 @@ function blur() {
 	noteEl.blur();
 }
 
+directReplies = null;
 os.api("notes/children", {
-	noteId: appearNote.id,
+	noteId: note.id,
 	limit: 30,
 	depth: 12,
 }).then((res) => {
+	res = res.reduce((acc, resNote) => {
+		if (resNote.userId == note.userId) {
+			return [...acc, resNote];
+		}
+		return [resNote, ...acc];
+	}, []);
 	replies.value = res;
-	directReplies.value = res
-		.filter(
-			(note) =>
-				note.replyId === appearNote.id ||
-				note.renoteId === appearNote.id
-		)
+	directReplies = res
+		.filter((resNote) => resNote.replyId === note.id)
 		.reverse();
+	directQuotes = res.filter((resNote) => resNote.renoteId === note.id);
 });
 
-if (appearNote.replyId) {
+conversation = null;
+if (note.replyId) {
 	os.api("notes/conversation", {
-		noteId: appearNote.replyId,
+		noteId: note.replyId,
 		limit: 30,
 	}).then((res) => {
-		conversation.value = res.reverse();
+		conversation = res.reverse();
 		focus();
 	});
 }
 
-function onNoteReplied(noteData: NoteUpdatedEvent): void {
-	const { type, id, body } = noteData;
-	if (type === "replied" && id === appearNote.id) {
-		const { id: createdId } = body;
+clips = null;
+os.api("notes/clips", {
+	noteId: note.id,
+}).then((res) => {
+	clips = res;
+});
 
-		os.api("notes/show", {
-			noteId: createdId,
-		}).then((note) => {
-			if (note.replyId === appearNote.id) {
-				replies.value.unshift(note);
-				directReplies.value.unshift(note);
-			}
+// const pagination = {
+// 	endpoint: "notes/renotes",
+// 	noteId: note.id,
+// 	limit: 10,
+// };
+
+// const pagingComponent = $ref<InstanceType<typeof MkPagination>>();
+
+renotes = null;
+function loadTab() {
+	if (tab === "renotes" && !renotes) {
+		os.api("notes/renotes", {
+			noteId: note.id,
+			limit: 100,
+		}).then((res) => {
+			renotes = res;
 		});
+	}
+}
+
+async function onNoteUpdated(noteData: NoteUpdatedEvent): Promise<void> {
+	const { type, id, body } = noteData;
+
+	let found = -1;
+	if (id === note.id) {
+		found = 0;
+	} else {
+		for (let i = 0; i < replies.value.length; i++) {
+			const reply = replies.value[i];
+			if (reply.id === id) {
+				found = i + 1;
+				break;
+			}
+		}
+	}
+
+	if (found === -1) {
+		return;
+	}
+
+	switch (type) {
+		case "replied":
+			const { id: createdId } = body;
+			const replyNote = await os.api("notes/show", {
+				noteId: createdId,
+			});
+
+			replies.value.splice(found, 0, replyNote);
+			if (found === 0) {
+				directReplies.push(replyNote);
+			}
+			break;
+
+		case "deleted":
+			if (found === 0) {
+				isDeleted.value = true;
+			} else {
+				replies.value.splice(found - 1, 1);
+			}
+			break;
 	}
 }
 
@@ -330,7 +442,7 @@ document.addEventListener("wheel", () => {
 });
 
 onMounted(() => {
-	stream.on("noteUpdated", onNoteReplied);
+	stream.on("noteUpdated", onNoteUpdated);
 	isScrolling = false;
 	noteEl.scrollIntoView();
 });
@@ -338,11 +450,14 @@ onMounted(() => {
 onUpdated(() => {
 	if (!isScrolling) {
 		noteEl.scrollIntoView();
+		if (location.hash) {
+			location.replace(location.hash); // Jump to highlighted reply
+		}
 	}
 });
 
 onUnmounted(() => {
-	stream.off("noteUpdated", onNoteReplied);
+	stream.off("noteUpdated", onNoteUpdated);
 });
 </script>
 
@@ -375,101 +490,57 @@ onUnmounted(() => {
 		}
 	}
 
-	&:hover > .article > .main > .footer > .button {
-		opacity: 1;
-	}
 	> .reply-to {
 		margin-bottom: -16px;
+		padding-bottom: 16px;
 	}
 
-	> .reply-to-more {
-		// opacity: 0.7;
-		cursor: pointer;
-
-		@media (pointer: coarse) {
-			cursor: default;
-		}
-	}
-
-	> .renote {
-		display: flex;
-		align-items: center;
-		padding: 16px 32px 8px 32px;
-		line-height: 28px;
-		white-space: pre;
-		color: var(--renote);
-
-		> .avatar {
-			flex-shrink: 0;
-			display: inline-block;
-			width: 28px;
-			height: 28px;
-			margin: 0 8px 0 0;
-			border-radius: 6px;
-		}
-
-		> i {
-			margin-right: 4px;
-		}
-
-		> span {
-			overflow: hidden;
-			flex-shrink: 1;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-
-			> .name {
-				font-weight: bold;
-			}
-		}
-
-		> .info {
-			margin-left: auto;
-			font-size: 0.9em;
-
-			> .time {
-				flex-shrink: 0;
-				color: inherit;
-
-				> .dropdownIcon {
-					margin-right: 4px;
-				}
-			}
-		}
-	}
-
-	> .renote + .article {
-		padding-top: 8px;
-	}
-
-	> .article {
-		padding-block: 28px 6px;
-		&:last-child {
-			padding-bottom: 24px;
-		}
-		font-size: 1.1em;
+	> :deep(.note-container) {
+		padding-block: 28px 0;
+		padding-top: 12px;
+		font-size: 1.1rem;
 		overflow: clip;
 		outline: none;
 		scroll-margin-top: calc(var(--stickyTop) + 20vh);
-		:deep(.article) {
-			cursor: unset;
+		&:not(:last-child) {
+			border-bottom: 1px solid var(--divider);
+			margin-bottom: 4px;
 		}
+		.article {
+			cursor: unset;
+			padding-bottom: 0;
+		}
+		&:first-child {
+			padding-top: 28px;
+		}
+	}
+
+	> :deep(.chips) {
+		padding-block: 6px 12px;
+		padding-left: 32px;
+		&:last-child {
+			margin-bottom: 12px;
+		}
+	}
+	> :deep(.user-card-mini),
+	> :deep(.reacted-users > *) {
+		padding-inline: 32px;
+		border-top: 1px solid var(--divider);
+		border-radius: 0;
+	}
+	> :deep(.reacted-users > div) {
+		padding-block: 12px;
 	}
 
 	> .reply {
 		border-top: solid 0.5px var(--divider);
-		cursor: pointer;
 		padding-top: 24px;
 		padding-bottom: 10px;
-		@media (pointer: coarse) {
-			cursor: default;
-		}
 	}
 
 	// Hover
-	.reply :deep(.main),
+	:deep(.reply > .main),
 	.reply-to,
-	.reply-to-more,
 	:deep(.more) {
 		position: relative;
 		&::before {
@@ -480,16 +551,21 @@ onUnmounted(() => {
 			background: var(--panelHighlight);
 			border-radius: var(--radius);
 			opacity: 0;
-			transition: opacity 0.2s;
+			transition: opacity 0.2s, background 0.2s;
 			z-index: -1;
 		}
-		&.reply-to,
-		&.reply-to-more {
+		&.reply-to {
 			&::before {
 				inset: 0px 8px;
 			}
+			&:not(.max-width_450px)::before {
+				bottom: 16px;
+			}
 			&:first-of-type::before {
 				top: 12px;
+			}
+			&.reply.max-width_500px:first-of-type::before {
+				top: 4px;
 			}
 		}
 		// &::after {
@@ -507,8 +583,10 @@ onUnmounted(() => {
 		}
 		&:hover,
 		&:focus-within {
+			--panel: var(--panelHighlight);
 			&::before {
 				opacity: 1;
+				background: var(--panelHighlight) !important;
 			}
 		}
 		// @media (pointer: coarse) {
@@ -522,55 +600,50 @@ onUnmounted(() => {
 		// 	}
 		// }
 	}
+	:deep(.reply:target > .main),
+	:deep(.reply-to:target) {
+		z-index: 2;
+		&::before {
+			outline: auto;
+			opacity: 1;
+			background: none;
+		}
+	}
 
 	&.max-width_500px {
 		font-size: 0.9em;
 	}
-
 	&.max-width_450px {
-		> .reply-to-more:first-child {
-			padding-top: 14px;
-		}
-		> .renote {
-			padding: 8px 16px 0 16px;
+		> .reply-to {
+			&::before {
+				inset-inline: -24px;
+			}
+			&:first-child {
+				padding-top: 14px;
+				&::before {
+					top: -24px;
+				}
+			}
 		}
 
-		> .article {
-			padding: 6px 0 0 0;
+		> :deep(.note-container) {
+			padding: 12px 0 0 0;
 			> .header > .body {
 				padding-left: 10px;
 			}
 		}
-	}
-
-	&.max-width_350px {
-		> .article {
-			> .main {
-				> .footer {
-					> .button {
-						&:not(:last-child) {
-							margin-right: 18px;
-						}
-					}
-				}
-			}
+		> .clips,
+		> :deep(.user-card-mini),
+		> :deep(.reacted-users > *) {
+			padding-inline: 16px !important;
+		}
+		> :deep(.underline) {
+			padding-left: 16px !important;
 		}
 	}
 
 	&.max-width_300px {
 		font-size: 0.825em;
-
-		> .article {
-			> .main {
-				> .footer {
-					> .button {
-						&:not(:last-child) {
-							margin-right: 12px;
-						}
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -578,5 +651,39 @@ onUnmounted(() => {
 	padding: 8px;
 	text-align: center;
 	opacity: 0.7;
+}
+
+.clips {
+	// want to redesign at some point
+	padding: 24px 32px;
+	padding-top: 0;
+	> .item {
+		display: block;
+		padding: 16px;
+		// background: var(--buttonBg);
+		border: 1px solid var(--divider);
+		margin-bottom: var(--margin);
+		transition: background 0.2s;
+		&:hover,
+		&:focus-within {
+			background: var(--panelHighlight);
+		}
+
+		> .description {
+			padding: 8px 0;
+		}
+
+		> .user {
+			$height: 32px;
+			padding-top: 16px;
+			border-top: solid 0.5px var(--divider);
+			line-height: $height;
+
+			> .avatar {
+				width: $height;
+				height: $height;
+			}
+		}
+	}
 }
 </style>
