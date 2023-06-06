@@ -462,21 +462,21 @@ describe("API visibility", () => {
 		it("[HTL] public-post が 自分が見れる", async(async () => {
 			const res = await request("/notes/timeline", { limit: 100 }, alice);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == pub.id);
+			const notes = res.body.filter((n: any) => n.id === pub.id);
 			assert.strictEqual(notes[0].text, "x");
 		}));
 
 		it("[HTL] public-post が 非フォロワーから見れない", async(async () => {
 			const res = await request("/notes/timeline", { limit: 100 }, other);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == pub.id);
+			const notes = res.body.filter((n: any) => n.id === pub.id);
 			assert.strictEqual(notes.length, 0);
 		}));
 
 		it("[HTL] followers-post が フォロワーから見れる", async(async () => {
 			const res = await request("/notes/timeline", { limit: 100 }, follower);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == fol.id);
+			const notes = res.body.filter((n: any) => n.id === fol.id);
 			assert.strictEqual(notes[0].text, "x");
 		}));
 		//#endregion
@@ -489,7 +489,7 @@ describe("API visibility", () => {
 				follower,
 			);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == folR.id);
+			const notes = res.body.filter((n: any) => n.id === folR.id);
 			assert.strictEqual(notes[0].text, "x");
 		}));
 
@@ -500,7 +500,7 @@ describe("API visibility", () => {
 				other,
 			);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == folR.id);
+			const notes = res.body.filter((n: any) => n.id === folR.id);
 			assert.strictEqual(notes.length, 0);
 		}));
 
@@ -511,7 +511,7 @@ describe("API visibility", () => {
 				target,
 			);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == folR.id);
+			const notes = res.body.filter((n: any) => n.id === folR.id);
 			assert.strictEqual(notes[0].text, "x");
 		}));
 		//#endregion
@@ -520,14 +520,14 @@ describe("API visibility", () => {
 		it("[mentions] followers-reply が 非フォロワー (リプライ先である) から見れる", async(async () => {
 			const res = await request("/notes/mentions", { limit: 100 }, target);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == folR.id);
+			const notes = res.body.filter((n: any) => n.id === folR.id);
 			assert.strictEqual(notes[0].text, "x");
 		}));
 
 		it("[mentions] followers-mention が 非フォロワー (メンション先である) から見れる", async(async () => {
 			const res = await request("/notes/mentions", { limit: 100 }, target);
 			assert.strictEqual(res.status, 200);
-			const notes = res.body.filter((n: any) => n.id == folM.id);
+			const notes = res.body.filter((n: any) => n.id === folM.id);
 			assert.strictEqual(notes[0].text, "@target x");
 		}));
 		//#endregion

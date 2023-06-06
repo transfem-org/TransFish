@@ -4,7 +4,8 @@
 	"scripts": {
 		"build": "webpack",
 		"watch": "pnpm swc src -d built -D -w",
-		"lint": "pnpm rome check \"src/**/*.ts\""
+		"lint": "pnpm rome check \"src/**/*.ts\"",
+		"format": "pnpm rome format * --write && pnpm rome check --apply-suggested *"
 	},
 	"devDependencies": {
 		"@swc/cli": "^0.1.62",
