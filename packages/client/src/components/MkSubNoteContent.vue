@@ -380,7 +380,7 @@ function focusFooter(ev) {
 			}
 			:deep(.fade) {
 				inset: 0;
-				top: 40px;
+				top: 90px;
 			}
 		}
 
