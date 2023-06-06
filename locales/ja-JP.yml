@@ -722,7 +722,8 @@ onlineUsersCount: "{n}人がオンライン"
 nUsers: "{n}ユーザー"
 nNotes: "{n}投稿"
 sendErrorReports: "エラーリポートを送信"
-sendErrorReportsDescription: "オンにすると、問題が発生したときにエラーの詳細情報がCalckeyに共有され、ソフトウェアの品質向上に役立てられます。エラー情報には、OSのバージョン、ブラウザの種類、行動履歴などが含まれます。"
+sendErrorReportsDescription: "オンにすると、問題が発生したときにエラーの詳細情報がCalckeyに共有され、ソフトウェアの品質向上に役立てられます。\n\
+  エラー情報には、OSのバージョン、ブラウザの種類、行動履歴などが含まれます。"
 myTheme: "マイテーマ"
 backgroundColor: "背景"
 accentColor: "アクセント"
@@ -1144,6 +1145,10 @@ _mfm:
   foregroundDescription: 文字の色を変更します。
   fade: フェード
   fadeDescription: フェードインとフェードアウトする。
+  crop: 切り抜き
+  cropDescription: 内容を切り抜く。
+  advancedDescription: オフにすると、アニメーション再生中を除いて基本的なMFMだけ表示します。
+  advanced: 高度なMFM
 _instanceTicker:
   none: "表示しない"
   remote: "リモートユーザーに表示"
@@ -1397,6 +1402,10 @@ _widgets:
   userList: "ユーザーリスト"
   _userList:
     chooseList: "リストを選択"
+  meiliStatus: サーバーステータス
+  serverInfo: サーバー情報
+  meiliSize: インデックスサイズ
+  meiliIndexCount: インデックス済みの投稿
 _cw:
   hide: "隠す"
   show: "もっと見る"
@@ -1863,7 +1872,10 @@ apps: "アプリ"
 _experiments:
   enablePostEditing: 投稿の編集機能を有効にする
   title: 試験的な機能
-  postEditingCaption: 投稿のメニューに既存の投稿を編集するボタンを表示します。
+  postEditingCaption: 投稿のメニューに既存の投稿を編集するボタンを表示し、他サーバーの編集も受信できるようにします。
+  postImportsCaption: 
+    ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
+  enablePostImports: 投稿のインポートを有効にする
 sendModMail: モデレーションノートを送る
 deleted: 削除済み
 editNote: 投稿を編集
@@ -1877,3 +1889,10 @@ accessibility: アクセシビリティ
 jumpToPrevious: 前に戻る
 cw: 閲覧注意
 silencedWarning: スパムの可能性があるため、これらのユーザーが所属するサーバーは管理者によりサイレンスされています。
+searchPlaceholder: Calckeyを検索
+channelFederationWarn: 現時点では、チャンネルは他のサーバーへ連合しません
+listsDesc: リストでは指定したユーザーだけのタイムラインを作れます。リストには「タイムライン」のページからアクセスできます。
+antennasDesc: "アンテナでは指定した条件に合致する投稿が表示されます。\nアンテナには「タイムライン」のページからアクセスできます。"
+expandOnNoteClickDesc: オフの場合、右クリックメニューか日付をクリックすることで開けます。
+expandOnNoteClick: クリックで投稿の詳細を開く
+clipsDesc: クリップは分類と共有ができるブックマークです。各投稿のメニューからクリップを作成できます。
