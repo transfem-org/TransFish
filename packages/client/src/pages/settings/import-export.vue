@@ -222,7 +222,7 @@ const importPosts = async (ev) => {
 	const file = await selectFile(ev.currentTarget ?? ev.target);
 	os.api("i/import-posts", {
 		fileId: file.id,
-		signatureCheck: importType.value === "mastodon" ? true : false,
+		type: importType.value,
 	})
 		.then(onImportSuccess)
 		.catch(onError);

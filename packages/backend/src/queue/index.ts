@@ -324,7 +324,7 @@ export function createImportPostsJob(
 		{
 			user: user,
 			fileId: fileId,
-			signatureCheck: signatureCheck,
+			type: type,
 		},
 		{
 			removeOnComplete: true,
