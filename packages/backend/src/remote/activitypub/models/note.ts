@@ -52,7 +52,8 @@ import { UserProfiles } from "@/models/index.js";
 import { In } from "typeorm";
 import { DB_MAX_IMAGE_COMMENT_LENGTH } from "@/misc/hard-limits.js";
 import { truncate } from "@/misc/truncate.js";
-import { type Size, getEmojiSize } from "@/misc/emoji-meta.js";
+import { type Size, getEmojiSize } from "@/misc/emoji-meta.js";\
+import { fetchMeta } from "@/misc/fetch-meta.js";
 
 const logger = apLogger;
 
@@ -544,6 +545,10 @@ function notEmpty(partial: Partial<any>) {
 export async function updateNote(value: string | IObject, resolver?: Resolver) {
 	const uri = typeof value === "string" ? value : value.id;
 	if (!uri) throw new Error("Missing note uri");
+	const instanceMeta = await fetchMeta();
+	if (instanceMeta.experimentalFeatures?.postEdits === false) {
+		throw new Error("Post edits disabled.");
+	}
 
 	// Skip if URI points to this server
 	if (uri.startsWith(`${config.url}/`)) throw new Error("uri points local");
