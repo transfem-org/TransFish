@@ -18,7 +18,7 @@
 		"lint": "pnpm rome check \"src/**/*.ts\"",
 		"mocha": "cross-env NODE_ENV=test TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=\"./test/tsconfig.json\" mocha",
 		"test": "pnpm run mocha",
-		"format": "pnpm rome format * --write && pnpm rome check --apply-suggested *"
+		"format": "pnpm rome format * --write && pnpm rome check --apply *"
 	},
 	"resolutions": {
 		"chokidar": "^3.3.1"
