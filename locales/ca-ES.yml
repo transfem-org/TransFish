@@ -228,6 +228,11 @@ _mfm:
   alwaysPlay: Reprodueix automàticament tots els MFM animats
   fade: Esvair
   fadeDescription: Esvaeix el contingut cap a dintre i cap en fora.
+  crop: Retallar
+  advanced: MFM avançat
+  advancedDescription: Si està desactivat, només permet l'etiquetatge bàsic tret que
+    es reproduïnt un MFM animat
+  cropDescription: Retalla el contingut.
 _theme:
   keys:
     mention: "Menció"
@@ -328,7 +333,7 @@ _2fa:
 _widgets:
   notifications: "Notificacions"
   timeline: "Línia de temps"
-  unixClock: Rellotge UNIX
+  unixClock: Rellotge d'UNIX
   federation: Federació
   instanceCloud: Núvol de servidors
   trends: Tendència
@@ -340,9 +345,9 @@ _widgets:
   onlineUsers: Usuaris en línia
   memo: Notes adhesives
   digitalClock: Rellotge digital
-  postForm: Formulari de notes
+  postForm: Formulari per publicar
   slideshow: Presentació de diapositives
-  serverMetric: Mètriques del servidor
+  serverMetric: Estadístiques del servidor
   userList: Llista d'usuaris
   rss: Lector d'RSS
   jobQueue: Cua de treball
@@ -350,6 +355,10 @@ _widgets:
     chooseList: Selecciona una llista
   aiscript: Consola AiScript
   button: Botó
+  serverInfo: Informació del servidor
+  meiliStatus: Estat del servidor
+  meiliSize: Mida de l'índex
+  meiliIndexCount: Publicacions indexades
 _cw:
   show: "Carregar més"
   files: '{count} fitxers'
@@ -1178,7 +1187,7 @@ large: Gran
 notificationSetting: Preferències de notificacions
 makeActive: Activar
 notificationSettingDesc: Tria el tipus de notificació que es veure.
-notifyAntenna: Notificar noves notes
+notifyAntenna: Notificar publicacions noves
 withFileAntenna: Només notes amb fitxers
 enableServiceworker: Activa les notificacions push per al teu navegador
 antennaUsersDescription: Escriu un nom d'usuari per línea
@@ -1618,7 +1627,7 @@ enableAutoSensitiveDescription: Permet la detecció i el marcatge automàtics de
 localOnly: Només local
 customKaTeXMacroDescription: "Configura macros per escriure expressions matemàtiques
   fàcilment! La notació s'ajusta a les definicions de l'ordre LaTeX i s'escriu com
-  a \\newcommand{\\name}{content} o \\newcommand{\\name}[nombre d'arguments]{contingut}.
+  a \\newcommand{\\ name}{content} o \\newcommand{\\name}[nombre d'arguments]{content}.
   Per exemple, \\newcommand{\\add}[2]{#1 + #2} ampliarà \\add{3}{foo} a 3 + foo. Els
   claudàtors que envolten el nom de la macro es poden canviar per claudàtors rodons
   o quadrats. Això afecta els claudàtors utilitzats per als arguments. Es pot definir
@@ -1677,10 +1686,10 @@ removeAllFollowing: Deixar de seguir a tots els usuaris que segueixes
 accentColor: Color principal
 textColor: Color del text
 value: Valor
-sendErrorReportsDescription: "Quant està activat quant aparegui un error, es compartirà
-  amb els desenvolupadors de Calckey, que ajudarà a millorar la qualitat.\nAixò inclourà
-  informació com la versió del teu sistema operatiu, el navegador que estiguis fent
-  servir, la teva activitat a Calckey, etc."
+sendErrorReportsDescription: "Quan està activat, quan es produeixi un problema la
+  informació detallada d'errors es compartirà amb Calckey, ajudant a millorar la qualitat
+  de Calckey.\nAixò inclourà informació com la versió del vostre sistema operatiu,
+  quin navegador utilitzeu, la vostra activitat a Calckey, etc."
 myTheme: El meu tema
 backgroundColor: Color de fons
 saveAs: Desa com...
@@ -1855,7 +1864,7 @@ _tutorial:
   step5_3: La línea de temps d'inici {icon} es on pots veure les publicacions dels
     comptes que segueixes.
   step5_6: La línia de temps de Recomanats {icon} és on pots veure les publicacions
-    dels servidors recomanen els administradors.
+    dels servidors que recomanen els administradors.
   step5_7: La línia de temps Global {icon} és on pots veure les publicacions de tots
     els servidors connectats.
   step6_1: Aleshores, què és aquest lloc?
@@ -2053,7 +2062,12 @@ _experiments:
   enablePostEditing: Activà l'edició de publicacions
   title: Experiments
   postEditingCaption: Mostra l'opció perquè els usuaris editin les seves publicacions
-    existents mitjançant el menú d'opcions de publicació
+    mitjançant el menú d'opcions de publicació, i permet rebre publicacions editades
+    d'altres servidors.
+  enablePostImports: Activar l'importació de publicacions
+  postImportsCaption: Permet els usuaris importar publicacions desde comptes a Calckey,
+    Misskey, Mastodon, Akkoma i Pleroma. Pot fer que el servidor vagi més lent durant
+    la càrrega si tens un coll d'ampolla a la cua.
 noGraze: Si us plau, desactiva l'extensió del navegador "Graze for Mastodon", ja que
   interfereix amb Calckey.
 accessibility: Accessibilitat
@@ -2064,3 +2078,14 @@ silencedWarning: S'està mostrant aquesta pàgina per què aquest usuari és d'u
   que l'administrador a silenciat, així que pot ser spam.
 jumpToPrevious: Vés a l'anterior
 cw: Avís de contingut
+antennasDesc: "Les antenes mostren publicacions noves que coincideixen amb els criteris
+  establerts!\nS'hi pot accedir des de la pàgina de línies de temps."
+expandOnNoteClick: Obre la publicació amb un clic
+expandOnNoteClickDesc: Si està desactivat, encara pots obrir les publicacions al menú
+  del botó dret o fent clic a la marca de temps.
+channelFederationWarn: Els canals encara no es federen amb altres servidors
+searchPlaceholder: Cerca a Calckey
+listsDesc: Les llistes et permeten crear línies de temps amb usuaris específics. Es
+  pot accedir des de la pàgina de línies de temps.
+clipsDesc: Els clips són com marcadors categoritzats que es poden compartir. Podeu
+  crear clips des del menú de publicacions individuals.
