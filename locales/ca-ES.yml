@@ -67,7 +67,7 @@ files: "Fitxers"
 download: "Baixa"
 driveFileDeleteConfirm: "Segur que vols eliminar el fitxer «{name}»? S'eliminarà de
   totes les notes que el continguin com a fitxer adjunt."
-unfollowConfirm: "Segur que vols deixar de seguir {name}?"
+unfollowConfirm: "Segur que vols deixar de seguir a {name}?"
 exportRequested: "Has sol·licitat una exportació. Això pot trigar una estona. S'afegirà
   al teu Disc un cop completada."
 importRequested: "Has sol·licitat una importació. Això pot trigar una estona."
@@ -139,7 +139,7 @@ searchByGoogle: "Cercar"
 file: "Fitxers"
 _email:
   _follow:
-    title: "t'ha seguit"
+    title: "Tens un nou seguidor"
   _receiveFollowRequest:
     title: Heu rebut una sol·licitud de seguiment
 _mfm:
@@ -382,7 +382,7 @@ _profile:
   metadataDescription: Fent servir això, podràs mostrar camps d'informació addicionals
     al vostre perfil.
 _exportOrImport:
-  followingList: "Seguint"
+  followingList: "Usuaris que segueixes"
   muteList: "Silencia"
   blockingList: "Bloqueja"
   userLists: "Llistes"
@@ -684,7 +684,7 @@ _pages:
 _notification:
   youWereFollowed: "t'ha seguit"
   _types:
-    follow: "Seguint"
+    follow: "Nous seguidors"
     mention: "Menció"
     renote: "Impulsos"
     quote: "Citar"
@@ -700,7 +700,7 @@ _notification:
   _actions:
     reply: "Respondre"
     renote: "Impulsos"
-    followBack: et va seguir de tornada
+    followBack: t'ha tornat el seguiment
   youGotQuote: "{name} t'ha citat"
   fileUploaded: El fitxer s'ha penjat correctament
   youGotMention: "{nom} t'ha esmentat"
@@ -780,7 +780,7 @@ showOnRemote: Mostra al servidor remot
 wallpaper: Fons de pantalla
 setWallpaper: Estableix fons de pantalla
 removeWallpaper: Elimina el fons de pantalla
-followConfirm: Segur que vols seguir a l'usuari {name}?
+followConfirm: Segur que vols seguir a {name}?
 proxyAccount: Compte proxy
 proxyAccountDescription: Un compte proxy es un compte que actua com un seguidor remot
   per a usuaris sota determinades condicions. Per exemple, quant un usuari afegeix
@@ -1238,7 +1238,7 @@ sample: Exemple
 abuseReports: Informes
 reportAbuse: Informe
 reporter: Informador
-reporterOrigin: Origen d'el informador
+reporterOrigin: Origen informador
 forwardReport: Envia l'informe a un servidor remot
 abuseReported: El teu informe ha sigut enviat. Moltes gràcies.
 reporteeOrigin: Origen de l'informe
@@ -1526,7 +1526,7 @@ aiChanMode: Ai-chan a la interfície d'usuari clàssica
 keepCw: Mantenir els avisos de contingut
 pubSub: Comptes Pub/Sub
 lastCommunication: Última comunicació
-breakFollowConfirm: Confirmes que vols eliminar un seguidor?
+breakFollowConfirm: Confirmes que vols eliminar el seguidor?
 itsOn: Activat
 itsOff: Desactivat
 emailRequiredForSignup: Requereix una adreça de correu electrònic per registrar-te
@@ -1585,7 +1585,7 @@ silenceThisInstance: Silencia el servidor
 silencedInstancesDescription: Llista amb els noms dels servidors que vols silenciar.
   Els comptes als servidors silenciats seran tractades com "Silenciades", només poden
   fer sol·licituds de seguiments, i no poden mencionar comptes locals si no les segueixen.
-  Això no afectarà els servidoes bloquejats.
+  Això no afectarà els servidors bloquejats.
 objectStorageEndpointDesc: Deixa això buit si fas servir AWS, S3, d'una altre manera
   específica un "endpoint" com a '<host>' o '<host>:<port>', depend del proveïdor
   que facis servir.
@@ -1673,7 +1673,7 @@ disablePagesScript: Desactivar AiScript a les pàgines
 updateRemoteUser: Actualitzar la informació de l'usuari remot
 deleteAllFiles: Esborrar tots els fitxers
 deleteAllFilesConfirm: Segur que vols esborrar tots els fitxers?
-removeAllFollowing: Deixar de seguir a tots els que segueixis
+removeAllFollowing: Deixar de seguir a tots els usuaris que segueixes
 accentColor: Color principal
 textColor: Color del text
 value: Valor
@@ -1822,7 +1822,7 @@ _channel:
   featured: Tendència
   owned: Propietari
   usersCount: '{n} Participants'
-  following: Seguit
+  following: Seguit per
   notesCount: '{n} Notes'
   nameAndDescription: Nom i descripció
   nameOnly: Només nom
@@ -1873,9 +1873,9 @@ _tutorial:
   step2_2: Proporcionar informació sobre qui sou facilitarà que altres puguin saber
     si volen veure les vostres notes o seguir-vos.
   step3_1: Ara toca seguir a algunes persones!
-  step3_2: "Les teves líneas de temps domèstiques i socials es basen en qui seguiu,
-    així que proveu de seguir un parell de comptes per començar.\nFeu clic al cercle
-    més situat a la part superior dreta d'un perfil per seguir-los."
+  step3_2: "Les teves líneas de temps d'inici i social es basen en qui seguiu, així
+    que proveu de seguir un parell de comptes per començar.\nFeu clic al cercle més
+    situat a la part superior dreta d'un perfil per seguir-los."
   step4_2: A algunes persones els agrada fer una publicació de {introduction} o un
     senzill "Hola món!"
   step5_1: Línies de temps, línies de temps a tot arreu!
@@ -1966,13 +1966,13 @@ _instanceCharts:
   users: Diferència en el nombre d'usuaris
   usersTotal: Nombre acumulat d'usuaris
   notes: Diferència en el nombre de notes
-  ffTotal: Nombre acumulat d'usuaris seguits/seguidors seguits
+  ffTotal: Nombre acumulat d'usuaris que segueixes/et segueixen
   cacheSize: Diferència en la mida de la memòria cau
   cacheSizeTotal: Mida total acumulada de la memòria cau
   files: Diferència en el nombre de fitxers
   filesTotal: Nombre acumulat de fitxers
   notesTotal: Nombre acumulat de notes
-  ff: "Diferència en el nombre d'usuaris seguits/seguidors seguits "
+  ff: "Diferència en el nombre d'usuaris que segueixes/que et segueixen "
 _timelines:
   home: Inici
   local: Local
@@ -2006,7 +2006,7 @@ _auth:
   callback: Tornant a l'aplicació
   denied: Accés denegat
   pleaseGoBack: Si us plau, torneu a l'aplicació
-  copyAsk: Enganxeu el següent codi d'autorització a l'aplicació
+  copyAsk: Posa el següent codi d'autorització a l'aplicació
 _weekday:
   wednesday: Dimecres
   saturday: Dissabte
@@ -2020,7 +2020,7 @@ _messaging:
   dms: Privat
 _antennaSources:
   all: Totes les notes
-  homeTimeline: Notes dels usuaris que segueixes
+  homeTimeline: Publicacions dels usuaris que segueixes
   users: Notes d'usuaris concrets
   userGroup: Notes d'usuaris d'un grup determinat
   userList: Notes d'una llista determinada d'usuaris

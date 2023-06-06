@@ -216,3 +216,21 @@ perHour: Hver time
 perDay: Hver dag
 stopActivityDelivery: Stop med at sende aktiviteter
 blockThisInstance: Blokere denne instans
+muteAndBlock: Mutes og blokeringer
+mutedUsers: Mutede brugere
+newer: nyere
+older: ældre
+silencedInstances: Nedtonede servere
+clearQueue: Ryd kø
+clearQueueConfirmTitle: Er du sikker på, at du ønsker at rydde køen?
+clearCachedFiles: Ryd cache
+clearCachedFilesConfirm: Er du sikker på, at du ønsker at slette alle cachede eksterne
+  filer?
+blockedInstances: Blokerede servere
+blockedInstancesDescription: Listen af navne på servere, du ønsker at blokere. Servere
+  på listen vil ikke længere kunne kommunikere med denne server.
+hiddenTags: Skjulte hashtags
+clearQueueConfirmText: De indlæg i denne kø, der ikke allerede er leveret, vil ikke
+  blive federeret. Denne operation er almindeligvis ikke påkrævet.
+jumpToPrevious: Spring til tidligere
+cw: Advarsel om indhold
