@@ -13,7 +13,7 @@
 			"packages/*/package-lock.json",
 			"packages/backend/src/server/web/manifest.ts",
 			"packages/backend/built/",
-			"packages/backend/nsfw-model/",
+			"*/model.json",
 			"packages/client/src/emojilist.json",
 			"*.md",
 			"**/tsconfig.json",

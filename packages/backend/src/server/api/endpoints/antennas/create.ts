@@ -107,9 +107,8 @@ export default define(meta, paramDef, async (ps, user) => {
 		userId: user.id,
 	});
 	if (antennas.length > 5 && !user.isAdmin) {
-		throw new ApiError(meta.errors.tooManyAntennas)
+		throw new ApiError(meta.errors.tooManyAntennas);
 	}
-
 
 	if (ps.src === "list" && ps.userListId) {
 		userList = await UserLists.findOneBy({
