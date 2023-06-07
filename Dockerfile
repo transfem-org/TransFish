@@ -3,7 +3,6 @@ FROM node:20-alpine as build
 WORKDIR /calckey
 
 # Install compilation dependencies
-RUN apk update
 RUN apk add --no-cache --no-progress git alpine-sdk python3 rust cargo vips
 
 # Copy only the dependency-related files first, to cache efficiently
