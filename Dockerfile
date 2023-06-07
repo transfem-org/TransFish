@@ -1,5 +1,5 @@
 ## Install dev and compilation dependencies, build files
-FROM node:19-alpine as build
+FROM node:20-alpine as build
 WORKDIR /calckey
 
 # Install compilation dependencies
@@ -32,7 +32,7 @@ RUN pnpm i --prod --frozen-lockfile
 
 
 ## Runtime container
-FROM node:19-alpine
+FROM node:20-alpine
 WORKDIR /calckey
 
 # Install runtime dependencies
