@@ -39,7 +39,7 @@
 				:meta="meta"
 			/>
 			<XMeili
-				v-else-if="widgetProps.view === 5"
+				v-else-if="instance.searchFilters && widgetProps.view === 5"
 				:connection="connection"
 				:meta="meta"
 			/>
@@ -67,6 +67,7 @@ import { GetFormResultType } from "@/scripts/form";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
+import { instance } from "@/instance";
 
 const name = "serverMetric";
 
