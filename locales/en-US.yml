@@ -1099,6 +1099,11 @@ noGraze: "Please disable the \"Graze for Mastodon\" browser extension, as it int
   with Calckey."
 silencedWarning: "This page is showing because these users are from servers your admin
   silenced, so they may potentially be spam."
+isBot: "This account is a bot"
+isLocked: "This account has follow approvals"
+isModerator: "Moderator"
+isAdmin: "Administrator"
+isPatron: "Calckey Patron"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
