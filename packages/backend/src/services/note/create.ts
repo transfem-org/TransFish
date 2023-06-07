@@ -718,14 +718,23 @@ async function insertNote(
 		if (insert.hasPoll) {
 			// Start transaction
 			await db.transaction(async (transactionalEntityManager) => {
+				if (!data.poll) throw new Error("Empty poll data");
+
 				await transactionalEntityManager.insert(Note, insert);
+
+				let expiresAt: Date | null;
+				if (!data.poll.expiresAt || isNaN(data.poll.expiresAt.getTime())) {
+					expiresAt = null;
+				} else {
+					expiresAt = data.poll.expiresAt;
+				}
 
 				const poll = new Poll({
 					noteId: insert.id,
-					choices: data.poll!.choices,
-					expiresAt: data.poll!.expiresAt,
-					multiple: data.poll!.multiple,
-					votes: new Array(data.poll!.choices.length).fill(0),
+					choices: data.poll.choices,
+					expiresAt,
+					multiple: data.poll.multiple,
+					votes: new Array(data.poll.choices.length).fill(0),
 					noteVisibility: insert.visibility,
 					userId: user.id,
 					userHost: user.host,
