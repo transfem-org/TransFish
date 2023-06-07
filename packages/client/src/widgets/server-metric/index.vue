@@ -109,7 +109,10 @@ os.api("server-info", {}).then((res) => {
 });
 
 const toggleView = () => {
-	if (widgetProps.view === 5) {
+	if (
+		(widgetProps.view === 5 && instance.searchFilters) ||
+		(widgetProps.view === 4 && !instance.searchFilters)
+	) {
 		widgetProps.view = 0;
 	} else {
 		widgetProps.view++;
