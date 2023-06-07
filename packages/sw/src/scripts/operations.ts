@@ -2,7 +2,7 @@
  * Operations
  * 各種操作
  */
-declare var self: ServiceWorkerGlobalScope;
+declare let self: ServiceWorkerGlobalScope;
 
 import * as Misskey from "calckey-js";
 import { SwMessage, swMessageOrderType } from "@/types";
