@@ -13,6 +13,9 @@ node_modules
 **/node_modules
 report.*.json
 
+# Rust
+packages/backend/native-utils/target/*
+
 # Cypress
 cypress/screenshots
 cypress/videos
