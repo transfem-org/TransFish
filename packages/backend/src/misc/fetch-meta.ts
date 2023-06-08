@@ -3,7 +3,7 @@ import { Meta } from "@/models/entities/meta.js";
 
 let cache: Meta;
 
-export function metaToPugArgs(meta: Meta) : object {
+export function metaToPugArgs(meta: Meta): object {
 	let motd = ["Loading..."];
 	if (meta.customMOTD.length > 0) {
 		motd = meta.customMOTD;
@@ -26,7 +26,7 @@ export function metaToPugArgs(meta: Meta) : object {
 		themeColor: meta.themeColor,
 		randomMOTD: motd[Math.floor(Math.random() * motd.length)],
 		privateMode: meta.privateMode,
-	}
+	};
 }
 
 export async function fetchMeta(noCache = false): Promise<Meta> {

@@ -68,5 +68,5 @@ body:
       options:
         - label: I agree to follow this project's Contribution Guidelines
           required: true
-		- label: I have searched the issue tracker for similar requests, and this is not a duplicate.
+        - label: I have searched the issue tracker for similar requests, and this is not a duplicate.
           required: true

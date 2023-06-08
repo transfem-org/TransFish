@@ -367,7 +367,7 @@ const userPage: Router.Middleware = async (ctx, next) => {
 		profile,
 		me,
 		avatarUrl: await Users.getAvatarUrl(user),
-		sub: subParam
+		sub: subParam,
 	};
 
 	await ctx.render("user", userDetail);
@@ -446,7 +446,7 @@ router.get("/posts/:note", async (ctx, next) => {
 				await Users.findOneByOrFail({ id: note.userId }),
 			),
 			// TODO: Let locale changeable by instance setting
-			summary: getNoteSummary(_note)
+			summary: getNoteSummary(_note),
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -482,7 +482,7 @@ router.get("/@:user/pages/:page", async (ctx, next) => {
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: page.userId }),
-			)
+			),
 		});
 
 		if (["public"].includes(page.visibility)) {
@@ -514,7 +514,7 @@ router.get("/clips/:clip", async (ctx, next) => {
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: clip.userId }),
-			)
+			),
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -539,7 +539,7 @@ router.get("/gallery/:post", async (ctx, next) => {
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: post.userId }),
-			)
+			),
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -561,7 +561,7 @@ router.get("/channels/:channel", async (ctx, next) => {
 		const meta = await fetchMeta();
 		await ctx.render("channel", {
 			...metaToPugArgs(meta),
-			channel: _channel
+			channel: _channel,
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -612,9 +612,9 @@ router.get("/api/v1/streaming", async (ctx) => {
 // Render base html for all requests
 router.get("(.*)", async (ctx) => {
 	const meta = await fetchMeta();
-	
+
 	await ctx.render("base", {
-		...metaToPugArgs(meta)
+		...metaToPugArgs(meta),
 	});
 	ctx.set("Cache-Control", "public, max-age=3");
 });
