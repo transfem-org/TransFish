@@ -1,5 +1,5 @@
 import define from "../define.js";
-import Logger from "@/services/logger.js";
+import { redisClient } from "@/db/redis.js";
 
 export const meta = {
 	tags: ["meta"],
@@ -17,16 +17,16 @@ export const paramDef = {
 
 export default define(meta, paramDef, async () => {
 	let patrons;
-	await fetch(
-		"https://codeberg.org/calckey/calckey/raw/branch/develop/patrons.json",
-	)
-		.then((response) => response.json())
-		.then((data) => {
-			patrons = data["patrons"];
-		})
-		.catch((error) => {
-			console.error("Error fetching patrons:", error);
-		});
+	const cachedPatrons = await redisClient.get("patrons");
+	if (cachedPatrons) {
+		patrons = JSON.parse(cachedPatrons);
+	}
+	else {
+		patrons = await fetch(
+			"https://codeberg.org/calckey/calckey/raw/branch/develop/patrons.json",
+		).then((response) => response.json());
+		await redisClient.set("patrons", JSON.stringify(patrons), "EX", 3600);
+	}
 
-	return patrons;
+	return patrons["patrons"];
 });
