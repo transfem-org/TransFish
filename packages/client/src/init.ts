@@ -219,7 +219,6 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 
 		const rootEl = document.createElement("div");
 		rootEl.id = MISSKEY_MOUNT_DIV_ID;
-		rootEl.style.height = "100%";
 		document.body.appendChild(rootEl);
 		return rootEl;
 	})();

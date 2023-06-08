@@ -73,7 +73,6 @@ html {
 body::-webkit-scrollbar {
 	width: 12px;
 	height: 12px;
-
 }
 body::-webkit-scrollbar-thumb {
 	border-radius: 100px;
@@ -111,7 +110,6 @@ html._themeChanging_ {
 html, body {
 	margin: 0;
 	padding: 0;
-	height: 100%;
 }
 
 .swiper-slide {
