@@ -1,4 +1,5 @@
 import define from "../define.js";
+import Logger from "@/services/logger.js";
 
 export const meta = {
 	tags: ["meta"],
@@ -22,6 +23,9 @@ export default define(meta, paramDef, async () => {
 		.then((response) => response.json())
 		.then((data) => {
 			patrons = data["patrons"];
+		})
+		.catch((error) => {
+			console.error("Error fetching patrons:", error);
 		});
 
 	return patrons;
