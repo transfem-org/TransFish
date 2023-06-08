@@ -421,7 +421,7 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-const patrons = $computed(async () => await os.api("patrons"));
+const patrons = await os.api("patrons");
 
 function menu(ev) {
 	os.popupMenu(
