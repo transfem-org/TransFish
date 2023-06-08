@@ -367,8 +367,6 @@ const props = withDefaults(
 
 const router = useRouter();
 
-const patrons = await os.api("patrons");
-
 let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
 let rootEl = $ref<null | HTMLElement>(null);
@@ -422,6 +420,8 @@ const timeForThem = $computed(() => {
 
 	return "";
 });
+
+const patrons = $computed(async () => await os.api("patrons"));
 
 function menu(ev) {
 	os.popupMenu(
