@@ -128,7 +128,11 @@
 					<button
 						v-else-if="!item.hidden"
 						class="_button item"
-						:class="{ danger: item.danger, accent: item.accent, active: item.active }"
+						:class="{
+							danger: item.danger,
+							accent: item.accent,
+							active: item.active,
+						}"
 						:disabled="item.active"
 						@click="clicked(item.action, $event)"
 						@mouseenter.passive="onItemMouseEnter(item)"
