@@ -81,6 +81,10 @@ function isMe(message): boolean {
 
 <style lang="scss" scoped>
 .rivslvers {
+	:not(.isMe):not(.isRead) {
+		background-color: var(--accentedBg);
+	}
+
 	> .message {
 		display: block;
 		text-decoration: none;
@@ -100,10 +104,6 @@ function isMe(message): boolean {
 		&.isRead,
 		&.isMe {
 			opacity: 0.8;
-		}
-
-		&:not(.isRead) {
-			background-color: var(--accentedBg);
 		}
 
 		&:after {
