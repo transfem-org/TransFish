@@ -2091,3 +2091,8 @@ listsDesc: Les llistes et permeten crear línies de temps amb usuaris específic
 clipsDesc: Els clips són com marcadors categoritzats que es poden compartir. Podeu
   crear clips des del menú de publicacions individuals.
 selectChannel: Selecciona un canal
+isLocked: Aquest compte té les següents aprovacions
+isPatron: Mecenes de Calkey
+isBot: Aquest compte és un bot
+isModerator: Moderador
+isAdmin: Administrador
