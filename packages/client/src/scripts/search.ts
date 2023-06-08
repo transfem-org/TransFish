@@ -18,9 +18,9 @@ export async function search() {
 	// const searchFiltersAvailable = instance.searchFilters;
 
 	const { canceled, result: query } = await os.inputText({
+		type: "search",
 		title: i18n.ts.search,
 		placeholder: i18n.ts.searchPlaceholder,
-		// text: searchOptions,
 	});
 	if (canceled || query == null || query === "") return;
 

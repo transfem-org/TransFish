@@ -346,7 +346,7 @@ export function yesno(props: {
 }
 
 export function inputText(props: {
-	type?: "text" | "email" | "password" | "url";
+	type?: "text" | "email" | "password" | "url" | "search";
 	title?: string | null;
 	text?: string | null;
 	placeholder?: string | null;
@@ -366,6 +366,7 @@ export function inputText(props: {
 				delay: 1000,
 			}),
 			{
+				type: props.type,
 				title: props.title,
 				text: props.text,
 				input: {
@@ -837,6 +838,7 @@ export function popupMenu(
 		align?: string;
 		width?: number;
 		viaKeyboard?: boolean;
+		noReturnFocus?: boolean;
 	},
 ) {
 	return new Promise((resolve, reject) => {
@@ -853,6 +855,7 @@ export function popupMenu(
 				width: options?.width,
 				align: options?.align,
 				viaKeyboard: options?.viaKeyboard,
+				noReturnFocus: options?.noReturnFocus,
 			},
 			{
 				closed: () => {

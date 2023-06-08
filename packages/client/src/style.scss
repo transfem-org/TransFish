@@ -482,6 +482,17 @@ hr {
 	}
 }
 
+._flexList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .2em;
+	width: min-content;
+	min-width: 100%;
+	&._center {
+		justify-content: center;
+	}
+}
+
 ._formLinks {
 	> *:not(:last-child) {
 		margin-bottom: 8px;
