@@ -393,6 +393,7 @@ export function getNoteMenu(props: {
 				? {
 						icon: "ph-pencil-line ph-bold ph-lg",
 						text: i18n.ts.edit,
+						accent: true,
 						action: edit,
 				  }
 				: undefined,
