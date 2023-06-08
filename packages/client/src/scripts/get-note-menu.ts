@@ -262,13 +262,6 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
-			instance.features.postEditing && isAppearAuthor
-				? {
-						icon: "ph-pencil-line ph-bold ph-lg",
-						text: i18n.ts.edit,
-						action: edit,
-				  }
-				: undefined,
 			{
 				icon: "ph-clipboard-text ph-bold ph-lg",
 				text: i18n.ts.copyContent,
@@ -372,47 +365,51 @@ export function getNoteMenu(props: {
 			}]
 			: []
 		),*/
-			...(!isAppearAuthor
-				? [
-						null,
-						{
-							icon: "ph-warning-circle ph-bold ph-lg",
-							text: i18n.ts.reportAbuse,
-							action: () => {
-								const u =
-									appearNote.url ||
-									appearNote.uri ||
-									`${url}/notes/${appearNote.id}`;
-								os.popup(
-									defineAsyncComponent(
-										() => import("@/components/MkAbuseReportWindow.vue"),
-									),
-									{
-										user: appearNote.user,
-										initialComment: `Note: ${u}\n-----\n`,
-									},
-									{},
-									"closed",
-								);
-							},
+			null,
+			!isAppearAuthor
+				? {
+						icon: "ph-warning-circle ph-bold ph-lg",
+						text: i18n.ts.reportAbuse,
+						action: () => {
+							const u =
+								appearNote.url ||
+								appearNote.uri ||
+								`${url}/notes/${appearNote.id}`;
+							os.popup(
+								defineAsyncComponent(
+									() => import("@/components/MkAbuseReportWindow.vue"),
+								),
+								{
+									user: appearNote.user,
+									initialComment: `Note: ${u}\n-----\n`,
+								},
+								{},
+								"closed",
+							);
 						},
-				  ]
-				: []),
-
+					}
+				: undefined,
+			instance.features.postEditing && isAppearAuthor
+				? {
+						icon: "ph-pencil-line ph-bold ph-lg",
+						text: i18n.ts.edit,
+						accent: true,
+						action: edit,
+				  }
+				: undefined,
+			isAppearAuthor
+				? {
+						icon: "ph-eraser ph-bold ph-lg",
+						text: i18n.ts.deleteAndEdit,
+						action: delEdit,
+				  }
+				: undefined,
 			isAppearAuthor || isModerator
 				? {
 						icon: "ph-trash ph-bold ph-lg",
 						text: i18n.ts.delete,
 						danger: true,
 						action: del,
-				  }
-				: undefined,
-
-			isAppearAuthor
-				? {
-						icon: "ph-eraser ph-bold ph-lg",
-						text: i18n.ts.deleteAndEdit,
-						action: delEdit,
 				  }
 				: undefined,
 		].filter((x) => x !== undefined);
