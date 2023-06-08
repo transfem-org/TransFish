@@ -1,5 +1,5 @@
 <template>
-	<aside class="efzpzdvf" :aria-label="i18n.ts._deck._columns.widgets">
+	<aside class="widgets" :aria-label="i18n.ts._deck._columns.widgets">
 		<MkAd class="a" :prefer="['widget']" />
 		<XWidgets
 			:edit="editMode"
@@ -83,20 +83,24 @@ function updateWidgets(widgets) {
 </script>
 
 <style lang="scss" scoped>
-.efzpzdvf {
+.widgets {
 	position: sticky;
+	top: var(--stickyTop, 0px);
 	height: min-content;
 	min-height: 100vh;
-	padding: var(--margin) 0;
-	box-sizing: border-box;
+	max-height: 100vh;
+	box-sizing: content-box;
+	overflow: hidden auto;
+	&:not(:hover):not(:focus-within)::-webkit-scrollbar {
+		width: 0;
+	}
 
 	> * {
 		margin: var(--margin) 0;
 		width: 300px;
-
-		&:first-child {
-			margin-top: 0;
-		}
+	}
+	> :first-child {
+		margin-top: calc(var(--margin) * 2);
 	}
 
 	> .add {

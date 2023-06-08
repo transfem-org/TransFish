@@ -19,7 +19,7 @@
 			</main>
 		</MkStickyContainer>
 
-		<div v-if="isDesktop" ref="widgetsEl" class="widgets">
+		<div v-if="isDesktop" ref="widgetsEl" class="widgets-container">
 			<XWidgets />
 		</div>
 
@@ -523,7 +523,7 @@ console.log(mainRouter.currentRoute.value.name);
 			width: 750px;
 			background: var(--panel);
 			border-radius: 0;
-			overflow: auto;
+			overflow: clip;
 			--margin: 12px;
 			background: var(--bg);
 		}
@@ -543,19 +543,21 @@ console.log(mainRouter.currentRoute.value.name);
 	> .contents {
 		width: 100%;
 		min-width: 0;
-		overflow: auto;
 		$widgets-hide-threshold: 1090px;
 		@media (max-width: $widgets-hide-threshold) {
 			padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
 		}
 	}
 
-	> .widgets {
-		padding: 0 var(--margin);
-		width: 300px;
+	> .widgets-container {
+		margin-right: calc(var(--margin) / 2);
+		width: calc(300px + (var(--margin) * 1.5));
 		flex: 0 0 auto;
 		box-sizing: content-box;
-		overflow: auto;
+		> :deep(.widgets) {
+			padding-left: var(--margin);
+			padding-right: calc(var(--margin) / 2);
+		}
 
 		@media (max-width: $widgets-hide-threshold) {
 			display: none;
