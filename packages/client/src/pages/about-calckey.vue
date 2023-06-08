@@ -163,14 +163,13 @@ import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
-import { patrons, fetchPatrons } from "@/instance";
+
+const patrons = await os.api("patrons");
 
 let easterEggReady = false;
 let easterEggEmojis = $ref([]);
 let easterEggEngine = $ref(null);
 const containerEl = $ref<HTMLElement>();
-
-await fetchPatrons()
 
 function iconLoaded() {
 	const emojis = defaultStore.state.reactions;

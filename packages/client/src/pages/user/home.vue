@@ -353,7 +353,6 @@ import { useRouter } from "@/router";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { host } from "@/config";
-import { patrons } from "@/instance";
 
 const XPhotos = defineAsyncComponent(() => import("./index.photos.vue"));
 const XActivity = defineAsyncComponent(() => import("./index.activity.vue"));
@@ -367,6 +366,8 @@ const props = withDefaults(
 );
 
 const router = useRouter();
+
+const patrons = await os.api("patrons");
 
 let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
