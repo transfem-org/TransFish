@@ -734,8 +734,9 @@ _deck:
     mentions: "Mencions"
     widgets: Ginys
     main: Principal
-    antenna: Antenes
+    antenna: Antena
     direct: Missatges directes
+    channel: Canal
   alwaysShowMainColumn: Mostra sempre la columna principal
   columnAlign: Alinear columnes
   introduction: Crea la interfície perfecta per a tu organitzant columnes lliurement!
@@ -2089,3 +2090,4 @@ listsDesc: Les llistes et permeten crear línies de temps amb usuaris específic
   pot accedir des de la pàgina de línies de temps.
 clipsDesc: Els clips són com marcadors categoritzats que es poden compartir. Podeu
   crear clips des del menú de publicacions individuals.
+selectChannel: Selecciona un canal
