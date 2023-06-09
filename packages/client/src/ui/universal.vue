@@ -20,7 +20,7 @@
 		</MkStickyContainer>
 
 		<div v-if="isDesktop" ref="widgetsEl" class="widgets-container">
-			<XWidgets />
+			<XWidgets @mounted="attachSticky" />
 		</div>
 
 		<button
@@ -380,6 +380,13 @@ const onContextmenu = (ev: MouseEvent) => {
 	);
 };
 
+const attachSticky = (el: any) => {
+	const sticky = new StickySidebar(widgetsEl);
+	addEventListener("scroll", () => {
+		sticky.calc(window.scrollY)
+	}, { passive: true });
+};
+
 function top() {
 	window.scroll({ top: 0, behavior: "smooth" });
 }
@@ -440,7 +447,7 @@ console.log(mainRouter.currentRoute.value.name);
 	$widgets-hide-threshold: 1090px;
 
 	// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-	height: 100%;
+	min-height: calc(var(--vh, 1vh) * 100);
 	box-sizing: border-box;
 	display: flex;
 
@@ -550,14 +557,9 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 
 	> .widgets-container {
-		margin-right: calc(var(--margin) / 2);
-		width: calc(300px + (var(--margin) * 1.5));
-		flex: 0 0 auto;
+		padding: 0 var(--margin);
+		width: 300px;
 		box-sizing: content-box;
-		> :deep(.widgets) {
-			padding-left: var(--margin);
-			padding-right: calc(var(--margin) / 2);
-		}
 
 		@media (max-width: $widgets-hide-threshold) {
 			display: none;

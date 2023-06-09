@@ -85,22 +85,18 @@ function updateWidgets(widgets) {
 <style lang="scss" scoped>
 .widgets {
 	position: sticky;
-	top: var(--stickyTop, 0px);
 	height: min-content;
 	min-height: 100vh;
-	max-height: 100vh;
-	box-sizing: content-box;
-	overflow: hidden auto;
-	&:not(:hover):not(:focus-within)::-webkit-scrollbar {
-		width: 0;
-	}
+	padding: var(--margin) 0;
+	box-sizing: border-box;
 
 	> * {
 		margin: var(--margin) 0;
 		width: 300px;
-	}
-	> :first-child {
-		margin-top: calc(var(--margin) * 2);
+
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 
 	> .add {

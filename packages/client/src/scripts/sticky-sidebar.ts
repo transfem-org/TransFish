@@ -2,79 +2,56 @@ export class StickySidebar {
 	private lastScrollTop = 0;
 	private container: HTMLElement;
 	private el: HTMLElement;
-	private spacer: HTMLElement;
-	private marginTop: number;
 	private isTop = false;
 	private isBottom = false;
 	private offsetTop: number;
-	private globalHeaderHeight = 59;
 
 	constructor(
 		container: StickySidebar["container"],
-		marginTop = 0,
-		globalHeaderHeight = 0,
 	) {
 		this.container = container;
+		this.container.style.display = "flex";
 		this.el = this.container.children[0] as HTMLElement;
 		this.el.style.position = "sticky";
-		this.spacer = document.createElement("div");
-		this.container.prepend(this.spacer);
-		this.marginTop = marginTop;
 		this.offsetTop = this.container.getBoundingClientRect().top;
-		this.globalHeaderHeight = globalHeaderHeight;
 	}
 
 	public calc(scrollTop: number) {
-		if (scrollTop > this.lastScrollTop) {
-			// downscroll
-			const overflow = Math.max(
-				0,
-				this.globalHeaderHeight +
-					(this.el.clientHeight + this.marginTop) -
-					window.innerHeight,
-			);
-			this.el.style.bottom = null;
-			this.el.style.top = `${
-				-overflow + this.marginTop + this.globalHeaderHeight
-			}px`;
-
+		if (scrollTop > this.lastScrollTop) { 
+			// downscroll			
+			this.isTop = false;
 			this.isBottom =
-				scrollTop + window.innerHeight >=
+				scrollTop + window.innerHeight >
 				this.el.offsetTop + this.el.clientHeight;
-
-			if (this.isTop) {
-				this.isTop = false;
-				this.spacer.style.marginTop = `${Math.max(
-					0,
-					this.globalHeaderHeight +
-						this.lastScrollTop +
-						this.marginTop -
-						this.offsetTop,
-				)}px`;
-			}
-		} else {
+		} else { 
 			// upscroll
-			const overflow =
-				this.globalHeaderHeight +
-				(this.el.clientHeight + this.marginTop) -
-				window.innerHeight;
-			this.el.style.top = null;
-			this.el.style.bottom = `${-overflow}px`;
+			this.isBottom = false;
+			this.isTop = scrollTop < this.el.offsetTop + 1;
+		}
 
-			this.isTop =
-				scrollTop + this.marginTop + this.globalHeaderHeight <=
-				this.el.offsetTop;
-
-			if (this.isBottom) {
-				this.isBottom = false;
-				this.spacer.style.marginTop = `${
-					this.globalHeaderHeight +
-					this.lastScrollTop +
-					this.marginTop -
-					this.offsetTop -
-					overflow
-				}px`;
+		if (this.isTop) {
+			if (this.el.style.alignSelf != "flex-start") {
+				this.el.style.position = "sticky";
+				this.el.style.bottom = null;
+				this.el.style.top = "0px";
+				this.el.style.alignSelf = "flex-start";
+				console.log("top");
 			}
+			this.offsetTop = scrollTop;
+		} else if (this.isBottom) {
+			if (this.el.style.alignSelf != "flex-end") {
+				this.el.style.position = "sticky";
+				this.el.style.bottom = "0px";
+				this.el.style.top = null;
+				this.el.style.alignSelf = "flex-end";
+				console.log("bottom");
+			}
+			this.offsetTop = window.innerHeight + scrollTop - this.el.scrollHeight;
+		} else {
+			this.el.style.position = "relative";
+			this.el.style.top = this.offsetTop + "px";
+			this.el.style.bottom = null;
+			this.el.style.alignSelf = null;
 		}
 
 		this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
