@@ -597,20 +597,20 @@ export default async (
 				lastNotedAt: new Date(),
 			});
 
-			const count = await Notes.countBy({
+			await Notes.countBy({
 				userId: user.id,
 				channelId: data.channel.id,
 			}).then((count) => {
 				// この処理が行われるのはノート作成後なので、ノートが一つしかなかったら最初の投稿だと判断できる
 				// TODO: とはいえノートを削除して何回も投稿すればその分だけインクリメントされる雑さもあるのでどうにかしたい
-				if (count === 1) {
-					Channels.increment({ id: data.channel!.id }, "usersCount", 1);
+				if (count === 1 && data.channel != null) {
+					Channels.increment({ id: data.channel.id }, "usersCount", 1);
 				}
 			});
 		}
 
 		// Register to search database
-		await index(note);
+		await index(note, false);
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
@@ -650,9 +650,12 @@ async function insertNote(
 	emojis: string[],
 	mentionedUsers: MinimumUser[],
 ) {
+	if (data.createdAt === null || data.createdAt === undefined) {
+		data.createdAt = new Date();
+	}
 	const insert = new Note({
-		id: genId(data.createdAt!),
-		createdAt: data.createdAt!,
+		id: genId(data.createdAt),
+		createdAt: data.createdAt,
 		fileIds: data.files ? data.files.map((file) => file.id) : [],
 		replyId: data.reply ? data.reply.id : null,
 		renoteId: data.renote ? data.renote.id : null,
@@ -669,7 +672,7 @@ async function insertNote(
 		tags: tags.map((tag) => normalizeForSearch(tag)),
 		emojis,
 		userId: user.id,
-		localOnly: data.localOnly!,
+		localOnly: data.localOnly || false,
 		visibility: data.visibility as any,
 		visibleUserIds:
 			data.visibility === "specified"
@@ -716,14 +719,23 @@ async function insertNote(
 		if (insert.hasPoll) {
 			// Start transaction
 			await db.transaction(async (transactionalEntityManager) => {
+				if (!data.poll) throw new Error("Empty poll data");
+
 				await transactionalEntityManager.insert(Note, insert);
+
+				let expiresAt: Date | null;
+				if (!data.poll.expiresAt || isNaN(data.poll.expiresAt.getTime())) {
+					expiresAt = null;
+				} else {
+					expiresAt = data.poll.expiresAt;
+				}
 
 				const poll = new Poll({
 					noteId: insert.id,
-					choices: data.poll!.choices,
-					expiresAt: data.poll!.expiresAt,
-					multiple: data.poll!.multiple,
-					votes: new Array(data.poll!.choices.length).fill(0),
+					choices: data.poll.choices,
+					expiresAt,
+					multiple: data.poll.multiple,
+					votes: new Array(data.poll.choices.length).fill(0),
 					noteVisibility: insert.visibility,
 					userId: user.id,
 					userHost: user.host,

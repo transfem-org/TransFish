@@ -244,8 +244,9 @@ export default define(meta, paramDef, async (ps, user) => {
 	if (user.movedToUri != null) throw new ApiError(meta.errors.accountLocked);
 
 	const instanceMeta = await fetchMeta();
-	if (instanceMeta.experimentalFeatures?.postImports === false)
+	if (instanceMeta.experimentalFeatures?.postEdits === false) {
 		throw new ApiError(meta.errors.editsDisabled);
+	}
 
 	if (!Users.isLocalUser(user)) {
 		throw new ApiError(meta.errors.notLocalUser);

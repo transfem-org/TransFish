@@ -8,7 +8,9 @@ services:
     depends_on:
       - db
       - redis
-      - meilisearch
+### Uncomment one of the following to use a search engine
+#     - meilisearch
+#     - sonic
     ports:
       - "3000:3000"
     networks:
@@ -17,6 +19,8 @@ services:
     environment:
       NODE_ENV: production
     volumes:
+      - ./.cargo-cache:/root/.cargo
+      - ./.cargo-target:/calckey/packages/backend/native-utils/target
       - ./files:/calckey/files
       - ./.config:/calckey/.config:ro
 

@@ -67,8 +67,6 @@ export function parseUri(value: string | IObject): UriParseResult {
 }
 
 export default class DbResolver {
-	constructor() {}
-
 	/**
 	 * AP Note => Misskey Note in DB
 	 */

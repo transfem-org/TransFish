@@ -91,7 +91,7 @@ export const navbarItemDef = reactive({
 		to: "/gallery",
 	},
 	clips: {
-		title: "clip",
+		title: "clips",
 		icon: "ph-paperclip ph-bold ph-lg",
 		show: computed(() => $i != null),
 		to: "/my/clips",

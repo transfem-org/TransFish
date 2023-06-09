@@ -128,7 +128,11 @@
 					<button
 						v-else-if="!item.hidden"
 						class="_button item"
-						:class="{ danger: item.danger, active: item.active }"
+						:class="{
+							danger: item.danger,
+							accent: item.accent,
+							active: item.active,
+						}"
 						:disabled="item.active"
 						@click="clicked(item.action, $event)"
 						@mouseenter.passive="onItemMouseEnter(item)"
@@ -365,10 +369,6 @@ onBeforeUnmount(() => {
 			position: relative;
 		}
 
-		> &.icon {
-			transform: translateY(0em);
-		}
-
 		&:not(:disabled):hover,
 		&:focus-visible {
 			color: var(--accent);
@@ -398,6 +398,26 @@ onBeforeUnmount(() => {
 
 				&:before {
 					background: #b4637a;
+				}
+			}
+		}
+
+		&.accent {
+			color: var(--accent);
+
+			&:hover {
+				color: var(--accent);
+
+				&:before {
+					background: var(--accentedBg);
+				}
+			}
+
+			&:active {
+				color: var(--fgOnAccent);
+
+				&:before {
+					background: var(--accent);
 				}
 			}
 		}

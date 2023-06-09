@@ -506,6 +506,10 @@ function noteClick(e) {
 						color: var(--fgHighlighted);
 					}
 
+					> i {
+						display: inline !important;
+					}
+
 					> .count {
 						display: inline;
 						margin: 0 0 0 8px;
@@ -537,6 +541,14 @@ function noteClick(e) {
 			margin-left: calc(0px - var(--avatarSize) - 32px);
 			padding-left: calc(var(--avatarSize) + 32px);
 			border-radius: var(--radius);
+		}
+	}
+	&.reply-to {
+		> .main > .body {
+			margin-left: calc(0px - var(--avatarSize) - 38px);
+			padding-left: calc(var(--avatarSize) + 38px);
+			margin-top: -16px;
+			padding-top: 16px;
 		}
 	}
 	&.reply {

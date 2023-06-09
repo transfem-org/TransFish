@@ -54,7 +54,7 @@
 									/></span>
 									<span
 										v-if="user.isAdmin"
-										:title="i18n.ts.isAdmin"
+										v-tooltip.noDelay="i18n.ts.isAdmin"
 										style="color: var(--badge)"
 										><i
 											class="ph-bookmark-simple ph-fill ph-lg"
@@ -62,21 +62,35 @@
 									></span>
 									<span
 										v-if="!user.isAdmin && user.isModerator"
-										:title="i18n.ts.isModerator"
+										v-tooltip.noDelay="i18n.ts.isModerator"
 										style="color: var(--badge)"
 										><i
-											class="ph-bookmark-simple ph-bold"
+											class="ph-bookmark-simple ph-bold ph-lg"
 										></i
 									></span>
 									<span
 										v-if="user.isLocked"
-										:title="i18n.ts.isLocked"
+										v-tooltip.noDelay="i18n.ts.isLocked"
 										><i class="ph-lock ph-bold ph-lg"></i
 									></span>
 									<span
 										v-if="user.isBot"
-										:title="i18n.ts.isBot"
+										v-tooltip.noDelay="i18n.ts.isBot"
 										><i class="ph-robot ph-bold ph-lg"></i
+									></span>
+									<span
+										v-if="
+											patrons?.includes(
+												`@${user.username}@${
+													user.host || host
+												}`
+											)
+										"
+										v-tooltip.noDelay="i18n.ts.isPatron"
+										style="color: var(--badge)"
+										><i
+											class="ph-hand-coins ph-bold ph-lg"
+										></i
 									></span>
 								</div>
 							</div>
@@ -110,7 +124,7 @@
 								/></span>
 								<span
 									v-if="user.isAdmin"
-									:title="i18n.ts.isAdmin"
+									v-tooltip.noDelay="i18n.ts.isAdmin"
 									style="color: var(--badge)"
 									><i
 										class="ph-bookmark-simple ph-fill ph-lg"
@@ -118,17 +132,31 @@
 								></span>
 								<span
 									v-if="!user.isAdmin && user.isModerator"
-									:title="i18n.ts.isModerator"
+									v-tooltip.noDelay="i18n.ts.isModerator"
 									style="color: var(--badge)"
 									><i class="ph-bookmark-simple ph-bold"></i
 								></span>
 								<span
 									v-if="user.isLocked"
-									:title="i18n.ts.isLocked"
+									v-tooltip.noDelay="i18n.ts.isLocked"
 									><i class="ph-lock ph-bold ph-lg"></i
 								></span>
-								<span v-if="user.isBot" :title="i18n.ts.isBot"
+								<span
+									v-if="user.isBot"
+									v-tooltip.noDelay="i18n.ts.isBot"
 									><i class="ph-robot ph-bold ph-lg"></i
+								></span>
+								<span
+									v-if="
+										patrons?.includes(
+											`@${user.username}@${
+												user.host || host
+											}`
+										)
+									"
+									v-tooltip.noDelay="i18n.ts.isPatron"
+									style="color: var(--badge)"
+									><i class="ph-hand-coins ph-bold ph-lg"></i
 								></span>
 							</div>
 						</div>
@@ -324,6 +352,7 @@ import * as os from "@/os";
 import { useRouter } from "@/router";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
+import { host } from "@/config";
 
 const XPhotos = defineAsyncComponent(() => import("./index.photos.vue"));
 const XActivity = defineAsyncComponent(() => import("./index.activity.vue"));
@@ -391,6 +420,8 @@ const timeForThem = $computed(() => {
 
 	return "";
 });
+
+const patrons = await os.api("patrons");
 
 function menu(ev) {
 	os.popupMenu(

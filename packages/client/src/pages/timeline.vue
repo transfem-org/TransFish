@@ -152,46 +152,50 @@ function top(): void {
 	scroll(rootEl, { top: 0 });
 }
 
-async function chooseList(ev: MouseEvent): Promise<void> {
-	const lists = await os.api("users/lists/list");
-	const items = [
-		{
-			type: "link" as const,
-			text: i18n.ts.manageLists,
-			icon: "ph-faders-horizontal ph-bold ph-lg",
-			to: "/my/lists",
-		},
-	].concat(
-		lists.map((list) => ({
-			type: "link" as const,
-			text: list.name,
-			icon: "",
-			to: `/timeline/list/${list.id}`,
-		}))
-	);
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
+const lists = os.api("users/lists/list");
+async function chooseList(ev: MouseEvent) {
+	await lists.then((res) => {
+		const items = [
+			{
+				type: "link" as const,
+				text: i18n.ts.manageLists,
+				icon: "ph-faders-horizontal ph-bold ph-lg",
+				to: "/my/lists",
+			},
+		].concat(
+			res.map((list) => ({
+				type: "link" as const,
+				text: list.name,
+				icon: "",
+				to: `/timeline/list/${list.id}`,
+			}))
+		);
+		os.popupMenu(items, ev.currentTarget ?? ev.target);
+	});
 }
 
-async function chooseAntenna(ev: MouseEvent): Promise<void> {
-	const antennas = await os.api("antennas/list");
-	const items = [
-		{
-			type: "link" as const,
-			indicate: false,
-			text: i18n.ts.manageAntennas,
-			icon: "ph-faders-horizontal ph-bold ph-lg",
-			to: "/my/antennas",
-		},
-	].concat(
-		antennas.map((antenna) => ({
-			type: "link" as const,
-			text: antenna.name,
-			icon: "",
-			indicate: antenna.hasUnreadNote,
-			to: `/timeline/antenna/${antenna.id}`,
-		}))
-	);
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
+const antennas = os.api("antennas/list");
+async function chooseAntenna(ev: MouseEvent) {
+	await antennas.then((res) => {
+		const items = [
+			{
+				type: "link" as const,
+				indicate: false,
+				text: i18n.ts.manageAntennas,
+				icon: "ph-faders-horizontal ph-bold ph-lg",
+				to: "/my/antennas",
+			},
+		].concat(
+			res.map((antenna) => ({
+				type: "link" as const,
+				text: antenna.name,
+				icon: "",
+				indicate: antenna.hasUnreadNote,
+				to: `/timeline/antenna/${antenna.id}`,
+			}))
+		);
+		os.popupMenu(items, ev.currentTarget ?? ev.target);
+	});
 }
 
 function saveSrc(

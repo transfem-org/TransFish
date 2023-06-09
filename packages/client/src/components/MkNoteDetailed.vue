@@ -559,7 +559,7 @@ onUnmounted(() => {
 				inset: 0px 8px;
 			}
 			&:not(.max-width_450px)::before {
-				bottom: 12px;
+				bottom: 16px;
 			}
 			&:first-of-type::before {
 				top: 12px;
@@ -614,8 +614,16 @@ onUnmounted(() => {
 		font-size: 0.9em;
 	}
 	&.max-width_450px {
-		> .reply-to:first-child {
-			padding-top: 14px;
+		> .reply-to {
+			&::before {
+				inset-inline: -24px;
+			}
+			&:first-child {
+				padding-top: 14px;
+				&::before {
+					top: -24px;
+				}
+			}
 		}
 
 		> :deep(.note-container) {
