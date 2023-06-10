@@ -382,12 +382,16 @@ const onContextmenu = (ev: MouseEvent) => {
 
 const attachSticky = (el: any) => {
 	let lastScrollTop = 0;
-	addEventListener("scroll", (ev) => {
-		requestAnimationFrame(() => {
-			widgetsEl.scrollTop += window.scrollY - lastScrollTop;
-			lastScrollTop = window.scrollY <= 0 ? 0 : window.scrollY;
-		})
-	}, { passive: true });
+	addEventListener(
+		"scroll",
+		(ev) => {
+			requestAnimationFrame(() => {
+				widgetsEl.scrollTop += window.scrollY - lastScrollTop;
+				lastScrollTop = window.scrollY <= 0 ? 0 : window.scrollY;
+			});
+		},
+		{ passive: true }
+	);
 };
 
 function top() {
