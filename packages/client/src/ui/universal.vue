@@ -381,9 +381,12 @@ const onContextmenu = (ev: MouseEvent) => {
 };
 
 const attachSticky = (el: any) => {
-	const sticky = new StickySidebar(widgetsEl);
-	addEventListener("scroll", () => {
-		sticky.calc(window.scrollY)
+	let lastScrollTop = 0;
+	addEventListener("scroll", (ev) => {
+		requestAnimationFrame(() => {
+			widgetsEl.scrollTop += window.scrollY - lastScrollTop;
+			lastScrollTop = window.scrollY <= 0 ? 0 : window.scrollY;
+		})
 	}, { passive: true });
 };
 
@@ -557,8 +560,13 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 
 	> .widgets-container {
+		position: sticky;
+		top: 0;
+		max-height: 100vh;
+		overflow-y: auto;
 		padding: 0 var(--margin);
 		width: 300px;
+		min-width: max-content;
 		box-sizing: content-box;
 
 		@media (max-width: $widgets-hide-threshold) {

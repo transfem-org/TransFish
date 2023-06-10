@@ -84,7 +84,6 @@ function updateWidgets(widgets) {
 
 <style lang="scss" scoped>
 .widgets {
-	position: sticky;
 	height: min-content;
 	min-height: 100vh;
 	padding: var(--margin) 0;
