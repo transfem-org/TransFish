@@ -568,6 +568,10 @@ console.log(mainRouter.currentRoute.value.name);
 		width: 300px;
 		min-width: max-content;
 		box-sizing: content-box;
+		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 
 		@media (max-width: $widgets-hide-threshold) {
 			display: none;
