@@ -418,7 +418,7 @@ router.get("/notes/:note", async (ctx, next) => {
 			ctx.set("Cache-Control", "public, max-age=15");
 			ctx.set(
 				"Content-Security-Policy",
-				"default-src 'self' 'unsafe-inline'; img-src '*'; frame-ancestors '*'",
+				"default-src 'self' 'unsafe-inline'; img-src *; frame-ancestors *",
 			);
 
 			return;

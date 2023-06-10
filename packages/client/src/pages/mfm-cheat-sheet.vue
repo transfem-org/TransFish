@@ -472,14 +472,14 @@ let preview_quote = $ref(`> ${i18n.ts._mfm.dummy}`);
 let preview_search = $ref(
 	`${i18n.ts._mfm.dummy} [search]\n${i18n.ts._mfm.dummy} [検索]\n${i18n.ts._mfm.dummy} 検索`
 );
-let preview_jelly = $ref("$[jelly 🍮] $[jelly.speed=5s 🍮]");
-let preview_tada = $ref("$[tada 🍮] $[tada.speed=5s 🍮]");
-let preview_jump = $ref("$[jump 🍮] $[jump.speed=5s 🍮]");
-let preview_bounce = $ref("$[bounce 🍮] $[bounce.speed=5s 🍮]");
-let preview_shake = $ref("$[shake 🍮] $[shake.speed=5s 🍮]");
-let preview_twitch = $ref("$[twitch 🍮] $[twitch.speed=5s 🍮]");
+let preview_jelly = $ref("$[jelly 🍮] $[jelly.speed=3s 🍮] $[jelly.delay=3s 🍮] $[jelly.loop=3 🍮]");
+let preview_tada = $ref("$[tada 🍮] $[tada.speed=3s 🍮] $[tada.delay=3s 🍮] $[tada.loop=3 🍮]");
+let preview_jump = $ref("$[jump 🍮] $[jump.speed=3s 🍮] $[jump.delay=3s 🍮] $[jump.loop=3 🍮]");
+let preview_bounce = $ref("$[bounce 🍮] $[bounce.speed=3s 🍮] $[bounce.delay=3s 🍮] $[bounce.loop=3 🍮]");
+let preview_shake = $ref("$[shake 🍮] $[shake.speed=3s 🍮] $[shake.delay=3s 🍮] $[shake.loop=3 🍮]");
+let preview_twitch = $ref("$[twitch 🍮] $[twitch.speed=3s 🍮] $[twitch.delay=3s 🍮] $[twitch.loop=3 🍮]");
 let preview_spin = $ref(
-	"$[spin 🍮] $[spin.left 🍮] $[spin.alternate 🍮]\n$[spin.x 🍮] $[spin.x,left 🍮] $[spin.x,alternate 🍮]\n$[spin.y 🍮] $[spin.y,left 🍮] $[spin.y,alternate 🍮]\n\n$[spin.speed=5s 🍮]"
+	"$[spin 🍮] $[spin.left 🍮] $[spin.alternate 🍮]\n$[spin.x 🍮] $[spin.x,left 🍮] $[spin.x,alternate 🍮]\n$[spin.y 🍮] $[spin.y,left 🍮] $[spin.y,alternate 🍮]\n\n$[spin.speed=3s 🍮] $[spin.delay=3s 🍮] $[spin.loop=3 🍮]"
 );
 let preview_flip = $ref(
 	`$[flip ${i18n.ts._mfm.dummy}]\n$[flip.v ${i18n.ts._mfm.dummy}]\n$[flip.h,v ${i18n.ts._mfm.dummy}]`
@@ -491,26 +491,26 @@ let preview_x2 = $ref("$[x2 🍮]");
 let preview_x3 = $ref("$[x3 🍮]");
 let preview_x4 = $ref("$[x4 🍮]");
 let preview_blur = $ref(`$[blur ${i18n.ts._mfm.dummy}]`);
-let preview_rainbow = $ref("$[rainbow 🍮] $[rainbow.speed=5s 🍮]");
+let preview_rainbow = $ref("$[rainbow 🍮] $[rainbow.speed=3s 🍮] $[rainbow.delay=3s 🍮] $[rainbow.loop=3 🍮]");
 let preview_sparkle = $ref("$[sparkle 🍮]");
 let preview_rotate = $ref(
 	"$[rotate 🍮]\n$[rotate.deg=45 🍮]\n$[rotate.x,deg=45 Hello, world!]"
 );
 let preview_position = $ref(
-	"$[position.y=-1 Positioning]\n$[position.x=-1 Positioning]"
+	"$[position.y=-1 🍮]\n$[position.x=-1 🍮]"
 );
 let preview_crop = $ref(
 	"$[crop.top=50 🍮] $[crop.right=50 🍮] $[crop.bottom=50 🍮] $[crop.left=50 🍮]"
 );
 let preview_scale = $ref(
-	"$[scale.x=1.3 Scaling]\n$[scale.x=1.3,y=2 Scaling]\n$[scale.y=0.3 Tiny scaling]"
+	"$[scale.x=1.3 🍮]\n$[scale.x=1.5,y=3 🍮]\n$[scale.y=0.3 🍮]"
 );
-let preview_fg = $ref("$[fg.color=ff0000 Text color]");
-let preview_bg = $ref("$[bg.color=ff0000 Background color]");
+let preview_fg = $ref("$[fg.color=eb6f92 Text color]");
+let preview_bg = $ref("$[bg.color=31748f Background color]");
 let preview_plain = $ref(
 	"<plain>**bold** @mention #hashtag `code` $[x2 🍮]</plain>"
 );
-let preview_fade = $ref("$[fade 🍮] $[fade.out 🍮] $[fade.speed=5s 🍮]");
+let preview_fade = $ref("$[fade 🍮] $[fade.out 🍮] $[fade.speed=3s 🍮] $[fade.delay=3s 🍮]");
 
 definePageMetadata({
 	title: i18n.ts._mfm.cheatSheet,
