@@ -62,6 +62,7 @@
 				:type="input.type || 'text'"
 				:placeholder="input.placeholder || undefined"
 				@keydown="onInputKeydown"
+				:style="{ width: input.type === 'search' ? '300px' : null }"
 			>
 				<template v-if="input.type === 'password'" #prefix
 					><i class="ph-password ph-bold ph-lg"></i
@@ -437,10 +438,6 @@ onBeforeUnmount(() => {
 
 .text {
 	margin: 16px 0 0 0;
-}
-
-:deep(input[type="search"]) {
-	width: 300px;
 }
 
 .buttons {

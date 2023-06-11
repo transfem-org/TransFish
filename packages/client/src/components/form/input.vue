@@ -24,6 +24,7 @@
 					@blur="focused = false"
 					@keydown="onKeydown($event)"
 					@input="onInput"
+					v-bind="$attrs"
 				/>
 				<datalist v-if="datalist" :id="id">
 					<option v-for="data in datalist" :value="data" />
