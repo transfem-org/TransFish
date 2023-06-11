@@ -285,92 +285,96 @@ function onInputKeydown(evt: KeyboardEvent) {
 }
 
 async function openSearchFilters(ev) {
-	await os.popupMenu([
-		{
-			icon: "ph-user ph-bold ph-lg",
-			text: "From user",
-			action: () => {
-				os.selectUser().then((user) => {
-					inputValue.value += " from:@" + Acct.toString(user);
-				});
-			}
-		},
-		{
-			icon: "ph-file ph-bold ph-lg",
-			text: "With file",
-			action: () => {
-				os.select({
-					title: "Has file",
-					items: [
-						{
-							text: "Image",
-							value: "image",
-						},
-						{
-							text: "Video",
-							value: "video",
-						},
-						{
-							text: "Audio",
-							value: "audio",
-						},
-						{
-							text: "File",
-							value: "file",
-						}
-					]
-				}).then((res) => {
-					if (res.canceled) return;
-					inputValue.value += " has:" + res.result;
-				});
-			}
-		},
-		{
-			icon: "ph-link ph-bold ph-lg",
-			text: "From domain",
-			action: () => {
-				inputValue.value += " domain:";
-			}
-		},
-		{
-			icon: "ph-calendar-blank ph-bold ph-lg",
-			text: "Posts before",
-			action: () => {
-				os.inputDate({
-					title: "Posts before"
-				}).then((res) => {
-					if (res.canceled) return;
-					inputValue.value += " before:" + res.result;
-				});
-			}
-		},
-		{
-			icon: "ph-calendar-blank ph-bold ph-lg",
-			text: "Posts after",
-			action: () => {
-				os.inputDate({
-					title: "Posts after"
-				}).then((res) => {
-					if (res.canceled) return;
-					inputValue.value += " after:" + res.result;
-				});
-			}
-		},
-		{
-			icon: "ph-eye ph-bold ph-lg",
-			text: "Following only",
-			action: () => {
-				inputValue.value += " filter:following ";
-			}
-		},
-		{
-			icon: "ph-users-three ph-bold ph-lg",
-			text: "Followers only",
-			action: () => {
-				inputValue.value += " filter:followers ";
-			}
-		},
-	], ev.target, { noReturnFocus: true });
+	await os.popupMenu(
+		[
+			{
+				icon: "ph-user ph-bold ph-lg",
+				text: "From user",
+				action: () => {
+					os.selectUser().then((user) => {
+						inputValue.value += " from:@" + Acct.toString(user);
+					});
+				},
+			},
+			{
+				icon: "ph-file ph-bold ph-lg",
+				text: "With file",
+				action: () => {
+					os.select({
+						title: "Has file",
+						items: [
+							{
+								text: "Image",
+								value: "image",
+							},
+							{
+								text: "Video",
+								value: "video",
+							},
+							{
+								text: "Audio",
+								value: "audio",
+							},
+							{
+								text: "File",
+								value: "file",
+							},
+						],
+					}).then((res) => {
+						if (res.canceled) return;
+						inputValue.value += " has:" + res.result;
+					});
+				},
+			},
+			{
+				icon: "ph-link ph-bold ph-lg",
+				text: "From domain",
+				action: () => {
+					inputValue.value += " domain:";
+				},
+			},
+			{
+				icon: "ph-calendar-blank ph-bold ph-lg",
+				text: "Posts before",
+				action: () => {
+					os.inputDate({
+						title: "Posts before",
+					}).then((res) => {
+						if (res.canceled) return;
+						inputValue.value += " before:" + res.result;
+					});
+				},
+			},
+			{
+				icon: "ph-calendar-blank ph-bold ph-lg",
+				text: "Posts after",
+				action: () => {
+					os.inputDate({
+						title: "Posts after",
+					}).then((res) => {
+						if (res.canceled) return;
+						inputValue.value += " after:" + res.result;
+					});
+				},
+			},
+			{
+				icon: "ph-eye ph-bold ph-lg",
+				text: "Following only",
+				action: () => {
+					inputValue.value += " filter:following ";
+				},
+			},
+			{
+				icon: "ph-users-three ph-bold ph-lg",
+				text: "Followers only",
+				action: () => {
+					inputValue.value += " filter:followers ";
+				},
+			},
+		],
+		ev.target,
+		{ noReturnFocus: true }
+	);
 	inputEl.value.focus();
 	inputEl.value.selectRange(inputValue.value.length, inputValue.value.length); // cursor at end
 }

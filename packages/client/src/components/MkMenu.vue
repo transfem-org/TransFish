@@ -1,5 +1,5 @@
 <template>
-	<FocusTrap 
+	<FocusTrap
 		:active="false"
 		ref="focusTrap"
 		:return-focus-on-deactivate="!noReturnFocus"

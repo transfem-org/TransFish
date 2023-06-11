@@ -18,7 +18,7 @@
 		@enter="emit('opening')"
 		@after-enter="onOpened"
 	>
-		<FocusTrap 
+		<FocusTrap
 			v-model:active="isActive"
 			:return-focus-on-deactivate="!noReturnFocus"
 		>

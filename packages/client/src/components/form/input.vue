@@ -183,7 +183,7 @@ onMounted(() => {
 
 defineExpose({
 	focus,
-	selectRange
+	selectRange,
 });
 </script>
 
