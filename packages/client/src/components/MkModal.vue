@@ -194,14 +194,14 @@ function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	if (props.src) props.src.style.pointerEvents = "auto";
 	showing = false;
 	emit("close");
-	if (!noReturnFocus) {
+	if (!props.noReturnFocus) {
 		focusedElement.focus();
 	}
 }
 
 function onBgClick() {
 	if (contentClicking) return;
-	if (!noReturnFocus) {
+	if (!props.noReturnFocus) {
 		focusedElement.focus();
 	}
 	emit("click");

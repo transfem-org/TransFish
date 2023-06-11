@@ -338,7 +338,6 @@ async function openSearchFilters(ev) {
 				os.inputDate({
 					title: "Posts before"
 				}).then((res) => {
-					inputEl.value.focus();
 					if (res.canceled) return;
 					inputValue.value += " before:" + res.result;
 				});
@@ -351,7 +350,6 @@ async function openSearchFilters(ev) {
 				os.inputDate({
 					title: "Posts after"
 				}).then((res) => {
-					inputEl.value.focus();
 					if (res.canceled) return;
 					inputValue.value += " after:" + res.result;
 				});

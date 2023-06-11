@@ -492,7 +492,7 @@ export function inputDate(props: {
 			{
 				done: (result) => {
 					resolve(
-						result
+						(result && isFinite(new Date(result.result)))
 							? { result: new Date(result.result), canceled: false }
 							: { canceled: true },
 					);
