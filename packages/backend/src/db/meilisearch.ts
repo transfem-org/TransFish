@@ -186,13 +186,15 @@ export default hasConfig
 							} else if (term.startsWith("from:")) {
 								let user = term.slice(5);
 
+								if (user.length === 0) return null;
+
 								// Cut off leading @, those aren't saved in the DB
 								if (user.charAt(0) === "@") {
 									user = user.slice(1);
 								}
 
 								// Determine if we got a webfinger address or a single username
-								if (user.split("@").length > 0) {
+								if (user.split("@").length > 1) {
 									let splitUser = user.split("@");
 
 									let domain = splitUser.pop();
