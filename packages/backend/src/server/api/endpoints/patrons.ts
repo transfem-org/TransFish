@@ -20,8 +20,7 @@ export default define(meta, paramDef, async () => {
 	const cachedPatrons = await redisClient.get("patrons");
 	if (cachedPatrons) {
 		patrons = JSON.parse(cachedPatrons);
-	}
-	else {
+	} else {
 		patrons = await fetch(
 			"https://codeberg.org/calckey/calckey/raw/branch/develop/patrons.json",
 		).then((response) => response.json());

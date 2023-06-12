@@ -42,7 +42,7 @@ export const meta = {
 			message: "No followers found.",
 			code: "NULL_FOLLOWERS",
 			id: "174a6507-a6c2-4925-8e5d-92fd08aedc9e",
-		}
+		},
 	},
 } as const;
 

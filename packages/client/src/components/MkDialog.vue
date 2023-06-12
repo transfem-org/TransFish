@@ -59,10 +59,16 @@
 				v-if="input && input.type !== 'paragraph'"
 				v-model="inputValue"
 				autofocus
-				:type="input.type == 'searchAdvanced' ? 'search' : input.type || 'text'"
+				:type="
+					input.type == 'searchAdvanced'
+						? 'search'
+						: input.type || 'text'
+				"
 				:placeholder="input.placeholder || undefined"
 				@keydown="onInputKeydown"
-				:style="{ width: input.type === 'searchAdvanced' ? '300px' : null }"
+				:style="{
+					width: input.type === 'searchAdvanced' ? '300px' : null,
+				}"
 			>
 				<template v-if="input.type === 'password'" #prefix
 					><i class="ph-password ph-bold ph-lg"></i
