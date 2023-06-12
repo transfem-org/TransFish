@@ -306,34 +306,39 @@ async function openSearchFilters(ev) {
 				},
 			},
 			{
-				icon: "ph-file ph-bold ph-lg",
+				type: "parent",
 				text: i18n.ts._filters.withFile,
-				action: () => {
-					os.select({
-						title: i18n.ts._filters.withFile,
-						items: [
-							{
-								text: i18n.ts.image,
-								value: "image",
-							},
-							{
-								text: i18n.ts.video,
-								value: "video",
-							},
-							{
-								text: i18n.ts.audio,
-								value: "audio",
-							},
-							{
-								text: i18n.ts.file,
-								value: "file",
-							},
-						],
-					}).then((res) => {
-						if (res.canceled) return;
-						inputValue.value += " has:" + res.result;
-					});
-				},
+				icon: "ph-paperclip ph-bold ph-lg",
+				children: [
+					{
+						text: i18n.ts.image,
+						icon: "ph-image-square ph-bold ph-lg",
+						action: () => {
+							inputValue.value += " has:image";
+						},
+					},
+					{
+						text: i18n.ts.video,
+						icon: "ph-video-camera ph-bold ph-lg",
+						action: () => {
+							inputValue.value += " has:video";
+						},
+					},
+					{
+						text: i18n.ts.audio,
+						icon: "ph-music-note ph-bold ph-lg",
+						action: () => {
+							inputValue.value += " has:audio";
+						},
+					},
+					{
+						text: i18n.ts.file,
+						icon: "ph-file ph-bold ph-lg",
+						action: () => {
+							inputValue.value += " has:file";
+						},
+					},
+				],
 			},
 			{
 				icon: "ph-link ph-bold ph-lg",
@@ -350,7 +355,8 @@ async function openSearchFilters(ev) {
 						title: i18n.ts._filters.notesBefore,
 					}).then((res) => {
 						if (res.canceled) return;
-						inputValue.value += " before:" + formatDateToYYYYMMDD(res.result);
+						inputValue.value +=
+							" before:" + formatDateToYYYYMMDD(res.result);
 					});
 				},
 			},
@@ -362,7 +368,8 @@ async function openSearchFilters(ev) {
 						title: i18n.ts._filters.notesAfter,
 					}).then((res) => {
 						if (res.canceled) return;
-						inputValue.value += " after:" + formatDateToYYYYMMDD(res.result);
+						inputValue.value +=
+							" after:" + formatDateToYYYYMMDD(res.result);
 					});
 				},
 			},
