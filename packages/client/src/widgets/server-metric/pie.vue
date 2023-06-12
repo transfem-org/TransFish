@@ -37,7 +37,7 @@ const r = 0.45;
 const color = $computed(
 	() =>
 		`hsl(${
-			props.reverse ? 180 + props.value * 180 : 180 - props.value * 180
+			props.reverse ? props.value * 180 : 180 - props.value * 180
 		}, 80%, 70%)`
 );
 const strokeDashoffset = $computed(
