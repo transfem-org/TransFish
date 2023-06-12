@@ -101,6 +101,13 @@ body::-webkit-scrollbar-thumb {
 	}
 }
 
+.hide-scrollbar {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
 html._themeChanging_ {
 	&, *, ::before, ::after {
 		transition: background 1s ease, border 1s ease !important;
