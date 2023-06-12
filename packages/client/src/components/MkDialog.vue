@@ -252,7 +252,7 @@ const inputEl = ref<typeof MkInput>();
 
 function done(canceled: boolean, result?) {
 	emit("done", { canceled, result });
-	modal.value?.close(ev);
+	modal.value?.close();
 }
 
 async function ok() {
