@@ -7,7 +7,7 @@
 			</div>
 			<div class="body">
 				<div class="content">
-					<Mfm 
+					<Mfm
 						:text="preprocess(text).trim()"
 						:author="$i"
 						:i="$i"

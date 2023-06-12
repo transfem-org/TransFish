@@ -1,5 +1,9 @@
 <template>
-	<FocusTrap :active="false" ref="focusTrap">
+	<FocusTrap
+		:active="false"
+		ref="focusTrap"
+		:return-focus-on-deactivate="!noReturnFocus"
+	>
 		<div tabindex="-1">
 			<div
 				ref="itemsEl"
@@ -205,6 +209,7 @@ const props = defineProps<{
 	align?: "center" | string;
 	width?: number;
 	maxHeight?: number;
+	noReturnFocus?: boolean;
 }>();
 
 const emit = defineEmits<{

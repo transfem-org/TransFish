@@ -29,7 +29,7 @@ pub fn convert_id(in_id: String, id_convert_type: IdConvertType) -> napi::Result
                 Err(_) => {
                     return Err(Error::new(
                         Status::InvalidArg,
-                        "Unable to parse ID as MasstodonId",
+                        "Unable to parse ID as MastodonId",
                     ))
                 }
             };

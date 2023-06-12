@@ -18,7 +18,10 @@
 		@enter="emit('opening')"
 		@after-enter="onOpened"
 	>
-		<FocusTrap v-model:active="isActive">
+		<FocusTrap
+			v-model:active="isActive"
+			:return-focus-on-deactivate="!noReturnFocus"
+		>
 			<div
 				v-show="manualShowing != null ? manualShowing : showing"
 				v-hotkey.global="keymap"
@@ -102,6 +105,7 @@ const props = withDefaults(
 		zPriority?: "low" | "middle" | "high";
 		noOverlap?: boolean;
 		transparentBg?: boolean;
+		noReturnFocus?: boolean;
 	}>(),
 	{
 		manualShowing: null,
@@ -111,6 +115,7 @@ const props = withDefaults(
 		zPriority: "low",
 		noOverlap: true,
 		transparentBg: false,
+		noReturnFocus: false,
 	}
 );
 
@@ -189,12 +194,16 @@ function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	if (props.src) props.src.style.pointerEvents = "auto";
 	showing = false;
 	emit("close");
-	focusedElement.focus();
+	if (!props.noReturnFocus) {
+		focusedElement.focus();
+	}
 }
 
 function onBgClick() {
 	if (contentClicking) return;
-	focusedElement.focus();
+	if (!props.noReturnFocus) {
+		focusedElement.focus();
+	}
 	emit("click");
 }
 

@@ -1,26 +1,13 @@
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { mainRouter } from "@/router";
-// import { instance } from "@/instance";
+import { instance } from "@/instance";
 
 export async function search() {
-	// const searchOptions =
-	// 	"Advanced search operators\n" +
-	// 	"from:user => filter by user\n" +
-	// 	"has:image/video/audio/text/file => filter by attachment types\n" +
-	// 	"domain:domain.com => filter by domain\n" +
-	// 	"before:Date => show posts made before Date\n" +
-	// 	"after:Date => show posts made after Date\n" +
-	// 	'"text" => get posts with exact text between quotes\n' +
-	// 	"filter:following => show results only from users you follow\n" +
-	// 	"filter:followers => show results only from followers\n";
-
-	// const searchFiltersAvailable = instance.searchFilters;
-
 	const { canceled, result: query } = await os.inputText({
+		type: instance.features.searchFilters ? "search" : "text",
 		title: i18n.ts.search,
 		placeholder: i18n.ts.searchPlaceholder,
-		// text: searchOptions,
 	});
 	if (canceled || query == null || query === "") return;
 

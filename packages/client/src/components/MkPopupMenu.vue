@@ -18,6 +18,7 @@
 			:as-drawer="type === 'drawer'"
 			class="sfhdhdhq"
 			:class="{ drawer: type === 'drawer' }"
+			:no-return-focus="noReturnFocus"
 			@close="modal.close()"
 		/>
 	</MkModal>
@@ -35,6 +36,7 @@ defineProps<{
 	width?: number;
 	viaKeyboard?: boolean;
 	src?: any;
+	noReturnFocus?;
 }>();
 
 const emit = defineEmits<{
