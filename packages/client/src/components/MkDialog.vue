@@ -286,6 +286,13 @@ function onInputKeydown(evt: KeyboardEvent) {
 	}
 }
 
+function formatDateToYYYYMMDD(date) {
+	const year = date.getFullYear();
+	const month = ("0" + (date.getMonth() + 1)).slice(-2);
+	const day = ("0" + date.getDate()).slice(-2);
+	return `${year}${month}${day}`;
+}
+
 async function openSearchFilters(ev) {
 	await os.popupMenu(
 		[
@@ -343,7 +350,7 @@ async function openSearchFilters(ev) {
 						title: i18n.ts._filters.notesBefore,
 					}).then((res) => {
 						if (res.canceled) return;
-						inputValue.value += " before:" + res.result;
+						inputValue.value += " before:" + formatDateToYYYYMMDD(res.result);
 					});
 				},
 			},
@@ -355,7 +362,7 @@ async function openSearchFilters(ev) {
 						title: i18n.ts._filters.notesAfter,
 					}).then((res) => {
 						if (res.canceled) return;
-						inputValue.value += " after:" + res.result;
+						inputValue.value += " after:" + formatDateToYYYYMMDD(res.result);
 					});
 				},
 			},
