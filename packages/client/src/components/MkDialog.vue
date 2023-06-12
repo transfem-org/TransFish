@@ -2,7 +2,6 @@
 	<MkModal
 		ref="modal"
 		:prefer-type="'dialog'"
-		:z-priority="'high'"
 		@click="done(true)"
 		@closed="emit('closed')"
 	>
@@ -56,16 +55,27 @@
 			</header>
 			<div v-if="text" :class="$style.text"><Mfm :text="text" /></div>
 			<MkInput
+				ref="inputEl"
 				v-if="input && input.type !== 'paragraph'"
 				v-model="inputValue"
 				autofocus
-				:type="input.type || 'text'"
+				:type="input.type == 'searchAdvanced' ? 'search' : input.type || 'text'"
 				:placeholder="input.placeholder || undefined"
 				@keydown="onInputKeydown"
+				:style="{ width: input.type === 'searchAdvanced' ? '300px' : null }"
 			>
 				<template v-if="input.type === 'password'" #prefix
 					><i class="ph-password ph-bold ph-lg"></i
 				></template>
+				<template v-if="input.type === 'searchAdvanced'" #suffix>
+					<button
+						class="_buttonIcon"
+						@click.stop="openSearchFilters"
+						v-tooltip.noDelay="i18n.ts.filter"
+					>
+						<i class="ph-funnel ph-bold"></i>
+					</button>
+				</template>
 			</MkInput>
 			<MkTextarea
 				v-if="input && input.type === 'paragraph'"
@@ -95,6 +105,7 @@
 					</optgroup>
 				</template>
 			</MkSelect>
+
 			<div
 				v-if="(showOkButton || showCancelButton) && !actions"
 				:class="$style.buttons"
@@ -162,7 +173,9 @@ import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import MkTextarea from "@/components/form/textarea.vue";
 import MkSelect from "@/components/form/select.vue";
+import * as os from "@/os";
 import { i18n } from "@/i18n";
+import * as Acct from "calckey-js/built/acct";
 
 type Input = {
 	type: HTMLInputElement["type"];
@@ -193,7 +206,8 @@ const props = withDefaults(
 			| "warning"
 			| "info"
 			| "question"
-			| "waiting";
+			| "waiting"
+			| "search";
 		title: string;
 		text?: string;
 		input?: Input;
@@ -229,8 +243,10 @@ const emit = defineEmits<{
 
 const modal = shallowRef<InstanceType<typeof MkModal>>();
 
-const inputValue = ref(props.input?.default || null);
+const inputValue = ref(props.input?.default || "");
 const selectedValue = ref(props.select?.default || null);
+
+const inputEl = ref<typeof MkInput>();
 
 function done(canceled: boolean, result?) {
 	emit("done", { canceled, result });
@@ -266,6 +282,101 @@ function onInputKeydown(evt: KeyboardEvent) {
 		evt.stopPropagation();
 		ok();
 	}
+}
+
+async function openSearchFilters(ev) {
+	await os.popupMenu(
+		[
+			{
+				icon: "ph-user ph-bold ph-lg",
+				text: i18n.ts._filters.fromUser,
+				action: () => {
+					os.selectUser().then((user) => {
+						inputValue.value += " from:@" + Acct.toString(user);
+					});
+				},
+			},
+			{
+				icon: "ph-file ph-bold ph-lg",
+				text: i18n.ts._filters.withFile,
+				action: () => {
+					os.select({
+						title: i18n.ts._filters.withFile,
+						items: [
+							{
+								text: i18n.ts.image,
+								value: "image",
+							},
+							{
+								text: i18n.ts.video,
+								value: "video",
+							},
+							{
+								text: i18n.ts.audio,
+								value: "audio",
+							},
+							{
+								text: i18n.ts.file,
+								value: "file",
+							},
+						],
+					}).then((res) => {
+						if (res.canceled) return;
+						inputValue.value += " has:" + res.result;
+					});
+				},
+			},
+			{
+				icon: "ph-link ph-bold ph-lg",
+				text: i18n.ts._filters.fromDomain,
+				action: () => {
+					inputValue.value += " domain:";
+				},
+			},
+			{
+				icon: "ph-calendar-blank ph-bold ph-lg",
+				text: i18n.ts._filters.notesBefore,
+				action: () => {
+					os.inputDate({
+						title: i18n.ts._filters.notesBefore,
+					}).then((res) => {
+						if (res.canceled) return;
+						inputValue.value += " before:" + res.result;
+					});
+				},
+			},
+			{
+				icon: "ph-calendar-blank ph-bold ph-lg",
+				text: i18n.ts._filters.notesAfter,
+				action: () => {
+					os.inputDate({
+						title: i18n.ts._filters.notesAfter,
+					}).then((res) => {
+						if (res.canceled) return;
+						inputValue.value += " after:" + res.result;
+					});
+				},
+			},
+			{
+				icon: "ph-eye ph-bold ph-lg",
+				text: i18n.ts._filters.followingOnly,
+				action: () => {
+					inputValue.value += " filter:following ";
+				},
+			},
+			{
+				icon: "ph-users-three ph-bold ph-lg",
+				text: i18n.ts._filters.followersOnly,
+				action: () => {
+					inputValue.value += " filter:followers ";
+				},
+			},
+		],
+		ev.target,
+		{ noReturnFocus: true }
+	);
+	inputEl.value.focus();
+	inputEl.value.selectRange(inputValue.value.length, inputValue.value.length); // cursor at end
 }
 
 onMounted(() => {
