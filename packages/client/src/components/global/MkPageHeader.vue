@@ -164,7 +164,7 @@ const props = defineProps<{
 
 const displayBackButton =
 	props.displayBackButton &&
-	history.length > 2 &&
+	history.length > 1 &&
 	inject("shouldBackButton", true);
 
 const emit = defineEmits<{
