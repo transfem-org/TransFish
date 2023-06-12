@@ -289,7 +289,7 @@ async function openSearchFilters(ev) {
 		[
 			{
 				icon: "ph-user ph-bold ph-lg",
-				text: "From user",
+				text: i18n.ts._filters.fromUser,
 				action: () => {
 					os.selectUser().then((user) => {
 						inputValue.value += " from:@" + Acct.toString(user);
@@ -298,25 +298,25 @@ async function openSearchFilters(ev) {
 			},
 			{
 				icon: "ph-file ph-bold ph-lg",
-				text: "With file",
+				text: i18n.ts._filters.withFile,
 				action: () => {
 					os.select({
-						title: "Has file",
+						title: i18n.ts._filters.withFile,
 						items: [
 							{
-								text: "Image",
+								text: i18n.ts.image,
 								value: "image",
 							},
 							{
-								text: "Video",
+								text: i18n.ts.video,
 								value: "video",
 							},
 							{
-								text: "Audio",
+								text: i18n.ts.audio,
 								value: "audio",
 							},
 							{
-								text: "File",
+								text: i18n.ts.file,
 								value: "file",
 							},
 						],
@@ -328,17 +328,17 @@ async function openSearchFilters(ev) {
 			},
 			{
 				icon: "ph-link ph-bold ph-lg",
-				text: "From domain",
+				text: i18n.ts._filters.fromDomain,
 				action: () => {
 					inputValue.value += " domain:";
 				},
 			},
 			{
 				icon: "ph-calendar-blank ph-bold ph-lg",
-				text: "Posts before",
+				text: i18n.ts._filters.notesBefore,
 				action: () => {
 					os.inputDate({
-						title: "Posts before",
+						title: i18n.ts._filters.notesBefore,
 					}).then((res) => {
 						if (res.canceled) return;
 						inputValue.value += " before:" + res.result;
@@ -347,10 +347,10 @@ async function openSearchFilters(ev) {
 			},
 			{
 				icon: "ph-calendar-blank ph-bold ph-lg",
-				text: "Posts after",
+				text: i18n.ts._filters.notesAfter,
 				action: () => {
 					os.inputDate({
-						title: "Posts after",
+						title: i18n.ts._filters.notesAfter,
 					}).then((res) => {
 						if (res.canceled) return;
 						inputValue.value += " after:" + res.result;
@@ -359,14 +359,14 @@ async function openSearchFilters(ev) {
 			},
 			{
 				icon: "ph-eye ph-bold ph-lg",
-				text: "Following only",
+				text: i18n.ts._filters.followingOnly,
 				action: () => {
 					inputValue.value += " filter:following ";
 				},
 			},
 			{
 				icon: "ph-users-three ph-bold ph-lg",
-				text: "Followers only",
+				text: i18n.ts._filters.followersOnly,
 				action: () => {
 					inputValue.value += " filter:followers ";
 				},
