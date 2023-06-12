@@ -162,15 +162,6 @@
 						</div>
 						<div class="follow-container">
 							<div class="actions">
-								<button
-									class="menu _button"
-									@click="menu"
-									v-tooltip="i18n.ts.menu"
-								>
-									<i
-										class="ph-dots-three-outline ph-bold ph-lg"
-									></i>
-								</button>
 								<MkFollowButton
 									:user="user"
 									@refresh="emit('refresh')"
@@ -345,11 +336,9 @@ import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import MkMoved from "@/components/MkMoved.vue";
 import { getScrollPosition } from "@/scripts/scroll";
-import { getUserMenu } from "@/scripts/get-user-menu";
 import number from "@/filters/number";
 import { userPage } from "@/filters/user";
 import * as os from "@/os";
-import { useRouter } from "@/router";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { host } from "@/config";
@@ -364,8 +353,6 @@ const props = withDefaults(
 	}>(),
 	{}
 );
-
-const router = useRouter();
 
 let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
@@ -422,13 +409,6 @@ const timeForThem = $computed(() => {
 });
 
 const patrons = await os.api("patrons");
-
-function menu(ev) {
-	os.popupMenu(
-		getUserMenu(props.user, router),
-		ev.currentTarget ?? ev.target
-	);
-}
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
@@ -599,17 +579,6 @@ onUnmounted(() => {
 						display: flex;
 						justify-content: center;
 						align-items: center;
-
-						> .menu {
-							height: 31px;
-							width: 31px;
-							color: --fg;
-							font-size: 16px;
-						}
-
-						> :deep(.follow-button) {
-							margin-left: 8px;
-						}
 					}
 
 					> .title {

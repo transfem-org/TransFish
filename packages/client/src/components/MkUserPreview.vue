@@ -101,12 +101,13 @@
 						<span>{{ user.followersCount }}</span>
 					</div>
 				</div>
-				<MkFollowButton
-					v-if="$i && user.id != $i.id"
-					class="koudoku-button"
-					:user="user"
-					mini
-				/>
+				<div class="follow-button-container">
+					<MkFollowButton
+						v-if="$i && user.id != $i.id"
+						:user="user"
+						mini
+					/>
+				</div>
 			</div>
 			<div v-else>
 				<MkLoading />
@@ -208,6 +209,15 @@ onMounted(() => {
 				background: rgba(0, 0, 0, 0.7);
 				font-size: 0.7em;
 				border-radius: 6px;
+			}
+
+			&::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				z-index: 2;
+				height: 84px;
+				background: linear-gradient(-125deg, rgba(0,0,0,0.7), transparent, transparent);
 			}
 
 			&::after {
@@ -368,10 +378,11 @@ onMounted(() => {
 			}
 		}
 
-		> .koudoku-button {
+		> .follow-button-container {
 			position: absolute;
 			top: 8px;
 			right: 8px;
+			z-index: 3;
 		}
 	}
 }

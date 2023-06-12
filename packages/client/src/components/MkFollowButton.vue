@@ -1,5 +1,14 @@
 <template>
 	<button
+		class="menu _button"
+		@click="menu"
+		v-tooltip="i18n.ts.menu"
+	>
+		<i
+			class="ph-dots-three-outline ph-bold ph-lg"
+		></i>
+	</button>
+	<button
 		v-if="$i != null && $i.id != user.id"
 		class="kpoogebi _button follow-button"
 		:class="{
@@ -60,6 +69,11 @@ import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
+import { getUserMenu } from "@/scripts/get-user-menu";
+import { useRouter } from "@/router";
+
+const router = useRouter();
+
 
 const emit = defineEmits(["refresh"]);
 const props = withDefaults(
@@ -151,6 +165,13 @@ async function onClick() {
 	}
 }
 
+function menu(ev) {
+	os.popupMenu(
+		getUserMenu(props.user, router),
+		ev.currentTarget ?? ev.target
+	);
+}
+
 onMounted(() => {
 	connection.on("follow", onFollowChange);
 	connection.on("unfollow", onFollowChange);
@@ -176,6 +197,7 @@ onBeforeUnmount(() => {
 	height: 2em;
 	border-radius: 100px;
 	background: var(--bg);
+	margin-left: 14px;
 
 	&.full {
 		padding: 0.2em 0.7em;
