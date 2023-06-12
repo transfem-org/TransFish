@@ -59,21 +59,17 @@
 				v-if="input && input.type !== 'paragraph'"
 				v-model="inputValue"
 				autofocus
-				:type="
-					input.type == 'searchAdvanced'
-						? 'search'
-						: input.type || 'text'
-				"
+				:type="input.type == 'search' ? 'search' : input.type || 'text'"
 				:placeholder="input.placeholder || undefined"
 				@keydown="onInputKeydown"
 				:style="{
-					width: input.type === 'searchAdvanced' ? '300px' : null,
+					width: input.type === 'search' ? '300px' : null,
 				}"
 			>
 				<template v-if="input.type === 'password'" #prefix
 					><i class="ph-password ph-bold ph-lg"></i
 				></template>
-				<template v-if="input.type === 'searchAdvanced'" #suffix>
+				<template v-if="input.type === 'search'" #suffix>
 					<button
 						class="_buttonIcon"
 						@click.stop="openSearchFilters"
@@ -256,7 +252,7 @@ const inputEl = ref<typeof MkInput>();
 
 function done(canceled: boolean, result?) {
 	emit("done", { canceled, result });
-	modal.value?.close();
+	modal.value?.close(ev);
 }
 
 async function ok() {
