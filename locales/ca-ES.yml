@@ -1850,7 +1850,7 @@ _ago:
   hoursAgo: Fa {n}h
   daysAgo: Fa {n}d
   secondsAgo: Fa {n}s
-  weeksAgo: Fa {n}s
+  weeksAgo: Fa {n}set
   monthsAgo: Fa {n}me
   yearsAgo: Fa {n}a
 _time:
@@ -2096,3 +2096,14 @@ isPatron: Mecenes de Calkey
 isBot: Aquest compte és un bot
 isModerator: Moderador
 isAdmin: Administrador
+_filters:
+  fromDomain: Des del domini
+  notesBefore: Publicacions anteriors
+  notesAfter: Publicacions posteriors
+  followingOnly: Només seguint
+  followersOnly: Només seguidors
+  withFile: Amb arxiu
+  fromUser: De l'usuari
+image: Imatge
+video: Vídeo
+audio: Àudio
