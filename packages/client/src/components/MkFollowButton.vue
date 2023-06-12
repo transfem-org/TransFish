@@ -1,7 +1,7 @@
 <template>
 	<button
 		class="menu _button"
-		@click="menu"
+		@click.stop="menu"
 		v-tooltip="i18n.ts.menu"
 	>
 		<i
@@ -19,7 +19,7 @@
 			blocking: isBlocking,
 		}"
 		:disabled="wait"
-		@click="onClick"
+		@click.stop="onClick"
 		:aria-label="`${state} ${user.name || user.username}`"
 	>
 		<template v-if="!wait">
