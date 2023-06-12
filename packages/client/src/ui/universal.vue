@@ -331,10 +331,11 @@ async function startGroup(): void {
 
 onMounted(() => {
 	if (!isDesktop.value) {
-		matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
-			if (mql.matches)
-				isDesktop.value = true;
-		}
+		matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (
+			mql
+		) => {
+			if (mql.matches) isDesktop.value = true;
+		};
 	}
 });
 
@@ -392,7 +393,7 @@ const attachSticky = (el: any) => {
 		} else {
 			widgetsEl.classList.add("hide-scrollbar");
 		}
-	}
+	};
 };
 
 function top() {
