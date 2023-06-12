@@ -8,6 +8,7 @@ import copyToClipboard from "@/scripts/copy-to-clipboard";
 import { url } from "@/config";
 import { noteActions } from "@/store";
 import { shareAvailable } from "@/scripts/share-available";
+import { getUserMenu } from "@/scripts/get-user-menu";
 
 export function getNoteMenu(props: {
 	note: misskey.entities.Note;
@@ -412,6 +413,14 @@ export function getNoteMenu(props: {
 						action: del,
 				  }
 				: undefined,
+			!isAppearAuthor ? null : undefined,
+			!isAppearAuthor
+				? {
+					type: "parent",
+					icon: "ph-user ph-bold ph-lg",
+					text: i18n.ts.user,
+					children: getUserMenu(appearNote.user)
+				} : undefined,
 		].filter((x) => x !== undefined);
 	} else {
 		menu = [
