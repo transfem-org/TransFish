@@ -390,6 +390,7 @@ onUnmounted(() => {
 		height: var(--height);
 		&.right {
 			justify-content: flex-end;
+			z-index: 2;
 			// margin-right: calc(0px - var(--margin));
 			// margin-left: var(--margin);
 			> .button:last-child {

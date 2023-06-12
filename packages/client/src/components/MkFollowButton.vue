@@ -183,6 +183,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+.menu {
+	width: 3em;
+	height: 2em;
+}
 .follow-button {
 	position: relative;
 	display: inline-flex;
@@ -197,7 +201,6 @@ onBeforeUnmount(() => {
 	height: 2em;
 	border-radius: 100px;
 	background: var(--bg);
-	margin-left: 14px;
 
 	&.full {
 		padding: 0.2em 0.7em;
