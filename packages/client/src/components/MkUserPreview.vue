@@ -217,7 +217,12 @@ onMounted(() => {
 				inset: 0;
 				z-index: 2;
 				height: 84px;
-				background: linear-gradient(-125deg, rgba(0,0,0,0.7), transparent, transparent);
+				background: linear-gradient(
+					-125deg,
+					rgba(0, 0, 0, 0.7),
+					transparent,
+					transparent
+				);
 			}
 
 			&::after {

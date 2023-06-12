@@ -1,12 +1,6 @@
 <template>
-	<button
-		class="menu _button"
-		@click.stop="menu"
-		v-tooltip="i18n.ts.menu"
-	>
-		<i
-			class="ph-dots-three-outline ph-bold ph-lg"
-		></i>
+	<button class="menu _button" @click.stop="menu" v-tooltip="i18n.ts.menu">
+		<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 	</button>
 	<button
 		v-if="$i != null && $i.id != user.id"
@@ -73,7 +67,6 @@ import { getUserMenu } from "@/scripts/get-user-menu";
 import { useRouter } from "@/router";
 
 const router = useRouter();
-
 
 const emit = defineEmits(["refresh"]);
 const props = withDefaults(
