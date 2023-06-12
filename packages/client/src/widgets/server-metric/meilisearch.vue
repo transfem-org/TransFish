@@ -4,6 +4,7 @@
 			v-tooltip="i18n.ts.meiliIndexCount"
 			class="pie"
 			:value="progress"
+			:reverse="true"
 		/>
 		<div>
 			<p><i class="ph-file-search ph-bold ph-lg"></i>MeiliSearch</p>
