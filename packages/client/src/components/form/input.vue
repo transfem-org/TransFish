@@ -108,6 +108,7 @@ const suffixEl = ref<HTMLElement>();
 const height = props.small ? 36 : props.large ? 40 : 38;
 
 const focus = () => inputEl.value.focus();
+const selectRange = (start, end) => inputEl.value.setSelectionRange(start, end);
 const onInput = (ev: KeyboardEvent) => {
 	changed.value = true;
 	emit("change", ev);
@@ -177,6 +178,11 @@ onMounted(() => {
 			focus();
 		}
 	});
+});
+
+defineExpose({
+	focus,
+	selectRange,
 });
 </script>
 
@@ -254,6 +260,9 @@ onMounted(() => {
 					overflow: hidden;
 					white-space: nowrap;
 					text-overflow: ellipsis;
+				}
+				> :deep(button) {
+					pointer-events: all;
 				}
 			}
 

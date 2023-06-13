@@ -164,7 +164,7 @@ const props = defineProps<{
 
 const displayBackButton =
 	props.displayBackButton &&
-	history.length > 2 &&
+	history.length > 1 &&
 	inject("shouldBackButton", true);
 
 const emit = defineEmits<{
@@ -390,6 +390,7 @@ onUnmounted(() => {
 		height: var(--height);
 		&.right {
 			justify-content: flex-end;
+			z-index: 2;
 			// margin-right: calc(0px - var(--margin));
 			// margin-left: var(--margin);
 			> .button:last-child {
@@ -430,7 +431,8 @@ onUnmounted(() => {
 
 			> .icon {
 				margin-right: 8px;
-				width: 16px;
+				min-width: 16px;
+				width: 1em;
 				text-align: center;
 			}
 
@@ -507,10 +509,11 @@ onUnmounted(() => {
 		}
 
 		&.collapse {
-			--width: 38px;
+			--width: 2.7em;
+			// --width: 1.33333em
 			> .tab {
-				width: 38px;
-				min-width: 38px !important;
+				width: 2.7em;
+				min-width: 2.7em !important;
 				&:not(.active) > .title {
 					opacity: 0;
 				}

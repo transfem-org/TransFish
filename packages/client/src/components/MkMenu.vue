@@ -1,5 +1,9 @@
 <template>
-	<FocusTrap :active="false" ref="focusTrap">
+	<FocusTrap
+		:active="false"
+		ref="focusTrap"
+		:return-focus-on-deactivate="!noReturnFocus"
+	>
 		<div tabindex="-1">
 			<div
 				ref="itemsEl"
@@ -128,7 +132,11 @@
 					<button
 						v-else-if="!item.hidden"
 						class="_button item"
-						:class="{ danger: item.danger, active: item.active }"
+						:class="{
+							danger: item.danger,
+							accent: item.accent,
+							active: item.active,
+						}"
 						:disabled="item.active"
 						@click="clicked(item.action, $event)"
 						@mouseenter.passive="onItemMouseEnter(item)"
@@ -201,6 +209,7 @@ const props = defineProps<{
 	align?: "center" | string;
 	width?: number;
 	maxHeight?: number;
+	noReturnFocus?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -365,10 +374,6 @@ onBeforeUnmount(() => {
 			position: relative;
 		}
 
-		> &.icon {
-			transform: translateY(0em);
-		}
-
 		&:not(:disabled):hover,
 		&:focus-visible {
 			color: var(--accent);
@@ -398,6 +403,26 @@ onBeforeUnmount(() => {
 
 				&:before {
 					background: #b4637a;
+				}
+			}
+		}
+
+		&.accent {
+			color: var(--accent);
+
+			&:hover {
+				color: var(--accent);
+
+				&:before {
+					background: var(--accentedBg);
+				}
+			}
+
+			&:active {
+				color: var(--fgOnAccent);
+
+				&:before {
+					background: var(--accent);
 				}
 			}
 		}

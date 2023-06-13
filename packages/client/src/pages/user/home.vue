@@ -54,7 +54,7 @@
 									/></span>
 									<span
 										v-if="user.isAdmin"
-										:title="i18n.ts.isAdmin"
+										v-tooltip.noDelay="i18n.ts.isAdmin"
 										style="color: var(--badge)"
 										><i
 											class="ph-bookmark-simple ph-fill ph-lg"
@@ -62,21 +62,35 @@
 									></span>
 									<span
 										v-if="!user.isAdmin && user.isModerator"
-										:title="i18n.ts.isModerator"
+										v-tooltip.noDelay="i18n.ts.isModerator"
 										style="color: var(--badge)"
 										><i
-											class="ph-bookmark-simple ph-bold"
+											class="ph-bookmark-simple ph-bold ph-lg"
 										></i
 									></span>
 									<span
 										v-if="user.isLocked"
-										:title="i18n.ts.isLocked"
+										v-tooltip.noDelay="i18n.ts.isLocked"
 										><i class="ph-lock ph-bold ph-lg"></i
 									></span>
 									<span
 										v-if="user.isBot"
-										:title="i18n.ts.isBot"
+										v-tooltip.noDelay="i18n.ts.isBot"
 										><i class="ph-robot ph-bold ph-lg"></i
+									></span>
+									<span
+										v-if="
+											patrons?.includes(
+												`@${user.username}@${
+													user.host || host
+												}`
+											)
+										"
+										v-tooltip.noDelay="i18n.ts.isPatron"
+										style="color: var(--badge)"
+										><i
+											class="ph-hand-coins ph-bold ph-lg"
+										></i
 									></span>
 								</div>
 							</div>
@@ -110,7 +124,7 @@
 								/></span>
 								<span
 									v-if="user.isAdmin"
-									:title="i18n.ts.isAdmin"
+									v-tooltip.noDelay="i18n.ts.isAdmin"
 									style="color: var(--badge)"
 									><i
 										class="ph-bookmark-simple ph-fill ph-lg"
@@ -118,31 +132,36 @@
 								></span>
 								<span
 									v-if="!user.isAdmin && user.isModerator"
-									:title="i18n.ts.isModerator"
+									v-tooltip.noDelay="i18n.ts.isModerator"
 									style="color: var(--badge)"
 									><i class="ph-bookmark-simple ph-bold"></i
 								></span>
 								<span
 									v-if="user.isLocked"
-									:title="i18n.ts.isLocked"
+									v-tooltip.noDelay="i18n.ts.isLocked"
 									><i class="ph-lock ph-bold ph-lg"></i
 								></span>
-								<span v-if="user.isBot" :title="i18n.ts.isBot"
+								<span
+									v-if="user.isBot"
+									v-tooltip.noDelay="i18n.ts.isBot"
 									><i class="ph-robot ph-bold ph-lg"></i
+								></span>
+								<span
+									v-if="
+										patrons?.includes(
+											`@${user.username}@${
+												user.host || host
+											}`
+										)
+									"
+									v-tooltip.noDelay="i18n.ts.isPatron"
+									style="color: var(--badge)"
+									><i class="ph-hand-coins ph-bold ph-lg"></i
 								></span>
 							</div>
 						</div>
 						<div class="follow-container">
 							<div class="actions">
-								<button
-									class="menu _button"
-									@click="menu"
-									v-tooltip="i18n.ts.menu"
-								>
-									<i
-										class="ph-dots-three-outline ph-bold ph-lg"
-									></i>
-								</button>
 								<MkFollowButton
 									:user="user"
 									@refresh="emit('refresh')"
@@ -317,13 +336,12 @@ import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import MkMoved from "@/components/MkMoved.vue";
 import { getScrollPosition } from "@/scripts/scroll";
-import { getUserMenu } from "@/scripts/get-user-menu";
 import number from "@/filters/number";
 import { userPage } from "@/filters/user";
 import * as os from "@/os";
-import { useRouter } from "@/router";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
+import { host } from "@/config";
 
 const XPhotos = defineAsyncComponent(() => import("./index.photos.vue"));
 const XActivity = defineAsyncComponent(() => import("./index.activity.vue"));
@@ -335,8 +353,6 @@ const props = withDefaults(
 	}>(),
 	{}
 );
-
-const router = useRouter();
 
 let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
@@ -392,12 +408,7 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-function menu(ev) {
-	os.popupMenu(
-		getUserMenu(props.user, router),
-		ev.currentTarget ?? ev.target
-	);
-}
+const patrons = await os.api("patrons");
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
@@ -568,17 +579,6 @@ onUnmounted(() => {
 						display: flex;
 						justify-content: center;
 						align-items: center;
-
-						> .menu {
-							height: 31px;
-							width: 31px;
-							color: --fg;
-							font-size: 16px;
-						}
-
-						> :deep(.follow-button) {
-							margin-left: 8px;
-						}
 					}
 
 					> .title {

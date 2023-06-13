@@ -95,9 +95,13 @@
 	}
 	//#endregion
 
-	const fontSize = localStorage.getItem("fontSize");
+	let fontSize = localStorage.getItem("fontSize");
 	if (fontSize) {
-		document.documentElement.classList.add("f-" + fontSize);
+		if (fontSize < 10) { // need to do this for now, as values before were 1, 2, 3 depending on the option
+			localStorage.setItem("fontSize", null);
+			fontSize = localStorage.getItem("fontSize");
+		}
+		document.documentElement.style.fontSize = fontSize + "px";
 	}
 
 	const useSystemFont = localStorage.getItem("useSystemFont");

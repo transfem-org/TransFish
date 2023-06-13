@@ -43,7 +43,6 @@
 				manyImages: note.files.length > 4,
 				showContent: note.cw && !showContent,
 				animatedMfm: !disableMfm,
-				advancedMfm,
 			}"
 		>
 			<XShowMoreButton
@@ -214,8 +213,8 @@ const isLong =
 	!props.detailedView &&
 	((props.note.cw == null &&
 		props.note.text != null &&
-		(props.note.text.split("\n").length > 9 ||
-			props.note.text.length > 500)) ||
+		(props.note.text.split("\n").length > 10 ||
+			props.note.text.length > 800)) ||
 		props.note.files.length > 4);
 
 const collapsed = $ref(props.note.cw == null && isLong);
@@ -233,8 +232,6 @@ const mfms = props.note.text
 const hasMfm = $ref(mfms && mfms.length > 0);
 
 let disableMfm = $ref(defaultStore.state.animatedMfm);
-
-const advancedMfm = defaultStore.state.advancedMfm;
 
 async function toggleMfm() {
 	if (disableMfm) {
@@ -343,7 +340,7 @@ function focusFooter(ev) {
 		&.collapsed,
 		&.showContent {
 			position: relative;
-			max-height: calc(9em + 50px);
+			max-height: calc(15em + 100px);
 			> .body {
 				max-height: inherit;
 				mask: linear-gradient(black calc(100% - 64px), transparent);
@@ -351,10 +348,10 @@ function focusFooter(ev) {
 					black calc(100% - 64px),
 					transparent
 				);
-				padding-inline: 50px;
-				margin-inline: -50px;
-				margin-top: -50px;
-				padding-top: 50px;
+				padding-inline: 100px;
+				margin-inline: -100px;
+				margin-top: -100px;
+				padding-top: 100px;
 				overflow: hidden;
 				user-select: none;
 				-webkit-user-select: none;
@@ -363,7 +360,7 @@ function focusFooter(ev) {
 		}
 		&.collapsed {
 			&.manyImages {
-				max-height: calc(9em + 200px);
+				max-height: calc(15em + 250px);
 			}
 			> .body {
 				box-sizing: border-box;
@@ -384,7 +381,7 @@ function focusFooter(ev) {
 			}
 			:deep(.fade) {
 				inset: 0;
-				top: 40px;
+				top: 90px;
 			}
 		}
 

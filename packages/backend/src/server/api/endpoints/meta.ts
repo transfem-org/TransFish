@@ -1,4 +1,4 @@
-import * as JSON5 from "json5";
+import JSON5 from "json5";
 import { IsNull, MoreThan } from "typeorm";
 import config from "@/config/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
@@ -323,7 +323,7 @@ export const meta = {
 						optional: false,
 						nullable: false,
 					},
-					elasticsearch: {
+					searchFilters: {
 						type: "boolean",
 						optional: false,
 						nullable: false,
@@ -521,7 +521,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			recommendedTimeline: !instance.disableRecommendedTimeline,
 			globalTimeLine: !instance.disableGlobalTimeline,
 			emailRequiredForSignup: instance.emailRequiredForSignup,
-			elasticsearch: config.elasticsearch ? true : false,
+			searchFilters: config.meilisearch ? true : false,
 			hcaptcha: instance.enableHcaptcha,
 			recaptcha: instance.enableRecaptcha,
 			objectStorage: instance.useObjectStorage,

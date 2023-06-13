@@ -222,7 +222,9 @@ export const db = new DataSource({
 
 export async function initDb(force = false) {
 	await nativeInitDatabase(
-		`postgres://${config.db.user}:${config.db.pass}@${config.db.host}:${config.db.port}/${config.db.db}`,
+		`postgres://${config.db.user}:${encodeURIComponent(config.db.pass)}@${
+			config.db.host
+		}:${config.db.port}/${config.db.db}`,
 	);
 	if (force) {
 		if (db.isInitialized) {

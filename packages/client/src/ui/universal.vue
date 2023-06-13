@@ -3,7 +3,7 @@
 		class="dkgtipfy"
 		:class="{ wallpaper, isMobile, centered: ui === 'classic' }"
 	>
-		<XSidebar v-if="!isMobile" class="sidebar" />
+		<XSidebar v-if="!isMobile" />
 
 		<MkStickyContainer class="contents">
 			<template #header
@@ -20,7 +20,7 @@
 		</MkStickyContainer>
 
 		<template v-if="$i">
-			<div v-if="isDesktop" ref="widgetsEl" class="widgets">
+			<div v-if="isDesktop" ref="widgetsEl" class="widgets-container">
 				<XWidgets @mounted="attachSticky" />
 			</div>
 
@@ -175,7 +175,6 @@ import XKanban from "./visitor/kanban.vue";
 import type { ComputedRef } from "vue";
 import type { PageMetadata } from "@/scripts/page-metadata";
 import { instanceName, ui } from "@/config";
-import { StickySidebar } from "@/scripts/sticky-sidebar";
 import XDrawerMenu from "@/ui/_common_/navbar-for-mobile.vue";
 import XSidebar from "@/ui/_common_/navbar.vue";
 import * as os from "@/os";
@@ -256,8 +255,6 @@ mainRouter.on("change", () => {
 	drawerMenuShowing.value = false;
 	updateButtonState();
 });
-
-document.documentElement.style.overflowY = "scroll";
 
 if (defaultStore.state.widgets.length === 0) {
 	defaultStore.set("widgets", [
@@ -341,14 +338,11 @@ async function startGroup(): void {
 
 onMounted(() => {
 	if (!isDesktop.value) {
-		window.addEventListener(
-			"resize",
-			() => {
-				if (window.innerWidth >= DESKTOP_THRESHOLD)
-					isDesktop.value = true;
-			},
-			{ passive: true }
-		);
+		matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (
+			mql
+		) => {
+			if (mql.matches) isDesktop.value = true;
+		};
 	}
 });
 
@@ -388,14 +382,25 @@ const onContextmenu = (ev: MouseEvent) => {
 };
 
 const attachSticky = (el: any) => {
-	const sticky = new StickySidebar(widgetsEl);
-	window.addEventListener(
+	let lastScrollTop = 0;
+	addEventListener(
 		"scroll",
 		() => {
-			sticky.calc(window.scrollY);
+			requestAnimationFrame(() => {
+				widgetsEl.scrollTop += window.scrollY - lastScrollTop;
+				lastScrollTop = window.scrollY;
+			});
 		},
 		{ passive: true }
 	);
+	widgetsEl.classList.add("hide-scrollbar");
+	widgetsEl.onmouseenter = () => {
+		if (document.documentElement.scrollHeight <= window.innerHeight) {
+			widgetsEl.classList.remove("hide-scrollbar");
+		} else {
+			widgetsEl.classList.add("hide-scrollbar");
+		}
+	};
 };
 
 function top() {
@@ -567,9 +572,14 @@ console.log(mainRouter.currentRoute.value.name);
 		}
 	}
 
-	> .widgets {
+	> .widgets-container {
+		position: sticky;
+		top: 0;
+		max-height: 100vh;
+		overflow-y: auto;
 		padding: 0 var(--margin);
 		width: 300px;
+		min-width: max-content;
 		box-sizing: content-box;
 
 		@media (max-width: $widgets-hide-threshold) {

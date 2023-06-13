@@ -153,7 +153,7 @@ In Calckey's directory, fill out the `db` section of `.config/default.yml` with 
 
 ### 🦔 Sonic
 
-Sonic is better suited for self hosters with smaller deployments. It's easier to use, uses almost no resources, and takes barely any any disk space.
+Sonic is better suited for self hosters with smaller deployments. It uses almost no resources, barely any any disk space, and is relatively fast.
 
 Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#installation)
 
@@ -247,4 +247,4 @@ pm2 start "NODE_ENV=production pnpm run start" --name Calckey
   - Go back to Overview > click the clipboard icon next to the ID
   - Run `psql -d calckey` (or whatever the database name is)
   - Run `UPDATE "user" SET "isAdmin" = true WHERE id='999999';` (replace `999999` with the copied ID)
-  - Have the new admin log out and log back in
+  - Restart your Calckey server

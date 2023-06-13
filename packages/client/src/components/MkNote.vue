@@ -5,7 +5,7 @@
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350] }"
+		v-size="{ max: [500, 350] }"
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
@@ -844,10 +844,7 @@ defineExpose({
 	}
 
 	&.max-width_500px {
-		font-size: 0.9em;
-	}
-
-	&.max-width_450px {
+		font-size: 0.975em;
 		--avatarSize: 46px;
 		padding-top: 6px;
 		> .note-context {

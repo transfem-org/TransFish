@@ -46,7 +46,7 @@ export default class Connection {
 	private channels: Channel[] = [];
 	private subscribingNotes: Map<string, number> = new Map();
 	private cachedNotes: Packed<"Note">[] = [];
-	private isMastodonCompatible: boolean = false;
+	private isMastodonCompatible = false;
 	private host: string;
 	private accessToken: string;
 	private currentSubscribe: string[][] = [];

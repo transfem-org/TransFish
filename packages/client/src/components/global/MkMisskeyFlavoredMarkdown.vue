@@ -7,13 +7,17 @@
 		:customEmojis="customEmojis"
 		:isNote="isNote"
 		class="mfm-object"
-		:class="{ nowrap }"
+		:class="{
+			nowrap,
+			advancedMfm: defaultStore.state.advancedMfm || advancedMfm,
+		}"
 	/>
 </template>
 
 <script lang="ts" setup>
 import {} from "vue";
 import MfmCore from "@/components/mfm";
+import { defaultStore } from "@/store";
 
 const props = withDefaults(
 	defineProps<{
@@ -23,6 +27,7 @@ const props = withDefaults(
 		author?: any;
 		customEmojis?: any;
 		isNote?: boolean;
+		advancedMfm: boolean;
 	}>(),
 	{
 		plain: false,
@@ -34,8 +39,8 @@ const props = withDefaults(
 </script>
 
 <style lang="scss">
-.content:not(.advancedMfm):not(.animatedMfm) {
-	.mfm-object {
+.content:not(.animatedMfm) {
+	.mfm-object:not(.advancedMfm) {
 		[style*="animation:"] {
 			animation: none !important;
 		}
@@ -56,7 +61,7 @@ const props = withDefaults(
 		}
 	}
 }
-.content.advancedMfm,
+.mfm-object.advancedMfm,
 .content.animatedMfm {
 	.mfm-x2 {
 		--mfm-zoom-size: 200%;

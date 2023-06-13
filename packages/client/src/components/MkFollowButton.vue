@@ -1,4 +1,7 @@
 <template>
+	<button class="menu _button" @click.stop="menu" v-tooltip="i18n.ts.menu">
+		<i class="ph-dots-three-outline ph-bold ph-lg"></i>
+	</button>
 	<button
 		v-if="$i != null && $i.id != user.id"
 		class="kpoogebi _button follow-button"
@@ -10,7 +13,7 @@
 			blocking: isBlocking,
 		}"
 		:disabled="wait"
-		@click="onClick"
+		@click.stop="onClick"
 		:aria-label="`${state} ${user.name || user.username}`"
 	>
 		<template v-if="!wait">
@@ -60,6 +63,10 @@ import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
+import { getUserMenu } from "@/scripts/get-user-menu";
+import { useRouter } from "@/router";
+
+const router = useRouter();
 
 const emit = defineEmits(["refresh"]);
 const props = withDefaults(
@@ -151,6 +158,13 @@ async function onClick() {
 	}
 }
 
+function menu(ev) {
+	os.popupMenu(
+		getUserMenu(props.user, router),
+		ev.currentTarget ?? ev.target
+	);
+}
+
 onMounted(() => {
 	connection.on("follow", onFollowChange);
 	connection.on("unfollow", onFollowChange);
@@ -162,6 +176,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+.menu {
+	width: 3em;
+	height: 2em;
+}
 .follow-button {
 	position: relative;
 	display: inline-flex;

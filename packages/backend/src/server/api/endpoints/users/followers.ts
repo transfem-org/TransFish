@@ -37,6 +37,12 @@ export const meta = {
 			code: "FORBIDDEN",
 			id: "3c6a84db-d619-26af-ca14-06232a21df8a",
 		},
+
+		nullFollowers: {
+			message: "No followers found.",
+			code: "NULL_FOLLOWERS",
+			id: "174a6507-a6c2-4925-8e5d-92fd08aedc9e",
+		},
 	},
 } as const;
 
@@ -97,7 +103,7 @@ export default define(meta, paramDef, async (ps, me) => {
 				followerId: me.id,
 			});
 			if (following == null) {
-				throw new ApiError(meta.errors.forbidden);
+				throw new ApiError(meta.errors.nullFollowers);
 			}
 		}
 	}

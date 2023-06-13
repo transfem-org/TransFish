@@ -39,7 +39,9 @@
 				:meta="meta"
 			/>
 			<XMeili
-				v-else-if="widgetProps.view === 5"
+				v-else-if="
+					instance.features.searchFilters && widgetProps.view === 5
+				"
 				:connection="connection"
 				:meta="meta"
 			/>
@@ -67,6 +69,7 @@ import { GetFormResultType } from "@/scripts/form";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
+import { instance } from "@/instance";
 
 const name = "serverMetric";
 
@@ -108,7 +111,10 @@ os.api("server-info", {}).then((res) => {
 });
 
 const toggleView = () => {
-	if (widgetProps.view === 5) {
+	if (
+		(widgetProps.view === 5 && instance.features.searchFilters) ||
+		(widgetProps.view === 4 && !instance.features.searchFilters)
+	) {
 		widgetProps.view = 0;
 	} else {
 		widgetProps.view++;

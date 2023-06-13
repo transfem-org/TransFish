@@ -14,7 +14,10 @@
 					:title="i18n.ts.delete"
 					@click="del"
 				>
-					<img src="/client-assets/remove.png" alt="Delete" />
+					<i
+						style="color: var(--accentLighten)"
+						class="ph-x-circle ph-fill ph-lg"
+					></i>
 				</button>
 				<div v-if="!message.isDeleted" class="content">
 					<Mfm
