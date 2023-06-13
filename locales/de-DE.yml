@@ -663,7 +663,7 @@ display: "Anzeigeart"
 copy: "Kopieren"
 metrics: "Metriken"
 overview: "Übersicht"
-logs: "Logs"
+logs: "Protokolle"
 delayed: "Verzögert"
 database: "Datenbank"
 channel: "Channels"
@@ -2075,9 +2075,9 @@ _experiments:
     das Menü "Beitragsoptionen" zu bearbeiten
 noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
   die Funktion von Calckey stört.
-indexFrom: Indizieren ab Beitrags-ID (frei lassen, um jeden Beitrag zu indizieren)
-indexNotice: Indizierung gestartet. Dies wird wahrscheinlich eine Weile dauern. Bitte
-  starte den Server für mindestens eine Stunde nicht neu.
+indexFrom: Indexieren ab Beitragskennung aufwärts
+indexNotice: Wird indexiert. Dies kann einige Zeit dauern. Bitte den Server für mindestens
+  eine Stunde nicht neu starten.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
   zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
   \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
@@ -2089,3 +2089,11 @@ customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrück
   Zeilen werden einfach ignoriert. Es werden nur einfache Funktionen zur Substitution
   von Zeichenketten unterstützt; erweiterte Syntax, wie z. B. bedingte Verzweigungen,
   können hier nicht verwendet werden."
+expandOnNoteClickDesc: Wenn deaktiviert, können Sie Beiträge trotzdem über das Rechtsklickmenü
+  oder durch Anklicken des Zeitstempels öffnen.
+selectChannel: Wählen Sie einen Kanal aus
+expandOnNoteClick: Beitrag bei Klick öffnen
+image: Bild
+video: Video
+audio: Audio
+indexFromDescription: Leer lassen, um jeden Beitrag zu indexieren
