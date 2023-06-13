@@ -420,7 +420,7 @@ function noteClick(e) {
 		font-size: 1em;
 		cursor: auto;
 
-		&.max-width_450px {
+		&.max-width_500px {
 			padding: 10px 0 0 8px;
 		}
 	}
@@ -732,6 +732,7 @@ function noteClick(e) {
 	}
 
 	&.max-width_500px {
+		padding: 14px 16px;
 		:not(.reply) > & {
 			.reply {
 				--avatarSize: 24px;
@@ -749,11 +750,8 @@ function noteClick(e) {
 				padding-left: 28px !important;
 			}
 		}
-	}
-	&.max-width_450px {
-		padding: 14px 16px;
-		&.reply-to,
-		&.reply-to-more {
+		&.reply-to {
+			--avatarSize: 46px;
 			padding: 14px 16px;
 			padding-top: 14px !important;
 			padding-bottom: 0 !important;
