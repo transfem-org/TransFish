@@ -2076,8 +2076,8 @@ _experiments:
 noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
   die Funktion von Calckey stört.
 indexFrom: Indexieren ab Beitragskennung aufwärts
-indexNotice: Indizierung gestartet. Dies wird wahrscheinlich eine Weile dauern. Bitte
-  starte den Server für mindestens eine Stunde nicht neu.
+indexNotice: Wird indexiert. Dies kann einige Zeit dauern. Bitte den Server für mindestens
+  eine Stunde nicht neu starten.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
   zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
   \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
