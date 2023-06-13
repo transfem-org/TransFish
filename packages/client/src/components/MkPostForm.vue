@@ -1193,7 +1193,7 @@ onMounted(() => {
 			padding: 0 24px;
 			margin: 0;
 			width: 100%;
-			font-size: inherit;
+			font-size: 1.05em;
 			border: none;
 			border-radius: 0;
 			background: transparent;
