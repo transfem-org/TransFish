@@ -431,7 +431,8 @@ onUnmounted(() => {
 
 			> .icon {
 				margin-right: 8px;
-				width: 16px;
+				min-width: 16px;
+				width: 1em;
 				text-align: center;
 			}
 
@@ -508,10 +509,11 @@ onUnmounted(() => {
 		}
 
 		&.collapse {
-			--width: 38px;
+			--width: 2.7em;
+			// --width: 1.33333em
 			> .tab {
-				width: 38px;
-				min-width: 38px !important;
+				width: 2.7em;
+				min-width: 2.7em !important;
 				&:not(.active) > .title {
 					opacity: 0;
 				}
