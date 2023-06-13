@@ -3,7 +3,8 @@
 		class="dkgtipfy"
 		:class="{ wallpaper, isMobile, centered: ui === 'classic' }"
 	>
-		<XSidebar v-if="!isMobile" />
+		<XSidebar v-if="!isMobile && $i" />
+		<XKanban class="kanban" full v-if="!$i" />
 
 		<MkStickyContainer class="contents">
 			<template #header
@@ -132,9 +133,6 @@
 			>
 				<i class="ph-user-plus ph-bold ph-lg"></i>
 			</button>
-		</template>
-		<template v-else>
-			<XKanban class="kanban" full />
 		</template>
 
 		<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">

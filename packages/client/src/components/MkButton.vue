@@ -17,6 +17,7 @@
 		class="bghgjjyj _button"
 		:class="{ inline, primary, gradate, danger, rounded, full, mini }"
 		:to="to"
+		:behavior="behavior"
 		@mousedown="onMousedown"
 	>
 		<div ref="ripples" class="ripples"></div>
@@ -43,6 +44,7 @@ const props = defineProps<{
 	full?: boolean;
 	mini?: boolean;
 	chip?: boolean;
+	behavior?: null | "window" | "browser" | "modalWindow";
 }>();
 
 const emit = defineEmits<{

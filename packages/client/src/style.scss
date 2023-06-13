@@ -488,6 +488,11 @@ hr {
 	}
 }
 
+._full {
+	width: 100%;
+	grid-column: -1/1;
+}
+
 ._formLinks {
 	> *:not(:last-child) {
 		margin-bottom: 8px;

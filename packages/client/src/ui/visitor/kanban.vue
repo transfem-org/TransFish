@@ -28,6 +28,41 @@
 					></XShowMoreButton>
 				</div>
 
+				<section>
+					<div class="_formLinksGrid">
+						<MkButton
+							primary gradate
+							rounded
+						>
+							<i
+								class="ph-sign-in ph-bold"
+							></i>
+							Sign Up
+						</MkButton>
+						<MkButton
+							rounded
+						>
+							<i
+								class="ph-sign-out ph-bold"
+							></i>
+							Log In
+						</MkButton>
+						<MkButton
+							:link="true"
+							:behavior="'browser'"
+							rounded
+							full
+							to="https://calckey.org/join/"
+							class="_full"
+						>
+							<i
+								class="ph-airplane-tilt ph-bold"
+							></i>
+							Find another server
+						</MkButton>
+					</div>
+				</section>
+
 				<FormSection>
 					<div class="_formLinksGrid">
 						<FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
@@ -37,11 +72,18 @@
 								></i></template
 							>{{ i18n.ts.tos }}
 						</FormLink>
+						<FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
+							><template #icon
+								><i
+									class="ph-prohibit ph-bold ph-lg"
+								></i></template
+							>Blocked servers
+						</FormLink>
 					</div>
 				</FormSection>
 
-				<section class="announcements">
-					<h1>{{ i18n.ts.announcements }}</h1>
+				<FormSection class="announcements">
+					<h3>{{ i18n.ts.announcements }}</h3>
 					<MkPagination
 						v-slot="{ items }"
 						:pagination="announcements"
@@ -65,7 +107,7 @@
 							</div>
 						</article>
 					</MkPagination>
-				</section>
+				</FormSection>
 				<div v-if="poweredBy" class="powered-by">
 					<b
 						><MkA to="/">{{ host }}</MkA></b
@@ -109,7 +151,7 @@ let collapsed = $ref(!isLong);
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
-	isLong = meta.description && (meta.description.length > 100);
+	isLong = meta.description && (meta.description.length > 500);
 });
 
 
