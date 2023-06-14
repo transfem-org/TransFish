@@ -6,6 +6,7 @@
 				:actions="headerActions"
 				:tabs="headerTabs"
 				:noTabCollapse="true"
+				:displayHomeButton="false"
 		/></template>
 		<div id="visitor-view">
 			<swiper

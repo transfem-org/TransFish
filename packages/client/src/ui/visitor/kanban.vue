@@ -191,10 +191,6 @@ matchMedia("(max-width: 1000px)").onchange = (mql) => {
 
 expanded = true;
 
-defineProps<{
-	poweredBy?: boolean,
-}>()
-
 let meta = $ref<DetailedInstanceMetadata>();
 
 let isLong = $ref(false);

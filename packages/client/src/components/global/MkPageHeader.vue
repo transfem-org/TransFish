@@ -9,15 +9,16 @@
 	>
 		<div class="left">
 			<div class="buttons">
-				<MkA
-					v-if="!$i"
+				<!-- <MkA
+					v-if="!$i && displayHomeButton"
 					class="_buttonIcon button icon backButton"
 					:to="'/'"
+					v-tooltip="i18n.ts.home"
 				>
-					<i class="ph-list ph-bold ph-lg"></i>
-				</MkA>
+					<i class="ph-house ph-bold ph-lg"></i>
+				</MkA> -->
 				<button
-					v-else-if="displayBackButton"
+					v-if="displayBackButton"
 					class="_buttonIcon button icon backButton"
 					@click.stop="goBack()"
 					@touchstart="preventDrag"
@@ -98,6 +99,15 @@
 			</nav>
 		</template>
 		<div class="buttons right">
+			<MkButton
+				v-if="!$i && displayHomeButton"
+				:to="'/'"
+				link
+				rounded
+			>
+				<i class="ph-house ph-bold ph-lg"></i>
+				{{ i18n.ts.home }}
+			</MkButton>
 			<template v-if="metadata.avatar && $i">
 				<MkFollowButton
 					v-if="narrow"
@@ -140,6 +150,7 @@ import {
 	reactive,
 } from "vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
+import MkButton from "@/components/MkButton.vue";
 import { popupMenu } from "@/os";
 import { scrollToTop } from "@/scripts/scroll";
 import { globalEvents } from "@/events";
@@ -155,20 +166,27 @@ type Tab = {
 	onClick?: (ev: MouseEvent) => void;
 };
 
-const props = defineProps<{
-	tabs?: Tab[];
-	tab?: string;
-	noTabCollapse?: boolean;
-	actions?: {
-		text: string;
-		icon: string;
-		handler: (ev: MouseEvent) => void;
-	}[];
-	thin?: boolean;
-	displayMyAvatar?: boolean;
-	displayBackButton?: boolean;
-	to?: string;
-}>();
+const props = withDefaults(
+	defineProps<{
+		tabs?: Tab[];
+		tab?: string;
+		noTabCollapse?: boolean;
+		actions?: {
+			text: string;
+			icon: string;
+			handler: (ev: MouseEvent) => void;
+		}[];
+		thin?: boolean;
+		displayMyAvatar?: boolean;
+		displayBackButton?: boolean;
+		displayHomeButton?: boolean;
+		to?: string;
+	}>(),
+	{
+		displayHomeButton: !$i
+	}
+)
+	
 
 const displayBackButton =
 	props.displayBackButton &&
