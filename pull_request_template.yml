@@ -26,3 +26,5 @@ body:
           required: true
         - label: I have made sure to run `pnpm run format` before submitting this pull request
           required: true
+        - label: I used [conventional commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) when making commits
+          required: false
