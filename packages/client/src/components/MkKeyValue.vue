@@ -4,7 +4,11 @@
 			<slot name="key"></slot>
 		</div>
 		<div class="value">
-			<slot name="value"></slot>
+			<Mfm
+				v-if="text"
+				:text="text"
+			></Mfm>
+			<slot v-else name="value"></slot>
 			<button
 				v-if="copy"
 				v-tooltip="i18n.ts.copy"
@@ -26,6 +30,7 @@ import { i18n } from "@/i18n";
 
 const props = withDefaults(
 	defineProps<{
+		text?: string;
 		copy?: string | null;
 		oneline?: boolean;
 	}>(),

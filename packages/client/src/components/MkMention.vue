@@ -1,6 +1,18 @@
 <template>
+	<a
+		v-if="to"
+		class="mention"
+		:href="to"
+		rel="noopener"
+		@click.stop
+	>
+		<i class="icon ph-bold ph-large" :class="'ph-' + icon"></i>
+		<span class="main">
+			<slot></slot>
+		</span>
+	</a>
 	<MkA
-		v-if="url.startsWith('/')"
+		v-else-if="url.startsWith('/')"
 		v-user-preview="canonical"
 		class="mention"
 		:class="{ isMe }"
@@ -40,21 +52,25 @@ import { host as localHost } from "@/config";
 import { $i } from "@/account";
 
 const props = defineProps<{
-	username: string;
-	host: string;
+	username?: string;
+	host?: string;
+	to?: string;
+	icon?: string;
 }>();
 
 const canonical =
-	props.host === localHost
-		? `@${props.username}`
-		: `@${props.username}@${toUnicode(props.host)}`;
+	props.host ?
+		props.host === localHost
+			? `@${props.username}`
+			: `@${props.username}@${toUnicode(props.host)}` : null;
 
 const url = `/${canonical}`;
 
 const isMe =
-	$i &&
-	`@${props.username}@${toUnicode(props.host)}` ===
-		`@${$i.username}@${toUnicode(localHost)}`.toLowerCase();
+	props.username ?
+		$i &&
+		`@${props.username}@${toUnicode(props.host)}` ===
+			`@${$i.username}@${toUnicode(localHost)}`.toLowerCase() : null;
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +107,12 @@ const isMe =
 		margin: 0 0.2em 0 0;
 		vertical-align: bottom;
 		border-radius: 100%;
+	}
+
+	> i.icon {
+		vertical-align: middle;
+		font-size: 1.2em;
+		margin-left: .4em;
 	}
 
 	> .main > .host {

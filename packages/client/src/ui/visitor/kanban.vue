@@ -33,6 +33,7 @@
 						<MkButton
 							primary gradate
 							rounded
+							@click="signup"
 						>
 							<i
 								class="ph-sign-in ph-bold"
@@ -41,6 +42,7 @@
 						</MkButton>
 						<MkButton
 							rounded
+							@click="signin"
 						>
 							<i
 								class="ph-sign-out ph-bold"
@@ -62,6 +64,26 @@
 						</MkButton>
 					</div>
 				</section>
+
+				<FormSection>
+					<div class="_formLinksGrid">
+						<MkKeyValue :text="meta.maintainerName">
+							<template #key>{{
+								i18n.ts.administrator
+							}}</template>
+						</MkKeyValue>
+						<MkKeyValue>
+							<template #key>{{
+								i18n.ts.contact
+							}}</template>
+							<template #value>
+								<MkMention :to="'mailto:' + meta.maintainerEmail" :icon="'envelope'">
+									{{ meta.maintainerEmail }}
+								</MkMention>
+							</template>
+						</MkKeyValue>
+					</div>
+				</FormSection>
 
 				<FormSection>
 					<div class="_formLinksGrid">
@@ -135,6 +157,11 @@ import FormLink from "@/components/form/link.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import { i18n } from "@/i18n";
 import { DetailedInstanceMetadata } from "calckey-js/built/entities";
+import XSigninDialog from "@/components/MkSigninDialog.vue";
+import XSignupDialog from "@/components/MkSignupDialog.vue";
+import MkKeyValue from "@/components/MkKeyValue.vue";
+import MkMention from "@/components/MkMention.vue";
+
 
 defineProps<{
 	poweredBy?: boolean,
@@ -154,6 +181,27 @@ os.api("meta", { detail: true }).then((res) => {
 	isLong = meta.description && (meta.description.length > 500);
 });
 
+function signin() {
+	os.popup(
+		XSigninDialog,
+		{
+			autoSet: true,
+		},
+		{},
+		"closed"
+	);
+};
+
+function signup() {
+	os.popup(
+		XSignupDialog,
+		{
+			autoSet: true,
+		},
+		{},
+		"closed"
+	);
+};
 
 
 </script>
