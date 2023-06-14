@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-                Thanks for taking the time to make Calckey better!
+                Thanks for taking the time to make Calckey better! It's not required, but please consider using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) when making your commits. If you use VSCode, please use the [Conventional Commits extension](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits).
   - type: textarea
     id: about
     attributes:
@@ -26,5 +26,3 @@ body:
           required: true
         - label: I have made sure to run `pnpm run format` before submitting this pull request
           required: true
-        - label: I used [conventional commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) when making commits
-          required: false
