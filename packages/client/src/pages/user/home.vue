@@ -400,9 +400,11 @@ const timeForThem = $computed(() => {
 			timeZone: tz,
 			hour12: false,
 		});
-		return ` (${theirTime.split(",")[1].trim().split(":")[0]}:${theirTime
-			.split(" ")[1]
-			.slice(-5, -3)})`;
+		return ` (${theirTime
+			.split(",")[1]
+			.trim()
+			.split(":")[0]
+			.replace("24", "0")}:${theirTime.split(" ")[1].slice(-5, -3)})`;
 	}
 
 	return "";
