@@ -49,7 +49,7 @@
 			v-if="$i && user.id != $i.id"
 			class="koudoku-button"
 			:user="user"
-			mini
+			full
 		/>
 	</div>
 </template>
