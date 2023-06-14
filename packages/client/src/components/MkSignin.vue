@@ -160,7 +160,6 @@
 <script lang="ts" setup>
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
-import { showSuspendedDialog } from "../scripts/show-suspended-dialog";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import MkInfo from "@/components/MkInfo.vue";
@@ -366,6 +365,14 @@ function resetPassword() {
 		{},
 		"closed"
 	);
+}
+
+function showSuspendedDialog() {
+	os.alert({
+		type: "error",
+		title: i18n.ts.yourAccountSuspendedTitle,
+		text: i18n.ts.yourAccountSuspendedDescription,
+	});
 }
 </script>
 

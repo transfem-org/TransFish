@@ -7,10 +7,6 @@
 			:class="{ wide: !narrow }"
 		>
 			<div class="main">
-				<!-- TODO -->
-				<!-- <div class="punished" v-if="user.isSuspended"><i class="ph-warning ph-bold ph-lg" style="margin-right: 8px;"></i> {{ i18n.ts.userSuspended }}</div> -->
-				<!-- <div class="punished" v-if="user.isSilenced"><i class="ph-warning ph-bold ph-lg" style="margin-right: 8px;"></i> {{ i18n.ts.userSilenced }}</div> -->
-
 				<div class="profile">
 					<MkMoved
 						v-if="user.movedToUri"
@@ -117,6 +113,25 @@
 									class="followed"
 									>{{ i18n.ts.followsYou }}</span
 								>
+								<div
+									v-if="$i?.isModerator || $i?.isAdmin"
+									class="punishments"
+								>
+									<span
+										class="punished"
+										v-if="user.isSilenced"
+									>
+										<i class="ph-warning ph-bold ph-lg"></i>
+										{{ i18n.ts.silenced }}
+									</span>
+									<span
+										class="punished"
+										v-if="user.isSuspended"
+									>
+										<i class="ph-warning ph-bold ph-lg"></i>
+										{{ i18n.ts.suspended }}
+									</span>
+								</div>
 							</div>
 							<div class="bottom">
 								<span class="username"
@@ -400,9 +415,11 @@ const timeForThem = $computed(() => {
 			timeZone: tz,
 			hour12: false,
 		});
-		return ` (${theirTime.split(",")[1].trim().split(":")[0]}:${theirTime
-			.split(" ")[1]
-			.slice(-5, -3)})`;
+		return ` (${theirTime
+			.split(",")[1]
+			.trim()
+			.split(":")[0]
+			.replace("24", "0")}:${theirTime.split(" ")[1].slice(-5, -3)})`;
 	}
 
 	return "";
@@ -443,11 +460,6 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .ftskorzw {
 	> .main {
-		> .punished {
-			font-size: 0.8em;
-			padding: 16px;
-		}
-
 		> .profile {
 			> .main {
 				position: relative;
@@ -502,6 +514,23 @@ onUnmounted(() => {
 						background: rgba(0, 0, 0, 0.7);
 						font-size: 0.7em;
 						border-radius: 6px;
+					}
+
+					> .punishments {
+						display: flex;
+						gap: 1rem;
+						margin-top: 0.5rem;
+
+						> .punished {
+							padding: 10px;
+							color: var(--infoWarnBg);
+							background-color: var(--infoWarnFg);
+							border-radius: 10px;
+
+							> i {
+								margin-right: 4px;
+							}
+						}
 					}
 
 					> .title {
