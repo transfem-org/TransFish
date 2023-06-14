@@ -1878,7 +1878,7 @@ _experiments:
   postImportsCaption: 
     ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
   enablePostImports: 投稿のインポートを有効にする
-sendModMail: モデレーションノートを送る
+sendModMail: モデレーション通知を送る
 deleted: 削除済み
 editNote: 投稿を編集
 edited: 編集済み
@@ -1898,3 +1898,19 @@ antennasDesc: "アンテナでは指定した条件に合致する投稿が表�
 expandOnNoteClickDesc: オフの場合、右クリックメニューか日付をクリックすることで開けます。
 expandOnNoteClick: クリックで投稿の詳細を開く
 clipsDesc: クリップは分類と共有ができるブックマークです。各投稿のメニューからクリップを作成できます。
+_filters:
+  followersOnly: フォロワーのみ
+  fromUser: ユーザーを指定
+  withFile: 添付ファイルあり
+  fromDomain: ドメインを指定
+  notesBefore: 指定の日付以前
+  notesAfter: 指定の日付以降
+  followingOnly: フォロー中のみ
+isModerator: モデレーター
+audio: 音声
+image: 画像
+video: 動画
+isBot: このアカウントはBotです
+isLocked: このアカウントのフォローは承認制です
+isAdmin: 管理者
+isPatron: Calckey 後援者
