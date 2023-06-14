@@ -27,6 +27,9 @@
 						>{{ instanceName }}</MkA>
 					</h1>
 				</div>
+				<button class="_button _acrylic menu" @click="showMenu">
+					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
+				</button>
 				<div v-if="meta" class="about">
 					<Mfm
 						class="desc"
@@ -76,51 +79,52 @@
 					</div>
 				</section>
 
-				<p class="_caption">
-					Powered by Calckey, part of an interconnected network of communities in the Fediverse
-				</p>
-
-				<FormSection>
-					<div class="_formLinksGrid">
-						<MkKeyValue :text="meta.maintainerName">
-							<template #key>{{
-								i18n.ts.administrator
-							}}</template>
-						</MkKeyValue>
-						<MkKeyValue>
-							<template #key>{{
-								i18n.ts.contact
-							}}</template>
-							<template #value>
-								<MkMention :to="'mailto:' + meta.maintainerEmail" :icon="'envelope'">
-									{{ meta.maintainerEmail }}
-								</MkMention>
-							</template>
-						</MkKeyValue>
-					</div>
-				</FormSection>
-
-				<FormSection>
-					<div class="_formLinksGrid">
-						<FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
-							><template #icon
-								><i
-									class="ph-scroll ph-bold ph-lg"
-								></i></template
-							>{{ i18n.ts.tos }}
-						</FormLink>
-						<!-- <FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
-							><template #icon
-								><i
-									class="ph-prohibit ph-bold ph-lg"
-								></i></template
-							>Blocked servers
-						</FormLink> -->
-					</div>
-				</FormSection>
-
+				<footer>
+					<p class="_caption">
+						{{ i18n.ts.poweredBy }}
+					</p>
+	
+					<FormSection>
+						<div class="_formLinksGrid">
+							<MkKeyValue :text="meta.maintainerName">
+								<template #key>{{
+									i18n.ts.administrator
+								}}</template>
+							</MkKeyValue>
+							<MkKeyValue>
+								<template #key>{{
+									i18n.ts.contact
+								}}</template>
+								<template #value>
+									<MkMention :to="'mailto:' + meta.maintainerEmail" :icon="'envelope'">
+										{{ meta.maintainerEmail }}
+									</MkMention>
+								</template>
+							</MkKeyValue>
+						</div>
+					</FormSection>
+	
+					<FormSection>
+						<div class="_formLinksGrid">
+							<FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
+								><template #icon
+									><i
+										class="ph-scroll ph-bold ph-lg"
+									></i></template
+								>{{ i18n.ts.tos }}
+							</FormLink>
+							<!-- <FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
+								><template #icon
+									><i
+										class="ph-prohibit ph-bold ph-lg"
+									></i></template
+								>Blocked servers
+							</FormLink> -->
+						</div>
+					</FormSection>
+				</footer>
 				<FormSection class="announcements">
-					<h3>{{ i18n.ts.announcements }}</h3>
+					<h4>{{ i18n.ts.announcements }}</h4>
 					<MkPagination
 						v-slot="{ items }"
 						:pagination="announcements"
@@ -129,12 +133,12 @@
 						<article
 							v-for="announcement in items"
 							:key="announcement.id"
-							class="item"
+							class="item _card"
 						>
-							<div class="title">
+							<h4 class="_title">
 								{{ announcement.title }}
-							</div>
-							<div class="content">
+							</h4>
+							<div class="_content">
 								<Mfm :text="announcement.text" />
 								<img
 									v-if="announcement.imageUrl"
@@ -145,17 +149,6 @@
 						</article>
 					</MkPagination>
 				</FormSection>
-				<div v-if="poweredBy" class="powered-by">
-					<b
-						><MkA to="/">{{ host }}</MkA></b
-					>
-					<small
-						>Powered by
-						<a href="https://calckey.org/" target="_blank"
-							>Calckey</a
-						></small
-					>
-				</div>
 			</div>
 		</header>
 	</div>
@@ -225,6 +218,25 @@ function signup() {
 		"closed"
 	);
 };
+function showMenu(ev) {
+	os.popupMenu(
+		[
+			{
+				type: "link",
+				text: i18n.ts.instanceInfo,
+				icon: "ph-info ph-bold ph-lg",
+				to: "/about"
+			},
+			{
+				type: "link",
+				text: i18n.ts.aboutMisskey,
+				icon: "ph-info ph-bold ph-lg",
+				to: "/about-calckey"
+			},
+		],
+		ev.currentTarget ?? ev.target
+	);
+}
 </script>
 
 <style lang="scss" scoped>

@@ -84,6 +84,9 @@ const isMe =
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	color: var(--mention);
+	overflow: clip;
+	max-width: 100%;
+	box-sizing: border-box;
 	isolation: isolate;
 
 	&::before {
