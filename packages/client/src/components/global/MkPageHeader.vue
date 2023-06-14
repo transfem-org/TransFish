@@ -9,8 +9,15 @@
 	>
 		<div class="left">
 			<div class="buttons">
+				<MkA
+					v-if="!$i"
+					class="_buttonIcon button icon backButton"
+					:to="'/'"
+				>
+					<i class="ph-list ph-bold ph-lg"></i>
+				</MkA>
 				<button
-					v-if="displayBackButton"
+					v-else-if="displayBackButton"
 					class="_buttonIcon button icon backButton"
 					@click.stop="goBack()"
 					@touchstart="preventDrag"
@@ -91,7 +98,7 @@
 			</nav>
 		</template>
 		<div class="buttons right">
-			<template v-if="metadata.avatar">
+			<template v-if="metadata.avatar && $i">
 				<MkFollowButton
 					v-if="narrow"
 					:user="metadata.avatar"

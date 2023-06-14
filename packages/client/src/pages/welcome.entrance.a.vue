@@ -7,7 +7,7 @@
 				:tabs="headerTabs"
 				:noTabCollapse="true"
 		/></template>
-		<div class="lznhrdub">
+		<div id="visitor-view">
 			<swiper
 				:round-lengths="true"
 				:touch-angle="25"
@@ -110,7 +110,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, onMounted } from "vue";
-import { Virtual } from "swiper";
+import * as os from "@/os";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XNotes from "@/components/MkNotes.vue";
 import XUsers from "./explore.users.vue";
@@ -122,6 +122,7 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
+import { DetailedInstanceMetadata } from "calckey-js/built/entities";
 import "swiper/scss";
 import "swiper/scss/virtual";
 
@@ -195,6 +196,12 @@ function syncSlide(index) {
 
 onMounted(() => {
 	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+});
+
+let meta = $ref<DetailedInstanceMetadata>();
+
+os.api("meta", { detail: true }).then((res) => {
+	meta = res;
 });
 
 

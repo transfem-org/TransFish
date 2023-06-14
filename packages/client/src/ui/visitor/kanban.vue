@@ -1,21 +1,32 @@
 <template>
-	<div class="instance-info-container">
+	<div class="instance-info-container" :class="expanded">
 		<header
 			id="instance-info"
 		>
-			<img class="banner" :src="meta?.backgroundImageUrl" />
-			<div class="content">
-				<header>
+			<div class="ticker" v-if="!expanded">
+				<img 
+					class="logo"
+					:src="meta.logoImageUrl"
+				/>
+				<h1>
+					<MkA
+						to="/" class="link"
+					>{{ instanceName }}</MkA>
+				</h1>
+			</div>
+			<img class="banner" :src="meta.backgroundImageUrl" />
+			<div class="content" v-if="expanded">
+				<div class="header">
 					<img 
 						class="logo"
-						:src="meta?.logoImageUrl"
+						:src="meta.logoImageUrl"
 					/>
 					<h1>
 						<MkA
 							to="/" class="link"
 						>{{ instanceName }}</MkA>
 					</h1>
-				</header>
+				</div>
 				<div v-if="meta" class="about">
 					<Mfm
 						class="desc"
@@ -65,6 +76,10 @@
 					</div>
 				</section>
 
+				<p class="_caption">
+					Powered by Calckey, part of an interconnected network of communities in the Fediverse
+				</p>
+
 				<FormSection>
 					<div class="_formLinksGrid">
 						<MkKeyValue :text="meta.maintainerName">
@@ -94,13 +109,13 @@
 								></i></template
 							>{{ i18n.ts.tos }}
 						</FormLink>
-						<FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
+						<!-- <FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
 							><template #icon
 								><i
 									class="ph-prohibit ph-bold ph-lg"
 								></i></template
 							>Blocked servers
-						</FormLink>
+						</FormLink> -->
 					</div>
 				</FormSection>
 
@@ -162,6 +177,14 @@ import XSignupDialog from "@/components/MkSignupDialog.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkMention from "@/components/MkMention.vue";
 
+let expanded = $ref(false);
+
+matchMedia("(max-width: 1000px)").onchange = (mql) => {
+	console.log("ran");
+	expanded = !mql.matches;
+};
+
+expanded = true;
 
 defineProps<{
 	poweredBy?: boolean,
@@ -202,8 +225,6 @@ function signup() {
 		"closed"
 	);
 };
-
-
 </script>
 
 <style lang="scss" scoped>
