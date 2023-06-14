@@ -1,5 +1,5 @@
 <template>
-	<div class="ffcbddfc" :class="{ inline }">
+	<div class="ffcbddfc" :class="{ inline, naked }">
 		<a v-if="external" class="main _button" :href="to" target="_blank">
 			<span class="icon"><slot name="icon"></slot></span>
 			<span class="text"><slot></slot></span>
@@ -34,6 +34,7 @@ const props = defineProps<{
 	external?: boolean;
 	behavior?: null | "window" | "browser" | "modalWindow";
 	inline?: boolean;
+	naked?: boolean;
 }>();
 </script>
 
@@ -54,6 +55,7 @@ const props = defineProps<{
 		background: var(--buttonBg);
 		border-radius: 6px;
 		font-size: 0.9em;
+		transition: background .2s;
 
 		&:hover {
 			text-decoration: none;
@@ -95,6 +97,17 @@ const props = defineProps<{
 			> .text:not(:empty) {
 				margin-right: 0.75em;
 			}
+		}
+	}
+
+	&.naked .main {
+		&:not(:hover) {
+			background: none;
+		}
+		color: var(--accent);
+		font-weight: 600;
+		.icon {
+			color: inherit;
 		}
 	}
 }

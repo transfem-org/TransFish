@@ -666,6 +666,11 @@ hr {
 	}
 }
 
+._flip {
+	display: inline-block;
+	transform: scaleX(-1);
+}
+
 ._anime_bounce {
 	will-change: transform;
   animation: bounce ease 0.7s;

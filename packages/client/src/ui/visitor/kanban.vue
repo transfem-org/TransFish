@@ -83,6 +83,18 @@
 					<p class="_caption">
 						{{ i18n.ts.poweredBy }}
 					</p>
+
+					<FormSection v-if="announcement">
+						<FormLink :to="'/announcements'"
+							naked
+							><template #icon
+								><i
+									class="ph-megaphone-simple ph-bold ph-lg _flip"
+								></i></template
+							>{{ announcement.title }}:
+							<span style="opacity: 0.8; font-weight: 400;">{{ announcement.text }}</span>
+						</FormLink>
+					</FormSection>
 	
 					<FormSection>
 						<div class="_formLinksGrid">
@@ -123,7 +135,7 @@
 						</div>
 					</FormSection>
 				</footer>
-				<FormSection class="announcements">
+				<!-- <FormSection class="announcements">
 					<h4>{{ i18n.ts.announcements }}</h4>
 					<MkPagination
 						v-slot="{ items }"
@@ -148,7 +160,7 @@
 							</div>
 						</article>
 					</MkPagination>
-				</FormSection>
+				</FormSection> -->
 			</div>
 		</header>
 	</div>
@@ -183,10 +195,6 @@ defineProps<{
 	poweredBy?: boolean,
 }>()
 
-const announcements = {
-	endpoint: "announcements",
-	limit: 10,
-}
 let meta = $ref<DetailedInstanceMetadata>();
 
 let isLong = $ref(false);
@@ -196,6 +204,14 @@ os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && (meta.description.length > 500);
 });
+
+let announcement = $ref();
+os.api("announcements", {
+	limit: 1
+}).then((res) => {
+	announcement = res[0];
+});
+
 
 function signin() {
 	os.popup(
