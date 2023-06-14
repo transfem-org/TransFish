@@ -7,9 +7,22 @@
 			:class="{ wide: !narrow }"
 		>
 			<div class="main">
-				<!-- TODO -->
-				<!-- <div class="punished" v-if="user.isSuspended"><i class="ph-warning ph-bold ph-lg" style="margin-right: 8px;"></i> {{ i18n.ts.userSuspended }}</div> -->
-				<!-- <div class="punished" v-if="user.isSilenced"><i class="ph-warning ph-bold ph-lg" style="margin-right: 8px;"></i> {{ i18n.ts.userSilenced }}</div> -->
+				<div v-if="$i?.isModerator || $i?.isAdmin">
+					<div class="punished" v-if="user.isSilenced">
+						<i
+							class="ph-warning ph-bold ph-lg"
+							style="margin-right: 8px; color: var(--warn)"
+						></i>
+						{{ i18n.ts.silenced }}
+					</div>
+					<div class="punished" v-if="user.isSuspended">
+						<i
+							class="ph-warning ph-bold ph-lg"
+							style="margin-right: 8px; color: var(--warn)"
+						></i>
+						{{ i18n.ts.suspended }}
+					</div>
+				</div>
 
 				<div class="profile">
 					<MkMoved
@@ -447,7 +460,10 @@ onUnmounted(() => {
 	> .main {
 		> .punished {
 			font-size: 0.8em;
-			padding: 16px;
+			padding: 10px;
+			color: var(--infoWarnBg);
+			background-color: var(--infoWarnFg);
+			border-radius: 10px;
 		}
 
 		> .profile {
