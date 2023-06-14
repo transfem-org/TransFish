@@ -71,7 +71,7 @@
 				ref="tabsEl"
 				v-if="hasTabs"
 				class="tabs"
-				:class="{ collapse: hasTabs && tabs.length > 3 }"
+				:class="{ collapse: hasTabs && tabs.length > 3 && !noTabCollapse }"
 			>
 				<button
 					v-for="tab in tabs"
@@ -151,6 +151,7 @@ type Tab = {
 const props = defineProps<{
 	tabs?: Tab[];
 	tab?: string;
+	noTabCollapse?: boolean;
 	actions?: {
 		text: string;
 		icon: string;

@@ -1,387 +1,237 @@
 <template>
-	<div v-if="meta" class="rsqzvsbo">
-		<div class="top">
-			<MkFeaturedPhotos class="bg" />
-			<XTimeline class="tl" />
-			<div class="shape1"></div>
-			<div class="shape2"></div>
-			<img src="/client-assets/misskey.svg" class="misskey" />
-			<div class="emojis">
-				<MkEmoji :normal="true" :no-style="true" emoji="⭐" />
-				<MkEmoji :normal="true" :no-style="true" emoji="❤️" />
-				<MkEmoji :normal="true" :no-style="true" emoji="😆" />
-				<MkEmoji :normal="true" :no-style="true" emoji="🤔" />
-				<MkEmoji :normal="true" :no-style="true" emoji="😮" />
-				<MkEmoji :normal="true" :no-style="true" emoji="🎉" />
-				<MkEmoji :normal="true" :no-style="true" emoji="💢" />
-				<MkEmoji :normal="true" :no-style="true" emoji="😥" />
-				<MkEmoji :normal="true" :no-style="true" emoji="😇" />
-				<MkEmoji :normal="true" :no-style="true" emoji="🥴" />
-				<MkEmoji :normal="true" :no-style="true" emoji="🍮" />
-			</div>
-			<div class="main">
-				<img
-					:src="
-						$instance.iconUrl ||
-						$instance.faviconUrl ||
-						'/favicon.ico'
-					"
-					alt=""
-					class="icon"
-				/>
-				<button class="_button _acrylic menu" @click="showMenu">
-					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
-				</button>
-				<div class="fg">
-					<h1>
-						<img
-							class="logo"
-							v-if="meta.logoImageUrl"
-							:src="meta.logoImageUrl"
-							alt="logo"
+	<MkStickyContainer>
+		<template #header
+			><MkPageHeader
+				v-model:tab="tab"
+				:actions="headerActions"
+				:tabs="headerTabs"
+				:noTabCollapse="true"
+		/></template>
+		<div class="lznhrdub">
+			<swiper
+				:round-lengths="true"
+				:touch-angle="25"
+				:threshold="10"
+				:centeredSlides="true"
+				:space-between="20"
+				:allow-touch-move="
+					!(
+						deviceKind === 'desktop' &&
+						!defaultStore.state.swipeOnDesktop
+					)
+				"
+				@swiper="setSwiperRef"
+				@slide-change="onSlideChange"
+			>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<XNotes :pagination="paginationForLocal" />
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<XNotes :pagination="paginationForRemote" />
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<XChannelList
+							key="featured"
+							:pagination="featuredPagination"
 						/>
-						<span v-else class="text">{{ instanceName }}</span>
-					</h1>
-					<div class="about">
-						<div
-							class="desc"
-							v-html="meta.description || i18n.ts.headlineMisskey"
-						></div>
-					</div>
-					<div class="action">
-						<MkButton
-							inline
-							rounded
-							gradate
-							data-cy-signup
-							style="margin-right: 12px"
-							@click="signup()"
-							>{{ i18n.ts.signup }}</MkButton
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<MkPagination
+							v-slot="{ items }"
+							:pagination="featuredPagesPagination"
 						>
-						<MkButton
-							inline
-							rounded
-							data-cy-signin
-							@click="signin()"
-							>{{ i18n.ts.login }}</MkButton
-						>
-						<MkButton
-							inline
-							rounded
-							style="margin-left: 12px; margin-top: 12px"
-							onclick="window.location.href='/explore'"
-							>Explore</MkButton
-						>
-					</div>
-				</div>
-			</div>
-			<div v-if="instances" class="federation">
-				<MarqueeText :duration="40">
-					<MkA
-						v-for="instance in instances"
-						:key="instance.id"
-						:class="$style.federationInstance"
-						@click="signup()"
-					>
-						<img
-							v-if="instance.iconUrl"
-							class="icon"
-							:src="instance.iconUrl"
-							alt=""
-						/>
-						<span class="name _monospace">{{ instance.host }}</span>
-					</MkA>
-				</MarqueeText>
-			</div>
+							<MkPagePreview
+								v-for="page in items"
+								:key="page.id"
+								class="ckltabjg"
+								:page="page"
+							/>
+						</MkPagination>
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="1200" v-if="isActive">
+						<MkFolder class="_gap">
+							<template #header
+								><i class="ph-clock ph-bold ph-lg"></i>
+								{{ i18n.ts.recentPosts }}</template
+							>
+							<MkPagination
+								v-slot="{ items }"
+								:pagination="recentPostsPagination"
+								:disable-auto-load="true"
+							>
+								<div class="vfpdbgtk">
+									<MkGalleryPostPreview
+										v-for="post in items"
+										:key="post.id"
+										:post="post"
+										class="post"
+									/>
+								</div>
+							</MkPagination>
+						</MkFolder>
+						<MkFolder class="_gap">
+							<template #header
+								><i class="ph-fire-simple ph-bold ph-lg"></i>
+								{{ i18n.ts.popularPosts }}</template
+							>
+							<MkPagination
+								v-slot="{ items }"
+								:pagination="popularPostsPagination"
+								:disable-auto-load="true"
+							>
+								<div class="vfpdbgtk">
+									<MkGalleryPostPreview
+										v-for="post in items"
+										:key="post.id"
+										:post="post"
+										class="post"
+									/>
+								</div>
+							</MkPagination>
+						</MkFolder>
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<XUsers v-if="isActive" />
+				</swiper-slide>
+			</swiper>
 		</div>
-	</div>
+	</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
-import { toUnicode } from "punycode/";
-import XTimeline from "./welcome.timeline.vue";
-import MarqueeText from "@/components/MkMarquee.vue";
-import XSigninDialog from "@/components/MkSigninDialog.vue";
-import XSignupDialog from "@/components/MkSignupDialog.vue";
-import MkButton from "@/components/MkButton.vue";
-import XNote from "@/components/MkNote.vue";
-import MkFeaturedPhotos from "@/components/MkFeaturedPhotos.vue";
-import { host, instanceName } from "@/config";
-import * as os from "@/os";
-import number from "@/filters/number";
+import { computed, watch, onMounted } from "vue";
+import { Virtual } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import XNotes from "@/components/MkNotes.vue";
+import XUsers from "./explore.users.vue";
+import XChannelList from "@/components/MkChannelList.vue";
+import MkFolder from "@/components/MkFolder.vue";
+import MkPagination from "@/components/MkPagination.vue";
+import MkGalleryPostPreview from "@/components/MkGalleryPostPreview.vue";
+import { definePageMetadata } from "@/scripts/page-metadata";
+import { deviceKind } from "@/scripts/device-kind";
 import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
+import "swiper/scss";
+import "swiper/scss/virtual";
 
-let meta = $ref();
-let stats = $ref();
-let tags = $ref();
-let onlineUsersCount = $ref();
-let instances = $ref();
+const tabs = [
+	"local",
+	"remote",
+	"channels",
+	"pages",
+	"galleries",
+	"users",
+];
+let tab = $ref(tabs[0]);
+watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 
-os.api("meta", { detail: true }).then((_meta) => {
-	meta = _meta;
+const headerActions = $computed(() => []);
+
+const headerTabs = $computed(() => [
+	{
+		key: "local",
+		icon: "ph-lightning ph-bold ph-lg",
+		title: i18n.ts.featured,
+	},
+	{
+		key: "remote",
+		icon: "ph-planet ph-bold ph-lg",
+		title: i18n.ts.network,
+	},
+	{
+		key: "channels",
+		icon: "ph-television ph-bold ph-lg",
+		title: i18n.ts.channel,
+	},
+	{
+		key: "pages",
+		icon: "ph-file-text ph-bold ph-lg",
+		title: i18n.ts.pages,
+	},
+	{
+		key: "galleries",
+		icon: "ph-image-square ph-bold ph-lg",
+		title: i18n.ts.gallery,
+	},
+	{
+		key: "users",
+		icon: "ph-users ph-bold ph-lg",
+		title: i18n.ts.users,
+	},
+]);
+
+definePageMetadata(
+	computed(() => ({
+		title: i18n.ts.explore,
+		icon: "ph-compass ph-bold ph-lg",
+	}))
+);
+
+let swiperRef = null;
+
+function setSwiperRef(swiper) {
+	swiperRef = swiper;
+	syncSlide(tabs.indexOf(tab));
+}
+
+function onSlideChange() {
+	tab = tabs[swiperRef.activeIndex];
+}
+
+function syncSlide(index) {
+	swiperRef.slideTo(index);
+}
+
+onMounted(() => {
+	syncSlide(tabs.indexOf(swiperRef.activeIndex));
 });
 
-os.api("stats").then((_stats) => {
-	stats = _stats;
-});
 
-os.api("get-online-users-count").then((res) => {
-	onlineUsersCount = res.count;
-});
+const paginationForLocal = {
+	endpoint: "notes/featured" as const,
+	limit: 10,
+	origin: "local",
+	offsetMode: true,
+	params: {
+		days: 14,
+	},
+};
 
-os.api("hashtags/list", {
-	sort: "+mentionedLocalUsers",
-	limit: 8,
-}).then((_tags) => {
-	tags = _tags;
-});
-
-os.api("federation/instances", {
-	sort: "+pubSub",
+const paginationForRemote = {
+	endpoint: "notes/featured" as const,
 	limit: 20,
-}).then((_instances) => {
-	instances = _instances;
-});
-
-function signin() {
-	os.popup(
-		XSigninDialog,
-		{
-			autoSet: true,
-		},
-		{},
-		"closed"
-	);
-}
-
-function signup() {
-	os.popup(
-		XSignupDialog,
-		{
-			autoSet: true,
-		},
-		{},
-		"closed"
-	);
-}
-
-function showMenu(ev) {
-	os.popupMenu(
-		[
-			{
-				text: i18n.ts.instanceInfo,
-				icon: "ph-info ph-bold ph-lg",
-				action: () => {
-					os.pageWindow("/about");
-				},
-			},
-			{
-				text: i18n.ts.aboutMisskey,
-				icon: "ph-info ph-bold ph-lg",
-				action: () => {
-					os.pageWindow("/about-calckey");
-				},
-			},
-		],
-		ev.currentTarget ?? ev.target
-	);
-}
+	offsetMode: true,
+	params: {
+		origin: "remote",
+		days: 7,
+	},
+};
+const featuredPagination = {
+	endpoint: "channels/featured" as const,
+	limit: 10,
+	noPaging: false,
+};
+const featuredPagesPagination = {
+	endpoint: "pages/featured" as const,
+	limit: 10,
+};
+const recentPostsPagination = {
+	endpoint: "gallery/posts" as const,
+	limit: 6,
+};
+const popularPostsPagination = {
+	endpoint: "gallery/featured" as const,
+	limit: 5,
+};
 </script>
-
-<style lang="scss" scoped>
-.rsqzvsbo {
-	> .top {
-		display: flex;
-		text-align: center;
-		min-height: 100vh;
-		box-sizing: border-box;
-		padding: 16px;
-
-		> .bg {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 80%; // 100%からshapeの幅を引いている
-			height: 100%;
-		}
-
-		> .tl {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			right: 64px;
-			margin: auto;
-			width: 500px;
-			height: calc(100% - 128px);
-			overflow: hidden;
-			-webkit-mask-image: linear-gradient(
-				0deg,
-				rgba(0, 0, 0, 0) 0%,
-				rgba(0, 0, 0, 1) 128px,
-				rgba(0, 0, 0, 1) calc(100% - 128px),
-				rgba(0, 0, 0, 0) 100%
-			);
-			mask-image: linear-gradient(
-				0deg,
-				rgba(0, 0, 0, 0) 0%,
-				rgba(0, 0, 0, 1) 128px,
-				rgba(0, 0, 0, 1) calc(100% - 128px),
-				rgba(0, 0, 0, 0) 100%
-			);
-
-			@media (max-width: 1200px) {
-				display: none;
-			}
-		}
-
-		> .shape1 {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: var(--accent);
-			clip-path: polygon(0% 0%, 45% 0%, 20% 100%, 0% 100%);
-		}
-		> .shape2 {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: var(--accent);
-			clip-path: polygon(0% 0%, 25% 0%, 35% 100%, 0% 100%);
-			opacity: 0.5;
-		}
-
-		> .misskey {
-			position: absolute;
-			top: 42px;
-			left: 42px;
-			width: 140px;
-
-			@media (max-width: 450px) {
-				width: 130px;
-			}
-		}
-
-		> .emojis {
-			position: absolute;
-			bottom: 32px;
-			left: 115px;
-			transform: scale(1.5);
-
-			> * {
-				margin-right: 8px;
-			}
-
-			@media (max-width: 1200px) {
-				display: none;
-			}
-		}
-
-		> .main {
-			position: relative;
-			width: min(480px, 100%);
-			margin: auto auto auto 128px;
-			background: var(--panel);
-			border-radius: var(--radius);
-			box-shadow: 0 12px 32px rgb(0 0 0 / 25%);
-
-			@media (max-width: 1200px) {
-				margin: auto;
-			}
-
-			> .icon {
-				width: 85px;
-				margin-top: -47px;
-				border-radius: 100%;
-				vertical-align: bottom;
-			}
-
-			> .menu {
-				position: absolute;
-				top: 16px;
-				right: 16px;
-				width: 32px;
-				height: 32px;
-				border-radius: 8px;
-				font-size: 18px;
-				z-index: 2;
-			}
-
-			> .fg {
-				position: relative;
-				z-index: 1;
-
-				> h1 {
-					display: block;
-					margin: 0;
-					padding: 16px 32px 24px 32px;
-					font-size: 1.4em;
-
-					> .logo {
-						vertical-align: bottom;
-						max-height: 120px;
-						max-width: min(100%, 300px);
-					}
-				}
-
-				> .about {
-					padding: 0 32px;
-				}
-
-				> .action {
-					padding: 32px;
-					padding-top: 22px;
-
-					> * {
-						line-height: 28px;
-					}
-				}
-			}
-		}
-
-		> .federation {
-			position: absolute;
-			bottom: 16px;
-			left: 0;
-			right: 0;
-			margin: auto;
-			background: var(--acrylicPanel);
-			-webkit-backdrop-filter: var(--blur, blur(15px));
-			backdrop-filter: var(--blur, blur(15px));
-			border-radius: 999px;
-			overflow: clip;
-			width: 35%;
-			left: 50%;
-			padding: 8px 0;
-
-			@media (max-width: 900px) {
-				display: none;
-			}
-		}
-	}
-}
-</style>
-
-<style lang="scss" module>
-.federationInstance {
-	display: inline-flex;
-	align-items: center;
-	vertical-align: bottom;
-	padding: 6px 12px 6px 6px;
-	margin: 0 10px 0 0;
-	background: var(--panel);
-	border-radius: 999px;
-
-	> :global(.icon) {
-		display: inline-block;
-		width: 20px;
-		height: 20px;
-		margin-right: 5px;
-		border-radius: 999px;
-	}
-}
-</style>
