@@ -7,23 +7,6 @@
 			:class="{ wide: !narrow }"
 		>
 			<div class="main">
-				<div v-if="$i?.isModerator || $i?.isAdmin">
-					<div class="punished" v-if="user.isSilenced">
-						<i
-							class="ph-warning ph-bold ph-lg"
-							style="margin-right: 8px; color: var(--warn)"
-						></i>
-						{{ i18n.ts.silenced }}
-					</div>
-					<div class="punished" v-if="user.isSuspended">
-						<i
-							class="ph-warning ph-bold ph-lg"
-							style="margin-right: 8px; color: var(--warn)"
-						></i>
-						{{ i18n.ts.suspended }}
-					</div>
-				</div>
-
 				<div class="profile">
 					<MkMoved
 						v-if="user.movedToUri"
@@ -130,6 +113,25 @@
 									class="followed"
 									>{{ i18n.ts.followsYou }}</span
 								>
+								<div
+									v-if="$i?.isModerator || $i?.isAdmin"
+									class="punishments"
+								>
+									<span
+										class="punished"
+										v-if="user.isSilenced"
+									>
+										<i class="ph-warning ph-bold ph-lg"></i>
+										{{ i18n.ts.silenced }}
+									</span>
+									<span
+										class="punished"
+										v-if="user.isSuspended"
+									>
+										<i class="ph-warning ph-bold ph-lg"></i>
+										{{ i18n.ts.suspended }}
+									</span>
+								</div>
 							</div>
 							<div class="bottom">
 								<span class="username"
@@ -458,14 +460,6 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .ftskorzw {
 	> .main {
-		> .punished {
-			font-size: 0.8em;
-			padding: 10px;
-			color: var(--infoWarnBg);
-			background-color: var(--infoWarnFg);
-			border-radius: 10px;
-		}
-
 		> .profile {
 			> .main {
 				position: relative;
@@ -520,6 +514,23 @@ onUnmounted(() => {
 						background: rgba(0, 0, 0, 0.7);
 						font-size: 0.7em;
 						border-radius: 6px;
+					}
+
+					> .punishments {
+						display: flex;
+						gap: 1rem;
+						margin-top: 0.5rem;
+
+						> .punished {
+							padding: 10px;
+							color: var(--infoWarnBg);
+							background-color: var(--infoWarnFg);
+							border-radius: 10px;
+
+							> i {
+								margin-right: 4px;
+							}
+						}
 					}
 
 					> .title {
