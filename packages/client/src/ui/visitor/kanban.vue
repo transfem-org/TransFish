@@ -177,6 +177,7 @@ import FormLink from "@/components/form/link.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import { i18n } from "@/i18n";
 import { DetailedInstanceMetadata } from "calckey-js/built/entities";
+import { openHelpMenu_ } from "@/scripts/helpMenu";
 import XSigninDialog from "@/components/MkSigninDialog.vue";
 import XSignupDialog from "@/components/MkSignupDialog.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
@@ -231,23 +232,7 @@ function signup() {
 	);
 };
 function showMenu(ev) {
-	os.popupMenu(
-		[
-			{
-				type: "link",
-				text: i18n.ts.instanceInfo,
-				icon: "ph-info ph-bold ph-lg",
-				to: "/about"
-			},
-			{
-				type: "link",
-				text: i18n.ts.aboutMisskey,
-				icon: "ph-info ph-bold ph-lg",
-				to: "/about-calckey"
-			},
-		],
-		ev.currentTarget ?? ev.target
-	);
+	openHelpMenu_(ev);
 }
 </script>
 
