@@ -1468,9 +1468,13 @@ _widgets:
   aichan: "Ai"
   _userList:
     chooseList: Wählen Sie eine Liste aus
-  userList: Nutzerliste
+  userList: Benutzerliste
+  serverInfo: Server-Infos
+  meiliStatus: Server-Status
+  meiliSize: Indexgröße
+  meiliIndexCount: Indexierte Beiträge
 _cw:
-  hide: "Inhalt verbergen"
+  hide: "Verbergen"
   show: "Inhalt anzeigen"
   chars: "{count} Zeichen"
   files: "{count} Datei(en)"
@@ -1929,10 +1933,11 @@ _deck:
     widgets: "Widgets"
     notifications: "Benachrichtigungen"
     tl: "Timeline"
-    antenna: "News-Picker"
+    antenna: "Antenne"
     list: "Listen"
     mentions: "Erwähnungen"
     direct: "Direktnachrichten"
+    channel: Kanal
   renameProfile: Arbeitsbereich umbenennen
   nameAlreadyExists: Der Name für den Arbeitsbereich ist bereits vorhanden.
 enableRecommendedTimeline: '"Favoriten"-Timeline einschalten'
@@ -2073,11 +2078,12 @@ _experiments:
   title: Funktionstests
   postEditingCaption: Zeigt die Option für Nutzer an, ihre bestehenden Beiträge über
     das Menü "Beitragsoptionen" zu bearbeiten
+  enablePostImports: Beitragsimporte aktivieren
 noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
   die Funktion von Calckey stört.
 indexFrom: Indexieren ab Beitragskennung aufwärts
-indexNotice: Wird indexiert. Dies kann einige Zeit dauern. Bitte den Server für mindestens
-  eine Stunde nicht neu starten.
+indexNotice: Wird jetzt indexiert. Dies wird wahrscheinlich eine Weile dauern, bitte
+  starten Sie Ihren Server für mindestens eine Stunde nicht neu.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
   zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
   \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
@@ -2097,3 +2103,12 @@ image: Bild
 video: Video
 audio: Audio
 indexFromDescription: Leer lassen, um jeden Beitrag zu indexieren
+_filters:
+  fromUser: Von Benutzer
+  notesAfter: Beiträge nach
+  withFile: Mit Datei
+  fromDomain: Von Domain
+  notesBefore: Beiträge vor
+isBot: Dieses Konto ist ein Bot
+isModerator: Moderator
+isAdmin: Administrator
