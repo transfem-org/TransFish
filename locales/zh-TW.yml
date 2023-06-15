@@ -1840,3 +1840,9 @@ subscribePushNotification: 啟用推送通知
 unsubscribePushNotification: 禁用推送通知
 pushNotificationAlreadySubscribed: 推送通知已經啟用
 recommendedInstancesDescription: 以每行分隔的推薦服務器出現在推薦的時間軸中。 不要添加 `https://`，只添加域名。
+searchPlaceholder: 搜尋 Calckey
+cw: 內容警告
+selectChannel: 選擇一個頻道
+newer: 較新
+older: 較舊
+jumpToPrevious: 跳到上一個
