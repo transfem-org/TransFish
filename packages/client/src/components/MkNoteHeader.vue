@@ -36,6 +36,7 @@
 					v-if="showTicker"
 					class="ticker"
 					:instance="note.user.instance"
+					:mini="mini"
 				/>
 			</div>
 		</div>
@@ -55,6 +56,7 @@ import { i18n } from "@/i18n";
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
+	mini?: boolean;
 }>();
 
 let note = $ref(props.note);

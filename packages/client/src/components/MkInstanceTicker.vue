@@ -1,12 +1,12 @@
 <template>
 	<div
-		class="hpaizdrt"
-		v-tooltip="capitalize(instance.softwareName)"
+		class="instance-ticker"
+		v-tooltip="instance.softwareName ? capitalize(instance.softwareName) : null"
 		ref="ticker"
 		:style="bg"
 	>
 		<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
-		<span class="name">{{ instance.name }}</span>
+		<span v-if="!mini" class="name">{{ instance.name }}</span>
 	</div>
 </template>
 
@@ -22,6 +22,7 @@ const props = defineProps<{
 		themeColor?: string;
 		softwareName?: string;
 	};
+	mini?: boolean;
 }>();
 
 let ticker = $ref<HTMLElement | null>(null);
@@ -58,7 +59,7 @@ function getInstanceIcon(instance): string {
 </script>
 
 <style lang="scss" scoped>
-.hpaizdrt {
+.instance-ticker {
 	display: flex;
 	align-items: center;
 	height: 1.1em;
@@ -79,7 +80,6 @@ function getInstanceIcon(instance): string {
 	}
 
 	> .name {
-		display: none;
 		margin-left: 4px;
 		font-size: 0.85em;
 		vertical-align: top;
@@ -88,10 +88,6 @@ function getInstanceIcon(instance): string {
 		white-space: nowrap;
 		text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg),
 			-1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
-		.article > .main &,
-		.header > .body & {
-			display: unset;
-		}
 	}
 }
 </style>

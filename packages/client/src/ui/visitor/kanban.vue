@@ -213,12 +213,6 @@ import XSignupDialog from "@/components/MkSignupDialog.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkMention from "@/components/MkMention.vue";
 
-// let expanded = $ref(window.innerWidth >= 1000);
-
-// matchMedia("(max-width: 1000px)").onchange = (mql) => {
-// 	expanded = !mql.matches;
-// };
-
 defineProps<{
 	sticky?: boolean;
 }>();

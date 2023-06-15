@@ -78,7 +78,6 @@
 					<XNoteHeader
 						class="header"
 						:note="appearNote"
-						:mini="true"
 					/>
 				</div>
 				<div class="body">

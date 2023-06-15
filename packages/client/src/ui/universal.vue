@@ -3,8 +3,7 @@
 		class="dkgtipfy"
 		:class="{ wallpaper, isMobile, centered: ui === 'classic' }"
 	>
-		<XSidebar v-if="!isMobile && $i" />
-		<XKanban sticky v-if="isDesktop && !$i" />
+		<XSidebar v-if="!isMobile" />
 
 		<MkStickyContainer class="contents">
 			<template #header
@@ -20,120 +19,118 @@
 			</main>
 		</MkStickyContainer>
 
-		<template v-if="$i">
-			<div v-if="isDesktop" ref="widgetsEl" class="widgets-container">
-				<XWidgets @mounted="attachSticky" />
-			</div>
+		<div v-if="isDesktop" ref="widgetsEl" class="widgets-container">
+			<XWidgets @mounted="attachSticky" />
+		</div>
 
 
+		<button
+			v-if="!isDesktop && !isMobile"
+			class="widgetButton _button"
+			@click="widgetsShowing = true"
+		>
+			<i class="ph-stack ph-bold ph-lg"></i>
+		</button>
+
+		<div v-if="isMobile" class="buttons">
 			<button
-				v-if="!isDesktop && !isMobile"
-				class="widgetButton _button"
+				:aria-label="i18n.t('menu')"
+				class="button nav _button"
+				@click="drawerMenuShowing = true"
+			>
+				<div class="button-wrapper">
+					<i class="ph-list ph-bold ph-lg"></i
+					><span v-if="menuIndicated" class="indicator"
+						><i class="ph-circle ph-fill"></i
+					></span>
+				</div>
+			</button>
+			<button
+				:aria-label="i18n.t('home')"
+				class="button home _button"
+				@click="
+					mainRouter.currentRoute.value.name === 'index'
+						? top()
+						: mainRouter.push('/');
+					updateButtonState();
+				"
+			>
+				<div
+					class="button-wrapper"
+					:class="buttonAnimIndex === 0 ? 'on' : ''"
+				>
+					<i class="ph-house ph-bold ph-lg"></i>
+				</div>
+			</button>
+			<button
+				:aria-label="i18n.t('notifications')"
+				class="button notifications _button"
+				@click="
+					mainRouter.push('/my/notifications');
+					updateButtonState();
+				"
+			>
+				<div
+					class="button-wrapper"
+					:class="buttonAnimIndex === 1 ? 'on' : ''"
+				>
+					<i class="ph-bell ph-bold ph-lg"></i
+					><span v-if="$i?.hasUnreadNotification" class="indicator"
+						><i class="ph-circle ph-fill"></i
+					></span>
+				</div>
+			</button>
+			<button
+				:aria-label="i18n.t('messaging')"
+				class="button messaging _button"
+				@click="
+					mainRouter.push('/my/messaging');
+					updateButtonState();
+				"
+			>
+				<div
+					class="button-wrapper"
+					:class="buttonAnimIndex === 2 ? 'on' : ''"
+				>
+					<i class="ph-chats-teardrop ph-bold ph-lg"></i
+					><span
+						v-if="$i?.hasUnreadMessagingMessage"
+						class="indicator"
+						><i class="ph-circle ph-fill"></i
+					></span>
+				</div>
+			</button>
+			<button
+				:aria-label="i18n.t('_deck._columns.widgets')"
+				class="button widget _button"
 				@click="widgetsShowing = true"
 			>
-				<i class="ph-stack ph-bold ph-lg"></i>
+				<div class="button-wrapper">
+					<i class="ph-stack ph-bold ph-lg"></i>
+				</div>
 			</button>
+		</div>
 
-			<div v-if="isMobile" class="buttons">
-				<button
-					:aria-label="i18n.t('menu')"
-					class="button nav _button"
-					@click="drawerMenuShowing = true"
-				>
-					<div class="button-wrapper">
-						<i class="ph-list ph-bold ph-lg"></i
-						><span v-if="menuIndicated" class="indicator"
-							><i class="ph-circle ph-fill"></i
-						></span>
-					</div>
-				</button>
-				<button
-					:aria-label="i18n.t('home')"
-					class="button home _button"
-					@click="
-						mainRouter.currentRoute.value.name === 'index'
-							? top()
-							: mainRouter.push('/');
-						updateButtonState();
-					"
-				>
-					<div
-						class="button-wrapper"
-						:class="buttonAnimIndex === 0 ? 'on' : ''"
-					>
-						<i class="ph-house ph-bold ph-lg"></i>
-					</div>
-				</button>
-				<button
-					:aria-label="i18n.t('notifications')"
-					class="button notifications _button"
-					@click="
-						mainRouter.push('/my/notifications');
-						updateButtonState();
-					"
-				>
-					<div
-						class="button-wrapper"
-						:class="buttonAnimIndex === 1 ? 'on' : ''"
-					>
-						<i class="ph-bell ph-bold ph-lg"></i
-						><span v-if="$i?.hasUnreadNotification" class="indicator"
-							><i class="ph-circle ph-fill"></i
-						></span>
-					</div>
-				</button>
-				<button
-					:aria-label="i18n.t('messaging')"
-					class="button messaging _button"
-					@click="
-						mainRouter.push('/my/messaging');
-						updateButtonState();
-					"
-				>
-					<div
-						class="button-wrapper"
-						:class="buttonAnimIndex === 2 ? 'on' : ''"
-					>
-						<i class="ph-chats-teardrop ph-bold ph-lg"></i
-						><span
-							v-if="$i?.hasUnreadMessagingMessage"
-							class="indicator"
-							><i class="ph-circle ph-fill"></i
-						></span>
-					</div>
-				</button>
-				<button
-					:aria-label="i18n.t('_deck._columns.widgets')"
-					class="button widget _button"
-					@click="widgetsShowing = true"
-				>
-					<div class="button-wrapper">
-						<i class="ph-stack ph-bold ph-lg"></i>
-					</div>
-				</button>
-			</div>
-
-			<button
-				v-if="isMobile && mainRouter.currentRoute.value.name === 'index'"
-				ref="postButton"
-				:aria-label="i18n.t('note')"
-				class="postButton button post _button"
-				@click="os.post()"
-			>
-				<i class="ph-pencil ph-bold ph-lg"></i>
-			</button>
-			<button
-				v-if="
-					isMobile && mainRouter.currentRoute.value.name === 'messaging'
-				"
-				ref="postButton"
-				class="postButton button post _button"
-				:aria-label="i18n.t('startMessaging')"
-				@click="messagingStart"
-			>
-				<i class="ph-user-plus ph-bold ph-lg"></i>
-			</button>
-		</template>
+		<button
+			v-if="isMobile && mainRouter.currentRoute.value.name === 'index'"
+			ref="postButton"
+			:aria-label="i18n.t('note')"
+			class="postButton button post _button"
+			@click="os.post()"
+		>
+			<i class="ph-pencil ph-bold ph-lg"></i>
+		</button>
+		<button
+			v-if="
+				isMobile && mainRouter.currentRoute.value.name === 'messaging'
+			"
+			ref="postButton"
+			class="postButton button post _button"
+			:aria-label="i18n.t('startMessaging')"
+			@click="messagingStart"
+		>
+			<i class="ph-user-plus ph-bold ph-lg"></i>
+		</button>
 
 		<transition :name="$store.state.animation ? 'menuDrawer-back' : ''">
 			<div
@@ -169,7 +166,6 @@
 import { defineAsyncComponent, provide, onMounted, computed, ref } from "vue";
 import XCommon from "./_common_/common.vue";
 import * as Acct from "calckey-js/built/acct";
-import XKanban from "./visitor/kanban.vue";
 import type { ComputedRef } from "vue";
 import type { PageMetadata } from "@/scripts/page-metadata";
 import { instanceName, ui } from "@/config";
