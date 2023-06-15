@@ -27,6 +27,8 @@
 - Read **[this document](./CALCKEY.md)** all for current and future differences.
 - Notable differences:
   - Improved UI/UX (especially on mobile)
+  - Post editing
+  - Content importing
   - Improved notifications
   - Improved server security
   - Improved accessibility
@@ -37,7 +39,7 @@
   - Better intro tutorial
   - Compatibility with Mastodon clients/apps
   - Backfill user information
-  - Sonic search
+  - Advanced search
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)
 

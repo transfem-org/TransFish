@@ -8,7 +8,6 @@
   - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
   - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
-  - Federate with note edits
   - User "choices" (recommended users) like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize server blocks
@@ -124,6 +123,8 @@
 - Improve system emails
 - Mod mail
 - Focus trapping and button labels
+- Meilisearch with filters
+- Post editing
 
 ## Implemented (remote)
 
