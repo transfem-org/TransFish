@@ -35,11 +35,13 @@
 			<a :href="twoFactorData.url"
 				><img :class="$style.qr" :src="twoFactorData.qr"
 			/></a>
-			<MkKeyValue :copy="twoFactorData.url">
-				<template #key>{{ i18n.ts._2fa.step2Url }}</template>
-				<template #value>{{ twoFactorData.url }}</template>
-			</MkKeyValue>
-			<div class="_buttons">
+			<div style="max-width: 600px;">
+				<MkKeyValue :copy="twoFactorData.url">
+					<template #key>{{ i18n.ts._2fa.step2Url }}</template>
+					<template #value>{{ twoFactorData.url }}</template>
+				</MkKeyValue>
+			</div>
+			<div class="_flexList">
 				<MkButton primary @click="ok">{{ i18n.ts.next }}</MkButton>
 				<MkButton @click="cancel">{{ i18n.ts.cancel }}</MkButton>
 			</div>
