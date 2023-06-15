@@ -4,7 +4,7 @@
 		:class="{ wallpaper, isMobile, centered: ui === 'classic' }"
 	>
 		<XSidebar v-if="!isMobile && $i" />
-		<XKanban class="kanban" full v-if="!$i" />
+		<XKanban sticky v-if="isDesktop" />
 
 		<MkStickyContainer class="contents">
 			<template #header
@@ -196,7 +196,7 @@ const DESKTOP_THRESHOLD = 1100;
 const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
-const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
+let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
 const isMobile = ref(
 	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD
 );
@@ -334,15 +334,9 @@ async function startGroup(): void {
 	mainRouter.push(`/my/messaging/group/${group.id}`);
 }
 
-onMounted(() => {
-	if (!isDesktop.value) {
-		matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (
-			mql
-		) => {
-			if (mql.matches) isDesktop.value = true;
-		};
-	}
-});
+matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
+	isDesktop = mql.matches;
+};
 
 const onContextmenu = (ev: MouseEvent) => {
 	const isLink = (el: HTMLElement) => {

@@ -25,6 +25,9 @@
 				@slide-change="onSlideChange"
 			>
 				<swiper-slide v-slot="{ isActive }">
+					<XKanban v-if="isActive"/>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
 					<MkSpacer :content-max="800" v-if="isActive">
 						<XNotes :pagination="paginationForLocal" />
 					</MkSpacer>
@@ -110,9 +113,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, onMounted } from "vue";
+import { computed, watch, onMounted, provide } from "vue";
 import * as os from "@/os";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import XKanban from "@/ui/visitor/kanban.vue";
 import XNotes from "@/components/MkNotes.vue";
 import XUsers from "./explore.users.vue";
 import XChannelList from "@/components/MkChannelList.vue";
@@ -127,7 +131,17 @@ import { DetailedInstanceMetadata } from "calckey-js/built/entities";
 import "swiper/scss";
 import "swiper/scss/virtual";
 
+const DESKTOP_THRESHOLD = 1100;
+let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
+matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
+	isDesktop = mql.matches;
+	syncSlide(isDesktop ? 1 : 0);
+};
+
+provide("shouldOmitHeaderTitle", true);
+
 const tabs = [
+	"home",
 	"local",
 	"remote",
 	"channels",
@@ -141,6 +155,11 @@ watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => [
+	!isDesktop ? {
+		key: "home",
+		icon: "ph-house ph-bold ph-lg",
+		title: i18n.ts.home,
+	} : [],
 	{
 		key: "local",
 		icon: "ph-lightning ph-bold ph-lg",
@@ -196,7 +215,7 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	syncSlide(tabs.indexOf(swiperRef.activeIndex));
+	syncSlide(isDesktop ? 1 : 0);
 });
 
 let meta = $ref<DetailedInstanceMetadata>();
@@ -215,7 +234,6 @@ const paginationForLocal = {
 		days: 14,
 	},
 };
-
 const paginationForRemote = {
 	endpoint: "notes/featured" as const,
 	limit: 20,
