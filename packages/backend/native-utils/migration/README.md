@@ -5,7 +5,7 @@ For more information, please read https://www.sea-ql.org/SeaORM/docs/migration/s
 - Install `sea-orm-cli`
   ```sh
   cargo install sea-orm-cli
-```
+  ```
 
 - Generate
 	```sh
