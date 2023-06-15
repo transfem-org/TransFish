@@ -39,6 +39,7 @@
 					:placeholder="i18n.ts.password"
 					type="password"
 					:with-password-toggle="true"
+					autocomplete="current-password"
 					required
 					data-cy-signin-password
 				>
@@ -90,6 +91,7 @@
 						v-model="password"
 						type="password"
 						:with-password-toggle="true"
+						autocomplete="current-password"
 						required
 					>
 						<template #label>{{ i18n.ts.password }}</template>
@@ -101,7 +103,7 @@
 						v-model="token"
 						type="text"
 						pattern="^[0-9]{6}$"
-						autocomplete="off"
+						autocomplete="one-time-code"
 						:spellcheck="false"
 						required
 					>
@@ -383,10 +385,11 @@ function showSuspendedDialog() {
 			margin: 0 auto 0 auto;
 			width: 64px;
 			height: 64px;
-			background: #ddd;
+			background: var(--accentedBg);
 			background-position: center;
 			background-size: cover;
 			border-radius: 100%;
+			transition: background-image 0.2s ease-in;
 		}
 	}
 }

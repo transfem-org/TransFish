@@ -294,6 +294,9 @@ importers:
       os-utils:
         specifier: 0.0.14
         version: 0.0.14
+      otpauth:
+        specifier: ^9.1.2
+        version: 9.1.2
       parse5:
         specifier: 7.1.2
         version: 7.1.2
@@ -360,9 +363,6 @@ importers:
       sonic-channel:
         specifier: ^1.3.1
         version: 1.3.1
-      speakeasy:
-        specifier: 2.0.0
-        version: 2.0.0
       stringz:
         specifier: 2.1.0
         version: 2.1.0
@@ -536,9 +536,6 @@ importers:
       '@types/sinonjs__fake-timers':
         specifier: 8.1.2
         version: 8.1.2
-      '@types/speakeasy':
-        specifier: 2.0.7
-        version: 2.0.7
       '@types/tinycolor2':
         specifier: 1.4.3
         version: 1.4.3
@@ -2649,6 +2646,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [android]
+    requiresBuild: true
     dependencies:
       '@swc/wasm': 1.2.130
 
@@ -2755,6 +2753,7 @@ packages:
 
   /@swc/wasm@1.2.130:
     resolution: {integrity: sha512-rNcJsBxS70+pv8YUWwf5fRlWX6JoY/HJc25HD/F8m6Kv7XhJdqPPMhyX6TKkUBPAG7TWlZYoxa+rHAjPy4Cj3Q==}
+    requiresBuild: true
 
   /@syuilo/aiscript@0.11.1:
     resolution: {integrity: sha512-chwOIA3yLUKvOB0G611hjLArKTeOWNmTm3lHERSaDW1d+dS6do56naX6Lkwy2UpnwWC0qzeNSgg35elk6t2gZg==}
@@ -3639,12 +3638,6 @@ packages:
 
   /@types/sizzle@2.3.3:
     resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
-    dev: true
-
-  /@types/speakeasy@2.0.7:
-    resolution: {integrity: sha512-JEcOhN2SQCoX86ZfiZEe8px84sVJtivBXMZfOVyARTYEj0hrwwbj1nF0FwEL3nJSoEV6uTbcdLllMKBgAYHWCQ==}
-    dependencies:
-      '@types/node': 18.11.18
     dev: true
 
   /@types/stack-utils@2.0.1:
@@ -4892,10 +4885,6 @@ packages:
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
-
-  /base32.js@0.0.1:
-    resolution: {integrity: sha512-EGHIRiegFa62/SsA1J+Xs2tIzludPdzM064N9wjbiEgHnGnJ1V0WEpA4pEwCYT5nDvZk3ubf0shqaCS7k6xeUQ==}
-    dev: false
 
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -10060,6 +10049,10 @@ packages:
     resolution: {integrity: sha512-emiQ05haY9CRj1Ho/LiuCqr/+8RgJuWdiHYNglIg2Qjfz0n+pnUq9I2QHplXuOMO2EnAW1oCGC1++aU5VoWSlw==}
     dev: false
 
+  /jssha@3.3.0:
+    resolution: {integrity: sha512-w9OtT4ALL+fbbwG3gw7erAO0jvS5nfvrukGPMWIAoea359B26ALXGpzy4YJSp9yGnpUvuvOw1nSjSoHDfWSr1w==}
+    dev: false
+
   /jstransformer@1.0.0:
     resolution: {integrity: sha512-C9YK3Rf8q6VAPDCCU9fnqo3mAfOH6vUGnMcP4AQAYIEpWtfGLpwOTmZ+igtdK5y+VvI2n3CyYSzy4Qh34eq24A==}
     dependencies:
@@ -11675,6 +11668,12 @@ packages:
   /ospath@1.2.2:
     resolution: {integrity: sha512-o6E5qJV5zkAbIDNhGSIlyOhScKXgQrSRMilfph0clDfM0nEnBOlKlH4sWDmG95BW/CvwNz0vmm7dJVtU2KlMiA==}
     dev: true
+
+  /otpauth@9.1.2:
+    resolution: {integrity: sha512-iI5nlVvMFP3aTPdjG/fnC4mhVJ/KZOSnBrvo/VnYHUwlTp9jVLjAe2B3i3pyCH+3/E5jYQRSvuHk/8oas3870g==}
+    dependencies:
+      jssha: 3.3.0
+    dev: false
 
   /p-cancelable@2.1.1:
     resolution: {integrity: sha512-BZOr3nRQHOntUjTrH8+Lh54smKHoHyur8We1V8DSMVrl5A2malOOwuJRnKRDjSnkoeBh4at6BwEnb5I7Jl31wg==}
@@ -13730,13 +13729,6 @@ packages:
   /spdx-license-ids@3.0.13:
     resolution: {integrity: sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==}
     dev: true
-
-  /speakeasy@2.0.0:
-    resolution: {integrity: sha512-lW2A2s5LKi8rwu77ewisuUOtlCydF/hmQSOJjpTqTj1gZLkNgTaYnyvfxy2WBr4T/h+9c4g8HIITfj83OkFQFw==}
-    engines: {node: '>= 0.10.0'}
-    dependencies:
-      base32.js: 0.0.1
-    dev: false
 
   /split-string@3.1.0:
     resolution: {integrity: sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==}

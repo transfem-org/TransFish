@@ -1260,8 +1260,8 @@ _tutorial:
   step6_4: "A teraz idź, odkrywaj i baw się dobrze!"
 _2fa:
   alreadyRegistered: "Zarejestrowałeś już urządzenie do uwierzytelniania dwuskładnikowego."
-  registerDevice: "Zarejestruj nowe urządzenie"
-  registerKey: "Zarejestruj klucz bezpieczeństwa"
+  registerTOTP: "Zarejestruj nowe urządzenie"
+  registerSecurityKey: "Zarejestruj klucz bezpieczeństwa"
   step1: "Najpierw, zainstaluj aplikację uwierzytelniającą (taką jak {a} lub {b})
     na swoim urządzeniu."
   step2: "Następnie, zeskanuje kod QR z ekranu."

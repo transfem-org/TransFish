@@ -1219,8 +1219,8 @@ _tutorial:
   step6_4: "現在開始探索吧！"
 _2fa:
   alreadyRegistered: "你已註冊過一個雙重認證的裝置。"
-  registerDevice: "註冊裝置"
-  registerKey: "註冊鍵"
+  registerTOTP: "註冊裝置"
+  registerSecurityKey: "註冊鍵"
   step1: "首先，在您的設備上安裝二步驗證程式，例如{a}或{b}。"
   step2: "然後，掃描螢幕上的QR code。"
   step2Url: "在桌面版應用中，請輸入以下的URL："

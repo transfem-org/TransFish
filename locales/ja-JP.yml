@@ -1314,14 +1314,28 @@ _tutorial:
   step6_4: "これで完了です。お楽しみください！"
 _2fa:
   alreadyRegistered: "既に設定は完了しています。"
-  registerDevice: "デバイスを登録"
-  registerKey: "キーを登録"
+  registerTOTP: "認証アプリの設定を開始"
   step1: "まず、{a}や{b}などの認証アプリをお使いのデバイスにインストールします。"
   step2: "次に、表示されているQRコードをアプリでスキャンします。"
-  step2Url: "デスクトップアプリでは次のURLを入力します:"
-  step3: "アプリに表示されているトークンを入力して完了です。"
-  step4: "これからログインするときも、同じようにトークンを入力します。"
-  securityKeyInfo: "FIDO2をサポートするハードウェアセキュリティキーもしくは端末の指紋認証やPINを使用してログインするように設定できます。"
+  step2Click: "QRコードをクリックすると、お使いの端末にインストールされている認証アプリやキーリングに登録できます。"
+  step2Url: "デスクトップアプリでは次のURIを入力します:"
+  step3Title: "確認コードを入力"
+  step3: "アプリに表示されている確認コード（トークン）を入力して完了です。"
+  step4: "これからログインするときも、同じように確認コードを入力します。"
+  securityKeyNotSupported: "お使いのブラウザはセキュリティキーに対応していません。"
+  registerTOTPBeforeKey: "セキュリティキー・パスキーを登録するには、まず認証アプリの設定を行なってください。"
+  securityKeyInfo: "FIDO2をサポートするハードウェアセキュリティキー、端末の生体認証やPINロック、パスキーといった、WebAuthn由来の鍵を登録します。"
+  chromePasskeyNotSupported: "Chromeのパスキーは現在サポートしていません。"
+  registerSecurityKey: "セキュリティキー・パスキーを登録する"
+  securityKeyName: "キーの名前を入力"
+  tapSecurityKey: "ブラウザの指示に従い、セキュリティキーやパスキーを登録してください"
+  removeKey: "セキュリティキーを削除"
+  removeKeyConfirm: "{name}を削除しますか？"
+  whyTOTPOnlyRenew: "セキュリティキーが登録されている場合、認証アプリの設定は解除できません。"
+  renewTOTP: "認証アプリを再設定"
+  renewTOTPConfirm: "今までの認証アプリの確認コードは使用できなくなります"
+  renewTOTPOk: "再設定する"
+  renewTOTPCancel: "やめておく"
 _permissions:
   "read:account": "アカウントの情報を見る"
   "write:account": "アカウントの情報を変更する"
@@ -1882,7 +1896,7 @@ sendModMail: モデレーションノートを送る
 deleted: 削除済み
 editNote: 投稿を編集
 edited: 編集済み
-signupsDisabled: 
+signupsDisabled:
   現在、このサーバーでは新規登録が一般開放されていません。招待コードをお持ちの場合には、以下の欄に入力してください。招待コードをお持ちでない場合にも、新規登録を開放している他のサーバーには入れますよ！
 findOtherInstance: 他のサーバーを探す
 newer: 新しい投稿
@@ -1898,3 +1912,6 @@ antennasDesc: "アンテナでは指定した条件に合致する投稿が表�
 expandOnNoteClickDesc: オフの場合、右クリックメニューか日付をクリックすることで開けます。
 expandOnNoteClick: クリックで投稿の詳細を開く
 clipsDesc: クリップは分類と共有ができるブックマークです。各投稿のメニューからクリップを作成できます。
+_dialog:
+  charactersExceeded: "最大文字数を超えています！ 現在 {current} / 制限 {max}"
+  charactersBelow: "最小文字数を下回っています！ 現在 {current} / 制限 {min}"

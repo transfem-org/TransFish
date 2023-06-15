@@ -1210,8 +1210,8 @@ _tutorial:
   step6_4: "现在去学习并享受乐趣！"
 _2fa:
   alreadyRegistered: "此设备已被注册"
-  registerDevice: "注册设备"
-  registerKey: "注册密钥"
+  registerTOTP: "注册设备"
+  registerSecurityKey: "注册密钥"
   step1: "首先，在您的设备上安装验证应用，例如{a}或{b}。"
   step2: "然后，扫描屏幕上显示的二维码。"
   step2Url: "在桌面应用程序中输入以下URL："

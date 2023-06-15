@@ -319,13 +319,13 @@ _sfx:
 _2fa:
   step2Url: "També pots inserir aquest enllaç i utilitzes una aplicació d'escriptori:"
   alreadyRegistered: Ja heu registrat un dispositiu d'autenticació de dos factors.
-  registerDevice: Registrar un dispositiu nou
+  registerTOTP: Registrar un dispositiu nou
   securityKeyInfo: A més de l'autenticació d'empremta digital o PIN, també podeu configurar
     l'autenticació mitjançant claus de seguretat de maquinari compatibles amb FIDO2
     per protegir encara més el vostre compte.
   step4: A partir d'ara, qualsevol intent d'inici de sessió futur demanarà aquest
     token d'inici de sessió.
-  registerKey: Registra una clau de seguretat
+  registerSecurityKey: Registra una clau de seguretat
   step1: En primer lloc, instal·la una aplicació d'autenticació (com ara {a} o {b})
     al dispositiu.
   step2: A continuació, escaneja el codi QR que es mostra en aquesta pantalla.
