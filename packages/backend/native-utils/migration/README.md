@@ -1,3 +1,15 @@
+# Making migrations
+
+- Install `sea-orm-cli`
+  ```sh
+  cargo install sea-orm-cli
+```
+
+- Generate
+	```sh
+	sea-orm-cli migrate generate ****
+	```
+
 # Running Migrator CLI
 
 - Generate a new migration file
