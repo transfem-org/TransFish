@@ -1,6 +1,13 @@
 <template>
-	<div class="ffcbddfc" :class="{ inline, naked }">
-		<a v-if="external" class="main _button" :href="to" target="_blank">
+	<div class="ffcbddfc linkBoxed" :class="{ inline, naked }">
+		<span v-if="!to" class="main">
+			<span class="icon"><slot name="icon"></slot></span>
+			<span class="text"><slot></slot></span>
+			<span class="right">
+				<span class="text"><slot name="suffix"></slot></span>
+			</span>
+		</span>
+		<a v-else-if="external" class="main _button" :href="to" target="_blank">
 			<span class="icon"><slot name="icon"></slot></span>
 			<span class="text"><slot></slot></span>
 			<span class="right">
@@ -29,7 +36,7 @@
 import {} from "vue";
 
 const props = defineProps<{
-	to: string;
+	to?: string;
 	active?: boolean;
 	external?: boolean;
 	behavior?: null | "window" | "browser" | "modalWindow";
@@ -57,7 +64,7 @@ const props = defineProps<{
 		font-size: 0.9em;
 		transition: background .2s;
 
-		&:hover {
+		&._button:hover {
 			text-decoration: none;
 			background: var(--buttonHoverBg);
 		}

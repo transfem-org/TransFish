@@ -33,6 +33,7 @@
 							<FormInput
 								v-model="maintainerName"
 								class="_formBlock"
+								:placeholder="'@user'"
 							>
 								<template #label>{{
 									i18n.ts.maintainerName

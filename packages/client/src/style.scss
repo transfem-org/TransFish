@@ -481,7 +481,7 @@ hr {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
-	> ._button {
+	> ._button, > .linkBoxed {
 		flex-basis: 34%;
 		flex-grow: 1;
 		min-width: max-content !important;

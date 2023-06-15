@@ -123,14 +123,14 @@
 						</FormLink>
 					</FormSection>
 	
-					<FormSection>
+					<FormSection v-if="meta.maintainerName || meta.maintainerEmail">
 						<div class="_formLinksGrid">
-							<MkKeyValue :text="meta.maintainerName">
+							<MkKeyValue v-if="meta.maintainerName" :text="meta.maintainerName">
 								<template #key>{{
 									i18n.ts.administrator
 								}}</template>
 							</MkKeyValue>
-							<MkKeyValue>
+							<MkKeyValue v-if="meta.maintainerEmail">
 								<template #key>{{
 									i18n.ts.contact
 								}}</template>
@@ -143,15 +143,16 @@
 						</div>
 					</FormSection>
 	
-					<FormSection>
+					<FormSection v-if="meta.tosUrl">
 						<div class="_formLinksGrid">
-							<FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
+							<FormLink v-if="meta.tosUrl" :to="meta.tosUrl"
 								><template #icon
 									><i
 										class="ph-scroll ph-bold ph-lg"
 									></i></template
 								>{{ i18n.ts.tos }}
 							</FormLink>
+							<!-- TODO: Blocked servers list -->
 							<!-- <FormLink v-if="meta?.tosUrl" :to="meta.tosUrl"
 								><template #icon
 									><i
@@ -161,33 +162,35 @@
 							</FormLink> -->
 						</div>
 					</FormSection>
+					<FormSection>
+						<div class="_formLinksGridFlex">
+							<FormLink>
+								{{ i18n.ts.timelines }}
+								<template #suffix>
+									{{
+										`${ i18n.ts._timelines.home },` +
+										meta.disableLocalTimeline ? null : `${ i18n.ts._timelines.local },` +
+										meta.disableLocalTimeline ? null : `${ i18n.ts._timelines.social },` +
+										meta.disableRecommendedTimeline ? null : `${ i18n.ts._timelines.recommended },` +
+										meta.disableGlobalTimeline ? null : `${ i18n.ts._timelines.global }`
+									}}
+								</template>
+							</FormLink>
+							<FormLink>
+								{{ i18n.ts.driveCapacityPerLocalAccount }}
+								<template #suffix>
+									{{ meta.driveCapacityPerLocalUserMb }}MB
+								</template>
+							</FormLink>
+							<FormLink>
+								{{ i18n.ts.characterLimit }}
+								<template #suffix>
+									{{ i18n.t("_cw.chars", { count: meta.maxNoteTextLength }) }}
+								</template>
+							</FormLink>
+						</div>
+					</FormSection>
 				</footer>
-				<!-- <FormSection class="announcements">
-					<h4>{{ i18n.ts.announcements }}</h4>
-					<MkPagination
-						v-slot="{ items }"
-						:pagination="announcements"
-						class="list"
-					>
-						<article
-							v-for="announcement in items"
-							:key="announcement.id"
-							class="item _card"
-						>
-							<h4 class="_title">
-								{{ announcement.title }}
-							</h4>
-							<div class="_content">
-								<Mfm :text="announcement.text" />
-								<img
-									v-if="announcement.imageUrl"
-									:src="announcement.imageUrl"
-									alt="announcement image"
-								/>
-							</div>
-						</article>
-					</MkPagination>
-				</FormSection> -->
 			</div>
 		</header>
 	</div>
