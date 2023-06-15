@@ -9,7 +9,7 @@
 		class="mfm-object"
 		:class="{
 			nowrap,
-			advancedMfm: defaultStore.state.advancedMfm || advancedMfm,
+			advancedMfm: ($i && defaultStore.state.advancedMfm) || advancedMfm,
 		}"
 	/>
 </template>
@@ -18,6 +18,7 @@
 import {} from "vue";
 import MfmCore from "@/components/mfm";
 import { defaultStore } from "@/store";
+import { $i } from "@/account";
 
 const props = withDefaults(
 	defineProps<{

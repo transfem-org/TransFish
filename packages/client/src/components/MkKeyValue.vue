@@ -7,6 +7,7 @@
 			<Mfm
 				v-if="text"
 				:text="text"
+				:advancedMfm="false"
 			></Mfm>
 			<slot v-else name="value"></slot>
 			<button

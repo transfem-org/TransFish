@@ -51,6 +51,7 @@
 						class="desc"
 						:class="{ collapsed: isLong && collapsed }"
 						:text="meta.description || i18n.ts.introMisskey"
+						:advancedMfm="false"
 					></Mfm>
 					<XShowMoreButton
 						v-if="isLong"
