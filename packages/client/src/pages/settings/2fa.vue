@@ -12,14 +12,16 @@
 				<div v-if="$i.twoFactorEnabled" class="_gaps_s">
 					<div v-text="i18n.ts._2fa.alreadyRegistered" />
 					<template v-if="$i.securityKeysList.length > 0">
-						<MkButton @click="renewTOTP">{{
-							i18n.ts._2fa.renewTOTP
-						}}</MkButton>
+						<MkButton @click="renewTOTP"
+							><i class="ph-shield-check ph-bold ph-lg"></i
+							>{{ i18n.ts._2fa.renewTOTP }}</MkButton
+						>
 						<MkInfo>{{ i18n.ts._2fa.whyTOTPOnlyRenew }}</MkInfo>
 					</template>
-					<MkButton v-else @click="unregisterTOTP">{{
-						i18n.ts.unregister
-					}}</MkButton>
+					<MkButton v-else @click="unregisterTOTP"
+						><i class="ph-shield-slash ph-bold ph-lg"></i
+						>{{ i18n.ts.unregister }}</MkButton
+					>
 				</div>
 
 				<MkButton
@@ -51,9 +53,10 @@
 					</MkInfo>
 
 					<template v-else>
-						<MkButton primary @click="addSecurityKey">{{
-							i18n.ts._2fa.registerSecurityKey
-						}}</MkButton>
+						<MkButton primary @click="addSecurityKey"
+							><i class="ph-key ph-bold ph-lg"></i
+							>{{ i18n.ts._2fa.registerSecurityKey }}</MkButton
+						>
 						<MkFolder
 							v-for="key in $i.securityKeysList"
 							:key="key.id"

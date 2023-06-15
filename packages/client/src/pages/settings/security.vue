@@ -1,6 +1,6 @@
 <template>
 	<div class="_formRoot">
-		<FormSection>
+		<FormSection style="border: none !important">
 			<template #label>{{ i18n.ts.password }}</template>
 			<MkButton primary @click="change()">{{
 				i18n.ts.changePassword
