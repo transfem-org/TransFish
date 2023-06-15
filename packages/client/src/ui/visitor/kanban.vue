@@ -25,7 +25,9 @@
 					@click.stop="expanded = true"
 				>{{ i18n.ts.instanceInfo }}</MkButton>
 			</div> -->
-			<img class="banner" :src="meta.backgroundImageUrl" />
+			<div class="banner">
+				<img :src="meta.backgroundImageUrl" />
+			</div>
 			<div class="content">
 				<div class="header">
 					<img 
@@ -38,7 +40,10 @@
 						>{{ instanceName }}</MkA>
 					</h1>
 				</div>
-				<button class="_button _acrylic menu" @click="showMenu">
+				<!-- <MkA class="_buttonIcon home" :to="'/'" v-tooltip="i18n.ts.home">
+					<i class="ph-house ph-bold ph-lg"></i>
+				</MkA> -->
+				<button class="_buttonIcon menu" @click="showMenu" v-tooltip="i18n.ts.more">
 					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 				</button>
 				<div v-if="meta" class="about">
@@ -54,7 +59,7 @@
 				</div>
 
 				<section>
-					<div class="_formLinksGrid">
+					<div class="_formLinksGridFlex">
 						<MkButton
 							primary gradate
 							rounded
@@ -63,7 +68,7 @@
 							<i
 								class="ph-sign-in ph-bold"
 							></i>
-							Sign Up
+							{{ i18n.ts.signup }}
 						</MkButton>
 						<MkButton
 							rounded
@@ -72,20 +77,30 @@
 							<i
 								class="ph-sign-out ph-bold"
 							></i>
-							Log In
+							{{ i18n.ts.login }}
 						</MkButton>
 						<MkButton
 							:link="true"
 							:behavior="'browser'"
 							rounded
-							full
 							to="https://calckey.org/join/"
-							class="_full"
 						>
 							<i
 								class="ph-airplane-tilt ph-bold"
 							></i>
-							Find another server
+							{{ i18n.ts.findAnotherInstance }}
+						</MkButton>
+						<MkButton
+							v-if="!sticky"
+							:link="true"
+							:behavior="'browser'"
+							rounded
+							to="https://calckey.org/apps/"
+						>
+							<i
+								class="ph-device-mobile ph-bold"
+							></i>
+							{{ i18n.ts.apps }}
 						</MkButton>
 					</div>
 				</section>
@@ -208,12 +223,10 @@ let meta = $ref<DetailedInstanceMetadata>();
 
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
-let wallpaper = $ref();
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && (meta.description.length > 500);
-	wallpaper = `url("${meta.wallpaper}")`
 });
 
 let announcement = $ref();
@@ -257,16 +270,20 @@ function onScroll(ev) {
 
 <style lang="scss" scoped>
 .instance-info-container {
+	margin-top: -55px;
 	&.sticky {
 		position: sticky;
 		top: 0;
 		max-height: 100vh;
 		overflow: hidden auto;	
 		min-width: 400px;
-		width: 450px;
+		width: 470px;
+		border-right: 1px solid var(--divider);
+		.content {
+			max-width: 450px;
+		}
 	}
 	margin-left: -1px;
-	border-right: 1px solid var(--divider);
 	box-shadow: 0 0 48px -24px rgba(0,0,0,0.1);
 	z-index: 9000;
 }
@@ -275,18 +292,24 @@ function onScroll(ev) {
 	flex-direction: column;
 	height: 100%;
 	background: var(--accent);
+	height: max-content;
+	min-height: 100%;
 	transition: transform .4s cubic-bezier(.5,0,0,1);
 	.banner {
 		position: sticky;
 		top: 0;
 		width: calc(100% + 2px);
 		margin-inline: -1px;
-		min-height: 250px;
-		max-height: 250px;
-		object-fit: cover;
-		object-position: center;
+		padding-top: 56.25%;
 		mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
 		transition: min-height .4s, max-height .4s, filter .7s;
+		img {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
 	}
 	> .content {
 		--margin: 32px;
@@ -300,7 +323,7 @@ function onScroll(ev) {
 		padding: 0 var(--margin);
 		text-align: center;
 		flex-grow: 1;
-		max-width: 600px;
+		// max-width: 600px;
 		margin-inline: auto;
 		width: 100%;
 		box-sizing: border-box;
@@ -324,6 +347,7 @@ function onScroll(ev) {
 			> .logo {
 				height: 90px;
 				min-width: 90px;
+				max-width: 100%;
 				border-radius: var(--radius);
 				margin-top: -5px;
 				transition: transform .4s cubic-bezier(0.5,0,0,1);
@@ -334,7 +358,7 @@ function onScroll(ev) {
 				color: var(--fgHighlighted)
 			}
 		}
-		.menu {
+		.menu, .home {
 			position: absolute;
 			top: 10px;
 			right: 10px;
@@ -343,9 +367,12 @@ function onScroll(ev) {
 			border-radius: 100px;
 			background: var(--buttonBg)
 		}
+		.home {
+			right: unset;
+			left: 10px;
+		}
 		.about {
 			position: relative;
-			font-size: 1.05em;
 			.desc {
 				display: block;
 			}
@@ -374,18 +401,5 @@ section {
 ._formLinksGrid {
 	grid-template-columns: repeat(2,minmax(150px,1fr));
 	text-align: initial;
-}
-</style>
-<style lang="scss">
-#maincontent {
-	--background-image: v-bind(wallpaper);
-}
-#visitor-view {
-	&::before {
-		content: "";
-		position: fixed;
-		inset: 0;
-		background-image: var(--background-image);
-	}
 }
 </style>

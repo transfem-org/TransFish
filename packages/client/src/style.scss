@@ -477,6 +477,19 @@ hr {
 	}
 }
 
+._formLinksGridFlex { // "grid", anyways display flex my beloved
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	> ._button {
+		flex-basis: 34%;
+		flex-grow: 1;
+		min-width: max-content !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+	}
+}
+
 ._flexList {
 	display: flex;
 	flex-wrap: wrap;

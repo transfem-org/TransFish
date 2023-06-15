@@ -8,107 +8,106 @@
 				:noTabCollapse="true"
 				:displayHomeButton="false"
 		/></template>
-		<div id="visitor-view">
-			<swiper
-				:round-lengths="true"
-				:touch-angle="25"
-				:threshold="10"
-				:centeredSlides="true"
-				:space-between="20"
-				:allow-touch-move="
-					!(
-						deviceKind === 'desktop' &&
-						!defaultStore.state.swipeOnDesktop
-					)
-				"
-				@swiper="setSwiperRef"
-				@slide-change="onSlideChange"
-			>
-				<swiper-slide v-slot="{ isActive }">
-					<XKanban v-if="isActive"/>
-				</swiper-slide>
-				<swiper-slide v-slot="{ isActive }">
-					<MkSpacer :content-max="800" v-if="isActive">
-						<XNotes :pagination="paginationForLocal" />
-					</MkSpacer>
-				</swiper-slide>
-				<swiper-slide v-slot="{ isActive }">
-					<MkSpacer :content-max="800" v-if="isActive">
-						<XNotes :pagination="paginationForRemote" />
-					</MkSpacer>
-				</swiper-slide>
-				<swiper-slide v-slot="{ isActive }">
-					<MkSpacer :content-max="800" v-if="isActive">
-						<XChannelList
-							key="featured"
-							:pagination="featuredPagination"
+		<swiper
+			id="visitor-view"
+			:round-lengths="true"
+			:touch-angle="25"
+			:threshold="10"
+			:centeredSlides="true"
+			:space-between="20"
+			:allow-touch-move="
+				!(
+					deviceKind === 'desktop' &&
+					!defaultStore.state.swipeOnDesktop
+				)
+			"
+			@swiper="setSwiperRef"
+			@slide-change="onSlideChange"
+		>
+			<swiper-slide v-slot="{ isActive }">
+				<XKanban v-if="isActive"/>
+			</swiper-slide>
+			<swiper-slide v-slot="{ isActive }">
+				<MkSpacer :content-max="800" v-if="isActive">
+					<XNotes :pagination="paginationForLocal" />
+				</MkSpacer>
+			</swiper-slide>
+			<swiper-slide v-slot="{ isActive }">
+				<MkSpacer :content-max="800" v-if="isActive">
+					<XNotes :pagination="paginationForRemote" />
+				</MkSpacer>
+			</swiper-slide>
+			<swiper-slide v-slot="{ isActive }">
+				<MkSpacer :content-max="800" v-if="isActive">
+					<XChannelList
+						key="featured"
+						:pagination="featuredPagination"
+					/>
+				</MkSpacer>
+			</swiper-slide>
+			<swiper-slide v-slot="{ isActive }">
+				<MkSpacer :content-max="800" v-if="isActive">
+					<MkPagination
+						v-slot="{ items }"
+						:pagination="featuredPagesPagination"
+					>
+						<MkPagePreview
+							v-for="page in items"
+							:key="page.id"
+							class="ckltabjg"
+							:page="page"
 						/>
-					</MkSpacer>
-				</swiper-slide>
-				<swiper-slide v-slot="{ isActive }">
-					<MkSpacer :content-max="800" v-if="isActive">
+					</MkPagination>
+				</MkSpacer>
+			</swiper-slide>
+			<swiper-slide v-slot="{ isActive }">
+				<MkSpacer :content-max="1200" v-if="isActive">
+					<MkFolder class="_gap">
+						<template #header
+							><i class="ph-clock ph-bold ph-lg"></i>
+							{{ i18n.ts.recentPosts }}</template
+						>
 						<MkPagination
 							v-slot="{ items }"
-							:pagination="featuredPagesPagination"
+							:pagination="recentPostsPagination"
+							:disable-auto-load="true"
 						>
-							<MkPagePreview
-								v-for="page in items"
-								:key="page.id"
-								class="ckltabjg"
-								:page="page"
-							/>
+							<div class="vfpdbgtk">
+								<MkGalleryPostPreview
+									v-for="post in items"
+									:key="post.id"
+									:post="post"
+									class="post"
+								/>
+							</div>
 						</MkPagination>
-					</MkSpacer>
-				</swiper-slide>
-				<swiper-slide v-slot="{ isActive }">
-					<MkSpacer :content-max="1200" v-if="isActive">
-						<MkFolder class="_gap">
-							<template #header
-								><i class="ph-clock ph-bold ph-lg"></i>
-								{{ i18n.ts.recentPosts }}</template
-							>
-							<MkPagination
-								v-slot="{ items }"
-								:pagination="recentPostsPagination"
-								:disable-auto-load="true"
-							>
-								<div class="vfpdbgtk">
-									<MkGalleryPostPreview
-										v-for="post in items"
-										:key="post.id"
-										:post="post"
-										class="post"
-									/>
-								</div>
-							</MkPagination>
-						</MkFolder>
-						<MkFolder class="_gap">
-							<template #header
-								><i class="ph-fire-simple ph-bold ph-lg"></i>
-								{{ i18n.ts.popularPosts }}</template
-							>
-							<MkPagination
-								v-slot="{ items }"
-								:pagination="popularPostsPagination"
-								:disable-auto-load="true"
-							>
-								<div class="vfpdbgtk">
-									<MkGalleryPostPreview
-										v-for="post in items"
-										:key="post.id"
-										:post="post"
-										class="post"
-									/>
-								</div>
-							</MkPagination>
-						</MkFolder>
-					</MkSpacer>
-				</swiper-slide>
-				<swiper-slide v-slot="{ isActive }">
-					<XUsers v-if="isActive" />
-				</swiper-slide>
-			</swiper>
-		</div>
+					</MkFolder>
+					<MkFolder class="_gap">
+						<template #header
+							><i class="ph-fire-simple ph-bold ph-lg"></i>
+							{{ i18n.ts.popularPosts }}</template
+						>
+						<MkPagination
+							v-slot="{ items }"
+							:pagination="popularPostsPagination"
+							:disable-auto-load="true"
+						>
+							<div class="vfpdbgtk">
+								<MkGalleryPostPreview
+									v-for="post in items"
+									:key="post.id"
+									:post="post"
+									class="post"
+								/>
+							</div>
+						</MkPagination>
+					</MkFolder>
+				</MkSpacer>
+			</swiper-slide>
+			<swiper-slide v-slot="{ isActive }">
+				<XUsers v-if="isActive" />
+			</swiper-slide>
+		</swiper>
 	</MkStickyContainer>
 </template>
 
@@ -219,9 +218,11 @@ onMounted(() => {
 });
 
 let meta = $ref<DetailedInstanceMetadata>();
+let wallpaper = $ref(String);
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
+	wallpaper = `url("${res.backgroundImageUrl}")`
 });
 
 
@@ -261,3 +262,15 @@ const popularPostsPagination = {
 	limit: 5,
 };
 </script>
+<style lang="scss">
+#visitor-view {
+	margin-top: -55px;
+	padding-top: 55px;
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image: v-bind("wallpaper");
+	}
+}
+</style>
