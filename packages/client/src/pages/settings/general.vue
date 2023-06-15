@@ -54,7 +54,7 @@
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
-			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
+			<FormSwitch v-model="showTimelineReplies" class="_formBlock"
 				>{{ i18n.ts.flagShowTimelineReplies
 				}}<template #caption
 					>{{ i18n.ts.flagShowTimelineRepliesDescription }}
@@ -258,24 +258,6 @@ const lang = ref(localStorage.getItem("lang"));
 const fontSize = ref(localStorage.getItem("fontSize"));
 const useSystemFont = ref(localStorage.getItem("useSystemFont") != null);
 
-const profile = reactive({
-	showTimelineReplies: $i?.showTimelineReplies,
-});
-watch(
-	() => profile,
-	() => {
-		save();
-	},
-	{
-		deep: true,
-	}
-);
-function save() {
-	os.apiWithDialog("i/update", {
-		showTimelineReplies: !!profile.showTimelineReplies,
-	});
-}
-
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
 		type: "info",
@@ -359,6 +341,9 @@ const swipeOnDesktop = computed(
 );
 const showAdminUpdates = computed(
 	defaultStore.makeGetterSetter("showAdminUpdates")
+);
+const showTimelineReplies = computed(
+	defaultStore.makeGetterSetter("showTimelineReplies")
 );
 
 watch(lang, () => {

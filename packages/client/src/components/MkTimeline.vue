@@ -91,7 +91,12 @@ if (props.src === "antenna") {
 	connection.on("note", prepend);
 } else if (props.src === "home") {
 	endpoint = "notes/timeline";
-	connection = stream.useChannel("homeTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("homeTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	connection2 = stream.useChannel("main");
@@ -102,28 +107,48 @@ if (props.src === "antenna") {
 	tlHintClosed = defaultStore.state.tlHomeHintClosed;
 } else if (props.src === "local") {
 	endpoint = "notes/local-timeline";
-	connection = stream.useChannel("localTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("localTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_4;
 	tlHintClosed = defaultStore.state.tlLocalHintClosed;
 } else if (props.src === "recommended") {
 	endpoint = "notes/recommended-timeline";
-	connection = stream.useChannel("recommendedTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("recommendedTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_6;
 	tlHintClosed = defaultStore.state.tlRecommendedHintClosed;
 } else if (props.src === "social") {
 	endpoint = "notes/hybrid-timeline";
-	connection = stream.useChannel("hybridTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("hybridTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_5;
 	tlHintClosed = defaultStore.state.tlSocialHintClosed;
 } else if (props.src === "global") {
 	endpoint = "notes/global-timeline";
-	connection = stream.useChannel("globalTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("globalTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_7;

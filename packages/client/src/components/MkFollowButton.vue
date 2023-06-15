@@ -1,5 +1,10 @@
 <template>
-	<button v-if="!hideMenu" class="menu _button" @click.stop="menu" v-tooltip="i18n.ts.menu">
+	<button
+		v-if="!hideMenu"
+		class="menu _button"
+		@click.stop="menu"
+		v-tooltip="i18n.ts.menu"
+	>
 		<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 	</button>
 	<button

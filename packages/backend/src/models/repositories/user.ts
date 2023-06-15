@@ -567,7 +567,6 @@ export const UserRepository = db.getRepository(User).extend({
 						mutedInstances: profile!.mutedInstances,
 						mutingNotificationTypes: profile!.mutingNotificationTypes,
 						emailNotificationTypes: profile!.emailNotificationTypes,
-						showTimelineReplies: user.showTimelineReplies || falsy,
 				  }
 				: {}),
 
