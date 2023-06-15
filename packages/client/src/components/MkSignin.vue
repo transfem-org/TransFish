@@ -107,16 +107,15 @@
 						:spellcheck="false"
 						required
 					>
-						<template #label>{{ i18n.ts.token }}</template>
-						<template #prefix
-							><i class="ph-poker-chip ph-bold ph-lg"></i
-						></template>
+						<template #prefix>
+							<i class="ph-poker-chip ph-bold ph-lg"></i>
+						</template>
 					</MkInput>
 					<MkButton
 						type="submit"
 						:disabled="signing"
 						primary
-						style="margin: 0 auto"
+						style="margin: 1rem auto auto"
 						>{{
 							signing ? i18n.ts.loggingIn : i18n.ts.login
 						}}</MkButton
