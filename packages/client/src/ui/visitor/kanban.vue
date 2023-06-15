@@ -208,10 +208,12 @@ let meta = $ref<DetailedInstanceMetadata>();
 
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
+let wallpaper = $ref();
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && (meta.description.length > 500);
+	wallpaper = `url("${meta.wallpaper}")`
 });
 
 let announcement = $ref();
@@ -372,5 +374,18 @@ section {
 ._formLinksGrid {
 	grid-template-columns: repeat(2,minmax(150px,1fr));
 	text-align: initial;
+}
+</style>
+<style lang="scss">
+#maincontent {
+	--background-image: v-bind(wallpaper);
+}
+#visitor-view {
+	&::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		background-image: var(--background-image);
+	}
 }
 </style>

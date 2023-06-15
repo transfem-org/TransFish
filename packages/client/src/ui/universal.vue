@@ -4,7 +4,7 @@
 		:class="{ wallpaper, isMobile, centered: ui === 'classic' }"
 	>
 		<XSidebar v-if="!isMobile && $i" />
-		<XKanban sticky v-if="isDesktop" />
+		<XKanban sticky v-if="isDesktop && !$i" />
 
 		<MkStickyContainer class="contents">
 			<template #header
