@@ -162,7 +162,7 @@
 							</FormLink> -->
 						</div>
 					</FormSection>
-					<FormSection>
+					<!-- <FormSection>
 						<div class="_formLinksGridFlex">
 							<FormLink>
 								{{ i18n.ts.timelines }}
@@ -189,7 +189,7 @@
 								</template>
 							</FormLink>
 						</div>
-					</FormSection>
+					</FormSection> -->
 				</footer>
 			</div>
 		</header>
