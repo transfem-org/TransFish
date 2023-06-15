@@ -43,8 +43,7 @@ describe("ユーザー", () => {
 			roles: any[];
 		};
 
-	type MeDetailed = UserDetailedNotMe &
-		misskey.entities.MeDetailed
+	type MeDetailed = UserDetailedNotMe & misskey.entities.MeDetailed;
 
 	type User = MeDetailed & { token: string };
 
