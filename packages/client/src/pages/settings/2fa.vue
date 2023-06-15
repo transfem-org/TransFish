@@ -106,7 +106,7 @@ import { hostname } from "@/config";
 import { byteify, hexify, stringify } from "@/scripts/2fa";
 import MkButton from "@/components/MkButton.vue";
 import MkInfo from "@/components/MkInfo.vue";
-import MkSwitch from "@/components/MkSwitch.vue";
+import MkSwitch from "@/components/form/switch.vue";
 import FormSection from "@/components/form/section.vue";
 import MkFolder from "@/components/MkFolder.vue";
 import * as os from "@/os";
