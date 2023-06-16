@@ -99,18 +99,15 @@
 							><i class="ph-lock ph-bold ph-lg"></i
 						></template>
 					</MkInput>
-					<MkInput
+					<vue3-otp-input
+						input-classes="otp-input"
+						inputType="number"
+						:num-inputs="6"
 						v-model="token"
-						type="text"
-						pattern="^[0-9]{6}$"
-						autocomplete="one-time-code"
-						:spellcheck="false"
+						:should-auto-focus="true"
+						@on-complete="onSubmit"
 						required
-					>
-						<template #prefix>
-							<i class="ph-poker-chip ph-bold ph-lg"></i>
-						</template>
-					</MkInput>
+					/>
 					<MkButton
 						type="submit"
 						:disabled="signing"
@@ -159,6 +156,7 @@
 </template>
 
 <script lang="ts" setup>
+import Vue3OtpInput from "vue3-otp-input";
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
@@ -391,5 +389,28 @@ function showSuspendedDialog() {
 			transition: background-image 0.2s ease-in;
 		}
 	}
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--accent);
+	background-color: var(--accentedBg);
+  text-align: center;
+}
+.otp-input.is-complete {
+	border-color: var(--success) !important;
+}
+.otp-input.error {
+  border-color: var(--error) !important;
+}
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>

@@ -5,7 +5,10 @@
 		<div v-if="$i" class="_gaps_s">
 			<MkFolder>
 				<template #icon
-					><i class="ph-shield-check ph-bold ph-lg"></i
+					><i
+						class="ph-shield-check ph-bold ph-lg"
+						style="margin-right: 0.5rem"
+					></i
 				></template>
 				<template #label>{{ i18n.ts.totp }}</template>
 				<template #caption>{{ i18n.ts.totpDescription }}</template>
@@ -13,13 +16,19 @@
 					<div v-text="i18n.ts._2fa.alreadyRegistered" />
 					<template v-if="$i.securityKeysList.length > 0">
 						<MkButton @click="renewTOTP"
-							><i class="ph-shield-check ph-bold ph-lg"></i
+							><i
+								class="ph-shield-check ph-bold ph-lg"
+								style="margin-right: 0.5rem"
+							></i
 							>{{ i18n.ts._2fa.renewTOTP }}</MkButton
 						>
 						<MkInfo>{{ i18n.ts._2fa.whyTOTPOnlyRenew }}</MkInfo>
 					</template>
 					<MkButton v-else @click="unregisterTOTP"
-						><i class="ph-shield-slash ph-bold ph-lg"></i
+						><i
+							class="ph-shield-slash ph-bold ph-lg"
+							style="margin-right: 0.5rem"
+						></i
 						>{{ i18n.ts.unregister }}</MkButton
 					>
 				</div>
@@ -32,7 +41,12 @@
 			</MkFolder>
 
 			<MkFolder>
-				<template #icon><i class="ph-key ph-bold ph-lg"></i></template>
+				<template #icon
+					><i
+						class="ph-key ph-bold ph-lg"
+						style="margin-right: 0.5rem"
+					></i
+				></template>
 				<template #label>{{ i18n.ts.securityKeyAndPasskey }}</template>
 				<div class="_gaps_s">
 					<MkInfo>
@@ -54,7 +68,10 @@
 
 					<template v-else>
 						<MkButton primary @click="addSecurityKey"
-							><i class="ph-key ph-bold ph-lg"></i
+							><i
+								class="ph-key ph-bold ph-lg"
+								style="margin-right: 0.5rem"
+							></i
 							>{{ i18n.ts._2fa.registerSecurityKey }}</MkButton
 						>
 						<MkFolder
