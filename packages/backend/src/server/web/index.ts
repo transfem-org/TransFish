@@ -408,6 +408,42 @@ router.get("/notes/:note", async (ctx, next) => {
 				...metaToPugArgs(meta),
 				note: _note,
 				profile,
+				embed: false,
+				avatarUrl: await Users.getAvatarUrl(
+					await Users.findOneByOrFail({ id: note.userId }),
+				),
+				// TODO: Let locale changeable by instance setting
+				summary: getNoteSummary(_note),
+			});
+
+			ctx.set("Cache-Control", "public, max-age=15");
+
+			return;
+		}
+	} catch {}
+
+	await next();
+});
+
+router.get("/notes/:note/embed", async (ctx, next) => {
+	const note = await Notes.findOneBy({
+		id: ctx.params.note,
+		visibility: In(["public", "home"]),
+	});
+
+	try {
+		if (note) {
+			const _note = await Notes.pack(note);
+
+			const profile = await UserProfiles.findOneByOrFail({
+				userId: note.userId,
+			});
+			const meta = await fetchMeta();
+			await ctx.render("note", {
+				...metaToPugArgs(meta),
+				note: _note,
+				profile,
+				embed: true,
 				avatarUrl: await Users.getAvatarUrl(
 					await Users.findOneByOrFail({ id: note.userId }),
 				),
