@@ -457,17 +457,21 @@ export default async (
 
 			if (!dontFederateInitially) {
 				const relays = await getCachedRelays();
+				// Some relays (e.g., aode-relay) deliver posts by boosting them as
+				// Announce activities. In that case, user is the relay's actor.
 				const boostedByRelay =
 					!!user.inbox &&
 					relays.map((relay) => relay.inbox).includes(user.inbox);
 
 				if (!note.uri) {
+					// Publish if the post is local
 					publishNotesStream(note);
 				} else if (
 					boostedByRelay &&
 					data.renote?.uri &&
 					(await redisClient.exists(`publishedNote:${data.renote.uri}`)) === 0
 				) {
+					// Publish if the post was boosted by a relay and not yet published.
 					publishNotesStream(data.renote);
 					const key = `publishedNote:${data.renote.uri}`;
 					await redisClient.set(key, 1, "EX", 30);
@@ -476,6 +480,9 @@ export default async (
 					note.uri &&
 					(await redisClient.exists(`publishedNote:${note.uri}`)) === 0
 				) {
+					// Publish if the post came directly from a remote server, or from a
+					// relay that doesn't boost the post (e.g, YUKIMOCHI Activity-Relay),
+					// and not yet published.
 					const key = `publishedNote:${note.uri}`;
 					publishNotesStream(note);
 					await redisClient.set(key, 1, "EX", 30);
