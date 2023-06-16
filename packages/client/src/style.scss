@@ -798,6 +798,30 @@ hr {
 	}
 }
 
+._otp_input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 1rem 7px auto;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--accent);
+	background-color: var(--accentedBg);
+	color: var(--fg);
+  text-align: center;
+}
+._otp_input.is-complete {
+	border-color: var(--success) !important;
+}
+._otp_input.error {
+  border-color: var(--error) !important;
+}
+._otp_input::-webkit-inner-spin-button,
+._otp_input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media(prefers-reduced-motion: no-preference) {
 	@keyframes scaleIn {
 		from {

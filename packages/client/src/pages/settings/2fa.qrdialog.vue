@@ -35,7 +35,7 @@
 			<a :href="twoFactorData.url"
 				><img :class="$style.qr" :src="twoFactorData.qr"
 			/></a>
-			<div style="max-width: 600px">
+			<div style="max-width: 610px">
 				<MkKeyValue :copy="twoFactorData.url">
 					<template #key>{{ i18n.ts._2fa.step2Url }}</template>
 					<template #value>{{ twoFactorData.url }}</template>
