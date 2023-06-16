@@ -159,7 +159,6 @@
 
 <script lang="ts" setup>
 import Vue3OtpInput from "vue3-otp-input";
-import { ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
