@@ -212,10 +212,13 @@ let meta = $ref<DetailedInstanceMetadata>();
 
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
+const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent");;
+let themeColor = $ref(accentColor);
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && meta.description.length > 500;
+	themeColor = meta.themeColor ?? accentColor;
 });
 
 let announcement = $ref();
@@ -298,7 +301,7 @@ function showMenu(ev) {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	background: var(--accent);
+	background: v-bind('themeColor');
 	height: max-content;
 	min-height: 100%;
 	transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
