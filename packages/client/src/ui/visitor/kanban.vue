@@ -136,7 +136,7 @@
 
 					<FormSection v-if="meta.tosUrl">
 						<div class="_formLinksGridFlex">
-							<FormLink v-if="meta.tosUrl" :to="meta.tosUrl"
+							<FormLink v-if="meta.tosUrl" :to="meta.tosUrl" external
 								><template #icon
 									><i
 										class="ph-scroll ph-bold ph-lg"
