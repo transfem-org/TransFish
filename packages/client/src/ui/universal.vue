@@ -552,8 +552,6 @@ console.log(mainRouter.currentRoute.value.name);
 
 	> .contents {
 		min-width: 0;
-		flex-grow: 1;
-		flex-basis: 900px;
 		$widgets-hide-threshold: 1090px;
 		@media (max-width: $widgets-hide-threshold) {
 			padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
