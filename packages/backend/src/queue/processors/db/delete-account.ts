@@ -17,9 +17,7 @@ export async function deleteAccount(
 	logger.info(`Deleting account of ${job.data.user.id} ...`);
 
 	const user = await Users.findOneBy({ id: job.data.user.id });
-	if (user == null) {
-		return;
-	}
+	if (!user) return;
 
 	{
 		// Delete notes

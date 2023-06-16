@@ -12,7 +12,7 @@ export async function getInstance(response: Entity.Instance) {
 		uri: response.uri,
 		title: response.title || "Calckey",
 		short_description:
-			response.description.substring(0, 50) || "See real server website",
+			response.description?.substring(0, 50) || "See real server website",
 		description:
 			response.description ||
 			"This is a vanilla Calckey Instance. It doesnt seem to have a description. BTW you are using the Mastodon api to access this server :)",

@@ -101,7 +101,7 @@
 					</MkInput>
 					<vue3-otp-input
 						input-classes="_otp_input"
-						inputType="letter-numeric"
+						inputType="number"
 						separator=""
 						:num-inputs="6"
 						v-model="token"
@@ -186,7 +186,7 @@ let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
 
 const updateToken = (value: string) => {
-	token = value;
+	token = value.toString();
 };
 
 const meta = $computed(() => instance);
