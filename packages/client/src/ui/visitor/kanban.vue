@@ -1,30 +1,32 @@
 <template>
+	<header v-if="mini" class="mini-header">
+		<img 
+			class="logo"
+			:src="meta.logoImageUrl"
+		/>
+		<h1>
+			<MkA
+				to="/" class="link"
+			>{{ instanceName }}</MkA>
+		</h1>
+		<MkButton
+			class="home"
+			:to="'/'"
+			link
+			rounded
+		>
+			<i class="ph-house ph-bold ph-lg"></i>
+			{{ i18n.ts.home }}
+		</MkButton>
+	</header>
 	<div class="instance-info-container"
+		v-else
 		:class="{ sticky }"
 	>
 		<header
 			id="instance-info"
 			v-on:scroll.passive="onScroll"
 		>
-			<!-- <div class="ticker" v-if="!expanded">
-				<img 
-					class="logo"
-					:src="meta.logoImageUrl"
-				/>
-				<div>
-					<h1>
-						<MkA
-							to="/" class="link"
-						>{{ instanceName }}</MkA>
-					</h1>
-					<p>{{ meta.description || i18n.ts.introMisskey }}</p>
-				</div>
-				<MkButton
-					primary
-					rounded
-					@click.stop="expanded = true"
-				>{{ i18n.ts.instanceInfo }}</MkButton>
-			</div> -->
 			<div class="banner">
 				<img :src="meta.backgroundImageUrl" />
 			</div>
@@ -197,10 +199,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import { host, instanceName } from "@/config";
+import { instanceName } from "@/config";
 import * as os from "@/os";
-import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
 import FormSection from "@/components/form/section.vue";
 import FormLink from "@/components/form/link.vue";
@@ -215,6 +215,7 @@ import MkMention from "@/components/MkMention.vue";
 
 defineProps<{
 	sticky?: boolean;
+	mini?: boolean;
 }>();
 
 let meta = $ref<DetailedInstanceMetadata>();
@@ -259,14 +260,33 @@ function signup() {
 function showMenu(ev) {
 	openHelpMenu_(ev);
 }
-function onScroll(ev) {
-	if (ev.target.scrollTop == 0) {
-		expanded = false;
-	}
-}
 </script>
 
 <style lang="scss" scoped>
+.mini-header {
+	padding: 0 12px;
+	background: var(--panel);
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	height: 60px;
+	img {
+		height: 40px;
+		min-width: 40px;
+	}
+	h1 {
+		margin: 0;
+		font-size: 1.2em;
+		width: 0;
+		flex-grow: 1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	:deep(._button) {
+		margin-left: auto;
+	}
+}
 .instance-info-container {
 	margin-top: -55px;
 	&.sticky {

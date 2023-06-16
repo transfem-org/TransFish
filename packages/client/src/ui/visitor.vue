@@ -3,6 +3,7 @@
 	<main
 		id="maincontent"
 	>
+		<XKanban mini v-if="!isDesktop && mainRouter.currentRoute.value.name !== 'index'" />
 		<RouterView />
 		<footer class="powered-by">
 			<MkA to="/">
@@ -23,9 +24,6 @@ import XKanban from "@/ui/visitor/kanban.vue";
 import MkInstanceTicker from "@/components/MkInstanceTicker.vue";
 import * as os from "@/os";
 import { LiteInstanceMetadata } from "calckey-js/built/entities";
-import { host } from "@/config";
-
-
 
 provide("router", mainRouter);
 
@@ -35,16 +33,11 @@ matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
 	isDesktop = mql.matches;
 };
 
-const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent");
-
-console.log(accentColor);
-
 let meta = $ref<LiteInstanceMetadata>();
 
 os.api("meta").then((res) => {
 	meta = res;
 });
-
 </script>
 <style lang="scss">
 #calckey_app {

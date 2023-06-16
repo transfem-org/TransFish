@@ -137,8 +137,6 @@ matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
 	syncSlide(isDesktop ? 1 : 0);
 };
 
-provide("shouldOmitHeaderTitle", true);
-
 const tabs = [
 	"home",
 	"local",
