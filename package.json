@@ -40,8 +40,8 @@
 		"@bull-board/ui": "5.2.0",
 		"@napi-rs/cli": "^2.16.1",
 		"@tensorflow/tfjs": "^3.21.0",
-		"seedrandom": "^3.0.5",
-		"yaml": "^2.3.1"
+		"js-yaml": "4.1.0",
+		"seedrandom": "^3.0.5"
 	},
 	"devDependencies": {
 		"@types/gulp": "4.0.10",
