@@ -56,7 +56,7 @@ import { checkHitAntenna } from "@/misc/check-hit-antenna.js";
 import { getWordHardMute } from "@/misc/check-word-mute.js";
 import { addNoteToAntenna } from "../add-note-to-antenna.js";
 import { countSameRenotes } from "@/misc/count-same-renotes.js";
-import { deliverToRelays } from "../relay.js";
+import { deliverToRelays, getCachedRelays } from "../relay.js";
 import type { Channel } from "@/models/entities/channel.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { getAntennas } from "@/misc/antenna-cache.js";
@@ -68,6 +68,7 @@ import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
+import { redisClient } from "@/db/redis.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -165,6 +166,7 @@ export default async (
 		isSilenced: User["isSilenced"];
 		createdAt: User["createdAt"];
 		isBot: User["isBot"];
+		inbox?: User["inbox"];
 	},
 	data: Option,
 	silent = false,
@@ -453,7 +455,37 @@ export default async (
 			}
 
 			if (!dontFederateInitially) {
-				publishNotesStream(note);
+				const relays = await getCachedRelays();
+				// Some relays (e.g., aode-relay) deliver posts by boosting them as
+				// Announce activities. In that case, user is the relay's actor.
+				const boostedByRelay =
+					!!user.inbox &&
+					relays.map((relay) => relay.inbox).includes(user.inbox);
+
+				if (!note.uri) {
+					// Publish if the post is local
+					publishNotesStream(note);
+				} else if (
+					boostedByRelay &&
+					data.renote?.uri &&
+					(await redisClient.exists(`publishedNote:${data.renote.uri}`)) === 0
+				) {
+					// Publish if the post was boosted by a relay and not yet published.
+					publishNotesStream(data.renote);
+					const key = `publishedNote:${data.renote.uri}`;
+					await redisClient.set(key, 1, "EX", 30);
+				} else if (
+					!boostedByRelay &&
+					note.uri &&
+					(await redisClient.exists(`publishedNote:${note.uri}`)) === 0
+				) {
+					// Publish if the post came directly from a remote server, or from a
+					// relay that doesn't boost the post (e.g, YUKIMOCHI Activity-Relay),
+					// and not yet published.
+					const key = `publishedNote:${note.uri}`;
+					publishNotesStream(note);
+					await redisClient.set(key, 1, "EX", 30);
+				}
 			}
 			if (note.replyId != null) {
 				// Only provide the reply note id here as the recipient may not be authorized to see the note.
@@ -524,7 +556,6 @@ export default async (
 						nm.push(data.renote.userId, type);
 					}
 				}
-
 				// Fetch watchers
 				nmRelatedPromises.push(
 					notifyToWatchersOfRenotee(data.renote, user, nm, type),
@@ -537,8 +568,9 @@ export default async (
 					});
 					publishMainStream(data.renote.userId, "renote", packedRenote);
 
+					const renote = data.renote;
 					const webhooks = (await getActiveWebhooks()).filter(
-						(x) => x.userId === data.renote!.userId && x.on.includes("renote"),
+						(x) => x.userId === renote.userId && x.on.includes("renote"),
 					);
 					for (const webhook of webhooks) {
 						webhookDeliver(webhook, "renote", {
