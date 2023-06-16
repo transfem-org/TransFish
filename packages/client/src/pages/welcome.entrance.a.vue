@@ -8,107 +8,109 @@
 				:noTabCollapse="true"
 				:displayHomeButton="false"
 		/></template>
-		<swiper
-			id="visitor-view"
-			:round-lengths="true"
-			:touch-angle="25"
-			:threshold="10"
-			:centeredSlides="true"
-			:space-between="20"
-			:allow-touch-move="
-				!(
-					deviceKind === 'desktop' &&
-					!defaultStore.state.swipeOnDesktop
-				)
-			"
-			:set-wrapper-size="true"
-			@swiper="setSwiperRef"
-			@slide-change="onSlideChange"
-		>
-			<swiper-slide v-slot="{ isActive }">
-				<XKanban v-if="isActive" />
-			</swiper-slide>
-			<swiper-slide v-slot="{ isActive }">
-				<MkSpacer :content-max="800" v-if="isActive">
-					<XNotes :pagination="paginationForLocal" />
-				</MkSpacer>
-			</swiper-slide>
-			<swiper-slide v-slot="{ isActive }">
-				<MkSpacer :content-max="800" v-if="isActive">
-					<XNotes :pagination="paginationForRemote" />
-				</MkSpacer>
-			</swiper-slide>
-			<swiper-slide v-slot="{ isActive }">
-				<MkSpacer :content-max="800" v-if="isActive">
-					<XChannelList
-						key="featured"
-						:pagination="featuredPagination"
-					/>
-				</MkSpacer>
-			</swiper-slide>
-			<swiper-slide v-slot="{ isActive }">
-				<MkSpacer :content-max="800" v-if="isActive">
-					<MkPagination
-						v-slot="{ items }"
-						:pagination="featuredPagesPagination"
-					>
-						<MkPagePreview
-							v-for="page in items"
-							:key="page.id"
-							class="ckltabjg"
-							:page="page"
+		<div id="visitor-view">
+			<swiper
+				class="swiper"
+				:round-lengths="true"
+				:touch-angle="25"
+				:threshold="10"
+				:centeredSlides="true"
+				:space-between="20"
+				:allow-touch-move="
+					!(
+						deviceKind === 'desktop' &&
+						!defaultStore.state.swipeOnDesktop
+					)
+				"
+				:set-wrapper-size="true"
+				@swiper="setSwiperRef"
+				@slide-change="onSlideChange"
+			>
+				<swiper-slide v-slot="{ isActive }">
+					<XKanban v-if="isActive" />
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<XNotes :pagination="paginationForLocal" />
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<XNotes :pagination="paginationForRemote" />
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
+						<XChannelList
+							key="featured"
+							:pagination="featuredPagination"
 						/>
-					</MkPagination>
-				</MkSpacer>
-			</swiper-slide>
-			<swiper-slide v-slot="{ isActive }">
-				<MkSpacer :content-max="1200" v-if="isActive">
-					<MkFolder class="_gap">
-						<template #header
-							><i class="ph-clock ph-bold ph-lg"></i>
-							{{ i18n.ts.recentPosts }}</template
-						>
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="800" v-if="isActive">
 						<MkPagination
 							v-slot="{ items }"
-							:pagination="recentPostsPagination"
-							:disable-auto-load="true"
+							:pagination="featuredPagesPagination"
 						>
-							<div class="vfpdbgtk">
-								<MkGalleryPostPreview
-									v-for="post in items"
-									:key="post.id"
-									:post="post"
-									class="post"
-								/>
-							</div>
+							<MkPagePreview
+								v-for="page in items"
+								:key="page.id"
+								class="ckltabjg"
+								:page="page"
+							/>
 						</MkPagination>
-					</MkFolder>
-					<MkFolder class="_gap">
-						<template #header
-							><i class="ph-fire-simple ph-bold ph-lg"></i>
-							{{ i18n.ts.popularPosts }}</template
-						>
-						<MkPagination
-							v-slot="{ items }"
-							:pagination="popularPostsPagination"
-							:disable-auto-load="true"
-						>
-							<div class="vfpdbgtk">
-								<MkGalleryPostPreview
-									v-for="post in items"
-									:key="post.id"
-									:post="post"
-									class="post"
-								/>
-							</div>
-						</MkPagination>
-					</MkFolder>
-				</MkSpacer>
-			</swiper-slide>
-			<swiper-slide v-slot="{ isActive }">
-				<XUsers v-if="isActive" />
-			</swiper-slide>
-		</swiper>
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<MkSpacer :content-max="1200" v-if="isActive">
+						<MkFolder class="_gap">
+							<template #header
+								><i class="ph-clock ph-bold ph-lg"></i>
+								{{ i18n.ts.recentPosts }}</template
+							>
+							<MkPagination
+								v-slot="{ items }"
+								:pagination="recentPostsPagination"
+								:disable-auto-load="true"
+							>
+								<div class="vfpdbgtk">
+									<MkGalleryPostPreview
+										v-for="post in items"
+										:key="post.id"
+										:post="post"
+										class="post"
+									/>
+								</div>
+							</MkPagination>
+						</MkFolder>
+						<MkFolder class="_gap">
+							<template #header
+								><i class="ph-fire-simple ph-bold ph-lg"></i>
+								{{ i18n.ts.popularPosts }}</template
+							>
+							<MkPagination
+								v-slot="{ items }"
+								:pagination="popularPostsPagination"
+								:disable-auto-load="true"
+							>
+								<div class="vfpdbgtk">
+									<MkGalleryPostPreview
+										v-for="post in items"
+										:key="post.id"
+										:post="post"
+										class="post"
+									/>
+								</div>
+							</MkPagination>
+						</MkFolder>
+					</MkSpacer>
+				</swiper-slide>
+				<swiper-slide v-slot="{ isActive }">
+					<XUsers v-if="isActive" />
+				</swiper-slide>
+			</swiper>
+		</div>
 	</MkStickyContainer>
 </template>
 
@@ -266,25 +268,31 @@ const popularPostsPagination = {
 #visitor-view {
 	margin-top: -55px;
 	padding-top: 55px;
+	.swiper {
+		margin-top: -55px;
+		padding-top: 55px;
+	}
+	@media (min-width: 1100px) {
+		.swiper {
+			mask: linear-gradient(to bottom, black 70%, transparent 97%);
+			-webkit-mask: linear-gradient(to bottom, black 70%, transparent 97%);
+			padding-block: calc(2.5vw + 55px) 30vh;
+			margin-top: -55px;
+			max-height: 100vh;
+			box-sizing: border-box;
+			overflow: hidden auto !important;
+		}
+		&::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			opacity: .5;
+			// filter: blur(4px);
+			background-image: v-bind("wallpaper");
+		}
+	}
 }
-// 	:deep(.swiper-wrapper) {
-// 		mask: linear-gradient(to bottom, black 70%, transparent 95%);
-// 		padding-block: calc(2.5vw + 55px) 30vh;
-// 		margin-top: -55px;
-// 		max-height: 100vh;
-// 		box-sizing: border-box;
-// 		overflow: hidden auto !important;
-// 	}
-// 	&::before {
-// 		content: "";
-// 		position: fixed;
-// 		inset: 0;
-// 		background-repeat: no-repeat;
-// 		background-size: cover;
-// 		background-position: center;
-// 		opacity: .5;
-// 		filter: blur(4px);
-// 		background-image: v-bind("wallpaper");
-// 	}
-// }
 </style>

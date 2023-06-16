@@ -27,13 +27,17 @@
 					<img 
 						class="logo" 
 						:src="
-							meta.logoImageUrl ||
 							$instance.iconUrl ||
 							$instance.faviconUrl ||
 							'/favicon.ico'
 						"
 					/>
-					<h1>
+					<img 
+						v-if="meta.logoImageUrl"
+						:src="meta.logoImageUrl"
+						class="logo"
+					/>
+					<h1 v-else>
 						<MkA to="/" class="link">{{ instanceName }}</MkA>
 					</h1>
 				</div>
@@ -315,6 +319,7 @@ function showMenu(ev) {
 		padding-top: min(56.25%, 70vh);
 		margin-bottom: calc(-100px - var(--radius));
 		mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
+		-webkit-mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
 		transition: min-height 0.4s, max-height 0.4s, filter 0.7s;
 		img {
 			position: absolute;
@@ -329,7 +334,7 @@ function showMenu(ev) {
 				opacity: 1 !important;
 			}
 			> .logo {
-				margin-top: -20px !important;
+				margin-top: -10px !important;
 			}
 		}
 	}
@@ -369,19 +374,20 @@ function showMenu(ev) {
 				opacity: .5;
 				clip-path: inset(55px 0 0 0 round var(--radius));
 				mask: linear-gradient(transparent 55px, #000 50px, transparent);
-				-webkit-mask: linear-gradient(
-					transparent 55px,
-					#000 50px,
-					transparent
-				);
+				-webkit-mask: llinear-gradient(transparent 55px, #000 50px, transparent);
 			}
 			> .logo {
-				height: 90px;
-				min-width: 90px;
+				height: 80px;
+				min-width: 80px;
 				max-width: 100%;
 				border-radius: var(--radius);
 				margin-top: -5px;
 				transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
+				&:last-child {
+					display: block;
+					margin-inline: auto;
+					margin-block: .5em 1em !important;
+				}
 			}
 			> h1 {
 				margin-block: 0.7em;
@@ -412,10 +418,7 @@ function showMenu(ev) {
 				position: relative;
 				max-height: calc(9em + 50px);
 				mask: linear-gradient(black calc(100% - 64px), transparent);
-				-webkit-mask: linear-gradient(
-					black calc(100% - 64px),
-					transparent
-				);
+				-webkit-mask: linear-gradient(black calc(100% - 64px), transparent);
 			}
 		}
 		.announcements {
