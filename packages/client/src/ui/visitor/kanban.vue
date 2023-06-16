@@ -3,12 +3,13 @@
 		<img 
 			class="logo" 
 			:src="
+				meta.logoImageUrl ||
 				$instance.iconUrl ||
 				$instance.faviconUrl ||
 				'/favicon.ico'
 			"
 		/>
-		<h1>
+		<h1 v-if="!meta.logoImageUrl">
 			<MkA to="/" class="link">{{ instanceName }}</MkA>
 		</h1>
 		<MkButton class="home" :to="'/'" link rounded>
@@ -26,6 +27,7 @@
 					<img 
 						class="logo" 
 						:src="
+							meta.logoImageUrl ||
 							$instance.iconUrl ||
 							$instance.faviconUrl ||
 							'/favicon.ico'
