@@ -36,6 +36,7 @@ import {
 	ChannelFollowings,
 	Blockings,
 	NoteThreadMutings,
+	Relays,
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { App } from "@/models/entities/app.js";
@@ -56,7 +57,7 @@ import { checkHitAntenna } from "@/misc/check-hit-antenna.js";
 import { getWordHardMute } from "@/misc/check-word-mute.js";
 import { addNoteToAntenna } from "../add-note-to-antenna.js";
 import { countSameRenotes } from "@/misc/count-same-renotes.js";
-import { deliverToRelays } from "../relay.js";
+import { deliverToRelays, getCachedRelays } from "../relay.js";
 import type { Channel } from "@/models/entities/channel.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { getAntennas } from "@/misc/antenna-cache.js";
@@ -72,6 +73,7 @@ import meilisearch from "../../db/meilisearch.js";
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
 >(1000 * 60 * 5);
+const publishedNoteCache = new Cache<boolean>(1000 * 10);
 
 type NotificationType = "reply" | "renote" | "quote" | "mention";
 
@@ -165,6 +167,7 @@ export default async (
 		isSilenced: User["isSilenced"];
 		createdAt: User["createdAt"];
 		isBot: User["isBot"];
+		inbox?: User["inbox"];
 	},
 	data: Option,
 	silent = false,
@@ -453,7 +456,29 @@ export default async (
 			}
 
 			if (!dontFederateInitially) {
-				publishNotesStream(note);
+				const relays = await getCachedRelays();
+				if (!note.uri) {
+					publishNotesStream(note);
+				} else if (
+					data.renote?.uri &&
+					publishedNoteCache.get(data.renote.uri) !== true &&
+					user.inbox &&
+					relays.map((relay) => relay.inbox).includes(user.inbox)
+				) {
+					const uri = data.renote.uri;
+					publishNotesStream(data.renote);
+					publishedNoteCache.set(uri, true);
+					setTimeout(() => {
+						publishedNoteCache.delete(uri);
+					}, 1000 * 10);
+				} else if (note.uri && publishedNoteCache.get(note.uri) !== true) {
+					const uri = note.uri;
+					publishNotesStream(note);
+					publishedNoteCache.set(uri, true);
+					setTimeout(() => {
+						publishedNoteCache.delete(uri);
+					}, 1000 * 10);
+				}
 			}
 			if (note.replyId != null) {
 				// Only provide the reply note id here as the recipient may not be authorized to see the note.
@@ -524,7 +549,6 @@ export default async (
 						nm.push(data.renote.userId, type);
 					}
 				}
-
 				// Fetch watchers
 				nmRelatedPromises.push(
 					notifyToWatchersOfRenotee(data.renote, user, nm, type),
@@ -537,8 +561,9 @@ export default async (
 					});
 					publishMainStream(data.renote.userId, "renote", packedRenote);
 
+					const renote = data.renote;
 					const webhooks = (await getActiveWebhooks()).filter(
-						(x) => x.userId === data.renote!.userId && x.on.includes("renote"),
+						(x) => x.userId === renote.userId && x.on.includes("renote"),
 					);
 					for (const webhook of webhooks) {
 						webhookDeliver(webhook, "renote", {
