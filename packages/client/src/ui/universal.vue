@@ -535,7 +535,6 @@ console.log(mainRouter.currentRoute.value.name);
 		}
 
 		> .contents {
-			width: 100%;
 			min-width: 0;
 			width: 750px;
 			background: var(--panel);
@@ -558,6 +557,7 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 
 	> .contents {
+		width: 100%;
 		min-width: 0;
 		$widgets-hide-threshold: 1090px;
 		@media (max-width: $widgets-hide-threshold) {
