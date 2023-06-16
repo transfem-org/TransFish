@@ -907,8 +907,8 @@ importers:
         specifier: 2.0.0-alpha.2
         version: 2.0.0-alpha.2(vue@3.3.4)
       vue3-otp-input:
-        specifier: ^0.4.1
-        version: 0.4.1(vue@3.3.4)
+        specifier: github:thatonecalculator/vue3-otp-input
+        version: github.com/thatonecalculator/vue3-otp-input/098b24b224661884983a5035ef3b245a519dff14(vue@3.3.4)
       vuedraggable:
         specifier: 4.1.0
         version: 4.1.0(vue@3.3.4)
@@ -15216,15 +15216,6 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /vue3-otp-input@0.4.1(vue@3.3.4):
-    resolution: {integrity: sha512-wVl9i3DcWlO0C7fBI9V+RIP3crm/1tY72fuhvb3YM2JfbLoYofB96aPl5AgFhA0Cse5bQEMYtIvOeiqW3rfbAw==}
-    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
-    peerDependencies:
-      vue: ^3.0.*
-    dependencies:
-      vue: 3.3.4
-    dev: true
-
   /vue@2.7.14:
     resolution: {integrity: sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==}
     dependencies:
@@ -15905,4 +15896,16 @@ packages:
       loadjs: 4.2.0
       rangetouch: 2.0.1
       url-polyfill: 1.1.12
+    dev: true
+
+  github.com/thatonecalculator/vue3-otp-input/098b24b224661884983a5035ef3b245a519dff14(vue@3.3.4):
+    resolution: {tarball: https://codeload.github.com/thatonecalculator/vue3-otp-input/tar.gz/098b24b224661884983a5035ef3b245a519dff14}
+    id: github.com/thatonecalculator/vue3-otp-input/098b24b224661884983a5035ef3b245a519dff14
+    name: vue3-otp-input
+    version: 0.4.1
+    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
+    peerDependencies:
+      vue: ^3.0.*
+    dependencies:
+      vue: 3.3.4
     dev: true
