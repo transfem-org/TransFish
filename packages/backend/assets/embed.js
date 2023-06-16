@@ -45,11 +45,14 @@
 
       const iframe = iframes.get(data.id);
 
-      if ('source' in e && iframe.contentWindow !== e.source) {
-        return;
-      }
+			if (iframe != null) {
+				if ('source' in e && iframe.contentWindow !== e.source) {
+					return;
+				}
 
-      iframe.height = data.height;
+				iframe.height = data.height;
+			}
+
     });
 
     [].forEach.call(document.querySelectorAll('iframe.mastodon-embed'), function (iframe) {
