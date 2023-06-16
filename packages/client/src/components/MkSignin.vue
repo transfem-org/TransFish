@@ -186,7 +186,7 @@ let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
 
 const updateToken = (value: string) => {
-	token = value;
+	token = value.toString();
 };
 
 const meta = $computed(() => instance);
