@@ -21,15 +21,15 @@ const merge = (...args) =>
 
 fs.readdirSync(__dirname).forEach((file) => {
 	if (file.includes(".yml")) {
-		locale = file.slice(0, file.indexOf("."));
-		languages.push(locale);
+		file = file.slice(0, file.indexOf("."));
+		languages.push(file);
 	}
 });
 
 fs.readdirSync(__dirname + "/../custom/locales").forEach((file) => {
 	if (file.includes(".yml")) {
-		customLocale = file.slice(0, file.indexOf("."));
-		languages_custom.push(customLocale);
+		file = file.slice(0, file.indexOf("."));
+		languages_custom.push(file);
 	}
 });
 
