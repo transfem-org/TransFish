@@ -106,6 +106,7 @@
 						:num-inputs="6"
 						v-model="token"
 						:should-auto-focus="true"
+						@on-change="updateToken"
 						@on-complete="onSubmit"
 						required
 					/>
@@ -158,6 +159,7 @@
 
 <script lang="ts" setup>
 import Vue3OtpInput from "vue3-otp-input";
+import { ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
@@ -182,6 +184,10 @@ let challengeData = $ref(null);
 let queryingKey = $ref(false);
 let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
+
+const updateToken = (value: string) => {
+	token = value;
+};
 
 const meta = $computed(() => instance);
 
