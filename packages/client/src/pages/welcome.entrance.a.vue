@@ -21,6 +21,7 @@
 					!defaultStore.state.swipeOnDesktop
 				)
 			"
+			:set-wrapper-size="true"
 			@swiper="setSwiperRef"
 			@slide-change="onSlideChange"
 		>
@@ -261,15 +262,29 @@ const popularPostsPagination = {
 	limit: 5,
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 #visitor-view {
 	margin-top: -55px;
 	padding-top: 55px;
-	&::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background-image: v-bind("wallpaper");
-	}
 }
+// 	:deep(.swiper-wrapper) {
+// 		mask: linear-gradient(to bottom, black 70%, transparent 95%);
+// 		padding-block: calc(2.5vw + 55px) 30vh;
+// 		margin-top: -55px;
+// 		max-height: 100vh;
+// 		box-sizing: border-box;
+// 		overflow: hidden auto !important;
+// 	}
+// 	&::before {
+// 		content: "";
+// 		position: fixed;
+// 		inset: 0;
+// 		background-repeat: no-repeat;
+// 		background-size: cover;
+// 		background-position: center;
+// 		opacity: .5;
+// 		filter: blur(4px);
+// 		background-image: v-bind("wallpaper");
+// 	}
+// }
 </style>

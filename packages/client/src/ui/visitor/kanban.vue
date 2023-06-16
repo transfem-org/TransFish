@@ -1,6 +1,13 @@
 <template>
 	<header v-if="mini" class="mini-header">
-		<img class="logo" :src="meta.logoImageUrl" />
+		<img 
+			class="logo" 
+			:src="
+				$instance.iconUrl ||
+				$instance.faviconUrl ||
+				'/favicon.ico'
+			"
+		/>
 		<h1>
 			<MkA to="/" class="link">{{ instanceName }}</MkA>
 		</h1>
@@ -11,12 +18,19 @@
 	</header>
 	<div class="instance-info-container" v-else :class="{ sticky }">
 		<header id="instance-info" v-on:scroll.passive="onScroll">
-			<div class="banner">
-				<img :src="meta.backgroundImageUrl" />
+			<div class="banner" v-if="meta.bannerUrl">
+				<img :src="meta.bannerUrl" />
 			</div>
 			<div class="content">
 				<div class="header">
-					<img class="logo" :src="meta.logoImageUrl" />
+					<img 
+						class="logo" 
+						:src="
+							$instance.iconUrl ||
+							$instance.faviconUrl ||
+							'/favicon.ico'
+						"
+					/>
 					<h1>
 						<MkA to="/" class="link">{{ instanceName }}</MkA>
 					</h1>
@@ -64,7 +78,7 @@
 							{{ i18n.ts.findAnotherInstance }}
 						</MkButton>
 						<MkButton
-							v-if="!sticky"
+							v-if="deviceKind !== 'desktop'"
 							:link="true"
 							:behavior="'browser'"
 							rounded
@@ -121,7 +135,7 @@
 					</FormSection>
 
 					<FormSection v-if="meta.tosUrl">
-						<div class="_formLinksGrid">
+						<div class="_formLinksGridFlex">
 							<FormLink v-if="meta.tosUrl" :to="meta.tosUrl"
 								><template #icon
 									><i
@@ -187,6 +201,7 @@ import XSigninDialog from "@/components/MkSigninDialog.vue";
 import XSignupDialog from "@/components/MkSignupDialog.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkMention from "@/components/MkMention.vue";
+import { deviceKind } from "@/scripts/device-kind";
 
 defineProps<{
 	sticky?: boolean;
@@ -292,7 +307,8 @@ function showMenu(ev) {
 		top: 0;
 		width: calc(100% + 2px);
 		margin-inline: -1px;
-		padding-top: 56.25%;
+		padding-top: min(56.25%, 70vh);
+		margin-bottom: calc(-100px - var(--radius));
 		mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
 		transition: min-height 0.4s, max-height 0.4s, filter 0.7s;
 		img {
@@ -301,6 +317,15 @@ function showMenu(ev) {
 			height: 100%;
 			object-fit: cover;
 			object-position: center;
+			inset: 0;
+		}
+		& ~ .content > .header {
+			&::before {
+				opacity: 1 !important;
+			}
+			> .logo {
+				margin-top: -20px !important;
+			}
 		}
 	}
 	> .content {
@@ -311,27 +336,32 @@ function showMenu(ev) {
 		z-index: 2;
 		background: var(--bg);
 		border-radius: var(--radius) var(--radius) 0 0;
-		margin-top: calc(0px - var(--radius));
 		padding: 0 var(--margin);
 		text-align: center;
 		flex-grow: 1;
+		margin-top: 80px;
 		// max-width: 600px;
 		margin-inline: auto;
 		width: 100%;
 		box-sizing: border-box;
-
+		@media (max-width: 1100px) {
+			&:first-child {
+				margin-top: 140px;
+			}
+		}
 		> .header {
 			position: relative;
-			margin-top: -50px;
+			margin-top: -30px;
 			&::before {
 				content: "";
 				position: absolute;
-				inset: -5px calc(0px - var(--margin));
+				inset: -25px calc(0px - var(--margin));
 				bottom: -100px;
 				backdrop-filter: blur(60px);
 				filter: brightness(1.2);
 				pointer-events: none;
 				z-index: -1;
+				opacity: .5;
 				clip-path: inset(55px 0 0 0 round var(--radius));
 				mask: linear-gradient(transparent 55px, #000 50px, transparent);
 				-webkit-mask: linear-gradient(

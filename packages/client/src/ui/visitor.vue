@@ -6,7 +6,7 @@
 			v-if="!isDesktop && mainRouter.currentRoute.value.name !== 'index'"
 		/>
 		<RouterView />
-		<footer class="powered-by">
+		<footer class="powered-by" v-if="mainRouter.currentRoute.value.name !== 'index'">
 			<MkA to="/">
 				<MkInstanceTicker :instance="meta"></MkInstanceTicker>
 				<small>{{ i18n.ts.poweredBy }}</small>
