@@ -5,7 +5,7 @@
 import * as fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-import * as yaml from "js-yaml";
+import { parse } from "yaml";
 import type { Source, Mixin } from "./types.js";
 
 const _filename = fileURLToPath(import.meta.url);
@@ -32,7 +32,7 @@ export default function load() {
 			"utf-8",
 		),
 	);
-	const config = yaml.load(fs.readFileSync(path, "utf-8")) as Source;
+	const config = parse(fs.readFileSync(path, "utf-8")) as Source;
 
 	const mixin = {} as Mixin;
 
