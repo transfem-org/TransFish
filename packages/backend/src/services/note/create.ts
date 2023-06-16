@@ -36,7 +36,6 @@ import {
 	ChannelFollowings,
 	Blockings,
 	NoteThreadMutings,
-	Relays,
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { App } from "@/models/entities/app.js";
