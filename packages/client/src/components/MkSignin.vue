@@ -101,7 +101,7 @@
 					</MkInput>
 					<vue3-otp-input
 						input-classes="_otp_input"
-						inputType="number"
+						inputType="letter-numeric"
 						separator=""
 						:num-inputs="6"
 						v-model="token"

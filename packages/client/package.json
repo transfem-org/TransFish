@@ -87,7 +87,7 @@
 		"vue-isyourpasswordsafe": "^2.0.0",
 		"vue-plyr": "^7.0.0",
 		"vue-prism-editor": "2.0.0-alpha.2",
-		"vue3-otp-input": "github:thatonecalculator/vue3-otp-input",
+		"vue3-otp-input": "^0.4.1",
 		"vuedraggable": "4.1.0"
 	}
 }
