@@ -69,11 +69,11 @@ import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
+import { redisClient } from "@/db/redis.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
 >(1000 * 60 * 5);
-const publishedNoteCache = new Cache<boolean>(1000 * 10);
 
 type NotificationType = "reply" | "renote" | "quote" | "mention";
 
@@ -457,27 +457,28 @@ export default async (
 
 			if (!dontFederateInitially) {
 				const relays = await getCachedRelays();
+				const boostedByRelay =
+					!!user.inbox &&
+					relays.map((relay) => relay.inbox).includes(user.inbox);
+
 				if (!note.uri) {
 					publishNotesStream(note);
 				} else if (
+					boostedByRelay &&
 					data.renote?.uri &&
-					publishedNoteCache.get(data.renote.uri) !== true &&
-					user.inbox &&
-					relays.map((relay) => relay.inbox).includes(user.inbox)
+					(await redisClient.exists(`publishedNote:${data.renote.uri}`)) === 0
 				) {
-					const uri = data.renote.uri;
 					publishNotesStream(data.renote);
-					publishedNoteCache.set(uri, true);
-					setTimeout(() => {
-						publishedNoteCache.delete(uri);
-					}, 1000 * 10);
-				} else if (note.uri && publishedNoteCache.get(note.uri) !== true) {
-					const uri = note.uri;
+					const key = `publishedNote:${data.renote.uri}`;
+					await redisClient.set(key, 1, "EX", 10);
+				} else if (
+					!boostedByRelay &&
+					note.uri &&
+					(await redisClient.exists(`publishedNote:${note.uri}`)) === 0
+				) {
+					const key = `publishedNote:${note.uri}`;
 					publishNotesStream(note);
-					publishedNoteCache.set(uri, true);
-					setTimeout(() => {
-						publishedNoteCache.delete(uri);
-					}, 1000 * 10);
+					await redisClient.set(key, 1, "EX", 10);
 				}
 			}
 			if (note.replyId != null) {
