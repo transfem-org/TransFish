@@ -289,7 +289,7 @@ const popularPostsPagination = {
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: center;
-			opacity: .5;
+			opacity: .8;
 			// filter: blur(4px);
 			background-image: v-bind("wallpaper");
 		}
