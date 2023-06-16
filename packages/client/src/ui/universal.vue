@@ -191,7 +191,7 @@ const DESKTOP_THRESHOLD = 1100;
 const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
-let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
+const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
 const isMobile = ref(
 	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD
 );
@@ -329,9 +329,15 @@ async function startGroup(): void {
 	mainRouter.push(`/my/messaging/group/${group.id}`);
 }
 
-matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
-	isDesktop = mql.matches;
-};
+onMounted(() => {
+	if (!isDesktop.value) {
+		matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (
+			mql
+		) => {
+			if (mql.matches) isDesktop.value = true;
+		};
+	}
+});
 
 const onContextmenu = (ev: MouseEvent) => {
 	const isLink = (el: HTMLElement) => {
@@ -529,6 +535,7 @@ console.log(mainRouter.currentRoute.value.name);
 		}
 
 		> .contents {
+			width: 100%;
 			min-width: 0;
 			width: 750px;
 			background: var(--panel);
