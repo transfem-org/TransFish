@@ -470,7 +470,7 @@ export default async (
 				) {
 					publishNotesStream(data.renote);
 					const key = `publishedNote:${data.renote.uri}`;
-					await redisClient.set(key, 1, "EX", 10);
+					await redisClient.set(key, 1, "EX", 30);
 				} else if (
 					!boostedByRelay &&
 					note.uri &&
@@ -478,7 +478,7 @@ export default async (
 				) {
 					const key = `publishedNote:${note.uri}`;
 					publishNotesStream(note);
-					await redisClient.set(key, 1, "EX", 10);
+					await redisClient.set(key, 1, "EX", 30);
 				}
 			}
 			if (note.replyId != null) {
