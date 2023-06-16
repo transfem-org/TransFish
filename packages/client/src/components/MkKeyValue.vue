@@ -4,11 +4,7 @@
 			<slot name="key"></slot>
 		</div>
 		<div class="value">
-			<Mfm
-				v-if="text"
-				:text="text"
-				:advancedMfm="false"
-			></Mfm>
+			<Mfm v-if="text" :text="text" :advancedMfm="false"></Mfm>
 			<slot v-else name="value"></slot>
 			<button
 				v-if="copy"

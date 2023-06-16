@@ -1,11 +1,5 @@
 <template>
-	<a
-		v-if="to"
-		class="mention"
-		:href="to"
-		rel="noopener"
-		@click.stop
-	>
+	<a v-if="to" class="mention" :href="to" rel="noopener" @click.stop>
 		<i class="icon ph-bold ph-large" :class="'ph-' + icon"></i>
 		<span class="main">
 			<slot></slot>
@@ -58,19 +52,19 @@ const props = defineProps<{
 	icon?: string;
 }>();
 
-const canonical =
-	props.host ?
-		props.host === localHost
-			? `@${props.username}`
-			: `@${props.username}@${toUnicode(props.host)}` : null;
+const canonical = props.host
+	? props.host === localHost
+		? `@${props.username}`
+		: `@${props.username}@${toUnicode(props.host)}`
+	: null;
 
 const url = `/${canonical}`;
 
-const isMe =
-	props.username ?
-		$i &&
-		`@${props.username}@${toUnicode(props.host)}` ===
-			`@${$i.username}@${toUnicode(localHost)}`.toLowerCase() : null;
+const isMe = props.username
+	? $i &&
+	  `@${props.username}@${toUnicode(props.host)}` ===
+			`@${$i.username}@${toUnicode(localHost)}`.toLowerCase()
+	: null;
 </script>
 
 <style lang="scss" scoped>
@@ -115,7 +109,7 @@ const isMe =
 	> i.icon {
 		vertical-align: middle;
 		font-size: 1.2em;
-		margin-left: .4em;
+		margin-left: 0.4em;
 	}
 
 	> .main > .host {

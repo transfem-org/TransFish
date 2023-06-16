@@ -1,51 +1,34 @@
 <template>
 	<header v-if="mini" class="mini-header">
-		<img 
-			class="logo"
-			:src="meta.logoImageUrl"
-		/>
+		<img class="logo" :src="meta.logoImageUrl" />
 		<h1>
-			<MkA
-				to="/" class="link"
-			>{{ instanceName }}</MkA>
+			<MkA to="/" class="link">{{ instanceName }}</MkA>
 		</h1>
-		<MkButton
-			class="home"
-			:to="'/'"
-			link
-			rounded
-		>
+		<MkButton class="home" :to="'/'" link rounded>
 			<i class="ph-house ph-bold ph-lg"></i>
 			{{ i18n.ts.home }}
 		</MkButton>
 	</header>
-	<div class="instance-info-container"
-		v-else
-		:class="{ sticky }"
-	>
-		<header
-			id="instance-info"
-			v-on:scroll.passive="onScroll"
-		>
+	<div class="instance-info-container" v-else :class="{ sticky }">
+		<header id="instance-info" v-on:scroll.passive="onScroll">
 			<div class="banner">
 				<img :src="meta.backgroundImageUrl" />
 			</div>
 			<div class="content">
 				<div class="header">
-					<img 
-						class="logo"
-						:src="meta.logoImageUrl"
-					/>
+					<img class="logo" :src="meta.logoImageUrl" />
 					<h1>
-						<MkA
-							to="/" class="link"
-						>{{ instanceName }}</MkA>
+						<MkA to="/" class="link">{{ instanceName }}</MkA>
 					</h1>
 				</div>
 				<!-- <MkA class="_buttonIcon home" :to="'/'" v-tooltip="i18n.ts.home">
 					<i class="ph-house ph-bold ph-lg"></i>
 				</MkA> -->
-				<button class="_buttonIcon menu" @click="showMenu" v-tooltip="i18n.ts.more">
+				<button
+					class="_buttonIcon menu"
+					@click="showMenu"
+					v-tooltip="i18n.ts.more"
+				>
 					<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 				</button>
 				<div v-if="meta" class="about">
@@ -63,23 +46,12 @@
 
 				<section>
 					<div class="_formLinksGridFlex">
-						<MkButton
-							primary gradate
-							rounded
-							@click="signup"
-						>
-							<i
-								class="ph-sign-in ph-bold"
-							></i>
+						<MkButton primary gradate rounded @click="signup">
+							<i class="ph-sign-in ph-bold"></i>
 							{{ i18n.ts.signup }}
 						</MkButton>
-						<MkButton
-							rounded
-							@click="signin"
-						>
-							<i
-								class="ph-sign-out ph-bold"
-							></i>
+						<MkButton rounded @click="signin">
+							<i class="ph-sign-out ph-bold"></i>
 							{{ i18n.ts.login }}
 						</MkButton>
 						<MkButton
@@ -88,9 +60,7 @@
 							rounded
 							to="https://calckey.org/join/"
 						>
-							<i
-								class="ph-airplane-tilt ph-bold"
-							></i>
+							<i class="ph-airplane-tilt ph-bold"></i>
 							{{ i18n.ts.findAnotherInstance }}
 						</MkButton>
 						<MkButton
@@ -100,9 +70,7 @@
 							rounded
 							to="https://calckey.org/apps/"
 						>
-							<i
-								class="ph-device-mobile ph-bold"
-							></i>
+							<i class="ph-device-mobile ph-bold"></i>
 							{{ i18n.ts.apps }}
 						</MkButton>
 					</div>
@@ -114,37 +82,44 @@
 					</p>
 
 					<FormSection v-if="announcement">
-						<FormLink :to="'/announcements'"
-							naked
+						<FormLink :to="'/announcements'" naked
 							><template #icon
 								><i
 									class="ph-megaphone-simple ph-bold ph-lg _flip"
 								></i></template
 							>{{ announcement.title }}:
-							<span style="opacity: 0.8; font-weight: 400;">{{ announcement.text }}</span>
+							<span style="opacity: 0.8; font-weight: 400">{{
+								announcement.text
+							}}</span>
 						</FormLink>
 					</FormSection>
-	
-					<FormSection v-if="meta.maintainerName || meta.maintainerEmail">
+
+					<FormSection
+						v-if="meta.maintainerName || meta.maintainerEmail"
+					>
 						<div class="_formLinksGrid">
-							<MkKeyValue v-if="meta.maintainerName" :text="meta.maintainerName">
+							<MkKeyValue
+								v-if="meta.maintainerName"
+								:text="meta.maintainerName"
+							>
 								<template #key>{{
 									i18n.ts.administrator
 								}}</template>
 							</MkKeyValue>
 							<MkKeyValue v-if="meta.maintainerEmail">
-								<template #key>{{
-									i18n.ts.contact
-								}}</template>
+								<template #key>{{ i18n.ts.contact }}</template>
 								<template #value>
-									<MkMention :to="'mailto:' + meta.maintainerEmail" :icon="'envelope'">
+									<MkMention
+										:to="'mailto:' + meta.maintainerEmail"
+										:icon="'envelope'"
+									>
 										{{ meta.maintainerEmail }}
 									</MkMention>
 								</template>
 							</MkKeyValue>
 						</div>
 					</FormSection>
-	
+
 					<FormSection v-if="meta.tosUrl">
 						<div class="_formLinksGrid">
 							<FormLink v-if="meta.tosUrl" :to="meta.tosUrl"
@@ -225,16 +200,15 @@ let collapsed = $ref(!isLong);
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
-	isLong = meta.description && (meta.description.length > 500);
+	isLong = meta.description && meta.description.length > 500;
 });
 
 let announcement = $ref();
 os.api("announcements", {
-	limit: 1
+	limit: 1,
 }).then((res) => {
 	announcement = res[0];
 });
-
 
 function signin() {
 	os.popup(
@@ -245,7 +219,7 @@ function signin() {
 		{},
 		"closed"
 	);
-};
+}
 
 function signup() {
 	os.popup(
@@ -256,7 +230,7 @@ function signup() {
 		{},
 		"closed"
 	);
-};
+}
 function showMenu(ev) {
 	openHelpMenu_(ev);
 }
@@ -293,7 +267,7 @@ function showMenu(ev) {
 		position: sticky;
 		top: 0;
 		max-height: 100vh;
-		overflow: hidden auto;	
+		overflow: hidden auto;
 		min-width: 400px;
 		width: 470px;
 		border-right: 1px solid var(--divider);
@@ -302,7 +276,7 @@ function showMenu(ev) {
 		}
 	}
 	margin-left: -1px;
-	box-shadow: 0 0 48px -24px rgba(0,0,0,0.1);
+	box-shadow: 0 0 48px -24px rgba(0, 0, 0, 0.1);
 	z-index: 9000;
 }
 #instance-info {
@@ -312,7 +286,7 @@ function showMenu(ev) {
 	background: var(--accent);
 	height: max-content;
 	min-height: 100%;
-	transition: transform .4s cubic-bezier(.5,0,0,1);
+	transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
 	.banner {
 		position: sticky;
 		top: 0;
@@ -320,7 +294,7 @@ function showMenu(ev) {
 		margin-inline: -1px;
 		padding-top: 56.25%;
 		mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
-		transition: min-height .4s, max-height .4s, filter .7s;
+		transition: min-height 0.4s, max-height 0.4s, filter 0.7s;
 		img {
 			position: absolute;
 			width: 100%;
@@ -345,7 +319,7 @@ function showMenu(ev) {
 		margin-inline: auto;
 		width: 100%;
 		box-sizing: border-box;
-		
+
 		> .header {
 			position: relative;
 			margin-top: -50px;
@@ -360,7 +334,11 @@ function showMenu(ev) {
 				z-index: -1;
 				clip-path: inset(55px 0 0 0 round var(--radius));
 				mask: linear-gradient(transparent 55px, #000 50px, transparent);
-				-webkit-mask: linear-gradient(transparent 55px, #000 50px, transparent);
+				-webkit-mask: linear-gradient(
+					transparent 55px,
+					#000 50px,
+					transparent
+				);
 			}
 			> .logo {
 				height: 90px;
@@ -368,22 +346,23 @@ function showMenu(ev) {
 				max-width: 100%;
 				border-radius: var(--radius);
 				margin-top: -5px;
-				transition: transform .4s cubic-bezier(0.5,0,0,1);
+				transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
 			}
 			> h1 {
-				margin-block: .7em;
+				margin-block: 0.7em;
 				font-size: 1.5em;
-				color: var(--fgHighlighted)
+				color: var(--fgHighlighted);
 			}
 		}
-		.menu, .home {
+		.menu,
+		.home {
 			position: absolute;
 			top: 10px;
 			right: 10px;
 			width: 42px;
 			height: 42px;
 			border-radius: 100px;
-			background: var(--buttonBg)
+			background: var(--buttonBg);
 		}
 		.home {
 			right: unset;
@@ -417,7 +396,7 @@ section {
 	margin-top: 2em;
 }
 ._formLinksGrid {
-	grid-template-columns: repeat(2,minmax(150px,1fr));
+	grid-template-columns: repeat(2, minmax(150px, 1fr));
 	text-align: initial;
 }
 </style>

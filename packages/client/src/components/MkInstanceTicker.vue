@@ -1,7 +1,9 @@
 <template>
 	<div
 		class="instance-ticker"
-		v-tooltip="instance.softwareName ? capitalize(instance.softwareName) : null"
+		v-tooltip="
+			instance.softwareName ? capitalize(instance.softwareName) : null
+		"
 		ref="ticker"
 		:style="bg"
 	>

@@ -25,7 +25,7 @@
 			@slide-change="onSlideChange"
 		>
 			<swiper-slide v-slot="{ isActive }">
-				<XKanban v-if="isActive"/>
+				<XKanban v-if="isActive" />
 			</swiper-slide>
 			<swiper-slide v-slot="{ isActive }">
 				<MkSpacer :content-max="800" v-if="isActive">
@@ -152,11 +152,13 @@ watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => [
-	!isDesktop ? {
-		key: "home",
-		icon: "ph-house ph-bold ph-lg",
-		title: i18n.ts.home,
-	} : [],
+	!isDesktop
+		? {
+				key: "home",
+				icon: "ph-house ph-bold ph-lg",
+				title: i18n.ts.home,
+		  }
+		: [],
 	{
 		key: "local",
 		icon: "ph-lightning ph-bold ph-lg",
@@ -220,9 +222,8 @@ let wallpaper = $ref(String);
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
-	wallpaper = `url("${res.backgroundImageUrl}")`
+	wallpaper = `url("${res.backgroundImageUrl}")`;
 });
-
 
 const paginationForLocal = {
 	endpoint: "notes/featured" as const,

@@ -75,10 +75,7 @@
 			<div class="main">
 				<div class="header-container">
 					<MkAvatar class="avatar" :user="appearNote.user" />
-					<XNoteHeader
-						class="header"
-						:note="appearNote"
-					/>
+					<XNoteHeader class="header" :note="appearNote" />
 				</div>
 				<div class="body">
 					<MkSubNoteContent

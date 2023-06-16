@@ -79,7 +79,9 @@
 				ref="tabsEl"
 				v-if="hasTabs"
 				class="tabs"
-				:class="{ collapse: hasTabs && tabs.length > 3 && !noTabCollapse }"
+				:class="{
+					collapse: hasTabs && tabs.length > 3 && !noTabCollapse,
+				}"
 			>
 				<button
 					v-for="tab in tabs"
@@ -183,10 +185,9 @@ const props = withDefaults(
 		to?: string;
 	}>(),
 	{
-		displayHomeButton: !$i
+		displayHomeButton: !$i,
 	}
-)
-	
+);
 
 const displayBackButton =
 	props.displayBackButton &&

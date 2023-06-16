@@ -1,9 +1,10 @@
 <template>
 	<XKanban sticky v-if="isDesktop" />
-	<main
-		id="maincontent"
-	>
-		<XKanban mini v-if="!isDesktop && mainRouter.currentRoute.value.name !== 'index'" />
+	<main id="maincontent">
+		<XKanban
+			mini
+			v-if="!isDesktop && mainRouter.currentRoute.value.name !== 'index'"
+		/>
 		<RouterView />
 		<footer class="powered-by">
 			<MkA to="/">

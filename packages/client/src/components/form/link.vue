@@ -62,7 +62,7 @@ const props = defineProps<{
 		background: var(--buttonBg);
 		border-radius: 6px;
 		font-size: 0.9em;
-		transition: background .2s;
+		transition: background 0.2s;
 
 		&._button:hover {
 			text-decoration: none;

@@ -23,7 +23,6 @@
 			<XWidgets @mounted="attachSticky" />
 		</div>
 
-
 		<button
 			v-if="!isDesktop && !isMobile"
 			class="widgetButton _button"
