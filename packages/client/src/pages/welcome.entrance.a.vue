@@ -271,6 +271,10 @@ const popularPostsPagination = {
 	.swiper {
 		margin-top: -55px;
 		padding-top: 55px;
+		margin-inline: auto !important;
+		padding-inline: 0 !important;
+		mask: unset;
+		-webkit-mask: unset;
 	}
 	@media (min-width: 1100px) {
 		.swiper {
