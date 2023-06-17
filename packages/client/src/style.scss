@@ -634,7 +634,7 @@ hr {
 }
 
 :not(.noGap):not(._block) > {
-	.note-container, .cmuxhskf > section, ._gap > ._block, .noGap, .profile, .card {
+	.note-container, .cmuxhskf > section, ._gap > ._block, ._panel, .noGap, .profile, .card {
 		&:not(.caution)
 		{
 			box-shadow: 0 4px 25px rgba(0,0,0,0.04);
