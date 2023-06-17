@@ -136,7 +136,7 @@ smtpUser: "Nom d'usuari"
 smtpPass: "Contrasenya"
 user: "Usuari"
 searchByGoogle: "Cercar"
-file: "Fitxers"
+file: "Fitxer"
 _email:
   _follow:
     title: "Tens un nou seguidor"
@@ -2130,3 +2130,4 @@ _dialog:
   charactersExceeded: "S'han superat el màxim de caràcters! Actual: {current}/Límit:
     {max}"
   charactersBelow: 'No hi ha caràcters suficients! Corrent: {current}/Limit: {min}'
+removeReaction: Elimina la teva reacció
