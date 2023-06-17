@@ -190,6 +190,7 @@
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
