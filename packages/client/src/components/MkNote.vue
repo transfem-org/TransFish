@@ -619,10 +619,11 @@ defineExpose({
 			.line::before {
 				content: "";
 				display: block;
-				margin-bottom: -10px;
+				margin-bottom: -4px;
 				margin-top: 16px;
-				border-left: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
+				opacity: .25;
 			}
 		}
 	}
