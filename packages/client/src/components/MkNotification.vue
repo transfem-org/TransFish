@@ -219,6 +219,7 @@
 					<MkFollowButton
 						:user="notification.user"
 						:full="true"
+						:hideMenu="true"
 					/></div
 			></span>
 			<span

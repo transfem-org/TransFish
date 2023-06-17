@@ -1,5 +1,10 @@
 <template>
-	<button class="menu _button" @click.stop="menu" v-tooltip="i18n.ts.menu">
+	<button
+		v-if="!hideMenu"
+		class="menu _button"
+		@click.stop="menu"
+		v-tooltip="i18n.ts.menu"
+	>
 		<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 	</button>
 	<button
@@ -15,16 +20,17 @@
 		:disabled="wait"
 		@click.stop="onClick"
 		:aria-label="`${state} ${user.name || user.username}`"
+		v-tooltip="full ? null : `${state} ${user.name || user.username}`"
 	>
 		<template v-if="!wait">
 			<template v-if="isBlocking">
-				<span v-if="full">{{ (state = i18n.ts.blocked) }}</span
+				<span>{{ (state = i18n.ts.blocked) }}</span
 				><i class="ph-prohibit ph-bold ph-lg"></i>
 			</template>
 			<template
 				v-else-if="hasPendingFollowRequestFromYou && user.isLocked"
 			>
-				<span v-if="full">{{
+				<span>{{
 					(state = i18n.ts.followRequestPending)
 				}}</span
 				><i class="ph-hourglass-medium ph-bold ph-lg"></i>
@@ -33,24 +39,24 @@
 				v-else-if="hasPendingFollowRequestFromYou && !user.isLocked"
 			>
 				<!-- つまりリモートフォローの場合。 -->
-				<span v-if="full">{{ (state = i18n.ts.processing) }}</span
+				<span>{{ (state = i18n.ts.processing) }}</span
 				><i class="ph-circle-notch ph-bold ph-lg fa-pulse"></i>
 			</template>
 			<template v-else-if="isFollowing">
-				<span v-if="full">{{ (state = i18n.ts.unfollow) }}</span
+				<span>{{ (state = i18n.ts.unfollow) }}</span
 				><i class="ph-minus ph-bold ph-lg"></i>
 			</template>
 			<template v-else-if="!isFollowing && user.isLocked">
-				<span v-if="full">{{ (state = i18n.ts.followRequest) }}</span
+				<span>{{ (state = i18n.ts.followRequest) }}</span
 				><i class="ph-plus ph-bold ph-lg"></i>
 			</template>
 			<template v-else-if="!isFollowing && !user.isLocked">
-				<span v-if="full">{{ (state = i18n.ts.follow) }}</span
+				<span>{{ (state = i18n.ts.follow) }}</span
 				><i class="ph-plus ph-bold ph-lg"></i>
 			</template>
 		</template>
 		<template v-else>
-			<span v-if="full">{{ (state = i18n.ts.processing) }}</span
+			<span>{{ (state = i18n.ts.processing) }}</span
 			><i class="ph-circle-notch ph-bold ph-lg fa-pulse ph-fw ph-lg"></i>
 		</template>
 	</button>
@@ -74,6 +80,7 @@ const props = withDefaults(
 		user: Misskey.entities.UserDetailed;
 		full?: boolean;
 		large?: boolean;
+		hideMenu?: boolean;
 	}>(),
 	{
 		full: false,
@@ -179,6 +186,7 @@ onBeforeUnmount(() => {
 .menu {
 	width: 3em;
 	height: 2em;
+	vertical-align: middle;
 }
 .follow-button {
 	position: relative;
@@ -194,6 +202,7 @@ onBeforeUnmount(() => {
 	height: 2em;
 	border-radius: 100px;
 	background: var(--bg);
+	vertical-align: middle;
 
 	&.full {
 		padding: 0.2em 0.7em;
@@ -209,6 +218,9 @@ onBeforeUnmount(() => {
 
 	&:not(.full) {
 		width: 31px;
+		span {
+			display: none;
+		}
 	}
 
 	&:focus-visible {

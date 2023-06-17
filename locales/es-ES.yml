@@ -1331,8 +1331,8 @@ _tutorial:
   step6_4: "¡Ahora ve, explora y diviértete!"
 _2fa:
   alreadyRegistered: "Ya has completado la configuración."
-  registerDevice: "Registrar dispositivo"
-  registerKey: "Registrar clave"
+  registerTOTP: "Registrar dispositivo"
+  registerSecurityKey: "Registrar clave"
   step1: "Primero, instale en su dispositivo la aplicación de autenticación {a} o\
     \ {b} u otra."
   step2: "Luego, escanee con la aplicación el código QR mostrado en pantalla."

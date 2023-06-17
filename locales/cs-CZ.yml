@@ -698,8 +698,8 @@ _time:
   minute: "Minut"
   hour: "Hodin"
 _2fa:
-  registerDevice: "Přidat zařízení"
-  registerKey: "Přidat bezpečnostní klíč"
+  registerTOTP: "Přidat zařízení"
+  registerSecurityKey: "Přidat bezpečnostní klíč"
 _weekday:
   sunday: "Neděle"
   monday: "Pondělí"

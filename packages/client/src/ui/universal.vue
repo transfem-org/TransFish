@@ -471,6 +471,21 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 	&.wallpaper {
 		background: var(--wallpaperOverlay);
+
+		:deep(.sidebar .middle) {
+			position: relative;
+			&::before {
+				content: "";
+				position: absolute;
+				inset: -10px 10px;
+				background: var(--bg);
+				border-radius: calc((2.85rem / 2) + 5px);
+				opacity: 1;
+			}
+			> ._button:last-child {
+				margin-bottom: 0 !important;
+			}
+		}
 	}
 
 	&.centered {
@@ -547,7 +562,7 @@ console.log(mainRouter.currentRoute.value.name);
 		&.wallpaper {
 			.contents {
 				background: var(--acrylicBg) !important;
-				backdrop-filter: blur(12px);
+				backdrop-filter: var(--blur, blur(12px));
 			}
 			:deep(.tl),
 			:deep(.notes) {

@@ -126,6 +126,7 @@ clickToShow: "Click to show"
 sensitive: "NSFW"
 add: "Add"
 reaction: "Reactions"
+removeReaction: "Remove your reaction"
 enableEmojiReactions: "Enable emoji reactions"
 showEmojisInReactionNotifications: "Show emojis in reaction notifications"
 reactionSetting: "Reactions to show in the reaction picker"
@@ -1491,16 +1492,28 @@ _tutorial:
   step6_4: "Now go, explore, and have fun!"
 _2fa:
   alreadyRegistered: "You have already registered a 2-factor authentication device."
-  registerDevice: "Register a new device"
-  registerKey: "Register a security key"
+  registerTOTP: "Register authenticator app"
   step1: "First, install an authentication app (such as {a} or {b}) on your device."
   step2: "Then, scan the QR code displayed on this screen."
+  step2Click: "Clicking on this QR code will allow you to register 2FA to your security key or phone authenticator app."
   step2Url: "You can also enter this URL if you're using a desktop program:"
+  step3Title: "Enter an authentication code"
   step3: "Enter the token provided by your app to finish setup."
   step4: "From now on, any future login attempts will ask for such a login token."
-  securityKeyInfo: "Besides fingerprint or PIN authentication, you can also setup
-    authentication via hardware security keys that support FIDO2 to further secure
-    your account."
+  securityKeyNotSupported: "Your browser does not support security keys."
+  registerTOTPBeforeKey: "Please set up an authenticator app to register a security or pass key."
+  securityKeyInfo: "Besides fingerprint or PIN authentication, you can also setup authentication via hardware security keys that support FIDO2 to further secure your account."
+  chromePasskeyNotSupported: "Chrome passkeys are currently not supported."
+  registerSecurityKey: "Register a security or pass key"
+  securityKeyName: "Enter a key name"
+  tapSecurityKey: "Please follow your browser to register the security or pass key"
+  removeKey: "Remove security key"
+  removeKeyConfirm: "Really delete the {name} key?"
+  whyTOTPOnlyRenew: "The authenticator app cannot be removed as long as a security key is registered."
+  renewTOTP: "Reconfigure authenticator app"
+  renewTOTPConfirm: "This will cause verification codes from your previous app to stop working"
+  renewTOTPOk: "Reconfigure"
+  renewTOTPCancel: "Cancel"
 _permissions:
   "read:account": "View your account information"
   "write:account": "Edit your account information"
@@ -2062,3 +2075,7 @@ _experiments:
   postImportsCaption: "Allows users to import their posts from past Calckey,\
     \ Misskey, Mastodon, Akkoma, and Pleroma accounts. It may cause slowdowns during\
     \ load if your queue is bottlenecked."
+
+_dialog:
+  charactersExceeded: "Max characters exceeded! Current: {current}/Limit: {max}"
+  charactersBelow: "Not enough characters! Current: {current}/Limit: {min}"

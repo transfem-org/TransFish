@@ -39,6 +39,7 @@
 					:placeholder="i18n.ts.password"
 					type="password"
 					:with-password-toggle="true"
+					autocomplete="current-password"
 					required
 					data-cy-signin-password
 				>
@@ -90,6 +91,7 @@
 						v-model="password"
 						type="password"
 						:with-password-toggle="true"
+						autocomplete="current-password"
 						required
 					>
 						<template #label>{{ i18n.ts.password }}</template>
@@ -97,24 +99,22 @@
 							><i class="ph-lock ph-bold ph-lg"></i
 						></template>
 					</MkInput>
-					<MkInput
+					<vue3-otp-input
+						input-classes="_otp_input"
+						inputType="letter-numeric"
+						separator=""
+						:num-inputs="6"
 						v-model="token"
-						type="text"
-						pattern="^[0-9]{6}$"
-						autocomplete="off"
-						:spellcheck="false"
+						:should-auto-focus="true"
+						@on-change="updateToken"
+						@on-complete="onSubmit"
 						required
-					>
-						<template #label>{{ i18n.ts.token }}</template>
-						<template #prefix
-							><i class="ph-poker-chip ph-bold ph-lg"></i
-						></template>
-					</MkInput>
+					/>
 					<MkButton
 						type="submit"
 						:disabled="signing"
 						primary
-						style="margin: 0 auto"
+						style="margin: 1rem auto auto"
 						>{{
 							signing ? i18n.ts.loggingIn : i18n.ts.login
 						}}</MkButton
@@ -158,9 +158,9 @@
 </template>
 
 <script lang="ts" setup>
+import Vue3OtpInput from "vue3-otp-input";
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
-import { showSuspendedDialog } from "../scripts/show-suspended-dialog";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import MkInfo from "@/components/MkInfo.vue";
@@ -183,6 +183,10 @@ let challengeData = $ref(null);
 let queryingKey = $ref(false);
 let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
+
+const updateToken = (value: string) => {
+	token = value.toString();
+};
 
 const meta = $computed(() => instance);
 
@@ -367,6 +371,14 @@ function resetPassword() {
 		"closed"
 	);
 }
+
+function showSuspendedDialog() {
+	os.alert({
+		type: "error",
+		title: i18n.ts.yourAccountSuspendedTitle,
+		text: i18n.ts.yourAccountSuspendedDescription,
+	});
+}
 </script>
 
 <style lang="scss" scoped>
@@ -376,10 +388,11 @@ function resetPassword() {
 			margin: 0 auto 0 auto;
 			width: 64px;
 			height: 64px;
-			background: #ddd;
+			background: var(--accentedBg);
 			background-position: center;
 			background-size: cover;
 			border-radius: 100%;
+			transition: background-image 0.2s ease-in;
 		}
 	}
 }

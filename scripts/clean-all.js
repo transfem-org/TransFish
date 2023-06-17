@@ -18,4 +18,9 @@ const execa = require('execa');
 		cwd: __dirname + '/../',
 		stdio: 'inherit'
 	});
+
+	execa('cargo', ['clean'], {
+		cwd: __dirname + '/../packages/backend/native-utils',
+		stdio: 'inherit'
+	});
 })();

@@ -319,17 +319,36 @@ _sfx:
 _2fa:
   step2Url: "També pots inserir aquest enllaç i utilitzes una aplicació d'escriptori:"
   alreadyRegistered: Ja heu registrat un dispositiu d'autenticació de dos factors.
-  registerDevice: Registrar un dispositiu nou
+  registerTOTP: Registrar un dispositiu nou
   securityKeyInfo: A més de l'autenticació d'empremta digital o PIN, també podeu configurar
     l'autenticació mitjançant claus de seguretat de maquinari compatibles amb FIDO2
     per protegir encara més el vostre compte.
   step4: A partir d'ara, qualsevol intent d'inici de sessió futur demanarà aquest
     token d'inici de sessió.
-  registerKey: Registra una clau de seguretat
+  registerSecurityKey: Registrar una clau de seguretat o d'accés
   step1: En primer lloc, instal·la una aplicació d'autenticació (com ara {a} o {b})
     al dispositiu.
   step2: A continuació, escaneja el codi QR que es mostra en aquesta pantalla.
   step3: Introdueix el token que t'ha proporcionat l'aplicació per finalitzar la configuració.
+  step3Title: Introduïu un codi d'autenticació
+  chromePasskeyNotSupported: Les claus de pas de Chrome actualment no s'admeten.
+  securityKeyName: Introduïu un nom de clau
+  removeKey: Suprimeix la clau de seguretat
+  removeKeyConfirm: Vols suprimir la clau {name}?
+  renewTOTP: Tornar a configurar l'aplicació d'autenticació
+  renewTOTPOk: Reconfigurar
+  renewTOTPCancel: Cancel·lar
+  step2Click: Fer clic en aquest codi QR us permetrà registrar 2FA a la vostra clau
+    de seguretat o aplicació d'autenticació del telèfon.
+  securityKeyNotSupported: El vostre navegador no admet claus de seguretat.
+  registerTOTPBeforeKey: Configureu una aplicació d'autenticació per registrar una
+    clau de seguretat o de passi.
+  tapSecurityKey: Si us plau, seguiu el vostre navegador per registrar la clau de
+    seguretat o d'accés
+  renewTOTPConfirm: Això farà que els codis de verificació de l'aplicació anterior
+    deixin de funcionar
+  whyTOTPOnlyRenew: L’aplicació d’autenticació no es pot eliminar sempre que es hi
+    hagi una clau de seguretat registrada.
 _widgets:
   notifications: "Notificacions"
   timeline: "Línia de temps"
@@ -988,7 +1007,7 @@ avoidMultiCaptchaConfirm: Fent servir diferents sistemes de Captcha pot causar i
 antennas: Antenes
 enableEmojiReactions: Activa reaccions amb emojis
 blockThisInstance: Bloqueja aquest servidor
-registration: Registre
+registration: Registra't
 showEmojisInReactionNotifications: Mostra els emojis a les notificacions de les reaccions
 renoteMute: Silencia els impulsos
 renoteUnmute: Treu el silenci als impulsos
@@ -1035,7 +1054,7 @@ recentlyRegisteredUsers: Usuaris registrats fa poc
 recentlyDiscoveredUsers: Nous suaris descoberts
 administrator: Administrador
 token: Token
-registerSecurityKey: Registra una clau de seguretat
+registerSecurityKey: Registreu una clau de seguretat
 securityKeyName: Nom clau
 lastUsed: Feta servir per última vegada
 unregister: Anul·lar el registre
@@ -2107,3 +2126,7 @@ _filters:
 image: Imatge
 video: Vídeo
 audio: Àudio
+_dialog:
+  charactersExceeded: "S'han superat el màxim de caràcters! Actual: {current}/Límit:
+    {max}"
+  charactersBelow: 'No hi ha caràcters suficients! Corrent: {current}/Limit: {min}'
