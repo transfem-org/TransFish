@@ -354,7 +354,6 @@ onMounted(() => {
 	> .tl {
 		background: none;
 		border-radius: var(--radius);
-		overflow: clip;
 	}
 }
 </style>
