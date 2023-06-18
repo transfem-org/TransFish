@@ -17,7 +17,6 @@ import { extractPollFromQuestion, updateQuestion } from "./question.js";
 import vote from "@/services/note/polls/vote.js";
 import { apLogger } from "../logger.js";
 import { DriveFile } from "@/models/entities/drive-file.js";
-import { deliverQuestionUpdate } from "@/services/note/polls/update.js";
 import { extractDbHost, toPuny } from "@/misc/convert-host.js";
 import {
 	Emojis,
@@ -334,9 +333,6 @@ export async function createNote(
 					`vote from AP: actor=${actor.username}@${actor.host}, note=${note.id}, choice=${name}`,
 				);
 				await vote(actor, reply, index);
-
-				// リモートフォロワーにUpdate配信
-				deliverQuestionUpdate(reply.id);
 			}
 			return null;
 		};
