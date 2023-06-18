@@ -266,17 +266,6 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 		color: var(--accent) !important;
 		opacity: 1 !important;
 		font-weight: 700;
-		i {
-			position: relative;
-			&::after {
-				content: "";
-				position: absolute;
-				inset: 42% 35%;
-				margin-top: 1px;
-				background: currentColor;
-				border-radius: 1em;
-			}
-		}
 	}
 }
 </style>
