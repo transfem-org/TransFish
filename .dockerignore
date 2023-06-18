@@ -10,6 +10,7 @@ packages/backend/.idea/vcs.xml
 
 # Node.js
 node_modules
+**/node_modules
 report.*.json
 
 # Cypress
