@@ -118,8 +118,8 @@ async function fetchAny(
 				if (await updateQuestion(note.uri)) {
 					local.object.poll = await populatePoll(note, me?.id ?? null);
 				}
-				// Allow refetching the poll after 2 minutes
-				await redisClient.set(key, 1, "EX", 60 * 2);
+				// Allow fetching the poll again after 1 minute
+				await redisClient.set(key, 1, "EX", 60);
 			}
 		}
 		return local;
