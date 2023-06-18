@@ -13,7 +13,7 @@ import type {
 import { htmlToMfm } from "../misc/html-to-mfm.js";
 import { extractApHashtags } from "./tag.js";
 import { unique, toArray, toSingle } from "@/prelude/array.js";
-import { extractPollFromQuestion, updateQuestion } from "./question.js";
+import { extractPollFromQuestion } from "./question.js";
 import vote from "@/services/note/polls/vote.js";
 import { apLogger } from "../logger.js";
 import { DriveFile } from "@/models/entities/drive-file.js";

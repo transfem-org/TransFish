@@ -28,7 +28,7 @@ import {
 import { db } from "@/db/postgre.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
 
-async function populatePoll(note: Note, meId: User["id"] | null) {
+export async function populatePoll(note: Note, meId: User["id"] | null) {
 	const poll = await Polls.findOneByOrFail({ noteId: note.id });
 	const choices = poll.choices.map((c) => ({
 		text: c,
