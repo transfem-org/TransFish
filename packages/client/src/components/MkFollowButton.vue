@@ -30,9 +30,7 @@
 			<template
 				v-else-if="hasPendingFollowRequestFromYou && user.isLocked"
 			>
-				<span>{{
-					(state = i18n.ts.followRequestPending)
-				}}</span
+				<span>{{ (state = i18n.ts.followRequestPending) }}</span
 				><i class="ph-hourglass-medium ph-bold ph-lg"></i>
 			</template>
 			<template

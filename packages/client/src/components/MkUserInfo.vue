@@ -46,10 +46,7 @@
 			</div>
 		</div>
 		<div class="koudoku-button">
-			<MkFollowButton
-				v-if="$i && user.id != $i.id"
-				:user="user"
-			/>
+			<MkFollowButton v-if="$i && user.id != $i.id" :user="user" />
 		</div>
 	</div>
 </template>

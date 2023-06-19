@@ -652,7 +652,7 @@ function noteClick(e) {
 			flex-grow: 1;
 			margin-bottom: -10px;
 			pointer-events: none;
-			opacity: .25;
+			opacity: 0.25;
 			&::before {
 				content: "";
 				position: absolute;
@@ -694,7 +694,7 @@ function noteClick(e) {
 			z-index: 2;
 			left: 0;
 			top: 0;
-			opacity: .25;
+			opacity: 0.25;
 			&::after {
 				content: "";
 				position: absolute;

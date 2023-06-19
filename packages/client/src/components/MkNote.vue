@@ -623,7 +623,7 @@ defineExpose({
 				margin-top: 16px;
 				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
-				opacity: .25;
+				opacity: 0.25;
 			}
 		}
 	}
