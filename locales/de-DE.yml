@@ -1972,7 +1972,7 @@ silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummsc
   wenn sie nicht gefolgt werden. Dies wirkt sich nicht auf die blockierten Server
   aus.
 editNote: Beitrag bearbeiten
-edited: Bearbeitet
+edited: 'Bearbeitet um {date} {time}'
 silenceThisInstance: Diesen Server stummschalten
 silencedInstances: Stummgeschaltete Server
 silenced: Stummgeschaltet

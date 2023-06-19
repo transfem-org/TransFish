@@ -2060,7 +2060,7 @@ _relayStatus:
   rejected: Rebutjat
 deleted: Eliminat
 editNote: Edita la nota
-edited: Editat
+edited: 'Editat a {date} {time}'
 findOtherInstance: Cercar un altre servidor
 signupsDisabled: Actualment, les inscripcions en aquest servidor estan desactivades,
   però sempre podeu registrar-vos en un altre servidor. Si teniu un codi d'invitació

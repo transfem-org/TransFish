@@ -174,8 +174,13 @@
 								<span
 									v-if="!user.isAdmin && user.isModerator"
 									v-tooltip.noDelay="i18n.ts.isModerator"
-									style="color: var(--badge); margin-left: 0.5rem;"
-									><i class="ph-bookmark-simple ph-bold ph-lg"></i
+									style="
+										color: var(--badge);
+										margin-left: 0.5rem;
+									"
+									><i
+										class="ph-bookmark-simple ph-bold ph-lg"
+									></i
 								></span>
 								<span
 									v-if="user.isLocked"

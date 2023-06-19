@@ -1998,7 +1998,7 @@ silenceThisInstance: Wycisz ten serwer
 silencedInstances: Wyciszone serwery
 deleted: Usunięte
 editNote: Edytuj wpis
-edited: Edytowany
+edited: 'Edytowano o {date} {time}'
 silenced: Wyciszony
 findOtherInstance: Znajdź inny serwer
 userSaysSomethingReasonReply: '{name} odpowiedział na wpis zawierający {reason}'

@@ -1829,7 +1829,7 @@ indexPosts: 索引帖子
 indexNotice: 現在開始索引。 這可能需要一段時間，請不要在一個小時內重啟你的伺服器。
 deleted: 已刪除
 editNote: 編輯筆記
-edited: 已修改
+edited: '於 {date} {time} 編輯'
 userSaysSomethingReason: '{name} 說了 {reason}'
 allowedInstancesDescription: 要加入聯邦白名單的服務器，每台伺服器用新行分隔（僅適用於私有模式）。
 defaultReaction: 默認的表情符號反應

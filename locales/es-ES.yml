@@ -1922,7 +1922,7 @@ apps: Aplicaciones
 migration: Migración
 silenced: Silenciado
 deleted: Eliminado
-edited: Editado
+edited: 'Editado a las {date} {time}'
 editNote: Editar nota
 silenceThisInstance: Silenciar esta instancia
 findOtherInstance: Buscar otro servidor

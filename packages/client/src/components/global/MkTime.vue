@@ -16,7 +16,7 @@ import { i18n } from "@/i18n";
 const props = withDefaults(
 	defineProps<{
 		time: Date | string;
-		mode?: "relative" | "absolute" | "detail" | "none";
+		mode?: "relative" | "absolute" | "detail";
 	}>(),
 	{
 		mode: "relative",

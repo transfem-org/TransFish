@@ -2022,7 +2022,7 @@ silencedInstances: Instances silencieuses
 silenced: Silencieux
 deleted: Effacé
 editNote: Modifier note
-edited: Modifié
+edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
   personnes aux publications des autres.
 _experiments:

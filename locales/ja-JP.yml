@@ -1889,13 +1889,13 @@ _experiments:
   enablePostEditing: 投稿の編集機能を有効にする
   title: 試験的な機能
   postEditingCaption: 投稿のメニューに既存の投稿を編集するボタンを表示し、他サーバーの編集も受信できるようにします。
-  postImportsCaption: 
+  postImportsCaption:
     ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
   enablePostImports: 投稿のインポートを有効にする
 sendModMail: モデレーション通知を送る
 deleted: 削除済み
 editNote: 投稿を編集
-edited: 編集済み
+edited: '編集済み: {date} {time}'
 signupsDisabled:
   現在、このサーバーでは新規登録が一般開放されていません。招待コードをお持ちの場合には、以下の欄に入力してください。招待コードをお持ちでない場合にも、新規登録を開放している他のサーバーには入れますよ！
 findOtherInstance: 他のサーバーを探す
