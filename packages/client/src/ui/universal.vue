@@ -575,6 +575,7 @@ console.log(mainRouter.currentRoute.value.name);
 		width: 100%;
 		min-width: 0;
 		$widgets-hide-threshold: 1090px;
+		overflow-x: clip;
 		@media (max-width: $widgets-hide-threshold) {
 			padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
 		}
