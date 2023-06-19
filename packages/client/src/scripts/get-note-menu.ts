@@ -108,6 +108,11 @@ export function getNoteMenu(props: {
 		os.success();
 	}
 
+	function copyOriginal(): void {
+		copyToClipboard(appearNote.url ?? appearNote.uri);
+		os.success();
+	}
+
 	function togglePin(pin: boolean): void {
 		os.apiWithDialog(
 			pin ? "i/pin" : "i/unpin",
@@ -263,32 +268,6 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
-			{
-				icon: "ph-clipboard-text ph-bold ph-lg",
-				text: i18n.ts.copyContent,
-				action: copyContent,
-			},
-			{
-				icon: "ph-link-simple ph-bold ph-lg",
-				text: i18n.ts.copyLink,
-				action: copyLink,
-			},
-			appearNote.url || appearNote.uri
-				? {
-						icon: "ph-arrow-square-out ph-bold ph-lg",
-						text: i18n.ts.showOnRemote,
-						action: () => {
-							window.open(appearNote.url || appearNote.uri, "_blank");
-						},
-				  }
-				: undefined,
-			shareAvailable()
-				? {
-						icon: "ph-share-network ph-bold ph-lg",
-						text: i18n.ts.share,
-						action: share,
-				  }
-				: undefined,
 			instance.translatorAvailable
 				? {
 						icon: "ph-translate ph-bold ph-lg",
@@ -296,7 +275,6 @@ export function getNoteMenu(props: {
 						action: translate,
 				  }
 				: undefined,
-			null,
 			statePromise.then((state) =>
 				state?.isFavorited
 					? {
@@ -356,6 +334,44 @@ export function getNoteMenu(props: {
 							action: () => togglePin(true),
 					  }
 				: undefined,
+			appearNote.url || appearNote.uri
+				? {
+						icon: "ph-arrow-square-out ph-bold ph-lg",
+						text: i18n.ts.showOnRemote,
+						action: () => {
+							window.open(appearNote.url || appearNote.uri, "_blank");
+						},
+					}
+				: undefined,
+			{
+				type: "parent",
+				icon: "ph-share-network ph-bold ph-lg",
+				text: i18n.ts.share,
+				children: [
+					{
+						icon: "ph-clipboard-text ph-bold ph-lg",
+						text: i18n.ts.copyContent,
+						action: copyContent,
+					},
+					{
+						icon: "ph-link-simple ph-bold ph-lg",
+						text: i18n.ts.copyLink,
+						action: copyLink,
+					},
+					appearNote.url || appearNote.uri ? {
+						icon: "ph-link-simple ph-bold ph-lg",
+						text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+						action: copyOriginal,
+					} : undefined,
+					shareAvailable()
+					? {
+							icon: "ph-share-network ph-bold ph-lg",
+							text: i18n.ts.share,
+							action: share,
+						}
+					: undefined,
+				]
+			},
 			/*
 		...($i.isModerator || $i.isAdmin ? [
 			null,
@@ -424,6 +440,15 @@ export function getNoteMenu(props: {
 		].filter((x) => x !== undefined);
 	} else {
 		menu = [
+			appearNote.url || appearNote.uri
+				? {
+						icon: "ph-arrow-square-out ph-bold ph-lg",
+						text: i18n.ts.showOnRemote,
+						action: () => {
+							window.open(appearNote.url || appearNote.uri, "_blank");
+						},
+				  }
+				: undefined,
 			{
 				icon: "ph-clipboard-text ph-bold ph-lg",
 				text: i18n.ts.copyContent,
@@ -434,15 +459,18 @@ export function getNoteMenu(props: {
 				text: i18n.ts.copyLink,
 				action: copyLink,
 			},
-			appearNote.url || appearNote.uri
-				? {
-						icon: "ph-arrow-square-out ph-bold ph-lg",
-						text: i18n.ts.showOnRemote,
-						action: () => {
-							window.open(appearNote.url || appearNote.uri, "_blank");
-						},
-				  }
-				: undefined,
+			appearNote.url || appearNote.uri ? {
+				icon: "ph-link-simple ph-bold ph-lg",
+				text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+				action: copyOriginal,
+			} : undefined,
+			shareAvailable()
+			? {
+					icon: "ph-share-network ph-bold ph-lg",
+					text: i18n.ts.share,
+					action: share,
+				}
+			: undefined,
 		].filter((x) => x !== undefined);
 	}
 
