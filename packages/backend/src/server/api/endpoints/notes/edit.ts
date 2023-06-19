@@ -599,7 +599,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	}
 
 	if (publishing) {
-		index(note);
+		index(note, true);
 
 		// Publish update event for the updated note details
 		publishNoteStream(note.id, "updated", {
