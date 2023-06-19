@@ -42,7 +42,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			isModerator: user.isModerator,
 			isSilenced: user.isSilenced,
 			isSuspended: user.isSuspended,
-	        moderationNote: profile.moderationNote,
+			moderationNote: profile.moderationNote,
 		};
 	}
 
