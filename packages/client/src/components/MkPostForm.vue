@@ -14,6 +14,7 @@
 				<i class="ph-x ph-bold ph-lg"></i>
 			</button>
 			<button
+				v-if="$props.editId == null"
 				v-click-anime
 				v-tooltip="i18n.ts.switchAccount"
 				class="account _button"
