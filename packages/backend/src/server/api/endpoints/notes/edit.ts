@@ -33,7 +33,7 @@ import { renderActivity } from "@/remote/activitypub/renderer/index.js";
 import renderNote from "@/remote/activitypub/renderer/note.js";
 import renderUpdate from "@/remote/activitypub/renderer/update.js";
 import { deliverToRelays } from "@/services/relay.js";
-import { deliverQuestionUpdate } from "@/services/note/polls/update.js";
+// import { deliverQuestionUpdate } from "@/services/note/polls/update.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 
 export const meta = {
@@ -489,7 +489,8 @@ export default define(meta, paramDef, async (ps, user) => {
 			pollUpdate.votes = newVotes;
 			if (notEmpty(pollUpdate)) {
 				await Polls.update(note.id, pollUpdate);
-				await deliverQuestionUpdate(note.id);
+				// Seemingly already handled by by the rendered update activity
+				// await deliverQuestionUpdate(note.id);
 			}
 			publishing = true;
 		}
