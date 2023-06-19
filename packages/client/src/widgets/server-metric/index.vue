@@ -38,6 +38,13 @@
 				:connection="connection"
 				:meta="meta"
 			/>
+			<XMeili
+				v-else-if="
+					instance.features.searchFilters && widgetProps.view === 5
+				"
+				:connection="connection"
+				:meta="meta"
+			/>
 		</div>
 	</MkContainer>
 </template>
@@ -56,11 +63,13 @@ import XNet from "./net.vue";
 import XCpu from "./cpu.vue";
 import XMemory from "./mem.vue";
 import XDisk from "./disk.vue";
+import XMeili from "./meilisearch.vue";
 import MkContainer from "@/components/MkContainer.vue";
 import { GetFormResultType } from "@/scripts/form";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
+import { instance } from "@/instance";
 
 const name = "serverMetric";
 
@@ -102,7 +111,10 @@ os.api("server-info", {}).then((res) => {
 });
 
 const toggleView = () => {
-	if (widgetProps.view === 4) {
+	if (
+		(widgetProps.view === 5 && instance.features.searchFilters) ||
+		(widgetProps.view === 4 && !instance.features.searchFilters)
+	) {
 		widgetProps.view = 0;
 	} else {
 		widgetProps.view++;

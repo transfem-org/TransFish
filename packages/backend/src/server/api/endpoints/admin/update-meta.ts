@@ -61,6 +61,13 @@ export const paramDef = {
 				type: "string",
 			},
 		},
+		silencedHosts: {
+			type: "array",
+			nullable: true,
+			items: {
+				type: "string",
+			},
+		},
 		allowedHosts: {
 			type: "array",
 			nullable: true,
@@ -124,6 +131,8 @@ export const paramDef = {
 		summalyProxy: { type: "string", nullable: true },
 		deeplAuthKey: { type: "string", nullable: true },
 		deeplIsPro: { type: "boolean" },
+		libreTranslateApiUrl: { type: "string", nullable: true },
+		libreTranslateApiKey: { type: "string", nullable: true },
 		enableTwitterIntegration: { type: "boolean" },
 		twitterConsumerKey: { type: "string", nullable: true },
 		twitterConsumerSecret: { type: "string", nullable: true },
@@ -161,6 +170,14 @@ export const paramDef = {
 		objectStorageS3ForcePathStyle: { type: "boolean" },
 		enableIpLogging: { type: "boolean" },
 		enableActiveEmailValidation: { type: "boolean" },
+		experimentalFeatures: {
+			type: "object",
+			nullable: true,
+			properties: {
+				postEditing: { type: "boolean" },
+				postImports: { type: "boolean" },
+			},
+		},
 	},
 	required: [],
 } as const;
@@ -211,6 +228,15 @@ export default define(meta, paramDef, async (ps, me) => {
 	if (Array.isArray(ps.blockedHosts)) {
 		let lastValue = "";
 		set.blockedHosts = ps.blockedHosts.sort().filter((h) => {
+			const lv = lastValue;
+			lastValue = h;
+			return h !== "" && h !== lv;
+		});
+	}
+
+	if (Array.isArray(ps.silencedHosts)) {
+		let lastValue = "";
+		set.silencedHosts = ps.silencedHosts.sort().filter((h) => {
 			const lv = lastValue;
 			lastValue = h;
 			return h !== "" && h !== lv;
@@ -515,12 +541,32 @@ export default define(meta, paramDef, async (ps, me) => {
 		set.deeplIsPro = ps.deeplIsPro;
 	}
 
+	if (ps.libreTranslateApiUrl !== undefined) {
+		if (ps.libreTranslateApiUrl === "") {
+			set.libreTranslateApiUrl = null;
+		} else {
+			set.libreTranslateApiUrl = ps.libreTranslateApiUrl;
+		}
+	}
+
+	if (ps.libreTranslateApiKey !== undefined) {
+		if (ps.libreTranslateApiKey === "") {
+			set.libreTranslateApiKey = null;
+		} else {
+			set.libreTranslateApiKey = ps.libreTranslateApiKey;
+		}
+	}
+
 	if (ps.enableIpLogging !== undefined) {
 		set.enableIpLogging = ps.enableIpLogging;
 	}
 
 	if (ps.enableActiveEmailValidation !== undefined) {
 		set.enableActiveEmailValidation = ps.enableActiveEmailValidation;
+	}
+
+	if (ps.experimentalFeatures !== undefined) {
+		set.experimentalFeatures = ps.experimentalFeatures || undefined;
 	}
 
 	await db.transaction(async (transactionalEntityManager) => {

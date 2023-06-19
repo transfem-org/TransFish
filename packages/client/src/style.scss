@@ -12,6 +12,24 @@
 		--margin: var(--marginHalf);
 	}
 
+	// https://larsenwork.com/easing-gradients/
+	--gradient: hsl(0, 0%, 0%) 0%,
+		hsla(0, 0%, 0%, 0.987) 8.1%,
+		hsla(0, 0%, 0%, 0.951) 15.5%,
+		hsla(0, 0%, 0%, 0.896) 22.5%,
+		hsla(0, 0%, 0%, 0.825) 29%,
+		hsla(0, 0%, 0%, 0.741) 35.3%,
+		hsla(0, 0%, 0%, 0.648) 41.2%,
+		hsla(0, 0%, 0%, 0.55) 47.1%,
+		hsla(0, 0%, 0%, 0.45) 52.9%,
+		hsla(0, 0%, 0%, 0.352) 58.8%,
+		hsla(0, 0%, 0%, 0.259) 64.7%,
+		hsla(0, 0%, 0%, 0.175) 71%,
+		hsla(0, 0%, 0%, 0.104) 77.5%,
+		hsla(0, 0%, 0%, 0.049) 84.5%,
+		hsla(0, 0%, 0%, 0.013) 91.9%,
+		hsla(0, 0%, 0%, 0) 100%;
+
 	//--ad: rgb(255 169 0 / 10%);
 }
 
@@ -22,7 +40,6 @@
 
 html {
 	touch-action: manipulation;
-	background-color: var(--bg);
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
@@ -35,52 +52,53 @@ html {
 	line-height: 1.6;
 	text-size-adjust: 100%;
 	tab-size: 2;
-
-	&, * {
-		scrollbar-color: var(--scrollbarHandle) inherit;
-		scrollbar-width: thin;
-
-		&::-webkit-scrollbar {
-			width: 6px;
-			height: 6px;
-		}
-
-		&::-webkit-scrollbar-track {
-			background: inherit;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: var(--scrollbarHandle);
-
-			&:hover {
-				background: var(--scrollbarHandleHover);
-			}
-
-			&:active {
-				background: var(--accent);
-			}
-		}
-	}
-
-	&.f-1 {
-		font-size: 15px;
-	}
-
-	&.f-2 {
-		font-size: 16px;
-	}
-
-	&.f-3 {
-		font-size: 17px;
-	}
+	scroll-padding: 60px;
+	overflow-x: clip;
 
 	&.useSystemFont {
-		font-family: sans-serif;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
+}
+body::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+body::-webkit-scrollbar-thumb {
+	border-radius: 100px;
+	background-clip: content-box;
+	border: 3px solid transparent;
+}
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-track {
+	background: inherit;
+}
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbarHandle);
+	min-height: 80px;
+
+	&:hover {
+		background: var(--scrollbarHandleHover);
+		background-clip: content-box;
+	}
+
+	&:active {
+		background: var(--accent);
+		background-clip: content-box;
+	}
+}
+
+.hide-scrollbar {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
 
 html._themeChanging_ {
-	&, * {
+	&, *, ::before, ::after {
 		transition: background 1s ease, border 1s ease !important;
 	}
 }
@@ -88,6 +106,16 @@ html._themeChanging_ {
 html, body {
 	margin: 0;
 	padding: 0;
+}
+
+.swiper {
+	margin-inline: -24px !important;
+	padding-inline: 24px !important;
+	mask: linear-gradient(to right, transparent, black 24px calc(100% - 24px), transparent);
+	-webkit-mask: linear-gradient(to right, transparent, black 24px calc(100% - 24px), transparent);
+}
+.swiper-slide {
+	min-height: 100vh;
 }
 
 a {
@@ -181,13 +209,46 @@ hr {
 		pointer-events: none;
 	}
 
-	&:focus-visible {
-		outline: none;
-	}
-
 	&:disabled {
 		opacity: 0.5;
 		cursor: default;
+	}
+
+	> i:only-child {
+		display: block;
+		margin: auto;
+	}
+}
+
+._buttonIcon {
+	@extend ._button;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(var(--height) - (var(--margin) * 2));
+	height: calc(var(--height) - (var(--margin) * 2));
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 5px;
+	outline: none;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 2.7em;
+		height: 2.7em;
+		border-radius: inherit;
+		transition: background 0.2s;
+	}
+
+	&:hover:before, &:focus::before, &.highlighted::before {
+		background: var(--buttonBg);
+	}
+	&:focus-visible::before {
+		outline: auto;
+	}
+	&.highlighted {
+		color: var(--accent);
 	}
 }
 
@@ -233,6 +294,34 @@ hr {
 	}
 }
 
+._panel {
+	background: var(--panel);
+	border-radius: var(--radius);
+	overflow: clip;
+}
+
+._margin {
+	margin: var(--margin) 0;
+}
+
+._gaps_m {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+}
+
+._gaps_s {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75em;
+}
+
+._gaps {
+	display: flex;
+	flex-direction: column;
+	gap: var(--margin);
+}
+
 ._inputs {
 	display: flex;
 	margin: 32px 0;
@@ -266,7 +355,9 @@ hr {
 }
 
 ._block {
-	@extend ._panel;
+	background: var(--panel);
+	border-radius: var(--radius);
+	overflow: visible;
 
 	& + ._block {
 		margin-top: var(--margin);
@@ -275,6 +366,9 @@ hr {
 
 ._gap {
 	margin: var(--margin) 0;
+	&:first-child {
+		margin-top: 0;
+	}
 }
 
 // TODO: 廃止
@@ -415,6 +509,20 @@ hr {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-gap: 12px;
+	> button {
+		width: 100% !important;
+	}
+}
+
+._flexList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .2em;
+	width: min-content;
+	min-width: 100%;
+	&._center {
+		justify-content: center;
+	}
 }
 
 ._formLinks {
@@ -526,6 +634,20 @@ hr {
 	outline: none;
 }
 
+:not(.noGap):not(._block) > {
+	.note-container, .cmuxhskf > section, ._gap > ._block, ._panel, .noGap, .profile, .card {
+		&:not(.caution)
+		{
+			box-shadow: 0 4px 25px rgba(0,0,0,0.04);
+			border-radius: var(--radius);
+			overflow: clip;
+		}
+	}
+}
+.widgets ._panel {
+	box-shadow: none !important;
+}
+
 ._zoom {
 	transition-duration: 0.5s, 0.5s;
 	transition-property: opacity, transform;
@@ -635,6 +757,7 @@ hr {
   font-size: 1.3333em;
   line-height: 0.75em;
   vertical-align: -0.0667em;
+	justify-content: center;
 }
 
 .ph-xl {
@@ -696,6 +819,27 @@ hr {
 	&:hover {
 		filter: blur(0px);
 	}
+}
+
+._otp_input {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 1rem 7px auto;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--accent);
+	background-color: var(--accentedBg);
+	color: var(--fg);
+  text-align: center;
+}
+._otp_input.error {
+  border-color: var(--error) !important;
+}
+._otp_input::-webkit-inner-spin-button,
+._otp_input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media(prefers-reduced-motion: no-preference) {

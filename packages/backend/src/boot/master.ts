@@ -93,7 +93,7 @@ export async function masterMain() {
 		true,
 	);
 
-	if (!envOption.noDaemons) {
+	if (!envOption.noDaemons && !config.onlyQueueProcessor) {
 		import("../daemons/server-stats.js").then((x) => x.default());
 		import("../daemons/queue-stats.js").then((x) => x.default());
 		import("../daemons/janitor.js").then((x) => x.default());
@@ -167,7 +167,7 @@ async function connectDb(): Promise<void> {
 	}
 }
 
-async function spawnWorkers(limit: number = 1) {
+async function spawnWorkers(limit = 1) {
 	const workers = Math.min(limit, os.cpus().length);
 	bootLogger.info(`Starting ${workers} worker${workers === 1 ? "" : "s"}...`);
 	await Promise.all([...Array(workers)].map(spawnWorker));

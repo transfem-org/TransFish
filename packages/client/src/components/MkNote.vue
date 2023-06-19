@@ -1,20 +1,22 @@
 <template>
 	<div
+		:aria-label="accessibleLabel"
 		v-if="!muted.muted"
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350, 300] }"
-		class="tkcbzcuz"
+		v-size="{ max: [500, 350] }"
+		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
+		:id="appearNote.id"
 	>
 		<MkNoteSub
-			v-if="appearNote.reply"
+			v-if="appearNote.reply && !detailedView"
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		<div class="note-context" @click="noteClick">
+		<div v-if="!detailedView" class="note-context" @click="noteClick">
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
 				<i class="ph-megaphone-simple-bold ph-lg"></i>
@@ -66,6 +68,9 @@
 			class="article"
 			@contextmenu.stop="onContextmenu"
 			@click="noteClick"
+			:style="{
+				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
+			}"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -77,94 +82,39 @@
 					/>
 				</div>
 				<div class="body">
-					<p v-if="appearNote.cw != null" class="cw">
-						<Mfm
-							v-if="appearNote.cw != ''"
-							class="text"
-							:text="appearNote.cw"
-							:author="appearNote.user"
-							:custom-emojis="appearNote.emojis"
-							:i="$i"
-						/>
-						<br />
-						<XCwButton v-model="showContent" :note="appearNote" />
-					</p>
-					<div
-						v-show="appearNote.cw == null || showContent"
-						class="content"
-						:class="{ collapsed, isLong }"
-					>
-						<div class="text">
+					<MkSubNoteContent
+						class="text"
+						:note="appearNote"
+						:detailed="true"
+						:detailedView="detailedView"
+						:parentId="appearNote.parentId"
+						@push="(e) => router.push(notePage(e))"
+						@focusfooter="footerEl.focus()"
+						@expanded="(e) => setPostExpanded(e)"
+					></MkSubNoteContent>
+					<div v-if="translating || translation" class="translation">
+						<MkLoading v-if="translating" mini />
+						<div v-else class="translated">
+							<b
+								>{{
+									i18n.t("translatedFrom", {
+										x: translation.sourceLang,
+									})
+								}}:
+							</b>
 							<Mfm
-								v-if="appearNote.text"
-								:text="appearNote.text"
+								:text="translation.text"
 								:author="appearNote.user"
 								:i="$i"
 								:custom-emojis="appearNote.emojis"
 							/>
-							<!-- <a v-if="appearNote.renote != null" class="rp">RN:</a> -->
-							<div
-								v-if="translating || translation"
-								class="translation"
-							>
-								<MkLoading v-if="translating" mini />
-								<div v-else class="translated">
-									<b
-										>{{
-											i18n.t("translatedFrom", {
-												x: translation.sourceLang,
-											})
-										}}:
-									</b>
-									<Mfm
-										:text="translation.text"
-										:author="appearNote.user"
-										:i="$i"
-										:custom-emojis="appearNote.emojis"
-									/>
-								</div>
-							</div>
 						</div>
-						<div v-if="appearNote.files.length > 0" class="files">
-							<XMediaList :media-list="appearNote.files" />
-						</div>
-						<XPoll
-							v-if="appearNote.poll"
-							ref="pollViewer"
-							:note="appearNote"
-							class="poll"
-						/>
-						<MkUrlPreview
-							v-for="url in urls"
-							:key="url"
-							:url="url"
-							:compact="true"
-							:detail="false"
-							class="url-preview"
-						/>
-						<div v-if="appearNote.renote" class="renote">
-							<XNoteSimple
-								:note="appearNote.renote"
-								@click.stop="
-									router.push(notePage(appearNote.renote))
-								"
-							/>
-						</div>
-						<button
-							v-if="isLong && collapsed"
-							class="fade _button"
-							@click.stop="collapsed = false"
-						>
-							<span>{{ i18n.ts.showMore }}</span>
-						</button>
-						<button
-							v-else-if="isLong && !collapsed"
-							class="showLess _button"
-							@click.stop="collapsed = true"
-						>
-							<span>{{ i18n.ts.showLess }}</span>
-						</button>
 					</div>
+				</div>
+				<div v-if="detailedView" class="info">
+					<MkA class="created-at" :to="notePage(appearNote)">
+						<MkTime :time="appearNote.createdAt" mode="absolute" />
+					</MkA>
 					<MkA
 						v-if="appearNote.channel && !inChannel"
 						class="channel"
@@ -174,8 +124,9 @@
 						{{ appearNote.channel.name }}</MkA
 					>
 				</div>
-				<footer ref="el" class="footer" @click.stop>
+				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
 					<XReactionsViewer
+						v-if="enableEmojiReactions"
 						ref="reactionsViewer"
 						:note="appearNote"
 					/>
@@ -185,7 +136,9 @@
 						@click="reply()"
 					>
 						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-						<template v-if="appearNote.repliesCount > 0">
+						<template
+							v-if="appearNote.repliesCount > 0 && !detailedView"
+						>
 							<p class="count">{{ appearNote.repliesCount }}</p>
 						</template>
 					</button>
@@ -194,15 +147,34 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
+						:detailedView="detailedView"
+					/>
+					<XStarButtonNoEmoji
+						v-if="!enableEmojiReactions"
+						class="button"
+						:note="appearNote"
+						:count="
+							Object.values(appearNote.reactions).reduce(
+								(partialSum, val) => partialSum + val,
+								0
+							)
+						"
+						:reacted="appearNote.myReaction != null"
 					/>
 					<XStarButton
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="starButton"
 						class="button"
 						:note="appearNote"
 					/>
 					<button
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="reactButton"
 						v-tooltip.noDelay.bottom="i18n.ts.reaction"
 						class="button _button"
@@ -211,10 +183,14 @@
 						<i class="ph-smiley ph-bold ph-lg"></i>
 					</button>
 					<button
-						v-if="appearNote.myReaction != null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction != null
+						"
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -231,22 +207,22 @@
 			</div>
 		</article>
 	</div>
-	<div v-else class="muted" @click="muted.muted = false">
-		<I18n :src="i18n.ts.userSaysSomethingReason" tag="small">
+	<button v-else class="muted _button" @click="muted.muted = false">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
-					v-user-preview="appearNote.userId"
+					v-user-preview="note.userId"
 					class="name"
-					:to="userPage(appearNote.user)"
+					:to="userPage(note.user)"
 				>
-					<MkUserName :user="appearNote.user" />
+					<MkUserName :user="note.user" />
 				</MkA>
 			</template>
 			<template #reason>
 				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 			</template>
 		</I18n>
-	</div>
+	</button>
 </template>
 
 <script lang="ts" setup>
@@ -255,6 +231,7 @@ import * as mfm from "mfm-js";
 import type { Ref } from "vue";
 import type * as misskey from "calckey-js";
 import MkNoteSub from "@/components/MkNoteSub.vue";
+import MkSubNoteContent from "./MkSubNoteContent.vue";
 import XNoteHeader from "@/components/MkNoteHeader.vue";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
@@ -263,18 +240,20 @@ import XPoll from "@/components/MkPoll.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XReactionsViewer from "@/components/MkReactionsViewer.vue";
 import XStarButton from "@/components/MkStarButton.vue";
+import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import MkVisibility from "@/components/MkVisibility.vue";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
 import { focusPrev, focusNext } from "@/scripts/focus";
-import { getWordMute } from "@/scripts/check-word-mute";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { useRouter } from "@/router";
 import { userPage } from "@/filters/user";
 import * as os from "@/os";
 import { defaultStore, noteViewInterruptors } from "@/store";
 import { reactionPicker } from "@/scripts/reaction-picker";
-import { extractUrlFromMfm } from "@/scripts/extract-url-from-mfm";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { getNoteMenu } from "@/scripts/get-note-menu";
@@ -287,11 +266,22 @@ const router = useRouter();
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
+	detailedView?: boolean;
 }>();
 
 const inChannel = inject("inChannel", null);
 
 let note = $ref(deepClone(props.note));
+
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
 
 // plugin
 if (noteViewInterruptors.length > 0) {
@@ -311,6 +301,7 @@ const isRenote =
 	note.poll == null;
 
 const el = ref<HTMLElement>();
+const footerEl = ref<HTMLElement>();
 const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
@@ -321,25 +312,19 @@ let appearNote = $computed(() =>
 );
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
-const isLong =
-	appearNote.cw == null &&
-	appearNote.text != null &&
-	(appearNote.text.split("\n").length > 9 || appearNote.text.length > 500);
-const collapsed = ref(appearNote.cw == null && isLong);
 const isDeleted = ref(false);
-const muted = ref(getWordMute(appearNote, $i, defaultStore.state.mutedWords));
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
-const urls = appearNote.text
-	? extractUrlFromMfm(mfm.parse(appearNote.text)).slice(0, 5)
-	: null;
+const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 const keymap = {
 	r: () => reply(true),
 	"e|a|plus": () => react(true),
 	q: () => renoteButton.value.renote(true),
-	"up|k|shift+tab": focusBefore,
-	"down|j|tab": focusAfter,
+	"up|k": focusBefore,
+	"down|j": focusAfter,
 	esc: blur,
 	"m|o": () => menu(true),
 	s: () => showContent.value !== showContent.value,
@@ -397,6 +382,8 @@ const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 function onContextmenu(ev: MouseEvent): void {
 	const isLink = (el: HTMLElement) => {
 		if (el.tagName === "A") return true;
+		// The Audio element's context menu is the browser default, such as for selecting playback speed.
+		if (el.tagName === "AUDIO") return true;
 		if (el.parentElement) {
 			return isLink(el.parentElement);
 		}
@@ -409,16 +396,54 @@ function onContextmenu(ev: MouseEvent): void {
 		react();
 	} else {
 		os.contextMenu(
-			getNoteMenu({
-				note: note,
-				translating,
-				translation,
-				menuButton,
-				isDeleted,
-				currentClipPage,
-			}),
+			[
+				{
+					type: "label",
+					text: notePage(appearNote),
+				},
+				{
+					icon: "ph-browser ph-bold ph-lg",
+					text: i18n.ts.openInWindow,
+					action: () => {
+						os.pageWindow(notePage(appearNote));
+					},
+				},
+				notePage(appearNote) != location.pathname
+					? {
+							icon: "ph-arrows-out-simple ph-bold ph-lg",
+							text: i18n.ts.showInPage,
+							action: () => {
+								router.push(notePage(appearNote), "forcePage");
+							},
+					  }
+					: undefined,
+				null,
+				{
+					type: "a",
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.openInNewTab,
+					href: notePage(appearNote),
+					target: "_blank",
+				},
+				{
+					icon: "ph-link-simple ph-bold ph-lg",
+					text: i18n.ts.copyLink,
+					action: () => {
+						copyToClipboard(`${url}${notePage(appearNote)}`);
+					},
+				},
+				appearNote.user.host != null
+					? {
+							type: "a",
+							icon: "ph-arrow-square-up-right ph-bold ph-lg",
+							text: i18n.ts.showOnRemote,
+							href: appearNote.url ?? appearNote.uri ?? "",
+							target: "_blank",
+					  }
+					: undefined,
+			],
 			ev
-		).then(focus);
+		);
 	}
 }
 
@@ -478,8 +503,16 @@ function focusAfter() {
 	focusNext(el.value);
 }
 
+function scrollIntoView() {
+	el.value.scrollIntoView();
+}
+
 function noteClick(e) {
-	if (document.getSelection().type === "Range") {
+	if (
+		document.getSelection().type === "Range" ||
+		props.detailedView ||
+		!expandOnNoteClick
+	) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(appearNote));
@@ -492,6 +525,45 @@ function readPromo() {
 	});
 	isDeleted.value = true;
 }
+
+let postIsExpanded = ref(false);
+
+function setPostExpanded(val: boolean) {
+	postIsExpanded.value = val;
+}
+
+const accessibleLabel = computed(() => {
+	let label = `${appearNote.user.username}; `;
+	if (appearNote.renote) {
+		label += `${i18n.t("renoted")} ${appearNote.renote.user.username}; `;
+		if (appearNote.renote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.renote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${appearNote.renote.text}; `;
+			}
+		} else {
+			label += `${appearNote.renote.text}; `;
+		}
+	} else {
+		if (appearNote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.cw}; `;
+			if (postIsExpanded.value) {
+				label += `${appearNote.text}; `;
+			}
+		} else {
+			label += `${appearNote.text}; `;
+		}
+	}
+	const date = new Date(appearNote.createdAt);
+	label += `${date.toLocaleTimeString()}`;
+	return label;
+});
+
+defineExpose({
+	focus,
+	blur,
+	scrollIntoView,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -501,6 +573,7 @@ function readPromo() {
 	font-size: 1.05em;
 	overflow: clip;
 	contain: content;
+	-webkit-tap-highlight-color: transparent;
 
 	// これらの指定はパフォーマンス向上には有効だが、ノートの高さは一定でないため、
 	// 下の方までスクロールすると上のノートの高さがここで決め打ちされたものに変化し、表示しているノートの位置が変わってしまう
@@ -546,15 +619,18 @@ function readPromo() {
 			.line::before {
 				content: "";
 				display: block;
-				margin-bottom: -10px;
+				margin-bottom: -4px;
 				margin-top: 16px;
-				border-left: 2px solid var(--divider);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
+				opacity: 0.25;
 			}
 		}
 	}
 
 	.note-context {
+		position: relative;
+		z-index: 2;
 		padding: 0 32px 0 32px;
 		display: flex;
 		&:first-child {
@@ -567,11 +643,14 @@ function readPromo() {
 			line-height: 28px;
 		}
 		> .line {
+			position: relative;
+			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
 			margin-right: 14px;
 			margin-top: 0;
 			flex-grow: 0;
+			pointer-events: none;
 		}
 
 		> div > i {
@@ -635,8 +714,15 @@ function readPromo() {
 	}
 
 	> .article {
+		position: relative;
+		overflow: clip;
 		padding: 4px 32px 10px;
-		cursor: pointer;
+
+		&:first-child,
+		&:nth-child(2) {
+			margin-top: -100px;
+			padding-top: 104px;
+		}
 
 		@media (pointer: coarse) {
 			cursor: default;
@@ -665,132 +751,34 @@ function readPromo() {
 
 			> .body {
 				margin-top: 0.7em;
-
-				> .cw {
-					cursor: default;
-					display: block;
-					margin: 0;
-					padding: 0;
-					overflow-wrap: break-word;
-
-					> .text {
-						margin-right: 8px;
-					}
+				> .translation {
+					border: solid 0.5px var(--divider);
+					border-radius: var(--radius);
+					padding: 12px;
+					margin-top: 8px;
 				}
-
-				> .content {
-					&.isLong {
-						> .showLess {
-							width: 100%;
-							margin-top: 1em;
-							position: sticky;
-							bottom: var(--stickyBottom);
-
-							> span {
-								display: inline-block;
-								background: var(--popup);
-								padding: 6px 10px;
-								font-size: 0.8em;
-								border-radius: 999px;
-								box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
-							}
-						}
-					}
-
-					&.collapsed {
-						position: relative;
-						max-height: 9em;
-						overflow: hidden;
-						> .text {
-							max-height: 9em;
-							mask: linear-gradient(
-								black calc(100% - 64px),
-								transparent
-							);
-							-webkit-mask: linear-gradient(
-								black calc(100% - 64px),
-								transparent
-							);
-						}
-						> .fade {
-							display: block;
-							position: absolute;
-							bottom: 0;
-							left: 0;
-							width: 100%;
-							height: 64px;
-
-							> span {
-								display: inline-block;
-								background: var(--panel);
-								padding: 6px 10px;
-								font-size: 0.8em;
-								border-radius: 999px;
-								box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
-							}
-
-							&:hover {
-								> span {
-									background: var(--panelHighlight);
-								}
-							}
-						}
-					}
-
-					> .text {
-						overflow-wrap: break-word;
-
-						> .reply {
-							color: var(--accent);
-							margin-right: 0.5em;
-						}
-
-						> .rp {
-							margin-left: 4px;
-							font-style: oblique;
-							color: var(--renote);
-						}
-
-						> .translation {
-							border: solid 0.5px var(--divider);
-							border-radius: var(--radius);
-							padding: 12px;
-							margin-top: 8px;
-						}
-					}
-
-					> .files {
-						margin-top: 0.4em;
-						margin-bottom: 0.4em;
-					}
-					> .url-preview {
-						margin-top: 8px;
-					}
-
-					> .poll {
-						font-size: 80%;
-					}
-
-					> .renote {
-						padding: 8px 0;
-
-						> * {
-							padding: 16px;
-							border: solid 1px var(--renote);
-							border-radius: 8px;
-							transition: background 0.2s;
-							&:hover,
-							&:focus-within {
-								background-color: var(--panelHighlight);
-							}
+				> .renote {
+					padding-top: 8px;
+					> * {
+						padding: 16px;
+						border: solid 1px var(--renote);
+						border-radius: 8px;
+						transition: background 0.2s;
+						&:hover,
+						&:focus-within {
+							background-color: var(--panelHighlight);
 						}
 					}
 				}
-
-				> .channel {
-					opacity: 0.7;
-					font-size: 80%;
-				}
+			}
+			> .info {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 0.7em;
+				margin-top: 16px;
+				opacity: 0.7;
+				font-size: 0.9em;
 			}
 			> .footer {
 				position: relative;
@@ -798,8 +786,9 @@ function readPromo() {
 				display: flex;
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
-
-				> .button {
+				margin-top: 0.4em;
+				> :deep(.button) {
+					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
@@ -808,12 +797,34 @@ function readPromo() {
 					width: max-content;
 					min-width: max-content;
 					pointer-events: all;
+					height: auto;
 					transition: opacity 0.2s;
+					&::before {
+						content: "";
+						position: absolute;
+						inset: 0;
+						bottom: 2px;
+						background: var(--panel);
+						z-index: -1;
+						transition: background 0.2s;
+					}
 					&:first-of-type {
 						margin-left: -0.5em;
+						&::before {
+							border-radius: 100px 0 0 100px;
+						}
+					}
+					&:last-of-type {
+						&::before {
+							border-radius: 0 100px 100px 0;
+						}
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {
@@ -835,10 +846,7 @@ function readPromo() {
 	}
 
 	&.max-width_500px {
-		font-size: 0.9em;
-	}
-
-	&.max-width_450px {
+		font-size: 0.975em;
 		--avatarSize: 46px;
 		padding-top: 6px;
 		> .note-context {
@@ -856,6 +864,10 @@ function readPromo() {
 		}
 		> .article {
 			padding: 4px 16px 8px;
+			&:first-child,
+			&:nth-child(2) {
+				padding-top: 104px;
+			}
 			> .main > .header-container > .avatar {
 				margin-right: 10px;
 				// top: calc(14px + var(--stickyTop, 0px));
@@ -872,5 +884,10 @@ function readPromo() {
 	padding: 8px;
 	text-align: center;
 	opacity: 0.7;
+	width: 100%;
+
+	._blur_text {
+		pointer-events: auto;
+	}
 }
 </style>

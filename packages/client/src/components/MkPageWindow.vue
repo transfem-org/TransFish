@@ -9,6 +9,7 @@
 		:buttons-right="buttonsRight"
 		:contextmenu="contextmenu"
 		@closed="$emit('closed')"
+		class="page-window"
 	>
 		<template #header>
 			<template v-if="pageMetadata?.value">
@@ -96,6 +97,7 @@ provideMetadataReceiver((info) => {
 	pageMetadata = info;
 });
 provide("shouldOmitHeaderTitle", true);
+provide("shouldBackButton", false);
 provide("shouldHeaderThin", true);
 
 const contextmenu = $computed(() => [

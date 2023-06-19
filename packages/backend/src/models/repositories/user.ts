@@ -256,17 +256,23 @@ export const UserRepository = db.getRepository(User).extend({
 	},
 
 	async getHasUnreadAntenna(userId: User["id"]): Promise<boolean> {
-		const myAntennas = (await getAntennas()).filter((a) => a.userId === userId);
+		try {
+			const myAntennas = (await getAntennas()).filter(
+				(a) => a.userId === userId,
+			);
 
-		const unread =
-			myAntennas.length > 0
-				? await AntennaNotes.findOneBy({
-						antennaId: In(myAntennas.map((x) => x.id)),
-						read: false,
-				  })
-				: null;
+			const unread =
+				myAntennas.length > 0
+					? await AntennaNotes.findOneBy({
+							antennaId: In(myAntennas.map((x) => x.id)),
+							read: false,
+					  })
+					: null;
 
-		return unread != null;
+			return unread != null;
+		} catch (e) {
+			return false;
+		}
 	},
 
 	async getHasUnreadChannel(userId: User["id"]): Promise<boolean> {
@@ -535,6 +541,7 @@ export const UserRepository = db.getRepository(User).extend({
 						carefulBot: profile!.carefulBot,
 						autoAcceptFollowed: profile!.autoAcceptFollowed,
 						noCrawle: profile!.noCrawle,
+						preventAiLearning: profile!.preventAiLearning,
 						isExplorable: user.isExplorable,
 						isDeleted: user.isDeleted,
 						hideOnlineStatus: user.hideOnlineStatus,
@@ -560,7 +567,6 @@ export const UserRepository = db.getRepository(User).extend({
 						mutedInstances: profile!.mutedInstances,
 						mutingNotificationTypes: profile!.mutingNotificationTypes,
 						emailNotificationTypes: profile!.emailNotificationTypes,
-						showTimelineReplies: user.showTimelineReplies || falsy,
 				  }
 				: {}),
 

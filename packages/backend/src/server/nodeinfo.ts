@@ -53,7 +53,7 @@ const nodeinfo2 = async () => {
 			name: "calckey",
 			version: config.version,
 			repository: meta.repositoryUrl,
-			homepage: "https://calckey.cloud",
+			homepage: "https://calckey.org/",
 		},
 		protocols: ["activitypub"],
 		services: {
@@ -82,6 +82,9 @@ const nodeinfo2 = async () => {
 			disableRecommendedTimeline: meta.disableRecommendedTimeline,
 			disableGlobalTimeline: meta.disableGlobalTimeline,
 			emailRequiredForSignup: meta.emailRequiredForSignup,
+			searchFilters: config.meilisearch ? true : false,
+			postEditing: meta.experimentalFeatures?.postEditing || false,
+			postImports: meta.experimentalFeatures?.postImports || false,
 			enableHcaptcha: meta.enableHcaptcha,
 			enableRecaptcha: meta.enableRecaptcha,
 			maxNoteTextLength: MAX_NOTE_TEXT_LENGTH,

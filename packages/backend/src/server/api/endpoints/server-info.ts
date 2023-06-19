@@ -1,6 +1,7 @@
 import * as os from "node:os";
 import si from "systeminformation";
 import define from "../define.js";
+import meilisearch from "../../../db/meilisearch.js";
 
 export const meta = {
 	requireCredential: false,
@@ -18,6 +19,7 @@ export const paramDef = {
 export default define(meta, paramDef, async () => {
 	const memStats = await si.mem();
 	const fsStats = await si.fsSize();
+	const meilisearchStats = await meilisearchStatus();
 
 	return {
 		machine: os.hostname(),
@@ -34,3 +36,15 @@ export default define(meta, paramDef, async () => {
 		},
 	};
 });
+
+async function meilisearchStatus() {
+	if (meilisearch) {
+		return meilisearch.serverStats();
+	} else {
+		return {
+			health: "unconfigured",
+			size: 0,
+			indexed_count: 0,
+		};
+	}
+}

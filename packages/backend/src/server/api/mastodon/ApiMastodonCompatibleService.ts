@@ -8,6 +8,8 @@ import { apiTimelineMastodon } from "./endpoints/timeline.js";
 import { apiNotificationsMastodon } from "./endpoints/notifications.js";
 import { apiSearchMastodon } from "./endpoints/search.js";
 import { getInstance } from "./endpoints/meta.js";
+import { convertAnnouncement, convertFilter } from "./converters.js";
+import { convertId, IdType } from "../index.js";
 
 export function getClient(
 	BASE_URL: string,
@@ -62,6 +64,41 @@ export function apiMastodonCompatible(router: Router): void {
 		}
 	});
 
+	router.get("/v1/announcements", async (ctx) => {
+		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
+		const accessTokens = ctx.request.headers.authorization;
+		const client = getClient(BASE_URL, accessTokens);
+		try {
+			const data = await client.getInstanceAnnouncements();
+			ctx.body = data.data.map((announcement) =>
+				convertAnnouncement(announcement),
+			);
+		} catch (e: any) {
+			console.error(e);
+			ctx.status = 401;
+			ctx.body = e.response.data;
+		}
+	});
+
+	router.post<{ Params: { id: string } }>(
+		"/v1/announcements/:id/dismiss",
+		async (ctx) => {
+			const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
+			const accessTokens = ctx.request.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.dismissInstanceAnnouncement(
+					convertId(ctx.params.id, IdType.CalckeyId),
+				);
+				ctx.body = data.data;
+			} catch (e: any) {
+				console.error(e);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
+
 	router.get("/v1/filters", async (ctx) => {
 		const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 		const accessTokens = ctx.request.headers.authorization;
@@ -69,7 +106,7 @@ export function apiMastodonCompatible(router: Router): void {
 		// displayed without being logged in
 		try {
 			const data = await client.getFilters();
-			ctx.body = data.data;
+			ctx.body = data.data.map((filter) => convertFilter(filter));
 		} catch (e: any) {
 			console.error(e);
 			ctx.status = 401;

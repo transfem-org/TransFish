@@ -1,13 +1,18 @@
 <template>
 	<div v-size="{ min: [350, 500] }" class="fefdfafb">
-		<MkAvatar class="avatar" :user="$i" />
+		<MkAvatar class="avatar" :user="$i" disableLink />
 		<div class="main">
 			<div class="header">
 				<MkUserName :user="$i" />
 			</div>
 			<div class="body">
 				<div class="content">
-					<Mfm :text="preprocess(text).trim()" :author="$i" :i="$i" />
+					<Mfm
+						:text="preprocess(text).trim()"
+						:author="$i"
+						:i="$i"
+						advancedMfm
+					/>
 				</div>
 			</div>
 		</div>

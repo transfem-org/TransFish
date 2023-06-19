@@ -49,6 +49,7 @@ export default class extends Channel {
 	}
 
 	private async onNote(note: Packed<"Note">) {
+		if (note.visibility === "hidden") return;
 		if (!this.listUsers.includes(note.userId)) return;
 
 		// 流れてきたNoteがミュートしているユーザーが関わるものだったら無視する
@@ -56,8 +57,7 @@ export default class extends Channel {
 		// 流れてきたNoteがブロックされているユーザーが関わるものだったら無視する
 		if (isUserRelated(note, this.blocking)) return;
 
-		if (note.renote && !note.text && isUserRelated(note, this.renoteMuting))
-			return;
+		if (note.renote && !note.text && this.renoteMuting.has(note.userId)) return;
 
 		this.send("note", note);
 	}

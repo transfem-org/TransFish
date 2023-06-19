@@ -35,5 +35,3 @@ definePageMetadata({
 	icon: "ph-user ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped></style>

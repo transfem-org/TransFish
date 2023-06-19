@@ -28,7 +28,7 @@ import {
 import { db } from "@/db/postgre.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
 
-async function populatePoll(note: Note, meId: User["id"] | null) {
+export async function populatePoll(note: Note, meId: User["id"] | null) {
 	const poll = await Polls.findOneByOrFail({ noteId: note.id });
 	const choices = poll.choices.map((c) => ({
 		text: c,
@@ -235,6 +235,13 @@ export const NoteRepository = db.getRepository(Note).extend({
 			mentions: note.mentions.length > 0 ? note.mentions : undefined,
 			uri: note.uri || undefined,
 			url: note.url || undefined,
+			updatedAt: note.updatedAt?.toISOString() || undefined,
+			poll: note.hasPoll ? populatePoll(note, meId) : undefined,
+			...(meId
+				? {
+						myReaction: populateMyReaction(note, meId, options?._hint_),
+				  }
+				: {}),
 
 			...(opts.detail
 				? {
@@ -251,14 +258,6 @@ export const NoteRepository = db.getRepository(Note).extend({
 									_hint_: options?._hint_,
 							  })
 							: undefined,
-
-						poll: note.hasPoll ? populatePoll(note, meId) : undefined,
-
-						...(meId
-							? {
-									myReaction: populateMyReaction(note, meId, options?._hint_),
-							  }
-							: {}),
 				  }
 				: {}),
 		});

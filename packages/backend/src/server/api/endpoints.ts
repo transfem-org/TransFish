@@ -53,6 +53,7 @@ import * as ep___admin_resetPassword from "./endpoints/admin/reset-password.js";
 import * as ep___admin_resolveAbuseUserReport from "./endpoints/admin/resolve-abuse-user-report.js";
 import * as ep___admin_search_indexAll from "./endpoints/admin/search/index-all.js";
 import * as ep___admin_sendEmail from "./endpoints/admin/send-email.js";
+import * as ep___admin_sendModMail from "./endpoints/admin/send-mod-mail.js";
 import * as ep___admin_serverInfo from "./endpoints/admin/server-info.js";
 import * as ep___admin_showModerationLogs from "./endpoints/admin/show-moderation-logs.js";
 import * as ep___admin_showUser from "./endpoints/admin/show-user.js";
@@ -89,6 +90,7 @@ import * as ep___channels_featured from "./endpoints/channels/featured.js";
 import * as ep___channels_follow from "./endpoints/channels/follow.js";
 import * as ep___channels_followed from "./endpoints/channels/followed.js";
 import * as ep___channels_owned from "./endpoints/channels/owned.js";
+import * as ep___channels_search from "./endpoints/channels/search.js";
 import * as ep___channels_show from "./endpoints/channels/show.js";
 import * as ep___channels_timeline from "./endpoints/channels/timeline.js";
 import * as ep___channels_unfollow from "./endpoints/channels/unfollow.js";
@@ -172,6 +174,7 @@ import * as ep___i_2fa_keyDone from "./endpoints/i/2fa/key-done.js";
 import * as ep___i_2fa_passwordLess from "./endpoints/i/2fa/password-less.js";
 import * as ep___i_2fa_registerKey from "./endpoints/i/2fa/register-key.js";
 import * as ep___i_2fa_register from "./endpoints/i/2fa/register.js";
+import * as ep___i_2fa_updateKey from "./endpoints/i/2fa/update-key.js";
 import * as ep___i_2fa_removeKey from "./endpoints/i/2fa/remove-key.js";
 import * as ep___i_2fa_unregister from "./endpoints/i/2fa/unregister.js";
 import * as ep___i_apps from "./endpoints/i/apps.js";
@@ -241,6 +244,7 @@ import * as ep___notes_clips from "./endpoints/notes/clips.js";
 import * as ep___notes_conversation from "./endpoints/notes/conversation.js";
 import * as ep___notes_create from "./endpoints/notes/create.js";
 import * as ep___notes_delete from "./endpoints/notes/delete.js";
+import * as ep___notes_edit from "./endpoints/notes/edit.js";
 import * as ep___notes_favorites_create from "./endpoints/notes/favorites/create.js";
 import * as ep___notes_favorites_delete from "./endpoints/notes/favorites/delete.js";
 import * as ep___notes_featured from "./endpoints/notes/featured.js";
@@ -402,6 +406,7 @@ const eps = [
 	["admin/resolve-abuse-user-report", ep___admin_resolveAbuseUserReport],
 	["admin/search/index-all", ep___admin_search_indexAll],
 	["admin/send-email", ep___admin_sendEmail],
+	["admin/send-mod-mail", ep___admin_sendModMail],
 	["admin/server-info", ep___admin_serverInfo],
 	["admin/show-moderation-logs", ep___admin_showModerationLogs],
 	["admin/show-user", ep___admin_showUser],
@@ -438,6 +443,7 @@ const eps = [
 	["channels/follow", ep___channels_follow],
 	["channels/followed", ep___channels_followed],
 	["channels/owned", ep___channels_owned],
+	["channels/search", ep___channels_search],
 	["channels/show", ep___channels_show],
 	["channels/timeline", ep___channels_timeline],
 	["channels/unfollow", ep___channels_unfollow],
@@ -523,6 +529,7 @@ const eps = [
 	["i/2fa/password-less", ep___i_2fa_passwordLess],
 	["i/2fa/register-key", ep___i_2fa_registerKey],
 	["i/2fa/register", ep___i_2fa_register],
+	["i/2fa/update-key", ep___i_2fa_updateKey],
 	["i/2fa/remove-key", ep___i_2fa_removeKey],
 	["i/2fa/unregister", ep___i_2fa_unregister],
 	["i/apps", ep___i_apps],
@@ -588,6 +595,7 @@ const eps = [
 	["notes/conversation", ep___notes_conversation],
 	["notes/create", ep___notes_create],
 	["notes/delete", ep___notes_delete],
+	["notes/edit", ep___notes_edit],
 	["notes/favorites/create", ep___notes_favorites_create],
 	["notes/favorites/delete", ep___notes_favorites_delete],
 	["notes/featured", ep___notes_featured],

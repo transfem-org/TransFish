@@ -33,89 +33,33 @@ export async function sendEmail(
 	} as any);
 
 	try {
-		// TODO: htmlサニタイズ
 		const info = await transporter.sendMail({
 			from: meta.email!,
 			to: to,
 			subject: subject,
 			text: text,
-			html: `<!doctype html>
+			html: `<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>${subject}</title>
-		<style>
-			html {
-				background: #eee;
-			}
-
-			body {
-				padding: 16px;
-				margin: 0;
-				font-family: sans-serif;
-				font-size: 14px;
-			}
-
-			a {
-				text-decoration: none;
-				color: #31748f;
-			}
-			a:hover {
-				text-decoration: underline;
-			}
-
-			main {
-				max-width: 500px;
-				margin: 0 auto;
-				background: #e0def4;
-				color: #6e6a86;
-			}
-				main > header {
-					padding: 32px;
-					background: #31748f;
-				}
-					main > header > img {
-						max-width: 128px;
-						max-height: 28px;
-						vertical-align: bottom;
-					}
-				main > article {
-					padding: 32px;
-				}
-					main > article > h1 {
-						margin: 0 0 1em 0;
-					}
-				main > footer {
-					padding: 32px;
-					border-top: solid 1px #eee;
-				}
-
-			nav {
-				box-sizing: border-box;
-				max-width: 500px;
-				margin: 16px auto 0 auto;
-				padding: 0 32px;
-			}
-				nav > a {
-					color: #888;
-				}
-		</style>
 	</head>
-	<body>
-		<main>
-			<header>
-				<img src="${meta.logoImageUrl || meta.iconUrl || iconUrl}"/>
+	<body style="background: #191724; padding: 16px; margin: 0; font-family: sans-serif; font-size: 14px;">
+		<main style="max-width: 500px; margin: 0 auto; background: #1f1d2e; color: #e0def4; border-radius: 20px;">
+			<header style="padding: 32px; background: #31748f; color: #e0def4; display: flex; border-radius: 20px;">
+				<img src="${meta.logoImageUrl || meta.iconUrl || iconUrl}" style="max-width: 128px; max-height: 72px; vertical-align: bottom; margin-right: 16px;"/>
+				<h1 style="margin: 0 0 1em 0;">${meta.name}</h1>
 			</header>
-			<article>
-				<h1>${subject}</h1>
-				<div>${html}</div>
+			<article style="padding: 32px;">
+				<h1 style="color: #ebbcba !important;">${subject}</h1>
+				<div style="color: #e0def4;">${html}</div>
 			</article>
-			<footer>
-				<a href="${emailSettingUrl}">${"Email setting"}</a>
+			<footer style="padding: 32px; border-top: solid 1px #26233a;">
+				<a href="${emailSettingUrl}" style="color: #9ccfd8 !important;">${"Email Settings"}</a>
 			</footer>
 		</main>
-		<nav>
-			<a href="${config.url}">${config.host}</a>
+		<nav style="box-sizing: border-box; max-width: 500px; margin: 16px auto 0 auto; padding: 0 32px;">
+			<a href="${config.url}" style="color: #9ccfd8 !important;">${config.host}</a>
 		</nav>
 	</body>
 </html>`,

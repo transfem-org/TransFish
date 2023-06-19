@@ -1,7 +1,6 @@
 <template>
 	<MkA
 		class="rivslvers"
-		tabindex="-1"
 		:class="{
 			isMe: isMe(message),
 			isRead: message.groupId
@@ -27,6 +26,7 @@
 						: message.user
 				"
 				:show-indicator="true"
+				disableLink
 			/>
 			<header v-if="message.groupId">
 				<span class="name">{{ message.group.name }}</span>
@@ -102,12 +102,8 @@ function isMe(message): boolean {
 			opacity: 0.8;
 		}
 
-		&:not(.isMe):not(.isRead) {
-			> div {
-				background-image: url("/client-assets/unread.svg");
-				background-repeat: no-repeat;
-				background-position: 0 center;
-			}
+		&:not(.isRead) {
+			background-color: var(--accentedBg);
 		}
 
 		&:after {
@@ -179,13 +175,6 @@ function isMe(message): boolean {
 
 	&.max-width_400px {
 		> .message {
-			&:not(.isMe):not(.isRead) {
-				> div {
-					background-image: none;
-					border-left: solid 4px #3aa2dc;
-				}
-			}
-
 			> div {
 				padding: 16px;
 				font-size: 0.9em;

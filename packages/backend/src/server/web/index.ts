@@ -8,13 +8,15 @@ import { readFileSync } from "node:fs";
 import Koa from "koa";
 import Router from "@koa/router";
 import send from "koa-send";
+import favicon from "koa-favicon";
 import views from "koa-views";
 import sharp from "sharp";
 import { createBullBoard } from "@bull-board/api";
 import { BullAdapter } from "@bull-board/api/bullAdapter.js";
 import { KoaAdapter } from "@bull-board/koa";
+
 import { In, IsNull } from "typeorm";
-import { fetchMeta } from "@/misc/fetch-meta.js";
+import { fetchMeta, metaToPugArgs } from "@/misc/fetch-meta.js";
 import config from "@/config/index.js";
 import {
 	Users,
@@ -96,14 +98,8 @@ app.use(
 	}),
 );
 
-// Favicon Router
-app.use(async (ctx, next) => {
-	if (ctx.path != "/favicon.ico") return next();
-	const meta = await fetchMeta();
-	if (meta.iconUrl === "")
-		ctx.body = readFileSync(`${_dirname}/../../../assets/favicon.ico`);
-	else ctx.redirect(meta.iconUrl);
-});
+// Serve favicon
+app.use(favicon(`${_dirname}/../../../assets/favicon.ico`));
 
 // Common request handler
 app.use(async (ctx, next) => {
@@ -366,15 +362,12 @@ const userPage: Router.Middleware = async (ctx, next) => {
 		: [];
 
 	const userDetail = {
+		...metaToPugArgs(meta),
 		user,
 		profile,
 		me,
 		avatarUrl: await Users.getAvatarUrl(user),
 		sub: subParam,
-		instanceName: meta.name || "Calckey",
-		icon: meta.iconUrl,
-		themeColor: meta.themeColor,
-		privateMode: meta.privateMode,
 	};
 
 	await ctx.render("user", userDetail);
@@ -403,28 +396,34 @@ router.get("/notes/:note", async (ctx, next) => {
 		visibility: In(["public", "home"]),
 	});
 
-	if (note) {
-		const _note = await Notes.pack(note);
-		const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
-		const meta = await fetchMeta();
-		await ctx.render("note", {
-			note: _note,
-			profile,
-			avatarUrl: await Users.getAvatarUrl(
-				await Users.findOneByOrFail({ id: note.userId }),
-			),
-			// TODO: Let locale changeable by instance setting
-			summary: getNoteSummary(_note),
-			instanceName: meta.name || "Calckey",
-			icon: meta.iconUrl,
-			privateMode: meta.privateMode,
-			themeColor: meta.themeColor,
-		});
+	try {
+		if (note) {
+			const _note = await Notes.pack(note);
 
-		ctx.set("Cache-Control", "public, max-age=15");
+			const profile = await UserProfiles.findOneByOrFail({
+				userId: note.userId,
+			});
+			const meta = await fetchMeta();
+			await ctx.render("note", {
+				...metaToPugArgs(meta),
+				note: _note,
+				profile,
+				avatarUrl: await Users.getAvatarUrl(
+					await Users.findOneByOrFail({ id: note.userId }),
+				),
+				// TODO: Let locale changeable by instance setting
+				summary: getNoteSummary(_note),
+			});
 
-		return;
-	}
+			ctx.set("Cache-Control", "public, max-age=15");
+			ctx.set(
+				"Content-Security-Policy",
+				"default-src 'self' 'unsafe-inline'; img-src *; frame-ancestors *",
+			);
+
+			return;
+		}
+	} catch {}
 
 	await next();
 });
@@ -440,6 +439,7 @@ router.get("/posts/:note", async (ctx, next) => {
 		const profile = await UserProfiles.findOneByOrFail({ userId: note.userId });
 		const meta = await fetchMeta();
 		await ctx.render("note", {
+			...metaToPugArgs(meta),
 			note: _note,
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
@@ -447,10 +447,6 @@ router.get("/posts/:note", async (ctx, next) => {
 			),
 			// TODO: Let locale changeable by instance setting
 			summary: getNoteSummary(_note),
-			instanceName: meta.name || "Calckey",
-			icon: meta.iconUrl,
-			privateMode: meta.privateMode,
-			themeColor: meta.themeColor,
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -481,15 +477,12 @@ router.get("/@:user/pages/:page", async (ctx, next) => {
 		const profile = await UserProfiles.findOneByOrFail({ userId: page.userId });
 		const meta = await fetchMeta();
 		await ctx.render("page", {
+			...metaToPugArgs(meta),
 			page: _page,
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: page.userId }),
 			),
-			instanceName: meta.name || "Calckey",
-			icon: meta.iconUrl,
-			themeColor: meta.themeColor,
-			privateMode: meta.privateMode,
 		});
 
 		if (["public"].includes(page.visibility)) {
@@ -516,15 +509,12 @@ router.get("/clips/:clip", async (ctx, next) => {
 		const profile = await UserProfiles.findOneByOrFail({ userId: clip.userId });
 		const meta = await fetchMeta();
 		await ctx.render("clip", {
+			...metaToPugArgs(meta),
 			clip: _clip,
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: clip.userId }),
 			),
-			instanceName: meta.name || "Calckey",
-			privateMode: meta.privateMode,
-			icon: meta.iconUrl,
-			themeColor: meta.themeColor,
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -544,15 +534,12 @@ router.get("/gallery/:post", async (ctx, next) => {
 		const profile = await UserProfiles.findOneByOrFail({ userId: post.userId });
 		const meta = await fetchMeta();
 		await ctx.render("gallery-post", {
+			...metaToPugArgs(meta),
 			post: _post,
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: post.userId }),
 			),
-			instanceName: meta.name || "Calckey",
-			icon: meta.iconUrl,
-			themeColor: meta.themeColor,
-			privateMode: meta.privateMode,
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -573,11 +560,8 @@ router.get("/channels/:channel", async (ctx, next) => {
 		const _channel = await Channels.pack(channel);
 		const meta = await fetchMeta();
 		await ctx.render("channel", {
+			...metaToPugArgs(meta),
 			channel: _channel,
-			instanceName: meta.name || "Calckey",
-			icon: meta.iconUrl,
-			themeColor: meta.themeColor,
-			privateMode: meta.privateMode,
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -588,24 +572,6 @@ router.get("/channels/:channel", async (ctx, next) => {
 	await next();
 });
 //#endregion
-
-router.get("/_info_card_", async (ctx) => {
-	const meta = await fetchMeta(true);
-	if (meta.privateMode) {
-		ctx.status = 403;
-		return;
-	}
-
-	ctx.remove("X-Frame-Options");
-
-	await ctx.render("info-card", {
-		version: config.version,
-		host: config.host,
-		meta: meta,
-		originalUsersCount: await Users.countBy({ host: IsNull() }),
-		originalNotesCount: await Notes.countBy({ userHost: IsNull() }),
-	});
-});
 
 router.get("/bios", async (ctx) => {
 	await ctx.render("bios", {
@@ -646,27 +612,9 @@ router.get("/api/v1/streaming", async (ctx) => {
 // Render base html for all requests
 router.get("(.*)", async (ctx) => {
 	const meta = await fetchMeta();
-	let motd = ["Loading..."];
-	if (meta.customMOTD.length > 0) {
-		motd = meta.customMOTD;
-	}
-	let splashIconUrl = meta.iconUrl;
-	if (meta.customSplashIcons.length > 0) {
-		splashIconUrl =
-			meta.customSplashIcons[
-				Math.floor(Math.random() * meta.customSplashIcons.length)
-			];
-	}
+
 	await ctx.render("base", {
-		img: meta.bannerUrl,
-		title: meta.name || "Calckey",
-		instanceName: meta.name || "Calckey",
-		desc: meta.description,
-		icon: meta.iconUrl,
-		splashIcon: splashIconUrl,
-		themeColor: meta.themeColor,
-		randomMOTD: motd[Math.floor(Math.random() * motd.length)],
-		privateMode: meta.privateMode,
+		...metaToPugArgs(meta),
 	});
 	ctx.set("Cache-Control", "public, max-age=3");
 });

@@ -15,7 +15,7 @@ export default class extends Channel {
 
 	constructor(id: string, connection: Channel["connection"]) {
 		super(id, connection);
-		this.onNote = this.onNote.bind(this);
+		this.onNote = this.withPackedNote(this.onNote.bind(this));
 		this.emitTypers = this.emitTypers.bind(this);
 	}
 
@@ -29,6 +29,7 @@ export default class extends Channel {
 	}
 
 	private async onNote(note: Packed<"Note">) {
+		if (note.visibility === "hidden") return;
 		if (note.channelId !== this.channelId) return;
 
 		// 流れてきたNoteがミュートしているユーザーが関わるものだったら無視する
@@ -36,8 +37,7 @@ export default class extends Channel {
 		// 流れてきたNoteがブロックされているユーザーが関わるものだったら無視する
 		if (isUserRelated(note, this.blocking)) return;
 
-		if (note.renote && !note.text && isUserRelated(note, this.renoteMuting))
-			return;
+		if (note.renote && !note.text && this.renoteMuting.has(note.userId)) return;
 
 		this.connection.cacheNote(note);
 

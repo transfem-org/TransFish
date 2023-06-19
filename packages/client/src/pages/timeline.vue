@@ -33,6 +33,10 @@
 			</div> *v-else on next div* -->
 				<div class="tl _block">
 					<swiper
+						:round-lengths="true"
+						:touch-angle="25"
+						:threshold="10"
+						:centeredSlides="true"
 						:modules="[Virtual]"
 						:space-between="20"
 						:virtual="true"
@@ -51,6 +55,7 @@
 							:virtual-index="index"
 						>
 							<XTimeline
+								v-if="index == timelines[swiperRef.activeIndex]"
 								ref="tl"
 								:key="src"
 								class="tl"
@@ -99,30 +104,14 @@ const keymap = {
 	t: focus,
 };
 
-let timelines = [];
-
-if (
-	isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-) {
-	timelines.push("social");
-} else {
-	timelines.push("home");
-}
+let timelines = ["home"];
 
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
 }
-
-if (
-	isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-) {
-	timelines.push("home");
-} else if (isLocalTimelineAvailable) {
+if (isLocalTimelineAvailable) {
 	timelines.push("social");
 }
-
 if (isRecommendedTimelineAvailable) {
 	timelines.push("recommended");
 }
@@ -163,50 +152,54 @@ function top(): void {
 	scroll(rootEl, { top: 0 });
 }
 
-async function chooseList(ev: MouseEvent): Promise<void> {
-	const lists = await os.api("users/lists/list");
-	const items = [
-		{
-			type: "link" as const,
-			text: i18n.ts.manageLists,
-			icon: "ph-faders-horizontal ph-bold ph-lg",
-			to: "/my/lists",
-		},
-	].concat(
-		lists.map((list) => ({
-			type: "link" as const,
-			text: list.name,
-			icon: "",
-			to: `/timeline/list/${list.id}`,
-		}))
-	);
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
+const lists = os.api("users/lists/list");
+async function chooseList(ev: MouseEvent) {
+	await lists.then((res) => {
+		const items = [
+			{
+				type: "link" as const,
+				text: i18n.ts.manageLists,
+				icon: "ph-faders-horizontal ph-bold ph-lg",
+				to: "/my/lists",
+			},
+		].concat(
+			res.map((list) => ({
+				type: "link" as const,
+				text: list.name,
+				icon: "",
+				to: `/timeline/list/${list.id}`,
+			}))
+		);
+		os.popupMenu(items, ev.currentTarget ?? ev.target);
+	});
 }
 
-async function chooseAntenna(ev: MouseEvent): Promise<void> {
-	const antennas = await os.api("antennas/list");
-	const items = [
-		{
-			type: "link" as const,
-			indicate: false,
-			text: i18n.ts.manageAntennas,
-			icon: "ph-faders-horizontal ph-bold ph-lg",
-			to: "/my/antennas",
-		},
-	].concat(
-		antennas.map((antenna) => ({
-			type: "link" as const,
-			text: antenna.name,
-			icon: "",
-			indicate: antenna.hasUnreadNote,
-			to: `/timeline/antenna/${antenna.id}`,
-		}))
-	);
-	os.popupMenu(items, ev.currentTarget ?? ev.target);
+const antennas = os.api("antennas/list");
+async function chooseAntenna(ev: MouseEvent) {
+	await antennas.then((res) => {
+		const items = [
+			{
+				type: "link" as const,
+				indicate: false,
+				text: i18n.ts.manageAntennas,
+				icon: "ph-faders-horizontal ph-bold ph-lg",
+				to: "/my/antennas",
+			},
+		].concat(
+			res.map((antenna) => ({
+				type: "link" as const,
+				text: antenna.name,
+				icon: "",
+				indicate: antenna.hasUnreadNote,
+				to: `/timeline/antenna/${antenna.id}`,
+			}))
+		);
+		os.popupMenu(items, ev.currentTarget ?? ev.target);
+	});
 }
 
 function saveSrc(
-	newSrc: "home" | "local" | "recommended" | "social" | "global"
+	newSrc: "home" | "local" | "social" | "recommended" | "global"
 ): void {
 	defaultStore.set("tl", {
 		...defaultStore.state.tl,
@@ -249,27 +242,13 @@ const headerActions = $computed(() => [
 }*/,
 ]);
 
-// Swap home timeline with social's functionality
-
 const headerTabs = $computed(() => [
-	...(isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-		? [
-				{
-					key: "social",
-					title: i18n.ts._timelines.home,
-					icon: "ph-house ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: [
-				{
-					key: "home",
-					title: i18n.ts._timelines.home,
-					icon: "ph-house ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]),
+	{
+		key: "home",
+		title: i18n.ts._timelines.home,
+		icon: "ph-house ph-bold ph-lg",
+		iconOnly: true,
+	},
 	...(isLocalTimelineAvailable
 		? [
 				{
@@ -280,17 +259,7 @@ const headerTabs = $computed(() => [
 				},
 		  ]
 		: []),
-	...(isLocalTimelineAvailable &&
-	defaultStore.state.showLocalPostsInTimeline === "home"
-		? [
-				{
-					key: "home",
-					title: i18n.ts._timelines.social,
-					icon: "ph-handshake ph-bold ph-lg",
-					iconOnly: true,
-				},
-		  ]
-		: isLocalTimelineAvailable
+	...(isLocalTimelineAvailable
 		? [
 				{
 					key: "social",
@@ -328,18 +297,12 @@ definePageMetadata(
 		icon:
 			src === "local"
 				? "ph-users ph-bold ph-lg"
-				: src === "social" &&
-				  defaultStore.state.showLocalPostsInTimeline === "home"
-				? "ph-house ph-bold ph-lg"
 				: src === "social"
 				? "ph-handshake ph-bold ph-lg"
 				: src === "recommended"
 				? "ph-thumbs-up ph-bold ph-lg"
 				: src === "global"
 				? "ph-planet ph-bold ph-lg"
-				: src === "home" &&
-				  defaultStore.state.showLocalPostsInTimeline === "home"
-				? "ph-handshake ph-bold ph-lg"
 				: "ph-house ph-bold ph-lg",
 	}))
 );
@@ -360,9 +323,7 @@ function syncSlide(index) {
 }
 
 onMounted(() => {
-	syncSlide(
-		timelines.indexOf(defaultStore.state.tl?.src || swiperRef.activeIndex)
-	);
+	syncSlide(timelines.indexOf(swiperRef.activeIndex));
 });
 </script>
 
@@ -391,9 +352,8 @@ onMounted(() => {
 	}
 
 	> .tl {
-		background: var(--bg);
+		background: none;
 		border-radius: var(--radius);
-		overflow: clip;
 	}
 }
 </style>

@@ -42,11 +42,14 @@
 				/>
 				<div class="title">
 					<MkA class="name" :to="userPage(user)"
-						><MkUserName :user="user" :nowrap="false"
+						><MkUserName :user="user" :nowrap="true"
 					/></MkA>
 					<p class="username"><MkAcct :user="user" /></p>
 				</div>
-				<div class="description">
+				<div
+					class="description"
+					:class="{ collapsed: isLong && collapsed }"
+				>
 					<Mfm
 						v-if="user.description"
 						:text="user.description"
@@ -54,6 +57,35 @@
 						:i="$i"
 						:custom-emojis="user.emojis"
 					/>
+				</div>
+				<XShowMoreButton
+					v-if="isLong"
+					v-model="collapsed"
+				></XShowMoreButton>
+				<div v-if="user.fields.length > 0" class="fields">
+					<dl
+						v-for="(field, i) in user.fields"
+						:key="i"
+						class="field"
+					>
+						<dt class="name">
+							<Mfm
+								:text="field.name"
+								:plain="true"
+								:custom-emojis="user.emojis"
+								:colored="false"
+							/>
+						</dt>
+						<dd class="value">
+							<Mfm
+								:text="field.value"
+								:author="user"
+								:i="$i"
+								:custom-emojis="user.emojis"
+								:colored="false"
+							/>
+						</dd>
+					</dl>
 				</div>
 				<div class="status">
 					<div>
@@ -69,12 +101,13 @@
 						<span>{{ user.followersCount }}</span>
 					</div>
 				</div>
-				<MkFollowButton
-					v-if="$i && user.id != $i.id"
-					class="koudoku-button"
-					:user="user"
-					mini
-				/>
+				<div class="follow-button-container">
+					<MkFollowButton
+						v-if="$i && user.id != $i.id"
+						:user="user"
+						mini
+					/>
+				</div>
 			</div>
 			<div v-else>
 				<MkLoading />
@@ -89,6 +122,7 @@ import * as Acct from "calckey-js/built/acct";
 import type * as misskey from "calckey-js";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { userPage } from "@/filters/user";
+import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import * as os from "@/os";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
@@ -110,9 +144,15 @@ let user = $ref<misskey.entities.UserDetailed | null>(null);
 let top = $ref(0);
 let left = $ref(0);
 
+let isLong = $ref(false);
+let collapsed = $ref(!isLong);
+
 onMounted(() => {
 	if (typeof props.q === "object") {
 		user = props.q;
+		isLong =
+			user.description.split("\n").length > 9 ||
+			user.description.length > 400;
 	} else {
 		const query = props.q.startsWith("@")
 			? Acct.parse(props.q.substr(1))
@@ -121,6 +161,9 @@ onMounted(() => {
 		os.api("users/show", query).then((res) => {
 			if (!props.showing) return;
 			user = res;
+			isLong =
+				user.description.split("\n").length > 9 ||
+				user.description.length > 400;
 		});
 	}
 
@@ -168,6 +211,20 @@ onMounted(() => {
 				border-radius: 6px;
 			}
 
+			&::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				z-index: 2;
+				height: 84px;
+				background: linear-gradient(
+					-125deg,
+					rgba(0, 0, 0, 0.7),
+					transparent,
+					transparent
+				);
+			}
+
 			&::after {
 				content: "";
 				background-image: var(--blur, inherit);
@@ -184,7 +241,7 @@ onMounted(() => {
 		> .avatar {
 			display: block;
 			position: absolute;
-			top: 62px;
+			top: 70px;
 			left: 13px;
 			z-index: 2;
 			width: 58px;
@@ -219,6 +276,88 @@ onMounted(() => {
 			padding: 0 16px;
 			font-size: 0.8em;
 			color: var(--fg);
+			&.collapsed {
+				position: relative;
+				max-height: calc(9em + 50px);
+				mask: linear-gradient(black calc(100% - 64px), transparent);
+				-webkit-mask: linear-gradient(
+					black calc(100% - 64px),
+					transparent
+				);
+			}
+		}
+		:deep(.fade) {
+			position: relative;
+			display: block;
+			width: 100%;
+			margin-top: -2.5em;
+			z-index: 2;
+			> span {
+				display: inline-block;
+				background: var(--panel);
+				padding: 0.4em 1em;
+				font-size: 0.8em;
+				border-radius: 999px;
+				box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+			}
+			&:hover {
+				> span {
+					background: var(--panelHighlight);
+				}
+			}
+		}
+		:deep(.showLess) {
+			width: 100%;
+			margin-top: 1em;
+			position: sticky;
+			bottom: var(--stickyBottom);
+
+			> span {
+				display: inline-block;
+				background: var(--panel);
+				padding: 6px 10px;
+				font-size: 0.8em;
+				border-radius: 999px;
+				box-shadow: 0 0 7px 7px var(--bg);
+			}
+		}
+
+		> .fields {
+			padding: 0 16px;
+			font-size: 0.8em;
+			margin-top: 1em;
+
+			> .field {
+				display: flex;
+				padding: 0;
+				margin: 0;
+				align-items: center;
+
+				&:not(:last-child) {
+					margin-bottom: 8px;
+				}
+
+				:deep(span) {
+					white-space: nowrap !important;
+				}
+
+				> .name {
+					width: 30%;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					font-weight: bold;
+					text-align: center;
+				}
+
+				> .value {
+					width: 70%;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					margin: 0;
+				}
+			}
 		}
 
 		> .status {
@@ -237,14 +376,19 @@ onMounted(() => {
 				> span {
 					font-size: 1em;
 					color: var(--accent);
+					:deep(span) {
+						white-space: nowrap;
+					}
 				}
 			}
 		}
 
-		> .koudoku-button {
+		> .follow-button-container {
 			position: absolute;
 			top: 8px;
 			right: 8px;
+			z-index: 3;
+			color: white;
 		}
 	}
 }

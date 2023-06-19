@@ -111,7 +111,7 @@
 								/>
 							</div>
 						</div>
-						<MkAd :prefer="['horizontal', 'horizontal-big']" />
+						<MkAd :prefer="['inline', 'inline-big']" />
 						<MkContainer
 							:max-height="300"
 							:foldable="true"
@@ -203,7 +203,7 @@ function shareWithNote() {
 }
 
 function like() {
-	os.apiWithDialog("gallery/posts/like", {
+	os.api("gallery/posts/like", {
 		postId: props.postId,
 	}).then(() => {
 		post.isLiked = true;
@@ -266,6 +266,7 @@ definePageMetadata(
 				max-width: 100%;
 				max-height: 500px;
 				margin: 0 auto;
+				border-radius: 10px;
 			}
 
 			& + .file {

@@ -5,7 +5,7 @@
 			ref="container"
 			class="input"
 			:class="{ inline, disabled, focused }"
-			@click.prevent="onClick"
+			@mousedown.prevent="show"
 		>
 			<div ref="prefixEl" class="prefix"><slot name="prefix"></slot></div>
 			<select
@@ -24,7 +24,13 @@
 				<slot></slot>
 			</select>
 			<div ref="suffixEl" class="suffix">
-				<i class="ph-caret-down ph-bold ph-lg"></i>
+				<i
+					class="ph-caret-down ph-bold ph-lg"
+					:class="[
+						$style.chevron,
+						{ [$style.chevronOpening]: opening },
+					]"
+				></i>
 			</div>
 		</div>
 		<div class="caption"><slot name="caption"></slot></div>
@@ -39,7 +45,6 @@
 <script lang="ts" setup>
 import {
 	onMounted,
-	onUnmounted,
 	nextTick,
 	ref,
 	watch,
@@ -54,7 +59,7 @@ import { useInterval } from "@/scripts/use-interval";
 import { i18n } from "@/i18n";
 
 const props = defineProps<{
-	modelValue: string;
+	modelValue: string | null;
 	required?: boolean;
 	readonly?: boolean;
 	disabled?: boolean;
@@ -68,7 +73,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	(ev: "change", _ev: KeyboardEvent): void;
-	(ev: "update:modelValue", value: string): void;
+	(ev: "update:modelValue", value: string | null): void;
 }>();
 
 const slots = useSlots();
@@ -76,6 +81,7 @@ const slots = useSlots();
 const { modelValue, autofocus } = toRefs(props);
 const v = ref(modelValue.value);
 const focused = ref(false);
+const opening = ref(false);
 const changed = ref(false);
 const invalid = ref(false);
 const filled = computed(() => v.value !== "" && v.value != null);
@@ -83,7 +89,7 @@ const inputEl = ref(null);
 const prefixEl = ref(null);
 const suffixEl = ref(null);
 const container = ref(null);
-const height = props.small ? 36 : props.large ? 40 : 38;
+const height = props.small ? 33 : props.large ? 39 : 36;
 
 const focus = () => inputEl.value.focus();
 const onInput = (ev) => {
@@ -140,8 +146,9 @@ onMounted(() => {
 	});
 });
 
-const onClick = (ev: MouseEvent) => {
+function show(ev: MouseEvent) {
 	focused.value = true;
+	opening.value = true;
 
 	const menu = [];
 	let options = slots.default!();
@@ -149,7 +156,7 @@ const onClick = (ev: MouseEvent) => {
 	const pushOption = (option: VNode) => {
 		menu.push({
 			text: option.children,
-			active: v.value === option.props.value,
+			active: computed(() => v.value === option.props.value),
 			action: () => {
 				v.value = option.props.value;
 			},
@@ -183,10 +190,13 @@ const onClick = (ev: MouseEvent) => {
 
 	os.popupMenu(menu, container.value, {
 		width: container.value.offsetWidth,
+		onClosing: () => {
+			opening.value = false;
+		},
 	}).then(() => {
 		focused.value = false;
 	});
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -214,8 +224,6 @@ const onClick = (ev: MouseEvent) => {
 	> .input {
 		position: relative;
 		cursor: pointer;
-		margin-left: 0.2rem;
-		margin-right: 0.2rem;
 
 		&:hover {
 			> .select {
@@ -303,5 +311,15 @@ const onClick = (ev: MouseEvent) => {
 			}
 		}
 	}
+}
+</style>
+
+<style lang="scss" module>
+.chevron {
+	transition: transform 0.1s ease-out;
+}
+
+.chevronOpening {
+	transform: rotateX(180deg);
 }
 </style>

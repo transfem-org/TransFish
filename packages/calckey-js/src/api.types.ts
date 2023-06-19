@@ -43,6 +43,26 @@ type NoParams = Record<string, never>;
 
 type ShowUserReq = { username: string; host?: string } | { userId: User["id"] };
 
+type NoteSubmitReq = {
+	editId?: null | Note["id"];
+	visibility?: "public" | "home" | "followers" | "specified";
+	visibleUserIds?: User["id"][];
+	text?: null | string;
+	cw?: null | string;
+	viaMobile?: boolean;
+	localOnly?: boolean;
+	fileIds?: DriveFile["id"][];
+	replyId?: null | Note["id"];
+	renoteId?: null | Note["id"];
+	channelId?: null | Channel["id"];
+	poll?: null | {
+		choices: string[];
+		multiple?: boolean;
+		expiresAt?: null | number;
+		expiredAfter?: null | number;
+	};
+};
+
 export type Endpoints = {
 	// admin
 	"admin/abuse-user-reports": { req: TODO; res: TODO };
@@ -55,6 +75,7 @@ export type Endpoints = {
 	"admin/get-table-stats": { req: TODO; res: TODO };
 	"admin/invite": { req: TODO; res: TODO };
 	"admin/logs": { req: TODO; res: TODO };
+	"admin/meta": { req: TODO; res: TODO };
 	"admin/reset-password": { req: TODO; res: TODO };
 	"admin/resolve-abuse-user-report": { req: TODO; res: TODO };
 	"admin/resync-chart": { req: TODO; res: TODO };
@@ -686,6 +707,7 @@ export type Endpoints = {
 			carefulBot?: boolean;
 			autoAcceptFollowed?: boolean;
 			noCrawle?: boolean;
+			preventAiLearning?: boolean;
 			isBot?: boolean;
 			isCat?: boolean;
 			injectFeaturedNote?: boolean;
@@ -703,6 +725,7 @@ export type Endpoints = {
 	"i/2fa/password-less": { req: TODO; res: TODO };
 	"i/2fa/register-key": { req: TODO; res: TODO };
 	"i/2fa/register": { req: TODO; res: TODO };
+	"i/2fa/update-key": { req: TODO; res: TODO };
 	"i/2fa/remove-key": { req: TODO; res: TODO };
 	"i/2fa/unregister": { req: TODO; res: TODO };
 
@@ -789,27 +812,14 @@ export type Endpoints = {
 	"notes/clips": { req: TODO; res: TODO };
 	"notes/conversation": { req: TODO; res: TODO };
 	"notes/create": {
-		req: {
-			visibility?: "public" | "home" | "followers" | "specified";
-			visibleUserIds?: User["id"][];
-			text?: null | string;
-			cw?: null | string;
-			viaMobile?: boolean;
-			localOnly?: boolean;
-			fileIds?: DriveFile["id"][];
-			replyId?: null | Note["id"];
-			renoteId?: null | Note["id"];
-			channelId?: null | Channel["id"];
-			poll?: null | {
-				choices: string[];
-				multiple?: boolean;
-				expiresAt?: null | number;
-				expiredAfter?: null | number;
-			};
-		};
+		req: NoteSubmitReq;
 		res: { createdNote: Note };
 	};
 	"notes/delete": { req: { noteId: Note["id"] }; res: null };
+	"notes/edit": {
+		req: NoteSubmitReq;
+		res: { createdNote: Note };
+	};
 	"notes/favorites/create": { req: { noteId: Note["id"] }; res: null };
 	"notes/favorites/delete": { req: { noteId: Note["id"] }; res: null };
 	"notes/featured": { req: TODO; res: Note[] };

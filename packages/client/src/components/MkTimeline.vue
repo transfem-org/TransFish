@@ -1,4 +1,14 @@
 <template>
+	<MkInfo
+		v-if="tlHint && !tlHintClosed"
+		:closeable="true"
+		class="_gap"
+		@close="closeHint"
+	>
+		<I18n :src="tlHint">
+			<template #icon></template>
+		</I18n>
+	</MkInfo>
 	<XNotes
 		ref="tlComponent"
 		:no-gap="!$store.state.showGapBetweenNotesInTimeline"
@@ -10,10 +20,13 @@
 <script lang="ts" setup>
 import { ref, computed, provide, onUnmounted } from "vue";
 import XNotes from "@/components/MkNotes.vue";
+import MkInfo from "@/components/MkInfo.vue";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
 import { $i } from "@/account";
+import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	src: string;
@@ -64,6 +77,9 @@ let query;
 let connection;
 let connection2;
 
+let tlHint;
+let tlHintClosed;
+
 if (props.src === "antenna") {
 	endpoint = "antennas/notes";
 	query = {
@@ -75,28 +91,68 @@ if (props.src === "antenna") {
 	connection.on("note", prepend);
 } else if (props.src === "home") {
 	endpoint = "notes/timeline";
-	connection = stream.useChannel("homeTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("homeTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	connection2 = stream.useChannel("main");
 	connection2.on("follow", onChangeFollowing);
 	connection2.on("unfollow", onChangeFollowing);
+
+	tlHint = i18n.ts._tutorial.step5_3;
+	tlHintClosed = defaultStore.state.tlHomeHintClosed;
 } else if (props.src === "local") {
 	endpoint = "notes/local-timeline";
-	connection = stream.useChannel("localTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("localTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
+
+	tlHint = i18n.ts._tutorial.step5_4;
+	tlHintClosed = defaultStore.state.tlLocalHintClosed;
 } else if (props.src === "recommended") {
 	endpoint = "notes/recommended-timeline";
-	connection = stream.useChannel("recommendedTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("recommendedTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
+
+	tlHint = i18n.ts._tutorial.step5_6;
+	tlHintClosed = defaultStore.state.tlRecommendedHintClosed;
 } else if (props.src === "social") {
 	endpoint = "notes/hybrid-timeline";
-	connection = stream.useChannel("hybridTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("hybridTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
+
+	tlHint = i18n.ts._tutorial.step5_5;
+	tlHintClosed = defaultStore.state.tlSocialHintClosed;
 } else if (props.src === "global") {
 	endpoint = "notes/global-timeline";
-	connection = stream.useChannel("globalTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("globalTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
+
+	tlHint = i18n.ts._tutorial.step5_7;
+	tlHintClosed = defaultStore.state.tlGlobalHintClosed;
 } else if (props.src === "mentions") {
 	endpoint = "notes/mentions";
 	connection = stream.useChannel("main");
@@ -133,6 +189,26 @@ if (props.src === "antenna") {
 		channelId: props.channel,
 	});
 	connection.on("note", prepend);
+}
+
+function closeHint() {
+	switch (props.src) {
+		case "home":
+			defaultStore.set("tlHomeHintClosed", true);
+			break;
+		case "local":
+			defaultStore.set("tlLocalHintClosed", true);
+			break;
+		case "recommended":
+			defaultStore.set("tlRecommendedHintClosed", true);
+			break;
+		case "social":
+			defaultStore.set("tlSocialHintClosed", true);
+			break;
+		case "global":
+			defaultStore.set("tlGlobalHintClosed", true);
+			break;
+	}
 }
 
 const pagination = {

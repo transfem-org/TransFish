@@ -1,6 +1,5 @@
 import { defineAsyncComponent, Ref, inject } from "vue";
 import * as misskey from "calckey-js";
-import { pleaseLogin } from "./please-login";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
@@ -9,10 +8,11 @@ import copyToClipboard from "@/scripts/copy-to-clipboard";
 import { url } from "@/config";
 import { noteActions } from "@/store";
 import { shareAvailable } from "@/scripts/share-available";
+import { getUserMenu } from "@/scripts/get-user-menu";
 
 export function getNoteMenu(props: {
 	note: misskey.entities.Note;
-	menuButton: Ref<HTMLElement>;
+	menuButton: Ref<HTMLElement | undefined>;
 	translation: Ref<any>;
 	translating: Ref<boolean>;
 	isDeleted: Ref<boolean>;
@@ -61,6 +61,16 @@ export function getNoteMenu(props: {
 		});
 	}
 
+	function edit(): void {
+		os.post({
+			initialNote: appearNote,
+			renote: appearNote.renote,
+			reply: appearNote.reply,
+			channel: appearNote.channel,
+			editId: appearNote.id,
+		});
+	}
+
 	function toggleFavorite(favorite: boolean): void {
 		os.apiWithDialog(
 			favorite ? "notes/favorites/create" : "notes/favorites/delete",
@@ -105,16 +115,14 @@ export function getNoteMenu(props: {
 				noteId: appearNote.id,
 			},
 			undefined,
-			null,
-			(res) => {
-				if (res.id === "72dab508-c64d-498f-8740-a8eec1ba385a") {
-					os.alert({
-						type: "error",
-						text: i18n.ts.pinLimitExceeded,
-					});
-				}
-			},
-		);
+		).catch((res) => {
+			if (res.id === "72dab508-c64d-498f-8740-a8eec1ba385a") {
+				os.alert({
+					type: "error",
+					text: i18n.ts.pinLimitExceeded,
+				});
+			}
+		});
 	}
 
 	async function clip(): Promise<void> {
@@ -223,19 +231,6 @@ export function getNoteMenu(props: {
 		});
 	}
 
-	function showReactions(): void {
-		os.popup(
-			defineAsyncComponent(
-				() => import("@/components/MkReactedUsersDialog.vue"),
-			),
-			{
-				noteId: appearNote.id,
-			},
-			{},
-			"closed",
-		);
-	}
-
 	async function translate(): Promise<void> {
 		if (props.translation.value != null) return;
 		props.translating.value = true;
@@ -253,6 +248,9 @@ export function getNoteMenu(props: {
 			noteId: appearNote.id,
 		});
 
+		const isAppearAuthor = appearNote.userId === $i.id;
+		const isModerator = $i.isAdmin || $i.isModerator;
+
 		menu = [
 			...(props.currentClipPage?.value.userId === $i.id
 				? [
@@ -265,11 +263,6 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
-			{
-				icon: "ph-smiley ph-bold ph-lg",
-				text: i18n.ts.reaction,
-				action: showReactions,
-			},
 			{
 				icon: "ph-clipboard-text ph-bold ph-lg",
 				text: i18n.ts.copyContent,
@@ -322,7 +315,7 @@ export function getNoteMenu(props: {
 				text: i18n.ts.clip,
 				action: () => clip(),
 			},
-			appearNote.userId !== $i.id
+			!isAppearAuthor
 				? statePromise.then((state) =>
 						state.isWatching
 							? {
@@ -350,7 +343,7 @@ export function getNoteMenu(props: {
 							action: () => toggleThreadMute(true),
 					  },
 			),
-			appearNote.userId === $i.id
+			isAppearAuthor
 				? ($i.pinnedNoteIds || []).includes(appearNote.id)
 					? {
 							icon: "ph-push-pin ph-bold ph-lg",
@@ -373,50 +366,61 @@ export function getNoteMenu(props: {
 			}]
 			: []
 		),*/
-			...(appearNote.userId !== $i.id
-				? [
-						null,
-						{
-							icon: "ph-warning-circle ph-bold ph-lg",
-							text: i18n.ts.reportAbuse,
-							action: () => {
-								const u =
-									appearNote.url ||
-									appearNote.uri ||
-									`${url}/notes/${appearNote.id}`;
-								os.popup(
-									defineAsyncComponent(
-										() => import("@/components/MkAbuseReportWindow.vue"),
-									),
-									{
-										user: appearNote.user,
-										initialComment: `Note: ${u}\n-----\n`,
-									},
-									{},
-									"closed",
-								);
-							},
+			null,
+			!isAppearAuthor
+				? {
+						icon: "ph-warning-circle ph-bold ph-lg",
+						text: i18n.ts.reportAbuse,
+						action: () => {
+							const u =
+								appearNote.url ||
+								appearNote.uri ||
+								`${url}/notes/${appearNote.id}`;
+							os.popup(
+								defineAsyncComponent(
+									() => import("@/components/MkAbuseReportWindow.vue"),
+								),
+								{
+									user: appearNote.user,
+									initialComment: `Note: ${u}\n-----\n`,
+								},
+								{},
+								"closed",
+							);
 						},
-				  ]
-				: []),
-			...(appearNote.userId === $i.id || $i.isModerator || $i.isAdmin
-				? [
-						null,
-						appearNote.userId === $i.id
-							? {
-									icon: "ph-eraser ph-bold ph-lg",
-									text: i18n.ts.deleteAndEdit,
-									action: delEdit,
-							  }
-							: undefined,
-						{
-							icon: "ph-trash ph-bold ph-lg",
-							text: i18n.ts.delete,
-							danger: true,
-							action: del,
-						},
-				  ]
-				: []),
+					}
+				: undefined,
+			instance.features.postEditing && isAppearAuthor
+				? {
+						icon: "ph-pencil-line ph-bold ph-lg",
+						text: i18n.ts.edit,
+						accent: true,
+						action: edit,
+				  }
+				: undefined,
+			isAppearAuthor
+				? {
+						icon: "ph-eraser ph-bold ph-lg",
+						text: i18n.ts.deleteAndEdit,
+						action: delEdit,
+				  }
+				: undefined,
+			isAppearAuthor || isModerator
+				? {
+						icon: "ph-trash ph-bold ph-lg",
+						text: i18n.ts.delete,
+						danger: true,
+						action: del,
+				  }
+				: undefined,
+			!isAppearAuthor ? null : undefined,
+			!isAppearAuthor
+				? {
+					type: "parent",
+					icon: "ph-user ph-bold ph-lg",
+					text: i18n.ts.user,
+					children: getUserMenu(appearNote.user)
+				} : undefined,
 		].filter((x) => x !== undefined);
 	} else {
 		menu = [

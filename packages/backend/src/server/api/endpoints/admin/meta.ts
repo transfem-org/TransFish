@@ -2,6 +2,7 @@ import config from "@/config/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { MAX_NOTE_TEXT_LENGTH, MAX_CAPTION_TEXT_LENGTH } from "@/const.js";
 import define from "../../define.js";
+import { Exp } from "@tensorflow/tfjs";
 
 export const meta = {
 	tags: ["meta"],
@@ -63,7 +64,7 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "/assets/ai.png",
+				default: "/static-assets/badges/info.png",
 			},
 			bannerUrl: {
 				type: "string",
@@ -74,7 +75,7 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://xn--931a.moe/aiart/yubitun.png",
+				default: "/static-assets/badges/error.png",
 			},
 			iconUrl: {
 				type: "string",
@@ -250,6 +251,16 @@ export const meta = {
 				},
 			},
 			blockedHosts: {
+				type: "array",
+				optional: true,
+				nullable: false,
+				items: {
+					type: "string",
+					optional: false,
+					nullable: false,
+				},
+			},
+			silencedHosts: {
 				type: "array",
 				optional: true,
 				nullable: false,
@@ -460,6 +471,19 @@ export const meta = {
 				optional: false,
 				nullable: false,
 			},
+			experimentalFeatures: {
+				type: "object",
+				optional: true,
+				nullable: true,
+				properties: {
+					postEditing: {
+						type: "boolean",
+					},
+					postImports: {
+						type: "boolean",
+					},
+				},
+			},
 		},
 	},
 } as const;
@@ -512,7 +536,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableGithubIntegration: instance.enableGithubIntegration,
 		enableDiscordIntegration: instance.enableDiscordIntegration,
 		enableServiceWorker: instance.enableServiceWorker,
-		translatorAvailable: instance.deeplAuthKey != null,
+		translatorAvailable:
+			instance.deeplAuthKey != null || instance.libreTranslateApiUrl != null,
 		pinnedPages: instance.pinnedPages,
 		pinnedClipId: instance.pinnedClipId,
 		cacheRemoteFiles: instance.cacheRemoteFiles,
@@ -523,6 +548,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		customSplashIcons: instance.customSplashIcons,
 		hiddenTags: instance.hiddenTags,
 		blockedHosts: instance.blockedHosts,
+		silencedHosts: instance.silencedHosts,
 		allowedHosts: instance.allowedHosts,
 		privateMode: instance.privateMode,
 		secureMode: instance.secureMode,
@@ -564,7 +590,10 @@ export default define(meta, paramDef, async (ps, me) => {
 		objectStorageS3ForcePathStyle: instance.objectStorageS3ForcePathStyle,
 		deeplAuthKey: instance.deeplAuthKey,
 		deeplIsPro: instance.deeplIsPro,
+		libreTranslateApiUrl: instance.libreTranslateApiUrl,
+		libreTranslateApiKey: instance.libreTranslateApiKey,
 		enableIpLogging: instance.enableIpLogging,
 		enableActiveEmailValidation: instance.enableActiveEmailValidation,
+		experimentalFeatures: instance.experimentalFeatures,
 	};
 });

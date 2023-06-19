@@ -5,6 +5,7 @@
 		<template v-else-if="mode === 'detail'"
 			>{{ absolute }} ({{ relative }})</template
 		>
+		<slot></slot>
 	</time>
 </template>
 

@@ -43,7 +43,7 @@
 					</div>
 					<div class="_formBlock" style="text-align: center">
 						{{ i18n.ts._aboutMisskey.about }}<br /><a
-							href="https://codeberg.org/calckey/calckey"
+							href="https://calckey.org/"
 							target="_blank"
 							class="_link"
 							>{{ i18n.ts.learnMore }}</a
@@ -67,7 +67,7 @@
 								<template #suffix>Codeberg</template>
 							</FormLink>
 							<FormLink
-								to="https://liberapay.com/ThatOneCalculator"
+								to="https://opencollective.com/calckey"
 								external
 							>
 								<template #icon
@@ -97,16 +97,16 @@
 								><Mfm
 									:text="'$[sparkle @kainoa@calckey.social] (Main developer)'"
 							/></FormLink>
-							<FormLink to="/@cleo@bz.pawdev.me"
-								><Mfm :text="'@cleo@bz.pawdev.me (Maintainer)'"
+							<FormLink to="/@april@calckey.social"
+								><Mfm :text="'@april@calckey.social (Backend)'"
 							/></FormLink>
-							<FormLink to="/@panos@i.calckey.cloud"
+							<FormLink to="/@freeplay@calckey.social"
 								><Mfm
-									:text="'@panos@i.calckey.cloud (Management)'"
+									:text="'@freeplay@calckey.social (UI/UX)'"
 							/></FormLink>
-							<FormLink to="/@freeplay@bz.pawdev.me"
+							<FormLink to="/@panos@calckey.social"
 								><Mfm
-									:text="'@freeplay@bz.pawdev.me (UI/UX Designer)'"
+									:text="'@panos@calckey.social (Project Coordinator)'"
 							/></FormLink>
 							<FormLink
 								to="https://www.youtube.com/c/Henkiwashere"
@@ -129,13 +129,16 @@
 							{{ i18n.ts._aboutMisskey.patrons }}</template
 						>
 						<MkSparkle>
-							<div
+							<span
 								v-for="patron in patrons"
 								:key="patron"
-								style="margin-bottom: 0.5rem"
+								style="
+									margin-bottom: 0.5rem;
+									margin-right: 0.5rem;
+								"
 							>
 								<Mfm :text="`${patron}`" />
-							</div>
+							</span>
 						</MkSparkle>
 						<template #caption>{{
 							i18n.ts._aboutMisskey.morePatrons

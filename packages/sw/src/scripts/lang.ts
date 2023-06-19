@@ -1,7 +1,7 @@
 /*
  * Language manager for SW
  */
-declare var self: ServiceWorkerGlobalScope;
+declare let self: ServiceWorkerGlobalScope;
 
 import { get, set } from "idb-keyval";
 import { I18n } from "@/scripts/i18n";
@@ -23,7 +23,7 @@ class SwLang {
 	public i18n: Promise<I18n<any>> | null = null;
 
 	public fetchLocale() {
-		return (this.i18n = this._fetch());
+		return this.i18n === this._fetch();
 	}
 
 	private async _fetch() {

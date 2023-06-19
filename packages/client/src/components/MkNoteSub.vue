@@ -1,16 +1,24 @@
 <template>
-	<div
+	<article
+		v-if="!muted.muted || muted.what === 'reply'"
 		ref="el"
 		v-size="{ max: [450, 500] }"
 		class="wrpstxzv"
+		:id="detailedView ? appearNote.id : null"
+		tabindex="-1"
 		:class="{
 			children: depth > 1,
 			singleStart: replies.length == 1,
 			firstColumn: depth == 1 && conversation,
 		}"
+		@contextmenu.stop="onContextmenu"
 	>
 		<div v-if="conversation && depth > 1" class="line"></div>
-		<div class="main" @click="noteClick">
+		<div
+			class="main"
+			@click="noteClick"
+			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
+		>
 			<div class="avatar-container">
 				<MkAvatar class="avatar" :user="appearNote.user" />
 				<div
@@ -21,51 +29,14 @@
 			<div class="body">
 				<XNoteHeader class="header" :note="note" :mini="true" />
 				<div class="body">
-					<p v-if="appearNote.cw != null" class="cw">
-						<MkA
-							v-if="appearNote.replyId"
-							:to="`/notes/${appearNote.replyId}`"
-							class="reply-icon"
-							@click.stop
-						>
-							<i class="ph-arrow-bend-left-up ph-bold ph-lg"></i>
-						</MkA>
-						<MkA
-							v-if="
-								conversation &&
-								appearNote.renoteId &&
-								appearNote.renoteId != parentId &&
-								!appearNote.replyId
-							"
-							:to="`/notes/${appearNote.renoteId}`"
-							class="reply-icon"
-							@click.stop
-						>
-							<i class="ph-quotes ph-bold ph-lg"></i>
-						</MkA>
-						<Mfm
-							v-if="appearNote.cw != ''"
-							class="text"
-							:text="appearNote.cw"
-							:author="appearNote.user"
-							:i="$i"
-							:custom-emojis="appearNote.emojis"
-						/>
-						<br />
-						<XCwButton v-model="showContent" :note="note" />
-					</p>
-					<div
-						v-show="appearNote.cw == null || showContent"
-						class="content"
-					>
-						<MkSubNoteContent
-							class="text"
-							:note="note"
-							:detailed="true"
-							:parentId="appearNote.parentId"
-							:conversation="conversation"
-						/>
-					</div>
+					<MkSubNoteContent
+						class="text"
+						:note="note"
+						:parentId="parentId"
+						:conversation="conversation"
+						:detailedView="detailedView"
+						@focusfooter="footerEl.focus()"
+					/>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
 						<div v-else class="translated">
@@ -85,8 +56,9 @@
 						</div>
 					</div>
 				</div>
-				<footer class="footer" @click.stop>
+				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
 					<XReactionsViewer
+						v-if="enableEmojiReactions"
 						ref="reactionsViewer"
 						:note="appearNote"
 					/>
@@ -106,14 +78,32 @@
 						:note="appearNote"
 						:count="appearNote.renoteCount"
 					/>
+					<XStarButtonNoEmoji
+						v-if="!enableEmojiReactions"
+						class="button"
+						:note="appearNote"
+						:count="
+							Object.values(appearNote.reactions).reduce(
+								(partialSum, val) => partialSum + val,
+								0
+							)
+						"
+						:reacted="appearNote.myReaction != null"
+					/>
 					<XStarButton
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="starButton"
 						class="button"
 						:note="appearNote"
 					/>
 					<button
-						v-if="appearNote.myReaction == null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction == null
+						"
 						ref="reactButton"
 						v-tooltip.noDelay.bottom="i18n.ts.reaction"
 						class="button _button"
@@ -122,10 +112,14 @@
 						<i class="ph-smiley ph-bold ph-lg"></i>
 					</button>
 					<button
-						v-if="appearNote.myReaction != null"
+						v-if="
+							enableEmojiReactions &&
+							appearNote.myReaction != null
+						"
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -142,32 +136,19 @@
 			</div>
 		</div>
 		<template v-if="conversation">
-			<template v-if="replyLevel < 11 && depth < 5">
-				<template v-if="replies.length == 1">
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply single"
-						:conversation="conversation"
-						:depth="depth"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-				<template v-else>
-					<MkNoteSub
-						v-for="reply in replies"
-						:key="reply.id"
-						:note="reply"
-						class="reply"
-						:conversation="conversation"
-						:depth="depth + 1"
-						:replyLevel="replyLevel + 1"
-						:parentId="appearNote.replyId"
-					/>
-				</template>
-			</template>
+			<MkNoteSub
+				v-if="replyLevel < 11 && depth < 5"
+				v-for="reply in replies"
+				:key="reply.id"
+				:note="reply"
+				class="reply"
+				:class="{ single: replies.length == 1 }"
+				:conversation="conversation"
+				:depth="replies.length == 1 ? depth : depth + 1"
+				:replyLevel="replyLevel + 1"
+				:parentId="appearNote.id"
+				:detailedView="detailedView"
+			/>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
 				<MkA class="text _link" :to="notePage(note)"
@@ -176,6 +157,22 @@
 				></MkA>
 			</div>
 		</template>
+	</article>
+	<div v-else class="muted" @click="muted.muted = false">
+		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
+			<template #name>
+				<MkA
+					v-user-preview="note.userId"
+					class="name"
+					:to="userPage(note.user)"
+				>
+					<MkUserName :user="note.user" />
+				</MkA>
+			</template>
+			<template #reason>
+				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
+			</template>
+		</I18n>
 	</div>
 </template>
 
@@ -187,18 +184,24 @@ import XNoteHeader from "@/components/MkNoteHeader.vue";
 import MkSubNoteContent from "@/components/MkSubNoteContent.vue";
 import XReactionsViewer from "@/components/MkReactionsViewer.vue";
 import XStarButton from "@/components/MkStarButton.vue";
+import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
-import XCwButton from "@/components/MkCwButton.vue";
+import copyToClipboard from "@/scripts/copy-to-clipboard";
+import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
 import { getNoteMenu } from "@/scripts/get-note-menu";
+import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { notePage } from "@/filters/note";
 import { useRouter } from "@/router";
+import { userPage } from "@/filters/user";
 import * as os from "@/os";
 import { reactionPicker } from "@/scripts/reaction-picker";
+import { $i } from "@/account";
 import { i18n } from "@/i18n";
-import { deepClone } from "@/scripts/clone";
 import { useNoteCapture } from "@/scripts/use-note-capture";
+import { defaultStore } from "@/store";
+import { deepClone } from "@/scripts/clone";
 
 const router = useRouter();
 
@@ -207,6 +210,7 @@ const props = withDefaults(
 		note: misskey.entities.Note;
 		conversation?: misskey.entities.Note[];
 		parentId?;
+		detailedView?;
 
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
@@ -221,6 +225,16 @@ const props = withDefaults(
 
 let note = $ref(deepClone(props.note));
 
+const softMuteReasonI18nSrc = (what?: string) => {
+	if (what === "note") return i18n.ts.userSaysSomethingReason;
+	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
+	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
+	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
+
+	// I don't think here is reachable, but just in case
+	return i18n.ts.userSaysSomething;
+};
+
 const isRenote =
 	note.renote != null &&
 	note.text == null &&
@@ -228,6 +242,7 @@ const isRenote =
 	note.poll == null;
 
 const el = ref<HTMLElement>();
+const footerEl = ref<HTMLElement>();
 const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
@@ -236,9 +251,9 @@ let appearNote = $computed(() =>
 	isRenote ? (note.renote as misskey.entities.Note) : note
 );
 const isDeleted = ref(false);
+const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
 const translation = ref(null);
 const translating = ref(false);
-let showContent = $ref(false);
 const replies: misskey.entities.Note[] =
 	props.conversation
 		?.filter(
@@ -247,23 +262,23 @@ const replies: misskey.entities.Note[] =
 				item.renoteId === props.note.id
 		)
 		.reverse() ?? [];
+const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
+const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
 
 useNoteCapture({
 	rootEl: el,
 	note: $$(appearNote),
+	isDeletedRef: isDeleted,
 });
 
 function reply(viaKeyboard = false): void {
 	pleaseLogin();
-	os.post(
-		{
-			reply: appearNote,
-			animation: !viaKeyboard,
-		},
-		() => {
-			focus();
-		}
-	);
+	os.post({
+		reply: appearNote,
+		animation: !viaKeyboard,
+	}).then(() => {
+		focus();
+	});
 }
 
 function react(viaKeyboard = false): void {
@@ -313,6 +328,72 @@ function menu(viaKeyboard = false): void {
 	).then(focus);
 }
 
+function onContextmenu(ev: MouseEvent): void {
+	const isLink = (el: HTMLElement) => {
+		if (el.tagName === "A") return true;
+		if (el.parentElement) {
+			return isLink(el.parentElement);
+		}
+	};
+	if (isLink(ev.target)) return;
+	if (window.getSelection().toString() !== "") return;
+
+	if (defaultStore.state.useReactionPickerForContextMenu) {
+		ev.preventDefault();
+		react();
+	} else {
+		os.contextMenu(
+			[
+				{
+					type: "label",
+					text: notePage(appearNote),
+				},
+				{
+					icon: "ph-browser ph-bold ph-lg",
+					text: i18n.ts.openInWindow,
+					action: () => {
+						os.pageWindow(notePage(appearNote));
+					},
+				},
+				notePage(appearNote) != location.pathname
+					? {
+							icon: "ph-arrows-out-simple ph-bold ph-lg",
+							text: i18n.ts.showInPage,
+							action: () => {
+								router.push(notePage(appearNote), "forcePage");
+							},
+					  }
+					: undefined,
+				null,
+				{
+					type: "a",
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.openInNewTab,
+					href: notePage(appearNote),
+					target: "_blank",
+				},
+				{
+					icon: "ph-link-simple ph-bold ph-lg",
+					text: i18n.ts.copyLink,
+					action: () => {
+						copyToClipboard(`${url}${notePage(appearNote)}`);
+					},
+				},
+				note.user.host != null
+					? {
+							type: "a",
+							icon: "ph-arrow-square-up-right ph-bold ph-lg",
+							text: i18n.ts.showOnRemote,
+							href: note.url ?? note.uri ?? "",
+							target: "_blank",
+					  }
+					: undefined,
+			],
+			ev
+		);
+	}
+}
+
 function focus() {
 	el.value.focus();
 }
@@ -322,7 +403,7 @@ function blur() {
 }
 
 function noteClick(e) {
-	if (document.getSelection().type === "Range") {
+	if (document.getSelection().type === "Range" || !expandOnNoteClick) {
 		e.stopPropagation();
 	} else {
 		router.push(notePage(props.note));
@@ -333,13 +414,14 @@ function noteClick(e) {
 <style lang="scss" scoped>
 .wrpstxzv {
 	padding: 16px 32px;
+	outline: none;
 	&.children {
 		padding: 10px 0 0 var(--indent);
 		padding-left: var(--indent) !important;
 		font-size: 1em;
 		cursor: auto;
 
-		&.max-width_450px {
+		&.max-width_500px {
 			padding: 10px 0 0 8px;
 		}
 	}
@@ -349,6 +431,7 @@ function noteClick(e) {
 
 		> .avatar-container {
 			margin-right: 8px;
+			z-index: 2;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
@@ -359,9 +442,9 @@ function noteClick(e) {
 		}
 
 		> .body {
+			position: relative;
 			flex: 1;
 			min-width: 0;
-			cursor: pointer;
 			margin: 0 -200px;
 			padding: 0 200px;
 			overflow: clip;
@@ -375,35 +458,6 @@ function noteClick(e) {
 			}
 
 			> .body {
-				.reply-icon {
-					display: inline-block;
-					border-radius: 6px;
-					padding: 0.2em 0.2em;
-					margin-right: 0.2em;
-					color: var(--accent);
-					transition: background 0.2s;
-					&:hover,
-					&:focus {
-						background: var(--buttonHoverBg);
-					}
-				}
-				> .cw {
-					cursor: default;
-					display: block;
-					margin: 0;
-					padding: 0;
-					overflow-wrap: break-word;
-
-					> .text {
-						margin-right: 8px;
-					}
-				}
-				> .content {
-					> .text {
-						margin: 0;
-						padding: 0;
-					}
-				}
 				> .translation {
 					border: solid 0.5px var(--divider);
 					border-radius: var(--radius);
@@ -418,7 +472,8 @@ function noteClick(e) {
 				flex-wrap: wrap;
 				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 
-				> .button {
+				> :deep(.button) {
+					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
@@ -427,12 +482,34 @@ function noteClick(e) {
 					width: max-content;
 					min-width: max-content;
 					pointer-events: all;
+					height: auto;
 					transition: opacity 0.2s;
+					&::before {
+						content: "";
+						position: absolute;
+						inset: 0;
+						bottom: 2px;
+						background: var(--panel);
+						z-index: -1;
+						transition: background 0.2s;
+					}
 					&:first-of-type {
 						margin-left: -0.5em;
+						&::before {
+							border-radius: 100px 0 0 100px;
+						}
+					}
+					&:last-of-type {
+						&::before {
+							border-radius: 0 100px 100px 0;
+						}
 					}
 					&:hover {
 						color: var(--fgHighlighted);
+					}
+
+					> i {
+						display: inline !important;
 					}
 
 					> .count {
@@ -448,9 +525,33 @@ function noteClick(e) {
 			}
 		}
 	}
-	&:first-child > .main > .body {
-		margin-top: -200px;
-		padding-top: 200px;
+
+	&.reply > .main {
+		margin-inline: -200px;
+		padding-inline: 200px;
+		&::before {
+			inset-inline: 176px !important;
+		}
+	}
+	&.reply,
+	&.reply-to {
+		> .main > .body {
+			margin-right: -24px;
+			padding-right: 24px;
+			margin-top: -12px;
+			padding-top: 12px;
+			margin-left: calc(0px - var(--avatarSize) - 32px);
+			padding-left: calc(var(--avatarSize) + 32px);
+			border-radius: var(--radius);
+		}
+	}
+	&.reply-to {
+		> .main > .body {
+			margin-left: calc(0px - var(--avatarSize) - 38px);
+			padding-left: calc(var(--avatarSize) + 38px);
+			margin-top: -16px;
+			padding-top: 16px;
+		}
 	}
 	&.reply {
 		--avatarSize: 38px;
@@ -474,6 +575,8 @@ function noteClick(e) {
 		padding-block: 10px;
 		font-weight: 600;
 		> .line {
+			position: relative;
+			z-index: 2;
 			flex-grow: 0 !important;
 			margin-top: -10px !important;
 			margin-bottom: 10px !important;
@@ -543,14 +646,17 @@ function noteClick(e) {
 		}
 		.line {
 			position: relative;
+			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
 			flex-grow: 1;
 			margin-bottom: -10px;
+			pointer-events: none;
+			opacity: 0.25;
 			&::before {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				inset-block: 0;
@@ -585,13 +691,15 @@ function noteClick(e) {
 		position: relative;
 		> .line {
 			position: absolute;
+			z-index: 2;
 			left: 0;
 			top: 0;
+			opacity: 0.25;
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--X13);
-				border-bottom: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
+				border-bottom: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				height: calc((var(--avatarSize) / 2));
@@ -628,6 +736,7 @@ function noteClick(e) {
 	}
 
 	&.max-width_500px {
+		padding: 14px 16px;
 		:not(.reply) > & {
 			.reply {
 				--avatarSize: 24px;
@@ -645,11 +754,8 @@ function noteClick(e) {
 				padding-left: 28px !important;
 			}
 		}
-	}
-	&.max-width_450px {
-		padding: 14px 16px;
-		&.reply-to,
-		&.reply-to-more {
+		&.reply-to {
+			--avatarSize: 46px;
 			padding: 14px 16px;
 			padding-top: 14px !important;
 			padding-bottom: 0 !important;
@@ -658,6 +764,16 @@ function noteClick(e) {
 		> .main > .avatar-container {
 			margin-right: 10px;
 		}
+		&:first-child > .main > .body {
+			margin-top: -20px;
+			padding-top: 22px;
+		}
 	}
+}
+
+.muted {
+	padding: 8px;
+	text-align: center;
+	opacity: 0.7;
 }
 </style>

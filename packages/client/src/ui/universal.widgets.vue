@@ -1,5 +1,5 @@
 <template>
-	<div class="efzpzdvf">
+	<aside class="widgets" :aria-label="i18n.ts._deck._columns.widgets">
 		<MkAd class="a" :prefer="['widget']" />
 		<XWidgets
 			:edit="editMode"
@@ -26,7 +26,7 @@
 		>
 			<i class="ph-pencil ph-bold ph-lg"></i> {{ i18n.ts.editWidgets }}
 		</button>
-	</div>
+	</aside>
 </template>
 
 <script lang="ts" setup>
@@ -83,8 +83,7 @@ function updateWidgets(widgets) {
 </script>
 
 <style lang="scss" scoped>
-.efzpzdvf {
-	position: sticky;
+.widgets {
 	height: min-content;
 	min-height: 100vh;
 	padding: var(--margin) 0;

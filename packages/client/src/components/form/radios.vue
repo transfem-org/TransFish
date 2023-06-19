@@ -31,7 +31,7 @@ export default defineComponent({
 			options = options[0].children;
 
 		return h(
-			"div",
+			"fieldset",
 			{
 				class: "novjtcto",
 			},
@@ -39,7 +39,7 @@ export default defineComponent({
 				...(label
 					? [
 							h(
-								"div",
+								"legend",
 								{
 									class: "label",
 								},
@@ -57,7 +57,8 @@ export default defineComponent({
 							MkRadio,
 							{
 								key: option.key,
-								value: option.props.value,
+								value: option.props?.value,
+								disabled: option.props?.disabled,
 								modelValue: this.value,
 								"onUpdate:modelValue": (value) =>
 									(this.value = value),
@@ -85,6 +86,8 @@ export default defineComponent({
 
 <style lang="scss">
 .novjtcto {
+	border: 0;
+	padding: 0;
 	> .label {
 		font-size: 0.85em;
 		padding: 0 0 8px 0;

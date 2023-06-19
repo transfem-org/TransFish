@@ -18,6 +18,21 @@
 				<div class="info">
 					<MkA class="created-at" :to="notePage(note)">
 						<MkTime :time="note.createdAt" />
+						<i
+							v-if="note.updatedAt"
+							v-tooltip.noDelay="
+								i18n.t('edited', {
+									date: new Date(
+										note.updatedAt
+									).toLocaleDateString(),
+									time: new Date(
+										note.updatedAt
+									).toLocaleTimeString(),
+								})
+							"
+							class="ph-pencil ph-bold"
+							style="margin-left: 0.4rem"
+						></i>
 					</MkA>
 					<MkVisibility :note="note" />
 				</div>
@@ -39,14 +54,14 @@ import MkVisibility from "@/components/MkVisibility.vue";
 import MkInstanceTicker from "@/components/MkInstanceTicker.vue";
 import { notePage } from "@/filters/note";
 import { userPage } from "@/filters/user";
-import { deepClone } from "@/scripts/clone";
+import { i18n } from "@/i18n";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 }>();
 
-let note = $ref(deepClone(props.note));
+let note = $ref(props.note);
 
 const showTicker =
 	defaultStore.state.instanceTicker === "always" ||

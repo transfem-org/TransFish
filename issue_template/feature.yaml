@@ -40,26 +40,6 @@ body:
       placeholder: stop.voring.me
     validations:
       required: false
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browser are you using?
-      multiple: false
-      options:
-        - Firefox
-        - Chrome
-        - Brave
-        - Librewolf
-        - Chromium
-        - Safari
-        - Microsoft Edge
-        - Other (Please Specify)
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. You can find your log by inspecting the page, and going to the "console" tab. This will be automatically formatted into code, so no need for backticks.
-      render: shell
   - type: checkboxes
     id: terms
     attributes:
@@ -67,4 +47,6 @@ body:
       description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
       options:
         - label: I agree to follow this project's Contribution Guidelines
+          required: true
+        - label: I have searched the issue tracker for similar requests, and this is not a duplicate.
           required: true

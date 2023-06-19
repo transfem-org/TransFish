@@ -1,6 +1,6 @@
 <template>
-	<div class="rrevdjwu" :class="{ grid }">
-		<div v-for="group in def" class="group">
+	<nav class="rrevdjwu" :class="{ grid }">
+		<section v-for="group in def" class="group">
 			<div v-if="group.title" class="title">{{ group.title }}</div>
 
 			<div class="items">
@@ -9,7 +9,6 @@
 						v-if="item.type === 'a'"
 						:href="item.href"
 						:target="item.target"
-						:tabindex="i"
 						class="_button item"
 						:class="{ danger: item.danger, active: item.active }"
 					>
@@ -22,7 +21,6 @@
 					</a>
 					<button
 						v-else-if="item.type === 'button'"
-						:tabindex="i"
 						class="_button item"
 						:class="{ danger: item.danger, active: item.active }"
 						:disabled="item.active"
@@ -38,7 +36,6 @@
 					<MkA
 						v-else
 						:to="item.to"
-						:tabindex="i"
 						class="_button item"
 						:class="{ danger: item.danger, active: item.active }"
 					>
@@ -51,8 +48,8 @@
 					</MkA>
 				</template>
 			</div>
-		</div>
-	</div>
+		</section>
+	</nav>
 </template>
 
 <script lang="ts">
@@ -84,7 +81,7 @@ export default defineComponent({
 
 		> .title {
 			opacity: 0.7;
-			margin: 0 0 8px 0;
+			margin: 0 12px 8px;
 			font-size: 0.9em;
 		}
 
@@ -99,7 +96,8 @@ export default defineComponent({
 				font-size: 0.9em;
 				margin-bottom: 0.3rem;
 
-				&:hover {
+				&:hover,
+				&:focus-visible {
 					text-decoration: none;
 					background: var(--panelHighlight);
 				}

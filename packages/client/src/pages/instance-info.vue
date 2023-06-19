@@ -13,6 +13,10 @@
 			:margin-max="32"
 		>
 			<swiper
+				:round-lengths="true"
+				:touch-angle="25"
+				:threshold="10"
+				:centeredSlides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -81,7 +85,7 @@
 							}}</template>
 						</MkKeyValue>
 
-						<FormSection v-if="iAmModerator">
+						<FormSection v-if="iAmAdmin">
 							<template #label>Moderation</template>
 							<FormSuspense :p="init">
 								<FormSwitch
@@ -97,6 +101,14 @@
 									class="_formBlock"
 									@update:modelValue="toggleBlock"
 									>{{ i18n.ts.blockThisInstance }}</FormSwitch
+								>
+								<FormSwitch
+									v-model="isSilenced"
+									class="_formBlock"
+									@update:modelValue="toggleSilence"
+									>{{
+										i18n.ts.silenceThisInstance
+									}}</FormSwitch
 								>
 							</FormSuspense>
 							<MkButton @click="refreshMetadata"
@@ -329,7 +341,7 @@
 import { watch } from "vue";
 import { Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import type * as misskey from "calckey-js";
+import type * as calckey from "calckey-js";
 import MkChart from "@/components/MkChart.vue";
 import MkObjectView from "@/components/MkObjectView.vue";
 import FormLink from "@/components/form/link.vue";
@@ -341,7 +353,7 @@ import MkSelect from "@/components/form/select.vue";
 import FormSwitch from "@/components/form/switch.vue";
 import * as os from "@/os";
 import number from "@/filters/number";
-import { iAmModerator } from "@/account";
+import { iAmAdmin } from "@/account";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
 import { defaultStore } from "@/store";
@@ -352,11 +364,13 @@ import "swiper/scss";
 import "swiper/scss/virtual";
 import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
 
-type AugmentedInstanceMetadata = misskey.entities.DetailedInstanceMetadata & {
+type AugmentedInstanceMetadata = calckey.entities.DetailedInstanceMetadata & {
 	blockedHosts: string[];
+	silencedHosts: string[];
 };
-type AugmentedInstance = misskey.entities.Instance & {
+type AugmentedInstance = calckey.entities.Instance & {
 	isBlocked: boolean;
+	isSilenced: boolean;
 };
 
 const props = defineProps<{
@@ -364,7 +378,7 @@ const props = defineProps<{
 }>();
 
 let tabs = ["overview"];
-if (iAmModerator) tabs.push("chart", "users", "raw");
+if (iAmAdmin) tabs.push("chart", "users", "raw");
 let tab = $ref(tabs[0]);
 watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 
@@ -373,10 +387,11 @@ let meta = $ref<AugmentedInstanceMetadata | null>(null);
 let instance = $ref<AugmentedInstance | null>(null);
 let suspended = $ref(false);
 let isBlocked = $ref(false);
+let isSilenced = $ref(false);
 let faviconUrl = $ref(null);
 
 const usersPagination = {
-	endpoint: iAmModerator ? "admin/show-users" : ("users" as const),
+	endpoint: iAmAdmin ? "admin/show-users" : ("users" as const),
 	limit: 10,
 	params: {
 		sort: "+updatedAt",
@@ -386,16 +401,15 @@ const usersPagination = {
 	offsetMode: true,
 };
 
-async function init() {
-	meta = await os.api("admin/meta");
-}
-
 async function fetch() {
+	if (iAmAdmin)
+		meta = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
 	instance = (await os.api("federation/show-instance", {
 		host: props.host,
 	})) as AugmentedInstance;
 	suspended = instance.isSuspended;
 	isBlocked = instance.isBlocked;
+	isSilenced = instance.isSilenced;
 	faviconUrl =
 		getProxiedImageUrlNullable(instance.faviconUrl, "preview") ??
 		getProxiedImageUrlNullable(instance.iconUrl, "preview");
@@ -414,6 +428,22 @@ async function toggleBlock() {
 	}
 	await os.api("admin/update-meta", {
 		blockedHosts,
+	});
+}
+
+async function toggleSilence() {
+	if (meta == null) return;
+	if (!instance) {
+		throw new Error(`Instance info not loaded`);
+	}
+	let silencedHosts: string[];
+	if (isSilenced) {
+		silencedHosts = meta.silencedHosts.concat([instance.host]);
+	} else {
+		silencedHosts = meta.silencedHosts.filter((x) => x !== instance!.host);
+	}
+	await os.api("admin/update-meta", {
+		silencedHosts,
 	});
 }
 
@@ -453,7 +483,7 @@ let theTabs = [
 	},
 ];
 
-if (iAmModerator) {
+if (iAmAdmin) {
 	theTabs.push(
 		{
 			key: "chart",

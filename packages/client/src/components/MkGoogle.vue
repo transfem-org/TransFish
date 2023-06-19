@@ -1,5 +1,5 @@
 <template>
-	<div class="mk-google">
+	<div class="mk-google" @click.stop>
 		<input v-model="query" type="search" :placeholder="q" />
 		<button @click="search">
 			<i class="ph-magnifying-glass ph-bold ph-lg"></i>
@@ -39,7 +39,8 @@ const search = () => {
 		font-size: 16px;
 		border: solid 1px var(--divider);
 		border-radius: 4px 0 0 4px;
-		-webkit-appearance: textfield;
+		-webkit-appearance: none;
+		-webkit-border-radius: 4px 0 0 4px;
 	}
 
 	> button {

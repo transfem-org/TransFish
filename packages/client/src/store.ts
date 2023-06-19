@@ -26,6 +26,26 @@ export const defaultStore = markRaw(
 			where: "account",
 			default: 0,
 		},
+		tlHomeHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlLocalHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlRecommendedHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlSocialHintClosed: {
+			where: "device",
+			default: false,
+		},
+		tlGlobalHintClosed: {
+			where: "device",
+			default: false,
+		},
 		keepCw: {
 			where: "account",
 			default: true,
@@ -134,15 +154,15 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: null as null | "smartphone" | "tablet" | "desktop",
 		},
-		showLocalPostsInTimeline: {
-			where: "device",
-			default: "home" as "home" | "social",
-		},
 		serverDisconnectedBehavior: {
 			where: "device",
 			default: "nothing" as "nothing" | "quiet" | "reload" | "dialog",
 		},
 		seperateRenoteQuote: {
+			where: "device",
+			default: true,
+		},
+		expandOnNoteClick: {
 			where: "device",
 			default: true,
 		},
@@ -154,9 +174,17 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
+		advancedMfm: {
+			where: "device",
+			default: true,
+		},
 		animatedMfm: {
 			where: "device",
 			default: true,
+		},
+		animatedMfmWarnShown: {
+			where: "device",
+			default: false,
 		},
 		loadRawImages: {
 			where: "device",
@@ -294,6 +322,18 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: false,
 		},
+		enableEmojiReactions: {
+			where: "account",
+			default: true,
+		},
+		showEmojisInReactionNotifications: {
+			where: "account",
+			default: true,
+		},
+		showTimelineReplies: {
+			where: "device",
+			default: true,
+		}
 	}),
 );
 

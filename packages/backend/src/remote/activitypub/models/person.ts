@@ -191,7 +191,7 @@ export async function createPerson(
 		.map((tag) => normalizeForSearch(tag))
 		.splice(0, 32);
 
-	const isBot = getApType(object) === "Service";
+	const isBot = getApType(object) !== "Person";
 
 	const bday = person["vcard:bday"]?.match(/^\d{4}-\d{2}-\d{2}/);
 
@@ -279,7 +279,6 @@ export async function createPerson(
 					tags,
 					isBot,
 					isCat: (person as any).isCat === true,
-					showTimelineReplies: false,
 				}),
 			)) as IRemoteUser;
 
@@ -502,7 +501,7 @@ export async function updatePerson(
 		emojis: emojiNames,
 		name: truncate(person.name, nameLength),
 		tags,
-		isBot: getApType(object) === "Service",
+		isBot: getApType(object) !== "Person",
 		isCat: (person as any).isCat === true,
 		isLocked: !!person.manuallyApprovesFollowers,
 		movedToUri: person.movedTo || null,

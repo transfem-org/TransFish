@@ -11,6 +11,7 @@ import MkToast from "@/components/MkToast.vue";
 import MkDialog from "@/components/MkDialog.vue";
 import { MenuItem } from "@/types/menu";
 import { $i } from "@/account";
+import { i18n } from "./i18n";
 
 export const pendingApiRequestsCount = ref(0);
 
@@ -21,7 +22,7 @@ const apiClient = new Misskey.api.APIClient({
 export const api = ((
 	endpoint: string,
 	data: Record<string, any> = {},
-	token?: string | null | undefined,
+	token?: string | null | undefined
 ) => {
 	pendingApiRequestsCount.value++;
 
@@ -35,13 +36,16 @@ export const api = ((
 		: undefined;
 
 	const promise = new Promise((resolve, reject) => {
-		fetch(endpoint.indexOf("://") > -1 ? endpoint : `${apiUrl}/${endpoint}`, {
-			method: "POST",
-			body: JSON.stringify(data),
-			credentials: "omit",
-			cache: "no-cache",
-			headers: authorization ? { authorization } : {},
-		})
+		fetch(
+			endpoint.indexOf("://") > -1 ? endpoint : `${apiUrl}/${endpoint}`,
+			{
+				method: "POST",
+				body: JSON.stringify(data),
+				credentials: "omit",
+				cache: "no-cache",
+				headers: authorization ? { authorization } : {},
+			}
+		)
 			.then(async (res) => {
 				const body = res.status === 204 ? null : await res.json();
 
@@ -64,7 +68,7 @@ export const api = ((
 export const apiGet = ((
 	endpoint: string,
 	data: Record<string, any> = {},
-	token?: string | null | undefined,
+	token?: string | null | undefined
 ) => {
 	pendingApiRequestsCount.value++;
 
@@ -109,7 +113,7 @@ export const apiGet = ((
 export const apiWithDialog = ((
 	endpoint: string,
 	data: Record<string, any> = {},
-	token?: string | null | undefined,
+	token?: string | null | undefined
 ) => {
 	const promise = api(endpoint, data, token);
 	promiseDialog(promise, null, (err) => {
@@ -126,7 +130,7 @@ export function promiseDialog<T extends Promise<any>>(
 	promise: T,
 	onSuccess?: ((res: any) => void) | null,
 	onFailure?: ((err: Error) => void) | null,
-	text?: string,
+	text?: string
 ): T {
 	const showing = ref(true);
 	const success = ref(false);
@@ -164,7 +168,7 @@ export function promiseDialog<T extends Promise<any>>(
 			text: text,
 		},
 		{},
-		"closed",
+		"closed"
 	);
 
 	return promise;
@@ -185,17 +189,22 @@ const zIndexes = {
 	high: 3000000,
 };
 export function claimZIndex(
-	priority: "low" | "middle" | "high" = "low",
+	priority: "low" | "middle" | "high" = "low"
 ): number {
 	zIndexes[priority] += 100;
 	return zIndexes[priority];
+}
+
+let uniqueId = 0;
+export function getUniqueId(): string {
+	return uniqueId++ + "";
 }
 
 export async function popup(
 	component: Component,
 	props: Record<string, any>,
 	events = {},
-	disposeEvent?: string,
+	disposeEvent?: string
 ) {
 	markRaw(component);
 
@@ -227,23 +236,31 @@ export async function popup(
 
 export function pageWindow(path: string) {
 	popup(
-		defineAsyncComponent(() => import("@/components/MkPageWindow.vue")),
+		defineAsyncComponent({
+			loader: () => import("@/components/MkPageWindow.vue"),
+			loadingComponent: MkWaitingDialog,
+			delay: 1000,
+		}),
 		{
 			initialPath: path,
 		},
 		{},
-		"closed",
+		"closed"
 	);
 }
 
 export function modalPageWindow(path: string) {
 	popup(
-		defineAsyncComponent(() => import("@/components/MkModalPageWindow.vue")),
+		defineAsyncComponent({
+			loader: () => import("@/components/MkModalPageWindow.vue"),
+			loadingComponent: MkWaitingDialog,
+			delay: 1000,
+		}),
 		{
 			initialPath: path,
 		},
 		{},
-		"closed",
+		"closed"
 	);
 }
 
@@ -254,7 +271,7 @@ export function toast(message: string) {
 			message,
 		},
 		{},
-		"closed",
+		"closed"
 	);
 }
 
@@ -264,6 +281,9 @@ export function alert(props: {
 	text?: string | null;
 }): Promise<void> {
 	return new Promise((resolve, reject) => {
+		if (props.text == null && props.type === "error") {
+			props.text = i18n.ts.somethingHappened;
+		}
 		popup(
 			MkDialog,
 			props,
@@ -272,7 +292,7 @@ export function alert(props: {
 					resolve();
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -296,7 +316,7 @@ export function confirm(props: {
 					resolve(result ? result : { canceled: true });
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -308,7 +328,11 @@ export function yesno(props: {
 }): Promise<{ canceled: boolean }> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				...props,
 				showCancelButton: true,
@@ -319,17 +343,20 @@ export function yesno(props: {
 					resolve(result ? result : { canceled: true });
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
 
 export function inputText(props: {
-	type?: "text" | "email" | "password" | "url";
+	type?: "text" | "email" | "password" | "url" | "search";
 	title?: string | null;
 	text?: string | null;
 	placeholder?: string | null;
+	autocomplete?: string;
 	default?: string | null;
+	minLength?: number;
+	maxLength?: number;
 }): Promise<
 	| { canceled: true; result: undefined }
 	| {
@@ -339,14 +366,17 @@ export function inputText(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			MkDialog,
 			{
 				title: props.title,
 				text: props.text,
 				input: {
 					type: props.type,
 					placeholder: props.placeholder,
+					autocomplete: props.autocomplete,
 					default: props.default,
+					minLength: props.minLength,
+					maxLength: props.maxLength,
 				},
 			},
 			{
@@ -354,7 +384,7 @@ export function inputText(props: {
 					resolve(result ? result : { canceled: true });
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -373,7 +403,11 @@ export function inputParagraph(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
@@ -388,7 +422,7 @@ export function inputParagraph(props: {
 					resolve(result ? result : { canceled: true });
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -398,6 +432,7 @@ export function inputNumber(props: {
 	text?: string | null;
 	placeholder?: string | null;
 	default?: number | null;
+	autocomplete?: string;
 }): Promise<
 	| { canceled: true; result: undefined }
 	| {
@@ -407,13 +442,18 @@ export function inputNumber(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				title: props.title,
 				text: props.text,
 				input: {
 					type: "number",
 					placeholder: props.placeholder,
+					autocomplete: props.autocomplete,
 					default: props.default,
 				},
 			},
@@ -422,7 +462,7 @@ export function inputNumber(props: {
 					resolve(result ? result : { canceled: true });
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -441,7 +481,7 @@ export function inputDate(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			MkDialog,
 			{
 				title: props.title,
 				text: props.text,
@@ -455,12 +495,15 @@ export function inputDate(props: {
 				done: (result) => {
 					resolve(
 						result
-							? { result: new Date(result.result), canceled: false }
-							: { canceled: true },
+							? {
+									result: new Date(result.result),
+									canceled: false,
+							  }
+							: { canceled: true }
 					);
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -486,7 +529,7 @@ export function select<C = any>(
 					}[];
 				}[];
 		  }
-	),
+	)
 ): Promise<
 	| { canceled: true; result: undefined }
 	| {
@@ -496,7 +539,7 @@ export function select<C = any>(
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkDialog.vue")),
+			MkDialog,
 			{
 				title: props.title,
 				text: props.text,
@@ -511,19 +554,19 @@ export function select<C = any>(
 					resolve(result ? result : { canceled: true });
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
 
-export function success() {
+export function success(): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const showing = ref(true);
 		window.setTimeout(() => {
 			showing.value = false;
 		}, 1000);
 		popup(
-			defineAsyncComponent(() => import("@/components/MkWaitingDialog.vue")),
+			MkWaitingDialog,
 			{
 				success: true,
 				showing: showing,
@@ -531,16 +574,16 @@ export function success() {
 			{
 				done: () => resolve(),
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
 
-export function waiting() {
+export function waiting(): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const showing = ref(true);
 		popup(
-			defineAsyncComponent(() => import("@/components/MkWaitingDialog.vue")),
+			MkWaitingDialog,
 			{
 				success: false,
 				showing: showing,
@@ -548,7 +591,7 @@ export function waiting() {
 			{
 				done: () => resolve(),
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -556,14 +599,18 @@ export function waiting() {
 export function form(title, form) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkFormDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkFormDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{ title, form },
 			{
 				done: (result) => {
 					resolve(result);
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -571,14 +618,18 @@ export function form(title, form) {
 export async function selectUser() {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkUserSelectDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkUserSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{},
 			{
 				ok: (user) => {
 					resolve(user);
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -586,16 +637,18 @@ export async function selectUser() {
 export async function selectInstance(): Promise<Misskey.entities.Instance> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkInstanceSelectDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkInstanceSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{},
 			{
 				ok: (instance) => {
 					resolve(instance);
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -603,9 +656,11 @@ export async function selectInstance(): Promise<Misskey.entities.Instance> {
 export async function selectDriveFile(multiple: boolean) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkDriveSelectDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDriveSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				type: "file",
 				multiple,
@@ -617,7 +672,7 @@ export async function selectDriveFile(multiple: boolean) {
 					}
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -625,9 +680,11 @@ export async function selectDriveFile(multiple: boolean) {
 export async function selectDriveFolder(multiple: boolean) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkDriveSelectDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkDriveSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				type: "folder",
 				multiple,
@@ -639,7 +696,7 @@ export async function selectDriveFolder(multiple: boolean) {
 					}
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -647,9 +704,11 @@ export async function selectDriveFolder(multiple: boolean) {
 export async function pickEmoji(src: HTMLElement | null, opts) {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(
-				() => import("@/components/MkEmojiPickerDialog.vue"),
-			),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkEmojiPickerDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				src,
 				...opts,
@@ -659,7 +718,7 @@ export async function pickEmoji(src: HTMLElement | null, opts) {
 					resolve(emoji);
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -668,11 +727,15 @@ export async function cropImage(
 	image: Misskey.entities.DriveFile,
 	options: {
 		aspectRatio: number;
-	},
+	}
 ): Promise<Misskey.entities.DriveFile> {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent(() => import("@/components/MkCropperDialog.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkCropperDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				file: image,
 				aspectRatio: options.aspectRatio,
@@ -682,7 +745,7 @@ export async function cropImage(
 					resolve(x);
 				},
 			},
-			"closed",
+			"closed"
 		);
 	});
 }
@@ -697,7 +760,7 @@ let activeTextarea: HTMLTextAreaElement | HTMLInputElement | null = null;
 export async function openEmojiPicker(
 	src?: HTMLElement,
 	opts,
-	initialTextarea: typeof activeTextarea,
+	initialTextarea: typeof activeTextarea
 ) {
 	if (openingEmojiPicker) return;
 
@@ -713,13 +776,14 @@ export async function openEmojiPicker(
 	const observer = new MutationObserver((records) => {
 		for (const record of records) {
 			for (const node of Array.from(record.addedNodes).filter(
-				(node) => node instanceof HTMLElement,
+				(node) => node instanceof HTMLElement
 			) as HTMLElement[]) {
 				const textareas = node.querySelectorAll("textarea, input");
 				for (const textarea of Array.from(textareas).filter(
-					(textarea) => textarea.dataset.preventEmojiInsert == null,
+					(textarea) => textarea.dataset.preventEmojiInsert == null
 				)) {
-					if (document.activeElement === textarea) activeTextarea = textarea;
+					if (document.activeElement === textarea)
+						activeTextarea = textarea;
 					textarea.addEventListener("focus", () => {
 						activeTextarea = textarea;
 					});
@@ -736,7 +800,11 @@ export async function openEmojiPicker(
 	});
 
 	openingEmojiPicker = await popup(
-		defineAsyncComponent(() => import("@/components/MkEmojiPickerDialog.vue")),
+		defineAsyncComponent({
+			loader: () => import("@/components/MkEmojiPickerDialog.vue"),
+			loadingComponent: MkWaitingDialog,
+			delay: 1000,
+		}),
 		{
 			src,
 			...opts,
@@ -753,7 +821,7 @@ export async function openEmojiPicker(
 				openingEmojiPicker = null;
 				observer.disconnect();
 			},
-		},
+		}
 	);
 }
 
@@ -764,25 +832,31 @@ export function popupMenu(
 		align?: string;
 		width?: number;
 		viaKeyboard?: boolean;
-	},
+		noReturnFocus?: boolean;
+	}
 ) {
 	return new Promise((resolve, reject) => {
 		let dispose;
 		popup(
-			defineAsyncComponent(() => import("@/components/MkPopupMenu.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkPopupMenu.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				items,
 				src,
 				width: options?.width,
 				align: options?.align,
 				viaKeyboard: options?.viaKeyboard,
+				noReturnFocus: options?.noReturnFocus,
 			},
 			{
 				closed: () => {
 					resolve();
 					dispose();
 				},
-			},
+			}
 		).then((res) => {
 			dispose = res.dispose;
 		});
@@ -791,13 +865,17 @@ export function popupMenu(
 
 export function contextMenu(
 	items: MenuItem[] | Ref<MenuItem[]>,
-	ev: MouseEvent,
+	ev: MouseEvent
 ) {
 	ev.preventDefault();
 	return new Promise((resolve, reject) => {
 		let dispose;
 		popup(
-			defineAsyncComponent(() => import("@/components/MkContextMenu.vue")),
+			defineAsyncComponent({
+				loader: () => import("@/components/MkContextMenu.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
 			{
 				items,
 				ev,
@@ -807,7 +885,7 @@ export function contextMenu(
 					resolve();
 					dispose();
 				},
-			},
+			}
 		).then((res) => {
 			dispose = res.dispose;
 		});

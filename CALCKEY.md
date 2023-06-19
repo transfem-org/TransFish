@@ -8,10 +8,9 @@
   - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
   - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
-  - Federate with note edits
   - User "choices" (recommended users) like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
-  - Option to publicize instance blocks
+  - Option to publicize server blocks
   - Build flag to remove NSFW/AI stuff
   - Filter notifications by user
   - Exclude self from antenna
@@ -19,8 +18,7 @@
   - MFM button
   - Personal notes for all accounts
   - Fully revamp non-logged-in screen
-  - Classic mode make instance icon bring up new context menu
-  - Lookup/details for post/file/instance
+  - Lookup/details for post/file/server
   - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
@@ -44,7 +42,7 @@
   - Upgrade packages with security vunrabilities
 - Saner defaults
 - Fediverse account migration
-- Recommended instances timeline
+- Recommended servers timeline
 - OCR image captioning
 - Improve mobile UX
   - Swipe through pages on mobile
@@ -72,7 +70,7 @@
 - Better welcome screen (not logged in)
 - vue-plyr as video/audio player
 - Ability to turn off "Connection lost" message
-- Raw instance info only for moderators
+- Raw server info only for moderators
 - New spinner animation
 - Spinner instead of "Loading..."
 - SearchX instead of Google
@@ -99,7 +97,7 @@
 - Obliteration of Ai-chan
 - Switch to [Calckey.js](https://codeberg.org/calckey/calckey.js)
 - Woozy mode 🥴
-- Improve blocking instances
+- Improve blocking servers
 - Release notes
 - New post style
 - Admins set default reaction emoji
@@ -118,6 +116,15 @@
 - Sonic search
 - Popular color schemes, including Nord, Gruvbox, and Catppuccin
 - Non-nyaify cat mode
+- Post imports from other Calckey/Misskey/Mastodon/Pleroma/Akkoma servers
+- Improve Classic mode
+- Proper Helm/Kubernetes config
+- Multiple boost visibilities
+- Improve system emails
+- Mod mail
+- Focus trapping and button labels
+- Meilisearch with filters
+- Post editing
 
 ## Implemented (remote)
 

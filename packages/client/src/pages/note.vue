@@ -5,6 +5,7 @@
 				:actions="headerActions"
 				:tabs="headerTabs"
 				:display-back-button="true"
+				:to="`#${noteId}`"
 		/></template>
 		<MkSpacer :content-max="800" :marginMin="6">
 			<div class="fcuexfpr">
@@ -12,7 +13,7 @@
 					:name="$store.state.animation ? 'fade' : ''"
 					mode="out-in"
 				>
-					<div v-if="note" class="note">
+					<div v-if="appearNote" class="note">
 						<div v-if="showNext" class="_gap">
 							<XNotes
 								class="_content"
@@ -26,56 +27,29 @@
 								v-if="!showNext && hasNext"
 								class="load next"
 								@click="showNext = true"
-								><i class="ph-caret-up ph-bold ph-lg"></i
-							></MkButton>
+							>
+								<i class="ph-caret-up ph-bold ph-lg"></i>
+								{{ `${i18n.ts.loadMore} (${i18n.ts.newer})` }}
+							</MkButton>
 							<div class="note _gap">
 								<MkRemoteCaution
-									v-if="note.user.host != null"
-									:href="note.url ?? note.uri"
+									v-if="appearNote.user.host != null"
+									:href="appearNote.url ?? appearNote.uri"
 								/>
 								<XNoteDetailed
-									:key="note.id"
-									v-model:note="note"
+									:key="appearNote.id"
+									v-model:note="appearNote"
 									class="note"
 								/>
-							</div>
-							<div
-								v-if="clips && clips.length > 0"
-								class="_content clips _gap"
-							>
-								<div class="title">{{ i18n.ts.clip }}</div>
-								<MkA
-									v-for="item in clips"
-									:key="item.id"
-									:to="`/clips/${item.id}`"
-									class="item _panel _gap"
-								>
-									<b>{{ item.name }}</b>
-									<div
-										v-if="item.description"
-										class="description"
-									>
-										{{ item.description }}
-									</div>
-									<div class="user">
-										<MkAvatar
-											:user="item.user"
-											class="avatar"
-											:show-indicator="true"
-										/>
-										<MkUserName
-											:user="item.user"
-											:nowrap="false"
-										/>
-									</div>
-								</MkA>
 							</div>
 							<MkButton
 								v-if="!showPrev && hasPrev"
 								class="load prev"
 								@click="showPrev = true"
-								><i class="ph-caret-down ph-bold ph-lg"></i
-							></MkButton>
+							>
+								<i class="ph-caret-down ph-bold ph-lg"></i>
+								{{ `${i18n.ts.loadMore} (${i18n.ts.older})` }}
+							</MkButton>
 						</div>
 
 						<div v-if="showPrev" class="_gap">
@@ -97,7 +71,6 @@
 <script lang="ts" setup>
 import { computed, defineComponent, watch } from "vue";
 import * as misskey from "calckey-js";
-import XNote from "@/components/MkNote.vue";
 import XNoteDetailed from "@/components/MkNoteDetailed.vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
@@ -111,21 +84,22 @@ const props = defineProps<{
 }>();
 
 let note = $ref<null | misskey.entities.Note>();
-let clips = $ref();
 let hasPrev = $ref(false);
 let hasNext = $ref(false);
 let showPrev = $ref(false);
 let showNext = $ref(false);
 let error = $ref();
+let isRenote = $ref(false);
+let appearNote = $ref<null | misskey.entities.Note>();
 
 const prevPagination = {
 	endpoint: "users/notes" as const,
 	limit: 10,
 	params: computed(() =>
-		note
+		appearNote
 			? {
-					userId: note.userId,
-					untilId: note.id,
+					userId: appearNote.userId,
+					untilId: appearNote.id,
 			  }
 			: null
 	),
@@ -136,10 +110,10 @@ const nextPagination = {
 	endpoint: "users/notes" as const,
 	limit: 10,
 	params: computed(() =>
-		note
+		appearNote
 			? {
-					userId: note.userId,
-					sinceId: note.id,
+					userId: appearNote.userId,
+					sinceId: appearNote.id,
 			  }
 			: null
 	),
@@ -156,10 +130,16 @@ function fetchNote() {
 	})
 		.then((res) => {
 			note = res;
+			isRenote =
+				note.renote != null &&
+				note.text == null &&
+				note.fileIds.length === 0 &&
+				note.poll == null;
+			appearNote = isRenote
+				? (note.renote as misskey.entities.Note)
+				: note;
+
 			Promise.all([
-				os.api("notes/clips", {
-					noteId: note.id,
-				}),
 				os.api("users/notes", {
 					userId: note.userId,
 					untilId: note.id,
@@ -170,8 +150,7 @@ function fetchNote() {
 					sinceId: note.id,
 					limit: 1,
 				}),
-			]).then(([_clips, prev, next]) => {
-				clips = _clips;
+			]).then(([prev, next]) => {
 				hasPrev = prev.length !== 0;
 				hasNext = next.length !== 0;
 			});
@@ -191,15 +170,21 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata(
 	computed(() =>
-		note
+		appearNote
 			? {
-					title: i18n.ts.note,
-					subtitle: new Date(note.createdAt).toLocaleString(),
-					avatar: note.user,
-					path: `/notes/${note.id}`,
+					title: i18n.t("noteOf", {
+						user: appearNote.user.name || appearNote.user.username,
+					}),
+					subtitle: new Date(appearNote.createdAt).toLocaleString(),
+					avatar: appearNote.user,
+					path: `/notes/${appearNote.id}`,
 					share: {
-						title: i18n.t("noteOf", { user: note.user.name }),
-						text: note.text,
+						title: i18n.t("noteOf", {
+							user:
+								appearNote.user.name ||
+								appearNote.user.username,
+						}),
+						text: appearNote.text,
 					},
 			  }
 			: null
@@ -218,7 +203,9 @@ definePageMetadata(
 }
 
 .fcuexfpr {
-	background: var(--bg);
+	#calckey_app > :not(.wallpaper) & {
+		background: var(--bg);
+	}
 
 	> .note {
 		> .main {
@@ -240,34 +227,6 @@ definePageMetadata(
 				> .note {
 					border-radius: var(--radius);
 					background: var(--panel);
-				}
-			}
-
-			> .clips {
-				> .title {
-					font-weight: bold;
-					padding: 12px;
-				}
-
-				> .item {
-					display: block;
-					padding: 16px;
-
-					> .description {
-						padding: 8px 0;
-					}
-
-					> .user {
-						$height: 32px;
-						padding-top: 16px;
-						border-top: solid 0.5px var(--divider);
-						line-height: $height;
-
-						> .avatar {
-							width: $height;
-							height: $height;
-						}
-					}
 				}
 			}
 		}

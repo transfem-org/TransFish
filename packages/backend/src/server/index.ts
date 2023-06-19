@@ -7,6 +7,7 @@ import * as fs from "node:fs";
 import * as http from "node:http";
 import Koa from "koa";
 import Router from "@koa/router";
+import cors from "@koa/cors";
 import mount from "koa-mount";
 import koaLogger from "koa-logger";
 import * as slow from "koa-slow";
@@ -40,6 +41,12 @@ const app = new Koa();
 app.proxy = true;
 
 app.use(removeTrailingSlash());
+
+app.use(
+	cors({
+		origin: "*",
+	}),
+);
 
 if (!["production", "test"].includes(process.env.NODE_ENV || "")) {
 	// Logger
@@ -122,40 +129,6 @@ router.get("/identicon/:x", async (ctx) => {
 	await genIdenticon(ctx.params.x, fs.createWriteStream(temp));
 	ctx.set("Content-Type", "image/png");
 	ctx.body = fs.createReadStream(temp).on("close", () => cleanup());
-});
-
-router.get("/verify-email/:code", async (ctx) => {
-	const profile = await UserProfiles.findOneBy({
-		emailVerifyCode: ctx.params.code,
-	});
-
-	if (profile != null) {
-		ctx.body = "Verify succeeded!";
-		ctx.status = 200;
-
-		await UserProfiles.update(
-			{ userId: profile.userId },
-			{
-				emailVerified: true,
-				emailVerifyCode: null,
-			},
-		);
-
-		publishMainStream(
-			profile.userId,
-			"meUpdated",
-			await Users.pack(
-				profile.userId,
-				{ id: profile.userId },
-				{
-					detail: true,
-					includeSecrets: true,
-				},
-			),
-		);
-	} else {
-		ctx.status = 404;
-	}
 });
 
 mastoRouter.get("/oauth/authorize", async (ctx) => {

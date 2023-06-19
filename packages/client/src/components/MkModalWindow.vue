@@ -3,60 +3,68 @@
 		ref="modal"
 		:prefer-type="'dialog'"
 		@click="onBgClick"
+		@keyup.esc="$emit('close')"
 		@closed="$emit('closed')"
 	>
-		<div
-			ref="rootEl"
-			class="ebkgoccj"
-			:style="{
-				width: `${width}px`,
-				height: scroll
-					? height
-						? `${height}px`
-						: null
-					: height
-					? `min(${height}px, 100%)`
-					: '100%',
-			}"
-			@keydown="onKeydown"
-		>
-			<div ref="headerEl" class="header">
-				<button
-					v-if="withOkButton"
-					class="_button"
-					@click="$emit('close')"
-				>
-					<i class="ph-x ph-bold ph-lg"></i>
-				</button>
-				<span class="title">
-					<slot name="header"></slot>
-				</span>
-				<button
-					v-if="!withOkButton"
-					class="_button"
-					@click="$emit('close')"
-				>
-					<i class="ph-x ph-bold ph-lg"></i>
-				</button>
-				<button
-					v-if="withOkButton"
-					class="_button"
-					:disabled="okButtonDisabled"
-					@click="$emit('ok')"
-				>
-					<i class="ph-check ph-bold ph-lg"></i>
-				</button>
+		<FocusTrap v-model:active="isActive">
+			<div
+				ref="rootEl"
+				class="ebkgoccj"
+				:style="{
+					width: `${width}px`,
+					height: scroll
+						? height
+							? `${height}px`
+							: null
+						: height
+						? `min(${height}px, 100%)`
+						: '100%',
+				}"
+				@keydown="onKeydown"
+				tabindex="-1"
+			>
+				<div ref="headerEl" class="header">
+					<button
+						v-if="withOkButton"
+						:aria-label="i18n.t('close')"
+						class="_button"
+						@click="$emit('close')"
+					>
+						<i class="ph-x ph-bold ph-lg"></i>
+					</button>
+					<span class="title">
+						<slot name="header"></slot>
+					</span>
+					<button
+						v-if="!withOkButton"
+						:aria-label="i18n.t('close')"
+						class="_button"
+						@click="$emit('close')"
+					>
+						<i class="ph-x ph-bold ph-lg"></i>
+					</button>
+					<button
+						v-if="withOkButton"
+						:aria-label="i18n.t('ok')"
+						class="_button"
+						:disabled="okButtonDisabled"
+						@click="$emit('ok')"
+					>
+						<i class="ph-check ph-bold ph-lg"></i>
+					</button>
+				</div>
+				<div class="body">
+					<slot></slot>
+				</div>
 			</div>
-			<div class="body">
-				<slot :width="bodyWidth" :height="bodyHeight"></slot>
-			</div>
-		</div>
+		</FocusTrap>
 	</MkModal>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted } from "vue";
+import { FocusTrap } from "focus-trap-vue";
 import MkModal from "./MkModal.vue";
+import { i18n } from "@/i18n";
 
 const props = withDefaults(
 	defineProps<{
@@ -85,8 +93,6 @@ const emit = defineEmits<{
 let modal = $shallowRef<InstanceType<typeof MkModal>>();
 let rootEl = $shallowRef<HTMLElement>();
 let headerEl = $shallowRef<HTMLElement>();
-let bodyWidth = $ref(0);
-let bodyHeight = $ref(0);
 
 const close = () => {
 	modal.close();
@@ -95,30 +101,6 @@ const close = () => {
 const onBgClick = () => {
 	emit("click");
 };
-
-const onKeydown = (evt) => {
-	if (evt.which === 27) {
-		// Esc
-		evt.preventDefault();
-		evt.stopPropagation();
-		close();
-	}
-};
-
-const ro = new ResizeObserver((entries, observer) => {
-	bodyWidth = rootEl.offsetWidth;
-	bodyHeight = rootEl.offsetHeight - headerEl.offsetHeight;
-});
-
-onMounted(() => {
-	bodyWidth = rootEl.offsetWidth;
-	bodyHeight = rootEl.offsetHeight - headerEl.offsetHeight;
-	ro.observe(rootEl);
-});
-
-onUnmounted(() => {
-	ro.disconnect();
-});
 
 defineExpose({
 	close,

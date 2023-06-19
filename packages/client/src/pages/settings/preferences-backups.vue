@@ -81,7 +81,6 @@ const defaultStoreSaveKeys: (keyof (typeof defaultStore)["state"])[] = [
 	"widgets",
 	"tl",
 	"overridedDeviceKind",
-	"showLocalPostsInTimeline",
 	"serverDisconnectedBehavior",
 	"nsfw",
 	"showAds",
@@ -114,6 +113,9 @@ const defaultStoreSaveKeys: (keyof (typeof defaultStore)["state"])[] = [
 	"swipeOnDesktop",
 	"showAdminUpdates",
 	"enableCustomKaTeXMacro",
+	"enableEmojiReactions",
+	"showEmojisInReactionNotifications",
+	"showTimelineReplies",
 ];
 const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	"lightTheme",
@@ -172,7 +174,11 @@ function validate(profile: unknown): void {
 	if (!isObject(profile)) throw new Error("not an object");
 
 	// Check if unnecessary properties exist
-	if (Object.keys(profile).some((key) => !profileProps.includes(key)))
+	if (
+		Object.keys(profile).some(
+			(key) => !profileProps.includes(key) && key !== "host"
+		)
+	)
 		throw new Error("Unnecessary properties exist");
 
 	if (!profile.name) throw new Error("Missing required prop: name");

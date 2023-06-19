@@ -1,8 +1,9 @@
 <template>
-	<div
+	<section
 		v-size="{ max: [310, 500] }"
 		class="gafaadew"
 		:class="{ modal, _popup: modal }"
+		:aria-label="i18n.ts._pages.blocks.post"
 		@dragover.stop="onDragover"
 		@dragenter="onDragenter"
 		@dragleave="onDragleave"
@@ -13,6 +14,7 @@
 				<i class="ph-x ph-bold ph-lg"></i>
 			</button>
 			<button
+				v-if="$props.editId == null"
 				v-click-anime
 				v-tooltip="i18n.ts.switchAccount"
 				class="account _button"
@@ -43,7 +45,7 @@
 						><i class="ph-house ph-bold ph-lg"></i
 					></span>
 					<span v-if="visibility === 'followers'"
-						><i class="ph-lock-simple-open ph-bold ph-lg"></i
+						><i class="ph-lock ph-bold ph-lg"></i
 					></span>
 					<span v-if="visibility === 'specified'"
 						><i class="ph-envelope-simple-open ph-bold ph-lg"></i
@@ -55,7 +57,7 @@
 					:class="{ active: showPreview }"
 					@click="showPreview = !showPreview"
 				>
-					<i class="ph-file-code ph-bold ph-lg"></i>
+					<i class="ph-binoculars ph-bold ph-lg"></i>
 				</button>
 				<button
 					class="submit _buttonGradate"
@@ -82,7 +84,7 @@
 			<div v-if="quoteId" class="with-quote">
 				<i class="ph-quotes ph-bold ph-lg"></i>
 				{{ i18n.ts.quoteAttached
-				}}<button @click="quoteId = null">
+				}}<button class="_button" @click="quoteId = null">
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>
 			</div>
@@ -202,6 +204,7 @@
 				>
 					<i class="ph-plug ph-bold ph-lg"></i>
 				</button>
+				<!--	v-if="showMfmCheatsheet" -->
 				<button
 					v-tooltip="i18n.ts._mfm.cheatSheet"
 					class="_button right"
@@ -218,7 +221,7 @@
 				/>
 			</datalist>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script lang="ts" setup>
@@ -274,10 +277,13 @@ const props = withDefaults(
 		instant?: boolean;
 		fixed?: boolean;
 		autofocus?: boolean;
+		showMfmCheatSheet?: boolean;
+		editId?: misskey.entities.Note["id"];
 	}>(),
 	{
 		initialVisibleUsers: () => [],
 		autofocus: true,
+		showMfmCheatSheet: true,
 	}
 );
 
@@ -334,6 +340,10 @@ const typing = throttle(3000, () => {
 });
 
 const draftKey = $computed((): string => {
+	if (props.editId) {
+		return `edit:${props.editId}`;
+	}
+
 	let key = props.channel ? `channel:${props.channel.id}` : "";
 
 	if (props.renote) {
@@ -368,7 +378,9 @@ const placeholder = $computed((): string => {
 });
 
 const submitText = $computed((): string => {
-	return props.renote
+	return props.editId
+		? i18n.ts.edit
+		: props.renote
 		? i18n.ts.quote
 		: props.reply
 		? i18n.ts.reply
@@ -462,15 +474,26 @@ if (
 	props.reply &&
 	["home", "followers", "specified"].includes(props.reply.visibility)
 ) {
-	visibility = props.reply.visibility;
-	if (props.reply.visibility === "specified") {
-		os.api("users/show", {
-			userIds: props.reply.visibleUserIds.filter(
-				(uid) => uid !== $i.id && uid !== props.reply.userId
-			),
-		}).then((users) => {
-			users.forEach(pushVisibleUser);
-		});
+	if (props.reply.visibility === "home" && visibility === "followers") {
+		visibility = "followers";
+	} else if (
+		["home", "followers"].includes(props.reply.visibility) &&
+		visibility === "specified"
+	) {
+		visibility = "specified";
+	} else {
+		visibility = props.reply.visibility;
+	}
+	if (visibility === "specified") {
+		if (props.reply.visibleUserIds) {
+			os.api("users/show", {
+				userIds: props.reply.visibleUserIds.filter(
+					(uid) => uid !== $i.id && uid !== props.reply.userId
+				),
+			}).then((users) => {
+				users.forEach(pushVisibleUser);
+			});
+		}
 
 		if (props.reply.userId !== $i.id) {
 			os.api("users/show", { userId: props.reply.userId }).then(
@@ -798,6 +821,7 @@ async function post() {
 	const processedText = preprocess(text);
 
 	let postData = {
+		editId: props.editId ? props.editId : undefined,
 		text: processedText === "" ? undefined : processedText,
 		fileIds: files.length > 0 ? files.map((f) => f.id) : undefined,
 		replyId: props.reply ? props.reply.id : undefined,
@@ -843,7 +867,7 @@ async function post() {
 	}
 
 	posting = true;
-	os.api("notes/create", postData, token)
+	os.api(postData.editId ? "notes/edit" : "notes/create", postData, token)
 		.then(() => {
 			clear();
 			nextTick(() => {
@@ -1007,6 +1031,8 @@ onMounted(() => {
 	}
 
 	> header {
+		display: flex;
+		flex-wrap: wrap;
 		z-index: 1000;
 		height: 66px;
 
@@ -1101,11 +1127,16 @@ onMounted(() => {
 		}
 
 		> .with-quote {
-			margin: 0 0 8px 0;
+			display: flex;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline: 24px;
+			margin-bottom: 12px;
 			color: var(--accent);
 
 			> button {
-				padding: 4px 8px;
+				display: flex;
+				padding: 0;
 				color: var(--accentAlpha04);
 
 				&:hover {
@@ -1163,7 +1194,7 @@ onMounted(() => {
 			padding: 0 24px;
 			margin: 0;
 			width: 100%;
-			font-size: 16px;
+			font-size: 1.05em;
 			border: none;
 			border-radius: 0;
 			background: transparent;

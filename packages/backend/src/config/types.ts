@@ -39,6 +39,12 @@ export type Source = {
 		collection?: string;
 		bucket?: string;
 	};
+	meilisearch: {
+		host: string;
+		port: number;
+		apiKey?: string;
+		ssl: boolean;
+	};
 
 	proxy?: string;
 	proxySmtp?: string;
@@ -52,7 +58,12 @@ export type Source = {
 
 	clusterLimit?: number;
 
-	id: string;
+	onlyQueueProcessor?: boolean;
+
+	cuid?: {
+		length?: number;
+		fingerprint?: string;
+	};
 
 	outgoingAddressFamily?: "ipv4" | "ipv6" | "dual";
 
@@ -77,6 +88,8 @@ export type Source = {
 		sha256CertFingerprints?: string[];
 	};
 
+	reservedUsernames?: string[];
+
 	// Managed hosting stuff
 	maxUserSignups?: number;
 	isManagedHosting?: boolean;
@@ -86,6 +99,11 @@ export type Source = {
 		managed?: boolean;
 		authKey?: string;
 		isPro?: boolean;
+	};
+	libreTranslate: {
+		managed?: boolean;
+		apiUrl?: string;
+		apiKey?: string;
 	};
 	email: {
 		managed?: boolean;
