@@ -6,58 +6,55 @@
 		@keyup.esc="$emit('close')"
 		@closed="$emit('closed')"
 	>
-		<FocusTrap v-model:active="isActive">
-			<div
-				ref="rootEl"
-				class="ebkgoccj"
-				:style="{
-					width: `${width}px`,
-					height: scroll
-						? height
-							? `${height}px`
-							: null
-						: height
-						? `min(${height}px, 100%)`
-						: '100%',
-				}"
-				@keydown="onKeydown"
-				tabindex="-1"
-			>
-				<div ref="headerEl" class="header">
-					<button
-						v-if="withOkButton"
-						:aria-label="i18n.t('close')"
-						class="_button"
-						@click="$emit('close')"
-					>
-						<i class="ph-x ph-bold ph-lg"></i>
-					</button>
-					<span class="title">
-						<slot name="header"></slot>
-					</span>
-					<button
-						v-if="!withOkButton"
-						:aria-label="i18n.t('close')"
-						class="_button"
-						@click="$emit('close')"
-					>
-						<i class="ph-x ph-bold ph-lg"></i>
-					</button>
-					<button
-						v-if="withOkButton"
-						:aria-label="i18n.t('ok')"
-						class="_button"
-						:disabled="okButtonDisabled"
-						@click="$emit('ok')"
-					>
-						<i class="ph-check ph-bold ph-lg"></i>
-					</button>
-				</div>
-				<div class="body">
-					<slot></slot>
-				</div>
+		<div
+			ref="rootEl"
+			class="ebkgoccj"
+			:style="{
+				width: `${width}px`,
+				height: scroll
+					? height
+						? `${height}px`
+						: null
+					: height
+					? `min(${height}px, 100%)`
+					: '100%',
+			}"
+			tabindex="-1"
+		>
+			<div ref="headerEl" class="header">
+				<button
+					v-if="withOkButton"
+					:aria-label="i18n.t('close')"
+					class="_button"
+					@click="$emit('close')"
+				>
+					<i class="ph-x ph-bold ph-lg"></i>
+				</button>
+				<span class="title">
+					<slot name="header"></slot>
+				</span>
+				<button
+					v-if="!withOkButton"
+					:aria-label="i18n.t('close')"
+					class="_button"
+					@click="$emit('close')"
+				>
+					<i class="ph-x ph-bold ph-lg"></i>
+				</button>
+				<button
+					v-if="withOkButton"
+					:aria-label="i18n.t('ok')"
+					class="_button"
+					:disabled="okButtonDisabled"
+					@click="$emit('ok')"
+				>
+					<i class="ph-check ph-bold ph-lg"></i>
+				</button>
 			</div>
-		</FocusTrap>
+			<div class="body">
+				<slot></slot>
+			</div>
+		</div>
 	</MkModal>
 </template>
 
