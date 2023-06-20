@@ -27,6 +27,7 @@
 					:aria-label="i18n.t('close')"
 					class="_button"
 					@click="$emit('close')"
+					v-tooltip="i18n.ts.close"
 				>
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>

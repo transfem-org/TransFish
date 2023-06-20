@@ -179,7 +179,6 @@ let transitionDuration = $computed(() =>
 
 let contentClicking = false;
 
-// const focusedElement = document.activeElement;
 function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	// removeEventListener("popstate", close);
 	// if (props.preferType == "dialog") {
@@ -193,16 +192,10 @@ function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	if (props.src) props.src.style.pointerEvents = "auto";
 	showing = false;
 	emit("close");
-	// if (!props.noReturnFocus) {
-	// 	focusedElement.focus();
-	// }
 }
 
 function onBgClick() {
 	if (contentClicking) return;
-	// if (!props.noReturnFocus) {
-	// 	focusedElement.focus();
-	// }
 	emit("click");
 }
 
