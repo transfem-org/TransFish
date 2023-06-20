@@ -1,5 +1,5 @@
 <template>
-	<div v-if="note" class="_gaps reacted-users">
+	<div v-if="note" class="reacted-users">
 		<div :class="$style.tabs">
 			<button
 				v-for="reaction in reactions"
