@@ -630,9 +630,10 @@ defineExpose({
 
 	.note-context {
 		position: relative;
-		z-index: 2;
 		padding: 0 32px 0 32px;
 		display: flex;
+		background: var(--panel);
+		z-index: 1;
 		&:first-child {
 			margin-top: 20px;
 		}
@@ -716,7 +717,8 @@ defineExpose({
 	> .article {
 		position: relative;
 		overflow: clip;
-		padding: 4px 32px 10px;
+		padding: 20px 32px 10px;
+		margin-top: -16px;
 
 		&:first-child,
 		&:nth-child(2) {
@@ -730,6 +732,8 @@ defineExpose({
 
 		.header-container {
 			display: flex;
+			position: relative;
+			z-index: 2;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
