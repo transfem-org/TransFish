@@ -16,11 +16,12 @@
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		<div v-if="!detailedView" 
+		<div
+			v-if="!detailedView"
 			class="note-context"
 			@click="noteClick"
-			:class="{ 
-				collapsedReply: collapsedReply && appearNote.reply 
+			:class="{
+				collapsedReply: collapsedReply && appearNote.reply,
 			}"
 		>
 			<div class="line"></div>
@@ -71,7 +72,10 @@
 			</div>
 			<div v-if="collapsedReply && appearNote.reply" class="info">
 				<MkAvatar class="avatar" :user="appearNote.reply.user" />
-				<MkUserName class="username" :user="appearNote.reply.user"></MkUserName>
+				<MkUserName
+					class="username"
+					:user="appearNote.reply.user"
+				></MkUserName>
 				<Mfm
 					class="summary"
 					:text="getNoteSummary(appearNote.reply)"
@@ -92,10 +96,7 @@
 			<div class="main">
 				<div class="header-container">
 					<MkAvatar class="avatar" :user="appearNote.user" />
-					<XNoteHeader
-						class="header"
-						:note="appearNote"
-					/>
+					<XNoteHeader class="header" :note="appearNote" />
 				</div>
 				<div class="body">
 					<MkSubNoteContent
@@ -747,14 +748,14 @@ defineExpose({
 			}
 			.info {
 				color: var(--fgTransparentWeak);
-				transition: color .2s;
+				transition: color 0.2s;
 			}
 			.avatar {
 				width: 1.2em;
 				height: 1.2em;
 				border-radius: 2em;
 				overflow: hidden;
-				margin-right: .4em;
+				margin-right: 0.4em;
 				background: var(--panelHighlight);
 			}
 			.username {
@@ -765,7 +766,8 @@ defineExpose({
 					content: ": ";
 				}
 			}
-			&:hover, &:focus-within {
+			&:hover,
+			&:focus-within {
 				.info {
 					color: var(--fg);
 				}

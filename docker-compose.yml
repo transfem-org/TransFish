@@ -19,8 +19,6 @@ services:
     environment:
       NODE_ENV: production
     volumes:
-      - ./.cargo-cache:/root/.cargo
-      - ./.cargo-target:/calckey/packages/backend/native-utils/target
       - ./files:/calckey/files
       - ./.config:/calckey/.config:ro
 
