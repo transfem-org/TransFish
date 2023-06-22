@@ -28,9 +28,6 @@ coverage
 !/.config/example.yml
 !/.config/docker_example.env
 
-#docker dev config
-/dev/docker-compose.yml
-
 # misskey
 built
 db
@@ -50,3 +47,4 @@ packages/backend/assets/instance.css
 # dockerignore custom
 .git
 Dockerfile
+docker-compose.yml

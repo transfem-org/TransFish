@@ -8,12 +8,12 @@ RUN apk add --no-cache --no-progress git alpine-sdk python3 nodejs-current npm r
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
 COPY packages/backend/native-utils/Cargo.lock packages/backend/native-utils/Cargo.lock
+COPY packages/backend/native-utils/src/lib.rs packages/backend/native-utils/src/
 COPY packages/backend/native-utils/migration/Cargo.toml packages/backend/native-utils/migration/Cargo.toml
-COPY packages/backend/native-utils/src/*.rs packages/backend/native-utils/src/
+COPY packages/backend/native-utils/migration/src/lib.rs packages/backend/native-utils/migration/src/
 
 # Install cargo dependencies
-RUN cd packages/backend && \
-    cargo fetch --locked --manifest-path ./native-utils/migration/Cargo.toml
+RUN cargo fetch --locked --manifest-path /calckey/packages/backend/native-utils/Cargo.toml
 
 # Copy only the dependency-related files first, to cache efficiently
 COPY package.json pnpm*.yaml ./
@@ -28,12 +28,21 @@ COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/ba
 # Configure corepack and pnpm, and install dev mode dependencies for compilation
 RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm i --frozen-lockfile
 
+# Copy in the rest of the native-utils rust files
+COPY packages/backend/native-utils/.cargo packages/backend/native-utils/.cargo
+COPY packages/backend/native-utils/build.rs packages/backend/native-utils/
+COPY packages/backend/native-utils/src packages/backend/native-utils/src/
+COPY packages/backend/native-utils/migration/src packages/backend/native-utils/migration/src/
+
+# Compile native-utils
+RUN pnpm run --filter native-utils build
+
 # Copy in the rest of the files to compile
 COPY . ./
-RUN env NODE_ENV=production pnpm run build
+RUN env NODE_ENV=production sh -c "pnpm run --filter '!native-utils' build && pnpm run gulp"
 
-# Trim down the artifacts and dependencies to only the prod deps
-RUN cargo clean --manifest-path /calckey/packages/backend/native-utils/Cargo.toml && pnpm i --prod --frozen-lockfile
+# Trim down the dependencies to only those for production
+RUN pnpm i --prod --frozen-lockfile
 
 ## Runtime container
 FROM alpine:3.18
@@ -59,6 +68,6 @@ COPY --from=build /calckey/packages/backend/native-utils/built /calckey/packages
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV NODE_ENV=production
-VOLUME [ "/calckey/files" ]
+VOLUME "/calckey/files"
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD [ "pnpm", "run", "migrateandstart" ]
