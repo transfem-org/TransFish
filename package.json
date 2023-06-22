@@ -10,9 +10,7 @@
 	"private": true,
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm -r run build && pnpm run gulp",
-		"build": "pnpm -r run build:cargo && pnpm -r run build:recursive && pnpm run gulp",
-		"build:recursive": "pnpm -r run build",
-		"build:cargo": "pnpm --filter backend run build:cargo",
+		"build": "pnpm -r run build && pnpm run gulp",
 		"start": "pnpm --filter backend run start",
 		"start:test": "pnpm --filter backend run start:test",
 		"init": "pnpm run migrate",

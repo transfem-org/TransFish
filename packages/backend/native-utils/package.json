@@ -34,8 +34,8 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --features napi --platform --release ./built/",
-    "build:debug": "napi build --platform",
+		"build": "napi build --features napi --platform --release ./built/ && cargo build --locked --release --manifest-path ./migration/Cargo.toml",
+    "build:debug": "napi build --platform ./built/ && cargo build --manifest-path ./migration/Cargo.toml",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "pnpm run cargo:test && pnpm run build && ava",
     "universal": "napi universal",
