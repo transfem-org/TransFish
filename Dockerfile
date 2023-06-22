@@ -59,5 +59,6 @@ COPY --from=build /calckey/packages/backend/native-utils/built /calckey/packages
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV NODE_ENV=production
+VOLUME [ "/calckey/files" ]
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD [ "pnpm", "run", "migrateandstart" ]
