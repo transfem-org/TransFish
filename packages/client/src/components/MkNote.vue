@@ -12,11 +12,11 @@
 		:id="appearNote.id"
 	>
 		<MkNoteSub
-			v-if="appearNote.reply && !detailedView"
+			v-if="appearNote.reply && !detailedView && !collapsedReply"
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		<div v-if="!detailedView" class="note-context" @click="noteClick">
+		<div v-if="!detailedView" class="note-context" @click="noteClick" :class="{ collapsedReply }">
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
 				<i class="ph-megaphone-simple-bold ph-lg"></i>
@@ -63,6 +63,17 @@
 					<MkVisibility :note="note" />
 				</div>
 			</div>
+			<div v-if="collapsedReply && appearNote.reply" class="info">
+				<MkAvatar class="avatar" :user="appearNote.reply.user" />
+				<MkUserName class="username" :user="appearNote.reply.user"></MkUserName>
+				<Mfm
+					class="summary"
+					:text="getNoteSummary(appearNote.reply)"
+					:plain="true"
+					:nowrap="true"
+					:custom-emojis="note.emojis"
+				/>
+			</div>
 		</div>
 		<article
 			class="article"
@@ -78,7 +89,6 @@
 					<XNoteHeader
 						class="header"
 						:note="appearNote"
-						:mini="true"
 					/>
 				</div>
 				<div class="body">
@@ -260,6 +270,7 @@ import { getNoteMenu } from "@/scripts/get-note-menu";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { notePage } from "@/filters/note";
 import { deepClone } from "@/scripts/clone";
+import { getNoteSummary } from "@/scripts/get-note-summary";
 
 const router = useRouter();
 
@@ -267,6 +278,7 @@ const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 	detailedView?: boolean;
+	collapsedReply?: boolean;
 }>();
 
 const inChannel = inject("inChannel", null);
@@ -709,6 +721,48 @@ defineExpose({
 					> .dropdownIcon {
 						margin-right: 4px;
 					}
+				}
+			}
+		}
+
+		&.collapsedReply {
+			.line {
+				opacity: 0.25;
+				&::after {
+					content: "";
+					position: absolute;
+					border-left: 2px solid currentColor;
+					border-top: 2px solid currentColor;
+					margin-left: calc(var(--avatarSize) / 2 - 1px);
+					width: calc(var(--avatarSize) / 2 + 14px);
+					border-top-left-radius: calc(var(--avatarSize) / 4);
+					top: calc(50% - 1px);
+					height: calc(50% + 5px);
+				}
+			}
+			.info {
+				color: var(--fgTransparentWeak);
+				transition: color .2s;
+			}
+			.avatar {
+				width: 1.2em;
+				height: 1.2em;
+				border-radius: 2em;
+				overflow: hidden;
+				margin-right: .4em;
+				background: var(--panelHighlight);
+			}
+			.username {
+				font-weight: 700;
+				flex-shrink: 0;
+				max-width: 30%;
+				&::after {
+					content: ": ";
+				}
+			}
+			&:hover, &:focus-within {
+				.info {
+					color: var(--fg);
 				}
 			}
 		}
