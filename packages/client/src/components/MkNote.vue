@@ -644,7 +644,6 @@ defineExpose({
 		position: relative;
 		padding: 0 32px 0 32px;
 		display: flex;
-		background: var(--panel);
 		z-index: 1;
 		&:first-child {
 			margin-top: 20px;
