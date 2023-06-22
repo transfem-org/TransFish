@@ -26,7 +26,7 @@
 					"
 					:key="notification.id"
 					:note="notification.note"
-					:collapsedReply="true"
+					:collapsedReply="notification.type === 'reply'"
 				/>
 				<XNotification
 					v-else
