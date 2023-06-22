@@ -16,7 +16,13 @@
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		<div v-if="!detailedView" class="note-context" @click="noteClick" :class="{ collapsedReply }">
+		<div v-if="!detailedView" 
+			class="note-context"
+			@click="noteClick"
+			:class="{ 
+				collapsedReply: collapsedReply && appearNote.reply 
+			}"
+		>
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
 				<i class="ph-megaphone-simple-bold ph-lg"></i>
