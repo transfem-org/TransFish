@@ -26,11 +26,11 @@ export async function createImage(
 	const image = (await new Resolver().resolve(value)) as any;
 
 	if (image.url == null) {
-		throw new Error("invalid image: url not privided");
+		throw new Error("Invalid image, URL not provided");
 	}
 
 	if (!image.url.startsWith("https://") && !image.url.startsWith("http://")) {
-		throw new Error("invalid image: unexpected shcema of url: " + image.url);
+		throw new Error(`Invalid image, unexpected schema: ${image.url}`);
 	}
 
 	logger.info(`Creating the Image: ${image.url}`);
