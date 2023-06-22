@@ -30,7 +30,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm i --froze
 
 # Copy in the rest of the files to compile
 COPY . ./
-RUN pnpm run build
+RUN env NODE_ENV=production pnpm run build
 
 # Trim down the artifacts and dependencies to only the prod deps
 RUN cargo clean --manifest-path /calckey/packages/backend/native-utils/Cargo.toml && pnpm i --prod --frozen-lockfile
@@ -58,5 +58,6 @@ COPY --from=build /calckey/packages/backend/assets/instance.css /calckey/package
 COPY --from=build /calckey/packages/backend/native-utils/built /calckey/packages/backend/native-utils/built
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV NODE_ENV=production
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD [ "pnpm", "run", "migrateandstart" ]
