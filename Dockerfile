@@ -1,9 +1,9 @@
 ## Install dev and compilation dependencies, build files
-FROM node:20-alpine as build
+FROM alpine:3.18 as build
 WORKDIR /calckey
 
 # Install compilation dependencies
-RUN apk add --no-cache --no-progress git alpine-sdk python3 rust cargo vips
+RUN apk add --no-cache --no-progress git alpine-sdk python3 nodejs-current npm rust cargo vips
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
@@ -25,40 +25,22 @@ COPY packages/backend/native-utils/package.json packages/backend/native-utils/pa
 COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
 COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
 
-# Configure corepack and pnpm
-RUN corepack enable
-RUN corepack prepare pnpm@latest --activate
+# Configure corepack and pnpm, and install dev mode dependencies for compilation
+RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm i --frozen-lockfile
 
-# Install dev mode dependencies for compilation
-RUN pnpm i --frozen-lockfile
-
-# Copy in the rest of the native-utils rust files
-COPY packages/backend/native-utils/.cargo packages/backend/native-utils/.cargo
-COPY packages/backend/native-utils/src packages/backend/native-utils/src
-COPY packages/backend/native-utils/migration packages/backend/native-utils/migration
-COPY packages/backend/native-utils/tests packages/backend/native-utils/tests
-COPY packages/backend/native-utils/*.rs packages/backend/native-utils/
-
-# native-utils cargo build
-RUN pnpm run build:cargo
-
-# Copy in the rest of the files, to compile from TS to JS
+# Copy in the rest of the files to compile
 COPY . ./
-RUN pnpm run build:recursive
-RUN pnpm run gulp
+RUN pnpm run build
 
-# Trim down the dependencies to only the prod deps
-RUN pnpm i --prod --frozen-lockfile
-
-# Clean up the cargo deps
-RUN rm -rf /calckey/packages/backend/native-utils/target/release/deps
+# Trim down the artifacts and dependencies to only the prod deps
+RUN cargo clean --manifest-path /calckey/packages/backend/native-utils/Cargo.toml && pnpm i --prod --frozen-lockfile
 
 ## Runtime container
-FROM node:20-alpine
+FROM alpine:3.18
 WORKDIR /calckey
 
 # Install runtime dependencies
-RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip rust cargo
+RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip nodejs-current
 
 COPY . ./
 
@@ -74,8 +56,7 @@ COPY --from=build /calckey/built /calckey/built
 COPY --from=build /calckey/packages/backend/built /calckey/packages/backend/built
 COPY --from=build /calckey/packages/backend/assets/instance.css /calckey/packages/backend/assets/instance.css
 COPY --from=build /calckey/packages/backend/native-utils/built /calckey/packages/backend/native-utils/built
-COPY --from=build /calckey/packages/backend/native-utils/target/release /calckey/packages/backend/native-utils/target/release
 
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@latest --activate
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD [ "pnpm", "run", "migrateandstart" ]
