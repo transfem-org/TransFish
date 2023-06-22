@@ -747,7 +747,7 @@ async function insertNote(
 
 	// 投稿を作成
 	try {
-		if (insert.hasPoll) {
+		if (insert.hasPoll || insert.hasEvent) {
 			// Start transaction
 			await db.transaction(async (transactionalEntityManager) => {
 				if (!data.poll) throw new Error("Empty poll data");
@@ -761,18 +761,34 @@ async function insertNote(
 					expiresAt = data.poll.expiresAt;
 				}
 
-				const poll = new Poll({
-					noteId: insert.id,
-					choices: data.poll.choices,
-					expiresAt,
-					multiple: data.poll.multiple,
-					votes: new Array(data.poll.choices.length).fill(0),
-					noteVisibility: insert.visibility,
-					userId: user.id,
-					userHost: user.host,
-				});
+				if (insert.hasPoll) {
+					const poll = new Poll({
+						noteId: insert.id,
+						choices: data.poll.choices,
+						expiresAt: data.poll.expiresAt,
+						multiple: data.poll.multiple,
+						votes: new Array(data.poll.choices.length).fill(0),
+						noteVisibility: insert.visibility,
+						userId: user.id,
+						userHost: user.host,
+					});
 
-				await transactionalEntityManager.insert(Poll, poll);
+					await transactionalEntityManager.insert(Poll, poll);
+				}
+				if (insert.hasEvent) {
+					const event = new Event({
+						noteId: insert.id,
+						start: data.event.start,
+						end: data.event.end ?? undefined,
+						title: data.event.title,
+						metadata: data.event.metadata,
+						noteVisibility: insert.visibility,
+						userId: user.id,
+						userHost: user.host,
+					});
+
+					await transactionalEntityManager.insert(Event, event);
+				}
 			});
 		} else {
 			await Notes.insert(insert);

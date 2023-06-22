@@ -9,6 +9,7 @@ import {
 	Blockings,
 	UserProfiles,
 	Polls,
+	Events,
 	NoteEdits,
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
@@ -21,6 +22,7 @@ import define from "../../define.js";
 import { HOUR } from "@/const.js";
 import { getNote } from "../../common/getters.js";
 import { Poll } from "@/models/entities/poll.js";
+import { Event } from "@/models/entities/event.js";
 import * as mfm from "mfm-js";
 import { concat } from "@/prelude/array.js";
 import { extractHashtags } from "@/misc/extract-hashtags.js";
@@ -91,6 +93,18 @@ export const meta = {
 			message: "Poll is already expired.",
 			code: "CANNOT_CREATE_ALREADY_EXPIRED_POLL",
 			id: "04da457d-b083-4055-9082-955525eda5a5",
+		},
+
+		cannotCreateAlreadyEndedEvent: {
+			message: "Event is already ended.",
+			code: "CANNOT_CREATE_ALREADY_ENDED_EVENT",
+			id: "dbfc7718-e764-4707-924c-0ecf8855ba7c",
+		},
+
+		cannotUpdateWithEvent: {
+			message: "You can not edit a post with an event (this will be fixed).",
+			code: "CANNOT_EDIT_EVENT",
+			id: "e3c0f5a0-8b0a-4b9a-9b0a-0e9b0a8b0a8b",
 		},
 
 		noSuchChannel: {
@@ -204,6 +218,26 @@ export const paramDef = {
 				expiredAfter: { type: "integer", nullable: true, minimum: 1 },
 			},
 			required: ["choices"],
+		},
+		event: {
+			type: "object",
+			nullable: true,
+			properties: {
+				title: { type: "string", maxLength: 100 },
+				start: { type: "integer" },
+				end: { type: "integer", nullable: true },
+				metadata : {
+					type: "object",
+					properties: {
+						name: { type: "string", maxLength: 100 },
+						url: { type: "string", format: "uri" },
+						startDate: { type: "string", format: "date-time" },
+						endDate: { type: "string", format: "date-time", nullable: true },
+						description: { type: "string", maxLength: 250 },
+						identifier: { type: "string", format: "misskey:id" },
+					},
+				}
+			},
 		},
 	},
 	anyOf: [
@@ -494,6 +528,54 @@ export default define(meta, paramDef, async (ps, user) => {
 			}
 			publishing = true;
 		}
+	}
+
+	if (ps.event) {
+		throw new ApiError(meta.errors.cannotUpdateWithEvent);
+		// TODO: Fix/implement properly
+		/*
+		let event = await Events.findOneBy({ noteId: note.id });
+		const start = Date.now() + ps.event.start!;
+		let end = null;
+		if (ps.event.end) {
+			end = Date.now() + ps.event.end;
+		}
+		const pe = ps.event;
+		pe.metadata["@type"] = "Event";
+		if (!event && pe) {
+			event = new Event({
+				noteId: note.id,
+				start: new Date(start),
+				end: end ? new Date(end) : null,
+				title: pe.title,
+				metadata: pe.metadata,
+
+			});
+			await Events.insert(event);
+			publishing = true;
+		} else if (event && !pe) {
+			await Events.remove(event);
+			publishing = true;
+		} else if (event && pe) {
+			const eventUpdate: Partial<Event> = {};
+			if (start !== pe.start) {
+				eventUpdate.start = pe.start;
+			}
+			if (event.end !== pe.end) {
+				eventUpdate.end = pe.end;
+			}
+			if (event.title !== pe.title) {
+				eventUpdate.title = pe.title;
+			}
+			if (event.metadata !== ps.metadata) {
+				eventUpdate.metadata = ps.metadata;
+			}
+			if (notEmpty(eventUpdate)) {
+				await Events.update(note.id, eventUpdate);
+			}
+			publishing = true;
+		}
+		*/
 	}
 
 	const mentionedUserLookup: Record<string, User> = {};

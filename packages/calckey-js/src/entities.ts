@@ -159,6 +159,12 @@ export type Note = {
 			votes: number;
 		}[];
 	};
+	event?: {
+		title: string,
+		start: DateString,
+		end: DateString | null,
+		metadata: Record<string, string>,
+	};
 	emojis: {
 		name: string;
 		url: string;

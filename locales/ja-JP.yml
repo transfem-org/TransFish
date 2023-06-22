@@ -1931,3 +1931,15 @@ isBot: このアカウントはBotです
 isLocked: このアカウントのフォローは承認制です
 isAdmin: 管理者
 isPatron: Calckey 後援者
+event: "イベント"
+events: "イベント"
+_event:
+  title: "題名"
+  startDateTime: "開始日時"
+  endDateTime: "終了日時"
+  startDate: "開始日"
+  endDate: "終了日"
+  startTime: "開始時刻"
+  endTime: "終了時刻"
+  detailName: "属性"
+  detailValue: "値"

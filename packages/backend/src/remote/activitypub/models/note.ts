@@ -387,6 +387,7 @@ export async function createNote(
 			apHashtags,
 			apEmojis,
 			poll,
+			event,
 			uri: note.id,
 			url: url,
 		},

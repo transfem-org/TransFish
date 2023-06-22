@@ -134,11 +134,25 @@ export default async function renderNote(
 					name: text,
 					replies: {
 						type: "Collection",
-						totalItems: poll!.votes[i],
+						totalItems: poll?.votes[i],
 					},
 				})),
 		  }
 		: {};
+
+	let asEvent = {};
+	if (note.hasEvent) {
+		const event = await Events.findOneBy({ noteId: note.id });
+		asEvent = event
+			? ({
+					type: "Event",
+					name: event.title,
+					startTime: event.start,
+					endTime: event.end,
+					...event.metadata,
+			  } as const)
+			: {};
+	}
 
 	const asTalk = isTalk
 		? {
@@ -167,6 +181,7 @@ export default async function renderNote(
 		attachment: files.map(renderDocument),
 		sensitive: note.cw != null || files.some((file) => file.isSensitive),
 		tag,
+		...asEvent,
 		...asPoll,
 		...asTalk,
 	};

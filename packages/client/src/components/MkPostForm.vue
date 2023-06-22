@@ -149,6 +149,7 @@
 				@changeName="updateFileName"
 			/>
 			<XPollEditor v-if="poll" v-model="poll" @destroyed="poll = null" />
+			<XEventEditor v-if="event" v-model="event" @destroyed="event = null" />
 			<XNotePreview v-if="showPreview" class="preview" :text="text" />
 			<footer>
 				<button
@@ -163,6 +164,14 @@
 					class="_button"
 					:class="{ active: poll }"
 					@click="togglePoll"
+				>
+					<i class="ph-microphone-stage ph-bold ph-lg"></i>
+				</button>
+				<button
+					v-tooltip="i18n.ts.event"
+					class="_button"
+					:class="{ active: event }"
+					@click="toggleEvent"
 				>
 					<i class="ph-microphone-stage ph-bold ph-lg"></i>
 				</button>
@@ -237,6 +246,7 @@ import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XNotePreview from "@/components/MkNotePreview.vue";
 import XPostFormAttaches from "@/components/MkPostFormAttaches.vue";
 import XPollEditor from "@/components/MkPollEditor.vue";
+import XEventEditor from "@/components/MkEventEditor.vue";
 import { host, url } from "@/config";
 import { erase, unique } from "@/scripts/array";
 import { extractMentions } from "@/scripts/extract-mentions";
@@ -306,6 +316,12 @@ let poll = $ref<{
 	multiple: boolean;
 	expiresAt: string | null;
 	expiredAfter: string | null;
+} | null>(null);
+let event = $ref<{
+	title: string;
+	start: string;
+	end: string | null;
+	metadata: Record<string, string>;
 } | null>(null);
 let useCw = $ref(false);
 let showPreview = $ref(false);
@@ -398,7 +414,7 @@ const maxTextLength = $computed((): number => {
 const canPost = $computed((): boolean => {
 	return (
 		!posting &&
-		(1 <= textLength || 1 <= files.length || !!poll || !!props.renote) &&
+		(1 <= textLength || 1 <= files.length || !!poll || !!event || !!props.renote) &&
 		textLength <= maxTextLength &&
 		(!poll || poll.choices.length >= 2)
 	);
@@ -521,6 +537,7 @@ function watchForDraft() {
 	watch($$(useCw), () => saveDraft());
 	watch($$(cw), () => saveDraft());
 	watch($$(poll), () => saveDraft());
+	watch($$(event), () => saveDraft());
 	watch($$(files), () => saveDraft(), { deep: true });
 	watch($$(visibility), () => saveDraft());
 	watch($$(localOnly), () => saveDraft());
@@ -571,6 +588,19 @@ function togglePoll() {
 			multiple: false,
 			expiresAt: null,
 			expiredAfter: null,
+		};
+	}
+}
+
+function toggleEvent() {
+	if (event) {
+		event = null;
+	} else {
+		event = {
+			title: '',
+			start: (new Date()).toString(),
+			end: null,
+			metadata: {},
 		};
 	}
 }

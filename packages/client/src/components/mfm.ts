@@ -377,7 +377,7 @@ export default defineComponent({
 										this.author &&
 										this.author.host != null
 											? this.author.host
-											: token.props.host) || host,
+											: token.props.host) ?? host,
 									username: token.props.username,
 								}),
 							];

@@ -116,6 +116,7 @@
 					:media-list="note.files"
 				/>
 				<XPoll v-if="note.poll" :note="note" class="poll" />
+				<XEvent v-if="note.event" :note="note" />
 				<template v-if="detailed">
 					<MkUrlPreview
 						v-for="url in urls"
@@ -183,6 +184,7 @@ import * as os from "@/os";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XMediaList from "@/components/MkMediaList.vue";
 import XPoll from "@/components/MkPoll.vue";
+import XEvent from "@/components/MkEvent.vue";
 import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import XCwButton from "@/components/MkCwButton.vue";

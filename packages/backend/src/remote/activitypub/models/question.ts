@@ -29,7 +29,7 @@ export async function extractPollFromQuestion(
 		throw new Error("invalid question");
 	}
 
-	const choices = question[multiple ? "anyOf" : "oneOf"]!.map(
+	const choices = question[multiple ? "anyOf" : "oneOf"]?.map(
 		(x, i) => x.name!,
 	);
 

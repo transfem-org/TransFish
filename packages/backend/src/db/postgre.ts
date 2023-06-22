@@ -40,6 +40,7 @@ import { Signin } from "@/models/entities/signin.js";
 import { AuthSession } from "@/models/entities/auth-session.js";
 import { FollowRequest } from "@/models/entities/follow-request.js";
 import { Emoji } from "@/models/entities/emoji.js";
+import { Event } from "@/models/entities/event.js";
 import { UserNotePining } from "@/models/entities/user-note-pining.js";
 import { Poll } from "@/models/entities/poll.js";
 import { UserKeypair } from "@/models/entities/user-keypair.js";
@@ -158,6 +159,7 @@ export const entities = [
 	PollVote,
 	Notification,
 	Emoji,
+	Event,
 	Hashtag,
 	SwSubscription,
 	AbuseUserReport,

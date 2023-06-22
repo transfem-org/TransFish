@@ -9,6 +9,7 @@ import {
 	NoteReactions,
 	Followings,
 	Polls,
+	Events,
 	Channels,
 } from "../index.js";
 import type { Packed } from "@/misc/schema.js";
@@ -93,6 +94,16 @@ async function populateMyReaction(
 	}
 
 	return undefined;
+}
+
+export async function populateEvent(note: Note) {
+	const event = await Events.findOneByOrFail({ noteId: note.id });
+	return {
+		title: event.title,
+		start: event.start,
+		end: event.end,
+		metadata: event.metadata,
+	};
 }
 
 export const NoteRepository = db.getRepository(Note).extend({
@@ -237,6 +248,7 @@ export const NoteRepository = db.getRepository(Note).extend({
 			url: note.url || undefined,
 			updatedAt: note.updatedAt?.toISOString() || undefined,
 			poll: note.hasPoll ? populatePoll(note, meId) : undefined,
+			event: note.hasEvent ? populateEvent(note) : undefined,
 			...(meId
 				? {
 						myReaction: populateMyReaction(note, meId, options?._hint_),

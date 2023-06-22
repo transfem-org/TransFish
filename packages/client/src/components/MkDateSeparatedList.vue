@@ -32,6 +32,11 @@ export default defineComponent({
 			required: false,
 			default: false,
 		},
+		getDate: {
+			type: Function, // Note => date string
+			required: false,
+			default: undefined,
+		},
 	},
 
 	setup(props, { slots, expose }) {
@@ -46,6 +51,9 @@ export default defineComponent({
 
 		if (props.items.length === 0) return;
 
+		const getDateKey = (item): string =>
+			props.getDate ? props.getDate(item) : item.createdAt;
+
 		const renderChildren = () =>
 			props.items.map((item, i) => {
 				if (!slots || !slots.default) return;
@@ -57,8 +65,8 @@ export default defineComponent({
 
 				if (
 					i !== props.items.length - 1 &&
-					new Date(item.createdAt).getDate() !==
-						new Date(props.items[i + 1].createdAt).getDate()
+					new Date(getDateKey(item)).getDate() !==
+						new Date(getDateKey(props.items[i + 1])).getDate()
 				) {
 					const separator = h(
 						"div",
@@ -76,10 +84,10 @@ export default defineComponent({
 									h("i", {
 										class: "ph-caret-up ph-bold ph-lg icon",
 									}),
-									getDateText(item.createdAt),
+									getDateText(getDateKey(item)),
 								]),
 								h("span", [
-									getDateText(props.items[i + 1].createdAt),
+									getDateText(getDateKey(props.items[i + 1])),
 									h("i", {
 										class: "ph-caret-down ph-bold ph-lg icon",
 									}),
@@ -201,6 +209,7 @@ export default defineComponent({
 			&:first-child {
 				border-radius: var(--radius) var(--radius) 0 0;
 			}
+
 			&:last-child {
 				border-radius: 0 0 var(--radius) var(--radius);
 			}

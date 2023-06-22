@@ -157,10 +157,28 @@ export interface IQuestion extends IObject {
 export const isQuestion = (object: IObject): object is IQuestion =>
 	getApType(object) === "Note" || getApType(object) === "Question";
 
+export const isEvent = (object: IObject): object is IObject =>
+	getApType(object) === "Note" || getApType(object) === "Event";
+
 interface IQuestionChoice {
 	name?: string;
 	replies?: ICollection;
 	_misskey_votes?: number;
+}
+export interface IEvent extends IObject {
+	type: "Event";
+	title?: string;
+	start?: Date;
+	end?: Date;
+	metadata?: {
+		"@type": "Event";
+		name: string;
+		url?: string;
+		startDate: string;
+		endDate?: string;
+		description?: string;
+		identifier?: string;
+	};
 }
 export interface ITombstone extends IObject {
 	type: "Tombstone";
