@@ -99,7 +99,7 @@ import { acct } from "@/filters/user";
 import * as os from "@/os";
 import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { defaultStore } from "@/store";
-import { getEmojiData } from "@/scripts/emojilist";
+import { emojilist } from "@/scripts/emojilist";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
@@ -111,7 +111,6 @@ type EmojiDef = {
 	isCustomEmoji?: boolean;
 };
 
-const emojilist = await getEmojiData();
 const lib = emojilist.filter((x) => x.category !== "flags");
 
 const emjdb: EmojiDef[] = lib.map((x) => ({
