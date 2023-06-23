@@ -99,7 +99,7 @@ import { acct } from "@/filters/user";
 import * as os from "@/os";
 import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { defaultStore } from "@/store";
-import { emojilist } from "@/scripts/emojilist";
+import { getEmojiData } from "@/scripts/emojilist";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
@@ -111,22 +111,23 @@ type EmojiDef = {
 	isCustomEmoji?: boolean;
 };
 
+const emojilist = await getEmojiData();
 const lib = emojilist.filter((x) => x.category !== "flags");
 
 const emjdb: EmojiDef[] = lib.map((x) => ({
-	emoji: x.char,
-	name: x.name,
-	url: char2filePath(x.char),
+	emoji: x.emoji,
+	name: x.slug,
+	url: char2filePath(x.emoji),
 }));
 
 for (const x of lib) {
 	if (x.keywords) {
 		for (const k of x.keywords) {
 			emjdb.push({
-				emoji: x.char,
+				emoji: x.emoji,
 				name: k,
-				aliasOf: x.name,
-				url: char2filePath(x.char),
+				aliasOf: x.slug,
+				url: char2filePath(x.emoji),
 			});
 		}
 	}
