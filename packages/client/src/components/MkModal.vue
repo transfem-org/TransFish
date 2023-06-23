@@ -19,8 +19,7 @@
 	>
 		<FocusTrap
 			v-model:active="isActive"
-			:initial-focus="() => $refs.content"
-			:return-focus-on-deactivate="!noReturnFocus"
+			:return-focus-on-deactivate="false"
 			@deactivate="close"
 		>
 			<div
@@ -67,6 +66,8 @@
 					]"
 					:style="{ zIndex }"
 					@click.self="onBgClick"
+					v-focus
+					tabindex="-1"
 				>
 					<slot :max-height="maxHeight" :type="type"></slot>
 				</div>
@@ -179,6 +180,7 @@ let transitionDuration = $computed(() =>
 
 let contentClicking = false;
 
+const focusedElement = document.activeElement; 
 function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	// removeEventListener("popstate", close);
 	// if (props.preferType == "dialog") {
@@ -192,6 +194,9 @@ function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	if (props.src) props.src.style.pointerEvents = "auto";
 	showing = false;
 	emit("close");
+	if (!props.noReturnFocus) {
+		focusedElement.focus();
+	}
 }
 
 function onBgClick() {
