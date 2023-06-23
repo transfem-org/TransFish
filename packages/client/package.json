@@ -44,7 +44,7 @@
 		"cross-env": "7.0.3",
 		"cypress": "10.11.0",
 		"date-fns": "2.30.0",
-		"emojilib": "^3.0.10",
+		"emojilib": "github:thatonecalculator/emojilib",
 		"escape-regexp": "0.0.1",
 		"eventemitter3": "4.0.7",
 		"focus-trap": "^7.4.3",

@@ -778,8 +778,8 @@ importers:
         specifier: 2.30.0
         version: 2.30.0
       emojilib:
-        specifier: ^3.0.10
-        version: 3.0.10
+        specifier: github:thatonecalculator/emojilib
+        version: github.com/thatonecalculator/emojilib/34528ca3b7acd27da0d3fb38296ea244a7e86dd0
       escape-regexp:
         specifier: 0.0.1
         version: 0.0.1
@@ -6782,10 +6782,6 @@ packages:
 
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
-
-  /emojilib@3.0.10:
-    resolution: {integrity: sha512-VQtCRroFykPTJaoEBEGFg5tI+rEluabjuaVDDbSftDtiRJ5GuqRG/LGV1mmDzkJP4bh5rzuEBOafMN68/YXQcQ==}
-    dev: true
 
   /emojis-list@3.0.0:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
@@ -15919,4 +15915,10 @@ packages:
       loadjs: 4.2.0
       rangetouch: 2.0.1
       url-polyfill: 1.1.12
+    dev: true
+
+  github.com/thatonecalculator/emojilib/34528ca3b7acd27da0d3fb38296ea244a7e86dd0:
+    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/34528ca3b7acd27da0d3fb38296ea244a7e86dd0}
+    name: emojilib
+    version: 3.0.10
     dev: true
