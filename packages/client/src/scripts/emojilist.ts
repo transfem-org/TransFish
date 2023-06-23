@@ -1,6 +1,7 @@
 import data from "unicode-emoji-json/data-by-group.json";
-import components from "unicode-emoji-json/data-emoji-components.json";
+import emojiComponents from "unicode-emoji-json/data-emoji-components.json";
 import keywordSet from "emojilib";
+import { defaultStore } from "@/store";
 
 export const unicodeEmojiCategories = [
 	"emotion",
@@ -26,13 +27,16 @@ export const categoryMapping = {
 	"Flags": "flags",
 } as const;
 
-const skinToneModifiers = [
-	"light_skin_tone",
-	"medium_light_skin_tone",
-	"medium_skin_tone",
-	"medium_dark_skin_tone",
-	"dark_skin_tone",
-];
+function addSkinTone(emoji: string) {
+	const skinTone = defaultStore.state.reactionPickerSkinTone;
+	if (skinTone === 1) return emoji;
+	if (skinTone === 2) return emoji + emojiComponents.light_skin_tone;
+	if (skinTone === 3) return emoji + emojiComponents.medium_light_skin_tone;
+	if (skinTone === 4) return emoji + emojiComponents.medium_skin_tone;
+	if (skinTone === 5) return emoji + emojiComponents.medium_dark_skin_tone;
+	if (skinTone === 6) return emoji + emojiComponents.dark_skin_tone;
+	return emoji;
+}
 
 const newData = {};
 
@@ -42,17 +46,12 @@ Object.keys(data).forEach((originalCategory) => {
 		newData[newCategory] = newData[newCategory] || [];
 		Object.keys(data[originalCategory]).forEach((emojiIndex) => {
 			const emojiObj = { ...data[originalCategory][emojiIndex] };
+			if (emojiObj.skin_tone_support) {
+				emojiObj.emoji = addSkinTone(emojiObj.emoji);
+			}
+			emojiObj.category = newCategory;
 			emojiObj.keywords = keywordSet[emojiObj.emoji];
 			newData[newCategory].push(emojiObj);
-
-			if (emojiObj.skin_tone_support) {
-				skinToneModifiers.forEach((modifier) => {
-					const modifiedEmojiObj = { ...emojiObj };
-					modifiedEmojiObj.emoji += components[modifier];
-					modifiedEmojiObj.skin_tone = modifier;
-					newData[newCategory].push(modifiedEmojiObj);
-				});
-			}
 		});
 	}
 });
@@ -60,76 +59,22 @@ Object.keys(data).forEach((originalCategory) => {
 export type UnicodeEmojiDef = {
 	emoji: string;
 	category: typeof unicodeEmojiCategories[number];
-	skin_tone_support: boolean;
-	name: string;
 	slug: string;
-	emoji_version: string;
-	skin_tone?: string;
 	keywords?: string[];
 };
 
-export const emojilist = newData as UnicodeEmojiDef[];
-
-const storeName = "emojiList";
-
-function openDatabase() {
-	return new Promise<IDBDatabase>((resolve, reject) => {
-		const openRequest = indexedDB.open("emojiDatabase", 1);
-
-		openRequest.onupgradeneeded = () => {
-			const db = openRequest.result;
-			if (!db.objectStoreNames.contains(storeName)) {
-				db.createObjectStore(storeName);
-			}
-		};
-		openRequest.onsuccess = () => {
-			resolve(openRequest.result);
-		};
-		openRequest.onerror = () => {
-			reject(openRequest.error);
-		};
+export const emojilist: UnicodeEmojiDef[] = Object.keys(newData).reduce((acc, category) => {
+	const categoryItems = newData[category].map((item) => {
+			return {
+					emoji: item.emoji,
+					slug: item.slug,
+					category: item.category,
+					keywords: item.keywords || [],
+			};
 	});
-}
+	return acc.concat(categoryItems);
+}, []);
 
-function storeData(db: IDBDatabase, data) {
-	return new Promise((resolve, reject) => {
-		const transaction = db.transaction(storeName, "readwrite");
-		const store = transaction.objectStore(storeName);
-		store.put(data, "emojiListKey");
-
-		transaction.oncomplete = resolve;
-		transaction.onerror = reject;
-	});
-}
-
-function getData(db: IDBDatabase): Promise<UnicodeEmojiDef[]> {
-	return new Promise((resolve, reject) => {
-		const transaction = db.transaction(storeName, "readonly");
-		const store = transaction.objectStore(storeName);
-		const getRequest = store.get("emojiListKey");
-
-		getRequest.onsuccess = () => resolve(getRequest.result);
-		getRequest.onerror = reject;
-	});
-}
-
-export async function getEmojiData(): Promise<UnicodeEmojiDef[]> {
-	try {
-		const db = await openDatabase();
-		const cachedData = await getData(db);
-
-		if (cachedData) {
-			return cachedData;
-		} else {
-			await storeData(db, emojilist);
-			console.log("Emoji data stored in IndexedDB");
-			return emojilist;
-		}
-	} catch (err) {
-		console.error("Error accessing IndexedDB:", err);
-		return emojilist;
-	}
-}
 
 export function getNicelyLabeledCategory(internalName) {
 	return Object.keys(categoryMapping).find(

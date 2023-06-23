@@ -111,7 +111,7 @@
 				<div v-once class="group">
 					<header>{{ i18n.ts.emoji }}</header>
 					<XSection
-						v-for="category in categories"
+						v-for="category in unicodeEmojiCategories"
 						:key="category"
 						:emojis="
 							emojilist
@@ -164,9 +164,9 @@ import { ref, computed, watch, onMounted } from "vue";
 import * as Misskey from "calckey-js";
 import XSection from "@/components/MkEmojiPicker.section.vue";
 import {
-	getEmojiData,
+	emojilist,
+	unicodeEmojiCategories,
 	UnicodeEmojiDef,
-	unicodeEmojiCategories as categories,
 	getNicelyLabeledCategory,
 } from "@/scripts/emojilist";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
@@ -219,7 +219,6 @@ const height = computed(() =>
 const customEmojiCategories = emojiCategories;
 const customEmojis = instance.emojis;
 const q = ref<string | null>(null);
-const emojilist = await getEmojiData();
 const searchResultCustom = ref<Misskey.entities.CustomEmoji[]>([]);
 const searchResultUnicode = ref<UnicodeEmojiDef[]>([]);
 const tab = ref<"index" | "custom" | "unicode" | "tags">("index");
@@ -321,7 +320,7 @@ watch(q, () => {
 
 			// 名前にキーワードが含まれている
 			for (const emoji of emojis) {
-				if (keywords.every((keyword) => emoji.name.includes(keyword))) {
+				if (keywords.every((keyword) => emoji.slug.includes(keyword))) {
 					matches.add(emoji);
 					if (matches.size >= max) break;
 				}
@@ -401,7 +400,7 @@ function reset() {
 function getKey(
 	emoji: string | Misskey.entities.CustomEmoji | UnicodeEmojiDef
 ): string {
-	return typeof emoji === "string" ? emoji : emoji.char || `:${emoji.name}:`;
+	return typeof emoji === "string" ? emoji : emoji.emoji || `:${emoji.name}:`;
 }
 
 function chosen(emoji: any, ev?: MouseEvent) {

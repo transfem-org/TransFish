@@ -41,6 +41,27 @@
 				>
 			</FromSlot>
 
+			<FormRadios v-model="reactionPickerSkinTone" class="_formBlock">
+				<template #label>{{ i18n.ts.reactionPickerSkinTone }}</template>
+				<option :value="1">
+					<MkEmoji :normal="true" emoji="✌️" />
+				</option>
+				<option :value="6">
+					<MkEmoji :normal="true" emoji="✌🏿" />
+				</option>
+				<option :value="5">
+					<MkEmoji :normal="true" emoji="✌🏾" />
+				</option>
+				<option :value="4">
+					<MkEmoji :normal="true" emoji="✌🏽" />
+				</option>
+				<option :value="3">
+					<MkEmoji :normal="true" emoji="✌🏼" />
+				</option>
+				<option :value="2">
+					<MkEmoji :normal="true" emoji="✌🏻" />
+				</option>
+			</FormRadios>
 			<FormRadios v-model="reactionPickerSize" class="_formBlock">
 				<template #label>{{ i18n.ts.size }}</template>
 				<option :value="1">{{ i18n.ts.small }}</option>
@@ -125,6 +146,9 @@ async function reloadAsk() {
 
 let reactions = $ref(deepClone(defaultStore.state.reactions));
 
+const reactionPickerSkinTone = $computed(
+	defaultStore.makeGetterSetter("reactionPickerSkinTone")
+);
 const reactionPickerSize = $computed(
 	defaultStore.makeGetterSetter("reactionPickerSize")
 );
