@@ -130,22 +130,13 @@
 									i18n.ts.defaultReaction
 								}}</template>
 								<option value="⭐">
-									<MkEmoji
-										emoji="⭐"
-										style="height: 1.7em"
-									/>
+									<MkEmoji emoji="⭐" style="height: 1.7em" />
 								</option>
 								<option value="👍">
-									<MkEmoji
-										emoji="👍"
-										style="height: 1.7em"
-									/>
+									<MkEmoji emoji="👍" style="height: 1.7em" />
 								</option>
 								<option value="❤️">
-									<MkEmoji
-										emoji="❤️"
-										style="height: 1.7em"
-									/>
+									<MkEmoji emoji="❤️" style="height: 1.7em" />
 								</option>
 								<option value="custom">
 									<FormInput

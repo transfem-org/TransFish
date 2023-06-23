@@ -38,6 +38,15 @@ function addSkinTone(emoji: string) {
 	return emoji;
 }
 
+const unicodeFifteenEmojis = [
+	'🫨', '🩷', '🩵', '🩶',
+	'🫷', '🫸', '🫎', '🫏',
+	'🪽', '🐦‍⬛', '🪿', '🪼',
+	'🪻', '🫚', '🫛', '🪭',
+	'🪮', '🪇', '🪈', '🪯',
+	'🛜'
+]
+
 const newData = {};
 
 Object.keys(data).forEach((originalCategory) => {
@@ -46,6 +55,9 @@ Object.keys(data).forEach((originalCategory) => {
 		newData[newCategory] = newData[newCategory] || [];
 		Object.keys(data[originalCategory]).forEach((emojiIndex) => {
 			const emojiObj = { ...data[originalCategory][emojiIndex] };
+			if (unicodeFifteenEmojis.includes(emojiObj.emoji)) {
+				return;
+			}
 			if (emojiObj.skin_tone_support) {
 				emojiObj.emoji = addSkinTone(emojiObj.emoji);
 			}
@@ -65,12 +77,12 @@ export type UnicodeEmojiDef = {
 
 export const emojilist: UnicodeEmojiDef[] = Object.keys(newData).reduce((acc, category) => {
 	const categoryItems = newData[category].map((item) => {
-			return {
-					emoji: item.emoji,
-					slug: item.slug,
-					category: item.category,
-					keywords: item.keywords || [],
-			};
+		return {
+			emoji: item.emoji,
+			slug: item.slug,
+			category: item.category,
+			keywords: item.keywords || [],
+		};
 	});
 	return acc.concat(categoryItems);
 }, []);
