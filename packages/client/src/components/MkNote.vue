@@ -928,7 +928,7 @@ defineExpose({
 			}
 		}
 		> .article {
-			padding: 4px 16px 8px;
+			padding: 18px 16px 8px;
 			&:first-child,
 			&:nth-child(2) {
 				padding-top: 104px;
