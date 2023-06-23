@@ -1,12 +1,10 @@
 <template>
 	<FocusTrap
+		:active="false"
 		ref="focusTrap"
-		v-model:active="isActive"
 		:return-focus-on-deactivate="!noReturnFocus"
-		:initial-focus="() => itemsEl.children[0]"
-		@deactivate="emit('close')"
 	>
-		<div>
+		<div tabindex="-1">
 			<div
 				ref="itemsEl"
 				class="rrevdjwt _popup _shadow"
@@ -16,7 +14,6 @@
 					maxHeight: maxHeight ? maxHeight + 'px' : '',
 				}"
 				@contextmenu.self="(e) => e.preventDefault()"
-				tabindex="-1"
 			>
 				<template v-for="(item, i) in items2">
 					<div v-if="item === null" class="divider"></div>
@@ -176,7 +173,6 @@
 					:root-element="itemsEl"
 					showing
 					@actioned="childActioned"
-					@closed="closeChild"
 				/>
 			</div>
 		</div>
@@ -307,7 +303,23 @@ function close(actioned = false) {
 	emit("close", actioned);
 }
 
+function focusUp() {
+	focusPrev(document.activeElement);
+}
+
+function focusDown() {
+	focusNext(document.activeElement);
+}
+
 onMounted(() => {
+	focusTrap.value.activate();
+
+	if (props.viaKeyboard) {
+		nextTick(() => {
+			focusNext(itemsEl.children[0], true, false);
+		});
+	}
+
 	document.addEventListener("mousedown", onGlobalMousedown, {
 		passive: true,
 	});

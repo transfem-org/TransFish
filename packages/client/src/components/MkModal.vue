@@ -14,17 +14,17 @@
 		:duration="transitionDuration"
 		appear
 		@after-leave="emit('closed')"
+		@keyup.esc="emit('click')"
 		@enter="emit('opening')"
 		@after-enter="onOpened"
 	>
 		<FocusTrap
 			v-model:active="isActive"
-			:initial-focus="() => $refs.content"
 			:return-focus-on-deactivate="!noReturnFocus"
-			@deactivate="close"
 		>
 			<div
 				v-show="manualShowing != null ? manualShowing : showing"
+				v-hotkey.global="keymap"
 				:class="[
 					$style.root,
 					{
@@ -44,6 +44,7 @@
 					'--transformOrigin': transformOrigin,
 				}"
 				tabindex="-1"
+				v-focus
 			>
 				<div
 					class="_modalBg data-cy-bg"
@@ -179,6 +180,7 @@ let transitionDuration = $computed(() =>
 
 let contentClicking = false;
 
+const focusedElement = document.activeElement;
 function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	// removeEventListener("popstate", close);
 	// if (props.preferType == "dialog") {
@@ -192,16 +194,26 @@ function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 	if (props.src) props.src.style.pointerEvents = "auto";
 	showing = false;
 	emit("close");
+	if (!props.noReturnFocus) {
+		focusedElement.focus();
+	}
 }
 
 function onBgClick() {
 	if (contentClicking) return;
+	if (!props.noReturnFocus) {
+		focusedElement.focus();
+	}
 	emit("click");
 }
 
 if (type === "drawer") {
 	maxHeight = window.innerHeight / 1.5;
 }
+
+const keymap = {
+	esc: () => emit("esc"),
+};
 
 const MARGIN = 16;
 
