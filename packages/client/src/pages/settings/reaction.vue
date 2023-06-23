@@ -23,7 +23,11 @@
 								class="_button item"
 								@click="remove(element, $event)"
 							>
-								<MkEmoji :emoji="element" :normal="true" />
+								<MkEmoji
+									:emoji="element"
+									style="height: 1.7em"
+									class="emoji"
+								/>
 							</button>
 						</template>
 						<template #footer>
@@ -44,22 +48,22 @@
 			<FormRadios v-model="reactionPickerSkinTone" class="_formBlock">
 				<template #label>{{ i18n.ts.reactionPickerSkinTone }}</template>
 				<option :value="1">
-					<MkEmoji :normal="true" emoji="✌️" />
+					<MkEmoji style="height: 1.7em" emoji="✌️" />
 				</option>
 				<option :value="6">
-					<MkEmoji :normal="true" emoji="✌🏿" />
+					<MkEmoji style="height: 1.7em" emoji="✌🏿" />
 				</option>
 				<option :value="5">
-					<MkEmoji :normal="true" emoji="✌🏾" />
+					<MkEmoji style="height: 1.7em" emoji="✌🏾" />
 				</option>
 				<option :value="4">
-					<MkEmoji :normal="true" emoji="✌🏽" />
+					<MkEmoji style="height: 1.7em" emoji="✌🏽" />
 				</option>
 				<option :value="3">
-					<MkEmoji :normal="true" emoji="✌🏼" />
+					<MkEmoji style="height: 1.7em" emoji="✌🏼" />
 				</option>
 				<option :value="2">
-					<MkEmoji :normal="true" emoji="✌🏻" />
+					<MkEmoji style="height: 1.7em" emoji="✌🏻" />
 				</option>
 			</FormRadios>
 			<FormRadios v-model="reactionPickerSize" class="_formBlock">

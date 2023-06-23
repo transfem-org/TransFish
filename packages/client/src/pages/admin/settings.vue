@@ -131,21 +131,18 @@
 								}}</template>
 								<option value="⭐">
 									<MkEmoji
-										class="emoji"
 										emoji="⭐"
 										style="height: 1.7em"
 									/>
 								</option>
 								<option value="👍">
 									<MkEmoji
-										class="emoji"
 										emoji="👍"
 										style="height: 1.7em"
 									/>
 								</option>
 								<option value="❤️">
 									<MkEmoji
-										class="emoji"
 										emoji="❤️"
 										style="height: 1.7em"
 									/>
