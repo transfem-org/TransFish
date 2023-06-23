@@ -93,9 +93,7 @@ let rootEl = $shallowRef<HTMLElement>();
 let headerEl = $shallowRef<HTMLElement>();
 
 const close = (ev) => {
-	if (modal != null) {
-		modal.close(ev);
-	}
+	modal?.close(ev);
 };
 
 const onBgClick = () => {
