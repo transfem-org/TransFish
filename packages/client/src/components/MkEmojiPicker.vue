@@ -113,6 +113,7 @@
 					<XSection
 						v-for="category in unicodeEmojiCategories"
 						:key="category"
+						:skin-tone-selector="category === 'people'"
 						:emojis="
 							emojilist
 								.filter((e) => e.category === category)

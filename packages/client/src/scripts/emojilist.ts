@@ -3,6 +3,14 @@ import emojiComponents from "unicode-emoji-json/data-emoji-components.json";
 import keywordSet from "emojilib";
 import { defaultStore } from "@/store";
 
+export type UnicodeEmojiDef = {
+	emoji: string;
+	category: typeof unicodeEmojiCategories[number];
+	skin_tone_support: boolean;
+	slug: string;
+	keywords?: string[];
+};
+
 export const unicodeEmojiCategories = [
 	"emotion",
 	"people",
@@ -27,15 +35,17 @@ export const categoryMapping = {
 	"Flags": "flags",
 } as const;
 
-function addSkinTone(emoji: string) {
-	const skinTone = defaultStore.state.reactionPickerSkinTone;
-	if (skinTone === 1) return emoji;
-	if (skinTone === 2) return emoji + emojiComponents.light_skin_tone;
-	if (skinTone === 3) return emoji + emojiComponents.medium_light_skin_tone;
-	if (skinTone === 4) return emoji + emojiComponents.medium_skin_tone;
-	if (skinTone === 5) return emoji + emojiComponents.medium_dark_skin_tone;
-	if (skinTone === 6) return emoji + emojiComponents.dark_skin_tone;
-	return emoji;
+export function addSkinTone(emoji: string, skinTone?: number) {
+	const chosenSkinTone = skinTone || defaultStore.state.reactionPickerSkinTone;
+	const skinToneModifiers = [
+			"",
+			emojiComponents.light_skin_tone,
+			emojiComponents.medium_light_skin_tone,
+			emojiComponents.medium_skin_tone,
+			emojiComponents.medium_dark_skin_tone,
+			emojiComponents.dark_skin_tone
+	];
+	return emoji + (skinToneModifiers[chosenSkinTone - 1] || "");
 }
 
 const unicodeFifteenEmojis = [
@@ -58,9 +68,6 @@ Object.keys(data).forEach((originalCategory) => {
 			if (unicodeFifteenEmojis.includes(emojiObj.emoji)) {
 				return;
 			}
-			if (emojiObj.skin_tone_support) {
-				emojiObj.emoji = addSkinTone(emojiObj.emoji);
-			}
 			emojiObj.category = newCategory;
 			emojiObj.keywords = keywordSet[emojiObj.emoji];
 			newData[newCategory].push(emojiObj);
@@ -68,19 +75,13 @@ Object.keys(data).forEach((originalCategory) => {
 	}
 });
 
-export type UnicodeEmojiDef = {
-	emoji: string;
-	category: typeof unicodeEmojiCategories[number];
-	slug: string;
-	keywords?: string[];
-};
-
 export const emojilist: UnicodeEmojiDef[] = Object.keys(newData).reduce((acc, category) => {
 	const categoryItems = newData[category].map((item) => {
 		return {
 			emoji: item.emoji,
 			slug: item.slug,
 			category: item.category,
+			skin_tone_support: item.skin_tone_support || false,
 			keywords: item.keywords || [],
 		};
 	});

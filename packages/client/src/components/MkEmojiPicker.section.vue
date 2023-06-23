@@ -1,20 +1,31 @@
 <template>
-	<!-- このコンポーネントの要素のclassは親から利用されるのでむやみに弄らないこと -->
 	<section>
 		<header class="_acrylic" @click="shown = !shown">
 			<i
 				class="toggle ph-fw ph-lg"
 				:class="
 					shown
-						? 'ph-caret-down-bold ph-lg'
+						? 'ph-caret-down ph-bold ph-lg'
 						: 'ph-caret-up ph-bold ph-lg'
 				"
 			></i>
 			<slot></slot> ({{ emojis.length }})
+			<span v-if="props.skinToneSelector">
+				<button
+					v-for="skinTone in skinTones"
+					class="_button"
+					@click="applySkinTone(skinTones.indexOf(skinTone))"
+				>
+					<i
+						class="ph-circle ph-fill ph-fw ph-lg"
+						:style="{ color: skinTone + '!important' }"
+					></i>
+				</button>
+			</span>
 		</header>
 		<div v-if="shown" class="body">
 			<button
-				v-for="emoji in emojis"
+				v-for="emoji in localEmojis"
 				:key="emoji"
 				class="_button item"
 				@click="emit('chosen', emoji, $event)"
@@ -26,18 +37,50 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
+import { addSkinTone } from "@/scripts/emojilist";
 
 const props = defineProps<{
 	emojis: string[];
 	initialShown?: boolean;
+	skinToneSelector?: boolean;
 }>();
+
+const skinTones = [
+	"#FFDC5E",
+	"#F7DFCF",
+	"#F3D3A3",
+	"#D6AE89",
+	"#B17F56",
+	"#7D523C",
+];
+
+const localEmojis = ref([...props.emojis]);
+
+function applySkinTone(custom?: number) {
+	for (let i = 0; i < localEmojis.value.length; i++) {
+		localEmojis.value[i] = addSkinTone(localEmojis.value[i], custom);
+	}
+}
 
 const emit = defineEmits<{
 	(ev: "chosen", v: string, event: MouseEvent): void;
 }>();
 
 const shown = ref(!!props.initialShown);
+
+onMounted(() => {
+	if (props.skinToneSelector) {
+		applySkinTone();
+	}
+});
+
+watch(
+	() => props.emojis,
+	(newVal) => {
+		localEmojis.value = [...newVal];
+	}
+);
 </script>
 
 <style lang="scss" scoped></style>
