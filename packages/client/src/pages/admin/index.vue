@@ -201,7 +201,7 @@ const menuDef = $computed(() => [
 				active: currentPage?.route.name === "federation",
 			},
 			{
-				icon: "ph-clipboard-text ph-bold ph-lg",
+				icon: "ph-queue ph-bold ph-lg",
 				text: i18n.ts.jobQueue,
 				to: "/admin/queue",
 				active: currentPage?.route.name === "queue",

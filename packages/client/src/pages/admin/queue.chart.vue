@@ -41,7 +41,9 @@
 		<div class="jobs">
 			<div v-if="jobs.length > 0">
 				<div v-for="job in jobs" :key="job[0]">
-					<span>{{ job[0] }}</span>
+					<a :href="`https://${job[0]}`" class="_link"
+						><span>{{ job[0] }}</span></a
+					>
 					<span style="margin-left: 8px; opacity: 0.7"
 						>({{ number(job[1]) }} jobs)</span
 					>
