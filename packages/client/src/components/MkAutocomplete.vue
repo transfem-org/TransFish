@@ -114,19 +114,19 @@ type EmojiDef = {
 const lib = emojilist.filter((x) => x.category !== "flags");
 
 const emjdb: EmojiDef[] = lib.map((x) => ({
-	emoji: x.char,
-	name: x.name,
-	url: char2filePath(x.char),
+	emoji: x.emoji,
+	name: x.slug,
+	url: char2filePath(x.emoji),
 }));
 
 for (const x of lib) {
 	if (x.keywords) {
 		for (const k of x.keywords) {
 			emjdb.push({
-				emoji: x.char,
+				emoji: x.emoji,
 				name: k,
-				aliasOf: x.name,
-				url: char2filePath(x.char),
+				aliasOf: x.slug,
+				url: char2filePath(x.emoji),
 			});
 		}
 	}

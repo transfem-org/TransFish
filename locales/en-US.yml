@@ -1109,6 +1109,7 @@ isLocked: "This account has follow approvals"
 isModerator: "Moderator"
 isAdmin: "Administrator"
 isPatron: "Calckey Patron"
+reactionPickerSkinTone: "Preferred emoji skin tone"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

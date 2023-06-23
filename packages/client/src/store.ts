@@ -242,6 +242,10 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: "remote" as "none" | "remote" | "always",
 		},
+		reactionPickerSkinTone: {
+			where: "account",
+			default: 1,
+		},
 		reactionPickerSize: {
 			where: "device",
 			default: 3,
