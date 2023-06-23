@@ -41,7 +41,7 @@
 		<div class="jobs">
 			<div v-if="jobs.length > 0">
 				<div v-for="job in jobs" :key="job[0]">
-					<a @click.stop="lookupInstance(job[0])" class="_link">
+					<a @click.stop="os.pageWindow(`/instance-info/${job[0]}`)" class="_link">
 						{{ job[0] }}
 					</a>
 					<span style="margin-left: 8px; opacity: 0.7"
@@ -59,7 +59,6 @@ import { markRaw, onMounted, onUnmounted, ref } from "vue";
 import XChart from "./queue.chart.chart.vue";
 import number from "@/filters/number";
 import * as os from "@/os";
-import { lookupInstance } from "@/scripts/lookup-instance";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
 
