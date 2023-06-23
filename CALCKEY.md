@@ -125,6 +125,11 @@
 - Focus trapping and button labels
 - Meilisearch with filters
 - Post editing
+- Display remaining time on rate-limits
+- Proper 2FA input dialog
+- Let moderators see moderation nodes
+- Non-mangled unicode emojis
+  - Skin tone selection support
 
 ## Implemented (remote)
 
