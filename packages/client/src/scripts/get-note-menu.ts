@@ -268,13 +268,6 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
-			instance.translatorAvailable
-				? {
-						icon: "ph-translate ph-bold ph-lg",
-						text: i18n.ts.translate,
-						action: translate,
-				  }
-				: undefined,
 			statePromise.then((state) =>
 				state?.isFavorited
 					? {
@@ -333,6 +326,13 @@ export function getNoteMenu(props: {
 							text: i18n.ts.pin,
 							action: () => togglePin(true),
 					  }
+				: undefined,
+			instance.translatorAvailable
+				? {
+						icon: "ph-translate ph-bold ph-lg",
+						text: i18n.ts.translate,
+						action: translate,
+				  }
 				: undefined,
 			appearNote.url || appearNote.uri
 				? {
