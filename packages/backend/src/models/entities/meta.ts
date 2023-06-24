@@ -198,7 +198,7 @@ export class Meta {
 	public iconUrl: string | null;
 
 	@Column("boolean", {
-		default: true,
+		default: false,
 	})
 	public cacheRemoteFiles: boolean;
 
