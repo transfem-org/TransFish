@@ -10,16 +10,11 @@
 			"legacyDecorator": true,
 			"decoratorMetadata": true
 		},
-		"experimental": {
-			"keepImportAssertions": true
-		},
-		"baseUrl": ".",
-		"paths": {
-			"@/*": [
-				"./src/*"
-			]
-		},
 		"target": "es2022"
 	},
-	"minify": false
+	"minify": false,
+	"module": {
+		"type": "commonjs",
+		"strict": true
+	}
 }

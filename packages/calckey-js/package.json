@@ -5,9 +5,9 @@
 	"main": "./built/index.js",
 	"types": "./built/index.d.ts",
 	"scripts": {
-		"build": "pnpm swc src -d built -D && pnpm tsd",
+		"build": "pnpm swc src -d built -D",
 		"render": "pnpm run build && pnpm run api && pnpm run api-prod && cp temp/calckey-js.api.json etc/ && pnpm run api-doc",
-		"tsd": "tsd",
+		"tsd": "tsc && tsd",
 		"api": "pnpm api-extractor run --local --verbose",
 		"api-prod": "pnpm api-extractor run --verbose",
 		"api-doc": "pnpm api-documenter markdown -i ./etc/",
