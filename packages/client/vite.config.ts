@@ -43,6 +43,10 @@ export default defineConfig(({ command, mode }) => {
 			}),
 		],
 
+		css: {
+			transformer: "lightningcss",
+		},
+
 		resolve: {
 			extensions,
 			alias: {
@@ -59,7 +63,7 @@ export default defineConfig(({ command, mode }) => {
 			),
 			_ENV_: JSON.stringify(process.env.NODE_ENV),
 			_DEV_: process.env.NODE_ENV !== "production",
-			_PERF_PREFIX_: JSON.stringify("Calckey:"),
+			_PERF_PREFIX_: JSON.stringify("Misskey:"),
 			_DATA_TRANSFER_DRIVE_FILE_: JSON.stringify("mk_drive_file"),
 			_DATA_TRANSFER_DRIVE_FOLDER_: JSON.stringify("mk_drive_folder"),
 			_DATA_TRANSFER_DECK_COLUMN_: JSON.stringify("mk_deck_column"),
