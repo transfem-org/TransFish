@@ -23,7 +23,11 @@
 								class="_button item"
 								@click="remove(element, $event)"
 							>
-								<MkEmoji :emoji="element" :normal="true" />
+								<MkEmoji
+									:emoji="element"
+									style="height: 1.7em"
+									class="emoji"
+								/>
 							</button>
 						</template>
 						<template #footer>
@@ -41,6 +45,27 @@
 				>
 			</FromSlot>
 
+			<FormRadios v-model="reactionPickerSkinTone" class="_formBlock">
+				<template #label>{{ i18n.ts.reactionPickerSkinTone }}</template>
+				<option :value="1">
+					<MkEmoji style="height: 1.7em" emoji="✌️" />
+				</option>
+				<option :value="6">
+					<MkEmoji style="height: 1.7em" emoji="✌🏿" />
+				</option>
+				<option :value="5">
+					<MkEmoji style="height: 1.7em" emoji="✌🏾" />
+				</option>
+				<option :value="4">
+					<MkEmoji style="height: 1.7em" emoji="✌🏽" />
+				</option>
+				<option :value="3">
+					<MkEmoji style="height: 1.7em" emoji="✌🏼" />
+				</option>
+				<option :value="2">
+					<MkEmoji style="height: 1.7em" emoji="✌🏻" />
+				</option>
+			</FormRadios>
 			<FormRadios v-model="reactionPickerSize" class="_formBlock">
 				<template #label>{{ i18n.ts.size }}</template>
 				<option :value="1">{{ i18n.ts.small }}</option>
@@ -125,6 +150,9 @@ async function reloadAsk() {
 
 let reactions = $ref(deepClone(defaultStore.state.reactions));
 
+const reactionPickerSkinTone = $computed(
+	defaultStore.makeGetterSetter("reactionPickerSkinTone")
+);
 const reactionPickerSize = $computed(
 	defaultStore.makeGetterSetter("reactionPickerSize")
 );

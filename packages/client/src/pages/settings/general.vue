@@ -54,7 +54,7 @@
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
-			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
+			<FormSwitch v-model="showTimelineReplies" class="_formBlock"
 				>{{ i18n.ts.flagShowTimelineReplies
 				}}<template #caption
 					>{{ i18n.ts.flagShowTimelineRepliesDescription }}
@@ -114,18 +114,34 @@
 			<FormRadios v-model="fontSize" class="_formBlock">
 				<template #label>{{ i18n.ts.fontSize }}</template>
 				<option :value="null">
-					<span style="font-size: 14px">Aa</span>
+					<span style="font-size: 14px">14</span>
 				</option>
-				<option value="1">
-					<span style="font-size: 15px">Aa</span>
+				<option value="15">
+					<span style="font-size: 15px">15</span>
 				</option>
-				<option value="2">
-					<span style="font-size: 16px">Aa</span>
+				<option value="16">
+					<span style="font-size: 16px">16</span>
 				</option>
-				<option value="3">
-					<span style="font-size: 17px">Aa</span>
+				<option value="17">
+					<span style="font-size: 17px">17</span>
+				</option>
+				<option value="18">
+					<span style="font-size: 18px">18</span>
 				</option>
 			</FormRadios>
+
+			<!-- <FormRange
+				v-model="fontSize"
+				:min="12"
+				:max="18"
+				:step="1"
+				:value="fontSize ? fontSize : 14"
+				easing
+				:showTicks="true"
+				class="_formBlock"
+			>
+				<template #label>{{ i18n.ts.fontSize }}</template>
+			</FormRange> -->
 		</FormSection>
 
 		<FormSection>
@@ -242,24 +258,6 @@ const lang = ref(localStorage.getItem("lang"));
 const fontSize = ref(localStorage.getItem("fontSize"));
 const useSystemFont = ref(localStorage.getItem("useSystemFont") != null);
 
-const profile = reactive({
-	showTimelineReplies: $i?.showTimelineReplies,
-});
-watch(
-	() => profile,
-	() => {
-		save();
-	},
-	{
-		deep: true,
-	}
-);
-function save() {
-	os.apiWithDialog("i/update", {
-		showTimelineReplies: !!profile.showTimelineReplies,
-	});
-}
-
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
 		type: "info",
@@ -343,6 +341,9 @@ const swipeOnDesktop = computed(
 );
 const showAdminUpdates = computed(
 	defaultStore.makeGetterSetter("showAdminUpdates")
+);
+const showTimelineReplies = computed(
+	defaultStore.makeGetterSetter("showTimelineReplies")
 );
 
 watch(lang, () => {

@@ -57,9 +57,15 @@ export default defineComponent({
 			if (t == null) return null;
 			return t.match(/^[0-9.]+s$/) ? t : null;
 		};
+
+		const validNumber = (n: string | null | undefined) => {
+			if (n == null) return null;
+			const parsed = parseFloat(n);
+			return !isNaN(parsed) && isFinite(parsed) && parsed > 0;
+		};
 		// const validEase = (e: string | null | undefined) => {
 		// 	if (e == null) return null;
-		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
+		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/)
 		// 		? (e.startsWith("steps") ? e : "cubic-bezier" + e)
 		// 		: null
 		// }
@@ -104,31 +110,35 @@ export default defineComponent({
 
 						case "fn": {
 							// TODO: CSSを文字列で組み立てていくと token.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
-							let style;
+							let style: string;
 							switch (token.props.name) {
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
 									// const ease = validEase(token.props.args.ease) || "linear";
-									style = `font-size: 150%; animation: tada ${speed} ${delay} linear infinite both;`;
+									style = `font-size: 150%; animation: tada ${speed} ${delay} linear ${loop} both;`;
 									break;
 								}
 								case "jelly": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-rubberBand ${speed} ${delay} linear infinite both;`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-rubberBand ${speed} ${delay} linear ${loop} both;`;
 									break;
 								}
 								case "twitch": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-twitch ${speed} ${delay} ease infinite;`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-twitch ${speed} ${delay} ease ${loop};`;
 									break;
 								}
 								case "shake": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-shake ${speed} ${delay} ease infinite;`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-shake ${speed} ${delay} ease ${loop};`;
 									break;
 								}
 								case "spin": {
@@ -144,25 +154,29 @@ export default defineComponent({
 										: "mfm-spin";
 									const speed = validTime(token.props.args.speed) || "1.5s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: ${anime} ${speed} ${delay} linear infinite; animation-direction: ${direction};`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: ${anime} ${speed} ${delay} linear ${loop}; animation-direction: ${direction};`;
 									break;
 								}
 								case "jump": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-jump ${speed} ${delay} linear infinite;`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-jump ${speed} ${delay} linear ${loop};`;
 									break;
 								}
 								case "bounce": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-bounce ${speed} ${delay} linear infinite; transform-origin: center bottom;`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-bounce ${speed} ${delay} linear ${loop}; transform-origin: center bottom;`;
 									break;
 								}
 								case "rainbow": {
 									const speed = validTime(token.props.args.speed) || "1s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-rainbow ${speed} ${delay} linear infinite;`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-rainbow ${speed} ${delay} linear ${loop};`;
 									break;
 								}
 								case "sparkle": {
@@ -177,7 +191,8 @@ export default defineComponent({
 										: "alternate";
 									const speed = validTime(token.props.args.speed) || "1.5s";
 									const delay = validTime(token.props.args.delay) || "0s";
-									style = `animation: mfm-fade ${speed} ${delay} linear infinite; animation-direction: ${direction};`;
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-fade ${speed} ${delay} linear ${loop}; animation-direction: ${direction};`;
 									break;
 								}
 								case "flip": {
@@ -285,6 +300,24 @@ export default defineComponent({
 									style = `background-color: #${color};`;
 									break;
 								}
+								case "small": {
+									return h(
+										"small",
+										{
+											style: "opacity: 0.7;",
+										},
+										genEl(token.children),
+									);
+								}
+								case "center": {
+									return h(
+										"div",
+										{
+											style: "text-align: center;",
+										},
+										genEl(token.children),
+									);
+								}
 							}
 							if (style == null) {
 								return h("span", {}, [
@@ -322,7 +355,7 @@ export default defineComponent({
 								h(
 									"div",
 									{
-										style: "text-align:center;",
+										style: "text-align: center;",
 									},
 									genEl(token.children),
 								),

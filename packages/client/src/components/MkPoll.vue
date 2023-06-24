@@ -34,23 +34,25 @@
 		</ul>
 		<p v-if="!readOnly">
 			<span>{{ i18n.t("_poll.totalVotes", { n: total }) }}</span>
-			<span> · </span>
-			<a
-				v-if="!closed && !isVoted"
-				@click.stop="showResult = !showResult"
-				>{{
+			<span v-if="!closed && !isVoted">
+				<span> · </span>
+				<a @click.stop="showResult = !showResult">{{
 					showResult ? i18n.ts._poll.vote : i18n.ts._poll.showResult
-				}}</a
-			>
-			<span v-if="isVoted">{{ i18n.ts._poll.voted }}</span>
-			<span v-else-if="closed">{{ i18n.ts._poll.closed }}</span>
+				}}</a>
+			</span>
+			<span v-if="!isLocal">
+				<span> · </span>
+				<a @click.stop="refresh">{{ i18n.ts.reload }}</a>
+			</span>
+			<span v-if="isVoted"> · {{ i18n.ts._poll.voted }}</span>
+			<span v-else-if="closed"> · {{ i18n.ts._poll.closed }}</span>
 			<span v-if="remaining > 0"> · {{ timer }}</span>
 		</p>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onUnmounted, ref, toRef } from "vue";
+import { computed, ref } from "vue";
 import * as misskey from "calckey-js";
 import { sum } from "@/scripts/array";
 import { pleaseLogin } from "@/scripts/please-login";
@@ -67,6 +69,7 @@ const remaining = ref(-1);
 
 const total = computed(() => sum(props.note.poll.choices.map((x) => x.votes)));
 const closed = computed(() => remaining.value === 0);
+const isLocal = computed(() => !props.note.uri);
 const isVoted = computed(
 	() =>
 		!props.note.poll.multiple &&
@@ -110,6 +113,14 @@ if (props.note.poll.expiresAt) {
 		immediate: true,
 		afterMounted: false,
 	});
+}
+
+async function refresh() {
+	if (!props.note.uri) return;
+	const obj = await os.apiWithDialog("ap/show", { uri: props.note.uri });
+	if (obj.type === "Note" && obj.object.poll) {
+		props.note.poll = obj.object.poll;
+	}
 }
 
 const vote = async (id) => {

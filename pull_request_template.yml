@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-                Thanks for taking the time to make Calckey better!
+                Thanks for taking the time to make Calckey better! It's not required, but please consider using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) when making your commits. If you use VSCode, please use the [Conventional Commits extension](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits).
   - type: textarea
     id: about
     attributes:

@@ -725,6 +725,7 @@ export type Endpoints = {
 	"i/2fa/password-less": { req: TODO; res: TODO };
 	"i/2fa/register-key": { req: TODO; res: TODO };
 	"i/2fa/register": { req: TODO; res: TODO };
+	"i/2fa/update-key": { req: TODO; res: TODO };
 	"i/2fa/remove-key": { req: TODO; res: TODO };
 	"i/2fa/unregister": { req: TODO; res: TODO };
 

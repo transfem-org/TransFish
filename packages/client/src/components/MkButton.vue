@@ -2,7 +2,7 @@
 	<button
 		v-if="!link"
 		class="bghgjjyj _button"
-		:class="{ inline, primary, gradate, danger, rounded, full, mini }"
+		:class="{ inline, primary, gradate, danger, rounded, full, mini, chip }"
 		:type="type"
 		@click="emit('click', $event)"
 		@mousedown="onMousedown"
@@ -41,7 +41,8 @@ const props = defineProps<{
 	wait?: boolean;
 	danger?: boolean;
 	full?: boolean;
-	mini: boolean;
+	mini?: boolean;
+	chip?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -195,6 +196,13 @@ function onMousedown(evt: MouseEvent): void {
 	&.mini {
 		padding: 4px 8px;
 		font-size: max(12px, 0.9em);
+		border-radius: 100px;
+	}
+
+	&.chip {
+		padding: 4px 12px;
+		font-size: max(12px, 0.9em);
+		min-width: unset;
 		border-radius: 100px;
 	}
 

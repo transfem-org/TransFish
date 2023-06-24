@@ -119,6 +119,7 @@
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -420,7 +421,7 @@ function noteClick(e) {
 		font-size: 1em;
 		cursor: auto;
 
-		&.max-width_450px {
+		&.max-width_500px {
 			padding: 10px 0 0 8px;
 		}
 	}
@@ -430,6 +431,7 @@ function noteClick(e) {
 
 		> .avatar-container {
 			margin-right: 8px;
+			z-index: 2;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
@@ -650,10 +652,11 @@ function noteClick(e) {
 			flex-grow: 1;
 			margin-bottom: -10px;
 			pointer-events: none;
+			opacity: 0.25;
 			&::before {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				inset-block: 0;
@@ -691,11 +694,12 @@ function noteClick(e) {
 			z-index: 2;
 			left: 0;
 			top: 0;
+			opacity: 0.25;
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--X13);
-				border-bottom: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
+				border-bottom: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				height: calc((var(--avatarSize) / 2));
@@ -732,6 +736,7 @@ function noteClick(e) {
 	}
 
 	&.max-width_500px {
+		padding: 14px 16px;
 		:not(.reply) > & {
 			.reply {
 				--avatarSize: 24px;
@@ -749,11 +754,8 @@ function noteClick(e) {
 				padding-left: 28px !important;
 			}
 		}
-	}
-	&.max-width_450px {
-		padding: 14px 16px;
-		&.reply-to,
-		&.reply-to-more {
+		&.reply-to {
+			--avatarSize: 46px;
 			padding: 14px 16px;
 			padding-top: 14px !important;
 			padding-bottom: 0 !important;

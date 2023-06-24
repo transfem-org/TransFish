@@ -1262,8 +1262,8 @@ _tutorial:
   step6_4: "Maintenant, allez-y, explorez et amusez-vous !"
 _2fa:
   alreadyRegistered: "Configuration déjà achevée."
-  registerDevice: "Ajouter un nouvel appareil"
-  registerKey: "Enregistrer une clef"
+  registerTOTP: "Ajouter un nouvel appareil"
+  registerSecurityKey: "Enregistrer une clef"
   step1: "Tout d'abord, installez une application d'authentification, telle que {a}\
     \ ou {b}, sur votre appareil."
   step2: "Ensuite, scannez le code QR affiché sur l’écran."
@@ -2022,7 +2022,7 @@ silencedInstances: Instances silencieuses
 silenced: Silencieux
 deleted: Effacé
 editNote: Modifier note
-edited: Modifié
+edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
   personnes aux publications des autres.
 _experiments:

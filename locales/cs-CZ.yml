@@ -698,8 +698,8 @@ _time:
   minute: "Minut"
   hour: "Hodin"
 _2fa:
-  registerDevice: "Přidat zařízení"
-  registerKey: "Přidat bezpečnostní klíč"
+  registerTOTP: "Přidat zařízení"
+  registerSecurityKey: "Přidat bezpečnostní klíč"
 _weekday:
   sunday: "Neděle"
   monday: "Pondělí"
@@ -963,7 +963,7 @@ disablingTimelinesInfo: Administrátoři a moderátoři budou vždy mít příst
   časovým osám, i pokud jsou vypnuté.
 deleted: Vymazáno
 editNote: Upravit poznámku
-edited: Upraveno
+edited: 'Upraveno dne {date} {time}'
 silencedInstancesDescription: Vypište hostnames instancí, které chcete ztlumit. Účty
   v uvedených instancích jsou považovány za "ztlumené", mohou pouze zadávat požadavky
   na sledování a nemohou zmiňovat místní účty, pokud nejsou sledovány. Na blokované

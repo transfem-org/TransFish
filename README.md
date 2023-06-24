@@ -27,6 +27,8 @@
 - Read **[this document](./CALCKEY.md)** all for current and future differences.
 - Notable differences:
   - Improved UI/UX (especially on mobile)
+  - Post editing
+  - Content importing
   - Improved notifications
   - Improved server security
   - Improved accessibility
@@ -37,7 +39,7 @@
   - Better intro tutorial
   - Compatibility with Mastodon clients/apps
   - Backfill user information
-  - Sonic search
+  - Advanced search
   - Many more user and admin settings
   - [So much more!](./CALCKEY.md)
 
@@ -47,17 +49,26 @@
 
 # 🥂 Links
 
-- 💸 OpenCollective: <https://opencollective.com/Calckey>
-- 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
+### Want to get involved? Great!
+
+- If you have the means to, [donations](https://opencollective.com/Calckey) are a great way to keep us going.
+- If you know how to program in TypeScript, Vue, or Rust, read the [contributing](./CONTRIBUTING.md) document.
+- If you know a non-English language, translating Calckey on [Weblate](https://hosted.weblate.org/engage/calckey/) help bring Calckey to more people. No technical experience needed!
+- Want to write/report about us, have any professional inquiries, or just have questions to ask? Contact us [here!](https://calckey.org/contact/)
+
+### All links
+
+- 🌐 Homepage: <https://calckey.org>
+- 💸 Donations:
+  - OpenCollective: <https://opencollective.com/Calckey>
+  - Liberapay: <https://liberapay.com/ThatOneCalculator>
   - Donate publicly to get your name on the Patron list!
 - 🚢 Flagship server: <https://calckey.social>
-- 📣 Official account: <https://i.calckey.cloud/@calckey>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
-- 📜 Server list: <https://calckey.fediverse.observer/list>
-- 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
-- 🐋 Docker Hub: <https://hub.docker.com/r/thatonecalculator/calckey>
+- 📣 Official account: <https://i.calckey.cloud/@calckey>
+- 📜 Server list: <https://calckey.org/join>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/calckey/>
-- 📦 Yunohost: <https://github.com/YunoHost-Apps/calckey_ynh>
+- ️️📬 Contact: <https://calckey.org/contact/>
 
 # 🌠 Getting started
 
@@ -84,6 +95,7 @@ If you have access to a server that supports one of the sources below, I recomme
   - 🍀 Nginx (recommended)
   - 🦦 Caddy
   - 🪶 Apache
+- ⚡ [libvips](https://www.libvips.org/)
 
 ### 😗 Optional dependencies
 
@@ -95,7 +107,7 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ### 🏗️ Build dependencies
 
-- 🦀 At least [Rust](https://www.rust-lang.org/) v1.65.0
+- 🦀 At least [Rust](https://www.rust-lang.org/) v1.68.0
 - 🦬 C/C++ compiler & build tools
   - `build-essential` on Debian/Ubuntu Linux
   - `base-devel` on Arch Linux
@@ -153,7 +165,7 @@ In Calckey's directory, fill out the `db` section of `.config/default.yml` with 
 
 ### 🦔 Sonic
 
-Sonic is better suited for self hosters with smaller deployments. It's easier to use, uses almost no resources, and takes barely any any disk space.
+Sonic is better suited for self hosters with smaller deployments. It uses almost no resources, barely any any disk space, and is relatively fast.
 
 Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#installation)
 
@@ -247,4 +259,4 @@ pm2 start "NODE_ENV=production pnpm run start" --name Calckey
   - Go back to Overview > click the clipboard icon next to the ID
   - Run `psql -d calckey` (or whatever the database name is)
   - Run `UPDATE "user" SET "isAdmin" = true WHERE id='999999';` (replace `999999` with the copied ID)
-  - Have the new admin log out and log back in
+  - Restart your Calckey server

@@ -1254,8 +1254,8 @@ _tutorial:
   step7_3: "Semoga berhasil dan bersenang-senanglah! \U0001F680"
 _2fa:
   alreadyRegistered: "Kamu telah mendaftarkan perangkat otentikasi dua faktor."
-  registerDevice: "Daftarkan perangkat baru"
-  registerKey: "Daftarkan kunci keamanan baru"
+  registerTOTP: "Daftarkan perangkat baru"
+  registerSecurityKey: "Daftarkan kunci keamanan baru"
   step1: "Pertama, pasang aplikasi otentikasi (seperti {a} atau {b}) di perangkat\
     \ kamu."
   step2: "Lalu, pindai kode QR yang ada di layar."

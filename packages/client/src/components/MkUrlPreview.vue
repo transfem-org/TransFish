@@ -44,12 +44,15 @@
 				height: `${tweetHeight}px`,
 			}"
 			:src="`https://platform.twitter.com/embed/index.html?embedId=${embedId}&amp;hideCard=false&amp;hideThread=false&amp;lang=en&amp;theme=${
-				$store.state.darkMode ? 'dark' : 'light'
+				defaultStore.state.darkMode ? 'dark' : 'light'
 			}&amp;id=${tweetId}`"
 		></iframe>
 	</div>
 	<div v-else v-size="{ max: [400, 350] }" class="mk-url-preview" @click.stop>
-		<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
+		<transition
+			:name="defaultStore.state.animation ? 'zoom' : ''"
+			mode="out-in"
+		>
 			<component
 				:is="self ? 'MkA' : 'a'"
 				v-if="!fetching"
@@ -76,7 +79,7 @@
 				</div>
 				<article>
 					<header>
-						<h1 :title="title">{{ title }}</h1>
+						<h1 :title="title || undefined">{{ title }}</h1>
 					</header>
 					<p v-if="description" :title="description">
 						{{
@@ -87,7 +90,7 @@
 					</p>
 					<footer>
 						<img v-if="icon" class="icon" :src="icon" />
-						<p :title="sitename">{{ sitename }}</p>
+						<p :title="sitename || undefined">{{ sitename }}</p>
 					</footer>
 				</article>
 			</component>
@@ -106,6 +109,7 @@ import { onMounted, onUnmounted } from "vue";
 import { url as local, lang } from "@/config";
 import { i18n } from "@/i18n";
 import MkButton from "@/components/MkButton.vue";
+import { defaultStore } from "@/store";
 
 const props = withDefaults(
 	defineProps<{

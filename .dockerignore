@@ -10,7 +10,11 @@ packages/backend/.idea/vcs.xml
 
 # Node.js
 node_modules
+**/node_modules
 report.*.json
+
+# Rust
+packages/backend/native-utils/target/*
 
 # Cypress
 cypress/screenshots
@@ -23,9 +27,6 @@ coverage
 /.config/*
 !/.config/example.yml
 !/.config/docker_example.env
-
-#docker dev config
-/dev/docker-compose.yml
 
 # misskey
 built
@@ -46,3 +47,4 @@ packages/backend/assets/instance.css
 # dockerignore custom
 .git
 Dockerfile
+docker-compose.yml

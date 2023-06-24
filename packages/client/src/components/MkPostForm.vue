@@ -14,6 +14,7 @@
 				<i class="ph-x ph-bold ph-lg"></i>
 			</button>
 			<button
+				v-if="$props.editId == null"
 				v-click-anime
 				v-tooltip="i18n.ts.switchAccount"
 				class="account _button"
@@ -1193,7 +1194,7 @@ onMounted(() => {
 			padding: 0 24px;
 			margin: 0;
 			width: 100%;
-			font-size: 16px;
+			font-size: 1.05em;
 			border: none;
 			border-radius: 0;
 			background: transparent;

@@ -1,6 +1,11 @@
 <template>
-	<FocusTrap :active="false" ref="focusTrap">
-		<div tabindex="-1">
+	<FocusTrap
+		ref="focusTrap"
+		v-model:active="isActive"
+		:return-focus-on-deactivate="!noReturnFocus"
+		@deactivate="emit('close')"
+	>
+		<div>
 			<div
 				ref="itemsEl"
 				class="rrevdjwt _popup _shadow"
@@ -10,6 +15,7 @@
 					maxHeight: maxHeight ? maxHeight + 'px' : '',
 				}"
 				@contextmenu.self="(e) => e.preventDefault()"
+				tabindex="-1"
 			>
 				<template v-for="(item, i) in items2">
 					<div v-if="item === null" class="divider"></div>
@@ -128,7 +134,11 @@
 					<button
 						v-else-if="!item.hidden"
 						class="_button item"
-						:class="{ danger: item.danger, active: item.active }"
+						:class="{
+							danger: item.danger,
+							accent: item.accent,
+							active: item.active,
+						}"
 						:disabled="item.active"
 						@click="clicked(item.action, $event)"
 						@mouseenter.passive="onItemMouseEnter(item)"
@@ -165,6 +175,7 @@
 					:root-element="itemsEl"
 					showing
 					@actioned="childActioned"
+					@closed="closeChild"
 				/>
 			</div>
 		</div>
@@ -201,6 +212,7 @@ const props = defineProps<{
 	align?: "center" | string;
 	width?: number;
 	maxHeight?: number;
+	noReturnFocus?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -294,23 +306,7 @@ function close(actioned = false) {
 	emit("close", actioned);
 }
 
-function focusUp() {
-	focusPrev(document.activeElement);
-}
-
-function focusDown() {
-	focusNext(document.activeElement);
-}
-
 onMounted(() => {
-	focusTrap.value.activate();
-
-	if (props.viaKeyboard) {
-		nextTick(() => {
-			focusNext(itemsEl.children[0], true, false);
-		});
-	}
-
 	document.addEventListener("mousedown", onGlobalMousedown, {
 		passive: true,
 	});
@@ -394,6 +390,26 @@ onBeforeUnmount(() => {
 
 				&:before {
 					background: #b4637a;
+				}
+			}
+		}
+
+		&.accent {
+			color: var(--accent);
+
+			&:hover {
+				color: var(--accent);
+
+				&:before {
+					background: var(--accentedBg);
+				}
+			}
+
+			&:active {
+				color: var(--fgOnAccent);
+
+				&:before {
+					background: var(--accent);
 				}
 			}
 		}

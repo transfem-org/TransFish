@@ -175,13 +175,6 @@ function isMe(message): boolean {
 
 	&.max-width_400px {
 		> .message {
-			&:not(.isMe):not(.isRead) {
-				> div {
-					background-image: none;
-					border-left: solid 4px #3aa2dc;
-				}
-			}
-
 			> div {
 				padding: 16px;
 				font-size: 0.9em;

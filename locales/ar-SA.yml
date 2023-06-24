@@ -1049,8 +1049,8 @@ _tutorial:
   step6_4: "Now go, explore, and have fun!"
 _2fa:
   alreadyRegistered: "سجلت سلفًا جهازًا للاستيثاق بعاملين."
-  registerDevice: "سجّل جهازًا جديدًا"
-  registerKey: "تسجيل مفتاح أمان جديد"
+  registerTOTP: "سجّل جهازًا جديدًا"
+  registerSecurityKey: "تسجيل مفتاح أمان جديد"
   step1: "أولًا ثبّت تطبيق استيثاق على جهازك (مثل {a} و{b})."
   step2: "امسح رمز الاستجابة السريعة الموجد على الشاشة."
   step3: "أدخل الرمز الموجود في تطبيقك لإكمال التثبيت."

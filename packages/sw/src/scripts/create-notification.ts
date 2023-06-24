@@ -1,7 +1,7 @@
 /*
  * Notification manager for SW
  */
-declare var self: ServiceWorkerGlobalScope;
+declare let self: ServiceWorkerGlobalScope;
 
 import { swLang } from "@/scripts/lang";
 import { cli } from "@/scripts/operations";
@@ -45,7 +45,7 @@ async function composeNotification<K extends keyof pushNotificationDataMap>(
 		*/
 		case "notification":
 			switch (data.body.type) {
-				case "follow":
+				case "follow": {
 					// users/showの型定義をswos.apiへ当てはめるのが困難なのでapiFetch.requestを直接使用
 					const account = await getAccountFromId(data.userId);
 					if (!account) return null;
@@ -71,6 +71,7 @@ async function composeNotification<K extends keyof pushNotificationDataMap>(
 								  ],
 						},
 					];
+				}
 
 				case "mention":
 					return [
@@ -157,7 +158,7 @@ async function composeNotification<K extends keyof pushNotificationDataMap>(
 						},
 					];
 
-				case "reaction":
+				case "reaction": {
 					let reaction = data.body.reaction;
 					let badge: string | undefined;
 
@@ -214,6 +215,7 @@ async function composeNotification<K extends keyof pushNotificationDataMap>(
 							],
 						},
 					];
+				}
 
 				case "pollVote":
 					return [

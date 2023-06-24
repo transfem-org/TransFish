@@ -1196,8 +1196,8 @@ _tutorial:
   step6_4: "Now go, explore, and have fun!"
 _2fa:
   alreadyRegistered: "Už ste zaregistrovali 2-faktorové autentifikačné zariadenie."
-  registerDevice: "Registrovať nové zariadenie"
-  registerKey: "Registrovať bezpečnostný kľúč"
+  registerTOTP: "Registrovať nové zariadenie"
+  registerSecurityKey: "Registrovať bezpečnostný kľúč"
   step1: "Najprv si nainštalujte autentifikačnú aplikáciu (napríklad {a} alebo {b}) na svoje zariadenie."
   step2: "Potom, naskenujte QR kód zobrazený na obrazovke."
   step2Url: "Do aplikácie zadajte nasledujúcu URL adresu:"

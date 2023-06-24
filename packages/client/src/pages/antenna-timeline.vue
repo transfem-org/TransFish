@@ -106,11 +106,11 @@ watch(
 const headerActions = $computed(() =>
 	antenna
 		? [
-				{
-					icon: "ph-calendar-blank ph-bold ph-lg",
-					text: i18n.ts.jumpToSpecifiedDate,
-					handler: timetravel,
-				},
+				// {
+				// 	icon: "ph-calendar-blank ph-bold ph-lg",
+				// 	text: i18n.ts.jumpToSpecifiedDate,
+				// 	handler: timetravel,
+				// },
 				{
 					icon: "ph-gear-six ph-bold ph-lg",
 					text: i18n.ts.settings,
@@ -160,7 +160,6 @@ definePageMetadata(
 	> .tl {
 		background: none;
 		border-radius: var(--radius);
-		overflow: clip;
 	}
 
 	&.min-width_800px {

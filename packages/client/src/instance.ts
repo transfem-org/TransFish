@@ -5,7 +5,6 @@ import type * as Misskey from "calckey-js";
 // TODO: 他のタブと永続化されたstateを同期
 
 const instanceData = localStorage.getItem("instance");
-
 // TODO: instanceをリアクティブにするかは再考の余地あり
 
 export const instance: Misskey.entities.DetailedInstanceMetadata = reactive(

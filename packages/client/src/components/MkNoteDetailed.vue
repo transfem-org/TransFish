@@ -4,7 +4,7 @@
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350, 300] }"
+		v-size="{ max: [500, 350, 300] }"
 		class="lxwezrsl _block"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
@@ -558,7 +558,7 @@ onUnmounted(() => {
 			&::before {
 				inset: 0px 8px;
 			}
-			&:not(.max-width_450px)::before {
+			&:not(.max-width_500px)::before {
 				bottom: 16px;
 			}
 			&:first-of-type::before {
@@ -609,11 +609,8 @@ onUnmounted(() => {
 			background: none;
 		}
 	}
-
 	&.max-width_500px {
-		font-size: 0.9em;
-	}
-	&.max-width_450px {
+		font-size: 0.975em;
 		> .reply-to {
 			&::before {
 				inset-inline: -24px;
@@ -628,6 +625,7 @@ onUnmounted(() => {
 
 		> :deep(.note-container) {
 			padding: 12px 0 0 0;
+			font-size: 1.05rem;
 			> .header > .body {
 				padding-left: 10px;
 			}

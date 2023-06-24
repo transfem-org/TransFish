@@ -82,7 +82,6 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	if (props.note.visibility === "public") {
 		buttonActions.push({
 			text: i18n.ts.renote,
-			textStyle: "font-weight: bold",
 			icon: "ph-repeat ph-bold ph-lg",
 			danger: false,
 			action: () => {
@@ -251,6 +250,9 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 			},
 		});
 	}
+
+	buttonActions[0].textStyle = "font-weight: bold";
+
 	os.popupMenu(buttonActions, buttonRef.value, { viaKeyboard });
 };
 </script>
