@@ -5,22 +5,24 @@ blank_issues_enabled: true
 contact_links:
   - name: Support Matrix
     url: https://matrix.to/#/%23calckey:matrix.fedibird.com
-    about: Having trouble with deployment? Ask the support chat!
+    about: Having trouble with deployment? Ask the support chat.
   - name: Resposible Disclosure
     url: https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md
-    about: Found a security vulnerability? Please report it here!
+    about: Found a security vulnerability? Please disclose it responsibly.
 body:
   - type: markdown
     attributes:
       value: |
                 Thanks for taking the time to fill out this bug report!
+                Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23calckey:matrix.fedibird.com)
+                Found a security vulnerability? [Please disclose it responsibly.](https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md)
+                By submitting this issue, you agree to follow our [Contribution Guidelines.](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
   - type: textarea
     id: what-happened
     attributes:
       label: What happened?
       description: Please give us a brief description of what happened.
       placeholder: Tell us what you see!
-      value: "A bug happened!"
     validations:
       required: true
   - type: textarea
@@ -29,7 +31,6 @@ body:
       label: What did you expect to happen?
       description: Please give us a brief description of what you expected to happen.
       placeholder: Tell us what you wish happened!
-      value: "Instead of x, y should happen instead!"
     validations:
       required: true
   - type: input
