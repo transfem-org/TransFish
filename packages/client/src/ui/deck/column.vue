@@ -23,6 +23,7 @@
 			@dragstart="onDragstart"
 			@dragend="onDragend"
 			@contextmenu.prevent.stop="onContextmenu"
+			@wheel="emit('headerWheel', $event)"
 		>
 			<button
 				v-if="isStacked && !isMainColumn"
@@ -95,6 +96,7 @@ const props = withDefaults(
 const emit = defineEmits<{
 	(ev: "parent-focus", direction: "up" | "down" | "left" | "right"): void;
 	(ev: "change-active-state", v: boolean): void;
+	(ev: "headerWheel", ctx: WheelEvent): void;
 }>();
 
 let body = $ref<HTMLDivElement>();
