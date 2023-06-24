@@ -49,7 +49,10 @@
 		></iframe>
 	</div>
 	<div v-else v-size="{ max: [400, 350] }" class="mk-url-preview" @click.stop>
-		<transition :name="defaultStore.state.animation ? 'zoom' : ''" mode="out-in">
+		<transition
+			:name="defaultStore.state.animation ? 'zoom' : ''"
+			mode="out-in"
+		>
 			<component
 				:is="self ? 'MkA' : 'a'"
 				v-if="!fetching"
