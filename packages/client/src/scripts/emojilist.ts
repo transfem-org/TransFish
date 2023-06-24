@@ -28,11 +28,11 @@ export const categoryMapping = {
 	"People & Body": "people",
 	"Animals & Nature": "animals_and_nature",
 	"Food & Drink": "food_and_drink",
-	"Activities": "activity",
+	Activities: "activity",
 	"Travel & Places": "travel_and_places",
-	"Objects": "objects",
-	"Symbols": "symbols",
-	"Flags": "flags",
+	Objects: "objects",
+	Symbols: "symbols",
+	Flags: "flags",
 } as const;
 
 export const unicodeEmojiSkinTones = [
@@ -47,24 +47,39 @@ export const unicodeEmojiSkinTones = [
 export function addSkinTone(emoji: string, skinTone?: number) {
 	const chosenSkinTone = skinTone || defaultStore.state.reactionPickerSkinTone;
 	const skinToneModifiers = [
-			"",
-			emojiComponents.light_skin_tone,
-			emojiComponents.medium_light_skin_tone,
-			emojiComponents.medium_skin_tone,
-			emojiComponents.medium_dark_skin_tone,
-			emojiComponents.dark_skin_tone
+		"",
+		emojiComponents.light_skin_tone,
+		emojiComponents.medium_light_skin_tone,
+		emojiComponents.medium_skin_tone,
+		emojiComponents.medium_dark_skin_tone,
+		emojiComponents.dark_skin_tone,
 	];
 	return emoji + (skinToneModifiers[chosenSkinTone - 1] || "");
 }
 
 const unicodeFifteenEmojis = [
-	'🫨', '🩷', '🩵', '🩶',
-	'🫷', '🫸', '🫎', '🫏',
-	'🪽', '🐦‍⬛', '🪿', '🪼',
-	'🪻', '🫚', '🫛', '🪭',
-	'🪮', '🪇', '🪈', '🪯',
-	'🛜'
-]
+	"🫨",
+	"🩷",
+	"🩵",
+	"🩶",
+	"🫷",
+	"🫸",
+	"🫎",
+	"🫏",
+	"🪽",
+	"🐦‍⬛",
+	"🪿",
+	"🪼",
+	"🪻",
+	"🫚",
+	"🫛",
+	"🪭",
+	"🪮",
+	"🪇",
+	"🪈",
+	"🪯",
+	"🛜",
+];
 
 const newData = {};
 
@@ -84,22 +99,26 @@ Object.keys(data).forEach((originalCategory) => {
 	}
 });
 
-export const emojilist: UnicodeEmojiDef[] = Object.keys(newData).reduce((acc, category) => {
-	const categoryItems = newData[category].map((item) => {
-		return {
-			emoji: item.emoji,
-			slug: item.slug,
-			category: item.category,
-			skin_tone_support: item.skin_tone_support || false,
-			keywords: item.keywords || [],
-		};
-	});
-	return acc.concat(categoryItems);
-}, []);
-
+export const emojilist: UnicodeEmojiDef[] = Object.keys(newData).reduce(
+	(acc, category) => {
+		const categoryItems = newData[category].map((item) => {
+			return {
+				emoji: item.emoji,
+				slug: item.slug,
+				category: item.category,
+				skin_tone_support: item.skin_tone_support || false,
+				keywords: item.keywords || [],
+			};
+		});
+		return acc.concat(categoryItems);
+	},
+	[],
+);
 
 export function getNicelyLabeledCategory(internalName) {
-	return Object.keys(categoryMapping).find(
-		(key) => categoryMapping[key] === internalName
-	) || internalName;
+	return (
+		Object.keys(categoryMapping).find(
+			(key) => categoryMapping[key] === internalName,
+		) || internalName
+	);
 }

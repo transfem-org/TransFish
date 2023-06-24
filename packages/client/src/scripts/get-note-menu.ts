@@ -341,7 +341,7 @@ export function getNoteMenu(props: {
 						action: () => {
 							window.open(appearNote.url || appearNote.uri, "_blank");
 						},
-					}
+				  }
 				: undefined,
 			{
 				type: "parent",
@@ -358,19 +358,21 @@ export function getNoteMenu(props: {
 						text: i18n.ts.copyLink,
 						action: copyLink,
 					},
-					appearNote.url || appearNote.uri ? {
-						icon: "ph-link-simple ph-bold ph-lg",
-						text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
-						action: copyOriginal,
-					} : undefined,
+					appearNote.url || appearNote.uri
+						? {
+								icon: "ph-link-simple ph-bold ph-lg",
+								text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+								action: copyOriginal,
+						  }
+						: undefined,
 					shareAvailable()
-					? {
-							icon: "ph-share-network ph-bold ph-lg",
-							text: i18n.ts.share,
-							action: share,
-						}
-					: undefined,
-				]
+						? {
+								icon: "ph-share-network ph-bold ph-lg",
+								text: i18n.ts.share,
+								action: share,
+						  }
+						: undefined,
+				],
 			},
 			/*
 		...($i.isModerator || $i.isAdmin ? [
@@ -404,7 +406,7 @@ export function getNoteMenu(props: {
 								"closed",
 							);
 						},
-					}
+				  }
 				: undefined,
 			instance.features.postEditing && isAppearAuthor
 				? {
@@ -432,11 +434,12 @@ export function getNoteMenu(props: {
 			!isAppearAuthor ? null : undefined,
 			!isAppearAuthor
 				? {
-					type: "parent",
-					icon: "ph-user ph-bold ph-lg",
-					text: i18n.ts.user,
-					children: getUserMenu(appearNote.user)
-				} : undefined,
+						type: "parent",
+						icon: "ph-user ph-bold ph-lg",
+						text: i18n.ts.user,
+						children: getUserMenu(appearNote.user),
+				  }
+				: undefined,
 		].filter((x) => x !== undefined);
 	} else {
 		menu = [
@@ -459,18 +462,20 @@ export function getNoteMenu(props: {
 				text: i18n.ts.copyLink,
 				action: copyLink,
 			},
-			appearNote.url || appearNote.uri ? {
-				icon: "ph-link-simple ph-bold ph-lg",
-				text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
-				action: copyOriginal,
-			} : undefined,
+			appearNote.url || appearNote.uri
+				? {
+						icon: "ph-link-simple ph-bold ph-lg",
+						text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+						action: copyOriginal,
+				  }
+				: undefined,
 			shareAvailable()
-			? {
-					icon: "ph-share-network ph-bold ph-lg",
-					text: i18n.ts.share,
-					action: share,
-				}
-			: undefined,
+				? {
+						icon: "ph-share-network ph-bold ph-lg",
+						text: i18n.ts.share,
+						action: share,
+				  }
+				: undefined,
 		].filter((x) => x !== undefined);
 	}
 

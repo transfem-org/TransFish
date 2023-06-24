@@ -530,7 +530,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	if (ps.cw !== note.cw || (ps.cw && !note.cw)) {
 		update.cw = ps.cw;
 	}
-	else if (!ps.cw && note.cw) {
+	if (!ps.cw && note.cw) {
 		update.cw = null;
 	}
 	if (ps.visibility !== note.visibility) {

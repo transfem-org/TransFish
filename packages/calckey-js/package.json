@@ -11,7 +11,7 @@
 		"api": "pnpm api-extractor run --local --verbose",
 		"api-prod": "pnpm api-extractor run --verbose",
 		"api-doc": "pnpm api-documenter markdown -i ./etc/",
-		"lint": "pnpm rome check --apply * && pnpm rome check --apply 'src/*.ts'",
+		"lint": "pnpm rome check --apply *.ts",
 		"format": "pnpm rome format --write '*' ; pnpm rome format --write '**/*.ts'",
 		"jest": "jest --coverage --detectOpenHandles",
 		"test": "pnpm jest && pnpm tsd"

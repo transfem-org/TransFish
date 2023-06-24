@@ -468,7 +468,9 @@ export default async (
 				} else if (boostedByRelay && data.renote?.uri) {
 					// Use Redis transaction for atomicity
 					await redisClient.watch(`publishedNote:${data.renote.uri}`);
-					const exists = await redisClient.exists(`publishedNote:${data.renote.uri}`);
+					const exists = await redisClient.exists(
+						`publishedNote:${data.renote.uri}`,
+					);
 					if (exists === 0) {
 						// Start the transaction
 						const transaction = redisClient.multi();
@@ -669,15 +671,15 @@ async function renderNoteOrRenoteActivity(data: Option, note: Note) {
 
 	const content =
 		data.renote &&
-			data.text == null &&
-			data.poll == null &&
-			(data.files == null || data.files.length === 0)
+		data.text == null &&
+		data.poll == null &&
+		(data.files == null || data.files.length === 0)
 			? renderAnnounce(
-				data.renote.uri
-					? data.renote.uri
-					: `${config.url}/notes/${data.renote.id}`,
-				note,
-			)
+					data.renote.uri
+						? data.renote.uri
+						: `${config.url}/notes/${data.renote.id}`,
+					note,
+			  )
 			: renderCreate(await renderNote(note, false), note);
 
 	return renderActivity(content);

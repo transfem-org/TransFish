@@ -65,7 +65,7 @@ export default defineComponent({
 		};
 		// const validEase = (e: string | null | undefined) => {
 		// 	if (e == null) return null;
-		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
+		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/)
 		// 		? (e.startsWith("steps") ? e : "cubic-bezier" + e)
 		// 		: null
 		// }
