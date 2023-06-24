@@ -90,6 +90,15 @@ export type Channels = {
 		};
 		receives: null;
 	};
+	antenna: {
+		params: {
+			antennaId: Antenna["id"];
+		};
+		events: {
+			note: (payload: Note) => void;
+		};
+		receives: null;
+	}
 	messaging: {
 		params: {
 			otherparty?: User["id"] | null;
