@@ -66,8 +66,6 @@
 					]"
 					:style="{ zIndex }"
 					@click.self="onBgClick"
-					v-focus
-					tabindex="-1"
 				>
 					<slot :max-height="maxHeight" :type="type"></slot>
 				</div>
