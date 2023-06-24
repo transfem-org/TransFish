@@ -1,4 +1,5 @@
 const fs = require("node:fs");
+const execa = require("execa");
 const { join } = require("node:path");
 
 (async () => {
@@ -15,6 +16,10 @@ const { join } = require("node:path");
 		force: true,
 	});
 	fs.rmSync(join(__dirname, "/../packages/sw/built"), {
+		recursive: true,
+		force: true,
+	});
+	fs.rmSync(join(__dirname, "/../packages/calckey-js/built"), {
 		recursive: true,
 		force: true,
 	});
