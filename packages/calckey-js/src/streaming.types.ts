@@ -98,7 +98,7 @@ export type Channels = {
 			note: (payload: Note) => void;
 		};
 		receives: null;
-	}
+	};
 	messaging: {
 		params: {
 			otherparty?: User["id"] | null;
