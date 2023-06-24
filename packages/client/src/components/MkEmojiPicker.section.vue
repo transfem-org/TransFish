@@ -10,11 +10,11 @@
 				"
 			></i>
 			<slot></slot> ({{ emojis.length }})
-			<span v-if="props.skinToneSelector">
+			<span v-if="props.skinToneSelector && props.skinTones">
 				<button
-					v-for="skinTone in skinTones"
+					v-for="skinTone in props.skinTones"
 					class="_button"
-					@click="applySkinTone(skinTones.indexOf(skinTone))"
+					@click="applySkinTone(props.skinTones.indexOf(skinTone) + 1)"
 				>
 					<i
 						class="ph-circle ph-fill ph-fw ph-lg"
@@ -44,16 +44,8 @@ const props = defineProps<{
 	emojis: string[];
 	initialShown?: boolean;
 	skinToneSelector?: boolean;
+	skinTones?: string[];
 }>();
-
-const skinTones = [
-	"#FFDC5E",
-	"#F7DFCF",
-	"#F3D3A3",
-	"#D6AE89",
-	"#B17F56",
-	"#7D523C",
-];
 
 const localEmojis = ref([...props.emojis]);
 
