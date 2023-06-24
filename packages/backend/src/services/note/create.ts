@@ -468,17 +468,19 @@ export default async (
 				} else if (boostedByRelay && data.renote?.uri) {
 					// Use Redis transaction for atomicity
 					await redisClient.watch(`publishedNote:${data.renote.uri}`);
-					const exists = await redisClient.exists(
-						`publishedNote:${data.renote.uri}`,
-					);
+					const exists = await redisClient.exists(`publishedNote:${data.renote.uri}`);
 					if (exists === 0) {
 						// Start the transaction
-						redisClient.multi();
-						publishNotesStream(data.renote);
+						const transaction = redisClient.multi();
 						const key = `publishedNote:${data.renote.uri}`;
-						await redisClient.set(key, 1, "EX", 30);
+						transaction.set(key, 1, "EX", 30);
 						// Execute the transaction
-						redisClient.exec();
+						transaction.exec((err, replies) => {
+							// Publish after setting the key in Redis
+							if (!err && data.renote) {
+								publishNotesStream(data.renote);
+							}
+						});
 					} else {
 						// Abort the transaction
 						redisClient.unwatch();
@@ -489,12 +491,16 @@ export default async (
 					const exists = await redisClient.exists(`publishedNote:${note.uri}`);
 					if (exists === 0) {
 						// Start the transaction
-						redisClient.multi();
-						publishNotesStream(note);
+						const transaction = redisClient.multi();
 						const key = `publishedNote:${note.uri}`;
-						await redisClient.set(key, 1, "EX", 30);
+						transaction.set(key, 1, "EX", 30);
 						// Execute the transaction
-						redisClient.exec();
+						transaction.exec((err, replies) => {
+							// Publish after setting the key in Redis
+							if (!err) {
+								publishNotesStream(note);
+							}
+						});
 					} else {
 						// Abort the transaction
 						redisClient.unwatch();
@@ -663,15 +669,15 @@ async function renderNoteOrRenoteActivity(data: Option, note: Note) {
 
 	const content =
 		data.renote &&
-		data.text == null &&
-		data.poll == null &&
-		(data.files == null || data.files.length === 0)
+			data.text == null &&
+			data.poll == null &&
+			(data.files == null || data.files.length === 0)
 			? renderAnnounce(
-					data.renote.uri
-						? data.renote.uri
-						: `${config.url}/notes/${data.renote.id}`,
-					note,
-			  )
+				data.renote.uri
+					? data.renote.uri
+					: `${config.url}/notes/${data.renote.id}`,
+				note,
+			)
 			: renderCreate(await renderNote(note, false), note);
 
 	return renderActivity(content);
