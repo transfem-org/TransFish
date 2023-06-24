@@ -65,6 +65,7 @@ body:
       label: What browser are you using? (Client-side issues only)
       multiple: false
       options:
+        - N/A
         - Firefox
         - Chrome
         - Brave
@@ -79,6 +80,7 @@ body:
       label: What operating system are you using? (Client-side issues only)
       multiple: false
       options:
+        - N/A
         - Windows
         - MacOS
         - Linux
@@ -91,6 +93,7 @@ body:
       label: What operating system are you using? (Server-side issues only)
       multiple: false
       options:
+        - N/A
         - Ubuntu >= 22.04
         - Ubuntu < 22.04
         - Debian
