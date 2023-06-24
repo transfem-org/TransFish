@@ -14,16 +14,17 @@
 		:duration="transitionDuration"
 		appear
 		@after-leave="emit('closed')"
+		@keyup.esc="emit('click')"
 		@enter="emit('opening')"
 		@after-enter="onOpened"
 	>
 		<FocusTrap
 			v-model:active="isActive"
-			:return-focus-on-deactivate="false"
-			@deactivate="close"
+			:return-focus-on-deactivate="!noReturnFocus"
 		>
 			<div
 				v-show="manualShowing != null ? manualShowing : showing"
+				v-hotkey.global="keymap"
 				:class="[
 					$style.root,
 					{
@@ -43,6 +44,7 @@
 					'--transformOrigin': transformOrigin,
 				}"
 				tabindex="-1"
+				v-focus
 			>
 				<div
 					class="_modalBg data-cy-bg"
@@ -205,6 +207,10 @@ function onBgClick() {
 if (type === "drawer") {
 	maxHeight = window.innerHeight / 1.5;
 }
+
+const keymap = {
+	esc: () => emit("esc"),
+};
 
 const MARGIN = 16;
 
@@ -380,8 +386,6 @@ onMounted(() => {
 		},
 		{ immediate: true }
 	);
-
-	content.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')?.focus();
 
 	nextTick(() => {
 		new ResizeObserver((entries, observer) => {

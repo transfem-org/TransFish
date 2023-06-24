@@ -3,7 +3,6 @@
 		ref="focusTrap"
 		v-model:active="isActive"
 		:return-focus-on-deactivate="!noReturnFocus"
-		:initial-focus="() => itemsEl.children[0]"
 		@deactivate="emit('close')"
 	>
 		<div>
