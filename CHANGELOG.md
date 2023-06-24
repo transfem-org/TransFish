@@ -2,295 +2,578 @@
 
 All changes from v13.0.0 onwards, for a full list of differences read CALCKEY.md
 
+## [14.0.0-rc3] - 2023-06-24
+
+### Bug Fixes
+
+- Fix: editing caption accuracy
+
+- Fix: only show meili in metrics if available
+
+- Fix server metric iteration
+
+- Fix inbox stall
+
+- Fixes #10284, fixes #10208; passing in all pugVariables needed in base.pug, fixes csp
+
+- Fix: unread message bgcolor
+
+- Fix boost mutes
+
+- Fix search features
+
+- Fix: :bug: properly enter date
+
+- Fix back button display
+
+- Fix: "24"th hour doesn't exist, it's 0
+
+- Fix: :adhesive_bandage: YYYYMMDD with dashes
+
+- Fix: :rotating_light: fix unused import
+
+- Fix: :adhesive_bandage: day isn't decreased by 1
+
+- Fix: 🚸 make "show replies in timeline" work as expected
+
+Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
+
+- Fix: :ambulance: fix stream.ts
+
+- Fix: :bug: sonic logged connection despite not existing
+
+- Fix: :ambulance: fix switch import
+
+- Fix: :lipstick: fix sign-in 2fa token style
+
+- Fix: :bug: 2FA dialog
+
+- Fix: :bug: use correct 2fa value
+
+- Fix: :adhesive_bandage: convert numeric input to string
+
+- Fix aode-relay compatibility
+
+- Fix: :bug: display punishments on desktop
+
+- Fix user preview menu color
+
+- Fix: :lipstick: white foreground on forced black background
+
+Remedies the problem introduced by 020c4f578827e2391b35cd102ee197cc037c0382 causing black text to appear over a black-ish background
+
+- Fix: :globe_with_meridians: correct "clear"
+
+- Fix: 🐛 don't allow editing a post on another account
+
+- Fix: 🐛 when editing polls, keep votes for unmodified choices
+
+- Fix: :bug: properly index edited post
+
+- Fix: :adhesive_bandage: duplicate update
+
+- Fix: :lipstick: badge style on mobile
+
+- Fix UI sometimes being offset on mobile
+
+- Fix: 🐛 empty fs stat
+
+- Fix build and clean scripts
+
+- Fix: :bug: only collapsed reply if notification is reply
+
+- Fix: 🐛 proper isDuplicateKeyValueError handling
+
+Closes #10340
+Co-authored-by: Kainoa Kanter <kainoa@t1c.dev>
+
+- Fix: :bug: collapse reply if type is a mention and it has a reply
+
+- Fix: :pencil2: typo in API docs + errors
+
+Co-authored-by: naskya <m@naskya.net>
+
+- Fix: hide tooltip on page change
+
+- Fix: don't use cache on autocomplete for now
+
+- Fix: :lipstick: consistent emoji styling
+
+- Fix: :adhesive_bandage: disable Unicode 15 emojis
+
+https://github.com/jdecked/twemoji/pull/43
+
+- Fix: :bug: pull up instance window instead of search field
+
+- Fix: autocomplete not being focused properly
+
+- Fix: mobile note spacing
+
+- Fix: 🐛 race condition between workers when creating note
+
+Closes #10345
+Discovered here: https://codeberg.org/calckey/calckey/issues/10345#issuecomment-950475
+
+- Fix: :bug: non-duplicate skin tone selection
+
+- Fix: :ambulance: disable lightningcss transformer for now
+
+- Fix: :arrow_down: downgrade chalk
+
+- Fix: :bug: start transaction with multi
+
+- Fix: :bug: remove cw in post edit
+
+Closes #10353
+
+- Fix: :construction_worker: fix format run
+
+- Fix compile error
+
+- Fix: jump to top of page when opening modals
+
+I want to do this probably later, for now it will still focus inside the window when pressing tab
+
+- Fix: :alembic: ensure splash is removed upon load
+
+https://codeberg.org/calckey/calckey/pulls/10285#issuecomment-951231
+
+- Fix: focus first element inside modal
+
+- Fix: :adhesive_bandage: make cacheRemoteFiles false by default for new instances
+
+- Fix: basically just undo my previous modal changes
+
+
+### Documentation
+
+- Docs: 📝 tips
+
+- Docs: 📝 changelog
+
+- Docs: :memo: rudamentary sea-orm-cli instructions
+
+- Docs: :memo: sea orm migration "Setting Up Migration" doc link
+
+- Docs: 📝 fix formatting
+
+- Docs: :memo: min rust ver
+
+- Docs: :memo: changelog
+
+- Docs: :memo: update links
+
+- Docs: :memo: changelog
+
+- Docs: :memo: API documentation generation
+
+- Docs: :memo: add symlink for api docs in docs/
+
+- Docs: 📝 use document instead of symlink
+
+- Docs: :memo: document packages dir
+
+- Docs: :memo: clearer package docs
+
+- Docs: :memo: mention libvips requirement
+
+#10352
+
+
+### Features
+
+- Feat: ✨ searchFilters meta property
+
+- Feat: ✨ patron labels
+
+- Feat: channel column in deck view
+
+- Feat: :sparkles: delay function in animated MFM
+
+- Feat: :monocle_face: bring back misskey's moderation displays on profile
+
+- Feat: 🔒 Improve 2FA/keypass experience
+
+Co-authored-by: Tamania <tamaina@hotmail.co.jp>
+Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
+
+- Feat: :lipstick: button icons for security
+
+- Feat: :sparkles: 2FA input dialog
+
+- Add comments
+
+- Add faded edges to swiper + shadows :3
+
+- Add refresh button to poll
+
+- Add environment variable
+
+- Feat: :sparkles: display remaining time on ratelimits
+
+- Feat: :sparkles: $[small ] and $[center ] MFM syntax
+
+- Feat: :sparkles: clickable domains on job queue
+
+https://post.naskya.net/notes/9gbfos2mv5iz6g63
+
+- Feat: :sparkles: emoji skin tone
+
+Closes #9959
+
+- Feat: :sparkles: skin tone selector in category
+
+- Feat: :lock: expand /api/v1/instance/peers to proper endpoint and check for private mode
+
+Closes #10358
+
+
+### Miscellaneous Tasks
+
+- Chore: update patrons
+
+- Chore: lint sw
+
+- Chore: update patrons
+
+- Chore: update patrons
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1770 of 1770 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1770 of 1770 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: formatting
+
+- Chore: update patrons
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1772 of 1772 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Update cheat sheet with delay
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1777 of 1777 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Polish)
+
+Currently translated at 96.4% (1714 of 1777 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
+
+- Chore: Translated using Weblate (Italian)
+
+Currently translated at 71.0% (1262 of 1777 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/it/
+
+- Chore: formatting
+
+- Chore: formatting
+
+- Chore: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1787 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.4% (1741 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.4% (1741 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: formatting
+
+- Chore: :passport_control: improve gitea templates
+
+- Chore: :passport_control: conventional commits in body, not checkbox
+
+- Chore: :arrow_up: up pnpm
+
+- Chore: Added translation using Weblate (Portuguese (Brazil))
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.6% (1762 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (Portuguese (Brazil))
+
+Currently translated at 0.6% (12 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pt_BR/
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1787 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 95.6% (1709 of 1787 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1803 of 1803 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Portuguese (Brazil))
+
+Currently translated at 4.4% (81 of 1803 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pt_BR/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1804 of 1804 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Polish)
+
+Currently translated at 95.1% (1716 of 1804 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: formatting
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1804 of 1804 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.2% (1791 of 1804 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Update to node 20
+
+- Chore: format
+
+- Chore: Translated using Weblate (Italian)
+
+Currently translated at 69.9% (1262 of 1804 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/it/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: :bookmark: dev52
+
+- Chore: :art: format
+
+- Chore: update bug report template
+
+- Chore: :memo: links in bug template
+
+- Chore: :memo: bring bug template changes to feature template
+
+- Chore: :memo: deployment method in bug report
+
+- Chore: :memo: fix duplicate, add emojis
+
+- Chore: :memo: add emojis to issue templates
+
+Because everything's better with emojis!
+
+- Chore: :memo: emojis in issue label
+
+- Chore: :art: format
+
+- Chore: :memo: too many emojis
+
+- Chore: :coffin: remove vim settings
+
+- Chore: :arrow_up: up emojilib
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1805 of 1805 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+
+### Performance
+
+- Perf: limit number of antennas
+
+- Perf: set patrons in redis
+
+- Perf: use charts data for stats endpoint
+
+- Perf: ⚡ update emojis, cache in IndexedDb
+
+Closes #9959
+May fix #9724
+
+- Perf: ⚡ use setInterval instead of setTimeout chain in MkTime
+
+
+### Refactor
+
+- Refactor: client assets
+
+- Refactor: client assets
+
+- Refactor: :coffin: remove old db calls, add todo
+
+- Refactor: :recycle: import from @/db
+
+- Refactor: 💄 reverse pie chart color on indexing
+
+Co-authored-by: PrivateGER <privateger@codeberg.org>
+
+- Refactor: :recycle: use parent/child selector for attachment
+
+- Refactor: :lipstick: style punishments
+
+- Refactor: :arrow_up: use custom version of vue3-otp-input
+
+This enables the use of number inputs without the slider
+
+- Refactor: :safety_vest: replace js-yaml with yaml
+
+Technically mitigates CVE-2023-2251, but users never input YAML to Calckey. Still, this does no harm, and it's a good idea to keep dependencies like these up-to-date, as js-yaml was last updated 2 years ago.
+
+- Refactor: :coffin: unused import
+
+- Refactor: :art: locale loader
+
+- Refactor: :recycle: better edited timestamp display
+
+- Refactor: :recycle: reorganize note menu
+
+translate just above view remote
+
+- Refactor: ♻️ open instance as lookup window
+
+- Refactor: :pushpin: use own emoji descriptions
+
+- Refactor: :recycle: refactor MkModalWindow for TS safety
+
+- Refactor: :recycle: simplify null check
+
+- Refactor: :recycle: make skin tones modular
+
+Could possibly be for future custom emoji sets that support custom skin tones? (i.e. Mutant Standard)
+
+- Refactor: :recycle: url preview
+
+- Refactor: :label: add antenna type to streaming types
+
+
+### Styling
+
+- Style: 💄 full follow button for userinfo in userlist
+
+- Style: :lipstick: margin on user card follow btn
+
+- Style: :lipstick: 2fa dialog styling
+
+
 ## [14.0.0-rc2c] - 2023-06-06
 
 ### Bug Fixes
 
 - Fix: post editing meta
-- Fix: cw button position
+
+
+### Miscellaneous Tasks
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1753 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+
+## [14.0.0-rc2b] - 2023-06-06
+
+## [14.0.0-rc2a] - 2023-06-06
+
+### Bug Fixes
+
+- Fix cw button pos... oops
+
 
 ### Miscellaneous Tasks
 
 - Update cargo.lock
 
-## [14.0.0-rc2] - 2023-06-05
+
+## [14.0.0-rc2] - 2023-06-06
 
 ### Bug Fixes
-
-- Fix deck view margins
-
-- Fix: Parse mastoAPI `limit` argument in more places & Improve converting arguments to boolean ([#9716](https://github.com/orhun/git-cliff/issues/9716))
-
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9716
-Authored-by: fruye <fruye@unix.dog>
-Signed-off-by: Cleo John <waterdev@galaxycrow.de>
-Co-authored-by: fruye <fruye@unix.dog>
-Co-committed-by: fruye <fruye@unix.dog>
-
-- Fix: send button
-
-- Fix: intermediarily convert ids
-
-- Fix: mobile button alignment
-
-- Fix: when count is actually 0
-
-- Fix cli more
-
-- Fix: don't show smartphone UI when settings icon is double-clicked
-
-- Fix: unicode aliases
-
-- Fix: repo url
-
-- Fix: :bug: can't send blank messages
-
-Closes #9661
-
-- Fix: make sure cw button is on new line
-
-- Fix: local time for users
-
-- Fix: max user profile length to db field length
-
-Resolves: #9749
-
-- Fix: :bug: no nyaizing undefined text
-
-Closes #9752
-
-- Fix: a bug in ads
-
-- Fix color in follow button
-
-- Fix: relay signature handling
-
-A change sometime ago moved to setting some signature fields in the incoming
-object to undefined as opposed to deleting them. The trouble is that downstream
-code checks against existence, not undefinedness and rejects the message.
-
-Resolves: #9665
-
-- Fix
-
-- Fix
-
-- Fix callback url
-
-- Fix japanese locale
-
-- Fix?
-
-- Fix: allow announces with followers visibility
-
-- Fix: :bug: formlink -> button
-
-fixes notifications and drive in settings
-
-- Fix sounds settings
-
-- Fix doc link
-
-- Fix: direct boost ([#9783](https://github.com/orhun/git-cliff/issues/9783))
-
-Sorry to create PR multiple times. I should have included this in #9778.
-
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9783
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Fix: don't nyaize quoted text
-
-- Fix: don't nyaize quoted text ([#9791](https://github.com/orhun/git-cliff/issues/9791))
-
-- Fix search import
-
-- Fix migration
-
-- Fix: :bug: make recently used group
-
-Closes #9784
-
-- Fix: add cargo to DOCKERFILE
-
-- Fix #9784
-
-- Fix help button alignment iconsOnly
-
-- Fix indexing description
-
-- Fix: :passport_control: no longer need 2fa for webauthn
-
-- Fix import
-
-- Fix button alignments
-
-- Fix: dialogs not coming up
-
-- Fix: dockerfile
-
-- Fix: add copy for build from native-utils
-
-- Fix: changing passwords, 2fa, and password resets.
-
-The argon2 usage was only implemented for sign-ins which broke a bunch of other
-endpoints and features.
-
-- Fix: buttons not showing
-
-- Fix: :bug: go to last timeline selected
-
-- Fix: toggling the blocking state from the instance-info admin view ([#9809](https://github.com/orhun/git-cliff/issues/9809))
-
-Because the admin meta information was never loaded on this page, no amount of toggling the block or suspend sliders on the instance-info page (e.g. `https://calckey.example.com/instance-info/instance.tld`) will result in the instance actually being added to the blocklist. You could still do it from the bulk blocklist management page, but that can get unwieldy quickly if you just want to do a quick block of an instance.
-
-Co-authored-by: amy bones <amy@spookygirl.boo>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9809
-Co-authored-by: amybones <amybones@noreply.codeberg.org>
-Co-committed-by: amybones <amybones@noreply.codeberg.org>
-
-- Fix
-
-- Fix(client): userpage ui ([#9179](https://github.com/orhun/git-cliff/issues/9179))
-
-* fix(unverified): clip pages ui
-
-* fix(unverified): user page width
-
-Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-
-- Fix id of move activity
-
-- Fix move inbox
-
-- Fix: format script; chore: format
-
-- Fix: typo
-
-- Fix
-
-- Fix chat metadata
-
-- Fix lookup instance
-
-- Fix: :lock: don't show notes with CW on welcome screen
-
-Closes #9849
-
-- Prevent crashes due to timezone === null
-
-- Fix a bug
-
-- Fix: disable "Search" keyword ([#9856](https://github.com/orhun/git-cliff/issues/9856))
-
-Related: #9816 #9830
-I was so careless that I didn't know "Search" was also a keyword. I disabled that and fixed a minor bug.
-
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9856
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Fix
-
-- Fix tag on explore
-
-- Fix header tabs
-
-- Fix: ドライブアップロードで413が返ってきたときにエラーメッセージを表示 ([#10680](https://github.com/orhun/git-cliff/issues/10680))
-
-- Fix: boost muting in the recommended timeline ([#9906](https://github.com/orhun/git-cliff/issues/9906))
-
-Closes: #9905
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9906
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Fix an instance ticker bug
-
-- Fix: add route
-
-- Fix?
-
-- Fix: style email with inline styles
-
-- Fix disabled, formatting
-
-- Fix: Make statusModel `created_at` fields be ISO 8601 strings
-
-This makes the 'Reactions to this post' status (seen when viewing
-a status context) send the correct data type for `created_at` fields.
-
-https://docs.joinmastodon.org/entities/Account/#created_at
-https://docs.joinmastodon.org/entities/Status/#created_at
-
-- Fix: Get list titles from Form data when creating and updating lists
-
-This change will actually make it possible for Mastodon clients to
-create and rename lists, as they send the title in a Form data instead
-of a query string.
-
-https://docs.joinmastodon.org/methods/lists/#form-data-parameters
-
-- Fix: Declare /api/v1/accounts/relationships before /api/v1/accounts/:id
-
-Previously the 'relationships' part was considered to be an account id
-and was handled by completely different API endpoint.
-
-- Fixes
-
-- Fixes?
-
-- Fix subnote
-
-- Fix
-
-- Fix: centering block math ([#9946](https://github.com/orhun/git-cliff/issues/9946))
-
-Similar to `inlineCode` and `blockCode`, MFM provides two types of formula syntax, `mathInline` and `mathBlock` (I'm curious why these aren't called `inlineMath`/`blockMath`, but oh well)
-
-Other platforms, like GitHub, **Math**todon, my blog, etc., also support these two types of formula representation, and math blocks are centered on (maybe) all such platforms.
-
-![](https://cdn.discordapp.com/attachments/823878222897741868/1101837026304720997/2023-04-29_201943.png)
-
-But Calckey (Misskey v12) don't center math blocks. I'd say this is a bug, and this makes `blockMath` useless (it's just `inlineMath` in a new line).
-
-![](https://cdn.discordapp.com/attachments/823878222897741868/1101837026027917342/2023-04-29_202008.png)
-
-So I fixed this.
-
-![](https://cdn.discordapp.com/attachments/823878222897741868/1101837183574355978/2023-04-29_202854.png)
-
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9946
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- BlockMath is not necessarily multi-line (is this copy-pasted from blockCode?)
-
-- Fix poll voting causing edit revisions.
-
-- Fix(ap): Use unique identifier for each follow request
-
-Closes #9677
-
-Co-authored-by: GitHub <hutchisr>
-
-- Fix meta fetch
-
-- Fix params
-
-- Fix email validation
-
-- Fix: Commit CI not running because cargo is not installed
-
-- Fix: Switch to node alpine image
-
-- Fix db migration
-
-- Fix lang
 
 - Fix translation box
 
@@ -511,26 +794,6 @@ https://calckey.aokaga.work/notes/9f6ksv2oov
 
 ### Documentation
 
-- Docs: changes
-
-- Docs: 📝 sonic instructions
-
-- Docs: 📝 sonic
-
-- Docs: sonic
-
-- Docs: add note about reverse  migration
-
-- Docs: hyperlink foundkey commits
-
-- Docs: hyperlink foundkey commits
-
-- Docs: rm yunohost
-
-has been broken for months, I don't maintain it either.
-
-- Docs
-
 - Docs: links
 
 - Docs: 📝 pm2 logrotate
@@ -563,215 +826,6 @@ has been broken for months, I don't maintain it either.
 
 
 ### Features
-
-- Feat: Make follower counts for remote users correct ([#9705](https://github.com/orhun/git-cliff/issues/9705))
-
-#9293
-
-Not sure if this is the right approach for this
-
-Co-authored-by: s1idewhist1e <trombonedude05@gmail.com>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9705
-Co-authored-by: s1idewhist1e <s1idewhist1e@noreply.codeberg.org>
-Co-committed-by: s1idewhist1e <s1idewhist1e@noreply.codeberg.org>
-
-- Add 404 as replacements
-
-- Feat: set license information for custom emojis ([#9719](https://github.com/orhun/git-cliff/issues/9719))
-
-Closes: #9711 (please check this issue first)
-
-I cherry-picked two commits ([1](https://github.com/misskey-dev/misskey/commit/8ae9d2eaa8b0842671558370f787902e94b7f5a3), [2](https://github.com/misskey-dev/misskey/commit/ed51209172441927d24339f0759a5badbee3c9b6)) from [Misskey](https://github.com/misskey-dev/misskey) and made a few changes.
-「ライセンス」should be written as "License" in the following screenshots, but it has not yet been translated.
-
-It would be nice if we could include multiple lines of text, but I just ported what's been implemented so far in Misskey not to mess things up.
-
-This is my first pull request (aside from typo correction). Feel free to point out any issues!
-
-![](https://cdn.discordapp.com/attachments/823878222897741868/1086372711841935440/2023-03-18_042011.png)
-![](https://cdn.discordapp.com/attachments/823878222897741868/1086373178214981853/01.png)
-![](https://cdn.discordapp.com/attachments/823878222897741868/1086373336709341246/2023-03-18_042629.png)
-
-Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9719
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Feat: compile time compression
-
-- Feat: spruce up CLI
-
-- Feat: :sparkles: more themes!
-
-- Feat: swap home timeline with social's functionality ([#9597](https://github.com/orhun/git-cliff/issues/9597))
-
-The Home timeline functionality is swapped with social's. Meaning that Home timeline now consists of followee's and local posts. Social from now on will contain only followee's posts. See more info in the attached ticket.
-
-Some changes applied in english locales as well. Probably the rest of the languages need to be fixed though.
-
-This PR closes the ticket: https://codeberg.org/calckey/calckey/issues/9552
-
-Co-authored-by: yawhn <kordaris@gmail.com>
-Co-authored-by: ThatOneCalculator <kainoa@t1c.dev>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9597
-Co-authored-by: yawhn <yawhn@noreply.codeberg.org>
-Co-committed-by: yawhn <yawhn@noreply.codeberg.org>
-
-- Feat: add sonic to docker
-
-- Feat: masto api add display name
-
-- Feat: :sparkles: post metadata uses full @
-
-Closes #9660
-
-- Feat: new chat button on mobile
-
-- Feat: experimental post import
-
-- Add info
-
-- Feat: :sparkles: button in admin dash to index posts
-
-- Feat: custom KaTeX macro ([#9779](https://github.com/orhun/git-cliff/issues/9779))
-
-Closes: #9759
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9779
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Add rust to docker
-
-- Feat: :lock: add argon2 support
-
-Passwords will be automatically re-hashed on sign-in. All new password hashes will be argon2 by default.  This uses argon2id and is not configurable. In the very unlikely case someone has more specific needs, a fork is recommended.  ChangeLog: Added  Co-authored-by: Chloe Kudryavtsev <code@toast.bunkerlabs.net>
-
-Breaks Calckey -> Misskey migration, but fixes Foundkey -> Calckey migration
-
-- Add argon
-
-- Feat: add option to boost with Home and Followers-only visibility ([#9788](https://github.com/orhun/git-cliff/issues/9788))
-
-Closes: #9777
-
-This pull request includes UI changes (please check the attached images).
-
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9788
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Feat: :sparkles: search now searches posts and users
-
-- Feat: :sparkles: help menu in navbar
-
-- Add top margin to help button
-
-- Add VIPS to dockerfile
-
-- Add "speak as cat" setting to ja-jp
-
-- Feat: :sparkles: push notifs button
-
-Co-authored-by: Tamania <tamaina@hotmail.co.jp>
-
-- Feat: give reason for soft mutes
-
-Bad UX when a post is muted and it just says "Some chick said something". Now
-provide some context too to help people decide if they want to view something
-potentially triggering.
-
-- Feat: blur muted text
-
-- Feat: add hidden hashtags management page
-
-This simply adds a basic admin UI to blocklist some hashtags from displaying in
-the trending widget. The facility existed already in the backend, but there was
-no UI to manipulate the list save for executing raw SQL or API calls.
-
-- Feat: per-user boost muting ([#9825](https://github.com/orhun/git-cliff/issues/9825))
-
-Cherry-picked from FoundKey/c414f24a2c ([commit](https://akkoma.dev/FoundKeyGang/FoundKey/commit/c414f24a2c123774246c7eca65edda4d3afaf8b3))
-
-This allows us to hide specified users' boosts from the timelines (the boosts will still be visible on their user page).
-
-Co-authored-by: Hélène <pleroma-dev@helene.moe>
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9825
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Feat: messaging room banner
-
-- Feat: mark all as read action in chat
-
-- Feat: admin lookup files/instance
-
-- Feat: index posts action
-
-- Feat: lookup post action
-
-- Feat: rename workspaces
-
-- Feat: :sparkles: software name on hover icon in instance ticker
-
-- Feat: add an option to disable emoji reactions ([#9878](https://github.com/orhun/git-cliff/issues/9878))
-
-Closes: #9865
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9878
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Feat: make it toggleable whether to disable emojis in notifications ([#9880](https://github.com/orhun/git-cliff/issues/9880))
-
-I talked about feature #9865 on my fedi account and received a comment like, "I don't care about emoji reactions in my timelines, but I do care what reactions I get!"
-
-Adding too many options is bad, but I agreed that making it toggleable whether to disable emojis in notifications is helpful, so I added this feature. This allows you to check emoji reactions to your posts in notifications while using the simple UI. I'd say this provides an experience that neither Mastodon nor Misskey has.
-
-The new setting item shows up only when you disable emoji reactions.
-
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9880
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Feat: Implement reading Announcements from MastoAPI
-
-- Feat: heatmap option for activity widget
-
-- Feat: reserved usernames ([#9917](https://github.com/orhun/git-cliff/issues/9917))
-
-This PR adds a feature to prevent users from creating a new account with a reserved username such as root, admin, system, proxy, info, etc...
-
-Reserved usernames can be configured via the config file.
-
-The administrator can create an account with a reserved username via the first setup screen or the control panel.
-
-The existing account of reserved usernames will not be affected.
-
-Co-authored-by: Namekuji <nmkj@mx.kazuno.co>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9917
-Co-authored-by: Namekuji <nmkj@noreply.codeberg.org>
-Co-committed-by: Namekuji <nmkj@noreply.codeberg.org>
-
-- Feat: :sparkles: frontend interface for post-account creation email verification
-
-- Add kaiteki to example proxyBypassHosts
-
-- Add additional information & show more button in user preview popup
-
-- Add the focus trap thingies again
-
-- Add toggler
-
-- Add blockMath
-
-- Add silenced colour
-
-- Add db migration
 
 - Add catppuccin latte
 
@@ -904,401 +958,6 @@ Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 
 
 ### Miscellaneous Tasks
-
-- Chore: update megalodon
-
-- Chore: update package locks
-
-- Chore: bump pnpm version
-
-- Chore: add emoji aliases
-
-- Chore: :package: upgrade megalodon
-
-- Chore: update patron list
-
-- Chore: update patrons
-
-- Chore: bump pnpm
-
-- Update post job
-
-- Chore: :globe_with_meridians: locale changes
-
-Closes #9781 #9773
-
-- Chore: :globe_with_meridians: locale changes
-
-Closes #9781 #9773
-
-- Chore: update patron list
-
-- Chore: up pnpm
-
-- Chore: add cleanup migration
-
-- Chore: :art: format
-
-- Chore: remove okteto
-
-- Chore: update Japanese locale ([#9802](https://github.com/orhun/git-cliff/issues/9802))
-
-- Chore: update patrons
-
-- Chore: pnpm 8.1.1
-
-- Chore: back button in control panel
-
-- Chore: back button in more places
-
-- Chore: rome formatting
-
-- Chore: formatting
-
-- Chore: up pnpm
-
-- Chore: formatting
-
-- Chore: update mfm-js version ([#9844](https://github.com/orhun/git-cliff/issues/9844))
-
-This resolves #9757.
-
-Co-authored-by: naskya <m@naskya.net>
-Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9844
-Co-authored-by: naskya <naskya@noreply.codeberg.org>
-Co-committed-by: naskya <naskya@noreply.codeberg.org>
-
-- Chore: up swc
-
-- Update locale
-
-- Chore: formatting
-
-- Chore: add weblate config file
-
-- Chore: Translated using Weblate (Polish)
-
-Currently translated at 99.7% (1720 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: formatting
-
-- Update locales for calckey
-
-- Chore: Translated using Weblate (Greek)
-
-Currently translated at 31.6% (545 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
-
-- Chore: Translated using Weblate (English)
-
-Currently translated at 100.0% (1724 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
-
-- Chore: Translated using Weblate (Spanish)
-
-Currently translated at 92.0% (1587 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
-
-- Chore: Translated using Weblate (Polish)
-
-Currently translated at 100.0% (1724 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 90.1% (1554 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Translated using Weblate (Greek)
-
-Currently translated at 33.2% (574 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
-
-- Chore: Translated using Weblate (Spanish)
-
-Currently translated at 92.0% (1587 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
-
-- Chore: Translated using Weblate (Greek)
-
-Currently translated at 41.4% (714 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
-
-- Chore: Translated using Weblate (Greek)
-
-Currently translated at 43.2% (745 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
-
-- Chore: Translated using Weblate (Spanish)
-
-Currently translated at 92.5% (1595 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 93.6% (1615 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Translated using Weblate (Greek)
-
-Currently translated at 43.2% (745 of 1724 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: formatting
-
-- Chore: update summaly
-
-- Chore: Translated using Weblate (Japanese)
-
-Currently translated at 100.0% (1726 of 1726 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
-
-- Chore: Translated using Weblate (Polish)
-
-Currently translated at 100.0% (1726 of 1726 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 95.0% (1640 of 1726 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 95.2% (1644 of 1726 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 100.0% (1726 of 1726 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: formatting
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: Translated using Weblate (English)
-
-Currently translated at 100.0% (1727 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 99.8% (1724 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: up pakcages
-
-- Chore: Translated using Weblate (Catalan)
-
-Currently translated at 22.9% (396 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
-
-- Chore: Translated using Weblate (German)
-
-Currently translated at 94.6% (1634 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
-
-- Chore: Translated using Weblate (German)
-
-Currently translated at 94.6% (1634 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
-
-- Chore: Translated using Weblate (Spanish)
-
-Currently translated at 92.2% (1594 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
-
-- Chore: Translated using Weblate (French)
-
-Currently translated at 95.6% (1652 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fr/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 100.0% (1727 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Translated using Weblate (Chinese (Traditional))
-
-Currently translated at 97.2% (1680 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
-
-- Chore: formatting
-
-- Chore: more rpine for server activity widget
-
-- Chore: update examples
-
-- Update patrons
-
-- Chore: Translated using Weblate (Catalan)
-
-Currently translated at 35.0% (606 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
-
-- Chore: Translated using Weblate (Russian)
-
-Currently translated at 100.0% (1727 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
-
-- Chore: Translated using Weblate (Chinese (Traditional))
-
-Currently translated at 97.4% (1683 of 1727 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: update icons on post form
-
-- Chore: Added translation using Weblate (Finnish)
-
-- Chore: Translated using Weblate (Finnish)
-
-Currently translated at 2.4% (43 of 1735 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
-
-- Chore: upgrade megalodon
-
-- Chore: Translated using Weblate (English)
-
-Currently translated at 100.0% (1735 of 1735 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
-
-- Chore: Translated using Weblate (Catalan)
-
-Currently translated at 37.1% (644 of 1735 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
-
-- Chore: Translated using Weblate (Finnish)
-
-Currently translated at 11.7% (204 of 1735 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
-
-- Chore: Translated using Weblate (Finnish)
-
-Currently translated at 11.7% (204 of 1735 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
-
-- Chore: Translated using Weblate (Japanese)
-
-Currently translated at 99.3% (1724 of 1735 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
-
-- Chore: Merge branch 'origin/develop' into Weblate.
-
-- Chore: up browser-image-resizer
-
-- Chore: format
-
-- Chore: theme refactor
-
-- Update patrons
-
-- Chore: Translated using Weblate (Catalan)
-
-Currently translated at 69.2% (1204 of 1739 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
-
-- Chore: patrons
-
-- Chore: formatting
-
-- Chore: Translated using Weblate (Catalan)
-
-Currently translated at 100.0% (1739 of 1739 strings)
-
-Translation: Calckey/locales
-Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
-
-- Chore: Merge branch 'origin/develop' into Weblate.
 
 - Updates to include alt text editing
 
@@ -1977,11 +1636,116 @@ Translate-URL: https://hosted.weblate.org/projects/calckey/locales/nl/
 
 Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 
+- Chore: Translated using Weblate (English)
+
+Currently translated at 100.0% (1753 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 98.8% (1732 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Translated using Weblate (Dutch)
+
+Currently translated at 32.2% (566 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/nl/
+
+- Chore: Translated using Weblate (Dutch)
+
+Currently translated at 32.3% (567 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/nl/
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1753 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.6% (1711 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.1% (1720 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.1% (1720 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.1% (1720 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.1% (1720 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.9% (1734 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (Dutch)
+
+Currently translated at 34.2% (601 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/nl/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.9% (1734 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.9% (1734 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
 - Chore: formatting
 
 - Chore: :arrow_up: up pnpm
 
 - Chore: :bulb: meili
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.9% (1734 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
 
 - Chore: format
 
@@ -1995,7 +1759,28 @@ Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 
 - Chore: :arrow_up: up bull
 
+- Chore: Translated using Weblate (Danish)
+
+Currently translated at 11.5% (203 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/da/
+
 - Chore: formatting
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.9% (1734 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.5% (1745 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
 
 - Chore: formatting
 
@@ -2006,6 +1791,13 @@ Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 - Chore: formatting
 
 - Chore: :arrow_up: up various deps
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1753 of 1753 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
 
 - Chore: format
 
@@ -2026,12 +1818,6 @@ Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 
 
 ### Refactor
-
-- Refactor: nyaize on the frontend
-
-- Refactor
-
-- Refactor: change import type to radio
 
 - Refactor: remove internal apps page
 
@@ -2054,11 +1840,1076 @@ Correct og:type for users, format docs, deprecate _info_card_
 
 ### Styling
 
-- Style
+- Style: 💄 server metrics widgets
+
+
+## [14.0.0-rc] - 2023-05-02
+
+### Bug Fixes
+
+- BlockMath is not necessarily multi-line (is this copy-pasted from blockCode?)
+
+- Fix poll voting causing edit revisions.
+
+- Fix(ap): Use unique identifier for each follow request
+
+Closes #9677
+
+Co-authored-by: GitHub <hutchisr>
+
+- Fix meta fetch
+
+- Fix params
+
+- Fix email validation
+
+- Fix: Commit CI not running because cargo is not installed
+
+- Fix: Switch to node alpine image
+
+- Fix db migration
+
+- Fix lang
+
+- Fix show more import
+
+
+### Features
+
+- Add toggler
+
+- Add blockMath
+
+- Add silenced colour
+
+- Add db migration
+
+
+### Miscellaneous Tasks
+
+- Chore: Translated using Weblate (English)
+
+Currently translated at 100.0% (1735 of 1735 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 37.1% (644 of 1735 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Finnish)
+
+Currently translated at 11.7% (204 of 1735 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
+
+- Chore: Translated using Weblate (Finnish)
+
+Currently translated at 11.7% (204 of 1735 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 99.3% (1724 of 1735 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: up browser-image-resizer
+
+- Chore: format
+
+- Chore: theme refactor
+
+- Update patrons
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 69.2% (1204 of 1739 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: patrons
+
+- Chore: formatting
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1739 of 1739 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+
+## [13.2.0-beta9h] - 2023-04-30
+
+## [13.2.0-beta9] - 2023-04-29
+
+### Bug Fixes
+
+- Fix: add route
+
+- Fix?
+
+- Fix: style email with inline styles
+
+- Fix disabled, formatting
+
+- Fix: Make statusModel `created_at` fields be ISO 8601 strings
+
+This makes the 'Reactions to this post' status (seen when viewing
+a status context) send the correct data type for `created_at` fields.
+
+https://docs.joinmastodon.org/entities/Account/#created_at
+https://docs.joinmastodon.org/entities/Status/#created_at
+
+- Fix: Get list titles from Form data when creating and updating lists
+
+This change will actually make it possible for Mastodon clients to
+create and rename lists, as they send the title in a Form data instead
+of a query string.
+
+https://docs.joinmastodon.org/methods/lists/#form-data-parameters
+
+- Fix: Declare /api/v1/accounts/relationships before /api/v1/accounts/:id
+
+Previously the 'relationships' part was considered to be an account id
+and was handled by completely different API endpoint.
+
+- Fixes
+
+- Fixes?
+
+- Fix subnote
+
+- Fix
+
+- Fix: centering block math ([#9946](https://github.com/orhun/git-cliff/issues/9946))
+
+Similar to `inlineCode` and `blockCode`, MFM provides two types of formula syntax, `mathInline` and `mathBlock` (I'm curious why these aren't called `inlineMath`/`blockMath`, but oh well)
+
+Other platforms, like GitHub, **Math**todon, my blog, etc., also support these two types of formula representation, and math blocks are centered on (maybe) all such platforms.
+
+![](https://cdn.discordapp.com/attachments/823878222897741868/1101837026304720997/2023-04-29_201943.png)
+
+But Calckey (Misskey v12) don't center math blocks. I'd say this is a bug, and this makes `blockMath` useless (it's just `inlineMath` in a new line).
+
+![](https://cdn.discordapp.com/attachments/823878222897741868/1101837026027917342/2023-04-29_202008.png)
+
+So I fixed this.
+
+![](https://cdn.discordapp.com/attachments/823878222897741868/1101837183574355978/2023-04-29_202854.png)
+
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9946
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+
+### Documentation
+
+- Docs
+
+
+### Features
+
+- Feat: :sparkles: frontend interface for post-account creation email verification
+
+- Add kaiteki to example proxyBypassHosts
+
+- Add additional information & show more button in user preview popup
+
+- Add the focus trap thingies again
+
+
+### Miscellaneous Tasks
+
+- Chore: more rpine for server activity widget
+
+- Chore: update examples
+
+- Update patrons
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 35.0% (606 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 100.0% (1727 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 97.4% (1683 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: update icons on post form
+
+- Chore: Added translation using Weblate (Finnish)
+
+- Chore: Translated using Weblate (Finnish)
+
+Currently translated at 2.4% (43 of 1735 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
+
+- Chore: upgrade megalodon
+
+
+### Refactor
+
+- Refactor: change import type to radio
+
+
+## [13.2.0-beta8] - 2023-04-26
+
+### Bug Fixes
+
+- Fix an instance ticker bug
+
+
+### Features
+
+- Feat: heatmap option for activity widget
+
+- Feat: reserved usernames ([#9917](https://github.com/orhun/git-cliff/issues/9917))
+
+This PR adds a feature to prevent users from creating a new account with a reserved username such as root, admin, system, proxy, info, etc...
+
+Reserved usernames can be configured via the config file.
+
+The administrator can create an account with a reserved username via the first setup screen or the control panel.
+
+The existing account of reserved usernames will not be affected.
+
+Co-authored-by: Namekuji <nmkj@mx.kazuno.co>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9917
+Co-authored-by: Namekuji <nmkj@noreply.codeberg.org>
+Co-committed-by: Namekuji <nmkj@noreply.codeberg.org>
+
+
+### Miscellaneous Tasks
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 22.9% (396 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 94.6% (1634 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 94.6% (1634 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 92.2% (1594 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 95.6% (1652 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fr/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 100.0% (1727 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 97.2% (1680 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: formatting
+
+
+## [13.2.0-beta7] - 2023-04-25
+
+### Bug Fixes
+
+- Fix: :lock: don't show notes with CW on welcome screen
+
+Closes #9849
+
+- Prevent crashes due to timezone === null
+
+- Fix a bug
+
+- Fix: disable "Search" keyword ([#9856](https://github.com/orhun/git-cliff/issues/9856))
+
+Related: #9816 #9830
+I was so careless that I didn't know "Search" was also a keyword. I disabled that and fixed a minor bug.
+
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9856
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Fix
+
+- Fix tag on explore
+
+- Fix header tabs
+
+- Fix: ドライブアップロードで413が返ってきたときにエラーメッセージを表示 ([#10680](https://github.com/orhun/git-cliff/issues/10680))
+
+- Fix: boost muting in the recommended timeline ([#9906](https://github.com/orhun/git-cliff/issues/9906))
+
+Closes: #9905
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9906
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+
+### Documentation
+
+- Docs: rm yunohost
+
+has been broken for months, I don't maintain it either.
+
+
+### Features
+
+- Feat: rename workspaces
+
+- Feat: :sparkles: software name on hover icon in instance ticker
+
+- Feat: add an option to disable emoji reactions ([#9878](https://github.com/orhun/git-cliff/issues/9878))
+
+Closes: #9865
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9878
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Feat: make it toggleable whether to disable emojis in notifications ([#9880](https://github.com/orhun/git-cliff/issues/9880))
+
+I talked about feature #9865 on my fedi account and received a comment like, "I don't care about emoji reactions in my timelines, but I do care what reactions I get!"
+
+Adding too many options is bad, but I agreed that making it toggleable whether to disable emojis in notifications is helpful, so I added this feature. This allows you to check emoji reactions to your posts in notifications while using the simple UI. I'd say this provides an experience that neither Mastodon nor Misskey has.
+
+The new setting item shows up only when you disable emoji reactions.
+
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9880
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Feat: Implement reading Announcements from MastoAPI
+
+
+### Miscellaneous Tasks
+
+- Chore: up swc
+
+- Update locale
+
+- Chore: formatting
+
+- Chore: add weblate config file
+
+- Chore: Translated using Weblate (Polish)
+
+Currently translated at 99.7% (1720 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: formatting
+
+- Update locales for calckey
+
+- Chore: Translated using Weblate (Greek)
+
+Currently translated at 31.6% (545 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
+
+- Chore: Translated using Weblate (English)
+
+Currently translated at 100.0% (1724 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 92.0% (1587 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
+
+- Chore: Translated using Weblate (Polish)
+
+Currently translated at 100.0% (1724 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 90.1% (1554 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Greek)
+
+Currently translated at 33.2% (574 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 92.0% (1587 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
+
+- Chore: Translated using Weblate (Greek)
+
+Currently translated at 41.4% (714 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
+
+- Chore: Translated using Weblate (Greek)
+
+Currently translated at 43.2% (745 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 92.5% (1595 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 93.6% (1615 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Greek)
+
+Currently translated at 43.2% (745 of 1724 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/el/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: formatting
+
+- Chore: update summaly
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1726 of 1726 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Translated using Weblate (Polish)
+
+Currently translated at 100.0% (1726 of 1726 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pl/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 95.0% (1640 of 1726 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 95.2% (1644 of 1726 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 100.0% (1726 of 1726 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: formatting
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (English)
+
+Currently translated at 100.0% (1727 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/en/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 99.8% (1724 of 1727 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: up pakcages
+
+
+### Styling
 
 - Style announcement image
 
-- Style: 💄 server metrics widgets
+
+## [13.2.0-beta6] - 2023-04-13
+
+### Bug Fixes
+
+- Fix: add cargo to DOCKERFILE
+
+- Fix: add cargo to DOCKERFILE
+
+- Fix #9784
+
+- Fix #9784
+
+- Fix help button alignment iconsOnly
+
+- Fix indexing description
+
+- Fix: :passport_control: no longer need 2fa for webauthn
+
+- Fix import
+
+- Fix button alignments
+
+- Fix: dialogs not coming up
+
+- Fix: dockerfile
+
+- Fix: add copy for build from native-utils
+
+- Fix: changing passwords, 2fa, and password resets.
+
+The argon2 usage was only implemented for sign-ins which broke a bunch of other
+endpoints and features.
+
+- Fix help button alignment iconsOnly
+
+- Fix indexing description
+
+- Fix: :passport_control: no longer need 2fa for webauthn
+
+- Fix import
+
+- Fix button alignments
+
+- Fix: dialogs not coming up
+
+- Fix: dockerfile
+
+- Fix: add copy for build from native-utils
+
+- Fix: changing passwords, 2fa, and password resets.
+
+The argon2 usage was only implemented for sign-ins which broke a bunch of other
+endpoints and features.
+
+- Fix: buttons not showing
+
+- Fix: :bug: go to last timeline selected
+
+- Fix: toggling the blocking state from the instance-info admin view ([#9809](https://github.com/orhun/git-cliff/issues/9809))
+
+Because the admin meta information was never loaded on this page, no amount of toggling the block or suspend sliders on the instance-info page (e.g. `https://calckey.example.com/instance-info/instance.tld`) will result in the instance actually being added to the blocklist. You could still do it from the bulk blocklist management page, but that can get unwieldy quickly if you just want to do a quick block of an instance.
+
+Co-authored-by: amy bones <amy@spookygirl.boo>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9809
+Co-authored-by: amybones <amybones@noreply.codeberg.org>
+Co-committed-by: amybones <amybones@noreply.codeberg.org>
+
+- Fix
+
+- Fix(client): userpage ui ([#9179](https://github.com/orhun/git-cliff/issues/9179))
+
+* fix(unverified): clip pages ui
+
+* fix(unverified): user page width
+
+Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
+
+- Fix id of move activity
+
+- Fix move inbox
+
+- Fix: format script; chore: format
+
+- Fix: typo
+
+- Fix
+
+- Fix chat metadata
+
+- Fix lookup instance
+
+
+### Documentation
+
+- Docs: hyperlink foundkey commits
+
+- Docs: hyperlink foundkey commits
+
+
+### Features
+
+- Add VIPS to dockerfile
+
+- Add "speak as cat" setting to ja-jp
+
+- Add VIPS to dockerfile
+
+- Add "speak as cat" setting to ja-jp
+
+- Feat: :sparkles: push notifs button
+
+Co-authored-by: Tamania <tamaina@hotmail.co.jp>
+
+- Feat: give reason for soft mutes
+
+Bad UX when a post is muted and it just says "Some chick said something". Now
+provide some context too to help people decide if they want to view something
+potentially triggering.
+
+- Feat: blur muted text
+
+- Feat: add hidden hashtags management page
+
+This simply adds a basic admin UI to blocklist some hashtags from displaying in
+the trending widget. The facility existed already in the backend, but there was
+no UI to manipulate the list save for executing raw SQL or API calls.
+
+- Feat: per-user boost muting ([#9825](https://github.com/orhun/git-cliff/issues/9825))
+
+Cherry-picked from FoundKey/c414f24a2c ([commit](https://akkoma.dev/FoundKeyGang/FoundKey/commit/c414f24a2c123774246c7eca65edda4d3afaf8b3))
+
+This allows us to hide specified users' boosts from the timelines (the boosts will still be visible on their user page).
+
+Co-authored-by: Hélène <pleroma-dev@helene.moe>
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9825
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Feat: messaging room banner
+
+- Feat: mark all as read action in chat
+
+- Feat: admin lookup files/instance
+
+- Feat: index posts action
+
+- Feat: lookup post action
+
+
+### Miscellaneous Tasks
+
+- Chore: :art: format
+
+- Chore: remove okteto
+
+- Chore: update Japanese locale ([#9802](https://github.com/orhun/git-cliff/issues/9802))
+
+- Chore: :art: format
+
+- Chore: remove okteto
+
+- Chore: update patrons
+
+- Chore: pnpm 8.1.1
+
+- Chore: back button in control panel
+
+- Chore: back button in more places
+
+- Chore: rome formatting
+
+- Chore: formatting
+
+- Chore: up pnpm
+
+- Chore: formatting
+
+- Chore: update mfm-js version ([#9844](https://github.com/orhun/git-cliff/issues/9844))
+
+This resolves #9757.
+
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9844
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+
+### Refactor
+
+- Refactor
+
+
+### Styling
+
+- Style
+
+- Style
+
+
+## [13.2.0-beta4] - 2023-04-01
+
+### Bug Fixes
+
+- Fix
+
+- Fix
+
+- Fix callback url
+
+- Fix japanese locale
+
+- Fix?
+
+- Fix: allow announces with followers visibility
+
+- Fix: :bug: formlink -> button
+
+fixes notifications and drive in settings
+
+- Fix sounds settings
+
+- Fix doc link
+
+- Fix: direct boost ([#9783](https://github.com/orhun/git-cliff/issues/9783))
+
+Sorry to create PR multiple times. I should have included this in #9778.
+
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9783
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Fix: don't nyaize quoted text
+
+- Fix: don't nyaize quoted text ([#9791](https://github.com/orhun/git-cliff/issues/9791))
+
+- Fix search import
+
+- Fix migration
+
+- Fix: :bug: make recently used group
+
+Closes #9784
+
+
+### Documentation
+
+- Docs: add note about reverse  migration
+
+
+### Features
+
+- Feat: :sparkles: post metadata uses full @
+
+Closes #9660
+
+- Feat: new chat button on mobile
+
+- Feat: experimental post import
+
+- Add info
+
+- Feat: :sparkles: button in admin dash to index posts
+
+- Feat: custom KaTeX macro ([#9779](https://github.com/orhun/git-cliff/issues/9779))
+
+Closes: #9759
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9779
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Add rust to docker
+
+- Feat: :lock: add argon2 support
+
+Passwords will be automatically re-hashed on sign-in. All new password hashes will be argon2 by default.  This uses argon2id and is not configurable. In the very unlikely case someone has more specific needs, a fork is recommended.  ChangeLog: Added  Co-authored-by: Chloe Kudryavtsev <code@toast.bunkerlabs.net>
+
+Breaks Calckey -> Misskey migration, but fixes Foundkey -> Calckey migration
+
+- Add argon
+
+- Feat: add option to boost with Home and Followers-only visibility ([#9788](https://github.com/orhun/git-cliff/issues/9788))
+
+Closes: #9777
+
+This pull request includes UI changes (please check the attached images).
+
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9788
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Feat: :sparkles: search now searches posts and users
+
+- Feat: :sparkles: help menu in navbar
+
+- Add top margin to help button
+
+
+### Miscellaneous Tasks
+
+- Chore: update patron list
+
+- Chore: update patrons
+
+- Chore: bump pnpm
+
+- Update post job
+
+- Chore: :globe_with_meridians: locale changes
+
+Closes #9781 #9773
+
+- Chore: :globe_with_meridians: locale changes
+
+Closes #9781 #9773
+
+- Chore: update patron list
+
+- Chore: up pnpm
+
+- Chore: add cleanup migration
+
+
+## [13.2.0-beta31] - 2023-03-24
+
+### Bug Fixes
+
+- Fix: max user profile length to db field length
+
+Resolves: #9749
+
+- Fix: :bug: no nyaizing undefined text
+
+Closes #9752
+
+- Fix: a bug in ads
+
+- Fix color in follow button
+
+- Fix: relay signature handling
+
+A change sometime ago moved to setting some signature fields in the incoming
+object to undefined as opposed to deleting them. The trouble is that downstream
+code checks against existence, not undefinedness and rejects the message.
+
+Resolves: #9665
+
+
+### Documentation
+
+- Docs: sonic
+
+
+### Features
+
+- Feat: swap home timeline with social's functionality ([#9597](https://github.com/orhun/git-cliff/issues/9597))
+
+The Home timeline functionality is swapped with social's. Meaning that Home timeline now consists of followee's and local posts. Social from now on will contain only followee's posts. See more info in the attached ticket.
+
+Some changes applied in english locales as well. Probably the rest of the languages need to be fixed though.
+
+This PR closes the ticket: https://codeberg.org/calckey/calckey/issues/9552
+
+Co-authored-by: yawhn <kordaris@gmail.com>
+Co-authored-by: ThatOneCalculator <kainoa@t1c.dev>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9597
+Co-authored-by: yawhn <yawhn@noreply.codeberg.org>
+Co-committed-by: yawhn <yawhn@noreply.codeberg.org>
+
+- Feat: add sonic to docker
+
+- Feat: masto api add display name
+
+
+### Miscellaneous Tasks
+
+- Chore: :package: upgrade megalodon
+
+
+## [13.2.0-beta2] - 2023-03-21
+
+### Bug Fixes
+
+- Fix deck view margins
+
+- Fix: Parse mastoAPI `limit` argument in more places & Improve converting arguments to boolean ([#9716](https://github.com/orhun/git-cliff/issues/9716))
+
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9716
+Authored-by: fruye <fruye@unix.dog>
+Signed-off-by: Cleo John <waterdev@galaxycrow.de>
+Co-authored-by: fruye <fruye@unix.dog>
+Co-committed-by: fruye <fruye@unix.dog>
+
+- Fix: send button
+
+- Fix: intermediarily convert ids
+
+- Fix: mobile button alignment
+
+- Fix: when count is actually 0
+
+- Fix cli more
+
+- Fix: don't show smartphone UI when settings icon is double-clicked
+
+- Fix: unicode aliases
+
+- Fix: repo url
+
+- Fix: :bug: can't send blank messages
+
+Closes #9661
+
+- Fix: make sure cw button is on new line
+
+- Fix: local time for users
+
+
+### Documentation
+
+- Docs: changes
+
+- Docs: 📝 sonic instructions
+
+- Docs: 📝 sonic
+
+
+### Features
+
+- Feat: Make follower counts for remote users correct ([#9705](https://github.com/orhun/git-cliff/issues/9705))
+
+#9293
+
+Not sure if this is the right approach for this
+
+Co-authored-by: s1idewhist1e <trombonedude05@gmail.com>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9705
+Co-authored-by: s1idewhist1e <s1idewhist1e@noreply.codeberg.org>
+Co-committed-by: s1idewhist1e <s1idewhist1e@noreply.codeberg.org>
+
+- Add 404 as replacements
+
+- Feat: set license information for custom emojis ([#9719](https://github.com/orhun/git-cliff/issues/9719))
+
+Closes: #9711 (please check this issue first)
+
+I cherry-picked two commits ([1](https://github.com/misskey-dev/misskey/commit/8ae9d2eaa8b0842671558370f787902e94b7f5a3), [2](https://github.com/misskey-dev/misskey/commit/ed51209172441927d24339f0759a5badbee3c9b6)) from [Misskey](https://github.com/misskey-dev/misskey) and made a few changes.
+「ライセンス」should be written as "License" in the following screenshots, but it has not yet been translated.
+
+It would be nice if we could include multiple lines of text, but I just ported what's been implemented so far in Misskey not to mess things up.
+
+This is my first pull request (aside from typo correction). Feel free to point out any issues!
+
+![](https://cdn.discordapp.com/attachments/823878222897741868/1086372711841935440/2023-03-18_042011.png)
+![](https://cdn.discordapp.com/attachments/823878222897741868/1086373178214981853/01.png)
+![](https://cdn.discordapp.com/attachments/823878222897741868/1086373336709341246/2023-03-18_042629.png)
+
+Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
+Co-authored-by: naskya <m@naskya.net>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9719
+Co-authored-by: naskya <naskya@noreply.codeberg.org>
+Co-committed-by: naskya <naskya@noreply.codeberg.org>
+
+- Feat: compile time compression
+
+- Feat: spruce up CLI
+
+- Feat: :sparkles: more themes!
+
+
+### Miscellaneous Tasks
+
+- Chore: update megalodon
+
+- Chore: update package locks
+
+- Chore: bump pnpm version
+
+- Chore: add emoji aliases
+
+
+### Refactor
+
+- Refactor: nyaize on the frontend
 
 
 ## [13.2.0-beta3] - 2023-03-16
@@ -2106,6 +2957,8 @@ Needed for pleromaFE to display a timeline.
 
 - Fix line alignment in smaller windows
 
+
+## [13.2.0-beta] - 2023-03-15
 
 ## [13.1.3] - 2023-03-14
 
