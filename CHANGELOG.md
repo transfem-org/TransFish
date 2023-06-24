@@ -6,6 +6,8 @@ All changes from v13.0.0 onwards, for a full list of differences read CALCKEY.md
 
 ### Bug Fixes
 
+- Fix: improv ux of deck scroll
+
 - Fix: editing caption accuracy
 
 - Fix: only show meili in metrics if available
