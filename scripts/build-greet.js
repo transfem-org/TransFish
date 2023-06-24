@@ -1,4 +1,4 @@
-import chalk from "chalk";
+const chalk = require("chalk");
 
 const themeColor = chalk.hex("#31748f");
 console.log(themeColor("   ___      _      _              "));
