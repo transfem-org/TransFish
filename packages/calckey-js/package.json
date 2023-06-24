@@ -1,6 +1,6 @@
 {
 	"name": "calckey-js",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"description": "Calckey SDK for JavaScript",
 	"main": "./built/index.js",
 	"types": "./built/index.d.ts",
@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://codeberg.org/calckey/calckey.js"
+		"url": "https://codeberg.org/calckey/calckey.git"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.0",
