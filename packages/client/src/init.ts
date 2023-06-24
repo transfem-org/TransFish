@@ -12,8 +12,9 @@ import "@phosphor-icons/web/fill";
 //#region account indexedDB migration
 import { set } from "@/scripts/idb-proxy";
 
-if (localStorage.getItem("accounts") != null) {
-	set("accounts", JSON.parse(localStorage.getItem("accounts")));
+const accounts = localStorage.getItem("accounts")
+if (accounts) {
+	set("accounts", JSON.parse(accounts));
 	localStorage.removeItem("accounts");
 }
 //#endregion
@@ -49,6 +50,18 @@ import { reloadChannel } from "@/scripts/unison-reload";
 import { reactionPicker } from "@/scripts/reaction-picker";
 import { getUrlWithoutLoginId } from "@/scripts/login-id";
 import { getAccountFromId } from "@/scripts/get-account-from-id";
+
+function checkForSplash() {
+	const splash = document.getElementById("splash");
+	// 念のためnullチェック(HTMLが古い場合があるため(そのうち消す))
+	if (splash) {
+		splash.style.opacity = "0";
+		splash.style.pointerEvents = "none";
+		splash.addEventListener("transitionend", () => {
+			splash.remove();
+		});
+	}
+}
 
 (async () => {
 	console.info(`Calckey v${version}`);
@@ -105,7 +118,7 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 
 	//#region Set lang attr
 	const html = document.documentElement;
-	html.setAttribute("lang", lang);
+	html.setAttribute("lang", lang || "en-US");
 	//#endregion
 
 	//#region loginId
@@ -198,12 +211,7 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	directives(app);
 	components(app);
 
-	const splash = document.getElementById("splash");
-	// 念のためnullチェック(HTMLが古い場合があるため(そのうち消す))
-	if (splash)
-		splash.addEventListener("transitionend", () => {
-			splash.remove();
-		});
+	checkForSplash();
 
 	// https://github.com/misskey-dev/misskey/pull/8575#issuecomment-1114239210
 	// なぜかinit.tsの内容が2回実行されることがあるため、mountするdivを1つに制限する
@@ -231,10 +239,7 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 
 	reactionPicker.init();
 
-	if (splash) {
-		splash.style.opacity = "0";
-		splash.style.pointerEvents = "none";
-	}
+	checkForSplash();
 
 	// クライアントが更新されたか？
 	const lastVersion = localStorage.getItem("lastVersion");
