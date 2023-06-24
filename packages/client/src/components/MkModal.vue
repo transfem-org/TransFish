@@ -381,6 +381,8 @@ onMounted(() => {
 		{ immediate: true }
 	);
 
+	content.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')?.focus();
+
 	nextTick(() => {
 		new ResizeObserver((entries, observer) => {
 			align();
