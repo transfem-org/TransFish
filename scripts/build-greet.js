@@ -17,7 +17,7 @@ console.log(
 		136,
 		0,
 	)(
-		" Hang on for a moment, as this may take a while",
+		" Hang on for a moment, as this may take a while.",
 	),
 );
 console.log("");
