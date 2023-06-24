@@ -3,20 +3,20 @@ about: Request a Feature
 title: "[Feature]: "
 blank_issues_enabled: true
 contact_links:
-  - name: Support Matrix
+  - name: 💁 Support Matrix
     url: https://matrix.to/#/%23calckey:matrix.fedibird.com
     about: Having trouble with deployment? Ask the support chat.
-  - name: Resposible Disclosure
+  - name: 🔒 Resposible Disclosure
     url: https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md
     about: Found a security vulnerability? Please disclose it responsibly.
 body:
   - type: markdown
     attributes:
       value: |
-                Thanks for taking the time to fill out this feature request!
-                Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23calckey:matrix.fedibird.com)
-                Found a security vulnerability? [Please disclose it responsibly.](https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md)
-                By submitting this issue, you agree to follow our [Contribution Guidelines.](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
+                💖 Thanks for taking the time to fill out this feature request!
+                💁 Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23calckey:matrix.fedibird.com)
+                🔒 Found a security vulnerability? [Please disclose it responsibly.](https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md)
+                🤝 By submitting this issue, you agree to follow our [Contribution Guidelines.](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
   - type: textarea
     id: what-feature
     attributes:
