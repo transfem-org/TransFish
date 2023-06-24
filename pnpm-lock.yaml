@@ -36,6 +36,9 @@ importers:
       '@types/gulp-rename':
         specifier: 2.0.1
         version: 2.0.1
+      chalk:
+        specifier: 5.2.0
+        version: 5.2.0
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
