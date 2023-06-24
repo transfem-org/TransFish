@@ -20,7 +20,7 @@ body:
   - type: textarea
     id: what-happened
     attributes:
-      label: What happened?
+      label: 👀 What happened?
       description: Please give us a brief description of what happened.
       placeholder: Tell us what you see!
     validations:
@@ -28,7 +28,7 @@ body:
   - type: textarea
     id: what-is-expected
     attributes:
-      label: What did you expect to happen?
+      label: 🤔 What did you expect to happen?
       description: Please give us a brief description of what you expected to happen.
       placeholder: Tell us what you wish happened!
     validations:
@@ -36,7 +36,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Version
+      label: 📦 Version
       description: What version of calckey is your instance running? You can find this by clicking your instance's logo at the bottom left and then clicking instance information.
       placeholder: v13.1.4.1
     validations:
@@ -44,7 +44,7 @@ body:
   - type: input
     id: instance
     attributes:
-      label: Instance
+      label: 🌐 Instance
       description: What instance of calckey are you using?
       placeholder: calckey.social
     validations:
@@ -52,7 +52,7 @@ body:
   - type: dropdown
     id: issue-type
     attributes:
-      label: What type of issue is this?
+      label: 📲 What type of issue is this?
       description: If this happens on your device and has to do with the user interface, it's client-side. If this happens on either with the API or the backend, or you got a server-side error in the client, it's server-side.
       multiple: false
       options:
@@ -62,7 +62,7 @@ body:
   - type: dropdown
     id: browsers
     attributes:
-      label: What browser are you using? (Client-side issues only)
+      label: 🕸️ What browser are you using? (Client-side issues only)
       multiple: false
       options:
         - N/A
@@ -77,7 +77,7 @@ body:
   - type: dropdown
     id: device
     attributes:
-      label: What operating system are you using? (Client-side issues only)
+      label: 🖥️ What operating system are you using? (Client-side issues only)
       multiple: false
       options:
         - N/A
@@ -90,7 +90,7 @@ body:
   - type: dropdown
     id: deplotment-method
     attributes:
-      label: How do you deploy Calckey on your server? (Server-side issues only)
+      label: 🚀 How do you deploy Calckey on your server? (Server-side issues only)
       multiple: false
       options:
         - N/A
@@ -105,7 +105,7 @@ body:
   - type: dropdown
     id: operating-system
     attributes:
-      label: What operating system are you using? (Server-side issues only)
+      label: 🐧 What operating system are you using? (Server-side issues only)
       multiple: false
       options:
         - N/A
@@ -121,13 +121,13 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Relevant log output
+      label: 📜 Relevant log output
       description: Please copy and paste any relevant log output. You can find your log by inspecting the page, and going to the "console" tab. This will be automatically formatted into code, so no need for backticks.
       render: shell
   - type: checkboxes
     id: terms
     attributes:
-      label: Contribution Guidelines
+      label: 🤝 Contribution Guidelines
       description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
       options:
         - label: I agree to follow this project's Contribution Guidelines
