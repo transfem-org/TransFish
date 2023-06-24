@@ -1,5 +1,8 @@
 # All the changes to Calckey from stock Misskey
 
+> **Warning**
+> This list is incomplete. Please check the [Releases](https://codeberg.org/calckey/calckey/releases) and [Changelog](https://codeberg.org/calckey/calckey/src/branch/develop/CHANGELOG.md) for a more complete list of changes. There have been [>4000 commits (laggy link)](https://codeberg.org/calckey/calckey/compare/700a7110f7e34f314b070987aa761c451ec34efc...develop) since we forked Misskey!
+
 ## Planned
 
 - Stucture
@@ -8,31 +11,25 @@
   - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
   - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
-  - User "choices" (recommended users) like Mastodon and Soapbox
+  - User "choices" (recommended users) and featured hashtags like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize server blocks
-  - Build flag to remove NSFW/AI stuff
-  - Filter notifications by user
-  - Exclude self from antenna
+  - More antenna options
+  - Groups
 - Form
-  - MFM button
-  - Personal notes for all accounts
-  - Fully revamp non-logged-in screen
   - Lookup/details for post/file/server
   - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
 
-- Weblate project
-- Customizable max note length
 - Link verification
 - Better Messaging UI
 - Better API Documentation
 - Remote follow button
-- Admin custom CSS
-- Add back time machine (jump to date)
 - Improve accesibility
 - Timeline filters
+- Events
+- Fully revamp non-logged-in screen
 
 ## Implemented
 
@@ -73,7 +70,6 @@
 - Raw server info only for moderators
 - New spinner animation
 - Spinner instead of "Loading..."
-- SearchX instead of Google
 - Always signToActivityPubGet
 - Spacing on group items
 - Quotes have solid border
@@ -108,10 +104,6 @@
 - More antenna options
 - New dashboard
 - Backfill follower counts
-- Improved emoji licensing
-  - This feature was ported from Misskey.
-    - https://github.com/misskey-dev/misskey/commit/8ae9d2eaa8b0842671558370f787902e94b7f5a3: enhance: カスタム絵文字にライセンス情報を付与できるように
-    - https://github.com/misskey-dev/misskey/commit/ed51209172441927d24339f0759a5badbee3c9b6: 絵文字のライセンスを表示できるように
 - Compile time compression
 - Sonic search
 - Popular color schemes, including Nord, Gruvbox, and Catppuccin
@@ -132,7 +124,6 @@
   - Skin tone selection support
 
 ## Implemented (remote)
-
 
 - MissV: [fix Misskey Forkbomb](https://code.vtopia.live/Vtopia/MissV/commit/40b23c070bd4adbb3188c73546c6c625138fb3c1)
 - [Make showing ads optional](https://github.com/misskey-dev/misskey/pull/8996)
