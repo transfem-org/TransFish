@@ -88,6 +88,22 @@ body:
         - iOS
         - Other (Please Specify)
   - type: dropdown
+    id: deplotment-method
+    attributes:
+      label: How do you deploy Calckey on your server? (Server-side issues only)
+      multiple: false
+      options:
+        - N/A
+        - Manual
+        - Ubuntu Install Script
+        - Docker Compose
+        - Docker Prebuilt Image
+        - Helm Chart
+        - YunoHost
+        - AUR Package
+        - Other (Please Specify)
+    attributes:
+  - type: dropdown
     id: operating-system
     attributes:
       label: What operating system are you using? (Server-side issues only)
