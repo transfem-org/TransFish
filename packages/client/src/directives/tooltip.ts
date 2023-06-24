@@ -6,7 +6,6 @@ import { isTouchUsing } from "@/scripts/touch";
 import { popup, alert } from "@/os";
 import { mainRouter } from "@/router";
 
-
 const start = isTouchUsing ? "touchstart" : "mouseover";
 const end = isTouchUsing ? "touchend" : "mouseleave";
 

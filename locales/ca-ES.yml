@@ -1668,9 +1668,9 @@ popout: Apareixa
 volume: Volum
 objectStorageUseSSLDesc: Desactiva això si no fas servir HTTPS per les connexions
   API
-objectStorageUseProxy: Conectarse mitjançant un Proxy
+objectStorageUseProxy: Connectar-se mitjançant un Proxy
 objectStorageUseProxyDesc: Desactiva això si no faràs servir un servidor Proxy per
-  conexions API
+  conexions amb l'API
 objectStorageSetPublicRead: Fixar com a "public-read" al pujar
 serverLogs: Registres del servidor
 deleteAll: Esborrar tot
@@ -2131,3 +2131,4 @@ _dialog:
     {max}"
   charactersBelow: 'No hi ha caràcters suficients! Corrent: {current}/Limit: {min}'
 removeReaction: Elimina la teva reacció
+reactionPickerSkinTone: To de pell d'emoji preferit

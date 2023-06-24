@@ -1,20 +1,35 @@
 <template>
-	<!-- このコンポーネントの要素のclassは親から利用されるのでむやみに弄らないこと -->
 	<section>
 		<header class="_acrylic" @click="shown = !shown">
 			<i
 				class="toggle ph-fw ph-lg"
 				:class="
 					shown
-						? 'ph-caret-down-bold ph-lg'
+						? 'ph-caret-down ph-bold ph-lg'
 						: 'ph-caret-up ph-bold ph-lg'
 				"
 			></i>
 			<slot></slot> ({{ emojis.length }})
+			<span v-if="props.skinToneSelector && props.skinTones">
+				<button
+					v-for="skinTone in props.skinTones"
+					class="_button"
+					@click.prevent="
+						applyUnicodeSkinTone(
+							props.skinTones.indexOf(skinTone) + 1
+						)
+					"
+				>
+					<i
+						class="ph-circle ph-fill ph-fw ph-lg"
+						:style="{ color: skinTone + '!important' }"
+					></i>
+				</button>
+			</span>
 		</header>
 		<div v-if="shown" class="body">
 			<button
-				v-for="emoji in emojis"
+				v-for="emoji in localEmojis"
 				:key="emoji"
 				class="_button item"
 				@click="emit('chosen', emoji, $event)"
@@ -26,18 +41,54 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
+import { addSkinTone } from "@/scripts/emojilist";
+import emojiComponents from "unicode-emoji-json/data-emoji-components.json";
 
 const props = defineProps<{
 	emojis: string[];
 	initialShown?: boolean;
+	skinToneSelector?: boolean;
+	skinTones?: string[];
 }>();
+
+const localEmojis = ref([...props.emojis]);
+
+function applyUnicodeSkinTone(custom?: number) {
+	for (let i = 0; i < localEmojis.value.length; i++) {
+		if (
+			[
+				emojiComponents.light_skin_tone,
+				emojiComponents.medium_light_skin_tone,
+				emojiComponents.medium_skin_tone,
+				emojiComponents.medium_dark_skin_tone,
+				emojiComponents.dark_skin_tone,
+			].some((v) => localEmojis.value[i].endsWith(v))
+		) {
+			localEmojis.value[i] = localEmojis.value[i].slice(0, -1);
+		}
+		localEmojis.value[i] = addSkinTone(localEmojis.value[i], custom);
+	}
+}
 
 const emit = defineEmits<{
 	(ev: "chosen", v: string, event: MouseEvent): void;
 }>();
 
 const shown = ref(!!props.initialShown);
+
+onMounted(() => {
+	if (props.skinToneSelector) {
+		applyUnicodeSkinTone();
+	}
+});
+
+watch(
+	() => props.emojis,
+	(newVal) => {
+		localEmojis.value = [...newVal];
+	}
+);
 </script>
 
 <style lang="scss" scoped></style>

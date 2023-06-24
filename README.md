@@ -49,17 +49,26 @@
 
 # 🥂 Links
 
-- 💸 OpenCollective: <https://opencollective.com/Calckey>
-- 💸 Liberapay: <https://liberapay.com/ThatOneCalculator>
+### Want to get involved? Great!
+
+- If you have the means to, [donations](https://opencollective.com/Calckey) are a great way to keep us going.
+- If you know how to program in TypeScript, Vue, or Rust, read the [contributing](./CONTRIBUTING.md) document.
+- If you know a non-English language, translating Calckey on [Weblate](https://hosted.weblate.org/engage/calckey/) help bring Calckey to more people. No technical experience needed!
+- Want to write/report about us, have any professional inquiries, or just have questions to ask? Contact us [here!](https://calckey.org/contact/)
+
+### All links
+
+- 🌐 Homepage: <https://calckey.org>
+- 💸 Donations:
+  - OpenCollective: <https://opencollective.com/Calckey>
+  - Liberapay: <https://liberapay.com/ThatOneCalculator>
   - Donate publicly to get your name on the Patron list!
 - 🚢 Flagship server: <https://calckey.social>
-- 📣 Official account: <https://i.calckey.cloud/@calckey>
 - 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
-- 📜 Server list: <https://calckey.fediverse.observer/list>
-- 📖 JoinFediverse Wiki: <https://joinfediverse.wiki/What_is_Calckey%3F>
-- 🐋 Docker Hub: <https://hub.docker.com/r/thatonecalculator/calckey>
+- 📣 Official account: <https://i.calckey.cloud/@calckey>
+- 📜 Server list: <https://calckey.org/join>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/calckey/>
-- 📦 Yunohost: <https://github.com/YunoHost-Apps/calckey_ynh>
+- ️️📬 Contact: <https://calckey.org/contact/>
 
 # 🌠 Getting started
 

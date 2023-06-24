@@ -113,6 +113,8 @@
 					<XSection
 						v-for="category in unicodeEmojiCategories"
 						:key="category"
+						:skin-tone-selector="category === 'people'"
+						:skin-tones="unicodeEmojiSkinTones"
 						:emojis="
 							emojilist
 								.filter((e) => e.category === category)
@@ -166,6 +168,7 @@ import XSection from "@/components/MkEmojiPicker.section.vue";
 import {
 	emojilist,
 	unicodeEmojiCategories,
+	unicodeEmojiSkinTones,
 	UnicodeEmojiDef,
 	getNicelyLabeledCategory,
 } from "@/scripts/emojilist";

@@ -337,7 +337,7 @@ export const defaultStore = markRaw(
 		showTimelineReplies: {
 			where: "device",
 			default: true,
-		}
+		},
 	}),
 );
 

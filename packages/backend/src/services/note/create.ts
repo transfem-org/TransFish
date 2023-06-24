@@ -465,26 +465,48 @@ export default async (
 				if (!note.uri) {
 					// Publish if the post is local
 					publishNotesStream(note);
-				} else if (
-					boostedByRelay &&
-					data.renote?.uri &&
-					(await redisClient.exists(`publishedNote:${data.renote.uri}`)) === 0
-				) {
-					// Publish if the post was boosted by a relay and not yet published.
-					publishNotesStream(data.renote);
-					const key = `publishedNote:${data.renote.uri}`;
-					await redisClient.set(key, 1, "EX", 30);
-				} else if (
-					!boostedByRelay &&
-					note.uri &&
-					(await redisClient.exists(`publishedNote:${note.uri}`)) === 0
-				) {
-					// Publish if the post came directly from a remote server, or from a
-					// relay that doesn't boost the post (e.g, YUKIMOCHI Activity-Relay),
-					// and not yet published.
-					const key = `publishedNote:${note.uri}`;
-					publishNotesStream(note);
-					await redisClient.set(key, 1, "EX", 30);
+				} else if (boostedByRelay && data.renote?.uri) {
+					// Use Redis transaction for atomicity
+					await redisClient.watch(`publishedNote:${data.renote.uri}`);
+					const exists = await redisClient.exists(
+						`publishedNote:${data.renote.uri}`,
+					);
+					if (exists === 0) {
+						// Start the transaction
+						const transaction = redisClient.multi();
+						const key = `publishedNote:${data.renote.uri}`;
+						transaction.set(key, 1, "EX", 30);
+						// Execute the transaction
+						transaction.exec((err, replies) => {
+							// Publish after setting the key in Redis
+							if (!err && data.renote) {
+								publishNotesStream(data.renote);
+							}
+						});
+					} else {
+						// Abort the transaction
+						redisClient.unwatch();
+					}
+				} else if (!boostedByRelay && note.uri) {
+					// Use Redis transaction for atomicity
+					await redisClient.watch(`publishedNote:${note.uri}`);
+					const exists = await redisClient.exists(`publishedNote:${note.uri}`);
+					if (exists === 0) {
+						// Start the transaction
+						const transaction = redisClient.multi();
+						const key = `publishedNote:${note.uri}`;
+						transaction.set(key, 1, "EX", 30);
+						// Execute the transaction
+						transaction.exec((err, replies) => {
+							// Publish after setting the key in Redis
+							if (!err) {
+								publishNotesStream(note);
+							}
+						});
+					} else {
+						// Abort the transaction
+						redisClient.unwatch();
+					}
 				}
 			}
 			if (note.replyId != null) {

@@ -99,7 +99,7 @@ import { acct } from "@/filters/user";
 import * as os from "@/os";
 import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { defaultStore } from "@/store";
-import { emojilist } from "@/scripts/emojilist";
+import { emojilist, addSkinTone } from "@/scripts/emojilist";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
@@ -112,6 +112,12 @@ type EmojiDef = {
 };
 
 const lib = emojilist.filter((x) => x.category !== "flags");
+
+for (const emoji of lib) {
+	if (emoji.skin_tone_support) {
+		emoji.emoji = addSkinTone(emoji.emoji);
+	}
+}
 
 const emjdb: EmojiDef[] = lib.map((x) => ({
 	emoji: x.emoji,

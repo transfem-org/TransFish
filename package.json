@@ -1,6 +1,6 @@
 {
 	"name": "calckey",
-	"version": "14.0.0-dev51",
+	"version": "14.0.0-dev52",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
@@ -9,8 +9,8 @@
 	"packageManager": "pnpm@8.6.3",
 	"private": true,
 	"scripts": {
-		"rebuild": "pnpm run clean && pnpm -r run build && pnpm run gulp",
-		"build": "pnpm -r run build && pnpm run gulp",
+		"rebuild": "pnpm run clean && pnpm node ./scripts/build-greet.js && pnpm -r run build && pnpm run gulp",
+		"build": "pnpm node ./scripts/build-greet.js && pnpm -r run build && pnpm run gulp",
 		"start": "pnpm --filter backend run start",
 		"start:test": "pnpm --filter backend run start:test",
 		"init": "pnpm run migrate",
@@ -46,6 +46,7 @@
 	"devDependencies": {
 		"@types/gulp": "4.0.10",
 		"@types/gulp-rename": "2.0.1",
+		"chalk": "4.1.2",
 		"cross-env": "7.0.3",
 		"cypress": "10.11.0",
 		"execa": "5.1.1",
