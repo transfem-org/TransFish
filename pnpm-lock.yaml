@@ -783,7 +783,7 @@ importers:
         version: 2.30.0
       emojilib:
         specifier: github:thatonecalculator/emojilib
-        version: github.com/thatonecalculator/emojilib/34528ca3b7acd27da0d3fb38296ea244a7e86dd0
+        version: github.com/thatonecalculator/emojilib/7036d98e86bcf88826f4559323aebebb1ffb0f61
       escape-regexp:
         specifier: 0.0.1
         version: 0.0.1
@@ -15757,8 +15757,8 @@ packages:
       url-polyfill: 1.1.12
     dev: true
 
-  github.com/thatonecalculator/emojilib/34528ca3b7acd27da0d3fb38296ea244a7e86dd0:
-    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/34528ca3b7acd27da0d3fb38296ea244a7e86dd0}
+  github.com/thatonecalculator/emojilib/7036d98e86bcf88826f4559323aebebb1ffb0f61:
+    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/7036d98e86bcf88826f4559323aebebb1ffb0f61}
     name: emojilib
     version: 3.0.10
     dev: true
