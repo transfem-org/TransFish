@@ -354,7 +354,6 @@ onMounted(() => {
 		pointer-events: none;
 		margin-inline: auto;
 		z-index: 90000;
-		max-width: 600px;
 		box-shadow: 0 24px 24px -20px var(--accentedBg);
 		&::after {
 			content: "";
