@@ -693,8 +693,8 @@ abuseReported: "Deine Meldung wurde versendet. Vielen Dank."
 reporter: "Melder"
 reporteeOrigin: "Herkunft des Gemeldeten"
 reporterOrigin: "Herkunft des Meldenden"
-forwardReport: "Einen Meldung zusätzlich an den mit-beteiligten Server senden"
-forwardReportIsAnonymous: "Anstelle Ihres Nutzerkontos wird ein anonymes Systemkonto
+forwardReport: "Meldung auch an den mit-beteiligten Server weiterleiten"
+forwardReportIsAnonymous: "Anstelle deines Nutzerkontos wird ein anonymes Systemkonto
   als Hinweisgeber auf dem mit-beteiligten Server angezeigt."
 send: "Senden"
 abuseMarkAsResolved: "Meldung als gelöst markieren"
@@ -1983,8 +1983,8 @@ renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Keine Server gefunden
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
-  eingestufte Server mit diesem Server verknüpft werden. Alle Beiträge werden für
-  die Öffentlichkeit verborgen.
+  eingestufte Server mit diesem Server kommunizieren. Alle Beiträge werden für die
+  Öffentlichkeit verborgen.
 allowedInstances: Vertrauenswürdige Server
 selectInstance: Wähle einen Server aus
 silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
@@ -2151,3 +2151,4 @@ listsDesc: Listen lassen dich Timelines mit bestimmten Nutzer:innen erstellen. S
 clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips vom
   Menü individueller Posts aus erstellen.
 channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
+reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
