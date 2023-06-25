@@ -1548,11 +1548,12 @@ _auth:
   shareAccess: "Would you like to authorize \"{name}\" to access this account?"
   shareAccessAsk: "Are you sure you want to authorize this application to access your
     account?"
-  permissionAsk: "This application requests the following permissions"
+  permissionAsk: "This application requests the following permissions:"
   pleaseGoBack: "Please go back to the application"
   callback: "Returning to the application"
   denied: "Access denied"
-  copyAsk: "Please paste the following authorization code to the application"
+  copyAsk: "Please paste the following authorization code to the application:"
+  allPermissions: "Full account access"
 _antennaSources:
   all: "All posts"
   homeTimeline: "Posts from followed users"
