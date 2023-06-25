@@ -238,6 +238,10 @@ watch(enableEmojiReactions, async () => {
 	await reloadAsk();
 });
 
+watch(reactionPickerSkinTone, async () => {
+	await reloadAsk();
+})
+
 const headerActions = $computed(() => []);
 
 const headerTabs = $computed(() => []);
