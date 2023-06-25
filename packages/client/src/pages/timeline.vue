@@ -349,6 +349,7 @@ onMounted(() => {
 		top: calc(var(--stickyTop, 0px) - 60px);
 		z-index: 1000;
 		width: 600px;
+		max-width: 100%;
 		height: 60px;
 		pointer-events: none;
 		margin-inline: auto;
@@ -361,6 +362,7 @@ onMounted(() => {
 			inset: 0;
 			border: 2px solid var(--accent);
 			mask: linear-gradient(to right, transparent,black 40% 60%,transparent);
+			-webkit-mask: linear-gradient(to right, transparent,black 40% 60%,transparent);
 		}
 		> button {
 			display: flex;
