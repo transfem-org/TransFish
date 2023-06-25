@@ -176,7 +176,7 @@ async function registerTOTP() {
 	});
 	if (!qrdialog) return;
 
-	const token = await os.inputNumber({
+	const token = await os.inputText({
 		title: i18n.ts._2fa.step3Title,
 		text: i18n.ts._2fa.step3,
 		autocomplete: "one-time-code",
@@ -184,7 +184,7 @@ async function registerTOTP() {
 	if (token.canceled) return;
 
 	await os.apiWithDialog("i/2fa/done", {
-		token: token.result.toString(),
+		token: token.result,
 	});
 
 	await os.alert({
