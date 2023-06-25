@@ -91,7 +91,7 @@ function updateWidgets(widgets) {
 	display: flex;
 	flex-direction: column;
 
-	> * {
+	> :deep(*) {
 		margin-top: var(--margin);
 		width: 300px;
 
