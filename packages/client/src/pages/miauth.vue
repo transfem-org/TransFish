@@ -50,7 +50,7 @@
 						<div
 							v-for="p in _permissions"
 							:key="p"
-							:class="[$style.permission, $style.permission]"
+							:class="[$style.permission]"
 						>
 							<i
 								:class="[`ph-${getIcon(p)}`]"
