@@ -842,6 +842,16 @@ hr {
   margin: 0;
 }
 
+@keyframes reset {
+	to {
+		transform: none;
+		opacity: 1;
+	}
+}
+.instant {
+	animation-duration: 0s !important;
+}
+
 @media(prefers-reduced-motion: no-preference) {
 	@keyframes scaleIn {
 		from {
