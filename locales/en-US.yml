@@ -1628,11 +1628,11 @@ _poll:
   remainingSeconds: "{s} second(s) remaining"
 _visibility:
   public: "Public"
-  publicDescription: "Your post will be visible for all users"
+  publicDescription: "Your post will be visible in all public timelines"
   home: "Unlisted"
   homeDescription: "Post to home timeline only"
   followers: "Followers"
-  followersDescription: "Make visible to your followers only"
+  followersDescription: "Make visible to your followers and mentioned users only"
   specified: "Direct"
   specifiedDescription: "Make visible for specified users only"
   localOnly: "Local only"

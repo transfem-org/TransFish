@@ -215,7 +215,6 @@ function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
 
 .body {
 	flex: 1 1 auto;
-	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -226,7 +225,9 @@ function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
 }
 
 .itemDescription {
-	opacity: 0.6;
+	opacity: .6;
+	display: block;
+	line-height: 1.5;
 }
 
 .toggle {
