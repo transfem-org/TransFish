@@ -172,6 +172,9 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 
 <style lang="scss" scoped>
 .vjoppmmu {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 	> header {
 		margin: 16px 0;
 
@@ -184,7 +187,7 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 	> .widget,
 	.customize-container {
 		contain: content;
-		margin: var(--margin) 0;
+		margin-bottom: var(--margin);
 
 		&:first-of-type {
 			margin-top: 0;

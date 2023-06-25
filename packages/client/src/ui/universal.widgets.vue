@@ -88,14 +88,20 @@ function updateWidgets(widgets) {
 	min-height: 100vh;
 	padding: var(--margin) 0;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 
 	> * {
-		margin: var(--margin) 0;
+		margin-top: var(--margin);
 		width: 300px;
 
 		&:first-child {
 			margin-top: 0;
 		}
+	}
+
+	.a:empty {
+		display: none;
 	}
 
 	> .add {
