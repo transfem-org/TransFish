@@ -14,7 +14,7 @@
 				<button
 					v-for="skinTone in props.skinTones"
 					class="_button"
-					@click.prevent="
+					@click.stop="
 						applyUnicodeSkinTone(
 							props.skinTones.indexOf(skinTone) + 1
 						)
@@ -43,7 +43,6 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted } from "vue";
 import { addSkinTone } from "@/scripts/emojilist";
-import emojiComponents from "unicode-emoji-json/data-emoji-components.json";
 
 const props = defineProps<{
 	emojis: string[];
@@ -56,17 +55,6 @@ const localEmojis = ref([...props.emojis]);
 
 function applyUnicodeSkinTone(custom?: number) {
 	for (let i = 0; i < localEmojis.value.length; i++) {
-		if (
-			[
-				emojiComponents.light_skin_tone,
-				emojiComponents.medium_light_skin_tone,
-				emojiComponents.medium_skin_tone,
-				emojiComponents.medium_dark_skin_tone,
-				emojiComponents.dark_skin_tone,
-			].some((v) => localEmojis.value[i].endsWith(v))
-		) {
-			localEmojis.value[i] = localEmojis.value[i].slice(0, -1);
-		}
 		localEmojis.value[i] = addSkinTone(localEmojis.value[i], custom);
 	}
 }

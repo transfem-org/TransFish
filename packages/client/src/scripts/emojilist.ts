@@ -45,6 +45,8 @@ export const unicodeEmojiSkinTones = [
 ];
 
 export function addSkinTone(emoji: string, skinTone?: number) {
+	const individualData = import("unicode-emoji-json/data-by-emoji.json");
+
 	const chosenSkinTone = skinTone || defaultStore.state.reactionPickerSkinTone;
 	const skinToneModifiers = [
 		"",
@@ -54,7 +56,18 @@ export function addSkinTone(emoji: string, skinTone?: number) {
 		emojiComponents.medium_dark_skin_tone,
 		emojiComponents.dark_skin_tone,
 	];
-	return emoji + (skinToneModifiers[chosenSkinTone - 1] || "");
+	if (individualData[emoji]?.skin_tone_support === false) {
+		return emoji;
+	}
+	return (
+		emoji.replace(
+			new RegExp(
+				`(${skinToneModifiers.slice(1).join("|")})`,
+				"gi",
+			),
+			"",
+		) + (skinToneModifiers[chosenSkinTone - 1] || "")
+	);
 }
 
 const unicodeFifteenEmojis = [
