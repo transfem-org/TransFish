@@ -385,12 +385,13 @@ _cw:
   chars: '{count} caràcters'
 _visibility:
   followers: "Seguidors"
-  publicDescription: La teva publicació serà visible per a tots els usuaris
+  publicDescription: La teva publicació serà visible per a totes les línies de temps
+    públiques
   localOnly: Només Local
   specified: Directe
   home: Sense llistar
   homeDescription: Publica només a la línea de temps local
-  followersDescription: Fes visible només per als teus seguidors
+  followersDescription: Fes visible només per als teus seguidors i usuaris mencionats
   specifiedDescription: Fer visible només per a usuaris determinats
   public: Públic
   localOnlyDescription: No és visible per als usuaris remots
