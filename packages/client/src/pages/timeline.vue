@@ -351,6 +351,7 @@ onMounted(() => {
 		width: 600px;
 		max-width: 100%;
 		height: 60px;
+		margin-top: -60px;
 		pointer-events: none;
 		margin-inline: auto;
 		z-index: 90000;
