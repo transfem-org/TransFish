@@ -342,9 +342,7 @@ const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
 const swipeOnDesktop = computed(
 	defaultStore.makeGetterSetter("swipeOnDesktop")
 );
-const swipeOnMobile = computed(
-	defaultStore.makeGetterSetter("swipeOnMobile")
-);
+const swipeOnMobile = computed(defaultStore.makeGetterSetter("swipeOnMobile"));
 const showAdminUpdates = computed(
 	defaultStore.makeGetterSetter("showAdminUpdates")
 );

@@ -225,7 +225,7 @@ function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
 }
 
 .itemDescription {
-	opacity: .6;
+	opacity: 0.6;
 	display: block;
 	line-height: 1.5;
 }

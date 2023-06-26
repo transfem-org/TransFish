@@ -240,7 +240,7 @@ watch(enableEmojiReactions, async () => {
 
 watch(reactionPickerSkinTone, async () => {
 	await reloadAsk();
-})
+});
 
 const headerActions = $computed(() => []);
 
