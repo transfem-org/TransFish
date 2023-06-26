@@ -32,7 +32,6 @@
 		>
 			<video
 				:poster="video.thumbnailUrl"
-				:title="video.comment"
 				:aria-label="video.comment"
 				preload="none"
 				controls
@@ -41,13 +40,23 @@
 				<source :src="video.url" :type="video.type" />
 			</video>
 		</VuePlyr>
-		<button
-			v-tooltip="i18n.ts.hide"
-			class="_button hide"
-			@click="hide = true"
-		>
-			<i class="ph-eye-slash ph-bold ph-lg"></i>
-		</button>
+		<div class="buttons">
+			<button
+				v-if="video.comment"
+				v-tooltip="i18n.ts.alt"
+				class="_button"
+				@click.stop="captionPopup"
+			>
+				<i class="ph-subtitles ph-bold ph-lg"></i>
+			</button>
+			<button
+				v-tooltip="i18n.ts.hide"
+				class="_button"
+				@click="hide = true"
+			>
+				<i class="ph-eye-slash ph-bold ph-lg"></i>
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -58,6 +67,7 @@ import type * as misskey from "calckey-js";
 import { defaultStore } from "@/store";
 import "vue-plyr/dist/vue-plyr.css";
 import { i18n } from "@/i18n";
+import * as os from "@/os";
 
 const props = defineProps<{
 	video: misskey.entities.DriveFile;
@@ -71,6 +81,13 @@ const hide = ref(
 		? true
 		: props.video.isSensitive && defaultStore.state.nsfw !== "ignore"
 );
+
+function captionPopup() {
+	os.alert({
+		type: "info",
+		text: props.video.comment
+	})
+}
 
 onMounted(() => {
 	mini.value = plyr.value.player.media.scrollWidth < 300;
@@ -87,22 +104,22 @@ onMounted(() => {
 	position: relative;
 	--plyr-color-main: var(--accent);
 
-	> .hide {
-		display: block;
+	> .buttons {
+		display: flex;
+		gap: 4px;
 		position: absolute;
 		border-radius: 6px;
-		background-color: var(--accentedBg);
-		-webkit-backdrop-filter: var(--blur, blur(15px));
-		backdrop-filter: var(--blur, blur(15px));
-		color: var(--accent);
-		font-size: 0.8em;
-		padding: 6px 8px;
-		text-align: center;
+		overflow: hidden;
 		top: 12px;
 		right: 12px;
-
-		> i {
-			display: block;
+		> * {
+			background-color: var(--accentedBg);
+			-webkit-backdrop-filter: var(--blur, blur(15px));
+			backdrop-filter: var(--blur, blur(15px));
+			color: var(--accent);
+			font-size: 0.8em;
+			padding: 6px 8px;
+			text-align: center;
 		}
 	}
 
