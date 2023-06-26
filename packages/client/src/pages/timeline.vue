@@ -354,13 +354,13 @@ onMounted(() => {
 		margin-top: -60px;
 		pointer-events: none;
 		margin-inline: auto;
-		z-index: 90000;
+		z-index: 1001;
 		box-shadow: 0 24px 24px -20px var(--accentedBg);
 		&::after {
 			content: "";
 			position: absolute;
 			inset: 0;
-			border: 2px solid var(--accent);
+			border: 2px solid var(--accentDarken);
 			mask: linear-gradient(to right, transparent,black 40% 60%,transparent);
 			-webkit-mask: linear-gradient(to right, transparent,black 40% 60%,transparent);
 		}
