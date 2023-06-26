@@ -45,6 +45,9 @@
 				class="_formBlock"
 				>{{ i18n.ts.useReactionPickerForContextMenu }}</FormSwitch
 			>
+			<FormSwitch v-model="swipeOnMobile" class="_formBlock">{{
+				i18n.ts.swipeOnMobile
+			}}</FormSwitch>
 			<FormSwitch v-model="swipeOnDesktop" class="_formBlock">{{
 				i18n.ts.swipeOnDesktop
 			}}</FormSwitch>
@@ -339,6 +342,9 @@ const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
 const swipeOnDesktop = computed(
 	defaultStore.makeGetterSetter("swipeOnDesktop")
 );
+const swipeOnMobile = computed(
+	defaultStore.makeGetterSetter("swipeOnMobile")
+);
 const showAdminUpdates = computed(
 	defaultStore.makeGetterSetter("showAdminUpdates")
 );
@@ -379,6 +385,7 @@ watch(
 		overridedDeviceKind,
 		showAds,
 		showUpdates,
+		swipeOnMobile,
 		swipeOnDesktop,
 		seperateRenoteQuote,
 		showAdminUpdates,

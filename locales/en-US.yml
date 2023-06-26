@@ -1053,6 +1053,7 @@ recommendedInstancesDescription: "Recommended servers separated by line breaks t
 caption: "Auto Caption"
 splash: "Splash Screen"
 updateAvailable: "There might be an update available!"
+swipeOnMobile: "Allow swiping between pages"
 swipeOnDesktop: "Allow mobile-style swiping on desktop"
 logoImageUrl: "Logo image URL"
 showAdminUpdates: "Indicate a new Calckey version is avaliable (admin only)"
