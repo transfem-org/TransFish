@@ -196,7 +196,13 @@ export default async (
 			data.channel = await Channels.findOneBy({ id: data.reply.channelId });
 		}
 
-		if (data.createdAt == null) data.createdAt = new Date();
+		const now = new Date();
+		if (
+			!data.createdAt ||
+			isNaN(data.createdAt.getTime()) ||
+			data.createdAt > now
+		)
+			data.createdAt = now;
 		if (data.visibility == null) data.visibility = "public";
 		if (data.localOnly == null) data.localOnly = false;
 		if (data.channel != null) data.visibility = "public";

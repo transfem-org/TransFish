@@ -196,6 +196,7 @@ export default defineComponent({
 	&.scrollable {
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
 
 		> .content {
 			overflow: auto;
