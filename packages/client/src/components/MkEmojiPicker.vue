@@ -115,6 +115,7 @@
 						:key="category"
 						:skin-tone-selector="category === 'people'"
 						:skin-tones="unicodeEmojiSkinTones"
+						:skin-tone-labels="unicodeEmojiSkinToneLabels"
 						:emojis="
 							emojilist
 								.filter((e) => e.category === category)
@@ -168,7 +169,6 @@ import XSection from "@/components/MkEmojiPicker.section.vue";
 import {
 	emojilist,
 	unicodeEmojiCategories,
-	unicodeEmojiSkinTones,
 	UnicodeEmojiDef,
 	getNicelyLabeledCategory,
 } from "@/scripts/emojilist";
@@ -209,6 +209,24 @@ const {
 	disableShowingAnimatedImages,
 	recentlyUsedEmojis,
 } = defaultStore.reactiveState;
+
+const unicodeEmojiSkinTones = [
+	"#FFDC5E",
+	"#F7DFCF",
+	"#F3D3A3",
+	"#D6AE89",
+	"#B17F56",
+	"#7D523C",
+];
+
+const unicodeEmojiSkinToneLabels = [
+	i18n.ts._skinTones.yellow,
+	i18n.ts._skinTones.light,
+	i18n.ts._skinTones.mediumLight,
+	i18n.ts._skinTones.medium,
+	i18n.ts._skinTones.mediumDark,
+	i18n.ts._skinTones.dark,
+];
 
 const size = computed(() =>
 	props.asReactionPicker ? reactionPickerSize.value : 1

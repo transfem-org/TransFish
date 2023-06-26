@@ -47,22 +47,22 @@
 
 			<FormRadios v-model="reactionPickerSkinTone" class="_formBlock">
 				<template #label>{{ i18n.ts.reactionPickerSkinTone }}</template>
-				<option :value="1">
+				<option :value="1" :aria-label="i18n.ts._skinTones.yellow">
 					<MkEmoji style="height: 1.7em" emoji="✌️" />
 				</option>
-				<option :value="6">
+				<option :value="6" :aria-label="i18n.ts._skinTones.dark">
 					<MkEmoji style="height: 1.7em" emoji="✌🏿" />
 				</option>
-				<option :value="5">
+				<option :value="5" :aria-label="i18n.ts._skinTones.mediumDark">
 					<MkEmoji style="height: 1.7em" emoji="✌🏾" />
 				</option>
-				<option :value="4">
+				<option :value="4" :aria-label="i18n.ts._skinTones.medium">
 					<MkEmoji style="height: 1.7em" emoji="✌🏽" />
 				</option>
-				<option :value="3">
+				<option :value="3" :aria-label="i18n.ts._skinTones.mediumLight">
 					<MkEmoji style="height: 1.7em" emoji="✌🏼" />
 				</option>
-				<option :value="2">
+				<option :value="2" :aria-label="i18n.ts._skinTones.light">
 					<MkEmoji style="height: 1.7em" emoji="✌🏻" />
 				</option>
 			</FormRadios>
@@ -137,6 +137,7 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deepClone } from "@/scripts/clone";
 import { unisonReload } from "@/scripts/unison-reload";
+import {addSkinTone } from "@/scripts/emojilist";
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
@@ -239,8 +240,11 @@ watch(enableEmojiReactions, async () => {
 });
 
 watch(reactionPickerSkinTone, async () => {
+	reactions.forEach((emoji) => {
+		addSkinTone(emoji, reactionPickerSkinTone.value);
+	});
 	await reloadAsk();
-})
+});
 
 const headerActions = $computed(() => []);
 

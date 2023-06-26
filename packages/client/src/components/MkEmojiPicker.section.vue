@@ -22,7 +22,14 @@
 				>
 					<i
 						class="ph-circle ph-fill ph-fw ph-lg"
-						:style="{ color: skinTone + '!important' }"
+						:style="{ color: skinTone + ' !important' }"
+						:aria-label="
+							props.skinToneLabels
+								? props.skinToneLabels[
+										props.skinTones.indexOf(skinTone)
+								  ]
+								: ''
+						"
 					></i>
 				</button>
 			</span>
@@ -49,6 +56,7 @@ const props = defineProps<{
 	initialShown?: boolean;
 	skinToneSelector?: boolean;
 	skinTones?: string[];
+	skinToneLabels?: string[];
 }>();
 
 const localEmojis = ref([...props.emojis]);

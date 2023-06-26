@@ -2073,7 +2073,13 @@ _experiments:
   postImportsCaption: "Allows users to import their posts from past Calckey,\
     \ Misskey, Mastodon, Akkoma, and Pleroma accounts. It may cause slowdowns during\
     \ load if your queue is bottlenecked."
-
 _dialog:
   charactersExceeded: "Max characters exceeded! Current: {current}/Limit: {max}"
   charactersBelow: "Not enough characters! Current: {current}/Limit: {min}"
+_skinTones:
+  yellow: "Yellow"
+  light: "Light"
+  mediumLight: "Medium Light"
+  medium: "Medium"
+  mediumDark: "Medium Dark"
+  dark: "Dark"

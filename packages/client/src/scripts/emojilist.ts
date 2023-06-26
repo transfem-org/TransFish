@@ -35,15 +35,6 @@ export const categoryMapping = {
 	Flags: "flags",
 } as const;
 
-export const unicodeEmojiSkinTones = [
-	"#FFDC5E",
-	"#F7DFCF",
-	"#F3D3A3",
-	"#D6AE89",
-	"#B17F56",
-	"#7D523C",
-];
-
 export function addSkinTone(emoji: string, skinTone?: number) {
 	const individualData = import("unicode-emoji-json/data-by-emoji.json");
 
