@@ -137,7 +137,7 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deepClone } from "@/scripts/clone";
 import { unisonReload } from "@/scripts/unison-reload";
-import {addSkinTone } from "@/scripts/emojilist";
+import { addSkinTone } from "@/scripts/emojilist";
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({

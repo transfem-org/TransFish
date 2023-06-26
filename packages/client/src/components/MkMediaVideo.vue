@@ -85,8 +85,8 @@ const hide = ref(
 function captionPopup() {
 	os.alert({
 		type: "info",
-		text: props.video.comment
-	})
+		text: props.video.comment,
+	});
 }
 
 onMounted(() => {

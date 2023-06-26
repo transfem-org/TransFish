@@ -17,8 +17,8 @@
 				/>
 
 				<div v-if="queue > 0" class="new">
-					<button 
-						class="_buttonPrimary _shadow" 
+					<button
+						class="_buttonPrimary _shadow"
 						@click="top()"
 						:class="{ instant: !$store.state.animation }"
 					>
@@ -361,8 +361,18 @@ onMounted(() => {
 			position: absolute;
 			inset: 0;
 			border: 2px solid var(--accentDarken);
-			mask: linear-gradient(to right, transparent,black 40% 60%,transparent);
-			-webkit-mask: linear-gradient(to right, transparent,black 40% 60%,transparent);
+			mask: linear-gradient(
+				to right,
+				transparent,
+				black 40% 60%,
+				transparent
+			);
+			-webkit-mask: linear-gradient(
+				to right,
+				transparent,
+				black 40% 60%,
+				transparent
+			);
 		}
 		> button {
 			display: flex;
@@ -370,7 +380,7 @@ onMounted(() => {
 			top: 120%;
 			margin-inline: auto;
 			border-radius: 2em;
-			padding: .5em 1.2em;
+			padding: 0.5em 1.2em;
 			background: var(--accentedBg);
 			border: 0;
 			color: var(--accent);
@@ -378,8 +388,8 @@ onMounted(() => {
 			pointer-events: all;
 			transform: translateY(-100%);
 			opacity: 0;
-			animation: reset .4s forwards cubic-bezier(0,.4,0,1.1),
-									slideUp 1s 5s forwards cubic-bezier(1,0,1,1);
+			animation: reset 0.4s forwards cubic-bezier(0, 0.4, 0, 1.1),
+				slideUp 1s 5s forwards cubic-bezier(1, 0, 1, 1);
 			&::before {
 				content: "";
 				position: absolute;
@@ -388,9 +398,9 @@ onMounted(() => {
 				z-index: -1;
 			}
 			i {
-				margin-left: .7em;
+				margin-left: 0.7em;
 				border-left: 1px solid var(--accentedBg);
-				padding-left: .4em;
+				padding-left: 0.4em;
 			}
 		}
 	}
