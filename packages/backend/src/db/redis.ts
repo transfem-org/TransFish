@@ -7,8 +7,13 @@ export function createConnection() {
 		host: config.redis.host,
 		family: config.redis.family == null ? 0 : config.redis.family,
 		password: config.redis.pass,
+		username: "default",
 		keyPrefix: `${config.redis.prefix}:`,
 		db: config.redis.db || 0,
+		tls: {
+			rejectUnauthorized: false,
+			host: config.redis.host,
+		},
 	});
 }
 
