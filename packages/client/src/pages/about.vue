@@ -52,9 +52,9 @@
 
 						<MkKeyValue class="_formBlock">
 							<template #key>{{ i18n.ts.description }}</template>
-							<template #value>{{
-								$instance.description
-							}}</template>
+							<template #value
+								><div v-html="$instance.description"></div
+							></template>
 						</MkKeyValue>
 
 						<FormSection>
