@@ -2134,3 +2134,4 @@ _dialog:
   charactersBelow: 'No hi ha caràcters suficients! Corrent: {current}/Limit: {min}'
 removeReaction: Elimina la teva reacció
 reactionPickerSkinTone: To de pell d'emoji preferit
+alt: ALT
