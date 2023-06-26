@@ -153,6 +153,7 @@ redis:
   pass: {{ .Values.redis.auth.password | quote }}
   #prefix: example-prefix
   #db: 1
+	#user: default
 
 #   ┌─────────────────────┐
 #───┘ Sonic configuration └─────────────────────────────────────

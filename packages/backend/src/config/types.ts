@@ -23,6 +23,7 @@ export type Source = {
 		pass: string;
 		db?: number;
 		prefix?: string;
+		user?: string;
 	};
 	elasticsearch: {
 		host: string;

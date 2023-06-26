@@ -5,9 +5,9 @@ export function createConnection() {
 	return new Redis({
 		port: config.redis.port,
 		host: config.redis.host,
-		family: config.redis.family == null ? 0 : config.redis.family,
+		family: config.redis.family ?? 0,
 		password: config.redis.pass,
-		username: "default",
+		username: config.redis.user ?? "default",
 		keyPrefix: `${config.redis.prefix}:`,
 		db: config.redis.db || 0,
 		tls: {
