@@ -2031,11 +2031,12 @@ _auth:
   shareAccessAsk: Estàs segur que vols autoritzar aquesta aplicació per accedir al
     teu compte?
   shareAccess: Vols autoritzar "{name}" per accedir a aquest compte?
-  permissionAsk: Aquesta aplicació sol·licita els següents permisos
+  permissionAsk: 'Aquesta aplicació sol·licita els següents permisos:'
   callback: Tornant a l'aplicació
   denied: Accés denegat
   pleaseGoBack: Si us plau, torneu a l'aplicació
-  copyAsk: Posa el següent codi d'autorització a l'aplicació
+  copyAsk: "Posa el següent codi d'autorització a l'aplicació:"
+  allPermissions: Accés complet al compte
 _weekday:
   wednesday: Dimecres
   saturday: Dissabte
