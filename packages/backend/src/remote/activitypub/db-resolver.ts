@@ -80,8 +80,15 @@ export default class DbResolver {
 				id: parsed.id,
 			});
 		} else {
-			return await Notes.findOneBy({
-				uri: parsed.uri,
+			return await Notes.findOne({
+				where: [
+					{
+						uri: parsed.uri,
+					},
+					{
+						url: parsed.uri,
+					},
+				],
 			});
 		}
 	}
