@@ -1,6 +1,6 @@
 # calckey
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v14.0.0-rc2c](https://img.shields.io/badge/AppVersion-v14.0.0--rc2c-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v14.0.0-rc3](https://img.shields.io/badge/AppVersion-v14.0.0--rc3-informational?style=flat-square)
 
 A fun, new, open way to experience social media https://calckey.org
 
@@ -63,7 +63,7 @@ A fun, new, open way to experience social media https://calckey.org
 | elasticsearch | object | `{"auth":{},"enabled":false,"hostname":"","port":9200,"ssl":false}` | https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch#parameters |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"docker.io/lilthmooncohen/calckey"` |  |
+| image.repository | string | `"docker.io/thatonecalculator/calckey"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
