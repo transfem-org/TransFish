@@ -1,7 +1,7 @@
 <template>
-	<MkContainer 
+	<MkContainer
 		:show-header="widgetProps.showHeader"
-		class="mkw-rss" 
+		class="mkw-rss"
 		:scrollable="true"
 		:style="`height: ${widgetProps.height}px;`"
 	>

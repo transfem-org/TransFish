@@ -55,7 +55,6 @@ import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 
-
 const props = defineProps<{
 	image: misskey.entities.DriveFile;
 	raw?: boolean;
@@ -73,8 +72,8 @@ const url =
 function captionPopup() {
 	os.alert({
 		type: "info",
-		text: props.image.comment
-	})
+		text: props.image.comment,
+	});
 }
 
 // Plugin:register_note_view_interruptor を使って書き換えられる可能性があるためwatchする

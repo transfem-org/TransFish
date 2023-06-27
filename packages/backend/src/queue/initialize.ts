@@ -7,8 +7,12 @@ export function initialize<T>(name: string, limitPerSec = -1) {
 			port: config.redis.port,
 			host: config.redis.host,
 			family: config.redis.family == null ? 0 : config.redis.family,
+			user: config.redis.user ?? "default",
 			password: config.redis.pass,
 			db: config.redis.db || 0,
+			tls: {
+				host: config.redis.host,
+			},
 		},
 		prefix: config.redis.prefix ? `${config.redis.prefix}:queue` : "queue",
 		limiter:

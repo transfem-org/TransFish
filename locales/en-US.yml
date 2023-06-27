@@ -1053,6 +1053,7 @@ recommendedInstancesDescription: "Recommended servers separated by line breaks t
 caption: "Auto Caption"
 splash: "Splash Screen"
 updateAvailable: "There might be an update available!"
+swipeOnMobile: "Allow swiping between pages"
 swipeOnDesktop: "Allow mobile-style swiping on desktop"
 logoImageUrl: "Logo image URL"
 showAdminUpdates: "Indicate a new Calckey version is avaliable (admin only)"
@@ -2074,7 +2075,13 @@ _experiments:
   postImportsCaption: "Allows users to import their posts from past Calckey,\
     \ Misskey, Mastodon, Akkoma, and Pleroma accounts. It may cause slowdowns during\
     \ load if your queue is bottlenecked."
-
 _dialog:
   charactersExceeded: "Max characters exceeded! Current: {current}/Limit: {max}"
   charactersBelow: "Not enough characters! Current: {current}/Limit: {min}"
+_skinTones:
+  yellow: "Yellow"
+  light: "Light"
+  mediumLight: "Medium Light"
+  medium: "Medium"
+  mediumDark: "Medium Dark"
+  dark: "Dark"

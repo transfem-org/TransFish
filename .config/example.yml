@@ -60,6 +60,7 @@ redis:
   #pass: example-pass
   #prefix: example-prefix
   #db: 1
+  #user: default
 
 # Please configure either MeiliSearch *or* Sonic.
 # If both MeiliSearch and Sonic configurations are present, MeiliSearch will take precedence.
