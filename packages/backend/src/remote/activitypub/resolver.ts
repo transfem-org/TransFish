@@ -23,6 +23,7 @@ import renderCreate from "@/remote/activitypub/renderer/create.js";
 import { renderActivity } from "@/remote/activitypub/renderer/index.js";
 import renderFollow from "@/remote/activitypub/renderer/follow.js";
 import { shouldBlockInstance } from "@/misc/should-block-instance.js";
+import { apLogger } from "@/remote/activitypub/logger.js";
 
 export default class Resolver {
 	private history: Set<string>;
@@ -32,6 +33,10 @@ export default class Resolver {
 	constructor(recursionLimit = 100) {
 		this.history = new Set();
 		this.recursionLimit = recursionLimit;
+	}
+
+	public setUser(user) {
+		this.user = user;
 	}
 
 	public getHistory(): string[] {
@@ -101,6 +106,9 @@ export default class Resolver {
 		if (!this.user) {
 			this.user = await getInstanceActor();
 		}
+
+		apLogger.debug("getting object from remote, authenticated as user:");
+		apLogger.debug(JSON.stringify(this.user, null, 2));
 
 		const object = (
 			this.user
