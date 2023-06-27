@@ -2135,3 +2135,11 @@ _dialog:
 removeReaction: Elimina la teva reacció
 reactionPickerSkinTone: To de pell d'emoji preferit
 alt: ALT
+_skinTones:
+  light: Clar
+  mediumLight: Clar Mitx
+  medium: Mitx
+  mediumDark: Fosc Mitx
+  dark: Fosc
+  yellow: Groc
+swipeOnMobile: Permet lliscar entre pàgines
