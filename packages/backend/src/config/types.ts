@@ -15,6 +15,7 @@ export type Source = {
 		pass: string;
 		disableCache?: boolean;
 		extra?: { [x: string]: string };
+		ssl?: boolean;
 	};
 	redis: {
 		host: string;
@@ -24,6 +25,7 @@ export type Source = {
 		db?: number;
 		prefix?: string;
 		user?: string;
+		tls?: boolean;
 	};
 	elasticsearch: {
 		host: string;

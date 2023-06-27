@@ -10,9 +10,9 @@ export function initialize<T>(name: string, limitPerSec = -1) {
 			user: config.redis.user ?? "default",
 			password: config.redis.pass,
 			db: config.redis.db || 0,
-			tls: {
-				host: config.redis.host,
-			},
+			tls: config.redis.tls ? {
+				host: config.redis.host, //TODO add configurable cert validation
+			} : undefined,
 		},
 		prefix: config.redis.prefix ? `${config.redis.prefix}:queue` : "queue",
 		limiter:

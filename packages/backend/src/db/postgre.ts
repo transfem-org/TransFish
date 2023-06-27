@@ -211,10 +211,10 @@ export const db = new DataSource({
 					password: config.redis.pass,
 					keyPrefix: `${config.redis.prefix}:query:`,
 					db: config.redis.db || 0,
-					tls: {
+					tls: config.redis.tls ? {
 						host: config.redis.host,
-						rejectUnauthorized: false,
-					},
+						rejectUnauthorized: false, // TODO make configurable
+					} : undefined,
 				},
 		  }
 		: false,
@@ -223,10 +223,10 @@ export const db = new DataSource({
 	maxQueryExecutionTime: 300,
 	entities: entities,
 	migrations: ["../../migration/*.js"],
-	ssl: {
+	ssl: config.db.ssl ? {
 		rejectUnauthorized: false,
 		ca: process.env.DB_SSL_CERT,
-	},
+	} : undefined,
 });
 
 export async function initDb(force = false) {

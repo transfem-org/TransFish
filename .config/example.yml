@@ -35,7 +35,7 @@ port: 3000
 db:
   host: localhost
   port: 5432
-
+  #ssl: false
   # Database name
   db: calckey
 
@@ -48,6 +48,7 @@ db:
 
   # Extra Connection options
   #extra:
+  # TODO: find another example
   #  ssl: true
 
 #   ┌─────────────────────┐
@@ -56,6 +57,7 @@ db:
 redis:
   host: localhost
   port: 6379
+  #tls: false
   #family: 0  # 0=Both, 4=IPv4, 6=IPv6
   #pass: example-pass
   #prefix: example-prefix
