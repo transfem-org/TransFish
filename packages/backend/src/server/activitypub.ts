@@ -108,17 +108,23 @@ router.get("/notes/:note", async (ctx, next) => {
 		return;
 	}
 
-	if (note.visibility == "followers") {
+	if (note.visibility === "followers") {
 		serverLogger.debug(
 			"Responding to request for follower-only note, validating access...",
 		);
-		let remoteUser = await getSignatureUser(ctx.req);
+		const remoteUser = await getSignatureUser(ctx.req);
 		serverLogger.debug("Local note author user:");
 		serverLogger.debug(JSON.stringify(note, null, 2));
 		serverLogger.debug("Authenticated remote user:");
 		serverLogger.debug(JSON.stringify(remoteUser, null, 2));
 
-		let relation = await Users.getRelation(remoteUser.user.id, note.userId);
+		if (remoteUser == null) {
+			serverLogger.debug("Rejecting: no user");
+			ctx.status = 401;
+			return;
+		}
+
+		const relation = await Users.getRelation(remoteUser.user.id, note.userId);
 		serverLogger.debug("Relation:");
 		serverLogger.debug(JSON.stringify(relation, null, 2));
 

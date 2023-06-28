@@ -7,6 +7,8 @@ import DbResolver from "@/remote/activitypub/db-resolver.js";
 import { getApId } from "@/remote/activitypub/type.js";
 import { shouldBlockInstance } from "@/misc/should-block-instance.js";
 import type { IncomingMessage } from "http";
+import type { CacheableRemoteUser } from "@/models/entities/user.js";
+import type { UserPublickey } from "@/models/entities/user-publickey.js";
 
 export async function hasSignature(req: IncomingMessage): Promise<string> {
 	const meta = await fetchMeta();
@@ -98,7 +100,10 @@ export async function checkFetch(req: IncomingMessage): Promise<number> {
 
 export async function getSignatureUser(
 	req: IncomingMessage,
-): Promise<CacheableRemoteUser> {
+): Promise<{
+	user: CacheableRemoteUser;
+	key: UserPublickey | null;
+} | null> {
 	let authUser;
 	const meta = await fetchMeta();
 	if (meta.secureMode || meta.privateMode) {
@@ -114,7 +119,7 @@ export async function getSignatureUser(
 		const host = toPuny(keyId.hostname);
 
 		if (await shouldBlockInstance(host, meta)) {
-			return 403;
+			return null;
 		}
 
 		if (
@@ -137,20 +142,20 @@ export async function getSignatureUser(
 		authUser = await dbResolver.getAuthUserFromKeyId(signature.keyId);
 
 		// keyIdでわからなければ、resolveしてみる
-		if (authUser == null) {
+		if (!authUser) {
 			try {
 				keyId.hash = "";
 				authUser = await dbResolver.getAuthUserFromApId(
 					getApId(keyId.toString()),
 				);
-			} catch (e) {
+			} catch {
 				// できなければ駄目
 				return null;
 			}
 		}
 
 		// publicKey がなくても終了
-		if (authUser?.key == null) {
+		if (!authUser?.key) {
 			return null;
 		}
 
