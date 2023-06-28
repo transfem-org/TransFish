@@ -1,5 +1,5 @@
 <template>
-	<div class="tdflqwzn" :class="{ isMe }">
+	<div ref="reactionsEl" class="reactions-list tdflqwzn" :class="{ isMe }">
 		<XReaction
 			v-for="(count, reaction) in note.reactions"
 			:key="reaction"
@@ -7,12 +7,13 @@
 			:count="count"
 			:is-initial="initialReactions.has(reaction)"
 			:note="note"
+			@reacted="reactionsEl.scrollTo(0,0)"
 		/>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import * as misskey from "calckey-js";
 import { $i } from "@/account";
 import XReaction from "@/components/MkReactionsViewer.reaction.vue";
@@ -21,16 +22,27 @@ const props = defineProps<{
 	note: misskey.entities.Note;
 }>();
 
+const reactionsEl = ref<HTMLElement>();
+
 const initialReactions = new Set(Object.keys(props.note.reactions));
 
 const isMe = computed(() => $i && $i.id === props.note.userId);
 </script>
 
 <style lang="scss" scoped>
-.tdflqwzn {
-	margin-inline: -2px;
+.reactions-list {
 	margin-top: 0.2em;
 	width: 100%;
+	display: flex;
+	overflow-x: auto;
+	margin-inline: -24px;
+	padding-inline: 22px 160px;
+	mask: linear-gradient(to right, transparent, black 24px calc(100% - 160px), transparent);
+	-webkit-mask: linear-gradient(to right, transparent, black 24px calc(100% - 160px), transparent);
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 
 	&:empty {
 		display: none;

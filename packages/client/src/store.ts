@@ -314,6 +314,10 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: false,
 		},
+		swipeOnMobile: {
+			where: "device",
+			default: true,
+		},
 		showAdminUpdates: {
 			where: "account",
 			default: true,
@@ -336,7 +340,7 @@ export const defaultStore = markRaw(
 		},
 		showTimelineReplies: {
 			where: "device",
-			default: true,
+			default: false,
 		},
 	}),
 );
