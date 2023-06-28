@@ -7,7 +7,7 @@
 			:count="count"
 			:is-initial="initialReactions.has(reaction)"
 			:note="note"
-			@reacted="reactionsEl.scrollTo(0,0)"
+			@reacted="reactionsEl.scrollTo(0, 0)"
 		/>
 	</div>
 </template>
@@ -37,8 +37,18 @@ const isMe = computed(() => $i && $i.id === props.note.userId);
 	overflow-x: auto;
 	margin-inline: -24px;
 	padding-inline: 22px 160px;
-	mask: linear-gradient(to right, transparent, black 24px calc(100% - 160px), transparent);
-	-webkit-mask: linear-gradient(to right, transparent, black 24px calc(100% - 160px), transparent);
+	mask: linear-gradient(
+		to right,
+		transparent,
+		black 24px calc(100% - 160px),
+		transparent
+	);
+	-webkit-mask: linear-gradient(
+		to right,
+		transparent,
+		black 24px calc(100% - 160px),
+		transparent
+	);
 	scrollbar-width: none;
 	&::-webkit-scrollbar {
 		display: none;

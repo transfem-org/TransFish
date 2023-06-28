@@ -45,12 +45,18 @@
 				class="_formBlock"
 				>{{ i18n.ts.useReactionPickerForContextMenu }}</FormSwitch
 			>
-			<FormSwitch v-if="deviceKind !== 'desktop'" v-model="swipeOnMobile" class="_formBlock">{{
-				i18n.ts.swipeOnMobile
-			}}</FormSwitch>
-			<FormSwitch v-if="deviceKind === 'desktop'" v-model="swipeOnDesktop" class="_formBlock">{{
-				i18n.ts.swipeOnDesktop
-			}}</FormSwitch>
+			<FormSwitch
+				v-if="deviceKind !== 'desktop'"
+				v-model="swipeOnMobile"
+				class="_formBlock"
+				>{{ i18n.ts.swipeOnMobile }}</FormSwitch
+			>
+			<FormSwitch
+				v-if="deviceKind === 'desktop'"
+				v-model="swipeOnDesktop"
+				class="_formBlock"
+				>{{ i18n.ts.swipeOnDesktop }}</FormSwitch
+			>
 			<FormSwitch v-model="enterSendsMessage" class="_formBlock">{{
 				i18n.ts.enterSendsMessage
 			}}</FormSwitch>

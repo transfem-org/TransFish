@@ -211,7 +211,7 @@ export const db = new DataSource({
 					password: config.redis.pass,
 					keyPrefix: `${config.redis.prefix}:query:`,
 					db: config.redis.db || 0,
-					tls: config.redis.tls || {} ,
+					tls: config.redis.tls || {},
 				},
 		  }
 		: false,
