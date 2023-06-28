@@ -20,11 +20,11 @@ export type Source = {
 		host: string;
 		port: number;
 		family?: number;
-		pass: string;
+		pass?: string;
 		db?: number;
 		prefix?: string;
 		user?: string;
-		tls?: { [x: string]: string };
+		tls?: { [y: string]: string };
 	};
 	elasticsearch: {
 		host: string;
