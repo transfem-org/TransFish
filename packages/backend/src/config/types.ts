@@ -15,7 +15,6 @@ export type Source = {
 		pass: string;
 		disableCache?: boolean;
 		extra?: { [x: string]: string };
-		ssl?: boolean;
 	};
 	redis: {
 		host: string;

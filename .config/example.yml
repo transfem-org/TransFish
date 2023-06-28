@@ -48,8 +48,9 @@ db:
 
   # Extra Connection options
   #extra:
-  # TODO: find another example
-  #  ssl: true
+  #  ssl:
+  #   host: localhost
+  #   rejectUnauthorized: false
 
 #   ┌─────────────────────┐
 #───┘ Redis configuration └─────────────────────────────────────

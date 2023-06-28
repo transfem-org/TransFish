@@ -223,10 +223,6 @@ export const db = new DataSource({
 	maxQueryExecutionTime: 300,
 	entities: entities,
 	migrations: ["../../migration/*.js"],
-	ssl: config.db.ssl ? {
-		rejectUnauthorized: false,
-		ca: process.env.DB_SSL_CERT,
-	} : undefined,
 });
 
 export async function initDb(force = false) {

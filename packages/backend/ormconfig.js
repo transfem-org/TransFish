@@ -12,8 +12,4 @@ export default new DataSource({
 	extra: config.db.extra,
 	entities: entities,
 	migrations: ["migration/*.js"],
-	ssl: config.db.ssl ? {
-		rejectUnauthorized: false, //TODO make configurable
-		ca: process.env.DB_SSL_CERT,
-	} : undefined,
 });
