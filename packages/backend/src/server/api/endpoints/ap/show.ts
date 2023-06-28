@@ -127,6 +127,7 @@ async function fetchAny(
 
 	// fetching Object once from remote
 	const resolver = new Resolver();
+	resolver.setUser(me);
 	const object = await resolver.resolve(uri);
 
 	// /@user If a URI other than the id is specified,
@@ -144,8 +145,12 @@ async function fetchAny(
 
 	return await mergePack(
 		me,
-		isActor(object) ? await createPerson(getApId(object)) : null,
-		isPost(object) ? await createNote(getApId(object), undefined, true) : null,
+		isActor(object)
+			? await createPerson(getApId(object), resolver.reset())
+			: null,
+		isPost(object)
+			? await createNote(getApId(object), resolver.reset(), true)
+			: null,
 	);
 }
 
