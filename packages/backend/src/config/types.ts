@@ -24,6 +24,7 @@ export type Source = {
 		db?: number;
 		prefix?: string;
 		user?: string;
+		tls?: { [x: string]: string };
 	};
 	elasticsearch: {
 		host: string;

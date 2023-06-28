@@ -10,10 +10,7 @@ export function createConnection() {
 		username: config.redis.user ?? "default",
 		keyPrefix: `${config.redis.prefix}:`,
 		db: config.redis.db || 0,
-		tls: {
-			rejectUnauthorized: false,
-			host: config.redis.host,
-		},
+		tls: config.redis.tls || {},
 	});
 }
 

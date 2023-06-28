@@ -35,7 +35,7 @@ port: 3000
 db:
   host: localhost
   port: 5432
-
+  #ssl: false
   # Database name
   db: calckey
 
@@ -48,7 +48,9 @@ db:
 
   # Extra Connection options
   #extra:
-  #  ssl: true
+  #  ssl:
+  #   host: localhost
+  #   rejectUnauthorized: false
 
 #   ┌─────────────────────┐
 #───┘ Redis configuration └─────────────────────────────────────
@@ -56,6 +58,9 @@ db:
 redis:
   host: localhost
   port: 6379
+  #tls:
+  #  host: localhost
+  #  rejectUnauthorized: false
   #family: 0  # 0=Both, 4=IPv4, 6=IPv6
   #pass: example-pass
   #prefix: example-prefix
