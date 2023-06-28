@@ -119,7 +119,10 @@
 				@click="drawerMenuShowing = true"
 			>
 				<i class="ph-list ph-bold ph-lg"></i
-				><span v-if="menuIndicated" class="indicator"
+				><span
+					v-if="menuIndicated"
+					class="indicator"
+					:class="{ animateIndicator: $store.state.animation }"
 					><i class="ph-circle ph-fill"></i
 				></span>
 			</button>
@@ -136,7 +139,10 @@
 				@click="mainRouter.push('/my/notifications')"
 			>
 				<i class="ph-bell ph-bold ph-lg"></i
-				><span v-if="$i?.hasUnreadNotification" class="indicator"
+				><span
+					v-if="$i?.hasUnreadNotification"
+					class="indicator"
+					:class="{ animateIndicator: $store.state.animation }"
 					><i class="ph-circle ph-fill"></i
 				></span>
 			</button>
@@ -551,6 +557,9 @@ async function deleteProfile() {
 				left: 0;
 				color: var(--indicator);
 				font-size: 16px;
+			}
+
+			> .animateIndicator {
 				animation: blink 1s infinite;
 			}
 

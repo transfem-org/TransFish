@@ -52,7 +52,12 @@
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</MkA>
@@ -74,7 +79,12 @@
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</a>
@@ -92,7 +102,12 @@
 							class="avatar"
 							disableLink
 						/><MkUserName :user="item.user" />
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</button>
@@ -158,7 +173,12 @@
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</button>
@@ -483,6 +503,9 @@ onBeforeUnmount(() => {
 			left: 13px;
 			color: var(--indicator);
 			font-size: 12px;
+		}
+
+		> .animateIndicator {
 			animation: blink 1s infinite;
 		}
 	}
