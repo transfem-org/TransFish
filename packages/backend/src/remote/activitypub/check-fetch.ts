@@ -95,3 +95,79 @@ export async function checkFetch(req: IncomingMessage): Promise<number> {
 	}
 	return 200;
 }
+
+export async function getSignatureUser(
+	req: IncomingMessage,
+): Promise<CacheableRemoteUser> {
+	let authUser;
+	const meta = await fetchMeta();
+	if (meta.secureMode || meta.privateMode) {
+		let signature;
+
+		try {
+			signature = httpSignature.parseRequest(req, { headers: [] });
+		} catch (e) {
+			return null;
+		}
+
+		const keyId = new URL(signature.keyId);
+		const host = toPuny(keyId.hostname);
+
+		if (await shouldBlockInstance(host, meta)) {
+			return 403;
+		}
+
+		if (
+			meta.privateMode &&
+			host !== config.host &&
+			!meta.allowedHosts.includes(host)
+		) {
+			return null;
+		}
+
+		const keyIdLower = signature.keyId.toLowerCase();
+		if (keyIdLower.startsWith("acct:")) {
+			// Old keyId is no longer supported.
+			return null;
+		}
+
+		const dbResolver = new DbResolver();
+
+		// HTTP-Signature keyIdを元にDBから取得
+		authUser = await dbResolver.getAuthUserFromKeyId(signature.keyId);
+
+		// keyIdでわからなければ、resolveしてみる
+		if (authUser == null) {
+			try {
+				keyId.hash = "";
+				authUser = await dbResolver.getAuthUserFromApId(
+					getApId(keyId.toString()),
+				);
+			} catch (e) {
+				// できなければ駄目
+				return null;
+			}
+		}
+
+		// publicKey がなくても終了
+		if (authUser?.key == null) {
+			return null;
+		}
+
+		// もう一回チェック
+		if (authUser.user.host !== host) {
+			return null;
+		}
+
+		// HTTP-Signatureの検証
+		const httpSignatureValidated = httpSignature.verifySignature(
+			signature,
+			authUser.key.keyPem,
+		);
+
+		if (!httpSignatureValidated) {
+			return null;
+		}
+	}
+	return authUser;
+}
