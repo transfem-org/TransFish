@@ -78,16 +78,9 @@
 							v-for="key in $i.securityKeysList"
 							:key="key.id"
 						>
-							<template #label>{{ key.name }}</template>
-							<template #suffix
-								><I18n :src="i18n.ts.lastUsedAt"
-									><template #t
-										><MkTime
-											:time="
-												key.lastUsed
-											" /></template></I18n
-							></template>
-							<div class="_buttons">
+							<h3>{{ key.name }}</h3>
+							<p>{{ `${i18n.ts.lastUsedDate}: ${key.lastUsed}` }} </p>
+							<div class="_buttons _flexList">
 								<MkButton @click="renameKey(key)"
 									><i
 										class="ph-pencil-line ph-bold ph-lg"
