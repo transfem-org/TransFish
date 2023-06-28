@@ -36,7 +36,7 @@ export default async (user: { id: User["id"] }, url: string, object: any) => {
  * @param url URL to fetch
  */
 export async function signedGet(url: string, user: { id: User["id"] }) {
-	apLogger.debug("running signedGet on url: " + url);
+	apLogger.debug(`Running signedGet on url: ${url}`);
 	const keypair = await getUserKeypair(user.id);
 
 	const req = createSignedGet({

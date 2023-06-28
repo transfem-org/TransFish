@@ -145,8 +145,12 @@ async function fetchAny(
 
 	return await mergePack(
 		me,
-		isActor(object) ? await createPerson(getApId(object), resolver) : null,
-		isPost(object) ? await createNote(getApId(object), resolver, true) : null,
+		isActor(object)
+			? await createPerson(getApId(object), resolver.reset())
+			: null,
+		isPost(object)
+			? await createNote(getApId(object), resolver.reset(), true)
+			: null,
 	);
 }
 

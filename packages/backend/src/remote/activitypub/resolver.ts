@@ -39,6 +39,11 @@ export default class Resolver {
 		this.user = user;
 	}
 
+	public reset(): Resolver {
+		this.history = new Set();
+		return this;
+	}
+
 	public getHistory(): string[] {
 		return Array.from(this.history);
 	}
@@ -61,14 +66,19 @@ export default class Resolver {
 		}
 
 		if (typeof value !== "string") {
+			apLogger.debug("Object to resolve is not a string");
 			if (typeof value.id !== "undefined") {
 				const host = extractDbHost(getApId(value));
 				if (await shouldBlockInstance(host)) {
 					throw new Error("instance is blocked");
 				}
 			}
+			apLogger.debug("Returning existing object:");
+			apLogger.debug(JSON.stringify(value, null, 2));
 			return value;
 		}
+
+		apLogger.debug(`Resolving: ${value}`);
 
 		if (value.includes("#")) {
 			// URLs with fragment parts cannot be resolved correctly because
@@ -107,7 +117,7 @@ export default class Resolver {
 			this.user = await getInstanceActor();
 		}
 
-		apLogger.debug("getting object from remote, authenticated as user:");
+		apLogger.debug("Getting object from remote, authenticated as user:");
 		apLogger.debug(JSON.stringify(this.user, null, 2));
 
 		const object = (
