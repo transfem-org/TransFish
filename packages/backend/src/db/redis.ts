@@ -13,7 +13,7 @@ export function createConnection() {
 		tls: config.redis.tls ? {
 			rejectUnauthorized: false, //TODO make configurable
 			host: config.redis.host,
-		} : undefined,
+		} : {},
 	});
 }
 

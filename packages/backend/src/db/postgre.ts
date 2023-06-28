@@ -214,7 +214,7 @@ export const db = new DataSource({
 					tls: config.redis.tls ? {
 						host: config.redis.host,
 						rejectUnauthorized: false, // TODO make configurable
-					} : undefined,
+					} : {},
 				},
 		  }
 		: false,
