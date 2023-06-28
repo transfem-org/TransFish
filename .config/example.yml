@@ -58,7 +58,9 @@ db:
 redis:
   host: localhost
   port: 6379
-  #tls: false
+  #tls:
+  #  host: localhost
+  #  rejectUnauthorized: false
   #family: 0  # 0=Both, 4=IPv4, 6=IPv6
   #pass: example-pass
   #prefix: example-prefix
