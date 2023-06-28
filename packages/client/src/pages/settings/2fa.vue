@@ -79,7 +79,9 @@
 							:key="key.id"
 						>
 							<h3>{{ key.name }}</h3>
-							<p>{{ `${i18n.ts.lastUsedDate}: ${key.lastUsed}` }} </p>
+							<p>
+								{{ `${i18n.ts.lastUsedDate}: ${key.lastUsed}` }}
+							</p>
 							<div class="_buttons _flexList">
 								<MkButton @click="renameKey(key)"
 									><i

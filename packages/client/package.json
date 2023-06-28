@@ -5,7 +5,7 @@
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
 		"lint": "pnpm rome check \"src/**/*.{ts,vue}\"",
-		"format": "pnpm prettier --write '**/*.{scss,vue}'"
+		"format": "pnpm rome format * --write && pnpm prettier --write '**/*.{scss,vue}'"
 	},
 	"devDependencies": {
 		"@discordapp/twemoji": "14.1.2",

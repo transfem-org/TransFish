@@ -12,7 +12,7 @@ import "@phosphor-icons/web/fill";
 //#region account indexedDB migration
 import { set } from "@/scripts/idb-proxy";
 
-const accounts = localStorage.getItem("accounts")
+const accounts = localStorage.getItem("accounts");
 if (accounts) {
 	set("accounts", JSON.parse(accounts));
 	localStorage.removeItem("accounts");

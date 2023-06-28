@@ -52,10 +52,7 @@ export function addSkinTone(emoji: string, skinTone?: number) {
 	}
 	return (
 		emoji.replace(
-			new RegExp(
-				`(${skinToneModifiers.slice(1).join("|")})`,
-				"gi",
-			),
+			new RegExp(`(${skinToneModifiers.slice(1).join("|")})`, "gi"),
 			"",
 		) + (skinToneModifiers[chosenSkinTone - 1] || "")
 	);
