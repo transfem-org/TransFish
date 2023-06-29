@@ -79,7 +79,7 @@ export const limiter = (
 				if (info.remaining === 0) {
 					reject({
 						message: "RATE_LIMIT_EXCEEDED",
-						remainingTime: convertMilliseconds(info.resetMs),
+						remainingTime: convertMilliseconds(info.resetMs - Date.now()),
 					});
 				} else {
 					ok();
