@@ -472,7 +472,8 @@ export default async (
 						.map((relay) => new URL(relay.inbox).host)
 						.includes(note.userHost);
 
-					if (boostedByRelay && data.renote) {
+					if (boostedByRelay && data.renote && data.renote.userHost) {
+						/* A relay boosted a remote post. */
 						// Use Redis transaction for atomicity
 						const key = `publishedNote:${data.renote.id}`;
 						await redisClient.watch(key);
