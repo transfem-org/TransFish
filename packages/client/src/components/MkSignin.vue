@@ -99,17 +99,19 @@
 							><i class="ph-lock ph-bold ph-lg"></i
 						></template>
 					</MkInput>
-					<vue3-otp-input
-						input-classes="_otp_input"
-						inputType="letter-numeric"
-						separator=""
-						:num-inputs="6"
+					<MkInput
 						v-model="token"
-						:should-auto-focus="true"
-						@on-change="updateToken"
-						@on-complete="onSubmit"
+						type="text"
+						autocomplete="one-time-code"
+						pattern="^[0-9]{6}$"
+						:spellcheck="false"
 						required
-					/>
+					>
+						<template #label>{{ i18n.ts._2fa.token }}</template>
+						<template #prefix
+							><i class="ph-poker-chip ph-bold ph-lg"></i
+						></template>
+					</MkInput>
 					<MkButton
 						type="submit"
 						:disabled="signing"
