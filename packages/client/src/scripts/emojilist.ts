@@ -1,5 +1,6 @@
 import data from "unicode-emoji-json/data-by-group.json";
 import emojiComponents from "unicode-emoji-json/data-emoji-components.json";
+import individualData from "unicode-emoji-json/data-by-emoji.json";
 import keywordSet from "emojilib";
 import { defaultStore } from "@/store";
 
@@ -36,8 +37,6 @@ export const categoryMapping = {
 } as const;
 
 export function addSkinTone(emoji: string, skinTone?: number) {
-	const individualData = import("unicode-emoji-json/data-by-emoji.json");
-
 	const chosenSkinTone = skinTone || defaultStore.state.reactionPickerSkinTone;
 	const skinToneModifiers = [
 		"",
@@ -47,15 +46,15 @@ export function addSkinTone(emoji: string, skinTone?: number) {
 		emojiComponents.medium_dark_skin_tone,
 		emojiComponents.dark_skin_tone,
 	];
-	if (individualData[emoji]?.skin_tone_support === false) {
+	const strippedEmoji = emoji.replace(
+		new RegExp(`(${skinToneModifiers.slice(1).join("|")})`, "gi"),
+		"",
+	);
+	if (individualData[strippedEmoji].skin_tone_support) {
+		return strippedEmoji + (skinToneModifiers[chosenSkinTone - 1] || "");
+	} else {
 		return emoji;
 	}
-	return (
-		emoji.replace(
-			new RegExp(`(${skinToneModifiers.slice(1).join("|")})`, "gi"),
-			"",
-		) + (skinToneModifiers[chosenSkinTone - 1] || "")
-	);
 }
 
 const unicodeFifteenEmojis = [
