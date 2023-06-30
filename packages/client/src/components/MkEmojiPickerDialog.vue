@@ -65,7 +65,7 @@ function chosen(emoji: any) {
 }
 
 function opening() {
-	picker.value?.reset();
+	// picker.value?.reset();
 	picker.value?.focus();
 }
 </script>
