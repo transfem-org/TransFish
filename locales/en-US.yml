@@ -1513,6 +1513,7 @@ _2fa:
   renewTOTPConfirm: "This will cause verification codes from your previous app to stop working"
   renewTOTPOk: "Reconfigure"
   renewTOTPCancel: "Cancel"
+  token: "2FA Token"
 _permissions:
   "read:account": "View your account information"
   "write:account": "Edit your account information"
