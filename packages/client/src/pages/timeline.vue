@@ -346,13 +346,12 @@ onMounted(() => {
 		display: flex;
 		justify-content: center;
 		top: calc(var(--stickyTop, 0px) - 60px);
-		z-index: 1000;
 		width: 600px;
 		max-width: 100%;
 		height: 60px;
-		margin-top: -60px;
 		pointer-events: none;
-		margin-inline: auto;
+		margin: auto;
+		margin-bottom: -60px;
 		z-index: 1001;
 		box-shadow: 0 24px 24px -20px var(--accentedBg);
 		&::after {
