@@ -130,7 +130,7 @@
 						class="_button item parent"
 						:class="{ childShowing: childShowingItem === item }"
 						@mouseenter="showChildren(item, $event)"
-						@click="showChildren(item, $event)"
+						@click.stop="showChildren(item, $event)"
 					>
 						<i
 							v-if="item.icon"

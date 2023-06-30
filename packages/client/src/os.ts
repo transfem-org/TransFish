@@ -631,6 +631,25 @@ export async function selectUser() {
 	});
 }
 
+export async function selectLocalUser() {
+	return new Promise((resolve, reject) => {
+		popup(
+			defineAsyncComponent({
+				loader: () => import("@/components/MkUserSelectLocalDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
+			{},
+			{
+				ok: (user) => {
+					resolve(user);
+				},
+			},
+			"closed",
+		);
+	});
+}
+
 export async function selectInstance(): Promise<Misskey.entities.Instance> {
 	return new Promise((resolve, reject) => {
 		popup(

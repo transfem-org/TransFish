@@ -224,7 +224,7 @@
 			</div>
 		</article>
 	</div>
-	<button v-else class="muted _button" @click="muted.muted = false">
+	<button v-else class="muted _button" @click="muted.muted = false" @contextmenu.stop.prevent>
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
@@ -953,6 +953,9 @@ defineExpose({
 
 	._blur_text {
 		pointer-events: auto;
+	}
+	&:active ._blur_text {
+		filter: blur(0px);
 	}
 }
 </style>
