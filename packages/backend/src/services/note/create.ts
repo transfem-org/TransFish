@@ -498,7 +498,7 @@ export default async (
 						publishNotesStream(noteToPublish);
 					}
 				} finally {
-					lock.release();
+					await lock.release();
 				}
 			}
 			if (note.replyId != null) {
