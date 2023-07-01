@@ -5,11 +5,7 @@
 	>
 		<!-- v-if="!fetching" for now, I think there's something
 			 weird w/ some links stuck loading (?) -->
-		<article
-			v-if="!fetching"
-			class="url-preview"
-			@click.stop
-		>
+		<article v-if="!fetching" class="url-preview" @click.stop>
 			<component
 				:is="self ? 'MkA' : 'a'"
 				:[attr]="self ? url.substring(local.length) : url"
@@ -17,30 +13,37 @@
 				:target="target"
 				:title="url"
 				:class="{
-					hasButton: tweetId || player.url
+					hasButton: tweetId || player.url,
 				}"
 			>
-				<div
-					v-if="thumbnail"
-					class="thumbnail"
-				>
-					<img :src="thumbnail" loading="lazy"/>
+				<div v-if="thumbnail" class="thumbnail">
+					<img :src="thumbnail" loading="lazy" />
 					<button
 						v-if="tweetId"
 						class="_button"
-						v-tooltip="tweetExpanded ? i18n.ts.close : i18n.ts.expandTweet"
+						v-tooltip="
+							tweetExpanded ? i18n.ts.close : i18n.ts.expandTweet
+						"
 						@click.stop.prevent="tweetExpanded = !tweetExpanded"
 					>
-						<i v-if="!tweetExpanded" class="ph-twitter-logo ph-bold ph-lg"></i>
+						<i
+							v-if="!tweetExpanded"
+							class="ph-twitter-logo ph-bold ph-lg"
+						></i>
 						<i v-else class="ph-x ph-bold ph-lg"></i>
 					</button>
 					<button
 						v-else-if="player.url"
 						class="_button"
-						v-tooltip="playerEnabled ? i18n.ts.close : i18n.ts.enablePlayer"
+						v-tooltip="
+							playerEnabled ? i18n.ts.close : i18n.ts.enablePlayer
+						"
 						@click.stop.prevent="playerEnabled = !playerEnabled"
 					>
-						<i v-if="!playerEnabled" class="ph-play ph-bold ph-lg"></i>
+						<i
+							v-if="!playerEnabled"
+							class="ph-play ph-bold ph-lg"
+						></i>
 						<i v-else class="ph-x ph-bold ph-lg"></i>
 					</button>
 				</div>
@@ -53,7 +56,7 @@
 						<span>
 							<span :title="sitename || undefined">
 								<img v-if="icon" class="icon" :src="icon" />
-								{{ sitename }}: 
+								{{ sitename }}:
 							</span>
 							{{ description }}
 						</span>
@@ -68,7 +71,9 @@
 						? '&autoplay=1&auto_play=1'
 						: '?autoplay=1&auto_play=1')
 				"
-				:style="`aspect-ratio: ${((player.width || 1) / (player.height || 1))}`"
+				:style="`aspect-ratio: ${
+					(player.width || 1) / (player.height || 1)
+				}`"
 				frameborder="0"
 				allow="autoplay; encrypted-media"
 				allowfullscreen
@@ -190,7 +195,7 @@ onUnmounted(() => {
 	overflow: hidden;
 	> a {
 		display: flex;
-		transition: background .2s;
+		transition: background 0.2s;
 		> div:first-child:not(:last-child) {
 			position: relative;
 			width: 90px;
@@ -204,22 +209,22 @@ onUnmounted(() => {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
-				transition: opacity .2s;
+				transition: opacity 0.2s;
 			}
 			button {
 				display: flex;
 				width: 100%;
 				height: 100%;
 				i {
-
 					background: var(--bg);
 					padding: 14px;
 					border-radius: var(--radius);
-					transform: scale(.95);
+					transform: scale(0.95);
 					opacity: 0;
-					transition: transform .2s, opacity .2s, background .2s;
+					transition: transform 0.2s, opacity 0.2s, background 0.2s;
 				}
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					i {
 						background: var(--panelHighlight) !important;
 						transform: scale(1.1) !important;
@@ -232,7 +237,8 @@ onUnmounted(() => {
 			width: 0;
 			flex-grow: 1;
 		}
-		h1, p {
+		h1,
+		p {
 			display: block;
 			margin: 0;
 			overflow: hidden;
@@ -242,19 +248,19 @@ onUnmounted(() => {
 		h1 {
 			font-size: 1em;
 			white-space: nowrap;
-			margin-bottom: .2em;
+			margin-bottom: 0.2em;
 		}
 		p {
-			margin-bottom: -.5em;
+			margin-bottom: -0.5em;
 			> span {
 				display: -webkit-inline-box;
-				font-size: .8em;
+				font-size: 0.8em;
 				-webkit-line-clamp: 2;
 				-webkit-box-orient: vertical;
 				overflow: hidden;
 				> span {
 					font-weight: 600;
-					margin-right: .4em;
+					margin-right: 0.4em;
 				}
 			}
 		}
@@ -264,18 +270,21 @@ onUnmounted(() => {
 			vertical-align: middle;
 			border-radius: 4px;
 		}
-		&:hover, &:focus, &:focus-within {
+		&:hover,
+		&:focus,
+		&:focus-within {
 			background: var(--panelHighlight);
 			h1 {
 				text-decoration: underline;
 			}
 		}
 	}
-	&:hover, &:focus-within {
+	&:hover,
+	&:focus-within {
 		> .hasButton {
 			> div:first-child {
 				img {
-					opacity: .2;
+					opacity: 0.2;
 				}
 				button i {
 					transform: none;
@@ -289,7 +298,8 @@ onUnmounted(() => {
 		display: block;
 		width: 100%;
 		overflow-y: auto;
-		&:not([src^="https://platform.twitter"]) {
+		&:not([src^="https://platform.twitter"])
+		{
 			max-height: 70vh;
 		}
 	}
