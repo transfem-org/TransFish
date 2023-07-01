@@ -480,7 +480,7 @@ export default async (
 					noteToPublish = note;
 				}
 
-				const lock = new Mutex(redisClient, "publishedNote:lock");
+				const lock = new Mutex(redisClient, "publishedNote");
 				await lock.acquire();
 				try {
 					const exists = (await redisClient.exists(publishKey)) > 0;
