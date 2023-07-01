@@ -382,12 +382,17 @@ async function expireOldFile(user: IRemoteUser, driveCapacity: number) {
 	}
 
 	//This selete is hard coded, be careful if change database schema
-	q.addSelect('SUM("file"."size") OVER (ORDER BY "file"."id" DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)', 'acc_usage');
+	q.addSelect(
+		'SUM("file"."size") OVER (ORDER BY "file"."id" DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)',
+		"acc_usage",
+	);
 
 	q.orderBy("file.id", "ASC");
 
 	const fileList = await q.getRawMany();
-	const exceedFileIds = fileList.filter((x: any) => x.acc_usage > driveCapacity).map((x: any) => x.file_id);
+	const exceedFileIds = fileList
+		.filter((x: any) => x.acc_usage > driveCapacity)
+		.map((x: any) => x.file_id);
 
 	for (const fileId of exceedFileIds) {
 		const file = await DriveFiles.findOneBy({ id: fileId });
@@ -536,7 +541,7 @@ export async function addFile({
 				// (アバターまたはバナーを含まず)最も古いファイルを削除する
 				expireOldFile(
 					(await Users.findOneByOrFail({ id: user.id })) as IRemoteUser,
-					driveCapacity - info.size
+					driveCapacity - info.size,
 				);
 			}
 		}

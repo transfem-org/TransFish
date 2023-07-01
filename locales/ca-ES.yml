@@ -349,6 +349,7 @@ _2fa:
     deixin de funcionar
   whyTOTPOnlyRenew: L’aplicació d’autenticació no es pot eliminar sempre que es hi
     hagi una clau de seguretat registrada.
+  token: Token 2FA
 _widgets:
   notifications: "Notificacions"
   timeline: "Línia de temps"
