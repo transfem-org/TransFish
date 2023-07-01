@@ -483,14 +483,14 @@ export default async (
 				const lock = new Mutex(redisClient, "publishedNote");
 				await lock.acquire();
 				try {
-					const exists = (await redisClient.exists(publishKey)) > 0;
-					if (!exists) {
-						await redisClient.set(publishKey, 1, "EX", 30);
+					const published = (await redisClient.get(publishKey)) !== null;
+					if (!published) {
+						await redisClient.set(publishKey, "done", "EX", 30);
 						if (noteToPublish.renoteId) {
 							// Prevents other threads from publishing the boosting post
 							await redisClient.set(
 								`publishedNote:${noteToPublish.renoteId}`,
-								1,
+								"done",
 								"EX",
 								30,
 							);
