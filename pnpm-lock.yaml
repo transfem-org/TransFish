@@ -339,6 +339,9 @@ importers:
       redis-lock:
         specifier: 0.1.4
         version: 0.1.4
+      redis-semaphore:
+        specifier: 5.3.1
+        version: 5.3.1(ioredis@5.3.2)
       reflect-metadata:
         specifier: 0.1.13
         version: 0.1.13
@@ -2666,6 +2669,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [android]
+    requiresBuild: true
     dependencies:
       '@swc/wasm': 1.2.130
 
@@ -2772,6 +2776,7 @@ packages:
 
   /@swc/wasm@1.2.130:
     resolution: {integrity: sha512-rNcJsBxS70+pv8YUWwf5fRlWX6JoY/HJc25HD/F8m6Kv7XhJdqPPMhyX6TKkUBPAG7TWlZYoxa+rHAjPy4Cj3Q==}
+    requiresBuild: true
 
   /@syuilo/aiscript@0.11.1:
     resolution: {integrity: sha512-chwOIA3yLUKvOB0G611hjLArKTeOWNmTm3lHERSaDW1d+dS6do56naX6Lkwy2UpnwWC0qzeNSgg35elk6t2gZg==}
@@ -12830,6 +12835,18 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       redis-errors: 1.2.0
+
+  /redis-semaphore@5.3.1(ioredis@5.3.2):
+    resolution: {integrity: sha512-oUpxxfxSbh5eT0mvVpz2d4Qlg2CsaoQkeo80/v6CU2l97zO0u6NPgc9/zQZa9KGR3/93b0igtSct3hEFh8Ei8w==}
+    engines: {node: '>= 14.17.0'}
+    peerDependencies:
+      ioredis: ^4.1.0 || ^5
+    dependencies:
+      debug: 4.3.4(supports-color@8.1.1)
+      ioredis: 5.3.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /redis@4.6.7:
     resolution: {integrity: sha512-KrkuNJNpCwRm5vFJh0tteMxW8SaUzkm5fBH7eL5hd/D0fAkzvapxbfGPP/r+4JAXdQuX7nebsBkBqA2RHB7Usw==}

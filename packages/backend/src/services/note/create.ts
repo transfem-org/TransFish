@@ -69,6 +69,7 @@ import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
 import { redisClient } from "@/db/redis.js";
+import { Mutex } from "redis-semaphore";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -461,63 +462,43 @@ export default async (
 			}
 
 			if (!dontFederateInitially) {
-				if (Users.isLocalUser(user)) {
-					// Publish if the post is local
-					publishNotesStream(note);
-				} else {
-					const relays = await getCachedRelays();
-					// Some relays (e.g., aode-relay) deliver posts by boosting them as
-					// Announce activities. In that case, user is the relay's actor.
-					const boostedByRelay =
-						!!user.inbox &&
-						relays.map((relay) => relay.inbox).includes(user.inbox);
+				let publishKey: string;
+				let noteToPublish: Note;
+				const relays = await getCachedRelays();
 
-					if (boostedByRelay && data.renote && data.renote.userHost) {
-						/* A relay boosted a remote post. */
-						// Use Redis transaction for atomicity
-						const key = `publishedNote:${data.renote.id}`;
-						await redisClient.watch(key);
-						const exists = await redisClient.exists(key);
-						if (exists === 0) {
-							// Start the transaction
-							const transaction = redisClient.multi();
-							transaction.set(key, 1, "EX", 30);
-							// Execute the transaction
-							await transaction.exec((err, _replies) => {
-								// Publish after setting the key in Redis
-								if (!err && boostedByRelay && data.renote) {
-									publishNotesStream(data.renote);
-								}
-							});
-						} else {
-							// Abort the transaction
-							redisClient.unwatch();
+				// Some relays (e.g., aode-relay) deliver posts by boosting them as
+				// Announce activities. In that case, user is the relay's actor.
+				const boostedByRelay =
+					!!user.inbox &&
+					relays.map((relay) => relay.inbox).includes(user.inbox);
+
+				if (boostedByRelay && data.renote && data.renote.userHost) {
+					publishKey = `publishedNote:${data.renote.id}`;
+					noteToPublish = data.renote;
+				} else {
+					publishKey = `publishedNote:${note.id}`;
+					noteToPublish = note;
+				}
+
+				const lock = new Mutex(redisClient, "publishedNote:lock");
+				await lock.acquire();
+				try {
+					const exists = (await redisClient.exists(publishKey)) > 0;
+					if (!exists) {
+						await redisClient.set(publishKey, 1, "EX", 30);
+						if (noteToPublish.renoteId) {
+							// Prevents other threads from publishing the boosting post
+							await redisClient.set(
+								`publishedNote:${noteToPublish.renoteId}`,
+								1,
+								"EX",
+								30,
+							);
 						}
-					} else {
-						// Use Redis transaction for atomicity
-						const key = `publishedNote:${note.id}`;
-						await redisClient.watch(key);
-						const exists = await redisClient.exists(key);
-						if (exists === 0) {
-							// Start the transaction
-							const transaction = redisClient.multi();
-							transaction.set(key, 1, "EX", 30);
-							if (note.renoteId) {
-								// Prevent other threads from publishing this boosting post
-								transaction.set(`publishedNote:${note.renoteId}`, 1, "EX", 30);
-							}
-							// Execute the transaction
-							await transaction.exec((err, _replies) => {
-								// Publish after setting the key in Redis
-								if (!err) {
-									publishNotesStream(note);
-								}
-							});
-						} else {
-							// Abort the transaction
-							redisClient.unwatch();
-						}
+						publishNotesStream(noteToPublish);
 					}
+				} finally {
+					lock.release();
 				}
 			}
 			if (note.replyId != null) {
