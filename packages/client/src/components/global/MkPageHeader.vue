@@ -307,6 +307,8 @@ onUnmounted(() => {
 	padding-inline: 24px;
 	box-sizing: border-box;
 	overflow: hidden;
+	-webkit-backdrop-filter: var(--blur, blur(15px));
+	backdrop-filter: var(--blur, blur(15px));
 	@media (max-width: 500px) {
 		padding-inline: 16px;
 		&.tabs > .buttons > :deep(.follow-button > span) {
@@ -345,8 +347,6 @@ onUnmounted(() => {
 		position: absolute;
 		inset: 0;
 		border-bottom: solid 0.5px var(--divider);
-		-webkit-backdrop-filter: var(--blur, blur(15px));
-		backdrop-filter: var(--blur, blur(15px));
 		z-index: -1;
 	}
 	&::after {
