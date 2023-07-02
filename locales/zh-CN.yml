@@ -1854,3 +1854,28 @@ _skinTones:
   dark: 深色
 isModerator: 监察员
 isAdmin: 管理员
+findOtherInstance: 寻找其它服务器
+moveFromDescription: 这将为您的旧帐户设置一个别名，以便您可以从该旧帐户转移到当前帐户。在从旧帐户转移之前执行此操作。请输入格式如@person@server.com
+  的帐户标签
+indexPosts: 索引帖子
+signupsDisabled: 该服务器目前关闭注册，但您随时可以在另一台服务器上注册！如果您有该服务器的邀请码，请在下面输入。
+silencedWarning: 显示这个页面是因为这些用户来自你的管理员设置的静默服务器，所以他们有可能是垃圾信息。
+isBot: 这个账户是一个机器人
+moveAccountDescription: 这个过程是不可逆的。在移动之前，请确保您已在新帐户上为当前帐户设置了别名。请输入格式如 @person@server.com
+  帐户标签
+moveFromLabel: 您要移出的旧帐户：
+preventAiLearning: 阻止 AI 机器人抓取
+preventAiLearningDescription: 请求第三方人工智能语言模型不要研究您上传的内容，例如帖子和图像。
+noGraze: 请禁用 "Graze for Mastodon" 浏览器扩展，因为它会干扰 Calckey。
+moveTo: 将当前帐户移至新帐户
+moveToLabel: 你要迁移到的目标帐户：
+moveAccount: 移动账户！
+migrationConfirm: "你确实确定要将帐户迁移到 {account} 吗？此操作无法撤消，并且你将无法再次正常使用旧账户。\n另外，请确保你已将此当前帐户设置为要移出的帐户。"
+indexFromDescription: 留空以索引每个帖子
+noteId: 帖子 ID
+moveFrom: 从旧帐户移至此帐户
+defaultReaction: 发出和收到的帖子的默认表情符号反应
+indexNotice: 现在开始索引。这可能需要一段时间，请至少一个小时内不要重新启动服务器。
+indexFrom: 从帖子 ID 开始的索引
+sendModMail: 发送审核通知
+isLocked: 该帐户设置了关注请求
