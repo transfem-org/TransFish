@@ -1341,6 +1341,8 @@ _widgets:
   meiliIndexCount: 已索引的帖子
   meiliSize: 索引大小
   serverInfo: 服务器信息
+  _userList:
+    chooseList: 选择一个列表
 _cw:
   hide: "隐藏"
   show: "查看更多"
@@ -1402,6 +1404,7 @@ _profile:
   metadataContent: "内容"
   changeAvatar: "修改头像"
   changeBanner: "修改横幅"
+  locationDescription: 如果你先输入你的城市，它将向其他用户显示您的当地时间。
 _exportOrImport:
   allNotes: "所有帖子"
   followingList: "关注中"
@@ -1768,6 +1771,9 @@ _notification:
     followBack: "回关"
     reply: "回复"
     renote: "转发"
+  reacted: 对你的帖子做出了回应
+  voted: 在你的投票中投了票
+  renoted: 推荐了你的帖子
 _deck:
   alwaysShowMainColumn: "总是显示主列"
   columnAlign: "列对齐"
@@ -1804,6 +1810,8 @@ _messaging:
 migration: 迁移
 _experiments:
   title: 实验性功能
+  postImportsCaption: 允许用户从过去的 Calckey、Misskey、Mastodon、Akkoma 和 Pleroma 帐户导入帖子。如果您的队列出现拥堵，则可能会导致加载速度减慢。
+  enablePostImports: 启用帖子导入
 license: 许可证
 flagSpeakAsCatDescription: 在猫模式下你的帖子会喵化
 allowedInstances: 白名单服务器
@@ -1813,11 +1821,11 @@ removeReaction: 移除你的回应
 expandOnNoteClick: 点击打开帖子
 expandOnNoteClickDesc: 如果禁用，你仍然可以在右键菜单中或通过点击时间戳打开帖子。
 sendPushNotificationReadMessage: 删除已阅读的推送通知
-customMOTD: 自定义 MOTD（闪屏消息）
+customMOTD: 自定义 MOTD（启动屏幕消息）
 sendPushNotificationReadMessageCaption: 短暂显示 "{emptyPushNotificationMessage}" 的通知，如果启用，可能会增加你的设备的耗电量。
 adminCustomCssWarn: 仅当你知道此设置的作用时才应使用它。输入不正确的值可能会导致每个人的客户端停止正常运行。请在用户设置中进行测试来确保您的 CSS
   正常工作。
-customMOTDDescription: 自定义MOTD（闪屏）消息，一行一个，每次用户加载/刷新页面时都会随机显示。
+customMOTDDescription: 自定义 MOTD（启动屏幕）消息，一行一个，每次用户加载/刷新页面时都会随机显示。
 customSplashIconsDescription: 用换行符隔开的自定义闪屏图标的URL，在用户每次加载/重新加载页面时随机显示。请确保图片是在一个静态的
   URL 上，最好全部调整为 192x192 的大小。
 recommendedInstancesDescription: 推荐的服务器以换行符分隔，它们将出现在推荐的时间线中。不要添加 "https://"，仅添加域名。
@@ -1889,6 +1897,8 @@ _skinTones:
   light: 浅色
   yellow: 黄色
   dark: 深色
+  mediumLight: 中等偏淡
+  mediumDark: 中等偏深
 isModerator: 协作者
 isAdmin: 管理员
 findOtherInstance: 寻找其它服务器
@@ -1926,3 +1936,6 @@ _filters:
   followersOnly: 仅关注者
 reactionPickerSkinTone: 首选的表情符号肤色
 isPatron: Calckey 赞助
+_dialog:
+  charactersExceeded: 超出了最大字符数！当前：{current} / 限制：{max}
+  charactersBelow: 没有足够的字符！当前：{current} / 限制：{min}
