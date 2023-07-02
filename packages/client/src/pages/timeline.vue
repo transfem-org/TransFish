@@ -15,17 +15,6 @@
 					class="post-form _block"
 					fixed
 				/>
-
-				<div v-if="queue > 0" class="new">
-					<button
-						class="_buttonPrimary _shadow"
-						@click="top()"
-						:class="{ instant: !$store.state.animation }"
-					>
-						{{ i18n.ts.newNoteRecived }}
-						<i class="ph-arrow-up ph-bold"></i>
-					</button>
-				</div>
 				<!-- <div v-if="!isMobile" class="tl _block">
 				<XTimeline
 					ref="tl"
@@ -65,7 +54,6 @@
 								class="tl"
 								:src="src"
 								:sound="true"
-								@queue="queueUpdated"
 							/>
 						</swiper-slide>
 					</swiper>
@@ -76,13 +64,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref, onMounted } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import XPostForm from "@/components/MkPostForm.vue";
-import { scroll } from "@/scripts/scroll";
 import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
@@ -137,7 +124,6 @@ window.addEventListener("resize", () => {
 const tlComponent = $ref<InstanceType<typeof XTimeline>>();
 const rootEl = $ref<HTMLElement>();
 
-let queue = $ref(0);
 const src = $computed({
 	get: () => defaultStore.reactiveState.tl.value.src,
 	set: (x) => {
@@ -145,16 +131,6 @@ const src = $computed({
 		syncSlide(timelines.indexOf(x));
 	},
 });
-
-watch($$(src), () => (queue = 0));
-
-function queueUpdated(q: number): void {
-	queue = q;
-}
-
-function top(): void {
-	scroll(rootEl, { top: 0 });
-}
 
 const lists = os.api("users/lists/list");
 async function chooseList(ev: MouseEvent) {
@@ -332,84 +308,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@keyframes slideUp {
-	to {
-		transform: translateY(-100%);
-		opacity: 0;
-	}
-}
 .cmuxhskf {
 	--swiper-theme-color: var(--accent);
-
-	> .new {
-		position: sticky;
-		display: flex;
-		justify-content: center;
-		top: calc(var(--stickyTop, 0px) - 60px);
-		width: 600px;
-		max-width: 100%;
-		height: 60px;
-		pointer-events: none;
-		margin: auto;
-		margin-bottom: -60px;
-		z-index: 1001;
-		box-shadow: 0 24px 24px -20px var(--accentedBg);
-		&::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			border: 2px solid var(--accentDarken);
-			mask: linear-gradient(
-				to right,
-				transparent,
-				black 40% 60%,
-				transparent
-			);
-			-webkit-mask: linear-gradient(
-				to right,
-				transparent,
-				black 40% 60%,
-				transparent
-			);
-		}
-		> button {
-			display: flex;
-			position: absolute;
-			top: 120%;
-			margin-inline: auto;
-			border-radius: 2em;
-			padding: 0.5em 1.2em;
-			background: var(--accentedBg);
-			border: 0;
-			color: var(--accent);
-			overflow: hidden;
-			pointer-events: all;
-			transform: translateY(-100%);
-			opacity: 0;
-			animation: reset 0.4s forwards cubic-bezier(0, 0.4, 0, 1.1),
-				slideUp 1s 5s forwards cubic-bezier(1, 0, 1, 1);
-			&::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-				background: var(--bg);
-				z-index: -1;
-			}
-			i {
-				margin-left: 0.7em;
-				border-left: 1px solid var(--accentedBg);
-				padding-left: 0.4em;
-			}
-		}
-	}
-
-	> .post-form {
-		border-radius: var(--radius);
-	}
-
 	> .tl {
 		background: none;
-		border-radius: var(--radius);
 	}
 }
 </style>
