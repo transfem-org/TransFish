@@ -166,7 +166,7 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 	let client_id: any = body.client_id;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
-	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
+	const client = generator(BASE_URL, null) as MegalodonInterface;
 	let m = null;
 	let token = null;
 	if (body.code) {

@@ -42,8 +42,8 @@ export function apiAccountMastodon(router: Router): void {
 			acct.url = `${BASE_URL}/@${acct.url}`;
 			acct.note = acct.note || "";
 			acct.avatar_static = acct.avatar;
-			acct.header = acct.header || "https://http.cat/404";
-			acct.header_static = acct.header || "https://http.cat/404";
+			acct.header = acct.header || "/static-assets/transparent.png";
+			acct.header_static = acct.header || "/static-assets/transparent.png";
 			acct.source = {
 				note: acct.note,
 				fields: acct.fields,

@@ -449,8 +449,8 @@ export function statusModel(
 	const now = new Date().toISOString();
 	return {
 		id: "9atm5frjhb",
-		uri: "https://http.cat/404", // ""
-		url: "https://http.cat/404", // "",
+		uri: "/static-assets/transparent.png", // ""
+		url: "/static-assets/transparent.png", // "",
 		account: {
 			id: "9arzuvv0sw",
 			username: "Reactions",
@@ -462,11 +462,11 @@ export function statusModel(
 			following_count: 0,
 			statuses_count: 0,
 			note: "",
-			url: "https://http.cat/404",
+			url: "/static-assets/transparent.png",
 			avatar: "/static-assets/badges/info.png",
 			avatar_static: "/static-assets/badges/info.png",
-			header: "https://http.cat/404", // ""
-			header_static: "https://http.cat/404", // ""
+			header: "/static-assets/transparent.png", // ""
+			header_static: "/static-assets/transparent.png", // ""
 			emojis: [],
 			fields: [],
 			moved: null,

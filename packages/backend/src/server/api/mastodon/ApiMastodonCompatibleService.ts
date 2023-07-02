@@ -18,11 +18,7 @@ export function getClient(
 	const accessTokenArr = authorization?.split(" ") ?? [null];
 	const accessToken = accessTokenArr[accessTokenArr.length - 1];
 	const generator = (megalodon as any).default;
-	const client = generator(
-		"misskey",
-		BASE_URL,
-		accessToken,
-	) as MegalodonInterface;
+       const client = generator(BASE_URL, accessToken) as MegalodonInterface;
 	return client;
 }
 
