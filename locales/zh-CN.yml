@@ -16,7 +16,7 @@ enterUsername: "输入用户名"
 renotedBy: "由 {user} 转贴"
 noNotes: "没有帖文"
 noNotifications: "无通知"
-instance: "实例"
+instance: "服务器"
 settings: "设置"
 basicSettings: "基本设置"
 otherSettings: "其他设置"
@@ -64,7 +64,7 @@ import: "导入"
 export: "导出"
 files: "文件"
 download: "下载"
-driveFileDeleteConfirm: "要删除「{name}」文件吗？附加此文件的帖子也会被删除。"
+driveFileDeleteConfirm: "要删除文件「{name}」吗？它将被所有作为附件包含它的帖子中删除。"
 unfollowConfirm: "要取消对{name}的关注吗？"
 exportRequested: "导出请求已提交，这可能需要花一些时间，导出的文件将保存到网盘中。"
 importRequested: "导入请求已提交，这可能需要花一点时间。"
@@ -1766,3 +1766,82 @@ migration: 迁移
 _experiments:
   title: 实验性功能
 license: 许可证
+flagSpeakAsCatDescription: 在猫模式下你的帖子会喵化
+allowedInstances: 白名单服务器
+listsDesc: 列表可以让你创建含有指定用户的时间线，它们可以从时间线页面访问。
+flagSpeakAsCat: 像猫一样说话
+removeReaction: 移除你的回应
+expandOnNoteClick: 点击打开帖子
+expandOnNoteClickDesc: 如果禁用，你仍然可以在右键菜单中或通过点击时间戳打开帖子。
+sendPushNotificationReadMessage: 删除已阅读的推送通知
+customMOTD: 自定义 MOTD（闪屏消息）
+sendPushNotificationReadMessageCaption: 短暂显示 "{emptyPushNotificationMessage}" 的通知，如果启用，可能会增加你的设备的耗电量。
+adminCustomCssWarn: 仅当你知道此设置的作用时才应使用它。输入不正确的值可能会导致每个人的客户端停止正常运行。请在用户设置中进行测试来确保您的 CSS
+  正常工作。
+customMOTDDescription: 自定义MOTD（闪屏）消息，一行一个，每次用户加载/刷新页面时都会随机显示。
+customSplashIconsDescription: 用换行符隔开的自定义闪屏图标的URL，在用户每次加载/重新加载页面时随机显示。请确保图片是在一个静态的
+  URL 上，最好全部调整为 192x192 的大小。
+recommendedInstancesDescription: 推荐的服务器以换行符分隔，它们将出现在推荐的时间线中。不要添加 "https://"，仅添加域名。
+splash: 启动画面
+showUpdates: Calckey 更新后显示弹出窗口
+selectInstance: 选择一个服务器
+silencedInstances: 静默的服务器
+antennaInstancesDescription: 每行列出一个服务器主机
+pushNotification: 推送通知
+subscribePushNotification: 启用推送通知
+showAdminUpdates: 提示新的 Calckey 版本可用（仅对于管理员）
+searchPlaceholder: 搜索 Calckey
+addInstance: 添加一个服务器
+jumpToPrevious: 跳转至上一个
+silenceThisInstance: 使此服务器静音
+manageGroups: 管理群组
+antennasDesc: "天线会显示符合您设置条件的新帖子！\n可以从时间线页面访问它们。"
+channelFederationWarn: 频道还没有与其他服务器联合
+seperateRenoteQuote: 单独的推荐和引用按钮
+customSplashIcons: 自定义闪屏图标（urls）
+alt: 替代
+pushNotificationNotSupported: 你的浏览器或者服务器不支持推送通知
+showAds: 显示广告
+enterSendsMessage: 按回车键发送信息（关闭则是 Ctrl + Retun）
+recommendedInstances: 推荐服务器
+updateAvailable: 可能有可用更新！
+swipeOnMobile: 允许在页面之间滑动
+swipeOnDesktop: 允许在桌面端以移动设备方式滑动
+logoImageUrl: Logo 图像 URL
+deleted: 已删除
+editNote: 编辑帖子
+edited: 于 {date} {time} 编辑
+selectChannel: 选择一个频道
+accountMoved: 用户已迁移至新账户：
+silencedInstancesDescription: 列出你想静默的服务器的主机名。列出的服务器中的账户被视为 "静默"，只能发出跟随请求，如果不被跟随，就不能提及本地账户。这不会影响被封锁的服务器。
+hiddenTags: 隐藏的哈希标签
+userSaysSomethingReason: '{name} 说 {reason}'
+clipsDesc: 便签就像可共享的分类书签。您可以从各个帖子的菜单中创建便签。
+privateModeInfo: 当启用时，只有白名单上的服务器可以与你的服务器联合，所有的帖子都会对公共时间线隐藏。
+allowedInstancesDescription: 要列入联合白名单的服务器的主机名，一行一个（仅适用于私密模式）。
+breakFollowConfirm: 你确定要移除关注者吗？
+caption: 自动显示说明文字
+newer: 更新的
+older: 更老的
+noInstances: 没有服务器
+silenced: 静默的
+accessibility: 无障碍
+secureMode: 安全模式（仅允许授权的拉取）
+replayTutorial: 重播教程
+userSaysSomethingReasonReply: '{name} 回复了包含 {reason} 的帖子'
+userSaysSomethingReasonQuote: '{name} 引用了一篇包含 {reason} 的帖子'
+userSaysSomethingReasonRenote: '{name} 推荐了一个包含 {reason} 的帖子'
+noThankYou: 不，谢谢
+secureModeInfo: 当向其他服务器请求时，不要在没有验证的情况下发回。
+privateMode: 私密模式
+instanceSecurity: 服务器安全
+image: 图像
+video: 视频
+audio: 音频
+cannotUploadBecauseExceedsFileSizeLimit: 无法上传此文件，因为它超出了允许的最大大小。
+unsubscribePushNotification: 禁用推送通知
+pushNotificationAlreadySubscribed: 推送通知已启用
+enableEmojiReactions: 启用 emoji 回应
+cw: 内容警告
+hiddenTagsDescription: 列出你想隐藏的话题标签（不带#）以避免在趋势和探索中显示。隐藏的标签仍然可以通过其他方式被发现。
+enableRecommendedTimeline: 启用推荐时间线
