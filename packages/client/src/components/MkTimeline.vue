@@ -12,7 +12,7 @@
 	<div v-if="queue > 0" class="new">
 		<button
 			class="_buttonPrimary _shadow"
-			@click="scrollTop"
+			@click="tlComponent.scrollTop()"
 			:class="{ instant: !$store.state.animation }"
 		>
 			{{ i18n.ts.newNoteRecived }}
@@ -37,7 +37,6 @@ import * as sound from "@/scripts/sound";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
-import { scroll } from "@/scripts/scroll";
 
 const props = defineProps<{
 	src: string;
@@ -222,9 +221,6 @@ function closeHint() {
 			defaultStore.set("tlGlobalHintClosed", true);
 			break;
 	}
-}
-function scrollTop() {
-	scroll(tlComponent, { top: 0, behavior: 'smooth' })
 }
 
 const pagination = {
