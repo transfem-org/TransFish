@@ -74,18 +74,18 @@
 				</div>
 			</div>
 			<div class="item _panel emojis">
-					<div class="icon">
-						<i class="ph-smiley ph-bold ph-xl"></i>
+				<div class="icon">
+					<i class="ph-smiley ph-bold ph-xl"></i>
+				</div>
+				<div class="body">
+					<div class="value">
+						<MkNumber
+							:value="emojiCount"
+							style="margin-right: 0.5em"
+						/>
 					</div>
-					<div class="body">
-						<div class="value">
-							<MkNumber
-								:value="emojiCount"
-								style="margin-right: 0.5em"
-							/>
-						</div>
-						<div class="label">{{ i18n.ts.emojis }}</div>
-					</div>
+					<div class="label">{{ i18n.ts.emojis }}</div>
+				</div>
 			</div>
 			<!-- TODO: Drive -->
 		</Transition>
@@ -126,7 +126,7 @@ onMounted(async () => {
 			stats.originalNotesCount - chart.local.total[1];
 	});
 
-	os.apiGet("meta").then((meta) => {
+	os.api("meta", { detail: false }).then((meta) => {
 		emojiCount = meta.emojis.length;
 	});
 
