@@ -56,7 +56,7 @@
 						<span>
 							<span :title="sitename || undefined">
 								<img v-if="icon" class="icon" :src="icon" />
-								{{ sitename }}:
+								{{ sitename }}
 							</span>
 							{{ description }}
 						</span>
@@ -220,7 +220,7 @@ onUnmounted(() => {
 					padding: 14px;
 					border-radius: var(--radius);
 					transform: scale(0.95);
-					opacity: 0;
+					opacity: 0.8;
 					transition: transform 0.2s, opacity 0.2s, background 0.2s;
 				}
 				&:hover,
