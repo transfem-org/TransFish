@@ -112,6 +112,7 @@
 		"ratelimiter": "3.4.1",
 		"re2": "1.19.0",
 		"redis-lock": "0.1.4",
+		"redis-semaphore": "5.3.1",
 		"reflect-metadata": "0.1.13",
 		"rename": "1.0.4",
 		"rndstr": "1.0.0",
