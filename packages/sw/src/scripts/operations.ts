@@ -4,7 +4,7 @@
  */
 declare let self: ServiceWorkerGlobalScope;
 
-import * as Misskey from "calckey-js";
+import * as Misskey from "firefish-js";
 import { SwMessage, swMessageOrderType } from "@/types";
 import { acct as getAcct } from "@/filters/user";
 import { getAccountFromId } from "@/scripts/get-account-from-id";

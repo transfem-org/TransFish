@@ -1,30 +1,30 @@
 <div align="center">
-<a href="https://calckey.org/">
-	<img src="./title_float.svg" alt="Calckey logo" style="border-radius:50%" width="400"/>
+<a href="https://firefish.org/">
+	<img src="./title_float.svg" alt="Firefish logo" style="border-radius:50%" width="400"/>
 </a>
 
-**🌎 **[Calckey](https://calckey.org/)** is an open source, decentralized social media platform that's free forever! 🚀**
+**🌎 **[Firefish](https://firefish.org/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
 [![no github badge](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page/)
-[![status badge](https://ci.codeberg.org/api/badges/calckey/calckey/status.svg)](https://ci.codeberg.org/calckey/calckey)
-[![opencollective badge](https://opencollective.com/calckey/tiers/badge.svg)](https://opencollective.com/Calckey)
+[![status badge](https://ci.codeberg.org/api/badges/firefish/firefish/status.svg)](https://ci.codeberg.org/firefish/firefish)
+[![opencollective badge](https://opencollective.com/firefish/tiers/badge.svg)](https://opencollective.com/Firefish)
 [![liberapay badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
-[![translate-badge](https://hosted.weblate.org/widgets/calckey/-/svg-badge.svg)](https://hosted.weblate.org/engage/calckey/)
-[![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/calckey?logo=docker)](https://hub.docker.com/r/thatonecalculator/calckey)
+[![translate-badge](https://hosted.weblate.org/widgets/firefish/-/svg-badge.svg)](https://hosted.weblate.org/engage/firefish/)
+[![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/firefish?logo=docker)](https://hub.docker.com/r/thatonecalculator/firefish)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
-[![Codeberg badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-4793CC.svg?logo=codeberg&logoColor=white)](https://codeberg.org/calckey/calckey/)
+[![Codeberg badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-4793CC.svg?logo=codeberg&logoColor=white)](https://codeberg.org/firefish/firefish/)
 
 </div>
 
 <div>
 
-<img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px" alt="Calc (the Calckey mascot) smoking a fat dart"/>
+<img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px" alt="Calc (the Firefish mascot) smoking a fat dart"/>
 
-# ✨ About Calckey
+# ✨ About Firefish
 
-- Calckey is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web UI, rich chatting, and much more!
-- Calckey adds many quality of life changes and bug fixes for users and server admins alike.
-- Read **[this document](./CALCKEY.md)** all for current and future differences.
+- Firefish is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web UI, rich chatting, and much more!
+- Firefish adds many quality of life changes and bug fixes for users and server admins alike.
+- Read **[this document](./FIREFISH.md)** all for current and future differences.
 - Notable differences:
   - Improved UI/UX (especially on mobile)
   - Post editing
@@ -41,7 +41,7 @@
   - Backfill user information
   - Advanced search
   - Many more user and admin settings
-  - [So much more!](./CALCKEY.md)
+  - [So much more!](./FIREFISH.md)
 
 </div>
 
@@ -51,24 +51,24 @@
 
 ### Want to get involved? Great!
 
-- If you have the means to, [donations](https://opencollective.com/Calckey) are a great way to keep us going.
+- If you have the means to, [donations](https://opencollective.com/Firefish) are a great way to keep us going.
 - If you know how to program in TypeScript, Vue, or Rust, read the [contributing](./CONTRIBUTING.md) document.
-- If you know a non-English language, translating Calckey on [Weblate](https://hosted.weblate.org/engage/calckey/) help bring Calckey to more people. No technical experience needed!
-- Want to write/report about us, have any professional inquiries, or just have questions to ask? Contact us [here!](https://calckey.org/contact/)
+- If you know a non-English language, translating Firefish on [Weblate](https://hosted.weblate.org/engage/firefish/) help bring Firefish to more people. No technical experience needed!
+- Want to write/report about us, have any professional inquiries, or just have questions to ask? Contact us [here!](https://firefish.org/contact/)
 
 ### All links
 
-- 🌐 Homepage: <https://calckey.org>
+- 🌐 Homepage: <https://firefish.org>
 - 💸 Donations:
-  - OpenCollective: <https://opencollective.com/Calckey>
+  - OpenCollective: <https://opencollective.com/Firefish>
   - Liberapay: <https://liberapay.com/ThatOneCalculator>
   - Donate publicly to get your name on the Patron list!
-- 🚢 Flagship server: <https://calckey.social>
-- 💁 Matrix support room: <https://matrix.to/#/#calckey:matrix.fedibird.com>
-- 📣 Official account: <https://i.calckey.cloud/@calckey>
-- 📜 Server list: <https://calckey.org/join>
-- ✍️ Weblate: <https://hosted.weblate.org/engage/calckey/>
-- ️️📬 Contact: <https://calckey.org/contact/>
+- 🚢 Flagship server: <https://firefish.social>
+- 💁 Matrix support room: <https://matrix.to/#/#firefish:matrix.fedibird.com>
+- 📣 Official account: <https://i.firefish.cloud/@firefish>
+- 📜 Server list: <https://firefish.org/join>
+- ✍️ Weblate: <https://hosted.weblate.org/engage/firefish/>
+- ️️📬 Contact: <https://firefish.org/contact/>
 
 # 🌠 Getting started
 
@@ -78,12 +78,12 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 If you have access to a server that supports one of the sources below, I recommend you use it! Note that these methods *won't* allow you to migrate from Misskey without manual intervention.
 
-[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://codeberg.org/calckey/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/calckey)　　[![Install Calckey with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=calckey)
+[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://codeberg.org/firefish/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
 
 ## 🛳️ Containerization
 
-- [🐳 How to run Calckey with Docker](https://codeberg.org/calckey/calckey/src/branch/develop/docs/docker.md)
-- [🛞 How to run Calckey with Kubernetes/Helm](https://codeberg.org/calckey/calckey/src/branch/develop/docs/kubernetes.md)
+- [🐳 How to run Firefish with Docker](https://codeberg.org/firefish/firefish/src/branch/develop/docs/docker.md)
+- [🛞 How to run Firefish with Kubernetes/Helm](https://codeberg.org/firefish/firefish/src/branch/develop/docs/kubernetes.md)
 
 ## 🧑‍💻 Dependencies
 
@@ -116,8 +116,8 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 👀 Get folder ready
 
 ```sh
-git clone https://codeberg.org/calckey/calckey.git
-cd calckey/
+git clone https://codeberg.org/firefish/firefish.git
+cd firefish/
 ```
 
 > **Note**
@@ -143,23 +143,23 @@ pm2 install pm2-logrotate
 ```
 
 > **Note**
-> [`pm2-logrotate`](https://github.com/keymetrics/pm2-logrotate/blob/master/README.md) ensures that log files don't infinitely gather size, as Calckey produces a lot of logs.
+> [`pm2-logrotate`](https://github.com/keymetrics/pm2-logrotate/blob/master/README.md) ensures that log files don't infinitely gather size, as Firefish produces a lot of logs.
 
 ## 🐘 Create database
 
 In PostgreSQL (`psql`), run the following command:
 
 ```sql
-CREATE DATABASE calckey WITH encoding = 'UTF8';
+CREATE DATABASE firefish WITH encoding = 'UTF8';
 ```
 
 or run the following from the command line:
 
 ```sh
-psql postgres -c "create database calckey with encoding = 'UTF8';"
+psql postgres -c "create database firefish with encoding = 'UTF8';"
 ```
 
-In Calckey's directory, fill out the `db` section of `.config/default.yml` with the correct information, where the `db` key is `calckey`.
+In Firefish's directory, fill out the `db` section of `.config/default.yml` with the correct information, where the `db` key is `firefish`.
 
 ## 🔎 Set up search
 
@@ -172,7 +172,7 @@ Follow sonic's [installation guide](https://github.com/valeriansaliou/sonic#inst
 > **Note**
 > If you use IPv4: in Sonic's directory, edit the `config.cfg` file to change `inet` to `"0.0.0.0:1491"`.
 
-In Calckey's directory, fill out the `sonic` section of `.config/default.yml` with the correct information.
+In Firefish's directory, fill out the `sonic` section of `.config/default.yml` with the correct information.
 
 ### Meilisearch
 
@@ -180,11 +180,11 @@ Meilisearch is better suited for larger deployments. It's faster but uses far mo
 
 Follow Meilisearch's [quick start guide](https://www.meilisearch.com/docs/learn/getting_started/quick_start)
 
-In Calckey's directory, fill out the `meilisearch` section of `.config/default.yml` with the correct information.
+In Firefish's directory, fill out the `meilisearch` section of `.config/default.yml` with the correct information.
 
 ### ElasticSearch
 
-Please don't use ElasticSearch unless you already have an ElasticSearch setup and want to continue using it for Calckey. ElasticSearch is slow, heavy, and offers very few benefits over Sonic/Meilisearch.
+Please don't use ElasticSearch unless you already have an ElasticSearch setup and want to continue using it for Firefish. ElasticSearch is slow, heavy, and offers very few benefits over Sonic/Meilisearch.
 
 ## 💅 Customize
 
@@ -201,17 +201,17 @@ Please don't use ElasticSearch unless you already have an ElasticSearch setup an
 - Edit `.config/default.yml`, making sure to fill out required fields.
 - Also copy and edit `.config/docker_example.env` to `.config/docker.env` if you're using Docker.
 
-## 🚚 Migrating from Misskey to Calckey
+## 🚚 Migrating from Misskey to Firefish
 
-For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
+For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](https://codeberg.org/firefish/firefish/src/branch/develop/docs/migrate.md).
 
 ## 🌐 Web proxy
 
 ### 🍀 Nginx (recommended)
 
-- Run `sudo cp ./calckey.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
-- Edit `calckey.nginx.conf` to reflect your server properly
-- Run `sudo ln -s ./calckey.nginx.conf ../sites-enabled/calckey.nginx.conf`
+- Run `sudo cp ./firefish.nginx.conf /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/`
+- Edit `firefish.nginx.conf` to reflect your server properly
+- Run `sudo ln -s ./firefish.nginx.conf ../sites-enabled/firefish.nginx.conf`
 - Run `sudo nginx -t` to validate that the config is valid, then restart the NGINX service.
 
 ### 🦦 Caddy
@@ -227,29 +227,29 @@ example.tld {
 ### 🪶 Apache
 
 > **Warning**
-> Apache has some known problems with Calckey. Only use it if you have to.
+> Apache has some known problems with Firefish. Only use it if you have to.
 
-- Run `sudo cp ./calckey.apache.conf /etc/apache2/sites-available/ && cd /etc/apache2/sites-available/`
-- Edit `calckey.apache.conf` to reflect your server properly
-- Run `sudo a2ensite calckey.apache` to enable the site
+- Run `sudo cp ./firefish.apache.conf /etc/apache2/sites-available/ && cd /etc/apache2/sites-available/`
+- Edit `firefish.apache.conf` to reflect your server properly
+- Run `sudo a2ensite firefish.apache` to enable the site
 - Run `sudo service apache2 restart` to reload apache2 configuration
 ## 🚀 Build and launch!
 
 ### 🐢 NodeJS + pm2
 
-#### `git pull` and run these steps to update Calckey in the future!
+#### `git pull` and run these steps to update Firefish in the future!
 
 ```sh
 # git pull
 pnpm install
 NODE_ENV=production pnpm run build && pnpm run migrate
-pm2 start "NODE_ENV=production pnpm run start" --name Calckey
+pm2 start "NODE_ENV=production pnpm run start" --name Firefish
 ```
 
 ## 😉 Tips & Tricks
 
-- When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Calckey's control panel.
-- Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Calckey, run `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Replace 3000 with the minimum port and 4000 with the maximum port if you need it.
+- When editing the config file, please don't fill out the settings at the bottom. They're designed *only* for managed hosting, not self hosting. Those settings are much better off being set in Firefish's control panel.
+- Port 3000 (used in the default config) might be already used on your server for something else. To find an open port for Firefish, run `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Replace 3000 with the minimum port and 4000 with the maximum port if you need it.
 - I'd recommend you use a S3 Bucket/CDN for Object Storage, especially if you use Docker.
 - I'd ***strongly*** recommend against using CloudFlare, but if you do, make sure to turn code minification off.
 - For push notifications, run `npx web-push generate-vapid-keys`, then put the public and private keys into Control Panel > General > ServiceWorker.
@@ -257,6 +257,6 @@ pm2 start "NODE_ENV=production pnpm run start" --name Calckey
 - To add another admin account:
   - Go to the user's page > 3 Dots > About > Moderation > turn on "Moderator"
   - Go back to Overview > click the clipboard icon next to the ID
-  - Run `psql -d calckey` (or whatever the database name is)
+  - Run `psql -d firefish` (or whatever the database name is)
   - Run `UPDATE "user" SET "isAdmin" = true WHERE id='999999';` (replace `999999` with the copied ID)
-  - Restart your Calckey server
+  - Restart your Firefish server

@@ -1,10 +1,10 @@
 {
-	"name": "calckey",
+	"name": "firefish",
 	"version": "14.0.0-rc3",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
-		"url": "https://codeberg.org/calckey/calckey.git"
+		"url": "https://codeberg.org/firefish/firefish.git"
 	},
 	"packageManager": "pnpm@8.6.3",
 	"private": true,

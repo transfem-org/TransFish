@@ -1,4 +1,4 @@
-import * as Misskey from "calckey-js";
+import * as Misskey from "firefish-js";
 
 export type swMessageOrderType = "post" | "push";
 

@@ -55,33 +55,33 @@ describe("fromHtml", () => {
 
 	it("link with different text", () => {
 		assert.deepStrictEqual(
-			fromHtml('<p>a <a href="https://calckey.org/b">c</a> d</p>'),
-			"a [c](https://calckey.org/b) d",
+			fromHtml('<p>a <a href="https://firefish.org/b">c</a> d</p>'),
+			"a [c](https://firefish.org/b) d",
 		);
 	});
 
 	it("link with different text, but not encoded", () => {
 		assert.deepStrictEqual(
-			fromHtml('<p>a <a href="https://calckey.org/ä">c</a> d</p>'),
-			"a [c](<https://calckey.org/ä>) d",
+			fromHtml('<p>a <a href="https://firefish.org/ä">c</a> d</p>'),
+			"a [c](<https://firefish.org/ä>) d",
 		);
 	});
 
 	it("link with same text", () => {
 		assert.deepStrictEqual(
 			fromHtml(
-				'<p>a <a href="https://calckey.org/b">https://calckey.org/b</a> d</p>',
+				'<p>a <a href="https://firefish.org/b">https://firefish.org/b</a> d</p>',
 			),
-			"a https://calckey.org/b d",
+			"a https://firefish.org/b d",
 		);
 	});
 
 	it("link with same text, but not encoded", () => {
 		assert.deepStrictEqual(
 			fromHtml(
-				'<p>a <a href="https://calckey.org/ä">https://calckey.org/ä</a> d</p>',
+				'<p>a <a href="https://firefish.org/ä">https://firefish.org/ä</a> d</p>',
 			),
-			"a <https://calckey.org/ä> d",
+			"a <https://firefish.org/ä> d",
 		);
 	});
 
@@ -98,8 +98,8 @@ describe("fromHtml", () => {
 
 	it("link without text", () => {
 		assert.deepStrictEqual(
-			fromHtml('<p>a <a href="https://calckey.org/b"></a> d</p>'),
-			"a https://calckey.org/b d",
+			fromHtml('<p>a <a href="https://firefish.org/b"></a> d</p>'),
+			"a https://firefish.org/b d",
 		);
 	});
 
@@ -110,15 +110,15 @@ describe("fromHtml", () => {
 	it("mention", () => {
 		assert.deepStrictEqual(
 			fromHtml(
-				'<p>a <a href="https://calckey.org/@user" class="u-url mention">@user</a> d</p>',
+				'<p>a <a href="https://firefish.org/@user" class="u-url mention">@user</a> d</p>',
 			),
-			"a @user@calckey.org d",
+			"a @user@firefish.org d",
 		);
 	});
 
 	it("hashtag", () => {
 		assert.deepStrictEqual(
-			fromHtml('<p>a <a href="https://calckey.org/tags/a">#a</a> d</p>', [
+			fromHtml('<p>a <a href="https://firefish.org/tags/a">#a</a> d</p>', [
 				"#a",
 			]),
 			"a #a d",

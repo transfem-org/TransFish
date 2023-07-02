@@ -1,12 +1,12 @@
 {
-	"name": "calckey-js",
+	"name": "firefish-js",
 	"version": "0.0.24",
-	"description": "Calckey SDK for JavaScript",
+	"description": "Firefish SDK for JavaScript",
 	"main": "./built/index.js",
 	"types": "./built/index.d.ts",
 	"scripts": {
 		"build": "pnpm swc src -d built -D",
-		"render": "pnpm run build && pnpm run api && pnpm run api-prod && cp temp/calckey-js.api.json etc/ && pnpm run api-doc",
+		"render": "pnpm run build && pnpm run api && pnpm run api-prod && cp temp/firefish-js.api.json etc/ && pnpm run api-doc",
 		"tsd": "tsc && tsd",
 		"api": "pnpm api-extractor run --local --verbose",
 		"api-prod": "pnpm api-extractor run --verbose",
@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://codeberg.org/calckey/calckey.git"
+		"url": "https://codeberg.org/firefish/firefish.git"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.36.0",

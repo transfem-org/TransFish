@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import MkNumber from "@/components/MkNumber.vue";
 import { userPage } from "@/filters/user";

@@ -88,7 +88,7 @@ export default defineConfig(({ command, mode }) => {
 			sourcemap: process.env.NODE_ENV === "development",
 			reportCompressedSize: false,
 			commonjsOptions: {
-				include: [/calckey-js/, /node_modules/],
+				include: [/firefish-js/, /node_modules/],
 			},
 		},
 		optimizeDeps: {

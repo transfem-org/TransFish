@@ -1,4 +1,4 @@
-import { Entity } from "@calckey/megalodon";
+import { Entity } from "@firefish/megalodon";
 import { convertId, IdType } from "../index.js";
 
 function simpleConvert(data: any) {

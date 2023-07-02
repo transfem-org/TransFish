@@ -301,8 +301,8 @@ export const routes = [
 		hash: "initialTab",
 	},
 	{
-		path: "/about-calckey",
-		component: page(() => import("./pages/about-calckey.vue")),
+		path: "/about-firefish",
+		component: page(() => import("./pages/about-firefish.vue")),
 	},
 	{
 		path: "/theme-editor",

@@ -6,10 +6,10 @@ export class calckey1658203170545 {
 			`UPDATE meta SET "useStarForReactionFallback" = TRUE;`,
 		);
 		await queryRunner.query(
-			`UPDATE meta SET "repositoryUrl" = 'https://codeberg/calckey/calckey'`,
+			`UPDATE meta SET "repositoryUrl" = 'https://codeberg/firefish/firefish'`,
 		);
 		await queryRunner.query(
-			`UPDATE meta SET "feedbackUrl" = 'https://codeberg/calckey/calckey/issues'`,
+			`UPDATE meta SET "feedbackUrl" = 'https://codeberg/firefish/firefish/issues'`,
 		);
 	}
 
@@ -18,10 +18,10 @@ export class calckey1658203170545 {
 			`UPDATE meta SET "useStarForReactionFallback" = FALSE;`,
 		);
 		await queryRunner.query(
-			`UPDATE meta SET "repositoryUrl" = 'https://codeberg/calckey/calckey'`,
+			`UPDATE meta SET "repositoryUrl" = 'https://codeberg/firefish/firefish'`,
 		);
 		await queryRunner.query(
-			`UPDATE meta SET "feedbackUrl" = 'https://codeberg/calckey/calckey/issues'`,
+			`UPDATE meta SET "feedbackUrl" = 'https://codeberg/firefish/firefish/issues'`,
 		);
 	}
 }

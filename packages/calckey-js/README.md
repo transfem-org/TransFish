@@ -1,8 +1,8 @@
-# Calckey.js
+# Firefish.js
 
-Fork of Misskey.js for Calckey
+Fork of Misskey.js for Firefish
 
-https://www.npmjs.com/package/calckey-js
+https://www.npmjs.com/package/firefish-js
 
 To fully build, run `pnpm i && pnpm run render`.
 

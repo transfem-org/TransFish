@@ -1,4 +1,4 @@
-import megalodon, { MegalodonInterface } from "@calckey/megalodon";
+import megalodon, { MegalodonInterface } from "@firefish/megalodon";
 import Router from "@koa/router";
 import { koaBody } from "koa-body";
 import { convertId, IdType } from "../../index.js";
@@ -49,7 +49,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const dataRaw = await client.getNotification(
-				convertId(ctx.params.id, IdType.CalckeyId),
+				convertId(ctx.params.id, IdType.FirefishId),
 			);
 			const data = convertNotification(dataRaw.data);
 			if (data.type !== "follow" && data.type !== "follow_request") {
@@ -87,7 +87,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const data = await client.dismissNotification(
-				convertId(ctx.params.id, IdType.CalckeyId),
+				convertId(ctx.params.id, IdType.FirefishId),
 			);
 			ctx.body = data.data;
 		} catch (e: any) {

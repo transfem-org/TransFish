@@ -652,7 +652,7 @@ createNewClip: "新建便签"
 unclip: "移除便签"
 confirmToUnclipAlreadyClippedNote: "本帖已包含在便签\"{name}\"里。您想要将本帖从该便签中移除吗？"
 public: "公开"
-i18nInfo: "Calckey已经被志愿者们翻译成了各种语言。如果你也有兴趣，可以通过{link}帮助翻译。"
+i18nInfo: "Firefish已经被志愿者们翻译成了各种语言。如果你也有兴趣，可以通过{link}帮助翻译。"
 manageAccessTokens: "管理 Access Tokens"
 accountInfo: "账户信息"
 notesCount: "帖子数量"
@@ -1211,7 +1211,7 @@ _time:
   hour: "小时"
   day: "日"
 _tutorial:
-  title: "如何使用Calckey"
+  title: "如何使用Firefish"
   step1_1: "欢迎！"
   step1_2: "让我们把你安排好。你很快就会启动并运行！"
   step2_1: "首先，请完成您的个人资料。"
@@ -1229,7 +1229,7 @@ _tutorial:
   step5_7: "全球{icon}时间线是你可以看到来自所有其他连接的实例的消息。"
   step6_1: "那么，这里是什么地方？"
   step6_2: "好吧，你不只是加入卡尔基。你已经加入了Fediverse的一个门户，这是一个由成千上万台服务器组成的互联网络，被称为 \"实例\""
-  step6_3: "每个服务器的工作方式不同，并不是所有的服务器都运行Calckey。但这个人确实如此! 这有点复杂，但你很快就会明白的。"
+  step6_3: "每个服务器的工作方式不同，并不是所有的服务器都运行Firefish。但这个人确实如此! 这有点复杂，但你很快就会明白的。"
   step6_4: "现在去学习并享受乐趣！"
 _2fa:
   alreadyRegistered: "此设备已被注册"
@@ -1822,14 +1822,14 @@ customSplashIconsDescription: 用换行符隔开的自定义闪屏图标的URL�
   URL 上，最好全部调整为 192x192 的大小。
 recommendedInstancesDescription: 推荐的服务器以换行符分隔，它们将出现在推荐的时间线中。不要添加 "https://"，仅添加域名。
 splash: 启动画面
-showUpdates: Calckey 更新后显示弹出窗口
+showUpdates: Firefish 更新后显示弹出窗口
 selectInstance: 选择一个服务器
 silencedInstances: 静默的服务器
 antennaInstancesDescription: 每行列出一个服务器主机
 pushNotification: 推送通知
 subscribePushNotification: 启用推送通知
-showAdminUpdates: 提示新的 Calckey 版本可用（仅对于管理员）
-searchPlaceholder: 搜索 Calckey
+showAdminUpdates: 提示新的 Firefish 版本可用（仅对于管理员）
+searchPlaceholder: 搜索 Firefish
 addInstance: 添加一个服务器
 jumpToPrevious: 跳转至上一个
 silenceThisInstance: 使此服务器静音
@@ -1903,7 +1903,7 @@ moveAccountDescription: 这个过程是不可逆的。在移动之前，请确�
 moveFromLabel: 您要移出的旧帐户：
 preventAiLearning: 阻止 AI 机器人抓取
 preventAiLearningDescription: 请求第三方人工智能语言模型不要研究您上传的内容，例如帖子和图像。
-noGraze: 请禁用 "Graze for Mastodon" 浏览器扩展，因为它会干扰 Calckey。
+noGraze: 请禁用 "Graze for Mastodon" 浏览器扩展，因为它会干扰 Firefish。
 moveTo: 将当前帐户移至新帐户
 moveToLabel: 你要迁移到的目标帐户：
 moveAccount: 移动账户！
@@ -1925,4 +1925,4 @@ _filters:
   fromUser: 来自用户
   followersOnly: 仅关注者
 reactionPickerSkinTone: 首选的表情符号肤色
-isPatron: Calckey 赞助
+isPatron: Firefish 赞助

@@ -197,7 +197,7 @@ import MkTextarea from "@/components/form/textarea.vue";
 import MkSelect from "@/components/form/select.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-import * as Acct from "calckey-js/built/acct";
+import * as Acct from "firefish-js/built/acct";
 
 type Input = {
 	type: HTMLInputElement["type"];

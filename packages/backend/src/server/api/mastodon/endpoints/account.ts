@@ -113,7 +113,7 @@ export function apiAccountMastodon(router: Router): void {
 
 			let reqIds = [];
 			for (let i = 0; i < ids.length; i++) {
-				reqIds.push(convertId(ids[i], IdType.CalckeyId));
+				reqIds.push(convertId(ids[i], IdType.FirefishId));
 			}
 
 			const data = await client.getRelationships(reqIds);
@@ -134,7 +134,7 @@ export function apiAccountMastodon(router: Router): void {
 		const accessTokens = ctx.headers.authorization;
 		const client = getClient(BASE_URL, accessTokens);
 		try {
-			const calcId = convertId(ctx.params.id, IdType.CalckeyId);
+			const calcId = convertId(ctx.params.id, IdType.FirefishId);
 			const data = await client.getAccount(calcId);
 			ctx.body = convertAccount(data.data);
 		} catch (e: any) {
@@ -152,7 +152,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountStatuses(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					convertTimelinesArgsId(argsToBools(limitToInt(ctx.query as any))),
 				);
 				ctx.body = data.data.map((status) => convertStatus(status));
@@ -172,7 +172,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountFollowers(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
 				ctx.body = data.data.map((account) => convertAccount(account));
@@ -192,7 +192,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountFollowing(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
 				ctx.body = data.data.map((account) => convertAccount(account));
@@ -212,7 +212,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountLists(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = data.data.map((list) => convertList(list));
 			} catch (e: any) {
@@ -231,7 +231,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.followAccount(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				let acct = convertRelationship(data.data);
 				acct.following = true;
@@ -252,7 +252,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.unfollowAccount(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				let acct = convertRelationship(data.data);
 				acct.following = false;
@@ -273,7 +273,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.blockAccount(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
@@ -311,7 +311,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.muteAccount(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					(ctx.request as any).body as any,
 				);
 				ctx.body = convertRelationship(data.data);
@@ -331,7 +331,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.unmuteAccount(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
@@ -430,7 +430,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.acceptFollowRequest(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {
@@ -449,7 +449,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.rejectFollowRequest(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = convertRelationship(data.data);
 			} catch (e: any) {

@@ -1,6 +1,6 @@
 {
-	"short_name": "Calckey",
-	"name": "Calckey",
+	"short_name": "Firefish",
+	"name": "Firefish",
 	"description": "An open source, decentralized social media platform that's free forever!",
 	"start_url": "/",
 	"display": "standalone",

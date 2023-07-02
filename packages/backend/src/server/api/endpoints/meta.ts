@@ -42,7 +42,7 @@ export const meta = {
 				optional: false,
 				nullable: false,
 				format: "url",
-				example: "https://calckey.example.com",
+				example: "https://firefish.example.com",
 			},
 			description: {
 				type: "string",
@@ -68,13 +68,13 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://codeberg.org/calckey/calckey",
+				default: "https://codeberg.org/firefish/firefish",
 			},
 			feedbackUrl: {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://codeberg.org/calckey/calckey/issues",
+				default: "https://codeberg.org/firefish/firefish/issues",
 			},
 			defaultDarkTheme: {
 				type: "string",

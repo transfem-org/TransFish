@@ -171,7 +171,7 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, provide, onMounted, computed, ref } from "vue";
 import XCommon from "./_common_/common.vue";
-import * as Acct from "calckey-js/built/acct";
+import * as Acct from "firefish-js/built/acct";
 import type { ComputedRef } from "vue";
 import type { PageMetadata } from "@/scripts/page-metadata";
 import { instanceName, ui } from "@/config";

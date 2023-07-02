@@ -50,10 +50,10 @@ const nodeinfo2 = async () => {
 
 	return {
 		software: {
-			name: "calckey",
+			name: "firefish",
 			version: config.version,
 			repository: meta.repositoryUrl,
-			homepage: "https://calckey.org/",
+			homepage: "https://firefish.org/",
 		},
 		protocols: ["activitypub"],
 		services: {

@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import {} from "vue";
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 
 const props = withDefaults(
 	defineProps<{

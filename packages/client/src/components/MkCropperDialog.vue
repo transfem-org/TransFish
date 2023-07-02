@@ -35,7 +35,7 @@
 
 <script lang="ts" setup>
 import { nextTick, onMounted } from "vue";
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import Cropper from "cropperjs";
 import tinycolor from "tinycolor2";
 import XModalWindow from "@/components/MkModalWindow.vue";

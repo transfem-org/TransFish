@@ -1,23 +1,23 @@
-import { Entity } from "@calckey/megalodon";
+import { Entity } from "@firefish/megalodon";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { Users, Notes } from "@/models/index.js";
 import { IsNull, MoreThan } from "typeorm";
 
-// TODO: add calckey features
+// TODO: add firefish features
 export async function getInstance(response: Entity.Instance) {
 	const meta = await fetchMeta(true);
 	const totalUsers = Users.count({ where: { host: IsNull() } });
 	const totalStatuses = Notes.count({ where: { userHost: IsNull() } });
 	return {
 		uri: response.uri,
-		title: response.title || "Calckey",
+		title: response.title || "Firefish",
 		short_description:
 			response.description?.substring(0, 50) || "See real server website",
 		description:
 			response.description ||
-			"This is a vanilla Calckey Instance. It doesnt seem to have a description. BTW you are using the Mastodon api to access this server :)",
+			"This is a vanilla Firefish Instance. It doesn't seem to have a description.",
 		email: response.email || "",
-		version: "3.0.0 compatible (3.5+ Calckey)", //I hope this version string is correct, we will need to test it.
+		version: "3.0.0 compatible (3.5+ Firefish)", //I hope this version string is correct, we will need to test it.
 		urls: response.urls,
 		stats: {
 			user_count: await totalUsers,

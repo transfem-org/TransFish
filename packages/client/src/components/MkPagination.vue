@@ -74,7 +74,7 @@ import {
 	ref,
 	watch,
 } from "vue";
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import * as os from "@/os";
 import {
 	onScrollTop,

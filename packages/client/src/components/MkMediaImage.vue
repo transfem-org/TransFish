@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import { watch } from "vue";
-import type * as misskey from "calckey-js";
+import type * as misskey from "firefish-js";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
 import { defaultStore } from "@/store";

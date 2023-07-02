@@ -21,7 +21,7 @@
 							@load="iconLoaded"
 							@click="gravity"
 						/>
-						<div class="misskey">Calckey</div>
+						<div class="misskey">Firefish</div>
 						<div class="version">v{{ version }}</div>
 						<span
 							v-for="emoji in easterEggEmojis"
@@ -43,7 +43,7 @@
 					</div>
 					<div class="_formBlock" style="text-align: center">
 						{{ i18n.ts._aboutMisskey.about }}<br /><a
-							href="https://calckey.org/"
+							href="https://firefish.org/"
 							target="_blank"
 							class="_link"
 							>{{ i18n.ts.learnMore }}</a
@@ -51,13 +51,13 @@
 					</div>
 					<div class="_formBlock" style="text-align: center">
 						<MkButton primary rounded inline @click="iLoveMisskey"
-							>I <Mfm text="$[jelly ❤]" /> #Calckey</MkButton
+							>I <Mfm text="$[jelly ❤]" /> #Firefish</MkButton
 						>
 					</div>
 					<FormSection>
 						<div class="_formLinks">
 							<FormLink
-								to="https://codeberg.org/calckey/calckey"
+								to="https://codeberg.org/firefish/firefish"
 								external
 							>
 								<template #icon
@@ -67,7 +67,7 @@
 								<template #suffix>Codeberg</template>
 							</FormLink>
 							<FormLink
-								to="https://opencollective.com/calckey"
+								to="https://opencollective.com/firefish"
 								external
 							>
 								<template #icon
@@ -77,7 +77,7 @@
 								<template #suffix>Donate</template>
 							</FormLink>
 							<FormLink
-								to="https://hosted.weblate.org/engage/calckey/"
+								to="https://hosted.weblate.org/engage/firefish/"
 								external
 							>
 								<template #icon
@@ -93,23 +93,23 @@
 							i18n.ts._aboutMisskey.contributors
 						}}</template>
 						<div class="_formLinks">
-							<FormLink to="/@kainoa@calckey.social"
+							<FormLink to="/@kainoa@firefish.social"
 								><Mfm
-									:text="'$[sparkle @kainoa@calckey.social] (Main developer)'"
+									:text="'$[sparkle @kainoa@firefish.social] (Main developer)'"
 							/></FormLink>
-							<FormLink to="/@freeplay@calckey.social"
+							<FormLink to="/@freeplay@firefish.social"
 								><Mfm
-									:text="'@freeplay@calckey.social (UI/UX)'"
+									:text="'@freeplay@firefish.social (UI/UX)'"
 							/></FormLink>
-							<FormLink to="/@nmkj@calckey.jp"
-								><Mfm :text="'@nmkj@calckey.jp (Backend)'"
+							<FormLink to="/@nmkj@firefish.jp"
+								><Mfm :text="'@nmkj@firefish.jp (Backend)'"
 							/></FormLink>
 							<FormLink to="/@dev@post.naskya.net"
 								><Mfm :text="'@dev@post.naskya.net (Backend)'"
 							/></FormLink>
-							<FormLink to="/@panos@calckey.social"
+							<FormLink to="/@panos@firefish.social"
 								><Mfm
-									:text="'@panos@calckey.social (Project Coordinator)'"
+									:text="'@panos@firefish.social (Project Coordinator)'"
 							/></FormLink>
 							<FormLink
 								to="https://www.youtube.com/c/Henkiwashere"
@@ -119,7 +119,7 @@
 						</div>
 						<template #caption
 							><MkLink
-								url="https://codeberg.org/calckey/calckey/activity"
+								url="https://codeberg.org/firefish/firefish/activity"
 								>{{
 									i18n.ts._aboutMisskey.allContributors
 								}}</MkLink
@@ -207,7 +207,7 @@ function gravity() {
 
 function iLoveMisskey() {
 	os.post({
-		initialText: "I $[jelly ❤] #Calckey",
+		initialText: "I $[jelly ❤] #Firefish",
 		instant: true,
 	});
 }

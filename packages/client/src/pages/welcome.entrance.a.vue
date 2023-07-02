@@ -180,7 +180,7 @@ function showMenu(ev) {
 				text: i18n.ts.aboutMisskey,
 				icon: "ph-info ph-bold ph-lg",
 				action: () => {
-					os.pageWindow("/about-calckey");
+					os.pageWindow("/about-firefish");
 				},
 			},
 		],

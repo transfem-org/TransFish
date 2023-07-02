@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import megalodon, { Entity, MegalodonInterface } from "@calckey/megalodon";
+import megalodon, { Entity, MegalodonInterface } from "@firefish/megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import { statusModel } from "./status.js";
 import Autolinker from "autolinker";
@@ -33,11 +33,11 @@ export function argsToBools(q: ParsedUrlQuery) {
 
 export function convertTimelinesArgsId(q: ParsedUrlQuery) {
 	if (typeof q.min_id === "string")
-		q.min_id = convertId(q.min_id, IdType.CalckeyId);
+		q.min_id = convertId(q.min_id, IdType.FirefishId);
 	if (typeof q.max_id === "string")
-		q.max_id = convertId(q.max_id, IdType.CalckeyId);
+		q.max_id = convertId(q.max_id, IdType.FirefishId);
 	if (typeof q.since_id === "string")
-		q.since_id = convertId(q.since_id, IdType.CalckeyId);
+		q.since_id = convertId(q.since_id, IdType.FirefishId);
 	return q;
 }
 
@@ -170,7 +170,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getListTimeline(
-					convertId(ctx.params.listId, IdType.CalckeyId),
+					convertId(ctx.params.listId, IdType.FirefishId),
 					convertTimelinesArgsId(limitToInt(ctx.query)),
 				);
 				let resp = data.data.map((status) => convertStatus(status));
@@ -221,7 +221,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getList(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = convertList(data.data);
 			} catch (e: any) {
@@ -254,7 +254,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.updateList(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					(ctx.request.body as any).title,
 				);
 				ctx.body = convertList(data.data);
@@ -274,7 +274,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.deleteList(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = data.data;
 			} catch (e: any) {
@@ -293,7 +293,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountsInList(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					convertTimelinesArgsId(ctx.query as any),
 				);
 				ctx.body = data.data.map((account) => convertAccount(account));
@@ -313,9 +313,9 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.addAccountsToList(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					(ctx.query.account_ids as string[]).map((id) =>
-						convertId(id, IdType.CalckeyId),
+						convertId(id, IdType.FirefishId),
 					),
 				);
 				ctx.body = data.data;
@@ -335,9 +335,9 @@ export function apiTimelineMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.deleteAccountsFromList(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 					(ctx.query.account_ids as string[]).map((id) =>
-						convertId(id, IdType.CalckeyId),
+						convertId(id, IdType.FirefishId),
 					),
 				);
 				ctx.body = data.data;

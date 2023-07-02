@@ -1,6 +1,6 @@
 _lang_: "Français"
 headlineMisskey: "Réseau relié par des notes"
-introMisskey: "Bienvenue ! Calckey est un service de microblogage décentralisé, libre\
+introMisskey: "Bienvenue ! Firefish est un service de microblogage décentralisé, libre\
   \ et ouvert.\nÉcrivez des « notes » et partagez ce qui se passe à l’instant présent,\
   \ autour de vous avec les autres \U0001F4E1\nLa fonction « réactions », vous permet\
   \ également d’ajouter une réaction rapide aux notes des autres utilisateur·rice·s\
@@ -158,7 +158,7 @@ flagAsBot: "Ce compte est un robot"
 flagAsBotDescription: "Si ce compte est géré de manière automatisée, choisissez cette\
   \ option. Si elle est activée, elle agira comme un marqueur pour les autres développeurs\
   \ afin d'éviter des chaînes d'interaction sans fin avec d'autres robots et d'ajuster\
-  \ les systèmes internes de Calckey pour traiter ce compte comme un robot."
+  \ les systèmes internes de Firefish pour traiter ce compte comme un robot."
 flagAsCat: "Ce compte est un chat"
 flagAsCatDescription: "Activer l'option \" Je suis un chat \" pour ce compte."
 flagShowTimelineReplies: "Afficher les réponses dans le fil"
@@ -225,7 +225,7 @@ noUsers: "Il n’y a pas d’utilisateur·rice·s"
 editProfile: "Modifier votre profil"
 noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer cette note ?"
 pinLimitExceeded: "Vous ne pouvez plus épingler d’autres notes."
-intro: "L’installation de Calckey est terminée ! Veuillez créer un compte administrateur."
+intro: "L’installation de Firefish est terminée ! Veuillez créer un compte administrateur."
 done: "Terminé"
 processing: "Traitement en cours"
 preview: "Aperçu"
@@ -413,7 +413,7 @@ exploreFediverse: "Explorer le Fediverse"
 popularTags: "Mots-clés populaires"
 userList: "Listes"
 about: "Informations"
-aboutMisskey: "À propos de Calckey"
+aboutMisskey: "À propos de Firefish"
 administrator: "Administrateur"
 token: "Jeton"
 twoStepAuthentication: "Authentification à deux facteurs"
@@ -572,7 +572,7 @@ descendingOrder: "Descendant"
 scratchpad: "ScratchPad"
 scratchpadDescription: "ScratchPad fournit un environnement expérimental pour AiScript.\
   \ Vous pouvez vérifier la rédaction de votre code, sa bonne exécution et le résultat\
-  \ de son interaction avec Calckey."
+  \ de son interaction avec Firefish."
 output: "Sortie"
 script: "Script"
 disablePagesScript: "Désactiver AiScript sur les Pages"
@@ -707,7 +707,7 @@ createNew: "Créer nouveau"
 optional: "Facultatif"
 createNewClip: "Créer un nouveau clip"
 public: "Public"
-i18nInfo: "Calckey est traduit dans différentes langues par des bénévoles. Vous pouvez\
+i18nInfo: "Firefish est traduit dans différentes langues par des bénévoles. Vous pouvez\
   \ contribuer à {link}."
 manageAccessTokens: "Gérer les jetons d'accès"
 accountInfo: " Informations du compte "
@@ -766,7 +766,7 @@ nUsers: "{n} utilisateur·rice·s"
 nNotes: "{n} Notes"
 sendErrorReports: "Envoyer les rapports d’erreur"
 sendErrorReportsDescription: "Si vous activez l'envoi des rapports d'erreur, vous\
-  \ contribuerez à améliorer la qualité de Calckey grâce au partage d'informations\
+  \ contribuerez à améliorer la qualité de Firefish grâce au partage d'informations\
   \ détaillées sur les erreurs lorsqu'un problème survient.\nCela inclut des informations\
   \ telles que la version de votre système d'exploitation, le type de navigateur que\
   \ vous utilisez, votre historique d'activité, etc."
@@ -865,7 +865,7 @@ hashtags: "Hashtags"
 troubleshooting: "Résolution de problèmes"
 useBlurEffect: "Utiliser des effets de flou dans l'interface"
 learnMore: "Plus d'informations"
-misskeyUpdated: "Calckey a été mis à jour !"
+misskeyUpdated: "Firefish a été mis à jour !"
 whatIsNew: "Voir les derniers changements"
 translate: "Traduire"
 translatedFrom: "Traduit depuis {x}"
@@ -998,8 +998,8 @@ _aboutMisskey:
   contributors: "Principaux contributeurs"
   allContributors: "Tous les contributeurs"
   source: "Code source"
-  translation: "Traduire Calckey"
-  donate: "Soutenir Calckey"
+  translation: "Traduire Firefish"
+  donate: "Soutenir Firefish"
   morePatrons: "Nous apprécions vraiment le soutien de nombreuses autres personnes\
     \ non mentionnées ici. Merci à toutes et à tous ! \U0001F970"
   patrons: "Contributeurs"
@@ -1009,9 +1009,9 @@ _nsfw:
   force: "Cacher tous les médias"
 _mfm:
   cheatSheet: "Antisèche MFM"
-  intro: "MFM est un langage Markdown spécifique utilisable ici et là dans Calckey.\
+  intro: "MFM est un langage Markdown spécifique utilisable ici et là dans Firefish.\
     \ Vous pouvez vérifier ici les structures utilisables avec MFM."
-  dummy: "La Fédiverse s'agrandit avec Calckey"
+  dummy: "La Fédiverse s'agrandit avec Firefish"
   mention: "Mentionner"
   mentionDescription: "Vous pouvez afficher un utilisateur spécifique en indiquant\
     \ une arobase suivie d'un nom d'utilisateur"
@@ -1227,7 +1227,7 @@ _time:
   hour: "h"
   day: "j"
 _tutorial:
-  title: "Comment utiliser Calckey"
+  title: "Comment utiliser Firefish"
   step1_1: "Bienvenue!"
   step1_2: "On va vous installer. Vous serez opérationnel en un rien de temps"
   step2_1: "Tout d'abord, remplissez votre profil"
@@ -1253,11 +1253,11 @@ _tutorial:
   step5_7: "La timeline globale {icon} est l'endroit où vous pouvez voir les messages\
     \ de toutes les autres instances connectées."
   step6_1: "Alors quel est cet endroit ?"
-  step6_2: "Eh bien, vous ne venez pas de rejoindre Calckey. Vous avez rejoint un\
+  step6_2: "Eh bien, vous ne venez pas de rejoindre Firefish. Vous avez rejoint un\
     \ portail vers le Fediverse, un réseau interconnecté de milliers de serveurs,\
     \ appelés \"instances\"."
   step6_3: "Chaque serveur fonctionne différemment, et tous les serveurs n'utilisent\
-    \ pas Calckey. Cependant, celui-ci le fait ! C'est un peu délicat, mais vous aurez\
+    \ pas Firefish. Cependant, celui-ci le fait ! C'est un peu délicat, mais vous aurez\
     \ le coup de main en un rien de temps."
   step6_4: "Maintenant, allez-y, explorez et amusez-vous !"
 _2fa:
@@ -1834,11 +1834,11 @@ logoutConfirm: Confirmer la déconnexion ?
 lastActiveDate: Dernière utilisation le
 cannotUploadBecauseNoFreeSpace: Mise en ligne échouée faute de place sur le Drive.
 remoteOnly: Distant seulement
-showUpdates: Afficher une fenêtre en sur-impression quand Calckey se met à jour
+showUpdates: Afficher une fenêtre en sur-impression quand Firefish se met à jour
 recommendedInstances: Instances recommandées
 caption: Description automatique
 migration: Migration
-showAdminUpdates: Indiquer qu'une nouvelle version de Calckey est disponible (admin
+showAdminUpdates: Indiquer qu'une nouvelle version de Firefish est disponible (admin
   seulement)
 replayTutorial: Relancer le tutoriel
 moveTo: Migrer le compte courant vers un nouveau compte

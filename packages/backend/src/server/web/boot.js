@@ -180,7 +180,7 @@
 			font-family: BIZ UDGothic, Roboto, HelveticaNeue, Arial, sans-serif;
 		}
 
-		#calckey_app,
+		#firefish_app,
 		#splash {
 			display: none !important;
 		}
