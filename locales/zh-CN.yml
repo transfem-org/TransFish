@@ -14,7 +14,7 @@ gotIt: "我明白了"
 cancel: "取消"
 enterUsername: "输入用户名"
 renotedBy: "由 {user} 转贴"
-noNotes: "没有帖文"
+noNotes: "没有帖子"
 noNotifications: "无通知"
 instance: "服务器"
 settings: "设置"
@@ -186,14 +186,14 @@ jobQueue: "作业队列"
 cpuAndMemory: "CPU和内存"
 network: "网络"
 disk: "存储"
-instanceInfo: "实例信息"
+instanceInfo: "服务器信息"
 statistics: "统计"
 clearQueue: "清除队列"
 clearQueueConfirmTitle: "确定清除队列？"
 clearQueueConfirmText: "未送达的帖子将不会送达。 通常，您不需要这样做。"
 clearCachedFiles: "清除缓存"
 clearCachedFilesConfirm: "确定要清除缓存文件？"
-blockedInstances: "被阻拦的实例"
+blockedInstances: "已屏蔽的服务器"
 blockedInstancesDescription: "设定要阻拦的实例，以换行来进行分割。被阻拦的实例将无法与本实例进行交换通讯。"
 muteAndBlock: "屏蔽/拉黑"
 mutedUsers: "已屏蔽用户"
@@ -309,8 +309,8 @@ unwatch: "取消关注"
 accept: "允许"
 reject: "拒绝"
 normal: "正常"
-instanceName: "实例名称"
-instanceDescription: "实例介绍"
+instanceName: "服务器名称"
+instanceDescription: "服务器简介"
 maintainerName: "管理员名称"
 maintainerEmail: "管理员电子邮箱"
 tosUrl: "服务条款URL"
@@ -600,7 +600,7 @@ testEmail: "邮件发送测试"
 wordMute: "文字屏蔽"
 regexpError: "正则表达式错误"
 regexpErrorDescription: "{tab} 屏蔽文字的第 {line} 行的正则表达式有错误："
-instanceMute: "实例的屏蔽"
+instanceMute: "服务器静音"
 userSaysSomething: "{name}说了什么"
 makeActive: "启用"
 display: "显示"
@@ -701,7 +701,7 @@ showTitlebar: "显示标题栏"
 clearCache: "清除缓存"
 onlineUsersCount: "{n}人在线"
 nUsers: "{n}用户"
-nNotes: "{n}帖子"
+nNotes: "{n} 帖子"
 sendErrorReports: "发送错误报告"
 sendErrorReportsDescription: "启用后，如果出现问题，可以与Misskey共享详细的错误信息，从而帮助提高软件的质量。"
 myTheme: "我的主题"
@@ -755,7 +755,7 @@ active: "活动"
 offline: "离线"
 notRecommended: "不推荐"
 botProtection: "Bot防御"
-instanceBlocking: "被阻拦的实例"
+instanceBlocking: "联邦管理"
 selectAccount: "选择账户"
 switchAccount: "切换账户"
 enabled: "已启用"
@@ -1075,7 +1075,7 @@ _channel:
   owned: "管理中"
   following: "正在关注"
   usersCount: "有{n}人参与"
-  notesCount: "有{n}个帖子"
+  notesCount: "{n} 帖子"
   nameAndDescription: "名称与描述"
   nameOnly: "仅名称"
 _menuDisplay:
@@ -1091,7 +1091,7 @@ _wordMute:
   hardDescription: "防止将具有指定条件的帖子添加到时间线。 即使您更改条件，未添加的帖文也会被排除在外。"
   soft: "软屏蔽"
   hard: "硬屏蔽"
-  mutedNotes: "被屏蔽的帖子"
+  mutedNotes: "已静音的帖子"
 _instanceMute:
   instanceMuteDescription: "屏蔽配置实例中的所有帖子和转帖，包括实例的用户回复。"
   instanceMuteDescription2: "设置时用换行符来分隔"
@@ -1172,7 +1172,7 @@ _theme:
     accentLighten: "强调色(浅)"
     fgHighlighted: "高亮显示文本"
 _sfx:
-  note: "帖子"
+  note: "新的帖子"
   noteMy: "我的帖子"
   notification: "通知"
   chat: "聊天"
@@ -1225,6 +1225,8 @@ _2fa:
   step3: "输入您的应用提供的动态口令以完成设置。"
   step4: "从现在开始，任何登录操作都将要求您提供动态口令。"
   securityKeyInfo: "您可以设置使用支持FIDO2的硬件安全密钥、设备上的指纹或PIN来保护您的登录过程。"
+  renewTOTPOk: 重新配置
+  renewTOTPCancel: 取消
 _permissions:
   "read:account": "查看账户信息"
   "write:account": "更改帐户信息"
@@ -1799,7 +1801,7 @@ antennasDesc: "天线会显示符合您设置条件的新帖子！\n可以从时
 channelFederationWarn: 频道还没有与其他服务器联合
 seperateRenoteQuote: 单独的推荐和引用按钮
 customSplashIcons: 自定义闪屏图标（urls）
-alt: 替代
+alt: 替代文字
 pushNotificationNotSupported: 你的浏览器或者服务器不支持推送通知
 showAds: 显示广告
 enterSendsMessage: 按回车键发送信息（关闭则是 Ctrl + Retun）
@@ -1845,3 +1847,10 @@ enableEmojiReactions: 启用 emoji 回应
 cw: 内容警告
 hiddenTagsDescription: 列出你想隐藏的话题标签（不带#）以避免在趋势和探索中显示。隐藏的标签仍然可以通过其他方式被发现。
 enableRecommendedTimeline: 启用推荐时间线
+_skinTones:
+  medium: 中等
+  light: 浅色
+  yellow: 黄色
+  dark: 深色
+isModerator: 监察员
+isAdmin: 管理员
