@@ -451,7 +451,12 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-const patrons = await os.api("patrons");
+let patrons = [];
+try {
+	patrons = await os.api("patrons");
+} catch {
+	console.error("Codeberg's down.")
+}
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);

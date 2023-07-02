@@ -170,7 +170,12 @@ import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-const patrons = await os.api("patrons", { forceUpdate: true });
+let patrons = [];
+try {
+	patrons = await os.api("patrons", { forceUpdate: true });
+} catch {
+	console.error("Codeberg's down.")
+}
 
 let easterEggReady = false;
 let easterEggEmojis = $ref([]);
