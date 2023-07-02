@@ -72,21 +72,22 @@
 						<div class="label">{{ i18n.ts.online }}</div>
 					</div>
 				</div>
-			</div>
-			<div class="item _panel emojis">
-				<div class="icon">
-					<i class="ph-smiley ph-bold ph-xl"></i>
-				</div>
-				<div class="body">
-					<div class="value">
-						<MkNumber
-							:value="emojiCount"
-							style="margin-right: 0.5em"
-						/>
+				<div class="item _panel emojis">
+					<div class="icon">
+						<i class="ph-smiley ph-bold ph-xl"></i>
 					</div>
-					<div class="label">{{ i18n.ts.emojis }}</div>
+					<div class="body">
+						<div class="value">
+							<MkNumber
+								:value="emojiCount"
+								style="margin-right: 0.5em"
+							/>
+						</div>
+						<div class="label">{{ i18n.ts.emojis }}</div>
+					</div>
 				</div>
 			</div>
+
 			<!-- TODO: Drive -->
 		</Transition>
 	</div>
