@@ -33,7 +33,7 @@
 				@click="showTabsPopup"
 			>
 				<MkAvatar
-					v-if="metadata.avatar"
+					v-if="metadata && metadata.avatar"
 					class="avatar"
 					:user="metadata.avatar"
 					:show-indicator="true"
@@ -91,7 +91,7 @@
 			</nav>
 		</template>
 		<div class="buttons right">
-			<template v-if="metadata.avatar">
+			<template v-if="metadata && metadata.avatar">
 				<MkFollowButton
 					v-if="narrow"
 					:user="metadata.avatar"
