@@ -13,18 +13,19 @@ pub enum IdConvertType {
 
 #[napi]
 pub fn convert_id(in_id: String, id_convert_type: IdConvertType) -> napi::Result<String> {
+    println!("converting id: {}", in_id);
     use IdConvertType::*;
     match id_convert_type {
         MastodonId => {
-            let mut out: i64 = 0;
+            let mut out: i128 = 0;
             for (i, c) in in_id.to_lowercase().chars().rev().enumerate() {
-                out += num_from_char(c)? as i64 * 36_i64.pow(i as u32);
+                out += num_from_char(c)? as i128 * 36_i128.pow(i as u32);
             }
 
             Ok(out.to_string())
         }
         CalckeyId => {
-            let mut input: i64 = match in_id.parse() {
+            let mut input: i128 = match in_id.parse() {
                 Ok(s) => s,
                 Err(_) => {
                     return Err(Error::new(

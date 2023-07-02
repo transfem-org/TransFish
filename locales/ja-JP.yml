@@ -1887,9 +1887,7 @@ hiddenTagsDescription: 'トレンドと「みつける」から除外したい�
 hiddenTags: 非表示にするハッシュタグ
 apps: "アプリ"
 _experiments:
-  enablePostEditing: 投稿の編集機能を有効にする
   title: 試験的な機能
-  postEditingCaption: 投稿のメニューに既存の投稿を編集するボタンを表示し、他サーバーの編集も受信できるようにします。
   postImportsCaption:
     ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
   enablePostImports: 投稿のインポートを有効にする

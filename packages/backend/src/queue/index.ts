@@ -482,7 +482,8 @@ export function createCleanRemoteFilesJob() {
 export function createIndexAllNotesJob(data = {}) {
 	return backgroundQueue.add("indexAllNotes", data, {
 		removeOnComplete: true,
-		removeOnFail: true,
+		removeOnFail: false,
+		timeout: 1000 * 60 * 60 * 24,
 	});
 }
 

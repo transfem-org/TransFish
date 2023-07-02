@@ -1,7 +1,7 @@
----
 _lang_: "简体中文"
 headlineMisskey: "通过帖子连接在一起的网络"
-introMisskey: "欢迎！Misskey是一个开源的、去中心化的“微博客”服务。\n通过编写「帖文」来和大家分享你的以及你周围的事情吧！📡\n通过「回应」功能，可以让你快速地对大家的帖文表达反馈👍\n来探索新的世界吧！🚀"
+introMisskey: "欢迎！Misskey是一个开源的、去中心化的“微博客”服务。\n通过编写「帖文」来和大家分享你的以及你周围的事情吧！📡\n通过「回应」功能，可以让你快速地对大家的帖文表达反馈👍\n\
+  来探索新的世界吧！🚀"
 monthAndDay: "{month}月 {day}日"
 search: "搜索"
 notifications: "通知"
@@ -14,9 +14,9 @@ gotIt: "我明白了"
 cancel: "取消"
 enterUsername: "输入用户名"
 renotedBy: "由 {user} 转贴"
-noNotes: "没有帖文"
+noNotes: "没有帖子"
 noNotifications: "无通知"
-instance: "实例"
+instance: "服务器"
 settings: "设置"
 basicSettings: "基本设置"
 otherSettings: "其他设置"
@@ -64,7 +64,7 @@ import: "导入"
 export: "导出"
 files: "文件"
 download: "下载"
-driveFileDeleteConfirm: "要删除「{name}」文件吗？附加此文件的帖子也会被删除。"
+driveFileDeleteConfirm: "要删除文件「{name}」吗？它将被所有作为附件包含它的帖子中删除。"
 unfollowConfirm: "要取消对{name}的关注吗？"
 exportRequested: "导出请求已提交，这可能需要花一些时间，导出的文件将保存到网盘中。"
 importRequested: "导入请求已提交，这可能需要花一点时间。"
@@ -166,7 +166,7 @@ selectUser: "选择用户"
 recipient: "收件人"
 annotation: "注解"
 federation: "联合"
-instances: "实例"
+instances: "服务器"
 registeredAt: "初次观测"
 latestRequestSentAt: "上次发送的请求"
 latestRequestReceivedAt: "上次收到的请求"
@@ -186,14 +186,14 @@ jobQueue: "作业队列"
 cpuAndMemory: "CPU和内存"
 network: "网络"
 disk: "存储"
-instanceInfo: "实例信息"
+instanceInfo: "服务器信息"
 statistics: "统计"
 clearQueue: "清除队列"
 clearQueueConfirmTitle: "确定清除队列？"
 clearQueueConfirmText: "未送达的帖子将不会送达。 通常，您不需要这样做。"
 clearCachedFiles: "清除缓存"
 clearCachedFilesConfirm: "确定要清除缓存文件？"
-blockedInstances: "被阻拦的实例"
+blockedInstances: "已屏蔽的服务器"
 blockedInstancesDescription: "设定要阻拦的实例，以换行来进行分割。被阻拦的实例将无法与本实例进行交换通讯。"
 muteAndBlock: "屏蔽/拉黑"
 mutedUsers: "已屏蔽用户"
@@ -309,8 +309,8 @@ unwatch: "取消关注"
 accept: "允许"
 reject: "拒绝"
 normal: "正常"
-instanceName: "实例名称"
-instanceDescription: "实例介绍"
+instanceName: "服务器名称"
+instanceDescription: "服务器简介"
 maintainerName: "管理员名称"
 maintainerEmail: "管理员电子邮箱"
 tosUrl: "服务条款URL"
@@ -321,7 +321,7 @@ dayX: "{day}日"
 monthX: "{month}月"
 yearX: "{year}年"
 pages: "页面"
-integration: "关联"
+integration: "整合"
 connectService: "连接"
 disconnectService: "断开连接"
 enableLocalTimeline: "启用本地时间线功能"
@@ -600,7 +600,7 @@ testEmail: "邮件发送测试"
 wordMute: "文字屏蔽"
 regexpError: "正则表达式错误"
 regexpErrorDescription: "{tab} 屏蔽文字的第 {line} 行的正则表达式有错误："
-instanceMute: "实例的屏蔽"
+instanceMute: "服务器静音"
 userSaysSomething: "{name}说了什么"
 makeActive: "启用"
 display: "显示"
@@ -643,7 +643,7 @@ instanceTicker: "帖子的实例信息"
 waitingFor: "等待{x}"
 random: "随机"
 system: "系统"
-switchUi: "切换界面"
+switchUi: "界面"
 desktop: "桌面"
 clip: "便签"
 createNew: "新建"
@@ -701,7 +701,7 @@ showTitlebar: "显示标题栏"
 clearCache: "清除缓存"
 onlineUsersCount: "{n}人在线"
 nUsers: "{n}用户"
-nNotes: "{n}帖子"
+nNotes: "{n} 帖子"
 sendErrorReports: "发送错误报告"
 sendErrorReportsDescription: "启用后，如果出现问题，可以与Misskey共享详细的错误信息，从而帮助提高软件的质量。"
 myTheme: "我的主题"
@@ -755,7 +755,7 @@ active: "活动"
 offline: "离线"
 notRecommended: "不推荐"
 botProtection: "Bot防御"
-instanceBlocking: "被阻拦的实例"
+instanceBlocking: "联邦管理"
 selectAccount: "选择账户"
 switchAccount: "切换账户"
 enabled: "已启用"
@@ -816,7 +816,7 @@ controlPanel: "控制面板"
 manageAccounts: "管理账户"
 makeReactionsPublic: "将回应设置为公开"
 makeReactionsPublicDescription: "将您发表过的回应设置成公开可见。"
-classic: "经典"
+classic: "居中"
 muteThread: "屏蔽帖子列表"
 unmuteThread: "取消屏蔽帖子列表"
 ffVisibility: "连接的可见范围"
@@ -896,7 +896,10 @@ shuffle: "随机"
 account: "账户"
 move: "移动"
 customKaTeXMacro: "自定义 KaTeX 宏"
-customKaTeXMacroDescription: "使用宏来轻松的输入数学表达式吧！宏的用法与 LaTeX 中的命令定义相同。你可以使用 \\newcommand{\\name}{content} 或 \\newcommand{\\name}[number of arguments]{content} 来输入数学表达式。举个例子，\\newcommand{\\add}[2]{#1 + #2} 会将 \\add{3}{foo} 展开为 3 + foo。此外，宏名称外的花括号 {} 可以被替换为圆括号 () 和方括号 []，这会影响用于参数的括号。每行只能够定义一个宏，无法在中间换行，且无效的行将被忽略。只支持简单字符串替换功能，不支持高级语法，如条件分支等。"
+customKaTeXMacroDescription: "使用宏来轻松的输入数学表达式吧！宏的用法与 LaTeX 中的命令定义相同。你可以使用 \\newcommand{\\
+  name}{content} 或 \\newcommand{\\name}[number of arguments]{content} 来输入数学表达式。举个例子，\\
+  newcommand{\\add}[2]{#1 + #2} 会将 \\add{3}{foo} 展开为 3 + foo。此外，宏名称外的花括号 {} 可以被替换为圆括号
+  () 和方括号 []，这会影响用于参数的括号。每行只能够定义一个宏，无法在中间换行，且无效的行将被忽略。只支持简单字符串替换功能，不支持高级语法，如条件分支等。"
 enableCustomKaTeXMacro: "启用自定义 KaTeX 宏"
 _sensitiveMediaDetection:
   description: "可以使用机器学习技术自动检测敏感媒体，以便进行审核。服务器负载将略微增加。"
@@ -981,6 +984,7 @@ _aboutMisskey:
   donate: "赞助Misskey"
   morePatrons: "还有很多其他的人也在支持我们，非常感谢🥰"
   patrons: "支持者"
+  patronsList: 按时间顺序而不是捐赠金额排列。通过上面的链接捐款，让您的名字出现在这里！
 _nsfw:
   respect: "隐藏敏感内容"
   ignore: "不隐藏敏感内容"
@@ -1051,6 +1055,24 @@ _mfm:
   rotateDescription: "旋转指定的角度。"
   plain: "简洁"
   plainDescription: "禁用所有内部语法。"
+  crop: 裁剪
+  scale: 缩放
+  position: 位置
+  fade: 渐淡
+  advanced: 高级 MFM
+  background: 背景色
+  fadeDescription: 内容淡入和淡出。
+  warn: MFM 可能包含快速移动或华丽的动画
+  advancedDescription: 如果禁用，则仅允许基本标记，除非正在播放动态 MFM
+  foreground: 前景色
+  backgroundDescription: 更改文本的背景色。
+  play: 播放 MFM
+  alwaysPlay: 始终自动播放所有动态的 MFM
+  stop: 停止播放 MFM
+  positionDescription: 将内容移动指定的量。
+  cropDescription: 裁剪内容。
+  scaleDescription: 按指定量缩放内容。
+  foregroundDescription: 更改文本的前景色。
 _instanceTicker:
   none: "不显示"
   remote: "仅远程用户"
@@ -1059,6 +1081,7 @@ _serverDisconnectedBehavior:
   reload: "自动重载"
   dialog: "对话框警告"
   quiet: "安静警告"
+  nothing: 什么也不做
 _channel:
   create: "创建频道"
   edit: "编辑频道"
@@ -1068,7 +1091,7 @@ _channel:
   owned: "管理中"
   following: "正在关注"
   usersCount: "有{n}人参与"
-  notesCount: "有{n}个帖子"
+  notesCount: "{n} 帖子"
   nameAndDescription: "名称与描述"
   nameOnly: "仅名称"
 _menuDisplay:
@@ -1084,7 +1107,7 @@ _wordMute:
   hardDescription: "防止将具有指定条件的帖子添加到时间线。 即使您更改条件，未添加的帖文也会被排除在外。"
   soft: "软屏蔽"
   hard: "硬屏蔽"
-  mutedNotes: "被屏蔽的帖子"
+  mutedNotes: "已静音的帖子"
 _instanceMute:
   instanceMuteDescription: "屏蔽配置实例中的所有帖子和转帖，包括实例的用户回复。"
   instanceMuteDescription2: "设置时用换行符来分隔"
@@ -1165,7 +1188,7 @@ _theme:
     accentLighten: "强调色(浅)"
     fgHighlighted: "高亮显示文本"
 _sfx:
-  note: "帖子"
+  note: "新的帖子"
   noteMy: "我的帖子"
   notification: "通知"
   chat: "聊天"
@@ -1178,7 +1201,7 @@ _ago:
   secondsAgo: "{n}秒前"
   minutesAgo: "{n}分前"
   hoursAgo: "{n}小时前"
-  daysAgo: "{n}日前"
+  daysAgo: "{n}天前"
   weeksAgo: "{n}周前"
   monthsAgo: "{n}月前"
   yearsAgo: "{n}年前"
@@ -1218,6 +1241,21 @@ _2fa:
   step3: "输入您的应用提供的动态口令以完成设置。"
   step4: "从现在开始，任何登录操作都将要求您提供动态口令。"
   securityKeyInfo: "您可以设置使用支持FIDO2的硬件安全密钥、设备上的指纹或PIN来保护您的登录过程。"
+  renewTOTPOk: 重新配置
+  renewTOTPCancel: 取消
+  token: 2FA 令牌
+  renewTOTP: 重新配置身份验证器应用程序
+  registerTOTPBeforeKey: 请设置一个认证器应用来注册一个安全或通行密钥。
+  renewTOTPConfirm: 这将导致您之前的应用程序中的验证码停止工作
+  step3Title: 输入验证码
+  step2Click: 点击此二维码将允许您在安全密钥或手机验证器应用中注册 2FA。
+  securityKeyNotSupported: 您的浏览器不支持安全密钥。
+  securityKeyName: 输入密钥名称
+  chromePasskeyNotSupported: 目前不支持 Chrome passkeys。
+  tapSecurityKey: 请按照您的浏览器的指示注册安全或通行密钥
+  removeKey: 移除安全密钥
+  removeKeyConfirm: 真的要删除 {name} 密钥吗？
+  whyTOTPOnlyRenew: 只要注册了安全密钥，就无法删除身份验证器应用程序。
 _permissions:
   "read:account": "查看账户信息"
   "write:account": "更改帐户信息"
@@ -1258,12 +1296,15 @@ _auth:
   pleaseGoBack: "请返回到应用程序"
   callback: "回到应用程序"
   denied: "拒绝访问"
+  allPermissions: 完全的账户访问权限
+  copyAsk: 请将以下授权码粘贴到应用程序中：
 _antennaSources:
   all: "所有帖子"
   homeTimeline: "已关注用户的帖子"
   users: "来自指定用户的帖子"
   userList: "来自指定列表中的帖子"
   userGroup: "来自指定群组中用户的帖子"
+  instances: 服务器上所有用户的帖子
 _weekday:
   sunday: "星期日"
   monday: "星期一"
@@ -1280,21 +1321,26 @@ _widgets:
   trends: "趋势"
   clock: "时钟"
   rss: "RSS阅读器"
-  rssTicker: "RSS Ticker"
+  rssTicker: "RSS滚动条"
   activity: "活动"
   photos: "照片"
   digitalClock: "数字时钟"
   unixClock: "UNIX时钟"
   federation: "联邦宇宙"
-  instanceCloud: "实例云"
-  postForm: "投稿窗口"
+  instanceCloud: "服务器云端"
+  postForm: "发布窗口"
   slideshow: "幻灯片展示"
   button: "按钮"
   onlineUsers: "在线用户"
   jobQueue: "作业队列"
-  serverMetric: "服务器监控"
+  serverMetric: "服务器指标"
   aiscript: "AiScript控制台"
   aichan: "小蓝"
+  userList: 用户列表
+  meiliStatus: 服务器状态
+  meiliIndexCount: 已索引的帖子
+  meiliSize: 索引大小
+  serverInfo: 服务器信息
 _cw:
   hide: "隐藏"
   show: "查看更多"
@@ -1325,7 +1371,7 @@ _poll:
 _visibility:
   public: "公开"
   publicDescription: "您的帖子将出现在全局时间线上"
-  home: "首页"
+  home: "不公开"
   homeDescription: "仅发送至首页的时间线"
   followers: "仅关注者"
   followersDescription: "仅发送至关注者"
@@ -1395,6 +1441,7 @@ _timelines:
   local: "本地"
   social: "社交"
   global: "全局"
+  recommended: 推荐
 _pages:
   newPage: "创建页面"
   editPage: "编辑页面"
@@ -1733,9 +1780,9 @@ _deck:
   stackLeft: "向左折叠"
   popRight: "向右弹出"
   profile: "配置文件"
-  newProfile: "新建配置文件"
+  newProfile: "新建工作区"
   renameProfile: "重命名配置文件"
-  deleteProfile: "删除配置文件"
+  deleteProfile: "删除工作区"
   nameAlreadyExists: "该配置文件名已存在。"
   introduction: "将各列进行组合以创建您自己的界面！"
   introduction2: "您可以随时通过屏幕右侧的 + 来添加列"
@@ -1748,4 +1795,134 @@ _deck:
     antenna: "天线"
     list: "列表"
     mentions: "提及"
-    direct: "指定用户"
+    direct: "私信"
+    channel: 频道
+apps: 应用
+_messaging:
+  dms: 私信
+  groups: 群组
+migration: 迁移
+_experiments:
+  title: 实验性功能
+license: 许可证
+flagSpeakAsCatDescription: 在猫模式下你的帖子会喵化
+allowedInstances: 白名单服务器
+listsDesc: 列表可以让你创建含有指定用户的时间线，它们可以从时间线页面访问。
+flagSpeakAsCat: 像猫一样说话
+removeReaction: 移除你的回应
+expandOnNoteClick: 点击打开帖子
+expandOnNoteClickDesc: 如果禁用，你仍然可以在右键菜单中或通过点击时间戳打开帖子。
+sendPushNotificationReadMessage: 删除已阅读的推送通知
+customMOTD: 自定义 MOTD（闪屏消息）
+sendPushNotificationReadMessageCaption: 短暂显示 "{emptyPushNotificationMessage}" 的通知，如果启用，可能会增加你的设备的耗电量。
+adminCustomCssWarn: 仅当你知道此设置的作用时才应使用它。输入不正确的值可能会导致每个人的客户端停止正常运行。请在用户设置中进行测试来确保您的 CSS
+  正常工作。
+customMOTDDescription: 自定义MOTD（闪屏）消息，一行一个，每次用户加载/刷新页面时都会随机显示。
+customSplashIconsDescription: 用换行符隔开的自定义闪屏图标的URL，在用户每次加载/重新加载页面时随机显示。请确保图片是在一个静态的
+  URL 上，最好全部调整为 192x192 的大小。
+recommendedInstancesDescription: 推荐的服务器以换行符分隔，它们将出现在推荐的时间线中。不要添加 "https://"，仅添加域名。
+splash: 启动画面
+showUpdates: Calckey 更新后显示弹出窗口
+selectInstance: 选择一个服务器
+silencedInstances: 静默的服务器
+antennaInstancesDescription: 每行列出一个服务器主机
+pushNotification: 推送通知
+subscribePushNotification: 启用推送通知
+showAdminUpdates: 提示新的 Calckey 版本可用（仅对于管理员）
+searchPlaceholder: 搜索 Calckey
+addInstance: 添加一个服务器
+jumpToPrevious: 跳转至上一个
+silenceThisInstance: 使此服务器静音
+manageGroups: 管理群组
+antennasDesc: "天线会显示符合您设置条件的新帖子！\n可以从时间线页面访问它们。"
+channelFederationWarn: 频道还没有与其他服务器联合
+seperateRenoteQuote: 单独的推荐和引用按钮
+customSplashIcons: 自定义闪屏图标（urls）
+alt: 替代文字
+pushNotificationNotSupported: 你的浏览器或者服务器不支持推送通知
+showAds: 显示广告
+enterSendsMessage: 按回车键发送信息（关闭则是 Ctrl + Retun）
+recommendedInstances: 推荐服务器
+updateAvailable: 可能有可用更新！
+swipeOnMobile: 允许在页面之间滑动
+swipeOnDesktop: 允许在桌面端以移动设备方式滑动
+logoImageUrl: Logo 图像 URL
+deleted: 已删除
+editNote: 编辑帖子
+edited: 于 {date} {time} 编辑
+selectChannel: 选择一个频道
+accountMoved: 用户已迁移至新账户：
+silencedInstancesDescription: 列出你想静默的服务器的主机名。列出的服务器中的账户被视为 "静默"，只能发出跟随请求，如果不被跟随，就不能提及本地账户。这不会影响被封锁的服务器。
+hiddenTags: 隐藏的哈希标签
+userSaysSomethingReason: '{name} 说 {reason}'
+clipsDesc: 便签就像可共享的分类书签。您可以从各个帖子的菜单中创建便签。
+privateModeInfo: 当启用时，只有白名单上的服务器可以与你的服务器联合，所有的帖子都会对公共时间线隐藏。
+allowedInstancesDescription: 要列入联合白名单的服务器的主机名，一行一个（仅适用于私密模式）。
+breakFollowConfirm: 你确定要移除关注者吗？
+caption: 自动显示说明文字
+newer: 更新的
+older: 更老的
+noInstances: 没有服务器
+silenced: 静默的
+accessibility: 无障碍
+secureMode: 安全模式（仅允许授权的拉取）
+replayTutorial: 重播教程
+userSaysSomethingReasonReply: '{name} 回复了包含 {reason} 的帖子'
+userSaysSomethingReasonQuote: '{name} 引用了一篇包含 {reason} 的帖子'
+userSaysSomethingReasonRenote: '{name} 推荐了一个包含 {reason} 的帖子'
+noThankYou: 不，谢谢
+secureModeInfo: 当向其他服务器请求时，不要在没有验证的情况下发回。
+privateMode: 私密模式
+instanceSecurity: 服务器安全
+image: 图像
+video: 视频
+audio: 音频
+cannotUploadBecauseExceedsFileSizeLimit: 无法上传此文件，因为它超出了允许的最大大小。
+unsubscribePushNotification: 禁用推送通知
+pushNotificationAlreadySubscribed: 推送通知已启用
+enableEmojiReactions: 启用 emoji 回应
+cw: 内容警告
+hiddenTagsDescription: 列出你想隐藏的话题标签（不带#）以避免在趋势和探索中显示。隐藏的标签仍然可以通过其他方式被发现。
+enableRecommendedTimeline: 启用推荐时间线
+_skinTones:
+  medium: 中等
+  light: 浅色
+  yellow: 黄色
+  dark: 深色
+isModerator: 协作者
+isAdmin: 管理员
+findOtherInstance: 寻找其它服务器
+moveFromDescription: 这将为您的旧帐户设置一个别名，以便您可以从该旧帐户转移到当前帐户。在从旧帐户转移之前执行此操作。请输入格式如@person@server.com
+  的帐户标签
+indexPosts: 索引帖子
+signupsDisabled: 该服务器目前关闭注册，但您随时可以在另一台服务器上注册！如果您有该服务器的邀请码，请在下面输入。
+silencedWarning: 显示这个页面是因为这些用户来自你的管理员设置的静默服务器，所以他们有可能是垃圾信息。
+isBot: 这个账户是一个机器人
+moveAccountDescription: 这个过程是不可逆的。在移动之前，请确保您已在新帐户上为当前帐户设置了别名。请输入格式如 @person@server.com
+  帐户标签
+moveFromLabel: 您要移出的旧帐户：
+preventAiLearning: 阻止 AI 机器人抓取
+preventAiLearningDescription: 请求第三方人工智能语言模型不要研究您上传的内容，例如帖子和图像。
+noGraze: 请禁用 "Graze for Mastodon" 浏览器扩展，因为它会干扰 Calckey。
+moveTo: 将当前帐户移至新帐户
+moveToLabel: 你要迁移到的目标帐户：
+moveAccount: 移动账户！
+migrationConfirm: "你确实确定要将帐户迁移到 {account} 吗？此操作无法撤消，并且你将无法再次正常使用旧账户。\n另外，请确保你已将此当前帐户设置为要移出的帐户。"
+indexFromDescription: 留空以索引每个帖子
+noteId: 帖子 ID
+moveFrom: 从旧帐户移至此帐户
+defaultReaction: 发出和收到的帖子的默认表情符号反应
+indexNotice: 现在开始索引。这可能需要一段时间，请至少一个小时内不要重新启动服务器。
+indexFrom: 从帖子 ID 开始的索引
+sendModMail: 发送审核通知
+isLocked: 该帐户设置了关注请求
+_filters:
+  notesBefore: 在之前的帖子
+  followingOnly: 仅关注中
+  notesAfter: 在之后的帖子
+  fromDomain: 来自域名
+  withFile: 带有文件
+  fromUser: 来自用户
+  followersOnly: 仅关注者
+reactionPickerSkinTone: 首选的表情符号肤色
+isPatron: Calckey 赞助

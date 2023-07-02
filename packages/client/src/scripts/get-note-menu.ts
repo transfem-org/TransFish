@@ -408,7 +408,7 @@ export function getNoteMenu(props: {
 						},
 				  }
 				: undefined,
-			instance.features.postEditing && isAppearAuthor
+			isAppearAuthor
 				? {
 						icon: "ph-pencil-line ph-bold ph-lg",
 						text: i18n.ts.edit,

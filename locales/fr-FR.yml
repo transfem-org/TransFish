@@ -2028,7 +2028,7 @@ flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponse
 _experiments:
   alpha: Alpha
   beta: Beta
-  enablePostEditing: Autoriser l'édition de note
+  enablePostImports: Autoriser l'importation de messages
   title: Expérimentations
 findOtherInstance: Trouver un autre serveur
 userSaysSomethingReasonQuote: '{name} a cité une note contenant {reason}'

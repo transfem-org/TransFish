@@ -23,8 +23,15 @@ export default define(meta, paramDef, async (ps) => {
 	if (!ps.forceUpdate && cachedPatrons) {
 		patrons = JSON.parse(cachedPatrons);
 	} else {
+		AbortSignal.timeout ??= function timeout(ms) {
+			const ctrl = new AbortController()
+			setTimeout(() => ctrl.abort(), ms)
+			return ctrl.signal
+		}
+
 		patrons = await fetch(
 			"https://codeberg.org/calckey/calckey/raw/branch/develop/patrons.json",
+			{ signal: AbortSignal.timeout(2000) }
 		)
 			.then((response) => response.json())
 			.catch(() => {

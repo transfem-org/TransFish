@@ -2095,10 +2095,7 @@ jumpToPrevious: Zum Vorherigen springen
 silencedWarning: Diese Meldung wird angezeigt, weil diese Nutzer von Servern stammen,
   die Ihr Administrator abgeschaltet hat, so dass es sich möglicherweise um Spam handelt.
 _experiments:
-  enablePostEditing: Beitragsbearbeitung ermöglichen
   title: Funktionstests
-  postEditingCaption: Zeigt die Option für Nutzer an, ihre bestehenden Beiträge über
-    das Menü "Beitragsoptionen" zu bearbeiten
   enablePostImports: Beitragsimporte aktivieren
   postImportsCaption: Erlaubt es Nutzer:innen ihre Posts von alten Calckey, Misskey,
     Mastodon, Akkoma und Pleroma Accounts zu importieren. Bei Engpässen in der Warteschlange
@@ -2152,3 +2149,4 @@ clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips 
   Menü individueller Posts aus erstellen.
 channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
 reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
+swipeOnMobile: Wischen zwischen den Seiten erlauben

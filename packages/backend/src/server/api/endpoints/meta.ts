@@ -529,7 +529,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			github: instance.enableGithubIntegration,
 			discord: instance.enableDiscordIntegration,
 			serviceWorker: instance.enableServiceWorker,
-			postEditing: instance.experimentalFeatures?.postEditing || false,
+			postEditing: true,
 			postImports: instance.experimentalFeatures?.postImports || false,
 			miauth: true,
 		};
