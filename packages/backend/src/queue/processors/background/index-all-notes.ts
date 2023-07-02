@@ -20,7 +20,7 @@ export default async function indexAllNotes(
 	let total: number = (job.data.total as number) ?? 0;
 
 	let running = true;
-	const take = 50000;
+	const take = 100000;
 	const batch = 100;
 	while (running) {
 		logger.info(
