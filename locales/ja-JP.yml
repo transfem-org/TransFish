@@ -978,6 +978,8 @@ enableCustomKaTeXMacro: "カスタムKaTeXマクロを有効にする"
 preventAiLearning: "AIによる学習を防止"
 preventAiLearningDescription: "投稿したノート、添付した画像などのコンテンツを学習の対象にしないようAIに要求します。これはnoaiフラグをHTMLレスポンスに含めることによって実現されます。"
 noGraze: "ブラウザの拡張機能「Graze for Mastodon」は、Calckeyの動作を妨げるため、無効にしてください。"
+enableServerMachineStats: "サーバーのマシン情報を公開する"
+enableIdenticonGeneration: "ユーザーごとのIdenticon生成を有効にする"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"

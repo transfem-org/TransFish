@@ -344,6 +344,17 @@
 						</FormSection>
 
 						<FormSection>
+							<template #label>Server Performance</template>
+							<FormSwitch v-model="enableServerMachineStats">
+								<template #label>{{ i18n.ts.enableServerMachineStats }}</template>
+							</FormSwitch>
+
+							<FormSwitch v-model="enableIdenticonGeneration">
+								<template #label>{{ i18n.ts.enableIdenticonGeneration }}</template>
+							</FormSwitch>
+						</FormSection>
+
+						<FormSection>
 							<template #label>DeepL Translation</template>
 
 							<FormInput
@@ -442,6 +453,8 @@ let libreTranslateApiUrl: string = $ref("");
 let libreTranslateApiKey: string = $ref("");
 let defaultReaction: string = $ref("");
 let defaultReactionCustom: string = $ref("");
+let enableServerMachineStats: boolean = $ref(false);
+let enableIdenticonGeneration: boolean = $ref(false);
 
 async function init() {
 	const meta = await os.api("admin/meta");
@@ -482,6 +495,8 @@ async function init() {
 	defaultReactionCustom = ["⭐", "👍", "❤️"].includes(meta.defaultReaction)
 		? ""
 		: meta.defaultReaction;
+	enableServerMachineStats = meta.enableServerMachineStats;
+	enableIdenticonGeneration = meta.enableIdenticonGeneration;
 }
 
 function save() {
@@ -521,6 +536,8 @@ function save() {
 		libreTranslateApiUrl,
 		libreTranslateApiKey,
 		defaultReaction,
+		enableServerMachineStats,
+		enableIdenticonGeneration,
 	}).then(() => {
 		fetchInstance();
 	});

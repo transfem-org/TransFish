@@ -16,6 +16,7 @@ import { IsNull } from "typeorm";
 import config from "@/config/index.js";
 import Logger from "@/services/logger.js";
 import { UserProfiles, Users } from "@/models/index.js";
+import { fetchMeta } from "@/misc/fetch-meta.js";
 import { genIdenticon } from "@/misc/gen-identicon.js";
 import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
@@ -125,10 +126,16 @@ router.get("/avatar/@:acct", async (ctx) => {
 });
 
 router.get("/identicon/:x", async (ctx) => {
-	const [temp, cleanup] = await createTemp();
-	await genIdenticon(ctx.params.x, fs.createWriteStream(temp));
-	ctx.set("Content-Type", "image/png");
-	ctx.body = fs.createReadStream(temp).on("close", () => cleanup());
+	const meta = await fetchMeta();
+	if (meta.enableIdenticonGeneration) {
+		const [temp, cleanup] = await createTemp();
+		await genIdenticon(ctx.params.x, fs.createWriteStream(temp));
+		ctx.set("Content-Type", "image/png");
+		ctx.body = fs.createReadStream(temp).on("close", () => cleanup());
+	}
+	else {
+		ctx.redirect("/static-assets/avatar.png")
+	}
 });
 
 mastoRouter.get("/oauth/authorize", async (ctx) => {
