@@ -24,7 +24,9 @@
 							<div
 								ref="bannerEl"
 								class="banner"
-								:style="{ backgroundImage: `url('${user.bannerUrl}')` }"
+								:style="{
+									backgroundImage: `url('${user.bannerUrl}')`,
+								}"
 							></div>
 							<div class="fade"></div>
 							<div class="title">
@@ -510,7 +512,7 @@ onUnmounted(() => {
 							background-size: cover;
 							background-position: center;
 							pointer-events: none;
-							filter: blur(12px) opacity(.1);
+							filter: blur(12px) opacity(0.1);
 						}
 					}
 

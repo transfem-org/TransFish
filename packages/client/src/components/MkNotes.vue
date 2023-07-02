@@ -53,12 +53,12 @@ const props = defineProps<{
 const pagingComponent = ref<InstanceType<typeof MkPagination>>();
 
 function scrollTop() {
-	scroll(tlEl.value, { top: 0, behavior: 'smooth' })
+	scroll(tlEl.value, { top: 0, behavior: "smooth" });
 }
 
 defineExpose({
 	pagingComponent,
-	scrollTop
+	scrollTop,
 });
 </script>
 

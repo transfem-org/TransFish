@@ -92,6 +92,7 @@ const monthP = ref(0);
 const dayP = ref(0);
 const isHoliday = ref(false);
 const isBirthday = ref(false);
+
 const tick = () => {
 	const now = new Date();
 	const nd = now.getDate();

@@ -126,7 +126,7 @@ definePageMetadata(
 <style lang="scss" scoped>
 .tqmomfks {
 	padding: var(--margin);
-	
+
 	> .tl {
 		background: none;
 		border-radius: var(--radius);
