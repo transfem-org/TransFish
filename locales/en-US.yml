@@ -1213,6 +1213,7 @@ _aboutMisskey:
   morePatrons: "We also appreciate the support of many other helpers not listed here.
     Thank you! 🥰"
   patrons: "Calckey patrons"
+  patronsList: "Listed chronologically, not by donation size. Donate with the link above to get your name on here!"
 _nsfw:
   respect: "Hide NSFW media"
   ignore: "Don't hide NSFW media"
