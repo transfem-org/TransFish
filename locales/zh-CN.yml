@@ -984,6 +984,7 @@ _aboutMisskey:
   donate: "赞助Misskey"
   morePatrons: "还有很多其他的人也在支持我们，非常感谢🥰"
   patrons: "支持者"
+  patronsList: 按时间顺序而不是捐赠金额排列。通过上面的链接捐款，让您的名字出现在这里！
 _nsfw:
   respect: "隐藏敏感内容"
   ignore: "不隐藏敏感内容"
@@ -1058,6 +1059,20 @@ _mfm:
   scale: 缩放
   position: 位置
   fade: 渐淡
+  advanced: 高级 MFM
+  background: 背景色
+  fadeDescription: 内容淡入和淡出。
+  warn: MFM 可能包含快速移动或华丽的动画
+  advancedDescription: 如果禁用，则仅允许基本标记，除非正在播放动态 MFM
+  foreground: 前景色
+  backgroundDescription: 更改文本的背景色。
+  play: 播放 MFM
+  alwaysPlay: 始终自动播放所有动态的 MFM
+  stop: 停止播放 MFM
+  positionDescription: 将内容移动指定的量。
+  cropDescription: 裁剪内容。
+  scaleDescription: 按指定量缩放内容。
+  foregroundDescription: 更改文本的前景色。
 _instanceTicker:
   none: "不显示"
   remote: "仅远程用户"
@@ -1066,6 +1081,7 @@ _serverDisconnectedBehavior:
   reload: "自动重载"
   dialog: "对话框警告"
   quiet: "安静警告"
+  nothing: 什么也不做
 _channel:
   create: "创建频道"
   edit: "编辑频道"
@@ -1227,6 +1243,19 @@ _2fa:
   securityKeyInfo: "您可以设置使用支持FIDO2的硬件安全密钥、设备上的指纹或PIN来保护您的登录过程。"
   renewTOTPOk: 重新配置
   renewTOTPCancel: 取消
+  token: 2FA 令牌
+  renewTOTP: 重新配置身份验证器应用程序
+  registerTOTPBeforeKey: 请设置一个认证器应用来注册一个安全或通行密钥。
+  renewTOTPConfirm: 这将导致您之前的应用程序中的验证码停止工作
+  step3Title: 输入验证码
+  step2Click: 点击此二维码将允许您在安全密钥或手机验证器应用中注册 2FA。
+  securityKeyNotSupported: 您的浏览器不支持安全密钥。
+  securityKeyName: 输入密钥名称
+  chromePasskeyNotSupported: 目前不支持 Chrome passkeys。
+  tapSecurityKey: 请按照您的浏览器的指示注册安全或通行密钥
+  removeKey: 移除安全密钥
+  removeKeyConfirm: 真的要删除 {name} 密钥吗？
+  whyTOTPOnlyRenew: 只要注册了安全密钥，就无法删除身份验证器应用程序。
 _permissions:
   "read:account": "查看账户信息"
   "write:account": "更改帐户信息"
@@ -1267,12 +1296,15 @@ _auth:
   pleaseGoBack: "请返回到应用程序"
   callback: "回到应用程序"
   denied: "拒绝访问"
+  allPermissions: 完全的账户访问权限
+  copyAsk: 请将以下授权码粘贴到应用程序中：
 _antennaSources:
   all: "所有帖子"
   homeTimeline: "已关注用户的帖子"
   users: "来自指定用户的帖子"
   userList: "来自指定列表中的帖子"
   userGroup: "来自指定群组中用户的帖子"
+  instances: 服务器上所有用户的帖子
 _weekday:
   sunday: "星期日"
   monday: "星期一"
@@ -1852,7 +1884,7 @@ _skinTones:
   light: 浅色
   yellow: 黄色
   dark: 深色
-isModerator: 监察员
+isModerator: 协作者
 isAdmin: 管理员
 findOtherInstance: 寻找其它服务器
 moveFromDescription: 这将为您的旧帐户设置一个别名，以便您可以从该旧帐户转移到当前帐户。在从旧帐户转移之前执行此操作。请输入格式如@person@server.com
@@ -1879,3 +1911,13 @@ indexNotice: 现在开始索引。这可能需要一段时间，请至少一个�
 indexFrom: 从帖子 ID 开始的索引
 sendModMail: 发送审核通知
 isLocked: 该帐户设置了关注请求
+_filters:
+  notesBefore: 在之前的帖子
+  followingOnly: 仅关注中
+  notesAfter: 在之后的帖子
+  fromDomain: 来自域名
+  withFile: 带有文件
+  fromUser: 来自用户
+  followersOnly: 仅关注者
+reactionPickerSkinTone: 首选的表情符号肤色
+isPatron: Calckey 赞助
