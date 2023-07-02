@@ -247,7 +247,7 @@ router.get("/api.json", async (ctx) => {
 	ctx.body = genOpenapiSpec();
 });
 
-const getFeed = async (acct: string) => {
+const getFeed = async (acct: string, threadDepth:string, historyCount:string, noteInTitle:string, noRenotes:string, noReplies:string) => {
 	const meta = await fetchMeta();
 	if (meta.privateMode) {
 		return;
@@ -257,14 +257,26 @@ const getFeed = async (acct: string) => {
 		usernameLower: username.toLowerCase(),
 		host: host ?? IsNull(),
 		isSuspended: false,
+		isLocked:false,
 	});
-
-	return user && (await packFeed(user));
+	if (!user) {
+		return;
+	}
+	let thread = parseInt(threadDepth, 10);
+	if (isNaN(thread) || thread < 0 || thread > 30) {
+		thread = 3;
+	}
+	let history = parseInt(historyCount, 10);
+	//cant be 0 here or it will get all posts
+	if (isNaN(history) || history <= 0 || history > 30) {
+		history = 20;
+	}
+	return user && await packFeed(user, thread, history, !isNaN(noteInTitle), isNaN(noRenotes), isNaN(noReplies));
 };
 
 // As the /@user[.json|.rss|.atom]/sub endpoint is complicated, we will use a regex to switch between them.
 const reUser = new RegExp(
-	"^/@(?<user>[^/]+?)(?:.(?<feed>json|rss|atom))?(?:/(?<sub>[^/]+))?$",
+	"^/@(?<user>[^/]+?)(?:.(?<feed>json|rss|atom)(?:\\?[^/]*)?)?(?:/(?<sub>[^/]+))?$",
 );
 router.get(reUser, async (ctx, next) => {
 	const groups = reUser.exec(ctx.originalUrl)?.groups;
@@ -275,7 +287,7 @@ router.get(reUser, async (ctx, next) => {
 
 	ctx.params = groups;
 
-	console.log(ctx, ctx.params);
+	//console.log(ctx, ctx.params, ctx.query);
 	if (groups.feed) {
 		if (groups.sub) {
 			await next();
@@ -301,7 +313,7 @@ router.get(reUser, async (ctx, next) => {
 
 // Atom
 const atomFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user);
+	const feed = await getFeed(ctx.params.user, ctx.query.thread, ctx.query.history, ctx.query.noteintitle, ctx.query.norenotes, ctx.query.noreplies);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/atom+xml; charset=utf-8");
@@ -313,7 +325,7 @@ const atomFeed: Router.Middleware = async (ctx) => {
 
 // RSS
 const rssFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user);
+	const feed = await getFeed(ctx.params.user, ctx.query.thread, ctx.query.history, ctx.query.noteintitle, ctx.query.norenotes, ctx.query.noreplies);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/rss+xml; charset=utf-8");
@@ -325,7 +337,7 @@ const rssFeed: Router.Middleware = async (ctx) => {
 
 // JSON
 const jsonFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user);
+	const feed = await getFeed(ctx.params.user, ctx.query.thread, ctx.query.history, ctx.query.noteintitle, ctx.query.norenotes, ctx.query.noreplies);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/json; charset=utf-8");
