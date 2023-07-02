@@ -476,9 +476,6 @@ export const meta = {
 				optional: true,
 				nullable: true,
 				properties: {
-					postEditing: {
-						type: "boolean",
-					},
 					postImports: {
 						type: "boolean",
 					},

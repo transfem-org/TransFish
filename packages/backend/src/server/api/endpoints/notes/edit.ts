@@ -140,12 +140,6 @@ export const meta = {
 			code: "NOT_LOCAL_USER",
 			id: "b907f407-2aa0-4283-800b-a2c56290b822",
 		},
-
-		editsDisabled: {
-			message: "Post edits are disabled.",
-			code: "EDITS_DISABLED",
-			id: "99306f00-fb81-11ed-be56-0242ac120002",
-		},
 	},
 } as const;
 
@@ -243,11 +237,6 @@ export const paramDef = {
 
 export default define(meta, paramDef, async (ps, user) => {
 	if (user.movedToUri != null) throw new ApiError(meta.errors.accountLocked);
-
-	const instanceMeta = await fetchMeta();
-	if (instanceMeta.experimentalFeatures?.postEdits === false) {
-		throw new ApiError(meta.errors.editsDisabled);
-	}
 
 	if (!Users.isLocalUser(user)) {
 		throw new ApiError(meta.errors.notLocalUser);

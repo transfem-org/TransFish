@@ -2070,9 +2070,6 @@ _deck:
     direct: "Direct messages"
 _experiments:
   title: "Experiments"
-  enablePostEditing: "Enable post editing"
-  postEditingCaption: "Shows the option for users to edit their existing posts via\
-    \ the post options menu, and allows post edits from other instances to be recieved."
   enablePostImports: "Enable post imports"
   postImportsCaption: "Allows users to import their posts from past Calckey,\
     \ Misskey, Mastodon, Akkoma, and Pleroma accounts. It may cause slowdowns during\

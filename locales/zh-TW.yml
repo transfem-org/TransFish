@@ -1816,7 +1816,6 @@ silenceThisInstance: 靜音此伺服器
 silencedInstances: 已靜音的伺服器
 silenced: 已靜音
 _experiments:
-  enablePostEditing: 啟用帖子編輯
   title: 試驗功能
 findOtherInstance: 找找另一個伺服器
 noGraze: 瀏覽器擴展 "Graze for Mastodon" 會與Calckey發生衝突，請停用該擴展。
