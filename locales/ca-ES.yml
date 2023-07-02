@@ -1601,6 +1601,8 @@ _aboutMisskey:
   morePatrons: També agraïm el suport de molts altres ajudants que no figuren aquí.
     Gràcies! 🥰
   patrons: Mecenes de Calckey
+  patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
+    amb l'enllaç de dalt per veure el teu nom aquí!
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
