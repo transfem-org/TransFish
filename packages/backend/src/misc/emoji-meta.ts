@@ -1,48 +1,42 @@
 import probeImageSize from "probe-image-size";
-import { Mutex } from "redis-semaphore";
+import { Mutex, withTimeout } from "async-mutex";
 
 import { FILE_TYPE_BROWSERSAFE } from "@/const.js";
 import Logger from "@/services/logger.js";
-import { redisClient } from "@/db/redis.js";
+import { Cache } from "./cache.js";
 
 export type Size = {
 	width: number;
 	height: number;
 };
 
-const logger = new Logger("emoji");
+const cache = new Cache<boolean>(1000 * 60 * 10); // once every 10 minutes for the same url
+const mutex = withTimeout(new Mutex(), 1000);
 
 export async function getEmojiSize(url: string): Promise<Size> {
-	let attempted = true;
+	const logger = new Logger("emoji");
 
-	const lock = new Mutex(redisClient, "getEmojiSize");
-	await lock.acquire();
-	try {
-		const key = `getEmojiSize:${url}`;
-		attempted = (await redisClient.get(key)) !== null;
+	await mutex.runExclusive(() => {
+		const attempted = cache.get(url);
 		if (!attempted) {
-			await redisClient.set(key, "done", "EX", 60 * 10);
+			cache.set(url, true);
+		} else {
+			logger.warn(`Attempt limit exceeded: ${url}`);
+			throw new Error("Too many attempts");
 		}
-	} finally {
-		await lock.release();
-	}
-
-	if (attempted) {
-		logger.warn(`Attempt limit exceeded: ${url}`);
-		throw new Error("attempt limit exceeded");
-	}
+	});
 
 	try {
-		logger.debug(`Retrieving emoji size from ${url}`);
+		logger.info(`Retrieving emoji size from ${url}`);
 		const { width, height, mime } = await probeImageSize(url, {
 			timeout: 5000,
 		});
 		if (!(mime.startsWith("image/") && FILE_TYPE_BROWSERSAFE.includes(mime))) {
-			throw new Error("unsupported image type");
+			throw new Error("Unsupported image type");
 		}
 		return { width, height };
 	} catch (e) {
-		throw new Error(`unable to retrieve metadata: ${e}`);
+		throw new Error(`Unable to retrieve metadata: ${e}`);
 	}
 }
 
