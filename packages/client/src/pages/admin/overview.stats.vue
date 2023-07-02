@@ -87,6 +87,7 @@
 						<div class="label">{{ i18n.ts.emojis }}</div>
 					</div>
 			</div>
+			<!-- TODO: Drive -->
 		</Transition>
 	</div>
 </template>
@@ -188,6 +189,13 @@ onMounted(async () => {
 				> .icon {
 					background: #907aa922;
 					color: #c4a7e7;
+				}
+			}
+
+			&.drive {
+				> .icon {
+					background: #b4637a22;
+					color: #eb6f92;
 				}
 			}
 
