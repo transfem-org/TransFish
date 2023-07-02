@@ -165,6 +165,25 @@ export function apiAccountMastodon(router: Router): void {
 		},
 	);
 	router.get<{ Params: { id: string } }>(
+		"/v1/accounts/:id/featured_tags",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getAccountFeaturedTags(
+					convertId(ctx.params.id, IdType.CalckeyId),
+				);
+				ctx.body = data.data.map((account) => convertAccount(account));
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
+	router.get<{ Params: { id: string } }>(
 		"/v1/accounts/:id/followers",
 		async (ctx) => {
 			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
@@ -334,6 +353,38 @@ export function apiAccountMastodon(router: Router): void {
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
 				ctx.body = convertRelationship(data.data);
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
+	router.get("/v1/featured_tags",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getFeaturedTags();
+				ctx.body = data.data.map((account) => convertAccount(account));
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
+	router.get("/v1/followed_tags",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getFollowedTags();
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
