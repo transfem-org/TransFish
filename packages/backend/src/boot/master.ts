@@ -29,7 +29,7 @@ const themeColor = chalk.hex("#31748f");
 
 function greet() {
 	if (!envOption.quiet) {
-		//#region Calckey logo
+		//#region Firefish logo
 		const v = `v${meta.version}`;
 		console.log(themeColor("   ___      _      _              "));
 		console.log(themeColor("  / __\\__ _| | ___| | _____ _   _ "));
@@ -40,7 +40,7 @@ function greet() {
 		//#endregion
 
 		console.log(
-			" Calckey is an open-source decentralized microblogging platform.",
+			" Firefish is an open-source decentralized microblogging platform.",
 		);
 		console.log(
 			chalk.rgb(
@@ -48,7 +48,7 @@ function greet() {
 				136,
 				0,
 			)(
-				" If you like Calckey, please consider starring or contributing to the repo. https://codeberg.org/calckey/calckey",
+				" If you like Firefish, please consider starring or contributing to the repo. https://codeberg.org/firefish/firefish",
 			),
 		);
 
@@ -58,8 +58,8 @@ function greet() {
 		);
 	}
 
-	bootLogger.info("Welcome to Calckey!");
-	bootLogger.info(`Calckey v${meta.version}`, null, true);
+	bootLogger.info("Welcome to Firefish!");
+	bootLogger.info(`Firefish v${meta.version}`, null, true);
 }
 
 /**
@@ -81,7 +81,7 @@ export async function masterMain() {
 		process.exit(1);
 	}
 
-	bootLogger.succ("Calckey initialized");
+	bootLogger.succ("Firefish initialized");
 
 	if (!envOption.disableClustering) {
 		await spawnWorkers(config.clusterLimit);
