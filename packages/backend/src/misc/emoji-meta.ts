@@ -19,7 +19,7 @@ export async function getEmojiSize(url: string): Promise<Size> {
 	await lock.acquire();
 	try {
 		const key = `getEmojiSize:${url}`;
-		attempted = await redisClient.get(key) !== null;
+		attempted = (await redisClient.get(key)) !== null;
 		if (!attempted) {
 			await redisClient.set(key, "done", "EX", 60 * 10);
 		}
@@ -33,7 +33,7 @@ export async function getEmojiSize(url: string): Promise<Size> {
 	}
 
 	try {
-		logger.info(`Retrieving emoji size from ${url}`);
+		logger.debug(`Retrieving emoji size from ${url}`);
 		const { width, height, mime } = await probeImageSize(url, {
 			timeout: 5000,
 		});
