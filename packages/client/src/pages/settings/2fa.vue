@@ -78,16 +78,11 @@
 							v-for="key in $i.securityKeysList"
 							:key="key.id"
 						>
-							<template #label>{{ key.name }}</template>
-							<template #suffix
-								><I18n :src="i18n.ts.lastUsedAt"
-									><template #t
-										><MkTime
-											:time="
-												key.lastUsed
-											" /></template></I18n
-							></template>
-							<div class="_buttons">
+							<h3>{{ key.name }}</h3>
+							<p>
+								{{ `${i18n.ts.lastUsedDate}: ${key.lastUsed}` }}
+							</p>
+							<div class="_buttons _flexList">
 								<MkButton @click="renameKey(key)"
 									><i
 										class="ph-pencil-line ph-bold ph-lg"
@@ -176,7 +171,7 @@ async function registerTOTP() {
 	});
 	if (!qrdialog) return;
 
-	const token = await os.inputNumber({
+	const token = await os.inputText({
 		title: i18n.ts._2fa.step3Title,
 		text: i18n.ts._2fa.step3,
 		autocomplete: "one-time-code",
@@ -184,7 +179,7 @@ async function registerTOTP() {
 	if (token.canceled) return;
 
 	await os.apiWithDialog("i/2fa/done", {
-		token: token.result.toString(),
+		token: token.result,
 	});
 
 	await os.alert({

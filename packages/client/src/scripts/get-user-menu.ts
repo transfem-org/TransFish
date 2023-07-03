@@ -227,7 +227,9 @@ export function getUserMenu(user, router: Router = mainRouter) {
 	let menu = [
 		{
 			type: "label",
-			text: user.host ? `@${user.username}@${user.host || host}` : `@${user.username}`
+			text: user.host
+				? `@${user.username}@${user.host || host}`
+				: `@${user.username}`,
 		},
 		{
 			icon: "ph-at ph-bold ph-lg",

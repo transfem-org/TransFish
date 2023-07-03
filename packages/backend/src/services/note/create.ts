@@ -29,17 +29,14 @@ import {
 	Notes,
 	Instances,
 	UserProfiles,
-	Antennas,
-	Followings,
 	MutedNotes,
 	Channels,
 	ChannelFollowings,
-	Blockings,
 	NoteThreadMutings,
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { App } from "@/models/entities/app.js";
-import { Not, In, IsNull } from "typeorm";
+import { Not, In } from "typeorm";
 import type { User, ILocalUser, IRemoteUser } from "@/models/entities/user.js";
 import { genId } from "@/misc/gen-id.js";
 import {
@@ -69,10 +66,11 @@ import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
 import { redisClient } from "@/db/redis.js";
+import { Mutex } from "redis-semaphore";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
->(1000 * 60 * 5);
+>("mutedWords", 60 * 5);
 
 type NotificationType = "reply" | "renote" | "quote" | "mention";
 
@@ -196,7 +194,13 @@ export default async (
 			data.channel = await Channels.findOneBy({ id: data.reply.channelId });
 		}
 
-		if (data.createdAt == null) data.createdAt = new Date();
+		const now = new Date();
+		if (
+			!data.createdAt ||
+			isNaN(data.createdAt.getTime()) ||
+			data.createdAt > now
+		)
+			data.createdAt = now;
 		if (data.visibility == null) data.visibility = "public";
 		if (data.localOnly == null) data.localOnly = false;
 		if (data.channel != null) data.visibility = "public";
@@ -455,36 +459,43 @@ export default async (
 			}
 
 			if (!dontFederateInitially) {
+				let publishKey: string;
+				let noteToPublish: Note;
 				const relays = await getCachedRelays();
+
 				// Some relays (e.g., aode-relay) deliver posts by boosting them as
 				// Announce activities. In that case, user is the relay's actor.
 				const boostedByRelay =
 					!!user.inbox &&
 					relays.map((relay) => relay.inbox).includes(user.inbox);
 
-				if (!note.uri) {
-					// Publish if the post is local
-					publishNotesStream(note);
-				} else if (
-					boostedByRelay &&
-					data.renote?.uri &&
-					(await redisClient.exists(`publishedNote:${data.renote.uri}`)) === 0
-				) {
-					// Publish if the post was boosted by a relay and not yet published.
-					publishNotesStream(data.renote);
-					const key = `publishedNote:${data.renote.uri}`;
-					await redisClient.set(key, 1, "EX", 30);
-				} else if (
-					!boostedByRelay &&
-					note.uri &&
-					(await redisClient.exists(`publishedNote:${note.uri}`)) === 0
-				) {
-					// Publish if the post came directly from a remote server, or from a
-					// relay that doesn't boost the post (e.g, YUKIMOCHI Activity-Relay),
-					// and not yet published.
-					const key = `publishedNote:${note.uri}`;
-					publishNotesStream(note);
-					await redisClient.set(key, 1, "EX", 30);
+				if (boostedByRelay && data.renote && data.renote.userHost) {
+					publishKey = `publishedNote:${data.renote.id}`;
+					noteToPublish = data.renote;
+				} else {
+					publishKey = `publishedNote:${note.id}`;
+					noteToPublish = note;
+				}
+
+				const lock = new Mutex(redisClient, "publishedNote");
+				await lock.acquire();
+				try {
+					const published = (await redisClient.get(publishKey)) !== null;
+					if (!published) {
+						await redisClient.set(publishKey, "done", "EX", 30);
+						if (noteToPublish.renoteId) {
+							// Prevents other threads from publishing the boosting post
+							await redisClient.set(
+								`publishedNote:${noteToPublish.renoteId}`,
+								"done",
+								"EX",
+								30,
+							);
+						}
+						publishNotesStream(noteToPublish);
+					}
+				} finally {
+					await lock.release();
 				}
 			}
 			if (note.replyId != null) {

@@ -2022,13 +2022,13 @@ silencedInstances: Instances silencieuses
 silenced: Silencieux
 deleted: Effacé
 editNote: Modifier note
-edited: Modifié
+edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
   personnes aux publications des autres.
 _experiments:
   alpha: Alpha
   beta: Beta
-  enablePostEditing: Autoriser l'édition de note
+  enablePostImports: Autoriser l'importation de messages
   title: Expérimentations
 findOtherInstance: Trouver un autre serveur
 userSaysSomethingReasonQuote: '{name} a cité une note contenant {reason}'

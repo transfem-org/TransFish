@@ -431,6 +431,7 @@ function noteClick(e) {
 
 		> .avatar-container {
 			margin-right: 8px;
+			z-index: 2;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
@@ -651,10 +652,11 @@ function noteClick(e) {
 			flex-grow: 1;
 			margin-bottom: -10px;
 			pointer-events: none;
+			opacity: 0.25;
 			&::before {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				inset-block: 0;
@@ -692,11 +694,12 @@ function noteClick(e) {
 			z-index: 2;
 			left: 0;
 			top: 0;
+			opacity: 0.25;
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid var(--X13);
-				border-bottom: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
+				border-bottom: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				height: calc((var(--avatarSize) / 2));

@@ -30,7 +30,7 @@ showLess: Fechar
 importRequested: Você requisitou uma importação. Isso pode demorar um pouco.
 listsDesc: Listas deixam você criar linhas do tempo com usuários específicos. Elas
   podem ser acessadas pela página de linhas do tempo.
-edited: Editado
+edited: 'Editado às {date} {time}'
 sendMessage: Enviar uma mensagem
 older: antigo
 createList: Criar lista

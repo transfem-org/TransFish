@@ -5,10 +5,9 @@
 		:z-priority="'high'"
 		:src="src"
 		:transparent-bg="true"
-		@click="modal.close()"
+		@click="modal?.close()"
 		@closed="emit('closed')"
 		tabindex="-1"
-		v-focus
 	>
 		<MkMenu
 			:items="items"
@@ -19,7 +18,7 @@
 			class="sfhdhdhq"
 			:class="{ drawer: type === 'drawer' }"
 			:no-return-focus="noReturnFocus"
-			@close="modal.close()"
+			@close="modal?.close()"
 		/>
 	</MkModal>
 </template>

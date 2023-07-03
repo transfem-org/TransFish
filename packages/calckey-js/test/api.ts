@@ -5,7 +5,7 @@ enableFetchMocks();
 
 function getFetchCall(call: any[]) {
 	const { body, method } = call[1];
-	if (body != null && typeof body != "string") {
+	if (body != null && typeof body !== "string") {
 		throw new Error("invalid body");
 	}
 	return {
@@ -20,7 +20,7 @@ describe("API", () => {
 		fetchMock.resetMocks();
 		fetchMock.mockResponse(async (req) => {
 			const body = await req.json();
-			if (req.method == "POST" && req.url == "https://misskey.test/api/i") {
+			if (req.method === "POST" && req.url === "https://calckey.test/api/i") {
 				if (body.i === "TOKEN") {
 					return JSON.stringify({ id: "foo" });
 				} else {
@@ -32,7 +32,7 @@ describe("API", () => {
 		});
 
 		const cli = new APIClient({
-			origin: "https://misskey.test",
+			origin: "https://calckey.test",
 			credential: "TOKEN",
 		});
 
@@ -43,7 +43,7 @@ describe("API", () => {
 		});
 
 		expect(getFetchCall(fetchMock.mock.calls[0])).toEqual({
-			url: "https://misskey.test/api/i",
+			url: "https://calckey.test/api/i",
 			method: "POST",
 			body: { i: "TOKEN" },
 		});
@@ -54,8 +54,8 @@ describe("API", () => {
 		fetchMock.mockResponse(async (req) => {
 			const body = await req.json();
 			if (
-				req.method == "POST" &&
-				req.url == "https://misskey.test/api/notes/show"
+				req.method === "POST" &&
+				req.url === "https://calckey.test/api/notes/show"
 			) {
 				if (body.i === "TOKEN" && body.noteId === "aaaaa") {
 					return JSON.stringify({ id: "foo" });
@@ -68,7 +68,7 @@ describe("API", () => {
 		});
 
 		const cli = new APIClient({
-			origin: "https://misskey.test",
+			origin: "https://calckey.test",
 			credential: "TOKEN",
 		});
 
@@ -79,7 +79,7 @@ describe("API", () => {
 		});
 
 		expect(getFetchCall(fetchMock.mock.calls[0])).toEqual({
-			url: "https://misskey.test/api/notes/show",
+			url: "https://calckey.test/api/notes/show",
 			method: "POST",
 			body: { i: "TOKEN", noteId: "aaaaa" },
 		});
@@ -89,8 +89,8 @@ describe("API", () => {
 		fetchMock.resetMocks();
 		fetchMock.mockResponse(async (req) => {
 			if (
-				req.method == "POST" &&
-				req.url == "https://misskey.test/api/reset-password"
+				req.method === "POST" &&
+				req.url === "https://calckey.test/api/reset-password"
 			) {
 				return { status: 204 };
 			} else {
@@ -99,7 +99,7 @@ describe("API", () => {
 		});
 
 		const cli = new APIClient({
-			origin: "https://misskey.test",
+			origin: "https://calckey.test",
 			credential: "TOKEN",
 		});
 
@@ -111,7 +111,7 @@ describe("API", () => {
 		expect(res).toEqual(null);
 
 		expect(getFetchCall(fetchMock.mock.calls[0])).toEqual({
-			url: "https://misskey.test/api/reset-password",
+			url: "https://calckey.test/api/reset-password",
 			method: "POST",
 			body: { i: "TOKEN", token: "aaa", password: "aaa" },
 		});
@@ -121,7 +121,7 @@ describe("API", () => {
 		fetchMock.resetMocks();
 		fetchMock.mockResponse(async (req) => {
 			const body = await req.json();
-			if (req.method == "POST" && req.url == "https://misskey.test/api/i") {
+			if (req.method === "POST" && req.url === "https://calckey.test/api/i") {
 				if (typeof body.i === "string") {
 					return JSON.stringify({ id: "foo" });
 				} else {
@@ -143,7 +143,7 @@ describe("API", () => {
 
 		try {
 			const cli = new APIClient({
-				origin: "https://misskey.test",
+				origin: "https://calckey.test",
 				credential: "TOKEN",
 			});
 
@@ -172,7 +172,7 @@ describe("API", () => {
 
 		try {
 			const cli = new APIClient({
-				origin: "https://misskey.test",
+				origin: "https://calckey.test",
 				credential: "TOKEN",
 			});
 
@@ -189,7 +189,7 @@ describe("API", () => {
 
 		try {
 			const cli = new APIClient({
-				origin: "https://misskey.test",
+				origin: "https://calckey.test",
 				credential: "TOKEN",
 			});
 
@@ -210,7 +210,7 @@ describe("API", () => {
 
 		try {
 			const cli = new APIClient({
-				origin: "https://misskey.test",
+				origin: "https://calckey.test",
 				credential: "TOKEN",
 			});
 

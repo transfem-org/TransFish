@@ -23,7 +23,11 @@
 								class="_button item"
 								@click="remove(element, $event)"
 							>
-								<MkEmoji :emoji="element" :normal="true" />
+								<MkEmoji
+									:emoji="element"
+									style="height: 1.7em"
+									class="emoji"
+								/>
 							</button>
 						</template>
 						<template #footer>
@@ -41,6 +45,27 @@
 				>
 			</FromSlot>
 
+			<FormRadios v-model="reactionPickerSkinTone" class="_formBlock">
+				<template #label>{{ i18n.ts.reactionPickerSkinTone }}</template>
+				<option :value="1" :aria-label="i18n.ts._skinTones.yellow">
+					<MkEmoji style="height: 1.7em" emoji="✌️" />
+				</option>
+				<option :value="6" :aria-label="i18n.ts._skinTones.dark">
+					<MkEmoji style="height: 1.7em" emoji="✌🏿" />
+				</option>
+				<option :value="5" :aria-label="i18n.ts._skinTones.mediumDark">
+					<MkEmoji style="height: 1.7em" emoji="✌🏾" />
+				</option>
+				<option :value="4" :aria-label="i18n.ts._skinTones.medium">
+					<MkEmoji style="height: 1.7em" emoji="✌🏽" />
+				</option>
+				<option :value="3" :aria-label="i18n.ts._skinTones.mediumLight">
+					<MkEmoji style="height: 1.7em" emoji="✌🏼" />
+				</option>
+				<option :value="2" :aria-label="i18n.ts._skinTones.light">
+					<MkEmoji style="height: 1.7em" emoji="✌🏻" />
+				</option>
+			</FormRadios>
 			<FormRadios v-model="reactionPickerSize" class="_formBlock">
 				<template #label>{{ i18n.ts.size }}</template>
 				<option :value="1">{{ i18n.ts.small }}</option>
@@ -112,6 +137,7 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deepClone } from "@/scripts/clone";
 import { unisonReload } from "@/scripts/unison-reload";
+import { addSkinTone } from "@/scripts/emojilist";
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
@@ -125,6 +151,9 @@ async function reloadAsk() {
 
 let reactions = $ref(deepClone(defaultStore.state.reactions));
 
+const reactionPickerSkinTone = $computed(
+	defaultStore.makeGetterSetter("reactionPickerSkinTone")
+);
 const reactionPickerSize = $computed(
 	defaultStore.makeGetterSetter("reactionPickerSize")
 );
@@ -207,6 +236,13 @@ watch(
 );
 
 watch(enableEmojiReactions, async () => {
+	await reloadAsk();
+});
+
+watch(reactionPickerSkinTone, async () => {
+	reactions.forEach((emoji) => {
+		addSkinTone(emoji, reactionPickerSkinTone.value);
+	});
 	await reloadAsk();
 });
 

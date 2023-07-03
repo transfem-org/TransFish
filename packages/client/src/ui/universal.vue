@@ -39,7 +39,10 @@
 			>
 				<div class="button-wrapper">
 					<i class="ph-list ph-bold ph-lg"></i
-					><span v-if="menuIndicated" class="indicator"
+					><span
+						v-if="menuIndicated"
+						class="indicator"
+						:class="{ animateIndicator: $store.state.animation }"
 						><i class="ph-circle ph-fill"></i
 					></span>
 				</div>
@@ -74,7 +77,10 @@
 					:class="buttonAnimIndex === 1 ? 'on' : ''"
 				>
 					<i class="ph-bell ph-bold ph-lg"></i
-					><span v-if="$i?.hasUnreadNotification" class="indicator"
+					><span
+						v-if="$i?.hasUnreadNotification"
+						class="indicator"
+						:class="{ animateIndicator: $store.state.animation }"
 						><i class="ph-circle ph-fill"></i
 					></span>
 				</div>
@@ -95,6 +101,7 @@
 					><span
 						v-if="$i?.hasUnreadMessagingMessage"
 						class="indicator"
+						:class="{ animateIndicator: $store.state.animation }"
 						><i class="ph-circle ph-fill"></i
 					></span>
 				</div>
@@ -575,6 +582,7 @@ console.log(mainRouter.currentRoute.value.name);
 		width: 100%;
 		min-width: 0;
 		$widgets-hide-threshold: 1090px;
+		overflow-x: clip;
 		@media (max-width: $widgets-hide-threshold) {
 			padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
 		}
@@ -691,6 +699,9 @@ console.log(mainRouter.currentRoute.value.name);
 					left: 0;
 					color: var(--indicator);
 					font-size: 16px;
+				}
+
+				> .animateIndicator {
 					animation: blink 1s infinite;
 				}
 			}
@@ -712,6 +723,9 @@ console.log(mainRouter.currentRoute.value.name);
 				left: 0;
 				color: var(--indicator);
 				font-size: 16px;
+			}
+
+			> .animateIndicator {
 				animation: blink 1s infinite;
 			}
 

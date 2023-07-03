@@ -20,11 +20,13 @@
 					/>
 
 					<div :key="user.id" class="_block main">
-						<div class="banner-container" :style="style">
+						<div class="banner-container">
 							<div
 								ref="bannerEl"
 								class="banner"
-								:style="style"
+								:style="{
+									backgroundImage: `url('${user.bannerUrl}')`,
+								}"
 							></div>
 							<div class="fade"></div>
 							<div class="title">
@@ -174,8 +176,13 @@
 								<span
 									v-if="!user.isAdmin && user.isModerator"
 									v-tooltip.noDelay="i18n.ts.isModerator"
-									style="color: var(--badge)"
-									><i class="ph-bookmark-simple ph-bold"></i
+									style="
+										color: var(--badge);
+										margin-left: 0.5rem;
+									"
+									><i
+										class="ph-bookmark-simple ph-bold ph-lg"
+									></i
 								></span>
 								<span
 									v-if="user.isLocked"
@@ -400,13 +407,6 @@ let narrow = $ref<null | boolean>(null);
 let rootEl = $ref<null | HTMLElement>(null);
 let bannerEl = $ref<null | HTMLElement>(null);
 
-const style = $computed(() => {
-	if (props.user.bannerUrl == null) return {};
-	return {
-		backgroundImage: `url(${props.user.bannerUrl})`,
-	};
-});
-
 const age = $computed(() => {
 	return calcAge(props.user.birthday);
 });
@@ -451,7 +451,12 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-const patrons = await os.api("patrons");
+let patrons = [];
+try {
+	patrons = await os.api("patrons");
+} catch {
+	console.error("Codeberg's down.");
+}
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
@@ -497,7 +502,6 @@ onUnmounted(() => {
 					overflow: hidden;
 					background-size: cover;
 					background-position: center;
-
 					> .banner {
 						height: 100%;
 						background-color: #26233a;
@@ -505,17 +509,15 @@ onUnmounted(() => {
 						background-position: center;
 						box-shadow: 0 0 128px var(--shadow) inset;
 						will-change: background-position;
-
-						&::after {
+						&::before {
 							content: "";
-							background-image: var(--blur, inherit);
 							position: fixed;
 							inset: 0;
+							background: var(--blur, inherit);
 							background-size: cover;
 							background-position: center;
 							pointer-events: none;
-							opacity: 0.1;
-							filter: var(--blur, blur(10px));
+							filter: blur(12px) opacity(0.1);
 						}
 					}
 

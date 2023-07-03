@@ -97,12 +97,15 @@
 								><Mfm
 									:text="'$[sparkle @kainoa@calckey.social] (Main developer)'"
 							/></FormLink>
-							<FormLink to="/@april@calckey.social"
-								><Mfm :text="'@april@calckey.social (Backend)'"
-							/></FormLink>
 							<FormLink to="/@freeplay@calckey.social"
 								><Mfm
 									:text="'@freeplay@calckey.social (UI/UX)'"
+							/></FormLink>
+							<FormLink to="/@nmkj@calckey.jp"
+								><Mfm :text="'@nmkj@calckey.jp (Backend)'"
+							/></FormLink>
+							<FormLink to="/@dev@post.naskya.net"
+								><Mfm :text="'@dev@post.naskya.net (Backend)'"
 							/></FormLink>
 							<FormLink to="/@panos@calckey.social"
 								><Mfm
@@ -128,6 +131,9 @@
 							><Mfm text="$[jelly ❤]" />
 							{{ i18n.ts._aboutMisskey.patrons }}</template
 						>
+						<p>
+							{{ i18n.ts._aboutMisskey.patronsList }}
+						</p>
 						<MkSparkle>
 							<span
 								v-for="patron in patrons"
@@ -164,7 +170,12 @@ import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-const patrons = await os.api("patrons");
+let patrons = [];
+try {
+	patrons = await os.api("patrons", { forceUpdate: true });
+} catch {
+	console.error("Codeberg's down.");
+}
 
 let easterEggReady = false;
 let easterEggEmojis = $ref([]);

@@ -1,5 +1,10 @@
 <template>
-	<MkContainer :show-header="widgetProps.showHeader" class="mkw-rss">
+	<MkContainer
+		:show-header="widgetProps.showHeader"
+		class="mkw-rss"
+		:scrollable="true"
+		:style="`height: ${widgetProps.height}px;`"
+	>
 		<template #header><i class="ph-rss ph-bold ph-lg"></i>RSS</template>
 		<template #func
 			><button class="_button" @click="configure">
@@ -43,6 +48,10 @@ const widgetPropsDef = {
 	url: {
 		type: "string" as const,
 		default: "http://feeds.afpbb.com/rss/afpbb/afpbbnews",
+	},
+	height: {
+		type: "number" as const,
+		default: 300,
 	},
 	showHeader: {
 		type: "boolean" as const,

@@ -106,7 +106,7 @@ const { widgetProps, configure, save } = useWidgetPropsManager(
 
 const meta = ref(null);
 
-os.api("server-info", {}).then((res) => {
+os.apiGet("server-info", {}).then((res) => {
 	meta.value = res;
 });
 

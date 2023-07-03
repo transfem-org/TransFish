@@ -15,7 +15,7 @@ import { createSystemUser } from "./create-system-user.js";
 
 const ACTOR_USERNAME = "relay.actor" as const;
 
-const relaysCache = new Cache<Relay[]>(1000 * 60 * 10);
+const relaysCache = new Cache<Relay[]>("relay", 60 * 10);
 
 export async function getRelayActor(): Promise<ILocalUser> {
 	const user = await Users.findOneBy({
@@ -90,7 +90,7 @@ async function updateRelaysCache() {
 	const relays = await Relays.findBy({
 		status: "accepted",
 	});
-	relaysCache.set(null, relays);
+	await relaysCache.set(null, relays);
 }
 
 export async function relayRejected(id: string) {

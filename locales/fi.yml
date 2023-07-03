@@ -831,7 +831,7 @@ makeReactionsPublic: Aseta reaktiohistoria julkiseksi
 unread: Lukematon
 deleted: Poistettu
 editNote: Muokkaa viestiä
-edited: Muokattu
+edited: 'Muokattu klo {date} {time}'
 avoidMultiCaptchaConfirm: Useiden Captcha-järjestelmien käyttö voi aiheuttaa häiriöitä
   niiden välillä. Haluatko poistaa käytöstä muut tällä hetkellä käytössä olevat Captcha-järjestelmät?
   Jos haluat, että ne pysyvät käytössä, paina peruutusnäppäintä.

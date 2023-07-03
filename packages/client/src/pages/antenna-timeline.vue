@@ -9,11 +9,6 @@
 			v-size="{ min: [800] }"
 			class="tqmomfks"
 		>
-			<div v-if="queue > 0" class="new">
-				<button class="_buttonPrimary" @click="top()">
-					{{ i18n.ts.newNoteRecived }}
-				</button>
-			</div>
 			<div class="tl _block">
 				<XTimeline
 					ref="tlEl"
@@ -22,7 +17,6 @@
 					src="antenna"
 					:antenna="antennaId"
 					:sound="true"
-					@queue="queueUpdated"
 				/>
 			</div>
 		</div>
@@ -32,7 +26,6 @@
 <script lang="ts" setup>
 import { computed, inject, watch } from "vue";
 import XTimeline from "@/components/MkTimeline.vue";
-import { scroll } from "@/scripts/scroll";
 import * as os from "@/os";
 import { useRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -45,20 +38,11 @@ const props = defineProps<{
 }>();
 
 let antenna = $ref(null);
-let queue = $ref(0);
 let rootEl = $ref<HTMLElement>();
 let tlEl = $ref<InstanceType<typeof XTimeline>>();
 const keymap = $computed(() => ({
 	t: focus,
 }));
-
-function queueUpdated(q) {
-	queue = q;
-}
-
-function top() {
-	scroll(rootEl, { top: 0 });
-}
 
 async function timetravel() {
 	const { canceled, result: date } = await os.inputDate({
@@ -143,24 +127,9 @@ definePageMetadata(
 .tqmomfks {
 	padding: var(--margin);
 
-	> .new {
-		position: sticky;
-		top: calc(var(--stickyTop, 0px) + 16px);
-		z-index: 1000;
-		width: 100%;
-
-		> button {
-			display: block;
-			margin: var(--margin) auto 0 auto;
-			padding: 8px 16px;
-			border-radius: 32px;
-		}
-	}
-
 	> .tl {
 		background: none;
 		border-radius: var(--radius);
-		overflow: clip;
 	}
 
 	&.min-width_800px {

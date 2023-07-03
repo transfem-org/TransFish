@@ -110,6 +110,7 @@ const defaultStoreSaveKeys: (keyof (typeof defaultStore)["state"])[] = [
 	"squareAvatars",
 	"numberOfPageCache",
 	"showUpdates",
+	"swipeOnMobile",
 	"swipeOnDesktop",
 	"showAdminUpdates",
 	"enableCustomKaTeXMacro",

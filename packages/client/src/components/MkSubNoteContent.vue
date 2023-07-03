@@ -209,16 +209,15 @@ const emit = defineEmits<{
 
 const cwButton = ref<HTMLElement>();
 const showMoreButton = ref<HTMLElement>();
+
 const isLong =
 	!props.detailedView &&
-	((props.note.cw == null &&
-		props.note.text != null &&
+	props.note.cw == null &&
+	((props.note.text != null &&
 		(props.note.text.split("\n").length > 10 ||
 			props.note.text.length > 800)) ||
 		props.note.files.length > 4);
-
 const collapsed = $ref(props.note.cw == null && isLong);
-
 const urls = props.note.text
 	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
 	: null;

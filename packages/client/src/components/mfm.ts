@@ -65,7 +65,7 @@ export default defineComponent({
 		};
 		// const validEase = (e: string | null | undefined) => {
 		// 	if (e == null) return null;
-		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/) 
+		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/)
 		// 		? (e.startsWith("steps") ? e : "cubic-bezier" + e)
 		// 		: null
 		// }
@@ -110,7 +110,7 @@ export default defineComponent({
 
 						case "fn": {
 							// TODO: CSSを文字列で組み立てていくと token.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
-							let style;
+							let style: string;
 							switch (token.props.name) {
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
@@ -300,6 +300,24 @@ export default defineComponent({
 									style = `background-color: #${color};`;
 									break;
 								}
+								case "small": {
+									return h(
+										"small",
+										{
+											style: "opacity: 0.7;",
+										},
+										genEl(token.children),
+									);
+								}
+								case "center": {
+									return h(
+										"div",
+										{
+											style: "text-align: center;",
+										},
+										genEl(token.children),
+									);
+								}
 							}
 							if (style == null) {
 								return h("span", {}, [
@@ -337,7 +355,7 @@ export default defineComponent({
 								h(
 									"div",
 									{
-										style: "text-align:center;",
+										style: "text-align: center;",
 									},
 									genEl(token.children),
 								),

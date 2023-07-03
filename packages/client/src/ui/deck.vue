@@ -9,6 +9,7 @@
 				class="columns"
 				:class="deckStore.reactiveState.columnAlign.value"
 				@contextmenu.self.prevent="onContextmenu"
+				@wheel.self="onWheel"
 			>
 				<template v-for="ids in layout">
 					<!-- sectionを利用しているのは、deck.vue側でcolumnに対してfirst-of-typeを効かせるため -->
@@ -31,6 +32,7 @@
 											) + 'px',
 								  }
 						"
+						@wheel.self="onWheel"
 					>
 						<DeckColumnCore
 							v-for="id in ids"
@@ -50,6 +52,7 @@
 						:is-stacked="false"
 						:style="columns.find(c => c.id === ids[0])!.flexible ? { flex: 1, minWidth: '350px' } : { width: columns.find(c => c.id === ids[0])!.width + 'px' }"
 						@parent-focus="moveFocus(ids[0], $event)"
+						@headerWheel="onWheel"
 					/>
 				</template>
 				<div v-if="layout.length === 0" class="intro _panel">
@@ -116,7 +119,10 @@
 				@click="drawerMenuShowing = true"
 			>
 				<i class="ph-list ph-bold ph-lg"></i
-				><span v-if="menuIndicated" class="indicator"
+				><span
+					v-if="menuIndicated"
+					class="indicator"
+					:class="{ animateIndicator: $store.state.animation }"
 					><i class="ph-circle ph-fill"></i
 				></span>
 			</button>
@@ -133,7 +139,10 @@
 				@click="mainRouter.push('/my/notifications')"
 			>
 				<i class="ph-bell ph-bold ph-lg"></i
-				><span v-if="$i?.hasUnreadNotification" class="indicator"
+				><span
+					v-if="$i?.hasUnreadNotification"
+					class="indicator"
+					:class="{ animateIndicator: $store.state.animation }"
 					><i class="ph-circle ph-fill"></i
 				></span>
 			</button>
@@ -279,18 +288,15 @@ const onContextmenu = (ev) => {
 	);
 };
 
-document.documentElement.style.overflowY = "hidden";
-document.documentElement.style.scrollBehavior = "auto";
-window.addEventListener("wheel", (ev) => {
-	if (ev.target === columnsEl && ev.deltaX === 0) {
-		columnsEl.scrollLeft += ev.deltaY;
-	} else if (
-		getScrollContainer(ev.target as HTMLElement) == null &&
-		ev.deltaX === 0
-	) {
+function onWheel(ev: WheelEvent) {
+	if (ev.deltaX === 0) {
 		columnsEl.scrollLeft += ev.deltaY;
 	}
-});
+}
+
+document.documentElement.style.overflowY = "hidden";
+document.documentElement.style.scrollBehavior = "auto";
+
 loadDeck();
 
 function moveFocus(id: string, direction: "up" | "down" | "left" | "right") {
@@ -551,6 +557,9 @@ async function deleteProfile() {
 				left: 0;
 				color: var(--indicator);
 				font-size: 16px;
+			}
+
+			> .animateIndicator {
 				animation: blink 1s infinite;
 			}
 

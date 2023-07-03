@@ -77,7 +77,7 @@ async function fetch() {
 fetch();
 
 function invite() {
-	os.selectUser().then((user) => {
+	os.selectLocalUser().then((user) => {
 		os.apiWithDialog("users/groups/invite", {
 			groupId: group.value.id,
 			userId: user.id,
@@ -110,7 +110,7 @@ async function renameGroup() {
 }
 
 function transfer() {
-	os.selectUser().then((user) => {
+	os.selectLocalUser().then((user) => {
 		os.apiWithDialog("users/groups/transfer", {
 			groupId: group.value.id,
 			userId: user.id,
