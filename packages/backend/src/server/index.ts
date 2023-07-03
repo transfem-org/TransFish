@@ -132,9 +132,8 @@ router.get("/identicon/:x", async (ctx) => {
 		await genIdenticon(ctx.params.x, fs.createWriteStream(temp));
 		ctx.set("Content-Type", "image/png");
 		ctx.body = fs.createReadStream(temp).on("close", () => cleanup());
-	}
-	else {
-		ctx.redirect("/static-assets/avatar.png")
+	} else {
+		ctx.redirect("/static-assets/avatar.png");
 	}
 });
 

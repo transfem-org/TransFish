@@ -174,7 +174,7 @@ let patrons = [];
 try {
 	patrons = await os.api("patrons", { forceUpdate: true });
 } catch {
-	console.error("Codeberg's down.")
+	console.error("Codeberg's down.");
 }
 
 let easterEggReady = false;

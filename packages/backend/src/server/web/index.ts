@@ -247,7 +247,14 @@ router.get("/api.json", async (ctx) => {
 	ctx.body = genOpenapiSpec();
 });
 
-const getFeed = async (acct: string, threadDepth:string, historyCount:string, noteInTitle:string, noRenotes:string, noReplies:string) => {
+const getFeed = async (
+	acct: string,
+	threadDepth: string,
+	historyCount: string,
+	noteInTitle: string,
+	noRenotes: string,
+	noReplies: string,
+) => {
 	const meta = await fetchMeta();
 	if (meta.privateMode) {
 		return;
@@ -257,7 +264,7 @@ const getFeed = async (acct: string, threadDepth:string, historyCount:string, no
 		usernameLower: username.toLowerCase(),
 		host: host ?? IsNull(),
 		isSuspended: false,
-		isLocked:false,
+		isLocked: false,
 	});
 	if (!user) {
 		return;
@@ -271,7 +278,17 @@ const getFeed = async (acct: string, threadDepth:string, historyCount:string, no
 	if (isNaN(history) || history <= 0 || history > 30) {
 		history = 20;
 	}
-	return user && await packFeed(user, thread, history, !isNaN(noteInTitle), isNaN(noRenotes), isNaN(noReplies));
+	return (
+		user &&
+		(await packFeed(
+			user,
+			thread,
+			history,
+			!isNaN(noteInTitle),
+			isNaN(noRenotes),
+			isNaN(noReplies),
+		))
+	);
 };
 
 // As the /@user[.json|.rss|.atom]/sub endpoint is complicated, we will use a regex to switch between them.
@@ -313,7 +330,14 @@ router.get(reUser, async (ctx, next) => {
 
 // Atom
 const atomFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user, ctx.query.thread, ctx.query.history, ctx.query.noteintitle, ctx.query.norenotes, ctx.query.noreplies);
+	const feed = await getFeed(
+		ctx.params.user,
+		ctx.query.thread,
+		ctx.query.history,
+		ctx.query.noteintitle,
+		ctx.query.norenotes,
+		ctx.query.noreplies,
+	);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/atom+xml; charset=utf-8");
@@ -325,7 +349,14 @@ const atomFeed: Router.Middleware = async (ctx) => {
 
 // RSS
 const rssFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user, ctx.query.thread, ctx.query.history, ctx.query.noteintitle, ctx.query.norenotes, ctx.query.noreplies);
+	const feed = await getFeed(
+		ctx.params.user,
+		ctx.query.thread,
+		ctx.query.history,
+		ctx.query.noteintitle,
+		ctx.query.norenotes,
+		ctx.query.noreplies,
+	);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/rss+xml; charset=utf-8");
@@ -337,7 +368,14 @@ const rssFeed: Router.Middleware = async (ctx) => {
 
 // JSON
 const jsonFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user, ctx.query.thread, ctx.query.history, ctx.query.noteintitle, ctx.query.norenotes, ctx.query.noreplies);
+	const feed = await getFeed(
+		ctx.params.user,
+		ctx.query.thread,
+		ctx.query.history,
+		ctx.query.noteintitle,
+		ctx.query.norenotes,
+		ctx.query.noreplies,
+	);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/json; charset=utf-8");
