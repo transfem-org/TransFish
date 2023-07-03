@@ -1,62 +1,64 @@
 <template>
-	<button v-if="hide" class="qjewsnkg" @click="hide = false">
-		<ImgWithBlurhash
-			:hash="media.blurhash"
-			:title="media.comment"
-			:alt="media.comment"
-		/>
-		<div class="text">
-			<div class="wrapper">
-				<b style="display: block"
-					><i class="ph-warning ph-bold ph-lg"></i>
-					{{ i18n.ts.sensitive }}</b
-				>
-				<span style="display: block">{{ i18n.ts.clickToShow }}</span>
-			</div>
-		</div>
-	</button>
-	<div v-else class="gqnyydlz media" :class="{ mini: plyrMini }">
-		<a 
-			v-if="media.type.startsWith('image')" 
-			:href="media.url"
-		>
+	<div class="media" :class="{ mini: plyrMini }">
+		<button v-if="hide" class="hidden" @click="hide = false">
 			<ImgWithBlurhash
 				:hash="media.blurhash"
-				:src="url"
+				:title="media.comment"
 				:alt="media.comment"
-				:type="media.type"
-				:cover="false"
 			/>
-			<div v-if="media.type === 'image/gif'" class="gif">GIF</div>
-		</a>
-		<VuePlyr
-			v-if="media.type.startsWith('video')" 
-			ref="plyr"
-			:options="{
-				controls: [
-					'play-large',
-					'play',
-					'progress',
-					'current-time',
-					'mute',
-					'volume',
-					'pip',
-					'download',
-					'fullscreen',
-				],
-				disableContextMenu: false,
-			}"
-		>
-			<video
-				:poster="media.thumbnailUrl"
-				:aria-label="media.comment"
-				preload="none"
-				controls
-				@contextmenu.stop
+			<div class="text">
+				<div class="wrapper">
+					<b style="display: block"
+						><i class="ph-warning ph-bold ph-lg"></i>
+						{{ i18n.ts.sensitive }}</b
+					>
+					<span style="display: block">{{ i18n.ts.clickToShow }}</span>
+				</div>
+			</div>
+		</button>
+		<template v-else>
+			<a 
+				v-if="media.type.startsWith('image')" 
+				:href="media.url"
 			>
-				<source :src="media.url" :type="media.type" />
-			</video>
-		</VuePlyr>
+				<ImgWithBlurhash
+					:hash="media.blurhash"
+					:src="url"
+					:alt="media.comment"
+					:type="media.type"
+					:cover="false"
+				/>
+				<div v-if="media.type === 'image/gif'" class="gif">GIF</div>
+			</a>
+			<VuePlyr
+				v-if="media.type.startsWith('video')"
+				ref="plyr"
+				:options="{
+					controls: [
+						'play-large',
+						'play',
+						'progress',
+						'current-time',
+						'mute',
+						'volume',
+						'pip',
+						'download',
+						'fullscreen',
+					],
+					disableContextMenu: false,
+				}"
+			>
+				<video
+					:poster="media.thumbnailUrl"
+					:aria-label="media.comment"
+					preload="none"
+					controls
+					@contextmenu.stop
+				>
+					<source :src="media.url" :type="media.type" />
+				</video>
+			</VuePlyr>
+		</template>
 		<div class="buttons">
 			<button
 				v-if="media.comment"
@@ -67,9 +69,10 @@
 				<i class="ph-subtitles ph-bold ph-lg"></i>
 			</button>
 			<button
+				v-if="!hide"
 				v-tooltip="i18n.ts.hide"
 				class="_button"
-				@click="hide = true"
+				@click.stop="hide = true"
 			>
 				<i class="ph-eye-slash ph-bold ph-lg"></i>
 			</button>
@@ -141,9 +144,11 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.qjewsnkg {
+.hidden {
 	all: unset;
 	position: relative;
+	width: 100%;
+	height: 100%;
 
 	> .text {
 		position: relative;
