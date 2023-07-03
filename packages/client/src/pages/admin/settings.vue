@@ -345,12 +345,22 @@
 
 						<FormSection>
 							<template #label>Server Performance</template>
-							<FormSwitch v-model="enableServerMachineStats">
-								<template #label>{{ i18n.ts.enableServerMachineStats }}</template>
+							<FormSwitch
+								v-model="enableServerMachineStats"
+								class="_formBlock"
+							>
+								<template #label>{{
+									i18n.ts.enableServerMachineStats
+								}}</template>
 							</FormSwitch>
 
-							<FormSwitch v-model="enableIdenticonGeneration">
-								<template #label>{{ i18n.ts.enableIdenticonGeneration }}</template>
+							<FormSwitch
+								v-model="enableIdenticonGeneration"
+								class="_formBlock"
+							>
+								<template #label>{{
+									i18n.ts.enableIdenticonGeneration
+								}}</template>
 							</FormSwitch>
 						</FormSection>
 
