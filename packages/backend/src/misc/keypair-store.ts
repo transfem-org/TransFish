@@ -3,7 +3,7 @@ import type { User } from "@/models/entities/user.js";
 import type { UserKeypair } from "@/models/entities/user-keypair.js";
 import { Cache } from "./cache.js";
 
-const cache = new Cache<UserKeypair>(Infinity);
+const cache = new Cache<UserKeypair>("keypairStore", Infinity);
 
 export async function getUserKeypair(userId: User["id"]): Promise<UserKeypair> {
 	return await cache.fetch(userId, () =>

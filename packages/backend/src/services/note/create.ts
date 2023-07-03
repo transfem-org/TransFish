@@ -73,7 +73,7 @@ import { Mutex } from "redis-semaphore";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
->(1000 * 60 * 5);
+>("mutedWords", 1000 * 60 * 5);
 
 type NotificationType = "reply" | "renote" | "quote" | "mention";
 

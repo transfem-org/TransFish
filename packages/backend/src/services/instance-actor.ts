@@ -6,7 +6,7 @@ import { IsNull } from "typeorm";
 
 const ACTOR_USERNAME = "instance.actor" as const;
 
-const cache = new Cache<ILocalUser>(Infinity);
+const cache = new Cache<ILocalUser>("instanceActor", Infinity);
 
 export async function getInstanceActor(): Promise<ILocalUser> {
 	const cached = await cache.get(null);

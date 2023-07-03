@@ -11,7 +11,7 @@ import * as Acct from "@/misc/acct.js";
 import type { Packed } from "./schema.js";
 import { Cache } from "./cache.js";
 
-const blockingCache = new Cache<User["id"][]>(1000 * 60 * 5);
+const blockingCache = new Cache<User["id"][]>("blocking", 1000 * 60 * 5);
 
 // NOTE: フォローしているユーザーのノート、リストのユーザーのノート、グループのユーザーのノート指定はパフォーマンス上の理由で無効になっている
 

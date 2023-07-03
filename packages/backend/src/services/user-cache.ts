@@ -3,17 +3,17 @@ import type {
 	CacheableUser,
 	ILocalUser,
 } from "@/models/entities/user.js";
-import { User } from "@/models/entities/user.js";
 import { Users } from "@/models/index.js";
 import { Cache } from "@/misc/cache.js";
 import { redisClient, subscriber } from "@/db/redis.js";
 
-export const userByIdCache = new Cache<CacheableUser>(Infinity);
+export const userByIdCache = new Cache<CacheableUser>("userById", Infinity);
 export const localUserByNativeTokenCache = new Cache<CacheableLocalUser | null>(
+	"localUserByNativeToken",
 	Infinity,
 );
-export const localUserByIdCache = new Cache<CacheableLocalUser>(Infinity);
-export const uriPersonCache = new Cache<CacheableUser | null>(Infinity);
+export const localUserByIdCache = new Cache<CacheableLocalUser>("localUserByIdCache", Infinity);
+export const uriPersonCache = new Cache<CacheableUser | null>("uriPerson", Infinity);
 
 subscriber.on("message", async (_, data) => {
 	const obj = JSON.parse(data);

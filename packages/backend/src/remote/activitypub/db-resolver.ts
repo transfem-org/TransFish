@@ -20,8 +20,8 @@ import type { IObject } from "./type.js";
 import { getApId } from "./type.js";
 import { resolvePerson } from "./models/person.js";
 
-const publicKeyCache = new Cache<UserPublickey | null>(Infinity);
-const publicKeyByUserIdCache = new Cache<UserPublickey | null>(Infinity);
+const publicKeyCache = new Cache<UserPublickey | null>("publicKey", Infinity);
+const publicKeyByUserIdCache = new Cache<UserPublickey | null>("publicKeyByUserId", Infinity);
 
 export type UriParseResult =
 	| {

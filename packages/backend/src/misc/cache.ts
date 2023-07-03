@@ -1,19 +1,18 @@
 import { redisClient } from "@/db/redis.js";
-import { nativeRandomStr } from "native-utils/built/index.js";
 import { encode, decode } from "@msgpack/msgpack";
 import { ChainableCommander } from "ioredis";
 
 export class Cache<T> {
 	private ttl: number;
-	private fingerprint: string;
+	private prefix: string;
 
-	constructor(ttl: number) {
+	constructor(prefix: string, ttl: number) {
 		this.ttl = ttl;
-		this.fingerprint = `cache:${nativeRandomStr(32)}`;
+		this.prefix = `cache:${prefix}`;
 	}
 
 	private prefixedKey(key: string | null): string {
-		return key ? `${this.fingerprint}:${key}` : this.fingerprint;
+		return key ? `${this.prefix}:${key}` : this.prefix;
 	}
 
 	public async set(key: string | null, value: T, transaction?: ChainableCommander): Promise<void> {
@@ -36,7 +35,7 @@ export class Cache<T> {
 	}
 
 	public async getAll(): Promise<Map<string, T>> {
-		const keys = await redisClient.keys(`${this.fingerprint}*`);
+		const keys = await redisClient.keys(`${this.prefix}*`);
 		const map = new Map<string, T>();
 		if (keys.length === 0) {
 			return map;

@@ -40,7 +40,7 @@ import {
 } from "../index.js";
 import type { Instance } from "../entities/instance.js";
 
-const userInstanceCache = new Cache<Instance | null>(1000 * 60 * 60 * 3);
+const userInstanceCache = new Cache<Instance | null>("userInstance", 1000 * 60 * 60 * 3);
 
 type IsUserDetailed<Detailed extends boolean> = Detailed extends true
 	? Packed<"UserDetailed">

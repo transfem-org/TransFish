@@ -9,7 +9,7 @@ import {
 	localUserByNativeTokenCache,
 } from "@/services/user-cache.js";
 
-const appCache = new Cache<App>(Infinity);
+const appCache = new Cache<App>("app", Infinity);
 
 export class AuthenticationError extends Error {
 	constructor(message: string) {
