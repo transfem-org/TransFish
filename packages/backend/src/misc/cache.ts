@@ -6,9 +6,9 @@ export class Cache<T> {
 	private ttl: number;
 	private prefix: string;
 
-	constructor(prefix: string, ttlSeconds: number) {
+	constructor(name: string, ttlSeconds: number) {
 		this.ttl = ttlSeconds;
-		this.prefix = `cache:${prefix}`;
+		this.prefix = `cache:${name}`;
 	}
 
 	private prefixedKey(key: string | null): string {
