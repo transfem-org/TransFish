@@ -108,6 +108,12 @@ export function getNoteMenu(props: {
 		os.success();
 	}
 
+	function embed(): void {
+		os.showEmbedDialog({
+			id: appearNote.id,
+		})
+	}
+
 	function copyOriginal(): void {
 		copyToClipboard(appearNote.url ?? appearNote.uri);
 		os.success();
@@ -462,6 +468,11 @@ export function getNoteMenu(props: {
 				text: i18n.ts.copyLink,
 				action: copyLink,
 			},
+			{
+				icon: "ph-code ph-bold ph-lg",
+				text: i18n.ts.embed,
+				action: embed,
+			},
 			appearNote.url || appearNote.uri
 				? {
 						icon: "ph-link-simple ph-bold ph-lg",
@@ -476,13 +487,6 @@ export function getNoteMenu(props: {
 						action: share,
 				  }
 				: undefined,
-			{
-				icon: "ph-code ph-bold ph-lg",
-				text: i18n.ts.embed,
-				action: os.showEmbedDialog({
-					id: appearNote.id,
-				}),
-			},
 		].filter((x) => x !== undefined);
 	}
 

@@ -48,7 +48,7 @@ const props = withDefaults(
 	}
 );
 
-const codeblock = `<iframe src="https://${host}/notes/${props.id}/embed" class="embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><scr` + `ipt src="https://${host}/static-assets/embed.js" async="async"></scr` + `ipt>`;
+const codeblock = `<iframe src="https://${host}/notes/${props.id}/embed" class="embed" style="max-width: 100%; border: 0" width="400" height="600" allowfullscreen="allowfullscreen"></iframe><scr` + `ipt src="https://${host}/static-assets/embed.js" async="async"></scr` + `ipt>`;
 </script>
 
 <style lang="scss" module>
