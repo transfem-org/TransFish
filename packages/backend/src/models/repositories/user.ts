@@ -1,4 +1,3 @@
-import { URL } from "url";
 import { In, Not } from "typeorm";
 import Ajv from "ajv";
 import type { ILocalUser, IRemoteUser } from "@/models/entities/user.js";
@@ -40,7 +39,10 @@ import {
 } from "../index.js";
 import type { Instance } from "../entities/instance.js";
 
-const userInstanceCache = new Cache<Instance | null>(1000 * 60 * 60 * 3);
+const userInstanceCache = new Cache<Instance | null>(
+	"userInstance",
+	60 * 60 * 3,
+);
 
 type IsUserDetailed<Detailed extends boolean> = Detailed extends true
 	? Packed<"UserDetailed">

@@ -17,17 +17,15 @@
 						previewable(media)
 					)"
 				>
-					<XVideo
-						v-if="media.type.startsWith('video')"
+					<XMedia
+						v-if="
+							media.type.startsWith('video') ||
+							media.type.startsWith('image')
+						"
 						:key="media.id"
-						:video="media"
-					/>
-					<XImage
-						v-else-if="media.type.startsWith('image')"
-						:key="media.id"
-						class="image"
+						:class="{ image: media.type.startsWith('image') }"
 						:data-id="media.id"
-						:image="media"
+						:media="media"
 						:raw="raw"
 					/>
 					<XModPlayer
@@ -48,8 +46,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import PhotoSwipe from "photoswipe";
 import "photoswipe/style.css";
 import XBanner from "@/components/MkMediaBanner.vue";
-import XImage from "@/components/MkMediaImage.vue";
-import XVideo from "@/components/MkMediaVideo.vue";
+import XMedia from "@/components/MkMedia.vue";
 import XModPlayer from "@/components/MkModPlayer.vue";
 import * as os from "@/os";
 import {
