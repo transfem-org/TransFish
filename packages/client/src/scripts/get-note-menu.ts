@@ -476,6 +476,13 @@ export function getNoteMenu(props: {
 						action: share,
 				  }
 				: undefined,
+			{
+				icon: "ph-code ph-bold ph-lg",
+				text: i18n.ts.embed,
+				action: os.showEmbedDialog({
+					id: appearNote.id,
+				}),
+			},
 		].filter((x) => x !== undefined);
 	}
 

@@ -1114,6 +1114,8 @@ isPatron: "Calckey Patron"
 reactionPickerSkinTone: "Preferred emoji skin tone"
 enableServerMachineStats: "Enable server hardware statistics"
 enableIdenticonGeneration: "Enable Identicon generation"
+embed: "Embed"
+embedDescription: "Embed this post on your website by copying the code below:"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

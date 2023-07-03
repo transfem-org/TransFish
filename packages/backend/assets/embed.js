@@ -55,7 +55,7 @@
 
     });
 
-    [].forEach.call(document.querySelectorAll('iframe.mastodon-embed'), function (iframe) {
+    [].forEach.call(document.querySelectorAll('iframe.embed'), function (iframe) {
       // select unique id for each iframe
       let id = 0;
       let failCount = 0;

@@ -926,6 +926,22 @@ export function post(props: Record<string, any> = {}) {
 	});
 }
 
+export function showEmbedDialog(props: {id: string}) {
+	return new Promise(() => {
+		popup(
+			defineAsyncComponent({
+				loader: () => import("@/components/MkEmbedDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+			}),
+			{
+				...props,
+			},
+			{},
+			"closed",
+		);
+	});
+}
+
 export const deckGlobalEvents = new EventEmitter();
 
 /*
