@@ -1,7 +1,7 @@
 <template>
 	<label class="timctyfi" :class="{ disabled, easing }">
 		<div class="label"><slot name="label"></slot></div>
-		<div v-adaptive-border class="body">
+		<div v-adaptive-border class="body" :class="{ background }">
 			<div class="container">
 				<input
 					ref="inputEl"
@@ -50,11 +50,15 @@ const props = withDefaults(
 		textConverter?: (value: number) => string;
 		showTicks?: boolean;
 		easing?: boolean;
+		background?: boolean;
+		tooltips?: boolean;
 	}>(),
 	{
 		step: 1,
 		textConverter: (v) => v.toString(),
 		easing: false,
+		background: true,
+		tooltips: true,
 	}
 );
 
@@ -79,6 +83,7 @@ function onChange(x) {
 
 const tooltipShowing = ref(false);
 function tooltipShow() {
+	if (!props.tooltips) return;
 	tooltipShowing.value = true;
 	os.popup(
 		defineAsyncComponent(() => import("@/components/MkTooltip.vue")),
@@ -94,6 +99,7 @@ function tooltipShow() {
 	);
 }
 function tooltipHide() {
+	if (!props.tooltips) return;
 	tooltipShowing.value = false;
 }
 </script>
@@ -129,12 +135,19 @@ function tooltipHide() {
 
 	> .body {
 		padding: 10px 12px;
-		background: var(--panel);
-		border: solid 1px var(--panel);
+		background: none;
+		border: none;
 		border-radius: 6px;
+
+		&.background {
+			background: var(--panel);
+			border: solid 1px var(--panel);
+		}
 
 		> .container {
 			position: relative;
+			display: flex;
+			align-items: center;
 			height: $thumbHeight;
 
 			@mixin track {
@@ -155,6 +168,7 @@ function tooltipHide() {
 
 				&:hover {
 					background: var(--accentLighten);
+					cursor: pointer;
 				}
 			}
 			> input {

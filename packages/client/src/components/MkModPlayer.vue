@@ -32,7 +32,7 @@
 					<span class="mod-row-inner">|C-41Cv14XEF</span>
 				</span>
 				<br />
-				<p>Click to show module patterns</p>
+				<p>{{ i18n.ts.clickToShowPatterns }}</p>
 			</div>
 		</div>
 		<div class="controls">
@@ -43,24 +43,27 @@
 			<button class="stop" @click="stop()">
 				<i class="ph-stop ph-fill ph-lg"></i>
 			</button>
-			<input
+			<FormRange
 				class="progress"
-				type="range"
-				min="0"
-				max="1"
+				:min="0"
+				:max="length"
 				v-model="position"
-				step="0.1"
+				:step="0.1"
 				ref="progress"
+				:background="false"
+				:tooltips="false"
+				@update:modelValue="performSeek()"
 				@mousedown="initSeek()"
-				@mouseup="performSeek()"
-			/>
-			<input
-				type="range"
-				min="0"
-				max="1"
+				@mouseup="finishSeek()"
+			></FormRange>
+			<FormRange
+				:min="0"
+				:max="1"
 				v-model="player.context.gain.value"
-				step="0.1"
-			/>
+				:step="0.1"
+				:background="false"
+				:tooltips="false"
+			></FormRange>
 			<a
 				class="download"
 				:title="i18n.ts.download"
@@ -75,8 +78,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, shallowRef, nextTick, onDeactivated, onMounted } from "vue";
+import {
+	ref,
+	shallowRef,
+	nextTick,
+	onDeactivated,
+	onMounted,
+} from "vue";
 import * as calckey from "calckey-js";
+import FormRange from "./form/range.vue";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
 import { ChiptuneJsPlayer, ChiptuneJsConfig } from "@/scripts/chiptune2";
@@ -94,7 +104,23 @@ interface ModRow {
 }
 
 const available = ref(false);
+const initRow = shallowRef<HTMLSpanElement>();
 const player = shallowRef(new ChiptuneJsPlayer(new ChiptuneJsConfig()));
+let hide = ref(
+	defaultStore.state.nsfw === "force"
+		? true
+		: props.module.isSensitive && defaultStore.state.nsfw !== "ignore"
+);
+let playing = ref(false);
+let patternShow = ref(false);
+let modPattern = ref<HTMLDivElement>();
+let progress = ref<FormRange>();
+let position = ref(0);
+let patData = shallowRef([] as ModRow[][]);
+let currentPattern = ref(0);
+let nbChannels = ref(0);
+let length = ref(1);
+
 const loaded = !!window.libopenmpt;
 
 onMounted(() => {
@@ -131,21 +157,6 @@ onMounted(() => {
 	}
 });
 
-let hide = ref(
-	defaultStore.state.nsfw === "force"
-		? true
-		: props.module.isSensitive && defaultStore.state.nsfw !== "ignore"
-);
-let playing = ref(false);
-let patternShow = ref(false);
-const initRow = shallowRef<HTMLSpanElement>();
-let modPattern = ref<HTMLDivElement>();
-let progress = ref<HTMLProgressElement>();
-let position = ref(0);
-let patData = shallowRef([] as ModRow[][]);
-let currentPattern = ref(0);
-let nbChannels = ref(0);
-
 let currentRow = 0;
 let rowHeight = 0;
 let buffer = null;
@@ -178,7 +189,7 @@ function playPause() {
 	player.value.addHandler("onRowChange", (i: { index: number }) => {
 		currentRow = i.index;
 		currentPattern.value = player.value.getPattern();
-		progress.value.max = player.value.duration();
+		length.value = player.value.duration();
 		if (!isSeeking) {
 			position.value = player.value.position() % player.value.duration();
 		}
@@ -220,10 +231,13 @@ function initSeek() {
 	isSeeking = true;
 }
 
+function finishSeek() {
+	isSeeking = false;
+}
+
 function performSeek() {
 	player.value.seek(position.value);
 	display();
-	isSeeking = false;
 }
 
 function toggleVisible() {
@@ -405,128 +419,17 @@ onDeactivated(() => {
 			background-color: transparent;
 			color: var(--navFg);
 			cursor: pointer;
+			margin: auto;
 
 			&:hover {
 				background-color: var(--accentedBg);
+				border-radius: 3px;
 			}
 		}
 
-		> input[type="range"] {
-			height: 21px;
-			-webkit-appearance: none;
-			width: 90px;
-			padding: 0;
-			margin: 4px 8px;
-			overflow-x: hidden;
-
-			&:focus {
-				outline: none;
-
-				&::-webkit-slider-runnable-track {
-					background: var(--bg);
-				}
-
-				&::-ms-fill-lower,
-				&::-ms-fill-upper {
-					background: var(--bg);
-				}
-			}
-
-			&::-webkit-slider-runnable-track {
-				width: 100%;
-				height: 100%;
-				cursor: pointer;
-				border-radius: 0;
-				animate: 0.2s;
-				background: var(--bg);
-				border: 1px solid var(--fg);
-				overflow-x: hidden;
-			}
-
-			&::-webkit-slider-thumb {
-				border: none;
-				height: 100%;
-				width: 14px;
-				border-radius: 0;
-				background: var(--accentLighten);
-				cursor: pointer;
-				-webkit-appearance: none;
-				box-shadow: calc(-100vw - 14px) 0 0 100vw var(--accent);
-				clip-path: polygon(
-					1px 0,
-					100% 0,
-					100% 100%,
-					1px 100%,
-					1px calc(50% + 10.5px),
-					-100vw calc(50% + 10.5px),
-					-100vw calc(50% - 10.5px),
-					0 calc(50% - 10.5px)
-				);
-				z-index: 1;
-			}
-
-			&::-moz-range-track {
-				width: 100%;
-				height: 100%;
-				cursor: pointer;
-				border-radius: 0;
-				animate: 0.2s;
-				background: var(--bg);
-				border: 1px solid var(--fg);
-			}
-
-			&::-moz-range-progress {
-				cursor: pointer;
-				height: 100%;
-				background: var(--accent);
-			}
-
-			&::-moz-range-thumb {
-				border: none;
-				height: 100%;
-				border-radius: 0;
-				width: 14px;
-				background: var(--accentLighten);
-				cursor: pointer;
-			}
-
-			&::-ms-track {
-				width: 100%;
-				height: 100%;
-				cursor: pointer;
-				border-radius: 0;
-				animate: 0.2s;
-				background: transparent;
-				border-color: transparent;
-				color: transparent;
-			}
-
-			&::-ms-fill-lower {
-				background: var(--accent);
-				border: 1px solid var(--fg);
-				border-radius: 0;
-			}
-
-			&::-ms-fill-upper {
-				background: var(--bg);
-				border: 1px solid var(--fg);
-				border-radius: 0;
-			}
-
-			&::-ms-thumb {
-				margin-top: 1px;
-				border: none;
-				height: 100%;
-				width: 14px;
-				border-radius: 0;
-				background: var(--accentLighten);
-				cursor: pointer;
-			}
-
-			&.progress {
-				flex-grow: 1;
-				min-width: 0;
-			}
+		> .progress {
+			flex-grow: 1;
+			min-width: 0;
 		}
 	}
 }
