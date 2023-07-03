@@ -2142,3 +2142,5 @@ _skinTones:
   dark: Fosc
   yellow: Groc
 swipeOnMobile: Permet lliscar entre pàgines
+enableIdenticonGeneration: Habilitar la generació d'Identicon
+enableServerMachineStats: Habilitar les estadístiques del maquinari del servidor
