@@ -87,7 +87,7 @@ mastoFileRouter.post("/v1/media", upload.single("file"), async (ctx) => {
 	const accessTokens = ctx.headers.authorization;
 	const client = getClient(BASE_URL, accessTokens);
 	try {
-		let multipartData = await ctx.file;
+		const multipartData = await ctx.file;
 		if (!multipartData) {
 			ctx.body = { error: "No image" };
 			ctx.status = 401;
@@ -106,7 +106,7 @@ mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
 	const accessTokens = ctx.headers.authorization;
 	const client = getClient(BASE_URL, accessTokens);
 	try {
-		let multipartData = await ctx.file;
+		const multipartData = await ctx.file;
 		if (!multipartData) {
 			ctx.body = { error: "No image" };
 			ctx.status = 401;
@@ -184,17 +184,6 @@ router.post("/verify-email", verifyEmail);
 router.use(discord.routes());
 router.use(github.routes());
 router.use(twitter.routes());
-
-router.get("/v1/instance/peers", async (ctx) => {
-	const instances = await Instances.find({
-		select: ["host"],
-		where: {
-			isSuspended: false,
-		},
-	});
-
-	ctx.body = instances.map((instance) => instance.host);
-});
 
 router.post("/miauth/:session/check", async (ctx) => {
 	const token = await AccessTokens.findOneBy({

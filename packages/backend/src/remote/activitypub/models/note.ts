@@ -13,11 +13,10 @@ import type {
 import { htmlToMfm } from "../misc/html-to-mfm.js";
 import { extractApHashtags } from "./tag.js";
 import { unique, toArray, toSingle } from "@/prelude/array.js";
-import { extractPollFromQuestion, updateQuestion } from "./question.js";
+import { extractPollFromQuestion } from "./question.js";
 import vote from "@/services/note/polls/vote.js";
 import { apLogger } from "../logger.js";
 import { DriveFile } from "@/models/entities/drive-file.js";
-import { deliverQuestionUpdate } from "@/services/note/polls/update.js";
 import { extractDbHost, toPuny } from "@/misc/convert-host.js";
 import {
 	Emojis,
@@ -334,9 +333,6 @@ export async function createNote(
 					`vote from AP: actor=${actor.username}@${actor.host}, note=${note.id}, choice=${name}`,
 				);
 				await vote(actor, reply, index);
-
-				// リモートフォロワーにUpdate配信
-				deliverQuestionUpdate(reply.id);
 			}
 			return null;
 		};
@@ -545,10 +541,6 @@ function notEmpty(partial: Partial<any>) {
 export async function updateNote(value: string | IObject, resolver?: Resolver) {
 	const uri = typeof value === "string" ? value : value.id;
 	if (!uri) throw new Error("Missing note uri");
-	const instanceMeta = await fetchMeta();
-	if (instanceMeta.experimentalFeatures?.postEdits === false) {
-		throw new Error("Post edits disabled.");
-	}
 
 	// Skip if URI points to this server
 	if (uri.startsWith(`${config.url}/`)) throw new Error("uri points local");

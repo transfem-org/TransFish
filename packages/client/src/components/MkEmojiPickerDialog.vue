@@ -65,7 +65,11 @@ function chosen(emoji: any) {
 }
 
 function opening() {
-	picker.value?.reset();
+	try {
+		picker.value?.reset();
+	} catch (e) {
+		console.error(`Something's wrong with restting the emoji picker: ${e}`);
+	}
 	picker.value?.focus();
 }
 </script>

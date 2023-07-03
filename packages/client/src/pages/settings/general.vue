@@ -45,9 +45,18 @@
 				class="_formBlock"
 				>{{ i18n.ts.useReactionPickerForContextMenu }}</FormSwitch
 			>
-			<FormSwitch v-model="swipeOnDesktop" class="_formBlock">{{
-				i18n.ts.swipeOnDesktop
-			}}</FormSwitch>
+			<FormSwitch
+				v-if="deviceKind !== 'desktop'"
+				v-model="swipeOnMobile"
+				class="_formBlock"
+				>{{ i18n.ts.swipeOnMobile }}</FormSwitch
+			>
+			<FormSwitch
+				v-if="deviceKind === 'desktop'"
+				v-model="swipeOnDesktop"
+				class="_formBlock"
+				>{{ i18n.ts.swipeOnDesktop }}</FormSwitch
+			>
 			<FormSwitch v-model="enterSendsMessage" class="_formBlock">{{
 				i18n.ts.enterSendsMessage
 			}}</FormSwitch>
@@ -253,6 +262,7 @@ import * as os from "@/os";
 import { unisonReload } from "@/scripts/unison-reload";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
+import { deviceKind } from "@/scripts/device-kind";
 
 const lang = ref(localStorage.getItem("lang"));
 const fontSize = ref(localStorage.getItem("fontSize"));
@@ -339,12 +349,17 @@ const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
 const swipeOnDesktop = computed(
 	defaultStore.makeGetterSetter("swipeOnDesktop")
 );
+const swipeOnMobile = computed(defaultStore.makeGetterSetter("swipeOnMobile"));
 const showAdminUpdates = computed(
 	defaultStore.makeGetterSetter("showAdminUpdates")
 );
 const showTimelineReplies = computed(
 	defaultStore.makeGetterSetter("showTimelineReplies")
 );
+
+watch(swipeOnDesktop, () => {
+	defaultStore.set("swipeOnMobile", true);
+});
 
 watch(lang, () => {
 	localStorage.setItem("lang", lang.value as string);
@@ -379,6 +394,7 @@ watch(
 		overridedDeviceKind,
 		showAds,
 		showUpdates,
+		swipeOnMobile,
 		swipeOnDesktop,
 		seperateRenoteQuote,
 		showAdminUpdates,

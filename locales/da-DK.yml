@@ -83,7 +83,7 @@ deleteAndEditConfirm: Er du sikker på at du vil slet denne opslag og ændre det
   vil tabe alle reaktioner, forstærkninger og svarer indenfor denne opslag.
 editNote: Ændre note
 deleted: Slettet
-edited: Ændret
+edited: 'Ændret den {date} {time}'
 sendMessage: Send en besked
 youShouldUpgradeClient: Til at vise denne side, vær sød at refresh til at opdatere
   din brugerenhed.

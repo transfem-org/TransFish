@@ -331,6 +331,11 @@ definePageMetadata(INFO);
 <style lang="scss" scoped>
 .vvcocwet {
 	> .body {
+		.wallpaper & {
+			background: var(--bg);
+			padding: var(--margin);
+			border-radius: var(--radius);
+		}
 		> .nav {
 			.baaadecd {
 				> .info {

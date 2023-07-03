@@ -12,10 +12,15 @@
 		<template #func
 			><button
 				class="_button"
+				:aria-label="i18n.ts.markAllAsRead"
 				@click="os.apiWithDialog('notifications/mark-all-as-read')"
 			>
 				<i class="ph-check ph-bold ph-lg"></i></button
-			><button class="_button" @click="configureNotification()">
+			><button
+				class="_button"
+				:aria-label="i18n.ts.notificationSetting"
+				@click="configureNotification()"
+			>
 				<i class="ph-gear-six ph-bold ph-lg"></i></button
 		></template>
 		<div>

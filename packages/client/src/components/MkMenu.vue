@@ -1,10 +1,11 @@
 <template>
 	<FocusTrap
-		:active="false"
 		ref="focusTrap"
+		v-model:active="isActive"
 		:return-focus-on-deactivate="!noReturnFocus"
+		@deactivate="emit('close')"
 	>
-		<div tabindex="-1">
+		<div>
 			<div
 				ref="itemsEl"
 				class="rrevdjwt _popup _shadow"
@@ -14,6 +15,7 @@
 					maxHeight: maxHeight ? maxHeight + 'px' : '',
 				}"
 				@contextmenu.self="(e) => e.preventDefault()"
+				tabindex="-1"
 			>
 				<template v-for="(item, i) in items2">
 					<div v-if="item === null" class="divider"></div>
@@ -50,7 +52,12 @@
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</MkA>
@@ -72,7 +79,12 @@
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</a>
@@ -90,7 +102,12 @@
 							class="avatar"
 							disableLink
 						/><MkUserName :user="item.user" />
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</button>
@@ -113,7 +130,7 @@
 						class="_button item parent"
 						:class="{ childShowing: childShowingItem === item }"
 						@mouseenter="showChildren(item, $event)"
-						@click="showChildren(item, $event)"
+						@click.stop="showChildren(item, $event)"
 					>
 						<i
 							v-if="item.icon"
@@ -156,7 +173,12 @@
 						<span :style="item.textStyle || ''">{{
 							item.text
 						}}</span>
-						<span v-if="item.indicate" class="indicator"
+						<span
+							v-if="item.indicate"
+							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="ph-circle ph-fill"></i
 						></span>
 					</button>
@@ -173,6 +195,7 @@
 					:root-element="itemsEl"
 					showing
 					@actioned="childActioned"
+					@closed="closeChild"
 				/>
 			</div>
 		</div>
@@ -303,23 +326,7 @@ function close(actioned = false) {
 	emit("close", actioned);
 }
 
-function focusUp() {
-	focusPrev(document.activeElement);
-}
-
-function focusDown() {
-	focusNext(document.activeElement);
-}
-
 onMounted(() => {
-	focusTrap.value.activate();
-
-	if (props.viaKeyboard) {
-		nextTick(() => {
-			focusNext(itemsEl.children[0], true, false);
-		});
-	}
-
 	document.addEventListener("mousedown", onGlobalMousedown, {
 		passive: true,
 	});
@@ -496,6 +503,9 @@ onBeforeUnmount(() => {
 			left: 13px;
 			color: var(--indicator);
 			font-size: 12px;
+		}
+
+		> .animateIndicator {
 			animation: blink 1s infinite;
 		}
 	}

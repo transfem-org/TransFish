@@ -9,19 +9,6 @@
 		<MkSpacer :content-max="700" :margin-min="16" :margin-max="32">
 			<FormSuspense :p="init">
 				<FormSwitch
-					v-model="enablePostEditing"
-					@update:modelValue="save"
-					class="_formBlock"
-				>
-					<template #label>
-						<i class="ph-pencil-line ph-bold ph-lg"></i>
-						{{ i18n.ts._experiments.enablePostEditing }}
-					</template>
-					<template #caption>{{
-						i18n.ts._experiments.postEditingCaption
-					}}</template>
-				</FormSwitch>
-				<FormSwitch
 					v-model="enablePostImports"
 					@update:modelValue="save"
 					class="_formBlock"
@@ -49,13 +36,11 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let enablePostEditing = $ref(false);
 let enablePostImports = $ref(false);
 let meta = $ref<MetaExperiments | null>(null);
 
 type MetaExperiments = {
 	experimentalFeatures?: {
-		postEditing?: boolean;
 		postImports?: boolean;
 	};
 };
@@ -64,14 +49,12 @@ async function init() {
 	meta = (await os.api("admin/meta")) as MetaExperiments;
 	if (!meta) return;
 
-	enablePostEditing = meta.experimentalFeatures?.postEditing ?? false;
 	enablePostImports = meta.experimentalFeatures?.postImports ?? false;
 }
 
 function save() {
 	const experiments: MetaExperiments = {
 		experimentalFeatures: {
-			postEditing: enablePostEditing,
 			postImports: enablePostImports,
 		},
 	};

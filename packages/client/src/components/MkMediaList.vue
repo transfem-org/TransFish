@@ -12,25 +12,16 @@
 			:class="{ dmWidth: inDm }"
 		>
 			<div ref="gallery" @click.stop>
-				<template
+				<XMedia
 					v-for="media in mediaList.filter((media) =>
 						previewable(media)
 					)"
-				>
-					<XVideo
-						v-if="media.type.startsWith('video')"
-						:key="media.id"
-						:video="media"
-					/>
-					<XImage
-						v-else-if="media.type.startsWith('image')"
-						:key="media.id"
-						class="image"
-						:data-id="media.id"
-						:image="media"
-						:raw="raw"
-					/>
-				</template>
+					:key="media.id"
+					:class="{ image: media.type.startsWith('image') }"
+					:data-id="media.id"
+					:media="media"
+					:raw="raw"
+				/>
 			</div>
 		</div>
 	</div>
@@ -43,8 +34,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import PhotoSwipe from "photoswipe";
 import "photoswipe/style.css";
 import XBanner from "@/components/MkMediaBanner.vue";
-import XImage from "@/components/MkMediaImage.vue";
-import XVideo from "@/components/MkMediaVideo.vue";
+import XMedia from "@/components/MkMedia.vue";
 import * as os from "@/os";
 import { FILE_TYPE_BROWSERSAFE } from "@/const";
 import { defaultStore } from "@/store";

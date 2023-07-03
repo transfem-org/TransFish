@@ -198,7 +198,7 @@ export class Meta {
 	public iconUrl: string | null;
 
 	@Column("boolean", {
-		default: true,
+		default: false,
 	})
 	public cacheRemoteFiles: boolean;
 
@@ -546,4 +546,14 @@ export class Meta {
 		default: {},
 	})
 	public experimentalFeatures: Record<string, unknown>;
+
+	@Column("boolean", {
+		default: false,
+	})
+	public enableServerMachineStats: boolean;
+
+	@Column("boolean", {
+		default: true,
+	})
+	public enableIdenticonGeneration: boolean;
 }

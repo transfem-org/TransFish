@@ -174,7 +174,6 @@ export const paramDef = {
 			type: "object",
 			nullable: true,
 			properties: {
-				postEditing: { type: "boolean" },
 				postImports: { type: "boolean" },
 			},
 		},

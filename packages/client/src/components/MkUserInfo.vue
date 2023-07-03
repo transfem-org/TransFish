@@ -45,12 +45,9 @@
 				<MkNumber :value="user.followersCount" />
 			</div>
 		</div>
-		<MkFollowButton
-			v-if="$i && user.id != $i.id"
-			class="koudoku-button"
-			:user="user"
-			full
-		/>
+		<div class="koudoku-button">
+			<MkFollowButton v-if="$i && user.id != $i.id" :user="user" />
+		</div>
 	</div>
 </template>
 

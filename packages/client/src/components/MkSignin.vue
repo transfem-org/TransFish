@@ -102,14 +102,15 @@
 					<MkInput
 						v-model="token"
 						type="text"
-						pattern="^[0-9]{6}$"
 						autocomplete="one-time-code"
+						pattern="^[0-9]{6}$"
 						:spellcheck="false"
 						required
 					>
-						<template #prefix>
-							<i class="ph-poker-chip ph-bold ph-lg"></i>
-						</template>
+						<template #label>{{ i18n.ts._2fa.token }}</template>
+						<template #prefix
+							><i class="ph-poker-chip ph-bold ph-lg"></i
+						></template>
 					</MkInput>
 					<MkButton
 						type="submit"
@@ -159,6 +160,7 @@
 </template>
 
 <script lang="ts" setup>
+import Vue3OtpInput from "vue3-otp-input";
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
@@ -183,6 +185,10 @@ let challengeData = $ref(null);
 let queryingKey = $ref(false);
 let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
+
+const updateToken = (value: string) => {
+	token = value.toString();
+};
 
 const meta = $computed(() => instance);
 

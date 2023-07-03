@@ -15,12 +15,6 @@
 					class="post-form _block"
 					fixed
 				/>
-
-				<div v-if="queue > 0" class="new">
-					<button class="_buttonPrimary" @click="top()">
-						{{ i18n.ts.newNoteRecived }}
-					</button>
-				</div>
 				<!-- <div v-if="!isMobile" class="tl _block">
 				<XTimeline
 					ref="tl"
@@ -41,10 +35,9 @@
 						:space-between="20"
 						:virtual="true"
 						:allow-touch-move="
-							!(
-								deviceKind === 'desktop' &&
-								!defaultStore.state.swipeOnDesktop
-							)
+							defaultStore.state.swipeOnMobile &&
+							(deviceKind !== 'desktop' ||
+								defaultStore.state.swipeOnDesktop)
 						"
 						@swiper="setSwiperRef"
 						@slide-change="onSlideChange"
@@ -61,7 +54,6 @@
 								class="tl"
 								:src="src"
 								:sound="true"
-								@queue="queueUpdated"
 							/>
 						</swiper-slide>
 					</swiper>
@@ -72,13 +64,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref, onMounted } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import XPostForm from "@/components/MkPostForm.vue";
-import { scroll } from "@/scripts/scroll";
 import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
@@ -133,7 +124,6 @@ window.addEventListener("resize", () => {
 const tlComponent = $ref<InstanceType<typeof XTimeline>>();
 const rootEl = $ref<HTMLElement>();
 
-let queue = $ref(0);
 const src = $computed({
 	get: () => defaultStore.reactiveState.tl.value.src,
 	set: (x) => {
@@ -141,16 +131,6 @@ const src = $computed({
 		syncSlide(timelines.indexOf(x));
 	},
 });
-
-watch($$(src), () => (queue = 0));
-
-function queueUpdated(q: number): void {
-	queue = q;
-}
-
-function top(): void {
-	scroll(rootEl, { top: 0 });
-}
 
 const lists = os.api("users/lists/list");
 async function chooseList(ev: MouseEvent) {
@@ -330,31 +310,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 .cmuxhskf {
 	--swiper-theme-color: var(--accent);
-
-	> .new {
-		position: sticky;
-		top: calc(var(--stickyTop, 0px) + 16px);
-		z-index: 1000;
-		width: 100%;
-		pointer-events: none;
-
-		> button {
-			display: block;
-			margin: var(--margin) auto 0 auto;
-			padding: 8px 16px;
-			border-radius: 32px;
-			pointer-events: all;
-		}
-	}
-
-	> .post-form {
-		border-radius: var(--radius);
-	}
-
 	> .tl {
 		background: none;
-		border-radius: var(--radius);
-		overflow: clip;
 	}
 }
 </style>

@@ -12,11 +12,18 @@
 		:id="appearNote.id"
 	>
 		<MkNoteSub
-			v-if="appearNote.reply && !detailedView"
+			v-if="appearNote.reply && !detailedView && !collapsedReply"
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		<div v-if="!detailedView" class="note-context" @click="noteClick">
+		<div
+			v-if="!detailedView"
+			class="note-context"
+			@click="noteClick"
+			:class="{
+				collapsedReply: collapsedReply && appearNote.reply,
+			}"
+		>
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
 				<i class="ph-megaphone-simple-bold ph-lg"></i>
@@ -63,6 +70,20 @@
 					<MkVisibility :note="note" />
 				</div>
 			</div>
+			<div v-if="collapsedReply && appearNote.reply" class="info">
+				<MkAvatar class="avatar" :user="appearNote.reply.user" />
+				<MkUserName
+					class="username"
+					:user="appearNote.reply.user"
+				></MkUserName>
+				<Mfm
+					class="summary"
+					:text="getNoteSummary(appearNote.reply)"
+					:plain="true"
+					:nowrap="true"
+					:custom-emojis="note.emojis"
+				/>
+			</div>
 		</div>
 		<article
 			class="article"
@@ -75,11 +96,7 @@
 			<div class="main">
 				<div class="header-container">
 					<MkAvatar class="avatar" :user="appearNote.user" />
-					<XNoteHeader
-						class="header"
-						:note="appearNote"
-						:mini="true"
-					/>
+					<XNoteHeader class="header" :note="appearNote" />
 				</div>
 				<div class="body">
 					<MkSubNoteContent
@@ -190,6 +207,7 @@
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -206,7 +224,12 @@
 			</div>
 		</article>
 	</div>
-	<button v-else class="muted _button" @click="muted.muted = false">
+	<button
+		v-else
+		class="muted _button"
+		@click="muted.muted = false"
+		@contextmenu.stop.prevent
+	>
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
@@ -259,6 +282,7 @@ import { getNoteMenu } from "@/scripts/get-note-menu";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { notePage } from "@/filters/note";
 import { deepClone } from "@/scripts/clone";
+import { getNoteSummary } from "@/scripts/get-note-summary";
 
 const router = useRouter();
 
@@ -266,6 +290,7 @@ const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 	detailedView?: boolean;
+	collapsedReply?: boolean;
 }>();
 
 const inChannel = inject("inChannel", null);
@@ -618,19 +643,20 @@ defineExpose({
 			.line::before {
 				content: "";
 				display: block;
-				margin-bottom: -10px;
+				margin-bottom: -4px;
 				margin-top: 16px;
-				border-left: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
+				opacity: 0.25;
 			}
 		}
 	}
 
 	.note-context {
 		position: relative;
-		z-index: 2;
 		padding: 0 32px 0 32px;
 		display: flex;
+		z-index: 1;
 		&:first-child {
 			margin-top: 20px;
 		}
@@ -709,12 +735,56 @@ defineExpose({
 				}
 			}
 		}
+
+		&.collapsedReply {
+			.line {
+				opacity: 0.25;
+				&::after {
+					content: "";
+					position: absolute;
+					border-left: 2px solid currentColor;
+					border-top: 2px solid currentColor;
+					margin-left: calc(var(--avatarSize) / 2 - 1px);
+					width: calc(var(--avatarSize) / 2 + 14px);
+					border-top-left-radius: calc(var(--avatarSize) / 4);
+					top: calc(50% - 1px);
+					height: calc(50% + 5px);
+				}
+			}
+			.info {
+				color: var(--fgTransparentWeak);
+				transition: color 0.2s;
+			}
+			.avatar {
+				width: 1.2em;
+				height: 1.2em;
+				border-radius: 2em;
+				overflow: hidden;
+				margin-right: 0.4em;
+				background: var(--panelHighlight);
+			}
+			.username {
+				font-weight: 700;
+				flex-shrink: 0;
+				max-width: 30%;
+				&::after {
+					content: ": ";
+				}
+			}
+			&:hover,
+			&:focus-within {
+				.info {
+					color: var(--fg);
+				}
+			}
+		}
 	}
 
 	> .article {
 		position: relative;
 		overflow: clip;
-		padding: 4px 32px 10px;
+		padding: 20px 32px 10px;
+		margin-top: -16px;
 
 		&:first-child,
 		&:nth-child(2) {
@@ -728,6 +798,8 @@ defineExpose({
 
 		.header-container {
 			display: flex;
+			position: relative;
+			z-index: 2;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
@@ -861,7 +933,7 @@ defineExpose({
 			}
 		}
 		> .article {
-			padding: 4px 16px 8px;
+			padding: 18px 16px 8px;
 			&:first-child,
 			&:nth-child(2) {
 				padding-top: 104px;
@@ -886,6 +958,9 @@ defineExpose({
 
 	._blur_text {
 		pointer-events: auto;
+	}
+	&:active ._blur_text {
+		filter: blur(0px);
 	}
 }
 </style>

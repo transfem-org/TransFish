@@ -201,9 +201,6 @@ function close(ev, opts: { useSendAnimation?: boolean } = {}) {
 
 function onBgClick() {
 	if (contentClicking) return;
-	if (!props.noReturnFocus) {
-		focusedElement.focus();
-	}
 	emit("click");
 }
 

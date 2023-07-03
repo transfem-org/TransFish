@@ -12,3 +12,76 @@ notifications: Notificações
 password: Senha
 forgotPassword: Esqueci a senha
 cancel: Cancelar
+noThankYou: Não, obrigade
+save: Salvar
+enterUsername: Insira nome de usuário
+cw: Aviso de conteúdo
+driveFileDeleteConfirm: Tem a certeza de que pretende apagar o arquivo "{name}"? O
+  arquivo será removido de todas as mensagens que o contenham como anexo.
+deleteAndEdit: Deletar e editar
+import: Importar
+exportRequested: Você pediu uma exportação. Isso pode demorar um pouco. Será adicionado
+  ao seu Drive quando for completo.
+note: Postar
+notes: Postagens
+deleteAndEditConfirm: Você tem certeza que quer deletar esse post e edita-lo? Você
+  vai perder todas as reações, impulsionamentos e respostas dele.
+showLess: Fechar
+importRequested: Você requisitou uma importação. Isso pode demorar um pouco.
+listsDesc: Listas deixam você criar linhas do tempo com usuários específicos. Elas
+  podem ser acessadas pela página de linhas do tempo.
+edited: 'Editado às {date} {time}'
+sendMessage: Enviar uma mensagem
+older: antigo
+createList: Criar lista
+loadMore: Carregar mais
+mentions: Menções
+importAndExport: Importar/Exportar Dados
+files: Arquivos
+lists: Listas
+manageLists: Gerenciar listas
+error: Erro
+somethingHappened: Ocorreu um erro
+retry: Tentar novamente
+renotedBy: Impulsionado por {user}
+noNotes: Nenhum post
+noNotifications: Nenhuma notificação
+instance: Servidor
+settings: Configurações
+basicSettings: Configurações Básicas
+otherSettings: Outras Configurações
+openInWindow: Abrir em janela
+profile: Perfil
+noAccountDescription: Esse usuário ainda não escreveu sua bio.
+login: Entrar
+loggingIn: Entrando
+logout: Sair
+signup: Criar conta
+uploading: Enviando...
+users: Usuários
+addUser: Adicione um usuário
+addInstance: Adicionar um servidor
+cantFavorite: Não foi possível adicionar aos marcadores.
+pin: Fixar no perfil
+unpin: Desfixar do perfil
+copyContent: Copiar conteúdos
+copyLink: Copiar link
+delete: Deletar
+deleted: Deletado
+editNote: Editar anotação
+addToList: Adicionar a lista
+copyUsername: Copiar nome de usuário
+searchUser: Procurar por um usuário
+reply: Responder
+jumpToPrevious: Pular para o anterior
+showMore: Mostrar mais
+newer: novo
+youGotNewFollower: seguiu você
+mention: Mencionar
+directNotes: Mensagens diretas
+export: Exportar
+unfollowConfirm: Você tem certez que deseja para de seguir {name}?
+noLists: Você não possui nenhuma lista
+following: Seguindo
+followers: Seguidores
+followsYou: Segue você

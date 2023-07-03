@@ -5,7 +5,10 @@
 		<div v-if="$i" class="_gaps_s">
 			<MkFolder>
 				<template #icon
-					><i class="ph-shield-check ph-bold ph-lg"></i
+					><i
+						class="ph-shield-check ph-bold ph-lg"
+						style="margin-right: 0.5rem"
+					></i
 				></template>
 				<template #label>{{ i18n.ts.totp }}</template>
 				<template #caption>{{ i18n.ts.totpDescription }}</template>
@@ -13,13 +16,19 @@
 					<div v-text="i18n.ts._2fa.alreadyRegistered" />
 					<template v-if="$i.securityKeysList.length > 0">
 						<MkButton @click="renewTOTP"
-							><i class="ph-shield-check ph-bold ph-lg"></i
+							><i
+								class="ph-shield-check ph-bold ph-lg"
+								style="margin-right: 0.5rem"
+							></i
 							>{{ i18n.ts._2fa.renewTOTP }}</MkButton
 						>
 						<MkInfo>{{ i18n.ts._2fa.whyTOTPOnlyRenew }}</MkInfo>
 					</template>
 					<MkButton v-else @click="unregisterTOTP"
-						><i class="ph-shield-slash ph-bold ph-lg"></i
+						><i
+							class="ph-shield-slash ph-bold ph-lg"
+							style="margin-right: 0.5rem"
+						></i
 						>{{ i18n.ts.unregister }}</MkButton
 					>
 				</div>
@@ -32,7 +41,12 @@
 			</MkFolder>
 
 			<MkFolder>
-				<template #icon><i class="ph-key ph-bold ph-lg"></i></template>
+				<template #icon
+					><i
+						class="ph-key ph-bold ph-lg"
+						style="margin-right: 0.5rem"
+					></i
+				></template>
 				<template #label>{{ i18n.ts.securityKeyAndPasskey }}</template>
 				<div class="_gaps_s">
 					<MkInfo>
@@ -54,23 +68,21 @@
 
 					<template v-else>
 						<MkButton primary @click="addSecurityKey"
-							><i class="ph-key ph-bold ph-lg"></i
+							><i
+								class="ph-key ph-bold ph-lg"
+								style="margin-right: 0.5rem"
+							></i
 							>{{ i18n.ts._2fa.registerSecurityKey }}</MkButton
 						>
 						<MkFolder
 							v-for="key in $i.securityKeysList"
 							:key="key.id"
 						>
-							<template #label>{{ key.name }}</template>
-							<template #suffix
-								><I18n :src="i18n.ts.lastUsedAt"
-									><template #t
-										><MkTime
-											:time="
-												key.lastUsed
-											" /></template></I18n
-							></template>
-							<div class="_buttons">
+							<h3>{{ key.name }}</h3>
+							<p>
+								{{ `${i18n.ts.lastUsedDate}: ${key.lastUsed}` }}
+							</p>
+							<div class="_buttons _flexList">
 								<MkButton @click="renameKey(key)"
 									><i
 										class="ph-pencil-line ph-bold ph-lg"
@@ -159,7 +171,7 @@ async function registerTOTP() {
 	});
 	if (!qrdialog) return;
 
-	const token = await os.inputNumber({
+	const token = await os.inputText({
 		title: i18n.ts._2fa.step3Title,
 		text: i18n.ts._2fa.step3,
 		autocomplete: "one-time-code",
@@ -167,7 +179,7 @@ async function registerTOTP() {
 	if (token.canceled) return;
 
 	await os.apiWithDialog("i/2fa/done", {
-		token: token.result.toString(),
+		token: token.result,
 	});
 
 	await os.alert({

@@ -5,7 +5,7 @@
 				<span class="year">{{ i18n.t("yearX", { year }) }}</span>
 				<span class="month">{{ i18n.t("monthX", { month }) }}</span>
 			</p>
-			<p v-if="month === 1 && day === 1" class="day">
+			<p v-if="(month === 1 && day === 1) || isBirthday" class="day">
 				🎉{{ i18n.t("dayX", { day })
 				}}<span style="display: inline-block; transform: scaleX(-1)"
 					>🎉</span
@@ -55,6 +55,7 @@ import {
 import { GetFormResultType } from "@/scripts/form";
 import { i18n } from "@/i18n";
 import { useInterval } from "@/scripts/use-interval";
+import { $i } from "@/account";
 
 const name = "calendar";
 
@@ -80,6 +81,8 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	emit
 );
 
+const hasBirthday = Boolean($i?.birthday);
+
 const year = ref(0);
 const month = ref(0);
 const day = ref(0);
@@ -88,6 +91,8 @@ const yearP = ref(0);
 const monthP = ref(0);
 const dayP = ref(0);
 const isHoliday = ref(false);
+const isBirthday = ref(false);
+
 const tick = () => {
 	const now = new Date();
 	const nd = now.getDate();
@@ -121,6 +126,13 @@ const tick = () => {
 	yearP.value = (yearNumer / yearDenom) * 100;
 
 	isHoliday.value = now.getDay() === 0 || now.getDay() === 6;
+
+	if (hasBirthday) {
+		const [bdayYear, bdayMonth, bdayDay] = $i.birthday.split("-");
+		if (month.value === +bdayMonth && day.value == +bdayDay) {
+			isBirthday.value = true;
+		}
+	}
 };
 
 useInterval(tick, 1000, {

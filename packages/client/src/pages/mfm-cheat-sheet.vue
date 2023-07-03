@@ -460,8 +460,12 @@ let preview_emoji = $ref(
 	instance.emojis.length ? `:${instance.emojis[0].name}:` : ":emojiname:"
 );
 let preview_bold = $ref(`**${i18n.ts._mfm.dummy}**`);
-let preview_small = $ref(`<small>${i18n.ts._mfm.dummy}</small>`);
-let preview_center = $ref(`<center>${i18n.ts._mfm.dummy}</center>`);
+let preview_small = $ref(
+	`<small>${i18n.ts._mfm.dummy}</small> $[small ${i18n.ts._mfm.dummy}]`
+);
+let preview_center = $ref(
+	`<center>${i18n.ts._mfm.dummy}</center> $[center ${i18n.ts._mfm.dummy}]`
+);
 let preview_inlineCode = $ref('`<: "Hello, world!"`');
 let preview_blockCode = $ref(
 	'```\n~ (#i, 100) {\n\t<: ? ((i % 15) = 0) "FizzBuzz"\n\t\t.? ((i % 3) = 0) "Fizz"\n\t\t.? ((i % 5) = 0) "Buzz"\n\t\t. i\n}\n```'

@@ -136,7 +136,7 @@ smtpUser: "Nom d'usuari"
 smtpPass: "Contrasenya"
 user: "Usuari"
 searchByGoogle: "Cercar"
-file: "Fitxers"
+file: "Fitxer"
 _email:
   _follow:
     title: "Tens un nou seguidor"
@@ -325,11 +325,31 @@ _2fa:
     per protegir encara més el vostre compte.
   step4: A partir d'ara, qualsevol intent d'inici de sessió futur demanarà aquest
     token d'inici de sessió.
-  registerSecurityKey: Registra una clau de seguretat
+  registerSecurityKey: Registrar una clau de seguretat o d'accés
   step1: En primer lloc, instal·la una aplicació d'autenticació (com ara {a} o {b})
     al dispositiu.
   step2: A continuació, escaneja el codi QR que es mostra en aquesta pantalla.
   step3: Introdueix el token que t'ha proporcionat l'aplicació per finalitzar la configuració.
+  step3Title: Introduïu un codi d'autenticació
+  chromePasskeyNotSupported: Les claus de pas de Chrome actualment no s'admeten.
+  securityKeyName: Introduïu un nom de clau
+  removeKey: Suprimeix la clau de seguretat
+  removeKeyConfirm: Vols suprimir la clau {name}?
+  renewTOTP: Tornar a configurar l'aplicació d'autenticació
+  renewTOTPOk: Reconfigurar
+  renewTOTPCancel: Cancel·lar
+  step2Click: Fer clic en aquest codi QR us permetrà registrar 2FA a la vostra clau
+    de seguretat o aplicació d'autenticació del telèfon.
+  securityKeyNotSupported: El vostre navegador no admet claus de seguretat.
+  registerTOTPBeforeKey: Configureu una aplicació d'autenticació per registrar una
+    clau de seguretat o de passi.
+  tapSecurityKey: Si us plau, seguiu el vostre navegador per registrar la clau de
+    seguretat o d'accés
+  renewTOTPConfirm: Això farà que els codis de verificació de l'aplicació anterior
+    deixin de funcionar
+  whyTOTPOnlyRenew: L’aplicació d’autenticació no es pot eliminar sempre que es hi
+    hagi una clau de seguretat registrada.
+  token: Token 2FA
 _widgets:
   notifications: "Notificacions"
   timeline: "Línia de temps"
@@ -366,12 +386,13 @@ _cw:
   chars: '{count} caràcters'
 _visibility:
   followers: "Seguidors"
-  publicDescription: La teva publicació serà visible per a tots els usuaris
+  publicDescription: La teva publicació serà visible per a totes les línies de temps
+    públiques
   localOnly: Només Local
   specified: Directe
   home: Sense llistar
   homeDescription: Publica només a la línea de temps local
-  followersDescription: Fes visible només per als teus seguidors
+  followersDescription: Fes visible només per als teus seguidors i usuaris mencionats
   specifiedDescription: Fer visible només per a usuaris determinats
   public: Públic
   localOnlyDescription: No és visible per als usuaris remots
@@ -988,7 +1009,7 @@ avoidMultiCaptchaConfirm: Fent servir diferents sistemes de Captcha pot causar i
 antennas: Antenes
 enableEmojiReactions: Activa reaccions amb emojis
 blockThisInstance: Bloqueja aquest servidor
-registration: Registre
+registration: Registra't
 showEmojisInReactionNotifications: Mostra els emojis a les notificacions de les reaccions
 renoteMute: Silencia els impulsos
 renoteUnmute: Treu el silenci als impulsos
@@ -1035,7 +1056,7 @@ recentlyRegisteredUsers: Usuaris registrats fa poc
 recentlyDiscoveredUsers: Nous suaris descoberts
 administrator: Administrador
 token: Token
-registerSecurityKey: Registra una clau de seguretat
+registerSecurityKey: Registreu una clau de seguretat
 securityKeyName: Nom clau
 lastUsed: Feta servir per última vegada
 unregister: Anul·lar el registre
@@ -1580,6 +1601,8 @@ _aboutMisskey:
   morePatrons: També agraïm el suport de molts altres ajudants que no figuren aquí.
     Gràcies! 🥰
   patrons: Mecenes de Calckey
+  patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
+    amb l'enllaç de dalt per veure el teu nom aquí!
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
@@ -1649,9 +1672,9 @@ popout: Apareixa
 volume: Volum
 objectStorageUseSSLDesc: Desactiva això si no fas servir HTTPS per les connexions
   API
-objectStorageUseProxy: Conectarse mitjançant un Proxy
+objectStorageUseProxy: Connectar-se mitjançant un Proxy
 objectStorageUseProxyDesc: Desactiva això si no faràs servir un servidor Proxy per
-  conexions API
+  conexions amb l'API
 objectStorageSetPublicRead: Fixar com a "public-read" al pujar
 serverLogs: Registres del servidor
 deleteAll: Esborrar tot
@@ -1767,7 +1790,7 @@ createNew: Crear una nova
 optional: Opcional
 jumpToSpecifiedDate: Vés a una data concreta
 showingPastTimeline: Ara es mostra un línea de temps antiga
-clear: Tornar
+clear: Netejar
 markAllAsRead: Marcar tot com a llegit
 recentPosts: Pàgines recents
 noMaintainerInformationWarning: La informació de l'administrador no està configurada.
@@ -2012,11 +2035,12 @@ _auth:
   shareAccessAsk: Estàs segur que vols autoritzar aquesta aplicació per accedir al
     teu compte?
   shareAccess: Vols autoritzar "{name}" per accedir a aquest compte?
-  permissionAsk: Aquesta aplicació sol·licita els següents permisos
+  permissionAsk: 'Aquesta aplicació sol·licita els següents permisos:'
   callback: Tornant a l'aplicació
   denied: Accés denegat
   pleaseGoBack: Si us plau, torneu a l'aplicació
-  copyAsk: Posa el següent codi d'autorització a l'aplicació
+  copyAsk: "Posa el següent codi d'autorització a l'aplicació:"
+  allPermissions: Accés complet al compte
 _weekday:
   wednesday: Dimecres
   saturday: Dissabte
@@ -2041,7 +2065,7 @@ _relayStatus:
   rejected: Rebutjat
 deleted: Eliminat
 editNote: Edita la nota
-edited: Editat
+edited: 'Editat a {date} {time}'
 findOtherInstance: Cercar un altre servidor
 signupsDisabled: Actualment, les inscripcions en aquest servidor estan desactivades,
   però sempre podeu registrar-vos en un altre servidor. Si teniu un codi d'invitació
@@ -2060,11 +2084,7 @@ _experiments:
   alpha: Alfa
   beta: Beta
   release: Publicà
-  enablePostEditing: Activà l'edició de publicacions
   title: Experiments
-  postEditingCaption: Mostra l'opció perquè els usuaris editin les seves publicacions
-    mitjançant el menú d'opcions de publicació, i permet rebre publicacions editades
-    d'altres servidors.
   enablePostImports: Activar l'importació de publicacions
   postImportsCaption: Permet els usuaris importar publicacions desde comptes a Calckey,
     Misskey, Mastodon, Akkoma i Pleroma. Pot fer que el servidor vagi més lent durant
@@ -2107,3 +2127,18 @@ _filters:
 image: Imatge
 video: Vídeo
 audio: Àudio
+_dialog:
+  charactersExceeded: "S'han superat el màxim de caràcters! Actual: {current}/Límit:
+    {max}"
+  charactersBelow: 'No hi ha caràcters suficients! Corrent: {current}/Limit: {min}'
+removeReaction: Elimina la teva reacció
+reactionPickerSkinTone: To de pell d'emoji preferit
+alt: ALT
+_skinTones:
+  light: Clar
+  mediumLight: Clar Mitx
+  medium: Mitx
+  mediumDark: Fosc Mitx
+  dark: Fosc
+  yellow: Groc
+swipeOnMobile: Permet lliscar entre pàgines

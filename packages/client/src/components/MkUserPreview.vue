@@ -42,7 +42,7 @@
 				/>
 				<div class="title">
 					<MkA class="name" :to="userPage(user)"
-						><MkUserName :user="user" :nowrap="false"
+						><MkUserName :user="user" :nowrap="true"
 					/></MkA>
 					<p class="username"><MkAcct :user="user" /></p>
 				</div>
@@ -241,7 +241,7 @@ onMounted(() => {
 		> .avatar {
 			display: block;
 			position: absolute;
-			top: 62px;
+			top: 70px;
 			left: 13px;
 			z-index: 2;
 			width: 58px;
@@ -388,6 +388,7 @@ onMounted(() => {
 			top: 8px;
 			right: 8px;
 			z-index: 3;
+			color: white;
 		}
 	}
 }

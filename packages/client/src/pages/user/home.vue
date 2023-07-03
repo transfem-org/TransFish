@@ -20,20 +20,48 @@
 					/>
 
 					<div :key="user.id" class="_block main">
-						<div class="banner-container" :style="style">
+						<div class="banner-container">
 							<div
 								ref="bannerEl"
 								class="banner"
-								:style="style"
+								:style="{
+									backgroundImage: `url('${user.bannerUrl}')`,
+								}"
 							></div>
 							<div class="fade"></div>
 							<div class="title">
-								<div class="nameCollumn">
+								<div class="nameColumn">
 									<MkUserName
 										class="name"
 										:user="user"
 										:nowrap="true"
 									/>
+									<div v-if="$i?.isModerator || $i?.isAdmin">
+										<span
+											v-if="user.isSilenced"
+											style="
+												color: var(--warn);
+												padding: 5px;
+											"
+										>
+											<i
+												class="ph-warning ph-bold ph-lg"
+											></i>
+											{{ i18n.ts.silenced }}
+										</span>
+										<span
+											v-if="user.isSuspended"
+											style="
+												color: var(--error);
+												padding: 5px;
+											"
+										>
+											<i
+												class="ph-warning ph-bold ph-lg"
+											></i>
+											{{ i18n.ts.suspended }}
+										</span>
+									</div>
 									<span
 										v-if="
 											$i &&
@@ -98,7 +126,7 @@
 							:show-indicator="true"
 						/>
 						<div class="title">
-							<div class="nameCollumn">
+							<div class="nameColumn">
 								<MkUserName
 									class="name"
 									:user="user"
@@ -113,20 +141,20 @@
 									class="followed"
 									>{{ i18n.ts.followsYou }}</span
 								>
-								<div
-									v-if="$i?.isModerator || $i?.isAdmin"
-									class="punishments"
-								>
+								<div v-if="$i?.isModerator || $i?.isAdmin">
 									<span
-										class="punished"
 										v-if="user.isSilenced"
+										style="color: var(--warn); padding: 5px"
 									>
 										<i class="ph-warning ph-bold ph-lg"></i>
 										{{ i18n.ts.silenced }}
 									</span>
 									<span
-										class="punished"
 										v-if="user.isSuspended"
+										style="
+											color: var(--error);
+											padding: 5px;
+										"
 									>
 										<i class="ph-warning ph-bold ph-lg"></i>
 										{{ i18n.ts.suspended }}
@@ -148,8 +176,13 @@
 								<span
 									v-if="!user.isAdmin && user.isModerator"
 									v-tooltip.noDelay="i18n.ts.isModerator"
-									style="color: var(--badge)"
-									><i class="ph-bookmark-simple ph-bold"></i
+									style="
+										color: var(--badge);
+										margin-left: 0.5rem;
+									"
+									><i
+										class="ph-bookmark-simple ph-bold ph-lg"
+									></i
 								></span>
 								<span
 									v-if="user.isLocked"
@@ -374,13 +407,6 @@ let narrow = $ref<null | boolean>(null);
 let rootEl = $ref<null | HTMLElement>(null);
 let bannerEl = $ref<null | HTMLElement>(null);
 
-const style = $computed(() => {
-	if (props.user.bannerUrl == null) return {};
-	return {
-		backgroundImage: `url(${props.user.bannerUrl})`,
-	};
-});
-
 const age = $computed(() => {
 	return calcAge(props.user.birthday);
 });
@@ -425,7 +451,12 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-const patrons = await os.api("patrons");
+let patrons = [];
+try {
+	patrons = await os.api("patrons");
+} catch {
+	console.error("Codeberg's down.");
+}
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
@@ -471,7 +502,6 @@ onUnmounted(() => {
 					overflow: hidden;
 					background-size: cover;
 					background-position: center;
-
 					> .banner {
 						height: 100%;
 						background-color: #26233a;
@@ -479,17 +509,15 @@ onUnmounted(() => {
 						background-position: center;
 						box-shadow: 0 0 128px var(--shadow) inset;
 						will-change: background-position;
-
-						&::after {
+						&::before {
 							content: "";
-							background-image: var(--blur, inherit);
 							position: fixed;
 							inset: 0;
+							background: var(--blur, inherit);
 							background-size: cover;
 							background-position: center;
 							pointer-events: none;
-							opacity: 0.1;
-							filter: var(--blur, blur(10px));
+							filter: blur(12px) opacity(0.1);
 						}
 					}
 
@@ -516,23 +544,6 @@ onUnmounted(() => {
 						border-radius: 6px;
 					}
 
-					> .punishments {
-						display: flex;
-						gap: 1rem;
-						margin-top: 0.5rem;
-
-						> .punished {
-							padding: 10px;
-							color: var(--infoWarnBg);
-							background-color: var(--infoWarnFg);
-							border-radius: 10px;
-
-							> i {
-								margin-right: 4px;
-							}
-						}
-					}
-
 					> .title {
 						position: absolute;
 						bottom: 0;
@@ -542,7 +553,7 @@ onUnmounted(() => {
 						box-sizing: border-box;
 						color: #fff;
 
-						> .nameCollumn {
+						> .nameColumn {
 							display: block;
 							> .name {
 								margin: 0;
@@ -650,7 +661,7 @@ onUnmounted(() => {
 					font-weight: bold;
 					border-bottom: solid 0.5px var(--divider);
 
-					> .nameCollumn {
+					> .nameColumn {
 						display: block;
 						> .name {
 							margin: 0;

@@ -137,7 +137,9 @@ db:
 
   # Extra Connection options
   #extra:
-  #  ssl: true
+  #  ssl:
+  #   host: localhost
+  #   rejectUnauthorized: false
 
 #   ┌─────────────────────┐
 #───┘ Redis configuration └─────────────────────────────────────
@@ -153,6 +155,10 @@ redis:
   pass: {{ .Values.redis.auth.password | quote }}
   #prefix: example-prefix
   #db: 1
+	#user: default
+	#tls:
+  #  host: localhost
+  #  rejectUnauthorized: false
 
 #   ┌─────────────────────┐
 #───┘ Sonic configuration └─────────────────────────────────────

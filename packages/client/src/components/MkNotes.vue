@@ -12,7 +12,7 @@
 		</template>
 
 		<template #default="{ items: notes }">
-			<div class="giivymft" :class="{ noGap }">
+			<div class="giivymft" :class="{ noGap }" ref="tlEl">
 				<XList
 					ref="notes"
 					v-slot="{ item: note }"
@@ -41,6 +41,9 @@ import XNote from "@/components/MkNote.vue";
 import XList from "@/components/MkDateSeparatedList.vue";
 import MkPagination from "@/components/MkPagination.vue";
 import { i18n } from "@/i18n";
+import { scroll } from "@/scripts/scroll";
+
+const tlEl = ref<HTMLElement>();
 
 const props = defineProps<{
 	pagination: Paging;
@@ -49,8 +52,13 @@ const props = defineProps<{
 
 const pagingComponent = ref<InstanceType<typeof MkPagination>>();
 
+function scrollTop() {
+	scroll(tlEl.value, { top: 0, behavior: "smooth" });
+}
+
 defineExpose({
 	pagingComponent,
+	scrollTop,
 });
 </script>
 
