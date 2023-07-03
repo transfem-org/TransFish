@@ -34,9 +34,9 @@ export default define(meta, paramDef, async () => {
 	const instanceMeta = await fetchMeta();
 	if (!instanceMeta.enableServerMachineStats) {
 		return {
-			machine: 'Not specified',
+			machine: "Not specified",
 			cpu: {
-				model: 'Not specified',
+				model: "Not specified",
 				cores: 0,
 			},
 			mem: {

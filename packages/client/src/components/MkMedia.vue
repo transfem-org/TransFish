@@ -12,15 +12,14 @@
 						><i class="ph-warning ph-bold ph-lg"></i>
 						{{ i18n.ts.sensitive }}</b
 					>
-					<span style="display: block">{{ i18n.ts.clickToShow }}</span>
+					<span style="display: block">{{
+						i18n.ts.clickToShow
+					}}</span>
 				</div>
 			</div>
 		</button>
 		<template v-else>
-			<a 
-				v-if="media.type.startsWith('image')" 
-				:href="media.url"
-			>
+			<a v-if="media.type.startsWith('image')" :href="media.url">
 				<ImgWithBlurhash
 					:hash="media.blurhash"
 					:src="url"
@@ -132,7 +131,7 @@ watch(
 );
 
 onMounted(() => {
-	if (props.media.type.startsWith('video')) {
+	if (props.media.type.startsWith("video")) {
 		plyrMini.value = plyr.value.player.media.scrollWidth < 300;
 		if (plyrMini.value) {
 			plyr.value.player.on("play", () => {

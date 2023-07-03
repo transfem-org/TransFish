@@ -29,7 +29,7 @@ export default class ActiveUsersChart extends Chart<typeof schema> {
 		id: User["id"];
 		host: null;
 		createdAt: User["createdAt"];
-	})  {
+	}) {
 		this.commit({
 			read: [user.id],
 			registeredWithinWeek:
