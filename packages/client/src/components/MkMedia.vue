@@ -1,34 +1,67 @@
 <template>
-	<button v-if="hide" class="qjewsnkg" @click="hide = false">
-		<ImgWithBlurhash
-			:hash="image.blurhash"
-			:title="image.comment"
-			:alt="image.comment"
-		/>
-		<div class="text">
-			<div class="wrapper">
-				<b style="display: block"
-					><i class="ph-warning ph-bold ph-lg"></i>
-					{{ i18n.ts.sensitive }}</b
-				>
-				<span style="display: block">{{ i18n.ts.clickToShow }}</span>
-			</div>
-		</div>
-	</button>
-	<div v-else class="gqnyydlz">
-		<a :href="image.url">
+	<div class="media" :class="{ mini: plyrMini }">
+		<button v-if="hide" class="hidden" @click="hide = false">
 			<ImgWithBlurhash
-				:hash="image.blurhash"
-				:src="url"
-				:alt="image.comment"
-				:type="image.type"
-				:cover="false"
+				:hash="media.blurhash"
+				:title="media.comment"
+				:alt="media.comment"
 			/>
-			<div v-if="image.type === 'image/gif'" class="gif">GIF</div>
-		</a>
+			<div class="text">
+				<div class="wrapper">
+					<b style="display: block"
+						><i class="ph-warning ph-bold ph-lg"></i>
+						{{ i18n.ts.sensitive }}</b
+					>
+					<span style="display: block">{{ i18n.ts.clickToShow }}</span>
+				</div>
+			</div>
+		</button>
+		<template v-else>
+			<a 
+				v-if="media.type.startsWith('image')" 
+				:href="media.url"
+			>
+				<ImgWithBlurhash
+					:hash="media.blurhash"
+					:src="url"
+					:alt="media.comment"
+					:type="media.type"
+					:cover="false"
+				/>
+				<div v-if="media.type === 'image/gif'" class="gif">GIF</div>
+			</a>
+			<VuePlyr
+				v-if="media.type.startsWith('video')"
+				ref="plyr"
+				:options="{
+					controls: [
+						'play-large',
+						'play',
+						'progress',
+						'current-time',
+						'mute',
+						'volume',
+						'pip',
+						'download',
+						'fullscreen',
+					],
+					disableContextMenu: false,
+				}"
+			>
+				<video
+					:poster="media.thumbnailUrl"
+					:aria-label="media.comment"
+					preload="none"
+					controls
+					@contextmenu.stop
+				>
+					<source :src="media.url" :type="media.type" />
+				</video>
+			</VuePlyr>
+		</template>
 		<div class="buttons">
 			<button
-				v-if="image.comment"
+				v-if="media.comment"
 				v-tooltip="i18n.ts.alt"
 				class="_button"
 				@click.stop="captionPopup"
@@ -36,9 +69,10 @@
 				<i class="ph-subtitles ph-bold ph-lg"></i>
 			</button>
 			<button
+				v-if="!hide"
 				v-tooltip="i18n.ts.hide"
 				class="_button"
-				@click="hide = true"
+				@click.stop="hide = true"
 			>
 				<i class="ph-eye-slash ph-bold ph-lg"></i>
 			</button>
@@ -47,7 +81,9 @@
 </template>
 
 <script lang="ts" setup>
-import { watch } from "vue";
+import { watch, ref, onMounted } from "vue";
+import VuePlyr from "vue-plyr";
+import "vue-plyr/dist/vue-plyr.css";
 import type * as misskey from "calckey-js";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
@@ -56,34 +92,37 @@ import { i18n } from "@/i18n";
 import * as os from "@/os";
 
 const props = defineProps<{
-	image: misskey.entities.DriveFile;
+	media: misskey.entities.DriveFile;
 	raw?: boolean;
 }>();
 
 let hide = $ref(true);
 
+const plyr = ref();
+const plyrMini = ref(false);
+
 const url =
 	props.raw || defaultStore.state.loadRawImages
-		? props.image.url
+		? props.media.url
 		: defaultStore.state.disableShowingAnimatedImages
-		? getStaticImageUrl(props.image.thumbnailUrl)
-		: props.image.thumbnailUrl;
+		? getStaticImageUrl(props.media.thumbnailUrl)
+		: props.media.thumbnailUrl;
 
 function captionPopup() {
 	os.alert({
 		type: "info",
-		text: props.image.comment,
+		text: props.media.comment,
 	});
 }
 
 // Plugin:register_note_view_interruptor を使って書き換えられる可能性があるためwatchする
 watch(
-	() => props.image,
+	() => props.media,
 	() => {
 		hide =
 			defaultStore.state.nsfw === "force"
 				? true
-				: props.image.isSensitive &&
+				: props.media.isSensitive &&
 				  defaultStore.state.nsfw !== "ignore";
 	},
 	{
@@ -91,12 +130,25 @@ watch(
 		immediate: true,
 	}
 );
+
+onMounted(() => {
+	if (props.media.type.startsWith('video')) {
+		plyrMini.value = plyr.value.player.media.scrollWidth < 300;
+		if (plyrMini.value) {
+			plyr.value.player.on("play", () => {
+				plyr.value.player.fullscreen.enter();
+			});
+		}
+	}
+});
 </script>
 
 <style lang="scss" scoped>
-.qjewsnkg {
+.hidden {
 	all: unset;
 	position: relative;
+	width: 100%;
+	height: 100%;
 
 	> .text {
 		position: relative;
@@ -123,7 +175,7 @@ watch(
 	}
 }
 
-.gqnyydlz {
+.media {
 	position: relative;
 	background: var(--bg);
 
@@ -173,6 +225,17 @@ watch(
 			text-align: center;
 			top: 12px;
 			pointer-events: none;
+		}
+	}
+	&.mini {
+		:deep(.plyr:not(:fullscreen)) {
+			min-width: unset !important;
+			.plyr__control--overlaid,
+			.plyr__progress__container,
+			.plyr__volume,
+			[data-plyr="fullscreen"] {
+				display: none;
+			}
 		}
 	}
 }
