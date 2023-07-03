@@ -111,7 +111,15 @@ export function getNoteMenu(props: {
 	function embed(): void {
 		os.showEmbedDialog({
 			id: appearNote.id,
-		})
+			name: `Calckey post from ${appearNote.user.name}`,
+			height: appearNote.text
+				? Math.round(
+						Math.ceil(appearNote.text.length / Math.floor(300 / (14 * 0.6))) *
+							14 *
+							1.2,
+				  ) + 200
+				: 500,
+		});
 	}
 
 	function copyOriginal(): void {

@@ -3,7 +3,7 @@
 		<div class="fcuexfpr">
 			<div v-if="appearNote" class="note">
 				<div class="main _gap">
-					<div class="note _gap" ref="noteContainer">
+					<div class="note _gap">
 						<XNoteDetailed
 							:key="appearNote.id"
 							v-model:note="appearNote"
@@ -30,7 +30,6 @@ const props = defineProps<{
 	noteId: string;
 }>();
 
-const noteContainer = $ref<HTMLElement>();
 let note = $ref<null | misskey.entities.Note>();
 let error = $ref();
 let isRenote = $ref(false);
@@ -100,16 +99,6 @@ definePageMetadata(
 			: null
 	)
 );
-
-onMounted(() => {
-	window.parent.postMessage(
-		{
-			type: "setHeight",
-			height: noteContainer?.clientHeight,
-		},
-		"*"
-	);
-});
 </script>
 
 <style lang="scss" scoped>

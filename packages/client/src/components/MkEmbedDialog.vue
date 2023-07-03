@@ -42,13 +42,16 @@ const modal = shallowRef<InstanceType<typeof MkModal>>();
 const props = withDefaults(
 	defineProps<{
 		id: string;
+		title?: string;
+		height?: number;
 	}>(),
 	{
-		id: "No ID provided!",
+		title: "Calckey",
+		height: 600,
 	}
 );
 
-const codeblock = `<iframe src="https://${host}/notes/${props.id}/embed" class="embed" style="max-width: 100%; border: 0" width="400" height="600" allowfullscreen="allowfullscreen"></iframe><scr` + `ipt src="https://${host}/static-assets/embed.js" async="async"></scr` + `ipt>`;
+const codeblock = `<iframe src="https://${host}/notes/${props.id}/embed" class="embed" style="max-width: 100%; border: 0" width="400" height="${props.height}" title=${props.title} allowfullscreen="allowfullscreen"></iframe>;`
 </script>
 
 <style lang="scss" module>

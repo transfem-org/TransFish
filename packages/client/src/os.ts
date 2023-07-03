@@ -926,7 +926,11 @@ export function post(props: Record<string, any> = {}) {
 	});
 }
 
-export function showEmbedDialog(props: {id: string}) {
+export function showEmbedDialog(props: {
+	id: string;
+	name: string;
+	height: number;
+}) {
 	return new Promise(() => {
 		popup(
 			defineAsyncComponent({
