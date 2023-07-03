@@ -11,7 +11,7 @@ export type Size = {
 	height: number;
 };
 
-const cache = new Cache<boolean>("emojiMeta",1000 * 60 * 10); // once every 10 minutes for the same url
+const cache = new Cache<boolean>("emojiMeta", 60 * 10); // once every 10 minutes for the same url
 const logger = new Logger("emoji");
 
 export async function getEmojiSize(url: string): Promise<Size> {

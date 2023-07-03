@@ -100,7 +100,10 @@ const nodeinfo2 = async () => {
 	};
 };
 
-const cache = new Cache<Awaited<ReturnType<typeof nodeinfo2>>>("nodeinfo", 1000 * 60 * 10);
+const cache = new Cache<Awaited<ReturnType<typeof nodeinfo2>>>(
+	"nodeinfo",
+	60 * 10,
+);
 
 router.get(nodeinfo2_1path, async (ctx) => {
 	const base = await cache.fetch(null, () => nodeinfo2());

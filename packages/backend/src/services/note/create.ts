@@ -29,17 +29,14 @@ import {
 	Notes,
 	Instances,
 	UserProfiles,
-	Antennas,
-	Followings,
 	MutedNotes,
 	Channels,
 	ChannelFollowings,
-	Blockings,
 	NoteThreadMutings,
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import type { App } from "@/models/entities/app.js";
-import { Not, In, IsNull } from "typeorm";
+import { Not, In } from "typeorm";
 import type { User, ILocalUser, IRemoteUser } from "@/models/entities/user.js";
 import { genId } from "@/misc/gen-id.js";
 import {
@@ -73,7 +70,7 @@ import { Mutex } from "redis-semaphore";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
->("mutedWords", 1000 * 60 * 5);
+>("mutedWords", 60 * 5);
 
 type NotificationType = "reply" | "renote" | "quote" | "mention";
 

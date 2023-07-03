@@ -5,7 +5,6 @@ import type {
 	CacheableRemoteUser,
 	CacheableUser,
 } from "@/models/entities/user.js";
-import { User, IRemoteUser } from "@/models/entities/user.js";
 import type { UserPublickey } from "@/models/entities/user-publickey.js";
 import type { MessagingMessage } from "@/models/entities/messaging-message.js";
 import {
@@ -20,8 +19,11 @@ import type { IObject } from "./type.js";
 import { getApId } from "./type.js";
 import { resolvePerson } from "./models/person.js";
 
-const publicKeyCache = new Cache<UserPublickey | null>("publicKey", Infinity);
-const publicKeyByUserIdCache = new Cache<UserPublickey | null>("publicKeyByUserId", Infinity);
+const publicKeyCache = new Cache<UserPublickey | null>("publicKey", 60 * 30);
+const publicKeyByUserIdCache = new Cache<UserPublickey | null>(
+	"publicKeyByUserId",
+	60 * 30,
+);
 
 export type UriParseResult =
 	| {
@@ -123,17 +125,23 @@ export default class DbResolver {
 			if (parsed.type !== "users") return null;
 
 			return (
-				(await userByIdCache.fetchMaybe(parsed.id, () =>
-					Users.findOneBy({
-						id: parsed.id,
-					}).then((x) => x ?? undefined),
+				(await userByIdCache.fetchMaybe(
+					parsed.id,
+					() =>
+						Users.findOneBy({
+							id: parsed.id,
+						}).then((x) => x ?? undefined),
+					true,
 				)) ?? null
 			);
 		} else {
-			return await uriPersonCache.fetch(parsed.uri, () =>
-				Users.findOneBy({
-					uri: parsed.uri,
-				}),
+			return await uriPersonCache.fetch(
+				parsed.uri,
+				() =>
+					Users.findOneBy({
+						uri: parsed.uri,
+					}),
+				true,
 			);
 		}
 	}
@@ -156,14 +164,17 @@ export default class DbResolver {
 
 				return key;
 			},
+			true,
 			(key) => key != null,
 		);
 
 		if (key == null) return null;
 
 		return {
-			user: (await userByIdCache.fetch(key.userId, () =>
-				Users.findOneByOrFail({ id: key.userId }),
+			user: (await userByIdCache.fetch(
+				key.userId,
+				() => Users.findOneByOrFail({ id: key.userId }),
+				true,
 			)) as CacheableRemoteUser,
 			key,
 		};
@@ -183,6 +194,7 @@ export default class DbResolver {
 		const key = await publicKeyByUserIdCache.fetch(
 			user.id,
 			() => UserPublickeys.findOneBy({ userId: user.id }),
+			true,
 			(v) => v != null,
 		);
 

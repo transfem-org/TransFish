@@ -135,7 +135,7 @@ export async function fetchPerson(
 ): Promise<CacheableUser | null> {
 	if (typeof uri !== "string") throw new Error("uri is not string");
 
-	const cached = await uriPersonCache.get(uri);
+	const cached = await uriPersonCache.get(uri, true);
 	if (cached) return cached;
 
 	// Fetch from the database if the URI points to this server

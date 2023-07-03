@@ -9,7 +9,7 @@ import config from "@/config/index.js";
 import { query } from "@/prelude/url.js";
 import { redisClient } from "@/db/redis.js";
 
-const cache = new Cache<Emoji | null>("populateEmojis", 1000 * 60 * 60 * 12);
+const cache = new Cache<Emoji | null>("populateEmojis", 60 * 60 * 12);
 
 /**
  * 添付用絵文字情報

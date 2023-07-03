@@ -6,8 +6,8 @@ export class Cache<T> {
 	private ttl: number;
 	private prefix: string;
 
-	constructor(prefix: string, ttl: number) {
-		this.ttl = ttl;
+	constructor(prefix: string, ttlSeconds: number) {
+		this.ttl = ttlSeconds;
 		this.prefix = `cache:${prefix}`;
 	}
 
@@ -15,26 +15,28 @@ export class Cache<T> {
 		return key ? `${this.prefix}:${key}` : this.prefix;
 	}
 
-	public async set(key: string | null, value: T, transaction?: ChainableCommander): Promise<void> {
+	public async set(
+		key: string | null,
+		value: T,
+		transaction?: ChainableCommander,
+	): Promise<void> {
 		const _key = this.prefixedKey(key);
 		const _value = Buffer.from(encode(value));
 		const commander = transaction ?? redisClient;
-		if (this.ttl === Infinity) {
-			await commander.set(_key, _value);
-		} else {
-			await commander.set(_key, _value, "PX", this.ttl);
-		}
+		await commander.set(_key, _value, "EX", this.ttl);
 	}
 
-	public async get(key: string | null): Promise<T | undefined> {
+	public async get(key: string | null, renew = false): Promise<T | undefined> {
 		const _key = this.prefixedKey(key);
 		const cached = await redisClient.getBuffer(_key);
 		if (cached === null) return undefined;
 
+		if (renew) await redisClient.expire(_key, this.ttl);
+
 		return decode(cached) as T;
 	}
 
-	public async getAll(): Promise<Map<string, T>> {
+	public async getAll(renew = false): Promise<Map<string, T>> {
 		const keys = await redisClient.keys(`${this.prefix}*`);
 		const map = new Map<string, T>();
 		if (keys.length === 0) {
@@ -47,6 +49,14 @@ export class Cache<T> {
 			if (val !== null) {
 				map.set(key, decode(val) as T);
 			}
+		}
+
+		if (renew) {
+			const trans = redisClient.multi();
+			for (const key of map.keys()) {
+				trans.expire(key, this.ttl);
+			}
+			await trans.exec();
 		}
 
 		return map;
@@ -66,9 +76,10 @@ export class Cache<T> {
 	public async fetch(
 		key: string | null,
 		fetcher: () => Promise<T>,
+		renew = false,
 		validator?: (cachedValue: T) => boolean,
 	): Promise<T> {
-		const cachedValue = await this.get(key);
+		const cachedValue = await this.get(key, renew);
 		if (cachedValue !== undefined) {
 			if (validator) {
 				if (validator(cachedValue)) {
@@ -94,9 +105,10 @@ export class Cache<T> {
 	public async fetchMaybe(
 		key: string | null,
 		fetcher: () => Promise<T | undefined>,
+		renew = false,
 		validator?: (cachedValue: T) => boolean,
 	): Promise<T | undefined> {
-		const cachedValue = await this.get(key);
+		const cachedValue = await this.get(key, renew);
 		if (cachedValue !== undefined) {
 			if (validator) {
 				if (validator(cachedValue)) {
