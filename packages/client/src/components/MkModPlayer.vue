@@ -52,10 +52,13 @@
 				ref="progress"
 				:background="false"
 				:tooltips="false"
+				:instant="true"
 				@update:modelValue="performSeek()"
-				@mousedown="initSeek()"
-				@mouseup="finishSeek()"
 			></FormRange>
+			<button class="mute" @click="toggleMute()">
+				<i class="ph-speaker-simple-x ph-fill ph-lg" v-if="muted"></i>
+				<i class="ph-speaker-simple-high ph-fill ph-lg" v-else></i>
+			</button>
 			<FormRange
 				:min="0"
 				:max="1"
@@ -63,6 +66,8 @@
 				:step="0.1"
 				:background="false"
 				:tooltips="false"
+				:instant="true"
+				@update:modelValue="updateMute()"
 			></FormRange>
 			<a
 				class="download"
@@ -78,13 +83,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	ref,
-	shallowRef,
-	nextTick,
-	onDeactivated,
-	onMounted,
-} from "vue";
+import { ref, shallowRef, nextTick, onDeactivated, onMounted } from "vue";
 import * as calckey from "calckey-js";
 import FormRange from "./form/range.vue";
 import { i18n } from "@/i18n";
@@ -120,6 +119,7 @@ let patData = shallowRef([] as ModRow[][]);
 let currentPattern = ref(0);
 let nbChannels = ref(0);
 let length = ref(1);
+let muted = ref(false);
 
 const loaded = !!window.libopenmpt;
 
@@ -227,12 +227,22 @@ function stop(noDisplayUpdate = false) {
 	player.value.clearHandlers();
 }
 
-function initSeek() {
-	isSeeking = true;
+let savedVolume = 0;
+
+function toggleMute() {
+	if (muted.value) {
+		player.value.context.gain.value = savedVolume;
+		savedVolume = 0;
+	} else {
+		savedVolume = player.value.context.gain.value;
+		player.value.context.gain.value = 0;
+	}
+	muted.value = !muted.value;
 }
 
-function finishSeek() {
-	isSeeking = false;
+function updateMute() {
+	muted.value = false;
+	savedVolume = 0;
 }
 
 function performSeek() {

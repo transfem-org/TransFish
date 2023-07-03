@@ -19,7 +19,12 @@
 					@touchend="tooltipHide"
 					@mouseenter="tooltipShow"
 					@mouseleave="tooltipHide"
-					@input="(x) => (inputVal = x.target.value)"
+					@input="
+						(x) => {
+							inputVal = x.target.value;
+							if (instant) onChange(x);
+						}
+					"
 				/>
 				<datalist v-if="showTicks && steps" :id="id">
 					<option
@@ -52,6 +57,7 @@ const props = withDefaults(
 		easing?: boolean;
 		background?: boolean;
 		tooltips?: boolean;
+		instant?: boolean;
 	}>(),
 	{
 		step: 1,
@@ -59,6 +65,7 @@ const props = withDefaults(
 		easing: false,
 		background: true,
 		tooltips: true,
+		instant: false,
 	}
 );
 
@@ -134,12 +141,13 @@ function tooltipHide() {
 	$thumbWidth: 20px;
 
 	> .body {
-		padding: 10px 12px;
+		padding: 10px 0;
 		background: none;
 		border: none;
 		border-radius: 6px;
 
 		&.background {
+			padding: 10px 12px;
 			background: var(--panel);
 			border: solid 1px var(--panel);
 		}
