@@ -103,7 +103,7 @@ const plyrMini = ref(false);
 const url =
 	props.raw || defaultStore.state.loadRawImages
 		? props.media.url
-		: defaultStore.state.disableShowingAnimatedImages
+		: defaultStore.state.disableShowingAnimatedImages && props.media.type.startsWith('image')
 		? getStaticImageUrl(props.media.thumbnailUrl)
 		: props.media.thumbnailUrl;
 
