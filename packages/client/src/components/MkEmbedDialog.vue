@@ -15,15 +15,14 @@
 					primary
 					full
 					@click="copyToClipboard(codeblock); $refs.modal.close()"
-					>{{ i18n.ts.copyContent }}</MkButton
-				>
+					>{{ i18n.ts.copyContent }}
+				</MkButton>
 				<MkButton
-					:class="$style.gotIt"
 					primary
 					full
 					@click="$refs.modal.close()"
-					>{{ i18n.ts.gotIt }}</MkButton
-				>
+					>{{ i18n.ts.gotIt }}
+				</MkButton>
 			</div>
 		</div>
 	</MkModal>
@@ -49,7 +48,7 @@ const props = withDefaults(
 	}
 );
 
-const codeblock = `<iframe src="https://${host}/notes/${props.id}/embed" class="embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://${host}/static-assets/embed.js" async="async"></script>`
+const codeblock = `<iframe src="https://${host}/notes/${props.id}/embed" class="embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><scr` + `ipt src="https://${host}/static-assets/embed.js" async="async"></scr` + `ipt>`;
 </script>
 
 <style lang="scss" module>
