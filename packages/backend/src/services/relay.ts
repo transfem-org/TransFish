@@ -90,7 +90,7 @@ async function updateRelaysCache() {
 	const relays = await Relays.findBy({
 		status: "accepted",
 	});
-	relaysCache.set(null, relays);
+	await relaysCache.set(null, relays);
 }
 
 export async function relayRejected(id: string) {

@@ -135,14 +135,14 @@ export async function fetchPerson(
 ): Promise<CacheableUser | null> {
 	if (typeof uri !== "string") throw new Error("uri is not string");
 
-	const cached = uriPersonCache.get(uri);
+	const cached = await uriPersonCache.get(uri);
 	if (cached) return cached;
 
 	// Fetch from the database if the URI points to this server
 	if (uri.startsWith(`${config.url}/`)) {
 		const id = uri.split("/").pop();
 		const u = await Users.findOneBy({ id });
-		if (u) uriPersonCache.set(uri, u);
+		if (u) await uriPersonCache.set(uri, u);
 		return u;
 	}
 
@@ -150,7 +150,7 @@ export async function fetchPerson(
 	const exist = await Users.findOneBy({ uri });
 
 	if (exist) {
-		uriPersonCache.set(uri, exist);
+		await uriPersonCache.set(uri, exist);
 		return exist;
 	}
 	//#endregion

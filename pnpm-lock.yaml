@@ -105,6 +105,9 @@ importers:
       '@koa/router':
         specifier: 9.0.1
         version: 9.0.1
+      '@msgpack/msgpack':
+        specifier: 3.0.0-beta2
+        version: 3.0.0-beta2
       '@peertube/http-signature':
         specifier: 1.7.0
         version: 1.7.0
@@ -132,9 +135,6 @@ importers:
       argon2:
         specifier: ^0.30.3
         version: 0.30.3
-      async-mutex:
-        specifier: ^0.4.0
-        version: 0.4.0
       autobind-decorator:
         specifier: 2.4.0
         version: 2.4.0
@@ -786,7 +786,7 @@ importers:
         version: 2.30.0
       emojilib:
         specifier: github:thatonecalculator/emojilib
-        version: github.com/thatonecalculator/emojilib/542fcc1a25003afad78f3248ceee8ac6980ddeb8
+        version: github.com/thatonecalculator/emojilib/06944984a61ee799b7083894258f5fa318d932d1
       escape-regexp:
         specifier: 0.0.1
         version: 0.0.1
@@ -2276,6 +2276,11 @@ packages:
       got: 11.8.5
       os-filter-obj: 2.0.0
     dev: true
+
+  /@msgpack/msgpack@3.0.0-beta2:
+    resolution: {integrity: sha512-y+l1PNV0XDyY8sM3YtuMLK5vE3/hkfId+Do8pLo/OPxfxuFAUwcGz3oiiUuV46/aBpwTzZ+mRWVMtlSKbradhw==}
+    engines: {node: '>= 14'}
+    dev: false
 
   /@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.2:
     resolution: {integrity: sha512-9bfjwDxIDWmmOKusUcqdS4Rw+SETlp9Dy39Xui9BEGEk19dDwH0jhipwFzEff/pFg95NKymc6TOTbRKcWeRqyQ==}
@@ -4495,12 +4500,6 @@ packages:
       process-nextick-args: 2.0.1
       stream-exhaust: 1.0.2
     dev: true
-
-  /async-mutex@0.4.0:
-    resolution: {integrity: sha512-eJFZ1YhRR8UN8eBLoNzcDPcy/jqjsg6I1AP+KvWQX80BqOSW1oJPJXDylPUEeMr2ZQvHgnQ//Lp6f3RQ1zI7HA==}
-    dependencies:
-      tslib: 2.6.0
-    dev: false
 
   /async-settle@1.0.0:
     resolution: {integrity: sha512-VPXfB4Vk49z1LHHodrEQ6Xf7W4gg1w0dAPROHngx7qgDjqmIQ+fXmwgGXTW/ITLai0YLSvWepJOP9EVpMnEAcw==}
@@ -15772,8 +15771,8 @@ packages:
       url-polyfill: 1.1.12
     dev: true
 
-  github.com/thatonecalculator/emojilib/542fcc1a25003afad78f3248ceee8ac6980ddeb8:
-    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/542fcc1a25003afad78f3248ceee8ac6980ddeb8}
+  github.com/thatonecalculator/emojilib/06944984a61ee799b7083894258f5fa318d932d1:
+    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/06944984a61ee799b7083894258f5fa318d932d1}
     name: emojilib
     version: 3.0.10
     dev: true
