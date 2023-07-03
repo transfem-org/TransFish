@@ -8,7 +8,6 @@ block vars
 	- const isImage = note.files.length !== 0 && note.files[0].type.startsWith('image');
 	- const isVideo = note.files.length !== 0 && note.files[0].type.startsWith('video');
 	- const imageUrl = isImage ? note.files[0].url : isVideo ? note.files[0].thumbnailUrl : avatarUrl;
-	- const isEmbed = embed;
 
 block title
 	= `${title} | ${instanceName}`

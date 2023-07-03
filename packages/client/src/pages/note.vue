@@ -60,7 +60,7 @@
 							/>
 						</div>
 					</div>
-					<MkError v-else-if="error" @retry="fetch()" />
+					<MkError v-else-if="error" @retry="fetchNote()" />
 					<MkLoading v-else />
 				</transition>
 			</div>

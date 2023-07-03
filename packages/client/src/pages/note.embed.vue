@@ -1,34 +1,25 @@
 <template>
 	<MkStickyContainer>
-		<template #header
-			><MkPageHeader
-				:actions="headerActions"
-				:tabs="headerTabs"
-				:display-back-button="true"
-				:to="`#${noteId}`"
-		/></template>
-		<MkSpacer :content-max="800" :marginMin="6">
-			<div class="fcuexfpr">
-				<div v-if="appearNote" class="note">
-					<div class="main _gap">
-						<div class="note _gap">
-							<XNoteDetailed
-								:key="appearNote.id"
-								v-model:note="appearNote"
-								class="note"
-							/>
-						</div>
+		<div class="fcuexfpr">
+			<div v-if="appearNote" class="note">
+				<div class="main _gap">
+					<div class="note _gap" ref="noteContainer">
+						<XNoteDetailed
+							:key="appearNote.id"
+							v-model:note="appearNote"
+							class="note"
+						/>
 					</div>
 				</div>
-				<MkError v-else-if="error" @retry="fetch()" />
-				<MkLoading v-else />
 			</div>
-		</MkSpacer>
+			<MkError v-else-if="error" @retry="fetchNote()" />
+			<MkLoading v-else />
+		</div>
 	</MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from "vue";
+import { computed, onMounted, watch } from "vue";
 import * as misskey from "calckey-js";
 import XNoteDetailed from "@/components/MkNoteDetailed.vue";
 import * as os from "@/os";
@@ -39,6 +30,7 @@ const props = defineProps<{
 	noteId: string;
 }>();
 
+const noteContainer = $ref<HTMLElement>();
 let note = $ref<null | misskey.entities.Note>();
 let error = $ref();
 let isRenote = $ref(false);
@@ -108,6 +100,16 @@ definePageMetadata(
 			: null
 	)
 );
+
+onMounted(() => {
+	window.parent.postMessage(
+		{
+			type: "setHeight",
+			height: noteContainer?.clientHeight,
+		},
+		"*"
+	);
+});
 </script>
 
 <style lang="scss" scoped>
