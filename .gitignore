@@ -8,9 +8,6 @@ packages/backend/.idea/backend.iml
 packages/backend/.idea/modules.xml
 packages/backend/.idea/vcs.xml
 
-# vimlocal
-.vimlocal
-
 # Node.js
 node_modules
 report.*.json
