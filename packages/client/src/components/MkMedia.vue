@@ -178,6 +178,8 @@ onMounted(() => {
 	position: relative;
 	background: var(--bg);
 
+	--plyr-color-main: var(--accent);
+
 	> .buttons {
 		display: flex;
 		gap: 4px;
