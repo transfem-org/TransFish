@@ -2,8 +2,9 @@
 	<component
 		:is="self ? 'MkA' : 'a'"
 		ref="el"
-		class="ieqqeuvs _link"
+		class="ieqqeuvs url _link"
 		:[attr]="self ? props.url.substring(local.length) : props.url"
+		:title="self ? props.url.substring(local.length) : props.url"
 		:rel="rel"
 		:target="target"
 		@contextmenu.stop="() => {}"
@@ -73,8 +74,14 @@ const target = self ? null : "_blank";
 </script>
 
 <style lang="scss" scoped>
-.ieqqeuvs {
+.url {
 	word-break: break-all;
+	word-break: break-all;
+	white-space: nowrap;
+	max-width: 80%;
+	display: inline-block;
+	overflow: clip;
+	text-overflow: ellipsis;
 
 	> .icon {
 		padding-left: 2px;
