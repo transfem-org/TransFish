@@ -593,9 +593,6 @@ namespace MisskeyAPI {
         }
       }
 
-      console.log(`sending request to ${this.baseUrl}${path} with params:`);
-      console.log(JSON.stringify(bodyParams, null, 2));
-
       return axios.post<T>(this.baseUrl + path, bodyParams, options).then((resp: AxiosResponse<T>) => {
         const res: Response<T> = {
           data: resp.data,
