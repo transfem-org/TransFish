@@ -60,7 +60,9 @@ export function apiStatusMastodon(router: Router): void {
 			if (!body.media_ids) body.media_ids = undefined;
 			if (body.media_ids && !body.media_ids.length) body.media_ids = undefined;
 			if (body.media_ids) {
-				body.media_ids = (body.media_ids as string[]).map(p => convertId(p, IdType.CalckeyId));
+				body.media_ids = (body.media_ids as string[]).map((p) =>
+					convertId(p, IdType.CalckeyId),
+				);
 			}
 			const { sensitive } = body;
 			body.sensitive =
