@@ -1257,7 +1257,14 @@ export default class Misskey implements MegalodonInterface {
   }
 
   public async getMentions(text: string, cache: AccountCache): Promise<Entity.Mention[]> {
-    const mentions :Entity.Mention[] = [];
+		console.log(`getting mentions for message: '${text}'`);
+		const mentions :Entity.Mention[] = [];
+
+		if (text == undefined)
+			return mentions;
+
+		console.log('text is not undefined, continuing');
+
     const mentionMatch = text.matchAll(/(?<=^|\s)@(?<user>.*?)(?:@(?<host>.*?)|)(?=\s|$)/g);
 
     for (const m of mentionMatch) {
@@ -1276,6 +1283,8 @@ export default class Misskey implements MegalodonInterface {
         acct: account.acct
       });
     }
+
+		console.log(`mentions collected: ${mentions.length}`);
 
     return mentions;
   }
