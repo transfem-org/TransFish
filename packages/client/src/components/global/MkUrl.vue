@@ -75,8 +75,6 @@ const target = self ? null : "_blank";
 
 <style lang="scss" scoped>
 .url {
-	word-break: break-all;
-	word-break: break-all;
 	white-space: nowrap;
 	max-width: 80%;
 	display: inline-block;
