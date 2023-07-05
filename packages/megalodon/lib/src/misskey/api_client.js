@@ -53,7 +53,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(require("axios"));
 var dayjs_1 = __importDefault(require("dayjs"));
 var form_data_1 = __importDefault(require("form-data"));
-var default_1 = require("../default");
+var default_1 = require("@/default");
 var proxy_config_1 = __importDefault(require("../proxy_config"));
 var web_socket_1 = __importDefault(require("./web_socket"));
 var notification_1 = __importDefault(require("./notification"));

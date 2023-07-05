@@ -1,8 +1,6 @@
 {
-  "name": "@calckey/megalodon",
-  "private": false,
-  "version": "5.1.23",
-  "description": "Mastodon+Calckey API client for node.js and browser",
+  "name": "megalodon",
+  "private": true,
   "main": "./lib/src/index.js",
   "typings": "./lib/src/index.d.ts",
   "scripts": {
@@ -10,26 +8,6 @@
     "lint": "eslint --ext .js,.ts src",
     "doc": "typedoc --out ../docs ./src",
     "test": "NODE_ENV=test jest -u --maxWorkers=3"
-  },
-  "engines": {
-    "node": ">=15.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://codeberg.org/calckey/megalodon.git"
-  },
-  "keywords": [
-    "mastodon",
-    "client",
-    "api",
-    "streaming",
-    "rest",
-    "proxy"
-  ],
-  "author": "thatonecalculator",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://codeberg.org/calckey/megalodon/issues"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -54,7 +32,6 @@
     },
     "testEnvironment": "node"
   },
-  "homepage": "https://codeberg.org/calckey/megalodon",
   "dependencies": {
     "@types/oauth": "^0.9.0",
     "@types/ws": "^8.5.4",
@@ -78,6 +55,7 @@
     "@types/object-assign-deep": "^0.4.0",
     "@types/parse-link-header": "^2.0.0",
     "@types/uuid": "^9.0.0",
+		"@types/node": "18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "@types/async-lock": "1.4.0",

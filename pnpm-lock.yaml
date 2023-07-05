@@ -90,9 +90,6 @@ importers:
       '@bull-board/ui':
         specifier: 5.2.0
         version: 5.2.0
-      '@calckey/megalodon':
-        specifier: workspace:*
-        version: link:../megalodon
       '@discordapp/twemoji':
         specifier: 14.1.2
         version: 14.1.2
@@ -267,6 +264,9 @@ importers:
       koa-views:
         specifier: 7.0.2
         version: 7.0.2(@types/koa@2.13.5)(ejs@3.1.9)(pug@3.0.2)
+      megalodon:
+        specifier: workspace:*
+        version: link:../megalodon
       meilisearch:
         specifier: 0.33.0
         version: 0.33.0
@@ -983,6 +983,9 @@ importers:
       '@types/jest':
         specifier: ^29.4.0
         version: 29.4.0
+      '@types/node':
+        specifier: 18.11.18
+        version: 18.11.18
       '@types/object-assign-deep':
         specifier: ^0.4.0
         version: 0.4.0

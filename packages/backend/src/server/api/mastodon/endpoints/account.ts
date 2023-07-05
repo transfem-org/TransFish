@@ -7,6 +7,7 @@ import { argsToBools, convertTimelinesArgsId, limitToInt } from "./timeline.js";
 import { convertId, IdType } from "../../index.js";
 import {
 	convertAccount,
+	convertFeaturedTag,
 	convertList,
 	convertRelationship,
 	convertStatus,
@@ -174,7 +175,7 @@ export function apiAccountMastodon(router: Router): void {
 				const data = await client.getAccountFeaturedTags(
 					convertId(ctx.params.id, IdType.CalckeyId),
 				);
-				ctx.body = data.data.map((account) => convertAccount(account));
+				ctx.body = data.data.map((tag) => convertFeaturedTag(tag));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -367,7 +368,7 @@ export function apiAccountMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getFeaturedTags();
-			ctx.body = data.data.map((account) => convertAccount(account));
+			ctx.body = data.data.map((tag) => convertFeaturedTag(tag));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -381,7 +382,7 @@ export function apiAccountMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const data = await client.getFollowedTags();
-			ctx.body = data.data.map((account) => convertAccount(account));
+			ctx.body = data.data;
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
