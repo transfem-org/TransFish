@@ -105,7 +105,7 @@ If you have access to a server that supports one of the sources below, I recomme
   - [MeiliSearch](https://www.meilisearch.com/)
   - [ElasticSearch](https://www.elastic.co/elasticsearch/)
 - Caching server
-  - 🐲 At least [Dragonfly](https://www.dragonflydb.io/) v1.4.0 (recommended)
+  - 🐲 At least [DragonflyDB](https://www.dragonflydb.io/) v1.4.0 (recommended)
   - 🍱 Another [Redis](https://redis.io/) server, at least v6
   - 👻 [KeyDB](https://keydb.dev/) (untested)
 ### 🏗️ Build dependencies
