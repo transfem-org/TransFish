@@ -106,8 +106,8 @@ If you have access to a server that supports one of the sources below, I recomme
   - [ElasticSearch](https://www.elastic.co/elasticsearch/)
 - Caching server
   - 🐲 At least [Dragonfly](https://www.dragonflydb.io/) v1.4.0 (recommended)
-  - 👻 [KeyDB](https://keydb.dev/) (untested)
   - 🍱 Another [Redis](https://redis.io/) server, at least v6
+  - 👻 [KeyDB](https://keydb.dev/) (untested)
 ### 🏗️ Build dependencies
 
 - 🦀 At least [Rust](https://www.rust-lang.org/) v1.68.0
@@ -166,7 +166,9 @@ In Calckey's directory, fill out the `db` section of `.config/default.yml` with 
 
 ## 💰 Caching server
 
-If you experience a lot of traffic, it's a good idea to set up another Redis-compatible caching server. If you don't set one one up, it'll falll back to the mandatory Redis server.
+If you experience a lot of traffic, it's a good idea to set up another Redis-compatible caching server. If you don't set one one up, it'll fall back to the mandatory Redis server.
+
+For DragonflyDB, launch with the flag `--default_lua_flags='allow-undeclared-keys'`.
 
 ## 🔎 Set up search
 
