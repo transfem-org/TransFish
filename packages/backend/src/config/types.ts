@@ -26,6 +26,16 @@ export type Source = {
 		user?: string;
 		tls?: { [y: string]: string };
 	};
+	cacheServer?: {
+		host: string;
+		port: number;
+		family?: number;
+		pass?: string;
+		db?: number;
+		prefix?: string;
+		user?: string;
+		tls?: { [z: string]: string };
+	};
 	elasticsearch: {
 		host: string;
 		port: number;
