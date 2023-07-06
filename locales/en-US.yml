@@ -1118,7 +1118,7 @@ advancedSearch: "Advanced Search"
 timelines: "Timelines"
 characterLimit: "Character limit"
 poweredBy: "Powered by Calckey, part of an interconnected network of communities in the Fediverse."
-
+storagePerUser: "Storage per user"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

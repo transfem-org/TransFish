@@ -204,7 +204,7 @@
 								}}</template>
 							</FormLink>
 							<FormLink wrap>
-								{{ i18n.ts.driveCapacityPerLocalAccount }}
+								{{ i18n.ts.storagePerUser }}
 								<template #suffix>{{
 									meta.driveCapacityPerLocalUserMb + "MB"
 								}}</template>
