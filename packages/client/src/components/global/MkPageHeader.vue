@@ -184,7 +184,7 @@ const props = withDefaults(
 		to?: string;
 	}>(),
 	{
-		displayHomeButton: !$i,
+		displayHomeButton: !$i && window.innerWidth >= 1100,
 	}
 );
 

@@ -536,6 +536,7 @@ hr {
 	grid-gap: 12px;
 	> button {
 		width: 100% !important;
+		height: 100% !important;
 	}
 }
 
@@ -546,6 +547,7 @@ hr {
 	> ._button, > .linkBoxed {
 		flex-basis: 34%;
 		flex-grow: 1;
+		width: 0;
 		min-width: max-content !important;
 		max-width: 100% !important;
 		margin: 0 !important;

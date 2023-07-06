@@ -199,7 +199,7 @@ definePageMetadata(
 		icon: "ph-compass ph-bold ph-lg",
 	}))
 );
-provide("shouldOmitHeaderTitle", true);
+// provide("shouldOmitHeaderTitle", true);
 
 let swiperRef = null;
 

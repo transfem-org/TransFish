@@ -1,10 +1,10 @@
 <template>
-	<XKanban sticky v-if="isDesktop" />
+	<XKanban
+		v-if="!isDesktop && mainRouter.currentRoute.value.name !== 'index'"
+		mini
+	/>
+	<XKanban sticky v-else-if="isDesktop" />
 	<main id="maincontent">
-		<XKanban
-			mini
-			v-if="!isDesktop && mainRouter.currentRoute.value.name !== 'index'"
-		/>
 		<RouterView />
 		<footer class="powered-by" v-if="mainRouter.currentRoute.value.name !== 'index'">
 			<MkA to="/">
@@ -30,7 +30,7 @@ provide("router", mainRouter);
 
 const DESKTOP_THRESHOLD = 1100;
 let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
-matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (mql) => {
+matchMedia(`(min-width: ${DESKTOP_THRESHOLD}px)`).onchange = (mql) => {
 	isDesktop = mql.matches;
 };
 
@@ -44,6 +44,9 @@ os.api("meta").then((res) => {
 #calckey_app {
 	display: flex;
 	min-height: 100vh;
+	@media (max-width: 1099px) {
+		flex-direction: column;
+	}
 }
 #maincontent {
 	display: flex;

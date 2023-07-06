@@ -1,5 +1,5 @@
 <template>
-	<div class="ffcbddfc linkBoxed" :class="{ inline, naked }">
+	<div class="ffcbddfc linkBoxed" :class="{ inline, naked, wrap }">
 		<span v-if="!to" class="main">
 			<span class="icon"><slot name="icon"></slot></span>
 			<span class="text"><slot></slot></span>
@@ -42,6 +42,7 @@ const props = defineProps<{
 	behavior?: null | "window" | "browser" | "modalWindow";
 	inline?: boolean;
 	naked?: boolean;
+	wrap?: boolean;
 }>();
 </script>
 
@@ -115,6 +116,23 @@ const props = defineProps<{
 		font-weight: 600;
 		.icon {
 			color: inherit;
+		}
+	}
+
+	&.wrap {
+		> .main {
+			flex-wrap: wrap;
+			align-content: flex-start;
+			height: 100%;
+			> .text {
+				padding-left: 0 !important;
+				width: 1px;
+				flex-grow: 1;
+			}
+			> .right {
+				width: 100%;
+				white-space: unset;
+			}
 		}
 	}
 }

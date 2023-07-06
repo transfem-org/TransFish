@@ -161,18 +161,44 @@
 						</div>
 					</FormSection>
 					<FormSection>
-						<div class="_formLinksGrid">
-							<MkKeyValue :text="i18n.t('_cw.chars', { count: meta.maxNoteTextLength })">
-								<template #key>
-									{{ i18n.ts.characterLimit }}
-								</template>
-							</MkKeyValue>
-							<MkKeyValue :text="meta.features.searchFilters ? i18n.ts.yes : i18n.ts.no">
-								<template #key>
-									{{ i18n.ts.advancedSearch }}
-								</template>
-							</MkKeyValue>
-							<MkKeyValue 
+						<div class="_formLinksGridFlex">
+							<FormLink wrap>
+								{{ i18n.ts.timelines }}
+								<template #suffix>{{ 
+										`${ i18n.ts._timelines.home },` +
+											(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.local },`) +
+											(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.social },`) +
+											(meta.disableRecommendedTimeline ? '' : ` ${ i18n.ts._timelines.recommended },`) +
+											(meta.disableGlobalTimeline ? '' : ` ${ i18n.ts._timelines.global }`)
+								}}</template>
+							</FormLink>
+							<FormLink wrap>
+								{{ i18n.ts.characterLimit }}
+								<template #suffix>{{
+									i18n.t('_cw.chars', { count: meta.maxNoteTextLength })
+								}}</template>
+							</FormLink>
+							<FormLink wrap>
+								{{ i18n.ts.advancedSearch }}
+								<template #suffix>{{
+									meta.features.searchFilters ? i18n.ts.yes : i18n.ts.no
+								}}</template>
+							</FormLink>
+							<FormLink wrap>
+								{{ i18n.ts.driveCapacityPerLocalAccount }}
+								<template #suffix>{{
+									meta.driveCapacityPerLocalUserMb + 'MB'
+								}}</template>
+							</FormLink>
+							<FormLink wrap>
+								{{ i18n.ts.pushNotification }}
+								<template #suffix>{{
+									meta.features.serviceWorker ? i18n.ts.yes : i18n.ts.no
+								}}</template>
+							</FormLink>
+
+
+							<!-- <MkKeyValue 
 								:text="`${ i18n.ts._timelines.home },` +
 										(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.local },`) +
 										(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.social },`) +
@@ -183,11 +209,26 @@
 									{{ i18n.ts.timelines }}
 								</template>
 							</MkKeyValue>
+							<MkKeyValue :text="i18n.t('_cw.chars', { count: meta.maxNoteTextLength })">
+								<template #key>
+									{{ i18n.ts.characterLimit }}
+								</template>
+							</MkKeyValue>
+							<MkKeyValue :text="meta.features.searchFilters ? i18n.ts.yes : i18n.ts.no">
+								<template #key>
+									{{ i18n.ts.advancedSearch }}
+								</template>
+							</MkKeyValue>
 							<MkKeyValue :text="meta.driveCapacityPerLocalUserMb + 'MB'">
 								<template #key>
 									{{ i18n.ts.driveCapacityPerLocalAccount }}
 								</template>
 							</MkKeyValue>
+							<MkKeyValue :text="meta.features.serviceWorker ? i18n.ts.yes : i18n.ts.no">
+								<template #key>
+									{{ i18n.ts.pushNotification }}
+								</template>
+							</MkKeyValue> -->
 						</div>
 					</FormSection>
 				</footer>
@@ -212,7 +253,7 @@ import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkMention from "@/components/MkMention.vue";
 import { deviceKind } from "@/scripts/device-kind";
 
-defineProps<{
+const props = defineProps<{
 	sticky?: boolean;
 	mini?: boolean;
 }>();
@@ -228,7 +269,7 @@ os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && meta.description.length > 500;
 	wallpaper = 
-		meta.backgroundImageUrl ? `url(${meta.backgroundImageUrl})` 
+		meta.backgroundImageUrl && props.sticky ? `url(${meta.backgroundImageUrl})` 
 		: meta.themeColor ?? accentColor;
 	// wallpaper = meta.backgroundImageUrl ? null : meta.themeColor ?? accentColor;
 });
@@ -269,7 +310,6 @@ function showMenu(ev) {
 <style lang="scss" scoped>
 .mini-header {
 	padding: 0 12px;
-	background: var(--panel);
 	display: flex;
 	align-items: center;
 	gap: 1em;
@@ -277,6 +317,7 @@ function showMenu(ev) {
 	img {
 		height: 40px;
 		min-width: 40px;
+		object-fit: contain;
 	}
 	h1 {
 		margin: 0;
@@ -359,6 +400,7 @@ function showMenu(ev) {
 		background: var(--bg);
 		border-radius: var(--radius) var(--radius) 0 0;
 		padding: 0 var(--margin);
+		padding-bottom: var(--margin);
 		text-align: center;
 		flex-grow: 1;
 		margin-top: 80px;
@@ -451,6 +493,9 @@ section {
 }
 ._formLinksGrid {
 	grid-template-columns: repeat(2, minmax(150px, 1fr));
+	text-align: initial;
+}
+._formLinksGridFlex {
 	text-align: initial;
 }
 </style>
