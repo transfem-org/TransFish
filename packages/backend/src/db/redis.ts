@@ -2,15 +2,19 @@ import Redis from "ioredis";
 import config from "@/config/index.js";
 
 export function createConnection() {
+	let source = config.redis;
+	if (config.cacheServer) {
+		source = config.cacheServer;
+	}
 	return new Redis({
-		port: config.redis.port,
-		host: config.redis.host,
-		family: config.redis.family ?? 0,
-		password: config.redis.pass,
-		username: config.redis.user ?? "default",
-		keyPrefix: `${config.redis.prefix}:`,
-		db: config.redis.db || 0,
-		tls: config.redis.tls,
+		port: source.port,
+		host: source.host,
+		family: source.family ?? 0,
+		password: source.pass,
+		username: source.user ?? "default",
+		keyPrefix: `${source.prefix}:`,
+		db: source.db || 0,
+		tls: source.tls,
 	});
 }
 
