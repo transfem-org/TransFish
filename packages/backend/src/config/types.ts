@@ -26,7 +26,7 @@ export type Source = {
 		user?: string;
 		tls?: { [y: string]: string };
 	};
-	cacheServer: {
+	cacheServer?: {
 		host: string;
 		port: number;
 		family?: number;
