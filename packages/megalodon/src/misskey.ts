@@ -1284,8 +1284,6 @@ export default class Misskey implements MegalodonInterface {
       });
     }
 
-		console.log(`mentions collected: ${mentions.length}`);
-
     return mentions;
   }
 
