@@ -5,7 +5,6 @@ introMisskey: "Welcome! Calckey is an open source, decentralized social media pl
   that's free forever! 🚀"
 monthAndDay: "{month}/{day}"
 search: "Search"
-advancedSearch: "Advanced Search"
 searchPlaceholder: "Search Calckey"
 notifications: "Notifications"
 username: "Username"
@@ -1118,6 +1117,7 @@ isPatron: "Calckey Patron"
 reactionPickerSkinTone: "Preferred emoji skin tone"
 enableServerMachineStats: "Enable server hardware statistics"
 enableIdenticonGeneration: "Enable Identicon generation"
+advancedSearch: "Advanced Search"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
