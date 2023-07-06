@@ -2,6 +2,7 @@
 	<a
 		:href="to"
 		:class="active ? activeClass : null"
+		:target="external ? '_blank' : ''"
 		@contextmenu.prevent.stop="onContextmenu"
 		@click.stop="nav"
 	>
@@ -22,6 +23,7 @@ const props = withDefaults(
 	defineProps<{
 		to: string;
 		activeClass?: null | string;
+		external?: boolean;
 		behavior?: null | "window" | "browser" | "modalWindow";
 	}>(),
 	{

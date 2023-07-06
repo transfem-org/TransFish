@@ -5,6 +5,7 @@ introMisskey: "Welcome! Calckey is an open source, decentralized social media pl
   that's free forever! 🚀"
 monthAndDay: "{month}/{day}"
 search: "Search"
+advancedSearch: "Advanced Search"
 searchPlaceholder: "Search Calckey"
 notifications: "Notifications"
 username: "Username"

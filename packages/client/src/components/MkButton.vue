@@ -18,6 +18,7 @@
 		:class="{ inline, primary, gradate, danger, rounded, full, mini }"
 		:to="to"
 		:behavior="behavior"
+		:external="external"
 		@mousedown="onMousedown"
 	>
 		<div ref="ripples" class="ripples"></div>
@@ -44,6 +45,7 @@ const props = defineProps<{
 	full?: boolean;
 	mini?: boolean;
 	chip?: boolean;
+	external?: boolean;
 	behavior?: null | "window" | "browser" | "modalWindow";
 }>();
 

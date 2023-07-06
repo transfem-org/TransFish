@@ -17,7 +17,7 @@
 			{{ i18n.ts.home }}
 		</MkButton>
 	</header>
-	<div class="instance-info-container" v-else :class="{ sticky }">
+	<div class="instance-info-container" v-else :class="{ sticky, wallpaper: meta.backgroundImageUrl }">
 		<header id="instance-info" v-on:scroll.passive="onScroll">
 			<div class="banner" v-if="meta.bannerUrl">
 				<img :src="meta.bannerUrl" />
@@ -78,6 +78,7 @@
 							:link="true"
 							:behavior="'browser'"
 							rounded
+							external
 							to="https://calckey.org/join/"
 						>
 							<i class="ph-airplane-tilt ph-bold"></i>
@@ -159,34 +160,36 @@
 							</FormLink> -->
 						</div>
 					</FormSection>
-					<!-- <FormSection>
-						<div class="_formLinksGridFlex">
-							<FormLink>
-								{{ i18n.ts.timelines }}
-								<template #suffix>
-									{{
-										`${ i18n.ts._timelines.home },` +
-										meta.disableLocalTimeline ? null : `${ i18n.ts._timelines.local },` +
-										meta.disableLocalTimeline ? null : `${ i18n.ts._timelines.social },` +
-										meta.disableRecommendedTimeline ? null : `${ i18n.ts._timelines.recommended },` +
-										meta.disableGlobalTimeline ? null : `${ i18n.ts._timelines.global }`
-									}}
+					<FormSection>
+						<div class="_formLinksGrid">
+							<MkKeyValue :text="i18n.t('_cw.chars', { count: meta.maxNoteTextLength })">
+								<template #key>
+									{{ i18n.ts.characterLimit }}
 								</template>
-							</FormLink>
-							<FormLink>
-								{{ i18n.ts.driveCapacityPerLocalAccount }}
-								<template #suffix>
-									{{ meta.driveCapacityPerLocalUserMb }}MB
+							</MkKeyValue>
+							<MkKeyValue :text="meta.features.searchFilters ? i18n.ts.yes : i18n.ts.no">
+								<template #key>
+									{{ i18n.ts.advancedSearch }}
 								</template>
-							</FormLink>
-							<FormLink>
-								{{ i18n.ts.characterLimit }}
-								<template #suffix>
-									{{ i18n.t("_cw.chars", { count: meta.maxNoteTextLength }) }}
+							</MkKeyValue>
+							<MkKeyValue 
+								:text="`${ i18n.ts._timelines.home },` +
+										(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.local },`) +
+										(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.social },`) +
+										(meta.disableRecommendedTimeline ? '' : ` ${ i18n.ts._timelines.recommended },`) +
+										(meta.disableGlobalTimeline ? '' : ` ${ i18n.ts._timelines.global }`)"
+							>
+								<template #key>
+									{{ i18n.ts.timelines }}
 								</template>
-							</FormLink>
+							</MkKeyValue>
+							<MkKeyValue :text="meta.driveCapacityPerLocalUserMb + 'MB'">
+								<template #key>
+									{{ i18n.ts.driveCapacityPerLocalAccount }}
+								</template>
+							</MkKeyValue>
 						</div>
-					</FormSection> -->
+					</FormSection>
 				</footer>
 			</div>
 		</header>
@@ -219,12 +222,15 @@ let meta = $ref<DetailedInstanceMetadata>();
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
 const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent");;
-let themeColor = $ref(accentColor);
+let wallpaper = $ref();
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && meta.description.length > 500;
-	themeColor = meta.themeColor ?? accentColor;
+	wallpaper = 
+		meta.backgroundImageUrl ? `url(${meta.backgroundImageUrl})` 
+		: meta.themeColor ?? accentColor;
+	// wallpaper = meta.backgroundImageUrl ? null : meta.themeColor ?? accentColor;
 });
 
 let announcement = $ref();
@@ -298,6 +304,9 @@ function showMenu(ev) {
 		.content {
 			max-width: 450px;
 		}
+		&.wallpaper {
+			width: 500px;
+		}
 	}
 	margin-left: -1px;
 	box-shadow: 0 0 48px -24px rgba(0, 0, 0, 0.1);
@@ -307,7 +316,10 @@ function showMenu(ev) {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	background: v-bind('themeColor');
+	background: v-bind('wallpaper');
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
 	height: max-content;
 	min-height: 100%;
 	transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
@@ -317,7 +329,7 @@ function showMenu(ev) {
 		width: calc(100% + 2px);
 		margin-inline: -1px;
 		padding-top: min(56.25%, 70vh);
-		margin-bottom: calc(-100px - var(--radius));
+		margin-bottom: calc(-120px - var(--radius));
 		mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
 		-webkit-mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
 		transition: min-height 0.4s, max-height 0.4s, filter 0.7s;
@@ -354,6 +366,10 @@ function showMenu(ev) {
 		margin-inline: auto;
 		width: 100%;
 		box-sizing: border-box;
+		// &.wallpaper {
+		// 	flex-grow: 0;
+		// 	border-radius: var(--radius);
+		// }
 		@media (max-width: 1100px) {
 			&:first-child {
 				margin-top: 140px;
@@ -380,7 +396,7 @@ function showMenu(ev) {
 				height: 80px;
 				min-width: 80px;
 				max-width: 100%;
-				border-radius: var(--radius);
+				border-radius: 6px;
 				margin-top: -5px;
 				transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
 				&:last-child {
