@@ -92,9 +92,9 @@
 					>
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview
-								v-for="post in items"
-								:key="post.id"
-								:post="post"
+								v-for="mypost in items"
+								:key="mypost.id"
+								:post="mypost"
 								class="post"
 							/>
 						</div>
