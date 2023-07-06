@@ -6,7 +6,10 @@
 	<XKanban sticky v-else-if="isDesktop" />
 	<main id="maincontent">
 		<RouterView />
-		<footer class="powered-by" v-if="mainRouter.currentRoute.value.name !== 'index'">
+		<footer
+			class="powered-by"
+			v-if="mainRouter.currentRoute.value.name !== 'index'"
+		>
 			<MkA to="/">
 				<MkInstanceTicker :instance="meta"></MkInstanceTicker>
 				<small>{{ i18n.ts.poweredBy }}</small>

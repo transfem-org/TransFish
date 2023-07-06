@@ -101,12 +101,7 @@
 			</nav>
 		</template>
 		<div class="buttons right">
-			<MkButton
-				v-if="!$i && displayHomeButton"
-				:to="'/'"
-				link
-				rounded
-			>
+			<MkButton v-if="!$i && displayHomeButton" :to="'/'" link rounded>
 				<i class="ph-house ph-bold ph-lg"></i>
 				{{ i18n.ts.home }}
 			</MkButton>

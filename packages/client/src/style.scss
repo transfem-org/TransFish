@@ -540,11 +540,13 @@ hr {
 	}
 }
 
-._formLinksGridFlex { // "grid", anyways display flex my beloved
+._formLinksGridFlex {
+	// "grid", anyways display flex my beloved
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
-	> ._button, > .linkBoxed {
+	> ._button,
+	> .linkBoxed {
 		flex-basis: 34%;
 		flex-grow: 1;
 		width: 0;

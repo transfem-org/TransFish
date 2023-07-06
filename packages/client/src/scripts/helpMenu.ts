@@ -6,7 +6,6 @@ import XTutorial from "../components/MkTutorialDialog.vue";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
 
-
 export function openHelpMenu_(ev: MouseEvent) {
 	os.popupMenu(
 		[
@@ -42,33 +41,39 @@ export function openHelpMenu_(ev: MouseEvent) {
 					window.open("https://calckey.org/apps", "_blank");
 				},
 			},
-			$i ? null : {
-				type: "link",
-				text: i18n.ts._mfm.cheatSheet,
-				icon: "ph-question ph-bold ph-lg",
-				to: "/mfm-cheat-sheet",
-			},
-			$i ? {
-				type: "button",
-				action: async () => {
-					defaultStore.set("tutorial", 0);
-					os.popup(XTutorial, {}, {}, "closed");
-				},
-				text: i18n.ts.replayTutorial,
-				icon: "ph-circle-wavy-question ph-bold ph-lg",
-			} : undefined,
+			$i
+				? null
+				: {
+						type: "link",
+						text: i18n.ts._mfm.cheatSheet,
+						icon: "ph-question ph-bold ph-lg",
+						to: "/mfm-cheat-sheet",
+				  },
+			$i
+				? {
+						type: "button",
+						action: async () => {
+							defaultStore.set("tutorial", 0);
+							os.popup(XTutorial, {}, {}, "closed");
+						},
+						text: i18n.ts.replayTutorial,
+						icon: "ph-circle-wavy-question ph-bold ph-lg",
+				  }
+				: undefined,
 			null,
 			{
 				type: "parent",
 				text: i18n.ts.developer,
 				icon: "ph-code ph-bold ph-lg",
 				children: [
-					$i ? {
-						type: "link",
-						to: "/api-console",
-						text: "API Console",
-						icon: "ph-terminal-window ph-bold ph-lg",
-					} : undefined,
+					$i
+						? {
+								type: "link",
+								to: "/api-console",
+								text: "API Console",
+								icon: "ph-terminal-window ph-bold ph-lg",
+						  }
+						: undefined,
 					{
 						text: i18n.ts.document,
 						icon: "ph-file-doc ph-bold ph-lg",

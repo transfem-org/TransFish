@@ -1,7 +1,7 @@
 <template>
 	<header v-if="mini" class="mini-header">
-		<img 
-			class="logo" 
+		<img
+			class="logo"
 			:src="
 				meta.logoImageUrl ||
 				$instance.iconUrl ||
@@ -17,22 +17,26 @@
 			{{ i18n.ts.home }}
 		</MkButton>
 	</header>
-	<div class="instance-info-container" v-else :class="{ sticky, wallpaper: meta.backgroundImageUrl }">
+	<div
+		class="instance-info-container"
+		v-else
+		:class="{ sticky, wallpaper: meta.backgroundImageUrl }"
+	>
 		<header id="instance-info" v-on:scroll.passive="onScroll">
 			<div class="banner" v-if="meta.bannerUrl">
 				<img :src="meta.bannerUrl" />
 			</div>
 			<div class="content">
 				<div class="header">
-					<img 
-						class="logo" 
+					<img
+						class="logo"
 						:src="
 							$instance.iconUrl ||
 							$instance.faviconUrl ||
 							'/favicon.ico'
 						"
 					/>
-					<img 
+					<img
 						v-if="meta.logoImageUrl"
 						:src="meta.logoImageUrl"
 						class="logo"
@@ -143,7 +147,10 @@
 
 					<FormSection v-if="meta.tosUrl">
 						<div class="_formLinksGridFlex">
-							<FormLink v-if="meta.tosUrl" :to="meta.tosUrl" external
+							<FormLink
+								v-if="meta.tosUrl"
+								:to="meta.tosUrl"
+								external
 								><template #icon
 									><i
 										class="ph-scroll ph-bold ph-lg"
@@ -164,39 +171,52 @@
 						<div class="_formLinksGridFlex">
 							<FormLink wrap>
 								{{ i18n.ts.timelines }}
-								<template #suffix>{{ 
-										`${ i18n.ts._timelines.home },` +
-											(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.local },`) +
-											(meta.disableLocalTimeline ? '' : ` ${ i18n.ts._timelines.social },`) +
-											(meta.disableRecommendedTimeline ? '' : ` ${ i18n.ts._timelines.recommended },`) +
-											(meta.disableGlobalTimeline ? '' : ` ${ i18n.ts._timelines.global }`)
+								<template #suffix>{{
+									`${i18n.ts._timelines.home},` +
+									(meta.disableLocalTimeline
+										? ""
+										: ` ${i18n.ts._timelines.local},`) +
+									(meta.disableLocalTimeline
+										? ""
+										: ` ${i18n.ts._timelines.social},`) +
+									(meta.disableRecommendedTimeline
+										? ""
+										: ` ${i18n.ts._timelines.recommended},`) +
+									(meta.disableGlobalTimeline
+										? ""
+										: ` ${i18n.ts._timelines.global}`)
 								}}</template>
 							</FormLink>
 							<FormLink wrap>
 								{{ i18n.ts.characterLimit }}
 								<template #suffix>{{
-									i18n.t('_cw.chars', { count: meta.maxNoteTextLength })
+									i18n.t("_cw.chars", {
+										count: meta.maxNoteTextLength,
+									})
 								}}</template>
 							</FormLink>
 							<FormLink wrap>
 								{{ i18n.ts.advancedSearch }}
 								<template #suffix>{{
-									meta.features.searchFilters ? i18n.ts.yes : i18n.ts.no
+									meta.features.searchFilters
+										? i18n.ts.yes
+										: i18n.ts.no
 								}}</template>
 							</FormLink>
 							<FormLink wrap>
 								{{ i18n.ts.driveCapacityPerLocalAccount }}
 								<template #suffix>{{
-									meta.driveCapacityPerLocalUserMb + 'MB'
+									meta.driveCapacityPerLocalUserMb + "MB"
 								}}</template>
 							</FormLink>
 							<FormLink wrap>
 								{{ i18n.ts.pushNotification }}
 								<template #suffix>{{
-									meta.features.serviceWorker ? i18n.ts.yes : i18n.ts.no
+									meta.features.serviceWorker
+										? i18n.ts.yes
+										: i18n.ts.no
 								}}</template>
 							</FormLink>
-
 
 							<!-- <MkKeyValue 
 								:text="`${ i18n.ts._timelines.home },` +
@@ -262,15 +282,18 @@ let meta = $ref<DetailedInstanceMetadata>();
 
 let isLong = $ref(false);
 let collapsed = $ref(!isLong);
-const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent");;
+const accentColor = getComputedStyle(document.documentElement).getPropertyValue(
+	"--accent"
+);
 let wallpaper = $ref();
 
 os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && meta.description.length > 500;
-	wallpaper = 
-		meta.backgroundImageUrl && props.sticky ? `url(${meta.backgroundImageUrl})` 
-		: meta.themeColor ?? accentColor;
+	wallpaper =
+		meta.backgroundImageUrl && props.sticky
+			? `url(${meta.backgroundImageUrl})`
+			: meta.themeColor ?? accentColor;
 	// wallpaper = meta.backgroundImageUrl ? null : meta.themeColor ?? accentColor;
 });
 
@@ -357,7 +380,7 @@ function showMenu(ev) {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	background: v-bind('wallpaper');
+	background: v-bind("wallpaper");
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
@@ -372,7 +395,12 @@ function showMenu(ev) {
 		padding-top: min(56.25%, 70vh);
 		margin-bottom: calc(-120px - var(--radius));
 		mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
-		-webkit-mask: linear-gradient(to bottom, black, calc(100% - 50px), transparent);
+		-webkit-mask: linear-gradient(
+			to bottom,
+			black,
+			calc(100% - 50px),
+			transparent
+		);
 		transition: min-height 0.4s, max-height 0.4s, filter 0.7s;
 		img {
 			position: absolute;
@@ -429,10 +457,14 @@ function showMenu(ev) {
 				filter: brightness(1.2);
 				pointer-events: none;
 				z-index: -1;
-				opacity: .5;
+				opacity: 0.5;
 				clip-path: inset(55px 0 0 0 round var(--radius));
 				mask: linear-gradient(transparent 55px, #000 50px, transparent);
-				-webkit-mask: llinear-gradient(transparent 55px, #000 50px, transparent);
+				-webkit-mask: llinear-gradient(
+					transparent 55px,
+					#000 50px,
+					transparent
+				);
 			}
 			> .logo {
 				height: 80px;
@@ -444,7 +476,7 @@ function showMenu(ev) {
 				&:last-child {
 					display: block;
 					margin-inline: auto;
-					margin-block: .5em 1em !important;
+					margin-block: 0.5em 1em !important;
 				}
 			}
 			> h1 {
@@ -476,7 +508,10 @@ function showMenu(ev) {
 				position: relative;
 				max-height: calc(9em + 50px);
 				mask: linear-gradient(black calc(100% - 64px), transparent);
-				-webkit-mask: linear-gradient(black calc(100% - 64px), transparent);
+				-webkit-mask: linear-gradient(
+					black calc(100% - 64px),
+					transparent
+				);
 			}
 		}
 		.announcements {
