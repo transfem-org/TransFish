@@ -292,7 +292,8 @@ os.api("meta", { detail: true }).then((res) => {
 	meta = res;
 	isLong = meta.description && meta.description.length > 500;
 	wallpaper =
-		meta.backgroundImageUrl && props.sticky
+		(!props.sticky && !meta.bannerUrl) ||
+		(meta.backgroundImageUrl && props.sticky)
 			? `url(${meta.backgroundImageUrl})`
 			: meta.themeColor ?? accentColor;
 	// wallpaper = meta.backgroundImageUrl ? null : meta.themeColor ?? accentColor;
@@ -437,11 +438,13 @@ function showMenu(ev) {
 		margin-inline: auto;
 		width: 100%;
 		box-sizing: border-box;
+		box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 		// &.wallpaper {
 		// 	flex-grow: 0;
 		// 	border-radius: var(--radius);
 		// }
 		@media (max-width: 1100px) {
+			max-width: 600px;
 			&:first-child {
 				margin-top: 140px;
 			}
