@@ -86,7 +86,7 @@
 							to="https://calckey.org/join/"
 						>
 							<i class="ph-airplane-tilt ph-bold"></i>
-							{{ i18n.ts.findAnotherInstance }}
+							{{ i18n.ts.findOtherInstance }}
 						</MkButton>
 						<MkButton
 							v-if="deviceKind !== 'desktop'"
