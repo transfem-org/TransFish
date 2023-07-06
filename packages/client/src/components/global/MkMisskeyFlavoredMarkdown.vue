@@ -35,7 +35,7 @@ const props = withDefaults(
 		nowrap: false,
 		author: null,
 		isNote: true,
-	}
+	},
 );
 </script>
 

@@ -25,7 +25,7 @@ type Captcha = {
 				| "expired-callback"
 				| "error-callback"
 				| "endpoint"]?: unknown;
-		}
+		},
 	): string;
 	remove(id: string): void;
 	execute(id: string): void;
@@ -78,7 +78,7 @@ const src = computed(() => {
 });
 
 const captcha = computed<Captcha>(
-	() => window[variable.value] || ({} as unknown as Captcha)
+	() => window[variable.value] || ({} as unknown as Captcha),
 );
 
 if (loaded) {
@@ -91,7 +91,7 @@ if (loaded) {
 				async: true,
 				id: props.provider,
 				src: src.value,
-			})
+			}),
 		)
 	).addEventListener("load", () => (available.value = true));
 }

@@ -83,7 +83,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.groups,
 		icon: "ph-users-three ph-bold ph-lg",
-	}))
+	})),
 );
 
 async function create() {

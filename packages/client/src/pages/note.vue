@@ -101,7 +101,7 @@ const prevPagination = {
 					userId: appearNote.userId,
 					untilId: appearNote.id,
 			  }
-			: null
+			: null,
 	),
 };
 
@@ -115,7 +115,7 @@ const nextPagination = {
 					userId: appearNote.userId,
 					sinceId: appearNote.id,
 			  }
-			: null
+			: null,
 	),
 };
 
@@ -187,8 +187,8 @@ definePageMetadata(
 						text: appearNote.text,
 					},
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

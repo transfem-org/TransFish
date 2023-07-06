@@ -786,7 +786,7 @@ importers:
         version: 2.30.0
       emojilib:
         specifier: github:thatonecalculator/emojilib
-        version: github.com/thatonecalculator/emojilib/06944984a61ee799b7083894258f5fa318d932d1
+        version: github.com/thatonecalculator/emojilib/9d16541664dc8fef3201ae9b647477070676a52e
       escape-regexp:
         specifier: 0.0.1
         version: 0.0.1
@@ -824,8 +824,8 @@ importers:
         specifier: 5.3.7
         version: 5.3.7
       prettier:
-        specifier: 2.8.8
-        version: 2.8.8
+        specifier: 3.0.0
+        version: 3.0.0
       prettier-plugin-vue:
         specifier: 1.1.6
         version: 1.1.6
@@ -12296,6 +12296,12 @@ packages:
     hasBin: true
     dev: true
 
+  /prettier@3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
   /pretty-bytes@5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
@@ -15771,8 +15777,8 @@ packages:
       url-polyfill: 1.1.12
     dev: true
 
-  github.com/thatonecalculator/emojilib/06944984a61ee799b7083894258f5fa318d932d1:
-    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/06944984a61ee799b7083894258f5fa318d932d1}
+  github.com/thatonecalculator/emojilib/9d16541664dc8fef3201ae9b647477070676a52e:
+    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/9d16541664dc8fef3201ae9b647477070676a52e}
     name: emojilib
     version: 3.0.10
     dev: true

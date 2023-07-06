@@ -75,7 +75,7 @@ os.api("notifications/mark-all-as-read");
 
 const MOBILE_THRESHOLD = 500;
 const isMobile = ref(
-	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD
+	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD,
 );
 window.addEventListener("resize", () => {
 	isMobile.value =
@@ -139,7 +139,7 @@ const headerActions = $computed(() =>
 					},
 			  }
 			: undefined,
-	].filter((x) => x !== undefined)
+	].filter((x) => x !== undefined),
 );
 
 const headerTabs = $computed(() => [
@@ -169,7 +169,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.notifications,
 		icon: "ph-bell ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef = null;

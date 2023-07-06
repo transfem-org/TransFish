@@ -80,7 +80,7 @@ const props = withDefaults(
 		width: 400,
 		height: null,
 		scroll: true,
-	}
+	},
 );
 
 const emit = defineEmits<{

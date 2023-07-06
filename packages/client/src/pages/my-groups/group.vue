@@ -58,7 +58,7 @@ watch(
 	() => props.groupId,
 	() => {
 		fetch();
-	}
+	},
 );
 
 async function fetch() {
@@ -135,7 +135,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.members,
 		icon: "ph-users-three ph-bold ph-lg",
-	}))
+	})),
 );
 
 const headerActions = $computed(() => [

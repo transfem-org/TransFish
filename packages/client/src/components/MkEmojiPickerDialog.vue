@@ -47,7 +47,7 @@ withDefaults(
 		manualShowing: null,
 		showPinned: true,
 		asReactionPicker: false,
-	}
+	},
 );
 
 const emit = defineEmits<{

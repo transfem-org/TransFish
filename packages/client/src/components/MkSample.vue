@@ -122,7 +122,7 @@ export default defineComponent({
 						action: () => {},
 					},
 				],
-				ev.currentTarget ?? ev.target
+				ev.currentTarget ?? ev.target,
 			);
 		},
 	},

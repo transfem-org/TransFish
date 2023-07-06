@@ -161,7 +161,7 @@ const props = withDefaults(
 		contextmenu: null,
 		buttonsLeft: () => [],
 		buttonsRight: () => [],
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -512,7 +512,9 @@ defineExpose({
 <style lang="scss" scoped>
 .window-enter-active,
 .window-leave-active {
-	transition: opacity 0.2s, transform 0.2s !important;
+	transition:
+		opacity 0.2s,
+		transform 0.2s !important;
 }
 .window-enter-from,
 .window-leave-to {

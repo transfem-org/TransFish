@@ -215,7 +215,7 @@ const openAccountMenu = (ev: MouseEvent) => {
 		{
 			withExtraOperation: true,
 		},
-		ev
+		ev,
 	);
 };
 
@@ -299,7 +299,7 @@ onMounted(() => {
 		},
 		{
 			immediate: true,
-		}
+		},
 	);
 
 	if (el && el.parentElement) {
@@ -554,7 +554,11 @@ onUnmounted(() => {
 			font-weight: normal;
 			opacity: 0.7;
 			overflow: hidden;
-			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width 0.2s;
+			transition:
+				color 0.2s,
+				opacity 0.2s,
+				width 0.2s,
+				min-width 0.2s;
 			--width: 38px;
 
 			&:hover {
@@ -583,7 +587,9 @@ onUnmounted(() => {
 			height: 3px;
 			background: var(--accent);
 			border-radius: 999px;
-			transition: width 0.2s, transform 0.2s;
+			transition:
+				width 0.2s,
+				transform 0.2s;
 			transition-timing-function: cubic-bezier(0, 0, 0, 1.2);
 			pointer-events: none;
 		}

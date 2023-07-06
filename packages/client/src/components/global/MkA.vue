@@ -29,7 +29,7 @@ const props = withDefaults(
 	{
 		activeClass: null,
 		behavior: null,
-	}
+	},
 );
 
 const router = useRouter();
@@ -83,7 +83,7 @@ function onContextmenu(ev) {
 				},
 			},
 		],
-		ev
+		ev,
 	);
 }
 

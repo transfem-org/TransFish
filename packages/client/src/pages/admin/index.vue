@@ -379,7 +379,7 @@ async function lookupNote() {
 		"notes/show",
 		q.startsWith("http://") || q.startsWith("https://")
 			? { url: q.trim() }
-			: { noteId: q.trim() }
+			: { noteId: q.trim() },
 	)
 		.then((note) => {
 			os.pageWindow(`/notes/${note.id}`);
@@ -426,7 +426,7 @@ const lookup = (ev) => {
 				},
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 };
 

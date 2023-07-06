@@ -574,7 +574,7 @@ watch(
 	},
 	{
 		immediate: true,
-	}
+	},
 );
 
 watch($$(user), () => {
@@ -611,14 +611,14 @@ const headerTabs = $computed(() =>
 			title: "Raw",
 			icon: "ph-code ph-bold ph-lg",
 		},
-	].filter((x) => x != null)
+	].filter((x) => x != null),
 );
 
 definePageMetadata(
 	computed(() => ({
 		title: user ? acct(user) : i18n.ts.userInfo,
 		icon: "ph-info ph-bold ph-lg",
-	}))
+	})),
 );
 </script>
 

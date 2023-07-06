@@ -90,7 +90,7 @@ const props = withDefaults(
 		isStacked: false,
 		naked: false,
 		indicated: false,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -103,7 +103,7 @@ let body = $ref<HTMLDivElement>();
 
 let dragging = $ref(false);
 watch($$(dragging), (v) =>
-	os.deckGlobalEvents.emit(v ? "column.dragStart" : "column.dragEnd")
+	os.deckGlobalEvents.emit(v ? "column.dragStart" : "column.dragEnd"),
 );
 
 let draghover = $ref(false);

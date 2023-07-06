@@ -251,7 +251,7 @@ watch(
 	() => props.items,
 	() => {
 		const items: (MenuItem | MenuPending)[] = [...props.items].filter(
-			(item) => item !== undefined
+			(item) => item !== undefined,
 		);
 
 		for (let i = 0; i < items.length; i++) {
@@ -270,7 +270,7 @@ watch(
 	},
 	{
 		immediate: true,
-	}
+	},
 );
 
 let childMenu = $ref<MenuItem[] | null>();

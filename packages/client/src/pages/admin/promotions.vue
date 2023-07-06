@@ -87,7 +87,7 @@ os.api("admin/ad/list").then((adsResponse) => {
 function add() {
 	const tomorrow = formatDateTimeString(
 		new Date(new Date().setDate(new Date().getDate() + 1)),
-		"yyyy-MM-dd"
+		"yyyy-MM-dd",
 	);
 	ads.unshift({
 		id: null,

@@ -136,7 +136,7 @@ function back() {
 	history.pop();
 	router.replace(
 		history[history.length - 1].path,
-		history[history.length - 1].key
+		history[history.length - 1].key,
 	);
 }
 

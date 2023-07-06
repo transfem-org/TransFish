@@ -82,7 +82,7 @@ function onStats(connStats) {
 	const inPeak = Math.max(1024 * 64, Math.max(...stats.map((s) => s.net.rx)));
 	const outPeak = Math.max(
 		1024 * 64,
-		Math.max(...stats.map((s) => s.net.tx))
+		Math.max(...stats.map((s) => s.net.tx)),
 	);
 
 	let inPolylinePointsStats = stats.map((s, i) => [

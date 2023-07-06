@@ -21,7 +21,7 @@
 				<XNote
 					v-if="
 						['reply', 'quote', 'mention'].includes(
-							notification.type
+							notification.type,
 						)
 					"
 					:key="notification.id"

@@ -72,7 +72,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.explore,
 		icon: "ph-compass ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef = null;

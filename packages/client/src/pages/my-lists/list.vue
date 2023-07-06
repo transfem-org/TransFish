@@ -154,8 +154,8 @@ definePageMetadata(
 					title: list.name,
 					icon: "ph-list-bullets ph-bold ph-lg",
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

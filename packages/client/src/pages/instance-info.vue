@@ -315,7 +315,7 @@
 								:key="user.id"
 								v-tooltip.mfm="
 									`Last posted: ${new Date(
-										user.updatedAt
+										user.updatedAt,
 									).toLocaleString()}`
 								"
 								class="user"
@@ -498,7 +498,7 @@ if (iAmAdmin) {
 			key: "raw",
 			title: "Raw",
 			icon: "ph-code ph-bold ph-lg",
-		}
+		},
 	);
 }
 

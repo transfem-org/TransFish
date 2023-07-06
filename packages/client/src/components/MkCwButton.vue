@@ -63,7 +63,9 @@ defineExpose({
 	> span {
 		background: var(--cwBg) !important;
 		color: var(--cwFg);
-		transition: background 0.2s, color 0.2s;
+		transition:
+			background 0.2s,
+			color 0.2s;
 		> span {
 			font-weight: 500;
 			&::before {

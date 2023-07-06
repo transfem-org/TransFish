@@ -116,7 +116,7 @@ const props = withDefaults(
 		noOverlap: true,
 		transparentBg: false,
 		noReturnFocus: false,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -153,7 +153,7 @@ const type = $computed<ModalTypes>(() => {
 	}
 });
 const isEnableBgTransparent = $computed(
-	() => props.transparentBg && type === "popup"
+	() => props.transparentBg && type === "popup",
 );
 let transitionName = $computed(() =>
 	defaultStore.state.animation
@@ -164,7 +164,7 @@ let transitionName = $computed(() =>
 			: type === "popup"
 			? "modal-popup"
 			: "modal"
-		: ""
+		: "",
 );
 let transitionDuration = $computed(() =>
 	transitionName === "send"
@@ -175,7 +175,7 @@ let transitionDuration = $computed(() =>
 		? 200
 		: transitionName === "modal-drawer"
 		? 200
-		: 0
+		: 0,
 );
 
 let contentClicking = false;
@@ -359,10 +359,10 @@ const onOpened = () => {
 						contentClicking = false;
 					}, 100);
 				},
-				{ passive: true, once: true }
+				{ passive: true, once: true },
 			);
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 	// if (props.preferType == "dialog") {
 	// 	history.pushState(null, "", location.href);
@@ -384,7 +384,7 @@ onMounted(() => {
 
 			align();
 		},
-		{ immediate: true }
+		{ immediate: true },
 	);
 
 	nextTick(() => {
@@ -414,7 +414,8 @@ defineExpose({
 
 	> .content {
 		transform: translateY(0px);
-		transition: opacity 0.3s ease-in,
+		transition:
+			opacity 0.3s ease-in,
 			transform 0.3s cubic-bezier(0.5, -0.5, 1, 0.5) !important;
 	}
 }
@@ -439,7 +440,9 @@ defineExpose({
 
 	> .content {
 		transform-origin: var(--transformOrigin);
-		transition: opacity 0.2s, transform 0.2s !important;
+		transition:
+			opacity 0.2s,
+			transform 0.2s !important;
 	}
 }
 .transition_modal_enterFrom,
@@ -464,7 +467,8 @@ defineExpose({
 
 	> .content {
 		transform-origin: var(--transformOrigin);
-		transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1),
+		transition:
+			opacity 0.2s cubic-bezier(0, 0, 0.2, 1),
 			transform 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
 	}
 }

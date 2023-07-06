@@ -317,8 +317,8 @@ definePageMetadata(
 						text: page.summary,
 					},
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

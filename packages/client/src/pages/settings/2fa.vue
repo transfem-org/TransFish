@@ -136,7 +136,7 @@ withDefaults(
 	}>(),
 	{
 		first: false,
-	}
+	},
 );
 
 const twoFactorData = ref<any>(null);
@@ -166,7 +166,7 @@ async function registerTOTP() {
 				ok: () => res(true),
 				cancel: () => res(false),
 			},
-			"closed"
+			"closed",
 		);
 	});
 	if (!qrdialog) return;
@@ -303,7 +303,7 @@ async function addSecurityKey() {
 		webAuthnCreation,
 		null,
 		() => {}, // ユーザーのキャンセルはrejectなのでエラーダイアログを出さない
-		i18n.ts._2fa.tapSecurityKey
+		i18n.ts._2fa.tapSecurityKey,
 	);
 	if (!credential) return;
 

@@ -265,15 +265,15 @@ const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
 		(v) => !v,
-		(v) => !v
-	)
+		(v) => !v,
+	),
 );
 const reduceAnimation = computed(
 	defaultStore.makeGetterSetter(
 		"animation",
 		(v) => !v,
-		(v) => !v
-	)
+		(v) => !v,
+	),
 );
 
 function close(res) {

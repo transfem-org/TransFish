@@ -78,7 +78,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const hasBirthday = Boolean($i?.birthday);

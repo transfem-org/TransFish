@@ -180,7 +180,7 @@
 						:count="
 							Object.values(appearNote.reactions).reduce(
 								(partialSum, val) => partialSum + val,
-								0
+								0,
 							)
 						"
 						:reacted="appearNote.myReaction != null"
@@ -339,7 +339,7 @@ const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
 let appearNote = $computed(() =>
-	isRenote ? (note.renote as misskey.entities.Note) : note
+	isRenote ? (note.renote as misskey.entities.Note) : note,
 );
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
@@ -376,7 +376,7 @@ function reply(viaKeyboard = false): void {
 		},
 		() => {
 			focus();
-		}
+		},
 	);
 }
 
@@ -393,7 +393,7 @@ function react(viaKeyboard = false): void {
 		},
 		() => {
 			focus();
-		}
+		},
 	);
 }
 
@@ -407,7 +407,7 @@ function undoReact(note): void {
 
 const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 	"currentClipPage",
-	null
+	null,
 );
 
 function onContextmenu(ev: MouseEvent): void {
@@ -473,7 +473,7 @@ function onContextmenu(ev: MouseEvent): void {
 					  }
 					: undefined,
 			],
-			ev
+			ev,
 		);
 	}
 }
@@ -491,7 +491,7 @@ function menu(viaKeyboard = false): void {
 		menuButton.value,
 		{
 			viaKeyboard,
-		}
+		},
 	).then(focus);
 }
 
@@ -514,7 +514,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 		renoteTime.value,
 		{
 			viaKeyboard: viaKeyboard,
-		}
+		},
 	);
 }
 

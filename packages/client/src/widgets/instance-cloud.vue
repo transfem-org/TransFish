@@ -55,7 +55,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 let cloud = $ref<InstanceType<typeof MkTagCloud> | null>();
@@ -79,7 +79,7 @@ useInterval(
 	{
 		immediate: true,
 		afterMounted: true,
-	}
+	},
 );
 
 function getInstanceIcon(instance): string {

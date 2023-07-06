@@ -35,7 +35,7 @@ const props = withDefaults(
 	defineProps<{
 		acct: string;
 	}>(),
-	{}
+	{},
 );
 
 let user = $ref<null | misskey.entities.UserDetailed>(null);
@@ -73,8 +73,8 @@ definePageMetadata(
 					userName: user,
 					avatar: user,
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

@@ -23,10 +23,10 @@
 							v-tooltip.noDelay="
 								i18n.t('edited', {
 									date: new Date(
-										note.updatedAt
+										note.updatedAt,
 									).toLocaleDateString(),
 									time: new Date(
-										note.updatedAt
+										note.updatedAt,
 									).toLocaleTimeString(),
 								})
 							"

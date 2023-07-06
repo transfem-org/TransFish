@@ -40,7 +40,7 @@ const props = withDefaults(
 		title: null,
 		size: 64,
 		cover: true,
-	}
+	},
 );
 
 const canvas = $ref<HTMLCanvasElement>();

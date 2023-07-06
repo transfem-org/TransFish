@@ -224,7 +224,7 @@ function openAccountMenu(ev: MouseEvent) {
 		{
 			withExtraOperation: true,
 		},
-		ev
+		ev,
 	);
 }
 
@@ -239,7 +239,7 @@ function more(ev: MouseEvent) {
 			src: ev.currentTarget ?? ev.target,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 </script>

@@ -191,7 +191,7 @@ const props = withDefaults(
 	}>(),
 	{
 		showPinned: true,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -229,13 +229,13 @@ const unicodeEmojiSkinToneLabels = [
 ];
 
 const size = computed(() =>
-	props.asReactionPicker ? reactionPickerSize.value : 1
+	props.asReactionPicker ? reactionPickerSize.value : 1,
 );
 const width = computed(() =>
-	props.asReactionPicker ? reactionPickerWidth.value : 3
+	props.asReactionPicker ? reactionPickerWidth.value : 3,
 );
 const height = computed(() =>
-	props.asReactionPicker ? reactionPickerHeight.value : 2
+	props.asReactionPicker ? reactionPickerHeight.value : 2,
 );
 const customEmojiCategories = emojiCategories;
 const customEmojis = instance.emojis;
@@ -283,8 +283,8 @@ watch(q, () => {
 						(keyword) =>
 							emoji.name.includes(keyword) ||
 							emoji.aliases.some((alias) =>
-								alias.includes(keyword)
-							)
+								alias.includes(keyword),
+							),
 					)
 				) {
 					matches.add(emoji);
@@ -355,8 +355,8 @@ watch(q, () => {
 						(keyword) =>
 							emoji.slug.includes(keyword) ||
 							emoji.keywords?.some((alias) =>
-								alias.includes(keyword)
-							)
+								alias.includes(keyword),
+							),
 					)
 				) {
 					matches.add(emoji);
@@ -419,7 +419,7 @@ function reset() {
 }
 
 function getKey(
-	emoji: string | Misskey.entities.CustomEmoji | UnicodeEmojiDef
+	emoji: string | Misskey.entities.CustomEmoji | UnicodeEmojiDef,
 ): string {
 	return typeof emoji === "string" ? emoji : emoji.emoji || `:${emoji.name}:`;
 }
@@ -465,7 +465,7 @@ function done(query?: any): boolean | void {
 		return true;
 	}
 	const exactMatchUnicode = emojilist.find(
-		(emoji) => emoji.emoji === q2 || emoji.slug === q2
+		(emoji) => emoji.emoji === q2 || emoji.slug === q2,
 	);
 	if (exactMatchUnicode) {
 		chosen(exactMatchUnicode);
