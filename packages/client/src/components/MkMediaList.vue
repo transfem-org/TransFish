@@ -94,6 +94,8 @@ onMounted(() => {
 		imageClickAction: "close",
 		tapAction: "toggle-controls",
 		preloadFirstSlide: false,
+		showAnimationDuration: 100,
+		hideAnimationDuration: 100,
 		pswpModule: PhotoSwipe,
 	});
 
