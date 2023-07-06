@@ -1,8 +1,8 @@
-import megalodon, { MegalodonInterface } from "@calckey/megalodon";
+import megalodon, { MegalodonInterface } from "megalodon";
 import Router from "@koa/router";
 import { getClient } from "../ApiMastodonCompatibleService.js";
 import axios from "axios";
-import { Converter } from "@calckey/megalodon";
+import { Converter } from "megalodon";
 import { convertTimelinesArgsId, limitToInt } from "./timeline.js";
 import { convertAccount, convertStatus } from "../converters.js";
 
@@ -103,7 +103,7 @@ async function getHighlight(
 			i: accessToken,
 		});
 		const data: MisskeyEntity.Note[] = api.data;
-		return data.map((note) => Converter.note(note, domain));
+		return data.map((note) => new Converter(BASE_URL).note(note, domain));
 	} catch (e: any) {
 		console.log(e);
 		console.log(e.response.data);
@@ -131,7 +131,7 @@ async function getFeaturedUser(
 		return data.map((u) => {
 			return {
 				source: "past_interactions",
-				account: Converter.userDetail(u, host),
+				account: new Converter(BASE_URL).userDetail(u, host),
 			};
 		});
 	} catch (e: any) {

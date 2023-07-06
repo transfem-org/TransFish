@@ -151,7 +151,7 @@ function signin() {
 			autoSet: true,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 
@@ -162,7 +162,7 @@ function signup() {
 			autoSet: true,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 
@@ -184,7 +184,7 @@ function showMenu(ev) {
 				},
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 </script>

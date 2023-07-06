@@ -152,25 +152,25 @@ async function reloadAsk() {
 let reactions = $ref(deepClone(defaultStore.state.reactions));
 
 const reactionPickerSkinTone = $computed(
-	defaultStore.makeGetterSetter("reactionPickerSkinTone")
+	defaultStore.makeGetterSetter("reactionPickerSkinTone"),
 );
 const reactionPickerSize = $computed(
-	defaultStore.makeGetterSetter("reactionPickerSize")
+	defaultStore.makeGetterSetter("reactionPickerSize"),
 );
 const reactionPickerWidth = $computed(
-	defaultStore.makeGetterSetter("reactionPickerWidth")
+	defaultStore.makeGetterSetter("reactionPickerWidth"),
 );
 const reactionPickerHeight = $computed(
-	defaultStore.makeGetterSetter("reactionPickerHeight")
+	defaultStore.makeGetterSetter("reactionPickerHeight"),
 );
 const reactionPickerUseDrawerForMobile = $computed(
-	defaultStore.makeGetterSetter("reactionPickerUseDrawerForMobile")
+	defaultStore.makeGetterSetter("reactionPickerUseDrawerForMobile"),
 );
 const enableEmojiReactions = $computed(
-	defaultStore.makeGetterSetter("enableEmojiReactions")
+	defaultStore.makeGetterSetter("enableEmojiReactions"),
 );
 const showEmojisInReactionNotifications = $computed(
-	defaultStore.makeGetterSetter("showEmojisInReactionNotifications")
+	defaultStore.makeGetterSetter("showEmojisInReactionNotifications"),
 );
 
 function save() {
@@ -187,21 +187,21 @@ function remove(reaction, ev: MouseEvent) {
 				},
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 
 function preview(ev: MouseEvent) {
 	os.popup(
 		defineAsyncComponent(
-			() => import("@/components/MkEmojiPickerDialog.vue")
+			() => import("@/components/MkEmojiPickerDialog.vue"),
 		),
 		{
 			asReactionPicker: true,
 			src: ev.currentTarget ?? ev.target,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 
@@ -232,7 +232,7 @@ watch(
 	},
 	{
 		deep: true,
-	}
+	},
 );
 
 watch(enableEmojiReactions, async () => {

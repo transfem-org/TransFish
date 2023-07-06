@@ -73,7 +73,7 @@ const isLocal = computed(() => !props.note.uri);
 const isVoted = computed(
 	() =>
 		!props.note.poll.multiple &&
-		props.note.poll.choices.some((c) => c.isVoted)
+		props.note.poll.choices.some((c) => c.isVoted),
 );
 const timer = computed(() =>
 	i18n.t(
@@ -89,8 +89,8 @@ const timer = computed(() =>
 			m: Math.floor(remaining.value / 60) % 60,
 			h: Math.floor(remaining.value / 3600) % 24,
 			d: Math.floor(remaining.value / 86400),
-		}
-	)
+		},
+	),
 );
 
 const showResult = ref(props.readOnly || isVoted.value);
@@ -101,8 +101,8 @@ if (props.note.poll.expiresAt) {
 		remaining.value = Math.floor(
 			Math.max(
 				new Date(props.note.poll.expiresAt).getTime() - Date.now(),
-				0
-			) / 1000
+				0,
+			) / 1000,
 		);
 		if (remaining.value === 0) {
 			showResult.value = true;

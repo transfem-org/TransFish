@@ -35,7 +35,7 @@ const props = withDefaults(
 	}>(),
 	{
 		extractor: (item) => item,
-	}
+	},
 );
 </script>
 

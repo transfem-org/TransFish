@@ -47,7 +47,7 @@ const split = computed(() =>
 	items.value
 		.trim()
 		.split("\n")
-		.filter((x) => x.trim() !== "")
+		.filter((x) => x.trim() !== ""),
 );
 const menuDisplay = computed(defaultStore.makeGetterSetter("menuDisplay"));
 
@@ -63,7 +63,7 @@ async function reloadAsk() {
 
 async function addItem() {
 	const menu = Object.keys(navbarItemDef).filter(
-		(k) => !defaultStore.state.menu.includes(k)
+		(k) => !defaultStore.state.menu.includes(k),
 	);
 	const { canceled, result: item } = await os.select({
 		title: i18n.ts.addItem,

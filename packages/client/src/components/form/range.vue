@@ -66,7 +66,7 @@ const props = withDefaults(
 		background: true,
 		tooltips: true,
 		instant: false,
-	}
+	},
 );
 
 const inputEl = ref<HTMLElement>();
@@ -102,7 +102,7 @@ function tooltipShow() {
 			targetElement: inputEl,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 function tooltipHide() {

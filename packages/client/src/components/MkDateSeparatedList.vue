@@ -84,8 +84,8 @@ export default defineComponent({
 										class: "ph-caret-down ph-bold ph-lg icon",
 									}),
 								]),
-							]
-						)
+							],
+						),
 					);
 
 					return [el, separator];
@@ -119,7 +119,7 @@ export default defineComponent({
 					: {
 							class: "sqadhkmv" + (props.noGap ? " noGap" : ""),
 					  },
-				{ default: renderChildren }
+				{ default: renderChildren },
 			);
 	},
 });
@@ -140,7 +140,8 @@ export default defineComponent({
 	}
 
 	> .list-enter-active {
-		transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+		transition:
+			transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
 			opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
 	}
 

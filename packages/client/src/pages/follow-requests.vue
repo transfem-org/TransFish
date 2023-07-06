@@ -115,7 +115,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.followRequests,
 		icon: "ph-hand-waving ph-bold ph-lg",
-	}))
+	})),
 );
 </script>
 

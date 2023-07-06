@@ -180,7 +180,9 @@ onMounted(() => {
 <style lang="scss" scoped>
 .popup-enter-active,
 .popup-leave-active {
-	transition: opacity 0.3s, transform 0.3s !important;
+	transition:
+		opacity 0.3s,
+		transform 0.3s !important;
 }
 .popup-enter-from,
 .popup-leave-to {

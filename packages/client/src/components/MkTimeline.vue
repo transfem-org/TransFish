@@ -55,7 +55,7 @@ const emit = defineEmits<{
 
 provide(
 	"inChannel",
-	computed(() => props.src === "channel")
+	computed(() => props.src === "channel"),
 );
 
 const tlComponent: InstanceType<typeof XNotes> = $ref();
@@ -293,7 +293,8 @@ const timetravel = (date?: Date) => {
 		pointer-events: all;
 		transform: translateY(-100%);
 		opacity: 0;
-		animation: reset 0.4s forwards cubic-bezier(0, 0.4, 0, 1.1),
+		animation:
+			reset 0.4s forwards cubic-bezier(0, 0.4, 0, 1.1),
 			slideUp 1s 5s forwards cubic-bezier(1, 0, 1, 1);
 		&::before {
 			content: "";

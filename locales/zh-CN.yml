@@ -1108,9 +1108,9 @@ _wordMute:
   muteWordsDescription2: "将关键字用斜线括起来表示正则表达式。"
   softDescription: "隐藏时间线中指定条件的帖子。"
   hardDescription: "防止将具有指定条件的帖子添加到时间线。 即使您更改条件，原先未添加的帖文也会被排除在外。"
-  soft: "软屏蔽"
-  hard: "硬屏蔽"
-  mutedNotes: "已静音的帖子"
+  soft: "软过滤"
+  hard: "硬过滤"
+  mutedNotes: "已过滤的帖子"
 _instanceMute:
   instanceMuteDescription: "静音列出服务器中的所有帖子和转帖，包括服务器的用户回复。"
   instanceMuteDescription2: "设置时用换行符来分隔"

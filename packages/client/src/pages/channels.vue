@@ -217,7 +217,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.channel,
 		icon: "ph-television ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef = null;

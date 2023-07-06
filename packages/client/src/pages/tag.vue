@@ -115,6 +115,6 @@ definePageMetadata(
 	computed(() => ({
 		title: props.tag,
 		icon: "ph-hash ph-bold ph-lg",
-	}))
+	})),
 );
 </script>

@@ -36,7 +36,7 @@ const props = withDefaults(
 	defineProps<{
 		image: misskey.entities.DriveFile;
 	}>(),
-	{}
+	{},
 );
 
 const emit = defineEmits<{

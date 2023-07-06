@@ -128,7 +128,7 @@ watch(
 			channelId: props.channelId,
 		});
 	},
-	{ immediate: true }
+	{ immediate: true },
 );
 
 function edit() {
@@ -156,8 +156,8 @@ definePageMetadata(
 					title: channel.name,
 					icon: "ph-television ph-bold ph-lg",
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

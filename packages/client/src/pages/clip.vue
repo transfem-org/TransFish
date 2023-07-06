@@ -50,7 +50,7 @@ const pagination = {
 };
 
 const isOwned: boolean | null = $computed<boolean | null>(
-	() => $i && clip && $i.id === clip.userId
+	() => $i && clip && $i.id === clip.userId,
 );
 
 watch(
@@ -62,7 +62,7 @@ watch(
 	},
 	{
 		immediate: true,
-	}
+	},
 );
 
 provide("currentClipPage", $$(clip));
@@ -118,7 +118,7 @@ const headerActions = $computed(() =>
 					},
 				},
 		  ]
-		: null
+		: null,
 );
 
 definePageMetadata(
@@ -128,8 +128,8 @@ definePageMetadata(
 					title: clip.name,
 					icon: "ph-paperclip ph-bold ph-lg",
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

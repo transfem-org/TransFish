@@ -191,7 +191,7 @@ import { deviceKind } from "@/scripts/device-kind";
 
 const XWidgets = defineAsyncComponent(() => import("./universal.widgets.vue"));
 const XStatusBars = defineAsyncComponent(
-	() => import("@/ui/_common_/statusbars.vue")
+	() => import("@/ui/_common_/statusbars.vue"),
 );
 
 const DESKTOP_THRESHOLD = 1100;
@@ -200,7 +200,7 @@ const MOBILE_THRESHOLD = 500;
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
 const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
 const isMobile = ref(
-	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD
+	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD,
 );
 window.addEventListener("resize", () => {
 	isMobile.value =
@@ -304,7 +304,7 @@ function messagingStart(ev) {
 				},
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 
@@ -339,7 +339,7 @@ async function startGroup(): void {
 onMounted(() => {
 	if (!isDesktop.value) {
 		matchMedia(`(min-width: ${DESKTOP_THRESHOLD - 1}px)`).onchange = (
-			mql
+			mql,
 		) => {
 			if (mql.matches) isDesktop.value = true;
 		};
@@ -356,7 +356,7 @@ const onContextmenu = (ev: MouseEvent) => {
 	if (isLink(ev.target)) return;
 	if (
 		["INPUT", "TEXTAREA", "IMG", "VIDEO", "CANVAS"].includes(
-			ev.target.tagName
+			ev.target.tagName,
 		) ||
 		ev.target.attributes["contenteditable"]
 	)
@@ -377,7 +377,7 @@ const onContextmenu = (ev: MouseEvent) => {
 				},
 			},
 		],
-		ev
+		ev,
 	);
 };
 
@@ -391,7 +391,7 @@ const attachSticky = (el: any) => {
 				lastScrollTop = window.scrollY;
 			});
 		},
-		{ passive: true }
+		{ passive: true },
 	);
 	widgetsEl.classList.add("hide-scrollbar");
 	widgetsEl.onmouseenter = () => {
@@ -416,7 +416,8 @@ console.log(mainRouter.currentRoute.value.name);
 .widgetsDrawer-leave-active {
 	opacity: 1;
 	transform: translateX(0);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
+	transition:
+		transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
 		opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .widgetsDrawer-enter-from,
@@ -439,7 +440,8 @@ console.log(mainRouter.currentRoute.value.name);
 .menuDrawer-leave-active {
 	opacity: 1;
 	transform: translateX(0);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
+	transition:
+		transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
 		opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .menuDrawer-enter-from,

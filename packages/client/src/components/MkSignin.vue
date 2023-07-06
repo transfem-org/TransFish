@@ -223,7 +223,7 @@ function onUsernameChange() {
 		},
 		() => {
 			user = null;
-		}
+		},
 	);
 }
 
@@ -259,7 +259,7 @@ function queryKey() {
 				password,
 				signature: hexify(credential.response.signature),
 				authenticatorData: hexify(
-					credential.response.authenticatorData
+					credential.response.authenticatorData,
 				),
 				clientDataJSON: hexify(credential.response.clientDataJSON),
 				credentialId: credential.id,
@@ -370,7 +370,7 @@ function resetPassword() {
 		defineAsyncComponent(() => import("@/components/MkForgotPassword.vue")),
 		{},
 		{},
-		"closed"
+		"closed",
 	);
 }
 

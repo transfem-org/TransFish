@@ -1845,3 +1845,6 @@ selectChannel: 選擇一個頻道
 newer: 較新
 older: 較舊
 jumpToPrevious: 跳到上一個
+removeReaction: 移除你的反應
+listsDesc: 清單可以創建一個只有您指定用戶的時間線。 可以從時間線頁面訪問它們。
+flagSpeakAsCatDescription: 在喵咪模式下你的貼文會被喵化ヾ(•ω•`)o

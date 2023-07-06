@@ -65,7 +65,7 @@ function onContextmenu(ev: MouseEvent) {
 	if (isLink(ev.target as HTMLElement)) return;
 	if (
 		["INPUT", "TEXTAREA", "IMG", "VIDEO", "CANVAS"].includes(
-			(ev.target as HTMLElement).tagName
+			(ev.target as HTMLElement).tagName,
 		) ||
 		(ev.target as HTMLElement).attributes["contenteditable"]
 	)
@@ -86,7 +86,7 @@ function onContextmenu(ev: MouseEvent) {
 				},
 			},
 		],
-		ev
+		ev,
 	);
 }
 </script>

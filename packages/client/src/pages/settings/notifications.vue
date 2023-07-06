@@ -63,10 +63,10 @@ import MkPushNotificationAllowButton from "@/components/MkPushNotificationAllowB
 let allowButton =
 	$shallowRef<InstanceType<typeof MkPushNotificationAllowButton>>();
 let pushRegistrationInServer = $computed(
-	() => allowButton?.pushRegistrationInServer
+	() => allowButton?.pushRegistrationInServer,
 );
 let sendReadMessage = $computed(
-	() => pushRegistrationInServer?.sendReadMessage || false
+	() => pushRegistrationInServer?.sendReadMessage || false,
 );
 
 async function readAllUnreadNotes() {
@@ -83,11 +83,11 @@ async function readAllNotifications() {
 
 function configure() {
 	const includingTypes = notificationTypes.filter(
-		(x) => !$i!.mutingNotificationTypes.includes(x)
+		(x) => !$i!.mutingNotificationTypes.includes(x),
 	);
 	os.popup(
 		defineAsyncComponent(
-			() => import("@/components/MkNotificationSettingWindow.vue")
+			() => import("@/components/MkNotificationSettingWindow.vue"),
 		),
 		{
 			includingTypes,
@@ -99,7 +99,7 @@ function configure() {
 				await os
 					.apiWithDialog("i/update", {
 						mutingNotificationTypes: notificationTypes.filter(
-							(x) => !value.includes(x)
+							(x) => !value.includes(x),
 						),
 					})
 					.then((i) => {
@@ -107,7 +107,7 @@ function configure() {
 					});
 			},
 		},
-		"closed"
+		"closed",
 	);
 }
 

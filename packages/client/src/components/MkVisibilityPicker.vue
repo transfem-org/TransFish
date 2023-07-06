@@ -135,13 +135,13 @@ const props = withDefaults(
 		currentLocalOnly: boolean;
 		src?: HTMLElement;
 	}>(),
-	{}
+	{},
 );
 
 const emit = defineEmits<{
 	(
 		ev: "changeVisibility",
-		v: (typeof misskey.noteVisibilities)[number]
+		v: (typeof misskey.noteVisibilities)[number],
 	): void;
 	(ev: "changeLocalOnly", v: boolean): void;
 	(ev: "closed"): void;

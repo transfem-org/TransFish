@@ -43,7 +43,7 @@ watch(
 			listId: props.listId,
 		});
 	},
-	{ immediate: true }
+	{ immediate: true },
 );
 
 function settings() {
@@ -73,7 +73,7 @@ const headerActions = $computed(() =>
 					handler: settings,
 				},
 		  ]
-		: []
+		: [],
 );
 
 const headerTabs = $computed(() => []);
@@ -85,8 +85,8 @@ definePageMetadata(
 					title: list.name,
 					icon: "ph-list-bullets ph-bold ph-lg",
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

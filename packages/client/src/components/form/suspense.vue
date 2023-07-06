@@ -70,7 +70,7 @@ export default defineComponent({
 			},
 			{
 				immediate: true,
-			}
+			},
 		);
 
 		const retry = () => {

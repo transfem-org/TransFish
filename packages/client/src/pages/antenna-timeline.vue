@@ -84,7 +84,7 @@ watch(
 			antennaId: props.antennaId,
 		});
 	},
-	{ immediate: true }
+	{ immediate: true },
 );
 
 const headerActions = $computed(() =>
@@ -106,7 +106,7 @@ const headerActions = $computed(() =>
 					handler: markRead,
 				},
 		  ]
-		: []
+		: [],
 );
 
 const headerTabs = $computed(() => []);
@@ -118,8 +118,8 @@ definePageMetadata(
 					title: antenna.name,
 					icon: "ph-flying-saucer ph-bold ph-lg",
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

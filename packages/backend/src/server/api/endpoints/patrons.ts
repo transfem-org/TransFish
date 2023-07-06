@@ -1,5 +1,11 @@
 import define from "../define.js";
 import { redisClient } from "@/db/redis.js";
+import * as fs from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
 
 export const meta = {
 	tags: ["meta"],
@@ -35,7 +41,10 @@ export default define(meta, paramDef, async (ps) => {
 		)
 			.then((response) => response.json())
 			.catch(() => {
-				patrons = cachedPatrons ? JSON.parse(cachedPatrons) : [];
+				const staticPatrons = JSON.parse(
+					fs.readFileSync(`${_dirname}/../../../../../../patrons.json`, "utf-8"),
+				);
+				patrons = cachedPatrons ? JSON.parse(cachedPatrons) : staticPatrons;
 			});
 		await redisClient.set("patrons", JSON.stringify(patrons), "EX", 3600);
 	}

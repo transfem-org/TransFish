@@ -111,7 +111,7 @@ const props = withDefaults(
 	}>(),
 	{
 		detail: false,
-	}
+	},
 );
 
 const self = props.url.startsWith(local);
@@ -158,7 +158,7 @@ const requestLang = (lang || "ja-JP").replace("ja-KS", "ja-JP");
 requestUrl.hash = "";
 
 fetch(
-	`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`
+	`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`,
 ).then((res) => {
 	res.json().then((info) => {
 		if (info.url == null) return;
@@ -221,7 +221,10 @@ onUnmounted(() => {
 					border-radius: var(--radius);
 					transform: scale(0.95);
 					opacity: 0.8;
-					transition: transform 0.2s, opacity 0.2s, background 0.2s;
+					transition:
+						transform 0.2s,
+						opacity 0.2s,
+						background 0.2s;
 				}
 				&:hover,
 				&:focus {

@@ -28,7 +28,7 @@
 		"@bull-board/api": "5.2.0",
 		"@bull-board/koa": "5.2.0",
 		"@bull-board/ui": "5.2.0",
-		"@calckey/megalodon": "5.2.0",
+		"megalodon": "workspace:*",
 		"@discordapp/twemoji": "14.1.2",
 		"@elastic/elasticsearch": "7.17.0",
 		"@koa/cors": "3.4.3",

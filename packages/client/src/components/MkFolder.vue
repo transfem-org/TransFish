@@ -56,7 +56,7 @@ export default defineComponent({
 				this.persistKey &&
 				localStorage.getItem(localStoragePrefix + this.persistKey)
 					? localStorage.getItem(
-							localStoragePrefix + this.persistKey
+							localStoragePrefix + this.persistKey,
 					  ) === "t"
 					: this.expanded,
 		};
@@ -66,7 +66,7 @@ export default defineComponent({
 			if (this.persistKey) {
 				localStorage.setItem(
 					localStoragePrefix + this.persistKey,
-					this.showBody ? "t" : "f"
+					this.showBody ? "t" : "f",
 				);
 			}
 		},
@@ -85,9 +85,9 @@ export default defineComponent({
 		const bg = tinycolor(
 			rawBg.startsWith("var(")
 				? getComputedStyle(document.documentElement).getPropertyValue(
-						rawBg.slice(4, -1)
+						rawBg.slice(4, -1),
 				  )
-				: rawBg
+				: rawBg,
 		);
 		bg.setAlpha(0.85);
 		this.bg = bg.toRgbString();
@@ -123,7 +123,9 @@ export default defineComponent({
 .folder-toggle-enter-active,
 .folder-toggle-leave-active {
 	overflow-y: hidden;
-	transition: opacity 0.5s, height 0.5s !important;
+	transition:
+		opacity 0.5s,
+		height 0.5s !important;
 }
 .folder-toggle-enter-from {
 	opacity: 0;

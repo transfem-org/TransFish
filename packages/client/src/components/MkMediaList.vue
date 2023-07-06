@@ -14,7 +14,7 @@
 			<div ref="gallery" @click.stop>
 				<template
 					v-for="media in mediaList.filter((media) =>
-						previewable(media)
+						previewable(media),
 					)"
 				>
 					<XMedia
@@ -111,6 +111,8 @@ onMounted(() => {
 		imageClickAction: "close",
 		tapAction: "toggle-controls",
 		preloadFirstSlide: false,
+		showAnimationDuration: 100,
+		hideAnimationDuration: 100,
 		pswpModule: PhotoSwipe,
 	});
 
@@ -207,7 +209,7 @@ const isModule = (file: misskey.entities.DriveFile): boolean => {
 };
 
 const previewableCount = props.mediaList.filter((media) =>
-	previewable(media)
+	previewable(media),
 ).length;
 </script>
 
