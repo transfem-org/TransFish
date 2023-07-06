@@ -59,6 +59,11 @@ export function apiStatusMastodon(router: Router): void {
 			}
 			if (!body.media_ids) body.media_ids = undefined;
 			if (body.media_ids && !body.media_ids.length) body.media_ids = undefined;
+			if (body.media_ids) {
+				body.media_ids = (body.media_ids as string[]).map((p) =>
+					convertId(p, IdType.CalckeyId),
+				);
+			}
 			const { sensitive } = body;
 			body.sensitive =
 				typeof sensitive === "string" ? sensitive === "true" : sensitive;
@@ -146,6 +151,24 @@ export function apiStatusMastodon(router: Router): void {
 					convertStatus(status),
 				);
 				ctx.body = data.data;
+			} catch (e: any) {
+				console.error(e);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
+	router.get<{ Params: { id: string } }>(
+		"/v1/statuses/:id/history",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getStatusHistory(
+					convertId(ctx.params.id, IdType.CalckeyId),
+				);
+				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
 				console.error(e);
 				ctx.status = 401;
@@ -431,8 +454,8 @@ export function statusModel(
 	const now = new Date().toISOString();
 	return {
 		id: "9atm5frjhb",
-		uri: "https://http.cat/404", // ""
-		url: "https://http.cat/404", // "",
+		uri: "/static-assets/transparent.png", // ""
+		url: "/static-assets/transparent.png", // "",
 		account: {
 			id: "9arzuvv0sw",
 			username: "Reactions",
@@ -444,11 +467,11 @@ export function statusModel(
 			following_count: 0,
 			statuses_count: 0,
 			note: "",
-			url: "https://http.cat/404",
+			url: "/static-assets/transparent.png",
 			avatar: "/static-assets/badges/info.png",
 			avatar_static: "/static-assets/badges/info.png",
-			header: "https://http.cat/404", // ""
-			header_static: "https://http.cat/404", // ""
+			header: "/static-assets/transparent.png", // ""
+			header_static: "/static-assets/transparent.png", // ""
 			emojis: [],
 			fields: [],
 			moved: null,
