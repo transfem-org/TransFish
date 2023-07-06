@@ -1,8 +1,5 @@
 import Router from "@koa/router";
-import megalodon, { Entity, MegalodonInterface } from "megalodon";
 import { getClient } from "../ApiMastodonCompatibleService.js";
-import { statusModel } from "./status.js";
-import Autolinker from "autolinker";
 import { ParsedUrlQuery } from "querystring";
 import { convertAccount, convertList, convertStatus } from "../converters.js";
 import { convertId, IdType } from "../../index.js";
@@ -41,69 +38,6 @@ export function convertTimelinesArgsId(q: ParsedUrlQuery) {
 	return q;
 }
 
-export function toTextWithReaction(status: Entity.Status[], host: string) {
-	return status.map((t) => {
-		if (!t) return statusModel(null, null, [], "no content");
-		t.quote = null as any;
-		// disabled for now
-		/*
-		if (!t.emoji_reactions) return t;
-		if (t.reblog) t.reblog = toTextWithReaction([t.reblog], host)[0];
-		const reactions = t.emoji_reactions.map((r) => {
-			const emojiNotation = r.url ? `:${r.name.replace("@.", "")}:` : r.name;
-			return `${emojiNotation} (${r.count}${r.me ? `* ` : ""})`;
-		});
-		const reaction = t.emoji_reactions as Entity.Reaction[];
-		const emoji = t.emojis || [];
-		for (const r of reaction) {
-			if (!r.url) continue;
-			emoji.push({
-				shortcode: r.name,
-				url: r.url,
-				static_url: r.url,
-				visible_in_picker: true,
-				category: "",
-			});
-		}
-		const isMe = reaction.findIndex((r) => r.me) > -1;
-		const total = reaction.reduce((sum, reaction) => sum + reaction.count, 0);
-		t.favourited = isMe;
-		t.favourites_count = total;
-		t.emojis = emoji;
-		t.content = `<p>${autoLinker(t.content, host)}</p><p>${reactions.join(
-			", ",
-		)}</p>`;
-		*/
-		return t;
-	});
-}
-export function autoLinker(input: string, host: string) {
-	return Autolinker.link(input, {
-		hashtag: "twitter",
-		mention: "twitter",
-		email: false,
-		stripPrefix: false,
-		replaceFn: function (match) {
-			switch (match.type) {
-				case "url":
-					return true;
-				case "mention":
-					console.log("Mention: ", match.getMention());
-					console.log("Mention Service Name: ", match.getServiceName());
-					return `<a href="https://${host}/@${encodeURIComponent(
-						match.getMention(),
-					)}" target="_blank">@${match.getMention()}</a>`;
-				case "hashtag":
-					console.log("Hashtag: ", match.getHashtag());
-					return `<a href="https://${host}/tags/${encodeURIComponent(
-						match.getHashtag(),
-					)}" target="_blank">#${match.getHashtag()}</a>`;
-			}
-			return false;
-		},
-	});
-}
-
 export function apiTimelineMastodon(router: Router): void {
 	router.get("/v1/timelines/public", async (ctx, reply) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
@@ -118,8 +52,7 @@ export function apiTimelineMastodon(router: Router): void {
 				: await client.getPublicTimeline(
 						convertTimelinesArgsId(argsToBools(limitToInt(query))),
 				  );
-			let resp = data.data.map((status) => convertStatus(status));
-			ctx.body = toTextWithReaction(resp, ctx.hostname);
+			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -138,8 +71,7 @@ export function apiTimelineMastodon(router: Router): void {
 					ctx.params.hashtag,
 					convertTimelinesArgsId(argsToBools(limitToInt(ctx.query))),
 				);
-				let resp = data.data.map((status) => convertStatus(status));
-				ctx.body = toTextWithReaction(resp, ctx.hostname);
+				ctx.body = data.data.map((status) => convertStatus(status));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -156,8 +88,7 @@ export function apiTimelineMastodon(router: Router): void {
 			const data = await client.getHomeTimeline(
 				convertTimelinesArgsId(limitToInt(ctx.query)),
 			);
-			let resp = data.data.map((status) => convertStatus(status));
-			ctx.body = toTextWithReaction(resp, ctx.hostname);
+			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
 			console.error(e.response.data);
@@ -176,8 +107,7 @@ export function apiTimelineMastodon(router: Router): void {
 					convertId(ctx.params.listId, IdType.CalckeyId),
 					convertTimelinesArgsId(limitToInt(ctx.query)),
 				);
-				let resp = data.data.map((status) => convertStatus(status));
-				ctx.body = toTextWithReaction(resp, ctx.hostname);
+				ctx.body = data.data.map((status) => convertStatus(status));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
