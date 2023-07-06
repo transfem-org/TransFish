@@ -191,7 +191,7 @@ withDefaults(
 	}>(),
 	{
 		initialTab: "overview",
-	}
+	},
 );
 
 let stats = $ref(null);
@@ -243,7 +243,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.instanceInfo,
 		icon: "ph-info ph-bold ph-lg",
-	}))
+	})),
 );
 
 async function sleep(seconds) {

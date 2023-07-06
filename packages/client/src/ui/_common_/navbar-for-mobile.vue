@@ -153,7 +153,7 @@ function openAccountMenu(ev: MouseEvent) {
 		{
 			withExtraOperation: true,
 		},
-		ev
+		ev,
 	);
 }
 
@@ -166,7 +166,7 @@ function more() {
 		defineAsyncComponent(() => import("@/components/MkLaunchPad.vue")),
 		{},
 		{},
-		"closed"
+		"closed",
 	);
 }
 </script>

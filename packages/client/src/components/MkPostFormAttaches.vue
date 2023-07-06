@@ -39,7 +39,7 @@ import { i18n } from "@/i18n";
 export default defineComponent({
 	components: {
 		XDraggable: defineAsyncComponent(() =>
-			import("vuedraggable").then((x) => x.default)
+			import("vuedraggable").then((x) => x.default),
 		),
 		MkDriveFileThumbnail,
 	},
@@ -110,7 +110,7 @@ export default defineComponent({
 		async describe(file) {
 			os.popup(
 				defineAsyncComponent(
-					() => import("@/components/MkMediaCaption.vue")
+					() => import("@/components/MkMediaCaption.vue"),
 				),
 				{
 					title: i18n.ts.describeFile,
@@ -133,7 +133,7 @@ export default defineComponent({
 						});
 					},
 				},
-				"closed"
+				"closed",
 			);
 		},
 
@@ -175,7 +175,7 @@ export default defineComponent({
 							},
 						},
 					],
-					ev.currentTarget ?? ev.target
+					ev.currentTarget ?? ev.target,
 				)
 				.then(() => (this.menu = null));
 		},

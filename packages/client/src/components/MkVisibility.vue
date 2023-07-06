@@ -57,7 +57,7 @@ if (props.note.visibility === "specified") {
 				targetElement: specified,
 			},
 			{},
-			"closed"
+			"closed",
 		);
 	});
 }

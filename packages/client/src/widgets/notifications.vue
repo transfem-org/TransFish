@@ -74,13 +74,13 @@ const { widgetProps, configure, save } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const configureNotification = () => {
 	os.popup(
 		defineAsyncComponent(
-			() => import("@/components/MkNotificationSettingWindow.vue")
+			() => import("@/components/MkNotificationSettingWindow.vue"),
 		),
 		{
 			includingTypes: widgetProps.includingTypes,
@@ -92,7 +92,7 @@ const configureNotification = () => {
 				save();
 			},
 		},
-		"closed"
+		"closed",
 	);
 };
 

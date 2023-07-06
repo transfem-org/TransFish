@@ -169,7 +169,7 @@ useInterval(
 	{
 		immediate: true,
 		afterMounted: true,
-	}
+	},
 );
 
 onMounted(() => {

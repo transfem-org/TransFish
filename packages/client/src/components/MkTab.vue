@@ -38,15 +38,15 @@ export default defineComponent({
 							onClick: () => {
 								this.$emit(
 									"update:modelValue",
-									option.props?.value
+									option.props?.value,
 								);
 							},
 						},
-						option.children
+						option.children,
 					),
-					[[resolveDirective("click-anime")]]
-				)
-			)
+					[[resolveDirective("click-anime")]],
+				),
+			),
 		);
 	},
 });

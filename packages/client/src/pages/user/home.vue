@@ -107,7 +107,7 @@
 											patrons?.includes(
 												`@${user.username}@${
 													user.host || host
-												}`
+												}`,
 											)
 										"
 										v-tooltip.noDelay="i18n.ts.isPatron"
@@ -199,7 +199,7 @@
 										patrons?.includes(
 											`@${user.username}@${
 												user.host || host
-											}`
+											}`,
 										)
 									"
 									v-tooltip.noDelay="i18n.ts.isPatron"
@@ -271,7 +271,7 @@
 								<dd class="value">
 									{{
 										new Date(
-											user.createdAt
+											user.createdAt,
 										).toLocaleString()
 									}}
 									(<MkTime :time="user.createdAt" />)
@@ -399,7 +399,7 @@ const props = withDefaults(
 	defineProps<{
 		user: misskey.entities.UserDetailed;
 	}>(),
-	{}
+	{},
 );
 
 let parallaxAnimationId = $ref<null | number>(null);
@@ -417,16 +417,16 @@ const timeForThem = $computed(() => {
 		props.user
 			.location!.replace(
 				/[^A-Za-z0-9ÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.\s].*/,
-				""
+				"",
 			)
 			.trim(),
 		props.user.location!.replace(
 			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.].*/,
-			""
+			"",
 		),
 		props.user.location!.replace(
 			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź].*/,
-			""
+			"",
 		),
 	];
 

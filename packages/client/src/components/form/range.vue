@@ -55,7 +55,7 @@ const props = withDefaults(
 		step: 1,
 		textConverter: (v) => v.toString(),
 		easing: false,
-	}
+	},
 );
 
 const inputEl = ref<HTMLElement>();
@@ -90,7 +90,7 @@ function tooltipShow() {
 			targetElement: inputEl,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 function tooltipHide() {

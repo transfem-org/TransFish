@@ -51,7 +51,7 @@ const el = ref();
 useTooltip(el, (showing) => {
 	os.popup(
 		defineAsyncComponent(
-			() => import("@/components/MkUrlPreviewPopup.vue")
+			() => import("@/components/MkUrlPreviewPopup.vue"),
 		),
 		{
 			showing,
@@ -59,7 +59,7 @@ useTooltip(el, (showing) => {
 			source: el.value,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 });
 

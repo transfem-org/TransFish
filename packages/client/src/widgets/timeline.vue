@@ -122,7 +122,7 @@ const { widgetProps, configure, save } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const menuOpened = ref(false);
@@ -189,7 +189,7 @@ const choose = async (ev) => {
 			listItems.length > 0 ? null : undefined,
 			...listItems,
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	).then(() => {
 		menuOpened.value = false;
 	});

@@ -50,7 +50,7 @@ withDefaults(
 	}>(),
 	{
 		type: "file",
-	}
+	},
 );
 
 const emit = defineEmits<{

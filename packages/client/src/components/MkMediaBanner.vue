@@ -67,7 +67,7 @@ const props = withDefaults(
 	defineProps<{
 		media: misskey.entities.DriveFile;
 	}>(),
-	{}
+	{},
 );
 
 const audioEl = $ref<HTMLAudioElement | null>();

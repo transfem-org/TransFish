@@ -284,7 +284,7 @@ const props = withDefaults(
 		initialVisibleUsers: () => [],
 		autofocus: true,
 		showMfmCheatSheet: true,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -313,14 +313,14 @@ let cw = $ref<string | null>(null);
 let localOnly = $ref<boolean>(
 	props.initialLocalOnly ?? defaultStore.state.rememberNoteVisibility
 		? defaultStore.state.localOnly
-		: defaultStore.state.defaultNoteLocalOnly
+		: defaultStore.state.defaultNoteLocalOnly,
 );
 let visibility = $ref(
 	props.initialVisibility ??
 		((defaultStore.state.rememberNoteVisibility
 			? defaultStore.state.visibility
 			: defaultStore.state
-					.defaultNoteVisibility) as (typeof misskey.noteVisibilities)[number])
+					.defaultNoteVisibility) as (typeof misskey.noteVisibilities)[number]),
 );
 let visibleUsers = $ref([]);
 if (props.initialVisibleUsers) {
@@ -405,7 +405,7 @@ const canPost = $computed((): boolean => {
 });
 
 const withHashtags = $computed(
-	defaultStore.makeGetterSetter("postFormWithHashtags")
+	defaultStore.makeGetterSetter("postFormWithHashtags"),
 );
 const hashtags = $computed(defaultStore.makeGetterSetter("postFormHashtags"));
 
@@ -420,7 +420,7 @@ watch(
 	},
 	{
 		deep: true,
-	}
+	},
 );
 
 if (props.mention) {
@@ -488,7 +488,7 @@ if (
 		if (props.reply.visibleUserIds) {
 			os.api("users/show", {
 				userIds: props.reply.visibleUserIds.filter(
-					(uid) => uid !== $i.id && uid !== props.reply.userId
+					(uid) => uid !== $i.id && uid !== props.reply.userId,
 				),
 			}).then((users) => {
 				users.forEach(pushVisibleUser);
@@ -499,7 +499,7 @@ if (
 			os.api("users/show", { userId: props.reply.userId }).then(
 				(user) => {
 					pushVisibleUser(user);
-				}
+				},
 			);
 		}
 	}
@@ -533,7 +533,7 @@ function checkMissingMention() {
 		for (const x of extractMentions(ast)) {
 			if (
 				!visibleUsers.some(
-					(u) => u.username === x.username && u.host === x.host
+					(u) => u.username === x.username && u.host === x.host,
 				)
 			) {
 				hasNotSpecifiedMentions = true;
@@ -550,13 +550,13 @@ function addMissingMention() {
 	for (const x of extractMentions(ast)) {
 		if (
 			!visibleUsers.some(
-				(u) => u.username === x.username && u.host === x.host
+				(u) => u.username === x.username && u.host === x.host,
 			)
 		) {
 			os.api("users/show", { username: x.username, host: x.host }).then(
 				(user) => {
 					visibleUsers.push(user);
-				}
+				},
 			);
 		}
 	}
@@ -584,7 +584,7 @@ function focus() {
 		textareaEl.focus();
 		textareaEl.setSelectionRange(
 			textareaEl.value.length,
-			textareaEl.value.length
+			textareaEl.value.length,
 		);
 	}
 }
@@ -595,7 +595,7 @@ function chooseFileFrom(ev) {
 			for (const file of files_) {
 				files.push(file);
 			}
-		}
+		},
 	);
 }
 
@@ -629,7 +629,7 @@ function setVisibility() {
 
 	os.popup(
 		defineAsyncComponent(
-			() => import("@/components/MkVisibilityPicker.vue")
+			() => import("@/components/MkVisibilityPicker.vue"),
 		),
 		{
 			currentVisibility: visibility,
@@ -650,14 +650,14 @@ function setVisibility() {
 				}
 			},
 		},
-		"closed"
+		"closed",
 	);
 }
 
 function pushVisibleUser(user) {
 	if (
 		!visibleUsers.some(
-			(u) => u.username === user.username && u.host === user.host
+			(u) => u.username === user.username && u.host === user.host,
 		)
 	) {
 		visibleUsers.push(user);
@@ -703,7 +703,7 @@ function onCompositionEnd(ev: CompositionEvent) {
 
 async function onPaste(ev: ClipboardEvent) {
 	for (const { item, i } of Array.from(ev.clipboardData.items).map(
-		(item, i) => ({ item, i })
+		(item, i) => ({ item, i }),
 	)) {
 		if (item.kind === "file") {
 			const file = item.getAsFile();
@@ -711,7 +711,7 @@ async function onPaste(ev: ClipboardEvent) {
 			const ext = lio >= 0 ? file.name.slice(lio) : "";
 			const formatted = `${formatTimeString(
 				new Date(file.lastModified),
-				defaultStore.state.pastedFileName
+				defaultStore.state.pastedFileName,
 			).replace(/{{number}}/g, `${i + 1}`)}${ext}`;
 			upload(file, formatted);
 		}
@@ -879,11 +879,11 @@ async function post() {
 						.filter((x) => x.type === "hashtag")
 						.map((x) => x.props.hashtag);
 					const history = JSON.parse(
-						localStorage.getItem("hashtags") || "[]"
+						localStorage.getItem("hashtags") || "[]",
 					) as string[];
 					localStorage.setItem(
 						"hashtags",
-						JSON.stringify(unique(hashtags_.concat(history)))
+						JSON.stringify(unique(hashtags_.concat(history))),
 					);
 				}
 				posting = false;
@@ -930,11 +930,11 @@ function showActions(ev) {
 						if (key === "text") {
 							text = value;
 						}
-					}
+					},
 				);
 			},
 		})),
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 
@@ -954,7 +954,7 @@ function openAccountMenu(ev: MouseEvent) {
 				}
 			},
 		},
-		ev
+		ev,
 	);
 }
 
@@ -985,7 +985,7 @@ onMounted(() => {
 				visibility = draft.data.visibility;
 				localOnly = draft.data.localOnly;
 				files = (draft.data.files || []).filter(
-					(draftFile) => draftFile
+					(draftFile) => draftFile,
 				);
 				if (draft.data.poll) {
 					poll = draft.data.poll;

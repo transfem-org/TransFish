@@ -6,7 +6,7 @@
 		"type": "git",
 		"url": "https://codeberg.org/calckey/calckey.git"
 	},
-	"packageManager": "pnpm@8.6.3",
+	"packageManager": "pnpm@8.6.6",
 	"private": true,
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm node ./scripts/build-greet.js && pnpm -r run build && pnpm run gulp",

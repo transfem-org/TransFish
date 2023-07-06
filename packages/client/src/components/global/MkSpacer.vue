@@ -21,7 +21,7 @@ const props = withDefaults(
 		contentMax: null,
 		marginMin: 12,
 		marginMax: 24,
-	}
+	},
 );
 
 let ro: ResizeObserver;

@@ -22,7 +22,7 @@ const props = withDefaults(
 	}>(),
 	{
 		mode: "relative",
-	}
+	},
 );
 
 const _time =

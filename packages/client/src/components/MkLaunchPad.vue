@@ -78,7 +78,7 @@ const props = withDefaults(
 	}>(),
 	{
 		anchor: () => ({ x: "right", y: "center" }),
-	}
+	},
 );
 
 const emit = defineEmits<{

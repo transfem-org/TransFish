@@ -163,7 +163,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const connection = stream.useChannel("queueStats");

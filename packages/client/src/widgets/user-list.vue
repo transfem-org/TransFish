@@ -59,7 +59,7 @@ const { widgetProps, configure, save } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 let list = $ref();
 let users = $ref([]);

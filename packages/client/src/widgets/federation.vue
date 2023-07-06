@@ -89,7 +89,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const instances = ref([]);
@@ -107,8 +107,8 @@ const fetch = async () => {
 				host: i.host,
 				limit: 16,
 				span: "hour",
-			})
-		)
+			}),
+		),
 	);
 	instances.value = fetchedInstances;
 	charts.value = fetchedCharts;

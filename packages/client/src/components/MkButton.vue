@@ -90,7 +90,7 @@ function onMousedown(evt: MouseEvent): void {
 		target.clientWidth,
 		target.clientHeight,
 		circleCenterX,
-		circleCenterY
+		circleCenterY,
 	);
 
 	window.setTimeout(() => {

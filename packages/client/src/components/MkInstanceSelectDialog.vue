@@ -95,7 +95,7 @@ const search = () => {
 					id: x.id,
 					host: x.host,
 					iconUrl: x.iconUrl,
-				} as Instance)
+				}) as Instance,
 		);
 	});
 };

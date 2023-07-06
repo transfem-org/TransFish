@@ -19,7 +19,7 @@ const props = withDefaults(
 	}>(),
 	{
 		nowrap: true,
-	}
+	},
 );
 </script>
 

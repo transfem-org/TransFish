@@ -78,14 +78,24 @@
 							okButtonDisabled &&
 							disabledReason === 'charactersExceeded'
 						"
-						v-text="i18n.t('_dialog.charactersExceeded', { current: (inputValue as string).length, max: input.maxLength ?? 'NaN' })"
+						v-text="
+							i18n.t('_dialog.charactersExceeded', {
+								current: (inputValue as string).length,
+								max: input.maxLength ?? 'NaN',
+							})
+						"
 					/>
 					<span
 						v-else-if="
 							okButtonDisabled &&
 							disabledReason === 'charactersBelow'
 						"
-						v-text="i18n.t('_dialog.charactersBelow', { current: (inputValue as string).length, min: input.minLength ?? 'NaN' })"
+						v-text="
+							i18n.t('_dialog.charactersBelow', {
+								current: (inputValue as string).length,
+								min: input.minLength ?? 'NaN',
+							})
+						"
 					/>
 				</template>
 				<template v-if="input.type === 'search'" #suffix>
@@ -258,7 +268,7 @@ const props = withDefaults(
 		isYesNo: false,
 
 		cancelableByBgClick: true,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -272,7 +282,7 @@ const inputValue = ref<string | number | null>(props.input?.default ?? null);
 const selectedValue = ref(props.select?.default ?? null);
 
 let disabledReason = $ref<null | "charactersExceeded" | "charactersBelow">(
-	null
+	null,
 );
 const okButtonDisabled = $computed<boolean>(() => {
 	if (props.input) {
@@ -439,7 +449,7 @@ async function openSearchFilters(ev) {
 			},
 		],
 		ev.target,
-		{ noReturnFocus: true }
+		{ noReturnFocus: true },
 	);
 	inputEl.value.focus();
 	inputEl.value.selectRange(inputValue.value.length, inputValue.value.length); // cursor at end

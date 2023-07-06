@@ -147,7 +147,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.pages,
 		icon: "ph-file-text ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef = null;
