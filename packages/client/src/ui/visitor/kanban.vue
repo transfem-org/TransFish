@@ -206,7 +206,7 @@
 							<FormLink wrap>
 								{{ i18n.ts.storagePerUser }}
 								<template #suffix>{{
-									meta.driveCapacityPerLocalUserMb + "MB"
+									bytes((meta.driveCapacityPerLocalUserMb * 1024 * 1024), 1)
 								}}</template>
 							</FormLink>
 							<FormLink wrap>
@@ -264,6 +264,7 @@ import MkButton from "@/components/MkButton.vue";
 import FormSection from "@/components/form/section.vue";
 import FormLink from "@/components/form/link.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
+import bytes from "@/filters/bytes";
 import { i18n } from "@/i18n";
 import { DetailedInstanceMetadata } from "calckey-js/built/entities";
 import { openHelpMenu_ } from "@/scripts/helpMenu";
