@@ -105,9 +105,6 @@ importers:
       '@koa/router':
         specifier: 9.0.1
         version: 9.0.1
-      '@msgpack/msgpack':
-        specifier: 3.0.0-beta2
-        version: 3.0.0-beta2
       '@peertube/http-signature':
         specifier: 1.7.0
         version: 1.7.0
@@ -276,6 +273,9 @@ importers:
       mime-types:
         specifier: 2.1.35
         version: 2.1.35
+      msgpackr:
+        specifier: 1.9.5
+        version: 1.9.5
       multer:
         specifier: 1.4.4-lts.1
         version: 1.4.4-lts.1
@@ -2606,11 +2606,6 @@ packages:
       got: 11.8.5
       os-filter-obj: 2.0.0
     dev: true
-
-  /@msgpack/msgpack@3.0.0-beta2:
-    resolution: {integrity: sha512-y+l1PNV0XDyY8sM3YtuMLK5vE3/hkfId+Do8pLo/OPxfxuFAUwcGz3oiiUuV46/aBpwTzZ+mRWVMtlSKbradhw==}
-    engines: {node: '>= 14'}
-    dev: false
 
   /@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.2:
     resolution: {integrity: sha512-9bfjwDxIDWmmOKusUcqdS4Rw+SETlp9Dy39Xui9BEGEk19dDwH0jhipwFzEff/pFg95NKymc6TOTbRKcWeRqyQ==}
