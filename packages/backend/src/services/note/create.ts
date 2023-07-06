@@ -67,6 +67,7 @@ import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
 import { redisClient } from "@/db/redis.js";
 import { Mutex } from "redis-semaphore";
+import { packActivity } from "@/server/activitypub/outbox.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -596,9 +597,13 @@ export default async (
 			});
 
 			//#region AP deliver
-			if (Users.isLocalUser(user) && !dontFederateInitially) {
+			if (
+				Users.isLocalUser(user) &&
+				!data.localOnly &&
+				!dontFederateInitially
+			) {
 				(async () => {
-					const noteActivity = await renderNoteOrRenoteActivity(data, note);
+					const noteActivity = renderActivity(await packActivity(note));
 					const dm = new DeliverManager(user, noteActivity);
 
 					// メンションされたリモートユーザーに配送
@@ -654,25 +659,6 @@ export default async (
 		// Register to search database
 		await index(note, false);
 	});
-
-async function renderNoteOrRenoteActivity(data: Option, note: Note) {
-	if (data.localOnly) return null;
-
-	const content =
-		data.renote &&
-		data.text == null &&
-		data.poll == null &&
-		(data.files == null || data.files.length === 0)
-			? renderAnnounce(
-					data.renote.uri
-						? data.renote.uri
-						: `${config.url}/notes/${data.renote.id}`,
-					note,
-			  )
-			: renderCreate(await renderNote(note, false), note);
-
-	return renderActivity(content);
-}
 
 function incRenoteCount(renote: Note) {
 	Notes.createQueryBuilder()
