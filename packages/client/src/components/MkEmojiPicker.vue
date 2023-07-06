@@ -220,12 +220,12 @@ const unicodeEmojiSkinTones = [
 ];
 
 const unicodeEmojiSkinToneLabels = [
-	i18n.ts._skinTones.yellow,
-	i18n.ts._skinTones.light,
-	i18n.ts._skinTones.mediumLight,
-	i18n.ts._skinTones.medium,
-	i18n.ts._skinTones.mediumDark,
-	i18n.ts._skinTones.dark,
+	i18n.ts._skinTones?.yellow ?? "Yellow",
+	i18n.ts._skinTones?.light ?? "Light",
+	i18n.ts._skinTones?.mediumLight ?? "Medium Light",
+	i18n.ts._skinTones?.medium ?? "Medium",
+	i18n.ts._skinTones?.mediumDark ?? "Medium Dark",
+	i18n.ts._skinTones?.dark ?? "Dark",
 ];
 
 const size = computed(() =>
