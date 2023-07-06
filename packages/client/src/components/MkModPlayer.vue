@@ -78,7 +78,24 @@
 				<i class="ph-download-simple ph-fill ph-lg"></i>
 			</a>
 		</div>
-		<i class="ph-eye-slash ph-bold ph-lg" @click="toggleVisible()"></i>
+		<div class="buttons">
+			<button
+				v-if="module.comment"
+				v-tooltip="i18n.ts.alt"
+				class="_button"
+				@click.stop="captionPopup"
+			>
+				<i class="ph-subtitles ph-bold ph-lg"></i>
+			</button>
+			<button
+				v-if="!hide"
+				v-tooltip="i18n.ts.hide"
+				class="_button"
+				@click.stop="toggleVisible()"
+			>
+				<i class="ph-eye-slash ph-bold ph-lg"></i>
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -87,6 +104,7 @@ import { ref, shallowRef, nextTick, onDeactivated, onMounted } from "vue";
 import * as calckey from "calckey-js";
 import FormRange from "./form/range.vue";
 import { i18n } from "@/i18n";
+import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { ChiptuneJsPlayer, ChiptuneJsConfig } from "@/scripts/chiptune2";
 
@@ -161,6 +179,13 @@ let currentRow = 0;
 let rowHeight = 0;
 let buffer = null;
 let isSeeking = false;
+
+function captionPopup() {
+	os.alert({
+		type: "info",
+		text: props.module.comment,
+	});
+}
 
 function showPattern() {
 	patternShow.value = !patternShow.value;
@@ -365,6 +390,25 @@ onDeactivated(() => {
 		cursor: pointer;
 		top: 12px;
 		right: 12px;
+	}
+
+	> .buttons {
+		display: flex;
+		gap: 4px;
+		position: absolute;
+		border-radius: 6px;
+		overflow: hidden;
+		top: 12px;
+		right: 12px;
+		> * {
+			background-color: var(--accentedBg);
+			-webkit-backdrop-filter: var(--blur, blur(15px));
+			backdrop-filter: var(--blur, blur(15px));
+			color: var(--accent);
+			font-size: 0.8em;
+			padding: 6px 8px;
+			text-align: center;
+		}
 	}
 
 	> .pattern-display {
