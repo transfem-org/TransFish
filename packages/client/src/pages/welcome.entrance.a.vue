@@ -230,12 +230,6 @@ os.api("meta", { detail: true }).then((res) => {
 
 const paginationForLocal = {
 	endpoint: "notes/featured" as const,
-	limit: 10,
-	origin: "local",
-	offsetMode: true,
-	params: {
-		days: 14,
-	},
 };
 const paginationForRemote = {
 	endpoint: "notes/featured" as const,
