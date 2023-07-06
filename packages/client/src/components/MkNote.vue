@@ -128,8 +128,8 @@
 						</div>
 					</div>
 				</div>
-				<div v-if="detailedView" class="info">
-					<MkA class="created-at" :to="notePage(appearNote)">
+				<div v-if="detailedView || (appearNote.channel && !inChannel)" class="info">
+					<MkA v-if="detailedView" class="created-at" :to="notePage(appearNote)">
 						<MkTime :time="appearNote.createdAt" mode="absolute" />
 					</MkA>
 					<MkA
@@ -137,7 +137,7 @@
 						class="channel"
 						:to="`/channels/${appearNote.channel.id}`"
 						@click.stop
-						><i class="ph-television ph-bold ph-lg"></i>
+						><i class="ph-television ph-bold"></i>
 						{{ appearNote.channel.name }}</MkA
 					>
 				</div>
