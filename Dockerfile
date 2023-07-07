@@ -51,13 +51,14 @@ RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip nodejs-curre
 
 COPY . ./
 
+COPY --from=build /calckey/packages/megalodon /calckey/packages/megalodon
+
 # Copy node modules
 COPY --from=build /calckey/node_modules /calckey/node_modules
 COPY --from=build /calckey/packages/backend/node_modules /calckey/packages/backend/node_modules
 COPY --from=build /calckey/packages/sw/node_modules /calckey/packages/sw/node_modules
 COPY --from=build /calckey/packages/client/node_modules /calckey/packages/client/node_modules
 COPY --from=build /calckey/packages/calckey-js/node_modules /calckey/packages/calckey-js/node_modules
-COPY --from=build /calckey/packages/megalodon/node_modules /calckey/packages/megalodon/node_modules
 
 # Copy the finished compiled files
 COPY --from=build /calckey/built /calckey/built
