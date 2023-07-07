@@ -452,23 +452,25 @@ function showMenu(ev) {
 		> .header {
 			position: relative;
 			margin-top: -30px;
-			&::before {
-				content: "";
-				position: absolute;
-				inset: -25px calc(0px - var(--margin));
-				bottom: -100px;
-				backdrop-filter: blur(60px);
-				filter: brightness(1.2);
-				pointer-events: none;
-				z-index: -1;
-				opacity: 0.5;
-				clip-path: inset(55px 0 0 0 round var(--radius));
-				mask: linear-gradient(transparent 55px, #000 50px, transparent);
-				-webkit-mask: llinear-gradient(
-					transparent 55px,
-					#000 50px,
-					transparent
-				);
+			@media (min-width: 1099px) {
+				&::before {
+					content: "";
+					position: absolute;
+					inset: -25px calc(0px - var(--margin));
+					bottom: -100px;
+					backdrop-filter: blur(60px);
+					filter: brightness(1.2);
+					pointer-events: none;
+					z-index: -1;
+					opacity: 0.5;
+					clip-path: inset(55px 0 0 0 round var(--radius));
+					mask: linear-gradient(transparent 55px, #000 50px, transparent);
+					-webkit-mask: llinear-gradient(
+						transparent 55px,
+						#000 50px,
+						transparent
+					);
+				}
 			}
 			> .logo {
 				height: 80px;
