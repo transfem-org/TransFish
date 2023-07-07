@@ -42,7 +42,7 @@
 				/>
 				<div class="title">
 					<MkA class="name" :to="userPage(user)"
-						><MkUserName :user="user" :nowrap="false"
+						><MkUserName :user="user" :nowrap="true"
 					/></MkA>
 					<p class="username"><MkAcct :user="user" /></p>
 				</div>
@@ -101,12 +101,13 @@
 						<span>{{ user.followersCount }}</span>
 					</div>
 				</div>
-				<MkFollowButton
-					v-if="$i && user.id != $i.id"
-					class="koudoku-button"
-					:user="user"
-					mini
-				/>
+				<div class="follow-button-container">
+					<MkFollowButton
+						v-if="$i && user.id != $i.id"
+						:user="user"
+						mini
+					/>
+				</div>
 			</div>
 			<div v-else>
 				<MkLoading />
@@ -179,7 +180,9 @@ onMounted(() => {
 <style lang="scss" scoped>
 .popup-enter-active,
 .popup-leave-active {
-	transition: opacity 0.3s, transform 0.3s !important;
+	transition:
+		opacity 0.3s,
+		transform 0.3s !important;
 }
 .popup-enter-from,
 .popup-leave-to {
@@ -210,6 +213,20 @@ onMounted(() => {
 				border-radius: 6px;
 			}
 
+			&::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				z-index: 2;
+				height: 84px;
+				background: linear-gradient(
+					-125deg,
+					rgba(0, 0, 0, 0.7),
+					transparent,
+					transparent
+				);
+			}
+
 			&::after {
 				content: "";
 				background-image: var(--blur, inherit);
@@ -226,7 +243,7 @@ onMounted(() => {
 		> .avatar {
 			display: block;
 			position: absolute;
-			top: 62px;
+			top: 70px;
 			left: 13px;
 			z-index: 2;
 			width: 58px;
@@ -368,10 +385,12 @@ onMounted(() => {
 			}
 		}
 
-		> .koudoku-button {
+		> .follow-button-container {
 			position: absolute;
 			top: 8px;
 			right: 8px;
+			z-index: 3;
+			color: white;
 		}
 	}
 }

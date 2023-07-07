@@ -136,7 +136,7 @@ smtpUser: "Nom d'usuari"
 smtpPass: "Contrasenya"
 user: "Usuari"
 searchByGoogle: "Cercar"
-file: "Fitxers"
+file: "Fitxer"
 _email:
   _follow:
     title: "Tens un nou seguidor"
@@ -228,6 +228,11 @@ _mfm:
   alwaysPlay: Reprodueix automàticament tots els MFM animats
   fade: Esvair
   fadeDescription: Esvaeix el contingut cap a dintre i cap en fora.
+  crop: Retallar
+  advanced: MFM avançat
+  advancedDescription: Si està desactivat, només permet l'etiquetatge bàsic tret que
+    es reproduïnt un MFM animat
+  cropDescription: Retalla el contingut.
 _theme:
   keys:
     mention: "Menció"
@@ -314,21 +319,41 @@ _sfx:
 _2fa:
   step2Url: "També pots inserir aquest enllaç i utilitzes una aplicació d'escriptori:"
   alreadyRegistered: Ja heu registrat un dispositiu d'autenticació de dos factors.
-  registerDevice: Registrar un dispositiu nou
+  registerTOTP: Registrar un dispositiu nou
   securityKeyInfo: A més de l'autenticació d'empremta digital o PIN, també podeu configurar
     l'autenticació mitjançant claus de seguretat de maquinari compatibles amb FIDO2
     per protegir encara més el vostre compte.
   step4: A partir d'ara, qualsevol intent d'inici de sessió futur demanarà aquest
     token d'inici de sessió.
-  registerKey: Registra una clau de seguretat
+  registerSecurityKey: Registrar una clau de seguretat o d'accés
   step1: En primer lloc, instal·la una aplicació d'autenticació (com ara {a} o {b})
     al dispositiu.
   step2: A continuació, escaneja el codi QR que es mostra en aquesta pantalla.
   step3: Introdueix el token que t'ha proporcionat l'aplicació per finalitzar la configuració.
+  step3Title: Introduïu un codi d'autenticació
+  chromePasskeyNotSupported: Les claus de pas de Chrome actualment no s'admeten.
+  securityKeyName: Introduïu un nom de clau
+  removeKey: Suprimeix la clau de seguretat
+  removeKeyConfirm: Vols suprimir la clau {name}?
+  renewTOTP: Tornar a configurar l'aplicació d'autenticació
+  renewTOTPOk: Reconfigurar
+  renewTOTPCancel: Cancel·lar
+  step2Click: Fer clic en aquest codi QR us permetrà registrar 2FA a la vostra clau
+    de seguretat o aplicació d'autenticació del telèfon.
+  securityKeyNotSupported: El vostre navegador no admet claus de seguretat.
+  registerTOTPBeforeKey: Configureu una aplicació d'autenticació per registrar una
+    clau de seguretat o de passi.
+  tapSecurityKey: Si us plau, seguiu el vostre navegador per registrar la clau de
+    seguretat o d'accés
+  renewTOTPConfirm: Això farà que els codis de verificació de l'aplicació anterior
+    deixin de funcionar
+  whyTOTPOnlyRenew: L’aplicació d’autenticació no es pot eliminar sempre que es hi
+    hagi una clau de seguretat registrada.
+  token: Token 2FA
 _widgets:
   notifications: "Notificacions"
   timeline: "Línia de temps"
-  unixClock: Rellotge UNIX
+  unixClock: Rellotge d'UNIX
   federation: Federació
   instanceCloud: Núvol de servidors
   trends: Tendència
@@ -340,9 +365,9 @@ _widgets:
   onlineUsers: Usuaris en línia
   memo: Notes adhesives
   digitalClock: Rellotge digital
-  postForm: Formulari de notes
+  postForm: Formulari per publicar
   slideshow: Presentació de diapositives
-  serverMetric: Mètriques del servidor
+  serverMetric: Estadístiques del servidor
   userList: Llista d'usuaris
   rss: Lector d'RSS
   jobQueue: Cua de treball
@@ -350,6 +375,10 @@ _widgets:
     chooseList: Selecciona una llista
   aiscript: Consola AiScript
   button: Botó
+  serverInfo: Informació del servidor
+  meiliStatus: Estat del servidor
+  meiliSize: Mida de l'índex
+  meiliIndexCount: Publicacions indexades
 _cw:
   show: "Carregar més"
   files: '{count} fitxers'
@@ -357,12 +386,13 @@ _cw:
   chars: '{count} caràcters'
 _visibility:
   followers: "Seguidors"
-  publicDescription: La teva publicació serà visible per a tots els usuaris
+  publicDescription: La teva publicació serà visible per a totes les línies de temps
+    públiques
   localOnly: Només Local
   specified: Directe
   home: Sense llistar
   homeDescription: Publica només a la línea de temps local
-  followersDescription: Fes visible només per als teus seguidors
+  followersDescription: Fes visible només per als teus seguidors i usuaris mencionats
   specifiedDescription: Fer visible només per a usuaris determinats
   public: Públic
   localOnlyDescription: No és visible per als usuaris remots
@@ -725,8 +755,9 @@ _deck:
     mentions: "Mencions"
     widgets: Ginys
     main: Principal
-    antenna: Antenes
+    antenna: Antena
     direct: Missatges directes
+    channel: Canal
   alwaysShowMainColumn: Mostra sempre la columna principal
   columnAlign: Alinear columnes
   introduction: Crea la interfície perfecta per a tu organitzant columnes lliurement!
@@ -978,7 +1009,7 @@ avoidMultiCaptchaConfirm: Fent servir diferents sistemes de Captcha pot causar i
 antennas: Antenes
 enableEmojiReactions: Activa reaccions amb emojis
 blockThisInstance: Bloqueja aquest servidor
-registration: Registre
+registration: Registra't
 showEmojisInReactionNotifications: Mostra els emojis a les notificacions de les reaccions
 renoteMute: Silencia els impulsos
 renoteUnmute: Treu el silenci als impulsos
@@ -1025,7 +1056,7 @@ recentlyRegisteredUsers: Usuaris registrats fa poc
 recentlyDiscoveredUsers: Nous suaris descoberts
 administrator: Administrador
 token: Token
-registerSecurityKey: Registra una clau de seguretat
+registerSecurityKey: Registreu una clau de seguretat
 securityKeyName: Nom clau
 lastUsed: Feta servir per última vegada
 unregister: Anul·lar el registre
@@ -1178,7 +1209,7 @@ large: Gran
 notificationSetting: Preferències de notificacions
 makeActive: Activar
 notificationSettingDesc: Tria el tipus de notificació que es veure.
-notifyAntenna: Notificar noves notes
+notifyAntenna: Notificar publicacions noves
 withFileAntenna: Només notes amb fitxers
 enableServiceworker: Activa les notificacions push per al teu navegador
 antennaUsersDescription: Escriu un nom d'usuari per línea
@@ -1570,6 +1601,8 @@ _aboutMisskey:
   morePatrons: També agraïm el suport de molts altres ajudants que no figuren aquí.
     Gràcies! 🥰
   patrons: Mecenes de Calckey
+  patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
+    amb l'enllaç de dalt per veure el teu nom aquí!
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
@@ -1618,7 +1651,7 @@ enableAutoSensitiveDescription: Permet la detecció i el marcatge automàtics de
 localOnly: Només local
 customKaTeXMacroDescription: "Configura macros per escriure expressions matemàtiques
   fàcilment! La notació s'ajusta a les definicions de l'ordre LaTeX i s'escriu com
-  a \\newcommand{\\name}{content} o \\newcommand{\\name}[nombre d'arguments]{contingut}.
+  a \\newcommand{\\ name}{content} o \\newcommand{\\name}[nombre d'arguments]{content}.
   Per exemple, \\newcommand{\\add}[2]{#1 + #2} ampliarà \\add{3}{foo} a 3 + foo. Els
   claudàtors que envolten el nom de la macro es poden canviar per claudàtors rodons
   o quadrats. Això afecta els claudàtors utilitzats per als arguments. Es pot definir
@@ -1639,9 +1672,9 @@ popout: Apareixa
 volume: Volum
 objectStorageUseSSLDesc: Desactiva això si no fas servir HTTPS per les connexions
   API
-objectStorageUseProxy: Conectarse mitjançant un Proxy
+objectStorageUseProxy: Connectar-se mitjançant un Proxy
 objectStorageUseProxyDesc: Desactiva això si no faràs servir un servidor Proxy per
-  conexions API
+  conexions amb l'API
 objectStorageSetPublicRead: Fixar com a "public-read" al pujar
 serverLogs: Registres del servidor
 deleteAll: Esborrar tot
@@ -1677,10 +1710,10 @@ removeAllFollowing: Deixar de seguir a tots els usuaris que segueixes
 accentColor: Color principal
 textColor: Color del text
 value: Valor
-sendErrorReportsDescription: "Quant està activat quant aparegui un error, es compartirà
-  amb els desenvolupadors de Calckey, que ajudarà a millorar la qualitat.\nAixò inclourà
-  informació com la versió del teu sistema operatiu, el navegador que estiguis fent
-  servir, la teva activitat a Calckey, etc."
+sendErrorReportsDescription: "Quan està activat, quan es produeixi un problema la
+  informació detallada d'errors es compartirà amb Calckey, ajudant a millorar la qualitat
+  de Calckey.\nAixò inclourà informació com la versió del vostre sistema operatiu,
+  quin navegador utilitzeu, la vostra activitat a Calckey, etc."
 myTheme: El meu tema
 backgroundColor: Color de fons
 saveAs: Desa com...
@@ -1757,7 +1790,7 @@ createNew: Crear una nova
 optional: Opcional
 jumpToSpecifiedDate: Vés a una data concreta
 showingPastTimeline: Ara es mostra un línea de temps antiga
-clear: Tornar
+clear: Netejar
 markAllAsRead: Marcar tot com a llegit
 recentPosts: Pàgines recents
 noMaintainerInformationWarning: La informació de l'administrador no està configurada.
@@ -1840,7 +1873,7 @@ _ago:
   hoursAgo: Fa {n}h
   daysAgo: Fa {n}d
   secondsAgo: Fa {n}s
-  weeksAgo: Fa {n}s
+  weeksAgo: Fa {n}set
   monthsAgo: Fa {n}me
   yearsAgo: Fa {n}a
 _time:
@@ -1855,7 +1888,7 @@ _tutorial:
   step5_3: La línea de temps d'inici {icon} es on pots veure les publicacions dels
     comptes que segueixes.
   step5_6: La línia de temps de Recomanats {icon} és on pots veure les publicacions
-    dels servidors recomanen els administradors.
+    dels servidors que recomanen els administradors.
   step5_7: La línia de temps Global {icon} és on pots veure les publicacions de tots
     els servidors connectats.
   step6_1: Aleshores, què és aquest lloc?
@@ -2002,11 +2035,12 @@ _auth:
   shareAccessAsk: Estàs segur que vols autoritzar aquesta aplicació per accedir al
     teu compte?
   shareAccess: Vols autoritzar "{name}" per accedir a aquest compte?
-  permissionAsk: Aquesta aplicació sol·licita els següents permisos
+  permissionAsk: 'Aquesta aplicació sol·licita els següents permisos:'
   callback: Tornant a l'aplicació
   denied: Accés denegat
   pleaseGoBack: Si us plau, torneu a l'aplicació
-  copyAsk: Posa el següent codi d'autorització a l'aplicació
+  copyAsk: "Posa el següent codi d'autorització a l'aplicació:"
+  allPermissions: Accés complet al compte
 _weekday:
   wednesday: Dimecres
   saturday: Dissabte
@@ -2031,7 +2065,7 @@ _relayStatus:
   rejected: Rebutjat
 deleted: Eliminat
 editNote: Edita la nota
-edited: Editat
+edited: 'Editat a {date} {time}'
 findOtherInstance: Cercar un altre servidor
 signupsDisabled: Actualment, les inscripcions en aquest servidor estan desactivades,
   però sempre podeu registrar-vos en un altre servidor. Si teniu un codi d'invitació
@@ -2050,10 +2084,11 @@ _experiments:
   alpha: Alfa
   beta: Beta
   release: Publicà
-  enablePostEditing: Activà l'edició de publicacions
   title: Experiments
-  postEditingCaption: Mostra l'opció perquè els usuaris editin les seves publicacions
-    existents mitjançant el menú d'opcions de publicació
+  enablePostImports: Activar l'importació de publicacions
+  postImportsCaption: Permet els usuaris importar publicacions desde comptes a Calckey,
+    Misskey, Mastodon, Akkoma i Pleroma. Pot fer que el servidor vagi més lent durant
+    la càrrega si tens un coll d'ampolla a la cua.
 noGraze: Si us plau, desactiva l'extensió del navegador "Graze for Mastodon", ja que
   interfereix amb Calckey.
 accessibility: Accessibilitat
@@ -2064,3 +2099,48 @@ silencedWarning: S'està mostrant aquesta pàgina per què aquest usuari és d'u
   que l'administrador a silenciat, així que pot ser spam.
 jumpToPrevious: Vés a l'anterior
 cw: Avís de contingut
+antennasDesc: "Les antenes mostren publicacions noves que coincideixen amb els criteris
+  establerts!\nS'hi pot accedir des de la pàgina de línies de temps."
+expandOnNoteClick: Obre la publicació amb un clic
+expandOnNoteClickDesc: Si està desactivat, encara pots obrir les publicacions al menú
+  del botó dret o fent clic a la marca de temps.
+channelFederationWarn: Els canals encara no es federen amb altres servidors
+searchPlaceholder: Cerca a Calckey
+listsDesc: Les llistes et permeten crear línies de temps amb usuaris específics. Es
+  pot accedir des de la pàgina de línies de temps.
+clipsDesc: Els clips són com marcadors categoritzats que es poden compartir. Podeu
+  crear clips des del menú de publicacions individuals.
+selectChannel: Selecciona un canal
+isLocked: Aquest compte té les següents aprovacions
+isPatron: Mecenes de Calkey
+isBot: Aquest compte és un bot
+isModerator: Moderador
+isAdmin: Administrador
+_filters:
+  fromDomain: Des del domini
+  notesBefore: Publicacions anteriors
+  notesAfter: Publicacions posteriors
+  followingOnly: Només seguint
+  followersOnly: Només seguidors
+  withFile: Amb arxiu
+  fromUser: De l'usuari
+image: Imatge
+video: Vídeo
+audio: Àudio
+_dialog:
+  charactersExceeded: "S'han superat el màxim de caràcters! Actual: {current}/Límit:
+    {max}"
+  charactersBelow: 'No hi ha caràcters suficients! Corrent: {current}/Limit: {min}'
+removeReaction: Elimina la teva reacció
+reactionPickerSkinTone: To de pell d'emoji preferit
+alt: ALT
+_skinTones:
+  light: Clar
+  mediumLight: Clar Mitx
+  medium: Mitx
+  mediumDark: Fosc Mitx
+  dark: Fosc
+  yellow: Groc
+swipeOnMobile: Permet lliscar entre pàgines
+enableIdenticonGeneration: Habilitar la generació d'Identicon
+enableServerMachineStats: Habilitar les estadístiques del maquinari del servidor

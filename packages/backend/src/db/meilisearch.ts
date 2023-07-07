@@ -135,6 +135,24 @@ export type MeilisearchNote = {
 	createdAt: number;
 };
 
+function timestampToUnix(timestamp: string) {
+	let unix = 0;
+
+	// Only contains numbers => UNIX timestamp
+	if (/^\d+$/.test(timestamp)) {
+		unix = Number.parseInt(timestamp);
+	}
+
+	if (unix === 0) {
+		// Try to parse the timestamp as JavaScript Date
+		const date = Date.parse(timestamp);
+		if (isNaN(date)) return 0;
+		unix = date / 1000;
+	}
+
+	return unix;
+}
+
 export default hasConfig
 	? {
 			search: async (
@@ -166,8 +184,29 @@ export default hasConfig
 								constructedFilters.push(`mediaAttachment = "${fileType}"`);
 								return null;
 							} else if (term.startsWith("from:")) {
-								const user = term.slice(5);
-								constructedFilters.push(`userName = ${user}`);
+								let user = term.slice(5);
+
+								if (user.length === 0) return null;
+
+								// Cut off leading @, those aren't saved in the DB
+								if (user.charAt(0) === "@") {
+									user = user.slice(1);
+								}
+
+								// Determine if we got a webfinger address or a single username
+								if (user.split("@").length > 1) {
+									let splitUser = user.split("@");
+
+									let domain = splitUser.pop();
+									user = splitUser.join("@");
+
+									constructedFilters.push(
+										`userName = ${user} AND userHost = ${domain}`,
+									);
+								} else {
+									constructedFilters.push(`userName = ${user}`);
+								}
+
 								return null;
 							} else if (term.startsWith("domain:")) {
 								const domain = term.slice(7);
@@ -175,17 +214,18 @@ export default hasConfig
 								return null;
 							} else if (term.startsWith("after:")) {
 								const timestamp = term.slice(6);
-								// Try to parse the timestamp as JavaScript Date
-								const date = Date.parse(timestamp);
-								if (isNaN(date)) return null;
-								constructedFilters.push(`createdAt > ${date / 1000}`);
+
+								let unix = timestampToUnix(timestamp);
+
+								if (unix !== 0) constructedFilters.push(`createdAt > ${unix}`);
+
 								return null;
 							} else if (term.startsWith("before:")) {
 								const timestamp = term.slice(7);
-								// Try to parse the timestamp as JavaScript Date
-								const date = Date.parse(timestamp);
-								if (isNaN(date)) return null;
-								constructedFilters.push(`createdAt < ${date / 1000}`);
+
+								let unix = timestampToUnix(timestamp);
+								if (unix !== 0) constructedFilters.push(`createdAt < ${unix}`);
+
 								return null;
 							} else if (term.startsWith("filter:following")) {
 								// Check if we got a context user

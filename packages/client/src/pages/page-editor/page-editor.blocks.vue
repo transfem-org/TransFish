@@ -42,7 +42,7 @@ import * as os from "@/os";
 export default defineComponent({
 	components: {
 		XDraggable: defineAsyncComponent(() =>
-			import("vuedraggable").then((x) => x.default)
+			import("vuedraggable").then((x) => x.default),
 		),
 		XSection,
 		XText,

@@ -346,11 +346,14 @@ export function yesno(props: {
 }
 
 export function inputText(props: {
-	type?: "text" | "email" | "password" | "url";
+	type?: "text" | "email" | "password" | "url" | "search";
 	title?: string | null;
 	text?: string | null;
 	placeholder?: string | null;
+	autocomplete?: string;
 	default?: string | null;
+	minLength?: number;
+	maxLength?: number;
 }): Promise<
 	| { canceled: true; result: undefined }
 	| {
@@ -360,18 +363,17 @@ export function inputText(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent({
-				loader: () => import("@/components/MkDialog.vue"),
-				loadingComponent: MkWaitingDialog,
-				delay: 1000,
-			}),
+			MkDialog,
 			{
 				title: props.title,
 				text: props.text,
 				input: {
 					type: props.type,
 					placeholder: props.placeholder,
+					autocomplete: props.autocomplete,
 					default: props.default,
+					minLength: props.minLength,
+					maxLength: props.maxLength,
 				},
 			},
 			{
@@ -427,6 +429,7 @@ export function inputNumber(props: {
 	text?: string | null;
 	placeholder?: string | null;
 	default?: number | null;
+	autocomplete?: string;
 }): Promise<
 	| { canceled: true; result: undefined }
 	| {
@@ -447,6 +450,7 @@ export function inputNumber(props: {
 				input: {
 					type: "number",
 					placeholder: props.placeholder,
+					autocomplete: props.autocomplete,
 					default: props.default,
 				},
 			},
@@ -474,11 +478,7 @@ export function inputDate(props: {
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent({
-				loader: () => import("@/components/MkDialog.vue"),
-				loadingComponent: MkWaitingDialog,
-				delay: 1000,
-			}),
+			MkDialog,
 			{
 				title: props.title,
 				text: props.text,
@@ -492,7 +492,10 @@ export function inputDate(props: {
 				done: (result) => {
 					resolve(
 						result
-							? { result: new Date(result.result), canceled: false }
+							? {
+									result: new Date(result.result),
+									canceled: false,
+							  }
 							: { canceled: true },
 					);
 				},
@@ -533,11 +536,7 @@ export function select<C = any>(
 > {
 	return new Promise((resolve, reject) => {
 		popup(
-			defineAsyncComponent({
-				loader: () => import("@/components/MkDialog.vue"),
-				loadingComponent: MkWaitingDialog,
-				delay: 1000,
-			}),
+			MkDialog,
 			{
 				title: props.title,
 				text: props.text,
@@ -557,18 +556,14 @@ export function select<C = any>(
 	});
 }
 
-export function success() {
+export function success(): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const showing = ref(true);
 		window.setTimeout(() => {
 			showing.value = false;
 		}, 1000);
 		popup(
-			defineAsyncComponent({
-				loader: () => import("@/components/MkWaitingDialog.vue"),
-				loadingComponent: MkWaitingDialog,
-				delay: 1000,
-			}),
+			MkWaitingDialog,
 			{
 				success: true,
 				showing: showing,
@@ -581,15 +576,11 @@ export function success() {
 	});
 }
 
-export function waiting() {
+export function waiting(): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const showing = ref(true);
 		popup(
-			defineAsyncComponent({
-				loader: () => import("@/components/MkWaitingDialog.vue"),
-				loadingComponent: MkWaitingDialog,
-				delay: 1000,
-			}),
+			MkWaitingDialog,
 			{
 				success: false,
 				showing: showing,
@@ -626,6 +617,25 @@ export async function selectUser() {
 		popup(
 			defineAsyncComponent({
 				loader: () => import("@/components/MkUserSelectDialog.vue"),
+				loadingComponent: MkWaitingDialog,
+				delay: 1000,
+			}),
+			{},
+			{
+				ok: (user) => {
+					resolve(user);
+				},
+			},
+			"closed",
+		);
+	});
+}
+
+export async function selectLocalUser() {
+	return new Promise((resolve, reject) => {
+		popup(
+			defineAsyncComponent({
+				loader: () => import("@/components/MkUserSelectLocalDialog.vue"),
 				loadingComponent: MkWaitingDialog,
 				delay: 1000,
 			}),
@@ -837,6 +847,7 @@ export function popupMenu(
 		align?: string;
 		width?: number;
 		viaKeyboard?: boolean;
+		noReturnFocus?: boolean;
 	},
 ) {
 	return new Promise((resolve, reject) => {
@@ -853,6 +864,7 @@ export function popupMenu(
 				width: options?.width,
 				align: options?.align,
 				viaKeyboard: options?.viaKeyboard,
+				noReturnFocus: options?.noReturnFocus,
 			},
 			{
 				closed: () => {

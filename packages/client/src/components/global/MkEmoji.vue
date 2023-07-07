@@ -39,15 +39,15 @@ const props = defineProps<{
 const isCustom = computed(() => props.emoji.startsWith(":"));
 const char = computed(() => (isCustom.value ? null : props.emoji));
 const useOsNativeEmojis = computed(
-	() => defaultStore.state.useOsNativeEmojis && !props.isReaction
+	() => defaultStore.state.useOsNativeEmojis && !props.isReaction,
 );
 const ce = computed(() => props.customEmojis ?? instance.emojis ?? []);
 const customEmoji = computed(() =>
 	isCustom.value
 		? ce.value.find(
-				(x) => x.name === props.emoji.substr(1, props.emoji.length - 2)
+				(x) => x.name === props.emoji.substr(1, props.emoji.length - 2),
 		  )
-		: null
+		: null,
 );
 const url = computed(() => {
 	if (char.value) {
@@ -59,7 +59,7 @@ const url = computed(() => {
 	}
 });
 const alt = computed(() =>
-	customEmoji.value ? `:${customEmoji.value.name}:` : char.value
+	customEmoji.value ? `:${customEmoji.value.name}:` : char.value,
 );
 </script>
 

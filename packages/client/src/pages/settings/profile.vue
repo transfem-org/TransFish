@@ -189,7 +189,7 @@ const props = withDefaults(
 	defineProps<{
 		saveButton?: boolean;
 	}>(),
-	{}
+	{},
 );
 
 let saveButton = $ref(props.saveButton ?? false);
@@ -201,11 +201,11 @@ watch(
 	},
 	{
 		deep: true,
-	}
+	},
 );
 
 const fields = reactive(
-	$i.fields.map((field) => ({ name: field.name, value: field.value }))
+	$i.fields.map((field) => ({ name: field.name, value: field.value })),
 );
 
 function addField() {
@@ -222,7 +222,7 @@ while (fields.length < 4) {
 function saveFields() {
 	os.apiWithDialog("i/update", {
 		fields: fields.filter(
-			(field) => field.name !== "" && field.value !== ""
+			(field) => field.name !== "" && field.value !== "",
 		),
 	});
 }
@@ -261,7 +261,7 @@ function changeAvatar(ev) {
 			});
 			$i.avatarId = i.avatarId;
 			$i.avatarUrl = i.avatarUrl;
-		}
+		},
 	);
 }
 
@@ -286,7 +286,7 @@ function changeBanner(ev) {
 			});
 			$i.bannerId = i.bannerId;
 			$i.bannerUrl = i.bannerUrl;
-		}
+		},
 	);
 }
 

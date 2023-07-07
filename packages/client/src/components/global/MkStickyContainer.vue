@@ -50,7 +50,7 @@ onMounted(() => {
 		},
 		{
 			immediate: true,
-		}
+		},
 	);
 
 	headerEl.style.position = "sticky";

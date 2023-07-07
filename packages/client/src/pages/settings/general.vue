@@ -45,16 +45,25 @@
 				class="_formBlock"
 				>{{ i18n.ts.useReactionPickerForContextMenu }}</FormSwitch
 			>
-			<FormSwitch v-model="swipeOnDesktop" class="_formBlock">{{
-				i18n.ts.swipeOnDesktop
-			}}</FormSwitch>
+			<FormSwitch
+				v-if="deviceKind !== 'desktop'"
+				v-model="swipeOnMobile"
+				class="_formBlock"
+				>{{ i18n.ts.swipeOnMobile }}</FormSwitch
+			>
+			<FormSwitch
+				v-if="deviceKind === 'desktop'"
+				v-model="swipeOnDesktop"
+				class="_formBlock"
+				>{{ i18n.ts.swipeOnDesktop }}</FormSwitch
+			>
 			<FormSwitch v-model="enterSendsMessage" class="_formBlock">{{
 				i18n.ts.enterSendsMessage
 			}}</FormSwitch>
 			<FormSwitch v-model="disablePagesScript" class="_formBlock">{{
 				i18n.ts.disablePagesScript
 			}}</FormSwitch>
-			<FormSwitch v-model="profile.showTimelineReplies" class="_formBlock"
+			<FormSwitch v-model="showTimelineReplies" class="_formBlock"
 				>{{ i18n.ts.flagShowTimelineReplies
 				}}<template #caption
 					>{{ i18n.ts.flagShowTimelineRepliesDescription }}
@@ -114,18 +123,34 @@
 			<FormRadios v-model="fontSize" class="_formBlock">
 				<template #label>{{ i18n.ts.fontSize }}</template>
 				<option :value="null">
-					<span style="font-size: 14px">Aa</span>
+					<span style="font-size: 14px">14</span>
 				</option>
-				<option value="1">
-					<span style="font-size: 15px">Aa</span>
+				<option value="15">
+					<span style="font-size: 15px">15</span>
 				</option>
-				<option value="2">
-					<span style="font-size: 16px">Aa</span>
+				<option value="16">
+					<span style="font-size: 16px">16</span>
 				</option>
-				<option value="3">
-					<span style="font-size: 17px">Aa</span>
+				<option value="17">
+					<span style="font-size: 17px">17</span>
+				</option>
+				<option value="18">
+					<span style="font-size: 18px">18</span>
 				</option>
 			</FormRadios>
+
+			<!-- <FormRange
+				v-model="fontSize"
+				:min="12"
+				:max="18"
+				:step="1"
+				:value="fontSize ? fontSize : 14"
+				easing
+				:showTicks="true"
+				class="_formBlock"
+			>
+				<template #label>{{ i18n.ts.fontSize }}</template>
+			</FormRange> -->
 		</FormSection>
 
 		<FormSection>
@@ -237,28 +262,11 @@ import * as os from "@/os";
 import { unisonReload } from "@/scripts/unison-reload";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
+import { deviceKind } from "@/scripts/device-kind";
 
 const lang = ref(localStorage.getItem("lang"));
 const fontSize = ref(localStorage.getItem("fontSize"));
 const useSystemFont = ref(localStorage.getItem("useSystemFont") != null);
-
-const profile = reactive({
-	showTimelineReplies: $i?.showTimelineReplies,
-});
-watch(
-	() => profile,
-	() => {
-		save();
-	},
-	{
-		deep: true,
-	}
-);
-function save() {
-	os.apiWithDialog("i/update", {
-		showTimelineReplies: !!profile.showTimelineReplies,
-	});
-}
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
@@ -271,24 +279,24 @@ async function reloadAsk() {
 }
 
 const overridedDeviceKind = computed(
-	defaultStore.makeGetterSetter("overridedDeviceKind")
+	defaultStore.makeGetterSetter("overridedDeviceKind"),
 );
 const serverDisconnectedBehavior = computed(
-	defaultStore.makeGetterSetter("serverDisconnectedBehavior")
+	defaultStore.makeGetterSetter("serverDisconnectedBehavior"),
 );
 const reduceAnimation = computed(
 	defaultStore.makeGetterSetter(
 		"animation",
 		(v) => !v,
-		(v) => !v
-	)
+		(v) => !v,
+	),
 );
 const useBlurEffectForModal = computed(
-	defaultStore.makeGetterSetter("useBlurEffectForModal")
+	defaultStore.makeGetterSetter("useBlurEffectForModal"),
 );
 const useBlurEffect = computed(defaultStore.makeGetterSetter("useBlurEffect"));
 const showGapBetweenNotesInTimeline = computed(
-	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
+	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline"),
 );
 const showAds = computed(defaultStore.makeGetterSetter("showAds"));
 const advancedMfm = computed(defaultStore.makeGetterSetter("advancedMfm"));
@@ -296,54 +304,62 @@ const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
 		(v) => !v,
-		(v) => !v
-	)
+		(v) => !v,
+	),
 );
 const useOsNativeEmojis = computed(
-	defaultStore.makeGetterSetter("useOsNativeEmojis")
+	defaultStore.makeGetterSetter("useOsNativeEmojis"),
 );
 const disableDrawer = computed(defaultStore.makeGetterSetter("disableDrawer"));
 const disableShowingAnimatedImages = computed(
-	defaultStore.makeGetterSetter("disableShowingAnimatedImages")
+	defaultStore.makeGetterSetter("disableShowingAnimatedImages"),
 );
 const loadRawImages = computed(defaultStore.makeGetterSetter("loadRawImages"));
 const imageNewTab = computed(defaultStore.makeGetterSetter("imageNewTab"));
 const nsfw = computed(defaultStore.makeGetterSetter("nsfw"));
 const disablePagesScript = computed(
-	defaultStore.makeGetterSetter("disablePagesScript")
+	defaultStore.makeGetterSetter("disablePagesScript"),
 );
 const expandOnNoteClick = computed(
-	defaultStore.makeGetterSetter("expandOnNoteClick")
+	defaultStore.makeGetterSetter("expandOnNoteClick"),
 );
 const showFixedPostForm = computed(
-	defaultStore.makeGetterSetter("showFixedPostForm")
+	defaultStore.makeGetterSetter("showFixedPostForm"),
 );
 const numberOfPageCache = computed(
-	defaultStore.makeGetterSetter("numberOfPageCache")
+	defaultStore.makeGetterSetter("numberOfPageCache"),
 );
 const instanceTicker = computed(
-	defaultStore.makeGetterSetter("instanceTicker")
+	defaultStore.makeGetterSetter("instanceTicker"),
 );
 const enableInfiniteScroll = computed(
-	defaultStore.makeGetterSetter("enableInfiniteScroll")
+	defaultStore.makeGetterSetter("enableInfiniteScroll"),
 );
 const enterSendsMessage = computed(
-	defaultStore.makeGetterSetter("enterSendsMessage")
+	defaultStore.makeGetterSetter("enterSendsMessage"),
 );
 const useReactionPickerForContextMenu = computed(
-	defaultStore.makeGetterSetter("useReactionPickerForContextMenu")
+	defaultStore.makeGetterSetter("useReactionPickerForContextMenu"),
 );
 const seperateRenoteQuote = computed(
-	defaultStore.makeGetterSetter("seperateRenoteQuote")
+	defaultStore.makeGetterSetter("seperateRenoteQuote"),
 );
 const squareAvatars = computed(defaultStore.makeGetterSetter("squareAvatars"));
 const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
 const swipeOnDesktop = computed(
-	defaultStore.makeGetterSetter("swipeOnDesktop")
+	defaultStore.makeGetterSetter("swipeOnDesktop"),
 );
+const swipeOnMobile = computed(defaultStore.makeGetterSetter("swipeOnMobile"));
 const showAdminUpdates = computed(
-	defaultStore.makeGetterSetter("showAdminUpdates")
+	defaultStore.makeGetterSetter("showAdminUpdates"),
 );
+const showTimelineReplies = computed(
+	defaultStore.makeGetterSetter("showTimelineReplies"),
+);
+
+watch(swipeOnDesktop, () => {
+	defaultStore.set("swipeOnMobile", true);
+});
 
 watch(lang, () => {
 	localStorage.setItem("lang", lang.value as string);
@@ -378,6 +394,7 @@ watch(
 		overridedDeviceKind,
 		showAds,
 		showUpdates,
+		swipeOnMobile,
 		swipeOnDesktop,
 		seperateRenoteQuote,
 		showAdminUpdates,
@@ -387,7 +404,7 @@ watch(
 	],
 	async () => {
 		await reloadAsk();
-	}
+	},
 );
 
 const headerActions = $computed(() => []);

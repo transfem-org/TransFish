@@ -23,7 +23,7 @@ const props = withDefaults(
 	defineProps<{
 		user: misskey.entities.User;
 	}>(),
-	{}
+	{},
 );
 
 const pagination = {

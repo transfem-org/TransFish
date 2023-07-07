@@ -17,10 +17,9 @@
 					:space-between="20"
 					:virtual="true"
 					:allow-touch-move="
-						!(
-							deviceKind === 'desktop' &&
-							!defaultStore.state.swipeOnDesktop
-						)
+						defaultStore.state.swipeOnMobile &&
+						(deviceKind !== 'desktop' ||
+							defaultStore.state.swipeOnDesktop)
 					"
 					@swiper="setSwiperRef"
 					@slide-change="onSlideChange"
@@ -118,7 +117,7 @@ watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
 
 const MOBILE_THRESHOLD = 500;
 const isMobile = ref(
-	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD
+	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD,
 );
 window.addEventListener("resize", () => {
 	isMobile.value =
@@ -179,7 +178,7 @@ function onMessage(message): void {
 						m.userId === message.userId) ||
 					(m.recipientId === message.userId &&
 						m.userId === message.recipientId)
-				)
+				),
 		);
 
 		messages.unshift(message);
@@ -220,7 +219,7 @@ function startMenu(ev) {
 				},
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 
@@ -283,12 +282,12 @@ onMounted(() => {
 					_messages.sort(
 						(a, b) =>
 							new Date(b.createdAt).getTime() -
-							new Date(a.createdAt).getTime()
+							new Date(a.createdAt).getTime(),
 					);
 					messages = _messages;
-				}
+				},
 			);
-		}
+		},
 	);
 });
 

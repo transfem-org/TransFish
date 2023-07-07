@@ -476,13 +476,20 @@ export const meta = {
 				optional: true,
 				nullable: true,
 				properties: {
-					postEditing: {
-						type: "boolean",
-					},
 					postImports: {
 						type: "boolean",
 					},
 				},
+			},
+			enableServerMachineStats: {
+				type: "boolean",
+				optional: false,
+				nullable: false,
+			},
+			enableIdenticonGeneration: {
+				type: "boolean",
+				optional: false,
+				nullable: false,
 			},
 		},
 	},
@@ -595,5 +602,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableIpLogging: instance.enableIpLogging,
 		enableActiveEmailValidation: instance.enableActiveEmailValidation,
 		experimentalFeatures: instance.experimentalFeatures,
+		enableServerMachineStats: instance.enableServerMachineStats,
+		enableIdenticonGeneration: instance.enableIdenticonGeneration,
 	};
 });

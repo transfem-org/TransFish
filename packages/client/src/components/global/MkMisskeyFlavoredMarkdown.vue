@@ -9,7 +9,7 @@
 		class="mfm-object"
 		:class="{
 			nowrap,
-			advancedMfm: defaultStore.state.advancedMfm,
+			advancedMfm: defaultStore.state.advancedMfm || advancedMfm,
 		}"
 	/>
 </template>
@@ -27,13 +27,14 @@ const props = withDefaults(
 		author?: any;
 		customEmojis?: any;
 		isNote?: boolean;
+		advancedMfm: boolean;
 	}>(),
 	{
 		plain: false,
 		nowrap: false,
 		author: null,
 		isNote: true,
-	}
+	},
 );
 </script>
 

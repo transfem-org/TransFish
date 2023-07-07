@@ -1,4 +1,4 @@
-import { Entity } from "@calckey/megalodon";
+import { Entity } from "megalodon";
 import { convertId, IdType } from "../index.js";
 
 function simpleConvert(data: any) {
@@ -20,6 +20,9 @@ export function convertFilter(filter: Entity.Filter) {
 }
 export function convertList(list: Entity.List) {
 	return simpleConvert(list);
+}
+export function convertFeaturedTag(tag: Entity.FeaturedTag) {
+	return simpleConvert(tag);
 }
 
 export function convertNotification(notification: Entity.Notification) {

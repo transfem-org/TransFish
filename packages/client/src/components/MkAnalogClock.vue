@@ -19,7 +19,7 @@
 								0,
 								1 -
 									angleDiff(hAngle, angle) / Math.PI -
-									numbersOpacityFactor
+									numbersOpacityFactor,
 						  )
 				"
 			/>
@@ -48,7 +48,7 @@
 								0,
 								1 -
 									angleDiff(hAngle, angle) / Math.PI -
-									numbersOpacityFactor
+									numbersOpacityFactor,
 						  )
 				"
 			>
@@ -151,7 +151,7 @@ const props = withDefaults(
 		graduations: "dots",
 		fadeGraduations: true,
 		sAnimation: "elastic",
-	}
+	},
 );
 
 const graduationsMajor = computed(() => {
@@ -192,7 +192,7 @@ let sOneRound = false;
 function tick() {
 	const now = new Date();
 	now.setMinutes(
-		now.getMinutes() + (new Date().getTimezoneOffset() + props.offset)
+		now.getMinutes() + (new Date().getTimezoneOffset() + props.offset),
 	);
 	s = now.getSeconds();
 	m = now.getMinutes();
@@ -225,7 +225,7 @@ function calcColors() {
 	const computedStyle = getComputedStyle(document.documentElement);
 	const dark = tinycolor(computedStyle.getPropertyValue("--bg")).isDark();
 	const accent = tinycolor(
-		computedStyle.getPropertyValue("--accent")
+		computedStyle.getPropertyValue("--accent"),
 	).toHexString();
 	majorGraduationColor = dark
 		? "rgba(255, 255, 255, 0.3)"
@@ -233,7 +233,7 @@ function calcColors() {
 	//minorGraduationColor = dark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
 	sHandColor = dark ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.3)";
 	mHandColor = tinycolor(
-		computedStyle.getPropertyValue("--fg")
+		computedStyle.getPropertyValue("--fg"),
 	).toHexString();
 	hHandColor = accent;
 	nowColor = accent;

@@ -51,6 +51,7 @@ export type MenuButton = {
 	icon?: string;
 	indicate?: boolean;
 	danger?: boolean;
+	accent?: boolean;
 	active?: boolean;
 	hidden?: boolean;
 	avatar?: Misskey.entities.User;

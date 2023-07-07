@@ -146,7 +146,7 @@ watch(
 						})
 				: Promise.resolve(null);
 	},
-	{ immediate: true }
+	{ immediate: true },
 );
 
 const headerActions = $computed(() => []);
@@ -163,8 +163,8 @@ definePageMetadata(
 			: {
 					title: i18n.ts.postToGallery,
 					icon: "ph-pencil ph-bold ph-lg",
-			  }
-	)
+			  },
+	),
 );
 </script>
 

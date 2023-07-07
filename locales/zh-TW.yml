@@ -1219,8 +1219,8 @@ _tutorial:
   step6_4: "現在開始探索吧！"
 _2fa:
   alreadyRegistered: "你已註冊過一個雙重認證的裝置。"
-  registerDevice: "註冊裝置"
-  registerKey: "註冊鍵"
+  registerTOTP: "註冊裝置"
+  registerSecurityKey: "註冊鍵"
   step1: "首先，在您的設備上安裝二步驗證程式，例如{a}或{b}。"
   step2: "然後，掃描螢幕上的QR code。"
   step2Url: "在桌面版應用中，請輸入以下的URL："
@@ -1816,7 +1816,6 @@ silenceThisInstance: 靜音此伺服器
 silencedInstances: 已靜音的伺服器
 silenced: 已靜音
 _experiments:
-  enablePostEditing: 啟用帖子編輯
   title: 試驗功能
 findOtherInstance: 找找另一個伺服器
 noGraze: 瀏覽器擴展 "Graze for Mastodon" 會與Calckey發生衝突，請停用該擴展。
@@ -1829,7 +1828,7 @@ indexPosts: 索引帖子
 indexNotice: 現在開始索引。 這可能需要一段時間，請不要在一個小時內重啟你的伺服器。
 deleted: 已刪除
 editNote: 編輯筆記
-edited: 已修改
+edited: '於 {date} {time} 編輯'
 userSaysSomethingReason: '{name} 說了 {reason}'
 allowedInstancesDescription: 要加入聯邦白名單的服務器，每台伺服器用新行分隔（僅適用於私有模式）。
 defaultReaction: 默認的表情符號反應
@@ -1840,3 +1839,12 @@ subscribePushNotification: 啟用推送通知
 unsubscribePushNotification: 禁用推送通知
 pushNotificationAlreadySubscribed: 推送通知已經啟用
 recommendedInstancesDescription: 以每行分隔的推薦服務器出現在推薦的時間軸中。 不要添加 `https://`，只添加域名。
+searchPlaceholder: 搜尋 Calckey
+cw: 內容警告
+selectChannel: 選擇一個頻道
+newer: 較新
+older: 較舊
+jumpToPrevious: 跳到上一個
+removeReaction: 移除你的反應
+listsDesc: 清單可以創建一個只有您指定用戶的時間線。 可以從時間線頁面訪問它們。
+flagSpeakAsCatDescription: 在喵咪模式下你的貼文會被喵化ヾ(•ω•`)o

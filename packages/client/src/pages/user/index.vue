@@ -55,7 +55,7 @@ const props = withDefaults(
 	}>(),
 	{
 		page: "home",
-	}
+	},
 );
 
 const router = useRouter();
@@ -119,7 +119,7 @@ const headerTabs = $computed(() =>
 					  ]
 					: []),
 		  ]
-		: null
+		: null,
 );
 
 definePageMetadata(
@@ -138,8 +138,8 @@ definePageMetadata(
 						title: user.name,
 					},
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

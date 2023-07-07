@@ -7,6 +7,7 @@ import { argsToBools, convertTimelinesArgsId, limitToInt } from "./timeline.js";
 import { convertId, IdType } from "../../index.js";
 import {
 	convertAccount,
+	convertFeaturedTag,
 	convertList,
 	convertRelationship,
 	convertStatus,
@@ -42,8 +43,8 @@ export function apiAccountMastodon(router: Router): void {
 			acct.url = `${BASE_URL}/@${acct.url}`;
 			acct.note = acct.note || "";
 			acct.avatar_static = acct.avatar;
-			acct.header = acct.header || "https://http.cat/404";
-			acct.header_static = acct.header || "https://http.cat/404";
+			acct.header = acct.header || "/static-assets/transparent.png";
+			acct.header_static = acct.header || "/static-assets/transparent.png";
 			acct.source = {
 				note: acct.note,
 				fields: acct.fields,
@@ -156,6 +157,25 @@ export function apiAccountMastodon(router: Router): void {
 					convertTimelinesArgsId(argsToBools(limitToInt(ctx.query as any))),
 				);
 				ctx.body = data.data.map((status) => convertStatus(status));
+			} catch (e: any) {
+				console.error(e);
+				console.error(e.response.data);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
+		},
+	);
+	router.get<{ Params: { id: string } }>(
+		"/v1/accounts/:id/featured_tags",
+		async (ctx) => {
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getAccountFeaturedTags(
+					convertId(ctx.params.id, IdType.CalckeyId),
+				);
+				ctx.body = data.data.map((tag) => convertFeaturedTag(tag));
 			} catch (e: any) {
 				console.error(e);
 				console.error(e.response.data);
@@ -342,6 +362,34 @@ export function apiAccountMastodon(router: Router): void {
 			}
 		},
 	);
+	router.get("/v1/featured_tags", async (ctx) => {
+		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+		const accessTokens = ctx.headers.authorization;
+		const client = getClient(BASE_URL, accessTokens);
+		try {
+			const data = await client.getFeaturedTags();
+			ctx.body = data.data.map((tag) => convertFeaturedTag(tag));
+		} catch (e: any) {
+			console.error(e);
+			console.error(e.response.data);
+			ctx.status = 401;
+			ctx.body = e.response.data;
+		}
+	});
+	router.get("/v1/followed_tags", async (ctx) => {
+		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+		const accessTokens = ctx.headers.authorization;
+		const client = getClient(BASE_URL, accessTokens);
+		try {
+			const data = await client.getFollowedTags();
+			ctx.body = data.data;
+		} catch (e: any) {
+			console.error(e);
+			console.error(e.response.data);
+			ctx.status = 401;
+			ctx.body = e.response.data;
+		}
+	});
 	router.get("/v1/bookmarks", async (ctx) => {
 		const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
 		const accessTokens = ctx.headers.authorization;

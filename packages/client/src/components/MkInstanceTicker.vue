@@ -32,7 +32,7 @@ const instance = props.instance ?? {
 	name: instanceName,
 	themeColor: (
 		document.querySelector(
-			'meta[name="theme-color-orig"]'
+			'meta[name="theme-color-orig"]',
 		) as HTMLMetaElement
 	)?.content,
 	softwareName: Instance.softwareName || "Calckey",
@@ -86,8 +86,11 @@ function getInstanceIcon(instance): string {
 		font-weight: bold;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg),
-			-1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
+		text-shadow:
+			-1px -1px 0 var(--bg),
+			1px -1px 0 var(--bg),
+			-1px 1px 0 var(--bg),
+			1px 1px 0 var(--bg);
 		.article > .main &,
 		.header > .body & {
 			display: unset;

@@ -2,6 +2,12 @@ html {
 	background-color: var(--bg);
 	color: var(--fg);
 }
+@media (prefers-color-scheme: dark) {
+	html {
+		--bg: rgb(17, 17, 27);
+		--fg: rgb(224, 222, 244);
+	}
+}
 
 #splash {
 	position: fixed;

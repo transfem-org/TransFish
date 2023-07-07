@@ -39,7 +39,7 @@ const buttonRef = ref<HTMLElement>();
 const canRenote = computed(
 	() =>
 		["public", "home"].includes(props.note.visibility) ||
-		props.note.userId === $i.id
+		props.note.userId === $i.id,
 );
 
 useTooltip(buttonRef, async (showing) => {
@@ -61,7 +61,7 @@ useTooltip(buttonRef, async (showing) => {
 			targetElement: buttonRef.value,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 });
 
@@ -82,7 +82,6 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	if (props.note.visibility === "public") {
 		buttonActions.push({
 			text: i18n.ts.renote,
-			textStyle: "font-weight: bold",
 			icon: "ph-repeat ph-bold ph-lg",
 			danger: false,
 			action: () => {
@@ -206,7 +205,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 								renoteId: props.note.id,
 								visibility: props.note.visibility,
 								localOnly: true,
-						  }
+						  },
 				);
 				hasRenotedBefore = true;
 				const el =
@@ -251,6 +250,9 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 			},
 		});
 	}
+
+	buttonActions[0].textStyle = "font-weight: bold";
+
 	os.popupMenu(buttonActions, buttonRef.value, { viaKeyboard });
 };
 </script>

@@ -21,11 +21,16 @@
 				<XNote
 					v-if="
 						['reply', 'quote', 'mention'].includes(
-							notification.type
+							notification.type,
 						)
 					"
 					:key="notification.id"
 					:note="notification.note"
+					:collapsedReply="
+						notification.type === 'reply' ||
+						(notification.type === 'mention' &&
+							notification.note.replyId != null)
+					"
 				/>
 				<XNotification
 					v-else

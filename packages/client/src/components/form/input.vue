@@ -61,7 +61,7 @@ import { useInterval } from "@/scripts/use-interval";
 import { i18n } from "@/i18n";
 
 const props = defineProps<{
-	modelValue: string | number;
+	modelValue: string | number | null;
 	type?:
 		| "text"
 		| "number"
@@ -77,7 +77,7 @@ const props = defineProps<{
 	pattern?: string;
 	placeholder?: string;
 	autofocus?: boolean;
-	autocomplete?: boolean;
+	autocomplete?: string;
 	spellcheck?: boolean;
 	step?: any;
 	datalist?: string[];
@@ -108,6 +108,7 @@ const suffixEl = ref<HTMLElement>();
 const height = props.small ? 36 : props.large ? 40 : 38;
 
 const focus = () => inputEl.value.focus();
+const selectRange = (start, end) => inputEl.value.setSelectionRange(start, end);
 const onInput = (ev: KeyboardEvent) => {
 	changed.value = true;
 	emit("change", ev);
@@ -168,7 +169,7 @@ useInterval(
 	{
 		immediate: true,
 		afterMounted: true,
-	}
+	},
 );
 
 onMounted(() => {
@@ -177,6 +178,11 @@ onMounted(() => {
 			focus();
 		}
 	});
+});
+
+defineExpose({
+	focus,
+	selectRange,
 });
 </script>
 
@@ -254,6 +260,9 @@ onMounted(() => {
 					overflow: hidden;
 					white-space: nowrap;
 					text-overflow: ellipsis;
+				}
+				> :deep(button) {
+					pointer-events: all;
 				}
 			}
 

@@ -1179,8 +1179,8 @@ _time:
   day: "일"
 _2fa:
   alreadyRegistered: "이미 설정이 완료되었습니다."
-  registerDevice: "디바이스 등록"
-  registerKey: "키를 등록"
+  registerTOTP: "디바이스 등록"
+  registerSecurityKey: "키를 등록"
   step1: "먼저, {a}나 {b}등의 인증 앱을 사용 중인 디바이스에 설치합니다."
   step2: "그 후, 표시되어 있는 QR코드를 앱으로 스캔합니다."
   step2Url: "데스크톱 앱에서는 다음 URL을 입력하세요:"

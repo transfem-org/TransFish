@@ -99,7 +99,7 @@ import { acct } from "@/filters/user";
 import * as os from "@/os";
 import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { defaultStore } from "@/store";
-import { emojilist } from "@/scripts/emojilist";
+import { emojilist, addSkinTone } from "@/scripts/emojilist";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
@@ -113,20 +113,26 @@ type EmojiDef = {
 
 const lib = emojilist.filter((x) => x.category !== "flags");
 
+for (const emoji of lib) {
+	if (emoji.skin_tone_support) {
+		emoji.emoji = addSkinTone(emoji.emoji);
+	}
+}
+
 const emjdb: EmojiDef[] = lib.map((x) => ({
-	emoji: x.char,
-	name: x.name,
-	url: char2filePath(x.char),
+	emoji: x.emoji,
+	name: x.slug,
+	url: char2filePath(x.emoji),
 }));
 
 for (const x of lib) {
 	if (x.keywords) {
 		for (const k of x.keywords) {
 			emjdb.push({
-				emoji: x.char,
+				emoji: x.emoji,
 				name: k,
-				aliasOf: x.name,
-				url: char2filePath(x.char),
+				aliasOf: x.slug,
+				url: char2filePath(x.emoji),
 			});
 		}
 	}
@@ -262,7 +268,7 @@ function exec() {
 	} else if (props.type === "hashtag") {
 		if (!props.q || props.q === "") {
 			hashtags.value = JSON.parse(
-				localStorage.getItem("hashtags") || "[]"
+				localStorage.getItem("hashtags") || "[]",
 			);
 			fetching.value = false;
 		} else {
@@ -282,7 +288,7 @@ function exec() {
 					// キャッシュ
 					sessionStorage.setItem(
 						cacheKey,
-						JSON.stringify(searchedHashtags)
+						JSON.stringify(searchedHashtags),
 					);
 				});
 			}
@@ -292,7 +298,7 @@ function exec() {
 			// 最近使った絵文字をサジェスト
 			emojis.value = defaultStore.state.recentlyUsedEmojis
 				.map((emoji) =>
-					emojiDb.find((dbEmoji) => dbEmoji.emoji === emoji)
+					emojiDb.find((dbEmoji) => dbEmoji.emoji === emoji),
 				)
 				.filter((x) => x) as EmojiDef[];
 			return;
@@ -444,7 +450,7 @@ onMounted(() => {
 				nextTick(() => {
 					exec();
 				});
-			}
+			},
 		);
 	});
 });
@@ -464,7 +470,9 @@ onBeforeUnmount(() => {
 	max-width: 100%;
 	margin-top: calc(1em + 8px);
 	overflow: hidden;
-	transition: top 0.1s ease, left 0.1s ease;
+	transition:
+		top 0.1s ease,
+		left 0.1s ease;
 
 	> ol {
 		display: block;

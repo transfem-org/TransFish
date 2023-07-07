@@ -25,10 +25,10 @@
 						{{
 							t("_preferencesBackups.createdAt", {
 								date: new Date(
-									profile.createdAt
+									profile.createdAt,
 								).toLocaleDateString(),
 								time: new Date(
-									profile.createdAt
+									profile.createdAt,
 								).toLocaleTimeString(),
 							})
 						}}
@@ -37,10 +37,10 @@
 						{{
 							t("_preferencesBackups.updatedAt", {
 								date: new Date(
-									profile.updatedAt
+									profile.updatedAt,
 								).toLocaleDateString(),
 								time: new Date(
-									profile.updatedAt
+									profile.updatedAt,
 								).toLocaleTimeString(),
 							})
 						}}
@@ -110,11 +110,13 @@ const defaultStoreSaveKeys: (keyof (typeof defaultStore)["state"])[] = [
 	"squareAvatars",
 	"numberOfPageCache",
 	"showUpdates",
+	"swipeOnMobile",
 	"swipeOnDesktop",
 	"showAdminUpdates",
 	"enableCustomKaTeXMacro",
 	"enableEmojiReactions",
 	"showEmojisInReactionNotifications",
+	"showTimelineReplies",
 ];
 const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	"lightTheme",
@@ -175,7 +177,7 @@ function validate(profile: unknown): void {
 	// Check if unnecessary properties exist
 	if (
 		Object.keys(profile).some(
-			(key) => !profileProps.includes(key) && key !== "host"
+			(key) => !profileProps.includes(key) && key !== "host",
 		)
 	)
 		throw new Error("Unnecessary properties exist");
@@ -455,7 +457,7 @@ function menu(ev: MouseEvent, profileId: string) {
 				href: URL.createObjectURL(
 					new Blob([JSON.stringify(profiles[profileId], null, 2)], {
 						type: "application/json",
-					})
+					}),
 				),
 				download: `${profiles[profileId].name}.json`,
 			},
@@ -478,7 +480,7 @@ function menu(ev: MouseEvent, profileId: string) {
 				danger: true,
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 
@@ -496,7 +498,7 @@ onMounted(() => {
 			if (!profiles) return;
 
 			profiles[key] = value;
-		}
+		},
 	);
 });
 
@@ -509,7 +511,7 @@ definePageMetadata(
 		title: ts.preferencesBackups,
 		icon: "ph-floppy-disk ph-bold ph-lg",
 		bg: "var(--bg)",
-	}))
+	})),
 );
 </script>
 

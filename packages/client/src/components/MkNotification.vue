@@ -73,7 +73,7 @@
 						notification.reaction
 							? notification.reaction.replace(
 									/^:(\w+):$/,
-									':$1@.:'
+									':$1@.:',
 							  )
 							: notification.reaction
 					"
@@ -219,6 +219,7 @@
 					<MkFollowButton
 						:user="notification.user"
 						:full="true"
+						:hideMenu="true"
 					/></div
 			></span>
 			<span
@@ -296,7 +297,7 @@ const props = withDefaults(
 	{
 		withTime: false,
 		full: false,
-	}
+	},
 );
 
 const elRef = ref<HTMLElement>(null);
@@ -377,7 +378,7 @@ useTooltip(reactionRef, (showing) => {
 			targetElement: reactionRef.value.$el,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 });
 </script>

@@ -155,13 +155,13 @@ let ffVisibility = $ref($i.ffVisibility);
 let preventAiLearning = $ref($i.preventAiLearning);
 
 let defaultNoteVisibility = $computed(
-	defaultStore.makeGetterSetter("defaultNoteVisibility")
+	defaultStore.makeGetterSetter("defaultNoteVisibility"),
 );
 let defaultNoteLocalOnly = $computed(
-	defaultStore.makeGetterSetter("defaultNoteLocalOnly")
+	defaultStore.makeGetterSetter("defaultNoteLocalOnly"),
 );
 let rememberNoteVisibility = $computed(
-	defaultStore.makeGetterSetter("rememberNoteVisibility")
+	defaultStore.makeGetterSetter("rememberNoteVisibility"),
 );
 let keepCw = $computed(defaultStore.makeGetterSetter("keepCw"));
 

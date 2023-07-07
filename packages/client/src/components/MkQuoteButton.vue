@@ -24,7 +24,7 @@ const props = defineProps<{
 const canRenote = computed(
 	() =>
 		["public", "home"].includes(props.note.visibility) ||
-		props.note.userId === $i?.id
+		props.note.userId === $i?.id,
 );
 
 function quote(): void {

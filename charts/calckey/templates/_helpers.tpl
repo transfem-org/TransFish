@@ -137,7 +137,9 @@ db:
 
   # Extra Connection options
   #extra:
-  #  ssl: true
+  #  ssl:
+  #   host: localhost
+  #   rejectUnauthorized: false
 
 #   ┌─────────────────────┐
 #───┘ Redis configuration └─────────────────────────────────────
@@ -157,6 +159,10 @@ redis:
   {{- if .Values.redis.db }}
   db: {{ .Values.redis.db }}
   {{- end }}
+	#user: default
+	#tls:
+  #  host: localhost
+  #  rejectUnauthorized: false
 
 # Please configure either MeiliSearch *or* Sonic.
 # If both MeiliSearch and Sonic configurations are present, MeiliSearch will take precedence.

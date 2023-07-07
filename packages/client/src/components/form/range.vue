@@ -23,9 +23,9 @@
 				/>
 				<datalist v-if="showTicks && steps" :id="id">
 					<option
-						v-for="i in steps + 1"
-						:value="i"
-						:label="i.toString()"
+						v-for="i in steps"
+						:value="i + min"
+						:label="(i + min).toString()"
 					></option>
 				</datalist>
 			</div>
@@ -55,7 +55,7 @@ const props = withDefaults(
 		step: 1,
 		textConverter: (v) => v.toString(),
 		easing: false,
-	}
+	},
 );
 
 const inputEl = ref<HTMLElement>();
@@ -90,7 +90,7 @@ function tooltipShow() {
 			targetElement: inputEl,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 function tooltipHide() {

@@ -36,6 +36,10 @@ const props = defineProps<{
 	note: misskey.entities.Note;
 }>();
 
+const emit = defineEmits<{
+	(ev: "reacted", v): void;
+}>();
+
 const buttonRef = ref<HTMLElement>();
 
 const canToggle = computed(() => !props.reaction.match(/@\w/) && $i);
@@ -60,6 +64,7 @@ const toggleReaction = () => {
 			noteId: props.note.id,
 			reaction: props.reaction,
 		});
+		emit("reacted");
 	}
 };
 
@@ -86,10 +91,10 @@ useTooltip(
 				targetElement: buttonRef.value,
 			},
 			{},
-			"closed"
+			"closed",
 		);
 	},
-	100
+	100,
 );
 </script>
 
@@ -101,6 +106,7 @@ useTooltip(
 	padding: 0 6px;
 	border-radius: 4px;
 	pointer-events: all;
+	min-width: max-content;
 	&.newlyAdded {
 		animation: scaleInSmall 0.3s cubic-bezier(0, 0, 0, 1.2);
 		:deep(.mk-emoji) {
@@ -132,6 +138,7 @@ useTooltip(
 	}
 
 	&.reacted {
+		order: -1;
 		background: var(--accent);
 
 		&:hover {

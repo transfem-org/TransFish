@@ -21,10 +21,9 @@
 				:space-between="20"
 				:virtual="true"
 				:allow-touch-move="
-					!(
-						deviceKind === 'desktop' &&
-						!defaultStore.state.swipeOnDesktop
-					)
+					defaultStore.state.swipeOnMobile &&
+					(deviceKind !== 'desktop' ||
+						defaultStore.state.swipeOnDesktop)
 				"
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
@@ -316,7 +315,7 @@
 								:key="user.id"
 								v-tooltip.mfm="
 									`Last posted: ${new Date(
-										user.updatedAt
+										user.updatedAt,
 									).toLocaleString()}`
 								"
 								class="user"
@@ -499,7 +498,7 @@ if (iAmAdmin) {
 			key: "raw",
 			title: "Raw",
 			icon: "ph-code ph-bold ph-lg",
-		}
+		},
 	);
 }
 

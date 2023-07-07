@@ -182,7 +182,7 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { $i } from "@/account";
 
 const XDraggable = defineAsyncComponent(() =>
-	import("vuedraggable").then((x) => x.default)
+	import("vuedraggable").then((x) => x.default),
 );
 
 const props = defineProps<{
@@ -407,7 +407,7 @@ function getScriptBlockList(type: string = null) {
 			type == null ||
 			block.out == null ||
 			block.out === type ||
-			typeof block.out === "number"
+			typeof block.out === "number",
 	);
 
 	for (const block of blocks) {
@@ -463,7 +463,7 @@ async function init() {
 		() => {
 			hpml.variables = variables;
 		},
-		{ deep: true }
+		{ deep: true },
 	);
 
 	watch(
@@ -471,7 +471,7 @@ async function init() {
 		() => {
 			hpml.pageVars = collectPageVars(content);
 		},
-		{ deep: true }
+		{ deep: true },
 	);
 
 	if (props.initPageId) {
@@ -552,7 +552,7 @@ definePageMetadata(
 			title: title,
 			icon: "ph-pencil ph-bold ph-lg",
 		};
-	})
+	}),
 );
 </script>
 

@@ -18,17 +18,21 @@
 				<div class="info">
 					<MkA class="created-at" :to="notePage(note)">
 						<MkTime :time="note.createdAt" />
-						<MkTime
+						<i
 							v-if="note.updatedAt"
-							:time="note.updatedAt"
-							mode="none"
-						>
-							<i
-								v-tooltip.noDelay="i18n.ts.edited"
-								class="ph-pencil ph-bold"
-								style="margin-left: 0.4rem"
-							></i>
-						</MkTime>
+							v-tooltip.noDelay="
+								i18n.t('edited', {
+									date: new Date(
+										note.updatedAt,
+									).toLocaleDateString(),
+									time: new Date(
+										note.updatedAt,
+									).toLocaleTimeString(),
+								})
+							"
+							class="ph-pencil ph-bold"
+							style="margin-left: 0.4rem"
+						></i>
 					</MkA>
 					<MkVisibility :note="note" />
 				</div>

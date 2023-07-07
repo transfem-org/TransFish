@@ -1,4 +1,4 @@
-import { Entity } from "@calckey/megalodon";
+import { Entity } from "megalodon";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { Users, Notes } from "@/models/index.js";
 import { IsNull, MoreThan } from "typeorm";
@@ -12,7 +12,7 @@ export async function getInstance(response: Entity.Instance) {
 		uri: response.uri,
 		title: response.title || "Calckey",
 		short_description:
-			response.description.substring(0, 50) || "See real server website",
+			response.description?.substring(0, 50) || "See real server website",
 		description:
 			response.description ||
 			"This is a vanilla Calckey Instance. It doesnt seem to have a description. BTW you are using the Mastodon api to access this server :)",
@@ -24,7 +24,7 @@ export async function getInstance(response: Entity.Instance) {
 			status_count: await totalStatuses,
 			domain_count: response.stats.domain_count,
 		},
-		thumbnail: response.thumbnail || "https://http.cat/404",
+		thumbnail: response.thumbnail || "/static-assets/transparent.png",
 		languages: meta.langs,
 		registrations: !meta.disableRegistration || response.registrations,
 		approval_required: !response.registrations,
@@ -96,8 +96,8 @@ export async function getInstance(response: Entity.Instance) {
 			url: `${response.uri}/`,
 			avatar: `${response.uri}/static-assets/badges/info.png`,
 			avatar_static: `${response.uri}/static-assets/badges/info.png`,
-			header: "https://http.cat/404",
-			header_static: "https://http.cat/404",
+			header: "/static-assets/transparent.png",
+			header_static: "/static-assets/transparent.png",
 			followers_count: -1,
 			following_count: 0,
 			statuses_count: 0,

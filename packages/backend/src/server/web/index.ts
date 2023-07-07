@@ -247,7 +247,14 @@ router.get("/api.json", async (ctx) => {
 	ctx.body = genOpenapiSpec();
 });
 
-const getFeed = async (acct: string) => {
+const getFeed = async (
+	acct: string,
+	threadDepth: string,
+	historyCount: string,
+	noteInTitle: string,
+	noRenotes: string,
+	noReplies: string,
+) => {
 	const meta = await fetchMeta();
 	if (meta.privateMode) {
 		return;
@@ -257,14 +264,36 @@ const getFeed = async (acct: string) => {
 		usernameLower: username.toLowerCase(),
 		host: host ?? IsNull(),
 		isSuspended: false,
+		isLocked: false,
 	});
-
-	return user && (await packFeed(user));
+	if (!user) {
+		return;
+	}
+	let thread = parseInt(threadDepth, 10);
+	if (isNaN(thread) || thread < 0 || thread > 30) {
+		thread = 3;
+	}
+	let history = parseInt(historyCount, 10);
+	//cant be 0 here or it will get all posts
+	if (isNaN(history) || history <= 0 || history > 30) {
+		history = 20;
+	}
+	return (
+		user &&
+		(await packFeed(
+			user,
+			thread,
+			history,
+			!isNaN(noteInTitle),
+			isNaN(noRenotes),
+			isNaN(noReplies),
+		))
+	);
 };
 
 // As the /@user[.json|.rss|.atom]/sub endpoint is complicated, we will use a regex to switch between them.
 const reUser = new RegExp(
-	"^/@(?<user>[^/]+?)(?:.(?<feed>json|rss|atom))?(?:/(?<sub>[^/]+))?$",
+	"^/@(?<user>[^/]+?)(?:.(?<feed>json|rss|atom)(?:\\?[^/]*)?)?(?:/(?<sub>[^/]+))?$",
 );
 router.get(reUser, async (ctx, next) => {
 	const groups = reUser.exec(ctx.originalUrl)?.groups;
@@ -275,7 +304,7 @@ router.get(reUser, async (ctx, next) => {
 
 	ctx.params = groups;
 
-	console.log(ctx, ctx.params);
+	//console.log(ctx, ctx.params, ctx.query);
 	if (groups.feed) {
 		if (groups.sub) {
 			await next();
@@ -301,7 +330,14 @@ router.get(reUser, async (ctx, next) => {
 
 // Atom
 const atomFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user);
+	const feed = await getFeed(
+		ctx.params.user,
+		ctx.query.thread,
+		ctx.query.history,
+		ctx.query.noteintitle,
+		ctx.query.norenotes,
+		ctx.query.noreplies,
+	);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/atom+xml; charset=utf-8");
@@ -313,7 +349,14 @@ const atomFeed: Router.Middleware = async (ctx) => {
 
 // RSS
 const rssFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user);
+	const feed = await getFeed(
+		ctx.params.user,
+		ctx.query.thread,
+		ctx.query.history,
+		ctx.query.noteintitle,
+		ctx.query.norenotes,
+		ctx.query.noreplies,
+	);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/rss+xml; charset=utf-8");
@@ -325,7 +368,14 @@ const rssFeed: Router.Middleware = async (ctx) => {
 
 // JSON
 const jsonFeed: Router.Middleware = async (ctx) => {
-	const feed = await getFeed(ctx.params.user);
+	const feed = await getFeed(
+		ctx.params.user,
+		ctx.query.thread,
+		ctx.query.history,
+		ctx.query.noteintitle,
+		ctx.query.norenotes,
+		ctx.query.noreplies,
+	);
 
 	if (feed) {
 		ctx.set("Content-Type", "application/json; charset=utf-8");
@@ -367,7 +417,7 @@ const userPage: Router.Middleware = async (ctx, next) => {
 		profile,
 		me,
 		avatarUrl: await Users.getAvatarUrl(user),
-		sub: subParam
+		sub: subParam,
 	};
 
 	await ctx.render("user", userDetail);
@@ -418,7 +468,7 @@ router.get("/notes/:note", async (ctx, next) => {
 			ctx.set("Cache-Control", "public, max-age=15");
 			ctx.set(
 				"Content-Security-Policy",
-				"default-src 'self' 'unsafe-inline'; img-src '*'; frame-ancestors '*'",
+				"default-src 'self' 'unsafe-inline'; img-src *; frame-ancestors *",
 			);
 
 			return;
@@ -446,7 +496,7 @@ router.get("/posts/:note", async (ctx, next) => {
 				await Users.findOneByOrFail({ id: note.userId }),
 			),
 			// TODO: Let locale changeable by instance setting
-			summary: getNoteSummary(_note)
+			summary: getNoteSummary(_note),
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -482,7 +532,7 @@ router.get("/@:user/pages/:page", async (ctx, next) => {
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: page.userId }),
-			)
+			),
 		});
 
 		if (["public"].includes(page.visibility)) {
@@ -514,7 +564,7 @@ router.get("/clips/:clip", async (ctx, next) => {
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: clip.userId }),
-			)
+			),
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -539,7 +589,7 @@ router.get("/gallery/:post", async (ctx, next) => {
 			profile,
 			avatarUrl: await Users.getAvatarUrl(
 				await Users.findOneByOrFail({ id: post.userId }),
-			)
+			),
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -561,7 +611,7 @@ router.get("/channels/:channel", async (ctx, next) => {
 		const meta = await fetchMeta();
 		await ctx.render("channel", {
 			...metaToPugArgs(meta),
-			channel: _channel
+			channel: _channel,
 		});
 
 		ctx.set("Cache-Control", "public, max-age=15");
@@ -612,9 +662,9 @@ router.get("/api/v1/streaming", async (ctx) => {
 // Render base html for all requests
 router.get("(.*)", async (ctx) => {
 	const meta = await fetchMeta();
-	
+
 	await ctx.render("base", {
-		...metaToPugArgs(meta)
+		...metaToPugArgs(meta),
 	});
 	ctx.set("Cache-Control", "public, max-age=3");
 });

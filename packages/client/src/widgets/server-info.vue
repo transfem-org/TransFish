@@ -53,7 +53,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 defineExpose<WidgetComponentExpose>({
@@ -101,8 +101,11 @@ defineExpose<WidgetComponentExpose>({
 .name,
 .host {
 	color: var(--fg);
-	text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg),
-		-1px 1px 0 var(--bg), 1px 1px 0 var(--bg);
+	text-shadow:
+		-1px -1px 0 var(--bg),
+		1px -1px 0 var(--bg),
+		-1px 1px 0 var(--bg),
+		1px 1px 0 var(--bg);
 }
 
 .name {

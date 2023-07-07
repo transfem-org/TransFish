@@ -9,16 +9,26 @@
 			<template #icon></template>
 		</I18n>
 	</MkInfo>
+	<div v-if="queue > 0" class="new">
+		<button
+			class="_buttonPrimary _shadow"
+			@click="tlComponent.scrollTop()"
+			:class="{ instant: !$store.state.animation }"
+		>
+			{{ i18n.ts.newNoteRecived }}
+			<i class="ph-arrow-up ph-bold"></i>
+		</button>
+	</div>
 	<XNotes
 		ref="tlComponent"
 		:no-gap="!$store.state.showGapBetweenNotesInTimeline"
 		:pagination="pagination"
-		@queue="emit('queue', $event)"
+		@queue="(x) => (queue = x)"
 	/>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, provide, onUnmounted } from "vue";
+import { ref, watch, computed, provide, onUnmounted } from "vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import * as os from "@/os";
@@ -36,6 +46,8 @@ const props = defineProps<{
 	sound?: boolean;
 }>();
 
+let queue = $ref(0);
+
 const emit = defineEmits<{
 	(ev: "note"): void;
 	(ev: "queue", count: number): void;
@@ -43,7 +55,7 @@ const emit = defineEmits<{
 
 provide(
 	"inChannel",
-	computed(() => props.src === "channel")
+	computed(() => props.src === "channel"),
 );
 
 const tlComponent: InstanceType<typeof XNotes> = $ref();
@@ -91,7 +103,12 @@ if (props.src === "antenna") {
 	connection.on("note", prepend);
 } else if (props.src === "home") {
 	endpoint = "notes/timeline";
-	connection = stream.useChannel("homeTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("homeTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	connection2 = stream.useChannel("main");
@@ -102,28 +119,48 @@ if (props.src === "antenna") {
 	tlHintClosed = defaultStore.state.tlHomeHintClosed;
 } else if (props.src === "local") {
 	endpoint = "notes/local-timeline";
-	connection = stream.useChannel("localTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("localTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_4;
 	tlHintClosed = defaultStore.state.tlLocalHintClosed;
 } else if (props.src === "recommended") {
 	endpoint = "notes/recommended-timeline";
-	connection = stream.useChannel("recommendedTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("recommendedTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_6;
 	tlHintClosed = defaultStore.state.tlRecommendedHintClosed;
 } else if (props.src === "social") {
 	endpoint = "notes/hybrid-timeline";
-	connection = stream.useChannel("hybridTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("hybridTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_5;
 	tlHintClosed = defaultStore.state.tlSocialHintClosed;
 } else if (props.src === "global") {
 	endpoint = "notes/global-timeline";
-	connection = stream.useChannel("globalTimeline");
+	query = {
+		withReplies: defaultStore.state.showTimelineReplies,
+	};
+	connection = stream.useChannel("globalTimeline", {
+		withReplies: defaultStore.state.showTimelineReplies,
+	});
 	connection.on("note", prepend);
 
 	tlHint = i18n.ts._tutorial.step5_7;
@@ -204,3 +241,73 @@ const timetravel = (date?: Date) => {
 };
 */
 </script>
+<style lang="scss" scoped>
+@keyframes slideUp {
+	to {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
+}
+.new {
+	position: sticky;
+	display: flex;
+	justify-content: center;
+	top: calc(var(--stickyTop, 0px) - 60px);
+	width: 600px;
+	max-width: 100%;
+	height: 60px;
+	pointer-events: none;
+	margin: auto;
+	margin-top: -60px;
+	z-index: 1001;
+	box-shadow: 0 24px 24px -20px var(--accentedBg);
+	&::after {
+		content: "";
+		position: absolute;
+		inset: -2px 0;
+		border: 2px solid var(--accentDarken);
+		mask: linear-gradient(
+			to right,
+			transparent,
+			black 40% 60%,
+			transparent
+		);
+		-webkit-mask: linear-gradient(
+			to right,
+			transparent,
+			black 40% 60%,
+			transparent
+		);
+	}
+	> button {
+		display: flex;
+		position: absolute;
+		top: 120%;
+		margin-inline: auto;
+		border-radius: 2em;
+		padding: 0.5em 1.2em;
+		background: var(--accentedBg);
+		border: 0;
+		color: var(--accent);
+		overflow: hidden;
+		pointer-events: all;
+		transform: translateY(-100%);
+		opacity: 0;
+		animation:
+			reset 0.4s forwards cubic-bezier(0, 0.4, 0, 1.1),
+			slideUp 1s 5s forwards cubic-bezier(1, 0, 1, 1);
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: var(--bg);
+			z-index: -1;
+		}
+		i {
+			margin-left: 0.7em;
+			border-left: 1px solid var(--accentedBg);
+			padding-left: 0.4em;
+		}
+	}
+}
+</style>

@@ -308,7 +308,7 @@ watch(router.currentRef, (to) => {
 });
 
 const emailNotConfigured = computed(
-	() => instance.enableEmail && ($i.email == null || !$i.emailVerified)
+	() => instance.enableEmail && ($i.email == null || !$i.emailVerified),
 );
 
 provideMetadataReceiver((info) => {
@@ -331,6 +331,11 @@ definePageMetadata(INFO);
 <style lang="scss" scoped>
 .vvcocwet {
 	> .body {
+		.wallpaper & {
+			background: var(--bg);
+			padding: var(--margin);
+			border-radius: var(--radius);
+		}
 		> .nav {
 			.baaadecd {
 				> .info {

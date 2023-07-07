@@ -144,7 +144,7 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 	if (isLink(ev.target)) return;
 	if (
 		["INPUT", "TEXTAREA", "IMG", "VIDEO", "CANVAS"].includes(
-			ev.target.tagName
+			ev.target.tagName,
 		) ||
 		ev.target.attributes["contenteditable"]
 	)
@@ -165,13 +165,16 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 				},
 			},
 		],
-		ev
+		ev,
 	);
 }
 </script>
 
 <style lang="scss" scoped>
 .vjoppmmu {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 	> header {
 		margin: 16px 0;
 
@@ -184,7 +187,7 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 	> .widget,
 	.customize-container {
 		contain: content;
-		margin: var(--margin) 0;
+		margin-bottom: var(--margin);
 
 		&:first-of-type {
 			margin-top: 0;

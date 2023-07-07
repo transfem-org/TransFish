@@ -17,10 +17,9 @@
 				:space-between="20"
 				:virtual="true"
 				:allow-touch-move="
-					!(
-						deviceKind === 'desktop' &&
-						!defaultStore.state.swipeOnDesktop
-					)
+					defaultStore.state.swipeOnMobile &&
+					(deviceKind !== 'desktop' ||
+						defaultStore.state.swipeOnDesktop)
 				"
 				@swiper="setSwiperRef"
 				@slide-change="onSlideChange"
@@ -93,9 +92,9 @@
 					>
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview
-								v-for="post in items"
-								:key="post.id"
-								:post="post"
+								v-for="mypost in items"
+								:key="mypost.id"
+								:post="mypost"
 								class="post"
 							/>
 						</div>
@@ -154,7 +153,7 @@ watch(
 	() => props.tag,
 	() => {
 		if (tagsRef) tagsRef.tags.toggleContent(props.tag == null);
-	}
+	},
 );
 
 const headerActions = $computed(() => [

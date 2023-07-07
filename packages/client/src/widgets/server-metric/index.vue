@@ -39,7 +39,9 @@
 				:meta="meta"
 			/>
 			<XMeili
-				v-else-if="instance.searchFilters && widgetProps.view === 5"
+				v-else-if="
+					instance.features.searchFilters && widgetProps.view === 5
+				"
 				:connection="connection"
 				:meta="meta"
 			/>
@@ -99,19 +101,19 @@ const { widgetProps, configure, save } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const meta = ref(null);
 
-os.api("server-info", {}).then((res) => {
+os.apiGet("server-info", {}).then((res) => {
 	meta.value = res;
 });
 
 const toggleView = () => {
 	if (
-		(widgetProps.view === 5 && instance.searchFilters) ||
-		(widgetProps.view === 4 && !instance.searchFilters)
+		(widgetProps.view === 5 && instance.features.searchFilters) ||
+		(widgetProps.view === 4 && !instance.features.searchFilters)
 	) {
 		widgetProps.view = 0;
 	} else {

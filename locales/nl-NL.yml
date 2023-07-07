@@ -413,7 +413,7 @@ selectList: Selecteer een lijst
 selectAntenna: Selecteer een antenne
 deleted: Verwijderd
 editNote: Bewerk notitie
-edited: Bewerkt
+edited: 'Bewerkt om {date} {time}'
 emojis: Emojis
 emojiName: Emoji naam
 emojiUrl: Emoji URL

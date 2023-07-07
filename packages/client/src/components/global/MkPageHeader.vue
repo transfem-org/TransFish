@@ -33,7 +33,7 @@
 				@click="showTabsPopup"
 			>
 				<MkAvatar
-					v-if="metadata.avatar"
+					v-if="metadata && metadata.avatar"
 					class="avatar"
 					:user="metadata.avatar"
 					:show-indicator="true"
@@ -91,7 +91,7 @@
 			</nav>
 		</template>
 		<div class="buttons right">
-			<template v-if="metadata.avatar">
+			<template v-if="metadata && metadata.avatar">
 				<MkFollowButton
 					v-if="narrow"
 					:user="metadata.avatar"
@@ -164,7 +164,7 @@ const props = defineProps<{
 
 const displayBackButton =
 	props.displayBackButton &&
-	history.length > 2 &&
+	history.length > 1 &&
 	inject("shouldBackButton", true);
 
 const emit = defineEmits<{
@@ -194,7 +194,7 @@ const openAccountMenu = (ev: MouseEvent) => {
 		{
 			withExtraOperation: true,
 		},
-		ev
+		ev,
 	);
 };
 
@@ -278,7 +278,7 @@ onMounted(() => {
 		},
 		{
 			immediate: true,
-		}
+		},
 	);
 
 	if (el && el.parentElement) {
@@ -307,6 +307,8 @@ onUnmounted(() => {
 	padding-inline: 24px;
 	box-sizing: border-box;
 	overflow: hidden;
+	-webkit-backdrop-filter: var(--blur, blur(15px));
+	backdrop-filter: var(--blur, blur(15px));
 	@media (max-width: 500px) {
 		padding-inline: 16px;
 		&.tabs > .buttons > :deep(.follow-button > span) {
@@ -345,8 +347,6 @@ onUnmounted(() => {
 		position: absolute;
 		inset: 0;
 		border-bottom: solid 0.5px var(--divider);
-		-webkit-backdrop-filter: var(--blur, blur(15px));
-		backdrop-filter: var(--blur, blur(15px));
 		z-index: -1;
 	}
 	&::after {
@@ -390,6 +390,7 @@ onUnmounted(() => {
 		height: var(--height);
 		&.right {
 			justify-content: flex-end;
+			z-index: 2;
 			// margin-right: calc(0px - var(--margin));
 			// margin-left: var(--margin);
 			> .button:last-child {
@@ -430,7 +431,8 @@ onUnmounted(() => {
 
 			> .icon {
 				margin-right: 8px;
-				width: 16px;
+				min-width: 16px;
+				width: 1em;
 				text-align: center;
 			}
 
@@ -507,10 +509,11 @@ onUnmounted(() => {
 		}
 
 		&.collapse {
-			--width: 38px;
+			--width: 2.7em;
+			// --width: 1.33333em
 			> .tab {
-				width: 38px;
-				min-width: 38px !important;
+				width: 2.7em;
+				min-width: 2.7em !important;
 				&:not(.active) > .title {
 					opacity: 0;
 				}
@@ -530,7 +533,11 @@ onUnmounted(() => {
 			font-weight: normal;
 			opacity: 0.7;
 			overflow: hidden;
-			transition: color 0.2s, opacity 0.2s, width 0.2s, min-width 0.2s;
+			transition:
+				color 0.2s,
+				opacity 0.2s,
+				width 0.2s,
+				min-width 0.2s;
 			--width: 38px;
 
 			&:hover {
@@ -559,7 +566,9 @@ onUnmounted(() => {
 			height: 3px;
 			background: var(--accent);
 			border-radius: 999px;
-			transition: width 0.2s, transform 0.2s;
+			transition:
+				width 0.2s,
+				transform 0.2s;
 			transition-timing-function: cubic-bezier(0, 0, 0, 1.2);
 			pointer-events: none;
 		}

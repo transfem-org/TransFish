@@ -58,7 +58,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const text = ref<string | null>(defaultStore.state.memo);
@@ -80,7 +80,7 @@ watch(
 	() => defaultStore.reactiveState.memo,
 	(newText) => {
 		text.value = newText.value;
-	}
+	},
 );
 
 defineExpose<WidgetComponentExpose>({

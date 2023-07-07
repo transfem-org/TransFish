@@ -5,18 +5,25 @@
 		v-show="!isDeleted"
 		ref="el"
 		v-hotkey="keymap"
-		v-size="{ max: [500, 450, 350] }"
+		v-size="{ max: [500, 350] }"
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
 		:id="appearNote.id"
 	>
 		<MkNoteSub
-			v-if="appearNote.reply && !detailedView"
+			v-if="appearNote.reply && !detailedView && !collapsedReply"
 			:note="appearNote.reply"
 			class="reply-to"
 		/>
-		<div v-if="!detailedView" class="note-context" @click="noteClick">
+		<div
+			v-if="!detailedView"
+			class="note-context"
+			@click="noteClick"
+			:class="{
+				collapsedReply: collapsedReply && appearNote.reply,
+			}"
+		>
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
 				<i class="ph-megaphone-simple-bold ph-lg"></i>
@@ -63,6 +70,20 @@
 					<MkVisibility :note="note" />
 				</div>
 			</div>
+			<div v-if="collapsedReply && appearNote.reply" class="info">
+				<MkAvatar class="avatar" :user="appearNote.reply.user" />
+				<MkUserName
+					class="username"
+					:user="appearNote.reply.user"
+				></MkUserName>
+				<Mfm
+					class="summary"
+					:text="getNoteSummary(appearNote.reply)"
+					:plain="true"
+					:nowrap="true"
+					:custom-emojis="note.emojis"
+				/>
+			</div>
 		</div>
 		<article
 			class="article"
@@ -75,11 +96,7 @@
 			<div class="main">
 				<div class="header-container">
 					<MkAvatar class="avatar" :user="appearNote.user" />
-					<XNoteHeader
-						class="header"
-						:note="appearNote"
-						:mini="true"
-					/>
+					<XNoteHeader class="header" :note="appearNote" />
 				</div>
 				<div class="body">
 					<MkSubNoteContent
@@ -111,8 +128,15 @@
 						</div>
 					</div>
 				</div>
-				<div v-if="detailedView" class="info">
-					<MkA class="created-at" :to="notePage(appearNote)">
+				<div
+					v-if="detailedView || (appearNote.channel && !inChannel)"
+					class="info"
+				>
+					<MkA
+						v-if="detailedView"
+						class="created-at"
+						:to="notePage(appearNote)"
+					>
 						<MkTime :time="appearNote.createdAt" mode="absolute" />
 					</MkA>
 					<MkA
@@ -120,7 +144,7 @@
 						class="channel"
 						:to="`/channels/${appearNote.channel.id}`"
 						@click.stop
-						><i class="ph-television ph-bold ph-lg"></i>
+						><i class="ph-television ph-bold"></i>
 						{{ appearNote.channel.name }}</MkA
 					>
 				</div>
@@ -156,7 +180,7 @@
 						:count="
 							Object.values(appearNote.reactions).reduce(
 								(partialSum, val) => partialSum + val,
-								0
+								0,
 							)
 						"
 						:reacted="appearNote.myReaction != null"
@@ -190,6 +214,7 @@
 						ref="reactButton"
 						class="button _button reacted"
 						@click="undoReact(appearNote)"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -206,7 +231,12 @@
 			</div>
 		</article>
 	</div>
-	<button v-else class="muted _button" @click="muted.muted = false">
+	<button
+		v-else
+		class="muted _button"
+		@click="muted.muted = false"
+		@contextmenu.stop.prevent
+	>
 		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
 			<template #name>
 				<MkA
@@ -259,6 +289,7 @@ import { getNoteMenu } from "@/scripts/get-note-menu";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { notePage } from "@/filters/note";
 import { deepClone } from "@/scripts/clone";
+import { getNoteSummary } from "@/scripts/get-note-summary";
 
 const router = useRouter();
 
@@ -266,6 +297,7 @@ const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 	detailedView?: boolean;
+	collapsedReply?: boolean;
 }>();
 
 const inChannel = inject("inChannel", null);
@@ -307,7 +339,7 @@ const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
 let appearNote = $computed(() =>
-	isRenote ? (note.renote as misskey.entities.Note) : note
+	isRenote ? (note.renote as misskey.entities.Note) : note,
 );
 const isMyRenote = $i && $i.id === note.userId;
 const showContent = ref(false);
@@ -344,7 +376,7 @@ function reply(viaKeyboard = false): void {
 		},
 		() => {
 			focus();
-		}
+		},
 	);
 }
 
@@ -361,7 +393,7 @@ function react(viaKeyboard = false): void {
 		},
 		() => {
 			focus();
-		}
+		},
 	);
 }
 
@@ -375,7 +407,7 @@ function undoReact(note): void {
 
 const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 	"currentClipPage",
-	null
+	null,
 );
 
 function onContextmenu(ev: MouseEvent): void {
@@ -441,7 +473,7 @@ function onContextmenu(ev: MouseEvent): void {
 					  }
 					: undefined,
 			],
-			ev
+			ev,
 		);
 	}
 }
@@ -459,7 +491,7 @@ function menu(viaKeyboard = false): void {
 		menuButton.value,
 		{
 			viaKeyboard,
-		}
+		},
 	).then(focus);
 }
 
@@ -482,7 +514,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 		renoteTime.value,
 		{
 			viaKeyboard: viaKeyboard,
-		}
+		},
 	);
 }
 
@@ -618,19 +650,20 @@ defineExpose({
 			.line::before {
 				content: "";
 				display: block;
-				margin-bottom: -10px;
+				margin-bottom: -4px;
 				margin-top: 16px;
-				border-left: 2px solid var(--X13);
+				border-left: 2px solid currentColor;
 				margin-left: calc((var(--avatarSize) / 2) - 1px);
+				opacity: 0.25;
 			}
 		}
 	}
 
 	.note-context {
 		position: relative;
-		z-index: 2;
 		padding: 0 32px 0 32px;
 		display: flex;
+		z-index: 1;
 		&:first-child {
 			margin-top: 20px;
 		}
@@ -709,12 +742,56 @@ defineExpose({
 				}
 			}
 		}
+
+		&.collapsedReply {
+			.line {
+				opacity: 0.25;
+				&::after {
+					content: "";
+					position: absolute;
+					border-left: 2px solid currentColor;
+					border-top: 2px solid currentColor;
+					margin-left: calc(var(--avatarSize) / 2 - 1px);
+					width: calc(var(--avatarSize) / 2 + 14px);
+					border-top-left-radius: calc(var(--avatarSize) / 4);
+					top: calc(50% - 1px);
+					height: calc(50% + 5px);
+				}
+			}
+			.info {
+				color: var(--fgTransparentWeak);
+				transition: color 0.2s;
+			}
+			.avatar {
+				width: 1.2em;
+				height: 1.2em;
+				border-radius: 2em;
+				overflow: hidden;
+				margin-right: 0.4em;
+				background: var(--panelHighlight);
+			}
+			.username {
+				font-weight: 700;
+				flex-shrink: 0;
+				max-width: 30%;
+				&::after {
+					content: ": ";
+				}
+			}
+			&:hover,
+			&:focus-within {
+				.info {
+					color: var(--fg);
+				}
+			}
+		}
 	}
 
 	> .article {
 		position: relative;
 		overflow: clip;
-		padding: 4px 32px 10px;
+		padding: 20px 32px 10px;
+		margin-top: -16px;
 
 		&:first-child,
 		&:nth-child(2) {
@@ -728,6 +805,8 @@ defineExpose({
 
 		.header-container {
 			display: flex;
+			position: relative;
+			z-index: 2;
 			> .avatar {
 				flex-shrink: 0;
 				display: block;
@@ -844,10 +923,7 @@ defineExpose({
 	}
 
 	&.max-width_500px {
-		font-size: 0.9em;
-	}
-
-	&.max-width_450px {
+		font-size: 0.975em;
 		--avatarSize: 46px;
 		padding-top: 6px;
 		> .note-context {
@@ -864,7 +940,7 @@ defineExpose({
 			}
 		}
 		> .article {
-			padding: 4px 16px 8px;
+			padding: 18px 16px 8px;
 			&:first-child,
 			&:nth-child(2) {
 				padding-top: 104px;
@@ -889,6 +965,9 @@ defineExpose({
 
 	._blur_text {
 		pointer-events: auto;
+	}
+	&:active ._blur_text {
+		filter: blur(0px);
 	}
 }
 </style>

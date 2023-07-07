@@ -66,6 +66,9 @@
 						<span
 							v-if="navbarItemDef[item].indicated"
 							class="indicator"
+							:class="{
+								animateIndicator: $store.state.animation,
+							}"
 							><i class="icon ph-circle ph-fill"></i
 						></span>
 					</component>
@@ -88,6 +91,7 @@
 							updateAvailable
 						"
 						class="indicator"
+						:class="{ animateIndicator: $store.state.animation }"
 					></span
 					><i class="icon ph-door ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.controlPanel }}</span>
@@ -102,7 +106,10 @@
 						class="icon ph-dots-three-outline ph-bold ph-fw ph-lg"
 					></i
 					><span class="text">{{ i18n.ts.more }}</span>
-					<span v-if="otherMenuItemIndicated" class="indicator"
+					<span
+						v-if="otherMenuItemIndicated"
+						class="indicator"
+						:class="{ animateIndicator: $store.state.animation }"
 						><i class="icon ph-circle ph-fill"></i
 					></span>
 				</button>
@@ -217,7 +224,7 @@ function openAccountMenu(ev: MouseEvent) {
 		{
 			withExtraOperation: true,
 		},
-		ev
+		ev,
 	);
 }
 
@@ -232,7 +239,7 @@ function more(ev: MouseEvent) {
 			src: ev.currentTarget ?? ev.target,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 </script>
@@ -419,6 +426,9 @@ function more(ev: MouseEvent) {
 						left: 20px;
 						color: var(--navIndicator);
 						font-size: 8px;
+					}
+
+					> .animateIndicator {
 						animation: blink 1s infinite;
 					}
 
@@ -602,6 +612,9 @@ function more(ev: MouseEvent) {
 						left: 24px;
 						color: var(--navIndicator);
 						font-size: 8px;
+					}
+
+					> .animateIndicator {
 						animation: blink 1s infinite;
 					}
 

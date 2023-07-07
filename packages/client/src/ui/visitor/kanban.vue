@@ -143,7 +143,7 @@ export default defineComponent({
 					autoSet: true,
 				},
 				{},
-				"closed"
+				"closed",
 			);
 		},
 
@@ -154,7 +154,7 @@ export default defineComponent({
 					autoSet: true,
 				},
 				{},
-				"closed"
+				"closed",
 			);
 		},
 	},

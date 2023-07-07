@@ -663,7 +663,7 @@ display: "Anzeigeart"
 copy: "Kopieren"
 metrics: "Metriken"
 overview: "Übersicht"
-logs: "Logs"
+logs: "Protokolle"
 delayed: "Verzögert"
 database: "Datenbank"
 channel: "Channels"
@@ -693,8 +693,8 @@ abuseReported: "Deine Meldung wurde versendet. Vielen Dank."
 reporter: "Melder"
 reporteeOrigin: "Herkunft des Gemeldeten"
 reporterOrigin: "Herkunft des Meldenden"
-forwardReport: "Einen Meldung zusätzlich an den mit-beteiligten Server senden"
-forwardReportIsAnonymous: "Anstelle Ihres Nutzerkontos wird ein anonymes Systemkonto
+forwardReport: "Meldung auch an den mit-beteiligten Server weiterleiten"
+forwardReportIsAnonymous: "Anstelle deines Nutzerkontos wird ein anonymes Systemkonto
   als Hinweisgeber auf dem mit-beteiligten Server angezeigt."
 send: "Senden"
 abuseMarkAsResolved: "Meldung als gelöst markieren"
@@ -812,7 +812,7 @@ useReactionPickerForContextMenu: "Reaktionsauswahl durch Rechtsklick öffnen"
 typingUsers: "{users} ist/sind am schreiben"
 jumpToSpecifiedDate: "Zu bestimmtem Datum springen"
 showingPastTimeline: "Es wird eine alte Timeline angezeigt"
-clear: "Zurückkehren"
+clear: "Leeren"
 markAllAsRead: "Alle als gelesen markieren"
 goBack: "Zurück"
 unlikeConfirm: "\"Gefällt mir\" wirklich entfernen?"
@@ -1189,6 +1189,8 @@ _mfm:
   stop: MFM anhalten
   warn: MFM können schnell bewegte oder anderweitig auffallende Animationen enthalten
   alwaysPlay: Alle animierten MFM immer automatisch abspielen
+  advancedDescription: Wenn diese Funktion deaktiviert ist, können nur einfache Formatierungen
+    vorgenommen werden, es sei denn, animiertes MFM ist aktiviert
 _instanceTicker:
   none: "Nie anzeigen"
   remote: "Für Nutzer eines anderen Servers anzeigen"
@@ -1356,8 +1358,8 @@ _tutorial:
     der/die auf diesem Server registriert ist."
   step5_5: "Die Social-Timeline {icon} ist eine Kombination aus der Home-Timeline
     und der Local-Timeline."
-  step5_6: "In der {icon} \"Favoriten\"-Timeline können sie Beiträge von Servern sehen,
-    die von den Server-Administratoren vorgeschlagen werden."
+  step5_6: "In der Empfohlen-Timeline {icon} kannst du Posts sehen, die von den Admins
+    vorgeschlagen wurden."
   step5_7: "In der {icon} Global-Timeline können Sie Beiträge von allen verknüpften
     Servern aus dem Fediverse sehen."
   step6_1: "Also, was ist das hier?"
@@ -1371,8 +1373,8 @@ _tutorial:
 _2fa:
   alreadyRegistered: "Du hast bereits ein Gerät für Zwei-Faktor-Authentifizierung
     registriert."
-  registerDevice: "Neues Gerät registrieren"
-  registerKey: "Neuen Sicherheitsschlüssel registrieren"
+  registerTOTP: "Neues Gerät registrieren"
+  registerSecurityKey: "Neuen Sicherheitsschlüssel registrieren"
   step1: "Installiere zuerst eine Authentifizierungsapp (z.B. {a} oder {b}) auf deinem
     Gerät."
   step2: "Dann, scanne den angezeigten QR-Code mit deinem Gerät."
@@ -1383,6 +1385,25 @@ _2fa:
   securityKeyInfo: "Du kannst neben Fingerabdruck- oder PIN-Authentifizierung auf
     deinem Gerät auch Anmeldung mit Hilfe eines FIDO2-kompatiblen Hardware-Sicherheitsschlüssels
     einrichten."
+  step3Title: Gib deinen Authentifizierungscode ein
+  renewTOTPOk: Neu konfigurieren
+  securityKeyNotSupported: Dein Browser unterstützt Hardware-Security-Keys nicht.
+  chromePasskeyNotSupported: Chrome Passkeys werden momentan nicht unterstützt.
+  renewTOTP: Konfiguriere deine Authenticator App neu
+  renewTOTPCancel: Abbrechen
+  tapSecurityKey: Bitte folge den Anweisungen deines Browsers, um einen Hardware-Security-Key
+    oder einen Passkey zu registrieren
+  removeKey: Entferne deinen Hardware-Security-Key
+  removeKeyConfirm: Möchtest du wirklich deinen Key mit der Bezeichnung {name} löschen?
+  renewTOTPConfirm: Das wird dazu führen, dass du Verifizierungscodes deiner vorherigen
+    Authenticator App nicht mehr nutzen kannst
+  whyTOTPOnlyRenew: Die Authentificator App kann nicht entfernt werden, solange ein
+    Hardware-Security-Key registriert ist.
+  step2Click: Ein Klick auf diesen QR-Code erlaubt es dir eine 2FA-Methode zu deinem
+    Security Key oder deiner Authenticator App hinzuzufügen.
+  registerTOTPBeforeKey: Bitte registriere eine Authentificator App, um einen Hardware-Security-Key
+    oder einen Passkey zu nutzen.
+  securityKeyName: Gib einen Namen für den Key ein
 _permissions:
   "read:account": "Deine Nutzerkontoinformationen lesen"
   "write:account": "Deine Nutzerkontoinformationen bearbeiten"
@@ -1451,7 +1472,7 @@ _widgets:
   trends: "Trends"
   clock: "Uhr"
   rss: "RSS-Reader"
-  rssTicker: "RSS-Laufschrift (Ticker)"
+  rssTicker: "RSS Ticker"
   activity: "Aktivität"
   photos: "Fotos"
   digitalClock: "Digitaluhr"
@@ -1468,9 +1489,13 @@ _widgets:
   aichan: "Ai"
   _userList:
     chooseList: Wählen Sie eine Liste aus
-  userList: Nutzerliste
+  userList: Benutzerliste
+  serverInfo: Server-Infos
+  meiliStatus: Server-Status
+  meiliSize: Indexgröße
+  meiliIndexCount: Indexierte Beiträge
 _cw:
-  hide: "Inhalt verbergen"
+  hide: "Verbergen"
   show: "Inhalt anzeigen"
   chars: "{count} Zeichen"
   files: "{count} Datei(en)"
@@ -1929,10 +1954,11 @@ _deck:
     widgets: "Widgets"
     notifications: "Benachrichtigungen"
     tl: "Timeline"
-    antenna: "News-Picker"
+    antenna: "Antenne"
     list: "Listen"
     mentions: "Erwähnungen"
     direct: "Direktnachrichten"
+    channel: Kanal
   renameProfile: Arbeitsbereich umbenennen
   nameAlreadyExists: Der Name für den Arbeitsbereich ist bereits vorhanden.
 enableRecommendedTimeline: '"Favoriten"-Timeline einschalten'
@@ -1957,8 +1983,8 @@ renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Keine Server gefunden
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
-  eingestufte Server mit diesem Server verknüpft werden. Alle Beiträge werden für
-  die Öffentlichkeit verborgen.
+  eingestufte Server mit diesem Server kommunizieren. Alle Beiträge werden für die
+  Öffentlichkeit verborgen.
 allowedInstances: Vertrauenswürdige Server
 selectInstance: Wähle einen Server aus
 silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
@@ -1967,7 +1993,7 @@ silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummsc
   wenn sie nicht gefolgt werden. Dies wirkt sich nicht auf die blockierten Server
   aus.
 editNote: Beitrag bearbeiten
-edited: Bearbeitet
+edited: 'Bearbeitet um {date} {time}'
 silenceThisInstance: Diesen Server stummschalten
 silencedInstances: Stummgeschaltete Server
 silenced: Stummgeschaltet
@@ -2069,15 +2095,16 @@ jumpToPrevious: Zum Vorherigen springen
 silencedWarning: Diese Meldung wird angezeigt, weil diese Nutzer von Servern stammen,
   die Ihr Administrator abgeschaltet hat, so dass es sich möglicherweise um Spam handelt.
 _experiments:
-  enablePostEditing: Beitragsbearbeitung ermöglichen
   title: Funktionstests
-  postEditingCaption: Zeigt die Option für Nutzer an, ihre bestehenden Beiträge über
-    das Menü "Beitragsoptionen" zu bearbeiten
+  enablePostImports: Beitragsimporte aktivieren
+  postImportsCaption: Erlaubt es Nutzer:innen ihre Posts von alten Calckey, Misskey,
+    Mastodon, Akkoma und Pleroma Accounts zu importieren. Bei Engpässen in der Warteschlange
+    kann es zu Verlangsamungen beim Laden während des Imports kommen.
 noGraze: Bitte deaktivieren Sie die Browsererweiterung "Graze for Mastodon", da sie
   die Funktion von Calckey stört.
-indexFrom: Indizieren ab Beitrags-ID (frei lassen, um jeden Beitrag zu indizieren)
-indexNotice: Indizierung gestartet. Dies wird wahrscheinlich eine Weile dauern. Bitte
-  starte den Server für mindestens eine Stunde nicht neu.
+indexFrom: Indexieren ab Beitragskennung aufwärts
+indexNotice: Wird jetzt indexiert. Dies wird wahrscheinlich eine Weile dauern, bitte
+  starten Sie Ihren Server für mindestens eine Stunde nicht neu.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
   zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
   \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
@@ -2089,3 +2116,37 @@ customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrück
   Zeilen werden einfach ignoriert. Es werden nur einfache Funktionen zur Substitution
   von Zeichenketten unterstützt; erweiterte Syntax, wie z. B. bedingte Verzweigungen,
   können hier nicht verwendet werden."
+expandOnNoteClickDesc: Wenn deaktiviert, können Sie Beiträge trotzdem über das Rechtsklickmenü
+  oder durch Anklicken des Zeitstempels öffnen.
+selectChannel: Wählen Sie einen Kanal aus
+expandOnNoteClick: Beitrag bei Klick öffnen
+image: Bild
+video: Video
+audio: Audio
+indexFromDescription: Leer lassen, um jeden Beitrag zu indexieren
+_filters:
+  fromUser: Von Benutzer
+  notesAfter: Beiträge nach
+  withFile: Mit Datei
+  fromDomain: Von Domain
+  notesBefore: Beiträge vor
+  followingOnly: Nur Folgende
+isBot: Dieses Konto ist ein Bot
+isModerator: Moderator
+isAdmin: Administrator
+_dialog:
+  charactersExceeded: 'Maximale Anzahl an Zeichen aufgebraucht! Limit: {current} /
+    {max}'
+  charactersBelow: Nicht genug Zeichen! Du hast aktuell {current} von {min} Zeichen
+searchPlaceholder: Calckey durchsuchen
+antennasDesc: "Antennen zeigen neue Posts an, die deinen definierten Kriterien entsprechen!\n
+  Sie können von der Timeline-Seite aufgerufen werden."
+isPatron: Calckey Patron
+removeReaction: Entferne deine Reaktion
+listsDesc: Listen lassen dich Timelines mit bestimmten Nutzer:innen erstellen. Sie
+  können von der Timeline-Seite erreicht werden.
+clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips vom
+  Menü individueller Posts aus erstellen.
+channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
+reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
+swipeOnMobile: Wischen zwischen den Seiten erlauben

@@ -63,8 +63,6 @@ pub struct Model {
     pub hide_online_status: bool,
     #[sea_orm(column_name = "isDeleted")]
     pub is_deleted: bool,
-    #[sea_orm(column_name = "showTimelineReplies")]
-    pub show_timeline_replies: bool,
     #[sea_orm(column_name = "driveCapacityOverrideMb")]
     pub drive_capacity_override_mb: Option<i32>,
     #[sea_orm(column_name = "movedToUri")]

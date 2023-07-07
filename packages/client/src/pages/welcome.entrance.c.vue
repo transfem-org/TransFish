@@ -156,7 +156,7 @@ export default defineComponent({
 					autoSet: true,
 				},
 				{},
-				"closed"
+				"closed",
 			);
 		},
 
@@ -167,7 +167,7 @@ export default defineComponent({
 					autoSet: true,
 				},
 				{},
-				"closed"
+				"closed",
 			);
 		},
 
@@ -189,7 +189,7 @@ export default defineComponent({
 						},
 					},
 				],
-				ev.currentTarget ?? ev.target
+				ev.currentTarget ?? ev.target,
 			);
 		},
 		number,

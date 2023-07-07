@@ -17,10 +17,9 @@
 					:space-between="20"
 					:virtual="true"
 					:allow-touch-move="
-						!(
-							deviceKind === 'desktop' &&
-							!defaultStore.state.swipeOnDesktop
-						)
+						defaultStore.state.swipeOnMobile &&
+						(deviceKind !== 'desktop' ||
+							defaultStore.state.swipeOnDesktop)
 					"
 					@swiper="setSwiperRef"
 					@slide-change="onSlideChange"
@@ -73,7 +72,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.explore,
 		icon: "ph-compass ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef = null;

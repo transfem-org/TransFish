@@ -14,7 +14,10 @@
 					:title="i18n.ts.delete"
 					@click="del"
 				>
-				<i style="color: var(--accentLighten)" class="ph-x-circle ph-fill ph-lg"></i>
+					<i
+						style="color: var(--accentLighten)"
+						class="ph-x-circle ph-fill ph-lg"
+					></i>
 				</button>
 				<div v-if="!message.isDeleted" class="content">
 					<Mfm
@@ -96,7 +99,7 @@ const props = defineProps<{
 
 const isMe = $computed(() => props.message.userId === $i?.id);
 const urls = $computed(() =>
-	props.message.text ? extractUrlFromMfm(mfm.parse(props.message.text)) : []
+	props.message.text ? extractUrlFromMfm(mfm.parse(props.message.text)) : [],
 );
 
 function del(): void {

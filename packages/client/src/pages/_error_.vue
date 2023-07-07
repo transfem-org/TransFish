@@ -48,7 +48,7 @@ const props = withDefaults(
 	defineProps<{
 		error?: Error;
 	}>(),
-	{}
+	{},
 );
 
 let loaded = $ref(false);
@@ -67,7 +67,7 @@ os.api("meta", {
 	() => {
 		loaded = true;
 		serverIsDead = true;
-	}
+	},
 );
 
 function reload() {

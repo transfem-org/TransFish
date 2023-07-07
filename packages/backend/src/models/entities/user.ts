@@ -249,12 +249,6 @@ export class User {
 	})
 	public followersUri: string | null;
 
-	@Column("boolean", {
-		default: false,
-		comment: "Whether to show users replying to other users in the timeline.",
-	})
-	public showTimelineReplies: boolean;
-
 	@Index({ unique: true })
 	@Column("char", {
 		length: 16,
