@@ -1244,6 +1244,13 @@ export default class Misskey implements MegalodonInterface {
     }
   }
 
+	public async notificationWithDetails(n: MisskeyAPI.Entity.Notification, host: string, cache: AccountCache): Promise<MegalodonEntity.Notification> {
+		const notification = this.converter.notification(n, host);
+		if (n.note)
+			notification.status = await this.noteWithDetails(n.note, host, cache);
+		return notification;
+	}
+
   public async noteWithDetails(n: MisskeyAPI.Entity.Note, host: string, cache: AccountCache): Promise<MegalodonEntity.Status> {
     const status = await this.addUserDetailsToStatus(this.converter.note(n, host), cache);
     return this.addMentionsToStatus(status, cache);
@@ -2264,13 +2271,15 @@ export default class Misskey implements MegalodonInterface {
         limit: 20
       })
     }
+		const cache = this.getFreshAccountCache();
     return this.client
       .post<Array<MisskeyAPI.Entity.Notification>>('/api/i/notifications', params)
-      .then(res => ({
+      .then(async res => ({
 				...res,
-				data: res.data
+				data: await Promise.all(res.data
 					.filter(p => p.type != MisskeyNotificationType.FollowRequestAccepted) // these aren't supported on mastodon
-					.map(n => this.converter.notification(n, this.baseUrlToHost(this.baseUrl))) }))
+					.map(n => this.notificationWithDetails(n, this.baseUrlToHost(this.baseUrl), cache)))
+			}))
   }
 
   public async getNotification(_id: string): Promise<Response<Entity.Notification>> {
