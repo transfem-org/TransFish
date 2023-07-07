@@ -1260,12 +1260,24 @@ export default class Misskey implements MegalodonInterface {
 		if (status.account.followers_count === 0 && status.account.followers_count === 0 && status.account.statuses_count === 0)
 			status.account = await this.getAccountCached(status.account.id, status.account.acct, cache) ?? status.account;
 
+		if (status.reblog != null)
+			status.reblog = await this.addUserDetailsToStatus(status.reblog, cache);
+
+		if (status.quote != null)
+			status.quote = await this.addUserDetailsToStatus(status.quote, cache);
+
 		return status;
 	}
 
   public async addMentionsToStatus(status: Entity.Status, cache: AccountCache) : Promise<Entity.Status> {
 		if (status.mentions.length > 0)
 			return status;
+
+		if (status.reblog != null)
+			status.reblog = await this.addMentionsToStatus(status.reblog, cache);
+
+		if (status.quote != null)
+			status.quote = await this.addMentionsToStatus(status.quote, cache);
 
     status.mentions = (await this.getMentions(status.plain_content!, cache)).filter(p => p != null);
     for (const m of status.mentions.filter((value, index, array) => array.indexOf(value) === index)) {
