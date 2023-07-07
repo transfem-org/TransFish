@@ -1688,31 +1688,35 @@ export default class Misskey implements MegalodonInterface {
   // ======================================
   // statuses/polls
   // ======================================
-  public async getPoll(_id: string): Promise<Response<Entity.Poll>> {
-    return new Promise((_, reject) => {
-      const err = new NoImplementedError('misskey does not support')
-      reject(err)
-    })
+  public async getPoll(id: string): Promise<Response<Entity.Poll>> {
+    const res = await this.getStatus(id);
+		if (res.data.poll == null)
+			throw new Error('poll not found');
+		return { ...res, data: res.data.poll }
   }
 
   /**
    * POST /api/notes/polls/vote
    */
-  public async votePoll(_id: string, choices: Array<number>, status_id?: string | null): Promise<Response<Entity.Poll>> {
-    if (!status_id) {
+  public async votePoll(id: string, choices: Array<number>): Promise<Response<Entity.Poll>> {
+    if (!id) {
       return new Promise((_, reject) => {
-        const err = new ArgumentError('status_id is required')
+        const err = new ArgumentError('id is required')
         reject(err)
       })
     }
-    const params = {
-      noteId: status_id,
-      choice: choices[0]
-    }
-    await this.client.post<{}>('/api/notes/polls/vote', params)
+
+		for (const c of choices) {
+			const params = {
+				noteId: id,
+				choice: +c
+			}
+			await this.client.post<{}>('/api/notes/polls/vote', params)
+		}
+
     const res = await this.client
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
-        noteId: status_id
+        noteId: id
       })
       .then(async res => {
         const note = await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
