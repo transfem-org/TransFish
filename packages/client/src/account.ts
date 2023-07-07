@@ -162,7 +162,7 @@ export async function openAccountMenu(
 			{
 				done: (res) => {
 					addAccount(res.id, res.i);
-					success();
+					switchAccountWithToken(res.i);
 				},
 			},
 			"closed",
