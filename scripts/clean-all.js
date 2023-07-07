@@ -46,7 +46,7 @@ const { join } = require("node:path");
 		recursive: true,
 		force: true,
 	});
-	fs.rmSync(join(__dirname, "/../packages/megalodon/built"), {
+	fs.rmSync(join(__dirname, "/../packages/megalodon/lib"), {
 		recursive: true,
 		force: true,
 	});
