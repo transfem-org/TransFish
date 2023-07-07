@@ -1481,9 +1481,9 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/renotes', {
         noteId: id
       })
-      .then(res => ({
+      .then(async res => ({
         ...res,
-        data: res.data.map(n => this.converter.user(n.user))
+				data: (await Promise.all(res.data.map(n => this.getAccount(n.user.id)))).map(p => p.data)
       }))
   }
 
@@ -1492,9 +1492,9 @@ export default class Misskey implements MegalodonInterface {
 			.post<Array<MisskeyAPI.Entity.Reaction>>('/api/notes/reactions', {
 				noteId: id
 			})
-			.then(res => ({
+			.then(async res => ({
 				...res,
-				data: res.data.map(n => this.converter.user(n.user))
+				data: (await Promise.all(res.data.map(n => this.getAccount(n.user.id)))).map(p => p.data)
 			}))
   }
 
