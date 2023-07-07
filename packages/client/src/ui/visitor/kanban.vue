@@ -414,7 +414,7 @@ function showMenu(ev) {
 		}
 		& ~ .content > .header {
 			&::before {
-				opacity: 1 !important;
+				filter: brightness(1.2) opacity(1);
 			}
 			> .logo {
 				margin-top: -10px !important;
@@ -453,23 +453,25 @@ function showMenu(ev) {
 			position: relative;
 			margin-top: -30px;
 			@media (min-width: 1099px) {
-				&::before {
-					content: "";
-					position: absolute;
-					inset: -25px calc(0px - var(--margin));
-					bottom: -100px;
-					backdrop-filter: blur(60px);
-					filter: brightness(1.2);
-					pointer-events: none;
-					z-index: -1;
-					opacity: 0.5;
-					clip-path: inset(55px 0 0 0 round var(--radius));
-					mask: linear-gradient(transparent 55px, #000 50px, transparent);
-					-webkit-mask: llinear-gradient(
-						transparent 55px,
-						#000 50px,
-						transparent
-					);
+				@supports (clip-path: inset(0 0 0 0 round 1px)) {
+					&::before {
+						content: "";
+						position: absolute;
+						inset: -25px calc(0px - var(--margin));
+						bottom: -100px;
+						backdrop-filter: blur(60px);
+						filter: brightness(1.2) opacity(0.5);
+						pointer-events: none;
+						z-index: -1;
+						clip-path: inset(55px 0 0 0 round var(--radius));
+						mask: linear-gradient(transparent 55px, #000 50px, transparent);
+						-webkit-mask: llinear-gradient(
+							transparent 55px,
+							#000 50px,
+							transparent
+						);
+						border-radius: var(--radius) var(--radius) 0 0;
+					}
 				}
 			}
 			> .logo {
