@@ -1257,31 +1257,31 @@ export default class Misskey implements MegalodonInterface {
   }
 
   public async getMentions(text: string, cache: AccountCache): Promise<Entity.Mention[]> {
-		console.log(`getting mentions for message: '${text}'`);
 		const mentions :Entity.Mention[] = [];
 
 		if (text == undefined)
 			return mentions;
 
-		console.log('text is not undefined, continuing');
-
     const mentionMatch = text.matchAll(/(?<=^|\s)@(?<user>.*?)(?:@(?<host>.*?)|)(?=\s|$)/g);
 
     for (const m of mentionMatch) {
-      if (m.groups == null)
-        continue;
+			try {
+				if (m.groups == null)
+					continue;
 
-      const account = await this.getAccountByNameCached(m.groups.user, m.groups.host, cache);
+				const account = await this.getAccountByNameCached(m.groups.user, m.groups.host, cache);
 
-      if (account == null)
-        continue;
+				if (account == null)
+					continue;
 
-      mentions.push({
-        id: account.id,
-        url: account.url,
-        username: account.username,
-        acct: account.acct
-      });
+				mentions.push({
+					id: account.id,
+					url: account.url,
+					username: account.username,
+					acct: account.acct
+				});
+			}
+			catch {}
     }
 
     return mentions;
