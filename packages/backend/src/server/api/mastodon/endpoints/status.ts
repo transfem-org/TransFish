@@ -197,7 +197,19 @@ export function apiStatusMastodon(router: Router): void {
 	router.get<{ Params: { id: string } }>(
 		"/v1/statuses/:id/favourited_by",
 		async (ctx) => {
-			ctx.body = [];
+			const BASE_URL = `${ctx.protocol}://${ctx.hostname}`;
+			const accessTokens = ctx.headers.authorization;
+			const client = getClient(BASE_URL, accessTokens);
+			try {
+				const data = await client.getStatusFavouritedBy(
+					convertId(ctx.params.id, IdType.CalckeyId),
+				);
+				ctx.body = data.data.map((account) => convertAccount(account));
+			} catch (e: any) {
+				console.error(e);
+				ctx.status = 401;
+				ctx.body = e.response.data;
+			}
 		},
 	);
 	router.post<{ Params: { id: string } }>(
