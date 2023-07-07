@@ -17,8 +17,7 @@
 			:space-between="20"
 			:allow-touch-move="
 				!(
-					deviceKind === 'desktop' &&
-					!defaultStore.state.swipeOnDesktop
+					deviceKind === 'desktop'
 				)
 			"
 			:set-wrapper-size="true"
@@ -113,24 +112,21 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, onMounted, provide } from "vue";
-import * as os from "@/os";
+import { defineAsyncComponent, computed, watch, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XKanban from "@/ui/visitor/kanban.vue";
-import XNotes from "@/components/MkNotes.vue";
-import XUsers from "./explore.users.vue";
-import XChannelList from "@/components/MkChannelList.vue";
-import MkFolder from "@/components/MkFolder.vue";
-import MkPagination from "@/components/MkPagination.vue";
-import MkGalleryPostPreview from "@/components/MkGalleryPostPreview.vue";
-import { mainRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
 import { i18n } from "@/i18n";
-import { defaultStore } from "@/store";
-import { DetailedInstanceMetadata } from "calckey-js/built/entities";
 import "swiper/scss";
 import "swiper/scss/virtual";
+
+const MkFolder = defineAsyncComponent(() => import("@/components/MkFolder.vue"));
+const MkPagination = defineAsyncComponent(() => import("@/components/MkPagination.vue"));
+const XNotes = defineAsyncComponent(() => import("@/components/MkNotes.vue"));
+const XUsers = defineAsyncComponent(() => import("./explore.users.vue"));
+const XChannelList = defineAsyncComponent(() => import("@/components/MkChannelList.vue"));
+const MkGalleryPostPreview = defineAsyncComponent(() => import("@/components/MkGalleryPostPreview.vue"));
 
 const DESKTOP_THRESHOLD = 1100;
 let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
@@ -199,7 +195,6 @@ definePageMetadata(
 		icon: "ph-compass ph-bold ph-lg",
 	}))
 );
-// provide("shouldOmitHeaderTitle", true);
 
 let swiperRef = null;
 
@@ -218,14 +213,6 @@ function syncSlide(index) {
 
 onMounted(() => {
 	syncSlide(isDesktop ? 1 : 0);
-});
-
-let meta = $ref<DetailedInstanceMetadata>();
-let wallpaper = $ref(String);
-
-os.api("meta", { detail: true }).then((res) => {
-	meta = res;
-	wallpaper = `url("${res.backgroundImageUrl}")`;
 });
 
 const paginationForLocal = {
@@ -261,8 +248,6 @@ const popularPostsPagination = {
 <style lang="scss" scoped>
 #visitor-view {
 	.swiper {
-		margin-top: -55px;
-		padding-top: 55px;
 		margin-inline: auto !important;
 		padding-inline: 0 !important;
 		mask: unset;
