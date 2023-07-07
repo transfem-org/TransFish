@@ -10,6 +10,7 @@ import Entity from './entity'
 import { MegalodonInterface, WebSocketInterface, NoImplementedError, ArgumentError, UnexpectedError } from './megalodon'
 import MegalodonEntity from "@/entity";
 import fs from "node:fs";
+import MisskeyNotificationType from "./misskey/notification";
 
 type AccountCache = {
   locks: AsyncLock,
@@ -2238,7 +2239,11 @@ export default class Misskey implements MegalodonInterface {
     }
     return this.client
       .post<Array<MisskeyAPI.Entity.Notification>>('/api/i/notifications', params)
-      .then(res => ({ ...res, data: res.data.map(n => this.converter.notification(n, this.baseUrlToHost(this.baseUrl))) }))
+      .then(res => ({
+				...res,
+				data: res.data
+					.filter(p => p.type != MisskeyNotificationType.FollowRequestAccepted) // these aren't supported on mastodon
+					.map(n => this.converter.notification(n, this.baseUrlToHost(this.baseUrl))) }))
   }
 
   public async getNotification(_id: string): Promise<Response<Entity.Notification>> {
