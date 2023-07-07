@@ -248,6 +248,8 @@ const popularPostsPagination = {
 <style lang="scss" scoped>
 #visitor-view {
 	.swiper {
+		margin-top: -55px;
+		padding-top: 55px;
 		margin-inline: auto !important;
 		padding-inline: 0 !important;
 		mask: unset;
