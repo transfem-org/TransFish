@@ -2,8 +2,10 @@ import { Entity } from "megalodon";
 import { convertId, IdType } from "../index.js";
 
 function simpleConvert(data: any) {
-	data.id = convertId(data.id, IdType.MastodonId);
-	return data;
+	// copy the object to bypass weird pass by reference bugs
+	const result = Object.assign({}, data);
+	result.id = convertId(data.id, IdType.MastodonId);
+	return result;
 }
 
 export function convertAccount(account: Entity.Account) {
