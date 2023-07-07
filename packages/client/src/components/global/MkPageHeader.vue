@@ -101,7 +101,7 @@
 			</nav>
 		</template>
 		<div class="buttons right">
-			<MkButton v-if="!$i && displayHomeButton" :to="'/'" link rounded>
+			<MkButton v-if="!$i && displayHomeButton && isDesktop" :to="'/'" link rounded>
 				<i class="ph-house ph-bold ph-lg"></i>
 				{{ i18n.ts.home }}
 			</MkButton>
@@ -162,6 +162,10 @@ type Tab = {
 	onClick?: (ev: MouseEvent) => void;
 };
 
+let isDesktop = $ref(window.innerWidth >= 1100);
+matchMedia(`(min-width: ${1100 - 1}px)`).onchange = (mql) => {
+	isDesktop = mql.matches;
+};
 const props = withDefaults(
 	defineProps<{
 		tabs?: Tab[];
@@ -179,7 +183,7 @@ const props = withDefaults(
 		to?: string;
 	}>(),
 	{
-		displayHomeButton: !$i && window.innerWidth >= 1100,
+		displayHomeButton: !$i,
 	}
 );
 
