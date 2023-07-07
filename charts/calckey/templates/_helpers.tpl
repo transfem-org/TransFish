@@ -159,7 +159,9 @@ redis:
   {{- if .Values.redis.db }}
   db: {{ .Values.redis.db }}
   {{- end }}
-	#user: default
+  {{- if .Values.redis.auth.user }}
+  user: {{ .Values.redis.auth.user }}
+  {{- end }}
 	#tls:
   #  host: localhost
   #  rejectUnauthorized: false
