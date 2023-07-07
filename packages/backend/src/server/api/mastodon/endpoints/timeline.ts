@@ -45,13 +45,14 @@ export function apiTimelineMastodon(router: Router): void {
 		const client = getClient(BASE_URL, accessTokens);
 		try {
 			const query: any = ctx.query;
-			const data = query.local
-				? await client.getLocalTimeline(
-						convertTimelinesArgsId(argsToBools(limitToInt(query))),
-				  )
-				: await client.getPublicTimeline(
-						convertTimelinesArgsId(argsToBools(limitToInt(query))),
-				  );
+			const data =
+				query.local === "true"
+					? await client.getLocalTimeline(
+							convertTimelinesArgsId(argsToBools(limitToInt(query))),
+					  )
+					: await client.getPublicTimeline(
+							convertTimelinesArgsId(argsToBools(limitToInt(query))),
+					  );
 			ctx.body = data.data.map((status) => convertStatus(status));
 		} catch (e: any) {
 			console.error(e);
