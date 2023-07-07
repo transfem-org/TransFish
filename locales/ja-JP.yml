@@ -1064,6 +1064,7 @@ _aboutMisskey:
   donate: "Calckeyに寄付"
   morePatrons: "他にも多くの方が支援してくれています。ありがとうございます！ 🥰"
   patrons: "支援者"
+  patronsList: 寄付額ではなく時系列順に並んでいます。上記のリンクから寄付を行ってここにあなたのIDを載せましょう！
 _nsfw:
   respect: "閲覧注意のメディアは隠す"
   ignore: "閲覧注意のメディアを隠さない"
@@ -1375,11 +1376,12 @@ _permissions:
 _auth:
   shareAccess: "「{name}」がアカウントにアクセスすることを許可しますか？"
   shareAccessAsk: "アカウントへのアクセスを許可しますか？"
-  permissionAsk: "このアプリケーションは次の権限を要求しています"
+  permissionAsk: "このアプリケーションは次の権限を要求しています:"
   pleaseGoBack: "アプリケーションに戻り続行してください"
   callback: "アプリケーションに戻っています"
   denied: "アクセスを拒否しました"
-  copyAsk: "以下の認証コードをアプリケーションにコピーしてください"
+  copyAsk: "以下の認証コードをアプリケーションにコピーしてください:"
+  allPermissions: 全てのアクセス権
 _antennaSources:
   all: "全ての投稿"
   homeTimeline: "フォローしているユーザーの投稿"
@@ -1453,11 +1455,11 @@ _poll:
   remainingSeconds: "終了まであと{s}秒"
 _visibility:
   public: "公開"
-  publicDescription: "全てのユーザーに公開"
+  publicDescription: "全ての公開タイムラインに配信されます"
   home: "未収載"
   homeDescription: "ホームタイムラインのみに公開"
   followers: "フォロワー"
-  followersDescription: "自分のフォロワーのみに公開"
+  followersDescription: "フォロワーと会話相手のみに公開"
   specified: "ダイレクト"
   specifiedDescription: "指定したユーザーのみに公開"
   localOnly: "ローカルのみ"
@@ -1890,14 +1892,14 @@ hiddenTags: 非表示にするハッシュタグ
 apps: "アプリ"
 _experiments:
   title: 試験的な機能
-  postImportsCaption:
+  postImportsCaption: 
     ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
   enablePostImports: 投稿のインポートを有効にする
 sendModMail: モデレーション通知を送る
 deleted: 削除済み
 editNote: 投稿を編集
 edited: '編集済み: {date} {time}'
-signupsDisabled:
+signupsDisabled: 
   現在、このサーバーでは新規登録が一般開放されていません。招待コードをお持ちの場合には、以下の欄に入力してください。招待コードをお持ちでない場合にも、新規登録を開放している他のサーバーには入れますよ！
 findOtherInstance: 他のサーバーを探す
 newer: 新しい投稿
@@ -1932,3 +1934,14 @@ isBot: このアカウントはBotです
 isLocked: このアカウントのフォローは承認制です
 isAdmin: 管理者
 isPatron: Calckey 後援者
+_skinTones:
+  light: ペールオレンジ
+  mediumLight: ミディアムライト
+  medium: ミディアム
+  mediumDark: ミディアムダーク
+  yellow: 黄色
+  dark: 茶色
+removeReaction: リアクションを取り消す
+alt: 代替テキスト
+swipeOnMobile: ページ間のスワイプを有効にする
+reactionPickerSkinTone: 優先する絵文字のスキン色

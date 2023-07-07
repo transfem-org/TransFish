@@ -88,7 +88,6 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 🧑‍💻 Dependencies
 
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.16.0 (v20 recommended)
-  - Install with [nvm](https://github.com/nvm-sh/nvm)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12 (v14 recommended)
 - 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended)
 - Web Proxy (one of the following)
@@ -104,10 +103,11 @@ If you have access to a server that supports one of the sources below, I recomme
   - 🦔 [Sonic](https://crates.io/crates/sonic-server)
   - [MeiliSearch](https://www.meilisearch.com/)
   - [ElasticSearch](https://www.elastic.co/elasticsearch/)
-- Caching server
-  - 🐲 At least [DragonflyDB](https://www.dragonflydb.io/) v1.4.0 (recommended)
-  - 👻 At least [KeyDB](https://keydb.dev/) v6.3.3
-  - 🍱 Another [Redis](https://redis.io/) server, at least v6
+- Caching server (one of the following)
+  - 🐲 [DragonflyDB](https://www.dragonflydb.io/) (recommended)
+  - 👻 [KeyDB](https://keydb.dev/)
+  - 🍱 Another [Redis](https://redis.io/) server
+  
 ### 🏗️ Build dependencies
 
 - 🦀 At least [Rust](https://www.rust-lang.org/) v1.68.0
