@@ -23,8 +23,7 @@ export default function () {
 
 	fetchMeta().then((meta) => {
 		if (!meta.enableServerMachineStats) return;
-	}
-	);
+	});
 
 	async function tick() {
 		const cpu = await cpuUsage();

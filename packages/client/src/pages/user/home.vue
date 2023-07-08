@@ -26,7 +26,12 @@
 								class="banner"
 								:style="{
 									backgroundImage: `url('${user.bannerUrl}')`,
-									'--backgroundImageStatic': defaultStore.state.useBlurEffect ? `url('${getStaticImageUrl(user.bannerUrl)}')` : null
+									'--backgroundImageStatic': defaultStore
+										.state.useBlurEffect
+										? `url('${getStaticImageUrl(
+												user.bannerUrl,
+										  )}')`
+										: null,
 								}"
 							></div>
 							<div class="fade"></div>
