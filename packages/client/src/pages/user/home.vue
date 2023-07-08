@@ -26,6 +26,7 @@
 								class="banner"
 								:style="{
 									backgroundImage: `url('${user.bannerUrl}')`,
+									'--backgroundImageStatic': getStaticImageUrl(user.bannerUrl)
 								}"
 							></div>
 							<div class="fade"></div>
@@ -384,6 +385,7 @@ import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import MkMoved from "@/components/MkMoved.vue";
 import { getScrollPosition } from "@/scripts/scroll";
+import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import number from "@/filters/number";
 import { userPage } from "@/filters/user";
 import * as os from "@/os";
@@ -513,7 +515,7 @@ onUnmounted(() => {
 							content: "";
 							position: fixed;
 							inset: 0;
-							background: var(--blur, inherit);
+							background: var(--blur, --backgroundImageStatic);
 							background-size: cover;
 							background-position: center;
 							pointer-events: none;
