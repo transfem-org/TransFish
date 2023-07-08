@@ -17,7 +17,10 @@
 				:class="$style.gotIt"
 				primary
 				full
-				@click="$refs.modal.close() && markAsRead()"
+				@click="
+					$refs.modal.close();
+					markAsRead();
+				"
 				>{{ i18n.ts.gotIt }}</MkButton
 			>
 		</div>
@@ -42,7 +45,7 @@ const { id, text, title, imageUrl, isGoodNews } = props.announcement;
 const modal = shallowRef<InstanceType<typeof MkModal>>();
 
 function markAsRead() {
-	os.api("i/read-announcement", { announcementId: props.announcement.id });
+	os.api("i/read-announcement", { announcementId: id });
 }
 </script>
 
