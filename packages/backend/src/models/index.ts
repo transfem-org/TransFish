@@ -51,7 +51,6 @@ import { UsedUsername } from "./entities/used-username.js";
 import { ClipRepository } from "./repositories/clip.js";
 import { ClipNote } from "./entities/clip-note.js";
 import { AntennaRepository } from "./repositories/antenna.js";
-import { AntennaNote } from "./entities/antenna-note.js";
 import { PromoNote } from "./entities/promo-note.js";
 import { PromoRead } from "./entities/promo-read.js";
 import { EmojiRepository } from "./repositories/emoji.js";

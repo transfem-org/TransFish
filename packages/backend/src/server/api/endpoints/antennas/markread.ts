@@ -1,7 +1,6 @@
 import define from "../../define.js";
 import { Antennas } from "@/models/index.js";
 import { FindOptionsWhere } from "typeorm";
-import { AntennaNote } from "@/models/entities/antenna-note.js";
 
 export const meta = {
 	tags: ["antennas", "account"],
