@@ -272,14 +272,24 @@ function checkForSplash() {
 		}
 	}
 
-	if ($i) {
+	if (
+		$i &&
+		!["/announcements", "/announcements/"].includes(window.location.pathname)
+	) {
 		api("announcements", { withUnreads: true, limit: 10 })
 			.then((announcements) => {
 				const unreadAnnouncements = announcements.filter((item) => {
 					return !item.isRead;
 				});
 				if (unreadAnnouncements.length > 3) {
-					// TODO: navigate to the announcements page when there are too many unreads
+					popup(
+						defineAsyncComponent(
+							() => import("@/components/MkManyAnnouncements.vue"),
+						),
+						{},
+						{},
+						"closed",
+					);
 				} else {
 					unreadAnnouncements.forEach((item) => {
 						if (item.showPopup)

@@ -982,6 +982,7 @@ enableServerMachineStats: "サーバーのマシン情報を公開する"
 enableIdenticonGeneration: "ユーザーごとのIdenticon生成を有効にする"
 showPopup: "ポップアップを表示してユーザーに知らせる"
 isGoodNews: "これは良いニュースです"
+youHaveUnreadAnnouncements: "未読のお知らせがあります"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"

@@ -1116,6 +1116,7 @@ enableServerMachineStats: "Enable server hardware statistics"
 enableIdenticonGeneration: "Enable Identicon generation"
 showPopup: "Notify users about this announcement with a popup"
 isGoodNews: "This is a good news"
+youHaveUnreadAnnouncements: "You have unread announcements"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
