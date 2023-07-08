@@ -2144,3 +2144,6 @@ _skinTones:
 swipeOnMobile: Permet lliscar entre pàgines
 enableIdenticonGeneration: Habilitar la generació d'Identicon
 enableServerMachineStats: Habilitar les estadístiques del maquinari del servidor
+showPopup: Notificar els usuaris amb una finestra emergent
+showWithSparkles: Mostra amb espurnes
+youHaveUnreadAnnouncements: Tens anuncis sense llegir
