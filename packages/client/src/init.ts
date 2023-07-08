@@ -275,7 +275,6 @@ function checkForSplash() {
 	if ($i) {
 		api("announcements", { withUnreads: true })
 			.then((announcements) => {
-				console.log(announcements);
 				announcements.forEach((announcement) => {
 					if (announcement.showPopup && announcement.isRead === false)
 						popup(
