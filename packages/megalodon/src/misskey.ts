@@ -1643,20 +1643,29 @@ export default class Misskey implements MegalodonInterface {
   /**
    * POST /api/drive/files/create
    */
-  public async uploadMedia(file: any, _options?: { description?: string; focus?: string }): Promise<Response<Entity.Attachment>> {
+  public async uploadMedia(file: any, options?: { description?: string; focus?: string }): Promise<Response<Entity.Attachment>> {
     const formData = new FormData()
-    formData.append('file', fs.createReadStream(file.path), {
-      contentType: file.mimetype,
-      filename: file.originalname,
-    })
+		formData.append('file', fs.createReadStream(file.path), {
+			contentType: file.mimetype,
+			filename: file.originalname
+		})
+
+		if (file.originalname != null) {
+			formData.append('name', file.originalname);
+		}
+
+		if (options?.description != null) {
+			formData.append('comment', options.description);
+		}
+
     let headers: { [key: string]: string } = {}
     if (typeof formData.getHeaders === 'function') {
       headers = formData.getHeaders()
     }
     return this.client
       .post<MisskeyAPI.Entity.File>('/api/drive/files/create', formData, headers)
-      .then(res => ({ ...res, data: this.converter.file(res.data) }))
-  }
+			.then(res => ({ ...res, data: this.converter.file(res.data) }))
+	}
 
   public async getMedia(id: string): Promise<Response<Entity.Attachment>> {
     const res = await this.client.post<MisskeyAPI.Entity.File>('/api/drive/files/show', { fileId: id })
@@ -1684,6 +1693,12 @@ export default class Misskey implements MegalodonInterface {
           isSensitive: options.is_sensitive
         })
       }
+
+			if (options.description !== undefined) {
+				params = Object.assign(params, {
+					comment: options.description
+				})
+			}
     }
     return this.client
       .post<MisskeyAPI.Entity.File>('/api/drive/files/update', params)

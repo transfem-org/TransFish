@@ -112,7 +112,7 @@ mastoFileRouter.post("/v2/media", upload.single("file"), async (ctx) => {
 			ctx.status = 401;
 			return;
 		}
-		const data = await client.uploadMedia(multipartData);
+		const data = await client.uploadMedia(multipartData, ctx.request.body);
 		ctx.body = convertAttachment(data.data as Entity.Attachment);
 	} catch (e: any) {
 		console.error(e);
