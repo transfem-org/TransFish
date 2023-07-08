@@ -273,19 +273,26 @@ function checkForSplash() {
 	}
 
 	if ($i) {
-		api("announcements", { withUnreads: true })
+		api("announcements", { withUnreads: true, limit: 10 })
 			.then((announcements) => {
-				announcements.forEach((announcement) => {
-					if (announcement.showPopup && announcement.isRead === false)
-						popup(
-							defineAsyncComponent(
-								() => import("@/components/MkAnnouncement.vue"),
-							),
-							{ announcement: announcement },
-							{},
-							"closed",
-						);
+				const unreadAnnouncements = announcements.filter((item) => {
+					return !item.isRead;
 				});
+				if (unreadAnnouncements.length > 3) {
+					// TODO: navigate to the announcements page when there are too many unreads
+				} else {
+					unreadAnnouncements.forEach((item) => {
+						if (item.showPopup)
+							popup(
+								defineAsyncComponent(
+									() => import("@/components/MkAnnouncement.vue"),
+								),
+								{ announcement: item },
+								{},
+								"closed",
+							);
+					});
+				}
 			})
 			.catch((err) => console.log(err));
 	}
