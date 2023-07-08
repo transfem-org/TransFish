@@ -1114,8 +1114,8 @@ isPatron: "Calckey Patron"
 reactionPickerSkinTone: "Preferred emoji skin tone"
 enableServerMachineStats: "Enable server hardware statistics"
 enableIdenticonGeneration: "Enable Identicon generation"
-showPopup: "Notify users about this announcement with a popup"
-isGoodNews: "This is a good news"
+showPopup: "Notify users with popup"
+showWithSparkles: "Show with sparkles"
 youHaveUnreadAnnouncements: "You have unread announcements"
 
 _sensitiveMediaDetection:

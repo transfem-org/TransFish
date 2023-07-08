@@ -981,7 +981,7 @@ noGraze: "ブラウザの拡張機能「Graze for Mastodon」は、Calckeyの動
 enableServerMachineStats: "サーバーのマシン情報を公開する"
 enableIdenticonGeneration: "ユーザーごとのIdenticon生成を有効にする"
 showPopup: "ポップアップを表示してユーザーに知らせる"
-isGoodNews: "これは良いお知らせです"
+showWithSparcles: "タイトルをキラキラさせる"
 youHaveUnreadAnnouncements: "未読のお知らせがあります"
 
 _sensitiveMediaDetection:

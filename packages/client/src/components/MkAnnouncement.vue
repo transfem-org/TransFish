@@ -2,7 +2,7 @@
 	<MkModal ref="modal" :z-priority="'middle'" @closed="$emit('closed')">
 		<div :class="$style.root">
 			<div :class="$style.title">
-				<MkSparkle v-if="isGoodNews">{{ title }}</MkSparkle>
+				<MkSparkle v-if="showWithSparcles">{{ title }}</MkSparkle>
 				<p v-else>{{ title }}</p>
 			</div>
 			<Mfm :text="text" />
@@ -54,6 +54,7 @@ const gotIt = () => {
 	border-radius: var(--radius);
 
 	> img {
+		border-radius: 10px;
 		max-height: 100%;
 		max-width: 100%;
 	}
