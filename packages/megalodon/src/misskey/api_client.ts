@@ -134,8 +134,8 @@ namespace MisskeyAPI {
         url: acctUrl,
         avatar: u.avatarUrl,
         avatar_static: u.avatarUrl,
-        header: this.plcUrl, // FIXME
-        header_static: this.plcUrl, // FIXME
+        header: this.plcUrl,
+        header_static: this.plcUrl,
         emojis: u.emojis.map(e => this.emoji(e)),
         moved: null,
         fields: [],
@@ -308,7 +308,7 @@ namespace MisskeyAPI {
         emojis: n.emojis.map(e => this.emoji(e)),
         replies_count: n.repliesCount,
         reblogs_count: n.renoteCount,
-        favourites_count: this.getTotalReactions(n.reactions), // FIXME: instead get # of default reaction emoji reactions
+        favourites_count: this.getTotalReactions(n.reactions),
         reblogged: false,
         favourited: !!n.myReaction,
         muted: false,
