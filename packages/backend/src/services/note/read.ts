@@ -50,7 +50,7 @@ export default async function (
 				).map((x) => x.followeeId),
 		  );
 
-	const myAntennas = (await getAntennas()).filter((a) => a.userId === userId);
+	// const myAntennas = (await getAntennas()).filter((a) => a.userId === userId);
 	const readMentions: (Note | Packed<"Note">)[] = [];
 	const readSpecifiedNotes: (Note | Packed<"Note">)[] = [];
 	const readChannelNotes: (Note | Packed<"Note">)[] = [];
