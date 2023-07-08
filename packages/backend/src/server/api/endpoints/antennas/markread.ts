@@ -1,5 +1,5 @@
 import define from "../../define.js";
-import { Antennas, AntennaNotes } from "@/models/index.js";
+import { Antennas } from "@/models/index.js";
 import { FindOptionsWhere } from "typeorm";
 import { AntennaNote } from "@/models/entities/antenna-note.js";
 
@@ -29,15 +29,15 @@ export default define(meta, paramDef, async (ps, me) => {
 		return null;
 	}
 
-	await AntennaNotes.update(
-		{
-			antennaId: antenna.id,
-			read: false,
-		},
-		{
-			read: true,
-		},
-	);
+	// await AntennaNotes.update(
+	// 	{
+	// 		antennaId: antenna.id,
+	// 		read: false,
+	// 	},
+	// 	{
+	// 		read: true,
+	// 	},
+	// );
 
 	return true;
 });
