@@ -26,7 +26,7 @@
 								class="banner"
 								:style="{
 									backgroundImage: `url('${user.bannerUrl}')`,
-									'--backgroundImageStatic': getStaticImageUrl(user.bannerUrl)
+									'--backgroundImageStatic': defaultStore.state.useBlurEffect ? `url('${getStaticImageUrl(user.bannerUrl)}')` : null
 								}"
 							></div>
 							<div class="fade"></div>
@@ -388,6 +388,7 @@ import { getScrollPosition } from "@/scripts/scroll";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import number from "@/filters/number";
 import { userPage } from "@/filters/user";
+import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
@@ -515,7 +516,7 @@ onUnmounted(() => {
 							content: "";
 							position: fixed;
 							inset: 0;
-							background: var(--blur, --backgroundImageStatic);
+							background: var(--backgroundImageStatic);
 							background-size: cover;
 							background-position: center;
 							pointer-events: none;
