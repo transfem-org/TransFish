@@ -1,12 +1,8 @@
 # Visual Studio Code
-/.vscode
-!/.vscode/extensions.json
+.vscode
 
 # Intelij-IDEA
-/.idea
-packages/backend/.idea/backend.iml
-packages/backend/.idea/modules.xml
-packages/backend/.idea/vcs.xml
+.idea
 
 # Node.js
 node_modules
@@ -14,7 +10,7 @@ node_modules
 report.*.json
 
 # Rust
-packages/backend/native-utils/target/*
+packages/backend/native-utils/target
 
 # Cypress
 cypress/screenshots
@@ -24,9 +20,7 @@ cypress/videos
 coverage
 
 # config
-/.config/*
-!/.config/example.yml
-!/.config/docker_example.env
+/.config
 
 # misskey
 built

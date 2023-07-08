@@ -841,7 +841,7 @@ export interface MegalodonInterface {
    * @param choices Array of own votes containing index for each option (starting from 0).
    * @return Poll
    */
-  votePoll(id: string, choices: Array<number>, status_id?: string | null): Promise<Response<Entity.Poll>>
+  votePoll(id: string, choices: Array<number>): Promise<Response<Entity.Poll>>
   // ======================================
   // statuses/scheduled_statuses
   // ======================================

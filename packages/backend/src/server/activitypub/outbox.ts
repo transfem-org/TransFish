@@ -138,7 +138,7 @@ export async function packActivity(note: Note): Promise<any> {
 	) {
 		const renote = await Notes.findOneByOrFail({ id: note.renoteId });
 		return renderAnnounce(
-			renote.uri ?? `${config.url}/notes/${renote.id}`,
+			renote.uri ? renote.uri : `${config.url}/notes/${renote.id}`,
 			note,
 		);
 	}

@@ -88,7 +88,6 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 🧑‍💻 Dependencies
 
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.16.0 (v20 recommended)
-  - Install with [nvm](https://github.com/nvm-sh/nvm)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12 (v14 recommended)
 - 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended)
 - Web Proxy (one of the following)
@@ -104,7 +103,11 @@ If you have access to a server that supports one of the sources below, I recomme
   - 🦔 [Sonic](https://crates.io/crates/sonic-server)
   - [MeiliSearch](https://www.meilisearch.com/)
   - [ElasticSearch](https://www.elastic.co/elasticsearch/)
-
+- Caching server (one of the following)
+  - 🐲 [DragonflyDB](https://www.dragonflydb.io/) (recommended)
+  - 👻 [KeyDB](https://keydb.dev/)
+  - 🍱 Another [Redis](https://redis.io/) server
+  
 ### 🏗️ Build dependencies
 
 - 🦀 At least [Rust](https://www.rust-lang.org/) v1.68.0
@@ -160,6 +163,10 @@ psql postgres -c "create database calckey with encoding = 'UTF8';"
 ```
 
 In Calckey's directory, fill out the `db` section of `.config/default.yml` with the correct information, where the `db` key is `calckey`.
+
+## 💰 Caching server
+
+If you experience a lot of traffic, it's a good idea to set up another Redis-compatible caching server. If you don't set one one up, it'll fall back to the mandatory Redis server. DragonflyDB is the recommended option due to its unrivaled performance and ease of use.
 
 ## 🔎 Set up search
 
