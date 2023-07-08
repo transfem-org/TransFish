@@ -123,7 +123,6 @@ export const ModerationLogs = ModerationLogRepository;
 export const Clips = ClipRepository;
 export const ClipNotes = db.getRepository(ClipNote);
 export const Antennas = AntennaRepository;
-export const AntennaNotes = db.getRepository(AntennaNote);
 export const PromoNotes = db.getRepository(PromoNote);
 export const PromoReads = db.getRepository(PromoRead);
 export const Relays = RelayRepository;
