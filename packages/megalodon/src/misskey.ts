@@ -1079,23 +1079,11 @@ export default class Misskey implements MegalodonInterface {
   // accounts/preferences
   // ======================================
   public async getPreferences(): Promise<Response<Entity.Preferences>> {
-    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(res => {
-      /*
-      return this.client.post<MisskeyAPI.Entity.GetAll>('/api/i/registry/get-all', {
-        scope: ['client', 'base'],
-      }).then(ga => {
-        return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, ga.data)
-        })
-      })
-      */
-
-      // TODO:
-      // FIXME: get this from api
-      return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, {defaultNoteVisibility: "followers", tutorial: -1})
-        })
-      })
+    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(async res => {
+			return Object.assign(res, {
+				data: this.converter.userPreferences(res.data, await this.getDefaultPostPrivacy())
+			})
+		})
   }
 
   // ======================================
@@ -1529,7 +1517,7 @@ export default class Misskey implements MegalodonInterface {
         .then(res => res.data[0] ?? '⭐');
   }
 
-	private async getDefaultPostPrivacy(): Promise<string> {
+	private async getDefaultPostPrivacy(): Promise<'public' | 'unlisted' | 'private' | 'direct'> {
 		// NOTE: get-unsecure is calckey's extension.
 		//       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
 		//       unless you have a 'nativeToken', which is reserved for the frontend webapp.
