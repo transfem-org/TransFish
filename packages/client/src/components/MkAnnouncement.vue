@@ -8,21 +8,13 @@
 			<Mfm :text="text" />
 			<img
 				v-if="imageUrl != null"
-				:style="$style.image"
 				:key="imageUrl"
 				:src="imageUrl"
 				alt="attached image"
 			/>
-			<MkButton
-				:class="$style.gotIt"
-				primary
-				full
-				@click="
-					$refs.modal.close();
-					markAsRead();
-				"
-				>{{ i18n.ts.gotIt }}</MkButton
-			>
+			<MkButton :class="$style.gotIt" primary full @click="gotIt()">{{
+				i18n.ts.gotIt
+			}}</MkButton>
 		</div>
 	</MkModal>
 </template>
@@ -32,7 +24,6 @@ import { shallowRef } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkSparkle from "@/components/MkSparkle.vue";
 import MkButton from "@/components/MkButton.vue";
-import { version } from "@/config";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 
@@ -44,9 +35,10 @@ const { id, text, title, imageUrl, isGoodNews } = props.announcement;
 
 const modal = shallowRef<InstanceType<typeof MkModal>>();
 
-function markAsRead() {
+const gotIt = () => {
+	modal.value.close();
 	os.api("i/read-announcement", { announcementId: id });
-}
+};
 </script>
 
 <style lang="scss" module>
@@ -60,27 +52,22 @@ function markAsRead() {
 	text-align: center;
 	background: var(--panel);
 	border-radius: var(--radius);
+
+	> img {
+		max-height: 100%;
+		max-width: 100%;
+	}
 }
 
 .title {
 	font-weight: bold;
-}
 
-.version {
-	margin: 1em 0;
-}
-
-.image {
-	max-width: 500px;
+	> p {
+		margin: 0;
+	}
 }
 
 .gotIt {
 	margin: 8px 0 0 0;
-}
-
-.releaseNotes {
-	> img {
-		border-radius: 10px;
-	}
 }
 </style>
