@@ -36,7 +36,7 @@ import { version, ui, lang, host } from "@/config";
 import { applyTheme } from "@/scripts/theme";
 import { isDeviceDarkmode } from "@/scripts/is-device-darkmode";
 import { i18n } from "@/i18n";
-import { confirm, alert, post, popup, toast } from "@/os";
+import { confirm, alert, post, popup, toast, api } from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
 import { $i, refreshAccount, login, updateAccount, signout } from "@/account";
@@ -270,6 +270,25 @@ function checkForSplash() {
 		} catch (err) {
 			console.error(err);
 		}
+	}
+
+	if ($i) {
+		api("announcements", { withUnreads: true })
+			.then((announcements) => {
+				console.log(announcements);
+				announcements.forEach((announcement) => {
+					if (announcement.showPopup && announcement.isRead === false)
+						popup(
+							defineAsyncComponent(
+								() => import("@/components/MkAnnouncement.vue"),
+							),
+							{ announcement: announcement },
+							{},
+							"closed",
+						);
+				});
+			})
+			.catch((err) => console.log(err));
 	}
 
 	// NOTE: この処理は必ず↑のクライアント更新時処理より後に来ること(テーマ再構築のため)
