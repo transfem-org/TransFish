@@ -702,7 +702,8 @@ onlineUsersCount: "{n}人正在線上"
 nUsers: "{n}用戶"
 nNotes: "{n}貼文"
 sendErrorReports: "傳送錯誤報告"
-sendErrorReportsDescription: "啟用後，問題報告將傳送至Calckey開發者以提升軟體品質。\n問題報告可能包括OS版本，瀏覽器類型，行為歷史記錄等。"
+sendErrorReportsDescription: "開啟後，錯誤出現時將會與 Calckey 分享詳細紀錄，對於 Calckey 的開發會有非常大的幫助。\n
+  這將包括您的操作系統版本、使用的瀏覽器、您在 Calckey 中的活動等資料。"
 myTheme: "我的佈景主題"
 backgroundColor: "背景"
 accentColor: "重點色彩"
@@ -862,7 +863,7 @@ check: "檢查"
 driveCapOverrideLabel: "更改這個使用者的雲端硬碟容量上限"
 driveCapOverrideCaption: "如果指定0以下的值，就會被取消。"
 requireAdminForView: "必須以管理者帳號登入才可以檢視。"
-isSystemAccount: "由系統自動建立與管理的帳號。"
+isSystemAccount: "該帳號由系統自動創建並運行。 千千萬萬不要審核、編輯、刪除或以其他方式修改此帳戶，否則可能會破壞您的伺服器。"
 typeToConfirm: "要執行這項操作，請輸入 {x}"
 deleteAccount: "刪除帳號"
 document: "文件"
@@ -1855,3 +1856,14 @@ hiddenTagsDescription: '列出您希望隱藏趨勢和探索的主題標籤（�
 userSaysSomethingReasonQuote: '{name} 引用了一篇包含 {reason} 的貼文'
 silencedInstancesDescription: 列出您想要靜音的伺服器的網址。 您列出的伺服器內的帳戶將被視為“沉默”，只能發出追隨請求，如果不追隨則不能提及本地帳戶。
   這不會影響被阻止的伺服器。
+video: 影片
+audio: 音訊
+sendPushNotificationReadMessageCaption: 包含文本 “{emptyPushNotificationMessage}” 的通知將顯示一小段時間。
+  這可能會增加您設備的電池使用量（如果適用）。
+channelFederationWarn: 頻道功能尚未與聯邦宇宙連動
+swipeOnMobile: 允許在頁面之間滑動
+sendPushNotificationReadMessage: 閱讀相關通知或消息後刪除推送通知
+image: 圖片
+seperateRenoteQuote: 分別獨立的轉傳及引用按鈕
+clipsDesc: 摘錄就像一個可以分享的書籤。 你可以從每個貼文的菜單創建新摘錄或將貼文加入已有的摘錄。
+noteId: 貼文 ID
