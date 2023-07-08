@@ -42,6 +42,7 @@ export function apiSearchMastodon(router: Router): void {
 				!type || type === "hashtags"
 					? await client.search(query.q, "hashtags", query)
 					: null;
+
 			ctx.body = {
 				accounts:
 					acct?.data?.accounts.map((account) => convertAccount(account)) ?? [],

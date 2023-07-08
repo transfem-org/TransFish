@@ -1281,6 +1281,8 @@ export default class Misskey implements MegalodonInterface {
 
     status.mentions = (await this.getMentions(status.plain_content!, cache)).filter(p => p != null);
     for (const m of status.mentions.filter((value, index, array) => array.indexOf(value) === index)) {
+			if (m.acct == m.username)
+				status.content = status.content.replace(`@${m.acct}@${this.baseUrlToHost(this.baseUrl)}`, `@${m.acct}`);
       status.content = status.content.replace(`@${m.acct}`, `<a href="${m.url}" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@${m.acct}</a>`);
     }
     return status;
@@ -1686,31 +1688,35 @@ export default class Misskey implements MegalodonInterface {
   // ======================================
   // statuses/polls
   // ======================================
-  public async getPoll(_id: string): Promise<Response<Entity.Poll>> {
-    return new Promise((_, reject) => {
-      const err = new NoImplementedError('misskey does not support')
-      reject(err)
-    })
+  public async getPoll(id: string): Promise<Response<Entity.Poll>> {
+    const res = await this.getStatus(id);
+		if (res.data.poll == null)
+			throw new Error('poll not found');
+		return { ...res, data: res.data.poll }
   }
 
   /**
    * POST /api/notes/polls/vote
    */
-  public async votePoll(_id: string, choices: Array<number>, status_id?: string | null): Promise<Response<Entity.Poll>> {
-    if (!status_id) {
+  public async votePoll(id: string, choices: Array<number>): Promise<Response<Entity.Poll>> {
+    if (!id) {
       return new Promise((_, reject) => {
-        const err = new ArgumentError('status_id is required')
+        const err = new ArgumentError('id is required')
         reject(err)
       })
     }
-    const params = {
-      noteId: status_id,
-      choice: choices[0]
-    }
-    await this.client.post<{}>('/api/notes/polls/vote', params)
+
+		for (const c of choices) {
+			const params = {
+				noteId: id,
+				choice: +c
+			}
+			await this.client.post<{}>('/api/notes/polls/vote', params)
+		}
+
     const res = await this.client
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
-        noteId: status_id
+        noteId: id
       })
       .then(async res => {
         const note = await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
@@ -2389,6 +2395,32 @@ export default class Misskey implements MegalodonInterface {
 
     switch (type) {
       case 'accounts': {
+				if (q.startsWith("http://") || q.startsWith("https://")) {
+					return this.client.post('/api/ap/show', {uri: q}).then(async res => {
+						if (res.status != 200 || res.data.type != 'User') {
+							res.status = 200;
+							res.statusText = "OK";
+							res.data = {
+								accounts: [],
+								statuses: [],
+								hashtags: []
+							};
+
+							return res;
+						}
+
+						const account = await this.converter.userDetail(res.data.object as MisskeyAPI.Entity.UserDetail, this.baseUrlToHost(this.baseUrl));
+
+						return {
+							...res,
+							data: {
+								accounts: options?.max_id && options?.max_id >= account.id ? [] : [account],
+								statuses: [],
+								hashtags: []
+							}
+						};
+					})
+				}
         let params = {
           query: q
         }
@@ -2462,6 +2494,32 @@ export default class Misskey implements MegalodonInterface {
         }))
       }
       case 'statuses': {
+				if (q.startsWith("http://") || q.startsWith("https://")) {
+					return this.client.post('/api/ap/show', {uri: q}).then(async res => {
+						if (res.status != 200 || res.data.type != 'Note') {
+							res.status = 200;
+							res.statusText = "OK";
+							res.data = {
+								accounts: [],
+								statuses: [],
+								hashtags: []
+							};
+
+							return res;
+						}
+
+						const post = await this.noteWithDetails(res.data.object as MisskeyAPI.Entity.Note, this.baseUrlToHost(this.baseUrl), accountCache);
+
+						return {
+							...res,
+							data: {
+								accounts: [],
+								statuses: options?.max_id && options.max_id >= post.id ? [] : [post],
+								hashtags: []
+							}
+						}
+					})
+				}
         let params = {
           query: q
         }
