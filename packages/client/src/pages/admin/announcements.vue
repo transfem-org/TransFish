@@ -7,7 +7,7 @@
 				:display-back-button="true"
 		/></template>
 		<MkSpacer :content-max="900">
-			<div class="ztgjmzrw">
+			<div :class="$style.root">
 				<section
 					v-for="announcement in announcements"
 					class="_card _gap announcements"
@@ -137,8 +137,8 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" scoped>
-.ztgjmzrw {
+<style lang="scss" module>
+.root {
 	margin: var(--margin);
 }
 </style>
