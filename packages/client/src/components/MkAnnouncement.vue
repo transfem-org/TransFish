@@ -2,7 +2,7 @@
 	<MkModal ref="modal" :z-priority="'middle'" @closed="$emit('closed')">
 		<div :class="$style.root">
 			<div :class="$style.title">
-				<MkSparkle v-if="showWithSparcles">{{ title }}</MkSparkle>
+				<MkSparkle v-if="isGoodNews">{{ title }}</MkSparkle>
 				<p v-else>{{ title }}</p>
 			</div>
 			<Mfm :text="text" />

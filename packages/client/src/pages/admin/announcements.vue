@@ -31,7 +31,7 @@
 							v-if="announcement.showPopup"
 							v-model="announcement.isGoodNews"
 							class="_formBlock"
-							>{{ i18n.ts.isGoodNews }}</MkSwitch
+							>{{ i18n.ts.showWithSparkles }}</MkSwitch
 						>
 						<p v-if="announcement.reads">
 							{{
