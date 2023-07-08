@@ -7,4 +7,4 @@ This directory contains all of the packages Calckey uses.
 - `client`: Web interface written in Vue3 and TypeScript
 - `sw`: Web [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) written in TypeScript
 - `calckey-js`: TypeScript SDK for both backend and client, also published on [NPM](https://www.npmjs.com/package/calckey-js) for public use
-- `megalodon`: TypeScript library used for partial Mastodon API compatibility
+- `megalodon`: TypeScript library used for Mastodon API compatibility
