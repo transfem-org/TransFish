@@ -19,7 +19,6 @@
 import { shallowRef } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkButton from "@/components/MkButton.vue";
-import { version } from "@/config";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 
@@ -45,23 +44,10 @@ const checkAnnouncements = () => {
 
 .title {
 	font-weight: bold;
-}
-
-.version {
-	margin: 1em 0;
-}
-
-.image {
-	max-width: 500px;
+	margin: 0;
 }
 
 .gotIt {
 	margin: 8px 0 0 0;
-}
-
-.releaseNotes {
-	> img {
-		border-radius: 10px;
-	}
 }
 </style>
