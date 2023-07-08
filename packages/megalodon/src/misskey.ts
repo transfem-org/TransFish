@@ -474,11 +474,11 @@ export default class Misskey implements MegalodonInterface {
         limit: 40
       })
     }
-    return this.client.post<Array<MisskeyAPI.Entity.Follower>>('/api/users/followers', params).then(res => {
-      return Object.assign(res, {
-        data: res.data.map(f => this.converter.follower(f))
-      })
-    })
+    return this.client.post<Array<MisskeyAPI.Entity.Follower>>('/api/users/followers', params).then(async res => {
+			return Object.assign(res, {
+				data: (await Promise.all(res.data.map(async f => (this.getAccount(f.followerId)).then(p => p.data))))
+			})
+		})
   }
 
   /**
@@ -502,11 +502,11 @@ export default class Misskey implements MegalodonInterface {
         })
       }
     }
-    return this.client.post<Array<MisskeyAPI.Entity.Following>>('/api/users/following', params).then(res => {
-      return Object.assign(res, {
-        data: res.data.map(f => this.converter.following(f))
-      })
-    })
+    return this.client.post<Array<MisskeyAPI.Entity.Following>>('/api/users/following', params).then(async res => {
+			return Object.assign(res, {
+				data: (await Promise.all(res.data.map(async f => (this.getAccount(f.followeeId)).then(p => p.data))))
+			})
+		})
   }
 
   public async getAccountLists(_id: string): Promise<Response<Array<Entity.List>>> {
