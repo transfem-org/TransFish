@@ -1281,6 +1281,8 @@ export default class Misskey implements MegalodonInterface {
 
     status.mentions = (await this.getMentions(status.plain_content!, cache)).filter(p => p != null);
     for (const m of status.mentions.filter((value, index, array) => array.indexOf(value) === index)) {
+			if (m.acct == m.username)
+				status.content = status.content.replace(`@${m.acct}@${this.baseUrlToHost(this.baseUrl)}`, `@${m.acct}`);
       status.content = status.content.replace(`@${m.acct}`, `<a href="${m.url}" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@${m.acct}</a>`);
     }
     return status;
