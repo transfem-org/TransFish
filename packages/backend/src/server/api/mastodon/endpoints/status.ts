@@ -67,6 +67,25 @@ export function apiStatusMastodon(router: Router): void {
 			const { sensitive } = body;
 			body.sensitive =
 				typeof sensitive === "string" ? sensitive === "true" : sensitive;
+
+			if (body.poll) {
+				if (
+					body.poll.expires_in != null &&
+					typeof body.poll.expires_in === "string"
+				)
+					body.poll.expires_in = parseInt(body.poll.expires_in);
+				if (
+					body.poll.multiple != null &&
+					typeof body.poll.multiple === "string"
+				)
+					body.poll.multiple = body.poll.multiple == "true";
+				if (
+					body.poll.hide_totals != null &&
+					typeof body.poll.hide_totals === "string"
+				)
+					body.poll.hide_totals = body.poll.hide_totals == "true";
+			}
+
 			const data = await client.postStatus(text, body);
 			ctx.body = convertStatus(data.data);
 		} catch (e: any) {
