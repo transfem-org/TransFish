@@ -1236,6 +1236,8 @@ export default class Misskey implements MegalodonInterface {
 		const notification = this.converter.notification(n, host);
 		if (n.note)
 			notification.status = await this.noteWithDetails(n.note, host, cache);
+		if (notification.account)
+			notification.account = (await this.getAccount(notification.account.id)).data
 		return notification;
 	}
 
