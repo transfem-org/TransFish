@@ -426,8 +426,8 @@ onDeactivated(() => {
 			display: grid;
 			overflow-y: hidden;
 			height: 0;
-			padding-top: 25%;
-			padding-bottom: 25%;
+			padding-top: calc((56.25% - 48px) / 2);
+			padding-bottom: calc((56.25% - 48px) / 2);
 			content-visibility: auto;
 
 			> .modRowActive {
