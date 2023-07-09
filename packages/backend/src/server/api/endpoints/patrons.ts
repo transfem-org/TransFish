@@ -42,7 +42,10 @@ export default define(meta, paramDef, async (ps) => {
 			.then((response) => response.json())
 			.catch(() => {
 				const staticPatrons = JSON.parse(
-					fs.readFileSync(`${_dirname}/../../../../../../patrons.json`, "utf-8"),
+					fs.readFileSync(
+						`${_dirname}/../../../../../../patrons.json`,
+						"utf-8",
+					),
 				);
 				patrons = cachedPatrons ? JSON.parse(cachedPatrons) : staticPatrons;
 			});

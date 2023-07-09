@@ -10,7 +10,7 @@ import type { Note } from "@/models/entities/note.js";
 import type { CacheableLocalUser, User } from "@/models/entities/user.js";
 import { isActor, isPost, getApId } from "@/remote/activitypub/type.js";
 import type { SchemaType } from "@/misc/schema.js";
-import { HOUR } from "@/const.js";
+import { MINUTE } from "@/const.js";
 import { shouldBlockInstance } from "@/misc/should-block-instance.js";
 import { updateQuestion } from "@/remote/activitypub/models/question.js";
 import { populatePoll } from "@/models/repositories/note.js";
@@ -22,8 +22,8 @@ export const meta = {
 	requireCredential: true,
 
 	limit: {
-		duration: HOUR,
-		max: 30,
+		duration: MINUTE,
+		max: 10,
 	},
 
 	errors: {

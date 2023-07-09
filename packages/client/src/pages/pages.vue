@@ -66,10 +66,10 @@
 							:pagination="myPagesPagination"
 						>
 							<MkPagePreview
-								v-for="page in items"
-								:key="page.id"
+								v-for="mypage in items"
+								:key="mypage.id"
 								class="ckltabjg"
-								:page="page"
+								:page="mypage"
 							/>
 						</MkPagination>
 					</div>

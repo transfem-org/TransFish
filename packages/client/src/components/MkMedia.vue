@@ -1,5 +1,5 @@
 <template>
-	<div class="media" :class="{ mini: plyrMini }">
+	<div class="media" v-size="{ max: [350] }">
 		<button v-if="hide" class="hidden" @click="hide = false">
 			<ImgWithBlurhash
 				:hash="media.blurhash"
@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, onMounted } from "vue";
+import { watch, ref } from "vue";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
 import type * as misskey from "calckey-js";
@@ -98,7 +98,6 @@ const props = defineProps<{
 let hide = $ref(true);
 
 const plyr = ref();
-const plyrMini = ref(false);
 
 const url =
 	props.raw || defaultStore.state.loadRawImages
@@ -130,17 +129,6 @@ watch(
 		immediate: true,
 	},
 );
-
-onMounted(() => {
-	if (props.media.type.startsWith("video")) {
-		plyrMini.value = plyr.value.player.media.scrollWidth < 300;
-		if (plyrMini.value) {
-			plyr.value.player.on("play", () => {
-				plyr.value.player.fullscreen.enter();
-			});
-		}
-	}
-});
 </script>
 
 <style lang="scss" scoped>
@@ -229,15 +217,45 @@ onMounted(() => {
 			pointer-events: none;
 		}
 	}
-	&.mini {
+	:deep(.plyr__controls) {
+		contain: strict;
+		height: 24px;
+		box-sizing: content-box;
+	}
+	:deep(.plyr__volume) {
+		display: flex;
+		min-width: max-content;
+		width: 110px;
+		transition: width 0.2s cubic-bezier(0,0,0,1);
+		[data-plyr="volume"] {
+			width: 0;
+			flex-grow: 1;
+			transition: margin 0.3s, opacity .2s 0.2s;
+		}
+		&:not(:hover):not(:focus-within) {
+			width: 0px;
+			transition: width 0.2s;
+			[data-plyr="volume"] {
+				margin-inline: 0px;
+				opacity: 0;
+				transition: margin 0.3s, opacity 0.1s;
+			}
+		}
+	}
+	&.max-width_350px {
 		:deep(.plyr:not(:fullscreen)) {
 			min-width: unset !important;
 			.plyr__control--overlaid,
 			.plyr__progress__container,
 			.plyr__volume,
-			[data-plyr="fullscreen"] {
+			[data-plyr="download"] {
 				display: none;
 			}
+		}
+		:deep(.plyr__time) {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 }

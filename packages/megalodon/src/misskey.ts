@@ -10,6 +10,7 @@ import Entity from './entity'
 import { MegalodonInterface, WebSocketInterface, NoImplementedError, ArgumentError, UnexpectedError } from './megalodon'
 import MegalodonEntity from "@/entity";
 import fs from "node:fs";
+import MisskeyNotificationType from "./misskey/notification";
 
 type AccountCache = {
   locks: AsyncLock,
@@ -332,7 +333,7 @@ export default class Misskey implements MegalodonInterface {
           if (res.data.pinnedNotes) {
             return {
               ...res,
-              data: await Promise.all(res.data.pinnedNotes.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+              data: await Promise.all(res.data.pinnedNotes.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
             }
           }
           return {...res, data: []}
@@ -384,7 +385,7 @@ export default class Misskey implements MegalodonInterface {
       })
     }
     return this.client.post<Array<MisskeyAPI.Entity.Note>>('/api/users/notes', params).then(async res => {
-      const statuses: Array<Entity.Status> = await Promise.all(res.data.map(note => this.noteWithMentions(note, this.baseUrlToHost(this.baseUrl), accountCache)))
+      const statuses: Array<Entity.Status> = await Promise.all(res.data.map(note => this.noteWithDetails(note, this.baseUrlToHost(this.baseUrl), accountCache)))
       return Object.assign(res, {
         data: statuses
       })
@@ -423,7 +424,7 @@ export default class Misskey implements MegalodonInterface {
     }
     return this.client.post<Array<MisskeyAPI.Entity.Favorite>>('/api/users/reactions', params).then(async res => {
       return Object.assign(res, {
-        data: await Promise.all(res.data.map(fav => this.noteWithMentions(fav.note, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: await Promise.all(res.data.map(fav => this.noteWithDetails(fav.note, this.baseUrlToHost(this.baseUrl), accountCache)))
       })
     })
   }
@@ -459,7 +460,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {
@@ -473,11 +474,11 @@ export default class Misskey implements MegalodonInterface {
         limit: 40
       })
     }
-    return this.client.post<Array<MisskeyAPI.Entity.Follower>>('/api/users/followers', params).then(res => {
-      return Object.assign(res, {
-        data: res.data.map(f => this.converter.follower(f))
-      })
-    })
+    return this.client.post<Array<MisskeyAPI.Entity.Follower>>('/api/users/followers', params).then(async res => {
+			return Object.assign(res, {
+				data: (await Promise.all(res.data.map(async f => (this.getAccount(f.followerId)).then(p => p.data))))
+			})
+		})
   }
 
   /**
@@ -497,15 +498,15 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
     }
-    return this.client.post<Array<MisskeyAPI.Entity.Following>>('/api/users/following', params).then(res => {
-      return Object.assign(res, {
-        data: res.data.map(f => this.converter.following(f))
-      })
-    })
+    return this.client.post<Array<MisskeyAPI.Entity.Following>>('/api/users/following', params).then(async res => {
+			return Object.assign(res, {
+				data: (await Promise.all(res.data.map(async f => (this.getAccount(f.followeeId)).then(p => p.data))))
+			})
+		})
   }
 
   public async getAccountLists(_id: string): Promise<Response<Array<Entity.List>>> {
@@ -763,7 +764,7 @@ export default class Misskey implements MegalodonInterface {
     }
     return this.client.post<Array<MisskeyAPI.Entity.Favorite>>('/api/i/favorites', params).then(async res => {
       return Object.assign(res, {
-        data: await Promise.all(res.data.map(s => this.noteWithMentions(s.note, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: await Promise.all(res.data.map(s => this.noteWithDetails(s.note, this.baseUrlToHost(this.baseUrl), accountCache)))
       })
     })
   }
@@ -1078,23 +1079,11 @@ export default class Misskey implements MegalodonInterface {
   // accounts/preferences
   // ======================================
   public async getPreferences(): Promise<Response<Entity.Preferences>> {
-    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(res => {
-      /*
-      return this.client.post<MisskeyAPI.Entity.GetAll>('/api/i/registry/get-all', {
-        scope: ['client', 'base'],
-      }).then(ga => {
-        return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, ga.data)
-        })
-      })
-      */
-
-      // TODO:
-      // FIXME: get this from api
-      return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, {defaultNoteVisibility: "followers", tutorial: -1})
-        })
-      })
+    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(async res => {
+			return Object.assign(res, {
+				data: this.converter.userPreferences(res.data, await this.getDefaultPostPrivacy())
+			})
+		})
   }
 
   // ======================================
@@ -1221,7 +1210,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.CreatedNote>('/api/notes/create', params)
       .then(async res => ({
         ...res,
-        data: await this.noteWithMentions(res.data.createdNote, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
+        data: await this.noteWithDetails(res.data.createdNote, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
       }))
   }
 
@@ -1233,7 +1222,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({ ...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}));
+      .then(async res => ({ ...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}));
   }
 
   private getFreshAccountCache() :AccountCache {
@@ -1243,45 +1232,76 @@ export default class Misskey implements MegalodonInterface {
     }
   }
 
-  public async noteWithMentions(n: MisskeyAPI.Entity.Note, host: string, cache: AccountCache): Promise<MegalodonEntity.Status> {
-    const status = await this.converter.note(n, host);
-    return status.mentions.length === 0 ? this.addMentionsToStatus(status, cache) : status;
+	public async notificationWithDetails(n: MisskeyAPI.Entity.Notification, host: string, cache: AccountCache): Promise<MegalodonEntity.Notification> {
+		const notification = this.converter.notification(n, host);
+		if (n.note)
+			notification.status = await this.noteWithDetails(n.note, host, cache);
+		return notification;
+	}
+
+  public async noteWithDetails(n: MisskeyAPI.Entity.Note, host: string, cache: AccountCache): Promise<MegalodonEntity.Status> {
+    const status = await this.addUserDetailsToStatus(this.converter.note(n, host), cache);
+    return this.addMentionsToStatus(status, cache);
   }
 
+	public async addUserDetailsToStatus(status: Entity.Status, cache: AccountCache) : Promise<Entity.Status> {
+		if (status.account.followers_count === 0 && status.account.followers_count === 0 && status.account.statuses_count === 0)
+			status.account = await this.getAccountCached(status.account.id, status.account.acct, cache) ?? status.account;
+
+		if (status.reblog != null)
+			status.reblog = await this.addUserDetailsToStatus(status.reblog, cache);
+
+		if (status.quote != null)
+			status.quote = await this.addUserDetailsToStatus(status.quote, cache);
+
+		return status;
+	}
+
   public async addMentionsToStatus(status: Entity.Status, cache: AccountCache) : Promise<Entity.Status> {
+		if (status.mentions.length > 0)
+			return status;
+
+		if (status.reblog != null)
+			status.reblog = await this.addMentionsToStatus(status.reblog, cache);
+
+		if (status.quote != null)
+			status.quote = await this.addMentionsToStatus(status.quote, cache);
+
     status.mentions = (await this.getMentions(status.plain_content!, cache)).filter(p => p != null);
     for (const m of status.mentions.filter((value, index, array) => array.indexOf(value) === index)) {
+			if (m.acct == m.username)
+				status.content = status.content.replace(`@${m.acct}@${this.baseUrlToHost(this.baseUrl)}`, `@${m.acct}`);
       status.content = status.content.replace(`@${m.acct}`, `<a href="${m.url}" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@${m.acct}</a>`);
     }
     return status;
   }
 
   public async getMentions(text: string, cache: AccountCache): Promise<Entity.Mention[]> {
-		console.log(`getting mentions for message: '${text}'`);
 		const mentions :Entity.Mention[] = [];
 
 		if (text == undefined)
 			return mentions;
 
-		console.log('text is not undefined, continuing');
-
     const mentionMatch = text.matchAll(/(?<=^|\s)@(?<user>.*?)(?:@(?<host>.*?)|)(?=\s|$)/g);
 
     for (const m of mentionMatch) {
-      if (m.groups == null)
-        continue;
+			try {
+				if (m.groups == null)
+					continue;
 
-      const account = await this.getAccountByNameCached(m.groups.user, m.groups.host, cache);
+				const account = await this.getAccountByNameCached(m.groups.user, m.groups.host, cache);
 
-      if (account == null)
-        continue;
+				if (account == null)
+					continue;
 
-      mentions.push({
-        id: account.id,
-        url: account.url,
-        username: account.username,
-        acct: account.acct
-      });
+				mentions.push({
+					id: account.id,
+					url: account.url,
+					username: account.username,
+					acct: account.acct
+				});
+			}
+			catch {}
     }
 
     return mentions;
@@ -1305,6 +1325,23 @@ export default class Misskey implements MegalodonInterface {
       return account;
     })
   }
+
+	public async getAccountCached(id: string, acct: string, cache: AccountCache): Promise<Entity.Account | undefined | null> {
+		return await cache.locks.acquire(acct, async () => {
+			const cacheHit = cache.accounts.find(p => p.id === id);
+			const account = cacheHit ?? (await this.getAccount(id)).data;
+
+			if (!account) {
+				return null;
+			}
+
+			if (cacheHit == null) {
+				cache.accounts.push(account);
+			}
+
+			return account;
+		})
+	}
 
   public async editStatus(
     _id: string,
@@ -1374,11 +1411,11 @@ export default class Misskey implements MegalodonInterface {
     return this.client.post<Array<MisskeyAPI.Entity.Note>>('/api/notes/children', params).then(async res => {
       const accountCache = this.getFreshAccountCache();
       const conversation = await this.client.post<Array<MisskeyAPI.Entity.Note>>('/api/notes/conversation', params);
-      const parents = await Promise.all(conversation.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache)));
+      const parents = await Promise.all(conversation.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)));
 
       const context: Entity.Context = {
         ancestors: parents.reverse(),
-        descendants: this.dfs(await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache))))
+        descendants: this.dfs(await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache))))
       }
       return {
         ...res,
@@ -1446,17 +1483,21 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/renotes', {
         noteId: id
       })
-      .then(res => ({
+      .then(async res => ({
         ...res,
-        data: res.data.map(n => this.converter.user(n.user))
+				data: (await Promise.all(res.data.map(n => this.getAccount(n.user.id)))).map(p => p.data)
       }))
   }
 
-  public async getStatusFavouritedBy(_id: string): Promise<Response<Array<Entity.Account>>> {
-    return new Promise((_, reject) => {
-      const err = new NoImplementedError('misskey does not support')
-      reject(err)
-    })
+  public async getStatusFavouritedBy(id: string): Promise<Response<Array<Entity.Account>>> {
+		return this.client
+			.post<Array<MisskeyAPI.Entity.Reaction>>('/api/notes/reactions', {
+				noteId: id
+			})
+			.then(async res => ({
+				...res,
+				data: (await Promise.all(res.data.map(n => this.getAccount(n.user.id)))).map(p => p.data)
+			}))
   }
 
   public async favouriteStatus(id: string): Promise<Response<Entity.Status>> {
@@ -1476,6 +1517,23 @@ export default class Misskey implements MegalodonInterface {
         .then(res => res.data[0] ?? '⭐');
   }
 
+	private async getDefaultPostPrivacy(): Promise<'public' | 'unlisted' | 'private' | 'direct'> {
+		// NOTE: get-unsecure is calckey's extension.
+		//       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
+		//       unless you have a 'nativeToken', which is reserved for the frontend webapp.
+
+		return this.client
+			.post<string>('/api/i/registry/get-unsecure', {
+				key: 'defaultNoteVisibility',
+				scope: ['client', 'base'],
+			})
+			.then(res => {
+				if (!res.data || (res.data != 'public' && res.data != 'home' && res.data != 'followers' && res.data != 'specified'))
+					return 'public';
+				return this.converter.visibility(res.data);
+			});
+	}
+
   public async unfavouriteStatus(id: string): Promise<Response<Entity.Status>> {
     // NOTE: Misskey allows only one reaction per status, so we don't need to care what that emoji was.
     return this.deleteEmojiReaction(id, '');
@@ -1491,7 +1549,7 @@ export default class Misskey implements MegalodonInterface {
       })
       .then(async res => ({
         ...res,
-        data: await this.noteWithMentions(res.data.createdNote, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
+        data: await this.noteWithDetails(res.data.createdNote, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
       }))
   }
 
@@ -1506,7 +1564,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   /**
@@ -1520,7 +1578,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   /**
@@ -1534,7 +1592,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   public async muteStatus(_id: string): Promise<Response<Entity.Status>> {
@@ -1562,7 +1620,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   /**
@@ -1576,7 +1634,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   // ======================================
@@ -1585,20 +1643,26 @@ export default class Misskey implements MegalodonInterface {
   /**
    * POST /api/drive/files/create
    */
-  public async uploadMedia(file: any, _options?: { description?: string; focus?: string }): Promise<Response<Entity.Attachment>> {
+  public async uploadMedia(file: any, options?: { description?: string; focus?: string }): Promise<Response<Entity.Attachment>> {
     const formData = new FormData()
-    formData.append('file', fs.createReadStream(file.path), {
-      contentType: file.mimetype,
-      filename: file.originalname,
-    })
+		formData.append('file', fs.createReadStream(file.path), {
+			contentType: file.mimetype
+		})
+
+		if (file.originalname != null && file.originalname !== 'file')
+			formData.append('name', file.originalname);
+
+		if (options?.description != null)
+			formData.append('comment', options.description);
+
     let headers: { [key: string]: string } = {}
     if (typeof formData.getHeaders === 'function') {
       headers = formData.getHeaders()
     }
     return this.client
       .post<MisskeyAPI.Entity.File>('/api/drive/files/create', formData, headers)
-      .then(res => ({ ...res, data: this.converter.file(res.data) }))
-  }
+			.then(res => ({ ...res, data: this.converter.file(res.data) }))
+	}
 
   public async getMedia(id: string): Promise<Response<Entity.Attachment>> {
     const res = await this.client.post<MisskeyAPI.Entity.File>('/api/drive/files/show', { fileId: id })
@@ -1626,6 +1690,12 @@ export default class Misskey implements MegalodonInterface {
           isSensitive: options.is_sensitive
         })
       }
+
+			if (options.description !== undefined) {
+				params = Object.assign(params, {
+					comment: options.description
+				})
+			}
     }
     return this.client
       .post<MisskeyAPI.Entity.File>('/api/drive/files/update', params)
@@ -1635,34 +1705,38 @@ export default class Misskey implements MegalodonInterface {
   // ======================================
   // statuses/polls
   // ======================================
-  public async getPoll(_id: string): Promise<Response<Entity.Poll>> {
-    return new Promise((_, reject) => {
-      const err = new NoImplementedError('misskey does not support')
-      reject(err)
-    })
+  public async getPoll(id: string): Promise<Response<Entity.Poll>> {
+    const res = await this.getStatus(id);
+		if (res.data.poll == null)
+			throw new Error('poll not found');
+		return { ...res, data: res.data.poll }
   }
 
   /**
    * POST /api/notes/polls/vote
    */
-  public async votePoll(_id: string, choices: Array<number>, status_id?: string | null): Promise<Response<Entity.Poll>> {
-    if (!status_id) {
+  public async votePoll(id: string, choices: Array<number>): Promise<Response<Entity.Poll>> {
+    if (!id) {
       return new Promise((_, reject) => {
-        const err = new ArgumentError('status_id is required')
+        const err = new ArgumentError('id is required')
         reject(err)
       })
     }
-    const params = {
-      noteId: status_id,
-      choice: choices[0]
-    }
-    await this.client.post<{}>('/api/notes/polls/vote', params)
+
+		for (const c of choices) {
+			const params = {
+				noteId: id,
+				choice: +c
+			}
+			await this.client.post<{}>('/api/notes/polls/vote', params)
+		}
+
     const res = await this.client
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
-        noteId: status_id
+        noteId: id
       })
       .then(async res => {
-        const note = await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
+        const note = await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())
         return {...res, data: note.poll}
       })
     if (!res.data) {
@@ -1767,7 +1841,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/global-timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1825,7 +1899,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/local-timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1889,7 +1963,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/search-by-tag', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1944,7 +2018,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -2000,7 +2074,7 @@ export default class Misskey implements MegalodonInterface {
     }
     return this.client
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/user-list-timeline', params)
-      .then(async res => ({ ...res, data: await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache))) }))
+      .then(async res => ({ ...res, data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc) }))
   }
 
   // ======================================
@@ -2069,6 +2143,15 @@ export default class Misskey implements MegalodonInterface {
       reject(err)
     })
   }
+
+	private sortByIdDesc(a: Entity.Status, b: Entity.Status): number {
+		if (a.id < b.id)
+			return 1;
+		if (a.id > b.id)
+			return -1;
+
+		return 0;
+	}
 
   // ======================================
   // timelines/lists
@@ -2202,7 +2285,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {
@@ -2236,9 +2319,15 @@ export default class Misskey implements MegalodonInterface {
         limit: 20
       })
     }
+		const cache = this.getFreshAccountCache();
     return this.client
       .post<Array<MisskeyAPI.Entity.Notification>>('/api/i/notifications', params)
-      .then(res => ({ ...res, data: res.data.map(n => this.converter.notification(n, this.baseUrlToHost(this.baseUrl))) }))
+      .then(async res => ({
+				...res,
+				data: await Promise.all(res.data
+					.filter(p => p.type != MisskeyNotificationType.FollowRequestAccepted) // these aren't supported on mastodon
+					.map(n => this.notificationWithDetails(n, this.baseUrlToHost(this.baseUrl), cache)))
+			}))
   }
 
   public async getNotification(_id: string): Promise<Response<Entity.Notification>> {
@@ -2332,6 +2421,32 @@ export default class Misskey implements MegalodonInterface {
 
     switch (type) {
       case 'accounts': {
+				if (q.startsWith("http://") || q.startsWith("https://")) {
+					return this.client.post('/api/ap/show', {uri: q}).then(async res => {
+						if (res.status != 200 || res.data.type != 'User') {
+							res.status = 200;
+							res.statusText = "OK";
+							res.data = {
+								accounts: [],
+								statuses: [],
+								hashtags: []
+							};
+
+							return res;
+						}
+
+						const account = await this.converter.userDetail(res.data.object as MisskeyAPI.Entity.UserDetail, this.baseUrlToHost(this.baseUrl));
+
+						return {
+							...res,
+							data: {
+								accounts: options?.max_id && options?.max_id >= account.id ? [] : [account],
+								statuses: [],
+								hashtags: []
+							}
+						};
+					})
+				}
         let params = {
           query: q
         }
@@ -2405,6 +2520,32 @@ export default class Misskey implements MegalodonInterface {
         }))
       }
       case 'statuses': {
+				if (q.startsWith("http://") || q.startsWith("https://")) {
+					return this.client.post('/api/ap/show', {uri: q}).then(async res => {
+						if (res.status != 200 || res.data.type != 'Note') {
+							res.status = 200;
+							res.statusText = "OK";
+							res.data = {
+								accounts: [],
+								statuses: [],
+								hashtags: []
+							};
+
+							return res;
+						}
+
+						const post = await this.noteWithDetails(res.data.object as MisskeyAPI.Entity.Note, this.baseUrlToHost(this.baseUrl), accountCache);
+
+						return {
+							...res,
+							data: {
+								accounts: [],
+								statuses: options?.max_id && options.max_id >= post.id ? [] : [post],
+								hashtags: []
+							}
+						}
+					})
+				}
         let params = {
           query: q
         }
@@ -2439,7 +2580,7 @@ export default class Misskey implements MegalodonInterface {
           ...res,
           data: {
             accounts: [],
-            statuses: await Promise.all(res.data.map(n => this.noteWithMentions(n, this.baseUrlToHost(this.baseUrl), accountCache))),
+            statuses: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache))),
             hashtags: []
           }
         }))
@@ -2577,7 +2718,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   /**
@@ -2591,7 +2732,7 @@ export default class Misskey implements MegalodonInterface {
       .post<MisskeyAPI.Entity.Note>('/api/notes/show', {
         noteId: id
       })
-      .then(async res => ({...res, data: await this.noteWithMentions(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
+      .then(async res => ({...res, data: await this.noteWithDetails(res.data, this.baseUrlToHost(this.baseUrl), this.getFreshAccountCache())}))
   }
 
   public async getEmojiReactions(id: string): Promise<Response<Array<Entity.Reaction>>> {
