@@ -2,9 +2,15 @@
 	<MkStickyContainer>
 		<template #header>
 			<MkTab v-model="include" :class="$style.tab">
-				<option :value="null">{{ i18n.ts.notes }}</option>
-				<option value="replies">{{ i18n.ts.notesAndReplies }}</option>
-				<option value="files">{{ i18n.ts.withFiles }}</option>
+				<!-- TODO: Localize these values -->
+				<!-- {{ i18n.ts.notes }} -->
+				<option value="posts">Posts</option>
+				<!-- {{ i18n.ts.notesAndReplies }} -->
+				<option :value="null">Replies</option>
+				<!-- None -->
+				<option value="boosts">Boosts</option>
+				<!-- {{ i18n.ts.withFiles }} -->
+				<option value="files">Files</option>
 			</MkTab>
 		</template>
 		<XNotes :no-gap="true" :pagination="pagination" />
@@ -30,8 +36,10 @@ const pagination = {
 	limit: 10,
 	params: computed(() => ({
 		userId: props.user.id,
-		includeReplies: include.value === "replies",
+		includeReplies: include.value === null,
 		withFiles: include.value === "files",
+		includeRenotes: include.value === "boosts",
+		renotesOnly: include.value === "boosts",
 	})),
 };
 </script>
