@@ -396,8 +396,8 @@ namespace MisskeyAPI {
           return MisskeyNotificationType.Reaction
         case NotificationType.Reblog:
           return MisskeyNotificationType.Renote
-        case NotificationType.PollVote:
-          return MisskeyNotificationType.PollVote
+				case NotificationType.Poll:
+					return MisskeyNotificationType.PollEnded
         case NotificationType.FollowRequest:
           return MisskeyNotificationType.ReceiveFollowRequest
         default:
@@ -417,8 +417,8 @@ namespace MisskeyAPI {
           return NotificationType.Reblog
         case MisskeyNotificationType.Reaction:
           return NotificationType.EmojiReaction
-        case MisskeyNotificationType.PollVote:
-          return NotificationType.PollVote
+				case MisskeyNotificationType.PollEnded:
+					return NotificationType.Poll
         case MisskeyNotificationType.ReceiveFollowRequest:
           return NotificationType.FollowRequest
         case MisskeyNotificationType.FollowRequestAccepted:
@@ -458,6 +458,11 @@ namespace MisskeyAPI {
         notification = Object.assign(notification, {
           status: this.note(n.note, host)
         })
+				if (notification.type === NotificationType.Poll) {
+					notification = Object.assign(notification, {
+						account: this.note(n.note, host).account
+					})
+				}
       }
       if (n.reaction) {
         notification = Object.assign(notification, {
