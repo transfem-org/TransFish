@@ -105,7 +105,7 @@ export function apiStatusMastodon(router: Router): void {
 			ctx.body = convertStatus(data.data);
 		} catch (e: any) {
 			console.error(e);
-			ctx.status = 401;
+			ctx.status = ctx.status == 404 ? 404 : 401;
 			ctx.body = e.response.data;
 		}
 	});
