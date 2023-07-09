@@ -1,4 +1,5 @@
 import { Entity } from "megalodon";
+import config from "@/config/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { Users, Notes } from "@/models/index.js";
 import { IsNull, MoreThan } from "typeorm";
@@ -17,7 +18,7 @@ export async function getInstance(response: Entity.Instance) {
 			response.description ||
 			"This is a vanilla Calckey Instance. It doesnt seem to have a description. BTW you are using the Mastodon api to access this server :)",
 		email: response.email || "",
-		version: "3.0.0 compatible (3.5+ Calckey)", //I hope this version string is correct, we will need to test it.
+		version: `3.0.0 (compatible; Calckey ${config.version})`,
 		urls: response.urls,
 		stats: {
 			user_count: await totalUsers,

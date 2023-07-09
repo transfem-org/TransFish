@@ -20,5 +20,11 @@ export function nyaize(text: string): string {
 			)
 			.replace(/(다$)|(다(?=\.))|(다(?= ))|(다(?=!))|(다(?=\?))/gm, "다냥")
 			.replace(/(야(?=\?))|(야$)|(야(?= ))/gm, "냥")
+			// zh-CN, zh-TW
+			.replace(/(妙|庙|描|渺|瞄|秒|苗|藐|廟)/g, "喵")
+			// el-GR
+			.replaceAll("να", "νια")
+			.replaceAll("ΝΑ", "ΝΙΑ")
+			.replaceAll("Να", "Νια")
 	);
 }

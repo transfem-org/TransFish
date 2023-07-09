@@ -408,7 +408,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+					limit: options.limit <= 100 ? options.limit : 100
         })
       }
       if (options.max_id) {
@@ -738,7 +738,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+					limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {
@@ -1169,7 +1169,7 @@ export default class Misskey implements MegalodonInterface {
         let pollParam = {
           choices: options.poll.options,
           expiresAt: null,
-          expiredAfter: options.poll.expires_in
+          expiredAfter: options.poll.expires_in * 1000
         }
         if (options.poll.multiple !== undefined) {
           pollParam = Object.assign(pollParam, {
@@ -1236,13 +1236,23 @@ export default class Misskey implements MegalodonInterface {
 		const notification = this.converter.notification(n, host);
 		if (n.note)
 			notification.status = await this.noteWithDetails(n.note, host, cache);
+		if (notification.account)
+			notification.account = (await this.getAccount(notification.account.id)).data
 		return notification;
 	}
 
   public async noteWithDetails(n: MisskeyAPI.Entity.Note, host: string, cache: AccountCache): Promise<MegalodonEntity.Status> {
     const status = await this.addUserDetailsToStatus(this.converter.note(n, host), cache);
+		status.bookmarked = await this.isStatusBookmarked(n.id);
     return this.addMentionsToStatus(status, cache);
   }
+
+	public async isStatusBookmarked(id: string) : Promise<boolean> {
+		return this.client
+			.post<MisskeyAPI.Entity.State>('/api/notes/state', {
+				noteId: id
+			}).then(p => p.data.isFavorited ?? false);
+	}
 
 	public async addUserDetailsToStatus(status: Entity.Status, cache: AccountCache) : Promise<Entity.Status> {
 		if (status.account.followers_count === 0 && status.account.followers_count === 0 && status.account.statuses_count === 0)
