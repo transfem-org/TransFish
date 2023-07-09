@@ -1243,8 +1243,16 @@ export default class Misskey implements MegalodonInterface {
 
   public async noteWithDetails(n: MisskeyAPI.Entity.Note, host: string, cache: AccountCache): Promise<MegalodonEntity.Status> {
     const status = await this.addUserDetailsToStatus(this.converter.note(n, host), cache);
+		status.bookmarked = await this.isStatusBookmarked(n.id);
     return this.addMentionsToStatus(status, cache);
   }
+
+	public async isStatusBookmarked(id: string) : Promise<boolean> {
+		return this.client
+			.post<MisskeyAPI.Entity.State>('/api/notes/state', {
+				noteId: id
+			}).then(p => p.data.isFavorited ?? false);
+	}
 
 	public async addUserDetailsToStatus(status: Entity.Status, cache: AccountCache) : Promise<Entity.Status> {
 		if (status.account.followers_count === 0 && status.account.followers_count === 0 && status.account.statuses_count === 0)

@@ -40,7 +40,8 @@ namespace MisskeyAPI {
     export type GetAll = MisskeyEntity.GetAll
     export type UserKey = MisskeyEntity.UserKey
     export type Session = MisskeyEntity.Session
-    export type Stats = MisskeyEntity.Stats
+		export type Stats = MisskeyEntity.Stats
+		export type State = MisskeyEntity.State
     export type APIEmoji = { emojis: Emoji[] }
   }
 
