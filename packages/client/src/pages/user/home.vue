@@ -27,7 +27,7 @@
 								:style="{
 									backgroundImage: `url('${user.bannerUrl}')`,
 									'--backgroundImageStatic': defaultStore
-										.state.useBlurEffect
+										.state.useBlurEffect && user.bannerUrl
 										? `url('${getStaticImageUrl(
 												user.bannerUrl,
 										  )}')`
