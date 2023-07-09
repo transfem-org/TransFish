@@ -51,7 +51,7 @@
 					<MkLoading mini />
 				</div>
 				<div v-else>
-					<h1 :title="title || undefined">{{ title || url }}</h1>
+					<h3 :title="title || undefined" style="line-height: 0.8; margin-top: 0.5rem;">{{ title || url }}</h3>
 					<p :title="description">
 						<span>
 							<span :title="sitename || undefined">
