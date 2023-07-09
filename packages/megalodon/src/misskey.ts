@@ -408,7 +408,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+					limit: options.limit <= 100 ? options.limit : 100
         })
       }
       if (options.max_id) {
@@ -738,7 +738,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+					limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {
