@@ -460,7 +460,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {
@@ -474,11 +474,11 @@ export default class Misskey implements MegalodonInterface {
         limit: 40
       })
     }
-    return this.client.post<Array<MisskeyAPI.Entity.Follower>>('/api/users/followers', params).then(res => {
-      return Object.assign(res, {
-        data: res.data.map(f => this.converter.follower(f))
-      })
-    })
+    return this.client.post<Array<MisskeyAPI.Entity.Follower>>('/api/users/followers', params).then(async res => {
+			return Object.assign(res, {
+				data: (await Promise.all(res.data.map(async f => (this.getAccount(f.followerId)).then(p => p.data))))
+			})
+		})
   }
 
   /**
@@ -498,15 +498,15 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
     }
-    return this.client.post<Array<MisskeyAPI.Entity.Following>>('/api/users/following', params).then(res => {
-      return Object.assign(res, {
-        data: res.data.map(f => this.converter.following(f))
-      })
-    })
+    return this.client.post<Array<MisskeyAPI.Entity.Following>>('/api/users/following', params).then(async res => {
+			return Object.assign(res, {
+				data: (await Promise.all(res.data.map(async f => (this.getAccount(f.followeeId)).then(p => p.data))))
+			})
+		})
   }
 
   public async getAccountLists(_id: string): Promise<Response<Array<Entity.List>>> {
@@ -1079,23 +1079,11 @@ export default class Misskey implements MegalodonInterface {
   // accounts/preferences
   // ======================================
   public async getPreferences(): Promise<Response<Entity.Preferences>> {
-    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(res => {
-      /*
-      return this.client.post<MisskeyAPI.Entity.GetAll>('/api/i/registry/get-all', {
-        scope: ['client', 'base'],
-      }).then(ga => {
-        return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, ga.data)
-        })
-      })
-      */
-
-      // TODO:
-      // FIXME: get this from api
-      return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, {defaultNoteVisibility: "followers", tutorial: -1})
-        })
-      })
+    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(async res => {
+			return Object.assign(res, {
+				data: this.converter.userPreferences(res.data, await this.getDefaultPostPrivacy())
+			})
+		})
   }
 
   // ======================================
@@ -1529,6 +1517,23 @@ export default class Misskey implements MegalodonInterface {
         .then(res => res.data[0] ?? '⭐');
   }
 
+	private async getDefaultPostPrivacy(): Promise<'public' | 'unlisted' | 'private' | 'direct'> {
+		// NOTE: get-unsecure is calckey's extension.
+		//       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
+		//       unless you have a 'nativeToken', which is reserved for the frontend webapp.
+
+		return this.client
+			.post<string>('/api/i/registry/get-unsecure', {
+				key: 'defaultNoteVisibility',
+				scope: ['client', 'base'],
+			})
+			.then(res => {
+				if (!res.data || (res.data != 'public' && res.data != 'home' && res.data != 'followers' && res.data != 'specified'))
+					return 'public';
+				return this.converter.visibility(res.data);
+			});
+	}
+
   public async unfavouriteStatus(id: string): Promise<Response<Entity.Status>> {
     // NOTE: Misskey allows only one reaction per status, so we don't need to care what that emoji was.
     return this.deleteEmojiReaction(id, '');
@@ -1638,20 +1643,26 @@ export default class Misskey implements MegalodonInterface {
   /**
    * POST /api/drive/files/create
    */
-  public async uploadMedia(file: any, _options?: { description?: string; focus?: string }): Promise<Response<Entity.Attachment>> {
+  public async uploadMedia(file: any, options?: { description?: string; focus?: string }): Promise<Response<Entity.Attachment>> {
     const formData = new FormData()
-    formData.append('file', fs.createReadStream(file.path), {
-      contentType: file.mimetype,
-      filename: file.originalname,
-    })
+		formData.append('file', fs.createReadStream(file.path), {
+			contentType: file.mimetype
+		})
+
+		if (file.originalname != null && file.originalname !== 'file')
+			formData.append('name', file.originalname);
+
+		if (options?.description != null)
+			formData.append('comment', options.description);
+
     let headers: { [key: string]: string } = {}
     if (typeof formData.getHeaders === 'function') {
       headers = formData.getHeaders()
     }
     return this.client
       .post<MisskeyAPI.Entity.File>('/api/drive/files/create', formData, headers)
-      .then(res => ({ ...res, data: this.converter.file(res.data) }))
-  }
+			.then(res => ({ ...res, data: this.converter.file(res.data) }))
+	}
 
   public async getMedia(id: string): Promise<Response<Entity.Attachment>> {
     const res = await this.client.post<MisskeyAPI.Entity.File>('/api/drive/files/show', { fileId: id })
@@ -1679,6 +1690,12 @@ export default class Misskey implements MegalodonInterface {
           isSensitive: options.is_sensitive
         })
       }
+
+			if (options.description !== undefined) {
+				params = Object.assign(params, {
+					comment: options.description
+				})
+			}
     }
     return this.client
       .post<MisskeyAPI.Entity.File>('/api/drive/files/update', params)
@@ -1824,7 +1841,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/global-timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1882,7 +1899,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/local-timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1946,7 +1963,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/search-by-tag', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -2001,7 +2018,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -2057,7 +2074,7 @@ export default class Misskey implements MegalodonInterface {
     }
     return this.client
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/user-list-timeline', params)
-      .then(async res => ({ ...res, data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache))) }))
+      .then(async res => ({ ...res, data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc) }))
   }
 
   // ======================================
@@ -2126,6 +2143,15 @@ export default class Misskey implements MegalodonInterface {
       reject(err)
     })
   }
+
+	private sortByIdDesc(a: Entity.Status, b: Entity.Status): number {
+		if (a.id < b.id)
+			return 1;
+		if (a.id > b.id)
+			return -1;
+
+		return 0;
+	}
 
   // ======================================
   // timelines/lists
@@ -2259,7 +2285,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {

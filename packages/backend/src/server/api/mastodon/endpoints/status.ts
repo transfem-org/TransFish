@@ -123,27 +123,7 @@ export function apiStatusMastodon(router: Router): void {
 					id,
 					convertTimelinesArgsId(limitToInt(ctx.query as any)),
 				);
-				const status = await client.getStatus(id);
-				let reqInstance = axios.create({
-					headers: {
-						Authorization: ctx.headers.authorization,
-					},
-				});
-				const reactionsAxios = await reqInstance.get(
-					`${BASE_URL}/api/notes/reactions?noteId=${id}`,
-				);
-				const reactions: IReaction[] = reactionsAxios.data;
-				const text = reactions
-					.map((r) => `${r.type.replace("@.", "")} ${r.user.username}`)
-					.join("<br />");
-				data.data.descendants.unshift(
-					statusModel(
-						status.data.id,
-						status.data.account.id,
-						status.data.emojis,
-						text,
-					),
-				);
+
 				data.data.ancestors = data.data.ancestors.map((status) =>
 					convertStatus(status),
 				);
@@ -455,66 +435,4 @@ async function getFirstReaction(
 	} catch (e) {
 		return react;
 	}
-}
-
-export function statusModel(
-	id: string | null,
-	acctId: string | null,
-	emojis: MastodonEntity.Emoji[],
-	content: string,
-) {
-	const now = new Date().toISOString();
-	return {
-		id: "9atm5frjhb",
-		uri: "/static-assets/transparent.png", // ""
-		url: "/static-assets/transparent.png", // "",
-		account: {
-			id: "9arzuvv0sw",
-			username: "Reactions",
-			acct: "Reactions",
-			display_name: "Reactions to this post",
-			locked: false,
-			created_at: now,
-			followers_count: 0,
-			following_count: 0,
-			statuses_count: 0,
-			note: "",
-			url: "/static-assets/transparent.png",
-			avatar: "/static-assets/badges/info.png",
-			avatar_static: "/static-assets/badges/info.png",
-			header: "/static-assets/transparent.png", // ""
-			header_static: "/static-assets/transparent.png", // ""
-			emojis: [],
-			fields: [],
-			moved: null,
-			bot: false,
-		},
-		in_reply_to_id: id,
-		in_reply_to_account_id: acctId,
-		reblog: null,
-		content: `<p>${content}</p>`,
-		plain_content: null,
-		created_at: now,
-		emojis: emojis,
-		replies_count: 0,
-		reblogs_count: 0,
-		favourites_count: 0,
-		favourited: false,
-		reblogged: false,
-		muted: false,
-		sensitive: false,
-		spoiler_text: "",
-		visibility: "public" as const,
-		media_attachments: [],
-		mentions: [],
-		tags: [],
-		card: null,
-		poll: null,
-		application: null,
-		language: null,
-		pinned: false,
-		emoji_reactions: [],
-		bookmarked: false,
-		quote: null,
-	};
 }

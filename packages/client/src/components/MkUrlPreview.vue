@@ -51,7 +51,7 @@
 					<MkLoading mini />
 				</div>
 				<div v-else>
-					<h1 :title="title || undefined">{{ title || url }}</h1>
+					<h3 :title="title || undefined">{{ title || url }}</h3>
 					<p :title="description">
 						<span>
 							<span :title="sitename || undefined">
@@ -240,7 +240,7 @@ onUnmounted(() => {
 			width: 0;
 			flex-grow: 1;
 		}
-		h1,
+		h3,
 		p {
 			display: block;
 			margin: 0;
@@ -248,7 +248,7 @@ onUnmounted(() => {
 			text-overflow: ellipsis;
 			max-width: 100%;
 		}
-		h1 {
+		h3 {
 			font-size: 1em;
 			white-space: nowrap;
 			margin-bottom: 0.2em;

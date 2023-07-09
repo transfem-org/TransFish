@@ -36,6 +36,16 @@ export class Announcement {
 	})
 	public imageUrl: string | null;
 
+	@Column("boolean", {
+		default: false,
+	})
+	public showPopup: boolean;
+
+	@Column("boolean", {
+		default: false,
+	})
+	public isGoodNews: boolean;
+
 	constructor(data: Partial<Announcement>) {
 		if (data == null) return;
 
