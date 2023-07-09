@@ -43,6 +43,10 @@
 			<button class="stop" @click="stop()">
 				<i class="ph-stop ph-fill ph-lg"></i>
 			</button>
+			<button class="loop" @click="toggleLoop()">
+				<i class="ph-repeat ph-fill ph-lg" v-if="loop === -1"></i>
+				<i class="ph-repeat-once ph-fill ph-lg" v-else></i>
+			</button>
 			<FormRange
 				class="progress"
 				:min="0"
@@ -60,6 +64,7 @@
 				<i class="ph-speaker-simple-high ph-fill ph-lg" v-else></i>
 			</button>
 			<FormRange
+				class="volume"
 				:min="0"
 				:max="1"
 				v-model="player.context.gain.value"
@@ -138,41 +143,18 @@ let currentPattern = ref(0);
 let nbChannels = ref(0);
 let length = ref(1);
 let muted = ref(false);
-
-const loaded = !!window.libopenmpt;
+let loop = ref(0);
 
 onMounted(() => {
-	if (loaded) {
-		available.value = true;
-		player.value
-			.load(props.module.url)
-			.then((result: null) => {
-				buffer = result;
-			})
-			.catch((error: any) => {
-				console.error(error);
-			});
-	} else {
-		document.head
-			.appendChild(
-				Object.assign(document.createElement("script"), {
-					async: true,
-					src: "/client-assets/libopenmpt.js",
-				})
-			)
-			.addEventListener("load", () => {
-				available.value = true;
-				window.libopenmpt = window.Module;
-				player.value
-					.load(props.module.url)
-					.then((result: null) => {
-						buffer = result;
-					})
-					.catch((error: any) => {
-						console.error(error);
-					});
-			});
-	}
+	available.value = true;
+	player.value
+		.load(props.module.url)
+		.then((result: null) => {
+			buffer = result;
+		})
+		.catch((error: any) => {
+			console.error(error);
+		});
 });
 
 let currentRow = 0;
@@ -216,7 +198,7 @@ function playPause() {
 		currentPattern.value = player.value.getPattern();
 		length.value = player.value.duration();
 		if (!isSeeking) {
-			position.value = player.value.position() % player.value.duration();
+			position.value = player.value.position();
 		}
 		requestAnimationFrame(display);
 	});
@@ -226,21 +208,23 @@ function playPause() {
 	});
 
 	if (player.value.currentPlayingNode === null) {
-		player.value.play(buffer);
-		player.value.seek(position.value);
-		playing.value = true;
+		player.value.play(buffer).then(() => {
+			player.value.seek(position.value);
+			player.value.repeat(loop.value);
+			playing.value = true;
+		});
 	} else {
 		player.value.togglePause();
 		playing.value = !player.value.currentPlayingNode.paused;
 	}
 }
 
-function stop(noDisplayUpdate = false) {
+async function stop(noDisplayUpdate = false) {
 	player.value.stop();
 	playing.value = false;
 	if (!noDisplayUpdate) {
 		try {
-			player.value.play(buffer);
+			await player.value.play(buffer);
 			display(0, true);
 		} catch (e) {
 			console.warn(e);
@@ -250,6 +234,11 @@ function stop(noDisplayUpdate = false) {
 	position.value = 0;
 	currentRow = 0;
 	player.value.clearHandlers();
+}
+
+function toggleLoop() {
+	loop.value = loop.value === -1 ? 0 : -1;
+	player.value.repeat(loop.value);
 }
 
 let savedVolume = 0;
@@ -484,6 +473,11 @@ onDeactivated(() => {
 		> .progress {
 			flex-grow: 1;
 			min-width: 0;
+		}
+
+		> .volume {
+			flex-shrink: 1;
+			max-width: 128px;
 		}
 	}
 }

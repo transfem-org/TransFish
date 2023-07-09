@@ -54,6 +54,7 @@
 		"insert-text-at-cursor": "0.3.0",
 		"json5": "2.2.3",
 		"katex": "0.16.7",
+		"libopenmpt-wasm": "github:TheEssem/libopenmpt-packaging#build",
 		"matter-js": "0.18.0",
 		"mfm-js": "0.23.3",
 		"photoswipe": "5.3.7",

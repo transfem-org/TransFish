@@ -789,7 +789,7 @@ importers:
         version: 2.30.0
       emojilib:
         specifier: github:thatonecalculator/emojilib
-        version: github.com/thatonecalculator/emojilib/9d16541664dc8fef3201ae9b647477070676a52e
+        version: github.com/thatonecalculator/emojilib/15fd9504f943763a057ff803ee2009ec0524c96b
       escape-regexp:
         specifier: 0.0.1
         version: 0.0.1
@@ -817,6 +817,9 @@ importers:
       katex:
         specifier: 0.16.7
         version: 0.16.7
+      libopenmpt-wasm:
+        specifier: github:TheEssem/libopenmpt-packaging#build
+        version: github.com/TheEssem/libopenmpt-packaging/d05d151a72b638c6312227af0417aca69521172c
       matter-js:
         specifier: 0.18.0
         version: 0.18.0
@@ -17411,6 +17414,12 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
+  github.com/TheEssem/libopenmpt-packaging/d05d151a72b638c6312227af0417aca69521172c:
+    resolution: {tarball: https://codeload.github.com/TheEssem/libopenmpt-packaging/tar.gz/d05d151a72b638c6312227af0417aca69521172c}
+    name: libopenmpt-wasm
+    version: 0.7.2
+    dev: true
+
   github.com/misskey-dev/browser-image-resizer/56f504427ad7f6500e141a6d9f3aee42023d7f3e:
     resolution: {tarball: https://codeload.github.com/misskey-dev/browser-image-resizer/tar.gz/56f504427ad7f6500e141a6d9f3aee42023d7f3e}
     name: browser-image-resizer
@@ -17429,8 +17438,8 @@ packages:
       url-polyfill: 1.1.12
     dev: true
 
-  github.com/thatonecalculator/emojilib/9d16541664dc8fef3201ae9b647477070676a52e:
-    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/9d16541664dc8fef3201ae9b647477070676a52e}
+  github.com/thatonecalculator/emojilib/15fd9504f943763a057ff803ee2009ec0524c96b:
+    resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/15fd9504f943763a057ff803ee2009ec0524c96b}
     name: emojilib
     version: 3.0.10
     dev: true
