@@ -1841,7 +1841,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/global-timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1899,7 +1899,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/local-timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -1963,7 +1963,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/search-by-tag', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -2018,7 +2018,7 @@ export default class Misskey implements MegalodonInterface {
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/timeline', params)
       .then(async res => ({
         ...res,
-        data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))
+        data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc)
       }))
   }
 
@@ -2074,7 +2074,7 @@ export default class Misskey implements MegalodonInterface {
     }
     return this.client
       .post<Array<MisskeyAPI.Entity.Note>>('/api/notes/user-list-timeline', params)
-      .then(async res => ({ ...res, data: await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache))) }))
+      .then(async res => ({ ...res, data: (await Promise.all(res.data.map(n => this.noteWithDetails(n, this.baseUrlToHost(this.baseUrl), accountCache)))).sort(this.sortByIdDesc) }))
   }
 
   // ======================================
@@ -2143,6 +2143,15 @@ export default class Misskey implements MegalodonInterface {
       reject(err)
     })
   }
+
+	private sortByIdDesc(a: Entity.Status, b: Entity.Status): number {
+		if (a.id < b.id)
+			return 1;
+		if (a.id > b.id)
+			return -1;
+
+		return 0;
+	}
 
   // ======================================
   // timelines/lists
@@ -2276,7 +2285,7 @@ export default class Misskey implements MegalodonInterface {
     if (options) {
       if (options.limit) {
         params = Object.assign(params, {
-          limit: options.limit
+          limit: options.limit <= 100 ? options.limit : 100
         })
       }
       else {
