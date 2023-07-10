@@ -271,9 +271,9 @@ function del(): void {
 				&:not(.noText):before {
 					left: -14px;
 					border-top: solid 8px transparent;
-					border-right: solid 8px $color;
+					border-inline-end: solid 8px $color;
 					border-bottom: solid 8px transparent;
-					border-left: solid 8px transparent;
+					border-inline-start: solid 8px transparent;
 				}
 
 				> .content {
@@ -316,9 +316,9 @@ function del(): void {
 					right: -14px;
 					left: auto;
 					border-top: solid 8px transparent;
-					border-right: solid 8px transparent;
+					border-inline-end: solid 8px transparent;
 					border-bottom: solid 8px transparent;
-					border-left: solid 8px $me-balloon-color;
+					border-inline-start: solid 8px $me-balloon-color;
 				}
 
 				> .content {

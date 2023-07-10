@@ -70,7 +70,7 @@ const emit = defineEmits<{
 		flex: 1;
 		min-width: 0;
 		font-size: 0.95em;
-		border-left: solid 0.5px var(--divider);
+		border-inline-start: solid 0.5px var(--divider);
 		padding-inline-start: 10px;
 		margin-inline-start: 10px;
 		margin-inline-end: 14px;

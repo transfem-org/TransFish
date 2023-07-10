@@ -451,10 +451,10 @@ async function deleteProfile() {
 
 			> .column {
 				flex-shrink: 0;
-				border-right: solid var(--deckDividerThickness) var(--bg);
+				border-inline-end: solid var(--deckDividerThickness) var(--bg);
 
 				&:first-of-type {
-					border-left: solid var(--deckDividerThickness) var(--bg);
+					border-inline-start: solid var(--deckDividerThickness) var(--bg);
 				}
 
 				&.folder {

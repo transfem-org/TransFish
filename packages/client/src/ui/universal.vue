@@ -475,7 +475,7 @@ console.log(mainRouter.currentRoute.value.name);
 	}
 	&:not(.isMobile) {
 		> .contents {
-			border-right: 0.5px solid var(--divider);
+			border-inline-end: 0.5px solid var(--divider);
 		}
 	}
 	&.wallpaper {

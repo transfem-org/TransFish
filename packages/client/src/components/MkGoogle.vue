@@ -48,7 +48,7 @@ const search = () => {
 		margin: 0;
 		padding: 0 16px;
 		border: solid 1px var(--divider);
-		border-left: none;
+		border-inline-start: none;
 		border-radius: 0 4px 4px 0;
 
 		&:active {

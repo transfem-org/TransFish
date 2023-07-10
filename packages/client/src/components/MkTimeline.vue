@@ -305,7 +305,7 @@ const timetravel = (date?: Date) => {
 		}
 		i {
 			margin-inline-start: 0.7em;
-			border-left: 1px solid var(--accentedBg);
+			border-inline-start: 1px solid var(--accentedBg);
 			padding-inline-start: 0.4em;
 		}
 	}

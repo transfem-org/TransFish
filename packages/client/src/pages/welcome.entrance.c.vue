@@ -315,7 +315,7 @@ export default defineComponent({
 							> span:not(:last-child) {
 								padding-inline-end: 1em;
 								margin-inline-end: 1em;
-								border-right: solid 0.5px var(--divider);
+								border-inline-end: solid 0.5px var(--divider);
 							}
 						}
 

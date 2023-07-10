@@ -101,7 +101,7 @@ function resolve() {
 		box-sizing: border-box;
 		text-align: left;
 		padding: 24px;
-		border-right: solid 1px var(--divider);
+		border-inline-end: solid 1px var(--divider);
 
 		> .info {
 			display: flex;

@@ -265,7 +265,7 @@ function more(ev: MouseEvent) {
 			background: var(--navBg);
 		}
 		#calckey_app > .wallpaper:not(.centered) & {
-			border-right: 1px solid var(--divider);
+			border-inline-end: 1px solid var(--divider);
 		}
 		contain: strict;
 		display: flex;

@@ -656,7 +656,7 @@ function noteClick(e) {
 			&::before {
 				content: "";
 				position: absolute;
-				border-left: 2px solid currentColor;
+				border-inline-start: 2px solid currentColor;
 				margin-inline-start: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);
 				inset-block: 0;
@@ -698,7 +698,7 @@ function noteClick(e) {
 			&::after {
 				content: "";
 				position: absolute;
-				border-left: 2px solid currentColor;
+				border-inline-start: 2px solid currentColor;
 				border-bottom: 2px solid currentColor;
 				margin-inline-start: calc((var(--avatarSize) / 2) - 1px);
 				width: calc(var(--indent) / 2);

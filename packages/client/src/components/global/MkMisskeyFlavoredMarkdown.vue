@@ -356,7 +356,7 @@ const props = withDefaults(
 		margin: 8px 0;
 		padding-inline-start: 12px;
 		color: var(--fgTransparentWeak);
-		border-left: solid 4px var(--fgTransparent);
+		border-inline-start: solid 4px var(--fgTransparent);
 	}
 
 	::v-deep(pre) {

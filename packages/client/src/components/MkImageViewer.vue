@@ -85,7 +85,7 @@ const modal = $ref<InstanceType<typeof MkModal>>();
 		> span + span {
 			margin-inline-start: 0.5em;
 			padding-inline-start: 0.5em;
-			border-left: solid 1px rgba(255, 255, 255, 0.5);
+			border-inline-start: solid 1px rgba(255, 255, 255, 0.5);
 		}
 	}
 }
