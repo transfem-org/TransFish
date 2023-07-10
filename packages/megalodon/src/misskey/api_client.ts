@@ -175,13 +175,13 @@ namespace MisskeyAPI {
       }
     }
 
-    userPreferences = (u: MisskeyAPI.Entity.UserDetailMe, v: 'public' | 'unlisted' | 'private' | 'direct'): MegalodonEntity.Preferences => {
+    userPreferences = (u: MisskeyAPI.Entity.UserDetailMe, g: MisskeyAPI.Entity.GetAll): MegalodonEntity.Preferences => {
       return {
         "reading:expand:media": "default",
         "reading:expand:spoilers": false,
         "posting:default:language": u.lang,
         "posting:default:sensitive": u.alwaysMarkNsfw,
-        "posting:default:visibility": v
+        "posting:default:visibility": this.visibility(g.defaultNoteVisibility)
       }
     }
 
