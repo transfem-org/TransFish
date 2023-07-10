@@ -75,13 +75,11 @@ const target = self ? null : "_blank";
 
 <style lang="scss" scoped>
 .url {
-	white-space: nowrap;
-	max-width: 80%;
-	display: inline-block;
-	overflow: clip;
-	text-overflow: ellipsis;
 	text-decoration: none !important;
-	line-height: 1.05;
+	> span {
+		text-decoration: underline var(--fgTransparent);
+		transition: text-decoration-color 0.2s;
+	}
 
 	> .icon {
 		padding-left: 2px;
@@ -110,6 +108,10 @@ const target = self ? null : "_blank";
 
 	> .hash {
 		font-style: italic;
+	}
+
+	&:hover span {
+		text-decoration-color: var(--link);
 	}
 }
 </style>

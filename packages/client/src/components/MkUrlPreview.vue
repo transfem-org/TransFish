@@ -255,7 +255,7 @@ onUnmounted(() => {
 			margin-bottom: 0.2em;
 			text-decoration: underline;
 			text-decoration-color: transparent;
-			transition: text-decoration-color .2s;
+			transition: text-decoration-color 0.2s;
 		}
 		p {
 			margin-bottom: -0.5em;
