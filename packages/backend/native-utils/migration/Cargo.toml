@@ -10,14 +10,14 @@ path = "src/lib.rs"
 
 [features]
 default = []
-convert = ["dep:indicatif"]
+convert = ["dep:native-utils", "dep:indicatif", "dep:futures"]
 
 [dependencies]
 serde_json = "1.0.96"
-native-utils = { path = "../" }
+native-utils = { path = "../", optional = true }
 indicatif = { version = "0.17.4", features = ["tokio"], optional = true }
 tokio = { version = "1.28.2", features = ["full"] }
-futures = "0.3.28"
+futures = { version = "0.3.28", optional = true }
 serde_yaml = "0.9.21"
 serde = { version = "1.0.163", features = ["derive"] }
 urlencoding = "2.1.2"
@@ -28,10 +28,10 @@ url = { version = "2.4.0", features = ["serde"] }
 [dependencies.sea-orm-migration]
 version = "0.11.0"
 features = [
-  # Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
-  # View the list of supported features at https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
-  # e.g.
-  "runtime-tokio-rustls",  # `ASYNC_RUNTIME` feature
-  "sqlx-postgres",         # `DATABASE_DRIVER` feature
+	# Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
+	# View the list of supported features at https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
+	# e.g.
+	"runtime-tokio-rustls", # `ASYNC_RUNTIME` feature
+	"sqlx-postgres",        # `DATABASE_DRIVER` feature
 	"sqlx-sqlite",
 ]
