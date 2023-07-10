@@ -78,7 +78,7 @@ defineProps<{
 		display: block;
 		position: absolute;
 		top: 62px;
-		left: 13px;
+		inset-inline-start: 13px;
 		z-index: 2;
 		width: 58px;
 		height: 58px;
@@ -144,7 +144,7 @@ defineProps<{
 	> .koudoku-button {
 		position: absolute;
 		top: 8px;
-		right: 8px;
+		inset-inline-end: 8px;
 		margin-bottom: 1rem;
 	}
 }

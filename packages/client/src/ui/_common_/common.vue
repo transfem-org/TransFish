@@ -93,7 +93,7 @@ if ($i) {
 	position: fixed;
 	z-index: 4000000;
 	top: 15px;
-	right: 15px;
+	inset-inline-end: 15px;
 
 	&:before {
 		content: "";
@@ -112,7 +112,7 @@ if ($i) {
 #devTicker {
 	position: fixed;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	z-index: 2147483647;
 	color: #f6c177;
 	background: #6e6a86;

@@ -532,7 +532,7 @@ onUnmounted(() => {
 					> .fade {
 						position: absolute;
 						bottom: 0;
-						left: 0;
+						inset-inline-start: 0;
 						width: 100%;
 						height: 78px;
 						background: linear-gradient(
@@ -544,7 +544,7 @@ onUnmounted(() => {
 					> .followed {
 						position: absolute;
 						top: 10px;
-						left: 120px;
+						inset-inline-start: 120px;
 						padding: 4px 8px;
 						color: #fff;
 						background: rgba(0, 0, 0, 0.7);
@@ -555,7 +555,7 @@ onUnmounted(() => {
 					> .title {
 						position: absolute;
 						bottom: 0;
-						left: 0;
+						inset-inline-start: 0;
 						width: 100%;
 						padding: 0 0 8px 154px;
 						box-sizing: border-box;
@@ -574,7 +574,7 @@ onUnmounted(() => {
 							> .followed {
 								position: relative;
 								top: -4px;
-								left: 4px;
+								inset-inline-start: 4px;
 								padding: 4px 8px;
 								color: #fff;
 								background: rgba(0, 0, 0, 0.6);
@@ -609,7 +609,7 @@ onUnmounted(() => {
 					> .fade {
 						position: absolute;
 						bottom: 0;
-						left: 0;
+						inset-inline-start: 0;
 						width: 100%;
 						height: 78px;
 						background: linear-gradient(
@@ -621,7 +621,7 @@ onUnmounted(() => {
 					> .actions {
 						position: absolute;
 						top: 6px;
-						right: 12px;
+						inset-inline-end: 12px;
 						padding: 8px;
 						border-radius: 24px;
 						display: flex;
@@ -632,7 +632,7 @@ onUnmounted(() => {
 					> .title {
 						position: absolute;
 						bottom: 0;
-						left: 0;
+						inset-inline-start: 0;
 						width: 100%;
 						padding: 0 0 8px 154px;
 						box-sizing: border-box;
@@ -683,7 +683,7 @@ onUnmounted(() => {
 						> .followed {
 							position: relative;
 							top: -4px;
-							left: 4px;
+							inset-inline-start: 4px;
 							padding: 4px 8px;
 							color: #fff;
 							background: rgba(0, 0, 0, 0.6);
@@ -695,7 +695,7 @@ onUnmounted(() => {
 					> .followedWindow {
 						position: relative;
 						top: -25px;
-						left: 80px;
+						inset-inline-start: 80px;
 						padding: 4px 8px;
 						color: #fff;
 						background: rgba(0, 0, 0, 0.6);
@@ -716,7 +716,7 @@ onUnmounted(() => {
 					display: block;
 					position: absolute;
 					top: 170px;
-					left: 16px;
+					inset-inline-start: 16px;
 					z-index: 2;
 					width: 120px;
 					height: 120px;
@@ -837,8 +837,8 @@ onUnmounted(() => {
 
 				> .avatar {
 					top: 90px;
-					left: 0;
-					right: 0;
+					inset-inline-start: 0;
+					inset-inline-end: 0;
 					width: 92px;
 					height: 92px;
 					margin: auto;

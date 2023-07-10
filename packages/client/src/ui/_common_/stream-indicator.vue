@@ -48,7 +48,7 @@ onUnmounted(() => {
 	position: fixed;
 	z-index: 16385;
 	bottom: 8px;
-	right: 8px;
+	inset-inline-end: 8px;
 	margin: 0;
 	padding: 6px 12px;
 	font-size: 0.9em;

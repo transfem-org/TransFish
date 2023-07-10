@@ -71,7 +71,7 @@ defineProps<{
 		}
 
 		& + article {
-			left: 100px;
+			inset-inline-start: 100px;
 			width: calc(100% - 100px);
 		}
 	}
@@ -125,7 +125,7 @@ defineProps<{
 			height: 100px;
 
 			& + article {
-				left: 0;
+				inset-inline-start: 0;
 				width: 100%;
 			}
 		}

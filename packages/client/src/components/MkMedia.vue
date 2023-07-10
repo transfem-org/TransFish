@@ -176,7 +176,7 @@ watch(
 		border-radius: 6px;
 		overflow: hidden;
 		top: 12px;
-		right: 12px;
+		inset-inline-end: 12px;
 		> * {
 			background-color: var(--accentedBg);
 			-webkit-backdrop-filter: var(--blur, blur(15px));
@@ -209,7 +209,7 @@ watch(
 			display: inline-block;
 			font-size: 14px;
 			font-weight: bold;
-			left: 12px;
+			inset-inline-start: 12px;
 			opacity: 0.5;
 			padding: 0 6px;
 			text-align: center;

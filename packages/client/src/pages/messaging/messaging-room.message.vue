@@ -154,7 +154,7 @@ function del(): void {
 				position: absolute;
 				z-index: 1;
 				top: -4px;
-				right: -4px;
+				inset-inline-end: -4px;
 				margin: 0;
 				padding: 0;
 				cursor: pointer;
@@ -269,7 +269,7 @@ function del(): void {
 				}
 
 				&:not(.noText):before {
-					left: -14px;
+					inset-inline-start: -14px;
 					border-top: solid 8px transparent;
 					border-inline-end: solid 8px $color;
 					border-bottom: solid 8px transparent;
@@ -292,7 +292,7 @@ function del(): void {
 	&.isMe {
 		flex-direction: row-reverse;
 		padding-inline-end: var(--margin);
-		right: var(--margin); // 削除時にposition: absoluteになったときに使う
+		inset-inline-end: var(--margin); // 削除時にposition: absoluteになったときに使う
 
 		> .content {
 			padding-inline-end: 16px;
@@ -313,8 +313,8 @@ function del(): void {
 				}
 
 				&:not(.noText):before {
-					right: -14px;
-					left: auto;
+					inset-inline-end: -14px;
+					inset-inline-start: auto;
 					border-top: solid 8px transparent;
 					border-inline-end: solid 8px transparent;
 					border-bottom: solid 8px transparent;

@@ -210,7 +210,7 @@ defineExpose({
 		> .kanban {
 			position: fixed;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 500px;
 			height: 100vh;
 			overflow: auto;
@@ -247,7 +247,7 @@ defineExpose({
 		position: fixed;
 		z-index: 1001;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		width: 100vw;
 		height: 100vh;
 	}
@@ -256,7 +256,7 @@ defineExpose({
 		position: fixed;
 		z-index: 1001;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		width: 240px;
 		height: 100vh;
 		background: var(--panel);

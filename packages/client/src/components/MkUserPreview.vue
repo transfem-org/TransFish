@@ -205,7 +205,7 @@ onMounted(() => {
 			> .followed {
 				position: absolute;
 				top: 12px;
-				left: 12px;
+				inset-inline-start: 12px;
 				padding: 4px 8px;
 				color: #fff;
 				background: rgba(0, 0, 0, 0.7);
@@ -244,7 +244,7 @@ onMounted(() => {
 			display: block;
 			position: absolute;
 			top: 70px;
-			left: 13px;
+			inset-inline-start: 13px;
 			z-index: 2;
 			width: 58px;
 			height: 58px;
@@ -388,7 +388,7 @@ onMounted(() => {
 		> .follow-button-container {
 			position: absolute;
 			top: 8px;
-			right: 8px;
+			inset-inline-end: 8px;
 			z-index: 3;
 			color: white;
 		}

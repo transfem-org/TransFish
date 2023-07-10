@@ -189,7 +189,7 @@ function more() {
 			> .banner {
 				position: absolute;
 				top: 0;
-				left: 0;
+				inset-inline-start: 0;
 				width: 100%;
 				height: 100%;
 				background-size: cover;
@@ -246,8 +246,8 @@ function more() {
 					margin: auto;
 					position: absolute;
 					top: 0;
-					left: 0;
-					right: 0;
+					inset-inline-start: 0;
+					inset-inline-end: 0;
 					bottom: 0;
 					border-radius: 999px;
 					background: linear-gradient(
@@ -309,7 +309,7 @@ function more() {
 					width: 32px;
 					aspect-ratio: 1;
 					transform: translateX(-100%);
-					left: 50%;
+					inset-inline-start: 50%;
 				}
 			}
 		}
@@ -344,7 +344,7 @@ function more() {
 				> .indicator {
 					position: absolute;
 					top: 0;
-					left: 20px;
+					inset-inline-start: 20px;
 					color: var(--navIndicator);
 					font-size: 8px;
 				}
@@ -377,8 +377,8 @@ function more() {
 						margin: auto;
 						position: absolute;
 						top: 0;
-						left: 0;
-						right: 0;
+						inset-inline-start: 0;
+						inset-inline-end: 0;
 						bottom: 0;
 						border-radius: 999px;
 						background: var(--accentedBg);

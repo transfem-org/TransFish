@@ -135,8 +135,8 @@ watch(
 	> .inner {
 		position: absolute;
 		bottom: 0;
-		left: 0;
-		right: 0;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
 		top: 0;
 		border-radius: 100%;
 		z-index: 1;
@@ -150,7 +150,7 @@ watch(
 		position: absolute;
 		z-index: 1;
 		bottom: 0;
-		left: 0;
+		inset-inline-start: 0;
 		width: 18%;
 		height: 18%;
 	}

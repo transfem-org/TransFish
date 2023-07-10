@@ -97,7 +97,7 @@ const isThumbnailAvailable = computed(() => {
 		width: 30%;
 		height: auto;
 		margin: 0;
-		right: 4%;
+		inset-inline-end: 4%;
 		bottom: 4%;
 	}
 

@@ -170,13 +170,13 @@ function close() {
 			> .indicator {
 				position: absolute;
 				top: 32px;
-				left: 32px;
+				inset-inline-start: 32px;
 				color: var(--indicator);
 				font-size: 8px;
 
 				@media (max-width: 500px) {
 					top: 16px;
-					left: 16px;
+					inset-inline-start: 16px;
 				}
 			}
 

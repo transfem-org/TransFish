@@ -369,7 +369,7 @@ definePageMetadata(
 					width: fit-content;
 					position: relative;
 					top: -10px;
-					left: 1rem;
+					inset-inline-start: 1rem;
 
 					> .menu {
 						vertical-align: bottom;

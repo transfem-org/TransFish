@@ -334,7 +334,7 @@ function onDrop(ev) {
 			position: absolute;
 			z-index: 1000;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 100%;
 			height: 100%;
 			background: var(--focus);
@@ -348,7 +348,7 @@ function onDrop(ev) {
 			position: absolute;
 			z-index: 1000;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 100%;
 			height: 100%;
 			background: var(--focus);

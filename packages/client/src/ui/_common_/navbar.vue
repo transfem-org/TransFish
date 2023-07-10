@@ -293,8 +293,8 @@ function more(ev: MouseEvent) {
 			margin: auto;
 			position: absolute;
 			top: 0;
-			left: 0;
-			right: 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
 			bottom: 0;
 			border-radius: 999px;
 			background: var(--accentedBg);
@@ -311,7 +311,7 @@ function more(ev: MouseEvent) {
 		> .indicator {
 			position: absolute;
 			top: 0;
-			left: 20px;
+			inset-inline-start: 20px;
 			color: var(--navIndicator);
 			font-size: 8px;
 		}
@@ -379,7 +379,7 @@ function more(ev: MouseEvent) {
 		> .icon,
 		> .text {
 			position: relative;
-			left: 3rem;
+			inset-inline-start: 3rem;
 			margin: 0;
 			width: auto;
 			color: var(--fgOnAccent);
@@ -405,7 +405,7 @@ function more(ev: MouseEvent) {
 				> .banner {
 					position: absolute;
 					top: 0;
-					left: 0;
+					inset-inline-start: 0;
 					width: 100%;
 					height: 100%;
 					background-size: cover;
@@ -558,7 +558,7 @@ function more(ev: MouseEvent) {
 			> .indicator {
 				position: absolute;
 				top: 6px;
-				left: 24px;
+				inset-inline-start: 24px;
 				color: var(--navIndicator);
 				font-size: 8px;
 			}
@@ -578,7 +578,7 @@ function more(ev: MouseEvent) {
 				aspect-ratio: 1/1;
 			}
 			> .icon {
-				left: unset;
+				inset-inline-start: unset;
 			}
 			> .text {
 				display: none;

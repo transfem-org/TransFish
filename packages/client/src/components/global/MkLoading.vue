@@ -114,7 +114,7 @@ const props = withDefaults(
 .spinner {
 	position: absolute;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	z-index: 999;
 	width: var(--size);
 	height: var(--size);

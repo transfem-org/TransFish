@@ -250,22 +250,22 @@ defineExpose<WidgetComponentExpose>({
 
 		&.a {
 			top: 14px;
-			left: 14px;
+			inset-inline-start: 14px;
 		}
 
 		&.b {
 			top: 14px;
-			right: 14px;
+			inset-inline-end: 14px;
 		}
 
 		&.c {
 			bottom: 14px;
-			left: 14px;
+			inset-inline-start: 14px;
 		}
 
 		&.d {
 			bottom: 14px;
-			right: 14px;
+			inset-inline-end: 14px;
 		}
 	}
 

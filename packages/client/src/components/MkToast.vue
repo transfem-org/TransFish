@@ -55,8 +55,8 @@ onMounted(() => {
 .mk-toast {
 	> .body {
 		position: fixed;
-		left: 0;
-		right: 0;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
 		top: 0;
 		margin: 0 auto;
 		margin-top: 16px;

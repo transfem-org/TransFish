@@ -189,7 +189,7 @@ definePageMetadata(
 				position: absolute;
 				top: 0;
 				bottom: 0;
-				right: 0;
+				inset-inline-end: 0;
 				margin: auto 0;
 
 				> button {

@@ -217,7 +217,7 @@ export default defineComponent({
 				width: 64px;
 				height: 64px;
 				top: 0;
-				left: 0;
+				inset-inline-start: 0;
 				z-index: 2;
 				background: rgba(17, 17, 17, 0.7);
 				color: #fff;
@@ -233,7 +233,7 @@ export default defineComponent({
 		display: block;
 		position: absolute;
 		top: 8px;
-		right: 8px;
+		inset-inline-end: 8px;
 		margin: 0;
 		padding: 0;
 	}

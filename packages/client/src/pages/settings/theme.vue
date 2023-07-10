@@ -307,7 +307,7 @@ definePageMetadata({
 
 			input {
 				position: absolute;
-				left: -99em;
+				inset-inline-start: -99em;
 			}
 
 			&:focus-within > .toggle {
@@ -334,12 +334,12 @@ definePageMetadata({
 			}
 
 			> .before {
-				left: -70px;
+				inset-inline-start: -70px;
 				color: var(--accent);
 			}
 
 			> .after {
-				right: -68px;
+				inset-inline-end: -68px;
 				color: var(--fg);
 			}
 		}
@@ -349,7 +349,7 @@ definePageMetadata({
 			position: relative;
 			z-index: 1;
 			top: 3px;
-			left: 3px;
+			inset-inline-start: 3px;
 			width: 50px - 6;
 			height: 50px - 6;
 			background-color: #ffcf96;
@@ -368,21 +368,21 @@ definePageMetadata({
 
 			.crater--1 {
 				top: 18px;
-				left: 10px;
+				inset-inline-start: 10px;
 				width: 4px;
 				height: 4px;
 			}
 
 			.crater--2 {
 				top: 28px;
-				left: 22px;
+				inset-inline-start: 22px;
 				width: 6px;
 				height: 6px;
 			}
 
 			.crater--3 {
 				top: 10px;
-				left: 25px;
+				inset-inline-start: 25px;
 				width: 8px;
 				height: 8px;
 			}
@@ -397,7 +397,7 @@ definePageMetadata({
 
 		.star--1 {
 			top: 10px;
-			left: 35px;
+			inset-inline-start: 35px;
 			z-index: 0;
 			width: 30px;
 			height: 3px;
@@ -405,7 +405,7 @@ definePageMetadata({
 
 		.star--2 {
 			top: 18px;
-			left: 28px;
+			inset-inline-start: 28px;
 			z-index: 1;
 			width: 30px;
 			height: 3px;
@@ -413,7 +413,7 @@ definePageMetadata({
 
 		.star--3 {
 			top: 27px;
-			left: 40px;
+			inset-inline-start: 40px;
 			z-index: 0;
 			width: 30px;
 			height: 3px;
@@ -428,7 +428,7 @@ definePageMetadata({
 
 		.star--4 {
 			top: 16px;
-			left: 11px;
+			inset-inline-start: 11px;
 			z-index: 0;
 			width: 2px;
 			height: 2px;
@@ -437,7 +437,7 @@ definePageMetadata({
 
 		.star--5 {
 			top: 32px;
-			left: 17px;
+			inset-inline-start: 17px;
 			z-index: 0;
 			width: 3px;
 			height: 3px;
@@ -446,7 +446,7 @@ definePageMetadata({
 
 		.star--6 {
 			top: 36px;
-			left: 28px;
+			inset-inline-start: 28px;
 			z-index: 0;
 			width: 2px;
 			height: 2px;

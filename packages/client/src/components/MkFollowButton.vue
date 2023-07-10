@@ -227,9 +227,9 @@ onBeforeUnmount(() => {
 			pointer-events: none;
 			position: absolute;
 			top: -5px;
-			right: -5px;
+			inset-inline-end: -5px;
 			bottom: -5px;
-			left: -5px;
+			inset-inline-start: -5px;
 			border: 2px solid var(--focus);
 			border-radius: 32px;
 		}

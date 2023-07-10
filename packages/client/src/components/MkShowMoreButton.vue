@@ -39,7 +39,7 @@ defineExpose({
 	display: block;
 	position: absolute;
 	bottom: 0;
-	left: 0;
+	inset-inline-start: 0;
 	width: 100%;
 	padding: 20px;
 	margin-bottom: -10px;

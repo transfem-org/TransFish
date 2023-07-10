@@ -284,7 +284,7 @@ onMounted(() => {
 				> .title {
 					position: absolute;
 					top: 24px;
-					left: 24px;
+					inset-inline-start: 24px;
 				}
 			}
 

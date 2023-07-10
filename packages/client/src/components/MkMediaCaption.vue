@@ -207,7 +207,7 @@ export default defineComponent({
 	flex-direction: row;
 	overflow: scroll;
 	position: fixed;
-	left: 0;
+	inset-inline-start: 0;
 	top: 0;
 }
 @media (max-width: 850px) {
@@ -245,7 +245,7 @@ export default defineComponent({
 		> .text-count {
 			opacity: 0.7;
 			position: absolute;
-			right: 0;
+			inset-inline-end: 0;
 		}
 	}
 

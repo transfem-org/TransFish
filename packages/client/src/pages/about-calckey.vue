@@ -272,7 +272,7 @@ definePageMetadata({
 		> .emoji {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			visibility: hidden;
 
 			> .emoji {

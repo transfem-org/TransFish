@@ -529,7 +529,7 @@ async function deleteProfile() {
 		position: fixed;
 		z-index: 1000;
 		bottom: 0;
-		left: 0;
+		inset-inline-start: 0;
 		padding: 16px;
 		display: flex;
 		width: 100%;
@@ -564,7 +564,7 @@ async function deleteProfile() {
 			> .indicator {
 				position: absolute;
 				top: 0;
-				left: 0;
+				inset-inline-start: 0;
 				color: var(--indicator);
 				font-size: 16px;
 			}
@@ -602,7 +602,7 @@ async function deleteProfile() {
 	> .menu {
 		position: fixed;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		z-index: 1001;
 		// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 		height: calc(var(--vh, 1vh) * 100);

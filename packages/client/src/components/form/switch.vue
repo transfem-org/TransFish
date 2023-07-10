@@ -73,7 +73,7 @@ function toggle(x) {
 		> .knob {
 			position: absolute;
 			top: 3px;
-			left: 3px;
+			inset-inline-start: 3px;
 			width: 15px;
 			height: 15px;
 			background: var(--swutchOffFg);
@@ -126,7 +126,7 @@ function toggle(x) {
 		border-color: var(--swutchOnBg) !important;
 
 		> .knob {
-			left: 12px;
+			inset-inline-start: 12px;
 			background: var(--swutchOnFg);
 		}
 	}

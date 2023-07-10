@@ -140,7 +140,7 @@ onMounted(async () => {
 				> .title {
 					position: absolute;
 					top: 20px;
-					left: 20px;
+					inset-inline-start: 20px;
 					font-size: 90%;
 				}
 
@@ -151,7 +151,7 @@ onMounted(async () => {
 				> .subTitle {
 					position: absolute;
 					bottom: 20px;
-					right: 20px;
+					inset-inline-end: 20px;
 					font-size: 85%;
 				}
 			}

@@ -368,8 +368,8 @@ onBeforeUnmount(() => {
 			display: block;
 			position: absolute;
 			top: 0;
-			left: 0;
-			right: 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
 			margin: auto;
 			width: calc(100% - 16px);
 			margin-bottom: 0.2rem;
@@ -500,7 +500,7 @@ onBeforeUnmount(() => {
 		> .indicator {
 			position: absolute;
 			top: 5px;
-			left: 13px;
+			inset-inline-start: 13px;
 			color: var(--indicator);
 			font-size: 12px;
 		}

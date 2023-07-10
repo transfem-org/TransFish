@@ -128,7 +128,7 @@ const props = defineProps<{
 				position: absolute;
 				z-index: 10;
 				top: 8px;
-				left: 8px;
+				inset-inline-start: 8px;
 				padding: 2px 4px;
 				background: #ff0000bf;
 				color: #fff;

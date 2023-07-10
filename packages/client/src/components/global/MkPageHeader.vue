@@ -562,7 +562,7 @@ onUnmounted(() => {
 		> .highlight {
 			position: absolute;
 			bottom: 0;
-			left: 0;
+			inset-inline-start: 0;
 			height: 3px;
 			background: var(--accent);
 			border-radius: 999px;

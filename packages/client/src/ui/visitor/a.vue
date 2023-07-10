@@ -278,7 +278,7 @@ export default defineComponent({
 			> .header {
 				position: sticky;
 				top: 0;
-				left: 0;
+				inset-inline-start: 0;
 				z-index: 1000;
 			}
 

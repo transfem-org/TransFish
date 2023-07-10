@@ -211,11 +211,11 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 		}
 
 		> .config {
-			right: 8px + 8px + 32px;
+			inset-inline-end: 8px + 8px + 32px;
 		}
 
 		> .remove {
-			right: 8px;
+			inset-inline-end: 8px;
 		}
 
 		> .handle {

@@ -209,7 +209,7 @@ export default defineComponent({
 		> .bg {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 100%;
 			height: 100%;
 		}
@@ -217,7 +217,7 @@ export default defineComponent({
 		> .fade {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 100%;
 			height: 100%;
 			background: rgba(0, 0, 0, 0.25);
@@ -226,7 +226,7 @@ export default defineComponent({
 		> .emojis {
 			position: absolute;
 			bottom: 32px;
-			left: 35px;
+			inset-inline-start: 35px;
 
 			> * {
 				margin-inline-end: 8px;
@@ -258,7 +258,7 @@ export default defineComponent({
 				> .bg {
 					position: absolute;
 					top: 0;
-					left: 0;
+					inset-inline-start: 0;
 					width: 100%;
 					height: 128px;
 					background-position: center;
@@ -268,7 +268,7 @@ export default defineComponent({
 					> .fade {
 						position: absolute;
 						bottom: 0;
-						left: 0;
+						inset-inline-start: 0;
 						width: 100%;
 						height: 128px;
 						background: linear-gradient(
@@ -333,7 +333,7 @@ export default defineComponent({
 					> .menu {
 						position: absolute;
 						top: 16px;
-						right: 16px;
+						inset-inline-end: 16px;
 						width: 32px;
 						height: 32px;
 						border-radius: 8px;

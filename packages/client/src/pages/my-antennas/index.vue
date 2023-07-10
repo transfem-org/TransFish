@@ -138,7 +138,7 @@ definePageMetadata({
 	.notify-icon {
 		position: relative;
 		top: -1em;
-		left: -0.5em;
+		inset-inline-start: -0.5em;
 
 		&.ph-circle ph-fill {
 			color: var(--indicator);

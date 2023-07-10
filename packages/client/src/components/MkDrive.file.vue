@@ -301,7 +301,7 @@ async function deleteFile() {
 	> .label {
 		position: absolute;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		pointer-events: none;
 
 		&:before,
@@ -315,14 +315,14 @@ async function deleteFile() {
 
 		&:before {
 			top: 0;
-			left: 57px;
+			inset-inline-start: 57px;
 			width: 28px;
 			height: 8px;
 		}
 
 		&:after {
 			top: 57px;
-			left: 0;
+			inset-inline-start: 0;
 			width: 8px;
 			height: 28px;
 		}
@@ -338,14 +338,14 @@ async function deleteFile() {
 			position: absolute;
 			z-index: 2;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 		}
 
 		> p {
 			position: absolute;
 			z-index: 3;
 			top: 19px;
-			left: -28px;
+			inset-inline-start: -28px;
 			width: 120px;
 			margin: 0;
 			text-align: center;

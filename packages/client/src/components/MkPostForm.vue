@@ -1059,7 +1059,7 @@ onMounted(() => {
 		> .right {
 			position: absolute;
 			top: 0;
-			right: 0;
+			inset-inline-end: 0;
 
 			> .text-count {
 				opacity: 0.7;

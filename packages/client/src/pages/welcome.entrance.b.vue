@@ -192,7 +192,7 @@ export default defineComponent({
 		> .bg {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 100%;
 			height: 100%;
 		}
@@ -201,7 +201,7 @@ export default defineComponent({
 			position: absolute;
 			top: 0;
 			bottom: 0;
-			right: 64px;
+			inset-inline-end: 64px;
 			margin: auto;
 			width: 500px;
 			height: calc(100% - 128px);
@@ -225,7 +225,7 @@ export default defineComponent({
 		> .shape {
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 100%;
 			height: 100%;
 			background: var(--accent);
@@ -235,7 +235,7 @@ export default defineComponent({
 		> .misskey {
 			position: absolute;
 			bottom: 64px;
-			left: 64px;
+			inset-inline-start: 64px;
 			width: 160px;
 		}
 

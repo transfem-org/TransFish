@@ -478,8 +478,8 @@ onUnmounted(() => {
 			position: absolute;
 			z-index: 10;
 			top: 0;
-			left: 0;
-			right: 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
 			bottom: 0;
 			margin: auto;
 			width: calc(100% - 8px);

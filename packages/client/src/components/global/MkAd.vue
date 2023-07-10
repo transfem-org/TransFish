@@ -157,7 +157,7 @@ function reduceFrequency(): void {
 			> .menu {
 				position: absolute;
 				top: 1px;
-				right: 1px;
+				inset-inline-end: 1px;
 
 				> .info-circle {
 					border: 3px solid var(--panel);

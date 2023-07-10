@@ -179,7 +179,7 @@ definePageMetadata(
 	> .name {
 		position: absolute;
 		top: 8px;
-		left: 9px;
+		inset-inline-start: 9px;
 		padding: 8px;
 		background: var(--panel);
 	}
@@ -187,7 +187,7 @@ definePageMetadata(
 	> .remove {
 		position: absolute;
 		top: 8px;
-		right: 9px;
+		inset-inline-end: 9px;
 		padding: 8px;
 		background: var(--panel);
 	}

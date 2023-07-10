@@ -13,7 +13,7 @@ html {
 	position: fixed;
 	z-index: 10000;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	width: 100vw;
 	height: 100vh;
 	cursor: wait;
@@ -25,9 +25,9 @@ html {
 #splashIcon {
 	position: absolute;
 	top: 0;
-	right: 0;
+	inset-inline-end: 0;
 	bottom: 0;
-	left: 0;
+	inset-inline-start: 0;
 	margin: auto;
 	width: 64px;
 	height: 64px;
@@ -40,9 +40,9 @@ html {
 #splashSpinner {
 	position: absolute;
 	top: 0;
-	right: 0;
+	inset-inline-end: 0;
 	bottom: 0;
-	left: 0;
+	inset-inline-start: 0;
 	margin: auto;
 	display: inline-block;
 	width: 28px;
@@ -54,7 +54,7 @@ html {
 #splashSpinner > .spinner {
 	position: absolute;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	width: 28px;
 	height: 28px;
 	fill-rule: evenodd;
@@ -120,9 +120,9 @@ html {
 #splashText {
 	position: absolute;
 	top: 0;
-	right: 0;
+	inset-inline-end: 0;
 	bottom: 0;
-	left: 0;
+	inset-inline-start: 0;
 	margin: auto;
 	display: inline-block;
 	width: 70%;

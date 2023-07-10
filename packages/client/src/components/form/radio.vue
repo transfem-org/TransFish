@@ -112,9 +112,9 @@ function toggle(x) {
 			display: block;
 			position: absolute;
 			top: 3px;
-			right: 3px;
+			inset-inline-end: 3px;
 			bottom: 3px;
-			left: 3px;
+			inset-inline-start: 3px;
 			border-radius: 100%;
 			opacity: 0;
 			transform: scale(0);

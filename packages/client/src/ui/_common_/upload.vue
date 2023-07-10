@@ -67,7 +67,7 @@ const zIndex = os.claimZIndex("high");
 <style lang="scss" scoped>
 .mk-uploader {
 	position: fixed;
-	right: 16px;
+	inset-inline-end: 16px;
 	width: 260px;
 	top: 32px;
 	padding: 16px 20px;

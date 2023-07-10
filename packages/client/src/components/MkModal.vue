@@ -523,8 +523,8 @@ defineExpose({
 			position: fixed;
 			top: 0;
 			bottom: 0;
-			left: 0;
-			right: 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
 			margin: auto;
 			padding: 32px;
 			// TODO: mask-imageはiOSだとやたら重い。なんとかしたい
@@ -588,7 +588,7 @@ defineExpose({
 	&.drawer {
 		position: fixed;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		width: 100%;
 		height: 100%;
 		overflow: clip;
@@ -596,8 +596,8 @@ defineExpose({
 		> .content {
 			position: fixed;
 			bottom: 0;
-			left: 0;
-			right: 0;
+			inset-inline-start: 0;
+			inset-inline-end: 0;
 			margin: auto;
 
 			> ::v-deep(*) {

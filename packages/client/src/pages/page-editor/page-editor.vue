@@ -591,7 +591,7 @@ definePageMetadata(
 			position: absolute;
 			z-index: 2;
 			top: 0;
-			right: 0;
+			inset-inline-end: 0;
 
 			> button {
 				padding: 0;

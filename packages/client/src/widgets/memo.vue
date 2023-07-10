@@ -118,7 +118,7 @@ defineExpose<WidgetComponentExpose>({
 		display: block;
 		position: absolute;
 		bottom: 8px;
-		right: 8px;
+		inset-inline-end: 8px;
 		margin: 0;
 		padding: 0 10px;
 		height: 28px;

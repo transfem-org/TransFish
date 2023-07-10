@@ -52,7 +52,7 @@ onMounted(() => {
 
 .mk-notification-toast {
 	position: fixed;
-	left: 0;
+	inset-inline-start: 0;
 	width: 250px;
 	top: 32px;
 	padding: 0 32px;

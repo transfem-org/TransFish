@@ -169,7 +169,7 @@ export default defineComponent({
 	$height: 60px;
 	position: sticky;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	z-index: 1000;
 	line-height: $height;
 	-webkit-backdrop-filter: var(--blur, blur(32px));

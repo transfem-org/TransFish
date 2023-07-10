@@ -325,7 +325,7 @@ definePageMetadata({
 	> .bannerEdit {
 		position: absolute;
 		top: 16px;
-		right: 16px;
+		inset-inline-end: 16px;
 	}
 }
 </style>

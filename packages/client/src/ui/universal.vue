@@ -554,7 +554,7 @@ console.log(mainRouter.currentRoute.value.name);
 					hsla(0, 0%, 0%, 0) 100%
 				) !important;
 				width: 125% !important;
-				left: -12.5% !important;
+				inset-inline-start: -12.5% !important;
 				height: 145% !important;
 			}
 		}
@@ -613,7 +613,7 @@ console.log(mainRouter.currentRoute.value.name);
 	> .widgetsDrawer {
 		position: fixed;
 		top: 0;
-		right: 0;
+		inset-inline-end: 0;
 		z-index: 1001;
 		// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 		height: calc(var(--vh, 1vh) * 100);
@@ -627,7 +627,7 @@ console.log(mainRouter.currentRoute.value.name);
 	> .postButton,
 	.widgetButton {
 		bottom: var(--stickyBottom);
-		right: 1.5rem;
+		inset-inline-end: 1.5rem;
 		height: 4rem;
 		width: 4rem;
 		background-position: center;
@@ -660,7 +660,7 @@ console.log(mainRouter.currentRoute.value.name);
 		position: fixed;
 		z-index: 1000;
 		bottom: 0;
-		left: 0;
+		inset-inline-start: 0;
 		padding: 12px 12px calc(env(safe-area-inset-bottom, 0px) + 12px) 12px;
 		display: flex;
 		width: 100%;
@@ -699,7 +699,7 @@ console.log(mainRouter.currentRoute.value.name);
 				> .indicator {
 					position: absolute;
 					top: 0;
-					left: 0;
+					inset-inline-start: 0;
 					color: var(--indicator);
 					font-size: 16px;
 				}
@@ -723,7 +723,7 @@ console.log(mainRouter.currentRoute.value.name);
 			> .indicator {
 				position: absolute;
 				top: 0;
-				left: 0;
+				inset-inline-start: 0;
 				color: var(--indicator);
 				font-size: 16px;
 			}
@@ -761,7 +761,7 @@ console.log(mainRouter.currentRoute.value.name);
 	> .menuDrawer {
 		position: fixed;
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		z-index: 1001;
 		// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 		height: calc(var(--vh, 1vh) * 100);
@@ -779,6 +779,6 @@ console.log(mainRouter.currentRoute.value.name);
 .statusbars {
 	position: sticky;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 }
 </style>
