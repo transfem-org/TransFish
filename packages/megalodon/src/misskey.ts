@@ -1539,6 +1539,23 @@ export default class Misskey implements MegalodonInterface {
         .then(res => res.data[0] ?? '⭐');
   }
 
+	private async getDefaultPostPrivacy(): Promise<string> {
+		// NOTE: get-unsecure is calckey's extension.
+		//       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
+		//       unless you have a 'nativeToken', which is reserved for the frontend webapp.
+
+		return this.client
+			.post<string>('/api/i/registry/get-unsecure', {
+				key: 'defaultNoteVisibility',
+				scope: ['client', 'base'],
+			})
+			.then(res => {
+				if (!res.data || (res.data != 'public' && res.data != 'home' && res.data != 'followers' && res.data != 'specified'))
+					return 'public';
+				return this.converter.visibility(res.data);
+			});
+	}
+
   public async unfavouriteStatus(id: string): Promise<Response<Entity.Status>> {
     // NOTE: Misskey allows only one reaction per status, so we don't need to care what that emoji was.
     return this.deleteEmojiReaction(id, '');
