@@ -69,7 +69,7 @@ async fn main() {
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
-#[serde(rename = "camelCase")]
+#[serde(rename_all = "camelCase")]
 pub struct Config {
     pub url: url::Url,
     pub db: DbConfig,
@@ -78,7 +78,6 @@ pub struct Config {
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
-#[serde(rename = "camelCase")]
 pub struct DbConfig {
     pub host: String,
     pub port: u32,
@@ -88,7 +87,6 @@ pub struct DbConfig {
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
-#[serde(rename = "camelCase")]
 pub struct RedisConfig {
     pub host: String,
     pub port: u32,
@@ -102,7 +100,7 @@ pub struct RedisConfig {
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
-#[serde(rename = "camelCase")]
+#[serde(rename_all = "camelCase")]
 pub struct TlsConfig {
     pub host: String,
     pub reject_unauthorized: bool,
