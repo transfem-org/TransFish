@@ -1541,7 +1541,7 @@ export default class Misskey implements MegalodonInterface {
 				if (!res.data || (res.data != 'public' && res.data != 'home' && res.data != 'followers' && res.data != 'specified'))
 					return 'public';
 				return this.converter.visibility(res.data);
-			});
+			}).catch(_ => 'public')
 	}
 
   public async unfavouriteStatus(id: string): Promise<Response<Entity.Status>> {
