@@ -11,7 +11,11 @@ impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         let cache_url = env::var("CACHE_URL").unwrap();
         let skip_copy = env::var("ANTENNA_MIGRATION_SKIP").unwrap_or_default();
-        let copy_limit = env::var("ANTENNA_MIGRATION_LIMIT").unwrap_or_default();
+        let copy_limit = env::var("ANTENNA_MIGRATION_COPY_LIMIT").unwrap_or_default();
+        let read_limit: u64 = env::var("ANTENNA_MIGRATION_READ_LIMIT")
+            .unwrap_or("10000".to_string())
+            .parse()
+            .unwrap();
         let copy_limit: i64 = match copy_limit.parse() {
             Ok(limit) => limit,
             Err(_) => 0,
@@ -48,7 +52,7 @@ impl MigrationTrait for Migration {
                 .column(AntennaNote::NoteId)
                 .from(AntennaNote::Table)
                 .order_by((AntennaNote::Table, AntennaNote::Id), Order::Asc)
-                .limit(1000)
+                .limit(read_limit)
                 .to_owned();
 
             let mut stmt = stmt_base.clone();
@@ -87,7 +91,7 @@ impl MigrationTrait for Migration {
                 let copied = total_num - remaining;
                 let copied = std::cmp::min(copied, total_num);
                 pagination += 1;
-                if pagination % 100 == 0 {
+                if pagination % 10 == 0 {
                     println!(
                         "Migrating antenna [{:.2}%]",
                         (copied as f64 / total_num as f64) * 100_f64,
