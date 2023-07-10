@@ -15,6 +15,10 @@ pub struct Model {
     pub image_url: Option<String>,
     #[sea_orm(column_name = "updatedAt")]
     pub updated_at: Option<DateTimeWithTimeZone>,
+    #[sea_orm(column_name = "showPopup")]
+    pub show_popup: bool,
+    #[sea_orm(column_name = "isGoodNews")]
+    pub is_good_news: bool,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
