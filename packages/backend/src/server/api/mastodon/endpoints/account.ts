@@ -48,7 +48,7 @@ export function apiAccountMastodon(router: Router): void {
 			acct.source = {
 				note: acct.note,
 				fields: acct.fields,
-				privacy: await client.getDefaultPostPrivacy(),
+				privacy: "public",
 				sensitive: false,
 				language: "",
 			};
