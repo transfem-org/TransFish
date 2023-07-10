@@ -226,11 +226,13 @@ watch(
 		display: flex;
 		min-width: max-content;
 		width: 110px;
-		transition: width 0.2s cubic-bezier(0,0,0,1);
+		transition: width 0.2s cubic-bezier(0, 0, 0, 1);
 		[data-plyr="volume"] {
 			width: 0;
 			flex-grow: 1;
-			transition: margin 0.3s, opacity .2s 0.2s;
+			transition:
+				margin 0.3s,
+				opacity 0.2s 0.2s;
 		}
 		&:not(:hover):not(:focus-within) {
 			width: 0px;
@@ -238,7 +240,9 @@ watch(
 			[data-plyr="volume"] {
 				margin-inline: 0px;
 				opacity: 0;
-				transition: margin 0.3s, opacity 0.1s;
+				transition:
+					margin 0.3s,
+					opacity 0.1s;
 			}
 		}
 	}

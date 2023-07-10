@@ -285,7 +285,8 @@ function more(ev: MouseEvent) {
 		box-sizing: border-box;
 		color: var(--navFg);
 
-		&:before, &.post::after {
+		&:before,
+		&.post::after {
 			content: "";
 			display: block;
 			width: calc(100% - 34px);
@@ -342,7 +343,9 @@ function more(ev: MouseEvent) {
 		&.active {
 			color: var(--accent);
 			opacity: 1;
-			transition: color 0.4s, opacity 0.4s;
+			transition:
+				color 0.4s,
+				opacity 0.4s;
 			&::before {
 				opacity: 1;
 			}
@@ -536,7 +539,6 @@ function more(ev: MouseEvent) {
 					width: calc(100% - 32px);
 					border-top: solid 0.5px var(--divider);
 				}
-
 			}
 		}
 		.nav-item {
@@ -571,7 +573,8 @@ function more(ev: MouseEvent) {
 			width: 100%;
 			height: 52px;
 			margin-bottom: 16px;
-			&:before, &::after {
+			&:before,
+			&::after {
 				inset: 0;
 				margin: auto;
 				width: 52px;
