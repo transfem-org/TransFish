@@ -80,8 +80,6 @@ const target = self ? null : "_blank";
 	display: inline-block;
 	overflow: clip;
 	text-overflow: ellipsis;
-	text-decoration: none !important;
-	line-height: 1.05;
 
 	> .icon {
 		padding-left: 2px;

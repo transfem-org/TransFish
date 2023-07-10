@@ -196,7 +196,6 @@ onUnmounted(() => {
 	> a {
 		display: flex;
 		transition: background 0.2s;
-		text-decoration: none;
 		> div:first-child:not(:last-child) {
 			position: relative;
 			width: 90px;
@@ -278,7 +277,7 @@ onUnmounted(() => {
 		&:focus,
 		&:focus-within {
 			background: var(--panelHighlight);
-			h3 {
+			h1 {
 				text-decoration: underline;
 			}
 		}
