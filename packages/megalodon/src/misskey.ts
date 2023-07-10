@@ -1079,23 +1079,11 @@ export default class Misskey implements MegalodonInterface {
   // accounts/preferences
   // ======================================
   public async getPreferences(): Promise<Response<Entity.Preferences>> {
-    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(res => {
-      /*
-      return this.client.post<MisskeyAPI.Entity.GetAll>('/api/i/registry/get-all', {
-        scope: ['client', 'base'],
-      }).then(ga => {
-        return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, ga.data)
-        })
-      })
-      */
-
-      // TODO:
-      // FIXME: get this from api
-      return Object.assign(res, {
-          data: this.converter.userPreferences(res.data, {defaultNoteVisibility: "followers", tutorial: -1})
-        })
-      })
+    return this.client.post<MisskeyAPI.Entity.UserDetailMe>('/api/i').then(async res => {
+			return Object.assign(res, {
+				data: this.converter.userPreferences(res.data, await this.getDefaultPostPrivacy())
+			})
+		})
   }
 
   // ======================================
@@ -1538,6 +1526,23 @@ export default class Misskey implements MegalodonInterface {
         })
         .then(res => res.data[0] ?? '⭐');
   }
+
+	private async getDefaultPostPrivacy(): Promise<'public' | 'unlisted' | 'private' | 'direct'> {
+		// NOTE: get-unsecure is calckey's extension.
+		//       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
+		//       unless you have a 'nativeToken', which is reserved for the frontend webapp.
+
+		return this.client
+			.post<string>('/api/i/registry/get-unsecure', {
+				key: 'defaultNoteVisibility',
+				scope: ['client', 'base'],
+			})
+			.then(res => {
+				if (!res.data || (res.data != 'public' && res.data != 'home' && res.data != 'followers' && res.data != 'specified'))
+					return 'public';
+				return this.converter.visibility(res.data);
+			}).catch(_ => 'public')
+	}
 
   public async unfavouriteStatus(id: string): Promise<Response<Entity.Status>> {
     // NOTE: Misskey allows only one reaction per status, so we don't need to care what that emoji was.
