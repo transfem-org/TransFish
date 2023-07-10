@@ -189,6 +189,10 @@ pub struct Model {
     pub silenced_hosts: StringVec,
     #[sea_orm(column_name = "experimentalFeatures", column_type = "JsonBinary")]
     pub experimental_features: Json,
+    #[sea_orm(column_name = "enableServerMachineStats")]
+    pub enable_server_machine_stats: bool,
+    #[sea_orm(column_name = "enableIdenticonGeneration")]
+    pub enable_identicon_generation: bool,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
