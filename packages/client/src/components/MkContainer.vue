@@ -220,7 +220,7 @@ export default defineComponent({
 			padding: 12px 16px;
 
 			> ::v-deep(i) {
-				margin-right: 6px;
+				margin-inline-end: 6px;
 				transform: translateY(0.1em);
 			}
 

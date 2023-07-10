@@ -266,8 +266,8 @@ function more() {
 
 				> .icon {
 					position: relative;
-					margin-left: 30px;
-					margin-right: 8px;
+					margin-inline-start: 30px;
+					margin-inline-end: 8px;
 					width: 32px;
 				}
 
@@ -295,7 +295,7 @@ function more() {
 				position: relative;
 				display: flex;
 				align-items: center;
-				padding-left: 30px;
+				padding-inline-start: 30px;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
@@ -325,7 +325,7 @@ function more() {
 			> .item {
 				position: relative;
 				display: block;
-				padding-left: 24px;
+				padding-inline-start: 24px;
 				line-height: 2.85rem;
 				text-overflow: ellipsis;
 				overflow: hidden;
@@ -338,7 +338,7 @@ function more() {
 				> .icon {
 					position: relative;
 					width: 32px;
-					margin-right: 8px;
+					margin-inline-end: 8px;
 				}
 
 				> .indicator {

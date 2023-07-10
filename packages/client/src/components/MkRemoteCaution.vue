@@ -28,7 +28,7 @@ defineProps<{
 	border-radius: var(--radius);
 
 	> .link {
-		margin-left: 4px;
+		margin-inline-start: 4px;
 		color: var(--accent);
 	}
 }

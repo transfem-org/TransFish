@@ -208,7 +208,7 @@ defineExpose<WidgetComponentExpose>({
 				opacity: 0.8;
 
 				> b {
-					margin-left: 2px;
+					margin-inline-start: 2px;
 				}
 			}
 

@@ -248,17 +248,17 @@ function del(): void {
 			}
 
 			> i {
-				margin-left: 4px;
+				margin-inline-start: 4px;
 			}
 		}
 	}
 
 	&:not(.isMe) {
-		padding-left: var(--margin);
+		padding-inline-start: var(--margin);
 
 		> .content {
-			padding-left: 16px;
-			padding-right: 32px;
+			padding-inline-start: 16px;
+			padding-inline-end: 32px;
 
 			> .balloon {
 				$color: var(--X4);
@@ -291,12 +291,12 @@ function del(): void {
 
 	&.isMe {
 		flex-direction: row-reverse;
-		padding-right: var(--margin);
+		padding-inline-end: var(--margin);
 		right: var(--margin); // 削除時にposition: absoluteになったときに使う
 
 		> .content {
-			padding-right: 16px;
-			padding-left: 32px;
+			padding-inline-end: 16px;
+			padding-inline-start: 32px;
 			text-align: right;
 
 			> .balloon {

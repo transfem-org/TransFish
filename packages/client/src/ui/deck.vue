@@ -441,11 +441,11 @@ async function deleteProfile() {
 
 			&.center {
 				> .column:first-of-type {
-					margin-left: auto;
+					margin-inline-start: auto;
 				}
 
 				> .column:last-of-type {
-					margin-right: auto;
+					margin-inline-end: auto;
 				}
 			}
 
@@ -481,8 +481,8 @@ async function deleteProfile() {
 
 			> .sideMenu {
 				flex-shrink: 0;
-				margin-right: 0;
-				margin-left: auto;
+				margin-inline-end: 0;
+				margin-inline-start: auto;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
@@ -546,14 +546,14 @@ async function deleteProfile() {
 			color: var(--fg);
 
 			&:not(:last-child) {
-				margin-right: 12px;
+				margin-inline-end: 12px;
 			}
 
 			@media (max-width: 400px) {
 				height: 60px;
 
 				&:not(:last-child) {
-					margin-right: 8px;
+					margin-inline-end: 8px;
 				}
 			}
 
@@ -574,11 +574,11 @@ async function deleteProfile() {
 			}
 
 			&:first-child {
-				margin-left: 0;
+				margin-inline-start: 0;
 			}
 
 			&:last-child {
-				margin-right: 0;
+				margin-inline-end: 0;
 			}
 
 			> * {

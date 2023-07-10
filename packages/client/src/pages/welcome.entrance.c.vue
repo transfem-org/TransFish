@@ -229,7 +229,7 @@ export default defineComponent({
 			left: 35px;
 
 			> * {
-				margin-right: 8px;
+				margin-inline-end: 8px;
 			}
 
 			@media (max-width: 1200px) {
@@ -313,8 +313,8 @@ export default defineComponent({
 
 						> div {
 							> span:not(:last-child) {
-								padding-right: 1em;
-								margin-right: 1em;
+								padding-inline-end: 1em;
+								margin-inline-end: 1em;
 								border-right: solid 0.5px var(--divider);
 							}
 						}
@@ -350,7 +350,7 @@ export default defineComponent({
 				font-size: 0.9em;
 
 				> *:not(:last-child) {
-					margin-right: 1.5em;
+					margin-inline-end: 1.5em;
 				}
 			}
 		}

@@ -473,7 +473,7 @@ onBeforeUnmount(() => {
 			cursor: default;
 
 			> .caret {
-				margin-left: auto;
+				margin-inline-start: auto;
 			}
 
 			&.childShowing {
@@ -487,12 +487,12 @@ onBeforeUnmount(() => {
 		}
 
 		> i {
-			margin-right: 5px;
+			margin-inline-end: 5px;
 			width: 20px;
 		}
 
 		> .avatar {
-			margin-right: 5px;
+			margin-inline-end: 5px;
 			width: 20px;
 			height: 20px;
 		}
@@ -532,7 +532,7 @@ onBeforeUnmount(() => {
 			}
 
 			> i {
-				margin-right: 14px;
+				margin-inline-end: 14px;
 				width: 24px;
 			}
 		}

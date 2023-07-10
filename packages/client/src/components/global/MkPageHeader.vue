@@ -372,13 +372,13 @@ onUnmounted(() => {
 		display: flex;
 		> .buttons {
 			&:not(:empty) {
-				margin-right: 8px;
-				margin-left: calc(0px - var(--margin));
+				margin-inline-end: 8px;
+				margin-inline-start: calc(0px - var(--margin));
 			}
 			> .avatar {
 				width: 32px;
 				height: 32px;
-				margin-left: var(--margin);
+				margin-inline-start: var(--margin);
 			}
 		}
 	}
@@ -391,16 +391,16 @@ onUnmounted(() => {
 		&.right {
 			justify-content: flex-end;
 			z-index: 2;
-			// margin-right: calc(0px - var(--margin));
-			// margin-left: var(--margin);
+			// margin-inline-end: calc(0px - var(--margin));
+			// margin-inline-start: var(--margin);
 			> .button:last-child {
-				margin-right: calc(0px - var(--margin));
+				margin-inline-end: calc(0px - var(--margin));
 			}
 		}
 
 		> .fullButton {
 			& + .fullButton {
-				margin-left: 12px;
+				margin-inline-start: 12px;
 			}
 		}
 	}
@@ -426,11 +426,11 @@ onUnmounted(() => {
 				width: $size;
 				height: $size;
 				vertical-align: bottom;
-				margin-right: 8px;
+				margin-inline-end: 8px;
 			}
 
 			> .icon {
-				margin-right: 8px;
+				margin-inline-end: 8px;
 				min-width: 16px;
 				width: 1em;
 				text-align: center;
@@ -456,7 +456,7 @@ onUnmounted(() => {
 
 						> .chevron {
 							display: inline-block;
-							margin-left: 6px;
+							margin-inline-start: 6px;
 						}
 					}
 				}
@@ -472,14 +472,14 @@ onUnmounted(() => {
 	}
 	> .left {
 		min-width: 20%;
-		margin-left: -10px;
-		padding-left: 10px;
+		margin-inline-start: -10px;
+		padding-inline-start: 10px;
 	}
 	> .right {
-		// margin-left: auto;
+		// margin-inline-start: auto;
 		min-width: max-content;
-		margin-right: -10px;
-		padding-right: 10px;
+		margin-inline-end: -10px;
+		padding-inline-end: 10px;
 	}
 
 	> .tabs {
@@ -553,7 +553,7 @@ onUnmounted(() => {
 			}
 
 			> .icon + .title {
-				margin-left: 8px;
+				margin-inline-start: 8px;
 			}
 			> .title {
 				transition: opacity 0.2s;

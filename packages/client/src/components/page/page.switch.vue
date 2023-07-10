@@ -53,7 +53,7 @@ export default defineComponent({
 	margin: 16px auto;
 
 	& + .hkcxmtwj {
-		margin-left: 16px;
+		margin-inline-start: 16px;
 	}
 }
 </style>

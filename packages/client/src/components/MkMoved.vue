@@ -2,7 +2,7 @@
 	<div class="msjugskd _block">
 		<i
 			class="ph-airplane-takeoff ph-bold ph-lg"
-			style="margin-right: 8px"
+			style="margin-inline-end: 8px"
 		/>
 		{{ i18n.ts.accountMoved }}
 		<MkMention class="link" :username="acct" :host="host" />
@@ -28,7 +28,7 @@ defineProps<{
 	border-radius: var(--radius);
 
 	> .link {
-		margin-left: 4px;
+		margin-inline-start: 4px;
 		color: var(--accent);
 	}
 }

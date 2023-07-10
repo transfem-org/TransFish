@@ -292,8 +292,8 @@ export default defineComponent({
 					padding: 16px 0;
 
 					> span:not(:last-child) {
-						padding-right: 1em;
-						margin-right: 1em;
+						padding-inline-end: 1em;
+						margin-inline-end: 1em;
 						border-right: solid 1px rgba(255, 255, 255, 0.5);
 					}
 				}

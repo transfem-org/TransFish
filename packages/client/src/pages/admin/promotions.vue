@@ -42,7 +42,7 @@
 							class="button"
 							inline
 							primary
-							style="margin-right: 12px"
+							style="margin-inline-end: 12px"
 							@click="save(ad)"
 							><i class="ph-floppy-disk-back ph-bold ph-lg"></i>
 							{{ i18n.ts.save }}</MkButton

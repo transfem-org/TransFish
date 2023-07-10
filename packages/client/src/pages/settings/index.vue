@@ -366,7 +366,7 @@ definePageMetadata(INFO);
 
 			> .nav {
 				width: 34%;
-				padding-right: 32px;
+				padding-inline-end: 32px;
 				box-sizing: border-box;
 			}
 

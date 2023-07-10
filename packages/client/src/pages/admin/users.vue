@@ -220,10 +220,10 @@ definePageMetadata(
 			margin-bottom: 16px;
 
 			> * {
-				margin-right: 16px;
+				margin-inline-end: 16px;
 
 				&:last-child {
-					margin-right: 0;
+					margin-inline-end: 0;
 				}
 			}
 		}

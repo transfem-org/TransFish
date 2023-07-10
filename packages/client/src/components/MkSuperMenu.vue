@@ -113,7 +113,7 @@ export default defineComponent({
 
 				> .icon {
 					width: 32px;
-					margin-right: 2px;
+					margin-inline-end: 2px;
 					flex-shrink: 0;
 					text-align: center;
 					opacity: 0.8;
@@ -123,7 +123,7 @@ export default defineComponent({
 					white-space: nowrap;
 					text-overflow: ellipsis;
 					overflow: hidden;
-					padding-right: 12px;
+					padding-inline-end: 12px;
 				}
 			}
 		}
@@ -136,8 +136,8 @@ export default defineComponent({
 				border-top: none;
 			}
 
-			margin-left: 0;
-			margin-right: 0;
+			margin-inline-start: 0;
+			margin-inline-end: 0;
 
 			> .title {
 				font-size: 1em;
@@ -160,13 +160,13 @@ export default defineComponent({
 
 					> .icon {
 						display: block;
-						margin-right: 0;
+						margin-inline-end: 0;
 						margin-bottom: 12px;
 						font-size: 1.5em;
 					}
 
 					> .text {
-						padding-right: 0;
+						padding-inline-end: 0;
 						width: 100%;
 						font-size: 0.8em;
 					}

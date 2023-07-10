@@ -579,7 +579,7 @@ definePageMetadata(
 			box-shadow: 0 1px rgba(#000, 0.07);
 
 			> i {
-				margin-right: 6px;
+				margin-inline-end: 6px;
 			}
 
 			&:empty {

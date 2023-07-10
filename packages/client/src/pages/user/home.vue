@@ -184,7 +184,7 @@
 									v-tooltip.noDelay="i18n.ts.isModerator"
 									style="
 										color: var(--badge);
-										margin-left: 0.5rem;
+										margin-inline-start: 0.5rem;
 									"
 									><i
 										class="ph-bookmark-simple ph-bold ph-lg"
@@ -586,7 +586,7 @@ onUnmounted(() => {
 						> .bottom {
 							> * {
 								display: inline-block;
-								margin-right: 16px;
+								margin-inline-end: 16px;
 								line-height: 20px;
 								opacity: 0.8;
 
@@ -650,7 +650,7 @@ onUnmounted(() => {
 						> .bottom {
 							> * {
 								display: inline-block;
-								margin-right: 16px;
+								margin-inline-end: 16px;
 								line-height: 20px;
 								opacity: 0.8;
 
@@ -706,7 +706,7 @@ onUnmounted(() => {
 					> .bottom {
 						> * {
 							display: inline-block;
-							margin-right: 8px;
+							margin-inline-end: 8px;
 							opacity: 0.8;
 						}
 					}
@@ -830,7 +830,7 @@ onUnmounted(() => {
 					padding-bottom: 0;
 					> .bottom {
 						> .username {
-							margin-right: 0;
+							margin-inline-end: 0;
 						}
 					}
 				}
@@ -895,7 +895,7 @@ onUnmounted(() => {
 		> .sub {
 			max-width: 350px;
 			min-width: 350px;
-			margin-left: var(--margin);
+			margin-inline-start: var(--margin);
 		}
 	}
 }

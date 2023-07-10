@@ -128,7 +128,7 @@ function resolve() {
 			}
 
 			> .names {
-				margin-left: 0.3em;
+				margin-inline-start: 0.3em;
 				padding: 0 8px;
 				flex: 1;
 

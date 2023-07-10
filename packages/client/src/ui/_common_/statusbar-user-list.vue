@@ -105,7 +105,7 @@ useInterval(tick, Math.max(5000, props.refreshIntervalSec * 1000), {
 			height: var(--height);
 			aspect-ratio: 1;
 			vertical-align: bottom;
-			margin-right: 8px;
+			margin-inline-end: 8px;
 		}
 
 		> .text {

@@ -509,8 +509,8 @@ console.log(mainRouter.currentRoute.value.name);
 		}
 
 		> :deep(.sidebar:not(.iconOnly)) {
-			margin-left: -200px;
-			padding-left: 200px;
+			margin-inline-start: -200px;
+			padding-inline-start: 200px;
 			box-sizing: content-box;
 			.banner {
 				pointer-events: none;
@@ -710,14 +710,14 @@ console.log(mainRouter.currentRoute.value.name);
 			}
 
 			&:not(:last-child) {
-				margin-right: 12px;
+				margin-inline-end: 12px;
 			}
 
 			@media (max-width: 400px) {
 				height: 60px;
 
 				&:not(:last-child) {
-					margin-right: 8px;
+					margin-inline-end: 8px;
 				}
 			}
 			> .indicator {
@@ -733,11 +733,11 @@ console.log(mainRouter.currentRoute.value.name);
 			}
 
 			&:first-child {
-				margin-left: 0;
+				margin-inline-start: 0;
 			}
 
 			&:last-child {
-				margin-right: 0;
+				margin-inline-end: 0;
 			}
 
 			> * {

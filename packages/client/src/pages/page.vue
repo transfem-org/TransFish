@@ -381,7 +381,7 @@ definePageMetadata(
 					}
 
 					> .koudoku {
-						margin-left: 4px;
+						margin-inline-start: 4px;
 						vertical-align: bottom;
 					}
 				}
@@ -408,7 +408,7 @@ definePageMetadata(
 					color: #eb6f92;
 
 					::v-deep(.count) {
-						margin-left: 0.5em;
+						margin-inline-start: 0.5em;
 					}
 				}
 			}
@@ -425,7 +425,7 @@ definePageMetadata(
 			}
 
 			> .user {
-				margin-left: auto;
+				margin-inline-start: auto;
 				display: flex;
 				align-items: center;
 
@@ -440,7 +440,7 @@ definePageMetadata(
 				}
 
 				> .koudoku {
-					margin-left: auto;
+					margin-inline-start: auto;
 					margin: 1rem;
 				}
 			}
@@ -452,7 +452,7 @@ definePageMetadata(
 			border-top: solid 0.5px var(--divider);
 
 			> .link {
-				margin-right: 2em;
+				margin-inline-end: 2em;
 			}
 		}
 	}

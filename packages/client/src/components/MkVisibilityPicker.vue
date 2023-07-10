@@ -205,7 +205,7 @@ function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-right: 10px;
+	margin-inline-end: 10px;
 	width: 16px;
 	top: 0;
 	bottom: 0;
@@ -234,7 +234,7 @@ function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-left: 10px;
+	margin-inline-start: 10px;
 	width: 16px;
 	top: 0;
 	bottom: 0;

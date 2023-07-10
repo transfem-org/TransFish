@@ -151,7 +151,7 @@ definePageMetadata({
 
 		> .icon {
 			width: 1em;
-			margin-right: 0.75em;
+			margin-inline-end: 0.75em;
 
 			&.succ {
 				color: var(--success);
@@ -168,11 +168,11 @@ definePageMetadata({
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			margin-right: 12px;
+			margin-inline-end: 12px;
 		}
 
 		> .time {
-			margin-left: auto;
+			margin-inline-start: auto;
 			opacity: 0.7;
 		}
 	}

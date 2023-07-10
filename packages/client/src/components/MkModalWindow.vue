@@ -145,7 +145,7 @@ defineExpose({
 		> .title {
 			flex: 1;
 			line-height: $height;
-			padding-left: 32px;
+			padding-inline-start: 32px;
 			font-weight: bold;
 			white-space: nowrap;
 			overflow: hidden;
@@ -154,12 +154,12 @@ defineExpose({
 
 			@media (max-width: 500px) {
 				line-height: $height-narrow;
-				padding-left: 16px;
+				padding-inline-start: 16px;
 			}
 		}
 
 		> button + .title {
-			padding-left: 0;
+			padding-inline-start: 0;
 		}
 	}
 

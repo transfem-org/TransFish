@@ -31,7 +31,7 @@
 								})
 							"
 							class="ph-pencil ph-bold"
-							style="margin-left: 0.4rem"
+							style="margin-inline-start: 0.4rem"
 						></i>
 					</MkA>
 					<MkVisibility :note="note" />
@@ -82,7 +82,7 @@ const showTicker =
 	> .avatar {
 		width: 3.7em;
 		height: 3.7em;
-		margin-right: 1em;
+		margin-inline-end: 1em;
 	}
 	> .user-info {
 		width: 0;
@@ -151,7 +151,7 @@ const showTicker =
 		.info {
 			display: inline-flex;
 			flex-shrink: 0;
-			margin-left: 0.5em;
+			margin-inline-start: 0.5em;
 			font-size: 0.9em;
 			.created-at {
 				max-width: 100%;
@@ -162,7 +162,7 @@ const showTicker =
 
 		.ticker {
 			display: inline-flex;
-			margin-left: 0.5em;
+			margin-inline-start: 0.5em;
 			vertical-align: middle;
 			> .name {
 				display: none;

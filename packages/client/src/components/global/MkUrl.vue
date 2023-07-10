@@ -84,7 +84,7 @@ const target = self ? null : "_blank";
 	line-height: 1.05;
 
 	> .icon {
-		padding-left: 2px;
+		padding-inline-start: 2px;
 		font-size: 0.9em;
 	}
 

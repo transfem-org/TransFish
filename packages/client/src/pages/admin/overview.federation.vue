@@ -172,7 +172,7 @@ onMounted(async () => {
 					place-items: center;
 					height: 100%;
 					aspect-ratio: 1;
-					margin-right: 12px;
+					margin-inline-end: 12px;
 					background: var(--accentedBg);
 					color: var(--accent);
 					border-radius: 10px;

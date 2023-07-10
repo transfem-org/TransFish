@@ -653,7 +653,7 @@ defineExpose({
 				margin-bottom: -4px;
 				margin-top: 16px;
 				border-left: 2px solid currentColor;
-				margin-left: calc((var(--avatarSize) / 2) - 1px);
+				margin-inline-start: calc((var(--avatarSize) / 2) - 1px);
 				opacity: 0.25;
 			}
 		}
@@ -678,14 +678,14 @@ defineExpose({
 			z-index: 2;
 			width: var(--avatarSize);
 			display: flex;
-			margin-right: 14px;
+			margin-inline-end: 14px;
 			margin-top: 0;
 			flex-grow: 0;
 			pointer-events: none;
 		}
 
 		> div > i {
-			margin-left: -0.5px;
+			margin-inline-start: -0.5px;
 		}
 		> .info {
 			display: flex;
@@ -695,11 +695,11 @@ defineExpose({
 			color: #f6c177;
 
 			> i {
-				margin-right: 4px;
+				margin-inline-end: 4px;
 			}
 
 			> .hide {
-				margin-left: auto;
+				margin-inline-start: auto;
 				color: inherit;
 			}
 		}
@@ -712,7 +712,7 @@ defineExpose({
 			cursor: pointer;
 
 			> i {
-				margin-right: 4px;
+				margin-inline-end: 4px;
 			}
 
 			> span {
@@ -727,7 +727,7 @@ defineExpose({
 			}
 
 			> .info {
-				margin-left: auto;
+				margin-inline-start: auto;
 				font-size: 0.9em;
 				display: flex;
 
@@ -737,7 +737,7 @@ defineExpose({
 					display: inline-flex;
 					align-items: center;
 					> .dropdownIcon {
-						margin-right: 4px;
+						margin-inline-end: 4px;
 					}
 				}
 			}
@@ -751,7 +751,7 @@ defineExpose({
 					position: absolute;
 					border-left: 2px solid currentColor;
 					border-top: 2px solid currentColor;
-					margin-left: calc(var(--avatarSize) / 2 - 1px);
+					margin-inline-start: calc(var(--avatarSize) / 2 - 1px);
 					width: calc(var(--avatarSize) / 2 + 14px);
 					border-top-left-radius: calc(var(--avatarSize) / 4);
 					top: calc(50% - 1px);
@@ -767,7 +767,7 @@ defineExpose({
 				height: 1.2em;
 				border-radius: 2em;
 				overflow: hidden;
-				margin-right: 0.4em;
+				margin-inline-end: 0.4em;
 				background: var(--panelHighlight);
 			}
 			.username {
@@ -886,7 +886,7 @@ defineExpose({
 						transition: background 0.2s;
 					}
 					&:first-of-type {
-						margin-left: -0.5em;
+						margin-inline-start: -0.5em;
 						&::before {
 							border-radius: 100px 0 0 100px;
 						}
@@ -933,7 +933,7 @@ defineExpose({
 				margin-top: 0px;
 			}
 			> .line {
-				margin-right: 10px;
+				margin-inline-end: 10px;
 				&::before {
 					margin-top: 8px;
 				}
@@ -946,7 +946,7 @@ defineExpose({
 				padding-top: 104px;
 			}
 			> .main > .header-container > .avatar {
-				margin-right: 10px;
+				margin-inline-end: 10px;
 				// top: calc(14px + var(--stickyTop, 0px));
 			}
 		}

@@ -266,7 +266,7 @@ defineExpose({
 			padding: 16px;
 
 			> .icon {
-				margin-right: 1em;
+				margin-inline-end: 1em;
 			}
 		}
 

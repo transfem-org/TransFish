@@ -306,13 +306,13 @@ definePageMetadata(
 					color: #eb6f92;
 
 					::v-deep(.count) {
-						margin-left: 0.5em;
+						margin-inline-start: 0.5em;
 					}
 				}
 			}
 
 			> .other {
-				margin-left: auto;
+				margin-inline-start: auto;
 
 				> button {
 					padding: 8px;
@@ -343,7 +343,7 @@ definePageMetadata(
 			}
 
 			> .koudoku {
-				margin-left: auto;
+				margin-inline-start: auto;
 			}
 		}
 	}

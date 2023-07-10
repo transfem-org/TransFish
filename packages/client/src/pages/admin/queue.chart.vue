@@ -47,7 +47,7 @@
 					>
 						{{ job[0] }}
 					</a>
-					<span style="margin-left: 8px; opacity: 0.7"
+					<span style="margin-inline-start: 8px; opacity: 0.7"
 						>({{ number(job[1]) }} jobs)</span
 					>
 				</div>

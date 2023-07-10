@@ -318,8 +318,8 @@ export default defineComponent({
 		opacity: 0.8;
 
 		> span + span {
-			margin-left: 0.5em;
-			padding-left: 0.5em;
+			margin-inline-start: 0.5em;
+			padding-inline-start: 0.5em;
 			border-left: solid 1px rgba(255, 255, 255, 0.5);
 		}
 	}

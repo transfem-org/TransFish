@@ -109,14 +109,14 @@ function getInstanceIcon(instance): string {
 	::v-deep(.item) {
 		display: inline-block;
 		vertical-align: bottom;
-		margin-right: 5em;
+		margin-inline-end: 5em;
 
 		> .icon {
 			display: inline-block;
 			height: var(--height);
 			aspect-ratio: 1;
 			vertical-align: bottom;
-			margin-right: 1em;
+			margin-inline-end: 1em;
 		}
 
 		> .host {
@@ -124,7 +124,7 @@ function getInstanceIcon(instance): string {
 		}
 
 		&.colored {
-			padding-right: 1em;
+			padding-inline-end: 1em;
 			color: #fff;
 		}
 	}

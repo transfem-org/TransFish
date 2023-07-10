@@ -379,11 +379,11 @@ hr {
 		margin: 0 !important;
 
 		&:not(:first-child) {
-			margin-left: 8px !important;
+			margin-inline-start: 8px !important;
 		}
 
 		&:not(:last-child) {
-			margin-right: 8px !important;
+			margin-inline-end: 8px !important;
 		}
 	}
 }
@@ -572,7 +572,7 @@ hr {
 }
 
 ._beta {
-	margin-left: 0.7em;
+	margin-inline-start: 0.7em;
 	font-size: 65%;
 	padding: 2px 3px;
 	color: var(--accent);
@@ -601,7 +601,7 @@ hr {
 				opacity: 0.7;
 
 				> ._icon {
-					margin-right: 4px;
+					margin-inline-end: 4px;
 					display: none;
 				}
 			}

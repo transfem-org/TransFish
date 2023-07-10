@@ -443,7 +443,7 @@ function onDrop(ev) {
 
 		> .toggleActive,
 		> .action {
-			margin-left: -16px;
+			margin-inline-start: -16px;
 		}
 
 		> .action {
@@ -455,8 +455,8 @@ function onDrop(ev) {
 		}
 
 		> .menu {
-			margin-left: auto;
-			margin-right: -16px;
+			margin-inline-start: auto;
+			margin-inline-end: -16px;
 		}
 	}
 

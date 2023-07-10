@@ -264,7 +264,7 @@ onBeforeUnmount(() => {
 	}
 
 	> span {
-		margin-right: 6px;
+		margin-inline-end: 6px;
 	}
 }
 

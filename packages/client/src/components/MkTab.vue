@@ -81,11 +81,11 @@ export default defineComponent({
 		}
 
 		&:not(:first-child) {
-			margin-left: 8px;
+			margin-inline-start: 8px;
 		}
 
 		> .icon {
-			margin-right: 6px;
+			margin-inline-end: 6px;
 		}
 
 		&:empty {
@@ -104,7 +104,7 @@ export default defineComponent({
 			black calc(100% - 90px),
 			transparent
 		);
-		padding-right: 90px !important;
+		padding-inline-end: 90px !important;
 		&::-webkit-scrollbar {
 			display: none;
 		}
@@ -114,7 +114,7 @@ export default defineComponent({
 			align-items: center;
 			flex: unset;
 			margin: 0;
-			margin-right: 8px;
+			margin-inline-end: 8px;
 			padding: 0.5em 1em;
 			border-radius: 100px;
 			background: var(--buttonBg);
@@ -122,7 +122,7 @@ export default defineComponent({
 				margin-top: -0.1em;
 			}
 			> .count {
-				margin-right: -0.2em;
+				margin-inline-end: -0.2em;
 			}
 		}
 	}

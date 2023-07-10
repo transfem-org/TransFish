@@ -7,7 +7,7 @@
 				<template #icon
 					><i
 						class="ph-shield-check ph-bold ph-lg"
-						style="margin-right: 0.5rem"
+						style="margin-inline-end: 0.5rem"
 					></i
 				></template>
 				<template #label>{{ i18n.ts.totp }}</template>
@@ -18,7 +18,7 @@
 						<MkButton @click="renewTOTP"
 							><i
 								class="ph-shield-check ph-bold ph-lg"
-								style="margin-right: 0.5rem"
+								style="margin-inline-end: 0.5rem"
 							></i
 							>{{ i18n.ts._2fa.renewTOTP }}</MkButton
 						>
@@ -27,7 +27,7 @@
 					<MkButton v-else @click="unregisterTOTP"
 						><i
 							class="ph-shield-slash ph-bold ph-lg"
-							style="margin-right: 0.5rem"
+							style="margin-inline-end: 0.5rem"
 						></i
 						>{{ i18n.ts.unregister }}</MkButton
 					>
@@ -44,7 +44,7 @@
 				<template #icon
 					><i
 						class="ph-key ph-bold ph-lg"
-						style="margin-right: 0.5rem"
+						style="margin-inline-end: 0.5rem"
 					></i
 				></template>
 				<template #label>{{ i18n.ts.securityKeyAndPasskey }}</template>
@@ -70,7 +70,7 @@
 						<MkButton primary @click="addSecurityKey"
 							><i
 								class="ph-key ph-bold ph-lg"
-								style="margin-right: 0.5rem"
+								style="margin-inline-end: 0.5rem"
 							></i
 							>{{ i18n.ts._2fa.registerSecurityKey }}</MkButton
 						>

@@ -89,7 +89,7 @@
 				</button>
 			</div>
 			<div v-if="visibility === 'specified'" class="to-specified">
-				<span style="margin-right: 8px">{{ i18n.ts.recipient }}</span>
+				<span style="margin-inline-end: 8px">{{ i18n.ts.recipient }}</span>
 				<div class="visibleUsers">
 					<span v-for="u in visibleUsers" :key="u.id">
 						<MkAcct :user="u" />
@@ -1072,7 +1072,7 @@ onMounted(() => {
 				margin: 0 0 0 8px;
 
 				& + .localOnly {
-					margin-left: 0 !important;
+					margin-inline-start: 0 !important;
 				}
 			}
 
@@ -1115,7 +1115,7 @@ onMounted(() => {
 				}
 
 				> i {
-					margin-left: 6px;
+					margin-inline-start: 6px;
 				}
 			}
 		}

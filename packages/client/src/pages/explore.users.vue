@@ -11,7 +11,7 @@
 					<template #header
 						><i
 							class="ph-bookmark ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.pinnedUsers }}</template
 					>
@@ -25,7 +25,7 @@
 					<template #header
 						><i
 							class="ph-chart-line-up ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.popularUsers }}</template
 					>
@@ -39,7 +39,7 @@
 					<template #header
 						><i
 							class="ph-activity ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.recentlyUpdatedUsers }}</template
 					>
@@ -53,7 +53,7 @@
 					<template #header
 						><i
 							class="ph-butterfly ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.recentlyRegisteredUsers }}</template
 					>
@@ -71,7 +71,7 @@
 				<template #header
 					><i
 						class="ph-compass ph-bold ph-lg ph-fw"
-						style="margin-right: 0.5em"
+						style="margin-inline-end: 0.5em"
 					></i
 					>{{ i18n.ts.popularTags }}</template
 				>
@@ -97,7 +97,7 @@
 				<template #header
 					><i
 						class="ph-hash ph-bold ph-lg ph-fw"
-						style="margin-right: 0.5em"
+						style="margin-inline-end: 0.5em"
 					></i
 					>{{ tag }}</template
 				>
@@ -109,7 +109,7 @@
 					<template #header
 						><i
 							class="ph-chart-line-up ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.popularUsers }}</template
 					>
@@ -119,7 +119,7 @@
 					<template #header
 						><i
 							class="ph-activity ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.recentlyUpdatedUsers }}</template
 					>
@@ -129,7 +129,7 @@
 					<template #header
 						><i
 							class="ph-rocke-launch ph-bold ph-lg ph-fw"
-							style="margin-right: 0.5em"
+							style="margin-inline-end: 0.5em"
 						></i
 						>{{ i18n.ts.recentlyDiscoveredUsers }}</template
 					>
@@ -255,7 +255,7 @@ os.api("hashtags/list", {
 <style lang="scss" scoped>
 .vxjfqztj {
 	> * {
-		margin-right: 16px;
+		margin-inline-end: 16px;
 
 		&.local {
 			font-weight: bold;

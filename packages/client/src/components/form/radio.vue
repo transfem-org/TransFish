@@ -123,7 +123,7 @@ function toggle(x) {
 	}
 
 	> .label {
-		margin-left: 28px;
+		margin-inline-start: 28px;
 		display: block;
 		line-height: 20px;
 		cursor: pointer;

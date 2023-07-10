@@ -80,7 +80,7 @@ function getInstanceIcon(instance): string {
 
 	> .name {
 		display: none;
-		margin-left: 4px;
+		margin-inline-start: 4px;
 		font-size: 0.85em;
 		vertical-align: top;
 		font-weight: bold;

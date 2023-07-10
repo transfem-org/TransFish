@@ -131,7 +131,7 @@
 				:href="`${apiUrl}/signin/twitter`"
 				><i
 					class="ph-twitter-logo ph-bold ph-lg"
-					style="margin-right: 4px"
+					style="margin-inline-end: 4px"
 				></i
 				>{{ i18n.t("signinWith", { x: "Twitter" }) }}</a
 			>
@@ -141,7 +141,7 @@
 				:href="`${apiUrl}/signin/github`"
 				><i
 					class="ph-github-logo ph-bold ph-lg"
-					style="margin-right: 4px"
+					style="margin-inline-end: 4px"
 				></i
 				>{{ i18n.t("signinWith", { x: "GitHub" }) }}</a
 			>
@@ -151,7 +151,7 @@
 				:href="`${apiUrl}/signin/discord`"
 				><i
 					class="ph-discord-logo ph-bold ph-lg"
-					style="margin-right: 4px"
+					style="margin-inline-end: 4px"
 				></i
 				>{{ i18n.t("signinWith", { x: "Discord" }) }}</a
 			>

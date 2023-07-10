@@ -833,7 +833,7 @@ onBeforeUnmount(() => {
 		}
 
 		> .menu {
-			margin-left: auto;
+			margin-inline-start: auto;
 			padding: 0 12px;
 		}
 	}

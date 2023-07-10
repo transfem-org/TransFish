@@ -166,7 +166,7 @@ export default defineComponent({
 			padding: 12px 16px 12px 0;
 
 			> i {
-				margin-right: 6px;
+				margin-inline-end: 6px;
 			}
 
 			&:empty {

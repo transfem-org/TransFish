@@ -305,7 +305,7 @@ function more(ev: MouseEvent) {
 		> .icon {
 			position: relative;
 			width: 32px;
-			margin-right: 8px;
+			margin-inline-end: 8px;
 		}
 
 		> .indicator {
@@ -387,14 +387,14 @@ function more(ev: MouseEvent) {
 		}
 
 		> .text {
-			margin-left: 1rem;
+			margin-inline-start: 1rem;
 		}
 	}
 
 	&:not(.iconOnly) {
 		> .body {
-			margin-left: -200px;
-			padding-left: 200px;
+			margin-inline-start: -200px;
+			padding-inline-start: 200px;
 			box-sizing: content-box;
 			width: $nav-width;
 

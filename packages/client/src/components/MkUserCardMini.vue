@@ -70,7 +70,7 @@ if (props.withChart) {
 		display: block;
 		width: ($bodyTitleHieght + $bodyInfoHieght);
 		height: ($bodyTitleHieght + $bodyInfoHieght);
-		margin-right: 12px;
+		margin-inline-end: 12px;
 	}
 
 	> :global(.body) {
@@ -78,7 +78,7 @@ if (props.withChart) {
 		overflow: hidden;
 		font-size: 0.9em;
 		color: var(--fg);
-		padding-right: 8px;
+		padding-inline-end: 8px;
 
 		> :global(.name) {
 			display: block;

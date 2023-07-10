@@ -114,7 +114,7 @@
 					<MkButton
 						:disabled="fields.length >= 16"
 						inline
-						style="margin-right: 8px"
+						style="margin-inline-end: 8px"
 						@click="addField"
 						><i class="ph-plus ph-bold ph-lg"></i>
 						{{ i18n.ts.add }}</MkButton

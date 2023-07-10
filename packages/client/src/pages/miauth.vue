@@ -41,7 +41,7 @@
 						>
 							<i
 								class="ph-shield-warning ph-bold ph-xl"
-								style="margin-right: 0.5rem"
+								style="margin-inline-end: 0.5rem"
 							></i>
 							{{ i18n.ts._permissions.allPermissions }}
 						</div>
@@ -55,7 +55,7 @@
 							<i
 								:class="[`ph-${getIcon(p)}`]"
 								class="ph-bold ph-xl"
-								style="margin-right: 0.5rem"
+								style="margin-inline-end: 0.5rem"
 							></i>
 							{{ i18n.t(`_permissions.${p}`) }}
 						</div>

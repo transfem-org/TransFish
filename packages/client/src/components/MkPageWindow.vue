@@ -17,7 +17,7 @@
 					v-if="pageMetadata.value.icon"
 					class="icon"
 					:class="pageMetadata.value.icon"
-					style="margin-right: 0.5em"
+					style="margin-inline-end: 0.5em"
 				></i>
 				<span>{{ pageMetadata.value.title }}</span>
 			</template>

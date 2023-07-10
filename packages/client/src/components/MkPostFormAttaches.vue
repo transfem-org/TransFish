@@ -196,7 +196,7 @@ export default defineComponent({
 			position: relative;
 			width: 64px;
 			height: 64px;
-			margin-right: 4px;
+			margin-inline-end: 4px;
 			border-radius: 4px;
 			cursor: move;
 

@@ -3,7 +3,7 @@
 		<template #header
 			><i
 				class="ph-chart-bar ph-bold ph-lg"
-				style="margin-right: 0.5em"
+				style="margin-inline-end: 0.5em"
 			></i
 			>{{ i18n.ts.activity }}</template
 		>

@@ -313,11 +313,11 @@ function close(res) {
 				}
 
 				&:first-child {
-					padding-right: 8px;
+					padding-inline-end: 8px;
 				}
 
 				&:last-child {
-					padding-left: 8px;
+					padding-inline-start: 8px;
 				}
 			}
 
@@ -327,7 +327,7 @@ function close(res) {
 		}
 
 		> .ok {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 }

@@ -50,7 +50,7 @@ const emit = defineEmits<{
 		> .avatar {
 			width: 24px;
 			height: 24px;
-			margin-right: 3px;
+			margin-inline-end: 3px;
 		}
 	}
 }

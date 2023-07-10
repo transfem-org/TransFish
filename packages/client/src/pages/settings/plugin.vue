@@ -16,7 +16,7 @@
 			>
 				<span style="display: flex"
 					><b>{{ plugin.name }}</b
-					><span style="margin-left: auto"
+					><span style="margin-inline-start: auto"
 						>v{{ plugin.version }}</span
 					></span
 				>

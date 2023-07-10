@@ -83,8 +83,8 @@ button {
 	color: rgb(156, 207, 216);
 	font-size: 16px;
   padding: 0 20px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-inline-end: 5px;
+  margin-inline-start: 5px;
 }
 button:hover {
 	background: #555;

@@ -61,7 +61,7 @@ const emit = defineEmits<{
 			height: 8px;
 			border-width: 1px;
 			border-style: solid;
-			margin-right: 8px;
+			margin-inline-end: 8px;
 		}
 	}
 }

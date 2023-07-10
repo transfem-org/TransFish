@@ -336,8 +336,8 @@ function onContextmenu(ev: MouseEvent) {
 		color: var(--desktopDriveFolderFg);
 
 		> i {
-			margin-right: 4px;
-			margin-left: 2px;
+			margin-inline-end: 4px;
+			margin-inline-start: 2px;
 			text-align: left;
 		}
 	}

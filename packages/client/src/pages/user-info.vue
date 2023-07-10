@@ -631,7 +631,7 @@ definePageMetadata(
 		display: block;
 		width: 64px;
 		height: 64px;
-		margin-right: 16px;
+		margin-inline-end: 16px;
 	}
 
 	> .body {
@@ -718,7 +718,7 @@ definePageMetadata(
 	}
 
 	> :global(.ip) {
-		margin-left: auto;
+		margin-inline-start: auto;
 	}
 }
 </style>

@@ -9,7 +9,7 @@
 				v-if="copy"
 				v-tooltip="i18n.ts.copy"
 				class="_textButton"
-				style="margin-left: 0.5em"
+				style="margin-inline-start: 0.5em"
 				@click="copy_"
 			>
 				<i class="ph-clipboard-text ph-bold"></i>

@@ -103,7 +103,7 @@ defineProps<{
 				display: inline-block;
 				width: 16px;
 				height: 16px;
-				margin-right: 4px;
+				margin-inline-end: 4px;
 				vertical-align: top;
 			}
 

@@ -354,7 +354,7 @@ const props = withDefaults(
 	::v-deep(blockquote) {
 		display: block;
 		margin: 8px 0;
-		padding-left: 12px;
+		padding-inline-start: 12px;
 		color: var(--fgTransparentWeak);
 		border-left: solid 4px var(--fgTransparent);
 	}

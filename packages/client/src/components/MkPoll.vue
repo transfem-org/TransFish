@@ -185,12 +185,12 @@ const vote = async (id) => {
 				border-radius: 3px;
 
 				> i {
-					margin-right: 4px;
+					margin-inline-end: 4px;
 					color: var(--accent);
 				}
 
 				> .votes {
-					margin-left: 4px;
+					margin-inline-start: 4px;
 					opacity: 0.7;
 				}
 			}

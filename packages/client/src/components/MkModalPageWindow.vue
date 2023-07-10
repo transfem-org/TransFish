@@ -193,7 +193,7 @@ function onContextmenu(ev: MouseEvent) {
 		@media (max-width: 500px) {
 			height: $height-narrow;
 			line-height: $height-narrow;
-			padding-left: 16px;
+			padding-inline-start: 16px;
 
 			> button {
 				height: $height-narrow;
@@ -205,7 +205,7 @@ function onContextmenu(ev: MouseEvent) {
 			flex: 1;
 
 			> .icon {
-				margin-right: 0.5em;
+				margin-inline-end: 0.5em;
 			}
 		}
 	}

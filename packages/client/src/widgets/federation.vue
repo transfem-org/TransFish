@@ -160,7 +160,7 @@ defineExpose<WidgetComponentExpose>({
 				height: ($bodyTitleHieght + $bodyInfoHieght);
 				object-fit: cover;
 				border-radius: 4px;
-				margin-right: 8px;
+				margin-inline-end: 8px;
 			}
 
 			> .body {
@@ -168,7 +168,7 @@ defineExpose<WidgetComponentExpose>({
 				overflow: hidden;
 				font-size: 0.9em;
 				color: var(--fg);
-				padding-right: 8px;
+				padding-inline-end: 8px;
 
 				> .a {
 					display: block;

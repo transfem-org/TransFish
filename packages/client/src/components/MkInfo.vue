@@ -81,10 +81,10 @@ function close() {
 	}
 
 	> i {
-		margin-right: 4px;
+		margin-inline-end: 4px;
 	}
 	> .close {
-		margin-left: auto;
+		margin-inline-start: auto;
 		float: right;
 	}
 }

@@ -66,7 +66,7 @@ const props = defineProps<{
 		}
 
 		> .icon {
-			margin-right: 0.75em;
+			margin-inline-end: 0.75em;
 			flex-shrink: 0;
 			text-align: center;
 			color: var(--fgTransparentWeak);
@@ -75,7 +75,7 @@ const props = defineProps<{
 				display: none;
 
 				& + .text {
-					padding-left: 4px;
+					padding-inline-start: 4px;
 				}
 			}
 		}
@@ -84,16 +84,16 @@ const props = defineProps<{
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
-			padding-right: 12px;
+			padding-inline-end: 12px;
 		}
 
 		> .right {
-			margin-left: auto;
+			margin-inline-start: auto;
 			opacity: 0.7;
 			white-space: nowrap;
 
 			> .text:not(:empty) {
-				margin-right: 0.75em;
+				margin-inline-end: 0.75em;
 			}
 		}
 	}

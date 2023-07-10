@@ -49,7 +49,7 @@ function quote(): void {
 
 	> .count {
 		display: inline;
-		margin-left: 8px;
+		margin-inline-start: 8px;
 		opacity: 0.7;
 	}
 }

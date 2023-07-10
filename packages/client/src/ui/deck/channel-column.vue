@@ -7,7 +7,7 @@
 	>
 		<template #header>
 			<i class="ph-television ph-bold ph-lg"></i
-			><span style="margin-left: 8px">{{ column.name }}</span>
+			><span style="margin-inline-start: 8px">{{ column.name }}</span>
 		</template>
 
 		<XTimeline

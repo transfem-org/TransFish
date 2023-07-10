@@ -264,7 +264,7 @@ onUnmounted(() => {
 				overflow: hidden;
 				> span {
 					font-weight: 600;
-					margin-right: 0.4em;
+					margin-inline-end: 0.4em;
 				}
 			}
 		}

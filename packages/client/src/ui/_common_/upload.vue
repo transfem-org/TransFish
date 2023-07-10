@@ -125,7 +125,7 @@ const zIndex = os.claimZIndex("high");
 	flex-shrink: 1;
 }
 .mk-uploader > ol > li > .top > .name > i {
-	margin-right: 4px;
+	margin-inline-end: 4px;
 }
 .mk-uploader > ol > li > .top > .status {
 	display: block;

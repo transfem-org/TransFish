@@ -71,7 +71,7 @@ function getInstanceIcon(instance): string {
 		height: ($bodyTitleHieght + $bodyInfoHieght);
 		object-fit: cover;
 		border-radius: 4px;
-		margin-right: 10px;
+		margin-inline-end: 10px;
 	}
 
 	> :global(.body) {
@@ -79,7 +79,7 @@ function getInstanceIcon(instance): string {
 		overflow: hidden;
 		font-size: 0.9em;
 		color: var(--fg);
-		padding-right: 8px;
+		padding-inline-end: 8px;
 
 		> :global(.host) {
 			display: block;

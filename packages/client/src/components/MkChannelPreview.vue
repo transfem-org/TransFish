@@ -11,7 +11,7 @@
 					<I18n
 						:src="i18n.ts._channel.usersCount"
 						tag="span"
-						style="margin-left: 4px"
+						style="margin-inline-start: 4px"
 					>
 						<template #n>
 							<b>{{ channel.usersCount }}</b>
@@ -23,7 +23,7 @@
 					<I18n
 						:src="i18n.ts._channel.notesCount"
 						tag="span"
-						style="margin-left: 4px"
+						style="margin-inline-start: 4px"
 					>
 						<template #n>
 							<b>{{ channel.notesCount }}</b>

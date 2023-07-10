@@ -167,7 +167,7 @@ const cancel = () => {
 					> .icon {
 						width: 16px;
 						height: 16px;
-						margin-right: 8px;
+						margin-inline-end: 8px;
 						float: left;
 					}
 				}

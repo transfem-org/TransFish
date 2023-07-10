@@ -55,7 +55,7 @@ const pagination = {
 		> .avatar {
 			width: 24px;
 			height: 24px;
-			margin-right: 8px;
+			margin-inline-end: 8px;
 		}
 
 		> .reaction {
@@ -64,7 +64,7 @@ const pagination = {
 		}
 
 		> .createdAt {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 }

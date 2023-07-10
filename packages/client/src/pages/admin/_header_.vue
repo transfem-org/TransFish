@@ -36,7 +36,7 @@
 						class="fullButton"
 						primary
 						@click.stop="action.handler"
-						><i :class="action.icon" style="margin-right: 6px"></i
+						><i :class="action.icon" style="margin-inline-end: 6px"></i
 						>{{ action.text }}</MkButton
 					>
 					<button
@@ -211,7 +211,7 @@ onUnmounted(() => {
 		margin: 0 var(--margin);
 
 		&.right {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 
 		&:empty {
@@ -239,7 +239,7 @@ onUnmounted(() => {
 
 		> .fullButton {
 			& + .fullButton {
-				margin-left: 12px;
+				margin-inline-start: 12px;
 			}
 		}
 	}
@@ -253,7 +253,7 @@ onUnmounted(() => {
 		text-align: left;
 		font-weight: bold;
 		flex-shrink: 0;
-		margin-left: 24px;
+		margin-inline-start: 24px;
 
 		> .avatar {
 			$size: 32px;
@@ -266,7 +266,7 @@ onUnmounted(() => {
 		}
 
 		> .icon {
-			margin-right: 8px;
+			margin-inline-end: 8px;
 			width: 16px;
 			text-align: center;
 		}
@@ -291,7 +291,7 @@ onUnmounted(() => {
 
 					> .chevron {
 						display: inline-block;
-						margin-left: 6px;
+						margin-inline-start: 6px;
 					}
 				}
 			}
@@ -300,7 +300,7 @@ onUnmounted(() => {
 
 	> .tabs {
 		position: relative;
-		margin-left: 16px;
+		margin-inline-start: 16px;
 		font-size: 0.8em;
 		overflow: auto;
 		white-space: nowrap;
@@ -320,7 +320,7 @@ onUnmounted(() => {
 			}
 
 			> .icon + .title {
-				margin-left: 8px;
+				margin-inline-start: 8px;
 			}
 		}
 

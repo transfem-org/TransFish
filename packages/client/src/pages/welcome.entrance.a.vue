@@ -54,7 +54,7 @@
 							rounded
 							gradate
 							data-cy-signup
-							style="margin-right: 12px"
+							style="margin-inline-end: 12px"
 							@click="signup()"
 							>{{ i18n.ts.signup }}</MkButton
 						>
@@ -68,7 +68,7 @@
 						<MkButton
 							inline
 							rounded
-							style="margin-left: 12px; margin-top: 12px"
+							style="margin-inline-start: 12px; margin-top: 12px"
 							onclick="window.location.href='/explore'"
 							>Explore</MkButton
 						>
@@ -273,7 +273,7 @@ function showMenu(ev) {
 			transform: scale(1.5);
 
 			> * {
-				margin-right: 8px;
+				margin-inline-end: 8px;
 			}
 
 			@media (max-width: 1200px) {
@@ -380,7 +380,7 @@ function showMenu(ev) {
 		display: inline-block;
 		width: 20px;
 		height: 20px;
-		margin-right: 5px;
+		margin-inline-end: 5px;
 		border-radius: 999px;
 	}
 }

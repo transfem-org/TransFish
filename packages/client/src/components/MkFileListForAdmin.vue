@@ -36,7 +36,7 @@
 						<div v-else>{{ i18n.ts.system }}</div>
 					</div>
 					<div>
-						<span style="margin-right: 1em">{{ file.type }}</span>
+						<span style="margin-inline-end: 1em">{{ file.type }}</span>
 						<span>{{ bytes(file.size) }}</span>
 					</div>
 					<div>
@@ -98,7 +98,7 @@ const props = defineProps<{
 			}
 
 			> .body {
-				margin-left: 0.3em;
+				margin-inline-start: 0.3em;
 				padding: 8px;
 				flex: 1;
 

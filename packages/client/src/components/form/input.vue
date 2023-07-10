@@ -268,12 +268,12 @@ defineExpose({
 
 			> .prefix {
 				left: 0;
-				padding-right: 6px;
+				padding-inline-end: 6px;
 			}
 
 			> .suffix {
 				right: 0;
-				padding-left: 6px;
+				padding-inline-start: 6px;
 			}
 
 			&.inline {

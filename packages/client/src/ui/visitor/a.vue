@@ -230,7 +230,7 @@ export default defineComponent({
 					}
 
 					&:first-child {
-						margin-right: 16px;
+						margin-inline-end: 16px;
 					}
 				}
 			}

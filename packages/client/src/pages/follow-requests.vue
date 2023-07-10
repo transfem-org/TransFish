@@ -176,8 +176,8 @@ definePageMetadata(
 				text-overflow: ellipsis;
 				opacity: 0.7;
 				font-size: 14px;
-				padding-right: 40px;
-				padding-left: 8px;
+				padding-inline-end: 40px;
+				padding-inline-start: 8px;
 				box-sizing: border-box;
 
 				@media (max-width: 500px) {

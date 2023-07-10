@@ -407,7 +407,7 @@ useTooltip(reactionRef, (showing) => {
 		flex-shrink: 0;
 		width: 42px;
 		height: 42px;
-		margin-right: 8px;
+		margin-inline-end: 8px;
 
 		> .icon {
 			display: block;
@@ -504,7 +504,7 @@ useTooltip(reactionRef, (showing) => {
 			}
 
 			> .time {
-				margin-left: auto;
+				margin-inline-start: auto;
 				font-size: 0.9em;
 			}
 		}
@@ -531,11 +531,11 @@ useTooltip(reactionRef, (showing) => {
 			}
 
 			> i:first-child {
-				margin-right: 4px;
+				margin-inline-end: 4px;
 			}
 
 			> i:last-child {
-				margin-left: 4px;
+				margin-inline-start: 4px;
 			}
 		}
 	}

@@ -71,9 +71,9 @@ const emit = defineEmits<{
 		min-width: 0;
 		font-size: 0.95em;
 		border-left: solid 0.5px var(--divider);
-		padding-left: 10px;
-		margin-left: 10px;
-		margin-right: 14px;
+		padding-inline-start: 10px;
+		margin-inline-start: 10px;
+		margin-inline-end: 14px;
 		text-align: left;
 
 		> .user {
@@ -89,7 +89,7 @@ const emit = defineEmits<{
 			> .avatar {
 				width: 24px;
 				height: 24px;
-				margin-right: 3px;
+				margin-inline-end: 3px;
 			}
 		}
 	}
