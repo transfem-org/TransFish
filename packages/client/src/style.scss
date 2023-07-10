@@ -635,6 +635,7 @@ hr {
 ._link {
 	position: relative;
 	color: var(--link);
+	text-underline-offset: 0.2em;
 
 	// &::before,
 	// &::after {
