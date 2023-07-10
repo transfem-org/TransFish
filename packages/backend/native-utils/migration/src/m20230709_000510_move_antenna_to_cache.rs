@@ -10,13 +10,16 @@ pub struct Migration;
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         let cache_url = env::var("CACHE_URL").unwrap();
+        let skip_copy = env::var("ANTENNA_MIGRATION_SKIP").unwrap_or_default();
         let copy_limit = env::var("ANTENNA_MIGRATION_LIMIT").unwrap_or_default();
         let copy_limit: i64 = match copy_limit.parse() {
             Ok(limit) => limit,
             Err(_) => 0,
         };
 
-        if cache_url != "no" {
+        if skip_copy == "true" {
+            println!("Skipped antenna migration");
+        } else {
             let prefix = env::var("CACHE_PREFIX").unwrap();
 
             let db = manager.get_connection();
@@ -102,8 +105,9 @@ impl MigrationTrait for Migration {
                     break;
                 }
             }
+
+            println!("Migrating antenna [100.00%]");
         }
-        println!("Migrating antenna [100.00%]");
 
         manager
             .drop_table(
