@@ -35,7 +35,7 @@
 		/>
 	</p>
 	<div class="wrmlmaau">
-		<bdi
+		<div
 			class="content"
 			:class="{
 				collapsed,
@@ -154,7 +154,7 @@
 				v-model="showContent"
 				:note="note"
 			/>
-		</bdi>
+		</div>
 		<MkButton
 			v-if="hasMfm && defaultStore.state.animatedMfm"
 			@click.stop="toggleMfm"
