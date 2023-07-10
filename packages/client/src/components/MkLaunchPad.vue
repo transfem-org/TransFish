@@ -122,7 +122,7 @@ function close() {
 	box-sizing: border-box;
 	overflow: auto;
 	overscroll-behavior: contain;
-	text-align: left;
+	text-align: initial;
 	border-radius: 16px;
 
 	&.asDrawer {

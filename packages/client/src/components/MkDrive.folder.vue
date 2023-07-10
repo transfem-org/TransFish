@@ -338,7 +338,7 @@ function onContextmenu(ev: MouseEvent) {
 		> i {
 			margin-inline-end: 4px;
 			margin-inline-start: 2px;
-			text-align: left;
+			text-align: initial;
 		}
 	}
 

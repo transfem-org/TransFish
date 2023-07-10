@@ -35,7 +35,7 @@ const emit = defineEmits<{
 <style lang="scss" scoped>
 .beaffaef {
 	font-size: 0.9em;
-	text-align: left;
+	text-align: initial;
 
 	> .user {
 		line-height: 24px;

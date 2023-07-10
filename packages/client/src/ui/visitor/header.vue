@@ -249,7 +249,7 @@ export default defineComponent({
 					width: 230px;
 					line-height: $height - 20px;
 					margin-inline-end: 16px;
-					text-align: left;
+					text-align: initial;
 
 					> * {
 						opacity: 0.7;

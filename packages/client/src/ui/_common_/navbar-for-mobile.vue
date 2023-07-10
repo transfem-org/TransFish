@@ -236,7 +236,7 @@ function more() {
 				height: 40px;
 				color: var(--fgOnAccent);
 				font-weight: bold;
-				text-align: left;
+				text-align: initial;
 
 				&:before {
 					content: "";
@@ -300,7 +300,7 @@ function more() {
 				overflow: hidden;
 				white-space: nowrap;
 				width: 100%;
-				text-align: left;
+				text-align: initial;
 				box-sizing: border-box;
 				margin-top: 16px;
 
@@ -331,7 +331,7 @@ function more() {
 				overflow: hidden;
 				white-space: nowrap;
 				width: 100%;
-				text-align: left;
+				text-align: initial;
 				box-sizing: border-box;
 				color: var(--navFg);
 

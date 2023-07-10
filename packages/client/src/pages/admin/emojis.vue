@@ -463,7 +463,7 @@ definePageMetadata(
 				display: flex;
 				align-items: center;
 				padding: 11px;
-				text-align: left;
+				text-align: initial;
 				border: solid 1px var(--panel);
 
 				&:hover {
@@ -514,7 +514,7 @@ definePageMetadata(
 				display: flex;
 				align-items: center;
 				padding: 12px;
-				text-align: left;
+				text-align: initial;
 
 				&:hover {
 					color: var(--accent);

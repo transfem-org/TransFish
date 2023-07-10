@@ -38,7 +38,7 @@ function toggle(x) {
 .novjtctn {
 	position: relative;
 	display: inline-block;
-	text-align: left;
+	text-align: initial;
 	cursor: pointer;
 	padding: 8px 10px;
 	min-width: 60px;

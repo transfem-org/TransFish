@@ -58,7 +58,7 @@ function menu(ev) {
 	display: flex;
 	align-items: center;
 	padding: 12px;
-	text-align: left;
+	text-align: initial;
 	background: var(--panel);
 	border-radius: 8px;
 

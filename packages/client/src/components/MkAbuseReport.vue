@@ -99,7 +99,7 @@ function resolve() {
 	> .target {
 		width: 35%;
 		box-sizing: border-box;
-		text-align: left;
+		text-align: initial;
 		padding: 24px;
 		border-inline-end: solid 1px var(--divider);
 

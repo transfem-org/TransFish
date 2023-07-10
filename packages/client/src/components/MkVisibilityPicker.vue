@@ -178,7 +178,7 @@ function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
 	display: flex;
 	padding: 8px 14px;
 	font-size: 12px;
-	text-align: left;
+	text-align: initial;
 	width: 100%;
 	box-sizing: border-box;
 

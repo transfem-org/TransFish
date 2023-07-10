@@ -250,7 +250,7 @@ onUnmounted(() => {
 		max-width: 400px;
 		overflow: auto;
 		white-space: nowrap;
-		text-align: left;
+		text-align: initial;
 		font-weight: bold;
 		flex-shrink: 0;
 		margin-inline-start: 24px;

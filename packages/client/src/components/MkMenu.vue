@@ -360,7 +360,7 @@ onBeforeUnmount(() => {
 		white-space: nowrap;
 		font-size: 0.9em;
 		line-height: 20px;
-		text-align: left;
+		text-align: initial;
 		outline: none;
 
 		&:before {

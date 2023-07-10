@@ -301,7 +301,7 @@ definePageMetadata({
 
 		> .toggleWrapper {
 			display: inline-block;
-			text-align: left;
+			text-align: initial;
 			padding: 0 100px;
 			vertical-align: bottom;
 

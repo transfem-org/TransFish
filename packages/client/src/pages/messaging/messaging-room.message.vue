@@ -284,7 +284,7 @@ function del(): void {
 			}
 
 			> footer {
-				text-align: left;
+				text-align: initial;
 			}
 		}
 	}
@@ -301,7 +301,7 @@ function del(): void {
 
 			> .balloon {
 				background: $me-balloon-color;
-				text-align: left;
+				text-align: initial;
 
 				::selection {
 					color: var(--accent);

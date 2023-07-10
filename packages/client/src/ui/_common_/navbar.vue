@@ -281,7 +281,7 @@ function more(ev: MouseEvent) {
 		margin-bottom: 0.5rem;
 		white-space: nowrap;
 		width: 100%;
-		text-align: left;
+		text-align: initial;
 		box-sizing: border-box;
 		color: var(--navFg);
 

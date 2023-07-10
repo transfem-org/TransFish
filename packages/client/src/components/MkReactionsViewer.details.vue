@@ -74,7 +74,7 @@ const emit = defineEmits<{
 		padding-inline-start: 10px;
 		margin-inline-start: 10px;
 		margin-inline-end: 14px;
-		text-align: left;
+		text-align: initial;
 
 		> .user {
 			line-height: 24px;

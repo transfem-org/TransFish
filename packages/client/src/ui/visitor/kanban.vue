@@ -263,7 +263,7 @@ export default defineComponent({
 
 			> .announcements {
 				margin: 32px 0;
-				text-align: left;
+				text-align: initial;
 
 				> header {
 					padding: 12px 16px;

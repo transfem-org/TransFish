@@ -85,7 +85,7 @@ const props = defineProps<{
 			display: flex;
 			width: 100%;
 			box-sizing: border-box;
-			text-align: left;
+			text-align: initial;
 			align-items: center;
 
 			&:hover {
