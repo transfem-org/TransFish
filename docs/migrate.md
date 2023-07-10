@@ -83,9 +83,9 @@ NODE_ENV=production pnpm run migrate
 cd packages/backend
 
 LINE_NUM="$(npx typeorm migration:show -d ormconfig.js | grep -n uniformThemecolor1652859567549 | cut -d ':' -f 1)"
-NUM_MIGRATIONS="$(npx typeorm migration:show -d ormconfig.js | tail -n+"$LINE_NUM" | grep '\[X\]' | nl)"
+NUM_MIGRATIONS="$(npx typeorm migration:show -d ormconfig.js | tail -n+"$LINE_NUM" | grep '\[X\]' | wc -l)"
 
-for i in $(seq 1 $NUM_MIGRAIONS); do
+for i in $(seq 1 $NUM_MIGRATIONS); do
     npx typeorm migration:revert -d ormconfig.js
 done
 

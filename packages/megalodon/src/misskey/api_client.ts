@@ -156,7 +156,7 @@ namespace MisskeyAPI {
         id: u.id,
         username: u.username,
         acct: acct,
-        display_name: u.name,
+        display_name: u.name || u.username,
         locked: u.isLocked,
         created_at: u.createdAt,
         followers_count: u.followersCount,
@@ -175,13 +175,13 @@ namespace MisskeyAPI {
       }
     }
 
-    userPreferences = (u: MisskeyAPI.Entity.UserDetailMe, g: MisskeyAPI.Entity.GetAll): MegalodonEntity.Preferences => {
+    userPreferences = (u: MisskeyAPI.Entity.UserDetailMe, v: 'public' | 'unlisted' | 'private' | 'direct'): MegalodonEntity.Preferences => {
       return {
         "reading:expand:media": "default",
         "reading:expand:spoilers": false,
         "posting:default:language": u.lang,
         "posting:default:sensitive": u.alwaysMarkNsfw,
-        "posting:default:visibility": this.visibility(g.defaultNoteVisibility)
+        "posting:default:visibility": v
       }
     }
 
