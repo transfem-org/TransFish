@@ -20,15 +20,19 @@ export const langmap = {
 	},
 	ar: {
 		nativeName: "العربية",
+		rtl: true,
 	},
 	"ar-AR": {
 		nativeName: "العربية",
+		rtl: true,
 	},
 	"ar-MA": {
 		nativeName: "العربية",
+		rtl: true,
 	},
 	"ar-SA": {
 		nativeName: "العربية (السعودية)",
+		rtl: true,
 	},
 	"ay-BO": {
 		nativeName: "Aymar aru",
@@ -206,9 +210,11 @@ export const langmap = {
 	},
 	fa: {
 		nativeName: "فارسی",
+		rtl: true,
 	},
 	"fa-IR": {
 		nativeName: "فارسی",
+		rtl: true,
 	},
 	"fb-LT": {
 		nativeName: "Leet Speak",
@@ -275,9 +281,11 @@ export const langmap = {
 	},
 	he: {
 		nativeName: "עברית‏",
+		rtl: true,
 	},
 	"he-IL": {
 		nativeName: "עברית‏",
+		rtl: true,
 	},
 	hi: {
 		nativeName: "हिन्दी",
@@ -485,6 +493,7 @@ export const langmap = {
 	},
 	"ps-AF": {
 		nativeName: "پښتو",
+		rtl: true,
 	},
 	pt: {
 		nativeName: "Português",
@@ -614,9 +623,11 @@ export const langmap = {
 	},
 	ur: {
 		nativeName: "اردو",
+		rtl: true,
 	},
 	"ur-PK": {
 		nativeName: "اردو",
+		rtl: true,
 	},
 	uz: {
 		nativeName: "O'zbek",
@@ -635,9 +646,11 @@ export const langmap = {
 	},
 	yi: {
 		nativeName: "ייִדיש",
+		rtl: true,
 	},
 	"yi-DE": {
 		nativeName: "ייִדיש (German)",
+		rtl: true,
 	},
 	zh: {
 		nativeName: "中文",

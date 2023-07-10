@@ -33,6 +33,7 @@ import widgets from "@/widgets";
 import directives from "@/directives";
 import components from "@/components";
 import { version, ui, lang, host } from "@/config";
+import { langmap } from "@/scripts/langmap";
 import { applyTheme } from "@/scripts/theme";
 import { isDeviceDarkmode } from "@/scripts/is-device-darkmode";
 import { i18n } from "@/i18n";
@@ -119,6 +120,7 @@ function checkForSplash() {
 	//#region Set lang attr
 	const html = document.documentElement;
 	html.setAttribute("lang", lang || "en-US");
+	html.setAttribute("dir", langmap[lang].rtl ? "rtl" : "ltr");
 	//#endregion
 
 	//#region loginId
