@@ -95,7 +95,7 @@ mod int_test {
             .unwrap()
             .expect("note not found");
         let antenna_note = antenna_note::Model {
-            id: util::id::create_id().unwrap(),
+            id: util::id::create_id(0).unwrap(),
             antenna_id: alice_antenna.id.to_owned(),
             note_id: note_model.id.to_owned(),
             read: false,

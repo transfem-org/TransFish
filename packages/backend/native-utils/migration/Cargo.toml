@@ -10,17 +10,20 @@ path = "src/lib.rs"
 
 [features]
 default = []
-convert = ["dep:native-utils", "dep:indicatif", "dep:futures"]
+convert = ["dep:indicatif"]
 
 [dependencies]
 serde_json = "1.0.96"
-native-utils = { path = "../", optional = true }
+native-utils = { path = "../" }
 indicatif = { version = "0.17.4", features = ["tokio"], optional = true }
 tokio = { version = "1.28.2", features = ["full"] }
-futures = { version = "0.3.28", optional = true }
+futures = "0.3.28"
 serde_yaml = "0.9.21"
 serde = { version = "1.0.163", features = ["derive"] }
 urlencoding = "2.1.2"
+redis = { version = "0.23.0", features = ["tokio-rustls-comp"] }
+sea-orm = "0.11.3"
+url = { version = "2.4.0", features = ["serde"] }
 
 [dependencies.sea-orm-migration]
 version = "0.11.0"
