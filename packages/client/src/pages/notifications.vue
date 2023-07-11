@@ -52,7 +52,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { notificationTypes } from "calckey-js";
 import XNotifications from "@/components/MkNotifications.vue";

@@ -338,7 +338,7 @@
 
 <script lang="ts" setup>
 import { watch } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import type * as calckey from "calckey-js";
 import MkChart from "@/components/MkChart.vue";
