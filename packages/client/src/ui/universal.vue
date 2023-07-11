@@ -490,6 +490,7 @@ console.log(mainRouter.currentRoute.value.name);
 				background: var(--bg);
 				border-radius: calc((2.85rem / 2) + 5px);
 				opacity: 1;
+				z-index: -3;
 			}
 			> ._button:last-child {
 				margin-bottom: 0 !important;

@@ -65,7 +65,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
 import XTimeline from "@/components/MkTimeline.vue";

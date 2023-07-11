@@ -22,7 +22,7 @@ import { createTemp } from "@/misc/create-temp.js";
 import { publishMainStream } from "@/services/stream.js";
 import * as Acct from "@/misc/acct.js";
 import { envOption } from "@/env.js";
-import megalodon, { MegalodonInterface } from "@calckey/megalodon";
+import megalodon, { MegalodonInterface } from "megalodon";
 import activityPub from "./activitypub.js";
 import nodeinfo from "./nodeinfo.js";
 import wellKnown from "./well-known.js";
@@ -166,7 +166,7 @@ mastoRouter.post("/oauth/token", async (ctx) => {
 	let client_id: any = body.client_id;
 	const BASE_URL = `${ctx.request.protocol}://${ctx.request.hostname}`;
 	const generator = (megalodon as any).default;
-	const client = generator("misskey", BASE_URL, null) as MegalodonInterface;
+	const client = generator(BASE_URL, null) as MegalodonInterface;
 	let m = null;
 	let token = null;
 	if (body.code) {

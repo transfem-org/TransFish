@@ -112,7 +112,7 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, defineComponent, inject, watch } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkChannelPreview from "@/components/MkChannelPreview.vue";
 import MkChannelList from "@/components/MkChannelList.vue";

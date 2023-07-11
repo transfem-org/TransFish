@@ -469,6 +469,7 @@ let enableIdenticonGeneration: boolean = $ref(false);
 
 async function init() {
 	const meta = await os.api("admin/meta");
+	if (!meta) throw new Error("No meta");
 	name = meta.name;
 	description = meta.description;
 	tosUrl = meta.tosUrl;

@@ -163,7 +163,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XEmojis from "./about.emojis.vue";
 import XFederation from "./about.federation.vue";

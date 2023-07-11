@@ -48,6 +48,9 @@ packages/backend/assets/sounds/None.mp3
 
 !packages/backend/src/db
 
+packages/megalodon/lib
+packages/megalodon/.idea
+
 # blender backups
 *.blend1
 *.blend2

@@ -13,7 +13,7 @@
 		<template #default="{ width, height }">
 			<div
 				class="mk-cropper-dialog"
-				:style="`--vw: ${width}px; --vh: ${height}px;`"
+				:style="`--vw: ${width ? `${width}px` : '100%'}; --vh: ${height ? `${height}px` : '100%'};`"
 			>
 				<Transition name="fade">
 					<div v-if="loading" class="loading">

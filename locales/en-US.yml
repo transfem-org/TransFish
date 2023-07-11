@@ -1119,6 +1119,9 @@ timelines: "Timelines"
 characterLimit: "Character limit"
 poweredBy: "Powered by Calckey, part of an interconnected network of communities in the Fediverse."
 storagePerUser: "Storage per user"
+showPopup: "Notify users with popup"
+showWithSparkles: "Show with sparkles"
+youHaveUnreadAnnouncements: "You have unread announcements"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
