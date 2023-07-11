@@ -22,11 +22,13 @@ export default class extends Channel {
 		this.listId = params.listId as string;
 
 		// Check existence and owner
-		const list = await UserLists.findOneBy({
-			id: this.listId,
-			userId: this.user!.id,
+		const exist = await UserLists.exist({
+			where: {
+				id: this.listId,
+				userId: this.user!.id,
+			},
 		});
-		if (!list) return;
+		if (!exist) return;
 
 		// Subscribe stream
 		this.subscriber.on(`userListStream:${this.listId}`, this.send);
