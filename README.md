@@ -72,6 +72,14 @@
 
 # 🌠 Getting started
 
+Want to just join a Calckey server? View the list here, pick one, and join:
+
+### https://calckey.org/join
+
+---
+
+Want to make your own? Keep reading!
+
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
 ## 🔰 Easy installers
