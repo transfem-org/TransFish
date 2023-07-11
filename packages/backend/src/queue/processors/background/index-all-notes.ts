@@ -57,7 +57,7 @@ export default async function indexAllNotes(
 		try {
 			const count = await Notes.count();
 			total = count;
-			await job.update({indexedCount, cursor, total});
+			await job.update({ indexedCount, cursor, total });
 		} catch (e) {}
 
 		for (let i = 0; i < notes.length; i += batch) {
