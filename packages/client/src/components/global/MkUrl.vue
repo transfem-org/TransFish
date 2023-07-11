@@ -78,6 +78,7 @@ const target = self ? null : "_blank";
 	text-decoration: none !important;
 	> span {
 		text-decoration: underline var(--fgTransparent);
+		text-decoration-thickness: 1px;
 		transition: text-decoration-color 0.2s;
 	}
 
