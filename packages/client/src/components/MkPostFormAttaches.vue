@@ -29,156 +29,139 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent, defineAsyncComponent } from "vue";
+<script lang="ts" setup>
+import { defineAsyncComponent, ref, computed } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
 import MkDriveFileThumbnail from "@/components/MkDriveFileThumbnail.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 
-export default defineComponent({
-	components: {
-		VueDraggable,
-		MkDriveFileThumbnail,
+const props = defineProps({
+	files: {
+		type: Array,
+		required: true,
 	},
-
-	props: {
-		files: {
-			type: Array,
-			required: true,
-		},
-		detachMediaFn: {
-			type: Function,
-			required: false,
-		},
-	},
-
-	emits: ["updated", "detach", "changeSensitive", "changeName"],
-
-	data() {
-		return {
-			menu: null as Promise<null> | null,
-			i18n,
-		};
-	},
-
-	computed: {
-		_files: {
-			get() {
-				return this.files;
-			},
-			set(value) {
-				this.$emit("updated", value);
-			},
-		},
-	},
-
-	methods: {
-		detachMedia(id) {
-			if (this.detachMediaFn) {
-				this.detachMediaFn(id);
-			} else {
-				this.$emit("detach", id);
-			}
-		},
-		toggleSensitive(file) {
-			os.api("drive/files/update", {
-				fileId: file.id,
-				isSensitive: !file.isSensitive,
-			}).then(() => {
-				this.$emit("changeSensitive", file, !file.isSensitive);
-			});
-		},
-		async rename(file) {
-			const { canceled, result } = await os.inputText({
-				title: i18n.ts.enterFileName,
-				default: file.name,
-				allowEmpty: false,
-			});
-			if (canceled) return;
-			os.api("drive/files/update", {
-				fileId: file.id,
-				name: result,
-			}).then(() => {
-				this.$emit("changeName", file, result);
-				file.name = result;
-			});
-		},
-
-		async describe(file) {
-			os.popup(
-				defineAsyncComponent(
-					() => import("@/components/MkMediaCaption.vue"),
-				),
-				{
-					title: i18n.ts.describeFile,
-					input: {
-						placeholder: i18n.ts.inputNewDescription,
-						default: file.comment !== null ? file.comment : "",
-					},
-					image: file,
-				},
-				{
-					done: (result) => {
-						if (!result || result.canceled) return;
-						let comment =
-							result.result.length === 0 ? null : result.result;
-						os.api("drive/files/update", {
-							fileId: file.id,
-							comment: comment,
-						}).then(() => {
-							file.comment = comment;
-						});
-					},
-				},
-				"closed",
-			);
-		},
-
-		showFileMenu(file, ev: MouseEvent) {
-			if (this.menu) return;
-			this.menu = os
-				.popupMenu(
-					[
-						{
-							text: i18n.ts.renameFile,
-							icon: "ph-cursor-text ph-bold ph-lg",
-							action: () => {
-								this.rename(file);
-							},
-						},
-						{
-							text: file.isSensitive
-								? i18n.ts.unmarkAsSensitive
-								: i18n.ts.markAsSensitive,
-							icon: file.isSensitive
-								? "ph-eye ph-bold ph-lg"
-								: "ph-eye-slash ph-bold ph-lg",
-							action: () => {
-								this.toggleSensitive(file);
-							},
-						},
-						{
-							text: i18n.ts.describeFile,
-							icon: "ph-subtitles ph-bold ph-lg",
-							action: () => {
-								this.describe(file);
-							},
-						},
-						{
-							text: i18n.ts.attachCancel,
-							icon: "ph-x ph-bold ph-lg",
-							action: () => {
-								this.detachMedia(file.id);
-							},
-						},
-					],
-					ev.currentTarget ?? ev.target,
-				)
-				.then(() => (this.menu = null));
-		},
+	detachMediaFn: {
+		type: Function,
+		required: false,
 	},
 });
+
+const emits = defineEmits([
+	"updated",
+	"detach",
+	"changeSensitive",
+	"changeName",
+]);
+
+let menu = ref<Promise<any> | null>(null);
+
+const _files = computed({
+	get: () => props.files,
+	set: (value) => emits("updated", value),
+});
+
+const detachMedia = (id) => {
+	if (props.detachMediaFn) {
+		props.detachMediaFn(id);
+	} else {
+		emits("detach", id);
+	}
+};
+
+function toggleSensitive(file) {
+	os.api("drive/files/update", {
+		fileId: file.id,
+		isSensitive: !file.isSensitive,
+	}).then(() => {
+		emits("changeSensitive", file, !file.isSensitive);
+	});
+}
+
+async function rename(file) {
+	const { canceled, result } = await os.inputText({
+		title: i18n.ts.enterFileName,
+		default: file.name,
+	});
+	if (canceled) return;
+	os.api("drive/files/update", {
+		fileId: file.id,
+		name: result,
+	}).then(() => {
+		emits("changeName", file, result);
+		file.name = result;
+	});
+}
+
+async function describe(file) {
+	os.popup(
+		defineAsyncComponent(() => import("@/components/MkMediaCaption.vue")),
+		{
+			title: i18n.ts.describeFile,
+			input: {
+				placeholder: i18n.ts.inputNewDescription,
+				default: file.comment !== null ? file.comment : "",
+			},
+			image: file,
+		},
+		{
+			done: (result) => {
+				if (!result || result.canceled) return;
+				let comment = result.result.length === 0 ? null : result.result;
+				os.api("drive/files/update", {
+					fileId: file.id,
+					comment: comment,
+				}).then(() => {
+					file.comment = comment;
+				});
+			},
+		},
+		"closed",
+	);
+}
+
+function showFileMenu(file, ev: MouseEvent) {
+	if (menu) return;
+	menu = os
+		.popupMenu(
+			[
+				{
+					text: i18n.ts.renameFile,
+					icon: "ph-cursor-text ph-bold ph-lg",
+					action: () => {
+						rename(file);
+					},
+				},
+				{
+					text: file.isSensitive
+						? i18n.ts.unmarkAsSensitive
+						: i18n.ts.markAsSensitive,
+					icon: file.isSensitive
+						? "ph-eye ph-bold ph-lg"
+						: "ph-eye-slash ph-bold ph-lg",
+					action: () => {
+						toggleSensitive(file);
+					},
+				},
+				{
+					text: i18n.ts.describeFile,
+					icon: "ph-subtitles ph-bold ph-lg",
+					action: () => {
+						describe(file);
+					},
+				},
+				{
+					text: i18n.ts.attachCancel,
+					icon: "ph-x ph-bold ph-lg",
+					action: () => {
+						detachMedia(file.id);
+					},
+				},
+			],
+			ev.currentTarget ?? ev.target,
+		)
+		.then(() => (menu = null));
+}
 </script>
 
 <style lang="scss" scoped>
@@ -217,8 +200,8 @@ export default defineComponent({
 				top: 0;
 				left: 0;
 				z-index: 2;
-				background: rgba(17, 17, 17, 0.7);
-				color: #fff;
+				background: var(--header);
+				color: var(--fg);
 
 				> .icon {
 					margin: auto;
