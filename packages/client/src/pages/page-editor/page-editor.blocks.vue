@@ -1,5 +1,5 @@
 <template>
-	<XDraggable
+	<VueDraggable
 		v-model="blocks"
 		tag="div"
 		item-key="id"
@@ -17,11 +17,12 @@
 				@remove="() => removeItem(element)"
 			/>
 		</template>
-	</XDraggable>
+	</VueDraggable>
 </template>
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from "vue";
+import { VueDraggable } from "vue-draggable-plus";
 import XSection from "./els/page-editor.el.section.vue";
 import XText from "./els/page-editor.el.text.vue";
 import XTextarea from "./els/page-editor.el.textarea.vue";
@@ -41,9 +42,7 @@ import * as os from "@/os";
 
 export default defineComponent({
 	components: {
-		XDraggable: defineAsyncComponent(() =>
-			import("vuedraggable").then((x) => x.default),
-		),
+		VueDraggable,
 		XSection,
 		XText,
 		XImage,

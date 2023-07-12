@@ -118,7 +118,7 @@
 
 			<div v-else-if="tab === 'variables'">
 				<div class="qmuvgica">
-					<XDraggable
+					<VueDraggable
 						v-show="variables.length > 0"
 						v-model="variables"
 						tag="div"
@@ -140,7 +140,7 @@
 								@remove="() => removeVariable(element)"
 							/>
 						</template>
-					</XDraggable>
+					</VueDraggable>
 
 					<MkButton
 						v-if="!readonly"
@@ -174,16 +174,13 @@ import { blockDefs } from "@/scripts/hpml/index";
 import { HpmlTypeChecker } from "@/scripts/hpml/type-checker";
 import { url } from "@/config";
 import { collectPageVars } from "@/scripts/collect-page-vars";
+import { VueDraggable } from "vue-draggable-plus";
 import * as os from "@/os";
 import { selectFile } from "@/scripts/select-file";
 import { mainRouter } from "@/router";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { $i } from "@/account";
-
-const XDraggable = defineAsyncComponent(() =>
-	import("vuedraggable").then((x) => x.default),
-);
 
 const props = defineProps<{
 	initPageId?: string;

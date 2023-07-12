@@ -96,6 +96,6 @@ export default defineConfig(({ command, mode }) => {
 			auto: true,
 		},
 
-		logLevel: 'warn',
+		logLevel: "warn",
 	};
 });
