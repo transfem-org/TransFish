@@ -18,7 +18,7 @@
 						}}
 					</p>
 				</div>
-				<div class="_flexList">
+				<div class="_flexList" style="gap: 0.6rem;">
 					<MkButton
 						primary
 						@click="
