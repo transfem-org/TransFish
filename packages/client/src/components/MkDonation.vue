@@ -1,6 +1,6 @@
 <template>
 	<transition name="slide-fade">
-		<div v-if="show" class="_panel _shadow" :class="$style.root">
+		<div v-if="show" class="_panel _shadow _acrylic" :class="$style.root">
 			<div :class="$style.icon">
 				<i class="ph-hand-heart ph-bold ph-5x" />
 			</div>
@@ -87,13 +87,30 @@ function openExternal(link) {
 }
 </script>
 
+<style lang="scss" scoped>
+.slide-fade-enter {
+    opacity: 1;
+    transform: translateY(0);
+}
+.slide-fade-enter-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(100%);
+}
+.slide-fade-leave-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+</style>
+
 <style lang="scss" module>
 .root {
 	position: fixed;
 	z-index: v-bind(zIndex);
 	bottom: var(--margin);
-	left: 0;
-	right: 0;
+	left: 2%;
+	bottom: 2%;
 	margin: auto;
 	box-sizing: border-box;
 	width: calc(100% - (var(--margin) * 2));
@@ -137,20 +154,5 @@ function openExternal(link) {
 }
 .text {
 	margin: 0.7em 0 1em 0;
-}
-
-.slide-fade-enter {
-    opacity: 1;
-    transform: translateY(0);
-}
-.slide-fade-enter-active {
-    transition: opacity 0.5s, transform 0.5s;
-}
-.slide-fade-leave-to {
-    opacity: 0;
-    transform: translateY(100%);
-}
-.slide-fade-leave-active {
-    transition: opacity 0.5s, transform 0.5s;
 }
 </style>
