@@ -88,19 +88,32 @@ function openExternal(link) {
 </script>
 
 <style lang="scss" scoped>
-.slide-fade-enter {
-    opacity: 1;
-    transform: translateY(0);
-}
-.slide-fade-enter-active {
-    transition: opacity 0.5s, transform 0.5s;
-}
-.slide-fade-leave-to {
+.slide-fade-enter-from {
     opacity: 0;
     transform: translateY(100%);
 }
+
+.slide-fade-enter-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.slide-fade-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-fade-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .slide-fade-leave-active {
     transition: opacity 0.5s, transform 0.5s;
+}
+
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(100%);
 }
 </style>
 
