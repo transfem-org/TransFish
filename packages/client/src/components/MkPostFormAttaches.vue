@@ -154,9 +154,7 @@ function showFileMenu(file, ev: MouseEvent) {
 				},
 			},
 		],
-		(ev.currentTarget ?? ev.target ?? undefined) as
-			| HTMLElement
-			| undefined,
+		(ev.currentTarget ?? ev.target ?? undefined) as HTMLElement | undefined,
 	);
 }
 </script>
