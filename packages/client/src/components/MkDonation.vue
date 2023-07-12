@@ -103,7 +103,7 @@ function openExternal(link) {
 }
 
 .slide-fade-enter-active {
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s ease-out;
 }
 
 .slide-fade-enter-to {
@@ -117,7 +117,7 @@ function openExternal(link) {
 }
 
 .slide-fade-leave-active {
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s ease-out;
 }
 
 .slide-fade-leave-to {
