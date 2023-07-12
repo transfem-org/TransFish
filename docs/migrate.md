@@ -102,4 +102,4 @@ NODE_ENV=production pnpm run migrate
 
 ## Reverse
 
-You ***cannot*** migrate back to Misskey from Calckey due to re-hashing passwords on signin with argon2. You can migrate from Calckey to FoundKey, though.
+You ***cannot*** migrate back to Misskey from Calckey due to re-hashing passwords on signin with argon2. You can migrate from Calckey to FoundKey, although this is not recommended due to FoundKey being end-of-life.
