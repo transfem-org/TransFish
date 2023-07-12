@@ -83,7 +83,7 @@
 				<option :value="1">{{ i18n.ts.small }}</option>
 				<option :value="2">{{ i18n.ts.medium }}</option>
 				<option :value="3">{{ i18n.ts.large }}</option>
-				<option :value="4">{{ i18n.ts.large }}+</option>
+				<option :value="4">{{ i18n.ts.xl }}</option>
 			</FormRadios>
 
 			<FormSwitch
@@ -123,7 +123,6 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, watch } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
-import FormInput from "@/components/form/input.vue";
 import FormRadios from "@/components/form/radios.vue";
 import FromSlot from "@/components/form/slot.vue";
 import FormButton from "@/components/MkButton.vue";
@@ -220,6 +219,7 @@ function chooseEmoji(ev: MouseEvent) {
 	}).then((emoji) => {
 		if (!reactions.includes(emoji)) {
 			reactions.push(emoji);
+			save();
 		}
 	});
 }
