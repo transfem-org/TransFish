@@ -11,26 +11,25 @@
 				}}</template>
 				<div v-panel style="border-radius: 6px">
 					<VueDraggable
-						ref="el"
 						v-model="reactions"
 						class="zoaiodol"
-						:item-key="(item) => item"
 						animation="150"
 						delay="100"
+						@end="save"
 						delay-on-touch-only="true"
 					>
-						<template #item="{ element }">
 							<button
+								v-for="item in reactions"
+								:key="item"
 								class="_button item"
-								@click="remove(element, $event)"
+								@click="remove(item, $event)"
 							>
 								<MkEmoji
-									:emoji="element"
+									:emoji="item"
 									style="height: 1.7em"
 									class="emoji"
 								/>
 							</button>
-						</template>
 						<template #footer>
 							<button class="_button add" @click="chooseEmoji">
 								<i class="ph-plus ph-bold ph-lg"></i>
@@ -225,16 +224,6 @@ function chooseEmoji(ev: MouseEvent) {
 		}
 	});
 }
-
-watch(
-	$$(reactions),
-	() => {
-		save();
-	},
-	{
-		deep: true,
-	},
-);
 
 watch(enableEmojiReactions, async () => {
 	await reloadAsk();
