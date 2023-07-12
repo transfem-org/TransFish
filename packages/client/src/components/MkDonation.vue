@@ -54,14 +54,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import { host } from "@/config";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 import { instance } from "@/instance";
 
-let show = ref(true);
+let show = ref(false);
 
 const emit = defineEmits<{
 	(ev: "closed"): void;
@@ -70,6 +70,15 @@ const emit = defineEmits<{
 const hostname = instance.name?.length <= 20 ? instance.name : host;
 
 const zIndex = os.claimZIndex("low");
+
+function slideIn() {
+    show.value = false;
+    nextTick(() => {
+        show.value = true;
+    });
+}
+
+slideIn();
 
 function close() {
 	localStorage.setItem("latestDonationInfoShownAt", Date.now().toString());
