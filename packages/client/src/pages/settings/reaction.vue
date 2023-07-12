@@ -30,12 +30,10 @@
 								class="emoji"
 							/>
 						</div>
-						<template #footer>
-							<button class="_button add" @click="chooseEmoji">
-								<i class="ph-plus ph-bold ph-lg"></i>
-							</button>
-						</template>
 					</VueDraggable>
+					<button class="_button add" @click="chooseEmoji">
+						<i class="ph-plus ph-bold ph-lg"></i>
+					</button>
 				</div>
 				<template #caption
 					>{{ i18n.ts.reactionSettingDescription2 }}
@@ -244,10 +242,6 @@ const headerTabs = $computed(() => []);
 definePageMetadata({
 	title: i18n.ts.reaction,
 	icon: "ph-smiley ph-bold ph-lg",
-	action: {
-		icon: "ph-eye ph-bold ph-lg",
-		handler: preview,
-	},
 });
 </script>
 
@@ -261,10 +255,12 @@ definePageMetadata({
 		padding: 8px;
 		cursor: move;
 	}
+}
 
-	> .add {
-		display: inline-block;
-		padding: 8px;
-	}
+.add {
+	display: inline-block;
+	padding: 8px;
+	margin-left: 12px;
+	margin-bottom: 12px;
 }
 </style>
