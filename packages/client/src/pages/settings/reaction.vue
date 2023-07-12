@@ -18,18 +18,18 @@
 						@end="save"
 						delay-on-touch-only="true"
 					>
-							<div
-								v-for="item in reactions"
-								:key="item"
-								class="_button item"
-								@click="remove(item, $event)"
-							>
-								<MkEmoji
-									:emoji="item"
-									style="height: 1.7em"
-									class="emoji"
-								/>
-							</div>
+						<div
+							v-for="item in reactions"
+							:key="item"
+							class="_button item"
+							@click="remove(item, $event)"
+						>
+							<MkEmoji
+								:emoji="item"
+								style="height: 1.7em"
+								class="emoji"
+							/>
+						</div>
 						<template #footer>
 							<button class="_button add" @click="chooseEmoji">
 								<i class="ph-plus ph-bold ph-lg"></i>

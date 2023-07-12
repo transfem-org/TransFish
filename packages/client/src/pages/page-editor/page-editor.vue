@@ -128,17 +128,17 @@
 						animation="150"
 						swap-threshold="0.5"
 					>
-							<XVariable
-								v-for="element in variables"
-								:key="element.name"
-								:model-value="element"
-								:removable="true"
-								:hpml="hpml"
-								:name="element.name"
-								:title="element.name"
-								:draggable="true"
-								@remove="() => removeVariable(element)"
-							/>
+						<XVariable
+							v-for="element in variables"
+							:key="element.name"
+							:model-value="element"
+							:removable="true"
+							:hpml="hpml"
+							:name="element.name"
+							:title="element.name"
+							:draggable="true"
+							@remove="() => removeVariable(element)"
+						/>
 					</VueDraggable>
 
 					<MkButton

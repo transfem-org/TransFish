@@ -7,15 +7,15 @@
 		animation="150"
 		swap-threshold="0.5"
 	>
-			<component
-				v-for="element in blocks"
-				:key="element"
-				:is="'x-' + element.type"
-				:value="element"
-				:hpml="hpml"
-				@update:value="updateItem"
-				@remove="() => removeItem(element)"
-			/>
+		<component
+			v-for="element in blocks"
+			:key="element"
+			:is="'x-' + element.type"
+			:value="element"
+			:hpml="hpml"
+			@update:value="updateItem"
+			@remove="() => removeItem(element)"
+		/>
 	</VueDraggable>
 </template>
 
