@@ -123,14 +123,14 @@
 						v-model="variables"
 						tag="div"
 						class="variables"
-						item-key="name"
 						handle=".drag-handle"
 						:group="{ name: 'variables' }"
 						animation="150"
 						swap-threshold="0.5"
 					>
-						<template #item="{ element }">
 							<XVariable
+								v-for="element in variables"
+								:key="element.name"
 								:model-value="element"
 								:removable="true"
 								:hpml="hpml"
@@ -139,7 +139,6 @@
 								:draggable="true"
 								@remove="() => removeVariable(element)"
 							/>
-						</template>
 					</VueDraggable>
 
 					<MkButton

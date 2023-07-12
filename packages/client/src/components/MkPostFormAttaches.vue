@@ -3,28 +3,27 @@
 		<VueDraggable
 			v-model="_files"
 			class="files"
-			item-key="id"
 			animation="150"
 			delay="100"
 			delay-on-touch-only="true"
 		>
-			<template #item="{ element }">
-				<div
-					class="file"
-					@click="showFileMenu(element, $event)"
-					@contextmenu.prevent="showFileMenu(element, $event)"
-				>
-					<MkDriveFileThumbnail
-						:data-id="element.id"
-						class="thumbnail"
-						:file="element"
-						fit="cover"
-					/>
-					<div v-if="element.isSensitive" class="sensitive">
-						<i class="ph-warning ph-bold ph-lg icon"></i>
-					</div>
+			<div
+				class="file"
+				v-for="element in _files"
+				:key="element.id"
+				@click="showFileMenu(element, $event)"
+				@contextmenu.prevent="showFileMenu(element, $event)"
+			>
+				<MkDriveFileThumbnail
+					:data-id="element.id"
+					class="thumbnail"
+					:file="element"
+					fit="cover"
+				/>
+				<div v-if="element.isSensitive" class="sensitive">
+					<i class="ph-warning ph-bold ph-lg icon"></i>
 				</div>
-			</template>
+			</div>
 		</VueDraggable>
 		<p class="remain">{{ 16 - files.length }}/16</p>
 	</div>

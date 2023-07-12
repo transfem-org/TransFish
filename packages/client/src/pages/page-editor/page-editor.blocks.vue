@@ -2,21 +2,20 @@
 	<VueDraggable
 		v-model="blocks"
 		tag="div"
-		item-key="id"
 		handle=".drag-handle"
 		:group="{ name: 'blocks' }"
 		animation="150"
 		swap-threshold="0.5"
 	>
-		<template #item="{ element }">
 			<component
+				v-for="element in blocks"
+				:key="element"
 				:is="'x-' + element.type"
 				:value="element"
 				:hpml="hpml"
 				@update:value="updateItem"
 				@remove="() => removeItem(element)"
 			/>
-		</template>
 	</VueDraggable>
 </template>
 

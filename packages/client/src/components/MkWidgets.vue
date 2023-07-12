@@ -30,11 +30,13 @@
 			</header>
 			<VueDraggable
 				v-model="widgets_"
-				item-key="id"
 				handle=".handle"
 				animation="150"
 			>
-				<template #item="{ element }">
+				<div
+					v-for="element in widgets_"
+					:key="element.id"
+				>
 					<div class="customize-container">
 						<button
 							class="config _button"
@@ -58,7 +60,7 @@
 							/>
 						</div>
 					</div>
-				</template>
+				</div>
 			</VueDraggable>
 		</template>
 		<component

@@ -18,7 +18,7 @@
 						@end="save"
 						delay-on-touch-only="true"
 					>
-							<button
+							<div
 								v-for="item in reactions"
 								:key="item"
 								class="_button item"
@@ -29,7 +29,7 @@
 									style="height: 1.7em"
 									class="emoji"
 								/>
-							</button>
+							</div>
 						<template #footer>
 							<button class="_button add" @click="chooseEmoji">
 								<i class="ph-plus ph-bold ph-lg"></i>
