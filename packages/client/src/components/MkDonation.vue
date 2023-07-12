@@ -18,10 +18,10 @@
 				</p>
 			</div>
 			<div class="_flexList">
-				<MkButton primary @click="openCalckeyDonation">{{
+				<MkButton primary @click="openExternal('https://opencollective.com/calckey')">{{
 					i18n.ts._aboutMisskey.donate
 				}}</MkButton>
-				<MkButton v-if="instance.donationLink" primary @click="openExternalDonation">{{
+				<MkButton v-if="instance.donationLink" primary @click="openExternal(instance.donationLink)">{{
 					i18n.t("_aboutMisskey.donateHost", {
 						host: hostname,
 					})
@@ -63,15 +63,7 @@ function neverShow() {
 	close();
 }
 
-function openCalckeyDonation() {
-	window.open("https://opencollective.com/calckey", "_blank");
-}
-
-function openExternalDonation() {
-	let link = instance.donationLink;
-	if (!/^https?:\/\//i.test(link)) {
-    link = `http://${link}`;
-	}
+function openExternal(link) {
 	window.open(link, "_blank");
 }
 </script>

@@ -93,6 +93,21 @@
 								external
 								>{{ i18n.ts.tos }}</FormLink
 							>
+							<FormLink
+								v-if="$instance.donationLink"
+								:to="$instance.donationLink"
+								external
+							>
+								<template #icon
+									><i class="ph-money ph-bold ph-lg"></i
+								></template>
+								{{
+									i18n.t("_aboutMisskey.donateHost", {
+										host: $instance.name || host,
+									})
+								}}
+								<template #suffix>Donate</template>
+							</FormLink>
 						</FormSection>
 
 						<FormSuspense :p="initStats">

@@ -1219,7 +1219,7 @@ _aboutMisskey:
   donate: "Donate to Calckey"
   donateTitle: "Enjoying Calckey?"
   pleaseDonateToCalckey: "Please consider donating to Calckey to support its development."
-  pleaseDonateToHost: "Please also consider donating to your honme server, {host}, to help support its operation costs."
+  pleaseDonateToHost: "Please also consider donating to your home server, {host}, to help support its operation costs."
   donateHost: "Donate to {host}"
   morePatrons: "We also appreciate the support of many other helpers not listed here.
     Thank you! 🥰"
