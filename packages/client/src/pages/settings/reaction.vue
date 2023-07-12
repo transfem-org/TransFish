@@ -11,6 +11,7 @@
 				}}</template>
 				<div v-panel style="border-radius: 6px">
 					<VueDraggable
+						ref="el"
 						v-model="reactions"
 						class="zoaiodol"
 						:item-key="(item) => item"
