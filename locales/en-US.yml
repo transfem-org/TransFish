@@ -1119,6 +1119,8 @@ showPopup: "Notify users with popup"
 showWithSparkles: "Show with sparkles"
 youHaveUnreadAnnouncements: "You have unread announcements"
 donationLink: "Link to donation page"
+neverShow: "Don't show again"
+remindMeLater: "Maybe later"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

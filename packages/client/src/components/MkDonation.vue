@@ -1,49 +1,67 @@
 <template>
-	<div class="_panel _shadow" :class="$style.root">
-		<div :class="$style.icon">
-			<i class="ph-hand-heart ph-bold ph-6x" />
+	<transition name="slide-fade">
+		<div v-if="show" class="_panel _shadow" :class="$style.root">
+			<div :class="$style.icon">
+				<i class="ph-hand-heart ph-bold ph-5x" />
+			</div>
+			<div :class="$style.main">
+				<div :class="$style.title">
+					{{ i18n.ts._aboutMisskey.donateTitle }}
+				</div>
+				<div :class="$style.text">
+					{{ i18n.ts._aboutMisskey.pleaseDonateToCalckey }}
+					<p v-if="instance.donationLink">
+						{{
+							i18n.t("_aboutMisskey.pleaseDonateToHost", {
+								host: hostname,
+							})
+						}}
+					</p>
+				</div>
+				<div class="_flexList">
+					<MkButton
+						primary
+						@click="
+							openExternal('https://opencollective.com/calckey')
+						"
+						>{{ i18n.ts._aboutMisskey.donate }}</MkButton
+					>
+					<MkButton
+						v-if="instance.donationLink"
+						primary
+						@click="openExternal(instance.donationLink)"
+						>{{
+							i18n.t("_aboutMisskey.donateHost", {
+								host: hostname,
+							})
+						}}</MkButton
+					>
+				</div>
+				<div class="_flexList" style="margin-top: 0.6rem">
+					<MkButton @click="close">{{
+						i18n.ts.remindMeLater
+					}}</MkButton>
+					<MkButton @click="neverShow">{{
+						i18n.ts.neverShow
+					}}</MkButton>
+				</div>
+			</div>
+			<button class="_button" :class="$style.close" @click="close">
+				<i class="ph-x ph-bold ph-lg"></i>
+			</button>
 		</div>
-		<div :class="$style.main">
-			<div :class="$style.title">
-				{{ i18n.ts._aboutMisskey.donateTitle }}
-			</div>
-			<div :class="$style.text">
-				{{ i18n.ts._aboutMisskey.pleaseDonateToCalckey }}
-				<p v-if="instance.donationLink">
-					{{
-						i18n.t("_aboutMisskey.pleaseDonateToHost", {
-							host: hostname,
-						})
-					}}
-				</p>
-			</div>
-			<div class="_flexList">
-				<MkButton primary @click="openExternal('https://opencollective.com/calckey')">{{
-					i18n.ts._aboutMisskey.donate
-				}}</MkButton>
-				<MkButton v-if="instance.donationLink" primary @click="openExternal(instance.donationLink)">{{
-					i18n.t("_aboutMisskey.donateHost", {
-						host: hostname,
-					})
-				}}</MkButton>
-			</div>
-			<div class="_flexList">
-				<MkButton @click="close">{{ i18n.ts.remindMeLater }}</MkButton>
-				<MkButton @click="neverShow">{{ i18n.ts.neverShow }}</MkButton>
-			</div>
-		</div>
-		<button class="_button" :class="$style.close" @click="close">
-			<i class="ph-x ph-bold ph-lg"></i>
-		</button>
-	</div>
+	</transition>
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import { host } from "@/config";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 import { instance } from "@/instance";
+
+let show = ref(true);
 
 const emit = defineEmits<{
 	(ev: "closed"): void;
@@ -56,6 +74,7 @@ const zIndex = os.claimZIndex("low");
 function close() {
 	localStorage.setItem("latestDonationInfoShownAt", Date.now().toString());
 	emit("closed");
+	show.value = false;
 }
 
 function neverShow() {
@@ -116,8 +135,22 @@ function openExternal(link) {
 .title {
 	font-weight: bold;
 }
-
 .text {
 	margin: 0.7em 0 1em 0;
+}
+
+.slide-fade-enter {
+    opacity: 1;
+    transform: translateY(0);
+}
+.slide-fade-enter-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(100%);
+}
+.slide-fade-leave-active {
+    transition: opacity 0.5s, transform 0.5s;
 }
 </style>
