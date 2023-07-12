@@ -184,6 +184,7 @@ function remove(reaction, ev: MouseEvent) {
 				text: i18n.ts.remove,
 				action: () => {
 					reactions = reactions.filter((x) => x !== reaction);
+					save();
 				},
 			},
 		],
