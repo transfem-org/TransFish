@@ -2704,7 +2704,7 @@ Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
 Passwords will be automatically re-hashed on sign-in. All new password hashes will be argon2 by default.  This uses argon2id and is not configurable. In the very unlikely case someone has more specific needs, a fork is recommended.  ChangeLog: Added  Co-authored-by: Chloe Kudryavtsev <code@toast.bunkerlabs.net>
 
-Breaks Calckey -> Misskey migration, but fixes Foundkey -> Calckey migration
+Breaks Calckey -> Misskey migration, but fixes FoundKey -> Calckey migration
 
 - Add argon
 

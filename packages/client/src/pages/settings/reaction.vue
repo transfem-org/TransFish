@@ -10,7 +10,7 @@
 					i18n.ts.reactionSettingDescription
 				}}</template>
 				<div v-panel style="border-radius: 6px">
-					<XDraggable
+					<VueDraggable
 						v-model="reactions"
 						class="zoaiodol"
 						:item-key="(item) => item"
@@ -35,7 +35,7 @@
 								<i class="ph-plus ph-bold ph-lg"></i>
 							</button>
 						</template>
-					</XDraggable>
+					</VueDraggable>
 				</div>
 				<template #caption
 					>{{ i18n.ts.reactionSettingDescription2 }}
@@ -124,7 +124,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent, watch } from "vue";
-import XDraggable from "vuedraggable";
+import { VueDraggable } from "vue-draggable-plus";
 import FormInput from "@/components/form/input.vue";
 import FormRadios from "@/components/form/radios.vue";
 import FromSlot from "@/components/form/slot.vue";

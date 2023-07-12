@@ -1,6 +1,6 @@
 <template>
 	<div v-show="files.length != 0" class="skeikyzd">
-		<XDraggable
+		<VueDraggable
 			v-model="_files"
 			class="files"
 			item-key="id"
@@ -25,22 +25,21 @@
 					</div>
 				</div>
 			</template>
-		</XDraggable>
+		</VueDraggable>
 		<p class="remain">{{ 16 - files.length }}/16</p>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from "vue";
+import { VueDraggable } from "vue-draggable-plus";
 import MkDriveFileThumbnail from "@/components/MkDriveFileThumbnail.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 
 export default defineComponent({
 	components: {
-		XDraggable: defineAsyncComponent(() =>
-			import("vuedraggable").then((x) => x.default),
-		),
+		VueDraggable,
 		MkDriveFileThumbnail,
 	},
 

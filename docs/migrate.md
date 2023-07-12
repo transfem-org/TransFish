@@ -1,10 +1,11 @@
-# 🚚 Migrating from Misskey to Calckey
+# 🚚 Migrating from Misskey/FoundKey to Calckey
 
-The following procedure may not work depending on your environment and version of Misskey.
+All the guides below assume you're starting in the root of the repo directory.
 
-**Make sure you**
-- **stopped all master and worker processes of Misskey.**
-- **have backups of the database before performing any commands.**
+### Before proceeding
+
+- **Ensure you have stopped all master and worker processes of Misskey.**
+- **Ensure you have backups of the database before performing any commands.**
 
 ## Misskey v13 and above
 
@@ -77,10 +78,11 @@ NODE_ENV=production pnpm run migrate
 # build using prefered method
 ```
 
-## Foundkey
+## FoundKey
 
 ```sh
 cd packages/backend
+sed -i '12s/^/\/\//' ./migration/1663399074403-resize-comments-drive-file.js
 
 LINE_NUM="$(npx typeorm migration:show -d ormconfig.js | grep -n uniformThemecolor1652859567549 | cut -d ':' -f 1)"
 NUM_MIGRATIONS="$(npx typeorm migration:show -d ormconfig.js | tail -n+"$LINE_NUM" | grep '\[X\]' | wc -l)"
@@ -100,4 +102,4 @@ NODE_ENV=production pnpm run migrate
 
 ## Reverse
 
-You ***cannot*** migrate back to Misskey from Calckey due to re-hashing passwords on signin with argon2. You can migrate from Calckey to Foundkey, though.
+You ***cannot*** migrate back to Misskey from Calckey due to re-hashing passwords on signin with argon2. You can migrate from Calckey to FoundKey, though.
