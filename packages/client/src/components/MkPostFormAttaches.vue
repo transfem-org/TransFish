@@ -54,8 +54,6 @@ const emits = defineEmits([
 	"changeName",
 ]);
 
-let menu = ref<Promise<any> | null>(null);
-
 const _files = computed({
 	get: () => props.files,
 	set: (value) => emits("updated", value),
@@ -121,46 +119,45 @@ async function describe(file) {
 }
 
 function showFileMenu(file, ev: MouseEvent) {
-	if (menu) return;
-	menu = os
-		.popupMenu(
-			[
-				{
-					text: i18n.ts.renameFile,
-					icon: "ph-cursor-text ph-bold ph-lg",
-					action: () => {
-						rename(file);
-					},
+	os.popupMenu(
+		[
+			{
+				text: i18n.ts.renameFile,
+				icon: "ph-cursor-text ph-bold ph-lg",
+				action: () => {
+					rename(file);
 				},
-				{
-					text: file.isSensitive
-						? i18n.ts.unmarkAsSensitive
-						: i18n.ts.markAsSensitive,
-					icon: file.isSensitive
-						? "ph-eye ph-bold ph-lg"
-						: "ph-eye-slash ph-bold ph-lg",
-					action: () => {
-						toggleSensitive(file);
-					},
+			},
+			{
+				text: file.isSensitive
+					? i18n.ts.unmarkAsSensitive
+					: i18n.ts.markAsSensitive,
+				icon: file.isSensitive
+					? "ph-eye ph-bold ph-lg"
+					: "ph-eye-slash ph-bold ph-lg",
+				action: () => {
+					toggleSensitive(file);
 				},
-				{
-					text: i18n.ts.describeFile,
-					icon: "ph-subtitles ph-bold ph-lg",
-					action: () => {
-						describe(file);
-					},
+			},
+			{
+				text: i18n.ts.describeFile,
+				icon: "ph-subtitles ph-bold ph-lg",
+				action: () => {
+					describe(file);
 				},
-				{
-					text: i18n.ts.attachCancel,
-					icon: "ph-x ph-bold ph-lg",
-					action: () => {
-						detachMedia(file.id);
-					},
+			},
+			{
+				text: i18n.ts.attachCancel,
+				icon: "ph-x ph-bold ph-lg",
+				action: () => {
+					detachMedia(file.id);
 				},
-			],
-			ev.currentTarget ?? ev.target,
-		)
-		.then(() => (menu = null));
+			},
+		],
+		(ev.currentTarget ?? ev.target ?? undefined) as
+			| HTMLElement
+			| undefined,
+	);
 }
 </script>
 
