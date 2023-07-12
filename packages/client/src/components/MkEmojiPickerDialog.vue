@@ -78,9 +78,9 @@ function checkForShift(ev?: MouseEvent) {
 	}
 }
 
-function chosen(emoji: any, ev: MouseEvent) {
+function chosen(emoji: any) {
 	emit("done", emoji);
-	checkForShift(ev);
+	checkForShift();
 }
 
 function opening() {
