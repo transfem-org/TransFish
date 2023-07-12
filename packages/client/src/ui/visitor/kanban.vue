@@ -464,12 +464,21 @@ function showMenu(ev) {
 						pointer-events: none;
 						z-index: -1;
 						clip-path: inset(55px 0 0 0 round var(--radius));
-						mask: linear-gradient(transparent 55px, #000 50px, transparent);
-						-webkit-mask: llinear-gradient(
-							transparent 55px,
-							#000 50px,
-							transparent
-						);
+						// mask: linear-gradient(transparent 55px, #000 50px, transparent);
+						// -webkit-mask: linear-gradient(
+						// 	transparent 55px,
+						// 	#000 50px,
+						// 	transparent
+						// );
+						border-radius: var(--radius) var(--radius) 0 0;
+					}
+					&::after {
+						content: "";
+						position: absolute;
+						inset: 30px calc(0px - var(--margin));
+						bottom: -100px;
+						background: linear-gradient(to bottom, transparent, var(--bg));
+						z-index: -1;
 						border-radius: var(--radius) var(--radius) 0 0;
 					}
 				}
