@@ -53,6 +53,20 @@
 									i18n.ts.maintainerEmail
 								}}</template>
 							</FormInput>
+
+							<FormInput
+								v-model="donationLink"
+								class="_formBlock"
+							>
+								<template #prefix
+									><i
+										class="ph-hand-heart ph-bold ph-lg"
+									></i
+								></template>
+								<template #label>{{
+									i18n.ts.donationLink
+								}}</template>
+							</FormInput>
 						</FormSplit>
 
 						<FormTextarea v-model="pinnedUsers" class="_formBlock">
@@ -435,6 +449,7 @@ let description: string | null = $ref(null);
 let tosUrl: string | null = $ref(null);
 let maintainerName: string | null = $ref(null);
 let maintainerEmail: string | null = $ref(null);
+let donationLink: string | null = $ref(null);
 let iconUrl: string | null = $ref(null);
 let bannerUrl: string | null = $ref(null);
 let logoImageUrl: string | null = $ref(null);
@@ -481,6 +496,7 @@ async function init() {
 	defaultDarkTheme = meta.defaultDarkTheme;
 	maintainerName = meta.maintainerName;
 	maintainerEmail = meta.maintainerEmail;
+	donationLink = meta.donationLink;
 	enableLocalTimeline = !meta.disableLocalTimeline;
 	enableGlobalTimeline = !meta.disableGlobalTimeline;
 	enableRecommendedTimeline = !meta.disableRecommendedTimeline;
@@ -527,6 +543,7 @@ function save() {
 		defaultDarkTheme: defaultDarkTheme === "" ? null : defaultDarkTheme,
 		maintainerName,
 		maintainerEmail,
+		donationLink,
 		disableLocalTimeline: !enableLocalTimeline,
 		disableGlobalTimeline: !enableGlobalTimeline,
 		disableRecommendedTimeline: !enableRecommendedTimeline,

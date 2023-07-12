@@ -556,4 +556,10 @@ export class Meta {
 		default: true,
 	})
 	public enableIdenticonGeneration: boolean;
+
+	@Column("varchar", {
+		length: 256,
+		nullable: true,
+	})
+	public donationLink: string | null;
 }
