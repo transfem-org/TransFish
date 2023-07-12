@@ -28,7 +28,7 @@
 					>
 					<MkButton
 						v-if="$instance.donationLink"
-						primary
+						gradate
 						@click="openExternal($instance.donationLink)"
 						>{{
 							i18n.t("_aboutMisskey.donateHost", {
@@ -67,7 +67,7 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-const hostname = instance.name?.length <= 20 ? instance.name : host;
+const hostname = instance.name?.length < 38 ? instance.name : host;
 
 const zIndex = os.claimZIndex("low");
 
