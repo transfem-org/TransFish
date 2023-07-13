@@ -84,7 +84,11 @@
 			<div v-if="quoteId" class="with-quote">
 				<i class="ph-quotes ph-bold ph-lg"></i>
 				{{ i18n.ts.quoteAttached
-				}}<button class="_button" @click="quoteId = null" :aria-label="i18n.t('removeQuote')">
+				}}<button
+					class="_button"
+					@click="quoteId = null"
+					:aria-label="i18n.t('removeQuote')"
+				>
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>
 			</div>
@@ -93,7 +97,11 @@
 				<div class="visibleUsers">
 					<span v-for="u in visibleUsers" :key="u.id">
 						<MkAcct :user="u" />
-						<button class="_button" @click="removeVisibleUser(u)" :aria-label="i18n.t('removeRecipient')">
+						<button
+							class="_button"
+							@click="removeVisibleUser(u)"
+							:aria-label="i18n.t('removeRecipient')"
+						>
 							<i class="ph-x ph-bold ph-lg"></i>
 						</button>
 					</span>

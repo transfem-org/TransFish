@@ -46,7 +46,12 @@
 					}}</MkButton>
 				</div>
 			</div>
-			<button class="_button" :class="$style.close" @click="close" :aria-label="i18n.t('close')">
+			<button
+				class="_button"
+				:class="$style.close"
+				@click="close"
+				:aria-label="i18n.t('close')"
+			>
 				<i class="ph-x ph-bold ph-lg"></i>
 			</button>
 		</div>
