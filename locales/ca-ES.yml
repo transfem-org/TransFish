@@ -1603,6 +1603,12 @@ _aboutMisskey:
   patrons: Mecenes de Calckey
   patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
     amb l'enllaç de dalt per veure el teu nom aquí!
+  donateTitle: T'agrada Calckey?
+  pleaseDonateToCalckey: Penseu en fer una donació a Calckey per donar suport al seu
+    desenvolupament.
+  pleaseDonateToHost: Penseu també en fer una donació a la vostre instància, {host},
+    per ajudar-lo a suportar els costos de funcionament.
+  donateHost: Fes una donació a {host}
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
@@ -2147,3 +2153,7 @@ enableServerMachineStats: Habilitar les estadístiques del maquinari del servido
 showPopup: Notificar els usuaris amb una finestra emergent
 showWithSparkles: Mostra amb espurnes
 youHaveUnreadAnnouncements: Tens anuncis sense llegir
+xl: XL
+donationLink: Enllaç a la pàgina de donacions
+neverShow: No tornis a mostrar
+remindMeLater: Potser després
