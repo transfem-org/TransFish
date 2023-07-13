@@ -247,7 +247,7 @@ export default class Connection {
 
 		for (const obj of objs) {
 			const { type, body } = obj;
-			console.log(type, body);
+			// console.log(type, body);
 			switch (type) {
 				case "readNotification":
 					this.onReadNotification(body);

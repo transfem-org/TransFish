@@ -253,6 +253,9 @@ onUnmounted(() => {
 			font-size: 1em;
 			white-space: nowrap;
 			margin-bottom: 0.2em;
+			text-decoration: underline;
+			text-decoration-color: transparent;
+			transition: text-decoration-color 0.2s;
 		}
 		p {
 			margin-bottom: -0.5em;
@@ -279,7 +282,7 @@ onUnmounted(() => {
 		&:focus-within {
 			background: var(--panelHighlight);
 			h3 {
-				text-decoration: underline;
+				text-decoration-color: currentColor;
 			}
 		}
 	}

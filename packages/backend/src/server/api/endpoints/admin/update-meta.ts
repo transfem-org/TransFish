@@ -177,6 +177,9 @@ export const paramDef = {
 				postImports: { type: "boolean" },
 			},
 		},
+		enableServerMachineStats: { type: "boolean" },
+		enableIdenticonGeneration: { type: "boolean" },
+		donationLink: { type: "string", nullable: true },
 	},
 	required: [],
 } as const;
@@ -566,6 +569,21 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (ps.experimentalFeatures !== undefined) {
 		set.experimentalFeatures = ps.experimentalFeatures || undefined;
+	}
+
+	if (ps.enableServerMachineStats !== undefined) {
+		set.enableServerMachineStats = ps.enableServerMachineStats;
+	}
+
+	if (ps.enableIdenticonGeneration !== undefined) {
+		set.enableIdenticonGeneration = ps.enableIdenticonGeneration;
+	}
+
+	if (ps.donationLink !== undefined) {
+		set.donationLink = ps.donationLink;
+		if (set.donationLink && !/^https?:\/\//i.test(set.donationLink)) {
+			set.donationLink = `https://${set.donationLink}`;
+		}
 	}
 
 	await db.transaction(async (transactionalEntityManager) => {

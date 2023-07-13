@@ -409,7 +409,6 @@ export default defineComponent({
 										key: Math.random(),
 										to: `/tags/${encodeURIComponent(token.props.hashtag)}`,
 										style: "color:var(--hashtag);",
-										class: "_link",
 									},
 									`#${token.props.hashtag}`,
 								),

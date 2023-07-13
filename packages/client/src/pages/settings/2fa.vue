@@ -82,7 +82,7 @@
 							<p>
 								{{ `${i18n.ts.lastUsedDate}: ${key.lastUsed}` }}
 							</p>
-							<div class="_buttons _flexList">
+							<div class="_flexList">
 								<MkButton @click="renameKey(key)"
 									><i
 										class="ph-pencil-line ph-bold ph-lg"

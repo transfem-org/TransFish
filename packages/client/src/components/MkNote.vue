@@ -869,6 +869,9 @@ defineExpose({
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
+					&:disabled {
+						opacity: 0.5 !important;
+					}
 					flex-grow: 1;
 					max-width: 3.5em;
 					width: max-content;

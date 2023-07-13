@@ -101,8 +101,9 @@
 								><Mfm
 									:text="'@freeplay@calckey.social (UI/UX)'"
 							/></FormLink>
-							<FormLink to="/@nmkj@calckey.jp"
-								><Mfm :text="'@nmkj@calckey.jp (Backend)'"
+							<FormLink to="/@namekuji@calckey.social"
+								><Mfm
+									:text="'@namekuji@calckey.social (Backend)'"
 							/></FormLink>
 							<FormLink to="/@dev@post.naskya.net"
 								><Mfm :text="'@dev@post.naskya.net (Backend)'"

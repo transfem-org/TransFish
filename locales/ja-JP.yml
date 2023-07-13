@@ -983,6 +983,8 @@ enableIdenticonGeneration: "ユーザーごとのIdenticon生成を有効にす�
 showPopup: "ポップアップを表示してユーザーに知らせる"
 showWithSparkles: "タイトルをキラキラさせる"
 youHaveUnreadAnnouncements: "未読のお知らせがあります"
+neverShow: "今後表示しない"
+remindMeLater: "また後で"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"

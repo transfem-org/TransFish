@@ -69,7 +69,7 @@ const alt = computed(() =>
 	vertical-align: -0.25em;
 
 	&.custom {
-		height: 2.5em;
+		height: 2em;
 		vertical-align: middle;
 		transition: transform 0.2s ease;
 

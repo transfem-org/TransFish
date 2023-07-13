@@ -28,13 +28,8 @@
 					i18n.ts.close
 				}}</MkButton>
 			</header>
-			<XDraggable
-				v-model="widgets_"
-				item-key="id"
-				handle=".handle"
-				animation="150"
-			>
-				<template #item="{ element }">
+			<VueDraggable v-model="widgets_" handle=".handle" animation="150">
+				<div v-for="element in widgets_" :key="element.id">
 					<div class="customize-container">
 						<button
 							class="config _button"
@@ -58,8 +53,8 @@
 							/>
 						</div>
 					</div>
-				</template>
-			</XDraggable>
+				</div>
+			</VueDraggable>
 		</template>
 		<component
 			:is="`mkw-${widget.name}`"
@@ -78,13 +73,12 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, reactive, ref, computed } from "vue";
 import { v4 as uuid } from "uuid";
+import { VueDraggable } from "vue-draggable-plus";
 import MkSelect from "@/components/form/select.vue";
 import MkButton from "@/components/MkButton.vue";
 import { widgets as widgetDefs } from "@/widgets";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-
-const XDraggable = defineAsyncComponent(() => import("vuedraggable"));
 
 type Widget = {
 	name: string;

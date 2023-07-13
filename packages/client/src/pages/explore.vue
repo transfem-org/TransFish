@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XFeatured from "./explore.featured.vue";
 import XUsers from "./explore.users.vue";

@@ -107,7 +107,7 @@
 
 <script lang="ts" setup>
 import { computed, defineComponent, watch, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkFolder from "@/components/MkFolder.vue";
 import MkPagination from "@/components/MkPagination.vue";

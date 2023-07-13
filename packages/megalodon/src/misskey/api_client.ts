@@ -156,7 +156,7 @@ namespace MisskeyAPI {
         id: u.id,
         username: u.username,
         acct: acct,
-        display_name: u.name,
+        display_name: u.name || u.username,
         locked: u.isLocked,
         created_at: u.createdAt,
         followers_count: u.followersCount,
