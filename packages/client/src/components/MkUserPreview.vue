@@ -155,7 +155,7 @@ onMounted(() => {
 			user.description.length > 400;
 	} else {
 		const query = props.q.startsWith("@")
-			? Acct.parse(props.q.substr(1))
+			? Acct.parse(props.q.slice(1))
 			: { userId: props.q };
 
 		os.api("users/show", query).then((res) => {
