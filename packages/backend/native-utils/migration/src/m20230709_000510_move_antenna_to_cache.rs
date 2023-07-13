@@ -36,10 +36,10 @@ impl MigrationTrait for Migration {
                 .await?
                 .unwrap()
                 .try_get_by_index::<i64>(0)?;
-            let copy_limit = if copy_limit == 0 {
-                total_num
-            } else {
+            let copy_limit = if copy_limit > 0 {
                 copy_limit
+            } else {
+                total_num
             };
             println!(
                 "Copying {} out of {} entries in antenna_note.",
