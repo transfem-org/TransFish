@@ -12,7 +12,7 @@
 				<div v-panel style="border-radius: 6px">
 					<VueDraggable
 						v-model="reactions"
-						:class="$style.root"
+						class="zoaiodol"
 						animation="150"
 						delay="100"
 						@end="save"
@@ -245,8 +245,8 @@ definePageMetadata({
 });
 </script>
 
-<style lang="scss" module>
-.root {
+<style lang="scss" scoped>
+.zoaiodol {
 	padding: 12px;
 	font-size: 1.1em;
 
