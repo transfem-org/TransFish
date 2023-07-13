@@ -98,11 +98,13 @@ export default define(meta, paramDef, async (ps, me) => {
 		if (me == null) {
 			throw new ApiError(meta.errors.forbidden);
 		} else if (me.id !== user.id) {
-			const following = await Followings.findOneBy({
-				followeeId: user.id,
-				followerId: me.id,
+			const isFollowed = await Followings.exist({
+				where: {
+					followeeId: user.id,
+					followerId: me.id,
+				},
 			});
-			if (following == null) {
+			if (!isFollowed) {
 				throw new ApiError(meta.errors.nullFollowers);
 			}
 		}
