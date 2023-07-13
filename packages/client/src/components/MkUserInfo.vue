@@ -19,7 +19,7 @@
 			/></MkA>
 			<p class="username"><MkAcct :user="user" /></p>
 		</h3>
-		<div 
+		<div
 			class="description"
 			:class="{ collapsed: isLong && collapsed, truncate: !detailed }"
 		>
@@ -35,16 +35,9 @@
 				i18n.ts.noAccountDescription
 			}}</span>
 		</div>
-		<XShowMoreButton
-			v-if="isLong"
-			v-model="collapsed"
-		></XShowMoreButton>
+		<XShowMoreButton v-if="isLong" v-model="collapsed"></XShowMoreButton>
 		<div v-if="user.fields.length > 0 && detailed" class="fields">
-			<dl
-				v-for="(field, i) in user.fields"
-				:key="i"
-				class="field"
-			>
+			<dl v-for="(field, i) in user.fields" :key="i" class="field">
 				<dt class="name">
 					<Mfm
 						:text="field.name"
@@ -101,10 +94,8 @@ const props = defineProps<{
 
 let isLong = $ref(
 	props.detailed &&
-	(
-		props.user.description.split("\n").length > 9 ||
-		props.user.description.length > 400
-	)
+		(props.user.description.split("\n").length > 9 ||
+			props.user.description.length > 400),
 );
 let collapsed = $ref(isLong);
 </script>
@@ -148,7 +139,6 @@ let collapsed = $ref(isLong);
 		}
 	}
 
-	
 	.title {
 		position: relative;
 		display: block;
@@ -159,7 +149,7 @@ let collapsed = $ref(isLong);
 		background: var(--panel);
 		line-height: 1;
 		z-index: 4;
-		
+
 		.avatar {
 			display: block;
 			position: absolute;
@@ -210,12 +200,10 @@ let collapsed = $ref(isLong);
 			position: relative;
 			max-height: calc(9em + 50px);
 			mask: linear-gradient(black calc(100% - 64px), transparent);
-			-webkit-mask: linear-gradient(
-				black calc(100% - 64px),
-				transparent
-			);
+			-webkit-mask: linear-gradient(black calc(100% - 64px), transparent);
 		}
-		&.collapsed, &.truncate {
+		&.collapsed,
+		&.truncate {
 			:deep(br) {
 				display: none; // collapse white spaces
 			}

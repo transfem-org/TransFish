@@ -93,6 +93,5 @@ onMounted(() => {
 	width: 300px;
 	overflow: hidden;
 	transform-origin: center top;
-
 }
 </style>
