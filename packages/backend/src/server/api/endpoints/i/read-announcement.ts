@@ -30,7 +30,7 @@ export const paramDef = {
 
 export default define(meta, paramDef, async (ps, user) => {
 	// Check if announcement exists
-	const exist = await Announcements.findOneBy({
+	const exist = await Announcements.exist({
 		where: { id: ps.announcementId },
 	});
 
@@ -39,12 +39,14 @@ export default define(meta, paramDef, async (ps, user) => {
 	}
 
 	// Check if already read
-	const read = await AnnouncementReads.findOneBy({
-		announcementId: ps.announcementId,
-		userId: user.id,
+	const read = await AnnouncementReads.exist({
+		where: {
+			announcementId: ps.announcementId,
+			userId: user.id,
+		},
 	});
 
-	if (read != null) {
+	if (read) {
 		return;
 	}
 
