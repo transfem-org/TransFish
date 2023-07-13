@@ -40,6 +40,7 @@
 						<button
 							class="remove _button"
 							@click.prevent.stop="removeWidget(element)"
+							:aria-label="i18n.t('close')"
 						>
 							<i class="ph-x ph-bold ph-lg"></i>
 						</button>

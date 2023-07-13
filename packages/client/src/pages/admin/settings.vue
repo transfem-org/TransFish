@@ -59,9 +59,7 @@
 								class="_formBlock"
 							>
 								<template #prefix
-									><i
-										class="ph-hand-heart ph-bold ph-lg"
-									></i
+									><i class="ph-hand-heart ph-bold ph-lg"></i
 								></template>
 								<template #label>{{
 									i18n.ts.donationLink

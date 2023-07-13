@@ -18,7 +18,7 @@
 						}}
 					</p>
 				</div>
-				<div class="_flexList" style="gap: 0.6rem;">
+				<div class="_flexList" style="gap: 0.6rem">
 					<MkButton
 						primary
 						@click="
@@ -46,7 +46,7 @@
 					}}</MkButton>
 				</div>
 			</div>
-			<button class="_button" :class="$style.close" @click="close">
+			<button class="_button" :class="$style.close" @click="close" :aria-label="i18n.t('close')">
 				<i class="ph-x ph-bold ph-lg"></i>
 			</button>
 		</div>
@@ -72,10 +72,10 @@ const hostname = instance.name?.length < 38 ? instance.name : host;
 const zIndex = os.claimZIndex("low");
 
 function slideIn() {
-    show.value = false;
-    nextTick(() => {
-        show.value = true;
-    });
+	show.value = false;
+	nextTick(() => {
+		show.value = true;
+	});
 }
 
 slideIn();
@@ -98,31 +98,35 @@ function openExternal(link) {
 
 <style lang="scss" scoped>
 .slide-fade-enter-from {
-    opacity: 0;
-    transform: translateY(100%);
+	opacity: 0;
+	transform: translateY(100%);
 }
 
 .slide-fade-enter-active {
-    transition: opacity 0.5s, transform 0.5s ease-out;
+	transition:
+		opacity 0.5s,
+		transform 0.5s ease-out;
 }
 
 .slide-fade-enter-to {
-    opacity: 1;
-    transform: translateY(0);
+	opacity: 1;
+	transform: translateY(0);
 }
 
 .slide-fade-leave-from {
-    opacity: 1;
-    transform: translateY(0);
+	opacity: 1;
+	transform: translateY(0);
 }
 
 .slide-fade-leave-active {
-    transition: opacity 0.5s, transform 0.5s ease-out;
+	transition:
+		opacity 0.5s,
+		transform 0.5s ease-out;
 }
 
 .slide-fade-leave-to {
-    opacity: 0;
-    transform: translateY(100%);
+	opacity: 0;
+	transform: translateY(100%);
 }
 </style>
 

@@ -14,7 +14,7 @@
 					@update:modelValue="onInput(i, $event)"
 				>
 				</MkInput>
-				<button class="_button" @click="remove(i)">
+				<button class="_button" @click="remove(i)" :aria-label="i18n.t('remove')">
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>
 			</li>

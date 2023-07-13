@@ -393,7 +393,7 @@ export const meta = {
 				type: "string",
 				optional: "true",
 				nullable: true,
-			}
+			},
 		},
 	},
 } as const;
