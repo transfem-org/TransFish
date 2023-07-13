@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkEmojiPicker from "@/components/MkEmojiPicker.vue";
 import { defaultStore } from "@/store";
@@ -58,9 +58,22 @@ const emit = defineEmits<{
 
 const modal = ref<InstanceType<typeof MkModal>>();
 const picker = ref<InstanceType<typeof MkEmojiPicker>>();
+const isShiftKeyPressed = ref(false);
+
+const keydownHandler = (e) => {
+	if (e.key === "Shift") {
+		isShiftKeyPressed.value = true;
+	}
+};
+
+const keyupHandler = (e) => {
+	if (e.key === "Shift") {
+		isShiftKeyPressed.value = false;
+	}
+};
 
 function checkForShift(ev?: MouseEvent) {
-	if (ev?.shiftKey) {
+	if (!isShiftKeyPressed.value) {
 		modal.value?.close(ev);
 	}
 }
@@ -78,6 +91,16 @@ function opening() {
 	}
 	picker.value?.focus();
 }
+
+onMounted(() => {
+	window.addEventListener("keydown", keydownHandler);
+	window.addEventListener("keyup", keyupHandler);
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener("keydown", keydownHandler);
+	window.removeEventListener("keyup", keyupHandler);
+});
 </script>
 
 <style lang="scss" scoped>
