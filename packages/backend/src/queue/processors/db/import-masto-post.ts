@@ -50,7 +50,7 @@ export async function importMastoPost(
 		text: text || undefined,
 		reply,
 		renote: null,
-		cw: post.sensitive,
+		cw: post.object.sensitive ? post.object.summary : undefined,
 		localOnly: false,
 		visibility: "hidden",
 		visibleUsers: [],
