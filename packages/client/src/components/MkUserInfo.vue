@@ -205,7 +205,7 @@ let collapsed = $ref(isLong);
 		&.collapsed,
 		&.truncate {
 			:deep(br) {
-				display: none; // collapse white spaces
+				display: block; // collapse white spaces
 			}
 		}
 	}
