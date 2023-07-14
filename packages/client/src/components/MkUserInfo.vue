@@ -93,7 +93,8 @@ const props = defineProps<{
 }>();
 
 let isLong = $ref(
-	props.detailed && props.user.description && 
+	props.detailed &&
+		props.user.description &&
 		(props.user.description.split("\n").length > 9 ||
 			props.user.description.length > 400),
 );

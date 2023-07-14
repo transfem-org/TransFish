@@ -1,12 +1,9 @@
 <template>
 	<section class="ssazuxis">
-		<header
-			class="_button"
-			@click="showBody = !showBody"
-		>
+		<header class="_button" @click="showBody = !showBody">
 			<div class="title"><slot name="header"></slot></div>
 			<div class="divider"></div>
-			<button 
+			<button
 				class="_button"
 				:aria-expanded="showBody"
 				:aria-controls="bodyId"
