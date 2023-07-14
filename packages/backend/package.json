@@ -47,7 +47,7 @@
 		"aws-sdk": "2.1413.0",
 		"axios": "^1.4.0",
 		"bcryptjs": "2.4.3",
-		"blurhash-as": "^0.10.0",
+		"blurhash": "2.0.5",
 		"bull": "4.10.4",
 		"cacheable-lookup": "7.0.0",
 		"calckey-js": "workspace:*",

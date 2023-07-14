@@ -30,7 +30,6 @@
 		"autobind-decorator": "2.4.0",
 		"autosize": "5.0.2",
 		"blurhash": "2.0.5",
-		"blurhash-as": "^0.10.0",
 		"broadcast-channel": "5.1.0",
 		"browser-image-resizer": "github:misskey-dev/browser-image-resizer",
 		"calckey-js": "workspace:*",
