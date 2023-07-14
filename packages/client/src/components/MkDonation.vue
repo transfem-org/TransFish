@@ -137,6 +137,7 @@ function openExternal(link) {
 
 <style lang="scss" module>
 .root {
+	background-color: var(--windowHeader);
 	position: fixed;
 	z-index: v-bind(zIndex);
 	bottom: var(--margin);
