@@ -46,7 +46,7 @@
 			</template>
 			<template v-else-if="!isFollowing && user.isLocked">
 				<span>{{ (state = i18n.ts.followRequest) }}</span
-				><i class="ph-plus ph-bold ph-lg"></i>
+				><i class="ph-lock-open ph-bold ph-lg"></i>
 			</template>
 			<template v-else-if="!isFollowing && !user.isLocked">
 				<span>{{ (state = i18n.ts.follow) }}</span

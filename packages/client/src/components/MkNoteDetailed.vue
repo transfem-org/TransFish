@@ -33,7 +33,12 @@
 			detailedView
 		></MkNote>
 
-		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
+		<MkTab
+			v-model="tab"
+			style="white-space: nowrap"
+			:style="'underline'"
+			@update:modelValue="loadTab"
+		>
 			<option value="replies">
 				<!-- <i class="ph-arrow-u-up-left ph-bold ph-lg"></i> -->
 				<span v-if="note.repliesCount > 0" class="count">{{
