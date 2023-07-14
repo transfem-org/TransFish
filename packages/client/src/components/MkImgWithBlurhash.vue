@@ -4,12 +4,12 @@
 		ref="canvas"
 		:width="size"
 		:height="size"
-		:title="title"
+		:title="title ?? ''"
 	/>
 	<img
 		v-if="src"
 		:src="src"
-		:title="title"
+		:title="title ?? ''"
 		:type="type"
 		:alt="alt"
 		:class="{ cover }"
@@ -21,7 +21,8 @@
 
 <script lang="ts" setup>
 import { onMounted } from "vue";
-import { decodeBlurHash } from "fast-blurhash";
+import * as blurhash from "blurhash-as/browser";
+import wasmURL from "blurhash-as/build/optimized.wasm?url";
 
 const props = withDefaults(
 	defineProps<{
@@ -46,9 +47,10 @@ const props = withDefaults(
 const canvas = $ref<HTMLCanvasElement>();
 let loaded = $ref(false);
 
-function draw() {
+async function draw() {
 	if (props.hash == null || canvas == null) return;
-	const pixels = decodeBlurHash(props.hash, props.size, props.size);
+	blurhash.setURL(wasmURL);
+	const pixels = await blurhash.decode(props.hash, props.size, props.size);
 	const ctx = canvas.getContext("2d");
 	const imageData = ctx!.createImageData(props.size, props.size);
 	imageData.data.set(pixels);

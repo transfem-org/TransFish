@@ -10,11 +10,12 @@ import FFmpeg from "fluent-ffmpeg";
 import isSvg from "is-svg";
 import { type predictionType } from "nsfwjs";
 import sharp from "sharp";
-import { encode } from "blurhash";
+import * as blurhash from "blurhash-as";
 import { detectSensitive } from "@/services/detect-sensitive.js";
 import { createTempDir } from "./create-temp.js";
 
 const pipeline = util.promisify(stream.pipeline);
+blurhash.init();
 
 export type FileInfo = {
 	size: number;
@@ -432,7 +433,13 @@ function getBlurhash(path: string): Promise<string> {
 				let hash;
 
 				try {
-					hash = encode(new Uint8ClampedArray(buffer), width, height, 7, 7);
+					hash = blurhash.encode(
+						new Uint8ClampedArray(buffer),
+						width,
+						height,
+						7,
+						7,
+					);
 				} catch (e) {
 					return reject(e);
 				}
