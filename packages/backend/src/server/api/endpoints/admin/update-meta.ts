@@ -221,6 +221,16 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (Array.isArray(ps.recommendedInstances)) {
 		set.recommendedInstances = ps.recommendedInstances.filter(Boolean);
+		if (set.recommendedInstances?.length > 0) {
+			set.recommendedInstances.forEach((instance, index) => {
+				if (/^https?:\/\//i.test(instance)) {
+					set.recommendedInstances![index] = instance.replace(
+						/^https?:\/\//i,
+						"",
+					);
+				}
+			});
+		}
 	}
 
 	if (Array.isArray(ps.hiddenTags)) {

@@ -1050,7 +1050,7 @@ customSplashIconsDescription: "URLs for custom splash screen icons separated by 
 showUpdates: "Show a popup when Calckey updates"
 recommendedInstances: "Recommended servers"
 recommendedInstancesDescription: "Recommended servers separated by line breaks to
-  appear in the recommended timeline. Do NOT add `https://`, ONLY the domain."
+  appear in the recommended timeline."
 caption: "Auto Caption"
 splash: "Splash Screen"
 updateAvailable: "There might be an update available!"

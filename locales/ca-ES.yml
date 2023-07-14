@@ -1382,7 +1382,7 @@ adminCustomCssWarn: Aquesta configuració només s'ha d'utilitzar si sabeu què 
 showUpdates: Mostra una finestra emergent quan Calckey s'actualitzi
 recommendedInstances: Servidors recomanats
 recommendedInstancesDescription: Servidors recomanats separats per salts de línia
-  que apareixen a la línia de temps recomanada. NO afegiu `https://`, NOMÉS el domini.
+  que apareixen a la línia de temps recomanada.
 caption: Descripció Automàtica
 splash: Pantalla de Benvinguda
 swipeOnDesktop: Permet lliscar a l'estil del mòbil a l'escriptori

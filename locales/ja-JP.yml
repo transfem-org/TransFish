@@ -946,7 +946,7 @@ customSplashIconsDescription: "ユーザがページをロード/リロードす
   URL。画像は静的なURLで、できればすべて192x192にリサイズしてください。"
 showUpdates: "Calckeyの更新時にポップアップを表示する"
 recommendedInstances: "おすすめサーバー"
-recommendedInstancesDescription: "おすすめタイムラインに表示するサーバーを改行区切りで入力してください。`https://`は書かず、ドメインのみを入力してください。"
+recommendedInstancesDescription: "おすすめタイムラインに表示するサーバーを改行区切りで入力してください。"
 caption: "自動キャプション"
 splash: "スプラッシュスクリーン"
 updateAvailable: "アップデートがありますよ！"
