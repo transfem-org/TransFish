@@ -25,4 +25,4 @@
 /// <reference path="entities/session.ts" />
 /// <reference path="entities/stats.ts" />
 
-export default MisskeyEntity
+export default MisskeyEntity;
