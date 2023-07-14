@@ -39,13 +39,17 @@ html {
 	accent-color: var(--accent);
 	overflow: auto;
 	overflow-wrap: break-word;
-	font-family: "BIZ UDGothic", Roboto, HelveticaNeue, Arial, sans-serif;
+	font-family: Roboto, HelveticaNeue, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.6;
 	text-size-adjust: 100%;
 	tab-size: 2;
 	scroll-padding: 60px;
 	overflow-x: clip;
+
+	&.useCJKFont {
+		font-family: "Hiragino Maru Gothic Pro", "BIZ UDGothic", Roboto, HelveticaNeue, Arial, sans-serif;
+	}
 
 	&.useSystemFont {
 		font-family:
