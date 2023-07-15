@@ -1228,6 +1228,7 @@ _aboutMisskey:
   donateHost: "Donate to {host}"
   morePatrons: "We also appreciate the support of many other helpers not listed here.
     Thank you! 🥰"
+  sponsors: "Calckey sponsors"
   patrons: "Calckey patrons"
   patronsList: "Listed chronologically, not by donation size. Donate with the link above to get your name on here!"
 _nsfw:
