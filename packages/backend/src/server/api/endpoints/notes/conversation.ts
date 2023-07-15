@@ -51,7 +51,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	const conversation: Note[] = [];
 	let i = 0;
 
-	async function get(id: any) {
+	async function get(id: string) {
 		i++;
 		const p = await getNote(id, user).catch((e) => {
 			if (e.id === "9725d0ce-ba28-4dde-95a7-2cbb2c15de24") return null;
@@ -60,7 +60,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 		if (p == null) return;
 
-		if (i > ps.offset!) {
+		if (i > ps.offset) {
 			conversation.push(p);
 		}
 
