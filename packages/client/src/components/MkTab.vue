@@ -58,7 +58,6 @@ export default defineComponent({
 	font-size: 90%;
 	border-radius: var(--radius);
 	padding: 10px 8px;
-	white-space: nowrap;
 
 	> button {
 		flex: 1;
@@ -106,6 +105,8 @@ export default defineComponent({
 			transparent
 		);
 		padding-right: 90px !important;
+		white-space: nowrap;
+		
 		&::-webkit-scrollbar {
 			display: none;
 		}
