@@ -1111,3 +1111,62 @@ customSplashIcons: Özel açılış ekranı simgeleri (url'ler)
 recommendedInstancesDescription: Önerilen zaman çizelgesinde görünmesi için satır
   sonlarıyla ayrılmış önerilen sunucular. `https://` EKLEMEYİN, YALNIZCA etki alanı.
 recommendedInstances: Önerilen sunucular
+enableServerMachineStats: Sunucu donanımı istatistiklerini etkinleştir
+_sensitiveMediaDetection:
+  sensitivityDescription: Hassasiyetin düşürülmesi daha az yanlış tespite yol açarken,
+    hassasiyeti artırmak daha az tespitin gözden kaçmasına yol açacaktır.
+  setSensitiveFlagAutomaticallyDescription: Bu seçenek kapatılsa bile dahili algılamanın
+    sonuçları korunacaktır.
+  description: Makine Öğrenimi yoluyla NSFW ortamını otomatik olarak tanıyarak sunucu
+    denetleme çabasını azaltır. Bu, sunucudaki yükü biraz artıracaktır.
+  sensitivity: Algılama hassasiyeti
+  analyzeVideos: Videoların analizini etkinleştir
+  setSensitiveFlagAutomatically: NSFW olarak işaretle
+  analyzeVideosDescription: Görüntülere ek olarak videoları da analiz eder. Bu, sunucudaki
+    yükü biraz artıracaktır.
+enableIdenticonGeneration: Kimlik oluşturmayı etkinleştir
+reactionPickerSkinTone: Tercih edilen emoji cilt tonu
+noteId: Gönderi ID
+preventAiLearning: AI bot öğrenmesini önleyin
+preventAiLearningDescription: Gönderiler ve resimler gibi yüklediğiniz içeriği incelememek
+  için üçüncü taraf yapay zeka dil modellerini isteyin.
+isAdmin: Yönetici
+_emailUnavailable:
+  disposable: Tek kullanımlık mail adresleri kullanılamaz
+  smtp: Bu mail sunucusu cevap vermiyor
+  mx: Bu mail sunucusu hatalı
+  used: Bu mail zaten kullanılıyor
+  format: Bu mail adresi yanlış
+apps: Uygulamalar
+findOtherInstance: Başka bir sunucu bul
+showWithSparkles: Parıltılarla göster
+showPopup: Kullanıcıları pop-up ile bilgilendirin
+silencedWarning: Bu sayfa, bu kullanıcılar yöneticinizin susturduğu sunuculardan olduğu
+  için gösteriliyor, bu nedenle potansiyel olarak spam olabilirler.
+isPatron: Calckey Patronu
+youHaveUnreadAnnouncements: Okunmamış duyurularınız var
+donationLink: Bağış sayfası linki
+neverShow: Birdaha gösterme
+remindMeLater: Belki sonra
+removeQuote: Alıntıyı sil
+removeRecipient: Alıcıyı sil
+removeMember: Kullanıcıyı sil
+customKaTeXMacroDescription: 'Kolayca matematiksel ifadeler yazmak için makrolar kurun!
+  Gösterim, LaTeX komut tanımlarına uygundur ve \newcommand{\ name}{content} veya
+  \newcommand{\name}[argüman sayısı]{content} şeklinde yazılır. Örneğin, \newcommand{\add}[2]{#1
+  + #2}, \add{3}{foo} öğesini 3 + foo olarak genişletir. Makro adını çevreleyen süslü
+  parantezler, yuvarlak veya köşeli parantezler olarak değiştirilebilir. Bu, bağımsız
+  değişkenler için kullanılan parantezleri etkiler. Satır başına bir (ve yalnızca
+  bir) makro tanımlanabilir ve satırı tanımın ortasından ayıramazsınız. Geçersiz satırlar
+  basitçe yoksayılır. Yalnızca basit dizi değiştirme işlevleri desteklenir; koşullu
+  dallanma gibi gelişmiş söz dizimi burada kullanılamaz.'
+enableCustomKaTeXMacro: Özel KaTeX makrolarını aktif et
+isLocked: Bu hesabın takip onayları var
+isModerator: Moderatör
+signupsDisabled: Bu sunucudaki kayıtlar şu anda devre dışı, ancak istediğiniz zaman
+  başka bir sunucuya kaydolabilirsiniz! Bu sunucu için bir davet kodunuz varsa, lütfen
+  aşağıya girin.
+sendModMail: Moderasyon Bildirimi Gönder
+noGraze: Calckey ile çakıştığı için lütfen "Graze for Mastodon" tarayıcı uzantısını
+  devre dışı bırakın.
+isBot: Bu hesap bir bottur
