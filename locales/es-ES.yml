@@ -406,7 +406,7 @@ exploreFediverse: "Explorar fediverso"
 popularTags: "Etiquetas populares"
 userList: "Lista"
 about: "Información"
-aboutMisskey: "Sobre Firefish"
+aboutFirefish: "Sobre Firefish"
 administrator: "Administrador"
 token: "Token"
 twoStepAuthentication: "Autenticación de dos factores"
@@ -1062,7 +1062,7 @@ _registry:
   keys: "Clave"
   domain: "Dominio"
   createKey: "Crear una llave"
-_aboutMisskey:
+_aboutFirefish:
   about: "Firefish es una bifurcación de Misskey creada por ThatOneCalculator, que
     ha estado en desarrollo desde el 2022."
   contributors: "Principales colaboradores"

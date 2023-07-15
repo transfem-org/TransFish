@@ -377,7 +377,7 @@ exploreFediverse: "Objavovať Fediverzum"
 popularTags: "Populárne značky"
 userList: "Zoznamy"
 about: "Informácie"
-aboutMisskey: "O Firefish"
+aboutFirefish: "O Firefish"
 administrator: "Administrátor"
 token: "Token"
 twoStepAuthentication: "Dvojfaktorová autentifikácia"
@@ -960,7 +960,7 @@ _registry:
   keys: "Kľúče"
   domain: "Doména"
   createKey: "Vytvoriť kľúč"
-_aboutMisskey:
+_aboutFirefish:
   about: "Misskey je open-source softvér, ktorý vyvíja syuilo od 2014."
   contributors: "Hlavní prispievatelia"
   allContributors: "Všetci prispievatelia"

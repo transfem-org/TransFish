@@ -1,5 +1,5 @@
 _lang_: "Türkçe"
-introMisskey: "Açık kaynaklı bir dağıtılmış mikroblog hizmeti olan Calckey'e hoş geldiniz.\n
+introMisskey: "Açık kaynaklı bir dağıtılmış mikroblog hizmeti olan Firefish'e hoş geldiniz.\n
   Misskey, neler olup bittiğini paylaşmak ve herkese sizden bahsetmek için \"notlar\"\
   \ oluşturmanıza olanak tanıyan, açık kaynaklı, dağıtılmış bir mikroblog hizmetidir.\n
   Herkesin notlarına kendi tepkilerinizi hızlıca eklemek için \"Tepkiler\" özelliğini
@@ -65,7 +65,7 @@ _deck:
   _columns:
     notifications: "Bildirim"
     tl: "Zaman çizelgesi"
-searchPlaceholder: Calckey'de Ara
+searchPlaceholder: Firefish'de Ara
 reply: Yanıtla
 jumpToPrevious: Öncekini görüntüle
 deleted: Silindi
@@ -105,7 +105,7 @@ blockedInstancesDescription: Engellemek istediğiniz sunucuların ana bilgisayar
   listeleyin. Listelenen sunucular artık bu sunucularla iletişim kuramayacak.
 blockedUsers: Engellenmiş kullanıcılar
 editProfile: Profilini düzenle
-intro: Calckey'in indirilmesi tamamlandı! Lütfen yönetici hesap oluşturun.
+intro: Firefish'in indirilmesi tamamlandı! Lütfen yönetici hesap oluşturun.
 instanceUsers: Sunucunun kullanıcıları
 changePassword: Şifreyi değiştir
 security: Güvenlik
@@ -545,7 +545,7 @@ invalidValue: Geçersiz değer.
 instanceSecurity: Sunucu Güvenliği
 searchResult: Arama sonuçları
 useBlurEffect: Kullanıcı arayüzünde bulanıklaştırma efektleri kullanın
-misskeyUpdated: Calckey güncellendi!
+misskeyUpdated: Firefish güncellendi!
 lastCommunication: Son iletişim
 itsOn: Etkinleştirilmiş
 emailRequiredForSignup: Kayıt olmak için mail gerekiyor
@@ -674,9 +674,9 @@ low: Düşük
 seperateRenoteQuote: Ayrı destek ve fiyat teklifi düğmeleri
 sent: Gönderildi
 customMOTD: Özel MOTD
-showUpdates: Calckey güncellendiğinde bir açılır pencere göster
+showUpdates: Firefish güncellendiğinde bir açılır pencere göster
 logoImageUrl: Logo resim URL'si
-showAdminUpdates: Yeni bir Calckey sürümünün mevcut olduğunu belirtin (yalnızca yönetici)
+showAdminUpdates: Yeni bir Firefish sürümünün mevcut olduğunu belirtin (yalnızca yönetici)
 newer: asla
 older: daha eski
 exportRequested: Bir dışarı aktarma talebinde bulundunuz. Bu biraz zaman alabilir.
@@ -741,7 +741,7 @@ recaptchaSecretKey: Secret key
 avoidMultiCaptchaConfirm: Birden fazla Captcha sistemi kullanmak aralarında etkileşime
   neden olabilir. Şu anda etkin olan diğer Captcha sistemlerini devre dışı bırakmak
   ister misiniz? Etkin kalmalarını istiyorsanız, iptal düğmesine basın.
-aboutMisskey: Calckey Hakkında
+aboutFirefish: Firefish Hakkında
 popularUsers: Popüler kullanıcılar
 notFoundDescription: Bu URL'ye karşılık gelen sayfa bulunamadı.
 reduceUiAnimation: Arayüz animasyonlarını azalt
@@ -941,7 +941,7 @@ instanceTicker: Göndeirlerdeki sunucu bilgisi
 waitingFor: '{x} bekleniyor'
 random: Rastgele
 public: Herkese açık
-i18nInfo: Calckey, gönüllüler tarafından çeşitli dillere çevriliyor. {link} adresinden
+i18nInfo: Firefish, gönüllüler tarafından çeşitli dillere çevriliyor. {link} adresinden
   yardımcı olabilirsiniz.
 disableShowingAnimatedImages: Animasyonlu görüntüleri oynatma
 clips: Ataçlar
@@ -1032,7 +1032,7 @@ cacheRemoteFiles: Uzak dosyaları önbellekle
 flagAsBot: Bu hesabı robot olarak işaretle
 flagAsBotDescription: Bu hesap bir program tarafından kontrol ediliyorsa bu seçeneği
   etkinleştirin. Etkinleştirilirse, diğer geliştiricilerin diğer botlarla sonsuz etkileşim
-  zincirlerini önlemesi ve Calckey'nin dahili sistemlerini bu hesabı bir bot olarak
+  zincirlerini önlemesi ve Firefish'nin dahili sistemlerini bu hesabı bir bot olarak
   ele alacak şekilde ayarlaması için bir bayrak görevi görür.
 clearQueue: Sırayı Temizle
 hiddenTags: Gizlenmiş Etiketler
@@ -1064,7 +1064,7 @@ ascendingOrder: Artan
 tags: Etiketler
 descendingOrder: Azalan
 scratchpadDescription: Karalama defteri, AiScript deneyleri için bir ortam sağlar.
-  İçinde Calckey ile etkileşime girerek sonuçlarını yazabilir, çalıştırabilir ve kontrol
+  İçinde Firefish ile etkileşime girerek sonuçlarını yazabilir, çalıştırabilir ve kontrol
   edebilirsiniz.
 local: Yerel
 remote: Uzak
@@ -1092,8 +1092,8 @@ desktop: Masaüstü
 confirmToUnclipAlreadyClippedNote: Bu gönderi zaten "{name}" atacının bir parçası.
   Bunun yerine onu bu ataçtan kaldırmak istiyor musunuz?
 sendErrorReportsDescription: "Açıldığında, bir sorun oluştuğunda ayrıntılı hata bilgileri
-  Calckey ile paylaşılarak Calckey kalitesinin artırılmasına yardımcı olur.\nBu, işletim
-  sisteminizin sürümü, kullandığınız tarayıcı, Calckey'deki etkinliğiniz vb. bilgileri
+  Firefish ile paylaşılarak Firefish kalitesinin artırılmasına yardımcı olur.\nBu, işletim
+  sisteminizin sürümü, kullandığınız tarayıcı, Firefish'deki etkinliğiniz vb. bilgileri
   içerecektir."
 closeAccount: Hesabı kapat
 markAllAsRead: Okunmuş olarak işaretle
@@ -1143,7 +1143,7 @@ showWithSparkles: Parıltılarla göster
 showPopup: Kullanıcıları pop-up ile bilgilendirin
 silencedWarning: Bu sayfa, bu kullanıcılar yöneticinizin susturduğu sunuculardan olduğu
   için gösteriliyor, bu nedenle potansiyel olarak spam olabilirler.
-isPatron: Calckey Patronu
+isPatron: Firefish Patronu
 youHaveUnreadAnnouncements: Okunmamış duyurularınız var
 donationLink: Bağış sayfası linki
 neverShow: Birdaha gösterme
@@ -1167,6 +1167,6 @@ signupsDisabled: Bu sunucudaki kayıtlar şu anda devre dışı, ancak istediği
   başka bir sunucuya kaydolabilirsiniz! Bu sunucu için bir davet kodunuz varsa, lütfen
   aşağıya girin.
 sendModMail: Moderasyon Bildirimi Gönder
-noGraze: Calckey ile çakıştığı için lütfen "Graze for Mastodon" tarayıcı uzantısını
+noGraze: Firefish ile çakıştığı için lütfen "Graze for Mastodon" tarayıcı uzantısını
   devre dışı bırakın.
 isBot: Bu hesap bir bottur

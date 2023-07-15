@@ -20,7 +20,7 @@ COPY package.json pnpm*.yaml ./
 COPY packages/backend/package.json packages/backend/package.json
 COPY packages/client/package.json packages/client/package.json
 COPY packages/sw/package.json packages/sw/package.json
-COPY packages/calckey-js/package.json packages/calckey-js/package.json
+COPY packages/firefish-js/package.json packages/firefish-js/package.json
 COPY packages/megalodon/package.json packages/megalodon/package.json
 COPY packages/backend/native-utils/package.json packages/backend/native-utils/package.json
 COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
@@ -51,7 +51,7 @@ RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip nodejs-curre
 
 COPY . ./
 
-COPY --from=build /calckey/packages/megalodon /calckey/packages/megalodon
+COPY --from=build /firefish/packages/megalodon /firefish/packages/megalodon
 
 # Copy node modules
 COPY --from=build /firefish/node_modules /firefish/node_modules

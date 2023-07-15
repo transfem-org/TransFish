@@ -63,7 +63,7 @@
 								<template #value>{{ version }}</template>
 							</MkKeyValue>
 							<FormLink to="/about-firefish">{{
-								i18n.ts.aboutMisskey
+								i18n.ts.aboutFirefish
 							}}</FormLink>
 						</FormSection>
 
@@ -102,7 +102,7 @@
 									><i class="ph-money ph-bold ph-lg"></i
 								></template>
 								{{
-									i18n.t("_aboutMisskey.donateHost", {
+									i18n.t("_aboutFirefish.donateHost", {
 										host: $instance.name || host,
 									})
 								}}

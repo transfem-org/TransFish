@@ -18,7 +18,7 @@ export async function getInstance(response: Entity.Instance) {
 			response.description ||
 			"This is a vanilla Firefish Instance. It doesn't seem to have a description.",
 		email: response.email || "",
-		version: `3.0.0 (compatible; Calckey ${config.version})`,
+		version: `3.0.0 (compatible; Firefish ${config.version})`,
 		urls: response.urls,
 		stats: {
 			user_count: await totalUsers,

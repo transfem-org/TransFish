@@ -1,4 +1,4 @@
-# 🚚 Migrating from Misskey/FoundKey to Calckey
+# 🚚 Migrating from Misskey/FoundKey to Firefish
 
 All the guides below assume you're starting in the root of the repo directory.
 
@@ -102,4 +102,4 @@ NODE_ENV=production pnpm run migrate
 
 ## Reverse
 
-You ***cannot*** migrate back to Misskey from Calckey due to re-hashing passwords on signin with argon2. You can migrate from Calckey to FoundKey, although this is not recommended due to FoundKey being end-of-life.
+You ***cannot*** migrate back to Misskey from Firefish due to re-hashing passwords on signin with argon2. You can migrate from Firefish to FoundKey, although this is not recommended due to FoundKey being end-of-life.

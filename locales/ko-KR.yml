@@ -377,7 +377,7 @@ exploreFediverse: "연합우주를 탐색"
 popularTags: "인기 태그"
 userList: "리스트"
 about: "정보"
-aboutMisskey: "Misskey에 대하여"
+aboutFirefish: "Misskey에 대하여"
 administrator: "관리자"
 token: "토큰"
 twoStepAuthentication: "2단계 인증"
@@ -964,7 +964,7 @@ _registry:
   keys: "키"
   domain: "도메인"
   createKey: "키 생성"
-_aboutMisskey:
+_aboutFirefish:
   about: "Misskey는 syuilo에 의해서 2014년부터 개발되어 온 오픈소스 소프트웨어 입니다."
   contributors: "주요 기여자"
   allContributors: "모든 기여자"

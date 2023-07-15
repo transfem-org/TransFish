@@ -409,7 +409,7 @@ exploreFediverse: "Jelajahi Fediverse"
 popularTags: "Tag populer"
 userList: "Daftar"
 about: "Informasi"
-aboutMisskey: "Tentang Firefish"
+aboutFirefish: "Tentang Firefish"
 administrator: "Admin"
 token: "Token"
 twoStepAuthentication: "Otentikasi dua faktor"
@@ -988,7 +988,7 @@ _registry:
   keys: "Kunci"
   domain: "Domain"
   createKey: "Buat kunci"
-_aboutMisskey:
+_aboutFirefish:
   about: "Firefish adalah perangkat lunak sumber terbuka yang sedang dikembangkan oleh\
     \ syuilo sejak 2014."
   contributors: "Kontributor utama"

@@ -83,7 +83,7 @@
 import { watch, ref } from "vue";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
-import type * as misskey from "calckey-js";
+import type * as misskey from "firefish-js";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
 import { defaultStore } from "@/store";

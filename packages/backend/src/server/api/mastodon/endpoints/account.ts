@@ -173,7 +173,7 @@ export function apiAccountMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getAccountFeaturedTags(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = data.data.map((tag) => convertFeaturedTag(tag));
 			} catch (e: any) {

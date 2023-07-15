@@ -1226,7 +1226,7 @@ connectedTo: Aquest(s) compte(s) estan connectats
 silenceConfirm: Segur que vols posa en silenci aquest usuari?
 unsilence: Desfés posar en silenci
 unsilenceConfirm: Segur que vols treure el silenci a aquest usuari?
-aboutMisskey: Sobre Firefish
+aboutFirefish: Sobre Firefish
 twoStepAuthentication: Autentificació de dos factors
 moderator: Moderador
 moderation: Moderació
@@ -1590,7 +1590,7 @@ cannotUploadBecauseNoFreeSpace: La pujada ha fallat a causa de la manca d'espai 
 enableAutoSensitive: Marcatge automàtic NSFW
 moveTo: Mou el compte actual al compte nou
 customKaTeXMacro: Macros KaTeX personalitzats
-_aboutMisskey:
+_aboutFirefish:
   contributors: Col·laboradors principals
   allContributors: Tots els col·laboradors
   donate: Fes una donació a Firefish
@@ -1603,8 +1603,8 @@ _aboutMisskey:
   patrons: Mecenes de Firefish
   patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
     amb l'enllaç de dalt per veure el teu nom aquí!
-  donateTitle: T'agrada Calckey?
-  pleaseDonateToCalckey: Penseu en fer una donació a Calckey per donar suport al seu
+  donateTitle: T'agrada Firefish?
+  pleaseDonateToFirefish: Penseu en fer una donació a Firefish per donar suport al seu
     desenvolupament.
   pleaseDonateToHost: Penseu també en fer una donació a la vostre instància, {host},
     per ajudar-lo a suportar els costos de funcionament.

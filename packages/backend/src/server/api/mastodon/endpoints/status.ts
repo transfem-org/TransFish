@@ -61,7 +61,7 @@ export function apiStatusMastodon(router: Router): void {
 			if (body.media_ids && !body.media_ids.length) body.media_ids = undefined;
 			if (body.media_ids) {
 				body.media_ids = (body.media_ids as string[]).map((p) =>
-					convertId(p, IdType.CalckeyId),
+					convertId(p, IdType.FirefishId),
 				);
 			}
 			const { sensitive } = body;
@@ -165,7 +165,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getStatusHistory(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {
@@ -201,7 +201,7 @@ export function apiStatusMastodon(router: Router): void {
 			const client = getClient(BASE_URL, accessTokens);
 			try {
 				const data = await client.getStatusFavouritedBy(
-					convertId(ctx.params.id, IdType.CalckeyId),
+					convertId(ctx.params.id, IdType.FirefishId),
 				);
 				ctx.body = data.data.map((account) => convertAccount(account));
 			} catch (e: any) {

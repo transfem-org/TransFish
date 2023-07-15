@@ -377,7 +377,7 @@ exploreFediverse: "สำรวจเฟดดิเวิร์ส"
 popularTags: "แท็กยอดนิยม"
 userList: "รายการ"
 about: "เกี่ยวกับ"
-aboutMisskey: "เกี่ยวกับ Firefish"
+aboutFirefish: "เกี่ยวกับ Firefish"
 administrator: "ผู้ดูแลระบบ"
 token: "โทเค็น"
 twoStepAuthentication: "ยืนยันตัวตน 2 ชั้น"
@@ -965,7 +965,7 @@ _registry:
   keys: "คีย์"
   domain: "โดเมน"
   createKey: "สร้างคีย์"
-_aboutMisskey:
+_aboutFirefish:
   about: "Misskey เป็นซอฟต์แวร์โอเพ่นซอร์สที่ถูกพัฒนาโดย Syuilo ตั้งแต่ปี 2014"
   contributors: "ผู้สนับสนุนหลัก"
   allContributors: "ผู้มีส่วนร่วมทั้งหมด"

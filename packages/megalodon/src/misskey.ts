@@ -1515,7 +1515,7 @@ export default class Misskey implements MegalodonInterface {
   }
 
   private async getDefaultFavoriteEmoji(): Promise<string> {
-    // NOTE: get-unsecure is calckey's extension.
+    // NOTE: get-unsecure is firefish's extension.
     //       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
     //       unless you have a 'nativeToken', which is reserved for the frontend webapp.
 
@@ -1528,7 +1528,7 @@ export default class Misskey implements MegalodonInterface {
   }
 
 	private async getDefaultPostPrivacy(): Promise<'public' | 'unlisted' | 'private' | 'direct'> {
-		// NOTE: get-unsecure is calckey's extension.
+		// NOTE: get-unsecure is firefish's extension.
 		//       Misskey doesn't have this endpoint and regular `/i/registry/get` won't work
 		//       unless you have a 'nativeToken', which is reserved for the frontend webapp.
 

@@ -377,7 +377,7 @@ exploreFediverse: "Khám phá Fediverse"
 popularTags: "Hashtag thông dụng"
 userList: "Danh sách"
 about: "Giới thiệu"
-aboutMisskey: "Về Misskey"
+aboutFirefish: "Về Misskey"
 administrator: "Quản trị viên"
 token: "Token"
 twoStepAuthentication: "Xác minh 2 bước"
@@ -965,7 +965,7 @@ _registry:
   keys: "Các mã"
   domain: "Tên miền"
   createKey: "Tạo mã"
-_aboutMisskey:
+_aboutFirefish:
   about: "Misskey là phần mềm mã nguồn mở được phát triển bởi syuilo từ năm 2014."
   contributors: "Những người đóng góp nổi bật"
   allContributors: "Toàn bộ người đóng góp"

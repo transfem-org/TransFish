@@ -347,7 +347,7 @@ recentlyUpdatedUsers: "Nedávno aktívni uživatelé"
 popularTags: "Populární tagy"
 userList: "Seznamy"
 about: "Informace"
-aboutMisskey: "O Firefish"
+aboutFirefish: "O Firefish"
 administrator: "Administrátor"
 token: "Token"
 twoStepAuthentication: "Dvoufaktorová autentikace"
@@ -646,7 +646,7 @@ _registry:
   keys: "Klíče"
   domain: "Doména"
   createKey: "Vytvořit klíč"
-_aboutMisskey:
+_aboutFirefish:
   allContributors: "Všichni přispěvatelé"
   source: "Zdrojový kód"
 _mfm:

@@ -396,7 +396,7 @@ exploreFediverse: "Fediverseを探索"
 popularTags: "人気のタグ"
 userList: "リスト"
 about: "情報"
-aboutMisskey: "Firefishについて"
+aboutFirefish: "Firefishについて"
 administrator: "管理者"
 token: "トークン"
 twoStepAuthentication: "二段階認証"
@@ -977,7 +977,7 @@ customKaTeXMacroDescription: "数式入力を楽にするためのマクロを�
 enableCustomKaTeXMacro: "カスタムKaTeXマクロを有効にする"
 preventAiLearning: "AIによる学習を防止"
 preventAiLearningDescription: "投稿したノート、添付した画像などのコンテンツを学習の対象にしないようAIに要求します。これはnoaiフラグをHTMLレスポンスに含めることによって実現されます。"
-noGraze: "ブラウザの拡張機能「Graze for Mastodon」は、Calckeyの動作を妨げるため、無効にしてください。"
+noGraze: "ブラウザの拡張機能「Graze for Mastodon」は、Firefishの動作を妨げるため、無効にしてください。"
 enableServerMachineStats: "サーバーのマシン情報を公開する"
 enableIdenticonGeneration: "ユーザーごとのIdenticon生成を有効にする"
 showPopup: "ポップアップを表示してユーザーに知らせる"
@@ -1060,7 +1060,7 @@ _registry:
   keys: "キー"
   domain: "ドメイン"
   createKey: "キーを作成"
-_aboutMisskey:
+_aboutFirefish:
   about: "Firefishは、2022年に生まれたThatOneCalculatorによるMisskeyのforkです。"
   contributors: "主なコントリビューター"
   allContributors: "全てのコントリビューター"
@@ -1070,10 +1070,10 @@ _aboutMisskey:
   morePatrons: "他にも多くの方が支援してくれています。ありがとうございます！ 🥰"
   patrons: "支援者"
   patronsList: 寄付額ではなく時系列順に並んでいます。上記のリンクから寄付を行ってここにあなたのIDを載せましょう！
-  pleaseDonateToCalckey: Calckey開発への寄付をご検討ください。
+  pleaseDonateToFirefish: Firefish開発への寄付をご検討ください。
   pleaseDonateToHost: また、このサーバー {host} の運営者への寄付もご検討ください。
   donateHost: '{host} に寄付する'
-  donateTitle: Calckeyを気に入りましたか？
+  donateTitle: Firefishを気に入りましたか？
 _nsfw:
   respect: "閲覧注意のメディアは隠す"
   ignore: "閲覧注意のメディアを隠さない"
@@ -1902,7 +1902,7 @@ apps: "アプリ"
 _experiments:
   title: 試験的な機能
   postImportsCaption: 
-    ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
+    ユーザーが過去の投稿をFirefish・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
   enablePostImports: 投稿のインポートを有効にする
 sendModMail: モデレーション通知を送る
 deleted: 削除済み
@@ -1942,7 +1942,7 @@ video: 動画
 isBot: このアカウントはBotです
 isLocked: このアカウントのフォローは承認制です
 isAdmin: 管理者
-isPatron: Calckey 後援者
+isPatron: Firefish 後援者
 _skinTones:
   light: ペールオレンジ
   mediumLight: ミディアムライト

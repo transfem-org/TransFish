@@ -371,7 +371,7 @@ exploreFediverse: "استكشف الفديفرس"
 popularTags: "الوسوم الرائجة"
 userList: "القوائم"
 about: "عن"
-aboutMisskey: "عن Firefish"
+aboutFirefish: "عن Firefish"
 administrator: "المدير"
 token: "الرمز المميز"
 twoStepAuthentication: "الإستيثاق بعاملَيْن"
@@ -855,7 +855,7 @@ _registry:
   keys: "المفاتيح"
   domain: "النّطاق"
   createKey: "أنشئ مفتاحًا"
-_aboutMisskey:
+_aboutFirefish:
   about: "ميسكي هو برمجية مفتوحة المصدر يطورها syuilo منذ 2014."
   contributors: "المساهمون الرئيسيون"
   allContributors: "كل المساهمين"

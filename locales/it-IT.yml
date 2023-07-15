@@ -401,7 +401,7 @@ exploreFediverse: "Esplora il Fediverso"
 popularTags: "Tag di tendenza"
 userList: "Liste"
 about: "Informazioni"
-aboutMisskey: "Informazioni di Firefish"
+aboutFirefish: "Informazioni di Firefish"
 administrator: "Amministratore"
 token: "Token"
 twoStepAuthentication: "Autenticazione a due fattori"
@@ -931,7 +931,7 @@ _registry:
   keys: "Dati"
   domain: "Dominio"
   createKey: "Crea chiave"
-_aboutMisskey:
+_aboutFirefish:
   about: "Misskey è un software libero e open source, sviluppato da syuilo dal 2014."
   contributors: "Principali sostenitori"
   allContributors: "Tutti i sostenitori"

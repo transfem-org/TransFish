@@ -376,7 +376,7 @@ exploreFediverse: "Fediverse ঘুরে দেখুন"
 popularTags: "জনপ্রিয় ট্যাগগুলি"
 userList: "লিস্ট"
 about: "আপনার সম্পর্কে"
-aboutMisskey: "Firefish সম্পর্কে"
+aboutFirefish: "Firefish সম্পর্কে"
 administrator: "প্রশাসক"
 token: "টোকেন"
 twoStepAuthentication: "২-ধাপ প্রমাণীকরণ"
@@ -896,7 +896,7 @@ _registry:
   keys: "কী - সমূহ"
   domain: "ডোমেন"
   createKey: "কী বানান"
-_aboutMisskey:
+_aboutFirefish:
   about: "Misskey, একটি ওপেন সোর্স সফ্টওয়্যার যা 2014 সাল থেকে syuilo তৈরি করছেন।"
   contributors: "প্রধান কন্ট্রিবিউটারগণ"
   allContributors: "সকল কন্ট্রিবিউটারগণ"

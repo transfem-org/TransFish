@@ -403,7 +403,7 @@ exploreFediverse: "Исследуйте Fediverse"
 popularTags: "Популярные теги"
 userList: "Списки"
 about: "Описание"
-aboutMisskey: "О Firefish"
+aboutFirefish: "О Firefish"
 administrator: "Администратор"
 token: "Токен"
 twoStepAuthentication: "Двухфакторная аутентификация"
@@ -984,7 +984,7 @@ _registry:
   keys: "Ключ"
   domain: "Домен"
   createKey: "Новый ключ"
-_aboutMisskey:
+_aboutFirefish:
   about: "Firefish это форк Firefish, сделанный ThatOneCalculator, разработка которого\
     \ началась с 2022."
   contributors: "Основные соавторы"

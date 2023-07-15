@@ -419,7 +419,7 @@ exploreFediverse: "Das Fediverse erkunden"
 popularTags: "Beliebte Schlagwörter"
 userList: "Liste"
 about: "Über"
-aboutMisskey: "Über Firefish"
+aboutFirefish: "Über Firefish"
 administrator: "Administrator"
 token: "Token"
 twoStepAuthentication: "Zwei-Faktor-Authentifizierung"
@@ -1085,7 +1085,7 @@ _registry:
   keys: "Schlüssel"
   domain: "Domain"
   createKey: "Schlüssel erstellen"
-_aboutMisskey:
+_aboutFirefish:
   about: "Firefish ist ein Fork von Misskey, der seit 2022 von ThatOneCalculator entwickelt
     wird."
   contributors: "Hauptmitwirkende"
