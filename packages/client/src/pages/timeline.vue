@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onMounted, onUnmounted } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
 import XTimeline from "@/components/MkTimeline.vue";
@@ -300,10 +300,6 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
-
-onUnmounted(() => {
-	console.log("The timelines page has been unmounted");
-});
 
 onMounted(() => {
 	syncSlide(timelines.indexOf(swiperRef.activeIndex));
