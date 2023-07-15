@@ -35,7 +35,6 @@
 
 		<MkTab
 			v-model="tab"
-			style="white-space: nowrap"
 			:style="'underline'"
 			@update:modelValue="loadTab"
 		>
