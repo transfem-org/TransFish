@@ -121,7 +121,7 @@ redis:
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
 
-# Maximum length of a post (default 3000, max 8192)
+# Maximum length of a post (default 3000, max 250000000)
 #maxNoteLength: 3000
 
 # Maximum length of an image caption (default 1500, max 8192)

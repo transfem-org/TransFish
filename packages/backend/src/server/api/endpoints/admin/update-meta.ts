@@ -1,6 +1,5 @@
 import { Meta } from "@/models/entities/meta.js";
 import { insertModerationLog } from "@/services/insert-moderation-log.js";
-import { DB_MAX_NOTE_TEXT_LENGTH } from "@/misc/hard-limits.js";
 import { db } from "@/db/postgre.js";
 import define from "../../define.js";
 

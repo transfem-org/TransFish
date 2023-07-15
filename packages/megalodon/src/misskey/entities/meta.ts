@@ -12,7 +12,7 @@ namespace MisskeyEntity {
     disableRegistration: boolean
     disableLocalTimeline: boolean
     bannerUrl: string
-    maxNoteTextLength: 300
+    maxNoteTextLength: 3000
     emojis: Array<Emoji>
   }
 }
