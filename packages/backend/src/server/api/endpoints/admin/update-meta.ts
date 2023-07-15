@@ -224,10 +224,9 @@ export default define(meta, paramDef, async (ps, me) => {
 		if (set.recommendedInstances?.length > 0) {
 			set.recommendedInstances.forEach((instance, index) => {
 				if (/^https?:\/\//i.test(instance)) {
-					set.recommendedInstances![index] = instance.replace(
-						/^https?:\/\//i,
-						"",
-					);
+					set.recommendedInstances![index] = instance
+						.replace(/^https?:\/\//i, "")
+						.replace(/\/$/, "");
 				}
 			});
 		}
