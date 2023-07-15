@@ -35,13 +35,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onActivated, onDeactivated, nextTick } from "vue";
 import type { Paging } from "@/components/MkPagination.vue";
 import XNote from "@/components/MkNote.vue";
 import XList from "@/components/MkDateSeparatedList.vue";
 import MkPagination from "@/components/MkPagination.vue";
 import { i18n } from "@/i18n";
-import { scroll } from "@/scripts/scroll";
+import { getScrollPosition, scroll } from "@/scripts/scroll";
 
 const tlEl = ref<HTMLElement>();
 
@@ -60,6 +60,18 @@ defineExpose({
 	pagingComponent,
 	scrollTop,
 });
+
+let scrollContainer = $ref(tlEl.value);
+let scrollPos = $ref(0);
+
+onDeactivated(() => {
+	scrollPos =  getScrollPosition( scrollContainer );
+})
+onActivated(() => {
+	nextTick(() => {
+		scroll(scrollContainer, { top: scrollPos, behavior: "instant" });
+	})
+})
 </script>
 
 <style lang="scss" scoped>

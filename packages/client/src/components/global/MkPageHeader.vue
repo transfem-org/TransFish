@@ -82,7 +82,7 @@
 						active: tab.key != null && tab.key === props.tab,
 					}"
 					@mousedown="(ev) => onTabMousedown(tab, ev)"
-					@click="(ev) => onTabClick(tab, ev)"
+					@click.stop="(ev) => onTabClick(tab, ev)"
 				>
 					<i v-if="tab.icon" class="icon" :class="tab.icon"></i>
 					<span class="title">{{ tab.title }}</span>
@@ -227,6 +227,9 @@ const onClick = () => {
 };
 
 function onTabMousedown(tab: Tab, ev: MouseEvent): void {
+	if (tab.key != null && tab.key === props.tab) {
+		scrollToTop(el, { behavior: "smooth" });
+	}
 	// ユーザビリティの観点からmousedown時にはonClickは呼ばない
 	if (tab.key) {
 		emit("update:tab", tab.key);

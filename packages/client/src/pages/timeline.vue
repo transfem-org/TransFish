@@ -31,9 +31,7 @@
 						:touch-angle="25"
 						:threshold="10"
 						:centeredSlides="true"
-						:modules="[Virtual]"
 						:space-between="20"
-						:virtual="true"
 						:allow-touch-move="
 							defaultStore.state.swipeOnMobile &&
 							(deviceKind !== 'desktop' ||
@@ -45,16 +43,18 @@
 						<swiper-slide
 							v-for="index in timelines"
 							:key="index"
-							:virtual-index="index"
+							v-slot="{ isActive }"
 						>
-							<XTimeline
-								v-if="index == timelines[swiperRef.activeIndex]"
-								ref="tl"
-								:key="src"
-								class="tl"
-								:src="src"
-								:sound="true"
-							/>
+							<KeepAlive>
+								<XTimeline
+									v-if="isActive"
+									ref="tl"
+									:key="src"
+									class="tl"
+									:src="src"
+									:sound="true"
+								/>
+							</KeepAlive>
 						</swiper-slide>
 					</swiper>
 				</div>
@@ -64,8 +64,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onMounted } from "vue";
-import { Virtual } from "swiper/modules";
+import { computed, ref, onMounted, onUnmounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
 import XTimeline from "@/components/MkTimeline.vue";
@@ -301,6 +300,10 @@ function onSlideChange() {
 function syncSlide(index) {
 	swiperRef.slideTo(index);
 }
+
+onUnmounted(() => {
+	console.log("The timelines page has been unmounted");
+});
 
 onMounted(() => {
 	syncSlide(timelines.indexOf(swiperRef.activeIndex));
