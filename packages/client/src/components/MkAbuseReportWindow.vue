@@ -67,7 +67,7 @@ function send() {
 			userId: props.user.id,
 			comment: comment.value,
 		},
-		undefined
+		undefined,
 	).then((res) => {
 		os.alert({
 			type: "success",

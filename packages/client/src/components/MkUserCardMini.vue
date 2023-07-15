@@ -36,7 +36,7 @@ const props = withDefaults(
 	}>(),
 	{
 		withChart: true,
-	}
+	},
 );
 
 let chartValues = $ref<number[] | null>(null);

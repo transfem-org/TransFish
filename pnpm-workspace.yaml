@@ -3,4 +3,5 @@ packages:
  - 'packages/backend/native-utils'
  - 'packages/client'
  - 'packages/sw'
- - 'packages/firefish-js'
+ - 'packages/calckey-js'
+ - 'packages/megalodon'

@@ -43,7 +43,7 @@ const props = withDefaults(
 	}>(),
 	{
 		limit: 50,
-	}
+	},
 );
 
 let chartSrc = $ref("per-user-notes");
@@ -69,7 +69,7 @@ function showMenu(ev: MouseEvent) {
 		}
 	}*/,
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 </script>

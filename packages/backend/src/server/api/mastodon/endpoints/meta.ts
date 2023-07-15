@@ -1,4 +1,5 @@
-import { Entity } from "@firefish/megalodon";
+import { Entity } from "megalodon";
+import config from "@/config/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { Users, Notes } from "@/models/index.js";
 import { IsNull, MoreThan } from "typeorm";
@@ -17,14 +18,14 @@ export async function getInstance(response: Entity.Instance) {
 			response.description ||
 			"This is a vanilla Firefish Instance. It doesn't seem to have a description.",
 		email: response.email || "",
-		version: "3.0.0 compatible (3.5+ Firefish)", //I hope this version string is correct, we will need to test it.
+		version: `3.0.0 (compatible; Calckey ${config.version})`,
 		urls: response.urls,
 		stats: {
 			user_count: await totalUsers,
 			status_count: await totalStatuses,
 			domain_count: response.stats.domain_count,
 		},
-		thumbnail: response.thumbnail || "https://http.cat/404",
+		thumbnail: response.thumbnail || "/static-assets/transparent.png",
 		languages: meta.langs,
 		registrations: !meta.disableRegistration || response.registrations,
 		approval_required: !response.registrations,
@@ -96,8 +97,8 @@ export async function getInstance(response: Entity.Instance) {
 			url: `${response.uri}/`,
 			avatar: `${response.uri}/static-assets/badges/info.png`,
 			avatar_static: `${response.uri}/static-assets/badges/info.png`,
-			header: "https://http.cat/404",
-			header_static: "https://http.cat/404",
+			header: "/static-assets/transparent.png",
+			header_static: "/static-assets/transparent.png",
 			followers_count: -1,
 			following_count: 0,
 			statuses_count: 0,

@@ -10,8 +10,13 @@
 		<i class="ph-repeat ph-bold ph-lg"></i>
 		<p v-if="count > 0 && !detailedView" class="count">{{ count }}</p>
 	</button>
-	<button v-else class="eddddedb _button">
-		<i class="ph-prohibit ph-bold ph-lg"></i>
+	<button
+		v-else
+		class="eddddedb _button"
+		disabled="true"
+		v-tooltip.noDelay.bottom="i18n.ts.disabled"
+	>
+		<i class="ph-repeat ph-bold ph-lg"></i>
 	</button>
 </template>
 
@@ -39,7 +44,7 @@ const buttonRef = ref<HTMLElement>();
 const canRenote = computed(
 	() =>
 		["public", "home"].includes(props.note.visibility) ||
-		props.note.userId === $i.id
+		props.note.userId === $i.id,
 );
 
 useTooltip(buttonRef, async (showing) => {
@@ -61,7 +66,7 @@ useTooltip(buttonRef, async (showing) => {
 			targetElement: buttonRef.value,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 });
 
@@ -205,7 +210,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 								renoteId: props.note.id,
 								visibility: props.note.visibility,
 								localOnly: true,
-						  }
+						  },
 				);
 				hasRenotedBefore = true;
 				const el =

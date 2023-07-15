@@ -295,7 +295,7 @@ function onDeleted(id) {
 	const msg = pagingComponent.items.find((m) => m.id === id);
 	if (msg) {
 		pagingComponent.items = pagingComponent.items.filter(
-			(m) => m.id !== msg.id
+			(m) => m.id !== msg.id,
 		);
 	}
 }
@@ -339,7 +339,7 @@ onMounted(() => {
 		computed(() => ({
 			title: group != null ? group.name : user?.name,
 			icon: "ph-chats-teardrop-bold ph-lg",
-		}))
+		})),
 	);
 });
 

@@ -16,7 +16,7 @@
 					class="_button"
 					@click.stop="
 						applyUnicodeSkinTone(
-							props.skinTones.indexOf(skinTone) + 1
+							props.skinTones.indexOf(skinTone) + 1,
 						)
 					"
 				>
@@ -83,7 +83,7 @@ watch(
 	() => props.emojis,
 	(newVal) => {
 		localEmojis.value = [...newVal];
-	}
+	},
 );
 </script>
 

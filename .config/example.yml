@@ -67,6 +67,20 @@ redis:
   #db: 1
   #user: default
 
+#   ┌─────────────────────────────┐
+#───┘ Cache server configuration └─────────────────────────────────────
+
+# A Redis-compatible server (DragonflyDB, Keydb, Redis) for caching
+# If left blank, it will use the Redis server from above
+
+#cacheServer:
+  #host: localhost
+  #port: 6379
+  #family: 0  # 0=Both, 4=IPv4, 6=IPv6
+  #pass: example-pass
+  #prefix: example-prefix
+  #db: 1
+
 # Please configure either MeiliSearch *or* Sonic.
 # If both MeiliSearch and Sonic configurations are present, MeiliSearch will take precedence.
 
@@ -107,7 +121,7 @@ redis:
 #   ┌─────────────────────┐
 #───┘ Other configuration └─────────────────────────────────────
 
-# Maximum length of a post (default 3000, max 8192)
+# Maximum length of a post (default 3000, max 250000000)
 #maxNoteLength: 3000
 
 # Maximum length of an image caption (default 1500, max 8192)

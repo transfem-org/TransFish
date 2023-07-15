@@ -52,9 +52,9 @@
 
 						<MkKeyValue class="_formBlock">
 							<template #key>{{ i18n.ts.description }}</template>
-							<template #value>{{
-								$instance.description
-							}}</template>
+							<template #value
+								><div v-html="$instance.description"></div
+							></template>
 						</MkKeyValue>
 
 						<FormSection>
@@ -93,6 +93,21 @@
 								external
 								>{{ i18n.ts.tos }}</FormLink
 							>
+							<FormLink
+								v-if="$instance.donationLink"
+								:to="$instance.donationLink"
+								external
+							>
+								<template #icon
+									><i class="ph-money ph-bold ph-lg"></i
+								></template>
+								{{
+									i18n.t("_aboutMisskey.donateHost", {
+										host: $instance.name || host,
+									})
+								}}
+								<template #suffix>Donate</template>
+							</FormLink>
 						</FormSection>
 
 						<FormSuspense :p="initStats">
@@ -163,7 +178,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XEmojis from "./about.emojis.vue";
 import XFederation from "./about.federation.vue";
@@ -191,7 +206,7 @@ withDefaults(
 	}>(),
 	{
 		initialTab: "overview",
-	}
+	},
 );
 
 let stats = $ref(null);
@@ -243,7 +258,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.instanceInfo,
 		icon: "ph-info ph-bold ph-lg",
-	}))
+	})),
 );
 
 async function sleep(seconds) {

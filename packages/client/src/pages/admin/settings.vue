@@ -53,6 +53,18 @@
 									i18n.ts.maintainerEmail
 								}}</template>
 							</FormInput>
+
+							<FormInput
+								v-model="donationLink"
+								class="_formBlock"
+							>
+								<template #prefix
+									><i class="ph-hand-heart ph-bold ph-lg"></i
+								></template>
+								<template #label>{{
+									i18n.ts.donationLink
+								}}</template>
+							</FormInput>
 						</FormSplit>
 
 						<FormTextarea v-model="pinnedUsers" class="_formBlock">
@@ -344,6 +356,27 @@
 						</FormSection>
 
 						<FormSection>
+							<template #label>Server Performance</template>
+							<FormSwitch
+								v-model="enableServerMachineStats"
+								class="_formBlock"
+							>
+								<template #label>{{
+									i18n.ts.enableServerMachineStats
+								}}</template>
+							</FormSwitch>
+
+							<FormSwitch
+								v-model="enableIdenticonGeneration"
+								class="_formBlock"
+							>
+								<template #label>{{
+									i18n.ts.enableIdenticonGeneration
+								}}</template>
+							</FormSwitch>
+						</FormSection>
+
+						<FormSection>
 							<template #label>DeepL Translation</template>
 
 							<FormInput
@@ -414,6 +447,7 @@ let description: string | null = $ref(null);
 let tosUrl: string | null = $ref(null);
 let maintainerName: string | null = $ref(null);
 let maintainerEmail: string | null = $ref(null);
+let donationLink: string | null = $ref(null);
 let iconUrl: string | null = $ref(null);
 let bannerUrl: string | null = $ref(null);
 let logoImageUrl: string | null = $ref(null);
@@ -442,9 +476,12 @@ let libreTranslateApiUrl: string = $ref("");
 let libreTranslateApiKey: string = $ref("");
 let defaultReaction: string = $ref("");
 let defaultReactionCustom: string = $ref("");
+let enableServerMachineStats: boolean = $ref(false);
+let enableIdenticonGeneration: boolean = $ref(false);
 
 async function init() {
 	const meta = await os.api("admin/meta");
+	if (!meta) throw new Error("No meta");
 	name = meta.name;
 	description = meta.description;
 	tosUrl = meta.tosUrl;
@@ -457,6 +494,7 @@ async function init() {
 	defaultDarkTheme = meta.defaultDarkTheme;
 	maintainerName = meta.maintainerName;
 	maintainerEmail = meta.maintainerEmail;
+	donationLink = meta.donationLink;
 	enableLocalTimeline = !meta.disableLocalTimeline;
 	enableGlobalTimeline = !meta.disableGlobalTimeline;
 	enableRecommendedTimeline = !meta.disableRecommendedTimeline;
@@ -482,6 +520,8 @@ async function init() {
 	defaultReactionCustom = ["⭐", "👍", "❤️"].includes(meta.defaultReaction)
 		? ""
 		: meta.defaultReaction;
+	enableServerMachineStats = meta.enableServerMachineStats;
+	enableIdenticonGeneration = meta.enableIdenticonGeneration;
 }
 
 function save() {
@@ -501,6 +541,7 @@ function save() {
 		defaultDarkTheme: defaultDarkTheme === "" ? null : defaultDarkTheme,
 		maintainerName,
 		maintainerEmail,
+		donationLink,
 		disableLocalTimeline: !enableLocalTimeline,
 		disableGlobalTimeline: !enableGlobalTimeline,
 		disableRecommendedTimeline: !enableRecommendedTimeline,
@@ -521,6 +562,8 @@ function save() {
 		libreTranslateApiUrl,
 		libreTranslateApiKey,
 		defaultReaction,
+		enableServerMachineStats,
+		enableIdenticonGeneration,
 	}).then(() => {
 		fetchInstance();
 	});

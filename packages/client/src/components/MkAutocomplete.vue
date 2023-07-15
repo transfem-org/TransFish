@@ -268,7 +268,7 @@ function exec() {
 	} else if (props.type === "hashtag") {
 		if (!props.q || props.q === "") {
 			hashtags.value = JSON.parse(
-				localStorage.getItem("hashtags") || "[]"
+				localStorage.getItem("hashtags") || "[]",
 			);
 			fetching.value = false;
 		} else {
@@ -288,7 +288,7 @@ function exec() {
 					// キャッシュ
 					sessionStorage.setItem(
 						cacheKey,
-						JSON.stringify(searchedHashtags)
+						JSON.stringify(searchedHashtags),
 					);
 				});
 			}
@@ -298,7 +298,7 @@ function exec() {
 			// 最近使った絵文字をサジェスト
 			emojis.value = defaultStore.state.recentlyUsedEmojis
 				.map((emoji) =>
-					emojiDb.find((dbEmoji) => dbEmoji.emoji === emoji)
+					emojiDb.find((dbEmoji) => dbEmoji.emoji === emoji),
 				)
 				.filter((x) => x) as EmojiDef[];
 			return;
@@ -450,7 +450,7 @@ onMounted(() => {
 				nextTick(() => {
 					exec();
 				});
-			}
+			},
 		);
 	});
 });
@@ -470,7 +470,9 @@ onBeforeUnmount(() => {
 	max-width: 100%;
 	margin-top: calc(1em + 8px);
 	overflow: hidden;
-	transition: top 0.1s ease, left 0.1s ease;
+	transition:
+		top 0.1s ease,
+		left 0.1s ease;
 
 	> ol {
 		display: block;

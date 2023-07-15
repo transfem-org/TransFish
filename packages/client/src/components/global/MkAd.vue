@@ -70,7 +70,7 @@ const choseAd = (): Ad | null => {
 					...ad,
 					ratio: 0,
 			  }
-			: ad
+			: ad,
 	);
 
 	let ads = allAds.filter((ad) => props.prefer.includes(ad.place));

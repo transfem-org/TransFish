@@ -135,23 +135,23 @@ export async function fetchPerson(
 ): Promise<CacheableUser | null> {
 	if (typeof uri !== "string") throw new Error("uri is not string");
 
-	const cached = uriPersonCache.get(uri);
+	const cached = await uriPersonCache.get(uri, true);
 	if (cached) return cached;
 
 	// Fetch from the database if the URI points to this server
 	if (uri.startsWith(`${config.url}/`)) {
 		const id = uri.split("/").pop();
 		const u = await Users.findOneBy({ id });
-		if (u) uriPersonCache.set(uri, u);
+		if (u) await uriPersonCache.set(uri, u);
 		return u;
 	}
 
 	//#region Returns if already registered with this server
-	const exist = await Users.findOneBy({ uri });
+	const user = await Users.findOneBy({ uri });
 
-	if (exist) {
-		uriPersonCache.set(uri, exist);
-		return exist;
+	if (user != null) {
+		await uriPersonCache.set(uri, user);
+		return user;
 	}
 	//#endregion
 
@@ -396,9 +396,9 @@ export async function updatePerson(
 	}
 
 	//#region Already registered on this server?
-	const exist = (await Users.findOneBy({ uri })) as IRemoteUser;
+	const user = (await Users.findOneBy({ uri })) as IRemoteUser;
 
-	if (exist == null) {
+	if (user == null) {
 		return;
 	}
 	//#endregion
@@ -416,17 +416,15 @@ export async function updatePerson(
 		[person.icon, person.image].map((img) =>
 			img == null
 				? Promise.resolve(null)
-				: resolveImage(exist, img).catch(() => null),
+				: resolveImage(user, img).catch(() => null),
 		),
 	);
 
 	// Custom pictogram acquisition
-	const emojis = await extractEmojis(person.tag || [], exist.host).catch(
-		(e) => {
-			logger.info(`extractEmojis: ${e}`);
-			return [] as Emoji[];
-		},
-	);
+	const emojis = await extractEmojis(person.tag || [], user.host).catch((e) => {
+		logger.info(`extractEmojis: ${e}`);
+		return [] as Emoji[];
+	});
 
 	const emojiNames = emojis.map((emoji) => emoji.name);
 
@@ -518,11 +516,11 @@ export async function updatePerson(
 	}
 
 	// Update user
-	await Users.update(exist.id, updates);
+	await Users.update(user.id, updates);
 
 	if (person.publicKey) {
 		await UserPublickeys.update(
-			{ userId: exist.id },
+			{ userId: user.id },
 			{
 				keyId: person.publicKey.id,
 				keyPem: person.publicKey.publicKeyPem,
@@ -531,7 +529,7 @@ export async function updatePerson(
 	}
 
 	await UserProfiles.update(
-		{ userId: exist.id },
+		{ userId: user.id },
 		{
 			url: url,
 			fields,
@@ -543,15 +541,15 @@ export async function updatePerson(
 		},
 	);
 
-	publishInternalEvent("remoteUserUpdated", { id: exist.id });
+	publishInternalEvent("remoteUserUpdated", { id: user.id });
 
 	// Hashtag Update
-	updateUsertags(exist, tags);
+	updateUsertags(user, tags);
 
 	// If the user in question is a follower, followers will also be updated.
 	await Followings.update(
 		{
-			followerId: exist.id,
+			followerId: user.id,
 		},
 		{
 			followerSharedInbox:
@@ -560,7 +558,7 @@ export async function updatePerson(
 		},
 	);
 
-	await updateFeatured(exist.id, resolver).catch((err) => logger.error(err));
+	await updateFeatured(user.id, resolver).catch((err) => logger.error(err));
 }
 
 /**
@@ -576,10 +574,10 @@ export async function resolvePerson(
 	if (typeof uri !== "string") throw new Error("uri is not string");
 
 	//#region If already registered on this server, return it.
-	const exist = await fetchPerson(uri);
+	const user = await fetchPerson(uri);
 
-	if (exist) {
-		return exist;
+	if (user != null) {
+		return user;
 	}
 	//#endregion
 

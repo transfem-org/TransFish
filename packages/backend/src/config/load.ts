@@ -55,6 +55,8 @@ export default function load() {
 	mixin.clientEntry = clientManifest["src/init.ts"];
 
 	if (!config.redis.prefix) config.redis.prefix = mixin.host;
+	if (config.cacheServer && !config.cacheServer.prefix)
+		config.cacheServer.prefix = mixin.host;
 
 	return Object.assign(config, mixin);
 }

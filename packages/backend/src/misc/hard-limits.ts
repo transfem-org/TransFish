@@ -3,8 +3,9 @@
 /**
  * Maximum note text length that can be stored in DB.
  * Surrogate pairs count as one
+ * DEPRECARTED: use const/MAX_NOTE_TEXT_LENGTH instead
  */
-export const DB_MAX_NOTE_TEXT_LENGTH = 8192;
+// export const DB_MAX_NOTE_TEXT_LENGTH = 8192;
 
 /**
  * Maximum image description length that can be stored in DB.

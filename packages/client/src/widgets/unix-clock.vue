@@ -61,7 +61,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 let intervalId;
@@ -96,7 +96,7 @@ watch(
 		if (intervalId) window.clearInterval(intervalId);
 		intervalId = window.setInterval(tick, widgetProps.showMs ? 10 : 1000);
 	},
-	{ immediate: true }
+	{ immediate: true },
 );
 
 onUnmounted(() => {

@@ -51,7 +51,7 @@
 					<MkLoading mini />
 				</div>
 				<div v-else>
-					<h1 :title="title || undefined">{{ title || url }}</h1>
+					<h3 :title="title || undefined">{{ title || url }}</h3>
 					<p :title="description">
 						<span>
 							<span :title="sitename || undefined">
@@ -111,7 +111,7 @@ const props = withDefaults(
 	}>(),
 	{
 		detail: false,
-	}
+	},
 );
 
 const self = props.url.startsWith(local);
@@ -158,7 +158,7 @@ const requestLang = (lang || "ja-JP").replace("ja-KS", "ja-JP");
 requestUrl.hash = "";
 
 fetch(
-	`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`
+	`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`,
 ).then((res) => {
 	res.json().then((info) => {
 		if (info.url == null) return;
@@ -196,6 +196,7 @@ onUnmounted(() => {
 	> a {
 		display: flex;
 		transition: background 0.2s;
+		text-decoration: none;
 		> div:first-child:not(:last-child) {
 			position: relative;
 			width: 90px;
@@ -221,7 +222,10 @@ onUnmounted(() => {
 					border-radius: var(--radius);
 					transform: scale(0.95);
 					opacity: 0.8;
-					transition: transform 0.2s, opacity 0.2s, background 0.2s;
+					transition:
+						transform 0.2s,
+						opacity 0.2s,
+						background 0.2s;
 				}
 				&:hover,
 				&:focus {
@@ -237,7 +241,7 @@ onUnmounted(() => {
 			width: 0;
 			flex-grow: 1;
 		}
-		h1,
+		h3,
 		p {
 			display: block;
 			margin: 0;
@@ -245,10 +249,13 @@ onUnmounted(() => {
 			text-overflow: ellipsis;
 			max-width: 100%;
 		}
-		h1 {
+		h3 {
 			font-size: 1em;
 			white-space: nowrap;
 			margin-bottom: 0.2em;
+			text-decoration: underline;
+			text-decoration-color: transparent;
+			transition: text-decoration-color 0.2s;
 		}
 		p {
 			margin-bottom: -0.5em;
@@ -274,8 +281,8 @@ onUnmounted(() => {
 		&:focus,
 		&:focus-within {
 			background: var(--panelHighlight);
-			h1 {
-				text-decoration: underline;
+			h3 {
+				text-decoration-color: currentColor;
 			}
 		}
 	}

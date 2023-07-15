@@ -1,6 +1,7 @@
 import si from "systeminformation";
 import Xev from "xev";
 import * as osUtils from "os-utils";
+import { fetchMeta } from "@/misc/fetch-meta.js";
 import meilisearch from "../db/meilisearch.js";
 
 const ev = new Xev();
@@ -18,6 +19,10 @@ export default function () {
 
 	ev.on("requestServerStatsLog", (x) => {
 		ev.emit(`serverStatsLog:${x.id}`, log.slice(0, x.length || 50));
+	});
+
+	fetchMeta().then((meta) => {
+		if (!meta.enableServerMachineStats) return;
 	});
 
 	async function tick() {

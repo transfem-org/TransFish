@@ -119,7 +119,7 @@ onMounted(() => {
 			: props.domain === "deliver"
 			? "admin/queue/deliver-delayed"
 			: null,
-		{}
+		{},
 	).then((result) => {
 		jobs.value = result;
 	});

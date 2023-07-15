@@ -481,6 +481,21 @@ export const meta = {
 					},
 				},
 			},
+			enableServerMachineStats: {
+				type: "boolean",
+				optional: false,
+				nullable: false,
+			},
+			enableIdenticonGeneration: {
+				type: "boolean",
+				optional: false,
+				nullable: false,
+			},
+			donationLink: {
+				type: "string",
+				optional: true,
+				nullable: true,
+			},
 		},
 	},
 } as const;
@@ -592,5 +607,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		enableIpLogging: instance.enableIpLogging,
 		enableActiveEmailValidation: instance.enableActiveEmailValidation,
 		experimentalFeatures: instance.experimentalFeatures,
+		enableServerMachineStats: instance.enableServerMachineStats,
+		enableIdenticonGeneration: instance.enableIdenticonGeneration,
+		donationLink: instance.donationLink,
 	};
 });

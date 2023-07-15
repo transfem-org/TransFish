@@ -99,7 +99,7 @@ const props = defineProps<{
 
 const isMe = $computed(() => props.message.userId === $i?.id);
 const urls = $computed(() =>
-	props.message.text ? extractUrlFromMfm(mfm.parse(props.message.text)) : []
+	props.message.text ? extractUrlFromMfm(mfm.parse(props.message.text)) : [],
 );
 
 function del(): void {

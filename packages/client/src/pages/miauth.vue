@@ -116,7 +116,7 @@ async function accept(): Promise<void> {
 		const cbUrl = new URL(props.callback);
 		if (
 			["javascript:", "file:", "data:", "mailto:", "tel:"].includes(
-				cbUrl.protocol
+				cbUrl.protocol,
 			)
 		)
 			throw new Error("invalid url");
@@ -124,7 +124,7 @@ async function accept(): Promise<void> {
 			props.callback,
 			query({
 				session: props.session,
-			})
+			}),
 		);
 	}
 }

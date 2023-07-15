@@ -46,7 +46,7 @@
 			</template>
 			<template v-else-if="!isFollowing && user.isLocked">
 				<span>{{ (state = i18n.ts.followRequest) }}</span
-				><i class="ph-plus ph-bold ph-lg"></i>
+				><i class="ph-lock-open ph-bold ph-lg"></i>
 			</template>
 			<template v-else-if="!isFollowing && !user.isLocked">
 				<span>{{ (state = i18n.ts.follow) }}</span
@@ -83,7 +83,7 @@ const props = withDefaults(
 	{
 		full: false,
 		large: false,
-	}
+	},
 );
 
 const isBlocking = computed(() => props.user.isBlocking);
@@ -92,7 +92,7 @@ let state = $ref(i18n.ts.processing);
 
 let isFollowing = $ref(props.user.isFollowing);
 let hasPendingFollowRequestFromYou = $ref(
-	props.user.hasPendingFollowRequestFromYou
+	props.user.hasPendingFollowRequestFromYou,
 );
 let wait = $ref(false);
 const connection = stream.useChannel("main");
@@ -166,7 +166,7 @@ async function onClick() {
 function menu(ev) {
 	os.popupMenu(
 		getUserMenu(props.user, router),
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 }
 

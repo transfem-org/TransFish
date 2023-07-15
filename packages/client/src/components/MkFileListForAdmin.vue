@@ -11,7 +11,7 @@
 				:key="file.id"
 				v-tooltip.mfm="
 					`${file.type}\n${bytes(file.size)}\n${new Date(
-						file.createdAt
+						file.createdAt,
 					).toLocaleString()}\nby ${
 						file.user ? '@' + Acct.toString(file.user) : 'system'
 					}`

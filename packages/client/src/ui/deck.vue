@@ -26,9 +26,9 @@
 											Math.max(
 												...columns
 													.filter((c) =>
-														ids.includes(c.id)
+														ids.includes(c.id),
 													)
-													.map((c) => c.width)
+													.map((c) => c.width),
 											) + 'px',
 								  }
 						"
@@ -50,7 +50,16 @@
 						class="column"
 						:column="columns.find((c) => c.id === ids[0])"
 						:is-stacked="false"
-						:style="columns.find(c => c.id === ids[0])!.flexible ? { flex: 1, minWidth: '350px' } : { width: columns.find(c => c.id === ids[0])!.width + 'px' }"
+						:style="
+							columns.find((c) => c.id === ids[0])!.flexible
+								? { flex: 1, minWidth: '350px' }
+								: {
+										width:
+											columns.find(
+												(c) => c.id === ids[0],
+											)!.width + 'px',
+								  }
+						"
 						@parent-focus="moveFocus(ids[0], $event)"
 						@headerWheel="onWheel"
 					/>
@@ -203,13 +212,13 @@ import { i18n } from "@/i18n";
 import { mainRouter } from "@/router";
 import { unisonReload } from "@/scripts/unison-reload";
 const XStatusBars = defineAsyncComponent(
-	() => import("@/ui/_common_/statusbars.vue")
+	() => import("@/ui/_common_/statusbars.vue"),
 );
 
 mainRouter.navHook = (path, flag): boolean => {
 	if (flag === "forcePage") return false;
 	const noMainColumn = !deckStore.state.columns.some(
-		(x) => x.type === "main"
+		(x) => x.type === "main",
 	);
 	if (deckStore.state.navWindow || noMainColumn) {
 		os.pageWindow(path);
@@ -284,7 +293,7 @@ const onContextmenu = (ev) => {
 				action: addColumn,
 			},
 		],
-		ev
+		ev,
 	);
 };
 
@@ -380,7 +389,8 @@ async function deleteProfile() {
 .menu-leave-active {
 	opacity: 1;
 	transform: translateX(0);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
+	transition:
+		transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
 		opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .menu-enter-from,

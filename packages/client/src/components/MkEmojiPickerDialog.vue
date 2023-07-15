@@ -12,7 +12,7 @@
 		:transparent-bg="true"
 		:manual-showing="manualShowing"
 		:src="src"
-		@click="modal?.close()"
+		@click="checkForShift"
 		@opening="opening"
 		@close="emit('close')"
 		@closed="emit('closed')"
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkEmojiPicker from "@/components/MkEmojiPicker.vue";
 import { defaultStore } from "@/store";
@@ -47,7 +47,7 @@ withDefaults(
 		manualShowing: null,
 		showPinned: true,
 		asReactionPicker: false,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -58,20 +58,49 @@ const emit = defineEmits<{
 
 const modal = ref<InstanceType<typeof MkModal>>();
 const picker = ref<InstanceType<typeof MkEmojiPicker>>();
+const isShiftKeyPressed = ref(false);
+
+const keydownHandler = (e) => {
+	if (e.key === "Shift") {
+		isShiftKeyPressed.value = true;
+	}
+};
+
+const keyupHandler = (e) => {
+	if (e.key === "Shift") {
+		isShiftKeyPressed.value = false;
+	}
+};
+
+function checkForShift(ev?: MouseEvent) {
+	if (!isShiftKeyPressed.value) {
+		modal.value?.close(ev);
+	}
+}
 
 function chosen(emoji: any) {
 	emit("done", emoji);
-	modal.value?.close();
+	checkForShift();
 }
 
 function opening() {
 	try {
 		picker.value?.reset();
 	} catch (e) {
-		console.error(`Something's wrong with restting the emoji picker: ${e}`);
+		console.error("Something's wrong with resetting the emoji picker", e);
 	}
 	picker.value?.focus();
 }
+
+onMounted(() => {
+	window.addEventListener("keydown", keydownHandler);
+	window.addEventListener("keyup", keyupHandler);
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener("keydown", keydownHandler);
+	window.removeEventListener("keyup", keyupHandler);
+});
 </script>
 
 <style lang="scss" scoped>

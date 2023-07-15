@@ -83,15 +83,15 @@ let sending = $ref(false);
 const typing = throttle(3000, () => {
 	stream.send(
 		"typingOnMessaging",
-		props.user ? { partner: props.user.id } : { group: props.group?.id }
+		props.user ? { partner: props.user.id } : { group: props.group?.id },
 	);
 });
 
 let draftKey = $computed(() =>
-	props.user ? "user:" + props.user.id : "group:" + props.group?.id
+	props.user ? "user:" + props.user.id : "group:" + props.group?.id,
 );
 let canSend = $computed(
-	() => (text != null && text.trim() !== "") || file != null
+	() => (text != null && text.trim() !== "") || file != null,
 );
 
 watch([$$(text), $$(file)], saveDraft);
@@ -111,7 +111,7 @@ async function onPaste(ev: ClipboardEvent) {
 			const formatted =
 				formatTimeString(
 					new Date(pastedFile.lastModified),
-					defaultStore.state.pastedFileName
+					defaultStore.state.pastedFileName,
 				).replace(/{{number}}/g, "1") + ext;
 			if (formatted) upload(pastedFile, formatted);
 		}
@@ -196,7 +196,7 @@ function chooseFile(ev: MouseEvent) {
 	selectFile(ev.currentTarget ?? ev.target, i18n.ts.selectFile).then(
 		(selectedFile) => {
 			file = selectedFile;
-		}
+		},
 	);
 }
 
@@ -208,7 +208,7 @@ function upload(fileToUpload: File, name?: string) {
 	uploadFile(fileToUpload, defaultStore.state.uploadFolder, name).then(
 		(res) => {
 			file = res;
-		}
+		},
 	);
 }
 

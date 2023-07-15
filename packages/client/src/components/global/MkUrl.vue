@@ -2,8 +2,9 @@
 	<component
 		:is="self ? 'MkA' : 'a'"
 		ref="el"
-		class="ieqqeuvs _link"
+		class="ieqqeuvs url _link"
 		:[attr]="self ? props.url.substring(local.length) : props.url"
+		:title="self ? props.url.substring(local.length) : props.url"
 		:rel="rel"
 		:target="target"
 		@contextmenu.stop="() => {}"
@@ -50,7 +51,7 @@ const el = ref();
 useTooltip(el, (showing) => {
 	os.popup(
 		defineAsyncComponent(
-			() => import("@/components/MkUrlPreviewPopup.vue")
+			() => import("@/components/MkUrlPreviewPopup.vue"),
 		),
 		{
 			showing,
@@ -58,7 +59,7 @@ useTooltip(el, (showing) => {
 			source: el.value,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 });
 
@@ -73,8 +74,13 @@ const target = self ? null : "_blank";
 </script>
 
 <style lang="scss" scoped>
-.ieqqeuvs {
-	word-break: break-all;
+.url {
+	text-decoration: none !important;
+	> span {
+		text-decoration: underline var(--fgTransparent);
+		text-decoration-thickness: 1px;
+		transition: text-decoration-color 0.2s;
+	}
 
 	> .icon {
 		padding-left: 2px;
@@ -103,6 +109,10 @@ const target = self ? null : "_blank";
 
 	> .hash {
 		font-style: italic;
+	}
+
+	&:hover span {
+		text-decoration-color: var(--link);
 	}
 }
 </style>

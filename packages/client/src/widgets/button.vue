@@ -52,7 +52,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	name,
 	widgetPropsDef,
 	props,
-	emit
+	emit,
 );
 
 const run = async () => {
@@ -77,7 +77,7 @@ const run = async () => {
 			log: (type, params) => {
 				// nop
 			},
-		}
+		},
 	);
 
 	let ast;

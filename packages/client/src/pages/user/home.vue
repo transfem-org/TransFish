@@ -26,6 +26,13 @@
 								class="banner"
 								:style="{
 									backgroundImage: `url('${user.bannerUrl}')`,
+									'--backgroundImageStatic':
+										defaultStore.state.useBlurEffect &&
+										user.bannerUrl
+											? `url('${getStaticImageUrl(
+													user.bannerUrl,
+											  )}')`
+											: null,
 								}"
 							></div>
 							<div class="fade"></div>
@@ -107,7 +114,7 @@
 											patrons?.includes(
 												`@${user.username}@${
 													user.host || host
-												}`
+												}`,
 											)
 										"
 										v-tooltip.noDelay="i18n.ts.isPatron"
@@ -199,7 +206,7 @@
 										patrons?.includes(
 											`@${user.username}@${
 												user.host || host
-											}`
+											}`,
 										)
 									"
 									v-tooltip.noDelay="i18n.ts.isPatron"
@@ -271,7 +278,7 @@
 								<dd class="value">
 									{{
 										new Date(
-											user.createdAt
+											user.createdAt,
 										).toLocaleString()
 									}}
 									(<MkTime :time="user.createdAt" />)
@@ -384,8 +391,10 @@ import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import MkMoved from "@/components/MkMoved.vue";
 import { getScrollPosition } from "@/scripts/scroll";
+import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import number from "@/filters/number";
 import { userPage } from "@/filters/user";
+import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
@@ -399,7 +408,7 @@ const props = withDefaults(
 	defineProps<{
 		user: misskey.entities.UserDetailed;
 	}>(),
-	{}
+	{},
 );
 
 let parallaxAnimationId = $ref<null | number>(null);
@@ -417,16 +426,16 @@ const timeForThem = $computed(() => {
 		props.user
 			.location!.replace(
 				/[^A-Za-z0-9ÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.\s].*/,
-				""
+				"",
 			)
 			.trim(),
 		props.user.location!.replace(
 			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź\-\'\.].*/,
-			""
+			"",
 		),
 		props.user.location!.replace(
 			/[^A-Za-zÁĆÉǴÍḰĹḾŃÓṔŔŚÚÝŹáćéǵíḱĺḿńóṕŕśúýź].*/,
-			""
+			"",
 		),
 	];
 
@@ -452,11 +461,8 @@ const timeForThem = $computed(() => {
 });
 
 let patrons = [];
-try {
-	patrons = await os.api("patrons");
-} catch {
-	console.error("Codeberg's down.")
-}
+const patronsResp = await os.api("patrons");
+patrons = patronsResp.patrons;
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
@@ -513,7 +519,7 @@ onUnmounted(() => {
 							content: "";
 							position: fixed;
 							inset: 0;
-							background: var(--blur, inherit);
+							background: var(--backgroundImageStatic);
 							background-size: cover;
 							background-position: center;
 							pointer-events: none;

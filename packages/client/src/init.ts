@@ -36,7 +36,7 @@ import { version, ui, lang, host } from "@/config";
 import { applyTheme } from "@/scripts/theme";
 import { isDeviceDarkmode } from "@/scripts/is-device-darkmode";
 import { i18n } from "@/i18n";
-import { confirm, alert, post, popup, toast } from "@/os";
+import { confirm, alert, post, popup, toast, api } from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
 import { $i, refreshAccount, login, updateAccount, signout } from "@/account";
@@ -272,6 +272,42 @@ function checkForSplash() {
 		}
 	}
 
+	if (
+		$i &&
+		defaultStore.state.tutorial === -1 &&
+		!["/announcements", "/announcements/"].includes(window.location.pathname)
+	) {
+		api("announcements", { withUnreads: true, limit: 10 })
+			.then((announcements) => {
+				const unreadAnnouncements = announcements.filter((item) => {
+					return !item.isRead;
+				});
+				if (unreadAnnouncements.length > 3) {
+					popup(
+						defineAsyncComponent(
+							() => import("@/components/MkManyAnnouncements.vue"),
+						),
+						{},
+						{},
+						"closed",
+					);
+				} else {
+					unreadAnnouncements.forEach((item) => {
+						if (item.showPopup)
+							popup(
+								defineAsyncComponent(
+									() => import("@/components/MkAnnouncement.vue"),
+								),
+								{ announcement: item },
+								{},
+								"closed",
+							);
+					});
+				}
+			})
+			.catch((err) => console.log(err));
+	}
+
 	// NOTE: この処理は必ず↑のクライアント更新時処理より後に来ること(テーマ再構築のため)
 	watch(
 		defaultStore.reactiveState.darkMode,
@@ -413,6 +449,29 @@ function checkForSplash() {
 			}
 		}
 		localStorage.setItem("lastUsed", Date.now().toString());
+
+		const latestDonationInfoShownAt = localStorage.getItem(
+			"latestDonationInfoShownAt",
+		);
+		const neverShowDonationInfo = localStorage.getItem("neverShowDonationInfo");
+		if (
+			neverShowDonationInfo !== "true" &&
+			new Date($i.createdAt).getTime() < Date.now() - 1000 * 60 * 60 * 24 * 3 &&
+			!location.pathname.startsWith("/miauth")
+		) {
+			if (
+				latestDonationInfoShownAt == null ||
+				new Date(latestDonationInfoShownAt).getTime() <
+					Date.now() - 1000 * 60 * 60 * 24 * 30
+			) {
+				popup(
+					defineAsyncComponent(() => import("@/components/MkDonation.vue")),
+					{},
+					{},
+					"closed",
+				);
+			}
+		}
 
 		if ("Notification" in window) {
 			// 許可を得ていなかったらリクエスト

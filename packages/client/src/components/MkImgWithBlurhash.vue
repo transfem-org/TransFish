@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
 import { onMounted } from "vue";
-import { decode } from "blurhash";
+import { decodeBlurHash } from "fast-blurhash";
 
 const props = withDefaults(
 	defineProps<{
@@ -40,15 +40,15 @@ const props = withDefaults(
 		title: null,
 		size: 64,
 		cover: true,
-	}
+	},
 );
 
 const canvas = $ref<HTMLCanvasElement>();
 let loaded = $ref(false);
 
 function draw() {
-	if (props.hash == null) return;
-	const pixels = decode(props.hash, props.size, props.size);
+	if (props.hash == null || canvas == null) return;
+	const pixels = decodeBlurHash(props.hash, props.size, props.size);
 	const ctx = canvas.getContext("2d");
 	const imageData = ctx!.createImageData(props.size, props.size);
 	imageData.data.set(pixels);

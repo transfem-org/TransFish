@@ -91,10 +91,10 @@ useTooltip(
 				targetElement: buttonRef.value,
 			},
 			{},
-			"closed"
+			"closed",
 		);
 	},
-	100
+	100,
 );
 </script>
 

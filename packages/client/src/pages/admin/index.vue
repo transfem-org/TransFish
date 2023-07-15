@@ -264,7 +264,7 @@ const menuDef = $computed(() => [
 							active: currentPage?.route.name === "security",
 						},
 						{
-							icon: "ph-flow-arrow ph-bold ph-lg",
+							icon: "ph-arrows-merge ph-bold ph-lg",
 							text: i18n.ts.relays,
 							to: "/admin/relays",
 							active: currentPage?.route.name === "relays",
@@ -379,7 +379,7 @@ async function lookupNote() {
 		"notes/show",
 		q.startsWith("http://") || q.startsWith("https://")
 			? { url: q.trim() }
-			: { noteId: q.trim() }
+			: { noteId: q.trim() },
 	)
 		.then((note) => {
 			os.pageWindow(`/notes/${note.id}`);
@@ -426,7 +426,7 @@ const lookup = (ev) => {
 				},
 			},
 		],
-		ev.currentTarget ?? ev.target
+		ev.currentTarget ?? ev.target,
 	);
 };
 

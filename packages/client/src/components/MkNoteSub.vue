@@ -85,7 +85,7 @@
 						:count="
 							Object.values(appearNote.reactions).reduce(
 								(partialSum, val) => partialSum + val,
-								0
+								0,
 							)
 						"
 						:reacted="appearNote.myReaction != null"
@@ -220,7 +220,7 @@ const props = withDefaults(
 	{
 		depth: 1,
 		replyLevel: 1,
-	}
+	},
 );
 
 let note = $ref(deepClone(props.note));
@@ -248,7 +248,7 @@ const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const reactButton = ref<HTMLElement>();
 let appearNote = $computed(() =>
-	isRenote ? (note.renote as misskey.entities.Note) : note
+	isRenote ? (note.renote as misskey.entities.Note) : note,
 );
 const isDeleted = ref(false);
 const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
@@ -259,7 +259,7 @@ const replies: misskey.entities.Note[] =
 		?.filter(
 			(item) =>
 				item.replyId === props.note.id ||
-				item.renoteId === props.note.id
+				item.renoteId === props.note.id,
 		)
 		.reverse() ?? [];
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
@@ -294,7 +294,7 @@ function react(viaKeyboard = false): void {
 		},
 		() => {
 			focus();
-		}
+		},
 	);
 }
 
@@ -308,7 +308,7 @@ function undoReact(note): void {
 
 const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
 	"currentClipPage",
-	null
+	null,
 );
 
 function menu(viaKeyboard = false): void {
@@ -324,7 +324,7 @@ function menu(viaKeyboard = false): void {
 		menuButton.value,
 		{
 			viaKeyboard,
-		}
+		},
 	).then(focus);
 }
 
@@ -389,7 +389,7 @@ function onContextmenu(ev: MouseEvent): void {
 					  }
 					: undefined,
 			],
-			ev
+			ev,
 		);
 	}
 }
@@ -477,6 +477,9 @@ function noteClick(e) {
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
+					&:disabled {
+						opacity: 0.5 !important;
+					}
 					flex-grow: 1;
 					max-width: 3.5em;
 					width: max-content;

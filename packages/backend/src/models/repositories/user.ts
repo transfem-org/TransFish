@@ -1,4 +1,3 @@
-import { URL } from "url";
 import { In, Not } from "typeorm";
 import Ajv from "ajv";
 import type { ILocalUser, IRemoteUser } from "@/models/entities/user.js";
@@ -40,7 +39,10 @@ import {
 } from "../index.js";
 import type { Instance } from "../entities/instance.js";
 
-const userInstanceCache = new Cache<Instance | null>(1000 * 60 * 60 * 3);
+const userInstanceCache = new Cache<Instance | null>(
+	"userInstance",
+	60 * 60 * 3,
+);
 
 type IsUserDetailed<Detailed extends boolean> = Detailed extends true
 	? Packed<"UserDetailed">
@@ -451,6 +453,7 @@ export const UserRepository = db.getRepository(User).extend({
 			isAdmin: user.isAdmin || falsy,
 			isModerator: user.isModerator || falsy,
 			isBot: user.isBot || falsy,
+			isLocked: user.isLocked,
 			isCat: user.isCat || falsy,
 			speakAsCat: user.speakAsCat || falsy,
 			instance: user.host
@@ -495,7 +498,6 @@ export const UserRepository = db.getRepository(User).extend({
 							: null,
 						bannerBlurhash: user.banner?.blurhash || null,
 						bannerColor: null, // 後方互換性のため
-						isLocked: user.isLocked,
 						isSilenced: user.isSilenced || falsy,
 						isSuspended: user.isSuspended || falsy,
 						description: profile!.description,

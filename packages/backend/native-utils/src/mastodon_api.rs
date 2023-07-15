@@ -13,7 +13,6 @@ pub enum IdConvertType {
 
 #[napi]
 pub fn convert_id(in_id: String, id_convert_type: IdConvertType) -> napi::Result<String> {
-    println!("converting id: {}", in_id);
     use IdConvertType::*;
     match id_convert_type {
         MastodonId => {

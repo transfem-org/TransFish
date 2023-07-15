@@ -140,7 +140,7 @@ export default defineComponent({
 					if (window.innerWidth >= DESKTOP_THRESHOLD)
 						this.isDesktop = true;
 				},
-				{ passive: true }
+				{ passive: true },
 			);
 		}
 	},

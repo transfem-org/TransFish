@@ -64,7 +64,7 @@ const props = withDefaults(
 		information: null,
 		initialName: null,
 		initialPermissions: null,
-	}
+	},
 );
 
 const emit = defineEmits<{

@@ -57,7 +57,7 @@ const props = withDefaults(
 		disableLink: false,
 		disablePreview: false,
 		showIndicator: false,
-	}
+	},
 );
 
 const emit = defineEmits<{
@@ -67,7 +67,7 @@ const emit = defineEmits<{
 const url = $computed(() =>
 	defaultStore.state.disableShowingAnimatedImages
 		? getStaticImageUrl(props.user.avatarUrl)
-		: props.user.avatarUrl
+		: props.user.avatarUrl,
 );
 
 function onClick(ev: MouseEvent) {
@@ -83,7 +83,7 @@ watch(
 	},
 	{
 		immediate: true,
-	}
+	},
 );
 </script>
 

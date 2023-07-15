@@ -59,7 +59,7 @@ const current = resolveNested(router.current)!;
 let currentPageComponent = $shallowRef(current.route.component);
 let currentPageProps = $ref(current.props);
 let key = $ref(
-	current.route.path + JSON.stringify(Object.fromEntries(current.props))
+	current.route.path + JSON.stringify(Object.fromEntries(current.props)),
 );
 
 function onChange({ resolved, key: newKey }) {

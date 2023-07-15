@@ -29,7 +29,7 @@ const emit = defineEmits<{
 	(
 		ev: "upload",
 		file: File,
-		folder?: Misskey.entities.DriveFolder | null
+		folder?: Misskey.entities.DriveFolder | null,
 	): void;
 	(ev: "removeFile", v: Misskey.entities.DriveFile["id"]): void;
 	(ev: "removeFolder", v: Misskey.entities.DriveFolder["id"]): void;

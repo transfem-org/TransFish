@@ -139,7 +139,7 @@ function signin() {
 			autoSet: true,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 
@@ -150,7 +150,7 @@ function signup() {
 			autoSet: true,
 		},
 		{},
-		"closed"
+		"closed",
 	);
 }
 
@@ -161,7 +161,7 @@ onMounted(() => {
 			() => {
 				if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop = true;
 			},
-			{ passive: true }
+			{ passive: true },
 		);
 	}
 });
@@ -176,7 +176,8 @@ defineExpose({
 .tray-leave-active {
 	opacity: 1;
 	transform: translateX(0);
-	transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
+	transition:
+		transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
 		opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .tray-enter-from,

@@ -389,6 +389,11 @@ export const meta = {
 				nullable: false,
 				default: "⭐",
 			},
+			donationLink: {
+				type: "string",
+				optional: "true",
+				nullable: true,
+			},
 		},
 	},
 } as const;
@@ -491,6 +496,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		translatorAvailable:
 			instance.deeplAuthKey != null || instance.libreTranslateApiUrl != null,
 		defaultReaction: instance.defaultReaction,
+		donationLink: instance.donationLink,
 
 		...(ps.detail
 			? {

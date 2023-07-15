@@ -137,7 +137,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.files,
 		icon: "ph-cloud ph-bold ph-lg",
-	}))
+	})),
 );
 </script>
 

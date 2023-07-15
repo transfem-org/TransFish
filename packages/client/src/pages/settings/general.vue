@@ -279,24 +279,24 @@ async function reloadAsk() {
 }
 
 const overridedDeviceKind = computed(
-	defaultStore.makeGetterSetter("overridedDeviceKind")
+	defaultStore.makeGetterSetter("overridedDeviceKind"),
 );
 const serverDisconnectedBehavior = computed(
-	defaultStore.makeGetterSetter("serverDisconnectedBehavior")
+	defaultStore.makeGetterSetter("serverDisconnectedBehavior"),
 );
 const reduceAnimation = computed(
 	defaultStore.makeGetterSetter(
 		"animation",
 		(v) => !v,
-		(v) => !v
-	)
+		(v) => !v,
+	),
 );
 const useBlurEffectForModal = computed(
-	defaultStore.makeGetterSetter("useBlurEffectForModal")
+	defaultStore.makeGetterSetter("useBlurEffectForModal"),
 );
 const useBlurEffect = computed(defaultStore.makeGetterSetter("useBlurEffect"));
 const showGapBetweenNotesInTimeline = computed(
-	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline")
+	defaultStore.makeGetterSetter("showGapBetweenNotesInTimeline"),
 );
 const showAds = computed(defaultStore.makeGetterSetter("showAds"));
 const advancedMfm = computed(defaultStore.makeGetterSetter("advancedMfm"));
@@ -304,57 +304,57 @@ const autoplayMfm = computed(
 	defaultStore.makeGetterSetter(
 		"animatedMfm",
 		(v) => !v,
-		(v) => !v
-	)
+		(v) => !v,
+	),
 );
 const useOsNativeEmojis = computed(
-	defaultStore.makeGetterSetter("useOsNativeEmojis")
+	defaultStore.makeGetterSetter("useOsNativeEmojis"),
 );
 const disableDrawer = computed(defaultStore.makeGetterSetter("disableDrawer"));
 const disableShowingAnimatedImages = computed(
-	defaultStore.makeGetterSetter("disableShowingAnimatedImages")
+	defaultStore.makeGetterSetter("disableShowingAnimatedImages"),
 );
 const loadRawImages = computed(defaultStore.makeGetterSetter("loadRawImages"));
 const imageNewTab = computed(defaultStore.makeGetterSetter("imageNewTab"));
 const nsfw = computed(defaultStore.makeGetterSetter("nsfw"));
 const disablePagesScript = computed(
-	defaultStore.makeGetterSetter("disablePagesScript")
+	defaultStore.makeGetterSetter("disablePagesScript"),
 );
 const expandOnNoteClick = computed(
-	defaultStore.makeGetterSetter("expandOnNoteClick")
+	defaultStore.makeGetterSetter("expandOnNoteClick"),
 );
 const showFixedPostForm = computed(
-	defaultStore.makeGetterSetter("showFixedPostForm")
+	defaultStore.makeGetterSetter("showFixedPostForm"),
 );
 const numberOfPageCache = computed(
-	defaultStore.makeGetterSetter("numberOfPageCache")
+	defaultStore.makeGetterSetter("numberOfPageCache"),
 );
 const instanceTicker = computed(
-	defaultStore.makeGetterSetter("instanceTicker")
+	defaultStore.makeGetterSetter("instanceTicker"),
 );
 const enableInfiniteScroll = computed(
-	defaultStore.makeGetterSetter("enableInfiniteScroll")
+	defaultStore.makeGetterSetter("enableInfiniteScroll"),
 );
 const enterSendsMessage = computed(
-	defaultStore.makeGetterSetter("enterSendsMessage")
+	defaultStore.makeGetterSetter("enterSendsMessage"),
 );
 const useReactionPickerForContextMenu = computed(
-	defaultStore.makeGetterSetter("useReactionPickerForContextMenu")
+	defaultStore.makeGetterSetter("useReactionPickerForContextMenu"),
 );
 const seperateRenoteQuote = computed(
-	defaultStore.makeGetterSetter("seperateRenoteQuote")
+	defaultStore.makeGetterSetter("seperateRenoteQuote"),
 );
 const squareAvatars = computed(defaultStore.makeGetterSetter("squareAvatars"));
 const showUpdates = computed(defaultStore.makeGetterSetter("showUpdates"));
 const swipeOnDesktop = computed(
-	defaultStore.makeGetterSetter("swipeOnDesktop")
+	defaultStore.makeGetterSetter("swipeOnDesktop"),
 );
 const swipeOnMobile = computed(defaultStore.makeGetterSetter("swipeOnMobile"));
 const showAdminUpdates = computed(
-	defaultStore.makeGetterSetter("showAdminUpdates")
+	defaultStore.makeGetterSetter("showAdminUpdates"),
 );
 const showTimelineReplies = computed(
-	defaultStore.makeGetterSetter("showTimelineReplies")
+	defaultStore.makeGetterSetter("showTimelineReplies"),
 );
 
 watch(swipeOnDesktop, () => {
@@ -404,7 +404,7 @@ watch(
 	],
 	async () => {
 		await reloadAsk();
-	}
+	},
 );
 
 const headerActions = $computed(() => []);

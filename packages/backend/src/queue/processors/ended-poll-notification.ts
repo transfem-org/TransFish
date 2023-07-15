@@ -33,7 +33,7 @@ export async function endedPollNotification(
 	}
 
 	// Broadcast the poll result once it ends
-	await deliverQuestionUpdate(note.id);
+	if (!note.localOnly) await deliverQuestionUpdate(note.id);
 
 	done();
 }

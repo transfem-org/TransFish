@@ -33,7 +33,12 @@
 			detailedView
 		></MkNote>
 
-		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
+		<MkTab
+			v-model="tab"
+			style="white-space: nowrap"
+			:style="'underline'"
+			@update:modelValue="loadTab"
+		>
 			<option value="replies">
 				<!-- <i class="ph-arrow-u-up-left ph-bold ph-lg"></i> -->
 				<span v-if="note.repliesCount > 0" class="count">{{
@@ -233,7 +238,7 @@ let isScrolling;
 
 const reactionsCount = Object.values(props.note.reactions).reduce(
 	(x, y) => x + y,
-	0
+	0,
 );
 
 const keymap = {
@@ -274,7 +279,7 @@ function react(viaKeyboard = false): void {
 		},
 		() => {
 			focus();
-		}
+		},
 	);
 }
 
@@ -308,7 +313,7 @@ function onContextmenu(ev: MouseEvent): void {
 				menuButton,
 				isDeleted,
 			}),
-			ev
+			ev,
 		).then(focus);
 	}
 }
@@ -325,7 +330,7 @@ function menu(viaKeyboard = false): void {
 		menuButton.value,
 		{
 			viaKeyboard,
-		}
+		},
 	).then(focus);
 }
 
@@ -551,7 +556,9 @@ onUnmounted(() => {
 			background: var(--panelHighlight);
 			border-radius: var(--radius);
 			opacity: 0;
-			transition: opacity 0.2s, background 0.2s;
+			transition:
+				opacity 0.2s,
+				background 0.2s;
 			z-index: -1;
 		}
 		&.reply-to {

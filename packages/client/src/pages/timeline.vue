@@ -65,7 +65,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
 import XTimeline from "@/components/MkTimeline.vue";
@@ -114,7 +114,7 @@ const MOBILE_THRESHOLD = 500;
 
 // デスクトップでウィンドウを狭くしたときモバイルUIが表示されて欲しいことはあるので deviceKind === 'desktop' の判定は行わない
 const isMobile = ref(
-	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD
+	deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD,
 );
 window.addEventListener("resize", () => {
 	isMobile.value =
@@ -148,7 +148,7 @@ async function chooseList(ev: MouseEvent) {
 				text: list.name,
 				icon: "",
 				to: `/timeline/list/${list.id}`,
-			}))
+			})),
 		);
 		os.popupMenu(items, ev.currentTarget ?? ev.target);
 	});
@@ -172,14 +172,14 @@ async function chooseAntenna(ev: MouseEvent) {
 				icon: "",
 				indicate: antenna.hasUnreadNote,
 				to: `/timeline/antenna/${antenna.id}`,
-			}))
+			})),
 		);
 		os.popupMenu(items, ev.currentTarget ?? ev.target);
 	});
 }
 
 function saveSrc(
-	newSrc: "home" | "local" | "social" | "recommended" | "global"
+	newSrc: "home" | "local" | "social" | "recommended" | "global",
 ): void {
 	defaultStore.set("tl", {
 		...defaultStore.state.tl,
@@ -284,7 +284,7 @@ definePageMetadata(
 				: src === "global"
 				? "ph-planet ph-bold ph-lg"
 				: "ph-house ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef: any = null;

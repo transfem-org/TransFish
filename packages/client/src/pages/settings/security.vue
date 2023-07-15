@@ -73,7 +73,7 @@ async function change() {
 			title: i18n.ts.currentPassword,
 			type: "password",
 			autocomplete: "current-password",
-		}
+		},
 	);
 	if (canceled1) return;
 

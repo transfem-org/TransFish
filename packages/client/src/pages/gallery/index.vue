@@ -92,9 +92,9 @@
 					>
 						<div class="vfpdbgtk">
 							<MkGalleryPostPreview
-								v-for="post in items"
-								:key="post.id"
-								:post="post"
+								v-for="mypost in items"
+								:key="mypost.id"
+								:post="mypost"
 								class="post"
 							/>
 						</div>
@@ -107,7 +107,7 @@
 
 <script lang="ts" setup>
 import { computed, defineComponent, watch, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkFolder from "@/components/MkFolder.vue";
 import MkPagination from "@/components/MkPagination.vue";
@@ -153,7 +153,7 @@ watch(
 	() => props.tag,
 	() => {
 		if (tagsRef) tagsRef.tags.toggleContent(props.tag == null);
-	}
+	},
 );
 
 const headerActions = $computed(() => [

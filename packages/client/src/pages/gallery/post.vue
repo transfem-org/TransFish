@@ -243,8 +243,8 @@ definePageMetadata(
 					title: post.title,
 					avatar: post.user,
 			  }
-			: null
-	)
+			: null,
+	),
 );
 </script>
 

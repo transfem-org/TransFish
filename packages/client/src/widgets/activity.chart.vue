@@ -83,24 +83,26 @@ function render() {
 		const activity = props.activity.slice().reverse();
 		pointsNote = activity
 			.map(
-				(d, i) => `${i * zoom + pos},${(1 - d.notes / peak) * viewBoxY}`
+				(d, i) =>
+					`${i * zoom + pos},${(1 - d.notes / peak) * viewBoxY}`,
 			)
 			.join(" ");
 		pointsReply = activity
 			.map(
 				(d, i) =>
-					`${i * zoom + pos},${(1 - d.replies / peak) * viewBoxY}`
+					`${i * zoom + pos},${(1 - d.replies / peak) * viewBoxY}`,
 			)
 			.join(" ");
 		pointsRenote = activity
 			.map(
 				(d, i) =>
-					`${i * zoom + pos},${(1 - d.renotes / peak) * viewBoxY}`
+					`${i * zoom + pos},${(1 - d.renotes / peak) * viewBoxY}`,
 			)
 			.join(" ");
 		pointsTotal = activity
 			.map(
-				(d, i) => `${i * zoom + pos},${(1 - d.total / peak) * viewBoxY}`
+				(d, i) =>
+					`${i * zoom + pos},${(1 - d.total / peak) * viewBoxY}`,
 			)
 			.join(" ");
 	}

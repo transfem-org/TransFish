@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XNotes from "@/components/MkNotes.vue";
 import XUserList from "@/components/MkUserList.vue";
@@ -115,6 +115,6 @@ definePageMetadata(
 	computed(() => ({
 		title: props.tag,
 		icon: "ph-hash ph-bold ph-lg",
-	}))
+	})),
 );
 </script>

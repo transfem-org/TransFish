@@ -11,7 +11,7 @@
 			<div class="users">
 				<MkUserInfo
 					v-for="user in items.map((x) =>
-						type === 'following' ? x.followee : x.follower
+						type === 'following' ? x.followee : x.follower,
 					)"
 					:key="user.id"
 					class="user"

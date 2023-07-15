@@ -11,7 +11,7 @@
 			message.groupId
 				? `/my/messaging/group/${message.groupId}`
 				: `/my/messaging/${getAcct(
-						isMe(message) ? message.recipient : message.user
+						isMe(message) ? message.recipient : message.user,
 				  )}`
 		"
 	>

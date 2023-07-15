@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { computed, watch, onMounted } from "vue";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XFeatured from "./explore.featured.vue";
 import XUsers from "./explore.users.vue";
@@ -72,7 +72,7 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.explore,
 		icon: "ph-compass ph-bold ph-lg",
-	}))
+	})),
 );
 
 let swiperRef = null;

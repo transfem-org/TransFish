@@ -101,8 +101,9 @@
 								><Mfm
 									:text="'@freeplay@firefish.social (UI/UX)'"
 							/></FormLink>
-							<FormLink to="/@nmkj@firefish.jp"
-								><Mfm :text="'@nmkj@firefish.jp (Backend)'"
+							<FormLink to="/@namekuji@calckey.social"
+								><Mfm
+									:text="'@namekuji@calckey.social (Backend)'"
 							/></FormLink>
 							<FormLink to="/@dev@post.naskya.net"
 								><Mfm :text="'@dev@post.naskya.net (Backend)'"
@@ -128,6 +129,26 @@
 					</FormSection>
 					<FormSection>
 						<template #label
+							><Mfm
+								:text="`$[x2 $[jelly ❤] ${i18n.ts._aboutMisskey.sponsors}]`"
+							/>
+						</template>
+						<MkSparkle>
+							<span
+								v-for="sponsor in sponsors"
+								:key="sponsor"
+								style="
+									margin-bottom: 0.5rem;
+									margin-right: 0.5rem;
+									font-size: 1.7rem;
+								"
+							>
+								<Mfm :text="`${sponsor}`" />
+							</span>
+						</MkSparkle>
+					</FormSection>
+					<FormSection>
+						<template #label
 							><Mfm text="$[jelly ❤]" />
 							{{ i18n.ts._aboutMisskey.patrons }}</template
 						>
@@ -146,9 +167,7 @@
 								<Mfm :text="`${patron}`" />
 							</span>
 						</MkSparkle>
-						<template #caption>{{
-							i18n.ts._aboutMisskey.morePatrons
-						}}</template>
+						<p>{{ i18n.ts._aboutMisskey.morePatrons }}</p>
 					</FormSection>
 				</div>
 			</MkSpacer>
@@ -171,11 +190,12 @@ import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
 let patrons = [];
-try {
-	patrons = await os.api("patrons", { forceUpdate: true });
-} catch {
-	console.error("Codeberg's down.")
-}
+let sponsors = [];
+const patronsResp = await os.api("patrons", { forceUpdate: true });
+patrons = patronsResp.patrons;
+sponsors = patronsResp.sponsors;
+
+patrons = patrons.filter((patron) => !sponsors.includes(patron));
 
 let easterEggReady = false;
 let easterEggEmojis = $ref([]);
