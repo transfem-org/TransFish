@@ -10,6 +10,7 @@ export const meta = {
 
 	requireCredential: false,
 	requireCredentialPrivateMode: true,
+	description: "Get threaded/chained replies to a note",
 
 	res: {
 		type: "array",
