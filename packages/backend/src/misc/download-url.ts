@@ -21,9 +21,10 @@ export async function downloadUrl(url: string, path: string): Promise<void> {
 	const maxSize = config.maxFileSize || 262144000;
 
 	const req = got
-		.stream(url, {
+	.stream(url, {
 			headers: {
 				"User-Agent": config.userAgent,
+				"Host": new URL(url).hostname,
 			},
 			timeout: {
 				lookup: timeout,
