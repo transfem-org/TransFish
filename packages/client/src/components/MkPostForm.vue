@@ -400,7 +400,7 @@ const textLength = $computed((): number => {
 });
 
 const maxTextLength = $computed((): number => {
-	return instance ? instance.maxNoteTextLength : 1000;
+	return instance ? instance.maxNoteTextLength : 3000;
 });
 
 const canPost = $computed((): boolean => {

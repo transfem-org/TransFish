@@ -35,7 +35,11 @@ export const meta = {
 export const paramDef = {
 	type: "object",
 	properties: {
-		noteId: { type: "string", format: "misskey:id", description: "Should be a reply" },
+		noteId: {
+			type: "string",
+			format: "misskey:id",
+			description: "Should be a reply",
+		},
 		limit: { type: "integer", minimum: 1, maximum: 100, default: 10 },
 		offset: { type: "integer", default: 0 },
 	},

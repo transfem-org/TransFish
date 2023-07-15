@@ -129,9 +129,10 @@
 					</FormSection>
 					<FormSection>
 						<template #label
-							><Mfm :text="`$[x2 $[jelly ❤] ${i18n.ts._aboutMisskey.sponsors}]`" />
-						</template
-						>
+							><Mfm
+								:text="`$[x2 $[jelly ❤] ${i18n.ts._aboutMisskey.sponsors}]`"
+							/>
+						</template>
 						<MkSparkle>
 							<span
 								v-for="sponsor in sponsors"
@@ -193,7 +194,6 @@ let sponsors = [];
 const patronsResp = await os.api("patrons", { forceUpdate: true });
 patrons = patronsResp.patrons;
 sponsors = patronsResp.sponsors;
-
 
 patrons = patrons.filter((patron) => !sponsors.includes(patron));
 
