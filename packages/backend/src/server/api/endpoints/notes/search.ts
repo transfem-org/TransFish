@@ -1,4 +1,4 @@
-import {FindManyOptions, In} from "typeorm";
+import { FindManyOptions, In } from "typeorm";
 import { Notes } from "@/models/index.js";
 import { Note } from "@/models/entities/note.js";
 import config from "@/config/index.js";
@@ -180,9 +180,9 @@ export default define(meta, paramDef, async (ps, me) => {
 		const sortByDate = ps.order !== "relevancy";
 
 		type NoteResult = {
-			id: string,
-			createdAt: number
-		}
+			id: string;
+			createdAt: number;
+		};
 		const extractedNotes: NoteResult[] = [];
 
 		while (true) {
@@ -221,8 +221,8 @@ export default define(meta, paramDef, async (ps, me) => {
 				.map((key) => {
 					return {
 						id: key.id,
-						createdAt: key.createdAt
-					}
+						createdAt: key.createdAt,
+					};
 				});
 
 			extractedNotes.push(...res);
@@ -238,7 +238,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		// Fetch the notes from the database until we have enough to satisfy the limit
 		start = 0;
 		const found = [];
-		const noteIDs = extractedNotes.map(note => note.id);
+		const noteIDs = extractedNotes.map((note) => note.id);
 
 		// Index the ID => index number into a map, so we can sort efficiently later
 		const idIndexMap = new Map(noteIDs.map((id, index) => [id, index]));
@@ -246,20 +246,22 @@ export default define(meta, paramDef, async (ps, me) => {
 		while (found.length < ps.limit && start < noteIDs.length) {
 			const chunk = noteIDs.slice(start, start + chunkSize);
 
-			let query : FindManyOptions = sortByDate ? {
-				where: {
-					id: In(chunk),
-				},
-				order: {
-					id: "DESC"
-				}
-			} : {
-				where: {
-					id: In(chunk),
-				},
-			}
+			let query: FindManyOptions = sortByDate
+				? {
+						where: {
+							id: In(chunk),
+						},
+						order: {
+							id: "DESC",
+						},
+				  }
+				: {
+						where: {
+							id: In(chunk),
+						},
+				  };
 
-			console.log(JSON.stringify(query))
+			console.log(JSON.stringify(query));
 
 			const notes: Note[] = await Notes.find(query);
 
