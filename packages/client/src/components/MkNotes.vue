@@ -65,13 +65,13 @@ let scrollContainer = $ref(tlEl.value);
 let scrollPos = $ref(0);
 
 onDeactivated(() => {
-	scrollPos =  getScrollPosition( scrollContainer );
-})
+	scrollPos = getScrollPosition(scrollContainer);
+});
 onActivated(() => {
 	nextTick(() => {
 		scroll(scrollContainer, { top: scrollPos, behavior: "instant" });
-	})
-})
+	});
+});
 </script>
 
 <style lang="scss" scoped>
