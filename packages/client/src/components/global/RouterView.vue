@@ -1,6 +1,22 @@
 <template>
+	<KeepAlive>
+		<Suspense v-if="currentPageKeepAlive">
+			<component
+				:is="currentPageComponent"
+				:key="key"
+				v-bind="Object.fromEntries(currentPageProps)"
+				tabindex="-1"
+				v-focus
+				style="outline: none"
+			/>
+
+			<template #fallback>
+				<MkLoading />
+			</template>
+		</Suspense>
+	</KeepAlive>
 	<KeepAlive :max="defaultStore.state.numberOfPageCache">
-		<Suspense>
+		<Suspense v-if="!currentPageKeepAlive">
 			<component
 				:is="currentPageComponent"
 				:key="key"
@@ -57,6 +73,7 @@ function resolveNested(current: Resolved, d = 0): Resolved | null {
 
 const current = resolveNested(router.current)!;
 let currentPageComponent = $shallowRef(current.route.component);
+let currentPageKeepAlive = $shallowRef(current.route.keepAlive);
 let currentPageProps = $ref(current.props);
 let key = $ref(
 	current.route.path + JSON.stringify(Object.fromEntries(current.props)),
@@ -66,6 +83,7 @@ function onChange({ resolved, key: newKey }) {
 	const current = resolveNested(resolved);
 	if (current == null) return;
 	currentPageComponent = current.route.component;
+	currentPageKeepAlive = current.route.keepAlive;
 	currentPageProps = current.props;
 	key =
 		current.route.path + JSON.stringify(Object.fromEntries(current.props));

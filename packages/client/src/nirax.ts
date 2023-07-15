@@ -12,6 +12,7 @@ type RouteDef = {
 	loginRequired?: boolean;
 	name?: string;
 	hash?: string;
+	keepAlive?: boolean;
 	globalCacheKey?: string;
 	children?: RouteDef[];
 };

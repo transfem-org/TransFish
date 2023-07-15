@@ -657,6 +657,7 @@ export const routes = [
 		component: $i
 			? page(() => import("./pages/timeline.vue"))
 			: page(() => import("./pages/welcome.vue")),
+		keepAlive: true,
 		globalCacheKey: "index",
 	},
 	{
