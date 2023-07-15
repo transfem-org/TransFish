@@ -1609,6 +1609,7 @@ _aboutMisskey:
   pleaseDonateToHost: Penseu també en fer una donació a la vostre instància, {host},
     per ajudar-lo a suportar els costos de funcionament.
   donateHost: Fes una donació a {host}
+  sponsors: Patrocinadors de Calckey
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
