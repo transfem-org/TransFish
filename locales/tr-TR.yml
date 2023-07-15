@@ -660,7 +660,7 @@ driveCapacityPerLocalAccount: Kullanıcı başı Driver kapasitesi
 driveCapacityPerRemoteAccount: Uzak kullanıcı başı Driver kapasitesi
 inMb: Megabayt cinsinden
 pinnedClipId: Sabitlenecek atacın ID'si
-withFiles: Dosyaları içer
+withFiles: Dosya içeren
 recentlyRegisteredUsers: Yeni katılmış kullanıcılar
 recentlyDiscoveredUsers: Yeni keşfedilmiş kullanıcılar
 nUsersMentioned: '{n} kullanıcı tarafından bahsedildi'
@@ -1237,7 +1237,7 @@ objectStorageRegion: Region
 invisibleNote: Gizli Gönderi
 deletedNote: Silinmiş Gönderi
 visibility: Görünürlük
-poll: Oylama
+poll: Anket
 themeEditor: Tema düzenleyicisi
 enterFileDescription: Başlık gir
 description: Açıklama
