@@ -7,7 +7,6 @@
 
 - Stucture
   - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
-  - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
   - User "choices" (recommended users) and featured hashtags like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
