@@ -1250,7 +1250,7 @@ _poll:
 _visibility:
   public: "Публічний"
   publicDescription: "Ваш запис буде видно в усіх публічних стрічках"
-  home: "Скритий"
+  home: "Домашній"
   homeDescription: "Лише на домашній стрічці"
   followers: "Підписники"
   followersDescription: "Зробити видимим тільки для ваших підписників і згаданих користувачів"
