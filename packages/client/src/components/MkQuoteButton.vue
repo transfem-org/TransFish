@@ -3,7 +3,7 @@
 		v-if="canRenote && $store.state.seperateRenoteQuote"
 		v-tooltip.noDelay.bottom="i18n.ts.quote"
 		class="eddddedb _button"
-		@click="quote()"
+		@click.stop="quote()"
 	>
 		<i class="ph-quotes ph-bold ph-lg"></i>
 	</button>
