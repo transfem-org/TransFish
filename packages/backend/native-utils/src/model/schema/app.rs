@@ -91,7 +91,7 @@ pub enum AppPermission {
 
 impl Schema<Self> for App {}
 
-pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| App::validator());
+pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(App::validator);
 
 #[cfg(test)]
 mod unit_test {

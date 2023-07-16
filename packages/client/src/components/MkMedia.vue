@@ -108,7 +108,9 @@ const url =
 		: props.media.thumbnailUrl;
 
 const mediaType = computed(() => {
-	return props.media.type === 'video/quicktime' ? 'video/mp4' : props.media.type;
+	return props.media.type === "video/quicktime"
+		? "video/mp4"
+		: props.media.type;
 });
 
 function captionPopup() {

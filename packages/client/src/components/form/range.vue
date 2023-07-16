@@ -12,7 +12,7 @@
 					:list="id"
 					:value="modelValue"
 					:disabled="disabled"
-					v-on:change="(x) => onChange(x)"
+					@change="(x) => onChange(x)"
 					@focus="tooltipShow"
 					@blur="tooltipHide"
 					@touchstart="tooltipShow"
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, defineAsyncComponent } from "vue";
+import { computed, defineAsyncComponent, ref } from "vue";
 import * as os from "@/os";
 
 const id = os.getUniqueId();
@@ -59,7 +59,7 @@ const props = withDefaults(
 );
 
 const inputEl = ref<HTMLElement>();
-let inputVal = $ref(props.modelValue);
+const inputVal = $ref(props.modelValue);
 
 const emit = defineEmits<{
 	(ev: "update:modelValue", value: number): void;

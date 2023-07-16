@@ -46,7 +46,7 @@ impl Repository<Antenna> for antenna::Model {
             src: self.src.try_into()?,
             user_list_id: self.user_list_id,
             user_group_id,
-            users: self.users.into(),
+            users: self.users,
             instances: self.instances.into(),
             case_sensitive: self.case_sensitive,
             notify: self.notify,

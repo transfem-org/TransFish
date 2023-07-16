@@ -34,9 +34,9 @@
 <script lang="ts" setup>
 import {} from "vue";
 import XColumn from "./column.vue";
+import type { Column } from "./deck-store";
 import {
 	addColumnWidget,
-	Column,
 	removeColumnWidget,
 	setColumnWidgets,
 	updateColumnWidget,

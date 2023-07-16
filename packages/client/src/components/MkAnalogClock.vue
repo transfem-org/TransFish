@@ -109,12 +109,12 @@
 
 <script lang="ts" setup>
 import {
-	ref,
 	computed,
-	onMounted,
-	onBeforeUnmount,
-	shallowRef,
 	nextTick,
+	onBeforeUnmount,
+	onMounted,
+	ref,
+	shallowRef,
 } from "vue";
 import tinycolor from "tinycolor2";
 import { globalEvents } from "@/events.js";
@@ -173,21 +173,21 @@ const texts = computed(() => {
 	return angles;
 });
 
-let enabled = true;
-let majorGraduationColor = $ref<string>();
-//let minorGraduationColor = $ref<string>();
-let sHandColor = $ref<string>();
-let mHandColor = $ref<string>();
-let hHandColor = $ref<string>();
-let nowColor = $ref<string>();
-let h = $ref<number>(0);
-let m = $ref<number>(0);
-let s = $ref<number>(0);
-let hAngle = $ref<number>(0);
-let mAngle = $ref<number>(0);
-let sAngle = $ref<number>(0);
-let disableSAnimate = $ref(false);
-let sOneRound = false;
+let enabled = true,
+	majorGraduationColor = $ref<string>(),
+	// let minorGraduationColor = $ref<string>();
+	sHandColor = $ref<string>(),
+	mHandColor = $ref<string>(),
+	hHandColor = $ref<string>(),
+	nowColor = $ref<string>(),
+	h = $ref<number>(0),
+	m = $ref<number>(0),
+	s = $ref<number>(0),
+	hAngle = $ref<number>(0),
+	mAngle = $ref<number>(0),
+	sAngle = $ref<number>(0),
+	disableSAnimate = $ref(false),
+	sOneRound = false;
 
 function tick() {
 	const now = new Date();
@@ -230,7 +230,7 @@ function calcColors() {
 	majorGraduationColor = dark
 		? "rgba(255, 255, 255, 0.3)"
 		: "rgba(0, 0, 0, 0.3)";
-	//minorGraduationColor = dark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+	// minorGraduationColor = dark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
 	sHandColor = dark ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.3)";
 	mHandColor = tinycolor(
 		computedStyle.getPropertyValue("--fg"),

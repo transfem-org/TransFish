@@ -57,17 +57,17 @@
 				<Mfm :text="text" />
 			</div>
 			<MkInput
-				ref="inputEl"
 				v-if="input && input.type !== 'paragraph'"
+				ref="inputEl"
 				v-model="inputValue"
 				autofocus
 				:autocomplete="input.autocomplete"
 				:type="input.type == 'search' ? 'search' : input.type || 'text'"
 				:placeholder="input.placeholder || undefined"
-				@keydown="onInputKeydown"
 				:style="{
 					width: input.type === 'search' ? '300px' : null,
 				}"
+				@keydown="onInputKeydown"
 			>
 				<template v-if="input.type === 'password'" #prefix
 					><i class="ph-password ph-bold ph-lg"></i
@@ -100,9 +100,9 @@
 				</template>
 				<template v-if="input.type === 'search'" #suffix>
 					<button
+						v-tooltip.noDelay="i18n.ts.filter"
 						class="_buttonIcon"
 						@click.stop="openSearchFilters"
-						v-tooltip.noDelay="i18n.ts.filter"
 					>
 						<i class="ph-funnel ph-bold"></i>
 					</button>
@@ -200,6 +200,7 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref, shallowRef } from "vue";
+import * as Acct from "calckey-js/built/acct";
 import MkModal from "@/components/MkModal.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -207,18 +208,17 @@ import MkTextarea from "@/components/form/textarea.vue";
 import MkSelect from "@/components/form/select.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-import * as Acct from "calckey-js/built/acct";
 
-type Input = {
+interface Input {
 	type: HTMLInputElement["type"];
 	placeholder?: string | null;
 	autocomplete?: string;
 	default: string | number | null;
 	minLength?: number;
 	maxLength?: number;
-};
+}
 
-type Select = {
+interface Select {
 	items: {
 		value: string;
 		text: string;
@@ -231,7 +231,7 @@ type Select = {
 		}[];
 	}[];
 	default: string | null;
-};
+}
 
 const props = withDefaults(
 	defineProps<{
