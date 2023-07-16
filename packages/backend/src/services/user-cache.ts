@@ -40,7 +40,10 @@ subscriber.on("message", async (_, data) => {
 			case "userChangeSilencedState":
 			case "userChangeModeratorState":
 			case "remoteUserUpdated": {
-				const user = await Users.findOneByOrFail({ id: body.id });
+				const user = await Users.findOneOrFail({
+					where: { id: body.id },
+					relations: { avatar: true, banner: true },
+				});
 				await userByIdCache.set(user.id, user);
 				const trans = redisClient.multi();
 				for (const [k, v] of (await uriPersonCache.getAll()).entries()) {
