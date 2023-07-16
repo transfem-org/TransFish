@@ -28,7 +28,7 @@ import { fetchInstanceMetadata } from "@/services/fetch-instance-metadata.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { truncate } from "@/misc/truncate.js";
 import { StatusError } from "@/misc/fetch.js";
-import { uriPersonCache } from "@/services/user-cache.js";
+import { uriPersonCache, userByIdCache } from "@/services/user-cache.js";
 import { publishInternalEvent } from "@/services/stream.js";
 import { db } from "@/db/postgre.js";
 import { apLogger } from "../logger.js";
@@ -372,6 +372,8 @@ export async function createPerson(
 	//#endregion
 
 	await updateFeatured(user!.id, resolver).catch((err) => logger.error(err));
+
+	await userByIdCache.set(user.id, {...user, emojis, avatar, banner});
 
 	return user!;
 }
