@@ -40,7 +40,7 @@ impl Migrator {
 
     pub(crate) async fn new(dir: PathBuf, config: &ScyllaConfig) -> Result<Self, Error> {
         let session = SessionBuilder::new()
-            .known_node(format!("{}:{}", config.host, config.port))
+            .known_nodes(&config.nodes)
             .build()
             .await?;
 
@@ -167,10 +167,6 @@ impl Migrator {
             let now = Utc::now().timestamp_millis();
             let cql = self.cql_fs(version, "up.cql")?;
 
-            for query in cql {
-                self.session.query(query, &[]).await?;
-            }
-
             // Save migration history
             self.session
                 .execute(
@@ -178,6 +174,19 @@ impl Migrator {
                     (version, Timestamp(Duration::milliseconds(now))),
                 )
                 .await?;
+
+            for query in cql {
+                match self.session.query(query.to_owned(), &[]).await {
+                    Err(e) => {
+                        println!("{query}");
+                        println!("Query failed. Rolling back...");
+                        self.down(1).await?;
+
+                        return Err(e.into());
+                    },
+                    Ok(_) => {}
+                };
+            }
         }
 
         Ok(())
