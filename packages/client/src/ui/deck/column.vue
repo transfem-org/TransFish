@@ -56,23 +56,23 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted, provide, Ref, watch } from "vue";
+import { Ref, onBeforeUnmount, onMounted, provide, watch } from "vue";
+import type { Column } from "./deck-store";
 import {
-	updateColumn,
+	deckStore,
+	popRightColumn,
+	removeColumn,
+	stackLeftColumn,
+	swapColumn,
+	swapDownColumn,
 	swapLeftColumn,
 	swapRightColumn,
 	swapUpColumn,
-	swapDownColumn,
-	stackLeftColumn,
-	popRightColumn,
-	removeColumn,
-	swapColumn,
-	Column,
-	deckStore,
+	updateColumn,
 } from "./deck-store";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 provide("shouldHeaderThin", true);
 provide("shouldOmitHeaderTitle", true);
@@ -99,15 +99,15 @@ const emit = defineEmits<{
 	(ev: "headerWheel", ctx: WheelEvent): void;
 }>();
 
-let body = $ref<HTMLDivElement>();
+const body = $ref<HTMLDivElement>();
 
 let dragging = $ref(false);
 watch($$(dragging), (v) =>
 	os.deckGlobalEvents.emit(v ? "column.dragStart" : "column.dragEnd"),
 );
 
-let draghover = $ref(false);
-let dropready = $ref(false);
+let draghover = $ref(false),
+	dropready = $ref(false);
 
 const isMainColumn = $computed(() => props.column.type === "main");
 const active = $computed(() => props.column.active !== false);

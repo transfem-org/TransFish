@@ -37,7 +37,7 @@
 
 <script lang="ts" setup>
 import { nextTick, onMounted } from "vue";
-import * as misskey from "calckey-js";
+import type * as misskey from "calckey-js";
 import Cropper from "cropperjs";
 import tinycolor from "tinycolor2";
 import XModalWindow from "@/components/MkModalWindow.vue";
@@ -62,10 +62,10 @@ const props = defineProps<{
 const imgUrl = `${url}/proxy/image.webp?${query({
 	url: props.file.url,
 })}`;
-let dialogEl = $ref<InstanceType<typeof XModalWindow>>();
-let imgEl = $ref<HTMLImageElement>();
-let cropper: Cropper | null = null;
-let loading = $ref(true);
+const dialogEl = $ref<InstanceType<typeof XModalWindow>>();
+const imgEl = $ref<HTMLImageElement>();
+let cropper: Cropper | null = null,
+	loading = $ref(true);
 
 const ok = async () => {
 	const promise = new Promise<misskey.entities.DriveFile>(async (res) => {

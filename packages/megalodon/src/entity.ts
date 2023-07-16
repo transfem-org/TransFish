@@ -35,4 +35,4 @@
 /// <reference path="./entities/token.ts" />
 /// <reference path="./entities/urls.ts" />
 
-export default Entity
+export default Entity;

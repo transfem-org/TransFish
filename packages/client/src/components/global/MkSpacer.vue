@@ -24,10 +24,10 @@ const props = withDefaults(
 	},
 );
 
-let ro: ResizeObserver;
-let root = $ref<HTMLElement>();
-let content = $ref<HTMLElement>();
-let margin = $ref(0);
+let ro: ResizeObserver,
+	root = $ref<HTMLElement>(),
+	content = $ref<HTMLElement>(),
+	margin = $ref(0);
 const shouldSpacerMin = inject("shouldSpacerMin", false);
 
 const adjust = (rect: { width: number; height: number }) => {

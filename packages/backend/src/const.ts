@@ -1,5 +1,8 @@
 import config from "@/config/index.js";
-import { DB_MAX_NOTE_TEXT_LENGTH, DB_MAX_IMAGE_COMMENT_LENGTH } from "@/misc/hard-limits.js";
+import {
+	DB_MAX_NOTE_TEXT_LENGTH,
+	DB_MAX_IMAGE_COMMENT_LENGTH,
+} from "@/misc/hard-limits.js";
 
 export const MAX_NOTE_TEXT_LENGTH = Math.min(
 	config.maxNoteLength ?? 3000,

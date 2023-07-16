@@ -58,7 +58,7 @@ impl TryFrom<AntennaSrcEnum> for super::AntennaSrc {
 
 // ---- TODO: could be macro
 impl Schema<Self> for super::Antenna {}
-pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(|| super::Antenna::validator());
+pub static VALIDATOR: Lazy<JSONSchema> = Lazy::new(super::Antenna::validator);
 // ----
 
 cfg_if! {

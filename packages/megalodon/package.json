@@ -5,7 +5,7 @@
   "typings": "./lib/src/index.d.ts",
   "scripts": {
     "build": "tsc -p ./",
-    "lint": "pnpm rome check --apply src/**/*.ts",
+    "lint": "pnpm rome check **/*.ts --apply",
 		"format": "pnpm rome format --write src/**/*.ts",
     "doc": "typedoc --out ../docs ./src",
     "test": "NODE_ENV=test jest -u --maxWorkers=3"
