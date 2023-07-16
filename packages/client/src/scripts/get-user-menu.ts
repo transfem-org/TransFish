@@ -260,6 +260,15 @@ export function getUserMenu(user, router: Router = mainRouter) {
 					to: `/my/messaging/${Acct.toString(user)}`,
 			  }
 			: undefined,
+		user.host != null && user.url
+			? {
+					type: "a",
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.showOnRemote,
+					href: user.url,
+					target: "_blank",
+					
+				} : undefined,
 		null,
 		{
 			icon: "ph-list-bullets ph-bold ph-lg",

@@ -4,7 +4,7 @@
 		class="button _button"
 		:class="$style.root"
 		ref="buttonRef"
-		@click="toggleStar($event)"
+		@click.stop="toggleStar($event)"
 	>
 		<span v-if="!reacted">
 			<i
