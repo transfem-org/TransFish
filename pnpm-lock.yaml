@@ -219,6 +219,9 @@ importers:
       jsdom:
         specifier: 20.0.3
         version: 20.0.3
+      json5:
+        specifier: 2.2.3
+        version: 2.2.3
       jsonld:
         specifier: 8.2.0
         version: 8.2.0
@@ -563,9 +566,6 @@ importers:
       execa:
         specifier: 6.1.0
         version: 6.1.0
-      json5:
-        specifier: 2.2.3
-        version: 2.2.3
       json5-loader:
         specifier: 4.0.1
         version: 4.0.1(webpack@5.88.1)
