@@ -6,10 +6,13 @@ import { addFile } from "@/services/drive/add-file.js";
 import { Users } from "@/models/index.js";
 import * as tar from "tar-stream";
 import gunzip from "gunzip-maybe";
+import decompress from "decompress";
+import * as Path from "node:path";
 
 const logger = new Logger("process-masto-notes");
 
 export async function processMastoNotes(
+	fn: string,
 	url: string,
 	uid: string,
 ): Promise<any> {
@@ -23,26 +26,39 @@ export async function processMastoNotes(
 	try {
 		// write content at URL to temp file
 		await downloadUrl(url, path);
-		return await processMastoFile(path, unzipPath, uid);
+		return await processMastoFile(fn, path, unzipPath, uid);
 	} finally {
 		cleanup();
-		unzipCleanup();
+		//unzipCleanup();
 	}
 }
 
-function processMastoFile(fn: string, dir: string, uid: string) {
+function processMastoFile(fn: string, path: string, dir: string, uid: string) {
 	return new Promise(async (resolve, reject) => {
 		const user = await Users.findOneBy({ id: uid });
 		try {
-			logger.info(`Start unzip ${fn}`);
-			await unzipTarGz(fn, dir);
+			logger.info(`Start unzip ${path}`);
+			fn.endsWith("tar.gz")
+				? await unzipTarGz(path, dir)
+				: await unzipZip(path, dir);
 			logger.info(`Unzip to ${dir}`);
 			const outbox = JSON.parse(fs.readFileSync(`${dir}/outbox.json`));
 			for (const note of outbox.orderedItems) {
 				for (const attachment of note.object.attachment) {
-					const url = attachment.url.replace("..", "");
+					const url = attachment.url.replaceAll("..", "");
+					if (url.indexOf('\0') !== -1) {
+						logger.error(`Found Poison Null Bytes Attack: ${url}`);
+						reject();
+						return;
+					}
 					try {
-						const fpath = `${dir}${url}`;
+						const fpath = Path.resolve(`${dir}${url}`);
+						if (!fpath.startsWith(dir)) {
+							logger.error(`Found Path Attack: ${url}`);
+							reject();
+							return;
+						}
+						logger.info(fpath);
 						const driveFile = await addFile({ user: user, path: fpath });
 						attachment.driveFile = driveFile;
 					} catch (e) {
@@ -63,6 +79,18 @@ function createFileDir(fn: string) {
 		fs.mkdirSync(fn, { recursive: true });
 		fs.rmdirSync(fn);
 	}
+}
+
+function unzipZip(fn: string, dir: string) {
+	return new Promise(async (resolve, reject) => {
+		try {
+			decompress(fn, dir).then((files: any) => {
+				resolve(files);
+			});
+		} catch (e) {
+			reject();
+		}
+	});
 }
 
 function unzipTarGz(fn: string, dir: string) {

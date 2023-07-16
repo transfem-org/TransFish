@@ -31,10 +31,14 @@ export async function importPosts(
 		return;
 	}
 
-	if (file.name.endsWith("tar.gz")) {
+	if (file.name.endsWith("tar.gz") || file.name.endsWith("zip")) {
 		try {
 			logger.info("Reading Mastodon archive");
-			const outbox = await processMastoNotes(file.url, job.data.user.id);
+			const outbox = await processMastoNotes(
+				file.name,
+				file.url,
+				job.data.user.id,
+			);
 			for (const post of outbox.orderedItems) {
 				createImportMastoPostJob(job.data.user, post, job.data.signatureCheck);
 			}
