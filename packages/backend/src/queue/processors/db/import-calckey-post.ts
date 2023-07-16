@@ -3,6 +3,8 @@ import create from "@/services/note/create.js";
 import { Users } from "@/models/index.js";
 import type { DbUserImportMastoPostJobData } from "@/queue/types.js";
 import { queueLogger } from "../../logger.js";
+import { uploadFromUrl } from "@/services/drive/upload-from-url.js";
+import type { DriveFile } from "@/models/entities/drive-file.js";
 import type Bull from "bull";
 
 const logger = queueLogger.createSubLogger("import-calckey-post");
@@ -29,10 +31,25 @@ export async function importCkPost(
 		done();
 		return;
 	}
+	const urls = (post.files || [])
+		.map((x: any) => x.url)
+		.filter((x: String) => x.startsWith("http"));
+	const files: DriveFile[] = [];
+	for (const url of urls) {
+		try {
+			const file = await uploadFromUrl({
+				url: url,
+				user: user,
+			});
+			files.push(file);
+		} catch (e) {
+			logger.error(`Skipped adding file to drive: ${url}`);
+		}
+	}
 	const { text, cw, localOnly, createdAt } = Post.parse(post);
 	const note = await create(user, {
 		createdAt: createdAt,
-		files: undefined,
+		files: files.length == 0 ? undefined : files,
 		poll: undefined,
 		text: text || undefined,
 		reply: null,
