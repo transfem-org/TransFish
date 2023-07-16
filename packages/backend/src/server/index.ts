@@ -221,7 +221,7 @@ export const startServer = () => {
 
 	initializeStreamingServer(server);
 
-	server.listen(config.port);
+	server.listen(config.port, config.bind);
 
 	return server;
 };
@@ -258,5 +258,5 @@ export default () =>
 		});
 
 		// @ts-ignore
-		server.listen(config.port, resolve);
+		server.listen(config.port, config.bind, resolve);
 	});
