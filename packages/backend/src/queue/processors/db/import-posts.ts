@@ -33,16 +33,16 @@ export async function importPosts(
 
 	if (file.name.endsWith("tar.gz")) {
 		try {
-			logger.info("Parsing animal style posts in package");
+			logger.info("Reading Mastodon archive");
 			const outbox = await processMastoNotes(file.url, job.data.user.id);
 			for (const post of outbox.orderedItems) {
 				createImportMastoPostJob(job.data.user, post, job.data.signatureCheck);
 			}
 		} catch (e) {
 			// handle error
-			logger.warn(`Error reading: ${e}`);
+			logger.warn(`Failed reading Mastodon archive: ${e}`);
 		}
-		logger.succ("Imported");
+		logger.succ("Mastodon archive imported");
 		done();
 		return;
 	}
