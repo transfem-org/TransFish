@@ -267,8 +267,8 @@ export function getUserMenu(user, router: Router = mainRouter) {
 					text: i18n.ts.showOnRemote,
 					href: user.url,
 					target: "_blank",
-					
-				} : undefined,
+			  }
+			: undefined,
 		null,
 		{
 			icon: "ph-list-bullets ph-bold ph-lg",

@@ -1,5 +1,9 @@
 <template>
-	<div ref="reactionsEl" class="reactions-list swiper-no-swiping tdflqwzn" :class="{ isMe }">
+	<div
+		ref="reactionsEl"
+		class="reactions-list swiper-no-swiping tdflqwzn"
+		:class="{ isMe }"
+	>
 		<XReaction
 			v-for="(count, reaction) in note.reactions"
 			:key="reaction"
