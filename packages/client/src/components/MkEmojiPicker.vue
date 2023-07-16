@@ -195,7 +195,7 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-	(ev: "chosen", v: string): void;
+	(ev: "chosen", v: string, ev: MouseEvent): void;
 }>();
 
 const search = ref<HTMLInputElement>();
@@ -436,7 +436,7 @@ function chosen(emoji: any, ev?: MouseEvent) {
 	}
 
 	const key = getKey(emoji);
-	emit("chosen", key);
+	emit("chosen", key, ev);
 
 	// 最近使った絵文字更新
 	if (!pinned.value.includes(key)) {
