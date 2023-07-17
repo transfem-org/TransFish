@@ -226,6 +226,18 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: true,
 		},
+		disableAutoUpdate: {
+			where: "device",
+			default: false,
+		},
+		lessObtrusiveFeedUpdates: {
+			where: "device",
+			default: false,
+		},
+		preserveScroll: {
+			where: "device",
+			default: false,
+		},
 		useReactionPickerForContextMenu: {
 			where: "device",
 			default: false,
@@ -381,7 +393,10 @@ export class ColdDeviceStorage {
 		sound_channel: { type: "syuilo/square-pico", volume: 1 },
 	};
 
-	public static watchers = [];
+	public static watchers: Array<{
+		key: any;
+		callback: (value: any) => void;
+	}> = [];
 
 	public static get<T extends keyof typeof ColdDeviceStorage.default>(
 		key: T,

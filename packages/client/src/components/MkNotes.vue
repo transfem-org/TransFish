@@ -20,6 +20,7 @@
 					:direction="pagination.reversed ? 'up' : 'down'"
 					:reversed="pagination.reversed"
 					:no-gap="noGap"
+					:no-autoupdate="noAutoupdate"
 					:ad="true"
 					class="notes"
 				>
@@ -48,6 +49,7 @@ const tlEl = ref<HTMLElement>();
 const props = defineProps<{
 	pagination: Paging;
 	noGap?: boolean;
+	noAutoupdate?: boolean;
 }>();
 
 const pagingComponent = ref<InstanceType<typeof MkPagination>>();

@@ -1,9 +1,11 @@
 <script lang="ts">
 import type { PropType } from "vue";
-import { TransitionGroup, defineComponent, h } from "vue";
+import { TransitionGroup, defineComponent, h, ref } from "vue";
 import MkAd from "@/components/global/MkAd.vue";
+import MkButton from "@/components/MkButton.vue";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
+import { getScrollContainer } from "@/scripts/scroll";
 
 export default defineComponent({
 	props: {
@@ -28,6 +30,11 @@ export default defineComponent({
 			required: false,
 			default: false,
 		},
+		noAutoupdate: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
 		ad: {
 			type: Boolean,
 			required: false,
@@ -47,14 +54,77 @@ export default defineComponent({
 
 		if (props.items.length === 0) return;
 
-		const renderChildren = () =>
-			props.items.map((item, i) => {
+		let lastRenderedDate = ref(props.items[0].createdAt);
+		let newPostsCount = 0;
+		let lastTopPostId: null | string = null;
+
+		const scrollToLastTopPost = (element: HTMLElement) => {
+			if (lastTopPostId) {
+				const closestTimeline = element.closest(".sqadhkmv");
+				if (closestTimeline) {
+					const elem = closestTimeline.querySelector(
+						`[id="${lastTopPostId}"]`,
+					);
+					if (elem instanceof HTMLElement) {
+						setTimeout(
+							() => {
+								let scrollContainer:
+									| HTMLElement
+									| Window
+									| null = getScrollContainer(elem);
+								let prop = "scrollTop";
+								if (!scrollContainer) {
+									scrollContainer = window;
+									prop = "scrollY";
+								}
+								if (scrollContainer) {
+									const top =
+										elem.getBoundingClientRect().top +
+										scrollContainer[prop] -
+										80; /* minus 80 pixels to show part of lowest new post and so old post wouldn't end up under the header (probably scroll-margin/scroll-padding would be better) */
+									scrollContainer.scrollTo({
+										top,
+									});
+								}
+							},
+							defaultStore.state.animation ? 700 : 2,
+						);
+					}
+				}
+			}
+		};
+
+		const showNewPosts = (event: PointerEvent) => {
+			lastRenderedDate.value = props.items[0].createdAt;
+			if (
+				defaultStore.state.preserveScroll &&
+				event.target instanceof HTMLElement
+			) {
+				scrollToLastTopPost(event.target);
+			}
+		};
+
+		const renderChildren = () => {
+			newPostsCount = 0;
+			lastTopPostId = null;
+			let itemsToRender = props.items;
+			if (props.noAutoupdate) {
+				itemsToRender = itemsToRender.filter((item) => {
+					const filtered = item.createdAt <= lastRenderedDate.value;
+					if (!filtered) {
+						newPostsCount += 1;
+					}
+					return filtered;
+				});
+			}
+			const renderedItems = itemsToRender.map((item, i) => {
 				if (!slots || !slots.default) return;
 
 				const el = slots.default({
 					item,
 				})[0];
 				if (el.key == null && item.id) el.key = item.id;
+				if (!lastTopPostId) lastTopPostId = item.id;
 
 				if (
 					i !== props.items.length - 1 &&
@@ -105,9 +175,25 @@ export default defineComponent({
 					}
 				}
 			});
+			if (newPostsCount) {
+				renderedItems.unshift(
+					h(
+						MkButton,
+						{
+							primary: true,
+							onClick: showNewPosts,
+						},
+						i18n.t("newNotesCount", {
+							count: newPostsCount,
+						}),
+					),
+				);
+			}
+			return renderedItems;
+		};
 
-		return () =>
-			h(
+		return () => {
+			return h(
 				defaultStore.state.animation ? TransitionGroup : "div",
 				defaultStore.state.animation
 					? {
@@ -122,6 +208,7 @@ export default defineComponent({
 					  },
 				{ default: renderChildren },
 			);
+		};
 	},
 });
 </script>
@@ -211,6 +298,10 @@ export default defineComponent({
 				border-bottom: solid 0.5px var(--divider);
 			}
 		}
+	}
+
+	> ._button {
+		margin-inline: auto;
 	}
 }
 </style>

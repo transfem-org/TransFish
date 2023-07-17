@@ -521,6 +521,7 @@ serverLogs: "サーバーログ"
 deleteAll: "全て削除"
 showFixedPostForm: "タイムライン上部に投稿フォームを表示する"
 newNoteRecived: "新しい投稿があります"
+newNotesCount: "新しい投稿は{count}件"
 sounds: "サウンド"
 listen: "聴く"
 none: "なし"
@@ -567,6 +568,9 @@ serviceworkerInfo: "プッシュ通知を行うには有効にする必要があ
 deletedNote: "削除された投稿"
 invisibleNote: "非公開の投稿"
 enableInfiniteScroll: "自動でもっと見る"
+disableAutoUpdate: "フィードの自動更新を無効にする"
+lessObtrusiveFeedUpdates: "邪魔にならないフィード更新インジケータ"
+preserveScroll: "新しい投稿を読み込んだ後、スクロール位置を維持する"
 visibility: "公開範囲"
 poll: "アンケート"
 useCw: "内容を隠す"
@@ -1901,14 +1905,14 @@ hiddenTags: 非表示にするハッシュタグ
 apps: "アプリ"
 _experiments:
   title: 試験的な機能
-  postImportsCaption: 
+  postImportsCaption:
     ユーザーが過去の投稿をCalckey・Misskey・Mastodon・Akkoma・Pleromaからインポートすることを許可します。キューが溜まっているときにインポートするとサーバーに負荷がかかる可能性があります。
   enablePostImports: 投稿のインポートを有効にする
 sendModMail: モデレーション通知を送る
 deleted: 削除済み
 editNote: 投稿を編集
 edited: '編集済み: {date} {time}'
-signupsDisabled: 
+signupsDisabled:
   現在、このサーバーでは新規登録が一般開放されていません。招待コードをお持ちの場合には、以下の欄に入力してください。招待コードをお持ちでない場合にも、新規登録を開放している他のサーバーには入れますよ！
 findOtherInstance: 他のサーバーを探す
 newer: 新しい投稿

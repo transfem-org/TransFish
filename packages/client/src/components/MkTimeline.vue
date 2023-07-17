@@ -14,6 +14,7 @@
 			class="_buttonPrimary _shadow"
 			@click="tlComponent.scrollTop()"
 			:class="{ instant: !$store.state.animation }"
+			v-if="!$store.state.lessObtrusiveFeedUpdates"
 		>
 			{{ i18n.ts.newNoteRecived }}
 			<i class="ph-arrow-up ph-bold"></i>
@@ -22,6 +23,7 @@
 	<XNotes
 		ref="tlComponent"
 		:no-gap="!$store.state.showGapBetweenNotesInTimeline"
+		:no-autoupdate="$store.state.disableAutoUpdate"
 		:pagination="pagination"
 		@queue="(x) => (queue = x)"
 	/>

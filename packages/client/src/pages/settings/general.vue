@@ -40,6 +40,18 @@
 			<FormSwitch v-model="enableInfiniteScroll" class="_formBlock">{{
 				i18n.ts.enableInfiniteScroll
 			}}</FormSwitch>
+			<FormSwitch v-model="disableAutoUpdate" class="_formBlock">{{
+				i18n.ts.disableAutoUpdate
+			}}</FormSwitch>
+			<FormSwitch
+				v-if="defaultStore.state.disableAutoUpdate"
+				v-model="preserveScroll"
+				class="_formBlock"
+				>{{ i18n.ts.preserveScroll }}</FormSwitch
+			>
+			<FormSwitch v-model="lessObtrusiveFeedUpdates" class="_formBlock">{{
+				i18n.ts.lessObtrusiveFeedUpdates
+			}}</FormSwitch>
 			<FormSwitch
 				v-model="useReactionPickerForContextMenu"
 				class="_formBlock"
@@ -334,6 +346,15 @@ const instanceTicker = computed(
 );
 const enableInfiniteScroll = computed(
 	defaultStore.makeGetterSetter("enableInfiniteScroll"),
+);
+const disableAutoUpdate = computed(
+	defaultStore.makeGetterSetter("disableAutoUpdate"),
+);
+const lessObtrusiveFeedUpdates = computed(
+	defaultStore.makeGetterSetter("lessObtrusiveFeedUpdates"),
+);
+const preserveScroll = computed(
+	defaultStore.makeGetterSetter("preserveScroll"),
 );
 const enterSendsMessage = computed(
 	defaultStore.makeGetterSetter("enterSendsMessage"),
