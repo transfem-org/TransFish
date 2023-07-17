@@ -411,7 +411,7 @@ _profile:
   name: Nom
   metadataDescription: "Fent servir això, podràs mostrar camps d'informació addicionals
     al vostre perfil. Podeu afegir una etiqueta {a} o una etiqueta {l} amb {rel} per
-    verificar l'enllaç al vostre perfil."
+    verificar l'enllaç al vostre perfil!"
 _exportOrImport:
   followingList: "Usuaris que segueixes"
   muteList: "Silencia"
