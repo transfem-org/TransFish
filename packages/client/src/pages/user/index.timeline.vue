@@ -41,7 +41,7 @@ const pagination = {
 		includeReplies: include.value === "replies" || include.value === null,
 		withFiles: include.value === "files",
 		includeRenotes: include.value === "boosts" || include.value === null,
-		renotesOnly: include.value === "boosts",
+		withRenotes: include.value === "boosts",
 	})),
 };
 </script>

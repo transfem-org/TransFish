@@ -46,7 +46,7 @@ export const paramDef = {
 		sinceDate: { type: "integer" },
 		untilDate: { type: "integer" },
 		includeRenotes: { type: "boolean", default: true },
-		renotesOnly: { type: "boolean", default: false },
+		withRenotes: { type: "boolean", default: false },
 		includeMyRenotes: { type: "boolean", default: true },
 		withFiles: { type: "boolean", default: false },
 		fileType: {
@@ -153,7 +153,7 @@ export default define(meta, paramDef, async (ps, me) => {
 		);
 	}
 
-	if (ps.renotesOnly) {
+	if (ps.withRenotes) {
 		query.andWhere("note.renoteId IS NOT NULL");
 	}
 
