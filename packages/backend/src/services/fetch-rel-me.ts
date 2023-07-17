@@ -7,7 +7,8 @@ export async function getRelMeLinks(url: string): Promise<string[]> {
 		const dom = new JSDOM(html);
 		const relMeLinks = [
 			...dom.window.document.querySelectorAll("a[rel='me']"),
-		].map((a) => (a as HTMLAnchorElement).href);
+			...dom.window.document.querySelectorAll("link[rel='me']"),
+		].map((a) => (a as HTMLAnchorElement | HTMLLinkElement).href);
 		return relMeLinks;
 	} catch {
 		return [];
