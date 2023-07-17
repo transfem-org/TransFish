@@ -2,17 +2,11 @@
 	<MkStickyContainer>
 		<template #header>
 			<MkTab v-model="include" :class="$style.tab">
-				<!-- TODO: Localize these values -->
-				<!-- None -->
-				<option :value="null">Everything</option>
-				<!-- {{ i18n.ts.notes }} -->
-				<option value="posts">Posts</option>
-				<!-- {{ i18n.ts.notesAndReplies }} -->
-				<option value="replies">Replies</option>
-				<!-- None -->
-				<option value="boosts">Boosts</option>
-				<!-- {{ i18n.ts.withFiles }} -->
-				<option value="files">Files</option>
+				<option :value="null">{{ i18n.ts.filterEverything }}</option>
+				<option value="posts">{{ i18n.ts.filterNotes }}</option>
+				<option value="replies">{{ i18n.ts.filterReplies }}</option>
+				<option value="boosts">{{ i18n.ts.filterBoosts }}</option>
+				<option value="files">{{ i18n.ts.filterFiles }}</option>
 			</MkTab>
 		</template>
 		<XNotes :no-gap="true" :pagination="pagination" />
