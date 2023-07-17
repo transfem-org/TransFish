@@ -48,8 +48,7 @@ export async function verifyLinks(
 				await UserProfiles.update(user.userId, {
 					fields: fieldsFinal,
 				});
-			}
-			catch (e: any) {
+			} catch (e: any) {
 				logger.error(`Failed to update user ${user.userId} ${e}`);
 				done(e);
 				break;

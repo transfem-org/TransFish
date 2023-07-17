@@ -582,7 +582,7 @@ export default function () {
 		{
 			repeat: { cron: "0 0 * * 0" },
 			removeOnComplete: true,
-			removeOnFail: true
+			removeOnFail: true,
 		},
 	);
 

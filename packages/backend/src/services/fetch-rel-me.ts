@@ -9,8 +9,7 @@ export async function getRelMeLinks(url: string): Promise<string[]> {
 			...dom.window.document.querySelectorAll("a[rel='me']"),
 		].map((a) => (a as HTMLAnchorElement).href);
 		return relMeLinks;
-	}
-	catch {
+	} catch {
 		return [];
 	}
 }

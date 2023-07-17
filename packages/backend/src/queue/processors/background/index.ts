@@ -3,7 +3,6 @@ import indexAllNotes from "./index-all-notes.js";
 
 const jobs = {
 	indexAllNotes,
-
 } as Record<string, Bull.ProcessCallbackFunction<Record<string, unknown>>>;
 
 export default function (q: Bull.Queue) {
