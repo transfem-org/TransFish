@@ -11,6 +11,8 @@ COPY packages/backend/native-utils/Cargo.lock packages/backend/native-utils/Carg
 COPY packages/backend/native-utils/src/lib.rs packages/backend/native-utils/src/
 COPY packages/backend/native-utils/migration/Cargo.toml packages/backend/native-utils/migration/Cargo.toml
 COPY packages/backend/native-utils/migration/src/lib.rs packages/backend/native-utils/migration/src/
+COPY packages/backend/native-utils/scylla-migration/Cargo.toml packages/backend/native-utils/syclla-migration/Cargo.toml
+COPY packages/backend/native-utils/scylla-migration/src/lib.rs packages/backend/native-utils/scylla-migration/src/
 
 # Install cargo dependencies
 RUN cargo fetch --locked --manifest-path /calckey/packages/backend/native-utils/Cargo.toml
