@@ -85,3 +85,28 @@ noLists: Você não possui nenhuma lista
 following: Seguindo
 followers: Seguidores
 followsYou: Segue você
+fetchingAsApObject: Buscando do Fediverse
+timeline: Linha do tempo
+favorite: Adicionar aos marcadores
+favorites: Marcadores
+unfavorite: Remover dos marcadores
+favorited: Adicionado aos marcadores.
+alreadyFavorited: Já foi adicionado aos marcadores.
+download: Download
+pageLoadError: Ocorreu um erro ao carregar a página.
+pageLoadErrorDescription: Isso normalmente é causado por erros de rede ou pelo cache
+  do navegador. Tente limpar o cache e, depois de esperar um pouquinho, tente novamente.
+serverIsDead: Esse servidos não está respondendo. Por favor espere um pouco e tente
+  novamente.
+youShouldUpgradeClient: Para visualizar essa página, favor reiniciar para atualizar
+  seu cliente.
+enterListName: Insira um nome para a lista
+privacy: Privacidade
+defaultNoteVisibility: Visibilidade padrão
+makeFollowManuallyApprove: Pedidos de seguimento precisam de aprovação
+follow: Seguir
+followRequest: Seguir
+followRequests: Pedidos de seguimento
+unfollow: Parar de seguir
+followRequestPending: Pedido de seguimento pendente
+enterEmoji: Insira um emoji

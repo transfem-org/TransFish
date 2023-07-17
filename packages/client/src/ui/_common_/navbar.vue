@@ -26,7 +26,7 @@
 				<MkA
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.timeline"
-					class="nav-item index"
+					class="item index"
 					active-class="active"
 					to="/"
 					exact
@@ -46,7 +46,7 @@
 						v-tooltip.noDelay.right="
 							i18n.ts[navbarItemDef[item].title]
 						"
-						class="nav-item _button"
+						class="item _button"
 						:class="[item, { active: navbarItemDef[item].active }]"
 						active-class="active"
 						:to="navbarItemDef[item].to"
@@ -66,9 +66,6 @@
 						<span
 							v-if="navbarItemDef[item].indicated"
 							class="indicator"
-							:class="{
-								animateIndicator: $store.state.animation,
-							}"
 							><i class="icon ph-circle ph-fill"></i
 						></span>
 					</component>
@@ -78,7 +75,7 @@
 					v-if="$i.isAdmin || $i.isModerator"
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.controlPanel"
-					class="nav-item _button"
+					class="item _button"
 					active-class="active"
 					to="/admin"
 				>
@@ -91,7 +88,6 @@
 							updateAvailable
 						"
 						class="indicator"
-						:class="{ animateIndicator: $store.state.animation }"
 					></span
 					><i class="icon ph-door ph-bold ph-fw ph-lg"></i
 					><span class="text">{{ i18n.ts.controlPanel }}</span>
@@ -99,24 +95,21 @@
 				<button
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.more"
-					class="nav-item _button"
+					class="item _button"
 					@click="more"
 				>
 					<i
 						class="icon ph-dots-three-outline ph-bold ph-fw ph-lg"
 					></i
 					><span class="text">{{ i18n.ts.more }}</span>
-					<span
-						v-if="otherMenuItemIndicated"
-						class="indicator"
-						:class="{ animateIndicator: $store.state.animation }"
+					<span v-if="otherMenuItemIndicated" class="indicator"
 						><i class="icon ph-circle ph-fill"></i
 					></span>
 				</button>
 				<MkA
 					v-click-anime
 					v-tooltip.noDelay.right="i18n.ts.settings"
-					class="nav-item _button"
+					class="item _button"
 					active-class="active"
 					to="/settings"
 				>
@@ -127,7 +120,7 @@
 			<div class="bottom">
 				<button
 					v-tooltip.noDelay.right="i18n.ts.note"
-					class="nav-item _button post"
+					class="item _button post"
 					data-cy-open-post-form
 					@click="os.post"
 				>
@@ -272,125 +265,6 @@ function more(ev: MouseEvent) {
 		flex-direction: column;
 	}
 
-	.nav-item {
-		position: relative;
-		display: flex;
-		align-items: center;
-		padding-inline: 30px;
-		line-height: 2.85rem;
-		margin-bottom: 0.5rem;
-		white-space: nowrap;
-		width: 100%;
-		text-align: left;
-		box-sizing: border-box;
-		color: var(--navFg);
-
-		&:before, &.post::after {
-			content: "";
-			display: block;
-			width: calc(100% - 34px);
-			height: 100%;
-			margin: auto;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			border-radius: 999px;
-			background: var(--accentedBg);
-			opacity: 0;
-			z-index: -2;
-		}
-
-		> .icon {
-			position: relative;
-			width: 32px;
-			margin-right: 8px;
-		}
-
-		> .indicator {
-			position: absolute;
-			top: 0;
-			left: 20px;
-			color: var(--navIndicator);
-			font-size: 8px;
-		}
-
-		> .animateIndicator {
-			animation: blink 1s infinite;
-		}
-		> .text {
-			position: relative;
-			font-size: 0.9em;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-
-		&:hover,
-		&:focus-within {
-			text-decoration: none;
-			color: var(--navHoverFg);
-			transition: color 0.4s ease;
-		}
-
-		&.active {
-			color: var(--navActive);
-		}
-
-		&:hover,
-		&:focus-within,
-		&.active {
-			color: var(--accent);
-			opacity: 1;
-			transition: color 0.4s, opacity 0.4s;
-			&::before {
-				opacity: 1;
-			}
-		}
-	}
-	.post {
-		padding-inline: 0;
-		color: var(--fgOnAccent);
-		font-weight: bold;
-
-		&::before {
-			opacity: 1;
-			background: linear-gradient(
-				90deg,
-				var(--buttonGradateA),
-				var(--buttonGradateB)
-			);
-		}
-		&::after {
-			background: var(--accentLighten) !important;
-			opacity: 0;
-			z-index: -1;
-			transition: opacity 0.2s;
-		}
-
-		&:hover,
-		&:focus-within,
-		&.active {
-			&::after {
-				opacity: 1;
-			}
-		}
-
-		> .icon,
-		> .text {
-			position: relative;
-			left: 3rem;
-			margin: 0;
-			width: auto;
-			color: var(--fgOnAccent);
-			transform: translateY(0em);
-		}
-
-		> .text {
-			margin-left: 1rem;
-		}
-	}
-
 	&:not(.iconOnly) {
 		> .body {
 			margin-left: -200px;
@@ -431,6 +305,57 @@ function more(ev: MouseEvent) {
 			> .bottom {
 				padding: 20px 0;
 
+				> .post {
+					position: relative;
+					width: 100%;
+					height: 40px;
+					color: var(--fgOnAccent);
+					font-weight: bold;
+					text-align: left;
+					display: flex;
+					align-items: center;
+
+					&:before {
+						content: "";
+						display: block;
+						width: calc(100% - 38px);
+						height: 100%;
+						margin: auto;
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						border-radius: 999px;
+						background: linear-gradient(
+							90deg,
+							var(--buttonGradateA),
+							var(--buttonGradateB)
+						);
+					}
+
+					&:hover,
+					&:focus-within,
+					&.active {
+						&:before {
+							background: var(--accentLighten);
+							transition: all 0.4s ease;
+						}
+					}
+
+					> .icon,
+					> .text {
+						position: relative;
+						left: 3rem;
+						color: var(--fgOnAccent);
+						transform: translateY(0em);
+					}
+
+					> .text {
+						margin-left: 1rem;
+					}
+				}
+
 				> .instance {
 					position: relative;
 					display: block;
@@ -468,6 +393,75 @@ function more(ev: MouseEvent) {
 					margin: 16px 16px;
 					border-top: solid 0.5px var(--divider);
 				}
+
+				> .item {
+					position: relative;
+					display: flex;
+					align-items: center;
+					padding-left: 30px;
+					line-height: 2.85rem;
+					margin-bottom: 0.5rem;
+					white-space: nowrap;
+					width: 100%;
+					text-align: left;
+					box-sizing: border-box;
+					color: var(--navFg);
+
+					> .icon {
+						position: relative;
+						width: 32px;
+						margin-right: 8px;
+					}
+
+					> .indicator {
+						position: absolute;
+						top: 0;
+						left: 20px;
+						color: var(--navIndicator);
+						font-size: 8px;
+						animation: blink 1s infinite;
+					}
+
+					> .text {
+						position: relative;
+						font-size: 0.9em;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+
+					&:hover,
+					&:focus-within {
+						text-decoration: none;
+						color: var(--navHoverFg);
+						transition: all 0.4s ease;
+					}
+
+					&.active {
+						color: var(--navActive);
+					}
+
+					&:hover,
+					&:focus-within,
+					&.active {
+						color: var(--accent);
+						transition: all 0.4s ease;
+
+						&:before {
+							content: "";
+							display: block;
+							width: calc(100% - 34px);
+							height: 100%;
+							margin: auto;
+							position: absolute;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							border-radius: 999px;
+							background: var(--accentedBg);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -498,6 +492,52 @@ function more(ev: MouseEvent) {
 
 			> .bottom {
 				padding: 20px 0;
+
+				> .post {
+					display: block;
+					position: relative;
+					width: 100%;
+					height: 52px;
+					margin-bottom: 16px;
+					text-align: center;
+
+					&:before {
+						content: "";
+						display: block;
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						margin: auto;
+						width: 52px;
+						aspect-ratio: 1/1;
+						border-radius: 100%;
+						background: linear-gradient(
+							90deg,
+							var(--buttonGradateA),
+							var(--buttonGradateB)
+						);
+					}
+
+					&:hover,
+					&:focus-within,
+					&.active {
+						&:before {
+							background: var(--accentLighten);
+							transition: all 0.4s ease;
+						}
+					}
+
+					> .icon {
+						position: relative;
+						color: var(--fgOnAccent);
+					}
+
+					> .text {
+						display: none;
+					}
+				}
 
 				> .help {
 					position: relative;
@@ -537,56 +577,67 @@ function more(ev: MouseEvent) {
 					border-top: solid 0.5px var(--divider);
 				}
 
-			}
-		}
-		.nav-item {
-			padding: 1.1rem 0;
-			margin-bottom: 0.2rem;
-			text-align: center;
+				> .item {
+					display: block;
+					position: relative;
+					padding: 1.1rem 0;
+					margin-bottom: 0.2rem;
+					width: 100%;
+					text-align: center;
 
-			> .icon {
-				display: block;
-				margin: 0 auto;
-				opacity: 0.7;
-				transform: translateY(0em);
-			}
+					> .icon {
+						display: block;
+						margin: 0 auto;
+						opacity: 0.7;
+						transform: translateY(0em);
+					}
 
-			> .text {
-				display: none;
-			}
+					> .text {
+						display: none;
+					}
 
-			> .indicator {
-				position: absolute;
-				top: 6px;
-				left: 24px;
-				color: var(--navIndicator);
-				font-size: 8px;
-			}
+					> .indicator {
+						position: absolute;
+						top: 6px;
+						left: 24px;
+						color: var(--navIndicator);
+						font-size: 8px;
+						animation: blink 1s infinite;
+					}
 
-			> .animateIndicator {
-				animation: blink 1s infinite;
-			}
-		}
-		.post {
-			width: 100%;
-			height: 52px;
-			margin-bottom: 16px;
-			&:before, &::after {
-				inset: 0;
-				margin: auto;
-				width: 52px;
-				aspect-ratio: 1/1;
-			}
-			> .icon {
-				left: unset;
-			}
-			> .text {
-				display: none;
+					&:hover,
+					&:focus-within,
+					&.active {
+						text-decoration: none;
+						color: var(--accent);
+						transition: all 0.4s ease;
+
+						&:before {
+							content: "";
+							display: block;
+							height: 100%;
+							aspect-ratio: 1;
+							margin: auto;
+							position: absolute;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							border-radius: 999px;
+							background: var(--accentedBg);
+						}
+
+						> .icon,
+						> .text {
+							opacity: 1;
+						}
+					}
+				}
 			}
 		}
 	}
 
-	.nav-item {
+	.item {
 		outline: none;
 		&:focus-visible:before {
 			outline: auto;

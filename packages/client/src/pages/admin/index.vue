@@ -264,7 +264,7 @@ const menuDef = $computed(() => [
 							active: currentPage?.route.name === "security",
 						},
 						{
-							icon: "ph-flow-arrow ph-bold ph-lg",
+							icon: "ph-arrows-merge ph-bold ph-lg",
 							text: i18n.ts.relays,
 							to: "/admin/relays",
 							active: currentPage?.route.name === "relays",

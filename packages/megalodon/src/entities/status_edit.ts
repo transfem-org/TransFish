@@ -9,15 +9,15 @@
 /// <reference path="reaction.ts" />
 
 namespace Entity {
-  export type StatusEdit = {
-    account: Account
-    content: string
-    plain_content: string | null
-    created_at: string
-    emojis: Emoji[]
-    sensitive: boolean
-    spoiler_text: string
-    media_attachments: Array<Attachment>
-    poll: Poll | null
-  }
+	export type StatusEdit = {
+		account: Account;
+		content: string;
+		plain_content: string | null;
+		created_at: string;
+		emojis: Emoji[];
+		sensitive: boolean;
+		spoiler_text: string;
+		media_attachments: Array<Attachment>;
+		poll: Poll | null;
+	};
 }

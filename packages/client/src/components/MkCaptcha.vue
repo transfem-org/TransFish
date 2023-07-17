@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { defaultStore } from "@/store";
 import { i18n } from "@/i18n";
 
-type Captcha = {
+interface Captcha {
 	render(
 		container: string | Node,
 		options: {
@@ -31,7 +31,7 @@ type Captcha = {
 	execute(id: string): void;
 	reset(id?: string): void;
 	getResponse(id: string): string;
-};
+}
 
 type CaptchaProvider = "hcaptcha" | "recaptcha";
 
@@ -105,7 +105,7 @@ function requestRender() {
 		captcha.value.render(captchaEl.value, {
 			sitekey: props.sitekey,
 			theme: defaultStore.state.darkMode ? "dark" : "light",
-			callback: callback,
+			callback,
 			"expired-callback": callback,
 			"error-callback": callback,
 		});

@@ -44,7 +44,7 @@ function func(): void {
 			done: async (res) => {
 				const { includingTypes } = res;
 				updateColumn(props.column.id, {
-					includingTypes: includingTypes,
+					includingTypes,
 				});
 			},
 		},

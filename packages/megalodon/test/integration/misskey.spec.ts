@@ -93,7 +93,7 @@ const pollVote: MisskeyEntity.Notification = {
   createdAt: '2021-02-01T01:49:29',
   userId: user.id,
   user: user,
-  type: MisskeyNotificationType.PollVote,
+  type: MisskeyNotificationType.PollEnded,
   note: note
 }
 
@@ -168,7 +168,7 @@ describe('getNotifications', () => {
     },
     {
       event: pollVote,
-      expected: MegalodonNotificationType.PollVote,
+      expected: MegalodonNotificationType.Poll,
       title: 'pollVote'
     },
     {

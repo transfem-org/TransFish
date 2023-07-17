@@ -6,19 +6,13 @@
 ## Planned
 
 - Stucture
-  - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
-  - Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
   - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
-  - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
   - User "choices" (recommended users) and featured hashtags like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize server blocks
   - More antenna options
   - Groups
-- Form
-  - Lookup/details for post/file/server
-  - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
 
@@ -30,6 +24,7 @@
 - Timeline filters
 - Events
 - Fully revamp non-logged-in screen
+- Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
 
 ## Implemented
 
@@ -122,6 +117,7 @@
 - Let moderators see moderation nodes
 - Non-mangled unicode emojis
   - Skin tone selection support
+- [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
 
 ## Implemented (remote)
 
@@ -137,7 +133,7 @@
   - 👍 also triggers generic like/favorite
 - [Add additional background for acrylic popups if backdrop-filter is unsupported](https://github.com/misskey-dev/misskey/pull/8671)
 - [Add parameters to MFM rotate](https://github.com/misskey-dev/misskey/pull/8549)
-- Many changes from [Foundkey](https://akkoma.dev/FoundKeyGang/Foundkey)
+- Many changes from [FoundKey](https://akkoma.dev/FoundKeyGang/FoundKey)
 	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
 	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/4bc9610d8bf5af736b5e89e4782395705de45d7d: remove unnecessary joins
 	- https://akkoma.dev/FoundKeyGang/FoundKey/commit/9ee609d70082f7a6dc119a5d83c0e7c5e1208676: enhance privacy of notes

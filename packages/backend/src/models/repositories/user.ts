@@ -453,6 +453,7 @@ export const UserRepository = db.getRepository(User).extend({
 			isAdmin: user.isAdmin || falsy,
 			isModerator: user.isModerator || falsy,
 			isBot: user.isBot || falsy,
+			isLocked: user.isLocked,
 			isCat: user.isCat || falsy,
 			speakAsCat: user.speakAsCat || falsy,
 			instance: user.host
@@ -497,7 +498,6 @@ export const UserRepository = db.getRepository(User).extend({
 							: null,
 						bannerBlurhash: user.banner?.blurhash || null,
 						bannerColor: null, // 後方互換性のため
-						isLocked: user.isLocked,
 						isSilenced: user.isSilenced || falsy,
 						isSuspended: user.isSuspended || falsy,
 						description: profile!.description,

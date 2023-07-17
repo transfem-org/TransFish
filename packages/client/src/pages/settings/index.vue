@@ -100,7 +100,7 @@ const menuDef = computed(() => [
 				active: currentPage?.route.name === "profile",
 			},
 			{
-				icon: "ph-lock-open ph-bold ph-lg",
+				icon: "ph-keyhole ph-bold ph-lg",
 				text: i18n.ts.privacy,
 				to: "/settings/privacy",
 				active: currentPage?.route.name === "privacy",

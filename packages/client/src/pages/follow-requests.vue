@@ -60,12 +60,14 @@
 									<button
 										class="_button"
 										@click="accept(req.follower)"
+										:aria-label="i18n.t('accept')"
 									>
 										<i class="ph-check ph-bold ph-lg"></i>
 									</button>
 									<button
 										class="_button"
 										@click="reject(req.follower)"
+										:aria-label="i18n.t('reject')"
 									>
 										<i class="ph-x ph-bold ph-lg"></i>
 									</button>

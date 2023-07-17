@@ -26,12 +26,13 @@
 								class="banner"
 								:style="{
 									backgroundImage: `url('${user.bannerUrl}')`,
-									'--backgroundImageStatic': defaultStore
-										.state.useBlurEffect && user.bannerUrl
-										? `url('${getStaticImageUrl(
-												user.bannerUrl,
-										  )}')`
-										: null,
+									'--backgroundImageStatic':
+										defaultStore.state.useBlurEffect &&
+										user.bannerUrl
+											? `url('${getStaticImageUrl(
+													user.bannerUrl,
+											  )}')`
+											: null,
 								}"
 							></div>
 							<div class="fade"></div>
@@ -460,11 +461,8 @@ const timeForThem = $computed(() => {
 });
 
 let patrons = [];
-try {
-	patrons = await os.api("patrons");
-} catch {
-	console.error("Codeberg's down.");
-}
+const patronsResp = await os.api("patrons");
+patrons = patronsResp.patrons;
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);

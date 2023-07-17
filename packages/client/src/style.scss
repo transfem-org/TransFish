@@ -39,13 +39,18 @@ html {
 	accent-color: var(--accent);
 	overflow: auto;
 	overflow-wrap: break-word;
-	font-family: "BIZ UDGothic", Roboto, HelveticaNeue, Arial, sans-serif;
+	font-family: Roboto, HelveticaNeue, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.6;
 	text-size-adjust: 100%;
 	tab-size: 2;
 	scroll-padding: 60px;
 	overflow-x: clip;
+
+	&.useCJKFont {
+		font-family: "Hiragino Maru Gothic Pro", "BIZ UDGothic", Roboto,
+			HelveticaNeue, Arial, sans-serif;
+	}
 
 	&.useSystemFont {
 		font-family:
@@ -145,6 +150,12 @@ a {
 	cursor: pointer;
 	color: inherit;
 	-webkit-tap-highlight-color: transparent;
+	text-decoration: underline;
+	text-decoration-color: transparent;
+	transition: text-decoration-color 0.2s;
+	&:hover {
+		text-decoration-color: currentColor;
+	}
 }
 
 // i {
@@ -229,6 +240,7 @@ hr {
 	font-size: 1em;
 	font-family: inherit;
 	line-height: inherit;
+	text-decoration: none;
 
 	&,
 	* {
@@ -628,20 +640,26 @@ hr {
 ._link {
 	position: relative;
 	color: var(--link);
+	text-underline-offset: 0.2em;
 
-	&:after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 0%;
-		border-bottom: 2px solid var(--link);
-		transition: 0.3s ease-in-out;
-	}
-
-	&:hover:after {
-		width: 100%;
-	}
+	// &::before,
+	// &::after {
+	// 	content: "";
+	// 	position: absolute;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	width: 0%;
+	// 	border-bottom: 1px solid currentColor;
+	// 	transition: 0.3s ease-in-out;
+	// }
+	// &::before {
+	// 	width: 100%;
+	// 	opacity: 0.4;
+	// }
+	// &:hover:after,
+	// &:focus:after {
+	// 	width: 100%;
+	// }
 }
 
 ._caption {

@@ -95,7 +95,7 @@ privacy: "Privadesa"
 makeFollowManuallyApprove: "Les sol·licituds de seguiment requereixen aprovació"
 defaultNoteVisibility: "Visibilitat per defecte"
 follow: "Segueix"
-followRequest: "Segueix"
+followRequest: "Sol·licitud de Seguiment"
 followRequests: "Sol·licituds de seguiment"
 unfollow: "Deixa de seguir"
 followRequestPending: "Sol·licituds de seguiment pendents"
@@ -1382,7 +1382,7 @@ adminCustomCssWarn: Aquesta configuració només s'ha d'utilitzar si sabeu què 
 showUpdates: Mostra una finestra emergent quan Calckey s'actualitzi
 recommendedInstances: Servidors recomanats
 recommendedInstancesDescription: Servidors recomanats separats per salts de línia
-  que apareixen a la línia de temps recomanada. NO afegiu `https://`, NOMÉS el domini.
+  que apareixen a la línia de temps recomanada.
 caption: Descripció Automàtica
 splash: Pantalla de Benvinguda
 swipeOnDesktop: Permet lliscar a l'estil del mòbil a l'escriptori
@@ -1603,6 +1603,13 @@ _aboutMisskey:
   patrons: Mecenes de Calckey
   patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
     amb l'enllaç de dalt per veure el teu nom aquí!
+  donateTitle: T'agrada Calckey?
+  pleaseDonateToCalckey: Penseu en fer una donació a Calckey per donar suport al seu
+    desenvolupament.
+  pleaseDonateToHost: Penseu també en fer una donació a la vostre instància, {host},
+    per ajudar-lo a suportar els costos de funcionament.
+  donateHost: Fes una donació a {host}
+  sponsors: Patrocinadors de Calckey
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
@@ -2144,3 +2151,13 @@ _skinTones:
 swipeOnMobile: Permet lliscar entre pàgines
 enableIdenticonGeneration: Habilitar la generació d'Identicon
 enableServerMachineStats: Habilitar les estadístiques del maquinari del servidor
+showPopup: Notificar els usuaris amb una finestra emergent
+showWithSparkles: Mostra amb espurnes
+youHaveUnreadAnnouncements: Tens anuncis sense llegir
+xl: XL
+donationLink: Enllaç a la pàgina de donacions
+neverShow: No tornis a mostrar
+remindMeLater: Potser després
+removeMember: Elimina el membre
+removeQuote: Elimina la cita
+removeRecipient: Elimina el destinatari

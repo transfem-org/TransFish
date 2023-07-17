@@ -18,7 +18,7 @@ const props = defineProps<{
 }>();
 
 const prismLang = computed(() =>
-	Prism.languages[props.lang] ? props.lang : "js",
+	Prism.languages[props.lang] ? props.lang : "plaintext",
 );
 const html = computed(() =>
 	Prism.highlight(

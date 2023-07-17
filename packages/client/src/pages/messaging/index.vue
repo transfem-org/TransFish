@@ -90,7 +90,7 @@
 <script lang="ts" setup>
 import { ref, markRaw, onMounted, onUnmounted, watch } from "vue";
 import * as Acct from "calckey-js/built/acct";
-import { Virtual } from "swiper";
+import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkButton from "@/components/MkButton.vue";
 import MkChatPreview from "@/components/MkChatPreview.vue";

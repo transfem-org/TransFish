@@ -1839,7 +1839,7 @@ pushNotification: 推送通知
 subscribePushNotification: 啟用推送通知
 unsubscribePushNotification: 禁用推送通知
 pushNotificationAlreadySubscribed: 推送通知已經啟用
-recommendedInstancesDescription: 以每行分隔的推薦伺服器出現在推薦的時間線中。 不要添加 `https://`，只添加域名。
+recommendedInstancesDescription: 以每行分隔的推薦伺服器出現在推薦的時間線中。
 searchPlaceholder: 在聯邦網路上搜尋
 cw: 內容警告
 selectChannel: 選擇一個頻道

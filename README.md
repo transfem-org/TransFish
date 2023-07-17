@@ -72,6 +72,14 @@
 
 # 🌠 Getting started
 
+Want to just join a Calckey server? View the list here, pick one, and join:
+
+### https://calckey.org/join
+
+---
+
+Want to make your own? Keep reading!
+
 This guide will work for both **starting from scratch** and **migrating from Misskey**.
 
 ## 🔰 Easy installers
@@ -208,9 +216,9 @@ Please don't use ElasticSearch unless you already have an ElasticSearch setup an
 - Edit `.config/default.yml`, making sure to fill out required fields.
 - Also copy and edit `.config/docker_example.env` to `.config/docker.env` if you're using Docker.
 
-## 🚚 Migrating from Misskey to Calckey
+## 🚚 Migrating from Misskey/FoundKey to Calckey
 
-For migrating from Misskey v13, Misskey v12, and Foundkey, read [this document](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
+For migrating from Misskey v13, Misskey v12, and FoundKey, read [this document](https://codeberg.org/calckey/calckey/src/branch/develop/docs/migrate.md).
 
 ## 🌐 Web proxy
 

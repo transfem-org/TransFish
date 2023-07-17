@@ -326,13 +326,13 @@ export class Meta {
 	public smtpPort: number | null;
 
 	@Column("varchar", {
-		length: 128,
+		length: 1024,
 		nullable: true,
 	})
 	public smtpUser: string | null;
 
 	@Column("varchar", {
-		length: 128,
+		length: 1024,
 		nullable: true,
 	})
 	public smtpPass: string | null;
@@ -556,4 +556,10 @@ export class Meta {
 		default: true,
 	})
 	public enableIdenticonGeneration: boolean;
+
+	@Column("varchar", {
+		length: 256,
+		nullable: true,
+	})
+	public donationLink: string | null;
 }

@@ -56,7 +56,7 @@
 						</div>
 					</div>
 				</div>
-				<footer ref="footerEl" class="footer" @click.stop tabindex="-1">
+				<footer ref="footerEl" class="footer" tabindex="-1">
 					<XReactionsViewer
 						v-if="enableEmojiReactions"
 						ref="reactionsViewer"
@@ -65,7 +65,7 @@
 					<button
 						v-tooltip.noDelay.bottom="i18n.ts.reply"
 						class="button _button"
-						@click="reply()"
+						@click.stop="reply()"
 					>
 						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
 						<template v-if="appearNote.repliesCount > 0">
@@ -107,7 +107,7 @@
 						ref="reactButton"
 						v-tooltip.noDelay.bottom="i18n.ts.reaction"
 						class="button _button"
-						@click="react()"
+						@click.stop="react()"
 					>
 						<i class="ph-smiley ph-bold ph-lg"></i>
 					</button>
@@ -118,7 +118,7 @@
 						"
 						ref="reactButton"
 						class="button _button reacted"
-						@click="undoReact(appearNote)"
+						@click.stop="undoReact(appearNote)"
 						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
@@ -128,7 +128,7 @@
 						ref="menuButton"
 						v-tooltip.noDelay.bottom="i18n.ts.more"
 						class="button _button"
-						@click="menu()"
+						@click.stop="menu()"
 					>
 						<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 					</button>
@@ -470,18 +470,19 @@ function noteClick(e) {
 				z-index: 2;
 				display: flex;
 				flex-wrap: wrap;
-				pointer-events: none; // Allow clicking anything w/out pointer-events: all; to open post
 
 				> :deep(.button) {
 					position: relative;
 					margin: 0;
 					padding: 8px;
 					opacity: 0.7;
+					&:disabled {
+						opacity: 0.5 !important;
+					}
 					flex-grow: 1;
 					max-width: 3.5em;
 					width: max-content;
 					min-width: max-content;
-					pointer-events: all;
 					height: auto;
 					transition: opacity 0.2s;
 					&::before {

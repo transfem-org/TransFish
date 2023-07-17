@@ -8,7 +8,7 @@ export async function genSearchQuery(v: any, q: string) {
 		for (const at of q
 			.split(" ")
 			.filter((x) => x.startsWith("@"))
-			.map((x) => x.substr(1))) {
+			.map((x) => x.slice(1))) {
 			if (at.includes(".")) {
 				if (at === localHost || at === ".") {
 					host = null;

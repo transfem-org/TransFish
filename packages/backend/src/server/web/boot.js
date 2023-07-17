@@ -102,7 +102,11 @@
 			localStorage.setItem("fontSize", null);
 			fontSize = localStorage.getItem("fontSize");
 		}
-		document.documentElement.style.fontSize = fontSize + "px";
+		document.documentElement.style.fontSize = `${fontSize}px`;
+	}
+
+	if (["ja-JP", "ja-KS", "ko-KR", "zh-CN", "zh-TW"].includes(lang)) {
+		document.documentElement.classList.add("useCJKFont");
 	}
 
 	const useSystemFont = localStorage.getItem("useSystemFont");
@@ -123,7 +127,7 @@
 	}
 
 	async function addStyle(styleText) {
-		let css = document.createElement("style");
+		const css = document.createElement("style");
 		css.appendChild(document.createTextNode(styleText));
 		document.head.appendChild(css);
 	}
