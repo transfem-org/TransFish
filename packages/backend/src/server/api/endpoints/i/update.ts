@@ -16,6 +16,7 @@ import { getRelMeLinks } from "@/services/fetch-rel-me.js";
 import { ApiError } from "../../error.js";
 import config from "@/config/index.js";
 import define from "../../define.js";
+import type * as misskey from "calckey-js";
 
 export const meta = {
 	tags: ["account"],
@@ -137,6 +138,17 @@ export const paramDef = {
 	},
 } as const;
 
+async function verifyLink(link: string, username: string): Promise<boolean> {
+	let verified = false;
+	if (link.startsWith("http")) {
+		const relMeLinks = await getRelMeLinks(link);
+		verified = relMeLinks.some((href) =>
+			href.includes(`${config.host}/@${username}`),
+		);
+	}
+	return verified;
+}
+
 export default define(meta, paramDef, async (ps, _user, token) => {
 	const user = await Users.findOneByOrFail({ id: _user.id });
 	const isSecure = token == null;
@@ -236,29 +248,25 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	}
 
 	if (ps.fields) {
-		profileUpdates.fields = ps.fields
-			.filter(
-				(x) =>
-					typeof x.name === "string" &&
-					x.name !== "" &&
-					typeof x.value === "string" &&
-					x.value !== "",
-			)
-			.map(async (x) => {
-				let verified = false;
-				if (x.value.startsWith("http")) {
-					const relMeLinks = await getRelMeLinks(x.value);
-					verified = relMeLinks.some((link) =>
-						link.includes(`${config.host}/@${user.username}`),
-					);
-				}
-				return {
-					name: x.name,
-					value: x.value,
-					verified: verified,
-					lastVerified: new Date(),
-				};
-			});
+		profileUpdates.fields = await Promise.all(
+			ps.fields
+				.filter(
+					(x: misskey.entities.UserDetailed.fields) =>
+						typeof x.name === "string" &&
+						x.name !== "" &&
+						typeof x.value === "string" &&
+						x.value !== "",
+				)
+				.map(async (x: misskey.entities.UserDetailed.fields) => {
+					return {
+						name: x.name,
+						value: x.value,
+						verified: x.value.startsWith("http")
+							? await verifyLink(x.value, user.username)
+							: null,
+					};
+				}),
+		);
 	}
 
 	//#region emojis/tags
