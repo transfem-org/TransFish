@@ -113,10 +113,6 @@ url: "https://{{ .Values.calckey.domain }}/"
 # The port that your Misskey server should listen on.
 port: 3000
 
-# The bind host your Calckey server should listen on.
-# If unspecified, the wildcard address will be used.
-#bind: 127.0.0.1
-
 #   ┌──────────────────────────┐
 #───┘ PostgreSQL configuration └────────────────────────────────
 
