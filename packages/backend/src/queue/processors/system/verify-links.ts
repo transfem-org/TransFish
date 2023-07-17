@@ -3,7 +3,7 @@ import type Bull from "bull";
 import { UserProfiles } from "@/models/index.js";
 import { Not } from "typeorm";
 import { queueLogger } from "../../logger.js";
-import { getRelMeLinks } from "@/services/fetch-rel-me.js";
+import { verifyLink } from "@/services/fetch-rel-me.js";
 import config from "@/config/index.js";
 
 const logger = queueLogger.createSubLogger("verify-links");
@@ -19,36 +19,22 @@ export async function verifyLinks(
 		userHost: "",
 	});
 	for (const user of usersToVerify) {
-		const fields = user.fields
-			.filter(
-				(x) =>
-					typeof x.name === "string" &&
-					x.name !== "" &&
-					typeof x.value === "string" &&
-					x.value !== "" &&
-					x.value.startsWith("http")
-			)
-			.map(async (x) => {
-				const relMeLinks = await getRelMeLinks(x.value);
-				const verified = relMeLinks.some((link) =>
-					link.includes(`${config.host}/@${user.user?.host}`),
-				);
-				return {
-					name: x.name,
-					value: x.value,
-					verified: verified,
-				};
-			});
-		if (fields.length > 0) {
-			const fieldsFinal = await Promise.all(fields);
+		for (const field of user.fields) {
+			if (!field || field.name === "" || field.value === "") {
+				continue;
+			}
+			if (field.value.startsWith("http") && user.user?.username) {
+				field.verified = await verifyLink(field.value, user.user.username);
+			}
+		}
+		if (user.fields.length > 0) {
 			try {
 				await UserProfiles.update(user.userId, {
-					fields: fieldsFinal,
+					fields: user.fields,
 				});
 			} catch (e) {
 				logger.error(`Failed to update user ${user.userId} ${e}`);
 				done(e);
-				break;
 			}
 		}
 	}

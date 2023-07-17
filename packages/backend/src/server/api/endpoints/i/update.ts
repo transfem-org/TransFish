@@ -12,7 +12,7 @@ import type { UserProfile } from "@/models/entities/user-profile.js";
 import { notificationTypes } from "@/types.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { langmap } from "@/misc/langmap.js";
-import { getRelMeLinks } from "@/services/fetch-rel-me.js";
+import { verifyLink } from "@/services/fetch-rel-me.js";
 import { ApiError } from "../../error.js";
 import config from "@/config/index.js";
 import define from "../../define.js";
@@ -149,17 +149,6 @@ export const paramDef = {
 	},
 } as const;
 
-async function verifyLink(link: string, username: string): Promise<boolean> {
-	let verified = false;
-	if (link.startsWith("http")) {
-		const relMeLinks = await getRelMeLinks(link);
-		verified = relMeLinks.some((href) =>
-			href.includes(`${config.host}/@${username}`),
-		);
-	}
-	return verified;
-}
-
 export default define(meta, paramDef, async (ps, _user, token) => {
 	const user = await Users.findOneByOrFail({ id: _user.id });
 	const isSecure = token == null;
@@ -261,7 +250,6 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (ps.fields) {
 		for (const field of ps.fields) {
 			if (!field || field.name === "" || field.value === "") {
-				ps.fields.remove(field);
 				continue;
 			}
 			if (typeof field.name !== "string" || field.name === "") {
