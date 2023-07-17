@@ -3,10 +3,12 @@
 		<template #header>
 			<MkTab v-model="include" :class="$style.tab">
 				<!-- TODO: Localize these values -->
+				<!-- None -->
+				<option :value="null">Everything</option>
 				<!-- {{ i18n.ts.notes }} -->
 				<option value="posts">Posts</option>
 				<!-- {{ i18n.ts.notesAndReplies }} -->
-				<option :value="null">Replies</option>
+				<option value="replies">Replies</option>
 				<!-- None -->
 				<option value="boosts">Boosts</option>
 				<!-- {{ i18n.ts.withFiles }} -->
@@ -36,9 +38,9 @@ const pagination = {
 	limit: 10,
 	params: computed(() => ({
 		userId: props.user.id,
-		includeReplies: include.value === null,
+		includeReplies: include.value === "replies" || include.value === null,
 		withFiles: include.value === "files",
-		includeRenotes: include.value === "boosts",
+		includeRenotes: include.value === "boosts" || include.value === null,
 		renotesOnly: include.value === "boosts",
 	})),
 };
