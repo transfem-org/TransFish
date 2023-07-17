@@ -1551,7 +1551,7 @@ _profile:
   metadata: "Zusätzliche Informationen"
   metadataEdit: "Zusätzliche Informationen bearbeiten"
   metadataDescription: "Hierdurch kannst du auf deinem Profil zusätzliche Informationsblöcke
-    anzeigen lassen."
+    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen, um den Link in Ihrem Profil zu überprüfen!"
   metadataLabel: "Beschriftung"
   metadataContent: "Inhalt"
   changeAvatar: "Profilbild ändern"

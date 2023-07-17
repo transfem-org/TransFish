@@ -1342,7 +1342,7 @@ _profile:
   youCanIncludeHashtags: "Bạn có thể dùng hashtag trong tiểu sử."
   metadata: "Thông tin bổ sung"
   metadataEdit: "Sửa thông tin bổ sung"
-  metadataDescription: "Sử dụng phần này, bạn có thể hiển thị các mục thông tin bổ sung trong hồ sơ của mình."
+  metadataDescription: "Sử dụng phần này, bạn có thể hiển thị các mục thông tin bổ sung trong hồ sơ của mình. Bạn có thể thêm thẻ {a} hoặc thẻ {l} với {rel} để xác minh liên kết trên tiểu sử của mình!"
   metadataLabel: "Nhãn"
   metadataContent: "Nội dung"
   changeAvatar: "Đổi ảnh đại diện"

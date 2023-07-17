@@ -16,7 +16,6 @@
 
 ## Work in progress
 
-- Link verification
 - Better Messaging UI
 - Better API Documentation
 - Remote follow button
@@ -118,6 +117,7 @@
 - Non-mangled unicode emojis
   - Skin tone selection support
 - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
+- Link verification
 
 ## Implemented (remote)
 
