@@ -124,15 +124,22 @@ export default define(meta, paramDef, async (ps, me) => {
 		query.andWhere("note.replyId IS NULL");
 	}
 
-	if (!ps.includeRenotes) {
-		query.andWhere("note.renoteId IS NULL");
-	}
-
-	if (ps.renotesOnly) {
-		query.andWhere("note.renoteId IS NOT NULL");
+	if (ps.includeRenotes === false) {
+		// I suppose this handles quote renotes.
+		query.andWhere(
+			new Brackets((qb) => {
+				qb.orWhere("note.renoteId IS NULL");
+				qb.orWhere("note.text IS NOT NULL");
+				qb.orWhere("note.fileIds != '{}'");
+				qb.orWhere(
+					'0 < (SELECT COUNT(*) FROM poll WHERE poll."noteId" = note.id)',
+				);
+			})
+		);
 	}
 
 	if (ps.includeMyRenotes === false) {
+		// Again, handling for quote renotes.
 		query.andWhere(
 			new Brackets((qb) => {
 				qb.orWhere("note.userId != :userId", { userId: user.id });
@@ -144,6 +151,10 @@ export default define(meta, paramDef, async (ps, me) => {
 				);
 			}),
 		);
+	}
+
+	if (ps.renotesOnly) {
+		query.andWhere("note.renoteId IS NOT NULL");
 	}
 
 	//#endregion
