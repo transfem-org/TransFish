@@ -3,6 +3,5 @@ namespace MisskeyEntity {
     name: string
     value: string
 		verified?: string
-		verifiedAt?: Date
   }
 }
