@@ -126,7 +126,7 @@
 				</div>
 			</FormFolder>
 			<template #caption>{{
-				i18n.t("._profile.metadataDescription", {
+				i18n.t("_profile.metadataDescription", {
 					a: '<code><a></code>',
 					l: '<code><a></code>',
 					rel: `rel="me" href="https://${host}/@${$i.username}"`
