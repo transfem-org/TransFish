@@ -297,7 +297,7 @@
 										v-if="field.verified"
 										class="ph-bold ph-seal-check ph-lg ph-fw"
 										style="padding: 5px"
-										:v-tooltip="i18n.ts.verifiedLink"
+										v-tooltip="i18n.ts.verifiedLink"
 									></i>
 									<Mfm
 										:text="field.name"
