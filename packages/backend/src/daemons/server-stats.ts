@@ -23,12 +23,7 @@ export default function () {
 
 	fetchMeta().then((meta) => {
 		if (!meta.enableServerMachineStats) return;
-<<<<<<< HEAD
 	});
-=======
-	}
-	);
->>>>>>> 1f5cf72ae7 (fix: :bug: server stats setting, meta fetching)
 
 	async function tick() {
 		const cpu = await cpuUsage();
