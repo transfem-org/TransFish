@@ -43,6 +43,7 @@
 		"universal": "napi universal",
 		"version": "napi version",
 		"format": "cargo fmt --all",
+		"lint": "cargo clippy --fix",
 		"cargo:test": "pnpm run cargo:unit && pnpm run cargo:integration",
 		"cargo:unit": "cargo test unit_test && cargo test -F napi unit_test",
 		"cargo:integration": "cargo test -F noarray int_test -- --test-threads=1"

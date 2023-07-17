@@ -106,7 +106,7 @@ export default defineComponent({
 		);
 		padding-right: 90px !important;
 		white-space: nowrap;
-		
+
 		&::-webkit-scrollbar {
 			display: none;
 		}

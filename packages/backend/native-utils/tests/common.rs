@@ -148,8 +148,8 @@ async fn setup_model(db: &DbConn) {
             let user_model = entity::user::Model {
                 id: user_id.to_owned(),
                 created_at: Utc::now().into(),
-                username: name.to_lowercase().to_string(),
-                username_lower: name.to_lowercase().to_string(),
+                username: name.to_lowercase(),
+                username_lower: name.to_lowercase(),
                 name: Some(name.to_string()),
                 token: Some(gen_string(16)),
                 is_admin: true,

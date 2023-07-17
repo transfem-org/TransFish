@@ -49,8 +49,8 @@
 			<button
 				class="_button"
 				:class="$style.close"
-				@click="close"
 				:aria-label="i18n.t('close')"
+				@click="close"
 			>
 				<i class="ph-x ph-bold ph-lg"></i>
 			</button>
@@ -59,14 +59,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, nextTick } from "vue";
+import { nextTick, ref } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import { host } from "@/config";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 import { instance } from "@/instance";
 
-let show = ref(false);
+const show = ref(false);
 
 const emit = defineEmits<{
 	(ev: "closed"): void;

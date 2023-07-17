@@ -1,6 +1,6 @@
 {
 	"name": "calckey",
-	"version": "14.0.0-dev78",
+	"version": "14.0.0-dev79",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
@@ -57,7 +57,7 @@
 		"gulp-replace": "1.1.4",
 		"gulp-terser": "2.1.0",
 		"install-peers": "^1.0.4",
-		"rome": "^12.1.3",
+		"rome": "^v12.1.3-nightly.f65b0d9",
 		"start-server-and-test": "1.15.2",
 		"typescript": "5.1.6"
 	}

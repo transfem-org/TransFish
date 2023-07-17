@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onBeforeUnmount } from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 import MkMenu from "./MkMenu.vue";
-import { MenuItem } from "./types/menu.vue";
+import type { MenuItem } from "./types/menu.vue";
 import contains from "@/scripts/contains";
 import * as os from "@/os";
 
@@ -27,13 +27,13 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let rootEl = $ref<HTMLDivElement>();
+const rootEl = $ref<HTMLDivElement>();
 
-let zIndex = $ref<number>(os.claimZIndex("high"));
+const zIndex = $ref<number>(os.claimZIndex("high"));
 
 onMounted(() => {
-	let left = props.ev.pageX + 1; // 間違って右ダブルクリックした場合に意図せずアイテムがクリックされるのを防ぐため + 1
-	let top = props.ev.pageY + 1; // 間違って右ダブルクリックした場合に意図せずアイテムがクリックされるのを防ぐため + 1
+	let left = props.ev.pageX + 1, // 間違って右ダブルクリックした場合に意図せずアイテムがクリックされるのを防ぐため + 1
+		top = props.ev.pageY + 1; // 間違って右ダブルクリックした場合に意図せずアイテムがクリックされるのを防ぐため + 1
 
 	const width = rootEl.offsetWidth;
 	const height = rootEl.offsetHeight;

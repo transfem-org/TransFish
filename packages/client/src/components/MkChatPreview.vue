@@ -26,7 +26,7 @@
 						: message.user
 				"
 				:show-indicator="true"
-				disableLink
+				disable-link
 			/>
 			<header v-if="message.groupId">
 				<span class="name">{{ message.group.name }}</span>
