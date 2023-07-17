@@ -288,7 +288,7 @@
 						<div v-if="user.fields.length > 0" class="fields">
 							<dl
 								v-for="(field, i) in user.fields"
-								:class="field.verified ?? 'verified'"
+								:class="field.verified ? 'verified' : ''"
 								:key="i"
 								class="field"
 							>
@@ -751,14 +751,14 @@ onUnmounted(() => {
 						margin: 0;
 						align-items: center;
 
-						> .verified {
+						&:not(:last-child) {
+							margin-bottom: 8px;
+						}
+
+					 &.verified {
 							background-color: var(--hover);
 							border-radius: 10px;
 							color: var(--badge) !important;
-						}
-
-						&:not(:last-child) {
-							margin-bottom: 8px;
 						}
 
 						> .name {
