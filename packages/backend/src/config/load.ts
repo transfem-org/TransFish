@@ -54,9 +54,9 @@ export default function load() {
 	mixin.userAgent = `Calckey/${meta.version} (${config.url})`;
 	mixin.clientEntry = clientManifest["src/init.ts"];
 
-	if (!config.redis.prefix) config.redis.prefix = mixin.host;
+	if (!config.redis.prefix) config.redis.prefix = mixin.hostname;
 	if (config.cacheServer && !config.cacheServer.prefix)
-		config.cacheServer.prefix = mixin.host;
+		config.cacheServer.prefix = mixin.hostname;
 
 	return Object.assign(config, mixin);
 }
