@@ -177,7 +177,7 @@ flagShowTimelineRepliesDescription: "Shows replies of users to posts of other us
 autoAcceptFollowed: "Automatically approve follow requests from users you're following"
 addAccount: "Add account"
 loginFailed: "Failed to sign in"
-showOnRemote: "View on remote server"
+showOnRemote: "Open original page"
 general: "General"
 accountMoved: "User has moved to a new account:"
 wallpaper: "Wallpaper"
