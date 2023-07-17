@@ -155,6 +155,11 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (ps.withRenotes) {
 		query.andWhere("note.renoteId IS NOT NULL");
+		query.andWhere("note.text IS NULL");
+		query.andWhere("0 = cardinality(note.fileIds)");
+		query.andWhere(
+			'0 = (SELECT COUNT(*) FROM poll WHERE poll."noteId" = note.id)',	
+		)
 	}
 
 	//#endregion
