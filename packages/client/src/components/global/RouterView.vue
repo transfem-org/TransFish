@@ -43,7 +43,7 @@ import {
 	provide,
 	watch,
 } from "vue";
-import { Resolved, Router } from "@/nirax";
+import type { Resolved, Router } from "@/nirax";
 import { defaultStore } from "@/store";
 
 const props = defineProps<{
@@ -72,12 +72,12 @@ function resolveNested(current: Resolved, d = 0): Resolved | null {
 }
 
 const current = resolveNested(router.current)!;
-let currentPageComponent = $shallowRef(current.route.component);
+let currentPageComponent = $shallowRef(current.route.component),
+	currentPageProps = $ref(current.props),
+	key = $ref(
+		current.route.path + JSON.stringify(Object.fromEntries(current.props)),
+	);
 let currentPageKeepAlive = $shallowRef(current.route.keepAlive);
-let currentPageProps = $ref(current.props);
-let key = $ref(
-	current.route.path + JSON.stringify(Object.fromEntries(current.props)),
-);
 
 function onChange({ resolved, key: newKey }) {
 	const current = resolveNested(resolved);

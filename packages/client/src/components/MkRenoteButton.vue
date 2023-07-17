@@ -5,7 +5,7 @@
 		v-tooltip.noDelay.bottom="i18n.ts.renote"
 		class="button _button canRenote"
 		:class="{ renoted: hasRenotedBefore }"
-		@click="renote(false, $event)"
+		@click.stop="renote(false, $event)"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
 		<p v-if="count > 0 && !detailedView" class="count">{{ count }}</p>

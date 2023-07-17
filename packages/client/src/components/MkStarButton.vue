@@ -2,7 +2,7 @@
 	<button
 		v-tooltip.noDelay.bottom="i18n.ts._gallery.like"
 		class="button _button"
-		@click="star($event)"
+		@click.stop="star($event)"
 	>
 		<svg
 			v-if="defaultStore.state.woozyMode === true"

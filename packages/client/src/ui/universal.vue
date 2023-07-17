@@ -169,10 +169,10 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, provide, onMounted, computed, ref } from "vue";
-import XCommon from "./_common_/common.vue";
+import { computed, defineAsyncComponent, onMounted, provide, ref } from "vue";
 import * as Acct from "calckey-js/built/acct";
 import type { ComputedRef } from "vue";
+import XCommon from "./_common_/common.vue";
 import type { PageMetadata } from "@/scripts/page-metadata";
 import { instanceName, ui } from "@/config";
 import XDrawerMenu from "@/ui/_common_/navbar-for-mobile.vue";
@@ -232,7 +232,7 @@ const menuIndicated = computed(() => {
 });
 
 function updateButtonState(): void {
-	let routerState = window.location.pathname;
+	const routerState = window.location.pathname;
 	if (routerState === "/") {
 		buttonAnimIndex.value = 0;
 		return;
@@ -246,7 +246,6 @@ function updateButtonState(): void {
 		return;
 	}
 	buttonAnimIndex.value = 3;
-	return;
 }
 
 updateButtonState();
@@ -358,7 +357,7 @@ const onContextmenu = (ev: MouseEvent) => {
 		["INPUT", "TEXTAREA", "IMG", "VIDEO", "CANVAS"].includes(
 			ev.target.tagName,
 		) ||
-		ev.target.attributes["contenteditable"]
+		ev.target.attributes.contenteditable
 	)
 		return;
 	if (window.getSelection()?.toString() !== "") return;

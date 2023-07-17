@@ -71,7 +71,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ComputedRef, onMounted, provide } from "vue";
+import type { ComputedRef } from "vue";
+import { onMounted, provide } from "vue";
 import XHeader from "./header.vue";
 import XKanban from "./kanban.vue";
 import { host, instanceName } from "@/config";
@@ -84,8 +85,8 @@ import XSignupDialog from "@/components/MkSignupDialog.vue";
 import MkButton from "@/components/MkButton.vue";
 import { ColdDeviceStorage, defaultStore } from "@/store";
 import { mainRouter } from "@/router";
+import type { PageMetadata } from "@/scripts/page-metadata";
 import {
-	PageMetadata,
 	provideMetadataReceiver,
 	setPageMetadata,
 } from "@/scripts/page-metadata";
@@ -111,10 +112,10 @@ const isTimelineAvailable =
 	!instance.disableLocalTimeline ||
 	!instance.disableRecommendedTimeline ||
 	!instance.disableGlobalTimeline;
-let showMenu = $ref(false);
-let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD);
-let narrow = $ref(window.innerWidth < 1280);
-let meta = $ref();
+const showMenu = $ref(false);
+let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD),
+	narrow = $ref(window.innerWidth < 1280),
+	meta = $ref();
 
 const keymap = $computed(() => {
 	return {

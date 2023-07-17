@@ -642,7 +642,7 @@ wordMute: "Silenciar palabras"
 regexpError: "Error de la expresión regular"
 regexpErrorDescription: "Ocurrió un error en la expresión regular en la linea {line}
   de las palabras muteadas {tab}"
-instanceMute: "Instancias silenciadas"
+instanceMute: "Servidores silenciados"
 userSaysSomething: "{name} dijo algo"
 makeActive: "Activar"
 display: "Apariencia"
@@ -671,14 +671,14 @@ sample: "Muestra"
 abuseReports: "Reportes"
 reportAbuse: "Reportar"
 reportAbuseOf: "Reportar a {name}"
-fillAbuseReportDescription: "Ingrese los detalles del reporte. Si hay una nota en
-  particular, ingrese la URL de esta."
+fillAbuseReportDescription: "Ingrese los detalles del reporte. Si hay una publicación
+  en particular, ingrese la URL de esta."
 abuseReported: "Se ha enviado el reporte. Muchas gracias."
 reporter: "Reportador"
 reporteeOrigin: "Reportar a"
 reporterOrigin: "Origen del reporte"
-forwardReport: "Transferir un informe a una instancia remota"
-forwardReportIsAnonymous: "No puede ver su información de la instancia remota y aparecerá
+forwardReport: "Transferir reporte a un servidor remoto"
+forwardReportIsAnonymous: "No puede ver su información del servidor remoto y aparecerá
   como una cuenta anónima del sistema"
 send: "Enviar"
 abuseMarkAsResolved: "Marcar reporte como resuelto"
@@ -686,7 +686,7 @@ openInNewTab: "Abrir en una Nueva Pestaña"
 openInSideView: "Abrir en una vista al costado"
 defaultNavigationBehaviour: "Navegación por defecto"
 editTheseSettingsMayBreakAccount: "Editar estas configuraciones puede dañar su cuenta."
-instanceTicker: "Información de notas de la instancia"
+instanceTicker: "Información de publicaciones de el servidor"
 waitingFor: "Esperando a {x}"
 random: "Aleatorio"
 system: "Sistema"
@@ -697,14 +697,14 @@ createNew: "Crear"
 optional: "Opcional"
 createNewClip: "Crear clip nuevo"
 unclip: "Quitar clip"
-confirmToUnclipAlreadyClippedNote: "Esta nota ya está incluida en el clip \"{name}\"\
-  . ¿Quiere quitar la nota del clip?"
+confirmToUnclipAlreadyClippedNote: "Esta publicación ya está incluida en el clip \"\
+  {name}\". ¿Quiere quitar la nota del clip?"
 public: "Público"
 i18nInfo: "Calckey está siendo traducido a varios idiomas gracias a voluntarios. Se
   puede colaborar traduciendo en {link}"
 manageAccessTokens: "Administrar tokens de acceso"
 accountInfo: "Información de la Cuenta"
-notesCount: "Cantidad de notas"
+notesCount: "Cantidad de publicaciones"
 repliesCount: "Cantidad de respuestas hechas"
 renotesCount: "Cantidad de renotas hechas"
 repliedCount: "Cantidad de respuestas recibidas"
@@ -720,7 +720,7 @@ no: "No"
 driveFilesCount: "Cantidad de archivos en el drive"
 driveUsage: "Uso del drive"
 noCrawle: "Rechazar indexación del crawler"
-noCrawleDescription: "Pedir a los motores de búsqueda que no indexen tu perfil, notas,
+noCrawleDescription: "Pedir a los motores de búsqueda que no indexen tu perfil, publicaciones,
   páginas, etc."
 lockedAccountInfo: "A menos que configures la visibilidad de tus notas como \"Sólo
   seguidores\", tus notas serán visibles para cualquiera, incluso si requieres que
@@ -734,7 +734,7 @@ verificationEmailSent: "Se le ha enviado un correo electrónico de confirmación
   configuración."
 notSet: "Sin especificar"
 emailVerified: "Su dirección de correo electrónico ha sido verificada."
-noteFavoritesCount: "Número de notas favoritas"
+noteFavoritesCount: "Número de publicaciones favoritas"
 pageLikesCount: "Número de favoritos en la página"
 pageLikedCount: "Número de favoritos de su página"
 contact: "Contacto"
@@ -975,7 +975,7 @@ shuffle: "Aleatorio"
 account: "Cuentas"
 move: "Mover"
 _sensitiveMediaDetection:
-  description: "Reduce el esfuerzo de la moderación el el servidor a través del reconocimiento
+  description: "Reduce el esfuerzo de la moderación de el servidor a través del reconocimiento
     automático de contenido NSFW usando 'Machine Learning'. Esto puede incrementar
     ligeramente la carga en el servidor."
   sensitivity: "Sensibilidad de detección"
@@ -1295,7 +1295,7 @@ _time:
 _tutorial:
   title: "Cómo usar Calckey"
   step1_1: "¡Bienvenido!"
-  step1_2: "Vamos a configurarte. Estarás listo y funcionando en poco tiempo"
+  step1_2: "Vamos a configurarte. ¡Estarás listo y funcionando en poco tiempo!"
   step2_1: "En primer lugar, rellena tu perfil"
   step2_2: "Proporcionar algo de información sobre quién eres hará que sea más fácil
     para los demás saber si quieren ver tus notas o seguirte."
@@ -1475,7 +1475,7 @@ _profile:
   youCanIncludeHashtags: "Puedes añadir hashtags"
   metadata: "información adicional"
   metadataEdit: "Editar información adicional"
-  metadataDescription: "Muestra la información adicional en el perfil"
+  metadataDescription: "Muestra la información adicional en el perfil. ¡Puede agregar una etiqueta {a} o una etiqueta {l} con {rel} para verificar el enlace en su perfil!"
   metadataLabel: "Etiqueta"
   metadataContent: "Contenido"
   changeAvatar: "Cambiar avatar"
@@ -1789,7 +1789,7 @@ _pages:
       splitStrByLine: "Separar texto en lineas"
       _splitStrByLine:
         arg1: "Texto"
-      ref: "Variables"
+      ref: "Variable"
       aiScriptVar: "Variable de AiScript"
       fn: "funciones"
       _fn:
@@ -1800,8 +1800,8 @@ _pages:
       _for:
         arg1: "Cantidad de repeticiones"
         arg2: "Acción"
-    typeError: "El slot {slot} acepta el tipo {expect} pero fue ingresado el tipo
-      {actual}"
+    typeError: "El slot {slot} acepta el tipo \"{expect}\" pero fue ingresado el tipo
+      \"{actual}\""
     thereIsEmptySlot: "El slot {slot} está vacío"
     types:
       string: "Texto"

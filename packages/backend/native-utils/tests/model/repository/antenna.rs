@@ -43,18 +43,16 @@ mod int_test {
             keywords: vec![
                 vec!["foo".to_string(), "bar".to_string()],
                 vec!["foobar".to_string()],
-            ]
-            .into(),
+            ],
             exclude_keywords: vec![
                 vec!["abc".to_string()],
                 vec!["def".to_string(), "ghi".to_string()],
-            ]
-            .into(),
+            ],
             src: schema::AntennaSrc::All,
             user_list_id: None,
             user_group_id: None,
-            users: vec![].into(),
-            instances: vec![].into(),
+            users: vec![],
+            instances: vec![],
             case_sensitive: true,
             notify: true,
             with_replies: false,
@@ -95,7 +93,7 @@ mod int_test {
             .unwrap()
             .expect("note not found");
         let antenna_note = antenna_note::Model {
-            id: util::id::create_id().unwrap(),
+            id: util::id::create_id(0).unwrap(),
             antenna_id: alice_antenna.id.to_owned(),
             note_id: note_model.id.to_owned(),
             read: false,

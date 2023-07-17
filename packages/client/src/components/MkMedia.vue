@@ -54,14 +54,19 @@
 					controls
 					@contextmenu.stop
 				>
-					<source :src="media.url" :type="media.type" />
+					<source :src="media.url" :type="mediaType" />
 				</video>
 			</VuePlyr>
 		</template>
 		<div class="buttons">
 			<button
 				v-if="media.comment"
-				v-tooltip="i18n.ts.alt"
+				v-tooltip.noLabel="`${i18n.ts.alt}: ${
+					media.comment.length > 200 ?
+						media.comment.trim().slice(0, 200) + '...'
+						: media.comment.trim()
+				}`"
+				:aria-label="i18n.ts.alt"
 				class="_button"
 				@click.stop="captionPopup"
 			>
@@ -80,7 +85,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { watch, ref, computed } from "vue";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
 import type * as misskey from "calckey-js";
@@ -106,6 +111,12 @@ const url =
 		  props.media.type.startsWith("image")
 		? getStaticImageUrl(props.media.thumbnailUrl)
 		: props.media.thumbnailUrl;
+
+const mediaType = computed(() => {
+	return props.media.type === "video/quicktime"
+		? "video/mp4"
+		: props.media.type;
+});
 
 function captionPopup() {
 	os.alert({

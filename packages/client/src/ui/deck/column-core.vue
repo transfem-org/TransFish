@@ -68,7 +68,7 @@ import XWidgetsColumn from "./widgets-column.vue";
 import XMentionsColumn from "./mentions-column.vue";
 import XDirectColumn from "./direct-column.vue";
 import XChannelColumn from "./channel-column.vue";
-import { Column } from "./deck-store";
+import type { Column } from "./deck-store";
 
 defineProps<{
 	column?: Column;

@@ -1,9 +1,9 @@
 use async_trait::async_trait;
 use cfg_if::cfg_if;
-use sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
+use sea_orm::EntityTrait;
 
 use crate::database;
-use crate::model::entity::{antenna, antenna_note, user_group_joining};
+use crate::model::entity::{antenna, user_group_joining};
 use crate::model::error::Error;
 use crate::model::schema::Antenna;
 
@@ -14,12 +14,6 @@ use super::Repository;
 impl Repository<Antenna> for antenna::Model {
     async fn pack(self) -> Result<Antenna, Error> {
         let db = database::get_database()?;
-        let has_unread_note = antenna_note::Entity::find()
-            .filter(antenna_note::Column::AntennaId.eq(self.id.to_owned()))
-            .filter(antenna_note::Column::Read.eq(false))
-            .one(db)
-            .await?
-            .is_some();
         let user_group_joining = match self.user_group_joining_id {
             None => None,
             Some(id) => user_group_joining::Entity::find_by_id(id).one(db).await?,
@@ -46,13 +40,13 @@ impl Repository<Antenna> for antenna::Model {
             src: self.src.try_into()?,
             user_list_id: self.user_list_id,
             user_group_id,
-            users: self.users.into(),
+            users: self.users,
             instances: self.instances.into(),
             case_sensitive: self.case_sensitive,
             notify: self.notify,
             with_replies: self.with_replies,
             with_file: self.with_file,
-            has_unread_note,
+            has_unread_note: false,
         })
     }
 

@@ -177,7 +177,7 @@ flagShowTimelineRepliesDescription: "Shows replies of users to posts of other us
 autoAcceptFollowed: "Automatically approve follow requests from users you're following"
 addAccount: "Add account"
 loginFailed: "Failed to sign in"
-showOnRemote: "View on remote server"
+showOnRemote: "Open original page"
 general: "General"
 accountMoved: "User has moved to a new account:"
 wallpaper: "Wallpaper"
@@ -1124,6 +1124,7 @@ remindMeLater: "Maybe later"
 removeQuote: "Remove quote"
 removeRecipient: "Remove recipient"
 removeMember: "Remove member"
+verifiedLink: "Verified link"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
@@ -1676,8 +1677,10 @@ _profile:
   youCanIncludeHashtags: "You can also include hashtags in your bio."
   metadata: "Additional Information"
   metadataEdit: "Edit additional Information"
-  metadataDescription: "Using these, you can display additional information fields
-    in your profile."
+  metadataDescription:
+    "Using these, you can display additional information fields
+    in your profile. You can add an {a} tag or {l} tag with {rel}
+    to verify the link on your profile!"
   metadataLabel: "Label"
   metadataContent: "Content"
   changeAvatar: "Change avatar"

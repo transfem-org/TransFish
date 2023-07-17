@@ -139,17 +139,17 @@ async fn cleanup() {
 }
 
 async fn setup_model(db: &DbConn) {
-    init_id(12, "");
+    init_id(16, "");
 
     db.transaction::<_, (), DbErr>(|txn| {
         Box::pin(async move {
-            let user_id = create_id().unwrap();
+            let user_id = create_id(0).unwrap();
             let name = "Alice";
             let user_model = entity::user::Model {
                 id: user_id.to_owned(),
                 created_at: Utc::now().into(),
-                username: name.to_lowercase().to_string(),
-                username_lower: name.to_lowercase().to_string(),
+                username: name.to_lowercase(),
+                username_lower: name.to_lowercase(),
                 name: Some(name.to_string()),
                 token: Some(gen_string(16)),
                 is_admin: true,
@@ -161,7 +161,7 @@ async fn setup_model(db: &DbConn) {
                 .insert(txn)
                 .await?;
             let antenna_model = entity::antenna::Model {
-                id: create_id().unwrap(),
+                id: create_id(0).unwrap(),
                 created_at: Utc::now().into(),
                 user_id: user_id.to_owned(),
                 name: "Alice Antenna".to_string(),
@@ -186,7 +186,7 @@ async fn setup_model(db: &DbConn) {
                 .insert(txn)
                 .await?;
             let note_model = entity::note::Model {
-                id: create_id().unwrap(),
+                id: create_id(0).unwrap(),
                 created_at: Utc::now().into(),
                 text: Some("Testing 123".to_string()),
                 user_id: user_id.to_owned(),

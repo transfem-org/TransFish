@@ -8,30 +8,31 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch, PropType, onUnmounted } from "vue";
+import type { PropType } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import {
-	Chart,
 	ArcElement,
-	LineElement,
-	BarElement,
-	PointElement,
 	BarController,
-	LineController,
+	BarElement,
 	CategoryScale,
-	LinearScale,
-	TimeScale,
+	Chart,
+	Filler,
 	Legend,
+	LineController,
+	LineElement,
+	LinearScale,
+	PointElement,
+	SubTitle,
+	TimeScale,
 	Title,
 	Tooltip,
-	SubTitle,
-	Filler,
 } from "chart.js";
 import "chartjs-adapter-date-fns";
 import { enUS } from "date-fns/locale";
 import zoomPlugin from "chartjs-plugin-zoom";
 // https://github.com/misskey-dev/misskey/pull/8575#issuecomment-1114242002
 // We can't use gradient because Vite throws a error.
-//import gradient from 'chartjs-plugin-gradient';
+// import gradient from 'chartjs-plugin-gradient';
 import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
@@ -92,7 +93,7 @@ Chart.register(
 	SubTitle,
 	Filler,
 	zoomPlugin,
-	//gradient,
+	// gradient,
 );
 
 const sum = (...arr) => arr.reduce((r, a) => r.map((b, i) => a[i] + b));
@@ -127,20 +128,20 @@ const getColor = (i) => {
 };
 
 const now = new Date();
-let chartInstance: Chart = null;
-let chartData: {
-	series: {
-		name: string;
-		type: "line" | "area";
-		color?: string;
-		dashed?: boolean;
-		hidden?: boolean;
-		data: {
-			x: number;
-			y: number;
+let chartInstance: Chart = null,
+	chartData: {
+		series: {
+			name: string;
+			type: "line" | "area";
+			color?: string;
+			dashed?: boolean;
+			hidden?: boolean;
+			data: {
+				x: number;
+				y: number;
+			}[];
 		}[];
-	}[];
-} = null;
+	} = null;
 
 const chartEl = ref<HTMLCanvasElement>(null);
 const fetching = ref(true);
@@ -210,7 +211,7 @@ const render = () => {
 						? x.color
 						: getColor(i)
 					: alpha(x.color ? x.color : getColor(i), 0.1),
-				/*gradient: props.bar ? undefined : {
+				/* gradient: props.bar ? undefined : {
 					backgroundColor: {
 						axis: 'y',
 						colors: {
@@ -218,7 +219,7 @@ const render = () => {
 							[maxes[i]]: alpha(x.color ? x.color : getColor(i), 0.2),
 						},
 					},
-				},*/
+				}, */
 				barPercentage: 0.9,
 				categoryPercentage: 0.9,
 				fill: x.type === "area",
@@ -271,7 +272,7 @@ const render = () => {
 					},
 					ticks: {
 						display: props.detailed,
-						//mirror: true,
+						// mirror: true,
 					},
 				},
 			},
@@ -331,7 +332,7 @@ const render = () => {
 							},
 					  }
 					: undefined,
-				//gradient,
+				// gradient,
 			},
 		},
 		plugins: [

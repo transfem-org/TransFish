@@ -18,8 +18,8 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted } from "vue";
-import bytes from "@/filters/bytes";
 import XPie from "./pie.vue";
+import bytes from "@/filters/bytes";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 
@@ -28,11 +28,11 @@ const props = defineProps<{
 	meta: any;
 }>();
 
-let progress: number = $ref(0);
-let serverStats = $ref(null);
-let totalSize: number = $ref(0);
-let indexCount: number = $ref(0);
-let available: string = $ref("unavailable");
+let progress: number = $ref(0),
+	serverStats = $ref(null),
+	totalSize: number = $ref(0),
+	indexCount: number = $ref(0),
+	available: string = $ref("unavailable");
 
 function onStats(stats) {
 	totalSize = stats.meilisearch.size;

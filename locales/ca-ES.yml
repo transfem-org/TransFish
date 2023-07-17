@@ -409,8 +409,9 @@ _profile:
   locationDescription: Si primer introduïu la vostra ciutat, es mostrarà l'hora local
     a altres usuaris.
   name: Nom
-  metadataDescription: Fent servir això, podràs mostrar camps d'informació addicionals
-    al vostre perfil.
+  metadataDescription: "Fent servir això, podràs mostrar camps d'informació addicionals
+    al vostre perfil. Podeu afegir una etiqueta {a} o una etiqueta {l} amb {rel} per
+    verificar l'enllaç al vostre perfil!"
 _exportOrImport:
   followingList: "Usuaris que segueixes"
   muteList: "Silencia"
@@ -1609,6 +1610,7 @@ _aboutMisskey:
   pleaseDonateToHost: Penseu també en fer una donació a la vostre instància, {host},
     per ajudar-lo a suportar els costos de funcionament.
   donateHost: Fes una donació a {host}
+  sponsors: Patrocinadors de Calckey
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
@@ -2160,3 +2162,4 @@ remindMeLater: Potser després
 removeMember: Elimina el membre
 removeQuote: Elimina la cita
 removeRecipient: Elimina el destinatari
+verifiedLink: Enllaç verificat

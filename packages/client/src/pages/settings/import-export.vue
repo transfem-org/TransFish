@@ -23,9 +23,7 @@
 				></template>
 				<FormRadios v-model="importType" class="_formBlock">
 					<option value="calckey">Calckey/Misskey</option>
-					<option value="mastodon">
-						Mastodon/Akkoma/Pleroma (only outbox.json)
-					</option>
+					<option value="mastodon">Mastodon/Akkoma/Pleroma</option>
 					<option :disabled="true" value="twitter">
 						Twitter (soon)
 					</option>
@@ -222,7 +220,7 @@ const importPosts = async (ev) => {
 	const file = await selectFile(ev.currentTarget ?? ev.target);
 	os.api("i/import-posts", {
 		fileId: file.id,
-		signatureCheck: importType.value === "mastodon" ? true : false,
+		signatureCheck: false,
 	})
 		.then(onImportSuccess)
 		.catch(onError);

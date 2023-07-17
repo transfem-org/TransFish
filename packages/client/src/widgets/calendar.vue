@@ -45,14 +45,13 @@
 
 <script lang="ts" setup>
 import { onUnmounted, ref } from "vue";
+import type { Widget, WidgetComponentExpose } from "./widget";
 import {
-	useWidgetPropsManager,
-	Widget,
 	WidgetComponentEmits,
-	WidgetComponentExpose,
 	WidgetComponentProps,
+	useWidgetPropsManager,
 } from "./widget";
-import { GetFormResultType } from "@/scripts/form";
+import type { GetFormResultType } from "@/scripts/form";
 import { i18n } from "@/i18n";
 import { useInterval } from "@/scripts/use-interval";
 import { $i } from "@/account";
@@ -69,8 +68,8 @@ const widgetPropsDef = {
 type WidgetProps = GetFormResultType<typeof widgetPropsDef>;
 
 // 現時点ではvueの制限によりimportしたtypeをジェネリックに渡せない
-//const props = defineProps<WidgetComponentProps<WidgetProps>>();
-//const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
+// const props = defineProps<WidgetComponentProps<WidgetProps>>();
+// const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
 const props = defineProps<{ widget?: Widget<WidgetProps> }>();
 const emit = defineEmits<{ (ev: "updateProps", props: WidgetProps) }>();
 
@@ -113,7 +112,7 @@ const tick = () => {
 	][now.getDay()];
 
 	const dayNumer = now.getTime() - new Date(ny, nm, nd).getTime();
-	const dayDenom = 1000 /*ms*/ * 60 /*s*/ * 60 /*m*/ * 24; /*h*/
+	const dayDenom = 1000 /* ms */ * 60 /* s */ * 60 /* m */ * 24; /* h */
 	const monthNumer = now.getTime() - new Date(ny, nm, 1).getTime();
 	const monthDenom =
 		new Date(ny, nm + 1, 1).getTime() - new Date(ny, nm, 1).getTime();
