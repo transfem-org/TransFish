@@ -26,6 +26,7 @@ export async function verifyLinks(
 					x.name !== "" &&
 					typeof x.value === "string" &&
 					x.value !== "" &&
+					x.value.startsWith("http") &&
 					((x.lastVerified &&
 						x.lastVerified.getTime() < Date.now() - 1000 * 60 * 60 * 24 * 14) ||
 						!x.lastVerified),

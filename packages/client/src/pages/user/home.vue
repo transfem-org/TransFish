@@ -294,10 +294,10 @@
 							>
 								<dt class="name">
 									<i
+										v-if="field.verified"
 										class="ph-bold ph-seal-check ph-lg ph-fw"
 										style="padding: 5px"
 										:v-tooltip="i18n.ts.verifiedLink"
-										:aria-label="i18n.t('verifiedLink')"
 									></i>
 									<Mfm
 										:text="field.name"

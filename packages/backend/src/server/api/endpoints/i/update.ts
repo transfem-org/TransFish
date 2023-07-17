@@ -245,10 +245,13 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 					x.value !== "",
 			)
 			.map(async (x) => {
-				const relMeLinks = await getRelMeLinks(x.value);
-				const verified = relMeLinks.some((link) =>
-					link.includes(`${config.host}/@${user.username}`),
-				);
+				let verified = false;
+				if (x.value.startsWith("http")) {
+					const relMeLinks = await getRelMeLinks(x.value);
+					verified = relMeLinks.some((link) =>
+						link.includes(`${config.host}/@${user.username}`),
+					);
+				}
 				return {
 					name: x.name,
 					value: x.value,
