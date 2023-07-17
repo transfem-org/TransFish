@@ -261,6 +261,7 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (ps.fields) {
 		for (const field of ps.fields) {
 			if (!field || field.name === "" || field.value === "") {
+				ps.fields.remove(field);
 				continue;
 			}
 			if (typeof field.name !== "string" || field.name === "") {
@@ -274,13 +275,15 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 			}
 		}
 
-		profileUpdates.fields = ps.fields.map((x) => {
-			return {
-				name: x.name,
-				value: x.value,
-				verified: x.verified,
-			};
-		});
+		profileUpdates.fields = ps.fields
+			.filter((x) => Object.keys(x).length !== 0)
+			.map((x) => {
+				return {
+					name: x.name,
+					value: x.value,
+					verified: x.verified,
+				};
+			});
 	}
 
 	//#region emojis/tags
