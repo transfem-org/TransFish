@@ -1337,7 +1337,7 @@ _profile:
   youCanIncludeHashtags: "Vo svojom bio môžete mať aj hashtagy."
   metadata: "Dodatočné informácie"
   metadataEdit: "Upraviť dodatočné informácie"
-  metadataDescription: "Vo svojom profile môžete uviesť až štyri dodatočné informačné polia."
+  metadataDescription: "Vo svojom profile môžete uviesť až štyri dodatočné informačné polia. Dodate lahko oznako {a} ali oznako {l} z {rel}, da preverite povezavo v svojem profile!"
   metadataLabel: "Popisok"
   metadataContent: "Obsah"
   changeAvatar: "Zmeniť avatara"

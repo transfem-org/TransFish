@@ -1413,7 +1413,7 @@ _profile:
   metadata: "Informations supplémentaires"
   metadataEdit: "Éditer les informations supplémentaires"
   metadataDescription: "Vous pouvez afficher jusqu'à quatre informations supplémentaires
-    dans votre profil."
+    dans votre profil. Vous pouvez ajouter une balise {a} ou une balise {l} avec {rel} pour vérifier le lien sur votre profil!"
   metadataLabel: "Étiquette"
   metadataContent: "Contenu"
   changeAvatar: "Changer l'image de profil"

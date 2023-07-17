@@ -1399,7 +1399,7 @@ _profile:
   metadata: "Informasi tambahan"
   metadataEdit: "Sunting informasi tambahan"
   metadataDescription: "Kamu dapat menampilkan hingga 4 bagian informasi tambahan\
-    \ ke dalam profilmu."
+    \ ke dalam profilmu. Anda dapat menambahkan tag {a} atau tag {l} dengan {rel} untuk memverifikasi tautan di profil Anda!"
   metadataLabel: "Label"
   metadataContent: "Isi"
   changeAvatar: "Ubah avatar"

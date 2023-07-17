@@ -1361,7 +1361,7 @@ _profile:
   youCanIncludeHashtags: "你也可以在「關於我」中加上 #tag。"
   metadata: "進階資訊"
   metadataEdit: "編輯進階資訊"
-  metadataDescription: "可以在個人資料中以表格形式顯示其他資訊。"
+  metadataDescription: "可以在個人資料中以表格形式顯示其他資訊。您可以添加帶有 {rel} 的 {a} 標籤或 {l} 標籤來驗證您個人資料上的鏈接！"
   metadataLabel: "標籤"
   metadataContent: "内容"
   changeAvatar: "更換大頭貼"

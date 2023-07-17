@@ -1266,7 +1266,7 @@ _profile:
   metadata: "Informazioni aggiuntive"
   metadataEdit: "Modifica informazioni aggiuntive"
   metadataDescription: "Puoi pubblicare fino a quattro informazioni aggiuntive sul
-    profilo."
+    profilo. Puoi aggiungere un tag {a} o {l} con {rel} per verificare il link sul tuo profilo!"
   metadataLabel: "Etichetta"
   metadataContent: "Contenuto"
   changeAvatar: "Modifica immagine profilo"

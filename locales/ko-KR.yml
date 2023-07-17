@@ -1319,7 +1319,7 @@ _profile:
   youCanIncludeHashtags: "해시 태그를 포함할 수 있습니다."
   metadata: "추가 정보"
   metadataEdit: "추가 정보 편집"
-  metadataDescription: "프로필에 추가 정보를 표시할 수 있어요"
+  metadataDescription: "프로필에 추가 정보를 표시할 수 있어요. {rel}과 함께 {a} 태그 또는 {l} 태그를 추가하여 프로필의 링크를 확인할 수 있습니다!"
   metadataLabel: "라벨"
   metadataContent: "내용"
   changeAvatar: "아바타 이미지 변경"

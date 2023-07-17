@@ -182,7 +182,7 @@ _profile:
     gösterecektir.
   youCanIncludeHashtags: Hakkımdan'da etiket kullanabilirsin.
   description: Hakkımda
-  metadataDescription: Bunları kullanarak profilinizde ek bilgi alanları görüntüleyebilirsiniz.
+  metadataDescription: 'Bunları kullanarak profilinizde ek bilgi alanları görüntüleyebilirsiniz. Profilinizdeki bağlantıyı doğrulamak için {rel} ile bir {a} etiketi veya {l} etiketi ekleyebilirsiniz!'
   metadata: Ek Bilgi
   metadataContent: İçerik
   metadataLabel: Etiket

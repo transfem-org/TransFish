@@ -1677,8 +1677,10 @@ _profile:
   youCanIncludeHashtags: "You can also include hashtags in your bio."
   metadata: "Additional Information"
   metadataEdit: "Edit additional Information"
-  metadataDescription: "Using these, you can display additional information fields
-    in your profile."
+  metadataDescription:
+    "Using these, you can display additional information fields
+    in your profile. You can add an {a} tag or {l} tag with {rel}
+    to verify the link on your profile!"
   metadataLabel: "Label"
   metadataContent: "Content"
   changeAvatar: "Change avatar"
