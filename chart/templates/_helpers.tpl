@@ -114,7 +114,7 @@ url: "https://{{ .Values.calckey.domain }}/"
 port: 3000
 
 # The bind host your Calckey server should listen on.
-# If unspecified, the wildcard address will be using.
+# If unspecified, the wildcard address will be used.
 #bind: 127.0.0.1
 
 #   ┌──────────────────────────┐
