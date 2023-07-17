@@ -16,7 +16,6 @@ import { getRelMeLinks } from "@/services/fetch-rel-me.js";
 import { ApiError } from "../../error.js";
 import config from "@/config/index.js";
 import define from "../../define.js";
-import type * as misskey from "calckey-js";
 
 export const meta = {
 	tags: ["account"],
@@ -60,6 +59,18 @@ export const meta = {
 			message: "Invalid Regular Expression.",
 			code: "INVALID_REGEXP",
 			id: "0d786918-10df-41cd-8f33-8dec7d9a89a5",
+		},
+
+		invalidFieldName: {
+			message: "Invalid field name.",
+			code: "INVALID_FIELD_NAME",
+			id: "8f81972e-8b53-4d30-b0d2-efb026dda673",
+		},
+
+		invalidFieldValue: {
+			message: "Invalid field value.",
+			code: "INVALID_FIELD_VALUE",
+			id: "aede7444-244b-11ee-be56-0242ac120002",
 		},
 	},
 
@@ -248,25 +259,28 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	}
 
 	if (ps.fields) {
-		profileUpdates.fields = await Promise.all(
-			ps.fields
-				.filter(
-					(x: misskey.entities.UserDetailed.fields) =>
-						typeof x.name === "string" &&
-						x.name !== "" &&
-						typeof x.value === "string" &&
-						x.value !== "",
-				)
-				.map(async (x: misskey.entities.UserDetailed.fields) => {
-					return {
-						name: x.name,
-						value: x.value,
-						verified: x.value.startsWith("http")
-							? await verifyLink(x.value, user.username)
-							: null,
-					};
-				}),
-		);
+		for (const field of ps.fields) {
+			if (!field || field.name === "" || field.value === "") {
+				continue;
+			}
+			if (typeof field.name !== "string" || field.name === "") {
+				throw new ApiError(meta.errors.invalidFieldName);
+			}
+			if (typeof field.value !== "string" || field.value === "") {
+				throw new ApiError(meta.errors.invalidFieldValue);
+			}
+			if (field.value.startsWith("http")) {
+				field.verified = await verifyLink(field.value, user.username);
+			}
+		}
+
+		profileUpdates.fields = ps.fields.map((x) => {
+			return {
+				name: x.name,
+				value: x.value,
+				verified: x.verified,
+			};
+		});
 	}
 
 	//#region emojis/tags
