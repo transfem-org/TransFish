@@ -30,7 +30,7 @@ export const meta = {
 			id: "c3a5a51e-04d4-11ee-be56-0242ac120002",
 		},
 		noKeywords: {
-			message: "No keywords",
+			message: "No keywords.",
 			code: "NO_KEYWORDS",
 			id: "aa975b74-1ddb-11ee-be56-0242ac120002",
 		},

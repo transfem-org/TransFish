@@ -384,27 +384,6 @@ async function deleteProfile() {
 }
 </script>
 
-<style>
-html,
-body {
-	width: 100%;
-	height: 100%;
-	overflow: clip;
-	position: fixed;
-	top: 0;
-	left: 0;
-}
-
-#calckey_app {
-	width: 100%;
-	height: 100%;
-	overflow: clip;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-</style>
-
 <style lang="scss" scoped>
 .menu-enter-active,
 .menu-leave-active {

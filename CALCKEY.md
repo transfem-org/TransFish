@@ -118,6 +118,7 @@
   - Skin tone selection support
 - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
 - Link verification
+- Importing posts from other Calckey/Misskey/Mastodon/Akkoma/Pleroma instances
 
 ## Implemented (remote)
 
