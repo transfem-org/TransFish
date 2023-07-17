@@ -6,7 +6,6 @@ pub use super::ad::Entity as Ad;
 pub use super::announcement::Entity as Announcement;
 pub use super::announcement_read::Entity as AnnouncementRead;
 pub use super::antenna::Entity as Antenna;
-pub use super::antenna_note::Entity as AntennaNote;
 pub use super::app::Entity as App;
 pub use super::attestation_challenge::Entity as AttestationChallenge;
 pub use super::auth_session::Entity as AuthSession;

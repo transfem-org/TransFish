@@ -8,7 +8,6 @@ pub mod ad;
 pub mod announcement;
 pub mod announcement_read;
 pub mod antenna;
-pub mod antenna_note;
 pub mod app;
 pub mod attestation_challenge;
 pub mod auth_session;
