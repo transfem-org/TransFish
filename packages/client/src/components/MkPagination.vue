@@ -385,9 +385,7 @@ const prepend = (item: Item): void => {
 		}
 
 		const isTop =
-			isBackTop.value ||
-			(document.body.contains(rootEl.value) &&
-				isTopVisible(rootEl.value));
+			document.body.contains(rootEl.value) && ( isBackTop.value || isTopVisible(rootEl.value) );
 
 		if (isTop) {
 			// Prepend the item
