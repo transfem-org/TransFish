@@ -1404,7 +1404,7 @@ _profile:
   metadata: "Dodatkowe informacje"
   metadataEdit: "Edytuj dodatkowe informacje"
   metadataDescription: "Możesz wyświetlać do czterech sekcji dodatkowych informacji
-    na swoim profilu."
+    na swoim profilu. Możesz dodać tag {a} lub tag {l} z {rel}, aby zweryfikować link w swoim profilu!"
   metadataLabel: "Etykieta"
   metadataContent: "Treść"
   changeAvatar: "Zmień awatar"

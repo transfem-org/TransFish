@@ -1475,7 +1475,7 @@ _profile:
   youCanIncludeHashtags: "Puedes añadir hashtags"
   metadata: "información adicional"
   metadataEdit: "Editar información adicional"
-  metadataDescription: "Muestra la información adicional en el perfil"
+  metadataDescription: "Muestra la información adicional en el perfil. ¡Puede agregar una etiqueta {a} o una etiqueta {l} con {rel} para verificar el enlace en su perfil!"
   metadataLabel: "Etiqueta"
   metadataContent: "Contenido"
   changeAvatar: "Cambiar avatar"

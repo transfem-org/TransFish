@@ -1491,7 +1491,7 @@ _profile:
   youCanIncludeHashtags: "ハッシュタグを含められます。"
   metadata: "追加情報"
   metadataEdit: "追加情報を編集"
-  metadataDescription: "プロフィールに表として追加情報を表示できます。"
+  metadataDescription: "プロフィールに表として追加情報を表示できます。{a}タグまたは{l}タグを{rel}とともに追加すると、プロフィールのリンクを確認できます。"
   metadataLabel: "ラベル"
   metadataContent: "内容"
   changeAvatar: "アバター画像を変更"

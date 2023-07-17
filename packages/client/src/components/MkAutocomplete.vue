@@ -85,11 +85,11 @@
 <script lang="ts">
 import {
 	markRaw,
-	ref,
-	onUpdated,
-	onMounted,
-	onBeforeUnmount,
 	nextTick,
+	onBeforeUnmount,
+	onMounted,
+	onUpdated,
+	ref,
 	watch,
 } from "vue";
 import contains from "@/scripts/contains";
@@ -99,17 +99,17 @@ import { acct } from "@/filters/user";
 import * as os from "@/os";
 import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { defaultStore } from "@/store";
-import { emojilist, addSkinTone } from "@/scripts/emojilist";
+import { addSkinTone, emojilist } from "@/scripts/emojilist";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
-type EmojiDef = {
+interface EmojiDef {
 	emoji: string;
 	name: string;
 	aliasOf?: string;
 	url?: string;
 	isCustomEmoji?: boolean;
-};
+}
 
 const lib = emojilist.filter((x) => x.category !== "flags");
 
@@ -140,7 +140,7 @@ for (const x of lib) {
 
 emjdb.sort((a, b) => a.name.length - b.name.length);
 
-//#region Construct Emoji DB
+// #region Construct Emoji DB
 const customEmojis = instance.emojis;
 const emojiDefinitions: EmojiDef[] = [];
 
@@ -168,7 +168,7 @@ for (const x of customEmojis) {
 emojiDefinitions.sort((a, b) => a.name.length - b.name.length);
 
 const emojiDb = markRaw(emojiDefinitions.concat(emjdb));
-//#endregion
+// #endregion
 
 export default {
 	emojiDb,
@@ -436,10 +436,7 @@ onMounted(() => {
 	setPosition();
 
 	props.textarea.addEventListener("keydown", onKeydown);
-
-	for (const el of Array.from(document.querySelectorAll("body *"))) {
-		el.addEventListener("mousedown", onMousedown);
-	}
+	document.body.addEventListener("mousedown", onMousedown);
 
 	nextTick(() => {
 		exec();
@@ -457,10 +454,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
 	props.textarea.removeEventListener("keydown", onKeydown);
-
-	for (const el of Array.from(document.querySelectorAll("body *"))) {
-		el.removeEventListener("mousedown", onMousedown);
-	}
+	document.body.removeEventListener("mousedown", onMousedown);
 });
 </script>
 

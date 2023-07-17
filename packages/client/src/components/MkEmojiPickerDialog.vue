@@ -59,7 +59,6 @@ const emit = defineEmits<{
 const modal = ref<InstanceType<typeof MkModal>>();
 const picker = ref<InstanceType<typeof MkEmojiPicker>>();
 
-
 function checkForShift(ev?: MouseEvent) {
 	if (ev?.shiftKey) return;
 	modal.value?.close(ev);

@@ -4,7 +4,7 @@
 			type="radio"
 			:disabled="disabled"
 			:checked="checked"
-			v-on:change="(x) => toggle(x)"
+			@change="(x) => toggle(x)"
 		/>
 		<span class="button">
 			<span></span>
@@ -26,7 +26,7 @@ const emit = defineEmits<{
 	(ev: "update:modelValue", value: any): void;
 }>();
 
-let checked = $computed(() => props.modelValue === props.value);
+const checked = $computed(() => props.modelValue === props.value);
 
 function toggle(x) {
 	if (props.disabled) return;

@@ -193,12 +193,12 @@ import {
 import { v4 as uuid } from "uuid";
 import XCommon from "./_common_/common.vue";
 import {
-	deckStore,
 	addColumn as addColumnToStore,
-	loadDeck,
-	getProfiles,
-	renameProfile as renameProfile_,
+	deckStore,
 	deleteProfile as deleteProfile_,
+	getProfiles,
+	loadDeck,
+	renameProfile as renameProfile_,
 } from "./deck/deck-store";
 import DeckColumnCore from "@/ui/deck/column-core.vue";
 import XSidebar from "@/ui/_common_/navbar.vue";
@@ -253,7 +253,7 @@ function showSettings() {
 	os.pageWindow("/settings/deck");
 }
 
-let columnsEl = $ref<HTMLElement>();
+const columnsEl = $ref<HTMLElement>();
 
 const addColumn = async (ev) => {
 	const columns = [
@@ -383,6 +383,27 @@ async function deleteProfile() {
 	unisonReload();
 }
 </script>
+
+<style>
+html,
+body {
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#calckey_app {
+	width: 100%;
+	height: 100%;
+	overflow: clip;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+</style>
 
 <style lang="scss" scoped>
 .menu-enter-active,

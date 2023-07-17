@@ -22,9 +22,9 @@
 <script lang="ts" setup>
 import {} from "vue";
 import {
-	useWidgetPropsManager,
 	WidgetComponentEmits,
 	WidgetComponentProps,
+	useWidgetPropsManager,
 } from "./widget";
 import type { Widget, WidgetComponentExpose } from "./widget";
 import type { GetFormResultType } from "@/scripts/form";
@@ -46,8 +46,8 @@ const widgetPropsDef = {
 type WidgetProps = GetFormResultType<typeof widgetPropsDef>;
 
 // 現時点ではvueの制限によりimportしたtypeをジェネリックに渡せない
-//const props = defineProps<WidgetComponentProps<WidgetProps>>();
-//const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
+// const props = defineProps<WidgetComponentProps<WidgetProps>>();
+// const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
 const props = defineProps<{ widget?: Widget<WidgetProps> }>();
 const emit = defineEmits<{ (ev: "updateProps", props: WidgetProps) }>();
 
@@ -58,7 +58,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	emit,
 );
 
-let cloud = $ref<InstanceType<typeof MkTagCloud> | null>();
+const cloud = $ref<InstanceType<typeof MkTagCloud> | null>();
 let activeInstances = $shallowRef(null);
 
 function onInstanceClick(i) {

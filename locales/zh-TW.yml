@@ -984,6 +984,12 @@ _aboutMisskey:
   donate: "贊助Calckey"
   morePatrons: "還有許許多多幫助我們的其他人，非常感謝你們。 🥰"
   patrons: "贊助者"
+  patronsList: 按時間順序列出，而不是按贊助規模列出。使用上面的連結贊助，在這裡獲得顯示您名字的機會！
+  sponsors: Calckey 贊助者們
+  donateTitle: 覺得 Calckey 棒嗎?
+  pleaseDonateToCalckey: 請考慮向 Calckey 贊助以支持其發展。
+  pleaseDonateToHost: 還請考慮捐贈給您在使用的伺服器 {host}，以支援龐大的運營成本。
+  donateHost: 贊助給 {host}
 _nsfw:
   respect: "隱藏敏感內容"
   ignore: "不隱藏敏感內容"
@@ -1060,6 +1066,8 @@ _mfm:
   position: 位置
   alwaysPlay: 自動播放所有MFM動畫
   positionDescription: 按指定數量移動內容。
+  advancedDescription: 如果禁用，則僅允許基本標記，除非正在播放 MFM 動畫
+  advanced: 高級MFM
 _instanceTicker:
   none: "隱藏"
   remote: "向遠端使用者顯示"
@@ -1202,14 +1210,14 @@ _tutorial:
   step1_1: "歡迎！"
   step1_2: "讓我們把你安排好。你很快就會啟動並運行！"
   step2_1: "首先，請完成你的個人資料。"
-  step2_2: "通過提供一些關於你自己的資料，其他人會更容易了解他們是否想看到你的帖子或關注你。"
+  step2_2: "通過提供一些關於你自己的資料，其他人會更容易了解他們是否想看到你的貼文或關注你。"
   step3_1: "現在是時候追隨一些人了！"
   step3_2: "你的主頁和社交時間線是基於你所追蹤的人，所以試著先追蹤幾個帳戶。\n點擊個人資料右上角的加號圈就可以關注它。"
   step4_1: "讓我們出去找你。"
   step4_2: "對於他們的第一條信息，有些人喜歡做 {introduction} 或一個簡單的 \"hello world!\""
   step5_1: "時間線，到處都是時間線！"
   step5_2: "您的伺服器已啟用了{timelines}個時間線。"
-  step5_3: "首頁 {icon} 時間線是顯示你追蹤的帳號的帖子。"
+  step5_3: "首頁 {icon} 時間線是顯示你追蹤的帳號的貼文。"
   step5_4: "本地 {icon} 時間線是你可以看到伺服器中所有其他用戶的貼文的時間線。"
   step5_5: "社交 {icon} 時間線是你的 首頁時間線 和 本地時間線 的結合體。"
   step5_6: "推薦 {icon} 時間線是顯示你的伺服器管理員推薦的貼文。"
@@ -1361,7 +1369,7 @@ _profile:
   youCanIncludeHashtags: "你也可以在「關於我」中加上 #tag。"
   metadata: "進階資訊"
   metadataEdit: "編輯進階資訊"
-  metadataDescription: "可以在個人資料中以表格形式顯示其他資訊。"
+  metadataDescription: "可以在個人資料中以表格形式顯示其他資訊。您可以添加帶有 {rel} 的 {a} 標籤或 {l} 標籤來驗證您個人資料上的鏈接！"
   metadataLabel: "標籤"
   metadataContent: "内容"
   changeAvatar: "更換大頭貼"
@@ -1820,12 +1828,12 @@ _experiments:
   title: 試驗功能
 findOtherInstance: 找找另一個伺服器
 noGraze: 瀏覽器擴展 "Graze for Mastodon" 會與Calckey發生衝突，請停用該擴展。
-userSaysSomethingReasonRenote: '{name} 轉傳了包含 {reason} 的帖子'
+userSaysSomethingReasonRenote: '{name} 轉傳了包含 {reason} 的貼文'
 pushNotificationNotSupported: 你的瀏覽器或伺服器不支援推送通知
 accessibility: 輔助功能
-userSaysSomethingReasonReply: '{name} 回復了包含 {reason} 的帖子'
+userSaysSomethingReasonReply: '{name} 回覆了包含 {reason} 的貼文'
 hiddenTags: 隱藏主題標籤
-indexPosts: 索引帖子
+indexPosts: 索引貼文
 indexNotice: 現在開始索引。 這可能需要一段時間，請不要在一個小時內重啟你的伺服器。
 deleted: 已刪除
 editNote: 編輯筆記
@@ -1861,9 +1869,33 @@ audio: 音訊
 sendPushNotificationReadMessageCaption: 包含文本 “{emptyPushNotificationMessage}” 的通知將顯示一小段時間。
   這可能會增加您設備的電池使用量（如果適用）。
 channelFederationWarn: 頻道功能尚未與聯邦宇宙連動
-swipeOnMobile: 允許在頁面之間滑動
+swipeOnMobile: 允許以滑動在頁面之間切換
 sendPushNotificationReadMessage: 閱讀相關通知或消息後刪除推送通知
 image: 圖片
 seperateRenoteQuote: 分別獨立的轉傳及引用按鈕
 clipsDesc: 摘錄就像一個可以分享的書籤。 你可以從每個貼文的菜單創建新摘錄或將貼文加入已有的摘錄。
 noteId: 貼文 ID
+sendModMail: 發送審核通知
+enableIdenticonGeneration: 啟用碎片生成
+enableServerMachineStats: 啟用伺服器硬體統計資訊
+reactionPickerSkinTone: 首選表情符號膚色
+indexFromDescription: 留空以索引每個貼文
+preventAiLearning: 防止 AI 機器人抓取
+preventAiLearningDescription: 請求第三方 AI 語言模型不要研究您上傳的內容，例如貼文和圖像。
+indexFrom: 從貼文 ID 開始的索引
+isLocked: 該帳戶已獲得以下批准
+isModerator: 板主
+isAdmin: 管理員
+isPatron: Calckey 項目贊助者
+silencedWarning: 顯示此頁面是因為這些使用者來自您伺服器管理員已靜音的伺服器，因此他們可能是垃圾訊息。
+signupsDisabled: 該伺服器上的註冊當前已被禁用，但您隨時可以在另一台伺服器上註冊！或是您有該伺服器的邀請碼，請在下面輸入。
+showPopup: 通過彈出式視窗通知用戶
+showWithSparkles: 閃閃發光的顯示
+youHaveUnreadAnnouncements: 您有未讀的公告
+donationLink: 連結到贊助頁面
+neverShow: 不再顯示
+remindMeLater: 可能之後
+removeQuote: 删除引用
+removeRecipient: 刪除收件者
+removeMember: 刪除成員
+isBot: 此帳戶是機器人

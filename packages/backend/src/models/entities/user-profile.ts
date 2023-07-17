@@ -51,6 +51,7 @@ export class UserProfile {
 	public fields: {
 		name: string;
 		value: string;
+		verified?: boolean;
 	}[];
 
 	@Column("varchar", {

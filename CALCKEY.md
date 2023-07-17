@@ -6,23 +6,16 @@
 ## Planned
 
 - Stucture
-  - [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
-  - Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
   - Rewrite backend in Rust and [Rocket](https://rocket.rs/)
-  - Use [Magic RegExP](https://regexp.dev/) for RegEx 🦄
 - Function
   - User "choices" (recommended users) and featured hashtags like Mastodon and Soapbox
   - Join Reason system like Mastodon/Pleroma
   - Option to publicize server blocks
   - More antenna options
   - Groups
-- Form
-  - Lookup/details for post/file/server
-  - [Rat mode?](https://stop.voring.me/notes/933fx97bmd)
 
 ## Work in progress
 
-- Link verification
 - Better Messaging UI
 - Better API Documentation
 - Remote follow button
@@ -30,6 +23,7 @@
 - Timeline filters
 - Events
 - Fully revamp non-logged-in screen
+- Optionally use [ScyllaDB](https://www.scylladb.com/open-source-nosql-database/) for storing notes
 
 ## Implemented
 
@@ -122,6 +116,8 @@
 - Let moderators see moderation nodes
 - Non-mangled unicode emojis
   - Skin tone selection support
+- [DragonflyDB](https://dragonflydb.io/) support as a Redis alternative
+- Link verification
 
 ## Implemented (remote)
 
