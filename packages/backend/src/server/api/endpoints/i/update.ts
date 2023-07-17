@@ -12,7 +12,9 @@ import type { UserProfile } from "@/models/entities/user-profile.js";
 import { notificationTypes } from "@/types.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { langmap } from "@/misc/langmap.js";
+import { getRelMeLinks } from "@/services/fetch-rel-me.js";
 import { ApiError } from "../../error.js";
+import config from "@/config/index.js";
 import define from "../../define.js";
 
 export const meta = {
@@ -242,8 +244,17 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 					typeof x.value === "string" &&
 					x.value !== "",
 			)
-			.map((x) => {
-				return { name: x.name, value: x.value };
+			.map(async (x) => {
+				const relMeLinks = await getRelMeLinks(x.value);
+				const verified = relMeLinks.some((link) =>
+					link.includes(`${config.host}/@${user.username}`),
+				);
+				return {
+					name: x.name,
+					value: x.value,
+					verified: verified,
+					lastVerified: new Date(),
+				};
 			});
 	}
 

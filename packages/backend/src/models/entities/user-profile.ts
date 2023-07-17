@@ -51,6 +51,8 @@ export class UserProfile {
 	public fields: {
 		name: string;
 		value: string;
+		verified?: boolean;
+		lastVerified?: Date;
 	}[];
 
 	@Column("varchar", {

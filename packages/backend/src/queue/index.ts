@@ -576,6 +576,16 @@ export default function () {
 		{ removeOnComplete: true, removeOnFail: true },
 	);
 
+	systemQueue.add(
+		"verifyLinks",
+		{},
+		{
+			repeat: { cron: "0 0 * * 0" },
+			removeOnComplete: true,
+			removeOnFail: true
+		},
+	);
+
 	processSystemQueue(systemQueue);
 }
 
