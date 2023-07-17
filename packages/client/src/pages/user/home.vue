@@ -288,10 +288,17 @@
 						<div v-if="user.fields.length > 0" class="fields">
 							<dl
 								v-for="(field, i) in user.fields"
+								:class="field.verified ? 'verified' : ''"
 								:key="i"
 								class="field"
 							>
 								<dt class="name">
+									<i
+										v-if="field.verified"
+										class="ph-bold ph-seal-check ph-lg ph-fw"
+										style="padding: 5px"
+										v-tooltip="i18n.ts.verifiedLink"
+									></i>
 									<Mfm
 										:text="field.name"
 										:plain="true"
@@ -746,6 +753,12 @@ onUnmounted(() => {
 
 						&:not(:last-child) {
 							margin-bottom: 8px;
+						}
+
+					 &.verified {
+							background-color: var(--hover);
+							border-radius: 10px;
+							color: var(--badge) !important;
 						}
 
 						> .name {

@@ -126,7 +126,11 @@
 				</div>
 			</FormFolder>
 			<template #caption>{{
-				i18n.ts._profile.metadataDescription
+				i18n.t("_profile.metadataDescription", {
+					a: '<code><a></code>',
+					l: '<code><a></code>',
+					rel: `rel="me" href="https://${host}/@${$i.username}"`
+				})
 			}}</template>
 		</FormSlot>
 
@@ -173,6 +177,7 @@ import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { langmap } from "@/scripts/langmap";
 import { definePageMetadata } from "@/scripts/page-metadata";
+import { host } from "@/config";
 
 const profile = reactive({
 	name: $i?.name,
