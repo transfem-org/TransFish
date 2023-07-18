@@ -247,7 +247,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		},
 		{
 			icon: "ph-newspaper ph-bold ph-lg",
-			text: i18n.ts.copyFeed,
+			text: i18n.ts._feeds.copyFeed,
 			type: "parent",
 			children: [
 				{
