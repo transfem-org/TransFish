@@ -2104,3 +2104,7 @@ _skinTones:
   medium: "Medium"
   mediumDark: "Medium Dark"
   dark: "Dark"
+_feeds:
+  rss: "RSS"
+  atom: "Atom"
+  jsonFeed: "JSON Feed"
