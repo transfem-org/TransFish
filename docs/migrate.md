@@ -82,7 +82,8 @@ NODE_ENV=production pnpm run migrate
 
 ```sh
 cd packages/backend
-sed -i '12s/^/\/\//' ./migration/1663399074403-resize-comments-drive-file.js
+wget -O fk.patch https://codeberg.org/calckey/calckey/raw/branch/develop/docs/fk.patch
+git apply fk.patch
 
 LINE_NUM="$(npx typeorm migration:show -d ormconfig.js | grep -n uniformThemecolor1652859567549 | cut -d ':' -f 1)"
 NUM_MIGRATIONS="$(npx typeorm migration:show -d ormconfig.js | tail -n+"$LINE_NUM" | grep '\[X\]' | wc -l)"
