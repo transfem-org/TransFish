@@ -755,7 +755,7 @@ onUnmounted(() => {
 							margin-bottom: 8px;
 						}
 
-					 &.verified {
+						&.verified {
 							background-color: var(--hover);
 							border-radius: 10px;
 							color: var(--badge) !important;
