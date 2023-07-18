@@ -1,12 +1,11 @@
 diff --git a/packages/backend/migration/1661376843000-remove-mentioned-remote-users-column.js b/packages/backend/migration/1661376843000-remove-mentioned-remote-users-column.js
-index 42d79b5b5..057d3f9e3 100644
+index 42d79b5b5..1fd5e0f10 100644
 --- a/packages/backend/migration/1661376843000-remove-mentioned-remote-users-column.js
 +++ b/packages/backend/migration/1661376843000-remove-mentioned-remote-users-column.js
-@@ -6,7 +6,22 @@ export class removeMentionedRemoteUsersColumn1661376843000 {
- 	}
+@@ -7,6 +7,22 @@ export class removeMentionedRemoteUsersColumn1661376843000 {
  
  	async down(queryRunner) {
--		await queryRunner.query(`ALTER TABLE "note" ADD "mentionedRemoteUsers" TEXT NOT NULL DEFAULT '[]'::text`);
+ 		await queryRunner.query(`ALTER TABLE "note" ADD "mentionedRemoteUsers" TEXT NOT NULL DEFAULT '[]'::text`);
 -		await queryRunner.query(`UPDATE "note" SET "mentionedRemoteUsers" = (SELECT COALESCE(json_agg(row_to_json("data"))::text, '[]') FROM (SELECT "url", "uri", "username", "host" FROM "user" JOIN "user_profile" ON "user"."id" = "user_profile". "userId" WHERE "user"."host" IS NOT NULL AND "user"."id" = ANY("note"."mentions")) AS "data")`);
 +		await queryRunner.query(`
 +			CREATE TEMP TABLE IF NOT EXISTS "temp_mentions" AS
@@ -21,7 +20,7 @@ index 42d79b5b5..057d3f9e3 100644
 +
 +		await queryRunner.query(`
 +			UPDATE "note" SET "mentionedRemoteUsers" = (
-+				SELECT COALESCE(json_agg(row_to_json("data")::jsonb - "id")::text, '[]') FROM "temp_mentions" AS "data"
++				SELECT COALESCE(json_agg(row_to_json("data")::jsonb - 'id')::text, '[]') FROM "temp_mentions" AS "data"
 +				WHERE "data"."id" = ANY("note"."mentions")
 +			)
 +		`);
