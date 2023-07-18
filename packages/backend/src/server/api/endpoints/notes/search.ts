@@ -191,10 +191,9 @@ export default define(meta, paramDef, async (ps, me) => {
 				chunkSize,
 				start,
 				me,
+				sortByDate ? "createdAt:desc" : null,
 			);
 			const results: MeilisearchNote[] = searchRes.hits as MeilisearchNote[];
-
-			console.log(JSON.stringify(results));
 
 			start += chunkSize;
 
@@ -226,13 +225,6 @@ export default define(meta, paramDef, async (ps, me) => {
 				});
 
 			extractedNotes.push(...res);
-			console.log(extractedNotes);
-		}
-
-		// Depending on the ordering requested, return the notes sorted by relevancy as
-		// returned by Meilisearch or order chronologically
-		if (sortByDate) {
-			extractedNotes.sort((a, b) => b.createdAt - a.createdAt);
 		}
 
 		// Fetch the notes from the database until we have enough to satisfy the limit
@@ -240,28 +232,17 @@ export default define(meta, paramDef, async (ps, me) => {
 		const found = [];
 		const noteIDs = extractedNotes.map((note) => note.id);
 
-		// Index the ID => index number into a map, so we can sort efficiently later
+		// Index the ID => index number into a map, so we can restore the array ordering efficiently later
 		const idIndexMap = new Map(noteIDs.map((id, index) => [id, index]));
 
 		while (found.length < ps.limit && start < noteIDs.length) {
 			const chunk = noteIDs.slice(start, start + chunkSize);
 
-			let query: FindManyOptions = sortByDate
-				? {
-						where: {
-							id: In(chunk),
-						},
-						order: {
-							id: "DESC",
-						},
-				  }
-				: {
-						where: {
-							id: In(chunk),
-						},
-				  };
-
-			console.log(JSON.stringify(query));
+			let query: FindManyOptions = {
+				where: {
+					id: In(chunk),
+				},
+			};
 
 			const notes: Note[] = await Notes.find(query);
 
