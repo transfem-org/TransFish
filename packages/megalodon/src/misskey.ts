@@ -1522,11 +1522,11 @@ export default class Misskey implements MegalodonInterface {
 		)) {
 			if (m.acct == m.username)
 				status.content = status.content.replace(
-					`@${m.acct}@${this.baseUrlToHost(this.baseUrl)}`,
+					new RegExp(`(?<=^|\\s|>)@${m.acct}@${this.baseUrlToHost(this.baseUrl)}(?=[^a-zA-Z0-9]|$)`, 'g'),
 					`@${m.acct}`,
 				);
 			status.content = status.content.replace(
-				`@${m.acct}`,
+				new RegExp(`(?<=^|\\s|>)@${m.acct}(?=[^a-zA-Z0-9]|$)`, 'g'),
 				`<a href="${m.url}" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@${m.acct}</a>`,
 			);
 		}
@@ -1542,7 +1542,7 @@ export default class Misskey implements MegalodonInterface {
 		if (text == undefined) return mentions;
 
 		const mentionMatch = text.matchAll(
-			/(?<=^|\s)@(?<user>.*?)(?:@(?<host>.*?)|)(?=\s|$)/g,
+			/(?<=^|\s)@(?<user>[a-zA-Z0-9_]+)(?:@(?<host>[a-zA-Z0-9-.]+\.[a-zA-Z0-9-]+)|)(?=[^a-zA-Z0-9]|$)/g,
 		);
 
 		for (const m of mentionMatch) {
@@ -2963,7 +2963,7 @@ export default class Misskey implements MegalodonInterface {
 				}
 
 				try {
-					const match = q.match(/^@(?<user>.*?)(?:@(?<host>.*?)|)$/);
+					const match = q.match(/^@(?<user>[a-zA-Z0-9_]+)(?:@(?<host>[a-zA-Z0-9-.]+\.[a-zA-Z0-9-]+)|)$/);
 					if (match) {
 						const lookupQuery = {
 							username: match.groups?.user,
