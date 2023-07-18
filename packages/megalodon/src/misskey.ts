@@ -1514,19 +1514,35 @@ export default class Misskey implements MegalodonInterface {
 		if (status.quote != null)
 			status.quote = await this.addMentionsToStatus(status.quote, cache);
 
+		const idx = status.account.acct.indexOf('@');
+		const origin = idx < 0 ? null : status.account.acct.substring(idx + 1);
+
 		status.mentions = (
-			await this.getMentions(status.plain_content!, cache)
+			await this.getMentions(status.plain_content!, origin, cache)
 		).filter((p) => p != null);
 		for (const m of status.mentions.filter(
 			(value, index, array) => array.indexOf(value) === index,
 		)) {
-			if (m.acct == m.username)
+			const regexFull = new RegExp(`(?<=^|\\s|>)@${m.acct}(?=[^a-zA-Z0-9]|$)`, 'gi');
+			const regexLocalUser = 	new RegExp(`(?<=^|\\s|>)@${m.acct}@${this.baseUrlToHost(this.baseUrl)}(?=[^a-zA-Z0-9]|$)`, 'gi');
+			const regexRemoteUser = 	new RegExp(`(?<=^|\\s|>)@${m.username}(?=[^a-zA-Z0-9@]|$)`, 'gi');
+
+			if (m.acct == m.username) {
 				status.content = status.content.replace(
-					new RegExp(`(?<=^|\\s|>)@${m.acct}@${this.baseUrlToHost(this.baseUrl)}(?=[^a-zA-Z0-9]|$)`, 'g'),
+					regexLocalUser,
 					`@${m.acct}`,
 				);
+			}
+
+			else if (!status.content.match(regexFull)) {
+				status.content = status.content.replace(
+					regexRemoteUser,
+					`@${m.acct}`,
+				);
+			}
+
 			status.content = status.content.replace(
-				new RegExp(`(?<=^|\\s|>)@${m.acct}(?=[^a-zA-Z0-9]|$)`, 'g'),
+				regexFull,
 				`<a href="${m.url}" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@${m.acct}</a>`,
 			);
 		}
@@ -1535,6 +1551,7 @@ export default class Misskey implements MegalodonInterface {
 
 	public async getMentions(
 		text: string,
+		origin: string | null,
 		cache: AccountCache,
 	): Promise<Entity.Mention[]> {
 		const mentions: Entity.Mention[] = [];
@@ -1551,7 +1568,7 @@ export default class Misskey implements MegalodonInterface {
 
 				const account = await this.getAccountByNameCached(
 					m.groups.user,
-					m.groups.host,
+					m.groups.host ?? origin,
 					cache,
 				);
 
