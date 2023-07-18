@@ -52,14 +52,12 @@ export const paramDef = {
 
 export default define(meta, paramDef, async (ps, me) => {
 	// Fetch the list
-	const listExists = await UserLists.exist({
-		where: {
-			id: ps.listId,
-			userId: me.id,
-		},
+	const userList = await UserLists.findOneBy({
+		id: ps.listId,
+		userId: me.id,
 	});
 
-	if (!listExists) {
+	if (!userList) {
 		throw new ApiError(meta.errors.noSuchList);
 	}
 
@@ -85,7 +83,7 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	const exist = await UserListJoinings.exist({
 		where: {
-			userListId: userList.id,
+			userListId: ps.listId,
 			userId: user.id,
 		},
 	});
