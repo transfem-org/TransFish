@@ -106,7 +106,7 @@
 									:text="'@namekuji@calckey.social (Backend)'"
 							/></FormLink>
 							<FormLink to="/@dev@post.naskya.net"
-								><Mfm :text="'@dev@post.naskya.net (Backend)'"
+								><Mfm :text="'@dev@post.naskya.net (Fullstack)'"
 							/></FormLink>
 							<FormLink to="/@panos@calckey.social"
 								><Mfm
