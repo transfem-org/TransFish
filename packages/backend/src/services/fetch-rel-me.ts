@@ -16,7 +16,10 @@ async function getRelMeLinks(url: string): Promise<string[]> {
 	}
 }
 
-export async function verifyLink(link: string, username: string): Promise<boolean> {
+export async function verifyLink(
+	link: string,
+	username: string,
+): Promise<boolean> {
 	let verified = false;
 	if (link.startsWith("http")) {
 		const relMeLinks = await getRelMeLinks(link);

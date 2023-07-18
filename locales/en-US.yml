@@ -2104,3 +2104,8 @@ _skinTones:
   medium: "Medium"
   mediumDark: "Medium Dark"
   dark: "Dark"
+_feeds:
+  copyFeed: "Copy feed"
+  rss: "RSS"
+  atom: "Atom"
+  jsonFeed: "JSON feed"

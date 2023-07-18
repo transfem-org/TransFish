@@ -61,11 +61,13 @@
 		<div class="buttons">
 			<button
 				v-if="media.comment"
-				v-tooltip.noLabel="`${i18n.ts.alt}: ${
-					media.comment.length > 200 ?
-						media.comment.trim().slice(0, 200) + '...'
-						: media.comment.trim()
-				}`"
+				v-tooltip.noLabel="
+					`${i18n.ts.alt}: ${
+						media.comment.length > 200
+							? media.comment.trim().slice(0, 200) + '...'
+							: media.comment.trim()
+					}`
+				"
 				:aria-label="i18n.ts.alt"
 				class="_button"
 				@click.stop="captionPopup"

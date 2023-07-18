@@ -246,6 +246,34 @@ export function getUserMenu(user, router: Router = mainRouter) {
 			},
 		},
 		{
+			icon: "ph-newspaper ph-bold ph-lg",
+			text: i18n.ts._feeds.copyFeed,
+			type: "parent",
+			children: [
+				{
+					icon: "ph-rss ph-bold ph-lg",
+					text: i18n.ts._feeds.rss,
+					action: () => {
+						copyToClipboard(`https://${host}/@${user.username}.rss`);
+					},
+				},
+				{
+					icon: "ph-atom ph-bold ph-lg",
+					text: i18n.ts._feeds.atom,
+					action: () => {
+						copyToClipboard(`https://${host}/@${user.username}.atom`);
+					},
+				},
+				{
+					icon: "ph-brackets-curly ph-bold ph-lg",
+					text: i18n.ts._feeds.jsonFeed,
+					action: () => {
+						copyToClipboard(`https://${host}/@${user.username}.json`);
+					},
+				},
+			],
+		},
+		{
 			icon: "ph-envelope-simple-open ph-bold ph-lg",
 			text: i18n.ts.sendMessage,
 			action: () => {
