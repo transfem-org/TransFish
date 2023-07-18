@@ -81,9 +81,9 @@ NODE_ENV=production pnpm run migrate
 ## FoundKey
 
 ```sh
-cd packages/backend
 wget -O fk.patch https://codeberg.org/calckey/calckey/raw/branch/develop/docs/fk.patch
 git apply fk.patch
+cd packages/backend
 
 LINE_NUM="$(npx typeorm migration:show -d ormconfig.js | grep -n uniformThemecolor1652859567549 | cut -d ':' -f 1)"
 NUM_MIGRATIONS="$(npx typeorm migration:show -d ormconfig.js | tail -n+"$LINE_NUM" | grep '\[X\]' | wc -l)"
