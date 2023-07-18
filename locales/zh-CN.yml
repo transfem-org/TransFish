@@ -151,7 +151,7 @@ flagShowTimelineRepliesDescription: "启用后，时间线除了显示用户的�
 autoAcceptFollowed: "自动批准来自关注者的关注请求"
 addAccount: "添加账号"
 loginFailed: "登录失败"
-showOnRemote: "转到所在服务器显示"
+showOnRemote: "打开原网页"
 general: "常规设置"
 wallpaper: "壁纸"
 setWallpaper: "设置壁纸"
@@ -988,6 +988,11 @@ _aboutMisskey:
   morePatrons: "还有很多其它的人也在支持我们，非常感谢🥰"
   patrons: "Calckey 赞助者"
   patronsList: 按时间顺序而不是捐赠金额排列。通过上面的链接捐款，让您的名字出现在这里！
+  sponsors: Calckey 赞助者们
+  donateTitle: 喜欢 Calckey 吗？
+  pleaseDonateToCalckey: 请考虑赞助 Calckey 以支持其开发。
+  pleaseDonateToHost: 也请考虑赞助您的主服务器 {host}，以帮助支持其运营成本。
+  donateHost: 赞助 {host}
 _nsfw:
   respect: "隐藏敏感内容"
   ignore: "不隐藏敏感内容"
@@ -1831,7 +1836,7 @@ adminCustomCssWarn: 仅当您知道此设置的作用时才应使用它。输入
 customMOTDDescription: 自定义 MOTD（启动屏幕）消息，一行一个，每次用户加载/刷新页面时都会随机显示。
 customSplashIconsDescription: 用换行符隔开的自定义启动屏幕图标的 URL，在用户每次加载/重新载入页面时随机显示。请确保图片是在一个静态的
   URL 上，最好全部调整为 192x192 的大小。
-recommendedInstancesDescription: 推荐的服务器一行一个，它们将出现在推荐的时间线中。不要添加 "https://"，仅添加域名。
+recommendedInstancesDescription: 推荐的服务器一行一个，它们将出现在推荐时间线中。
 splash: 启动画面
 showUpdates: Calckey 更新后显示弹出窗口
 selectInstance: 选择服务器
@@ -1944,3 +1949,19 @@ _dialog:
   charactersBelow: 没有足够的字符！当前：{current} / 限制：{min}
 enableIdenticonGeneration: 启用 Identicon 生成
 enableServerMachineStats: 启用服务器硬件统计
+_feeds:
+  atom: Atom
+  rss: RSS
+  jsonFeed: JSON 订阅源
+  copyFeed: 复制订阅源
+verifiedLink: 已验证链接
+xl: 特大
+showPopup: 以弹出窗口通知用户
+showWithSparkles: 闪闪发光地展示
+youHaveUnreadAnnouncements: 您有未读的公告
+donationLink: 赞助页面链接
+neverShow: 不再显示
+remindMeLater: 稍后再说
+removeQuote: 移除引用
+removeRecipient: 移除接收者
+removeMember: 移除成员
