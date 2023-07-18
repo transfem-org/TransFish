@@ -2163,3 +2163,8 @@ removeMember: Elimina el membre
 removeQuote: Elimina la cita
 removeRecipient: Elimina el destinatari
 verifiedLink: Enllaç verificat
+_feeds:
+  rss: RSS
+  atom: Atom
+  jsonFeed: Feed JSON
+  copyFeed: Copiar feed
