@@ -1,4 +1,5 @@
 import * as fs from "node:fs";
+import * as fsPromises from "node:fs/promises";
 import * as Path from "node:path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
@@ -12,6 +13,10 @@ export class InternalStorage {
 
 	public static resolvePath = (key: string) =>
 		Path.resolve(InternalStorage.path, key);
+
+	public static open(key: string, flags: string) {
+		return fsPromises.open(InternalStorage.resolvePath(key), flags);
+	}
 
 	public static read(key: string) {
 		return fs.createReadStream(InternalStorage.resolvePath(key));
