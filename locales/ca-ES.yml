@@ -808,7 +808,7 @@ autoAcceptFollowed: Aprova automàticament les peticions de seguiment d'usuaris 
 accountMoved: "L'usuari s'ha mogut a un compte nou:"
 addAccount: Afegeix un compte
 loginFailed: No s'ha pogut iniciar sessió
-showOnRemote: Mostra al servidor remot
+showOnRemote: Obre la pàgina original
 wallpaper: Fons de pantalla
 setWallpaper: Estableix fons de pantalla
 removeWallpaper: Elimina el fons de pantalla
