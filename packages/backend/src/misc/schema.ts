@@ -16,6 +16,7 @@ import { packedDriveFileSchema } from "@/models/schema/drive-file.js";
 import { packedDriveFolderSchema } from "@/models/schema/drive-folder.js";
 import { packedFollowingSchema } from "@/models/schema/following.js";
 import { packedMutingSchema } from "@/models/schema/muting.js";
+import { packedRenoteMutingSchema } from "@/models/schema/renote-muting.js";
 import { packedBlockingSchema } from "@/models/schema/blocking.js";
 import { packedNoteReactionSchema } from "@/models/schema/note-reaction.js";
 import { packedHashtagSchema } from "@/models/schema/hashtag.js";
@@ -29,6 +30,7 @@ import { packedFederationInstanceSchema } from "@/models/schema/federation-insta
 import { packedQueueCountSchema } from "@/models/schema/queue.js";
 import { packedGalleryPostSchema } from "@/models/schema/gallery-post.js";
 import { packedEmojiSchema } from "@/models/schema/emoji.js";
+import { packedNoteEdit } from "@/models/schema/note-edit.js";
 
 export const refs = {
 	UserLite: packedUserLiteSchema,
@@ -44,6 +46,7 @@ export const refs = {
 	App: packedAppSchema,
 	MessagingMessage: packedMessagingMessageSchema,
 	Note: packedNoteSchema,
+	NoteEdit: packedNoteEdit,
 	NoteReaction: packedNoteReactionSchema,
 	NoteFavorite: packedNoteFavoriteSchema,
 	Notification: packedNotificationSchema,
@@ -51,6 +54,7 @@ export const refs = {
 	DriveFolder: packedDriveFolderSchema,
 	Following: packedFollowingSchema,
 	Muting: packedMutingSchema,
+	RenoteMuting: packedRenoteMutingSchema,
 	Blocking: packedBlockingSchema,
 	Hashtag: packedHashtagSchema,
 	Page: packedPageSchema,

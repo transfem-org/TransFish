@@ -8,6 +8,7 @@ import { generateMutedUserQuery } from "../../common/generate-muted-user-query.j
 import { generateRepliesQuery } from "../../common/generate-replies-query.js";
 import { generateMutedNoteQuery } from "../../common/generate-muted-note-query.js";
 import { generateBlockedUserQuery } from "../../common/generate-block-query.js";
+import { generateMutedUserRenotesQueryForNotes } from "../../common/generated-muted-renote-query.js";
 
 export const meta = {
 	tags: ["notes"],
@@ -31,6 +32,11 @@ export const meta = {
 			code: "GTL_DISABLED",
 			id: "0332fc13-6ab2-4427-ae80-a9fadffd1a6b",
 		},
+		queryError: {
+			message: "Please follow more users.",
+			code: "QUERY_ERROR",
+			id: "620763f4-f621-4533-ab33-0577a1a3c343",
+		},
 	},
 } as const;
 
@@ -47,6 +53,11 @@ export const paramDef = {
 		untilId: { type: "string", format: "misskey:id" },
 		sinceDate: { type: "integer" },
 		untilDate: { type: "integer" },
+		withReplies: {
+			type: "boolean",
+			default: false,
+			description: "Show replies in the timeline",
+		},
 	},
 	required: [],
 } as const;
@@ -81,19 +92,19 @@ export default define(meta, paramDef, async (ps, user) => {
 		.leftJoinAndSelect("renoteUser.avatar", "renoteUserAvatar")
 		.leftJoinAndSelect("renoteUser.banner", "renoteUserBanner");
 
-	generateRepliesQuery(query, user);
+	generateRepliesQuery(query, ps.withReplies, user);
 	if (user) {
 		generateMutedUserQuery(query, user);
 		generateMutedNoteQuery(query, user);
 		generateBlockedUserQuery(query, user);
+		generateMutedUserRenotesQueryForNotes(query, user);
 	}
 
 	if (ps.withFiles) {
 		query.andWhere("note.fileIds != '{}'");
 	}
+	query.andWhere("note.visibility != 'hidden'");
 	//#endregion
-
-	const timeline = await query.take(ps.limit).getMany();
 
 	process.nextTick(() => {
 		if (user) {
@@ -101,5 +112,25 @@ export default define(meta, paramDef, async (ps, user) => {
 		}
 	});
 
-	return await Notes.packMany(timeline, user);
+	// We fetch more than requested because some may be filtered out, and if there's less than
+	// requested, the pagination stops.
+	const found = [];
+	const take = Math.floor(ps.limit * 1.5);
+	let skip = 0;
+	try {
+		while (found.length < ps.limit) {
+			const notes = await query.take(take).skip(skip).getMany();
+			found.push(...(await Notes.packMany(notes, user)));
+			skip += take;
+			if (notes.length < take) break;
+		}
+	} catch (error) {
+		throw new ApiError(meta.errors.queryError);
+	}
+
+	if (found.length > ps.limit) {
+		found.length = ps.limit;
+	}
+
+	return found;
 });

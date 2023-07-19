@@ -23,6 +23,7 @@ import { Meta } from "@/models/entities/meta.js";
 import { Following } from "@/models/entities/following.js";
 import { Instance } from "@/models/entities/instance.js";
 import { Muting } from "@/models/entities/muting.js";
+import { RenoteMuting } from "@/models/entities/renote-muting.js";
 import { SwSubscription } from "@/models/entities/sw-subscription.js";
 import { Blocking } from "@/models/entities/blocking.js";
 import { UserList } from "@/models/entities/user-list.js";
@@ -57,7 +58,6 @@ import { AnnouncementRead } from "@/models/entities/announcement-read.js";
 import { Clip } from "@/models/entities/clip.js";
 import { ClipNote } from "@/models/entities/clip-note.js";
 import { Antenna } from "@/models/entities/antenna.js";
-import { AntennaNote } from "@/models/entities/antenna-note.js";
 import { PromoNote } from "@/models/entities/promo-note.js";
 import { PromoRead } from "@/models/entities/promo-read.js";
 import { Relay } from "@/models/entities/relay.js";
@@ -71,11 +71,13 @@ import { PasswordResetRequest } from "@/models/entities/password-reset-request.j
 import { UserPending } from "@/models/entities/user-pending.js";
 import { Webhook } from "@/models/entities/webhook.js";
 import { UserIp } from "@/models/entities/user-ip.js";
+import { NoteEdit } from "@/models/entities/note-edit.js";
 
 import { entities as charts } from "@/services/chart/entities.js";
 import { envOption } from "../env.js";
 import { dbLogger } from "./logger.js";
 import { redisClient } from "./redis.js";
+import { nativeInitDatabase } from "native-utils/built/index.js";
 
 const sqlLogger = dbLogger.createSubLogger("sql", "gray", false);
 
@@ -136,8 +138,10 @@ export const entities = [
 	Following,
 	FollowRequest,
 	Muting,
+	RenoteMuting,
 	Blocking,
 	Note,
+	NoteEdit,
 	NoteFavorite,
 	NoteReaction,
 	NoteWatching,
@@ -163,7 +167,6 @@ export const entities = [
 	Clip,
 	ClipNote,
 	Antenna,
-	AntennaNote,
 	PromoNote,
 	PromoRead,
 	Relay,
@@ -202,9 +205,11 @@ export const db = new DataSource({
 					host: config.redis.host,
 					port: config.redis.port,
 					family: config.redis.family == null ? 0 : config.redis.family,
+					username: config.redis.user ?? "default",
 					password: config.redis.pass,
 					keyPrefix: `${config.redis.prefix}:query:`,
 					db: config.redis.db || 0,
+					tls: config.redis.tls,
 				},
 		  }
 		: false,
@@ -216,6 +221,11 @@ export const db = new DataSource({
 });
 
 export async function initDb(force = false) {
+	await nativeInitDatabase(
+		`postgres://${config.db.user}:${encodeURIComponent(config.db.pass)}@${
+			config.db.host
+		}:${config.db.port}/${config.db.db}`,
+	);
 	if (force) {
 		if (db.isInitialized) {
 			await db.destroy();

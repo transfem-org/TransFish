@@ -10,11 +10,21 @@ import { renderPerson } from "@/remote/activitypub/renderer/person.js";
 import renderEmoji from "@/remote/activitypub/renderer/emoji.js";
 import { inbox as processInbox } from "@/queue/index.js";
 import { isSelfHost, toPuny } from "@/misc/convert-host.js";
-import { Notes, Users, Emojis, NoteReactions } from "@/models/index.js";
+import {
+	Notes,
+	Users,
+	Emojis,
+	NoteReactions,
+	FollowRequests,
+} from "@/models/index.js";
 import type { ILocalUser, User } from "@/models/entities/user.js";
 import { renderLike } from "@/remote/activitypub/renderer/like.js";
 import { getUserKeypair } from "@/misc/keypair-store.js";
-import { checkFetch, hasSignature } from "@/remote/activitypub/check-fetch.js";
+import {
+	checkFetch,
+	hasSignature,
+	getSignatureUser,
+} from "@/remote/activitypub/check-fetch.js";
 import { getInstanceActor } from "@/services/instance-actor.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import renderFollow from "@/remote/activitypub/renderer/follow.js";
@@ -22,6 +32,7 @@ import Featured from "./activitypub/featured.js";
 import Following from "./activitypub/following.js";
 import Followers from "./activitypub/followers.js";
 import Outbox, { packActivity } from "./activitypub/outbox.js";
+import { serverLogger } from "./index.js";
 
 // Init router
 const router = new Router();
@@ -78,7 +89,7 @@ router.get("/notes/:note", async (ctx, next) => {
 
 	const note = await Notes.findOneBy({
 		id: ctx.params.note,
-		visibility: In(["public" as const, "home" as const]),
+		visibility: In(["public" as const, "home" as const, "followers" as const]),
 		localOnly: false,
 	});
 
@@ -95,6 +106,37 @@ router.get("/notes/:note", async (ctx, next) => {
 		}
 		ctx.redirect(note.uri);
 		return;
+	}
+
+	if (note.visibility === "followers") {
+		serverLogger.debug(
+			"Responding to request for follower-only note, validating access...",
+		);
+		const remoteUser = await getSignatureUser(ctx.req);
+		serverLogger.debug("Local note author user:");
+		serverLogger.debug(JSON.stringify(note, null, 2));
+		serverLogger.debug("Authenticated remote user:");
+		serverLogger.debug(JSON.stringify(remoteUser, null, 2));
+
+		if (remoteUser == null) {
+			serverLogger.debug("Rejecting: no user");
+			ctx.status = 401;
+			return;
+		}
+
+		const relation = await Users.getRelation(remoteUser.user.id, note.userId);
+		serverLogger.debug("Relation:");
+		serverLogger.debug(JSON.stringify(relation, null, 2));
+
+		if (!relation.isFollowing || relation.isBlocked) {
+			serverLogger.debug(
+				"Rejecting: authenticated user is not following us or was blocked by us",
+			);
+			ctx.status = 403;
+			return;
+		}
+
+		serverLogger.debug("Accepting: access criteria met");
 	}
 
 	ctx.body = renderActivity(await renderNote(note, false));
@@ -330,22 +372,68 @@ router.get("/likes/:like", async (ctx) => {
 });
 
 // follow
-router.get("/follows/:follower/:followee", async (ctx) => {
+router.get(
+	"/follows/:follower/:followee",
+	async (ctx: Router.RouterContext) => {
+		const verify = await checkFetch(ctx.req);
+		if (verify !== 200) {
+			ctx.status = verify;
+			return;
+		}
+		// This may be used before the follow is completed, so we do not
+		// check if the following exists.
+
+		const [follower, followee] = await Promise.all([
+			Users.findOneBy({
+				id: ctx.params.follower,
+				host: IsNull(),
+			}),
+			Users.findOneBy({
+				id: ctx.params.followee,
+				host: Not(IsNull()),
+			}),
+		]);
+
+		if (follower == null || followee == null) {
+			ctx.status = 404;
+			return;
+		}
+
+		ctx.body = renderActivity(renderFollow(follower, followee));
+		const meta = await fetchMeta();
+		if (meta.secureMode || meta.privateMode) {
+			ctx.set("Cache-Control", "private, max-age=0, must-revalidate");
+		} else {
+			ctx.set("Cache-Control", "public, max-age=180");
+		}
+		setResponseType(ctx);
+	},
+);
+
+// follow request
+router.get("/follows/:followRequestId", async (ctx: Router.RouterContext) => {
 	const verify = await checkFetch(ctx.req);
 	if (verify !== 200) {
 		ctx.status = verify;
 		return;
 	}
-	// This may be used before the follow is completed, so we do not
-	// check if the following exists.
+
+	const followRequest = await FollowRequests.findOneBy({
+		id: ctx.params.followRequestId,
+	});
+
+	if (followRequest == null) {
+		ctx.status = 404;
+		return;
+	}
 
 	const [follower, followee] = await Promise.all([
 		Users.findOneBy({
-			id: ctx.params.follower,
+			id: followRequest.followerId,
 			host: IsNull(),
 		}),
 		Users.findOneBy({
-			id: ctx.params.followee,
+			id: followRequest.followeeId,
 			host: Not(IsNull()),
 		}),
 	]);
@@ -355,13 +443,13 @@ router.get("/follows/:follower/:followee", async (ctx) => {
 		return;
 	}
 
-	ctx.body = renderActivity(renderFollow(follower, followee));
 	const meta = await fetchMeta();
 	if (meta.secureMode || meta.privateMode) {
 		ctx.set("Cache-Control", "private, max-age=0, must-revalidate");
 	} else {
 		ctx.set("Cache-Control", "public, max-age=180");
 	}
+	ctx.body = renderActivity(renderFollow(follower, followee));
 	setResponseType(ctx);
 });
 

@@ -66,6 +66,11 @@ export const packedUserLiteSchema = {
 			nullable: false,
 			optional: true,
 		},
+		speakAsCat: {
+			type: "boolean",
+			nullable: false,
+			optional: true,
+		},
 		emojis: {
 			type: "array",
 			nullable: false,
@@ -330,6 +335,11 @@ export const packedUserDetailedNotMeOnlySchema = {
 			nullable: false,
 			optional: true,
 		},
+		isRenoteMuted: {
+			type: "boolean",
+			nullable: false,
+			optional: true,
+		},
 		//#endregion
 	},
 } as const;
@@ -380,6 +390,11 @@ export const packedMeDetailedOnlySchema = {
 			optional: false,
 		},
 		noCrawle: {
+			type: "boolean",
+			nullable: true,
+			optional: false,
+		},
+		preventAiLearning: {
 			type: "boolean",
 			nullable: true,
 			optional: false,

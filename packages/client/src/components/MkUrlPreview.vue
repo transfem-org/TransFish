@@ -1,54 +1,122 @@
 <template>
-<div v-if="playerEnabled" class="player" :style="`padding: ${(player.height || 0) / (player.width || 1) * 100}% 0 0`">
-	<button class="disablePlayer" :title="i18n.ts.disablePlayer" @click="playerEnabled = false"><i class="ph-x-bold ph-lg"></i></button>
-	<iframe :src="player.url + (player.url.match(/\?/) ? '&autoplay=1&auto_play=1' : '?autoplay=1&auto_play=1')" :width="player.width || '100%'" :heigth="player.height || 250" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen/>
-</div>
-<div v-else-if="tweetId && tweetExpanded" ref="twitter" class="twitter">
-	<iframe ref="tweet" scrolling="no" frameborder="no" :style="{ position: 'relative', width: '100%', height: `${tweetHeight}px` }" :src="`https://platform.twitter.com/embed/index.html?embedId=${embedId}&amp;hideCard=false&amp;hideThread=false&amp;lang=en&amp;theme=${$store.state.darkMode ? 'dark' : 'light'}&amp;id=${tweetId}`"></iframe>
-</div>
-<div v-else v-size="{ max: [400, 350] }" class="mk-url-preview">
-	<transition :name="$store.state.animation ? 'zoom' : ''" mode="out-in">
-		<component :is="self ? 'MkA' : 'a'" v-if="!fetching" class="link" :class="{ compact }" :[attr]="self ? url.substr(local.length) : url" rel="nofollow noopener" :target="target" :title="url">
-			<div v-if="thumbnail" class="thumbnail" :style="`background-image: url('${thumbnail}')`">
-				<button v-if="!playerEnabled && player.url" class="_button" :title="i18n.ts.enablePlayer" @click.prevent="playerEnabled = true"><i class="ph-play-circle-bold ph-lg"></i></button>
-			</div>
-			<article>
-				<header>
-					<h1 :title="title">{{ title }}</h1>
-				</header>
-				<p v-if="description" :title="description">{{ description.length > 85 ? description.slice(0, 85) + '…' : description }}</p>
-				<footer>
-					<img v-if="icon" class="icon" :src="icon"/>
-					<p :title="sitename">{{ sitename }}</p>
-				</footer>
-			</article>
-		</component>
+	<transition
+		:name="defaultStore.state.animation ? 'zoom' : ''"
+		mode="out-in"
+	>
+		<!-- v-if="!fetching" for now, I think there's something
+			 weird w/ some links stuck loading (?) -->
+		<article v-if="!fetching" class="url-preview" @click.stop>
+			<component
+				:is="self ? 'MkA' : 'a'"
+				:[attr]="self ? url.substring(local.length) : url"
+				rel="nofollow noopener"
+				:target="target"
+				:title="url"
+				:class="{
+					hasButton: tweetId || player.url,
+				}"
+			>
+				<div v-if="thumbnail" class="thumbnail">
+					<img :src="thumbnail" loading="lazy" />
+					<button
+						v-if="tweetId"
+						class="_button"
+						v-tooltip="
+							tweetExpanded ? i18n.ts.close : i18n.ts.expandTweet
+						"
+						@click.stop.prevent="tweetExpanded = !tweetExpanded"
+					>
+						<i
+							v-if="!tweetExpanded"
+							class="ph-twitter-logo ph-bold ph-lg"
+						></i>
+						<i v-else class="ph-x ph-bold ph-lg"></i>
+					</button>
+					<button
+						v-else-if="player.url"
+						class="_button"
+						v-tooltip="
+							playerEnabled ? i18n.ts.close : i18n.ts.enablePlayer
+						"
+						@click.stop.prevent="playerEnabled = !playerEnabled"
+					>
+						<i
+							v-if="!playerEnabled"
+							class="ph-play ph-bold ph-lg"
+						></i>
+						<i v-else class="ph-x ph-bold ph-lg"></i>
+					</button>
+				</div>
+				<div v-if="fetching">
+					<MkLoading mini />
+				</div>
+				<div v-else>
+					<h3 :title="title || undefined">{{ title || url }}</h3>
+					<p :title="description">
+						<span>
+							<span :title="sitename || undefined">
+								<img v-if="icon" class="icon" :src="icon" />
+								{{ sitename }}
+							</span>
+							{{ description }}
+						</span>
+					</p>
+				</div>
+			</component>
+			<iframe
+				v-if="playerEnabled"
+				:src="
+					player.url +
+					(player.url.match(/\?/)
+						? '&autoplay=1&auto_play=1'
+						: '?autoplay=1&auto_play=1')
+				"
+				:style="`aspect-ratio: ${
+					(player.width || 1) / (player.height || 1)
+				}`"
+				frameborder="0"
+				allow="autoplay; encrypted-media"
+				allowfullscreen
+				@click.stop
+			/>
+			<iframe
+				v-else-if="tweetId && tweetExpanded"
+				ref="tweet"
+				scrolling="no"
+				frameborder="no"
+				:style="{
+					position: 'relative',
+					width: '100%',
+					height: `${tweetHeight}px`,
+				}"
+				:src="`https://platform.twitter.com/embed/index.html?embedId=${embedId}&amp;hideCard=false&amp;hideThread=false&amp;lang=en&amp;theme=${
+					defaultStore.state.darkMode ? 'dark' : 'light'
+				}&amp;id=${tweetId}`"
+				@click.stop
+			></iframe>
+		</article>
 	</transition>
-	<div v-if="tweetId" class="expandTweet">
-		<a @click="tweetExpanded = true">
-			<i class="ph-twitter-logo-bold ph-lg"></i> {{ i18n.ts.expandTweet }}
-		</a>
-	</div>
-</div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted } from 'vue';
-import { url as local, lang } from '@/config';
-import { i18n } from '@/i18n';
+import { onMounted, onUnmounted } from "vue";
+import { url as local, lang } from "@/config";
+import { i18n } from "@/i18n";
+import { defaultStore } from "@/store";
 
-const props = withDefaults(defineProps<{
-	url: string;
-	detail?: boolean;
-	compact?: boolean;
-}>(), {
-	detail: false,
-	compact: false,
-});
+const props = withDefaults(
+	defineProps<{
+		url: string;
+		detail?: boolean;
+	}>(),
+	{
+		detail: false,
+	},
+);
 
 const self = props.url.startsWith(local);
-const attr = self ? 'to' : 'href';
-const target = self ? null : '_blank';
+const attr = self ? "to" : "href";
+const target = self ? null : "_blank";
 let fetching = $ref(true);
 let title = $ref<string | null>(null);
 let description = $ref<string | null>(null);
@@ -63,27 +131,36 @@ let player = $ref({
 let playerEnabled = $ref(false);
 let tweetId = $ref<string | null>(null);
 let tweetExpanded = $ref(props.detail);
-const embedId = `embed${Math.random().toString().replace(/\D/,'')}`;
+const embedId = `embed${Math.random().toString().replace(/\D/, "")}`;
 let tweetHeight = $ref(150);
 
 const requestUrl = new URL(props.url);
-if (!['http:', 'https:'].includes(requestUrl.protocol)) throw new Error('invalid url');
+if (!["http:", "https:"].includes(requestUrl.protocol))
+	throw new Error("invalid url");
 
-if (requestUrl.hostname === 'twitter.com' || requestUrl.hostname === 'mobile.twitter.com') {
+if (
+	requestUrl.hostname === "twitter.com" ||
+	requestUrl.hostname === "mobile.twitter.com"
+) {
 	const m = requestUrl.pathname.match(/^\/.+\/status(?:es)?\/(\d+)/);
 	if (m) tweetId = m[1];
 }
 
-if (requestUrl.hostname === 'music.youtube.com' && requestUrl.pathname.match('^/(?:watch|channel)')) {
-	requestUrl.hostname = 'www.youtube.com';
+if (
+	requestUrl.hostname === "music.youtube.com" &&
+	requestUrl.pathname.match("^/(?:watch|channel)")
+) {
+	requestUrl.hostname = "www.youtube.com";
 }
 
-const requestLang = (lang || 'ja-JP').replace('ja-KS', 'ja-JP');
+const requestLang = (lang || "ja-JP").replace("ja-KS", "ja-JP");
 
-requestUrl.hash = '';
+requestUrl.hash = "";
 
-fetch(`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`).then(res => {
-	res.json().then(info => {
+fetch(
+	`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`,
+).then((res) => {
+	res.json().then((info) => {
 		if (info.url == null) return;
 		title = info.title;
 		description = info.description;
@@ -96,208 +173,141 @@ fetch(`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`).the
 });
 
 function adjustTweetHeight(message: any) {
-	if (message.origin !== 'https://platform.twitter.com') return;
-	const embed = message.data?.['twttr.embed'];
-	if (embed?.method !== 'twttr.private.resize') return;
+	if (message.origin !== "https://platform.twitter.com") return;
+	const embed = message.data?.["twttr.embed"];
+	if (embed?.method !== "twttr.private.resize") return;
 	if (embed?.id !== embedId) return;
 	const height = embed?.params[0]?.height;
 	if (height) tweetHeight = height;
 }
 
-(window as any).addEventListener('message', adjustTweetHeight);
+(window as any).addEventListener("message", adjustTweetHeight);
 
 onUnmounted(() => {
-	(window as any).removeEventListener('message', adjustTweetHeight);
+	(window as any).removeEventListener("message", adjustTweetHeight);
 });
 </script>
 
 <style lang="scss" scoped>
-.player {
-	position: relative;
-	width: 100%;
-
-	> button {
-		position: absolute;
-		top: -1.5em;
-		right: 0;
-		font-size: 1em;
-		width: 1.5em;
-		height: 1.5em;
-		padding: 0;
-		margin: 0;
-		color: var(--fg);
-		background: rgba(128, 128, 128, 0.2);
-		opacity: 0.7;
-
-		&:hover {
-			opacity: 0.9;
-		}
-	}
-
-	> iframe {
-		height: 100%;
-		left: 0;
-		position: absolute;
-		top: 0;
-		width: 100%;
-	}
-}
-
-.mk-url-preview {
-	&.max-width_400px {
-		> .link {
-			font-size: 12px;
-
-			> .thumbnail {
-				height: 80px;
-			}
-
-			> article {
-				padding: 12px;
-			}
-		}
-	}
-
-	&.max-width_350px {
-		> .link {
-			font-size: 10px;
-
-			> .thumbnail {
-				height: 70px;
-			}
-
-			> article {
-				padding: 8px;
-
-				> header {
-					margin-bottom: 4px;
-				}
-
-				> footer {
-					margin-top: 4px;
-
-					> img {
-						width: 12px;
-						height: 12px;
-					}
-				}
-			}
-
-			&.compact {
-				> .thumbnail {
-					position: absolute;
-					width: 56px;
-					height: 100%;
-				}
-
-				> article {
-					left: 56px;
-					width: calc(100% - 56px);
-					padding: 4px;
-
-					> header {
-						margin-bottom: 2px;
-					}
-
-					> footer {
-						margin-top: 2px;
-					}
-				}
-			}
-		}
-	}
-
-	> .link {
-		position: relative;
-		display: block;
-		font-size: 14px;
-		border: 1px solid var(--divider);
-		border-radius: 8px;
-		overflow: hidden;
-
-		&:hover {
-			text-decoration: none;
-			> article > header > h1 {
-				text-decoration: underline;
-			}
-		}
-
-		> .thumbnail {
-			position: absolute;
-			width: 100px;
-			height: 100%;
-			background-position: center;
-			background-size: cover;
+.url-preview {
+	border: 1px solid var(--divider);
+	border-radius: var(--radius);
+	overflow: hidden;
+	> a {
+		display: flex;
+		transition: background 0.2s;
+		text-decoration: none;
+		> div:first-child:not(:last-child) {
+			position: relative;
+			width: 90px;
+			overflow: hidden;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
-			> button {
-				font-size: 3.5em;
-				opacity: 0.7;
-
-				&:hover {
-					font-size: 4em;
-					opacity: 0.9;
-				}
+			img {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: opacity 0.2s;
 			}
-
-			& + article {
-				left: 100px;
-				width: calc(100% - 100px);
+			button {
+				display: flex;
+				width: 100%;
+				height: 100%;
+				i {
+					background: var(--bg);
+					padding: 14px;
+					border-radius: var(--radius);
+					transform: scale(0.95);
+					opacity: 0.8;
+					transition:
+						transform 0.2s,
+						opacity 0.2s,
+						background 0.2s;
+				}
+				&:hover,
+				&:focus {
+					i {
+						background: var(--panelHighlight) !important;
+						transform: scale(1.1) !important;
+					}
+				}
 			}
 		}
-
-		> article {
-			position: relative;
-			box-sizing: border-box;
-			padding: 16px;
-
-			> header {
-				margin-bottom: 8px;
-
-				> h1 {
-					margin: 0;
-					font-size: 1em;
-				}
-			}
-
-			> p {
-				margin: 0;
+		> div:last-child {
+			padding: 14px 16px;
+			width: 0;
+			flex-grow: 1;
+		}
+		h3,
+		p {
+			display: block;
+			margin: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
+		}
+		h3 {
+			font-size: 1em;
+			white-space: nowrap;
+			margin-bottom: 0.2em;
+			text-decoration: underline;
+			text-decoration-color: transparent;
+			transition: text-decoration-color 0.2s;
+		}
+		p {
+			margin-bottom: -0.5em;
+			> span {
+				display: -webkit-inline-box;
 				font-size: 0.8em;
-			}
-
-			> footer {
-				margin-top: 8px;
-				height: 16px;
-
-				> img {
-					display: inline-block;
-					width: 16px;
-					height: 16px;
-					margin-right: 4px;
-					vertical-align: top;
-				}
-
-				> p {
-					display: inline-block;
-					margin: 0;
-					color: var(--urlPreviewInfo);
-					font-size: 0.8em;
-					line-height: 16px;
-					vertical-align: top;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				> span {
+					font-weight: 600;
+					margin-right: 0.4em;
 				}
 			}
 		}
-
-		&.compact {
-			> article {
-				> header h1, p, footer {
-					overflow: hidden;
-					white-space: nowrap;
-					text-overflow: ellipsis;
+		.icon {
+			width: 1.2em;
+			height: 1.2em;
+			vertical-align: middle;
+			border-radius: 4px;
+		}
+		&:hover,
+		&:focus,
+		&:focus-within {
+			background: var(--panelHighlight);
+			h3 {
+				text-decoration-color: currentColor;
+			}
+		}
+	}
+	&:hover,
+	&:focus-within {
+		> .hasButton {
+			> div:first-child {
+				img {
+					opacity: 0.2;
+				}
+				button i {
+					transform: none;
+					opacity: 1;
 				}
 			}
+		}
+	}
+	iframe {
+		border-top: 1px solid var(--divider);
+		display: block;
+		width: 100%;
+		overflow-y: auto;
+		&:not([src^="https://platform.twitter"])
+		{
+			max-height: 70vh;
 		}
 	}
 }

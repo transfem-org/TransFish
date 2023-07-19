@@ -1,40 +1,65 @@
 <template>
-<div class="vblkjoeq">
-	<div class="label" @click="focus"><slot name="label"></slot></div>
-	<div ref="container" class="input" :class="{ inline, disabled, focused }" @click.prevent="onClick">
-		<div ref="prefixEl" class="prefix"><slot name="prefix"></slot></div>
-		<select
-			ref="inputEl"
-			v-model="v"
-			v-adaptive-border
-			class="select"
-			:disabled="disabled"
-			:required="required"
-			:readonly="readonly"
-			:placeholder="placeholder"
-			@focus="focused = true"
-			@blur="focused = false"
-			@input="onInput"
+	<div class="vblkjoeq">
+		<div class="label" @click="focus"><slot name="label"></slot></div>
+		<div
+			ref="container"
+			class="input"
+			:class="{ inline, disabled, focused }"
+			@mousedown.prevent="show"
 		>
-			<slot></slot>
-		</select>
-		<div ref="suffixEl" class="suffix"><i class="ph-caret-down-bold ph-lg"></i></div>
-	</div>
-	<div class="caption"><slot name="caption"></slot></div>
+			<div ref="prefixEl" class="prefix"><slot name="prefix"></slot></div>
+			<select
+				ref="inputEl"
+				v-model="v"
+				v-adaptive-border
+				class="select"
+				:disabled="disabled"
+				:required="required"
+				:readonly="readonly"
+				:placeholder="placeholder"
+				@focus="focused = true"
+				@blur="focused = false"
+				@input="onInput"
+			>
+				<slot></slot>
+			</select>
+			<div ref="suffixEl" class="suffix">
+				<i
+					class="ph-caret-down ph-bold ph-lg"
+					:class="[
+						$style.chevron,
+						{ [$style.chevronOpening]: opening },
+					]"
+				></i>
+			</div>
+		</div>
+		<div class="caption"><slot name="caption"></slot></div>
 
-	<MkButton v-if="manualSave && changed" primary @click="updated"><i class="ph-floppy-disk-back-bold ph-lg"></i> {{ i18n.ts.save }}</MkButton>
-</div>
+		<MkButton v-if="manualSave && changed" primary @click="updated"
+			><i class="ph-floppy-disk-back ph-bold ph-lg"></i>
+			{{ i18n.ts.save }}</MkButton
+		>
+	</div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, nextTick, ref, watch, computed, toRefs, VNode, useSlots } from 'vue';
-import MkButton from '@/components/MkButton.vue';
-import * as os from '@/os';
-import { useInterval } from '@/scripts/use-interval';
-import { i18n } from '@/i18n';
+import type { VNode } from "vue";
+import {
+	computed,
+	nextTick,
+	onMounted,
+	ref,
+	toRefs,
+	useSlots,
+	watch,
+} from "vue";
+import MkButton from "@/components/MkButton.vue";
+import * as os from "@/os";
+import { useInterval } from "@/scripts/use-interval";
+import { i18n } from "@/i18n";
 
 const props = defineProps<{
-	modelValue: string;
+	modelValue: string | null;
 	required?: boolean;
 	readonly?: boolean;
 	disabled?: boolean;
@@ -47,8 +72,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-	(ev: 'change', _ev: KeyboardEvent): void;
-	(ev: 'update:modelValue', value: string): void;
+	(ev: "change", _ev: KeyboardEvent): void;
+	(ev: "update:modelValue", value: string | null): void;
 }>();
 
 const slots = useSlots();
@@ -56,34 +81,32 @@ const slots = useSlots();
 const { modelValue, autofocus } = toRefs(props);
 const v = ref(modelValue.value);
 const focused = ref(false);
+const opening = ref(false);
 const changed = ref(false);
 const invalid = ref(false);
-const filled = computed(() => v.value !== '' && v.value != null);
+const filled = computed(() => v.value !== "" && v.value != null);
 const inputEl = ref(null);
 const prefixEl = ref(null);
 const suffixEl = ref(null);
 const container = ref(null);
-const height =
-	props.small ? 36 :
-	props.large ? 40 :
-	38;
+const height = props.small ? 33 : props.large ? 39 : 36;
 
 const focus = () => inputEl.value.focus();
 const onInput = (ev) => {
 	changed.value = true;
-	emit('change', ev);
+	emit("change", ev);
 };
 
 const updated = () => {
 	changed.value = false;
-	emit('update:modelValue', v.value);
+	emit("update:modelValue", v.value);
 };
 
-watch(modelValue, newValue => {
+watch(modelValue, (newValue) => {
 	v.value = newValue;
 });
 
-watch(v, newValue => {
+watch(v, (newValue) => {
 	if (!props.manualSave) {
 		updated();
 	}
@@ -93,21 +116,27 @@ watch(v, newValue => {
 
 // このコンポーネントが作成された時、非表示状態である場合がある
 // 非表示状態だと要素の幅などは0になってしまうので、定期的に計算する
-useInterval(() => {
-	if (prefixEl.value) {
-		if (prefixEl.value.offsetWidth) {
-			inputEl.value.style.paddingLeft = prefixEl.value.offsetWidth + 'px';
+useInterval(
+	() => {
+		if (prefixEl.value) {
+			if (prefixEl.value.offsetWidth) {
+				inputEl.value.style.paddingLeft =
+					prefixEl.value.offsetWidth + "px";
+			}
 		}
-	}
-	if (suffixEl.value) {
-		if (suffixEl.value.offsetWidth) {
-			inputEl.value.style.paddingRight = suffixEl.value.offsetWidth + 'px';
+		if (suffixEl.value) {
+			if (suffixEl.value.offsetWidth) {
+				inputEl.value.style.paddingRight =
+					suffixEl.value.offsetWidth + "px";
+			}
 		}
-	}
-}, 100, {
-	immediate: true,
-	afterMounted: true,
-});
+	},
+	100,
+	{
+		immediate: true,
+		afterMounted: true,
+	},
+);
 
 onMounted(() => {
 	nextTick(() => {
@@ -117,16 +146,17 @@ onMounted(() => {
 	});
 });
 
-const onClick = (ev: MouseEvent) => {
+function show(ev: MouseEvent) {
 	focused.value = true;
+	opening.value = true;
 
 	const menu = [];
-	let options = slots.default!();
+	const options = slots.default!();
 
 	const pushOption = (option: VNode) => {
 		menu.push({
 			text: option.children,
-			active: v.value === option.props.value,
+			active: computed(() => v.value === option.props.value),
 			action: () => {
 				v.value = option.props.value;
 			},
@@ -135,17 +165,19 @@ const onClick = (ev: MouseEvent) => {
 
 	const scanOptions = (options: VNode[]) => {
 		for (const vnode of options) {
-			if (vnode.type === 'optgroup') {
+			if (vnode.type === "optgroup") {
 				const optgroup = vnode;
 				menu.push({
-					type: 'label',
+					type: "label",
 					text: optgroup.props.label,
 				});
 				scanOptions(optgroup.children);
-			} else if (Array.isArray(vnode.children)) { // 何故かフラグメントになってくることがある
+			} else if (Array.isArray(vnode.children)) {
+				// 何故かフラグメントになってくることがある
 				const fragment = vnode;
 				scanOptions(fragment.children);
-			} else if (vnode.props == null) { // v-if で条件が false のときにこうなる
+			} else if (vnode.props == null) {
+				// v-if で条件が false のときにこうなる
 				// nop?
 			} else {
 				const option = vnode;
@@ -158,10 +190,13 @@ const onClick = (ev: MouseEvent) => {
 
 	os.popupMenu(menu, container.value, {
 		width: container.value.offsetWidth,
+		onClosing: () => {
+			opening.value = false;
+		},
 	}).then(() => {
 		focused.value = false;
 	});
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -189,8 +224,6 @@ const onClick = (ev: MouseEvent) => {
 	> .input {
 		position: relative;
 		cursor: pointer;
-		margin-left: 0.2rem;
-		margin-right: 0.2rem;
 
 		&:hover {
 			> .select {
@@ -272,10 +305,21 @@ const onClick = (ev: MouseEvent) => {
 		&.disabled {
 			opacity: 0.7;
 
-			&, * {
+			&,
+			* {
 				cursor: not-allowed !important;
 			}
 		}
 	}
+}
+</style>
+
+<style lang="scss" module>
+.chevron {
+	transition: transform 0.1s ease-out;
+}
+
+.chevronOpening {
+	transform: rotateX(180deg);
 }
 </style>

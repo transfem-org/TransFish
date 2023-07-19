@@ -21,8 +21,10 @@ export type InboxJobData = {
 
 export type DbJobData =
 	| DbUserJobData
+	| DbUserImportPostsJobData
 	| DbUserImportJobData
-	| DbUserDeleteJobData;
+	| DbUserDeleteJobData
+	| DbUserImportMastoPostJobData;
 
 export type DbUserJobData = {
 	user: ThinUser;
@@ -38,6 +40,18 @@ export type DbUserDeleteJobData = {
 export type DbUserImportJobData = {
 	user: ThinUser;
 	fileId: DriveFile["id"];
+};
+
+export type DbUserImportPostsJobData = {
+	user: ThinUser;
+	fileId: DriveFile["id"];
+	signatureCheck: boolean;
+};
+
+export type DbUserImportMastoPostJobData = {
+	user: ThinUser;
+	post: any;
+	signatureCheck: boolean;
 };
 
 export type ObjectStorageJobData =

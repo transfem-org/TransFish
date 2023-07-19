@@ -1,4 +1,4 @@
-import * as Acct from "calckey-js/built/acct";
+import * as Acct from "firefish-js/built/acct";
 import { defineAsyncComponent } from "vue";
 import { i18n } from "@/i18n";
 import copyToClipboard from "@/scripts/copy-to-clipboard";
@@ -117,7 +117,18 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		}
 	}
 
-	async function toggleBlock() {
+	async function toggleRenoteMute(): Promise<void> {
+		os.apiWithDialog(
+			user.isRenoteMuted ? "renote-mute/delete" : "renote-mute/create",
+			{
+				userId: user.id,
+			},
+		).then(() => {
+			user.isRenoteMuted = !user.isRenoteMuted;
+		});
+	}
+
+	async function toggleBlock(): Promise<void> {
 		if (
 			!(await getConfirmed(
 				user.isBlocking ? i18n.ts.unblockConfirm : i18n.ts.blockConfirm,
@@ -125,19 +136,22 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		)
 			return;
 
-		await os.apiWithDialog(user.isBlocking ? "blocking/delete" : "blocking/create", {
-			userId: user.id,
-		})
+		await os.apiWithDialog(
+			user.isBlocking ? "blocking/delete" : "blocking/create",
+			{
+				userId: user.id,
+			},
+		);
 		user.isBlocking = !user.isBlocking;
 		await os.api(user.isBlocking ? "mute/create" : "mute/delete", {
 			userId: user.id,
-		})
+		});
 		user.isMuted = user.isBlocking;
 		if (user.isBlocking) {
-			await os.api('following/delete', {
+			await os.api("following/delete", {
 				userId: user.id,
 			});
-			user.isFollowing = false
+			user.isFollowing = false;
 		}
 	}
 
@@ -212,21 +226,55 @@ export function getUserMenu(user, router: Router = mainRouter) {
 
 	let menu = [
 		{
-			icon: "ph-at-bold ph-lg",
+			type: "label",
+			text: user.host
+				? `@${user.username}@${user.host || host}`
+				: `@${user.username}`,
+		},
+		{
+			icon: "ph-at ph-bold ph-lg",
 			text: i18n.ts.copyUsername,
 			action: () => {
 				copyToClipboard(`@${user.username}@${user.host || host}`);
 			},
 		},
 		{
-			icon: "ph-info-bold ph-lg",
+			icon: "ph-info ph-bold ph-lg",
 			text: i18n.ts.info,
 			action: () => {
 				router.push(`/user-info/${user.id}`);
 			},
 		},
 		{
-			icon: "ph-envelope-simple-open-bold ph-lg",
+			icon: "ph-newspaper ph-bold ph-lg",
+			text: i18n.ts._feeds.copyFeed,
+			type: "parent",
+			children: [
+				{
+					icon: "ph-rss ph-bold ph-lg",
+					text: i18n.ts._feeds.rss,
+					action: () => {
+						copyToClipboard(`https://${host}/@${user.username}.rss`);
+					},
+				},
+				{
+					icon: "ph-atom ph-bold ph-lg",
+					text: i18n.ts._feeds.atom,
+					action: () => {
+						copyToClipboard(`https://${host}/@${user.username}.atom`);
+					},
+				},
+				{
+					icon: "ph-brackets-curly ph-bold ph-lg",
+					text: i18n.ts._feeds.jsonFeed,
+					action: () => {
+						copyToClipboard(`https://${host}/@${user.username}.json`);
+					},
+				},
+			],
+		},
+		{
+			icon: "ph-envelope-simple-open ph-bold ph-lg",
 			text: i18n.ts.sendMessage,
 			action: () => {
 				os.post({ specified: user });
@@ -235,37 +283,55 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		meId !== user.id
 			? {
 					type: "link",
-					icon: "ph-chats-teardrop-bold ph-lg",
+					icon: "ph-chats-teardrop ph-bold ph-lg",
 					text: i18n.ts.startMessaging,
 					to: `/my/messaging/${Acct.toString(user)}`,
 			  }
 			: undefined,
+		user.host != null && user.url
+			? {
+					type: "a",
+					icon: "ph-arrow-square-out ph-bold ph-lg",
+					text: i18n.ts.showOnRemote,
+					href: user.url,
+					target: "_blank",
+			  }
+			: undefined,
 		null,
 		{
-			icon: "ph-list-bullets-bold ph-lg",
+			icon: "ph-list-bullets ph-bold ph-lg",
 			text: i18n.ts.addToList,
 			action: pushList,
 		},
 		meId !== user.id
 			? {
-					icon: "ph-users-three-bold ph-lg",
+					icon: "ph-users-three ph-bold ph-lg",
 					text: i18n.ts.inviteToGroup,
 					action: inviteGroup,
 			  }
 			: undefined,
+		null,
+		{
+			icon: user.isRenoteMuted
+				? "ph-eye ph-bold ph-lg"
+				: "ph-eye-slash ph-bold ph-lg",
+			text: user.isRenoteMuted ? i18n.ts.renoteUnmute : i18n.ts.renoteMute,
+			action: toggleRenoteMute,
+		},
 	] as any;
 
 	if ($i && meId !== user.id) {
 		menu = menu.concat([
-			null,
 			{
-				icon: user.isMuted ? "ph-eye-bold ph-lg" : "ph-eye-slash-bold ph-lg",
+				icon: user.isMuted
+					? "ph-eye ph-bold ph-lg"
+					: "ph-eye-slash ph-bold ph-lg",
 				text: user.isMuted ? i18n.ts.unmute : i18n.ts.mute,
 				hidden: user.isBlocking === true,
 				action: toggleMute,
 			},
 			{
-				icon: "ph-prohibit-bold ph-lg",
+				icon: "ph-prohibit ph-bold ph-lg",
 				text: user.isBlocking ? i18n.ts.unblock : i18n.ts.block,
 				action: toggleBlock,
 			},
@@ -274,7 +340,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		if (user.isFollowed) {
 			menu = menu.concat([
 				{
-					icon: "ph-link-break-bold ph-lg",
+					icon: "ph-link-break ph-bold ph-lg",
 					text: i18n.ts.breakFollow,
 					action: invalidateFollow,
 				},
@@ -284,7 +350,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		menu = menu.concat([
 			null,
 			{
-				icon: "ph-warning-circle-bold ph-lg",
+				icon: "ph-warning-circle ph-bold ph-lg",
 				text: i18n.ts.reportAbuse,
 				action: reportAbuse,
 			},
@@ -294,12 +360,12 @@ export function getUserMenu(user, router: Router = mainRouter) {
 			menu = menu.concat([
 				null,
 				{
-					icon: "ph-microphone-slash-bold ph-lg",
+					icon: "ph-microphone-slash ph-bold ph-lg",
 					text: user.isSilenced ? i18n.ts.unsilence : i18n.ts.silence,
 					action: toggleSilence,
 				},
 				{
-					icon: "ph-snowflake-bold ph-lg",
+					icon: "ph-snowflake ph-bold ph-lg",
 					text: user.isSuspended ? i18n.ts.unsuspend : i18n.ts.suspend,
 					action: toggleSuspend,
 				},
@@ -311,7 +377,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		menu = menu.concat([
 			null,
 			{
-				icon: "ph-pencil-bold ph-lg",
+				icon: "ph-pencil ph-bold ph-lg",
 				text: i18n.ts.editProfile,
 				action: () => {
 					router.push("/settings/profile");
@@ -324,7 +390,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		menu = menu.concat([
 			null,
 			...userActions.map((action) => ({
-				icon: "ph-plug-bold ph-lg",
+				icon: "ph-plug ph-bold ph-lg",
 				text: action.title,
 				action: () => {
 					action.handler(user);

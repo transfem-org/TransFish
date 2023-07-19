@@ -1,6 +1,5 @@
 import { defineAsyncComponent, Ref, inject } from "vue";
-import * as misskey from "calckey-js";
-import { pleaseLogin } from "./please-login";
+import * as misskey from "firefish-js";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { instance } from "@/instance";
@@ -9,10 +8,11 @@ import copyToClipboard from "@/scripts/copy-to-clipboard";
 import { url } from "@/config";
 import { noteActions } from "@/store";
 import { shareAvailable } from "@/scripts/share-available";
+import { getUserMenu } from "@/scripts/get-user-menu";
 
 export function getNoteMenu(props: {
 	note: misskey.entities.Note;
-	menuButton: Ref<HTMLElement>;
+	menuButton: Ref<HTMLElement | undefined>;
 	translation: Ref<any>;
 	translating: Ref<boolean>;
 	isDeleted: Ref<boolean>;
@@ -61,6 +61,16 @@ export function getNoteMenu(props: {
 		});
 	}
 
+	function edit(): void {
+		os.post({
+			initialNote: appearNote,
+			renote: appearNote.renote,
+			reply: appearNote.reply,
+			channel: appearNote.channel,
+			editId: appearNote.id,
+		});
+	}
+
 	function toggleFavorite(favorite: boolean): void {
 		os.apiWithDialog(
 			favorite ? "notes/favorites/create" : "notes/favorites/delete",
@@ -98,6 +108,11 @@ export function getNoteMenu(props: {
 		os.success();
 	}
 
+	function copyOriginal(): void {
+		copyToClipboard(appearNote.url ?? appearNote.uri);
+		os.success();
+	}
+
 	function togglePin(pin: boolean): void {
 		os.apiWithDialog(
 			pin ? "i/pin" : "i/unpin",
@@ -105,16 +120,14 @@ export function getNoteMenu(props: {
 				noteId: appearNote.id,
 			},
 			undefined,
-			null,
-			(res) => {
-				if (res.id === "72dab508-c64d-498f-8740-a8eec1ba385a") {
-					os.alert({
-						type: "error",
-						text: i18n.ts.pinLimitExceeded,
-					});
-				}
-			},
-		);
+		).catch((res) => {
+			if (res.id === "72dab508-c64d-498f-8740-a8eec1ba385a") {
+				os.alert({
+					type: "error",
+					text: i18n.ts.pinLimitExceeded,
+				});
+			}
+		});
 	}
 
 	async function clip(): Promise<void> {
@@ -122,7 +135,7 @@ export function getNoteMenu(props: {
 		os.popupMenu(
 			[
 				{
-					icon: "ph-plus-bold ph-lg",
+					icon: "ph-plus ph-bold ph-lg",
 					text: i18n.ts.createNew,
 					action: async () => {
 						const { canceled, result } = await os.form(i18n.ts.createNewClip, {
@@ -240,11 +253,14 @@ export function getNoteMenu(props: {
 			noteId: appearNote.id,
 		});
 
+		const isAppearAuthor = appearNote.userId === $i.id;
+		const isModerator = $i.isAdmin || $i.isModerator;
+
 		menu = [
 			...(props.currentClipPage?.value.userId === $i.id
 				? [
 						{
-							icon: "ph-minus-circle-bold ph-lg",
+							icon: "ph-minus-circle ph-bold ph-lg",
 							text: i18n.ts.unclip,
 							danger: true,
 							action: unclip,
@@ -252,68 +268,34 @@ export function getNoteMenu(props: {
 						null,
 				  ]
 				: []),
-			{
-				icon: "ph-clipboard-text-bold ph-lg",
-				text: i18n.ts.copyContent,
-				action: copyContent,
-			},
-			{
-				icon: "ph-link-simple-bold ph-lg",
-				text: i18n.ts.copyLink,
-				action: copyLink,
-			},
-			appearNote.url || appearNote.uri
-				? {
-						icon: "ph-arrow-square-out-bold ph-lg",
-						text: i18n.ts.showOnRemote,
-						action: () => {
-							window.open(appearNote.url || appearNote.uri, "_blank");
-						},
-				  }
-				: undefined,
-			shareAvailable()
-				? {
-						icon: "ph-share-network-bold ph-lg",
-						text: i18n.ts.share,
-						action: share,
-				  }
-				: undefined,
-			instance.translatorAvailable
-				? {
-						icon: "ph-translate-bold ph-lg",
-						text: i18n.ts.translate,
-						action: translate,
-				  }
-				: undefined,
-			null,
 			statePromise.then((state) =>
 				state?.isFavorited
 					? {
-							icon: "ph-bookmark-simple-bold ph-lg",
+							icon: "ph-bookmark-simple ph-bold ph-lg",
 							text: i18n.ts.unfavorite,
 							action: () => toggleFavorite(false),
 					  }
 					: {
-							icon: "ph-bookmark-simple-bold ph-lg",
+							icon: "ph-bookmark-simple ph-bold ph-lg",
 							text: i18n.ts.favorite,
 							action: () => toggleFavorite(true),
 					  },
 			),
 			{
-				icon: "ph-paperclip-bold ph-lg",
+				icon: "ph-paperclip ph-bold ph-lg",
 				text: i18n.ts.clip,
 				action: () => clip(),
 			},
-			appearNote.userId !== $i.id
+			!isAppearAuthor
 				? statePromise.then((state) =>
 						state.isWatching
 							? {
-									icon: "ph-eye-slash-bold ph-lg",
+									icon: "ph-eye-slash ph-bold ph-lg",
 									text: i18n.ts.unwatch,
 									action: () => toggleWatch(false),
 							  }
 							: {
-									icon: "ph-eye-bold ph-lg",
+									icon: "ph-eye ph-bold ph-lg",
 									text: i18n.ts.watch,
 									action: () => toggleWatch(true),
 							  },
@@ -322,103 +304,176 @@ export function getNoteMenu(props: {
 			statePromise.then((state) =>
 				state.isMutedThread
 					? {
-							icon: "ph-speaker-x-bold ph-lg",
+							icon: "ph-speaker-x ph-bold ph-lg",
 							text: i18n.ts.unmuteThread,
 							action: () => toggleThreadMute(false),
 					  }
 					: {
-							icon: "ph-speaker-x-bold ph-lg",
+							icon: "ph-speaker-x ph-bold ph-lg",
 							text: i18n.ts.muteThread,
 							action: () => toggleThreadMute(true),
 					  },
 			),
-			appearNote.userId === $i.id
+			isAppearAuthor
 				? ($i.pinnedNoteIds || []).includes(appearNote.id)
 					? {
-							icon: "ph-push-pin-bold ph-lg",
+							icon: "ph-push-pin ph-bold ph-lg",
 							text: i18n.ts.unpin,
 							action: () => togglePin(false),
 					  }
 					: {
-							icon: "ph-push-pin-bold ph-lg",
+							icon: "ph-push-pin ph-bold ph-lg",
 							text: i18n.ts.pin,
 							action: () => togglePin(true),
 					  }
 				: undefined,
+			instance.translatorAvailable
+				? {
+						icon: "ph-translate ph-bold ph-lg",
+						text: i18n.ts.translate,
+						action: translate,
+				  }
+				: undefined,
+			appearNote.url || appearNote.uri
+				? {
+						icon: "ph-arrow-square-out ph-bold ph-lg",
+						text: i18n.ts.showOnRemote,
+						action: () => {
+							window.open(appearNote.url || appearNote.uri, "_blank");
+						},
+				  }
+				: undefined,
+			{
+				type: "parent",
+				icon: "ph-share-network ph-bold ph-lg",
+				text: i18n.ts.share,
+				children: [
+					{
+						icon: "ph-clipboard-text ph-bold ph-lg",
+						text: i18n.ts.copyContent,
+						action: copyContent,
+					},
+					{
+						icon: "ph-link-simple ph-bold ph-lg",
+						text: i18n.ts.copyLink,
+						action: copyLink,
+					},
+					appearNote.url || appearNote.uri
+						? {
+								icon: "ph-link-simple ph-bold ph-lg",
+								text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+								action: copyOriginal,
+						  }
+						: undefined,
+					shareAvailable()
+						? {
+								icon: "ph-share-network ph-bold ph-lg",
+								text: i18n.ts.share,
+								action: share,
+						  }
+						: undefined,
+				],
+			},
 			/*
 		...($i.isModerator || $i.isAdmin ? [
 			null,
 			{
-				icon: 'ph-megaphone-simple-bold ph-lg',
+				icon: 'ph-megaphone-simple ph-bold ph-lg',
 				text: i18n.ts.promote,
 				action: promote
 			}]
 			: []
 		),*/
-			...(appearNote.userId !== $i.id
-				? [
-						null,
-						{
-							icon: "ph-warning-circle-bold ph-lg",
-							text: i18n.ts.reportAbuse,
-							action: () => {
-								const u =
-									appearNote.url ||
-									appearNote.uri ||
-									`${url}/notes/${appearNote.id}`;
-								os.popup(
-									defineAsyncComponent(
-										() => import("@/components/MkAbuseReportWindow.vue"),
-									),
-									{
-										user: appearNote.user,
-										initialComment: `Note: ${u}\n-----\n`,
-									},
-									{},
-									"closed",
-								);
-							},
+			null,
+			!isAppearAuthor
+				? {
+						icon: "ph-warning-circle ph-bold ph-lg",
+						text: i18n.ts.reportAbuse,
+						action: () => {
+							const u =
+								appearNote.url ||
+								appearNote.uri ||
+								`${url}/notes/${appearNote.id}`;
+							os.popup(
+								defineAsyncComponent(
+									() => import("@/components/MkAbuseReportWindow.vue"),
+								),
+								{
+									user: appearNote.user,
+									initialComment: `Note: ${u}\n-----\n`,
+								},
+								{},
+								"closed",
+							);
 						},
-				  ]
-				: []),
-			...(appearNote.userId === $i.id || $i.isModerator || $i.isAdmin
-				? [
-						null,
-						appearNote.userId === $i.id
-							? {
-									icon: "ph-eraser-bold ph-lg",
-									text: i18n.ts.deleteAndEdit,
-									action: delEdit,
-							  }
-							: undefined,
-						{
-							icon: "ph-trash-bold ph-lg",
-							text: i18n.ts.delete,
-							danger: true,
-							action: del,
-						},
-				  ]
-				: []),
+				  }
+				: undefined,
+			isAppearAuthor
+				? {
+						icon: "ph-pencil-line ph-bold ph-lg",
+						text: i18n.ts.edit,
+						accent: true,
+						action: edit,
+				  }
+				: undefined,
+			isAppearAuthor
+				? {
+						icon: "ph-eraser ph-bold ph-lg",
+						text: i18n.ts.deleteAndEdit,
+						action: delEdit,
+				  }
+				: undefined,
+			isAppearAuthor || isModerator
+				? {
+						icon: "ph-trash ph-bold ph-lg",
+						text: i18n.ts.delete,
+						danger: true,
+						action: del,
+				  }
+				: undefined,
+			!isAppearAuthor ? null : undefined,
+			!isAppearAuthor
+				? {
+						type: "parent",
+						icon: "ph-user ph-bold ph-lg",
+						text: i18n.ts.user,
+						children: getUserMenu(appearNote.user),
+				  }
+				: undefined,
 		].filter((x) => x !== undefined);
 	} else {
 		menu = [
+			appearNote.url || appearNote.uri
+				? {
+						icon: "ph-arrow-square-out ph-bold ph-lg",
+						text: i18n.ts.showOnRemote,
+						action: () => {
+							window.open(appearNote.url || appearNote.uri, "_blank");
+						},
+				  }
+				: undefined,
 			{
-				icon: "ph-clipboard-text-bold ph-lg",
+				icon: "ph-clipboard-text ph-bold ph-lg",
 				text: i18n.ts.copyContent,
 				action: copyContent,
 			},
 			{
-				icon: "ph-link-simple-bold ph-lg",
+				icon: "ph-link-simple ph-bold ph-lg",
 				text: i18n.ts.copyLink,
 				action: copyLink,
 			},
 			appearNote.url || appearNote.uri
 				? {
-						icon: "ph-arrow-square-out-bold ph-lg",
-						text: i18n.ts.showOnRemote,
-						action: () => {
-							window.open(appearNote.url || appearNote.uri, "_blank");
-						},
+						icon: "ph-link-simple ph-bold ph-lg",
+						text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+						action: copyOriginal,
+				  }
+				: undefined,
+			shareAvailable()
+				? {
+						icon: "ph-share-network ph-bold ph-lg",
+						text: i18n.ts.share,
+						action: share,
 				  }
 				: undefined,
 		].filter((x) => x !== undefined);
@@ -428,7 +483,7 @@ export function getNoteMenu(props: {
 		menu = menu.concat([
 			null,
 			...noteActions.map((action) => ({
-				icon: "ph-plug-bold ph-lg",
+				icon: "ph-plug ph-bold ph-lg",
 				text: action.title,
 				action: () => {
 					action.handler(appearNote);

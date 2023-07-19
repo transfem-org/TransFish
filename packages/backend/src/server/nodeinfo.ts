@@ -3,7 +3,7 @@ import config from "@/config/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { Users, Notes } from "@/models/index.js";
 import { IsNull, MoreThan } from "typeorm";
-import { MAX_NOTE_TEXT_LENGTH } from "@/const.js";
+import { MAX_NOTE_TEXT_LENGTH, MAX_CAPTION_TEXT_LENGTH } from "@/const.js";
 import { Cache } from "@/misc/cache.js";
 
 const router = new Router();
@@ -50,10 +50,10 @@ const nodeinfo2 = async () => {
 
 	return {
 		software: {
-			name: "calckey",
+			name: "firefish",
 			version: config.version,
 			repository: meta.repositoryUrl,
-			homepage: "https://calckey.cloud",
+			homepage: "https://joinfirefish.org/",
 		},
 		protocols: ["activitypub"],
 		services: {
@@ -82,9 +82,13 @@ const nodeinfo2 = async () => {
 			disableRecommendedTimeline: meta.disableRecommendedTimeline,
 			disableGlobalTimeline: meta.disableGlobalTimeline,
 			emailRequiredForSignup: meta.emailRequiredForSignup,
+			searchFilters: config.meilisearch ? true : false,
+			postEditing: true,
+			postImports: meta.experimentalFeatures?.postImports || false,
 			enableHcaptcha: meta.enableHcaptcha,
 			enableRecaptcha: meta.enableRecaptcha,
 			maxNoteTextLength: MAX_NOTE_TEXT_LENGTH,
+			maxCaptionTextLength: MAX_CAPTION_TEXT_LENGTH,
 			enableTwitterIntegration: meta.enableTwitterIntegration,
 			enableGithubIntegration: meta.enableGithubIntegration,
 			enableDiscordIntegration: meta.enableDiscordIntegration,
@@ -96,7 +100,10 @@ const nodeinfo2 = async () => {
 	};
 };
 
-const cache = new Cache<Awaited<ReturnType<typeof nodeinfo2>>>(1000 * 60 * 10);
+const cache = new Cache<Awaited<ReturnType<typeof nodeinfo2>>>(
+	"nodeinfo",
+	60 * 10,
+);
 
 router.get(nodeinfo2_1path, async (ctx) => {
 	const base = await cache.fetch(null, () => nodeinfo2());

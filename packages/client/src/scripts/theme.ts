@@ -24,6 +24,8 @@ export const getBuiltinThemes = () =>
 		[
 			"l-rosepinedawn",
 			"l-light",
+			"l-nord",
+			"l-gruvbox",
 			"l-coffee",
 			"l-apricot",
 			"l-rainy",
@@ -35,6 +37,10 @@ export const getBuiltinThemes = () =>
 			"d-rosepine",
 			"d-rosepinemoon",
 			"d-dark",
+			"d-nord",
+			"d-gruvbox",
+			"d-catppuccin-frappe",
+			"d-catppuccin-mocha",
 			"d-persimmon",
 			"d-astro",
 			"d-future",
@@ -106,7 +112,7 @@ function compile(theme: Theme): Record<string, string> {
 	function getColor(val: string): tinycolor.Instance {
 		// ref (prop)
 		if (val[0] === "@") {
-			return getColor(theme.props[val.substr(1)]);
+			return getColor(theme.props[val.slice(1)]);
 		}
 
 		// ref (const)
@@ -117,7 +123,7 @@ function compile(theme: Theme): Record<string, string> {
 		// func
 		else if (val[0] === ":") {
 			const parts = val.split("<");
-			const func = parts.shift().substr(1);
+			const func = parts.shift().slice(1);
 			const arg = parseFloat(parts.shift());
 			const color = getColor(parts.join("<"));
 

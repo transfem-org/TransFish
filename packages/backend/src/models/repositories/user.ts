@@ -1,4 +1,3 @@
-import { URL } from "url";
 import { In, Not } from "typeorm";
 import Ajv from "ajv";
 import type { ILocalUser, IRemoteUser } from "@/models/entities/user.js";
@@ -19,7 +18,6 @@ import { createPerson } from "@/remote/activitypub/models/person.js";
 import {
 	AnnouncementReads,
 	Announcements,
-	AntennaNotes,
 	Blockings,
 	ChannelFollowings,
 	DriveFiles,
@@ -28,6 +26,7 @@ import {
 	Instances,
 	MessagingMessages,
 	Mutings,
+	RenoteMutings,
 	Notes,
 	NoteUnreads,
 	Notifications,
@@ -39,7 +38,10 @@ import {
 } from "../index.js";
 import type { Instance } from "../entities/instance.js";
 
-const userInstanceCache = new Cache<Instance | null>(1000 * 60 * 60 * 3);
+const userInstanceCache = new Cache<Instance | null>(
+	"userInstance",
+	60 * 60 * 3,
+);
 
 type IsUserDetailed<Detailed extends boolean> = Detailed extends true
 	? Packed<"UserDetailed">
@@ -66,7 +68,7 @@ const nameSchema = { type: "string", minLength: 1, maxLength: 50 } as const;
 const descriptionSchema = {
 	type: "string",
 	minLength: 1,
-	maxLength: 500,
+	maxLength: 2048,
 } as const;
 const locationSchema = { type: "string", minLength: 1, maxLength: 50 } as const;
 const birthdaySchema = {
@@ -171,6 +173,13 @@ export const UserRepository = db.getRepository(User).extend({
 				},
 				take: 1,
 			}).then((n) => n > 0),
+			isRenoteMuted: RenoteMutings.count({
+				where: {
+					muterId: me,
+					muteeId: target,
+				},
+				take: 1,
+			}).then((n) => n > 0),
 		});
 	},
 
@@ -248,17 +257,24 @@ export const UserRepository = db.getRepository(User).extend({
 	},
 
 	async getHasUnreadAntenna(userId: User["id"]): Promise<boolean> {
-		const myAntennas = (await getAntennas()).filter((a) => a.userId === userId);
+		// try {
+		// 	const myAntennas = (await getAntennas()).filter(
+		// 		(a) => a.userId === userId,
+		// 	);
 
-		const unread =
-			myAntennas.length > 0
-				? await AntennaNotes.findOneBy({
-						antennaId: In(myAntennas.map((x) => x.id)),
-						read: false,
-				  })
-				: null;
+		// 	const unread =
+		// 		myAntennas.length > 0
+		// 			? await AntennaNotes.findOneBy({
+		// 					antennaId: In(myAntennas.map((x) => x.id)),
+		// 					read: false,
+		// 			  })
+		// 			: null;
 
-		return unread != null;
+		// 	return unread != null;
+		// } catch (e) {
+		// 	return false;
+		// }
+		return false; // TODO
 	},
 
 	async getHasUnreadChannel(userId: User["id"]): Promise<boolean> {
@@ -437,7 +453,9 @@ export const UserRepository = db.getRepository(User).extend({
 			isAdmin: user.isAdmin || falsy,
 			isModerator: user.isModerator || falsy,
 			isBot: user.isBot || falsy,
+			isLocked: user.isLocked,
 			isCat: user.isCat || falsy,
+			speakAsCat: user.speakAsCat || falsy,
 			instance: user.host
 				? userInstanceCache
 						.fetch(
@@ -480,7 +498,6 @@ export const UserRepository = db.getRepository(User).extend({
 							: null,
 						bannerBlurhash: user.banner?.blurhash || null,
 						bannerColor: null, // 後方互換性のため
-						isLocked: user.isLocked,
 						isSilenced: user.isSilenced || falsy,
 						isSuspended: user.isSuspended || falsy,
 						description: profile!.description,
@@ -526,6 +543,7 @@ export const UserRepository = db.getRepository(User).extend({
 						carefulBot: profile!.carefulBot,
 						autoAcceptFollowed: profile!.autoAcceptFollowed,
 						noCrawle: profile!.noCrawle,
+						preventAiLearning: profile!.preventAiLearning,
 						isExplorable: user.isExplorable,
 						isDeleted: user.isDeleted,
 						hideOnlineStatus: user.hideOnlineStatus,
@@ -551,7 +569,6 @@ export const UserRepository = db.getRepository(User).extend({
 						mutedInstances: profile!.mutedInstances,
 						mutingNotificationTypes: profile!.mutingNotificationTypes,
 						emailNotificationTypes: profile!.emailNotificationTypes,
-						showTimelineReplies: user.showTimelineReplies || falsy,
 				  }
 				: {}),
 
@@ -584,6 +601,7 @@ export const UserRepository = db.getRepository(User).extend({
 						isBlocking: relation.isBlocking,
 						isBlocked: relation.isBlocked,
 						isMuted: relation.isMuted,
+						isRenoteMuted: relation.isRenoteMuted,
 				  }
 				: {}),
 		} as Promiseable<Packed<"User">> as Promiseable<

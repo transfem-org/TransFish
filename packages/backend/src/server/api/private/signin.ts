@@ -1,6 +1,5 @@
 import type Koa from "koa";
-import bcrypt from "bcryptjs";
-import * as speakeasy from "speakeasy";
+import * as OTPAuth from "otpauth";
 import signin from "../common/signin.js";
 import config from "@/config/index.js";
 import {
@@ -12,6 +11,11 @@ import {
 } from "@/models/index.js";
 import type { ILocalUser } from "@/models/entities/user.js";
 import { genId } from "@/misc/gen-id.js";
+import {
+	comparePassword,
+	hashPassword,
+	isOldAlgorithm,
+} from "@/misc/password.js";
 import { verifyLogin, hash } from "../2fa.js";
 import { randomBytes } from "node:crypto";
 import { IsNull } from "typeorm";
@@ -88,7 +92,12 @@ export default async (ctx: Koa.Context) => {
 	const profile = await UserProfiles.findOneByOrFail({ userId: user.id });
 
 	// Compare password
-	const same = await bcrypt.compare(password, profile.password!);
+	const same = await comparePassword(password, profile.password!);
+
+	if (same && isOldAlgorithm(profile.password!)) {
+		profile.password = await hashPassword(password);
+		await UserProfiles.save(profile);
+	}
 
 	async function fail(status?: number, failure?: { id: string }) {
 		// Append signin history
@@ -127,14 +136,18 @@ export default async (ctx: Koa.Context) => {
 			return;
 		}
 
-		const verified = (speakeasy as any).totp.verify({
-			secret: profile.twoFactorSecret,
-			encoding: "base32",
-			token: token,
-			window: 2,
+		if (profile.twoFactorSecret == null) {
+			throw new Error("Attempted 2FA signin without 2FA enabled.");
+		}
+
+		const delta = OTPAuth.TOTP.validate({
+			secret: OTPAuth.Secret.fromBase32(profile.twoFactorSecret),
+			digits: 6,
+			token,
+			window: 1,
 		});
 
-		if (verified) {
+		if (delta != null) {
 			signin(ctx, user);
 			return;
 		} else {

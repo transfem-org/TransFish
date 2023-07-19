@@ -1,56 +1,72 @@
 <template>
-<MkA
-	class="rivslvers"
-	tabindex="-1"
-	:class="{
-		isMe: isMe(message),
-		isRead: message.groupId ? message.reads.includes($i?.id) : message.isRead,
-	}"
-	:to="
-		message.groupId
-			? `/my/messaging/group/${message.groupId}`
-			: `/my/messaging/${getAcct(
-				isMe(message) ? message.recipient : message.user
-			)}`
-	"
->
-	<div class="message _block">
-		<MkAvatar
-			class="avatar"
-			:user="
-				message.groupId
-					? message.user
-					: isMe(message)
+	<MkA
+		class="rivslvers"
+		:class="{
+			isMe: isMe(message),
+			isRead: message.groupId
+				? message.reads.includes($i?.id)
+				: message.isRead,
+		}"
+		:to="
+			message.groupId
+				? `/my/messaging/group/${message.groupId}`
+				: `/my/messaging/${getAcct(
+						isMe(message) ? message.recipient : message.user,
+				  )}`
+		"
+	>
+		<div class="message _block">
+			<MkAvatar
+				class="avatar"
+				:user="
+					message.groupId
+						? message.user
+						: isMe(message)
 						? message.recipient
 						: message.user
-			"
-			:show-indicator="true"
-		/>
-		<header v-if="message.groupId">
-			<span class="name">{{ message.group.name }}</span>
-			<MkTime :time="message.createdAt" class="time"/>
-		</header>
-		<header v-else>
-			<span class="name"><MkUserName :user="isMe(message) ? message.recipient : message.user"/></span>
-			<span class="username">@{{ acct(isMe(message) ? message.recipient : message.user) }}</span>
-			<MkTime :time="message.createdAt" class="time"/>
-		</header>
-		<div class="body">
-			<p class="text">
-				<span v-if="isMe(message)" class="me">{{ i18n.ts.you }}: </span>
-				<Mfm v-if="message.text != null && message.text.length > 0" :text="message.text"/>
-				<span v-else> 📎</span>
-			</p>
+				"
+				:show-indicator="true"
+				disable-link
+			/>
+			<header v-if="message.groupId">
+				<span class="name">{{ message.group.name }}</span>
+				<MkTime :time="message.createdAt" class="time" />
+			</header>
+			<header v-else>
+				<span class="name"
+					><MkUserName
+						:user="
+							isMe(message) ? message.recipient : message.user
+						"
+				/></span>
+				<span class="username"
+					>@{{
+						acct(isMe(message) ? message.recipient : message.user)
+					}}</span
+				>
+				<MkTime :time="message.createdAt" class="time" />
+			</header>
+			<div class="body">
+				<p class="text">
+					<span v-if="isMe(message)" class="me"
+						>{{ i18n.ts.you }}:
+					</span>
+					<Mfm
+						v-if="message.text != null && message.text.length > 0"
+						:text="message.text"
+					/>
+					<span v-else> 📎</span>
+				</p>
+			</div>
 		</div>
-	</div>
-</MkA>
+	</MkA>
 </template>
 
 <script lang="ts" setup>
-import * as Acct from 'calckey-js/built/acct';
-import { i18n } from '@/i18n';
-import { acct } from '@/filters/user';
-import { $i } from '@/account';
+import * as Acct from "firefish-js/built/acct";
+import { i18n } from "@/i18n";
+import { acct } from "@/filters/user";
+import { $i } from "@/account";
 
 const getAcct = Acct.toString;
 
@@ -87,11 +103,7 @@ function isMe(message): boolean {
 		}
 
 		&:not(.isMe):not(.isRead) {
-			> div {
-				background-image: url("/client-assets/unread.svg");
-				background-repeat: no-repeat;
-				background-position: 0 center;
-			}
+			background-color: var(--accentedBg);
 		}
 
 		&:after {
@@ -138,7 +150,6 @@ function isMe(message): boolean {
 		}
 
 		> .body {
-
 			> .text {
 				display: block;
 				margin: 0 0 0 0;
@@ -164,13 +175,6 @@ function isMe(message): boolean {
 
 	&.max-width_400px {
 		> .message {
-			&:not(.isMe):not(.isRead) {
-				> div {
-					background-image: none;
-					border-left: solid 4px #3aa2dc;
-				}
-			}
-
 			> div {
 				padding: 16px;
 				font-size: 0.9em;

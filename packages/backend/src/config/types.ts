@@ -20,9 +20,21 @@ export type Source = {
 		host: string;
 		port: number;
 		family?: number;
-		pass: string;
+		pass?: string;
 		db?: number;
 		prefix?: string;
+		user?: string;
+		tls?: { [y: string]: string };
+	};
+	cacheServer?: {
+		host: string;
+		port: number;
+		family?: number;
+		pass?: string;
+		db?: number;
+		prefix?: string;
+		user?: string;
+		tls?: { [z: string]: string };
 	};
 	elasticsearch: {
 		host: string;
@@ -31,6 +43,19 @@ export type Source = {
 		user?: string;
 		pass?: string;
 		index?: string;
+	};
+	sonic: {
+		host: string;
+		port: number;
+		auth?: string;
+		collection?: string;
+		bucket?: string;
+	};
+	meilisearch: {
+		host: string;
+		port: number;
+		apiKey?: string;
+		ssl: boolean;
 	};
 
 	proxy?: string;
@@ -45,7 +70,12 @@ export type Source = {
 
 	clusterLimit?: number;
 
-	id: string;
+	onlyQueueProcessor?: boolean;
+
+	cuid?: {
+		length?: number;
+		fingerprint?: string;
+	};
 
 	outgoingAddressFamily?: "ipv4" | "ipv6" | "dual";
 
@@ -70,14 +100,22 @@ export type Source = {
 		sha256CertFingerprints?: string[];
 	};
 
+	reservedUsernames?: string[];
+
 	// Managed hosting stuff
 	maxUserSignups?: number;
 	isManagedHosting?: boolean;
 	maxNoteLength?: number;
+	maxCaptionLength?: number;
 	deepl: {
 		managed?: boolean;
 		authKey?: string;
 		isPro?: boolean;
+	};
+	libreTranslate: {
+		managed?: boolean;
+		apiUrl?: string;
+		apiKey?: string;
 	};
 	email: {
 		managed?: boolean;

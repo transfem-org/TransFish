@@ -6,6 +6,7 @@ import { ApiError } from "../../../error.js";
 import rndstr from "rndstr";
 import { publishBroadcastStream } from "@/services/stream.js";
 import { db } from "@/db/postgre.js";
+import { getEmojiSize } from "@/misc/emoji-meta.js";
 
 export const meta = {
 	tags: ["admin"],
@@ -39,6 +40,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		? file.name.split(".")[0]
 		: `_${rndstr("a-z0-9", 8)}_`;
 
+	const size = await getEmojiSize(file.url);
+
 	const emoji = await Emojis.insert({
 		id: genId(),
 		updatedAt: new Date(),
@@ -49,6 +52,9 @@ export default define(meta, paramDef, async (ps, me) => {
 		originalUrl: file.url,
 		publicUrl: file.webpublicUrl ?? file.url,
 		type: file.webpublicType ?? file.type,
+		license: null,
+		width: size.width || null,
+		height: size.height || null,
 	}).then((x) => Emojis.findOneByOrFail(x.identifiers[0]));
 
 	await db.queryResultCache!.remove(["meta_emojis"]);

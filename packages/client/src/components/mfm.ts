@@ -12,8 +12,8 @@ import MkGoogle from "@/components/MkGoogle.vue";
 import MkSparkle from "@/components/MkSparkle.vue";
 import MkA from "@/components/global/MkA.vue";
 import { host } from "@/config";
-import { MFM_TAGS } from "@/scripts/mfm-tags";
 import { reducedMotion } from "@/scripts/reduced-motion";
+import { defaultStore } from "@/store";
 
 export default defineComponent({
 	props: {
@@ -49,18 +49,30 @@ export default defineComponent({
 	render() {
 		if (this.text == null || this.text === "") return;
 
-		const ast = (this.plain ? mfm.parseSimple : mfm.parse)(this.text, {
-			fnNameList: MFM_TAGS,
-		});
+		const isPlain = this.plain;
+
+		const ast = (isPlain ? mfm.parseSimple : mfm.parse)(this.text);
 
 		const validTime = (t: string | null | undefined) => {
 			if (t == null) return null;
 			return t.match(/^[0-9.]+s$/) ? t : null;
 		};
 
+		const validNumber = (n: string | null | undefined) => {
+			if (n == null) return null;
+			const parsed = parseFloat(n);
+			return !isNaN(parsed) && isFinite(parsed) && parsed > 0;
+		};
+		// const validEase = (e: string | null | undefined) => {
+		// 	if (e == null) return null;
+		// 	return e.match(/(steps)?\(-?[0-9.]+,-?[0-9.]+,-?[0-9.]+,-?[0-9.]+\)/)
+		// 		? (e.startsWith("steps") ? e : "cubic-bezier" + e)
+		// 		: null
+		// }
+
 		const genEl = (ast: mfm.MfmNode[]) =>
 			concat(
-				ast.map((token): VNode[] => {
+				ast.map((token, index): VNode[] => {
 					switch (token.type) {
 						case "text": {
 							const text = token.props.text.replace(/(\r\n|\n|\r)/g, "\n");
@@ -98,39 +110,35 @@ export default defineComponent({
 
 						case "fn": {
 							// TODO: CSSを文字列で組み立てていくと token.props.args.~~~ 経由でCSSインジェクションできるのでよしなにやる
-							let style;
+							let style: string;
 							switch (token.props.name) {
 								case "tada": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style = `font-size: 150%;${
-										this.$store.state.animatedMfm
-											? `animation: tada ${speed} linear infinite both;`
-											: ""
-									}`;
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									// const ease = validEase(token.props.args.ease) || "linear";
+									style = `font-size: 150%; animation: tada ${speed} ${delay} linear ${loop} both;`;
 									break;
 								}
 								case "jelly": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-rubberBand ${speed} linear infinite both;`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-rubberBand ${speed} ${delay} linear ${loop} both;`;
 									break;
 								}
 								case "twitch": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-twitch ${speed} ease infinite;`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-twitch ${speed} ${delay} ease ${loop};`;
 									break;
 								}
 								case "shake": {
 									const speed = validTime(token.props.args.speed) || "0.5s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-shake ${speed} ease infinite;`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-shake ${speed} ${delay} ease ${loop};`;
 									break;
 								}
 								case "spin": {
@@ -145,41 +153,47 @@ export default defineComponent({
 										? "mfm-spinY"
 										: "mfm-spin";
 									const speed = validTime(token.props.args.speed) || "1.5s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: ${anime} ${speed} linear infinite; animation-direction: ${direction};`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: ${anime} ${speed} ${delay} linear ${loop}; animation-direction: ${direction};`;
 									break;
 								}
 								case "jump": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-jump ${speed} linear infinite;`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-jump ${speed} ${delay} linear ${loop};`;
 									break;
 								}
 								case "bounce": {
 									const speed = validTime(token.props.args.speed) || "0.75s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-bounce ${speed} linear infinite; transform-origin: center bottom;`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-bounce ${speed} ${delay} linear ${loop}; transform-origin: center bottom;`;
 									break;
 								}
 								case "rainbow": {
 									const speed = validTime(token.props.args.speed) || "1s";
-									style =
-										this.$store.state.animatedMfm && !reducedMotion()
-											? `animation: mfm-rainbow ${speed} linear infinite;`
-											: "";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-rainbow ${speed} ${delay} linear ${loop};`;
 									break;
 								}
 								case "sparkle": {
-									if (!(this.$store.state.animatedMfm || reducedMotion())) {
+									if (reducedMotion()) {
 										return genEl(token.children);
 									}
 									return h(MkSparkle, {}, genEl(token.children));
+								}
+								case "fade": {
+									const direction = token.props.args.out
+										? "alternate-reverse"
+										: "alternate";
+									const speed = validTime(token.props.args.speed) || "1.5s";
+									const delay = validTime(token.props.args.delay) || "0s";
+									const loop = validNumber(token.props.args.loop) || "infinite";
+									style = `animation: mfm-fade ${speed} ${delay} linear ${loop}; animation-direction: ${direction};`;
+									break;
 								}
 								case "flip": {
 									const transform =
@@ -239,7 +253,7 @@ export default defineComponent({
 									return h(
 										"span",
 										{
-											class: "_mfm_blur_",
+											class: "_blur_text",
 										},
 										genEl(token.children),
 									);
@@ -253,6 +267,56 @@ export default defineComponent({
 									const degrees = parseInt(token.props.args.deg) || "90";
 									style = `transform: ${rotate}(${degrees}deg); transform-origin: center center;`;
 									break;
+								}
+								case "position": {
+									const x = parseFloat(token.props.args.x ?? "0");
+									const y = parseFloat(token.props.args.y ?? "0");
+									style = `transform: translateX(${x}em) translateY(${y}em);`;
+									break;
+								}
+								case "crop": {
+									const top = parseFloat(token.props.args.top ?? "0");
+									const right = parseFloat(token.props.args.right ?? "0");
+									const bottom = parseFloat(token.props.args.bottom ?? "0");
+									const left = parseFloat(token.props.args.left ?? "0");
+									style = `clip-path: inset(${top}% ${right}% ${bottom}% ${left}%);`;
+									break;
+								}
+								case "scale": {
+									const x = Math.min(parseFloat(token.props.args.x ?? "1"), 5);
+									const y = Math.min(parseFloat(token.props.args.y ?? "1"), 5);
+									style = `transform: scale(${x}, ${y});`;
+									break;
+								}
+								case "fg": {
+									let color = token.props.args.color;
+									if (!/^[0-9a-f]{3,6}$/i.test(color)) color = "f00";
+									style = `color: #${color};`;
+									break;
+								}
+								case "bg": {
+									let color = token.props.args.color;
+									if (!/^[0-9a-f]{3,6}$/i.test(color)) color = "f00";
+									style = `background-color: #${color};`;
+									break;
+								}
+								case "small": {
+									return h(
+										"small",
+										{
+											style: "opacity: 0.7;",
+										},
+										genEl(token.children),
+									);
+								}
+								case "center": {
+									return h(
+										"div",
+										{
+											style: "text-align: center;",
+										},
+										genEl(token.children),
+									);
 								}
 							}
 							if (style == null) {
@@ -291,7 +355,7 @@ export default defineComponent({
 								h(
 									"div",
 									{
-										style: "text-align:center;",
+										style: "text-align: center;",
 									},
 									genEl(token.children),
 								),
@@ -343,11 +407,7 @@ export default defineComponent({
 									MkA,
 									{
 										key: Math.random(),
-										to: this.isNote
-											? `/tags/${encodeURIComponent(token.props.hashtag)}`
-											: `/explore/tags/${encodeURIComponent(
-													token.props.hashtag,
-											  )}`,
+										to: `/tags/${encodeURIComponent(token.props.hashtag)}`,
 										style: "color:var(--hashtag);",
 									},
 									`#${token.props.hashtag}`,
@@ -377,12 +437,7 @@ export default defineComponent({
 
 						case "quote": {
 							if (!this.nowrap) {
-								return [
-									h(
-										"blockquote",
-										genEl(token.children),
-									),
-								];
+								return [h("blockquote", genEl(token.children))];
 							} else {
 								return [
 									h(
@@ -439,6 +494,48 @@ export default defineComponent({
 						}
 
 						case "search": {
+							// Disable "search" keyword
+							// (see the issue #9816 on Gitlab)
+							if (token.props.content.slice(-6).toLowerCase() === "search") {
+								const sentinel = "#";
+								let ast2 = (isPlain ? mfm.parseSimple : mfm.parse)(
+									token.props.content.slice(0, -6) + sentinel,
+								);
+								if (
+									ast2[ast2.length - 1].type === "text" &&
+									ast2[ast2.length - 1].props.text.endsWith(sentinel)
+								) {
+									ast2[ast2.length - 1].props.text = ast2[
+										ast2.length - 1
+									].props.text.slice(0, -1);
+								} else {
+									// I don't think this scope is reachable
+									console.warn(
+										"Something went wrong while parsing MFM. Please send a bug report, if possible.",
+									);
+								}
+
+								let prefix = "\n";
+								if (
+									index === 0 ||
+									[
+										"blockCode",
+										"center",
+										"mathBlock",
+										"quote",
+										"search",
+									].includes(ast[index - 1].type)
+								) {
+									prefix = "";
+								}
+
+								return [
+									prefix,
+									...genEl(ast2),
+									`${token.props.content.slice(-6)}\n`,
+								];
+							}
+
 							return [
 								h(MkGoogle, {
 									key: Math.random(),

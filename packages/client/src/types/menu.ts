@@ -1,15 +1,20 @@
-import * as Misskey from "calckey-js";
+import * as Misskey from "firefish-js";
 import { Ref } from "vue";
 
 export type MenuAction = (ev: MouseEvent) => void;
 
 export type MenuDivider = null;
 export type MenuNull = undefined;
-export type MenuLabel = { type: "label"; text: string };
+export type MenuLabel = {
+	type: "label";
+	text: string;
+	textStyle?: string;
+};
 export type MenuLink = {
 	type: "link";
 	to: string;
 	text: string;
+	textStyle?: string;
 	icon?: string;
 	indicate?: boolean;
 	avatar?: Misskey.entities.User;
@@ -20,6 +25,7 @@ export type MenuA = {
 	target?: string;
 	download?: string;
 	text: string;
+	textStyle?: string;
 	icon?: string;
 	indicate?: boolean;
 };
@@ -35,14 +41,17 @@ export type MenuSwitch = {
 	type: "switch";
 	ref: Ref<boolean>;
 	text: string;
+	textStyle?: string;
 	disabled?: boolean;
 };
 export type MenuButton = {
 	type?: "button";
 	text: string;
+	textStyle?: string;
 	icon?: string;
 	indicate?: boolean;
 	danger?: boolean;
+	accent?: boolean;
 	active?: boolean;
 	hidden?: boolean;
 	avatar?: Misskey.entities.User;
@@ -51,6 +60,7 @@ export type MenuButton = {
 export type MenuParent = {
 	type: "parent";
 	text: string;
+	textStyle?: string;
 	icon?: string;
 	children: OuterMenuItem[];
 };

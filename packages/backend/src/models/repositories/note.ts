@@ -28,7 +28,7 @@ import {
 import { db } from "@/db/postgre.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
 
-async function populatePoll(note: Note, meId: User["id"] | null) {
+export async function populatePoll(note: Note, meId: User["id"] | null) {
 	const poll = await Polls.findOneByOrFail({ noteId: note.id });
 	const choices = poll.choices.map((c) => ({
 		text: c,
@@ -197,7 +197,10 @@ export const NoteRepository = db.getRepository(Note).extend({
 			.map((x) => decodeReaction(x).reaction)
 			.map((x) => x.replace(/:/g, ""));
 
-		const noteEmoji = await populateEmojis(note.emojis.concat(reactionEmojiNames), host);
+		const noteEmoji = await populateEmojis(
+			note.emojis.concat(reactionEmojiNames),
+			host,
+		);
 		const reactionEmoji = await populateEmojis(reactionEmojiNames, host);
 		const packed: Packed<"Note"> = await awaitAll({
 			id: note.id,
@@ -232,6 +235,13 @@ export const NoteRepository = db.getRepository(Note).extend({
 			mentions: note.mentions.length > 0 ? note.mentions : undefined,
 			uri: note.uri || undefined,
 			url: note.url || undefined,
+			updatedAt: note.updatedAt?.toISOString() || undefined,
+			poll: note.hasPoll ? populatePoll(note, meId) : undefined,
+			...(meId
+				? {
+						myReaction: populateMyReaction(note, meId, options?._hint_),
+				  }
+				: {}),
 
 			...(opts.detail
 				? {
@@ -248,26 +258,25 @@ export const NoteRepository = db.getRepository(Note).extend({
 									_hint_: options?._hint_,
 							  })
 							: undefined,
-
-						poll: note.hasPoll ? populatePoll(note, meId) : undefined,
-
-						...(meId
-							? {
-									myReaction: populateMyReaction(note, meId, options?._hint_),
-							  }
-							: {}),
 				  }
 				: {}),
 		});
 
-		if (packed.user.isCat && packed.text) {
+		if (packed.user.isCat && packed.user.speakAsCat && packed.text) {
 			const tokens = packed.text ? mfm.parse(packed.text) : [];
-			mfm.inspect(tokens, (node) => {
-				if (node.type === "text") {
-					// TODO: quoteなtextはskip
-					node.props.text = nyaize(node.props.text);
+			function nyaizeNode(node: mfm.MfmNode) {
+				if (node.type === "quote") return;
+				if (node.type === "text") node.props.text = nyaize(node.props.text);
+
+				if (node.children) {
+					for (const child of node.children) {
+						nyaizeNode(child);
+					}
 				}
-			});
+			}
+
+			for (const node of tokens) nyaizeNode(node);
+
 			packed.text = mfm.toString(tokens);
 		}
 

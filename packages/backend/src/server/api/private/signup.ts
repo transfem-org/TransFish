@@ -1,6 +1,5 @@
 import type Koa from "koa";
 import rndstr from "rndstr";
-import bcrypt from "bcryptjs";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { verifyHcaptcha, verifyRecaptcha } from "@/misc/captcha.js";
 import { Users, RegistrationTickets, UserPendings } from "@/models/index.js";
@@ -9,6 +8,7 @@ import config from "@/config/index.js";
 import { sendEmail } from "@/services/send-email.js";
 import { genId } from "@/misc/gen-id.js";
 import { validateEmailForAccount } from "@/services/validate-email-for-account.js";
+import { hashPassword } from "@/misc/password.js";
 
 export default async (ctx: Koa.Context) => {
 	const body = ctx.request.body;
@@ -44,13 +44,18 @@ export default async (ctx: Koa.Context) => {
 	const invitationCode = body["invitationCode"];
 	const emailAddress = body["emailAddress"];
 
+	if (config.reservedUsernames?.includes(username.toLowerCase())) {
+		ctx.status = 400;
+		return;
+	}
+
 	if (instance.emailRequiredForSignup) {
 		if (emailAddress == null || typeof emailAddress !== "string") {
 			ctx.status = 400;
 			return;
 		}
 
-		const available = await validateEmailForAccount(emailAddress);
+		const { available } = await validateEmailForAccount(emailAddress);
 		if (!available) {
 			ctx.status = 400;
 			return;
@@ -79,8 +84,7 @@ export default async (ctx: Koa.Context) => {
 		const code = rndstr("a-z0-9", 16);
 
 		// Generate hash of password
-		const salt = await bcrypt.genSalt(8);
-		const hash = await bcrypt.hash(password, salt);
+		const hash = await hashPassword(password);
 
 		await UserPendings.insert({
 			id: genId(),

@@ -24,6 +24,7 @@ export default class extends Channel {
 	}
 
 	private async onNote(note: Packed<"Note">) {
+		if (note.visibility === "hidden") return;
 		const noteTags = note.tags
 			? note.tags.map((t: string) => t.toLowerCase())
 			: [];
@@ -36,6 +37,8 @@ export default class extends Channel {
 		if (isUserRelated(note, this.muting)) return;
 		// 流れてきたNoteがブロックされているユーザーが関わるものだったら無視する
 		if (isUserRelated(note, this.blocking)) return;
+
+		if (note.renote && !note.text && this.renoteMuting.has(note.userId)) return;
 
 		this.connection.cacheNote(note);
 

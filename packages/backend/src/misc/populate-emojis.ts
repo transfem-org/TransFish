@@ -7,8 +7,9 @@ import { isSelfHost, toPunyNullable } from "./convert-host.js";
 import { decodeReaction } from "./reaction-lib.js";
 import config from "@/config/index.js";
 import { query } from "@/prelude/url.js";
+import { redisClient } from "@/db/redis.js";
 
-const cache = new Cache<Emoji | null>(1000 * 60 * 60 * 12);
+const cache = new Cache<Emoji | null>("populateEmojis", 60 * 60 * 12);
 
 /**
  * 添付用絵文字情報
@@ -16,6 +17,8 @@ const cache = new Cache<Emoji | null>(1000 * 60 * 60 * 12);
 type PopulatedEmoji = {
 	name: string;
 	url: string;
+	width: number | null;
+	height: number | null;
 };
 
 function normalizeHost(
@@ -68,7 +71,13 @@ export async function populateEmoji(
 			host: host ?? IsNull(),
 		})) || null;
 
-	const emoji = await cache.fetch(`${name} ${host}`, queryOrNull);
+	const cacheKey = `${name} ${host}`;
+	let emoji = await cache.fetch(cacheKey, queryOrNull);
+
+	if (emoji && !(emoji.width && emoji.height)) {
+		emoji = await queryOrNull();
+		await cache.set(cacheKey, emoji);
+	}
 
 	if (emoji == null) return null;
 
@@ -83,6 +92,8 @@ export async function populateEmoji(
 	return {
 		name: emojiName,
 		url,
+		width: emoji.width,
+		height: emoji.height,
 	};
 }
 
@@ -140,7 +151,7 @@ export async function prefetchEmojis(
 	emojis: { name: string; host: string | null }[],
 ): Promise<void> {
 	const notCachedEmojis = emojis.filter(
-		(emoji) => cache.get(`${emoji.name} ${emoji.host}`) == null,
+		async (emoji) => !(await cache.get(`${emoji.name} ${emoji.host}`)),
 	);
 	const emojisQuery: any[] = [];
 	const hosts = new Set(notCachedEmojis.map((e) => e.host));
@@ -159,7 +170,9 @@ export async function prefetchEmojis(
 					select: ["name", "host", "originalUrl", "publicUrl"],
 			  })
 			: [];
+	const trans = redisClient.multi();
 	for (const emoji of _emojis) {
-		cache.set(`${emoji.name} ${emoji.host}`, emoji);
+		cache.set(`${emoji.name} ${emoji.host}`, emoji, trans);
 	}
+	await trans.exec();
 }

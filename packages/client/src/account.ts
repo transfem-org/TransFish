@@ -1,6 +1,5 @@
 import { defineAsyncComponent, reactive } from "vue";
-import * as misskey from "calckey-js";
-import { showSuspendedDialog } from "./scripts/show-suspended-dialog";
+import * as misskey from "firefish-js";
 import { i18n } from "./i18n";
 import { del, get, set } from "@/scripts/idb-proxy";
 import { apiUrl } from "@/config";
@@ -163,7 +162,7 @@ export async function openAccountMenu(
 			{
 				done: (res) => {
 					addAccount(res.id, res.i);
-					success();
+					switchAccountWithToken(res.i);
 				},
 			},
 			"closed",
@@ -242,7 +241,7 @@ export async function openAccountMenu(
 					...accountItemPromises,
 					{
 						type: "parent",
-						icon: "ph-plus-bold ph-lg",
+						icon: "ph-plus ph-bold ph-lg",
 						text: i18n.ts.addAccount,
 						children: [
 							{
@@ -261,13 +260,13 @@ export async function openAccountMenu(
 					},
 					{
 						type: "link",
-						icon: "ph-users-bold ph-lg",
+						icon: "ph-users ph-bold ph-lg",
 						text: i18n.ts.manageAccounts,
 						to: "/settings/accounts",
 					},
 					{
 						type: "button",
-						icon: "ph-sign-out-bold ph-lg",
+						icon: "ph-sign-out ph-bold ph-lg",
 						text: i18n.ts.logout,
 						action: () => {
 							signout();

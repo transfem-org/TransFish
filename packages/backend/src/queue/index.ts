@@ -13,6 +13,7 @@ import processDb from "./processors/db/index.js";
 import processObjectStorage from "./processors/object-storage/index.js";
 import processSystemQueue from "./processors/system/index.js";
 import processWebhookDeliver from "./processors/webhook-deliver.js";
+import processBackground from "./processors/background/index.js";
 import { endedPollNotification } from "./processors/ended-poll-notification.js";
 import { queueLogger } from "./logger.js";
 import { getJobInfo } from "./get-job-info.js";
@@ -24,6 +25,7 @@ import {
 	objectStorageQueue,
 	endedPollNotificationQueue,
 	webhookDeliverQueue,
+	backgroundQueue,
 } from "./queues.js";
 import type { ThinUser } from "./types.js";
 
@@ -312,6 +314,65 @@ export function createImportFollowingJob(
 	);
 }
 
+export function createImportPostsJob(
+	user: ThinUser,
+	fileId: DriveFile["id"],
+	signatureCheck: boolean,
+) {
+	return dbQueue.add(
+		"importPosts",
+		{
+			user: user,
+			fileId: fileId,
+			signatureCheck: signatureCheck,
+		},
+		{
+			removeOnComplete: true,
+			removeOnFail: true,
+		},
+	);
+}
+
+export function createImportMastoPostJob(
+	user: ThinUser,
+	post: any,
+	signatureCheck: boolean,
+) {
+	return dbQueue.add(
+		"importMastoPost",
+		{
+			user: user,
+			post: post,
+			signatureCheck: signatureCheck,
+		},
+		{
+			removeOnComplete: true,
+			removeOnFail: true,
+			attempts: config.inboxJobMaxAttempts || 8,
+			timeout: 60 * 1000, // 1min
+		},
+	);
+}
+
+export function createImportCkPostJob(
+	user: ThinUser,
+	post: any,
+	signatureCheck: boolean,
+) {
+	return dbQueue.add(
+		"importCkPost",
+		{
+			user: user,
+			post: post,
+			signatureCheck: signatureCheck,
+		},
+		{
+			removeOnComplete: true,
+			removeOnFail: true,
+		},
+	);
+}
+
 export function createImportMutingJob(user: ThinUser, fileId: DriveFile["id"]) {
 	return dbQueue.add(
 		"importMuting",
@@ -418,6 +479,14 @@ export function createCleanRemoteFilesJob() {
 	);
 }
 
+export function createIndexAllNotesJob(data = {}) {
+	return backgroundQueue.add("indexAllNotes", data, {
+		removeOnComplete: true,
+		removeOnFail: false,
+		timeout: 1000 * 60 * 60 * 24,
+	});
+}
+
 export function webhookDeliver(
 	webhook: Webhook,
 	type: typeof webhookEventTypes[number],
@@ -454,6 +523,7 @@ export default function () {
 	webhookDeliverQueue.process(64, processWebhookDeliver);
 	processDb(dbQueue);
 	processObjectStorage(objectStorageQueue);
+	processBackground(backgroundQueue);
 
 	systemQueue.add(
 		"tickCharts",
@@ -497,6 +567,22 @@ export default function () {
 		{
 			repeat: { cron: "*/5 * * * *" },
 			removeOnComplete: true,
+		},
+	);
+
+	systemQueue.add(
+		"setLocalEmojiSizes",
+		{},
+		{ removeOnComplete: true, removeOnFail: true },
+	);
+
+	systemQueue.add(
+		"verifyLinks",
+		{},
+		{
+			repeat: { cron: "0 0 * * 0" },
+			removeOnComplete: true,
+			removeOnFail: true,
 		},
 	);
 

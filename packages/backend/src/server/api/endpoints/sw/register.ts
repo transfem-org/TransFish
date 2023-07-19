@@ -26,6 +26,21 @@ export const meta = {
 				optional: false,
 				nullable: true,
 			},
+			userId: {
+				type: "string",
+				optional: true,
+				nullable: false,
+			},
+			endpoint: {
+				type: "string",
+				optional: false,
+				nullable: false,
+			},
+			sendReadMessage: {
+				type: "boolean",
+				optional: false,
+				nullable: false,
+			},
 		},
 	},
 } as const;
@@ -36,14 +51,14 @@ export const paramDef = {
 		endpoint: { type: "string" },
 		auth: { type: "string" },
 		publickey: { type: "string" },
+		sendReadMessage: { type: "boolean", default: false },
 	},
 	required: ["endpoint", "auth", "publickey"],
 } as const;
 
-export default define(meta, paramDef, async (ps, user) => {
-	// if already subscribed
-	const exist = await SwSubscriptions.findOneBy({
-		userId: user.id,
+export default define(meta, paramDef, async (ps, me) => {
+	const subscription = await SwSubscriptions.findOneBy({
+		userId: me.id,
 		endpoint: ps.endpoint,
 		auth: ps.auth,
 		publickey: ps.publickey,
@@ -51,24 +66,32 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	const instance = await fetchMeta(true);
 
-	if (exist != null) {
+	// if already subscribed
+	if (subscription != null) {
 		return {
 			state: "already-subscribed" as const,
 			key: instance.swPublicKey,
+			userId: me.id,
+			endpoint: subscription.endpoint,
+			sendReadMessage: subscription.sendReadMessage,
 		};
 	}
 
 	await SwSubscriptions.insert({
 		id: genId(),
 		createdAt: new Date(),
-		userId: user.id,
+		userId: me.id,
 		endpoint: ps.endpoint,
 		auth: ps.auth,
 		publickey: ps.publickey,
+		sendReadMessage: ps.sendReadMessage,
 	});
 
 	return {
 		state: "subscribed" as const,
 		key: instance.swPublicKey,
+		userId: me.id,
+		endpoint: ps.endpoint,
+		sendReadMessage: ps.sendReadMessage,
 	};
 });

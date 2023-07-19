@@ -23,6 +23,17 @@ export const meta = {
 			code: "NO_SUCH_USER_GROUP",
 			id: "aa3c0b9a-8cae-47c0-92ac-202ce5906682",
 		},
+
+		tooManyAntennas: {
+			message: "Too many antennas.",
+			code: "TOO_MANY_ANTENNAS",
+			id: "c3a5a51e-04d4-11ee-be56-0242ac120002",
+		},
+		noKeywords: {
+			message: "No keywords.",
+			code: "NO_KEYWORDS",
+			id: "aa975b74-1ddb-11ee-be56-0242ac120002",
+		},
 	},
 
 	res: {
@@ -37,7 +48,10 @@ export const paramDef = {
 	type: "object",
 	properties: {
 		name: { type: "string", minLength: 1, maxLength: 100 },
-		src: { type: "string", enum: ["home", "all", "users", "list", "group"] },
+		src: {
+			type: "string",
+			enum: ["home", "all", "users", "list", "group", "instances"],
+		},
 		userListId: { type: "string", format: "misskey:id", nullable: true },
 		userGroupId: { type: "string", format: "misskey:id", nullable: true },
 		keywords: {
@@ -64,6 +78,12 @@ export const paramDef = {
 				type: "string",
 			},
 		},
+		instances: {
+			type: "array",
+			items: {
+				type: "string",
+			},
+		},
 		caseSensitive: { type: "boolean" },
 		withReplies: { type: "boolean" },
 		withFile: { type: "boolean" },
@@ -75,6 +95,7 @@ export const paramDef = {
 		"keywords",
 		"excludeKeywords",
 		"users",
+		"instances",
 		"caseSensitive",
 		"withReplies",
 		"withFile",
@@ -84,8 +105,16 @@ export const paramDef = {
 
 export default define(meta, paramDef, async (ps, user) => {
 	if (user.movedToUri != null) throw new ApiError(meta.errors.noSuchUserGroup);
+	if (ps.keywords.length === 0) throw new ApiError(meta.errors.noKeywords);
 	let userList;
 	let userGroupJoining;
+
+	const antennas = await Antennas.findBy({
+		userId: user.id,
+	});
+	if (antennas.length > 5 && !user.isAdmin) {
+		throw new ApiError(meta.errors.tooManyAntennas);
+	}
 
 	if (ps.src === "list" && ps.userListId) {
 		userList = await UserLists.findOneBy({
@@ -118,6 +147,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		keywords: ps.keywords,
 		excludeKeywords: ps.excludeKeywords,
 		users: ps.users,
+		instances: ps.instances,
 		caseSensitive: ps.caseSensitive,
 		withReplies: ps.withReplies,
 		withFile: ps.withFile,

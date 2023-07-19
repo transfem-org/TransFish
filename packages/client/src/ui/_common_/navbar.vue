@@ -1,76 +1,162 @@
 <template>
-<div class="mvcprjjd" :class="{ iconOnly }">
-	<div class="body">
-		<div class="top">
-			<div class="banner" :user="$i" :style="{ backgroundImage: `url(${ $i.bannerUrl })` }"></div>
-			<button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
-				<MkAvatar :user="$i" class="icon"/><!-- <MkAcct class="text" :user="$i"/> -->
-			</button>
-		</div>
-		<div class="middle">
-			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.timeline" class="item index" active-class="active" to="/" exact>
-				<i class="icon ph-house-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.timeline }}</span>
-			</MkA>
-			<template v-for="item in menu">
-				<div v-if="item === '-'" class="divider"></div>
-				<component
-					:is="navbarItemDef[item].to ? 'MkA' : 'button'"
-					v-else-if="navbarItemDef[item] && (navbarItemDef[item].show !== false)"
+	<header class="mvcprjjd sidebar" :class="{ iconOnly }">
+		<div class="body">
+			<div class="top">
+				<div
+					class="banner"
+					:user="$i"
+					:style="{ backgroundImage: `url(${$i.bannerUrl})` }"
+				></div>
+				<button
 					v-click-anime
-					v-tooltip.noDelay.right="i18n.ts[navbarItemDef[item].title]"
-					class="item _button"
-					:class="[item, { active: navbarItemDef[item].active }]"
-					active-class="active"
-					:to="navbarItemDef[item].to"
-					v-on="navbarItemDef[item].action ? { click: navbarItemDef[item].action } : {}"
+					v-tooltip.noDelay.right="
+						`${i18n.ts.account}: @${$i.username}`
+					"
+					class="item _button account"
+					@click="openAccountMenu"
 				>
-					<i class="icon ph-fw ph-lg" :class="navbarItemDef[item].icon"></i><span class="text">{{ i18n.ts[navbarItemDef[item].title] }}</span>
-					<span v-if="navbarItemDef[item].indicated" class="indicator"><i class="icon ph-circle-fill"></i></span>
-				</component>
-			</template>
-			<div class="divider"></div>
-			<MkA v-if="$i.isAdmin || $i.isModerator" v-click-anime v-tooltip.noDelay.right="i18n.ts.controlPanel" class="item _button" active-class="active" to="/admin">
-				<span v-if="thereIsUnresolvedAbuseReport || noMaintainerInformation || noBotProtection || noEmailServer || updateAvailable" class="indicator"></span><i class="icon ph-door-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.controlPanel }}</span>
-			</MkA>
-			<button v-click-anime class="item _button" @click="more">
-				<i class="icon ph-dots-three-outline-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.more }}</span>
-				<span v-if="otherMenuItemIndicated" class="indicator"><i class="icon ph-circle-fill"></i></span>
-			</button>
-			<MkA v-click-anime v-tooltip.noDelay.right="i18n.ts.settings" class="item _button" active-class="active" to="/settings">
-				<i class="icon ph-gear-six-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.settings }}</span>
-			</MkA>
-		</div>
-		<div class="bottom">
-			<button v-tooltip.noDelay.right="i18n.ts.note" class="item _button post" data-cy-open-post-form @click="os.post">
-				<i class="icon ph-pencil-bold ph-lg ph-fw ph-lg"></i><span class="text">{{ i18n.ts.note }}</span>
-			</button>
-			<!-- <div class="help">
-				<button v-tooltip.noDelay.right="i18n.ts.help" class="item _button" @click="openHelpMenu">
-					<i class="icon ph-info-bold ph-xl ph-fw ph-lg"></i>
+					<MkAvatar
+						:user="$i"
+						class="icon"
+						disableLink
+					/><!-- <MkAcct class="text" :user="$i"/> -->
 				</button>
-			</div> -->
-			<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
+			</div>
+			<nav class="middle">
+				<MkA
+					v-click-anime
+					v-tooltip.noDelay.right="i18n.ts.timeline"
+					class="item index"
+					active-class="active"
+					to="/"
+					exact
+				>
+					<i class="icon ph-house ph-bold ph-fw ph-lg"></i
+					><span class="text">{{ i18n.ts.timeline }}</span>
+				</MkA>
+				<template v-for="item in menu">
+					<div v-if="item === '-'" class="divider"></div>
+					<component
+						:is="navbarItemDef[item].to ? 'MkA' : 'button'"
+						v-else-if="
+							navbarItemDef[item] &&
+							navbarItemDef[item].show !== false
+						"
+						v-click-anime
+						v-tooltip.noDelay.right="
+							i18n.ts[navbarItemDef[item].title]
+						"
+						class="item _button"
+						:class="[item, { active: navbarItemDef[item].active }]"
+						active-class="active"
+						:to="navbarItemDef[item].to"
+						v-on="
+							navbarItemDef[item].action
+								? { click: navbarItemDef[item].action }
+								: {}
+						"
+					>
+						<i
+							class="icon ph-fw ph-lg"
+							:class="navbarItemDef[item].icon"
+						></i
+						><span class="text">{{
+							i18n.ts[navbarItemDef[item].title]
+						}}</span>
+						<span
+							v-if="navbarItemDef[item].indicated"
+							class="indicator"
+							><i class="icon ph-circle ph-fill"></i
+						></span>
+					</component>
+				</template>
+				<div class="divider"></div>
+				<MkA
+					v-if="$i.isAdmin || $i.isModerator"
+					v-click-anime
+					v-tooltip.noDelay.right="i18n.ts.controlPanel"
+					class="item _button"
+					active-class="active"
+					to="/admin"
+				>
+					<span
+						v-if="
+							thereIsUnresolvedAbuseReport ||
+							noMaintainerInformation ||
+							noBotProtection ||
+							noEmailServer ||
+							updateAvailable
+						"
+						class="indicator"
+					></span
+					><i class="icon ph-door ph-bold ph-fw ph-lg"></i
+					><span class="text">{{ i18n.ts.controlPanel }}</span>
+				</MkA>
+				<button
+					v-click-anime
+					v-tooltip.noDelay.right="i18n.ts.more"
+					class="item _button"
+					@click="more"
+				>
+					<i
+						class="icon ph-dots-three-outline ph-bold ph-fw ph-lg"
+					></i
+					><span class="text">{{ i18n.ts.more }}</span>
+					<span v-if="otherMenuItemIndicated" class="indicator"
+						><i class="icon ph-circle ph-fill"></i
+					></span>
+				</button>
+				<MkA
+					v-click-anime
+					v-tooltip.noDelay.right="i18n.ts.settings"
+					class="item _button"
+					active-class="active"
+					to="/settings"
+				>
+					<i class="icon ph-gear-six ph-bold ph-fw ph-lg"></i
+					><span class="text">{{ i18n.ts.settings }}</span>
+				</MkA>
+			</nav>
+			<div class="bottom">
+				<button
+					v-tooltip.noDelay.right="i18n.ts.note"
+					class="item _button post"
+					data-cy-open-post-form
+					@click="os.post"
+				>
+					<i class="icon ph-pencil ph-bold ph-fw ph-lg"></i
+					><span class="text">{{ i18n.ts.note }}</span>
+				</button>
+				<button
+					v-tooltip.noDelay.right="i18n.ts.help"
+					class="item _button help"
+					@click="openHelpMenu"
+				>
+					<i class="help icon ph-info ph-bold ph-xl ph-fw"></i>
+				</button>
+				<!-- <button v-click-anime v-tooltip.noDelay.right="$instance.name ?? i18n.ts.instance" class="item _button instance" @click="openInstanceMenu">
 				<img :src="$instance.iconUrl || $instance.faviconUrl || '/favicon.ico'" alt="" class="icon"/>
 			</button> -->
-			<!-- <button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
+				<!-- <button v-click-anime v-tooltip.noDelay.right="`${i18n.ts.account}: @${$i.username}`" class="item _button account" @click="openAccountMenu">
 				<MkAvatar :user="$i" class="account"/><MkAcct class="text" :user="$i"/>
 			</button> -->
+			</div>
 		</div>
-	</div>
-</div>
+	</header>
 </template>
 
 <script lang="ts" setup>
-import { computed, defineAsyncComponent, ref, watch } from 'vue';
-import * as os from '@/os';
-import { navbarItemDef } from '@/navbar';
-import { $i, openAccountMenu as openAccountMenu_ } from '@/account';
-import { defaultStore } from '@/store';
-import { i18n } from '@/i18n';
-import { instance } from '@/instance';
-import { version } from '@/config';
+import { computed, defineAsyncComponent, ref, watch } from "vue";
+import * as os from "@/os";
+import { navbarItemDef } from "@/navbar";
+import { $i, openAccountMenu as openAccountMenu_ } from "@/account";
+import { openHelpMenu_ } from "@/scripts/helpMenu";
+import { defaultStore } from "@/store";
+import { i18n } from "@/i18n";
+import { instance } from "@/instance";
+import { version } from "@/config";
 
-const isEmpty = (x: string | null) => x == null || x === '';
+const isEmpty = (x: string | null) => x == null || x === "";
 
 const iconOnly = ref(false);
 
@@ -84,36 +170,42 @@ const otherMenuItemIndicated = computed(() => {
 });
 
 const calcViewState = () => {
-	iconOnly.value = (window.innerWidth <= 1279) || (defaultStore.state.menuDisplay === 'sideIcon');
+	iconOnly.value =
+		window.innerWidth <= 1279 ||
+		defaultStore.state.menuDisplay === "sideIcon";
 };
 
 calcViewState();
 
-window.addEventListener('resize', calcViewState);
+matchMedia("(max-width: 1279px)").onchange = (mql) => calcViewState();
 
 watch(defaultStore.reactiveState.menuDisplay, () => {
 	calcViewState();
 });
 
-let noMaintainerInformation = isEmpty(instance.maintainerName) || isEmpty(instance.maintainerEmail);
-let noBotProtection = !instance.disableRegistration && !instance.enableHcaptcha && !instance.enableRecaptcha;
+let noMaintainerInformation =
+	isEmpty(instance.maintainerName) || isEmpty(instance.maintainerEmail);
+let noBotProtection =
+	!instance.disableRegistration &&
+	!instance.enableHcaptcha &&
+	!instance.enableRecaptcha;
 let noEmailServer = !instance.enableEmail;
 let thereIsUnresolvedAbuseReport = $ref(false);
 let updateAvailable = $ref(false);
 
 if ($i?.isAdmin) {
-	os.api('admin/abuse-user-reports', {
-		state: 'unresolved',
+	os.api("admin/abuse-user-reports", {
+		state: "unresolved",
 		limit: 1,
-	}).then(reports => {
+	}).then((reports) => {
 		if (reports?.length > 0) thereIsUnresolvedAbuseReport = true;
 	});
 }
 
 if (defaultStore.state.showAdminUpdates) {
-	os.api('latest-version').then(res => {
-		const cleanRes = parseInt(res?.tag_name.replace(/[^0-9]/g, ''));
-		const cleanVersion = parseInt(version.replace(/[^0-9]/g, ''));
+	os.api("latest-version").then((res) => {
+		const cleanRes = parseInt(res?.tag_name.replace(/[^0-9]/g, ""));
+		const cleanVersion = parseInt(version.replace(/[^0-9]/g, ""));
 		if (cleanRes > cleanVersion) {
 			updateAvailable = true;
 		}
@@ -121,16 +213,27 @@ if (defaultStore.state.showAdminUpdates) {
 }
 
 function openAccountMenu(ev: MouseEvent) {
-	openAccountMenu_({
-		withExtraOperation: true,
-	}, ev);
+	openAccountMenu_(
+		{
+			withExtraOperation: true,
+		},
+		ev,
+	);
+}
+
+function openHelpMenu(ev: MouseEvent) {
+	openHelpMenu_(ev);
 }
 
 function more(ev: MouseEvent) {
-	os.popup(defineAsyncComponent(() => import('@/components/MkLaunchPad.vue')), {
-		src: ev.currentTarget ?? ev.target,
-	}, {
-	}, 'closed');
+	os.popup(
+		defineAsyncComponent(() => import("@/components/MkLaunchPad.vue")),
+		{
+			src: ev.currentTarget ?? ev.target,
+		},
+		{},
+		"closed",
+	);
 }
 </script>
 
@@ -138,23 +241,25 @@ function more(ev: MouseEvent) {
 .mvcprjjd {
 	$nav-width: 250px;
 	$nav-icon-only-width: 80px;
-
 	flex: 0 0 $nav-width;
 	width: $nav-width;
 	box-sizing: border-box;
 
 	> .body {
-		position: fixed;
+		position: sticky;
 		top: 0;
-		left: 0;
-		z-index: 1001;
 		width: $nav-icon-only-width;
 		// ほんとは単に 100vh と書きたいところだが... https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 		height: calc(var(--vh, 1vh) * 100);
 		box-sizing: border-box;
 		overflow: auto;
 		overflow-x: clip;
-		background: var(--navBg);
+		#firefish_app > :not(.wallpaper) & {
+			background: var(--navBg);
+		}
+		#firefish_app > .wallpaper:not(.centered) & {
+			border-right: 1px solid var(--divider);
+		}
 		contain: strict;
 		display: flex;
 		flex-direction: column;
@@ -162,17 +267,15 @@ function more(ev: MouseEvent) {
 
 	&:not(.iconOnly) {
 		> .body {
+			margin-left: -200px;
+			padding-left: 200px;
+			box-sizing: content-box;
 			width: $nav-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
+				position: relative;
 				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
-
 				> .banner {
 					position: absolute;
 					top: 0;
@@ -181,8 +284,8 @@ function more(ev: MouseEvent) {
 					height: 100%;
 					background-size: cover;
 					background-position: center center;
-					-webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0) 15%, rgba(0,0,0,0.75) 100%);
-					mask-image: linear-gradient(0deg, rgba(0,0,0,0) 15%, rgba(0,0,0,0.75) 100%);
+					-webkit-mask-image: linear-gradient(var(--gradient));
+					mask-image: linear-gradient(var(--gradient));
 				}
 
 				> .account {
@@ -200,21 +303,17 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					position: relative;
-					display: block;
 					width: 100%;
 					height: 40px;
 					color: var(--fgOnAccent);
 					font-weight: bold;
 					text-align: left;
+					display: flex;
+					align-items: center;
 
 					&:before {
 						content: "";
@@ -228,21 +327,28 @@ function more(ev: MouseEvent) {
 						right: 0;
 						bottom: 0;
 						border-radius: 999px;
-						background: linear-gradient(90deg, var(--buttonGradateA), var(--buttonGradateB));
+						background: linear-gradient(
+							90deg,
+							var(--buttonGradateA),
+							var(--buttonGradateB)
+						);
 					}
 
-					&:hover, &.active {
+					&:hover,
+					&:focus-within,
+					&.active {
 						&:before {
 							background: var(--accentLighten);
 							transition: all 0.4s ease;
 						}
 					}
 
-					> .icon, > .text {
+					> .icon,
+					> .text {
 						position: relative;
 						left: 3rem;
 						color: var(--fgOnAccent);
-						transform: translateY(0em)
+						transform: translateY(0em);
 					}
 
 					> .text {
@@ -264,11 +370,13 @@ function more(ev: MouseEvent) {
 					}
 				}
 
-				> .account {
+				> .help {
 					position: relative;
 					display: block;
 					text-align: center;
 					width: 100%;
+					margin-top: 1rem;
+					color: var(--navFg);
 
 					> .icon {
 						display: inline-block;
@@ -288,12 +396,11 @@ function more(ev: MouseEvent) {
 
 				> .item {
 					position: relative;
-					display: block;
+					display: flex;
+					align-items: center;
 					padding-left: 30px;
 					line-height: 2.85rem;
 					margin-bottom: 0.5rem;
-					text-overflow: ellipsis;
-					overflow: hidden;
 					white-space: nowrap;
 					width: 100%;
 					text-align: left;
@@ -304,7 +411,6 @@ function more(ev: MouseEvent) {
 						position: relative;
 						width: 32px;
 						margin-right: 8px;
-						transform: translateY(0.15em);
 					}
 
 					> .indicator {
@@ -319,9 +425,12 @@ function more(ev: MouseEvent) {
 					> .text {
 						position: relative;
 						font-size: 0.9em;
+						overflow: hidden;
+						text-overflow: ellipsis;
 					}
 
-					&:hover {
+					&:hover,
+					&:focus-within {
 						text-decoration: none;
 						color: var(--navHoverFg);
 						transition: all 0.4s ease;
@@ -331,7 +440,9 @@ function more(ev: MouseEvent) {
 						color: var(--navActive);
 					}
 
-					&:hover, &.active {
+					&:hover,
+					&:focus-within,
+					&.active {
 						color: var(--accent);
 						transition: all 0.4s ease;
 
@@ -363,13 +474,7 @@ function more(ev: MouseEvent) {
 			width: $nav-icon-only-width;
 
 			> .top {
-				position: sticky;
-				top: 0;
-				z-index: 1;
 				padding: 2rem 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .account {
 					display: block;
@@ -386,12 +491,7 @@ function more(ev: MouseEvent) {
 			}
 
 			> .bottom {
-				position: sticky;
-				bottom: 0;
 				padding: 20px 0;
-				background: var(--X14);
-				-webkit-backdrop-filter: var(--blur, blur(8px));
-				backdrop-filter: var(--blur, blur(8px));
 
 				> .post {
 					display: block;
@@ -413,10 +513,16 @@ function more(ev: MouseEvent) {
 						width: 52px;
 						aspect-ratio: 1/1;
 						border-radius: 100%;
-						background: linear-gradient(90deg, var(--buttonGradateA), var(--buttonGradateB));
+						background: linear-gradient(
+							90deg,
+							var(--buttonGradateA),
+							var(--buttonGradateB)
+						);
 					}
 
-					&:hover, &.active {
+					&:hover,
+					&:focus-within,
+					&.active {
 						&:before {
 							background: var(--accentLighten);
 							transition: all 0.4s ease;
@@ -426,11 +532,25 @@ function more(ev: MouseEvent) {
 					> .icon {
 						position: relative;
 						color: var(--fgOnAccent);
-						transform: translate(0.15em, 0em)
 					}
 
 					> .text {
 						display: none;
+					}
+				}
+
+				> .help {
+					position: relative;
+					display: block;
+					text-align: center;
+					width: 100%;
+					margin-top: 1rem;
+					color: var(--navFg);
+
+					> .icon {
+						display: inline-block;
+						width: 38px;
+						aspect-ratio: 1;
 					}
 				}
 
@@ -485,7 +605,9 @@ function more(ev: MouseEvent) {
 						animation: blink 1s infinite;
 					}
 
-					&:hover, &.active {
+					&:hover,
+					&:focus-within,
+					&.active {
 						text-decoration: none;
 						color: var(--accent);
 						transition: all 0.4s ease;
@@ -505,12 +627,20 @@ function more(ev: MouseEvent) {
 							background: var(--accentedBg);
 						}
 
-						> .icon, > .text {
+						> .icon,
+						> .text {
 							opacity: 1;
 						}
 					}
 				}
 			}
+		}
+	}
+
+	.item {
+		outline: none;
+		&:focus-visible:before {
+			outline: auto;
 		}
 	}
 }

@@ -1,27 +1,53 @@
 <script lang="ts">
-import { defineComponent, h, resolveDirective, withDirectives } from 'vue';
+import { defineComponent, h, resolveDirective, withDirectives } from "vue";
 
 export default defineComponent({
 	props: {
 		modelValue: {
 			required: true,
 		},
+		style: {
+			required: false,
+		},
 	},
 	render() {
 		const options = this.$slots.default();
 
-		return h('div', {
-			class: 'pxhvhrfw',
-		}, options.map(option => withDirectives(h('button', {
-			class: ['_button', { active: this.modelValue === option.props?.value }],
-			key: option.key,
-			disabled: this.modelValue === option.props?.value,
-			onClick: () => {
-				this.$emit('update:modelValue', option.props?.value);
+		return h(
+			"div",
+			{
+				class: [
+					"pxhvhrfw",
+					{ chips: this.style === "chips" },
+					{ underline: this.style === "underline" },
+				],
+				role: "tablist",
 			},
-		}, option.children), [
-			[resolveDirective('click-anime')],
-		])));
+			options.map((option) =>
+				withDirectives(
+					h(
+						"button",
+						{
+							class: "_button",
+							role: "tab",
+							key: option.key,
+							"aria-selected":
+								this.modelValue === option.props?.value
+									? "true"
+									: "false",
+							onClick: () => {
+								this.$emit(
+									"update:modelValue",
+									option.props?.value,
+								);
+							},
+						},
+						option.children,
+					),
+					[[resolveDirective("click-anime")]],
+				),
+			),
+		);
 	},
 });
 </script>
@@ -44,12 +70,12 @@ export default defineComponent({
 			cursor: default;
 		}
 
-		&.active {
+		&[aria-selected="true"] {
 			color: var(--accent);
-			background: var(--accentedBg);
+			background: var(--accentedBg) !important;
 		}
 
-		&:not(.active):hover {
+		&:not([aria-selected="true"]):hover {
 			color: var(--fgHighlighted);
 			background: var(--panelHighlight);
 		}
@@ -60,6 +86,63 @@ export default defineComponent({
 
 		> .icon {
 			margin-right: 6px;
+		}
+
+		&:empty {
+			display: none !important;
+		}
+	}
+
+	&.chips,
+	&.underline {
+		padding: 12px 32px;
+		font-size: 0.85em;
+		overflow-x: auto;
+		mask: linear-gradient(to right, black calc(100% - 90px), transparent);
+		-webkit-mask: linear-gradient(
+			to right,
+			black calc(100% - 90px),
+			transparent
+		);
+		padding-right: 90px !important;
+		white-space: nowrap;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		> button {
+			display: flex;
+			gap: 6px;
+			align-items: center;
+			flex: unset;
+			margin: 0;
+			margin-right: 8px;
+			padding: 0.5em 1em;
+			border-radius: 100px;
+			background: var(--buttonBg);
+			> i {
+				margin-top: -0.1em;
+			}
+			> .count {
+				margin-right: -0.2em;
+			}
+		}
+	}
+
+	&.underline {
+		padding-block: 0 !important;
+		margin-bottom: -1px;
+		border-radius: 0;
+		button {
+			background: none !important;
+			border-radius: 0 !important;
+			padding-block: 10px !important;
+			border-bottom: 2px solid transparent;
+			&[aria-selected="true"] {
+				background: none !important;
+				font-weight: 700;
+				border-bottom-color: var(--accent);
+			}
 		}
 	}
 

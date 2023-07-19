@@ -22,10 +22,12 @@ coverage
 # config
 /.config/*
 !/.config/example.yml
+!/.config/devenv.yml
 !/.config/docker_example.env
 !/.config/helm_values_example.yml
+!/.config/LICENSE
 
-#docker dev config
+# docker dev config
 /dev/docker-compose.yml
 
 # misskey
@@ -43,6 +45,14 @@ api-docs.json
 files
 ormconfig.json
 packages/backend/assets/instance.css
+packages/backend/assets/sounds/None.mp3
+packages/backend/assets/LICENSE
+
+!/packages/backend/queue/processors/db
+!packages/backend/src/db
+
+packages/megalodon/lib
+packages/megalodon/.idea
 
 # blender backups
 *.blend1
@@ -54,3 +64,11 @@ packages/backend/assets/instance.css
 # old yarn
 .yarn
 yarn*
+
+# Nix Development shell items
+.devenv
+.direnv
+
+# Cargo cache for Docker
+/.cargo-cache
+/.cargo-target

@@ -1,45 +1,33 @@
 <template>
-<div class="dwzlatin" :class="{ opened }">
-	<div class="header _button" @click="toggle">
-		<span class="icon"><slot name="icon"></slot></span>
-		<span class="text"><slot name="label"></slot></span>
-		<span class="right">
-			<span class="text"><slot name="suffix"></slot></span>
-			<i v-if="opened" class="ph-caret-up-bold ph-lg icon"></i>
-			<i v-else class="ph-caret-down-bold ph-lg icon"></i>
-		</span>
-	</div>
-	<KeepAlive>
-		<div v-if="openedAtLeastOnce" v-show="opened" class="body">
+	<details class="dwzlatin" :open="defaultOpen">
+		<summary class="header _button">
+			<span class="icon"><slot name="icon"></slot></span>
+			<span class="text"><slot name="label"></slot></span>
+			<span class="right">
+				<span class="text"><slot name="suffix"></slot></span>
+				<i v-if="opened" class="ph-caret-up ph-bold ph-lg icon"></i>
+				<i v-else class="ph-caret-down ph-bold ph-lg icon"></i>
+			</span>
+		</summary>
+		<div class="body">
 			<MkSpacer :margin-min="14" :margin-max="22">
 				<slot></slot>
 			</MkSpacer>
 		</div>
-	</KeepAlive>
-</div>
+	</details>
 </template>
 
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{
+defineProps<{
 	defaultOpen: boolean;
-}>(), {
-  defaultOpen: false,
-});
-
-let opened: boolean = $ref(props.defaultOpen);
-let openedAtLeastOnce: boolean = $ref(props.defaultOpen);
-
-const toggle = (): void => {
-	opened = !opened;
-	if (opened) {
-		openedAtLeastOnce = true;
-	}
-};
+}>();
 </script>
 
 <style lang="scss" scoped>
 .dwzlatin {
 	display: block;
+	overflow: clip;
+	border-radius: 6px;
 
 	> .header {
 		display: flex;
@@ -48,7 +36,6 @@ const toggle = (): void => {
 		box-sizing: border-box;
 		padding: 12px 14px 12px 14px;
 		background: var(--buttonBg);
-		border-radius: 6px;
 
 		&:hover {
 			text-decoration: none;
@@ -96,12 +83,6 @@ const toggle = (): void => {
 	> .body {
 		background: var(--panel);
 		border-radius: 0 0 6px 6px;
-	}
-
-	&.opened {
-		> .header {
-			border-radius: 6px 6px 0 0;
-		}
 	}
 }
 </style>

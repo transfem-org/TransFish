@@ -6,13 +6,15 @@
 import "vite/modulepreload-polyfill";
 
 import "@/style.scss";
-import "@/icons.scss";
+import "@phosphor-icons/web/bold";
+import "@phosphor-icons/web/fill";
 
 //#region account indexedDB migration
 import { set } from "@/scripts/idb-proxy";
 
-if (localStorage.getItem("accounts") != null) {
-	set("accounts", JSON.parse(localStorage.getItem("accounts")));
+const accounts = localStorage.getItem("accounts");
+if (accounts) {
+	set("accounts", JSON.parse(accounts));
 	localStorage.removeItem("accounts");
 }
 //#endregion
@@ -26,7 +28,6 @@ import {
 	defineAsyncComponent,
 } from "vue";
 import { compareVersions } from "compare-versions";
-import JSON5 from "json5";
 
 import widgets from "@/widgets";
 import directives from "@/directives";
@@ -35,7 +36,7 @@ import { version, ui, lang, host } from "@/config";
 import { applyTheme } from "@/scripts/theme";
 import { isDeviceDarkmode } from "@/scripts/is-device-darkmode";
 import { i18n } from "@/i18n";
-import { confirm, alert, post, popup, toast } from "@/os";
+import { confirm, alert, post, popup, toast, api } from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
 import { $i, refreshAccount, login, updateAccount, signout } from "@/account";
@@ -50,8 +51,20 @@ import { reactionPicker } from "@/scripts/reaction-picker";
 import { getUrlWithoutLoginId } from "@/scripts/login-id";
 import { getAccountFromId } from "@/scripts/get-account-from-id";
 
+function checkForSplash() {
+	const splash = document.getElementById("splash");
+	// 念のためnullチェック(HTMLが古い場合があるため(そのうち消す))
+	if (splash) {
+		splash.style.opacity = "0";
+		splash.style.pointerEvents = "none";
+		splash.addEventListener("transitionend", () => {
+			splash.remove();
+		});
+	}
+}
+
 (async () => {
-	console.info(`Calckey v${version}`);
+	console.info(`Firefish v${version}`);
 
 	if (_DEV_) {
 		console.warn("Development mode!!!");
@@ -103,20 +116,9 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	});
 	//#endregion
 
-	// If mobile, insert the viewport meta tag
-	if (["smartphone", "tablet"].includes(deviceKind)) {
-		const viewport = document.getElementsByName("viewport").item(0);
-		viewport.setAttribute(
-			"content",
-			`${viewport.getAttribute(
-				"content",
-			)}, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover`,
-		);
-	}
-
 	//#region Set lang attr
 	const html = document.documentElement;
-	html.setAttribute("lang", lang);
+	html.setAttribute("lang", lang || "en-US");
 	//#endregion
 
 	//#region loginId
@@ -190,8 +192,6 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			? defineAsyncComponent(() => import("@/ui/visitor.vue"))
 			: ui === "deck"
 			? defineAsyncComponent(() => import("@/ui/deck.vue"))
-			: ui === "classic"
-			? defineAsyncComponent(() => import("@/ui/classic.vue"))
 			: defineAsyncComponent(() => import("@/ui/universal.vue")),
 	);
 
@@ -211,17 +211,12 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	directives(app);
 	components(app);
 
-	const splash = document.getElementById("splash");
-	// 念のためnullチェック(HTMLが古い場合があるため(そのうち消す))
-	if (splash)
-		splash.addEventListener("transitionend", () => {
-			splash.remove();
-		});
+	checkForSplash();
 
 	// https://github.com/misskey-dev/misskey/pull/8575#issuecomment-1114239210
 	// なぜかinit.tsの内容が2回実行されることがあるため、mountするdivを1つに制限する
 	const rootEl = (() => {
-		const MISSKEY_MOUNT_DIV_ID = "calckey_app";
+		const MISSKEY_MOUNT_DIV_ID = "firefish_app";
 
 		const currentEl = document.getElementById(MISSKEY_MOUNT_DIV_ID);
 
@@ -244,13 +239,11 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 
 	reactionPicker.init();
 
-	if (splash) {
-		splash.style.opacity = "0";
-		splash.style.pointerEvents = "none";
-	}
+	checkForSplash();
 
 	// クライアントが更新されたか？
 	const lastVersion = localStorage.getItem("lastVersion");
+
 	if (lastVersion !== version) {
 		localStorage.setItem("lastVersion", version);
 
@@ -277,6 +270,42 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 		} catch (err) {
 			console.error(err);
 		}
+	}
+
+	if (
+		$i &&
+		defaultStore.state.tutorial === -1 &&
+		!["/announcements", "/announcements/"].includes(window.location.pathname)
+	) {
+		api("announcements", { withUnreads: true, limit: 10 })
+			.then((announcements) => {
+				const unreadAnnouncements = announcements.filter((item) => {
+					return !item.isRead;
+				});
+				if (unreadAnnouncements.length > 3) {
+					popup(
+						defineAsyncComponent(
+							() => import("@/components/MkManyAnnouncements.vue"),
+						),
+						{},
+						{},
+						"closed",
+					);
+				} else {
+					unreadAnnouncements.forEach((item) => {
+						if (item.showPopup)
+							popup(
+								defineAsyncComponent(
+									() => import("@/components/MkAnnouncement.vue"),
+								),
+								{ announcement: item },
+								{},
+								"closed",
+							);
+					});
+				}
+			})
+			.catch((err) => console.log(err));
 	}
 
 	// NOTE: この処理は必ず↑のクライアント更新時処理より後に来ること(テーマ再構築のため)
@@ -311,12 +340,11 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 	if (ColdDeviceStorage.get("syncDeviceDarkMode")) {
 		defaultStore.set("darkMode", isDeviceDarkmode());
 	}
-
-	window.matchMedia("(prefers-color-scheme: dark)").addListener((mql) => {
+	window.matchMedia("(prefers-color-scheme: dark)").onchange = (mql) => {
 		if (ColdDeviceStorage.get("syncDeviceDarkMode")) {
 			defaultStore.set("darkMode", mql.matches);
 		}
-	});
+	};
 	//#endregion
 
 	fetchInstanceMetaPromise.then(() => {
@@ -324,12 +352,12 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			if (instance.defaultLightTheme != null)
 				ColdDeviceStorage.set(
 					"lightTheme",
-					JSON5.parse(instance.defaultLightTheme),
+					JSON.parse(instance.defaultLightTheme),
 				);
 			if (instance.defaultDarkTheme != null)
 				ColdDeviceStorage.set(
 					"darkTheme",
-					JSON5.parse(instance.defaultDarkTheme),
+					JSON.parse(instance.defaultDarkTheme),
 				);
 			defaultStore.set("themeInitial", false);
 		}
@@ -421,6 +449,29 @@ import { getAccountFromId } from "@/scripts/get-account-from-id";
 			}
 		}
 		localStorage.setItem("lastUsed", Date.now().toString());
+
+		const latestDonationInfoShownAt = localStorage.getItem(
+			"latestDonationInfoShownAt",
+		);
+		const neverShowDonationInfo = localStorage.getItem("neverShowDonationInfo");
+		if (
+			neverShowDonationInfo !== "true" &&
+			new Date($i.createdAt).getTime() < Date.now() - 1000 * 60 * 60 * 24 * 3 &&
+			!location.pathname.startsWith("/miauth")
+		) {
+			if (
+				latestDonationInfoShownAt == null ||
+				new Date(latestDonationInfoShownAt).getTime() <
+					Date.now() - 1000 * 60 * 60 * 24 * 30
+			) {
+				popup(
+					defineAsyncComponent(() => import("@/components/MkDonation.vue")),
+					{},
+					{},
+					"closed",
+				);
+			}
+		}
 
 		if ("Notification" in window) {
 			// 許可を得ていなかったらリクエスト

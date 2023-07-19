@@ -1,27 +1,31 @@
 <template>
-<MkA :to="`/gallery/${post.id}`" class="ttasepnz _panel" tabindex="-1">
-	<div class="thumbnail">
-		<ImgWithBlurhash class="img" :src="post.files[0].thumbnailUrl" :hash="post.files[0].blurhash"/>
-	</div>
-	<article>
-		<header>
-			<MkAvatar :user="post.user" class="avatar"/>
-		</header>
-		<footer>
-			<span class="title">{{ post.title }}</span>
-		</footer>
-	</article>
-</MkA>
+	<MkA :to="`/gallery/${post.id}`" class="ttasepnz _panel">
+		<div class="thumbnail">
+			<ImgWithBlurhash
+				class="img"
+				:src="post.files[0].thumbnailUrl"
+				:hash="post.files[0].blurhash"
+			/>
+		</div>
+		<article>
+			<header>
+				<MkAvatar :user="post.user" class="avatar" />
+			</header>
+			<footer>
+				<span class="title">{{ post.title }}</span>
+			</footer>
+		</article>
+	</MkA>
 </template>
 
 <script lang="ts" setup>
-import { } from 'vue';
-import { userName } from '@/filters/user';
-import ImgWithBlurhash from '@/components/MkImgWithBlurhash.vue';
+import {} from "vue";
+import { userName } from "@/filters/user";
+import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
 
 const props = defineProps<{
-		post: any;
-	}>();
+	post: any;
+}>();
 </script>
 
 <style lang="scss" scoped>
@@ -30,7 +34,8 @@ const props = defineProps<{
 	position: relative;
 	height: 200px;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		text-decoration: none;
 		color: var(--accent);
 
@@ -54,6 +59,7 @@ const props = defineProps<{
 		transition: all 0.5s ease;
 
 		> .img {
+			position: relative;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;

@@ -3,7 +3,6 @@ import { resolveUser } from "@/remote/resolve-user.js";
 import { DAY } from "@/const.js";
 import DeliverManager from "@/remote/activitypub/deliver-manager.js";
 import { renderActivity } from "@/remote/activitypub/renderer/index.js";
-import { genId } from "@/misc/gen-id.js";
 import define from "../../define.js";
 import { ApiError } from "../../error.js";
 import { apiLogger } from "../../logger.js";
@@ -11,9 +10,9 @@ import deleteFollowing from "@/services/following/delete.js";
 import create from "@/services/following/create.js";
 import { getUser } from "@/server/api/common/getters.js";
 import { Followings, Users } from "@/models/index.js";
-import { UserProfiles } from "@/models/index.js";
 import config from "@/config/index.js";
 import { publishMainStream } from "@/services/stream.js";
+import { parse } from "@/misc/acct.js";
 
 export const meta = {
 	tags: ["users"],
@@ -81,7 +80,7 @@ export const paramDef = {
 
 function moveActivity(toUrl: string, fromUrl: string) {
 	const activity = {
-		id: genId(),
+		id: null,
 		actor: fromUrl,
 		type: "Move",
 		object: fromUrl,
@@ -96,22 +95,13 @@ export default define(meta, paramDef, async (ps, user) => {
 	if (user.isAdmin) throw new ApiError(meta.errors.adminForbidden);
 	if (user.movedToUri) throw new ApiError(meta.errors.alreadyMoved);
 
-	let unfiltered: string = ps.moveToAccount;
-	if (!unfiltered) {
+	const { username, host } = parse(ps.moveToAccount);
+	if (!host) throw new ApiError(meta.errors.notRemote);
+
+	const moveTo: User = await resolveUser(username, host).catch((e) => {
+		apiLogger.warn(`failed to resolve remote user: ${e}`);
 		throw new ApiError(meta.errors.noSuchMoveTarget);
-	}
-
-	if (unfiltered.startsWith("acct:")) unfiltered = unfiltered.substring(5);
-	if (unfiltered.startsWith("@")) unfiltered = unfiltered.substring(1);
-	if (!unfiltered.includes("@")) throw new ApiError(meta.errors.notRemote);
-
-	const userAddress: string[] = unfiltered.split("@");
-	const moveTo: User = await resolveUser(userAddress[0], userAddress[1]).catch(
-		(e) => {
-			apiLogger.warn(`failed to resolve remote user: ${e}`);
-			throw new ApiError(meta.errors.noSuchMoveTarget);
-		},
-	);
+	});
 	let fromUrl: string | null = user.uri;
 	if (!fromUrl) {
 		fromUrl = `${config.url}/users/${user.id}`;
@@ -135,6 +125,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	if (!toUrl) toUrl = "";
 	updates.movedToUri = toUrl;
+	updates.alsoKnownAs = user.alsoKnownAs?.concat(toUrl) ?? [toUrl];
 
 	await Users.update(user.id, updates);
 	const iObj = await Users.pack<true, true>(user.id, user, {

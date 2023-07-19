@@ -29,18 +29,19 @@ const themeColor = chalk.hex("#31748f");
 
 function greet() {
 	if (!envOption.quiet) {
-		//#region Calckey logo
+		//#region Firefish logo
 		const v = `v${meta.version}`;
-		console.log(themeColor("   ___      _      _              "));
-		console.log(themeColor("  / __\\__ _| | ___| | _____ _   _ "));
-		console.log(themeColor(" / /  / _` | |/ __| |/ / _  | | |"));
-		console.log(themeColor("/ /__| (_| | | (__|   <  __/ |_| |"));
-		console.log(themeColor("\\____/\\__,_|_|\\___|_|\\_\\___|\\__, |"));
-		console.log(themeColor("                            (___/ "));
+		console.log(themeColor(" ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ◯       "));
+		console.log(themeColor("█       █   █   ▄  █ █       █       █   █       █  █ █  █      ○   ▄    ▄"));
+		console.log(themeColor("█    ▄▄▄█   █  █ █ █ █    ▄▄▄█    ▄▄▄█   █  ▄▄▄▄▄█  █▄█  █    ⚬     █▄▄  █▄▄    "));
+		console.log(themeColor("█   █▄▄▄█   █   █▄▄█▄█   █▄▄▄█   █▄▄▄█   █ █▄▄▄▄▄█       █      ▄▄▄▄▄▄   ▄"));
+		console.log(themeColor("█    ▄▄▄█   █    ▄▄  █    ▄▄▄█    ▄▄▄█   █▄▄▄▄▄  █   ▄   █     █      █  █▄▄"));
+		console.log(themeColor("█   █   █   █   █  █ █   █▄▄▄█   █   █   █▄▄▄▄▄█ █  █ █  █     █ ● ●  █"));
+		console.log(themeColor("█▄▄▄█   █▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█     ▀▄▄▄▄▄▄▀"));
 		//#endregion
 
 		console.log(
-			" Calckey is an open-source decentralized microblogging platform.",
+			" Firefish is an open-source decentralized microblogging platform.",
 		);
 		console.log(
 			chalk.rgb(
@@ -48,7 +49,7 @@ function greet() {
 				136,
 				0,
 			)(
-				" If you like Calckey, please consider starring or contributing to the repo. https://codeberg.org/calckey/calckey",
+				" If you like Firefish, please consider starring or contributing to the repo. https://gitlab.prometheus.systems/firefish/firefish",
 			),
 		);
 
@@ -58,8 +59,8 @@ function greet() {
 		);
 	}
 
-	bootLogger.info("Welcome to Calckey!");
-	bootLogger.info(`Calckey v${meta.version}`, null, true);
+	bootLogger.info("Welcome to Firefish!");
+	bootLogger.info(`Firefish v${meta.version}`, null, true);
 }
 
 /**
@@ -81,7 +82,7 @@ export async function masterMain() {
 		process.exit(1);
 	}
 
-	bootLogger.succ("Calckey initialized");
+	bootLogger.succ("Firefish initialized");
 
 	if (!envOption.disableClustering) {
 		await spawnWorkers(config.clusterLimit);
@@ -93,7 +94,7 @@ export async function masterMain() {
 		true,
 	);
 
-	if (!envOption.noDaemons) {
+	if (!envOption.noDaemons && !config.onlyQueueProcessor) {
 		import("../daemons/server-stats.js").then((x) => x.default());
 		import("../daemons/queue-stats.js").then((x) => x.default());
 		import("../daemons/janitor.js").then((x) => x.default());
@@ -167,7 +168,7 @@ async function connectDb(): Promise<void> {
 	}
 }
 
-async function spawnWorkers(limit: number = 1) {
+async function spawnWorkers(limit = 1) {
 	const workers = Math.min(limit, os.cpus().length);
 	bootLogger.info(`Starting ${workers} worker${workers === 1 ? "" : "s"}...`);
 	await Promise.all([...Array(workers)].map(spawnWorker));

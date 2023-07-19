@@ -2,12 +2,12 @@ extends ./base
 
 block vars
 	- const user = note.user;
-	- const title = privateMode ? instanceName : (user.name ? `${user.name} (@${user.username})` : `@${user.username}`);
+	- const title = privateMode ? instanceName : (user.name ? `${user.name} (@${user.username}${user.host ? `@${user.host}` : ''})` : `@${user.username}`);
 	- const url = `${config.url}/notes/${note.id}`;
 	- const isRenote = note.renote && note.text == null && note.fileIds.length == 0 && note.poll == null;
 	- const isImage = note.files.length !== 0 && note.files[0].type.startsWith('image');
 	- const isVideo = note.files.length !== 0 && note.files[0].type.startsWith('video');
-	- const imageUrl = isImage ? note.files[0].url : isVideo ? note.files[0].thumbnailUrl : avatarUrl; 
+	- const imageUrl = isImage ? note.files[0].url : isVideo ? note.files[0].thumbnailUrl : avatarUrl;
 
 block title
 	= `${title} | ${instanceName}`
@@ -18,16 +18,16 @@ block desc
 
 block og
 	unless privateMode
-		meta(property='og:type'        content='article')
+		meta(property='og:type' content='article')
 		meta(property='og:title'       content= title)
 		meta(property='og:description' content= summary)
 		meta(property='og:url'         content= url)
 		meta(property='og:image'       content= imageUrl)
-		if isImage 
+		if isImage && !note.files[0].isSensitive
 			meta(property='og:image:width'     content=note.files[0].properties.width)
 			meta(property='og:image:height'    content=note.files[0].properties.height)
 			meta(property='og:image:type'      content=note.files[0].type)
-			meta(property='twitter:card'       content="summary_large_image")
+			meta(property='twitter:card' content="summary_large_image")
 		if isVideo
 			meta(property='og:video:type'      content=note.files[0].type)
 			meta(property='og:video'           content=note.files[0].url)
@@ -36,6 +36,9 @@ block meta
 	unless privateMode
 		if user.host || isRenote || profile.noCrawle
 			meta(name='robots' content='noindex')
+		if profile.preventAiLearning
+			meta(name='robots' content='noai')
+			meta(name='robots' content='noimageai')
 
 		meta(name='misskey:user-username' content=user.username)
 		meta(name='misskey:user-id' content=user.id)

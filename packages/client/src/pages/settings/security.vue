@@ -1,97 +1,117 @@
 <template>
-<div class="_formRoot">
-	<FormSection>
-		<template #label>{{ i18n.ts.password }}</template>
-		<FormButton primary @click="change()">{{ i18n.ts.changePassword }}</FormButton>
-	</FormSection>
+	<div class="_formRoot">
+		<FormSection style="border: none !important">
+			<template #label>{{ i18n.ts.password }}</template>
+			<MkButton primary @click="change()">{{
+				i18n.ts.changePassword
+			}}</MkButton>
+		</FormSection>
 
-	<FormSection>
-		<template #label>{{ i18n.ts.twoStepAuthentication }}</template>
-		<X2fa/>
-	</FormSection>
+		<X2fa />
 
-	<FormSection>
-		<template #label>{{ i18n.ts.signinHistory }}</template>
-		<MkPagination :pagination="pagination" disable-auto-load>
-			<template #default="{items}">
-				<div>
-					<div v-for="item in items" :key="item.id" v-panel class="timnmucd">
-						<header>
-							<i v-if="item.success" class="ph-check-bold ph-lg icon succ"></i>
-							<i v-else class="ph-circle-wavy-warning-bold ph-lg icon fail"></i>
-							<code class="ip _monospace">{{ item.ip }}</code>
-							<MkTime :time="item.createdAt" class="time"/>
-						</header>
+		<FormSection>
+			<template #label>{{ i18n.ts.signinHistory }}</template>
+			<MkPagination :pagination="pagination" disable-auto-load>
+				<template #default="{ items }">
+					<div>
+						<div
+							v-for="item in items"
+							:key="item.id"
+							v-panel
+							class="timnmucd"
+						>
+							<header>
+								<i
+									v-if="item.success"
+									class="ph-check ph-bold ph-lg icon succ"
+								></i>
+								<i
+									v-else
+									class="ph-circle-wavy-warning ph-bold ph-lg icon fail"
+								></i>
+								<code class="ip _monospace">{{ item.ip }}</code>
+								<MkTime :time="item.createdAt" class="time" />
+							</header>
+						</div>
 					</div>
-				</div>
-			</template>
-		</MkPagination>
-	</FormSection>
+				</template>
+			</MkPagination>
+		</FormSection>
 
-	<FormSection>
-		<FormSlot>
-			<FormButton danger @click="regenerateToken"><i class="ph-arrows-clockwise-bold ph-lg"></i> {{ i18n.ts.regenerateLoginToken }}</FormButton>
-			<template #caption>{{ i18n.ts.regenerateLoginTokenDescription }}</template>
-		</FormSlot>
-	</FormSection>
-</div>
+		<FormSection>
+			<FormSlot>
+				<MkButton danger @click="regenerateToken"
+					><i class="ph-arrows-clockwise ph-bold ph-lg"></i>
+					{{ i18n.ts.regenerateLoginToken }}</MkButton
+				>
+				<template #caption>{{
+					i18n.ts.regenerateLoginTokenDescription
+				}}</template>
+			</FormSlot>
+		</FormSection>
+	</div>
 </template>
 
 <script lang="ts" setup>
-import X2fa from './2fa.vue';
-import FormSection from '@/components/form/section.vue';
-import FormSlot from '@/components/form/slot.vue';
-import FormButton from '@/components/MkButton.vue';
-import MkPagination from '@/components/MkPagination.vue';
-import * as os from '@/os';
-import { i18n } from '@/i18n';
-import { definePageMetadata } from '@/scripts/page-metadata';
+import X2fa from "./2fa.vue";
+import FormSection from "@/components/form/section.vue";
+import FormSlot from "@/components/form/slot.vue";
+import MkButton from "@/components/MkButton.vue";
+import MkPagination from "@/components/MkPagination.vue";
+import * as os from "@/os";
+import { i18n } from "@/i18n";
+import { definePageMetadata } from "@/scripts/page-metadata";
 
 const pagination = {
-	endpoint: 'i/signin-history' as const,
+	endpoint: "i/signin-history" as const,
 	limit: 5,
 };
 
-async function change(): Promise<void> {
-	const { canceled: canceled1, result: currentPassword } = await os.inputText({
-		title: i18n.ts.currentPassword,
-		type: 'password',
-	});
+async function change() {
+	const { canceled: canceled1, result: currentPassword } = await os.inputText(
+		{
+			title: i18n.ts.currentPassword,
+			type: "password",
+			autocomplete: "current-password",
+		},
+	);
 	if (canceled1) return;
 
 	const { canceled: canceled2, result: newPassword } = await os.inputText({
 		title: i18n.ts.newPassword,
-		type: 'password',
+		type: "password",
+		autocomplete: "new-password",
 	});
 	if (canceled2) return;
 
 	const { canceled: canceled3, result: newPassword2 } = await os.inputText({
 		title: i18n.ts.newPasswordRetype,
-		type: 'password',
+		type: "password",
+		autocomplete: "new-password",
 	});
 	if (canceled3) return;
 
 	if (newPassword !== newPassword2) {
 		os.alert({
-			type: 'error',
+			type: "error",
 			text: i18n.ts.retypedNotMatch,
 		});
 		return;
 	}
 
-	os.apiWithDialog('i/change-password', {
+	os.apiWithDialog("i/change-password", {
 		currentPassword,
 		newPassword,
 	});
 }
 
-function regenerateToken(): void {
+function regenerateToken() {
 	os.inputText({
 		title: i18n.ts.password,
-		type: 'password',
+		type: "password",
 	}).then(({ canceled, result: password }) => {
 		if (canceled) return;
-		os.api('i/regenerate_token', {
+		os.api("i/regenerate-token", {
 			password: password,
 		});
 	});
@@ -103,13 +123,13 @@ const headerTabs = $computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.security,
-	icon: 'ph-lock-bold ph-lg',
+	icon: "ph-lock ph-bold ph-lg",
 });
 </script>
 
 <style lang="scss" scoped>
 .timnmucd {
-	padding: 16px;
+	padding: 12px;
 
 	&:first-child {
 		border-top-left-radius: 6px;

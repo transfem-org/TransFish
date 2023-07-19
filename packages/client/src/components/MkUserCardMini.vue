@@ -1,31 +1,57 @@
 <template>
-<div :class="[$style.root, { yellow: user.isSilenced, red: user.isSuspended, gray: false }]">
-	<MkAvatar class="avatar" :user="user" :disable-link="true" :show-indicator="true"/>
-	<div class="body">
-		<span class="name"><MkUserName class="name" :user="user"/></span>
-		<span class="sub"><span class="acct _monospace">@{{ acct(user) }}</span></span>
-	</div>
-	<MkMiniChart v-if="chartValues" class="chart" :src="chartValues"/>
-</div>
+	<MkA
+		class="user-card-mini"
+		:class="[
+			$style.root,
+			{ yellow: user.isSilenced, red: user.isSuspended, gray: false },
+		]"
+		:to="userPage(user)"
+	>
+		<MkAvatar
+			class="avatar"
+			:user="user"
+			:disable-link="true"
+			:show-indicator="true"
+		/>
+		<div class="body">
+			<span class="name"><MkUserName class="name" :user="user" /></span>
+			<span class="sub"
+				><span class="acct _monospace">@{{ acct(user) }}</span></span
+			>
+		</div>
+		<MkMiniChart v-if="chartValues" class="chart" :src="chartValues" />
+	</MkA>
 </template>
 
 <script lang="ts" setup>
-import * as misskey from 'calckey-js';
-import MkMiniChart from '@/components/MkMiniChart.vue';
-import * as os from '@/os';
-import { acct } from '@/filters/user';
+import * as misskey from "firefish-js";
+import MkMiniChart from "@/components/MkMiniChart.vue";
+import * as os from "@/os";
+import { acct, userPage } from "@/filters/user";
 
-const props = defineProps<{
-	user: misskey.entities.User;
-}>();
+const props = withDefaults(
+	defineProps<{
+		user: misskey.entities.User;
+		withChart?: boolean;
+	}>(),
+	{
+		withChart: true,
+	},
+);
 
 let chartValues = $ref<number[] | null>(null);
 
-os.apiGet('charts/user/notes', { userId: props.user.id, limit: 16 + 1, span: 'day' }).then(res => {
-	// 今日のぶんの値はまだ途中の値であり、それも含めると大抵の場合前日よりも下降しているようなグラフになってしまうため今日は弾く
-	res.inc.splice(0, 1);
-	chartValues = res.inc;
-});
+if (props.withChart) {
+	os.apiGet("charts/user/notes", {
+		userId: props.user.id,
+		limit: 16 + 1,
+		span: "day",
+	}).then((res) => {
+		// 今日のぶんの値はまだ途中の値であり、それも含めると大抵の場合前日よりも下降しているようなグラフになってしまうため今日は弾く
+		res.inc.splice(0, 1);
+		chartValues = res.inc;
+	});
+}
 </script>
 
 <style lang="scss" module>
@@ -38,6 +64,7 @@ os.apiGet('charts/user/notes', { userId: props.user.id, limit: 16 + 1, span: 'da
 	padding: 16px;
 	background: var(--panel);
 	border-radius: 8px;
+	transition: background 0.2s;
 
 	> :global(.avatar) {
 		display: block;
@@ -78,21 +105,53 @@ os.apiGet('charts/user/notes', { userId: props.user.id, limit: 16 + 1, span: 'da
 		height: 30px;
 	}
 
+	&:hover,
+	&:focus {
+		background: var(--panelHighlight);
+	}
+
 	&:global(.yellow) {
 		--c: rgb(255 196 0 / 15%);
-		background-image: linear-gradient(45deg, var(--c) 16.67%, transparent 16.67%, transparent 50%, var(--c) 50%, var(--c) 66.67%, transparent 66.67%, transparent 100%);
+		background-image: linear-gradient(
+			45deg,
+			var(--c) 16.67%,
+			transparent 16.67%,
+			transparent 50%,
+			var(--c) 50%,
+			var(--c) 66.67%,
+			transparent 66.67%,
+			transparent 100%
+		);
 		background-size: 16px 16px;
 	}
 
 	&:global(.red) {
 		--c: rgb(255 0 0 / 15%);
-		background-image: linear-gradient(45deg, var(--c) 16.67%, transparent 16.67%, transparent 50%, var(--c) 50%, var(--c) 66.67%, transparent 66.67%, transparent 100%);
+		background-image: linear-gradient(
+			45deg,
+			var(--c) 16.67%,
+			transparent 16.67%,
+			transparent 50%,
+			var(--c) 50%,
+			var(--c) 66.67%,
+			transparent 66.67%,
+			transparent 100%
+		);
 		background-size: 16px 16px;
 	}
 
 	&:global(.gray) {
 		--c: var(--bg);
-		background-image: linear-gradient(45deg, var(--c) 16.67%, transparent 16.67%, transparent 50%, var(--c) 50%, var(--c) 66.67%, transparent 66.67%, transparent 100%);
+		background-image: linear-gradient(
+			45deg,
+			var(--c) 16.67%,
+			transparent 16.67%,
+			transparent 50%,
+			var(--c) 50%,
+			var(--c) 66.67%,
+			transparent 66.67%,
+			transparent 100%
+		);
 		background-size: 16px 16px;
 	}
 }

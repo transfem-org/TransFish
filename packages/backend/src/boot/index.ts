@@ -9,6 +9,7 @@ import { envOption } from "../env.js";
 import "reflect-metadata";
 import { masterMain } from "./master.js";
 import { workerMain } from "./worker.js";
+import os from "node:os";
 
 const logger = new Logger("core", "cyan");
 const clusterLogger = logger.createSubLogger("cluster", "orange", false);
@@ -18,7 +19,7 @@ const ev = new Xev();
  * Init process
  */
 export default async function () {
-	process.title = `Calckey (${cluster.isPrimary ? "master" : "worker"})`;
+	process.title = `Firefish (${cluster.isPrimary ? "master" : "worker"})`;
 
 	if (cluster.isPrimary || envOption.disableClustering) {
 		await masterMain();
@@ -31,7 +32,17 @@ export default async function () {
 		await workerMain();
 	}
 
-	// For when Calckey is started in a child process during unit testing.
+	if (cluster.isPrimary) {
+		// Leave the master process with a marginally lower priority but not too low.
+		os.setPriority(2);
+	}
+	if (cluster.isWorker) {
+		// Set workers to a much lower priority so that the master process will be
+		// able to respond to api calls even if the workers gank everything.
+		os.setPriority(10);
+	}
+
+	// For when Firefish is started in a child process during unit testing.
 	// Otherwise, process.send cannot be used, so start it.
 	if (process.send) {
 		process.send("ok");

@@ -6,6 +6,7 @@ import type { DriveFile } from "@/models/entities/drive-file.js";
 import { uploadFromUrl } from "@/services/drive/upload-from-url.js";
 import { publishBroadcastStream } from "@/services/stream.js";
 import { db } from "@/db/postgre.js";
+import { getEmojiSize } from "@/misc/emoji-meta.js";
 
 export const meta = {
 	tags: ["admin"],
@@ -64,6 +65,8 @@ export default define(meta, paramDef, async (ps, me) => {
 		throw new ApiError();
 	}
 
+	const size = await getEmojiSize(driveFile.url);
+
 	const copied = await Emojis.insert({
 		id: genId(),
 		updatedAt: new Date(),
@@ -73,6 +76,9 @@ export default define(meta, paramDef, async (ps, me) => {
 		originalUrl: driveFile.url,
 		publicUrl: driveFile.webpublicUrl ?? driveFile.url,
 		type: driveFile.webpublicType ?? driveFile.type,
+		license: emoji.license,
+		width: size.width || null,
+		height: size.height || null,
 	}).then((x) => Emojis.findOneByOrFail(x.identifiers[0]));
 
 	await db.queryResultCache!.remove(["meta_emojis"]);

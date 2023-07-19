@@ -2,6 +2,7 @@ import config from "@/config/index.js";
 import define from "../../define.js";
 import { Instances } from "@/models/index.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
+import { sqlLikeEscape } from "@/misc/sql-like-escape.js";
 
 export const meta = {
 	tags: ["federation"],
@@ -34,6 +35,7 @@ export const paramDef = {
 		notResponding: { type: "boolean", nullable: true },
 		suspended: { type: "boolean", nullable: true },
 		federating: { type: "boolean", nullable: true },
+		silenced: { type: "boolean", nullable: true },
 		subscribing: { type: "boolean", nullable: true },
 		publishing: { type: "boolean", nullable: true },
 		limit: { type: "integer", minimum: 1, maximum: 100, default: 30 },
@@ -102,12 +104,31 @@ export default define(meta, paramDef, async (ps, me) => {
 	if (typeof ps.blocked === "boolean") {
 		const meta = await fetchMeta(true);
 		if (ps.blocked) {
+			if (meta.blockedHosts.length === 0) {
+				return [];
+			}
 			query.andWhere("instance.host IN (:...blocks)", {
 				blocks: meta.blockedHosts,
 			});
-		} else {
+		} else if (meta.blockedHosts.length > 0) {
 			query.andWhere("instance.host NOT IN (:...blocks)", {
 				blocks: meta.blockedHosts,
+			});
+		}
+	}
+
+	if (typeof ps.silenced === "boolean") {
+		const meta = await fetchMeta(true);
+		if (ps.silenced) {
+			if (meta.silencedHosts.length === 0) {
+				return [];
+			}
+			query.andWhere("instance.host IN (:...silences)", {
+				silences: meta.silencedHosts,
+			});
+		} else if (meta.silencedHosts.length > 0) {
+			query.andWhere("instance.host NOT IN (:...silences)", {
+				silences: meta.silencedHosts,
 			});
 		}
 	}
@@ -158,7 +179,7 @@ export default define(meta, paramDef, async (ps, me) => {
 
 	if (ps.host) {
 		query.andWhere("instance.host like :host", {
-			host: `%${ps.host.toLowerCase()}%`,
+			host: `%${sqlLikeEscape(ps.host.toLowerCase())}%`,
 		});
 	}
 

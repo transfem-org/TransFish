@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { DriveFile } from "calckey-js/built/entities";
+import { DriveFile } from "firefish-js/built/entities";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
@@ -99,17 +99,17 @@ function select(
 				},
 				{
 					text: i18n.ts.upload,
-					icon: "ph-upload-simple-bold ph-lg",
+					icon: "ph-upload-simple ph-bold ph-lg",
 					action: chooseFileFromPc,
 				},
 				{
 					text: i18n.ts.fromDrive,
-					icon: "ph-cloud-bold ph-lg",
+					icon: "ph-cloud ph-bold ph-lg",
 					action: chooseFileFromDrive,
 				},
 				{
 					text: i18n.ts.fromUrl,
-					icon: "ph-link-simple-bold ph-lg",
+					icon: "ph-link-simple ph-bold ph-lg",
 					action: chooseFileFromUrl,
 				},
 			],

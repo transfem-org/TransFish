@@ -1,29 +1,24 @@
 <template>
-<div
-	class="ziffeomt"
-	:class="{ disabled, checked }"
->
-	<input
-		ref="input"
-		type="checkbox"
-		:disabled="disabled"
-		@keydown.enter="toggle"
-	>
-	<span ref="button" v-tooltip="checked ? i18n.ts.itsOn : i18n.ts.itsOff" class="button" @click.prevent="toggle">
-		<div class="knob"></div>
-	</span>
-	<span class="label">
-		<!-- TODO: 無名slotの方は廃止 -->
-		<span @click="toggle"><slot name="label"></slot><slot></slot></span>
-		<p class="caption"><slot name="caption"></slot></p>
-	</span>
-</div>
+	<label class="ziffeomt">
+		<input
+			type="checkbox"
+			:checked="modelValue"
+			:disabled="disabled"
+			@change="(x) => toggle(x)"
+		/>
+		<div class="button">
+			<div class="knob"></div>
+		</div>
+		<span class="label">
+			<!-- TODO: 無名slotの方は廃止 -->
+			<span><slot name="label"></slot><slot></slot></span>
+			<p class="caption"><slot name="caption"></slot></p>
+		</span>
+	</label>
 </template>
 
 <script lang="ts" setup>
-import { toRefs, Ref } from 'vue';
-import * as os from '@/os';
-import { i18n } from '@/i18n';
+import type { Ref } from "vue";
 
 const props = defineProps<{
 	modelValue: boolean | Ref<boolean>;
@@ -31,19 +26,13 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-	(ev: 'update:modelValue', v: boolean): void;
+	(ev: "update:modelValue", v: boolean): void;
 }>();
 
-let button = $ref<HTMLElement>();
-const checked = toRefs(props).modelValue;
-const toggle = () => {
+function toggle(x) {
 	if (props.disabled) return;
-	emit('update:modelValue', !checked.value);
-
-	if (!checked.value) {
-
-	}
-};
+	emit("update:modelValue", x.target.checked);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -58,8 +47,8 @@ const toggle = () => {
 
 	> input {
 		position: absolute;
-		width: 0;
-		height: 0;
+		width: 32px;
+		height: 23px;
 		opacity: 0;
 		margin: 0;
 	}
@@ -77,9 +66,9 @@ const toggle = () => {
 		background-clip: content-box;
 		border: solid 1px var(--swutchOffBg);
 		border-radius: 999px;
-		cursor: pointer;
 		transition: inherit;
 		user-select: none;
+		pointer-events: none;
 
 		> .knob {
 			position: absolute;
@@ -97,6 +86,9 @@ const toggle = () => {
 		> .button {
 			border-color: var(--inputBorderHover) !important;
 		}
+	}
+	&:focus-within > .button {
+		outline: auto;
 	}
 
 	> .label {
@@ -124,20 +116,18 @@ const toggle = () => {
 		}
 	}
 
-	&.disabled {
+	> input:disabled ~ * {
 		opacity: 0.6;
 		cursor: not-allowed;
 	}
 
-	&.checked {
-		> .button {
-			background-color: var(--swutchOnBg) !important;
-			border-color: var(--swutchOnBg) !important;
+	> input:checked ~ .button {
+		background-color: var(--swutchOnBg) !important;
+		border-color: var(--swutchOnBg) !important;
 
-			> .knob {
-				left: 12px;
-				background: var(--swutchOnFg);
-			}
+		> .knob {
+			left: 12px;
+			background: var(--swutchOnFg);
 		}
 	}
 }

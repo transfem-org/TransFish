@@ -1,32 +1,44 @@
 <template>
-<MkContainer :naked="widgetProps.transparent" :show-header="false" class="mkw-instance-cloud">
-	<div class="">
-		<MkTagCloud v-if="activeInstances">
-			<li v-for="instance in activeInstances" :key="instance.id">
-				<a @click.prevent="onInstanceClick(instance)">
-					<img style="width: 32px;" :src="instance.iconUrl">
-				</a>
-			</li>
-		</MkTagCloud>
-	</div>
-</MkContainer>
+	<MkContainer
+		:naked="widgetProps.transparent"
+		:show-header="false"
+		class="mkw-instance-cloud"
+	>
+		<div class="">
+			<MkTagCloud v-if="activeInstances">
+				<li v-for="instance in activeInstances" :key="instance.id">
+					<a @click.prevent="onInstanceClick(instance)">
+						<img
+							style="width: 32px"
+							:src="getInstanceIcon(instance)"
+						/>
+					</a>
+				</li>
+			</MkTagCloud>
+		</div>
+	</MkContainer>
 </template>
 
 <script lang="ts" setup>
-import { } from 'vue';
-import { useWidgetPropsManager, WidgetComponentEmits, WidgetComponentProps } from './widget';
-import type { Widget, WidgetComponentExpose } from './widget';
-import type { GetFormResultType } from '@/scripts/form';
-import MkContainer from '@/components/MkContainer.vue';
-import MkTagCloud from '@/components/MkTagCloud.vue';
-import * as os from '@/os';
-import { useInterval } from '@/scripts/use-interval';
+import {} from "vue";
+import {
+	WidgetComponentEmits,
+	WidgetComponentProps,
+	useWidgetPropsManager,
+} from "./widget";
+import type { Widget, WidgetComponentExpose } from "./widget";
+import type { GetFormResultType } from "@/scripts/form";
+import MkContainer from "@/components/MkContainer.vue";
+import MkTagCloud from "@/components/MkTagCloud.vue";
+import * as os from "@/os";
+import { useInterval } from "@/scripts/use-interval";
+import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
 
-const name = 'instanceCloud';
+const name = "instanceCloud";
 
 const widgetPropsDef = {
 	transparent: {
-		type: 'boolean' as const,
+		type: "boolean" as const,
 		default: false,
 	},
 };
@@ -34,36 +46,49 @@ const widgetPropsDef = {
 type WidgetProps = GetFormResultType<typeof widgetPropsDef>;
 
 // 現時点ではvueの制限によりimportしたtypeをジェネリックに渡せない
-//const props = defineProps<WidgetComponentProps<WidgetProps>>();
-//const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
-const props = defineProps<{ widget?: Widget<WidgetProps>; }>();
-const emit = defineEmits<{ (ev: 'updateProps', props: WidgetProps); }>();
+// const props = defineProps<WidgetComponentProps<WidgetProps>>();
+// const emit = defineEmits<WidgetComponentEmits<WidgetProps>>();
+const props = defineProps<{ widget?: Widget<WidgetProps> }>();
+const emit = defineEmits<{ (ev: "updateProps", props: WidgetProps) }>();
 
-const { widgetProps, configure } = useWidgetPropsManager(name,
+const { widgetProps, configure } = useWidgetPropsManager(
+	name,
 	widgetPropsDef,
 	props,
 	emit,
 );
 
-let cloud = $ref<InstanceType<typeof MkTagCloud> | null>();
+const cloud = $ref<InstanceType<typeof MkTagCloud> | null>();
 let activeInstances = $shallowRef(null);
 
 function onInstanceClick(i) {
 	os.pageWindow(`/instance-info/${i.host}`);
 }
 
-useInterval(() => {
-	os.api('federation/instances', {
-		sort: '+lastCommunicatedAt',
-		limit: 25,
-	}).then(res => {
-		activeInstances = res;
-		if (cloud) cloud.update();
-	});
-}, 1000 * 60 * 3, {
-	immediate: true,
-	afterMounted: true,
-});
+useInterval(
+	() => {
+		os.api("federation/instances", {
+			sort: "+lastCommunicatedAt",
+			limit: 25,
+		}).then((res) => {
+			activeInstances = res;
+			if (cloud) cloud.update();
+		});
+	},
+	1000 * 60 * 3,
+	{
+		immediate: true,
+		afterMounted: true,
+	},
+);
+
+function getInstanceIcon(instance): string {
+	return (
+		getProxiedImageUrlNullable(instance.iconUrl, "preview") ??
+		getProxiedImageUrlNullable(instance.faviconUrl, "preview") ??
+		"/client-assets/dummy.png"
+	);
+}
 
 defineExpose<WidgetComponentExpose>({
 	name,
@@ -72,6 +97,4 @@ defineExpose<WidgetComponentExpose>({
 });
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

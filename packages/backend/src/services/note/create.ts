@@ -1,6 +1,11 @@
 import * as mfm from "mfm-js";
 import es from "../../db/elasticsearch.js";
-import { publishMainStream, publishNotesStream } from "@/services/stream.js";
+import sonic from "../../db/sonic.js";
+import {
+	publishMainStream,
+	publishNotesStream,
+	publishNoteStream,
+} from "@/services/stream.js";
 import DeliverManager from "@/remote/activitypub/deliver-manager.js";
 import renderNote from "@/remote/activitypub/renderer/note.js";
 import renderCreate from "@/remote/activitypub/renderer/create.js";
@@ -24,12 +29,9 @@ import {
 	Notes,
 	Instances,
 	UserProfiles,
-	Antennas,
-	Followings,
 	MutedNotes,
 	Channels,
 	ChannelFollowings,
-	Blockings,
 	NoteThreadMutings,
 } from "@/models/index.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
@@ -48,10 +50,10 @@ import { Poll } from "@/models/entities/poll.js";
 import { createNotification } from "../create-notification.js";
 import { isDuplicateKeyValueError } from "@/misc/is-duplicate-key-value-error.js";
 import { checkHitAntenna } from "@/misc/check-hit-antenna.js";
-import { checkWordMute } from "@/misc/check-word-mute.js";
+import { getWordHardMute } from "@/misc/check-word-mute.js";
 import { addNoteToAntenna } from "../add-note-to-antenna.js";
 import { countSameRenotes } from "@/misc/count-same-renotes.js";
-import { deliverToRelays } from "../relay.js";
+import { deliverToRelays, getCachedRelays } from "../relay.js";
 import type { Channel } from "@/models/entities/channel.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { getAntennas } from "@/misc/antenna-cache.js";
@@ -61,10 +63,14 @@ import { Cache } from "@/misc/cache.js";
 import type { UserProfile } from "@/models/entities/user-profile.js";
 import { db } from "@/db/postgre.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
+import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
+import meilisearch from "../../db/meilisearch.js";
+import { redisClient } from "@/db/redis.js";
+import { Mutex } from "redis-semaphore";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
->(1000 * 60 * 5);
+>("mutedWords", 60 * 5);
 
 type NotificationType = "reply" | "renote" | "quote" | "mention";
 
@@ -157,11 +163,17 @@ export default async (
 		host: User["host"];
 		isSilenced: User["isSilenced"];
 		createdAt: User["createdAt"];
+		isBot: User["isBot"];
+		inbox?: User["inbox"];
 	},
 	data: Option,
 	silent = false,
 ) =>
+	// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
 	new Promise<Note>(async (res, rej) => {
+		const dontFederateInitially =
+			data.localOnly || data.visibility === "hidden";
+
 		// If you reply outside the channel, match the scope of the target.
 		// TODO (I think it's a process that could be done on the client side, but it's server side for now.)
 		if (
@@ -182,18 +194,34 @@ export default async (
 			data.channel = await Channels.findOneBy({ id: data.reply.channelId });
 		}
 
-		if (data.createdAt == null) data.createdAt = new Date();
+		const now = new Date();
+		if (
+			!data.createdAt ||
+			isNaN(data.createdAt.getTime()) ||
+			data.createdAt > now
+		)
+			data.createdAt = now;
 		if (data.visibility == null) data.visibility = "public";
 		if (data.localOnly == null) data.localOnly = false;
 		if (data.channel != null) data.visibility = "public";
 		if (data.channel != null) data.visibleUsers = [];
 		if (data.channel != null) data.localOnly = true;
+		if (data.visibility === "hidden") data.visibility = "public";
 
 		// enforce silent clients on server
 		if (
 			user.isSilenced &&
 			data.visibility === "public" &&
 			data.channel == null
+		) {
+			data.visibility = "home";
+		}
+
+		// Enforce home visibility if the user is in a silenced instance.
+		if (
+			data.visibility === "public" &&
+			Users.isRemoteUser(user) &&
+			(await shouldSilenceInstance(user.host))
 		) {
 			data.visibility = "home";
 		}
@@ -307,8 +335,8 @@ export default async (
 		res(note);
 
 		// 統計を更新
-		notesChart.update(note, true);
-		perUserNotesChart.update(user, note, true);
+		notesChart.update(note, true, user.isBot);
+		perUserNotesChart.update(user, note, true, user.isBot);
 
 		// Register host
 		if (Users.isRemoteUser(user)) {
@@ -338,7 +366,7 @@ export default async (
 			)
 			.then((us) => {
 				for (const u of us) {
-					checkWordMute(note, { id: u.userId }, u.mutedWords).then(
+					getWordHardMute(data, { id: u.userId }, u.mutedWords).then(
 						(shouldMute) => {
 							if (shouldMute) {
 								MutedNotes.insert({
@@ -383,6 +411,7 @@ export default async (
 		// この投稿を除く指定したユーザーによる指定したノートのリノートが存在しないとき
 		if (
 			data.renote &&
+			!user.isBot &&
 			(await countSameRenotes(user.id, data.renote.id, note.id)) === 0
 		) {
 			incRenoteCount(data.renote);
@@ -429,7 +458,52 @@ export default async (
 				}
 			}
 
-			publishNotesStream(note);
+			if (!dontFederateInitially) {
+				let publishKey: string;
+				let noteToPublish: Note;
+				const relays = await getCachedRelays();
+
+				// Some relays (e.g., aode-relay) deliver posts by boosting them as
+				// Announce activities. In that case, user is the relay's actor.
+				const boostedByRelay =
+					!!user.inbox &&
+					relays.map((relay) => relay.inbox).includes(user.inbox);
+
+				if (boostedByRelay && data.renote && data.renote.userHost) {
+					publishKey = `publishedNote:${data.renote.id}`;
+					noteToPublish = data.renote;
+				} else {
+					publishKey = `publishedNote:${note.id}`;
+					noteToPublish = note;
+				}
+
+				const lock = new Mutex(redisClient, "publishedNote");
+				await lock.acquire();
+				try {
+					const published = (await redisClient.get(publishKey)) !== null;
+					if (!published) {
+						await redisClient.set(publishKey, "done", "EX", 30);
+						if (noteToPublish.renoteId) {
+							// Prevents other threads from publishing the boosting post
+							await redisClient.set(
+								`publishedNote:${noteToPublish.renoteId}`,
+								"done",
+								"EX",
+								30,
+							);
+						}
+						publishNotesStream(noteToPublish);
+					}
+				} finally {
+					await lock.release();
+				}
+			}
+			if (note.replyId != null) {
+				// Only provide the reply note id here as the recipient may not be authorized to see the note.
+				publishNoteStream(note.replyId, "replied", {
+					id: note.id,
+				});
+			}
 
 			const webhooks = await getActiveWebhooks().then((webhooks) =>
 				webhooks.filter((x) => x.userId === user.id && x.on.includes("note")),
@@ -493,7 +567,6 @@ export default async (
 						nm.push(data.renote.userId, type);
 					}
 				}
-
 				// Fetch watchers
 				nmRelatedPromises.push(
 					notifyToWatchersOfRenotee(data.renote, user, nm, type),
@@ -506,8 +579,9 @@ export default async (
 					});
 					publishMainStream(data.renote.userId, "renote", packedRenote);
 
+					const renote = data.renote;
 					const webhooks = (await getActiveWebhooks()).filter(
-						(x) => x.userId === data.renote!.userId && x.on.includes("renote"),
+						(x) => x.userId === renote.userId && x.on.includes("renote"),
 					);
 					for (const webhook of webhooks) {
 						webhookDeliver(webhook, "renote", {
@@ -522,7 +596,7 @@ export default async (
 			});
 
 			//#region AP deliver
-			if (Users.isLocalUser(user)) {
+			if (Users.isLocalUser(user) && !dontFederateInitially) {
 				(async () => {
 					const noteActivity = await renderNoteOrRenoteActivity(data, note);
 					const dm = new DeliverManager(user, noteActivity);
@@ -565,20 +639,20 @@ export default async (
 				lastNotedAt: new Date(),
 			});
 
-			const count = await Notes.countBy({
+			await Notes.countBy({
 				userId: user.id,
 				channelId: data.channel.id,
 			}).then((count) => {
 				// この処理が行われるのはノート作成後なので、ノートが一つしかなかったら最初の投稿だと判断できる
 				// TODO: とはいえノートを削除して何回も投稿すればその分だけインクリメントされる雑さもあるのでどうにかしたい
-				if (count === 1) {
-					Channels.increment({ id: data.channel!.id }, "usersCount", 1);
+				if (count === 1 && data.channel != null) {
+					Channels.increment({ id: data.channel.id }, "usersCount", 1);
 				}
 			});
 		}
 
 		// Register to search database
-		index(note);
+		await index(note, false);
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {
@@ -618,9 +692,12 @@ async function insertNote(
 	emojis: string[],
 	mentionedUsers: MinimumUser[],
 ) {
+	if (data.createdAt === null || data.createdAt === undefined) {
+		data.createdAt = new Date();
+	}
 	const insert = new Note({
-		id: genId(data.createdAt!),
-		createdAt: data.createdAt!,
+		id: genId(data.createdAt),
+		createdAt: data.createdAt,
 		fileIds: data.files ? data.files.map((file) => file.id) : [],
 		replyId: data.reply ? data.reply.id : null,
 		renoteId: data.renote ? data.renote.id : null,
@@ -637,7 +714,7 @@ async function insertNote(
 		tags: tags.map((tag) => normalizeForSearch(tag)),
 		emojis,
 		userId: user.id,
-		localOnly: data.localOnly!,
+		localOnly: data.localOnly || false,
 		visibility: data.visibility as any,
 		visibleUserIds:
 			data.visibility === "specified"
@@ -684,14 +761,23 @@ async function insertNote(
 		if (insert.hasPoll) {
 			// Start transaction
 			await db.transaction(async (transactionalEntityManager) => {
+				if (!data.poll) throw new Error("Empty poll data");
+
 				await transactionalEntityManager.insert(Note, insert);
+
+				let expiresAt: Date | null;
+				if (!data.poll.expiresAt || isNaN(data.poll.expiresAt.getTime())) {
+					expiresAt = null;
+				} else {
+					expiresAt = data.poll.expiresAt;
+				}
 
 				const poll = new Poll({
 					noteId: insert.id,
-					choices: data.poll!.choices,
-					expiresAt: data.poll!.expiresAt,
-					multiple: data.poll!.multiple,
-					votes: new Array(data.poll!.choices.length).fill(0),
+					choices: data.poll.choices,
+					expiresAt,
+					multiple: data.poll.multiple,
+					votes: new Array(data.poll.choices.length).fill(0),
 					noteVisibility: insert.visibility,
 					userId: user.id,
 					userHost: user.host,
@@ -718,18 +804,38 @@ async function insertNote(
 	}
 }
 
-function index(note: Note) {
-	if (note.text == null || config.elasticsearch == null) return;
+export async function index(note: Note, reindexing: boolean): Promise<void> {
+	if (!note.text) return;
 
-	es!.index({
-		index: config.elasticsearch.index || "misskey_note",
-		id: note.id.toString(),
-		body: {
-			text: normalizeForSearch(note.text),
-			userId: note.userId,
-			userHost: note.userHost,
-		},
-	});
+	if (config.elasticsearch && es) {
+		es.index({
+			index: config.elasticsearch.index || "misskey_note",
+			id: note.id.toString(),
+			body: {
+				text: normalizeForSearch(note.text),
+				userId: note.userId,
+				userHost: note.userHost,
+			},
+		});
+	}
+
+	if (sonic) {
+		await sonic.ingest.push(
+			sonic.collection,
+			sonic.bucket,
+			JSON.stringify({
+				id: note.id,
+				userId: note.userId,
+				userHost: note.userHost,
+				channelId: note.channelId,
+			}),
+			note.text,
+		);
+	}
+
+	if (meilisearch && !reindexing) {
+		await meilisearch.ingestNote(note);
+	}
 }
 
 async function notifyToWatchersOfRenotee(
@@ -819,7 +925,7 @@ function incNotesCountOfUser(user: { id: User["id"] }) {
 		.execute();
 }
 
-async function extractMentionedUsers(
+export async function extractMentionedUsers(
 	user: { host: User["host"] },
 	tokens: mfm.MfmNode[],
 ): Promise<User[]> {

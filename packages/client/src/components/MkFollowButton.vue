@@ -1,72 +1,106 @@
 <template>
-<button
-	class="kpoogebi _button"
-	:class="{
-		wait,
-		active: isFollowing || hasPendingFollowRequestFromYou,
-		full,
-		large,
-		blocking: isBlocking
-	}"
-	:disabled="wait"
-	@click="onClick"
->
-	<template v-if="!wait">
-		<template v-if="isBlocking">
-			<span v-if="full">{{ i18n.ts.blocked }}</span><i class="ph-prohibit-bold ph-lg"></i>
+	<button
+		v-if="!hideMenu"
+		class="menu _button"
+		@click.stop="menu"
+		v-tooltip="i18n.ts.menu"
+	>
+		<i class="ph-dots-three-outline ph-bold ph-lg"></i>
+	</button>
+	<button
+		v-if="$i != null && $i.id != user.id"
+		class="kpoogebi _button follow-button"
+		:class="{
+			wait,
+			active: isFollowing || hasPendingFollowRequestFromYou,
+			full,
+			large,
+			blocking: isBlocking,
+		}"
+		:disabled="wait"
+		@click.stop="onClick"
+		:aria-label="`${state} ${user.name || user.username}`"
+		v-tooltip="full ? null : `${state} ${user.name || user.username}`"
+	>
+		<template v-if="!wait">
+			<template v-if="isBlocking">
+				<span>{{ (state = i18n.ts.blocked) }}</span
+				><i class="ph-prohibit ph-bold ph-lg"></i>
+			</template>
+			<template
+				v-else-if="hasPendingFollowRequestFromYou && user.isLocked"
+			>
+				<span>{{ (state = i18n.ts.followRequestPending) }}</span
+				><i class="ph-hourglass-medium ph-bold ph-lg"></i>
+			</template>
+			<template
+				v-else-if="hasPendingFollowRequestFromYou && !user.isLocked"
+			>
+				<!-- つまりリモートフォローの場合。 -->
+				<span>{{ (state = i18n.ts.processing) }}</span
+				><i class="ph-circle-notch ph-bold ph-lg fa-pulse"></i>
+			</template>
+			<template v-else-if="isFollowing">
+				<span>{{ (state = i18n.ts.unfollow) }}</span
+				><i class="ph-minus ph-bold ph-lg"></i>
+			</template>
+			<template v-else-if="!isFollowing && user.isLocked">
+				<span>{{ (state = i18n.ts.followRequest) }}</span
+				><i class="ph-lock-open ph-bold ph-lg"></i>
+			</template>
+			<template v-else-if="!isFollowing && !user.isLocked">
+				<span>{{ (state = i18n.ts.follow) }}</span
+				><i class="ph-plus ph-bold ph-lg"></i>
+			</template>
 		</template>
-		<template v-else-if="hasPendingFollowRequestFromYou && user.isLocked">
-			<span v-if="full">{{ i18n.ts.followRequestPending }}</span><i class="ph-hourglass-medium-bold ph-lg"></i>
+		<template v-else>
+			<span>{{ (state = i18n.ts.processing) }}</span
+			><i class="ph-circle-notch ph-bold ph-lg fa-pulse ph-fw ph-lg"></i>
 		</template>
-		<template v-else-if="hasPendingFollowRequestFromYou && !user.isLocked">
-			<!-- つまりリモートフォローの場合。 -->
-			<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold ph-lg fa-pulse"></i>
-		</template>
-		<template v-else-if="isFollowing">
-			<span v-if="full">{{ i18n.ts.unfollow }}</span><i class="ph-minus-bold ph-lg"></i>
-		</template>
-		<template v-else-if="!isFollowing && user.isLocked">
-			<span v-if="full">{{ i18n.ts.followRequest }}</span><i class="ph-plus-bold ph-lg"></i>
-		</template>
-		<template v-else-if="!isFollowing && !user.isLocked">
-			<span v-if="full">{{ i18n.ts.follow }}</span><i class="ph-plus-bold ph-lg"></i>
-		</template>
-	</template>
-	<template v-else>
-		<span v-if="full">{{ i18n.ts.processing }}</span><i class="ph-circle-notch-bold ph-lg fa-pulse ph-fw ph-lg"></i>
-	</template>
-</button>
+	</button>
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted } from 'vue';
-import type * as Misskey from 'calckey-js';
-import * as os from '@/os';
-import { stream } from '@/stream';
-import { i18n } from '@/i18n';
+import { computed, onBeforeUnmount, onMounted } from "vue";
+import type * as Misskey from "firefish-js";
+import * as os from "@/os";
+import { stream } from "@/stream";
+import { i18n } from "@/i18n";
+import { $i } from "@/account";
+import { getUserMenu } from "@/scripts/get-user-menu";
+import { useRouter } from "@/router";
 
-const emit = defineEmits(['refresh'])
-const props = withDefaults(defineProps<{
-		user: Misskey.entities.UserDetailed,
-		full?: boolean,
-		large?: boolean,
-	}>(), {
-	full: false,
-	large: false,
-});
+const router = useRouter();
+
+const emit = defineEmits(["refresh"]);
+const props = withDefaults(
+	defineProps<{
+		user: Misskey.entities.UserDetailed;
+		full?: boolean;
+		large?: boolean;
+		hideMenu?: boolean;
+	}>(),
+	{
+		full: false,
+		large: false,
+	},
+);
 
 const isBlocking = computed(() => props.user.isBlocking);
 
+let state = $ref(i18n.ts.processing);
+
 let isFollowing = $ref(props.user.isFollowing);
-let hasPendingFollowRequestFromYou = $ref(props.user.hasPendingFollowRequestFromYou);
+let hasPendingFollowRequestFromYou = $ref(
+	props.user.hasPendingFollowRequestFromYou,
+);
 let wait = $ref(false);
-const connection = stream.useChannel('main');
+const connection = stream.useChannel("main");
 
 if (props.user.isFollowing == null) {
-	os.api('users/show', {
+	os.api("users/show", {
 		userId: props.user.id,
-	})
-		.then(onFollowChange);
+	}).then(onFollowChange);
 }
 
 function onFollowChange(user: Misskey.entities.UserDetailed) {
@@ -82,40 +116,41 @@ async function onClick() {
 	try {
 		if (isBlocking.value) {
 			const { canceled } = await os.confirm({
-				type: 'warning',
-				text: i18n.t('unblockConfirm'),
+				type: "warning",
+				text: i18n.t("unblockConfirm"),
 			});
-			if (canceled) return
+			if (canceled) return;
 
 			await os.api("blocking/delete", {
 				userId: props.user.id,
-			})
+			});
 			if (props.user.isMuted) {
 				await os.api("mute/delete", {
 					userId: props.user.id,
-				})
+				});
 			}
-			emit('refresh')
-		}
-		else if (isFollowing) {
+			emit("refresh");
+		} else if (isFollowing) {
 			const { canceled } = await os.confirm({
-				type: 'warning',
-				text: i18n.t('unfollowConfirm', { name: props.user.name || props.user.username }),
+				type: "warning",
+				text: i18n.t("unfollowConfirm", {
+					name: props.user.name || props.user.username,
+				}),
 			});
 
 			if (canceled) return;
 
-			await os.api('following/delete', {
+			await os.api("following/delete", {
 				userId: props.user.id,
 			});
 		} else {
 			if (hasPendingFollowRequestFromYou) {
-				await os.api('following/requests/cancel', {
+				await os.api("following/requests/cancel", {
 					userId: props.user.id,
 				});
 				hasPendingFollowRequestFromYou = false;
 			} else {
-				await os.api('following/create', {
+				await os.api("following/create", {
 					userId: props.user.id,
 				});
 				hasPendingFollowRequestFromYou = true;
@@ -128,9 +163,16 @@ async function onClick() {
 	}
 }
 
+function menu(ev) {
+	os.popupMenu(
+		getUserMenu(props.user, router),
+		ev.currentTarget ?? ev.target,
+	);
+}
+
 onMounted(() => {
-	connection.on('follow', onFollowChange);
-	connection.on('unfollow', onFollowChange);
+	connection.on("follow", onFollowChange);
+	connection.on("unfollow", onFollowChange);
 });
 
 onBeforeUnmount(() => {
@@ -139,21 +181,30 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.kpoogebi {
+.menu {
+	width: 3em;
+	height: 2em;
+	vertical-align: middle;
+}
+.follow-button {
 	position: relative;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	font-weight: bold;
 	color: var(--accent);
-	background: transparent;
 	border: solid 1px var(--accent);
 	padding: 0;
-	height: 31px;
 	font-size: 16px;
-	border-radius: 32px;
-	background: #fff;
+	width: 2em;
+	height: 2em;
+	border-radius: 100px;
+	background: var(--bg);
+	vertical-align: middle;
 
 	&.full {
-		padding: 0 8px 0 12px;
+		padding: 0.2em 0.7em;
+		width: auto;
 		font-size: 14px;
 	}
 
@@ -165,6 +216,9 @@ onBeforeUnmount(() => {
 
 	&:not(.full) {
 		width: 31px;
+		span {
+			display: none;
+		}
 	}
 
 	&:focus-visible {
@@ -190,7 +244,7 @@ onBeforeUnmount(() => {
 	}
 
 	&.active {
-		color: #fff;
+		color: var(--fgOnAccent);
 		background: var(--accent);
 
 		&:hover {

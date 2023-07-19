@@ -1,25 +1,20 @@
 <template>
-<div
-	v-adaptive-border
-	class="novjtctn"
-	:class="{ disabled, checked }"
-	:aria-checked="checked"
-	:aria-disabled="disabled"
-	@click="toggle"
->
-	<input
-		type="radio"
-		:disabled="disabled"
-	>
-	<span class="button">
-		<span></span>
-	</span>
-	<span class="label"><slot></slot></span>
-</div>
+	<label v-adaptive-border class="novjtctn" :class="{ disabled, checked }">
+		<input
+			type="radio"
+			:disabled="disabled"
+			:checked="checked"
+			@change="(x) => toggle(x)"
+		/>
+		<span class="button">
+			<span></span>
+		</span>
+		<span class="label"><slot></slot></span>
+	</label>
 </template>
 
 <script lang="ts" setup>
-import { } from 'vue';
+import {} from "vue";
 
 const props = defineProps<{
 	modelValue: any;
@@ -28,14 +23,14 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-	(ev: 'update:modelValue', value: any): void;
+	(ev: "update:modelValue", value: any): void;
 }>();
 
-let checked = $computed(() => props.modelValue === props.value);
+const checked = $computed(() => props.modelValue === props.value);
 
-function toggle(): void {
+function toggle(x) {
 	if (props.disabled) return;
-	emit('update:modelValue', props.value);
+	emit("update:modelValue", props.value);
 }
 </script>
 
@@ -60,7 +55,8 @@ function toggle(): void {
 	&.disabled {
 		opacity: 0.6;
 
-		&, * {
+		&,
+		* {
 			cursor: not-allowed !important;
 		}
 	}
@@ -68,13 +64,17 @@ function toggle(): void {
 	&:hover {
 		border-color: var(--inputBorderHover) !important;
 	}
+	&:focus-within {
+		outline: auto;
+	}
 
 	&.checked {
 		background-color: var(--accentedBg) !important;
 		border-color: var(--accentedBg) !important;
 		color: var(--accent);
 
-		&, * {
+		&,
+		* {
 			cursor: default !important;
 		}
 
@@ -91,8 +91,8 @@ function toggle(): void {
 
 	> input {
 		position: absolute;
-		width: 0;
-		height: 0;
+		width: 18px;
+		height: 18px;
 		opacity: 0;
 		margin: 0;
 	}
@@ -105,9 +105,10 @@ function toggle(): void {
 		border: solid 2px var(--inputBorder);
 		border-radius: 100%;
 		transition: inherit;
+		pointer-events: none;
 
 		&:after {
-			content: '';
+			content: "";
 			display: block;
 			position: absolute;
 			top: 3px;

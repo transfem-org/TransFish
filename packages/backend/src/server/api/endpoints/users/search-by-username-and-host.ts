@@ -3,6 +3,7 @@ import { Followings, Users } from "@/models/index.js";
 import { USER_ACTIVE_THRESHOLD } from "@/const.js";
 import type { User } from "@/models/entities/user.js";
 import define from "../../define.js";
+import { sqlLikeEscape } from "@/misc/sql-like-escape.js";
 
 export const meta = {
 	tags: ["users"],
@@ -31,6 +32,12 @@ export const paramDef = {
 		username: { type: "string", nullable: true },
 		host: { type: "string", nullable: true },
 		limit: { type: "integer", minimum: 1, maximum: 100, default: 10 },
+		maxDaysSinceLastActive: {
+			type: "integer",
+			minimum: 1,
+			maximum: 1000,
+			default: 30,
+		},
 		detail: { type: "boolean", default: true },
 	},
 	anyOf: [{ required: ["username"] }, { required: ["host"] }],
@@ -39,16 +46,20 @@ export const paramDef = {
 // TODO: avatar,bannerをJOINしたいけどエラーになる
 
 export default define(meta, paramDef, async (ps, me) => {
-	const activeThreshold = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30); // 30日
+	const activeThreshold = ps.maxDaysSinceLastActive
+		? new Date(Date.now() - 1000 * 60 * 60 * 24 * ps.maxDaysSinceLastActive)
+		: null;
 
 	if (ps.host) {
 		const q = Users.createQueryBuilder("user")
 			.where("user.isSuspended = FALSE")
-			.andWhere("user.host LIKE :host", { host: `${ps.host.toLowerCase()}%` });
+			.andWhere("user.host LIKE :host", {
+				host: `${sqlLikeEscape(ps.host.toLowerCase())}%`,
+			});
 
 		if (ps.username) {
 			q.andWhere("user.usernameLower LIKE :username", {
-				username: `${ps.username.toLowerCase()}%`,
+				username: `${sqlLikeEscape(ps.username.toLowerCase())}%`,
 			});
 		}
 
@@ -71,9 +82,11 @@ export default define(meta, paramDef, async (ps, me) => {
 				.andWhere("user.id != :meId", { meId: me.id })
 				.andWhere("user.isSuspended = FALSE")
 				.andWhere("user.usernameLower LIKE :username", {
-					username: `${ps.username.toLowerCase()}%`,
-				})
-				.andWhere(
+					username: `${sqlLikeEscape(ps.username.toLowerCase())}%`,
+				});
+
+			if (activeThreshold) {
+				query.andWhere(
 					new Brackets((qb) => {
 						qb.where("user.updatedAt IS NULL").orWhere(
 							"user.updatedAt > :activeThreshold",
@@ -81,6 +94,7 @@ export default define(meta, paramDef, async (ps, me) => {
 						);
 					}),
 				);
+			}
 
 			query.setParameters(followingQuery.getParameters());
 
@@ -95,7 +109,7 @@ export default define(meta, paramDef, async (ps, me) => {
 					.andWhere("user.id != :meId", { meId: me.id })
 					.andWhere("user.isSuspended = FALSE")
 					.andWhere("user.usernameLower LIKE :username", {
-						username: `${ps.username.toLowerCase()}%`,
+						username: `${sqlLikeEscape(ps.username.toLowerCase())}%`,
 					})
 					.andWhere("user.updatedAt IS NOT NULL");
 
@@ -112,7 +126,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			users = await Users.createQueryBuilder("user")
 				.where("user.isSuspended = FALSE")
 				.andWhere("user.usernameLower LIKE :username", {
-					username: `${ps.username.toLowerCase()}%`,
+					username: `${sqlLikeEscape(ps.username.toLowerCase())}%`,
 				})
 				.andWhere("user.updatedAt IS NOT NULL")
 				.orderBy("user.updatedAt", "DESC")

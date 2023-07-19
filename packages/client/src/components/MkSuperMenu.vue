@@ -1,30 +1,59 @@
 <template>
-<div class="rrevdjwu" :class="{ grid }">
-	<div v-for="group in def" class="group">
-		<div v-if="group.title" class="title">{{ group.title }}</div>
+	<nav class="rrevdjwu" :class="{ grid }">
+		<section v-for="group in def" class="group">
+			<div v-if="group.title" class="title">{{ group.title }}</div>
 
-		<div class="items">
-			<template v-for="(item, i) in group.items">
-				<a v-if="item.type === 'a'" :href="item.href" :target="item.target" :tabindex="i" class="_button item" :class="{ danger: item.danger, active: item.active }">
-					<i v-if="item.icon" class="icon ph-fw ph-lg" :class="item.icon"></i>
-					<span class="text">{{ item.text }}</span>
-				</a>
-				<button v-else-if="item.type === 'button'" :tabindex="i" class="_button item" :class="{ danger: item.danger, active: item.active }" :disabled="item.active" @click="ev => item.action(ev)">
-					<i v-if="item.icon" class="icon ph-fw ph-lg" :class="item.icon"></i>
-					<span class="text">{{ item.text }}</span>
-				</button>
-				<MkA v-else :to="item.to" :tabindex="i" class="_button item" :class="{ danger: item.danger, active: item.active }">
-					<i v-if="item.icon" class="icon ph-fw ph-lg" :class="item.icon"></i>
-					<span class="text">{{ item.text }}</span>
-				</MkA>
-			</template>
-		</div>
-	</div>
-</div>
+			<div class="items">
+				<template v-for="(item, i) in group.items">
+					<a
+						v-if="item.type === 'a'"
+						:href="item.href"
+						:target="item.target"
+						class="_button item"
+						:class="{ danger: item.danger, active: item.active }"
+					>
+						<i
+							v-if="item.icon"
+							class="icon ph-fw ph-lg"
+							:class="item.icon"
+						></i>
+						<span class="text">{{ item.text }}</span>
+					</a>
+					<button
+						v-else-if="item.type === 'button'"
+						class="_button item"
+						:class="{ danger: item.danger, active: item.active }"
+						:disabled="item.active"
+						@click="(ev) => item.action(ev)"
+					>
+						<i
+							v-if="item.icon"
+							class="icon ph-fw ph-lg"
+							:class="item.icon"
+						></i>
+						<span class="text">{{ item.text }}</span>
+					</button>
+					<MkA
+						v-else
+						:to="item.to"
+						class="_button item"
+						:class="{ danger: item.danger, active: item.active }"
+					>
+						<i
+							v-if="item.icon"
+							class="icon ph-fw ph-lg"
+							:class="item.icon"
+						></i>
+						<span class="text">{{ item.text }}</span>
+					</MkA>
+				</template>
+			</div>
+		</section>
+	</nav>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, unref } from 'vue';
+import { defineComponent, ref, unref } from "vue";
 
 export default defineComponent({
 	props: {
@@ -52,7 +81,7 @@ export default defineComponent({
 
 		> .title {
 			opacity: 0.7;
-			margin: 0 0 8px 0;
+			margin: 0 12px 8px;
 			font-size: 0.9em;
 		}
 
@@ -67,7 +96,8 @@ export default defineComponent({
 				font-size: 0.9em;
 				margin-bottom: 0.3rem;
 
-				&:hover {
+				&:hover,
+				&:focus-visible {
 					text-decoration: none;
 					background: var(--panelHighlight);
 				}
@@ -95,7 +125,6 @@ export default defineComponent({
 					overflow: hidden;
 					padding-right: 12px;
 				}
-
 			}
 		}
 	}

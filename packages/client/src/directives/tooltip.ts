@@ -4,6 +4,7 @@
 import { defineAsyncComponent, Directive, ref } from "vue";
 import { isTouchUsing } from "@/scripts/touch";
 import { popup, alert } from "@/os";
+import { mainRouter } from "@/router";
 
 const start = isTouchUsing ? "touchstart" : "mouseover";
 const end = isTouchUsing ? "touchend" : "mouseleave";
@@ -19,6 +20,12 @@ export default {
 		self.showTimer = null;
 		self.hideTimer = null;
 		self.checkTimer = null;
+
+		if (!binding.modifiers.noLabel) {
+			if (!document.body.contains(el)) return;
+			if (self.text == null) return;
+			el.setAttribute("aria-label", self.text);
+		}
 
 		self.close = () => {
 			if (self._close) {
@@ -76,25 +83,24 @@ export default {
 			ev.preventDefault();
 		});
 
-		el.addEventListener(
-			start,
-			() => {
-				window.clearTimeout(self.showTimer);
-				window.clearTimeout(self.hideTimer);
-				self.showTimer = window.setTimeout(self.show, delay);
-			},
-			{ passive: true },
-		);
+		function showTooltip() {
+			window.clearTimeout(self.showTimer);
+			window.clearTimeout(self.hideTimer);
+			self.showTimer = window.setTimeout(self.show, delay);
+		}
+		function hideTooltip() {
+			window.clearTimeout(self.showTimer);
+			window.clearTimeout(self.hideTimer);
+			self.hideTimer = window.setTimeout(self.close, delay);
+		}
 
-		el.addEventListener(
-			end,
-			() => {
-				window.clearTimeout(self.showTimer);
-				window.clearTimeout(self.hideTimer);
-				self.hideTimer = window.setTimeout(self.close, delay);
-			},
-			{ passive: true },
-		);
+		el.addEventListener(start, showTooltip, { passive: true });
+		el.addEventListener("focusin", showTooltip, { passive: true });
+
+		el.addEventListener(end, hideTooltip, { passive: true });
+		el.addEventListener("focusout", hideTooltip, { passive: true });
+
+		mainRouter.on("change", hideTooltip);
 
 		el.addEventListener("click", () => {
 			window.clearTimeout(self.showTimer);

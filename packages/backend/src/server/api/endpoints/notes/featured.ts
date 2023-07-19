@@ -27,17 +27,22 @@ export const paramDef = {
 	properties: {
 		limit: { type: "integer", minimum: 1, maximum: 100, default: 10 },
 		offset: { type: "integer", default: 0 },
+		origin: {
+			type: "string",
+			enum: ["combined", "local", "remote"],
+			default: "local",
+		},
+		days: { type: "integer", minimum: 1, maximum: 365, default: 3 },
 	},
 	required: [],
 } as const;
 
 export default define(meta, paramDef, async (ps, user) => {
 	const max = 30;
-	const day = 1000 * 60 * 60 * 24 * 3; // 3日前まで
+	const day = 1000 * 60 * 60 * 24 * ps.days;
 
 	const query = Notes.createQueryBuilder("note")
 		.addSelect("note.score")
-		.where("note.userHost IS NULL")
 		.andWhere("note.score > 0")
 		.andWhere("note.createdAt > :date", { date: new Date(Date.now() - day) })
 		.andWhere("note.visibility = 'public'")
@@ -52,6 +57,15 @@ export default define(meta, paramDef, async (ps, user) => {
 		.leftJoinAndSelect("renote.user", "renoteUser")
 		.leftJoinAndSelect("renoteUser.avatar", "renoteUserAvatar")
 		.leftJoinAndSelect("renoteUser.banner", "renoteUserBanner");
+
+	switch (ps.origin) {
+		case "local":
+			query.andWhere("note.userHost IS NULL");
+			break;
+		case "remote":
+			query.andWhere("note.userHost IS NOT NULL");
+			break;
+	}
 
 	if (user) generateMutedUserQuery(query, user);
 	if (user) generateBlockedUserQuery(query, user);
