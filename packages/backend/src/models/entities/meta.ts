@@ -143,7 +143,7 @@ export class Meta {
 	@Column("varchar", {
 		length: 512,
 		array: true,
-		default: "{/featured,/channels,/explore,/pages,/about-calckey}",
+		default: "{/featured,/channels,/explore,/pages,/about-firefish}",
 	})
 	public pinnedPages: string[];
 
@@ -436,14 +436,14 @@ export class Meta {
 
 	@Column("varchar", {
 		length: 512,
-		default: "https://codeberg.org/calckey/calckey",
+		default: "https://gitlab.prometheus.systems/firefish/firefish",
 		nullable: false,
 	})
 	public repositoryUrl: string;
 
 	@Column("varchar", {
 		length: 512,
-		default: "https://codeberg.org/calckey/calckey/issues/new",
+		default: "https://gitlab.prometheus.systems/firefish/firefish/issues/new",
 		nullable: true,
 	})
 	public feedbackUrl: string | null;

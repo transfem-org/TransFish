@@ -1,5 +1,5 @@
 {
-	description = "Calckey development flake";
+	description = "Firefish development flake";
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -28,7 +28,7 @@
 					shells = {
 						# The default shell, used by nix-direnv
 						default = {
-							name = "calckey-dev-shell";
+							name = "firefish-dev-shell";
 							# Add additional packages to our environment
 							packages = [
 								pkgs.nodePackages.pnpm
@@ -62,12 +62,12 @@
 									enable = true;
 									package = pkgs.postgresql_12;
 									initialDatabases = [{
-										name = "calckey";
+										name = "firefish";
 									}];
 									initialScript = ''
-										CREATE USER calckey WITH PASSWORD 'calckey';
-										ALTER USER calckey WITH SUPERUSER;
-										GRANT ALL ON DATABASE calckey TO calckey;
+										CREATE USER firefish WITH PASSWORD 'firefish';
+										ALTER USER firefish WITH SUPERUSER;
+										GRANT ALL ON DATABASE firefish TO firefish;
 									'';
 									listen_addresses = "127.0.0.1";
 									port = 5432;

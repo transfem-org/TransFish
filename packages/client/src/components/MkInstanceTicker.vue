@@ -35,7 +35,7 @@ const instance = props.instance ?? {
 			'meta[name="theme-color-orig"]',
 		) as HTMLMetaElement
 	)?.content,
-	softwareName: Instance.softwareName || "Calckey",
+	softwareName: Instance.softwareName || "Firefish",
 };
 
 const capitalize = (s: string) => s && s[0].toUpperCase() + s.slice(1);

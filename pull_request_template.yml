@@ -5,20 +5,20 @@ body:
   - type: markdown
     attributes:
       value: |
-                Thanks for taking the time to make Calckey better! It's not required, but please consider using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) when making your commits. If you use VSCode, please use the [Conventional Commits extension](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits).
+                Thanks for taking the time to make Firefish better! It's not required, but please consider using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) when making your commits. If you use VSCode, please use the [Conventional Commits extension](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits).
   - type: textarea
     id: about
     attributes:
       label: What does this PR do?
       description: Please give us a brief description of what this PR does.
-      placeholder: Makes Calckey so amazing by...
+      placeholder: Makes Firefish so amazing by...
     validations:
       required: true
   - type: checkboxes
     id: terms
     attributes:
       label: Contribution Guidelines
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
+      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
       options:
         - label: I agree to follow this project's Contribution Guidelines
           required: true

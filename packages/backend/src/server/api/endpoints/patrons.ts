@@ -9,7 +9,7 @@ const _dirname = dirname(_filename);
 
 export const meta = {
 	tags: ["meta"],
-	description: "Get Calckey patrons",
+	description: "Get Firefish patrons",
 
 	requireCredential: false,
 	requireCredentialPrivateMode: false,
@@ -36,7 +36,7 @@ export default define(meta, paramDef, async (ps) => {
 		};
 
 		patrons = await fetch(
-			"https://codeberg.org/calckey/calckey/raw/branch/develop/patrons.json",
+			"https://gitlab.prometheus.systems/firefish/firefish/raw/branch/develop/patrons.json",
 			{ signal: AbortSignal.timeout(2000) },
 		)
 			.then((response) => response.json())

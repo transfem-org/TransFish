@@ -156,10 +156,10 @@ export default defineComponent({
 						},
 					},
 					{
-						text: i18n.ts.aboutMisskey,
+						text: i18n.ts.aboutFirefish,
 						icon: "ph-info ph-bold ph-lg",
 						action: () => {
-							os.pageWindow("/about-calckey");
+							os.pageWindow("/about-firefish");
 						},
 					},
 					null,

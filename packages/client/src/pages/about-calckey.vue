@@ -21,7 +21,7 @@
 							@load="iconLoaded"
 							@click="gravity"
 						/>
-						<div class="misskey">Calckey</div>
+						<div class="misskey">Firefish</div>
 						<div class="version">v{{ version }}</div>
 						<span
 							v-for="emoji in easterEggEmojis"
@@ -42,8 +42,8 @@
 						/></span>
 					</div>
 					<div class="_formBlock" style="text-align: center">
-						{{ i18n.ts._aboutMisskey.about }}<br /><a
-							href="https://calckey.org/"
+						{{ i18n.ts._aboutFirefish.about }}<br /><a
+							href="https://firefish.org/"
 							target="_blank"
 							class="_link"
 							>{{ i18n.ts.learnMore }}</a
@@ -51,66 +51,66 @@
 					</div>
 					<div class="_formBlock" style="text-align: center">
 						<MkButton primary rounded inline @click="iLoveMisskey"
-							>I <Mfm text="$[jelly ❤]" /> #Calckey</MkButton
+							>I <Mfm text="$[jelly ❤]" /> #Firefish</MkButton
 						>
 					</div>
 					<FormSection>
 						<div class="_formLinks">
 							<FormLink
-								to="https://codeberg.org/calckey/calckey"
+								to="https://gitlab.prometheus.systems/firefish/firefish"
 								external
 							>
 								<template #icon
 									><i class="ph-code ph-bold ph-lg"></i
 								></template>
-								{{ i18n.ts._aboutMisskey.source }}
+								{{ i18n.ts._aboutFirefish.source }}
 								<template #suffix>Codeberg</template>
 							</FormLink>
 							<FormLink
-								to="https://opencollective.com/calckey"
+								to="https://opencollective.com/firefish"
 								external
 							>
 								<template #icon
 									><i class="ph-money ph-bold ph-lg"></i
 								></template>
-								{{ i18n.ts._aboutMisskey.donate }}
+								{{ i18n.ts._aboutFirefish.donate }}
 								<template #suffix>Donate</template>
 							</FormLink>
 							<FormLink
-								to="https://hosted.weblate.org/engage/calckey/"
+								to="https://hosted.weblate.org/engage/firefish/"
 								external
 							>
 								<template #icon
 									><i class="ph-translate ph-bold ph-lg"></i
 								></template>
-								{{ i18n.ts._aboutMisskey.translation }}
+								{{ i18n.ts._aboutFirefish.translation }}
 								<template #suffix>Translate</template>
 							</FormLink>
 						</div>
 					</FormSection>
 					<FormSection>
 						<template #label>{{
-							i18n.ts._aboutMisskey.contributors
+							i18n.ts._aboutFirefish.contributors
 						}}</template>
 						<div class="_formLinks">
-							<FormLink to="/@kainoa@calckey.social"
+							<FormLink to="/@kainoa@firefish.social"
 								><Mfm
-									:text="'$[sparkle @kainoa@calckey.social] (Main developer)'"
+									:text="'$[sparkle @kainoa@firefish.social] (Main developer)'"
 							/></FormLink>
-							<FormLink to="/@freeplay@calckey.social"
+							<FormLink to="/@freeplay@firefish.social"
 								><Mfm
-									:text="'@freeplay@calckey.social (UI/UX)'"
+									:text="'@freeplay@firefish.social (UI/UX)'"
 							/></FormLink>
-							<FormLink to="/@namekuji@calckey.social"
+							<FormLink to="/@namekuji@firefish.social"
 								><Mfm
-									:text="'@namekuji@calckey.social (Backend)'"
+									:text="'@namekuji@firefish.social (Backend)'"
 							/></FormLink>
 							<FormLink to="/@dev@post.naskya.net"
 								><Mfm :text="'@dev@post.naskya.net (Fullstack)'"
 							/></FormLink>
-							<FormLink to="/@panos@calckey.social"
+							<FormLink to="/@panos@firefish.social"
 								><Mfm
-									:text="'@panos@calckey.social (Project Coordinator)'"
+									:text="'@panos@firefish.social (Project Coordinator)'"
 							/></FormLink>
 							<FormLink
 								to="https://www.youtube.com/c/Henkiwashere"
@@ -120,9 +120,9 @@
 						</div>
 						<template #caption
 							><MkLink
-								url="https://codeberg.org/calckey/calckey/activity"
+								url="https://gitlab.prometheus.systems/firefish/firefish/activity"
 								>{{
-									i18n.ts._aboutMisskey.allContributors
+									i18n.ts._aboutFirefish.allContributors
 								}}</MkLink
 							></template
 						>
@@ -130,7 +130,7 @@
 					<FormSection>
 						<template #label
 							><Mfm
-								:text="`$[x2 $[jelly ❤] ${i18n.ts._aboutMisskey.sponsors}]`"
+								:text="`$[x2 $[jelly ❤] ${i18n.ts._aboutFirefish.sponsors}]`"
 							/>
 						</template>
 						<MkSparkle>
@@ -150,10 +150,10 @@
 					<FormSection>
 						<template #label
 							><Mfm text="$[jelly ❤]" />
-							{{ i18n.ts._aboutMisskey.patrons }}</template
+							{{ i18n.ts._aboutFirefish.patrons }}</template
 						>
 						<p>
-							{{ i18n.ts._aboutMisskey.patronsList }}
+							{{ i18n.ts._aboutFirefish.patronsList }}
 						</p>
 						<MkSparkle>
 							<span
@@ -167,7 +167,7 @@
 								<Mfm :text="`${patron}`" />
 							</span>
 						</MkSparkle>
-						<p>{{ i18n.ts._aboutMisskey.morePatrons }}</p>
+						<p>{{ i18n.ts._aboutFirefish.morePatrons }}</p>
 					</FormSection>
 				</div>
 			</MkSpacer>
@@ -227,7 +227,7 @@ function gravity() {
 
 function iLoveMisskey() {
 	os.post({
-		initialText: "I $[jelly ❤] #Calckey",
+		initialText: "I $[jelly ❤] #Firefish",
 		instant: true,
 	});
 }
@@ -243,7 +243,7 @@ const headerActions = $computed(() => []);
 const headerTabs = $computed(() => []);
 
 definePageMetadata({
-	title: i18n.ts.aboutMisskey,
+	title: i18n.ts.aboutFirefish,
 	icon: null,
 });
 </script>
