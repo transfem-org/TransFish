@@ -79,6 +79,7 @@ Aborting
 Run:
 ```sh
 rm ./packages/backend/assets/LICENSE
+git reset --hard origin/develop
 git pull --ff
 ```
 

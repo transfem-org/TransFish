@@ -143,10 +143,10 @@
           fill="url(#firefish-logo-linear-gradient-5)" />
       </g>
       <g id="firefish-logo-eye-l">
-        <circle cx="256" cy="1408.11" r="128" fill="#fff" />
+        <circle cx="256" cy="1408.11" r="128" fill="var(--bg)" />
       </g>
       <g id="firefish-logo-eye-r">
-        <circle cx="576" cy="1408.11" r="128" fill="#fff" />
+        <circle cx="576" cy="1408.11" r="128" fill="var(--bg)" />
       </g>
     </g>
   </g>
