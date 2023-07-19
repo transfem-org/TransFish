@@ -14,8 +14,8 @@ Tested with Misskey v13.11.3.
 If your Misskey v13 is older, we recommend updating your Misskey to v13.11.3.
 
 ```sh
-wget -O mkv13.patch https://gitlab.prometheus.systems/firefish/firefish/raw/branch/develop/docs/mkv13.patch
-wget -O mkv13_restore.patch https://gitlab.prometheus.systems/firefish/firefish/raw/branch/develop/docs/mkv13_restore.patch
+wget -O mkv13.patch https://gitlab.prometheus.systems/firefish/firefish/-/raw/develop/docs/mkv13.patch
+wget -O mkv13_restore.patch https://gitlab.prometheus.systems/firefish/firefish/-/raw/develop/docs/mkv13_restore.patch
 git apply mkv13.patch mkv13_restore.patch
 
 cd packages/backend
@@ -33,7 +33,7 @@ git stash push
 rm -rf fluent-emojis misskey-assets
 git switch main # or beta or develop
 git pull --ff
-wget -O renote_muting.patch https://gitlab.prometheus.systems/firefish/firefish/raw/branch/develop/docs/renote_muting.patch
+wget -O renote_muting.patch https://gitlab.prometheus.systems/firefish/firefish/-/raw/develop/docs/renote_muting.patch
 git apply renote_muting.patch
 
 pnpm install
@@ -81,7 +81,7 @@ NODE_ENV=production pnpm run migrate
 ## FoundKey
 
 ```sh
-wget -O fk.patch https://codeberg.org/calckey/calckey/raw/branch/develop/docs/fk.patch
+wget -O fk.patch https://gitlab.prometheus.systems/firefish/firefish/-/raw/develop/docs/fk.patch
 git apply fk.patch
 cd packages/backend
 

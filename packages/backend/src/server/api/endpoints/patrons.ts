@@ -36,7 +36,7 @@ export default define(meta, paramDef, async (ps) => {
 		};
 
 		patrons = await fetch(
-			"https://gitlab.prometheus.systems/firefish/firefish/raw/branch/develop/patrons.json",
+			"https://gitlab.prometheus.systems/firefish/firefish/-/raw/develop/patrons.json",
 			{ signal: AbortSignal.timeout(2000) },
 		)
 			.then((response) => response.json())

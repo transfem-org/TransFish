@@ -1,6 +1,6 @@
 # Changelog
 
-All changes from v13.0.0 onwards, for a full list of differences read CALCKEY.md
+All changes from v13.0.0 onwards, for a list of differences read FIREFISH.md
 
 ## [14.0.0-rc3] - 2023-06-24
 
