@@ -3,10 +3,10 @@ export class FirefishRepo1689739513827 {
 
 	async up(queryRunner) {
 		await queryRunner.query(
-			`UPDATE meta SET "repositoryUrl" = 'https://gitlab.prometheus.systems/firefish/firefish'`,
+			`UPDATE meta SET "repositoryUrl" = 'https://codeberg.org/firefish/firefish'`,
 		);
 		await queryRunner.query(
-			`UPDATE meta SET "feedbackUrl" = 'https://gitlab.prometheus.systems/firefish/firefish/issues'`,
+			`UPDATE meta SET "feedbackUrl" = 'https://codeberg.org/firefish/firefish/issues'`,
 		);
 	}
 

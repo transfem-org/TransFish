@@ -3,9 +3,6 @@ export class calckey1658203170545 {
 
 	async up(queryRunner) {
 		await queryRunner.query(
-			`UPDATE meta SET "useStarForReactionFallback" = TRUE;`,
-		);
-		await queryRunner.query(
 			`UPDATE meta SET "repositoryUrl" = 'https://codeberg/firefish/firefish'`,
 		);
 		await queryRunner.query(
@@ -14,9 +11,6 @@ export class calckey1658203170545 {
 	}
 
 	async down(queryRunner) {
-		await queryRunner.query(
-			`UPDATE meta SET "useStarForReactionFallback" = FALSE;`,
-		);
 		await queryRunner.query(
 			`UPDATE meta SET "repositoryUrl" = 'https://codeberg/firefish/firefish'`,
 		);

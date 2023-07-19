@@ -11,6 +11,6 @@ If you discover a security issue, which is so high risk, that too much is affect
 
 
 This will allow us to assess the risk, and make a fix available before we add a
-bug report to the Gitlab repository.
+bug report to the Codeberg repository.
 
 Thanks for helping make Firefish safe for everyone.
