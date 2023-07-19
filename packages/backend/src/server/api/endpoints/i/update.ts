@@ -14,8 +14,6 @@ import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { langmap } from "@/misc/langmap.js";
 import { ApiError } from "../../error.js";
 import define from "../../define.js";
-import { userByIdCache } from "@/services/user-cache.js";
-import type { DriveFile } from "@/models/entities/drive-file.js";
 
 export const meta = {
 	tags: ["account"],
@@ -206,9 +204,8 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (ps.emailNotificationTypes !== undefined)
 		profileUpdates.emailNotificationTypes = ps.emailNotificationTypes;
 
-	let avatar: DriveFile | null = null;
 	if (ps.avatarId) {
-		avatar = await DriveFiles.findOneBy({ id: ps.avatarId });
+		const avatar = await DriveFiles.findOneBy({ id: ps.avatarId });
 
 		if (avatar == null || avatar.userId !== user.id)
 			throw new ApiError(meta.errors.noSuchAvatar);
@@ -216,9 +213,8 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 			throw new ApiError(meta.errors.avatarNotAnImage);
 	}
 
-	let banner: DriveFile | null = null;
 	if (ps.bannerId) {
-		banner = await DriveFiles.findOneBy({ id: ps.bannerId });
+		const banner = await DriveFiles.findOneBy({ id: ps.bannerId });
 
 		if (banner == null || banner.userId !== user.id)
 			throw new ApiError(meta.errors.noSuchBanner);
@@ -282,10 +278,7 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	updateUsertags(user, tags);
 	//#endregion
 
-	if (Object.keys(updates).length > 0) {
-		await Users.update(user.id, updates);
-		await userByIdCache.set(user.id, { ...user, ...updates, avatar, banner });
-	}
+	if (Object.keys(updates).length > 0) await Users.update(user.id, updates);
 	if (Object.keys(profileUpdates).length > 0)
 		await UserProfiles.update(user.id, profileUpdates);
 

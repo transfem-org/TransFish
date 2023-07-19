@@ -128,12 +128,8 @@ export default class DbResolver {
 				(await userByIdCache.fetchMaybe(
 					parsed.id,
 					() =>
-						Users.findOne({
-							where: { id: parsed.id },
-							relations: {
-								avatar: true,
-								banner: true,
-							},
+						Users.findOneBy({
+							id: parsed.id,
 						}).then((x) => x ?? undefined),
 					true,
 				)) ?? null
@@ -177,11 +173,7 @@ export default class DbResolver {
 		return {
 			user: (await userByIdCache.fetch(
 				key.userId,
-				() =>
-					Users.findOneOrFail({
-						where: { id: key.userId },
-						relations: { avatar: true, banner: true },
-					}),
+				() => Users.findOneByOrFail({ id: key.userId }),
 				true,
 			)) as CacheableRemoteUser,
 			key,

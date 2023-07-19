@@ -16,11 +16,6 @@ export type Source = {
 		disableCache?: boolean;
 		extra?: { [x: string]: string };
 	};
-	scylla?: {
-		nodes: string[];
-		keyspace: string;
-		replicationFactor: number;
-	},
 	redis: {
 		host: string;
 		port: number;

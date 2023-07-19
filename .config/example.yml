@@ -67,7 +67,7 @@ redis:
   #db: 1
   #user: default
 
-#   ┌────────────────────────────┐
+#   ┌─────────────────────────────┐
 #───┘ Cache server configuration └─────────────────────────────────────
 
 # A Redis-compatible server (DragonflyDB, Keydb, Redis) for caching
@@ -80,14 +80,6 @@ redis:
   #pass: example-pass
   #prefix: example-prefix
   #db: 1
-
-#   ┌────────────────────────┐
-#───┘ ScyllaDB configuration └─────────────────────────────────────
-
-# scylla:
-#   nodes: ['localhost:9042']
-#   keyspace: calckey
-#   replicationFactor: 1
 
 # Please configure either MeiliSearch *or* Sonic.
 # If both MeiliSearch and Sonic configurations are present, MeiliSearch will take precedence.
