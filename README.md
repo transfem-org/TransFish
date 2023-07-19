@@ -1,9 +1,9 @@
 <div align="center">
-<a href="https://firefish.org/">
-	<img src="./title_float.svg" alt="Firefish logo" style="border-radius:50%" width="400"/>
+<a href="https://joinfirefish.org/">
+	<img src="./title.svg" alt="Firefish logo" style="border-radius:50%" width="400"/>
 </a>
 
-**🌎 **[Firefish](https://firefish.org/)** is an open source, decentralized social media platform that's free forever! 🚀**
+**🌎 **[Firefish](https://joinfirefish.org/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
 [![no github badge](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page/)
 [![status badge](https://ci.codeberg.org/api/badges/firefish/firefish/status.svg)](https://ci.codeberg.org/firefish/firefish)
@@ -18,7 +18,7 @@
 
 <div>
 
-<img src="https://pool.jortage.com/voringme/misskey/e7cd2a17-8b23-4e1e-b5cf-709480c623e2.png" align="right" height="320px" alt="Calc (the Firefish mascot) smoking a fat dart"/>
+<img src="./animated.svg" align="right" height="320px"/>
 
 # ✨ About Firefish
 
@@ -54,11 +54,11 @@
 - If you have the means to, [donations](https://opencollective.com/Firefish) are a great way to keep us going.
 - If you know how to program in TypeScript, Vue, or Rust, read the [contributing](./CONTRIBUTING.md) document.
 - If you know a non-English language, translating Firefish on [Weblate](https://hosted.weblate.org/engage/firefish/) help bring Firefish to more people. No technical experience needed!
-- Want to write/report about us, have any professional inquiries, or just have questions to ask? Contact us [here!](https://firefish.org/contact/)
+- Want to write/report about us, have any professional inquiries, or just have questions to ask? Contact us [here!](https://joinfirefish.org/contact/)
 
 ### All links
 
-- 🌐 Homepage: <https://firefish.org>
+- 🌐 Homepage: <https://joinfirefish.org>
 - 💸 Donations:
   - OpenCollective: <https://opencollective.com/Firefish>
   - Liberapay: <https://liberapay.com/ThatOneCalculator>
@@ -66,15 +66,15 @@
 - 🚢 Flagship server: <https://firefish.social>
 - 💁 Matrix support room: <https://matrix.to/#/#firefish:matrix.fedibird.com>
 - 📣 Official account: <https://i.firefish.cloud/@firefish>
-- 📜 Server list: <https://firefish.org/join>
+- 📜 Server list: <https://joinfirefish.org/join>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/firefish/>
-- ️️📬 Contact: <https://firefish.org/contact/>
+- ️️📬 Contact: <https://joinfirefish.org/contact/>
 
 # 🌠 Getting started
 
 Want to just join a Firefish server? View the list here, pick one, and join:
 
-### https://firefish.org/join
+### https://joinfirefish.org/join
 
 ---
 

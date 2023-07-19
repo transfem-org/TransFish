@@ -2,7 +2,7 @@
 
 ![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: rc](https://img.shields.io/badge/AppVersion-rc-informational?style=flat-square)
 
-A fun, new, open way to experience social media https://firefish.org
+A fun, new, open way to experience social media https://joinfirefish.org
 
 ## Requirements
 

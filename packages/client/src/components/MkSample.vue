@@ -55,7 +55,7 @@ export default defineComponent({
 				this.$i ? this.$i.username : "guest"
 			}.\nAlso, here is ${config.url} and [example link](${
 				config.url
-			}). for more details, see https://firefish.org.\nAs you know #misskey is open-source software.`,
+			}). for more details, see https://joinfirefish.org.\nAs you know #misskey is open-source software.`,
 		};
 	},
 

@@ -43,7 +43,7 @@
 					</div>
 					<div class="_formBlock" style="text-align: center">
 						{{ i18n.ts._aboutFirefish.about }}<br /><a
-							href="https://firefish.org/"
+							href="https://joinfirefish.org/"
 							target="_blank"
 							class="_link"
 							>{{ i18n.ts.learnMore }}</a
