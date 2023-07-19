@@ -44,6 +44,13 @@ function processMastoFile(fn: string, path: string, dir: string, uid: string) {
 			logger.info(`Unzip to ${dir}`);
 			const outbox = JSON.parse(fs.readFileSync(`${dir}/outbox.json`));
 			for (const note of outbox.orderedItems) {
+				// Skip if attachment is undefined or not iterable
+				if (
+					note.object.attachment == null ||
+					!note.object.attachment[Symbol.iterator]
+				) {
+					continue;
+				}
 				for (const attachment of note.object.attachment) {
 					const url = attachment.url.replaceAll("..", "");
 					if (url.indexOf("\0") !== -1) {
