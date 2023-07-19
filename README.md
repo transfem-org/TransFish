@@ -1,6 +1,6 @@
 # ️:warning: Repo has moved!
 
-https://gitlab.prometheus.systems/firefish/firefish/
+https://codeberg.org/firefish/firefish/
 
 <div align="center">
 <a href="https://joinfirefish.org/">
@@ -95,8 +95,8 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ## 🛳️ Containerization
 
-- [🐳 How to run Firefish with Docker](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/docs/docker.md)
-- [🛞 How to run Firefish with Kubernetes/Helm](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/docs/kubernetes.md)
+- [🐳 How to run Firefish with Docker](https://codeberg.org/firefish/firefish/src/branch/develop/docs/docker.md)
+- [🛞 How to run Firefish with Kubernetes/Helm](https://codeberg.org/firefish/firefish/src/branch/develop/docs/kubernetes.md)
 
 ## 🧑‍💻 Dependencies
 
@@ -132,7 +132,7 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 👀 Get folder ready
 
 ```sh
-git clone https://gitlab.prometheus.systems/firefish/firefish.git
+git clone https://codeberg.org/firefish/firefish.git
 cd firefish/
 ```
 
@@ -223,7 +223,7 @@ Please don't use ElasticSearch unless you already have an ElasticSearch setup an
 
 ## 🚚 Migrating from Misskey/FoundKey to Firefish
 
-For migrating from Misskey v13, Misskey v12, and FoundKey, read [this document](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/docs/migrate.md).
+For migrating from Misskey v13, Misskey v12, and FoundKey, read [this document](https://codeberg.org/firefish/firefish/src/branch/develop/docs/migrate.md).
 
 ## 🌐 Web proxy
 

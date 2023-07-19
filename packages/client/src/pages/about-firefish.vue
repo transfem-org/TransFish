@@ -57,14 +57,14 @@
 					<FormSection>
 						<div class="_formLinks">
 							<FormLink
-								to="https://gitlab.prometheus.systems/firefish/firefish"
+								to="https://codeberg.org/firefish/firefish"
 								external
 							>
 								<template #icon
 									><i class="ph-code ph-bold ph-lg"></i
 								></template>
 								{{ i18n.ts._aboutFirefish.source }}
-								<template #suffix>Prometheus Gitlab</template>
+								<template #suffix>Codeberg</template>
 							</FormLink>
 							<FormLink
 								to="https://opencollective.com/firefish"
@@ -120,7 +120,7 @@
 						</div>
 						<template #caption
 							><MkLink
-								url="https://gitlab.prometheus.systems/firefish/firefish/activity"
+								url="https://codeberg.org/firefish/firefish/activity"
 								>{{
 									i18n.ts._aboutFirefish.allContributors
 								}}</MkLink
