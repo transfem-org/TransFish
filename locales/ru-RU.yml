@@ -998,6 +998,9 @@ _aboutMisskey:
   sponsors: Спонсоры Firefish
   donateTitle: Понравился Firefish?
   pleaseDonateToCalckey: Пожалуйста, поддержите разработку Firefish.
+  pleaseDonateToHost: Также не забудьте поддержать ваш домашний сервер {host}, чтобы
+    помочь с его операционными расходами.
+  donateHost: Пожертвовать на {host}
 _nsfw:
   respect: "Скрывать содержимое не для всех"
   ignore: "Показывать содержимое не для всех"
@@ -1075,7 +1078,7 @@ _mfm:
   plain: Обычный текст
   plainDescription: Деактивирует эффекты всех MFM, содержащихся в этом эффекте MFM.
   play: Воспроизвести MFM
-  warn: ''
+  warn: 'MFM может содержать быстро-движущуюся или яркую анимацию'
   advanced: Расширенные MFM
   advancedDescription: Если выключено, позволяет только базовую разметку, если не
     воспроизводится анимированный MFM
@@ -1087,6 +1090,12 @@ _mfm:
   scale: Масштабировать
   fade: Затухание
   position: Расположение
+  alwaysPlay: Всегда автозапускать все анимированные MFM
+  fadeDescription: Уменьшает и увеличивает видимость контента.
+  foreground: Цвет переднего плана
+  foregroundDescription: Изменить цвет текста на переднем плане.
+  positionDescription: Переместить содержимое на указанное значение.
+  scaleDescription: Масштабировать содержимое на указанную величину.
 _instanceTicker:
   none: "Не показывать"
   remote: "Только для других сайтов"
