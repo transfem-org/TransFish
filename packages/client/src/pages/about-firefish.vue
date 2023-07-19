@@ -275,7 +275,7 @@ definePageMetadata({
 			display: block;
 			width: 100px;
 			margin: 0 auto;
-			border-radius: 16px;
+			border-radius: 3px;
 		}
 
 		> .misskey {
