@@ -1,3 +1,7 @@
+# ️:warning: Repo has moved!
+
+https://gitlab.prometheus.systems/firefish/firefish/
+
 <div align="center">
 <a href="https://joinfirefish.org/">
 	<img src="./title.svg" alt="Firefish logo" style="border-radius:50%" width="400"/>
