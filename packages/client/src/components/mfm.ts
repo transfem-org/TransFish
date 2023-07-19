@@ -495,7 +495,7 @@ export default defineComponent({
 
 						case "search": {
 							// Disable "search" keyword
-							// (see the issue #9816 on Codeberg)
+							// (see the issue #9816 on Gitlab)
 							if (token.props.content.slice(-6).toLowerCase() === "search") {
 								const sentinel = "#";
 								let ast2 = (isPlain ? mfm.parseSimple : mfm.parse)(

@@ -64,7 +64,7 @@
 									><i class="ph-code ph-bold ph-lg"></i
 								></template>
 								{{ i18n.ts._aboutFirefish.source }}
-								<template #suffix>Codeberg</template>
+								<template #suffix>Prometheus Gitlab</template>
 							</FormLink>
 							<FormLink
 								to="https://opencollective.com/firefish"

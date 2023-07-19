@@ -6,13 +6,12 @@
 **🌎 **[Firefish](https://joinfirefish.org/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
 [![no github badge](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page/)
-[![status badge](https://ci.codeberg.org/api/badges/firefish/firefish/status.svg)](https://ci.codeberg.org/firefish/firefish)
+<!-- [![status badge](https://ci.codeberg.org/api/badges/firefish/firefish/status.svg)](https://ci.codeberg.org/firefish/firefish) -->
 [![opencollective badge](https://opencollective.com/firefish/tiers/badge.svg)](https://opencollective.com/Firefish)
 [![liberapay badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
 [![translate-badge](https://hosted.weblate.org/widgets/firefish/-/svg-badge.svg)](https://hosted.weblate.org/engage/firefish/)
 [![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/firefish?logo=docker)](https://hub.docker.com/r/thatonecalculator/firefish)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
-[![Codeberg badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-4793CC.svg?logo=codeberg&logoColor=white)](https://gitlab.prometheus.systems/firefish/firefish/)
 
 </div>
 
@@ -86,7 +85,9 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 If you have access to a server that supports one of the sources below, I recommend you use it! Note that these methods *won't* allow you to migrate from Misskey without manual intervention.
 
-[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://codeberg.org/firefish/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
+<!-- [![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　 -->
+
+[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://gitlab.prometheus.systems/firefish/ubuntu-bash-install)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
 
 ## 🛳️ Containerization
 
