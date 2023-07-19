@@ -49,7 +49,7 @@ function greet() {
 				136,
 				0,
 			)(
-				" If you like Firefish, please consider starring or contributing to the repo. https://codeberg.org/firefish/firefish",
+				" If you like Firefish, please consider starring or contributing to the repo. https://gitlab.prometheus.systems/firefish/firefish",
 			),
 		);
 

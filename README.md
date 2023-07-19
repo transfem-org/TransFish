@@ -12,7 +12,7 @@
 [![translate-badge](https://hosted.weblate.org/widgets/firefish/-/svg-badge.svg)](https://hosted.weblate.org/engage/firefish/)
 [![docker badge](https://img.shields.io/docker/pulls/thatonecalculator/firefish?logo=docker)](https://hub.docker.com/r/thatonecalculator/firefish)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
-[![Codeberg badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-4793CC.svg?logo=codeberg&logoColor=white)](https://codeberg.org/firefish/firefish/)
+[![Codeberg badge](https://custom-icon-badges.demolab.com/badge/hosted%20on-codeberg-4793CC.svg?logo=codeberg&logoColor=white)](https://gitlab.prometheus.systems/firefish/firefish/)
 
 </div>
 
@@ -90,8 +90,8 @@ If you have access to a server that supports one of the sources below, I recomme
 
 ## 🛳️ Containerization
 
-- [🐳 How to run Firefish with Docker](https://codeberg.org/firefish/firefish/src/branch/develop/docs/docker.md)
-- [🛞 How to run Firefish with Kubernetes/Helm](https://codeberg.org/firefish/firefish/src/branch/develop/docs/kubernetes.md)
+- [🐳 How to run Firefish with Docker](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/docs/docker.md)
+- [🛞 How to run Firefish with Kubernetes/Helm](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/docs/kubernetes.md)
 
 ## 🧑‍💻 Dependencies
 
@@ -127,7 +127,7 @@ If you have access to a server that supports one of the sources below, I recomme
 ## 👀 Get folder ready
 
 ```sh
-git clone https://codeberg.org/firefish/firefish.git
+git clone https://gitlab.prometheus.systems/firefish/firefish.git
 cd firefish/
 ```
 
@@ -218,7 +218,7 @@ Please don't use ElasticSearch unless you already have an ElasticSearch setup an
 
 ## 🚚 Migrating from Misskey/FoundKey to Firefish
 
-For migrating from Misskey v13, Misskey v12, and FoundKey, read [this document](https://codeberg.org/firefish/firefish/src/branch/develop/docs/migrate.md).
+For migrating from Misskey v13, Misskey v12, and FoundKey, read [this document](https://gitlab.prometheus.systems/firefish/firefish/src/branch/develop/docs/migrate.md).
 
 ## 🌐 Web proxy
 
