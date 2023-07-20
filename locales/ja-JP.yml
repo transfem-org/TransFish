@@ -156,7 +156,7 @@ flagShowTimelineRepliesDescription: "オンにすると、タイムラインに�
 autoAcceptFollowed: "フォローしているユーザーからのフォロー申請を自動承認"
 addAccount: "アカウントを追加"
 loginFailed: "ログインに失敗しました"
-showOnRemote: "リモートで表示"
+showOnRemote: "オリジナルのページを開く"
 general: "全般"
 accountMoved: "このユーザーは新しいアカウントに移行しました"
 wallpaper: "壁紙"
@@ -1074,6 +1074,7 @@ _aboutMisskey:
   pleaseDonateToHost: また、このサーバー {host} の運営者への寄付もご検討ください。
   donateHost: '{host} に寄付する'
   donateTitle: Calckeyを気に入りましたか？
+  sponsors: Firefish の支援者
 _nsfw:
   respect: "閲覧注意のメディアは隠す"
   ignore: "閲覧注意のメディアを隠さない"
@@ -1959,3 +1960,9 @@ donationLink: 寄付ページへのリンク
 removeMember: メンバーを削除
 removeQuote: 引用を削除
 removeRecipient: 宛先を削除
+verifiedLink: 認証済みリンク
+_feeds:
+  atom: Atom
+  rss: RSS
+  jsonFeed: JSONフィード
+  copyFeed: フィードのURLをコピー
