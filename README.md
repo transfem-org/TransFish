@@ -116,7 +116,7 @@ If you have access to a server that supports one of the sources below, I recomme
   - 🐲 [DragonflyDB](https://www.dragonflydb.io/) (recommended)
   - 👻 [KeyDB](https://keydb.dev/)
   - 🍱 Another [Redis](https://redis.io/) server
-  
+
 ### 🏗️ Build dependencies
 
 - 🦀 At least [Rust](https://www.rust-lang.org/) v1.68.0
