@@ -1,4 +1,4 @@
-import * as sanitizeHtml from "sanitize-html";
+import sanitizeHtml from "sanitize-html";
 import define from "../../define.js";
 import { Users, UserProfiles } from "@/models/index.js";
 import { ApiError } from "../../error.js";
