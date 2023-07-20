@@ -884,13 +884,13 @@ manageAccounts: "Kelola Akun"
 makeReactionsPublic: "Tampilkan riwayat reaksi ke publik"
 makeReactionsPublicDescription: "Pengaturan ini akan membuat daftar dari semua reaksi
   masa lalu kamu ditampilkan secara publik."
-classic: "Klasik"
+classic: "Tengah"
 muteThread: "Bisukan thread"
 unmuteThread: "Suarakan thread"
 ffVisibility: "Visibilitas Mengikuti/Pengikut"
 ffVisibilityDescription: "Mengatur siapa yang dapat melihat pengikutmu dan yang kamu
   ikuti."
-continueThread: "Lihat lanjutan thread"
+continueThread: "Lihat lanjutan utas"
 deleteAccountConfirm: "Akun akan dihapus. Apakah kamu yakin?"
 incorrectPassword: "Kata sandi salah."
 voteConfirm: "Konfirmasi suara kamu untuk ({choice})？"
@@ -905,12 +905,12 @@ overridedDeviceKind: "Tipe perangkat"
 smartphone: "Ponsel"
 tablet: "Tablet"
 auto: "Otomatis"
-themeColor: "Warna Tema"
+themeColor: "Warna Jam Server"
 size: "Ukuran"
 numberOfColumn: "Jumlah per kolom"
 searchByGoogle: "Penelusuran"
-instanceDefaultLightTheme: "Bawaan instan tema terang"
-instanceDefaultDarkTheme: "Bawaan instan tema gelap"
+instanceDefaultLightTheme: "Tema terang bawaan ranah server"
+instanceDefaultDarkTheme: "Tema gelap bawaan ranah server"
 instanceDefaultThemeDescription: "Masukkan kode tema di format obyek."
 mutePeriod: "Batas waktu bisu"
 indefinitely: "Selamanya"
@@ -1850,3 +1850,58 @@ allowedInstancesDescription: Host server akan masuk daftar putih untuk federasi,
   dipisahkan dengan baris baru (hanya diterapkan pada mode pribadi).
 xl: XL
 privateMode: Mode Pribadi
+seperateRenoteQuote: Tombol posting ulang dan kutip terpisah
+failedToUpload: Gagal unggah
+beta: Beta
+move: Pindahkan
+navbar: Bilah navigasi
+thereIsUnresolvedAbuseReportWarning: Ada laporal yang belum diselesaikan.
+statusbar: Bilah status
+isSystemAccount: Akun ini dibuat dan dioperasikan secara otomatis oleh sistem. Mohon
+  jangan memoderasi, menyunting, menghapus, atau mengutak-atik dengan akun ini, atau
+  itu akan merusak servermu.
+lastActiveDate: Terakhir dipakai pada
+deleteAccount: Hapus akun
+numberOfPageCache: Jumlah halaman yang disinggah
+fast: Cepat
+cannotUploadBecauseInappropriate: Berkas ini tidak dapat diunggah karena sebagiannya
+  terdeteksi berpotensi Tidak Aman.
+shuffle: Acak
+enableAutoSensitive: Otomatis menandai Tidak Aman
+enableAutoSensitiveDescription: Mengizinkan deteksi otomatis dan menandai media Tidak
+  Aman dengan Pembelajaran Mesin. Bahkan saat opsi ini nonaktif, ia bisa diaktifkan
+  pada ranah server.
+activeEmailValidationDescription: Mengaktifkan validasi alamat surel yang lebih ketat,
+  yang termasuk memeriksa alamat sekali pakai dan memastikan apakah memang bisa berkomunikasi
+  dengan mereka. Saat tidak dicentang, format surel lah yang hanya akan divalidasi.
+alt: ALT
+requireAdminForView: Kamu harus masuk dengan akun administrator untuk melihat ini.
+recentNHours: '{n} jam terakhir'
+typeToConfirm: Harap masukkan {x} untuk konfirmasi
+document: Dokumentasi
+sensitiveMediaDetection: Deteksi media Tidak Aman
+breakFollowConfirm: Yakin ingin menghapus pengikut?
+cannotUploadBecauseNoFreeSpace: Gagal unggah karena kapasitas Drive kurang.
+unsubscribePushNotification: Nonaktifkan pemberitahuan dorong
+image: Gambar
+video: Video
+pleaseSelect: Pilih opsi
+audio: Audio
+numberOfPageCacheDescription: Naikkan angka ini akan meningkatkan kenyamanan pengguna
+  tapi menyebabkan beban server dan penggunaan memori lebih besar.
+pushNotification: Pemberitahuan dorong
+subscribePushNotification: Aktifkan pemberitahuan dorong
+cannotUploadBecauseExceedsFileSizeLimit: Berkas ini tidak dapat diunggah karena melebihi
+  batas ukuran maksimum yang diizinkan.
+recentNDays: '{n} hari terakhir'
+noEmailServerWarning: Server surel tidak dikonfigurasi.
+check: Cek
+driveCapOverrideLabel: Ubah kapasitas drive untuk pengguna ini
+driveCapOverrideCaption: Reset kapasitas ke bawaan dengan memasukkan nilai 0 atau
+  lebih rendah.
+logoutConfirm: Yakin keluar?
+refreshInterval: 'Perbarui interval '
+type: Tipe
+speed: Kecepatan
+slow: Pelan
+remoteOnly: Jarak jauh saja
