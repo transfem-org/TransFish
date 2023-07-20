@@ -45,7 +45,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const dataRaw = await client.getNotification(
-				convertId(ctx.params.id, IdType.CalckeyId),
+				convertId(ctx.params.id, IdType.FirefishId),
 			);
 			const data = convertNotification(dataRaw.data);
 			ctx.body = data;
@@ -85,7 +85,7 @@ export function apiNotificationsMastodon(router: Router): void {
 		const body: any = ctx.request.body;
 		try {
 			const data = await client.dismissNotification(
-				convertId(ctx.params.id, IdType.CalckeyId),
+				convertId(ctx.params.id, IdType.FirefishId),
 			);
 			ctx.body = data.data;
 		} catch (e: any) {

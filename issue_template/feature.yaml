@@ -4,19 +4,19 @@ title: "[Feature]: "
 blank_issues_enabled: true
 contact_links:
   - name: 💁 Support Matrix
-    url: https://matrix.to/#/%23calckey:matrix.fedibird.com
+    url: https://matrix.to/#/%23firefish:matrix.fedibird.com
     about: Having trouble with deployment? Ask the support chat.
   - name: 🔒 Resposible Disclosure
-    url: https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md
+    url: https://codeberg.org/firefish/firefish/src/branch/develop/SECURITY.md
     about: Found a security vulnerability? Please disclose it responsibly.
 body:
   - type: markdown
     attributes:
       value: |
                 💖 Thanks for taking the time to fill out this feature request!
-                💁 Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23calckey:matrix.fedibird.com)
-                🔒 Found a security vulnerability? [Please disclose it responsibly.](https://codeberg.org/calckey/calckey/src/branch/develop/SECURITY.md)
-                🤝 By submitting this issue, you agree to follow our [Contribution Guidelines.](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
+                💁 Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23firefish:matrix.fedibird.com)
+                🔒 Found a security vulnerability? [Please disclose it responsibly.](https://codeberg.org/firefish/firefish/src/branch/develop/SECURITY.md)
+                🤝 By submitting this issue, you agree to follow our [Contribution Guidelines.](https://codeberg.org/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
   - type: textarea
     id: what-feature
     attributes:
@@ -37,23 +37,23 @@ body:
     id: version
     attributes:
       label: Version
-      description: What version of calckey is your instance running? You can find this by clicking your instance's logo at the bottom left and then clicking instance information.
-      placeholder: Calckey Version 13.1.4.1
+      description: What version of firefish is your instance running? You can find this by clicking your instance's logo at the bottom left and then clicking instance information.
+      placeholder: Firefish Version 13.1.4.1
     validations:
       required: true
   - type: input
     id: instance
     attributes:
       label: Instance
-      description: What instance of calckey are you using?
-      placeholder: calckey.social
+      description: What instance of firefish are you using?
+      placeholder: firefish.social
     validations:
       required: false
   - type: checkboxes
     id: terms
     attributes:
       label: Contribution Guidelines
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/calckey/calckey/src/branch/develop/CONTRIBUTING.md)
+      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
       options:
         - label: I agree to follow this project's Contribution Guidelines
           required: true

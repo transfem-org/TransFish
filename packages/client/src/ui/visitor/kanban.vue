@@ -69,8 +69,8 @@
 						>
 						<small
 							>Powered by
-							<a href="https://calckey.org/" target="_blank"
-								>Calckey</a
+							<a href="https://joinfirefish.org/" target="_blank"
+								>Firefish</a
 							></small
 						>
 					</div>

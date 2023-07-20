@@ -156,9 +156,6 @@ importers:
       cacheable-lookup:
         specifier: 7.0.0
         version: 7.0.0
-      calckey-js:
-        specifier: workspace:*
-        version: link:../calckey-js
       cbor:
         specifier: 8.1.0
         version: 8.1.0
@@ -198,6 +195,9 @@ importers:
       file-type:
         specifier: 17.1.6
         version: 17.1.6
+      firefish-js:
+        specifier: workspace:*
+        version: link:../firefish-js
       fluent-ffmpeg:
         specifier: 2.1.2
         version: 2.1.2
@@ -618,65 +618,6 @@ importers:
         specifier: 5.1.1
         version: 5.1.1
 
-  packages/calckey-js:
-    dependencies:
-      eventemitter3:
-        specifier: ^4.0.7
-        version: 4.0.7
-      reconnecting-websocket:
-        specifier: ^4.4.0
-        version: 4.4.0
-      semver:
-        specifier: ^7.3.8
-        version: 7.5.4
-    optionalDependencies:
-      '@swc/core-android-arm64':
-        specifier: 1.3.11
-        version: 1.3.11
-    devDependencies:
-      '@microsoft/api-documenter':
-        specifier: ^7.22.21
-        version: 7.22.21(@types/node@20.3.1)
-      '@microsoft/api-extractor':
-        specifier: ^7.36.0
-        version: 7.36.0(@types/node@20.3.1)
-      '@swc/cli':
-        specifier: ^0.1.62
-        version: 0.1.62(@swc/core@1.3.68)(chokidar@3.3.1)
-      '@swc/core':
-        specifier: ^1.3.62
-        version: 1.3.68
-      '@types/jest':
-        specifier: ^27.4.0
-        version: 27.4.0
-      '@types/node':
-        specifier: 20.3.1
-        version: 20.3.1
-      jest:
-        specifier: ^27.4.5
-        version: 27.4.5(ts-node@10.4.0)
-      jest-fetch-mock:
-        specifier: ^3.0.3
-        version: 3.0.3
-      jest-websocket-mock:
-        specifier: ^2.2.1
-        version: 2.2.1(mock-socket@9.0.8)
-      mock-socket:
-        specifier: ^9.0.8
-        version: 9.0.8
-      ts-jest:
-        specifier: ^27.1.2
-        version: 27.1.2(@babel/core@7.22.9)(@types/jest@27.4.0)(jest@27.4.5)(typescript@5.1.3)
-      ts-node:
-        specifier: 10.4.0
-        version: 10.4.0(@swc/core@1.3.68)(@types/node@20.3.1)(typescript@5.1.3)
-      tsd:
-        specifier: ^0.28.1
-        version: 0.28.1
-      typescript:
-        specifier: 5.1.3
-        version: 5.1.3
-
   packages/client:
     devDependencies:
       '@discordapp/twemoji':
@@ -757,9 +698,6 @@ importers:
       browser-image-resizer:
         specifier: github:misskey-dev/browser-image-resizer
         version: github.com/misskey-dev/browser-image-resizer/56f504427ad7f6500e141a6d9f3aee42023d7f3e
-      calckey-js:
-        specifier: workspace:*
-        version: link:../calckey-js
       chart.js:
         specifier: 4.3.0
         version: 4.3.0
@@ -811,6 +749,9 @@ importers:
       fast-blurhash:
         specifier: ^1.1.2
         version: 1.1.2
+      firefish-js:
+        specifier: workspace:*
+        version: link:../firefish-js
       focus-trap:
         specifier: ^7.5.2
         version: 7.5.2
@@ -944,6 +885,65 @@ importers:
         specifier: 2.0.0-alpha.2
         version: 2.0.0-alpha.2(vue@3.3.4)
 
+  packages/firefish-js:
+    dependencies:
+      eventemitter3:
+        specifier: ^4.0.7
+        version: 4.0.7
+      reconnecting-websocket:
+        specifier: ^4.4.0
+        version: 4.4.0
+      semver:
+        specifier: ^7.3.8
+        version: 7.5.4
+    optionalDependencies:
+      '@swc/core-android-arm64':
+        specifier: 1.3.11
+        version: 1.3.11
+    devDependencies:
+      '@microsoft/api-documenter':
+        specifier: ^7.22.21
+        version: 7.22.21(@types/node@20.3.1)
+      '@microsoft/api-extractor':
+        specifier: ^7.36.0
+        version: 7.36.0(@types/node@20.3.1)
+      '@swc/cli':
+        specifier: ^0.1.62
+        version: 0.1.62(@swc/core@1.3.68)(chokidar@3.3.1)
+      '@swc/core':
+        specifier: ^1.3.62
+        version: 1.3.68
+      '@types/jest':
+        specifier: ^27.4.0
+        version: 27.4.0
+      '@types/node':
+        specifier: 20.3.1
+        version: 20.3.1
+      jest:
+        specifier: ^27.4.5
+        version: 27.4.5(ts-node@10.4.0)
+      jest-fetch-mock:
+        specifier: ^3.0.3
+        version: 3.0.3
+      jest-websocket-mock:
+        specifier: ^2.2.1
+        version: 2.2.1(mock-socket@9.0.8)
+      mock-socket:
+        specifier: ^9.0.8
+        version: 9.0.8
+      ts-jest:
+        specifier: ^27.1.2
+        version: 27.1.2(@babel/core@7.22.9)(@types/jest@27.4.0)(jest@27.4.5)(typescript@5.1.3)
+      ts-node:
+        specifier: 10.4.0
+        version: 10.4.0(@swc/core@1.3.68)(@types/node@20.3.1)(typescript@5.1.3)
+      tsd:
+        specifier: ^0.28.1
+        version: 0.28.1
+      typescript:
+        specifier: 5.1.3
+        version: 5.1.3
+
   packages/megalodon:
     dependencies:
       '@types/oauth':
@@ -1073,9 +1073,9 @@ importers:
       '@swc/core-android-arm64':
         specifier: 1.3.11
         version: 1.3.11
-      calckey-js:
+      firefish-js:
         specifier: workspace:*
-        version: link:../calckey-js
+        version: link:../firefish-js
       idb-keyval:
         specifier: ^6.2.1
         version: 6.2.1

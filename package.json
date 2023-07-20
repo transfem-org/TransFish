@@ -1,12 +1,12 @@
 {
-	"name": "calckey",
-	"version": "14.0.0-dev83",
+	"name": "firefish",
+	"version": "1.0.2",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
-		"url": "https://codeberg.org/calckey/calckey.git"
+		"url": "https://codeberg.org/firefish/firefish.git"
 	},
-	"packageManager": "pnpm@8.6.7",
+	"packageManager": "pnpm@8.6.9",
 	"private": true,
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm node ./scripts/build-greet.js && pnpm -r --parallel run build && pnpm run gulp",

@@ -1,5 +1,5 @@
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Calckey configuration
+# Firefish configuration
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # After starting your server, please don't change the URL! Doing so will break federation.
@@ -14,11 +14,11 @@ url: https://example.com/
 #───┘ Port and TLS settings └───────────────────────────────────
 
 #
-# Calckey requires a reverse proxy to support HTTPS connections.
+# Firefish requires a reverse proxy to support HTTPS connections.
 #
 #                 +----- https://example.com/ ------------+
 #   +------+      |+-------------+      +----------------+|
-#   | User | ---> || Proxy (443) | ---> | Calckey (3000) ||
+#   | User | ---> || Proxy (443) | ---> | Firefish (3000) ||
 #   +------+      |+-------------+      +----------------+|
 #                 +---------------------------------------+
 #
@@ -26,7 +26,7 @@ url: https://example.com/
 #   An encrypted connection with HTTPS is highly recommended
 #   because tokens may be transferred in GET requests.
 
-# The port that your Calckey server should listen on.
+# The port that your Firefish server should listen on.
 port: 3000
 
 #   ┌──────────────────────────┐
@@ -37,11 +37,11 @@ db:
   port: 5432
   #ssl: false
   # Database name
-  db: calckey
+  db: firefish
 
   # Auth
-  user: example-calckey-user
-  pass: example-calckey-pass
+  user: example-firefish-user
+  pass: example-firefish-pass
 
   # Whether disable Caching queries
   #disableCache: true
@@ -200,7 +200,7 @@ reservedUsernames: [
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Congrats, you've reached the end of the config file needed for most deployments!
-# Enjoy your Calckey server!
+# Enjoy your Firefish server!
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 

@@ -254,10 +254,10 @@ function more(ev: MouseEvent) {
 		box-sizing: border-box;
 		overflow: auto;
 		overflow-x: clip;
-		#calckey_app > :not(.wallpaper) & {
+		#firefish_app > :not(.wallpaper) & {
 			background: var(--navBg);
 		}
-		#calckey_app > .wallpaper:not(.centered) & {
+		#firefish_app > .wallpaper:not(.centered) & {
 			border-right: 1px solid var(--divider);
 		}
 		contain: strict;
