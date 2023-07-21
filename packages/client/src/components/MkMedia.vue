@@ -26,6 +26,7 @@
 					:alt="media.comment"
 					:type="media.type"
 					:cover="false"
+          :largest-dimension="largestDimension"
 				/>
 				<div v-if="media.type === 'image/gif'" class="gif">GIF</div>
 			</a>
@@ -120,6 +121,11 @@ const mediaType = computed(() => {
 		: props.media.type;
 });
 
+let largestDimension: 'width'|'height';
+
+if (props.media.type.startsWith('image') && props.media.properties?.width && props.media.properties?.height) {
+  largestDimension = props.media.properties.width > props.media.properties.height ? 'width' : 'height'
+}
 function captionPopup() {
 	os.alert({
 		type: "info",

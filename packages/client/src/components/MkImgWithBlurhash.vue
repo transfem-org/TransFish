@@ -12,7 +12,11 @@
 		:title="title"
 		:type="type"
 		:alt="alt"
-		:class="{ cover }"
+		:class="{
+      cover,
+      wide: largestDimension === 'width',
+      tall: largestDimension === 'height'
+    }"
 		:style="{ 'object-fit': cover ? 'cover' : null }"
 		loading="lazy"
 		@load="onLoad"
@@ -32,6 +36,7 @@ const props = withDefaults(
 		title?: string | null;
 		size?: number;
 		cover?: boolean;
+    largestDimension?: 'width'|'height'
 	}>(),
 	{
 		src: null,
@@ -82,5 +87,13 @@ canvas {
 
 img {
 	object-fit: contain;
+
+  &.wide {
+    width: 100%;
+  }
+
+  &.tall {
+    height: 100%;
+  }
 }
 </style>
