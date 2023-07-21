@@ -2,13 +2,13 @@
 
 Welcome to the new era of FIREFISH!
 
-<img src="https://codeberg.org/firefish/firefish/raw/branch/develop/animated.svg" height="320px"/>
+<img src="https://git.joinfirefish.org/firefish/firefish/-/raw/develop/animated.svg" height="320px"/>
 
 # Changelog
 
 ## Major changes from last release candidate
 
-- Firefish branding and [new repo](https://codeberg.org/firefish/firefish)!
+- Firefish branding and [new repo](https://git.joinfirefish.org/firefish/firefish)!
 - Far better Mastodon API support
 - Edits are now non-experimental
 - Support for secondary cache server
@@ -64,7 +64,7 @@ All of the above, plus:
 ## Set new repo and pull
 
 ```sh
-git remote set-url origin https://codeberg.org/firefish/firefish.git
+git remote set-url origin https://git.joinfirefish.org/firefish/firefish.git
 git pull --ff
 ```
 

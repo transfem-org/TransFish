@@ -57,7 +57,7 @@
 					<FormSection>
 						<div class="_formLinks">
 							<FormLink
-								to="https://codeberg.org/firefish/firefish"
+								to="https://git.joinfirefish.org/firefish/firefish"
 								external
 							>
 								<template #icon
@@ -120,7 +120,7 @@
 						</div>
 						<template #caption
 							><MkLink
-								url="https://codeberg.org/firefish/firefish/activity"
+								url="https://git.joinfirefish.org/firefish/firefish/activity"
 								>{{
 									i18n.ts._aboutFirefish.allContributors
 								}}</MkLink

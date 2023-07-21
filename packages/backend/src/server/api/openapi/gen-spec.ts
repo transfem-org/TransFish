@@ -15,7 +15,7 @@ export function genOpenapiSpec() {
 
 		externalDocs: {
 			description: "Repository",
-			url: "https://codeberg.org/firefish/firefish",
+			url: "https://git.joinfirefish.org/firefish/firefish",
 		},
 
 		servers: [
@@ -106,7 +106,7 @@ export function genOpenapiSpec() {
 			description: desc,
 			externalDocs: {
 				description: "Source code",
-				url: `https://codeberg.org/firefish/firefish/src/branch/develop/packages/backend/src/server/api/endpoints/${endpoint.name}.ts`,
+				url: `https://git.joinfirefish.org/firefish/firefish/src/branch/develop/packages/backend/src/server/api/endpoints/${endpoint.name}.ts`,
 			},
 			tags: endpoint.meta.tags || undefined,
 			security,
