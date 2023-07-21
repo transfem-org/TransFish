@@ -33,7 +33,7 @@ export default (endpoint: IEndpoint, ctx: Koa.Context) =>
 						code: y!.code,
 						id: y!.id,
 						kind: y!.kind,
-						...(y!.info ? { info: y!.info } : {}),
+						...((y!.info && process.env.NODE_ENV !== "production") ? { info: y!.info } : {}),
 					},
 				};
 			} else {
