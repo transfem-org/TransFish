@@ -75,7 +75,7 @@ onMounted(() => {
 			}),
 		gallery: gallery.value,
 		children: ".image",
-		thumbSelector: ".image",
+		thumbSelector: ".image img",
 		loop: false,
 		padding:
 			window.innerWidth > 500

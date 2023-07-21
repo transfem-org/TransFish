@@ -68,14 +68,16 @@ onMounted(() => {
 canvas,
 img {
 	display: block;
-	width: 100%;
-	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 canvas {
 	position: absolute;
 	inset: 0;
 	object-fit: cover;
+	width: 100%;
+	height: 100%;
 }
 
 img {

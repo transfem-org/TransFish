@@ -202,7 +202,7 @@ watch(
 	}
 
 	> a {
-		display: block;
+		display: flex;
 		cursor: zoom-in;
 		overflow: hidden;
 		width: 100%;
@@ -211,6 +211,9 @@ watch(
 		background-size: contain;
 		background-repeat: no-repeat;
 		box-sizing: border-box;
+		justify-content: center;
+		align-items: center;
+
 		&:focus-visible {
 			border: 2px solid var(--accent);
 		}
