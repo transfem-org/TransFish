@@ -14,8 +14,8 @@ Tested with Misskey v13.11.3.
 If your Misskey v13 is older, we recommend updating your Misskey to v13.11.3.
 
 ```sh
-wget -O mkv13.patch https://codeberg.org/firefish/firefish/raw/branch/develop/docs/mkv13.patch
-wget -O mkv13_restore.patch https://codeberg.org/firefish/firefish/raw/branch/develop/docs/mkv13_restore.patch
+wget -O mkv13.patch https://git.joinfirefish.org/firefish/firefish/-/raw/develop/docs/mkv13.patch
+wget -O mkv13_restore.patch https://git.joinfirefish.org/firefish/firefish/-/raw/develop/docs/mkv13_restore.patch
 git apply mkv13.patch mkv13_restore.patch
 
 cd packages/backend
@@ -27,13 +27,13 @@ for i in $(seq 1 $NUM_MIGRATIONS); do pnpm typeorm migration:revert -d ormconfig
 
 cd ../../
 
-git remote set-url origin https://codeberg.org/firefish/firefish.git
+git remote set-url origin https://git.joinfirefish.org/firefish/firefish.git
 git fetch origin
 git stash push
 rm -rf fluent-emojis misskey-assets
 git switch main # or beta or develop
 git pull --ff
-wget -O renote_muting.patch https://codeberg.org/firefish/firefish/raw/branch/develop/docs/renote_muting.patch
+wget -O renote_muting.patch https://git.joinfirefish.org/firefish/firefish/-/raw/develop/docs/renote_muting.patch
 git apply renote_muting.patch
 
 pnpm install
@@ -69,7 +69,7 @@ If no other errors happened, your Firefish is ready to launch!
 ## Misskey v12.119 and before
 
 ```sh
-git remote set-url origin https://codeberg.org/firefish/firefish.git
+git remote set-url origin https://git.joinfirefish.org/firefish/firefish.git
 git fetch
 git checkout main # or beta or develop
 git pull --ff
@@ -81,7 +81,7 @@ NODE_ENV=production pnpm run migrate
 ## FoundKey
 
 ```sh
-wget -O fk.patch https://codeberg.org/firefish/firefish/raw/branch/develop/docs/fk.patch
+wget -O fk.patch https://git.joinfirefish.org/firefish/firefish/-/raw/develop/docs/fk.patch
 git apply fk.patch
 cd packages/backend
 
@@ -92,7 +92,7 @@ for i in $(seq 1 $NUM_MIGRATIONS); do
     npx typeorm migration:revert -d ormconfig.js
 done
 
-git remote set-url origin https://codeberg.org/firefish/firefish.git
+git remote set-url origin https://git.joinfirefish.org/firefish/firefish.git
 git fetch
 git checkout main # or beta or develop
 git pull --ff

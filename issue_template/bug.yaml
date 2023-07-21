@@ -7,7 +7,7 @@ contact_links:
     url: https://matrix.to/#/%23firefish:matrix.fedibird.com
     about: Having trouble with deployment? Ask the support chat.
   - name: 🔒 Resposible Disclosure
-    url: https://codeberg.org/firefish/firefish/src/branch/develop/SECURITY.md
+    url: https://git.joinfirefish.org/firefish/firefish/src/branch/develop/SECURITY.md
     about: Found a security vulnerability? Please disclose it responsibly.
 body:
   - type: markdown
@@ -15,8 +15,8 @@ body:
       value: |
                 💖 Thanks for taking the time to fill out this bug report!
                 💁 Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23firefish:matrix.fedibird.com)
-                🔒 Found a security vulnerability? [Please disclose it responsibly.](https://codeberg.org/firefish/firefish/src/branch/develop/SECURITY.md)
-                🤝 By submitting this issue, you agree to follow our [Contribution Guidelines.](https://codeberg.org/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
+                🔒 Found a security vulnerability? [Please disclose it responsibly.](https://git.joinfirefish.org/firefish/firefish/src/branch/develop/SECURITY.md)
+                🤝 By submitting this issue, you agree to follow our [Contribution Guidelines.](https://git.joinfirefish.org/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
   - type: textarea
     id: what-happened
     attributes:
@@ -128,7 +128,7 @@ body:
     id: terms
     attributes:
       label: Contribution Guidelines
-      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://codeberg.org/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
+      description: By submitting this issue, you agree to follow our [Contribution Guidelines](https://git.joinfirefish.org/firefish/firefish/src/branch/develop/CONTRIBUTING.md)
       options:
         - label: I agree to follow this project's Contribution Guidelines
           required: true

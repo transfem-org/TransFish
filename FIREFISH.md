@@ -1,7 +1,7 @@
 # All the changes to Firefish from stock Misskey
 
 > **Warning**
-> This list is incomplete. Please check the [Releases](https://codeberg.org/firefish/firefish/releases) and [Changelog](https://codeberg.org/firefish/firefish/src/branch/develop/CHANGELOG.md) for a more complete list of changes. There have been [>4000 commits (laggy link)](https://codeberg.org/firefish/firefish/compare/700a7110f7e34f314b070987aa761c451ec34efc...develop) since we forked Misskey!
+> This list is incomplete. Please check the [Releases](https://git.joinfirefish.org/firefish/firefish/releases) and [Changelog](https://git.joinfirefish.org/firefish/firefish/src/branch/develop/CHANGELOG.md) for a more complete list of changes. There have been [>4000 commits (laggy link)](https://git.joinfirefish.org/firefish/firefish/compare/700a7110f7e34f314b070987aa761c451ec34efc...develop) since we forked Misskey!
 
 ## Planned
 
@@ -85,7 +85,7 @@
 - Undo renote button inside original note
 - Custom locales
 - Obliteration of Ai-chan
-- Switch to [Firefish.js](https://codeberg.org/firefish/firefish.js)
+- Switch to [Firefish.js](https://git.joinfirefish.org/firefish/firefish.js)
 - Woozy mode 🥴
 - Improve blocking servers
 - Release notes
