@@ -13,10 +13,10 @@
 		:type="type"
 		:alt="alt"
 		:class="{
-      cover,
-      wide: largestDimension === 'width',
-      tall: largestDimension === 'height'
-    }"
+      		cover,
+      		wide: largestDimension === 'width',
+      		tall: largestDimension === 'height'
+    	}"
 		:style="{ 'object-fit': cover ? 'cover' : null }"
 		loading="lazy"
 		@load="onLoad"
@@ -36,7 +36,7 @@ const props = withDefaults(
 		title?: string | null;
 		size?: number;
 		cover?: boolean;
-    largestDimension?: 'width'|'height'
+    	largestDimension?: "width" | "height";
 	}>(),
 	{
 		src: null,
