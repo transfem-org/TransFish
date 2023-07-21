@@ -1905,3 +1905,78 @@ type: Tipe
 speed: Kecepatan
 slow: Pelan
 remoteOnly: Jarak jauh saja
+moveFrom: Dari akun lama pindahkan ke akun ini
+indexNotice: Sedang mengindeks. Ini memerlukan beberapa waktu, mohon jangan mulai
+  ulang server setidaknya satu jam.
+sendPushNotificationReadMessage: Hapus pemberitahuan dorong saat pemberitahuan atau
+  pesan relevan sudah dibaca
+moveAccountDescription: Proses ini permanen. Pastikan kamu sudah mengatur alias dari
+  akun ini ke akun barumu sebelum pindah. Silakan masukkan tag akun dengan format
+  seperti @orang@server.com
+sendModMail: Kirim Pemberitahuan Moderasi
+signupsDisabled: Pendaftaran ke server ini nonaktif, tapi kamu dapat selalu mendaftar
+  ke server lain! Jika kamu memiliki kode undangan server ini, harap masukkan di bawah
+  ini.
+enableCustomKaTeXMacro: Aktifkan makro KaTeX khusus
+isBot: Akun ini bot
+customMOTD: MOTD khusus (pesan layar percik)
+recommendedInstancesDescription: Server yang direkomendasikan dipisahkan dengan garis
+  baru untuk tampil di linimasa rekomendasi.
+preventAiLearningDescription: Minta model bahasa AI pihak ketiga untuk tidak mempelajari
+  konten yang kamu unggah, seperti postingan dan gambar.
+pushNotificationAlreadySubscribed: Pemberitahuan dorong sudah aktif
+pushNotificationNotSupported: Peramban atau servermu tidak mendukung pemberitahuan
+  dorong
+apps: Aplikasi
+showAds: Tampilkan iklan
+enterSendsMessage: Tekan Enter pada Pesan untuk mengirim pesan (matikan dengan Ctrl
+  + Enter)
+showAdminUpdates: Indikasi versi Calckey baru tersedia (hanya admin)
+indexFrom: Indeks dari Post ID berikutnya
+noteId: ID Postingan
+findOtherInstance: Cari server lain
+caption: Keterangan Otomatis
+splash: Layar Percik
+migration: Migrasi
+moveTo: Pindahkan akun sekarang ke akun baru
+moveFromLabel: 'Akun tujuan pindah:'
+moveFromDescription: Ini akan mengatur alias akun lamamu jadi kamu dapat pindah dari
+  akun tersebut ke akun sekarang. Lakukan ini SEBELUM memindahkan akun lama. Silakan
+  masukkan tag akun dengan format seperti @orang@server.com
+defaultReaction: Reaksi emoji bawaan untuk postingan keluar dan masuk
+indexPosts: Indeks Postingan
+preventAiLearning: Cegah scraping bot AI
+customKaTeXMacro: Makro KaTeX khusus
+sendPushNotificationReadMessageCaption: Pemberitahuan yang berisi teks "{emptyPushNotificationMessage}"
+  akan ditampilkan dengan cepat. Ini mungkin meningkatkan penggunaan baterai perangkatmu,
+  jika berlaku.
+adminCustomCssWarn: Pengaturan ini hanya dapat dipakai jika kamu tahu fungsinya. Memasukkan
+  nilai yang keliru akan membuat klien SIAPA PUN berhenti berfungsi secara normal.
+  Mohon pastikan CSS-mu bekerja secara benar dengan mengujinya lebih dahulu pada pengaturan
+  penggunamu.
+customMOTDDescription: Pesan khusus untuk MOTD (layar percik) dipisahkan dengan baris
+  baru untuk ditampilkan secara acak ketika pengguna memuat/muat ulang halaman.
+customSplashIcons: Ikon layar percik khusus (url)
+customSplashIconsDescription: URL untuk ikon layar percik khusus dipisahkan dengan
+  garis baru untuk ditampilkan secara acak saat pengguna memuat/muat ulang halaman.
+  Harap pastikan gambar adalah URL statis, lebih utama berukuran 192x192.
+showUpdates: Tampilkan sembulan saat pemutakhiran Calckey
+recommendedInstances: Server yang direkomendasikan
+updateAvailable: Ada pemutakhiran tersedia!
+swipeOnMobile: Izinkan usap antar halaman
+swipeOnDesktop: Izinkan usap ala mobile di desktop
+logoImageUrl: URL gambar logo
+replayTutorial: Ulangi tutorial
+moveToLabel: 'Akun yang ingin kamu pindah:'
+moveAccount: Pindahkan akun!
+migrationConfirm: "Kamu sangat yakin ingin memindahkan akunmu ke {account}? Sekali
+  pindah, kamu tidak dapat membatalkannya, dan kamu tidak akan dapat menggunakan akunmu
+  lagi secara normal. \nDan juga, harap pastikan kamu sudah mengatur akun sekarang
+  sebagai akun yang dipindahkan."
+license: Lisensi
+indexFromDescription: Kosongkan untuk mengindeks setiap postingan
+noGraze: Harap nonaktifkan ekstensi peramban "Graze for Mastodon", karena akan menganggu
+  Calckey.
+silencedWarning: Halaman ini tampil karena pengguna ini datang dari server yang dibisukan
+  adminmu, jadi mereka berpotensi spam.
+isLocked: Akun ini perlu persetujuan ikuti
