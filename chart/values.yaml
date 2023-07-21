@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/thatonecalculator/firefish
+  repository: registry.joinfirefish.org/firefish/firefish
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""

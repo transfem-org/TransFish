@@ -53,7 +53,7 @@ A fun, new, open way to experience social media https://joinfirefish.org
 | elasticsearch | object | `{"auth":{},"enabled":false,"hostname":"","port":9200,"ssl":false}` | https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch#parameters |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"docker.io/thatonecalculator/firefish"` |  |
+| image.repository | string | `"registry.joinfirefish.org/firefish/firefish"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
