@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    image: docker.io/thatonecalculator/firefish
+    image: registry.joinfirefish.org/firefish/firefish
     container_name: firefish_web
     restart: unless-stopped
     depends_on:
