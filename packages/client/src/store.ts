@@ -342,6 +342,10 @@ export const defaultStore = markRaw(
 			where: "device",
 			default: false,
 		},
+		addRe: {
+			where: "account",
+			default: true,
+		},
 	}),
 );
 

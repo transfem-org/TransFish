@@ -71,6 +71,12 @@
 					{{ i18n.ts.reflectMayTakeTime }}</template
 				></FormSwitch
 			>
+			<FormSwitch v-model="addRe" class="_formBlock"
+				>{{ i18n.ts.addRe
+				}}<span class="_beta">{{
+					i18n.ts.originalFeature
+				}}</span></FormSwitch
+			>
 
 			<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
 				<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
@@ -357,6 +363,7 @@ const showAdminUpdates = computed(
 const showTimelineReplies = computed(
 	defaultStore.makeGetterSetter("showTimelineReplies"),
 );
+const addRe = computed(defaultStore.makeGetterSetter("addRe"));
 
 watch(swipeOnDesktop, () => {
 	defaultStore.set("swipeOnMobile", true);

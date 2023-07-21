@@ -987,6 +987,7 @@ showWithSparkles: "タイトルをキラキラさせる"
 youHaveUnreadAnnouncements: "未読のお知らせがあります"
 neverShow: "今後表示しない"
 remindMeLater: "また後で"
+addRe: "閲覧注意の投稿への返信で、注釈の先頭に\"re:\"を追加する"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"
