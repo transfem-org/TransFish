@@ -1959,3 +1959,8 @@ donationLink: 寄付ページへのリンク
 removeMember: メンバーを削除
 removeQuote: 引用を削除
 removeRecipient: 宛先を削除
+_feeds:
+  copyFeed: "フィードのURLをコピー"
+  rss: "RSS"
+  atom: "Atom"
+  jsonFeed: "JSONフィード"
