@@ -27,7 +27,7 @@ coverage
 !/.config/helm_values_example.yml
 !/.config/LICENSE
 
-#docker dev config
+# docker dev config
 /dev/docker-compose.yml
 
 # misskey
@@ -46,7 +46,9 @@ files
 ormconfig.json
 packages/backend/assets/instance.css
 packages/backend/assets/sounds/None.mp3
+packages/backend/assets/LICENSE
 
+!/packages/backend/queue/processors/db
 !packages/backend/src/db
 
 packages/megalodon/lib

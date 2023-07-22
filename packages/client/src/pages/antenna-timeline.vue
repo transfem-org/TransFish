@@ -100,11 +100,11 @@ const headerActions = $computed(() =>
 					text: i18n.ts.settings,
 					handler: settings,
 				},
-				{
-					icon: "ph-check ph-bold ph-lg",
-					text: i18n.ts.markAllAsRead,
-					handler: markRead,
-				},
+				// {
+				// 	icon: "ph-check ph-bold ph-lg",
+				// 	text: i18n.ts.markAllAsRead,
+				// 	handler: markRead,
+				// },
 		  ]
 		: [],
 );

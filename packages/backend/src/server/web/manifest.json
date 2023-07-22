@@ -1,6 +1,6 @@
 {
-	"short_name": "Calckey",
-	"name": "Calckey",
+	"short_name": "Firefish",
+	"name": "Firefish",
 	"description": "An open source, decentralized social media platform that's free forever!",
 	"start_url": "/",
 	"display": "standalone",
@@ -44,14 +44,14 @@
 	"screenshots": [
 		{
 			"src": "/static-assets/screenshots/1.webp",
-			"sizes": "1195x579",
+			"sizes": "1080x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Profile page"
 		},
 		{
 			"src": "/static-assets/screenshots/2.webp",
-			"sizes": "1195x579",
+			"sizes": "1080x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Posts"

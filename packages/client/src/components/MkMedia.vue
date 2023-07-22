@@ -61,7 +61,14 @@
 		<div class="buttons">
 			<button
 				v-if="media.comment"
-				v-tooltip="i18n.ts.alt"
+				v-tooltip.noLabel="
+					`${i18n.ts.alt}: ${
+						media.comment.length > 200
+							? media.comment.trim().slice(0, 200) + '...'
+							: media.comment.trim()
+					}`
+				"
+				:aria-label="i18n.ts.alt"
 				class="_button"
 				@click.stop="captionPopup"
 			>
@@ -83,7 +90,7 @@
 import { watch, ref, computed } from "vue";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
-import type * as misskey from "calckey-js";
+import type * as misskey from "firefish-js";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
 import { defaultStore } from "@/store";

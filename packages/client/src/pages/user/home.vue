@@ -288,10 +288,17 @@
 						<div v-if="user.fields.length > 0" class="fields">
 							<dl
 								v-for="(field, i) in user.fields"
+								:class="field.verified ? 'verified' : ''"
 								:key="i"
 								class="field"
 							>
 								<dt class="name">
+									<i
+										v-if="field.verified"
+										class="ph-bold ph-seal-check ph-lg ph-fw"
+										style="padding: 5px"
+										v-tooltip="i18n.ts.verifiedLink"
+									></i>
 									<Mfm
 										:text="field.name"
 										:plain="true"
@@ -384,7 +391,7 @@ import { defineAsyncComponent, onMounted, onUnmounted } from "vue";
 import calcAge from "s-age";
 import cityTimezones from "city-timezones";
 import XUserTimeline from "./index.timeline.vue";
-import type * as misskey from "calckey-js";
+import type * as misskey from "firefish-js";
 import XNote from "@/components/MkNote.vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
@@ -746,6 +753,12 @@ onUnmounted(() => {
 
 						&:not(:last-child) {
 							margin-bottom: 8px;
+						}
+
+						&.verified {
+							background-color: var(--hover);
+							border-radius: 10px;
+							color: var(--badge) !important;
 						}
 
 						> .name {

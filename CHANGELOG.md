@@ -1,12 +1,1042 @@
 # Changelog
 
-All changes from v13.0.0 onwards, for a full list of differences read CALCKEY.md
+All changes from v13.0.0 onwards, for a list of differences read FIREFISH.md
+
+## [1.0.0] - 2023-07-19
+
+### Bug Fixes
+
+- Fix: :pencil2: deduplicate class
+
+- Fix: :adhesive_bandage: ask for reload upon changing skin tone
+
+- Fix: :bug: properly apply unicode for skin tone selector
+
+- Fix: 2fa registration code
+
+- Fix: new posts button mobile position + webkit-mask
+
+- Fix: ad widget size
+
+- Fix: prevent jump when new posts button appears
+
+- Fix: back from the future
+
+- Fix: new posts button z-index + use darkened accent
+
+- Fix: :bug: apply skin tone to default reactions, aria labels for tone picker
+
+- Fix: 🐛 support for SSL data when loading redis and postgres configs
+
+Closes #10366
+
+- Fix: :adhesive_bandage: use redis user for bull and postgres cache interface
+
+Follow up #10366, d96877033be9790d11b0212ab8825f93202d22a2
+
+- Fix: only show option based on device + add option to backups
+
+- Fix: :wheelchair: don't animate indicator dot if animation is off
+
+Closes #10372
+
+- Fix: :bug: security key display name
+
+Closes #10313
+
+- Fix: disable redis tls if undefined in config
+
+- Fix: :bug: don't convert time since epoch for ratelimit
+
+https://calckey.social/notes/9gkasnzglmi07rpa
+
+- Fix: :bug: fix tapping parent on mobile causing side effects
+
+- Fix: :bug: standard input for 2FA token
+
+Closes #10361, removes client dependency
+
+- Fix: :bug: addSkinTone strip logic
+
+- Fix: soft mutes not being applied to boosts
+
+- Fix: misaligned new post button
+
+I don't understand why margin-top caused that ??
+
+- Fix: multiple boost publication by relay
+
+- Fix: ignore if post boosted by relay is local
+
+- Fix: await release
+
+- Fix: webkit blur effects
+
+- Fix: :loud_sound: log emoji picker errors
+
+- Fix/refactor: move new posts button to MkTimeline
+
+- Fix: new posts click
+
+- Fix: use redis-semaphore for global mutex and memory leak prevention
+
+- Fix: :bug: patron timeout
+
+- Fix: temp fix for null metadata
+
+- Fix: :bug: display emoji stat properly
+
+- Fix: :lipstick: form switch padding
+
+- Fix: :zap: immediately fail jobs with invalid signature
+
+- Fix: videos not appearing when don't play animated images is one
+
+- Fix: 🐛query search endpoint for local userselect, disregard host
+
+- Fix: do not deliver poll reulst if local-only
+
+- Fix: do not deliver poll result if local-only
+
+- Fix: add back channel display in timeline
+
+- Fix: :bug: fallback locales for skin tone labels
+
+Closes #10406
+
+
+- Fix: 🐛 fix quotes with CW-only quotes
+
+- Fix: use host as prefix of cacheServer if undefined
+
+- Fix: :children_crossing: switch account when adding existing account
+
+- Fix: add megalodon to docker image
+
+- Fix: copy megalodon before node_modules, fix #10424
+
+- Fix: banner blur
+
+- Fix: :bug: prevent creation of empty antennas
+
+- Fix: :bug: server stats setting, meta fetching
+
+- Fix: :bug: server stats setting, meta fetching
+
+- Fix: :lipstick: url preview title size
+
+- Fix: MkMedia #10429 ?  + styling
+
+- Fix: nav post button gradient transition ([#10401](https://github.com/orhun/git-cliff/issues/10401)) + half refactor ?
+
+- Fix: error if no banner
+
+- Fix reactions_not_public condition
+
+- Fix: renew entity models
+
+- Fix config parser
+
+- Fix: add db to redis uri
+
+- Fix: :ambulance: correct import for swiper 10
+
+- Fix: :page_facing_up: don't gitignore .config license
+
+Follow-up #10470
+
+- Fix: :bug: fix draggable
+
+Use vue-draggable-plus instead of vuedraggable: https://github.com/SortableJS/vue.draggable.next/issues/216
+
+Closes #10467
+
+- Fix popup menu
+
+- Fix: :bug: plus button in reaction settings
+
+- Fix: :bug: save reactions if added
+
+- Fix: :lipstick: locales, transition for MkDonation
+
+- Fix: :lipstick: scope transition style
+
+- Fix: :bug: properly show instance's link
+
+- Fix: :bug: give donation link in non-admin meta
+
+- Fix: :lipstick: properly slide in
+
+- Fix: :lipstick: ease-out transitions
+
+- Fix: match custom emoji size to Misskey's
+
+resolves #10438
+
+- Fix: :lipstick: scoped style fix
+
+- Fix #10483
+
+- Fix: collapsing white space
+
+- Fix: :lipstick: different default font if cjk
+
+- Fix: :lipstick: mkdonation bg
+
+- Fix: Follow Request labeling
+
+resolves #10368
+
+- Fix: error in user card if no user desc
+
+- Fix: 🐛 allow up to 1024 chars for SMTP login
+
+Closes #10472
+
+- Fix: note detailed tabs using wrong styling
+
+- Fix: move nowrap to proper place
+
+- Fix: :lock: prevent potential SSRF through media proxy
+
+- Fix: :wrench: max post length 100000
+
+Pleroma doesn't accept >100K (ref: https://blob.cat/objects/82f33d96-534f-45ee-902a-f77c2723db8b)
+
+- Fix format
+- Fix: more reliable not closing emoji picker on shift key
+
+- Fix: unable to scroll through reactions on mobile
+
+- Fix lock
+- Fix: use hostname as prefix instead of host
+
+- Fix: 🐛 Scrolling Issue in Safari for Top and Bottom Bars
+
+- Fix: :globe_with_meridians: missing locale
+
+- Fix: add back follows you tag
+
+- Fix: import
+
+- Fix: skip attachment import if undefined
+
+
+### Documentation
+
+- Docs: :memo: dragonfly flag
+
+- Docs: :pencil2: dragonflydb typo
+
+- Docs: 📝 KeyDB minimum version
+
+- Docs: 📝 KeyDB, megalodon
+
+- Docs: 📝 simplify dependencies
+
+- Docs: fix typo
+
+- Docs: :memo: join server
+
+- Docs: :memo: FoundKey migration docs
+
+Co-authored-by: Jeder <jeder@noreply.codeberg.org>
+Superscedes #10471
+
+- Docs: :memo: FoundKey EOL disclaimer
+
+- Docs: :memo: descriptions for notes/children+conversation endpoints
+
+- Docs: :bulb: going past DB_MAX_NOTE_TEXT_LENGTH
+
+- Docs: :memo: changelog
+
+- Docs: :memo: changelog
+
+- Docs: :memo: foundkey patch (thanks volpeon!)
+
+ref: https://is-a.wyvern.rip/notes/9hac2nd98s
+
+- Docs: :memo: migration note
+
+- Docs: 📝 foundkey migration apply patch correctly
+
+
+### Features
+
+- Feat: Make scrollable widgets flexible
+
+- Feat: make RSS feed scrollable ([#10108](https://github.com/orhun/git-cliff/issues/10108))
+
+- Feat: ALT button ([#9265](https://github.com/orhun/git-cliff/issues/9265))
+
+- Feat: toggle-able swiping
+
+- Feat: horizontally scrolling reactions
+
+- Feat: :sparkles: introduce local user select dialog
+
+Used for selecting group members and proxy account.
+
+Closes #7987, API change: users/search-by-username-and-host now takes `maxDaysSinceLastActive` parameter and doesn't have any active threshold anymore by default.
+
+- Feat: reveal muted word on press & hold
+
+Refs: #10363
+
+- Feat: link previews redesign
+
+- Feat: :sparkles: celebrate on calendar when birthday
+
+- Feat: :sparkles: add emoji count to admin panel
+
+- Add cache prefix
+
+- Feat: show alt button even when content hidden
+
+- Feat: :zap: cache server
+
+- Feat: :sparkles: Timestamps on announcements
+
+Closes #10453
+
+- Add environment variable to skip copying antenna
+
+- Add environment variable of read size
+
+- Feat: :sparkles: don't close emoji picker if shift is held down, like Discord
+
+https://snug.moe/notes/9h1p04dqytz2qfsz
+
+- Feat: :sparkles: Donation pop-up with optional admin link
+
+Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
+
+- Feat: :lipstick: fly in as well
+
+- Feat: :sparkles: seperate sponsors and patrons
+
+- Feat: ✨ Add media to Mastodon and Calckey post imports ([#10496](https://github.com/orhun/git-cliff/issues/10496))
+
+### What does this PR do?
+
+Adding files fields in the export notes option, and corresponding import notes
+
+Current the mastodon import does not import any attachments, this pr will use the "upload from url" feature to include medias if its a valid URL.
+
+There are many way to convert the outbox.json file, can be simple as upload media_attachments to any web hosting and do string replace on the json file.
+
+I also create a tool that upload the tar.gz file with auto convert and host the media as simplify the process at https://tempfile.moegirl.live
+
+Detail example can be found at https://fedi.moegirl.live/notes/9h76gtqnp2gwl5dz
+
+https://r2temp.moegirl.live/2023/7/15/15356683-050f-423a-b331-c9a05561f52a/shana-settings-_-meng-zhai-le-yuan-xyou-yu-ou-xiang-de-luo-ke-ke-wu-yan-moe-otaku-elysian-x-gloomily-idol-s-rococo-luncheon----mozilla-firefox-private-browsing-2023-07-15-18-36-37.mp4
+
+Co-authored-by: CGsama <CGsama@outlook.com>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/10496
+Co-authored-by: コルセット姫@がんばらない <cgsama@noreply.codeberg.org>
+Co-committed-by: コルセット姫@がんばらない <cgsama@noreply.codeberg.org>
+
+- Feat: Move json5 to prod dependencies
+
+- Feat: add view on remote server to user profile dropdowns
+
+- Feat: ✨ verify links with rel=me ([#10506](https://github.com/orhun/git-cliff/issues/10506))
+
+Adds Mastodon-style `rel=me` link verification, and creates a background job to verify said links
+
+Closes #9341
+
+![image](/attachments/861e01eb-660f-4c62-8d83-d824cb79da48)
+
+Co-authored-by: ThatOneCalculator <kainoa@t1c.dev>
+Co-authored-by: Namekuji <nmkj@waah.day>
+Reviewed-on: https://codeberg.org/calckey/calckey/pulls/10506
+
+- Feat: show snippet of alt text when hovering alt button
+
+- Feat: :sparkles: copy feeds from user menu
+
+
+### Miscellaneous Tasks
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.5% (1796 of 1805 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1806 of 1806 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1806 of 1806 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: apply to all swipers
+
+- Chore: format
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1807 of 1807 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 87.2% (1582 of 1813 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Update helm config template
+
+- Chore: :art: format, add scss to prettier formatting
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1814 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1815 of 1815 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :art: format
+
+- Chore: 👥 patrons
+
+- Chore: 👥 patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.7% (1793 of 1815 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/de/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: 🎨 format
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1814 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 88.2% (1600 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 88.2% (1600 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 91.0% (1651 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 91.0% (1651 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 94.7% (1719 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 94.7% (1719 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: 👥 patrons
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 96.8% (1757 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 96.8% (1757 of 1814 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 97.4% (1769 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: :art: format
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: 👥 patrons
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: 👥 patrons
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: :arrow_up: up prettier, pnpm
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 88.7% (1612 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fr/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 93.9% (1707 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: :art: format
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: add megalodon to cleaning scripts
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1816 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 94.3% (1714 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: Use css module
+
+- Chore: Translated using Weblate (Turkish)
+
+Currently translated at 3.9% (71 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/tr/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 95.0% (1726 of 1816 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1819 of 1819 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: :art: format
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: vite conf changes
+
+- Chore: :page_facing_up: LICENSE for configuration directories
+
+Closes #10470
+
+- Chore: change account
+
+- Chore: :art: format
+
+- Chore: forgot to remove a debug print stmt?
+
+- Chore: Added translation using Weblate (Galician)
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1827 of 1827 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: format
+
+- Chore: :art: format
+
+- Chore: :art: format
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1830 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Norwegian Bokmål)
+
+Currently translated at 4.3% (79 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/nb_NO/
+
+- Chore: Translated using Weblate (Portuguese (Brazil))
+
+Currently translated at 5.6% (103 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pt_BR/
+
+- Chore: Translated using Weblate (Portuguese (Brazil))
+
+Currently translated at 5.6% (103 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/pt_BR/
+
+- Chore: Translated using Weblate (Galician)
+
+Currently translated at 0.8% (15 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/gl/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1830 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1830 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ja/
+
+- Chore: Translated using Weblate (Turkish)
+
+Currently translated at 54.4% (996 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/tr/
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 74.9% (1372 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/uk/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: Translated using Weblate (Turkish)
+
+Currently translated at 56.5% (1035 of 1830 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/tr/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1831 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Turkish)
+
+Currently translated at 100.0% (1831 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/tr/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 86.9% (1592 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/es/
+
+- Chore: Translated using Weblate (Turkish)
+
+Currently translated at 100.0% (1831 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/tr/
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 100.0% (1831 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/uk/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 100.0% (1831 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/uk/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 95.5% (1750 of 1831 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hant/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1832 of 1832 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 100.0% (1832 of 1832 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/uk/
+
+- Chore: :globe_with_meridians: (only outbox.json) no longer needed
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1832 of 1832 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Added translation using Weblate (Bulgarian (bul_BG))
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1832 of 1832 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: :art: format
+
+- Chore: make contributors consistent with the website
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ca/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 92.2% (1694 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+
+### Performance
+
+- Perf: use msgpackr to encode and decode
+
+- Perf: :zap: use fast-blurhash for blurhash decoding, up deps
+
+
+### Refactor
+
+- Refactor: :lipstick: improve miauth style
+
+- Refactor: :wrench: allow redis user to be configured
+
+Follow up #10366, 3df3c97deb284ecbf3363b90a45c6501957d1e98
+
+- Refactor: simplify getSignatureUser
+
+- Refactor: :recycle: force patrons update on about-calckey
+
+- Refactor: no url instantiation
+
+- Refactor: use redis-semaphore for mutex across workers
+
+- Refactor: examine by get instead of exists
+
+- Refactor: :globe_with_meridians: patrons description
+
+- Refactor: :triangular_flag_on_post: post editing is no longer experimental
+
+- Refactor: ⚡ make identicons and server metrics optional
+
+Co-authored-by: Kainoa Kanter <kainoa@t1c.dev>
+
+- Refactor: ⚡ make identicons and server metrics optional
+
+Co-authored-by: Kainoa Kanter <kainoa@t1c.dev>
+
+- Refactor: ⚡ make identicons and server metrics optional
+
+Co-authored-by: Kainoa Kanter <kainoa@t1c.dev>
+
+- Refactor: combine MediaVideo & MediaImage components
+
+- Refactor: :recycle: read patrons from local file for fallback instead of empty array
+
+- Refactor: 💫 tweak photoswipe animation speed
+
+- Refactor: :lock: password input for object storage secret key
+
+- Refactor: cache relays for a longer time
+
+- Refactor: ⚡ antenna notes in cache
+
+Co-authored-by: Kainoa Kanter <kainoa@t1c.dev>
+
+- Refactor: :recycle: MkPostFormAttachees setup syntax
+
+- Refactor: :recycle: donation link logic, add link to /about, fix typo
+
+- Refactor: :lipstick: max instance name length 37, gradate specific server dono button
+
+- Refactor: :recycle: simplify shift key logic
+
+- Refactor: :wheelchair: add aria labels to buttons
+
+- Refactor: :recycle: substr -> slice
+
+- Refactor(backend): Use `exist` to check existence
+
+* refactor(backend): 存在確認の`findOneBy`を`exist`に置き換え
+
+* cleanup
+
+- Refactor: use copy_limit if greater than 0
+
+- Refactor: use new card design in user popup
+
+- Refactor: :lipstick: relay icon
+
+- Refactor: :lipstick: privacy icon
+
+- Refactor: :recycle: no autobind
+
+- Refactor: :zap: use blurhash-as for encoding and decoding
+
+- Refactor: remove tinycolor from MkFolder + a11y
+
+- Refactor: :children_crossing: filter out https on recommended instances
+
+- Refactor: :recycle: correct params for notes/children+conversion
+
+- Refactor: :wastebasket: deprecate DB_MAX_NOTE_TEXT_LENGTH
+
+- Refactor: :rotating_light: linting fix
+
+- Refactor: ⚡ improve performance of contextmenu
+
+
+### Styling
+
+- Style: New posts button
+
+- Style: visible button w/out hovering in url preview
+
+- Style: accent color in plyr
+
+- Style: add back scrollbar-color for firefox
+
+- Style: truncate long URL's
+
+- Style: make background banner blur static
+
+- Style; proper styling for url preview
+
+- Style fix
+
+- Style: link underlines
+
+- Style: link underlines, attempt two™
+
+- Style: use muted repeat icon instead of forbidden for disabled boosts
+
+- Style: don't truncate URL's
+
+- Style: underline-offset tweak
+
+- Style: consistent link underline thickness
+
+- Style: user card design
+
 
 ## [14.0.0-rc3] - 2023-06-24
 
 ### Bug Fixes
 
-- Fix: improv ux of deck scroll
+- Fix: editing caption accuracy
 
 - Fix: editing caption accuracy
 
@@ -20,13 +1050,29 @@ All changes from v13.0.0 onwards, for a full list of differences read CALCKEY.md
 
 - Fix: unread message bgcolor
 
+- Fix logic
+
+- Fixes
+
+- Fix width
+
 - Fix boost mutes
+
+- Fix typo
 
 - Fix search features
 
+- Fix
+
 - Fix: :bug: properly enter date
 
+- Fix math
+
+- Fix
+
 - Fix back button display
+
+- Fix
 
 - Fix: "24"th hour doesn't exist, it's 0
 
@@ -58,6 +1104,12 @@ Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 
 - Fix: :bug: display punishments on desktop
 
+- Fix
+
+- Fix
+
+- Fix overflow
+
 - Fix user preview menu color
 
 - Fix: :lipstick: white foreground on forced black background
@@ -80,7 +1132,11 @@ Remedies the problem introduced by 020c4f578827e2391b35cd102ee197cc037c0382 caus
 
 - Fix: 🐛 empty fs stat
 
+- Fix
+
 - Fix build and clean scripts
+
+- Fix
 
 - Fix: :bug: only collapsed reply if notification is reply
 
@@ -120,9 +1176,15 @@ Discovered here: https://codeberg.org/calckey/calckey/issues/10345#issuecomment-
 
 - Fix: :ambulance: disable lightningcss transformer for now
 
+- Fix: typo
+
 - Fix: :arrow_down: downgrade chalk
 
 - Fix: :bug: start transaction with multi
+
+- Fix: :pencil2: fix tab characters
+
+thanks, yaml. ugh.
 
 - Fix: :bug: remove cw in post edit
 
@@ -181,6 +1243,8 @@ https://codeberg.org/calckey/calckey/pulls/10285#issuecomment-951231
 
 #10352
 
+- Docs: :memo: v14.0.0-rc3 changelog
+
 
 ### Features
 
@@ -228,6 +1292,8 @@ Closes #9959
 - Feat: :lock: expand /api/v1/instance/peers to proper endpoint and check for private mode
 
 Closes #10358
+
+- Feat: :bookmark: v14.0.0-rc3
 
 
 ### Miscellaneous Tasks
@@ -531,6 +1597,8 @@ Could possibly be for future custom emoji sets that support custom skin tones? (
 - Refactor: :recycle: url preview
 
 - Refactor: :label: add antenna type to streaming types
+
+- Enhance(frontend): improve ux of deck scroll
 
 
 ### Styling
@@ -2704,7 +3772,7 @@ Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
 Passwords will be automatically re-hashed on sign-in. All new password hashes will be argon2 by default.  This uses argon2id and is not configurable. In the very unlikely case someone has more specific needs, a fork is recommended.  ChangeLog: Added  Co-authored-by: Chloe Kudryavtsev <code@toast.bunkerlabs.net>
 
-Breaks Calckey -> Misskey migration, but fixes FoundKey -> Calckey migration
+Breaks Calckey -> Misskey migration, but fixes Foundkey -> Calckey migration
 
 - Add argon
 

@@ -6,13 +6,13 @@
 			</div>
 			<div :class="$style.main">
 				<div :class="$style.title">
-					{{ i18n.ts._aboutMisskey.donateTitle }}
+					{{ i18n.ts._aboutFirefish.donateTitle }}
 				</div>
 				<div :class="$style.text">
-					{{ i18n.ts._aboutMisskey.pleaseDonateToCalckey }}
+					{{ i18n.ts._aboutFirefish.pleaseDonateToFirefish }}
 					<p v-if="$instance.donationLink">
 						{{
-							i18n.t("_aboutMisskey.pleaseDonateToHost", {
+							i18n.t("_aboutFirefish.pleaseDonateToHost", {
 								host: hostname,
 							})
 						}}
@@ -22,16 +22,16 @@
 					<MkButton
 						primary
 						@click="
-							openExternal('https://opencollective.com/calckey')
+							openExternal('https://opencollective.com/firefish')
 						"
-						>{{ i18n.ts._aboutMisskey.donate }}</MkButton
+						>{{ i18n.ts._aboutFirefish.donate }}</MkButton
 					>
 					<MkButton
 						v-if="$instance.donationLink"
 						gradate
 						@click="openExternal($instance.donationLink)"
 						>{{
-							i18n.t("_aboutMisskey.donateHost", {
+							i18n.t("_aboutFirefish.donateHost", {
 								host: hostname,
 							})
 						}}</MkButton

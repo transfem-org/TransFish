@@ -24,8 +24,8 @@ import {
 	onUnmounted,
 	watch,
 } from "vue";
-import * as Acct from "calckey-js/built/acct";
-import * as misskey from "calckey-js";
+import * as Acct from "firefish-js/built/acct";
+import * as misskey from "firefish-js";
 import XFollowList from "./follow-list.vue";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";

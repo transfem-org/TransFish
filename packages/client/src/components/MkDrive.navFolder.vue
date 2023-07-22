@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import * as Misskey from "calckey-js";
+import * as Misskey from "firefish-js";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 

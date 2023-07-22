@@ -1,4 +1,4 @@
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import { i18n } from "@/i18n";
 
 /**

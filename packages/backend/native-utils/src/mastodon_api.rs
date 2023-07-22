@@ -8,7 +8,7 @@ static CHAR_COLLECTION: &str = "0123456789abcdefghijklmnopqrstuvwxyz";
 #[napi]
 pub enum IdConvertType {
     MastodonId,
-    CalckeyId,
+    FirefishId,
 }
 
 #[napi]
@@ -23,7 +23,7 @@ pub fn convert_id(in_id: String, id_convert_type: IdConvertType) -> napi::Result
 
             Ok(out.to_string())
         }
-        CalckeyId => {
+        FirefishId => {
             let mut input: i128 = match in_id.parse() {
                 Ok(s) => s,
                 Err(_) => {
