@@ -517,6 +517,8 @@ objectStorageUseSSLDesc: "API接続にhttpsを使用しない場合はオフに�
 objectStorageUseProxy: "Proxyを利用する"
 objectStorageUseProxyDesc: "API接続にproxyを利用しない場合はオフにしてください"
 objectStorageSetPublicRead: "アップロード時に'public-read'を設定する"
+objectStorageS3ForcePathStyle: "DNS名ではなくてパスを使用する"
+objectStorageS3ForcePathStyleDesc: "EndpointのURLを作る際には、'<bucket>.s3.amazonaws.com'の代わりに's3.amazonaws.com/<bucket>/'のようなスタイルを使用します。"
 serverLogs: "サーバーログ"
 deleteAll: "全て削除"
 showFixedPostForm: "タイムライン上部に投稿フォームを表示する"
