@@ -38,6 +38,12 @@ export function convertNotification(notification: Entity.Notification) {
 export function convertPoll(poll: Entity.Poll) {
 	return simpleConvert(poll);
 }
+export function convertReaction(reaction: Entity.Reaction) {
+	if (reaction.accounts) {
+		reaction.accounts = reaction.accounts.map(convertAccount);
+	}
+	return reaction;
+}
 export function convertRelationship(relationship: Entity.Relationship) {
 	return simpleConvert(relationship);
 }
@@ -61,6 +67,8 @@ export function convertStatus(status: Entity.Status) {
 	}));
 	if (status.poll) status.poll = convertPoll(status.poll);
 	if (status.reblog) status.reblog = convertStatus(status.reblog);
+	if (status.quote) status.quote = convertStatus(status.quote);
+	status.emoji_reactions = status.mentions.map(convertReaction);
 
 	return status;
 }
