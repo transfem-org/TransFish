@@ -1,0 +1,52 @@
+# This file is a template, and might need editing before it works on your project.
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Nodejs.gitlab-ci.yml
+
+# Official framework image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/node/tags/
+image: node:alpine
+
+
+stages:
+  - build
+
+# Pick zero or more services to be used on all builds.
+# Only needed when using a docker container to run your tests in.
+# Check out: https://docs.gitlab.com/ee/ci/services/index.html
+variables:
+  POSTGRES_PASSWORD: test
+
+services:
+  - postgres:15
+  - redis
+
+before_script:
+  - apk add --no-cache cargo python3 make g++
+  - cp .config/ci.yml .config/default.yml
+  - corepack enable
+  - corepack prepare pnpm@latest --activate
+
+testCommit:
+  stage: build
+  script:
+    - pnpm i --frozen-lockfile
+    - pnpm run build
+    - pnpm run migrate
+  only:
+    - main
+    - beta
+    - develop
+    - /^feature\/.*$/
+
+# This folder is cached between builds
+# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
+cache:
+  paths:
+    - node_modules/
+
+
