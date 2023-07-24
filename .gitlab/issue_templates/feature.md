@@ -1,14 +1,7 @@
----
-name: ✨ Feature Request
-about: Request a Feature
-title: "[Feature]: "
-blank_issues_enabled: true
----
-
-💖 Thanks for taking the time to fill out this feature request!
+<!-- 💖 Thanks for taking the time to fill out this bug report!
 💁 Having trouble with deployment? [Ask the support chat.](https://matrix.to/#/%23firefish:matrix.fedibird.com)
 🔒 Found a security vulnerability? [Please disclose it responsibly.](https://git.joinfirefish.org/firefish/firefish/src/branch/develop/SECURITY.md)
-🤝 By submitting this issue, you agree to follow our [Contribution Guidelines.](https://git.joinfirefish.org/firefish/firefish/-/blob/develop/CONTRIBUTING.md)
+🤝 By submitting this feature request, you agree to follow our [Contribution Guidelines.](https://git.joinfirefish.org/firefish/firefish/-/blob/develop/CONTRIBUTING.md) -->
 
 **What feature would you like implemented?** _(Please give us a brief description of what you'd like.)_
 
