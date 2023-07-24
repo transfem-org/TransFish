@@ -951,7 +951,8 @@ check: "Kontrolle"
 driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität
   auf den Standard zurückzusetzen."
-requireAdminForView: "Melde dich mit einem Administratorkonto an, um dies einzusehen."
+requireAdminForView: "Du musst dich mit einem Administratorkonto anmelden um dies
+  zu sehen."
 isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwaltet.
   Bitte moderieren, bearbeiten, löschen oder manipulieren Sie dieses Konto nicht,
   da es sonst zu einem Server-Absturz kommen könnte."
@@ -1005,8 +1006,8 @@ _sensitiveMediaDetection:
   setSensitiveFlagAutomaticallyDescription: "Die Resultate der internen Erkennung
     werden beibehalten, auch wenn diese Option deaktiviert ist."
   analyzeVideos: "Videoanalyse aktivieren"
-  analyzeVideosDescription: "Analysiert zusätzlich zu Bildern auch Videos. Die Last
-    des Servers wird hierdurch etwas erhöht."
+  analyzeVideosDescription: "Analysiert zusätzlich zu Bildern auch Videos. Die Serverlast
+    wird hierdurch etwas erhöht."
 _emailUnavailable:
   used: "Diese Email-Adresse wird bereits verwendet"
   format: "Das Format dieser Email-Adresse ist ungültig"
@@ -1020,7 +1021,7 @@ _ffVisibility:
 _signup:
   almostThere: "Fast geschafft"
   emailAddressInfo: "Bitte gib deine Email-Adresse ein. Sie wird nicht öffentlich
-    einsehbar sein."
+    sichtbar sein."
   emailSent: "An deine Email-Adresse ({email}) wurde soeben eine Bestätigungsmail
     geschickt. Bitte klicke auf den enthaltenen Link, um die Erstellung deines Nutzerkontos
     abzuschließen."
@@ -1029,8 +1030,8 @@ _accountDelete:
   mayTakeTime: "Da die Löschung eines Nutzerkontos ein aufwendiger Prozess ist, kann
     dessen Dauer davon abhängen, wie viel Inhalt von diesem erstellt wurde oder wie
     viele Dateien von diesem hochgeladen wurden."
-  sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die mit ihm verknüpfte
-    Email-Adresse eine Benachrichtigung versendet."
+  sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die registrierte Email-Adresse
+    eine Benachrichtigung versendet."
   requestAccountDelete: "Löschung deines Nutzerkontos anfordern"
   started: "Die Löschung wurde eingeleitet."
   inProgress: "Löschung in Bearbeitung"
@@ -2077,7 +2078,7 @@ moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt
 preventAiLearning: KI gestütztes bot-scraping unterdrücken
 preventAiLearningDescription: Fordern Sie KI-Sprachmodelle von Drittanbietern auf,
   die von Ihnen hochgeladenen Inhalte, wie z. B. Beiträge und Bilder, nicht zu untersuchen.
-license: Genehmigung
+license: Lizenz
 indexPosts: Gelistete Beiträge
 migrationConfirm: "Sind Sie absolut sicher, dass Sie Ihr Nutzerkonto zu diesem {account}
   umziehen möchten? Sobald Sie dies bestätigt haben, kann dies nicht mehr rückgängig
