@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	noteEdit set<frozen<note_edit_history>>, -- Edit History
 	updatedAt timestamp,
 	PRIMARY KEY (createdAtDate, createdAt)
-) WITH CLUSTERING ORDER BY (created_at DESC);
+) WITH CLUSTERING ORDER BY (createdAt DESC);
 
 CREATE INDEX IF NOT EXISTS note_by_id ON note (id);
 CREATE INDEX IF NOT EXISTS note_by_uri ON note (uri);

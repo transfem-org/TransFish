@@ -20,7 +20,7 @@ struct Info {
     applied_at: Duration,
 }
 
-const MIGRATION_TABLE: &str = "ck_migrations";
+const MIGRATION_TABLE: &str = "ff_migrations";
 
 impl Migrator {
     pub(crate) fn generate(dir: PathBuf, name: &str) -> Result<(), Error> {
@@ -51,7 +51,7 @@ impl Migrator {
                 factor = config.replication_factor), &[]
             )
             .await?;
-        session.use_keyspace(&config.keyspace, false).await?;
+        session.use_keyspace(&config.keyspace, true).await?;
         session
             .query(
                 format!(
