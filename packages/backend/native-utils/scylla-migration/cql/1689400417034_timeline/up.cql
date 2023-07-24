@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	"reactionEmojis" map<text, frozen<emoji>>,
 	"noteEdit" set<frozen<note_edit_history>>, -- Edit History
 	"updatedAt" timestamp,
-	PRIMARY KEY ("createdAtDate", "createdAt")
+	PRIMARY KEY ("createdAtDate", "createdAt", "id")
 ) WITH CLUSTERING ORDER BY ("createdAt" DESC);
 
 CREATE INDEX IF NOT EXISTS note_by_id ON note (id);
@@ -69,13 +69,26 @@ CREATE MATERIALIZED VIEW IF NOT EXISTS note_by_userid AS
 	WHERE "userId" IS NOT NULL
 	AND "createdAt" IS NOT NULL
 	AND "createdAtDate" IS NOT NULL
-	PRIMARY KEY ("userId", "createdAt", "createdAtDate")
+	AND "id" IS NOT NULL
+	PRIMARY KEY ("userId", "createdAt", "createdAtDate", "id")
 	WITH CLUSTERING ORDER BY ("createdAt" DESC);
 
 CREATE TABLE IF NOT EXISTS reaction (
+	"id" text,
 	"noteId" ascii,
-	"createdAt" timestamp,
 	"userId" ascii,
-	"reaction" frozen<emoji>,
-	PRIMARY KEY ("noteId", "createdAt", "userId")
-) WITH CLUSTERING ORDER BY ("createdAt" DESC);
+	"reaction" text,
+	"emoji" frozen<emoji>,
+	"createdAt" timestamp,
+	PRIMARY KEY ("noteId", "userId")
+);
+
+CREATE INDEX IF NOT EXISTS reaction_by_id ON reaction (id);
+
+CREATE MATERIALIZED VIEW IF NOT EXISTS reaction_by_userid AS
+	SELECT * FROM reaction
+	WHERE "userId" IS NOT NULL
+	AND "createdAt" IS NOT NULL
+	AND "noteId" IS NOT NULL
+	PRIMARY KEY ("userId", "createdAt", "noteId")
+	WITH CLUSTERING ORDER BY ("createdAt" DESC);

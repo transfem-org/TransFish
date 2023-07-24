@@ -21,6 +21,7 @@ import deleteReaction from "./delete.js";
 import { isDuplicateKeyValueError } from "@/misc/is-duplicate-key-value-error.js";
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
+import { prepared, scyllaClient } from "@/db/scylla.js";
 
 export default async (
 	user: { id: User["id"]; host: User["host"] },
@@ -46,20 +47,33 @@ export default async (
 		);
 	}
 
-	// TODO: cache
-	reaction = await toDbReaction(reaction, user.host);
+	// Emoji data will be cached in toDbReaction.
+	const { name: _reaction, emoji: emojiData } = await toDbReaction(
+		reaction,
+		user.host,
+	);
 
 	const record: NoteReaction = {
 		id: genId(),
 		createdAt: new Date(),
 		noteId: note.id,
 		userId: user.id,
-		reaction,
+		reaction: _reaction,
 	};
 
 	// Create reaction
 	try {
-		await NoteReactions.insert(record);
+		if (scyllaClient) {
+			// INSERT to ScyllaDB is upsert, and the primary key of reaction table is ("noteId", "userId").
+			// Thus, a reaction by the same user will be replaced if exists.
+			await scyllaClient.execute(
+				prepared.reaction.insert,
+				[record.id, record.noteId, record.userId, _reaction, emojiData, record.createdAt],
+				{ prepare: true },
+			);
+		} else {
+			await NoteReactions.insert(record);
+		}
 	} catch (e) {
 		if (isDuplicateKeyValueError(e)) {
 			const exists = await NoteReactions.findOneByOrFail({
@@ -67,7 +81,7 @@ export default async (
 				userId: user.id,
 			});
 
-			if (exists.reaction !== reaction) {
+			if (exists.reaction !== _reaction) {
 				// 別のリアクションがすでにされていたら置き換える
 				await deleteReaction(user, note);
 				await NoteReactions.insert(record);
@@ -81,20 +95,31 @@ export default async (
 	}
 
 	// Increment reactions count
-	const sql = `jsonb_set("reactions", '{${reaction}}', (COALESCE("reactions"->>'${reaction}', '0')::int + 1)::text::jsonb)`;
-	await Notes.createQueryBuilder()
-		.update()
-		.set({
-			reactions: () => sql,
-			score: () => '"score" + 1',
-		})
-		.where("id = :id", { id: note.id })
-		.execute();
+	if (scyllaClient) {
+		const current = Math.max(note.reactions[_reaction] ?? 0, 0);
+		note.reactions[_reaction] = current + 1;
+		const date = new Date(note.createdAt.getTime());
+		await scyllaClient.execute(
+			prepared.note.update.reactions,
+			[note.reactions, (note.score ?? 0) + 1, date, date],
+			{ prepare: true },
+		);
+	} else {
+		const sql = `jsonb_set("reactions", '{${_reaction}}', (COALESCE("reactions"->>'${_reaction}', '0')::int + 1)::text::jsonb)`;
+		await Notes.createQueryBuilder()
+			.update()
+			.set({
+				reactions: () => sql,
+				score: () => '"score" + 1',
+			})
+			.where("id = :id", { id: note.id })
+			.execute();
+	}
 
 	perUserReactionsChart.update(user, note);
 
 	// カスタム絵文字リアクションだったら絵文字情報も送る
-	const decodedReaction = decodeReaction(reaction);
+	const decodedReaction = decodeReaction(_reaction);
 
 	const emoji = await Emojis.findOne({
 		where: {
@@ -124,7 +149,7 @@ export default async (
 			notifierId: user.id,
 			note: note,
 			noteId: note.id,
-			reaction: reaction,
+			reaction: _reaction,
 		});
 	}
 
@@ -138,7 +163,7 @@ export default async (
 				notifierId: user.id,
 				note: note,
 				noteId: note.id,
-				reaction: reaction,
+				reaction: _reaction,
 			});
 		}
 	});

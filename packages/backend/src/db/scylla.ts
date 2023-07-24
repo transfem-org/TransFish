@@ -53,18 +53,21 @@ export const prepared = {
 			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
 			byDate: `SELECT * FROM note WHERE "createdAtDate" = ? AND "createdAt" < ?`,
-			byId: "SELECT * FROM note WHERE id IN ?",
-			byUri: "SELECT * FROM note WHERE uri = ?",
-			byUrl: "SELECT * FROM note WHERE url = ?",
+			byId: `SELECT * FROM note WHERE "id" IN ?`,
+			byUri: `SELECT * FROM note WHERE "uri" = ?`,
+			byUrl: `SELECT * FROM note WHERE "url" = ?`,
 			byUserId: `SELECT * FROM note_by_userid WHERE "userId" = ? AND "createdAt" < ?`,
 		},
-		delete: "DELETE FROM note WHERE id IN ?",
+		delete: `DELETE FROM note WHERE "createdAtDate" = ? AND "createdAt" = ?`,
 		update: {
-			renoteCount: `UPDATE note SET "renoteCount" = ?, "score" = ? WHERE "id" = ? IF EXISTS`,
-		}
+			renoteCount: `UPDATE note SET "renoteCount" = ?, "score" = ? WHERE "createdAtDate" = ? AND "createdAt" = ? IF EXISTS`,
+			reactions: `UPDATE note SET "reactions" = ?, "score" = ? WHERE "createdAtDate" = ? AND "createdAt" = ? IF EXISTS`,
+		},
 	},
 	reaction: {
-		insert: `INSERT INTO reaction ("noteId", "createdAt", "userId", "reaction") VALUES (?, ?, ?, ?)`,
+		insert: `INSERT INTO reaction
+			("id", "noteId", "userId", "reaction", "emoji", "createdAt")
+			VALUES (?, ?, ?, ?, ?, ?)`,
 	},
 };
 
