@@ -70,6 +70,7 @@ import { Mutex } from "redis-semaphore";
 import { prepared, scyllaClient, ScyllaDriveFile } from "@/db/scylla.js";
 import { populateEmojis } from "@/misc/populate-emojis.js";
 import { decodeReaction } from "@/misc/reaction-lib.js";
+import { types } from "cassandra-driver";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -411,7 +412,6 @@ export default async (
 			saveReply(data.reply, note);
 		}
 
-		// この投稿を除く指定したユーザーによる指定したノートのリノートが存在しないとき
 		if (
 			data.renote &&
 			!user.isBot &&
@@ -678,14 +678,22 @@ async function renderNoteOrRenoteActivity(data: Option, note: Note) {
 }
 
 function incRenoteCount(renote: Note) {
-	Notes.createQueryBuilder()
-		.update()
-		.set({
-			renoteCount: () => '"renoteCount" + 1',
-			score: () => '"score" + 1',
-		})
-		.where("id = :id", { id: renote.id })
-		.execute();
+	if (scyllaClient) {
+		scyllaClient.execute(prepared.note.update.renoteCount, [
+			renote.renoteCount + 1,
+			renote.score + 1,
+			renote.id,
+		]);
+	} else {
+		Notes.createQueryBuilder()
+			.update()
+			.set({
+				renoteCount: () => '"renoteCount" + 1',
+				score: () => '"score" + 1',
+			})
+			.where("id = :id", { id: renote.id })
+			.execute();
+	}
 }
 
 async function insertNote(
@@ -762,16 +770,9 @@ async function insertNote(
 	// 投稿を作成
 	try {
 		if (scyllaClient) {
-			const reactionEmojiNames = Object.keys(insert.reactions)
-				.filter((x) => x?.startsWith(":"))
-				.map((x) => decodeReaction(x).reaction)
-				.map((x) => x.replace(/:/g, ""));
-			const noteEmojis = await populateEmojis(
-				insert.emojis.concat(reactionEmojiNames),
-				user.host,
-			);
+			const noteEmojis = await populateEmojis(insert.emojis, user.host);
 			await scyllaClient.execute(
-				prepared.timeline.insert,
+				prepared.note.insert,
 				[
 					insert.createdAt,
 					insert.createdAt,
@@ -781,11 +782,11 @@ async function insertNote(
 					insert.name,
 					insert.cw,
 					insert.localOnly,
-					insert.renoteCount,
-					insert.repliesCount,
+					insert.renoteCount ?? 0,
+					insert.repliesCount ?? 0,
 					insert.uri,
 					insert.url,
-					insert.score,
+					insert.score ?? 0,
 					data.files,
 					insert.visibleUserIds,
 					insert.mentions,
@@ -800,6 +801,8 @@ async function insertNote(
 					insert.renoteId,
 					null,
 					null,
+					null,
+					null,
 				],
 				{ prepare: true },
 			);
@@ -809,7 +812,9 @@ async function insertNote(
 			await db.transaction(async (transactionalEntityManager) => {
 				if (!data.poll) throw new Error("Empty poll data");
 
-				await transactionalEntityManager.insert(Note, insert);
+				if (!scyllaClient) {
+					await transactionalEntityManager.insert(Note, insert);
+				}
 
 				let expiresAt: Date | null;
 				if (!data.poll.expiresAt || isNaN(data.poll.expiresAt.getTime())) {
@@ -831,7 +836,7 @@ async function insertNote(
 
 				await transactionalEntityManager.insert(Poll, poll);
 			});
-		} else {
+		} else if (!scyllaClient) {
 			await Notes.insert(insert);
 		}
 
@@ -843,8 +848,6 @@ async function insertNote(
 			err.name = "duplicated";
 			throw err;
 		}
-
-		console.error(e);
 
 		throw e;
 	}

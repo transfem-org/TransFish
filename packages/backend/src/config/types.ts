@@ -20,6 +20,7 @@ export type Source = {
 		nodes: string[];
 		keyspace: string;
 		replicationFactor: number;
+		localDataCentre: string;
 	},
 	redis: {
 		host: string;

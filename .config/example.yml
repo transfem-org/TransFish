@@ -57,8 +57,9 @@ db:
 
 # scylla:
 #   nodes: ['localhost:9042']
-#   keyspace: calckey
+#   keyspace: firefish
 #   replicationFactor: 1
+#   localDataCentre: "datacenter1"
 
 #   ┌─────────────────────┐
 #───┘ Redis configuration └─────────────────────────────────────
