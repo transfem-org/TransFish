@@ -1448,7 +1448,7 @@ _auth:
   pleaseGoBack: "Bitte kehre zur Anwendung zurück"
   callback: "Es wird zur Anwendung zurückgekehrt"
   denied: "Zugriff verweigert"
-  copyAsk: Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein
+  copyAsk: 'Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein:'
 _antennaSources:
   all: "Alle Beiträge"
   homeTimeline: "Beiträge von Nutzern, denen gefolgt wird"
