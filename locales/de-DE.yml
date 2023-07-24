@@ -3,7 +3,7 @@ headlineMisskey: "Eine dezentralisierte Open-Source Social Media Plattform, die 
   immer gratis bleibt! 🚀"
 introMisskey: "Willkommen! Calckey ist eine dezentralisierte Open-Source Social Media
   Plattform, die für immer gratis bleibt!🚀"
-monthAndDay: "{month}/{day}"
+monthAndDay: "{day}.{month}."
 search: "Suchen"
 notifications: "Benachrichtigungen"
 username: "Nutzername"
@@ -1482,7 +1482,7 @@ _widgets:
   postForm: "Beitragsfeld"
   slideshow: "Diashow"
   button: "Knopf"
-  onlineUsers: "Nutzer Online"
+  onlineUsers: "Nutzer online"
   jobQueue: "Job-Warteschlange"
   serverMetric: "Servermetriken"
   aiscript: "AiScript-Konsole"
@@ -1551,7 +1551,8 @@ _profile:
   metadata: "Zusätzliche Informationen"
   metadataEdit: "Zusätzliche Informationen bearbeiten"
   metadataDescription: "Hierdurch kannst du auf deinem Profil zusätzliche Informationsblöcke
-    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen, um den Link in Ihrem Profil zu überprüfen!"
+    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen,
+    um den Link in Ihrem Profil zu überprüfen!"
   metadataLabel: "Beschriftung"
   metadataContent: "Inhalt"
   changeAvatar: "Profilbild ändern"
@@ -2150,3 +2151,4 @@ clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips 
 channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
 reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
 swipeOnMobile: Wischen zwischen den Seiten erlauben
+enableServerMachineStats: Server-Hardware-Statistik aktivieren
