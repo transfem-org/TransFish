@@ -1983,8 +1983,8 @@ renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Keine Server gefunden
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
-  eingestufte Server mit diesem Server kommunizieren. Alle Beiträge werden für die
-  Öffentlichkeit verborgen.
+  eingestufte Server mit diesem Server föderieren. Alle Beiträge werden für die Öffentlichkeit
+  verborgen.
 allowedInstances: Vertrauenswürdige Server
 selectInstance: Wähle einen Server aus
 silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
