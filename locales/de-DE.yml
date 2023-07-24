@@ -1096,6 +1096,8 @@ _aboutMisskey:
   morePatrons: "Wir schätzen ebenso die Unterstützung vieler anderer hier nicht gelisteter
     Personen sehr. Danke! 🥰"
   patrons: "UnterstützerInnen"
+  patronsList: Auflistung chonologisch, nicht nach Spenden-Größe. Spende über den
+    Link oben, um hier aufgeführt zu werden!
 _nsfw:
   respect: "Mit NSFW gekennzeichnete Bilder verbergen"
   ignore: "Mit NSFW gekennzeichnete Bilder nicht verbergen"
@@ -1404,6 +1406,7 @@ _2fa:
   registerTOTPBeforeKey: Bitte registriere eine Authentificator App, um einen Hardware-Security-Key
     oder einen Passkey zu nutzen.
   securityKeyName: Gib einen Namen für den Key ein
+  token: 2FA Token
 _permissions:
   "read:account": "Deine Nutzerkontoinformationen lesen"
   "write:account": "Deine Nutzerkontoinformationen bearbeiten"
@@ -1444,11 +1447,12 @@ _auth:
     zu können?"
   shareAccessAsk: "Bist du dir sicher, dass du diese Anwendung authorisieren möchtest,
     auf dein Nutzerkonto zugreifen zu können?"
-  permissionAsk: "Diese Anwendung fordert folgende Berechtigungen"
+  permissionAsk: "Diese Anwendung fordert folgende Berechtigungen:"
   pleaseGoBack: "Bitte kehre zur Anwendung zurück"
   callback: "Es wird zur Anwendung zurückgekehrt"
   denied: "Zugriff verweigert"
   copyAsk: 'Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein:'
+  allPermissions: Vollständiger Kontozugriff
 _antennaSources:
   all: "Alle Beiträge"
   homeTimeline: "Beiträge von Nutzern, denen gefolgt wird"
@@ -1527,7 +1531,7 @@ _visibility:
   home: "nicht aufgelistet"
   homeDescription: "Beitrag nur auf der Home-Timeline anzeigen"
   followers: "Follower"
-  followersDescription: "Nur für Follower sichtbar"
+  followersDescription: "Nur für Follower und erwähnte Nutzer sichtbar"
   specified: "Direkt"
   specifiedDescription: "Nur für bestimmte Nutzer sichtbar"
   localOnly: "Nur Lokal"
@@ -2151,4 +2155,16 @@ clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips 
 channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
 reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
 swipeOnMobile: Wischen zwischen den Seiten erlauben
-enableServerMachineStats: Server-Hardware-Statistik aktivieren
+enableServerMachineStats: Server-Hardware-Statistik einschalten
+enableIdenticonGeneration: Identicon-Generierung einschalten
+verifiedLink: Verifizierter Link
+_feeds:
+  copyFeed: Feed kopieren
+  jsonFeed: JSON-Feed
+  rss: RSS
+youHaveUnreadAnnouncements: Du hast ungelesene Ankündigungen
+donationLink: Link zur Spenden-Seite
+remindMeLater: Vielleicht später
+neverShow: Nicht wieder zeigen
+removeRecipient: Empfänger entfernen
+removeMember: Mitglied entfernen
