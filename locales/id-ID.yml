@@ -1,9 +1,7 @@
 _lang_: "Bahasa Indonesia"
 headlineMisskey: "Jaringan terhubung melalui catatan"
-introMisskey: "Selamat datang! Calckey adalah perangkat mikroblog tercatu bersifat
-  sumber terbuka.\nMulailah menuliskan catatan, bagikan peristiwa terkini, serta ceritakan
-  segala tentangmu.📡\nTunjukkan juga reaksimu pada catatan pengguna lain.👍\nMari jelajahi
-  dunia baru🚀"
+introMisskey: "Selamat datang! Firefish adalah media sosial sumber terbuka dan terdesentralisasi
+  yang selamanya bebas! 🚀"
 monthAndDay: "{day} {month}"
 search: "Penelusuran"
 notifications: "Pemberitahuan"
@@ -12,7 +10,7 @@ password: "Kata sandi"
 forgotPassword: "Lupa Kata Sandi"
 fetchingAsApObject: "Mengambil data dari Fediverse"
 ok: "OK"
-gotIt: "Saya mengerti"
+gotIt: "Mengerti!"
 cancel: "Batalkan"
 enterUsername: "Masukkan nama pengguna"
 renotedBy: "Diposting ulang oleh {user}"
@@ -25,21 +23,21 @@ otherSettings: "Pengaturan lainnya"
 openInWindow: "Buka di jendela"
 profile: "Profil"
 timeline: "Linimasa"
-noAccountDescription: "Pengguna ini belum menulis bio"
+noAccountDescription: "Pengguna ini belum menulis bio."
 login: "Masuk"
 loggingIn: "Sedang masuk"
 logout: "Keluar"
 signup: "Daftar"
-uploading: "Sedang mengunggah"
+uploading: "Mengunggah..."
 save: "Simpan"
 users: "Pengguna"
 addUser: "Tambah pengguna"
 favorite: "Favorit"
 favorites: "Favorit"
 unfavorite: "Hapus favorit"
-favorited: "Ditambahkan ke favorit"
-alreadyFavorited: "Telah ditambahkan ke favorit"
-cantFavorite: "Tidak dapat menambahkan ke favorit"
+favorited: "Ditambahkan ke markah."
+alreadyFavorited: "Telah ditambahkan ke markah."
+cantFavorite: "Tidak dapat menambahkan ke markah."
 pin: "Sematkan ke profil"
 unpin: "Lepas sematan dari profil"
 copyContent: "Salin konten"
@@ -152,10 +150,11 @@ cacheRemoteFilesDescription: "Ketika pengaturan ini dinonaktifkan, berkas luar a
 flagAsBot: "Atur akun ini sebagai Bot"
 flagAsBotDescription: "Jika akun ini dikendalikan oleh program, tetapkanlah opsi ini.
   Jika diaktifkan, ini akan berfungsi sebagai tanda bagi pengembang lain untuk mencegah
-  interaksi berantai dengan bot lain dan menyesuaikan sistem internal Calckey untuk
+  interaksi berantai dengan bot lain dan menyesuaikan sistem internal Firefish untuk
   memperlakukan akun ini sebagai bot."
 flagAsCat: "Atur akun ini sebagai kucing"
-flagAsCatDescription: "Nyalakan tanda ini untuk menandai akun ini sebagai kucing."
+flagAsCatDescription: "Kamu akan mendapatkan telinga kucing dan berbicara seperti
+  seekor kucing!"
 flagShowTimelineReplies: "Tampilkan balasan di linimasa"
 flagShowTimelineRepliesDescription: "Menampilkan balasan pengguna pada postingan pengguna
   lain di linimasa jika diaktifkan."
@@ -961,8 +960,8 @@ _forgotPassword:
   enterEmail: "Masukkan alamat surel yang kamu gunakan pada saat mendaftar. Sebuah
     tautan untuk mengatur ulang kata sandi kamu akan dikirimkan ke alamat surel tersebut."
   ifNoEmail: "Apabila kamu tidak menggunakan surel pada saat pendaftaran, mohon hubungi
-    admin segera."
-  contactAdmin: "Instansi ini tidak mendukung menggunakan alamat surel, mohon kontak
+    admin server segera."
+  contactAdmin: "Server ini tidak mendukung menggunakan alamat surel, mohon kontak
     admin untuk mengatur ulang password kamu."
 _gallery:
   my: "Postingan saya"
@@ -995,6 +994,15 @@ _aboutMisskey:
   morePatrons: "Kami sangat mengapresiasi dukungan dari banyak penolong lain yang
     tidak tercantum disini. Terima kasih! 🥰"
   patrons: "Pendukung"
+  patronsList: Diurutkan secara kronologis, bukan berdasarkan jumlah donasi. Berdonasilah
+    dengan tautan di atas supaya nama kamu ada di sini!
+  sponsors: Sponsor Firefish
+  donateTitle: Suka Firefish?
+  pleaseDonateToCalckey: Silakan pertimbangkan berdonasi ke Firefish untuk mendukung
+    pengembangannya.
+  pleaseDonateToHost: Silakan pertimbangkan juga berdonasi ke server rumah kamu, {host},
+    untuk membantu dengan biaya operasi.
+  donateHost: Berdonasi ke {host}
 _nsfw:
   respect: "Sembunyikan media NSFW"
   ignore: "Jangan sembunyikan media NSFW"
@@ -1027,8 +1035,7 @@ _mfm:
   inlineMath: "Matematika (Dalam baris)"
   inlineMathDescription: "Menampilkan formula matematika (KaTeX) dalam baris."
   blockMath: "Matematika (Blok)"
-  blockMathDescription: "Menampilkan formula matematika (KaTeX) multibaris dalam sebuah
-    blok."
+  blockMathDescription: "Tampilkan formula matematika (KaTeX) dalam sebuah blok."
   quote: "Kutip"
   quoteDescription: "Menampilkan konten sebagai kutipan."
   emoji: "Emoji kustom"
@@ -1069,6 +1076,27 @@ _mfm:
   sparkleDescription: "Memberikan konten efek partikel kelap-kelip."
   rotate: "Putar"
   rotateDescription: "Putar konten sesuai sudut yang ditentukan."
+  play: Mainkan MFM
+  stop: Hentikan MFM
+  warn: MFM dapat berisi animasi yang sangat cepat
+  advanced: MFM tingkat lanjut
+  foreground: Warna latar depan
+  foregroundDescription: Ubah warna depan teks.
+  backgroundDescription: Ubah warna latar belakang teks.
+  plainDescription: Menonaktifkan efek dari semua MFM dalam efek MFM ini.
+  crop: Pangkas
+  alwaysPlay: Selalu mainkan MFM beranimasi secara otomatis
+  advancedDescription: Jika dinonaktifkan, hanya memperbolehkan markup dasar kecuali
+    jika MFM beranimasi dimainkan
+  positionDescription: Gerakkan konten dengan jumlah yang ditentukan.
+  scale: Skala
+  cropDescription: Pangkas
+  background: Warna latar belakang
+  plain: Biasa
+  position: Posisi
+  scaleDescription: Ubah skala konten dengan jumlah yang ditentukan.
+  fade: Memudar
+  fadeDescription: Memudar konten.
 _instanceTicker:
   none: "Jangan tampilkan"
   remote: "Tampilkan untuk pengguna luar"
@@ -1077,6 +1105,7 @@ _serverDisconnectedBehavior:
   reload: "Muat ulang otomatis"
   dialog: "Tampilkan dialog peringatan"
   quiet: "Tampilkan peringatan tidak mengganggu"
+  nothing: Jangan lakukan apa pun
 _channel:
   create: "Buat saluran"
   edit: "Sunting saluran"
@@ -1086,7 +1115,9 @@ _channel:
   owned: "Dimiliki"
   following: "Mengikuti"
   usersCount: "{n} Partisipan"
-  notesCount: "terdapat {n} catatan"
+  notesCount: "{n} Postingan"
+  nameOnly: Nama saja
+  nameAndDescription: Nama dan deskripsi
 _menuDisplay:
   sideFull: "Horisontal"
   sideIcon: "Horisontal (Ikon)"
@@ -1098,20 +1129,20 @@ _wordMute:
     baris baru untuk kondisi OR."
   muteWordsDescription2: "Kurung kata kunci dengan garis miring untuk menggunakan
     regular expressions."
-  softDescription: "Sembunyikan catatan yang memenuhi aturan kondisi dari linimasa."
-  hardDescription: "Cegah catatan memenuhi aturan kondisi dari ditambahkan ke linimasa.
-    Dengan tambahan, catatan berikut tidak akan ditambahkan ke linimasa meskipun jika
-    kondisi tersebut diubah."
+  softDescription: "Sembunyikan postingan yang memenuhi aturan kondisi dari lini masa."
+  hardDescription: "Cegah postingan memenuhi aturan kondisi dari ditambahkan ke lini
+    masa. Dengan tambahan, kiriman berikut tidak akan ditambahkan ke lini masa meskipun
+    jika kondisi tersebut diubah."
   soft: "Lembut"
   hard: "Keras"
-  mutedNotes: "Catatan yang dibisukan"
+  mutedNotes: "Postingan yang dibisukan"
 _instanceMute:
-  instanceMuteDescription: "Pengaturan ini akan membisukan note/renote apa saja dari
-    instansi yang terdaftar, termasuk pengguna yang membalas pengguna lain dalam instansi
-    yang dibisukan."
+  instanceMuteDescription: "Pengaturan ini akan membisukan postingan/pembagian apa
+    saja dari server yang terdaftar, termasuk pengguna yang membalas pengguna lain
+    dalam server yang dibisukan."
   instanceMuteDescription2: "Pisah dengan baris baru"
-  title: "Sembunyikan note dari instansi terdaftar."
-  heading: "Daftar instansi yang akan dibisukan"
+  title: "Sembunyikan note dari server terdaftar."
+  heading: "Daftar server yang akan dibisukan"
 _theme:
   explore: "Jelajahi tema"
   install: "Pasang tema"
@@ -1161,7 +1192,7 @@ _theme:
     hashtag: "Tagar"
     mention: "Sebut"
     mentionMe: "Sebutan (saya)"
-    renote: "Renote"
+    renote: "Bagikan"
     modalBg: "Latar belakang modal"
     divider: "Pembagi"
     scrollbarHandle: "Pegangan bilah gulir"
@@ -1188,8 +1219,8 @@ _theme:
     accentLighten: "Aksen (Terang)"
     fgHighlighted: "Teks yang disorot"
 _sfx:
-  note: "Catatan"
-  noteMy: "Catatan (Saya)"
+  note: "Postingan baru"
+  noteMy: "Postingan sendiri"
   notification: "Pemberitahuan"
   chat: "Pesan"
   chatBg: "Obrolan (Latar Belakang)"
@@ -1219,8 +1250,8 @@ _tutorial:
     siapapun."
   step2_1: "Selesaikan menyetel profilmu sebelum menulis sebuah catatan atau mengikuti
     seseorang."
-  step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuat orang lain
-    mudah untuk mengikutimu kembali."
+  step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuatnya lebih
+    mudah bagi orang lain untuk menentukan jika mereka ingin postinganmu atau mengikutimu."
   step3_1: "Sekarang saatnya mengikuti beberapa orang!"
   step3_2: "Langkah selanjutnya adalah membuat catatan. Kamu bisa lakukan ini dengan
     mengklik ikon pensil pada layar kamu."
@@ -1229,21 +1260,21 @@ _tutorial:
   step3_4: "Bingung tidak berpikiran untuk mengatakan sesuatu? Coba saja \"baru aja
     ikutan bikin akun misskey punyaku\"!"
   step4_1: "Selesai mencatat catatan pertamamu?"
-  step4_2: "Horee! Sekarang catatan pertamamu sudah ditampilkan di linimasa milikmu."
+  step4_2: "Untuk kiriman pertama kamu, beberapa orang biasanya membuat postingan
+    {introduction} atau \"Halo dunia!\" yang sederhana."
   step5_1: "Sekarang, mari mencoba untuk membuat linimasamu lebih hidup dengan mengikuti
     orang lain."
-  step5_2: "{featured} akan memperlihatkan catatan yang sedang tren saat ini untuk
-    kamu. {explore} akan membantumu untuk mencari pengguna yang sedang tren juga saat
-    ini. Coba ikuti seseorang yang kamu suka!"
-  step5_3: "Untuk mengikuti pengguna lain, klik pada ikon mereka dan tekan tombol
-    follow pada profil mereka."
+  step5_2: "Servermu memiliki {timelines} lini masa berbeda yang diaktifkan."
+  step5_3: "Lini masa Beranda {icon} adalah tempat di mana kamu bisa melihat postingan
+    dari akun yang kamu ikuti."
   step5_4: "Jika pengguna lain memiliki ikon gembok di sebelah nama mereka, maka pengguna
     rersebut harus menyetujui permintaan mengikuti dari kamu secara manual."
   step6_1: "Sekarang kamu dapat melihat catatan pengguna lain pada linimasamu."
-  step6_2: "Kamu juga bisa memberikan \"reaksi\" ke catatan orang lain untuk merespon
-    dengan cepat."
-  step6_3: "Untuk memberikan \"reaksi\", tekan tanda \"+\" pada catatan pengguna lain
-    dan pilih emoji yang kamu suka untuk memberikan reaksimu kepada mereka."
+  step6_2: "Ya, kamu tidak saja bergabung ke Firefish. Kamu telah bergabung ke sebuah
+    portal ke Fediverse, sebuah jaringan ribuan server yang saling berhubungan."
+  step6_3: "Setiap server bekerja dalam berbagai cara, dan tidak semua server menjalankan
+    Firefish. Ini salah satunya! Mungkin sedikit sulit, tetapi lama-lama kamu akan
+    mengerti."
   step7_1: "Yay, Selamat! Kamu sudah menyelesaikan tutorial dasar Calckey."
   step7_2: "Jika kamu ingin mempelajari lebih lanjut tentang Calckey, cobalah berkunjung
     ke bagian {help}."
@@ -1278,7 +1309,7 @@ _permissions:
   "write:messaging": "Buat atau hapus obrolan"
   "read:mutes": "Lihat daftar orang yang dibisukan"
   "write:mutes": "Sunting daftar orang yang dibisukan"
-  "write:notes": "Buat atau hapus catatan"
+  "write:notes": "Buat atau hapus postingan"
   "read:notifications": "Lihat pemberitahuan"
   "write:notifications": "Sunting pemberitahuan"
   "read:reactions": "Lihat reaksi"
@@ -1368,7 +1399,7 @@ _poll:
 _visibility:
   public: "Publik"
   publicDescription: "Catat ke linimasa global"
-  home: "Beranda"
+  home: "Tidak terdaftar"
   homeDescription: "Catat ke linimasa beranda saja"
   followers: "Pengikut"
   followersDescription: "Catat ke pengikut saja"
@@ -1396,7 +1427,7 @@ _profile:
   metadataEdit: "Sunting informasi tambahan"
   metadataDescription: "Kamu dapat menampilkan hingga 4 bagian informasi tambahan
     ke dalam profilmu. Anda dapat menambahkan tag {a} atau tag {l} dengan {rel} untuk
-    memverifikasi tautan di profil Anda!"
+    memverifikasi tautan di profil kamu!"
   metadataLabel: "Label"
   metadataContent: "Isi"
   changeAvatar: "Ubah avatar"
@@ -1980,3 +2011,70 @@ noGraze: Harap nonaktifkan ekstensi peramban "Graze for Mastodon", karena akan m
 silencedWarning: Halaman ini tampil karena pengguna ini datang dari server yang dibisukan
   adminmu, jadi mereka berpotensi spam.
 isLocked: Akun ini perlu persetujuan ikuti
+_preferencesBackups:
+  list: Cadangan yang dibuat
+  saveNew: Simpan cadangan baru
+  loadFile: Muat dari berkas
+  save: Simpan perubahan
+  nameAlreadyExists: Cadangan bernama "{name}" sudah ada. Silakan masukkan nama yang
+    berbeda.
+  noBackups: Belum ada cadangan. Kamu bisa mencadangan pengaturan klien kamu di server
+    ini menggunakan "Buat cadangan baru".
+  updatedAt: 'Diperbarui pada: {date} {time}'
+  cannotLoad: Gagal memuat
+  cannotSave: Gagal menyimpan
+  invalidFile: Format berkas tidak valid
+  createdAt: 'Dibuat pada: {date} {time}'
+  inputName: Silakan masukkan nama untuk cadangan ini
+  apply: Terapkan ke perangkat ini
+  saveConfirm: Simpan cadangan sebagai {name}?
+  deleteConfirm: Hapus cadangan {name}?
+  renameConfirm: Ubah nama cadangan ini dari "{old}" ke "{new}"?
+enableServerMachineStats: Aktifkan statistik perangkat keras server
+enableIdenticonGeneration: Aktifkan pembuatan Identicon
+reactionPickerSkinTone: Warna kulit emoji yang disukai
+_sensitiveMediaDetection:
+  description: Mengurangi upaya moderasi server dengan mengenal media NSFW secara
+    otomatis melalui Pembelajaran Mesin. Ini akan sedikit menambah beban pada server.
+  sensitivity: Sensitivitas deteksi
+  sensitivityDescription: Mengurangi sensitivitas akan mengurangi kesalahan mendeteksi
+    (positif palsu).
+  analyzeVideosDescription: Menganalisa video selain gambar. Ini akan sedikit menambah
+    beban pada server.
+  setSensitiveFlagAutomatically: Tandai sebagai NSFW
+  setSensitiveFlagAutomaticallyDescription: Hasil deteksi internal akan disimpan bahkan
+    jika opsi ini dinonaktifkan.
+  analyzeVideos: Aktifkan analisa video
+_filters:
+  fromDomain: Dari domain
+  notesAfter: Postingan setelah
+  followersOnly: Hanya pengikut
+  fromUser: Dari pengguna
+  withFile: Dengan berkas
+  followingOnly: Hanya mengikuti
+  notesBefore: Postingan sebelum
+_messaging:
+  dms: Privat
+  groups: Grup
+verifiedLink: Tautan terverifikasi
+isPatron: Pendukung Firefish
+customKaTeXMacroDescription: 'Siapkan makro untuk menulis ekspresi matematika dengan
+  mudah! Notasi ini sesuai dengan definisi perintah LaTeX dan ditulis sebagai \newcommand{\
+  nama}{konten} atau \newcommand{\nama}[jumlah argumen]{konten}. Sebagai contoh, \newcommand{\add}[2]{#1
+  + #2} akan memperluas \add{3}{foo} menjadi 3 + foo. Tanda kurung kurawal yang mengelilingi
+  nama makro dapat diubah menjadi tanda kurung bulat atau persegi. Hal ini mempengaruhi
+  tanda kurung yang digunakan untuk argumen. Satu (dan hanya satu) makro dapat didefinisikan
+  per baris, dan kamu tidak dapat memutus baris di tengah-tengah definisi. Baris yang
+  tidak valid akan diabaikan. Hanya fungsi substitusi string sederhana yang didukung;
+  sintaks lanjutan, seperti percabangan bersyarat, tidak dapat digunakan di sini.'
+showPopup: Beri tahu pengguna dengan popup
+showWithSparkles: Tampilkan dengan kelap-kelip
+youHaveUnreadAnnouncements: Anda memiliki pengumuman yang belum dibaca
+donationLink: Tautan ke laman donasi
+neverShow: Jangan tampilkan lagi
+remindMeLater: Mungkin nanti
+removeQuote: Hapus kutipan
+removeRecipient: Hapus penerima
+removeMember: Hapus anggota
+isModerator: Moderator
+isAdmin: Administrator
