@@ -982,7 +982,7 @@ cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein
   Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
-enableAutoSensitive: "Selbstständige NSFW-Kennzeichnung"
+enableAutoSensitive: "Automatische NSFW-Kennzeichnung"
 enableAutoSensitiveDescription: "Erlaubt, wo möglich, die automatische Erkennung und
   Kennzeichnung von NSFW-Medien durch maschinelles Lernen. Auch wenn diese Option
   deaktiviert ist, kann sie über den Server aktiviert sein."
