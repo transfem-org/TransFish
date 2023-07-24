@@ -1267,8 +1267,8 @@ _tutorial:
   step5_2: "Servermu memiliki {timelines} lini masa berbeda yang diaktifkan."
   step5_3: "Lini masa Beranda {icon} adalah tempat di mana kamu bisa melihat postingan
     dari akun yang kamu ikuti."
-  step5_4: "Jika pengguna lain memiliki ikon gembok di sebelah nama mereka, maka pengguna
-    rersebut harus menyetujui permintaan mengikuti dari kamu secara manual."
+  step5_4: "Linimasa Lokal {icon} adalah tempat kamu dapat melihat postingan dari
+    siapa pun di server ini."
   step6_1: "Sekarang kamu dapat melihat catatan pengguna lain pada linimasamu."
   step6_2: "Ya, kamu tidak saja bergabung ke Firefish. Kamu telah bergabung ke sebuah
     portal ke Fediverse, sebuah jaringan ribuan server yang saling berhubungan."
@@ -1279,6 +1279,12 @@ _tutorial:
   step7_2: "Jika kamu ingin mempelajari lebih lanjut tentang Calckey, cobalah berkunjung
     ke bagian {help}."
   step7_3: "Semoga berhasil dan bersenang-senanglah! 🚀"
+  step5_6: Linimasa Rekomendasi {icon} adalah tempat kamu dapat melihat postingan
+    dari server yang direkomendasikan admin.
+  step6_4: Sekarang pergilah, bereksplorasi, dan senang-senang!
+  step5_5: Linimasa Sosial {icon} adalah kombinasi antara linimasa Beranda dan Lokal.
+  step5_7: Linimasa Global {icon} adalah tempat kamu dapat melihat postingan orang-orang
+    dari server yang terkoneksi.
 _2fa:
   alreadyRegistered: "Kamu telah mendaftarkan perangkat otentikasi dua faktor."
   registerTOTP: "Daftarkan perangkat baru"
@@ -1294,6 +1300,25 @@ _2fa:
   securityKeyInfo: "Kamu dapat memasang otentikasi WebAuthN untuk mengamankan proses
     login lebih lanjut dengan tidak hanya perangkat keras kunci keamanan yang mendukung
     FIDO2, namun juga sidik jari atau otentikasi PIN pada perangkatmu."
+  renewTOTPConfirm: Ini akan menyebabkan kode verifikasi dari aplikasimu sebelumnya
+    berhenti bekerja
+  token: Token 2FA
+  chromePasskeyNotSupported: Kunci pas Chrome saat ini tidak didukung.
+  securityKeyName: Masukkan nama kunci
+  removeKey: Hapus kunci keamanan
+  step2Click: Mengklik kode QR ini akan mengizinkanmu mendaftarkan 2FA untuk kunci
+    keamanan atau apl ontentikasi ponsel.
+  step3Title: Masukkan kode otentikasi
+  securityKeyNotSupported: Perambanmu tidak mendukung kunci keamanan.
+  renewTOTPOk: Konfigurasi ulang
+  renewTOTPCancel: Batal
+  registerTOTPBeforeKey: Silakan atur apl otentikator untuk mendaftarkan kunci keamanan
+    atau kunci pas.
+  tapSecurityKey: Silakan ikuti perambanmu untuk mendaftarkan kunci keamanan atau
+    kunci pas
+  removeKeyConfirm: Yakin menghapus kunci {name}?
+  whyTOTPOnlyRenew: Apl otentikator tidak dapat dihapus selama kunci keamanan didaftarkan.
+  renewTOTP: Konfigurasi ulang apl otentikator
 _permissions:
   "read:account": "Lihat informasi akun"
   "write:account": "Sunting informasi akun"
@@ -1331,16 +1356,19 @@ _auth:
   shareAccess: "Apakah kamu ingin mengijinkan \"{name}\" untuk mengakses akun ini?"
   shareAccessAsk: "Apakah kamu ingin mengijinkan aplikasi ini untuk mengakses akun
     kamu?"
-  permissionAsk: "Aplikasi ini membutuhkan beberapa ijin, yaitu:"
+  permissionAsk: "Aplikasi ini membutuhkan izin berikut:"
   pleaseGoBack: "Mohon kembali ke aplikasi kamu"
   callback: "Mengembalikan kamu ke aplikasi"
   denied: "Akses ditolak"
+  copyAsk: 'Harap tempel kode otorisasi berikut ke aplikasi:'
+  allPermissions: Akses akun penuh
 _antennaSources:
-  all: "Semua catatan"
-  homeTimeline: "Catatan dari pengguna yang diikuti"
-  users: "Catatan dari pengguna tertentu"
-  userList: "Catatan dari daftar tertentu"
-  userGroup: "Catatan dari pengguna dalam grup yang ditentukan"
+  all: "Semua postingan"
+  homeTimeline: "Postingan dari pengguna yang diikuti"
+  users: "Postingan dari pengguna tertentu"
+  userList: "Postingan dari daftar tertentu"
+  userGroup: "Postingan dari pengguna dalam grup yang ditentukan"
+  instances: Postingan dari semua pengguna di server
 _weekday:
   sunday: "Minggu"
   monday: "Senin"
@@ -1350,7 +1378,7 @@ _weekday:
   friday: "Jumat"
   saturday: "Sabtu"
 _widgets:
-  memo: "Catatan memo"
+  memo: "Catatan Tempel"
   notifications: "Pemberitahuan"
   timeline: "Linimasa"
   calendar: "Kalender"
@@ -1359,16 +1387,26 @@ _widgets:
   rss: "Pembaca RSS"
   activity: "Aktivitas"
   photos: "Foto"
-  digitalClock: "Jam digital"
+  digitalClock: "Jam Digital"
   federation: "Federasi"
-  postForm: "Buat catatan"
+  postForm: "Formulir Posting"
   slideshow: "Slideshow"
   button: "Tombol"
-  onlineUsers: "Pengguna online"
+  onlineUsers: "Pengguna Daring"
   jobQueue: "Antrian kerja"
-  serverMetric: "Statistik peladen"
+  serverMetric: "Metrik Server"
   aiscript: "Konsol AiScript"
   aichan: "Ai"
+  rssTicker: Telegraf RSS
+  meiliIndexCount: Postingan yang terindeks
+  userList: Daftar Pengguna
+  instanceCloud: Server Awan
+  unixClock: Jam UNIX
+  meiliSize: Ukuran indeks
+  _userList:
+    chooseList: Pilih daftar
+  meiliStatus: Status Server
+  serverInfo: Info Server
 _cw:
   hide: "Sembunyikan"
   show: "Lihat konten"
@@ -1398,7 +1436,7 @@ _poll:
   remainingSeconds: "Berakhir dalam {s} detik"
 _visibility:
   public: "Publik"
-  publicDescription: "Catat ke linimasa global"
+  publicDescription: "Postinganmu akan terlihat di semua linimasa publik"
   home: "Tidak terdaftar"
   homeDescription: "Catat ke linimasa beranda saja"
   followers: "Pengikut"
@@ -2030,6 +2068,8 @@ _preferencesBackups:
   saveConfirm: Simpan cadangan sebagai {name}?
   deleteConfirm: Hapus cadangan {name}?
   renameConfirm: Ubah nama cadangan ini dari "{old}" ke "{new}"?
+  applyConfirm: Kamu yakin ingin menerapkan cadangan "{name}" di perangkat ini? Pengaturan
+    yang sudah ada akan ditimpa.
 enableServerMachineStats: Aktifkan statistik perangkat keras server
 enableIdenticonGeneration: Aktifkan pembuatan Identicon
 reactionPickerSkinTone: Warna kulit emoji yang disukai
