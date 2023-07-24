@@ -900,7 +900,7 @@ manageAccounts: "Nutzerkonten verwalten"
 makeReactionsPublic: "Reaktionsverlauf veröffentlichen"
 makeReactionsPublicDescription: "Jeder wird die Liste deiner gesendeten Reaktionen
   einsehen können."
-classic: "Mittig/zentriert"
+classic: "Zentriert"
 muteThread: "Thread stummschalten"
 unmuteThread: "Threadstummschaltung aufheben"
 ffVisibility: "Sichtbarkeit von Gefolgten/Followern"
@@ -1972,9 +1972,8 @@ enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
-hiddenTagsDescription: 'Geben sie hier die Schlagworte (ohne #hashtag) an, die vom
-  "Trending and Explore" ausgeschlossen werden sollen. Versteckte Schlagworte sind
-  immer noch über andere Wege auffindbar.'
+hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
+  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.'
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
