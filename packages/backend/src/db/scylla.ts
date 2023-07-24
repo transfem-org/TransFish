@@ -1,4 +1,5 @@
 import config from "@/config/index.js";
+import { DriveFile } from "@/models/entities/drive-file.js";
 import { Client } from "cassandra-driver";
 
 function newClient(): Client | null {
@@ -17,46 +18,63 @@ export const scyllaClient = newClient();
 export const prepared = {
 	timeline: {
 		insert: `INSERT INTO note (
-				created_at_date,
-				created_at,
+				createdAtDate,
+				createdAt,
 				id,
 				visibility,
 				content,
 				name,
 				cw,
-				local_only,
-				renote_count,
-				replies_count,
+				localOnly,
+				renoteCount,
+				repliesCount,
 				uri,
 				url,
 				score,
 				files,
-				visible_users,
+				visibleUsersId,
 				mentions,
 				emojis,
 				tags,
-				has_poll,
-				thread_id,
-				channel_id,
-				channel_name,
-				user_id,
-				user_id,
-				reply_id,
-				renote_id,
-				note_edit,
-				updated_at,
+				hasPoll,
+				threadId,
+				channelId,
+				channelName,
+				userId,
+				userId,
+				replyId,
+				renoteId,
 				reactions,
-				reaction_emojis
+				reactionEmojis
+				noteEdit,
+				updatedAt,
 			)
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
-			byDate: "SELECT * FROM note WHERE created_at_date = ? AND created_at < ?",
+			byDate: "SELECT * FROM note WHERE createdAtDate = ? AND createdAt < ?",
 			byId: "SELECT * FROM note WHERE id IN ?",
 			byUri: "SELECT * FROM note WHERE uri = ?",
 			byUrl: "SELECT * FROM note WHERE url = ?",
-			byUserId: "SELECT * FROM note WHERE user_id = ? AND created_at < ?",
+			byUserId: "SELECT * FROM note WHERE userId = ? AND createdAt < ?",
 		},
 		delete: "DELETE FROM note WHERE id IN ?",
 	},
+}
+
+export interface ScyllaDriveFile {
+	id: string;
+	type: string;
+	createdAt: Date;
+	name: string;
+	comment: string | null;
+	blurhash: string | null;
+	url: string;
+	thumbnailUrl: string;
+	isSensitive: boolean;
+	isLink: boolean;
+	md5: string;
+	size: number;
+	width: number;
+	height: number;
 }

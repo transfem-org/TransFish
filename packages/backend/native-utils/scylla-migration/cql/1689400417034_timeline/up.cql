@@ -1,14 +1,14 @@
 CREATE TYPE IF NOT EXISTS drive_file (
 	id ascii,
 	type ascii,
-	created_at timestamp,
+	createdAt timestamp,
 	name text,
 	comment text,
 	blurhash text,
 	url text,
-	thumbnail_url text,
-	is_sensitive boolean,
-	is_link boolean,
+	thumbnailUrl text,
+	isSensitive boolean,
+	isLink boolean,
 	md5 ascii,
 	size int,
 	width int,
@@ -19,7 +19,7 @@ CREATE TYPE IF NOT EXISTS note_edit_history (
 	content text,
 	cw text,
 	files set<frozen<drive_file>>,
-	updated_at timestamp,
+	updatedAt timestamp,
 );
 
 CREATE TYPE IF NOT EXISTS emoji (
@@ -30,36 +30,36 @@ CREATE TYPE IF NOT EXISTS emoji (
 );
 
 CREATE TABLE IF NOT EXISTS note ( -- Models timeline
-	created_at_date date, -- For partitioning
-	created_at timestamp,
+	createdAtDate date, -- For partitioning
+	createdAt timestamp,
 	id ascii, -- Post
 	visibility ascii,
 	content text,
 	name text,
 	cw text,
-	local_only boolean,
-	renote_count int,
-	replies_count int,
+	localOnly boolean,
+	renoteCount int,
+	repliesCount int,
 	uri text,
 	url text,
 	score int,
 	files set<frozen<drive_file>>,
-	visible_users set<ascii>,
+	visibleUsersId set<ascii>,
 	mentions set<ascii>,
 	emojis set<frozen<emoji>>,
 	tags set<text>,
-	has_poll boolean,
-	thread_id ascii,
-	channel_id ascii, -- Channel
-	channel_name text,
-	user_id ascii, -- User
-	reply_id ascii, -- Reply
-	renote_id ascii, -- Boost
-	note_edit set<frozen<note_edit_history>>, -- Edit History
-	updated_at timestamp,
+	hasPoll boolean,
+	threadId ascii,
+	channelId ascii, -- Channel
+	channelName text,
+	userId ascii, -- User
+	replyId ascii, -- Reply
+	renoteId ascii, -- Boost
 	reactions map<text, int>,
-	reaction_emojis map<text, frozen<emoji>>,
-	PRIMARY KEY (created_at_date, created_at)
+	reactionEmojis map<text, frozen<emoji>>,
+	noteEdit set<frozen<note_edit_history>>, -- Edit History
+	updatedAt timestamp,
+	PRIMARY KEY (createdAtDate, createdAt)
 ) WITH CLUSTERING ORDER BY (created_at DESC);
 
 CREATE INDEX IF NOT EXISTS note_by_id ON note (id);
@@ -68,16 +68,16 @@ CREATE INDEX IF NOT EXISTS note_by_url ON note (url);
 
 CREATE MATERIALIZED VIEW IF NOT EXISTS note_by_user_id AS
 	SELECT * FROM note
-	WHERE user_id IS NOT NULL
-	AND created_at IS NOT NULL
-	AND created_at_date IS NOT NULL
-	PRIMARY KEY (user_id, created_at, created_at_date)
-	WITH CLUSTERING ORDER BY (created_at DESC);
+	WHERE userId IS NOT NULL
+	AND createdAt IS NOT NULL
+	AND createdAtDate IS NOT NULL
+	PRIMARY KEY (userId, createdAt, createdAtDate)
+	WITH CLUSTERING ORDER BY (createdAt DESC);
 
 CREATE TABLE IF NOT EXISTS reaction (
-	note_id ascii,
-	created_at timestamp,
-	user_id ascii,
+	noteId ascii,
+	createdAt timestamp,
+	userId ascii,
 	reaction frozen<emoji>,
-	PRIMARY KEY (note_id, created_at, user_id)
+	PRIMARY KEY (noteId, createdAt, userId)
 );

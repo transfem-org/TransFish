@@ -67,6 +67,9 @@ import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
 import { redisClient } from "@/db/redis.js";
 import { Mutex } from "redis-semaphore";
+import { prepared, scyllaClient, ScyllaDriveFile } from "@/db/scylla.js";
+import { populateEmojis } from "@/misc/populate-emojis.js";
+import { decodeReaction } from "@/misc/reaction-lib.js";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]
@@ -758,6 +761,49 @@ async function insertNote(
 
 	// 投稿を作成
 	try {
+		if (scyllaClient) {
+			const reactionEmojiNames = Object.keys(insert.reactions)
+				.filter((x) => x?.startsWith(":"))
+				.map((x) => decodeReaction(x).reaction)
+				.map((x) => x.replace(/:/g, ""));
+			const noteEmojis = await populateEmojis(
+				insert.emojis.concat(reactionEmojiNames),
+				user.host,
+			);
+			await scyllaClient.execute(
+				prepared.timeline.insert,
+				[
+					insert.createdAt,
+					insert.createdAt,
+					insert.id,
+					insert.visibility,
+					insert.text,
+					insert.name,
+					insert.cw,
+					insert.localOnly,
+					insert.renoteCount,
+					insert.repliesCount,
+					insert.uri,
+					insert.url,
+					insert.score,
+					data.files,
+					insert.visibleUserIds,
+					insert.mentions,
+					noteEmojis,
+					insert.tags,
+					insert.hasPoll,
+					insert.threadId,
+					data.channel?.id,
+					data.channel?.name,
+					user.id,
+					insert.replyId,
+					insert.renoteId,
+					null,
+					null,
+				],
+				{ prepare: true },
+			);
+		}
 		if (insert.hasPoll) {
 			// Start transaction
 			await db.transaction(async (transactionalEntityManager) => {
