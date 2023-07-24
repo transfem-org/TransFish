@@ -1438,7 +1438,7 @@ _visibility:
   public: "Publik"
   publicDescription: "Postinganmu akan terlihat di semua linimasa publik"
   home: "Tidak terdaftar"
-  homeDescription: "Catat ke linimasa beranda saja"
+  homeDescription: "Posting ke linimasa beranda saja"
   followers: "Pengikut"
   followersDescription: "Catat ke pengikut saja"
   specified: "Langsung"
