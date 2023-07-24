@@ -67,10 +67,8 @@ import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
 import { redisClient } from "@/db/redis.js";
 import { Mutex } from "redis-semaphore";
-import { prepared, scyllaClient, ScyllaDriveFile } from "@/db/scylla.js";
+import { prepared, scyllaClient } from "@/db/scylla.js";
 import { populateEmojis } from "@/misc/populate-emojis.js";
-import { decodeReaction } from "@/misc/reaction-lib.js";
-import { types } from "cassandra-driver";
 
 const mutedWordsCache = new Cache<
 	{ userId: UserProfile["userId"]; mutedWords: UserProfile["mutedWords"] }[]

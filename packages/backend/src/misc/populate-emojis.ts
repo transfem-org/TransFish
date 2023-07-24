@@ -14,7 +14,7 @@ export const EmojiCache = new Cache<Emoji | null>("populateEmojis", 60 * 60 * 12
 /**
  * 添付用絵文字情報
  */
-type PopulatedEmoji = {
+export type PopulatedEmoji = {
 	name: string;
 	url: string;
 	width: number | null;

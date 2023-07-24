@@ -1,6 +1,7 @@
 import config from "@/config/index.js";
-import { DriveFile } from "@/models/entities/drive-file.js";
-import { Client } from "cassandra-driver";
+import type { PopulatedEmoji } from "@/misc/populate-emojis.js";
+import type { NoteReaction } from "@/models/entities/note-reaction.js";
+import { Client, types } from "cassandra-driver";
 
 function newClient(): Client | null {
 	if (!config.scylla) {
@@ -52,11 +53,11 @@ export const prepared = {
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
-			byDate: `SELECT * FROM note WHERE "createdAtDate" = ? AND "createdAt" < ?`,
+			byDate: `SELECT * FROM note WHERE "createdAtDate" IN ?`,
 			byId: `SELECT * FROM note WHERE "id" IN ?`,
-			byUri: `SELECT * FROM note WHERE "uri" = ?`,
-			byUrl: `SELECT * FROM note WHERE "url" = ?`,
-			byUserId: `SELECT * FROM note_by_userid WHERE "userId" = ? AND "createdAt" < ?`,
+			byUri: `SELECT * FROM note WHERE "uri" IN ?`,
+			byUrl: `SELECT * FROM note WHERE "url" IN ?`,
+			byUserId: `SELECT * FROM note_by_userid WHERE "userId" IN ?`,
 		},
 		delete: `DELETE FROM note WHERE "createdAtDate" = ? AND "createdAt" = ?`,
 		update: {
@@ -68,6 +69,13 @@ export const prepared = {
 		insert: `INSERT INTO reaction
 			("id", "noteId", "userId", "reaction", "emoji", "createdAt")
 			VALUES (?, ?, ?, ?, ?, ?)`,
+		select: {
+			byNoteId: `SELECT * FROM reaction WHERE "noteId" IN ?`,
+			byUserId: `SELECT * FROM reaction_by_userid WHERE "userId" IN ?`,
+			byNoteAndUser: `SELECT * FROM reaction WHERE "noteId" = ? AND "userId" = ?`,
+			byId: `SELECT * FROM reaction WHERE "id" IN ?`,
+		},
+		delete: `DELETE FROM reaction WHERE "noteId" = ? AND "userId" = ?`,
 	},
 };
 
@@ -86,4 +94,19 @@ export interface ScyllaDriveFile {
 	size: number;
 	width: number;
 	height: number;
+}
+
+export type ScyllaNoteReaction = NoteReaction & {
+	emoji: PopulatedEmoji
+}
+
+export function parseScyllaReaction(row: types.Row): ScyllaNoteReaction {
+	return {
+		id: row.get("id"),
+		noteId: row.get("noteId"),
+		userId: row.get("userId"),
+		reaction: row.get("reaction"),
+		createdAt: row.get("createdAt"),
+		emoji: row.get("emoji"),
+	}
 }

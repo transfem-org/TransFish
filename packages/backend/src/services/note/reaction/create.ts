@@ -68,7 +68,14 @@ export default async (
 			// Thus, a reaction by the same user will be replaced if exists.
 			await scyllaClient.execute(
 				prepared.reaction.insert,
-				[record.id, record.noteId, record.userId, _reaction, emojiData, record.createdAt],
+				[
+					record.id,
+					record.noteId,
+					record.userId,
+					_reaction,
+					emojiData,
+					record.createdAt,
+				],
 				{ prepare: true },
 			);
 		} else {

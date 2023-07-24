@@ -8,28 +8,39 @@ import type { User, IRemoteUser } from "@/models/entities/user.js";
 import type { Note } from "@/models/entities/note.js";
 import { NoteReactions, Users, Notes } from "@/models/index.js";
 import { decodeReaction } from "@/misc/reaction-lib.js";
+import { parseScyllaReaction, prepared, scyllaClient } from "@/db/scylla";
+import type { NoteReaction } from "@/models/entities/note-reaction.js";
 
 export default async (
 	user: { id: User["id"]; host: User["host"] },
 	note: Note,
 ) => {
-	const reaction = await NoteReactions.findOneBy({
-		noteId: note.id,
-		userId: user.id,
-	});
-
-	// if already unreacted
-	if (reaction == null) {
-		throw new IdentifiableError(
-			"60527ec9-b4cb-4a88-a6bd-32d3ad26817d",
-			"not reacted",
+	let reaction: NoteReaction | null;
+	if (scyllaClient) {
+		const result = await scyllaClient.execute(
+			prepared.reaction.select.byNoteAndUser,
+			[note.id, user.id],
+			{ prepare: true },
 		);
+		reaction =
+			result.rowLength > 0 ? parseScyllaReaction(result.rows[0]) : null;
+	} else {
+		reaction = await NoteReactions.findOneBy({
+			noteId: note.id,
+			userId: user.id,
+		});
 	}
 
 	// Delete reaction
-	const result = await NoteReactions.delete(reaction.id);
-
-	if (result.affected !== 1) {
+	if (reaction) {
+		if (scyllaClient) {
+			await scyllaClient.execute(prepared.reaction.delete, [note.id, user.id], {
+				prepare: true,
+			});
+		} else {
+			await NoteReactions.delete(reaction.id);
+		}
+	} else {
 		throw new IdentifiableError(
 			"60527ec9-b4cb-4a88-a6bd-32d3ad26817d",
 			"not reacted",
@@ -37,16 +48,31 @@ export default async (
 	}
 
 	// Decrement reactions count
-	const sql = `jsonb_set("reactions", '{${reaction.reaction}}', (COALESCE("reactions"->>'${reaction.reaction}', '0')::int - 1)::text::jsonb)`;
-	await Notes.createQueryBuilder()
-		.update()
-		.set({
-			reactions: () => sql,
-		})
-		.where("id = :id", { id: note.id })
-		.execute();
+	if (scyllaClient) {
+		const count = Math.max((note.reactions[reaction.reaction] ?? 0) - 1, 0);
+		if (count === 0) {
+			delete note.reactions[reaction.reaction];
+		} else {
+			note.reactions[reaction.reaction] = count;
+		}
+		const date = new Date(note.createdAt.getTime());
+		await scyllaClient.execute(
+			prepared.note.update.reactions,
+			[note.reactions, Math.max((note.score ?? 0) - 1, 0), date, date],
+			{ prepare: true },
+		);
+	} else {
+		const sql = `jsonb_set("reactions", '{${reaction.reaction}}', (COALESCE("reactions"->>'${reaction.reaction}', '0')::int - 1)::text::jsonb)`;
+		await Notes.createQueryBuilder()
+			.update()
+			.set({
+				reactions: () => sql,
+			})
+			.where("id = :id", { id: note.id })
+			.execute();
 
-	Notes.decrement({ id: note.id }, "score", 1);
+		Notes.decrement({ id: note.id }, "score", 1);
+	}
 
 	publishNoteStream(note.id, "unreacted", {
 		reaction: decodeReaction(reaction.reaction).reaction,

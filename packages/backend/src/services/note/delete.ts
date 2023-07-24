@@ -22,6 +22,7 @@ import { countSameRenotes } from "@/misc/count-same-renotes.js";
 import { registerOrFetchInstanceDoc } from "../register-or-fetch-instance-doc.js";
 import { deliverToRelays } from "../relay.js";
 import meilisearch from "@/db/meilisearch.js";
+import { prepared, scyllaClient } from "@/db/scylla.js";
 
 /**
  * 投稿を削除します。
@@ -114,6 +115,13 @@ export default async function (
 				instanceChart.updateNote(i.host, note, false);
 			});
 		}
+	}
+
+	if (scyllaClient) {
+		const date = new Date(note.createdAt.getTime());
+		await scyllaClient.execute(prepared.note.delete, [date, date], {
+			prepare: true,
+		});
 	}
 
 	await Notes.delete({
