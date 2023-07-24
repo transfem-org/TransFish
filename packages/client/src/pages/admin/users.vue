@@ -100,19 +100,17 @@
 							:pagination="pagination"
 							class="users"
 						>
-							<MkA
+							<MkUserCardMini
 								v-for="user in items"
 								:key="user.id"
 								v-tooltip.mfm="
-									`Last posted: ${new Date(
+									user.updatedAt ? `Last posted: ${new Date(
 										user.updatedAt,
-									).toLocaleString()}`
+									).toLocaleString()}` : 'Never posted'
 								"
 								class="user"
-								:to="`/user-info/${user.id}`"
-							>
-								<MkUserCardMini :user="user" />
-							</MkA>
+								:user="user"
+								:show-about-page="true" />
 						</MkPagination>
 					</div>
 				</div>
