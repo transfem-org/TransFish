@@ -1605,8 +1605,8 @@ _aboutFirefish:
   patronsList: Llistats cronològicament, no per la quantitat donada. Fes una donació
     amb l'enllaç de dalt per veure el teu nom aquí!
   donateTitle: T'agrada Firefish?
-  pleaseDonateToFirefish: Penseu en fer una donació a Firefish per donar suport al seu
-    desenvolupament.
+  pleaseDonateToFirefish: Penseu en fer una donació a Firefish per donar suport al
+    seu desenvolupament.
   pleaseDonateToHost: Penseu també en fer una donació a la vostre instància, {host},
     per ajudar-lo a suportar els costos de funcionament.
   donateHost: Fes una donació a {host}
@@ -1720,9 +1720,9 @@ accentColor: Color principal
 textColor: Color del text
 value: Valor
 sendErrorReportsDescription: "Quan està activat, quan es produeixi un problema la
-  informació detallada d'errors es compartirà amb Firefish, ajudant a millorar la qualitat
-  de Firefish.\nAixò inclourà informació com la versió del vostre sistema operatiu,
-  quin navegador utilitzeu, la vostra activitat a Firefish, etc."
+  informació detallada d'errors es compartirà amb Firefish, ajudant a millorar la
+  qualitat de Firefish.\nAixò inclourà informació com la versió del vostre sistema
+  operatiu, quin navegador utilitzeu, la vostra activitat a Firefish, etc."
 myTheme: El meu tema
 backgroundColor: Color de fons
 saveAs: Desa com...
@@ -2121,7 +2121,7 @@ clipsDesc: Els clips són com marcadors categoritzats que es poden compartir. Po
   crear clips des del menú de publicacions individuals.
 selectChannel: Selecciona un canal
 isLocked: Aquest compte té les següents aprovacions
-isPatron: Mecenes de Calkey
+isPatron: Mecenes de Firefish
 isBot: Aquest compte és un bot
 isModerator: Moderador
 isAdmin: Administrador
