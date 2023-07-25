@@ -1,5 +1,6 @@
 import config from "@/config/index.js";
 import type { PopulatedEmoji } from "@/misc/populate-emojis.js";
+import type { Note } from "@/models/entities/note.js";
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 import { Client, types } from "cassandra-driver";
 
@@ -34,7 +35,7 @@ export const prepared = {
 				"url",
 				"score",
 				"files",
-				"visibleUsersId",
+				"visibleUserIds",
 				"mentions",
 				"emojis",
 				"tags",
@@ -46,12 +47,11 @@ export const prepared = {
 				"replyId",
 				"renoteId",
 				"reactions",
-				"reactionEmojis",
 				"noteEdit",
 				"updatedAt"
 			)
 			VALUES
-			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
 			byDate: `SELECT * FROM note WHERE "createdAtDate" IN ?`,
 			byId: `SELECT * FROM note WHERE "id" IN ?`,
@@ -59,10 +59,17 @@ export const prepared = {
 			byUrl: `SELECT * FROM note WHERE "url" IN ?`,
 			byUserId: `SELECT * FROM note_by_userid WHERE "userId" IN ?`,
 		},
-		delete: `DELETE FROM note WHERE "createdAtDate" = ? AND "createdAt" = ?`,
+		delete: `DELETE FROM note WHERE "createdAtDate" = ? AND "createdAt" = ? AND "id" = ?`,
 		update: {
-			renoteCount: `UPDATE note SET "renoteCount" = ?, "score" = ? WHERE "createdAtDate" = ? AND "createdAt" = ? IF EXISTS`,
-			reactions: `UPDATE note SET "reactions" = ?, "score" = ? WHERE "createdAtDate" = ? AND "createdAt" = ? IF EXISTS`,
+			renoteCount: `UPDATE note SET
+				"renoteCount" = ?,
+				"score" = ?
+				WHERE "createdAtDate" = ? AND "createdAt" = ? AND "id" = ? IF EXISTS`,
+			reactions: `UPDATE note SET
+				"emojis" = ?,
+				"reactions" = ?,
+				"score" = ?
+				WHERE "createdAtDate" = ? AND "createdAt" = ? AND "id" = ? IF EXISTS`,
 		},
 	},
 	reaction: {
@@ -92,12 +99,60 @@ export interface ScyllaDriveFile {
 	isLink: boolean;
 	md5: string;
 	size: number;
-	width: number;
-	height: number;
 }
 
-export type ScyllaNoteReaction = NoteReaction & {
-	emoji: PopulatedEmoji
+export interface ScyllaNoteEditHistory {
+	content: string;
+	cw: string;
+	files: ScyllaDriveFile[];
+	updatedAt: Date;
+}
+
+export type ScyllaNote = Partial<Note> & {
+	createdAtDate: Date;
+	files: ScyllaDriveFile[];
+	channelName: string;
+	noteEdit: ScyllaNoteEditHistory[];
+};
+
+export function parseScyllaNote(row: types.Row): ScyllaNote {
+	const files: ScyllaDriveFile[] = row.get("files");
+	return {
+		createdAtDate: row.get("createdAtDate"),
+		createdAt: row.get("createdAt"),
+		id: row.get("id"),
+		visibility: row.get("visibility"),
+		text: row.get("content"),
+		name: row.get("name"),
+		cw: row.get("cw"),
+		localOnly: row.get("localOnly"),
+		renoteCount: row.get("renoteCount"),
+		repliesCount: row.get("repliesCount"),
+		uri: row.get("uri"),
+		url: row.get("url"),
+		score: row.get("score"),
+		files,
+		fileIds: files.map((file) => file.id),
+		attachedFileTypes: files.map((file) => file.type),
+		visibleUserIds: row.get("visibleUserIds"),
+		mentions: row.get("mentions"),
+		emojis: row.get("emojis"),
+		tags: row.get("tags"),
+		hasPoll: row.get("hasPoll"),
+		threadId: row.get("threadId"),
+		channelId: row.get("channelId"),
+		channelName: row.get("channelName"),
+		userId: row.get("userId"),
+		replyId: row.get("replyId"),
+		renoteId: row.get("replyId"),
+		reactions: row.get("reactions"),
+		noteEdit: row.get("noteEdit"),
+		updatedAt: row.get("updatedAt"),
+	}
+}
+
+export interface ScyllaNoteReaction extends NoteReaction {
+	emoji: PopulatedEmoji;
 }
 
 export function parseScyllaReaction(row: types.Row): ScyllaNoteReaction {
@@ -108,5 +163,5 @@ export function parseScyllaReaction(row: types.Row): ScyllaNoteReaction {
 		reaction: row.get("reaction"),
 		createdAt: row.get("createdAt"),
 		emoji: row.get("emoji"),
-	}
+	};
 }

@@ -677,9 +677,12 @@ async function renderNoteOrRenoteActivity(data: Option, note: Note) {
 
 function incRenoteCount(renote: Note) {
 	if (scyllaClient) {
+		const date = new Date(renote.createdAt.getTime());
 		scyllaClient.execute(prepared.note.update.renoteCount, [
 			renote.renoteCount + 1,
 			renote.score + 1,
+			date,
+			date,
 			renote.id,
 		]);
 	} else {
@@ -768,7 +771,6 @@ async function insertNote(
 	// 投稿を作成
 	try {
 		if (scyllaClient) {
-			const noteEmojis = await populateEmojis(insert.emojis, user.host);
 			await scyllaClient.execute(
 				prepared.note.insert,
 				[
@@ -788,7 +790,7 @@ async function insertNote(
 					data.files,
 					insert.visibleUserIds,
 					insert.mentions,
-					noteEmojis,
+					insert.emojis,
 					insert.tags,
 					insert.hasPoll,
 					insert.threadId,
@@ -797,7 +799,6 @@ async function insertNote(
 					user.id,
 					insert.replyId,
 					insert.renoteId,
-					null,
 					null,
 					null,
 					null,

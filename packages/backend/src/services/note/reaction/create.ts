@@ -22,6 +22,7 @@ import { isDuplicateKeyValueError } from "@/misc/is-duplicate-key-value-error.js
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
 import { prepared, scyllaClient } from "@/db/scylla.js";
+import { populateEmojis } from "@/misc/populate-emojis.js";
 
 export default async (
 	user: { id: User["id"]; host: User["host"] },
@@ -105,10 +106,18 @@ export default async (
 	if (scyllaClient) {
 		const current = Math.max(note.reactions[_reaction] ?? 0, 0);
 		note.reactions[_reaction] = current + 1;
+		const emojiName = decodeReaction(_reaction).reaction.replaceAll(":", "");
 		const date = new Date(note.createdAt.getTime());
 		await scyllaClient.execute(
 			prepared.note.update.reactions,
-			[note.reactions, (note.score ?? 0) + 1, date, date],
+			[
+				note.emojis.concat(emojiName),
+				note.reactions,
+				(note.score ?? 0) + 1,
+				date,
+				date,
+				note.id,
+			],
 			{ prepare: true },
 		);
 	} else {

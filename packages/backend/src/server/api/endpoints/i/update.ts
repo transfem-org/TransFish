@@ -16,6 +16,7 @@ import { verifyLink } from "@/services/fetch-rel-me.js";
 import { ApiError } from "../../error.js";
 import config from "@/config/index.js";
 import define from "../../define.js";
+import { userByIdCache } from "@/services/user-cache.js";
 
 export const meta = {
 	tags: ["account"],
@@ -305,7 +306,13 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	updateUsertags(user, tags);
 	//#endregion
 
-	if (Object.keys(updates).length > 0) await Users.update(user.id, updates);
+	if (Object.keys(updates).length > 0) {
+		await Users.update(user.id, updates);
+		await userByIdCache.set(
+			user.id,
+			await Users.findOneByOrFail({ id: user.id }),
+		);
+	}
 	if (Object.keys(profileUpdates).length > 0)
 		await UserProfiles.update(user.id, profileUpdates);
 
@@ -319,7 +326,7 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	publishUserEvent(
 		user.id,
 		"updateUserProfile",
-		await UserProfiles.findOneBy({ userId: user.id }),
+		await UserProfiles.findOneByOrFail({ userId: user.id }),
 	);
 
 	// 鍵垢を解除したとき、溜まっていたフォローリクエストがあるならすべて承認

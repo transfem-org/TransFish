@@ -9,7 +9,10 @@ import config from "@/config/index.js";
 import { query } from "@/prelude/url.js";
 import { redisClient } from "@/db/redis.js";
 
-export const EmojiCache = new Cache<Emoji | null>("populateEmojis", 60 * 60 * 12);
+export const EmojiCache = new Cache<Emoji | null>(
+	"populateEmojis",
+	60 * 60 * 12,
+);
 
 /**
  * 添付用絵文字情報
@@ -71,13 +74,12 @@ export async function populateEmoji(
 			host: host ?? IsNull(),
 		})) || null;
 
-	const cacheKey = `${name} ${host}`;
-	let emoji = await EmojiCache.fetch(cacheKey, queryOrNull);
-
-	if (emoji && !(emoji.width && emoji.height)) {
-		emoji = await queryOrNull();
-		await EmojiCache.set(cacheKey, emoji);
-	}
+	const emoji = await EmojiCache.fetch(
+		`${name} ${host}`,
+		queryOrNull,
+		false,
+		(cache) => !!cache?.width && !!cache?.height,
+	);
 
 	if (emoji == null) return null;
 

@@ -1,6 +1,6 @@
 import { In } from "typeorm";
 import create from "@/services/note/create.js";
-import type { User } from "@/models/entities/user.js";
+import type { CacheableUser, User } from "@/models/entities/user.js";
 import {
 	Users,
 	DriveFiles,
@@ -17,6 +17,7 @@ import { ApiError } from "../../error.js";
 import define from "../../define.js";
 import { HOUR } from "@/const.js";
 import { getNote } from "../../common/getters.js";
+import { userByIdCache } from "@/services/user-cache.js";
 
 export const meta = {
 	tags: ["notes"],
@@ -190,15 +191,25 @@ export default define(meta, paramDef, async (ps, user) => {
 	if (user.movedToUri != null) throw new ApiError(meta.errors.accountLocked);
 	let visibleUsers: User[] = [];
 	if (ps.visibleUserIds) {
-		visibleUsers = await Users.findBy({
-			id: In(ps.visibleUserIds),
-		});
+		visibleUsers = (
+			await Promise.all(
+				ps.visibleUserIds.map((id) =>
+					userByIdCache.fetchMaybe(id, () =>
+						Users.findOneBy({ id }).then((user) => user ?? undefined),
+					),
+				),
+			)
+		).filter((user) => user !== undefined) as CacheableUser[];
 	}
 
 	let files: DriveFile[] = [];
 	const fileIds =
-		ps.fileIds != null ? ps.fileIds : ps.mediaIds != null ? ps.mediaIds : null;
-	if (fileIds != null) {
+		ps.fileIds && ps.fileIds.length > 0
+			? ps.fileIds
+			: ps.mediaIds && ps.mediaIds.length > 0
+			? ps.mediaIds
+			: null;
+	if (fileIds && fileIds.length > 0) {
 		files = await DriveFiles.createQueryBuilder("file")
 			.where("file.userId = :userId AND file.id IN (:...fileIds)", {
 				userId: user.id,
@@ -210,7 +221,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	}
 
 	let renote: Note | null = null;
-	if (ps.renoteId != null) {
+	if (ps.renoteId) {
 		// Fetch renote to note
 		renote = await getNote(ps.renoteId, user).catch((e) => {
 			if (e.id === "9725d0ce-ba28-4dde-95a7-2cbb2c15de24")

@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	"url" text,
 	"score" int,
 	"files" set<frozen<drive_file>>,
-	"visibleUsersId" set<ascii>,
+	"visibleUserIds" set<ascii>,
 	"mentions" set<ascii>,
-	"emojis" set<frozen<emoji>>,
+	"emojis" set<text>,
 	"tags" set<text>,
 	"hasPoll" boolean,
 	"threadId" ascii,
@@ -54,7 +54,6 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	"replyId" ascii, -- Reply
 	"renoteId" ascii, -- Boost
 	"reactions" map<text, int>,
-	"reactionEmojis" map<text, frozen<emoji>>,
 	"noteEdit" set<frozen<note_edit_history>>, -- Edit History
 	"updatedAt" timestamp,
 	PRIMARY KEY ("createdAtDate", "createdAt", "id")

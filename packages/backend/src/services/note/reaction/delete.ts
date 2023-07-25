@@ -56,9 +56,19 @@ export default async (
 			note.reactions[reaction.reaction] = count;
 		}
 		const date = new Date(note.createdAt.getTime());
+		const emojiName = reaction.reaction.replaceAll(":", "");
+		const emojiIndex = note.emojis.indexOf(emojiName);
+		if (emojiIndex >= 0 && count === 0) note.emojis.splice(emojiIndex, 1);
 		await scyllaClient.execute(
 			prepared.note.update.reactions,
-			[note.reactions, Math.max((note.score ?? 0) - 1, 0), date, date],
+			[
+				note.emojis,
+				note.reactions,
+				Math.max((note.score ?? 0) - 1, 0),
+				date,
+				date,
+				note.id,
+			],
 			{ prepare: true },
 		);
 	} else {

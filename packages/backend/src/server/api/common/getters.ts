@@ -3,6 +3,7 @@ import type { User } from "@/models/entities/user.js";
 import type { Note } from "@/models/entities/note.js";
 import { Notes, Users } from "@/models/index.js";
 import { generateVisibilityQuery } from "./generate-visibility-query.js";
+import { prepared, scyllaClient } from "@/db/scylla.js";
 
 /**
  * Get note for API processing, taking into account visibility.
@@ -11,13 +12,27 @@ export async function getNote(
 	noteId: Note["id"],
 	me: { id: User["id"] } | null,
 ) {
+	let note: Note | null = null;
+	if (scyllaClient) {
+		const result = await scyllaClient.execute(
+			prepared.note.select.byId,
+			[noteId],
+			{ prepare: true },
+		);
+		if (result.rowLength > 0) {
+			const visibility: string = result.rows[0].get("visibility");
+			if (!me) {
+			}
+		}
+	}
+
 	const query = Notes.createQueryBuilder("note").where("note.id = :id", {
 		id: noteId,
 	});
 
 	generateVisibilityQuery(query, me);
 
-	const note = await query.getOne();
+	note = await query.getOne();
 
 	if (note == null) {
 		throw new IdentifiableError(
