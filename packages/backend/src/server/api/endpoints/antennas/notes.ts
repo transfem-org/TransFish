@@ -106,7 +106,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	generateMutedUserQuery(query, user);
 	generateBlockedUserQuery(query, user);
 
-	const notes = await query.take(ps.limit).getMany();
+	const notes = await query.take(limit).getMany();
 
 	if (notes.length > 0) {
 		readNote(user.id, notes);
