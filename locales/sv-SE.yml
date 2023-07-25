@@ -1,7 +1,7 @@
 ---
 _lang_: "Svenska"
-headlineMisskey: "Ett nätverk kopplat av noter"
-introMisskey: "Välkommen! Firefish är en öppen och decentraliserad mikrobloggningstjänst.\nSkapa en \"not\" och dela dina tankar med alla runtomkring dig. 📡\nMed \"reaktioner\" kan du snabbt uttrycka dina känslor kring andras noter.👍\nLåt oss utforska en nya värld!🚀"
+headlineFirefish: "Ett nätverk kopplat av noter"
+introFirefish: "Välkommen! Firefish är en öppen och decentraliserad mikrobloggningstjänst.\nSkapa en \"not\" och dela dina tankar med alla runtomkring dig. 📡\nMed \"reaktioner\" kan du snabbt uttrycka dina känslor kring andras noter.👍\nLåt oss utforska en nya värld!🚀"
 monthAndDay: "{day}/{month}"
 search: "Sök"
 notifications: "Notifikationer"

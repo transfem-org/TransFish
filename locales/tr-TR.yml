@@ -1,5 +1,5 @@
 _lang_: "Türkçe"
-introMisskey: "Hoş geldin! Firefish, sonsuza kadar ücretsiz olan, açık kaynaklı, merkezi
+introFirefish: "Hoş geldin! Firefish, sonsuza kadar ücretsiz olan, açık kaynaklı, merkezi
   olmayan bir sosyal medya platformudur! 🚀"
 monthAndDay: "{month}Ay {day}Gün"
 search: "Arama"
@@ -231,7 +231,7 @@ cantFavorite: Favorilere eklenemedi.
 edited: '{date} tarihinde ve {time} vaktinde düzenlendi'
 loggingIn: Giriş Yapılıyor
 save: Kaydet
-headlineMisskey: Sonsuza kadar ücretsiz, açık kaynak kodlu, merkeziyetsiz sosyal medya
+headlineFirefish: Sonsuza kadar ücretsiz, açık kaynak kodlu, merkeziyetsiz sosyal medya
   platformu! 🚀
 loadMore: Daha fazla yükle
 instance: Sunucu
@@ -1929,7 +1929,7 @@ _preferencesBackups:
   loadFile: Dosyadan yükle
   updatedAt: 'Güncelleme tarihi: {date} {time}'
   cannotLoad: Yüklenemedi
-_aboutMisskey:
+_aboutFirefish:
   patronsList: Bağış büyüklüğüne göre değil, kronolojik olarak listelenmiştir. Adınızı
     buraya almak için yukarıdaki bağlantıyla bağış yapın!
   about: Firefish, 2022'den beri geliştirilmekte olan ThatOneCalculator tarafından

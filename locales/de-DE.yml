@@ -1,9 +1,9 @@
 _lang_: "Deutsch"
-headlineMisskey: "Eine dezentralisierte Open-Source Social Media Plattform, die für
+headlineFirefish: "Eine dezentralisierte Open-Source Social Media Plattform, die für
   immer gratis bleibt! 🚀"
-introMisskey: "Willkommen! Firefish ist eine dezentralisierte Open-Source Social Media
+introFirefish: "Willkommen! Firefish ist eine dezentralisierte Open-Source Social Media
   Plattform, die für immer gratis bleibt!🚀"
-monthAndDay: "{month}/{day}"
+monthAndDay: "{day}.{month}."
 search: "Suchen"
 notifications: "Benachrichtigungen"
 username: "Nutzername"
@@ -835,7 +835,7 @@ active: "Aktiv"
 offline: "Offline"
 notRecommended: "Nicht empfohlen"
 botProtection: "Schutz vor Bots"
-instanceBlocking: "Verbundene Server verwalten"
+instanceBlocking: "Föderation verwalten"
 selectAccount: "Nutzerkonto auswählen"
 switchAccount: "Konto wechseln"
 enabled: "Aktiviert"
@@ -900,7 +900,7 @@ manageAccounts: "Nutzerkonten verwalten"
 makeReactionsPublic: "Reaktionsverlauf veröffentlichen"
 makeReactionsPublicDescription: "Jeder wird die Liste deiner gesendeten Reaktionen
   einsehen können."
-classic: "Mittig/zentriert"
+classic: "Zentriert"
 muteThread: "Thread stummschalten"
 unmuteThread: "Threadstummschaltung aufheben"
 ffVisibility: "Sichtbarkeit von Gefolgten/Followern"
@@ -951,7 +951,8 @@ check: "Kontrolle"
 driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität
   auf den Standard zurückzusetzen."
-requireAdminForView: "Melde dich mit einem Administratorkonto an, um dies einzusehen."
+requireAdminForView: "Du musst dich mit einem Administratorkonto anmelden um dies
+  zu sehen."
 isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwaltet.
   Bitte moderieren, bearbeiten, löschen oder manipulieren Sie dieses Konto nicht,
   da es sonst zu einem Server-Absturz kommen könnte."
@@ -982,7 +983,7 @@ cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein
   Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
-enableAutoSensitive: "Selbstständige NSFW-Kennzeichnung"
+enableAutoSensitive: "Automatische NSFW-Kennzeichnung"
 enableAutoSensitiveDescription: "Erlaubt, wo möglich, die automatische Erkennung und
   Kennzeichnung von NSFW-Medien durch maschinelles Lernen. Auch wenn diese Option
   deaktiviert ist, kann sie über den Server aktiviert sein."
@@ -1005,8 +1006,8 @@ _sensitiveMediaDetection:
   setSensitiveFlagAutomaticallyDescription: "Die Resultate der internen Erkennung
     werden beibehalten, auch wenn diese Option deaktiviert ist."
   analyzeVideos: "Videoanalyse aktivieren"
-  analyzeVideosDescription: "Analysiert zusätzlich zu Bildern auch Videos. Die Last
-    des Servers wird hierdurch etwas erhöht."
+  analyzeVideosDescription: "Analysiert zusätzlich zu Bildern auch Videos. Die Serverlast
+    wird hierdurch etwas erhöht."
 _emailUnavailable:
   used: "Diese Email-Adresse wird bereits verwendet"
   format: "Das Format dieser Email-Adresse ist ungültig"
@@ -1020,7 +1021,7 @@ _ffVisibility:
 _signup:
   almostThere: "Fast geschafft"
   emailAddressInfo: "Bitte gib deine Email-Adresse ein. Sie wird nicht öffentlich
-    einsehbar sein."
+    sichtbar sein."
   emailSent: "An deine Email-Adresse ({email}) wurde soeben eine Bestätigungsmail
     geschickt. Bitte klicke auf den enthaltenen Link, um die Erstellung deines Nutzerkontos
     abzuschließen."
@@ -1029,8 +1030,8 @@ _accountDelete:
   mayTakeTime: "Da die Löschung eines Nutzerkontos ein aufwendiger Prozess ist, kann
     dessen Dauer davon abhängen, wie viel Inhalt von diesem erstellt wurde oder wie
     viele Dateien von diesem hochgeladen wurden."
-  sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die mit ihm verknüpfte
-    Email-Adresse eine Benachrichtigung versendet."
+  sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die registrierte Email-Adresse
+    eine Benachrichtigung versendet."
   requestAccountDelete: "Löschung deines Nutzerkontos anfordern"
   started: "Die Löschung wurde eingeleitet."
   inProgress: "Löschung in Bearbeitung"
@@ -1096,6 +1097,8 @@ _aboutFirefish:
   morePatrons: "Wir schätzen ebenso die Unterstützung vieler anderer hier nicht gelisteter
     Personen sehr. Danke! 🥰"
   patrons: "UnterstützerInnen"
+  patronsList: Auflistung chonologisch, nicht nach Spenden-Größe. Spende über den
+    Link oben, um hier aufgeführt zu werden!
 _nsfw:
   respect: "Mit NSFW gekennzeichnete Bilder verbergen"
   ignore: "Mit NSFW gekennzeichnete Bilder nicht verbergen"
@@ -1404,6 +1407,7 @@ _2fa:
   registerTOTPBeforeKey: Bitte registriere eine Authentificator App, um einen Hardware-Security-Key
     oder einen Passkey zu nutzen.
   securityKeyName: Gib einen Namen für den Key ein
+  token: 2FA Token
 _permissions:
   "read:account": "Deine Nutzerkontoinformationen lesen"
   "write:account": "Deine Nutzerkontoinformationen bearbeiten"
@@ -1444,11 +1448,12 @@ _auth:
     zu können?"
   shareAccessAsk: "Bist du dir sicher, dass du diese Anwendung authorisieren möchtest,
     auf dein Nutzerkonto zugreifen zu können?"
-  permissionAsk: "Diese Anwendung fordert folgende Berechtigungen"
+  permissionAsk: "Diese Anwendung fordert folgende Berechtigungen:"
   pleaseGoBack: "Bitte kehre zur Anwendung zurück"
   callback: "Es wird zur Anwendung zurückgekehrt"
   denied: "Zugriff verweigert"
-  copyAsk: Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein
+  copyAsk: 'Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein:'
+  allPermissions: Vollständiger Kontozugriff
 _antennaSources:
   all: "Alle Beiträge"
   homeTimeline: "Beiträge von Nutzern, denen gefolgt wird"
@@ -1482,7 +1487,7 @@ _widgets:
   postForm: "Beitragsfeld"
   slideshow: "Diashow"
   button: "Knopf"
-  onlineUsers: "Nutzer Online"
+  onlineUsers: "Nutzer online"
   jobQueue: "Job-Warteschlange"
   serverMetric: "Servermetriken"
   aiscript: "AiScript-Konsole"
@@ -1527,7 +1532,7 @@ _visibility:
   home: "nicht aufgelistet"
   homeDescription: "Beitrag nur auf der Home-Timeline anzeigen"
   followers: "Follower"
-  followersDescription: "Nur für Follower sichtbar"
+  followersDescription: "Nur für Follower und erwähnte Nutzer sichtbar"
   specified: "Direkt"
   specifiedDescription: "Nur für bestimmte Nutzer sichtbar"
   localOnly: "Nur Lokal"
@@ -1551,7 +1556,8 @@ _profile:
   metadata: "Zusätzliche Informationen"
   metadataEdit: "Zusätzliche Informationen bearbeiten"
   metadataDescription: "Hierdurch kannst du auf deinem Profil zusätzliche Informationsblöcke
-    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen, um den Link in Ihrem Profil zu überprüfen!"
+    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen,
+    um den Link in Ihrem Profil zu überprüfen!"
   metadataLabel: "Beschriftung"
   metadataContent: "Inhalt"
   changeAvatar: "Profilbild ändern"
@@ -1971,9 +1977,8 @@ enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
-hiddenTagsDescription: 'Geben sie hier die Schlagworte (ohne #hashtag) an, die vom
-  "Trending and Explore" ausgeschlossen werden sollen. Versteckte Schlagworte sind
-  immer noch über andere Wege auffindbar.'
+hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
+  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.'
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
@@ -1983,8 +1988,8 @@ renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Keine Server gefunden
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
-  eingestufte Server mit diesem Server kommunizieren. Alle Beiträge werden für die
-  Öffentlichkeit verborgen.
+  eingestufte Server mit diesem Server föderieren. Alle Beiträge werden für die Öffentlichkeit
+  verborgen.
 allowedInstances: Vertrauenswürdige Server
 selectInstance: Wähle einen Server aus
 silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
@@ -2073,7 +2078,7 @@ moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt
 preventAiLearning: KI gestütztes bot-scraping unterdrücken
 preventAiLearningDescription: Fordern Sie KI-Sprachmodelle von Drittanbietern auf,
   die von Ihnen hochgeladenen Inhalte, wie z. B. Beiträge und Bilder, nicht zu untersuchen.
-license: Genehmigung
+license: Lizenz
 indexPosts: Gelistete Beiträge
 migrationConfirm: "Sind Sie absolut sicher, dass Sie Ihr Nutzerkonto zu diesem {account}
   umziehen möchten? Sobald Sie dies bestätigt haben, kann dies nicht mehr rückgängig
@@ -2131,6 +2136,7 @@ _filters:
   fromDomain: Von Domain
   notesBefore: Beiträge vor
   followingOnly: Nur Folgende
+  followersOnly: Nur Follower
 isBot: Dieses Konto ist ein Bot
 isModerator: Moderator
 isAdmin: Administrator
@@ -2150,3 +2156,16 @@ clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips 
 channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
 reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
 swipeOnMobile: Wischen zwischen den Seiten erlauben
+enableServerMachineStats: Server-Hardware-Statistik einschalten
+enableIdenticonGeneration: Identicon-Generierung einschalten
+verifiedLink: Verifizierter Link
+_feeds:
+  copyFeed: Feed kopieren
+  jsonFeed: JSON-Feed
+  rss: RSS
+youHaveUnreadAnnouncements: Du hast ungelesene Ankündigungen
+donationLink: Link zur Spenden-Seite
+remindMeLater: Vielleicht später
+neverShow: Nicht wieder zeigen
+removeRecipient: Empfänger entfernen
+removeMember: Mitglied entfernen

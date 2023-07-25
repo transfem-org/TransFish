@@ -45,7 +45,7 @@
 					<div class="about">
 						<div
 							class="desc"
-							v-html="meta.description || i18n.ts.headlineMisskey"
+							v-html="meta.description || i18n.ts.headlineFirefish"
 						></div>
 					</div>
 					<div class="action">

@@ -1,7 +1,7 @@
 ---
 _lang_: "Română"
-headlineMisskey: "O rețea conectată prin note"
-introMisskey: "Bine ai venit! Firefish este un serviciu de microblogging open source și decentralizat.\nCreează \"note\" cu care să îți poți împărți gândurile cu oricine din jurul tău. 📡\nCu \"reacții\" îți poți expirma rapid părerea despre notele oricui. 👍\nHai să explorăm o lume nouă! 🚀"
+headlineFirefish: "O rețea conectată prin note"
+introFirefish: "Bine ai venit! Firefish este un serviciu de microblogging open source și decentralizat.\nCreează \"note\" cu care să îți poți împărți gândurile cu oricine din jurul tău. 📡\nCu \"reacții\" îți poți expirma rapid părerea despre notele oricui. 👍\nHai să explorăm o lume nouă! 🚀"
 monthAndDay: "{day}/{month}"
 search: "Caută"
 notifications: "Notificări"

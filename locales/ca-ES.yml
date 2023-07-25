@@ -1,7 +1,7 @@
 _lang_: "Català"
-headlineMisskey: "Una xarxa social de codi obert, descentralitzada i gratuïta per
+headlineFirefish: "Una xarxa social de codi obert, descentralitzada i gratuïta per
   a sempre! 🚀"
-introMisskey: "Benvinguts! Firefish és una plataforma social de codi obert, descentralitzada
+introFirefish: "Benvinguts! Firefish és una plataforma social de codi obert, descentralitzada
   i gratuïta per a sempre! 🚀"
 monthAndDay: "{day}/{month}"
 search: "Cerca"
@@ -116,7 +116,7 @@ reaction: "Reaccions"
 reactionSetting: "Reaccions a mostrar al selector de reaccions"
 reactionSettingDescription2: "Arrossega per reordenar, fes clic per suprimir, prem
   \"+\" per afegir."
-rememberNoteVisibility: "Recorda la configuració de visibilitat de les notes"
+rememberNoteVisibility: "Recorda la configuració de visibilitat de les publicacions"
 attachCancel: "Elimina el fitxer adjunt"
 markAsSensitive: "Marca com a NSFW"
 unmarkAsSensitive: "Desmarca com a NSFW"
@@ -418,7 +418,7 @@ _exportOrImport:
   blockingList: "Bloqueja"
   userLists: "Llistes"
   excludeMutingUsers: Exclou els usuaris silenciats
-  allNotes: Totes les notes
+  allNotes: Totes les publicacions
   excludeInactiveUsers: Exclou usuaris inactius
 _pages:
   script:
@@ -633,7 +633,7 @@ _pages:
     if: Si
     _if:
       variable: Variable
-    post: Formulari de notes
+    post: Formulari de publicació
     _post:
       text: Contingut
       attachCanvasImage: Adjuntar imatge de llenç
@@ -841,7 +841,7 @@ blockedUsers: Usuaris blocats
 noUsers: No hi ha cap usuari
 editProfile: Edita el perfil
 noteDeleteConfirm: Segur que vols eliminar la publicació?
-pinLimitExceeded: No pots fixar més notes
+pinLimitExceeded: No pots fixar més publicacions
 muteAndBlock: Silenciats i blocats
 mutedUsers: Usuaris silenciats
 done: Fet
@@ -1044,7 +1044,7 @@ pinnedClipId: ID del clip que vols fixar
 hcaptcha: hCaptcha
 manageAntennas: Gestiona les Antenes
 name: Nom
-notesAndReplies: Notes i respostes
+notesAndReplies: Publicacions i respostes
 silence: Posa en silenci
 withFiles: Amb fitxers
 popularUsers: Usuaris populars
@@ -1070,7 +1070,7 @@ notFoundDescription: No es pot trobar cap pàgina que correspongui a aquesta adr
 uploadFolder: Carpeta per defecte per pujar arxius
 cacheClear: Netejar la memòria cau
 markAsReadAllNotifications: Marca totes les notificacions com llegides
-markAsReadAllUnreadNotes: Marca totes les notes com a llegides
+markAsReadAllUnreadNotes: Marca totes les publicacions com a llegides
 markAsReadAllTalkMessages: Marca tots els missatges com llegits
 help: Ajuda
 inputMessageHere: Escriu aquí el missatge
@@ -1140,7 +1140,7 @@ promote: Promoure
 numberOfDays: Nombre de dies
 objectStorageBaseUrl: Adreça URL base
 hideThisNote: Amaga aquesta publicació
-showFeaturedNotesInTimeline: Mostra les notes destacades a les líneas de temps
+showFeaturedNotesInTimeline: Mostra les publicacions destacades a les línees de temps
 objectStorage: Emmagatzematge d'objectes
 useObjectStorage: Fes servir l'emmagatzema d'objectes
 expandTweet: Amplia el tuit
@@ -1211,7 +1211,7 @@ notificationSetting: Preferències de notificacions
 makeActive: Activar
 notificationSettingDesc: Tria el tipus de notificació que es veure.
 notifyAntenna: Notificar publicacions noves
-withFileAntenna: Només notes amb fitxers
+withFileAntenna: Només publicacions amb fitxers
 enableServiceworker: Activa les notificacions push per al teu navegador
 antennaUsersDescription: Escriu un nom d'usuari per línea
 antennaInstancesDescription: Escriu la adreça d'un servidor per línea
@@ -1294,7 +1294,7 @@ defaultNavigationBehaviour: Navegació per defecte
 editTheseSettingsMayBreakAccount: Si edites aquestes configuracions pots fer mal bé
   el teu compte.
 userSilenced: Aquest usuari ha sigut silenciat.
-instanceTicker: Informació de notes del servidor
+instanceTicker: Informació de publicacions del servidor
 waitingFor: Esperant a {x}
 random: Aleatori
 system: Sistema
@@ -1312,18 +1312,18 @@ no: No
 noCrawle: Rebutjar la indexació dels restrejadors
 driveUsage: Espai fet servir al Disk
 noCrawleDescription: No permetre que els buscadors guardin la informació de les pàgines
-  de perfil, notes, Pàgines, etc.
+  de perfil, publicacions, Pàgines, etc.
 alwaysMarkSensitive: Marcar per defecte com a NSFW
 lockedAccountInfo: Si has configurat la visibilitat del compte per "Només seguidors"
-  les teves notes no seren visibles per a ningú més, inclús si has d'aprovar els teus
-  seguidors manualment.
+  les teves publicacions no serien visibles per a ningú més, inclús si has d'aprovar
+  els teus seguidors manualment.
 disableShowingAnimatedImages: No reproduir les imatges animades
 verificationEmailSent: S'ha enviat correu electrònic de verificació. Si us plau segueix
   les instruccions per completar la verificació.
 notSet: Sense especificar
 emailVerified: El correu electrònic s'ha verificat
 loadRawImages: Carregar les imatges originals en comptes de mostrar les miniatures
-noteFavoritesCount: Nombre de notes afegides a favorits
+noteFavoritesCount: Nombre de publicacions afegides a favorits
 useSystemFont: Fes servir la font per defecte del sistema
 contact: Contacte
 clips: Retalls
@@ -1331,7 +1331,7 @@ experimentalFeatures: Característiques experimentals
 developer: Desenvolupador
 makeExplorableDescription: Si desactives aquesta funció el teu compte no sortirà a
   la secció "Explora".
-showGapBetweenNotesInTimeline: Mostra un espai entre notes a la línea de temps
+showGapBetweenNotesInTimeline: Mostra un espai entre publicacions a la línea de temps
 makeExplorable: Fes el compte visible a "Explora"
 duplicate: Duplicar
 left: Esquerra
@@ -1343,7 +1343,7 @@ needReloadToApply: Es requereix recarregar la pàgina perquè això surti efecte
 showTitlebar: Mostrar la barra de títol
 onlineUsersCount: Hi han {n} usuaris connectats
 nUsers: '{n} Usuaris'
-nNotes: '{n} Notes'
+nNotes: '{n} Publicacions'
 sendErrorReports: Enviar informe d'error
 clearCache: Netejar memòria cau
 switchAccount: Canvia de compte
@@ -1445,7 +1445,7 @@ _ad:
   reduceFrequencyOfThisAd: Mostrar aquest anunci menys
 _gallery:
   my: La meva Galeria
-  liked: Notes que m'han agradat
+  liked: Publicacions que m'han agradat
   unlike: Elimina m'agrada
   like: M'agrada
 _forgotPassword:
@@ -1617,7 +1617,7 @@ youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
 unlikeConfirm: Vols treure el teu m'agrada?
 fullView: Vista complerta
 desktop: Escritori
-notesCount: Nombre de notes
+notesCount: Nombre de publicacions
 confirmToUnclipAlreadyClippedNote: Aquesta publicació ja és al clip "{name}". La vols
   treure d'aquest clip?
 driveFilesCount: Nombre de fitxers al Disk
@@ -1671,7 +1671,7 @@ objectStorageRegion: Regió
 objectStoragePrefix: Prefix
 objectStoragePrefixDesc: Els fitxers es guardaran dins de carpetes amb aquest prefix.
 objectStorageEndpoint: Extrem
-newNoteRecived: Hi han notes noves
+newNoteRecived: Hi han publicacions noves
 sounds: Sons
 listen: Escoltar
 none: Res
@@ -1686,7 +1686,8 @@ objectStorageUseProxyDesc: Desactiva això si no faràs servir un servidor Proxy
 objectStorageSetPublicRead: Fixar com a "public-read" al pujar
 serverLogs: Registres del servidor
 deleteAll: Esborrar tot
-showFixedPostForm: Mostrar el formulari de notes al principi de la línia de temps
+showFixedPostForm: Mostrar el formulari de publicacions al principi de la línia de
+  temps
 unableToProcess: Aquesta operació no es pot acabar
 recentUsed: Fet servir fa poc
 install: Instal·lar
@@ -1778,7 +1779,7 @@ migrationConfirm: "Esteu absolutament segur que voleu migrar el vostre compte a 
   Un cop ho feu, no podreu revertir-ho i no podreu tornar a utilitzar el vostre compte
   amb normalitat.\nA més, assegureu-vos d'haver configurat aquest compte actual com
   el compte del qual us moveu."
-defaultReaction: Reacció d'emoji predeterminada per a notes sortints i entrants
+defaultReaction: Reacció d'emoji predeterminades per a publicacions sortints i entrants
 enableCustomKaTeXMacro: Activa les macros KaTeX personalitzades
 noteId: ID de la publicació
 _nsfw:
@@ -1841,7 +1842,7 @@ pushNotificationAlreadySubscribed: Les notificacions push ja estan activades
 pushNotificationNotSupported: El vostre navegador o servidor no admet notificacions
   push
 license: Llicència
-indexPosts: Índex de notes
+indexPosts: Índex de publicacions
 indexFrom: Índex a partir de l'ID de Publicacions
 indexFromDescription: Deixeu en blanc per indexar cada publicació
 indexNotice: Ara indexant. Això probablement trigarà una estona, si us plau, no reinicieu
@@ -1864,7 +1865,7 @@ _channel:
   owned: Propietari
   usersCount: '{n} Participants'
   following: Seguit per
-  notesCount: '{n} Notes'
+  notesCount: '{n} Publicacions'
   nameAndDescription: Nom i descripció
   nameOnly: Només nom
 _instanceMute:
@@ -1912,7 +1913,7 @@ _tutorial:
     Firefish. Aquest sí que sí! És una mica complicat, però ho aconseguiràs en poc
     temps.
   step2_2: Proporcionar informació sobre qui sou facilitarà que altres puguin saber
-    si volen veure les vostres notes o seguir-vos.
+    si volen veure les vostres publicacions o seguir-vos.
   step3_1: Ara toca seguir a algunes persones!
   step3_2: "Les teves líneas de temps d'inici i social es basen en qui seguiu, així
     que proveu de seguir un parell de comptes per començar.\nFeu clic al cercle més
@@ -1934,9 +1935,9 @@ _permissions:
   "write:notifications": Gestiona les teves notificacions
   "write:user-groups": Editar o suprimir grups d'usuaris
   "write:blocks": Editar la llista d'usuaris bloquejats
-  "write:notes": Redactar o suprimir notes
+  "write:notes": Redactar o suprimir publicacions
   "write:channels": Editar els teus canals
-  "read:gallery-likes": Consulta la llista de notes que t'agraden de la galeria
+  "read:gallery-likes": Consulta la llista de publicacions que t'agraden de la galeria
   "write:drive": Editar o suprimir fitxers i carpetes del Disc
   "read:favorites": Consulta la teva llista d'adreces d'interès
   "write:favorites": Editeu la teva llista d'adreces d'interès
@@ -1950,7 +1951,7 @@ _permissions:
   "read:channels": Consulta els teus canals
   "read:gallery": Consulta la teva galeria
   "write:gallery": Edita la teva galeria
-  "write:gallery-likes": Edita la llista de notes que t'agraden de la galeria
+  "write:gallery-likes": Edita la llista de publicacions que t'agraden de la galeria
   "read:following": Consulta la informació sobre a qui segueixes
   "read:reactions": Consulta les teves reaccions
   "read:pages": Consulta la teva pàgina
@@ -1994,10 +1995,10 @@ _charts:
   apRequest: Sol·licituds
   usersTotal: Nombre total d'usuaris
   activeUsers: Usuaris actius
-  notesIncDec: Diferència en el nombre de notes
-  localNotesIncDec: Diferència en el nombre de notes locals
-  remoteNotesIncDec: Diferència en el nombre de notes remotes
-  notesTotal: Nombre total de notes
+  notesIncDec: Diferència en el nombre de publicacions
+  localNotesIncDec: Diferència en el nombre de publicacions locals
+  remoteNotesIncDec: Diferència en el nombre de publicacions remotes
+  notesTotal: Nombre total de publicacions
   filesIncDec: Diferència en el nombre de fitxers
   filesTotal: Nombre total de fitxers
   storageUsageTotal: Ús total d'emmagatzematge
@@ -2006,13 +2007,13 @@ _instanceCharts:
   requests: Sol·licituds
   users: Diferència en el nombre d'usuaris
   usersTotal: Nombre acumulat d'usuaris
-  notes: Diferència en el nombre de notes
+  notes: Diferència en el nombre de publicacions
   ffTotal: Nombre acumulat d'usuaris que segueixes/et segueixen
   cacheSize: Diferència en la mida de la memòria cau
   cacheSizeTotal: Mida total acumulada de la memòria cau
   files: Diferència en el nombre de fitxers
   filesTotal: Nombre acumulat de fitxers
-  notesTotal: Nombre acumulat de notes
+  notesTotal: Nombre acumulat de publicacions
   ff: "Diferència en el nombre d'usuaris que segueixes/que et segueixen "
 _timelines:
   home: Inici
@@ -2033,12 +2034,12 @@ _wordMute:
   hard: Dur
   muteWordsDescription2: Envolta les paraules clau amb barres inclinades per utilitzar
     expressions regulars.
-  softDescription: Amaga les notes que compleixen les condicions establertes de la
-    línia de temps.
-  hardDescription: Evita que les notes que compleixin les condicions establertes s'afegeixin
-    a la línia de temps. A més, aquestes notes no s'afegiran a la línia de temps encara
-    que es modifiquin les condicions.
-  mutedNotes: Notes silenciades
+  softDescription: Amaga les publicacions que compleixen les condicions establertes
+    de la línia de temps.
+  hardDescription: Evita que les publicacions que compleixin les condicions establertes
+    s'afegeixin a la línia de temps. A més, aquestes publicacions no s'afegiran a
+    la línia de temps encara que es modifiquin les condicions.
+  mutedNotes: Publicacions silenciades
 _auth:
   shareAccessAsk: Estàs segur que vols autoritzar aquesta aplicació per accedir al
     teu compte?
@@ -2061,11 +2062,11 @@ _messaging:
   groups: Grups
   dms: Privat
 _antennaSources:
-  all: Totes les notes
+  all: Totes les publicacions
   homeTimeline: Publicacions dels usuaris que segueixes
-  users: Notes d'usuaris concrets
-  userGroup: Notes d'usuaris d'un grup determinat
-  userList: Notes d'una llista determinada d'usuaris
+  users: Publicacions d'usuaris concrets
+  userGroup: Publicacions d'usuaris d'un grup determinat
+  userList: Publicacions d'una llista determinada d'usuaris
   instances: Publicacions de tots els usuaris d'un servidor
 _relayStatus:
   requesting: Pendent
