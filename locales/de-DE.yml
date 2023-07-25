@@ -1,8 +1,8 @@
 _lang_: "Deutsch"
 headlineFirefish: "Eine dezentralisierte Open-Source Social Media Plattform, die für
   immer gratis bleibt! 🚀"
-introFirefish: "Willkommen! Firefish ist eine dezentralisierte Open-Source Social Media
-  Plattform, die für immer gratis bleibt!🚀"
+introFirefish: "Willkommen! Firefish ist eine dezentralisierte Open-Source Social
+  Media Plattform, die für immer gratis bleibt!🚀"
 monthAndDay: "{day}.{month}."
 search: "Suchen"
 notifications: "Benachrichtigungen"
@@ -67,7 +67,7 @@ export: "Export"
 files: "Dateien"
 download: "Herunterladen"
 driveFileDeleteConfirm: "Möchtest du die Datei \"{name}\" wirklich löschen? Es wird
-  aus allen Beiträgen entfernt, die die Datei als Anhang enthalten."
+  aus allen Beiträgen entfernt, welche die Datei als Anhang enthalten."
 unfollowConfirm: "Bist du dir sicher, daß du {name} nicht mehr folgen möchtest?"
 exportRequested: "Du hast einen Export angefragt. Dies kann etwas Zeit in Anspruch
   nehmen. Sobald der Export abgeschlossen ist, wird er deinem Laufwerk hinzugefügt."
@@ -777,10 +777,10 @@ nUsers: "{n} Nutzer"
 nNotes: "{n} Beiträge"
 sendErrorReports: "Fehlerberichte senden"
 sendErrorReportsDescription: "Ist diese Option aktiviert, so werden beim Auftreten
-  von Fehlern detaillierte Fehlerinformationen an Firefish weitergegeben, was zur Verbesserung
-  der Qualität von Firefish beiträgt.\nEnthalten in diesen Informationen sind u.a.
-  die Version deines Betriebssystems, welchen Browser du verwendest und ein Verlauf
-  deiner Aktivitäten innerhalb Firefish."
+  von Fehlern detaillierte Fehlerinformationen an Firefish weitergegeben, was zur
+  Verbesserung der Qualität von Firefish beiträgt.\nEnthalten in diesen Informationen
+  sind u.a. die Version deines Betriebssystems, welchen Browser du verwendest und
+  ein Verlauf deiner Aktivitäten innerhalb Firefish."
 myTheme: "Meine Farbkombination"
 backgroundColor: "Hintergrundfarbe"
 accentColor: "Akzentfarbe"
@@ -2111,12 +2111,12 @@ indexFrom: Indexieren ab Beitragskennung aufwärts
 indexNotice: Wird jetzt indexiert. Dies wird wahrscheinlich eine Weile dauern, bitte
   starten Sie Ihren Server für mindestens eine Stunde nicht neu.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
-  zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
-  \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
-  geschrieben.\nZum Beispiel wird\n\\newcommand{\\add}[2]{#1 + #2} \\add{3}{foo} um
-  3 + foo erweitert.\nDie geschweiften Klammern, die den Makronamen umgeben, können
-  in runde oder eckige Klammern geändert werden. Dies hat Auswirkungen auf die Klammern,
-  die für die Argumente verwendet werden. Pro Zeile kann ein (und nur ein) Makro definiert
+  zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als
+  \\newcommand{\\name}{content} oder \\newcommand{\\name}[number of arguments]{content}
+  geschrieben. Zum Beispiel wird \\newcommand{\\add}[2]{#1 + #2} \\add{3}{foo} erweitern
+  zu 3 + foo. Die geschweiften Klammern, die den Makro-Namen umgeben, können in runde
+  oder eckige Klammern geändert werden. Dies hat Auswirkungen auf die Klammern, die
+  für die Argumente verwendet werden. Pro Zeile kann ein (und nur ein) Makro definiert
   werden, und Sie können die Zeile nicht mitten in der Definition umbrechen. Ungültige
   Zeilen werden einfach ignoriert. Es werden nur einfache Funktionen zur Substitution
   von Zeichenketten unterstützt; erweiterte Syntax, wie z. B. bedingte Verzweigungen,
@@ -2169,3 +2169,5 @@ remindMeLater: Vielleicht später
 neverShow: Nicht wieder zeigen
 removeRecipient: Empfänger entfernen
 removeMember: Mitglied entfernen
+alt: ALT
+xl: XL
