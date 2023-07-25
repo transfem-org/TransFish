@@ -117,7 +117,7 @@ sensitive: "NSFW"
 add: "Hinzufügen"
 reaction: "Reaktionen"
 reactionSetting: "Reaktionen, die in der Reaktionsauswahl angezeigt werden sollen"
-reactionSettingDescription2: "Ziehen Sie, um neu zu ordnen,\nklicken Sie, um zu löschen,\n
+reactionSettingDescription2: "Ziehen Sie, um neu zu ordnen, klicken Sie, um zu löschen,
   drücken Sie \"+\", um hinzuzufügen."
 rememberNoteVisibility: "Einstellungen für die Sichtbarkeit von Beiträgen speichern"
 attachCancel: "Anhang entfernen"
@@ -1536,7 +1536,8 @@ _poll:
   remainingSeconds: "{s} Sekunde(n) verbleibend"
 _visibility:
   public: "Öffentlich"
-  publicDescription: "Dein Beitrag wird global für alle Nutzer sichtbar sein"
+  publicDescription: "Dein Beitrag wird global in allen öffentlichen Timelines sichtbar
+    sein"
   home: "nicht aufgelistet"
   homeDescription: "Beitrag nur auf der Home-Timeline anzeigen"
   followers: "Follower"
@@ -2067,8 +2068,8 @@ adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wiss
   funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
 customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
 allowedInstancesDescription: Hostnamen von Servern, die auf der Liste vertrauenswürdiger
-  Server für die Föderation stehen sollen, müssen jeweils auf einer neuen Zeile stehen
-  (tritt nur im privaten Modus in Kraft).
+  Server für die Föderation stehen sollen, jeweils getrennt in einer neuen Zeile (tritt
+  nur im privaten Modus in Kraft).
 migration: Migration
 updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
 showAdminUpdates: Anzeigen, dass eine neue Firefish-Version verfügbar ist (nur Administrator)
@@ -2076,8 +2077,7 @@ customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (
   die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
   werden, wenn ein Benutzer die Seite (neu) lädt.
 recommendedInstancesDescription: Empfohlene Server, die durch Zeilenumbrüche getrennt
-  sind, werden in der "Favoriten"-Timeline angezeigt. Fügen Sie NICHT "https://" hinzu,
-  sondern NUR die Domain.
+  sind, werden in der "Favoriten"-Timeline angezeigt.
 sendModMail: Moderationshinweis senden
 moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt,
   sodass Sie von ihrem bisherigen Konto zu diesem Nutzerkonto wechseln können. Tun
