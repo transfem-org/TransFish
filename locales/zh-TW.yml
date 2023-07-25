@@ -996,7 +996,7 @@ _nsfw:
   force: "隱藏所有內容"
 _mfm:
   cheatSheet: "MFM代碼小抄"
-  intro: "MFM是Misskey專用的標記語言，可以在Misskey中的各個位置使用。 您可以這裏看到MFM可用語法列表。"
+  intro: "MFM是Misskey、Firefish、Akkoma等專用的標記語言，可以在各個位置使用。 您可以這裏看到MFM可用語法列表。"
   dummy: "Firefish拓展了Fediverse的世界"
   mention: "提及"
   mentionDescription: "透過 @+用戶名 來標示特定使用者。"
@@ -1068,6 +1068,16 @@ _mfm:
   positionDescription: 按指定數量移動內容。
   advancedDescription: 如果禁用，則僅允許基本標記，除非正在播放 MFM 動畫
   advanced: 高級MFM
+  fade: 淡出
+  foreground: 文字顏色
+  crop: 裁切
+  scale: 縮放
+  scaleDescription: 按指定數量縮放內容。
+  fadeDescription: 將內容淡入淡出。
+  background: 背景顏色
+  backgroundDescription: 改變背景顏色。
+  cropDescription: 裁切內容。
+  foregroundDescription: 改變文字顏色。
 _instanceTicker:
   none: "隱藏"
   remote: "向遠端使用者顯示"
@@ -1871,7 +1881,7 @@ subscribePushNotification: 啟用推送通知
 unsubscribePushNotification: 禁用推送通知
 pushNotificationAlreadySubscribed: 推送通知已經啟用
 recommendedInstancesDescription: 以每行分隔的推薦伺服器出現在推薦的時間線中。
-searchPlaceholder: 在聯邦網路上搜尋
+searchPlaceholder: 在 Firefish 上搜尋
 cw: 內容警告
 selectChannel: 選擇一個頻道
 newer: 較新
@@ -1922,3 +1932,14 @@ removeQuote: 删除引用
 removeRecipient: 刪除收件者
 removeMember: 刪除成員
 isBot: 此帳戶是機器人
+verifiedLink: 已驗證連結
+_filters:
+  followersOnly: 只顯示關注者的
+  fromDomain: 從域名
+  notesBefore: 指定時間以前
+  notesAfter: 指定時間以後
+  followingOnly: 只顯示關注的
+  fromUser: 從使用者
+  withFile: 有檔案
+alt: 替代文字
+xl: 特大
