@@ -513,17 +513,15 @@ showFeaturedNotesInTimeline: "Tampilkan postingan yang diunggulkan di linimasa"
 objectStorage: "Penyimpanan Objek"
 useObjectStorage: "Gunakan object storage"
 objectStorageBaseUrl: "URL Dasar"
-objectStorageBaseUrlDesc: "Prefix URL digunakan untuk mengkonstruksi URL ke object
-  (media) referencing. Tentukan URL jika kamu menggunakan CDN atau Proxy, jika tidak
-  tentukan alamat yang dapat diakses secara publik sesuai dengan panduan dari layanan
-  yang akan kamu gunakan, contohnya. 'https://<bucket>.s3.amazonaws.com' untuk AWS
-  S3, dan 'https://storage.googleapis.com/<bucket>' untuk GCS."
-objectStorageBucket: "Bucket"
+objectStorageBaseUrlDesc: "URL dipakai sebagai referensi. Tentukan URL CDN atau Proksimu
+  jika kamu menggunakan salah satunya.\nUntuk S3 gunakan 'https://<bucket>.s3.amazonaws.com'
+  dan GCS atau layanan serupa gunakan 'https://storage.googleapis.com/<bucket>', dll."
+objectStorageBucket: "Ember"
 objectStorageBucketDesc: "Mohon tentukan nama bucket yang digunakan pada layanan yang
   telah dikonfigurasi."
 objectStoragePrefix: "Prefix"
 objectStoragePrefixDesc: "Berkas tidak akan disimpan dalam direktori dari prefix ini."
-objectStorageEndpoint: "Endpoint"
+objectStorageEndpoint: "Titik akhir"
 objectStorageEndpointDesc: "Kosongkan bagian ini jika kamu menggunakan AWS S3, jika
   tidak tentukan endpoint sebagai '<host>' atau '<host>:<port>' sesuai dengan panduan
   dari layanan yang akan kamu gunakan."
@@ -539,18 +537,18 @@ objectStorageUseProxyDesc: "Matikan ini jika kamu tidak akan menggunakan Proxy u
 objectStorageSetPublicRead: "Setel \"public-read\" disaat mengunggah"
 serverLogs: "Log Peladen"
 deleteAll: "Hapus semua"
-showFixedPostForm: "Tampilkan form posting di atas linimasa."
+showFixedPostForm: "Tampilkan formulir posting di atas linimasa"
 newNoteRecived: "Ada postingan baru"
 sounds: "Bunyi"
 listen: "Dengarkan"
 none: "Tidak ada"
 showInPage: "Tampilkan di halaman"
-popout: "Pop-out"
+popout: "Sembulan"
 volume: "Volume"
 masterVolume: "Master volume"
 details: "Selengkapnya"
 chooseEmoji: "Pilih emoji"
-unableToProcess: "Operasi tersebut tidak dapat diselesaikan."
+unableToProcess: "Tindakan tersebut tidak dapat diselesaikan"
 recentUsed: "Baru saja digunakan"
 install: "Pasang"
 uninstall: "Copot pemasangan"
@@ -564,7 +562,7 @@ ascendingOrder: "Urutkan naik"
 descendingOrder: "Urutkan menurun"
 scratchpad: "Scratchpad"
 scratchpadDescription: "Scratchpad menyediakan lingkungan eksperimen untuk AiScript.
-  Kamu  bisa menulis, mengeksuksi, serta mengecek hasil yang berinteraksi dengan Firefish."
+  Kamu bisa menulis, mengeksekusi, serta mengecek hasil yang berinteraksi dengan Firefish."
 output: "Keluaran"
 script: "Script"
 disablePagesScript: "Nonaktifkan script pada halaman"
@@ -655,7 +653,7 @@ database: "Basis data"
 channel: "Kanal"
 create: "Buat"
 notificationSetting: "Pengaturan Pemberitahuan"
-notificationSettingDesc: "Pilih tipe pemberitahuan untuk ditampilkan"
+notificationSettingDesc: "Pilih tipe pemberitahuan untuk ditampilkan."
 useGlobalSetting: "Gunakan setelan global"
 useGlobalSettingDesc: "Jika dinyalakan, setelan pemberitahuan akun kamu akan digunakan.
   Jika dimatikan, konfigurasi secara individu dapat dibuat."
@@ -743,8 +741,8 @@ clips: "Klip"
 experimentalFeatures: "Fitur eksperimental"
 developer: "Pengembang"
 makeExplorable: "Buat akun tampil di \"Jelajahi\""
-makeExplorableDescription: "Jika kamu mematikan ini, akun kamu tidak akan muncul di
-  bagian \"Jelajahi:"
+makeExplorableDescription: "Jika kamu menonaktifkan ini, akun kamu tidak akan muncul
+  di bagian \"Jelajahi\"."
 showGapBetweenNotesInTimeline: "Tampilkan jarak diantara catatan pada linimasa"
 duplicate: "Duplikat"
 left: "Kiri"
@@ -846,7 +844,7 @@ low: "Rendah"
 emailNotConfiguredWarning: "Alamat surel tidak disetel."
 ratio: "Rasio"
 previewNoteText: "Tampilkan pratinjau"
-customCss: "Custom CSS"
+customCss: "CSS khusus"
 customCssWarn: "Pengaturan ini seharusnya digunakan jika kamu tahu cara kerjanya.
   Memasukkan nilai yang tidak tepat dapat menyebabkan klien tidak berfungsi semestinya."
 global: "Global"
@@ -897,7 +895,7 @@ hide: "Sembunyikan"
 leaveGroup: "Keluar grup"
 leaveGroupConfirm: "Apakah kamu yakin untuk keluar dari \"{name}\"?"
 useDrawerReactionPickerForMobile: "Tampilkan bilah reaksi sebagai laci di ponsel"
-welcomeBackWithName: "Selamat datang kembali, {name}."
+welcomeBackWithName: "Selamat datang kembali, {name}"
 clickToFinishEmailVerification: "Mohon klik [{ok}] untuk menyelesaikan verifikasi
   email."
 overridedDeviceKind: "Tipe perangkat"
@@ -930,7 +928,7 @@ localOnly: "Hanya lokal"
 account: "Akun"
 _emailUnavailable:
   used: "Alamat surel ini telah digunakan"
-  format: "Format tidak valid."
+  format: "Format alamat surel ini tidak valid"
   disposable: "Alamat surel temporer tidak dapat digunakan"
   mx: "Peladen alamat surel ini tidak valid"
   smtp: "Peladen alamat surel ini tidak merespon"
@@ -951,7 +949,7 @@ _accountDelete:
   sendEmail: "Setelah penghapusan akun selesai, pemberitahuan akan dikirimkan ke alamat
     surel yang terdaftarkan pada akun ini."
   requestAccountDelete: "Minta penghapusan akun"
-  started: "Penghapusan telah dimulai"
+  started: "Penghapusan telah dimulai."
   inProgress: "Penghapusan sedang dalam proses"
 _ad:
   back: "Kembali"
@@ -984,8 +982,8 @@ _registry:
   domain: "Domain"
   createKey: "Buat kunci"
 _aboutFirefish:
-  about: "Firefish adalah perangkat lunak sumber terbuka yang sedang dikembangkan oleh
-    syuilo sejak 2014."
+  about: "Firefish adalah perangkat lunak sumber terbuka yang sedang dikembangkan
+    oleh syuilo sejak 2014."
   contributors: "Kontributor utama"
   allContributors: "Seluruh kontributor"
   source: "Sumber kode"
@@ -1033,9 +1031,9 @@ _mfm:
   blockCodeDescription: "Menampilkan sorotan sintaks untuk kode(program-) multi baris
     dalam sebuah blok."
   inlineMath: "Matematika (Dalam baris)"
-  inlineMathDescription: "Menampilkan formula matematika (KaTeX) dalam baris."
+  inlineMathDescription: "Menampilkan formula matematika (KaTeX) dalam baris"
   blockMath: "Matematika (Blok)"
-  blockMathDescription: "Tampilkan formula matematika (KaTeX) dalam sebuah blok."
+  blockMathDescription: "Tampilkan formula matematika (KaTeX) dalam blok"
   quote: "Kutip"
   quoteDescription: "Menampilkan konten sebagai kutipan."
   emoji: "Emoji kustom"
@@ -1046,7 +1044,7 @@ _mfm:
   flip: "Balik"
   flipDescription: "Balikkan konten secara horizontal atau vertikal."
   jelly: "Animasi (Jelly)"
-  jellyDescription: "Menerapkan animasi seperti jelly"
+  jellyDescription: "Beri konten dengan animasi seperti jeli."
   tada: "Animasi (Tada)"
   tadaDescription: "Menerapkan animasi seperti \"Kejutan!\"."
   jump: "Animasi (Loncat)"
@@ -1090,7 +1088,7 @@ _mfm:
     jika MFM beranimasi dimainkan
   positionDescription: Gerakkan konten dengan jumlah yang ditentukan.
   scale: Skala
-  cropDescription: Pangkas
+  cropDescription: Pangkas konten.
   background: Warna latar belakang
   plain: Biasa
   position: Posisi
@@ -1182,7 +1180,7 @@ _theme:
     indicator: "Indikator"
     panel: "Panel"
     shadow: "Bayangan"
-    header: "Header"
+    header: "Tajuk"
     navBg: "Latar belakang bilah samping"
     navFg: "Teks bilah samping"
     navHoverFg: "Teks bilah samping (Mengambang)"
@@ -1244,8 +1242,7 @@ _time:
 _tutorial:
   title: "Cara menggunakan Firefish"
   step1_1: "Selamat datang!"
-  step1_2: "Halaman ini disebut \"linimasa\". Halaman ini menampilkan \"catatan\"
-    yang diurutkan secara kronologis dari orang-orang yang kamu \"ikuti\"."
+  step1_2: "Ayo siapkan. Lekas mulai tanpa basa-basi!"
   step1_3: "Linimasa kamu kosong, karena kamu belum mencatat catatan apapun atau mengikuti
     siapapun."
   step2_1: "Selesaikan menyetel profilmu sebelum menulis sebuah catatan atau mengikuti
@@ -1253,23 +1250,23 @@ _tutorial:
   step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuatnya lebih
     mudah bagi orang lain untuk menentukan jika mereka ingin postinganmu atau mengikutimu."
   step3_1: "Sekarang saatnya mengikuti beberapa orang!"
-  step3_2: "Langkah selanjutnya adalah membuat catatan. Kamu bisa lakukan ini dengan
-    mengklik ikon pensil pada layar kamu."
+  step3_2: "Linimasa beranda dan sosial berdasarkan siapa yang kamu ikuti, jadi coba
+    ikuti beberapa akun untuk memulai.\nKlik lingkaran plus pada pojok kanan atas
+    pada profil untuk mengikuti mereka."
   step3_3: "Isilah di dalam modal dan tekan tombol pada atas kanan untuk memcatat
     catatan kamu."
   step3_4: "Bingung tidak berpikiran untuk mengatakan sesuatu? Coba saja \"baru aja
     ikutan bikin akun misskey punyaku\"!"
-  step4_1: "Selesai mencatat catatan pertamamu?"
+  step4_1: "Mari kita lihat kamu di sana."
   step4_2: "Untuk kiriman pertama kamu, beberapa orang biasanya membuat postingan
     {introduction} atau \"Halo dunia!\" yang sederhana."
-  step5_1: "Sekarang, mari mencoba untuk membuat linimasamu lebih hidup dengan mengikuti
-    orang lain."
+  step5_1: "Linimasa, linimasa di mana-mana!"
   step5_2: "Servermu memiliki {timelines} lini masa berbeda yang diaktifkan."
   step5_3: "Lini masa Beranda {icon} adalah tempat di mana kamu bisa melihat postingan
     dari akun yang kamu ikuti."
   step5_4: "Linimasa Lokal {icon} adalah tempat kamu dapat melihat postingan dari
     siapa pun di server ini."
-  step6_1: "Sekarang kamu dapat melihat catatan pengguna lain pada linimasamu."
+  step6_1: "Jadi, tempat apa ini?"
   step6_2: "Ya, kamu tidak saja bergabung ke Firefish. Kamu telah bergabung ke sebuah
     portal ke Fediverse, sebuah jaringan ribuan server yang saling berhubungan."
   step6_3: "Setiap server bekerja dalam berbagai cara, dan tidak semua server menjalankan
@@ -1448,7 +1445,7 @@ _visibility:
 _postForm:
   replyPlaceholder: "Balas ke postingan ini..."
   quotePlaceholder: "Kutip postingan ini..."
-  channelPlaceholder: "Posting ke kanal"
+  channelPlaceholder: "Posting ke kanal..."
   _placeholders:
     a: "Sedang apa kamu saat ini?"
     b: "Apa yang terjadi di sekitarmu?"
@@ -1500,7 +1497,7 @@ _instanceCharts:
   usersTotal: "Jumlah # pengguna kumulatif"
   notes: "Perbedaan di jumlah postingan"
   notesTotal: "Jumlah kumulatif postingan"
-  ff: "Perbedaan jumlah # dalam pengikut"
+  ff: "Perbedaan jumlah pengguna yang diikuti / pengikut "
   ffTotal: "Jumlah # pengikut kumulatif"
   cacheSize: "Perbedaan dalam ukuran tembolok"
   cacheSizeTotal: "Total ukuran tembolok kumulatif"
@@ -1517,7 +1514,7 @@ _pages:
   editPage: "Sunting halaman"
   readPage: "Lihat sumber kode aktif"
   created: "Halaman berhasil dibuat"
-  updated: "Halaman berhasil diperbaharui!"
+  updated: "Halaman berhasil disunting"
   deleted: "Halaman telah dihapus"
   pageSetting: "Pengaturan Halaman"
   nameAlreadyExists: "URL Halaman yang ditentukan sudah ada"
