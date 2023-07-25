@@ -1201,6 +1201,7 @@ _mfm:
   alwaysPlay: Alle animierten MFM immer automatisch abspielen
   advancedDescription: Wenn diese Funktion deaktiviert ist, können nur einfache Formatierungen
     vorgenommen werden, es sei denn, animiertes MFM ist aktiviert
+  advanced: Erweitertes MFM
 _instanceTicker:
   none: "Nie anzeigen"
   remote: "Für Nutzer eines anderen Servers anzeigen"
@@ -2065,9 +2066,9 @@ adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wiss
   mehr normal funktionieren. Bitte stellen Sie sicher, dass Ihr CSS ordnungsgemäß
   funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
 customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
-allowedInstancesDescription: Hosts von Servern, die zur Verbindung auf die Liste vertrauenswürdiger
-  Server gesetzt werden sollen, werden jeweils durch eine neue Zeile getrennt eingegeben
-  (gilt nur im privaten Modus).
+allowedInstancesDescription: Hostnamen von Servern, die auf der Liste vertrauenswürdiger
+  Server für die Föderation stehen sollen, müssen jeweils auf einer neuen Zeile stehen
+  (tritt nur im privaten Modus in Kraft).
 migration: Migration
 updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
 showAdminUpdates: Anzeigen, dass eine neue Firefish-Version verfügbar ist (nur Administrator)
