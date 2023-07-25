@@ -363,11 +363,11 @@
 					>
 					<template v-if="narrow">
 						<XPhotos :key="user.id" :user="user" />
-						<XActivity
+						<!-- <XActivity
 							:key="user.id"
 							:user="user"
 							style="margin-top: var(--margin)"
-						/>
+						/> -->
 					</template>
 				</div>
 				<div>
