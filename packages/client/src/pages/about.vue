@@ -259,8 +259,9 @@ definePageMetadata(
 );
 
 onMounted(() => {
-	if (defaultStore.state.woozyMode) {
-		instanceIcon!.src = "/static-assets/woozy.png";
+	if (defaultStore.state.woozyMode === true) {
+		iconSrc.value = "/static-assets/woozy.png";
+		instanceIcon.src = iconSrc.value;
 	}
 });
 
