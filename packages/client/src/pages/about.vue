@@ -441,7 +441,6 @@ function syncSlide(index) {
 			display: block;
 			margin: 16px auto 0 auto;
 			height: 64px;
-			border-radius: 8px;
 
 			&.noAnimation {
 				animation: none;
