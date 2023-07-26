@@ -979,7 +979,7 @@ localOnly: "Nur Lokal"
 remoteOnly: "Nur für andere/fremde Server"
 failedToUpload: "Hochladen fehlgeschlagen"
 cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Teile
-  der Datei möglicherweise NSFW Inhalt enthalten"
+  der Datei möglicherweise NSFW-Inhalt enthalten"
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein
   Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
