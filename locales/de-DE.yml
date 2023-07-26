@@ -2071,7 +2071,7 @@ allowedInstancesDescription: Hostnamen von Servern, die auf der Liste vertrauens
   Server für die Föderation stehen sollen, jeweils getrennt in einer neuen Zeile (tritt
   nur im privaten Modus in Kraft).
 migration: Migration
-updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
+updateAvailable: Möglicherweise ist ein Update verfügbar
 showAdminUpdates: Anzeigen, dass eine neue Firefish-Version verfügbar ist (nur Administrator)
 customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (Begrüßungsbildschirm),
   die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
