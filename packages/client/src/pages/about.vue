@@ -270,24 +270,27 @@ function easterEgg() {
 		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
 		defaultStore.set("woozyMode", defaultStore.state.woozyMode);
 		if (instanceIcon) {
-			if (iconClicks % 6 === 0) {
-				iconSrc.value =
-					instance.iconUrl || instance.faviconUrl || "/favicon.ico";
-			} else {
-				iconSrc.value = "/static-assets/woozy.png";
-			}
-			instanceIcon.src = iconSrc.value;
+			instanceIconAnimation.value = "spin";
+			setTimeout(() => {
+				if (iconClicks % 6 === 0) {
+					iconSrc.value =
+						instance.iconUrl ||
+						instance.faviconUrl ||
+						"/favicon.ico";
+				} else {
+					iconSrc.value = "/static-assets/woozy.png";
+				}
+				instanceIcon.src = iconSrc.value;
+			}, 500);
 		}
 	}
 }
 
 watch(iconSrc, (newValue, oldValue) => {
 	if (newValue !== oldValue) {
-		instanceIconAnimation.value = "spin";
-
 		setTimeout(() => {
 			instanceIconAnimation.value = "";
-		}, 1000);
+		}, 500);
 	}
 });
 
