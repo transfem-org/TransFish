@@ -1064,7 +1064,7 @@ _preferencesBackups:
   saveNew: "Neues Backup speichern"
   loadFile: "Von Datei laden"
   apply: "Auf dieses Gerät anwenden"
-  save: "Speichern"
+  save: "Änderungen speichern"
   inputName: "Gib einen Namen für dieses Backup ein"
   cannotSave: "Speichern fehlgeschlagen"
   nameAlreadyExists: "Es existiert bereits ein Backup unter dem Namen \"{name}\".
@@ -1107,9 +1107,9 @@ _aboutFirefish:
   sponsors: Firefish-Sponsoren
   donateHost: Spende an {host}
 _nsfw:
-  respect: "Mit NSFW gekennzeichnete Bilder verbergen"
-  ignore: "Mit NSFW gekennzeichnete Bilder nicht verbergen"
-  force: "Alle Medien verbergen"
+  respect: "Mit NSFW gekennzeichnete Mediendateien verbergen"
+  ignore: "Mit NSFW gekennzeichnete Mediendateien nicht verbergen"
+  force: "Alle Mediendateien verbergen"
 _mfm:
   cheatSheet: "MFM Spickzettel"
   intro: "MFM ist eine Markup-Sprache, die in Misskey, Firefish, Akkoma und anderen
@@ -1148,7 +1148,7 @@ _mfm:
   search: "Suche"
   searchDescription: "Eine vorgefertige Suchanfragebox anzeigen."
   flip: "Spiegelung"
-  flipDescription: "Inhalt horizontal oder vertikal gespiegelt anzeigen."
+  flipDescription: "Spiegelt den Inhalt horizontal oder vertikal."
   jelly: "Animation (Dehnen)"
   jellyDescription: "Verleiht Inhalt eine sich dehnende Animation."
   tada: "Animation (Tada)"
