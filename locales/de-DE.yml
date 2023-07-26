@@ -1028,7 +1028,7 @@ _signup:
 _accountDelete:
   accountDelete: "Nutzerkonto löschen"
   mayTakeTime: "Da die Löschung eines Nutzerkontos ein aufwendiger Prozess ist, kann
-    dessen Dauer davon abhängen, wie viel Inhalt von diesem erstellt wurde oder wie
+    dessen Dauer davon abhängen, wie viel Inhalt von diesem erstellt wurde und wie
     viele Dateien von diesem hochgeladen wurden."
   sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die registrierte Email-Adresse
     eine Benachrichtigung versendet."
@@ -1071,9 +1071,9 @@ _preferencesBackups:
     Bitte gib einen anderen Namen ein."
   applyConfirm: "Wirklich das Backup \"{name}\" auf dieses Gerät anwenden? Bestehende
     Einstellungen darauf werden überschrieben."
-  saveConfirm: "Als {name} speichern?"
+  saveConfirm: "Backup als {name} speichern?"
   deleteConfirm: "Das Backup {name} löschen?"
-  renameConfirm: "Soll dieses Backup von \"{old}\" zu \"{new}\" umbenannt werden?"
+  renameConfirm: "Backup von \"{old}\" zu \"{new}\" umbenennen?"
   noBackups: "Keine Backups existieren. Backups können über \"Neu erstellen\" erstelllt
     werden."
   createdAt: "Erstellt am: {date} {time}"
@@ -2071,7 +2071,7 @@ allowedInstancesDescription: Hostnamen von Servern, die auf der Liste vertrauens
   Server für die Föderation stehen sollen, jeweils getrennt in einer neuen Zeile (tritt
   nur im privaten Modus in Kraft).
 migration: Migration
-updateAvailable: Möglicherweise ist ein Update verfügbar
+updateAvailable: Es könnte ein Update verfügbar sein!
 showAdminUpdates: Anzeigen, dass eine neue Firefish-Version verfügbar ist (nur Administrator)
 customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (Begrüßungsbildschirm),
   die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
