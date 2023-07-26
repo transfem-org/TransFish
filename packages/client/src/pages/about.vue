@@ -34,11 +34,7 @@
 							<div class="content">
 								<img
 									ref="instanceIcon"
-									:src="
-										$instance.iconUrl ||
-										$instance.faviconUrl ||
-										'/favicon.ico'
-									"
+									:src="iconSrc"
 									aria-label="none"
 									class="icon"
 									:class="instanceIconAnimation"
@@ -211,8 +207,9 @@ withDefaults(
 
 let stats = $ref(null);
 let instanceIcon = $ref<HTMLImageElement>();
-let instanceIconAnimation = "none";
 let iconClicks = 0;
+let iconSrc = ref(instance.iconUrl || instance.faviconUrl || "/favicon.ico");
+let instanceIconAnimation = ref("");
 let tabs = ["overview", "emojis", "charts"];
 let tab = $ref(tabs[0]);
 watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
@@ -274,14 +271,25 @@ function easterEgg() {
 		defaultStore.set("woozyMode", defaultStore.state.woozyMode);
 		if (instanceIcon) {
 			if (iconClicks % 6 === 0) {
-				instanceIcon.src =
+				iconSrc.value =
 					instance.iconUrl || instance.faviconUrl || "/favicon.ico";
 			} else {
-				instanceIcon.src = "/static-assets/woozy.png";
+				iconSrc.value = "/static-assets/woozy.png";
 			}
+			instanceIcon.src = iconSrc.value;
 		}
 	}
 }
+
+watch(iconSrc, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		instanceIconAnimation.value = "spin";
+
+		setTimeout(() => {
+			instanceIconAnimation.value = "";
+		}, 1000);
+	}
+});
 
 let swiperRef = null;
 
@@ -314,7 +322,10 @@ function syncSlide(index) {
 			display: block;
 			margin: 16px auto 0 auto;
 			height: 64px;
-			transition: spinY 1s;
+		}
+
+		> .spin {
+			animation: spinY 1s linear infinite;
 		}
 
 		> .name {
