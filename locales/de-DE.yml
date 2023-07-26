@@ -1061,7 +1061,7 @@ _plugin:
   manage: "Plugins verwalten"
 _preferencesBackups:
   list: "Erstellte Backups"
-  saveNew: "Neu erstellen"
+  saveNew: "Neue Sicherung speichern"
   loadFile: "Von Datei laden"
   apply: "Auf dieses Gerät anwenden"
   save: "Speichern"
