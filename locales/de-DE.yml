@@ -595,7 +595,7 @@ yourAccountSuspendedDescription: "Dieses Nutzerkonto wurde gesperrt, da es gegen
 menu: "Menü"
 divider: "Trenner"
 addItem: "Element hinzufügen"
-relays: "Relays"
+relays: "Relais"
 addRelay: "Relay hinzufügen"
 inboxUrl: "inbox-URL"
 addedRelays: "Hinzugefügte Relays"
@@ -666,7 +666,7 @@ overview: "Übersicht"
 logs: "Protokolle"
 delayed: "Verzögert"
 database: "Datenbank"
-channel: "Channels"
+channel: "Kanäle"
 create: "Erstellen"
 notificationSetting: "Benachrichtigungseinstellungen"
 notificationSettingDesc: "Wähle die Art der anzuzeigenden Benachrichtigungen."
@@ -1061,7 +1061,7 @@ _plugin:
   manage: "Plugins verwalten"
 _preferencesBackups:
   list: "Erstellte Backups"
-  saveNew: "Neue Sicherung speichern"
+  saveNew: "Neues Backup speichern"
   loadFile: "Von Datei laden"
   apply: "Auf dieses Gerät anwenden"
   save: "Speichern"
@@ -1193,8 +1193,8 @@ _mfm:
   crop: Zuschneiden
   scale: Maßstab
   scaleDescription: Skaliere den Inhalt um einen bestimmten Betrag.
-  foregroundDescription: Ändern der Vordergrundfarbe von Text.
-  backgroundDescription: Ändern der Hintergrundfarbe von Text
+  foregroundDescription: Vordergrundfarbe des Texts ändern.
+  backgroundDescription: Hintergrundfarbe des Texts ändern.
   play: MFM abspielen
   stop: MFM anhalten
   warn: MFM können schnell bewegte oder anderweitig auffallende Animationen enthalten
@@ -1589,7 +1589,7 @@ _charts:
   activeUsers: "Aktive Nutzer"
   notesIncDec: "Unterschied bei der Anzahl an Beiträgen"
   localNotesIncDec: "Unterschied bei der Anzahl an lokalen Beiträgen"
-  remoteNotesIncDec: "Differenz zur Anzahl von Beiträgen von anderen Servern."
+  remoteNotesIncDec: "Differenz bei der Anzahl an Beiträgen von anderen Servern"
   notesTotal: "Anzahl aller Beiträge"
   filesIncDec: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Anzahl aller Dateien"
@@ -1643,7 +1643,7 @@ _pages:
   hideTitleWhenPinned: "Nutzer-Seitentitel wenn angeheftet ausblenden"
   font: "Schriftart"
   fontSerif: "Serif"
-  fontSansSerif: "sans-serif"
+  fontSansSerif: "Sans Serif"
   eyeCatchingImageSet: "Vorschaubild festlegen"
   eyeCatchingImageRemove: "Vorschaubild entfernen"
   chooseBlock: "Block hinzufügen"
@@ -1658,7 +1658,7 @@ _pages:
     text: "Text"
     textarea: "Textfeld"
     section: "Abschnitt"
-    image: "Bild"
+    image: "Bilder"
     button: "Knopf"
     if: "Falls"
     _if:
@@ -2033,14 +2033,14 @@ moveAccountDescription: 'Dieser Vorgang kann nicht rückgängig gemacht werden! 
   wie folgt ein: @name@server.xyz'
 findOtherInstance: Einen anderen Server finden
 sendPushNotificationReadMessage: Löschung der Push-Benachrichtigungen sobald die entsprechenden
-  Benachrichtigungen oder Beiträge gelesen wurden.
+  Benachrichtigungen oder Nachrichten gelesen wurden
 signupsDisabled: Derzeit sind keine Anmeldungen auf diesem Server möglich! Anmeldungen
   auf anderen Servern sind jedoch möglich! Wenn Sie einen Einladungscode für diesen
   Server haben, geben Sie ihn bitte unten ein.
 swipeOnDesktop: Am Desktop PC das Wischen wie bei mobilen Geräten zulassen
 enterSendsMessage: Drücken sie zum Senden des Beitrages die Eingabetaste (Strg-Taste
   ausgeschaltet)
-showUpdates: Zeigt ein Popup-Fenster an, wenn Firefish aktualisiert wird.
+showUpdates: Zeige ein Popup-Fenster an, wenn Firefish aktualisiert wird
 socialTimeline: Social-Timeline
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
@@ -2155,7 +2155,7 @@ _dialog:
 searchPlaceholder: Firefish durchsuchen
 antennasDesc: "Antennen zeigen neue Posts an, die deinen definierten Kriterien entsprechen!\n
   Sie können von der Timeline-Seite aufgerufen werden."
-isPatron: Firefish Patron
+isPatron: Firefish-Patron
 removeReaction: Entferne deine Reaktion
 listsDesc: Listen lassen dich Timelines mit bestimmten Nutzer:innen erstellen. Sie
   können von der Timeline-Seite erreicht werden.
