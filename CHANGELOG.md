@@ -1,6 +1,25 @@
 # Changelog
 
-All changes from v13.0.0 onwards, for a list of differences read FIREFISH.md
+## [1.0.3] - 2023-07-21
+
+### Bug Fixes
+
+- Fix: :bento: fix old favicon
+
+- Fix: :bento: asset versioning, screenshots
+
+- Fix: :adhesive_bandage: version manifest assets based on instance version
+
+
+### Refactor
+
+- Refactor: :recycle: create drive file endpoint
+
+Adjusts ratelimit to 250 files every 10 minutes, fixes error text, fixes reused variable name.
+
+- Refactor: sticky-container class
+
+- Refactor: :recycle: new git repo
 
 ## [1.0.0] - 2023-07-19
 
