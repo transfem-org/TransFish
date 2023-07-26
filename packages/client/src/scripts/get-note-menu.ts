@@ -361,7 +361,7 @@ export function getNoteMenu(props: {
 					appearNote.url || appearNote.uri
 						? {
 								icon: "ph-link-simple ph-bold ph-lg",
-								text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+								text: `${i18n.ts.copyLink} (${i18n.ts.origin})`,
 								action: copyOriginal,
 						  }
 						: undefined,
@@ -465,7 +465,7 @@ export function getNoteMenu(props: {
 			appearNote.url || appearNote.uri
 				? {
 						icon: "ph-link-simple ph-bold ph-lg",
-						text: `${i18n.ts.copyLink} (${i18n.ts.remote})`,
+						text: `${i18n.ts.copyLink} (${i18n.ts.origin})`,
 						action: copyOriginal,
 				  }
 				: undefined,
