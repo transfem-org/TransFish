@@ -296,7 +296,6 @@ function showMenu(ev) {
 			> .icon {
 				width: 85px;
 				margin-top: -47px;
-				border-radius: 100%;
 				vertical-align: bottom;
 			}
 
