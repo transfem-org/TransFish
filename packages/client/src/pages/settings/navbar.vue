@@ -1,12 +1,7 @@
 <template>
 	<div class="_formRoot">
 		<FormSlot>
-			<VueDraggable
-				v-model="items"
-				animation="150"
-				delay="50"
-				@end="reloadAsk"
-			>
+			<VueDraggable v-model="items" animation="150" delay="50">
 				<div
 					v-for="(element, index) in items"
 					:key="index"
@@ -31,10 +26,18 @@
 					</button>
 				</div>
 			</VueDraggable>
-			<FormButton primary class="_formBlock" @click="addItem">
-				<i class="ph-plus ph-bold ph-lg"></i>
-				{{ i18n.ts.addItem }}
-			</FormButton>
+			<FormSection>
+				<div style="display: flex; gap: var(--margin); flex-wrap: wrap">
+					<FormButton primary @click="addItem">
+						<i class="ph-plus ph-bold ph-lg"></i>
+						{{ i18n.ts.addItem }}
+					</FormButton>
+					<FormButton @click="reloadAsk">
+						<i class="ph-floppy-disk-back ph-bold ph-lg"></i>
+						{{ i18n.ts.apply }}
+					</FormButton>
+				</div>
+			</FormSection>
 		</FormSlot>
 
 		<FormRadios v-model="menuDisplay" class="_formBlock">
@@ -62,6 +65,7 @@ import { computed, ref, watch } from "vue";
 import FormSlot from "@/components/form/slot.vue";
 import FormRadios from "@/components/form/radios.vue";
 import FormButton from "@/components/MkButton.vue";
+import FormSection from "@/components/form/section.vue";
 import * as os from "@/os";
 import { navbarItemDef } from "@/navbar";
 import { defaultStore } from "@/store";
@@ -111,7 +115,6 @@ async function removeItem(index) {
 
 async function save() {
 	defaultStore.set("menu", items.value);
-	await reloadAsk();
 }
 
 function reset() {
