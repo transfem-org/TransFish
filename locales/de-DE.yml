@@ -947,7 +947,7 @@ recentNDays: "Die letzten {n} Tage"
 noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
 recommended: "Favoriten"
-check: "Kontrolle"
+check: "Überprüfe"
 driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität
   auf den Standard zurückzusetzen."
@@ -978,8 +978,8 @@ sensitiveMediaDetection: "Erkennung von NSFW-Medien"
 localOnly: "Nur Lokal"
 remoteOnly: "Nur für andere/fremde Server"
 failedToUpload: "Hochladen fehlgeschlagen"
-cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Anteile
-  der Datei als möglicherweise NSFW festgestellt wurden."
+cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Teile
+  der Datei möglicherweise NSFW-Inhalt enthalten"
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein
   Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
