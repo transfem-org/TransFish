@@ -824,6 +824,15 @@ hr {
 	}
 }
 
+@keyframes spinY {
+	0% {
+		transform: perspective(128px) rotateY(0deg);
+	}
+	100% {
+		transform: perspective(128px) rotateY(360deg);
+	}
+}
+
 .ph-xxs {
 	font-size: 0.5em;
 }
@@ -946,6 +955,17 @@ hr {
 		from {
 			transform: scale(0.8);
 			opacity: 0;
+		}
+	}
+	@keyframes spinY {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.2;
+		}
+		100% {
+			opacity: 1;
 		}
 	}
 }
