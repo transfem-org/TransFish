@@ -1651,7 +1651,7 @@ privateModeInfo: Quan està activat, només els servidors a la llista blanca es 
 useBlurEffect: Utilitzeu efectes de desenfocament a la interfície d'usuari
 accountDeletionInProgress: La supressió del compte està en curs
 unmuteThread: Desfés el silenci al fil
-deleteAccountConfirm: Això suprimirà el vostre compte de manera irreversible. Procedir?
+deleteAccountConfirm: Això suprimirà aquest compte de manera irreversible. Procedir?
 requireAdminForView: Heu d'iniciar sessió amb un compte d'administrador per veure-ho.
 enableAutoSensitiveDescription: Permet la detecció i el marcatge automàtics dels mitjans
   NSFW mitjançant Machine Learning sempre que sigui possible. Fins i tot si aquesta
@@ -2169,3 +2169,4 @@ _feeds:
   atom: Atom
   jsonFeed: Feed JSON
   copyFeed: Copiar feed
+origin: Origen
