@@ -394,6 +394,12 @@ export const meta = {
 				optional: "true",
 				nullable: true,
 			},
+			enableServerMachineStats: {
+				type: "boolean",
+				optional: "true",
+				nullable: false,
+				default: false,
+			},
 		},
 	},
 } as const;
@@ -497,6 +503,8 @@ export default define(meta, paramDef, async (ps, me) => {
 			instance.deeplAuthKey != null || instance.libreTranslateApiUrl != null,
 		defaultReaction: instance.defaultReaction,
 		donationLink: instance.donationLink,
+		enableServerMachineStats: instance.enableServerMachineStats,
+		enableIdenticonGeneration: instance.enableIdenticonGeneration,
 
 		...(ps.detail
 			? {

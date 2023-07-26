@@ -12,7 +12,10 @@
 				<i class="ph-sort-ascending ph-bold ph-lg"></i></button
 		></template>
 
-		<div v-if="meta" class="mkw-serverMetric">
+		<div
+			v-if="meta && instance.enableServerMachineStats"
+			class="mkw-serverMetric"
+		>
 			<XCpuMemory
 				v-if="widgetProps.view === 0"
 				:connection="connection"
