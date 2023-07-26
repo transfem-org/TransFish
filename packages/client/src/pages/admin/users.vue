@@ -104,13 +104,16 @@
 								v-for="user in items"
 								:key="user.id"
 								v-tooltip.mfm="
-									user.updatedAt ? `Last posted: ${new Date(
-										user.updatedAt,
-									).toLocaleString()}` : 'Never posted'
+									user.updatedAt
+										? `Last posted: ${new Date(
+												user.updatedAt,
+										  ).toLocaleString()}`
+										: 'Never posted'
 								"
 								class="user"
 								:user="user"
-								:show-about-page="true" />
+								:show-about-page="true"
+							/>
 						</MkPagination>
 					</div>
 				</div>
