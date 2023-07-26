@@ -420,6 +420,7 @@ export function getNoteMenu(props: {
 				? {
 						icon: "ph-eraser ph-bold ph-lg",
 						text: i18n.ts.deleteAndEdit,
+						danger: true,
 						action: delEdit,
 				  }
 				: undefined,
