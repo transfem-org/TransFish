@@ -12,8 +12,13 @@
 				<i class="ph-sort-ascending ph-bold ph-lg"></i></button
 		></template>
 
+		<div v-if="!instance.enableServerMachineStats" class="mkw-serverMetric">
+			<h3 style="text-align: center; color: var(--error)">
+				{{ i18n.ts.disabled }}
+			</h3>
+		</div>
 		<div
-			v-if="meta && instance.enableServerMachineStats"
+			v-else-if="meta && instance.enableServerMachineStats"
 			class="mkw-serverMetric"
 		>
 			<XCpuMemory
