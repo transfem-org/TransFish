@@ -3,6 +3,7 @@ import type { PopulatedEmoji } from "@/misc/populate-emojis.js";
 import type { Note } from "@/models/entities/note.js";
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 import { Client, types } from "cassandra-driver";
+import { noteVisibilities } from "@/types.js";
 
 function newClient(): Client | null {
 	if (!config.scylla) {
@@ -108,11 +109,37 @@ export interface ScyllaNoteEditHistory {
 	updatedAt: Date;
 }
 
-export type ScyllaNote = Partial<Note> & {
+export type ScyllaNote = Note & {
 	createdAtDate: Date;
+	createdAt: Note["createdAt"];
+	id: Note["id"];
+	visibility: Note["visibility"];
+	text: Note["text"];
+	name: Note["name"];
+	cw: Note["cw"];
+	localOnly: Note["localOnly"];
+	renoteCount: Note["renoteCount"];
+	repliesCount: Note["repliesCount"];
+	uri: Note["uri"];
+	url: Note["url"];
+	score: Note["score"];
 	files: ScyllaDriveFile[];
+	fileIds: Note["fileIds"];
+	attachedFileTypes: Note["attachedFileTypes"];
+	visibleUserIds: Note["visibleUserIds"];
+	mentions: Note["mentions"];
+	emojis: Note["emojis"];
+	tags: Note["tags"];
+	hasPoll: Note["hasPoll"];
+	threadId: Note["threadId"];
+	channelId: Note["channelId"];
 	channelName: string;
+	userId: Note["userId"];
+	replyId: Note["replyId"];
+	renoteId: Note["renoteId"];
+	reactions: Note["reactions"];
 	noteEdit: ScyllaNoteEditHistory[];
+	updatedAt: Note["updatedAt"];
 };
 
 export function parseScyllaNote(row: types.Row): ScyllaNote {
@@ -148,7 +175,18 @@ export function parseScyllaNote(row: types.Row): ScyllaNote {
 		reactions: row.get("reactions"),
 		noteEdit: row.get("noteEdit"),
 		updatedAt: row.get("updatedAt"),
-	}
+		/* unused postgres denormalization */
+		channel: null,
+		renote: null,
+		reply: null,
+		renoteUserHost: null,
+		renoteUserId: null,
+		mentionedRemoteUsers: "",
+		replyUserHost: null,
+		replyUserId: null,
+		user: null,
+		userHost: null,
+	};
 }
 
 export interface ScyllaNoteReaction extends NoteReaction {
