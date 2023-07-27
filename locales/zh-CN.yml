@@ -641,7 +641,7 @@ openInNewTab: "在新标签页中打开"
 openInSideView: "在侧边栏中打开"
 defaultNavigationBehaviour: "默认导航"
 editTheseSettingsMayBreakAccount: "编辑这些设置可能会损坏您的账号。"
-instanceTicker: "帖子所在的服务器信息"
+instanceTicker: "帖子的实例信息"
 waitingFor: "等待 {x}"
 random: "随机"
 system: "系统"
@@ -825,7 +825,7 @@ unmuteThread: "取消静音帖子串"
 ffVisibility: "关注/关注者 可见性"
 ffVisibilityDescription: "您可以设置谁可以看到您的关注/关注者信息。"
 continueThread: "查看更多帖子"
-deleteAccountConfirm: "将要删除账号。是否继续？"
+deleteAccountConfirm: "将不可逆的删除账号，是否继续？"
 incorrectPassword: "密码错误。"
 voteConfirm: "确定投给 “{choice}” ？"
 hide: "隐藏"
@@ -1965,3 +1965,4 @@ remindMeLater: 稍后再说
 removeQuote: 移除引用
 removeRecipient: 移除接收者
 removeMember: 移除成员
+origin: 起源
