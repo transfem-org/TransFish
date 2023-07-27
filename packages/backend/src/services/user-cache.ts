@@ -20,6 +20,10 @@ export const uriPersonCache = new Cache<CacheableUser | null>(
 	"uriPerson",
 	60 * 30,
 );
+export const userDenormalizedCache = new Cache<CacheableUser>(
+	"userDenormalized",
+	60 * 30,
+);
 
 subscriber.on("message", async (_, data) => {
 	const obj = JSON.parse(data);

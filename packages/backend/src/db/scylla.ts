@@ -3,7 +3,8 @@ import type { PopulatedEmoji } from "@/misc/populate-emojis.js";
 import type { Note } from "@/models/entities/note.js";
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 import { Client, types } from "cassandra-driver";
-import { noteVisibilities } from "@/types.js";
+import type { User } from "@/models/entities/user.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
 
 function newClient(): Client | null {
 	if (!config.scylla) {
@@ -181,4 +182,29 @@ export function parseScyllaReaction(row: types.Row): ScyllaNoteReaction {
 		createdAt: row.get("createdAt"),
 		emoji: row.get("emoji"),
 	};
+}
+
+export async function isVisible(
+	note: ScyllaNote,
+	user: { id: User["id"] } | null,
+): Promise<boolean> {
+	let visible = false;
+
+	if (
+		["public", "home"].includes(note.visibility) // public post
+	) {
+		visible = true;
+	} else if (user) {
+		const cache = await LocalFollowingsCache.init(user.id);
+
+		visible =
+			note.userId === user.id || // my own post
+			note.visibleUserIds.includes(user.id) || // visible to me
+			note.mentions.includes(user.id) || // mentioned me
+			(note.visibility === "followers" &&
+				(await cache.isFollowing(note.userId))) || // following
+			note.replyUserId === user.id; // replied to myself
+	}
+
+	return visible;
 }

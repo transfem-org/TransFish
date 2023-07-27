@@ -3,8 +3,12 @@ import type { User } from "@/models/entities/user.js";
 import type { Note } from "@/models/entities/note.js";
 import { Notes, Users } from "@/models/index.js";
 import { generateVisibilityQuery } from "./generate-visibility-query.js";
-import { parseScyllaNote, prepared, scyllaClient } from "@/db/scylla.js";
-import { LocalFollowingsCache } from "@/misc/cache.js";
+import {
+	isVisible,
+	parseScyllaNote,
+	prepared,
+	scyllaClient,
+} from "@/db/scylla.js";
 
 /**
  * Get note for API processing, taking into account visibility.
@@ -22,25 +26,7 @@ export async function getNote(
 		);
 		if (result.rowLength > 0) {
 			const candidate = parseScyllaNote(result.first());
-			let valid = false;
-
-			if (
-				["public", "home"].includes(candidate.visibility) // public post
-			) {
-				valid = true;
-			} else if (me) {
-				const cache = await LocalFollowingsCache.init(me.id);
-
-				valid =
-					candidate.userId === me.id || // my own post
-					candidate.visibleUserIds.includes(me.id) || // visible to me
-					candidate.mentions.includes(me.id) || // mentioned me
-					(candidate.visibility === "followers" &&
-						(await cache.isFollowing(candidate.userId))) || // following
-					candidate.replyUserId === me.id; // replied to myself
-			}
-
-			if (valid) {
+			if (await isVisible(candidate, me)) {
 				note = candidate;
 			}
 		}
