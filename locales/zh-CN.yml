@@ -1,6 +1,6 @@
 _lang_: "简体中文"
-headlineMisskey: "一个开源、去中心化的社交媒体平台，永远免费！🚀"
-introMisskey: "欢迎！ Firefish 是一个开源、去中心化的社交媒体平台，永久免费！🚀"
+headlineFirefish: "一个开源、去中心化的社交媒体平台，永远免费！🚀"
+introFirefish: "欢迎！ Firefish 是一个开源、去中心化的社交媒体平台，永久免费！🚀"
 monthAndDay: "{month} 月 {day} 日"
 search: "搜索"
 notifications: "通知"
@@ -521,7 +521,7 @@ recentUsed: "最近使用"
 install: "安装"
 uninstall: "卸载"
 installedApps: "已授权的应用"
-nothing: "没有"
+nothing: "暂无更多内容"
 installedDate: "授权日期"
 lastUsedDate: "最近使用时间"
 state: "状态"
@@ -641,7 +641,7 @@ openInNewTab: "在新标签页中打开"
 openInSideView: "在侧边栏中打开"
 defaultNavigationBehaviour: "默认导航"
 editTheseSettingsMayBreakAccount: "编辑这些设置可能会损坏您的账号。"
-instanceTicker: "帖子所在的服务器信息"
+instanceTicker: "帖子的实例信息"
 waitingFor: "等待 {x}"
 random: "随机"
 system: "系统"
@@ -825,7 +825,7 @@ unmuteThread: "取消静音帖子串"
 ffVisibility: "关注/关注者 可见性"
 ffVisibilityDescription: "您可以设置谁可以看到您的关注/关注者信息。"
 continueThread: "查看更多帖子"
-deleteAccountConfirm: "将要删除账号。是否继续？"
+deleteAccountConfirm: "将不可逆的删除账号，是否继续？"
 incorrectPassword: "密码错误。"
 voteConfirm: "确定投给 “{choice}” ？"
 hide: "隐藏"
@@ -988,9 +988,9 @@ _aboutFirefish:
   morePatrons: "还有很多其它的人也在支持我们，非常感谢🥰"
   patrons: "Firefish 赞助者"
   patronsList: 按时间顺序而不是捐赠金额排列。通过上面的链接捐款，让您的名字出现在这里！
-  sponsors: Calckey 赞助者们
-  donateTitle: 喜欢 Calckey 吗？
-  pleaseDonateToCalckey: 请考虑赞助 Calckey 以支持其开发。
+  sponsors: Firefish 赞助者们
+  donateTitle: 喜欢 Firefish 吗？
+  pleaseDonateToFirefish: 请考虑赞助 Firefish 以支持其开发。
   pleaseDonateToHost: 也请考虑赞助您的主服务器 {host}，以帮助支持其运营成本。
   donateHost: 赞助 {host}
 _nsfw:
@@ -1231,10 +1231,10 @@ _tutorial:
   step5_1: "时间线，无处不在的时间线！"
   step5_2: "您的服务器已启用 {timelines} 种不同的时间线。"
   step5_3: "主页 {icon} 时间线是您可以看到您关注账号的帖子的时间线。"
-  step5_4: "本地 {icon} 时间线是您可以看到此服务器上其它用户的帖子的时间线。"
-  step5_5: "社交 {icon} 时间线是主页和本地时间线的结合。"
-  step5_6: "推荐 {icon} 时间线是您可以看到管理员推荐服务器的帖子的时间线。"
-  step5_7: "全球 {icon} 时间线是您可以看到来自其它所有互联服务器的帖子的时间线。"
+  step5_4: "本地{icon}时间线是您可以看到此服务器上其它用户的帖子的时间线。"
+  step5_5: "社交{icon}时间线是主页和本地时间线的结合。"
+  step5_6: "推荐{icon}时间线是您可以看到管理员推荐服务器的帖子的时间线。"
+  step5_7: "全球{icon}时间线是您可以看到来自其它所有互联服务器的帖子的时间线。"
   step6_1: "那么，这里是什么地方？"
   step6_2: "好吧，您不只是加入 Firefish。您已经加入了 Fediverse 的一个门户，这是一个由成千上万台服务器组成的互联网络。"
   step6_3: "每个服务器的工作方式不同，并不是所有的服务器都运行 Firefish。但这个服务器是的! 这有点复杂，但您很快就会明白的。"
@@ -1965,3 +1965,4 @@ remindMeLater: 稍后再说
 removeQuote: 移除引用
 removeRecipient: 移除接收者
 removeMember: 移除成员
+origin: 起源

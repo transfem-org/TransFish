@@ -1,7 +1,7 @@
 _lang_: "English"
-headlineMisskey: "An open source, decentralized social media platform that's free
+headlineFirefish: "An open source, decentralized social media platform that's free
   forever! 🚀"
-introMisskey: "Welcome! Firefish is an open source, decentralized social media platform
+introFirefish: "Welcome! Firefish is an open source, decentralized social media platform
   that's free forever! 🚀"
 monthAndDay: "{month}/{day}"
 search: "Search"
@@ -938,7 +938,7 @@ ffVisibility: "Follows/Followers Visibility"
 ffVisibilityDescription: "Allows you to configure who can see who you follow and who
   follows you."
 continueThread: "Continue thread"
-deleteAccountConfirm: "This will irreversibly delete your account. Proceed?"
+deleteAccountConfirm: "This will irreversibly delete this account. Proceed?"
 incorrectPassword: "Incorrect password."
 voteConfirm: "Confirm your vote for \"{choice}\"?"
 hide: "Hide"
@@ -1125,6 +1125,7 @@ removeQuote: "Remove quote"
 removeRecipient: "Remove recipient"
 removeMember: "Remove member"
 verifiedLink: "Verified link"
+origin: "Origin"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

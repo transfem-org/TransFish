@@ -114,24 +114,48 @@ const router = new Router();
 //#region static assets
 
 router.get("/static-assets/(.*)", async (ctx) => {
-	await send(ctx as any, ctx.path.replace("/static-assets/", ""), {
-		root: staticAssets,
-		maxage: 7 * DAY,
-	});
+	try {
+		await send(ctx as any, ctx.path.replace("/static-assets/", ""), {
+			root: staticAssets,
+			maxage: 7 * DAY,
+		});
+	} catch (e) {
+		if (e.status === 404) {
+			ctx.throw(404, "File not found");
+		} else {
+			throw e;
+		}
+	}
 });
 
 router.get("/client-assets/(.*)", async (ctx) => {
-	await send(ctx as any, ctx.path.replace("/client-assets/", ""), {
-		root: clientAssets,
-		maxage: 7 * DAY,
-	});
+	try {
+		await send(ctx as any, ctx.path.replace("/client-assets/", ""), {
+			root: clientAssets,
+			maxage: 7 * DAY,
+		});
+	} catch (e) {
+		if (e.status === 404) {
+			ctx.throw(404, "File not found");
+		} else {
+			throw e;
+		}
+	}
 });
 
 router.get("/assets/(.*)", async (ctx) => {
-	await send(ctx as any, ctx.path.replace("/assets/", ""), {
-		root: assets,
-		maxage: 7 * DAY,
-	});
+	try {
+		await send(ctx as any, ctx.path.replace("/assets/", ""), {
+			root: assets,
+			maxage: 7 * DAY,
+		});
+	} catch (e) {
+		if (e.status === 404) {
+			ctx.throw(404, "File not found");
+		} else {
+			throw e;
+		}
+	}
 });
 
 // Apple touch icon

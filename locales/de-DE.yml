@@ -1,9 +1,9 @@
 _lang_: "Deutsch"
-headlineMisskey: "Eine dezentralisierte Open-Source Social Media Plattform, die für
+headlineFirefish: "Eine dezentralisierte Open-Source Social Media Plattform, die für
   immer gratis bleibt! 🚀"
-introMisskey: "Willkommen! Firefish ist eine dezentralisierte Open-Source Social Media
-  Plattform, die für immer gratis bleibt!🚀"
-monthAndDay: "{month}/{day}"
+introFirefish: "Willkommen! Firefish ist eine dezentralisierte Open-Source Social
+  Media Plattform, die für immer gratis bleibt!🚀"
+monthAndDay: "{day}.{month}."
 search: "Suchen"
 notifications: "Benachrichtigungen"
 username: "Nutzername"
@@ -67,7 +67,7 @@ export: "Export"
 files: "Dateien"
 download: "Herunterladen"
 driveFileDeleteConfirm: "Möchtest du die Datei \"{name}\" wirklich löschen? Es wird
-  aus allen Beiträgen entfernt, die die Datei als Anhang enthalten."
+  aus allen Beiträgen entfernt, welche die Datei als Anhang enthalten."
 unfollowConfirm: "Bist du dir sicher, daß du {name} nicht mehr folgen möchtest?"
 exportRequested: "Du hast einen Export angefragt. Dies kann etwas Zeit in Anspruch
   nehmen. Sobald der Export abgeschlossen ist, wird er deinem Laufwerk hinzugefügt."
@@ -117,7 +117,7 @@ sensitive: "NSFW"
 add: "Hinzufügen"
 reaction: "Reaktionen"
 reactionSetting: "Reaktionen, die in der Reaktionsauswahl angezeigt werden sollen"
-reactionSettingDescription2: "Ziehen Sie, um neu zu ordnen,\nklicken Sie, um zu löschen,\n
+reactionSettingDescription2: "Ziehen Sie, um neu zu ordnen, klicken Sie, um zu löschen,
   drücken Sie \"+\", um hinzuzufügen."
 rememberNoteVisibility: "Einstellungen für die Sichtbarkeit von Beiträgen speichern"
 attachCancel: "Anhang entfernen"
@@ -595,7 +595,7 @@ yourAccountSuspendedDescription: "Dieses Nutzerkonto wurde gesperrt, da es gegen
 menu: "Menü"
 divider: "Trenner"
 addItem: "Element hinzufügen"
-relays: "Relays"
+relays: "Relais"
 addRelay: "Relay hinzufügen"
 inboxUrl: "inbox-URL"
 addedRelays: "Hinzugefügte Relays"
@@ -666,7 +666,7 @@ overview: "Übersicht"
 logs: "Protokolle"
 delayed: "Verzögert"
 database: "Datenbank"
-channel: "Channels"
+channel: "Kanäle"
 create: "Erstellen"
 notificationSetting: "Benachrichtigungseinstellungen"
 notificationSettingDesc: "Wähle die Art der anzuzeigenden Benachrichtigungen."
@@ -777,10 +777,10 @@ nUsers: "{n} Nutzer"
 nNotes: "{n} Beiträge"
 sendErrorReports: "Fehlerberichte senden"
 sendErrorReportsDescription: "Ist diese Option aktiviert, so werden beim Auftreten
-  von Fehlern detaillierte Fehlerinformationen an Firefish weitergegeben, was zur Verbesserung
-  der Qualität von Firefish beiträgt.\nEnthalten in diesen Informationen sind u.a.
-  die Version deines Betriebssystems, welchen Browser du verwendest und ein Verlauf
-  deiner Aktivitäten innerhalb Firefish."
+  von Fehlern detaillierte Fehlerinformationen an Firefish weitergegeben, was zur
+  Verbesserung der Qualität von Firefish beiträgt.\nEnthalten in diesen Informationen
+  sind u.a. die Version deines Betriebssystems, welchen Browser du verwendest und
+  ein Verlauf deiner Aktivitäten innerhalb Firefish."
 myTheme: "Meine Farbkombination"
 backgroundColor: "Hintergrundfarbe"
 accentColor: "Akzentfarbe"
@@ -835,7 +835,7 @@ active: "Aktiv"
 offline: "Offline"
 notRecommended: "Nicht empfohlen"
 botProtection: "Schutz vor Bots"
-instanceBlocking: "Verbundene Server verwalten"
+instanceBlocking: "Föderation verwalten"
 selectAccount: "Nutzerkonto auswählen"
 switchAccount: "Konto wechseln"
 enabled: "Aktiviert"
@@ -900,14 +900,14 @@ manageAccounts: "Nutzerkonten verwalten"
 makeReactionsPublic: "Reaktionsverlauf veröffentlichen"
 makeReactionsPublicDescription: "Jeder wird die Liste deiner gesendeten Reaktionen
   einsehen können."
-classic: "Mittig/zentriert"
+classic: "Zentriert"
 muteThread: "Thread stummschalten"
 unmuteThread: "Threadstummschaltung aufheben"
 ffVisibility: "Sichtbarkeit von Gefolgten/Followern"
 ffVisibilityDescription: "Konfiguriere wer sehen kann, wem du folgst sowie wer dir
   folgt."
 continueThread: "Beitrag fortsetzen"
-deleteAccountConfirm: "Dein Nutzerkonto wird unwiderruflich gelöscht. Trotzdem fortfahren?"
+deleteAccountConfirm: "Das Nutzerkonto wird unwiderruflich gelöscht. Trotzdem fortfahren?"
 incorrectPassword: "Falsches Passwort."
 voteConfirm: "Wirklich für „{choice}“ abstimmen?"
 hide: "Inhalt verbergen"
@@ -947,11 +947,12 @@ recentNDays: "Die letzten {n} Tage"
 noEmailServerWarning: "Es ist kein Email-Server konfiguriert."
 thereIsUnresolvedAbuseReportWarning: "Es liegen ungelöste Meldungen vor."
 recommended: "Favoriten"
-check: "Kontrolle"
+check: "Überprüfe"
 driveCapOverrideLabel: "Die Cloud-Drive-Kapazität dieses Nutzers verändern"
 driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazität
   auf den Standard zurückzusetzen."
-requireAdminForView: "Melde dich mit einem Administratorkonto an, um dies einzusehen."
+requireAdminForView: "Du musst dich mit einem Administratorkonto anmelden um dies
+  zu sehen."
 isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwaltet.
   Bitte moderieren, bearbeiten, löschen oder manipulieren Sie dieses Konto nicht,
   da es sonst zu einem Server-Absturz kommen könnte."
@@ -977,12 +978,12 @@ sensitiveMediaDetection: "Erkennung von NSFW-Medien"
 localOnly: "Nur Lokal"
 remoteOnly: "Nur für andere/fremde Server"
 failedToUpload: "Hochladen fehlgeschlagen"
-cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Anteile
-  der Datei als möglicherweise NSFW festgestellt wurden."
+cannotUploadBecauseInappropriate: "Diese Datei kann nicht hochgeladen werden, da Teile
+  der Datei möglicherweise NSFW-Inhalt enthalten."
 cannotUploadBecauseNoFreeSpace: "Die Datei konnte nicht hochgeladen werden, da dein
   Cloud-Drive-Speicherplatz aufgebraucht ist."
 beta: "Beta"
-enableAutoSensitive: "Selbstständige NSFW-Kennzeichnung"
+enableAutoSensitive: "Automatische NSFW-Kennzeichnung"
 enableAutoSensitiveDescription: "Erlaubt, wo möglich, die automatische Erkennung und
   Kennzeichnung von NSFW-Medien durch maschinelles Lernen. Auch wenn diese Option
   deaktiviert ist, kann sie über den Server aktiviert sein."
@@ -1005,8 +1006,8 @@ _sensitiveMediaDetection:
   setSensitiveFlagAutomaticallyDescription: "Die Resultate der internen Erkennung
     werden beibehalten, auch wenn diese Option deaktiviert ist."
   analyzeVideos: "Videoanalyse aktivieren"
-  analyzeVideosDescription: "Analysiert zusätzlich zu Bildern auch Videos. Die Last
-    des Servers wird hierdurch etwas erhöht."
+  analyzeVideosDescription: "Analysiert zusätzlich zu Bildern auch Videos. Die Serverlast
+    wird hierdurch etwas erhöht."
 _emailUnavailable:
   used: "Diese Email-Adresse wird bereits verwendet"
   format: "Das Format dieser Email-Adresse ist ungültig"
@@ -1020,17 +1021,17 @@ _ffVisibility:
 _signup:
   almostThere: "Fast geschafft"
   emailAddressInfo: "Bitte gib deine Email-Adresse ein. Sie wird nicht öffentlich
-    einsehbar sein."
+    sichtbar sein."
   emailSent: "An deine Email-Adresse ({email}) wurde soeben eine Bestätigungsmail
     geschickt. Bitte klicke auf den enthaltenen Link, um die Erstellung deines Nutzerkontos
     abzuschließen."
 _accountDelete:
   accountDelete: "Nutzerkonto löschen"
   mayTakeTime: "Da die Löschung eines Nutzerkontos ein aufwendiger Prozess ist, kann
-    dessen Dauer davon abhängen, wie viel Inhalt von diesem erstellt wurde oder wie
+    dessen Dauer davon abhängen, wie viel Inhalt von diesem erstellt wurde und wie
     viele Dateien von diesem hochgeladen wurden."
-  sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die mit ihm verknüpfte
-    Email-Adresse eine Benachrichtigung versendet."
+  sendEmail: "Sobald die Löschung abgeschlossen ist, wird an die registrierte Email-Adresse
+    eine Benachrichtigung versendet."
   requestAccountDelete: "Löschung deines Nutzerkontos anfordern"
   started: "Die Löschung wurde eingeleitet."
   inProgress: "Löschung in Bearbeitung"
@@ -1060,19 +1061,19 @@ _plugin:
   manage: "Plugins verwalten"
 _preferencesBackups:
   list: "Erstellte Backups"
-  saveNew: "Neu erstellen"
+  saveNew: "Neues Backup speichern"
   loadFile: "Von Datei laden"
   apply: "Auf dieses Gerät anwenden"
-  save: "Speichern"
+  save: "Änderungen speichern"
   inputName: "Gib einen Namen für dieses Backup ein"
   cannotSave: "Speichern fehlgeschlagen"
   nameAlreadyExists: "Es existiert bereits ein Backup unter dem Namen \"{name}\".
     Bitte gib einen anderen Namen ein."
   applyConfirm: "Wirklich das Backup \"{name}\" auf dieses Gerät anwenden? Bestehende
     Einstellungen darauf werden überschrieben."
-  saveConfirm: "Als {name} speichern?"
+  saveConfirm: "Backup als {name} speichern?"
   deleteConfirm: "Das Backup {name} löschen?"
-  renameConfirm: "Soll dieses Backup von \"{old}\" zu \"{new}\" umbenannt werden?"
+  renameConfirm: "Backup von \"{old}\" zu \"{new}\" umbenennen?"
   noBackups: "Keine Backups existieren. Backups können über \"Neu erstellen\" erstelllt
     werden."
   createdAt: "Erstellt am: {date} {time}"
@@ -1096,10 +1097,19 @@ _aboutFirefish:
   morePatrons: "Wir schätzen ebenso die Unterstützung vieler anderer hier nicht gelisteter
     Personen sehr. Danke! 🥰"
   patrons: "UnterstützerInnen"
+  patronsList: Auflistung chonologisch, nicht nach Spenden-Größe. Spende über den
+    Link oben, um hier aufgeführt zu werden!
+  donateTitle: Gefällt dir Firefish?
+  pleaseDonateToFirefish: Bitte erwäge eine Spende an Firefish, um dessen Entwicklung
+    zu unterstützen.
+  pleaseDonateToHost: Bitte erwäge auch, an deinen Heimatserver {host} zu spenden,
+    um bei der Deckung der Betriebskosten zu helfen.
+  sponsors: Firefish-Sponsoren
+  donateHost: Spende an {host}
 _nsfw:
-  respect: "Mit NSFW gekennzeichnete Bilder verbergen"
-  ignore: "Mit NSFW gekennzeichnete Bilder nicht verbergen"
-  force: "Alle Medien verbergen"
+  respect: "Mit NSFW gekennzeichnete Mediendateien verbergen"
+  ignore: "Mit NSFW gekennzeichnete Mediendateien nicht verbergen"
+  force: "Alle Mediendateien verbergen"
 _mfm:
   cheatSheet: "MFM Spickzettel"
   intro: "MFM ist eine Markup-Sprache, die in Misskey, Firefish, Akkoma und anderen
@@ -1138,7 +1148,7 @@ _mfm:
   search: "Suche"
   searchDescription: "Eine vorgefertige Suchanfragebox anzeigen."
   flip: "Spiegelung"
-  flipDescription: "Inhalt horizontal oder vertikal gespiegelt anzeigen."
+  flipDescription: "Inhalt horizontal oder vertikal spiegeln."
   jelly: "Animation (Dehnen)"
   jellyDescription: "Verleiht Inhalt eine sich dehnende Animation."
   tada: "Animation (Tada)"
@@ -1183,14 +1193,15 @@ _mfm:
   crop: Zuschneiden
   scale: Maßstab
   scaleDescription: Skaliere den Inhalt um einen bestimmten Betrag.
-  foregroundDescription: Ändern der Vordergrundfarbe von Text.
-  backgroundDescription: Ändern der Hintergrundfarbe von Text
+  foregroundDescription: Vordergrundfarbe des Texts ändern.
+  backgroundDescription: Hintergrundfarbe des Texts ändern.
   play: MFM abspielen
   stop: MFM anhalten
   warn: MFM können schnell bewegte oder anderweitig auffallende Animationen enthalten
   alwaysPlay: Alle animierten MFM immer automatisch abspielen
   advancedDescription: Wenn diese Funktion deaktiviert ist, können nur einfache Formatierungen
     vorgenommen werden, es sei denn, animiertes MFM ist aktiviert
+  advanced: Erweitertes MFM
 _instanceTicker:
   none: "Nie anzeigen"
   remote: "Für Nutzer eines anderen Servers anzeigen"
@@ -1404,6 +1415,7 @@ _2fa:
   registerTOTPBeforeKey: Bitte registriere eine Authentificator App, um einen Hardware-Security-Key
     oder einen Passkey zu nutzen.
   securityKeyName: Gib einen Namen für den Key ein
+  token: 2FA Token
 _permissions:
   "read:account": "Deine Nutzerkontoinformationen lesen"
   "write:account": "Deine Nutzerkontoinformationen bearbeiten"
@@ -1444,11 +1456,12 @@ _auth:
     zu können?"
   shareAccessAsk: "Bist du dir sicher, dass du diese Anwendung authorisieren möchtest,
     auf dein Nutzerkonto zugreifen zu können?"
-  permissionAsk: "Diese Anwendung fordert folgende Berechtigungen"
+  permissionAsk: "Diese Anwendung fordert folgende Berechtigungen:"
   pleaseGoBack: "Bitte kehre zur Anwendung zurück"
   callback: "Es wird zur Anwendung zurückgekehrt"
   denied: "Zugriff verweigert"
-  copyAsk: Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein
+  copyAsk: 'Bitte fügen Sie den folgenden Autorisierungscode in die Anwendung ein:'
+  allPermissions: Vollständiger Kontozugriff
 _antennaSources:
   all: "Alle Beiträge"
   homeTimeline: "Beiträge von Nutzern, denen gefolgt wird"
@@ -1482,7 +1495,7 @@ _widgets:
   postForm: "Beitragsfeld"
   slideshow: "Diashow"
   button: "Knopf"
-  onlineUsers: "Nutzer Online"
+  onlineUsers: "Nutzer online"
   jobQueue: "Job-Warteschlange"
   serverMetric: "Servermetriken"
   aiscript: "AiScript-Konsole"
@@ -1523,11 +1536,12 @@ _poll:
   remainingSeconds: "{s} Sekunde(n) verbleibend"
 _visibility:
   public: "Öffentlich"
-  publicDescription: "Dein Beitrag wird global für alle Nutzer sichtbar sein"
+  publicDescription: "Dein Beitrag wird global in allen öffentlichen Timelines sichtbar
+    sein"
   home: "nicht aufgelistet"
   homeDescription: "Beitrag nur auf der Home-Timeline anzeigen"
   followers: "Follower"
-  followersDescription: "Nur für Follower sichtbar"
+  followersDescription: "Nur für Follower und erwähnte Nutzer sichtbar"
   specified: "Direkt"
   specifiedDescription: "Nur für bestimmte Nutzer sichtbar"
   localOnly: "Nur Lokal"
@@ -1551,7 +1565,8 @@ _profile:
   metadata: "Zusätzliche Informationen"
   metadataEdit: "Zusätzliche Informationen bearbeiten"
   metadataDescription: "Hierdurch kannst du auf deinem Profil zusätzliche Informationsblöcke
-    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen, um den Link in Ihrem Profil zu überprüfen!"
+    anzeigen lassen. Sie können ein {a}-Tag oder ein {l}-Tag mit {rel} hinzufügen,
+    um den Link in Ihrem Profil zu überprüfen!"
   metadataLabel: "Beschriftung"
   metadataContent: "Inhalt"
   changeAvatar: "Profilbild ändern"
@@ -1574,7 +1589,7 @@ _charts:
   activeUsers: "Aktive Nutzer"
   notesIncDec: "Unterschied bei der Anzahl an Beiträgen"
   localNotesIncDec: "Unterschied bei der Anzahl an lokalen Beiträgen"
-  remoteNotesIncDec: "Differenz zur Anzahl von Beiträgen von anderen Servern."
+  remoteNotesIncDec: "Differenz bei der Anzahl an Beiträgen von anderen Servern"
   notesTotal: "Anzahl aller Beiträge"
   filesIncDec: "Unterschied in der Anzahl an Dateien"
   filesTotal: "Anzahl aller Dateien"
@@ -1628,7 +1643,7 @@ _pages:
   hideTitleWhenPinned: "Nutzer-Seitentitel wenn angeheftet ausblenden"
   font: "Schriftart"
   fontSerif: "Serif"
-  fontSansSerif: "sans-serif"
+  fontSansSerif: "Sans Serif"
   eyeCatchingImageSet: "Vorschaubild festlegen"
   eyeCatchingImageRemove: "Vorschaubild entfernen"
   chooseBlock: "Block hinzufügen"
@@ -1643,7 +1658,7 @@ _pages:
     text: "Text"
     textarea: "Textfeld"
     section: "Abschnitt"
-    image: "Bild"
+    image: "Bilder"
     button: "Knopf"
     if: "Falls"
     _if:
@@ -1971,9 +1986,8 @@ enableEmojiReactions: Emoji-Reaktionen aktivieren
 flagSpeakAsCat: Wie eine Katze sprechen
 showEmojisInReactionNotifications: Emojis in Reaktionsbenachrichtigungen anzeigen
 userSaysSomethingReason: '{name} sagte {reason}'
-hiddenTagsDescription: 'Geben sie hier die Schlagworte (ohne #hashtag) an, die vom
-  "Trending and Explore" ausgeschlossen werden sollen. Versteckte Schlagworte sind
-  immer noch über andere Wege auffindbar.'
+hiddenTagsDescription: 'Liste die Hashtags (ohne #) welche du von Trending und Explore
+  verstecken möchtest. Versteckte Hashtags sind durch andere Wege weiterhin auffindbar.'
 addInstance: Server hinzufügen
 flagSpeakAsCatDescription: Deine Beiträge werden im Katzenmodus nyanisiert
 hiddenTags: Versteckte Hashtags
@@ -1983,8 +1997,8 @@ renoteMute: Boosts stummschalten
 renoteUnmute: Stummschaltung von Boosts aufheben
 noInstances: Keine Server gefunden
 privateModeInfo: Wenn diese Option aktiviert ist, können nur als vertrauenswürdig
-  eingestufte Server mit diesem Server kommunizieren. Alle Beiträge werden für die
-  Öffentlichkeit verborgen.
+  eingestufte Server mit diesem Server föderieren. Alle Beiträge werden für die Öffentlichkeit
+  verborgen.
 allowedInstances: Vertrauenswürdige Server
 selectInstance: Wähle einen Server aus
 silencedInstancesDescription: Liste die Hostnamen der Server auf, die du stummschalten
@@ -2019,14 +2033,14 @@ moveAccountDescription: 'Dieser Vorgang kann nicht rückgängig gemacht werden! 
   wie folgt ein: @name@server.xyz'
 findOtherInstance: Einen anderen Server finden
 sendPushNotificationReadMessage: Löschung der Push-Benachrichtigungen sobald die entsprechenden
-  Benachrichtigungen oder Beiträge gelesen wurden.
+  Benachrichtigungen oder Nachrichten gelesen wurden
 signupsDisabled: Derzeit sind keine Anmeldungen auf diesem Server möglich! Anmeldungen
   auf anderen Servern sind jedoch möglich! Wenn Sie einen Einladungscode für diesen
   Server haben, geben Sie ihn bitte unten ein.
 swipeOnDesktop: Am Desktop PC das Wischen wie bei mobilen Geräten zulassen
 enterSendsMessage: Drücken sie zum Senden des Beitrages die Eingabetaste (Strg-Taste
   ausgeschaltet)
-showUpdates: Zeigt ein Popup-Fenster an, wenn Firefish aktualisiert wird.
+showUpdates: Zeige ein Popup-Fenster an, wenn Firefish aktualisiert wird
 socialTimeline: Social-Timeline
 moveFrom: Bisheriges Nutzerkonto zu diesem Nutzerkonto umziehen
 _messaging:
@@ -2053,18 +2067,17 @@ adminCustomCssWarn: Diese Einstellung sollte nur verwendet werden, wenn Sie wiss
   mehr normal funktionieren. Bitte stellen Sie sicher, dass Ihr CSS ordnungsgemäß
   funktioniert, indem Sie es in Ihren Benutzereinstellungen testen.
 customMOTD: Benutzerdefinierte Meldung des Tages (Begrüßungsbildschirmmeldungen)
-allowedInstancesDescription: Hosts von Servern, die zur Verbindung auf die Liste vertrauenswürdiger
-  Server gesetzt werden sollen, werden jeweils durch eine neue Zeile getrennt eingegeben
-  (gilt nur im privaten Modus).
+allowedInstancesDescription: Hostnamen von Servern, die auf der Liste vertrauenswürdiger
+  Server für die Föderation stehen sollen, jeweils getrennt in einer neuen Zeile (tritt
+  nur im privaten Modus in Kraft).
 migration: Migration
-updateAvailable: Es könnte eine Aktualisierung verfügbar sein!
+updateAvailable: Es könnte ein Update verfügbar sein!
 showAdminUpdates: Anzeigen, dass eine neue Firefish-Version verfügbar ist (nur Administrator)
 customMOTDDescription: Benutzerdefinierte Meldungen für die Meldung des Tages (Begrüßungsbildschirm),
   die durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
   werden, wenn ein Benutzer die Seite (neu) lädt.
 recommendedInstancesDescription: Empfohlene Server, die durch Zeilenumbrüche getrennt
-  sind, werden in der "Favoriten"-Timeline angezeigt. Fügen Sie NICHT "https://" hinzu,
-  sondern NUR die Domain.
+  sind, werden in der "Favoriten"-Timeline angezeigt.
 sendModMail: Moderationshinweis senden
 moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt,
   sodass Sie von ihrem bisherigen Konto zu diesem Nutzerkonto wechseln können. Tun
@@ -2073,7 +2086,7 @@ moveFromDescription: 'Dadurch wird ein Alias Ihres alten Nutzerkontos festgelegt
 preventAiLearning: KI gestütztes bot-scraping unterdrücken
 preventAiLearningDescription: Fordern Sie KI-Sprachmodelle von Drittanbietern auf,
   die von Ihnen hochgeladenen Inhalte, wie z. B. Beiträge und Bilder, nicht zu untersuchen.
-license: Genehmigung
+license: Lizenz
 indexPosts: Gelistete Beiträge
 migrationConfirm: "Sind Sie absolut sicher, dass Sie Ihr Nutzerkonto zu diesem {account}
   umziehen möchten? Sobald Sie dies bestätigt haben, kann dies nicht mehr rückgängig
@@ -2106,12 +2119,12 @@ indexFrom: Indexieren ab Beitragskennung aufwärts
 indexNotice: Wird jetzt indexiert. Dies wird wahrscheinlich eine Weile dauern, bitte
   starten Sie Ihren Server für mindestens eine Stunde nicht neu.
 customKaTeXMacroDescription: "Richten Sie Makros ein, um mathematische Ausdrücke einfach
-  zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als\n
-  \\newcommand{\\name}{content} or \\newcommand{\\name}[number of arguments]{content}\n
-  geschrieben.\nZum Beispiel wird\n\\newcommand{\\add}[2]{#1 + #2} \\add{3}{foo} um
-  3 + foo erweitert.\nDie geschweiften Klammern, die den Makronamen umgeben, können
-  in runde oder eckige Klammern geändert werden. Dies hat Auswirkungen auf die Klammern,
-  die für die Argumente verwendet werden. Pro Zeile kann ein (und nur ein) Makro definiert
+  zu schreiben! Die Notation entspricht den LaTeX-Befehlsdefinitionen und wird als
+  \\newcommand{\\name}{content} oder \\newcommand{\\name}[number of arguments]{content}
+  geschrieben. Zum Beispiel wird \\newcommand{\\add}[2]{#1 + #2} \\add{3}{foo} erweitern
+  zu 3 + foo. Die geschweiften Klammern, die den Makro-Namen umgeben, können in runde
+  oder eckige Klammern geändert werden. Dies hat Auswirkungen auf die Klammern, die
+  für die Argumente verwendet werden. Pro Zeile kann ein (und nur ein) Makro definiert
   werden, und Sie können die Zeile nicht mitten in der Definition umbrechen. Ungültige
   Zeilen werden einfach ignoriert. Es werden nur einfache Funktionen zur Substitution
   von Zeichenketten unterstützt; erweiterte Syntax, wie z. B. bedingte Verzweigungen,
@@ -2131,6 +2144,7 @@ _filters:
   fromDomain: Von Domain
   notesBefore: Beiträge vor
   followingOnly: Nur Folgende
+  followersOnly: Nur Follower
 isBot: Dieses Konto ist ein Bot
 isModerator: Moderator
 isAdmin: Administrator
@@ -2141,7 +2155,7 @@ _dialog:
 searchPlaceholder: Firefish durchsuchen
 antennasDesc: "Antennen zeigen neue Posts an, die deinen definierten Kriterien entsprechen!\n
   Sie können von der Timeline-Seite aufgerufen werden."
-isPatron: Firefish Patron
+isPatron: Firefish-Patron
 removeReaction: Entferne deine Reaktion
 listsDesc: Listen lassen dich Timelines mit bestimmten Nutzer:innen erstellen. Sie
   können von der Timeline-Seite erreicht werden.
@@ -2150,3 +2164,30 @@ clipsDesc: Clips sind wie teilbare, kategorisierte Lesezeichen. Du kannst Clips 
 channelFederationWarn: Kanäle föderieren noch nicht zu anderen Servern
 reactionPickerSkinTone: Bevorzugte Emoji-Hautfarbe
 swipeOnMobile: Wischen zwischen den Seiten erlauben
+enableServerMachineStats: Server-Hardware-Statistik einschalten
+enableIdenticonGeneration: Identicon-Generierung einschalten
+verifiedLink: Verifizierter Link
+_feeds:
+  copyFeed: Feed kopieren
+  jsonFeed: JSON-Feed
+  rss: RSS
+  atom: Atom
+youHaveUnreadAnnouncements: Du hast ungelesene Ankündigungen
+donationLink: Link zur Spenden-Seite
+remindMeLater: Vielleicht später
+neverShow: Nicht wieder zeigen
+removeRecipient: Empfänger entfernen
+removeMember: Mitglied entfernen
+alt: ALT
+xl: XL
+isLocked: Dieser Account hat Folge-Anfragen aktiviert
+_skinTones:
+  mediumLight: Mittelhell
+  yellow: Gelb
+  light: Hell
+  medium: Mittel
+  dark: Dunkel
+  mediumDark: Mitteldunkel
+showPopup: Benutzer mit Popup benachrichtigen
+showWithSparkles: Mit Glitzer anzeigen
+removeQuote: Zitat entfernen
