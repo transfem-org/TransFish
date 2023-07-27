@@ -373,8 +373,6 @@ export async function createPerson(
 
 	await updateFeatured(user!.id, resolver).catch((err) => logger.error(err));
 
-	await userByIdCache.set(user.id, {...user, emojis, avatar, banner});
-
 	return user!;
 }
 
