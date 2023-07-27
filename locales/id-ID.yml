@@ -888,7 +888,7 @@ ffVisibility: "Visibilitas Mengikuti/Pengikut"
 ffVisibilityDescription: "Mengatur siapa yang dapat melihat pengikutmu dan yang kamu
   ikuti."
 continueThread: "Lihat lanjutan utas"
-deleteAccountConfirm: "Akun akan dihapus. Apakah kamu yakin?"
+deleteAccountConfirm: "Akun ini akan dihapus secara permanen. Lanjutkan?"
 incorrectPassword: "Kata sandi salah."
 voteConfirm: "Konfirmasi suara kamu untuk ({choice})？"
 hide: "Sembunyikan"
@@ -2153,3 +2153,4 @@ _feeds:
   rss: RSS
   atom: Atom
   jsonFeed: Umpan JSON
+origin: Asal
