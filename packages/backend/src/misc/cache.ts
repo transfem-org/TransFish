@@ -1,6 +1,7 @@
 import { redisClient } from "@/db/redis.js";
 import { encode, decode } from "msgpackr";
 import { ChainableCommander } from "ioredis";
+import { Followings } from "@/models/index.js";
 
 export class Cache<T> {
 	private ttl: number;
@@ -127,5 +128,46 @@ export class Cache<T> {
 			await this.set(key, value);
 		}
 		return value;
+	}
+}
+
+export class FollowingsCache {
+	private myId: string;
+	private key: string;
+
+	private constructor(userId: string) {
+		this.myId = userId;
+		this.key = `followings:${userId}`;
+	}
+
+	public static async init(userId: string) {
+		const cache = new FollowingsCache(userId);
+
+		// Sync from DB if no relationships is cached
+		if ((await redisClient.scard(cache.key)) === 0) {
+			const rel = await Followings.find({
+				select: { followeeId: true },
+				where: { followerId: cache.myId },
+			});
+			await cache.follow(...rel.map((r) => r.followeeId));
+		}
+
+		return cache;
+	}
+
+	public async follow(...targetIds: string[]) {
+		if (targetIds.length > 0) {
+			await redisClient.sadd(this.key, targetIds);
+		}
+	}
+
+	public async unfollow(...targetIds: string[]) {
+		if (targetIds.length > 0) {
+			await redisClient.srem(this.key, targetIds);
+		}
+	}
+
+	public async isFollowing(targetId: string): Promise<boolean> {
+		return (await redisClient.sismember(this.key, targetId)) === 1;
 	}
 }
