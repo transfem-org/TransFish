@@ -51,9 +51,14 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	"channelId" ascii, -- Channel
 	"channelName" text,
 	"userId" ascii, -- User
+	"userHost" text,
 	"replyId" ascii, -- Reply
+	"replyUserId" ascii,
+	"replyUserHost" text,
 	"renoteId" ascii, -- Boost
-	"reactions" map<text, int>,
+	"renoteUserId" ascii,
+	"renoteUserHost" text,
+	"reactions" map<text, int>, -- Reactions
 	"noteEdit" set<frozen<note_edit_history>>, -- Edit History
 	"updatedAt" timestamp,
 	PRIMARY KEY ("createdAtDate", "createdAt", "id")

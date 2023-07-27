@@ -36,7 +36,8 @@ export async function getNote(
 					candidate.visibleUserIds.includes(me.id) || // visible to me
 					candidate.mentions.includes(me.id) || // mentioned me
 					(candidate.visibility === "followers" &&
-						(await cache.isFollowing(candidate.userId)));
+						(await cache.isFollowing(candidate.userId))) || // following
+					candidate.replyUserId === me.id; // replied to myself
 			}
 
 			if (valid) {

@@ -45,14 +45,19 @@ export const prepared = {
 				"channelId",
 				"channelName",
 				"userId",
+				"userHost",
 				"replyId",
+				"replyUserId",
+				"replyUserHost",
 				"renoteId",
+				"renoteUserId",
+				"renoteUserHost",
 				"reactions",
 				"noteEdit",
 				"updatedAt"
 			)
 			VALUES
-			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
 			byDate: `SELECT * FROM note WHERE "createdAtDate" IN ?`,
 			byId: `SELECT * FROM note WHERE "id" IN ?`,
@@ -111,35 +116,9 @@ export interface ScyllaNoteEditHistory {
 
 export type ScyllaNote = Note & {
 	createdAtDate: Date;
-	createdAt: Note["createdAt"];
-	id: Note["id"];
-	visibility: Note["visibility"];
-	text: Note["text"];
-	name: Note["name"];
-	cw: Note["cw"];
-	localOnly: Note["localOnly"];
-	renoteCount: Note["renoteCount"];
-	repliesCount: Note["repliesCount"];
-	uri: Note["uri"];
-	url: Note["url"];
-	score: Note["score"];
 	files: ScyllaDriveFile[];
-	fileIds: Note["fileIds"];
-	attachedFileTypes: Note["attachedFileTypes"];
-	visibleUserIds: Note["visibleUserIds"];
-	mentions: Note["mentions"];
-	emojis: Note["emojis"];
-	tags: Note["tags"];
-	hasPoll: Note["hasPoll"];
-	threadId: Note["threadId"];
-	channelId: Note["channelId"];
 	channelName: string;
-	userId: Note["userId"];
-	replyId: Note["replyId"];
-	renoteId: Note["renoteId"];
-	reactions: Note["reactions"];
 	noteEdit: ScyllaNoteEditHistory[];
-	updatedAt: Note["updatedAt"];
 };
 
 export function parseScyllaNote(row: types.Row): ScyllaNote {
@@ -170,8 +149,13 @@ export function parseScyllaNote(row: types.Row): ScyllaNote {
 		channelId: row.get("channelId"),
 		channelName: row.get("channelName"),
 		userId: row.get("userId"),
+		userHost: row.get("userHost"),
 		replyId: row.get("replyId"),
+		replyUserId: row.get("replyUserId"),
+		replyUserHost: row.get("replyUserHost"),
 		renoteId: row.get("replyId"),
+		renoteUserId: row.get("renoteUserId"),
+		renoteUserHost: row.get("renoteUserHost"),
 		reactions: row.get("reactions"),
 		noteEdit: row.get("noteEdit"),
 		updatedAt: row.get("updatedAt"),
@@ -179,13 +163,8 @@ export function parseScyllaNote(row: types.Row): ScyllaNote {
 		channel: null,
 		renote: null,
 		reply: null,
-		renoteUserHost: null,
-		renoteUserId: null,
 		mentionedRemoteUsers: "",
-		replyUserHost: null,
-		replyUserId: null,
 		user: null,
-		userHost: null,
 	};
 }
 
