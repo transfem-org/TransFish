@@ -4,7 +4,7 @@ import type { Note } from "@/models/entities/note.js";
 import { Notes, Users } from "@/models/index.js";
 import { generateVisibilityQuery } from "./generate-visibility-query.js";
 import { parseScyllaNote, prepared, scyllaClient } from "@/db/scylla.js";
-import { FollowingsCache } from "@/misc/cache.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
 
 /**
  * Get note for API processing, taking into account visibility.
@@ -29,7 +29,7 @@ export async function getNote(
 			) {
 				valid = true;
 			} else if (me) {
-				const cache = await FollowingsCache.init(me.id);
+				const cache = await LocalFollowingsCache.init(me.id);
 
 				valid =
 					candidate.userId === me.id || // my own post

@@ -28,6 +28,7 @@ import type { Packed } from "@/misc/schema.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
 import { webhookDeliver } from "@/queue/index.js";
 import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
 
 const logger = new Logger("following/create");
 
@@ -57,7 +58,7 @@ export async function insertFollowingDoc(
 		followerId: follower.id,
 		followeeId: followee.id,
 
-		// 非正規化
+		// Denormalization
 		followerHost: follower.host,
 		followerInbox: Users.isRemoteUser(follower) ? follower.inbox : null,
 		followerSharedInbox: Users.isRemoteUser(follower)
@@ -80,6 +81,12 @@ export async function insertFollowingDoc(
 			throw e;
 		}
 	});
+
+	if (Users.isLocalUser(follower)) {
+		// Cache following ID set
+		const cache = await LocalFollowingsCache.init(follower.id);
+		await cache.follow(followee.id);
+	}
 
 	const req = await FollowRequests.findOneBy({
 		followeeId: followee.id,

@@ -21,7 +21,7 @@ export type Source = {
 		keyspace: string;
 		replicationFactor: number;
 		localDataCentre: string;
-	},
+	};
 	redis: {
 		host: string;
 		port: number;

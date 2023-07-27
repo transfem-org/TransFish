@@ -13,6 +13,7 @@ import {
 	perUserFollowingChart,
 } from "@/services/chart/index.js";
 import { getActiveWebhooks } from "@/misc/webhook-cache.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
 
 const logger = new Logger("following/delete");
 
@@ -39,13 +40,16 @@ export default async function (
 	});
 
 	if (following == null) {
-		logger.warn(
-			"フォロー解除がリクエストされましたがフォローしていませんでした",
-		);
+		logger.warn("Requested follow removal but not yet following");
 		return;
 	}
 
 	await Followings.delete(following.id);
+
+	if (Users.isLocalUser(follower)) {
+		const cache = await LocalFollowingsCache.init(follower.id);
+		await cache.unfollow(followee.id);
+	}
 
 	decrementFollowing(follower, followee);
 

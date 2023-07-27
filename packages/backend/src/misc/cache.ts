@@ -131,17 +131,17 @@ export class Cache<T> {
 	}
 }
 
-export class FollowingsCache {
+export class LocalFollowingsCache {
 	private myId: string;
 	private key: string;
 
 	private constructor(userId: string) {
 		this.myId = userId;
-		this.key = `followings:${userId}`;
+		this.key = `follow:${userId}`;
 	}
 
 	public static async init(userId: string) {
-		const cache = new FollowingsCache(userId);
+		const cache = new LocalFollowingsCache(userId);
 
 		// Sync from DB if no relationships is cached
 		if ((await redisClient.scard(cache.key)) === 0) {
@@ -157,12 +157,14 @@ export class FollowingsCache {
 
 	public async follow(...targetIds: string[]) {
 		if (targetIds.length > 0) {
+			// This is no-op if targets are already in cache
 			await redisClient.sadd(this.key, targetIds);
 		}
 	}
 
 	public async unfollow(...targetIds: string[]) {
 		if (targetIds.length > 0) {
+			// This is no-op if targets are not in cache
 			await redisClient.srem(this.key, targetIds);
 		}
 	}

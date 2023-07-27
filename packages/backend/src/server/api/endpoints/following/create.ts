@@ -5,6 +5,7 @@ import { getUser } from "../../common/getters.js";
 import { Followings, Users } from "@/models/index.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
 import { HOUR } from "@/const.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
 
 export const meta = {
 	tags: ["following", "users"],
@@ -82,12 +83,8 @@ export default define(meta, paramDef, async (ps, user) => {
 	});
 
 	// Check if already following
-	const exist = await Followings.exist({
-		where: {
-			followerId: follower.id,
-			followeeId: followee.id,
-		},
-	});
+	const cache = await LocalFollowingsCache.init(follower.id);
+	const exist = await cache.isFollowing(followee.id);
 
 	if (exist) {
 		throw new ApiError(meta.errors.alreadyFollowing);
