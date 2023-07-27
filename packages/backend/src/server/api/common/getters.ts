@@ -3,7 +3,8 @@ import type { User } from "@/models/entities/user.js";
 import type { Note } from "@/models/entities/note.js";
 import { Notes, Users } from "@/models/index.js";
 import { generateVisibilityQuery } from "./generate-visibility-query.js";
-import { prepared, scyllaClient } from "@/db/scylla.js";
+import { parseScyllaNote, prepared, scyllaClient } from "@/db/scylla.js";
+import { FollowingsCache } from "@/misc/cache.js";
 
 /**
  * Get note for API processing, taking into account visibility.
@@ -20,21 +21,39 @@ export async function getNote(
 			{ prepare: true },
 		);
 		if (result.rowLength > 0) {
-			const visibility: string = result.rows[0].get("visibility");
-			if (!me) {
+			const candidate = parseScyllaNote(result.first());
+			let valid = false;
+
+			if (
+				["public", "home"].includes(candidate.visibility) // public post
+			) {
+				valid = true;
+			} else if (me) {
+				const cache = await FollowingsCache.init(me.id);
+
+				valid =
+					candidate.userId === me.id || // my own post
+					candidate.visibleUserIds.includes(me.id) || // visible to me
+					candidate.mentions.includes(me.id) || // mentioned me
+					(candidate.visibility === "followers" &&
+						(await cache.isFollowing(candidate.userId)));
+			}
+
+			if (valid) {
+				note = candidate;
 			}
 		}
+	} else {
+		const query = Notes.createQueryBuilder("note").where("note.id = :id", {
+			id: noteId,
+		});
+
+		generateVisibilityQuery(query, me);
+
+		note = await query.getOne();
 	}
 
-	const query = Notes.createQueryBuilder("note").where("note.id = :id", {
-		id: noteId,
-	});
-
-	generateVisibilityQuery(query, me);
-
-	note = await query.getOne();
-
-	if (note == null) {
+	if (!note) {
 		throw new IdentifiableError(
 			"9725d0ce-ba28-4dde-95a7-2cbb2c15de24",
 			"No such note.",
