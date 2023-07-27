@@ -37,7 +37,7 @@ import { deleteFile } from "./delete-file.js";
 
 const logger = driveLogger.createSubLogger("register", "yellow");
 
-type PathPartLike = string | null
+type PathPartLike = string | null;
 
 // Joins an array of elements into a URL pathname, possibly with a base URL object to append to.
 // Null or 0-length parts will be left out.
@@ -46,21 +46,19 @@ function urlPathJoin(
 	pathParts?: PathPartLike[],
 ): string {
 	if (baseOrParts instanceof URL) {
-					const url = new URL(baseOrParts as URL);
-					if (pathParts) {
-									pathParts.unshift(
-													url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname,
-									);
-									url.pathname = pathParts
-													.filter((x) => x !== null && x.toString().length > 0)
-													.join("/");
-					}
-					return url.toString();
+		const url = new URL(baseOrParts as URL);
+		if (pathParts) {
+			pathParts.unshift(
+				url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname,
+			);
+			url.pathname = pathParts
+				.filter((x) => x !== null && x.toString().length > 0).join("/");
+		}
+		return url.toString();
 	}
 	const baseParts = baseOrParts.concat(pathParts ?? []);
 	return baseParts
-					.filter((x) => x !== null && x.toString().length > 0)
-					.join("/");
+		.filter((x) => x !== null && x.toString().length > 0).join("/");
 }
 
 /***
