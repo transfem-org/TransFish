@@ -44,7 +44,10 @@ export async function getNote(
 				note = candidate;
 			}
 		}
-	} else {
+	}
+
+	// For legacy notes
+	if (!note) {
 		const query = Notes.createQueryBuilder("note").where("note.id = :id", {
 			id: noteId,
 		});
