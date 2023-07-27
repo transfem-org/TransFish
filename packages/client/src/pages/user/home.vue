@@ -387,7 +387,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, onMounted, onUnmounted } from "vue";
+import { ref, defineAsyncComponent, onMounted, onUnmounted } from "vue";
 import calcAge from "s-age";
 import cityTimezones from "city-timezones";
 import XUserTimeline from "./index.timeline.vue";
@@ -422,6 +422,7 @@ let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
 let rootEl = $ref<null | HTMLElement>(null);
 let bannerEl = $ref<null | HTMLElement>(null);
+let patrons = ref([]);
 
 const age = $computed(() => {
 	return calcAge(props.user.birthday);
@@ -467,9 +468,8 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-let patrons = [];
 const patronsResp = await os.api("patrons");
-patrons = patronsResp.patrons;
+patrons.value = patronsResp.patrons;
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
