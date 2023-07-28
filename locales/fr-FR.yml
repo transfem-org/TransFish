@@ -1261,7 +1261,7 @@ _tutorial:
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
   step4_2: "Pour votre première note, certaines personnes aiment faire une note {introduction}
-    ou une simple note 'Bonjour le monde'."
+    ou une simple note 'Bonjours tout le monde !'."
   step5_1: "Lignes de temps, lignes de temps partout !"
   step5_2: "Votre serveur a {timelines} différentes timelines activées !"
   step5_3: "La timeline Principale {icon} est l'endroit où vous pouvez voir les publications
@@ -1406,7 +1406,7 @@ _widgets:
   serverInfo: Info serveur
   meiliStatus: État du serveur
   meiliSize: Taille de l’index
-  instanceCloud: Nuage de Serveurs
+  instanceCloud: Nuage de serveurs
   rssTicker: Bandeau RSS
 _cw:
   hide: "Masquer"
