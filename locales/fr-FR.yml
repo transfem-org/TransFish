@@ -1371,6 +1371,7 @@ _antennaSources:
   users: "Notes venant de la part d’utilisateur·rice·s précis"
   userList: "Notes venant d’une liste spécifique"
   userGroup: "Notes venant d’utilisateur·rice·s du groupe spécifié"
+  instances: Notes de tous les utilisateurs d'une instance
 _weekday:
   sunday: "Dimanche"
   monday: "Lundi"
