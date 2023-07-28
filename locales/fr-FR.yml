@@ -1874,7 +1874,7 @@ _deck:
   renameProfile: Renommer l’espace de travail
   configureColumn: Paramètres de colonne
   deleteProfile: Supprimer l’espace de travail
-  widgetsIntroduction: Sélectionner "Éditer les widgets" dans le menu de la colonne
+  widgetsIntroduction: Sélectionner "Modifier les widgets" dans le menu de la colonne
     et ajouter un widget.
   nameAlreadyExists: Ce nom d’espace de travail existe déjà.
   newProfile: Nouvel espace de travail
