@@ -1,10 +1,7 @@
 _lang_: "Français"
 headlineFirefish: "Réseau relié par des notes"
-introFirefish: "Bienvenue ! Firefish est un service de microblogage décentralisé,
-  libre et ouvert.\nÉcrivez des « notes » et partagez ce qui se passe à l’instant
-  présent, autour de vous avec les autres 📡\nLa fonction « réactions », vous permet
-  également d’ajouter une réaction rapide aux notes des autres utilisateur·rice·s
-  👍\nExplorons un nouveau monde 🚀"
+introFirefish: "Bienvenue ! Firefish est une plateforme de réseau social décentralisé
+  et open source qui est gratuite pour toujours ! 🚀"
 monthAndDay: "{day}/{month}"
 search: "Rechercher"
 notifications: "Notifications"
@@ -39,7 +36,7 @@ addUser: "Ajouter un·e utilisateur·rice"
 favorite: "Ajouter aux favoris"
 favorites: "Favoris"
 unfavorite: "Retirer des favoris"
-favorited: "Ajouté à mes favoris"
+favorited: "Ajouté à mes favoris."
 alreadyFavorited: "Déjà ajouté aux favoris."
 cantFavorite: "Impossible d'ajouter aux favoris."
 pin: "Épingler sur le profil"
@@ -55,7 +52,7 @@ sendMessage: "Envoyer un message"
 copyUsername: "Copier le nom d’utilisateur·rice"
 searchUser: "Chercher un·e utilisateur·rice"
 reply: "Répondre"
-loadMore: "Afficher plus …"
+loadMore: "Afficher plus"
 showMore: "Afficher plus …"
 showLess: "Fermer"
 youGotNewFollower: "Vous suit"
@@ -796,7 +793,7 @@ apply: "Appliquer"
 receiveAnnouncementFromInstance: "Recevoir les messages d'information du serveur"
 emailNotification: "Notifications par mail"
 publish: "Public"
-inChannelSearch: "Chercher dans le canal"
+inChannelSearch: "Chercher dans la chaîne"
 useReactionPickerForContextMenu: "Clic-droit pour ouvrir le panneau de réactions"
 typingUsers: "{users} est en train d'écrire"
 jumpToSpecifiedDate: "Se rendre à la date"
@@ -1117,8 +1114,8 @@ _serverDisconnectedBehavior:
   quiet: "Afficher un avertissement discret"
   nothing: Ne rien faire
 _channel:
-  create: "Créer un canal"
-  edit: "Éditer le canal"
+  create: "Créer une chaîne"
+  edit: "Éditer la chaîne"
   setBanner: "Sélectionner la bannière"
   removeBanner: "Supprimer la bannière"
   featured: "Tendances"
@@ -1235,7 +1232,7 @@ _sfx:
   chat: "Discuter"
   chatBg: "Discussion (arrière-plan)"
   antenna: "Réception de l’antenne"
-  channel: "Notifications de canal"
+  channel: "Notifications de chaîne"
 _ago:
   future: "Futur"
   justNow: "à l’instant"
@@ -1372,7 +1369,7 @@ _antennaSources:
   users: "Notes venant de la part d’utilisateur·rice·s précis"
   userList: "Notes venant d’une liste spécifique"
   userGroup: "Notes venant d’utilisateur·rice·s du groupe spécifié"
-  instances: Notes de tous les utilisateurs d'une instance
+  instances: Notes de tous les utilisateurs d'un serveur
 _weekday:
   sunday: "Dimanche"
   monday: "Lundi"
@@ -1382,7 +1379,7 @@ _weekday:
   friday: "Vendredi"
   saturday: "Samedi"
 _widgets:
-  memo: "Note collante"
+  memo: "Post-it"
   notifications: "Notifications"
   timeline: "Fil"
   calendar: "Calendrier"
@@ -1393,7 +1390,7 @@ _widgets:
   photos: "Photos"
   digitalClock: "Horloge numérique"
   federation: "Fédération"
-  postForm: "Formulaire de publication"
+  postForm: "Champ de publication"
   slideshow: "Diaporama"
   button: "Bouton"
   onlineUsers: "Utilisateurs en ligne"
@@ -1405,6 +1402,11 @@ _widgets:
   _userList:
     chooseList: Sélectionner une liste
   unixClock: Horloge UNIX
+  meiliIndexCount: Notes indexées
+  serverInfo: Info serveur
+  meiliStatus: État du serveur
+  meiliSize: Taille de l’index
+  instanceCloud: Nuage de Serveurs
 _cw:
   hide: "Masquer"
   show: "Afficher plus …"
@@ -1434,11 +1436,11 @@ _poll:
   remainingSeconds: "{s} secondes restantes"
 _visibility:
   public: "Public"
-  publicDescription: "Publier à tou·te·s les utilisateur·rice·s"
-  home: "Principal"
+  publicDescription: "Vos Notes seront affichées sur toutes les timelines publiques"
+  home: "Non-listés"
   homeDescription: "Publier sur le fil principal uniquement"
   followers: "Abonné·e·s"
-  followersDescription: "Publier à vos abonné·e·s uniquement"
+  followersDescription: "Publier à vos abonné·e·s et mentions uniquement"
   specified: "Direct"
   specifiedDescription: "Publier uniquement aux utilisateur·rice·s mentionné·e·s"
   localOnly: "Local seulement"
@@ -1446,7 +1448,7 @@ _visibility:
 _postForm:
   replyPlaceholder: "Répondre à cette note ..."
   quotePlaceholder: "Citez cette note ..."
-  channelPlaceholder: "Publier vers le canal"
+  channelPlaceholder: "Publier sur une chaîne…"
   _placeholders:
     a: "Quoi de neuf ?"
     b: "Il s'est passé quelque chose ?"
@@ -1840,6 +1842,9 @@ _notification:
     followBack: "Suivre"
     reply: "Répondre"
     renote: "Renoter"
+  reacted: a réagit à votre Note
+  renoted: a boosté votre Note
+  voted: a voté pour votre sondage
 _deck:
   alwaysShowMainColumn: "Toujours afficher la colonne principale"
   columnAlign: "Aligner les colonnes"
@@ -1850,20 +1855,28 @@ _deck:
   swapDown: "Déplacer vers le bas"
   stackLeft: "Empiler à gauche"
   popRight: "Extraire à droite"
-  profile: "Profil"
+  profile: "Espace de travail"
   _columns:
     main: "Principale"
     widgets: "Widgets"
     notifications: "Notifications"
     tl: "Fil"
-    antenna: "Antennes"
+    antenna: "Antenne"
     list: "Listes"
     mentions: "Mentions"
     direct: "Direct"
+    channel: Chaîne
   introduction: Créer l'interface parfaite pour vous en arrangeant les colonnes librement
     !
   introduction2: Cliquer sur le + sur la droite de l'écran pour ajouter de nouvelles
     colonnes à tout moment.
+  renameProfile: Renommer l’espace de travail
+  configureColumn: Paramètres de colonne
+  deleteProfile: Supprimer l’espace de travail
+  widgetsIntroduction: Veuillez sélectionner "Modifier les widgets" dans le menu de
+    la colonne et ajouter un widget.
+  nameAlreadyExists: Ce nom d’espace de travail existe déjà.
+  newProfile: Nouvel espace de travail
 keepOriginalUploadingDescription: Enregistrer l'image originale telle quelle. Si désactivé,
   une version à afficher sur le web sera générée au chargement.
 manageGroups: Gérer les groupes
@@ -2057,7 +2070,7 @@ enableCustomKaTeXMacro: Activer les macros KaTeX personnalisées
 noteId: ID de Note
 customKaTeXMacroDescription: "Définissez des macros pour écrire des expressions mathématiques
   simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
-  \\newcommand{\\name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
+  \\newcommand{\\·name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
   Par exemple, \\newcommand{\\add}[2]{#1 + #2} étendra \\add{3}{foo} en 3 + foo. Les
   accolades entourant le nom de la macro peuvent être changés pour des parenthèses
   ou des crochets. Cela affectera les types de parenthèses utilisées pour les arguments.
@@ -2079,6 +2092,10 @@ _experiments:
   beta: Beta
   enablePostImports: Autoriser l'importation de messages
   title: Expérimentations
+  postImportsCaption: Permet aux utilisateurs d'importer leurs publications à partir
+    de leurs anciens comptes Firefish, Misskey, Mastodon, Akkoma et Pleroma. Cela
+    peut entraîner des ralentissements lors du chargement si votre file d'attente
+    est congestionnée.
 findOtherInstance: Trouver un autre serveur
 userSaysSomethingReasonQuote: '{name} a cité une note contenant {reason}'
 signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés, mais
@@ -2089,7 +2106,7 @@ userSaysSomethingReasonReply: '{noms} a répondu à une note contenant {raison}'
 defaultValueIs: 'défaut : {valeur}'
 searchPlaceholder: Recherchez sur Firefish
 removeReaction: Retirer votre réaction
-selectChannel: Sélectionner un canal
+selectChannel: Sélectionner une chaîne
 expandOnNoteClick: Ouvrir la note en cliquant
 preventAiLearning: Empêcher le récupération de données par des IA
 listsDesc: Les listes vous laisse créer des fils personnalisés avec des utilisateurs
@@ -2097,6 +2114,9 @@ listsDesc: Les listes vous laisse créer des fils personnalisés avec des utilis
 indexFromDescription: Laisser vide pour indexer toutes les Notes
 _feeds:
   jsonFeed: flux JSON
+  atom: Atom
+  copyFeed: Copier le flux
+  rss: RSS
 alt: ALT
 swipeOnMobile: Permettre le balayage entre les pages
 expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les Notes dans le
@@ -2122,7 +2142,7 @@ reflectMayTakeTime: Il pourra s’écouler un certain temps avant que les change
 userSaysSomethingReasonRenote: '{name} a boosté une note contenant {reason}'
 sendModMail: Envoyer un avis à la modération
 clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagés. Vous
-  pouvez créer des clips à partir du menu des notes individuelles.
+  pouvez créer des clips à partir du menu de chaque note.
 unclip: Dé-clipper
 secureMode: Mode sécurisé (Authorized Fetch)
 secureModeInfo: Quand sollicité depuis d'autres serveurs, ne pas répondre sans preuve.
@@ -2160,3 +2180,18 @@ _filters:
   followersOnly: Abonnés uniquement
   followingOnly: Abonnements uniquement
   fromDomain: Du domaine
+_dialog:
+  charactersBelow: 'Pas assez de caractères ! Actuel : {current}/Minimum : {min}'
+  charactersExceeded: 'Nombre maximal de caractères dépassé ! Actuel : {current}/Limite
+    : {max}'
+channelFederationWarn: Les chaînes ne se fédèrent pas encore vers d'autres serveurs
+_skinTones:
+  yellow: Jaune
+  dark: Peau Foncée
+  light: Claire
+  mediumLight: Moyennement Claire
+  medium: Légèrement Mate
+  mediumDark: Peau Mate
+objectStorageS3ForcePathStyle: Utiliser des URL d'endpoints basées sur le chemin
+objectStorageS3ForcePathStyleDesc: Activez cette option pour construire les URL d'endpoints
+  au format 's3.amazonaws.com/<bucket>/' au lieu de '<bucket>.s3.amazonaws.com'.
