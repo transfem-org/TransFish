@@ -30,8 +30,7 @@ const image = props.hpml.page.attachedFiles.find(
 
 <style lang="scss" scoped>
 .lzyxtsnt {
-	> img {
-		max-width: 100%;
-	}
+	display: flex;
+	justify-content: center;
 }
 </style>
