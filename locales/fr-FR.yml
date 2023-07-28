@@ -1100,6 +1100,8 @@ _mfm:
   advancedDescription: Si désactivé, n'autorise que la mise en forme de base, sauf
     si une MFM animée est en cours de lecture
   cropDescription: Rogner le contenu.
+  scale: Mettre à l'échelle
+  scaleDescription: Mettre le contenu à l'échelle d'une valeur spécifique
 _instanceTicker:
   none: "Cacher "
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
