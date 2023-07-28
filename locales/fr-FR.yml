@@ -1407,6 +1407,7 @@ _widgets:
   meiliStatus: État du serveur
   meiliSize: Taille de l’index
   instanceCloud: Nuage de Serveurs
+  rssTicker: Bandeau RSS
 _cw:
   hide: "Masquer"
   show: "Afficher plus …"
