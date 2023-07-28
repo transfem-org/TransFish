@@ -236,6 +236,7 @@
 import { inject, watch, nextTick, onMounted, defineAsyncComponent } from "vue";
 import * as mfm from "mfm-js";
 import * as misskey from "firefish-js";
+import autosize from "autosize";
 import insertTextAtCursor from "insert-text-at-cursor";
 import { length } from "stringz";
 import { toASCII } from "punycode/";
@@ -973,6 +974,7 @@ onMounted(() => {
 		nextTick(() => {
 			focus();
 		});
+
 	}
 
 	// TODO: detach when unmount
@@ -980,7 +982,10 @@ onMounted(() => {
 	new Autocomplete(cwInputEl, $$(cw));
 	new Autocomplete(hashtagsInputEl, $$(hashtags));
 
+	autosize(textareaEl);
+
 	nextTick(() => {
+		autosize(textareaEl);
 		// 書きかけの投稿を復元
 		if (!props.instant && !props.mention && !props.specified) {
 			const draft = JSON.parse(localStorage.getItem("drafts") || "{}")[
