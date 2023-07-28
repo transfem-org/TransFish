@@ -36,7 +36,7 @@ const commonReadableHandlerGenerator =
 	};
 
 const extractRanges = (ctx: Koa.Context, size: BigInt) => {
-	let ranges = [];
+	const ranges: { start: any; end: any; length: number; }[] = [];
 	const range = ctx.headers["range"];
 
 	if (!range) return ranges;
@@ -97,8 +97,8 @@ const extractRanges = (ctx: Koa.Context, size: BigInt) => {
 
 const boundaryCharacters =
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-const createBoundary = (len: integer) => {
-	let chars = [];
+const createBoundary = (len: number) => {
+	const chars = [];
 	for (let i = 0; i < len; i = i + 1) {
 		chars[i] = boundaryCharacters.charAt(
 			Math.floor(Math.random() * boundaryCharacters.length),
