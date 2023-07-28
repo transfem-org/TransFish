@@ -1102,6 +1102,11 @@ _mfm:
   cropDescription: Rogner le contenu.
   scale: Mettre à l'échelle
   scaleDescription: Mettre le contenu à l'échelle selon une valeur spécifiée.
+  foreground: Couleur de premier plan
+  foregroundDescription: Changer la couleur de premier plan d'un texte.
+  backgroundDescription: Changer la couleur d'arrière-plan d'un texte.
+  background: Couleur d'arrière-plan
+  plain: Simple
 _instanceTicker:
   none: "Cacher "
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
@@ -1122,6 +1127,7 @@ _channel:
   usersCount: "{n} Participant·e·s"
   notesCount: "{n} Notes"
   nameAndDescription: Nom et description
+  nameOnly: Nom uniquement
 _menuDisplay:
   sideFull: "Latéral"
   sideIcon: "Latéral (icônes)"
