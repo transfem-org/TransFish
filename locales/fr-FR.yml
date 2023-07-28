@@ -2076,3 +2076,4 @@ clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagé
   pouvez créer des clips à partir du menu des notes individuelles.
 unclip: Dé-clipper
 secureMode: Mode sécurisé (Authorized Fetch)
+secureModeInfo: Quand sollicitée depuis d'autres instances, ne pas répondre sans preuve.
