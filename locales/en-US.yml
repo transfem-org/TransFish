@@ -566,6 +566,9 @@ objectStorageUseProxy: "Connect over Proxy"
 objectStorageUseProxyDesc: "Turn this off if you are not going to use a Proxy for
   API connections"
 objectStorageSetPublicRead: "Set \"public-read\" on upload"
+objectStorageS3ForcePathStyle: "Use path-based endpoint URLs"
+objectStorageS3ForcePathStyleDesc: "Turn this on to construct endpoint URLs in the
+  format of 's3.amazonaws.com/<bucket>/' over '<bucket>.s3.amazonaws.com'."
 serverLogs: "Server logs"
 deleteAll: "Delete all"
 showFixedPostForm: "Display the posting form at the top of the timeline"
