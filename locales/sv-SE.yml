@@ -1,7 +1,9 @@
----
 _lang_: "Svenska"
 headlineFirefish: "Ett nätverk kopplat av noter"
-introFirefish: "Välkommen! Firefish är en öppen och decentraliserad mikrobloggningstjänst.\nSkapa en \"not\" och dela dina tankar med alla runtomkring dig. 📡\nMed \"reaktioner\" kan du snabbt uttrycka dina känslor kring andras noter.👍\nLåt oss utforska en nya värld!🚀"
+introFirefish: "Välkommen! Firefish är en öppen och decentraliserad mikrobloggningstjänst.\n
+  Skapa en \"not\" och dela dina tankar med alla runtomkring dig. 📡\nMed \"reaktioner\"\
+  \ kan du snabbt uttrycka dina känslor kring andras noter.👍\nLåt oss utforska en
+  nya värld!🚀"
 monthAndDay: "{day}/{month}"
 search: "Sök"
 notifications: "Notifikationer"
@@ -44,7 +46,8 @@ copyContent: "Kopiera innehåll"
 copyLink: "Kopiera länk"
 delete: "Radera"
 deleteAndEdit: "Radera och ändra"
-deleteAndEditConfirm: "Är du säker att du vill radera denna not och ändra den? Du kommer förlora alla reaktioner, omnoteringar och svar till den."
+deleteAndEditConfirm: "Är du säker att du vill radera denna not och ändra den? Du
+  kommer förlora alla reaktioner, omnoteringar och svar till den."
 addToList: "Lägg till i lista"
 sendMessage: "Skicka ett meddelande"
 copyUsername: "Kopiera användarnamn"
@@ -63,9 +66,11 @@ import: "Importera"
 export: "Exportera"
 files: "Filer"
 download: "Nedladdning"
-driveFileDeleteConfirm: "Är du säker att du vill radera filen \"{name}\"? Noter med denna fil bifogad kommer också raderas."
+driveFileDeleteConfirm: "Är du säker att du vill radera filen \"{name}\"? Noter med
+  denna fil bifogad kommer också raderas."
 unfollowConfirm: "Är du säker att du vill avfölja {name}?"
-exportRequested: "Du har begärt en export. Detta kan ta lite tid. Den kommer läggas till i din Drive när den blir klar."
+exportRequested: "Du har begärt en export. Detta kan ta lite tid. Den kommer läggas
+  till i din Drive när den blir klar."
 importRequested: "Du har begärt en import. Detta kan ta lite tid."
 lists: "Listor"
 noLists: "Du har inga listor"
@@ -80,9 +85,11 @@ error: "Fel!"
 somethingHappened: "Ett fel har uppstått"
 retry: "Försök igen"
 pageLoadError: "Det gick inte att ladda sidan."
-pageLoadErrorDescription: "Detta händer oftast p.g.a. nätverksfel eller din webbläsarcache. Försök tömma din cache och testa sedan igen efter en liten stund."
+pageLoadErrorDescription: "Detta händer oftast p.g.a. nätverksfel eller din webbläsarcache.
+  Försök tömma din cache och testa sedan igen efter en liten stund."
 serverIsDead: "Servern svarar inte. Vänta ett litet tag och försök igen."
-youShouldUpgradeClient: "För att kunna se denna sida, vänligen ladda om sidan för att uppdatera din klient."
+youShouldUpgradeClient: "För att kunna se denna sida, vänligen ladda om sidan för
+  att uppdatera din klient."
 enterListName: "Skriv ett namn till listan"
 privacy: "Integritet"
 makeFollowManuallyApprove: "Följarförfrågningar kräver manuellt godkännande"
@@ -107,7 +114,8 @@ sensitive: "Känsligt innehåll"
 add: "Lägg till"
 reaction: "Reaktioner"
 reactionSetting: "Reaktioner som ska visas i reaktionsväljaren"
-reactionSettingDescription2: "Dra för att omordna, klicka för att radera, tryck \"+\" för att lägga till."
+reactionSettingDescription2: "Dra för att omordna, klicka för att radera, tryck \"\
+  +\" för att lägga till."
 rememberNoteVisibility: "Komihåg notvisningsinställningar"
 attachCancel: "Ta bort bilaga"
 markAsSensitive: "Markera som känsligt innehåll"
@@ -136,13 +144,20 @@ emojiUrl: "Emoji länk"
 addEmoji: "Lägg till emoji"
 settingGuide: "Rekommenderade inställningar"
 cacheRemoteFiles: "Spara externa filer till cachen"
-cacheRemoteFilesDescription: "När denna inställning är avstängd kommer externa filer laddas direkt från den externa instansen. Genom att stänga av detta kommer lagringsutrymme minska i användning men kommer öka datatrafiken eftersom miniatyrer inte kommer genereras."
+cacheRemoteFilesDescription: "När denna inställning är avstängd kommer externa filer
+  laddas direkt från den externa instansen. Genom att stänga av detta kommer lagringsutrymme
+  minska i användning men kommer öka datatrafiken eftersom miniatyrer inte kommer
+  genereras."
 flagAsBot: "Markera konto som bot"
-flagAsBotDescription: "Aktivera det här alternativet om kontot är kontrollerat av ett program. Om aktiverat kommer den fungera som en flagga för andra utvecklare för att hindra ändlösa kedjor med andra bottar. Det kommer också få Misskeys interna system att hantera kontot som en bot."
+flagAsBotDescription: "Aktivera det här alternativet om kontot är kontrollerat av
+  ett program. Om aktiverat kommer den fungera som en flagga för andra utvecklare
+  för att hindra ändlösa kedjor med andra bottar. Det kommer också få Misskeys interna
+  system att hantera kontot som en bot."
 flagAsCat: "Markera konto som katt"
 flagAsCatDescription: "Aktivera denna inställning för att markera kontot som en katt."
 flagShowTimelineReplies: "Visa svar i tidslinje"
-flagShowTimelineRepliesDescription: "Visar användarsvar till andra användares noter i tidslinjen om påslagen."
+flagShowTimelineRepliesDescription: "Visar användarsvar till andra användares noter
+  i tidslinjen om påslagen."
 autoAcceptFollowed: "Godkänn följarförfrågningar från användare du följer automatiskt"
 addAccount: "Lägg till konto"
 loginFailed: "Inloggningen misslyckades"
@@ -155,7 +170,11 @@ searchWith: "Sök: {q}"
 youHaveNoLists: "Du har inga listor"
 followConfirm: "Är du säker att du vill följa {name}?"
 proxyAccount: "Proxykonto"
-proxyAccountDescription: "Ett proxykonto är ett konto som agerar som en extern följare för användare under vissa villkor. Till exempel, när en användare lägger till en extern användare till en lista så kommer den externa användarens aktivitet inte levireras till instansen om ingen lokal användare följer det kontot, så proxykontot används istället."
+proxyAccountDescription: "Ett proxykonto är ett konto som agerar som en extern följare
+  för användare under vissa villkor. Till exempel, när en användare lägger till en
+  extern användare till en lista så kommer den externa användarens aktivitet inte
+  levireras till instansen om ingen lokal användare följer det kontot, så proxykontot
+  används istället."
 host: "Värd"
 selectUser: "Välj användare"
 recipient: "Mottagare"
@@ -185,11 +204,13 @@ instanceInfo: "Instansinformation"
 statistics: "Statistik"
 clearQueue: "Rensa kö"
 clearQueueConfirmTitle: "Är du säker att du vill rensa kön?"
-clearQueueConfirmText: "Om någon not är olevererad i kön kommer den inte federeras. Vanligtvis behövs inte denna handling."
+clearQueueConfirmText: "Om någon not är olevererad i kön kommer den inte federeras.
+  Vanligtvis behövs inte denna handling."
 clearCachedFiles: "Rensa cache"
 clearCachedFilesConfirm: "Är du säker att du vill radera alla cachade externa filer?"
 blockedInstances: "Blockerade instanser"
-blockedInstancesDescription: "Lista adressnamn av instanser som du vill blockera. Listade instanser kommer inte längre kommunicera med denna instans."
+blockedInstancesDescription: "Lista adressnamn av instanser som du vill blockera.
+  Listade instanser kommer inte längre kommunicera med denna instans."
 muteAndBlock: "Tystningar och blockeringar"
 mutedUsers: "Tystade användare"
 blockedUsers: "Blockerade användare"
