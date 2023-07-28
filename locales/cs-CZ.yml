@@ -1,9 +1,9 @@
 _lang_: "Čeština"
-headlineMisskey: "Síť propojená poznámkami"
-introMisskey: "Vítejte! Firefish je otevřený a decentralizovaný microblogový servis.\n\
-  \"Poznámkami\" můžete sdílet co se zrovna děje se všemi ve Vašem okolí. \U0001F4E1\
-  \nPomocí \"reakcí\" můžete sdílet své názory a pocity na ostatní poznámky. \U0001F44D\
-  \nPojďte objevovat nový svět! \U0001F680"
+headlineFirefish: "Síť propojená poznámkami"
+introFirefish: "Vítejte! Firefish je otevřený a decentralizovaný microblogový servis.\n\
+  \"Poznámkami\" můžete sdílet co se zrovna děje se všemi ve Vašem okolí. 📡\nPomocí
+  \"reakcí\" můžete sdílet své názory a pocity na ostatní poznámky. 👍\nPojďte objevovat
+  nový svět! 🚀"
 monthAndDay: "{day}. {month}."
 search: "Vyhledávání"
 notifications: "Oznámení"
@@ -18,7 +18,7 @@ enterUsername: "Zadej uživatelské jméno"
 renotedBy: "{user} přeposla/a"
 noNotes: "Žádné poznámky"
 noNotifications: "Žádná oznámení"
-instance: "Instance"
+instance: "Server"
 settings: "Nastavení"
 basicSettings: "Obecná nastavení"
 otherSettings: "Rozšířená nastavení"
@@ -46,8 +46,8 @@ copyContent: "Zkopírovat obsah"
 copyLink: "Kopírovat odkaz"
 delete: "Smazat"
 deleteAndEdit: "Smazat a upravit"
-deleteAndEditConfirm: "Jste si jistí že chcete smazat tuto poznámku a editovat ji?\
-  \ Ztratíte tím všechny reakce, sdílení a odpovědi na ni."
+deleteAndEditConfirm: "Jste si jistí že chcete smazat tuto poznámku a editovat ji?
+  Ztratíte tím všechny reakce, sdílení a odpovědi na ni."
 addToList: "Přidat do seznamu"
 sendMessage: "Odeslat zprávu"
 copyUsername: "Kopírovat uživatelské jméno"
@@ -66,11 +66,11 @@ import: "Importovat"
 export: "Exportovat"
 files: "Soubor(ů)"
 download: "Stáhnout"
-driveFileDeleteConfirm: "Opravdu chcete smazat soubor \"{name}\"? Soubor bude odstraněn\
-  \ ze všech příspěvků, které ji obsahují jako přílohu."
+driveFileDeleteConfirm: "Opravdu chcete smazat soubor \"{name}\"? Soubor bude odstraněn
+  ze všech příspěvků, které ji obsahují jako přílohu."
 unfollowConfirm: "Jste si jisti že už nechcete sledovat {name}?"
-exportRequested: "Požádali jste o export. To může chvíli trvat. Přidáme ho na váš\
-  \ Disk až bude dokončen."
+exportRequested: "Požádali jste o export. To může chvíli trvat. Přidáme ho na váš
+  Disk až bude dokončen."
 importRequested: "Požádali jste o export. To může chvilku trvat."
 lists: "Seznamy"
 noLists: "Nemáte žádné seznamy"
@@ -86,8 +86,8 @@ somethingHappened: "Jejda. Něco se nepovedlo."
 retry: "Opakovat"
 pageLoadError: "Nepodařilo se načíst stránku"
 serverIsDead: "Server neodpovídá. Počkejte chvíli a zkuste to znovu."
-youShouldUpgradeClient: "Pro zobrazení této stránky obnovte stránku pro aktualizaci\
-  \ klienta."
+youShouldUpgradeClient: "Pro zobrazení této stránky obnovte stránku pro aktualizaci
+  klienta."
 enterListName: "Jméno seznamu"
 privacy: "Soukromí"
 makeFollowManuallyApprove: "Žádosti o sledování vyžadují potvrzení"
@@ -111,8 +111,8 @@ clickToShow: "Klikněte pro zobrazení"
 sensitive: "NSFW"
 add: "Přidat"
 reaction: "Reakce"
-reactionSettingDescription2: "Přetažením změníte pořadí, kliknutím smažete, zmáčkněte\
-  \ \"+\" k přidání"
+reactionSettingDescription2: "Přetažením změníte pořadí, kliknutím smažete, zmáčkněte
+  \"+\" k přidání"
 rememberNoteVisibility: "Zapamatovat nastavení zobrazení poznámky"
 attachCancel: "Odstranit přílohu"
 markAsSensitive: "Označit jako NSFW"
@@ -141,18 +141,18 @@ emojiUrl: "URL obrázku"
 addEmoji: "Přidat emoji"
 settingGuide: "Doporučené nastavení"
 cacheRemoteFiles: "Ukládání vzdálených souborů do mezipaměti"
-cacheRemoteFilesDescription: "Zakázání tohoto nastavení způsobí, že vzdálené soubory\
-  \ budou odkazovány přímo, místo aby byly ukládány do mezipaměti. Tím se ušetří úložiště\
-  \ na serveru, ale zvýší se provoz, protože se negenerují miniatury."
+cacheRemoteFilesDescription: "Zakázání tohoto nastavení způsobí, že vzdálené soubory
+  budou odkazovány přímo, místo aby byly ukládány do mezipaměti. Tím se ušetří úložiště
+  na serveru, ale zvýší se provoz, protože se negenerují miniatury."
 flagAsBot: "Tento účet je bot"
-flagAsBotDescription: "Pokud je tento účet kontrolován programem zaškrtněte tuto možnost.\
-  \ To označí tento účet jako bot pro ostatní vývojáře a zabrání tak nekonečným interakcím\
-  \ s ostatními boty a upraví Firefish systém aby se choval k tomuhle účtu jako bot."
+flagAsBotDescription: "Pokud je tento účet kontrolován programem zaškrtněte tuto možnost.
+  To označí tento účet jako bot pro ostatní vývojáře a zabrání tak nekonečným interakcím
+  s ostatními boty a upraví Firefish systém aby se choval k tomuhle účtu jako bot."
 flagAsCat: "Tenhle účet je kočka"
 flagAsCatDescription: "Vyberte tuto možnost aby tento účet byl označen jako kočka."
 flagShowTimelineReplies: "Zobrazovat odpovědi na časové ose"
-flagShowTimelineRepliesDescription: "Je-li zapnuto, zobrazí odpovědi uživatelů na\
-  \ poznámky jiných uživatelů na vaší časové ose."
+flagShowTimelineRepliesDescription: "Je-li zapnuto, zobrazí odpovědi uživatelů na
+  poznámky jiných uživatelů na vaší časové ose."
 autoAcceptFollowed: "Automaticky akceptovat následování od účtů které sledujete"
 addAccount: "Přidat účet"
 loginFailed: "Přihlášení se nezdařilo."
@@ -165,10 +165,10 @@ searchWith: "Hledat: {q}"
 youHaveNoLists: "Nemáte žádné seznamy"
 followConfirm: "Jste si jisti, že chcete sledovat {name}?"
 proxyAccount: "Proxy účet"
-proxyAccountDescription: "Proxy účet je účet, který za určitých podmínek sleduje uživatele\
-  \ na dálku vaším jménem. Například když uživatel zařadí vzdáleného uživatele do\
-  \ seznamu, pokud nikdo nesleduje uživatele na seznamu, aktivita nebude doručena\
-  \ instanci, takže místo toho bude uživatele sledovat účet proxy."
+proxyAccountDescription: "Proxy účet je účet, který za určitých podmínek sleduje uživatele
+  na dálku vaším jménem. Například když uživatel zařadí vzdáleného uživatele do seznamu,
+  pokud nikdo nesleduje uživatele na seznamu, aktivita nebude doručena instanci, takže
+  místo toho bude uživatele sledovat účet proxy."
 host: "Hostitel"
 selectUser: "Vyberte uživatele"
 recipient: "Pro"
@@ -253,8 +253,8 @@ agreeTo: "Souhlasím s {0}"
 tos: "Podmínky užívání"
 start: "Začít"
 home: "Domů"
-remoteUserCaution: "Tyto informace nemusí být aktuální jelikož uživatel je ze vzdálené\
-  \ instance."
+remoteUserCaution: "Tyto informace nemusí být aktuální jelikož uživatel je ze vzdálené
+  instance."
 activity: "Aktivita"
 images: "Obrázky"
 birthday: "Datum narození"
@@ -563,8 +563,8 @@ info: "Informace"
 unknown: "Neznámý"
 onlineStatus: "Online status"
 hideOnlineStatus: "Skrýt Váš online status"
-hideOnlineStatusDescription: "Skrytí vašeho online stavu může snížit funkcionalitu\
-  \ některých funkcí, například vyhledávání."
+hideOnlineStatusDescription: "Skrytí vašeho online stavu může snížit funkcionalitu
+  některých funkcí, například vyhledávání."
 online: "Online"
 active: "Aktivní"
 offline: "Offline"
@@ -983,7 +983,7 @@ emptyDrive: Váš disk je prázdný
 inputNewDescription: Zadejte nový popisek
 hasChildFilesOrFolders: Složka nemůže být smazána, protože není prázdná.
 noThankYou: Ne, děkuji
-addInstance: Přidat instance
+addInstance: Přidat server
 selectInstance: Vybrat si instance
 blockedUsers: Zablokovaní uživatelé
 muteAndBlock: Ztlumení a blokace
@@ -1007,3 +1007,6 @@ renoteMute: Ztlumit přeposílání
 renoteUnmute: Zrušit ztlumení přeposílání
 flagSpeakAsCat: Mluvit jako kočka
 flagSpeakAsCatDescription: Vaše příspěvky budou v kočičím režimu nyanifikovány.
+newer: novější
+older: starší
+jumpToPrevious: Skočit na předchozí

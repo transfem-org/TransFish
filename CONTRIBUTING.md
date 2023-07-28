@@ -2,7 +2,7 @@
 We're glad you're interested in contributing Firefish! In this document you will find the information you need to contribute to the project.
 
 ## Translation (i18n)
-Firefish uses [Weblate](hhttps://hosted.weblate.org/engage/firefish/) for translation and internationalization management.
+Firefish uses [Weblate](https://hosted.weblate.org/engage/firefish/) for translation and internationalization management.
 
 If your language is not listed in Weblate, please open an issue.
 

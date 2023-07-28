@@ -1,7 +1,7 @@
 ---
 _lang_: "Slovenčina"
-headlineMisskey: "Sieť prepojená poznámkami"
-introMisskey: "Vitajte! Firefish je otvorená a decentralizovaná mikroblogovacia služba.\n\"Poznámkami\" môžete zdieľať svoje myšlienky so všetkými okolo. 📡\nPomocou \"reakcií\" môžete rýchlo vyjadri svoje pocity o každého poznámkach. 👍\nPoďte objavovať svet! 🚀"
+headlineFirefish: "Sieť prepojená poznámkami"
+introFirefish: "Vitajte! Firefish je otvorená a decentralizovaná mikroblogovacia služba.\n\"Poznámkami\" môžete zdieľať svoje myšlienky so všetkými okolo. 📡\nPomocou \"reakcií\" môžete rýchlo vyjadri svoje pocity o každého poznámkach. 👍\nPoďte objavovať svet! 🚀"
 monthAndDay: "{day}. {month}."
 search: "Hľadať"
 notifications: "Oznámenia"

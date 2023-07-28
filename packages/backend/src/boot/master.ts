@@ -31,13 +31,41 @@ function greet() {
 	if (!envOption.quiet) {
 		//#region Firefish logo
 		const v = `v${meta.version}`;
-		console.log(themeColor(" ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ◯       "));
-		console.log(themeColor("█       █   █   ▄  █ █       █       █   █       █  █ █  █      ○   ▄    ▄"));
-		console.log(themeColor("█    ▄▄▄█   █  █ █ █ █    ▄▄▄█    ▄▄▄█   █  ▄▄▄▄▄█  █▄█  █    ⚬     █▄▄  █▄▄    "));
-		console.log(themeColor("█   █▄▄▄█   █   █▄▄█▄█   █▄▄▄█   █▄▄▄█   █ █▄▄▄▄▄█       █      ▄▄▄▄▄▄   ▄"));
-		console.log(themeColor("█    ▄▄▄█   █    ▄▄  █    ▄▄▄█    ▄▄▄█   █▄▄▄▄▄  █   ▄   █     █      █  █▄▄"));
-		console.log(themeColor("█   █   █   █   █  █ █   █▄▄▄█   █   █   █▄▄▄▄▄█ █  █ █  █     █ ● ●  █"));
-		console.log(themeColor("█▄▄▄█   █▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█     ▀▄▄▄▄▄▄▀"));
+		console.log(
+			themeColor(
+				" ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ◯       ",
+			),
+		);
+		console.log(
+			themeColor(
+				"█       █   █   ▄  █ █       █       █   █       █  █ █  █      ○   ▄    ▄",
+			),
+		);
+		console.log(
+			themeColor(
+				"█    ▄▄▄█   █  █ █ █ █    ▄▄▄█    ▄▄▄█   █  ▄▄▄▄▄█  █▄█  █    ⚬     █▄▄  █▄▄    ",
+			),
+		);
+		console.log(
+			themeColor(
+				"█   █▄▄▄█   █   █▄▄█▄█   █▄▄▄█   █▄▄▄█   █ █▄▄▄▄▄█       █      ▄▄▄▄▄▄   ▄",
+			),
+		);
+		console.log(
+			themeColor(
+				"█    ▄▄▄█   █    ▄▄  █    ▄▄▄█    ▄▄▄█   █▄▄▄▄▄  █   ▄   █     █      █  █▄▄",
+			),
+		);
+		console.log(
+			themeColor(
+				"█   █   █   █   █  █ █   █▄▄▄█   █   █   █▄▄▄▄▄█ █  █ █  █     █ ● ●  █",
+			),
+		);
+		console.log(
+			themeColor(
+				"█▄▄▄█   █▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█     ▀▄▄▄▄▄▄▀",
+			),
+		);
 		//#endregion
 
 		console.log(

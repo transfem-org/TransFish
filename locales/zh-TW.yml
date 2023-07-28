@@ -1,6 +1,6 @@
 _lang_: "繁體中文"
-headlineMisskey: "貼文連繫網路"
-introMisskey: "歡迎！ Firefish是一個開源、去中心化且永遠免費的社群網路平台！🚀"
+headlineFirefish: "貼文連繫網路"
+introFirefish: "歡迎！ Firefish是一個開源、去中心化且永遠免費的社群網路平台！🚀"
 monthAndDay: "{month}月 {day}日"
 search: "搜尋"
 notifications: "通知"
@@ -996,7 +996,7 @@ _nsfw:
   force: "隱藏所有內容"
 _mfm:
   cheatSheet: "MFM代碼小抄"
-  intro: "MFM是Misskey專用的標記語言，可以在Misskey中的各個位置使用。 您可以這裏看到MFM可用語法列表。"
+  intro: "MFM是Misskey、Firefish、Akkoma等專用的標記語言，可以在各個位置使用。 您可以這裏看到MFM可用語法列表。"
   dummy: "Firefish拓展了Fediverse的世界"
   mention: "提及"
   mentionDescription: "透過 @+用戶名 來標示特定使用者。"
@@ -1068,6 +1068,16 @@ _mfm:
   positionDescription: 按指定數量移動內容。
   advancedDescription: 如果禁用，則僅允許基本標記，除非正在播放 MFM 動畫
   advanced: 高級MFM
+  fade: 淡出
+  foreground: 文字顏色
+  crop: 裁切
+  scale: 縮放
+  scaleDescription: 按指定數量縮放內容。
+  fadeDescription: 將內容淡入淡出。
+  background: 背景顏色
+  backgroundDescription: 改變背景顏色。
+  cropDescription: 裁切內容。
+  foregroundDescription: 改變文字顏色。
 _instanceTicker:
   none: "隱藏"
   remote: "向遠端使用者顯示"
@@ -1236,6 +1246,18 @@ _2fa:
   step3: "輸入您的App提供的權杖以完成設定。"
   step4: "從現在開始，任何登入操作都將要求您提供權杖。"
   securityKeyInfo: "您可以設定使用支援FIDO2的硬體安全鎖、終端設備的指纹認證或者PIN碼來登入。"
+  renewTOTPCancel: 取消
+  removeKey: 移除安全金鑰
+  removeKeyConfirm: 真的要刪掉 {name} 嗎？
+  renewTOTP: 重新配置身份驗證器應用程式
+  chromePasskeyNotSupported: 目前不支持 Chrome 密鑰。
+  whyTOTPOnlyRenew: 只要註冊了安全金鑰，就無法刪除身份驗證器應用程式。
+  renewTOTPConfirm: 這將導致您之前的身分驗證器應用程式停止工作
+  securityKeyName: 取一個金鑰的名字
+  tapSecurityKey: 請按照您的瀏覽器註冊安全金鑰或密碼
+  token: 兩步驟驗證金鑰
+  registerTOTPBeforeKey: 請設置身份驗證器應用程式以註冊安全金鑰或密碼。
+  renewTOTPOk: 重新配置
 _permissions:
   "read:account": "查看我的帳戶資訊"
   "write:account": "更改我的帳戶資訊"
@@ -1272,16 +1294,19 @@ _permissions:
 _auth:
   shareAccess: "要授權「“{name}”」存取您的帳戶嗎？"
   shareAccessAsk: "您確定要授權這個應用程式使用您的帳戶嗎？"
-  permissionAsk: "此應用程式需要以下權限"
+  permissionAsk: "此應用程式需要以下權限："
   pleaseGoBack: "請返回至應用程式"
   callback: "回到應用程式"
   denied: "拒絕訪問"
+  copyAsk: 請將以下授權代碼貼上到應用程式中：
+  allPermissions: 完全帳戶訪問許可權
 _antennaSources:
   all: "全部貼文"
   homeTimeline: "來自已追隨使用者的貼文"
   users: "來自特定使用者的貼文"
   userList: "來自特定清單中的貼文"
   userGroup: "來自特定群組的貼文"
+  instances: 伺服器上所有使用者的貼文
 _weekday:
   sunday: "週日"
   monday: "週一"
@@ -1297,22 +1322,29 @@ _widgets:
   calendar: "行事曆"
   trends: "發燒貼文"
   clock: "時鐘"
-  rss: "RSS閱讀器"
-  rssTicker: "RSS跑馬燈"
+  rss: "RSS 閱讀器"
+  rssTicker: "RSS 跑馬燈"
   activity: "動態"
   photos: "照片"
   digitalClock: "電子時鐘"
   unixClock: "UNIX時間"
   federation: "聯邦宇宙"
-  instanceCloud: "伺服器雲端"
+  instanceCloud: "伺服器雲"
   postForm: "發佈窗口"
   slideshow: "幻燈片"
   button: "按鈕"
   onlineUsers: "線上的用戶"
   jobQueue: "佇列"
   serverMetric: "伺服器指標"
-  aiscript: "AiScript控制台"
+  aiscript: "AiScript 控制台"
   aichan: "小藍"
+  serverInfo: 伺服器資訊
+  userList: 使用者列表
+  _userList:
+    chooseList: 選擇一個清單
+  meiliIndexCount: 編入索引的帖子
+  meiliStatus: 伺服器狀態
+  meiliSize: 索引大小
 _cw:
   hide: "隱藏"
   show: "瀏覽更多"
@@ -1342,11 +1374,11 @@ _poll:
   remainingSeconds: "{s}秒後截止"
 _visibility:
   public: "公開"
-  publicDescription: "發布給所有用戶"
+  publicDescription: "發佈至公開時間線"
   home: "不在主頁顯示"
   homeDescription: "僅發送至首頁的時間線"
   followers: "追隨者"
-  followersDescription: "僅發送至關注者"
+  followersDescription: "僅發佈至關注者"
   specified: "指定使用者"
   specifiedDescription: "僅發送至指定使用者"
   localOnly: "僅限本地"
@@ -1741,6 +1773,7 @@ _notification:
     followBack: "回關"
     reply: "回覆"
     renote: "轉發"
+  reacted: 對您的貼文做出了反應
 _deck:
   alwaysShowMainColumn: "總是顯示主欄"
   columnAlign: "對齊欄位"
@@ -1848,7 +1881,7 @@ subscribePushNotification: 啟用推送通知
 unsubscribePushNotification: 禁用推送通知
 pushNotificationAlreadySubscribed: 推送通知已經啟用
 recommendedInstancesDescription: 以每行分隔的推薦伺服器出現在推薦的時間線中。
-searchPlaceholder: 在聯邦網路上搜尋
+searchPlaceholder: 在 Firefish 上搜尋
 cw: 內容警告
 selectChannel: 選擇一個頻道
 newer: 較新
@@ -1899,3 +1932,14 @@ removeQuote: 删除引用
 removeRecipient: 刪除收件者
 removeMember: 刪除成員
 isBot: 此帳戶是機器人
+verifiedLink: 已驗證連結
+_filters:
+  followersOnly: 只顯示關注者的
+  fromDomain: 從域名
+  notesBefore: 指定時間以前
+  notesAfter: 指定時間以後
+  followingOnly: 只顯示關注的
+  fromUser: 從使用者
+  withFile: 有檔案
+alt: 替代文字
+xl: 特大

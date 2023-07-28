@@ -40,7 +40,9 @@
   - Backfill user information
   - Advanced search
   - Many more user and admin settings
-  - [So much more!](./FIREFISH.md)
+  - Many bug fixes and performance improvements 
+  - Link verification
+  - So much more!
 
 </div>
 

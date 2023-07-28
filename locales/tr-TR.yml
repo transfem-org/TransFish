@@ -1,6 +1,6 @@
 _lang_: "Türkçe"
-introMisskey: "Hoş geldin! Firefish, sonsuza kadar ücretsiz olan, açık kaynaklı, merkezi
-  olmayan bir sosyal medya platformudur! 🚀"
+introFirefish: "Hoş geldin! Firefish, sonsuza kadar ücretsiz olan, açık kaynaklı,
+  merkezi olmayan bir sosyal medya platformudur! 🚀"
 monthAndDay: "{month}Ay {day}Gün"
 search: "Arama"
 notifications: "Bildirimler"
@@ -182,7 +182,9 @@ _profile:
     gösterecektir.
   youCanIncludeHashtags: Hakkımdan'da etiket kullanabilirsin.
   description: Hakkımda
-  metadataDescription: 'Bunları kullanarak profilinizde ek bilgi alanları görüntüleyebilirsiniz. Profilinizdeki bağlantıyı doğrulamak için {rel} ile bir {a} etiketi veya {l} etiketi ekleyebilirsiniz!'
+  metadataDescription: 'Bunları kullanarak profilinizde ek bilgi alanları görüntüleyebilirsiniz.
+    Profilinizdeki bağlantıyı doğrulamak için {rel} ile bir {a} etiketi veya {l} etiketi
+    ekleyebilirsiniz!'
   metadata: Ek Bilgi
   metadataContent: İçerik
   metadataLabel: Etiket
@@ -231,8 +233,8 @@ cantFavorite: Favorilere eklenemedi.
 edited: '{date} tarihinde ve {time} vaktinde düzenlendi'
 loggingIn: Giriş Yapılıyor
 save: Kaydet
-headlineMisskey: Sonsuza kadar ücretsiz, açık kaynak kodlu, merkeziyetsiz sosyal medya
-  platformu! 🚀
+headlineFirefish: Sonsuza kadar ücretsiz, açık kaynak kodlu, merkeziyetsiz sosyal
+  medya platformu! 🚀
 loadMore: Daha fazla yükle
 instance: Sunucu
 fetchingAsApObject: Fediverse'den çekiliyor
@@ -286,7 +288,7 @@ notifyAntenna: Yeni gönderileribildir
 recentlyUpdatedUsers: En son aktif kullanıcılar
 about: Hakkında
 twoStepAuthentication: İki-adımlı doğrulama
-securityKeyName: Key name
+securityKeyName: Anahtar ismi
 help: Yardım
 inputMessageHere: Mesajını buraya gir
 ownedGroups: Gruplarım
@@ -505,7 +507,7 @@ normal: Normal
 thisMonth: Ay
 enableRecaptcha: reCAPTCHA'yı Aktif Et
 antennas: Antenler
-recaptchaSiteKey: Site key
+recaptchaSiteKey: İnternet sitesi anahtarı
 withFileAntenna: Sadece dosyalı gönderiler
 antennaInstancesDescription: Sunucu başı bir satır kullanın
 moderator: Moderatör
@@ -664,7 +666,7 @@ withFiles: Dosya içeren
 recentlyRegisteredUsers: Yeni katılmış kullanıcılar
 recentlyDiscoveredUsers: Yeni keşfedilmiş kullanıcılar
 nUsersMentioned: '{n} kullanıcı tarafından bahsedildi'
-securityKey: Security key
+securityKey: Güvenlik Anahtarı
 title: Başlık
 total: Toplam
 sounds: Sesler
@@ -723,7 +725,7 @@ emojis: Emoji
 flagAsCat: Kedi misin? 😺
 selectChannel: Kanal seç
 emojiName: Emoji adı
-showOnRemote: Uzak sunucuda görüntüle
+showOnRemote: Orijinal sayfayı aç
 flagSpeakAsCatDescription: Gönderileriniz kedi modundayken nyanifiye edilecek
 flagShowTimelineReplies: Yanıtları zaman çizelgesinde göster
 silenceThisInstance: Bu sunucuyu sustur
@@ -749,7 +751,7 @@ upload: Yükle
 fromUrl: URL'den
 agreeTo: '{0} kabul ediyorum'
 tos: Kullanım Koşulları
-drive: Drive
+drive: Bulut Depolama
 selectFolder: Klasör seç
 inputNewFileName: Yeni dosya ismi gir
 whenServerDisconnected: Sunucuyla bağlantı kesildiğinde
@@ -763,8 +765,8 @@ connectService: Bağlan
 registration: Kayıt
 hcaptcha: hCaptcha
 pinnedNotes: Sabitlenmiş gönderiler
-hcaptchaSiteKey: Site key
-hcaptchaSecretKey: Secret key
+hcaptchaSiteKey: Site anahtarı
+hcaptchaSecretKey: Gizli Anahtar
 antennaSource: Anten kaynağı
 antennaKeywords: Dinlenecek anahtar kelimeler
 antennaExcludeKeywords: Hariç tutulacak anahtar kelimeler
@@ -892,7 +894,7 @@ bannerUrl: Afiş resmi URL
 backgroundImageUrl: Arkaplan URL'si
 recaptcha: reCAPTCHA
 iconUrl: Ikon URL
-recaptchaSecretKey: Secret key
+recaptchaSecretKey: Gizli anahtar
 avoidMultiCaptchaConfirm: Birden fazla Captcha sistemi kullanmak aralarında etkileşime
   neden olabilir. Şu anda etkin olan diğer Captcha sistemlerini devre dışı bırakmak
   ister misiniz? Etkin kalmalarını istiyorsanız, iptal düğmesine basın.
@@ -1013,7 +1015,7 @@ failedToFetchAccountInformation: Hesap bilgileri getirilemedi
 rateLimitExceeded: Hız limiti aşıldı
 renotedBy: '{user} Yükseltti'
 host: Host
-objectStorage: Object Storage
+objectStorage: Nesne Depolaması
 objectStorageUseSSLDesc: API bağlantıları için HTTPS kullanmayacaksanız bunu kapatın
 objectStorageUseProxyDesc: API bağlantıları için Proxy kullanmayacaksanız bunu kapatın
 objectStorageSetPublicRead: Yüklendiğinde "public-read" kullan
@@ -1219,8 +1221,8 @@ ascendingOrder: Artan
 tags: Etiketler
 descendingOrder: Azalan
 scratchpadDescription: Karalama defteri, AiScript deneyleri için bir ortam sağlar.
-  İçinde Firefish ile etkileşime girerek sonuçlarını yazabilir, çalıştırabilir ve kontrol
-  edebilirsiniz.
+  İçinde Firefish ile etkileşime girerek sonuçlarını yazabilir, çalıştırabilir ve
+  kontrol edebilirsiniz.
 local: Yerel
 remote: Uzak
 addRelay: Röle Ekle
@@ -1247,9 +1249,9 @@ desktop: Masaüstü
 confirmToUnclipAlreadyClippedNote: Bu gönderi zaten "{name}" atacının bir parçası.
   Bunun yerine onu bu ataçtan kaldırmak istiyor musunuz?
 sendErrorReportsDescription: "Açıldığında, bir sorun oluştuğunda ayrıntılı hata bilgileri
-  Firefish ile paylaşılarak Firefish kalitesinin artırılmasına yardımcı olur.\nBu, işletim
-  sisteminizin sürümü, kullandığınız tarayıcı, Firefish'deki etkinliğiniz vb. bilgileri
-  içerecektir."
+  Firefish ile paylaşılarak Firefish kalitesinin artırılmasına yardımcı olur.\nBu,
+  işletim sisteminizin sürümü, kullandığınız tarayıcı, Firefish'deki etkinliğiniz
+  vb. bilgileri içerecektir."
 closeAccount: Hesabı kapat
 markAllAsRead: Okunmuş olarak işaretle
 allowedInstances: Beyaz Listedeki Sunucular
@@ -1929,7 +1931,7 @@ _preferencesBackups:
   loadFile: Dosyadan yükle
   updatedAt: 'Güncelleme tarihi: {date} {time}'
   cannotLoad: Yüklenemedi
-_aboutMisskey:
+_aboutFirefish:
   patronsList: Bağış büyüklüğüne göre değil, kronolojik olarak listelenmiştir. Adınızı
     buraya almak için yukarıdaki bağlantıyla bağış yapın!
   about: Firefish, 2022'den beri geliştirilmekte olan ThatOneCalculator tarafından
@@ -2124,3 +2126,9 @@ _ffVisibility:
   followers: Takipçilere açık
   private: Gizli
   public: Herkese açık
+verifiedLink: Doğrulanmış bağlantı
+_feeds:
+  copyFeed: Akışı kopyala
+  rss: RSS
+  atom: Atom
+  jsonFeed: JSON akışı

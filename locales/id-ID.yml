@@ -1,9 +1,7 @@
 _lang_: "Bahasa Indonesia"
-headlineMisskey: "Jaringan terhubung melalui catatan"
-introMisskey: "Selamat datang! Firefish adalah perangkat mikroblog tercatu bersifat\
-  \ sumber terbuka.\nMulailah menuliskan catatan, bagikan peristiwa terkini, serta\
-  \ ceritakan segala tentangmu.\U0001F4E1\nTunjukkan juga reaksimu pada catatan pengguna\
-  \ lain.\U0001F44D\nMari jelajahi dunia baru\U0001F680"
+headlineFirefish: "Jaringan terhubung melalui catatan"
+introFirefish: "Selamat datang! Firefish adalah media sosial sumber terbuka dan terdesentralisasi
+  yang selamanya bebas! 🚀"
 monthAndDay: "{day} {month}"
 search: "Penelusuran"
 notifications: "Pemberitahuan"
@@ -12,42 +10,42 @@ password: "Kata sandi"
 forgotPassword: "Lupa Kata Sandi"
 fetchingAsApObject: "Mengambil data dari Fediverse"
 ok: "OK"
-gotIt: "Saya mengerti"
+gotIt: "Mengerti!"
 cancel: "Batalkan"
 enterUsername: "Masukkan nama pengguna"
-renotedBy: "direnote oleh {user}"
-noNotes: "Tidak ada catatan"
+renotedBy: "Diposting ulang oleh {user}"
+noNotes: "Tidak ada postingan"
 noNotifications: "Tidak ada pemberitahuan"
-instance: "Instansi"
+instance: "Server"
 settings: "Pengaturan"
 basicSettings: "Pengaturan umum"
 otherSettings: "Pengaturan lainnya"
 openInWindow: "Buka di jendela"
 profile: "Profil"
 timeline: "Linimasa"
-noAccountDescription: "Pengguna ini belum menulis bio"
+noAccountDescription: "Pengguna ini belum menulis bio."
 login: "Masuk"
 loggingIn: "Sedang masuk"
 logout: "Keluar"
 signup: "Daftar"
-uploading: "Sedang mengunggah"
+uploading: "Mengunggah..."
 save: "Simpan"
 users: "Pengguna"
 addUser: "Tambah pengguna"
 favorite: "Favorit"
 favorites: "Favorit"
 unfavorite: "Hapus favorit"
-favorited: "Ditambahkan ke favorit"
-alreadyFavorited: "Telah ditambahkan ke favorit"
-cantFavorite: "Tidak dapat menambahkan ke favorit"
+favorited: "Ditambahkan ke markah."
+alreadyFavorited: "Telah ditambahkan ke markah."
+cantFavorite: "Tidak dapat menambahkan ke markah."
 pin: "Sematkan ke profil"
 unpin: "Lepas sematan dari profil"
 copyContent: "Salin konten"
 copyLink: "Salin tautan"
 delete: "Hapus"
 deleteAndEdit: "Hapus dan sunting"
-deleteAndEditConfirm: "Apakah kamu yakin ingin menghapus note ini dan menyuntingnya?\
-  \ Kamu akan kehilangan semua reaksi, renote dan balasan di note ini."
+deleteAndEditConfirm: "Kamu yakin ingin menghapus postingan lalu menyuntingnya? Kamu
+  akan kehilangan semua reaksi, postingan ulang, dan balasan."
 addToList: "Tambahkan ke daftar"
 sendMessage: "Kirim pesan"
 copyUsername: "Salin nama pengguna"
@@ -61,21 +59,22 @@ receiveFollowRequest: "Ingin mengikuti kamu"
 followRequestAccepted: "Permintaan mengikuti telah disetujui"
 mention: "Sebut"
 mentions: "Sebutan"
-directNotes: "Catatan langsung"
+directNotes: "Pesan langsung"
 importAndExport: "Impor & Ekspor"
 import: "Impor"
 export: "Ekspor"
 files: "Berkas"
 download: "Unduh"
-driveFileDeleteConfirm: "Hapus {name}? Catatan dengan berkas terkait juga akan terhapus."
+driveFileDeleteConfirm: "Kamu yakin ingin menghapus berkas \"{name}\"? Ini akan menghapus
+  semua postingan yang berisi lampiran tersebut."
 unfollowConfirm: "Berhenti mengikuti {name}?"
-exportRequested: "Kamu telah meminta ekspor. Ini akan memakan waktu sesaat. Setelah\
-  \ ekspor selesai, berkas yang dihasilkan akan ditambahkan ke Drive"
+exportRequested: "Kamu telah meminta ekspor. Ini akan memakan waktu sesaat. Setelah
+  ekspor selesai, berkas yang dihasilkan akan ditambahkan ke Drive."
 importRequested: "Kamu telah meminta impor. Ini akan memakan waktu sesaat."
 lists: "Daftar"
 noLists: "Kamu tidak memiliki daftar apapun"
-note: "Catat"
-notes: "Catatan"
+note: "Postingan"
+notes: "Postingan"
 following: "Ikuti"
 followers: "Pengikut"
 followsYou: "Mengikuti kamu"
@@ -85,29 +84,29 @@ error: "Galat"
 somethingHappened: "Terjadi kesalahan"
 retry: "Coba lagi"
 pageLoadError: "Gagal memuat halaman."
-pageLoadErrorDescription: "Umumnya disebabkan jaringan atau tembolok perambah. Cobalah\
-  \ bersihkan tembolok peramban lalu tunggu sesaat sebelum mencoba kembali."
-serverIsDead: "Tidak ada respon dari peladen. Mohon tunggu dan coba beberapa saat\
-  \ lagi."
-youShouldUpgradeClient: "Untuk melihat halaman ini, mohon muat ulang untuk memutakhirkan\
-  \ klienmu."
+pageLoadErrorDescription: "Umumnya disebabkan jaringan atau tembolok perambah. Cobalah
+  bersihkan tembolok peramban lalu tunggu sesaat sebelum mencoba kembali."
+serverIsDead: "Tidak ada respon dari peladen. Mohon tunggu dan coba beberapa saat
+  lagi."
+youShouldUpgradeClient: "Untuk melihat halaman ini, mohon muat ulang untuk memutakhirkan
+  klienmu."
 enterListName: "Masukkan nama daftar"
 privacy: "Privasi"
 makeFollowManuallyApprove: "Permintaan mengikuti membutuhkan persetujuan"
 defaultNoteVisibility: "Privasi bawaan catatan"
 follow: "Ikuti"
-followRequest: "Permintaan mengikuti"
+followRequest: "Permintaan Mengikuti"
 followRequests: "Permintaan mengikuti"
 unfollow: "Berhenti mengikuti"
 followRequestPending: "Permintaan mengikuti yang menunggu"
 enterEmoji: "Masukkan emoji"
-renote: "Renote"
-unrenote: "Hapus renote"
-renoted: "Telah direnote"
-cantRenote: "Postingan ini tidak dapat direnote"
-cantReRenote: "Renote tidak dapat direnote"
+renote: "Posting ulang"
+unrenote: "Batalkan posting ulang"
+renoted: "Diposting ulang."
+cantRenote: "Postingan ini tidak dapat diposting ulang."
+cantReRenote: "Postingan ulang tidak dapat diposting ulang."
 quote: "Kutip"
-pinnedNote: "Catatan yang disematkan"
+pinnedNote: "Postingan tersemat"
 pinned: "Sematkan ke profil"
 you: "Kamu"
 clickToShow: "Klik untuk melihat"
@@ -115,9 +114,9 @@ sensitive: "Konten sensitif"
 add: "Tambahkan"
 reaction: "Reaksi"
 reactionSetting: "Reaksi untuk dimunculkan di bilah reaksi"
-reactionSettingDescription2: "Geser untuk memindah urutkan, klik untuk menghapus,\
-  \ tekan \"+\" untuk menambahkan"
-rememberNoteVisibility: "Ingat pengaturan visibilitas catatan"
+reactionSettingDescription2: "Geser untuk memindah urutan, klik untuk menghapus, tekan
+  \"+\" untuk menambahkan."
+rememberNoteVisibility: "Ingat pengaturan visibilitas postingan"
 attachCancel: "Hapus lampiran"
 markAsSensitive: "Tandai sebagai konten sensitif"
 unmarkAsSensitive: "Hapus tanda konten sensitif"
@@ -145,44 +144,44 @@ emojiUrl: "URL Emoji"
 addEmoji: "Tambahkan emoji"
 settingGuide: "Pengaturan rekomendasi"
 cacheRemoteFiles: "Tembolokkan berkas remote"
-cacheRemoteFilesDescription: "Ketika pengaturan ini dinonaktifkan, berkas luar akan\
-  \ dimuat langsung dari instansi luar. Menonaktifkan ini akan mengurangi penggunaan\
-  \ penyimpanan, namun dapat menyebabkan meningkatkan lalu lintas bandwidth, karena\
-  \ thumbnail tidak dihasilkan."
+cacheRemoteFilesDescription: "Ketika pengaturan ini dinonaktifkan, berkas luar akan
+  dimuat langsung dari server luar. Menonaktifkan ini akan mengurangi penggunaan penyimpanan,
+  tapi dapat menyebabkan meningkatkan lalu lintas, mengingat keluku tidak akan dihasilkan."
 flagAsBot: "Atur akun ini sebagai Bot"
-flagAsBotDescription: "Jika akun ini dikendalikan oleh program, tetapkanlah opsi ini.\
-  \ Jika diaktifkan, ini akan berfungsi sebagai tanda bagi pengembang lain untuk mencegah\
-  \ interaksi berantai dengan bot lain dan menyesuaikan sistem internal Firefish untuk\
-  \ memperlakukan akun ini sebagai bot."
+flagAsBotDescription: "Jika akun ini dikendalikan oleh program, tetapkanlah opsi ini.
+  Jika diaktifkan, ini akan berfungsi sebagai tanda bagi pengembang lain untuk mencegah
+  interaksi berantai dengan bot lain dan menyesuaikan sistem internal Firefish untuk
+  memperlakukan akun ini sebagai bot."
 flagAsCat: "Atur akun ini sebagai kucing"
-flagAsCatDescription: "Nyalakan tanda ini untuk menandai akun ini sebagai kucing."
+flagAsCatDescription: "Kamu akan mendapatkan telinga kucing dan berbicara seperti
+  seekor kucing!"
 flagShowTimelineReplies: "Tampilkan balasan di linimasa"
-flagShowTimelineRepliesDescription: "Menampilkan balasan pengguna dari note pengguna\
-  \ lain di linimasa apabila dinyalakan."
-autoAcceptFollowed: "Setujui otomatis permintaan mengikuti dari pengguna yang kamu\
-  \ ikuti"
+flagShowTimelineRepliesDescription: "Menampilkan balasan pengguna pada postingan pengguna
+  lain di linimasa jika diaktifkan."
+autoAcceptFollowed: "Setujui otomatis permintaan mengikuti dari pengguna yang kamu
+  ikuti"
 addAccount: "Tambahkan akun"
 loginFailed: "Gagal untuk masuk"
-showOnRemote: "Lihat profil asli"
+showOnRemote: "Buka halaman asli"
 general: "Umum"
-wallpaper: "Wallpaper"
+wallpaper: "Kertas dinding"
 setWallpaper: "Atur wallpaper"
 removeWallpaper: "Hapus wallpaper"
 searchWith: "Cari: {q}"
 youHaveNoLists: "Kamu tidak memiliki daftar apapun"
 followConfirm: "Apakah kamu yakin ingin mengikuti {name}?"
-proxyAccount: "Akun proksi"
-proxyAccountDescription: "Akun proksi merupakan sebuah akun yang bertindak sebagai\
-  \ pengikut luar untuk pengguna dalam kondisi tertentu. Sebagai contoh, ketika pengguna\
-  \ menambahkan seorang pengguna luar ke dalam daftar, aktivitas dari pengguna luar\
-  \ tidak akan disampaikan ke instansi apabila tidak ada pengguna lokal yang mengikuti\
-  \ pengguna tersebut, dengan begitu akun proksilah yang akan mengikutinya."
+proxyAccount: "Akun Proksi"
+proxyAccountDescription: "Akun proksi merupakan sebuah akun yang bertindak sebagai
+  pengikut luar untuk pengguna dalam kondisi tertentu. Sebagai contoh, ketika pengguna
+  menambahkan pengguna luar ke dalam daftar, aktivitas dari pengguna luar tidak akan
+  dikirim ke server apabila tidak ada pengguna lokal yang mengikuti pengguna tersebut,
+  dengan begitu akun proksilah yang akan mengikutinya."
 host: "Host"
 selectUser: "Pilih pengguna"
 recipient: "Penerima"
 annotation: "Keterangan konten"
 federation: "Federasi"
-instances: "Instansi"
+instances: "Server"
 registeredAt: "Terdaftar"
 latestRequestSentAt: "Permintaan terakhir dikirim pada"
 latestRequestReceivedAt: "Permintaan terakhir diterima pada"
@@ -192,7 +191,7 @@ charts: "Grafik"
 perHour: "per Jam"
 perDay: "per Hari"
 stopActivityDelivery: "Berhenti mengirim aktivitas"
-blockThisInstance: "Blokir instansi ini"
+blockThisInstance: "Blokir server ini"
 operations: "Tindakan"
 software: "Perangkat lunak"
 version: "Versi"
@@ -202,26 +201,25 @@ jobQueue: "Antrian kerja"
 cpuAndMemory: "CPU dan Memori"
 network: "Jaringan"
 disk: "Diska"
-instanceInfo: "Informasi Instansi"
+instanceInfo: "Informasi Server"
 statistics: "Statistik"
 clearQueue: "Bersihkan antrian"
 clearQueueConfirmTitle: "Apakah kamu yakin ingin membersihkan antrian?"
-clearQueueConfirmText: "Seluruh sisa catatan yang tidak tersampaikan di dalam antrian\
-  \ tidak akan difederasi. Biasanya operasi ini TIDAK dibutuhkan."
+clearQueueConfirmText: "Seluruh sisa postingan yang tidak tersampaikan di dalam antrian
+  tidak akan difederasi. Biasanya operasi ini TIDAK dibutuhkan."
 clearCachedFiles: "Hapus tembolok"
-clearCachedFilesConfirm: "Apakah kamu yakin ingin menghapus seluruh tembolok berkas\
-  \ remote?"
-blockedInstances: "Instansi terblokir"
-blockedInstancesDescription: "Daftar nama host dari instansi yang diperlukan untuk\
-  \ diblokir. Instansi yang didaftarkan tidak akan dapat berkomunikasi dengan instansi\
-  \ ini."
+clearCachedFilesConfirm: "Apakah kamu yakin ingin menghapus seluruh tembolok berkas
+  remote?"
+blockedInstances: "Server yang Diblokir"
+blockedInstancesDescription: "Daftar nama host dari server yang diperlukan untuk diblokir.
+  Server yang didaftarkan tidak akan dapat berkomunikasi dengan server ini."
 muteAndBlock: "Bisukan / Blokir"
 mutedUsers: "Pengguna yang dibisukan"
 blockedUsers: "Pengguna yang diblokir"
 noUsers: "Tidak ada pengguna"
 editProfile: "Sunting profil"
-noteDeleteConfirm: "Apakah kamu yakin ingin menghapus catatan ini?"
-pinLimitExceeded: "Kamu tidak dapat menyematkan catatan lagi"
+noteDeleteConfirm: "Kamu yakin ingin menghapus postingan ini?"
+pinLimitExceeded: "Kamu tidak dapat menyematkan postingan lagi"
 intro: "Instalasi Firefish telah selesai! Mohon untuk membuat pengguna admin."
 done: "Selesai"
 processing: "Memproses"
@@ -236,12 +234,12 @@ all: "Semua"
 subscribing: "Berlangganan"
 publishing: "Sedang menyiarkan langsung"
 notResponding: "Tidak ada respon"
-instanceFollowing: "Mengikuti instance"
-instanceFollowers: "Pengikut instance"
-instanceUsers: "Pengguna pada instance ini"
+instanceFollowing: "Mengikuti di server"
+instanceFollowers: "Pengikut server"
+instanceUsers: "Pengguna di server ini"
 changePassword: "Ubah kata sandi"
 security: "Keamanan"
-retypedNotMatch: "Input tidak sama"
+retypedNotMatch: "Masukan tidak cocok."
 currentPassword: "Kata sandi saat ini"
 newPassword: "Kata sandi baru"
 newPasswordRetype: "Ulangi kata sandi baru"
@@ -262,14 +260,14 @@ saved: "Telah disimpan"
 messaging: "Pesan"
 upload: "Unggah"
 keepOriginalUploading: "Simpan gambar asli"
-keepOriginalUploadingDescription: "Simpan gambar yang diunggah sebagaimana gambar\
-  \ aslinya. Bila dimatikan, versi tampilan web akan dihasilkan pada saat diunggah."
+keepOriginalUploadingDescription: "Simpan gambar yang diunggah sebagaimana gambar
+  aslinya. Bila dimatikan, versi tampilan web akan dihasilkan pada saat diunggah."
 fromDrive: "Dari Drive"
 fromUrl: "Dari URL"
 uploadFromUrl: "Unggah dari URL"
 uploadFromUrlDescription: "URL berkas yang ingin kamu unggah"
 uploadFromUrlRequested: "Pengunggahan telah diminta"
-uploadFromUrlMayTakeTime: "Membutuhkan beberapa waktu hingga pengunggahan selesai"
+uploadFromUrlMayTakeTime: "Membutuhkan beberapa waktu hingga pengunggahan selesai."
 explore: "Jelajahi"
 messageRead: "Telah dibaca"
 noMoreHistory: "Tidak ada sejarah lagi"
@@ -279,8 +277,8 @@ agreeTo: "Saya setuju kepada {0}"
 tos: "Syarat dan ketentuan"
 start: "Mulai"
 home: "Beranda"
-remoteUserCaution: "Informasi ini mungkin tidak mutakhir, karena pengguna ini berasal\
-  \ dari instansi luar."
+remoteUserCaution: "Informasi ini mungkin tidak mutakhir, karena pengguna ini berasal
+  dari instansi luar."
 activity: "Aktivitas"
 images: "Gambar"
 birthday: "Tanggal lahir"
@@ -313,8 +311,8 @@ unableToDelete: "Tidak dapat menghapus"
 inputNewFileName: "Masukkan nama berkas yang baru"
 inputNewDescription: "Masukkan keterangan disini"
 inputNewFolderName: "Masukkan nama folder yang baru"
-circularReferenceFolder: "Folder tujuan adalah subfolder dari folder yang ingin kamu\
-  \ pindahkan."
+circularReferenceFolder: "Folder tujuan adalah subfolder dari folder yang ingin kamu
+  pindahkan."
 hasChildFilesOrFolders: "Karena folder ini tidak kosong, maka tidak dapat dihapus."
 copyUrl: "Salin tautan"
 rename: "Ubah nama"
@@ -331,8 +329,8 @@ unwatch: "Batal tonton"
 accept: "Terima"
 reject: "Tolak"
 normal: "Normal"
-instanceName: "Nama instance"
-instanceDescription: "Tentang instance"
+instanceName: "Nama server"
+instanceDescription: "Deskripsi server"
 maintainerName: "Pengelola"
 maintainerEmail: "Surel pengelola"
 tosUrl: "URL Syarat dan Ketentuan"
@@ -348,8 +346,8 @@ connectService: "Sambungkan"
 disconnectService: "Putuskan"
 enableLocalTimeline: "Nyalakan linimasa lokal"
 enableGlobalTimeline: "Nyalakan linimasa global"
-disablingTimelinesInfo: "Admin dan Moderator akan selalu memiliki akses ke semua linimasa\
-  \ meskipun linimasa tersebut tidak diaktifkan."
+disablingTimelinesInfo: "Admin dan Moderator akan selalu memiliki akses ke semua linimasa
+  meskipun linimasa tersebut tidak diaktifkan."
 registration: "Pendaftaran"
 enableRegistration: "Nyalakan pendaftaran pengguna baru"
 invite: "Undang"
@@ -361,40 +359,40 @@ bannerUrl: "URL Banner"
 backgroundImageUrl: "URL Gambar latar"
 basicInfo: "Informasi Umum"
 pinnedUsers: "Pengguna yang disematkan"
-pinnedUsersDescription: "Tuliskan satu nama pengguna dalam satu baris. Pengguna yang\
-  \ dituliskan disini akan disematkan dalam bilah \"Jelajahi\"."
+pinnedUsersDescription: "Tuliskan satu nama pengguna dalam satu baris. Pengguna yang
+  dituliskan disini akan disematkan dalam bilah \"Jelajahi\"."
 pinnedPages: "Halaman yang disematkan"
-pinnedPagesDescription: "Masukkan tautan dari halaman yang kamu ingin sematkan ke\
-  \ halaman utama dari instansi ini, dipisah dengan membuat baris baru."
+pinnedPagesDescription: "Masukkan jalur dari halaman yang kamu ingin sematkan ke halaman
+  utama dari server ini, dipisah dengan membuat baris baru."
 pinnedClipId: "ID dari klip yang disematkan"
-pinnedNotes: "Catatan yang disematkan"
+pinnedNotes: "Postingan tersemat"
 hcaptcha: "hCaptcha"
 enableHcaptcha: "Nyalakan hCaptcha"
 hcaptchaSiteKey: "Site Key"
 hcaptchaSecretKey: "Secret Key"
 recaptcha: "reCAPTCHA"
 enableRecaptcha: "Nyalakan reCAPTCHA"
-recaptchaSiteKey: "Site key"
+recaptchaSiteKey: "Kunci situs"
 recaptchaSecretKey: "Secret Key"
-avoidMultiCaptchaConfirm: "Menggunakan banyak Captcha dapat menyebabkan gangguan.\
-  \ Apakah kamu ingin untuk menonaktifkan Captcha yang lain? Kamu dapat membiarkan\
-  \ fitur ini tetap aktif dengan menekan tombol batal."
+avoidMultiCaptchaConfirm: "Menggunakan banyak Captcha dapat menyebabkan gangguan.
+  Apakah kamu ingin untuk menonaktifkan Captcha yang lain? Kamu dapat membiarkan fitur
+  ini tetap aktif dengan menekan tombol batal."
 antennas: "Antena"
 manageAntennas: "Pengelola Antena"
 name: "Nama"
 antennaSource: "Sumber Antenna"
 antennaKeywords: "Kata kunci yang diterima"
 antennaExcludeKeywords: "Kata kunci yang dikecualikan"
-antennaKeywordsDescription: "Pisahkan dengan spasi untuk kondisi AND. Pisahkan dengan\
-  \ baris baru untuk kondisi OR."
-notifyAntenna: "Beritahu untuk catatan baru"
-withFileAntenna: "Hanya tampilkan catatan dengan berkas yang dilampirkan"
+antennaKeywordsDescription: "Pisahkan dengan spasi untuk kondisi AND. Pisahkan dengan
+  baris baru untuk kondisi OR."
+notifyAntenna: "Beri tahu tentang postingan baru"
+withFileAntenna: "Hanya postingan dengan berkas"
 enableServiceworker: "Aktifkan ServiceWorker"
 antennaUsersDescription: "Tuliskan satu nama pengguna per baris"
 caseSensitive: "Peka huruf besar dan huruf kecil"
 withReplies: "Termasuk balasan"
 connectedTo: "Akun yang mengikuti telah terhubung"
-notesAndReplies: "Catatan dan balasan"
+notesAndReplies: "Postingan dan balasan"
 withFiles: "Media"
 silence: "Bungkam"
 silenceConfirm: "Apakah kamu yakin ingin membungkam pengguna ini?"
@@ -430,7 +428,7 @@ notFoundDescription: "Tidak ada halaman sesuai dengan URL yang ditentukan."
 uploadFolder: "Lokasi unggah folder bawaan"
 cacheClear: "Bersihkan tembolok"
 markAsReadAllNotifications: "Tandai semua pemberitahuan telah dibaca"
-markAsReadAllUnreadNotes: "Tandai semua catatan telah dibaca"
+markAsReadAllUnreadNotes: "Tandai semua postingan sudah dibaca"
 markAsReadAllTalkMessages: "Tandai semua pesan telah dibaca"
 help: "Bantuan"
 inputMessageHere: "Ketik pesan disini"
@@ -451,7 +449,7 @@ text: "Teks"
 enable: "Aktifkan"
 next: "Selanjutnya"
 retype: "Masukkan ulang"
-noteOf: "Catatan milik {user}"
+noteOf: "Diposting oleh {user}"
 inviteToGroup: "Undang ke grup"
 quoteAttached: "Dikutip"
 quoteQuestion: "Apakah kamu ingin menambahkan kutipan?"
@@ -461,7 +459,7 @@ onlyOneFileCanBeAttached: "Kamu hanya dapat melampirkan satu berkas ke dalam pes
 signinRequired: "Silahkan login"
 invitations: "Undang"
 invitationCode: "Kode undangan"
-checking: "Memeriksa"
+checking: "Memeriksa..."
 available: "Tersedia"
 unavailable: "Tidak tersedia"
 usernameInvalidFormat: "Hanya dapat menerima karakter a-z, A-Z dan angka 0-9."
@@ -473,8 +471,8 @@ strongPassword: "Kata sandi kuat"
 passwordMatched: "Kata sandi sama"
 passwordNotMatched: "Kata sandi tidak sama"
 signinWith: "Masuk dengan {x}"
-signinFailed: "Tidak dapat masuk. Nama pengguna atau kata sandi yang kamu masukkan\
-  \ salah."
+signinFailed: "Tidak dapat masuk. Nama pengguna atau kata sandi yang kamu masukkan
+  salah."
 tapSecurityKey: "Ketuk kunci keamanan kamu"
 or: "atau"
 language: "Bahasa"
@@ -500,7 +498,7 @@ noFollowRequests: "Kamu tidak memiliki permintaan mengikuti yang menunggu"
 openImageInNewTab: "Buka gambar di tab baru"
 dashboard: "Dasbor"
 local: "Lokal"
-remote: "Remote"
+remote: "Luar"
 total: "Jumlah"
 weekOverWeekChanges: "Mingguan"
 dayOverDayChanges: "Harian"
@@ -510,49 +508,47 @@ accountSettings: "Pengaturan Akun"
 promotion: "Promosi"
 promote: "Promosikan"
 numberOfDays: "Jumlah hari"
-hideThisNote: "Sembunyikan catatan ini"
-showFeaturedNotesInTimeline: "Tampilkan catatan yang diunggulkan di linimasa"
-objectStorage: "Object Storage"
+hideThisNote: "Sembunyikan postingan ini"
+showFeaturedNotesInTimeline: "Tampilkan postingan yang diunggulkan di linimasa"
+objectStorage: "Penyimpanan Objek"
 useObjectStorage: "Gunakan object storage"
-objectStorageBaseUrl: "Base URL"
-objectStorageBaseUrlDesc: "Prefix URL digunakan untuk mengkonstruksi URL ke object\
-  \ (media) referencing. Tentukan URL jika kamu menggunakan CDN atau Proxy, jika tidak\
-  \ tentukan alamat yang dapat diakses secara publik sesuai dengan panduan dari layanan\
-  \ yang akan kamu gunakan, contohnya. 'https://<bucket>.s3.amazonaws.com' untuk AWS\
-  \ S3, dan 'https://storage.googleapis.com/<bucket>' untuk GCS."
-objectStorageBucket: "Bucket"
-objectStorageBucketDesc: "Mohon tentukan nama bucket yang digunakan pada layanan yang\
-  \ telah dikonfigurasi."
+objectStorageBaseUrl: "URL Dasar"
+objectStorageBaseUrlDesc: "URL dipakai sebagai referensi. Tentukan URL CDN atau Proksimu
+  jika kamu menggunakan salah satunya.\nUntuk S3 gunakan 'https://<bucket>.s3.amazonaws.com'
+  dan GCS atau layanan serupa gunakan 'https://storage.googleapis.com/<bucket>', dll."
+objectStorageBucket: "Ember"
+objectStorageBucketDesc: "Mohon tentukan nama bucket yang digunakan pada layanan yang
+  telah dikonfigurasi."
 objectStoragePrefix: "Prefix"
 objectStoragePrefixDesc: "Berkas tidak akan disimpan dalam direktori dari prefix ini."
-objectStorageEndpoint: "Endpoint"
-objectStorageEndpointDesc: "Kosongkan bagian ini jika kamu menggunakan AWS S3, jika\
-  \ tidak tentukan endpoint sebagai '<host>' atau '<host>:<port>' sesuai dengan panduan\
-  \ dari layanan yang akan kamu gunakan."
+objectStorageEndpoint: "Titik akhir"
+objectStorageEndpointDesc: "Kosongkan bagian ini jika kamu menggunakan AWS S3, jika
+  tidak tentukan endpoint sebagai '<host>' atau '<host>:<port>' sesuai dengan panduan
+  dari layanan yang akan kamu gunakan."
 objectStorageRegion: "Region"
-objectStorageRegionDesc: "Tentukan region seperti 'xx-east-1'. Jika layanan kamu tidak\
-  \ memiliki perbedaan mengenai region, kosongkan saja atau isi dengan 'us-east-1'."
+objectStorageRegionDesc: "Tentukan region seperti 'xx-east-1'. Jika layanan kamu tidak
+  memiliki perbedaan mengenai region, kosongkan saja atau isi dengan 'us-east-1'."
 objectStorageUseSSL: "Gunakan SSL"
-objectStorageUseSSLDesc: "Matikan ini jika kamu tidak akan menggunakan HTTPS untuk\
-  \ koneksi API"
+objectStorageUseSSLDesc: "Matikan ini jika kamu tidak akan menggunakan HTTPS untuk
+  koneksi API"
 objectStorageUseProxy: "Hubungkan melalui Proxy"
-objectStorageUseProxyDesc: "Matikan ini jika kamu tidak akan menggunakan Proxy untuk\
-  \ koneksi ObjectStorage"
+objectStorageUseProxyDesc: "Matikan ini jika kamu tidak akan menggunakan Proxy untuk
+  koneksi ObjectStorage"
 objectStorageSetPublicRead: "Setel \"public-read\" disaat mengunggah"
 serverLogs: "Log Peladen"
 deleteAll: "Hapus semua"
-showFixedPostForm: "Tampilkan form posting di atas linimasa."
-newNoteRecived: "Kamu mendapat catatan baru"
+showFixedPostForm: "Tampilkan formulir posting di atas linimasa"
+newNoteRecived: "Ada postingan baru"
 sounds: "Bunyi"
 listen: "Dengarkan"
 none: "Tidak ada"
 showInPage: "Tampilkan di halaman"
-popout: "Pop-out"
+popout: "Sembulan"
 volume: "Volume"
 masterVolume: "Master volume"
 details: "Selengkapnya"
 chooseEmoji: "Pilih emoji"
-unableToProcess: "Operasi tersebut tidak dapat diselesaikan."
+unableToProcess: "Tindakan tersebut tidak dapat diselesaikan"
 recentUsed: "Baru saja digunakan"
 install: "Pasang"
 uninstall: "Copot pemasangan"
@@ -565,9 +561,8 @@ sort: "Urutkan"
 ascendingOrder: "Urutkan naik"
 descendingOrder: "Urutkan menurun"
 scratchpad: "Scratchpad"
-scratchpadDescription: "Scratchpad menyediakan lingkungan eksperimen untuk AiScript.\
-  \ Kamu  bisa menulis, mengeksuksi, serta mengecek hasil yang berinteraksi dengan\
-  \ Firefish."
+scratchpadDescription: "Scratchpad menyediakan lingkungan eksperimen untuk AiScript.
+  Kamu bisa menulis, mengeksekusi, serta mengecek hasil yang berinteraksi dengan Firefish."
 output: "Keluaran"
 script: "Script"
 disablePagesScript: "Nonaktifkan script pada halaman"
@@ -575,14 +570,14 @@ updateRemoteUser: "Perbaharui informasi pengguna luar"
 deleteAllFiles: "Hapus semua berkas"
 deleteAllFilesConfirm: "Apakah kamu yakin ingin menghapus semua berkas?"
 removeAllFollowing: "Tahan semua mengikuti"
-removeAllFollowingDescription: "Batal mengikuti semua akun dari {host}. Mohon jalankan\
-  \ ini ketika instansi sudah tidak ada lagi."
+removeAllFollowingDescription: "Batal mengikuti semua akun dari {host}. Mohon jalankan
+  ini ketika server sudah tidak ada lagi."
 userSuspended: "Pengguna ini telah dibekukan."
 userSilenced: "Pengguna ini telah dibungkam."
 yourAccountSuspendedTitle: "Akun ini dibekukan"
-yourAccountSuspendedDescription: "Akun ini dibekukan karena melanggar ketentuan penggunaan\
-  \ layanan peladen atau semacamnya. Hubungi admin apabila ingin tahu alasan lebih\
-  \ lanjut. Mohon untuk tidak membuat akun baru."
+yourAccountSuspendedDescription: "Akun ini dibekukan karena melanggar ketentuan penggunaan
+  layanan peladen atau semacamnya. Hubungi admin apabila ingin tahu alasan lebih lanjut.
+  Mohon untuk tidak membuat akun baru."
 menu: "Menu"
 divider: "Pembagi"
 addItem: "Tambahkan item"
@@ -591,8 +586,8 @@ addRelay: "Tambahkan relay"
 inboxUrl: "URL Kotak masuk"
 addedRelays: "Relay yang ditambahkan"
 serviceworkerInfo: "Harus diaktifkan untuk pemberitahuan push."
-deletedNote: "Catatan yang dihapus"
-invisibleNote: "Catatan yang disembunyikan"
+deletedNote: "Postingan yang dihapus"
+invisibleNote: "Postingan tidak terlihat"
 enableInfiniteScroll: "Aktifkan gulir tak terbatas"
 visibility: "Visibilitas"
 poll: "Angket"
@@ -627,8 +622,8 @@ notificationType: "Jenis pemberitahuan"
 edit: "Sunting"
 emailServer: "Peladen surel"
 enableEmail: "Nyalakan distribusi surel"
-emailConfigInfo: "Digunakan untuk mengonfirmasi surel kamu disaat mendaftar dan lupa\
-  \ kata sandi"
+emailConfigInfo: "Digunakan untuk mengonfirmasi surel kamu disaat mendaftar dan lupa
+  kata sandi"
 email: "Surel"
 emailAddress: "Alamat surel"
 smtpConfig: "Konfigurasi peladen SMTP"
@@ -636,16 +631,16 @@ smtpHost: "Host"
 smtpPort: "Port"
 smtpUser: "Nama Pengguna"
 smtpPass: "Kata sandi"
-emptyToDisableSmtpAuth: "Kosongkan nama pengguna dan kata sandi untuk menonaktifkan\
-  \ verifikasi SMTP"
+emptyToDisableSmtpAuth: "Kosongkan nama pengguna dan kata sandi untuk menonaktifkan
+  verifikasi SMTP"
 smtpSecure: "Gunakan SSL/TLS implisit untuk koneksi SMTP"
 smtpSecureInfo: "Matikan ini ketika menggunakan STARTTLS"
 testEmail: "Tes pengiriman surel"
 wordMute: "Bisukan kata"
 regexpError: "Kesalahan ekspresi reguler"
-regexpErrorDescription: "Galat terjadi pada baris {line} ekspresi reguler dari {tab}\
-  \ kata yang dibisukan:"
-instanceMute: "Bisuka instansi"
+regexpErrorDescription: "Galat terjadi pada baris {line} ekspresi reguler dari {tab}
+  kata yang dibisukan:"
+instanceMute: "Server Dibisukan"
 userSaysSomething: "{name} mengatakan sesuatu"
 makeActive: "Aktifkan"
 display: "Tampilkan"
@@ -658,62 +653,62 @@ database: "Basis data"
 channel: "Kanal"
 create: "Buat"
 notificationSetting: "Pengaturan Pemberitahuan"
-notificationSettingDesc: "Pilih tipe pemberitahuan untuk ditampilkan"
+notificationSettingDesc: "Pilih tipe pemberitahuan untuk ditampilkan."
 useGlobalSetting: "Gunakan setelan global"
-useGlobalSettingDesc: "Jika dinyalakan, setelan pemberitahuan akun kamu akan digunakan.\
-  \ Jika dimatikan, konfigurasi secara individu dapat dibuat."
+useGlobalSettingDesc: "Jika dinyalakan, setelan pemberitahuan akun kamu akan digunakan.
+  Jika dimatikan, konfigurasi secara individu dapat dibuat."
 other: "Lainnya"
 regenerateLoginToken: "Perbarui token login"
-regenerateLoginTokenDescription: "Perbarui token yang digunakan secara internal saat\
-  \ login. Normalnya aksi ini tidak diperlukan. Jika diperbarui, semua perangkat akan\
-  \ dilogout."
-setMultipleBySeparatingWithSpace: "Kamu dapat menyetel banyak dengan memisahkannya\
-  \ menggunakan spasi."
+regenerateLoginTokenDescription: "Perbarui token yang digunakan secara internal saat
+  login. Normalnya aksi ini tidak diperlukan. Jika diperbarui, semua perangkat akan
+  dilogout."
+setMultipleBySeparatingWithSpace: "Kamu dapat menyetel banyak dengan memisahkannya
+  menggunakan spasi."
 fileIdOrUrl: "File-ID atau URL"
 behavior: "Perilaku"
 sample: "Contoh"
 abuseReports: "Laporkan"
 reportAbuse: "Laporkan"
 reportAbuseOf: "Laporkan {name}"
-fillAbuseReportDescription: "Mohon isi rincian laporan. Jika laporan ini mengenai\
-  \ catatan yang spesifik, mohon lampirkan serta URL catatan tersebut."
+fillAbuseReportDescription: "Mohon isi rincian laporan. Jika laporan ini mengenai
+  postingan yang spesifik, mohon lampirkan serta URL postingan tersebut."
 abuseReported: "Laporan kamu telah dikirimkan. Terima kasih."
 reporter: "Pelapor"
 reporteeOrigin: "Yang dilaporkan"
 reporterOrigin: "Pelapor"
-forwardReport: "Teruskan laporan ke instansi luar"
-forwardReportIsAnonymous: "Untuk melindungi privasi akun kamu, akun anonim dari sistem\
-  \ akan digunakan sebagai pelapor pada instansi luar."
+forwardReport: "Teruskan laporan ke server luar"
+forwardReportIsAnonymous: "Untuk melindungi privasi akun kamu, akun anonim dari sistem
+  akan digunakan sebagai pelapor pada server luar."
 send: "Kirim"
 abuseMarkAsResolved: "Tandai laporan sebagai selesai"
 openInNewTab: "Buka di tab baru"
 openInSideView: "Buka di tampilan samping"
 defaultNavigationBehaviour: "Navigasi bawaan"
-editTheseSettingsMayBreakAccount: "Menyunting pengaturan ini memiliki kemungkinan\
-  \ untuk merusak akun kamu."
-instanceTicker: "Informasi pengguna pada instansi"
+editTheseSettingsMayBreakAccount: "Menyunting pengaturan ini memiliki kemungkinan
+  untuk merusak akun kamu."
+instanceTicker: "Informasi server postingan"
 waitingFor: "Menunggu untuk {x}"
 random: "Acak"
 system: "Sistem"
-switchUi: "Ubah UI"
+switchUi: "Tata letak"
 desktop: "Desktop"
 clip: "Klip"
 createNew: "Buat baru"
 optional: "Opsional"
 createNewClip: "Buat klip baru"
 unclip: "Batalkan klip"
-confirmToUnclipAlreadyClippedNote: "Catatan ini sudah disertakan di klip \"{name}\"\
-  . Yakin ingin membatalkan catatan dari klip ini?"
+confirmToUnclipAlreadyClippedNote: "Postingan ini sudah disertakan di klip \"{name}\"\
+  . Yakin ingin menghapus postingan dari klip ini?"
 public: "Publik"
-i18nInfo: "Firefish diterjemahkan ke dalam banyak bahasa oleh sukarelawan. Kamu dapat\
-  \ ikut membantu di {link}."
+i18nInfo: "Firefish diterjemahkan ke dalam banyak bahasa oleh sukarelawan. Kamu dapat
+  ikut membantu di {link}."
 manageAccessTokens: "Kelola access token"
 accountInfo: "Informasi akun"
-notesCount: "Jumlah catatan"
+notesCount: "Jumlah postingan"
 repliesCount: "Jumlah balasan terkirim"
-renotesCount: "Jumlah renote terkirim"
+renotesCount: "Jumlah postingan ulang terkirim"
 repliedCount: "Jumlah balasan diterima"
-renotedCount: "Jumlah renote diterima"
+renotedCount: "Jumlah postingan ulang diterima"
 followingCount: "Jumlah akun yang diikuti"
 followersCount: "Jumlah pengikut"
 sentReactionsCount: "Jumlah reaksi yang terkirim"
@@ -725,19 +720,19 @@ no: "Tidak"
 driveFilesCount: "Jumlah berkas drive"
 driveUsage: "Penggunaan ruang penyimpanan drive"
 noCrawle: "Tolak pengindeksan crawler"
-noCrawleDescription: "Meminta mesin pencari untuk tidak mengindeks halaman profil\
-  \ kamu, catatan, Halaman, dll."
-lockedAccountInfo: "Kecuali kamu menyetel visibilitas catatan milikmu ke \"Hanya pengikut\"\
-  , catatan milikmu akan dapat dilihat oleh siapa saja, bahkan jika kamu memerlukan\
-  \ pengikut untuk disetujui secara manual."
+noCrawleDescription: "Minta mesin pencari untuk tidak mengindeks halaman profil, postingan,
+  Halaman kamu, dll."
+lockedAccountInfo: "Kecuali kamu mengatur visibilitas postingan milikmu ke \"Hanya
+  pengikut\", postingan milikmu akan dapat dilihat oleh siapa saja, bahkan jika kamu
+  memerlukan pengikut untuk disetujui secara manual."
 alwaysMarkSensitive: "Tandai media dalam catatan sebagai media sensitif"
 loadRawImages: "Tampilkan lampiran gambar secara penuh daripada thumbnail"
 disableShowingAnimatedImages: "Jangan mainkan gambar bergerak"
-verificationEmailSent: "Surel verifikasi telah dikirimkan. Mohon akses tautan yang\
-  \ telah disertakan untuk menyelesaikan verifikasi."
+verificationEmailSent: "Surel verifikasi telah dikirimkan. Mohon akses tautan yang
+  telah disertakan untuk menyelesaikan verifikasi."
 notSet: "Tidak disetel"
 emailVerified: "Surel telah diverifikasi"
-noteFavoritesCount: "Jumlah catatan yang difavoritkan"
+noteFavoritesCount: "Jumlah postingan yang dimarkah"
 pageLikesCount: "Jumlah suka yang diterima Halaman"
 pageLikedCount: "Jumlah Halaman yang disukai"
 contact: "Kontak"
@@ -746,27 +741,27 @@ clips: "Klip"
 experimentalFeatures: "Fitur eksperimental"
 developer: "Pengembang"
 makeExplorable: "Buat akun tampil di \"Jelajahi\""
-makeExplorableDescription: "Jika kamu mematikan ini, akun kamu tidak akan muncul di\
-  \ bagian \"Jelajahi:"
+makeExplorableDescription: "Jika kamu menonaktifkan ini, akun kamu tidak akan muncul
+  di bagian \"Jelajahi\"."
 showGapBetweenNotesInTimeline: "Tampilkan jarak diantara catatan pada linimasa"
 duplicate: "Duplikat"
 left: "Kiri"
 center: "Tengah"
 wide: "Lebar"
 narrow: "Sempit"
-reloadToApplySetting: "Pengaturan ini akan diterapkan saat memuat halaman kembali.\
-  \ Apakah kamu ingin memuat halaman kembali sekarang?"
+reloadToApplySetting: "Pengaturan ini akan diterapkan saat memuat halaman kembali.
+  Apakah kamu ingin memuat halaman kembali sekarang?"
 needReloadToApply: "Pengaturan ini hanya akan diterapkan setelah memuat ulang halaman."
 showTitlebar: "Tampilkan bilah judul"
 clearCache: "Hapus tembolok"
 onlineUsersCount: "{n} orang sedang daring"
 nUsers: "{n} Pengguna"
-nNotes: "{n} Catatan"
+nNotes: "{n} Postingan"
 sendErrorReports: "Kirim laporan kesalahan"
-sendErrorReportsDescription: "Ketika dinyalakan, informasi kesalahan rinci akan dibagikan\
-  \ dengan Firefish ketika masalah terjadi, hal ini untuk membantu kualitas Firefish.\
-  \ Fitur ini memungkinkan memuat informasi seperti sistem operasi yang kamu gunakan\
-  \ dan versinya, aplikasi peramban yang kamu gunakan, riwayat aktivitas kamu, dll."
+sendErrorReportsDescription: "Ketika diaktifkan, informasi kesalahan rinci akan dibagikan
+  dengan Firefish ketika masalah terjadi, hal ini untuk membantu kualitas Firefish.\n
+  Ini akan memuat informasi antara lain versi sistem operasi yang kamu gunakan, peramban
+  yang dipakai, riwayat aktivitas kamu di Firefish, dll."
 myTheme: "Tema saya"
 backgroundColor: "Latar Belakang"
 accentColor: "Aksen"
@@ -790,7 +785,7 @@ capacity: "Kapasitas"
 inUse: "Digunakan"
 editCode: "Sunting kode"
 apply: "Terapkan"
-receiveAnnouncementFromInstance: "Terima pemberitahuan surel dari instansi ini"
+receiveAnnouncementFromInstance: "Terima pemberitahuan dari server ini"
 emailNotification: "Pemberitahuan surel"
 publish: "Terbitkan"
 inChannelSearch: "Cari di kanal"
@@ -805,23 +800,23 @@ unlikeConfirm: "Yakin ingin hapus sukamu?"
 fullView: "Tampilan penuh"
 quitFullView: "Keluar tampilan penuh"
 addDescription: "Tambahkan deskripsi"
-userPagePinTip: "Kamu dapat membuat catatan untuk ditampilkan disini dengan memilih\
-  \ \"Sematkan ke profil\" dari menu pada catatan individu."
-notSpecifiedMentionWarning: "Catatan ini mengandung sebutan dari pengguna yang tidak\
-  \ dimuat sebagai penerima"
+userPagePinTip: "Kamu dapat menampilkan postingan di sini dengan memilih \"Sematkan
+  ke profil\" dari menu pada sebuah postingan."
+notSpecifiedMentionWarning: "Postingan ini mengandung sebutan dari pengguna yang tidak
+  disertakan sebagai penerima"
 info: "Informasi"
 userInfo: "Informasi pengguna"
 unknown: "Tidak diketahui"
 onlineStatus: "Status daring"
 hideOnlineStatus: "Sembunyikan status daring"
-hideOnlineStatusDescription: "Menyembunyikan status daring kamu umengurangi kenyamanan\
-  \ untuk beberapa fungsi seperti contohnya pencarian."
+hideOnlineStatusDescription: "Menyembunyikan status daring kamu umengurangi kenyamanan
+  untuk beberapa fungsi seperti contohnya pencarian."
 online: "Daring"
 active: "Aktif"
 offline: "Luring"
 notRecommended: "Tidak disarankan"
 botProtection: "Perlindungan Bot"
-instanceBlocking: "Instansi yang diblokir"
+instanceBlocking: "Pengelolaan Federasi"
 selectAccount: "Pilih akun"
 switchAccount: "Ganti akun"
 enabled: "Aktif"
@@ -838,7 +833,7 @@ postToGallery: "Posting ke galeri"
 gallery: "Galeri"
 recentPosts: "Postingan terbaru"
 popularPosts: "Postingan populer"
-shareWithNote: "Bagikan dengan catatan"
+shareWithNote: "Bagikan dengan postingan"
 ads: "Iklan"
 expiration: "Batas akhir"
 memo: "Memo"
@@ -849,9 +844,9 @@ low: "Rendah"
 emailNotConfiguredWarning: "Alamat surel tidak disetel."
 ratio: "Rasio"
 previewNoteText: "Tampilkan pratinjau"
-customCss: "Custom CSS"
-customCssWarn: "Pengaturan ini seharusnya digunakan jika kamu tahu cara kerjanya.\
-  \ Memasukkan nilai yang tidak tepat dapat menyebabkan klien tidak berfungsi semestinya."
+customCss: "CSS khusus"
+customCssWarn: "Pengaturan ini seharusnya digunakan jika kamu tahu cara kerjanya.
+  Memasukkan nilai yang tidak tepat dapat menyebabkan klien tidak berfungsi semestinya."
 global: "Global"
 squareAvatars: "Tampilkan avatar sebagai persegi"
 sent: "Kirim"
@@ -866,9 +861,9 @@ whatIsNew: "Lihat perubahan pemutakhiran"
 translate: "Terjemahkan"
 translatedFrom: "Terjemahkan dari {x}"
 accountDeletionInProgress: "Penghapusan akun sedang dalam proses"
-usernameInfo: "Nama yang mengidentifikasikan akun kamu dari yang lain pada peladen\
-  \ ini. Kamu dapat menggunakan alfabet (a~z, A~Z), digit (0~9) atau garis bawah (_).\
-  \ Username tidak dapat diubah setelahnya."
+usernameInfo: "Nama yang mengidentifikasikan akun kamu dari yang lain pada peladen
+  ini. Kamu dapat menggunakan alfabet (a~z, A~Z), digit (0~9) atau garis bawah (_).
+  Username tidak dapat diubah setelahnya."
 aiChanMode: "Mode Ai"
 keepCw: "Biarkan Peringatan Konten"
 pubSub: "Akun Pub/Sub"
@@ -884,35 +879,35 @@ filter: "Saring"
 controlPanel: "Panel kendali"
 manageAccounts: "Kelola Akun"
 makeReactionsPublic: "Tampilkan riwayat reaksi ke publik"
-makeReactionsPublicDescription: "Pengaturan ini akan membuat daftar dari semua reaksi\
-  \ masa lalu kamu ditampilkan secara publik."
-classic: "Klasik"
+makeReactionsPublicDescription: "Pengaturan ini akan membuat daftar dari semua reaksi
+  masa lalu kamu ditampilkan secara publik."
+classic: "Tengah"
 muteThread: "Bisukan thread"
 unmuteThread: "Suarakan thread"
 ffVisibility: "Visibilitas Mengikuti/Pengikut"
-ffVisibilityDescription: "Mengatur siapa yang dapat melihat pengikutmu dan yang kamu\
-  \ ikuti."
-continueThread: "Lihat lanjutan thread"
-deleteAccountConfirm: "Akun akan dihapus. Apakah kamu yakin?"
+ffVisibilityDescription: "Mengatur siapa yang dapat melihat pengikutmu dan yang kamu
+  ikuti."
+continueThread: "Lihat lanjutan utas"
+deleteAccountConfirm: "Akun ini akan dihapus secara permanen. Lanjutkan?"
 incorrectPassword: "Kata sandi salah."
 voteConfirm: "Konfirmasi suara kamu untuk ({choice})？"
 hide: "Sembunyikan"
 leaveGroup: "Keluar grup"
 leaveGroupConfirm: "Apakah kamu yakin untuk keluar dari \"{name}\"?"
 useDrawerReactionPickerForMobile: "Tampilkan bilah reaksi sebagai laci di ponsel"
-welcomeBackWithName: "Selamat datang kembali, {name}."
-clickToFinishEmailVerification: "Mohon klik [{ok}] untuk menyelesaikan verifikasi\
-  \ email."
+welcomeBackWithName: "Selamat datang kembali, {name}"
+clickToFinishEmailVerification: "Mohon klik [{ok}] untuk menyelesaikan verifikasi
+  email."
 overridedDeviceKind: "Tipe perangkat"
 smartphone: "Ponsel"
 tablet: "Tablet"
 auto: "Otomatis"
-themeColor: "Warna Tema"
+themeColor: "Warna Jam Server"
 size: "Ukuran"
 numberOfColumn: "Jumlah per kolom"
 searchByGoogle: "Penelusuran"
-instanceDefaultLightTheme: "Bawaan instan tema terang"
-instanceDefaultDarkTheme: "Bawaan instan tema gelap"
+instanceDefaultLightTheme: "Tema terang bawaan ranah server"
+instanceDefaultDarkTheme: "Tema gelap bawaan ranah server"
 instanceDefaultThemeDescription: "Masukkan kode tema di format obyek."
 mutePeriod: "Batas waktu bisu"
 indefinitely: "Selamanya"
@@ -933,7 +928,7 @@ localOnly: "Hanya lokal"
 account: "Akun"
 _emailUnavailable:
   used: "Alamat surel ini telah digunakan"
-  format: "Format tidak valid."
+  format: "Format alamat surel ini tidak valid"
   disposable: "Alamat surel temporer tidak dapat digunakan"
   mx: "Peladen alamat surel ini tidak valid"
   smtp: "Peladen alamat surel ini tidak merespon"
@@ -944,30 +939,28 @@ _ffVisibility:
 _signup:
   almostThere: "Hampir selesai"
   emailAddressInfo: "Mohon masukkan alamat surel kamu."
-  emailSent: "Konfirmasi surel telah dikirimkan ke alamat surel kamu ({email}). Mohon\
-    \ klik tautan yang tercantum di dalamnya untuk menyelesaikan pembuatan akun."
+  emailSent: "Konfirmasi surel telah dikirimkan ke alamat surel kamu ({email}). Mohon
+    klik tautan yang tercantum di dalamnya untuk menyelesaikan pembuatan akun."
 _accountDelete:
   accountDelete: "Hapus akun"
-  mayTakeTime: "Karena penghapusan akun merupakan proses yang berat dan intensif,\
-    \ kemungkinan dapat membutuhkan waktu untuk menyelesaikan tergantung daripada\
-    \ berapa banyak konten yang kamu buat dan berapa banyak berkas yang telah kamu\
-    \ unggah."
-  sendEmail: "Setelah penghapusan akun selesai, pemberitahuan akan dikirimkan ke alamat\
-    \ surel yang terdaftarkan pada akun ini."
+  mayTakeTime: "Karena penghapusan akun merupakan proses yang berat dan intensif,
+    kemungkinan dapat membutuhkan waktu untuk menyelesaikan tergantung daripada berapa
+    banyak konten yang kamu buat dan berapa banyak berkas yang telah kamu unggah."
+  sendEmail: "Setelah penghapusan akun selesai, pemberitahuan akan dikirimkan ke alamat
+    surel yang terdaftarkan pada akun ini."
   requestAccountDelete: "Minta penghapusan akun"
-  started: "Penghapusan telah dimulai"
+  started: "Penghapusan telah dimulai."
   inProgress: "Penghapusan sedang dalam proses"
 _ad:
   back: "Kembali"
   reduceFrequencyOfThisAd: "Tampilkan iklan ini lebih sedikit"
 _forgotPassword:
-  enterEmail: "Masukkan alamat surel yang kamu gunakan pada saat mendaftar. Sebuah\
-    \ tautan untuk mengatur ulang kata sandi kamu akan dikirimkan ke alamat surel\
-    \ tersebut."
-  ifNoEmail: "Apabila kamu tidak menggunakan surel pada saat pendaftaran, mohon hubungi\
-    \ admin segera."
-  contactAdmin: "Instansi ini tidak mendukung menggunakan alamat surel, mohon kontak\
-    \ admin untuk mengatur ulang password kamu."
+  enterEmail: "Masukkan alamat surel yang kamu gunakan pada saat mendaftar. Sebuah
+    tautan untuk mengatur ulang kata sandi kamu akan dikirimkan ke alamat surel tersebut."
+  ifNoEmail: "Apabila kamu tidak menggunakan surel pada saat pendaftaran, mohon hubungi
+    admin server segera."
+  contactAdmin: "Server ini tidak mendukung menggunakan alamat surel, mohon kontak
+    admin untuk mengatur ulang password kamu."
 _gallery:
   my: "Postingan saya"
   liked: "Postingan yang disukai"
@@ -989,28 +982,37 @@ _registry:
   domain: "Domain"
   createKey: "Buat kunci"
 _aboutFirefish:
-  about: "Firefish adalah perangkat lunak sumber terbuka yang sedang dikembangkan oleh\
-    \ syuilo sejak 2014."
+  about: "Firefish adalah perangkat lunak sumber terbuka yang sedang dikembangkan
+    oleh syuilo sejak 2014."
   contributors: "Kontributor utama"
   allContributors: "Seluruh kontributor"
   source: "Sumber kode"
   translation: "Terjemahkan Firefish"
   donate: "Donasi ke Firefish"
-  morePatrons: "Kami sangat mengapresiasi dukungan dari banyak penolong lain yang\
-    \ tidak tercantum disini. Terima kasih! \U0001F970"
+  morePatrons: "Kami sangat mengapresiasi dukungan dari banyak penolong lain yang
+    tidak tercantum disini. Terima kasih! 🥰"
   patrons: "Pendukung"
+  patronsList: Diurutkan secara kronologis, bukan berdasarkan jumlah donasi. Berdonasilah
+    dengan tautan di atas supaya nama kamu ada di sini!
+  sponsors: Sponsor Firefish
+  donateTitle: Suka Firefish?
+  pleaseDonateToFirefish: Silakan pertimbangkan berdonasi ke Firefish untuk mendukung
+    pengembangannya.
+  pleaseDonateToHost: Silakan pertimbangkan juga berdonasi ke server rumah kamu, {host},
+    untuk membantu dengan biaya operasi.
+  donateHost: Berdonasi ke {host}
 _nsfw:
   respect: "Sembunyikan media NSFW"
   ignore: "Jangan sembunyikan media NSFW"
   force: "Sembunyikan semua media"
 _mfm:
   cheatSheet: "Contekan MFM"
-  intro: "MFM adalah Firefish-exclusive Markup Language yang dapat digunakan di banyak\
-    \ tempat. Berikut kamu bisa melihat daftar dari syntax MFM yang ada."
+  intro: "MFM adalah Firefish-exclusive Markup Language yang dapat digunakan di banyak
+    tempat. Berikut kamu bisa melihat daftar dari syntax MFM yang ada."
   dummy: "Firefish membentangkan dunia Fediverse"
   mention: "Sebut"
-  mentionDescription: "Kamu dapat menentukan pengguna tertentu dengan menggunakan\
-    \ simbol-At dan nama engguna mereka."
+  mentionDescription: "Kamu dapat menentukan pengguna tertentu dengan menggunakan
+    simbol-At dan nama engguna mereka."
   hashtag: "Tagar"
   hashtagDescription: "Kamu dapat menentukan tagar dengan menggunakan angka dan teks."
   url: "URL"
@@ -1026,24 +1028,23 @@ _mfm:
   inlineCode: "Kode (Dalam baris)"
   inlineCodeDescription: "Menampilkan sorotan sintaks dalam baris untuk kode(program-)."
   blockCode: "Kode (Blok)"
-  blockCodeDescription: "Menampilkan sorotan sintaks untuk kode(program-) multi baris\
-    \ dalam sebuah blok."
+  blockCodeDescription: "Menampilkan sorotan sintaks untuk kode(program-) multi baris
+    dalam sebuah blok."
   inlineMath: "Matematika (Dalam baris)"
-  inlineMathDescription: "Menampilkan formula matematika (KaTeX) dalam baris."
+  inlineMathDescription: "Menampilkan formula matematika (KaTeX) dalam baris"
   blockMath: "Matematika (Blok)"
-  blockMathDescription: "Menampilkan formula matematika (KaTeX) multibaris dalam sebuah\
-    \ blok."
+  blockMathDescription: "Tampilkan formula matematika (KaTeX) dalam blok"
   quote: "Kutip"
   quoteDescription: "Menampilkan konten sebagai kutipan."
   emoji: "Emoji kustom"
-  emojiDescription: "Emoji kustom dapat ditampilkan dengan mengurung nama emoji kustom\
-    \ menggunakan tanda titik dua."
+  emojiDescription: "Emoji kustom dapat ditampilkan dengan mengurung nama emoji kustom
+    menggunakan tanda titik dua."
   search: "Penelusuran"
   searchDescription: "Menampilkan kotak pencarian dengan teks yang sudah dimasukkan."
   flip: "Balik"
   flipDescription: "Balikkan konten secara horizontal atau vertikal."
   jelly: "Animasi (Jelly)"
-  jellyDescription: "Menerapkan animasi seperti jelly"
+  jellyDescription: "Beri konten dengan animasi seperti jeli."
   tada: "Animasi (Tada)"
   tadaDescription: "Menerapkan animasi seperti \"Kejutan!\"."
   jump: "Animasi (Loncat)"
@@ -1063,8 +1064,8 @@ _mfm:
   x4: "Sangat besar"
   x4Description: "Tampilka konten menjadi sangat besar."
   blur: "Buram"
-  blurDescription: "Konten dapat diburamkan dengan efek ini. Konten dapat ditampilkan\
-    \ dengan jelas dengan melayangkan kursor tetikus di atasnya."
+  blurDescription: "Konten dapat diburamkan dengan efek ini. Konten dapat ditampilkan
+    dengan jelas dengan melayangkan kursor tetikus di atasnya."
   font: "Font"
   fontDescription: "Setel font yang ditampilkan untuk konten."
   rainbow: "Pelangi"
@@ -1073,6 +1074,27 @@ _mfm:
   sparkleDescription: "Memberikan konten efek partikel kelap-kelip."
   rotate: "Putar"
   rotateDescription: "Putar konten sesuai sudut yang ditentukan."
+  play: Mainkan MFM
+  stop: Hentikan MFM
+  warn: MFM dapat berisi animasi yang sangat cepat
+  advanced: MFM tingkat lanjut
+  foreground: Warna latar depan
+  foregroundDescription: Ubah warna depan teks.
+  backgroundDescription: Ubah warna latar belakang teks.
+  plainDescription: Menonaktifkan efek dari semua MFM dalam efek MFM ini.
+  crop: Pangkas
+  alwaysPlay: Selalu mainkan MFM beranimasi secara otomatis
+  advancedDescription: Jika dinonaktifkan, hanya memperbolehkan markup dasar kecuali
+    jika MFM beranimasi dimainkan
+  positionDescription: Gerakkan konten dengan jumlah yang ditentukan.
+  scale: Skala
+  cropDescription: Pangkas konten.
+  background: Warna latar belakang
+  plain: Biasa
+  position: Posisi
+  scaleDescription: Ubah skala konten dengan jumlah yang ditentukan.
+  fade: Memudar
+  fadeDescription: Memudar konten.
 _instanceTicker:
   none: "Jangan tampilkan"
   remote: "Tampilkan untuk pengguna luar"
@@ -1081,6 +1103,7 @@ _serverDisconnectedBehavior:
   reload: "Muat ulang otomatis"
   dialog: "Tampilkan dialog peringatan"
   quiet: "Tampilkan peringatan tidak mengganggu"
+  nothing: Jangan lakukan apa pun
 _channel:
   create: "Buat saluran"
   edit: "Sunting saluran"
@@ -1090,7 +1113,9 @@ _channel:
   owned: "Dimiliki"
   following: "Mengikuti"
   usersCount: "{n} Partisipan"
-  notesCount: "terdapat {n} catatan"
+  notesCount: "{n} Postingan"
+  nameOnly: Nama saja
+  nameAndDescription: Nama dan deskripsi
 _menuDisplay:
   sideFull: "Horisontal"
   sideIcon: "Horisontal (Ikon)"
@@ -1098,24 +1123,24 @@ _menuDisplay:
   hide: "Sembunyikan"
 _wordMute:
   muteWords: "Kata yang dibisukan"
-  muteWordsDescription: "Pisahkan dengan spasi untuk kondisi AND. Pisahkan dengan\
-    \ baris baru untuk kondisi OR."
-  muteWordsDescription2: "Kurung kata kunci dengan garis miring untuk menggunakan\
-    \ regular expressions."
-  softDescription: "Sembunyikan catatan yang memenuhi aturan kondisi dari linimasa."
-  hardDescription: "Cegah catatan memenuhi aturan kondisi dari ditambahkan ke linimasa.\
-    \ Dengan tambahan, catatan berikut tidak akan ditambahkan ke linimasa meskipun\
-    \ jika kondisi tersebut diubah."
+  muteWordsDescription: "Pisahkan dengan spasi untuk kondisi AND. Pisahkan dengan
+    baris baru untuk kondisi OR."
+  muteWordsDescription2: "Kurung kata kunci dengan garis miring untuk menggunakan
+    regular expressions."
+  softDescription: "Sembunyikan postingan yang memenuhi aturan kondisi dari lini masa."
+  hardDescription: "Cegah postingan memenuhi aturan kondisi dari ditambahkan ke lini
+    masa. Dengan tambahan, kiriman berikut tidak akan ditambahkan ke lini masa meskipun
+    jika kondisi tersebut diubah."
   soft: "Lembut"
   hard: "Keras"
-  mutedNotes: "Catatan yang dibisukan"
+  mutedNotes: "Postingan yang dibisukan"
 _instanceMute:
-  instanceMuteDescription: "Pengaturan ini akan membisukan note/renote apa saja dari\
-    \ instansi yang terdaftar, termasuk pengguna yang membalas pengguna lain dalam\
-    \ instansi yang dibisukan."
+  instanceMuteDescription: "Pengaturan ini akan membisukan postingan/pembagian apa
+    saja dari server yang terdaftar, termasuk pengguna yang membalas pengguna lain
+    dalam server yang dibisukan."
   instanceMuteDescription2: "Pisah dengan baris baru"
-  title: "Sembunyikan note dari instansi terdaftar."
-  heading: "Daftar instansi yang akan dibisukan"
+  title: "Sembunyikan note dari server terdaftar."
+  heading: "Daftar server yang akan dibisukan"
 _theme:
   explore: "Jelajahi tema"
   install: "Pasang tema"
@@ -1144,8 +1169,8 @@ _theme:
   darken: "Mengelamkan"
   lighten: "Menerangkan"
   inputConstantName: "Masukkan nama untuk konstanta"
-  importInfo: "Jika kamu memasukkan kode tema disini, kamu dapat mengimpornya ke penyunting\
-    \ tema"
+  importInfo: "Jika kamu memasukkan kode tema disini, kamu dapat mengimpornya ke penyunting
+    tema"
   deleteConstantConfirm: "apakah kamu ingin menghapus konstanta {const}?"
   keys:
     accent: "Aksen"
@@ -1155,7 +1180,7 @@ _theme:
     indicator: "Indikator"
     panel: "Panel"
     shadow: "Bayangan"
-    header: "Header"
+    header: "Tajuk"
     navBg: "Latar belakang bilah samping"
     navFg: "Teks bilah samping"
     navHoverFg: "Teks bilah samping (Mengambang)"
@@ -1165,7 +1190,7 @@ _theme:
     hashtag: "Tagar"
     mention: "Sebut"
     mentionMe: "Sebutan (saya)"
-    renote: "Renote"
+    renote: "Bagikan"
     modalBg: "Latar belakang modal"
     divider: "Pembagi"
     scrollbarHandle: "Pegangan bilah gulir"
@@ -1192,8 +1217,8 @@ _theme:
     accentLighten: "Aksen (Terang)"
     fgHighlighted: "Teks yang disorot"
 _sfx:
-  note: "Catatan"
-  noteMy: "Catatan (Saya)"
+  note: "Postingan baru"
+  noteMy: "Postingan sendiri"
   notification: "Pemberitahuan"
   chat: "Pesan"
   chatBg: "Obrolan (Latar Belakang)"
@@ -1217,56 +1242,80 @@ _time:
 _tutorial:
   title: "Cara menggunakan Firefish"
   step1_1: "Selamat datang!"
-  step1_2: "Halaman ini disebut \"linimasa\". Halaman ini menampilkan \"catatan\"\
-    \ yang diurutkan secara kronologis dari orang-orang yang kamu \"ikuti\"."
-  step1_3: "Linimasa kamu kosong, karena kamu belum mencatat catatan apapun atau mengikuti\
-    \ siapapun."
-  step2_1: "Selesaikan menyetel profilmu sebelum menulis sebuah catatan atau mengikuti\
-    \ seseorang."
-  step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuat orang lain\
-    \ mudah untuk mengikutimu kembali."
+  step1_2: "Ayo siapkan. Lekas mulai tanpa basa-basi!"
+  step1_3: "Linimasa kamu kosong, karena kamu belum mencatat catatan apapun atau mengikuti
+    siapapun."
+  step2_1: "Selesaikan menyetel profilmu sebelum menulis sebuah catatan atau mengikuti
+    seseorang."
+  step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuatnya lebih
+    mudah bagi orang lain untuk menentukan jika mereka ingin postinganmu atau mengikutimu."
   step3_1: "Sekarang saatnya mengikuti beberapa orang!"
-  step3_2: "Langkah selanjutnya adalah membuat catatan. Kamu bisa lakukan ini dengan\
-    \ mengklik ikon pensil pada layar kamu."
-  step3_3: "Isilah di dalam modal dan tekan tombol pada atas kanan untuk memcatat\
-    \ catatan kamu."
-  step3_4: "Bingung tidak berpikiran untuk mengatakan sesuatu? Coba saja \"baru aja\
-    \ ikutan bikin akun misskey punyaku\"!"
-  step4_1: "Selesai mencatat catatan pertamamu?"
-  step4_2: "Horee! Sekarang catatan pertamamu sudah ditampilkan di linimasa milikmu."
-  step5_1: "Sekarang, mari mencoba untuk membuat linimasamu lebih hidup dengan mengikuti\
-    \ orang lain."
-  step5_2: "{featured} akan memperlihatkan catatan yang sedang tren saat ini untuk\
-    \ kamu. {explore} akan membantumu untuk mencari pengguna yang sedang tren juga\
-    \ saat ini. Coba ikuti seseorang yang kamu suka!"
-  step5_3: "Untuk mengikuti pengguna lain, klik pada ikon mereka dan tekan tombol\
-    \ follow pada profil mereka."
-  step5_4: "Jika pengguna lain memiliki ikon gembok di sebelah nama mereka, maka pengguna\
-    \ rersebut harus menyetujui permintaan mengikuti dari kamu secara manual."
-  step6_1: "Sekarang kamu dapat melihat catatan pengguna lain pada linimasamu."
-  step6_2: "Kamu juga bisa memberikan \"reaksi\" ke catatan orang lain untuk merespon\
-    \ dengan cepat."
-  step6_3: "Untuk memberikan \"reaksi\", tekan tanda \"+\" pada catatan pengguna lain\
-    \ dan pilih emoji yang kamu suka untuk memberikan reaksimu kepada mereka."
+  step3_2: "Linimasa beranda dan sosial berdasarkan siapa yang kamu ikuti, jadi coba
+    ikuti beberapa akun untuk memulai.\nKlik lingkaran plus pada pojok kanan atas
+    pada profil untuk mengikuti mereka."
+  step3_3: "Isilah di dalam modal dan tekan tombol pada atas kanan untuk memcatat
+    catatan kamu."
+  step3_4: "Bingung tidak berpikiran untuk mengatakan sesuatu? Coba saja \"baru aja
+    ikutan bikin akun misskey punyaku\"!"
+  step4_1: "Mari kita lihat kamu di sana."
+  step4_2: "Untuk kiriman pertama kamu, beberapa orang biasanya membuat postingan
+    {introduction} atau \"Halo dunia!\" yang sederhana."
+  step5_1: "Linimasa, linimasa di mana-mana!"
+  step5_2: "Servermu memiliki {timelines} lini masa berbeda yang diaktifkan."
+  step5_3: "Lini masa Beranda {icon} adalah tempat di mana kamu bisa melihat postingan
+    dari akun yang kamu ikuti."
+  step5_4: "Linimasa Lokal {icon} adalah tempat kamu dapat melihat postingan dari
+    siapa pun di server ini."
+  step6_1: "Jadi, tempat apa ini?"
+  step6_2: "Ya, kamu tidak saja bergabung ke Firefish. Kamu telah bergabung ke sebuah
+    portal ke Fediverse, sebuah jaringan ribuan server yang saling berhubungan."
+  step6_3: "Setiap server bekerja dalam berbagai cara, dan tidak semua server menjalankan
+    Firefish. Ini salah satunya! Mungkin sedikit sulit, tetapi lama-lama kamu akan
+    mengerti."
   step7_1: "Yay, Selamat! Kamu sudah menyelesaikan tutorial dasar Firefish."
-  step7_2: "Jika kamu ingin mempelajari lebih lanjut tentang Firefish, cobalah berkunjung\
-    \ ke bagian {help}."
-  step7_3: "Semoga berhasil dan bersenang-senanglah! \U0001F680"
+  step7_2: "Jika kamu ingin mempelajari lebih lanjut tentang Firefish, cobalah berkunjung
+    ke bagian {help}."
+  step7_3: "Semoga berhasil dan bersenang-senanglah! 🚀"
+  step5_6: Linimasa Rekomendasi {icon} adalah tempat kamu dapat melihat postingan
+    dari server yang direkomendasikan admin.
+  step6_4: Sekarang pergilah, bereksplorasi, dan senang-senang!
+  step5_5: Linimasa Sosial {icon} adalah kombinasi antara linimasa Beranda dan Lokal.
+  step5_7: Linimasa Global {icon} adalah tempat kamu dapat melihat postingan orang-orang
+    dari server yang terkoneksi.
 _2fa:
   alreadyRegistered: "Kamu telah mendaftarkan perangkat otentikasi dua faktor."
   registerTOTP: "Daftarkan perangkat baru"
   registerSecurityKey: "Daftarkan kunci keamanan baru"
-  step1: "Pertama, pasang aplikasi otentikasi (seperti {a} atau {b}) di perangkat\
-    \ kamu."
+  step1: "Pertama, pasang aplikasi otentikasi (seperti {a} atau {b}) di perangkat
+    kamu."
   step2: "Lalu, pindai kode QR yang ada di layar."
   step2Url: "Di aplikasi desktop, masukkan URL berikut:"
-  step3: "Masukkan token yang telah disediakan oleh aplikasimu untuk menyelesaikan\
-    \ pemasangan."
-  step4: "Mulai sekarang, upaya login apapun akan meminta token login dari aplikasi\
-    \ otentikasi kamu."
-  securityKeyInfo: "Kamu dapat memasang otentikasi WebAuthN untuk mengamankan proses\
-    \ login lebih lanjut dengan tidak hanya perangkat keras kunci keamanan yang mendukung\
-    \ FIDO2, namun juga sidik jari atau otentikasi PIN pada perangkatmu."
+  step3: "Masukkan token yang telah disediakan oleh aplikasimu untuk menyelesaikan
+    pemasangan."
+  step4: "Mulai sekarang, upaya login apapun akan meminta token login dari aplikasi
+    otentikasi kamu."
+  securityKeyInfo: "Kamu dapat memasang otentikasi WebAuthN untuk mengamankan proses
+    login lebih lanjut dengan tidak hanya perangkat keras kunci keamanan yang mendukung
+    FIDO2, namun juga sidik jari atau otentikasi PIN pada perangkatmu."
+  renewTOTPConfirm: Ini akan menyebabkan kode verifikasi dari aplikasimu sebelumnya
+    berhenti bekerja
+  token: Token 2FA
+  chromePasskeyNotSupported: Kunci pas Chrome saat ini tidak didukung.
+  securityKeyName: Masukkan nama kunci
+  removeKey: Hapus kunci keamanan
+  step2Click: Mengklik kode QR ini akan mengizinkanmu mendaftarkan 2FA untuk kunci
+    keamanan atau apl ontentikasi ponsel.
+  step3Title: Masukkan kode otentikasi
+  securityKeyNotSupported: Perambanmu tidak mendukung kunci keamanan.
+  renewTOTPOk: Konfigurasi ulang
+  renewTOTPCancel: Batal
+  registerTOTPBeforeKey: Silakan atur apl otentikator untuk mendaftarkan kunci keamanan
+    atau kunci pas.
+  tapSecurityKey: Silakan ikuti perambanmu untuk mendaftarkan kunci keamanan atau
+    kunci pas
+  removeKeyConfirm: Yakin menghapus kunci {name}?
+  whyTOTPOnlyRenew: Apl otentikator tidak dapat dihapus selama kunci keamanan didaftarkan.
+  renewTOTP: Konfigurasi ulang apl otentikator
 _permissions:
   "read:account": "Lihat informasi akun"
   "write:account": "Sunting informasi akun"
@@ -1282,7 +1331,7 @@ _permissions:
   "write:messaging": "Buat atau hapus obrolan"
   "read:mutes": "Lihat daftar orang yang dibisukan"
   "write:mutes": "Sunting daftar orang yang dibisukan"
-  "write:notes": "Buat atau hapus catatan"
+  "write:notes": "Buat atau hapus postingan"
   "read:notifications": "Lihat pemberitahuan"
   "write:notifications": "Sunting pemberitahuan"
   "read:reactions": "Lihat reaksi"
@@ -1302,18 +1351,21 @@ _permissions:
   "write:gallery-likes": "Sunting daftar postingan galeri yang disukai"
 _auth:
   shareAccess: "Apakah kamu ingin mengijinkan \"{name}\" untuk mengakses akun ini?"
-  shareAccessAsk: "Apakah kamu ingin mengijinkan aplikasi ini untuk mengakses akun\
-    \ kamu?"
-  permissionAsk: "Aplikasi ini membutuhkan beberapa ijin, yaitu:"
+  shareAccessAsk: "Apakah kamu ingin mengijinkan aplikasi ini untuk mengakses akun
+    kamu?"
+  permissionAsk: "Aplikasi ini membutuhkan izin berikut:"
   pleaseGoBack: "Mohon kembali ke aplikasi kamu"
   callback: "Mengembalikan kamu ke aplikasi"
   denied: "Akses ditolak"
+  copyAsk: 'Harap tempel kode otorisasi berikut ke aplikasi:'
+  allPermissions: Akses akun penuh
 _antennaSources:
-  all: "Semua catatan"
-  homeTimeline: "Catatan dari pengguna yang diikuti"
-  users: "Catatan dari pengguna tertentu"
-  userList: "Catatan dari daftar tertentu"
-  userGroup: "Catatan dari pengguna dalam grup yang ditentukan"
+  all: "Semua postingan"
+  homeTimeline: "Postingan dari pengguna yang diikuti"
+  users: "Postingan dari pengguna tertentu"
+  userList: "Postingan dari daftar tertentu"
+  userGroup: "Postingan dari pengguna dalam grup yang ditentukan"
+  instances: Postingan dari semua pengguna di server
 _weekday:
   sunday: "Minggu"
   monday: "Senin"
@@ -1323,7 +1375,7 @@ _weekday:
   friday: "Jumat"
   saturday: "Sabtu"
 _widgets:
-  memo: "Catatan memo"
+  memo: "Catatan Tempel"
   notifications: "Pemberitahuan"
   timeline: "Linimasa"
   calendar: "Kalender"
@@ -1332,16 +1384,26 @@ _widgets:
   rss: "Pembaca RSS"
   activity: "Aktivitas"
   photos: "Foto"
-  digitalClock: "Jam digital"
+  digitalClock: "Jam Digital"
   federation: "Federasi"
-  postForm: "Buat catatan"
+  postForm: "Formulir Posting"
   slideshow: "Slideshow"
   button: "Tombol"
-  onlineUsers: "Pengguna online"
+  onlineUsers: "Pengguna Daring"
   jobQueue: "Antrian kerja"
-  serverMetric: "Statistik peladen"
+  serverMetric: "Metrik Server"
   aiscript: "Konsol AiScript"
   aichan: "Ai"
+  rssTicker: Telegraf RSS
+  meiliIndexCount: Postingan yang terindeks
+  userList: Daftar Pengguna
+  instanceCloud: Server Awan
+  unixClock: Jam UNIX
+  meiliSize: Ukuran indeks
+  _userList:
+    chooseList: Pilih daftar
+  meiliStatus: Status Server
+  serverInfo: Info Server
 _cw:
   hide: "Sembunyikan"
   show: "Lihat konten"
@@ -1371,19 +1433,19 @@ _poll:
   remainingSeconds: "Berakhir dalam {s} detik"
 _visibility:
   public: "Publik"
-  publicDescription: "Catat ke linimasa global"
-  home: "Beranda"
-  homeDescription: "Catat ke linimasa beranda saja"
+  publicDescription: "Postinganmu akan terlihat di semua linimasa publik"
+  home: "Tidak terdaftar"
+  homeDescription: "Posting ke linimasa beranda saja"
   followers: "Pengikut"
-  followersDescription: "Catat ke pengikut saja"
+  followersDescription: "Tampilkan ke pengikut dan pengguna yang disebut saja"
   specified: "Langsung"
   specifiedDescription: "Catat ke pengguna yang ditentukan saja"
   localOnly: "Hanya lokal"
   localOnlyDescription: "Hanya dapat dilihat di instansi lokal"
 _postForm:
-  replyPlaceholder: "Balas ke catatan ini..."
-  quotePlaceholder: "Kutip catatan ini..."
-  channelPlaceholder: "Posting ke kanal"
+  replyPlaceholder: "Balas ke postingan ini..."
+  quotePlaceholder: "Kutip postingan ini..."
+  channelPlaceholder: "Posting ke kanal..."
   _placeholders:
     a: "Sedang apa kamu saat ini?"
     b: "Apa yang terjadi di sekitarmu?"
@@ -1398,14 +1460,17 @@ _profile:
   youCanIncludeHashtags: "Kamu juga dapat menambahkan tagar ke dalam bio."
   metadata: "Informasi tambahan"
   metadataEdit: "Sunting informasi tambahan"
-  metadataDescription: "Kamu dapat menampilkan hingga 4 bagian informasi tambahan\
-    \ ke dalam profilmu. Anda dapat menambahkan tag {a} atau tag {l} dengan {rel} untuk memverifikasi tautan di profil Anda!"
+  metadataDescription: "Kamu dapat menampilkan hingga 4 bagian informasi tambahan
+    ke dalam profilmu. Anda dapat menambahkan tag {a} atau tag {l} dengan {rel} untuk
+    memverifikasi tautan di profil kamu!"
   metadataLabel: "Label"
   metadataContent: "Isi"
   changeAvatar: "Ubah avatar"
   changeBanner: "Ubah header"
+  locationDescription: Jika kamu memasukkan kota lebih dahulu, ia akan menampilkan
+    waktu lokalmu ke pengguna lain.
 _exportOrImport:
-  allNotes: "Semua catatan"
+  allNotes: "Semua postingan"
   followingList: "Ikuti"
   muteList: "Bisukan"
   blockingList: "Blokir"
@@ -1418,10 +1483,10 @@ _charts:
   usersIncDec: "Perbedaan dalam # pengguna"
   usersTotal: "Jumlah # pengguna"
   activeUsers: "Pengguna aktif"
-  notesIncDec: "Perbedaan # dalam catatan"
-  localNotesIncDec: "Perbedaan # dalam catatan lokal"
-  remoteNotesIncDec: "Perbedaan # dalam catatan luar"
-  notesTotal: "Total # catatan"
+  notesIncDec: "Perbedaan pada jumlah postingan"
+  localNotesIncDec: "Perbedaan di jumlah postingan lokal"
+  remoteNotesIncDec: "Perbedaan di jumlah postingan luar"
+  notesTotal: "Total jumlah postingan"
   filesIncDec: "Perbedaan # dalam berkas"
   filesTotal: "Jumlah # berkas"
   storageUsageIncDec: "Perbedaan dalam penggunaan penyimpanan"
@@ -1430,9 +1495,9 @@ _instanceCharts:
   requests: "Permintaan"
   users: "Perbedaan dalam # pengguna"
   usersTotal: "Jumlah # pengguna kumulatif"
-  notes: "Perbedaan # dalam catatan"
-  notesTotal: "Jumlah # catatan kumulatif"
-  ff: "Perbedaan jumlah # dalam pengikut"
+  notes: "Perbedaan di jumlah postingan"
+  notesTotal: "Jumlah kumulatif postingan"
+  ff: "Perbedaan jumlah pengguna yang diikuti / pengikut "
   ffTotal: "Jumlah # pengikut kumulatif"
   cacheSize: "Perbedaan dalam ukuran tembolok"
   cacheSizeTotal: "Total ukuran tembolok kumulatif"
@@ -1443,12 +1508,13 @@ _timelines:
   local: "Lokal"
   social: "Sosial"
   global: "Global"
+  recommended: Rekomendasi
 _pages:
   newPage: "Buat halaman baru"
   editPage: "Sunting halaman"
   readPage: "Lihat sumber kode aktif"
   created: "Halaman berhasil dibuat"
-  updated: "Halaman berhasil diperbaharui!"
+  updated: "Halaman berhasil disunting"
   deleted: "Halaman telah dihapus"
   pageSetting: "Pengaturan Halaman"
   nameAlreadyExists: "URL Halaman yang ditentukan sudah ada"
@@ -1517,10 +1583,10 @@ _pages:
       id: "ID Kanvas"
       width: "Lebar"
       height: "Tinggi"
-    note: "Catatan yang ditanam"
+    note: "Postingan tertanam"
     _note:
-      id: "ID Catatan"
-      idDescription: "Kamu dapat menyetel ini dengan menempelkan tautan URL Catatan."
+      id: "ID Postingan"
+      idDescription: "Kamu dapat menempelkan URL postingan di sini."
       detailed: "Tampilan rincian"
     switch: "Beralih"
     _switch:
@@ -1720,8 +1786,8 @@ _pages:
       _for:
         arg1: "Jumlah angka untuk diulangi"
         arg2: "Aksi"
-    typeError: "Slot {slot} menerima tipe \"{expect}\", sayangnya nilai yang disediakan\
-      \ adalah \"{actual}\"!"
+    typeError: "Slot {slot} menerima tipe \"{expect}\", sayangnya nilai yang disediakan
+      adalah \"{actual}\"!"
     thereIsEmptySlot: "Slot {slot} kosong!"
     types:
       string: "Teks"
@@ -1742,7 +1808,7 @@ _notification:
   youGotMention: "{name} meyebut kamu"
   youGotReply: "{name} membalas kamu"
   youGotQuote: "{name} mengutip kamu"
-  youRenoted: "{name} me-renote kamu"
+  youRenoted: "Posting ulang dari {name}"
   youGotPoll: "{name} memilih di angket kamu"
   youGotMessagingMessageFromUser: "{name} mengirimi kamu pesan"
   youGotMessagingMessageFromGroup: "Sebuah pesan telah dikirim ke grup {name}"
@@ -1757,7 +1823,7 @@ _notification:
     follow: "Ikuti"
     mention: "Sebut"
     reply: "Balasan"
-    renote: "Renote"
+    renote: "Postingan ulang"
     quote: "Kutip"
     reaction: "Reaksi"
     pollVote: "Memilih di angket"
@@ -1769,7 +1835,10 @@ _notification:
   _actions:
     followBack: "Ikuti Kembali"
     reply: "Balas"
-    renote: "Renote"
+    renote: "Posting ulang"
+  reacted: berekasi ke postinganmu
+  renoted: memposting ulang postinganmu
+  voted: memilih di angketmu
 _deck:
   alwaysShowMainColumn: "Selalu tampilkan kolom utama"
   columnAlign: "Luruskan kolom"
@@ -1780,7 +1849,7 @@ _deck:
   swapDown: "Pindah ke bawah"
   stackLeft: "Tumpukkan di kolom kiri"
   popRight: "Keluarkan di kanan"
-  profile: "Profil"
+  profile: "Ruang Kerja"
   _columns:
     main: "Utama"
     widgets: "Widget"
@@ -1789,4 +1858,299 @@ _deck:
     antenna: "Antena"
     list: "Daftar"
     mentions: "Sebutan"
-    direct: "Langsung"
+    direct: "Pesan langsung"
+    channel: Kanal
+  renameProfile: Ganti nama Ruang Kerja
+  nameAlreadyExists: Nama ruang kerja sudah ada.
+  newProfile: Ruang Kerja Baru
+  introduction: Buat antarmuka sempurna bagimu dengan mengatur kolom sesuka hati!
+  introduction2: Klik pada + di bagian kanan layar untuk menambah kolom baru yang
+    kamu inginkan.
+  deleteProfile: Hapus ruang kerja
+  configureColumn: Pengaturan kolom
+  widgetsIntroduction: Silakan pilih "Sunting gawit" pada menu kolom dan tambahkan
+    gawit.
+instanceSecurity: Keamanan Server
+removeReaction: Hapus reaksimu
+accountMoved: 'Pengguna pindah ke akun baru:'
+silencedInstances: Server yang Dibisukan
+silencedInstancesDescription: Daftar nama host server yang ingin kamu bisukan. Akun
+  pada server yang didaftar dianggap sebagai "Dibisukan", dan hanya dapat membuat
+  permintaan mengikuti, dan tidak dapat menyebut akun lokal jika tidak diikuti. Ini
+  tidak akan mepengaruhi server yang diblokir.
+noInstances: Tidak ada server
+expandOnNoteClick: Buka postingan dengan klik
+defaultValueIs: 'Bawaan: {value}'
+enableRecommendedTimeline: Aktifkan linimasa rekomendasi
+searchPlaceholder: Telusuri Firefish
+addInstance: Tambah server
+older: lebih lama
+listsDesc: Daftar mengizinkanmu membuat linimasa berisi pengguna spesifik. Itu dapat
+  diakses dari halaman linimasa.
+enableEmojiReactions: Aktifkan reaksi emoji
+showEmojisInReactionNotifications: Tampilkan emoji dalam notifikasi reaksi
+renoteMute: Bisukan postingan ulang
+renoteUnmute: Bunyikan postingan ulang
+antennasDesc: "Antena menampilkan postingan baru yang cocok dengan kriteriamu!\n Itu
+  dapat diakses dari halaman linimasa."
+antennaInstancesDescription: Daftarkan satu host server per baris
+expandOnNoteClickDesc: Jika nonaktif, kamu masih dapat membuka postingan dengan klik-kanan
+  menu atau mengklik tanggal waktu.
+channelFederationWarn: Kanal belum terfederasi dengan server lain
+clipsDesc: Klip seperti markah yang dikategorikan dan bisa dibagikan. Kamu dapat membuat
+  klip dari menu pada sebuah postingan.
+recommended: Direkomendasikan
+silenceThisInstance: Bisukan server ini
+hiddenTags: Tagar Tersembunyi
+preferencesBackups: Preferensi cadangan
+editNote: Sunting catatan
+deleted: Dihapus
+edited: Disunting pada {date} {time}
+selectInstance: Pilih server
+hiddenTagsDescription: 'Daftar tagar (tanpa #) dari tagar yang ingin kamu sembunyikan
+  dari tren dan eksplorasi. Tagar tersembunyi tetap dapat ditemukan dari tempat lainnya.'
+silenced: Dibisukan
+selectChannel: Pilih kanal
+accessibility: Aksesibilitas
+manageGroups: Kelola grup
+moderation: Moderasi
+userSaysSomethingReason: '{name} mengatakan {reason}'
+secureMode: Mode Aman (Pengambilan Terotorisasi)
+secureModeInfo: Saat meminta dari server lain, jangan kirim kembali tanpa bukti.
+privateModeInfo: Saat aktif, hanya server yang masuk daftar putih dapat terfederasi
+  dengan servermu. Semua postingan akan disembunyikan dari publik.
+allowedInstances: Server Masuk Daftar Putih
+newer: lebih baru
+userSaysSomethingReasonReply: '{name} membalas postingan berisi {reason}'
+userSaysSomethingReasonRenote: '{name} memposting ulang postingan berisi {reason}'
+userSaysSomethingReasonQuote: '{name} mengutip postingan berisi {reason}'
+noThankYou: Tidak terima kasih
+jumpToPrevious: Lompat ke sebelumnya
+flagSpeakAsCatDescription: Postinganmu akan nyampak dalam mode kucing
+cw: Peringatan konten
+flagSpeakAsCat: Bicara sebagai kucing
+allowedInstancesDescription: Host server akan masuk daftar putih untuk federasi, mereka
+  dipisahkan dengan baris baru (hanya diterapkan pada mode pribadi).
+xl: XL
+privateMode: Mode Pribadi
+seperateRenoteQuote: Tombol posting ulang dan kutip terpisah
+failedToUpload: Gagal unggah
+beta: Beta
+move: Pindahkan
+navbar: Bilah navigasi
+thereIsUnresolvedAbuseReportWarning: Ada laporal yang belum diselesaikan.
+statusbar: Bilah status
+isSystemAccount: Akun ini dibuat dan dioperasikan secara otomatis oleh sistem. Mohon
+  jangan memoderasi, menyunting, menghapus, atau mengutak-atik dengan akun ini, atau
+  itu akan merusak servermu.
+lastActiveDate: Terakhir dipakai pada
+deleteAccount: Hapus akun
+numberOfPageCache: Jumlah halaman yang disinggah
+fast: Cepat
+cannotUploadBecauseInappropriate: Berkas ini tidak dapat diunggah karena sebagiannya
+  terdeteksi berpotensi Tidak Aman.
+shuffle: Acak
+enableAutoSensitive: Otomatis menandai Tidak Aman
+enableAutoSensitiveDescription: Mengizinkan deteksi otomatis dan menandai media Tidak
+  Aman dengan Pembelajaran Mesin. Bahkan saat opsi ini nonaktif, ia bisa diaktifkan
+  pada ranah server.
+activeEmailValidationDescription: Mengaktifkan validasi alamat surel yang lebih ketat,
+  yang termasuk memeriksa alamat sekali pakai dan memastikan apakah memang bisa berkomunikasi
+  dengan mereka. Saat tidak dicentang, format surel lah yang hanya akan divalidasi.
+alt: ALT
+requireAdminForView: Kamu harus masuk dengan akun administrator untuk melihat ini.
+recentNHours: '{n} jam terakhir'
+typeToConfirm: Harap masukkan {x} untuk konfirmasi
+document: Dokumentasi
+sensitiveMediaDetection: Deteksi media Tidak Aman
+breakFollowConfirm: Yakin ingin menghapus pengikut?
+cannotUploadBecauseNoFreeSpace: Gagal unggah karena kapasitas Drive kurang.
+unsubscribePushNotification: Nonaktifkan pemberitahuan dorong
+image: Gambar
+video: Video
+pleaseSelect: Pilih opsi
+audio: Audio
+numberOfPageCacheDescription: Naikkan angka ini akan meningkatkan kenyamanan pengguna
+  tapi menyebabkan beban server dan penggunaan memori lebih besar.
+pushNotification: Pemberitahuan dorong
+subscribePushNotification: Aktifkan pemberitahuan dorong
+cannotUploadBecauseExceedsFileSizeLimit: Berkas ini tidak dapat diunggah karena melebihi
+  batas ukuran maksimum yang diizinkan.
+recentNDays: '{n} hari terakhir'
+noEmailServerWarning: Server surel tidak dikonfigurasi.
+check: Cek
+driveCapOverrideLabel: Ubah kapasitas drive untuk pengguna ini
+driveCapOverrideCaption: Reset kapasitas ke bawaan dengan memasukkan nilai 0 atau
+  lebih rendah.
+logoutConfirm: Yakin keluar?
+refreshInterval: 'Perbarui interval '
+type: Tipe
+speed: Kecepatan
+slow: Pelan
+remoteOnly: Jarak jauh saja
+moveFrom: Dari akun lama pindahkan ke akun ini
+indexNotice: Sedang mengindeks. Ini memerlukan beberapa waktu, mohon jangan mulai
+  ulang server setidaknya satu jam.
+sendPushNotificationReadMessage: Hapus pemberitahuan dorong saat pemberitahuan atau
+  pesan relevan sudah dibaca
+moveAccountDescription: Proses ini permanen. Pastikan kamu sudah mengatur alias dari
+  akun ini ke akun barumu sebelum pindah. Silakan masukkan tag akun dengan format
+  seperti @orang@server.com
+sendModMail: Kirim Pemberitahuan Moderasi
+signupsDisabled: Pendaftaran ke server ini nonaktif, tapi kamu dapat selalu mendaftar
+  ke server lain! Jika kamu memiliki kode undangan server ini, harap masukkan di bawah
+  ini.
+enableCustomKaTeXMacro: Aktifkan makro KaTeX khusus
+isBot: Akun ini bot
+customMOTD: MOTD khusus (pesan layar percik)
+recommendedInstancesDescription: Server yang direkomendasikan dipisahkan dengan garis
+  baru untuk tampil di linimasa rekomendasi.
+preventAiLearningDescription: Minta model bahasa AI pihak ketiga untuk tidak mempelajari
+  konten yang kamu unggah, seperti postingan dan gambar.
+pushNotificationAlreadySubscribed: Pemberitahuan dorong sudah aktif
+pushNotificationNotSupported: Peramban atau servermu tidak mendukung pemberitahuan
+  dorong
+apps: Aplikasi
+showAds: Tampilkan iklan
+enterSendsMessage: Tekan Enter pada Pesan untuk mengirim pesan (matikan dengan Ctrl
+  + Enter)
+showAdminUpdates: Indikasi versi Firefish baru tersedia (hanya admin)
+indexFrom: Indeks dari Post ID berikutnya
+noteId: ID Postingan
+findOtherInstance: Cari server lain
+caption: Keterangan Otomatis
+splash: Layar Percik
+migration: Migrasi
+moveTo: Pindahkan akun sekarang ke akun baru
+moveFromLabel: 'Akun tujuan pindah:'
+moveFromDescription: Ini akan mengatur alias akun lamamu jadi kamu dapat pindah dari
+  akun tersebut ke akun sekarang. Lakukan ini SEBELUM memindahkan akun lama. Silakan
+  masukkan tag akun dengan format seperti @orang@server.com
+defaultReaction: Reaksi emoji bawaan untuk postingan keluar dan masuk
+indexPosts: Indeks Postingan
+preventAiLearning: Cegah scraping bot AI
+customKaTeXMacro: Makro KaTeX khusus
+sendPushNotificationReadMessageCaption: Pemberitahuan yang berisi teks "{emptyPushNotificationMessage}"
+  akan ditampilkan dengan cepat. Ini mungkin meningkatkan penggunaan baterai perangkatmu,
+  jika berlaku.
+adminCustomCssWarn: Pengaturan ini hanya dapat dipakai jika kamu tahu fungsinya. Memasukkan
+  nilai yang keliru akan membuat klien SIAPA PUN berhenti berfungsi secara normal.
+  Mohon pastikan CSS-mu bekerja secara benar dengan mengujinya lebih dahulu pada pengaturan
+  penggunamu.
+customMOTDDescription: Pesan khusus untuk MOTD (layar percik) dipisahkan dengan baris
+  baru untuk ditampilkan secara acak ketika pengguna memuat/muat ulang halaman.
+customSplashIcons: Ikon layar percik khusus (url)
+customSplashIconsDescription: URL untuk ikon layar percik khusus dipisahkan dengan
+  garis baru untuk ditampilkan secara acak saat pengguna memuat/muat ulang halaman.
+  Harap pastikan gambar adalah URL statis, lebih utama berukuran 192x192.
+showUpdates: Tampilkan sembulan saat pemutakhiran Firefish
+recommendedInstances: Server yang direkomendasikan
+updateAvailable: Ada pemutakhiran tersedia!
+swipeOnMobile: Izinkan usap antar halaman
+swipeOnDesktop: Izinkan usap ala mobile di desktop
+logoImageUrl: URL gambar logo
+replayTutorial: Ulangi tutorial
+moveToLabel: 'Akun yang ingin kamu pindah:'
+moveAccount: Pindahkan akun!
+migrationConfirm: "Kamu sangat yakin ingin memindahkan akunmu ke {account}? Sekali
+  pindah, kamu tidak dapat membatalkannya, dan kamu tidak akan dapat menggunakan akunmu
+  lagi secara normal. \nDan juga, harap pastikan kamu sudah mengatur akun sekarang
+  sebagai akun yang dipindahkan."
+license: Lisensi
+indexFromDescription: Kosongkan untuk mengindeks setiap postingan
+noGraze: Harap nonaktifkan ekstensi peramban "Graze for Mastodon", karena akan menganggu
+  Firefish.
+silencedWarning: Halaman ini tampil karena pengguna ini datang dari server yang dibisukan
+  adminmu, jadi mereka berpotensi spam.
+isLocked: Akun ini perlu persetujuan ikuti
+_preferencesBackups:
+  list: Cadangan yang dibuat
+  saveNew: Simpan cadangan baru
+  loadFile: Muat dari berkas
+  save: Simpan perubahan
+  nameAlreadyExists: Cadangan bernama "{name}" sudah ada. Silakan masukkan nama yang
+    berbeda.
+  noBackups: Belum ada cadangan. Kamu bisa mencadangan pengaturan klien kamu di server
+    ini menggunakan "Buat cadangan baru".
+  updatedAt: 'Diperbarui pada: {date} {time}'
+  cannotLoad: Gagal memuat
+  cannotSave: Gagal menyimpan
+  invalidFile: Format berkas tidak valid
+  createdAt: 'Dibuat pada: {date} {time}'
+  inputName: Silakan masukkan nama untuk cadangan ini
+  apply: Terapkan ke perangkat ini
+  saveConfirm: Simpan cadangan sebagai {name}?
+  deleteConfirm: Hapus cadangan {name}?
+  renameConfirm: Ubah nama cadangan ini dari "{old}" ke "{new}"?
+  applyConfirm: Kamu yakin ingin menerapkan cadangan "{name}" di perangkat ini? Pengaturan
+    yang sudah ada akan ditimpa.
+enableServerMachineStats: Aktifkan statistik perangkat keras server
+enableIdenticonGeneration: Aktifkan pembuatan Identicon
+reactionPickerSkinTone: Warna kulit emoji yang disukai
+_sensitiveMediaDetection:
+  description: Mengurangi upaya moderasi server dengan mengenal media NSFW secara
+    otomatis melalui Pembelajaran Mesin. Ini akan sedikit menambah beban pada server.
+  sensitivity: Sensitivitas deteksi
+  sensitivityDescription: Mengurangi sensitivitas akan mengurangi kesalahan mendeteksi
+    (positif palsu).
+  analyzeVideosDescription: Menganalisa video selain gambar. Ini akan sedikit menambah
+    beban pada server.
+  setSensitiveFlagAutomatically: Tandai sebagai NSFW
+  setSensitiveFlagAutomaticallyDescription: Hasil deteksi internal akan disimpan bahkan
+    jika opsi ini dinonaktifkan.
+  analyzeVideos: Aktifkan analisa video
+_filters:
+  fromDomain: Dari domain
+  notesAfter: Postingan setelah
+  followersOnly: Hanya pengikut
+  fromUser: Dari pengguna
+  withFile: Dengan berkas
+  followingOnly: Hanya mengikuti
+  notesBefore: Postingan sebelum
+_messaging:
+  dms: Privat
+  groups: Grup
+verifiedLink: Tautan terverifikasi
+isPatron: Pendukung Firefish
+customKaTeXMacroDescription: 'Siapkan makro untuk menulis ekspresi matematika dengan
+  mudah! Notasi ini sesuai dengan definisi perintah LaTeX dan ditulis sebagai \newcommand{\
+  nama}{konten} atau \newcommand{\nama}[jumlah argumen]{konten}. Sebagai contoh, \newcommand{\add}[2]{#1
+  + #2} akan memperluas \add{3}{foo} menjadi 3 + foo. Tanda kurung kurawal yang mengelilingi
+  nama makro dapat diubah menjadi tanda kurung bulat atau persegi. Hal ini mempengaruhi
+  tanda kurung yang digunakan untuk argumen. Satu (dan hanya satu) makro dapat didefinisikan
+  per baris, dan kamu tidak dapat memutus baris di tengah-tengah definisi. Baris yang
+  tidak valid akan diabaikan. Hanya fungsi substitusi string sederhana yang didukung;
+  sintaks lanjutan, seperti percabangan bersyarat, tidak dapat digunakan di sini.'
+showPopup: Beri tahu pengguna dengan popup
+showWithSparkles: Tampilkan dengan kelap-kelip
+youHaveUnreadAnnouncements: Anda memiliki pengumuman yang belum dibaca
+donationLink: Tautan ke laman donasi
+neverShow: Jangan tampilkan lagi
+remindMeLater: Mungkin nanti
+removeQuote: Hapus kutipan
+removeRecipient: Hapus penerima
+removeMember: Hapus anggota
+isModerator: Moderator
+isAdmin: Administrator
+_experiments:
+  title: Eksperimen
+  enablePostImports: Aktifkan impor postingan
+  postImportsCaption: Izinkan pengguna mengimpor postingan mereka dari akun Firefish
+    sebelumnya, Misskey, Mastodon, Akkoma, dan Pleroma. Ini mungkin menyebabkan perlambatan
+    saat memuat jika antreanmu bottleneck.
+_dialog:
+  charactersExceeded: 'Karakter maksimal terlampaui! Kini: {current}/Batas: {max}'
+  charactersBelow: 'Karakter kurang! Kini: {current}/Batas: {min}'
+_skinTones:
+  light: Terang
+  dark: Gelap
+  mediumDark: Gelap Medium
+  mediumLight: Terang Medium
+  medium: Medium
+  yellow: Kuning
+_feeds:
+  copyFeed: Salin umpan
+  rss: RSS
+  atom: Atom
+  jsonFeed: Umpan JSON
+origin: Asal
