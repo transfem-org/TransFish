@@ -2070,3 +2070,5 @@ cw: Avertissement de contenu
 xl: XL
 reflectMayTakeTime: Il pourra s’écouler un certain temps avant que les changements
   ne soient reflétés.
+userSaysSomethingReasonRenote: '{name} a propulsé une note contenant {reason}'
+sendModMail: Envoyer un avis à la modération
