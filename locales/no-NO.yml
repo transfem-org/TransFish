@@ -108,3 +108,9 @@ driveFileDeleteConfirm: Er du sikker på at du vil slette filen «{name}»? Den 
   fra alle poster den er vedlagt i.
 defaultNoteVisibility: Standard synlighet
 unrenote: Fjern fremmheving
+unpin: Løsne fra profilen
+youGotNewFollower: følger deg
+mention: Omtale
+mentions: Omtaler
+edited: Redigert {date} {time}
+cw: Innholdsadvarsel
