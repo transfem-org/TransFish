@@ -342,7 +342,7 @@ import * as ep___users_stats from "./endpoints/users/stats.js";
 import * as ep___fetchRss from "./endpoints/fetch-rss.js";
 import * as ep___admin_driveCapOverride from "./endpoints/admin/drive-capacity-override.js";
 
-//Calckey Move
+//Firefish Move
 import * as ep___i_move from "./endpoints/i/move.js";
 import * as ep___i_known_as from "./endpoints/i/known-as.js";
 

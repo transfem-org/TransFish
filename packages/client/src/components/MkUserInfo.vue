@@ -6,7 +6,13 @@
 				user.bannerUrl ? `background-image: url(${user.bannerUrl})` : ''
 			"
 			:class="{ detailed }"
-		></div>
+		>
+			<span
+				v-if="$i && $i.id != user.id && user.isFollowed"
+				class="followed"
+				>{{ i18n.ts.followsYou }}</span
+			>
+		</div>
 		<h3 class="title">
 			<MkAvatar
 				class="avatar"
@@ -80,7 +86,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import XShowMoreButton from "@/components/MkShowMoreButton.vue";
 import MkNumber from "@/components/MkNumber.vue";
@@ -126,6 +132,16 @@ let collapsed = $ref(isLong);
 				transparent
 			);
 		}
+		> .followed {
+			position: absolute;
+			top: 12px;
+			inset-inline-start: 12px;
+			padding: 4px 8px;
+			color: #fff;
+			background: rgba(0, 0, 0, 0.7);
+			font-size: 0.7em;
+			border-radius: 6px;
+		}
 		&.detailed::after {
 			content: "";
 			background-image: var(--blur, inherit);
@@ -143,7 +159,8 @@ let collapsed = $ref(isLong);
 	.title {
 		position: relative;
 		display: block;
-		padding: 10px 10px 10px 84px;
+		padding: 10px;
+		padding-inline-start: 84px;
 		margin: 0;
 		font-size: 1em;
 		border-radius: var(--radius);
@@ -155,7 +172,7 @@ let collapsed = $ref(isLong);
 			display: block;
 			position: absolute;
 			bottom: 6px;
-			left: 10px;
+			inset-inline-start: 10px;
 			z-index: 2;
 			width: 58px;
 			height: 58px;
@@ -271,7 +288,7 @@ let collapsed = $ref(isLong);
 				text-overflow: ellipsis;
 				font-weight: bold;
 				text-align: center;
-				padding-right: 10px;
+				padding-inline-end: 10px;
 			}
 
 			> .value {
@@ -299,7 +316,7 @@ let collapsed = $ref(isLong);
 	.buttons {
 		position: absolute;
 		top: 8px;
-		right: 8px;
+		inset-inline-end: 8px;
 		margin-bottom: 1rem;
 		z-index: 3;
 		color: white;

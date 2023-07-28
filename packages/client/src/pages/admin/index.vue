@@ -41,7 +41,7 @@
 					<MkInfo v-if="updateAvailable" warn class="info"
 						>{{ i18n.ts.updateAvailable }}
 						<a
-							href="https://codeberg.org/calckey/calckey/releases"
+							href="https://git.joinfirefish.org/firefish/firefish/releases"
 							target="_bank"
 							class="_link"
 							>{{ i18n.ts.check }}</a
@@ -478,7 +478,6 @@ defineExpose({
 					display: block;
 					margin: auto;
 					height: 42px;
-					border-radius: 8px;
 				}
 			}
 		}

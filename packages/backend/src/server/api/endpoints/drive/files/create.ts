@@ -3,7 +3,7 @@ import { DriveFiles } from "@/models/index.js";
 import { DB_MAX_IMAGE_COMMENT_LENGTH } from "@/misc/hard-limits.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
-import { HOUR } from "@/const.js";
+import { MINUTE } from "@/const.js";
 import define from "../../../define.js";
 import { apiLogger } from "../../../logger.js";
 import { ApiError } from "../../../error.js";
@@ -14,8 +14,8 @@ export const meta = {
 	requireCredential: true,
 
 	limit: {
-		duration: HOUR,
-		max: 120,
+		duration: MINUTE * 10,
+		max: 250,
 	},
 
 	requireFile: true,
@@ -40,7 +40,7 @@ export const meta = {
 
 		inappropriate: {
 			message:
-				"Cannot upload the file because it has been determined that it possibly contains inappropriate content.",
+				"Cannot upload due to the file possibly containing inappropriate content.",
 			code: "INAPPROPRIATE",
 			id: "bec5bd69-fba3-43c9-b4fb-2894b66ad5d2",
 		},
@@ -95,7 +95,7 @@ export default define(
 			name = null;
 		}
 
-		const meta = await fetchMeta();
+		const instanceMeta = await fetchMeta();
 
 		try {
 			// Create file
@@ -107,8 +107,8 @@ export default define(
 				folderId: ps.folderId,
 				force: ps.force,
 				sensitive: ps.isSensitive,
-				requestIp: meta.enableIpLogging ? ip : null,
-				requestHeaders: meta.enableIpLogging ? headers : null,
+				requestIp: instanceMeta.enableIpLogging ? ip : null,
+				requestHeaders: instanceMeta.enableIpLogging ? headers : null,
 			});
 			return await DriveFiles.pack(driveFile, { self: true });
 		} catch (e) {
@@ -123,7 +123,9 @@ export default define(
 			}
 			throw new ApiError();
 		} finally {
-			cleanup!();
+			if (cleanup !== undefined) {
+				cleanup();
+			}
 		}
 	},
 );

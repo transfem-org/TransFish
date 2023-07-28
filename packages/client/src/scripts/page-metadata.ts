@@ -1,4 +1,4 @@
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import {
 	ComputedRef,
 	inject,

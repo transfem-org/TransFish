@@ -42,7 +42,7 @@ export const meta = {
 				optional: false,
 				nullable: false,
 				format: "url",
-				example: "https://calckey.example.com",
+				example: "https://firefish.example.com",
 			},
 			description: {
 				type: "string",
@@ -68,13 +68,13 @@ export const meta = {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://codeberg.org/calckey/calckey",
+				default: "https://git.joinfirefish.org/firefish/firefish",
 			},
 			feedbackUrl: {
 				type: "string",
 				optional: false,
 				nullable: false,
-				default: "https://codeberg.org/calckey/calckey/issues",
+				default: "https://git.joinfirefish.org/firefish/firefish/issues",
 			},
 			defaultDarkTheme: {
 				type: "string",
@@ -394,6 +394,12 @@ export const meta = {
 				optional: "true",
 				nullable: true,
 			},
+			enableServerMachineStats: {
+				type: "boolean",
+				optional: "true",
+				nullable: false,
+				default: false,
+			},
 		},
 	},
 } as const;
@@ -497,6 +503,8 @@ export default define(meta, paramDef, async (ps, me) => {
 			instance.deeplAuthKey != null || instance.libreTranslateApiUrl != null,
 		defaultReaction: instance.defaultReaction,
 		donationLink: instance.donationLink,
+		enableServerMachineStats: instance.enableServerMachineStats,
+		enableIdenticonGeneration: instance.enableIdenticonGeneration,
 
 		...(ps.detail
 			? {

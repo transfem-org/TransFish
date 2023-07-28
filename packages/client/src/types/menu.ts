@@ -1,4 +1,4 @@
-import * as Misskey from "calckey-js";
+import * as Misskey from "firefish-js";
 import { Ref } from "vue";
 
 export type MenuAction = (ev: MouseEvent) => void;

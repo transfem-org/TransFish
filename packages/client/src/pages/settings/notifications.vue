@@ -50,7 +50,7 @@
 
 <script lang="ts" setup>
 import { defineAsyncComponent } from "vue";
-import { notificationTypes } from "calckey-js";
+import { notificationTypes } from "firefish-js";
 import FormButton from "@/components/MkButton.vue";
 import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";

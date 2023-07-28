@@ -5,7 +5,7 @@
 			$style.root,
 			{ yellow: user.isSilenced, red: user.isSuspended, gray: false },
 		]"
-		:to="userPage(user)"
+		:to="props.showAboutPage ? `/user-info/${user.id}` : userPage(user)"
 	>
 		<MkAvatar
 			class="avatar"
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
 import { acct, userPage } from "@/filters/user";
@@ -33,9 +33,11 @@ const props = withDefaults(
 	defineProps<{
 		user: misskey.entities.User;
 		withChart?: boolean;
+		showAboutPage?: boolean;
 	}>(),
 	{
 		withChart: true,
+		showAboutPage: false,
 	},
 );
 
@@ -99,6 +101,12 @@ if (props.withChart) {
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+
+		// > :global(.moderation) {
+		// 	display: flex;
+		// 	gap: 1rem;
+		// 	margin-right: 1rem;
+		// }
 	}
 
 	> :global(.chart) {

@@ -1,5 +1,5 @@
 <template>
-	<div ref="rootEl">
+	<div class="sticky-container">
 		<div ref="headerEl">
 			<slot name="header"></slot>
 		</div>
@@ -19,7 +19,6 @@ const CURRENT_STICKY_TOP = "CURRENT_STICKY_TOP";
 import type { Ref } from "vue";
 import { inject, onMounted, onUnmounted, provide, ref, watch } from "vue";
 
-const rootEl = $ref<HTMLElement>();
 const headerEl = $ref<HTMLElement>();
 const bodyEl = $ref<HTMLElement>();
 
@@ -54,10 +53,6 @@ onMounted(() => {
 		},
 	);
 
-	headerEl.style.position = "sticky";
-	headerEl.style.top = "var(--stickyTop, 0)";
-	headerEl.style.zIndex = "1000";
-
 	observer.observe(headerEl);
 });
 
@@ -66,4 +61,19 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss" module></style>
+<style lang="scss">
+.sticky-container {
+	display: flex;
+	flex-direction: column;
+	> div:first-child {
+		position: sticky;
+		top: var(--stickyTop, 0);
+		z-index: 1000;
+	}
+	> div:last-child {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+}
+</style>

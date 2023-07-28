@@ -235,11 +235,11 @@
 <script lang="ts" setup>
 import { inject, watch, nextTick, onMounted, defineAsyncComponent } from "vue";
 import * as mfm from "mfm-js";
-import * as misskey from "calckey-js";
+import * as misskey from "firefish-js";
 import insertTextAtCursor from "insert-text-at-cursor";
 import { length } from "stringz";
 import { toASCII } from "punycode/";
-import * as Acct from "calckey-js/built/acct";
+import * as Acct from "firefish-js/built/acct";
 import { throttle } from "throttle-debounce";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
 import XNotePreview from "@/components/MkNotePreview.vue";
@@ -1068,6 +1068,8 @@ onMounted(() => {
 			position: absolute;
 			top: 0;
 			right: 0;
+			display: flex;
+			align-items: center;
 
 			> .text-count {
 				opacity: 0.7;
@@ -1082,6 +1084,10 @@ onMounted(() => {
 				& + .localOnly {
 					margin-left: 0 !important;
 				}
+
+				> span:only-child > i {
+					display: block;
+				}
 			}
 
 			> .local-only {
@@ -1093,7 +1099,7 @@ onMounted(() => {
 				display: inline-block;
 				padding: 0;
 				margin: 0 8px 0 0;
-				font-size: 16px;
+				font-size: inherit !important;
 				width: 34px;
 				height: 34px;
 				border-radius: 6px;

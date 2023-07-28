@@ -29,7 +29,7 @@ export default class Logger {
 
 		if (config.syslog) {
 			this.syslogClient = new SyslogPro.RFC5424({
-				applacationName: "Calckey",
+				applacationName: "Firefish",
 				timestamp: true,
 				encludeStructuredData: true,
 				color: true,
@@ -114,6 +114,10 @@ export default class Logger {
 		if (envOption.withLogTime) log = `${chalk.gray(time)} ${log}`;
 
 		console.log(important ? chalk.bold(log) : log);
+
+		if (level === "error" && data !== null) {
+			console.log(data);
+		}
 
 		if (store) {
 			if (this.syslogClient) {
