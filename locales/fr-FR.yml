@@ -1364,7 +1364,7 @@ _auth:
   pleaseGoBack: "Veuillez retourner à l’application"
   callback: "Retour vers l’application"
   denied: "Accès refusé"
-  copyAsk: "Veuillez coller le code d’autorisation à l'application :"
+  copyAsk: "Veuillez coller le code d’autorisation suivant dans l'application"
 _antennaSources:
   all: "Toutes les notes"
   homeTimeline: "Notes venant des utilisateur·rice·s auxquel·les je suis abonné"
