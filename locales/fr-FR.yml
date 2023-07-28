@@ -696,11 +696,11 @@ openInSideView: "Ouvrir en vue latérale"
 defaultNavigationBehaviour: "Navigation par défaut"
 editTheseSettingsMayBreakAccount: "La modification de ces paramètres peut endommager
   votre compte."
-instanceTicker: "Nom de l'instance d'origine des notes"
+instanceTicker: "Nom du serveur d'origine des notes"
 waitingFor: "En attente de {x}"
 random: "Aléatoire"
 system: "Système"
-switchUi: "Modifier l'interface utilisateur"
+switchUi: "Mise en page"
 desktop: "Bureau"
 clip: "Clip"
 createNew: "Créer nouveau"
@@ -793,7 +793,7 @@ capacity: "Capacité "
 inUse: "utilisé"
 editCode: "Modifier le code"
 apply: "Appliquer"
-receiveAnnouncementFromInstance: "Recevoir les messages d'information de l'instance"
+receiveAnnouncementFromInstance: "Recevoir les messages d'information du serveur"
 emailNotification: "Notifications par mail"
 publish: "Public"
 inChannelSearch: "Chercher dans le canal"
@@ -824,7 +824,7 @@ active: "Actif·ve"
 offline: "Hors ligne"
 notRecommended: "Déconseillé"
 botProtection: "Protection contre les bots"
-instanceBlocking: "Instances bloquées/mise en sourdine"
+instanceBlocking: "Gestion de la Fédération"
 selectAccount: "Sélectionner un compte"
 switchAccount: "Changer de compte"
 enabled: "Activé"
@@ -1823,7 +1823,7 @@ disableDrawer: Ne pas utiliser de menus déroulants
 preferencesBackups: Sauvegarde des préférences
 confirmToUnclipAlreadyClippedNote: Ce message fait déjà partie du clip "{name}". Voudriez-vous
   plutôt le supprimer du clip ?
-instanceSecurity: Sécurité de l'instance
+instanceSecurity: Sécurité du serveur
 recommended: Recommandé
 recentNDays: Les derniers {n} jours
 recentNHours: Les dernières {n} heures
@@ -1938,7 +1938,7 @@ enableAutoSensitive: Marquage automatique du contenu sensible (NSFW)
 regexpErrorDescription: "Il y a eu une erreur dans l'expression régulière à la ligne
   {line} de votre {tab} des mots masqués :"
 forwardReportIsAnonymous: À la place de votre compte, un compte système anonyme sera
-  affiché comme rapporteur à l'instance distante.
+  affiché comme rapporteur au serveur distant.
 noThankYou: Non merci
 addInstance: Ajouter un serveur
 renoteMute: Mettre en silence les renotes
@@ -2072,3 +2072,7 @@ reflectMayTakeTime: Il pourra s’écouler un certain temps avant que les change
   ne soient reflétés.
 userSaysSomethingReasonRenote: '{name} a boosté une note contenant {reason}'
 sendModMail: Envoyer un avis à la modération
+clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagés. Vous
+  pouvez créer des clips à partir du menu des notes individuelles.
+unclip: Dé-clipper
+secureMode: Mode sécurisé (Authorized Fetch)
