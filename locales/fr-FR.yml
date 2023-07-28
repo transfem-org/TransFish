@@ -969,10 +969,10 @@ _forgotPassword:
     Un lien vous permettant de réinitialiser votre mot de passe sera envoyé à cette
     adresse."
   ifNoEmail: "Si vous n'avez pas enregistré d'adresse e-mail, merci de contacter l'administrateur·rice
-    de votre instance."
-  contactAdmin: "Cette instance ne permettant pas l'utilisation d'adresses e-mail,
-    prenez contact avec l'administrateur·rice pour procéder à la réinitialisation
-    de votre mot de passe."
+    de votre serveur."
+  contactAdmin: "Ce serveur ne permettant pas l'utilisation d'adresses e-mail, prenez
+    contact avec l'administrateur·rice pour procéder à la réinitialisation de votre
+    mot de passe."
 _gallery:
   my: "Mes publications"
   liked: " Publications que j'ai aimées"
@@ -1003,6 +1003,15 @@ _aboutFirefish:
   morePatrons: "Nous apprécions vraiment le soutien de nombreuses autres personnes
     non mentionnées ici. Merci à toutes et à tous ! 🥰"
   patrons: "Contributeurs"
+  pleaseDonateToFirefish: Merci de considérer de faire un don pour soutenir le développement
+    de Firefish.
+  sponsors: Sponsors Firefish
+  donateTitle: Firefish vous plaît ?
+  pleaseDonateToHost: Également, veuillez envisager de faire un don à votre serveur
+    d'accueil, {host}, pour contribuer à couvrir ses frais de fonctionnement.
+  donateHost: Faire un don à {host}
+  patronsList: Listé chronologiquement, pas par taille de donation. Faite un don avec
+    le lien ci-dessus pour avoir votre nom affiché ici !
 _nsfw:
   respect: "Cacher les médias marqués comme contenu sensible"
   ignore: "Afficher les médias sensibles"
@@ -1036,8 +1045,7 @@ _mfm:
   inlineMath: "Formule mathématique (inline)"
   inlineMathDescription: "Afficher les formules mathématiques (KaTeX)."
   blockMath: "Formule mathématique (bloc)"
-  blockMathDescription: "Afficher les formules mathématiques (KaTeX) multi-lignes
-    dans un bloc."
+  blockMathDescription: "Afficher les formules mathématiques (KaTeX) dans un bloc"
   quote: "Citer"
   quoteDescription: "Affiche le contenu sous forme de citation."
   emoji: "Émojis personnalisés"
@@ -1082,6 +1090,16 @@ _mfm:
     MFM.
   rotateDescription: Pivoter le contenu d'un angle spécifique.
   position: Position
+  advanced: MFM avancées
+  warn: Les MFM peuvent contenir des animations à mouvement rapide ou clignotantes
+  crop: Rogner
+  positionDescription: Déplacer le contenu selon une valeur spécifiée.
+  play: Animer les MFM
+  stop: Arrêter les MFM
+  alwaysPlay: Toujours lire automatiquement toutes les MFM animées
+  advancedDescription: Si désactivé, n'autorise que la mise en forme de base, sauf
+    si une MFM animée est en cours de lecture
+  cropDescription: Rogner le contenu.
 _instanceTicker:
   none: "Cacher "
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
@@ -1888,7 +1906,7 @@ adminCustomCssWarn: Ce paramètre ne devrait être utilisé que si vous savez ce
   fait. Entrer des valeurs impropres pourraient empêcher les clients de TOUT LE MONDE
   de fonctionner. Assurez-vous que votre CSS fonctionne correctement en l'essayant
   dans vos paramètres utilisateur.
-swipeOnDesktop: Permettre le style de glissement de fenêtre de mobile sur PC
+swipeOnDesktop: Permettre le style de balayage de fenêtre de mobile sur PC
 moveFromLabel: 'Compte depuis lequel vous migrez :'
 migrationConfirm: "Êtes-vous absolument certain⋅e que vous voulez migrer votre compte
   vers {account} ? Une fois fait, vous ne pourrez pas revenir en arrière, et vous
@@ -1916,9 +1934,9 @@ _preferencesBackups:
   inputName: Merci d'entrer un nom pour cette sauvegarde
   cannotSave: La sauvegarde a échoué
 privateMode: Mode privé
-privateModeInfo: Si activé, seules les instances autorisées peuvent fédérer avec votre
-  instance. Toutes les publications seront masquées de la visibilité publique.
-allowedInstances: Instances autorisées
+privateModeInfo: Si activé, seuls les serveurs autorisés peuvent fédérer avec votre
+  serveur. Toutes les publications seront masquées de la visibilité publique.
+allowedInstances: Serveurs Autorisés
 driveCapOverrideLabel: Changer la capacité du drive pour cet utilisateur
 driveCapOverrideCaption: Réinitialiser la capacité à la valeur par défaut en entrant
   0 ou moins.
@@ -1932,8 +1950,8 @@ move: Déplacer
 showAds: Afficher les annonces
 enterSendsMessage: Appuyer sur Entrée pendant la rédaction pour envoyer le message
   (sinon Ctrl+Entrée)
-allowedInstancesDescription: Hôtes des instances autorisées pour la fédération, chacun
-  séparé par une nouvelle ligne (s'applique uniquement en mode privé).
+allowedInstancesDescription: Hôtes des serveurs sur autorisés pour la fédération,
+  chacun séparé par une nouvelle ligne (s'applique uniquement en mode privé).
 enableAutoSensitive: Marquage automatique du contenu sensible (NSFW)
 regexpErrorDescription: "Il y a eu une erreur dans l'expression régulière à la ligne
   {line} de votre {tab} des mots masqués :"
@@ -2005,7 +2023,7 @@ indexNotice: Indexation en cours. Cela prendra certainement du temps, veuillez n
   pas redémarrer votre serveur pour au moins une heure.
 customKaTeXMacro: Macros KaTeX personnalisées
 enableCustomKaTeXMacro: Activer les macros KaTeX personnalisées
-noteId: ID de note
+noteId: ID de Note
 customKaTeXMacroDescription: "Définissez des macros pour écrire des expressions mathématiques
   simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
   \\newcommand{\\name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
@@ -2049,7 +2067,7 @@ indexFromDescription: Laisser vide pour indexer toutes les Notes
 _feeds:
   jsonFeed: flux JSON
 alt: ALT
-swipeOnMobile: Permettre le glissement entre les pages
+swipeOnMobile: Permettre le balayage entre les pages
 expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les Notes dans le
   menu du clic droit et en cliquant sur l’horodatage.
 indexFrom: Indexer à partir de l’ID des Notes
@@ -2076,4 +2094,30 @@ clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagé
   pouvez créer des clips à partir du menu des notes individuelles.
 unclip: Dé-clipper
 secureMode: Mode sécurisé (Authorized Fetch)
-secureModeInfo: Quand sollicitée depuis d'autres instances, ne pas répondre sans preuve.
+secureModeInfo: Quand sollicité depuis d'autres serveurs, ne pas répondre sans preuve.
+isModerator: Modérateur
+enableServerMachineStats: Activer les statistiques matérielles du serveur
+enableIdenticonGeneration: Activer la génération d’Identicon
+reactionPickerSkinTone: Couleur de peau des emojis préférée
+verifiedLink: Lien vérifié
+isBot: Ce compte est un bot
+isLocked: Ce compte nécessite une approbation pour être suivi
+origin: Origine
+showPopup: Notifier les utilisateurs avec un popup
+showWithSparkles: Afficher avec des paillettes
+youHaveUnreadAnnouncements: Vous avez des annonces non-lues
+donationLink: Lien vers la page de donation
+neverShow: Ne plus afficher
+remindMeLater: Peut-être plus tard
+removeQuote: Retirer la citation
+removeRecipient: Retirer le destinataire
+removeMember: Retirer un membre
+preventAiLearningDescription: Demandez aux modèles d'IA de tiers de ne pas étudier
+  le contenu que vous téléchargez, tel que les publications et les images.
+noGraze: Veuillez désactiver l'extension de navigateur "Graze for Mastodon", car elle
+  interfère avec Firefish.
+silencedWarning: Cette page s'affiche car ces utilisateurs proviennent de serveurs
+  que votre administrateur a réduits au silence/masqué, il se peut donc qu'ils soient
+  de potentiels spams.
+isAdmin: Administrateur
+isPatron: Mécène Firefish
