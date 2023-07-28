@@ -1472,7 +1472,7 @@ _profile:
   changeAvatar: "Changer l'image de profil"
   changeBanner: "Changer de bannière"
   locationDescription: Si vous entrez votre ville en premier, votre heure locale sera
-    affiché aux autres utilisateurs.
+    affichée aux autres utilisateurs.
 _exportOrImport:
   allNotes: "Toutes les notes"
   followingList: "Abonnements"
@@ -1874,8 +1874,8 @@ _deck:
   renameProfile: Renommer l’espace de travail
   configureColumn: Paramètres de colonne
   deleteProfile: Supprimer l’espace de travail
-  widgetsIntroduction: Veuillez sélectionner "Modifier les widgets" dans le menu de
-    la colonne et ajouter un widget.
+  widgetsIntroduction: Sélectionner "Éditer les widgets" dans le menu de la colonne
+    et ajouter un widget.
   nameAlreadyExists: Ce nom d’espace de travail existe déjà.
   newProfile: Nouvel espace de travail
 keepOriginalUploadingDescription: Enregistrer l'image originale telle quelle. Si désactivé,
