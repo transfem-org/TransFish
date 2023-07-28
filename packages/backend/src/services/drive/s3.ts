@@ -26,6 +26,8 @@ export function getS3(meta: Meta) {
 			},
 		});
 	} catch (e) {
-		throw new Error(`Failed to construct S3 client, assembled S3 URL: ${u}\n${e}`);
+		throw new Error(
+			`Failed to construct S3 client, assembled S3 URL: ${u}\n${e}`,
+		);
 	}
 }

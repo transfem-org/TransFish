@@ -6,7 +6,7 @@
 	>
 		<svg
 			v-if="defaultStore.state.woozyMode === true"
-			style="transform: translateY(2px);"
+			style="transform: translateY(2px)"
 			width="1.1em"
 			height="1.1em"
 			viewBox="0 0 36 36"

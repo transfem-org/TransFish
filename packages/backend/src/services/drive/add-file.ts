@@ -52,13 +52,15 @@ function urlPathJoin(
 				url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname,
 			);
 			url.pathname = pathParts
-				.filter((x) => x !== null && x.toString().length > 0).join("/");
+				.filter((x) => x !== null && x.toString().length > 0)
+				.join("/");
 		}
 		return url.toString();
 	}
 	const baseParts = baseOrParts.concat(pathParts ?? []);
 	return baseParts
-		.filter((x) => x !== null && x.toString().length > 0).join("/");
+		.filter((x) => x !== null && x.toString().length > 0)
+		.join("/");
 }
 
 /***
@@ -104,7 +106,7 @@ async function save(
 		const baseUrl = new URL(
 			meta.objectStorageBaseUrl ?? `/${meta.objectStorageBucket}`,
 			`${meta.objectStorageUseSSL ? "https" : "http"}://${
-							meta.objectStorageEndpoint
+				meta.objectStorageEndpoint
 			}${meta.objectStoragePort ? `:${meta.objectStoragePort}` : ""}`,
 		);
 
@@ -124,7 +126,10 @@ async function save(
 		const uploads = [upload(key, fs.createReadStream(path), type, name)];
 
 		if (alts.webpublic) {
-			webpublicKey = urlPathJoin([meta.objectStoragePrefix, `webpublic-${uuid()}.${alts.webpublic.ext}`]);
+			webpublicKey = urlPathJoin([
+				meta.objectStoragePrefix,
+				`webpublic-${uuid()}.${alts.webpublic.ext}`,
+			]);
 			webpublicUrl = urlPathJoin(baseUrl, [webpublicKey]);
 
 			logger.info(`uploading webpublic: ${webpublicKey}`);
@@ -134,7 +139,10 @@ async function save(
 		}
 
 		if (alts.thumbnail) {
-			thumbnailKey = urlPathJoin([meta.objectStoragePrefix, `thumbnail-${uuid()}.${alts.thumbnail.ext}`]);
+			thumbnailKey = urlPathJoin([
+				meta.objectStoragePrefix,
+				`thumbnail-${uuid()}.${alts.thumbnail.ext}`,
+			]);
 			thumbnailUrl = urlPathJoin(baseUrl, [thumbnailKey]);
 
 			logger.info(`uploading thumbnail: ${thumbnailKey}`);

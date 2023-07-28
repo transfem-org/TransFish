@@ -223,7 +223,7 @@ export const startServer = () => {
 
 	server.listen({
 		port: config.port,
-		host: config.bind
+		host: config.bind,
 	});
 
 	return server;
@@ -260,8 +260,11 @@ export default () =>
 			}
 		});
 
-		server.listen({
-			port: config.port,
-			host: config.bind
-		}, () => resolve(undefined));
+		server.listen(
+			{
+				port: config.port,
+				host: config.bind,
+			},
+			() => resolve(undefined),
+		);
 	});
