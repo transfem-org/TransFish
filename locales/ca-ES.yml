@@ -2170,3 +2170,6 @@ _feeds:
   jsonFeed: Feed JSON
   copyFeed: Copiar feed
 origin: Origen
+objectStorageS3ForcePathStyle: Feu servir rutes URLs per a endpoints
+objectStorageS3ForcePathStyleDesc: Activeu aquesta opció per crear URL per endpoints
+  en el format "s3.amazonaws.com/<bucket>/" sobre "<bucket>.s3.amazonaws.com".
