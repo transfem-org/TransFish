@@ -21,7 +21,7 @@ noAccountDescription: Denne brukeren har ikke fylt ut bio'en sin ennå.
 login: Logg inn
 loggingIn: Logger inn
 signup: Oppretter bruker
-uploading: Laster opp..
+uploading: Laster opp...
 enterUsername: Skriv inn brukernavn
 noNotifications: Ingen meldinger
 users: Brukere
@@ -81,3 +81,30 @@ followRequestAccepted: Følgeforespørsel godtatt
 import: Importer
 export: Eksporter
 logout: Logger ut
+removeReaction: Fjern dine reaksjoner
+renotedBy: Fremhevet av {user}
+deleteAndEditConfirm: Er du sikker på at du vil slette og redigere denne posten? Du
+  vil miste alle reaksjoner, fremhevinger og svar til den.
+pageLoadError: En feil oppsto ved lasting av siden.
+privacy: Personvern
+enterEmoji: Legg inn emoji
+renoted: Fremhevet.
+cantRenote: Denne posten kan ikke fremheves.
+cantReRenote: En fremheving kan ikke fremheves.
+quote: Sitér
+pinned: Fest til profil
+clickToShow: Klikk for å vise
+enableEmojiReactions: Slå på emoji-reaksjoner
+makeFollowManuallyApprove: Følgeforespørsler må godkjennes
+enterListName: Gi listen et navn
+follow: Følg
+followRequest: Følgerforespørsel
+unfollow: Avfølg
+followRequestPending: Ubehandlet følgerforespørsel
+add: Legg til
+followRequests: Følgerforespørsler
+reaction: Reaksjoner
+driveFileDeleteConfirm: Er du sikker på at du vil slette filen «{name}»? Den vil fjernes
+  fra alle poster den er vedlagt i.
+defaultNoteVisibility: Standard synlighet
+unrenote: Fjern fremmheving
