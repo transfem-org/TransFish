@@ -106,7 +106,11 @@ export async function masterMain() {
 		config = loadConfigBoot();
 		await connectDb();
 	} catch (e) {
-		bootLogger.error("Fatal error occurred during initialization", null, true);
+		bootLogger.error(
+			`Fatal error occurred during initialization: ${e}`,
+			null,
+			true,
+		);
 		process.exit(1);
 	}
 
