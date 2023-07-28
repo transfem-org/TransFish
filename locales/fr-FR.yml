@@ -1101,7 +1101,7 @@ _mfm:
     si une MFM animée est en cours de lecture
   cropDescription: Rogner le contenu.
   scale: Mettre à l'échelle
-  scaleDescription: Mettre le contenu à l'échelle d'une valeur spécifique
+  scaleDescription: Mettre le contenu à l'échelle selon une valeur spécifiée.
 _instanceTicker:
   none: "Cacher "
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
@@ -1142,11 +1142,10 @@ _wordMute:
   mutedNotes: "Notes filtrées"
 _instanceMute:
   instanceMuteDescription2: "Séparer avec de nouvelles lignes"
-  title: "Masque les notes venant des instances listées."
-  heading: "Instances à mettre en sourdine"
-  instanceMuteDescription: Ceci va masquer toute publication ou partage des instances
-    listées, incluant celles des personnes répondant à des personnes des instances
-    masquées.
+  title: "Masque les notes venant des serveurs listés."
+  heading: "Serveurs à mettre en sourdine/masquer"
+  instanceMuteDescription: Ceci va masquer toute publication ou partage de serveurs
+    listés, incluant celles des personnes répondant à des personnes des serveurs masqués.
 _theme:
   explore: "Explorer les thèmes"
   install: "Installer un thème"
@@ -1236,8 +1235,8 @@ _ago:
   justNow: "à l’instant"
   secondsAgo: "Il y a {n}s"
   minutesAgo: "Il y a {n}min"
-  hoursAgo: "Il y a {n} heures"
-  daysAgo: "Il y a {n} jours"
+  hoursAgo: "Il y a {n}h"
+  daysAgo: "Il y a {n}j"
   weeksAgo: "Il y a {n} semaines"
   monthsAgo: "Il y a {n} mois"
   yearsAgo: "Il y a {n} ans"
@@ -1258,20 +1257,20 @@ _tutorial:
     que vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
-  step4_2: "Pour votre premier post, certaines personnes aiment faire un post {introduction}
-    ou un simple post 'Hello world'."
+  step4_2: "Pour votre premier post, certaines personnes aiment faire une note d’{introduction}
+    ou une simple note 'Hello world'."
   step5_1: "Lignes de temps, lignes de temps partout !"
-  step5_2: "Votre instance a {timelines} différentes chronologies activées !"
-  step5_3: "La timeline Home {icon} est l'endroit où vous pouvez voir les publications
-    de vos followers."
-  step5_4: "La timeline locale {icon} est l'endroit où vous pouvez voir les messages
-    de tout le monde sur cette instance."
-  step5_5: "La chronologie {icon} sociale est l'endroit où vous pouvez voir uniquement
-    les publications des comptes que vous suivez."
-  step5_6: "La chronologie {icon} recommandée est l'endroit où vous pouvez voir les
-    publications des instances recommandées par les administrateurs."
-  step5_7: "La timeline globale {icon} est l'endroit où vous pouvez voir les messages
-    de toutes les autres instances connectées."
+  step5_2: "Votre serveur a {timelines} différentes timelines activées !"
+  step5_3: "La timeline Principale {icon} est l'endroit où vous pouvez voir les publications
+    de vos abonnements."
+  step5_4: "La timeline Locale {icon} est l'endroit où vous pouvez voir les messages
+    de tout le monde sur ce serveur."
+  step5_5: "La timeline {icon} sociale est une combinaison des timelines Principale
+    et Locale."
+  step5_6: "La timeline {icon} Recommandée est l'endroit où vous pouvez voir les publications
+    des serveurs recommandés par vos administrateurs."
+  step5_7: "La timeline Globale {icon} est l'endroit où vous pouvez voir les messages
+    de tout les autres serveurs connectés."
   step6_1: "Alors quel est cet endroit ?"
   step6_2: "Eh bien, vous ne venez pas de rejoindre Firefish. Vous avez rejoint un
     portail vers le Fediverse, un réseau interconnecté de milliers de serveurs, appelés
@@ -1296,6 +1295,28 @@ _2fa:
     davantage le processus de connexion grâce à une clé de sécurité matérielle qui
     prend en charge FIDO2, ou bien en configurant l'authentification par empreinte
     digitale ou par code PIN sur votre appareil."
+  token: Jeton 2FA
+  step3Title: Entrez un code d’authentification
+  chromePasskeyNotSupported: Les clés de passe Chrome ne sont actuellement pas prises
+    en charge.
+  step2Click: En cliquant sur ce QR code, vous pourrez enregistrer l'authentification
+    à deux facteurs (2FA) sur votre clé de sécurité ou votre application d'authentification
+    sur téléphone.
+  whyTOTPOnlyRenew: L'application d'authentification ne peut pas être supprimée tant
+    qu'une clé de sécurité est enregistrée.
+  securityKeyName: Entrez un nom de clé
+  removeKeyConfirm: Voulez-vous vraiment supprimer la clé {name} ?
+  renewTOTP: Reconfigurer l'application d'authentification
+  renewTOTPConfirm: Cela entraînera l'arrêt de fonctionnement des codes de vérification
+    provenant de votre application précédente
+  renewTOTPOk: Reconfigurer
+  securityKeyNotSupported: Votre navigateur ne prend pas en charge les clés de sécurité.
+  removeKey: Supprimer la clé de sécurité
+  renewTOTPCancel: Annuler
+  registerTOTPBeforeKey: Veuillez configurer une application d'authentification pour
+    enregistrer une clé de sécurité ou un mot de passe.
+  tapSecurityKey: Veuillez suivre les instructions de votre navigateur pour enregistrer
+    la clé de sécurité ou le mot de passe
 _permissions:
   "read:account": "Afficher les informations du compte"
   "write:account": "Mettre à jour les informations de votre compte"
@@ -1337,7 +1358,7 @@ _auth:
   pleaseGoBack: "Veuillez retourner à l’application"
   callback: "Retour vers l’application"
   denied: "Accès refusé"
-  copyAsk: Veuillez coller le code d’autorisation à l'application
+  copyAsk: "Veuillez coller le code d’autorisation à l'application :"
 _antennaSources:
   all: "Toutes les notes"
   homeTimeline: "Notes venant des utilisateur·rice·s auxquel·les je suis abonné"
@@ -2123,3 +2144,11 @@ silencedWarning: Cette page s'affiche car ces utilisateurs proviennent de serveu
   de potentiels spams.
 isAdmin: Administrateur
 isPatron: Mécène Firefish
+_filters:
+  fromUser: De l’utilisateur
+  withFile: Avec fichier
+  notesBefore: Notes avant
+  notesAfter: Notes après
+  followersOnly: Abonnés uniquement
+  followingOnly: Abonnements uniquement
+  fromDomain: Du domaine
