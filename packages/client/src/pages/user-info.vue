@@ -207,7 +207,7 @@
 							v-if="user.host == null && iAmModerator"
 							inline
 							@click="resetPassword"
-							><i class="ph-key ph-bold ph-lg"></i>
+							><i class="ph-password ph-bold ph-lg"></i>
 							{{ i18n.ts.resetPassword }}</FormButton
 						>
 						<FormButton
@@ -220,6 +220,23 @@
 						<FormButton
 							v-if="$i.isAdmin"
 							inline
+							danger
+							@click="delete2fa"
+							><i class="ph-key ph-bold ph-lg"></i>
+							{{ i18n.ts.delete2fa }}</FormButton
+						>
+						<FormButton
+							v-if="$i.isAdmin"
+							inline
+							danger
+							@click="deletePasskeys"
+							><i class="ph-poker-chip ph-bold ph-lg"></i>
+							{{ i18n.ts.deletePasskeys }}</FormButton
+						>
+						<FormButton
+							v-if="$i.isAdmin"
+							inline
+							primary
 							danger
 							@click="deleteAccount"
 							><i class="ph-user-minus ph-bold ph-lg"></i>
@@ -543,6 +560,54 @@ async function applyDriveCapacityOverride() {
 	}
 }
 
+async function delete2fa() {
+	const confirm = await os.confirm({
+		type: "warning",
+		text: i18n.ts.delete2faConfirm,
+	});
+	if (confirm.canceled) return;
+
+	const typed = await os.inputText({
+		text: i18n.t("typeToConfirm", { x: user?.username }),
+	});
+	if (typed.canceled) return;
+
+	if (typed.result === user?.username) {
+		await os.apiWithDialog("admin/delete-2fa", {
+			userId: user.id,
+		});
+	} else {
+		os.alert({
+			type: "error",
+			text: i18n.ts.inputNotMatch,
+		});
+	}
+}
+
+async function deletePasskeys() {
+	const confirm = await os.confirm({
+		type: "warning",
+		text: i18n.ts.deletePasskeysConfirm,
+	});
+	if (confirm.canceled) return;
+
+	const typed = await os.inputText({
+		text: i18n.t("typeToConfirm", { x: user?.username }),
+	});
+	if (typed.canceled) return;
+
+	if (typed.result === user?.username) {
+		await os.apiWithDialog("admin/delete-passkeys", {
+			userId: user.id,
+		});
+	} else {
+		os.alert({
+			type: "error",
+			text: i18n.ts.inputNotMatch,
+		});
+	}
+}
+
 async function deleteAccount() {
 	const confirm = await os.confirm({
 		type: "warning",
@@ -562,7 +627,7 @@ async function deleteAccount() {
 	} else {
 		os.alert({
 			type: "error",
-			text: "input not match",
+			text: i18n.ts.inputNotMatch,
 		});
 	}
 }
