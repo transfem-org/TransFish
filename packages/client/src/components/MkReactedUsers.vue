@@ -16,7 +16,7 @@
 							: reaction
 					"
 					:custom-emojis="note.emojis"
-					style="max-width: 100%;"
+					style="max-width: 100%"
 				/>
 				<span style="margin-left: 4px">{{
 					note.reactions[reaction]

@@ -974,7 +974,6 @@ onMounted(() => {
 		nextTick(() => {
 			focus();
 		});
-
 	}
 
 	// TODO: detach when unmount
