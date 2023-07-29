@@ -48,6 +48,6 @@ export default async function cleanRemoteFiles(
 		job.progress(deletedCount / total);
 	}
 
-	logger.succ("All cahced remote files has been deleted.");
+	logger.succ("All cached remote files has been deleted.");
 	done();
 }
