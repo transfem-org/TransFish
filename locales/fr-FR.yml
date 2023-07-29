@@ -148,7 +148,7 @@ addEmoji: "Ajouter un émoji"
 settingGuide: "Configuration proposée"
 cacheRemoteFiles: "Mise en cache des fichiers distants"
 cacheRemoteFilesDescription: "Lorsque cette option est désactivée, les fichiers distants
-  sont chargés directement depuis le serveur distante. La désactiver diminuera certes
+  sont chargés directement depuis le serveur distant. La désactiver diminuera certes
   l’utilisation de l’espace de stockage local mais augmentera le trafic réseau puisque
   les miniatures ne seront plus générées."
 flagAsBot: "Ce compte est un robot"
@@ -173,11 +173,11 @@ youHaveNoLists: "Vous n’avez aucune liste"
 followConfirm: "Êtes-vous sûr·e de vouloir suivre {name} ?"
 proxyAccount: "Compte proxy"
 proxyAccountDescription: "Un compte proxy se comporte, dans certaines conditions,
-  comme un·e abonné·e distant·e pour les utilisateurs d'autres instances. Par exemple,
-  quand un·e utilisateur·rice local ajoute un·e utilisateur·rice distant·e à une liste,
-  ses notes ne seront pas visibles sur l'instance si personne ne suit cet·te utilisateur·rice.
-  Le compte proxy va donc suivre cet·te utilisateur·rice pour que ses notes soient
-  acheminées."
+  comme un·e abonné·e distant·e pour les utilisateur·rice·s d'autres serveurs. Par
+  exemple, quand un·e utilisateur·rice local ajoute un·e utilisateur·rice distant·e
+  à une liste, ses notes ne seront pas visibles sur le serveur si personne ne suit
+  cet·te utilisateur·rice. Le compte proxy va donc suivre cet·te utilisateur·rice
+  pour que ses notes soient acheminées."
 host: "Serveur distant"
 selectUser: "Sélectionner un·e utilisateur·rice"
 recipient: "Destinataire"
@@ -324,7 +324,7 @@ whenServerDisconnected: "Lorsque la connexion au serveur est perdue"
 disconnectedFromServer: "Déconnecté·e du serveur"
 reload: "Rafraîchir"
 doNothing: "Ignorer"
-reloadConfirm: "Voulez-vous recharger?"
+reloadConfirm: "Voulez-vous recharger le fil ?"
 watch: "Surveiller"
 unwatch: "Ne plus surveiller"
 accept: "Autoriser"
@@ -583,7 +583,7 @@ userSuspended: "Cet·te utilisateur·rice a été suspendu·e."
 userSilenced: "Cette utilisateur·trice a été mis·e en sourdine."
 yourAccountSuspendedTitle: "Ce compte est suspendu"
 yourAccountSuspendedDescription: "Ce compte est suspendu car vous avez enfreint les
-  conditions d'utilisation de l'instance, ou pour un motif similaire. Si vous souhaitez
+  conditions d'utilisation du serveur, ou pour un motif similaire. Si vous souhaitez
   connaître en détail les raisons de cette suspension, renseignez-vous auprès de l'administrateur·rice
   de votre instance. Merci de ne pas créer de nouveau compte."
 menu: "Menu"
@@ -670,7 +670,7 @@ other: "Autre"
 regenerateLoginToken: "Régénérer le jeton de connexion"
 regenerateLoginTokenDescription: "Générer un nouveau jeton d'authentification. Cette
   opération ne devrait pas être nécessaire ; lors de la génération d'un nouveau jeton,
-  tous les appareils seront déconnectés. "
+  tous les appareils seront déconnectés."
 setMultipleBySeparatingWithSpace: "Vous pouvez en définir plusieurs, en les séparant
   par des espaces."
 fileIdOrUrl: "ID du fichier ou URL"
@@ -680,7 +680,7 @@ abuseReports: "Signalements"
 reportAbuse: "Signaler"
 reportAbuseOf: "Signaler {name}"
 fillAbuseReportDescription: "Veuillez expliquer les raisons du signalement. S'il s'agit
-  d'une note précise, veuillez en donner le lien."
+  d'une note particulière, veuillez inclure le lien."
 abuseReported: "Le rapport est envoyé. Merci."
 reporter: "Signalé par"
 reporteeOrigin: "Origine du signalement"
@@ -747,7 +747,7 @@ developer: "Développeur"
 makeExplorable: "Rendre le compte visible sur la page \"Découvrir\"."
 makeExplorableDescription: "Si vous désactivez cette option, votre compte n'apparaîtra
   pas sur la page \"Découvrir\"."
-showGapBetweenNotesInTimeline: "Afficher un écart entre les notes sur la Timeline"
+showGapBetweenNotesInTimeline: "Afficher un écart entre les notes du fil d’actualité"
 duplicate: "Duliquer"
 left: "Gauche"
 center: "Centrer"
@@ -797,7 +797,7 @@ inChannelSearch: "Chercher dans la chaîne"
 useReactionPickerForContextMenu: "Clic-droit pour ouvrir le panneau de réactions"
 typingUsers: "{users} est en train d'écrire"
 jumpToSpecifiedDate: "Se rendre à la date"
-showingPastTimeline: "Un fil ancien est affiché"
+showingPastTimeline: "Un fil âgé est affiché"
 clear: "Effacer"
 markAllAsRead: "Tout marquer comme lu"
 goBack: "Retour"
@@ -815,7 +815,7 @@ unknown: "Inconnu"
 onlineStatus: "Statut"
 hideOnlineStatus: "Se rendre invisible"
 hideOnlineStatusDescription: "Rendre votre statut invisible peut diminuer les performances
-  de certaines fonctionnalités, telles que la Recherche."
+  de certaines fonctionnalités, telles que la recherche."
 online: "En ligne"
 active: "Actif·ve"
 offline: "Hors ligne"
@@ -839,7 +839,7 @@ gallery: "Galerie"
 recentPosts: "Les plus récentes"
 popularPosts: "Les plus consultées"
 shareWithNote: "Partager dans une note"
-ads: "Publicité"
+ads: "Bannière communautaire"
 expiration: "Échéance"
 memo: "Pense-bête"
 priority: "Priorité"
@@ -886,8 +886,8 @@ filter: "Filtre"
 controlPanel: "Panneau de contrôle"
 manageAccounts: "Gérer les comptes"
 makeReactionsPublic: "Rendre les réactions publiques"
-makeReactionsPublicDescription: "Ceci rendra la liste de toutes vos réactions données
-  publique."
+makeReactionsPublicDescription: "Ceci rendra public la liste de toutes vos réactions
+  passées."
 classic: "Centré"
 muteThread: "Masquer cette discussion"
 unmuteThread: "Ne plus masquer le fil"
@@ -1022,39 +1022,39 @@ _mfm:
   mentionDescription: "Vous pouvez afficher un utilisateur spécifique en indiquant
     une arobase suivie d'un nom d'utilisateur"
   hashtag: "Hashtags"
-  hashtagDescription: "Vous pouvez afficher un mot-dièse en utilisant un croisillon
-    et du texte"
+  hashtagDescription: "Vous pouvez afficher les hashtags en utilisant un croisillon
+    et du texte."
   url: "URL"
   urlDescription: "L'adresse web peut être affichée."
   link: "Lien"
   linkDescription: "Une partie précise d'une phrase peut être liée à l'adresse web."
   bold: "Gras"
-  boldDescription: "Il est possible de mettre le texte en exergue en le mettant en
-    gras."
+  boldDescription: "Mise en évidence du texte en le rendant plus épais."
   small: "Diminuer l'emphase"
   smallDescription: "Le contenu peut être affiché en petit et fin."
   center: "Centrer"
   centerDescription: "Le contenu peut être centré"
   inlineCode: "Code (inline)"
-  inlineCodeDescription: "Coloration syntaxique des lignes de code."
+  inlineCodeDescription: "Affiche la coloration syntaxique des lignes de code."
   blockCode: "Bloc de code"
-  blockCodeDescription: "Coloration syntaxique des lignes de code pour les blocs multi-lignes."
+  blockCodeDescription: "Afficher la coloration syntaxique de multiples lignes de
+    code dans un bloc."
   inlineMath: "Formule mathématique (inline)"
-  inlineMathDescription: "Afficher les formules mathématiques (KaTeX)."
+  inlineMathDescription: "Afficher les formules mathématiques (KaTeX)"
   blockMath: "Formule mathématique (bloc)"
   blockMathDescription: "Afficher les formules mathématiques (KaTeX) dans un bloc"
   quote: "Citer"
   quoteDescription: "Affiche le contenu sous forme de citation."
   emoji: "Émojis personnalisés"
-  emojiDescription: "Entourez le nom de l'émoji personnalisé de deux points pour l'afficher."
+  emojiDescription: "Encadrer le nom de l'émoji personnalisé de deux points pour l'afficher."
   search: "Rechercher"
   searchDescription: "Affiche une boîte de recherche avec du texte pré-saisi."
   flip: "Inverser"
-  flipDescription: "Rotation verticale ou horizontale du contenu"
+  flipDescription: "Rotation verticale ou horizontale du contenu."
   jelly: "Animation (Gelée)"
-  jellyDescription: "Donne une animation d'étirement."
+  jellyDescription: "Donne une animation d'étirement comme de la gelée."
   tada: "Animation (Tada)"
-  tadaDescription: "Donne une animation qui donne une impression de \"Tada !\""
+  tadaDescription: "Donne une animation qui donne une impression de \"Tada !\"."
   jump: "Animation (Saut)"
   jumpDescription: "Donne une animation qui saute."
   bounce: "Animation (Rebond)"
@@ -1070,12 +1070,11 @@ _mfm:
   x3: "Très grand"
   x3Description: "Afficher le contenu en très grand."
   x4: "Plus grand"
-  x4Description: "Afficher le contenu en plus grand."
+  x4Description: "Afficher le contenu encore plus grand que grand."
   blur: "Flou"
-  blurDescription: "Le contenu peut être flouté ; il sera visible en le survolant
-    avec le curseur."
+  blurDescription: "Floutage du contenu. Il sera visible en le survolant avec le curseur."
   font: "Police de caractères"
-  fontDescription: "Il est possible de choisir la police."
+  fontDescription: "Choisir la police du contenu."
   rainbow: "Arc-en-ciel"
   rainbowDescription: "Permet d'afficher le contenu en couleurs arc-en-ciel."
   sparkle: "Paillettes"
@@ -1136,15 +1135,16 @@ _wordMute:
     un saut de ligne pour une condition OR."
   muteWordsDescription2: "Pour utiliser des expressions régulières (regex), mettez
     les mots-clés entre barres obliques."
-  softDescription: "Masquez les notes de votre fil selon les paramètres que vous définissez."
-  hardDescription: "Empêchez votre fil de charger les notes selon les paramètres que
-    vous définissez. Cette action est irréversible : si vous modifiez ces paramètres
-    plus tard, les notes précédemment filtrées ne seront pas récupérées."
+  softDescription: "Masquez de votre fil d’actualité les notes qui répondent aux conditions
+    définies."
+  hardDescription: "Empêche les notes qui remplissent les conditions définies d'être
+    ajoutées au fil d'actualité. Cette action est irréversible : si vous modifiez
+    ces conditions plus tard, les notes précédemment filtrées ne seront pas récupérées."
   soft: "Doux"
   hard: "Strict"
   mutedNotes: "Notes filtrées"
 _instanceMute:
-  instanceMuteDescription2: "Séparer avec de nouvelles lignes"
+  instanceMuteDescription2: "Séparer avec des sauts de lignes"
   title: "Masque les notes venant des serveurs listés."
   heading: "Serveurs à mettre en sourdine/masquer"
   instanceMuteDescription: Ceci va masquer toute publication ou partage de serveurs
@@ -1256,24 +1256,23 @@ _tutorial:
   step2_2: "En fournissant quelques informations sur qui vous êtes, il sera plus facile
     pour les autres de savoir s'ils veulent voir vos notes ou vous suivre."
   step3_1: "Maintenant il est temps de suivre des gens !"
-  step3_2: "Votre page d'accueil et vos timelines sociales sont basées sur les personnes
-    que vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
+  step3_2: "Vos fil d’actualité Principal et Social sont basés sur les personnes que
+    vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
   step4_2: "Pour votre première note, certaines personnes aiment faire une note {introduction}
     ou une simple note 'Bonjours tout le monde !'."
-  step5_1: "Lignes de temps, lignes de temps partout !"
-  step5_2: "Votre serveur a {timelines} différentes timelines activées !"
-  step5_3: "La timeline Principale {icon} est l'endroit où vous pouvez voir les publications
+  step5_1: "Des fils, des fils d’actualité partout !"
+  step5_2: "Votre serveur a {timelines} fils différents disponibles !"
+  step5_3: "Le fil {icon} Principal est l'endroit où vous pouvez voir les publications
     de vos abonnements."
-  step5_4: "La timeline Locale {icon} est l'endroit où vous pouvez voir les messages
-    de tout le monde sur ce serveur."
-  step5_5: "La timeline {icon} sociale est une combinaison des timelines Principale
-    et Locale."
-  step5_6: "La timeline {icon} Recommandée est l'endroit où vous pouvez voir les publications
+  step5_4: "La fil {icon} Local est l'endroit où vous pouvez voir les messages de
+    tout le monde sur ce serveur."
+  step5_5: "Le fil {icon} Social est une combinaison des fils Principal et Local."
+  step5_6: "Le fil {icon} Recommandé est l'endroit où vous pouvez voir les publications
     des serveurs recommandés par vos administrateurs."
-  step5_7: "La timeline Globale {icon} est l'endroit où vous pouvez voir les messages
-    de tout les autres serveurs connectés."
+  step5_7: "Le fil {icon} Global est l'endroit où vous pouvez voir les messages de
+    tout les autres serveurs connectés."
   step6_1: "Alors quel est cet endroit ?"
   step6_2: "Eh bien, vous ne venez pas de rejoindre Firefish. Vous avez rejoint un
     portail vers le Fediverse, un réseau interconnecté de milliers de serveurs, appelés
@@ -1365,7 +1364,7 @@ _auth:
   allPermissions: Accès complet au compte
 _antennaSources:
   all: "Toutes les notes"
-  homeTimeline: "Notes venant des utilisateur·rice·s auxquel·les je suis abonné"
+  homeTimeline: "Notes provenant des utilisateur·rice·s auxquel·les je suis abonné"
   users: "Notes venant de la part d’utilisateur·rice·s précis"
   userList: "Notes venant d’une liste spécifique"
   userGroup: "Notes venant d’utilisateur·rice·s du groupe spécifié"
@@ -1381,7 +1380,7 @@ _weekday:
 _widgets:
   memo: "Post-it"
   notifications: "Notifications"
-  timeline: "Fil"
+  timeline: "Fil d’actualité"
   calendar: "Calendrier"
   trends: "Tendances"
   clock: "Horloge"
@@ -1437,7 +1436,7 @@ _poll:
   remainingSeconds: "{s} secondes restantes"
 _visibility:
   public: "Public"
-  publicDescription: "Vos Notes seront affichées sur toutes les timelines publiques"
+  publicDescription: "Publier sur tous les fils publics"
   home: "Non-listés"
   homeDescription: "Publier sur le fil principal uniquement"
   followers: "Abonné·e·s"
@@ -1445,7 +1444,7 @@ _visibility:
   specified: "Direct"
   specifiedDescription: "Publier uniquement aux utilisateur·rice·s mentionné·e·s"
   localOnly: "Local seulement"
-  localOnlyDescription: "Caché pour les utilisateurs distant"
+  localOnlyDescription: "Caché pour les utilisateur·rice·s distant"
 _postForm:
   replyPlaceholder: "Répondre à cette note ..."
   quotePlaceholder: "Citez cette note ..."
@@ -1472,7 +1471,7 @@ _profile:
   changeAvatar: "Changer l'image de profil"
   changeBanner: "Changer de bannière"
   locationDescription: Si vous entrez votre ville en premier, votre heure locale sera
-    affichée aux autres utilisateurs.
+    affichée aux autres utilisateur·rice·s.
 _exportOrImport:
   allNotes: "Toutes les notes"
   followingList: "Abonnements"
@@ -1512,7 +1511,7 @@ _timelines:
   local: "Local"
   social: "Social"
   global: "Global"
-  recommended: Recommandée
+  recommended: Recommandé
 _pages:
   newPage: "Créer une page"
   editPage: "Modifier une page"
@@ -1591,8 +1590,7 @@ _pages:
     note: "Note intégrée"
     _note:
       id: "Identifiant de la note"
-      idDescription: "Pour configurer la note, vous pouvez aussi coller ici l'URL
-        correspondante."
+      idDescription: "Vous pouvez aussi coller ici l'URL ici."
       detailed: "Afficher les détails"
     switch: "Interrupteur"
     _switch:
@@ -1861,7 +1859,7 @@ _deck:
     main: "Principale"
     widgets: "Widgets"
     notifications: "Notifications"
-    tl: "Fil"
+    tl: "Fil d’actualité"
     antenna: "Antenne"
     list: "Listes"
     mentions: "Mentions"
@@ -1992,11 +1990,11 @@ type: Type
 speed: Vitesse
 slow: Lent
 move: Déplacer
-showAds: Afficher les annonces
+showAds: Afficher les bannières communautaire/publicités
 enterSendsMessage: Appuyer sur Entrée pendant la rédaction pour envoyer le message
   (sinon Ctrl+Entrée)
-allowedInstancesDescription: Hôtes des serveurs sur autorisés pour la fédération,
-  chacun séparé par une nouvelle ligne (s'applique uniquement en mode privé).
+allowedInstancesDescription: Noms des serveurs autorisés pour la fédération, chacun
+  séparé par une nouvelle ligne (s'applique uniquement en mode privé).
 enableAutoSensitive: Marquage automatique du contenu sensible (NSFW)
 regexpErrorDescription: "Il y a eu une erreur dans l'expression régulière à la ligne
   {line} de votre {tab} des mots masqués :"
@@ -2009,13 +2007,13 @@ flagSpeakAsCat: Parler comme un chat
 flagSpeakAsCatDescription: Vos messages seront nyanifiés en mode chat
 hiddenTags: Hashtags cachés
 hiddenTagsDescription: "Lister les hashtags (sans le #) que vous souhaitez cacher
-  de Tendances et Explorer. Les hashtags cachés sont toujours découvrables par d'autres
+  de Tendances et Découvrir. Les hashtags cachés sont toujours découvrables par d'autres
   moyens."
-antennaInstancesDescription: Lister un hôte de serveur par ligne
+antennaInstancesDescription: Lister un nom de serveur par ligne
 userSaysSomethingReason: '{name} a dit {reason}'
 breakFollowConfirm: Êtes vous sur de vouloir retirer l'abonné ?
-recommendedInstancesDescription: Instances recommandées séparées par une nouvelle
-  ligne pour apparaître dans la timeline recommandée.
+recommendedInstancesDescription: Serveurs recommandés séparés par une nouvelle ligne
+  pour apparaître dans le fil recommandé.
 sendPushNotificationReadMessage: Supprimer les notifications push une fois que les
   notifications ou messages concernés ont été lus
 sendPushNotificationReadMessageCaption: Une notification contenant le texte "{emptyPushNotificationMessage}"
@@ -2033,7 +2031,7 @@ customSplashIconsDescription: URLs pour les icônes personnalisées de l'écran 
   (re)chargement de page. Assurez-vous que les images sont sur des URL statiques,
   de préférence toutes de taille 192x192.
 updateAvailable: Une mise à jour est peut-être disponible !
-accountMoved: "L'utilisateur a migré vers un nouveau compte :"
+accountMoved: "L'utilisateur·rice a migré vers un nouveau compte :"
 enableEmojiReactions: Activer les réactions par émojis
 showEmojisInReactionNotifications: Montrer les émojis dans les notifications de réactions
 renoteUnmute: Ne plus masquer les boosts
@@ -2079,7 +2077,7 @@ customKaTeXMacroDescription: "Définissez des macros pour écrire des expression
   la ligne au milieu d'une définition. Les lignes invalides sont simplement ignorées.
   Seulement de simples fonctions de substitution de chaines sont supportées; la syntaxe
   avancée, telle que la ramification conditionnelle, ne peut pas être utilisée ici."
-enableRecommendedTimeline: Activer la chronologie recommandée
+enableRecommendedTimeline: Activer le fil recommandé
 silenceThisInstance: Masquer ce serveur
 silencedInstances: Serveurs masqués
 silenced: Silencieux
@@ -2087,7 +2085,7 @@ deleted: Effacé
 editNote: Modifier note
 edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
-  personnes aux publications des autres.
+  utilisatieur·rice·s aux notes des autres.
 _experiments:
   alpha: Alpha
   beta: Beta
@@ -2110,8 +2108,8 @@ removeReaction: Retirer votre réaction
 selectChannel: Sélectionner une chaîne
 expandOnNoteClick: Ouvrir la note en cliquant
 preventAiLearning: Empêcher le récupération de données par des IA
-listsDesc: Les listes vous laisse créer des fils personnalisés avec des utilisateurs
-  spécifiés. Elles sont accessibles depuis la page des fils.
+listsDesc: Les listes vous laissent créer des fils personnalisés avec des utilisateur·rice·s
+  spécifié·e·s. Elles sont accessibles depuis la page des fils.
 indexFromDescription: Laisser vide pour indexer toutes les Notes
 _feeds:
   jsonFeed: flux JSON
@@ -2196,3 +2194,10 @@ _skinTones:
 objectStorageS3ForcePathStyle: Utiliser des URL d'endpoints basées sur le chemin
 objectStorageS3ForcePathStyleDesc: Activez cette option pour construire les URL d'endpoints
   au format 's3.amazonaws.com/<bucket>/' au lieu de '<bucket>.s3.amazonaws.com'.
+delete2fa: Supprimer 2FA
+deletePasskeys: Supprimer les clés d'accès
+delete2faConfirm: Cela supprimera de manière irréversible la double authentification
+  sur ce compte. Souhaitez-vous continuer ?
+inputNotMatch: L'entrée ne correspond pas
+deletePasskeysConfirm: Cela supprimera de manière irréversible toutes les clés d'accès
+  et les clés de sécurité sur ce compte. Souhaitez-vous continuer ?
