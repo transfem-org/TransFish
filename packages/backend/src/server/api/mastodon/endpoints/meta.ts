@@ -59,6 +59,9 @@ export async function getInstance(
 				min_expiration: 50,
 				max_expiration: 2629746,
 			},
+			reactions: {
+				max_reactions: 1,
+			},
 		},
 		contact_account: contact,
 		rules: [],
