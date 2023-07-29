@@ -2177,5 +2177,5 @@ deletePasskeys: Suprimeix les contrasenyes
 deletePasskeysConfirm: Això suprimirà de manera irreversible totes les contrasenyes
   i claus de seguretat d'aquest compte. Procedir?
 inputNotMatch: L'entrada no coincideix
-delete2fa: Suprimeix 2FA
+delete2fa: Desactivar 2FA
 delete2faConfirm: Això suprimirà irreversiblement 2FA en aquest compte. Procedir?
