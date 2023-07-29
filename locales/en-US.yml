@@ -875,7 +875,7 @@ gallery: "Gallery"
 recentPosts: "Recent pages"
 popularPosts: "Popular pages"
 shareWithNote: "Share with post"
-ads: "Advertisements"
+ads: "Community banners"
 expiration: "Deadline"
 memo: "Memo"
 priority: "Priority"
@@ -1038,7 +1038,7 @@ sendPushNotificationReadMessage: "Delete push notifications once the relevant no
 sendPushNotificationReadMessageCaption: "A notification containing the text \"{emptyPushNotificationMessage}\"\
   \ will be displayed for a short time. This may increase the battery usage of your
   device, if applicable."
-showAds: "Show ads"
+showAds: "Show community banners"
 enterSendsMessage: "Press Return in Messaging to send message (off is Ctrl + Return)"
 adminCustomCssWarn: "This setting should only be used if you know what it does. Entering
   improper values may cause EVERYONE'S clients to stop functioning normally. Please
