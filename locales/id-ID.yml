@@ -2154,3 +2154,6 @@ _feeds:
   atom: Atom
   jsonFeed: Umpan JSON
 origin: Asal
+objectStorageS3ForcePathStyle: Gunakan URL titik akhir berbasis lokasi
+objectStorageS3ForcePathStyleDesc: Aktifkan ini untuk membuat URL titik akhir dalam
+  format 's3.amazonaws.com/<bucket>/' di atas '<bucket>.s3.amazonaws.com'.
