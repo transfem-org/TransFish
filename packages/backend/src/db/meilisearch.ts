@@ -211,9 +211,9 @@ export default hasConfig
 
 								// Determine if we got a webfinger address or a single username
 								if (user.split("@").length > 1) {
-									let splitUser = user.split("@");
+									const splitUser = user.split("@");
 
-									let domain = splitUser.pop();
+									const domain = splitUser.pop();
 									user = splitUser.join("@");
 
 									constructedFilters.push(
@@ -231,7 +231,7 @@ export default hasConfig
 							} else if (term.startsWith("after:")) {
 								const timestamp = term.slice(6);
 
-								let unix = timestampToUnix(timestamp);
+								const unix = timestampToUnix(timestamp);
 
 								if (unix !== 0) constructedFilters.push(`createdAt > ${unix}`);
 
@@ -239,7 +239,7 @@ export default hasConfig
 							} else if (term.startsWith("before:")) {
 								const timestamp = term.slice(7);
 
-								let unix = timestampToUnix(timestamp);
+								const unix = timestampToUnix(timestamp);
 								if (unix !== 0) constructedFilters.push(`createdAt < ${unix}`);
 
 								return null;
