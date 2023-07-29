@@ -1350,7 +1350,7 @@ switchAccount: Canvia de compte
 enabled: Activat
 configure: Configurar
 noBotProtectionWarning: La protecció contra bots no està configurada.
-ads: Publicitat
+ads: Bàners comunitaris
 ratio: Ràtio
 global: Global
 sent: Enviat
@@ -1761,7 +1761,7 @@ sendPushNotificationReadMessage: Suprimeix les notificacions push un cop s'hagin
 sendPushNotificationReadMessageCaption: Es mostrarà una notificació amb el text "{emptyPushNotificationMessage}"
   durant un breu temps. Això pot augmentar l'ús de la bateria del vostre dispositiu,
   si escau.
-showAds: Mostrar publicitat
+showAds: Mostrar bàners de la comunitat
 enterSendsMessage: Pren retorn al formulari del missatge per enviar (quant no s'activa
   es Ctrl + Return)
 customMOTD: MOTD personalitzat (missatges de la pantalla de benvinguda)
@@ -2173,3 +2173,9 @@ origin: Origen
 objectStorageS3ForcePathStyle: Feu servir rutes URLs per a endpoints
 objectStorageS3ForcePathStyleDesc: Activeu aquesta opció per crear URL per endpoints
   en el format "s3.amazonaws.com/<bucket>/" sobre "<bucket>.s3.amazonaws.com".
+deletePasskeys: Suprimeix les contrasenyes
+deletePasskeysConfirm: Això suprimirà de manera irreversible totes les contrasenyes
+  i claus de seguretat d'aquest compte. Procedir?
+inputNotMatch: L'entrada no coincideix
+delete2fa: Suprimeix 2FA
+delete2faConfirm: Això suprimirà irreversiblement 2FA en aquest compte. Procedir?
