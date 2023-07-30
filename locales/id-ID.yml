@@ -834,7 +834,7 @@ gallery: "Galeri"
 recentPosts: "Postingan terbaru"
 popularPosts: "Postingan populer"
 shareWithNote: "Bagikan dengan postingan"
-ads: "Iklan"
+ads: "Spanduk komunitas"
 expiration: "Batas akhir"
 memo: "Memo"
 priority: "Prioritas"
@@ -2011,7 +2011,7 @@ pushNotificationAlreadySubscribed: Pemberitahuan dorong sudah aktif
 pushNotificationNotSupported: Peramban atau servermu tidak mendukung pemberitahuan
   dorong
 apps: Aplikasi
-showAds: Tampilkan iklan
+showAds: Tampilkan spanduk komunitas
 enterSendsMessage: Tekan Enter pada Pesan untuk mengirim pesan (matikan dengan Ctrl
   + Enter)
 showAdminUpdates: Indikasi versi Firefish baru tersedia (hanya admin)
@@ -2157,3 +2157,9 @@ origin: Asal
 objectStorageS3ForcePathStyle: Gunakan URL titik akhir berbasis lokasi
 objectStorageS3ForcePathStyleDesc: Aktifkan ini untuk membuat URL titik akhir dalam
   format 's3.amazonaws.com/<bucket>/' di atas '<bucket>.s3.amazonaws.com'.
+deletePasskeys: Hapus passkeys
+inputNotMatch: Masukan tidak cocok
+delete2fa: Nonaktifkan 2FA
+delete2faConfirm: Ini akan menghapus 2FA secara permanen pada akun ini. Lanjutkan?
+deletePasskeysConfirm: Ini akan menghapus semua passkeys dan kunci keamanan pada akun
+  ini secara permanen. Lanjutkan?

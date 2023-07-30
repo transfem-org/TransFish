@@ -853,7 +853,7 @@ gallery: "Bilder-Galerie"
 recentPosts: "Neue Beiträge"
 popularPosts: "Beliebte Beiträge"
 shareWithNote: "Mit Beitrag teilen"
-ads: "Werbeanzeigen"
+ads: "Community-Banner"
 expiration: "Frist"
 memo: "Merkzettel"
 priority: "Priorität"
@@ -2053,7 +2053,7 @@ userSaysSomethingReasonReply: '{name} hat auf einen Beitrag geantwortet der {rea
 userSaysSomethingReasonRenote: '{name} hat einen Beitrag geteilt der {reason} beinhaltet'
 userSaysSomethingReasonQuote: '{name} hat einen Beitrag zitiert der {reason} beinhaltet'
 seperateRenoteQuote: Getrennte Boost- und Zitat-Schaltflächen
-showAds: Anzeigen anzeigen
+showAds: Community-Banner anzeigen
 splash: Begrüßungsbildschirm
 customSplashIconsDescription: URLs für benutzerdefinierte Splash-Screen-Symbole, die
   durch Zeilenumbrüche getrennt sind und nach dem Zufallsprinzip jedes Mal angezeigt
