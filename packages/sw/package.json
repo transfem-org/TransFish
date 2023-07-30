@@ -3,6 +3,7 @@
 	"private": true,
 	"scripts": {
 		"build": "webpack",
+		"build:debug": "pnpm run build",
 		"watch": "pnpm swc src -d built -D -w",
 		"lint": "pnpm rome check **/*.ts --apply",
 		"format": "pnpm rome format * --write"
