@@ -87,17 +87,13 @@
 										v-if="user.isAdmin"
 										v-tooltip.noDelay="i18n.ts.isAdmin"
 										style="color: var(--badge)"
-										><i
-											class="ph-crown ph-bold ph-lg"
-										></i
+										><i class="ph-crown ph-bold ph-lg"></i
 									></span>
 									<span
 										v-if="!user.isAdmin && user.isModerator"
 										v-tooltip.noDelay="i18n.ts.isModerator"
 										style="color: var(--badge)"
-										><i
-											class="ph-gavel ph-bold ph-lg"
-										></i
+										><i class="ph-gavel ph-bold ph-lg"></i
 									></span>
 									<span
 										v-if="user.isLocked"
@@ -176,9 +172,7 @@
 									v-if="user.isAdmin"
 									v-tooltip.noDelay="i18n.ts.isAdmin"
 									style="color: var(--badge)"
-									><i
-										class="ph-crown ph-bold ph-lg"
-									></i
+									><i class="ph-crown ph-bold ph-lg"></i
 								></span>
 								<span
 									v-if="!user.isAdmin && user.isModerator"
@@ -187,9 +181,7 @@
 										color: var(--badge);
 										margin-left: 0.5rem;
 									"
-									><i
-										class="ph-gavel ph-bold ph-lg"
-									></i
+									><i class="ph-gavel ph-bold ph-lg"></i
 								></span>
 								<span
 									v-if="user.isLocked"
