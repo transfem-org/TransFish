@@ -14,7 +14,7 @@
 				:threshold="10"
 				:centeredSlides="true"
 				:modules="[Virtual]"
-				:space-between="20"
+				:space-between="30"
 				:virtual="true"
 				:allow-touch-move="
 					defaultStore.state.swipeOnMobile &&
