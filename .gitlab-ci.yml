@@ -46,6 +46,19 @@ testCommit:
     - develop
     - /^feature\/.*$/
 
+dockerPush:
+  stage: .post
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  only:
+    - main
+    - beta
+
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
 cache:
@@ -54,5 +67,3 @@ cache:
     - packages/*/node_modules/
     - packages/backend/native-utils/node_modules/
     - packages/backend/native-utils/.cargo/
-
-
