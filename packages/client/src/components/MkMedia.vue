@@ -53,6 +53,7 @@
 					:aria-label="media.comment"
 					preload="none"
 					controls
+					playsinline
 					@contextmenu.stop
 				>
 					<source :src="media.url" :type="mediaType" />

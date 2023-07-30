@@ -14,12 +14,15 @@ import { detectType } from "@/misc/get-file-info.js";
 import { convertToWebp } from "@/services/drive/image-processor.js";
 import { GenerateVideoThumbnail } from "@/services/drive/generate-video-thumbnail.js";
 import { StatusError } from "@/misc/fetch.js";
+import { ByteRangeReadable } from "./byte-range-readable.js";
 import { FILE_TYPE_BROWSERSAFE } from "@/const.js";
 
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(_filename);
 
 const assets = `${_dirname}/../../server/file/assets/`;
+
+const MAX_BYTE_RANGES = 10;
 
 const commonReadableHandlerGenerator =
 	(ctx: Koa.Context) => (e: Error): void => {
@@ -122,31 +125,88 @@ export default async function (ctx: Koa.Context) {
 		return;
 	}
 
+	let contentType;
+	let filename;
+	let fileHandle;
+
 	if (isThumbnail || isWebpublic) {
 		const { mime, ext } = await detectType(InternalStorage.resolvePath(key));
-		const filename = rename(file.name, {
-			suffix: isThumbnail ? "-thumb" : "-web",
-			extname: ext ? `.${ext}` : undefined,
-		}).toString();
+		(contentType = FILE_TYPE_BROWSERSAFE.includes(mime)
+			? mime
+			: "application/octet-stream"),
+			(filename = rename(file.name, {
+				suffix: isThumbnail ? "-thumb" : "-web",
+				extname: ext ? `.${ext}` : undefined,
+			}).toString());
 
-		ctx.body = InternalStorage.read(key);
-		ctx.set(
-			"Content-Type",
-			FILE_TYPE_BROWSERSAFE.includes(mime) ? mime : "application/octet-stream",
-		);
-		ctx.set("Cache-Control", "max-age=31536000, immutable");
-		ctx.set("Content-Disposition", contentDisposition("inline", filename));
+		fileHandle = await InternalStorage.open(key, "r");
 	} else {
-		const readable = InternalStorage.read(file.accessKey!);
-		readable.on("error", commonReadableHandlerGenerator(ctx));
-		ctx.body = readable;
-		ctx.set(
-			"Content-Type",
-			FILE_TYPE_BROWSERSAFE.includes(file.type)
-				? file.type
-				: "application/octet-stream",
-		);
-		ctx.set("Cache-Control", "max-age=31536000, immutable");
-		ctx.set("Content-Disposition", contentDisposition("inline", file.name));
+		(contentType = FILE_TYPE_BROWSERSAFE.includes(file.type)
+			? file.type
+			: "application/octet-stream"),
+			(filename = file.name);
+		fileHandle = await InternalStorage.open(file.accessKey!, "r");
+	}
+
+	// We can let Koa evaluate conditionals by setting
+	// the status to 200, along with the lastModified
+	// and etag properties, then checking ctx.fresh.
+	// Additionally, Range is ignored if a conditional GET would
+	// result in a 304 response, so we can return early here.
+
+	ctx.status = 200;
+	ctx.etag = file.md5;
+	ctx.lastModified = file.createdAt;
+
+	// When doing a conditional request, we MUST return a "Cache-Control" header
+	// if a normal 200 response would have included.
+	ctx.set("Cache-Control", "max-age=31536000, immutable");
+
+	if (ctx.fresh) {
+		ctx.status = 304;
+		return;
+	}
+
+	ctx.length = file.size;
+	ctx.set("Content-Disposition", contentDisposition("inline", filename));
+	ctx.set("Content-Type", contentType);
+
+	const ranges = ByteRangeReadable.parseByteRanges(
+		BigInt(file.size),
+		MAX_BYTE_RANGES,
+		ctx.headers["range"],
+	);
+	const readable =
+		ranges.length === 0
+			? fileHandle.createReadStream()
+			: new ByteRangeReadable(
+					fileHandle.fd,
+					BigInt(file.size),
+					ranges,
+					contentType,
+			  );
+	readable.on("error", commonReadableHandlerGenerator(ctx));
+	ctx.body = readable;
+
+	if (ranges.length === 0) {
+		ctx.set("Accept-Ranges", "bytes");
+	} else {
+		ctx.status = 206;
+		ctx.length = readable.size;
+		readable.on("close", async () => {
+			await fileHandle.close();
+		});
+
+		if (ranges.length === 1) {
+			ctx.set(
+				"Content-Range",
+				`bytes ${ranges[0].start}-${ranges[0].end}/${file.size}`,
+			);
+		} else {
+			ctx.set(
+				"Content-Type",
+				`multipart/byteranges; boundary=${readable.boundary}`,
+			);
+		}
 	}
 }
