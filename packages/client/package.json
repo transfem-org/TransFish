@@ -4,6 +4,7 @@
 	"scripts": {
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
+		"build:debug": "pnpm run build",
 		"lint": "pnpm rome check **/*.ts --apply && pnpm run lint:vue",
 		"lint:vue": "pnpm paralint --ext .vue --fix '**/*.vue' --cache",
 		"format": "pnpm rome format * --write && pnpm prettier --write '**/*.{scss,vue}' --cache --cache-strategy metadata"

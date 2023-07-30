@@ -6,6 +6,7 @@
 	"types": "./built/index.d.ts",
 	"scripts": {
 		"build": "pnpm swc src -d built -D",
+		"build:debug": "pnpm swc src -d built -s -D",
 		"render": "pnpm run build && pnpm run api && pnpm run api-prod && cp temp/firefish-js.api.json etc/ && pnpm run api-doc",
 		"tsd": "tsc && tsd",
 		"api": "pnpm api-extractor run --local --verbose",

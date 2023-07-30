@@ -67,7 +67,7 @@ Closes #10313
 
 - Fix: :bug: don't convert time since epoch for ratelimit
 
-https://calckey.social/notes/9gkasnzglmi07rpa
+https://firefish.social/notes/9gkasnzglmi07rpa
 
 - Fix: :bug: fix tapping parent on mobile causing side effects
 
@@ -1834,7 +1834,7 @@ Closes #9843
 
 - Fix: :recycle: use locale for error
 
-https://calckey.social/notes/9fippqiwhl287b5m
+https://firefish.social/notes/9fippqiwhl287b5m
 
 - Fix mfm-cheat-sheet styling
 
