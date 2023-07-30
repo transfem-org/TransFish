@@ -51,5 +51,8 @@ testCommit:
 cache:
   paths:
     - node_modules/
+    - packages/*/node_modules/
+    - packages/backend/native-utils/node_modules/
+    - packages/backend/native-utils/.cargo/
 
 
