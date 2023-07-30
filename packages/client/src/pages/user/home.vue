@@ -88,7 +88,7 @@
 										v-tooltip.noDelay="i18n.ts.isAdmin"
 										style="color: var(--badge)"
 										><i
-											class="ph-bookmark-simple ph-fill ph-lg"
+											class="ph-crown ph-bold ph-lg"
 										></i
 									></span>
 									<span
@@ -96,7 +96,7 @@
 										v-tooltip.noDelay="i18n.ts.isModerator"
 										style="color: var(--badge)"
 										><i
-											class="ph-bookmark-simple ph-bold ph-lg"
+											class="ph-gavel ph-bold ph-lg"
 										></i
 									></span>
 									<span
@@ -177,7 +177,7 @@
 									v-tooltip.noDelay="i18n.ts.isAdmin"
 									style="color: var(--badge)"
 									><i
-										class="ph-bookmark-simple ph-fill ph-lg"
+										class="ph-crown ph-bold ph-lg"
 									></i
 								></span>
 								<span
@@ -188,7 +188,7 @@
 										margin-left: 0.5rem;
 									"
 									><i
-										class="ph-bookmark-simple ph-bold ph-lg"
+										class="ph-gavel ph-bold ph-lg"
 									></i
 								></span>
 								<span
