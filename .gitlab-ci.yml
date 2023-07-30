@@ -38,7 +38,7 @@ testCommit:
   stage: build
   script:
     - pnpm i --frozen-lockfile
-    - pnpm run build
+    - pnpm run build:debug
     - pnpm run migrate
   only:
     - main
@@ -66,4 +66,4 @@ cache:
     - node_modules/
     - packages/*/node_modules/
     - packages/backend/native-utils/node_modules/
-    - packages/backend/native-utils/.cargo/
+    - packages/backend/native-utils/target/
