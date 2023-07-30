@@ -19,21 +19,21 @@ import { i18n } from "@/i18n";
 
 const paginationForLocal = {
 	endpoint: "notes/featured" as const,
-	limit: 10,
+	limit: 15,
 	origin: "local",
 	offsetMode: true,
 	params: {
-		days: 14,
+		days: 5,
 	},
 };
 
 const paginationForRemote = {
 	endpoint: "notes/featured" as const,
-	limit: 20,
+	limit: 15,
 	offsetMode: true,
 	params: {
 		origin: "remote",
-		days: 7,
+		days: 5,
 	},
 };
 
