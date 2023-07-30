@@ -219,7 +219,7 @@
 							{{ i18n.ts.sendModMail }}</FormButton
 						>
 						<FormButton
-							v-if="$i.isAdmin"
+							v-if="user.host == null && $i.isAdmin"
 							inline
 							danger
 							@click="delete2fa"
@@ -227,7 +227,7 @@
 							{{ i18n.ts.delete2fa }}</FormButton
 						>
 						<FormButton
-							v-if="$i.isAdmin"
+							v-if="user.host == null && $i.isAdmin"
 							inline
 							danger
 							@click="deletePasskeys"
