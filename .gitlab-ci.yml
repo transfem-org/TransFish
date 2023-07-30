@@ -45,8 +45,6 @@ testCommit:
     - beta
     - develop
     - /^feature\/.*$/
-  variables:
-      - $CI_COMMIT_MESSAGE !~ /^doc/
 
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
