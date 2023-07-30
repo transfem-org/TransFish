@@ -1,10 +1,7 @@
 _lang_: "Français"
-headlineMisskey: "Réseau relié par des notes"
-introMisskey: "Bienvenue ! Firefish est un service de microblogage décentralisé, libre
-  et ouvert.\nÉcrivez des « notes » et partagez ce qui se passe à l’instant présent,
-  autour de vous avec les autres 📡\nLa fonction « réactions », vous permet également
-  d’ajouter une réaction rapide aux notes des autres utilisateur·rice·s 👍\nExplorons
-  un nouveau monde 🚀"
+headlineFirefish: "Réseau relié par des notes"
+introFirefish: "Bienvenue ! Firefish est une plateforme de réseau social décentralisé
+  et open source qui est gratuite pour toujours ! 🚀"
 monthAndDay: "{day}/{month}"
 search: "Rechercher"
 notifications: "Notifications"
@@ -19,7 +16,7 @@ enterUsername: "Entrer un nom d’utilisateur·rice"
 renotedBy: "Renoté par {user}"
 noNotes: "Aucune note"
 noNotifications: "Aucune notification"
-instance: "Instance"
+instance: "Serveur"
 settings: "Paramètres"
 basicSettings: "Paramètres généraux"
 otherSettings: "Paramètres avancés"
@@ -32,14 +29,14 @@ login: "Se connecter"
 loggingIn: "Connexion en cours"
 logout: "Se déconnecter"
 signup: "S’inscrire"
-uploading: "Envoi en cours"
+uploading: "Envoi en cours..."
 save: "Enregistrer"
 users: "Utilisateur·rice·s"
 addUser: "Ajouter un·e utilisateur·rice"
 favorite: "Ajouter aux favoris"
 favorites: "Favoris"
 unfavorite: "Retirer des favoris"
-favorited: "Ajouté à mes favoris"
+favorited: "Ajouté à mes favoris."
 alreadyFavorited: "Déjà ajouté aux favoris."
 cantFavorite: "Impossible d'ajouter aux favoris."
 pin: "Épingler sur le profil"
@@ -55,8 +52,8 @@ sendMessage: "Envoyer un message"
 copyUsername: "Copier le nom d’utilisateur·rice"
 searchUser: "Chercher un·e utilisateur·rice"
 reply: "Répondre"
-loadMore: "Afficher plus …"
-showMore: "Afficher plus …"
+loadMore: "Afficher plus"
+showMore: "Afficher plus"
 showLess: "Fermer"
 youGotNewFollower: "Vous suit"
 receiveFollowRequest: "Demande d’abonnement reçue"
@@ -151,7 +148,7 @@ addEmoji: "Ajouter un émoji"
 settingGuide: "Configuration proposée"
 cacheRemoteFiles: "Mise en cache des fichiers distants"
 cacheRemoteFilesDescription: "Lorsque cette option est désactivée, les fichiers distants
-  sont chargés directement depuis l’instance distante. La désactiver diminuera certes
+  sont chargés directement depuis le serveur distant. La désactiver diminuera certes
   l’utilisation de l’espace de stockage local mais augmentera le trafic réseau puisque
   les miniatures ne seront plus générées."
 flagAsBot: "Ce compte est un robot"
@@ -160,13 +157,13 @@ flagAsBotDescription: "Si ce compte est géré de manière automatisée, choisis
   afin d'éviter des chaînes d'interaction sans fin avec d'autres robots et d'ajuster
   les systèmes internes de Firefish pour traiter ce compte comme un robot."
 flagAsCat: "Ce compte est un chat"
-flagAsCatDescription: "Activer l'option \" Je suis un chat \" pour ce compte."
+flagAsCatDescription: "Vous aurez des oreilles de chat et parlerez comme un chat !"
 flagShowTimelineReplies: "Afficher les réponses dans le fil"
 autoAcceptFollowed: "Accepter automatiquement les demandes d’abonnement venant d’utilisateur·rice·s
   que vous suivez"
 addAccount: "Ajouter un compte"
 loginFailed: "Échec de la connexion"
-showOnRemote: "Voir sur l’instance distante"
+showOnRemote: "Ouvrir la page d’origine"
 general: "Général"
 wallpaper: "Fond d’écran"
 setWallpaper: "Définir le fond d’écran"
@@ -176,17 +173,17 @@ youHaveNoLists: "Vous n’avez aucune liste"
 followConfirm: "Êtes-vous sûr·e de vouloir suivre {name} ?"
 proxyAccount: "Compte proxy"
 proxyAccountDescription: "Un compte proxy se comporte, dans certaines conditions,
-  comme un·e abonné·e distant·e pour les utilisateurs d'autres instances. Par exemple,
-  quand un·e utilisateur·rice ajoute un·e utilisateur·rice distant·e à une liste,
-  ses notes ne seront pas visibles sur l'instance si personne ne suit cet·te utilisateur·rice.
-  Le compte proxy va donc suivre cet·te utilisateur·rice pour que ses notes soient
-  acheminées."
+  comme un·e abonné·e distant·e pour les utilisateur·rice·s d'autres serveurs. Par
+  exemple, quand un·e utilisateur·rice local ajoute un·e utilisateur·rice distant·e
+  à une liste, ses notes ne seront pas visibles sur le serveur si personne ne suit
+  cet·te utilisateur·rice. Le compte proxy va donc suivre cet·te utilisateur·rice
+  pour que ses notes soient acheminées."
 host: "Serveur distant"
 selectUser: "Sélectionner un·e utilisateur·rice"
 recipient: "Destinataire"
 annotation: "Commentaires"
 federation: "Fédération"
-instances: "Instance"
+instances: "Serveurs"
 registeredAt: "Premier contact le"
 latestRequestSentAt: "Dernière requête envoyée"
 latestRequestReceivedAt: "Dernière requête reçue"
@@ -196,7 +193,7 @@ charts: "Graphiques"
 perHour: "par heure"
 perDay: "par jour"
 stopActivityDelivery: "Arrêter l’envoi de l’activité"
-blockThisInstance: "Bloquer cette instance"
+blockThisInstance: "Bloquer ce serveur"
 operations: "Opérations"
 software: "Logiciel"
 version: "Version"
@@ -206,7 +203,7 @@ jobQueue: "File d’attente"
 cpuAndMemory: "Processeur et mémoire"
 network: "Réseau"
 disk: "Disque"
-instanceInfo: "Informations sur l’instance"
+instanceInfo: "Informations du serveur"
 statistics: "Statistiques"
 clearQueue: "Vider la file d’attente"
 clearQueueConfirmTitle: "Êtes-vous sûr·e de vouloir vider la file d’attente ?"
@@ -215,16 +212,16 @@ clearQueueConfirmText: "Les notes non distribuées ne seront pas délivrées. No
 clearCachedFiles: "Vider le cache"
 clearCachedFilesConfirm: "Êtes-vous sûr·e de vouloir vider tout le cache de fichiers
   distants ?"
-blockedInstances: "Instances bloquées"
-blockedInstancesDescription: "Listez les instances que vous désirez bloquer, une par
-  ligne. Ces instances ne seront plus en capacité d'interagir avec votre instance."
+blockedInstances: "Serveurs bloqués"
+blockedInstancesDescription: "Listez les serveurs que vous désirez bloquer, un par
+  ligne. Ces serveurs ne seront plus en capacité d'interagir avec votre serveur."
 muteAndBlock: "Masqué·e·s / Bloqué·e·s"
 mutedUsers: "Utilisateur·rice·s en sourdine"
 blockedUsers: "Utilisateur·rice·s bloqué·e·s"
 noUsers: "Il n’y a pas d’utilisateur·rice·s"
 editProfile: "Modifier votre profil"
 noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer cette note ?"
-pinLimitExceeded: "Vous ne pouvez plus épingler d’autres notes."
+pinLimitExceeded: "Vous ne pouvez pas épingler plus de notes"
 intro: "L’installation de Firefish est terminée ! Veuillez créer un compte administrateur."
 done: "Terminé"
 processing: "Traitement en cours"
@@ -239,9 +236,9 @@ all: "Tous"
 subscribing: "Abonné"
 publishing: "Publié"
 notResponding: "Ne répond pas"
-instanceFollowing: "Abonnements de l'instance"
-instanceFollowers: "Abonné·e·s de l’instance"
-instanceUsers: "Utilisateur·rice·s de cette l’instance"
+instanceFollowing: "Abonnements d’un serveur"
+instanceFollowers: "Abonné·e·s du serveur"
+instanceUsers: "Utilisateur·rice·s de ce serveur"
 changePassword: "Modifier votre mot de passe"
 security: "Sécurité"
 retypedNotMatch: "Les saisies ne correspondent pas."
@@ -327,14 +324,14 @@ whenServerDisconnected: "Lorsque la connexion au serveur est perdue"
 disconnectedFromServer: "Déconnecté·e du serveur"
 reload: "Rafraîchir"
 doNothing: "Ignorer"
-reloadConfirm: "Voulez-vous recharger?"
+reloadConfirm: "Voulez-vous recharger le fil ?"
 watch: "Surveiller"
 unwatch: "Ne plus surveiller"
 accept: "Autoriser"
 reject: "Refuser"
 normal: "Normal"
-instanceName: "Nom de l’instance"
-instanceDescription: "Description de l’instance"
+instanceName: "Nom du serveur"
+instanceDescription: "Description du serveur"
 maintainerName: "L’administrateur·rice"
 maintainerEmail: "Email de l’administrateur·rice"
 tosUrl: "URL des conditions d’utilisation"
@@ -366,8 +363,8 @@ pinnedUsers: "Utilisateur·rice épinglé·e"
 pinnedUsersDescription: "Listez les utilisateur·rice·s que vous souhaitez voir épinglé·e·s
   sur la page \"Découvrir\", un·e par ligne."
 pinnedPages: "Pages épinglées"
-pinnedPagesDescription: "Inscrivez le chemin des pages que vous souhaitez épingler
-  en haut de la page de l'instance. Séparez les pages d'un retour à la ligne."
+pinnedPagesDescription: "Inscrivez le chemin des Pages que vous souhaitez épingler
+  en haut de la page du serveur. Séparez les d'un retour à la ligne."
 pinnedClipId: "Identifiant du clip épinglé"
 pinnedNotes: "Note épinglée"
 hcaptcha: "hCaptcha"
@@ -581,12 +578,12 @@ deleteAllFiles: "Supprimer tous les fichiers"
 deleteAllFilesConfirm: "Êtes-vous sûr·e de vouloir supprimer tous les fichiers ?"
 removeAllFollowing: "Retenir tous les abonnements"
 removeAllFollowingDescription: "Se désabonner de tous les comptes de {host}. Veuillez
-  lancer cette action uniquement si l’instance n’existe plus."
+  lancer cette action uniquement si le serveur n’existe plus."
 userSuspended: "Cet·te utilisateur·rice a été suspendu·e."
 userSilenced: "Cette utilisateur·trice a été mis·e en sourdine."
 yourAccountSuspendedTitle: "Ce compte est suspendu"
 yourAccountSuspendedDescription: "Ce compte est suspendu car vous avez enfreint les
-  conditions d'utilisation de l'instance, ou pour un motif similaire. Si vous souhaitez
+  conditions d'utilisation du serveur, ou pour un motif similaire. Si vous souhaitez
   connaître en détail les raisons de cette suspension, renseignez-vous auprès de l'administrateur·rice
   de votre instance. Merci de ne pas créer de nouveau compte."
 menu: "Menu"
@@ -651,7 +648,7 @@ smtpSecureInfo: "Désactiver cette option lorsque STARTTLS est utilisé"
 testEmail: "Tester la distribution de courriel"
 wordMute: "Filtre de mots"
 regexpError: "Erreur d’expression régulière"
-instanceMute: "Instance en sourdine"
+instanceMute: "Serveur masqué"
 userSaysSomething: "{name} a dit quelque chose"
 makeActive: "Activer"
 display: "Affichage"
@@ -673,7 +670,7 @@ other: "Autre"
 regenerateLoginToken: "Régénérer le jeton de connexion"
 regenerateLoginTokenDescription: "Générer un nouveau jeton d'authentification. Cette
   opération ne devrait pas être nécessaire ; lors de la génération d'un nouveau jeton,
-  tous les appareils seront déconnectés. "
+  tous les appareils seront déconnectés."
 setMultipleBySeparatingWithSpace: "Vous pouvez en définir plusieurs, en les séparant
   par des espaces."
 fileIdOrUrl: "ID du fichier ou URL"
@@ -683,7 +680,7 @@ abuseReports: "Signalements"
 reportAbuse: "Signaler"
 reportAbuseOf: "Signaler {name}"
 fillAbuseReportDescription: "Veuillez expliquer les raisons du signalement. S'il s'agit
-  d'une note précise, veuillez en donner le lien."
+  d'une note particulière, veuillez inclure le lien."
 abuseReported: "Le rapport est envoyé. Merci."
 reporter: "Signalé par"
 reporteeOrigin: "Origine du signalement"
@@ -696,11 +693,11 @@ openInSideView: "Ouvrir en vue latérale"
 defaultNavigationBehaviour: "Navigation par défaut"
 editTheseSettingsMayBreakAccount: "La modification de ces paramètres peut endommager
   votre compte."
-instanceTicker: "Nom de l'instance d'origine des notes"
+instanceTicker: "Nom du serveur d'origine des notes"
 waitingFor: "En attente de {x}"
 random: "Aléatoire"
 system: "Système"
-switchUi: "Modifier l'interface utilisateur"
+switchUi: "Mise en page"
 desktop: "Bureau"
 clip: "Clip"
 createNew: "Créer nouveau"
@@ -750,7 +747,7 @@ developer: "Développeur"
 makeExplorable: "Rendre le compte visible sur la page \"Découvrir\"."
 makeExplorableDescription: "Si vous désactivez cette option, votre compte n'apparaîtra
   pas sur la page \"Découvrir\"."
-showGapBetweenNotesInTimeline: "Afficher un écart entre les notes sur la Timeline"
+showGapBetweenNotesInTimeline: "Afficher un écart entre les notes du fil d’actualité"
 duplicate: "Duliquer"
 left: "Gauche"
 center: "Centrer"
@@ -766,10 +763,10 @@ nUsers: "{n} utilisateur·rice·s"
 nNotes: "{n} Notes"
 sendErrorReports: "Envoyer les rapports d’erreur"
 sendErrorReportsDescription: "Si vous activez l'envoi des rapports d'erreur, vous
-  contribuerez à améliorer la qualité de Firefish grâce au partage d'informations détaillées
-  sur les erreurs lorsqu'un problème survient.\nCela inclut des informations telles
-  que la version de votre système d'exploitation, le type de navigateur que vous utilisez,
-  votre historique d'activité, etc."
+  contribuerez à améliorer la qualité de Firefish grâce au partage d'informations
+  détaillées sur les erreurs lorsqu'un problème survient.\nCela inclut des informations
+  telles que la version de votre système d'exploitation, le type de navigateur que
+  vous utilisez, votre historique d'activité, etc."
 myTheme: "Mes thèmes"
 backgroundColor: "Arrière-plan"
 accentColor: "Accentuation"
@@ -793,14 +790,14 @@ capacity: "Capacité "
 inUse: "utilisé"
 editCode: "Modifier le code"
 apply: "Appliquer"
-receiveAnnouncementFromInstance: "Recevoir les messages d'information de l'instance"
+receiveAnnouncementFromInstance: "Recevoir les messages d'information du serveur"
 emailNotification: "Notifications par mail"
 publish: "Public"
-inChannelSearch: "Chercher dans le canal"
+inChannelSearch: "Chercher dans la chaîne"
 useReactionPickerForContextMenu: "Clic-droit pour ouvrir le panneau de réactions"
 typingUsers: "{users} est en train d'écrire"
 jumpToSpecifiedDate: "Se rendre à la date"
-showingPastTimeline: "Un fil ancien est affiché"
+showingPastTimeline: "Un fil âgé est affiché"
 clear: "Effacer"
 markAllAsRead: "Tout marquer comme lu"
 goBack: "Retour"
@@ -818,13 +815,13 @@ unknown: "Inconnu"
 onlineStatus: "Statut"
 hideOnlineStatus: "Se rendre invisible"
 hideOnlineStatusDescription: "Rendre votre statut invisible peut diminuer les performances
-  de certaines fonctionnalités, telles que la Recherche."
+  de certaines fonctionnalités, telles que la recherche."
 online: "En ligne"
 active: "Actif·ve"
 offline: "Hors ligne"
 notRecommended: "Déconseillé"
 botProtection: "Protection contre les bots"
-instanceBlocking: "Instances bloquées/mise en sourdine"
+instanceBlocking: "Gestion de la Fédération"
 selectAccount: "Sélectionner un compte"
 switchAccount: "Changer de compte"
 enabled: "Activé"
@@ -842,7 +839,7 @@ gallery: "Galerie"
 recentPosts: "Les plus récentes"
 popularPosts: "Les plus consultées"
 shareWithNote: "Partager dans une note"
-ads: "Publicité"
+ads: "Bannière communautaire"
 expiration: "Échéance"
 memo: "Pense-bête"
 priority: "Priorité"
@@ -889,16 +886,16 @@ filter: "Filtre"
 controlPanel: "Panneau de contrôle"
 manageAccounts: "Gérer les comptes"
 makeReactionsPublic: "Rendre les réactions publiques"
-makeReactionsPublicDescription: "Ceci rendra la liste de toutes vos réactions données
-  publique."
-classic: "Classique"
+makeReactionsPublicDescription: "Ceci rendra public la liste de toutes vos réactions
+  passées."
+classic: "Centré"
 muteThread: "Masquer cette discussion"
 unmuteThread: "Ne plus masquer le fil"
 ffVisibility: "Visibilité des abonnés/abonnements"
 ffVisibilityDescription: "Permet de configurer qui peut voir les personnes que tu
   suis et les personnes qui te suivent."
-continueThread: "Afficher la suite du fil"
-deleteAccountConfirm: "Votre compte sera supprimé. Êtes vous certain ?"
+continueThread: "Continuer le fil"
+deleteAccountConfirm: "Ce compte sera définitivement supprimé. Êtes vous certain ?"
 incorrectPassword: "Le mot de passe est incorrect."
 voteConfirm: "Confirmez-vous votre vote pour « {choice} » ?"
 hide: "Masquer"
@@ -913,12 +910,12 @@ overridedDeviceKind: "Type d’appareil"
 smartphone: "Smartphone"
 tablet: "Tablette"
 auto: "Automatique"
-themeColor: "Couleur du thème"
+themeColor: "Couleur du bandeau d’information du serveur"
 size: "Taille"
 numberOfColumn: "Nombre de colonnes"
 searchByGoogle: "Google"
-instanceDefaultLightTheme: "Thème clair par défaut sur toute l’instance"
-instanceDefaultDarkTheme: "Thème sombre par défaut sur toute l’instance"
+instanceDefaultLightTheme: "Thème clair par défaut sur tout le serveur"
+instanceDefaultDarkTheme: "Thème sombre par défaut sur tout le serveur"
 instanceDefaultThemeDescription: "Saisissez le code du thème en format objet."
 mutePeriod: "Durée de mise en sourdine"
 indefinitely: "Illimité"
@@ -969,10 +966,10 @@ _forgotPassword:
     Un lien vous permettant de réinitialiser votre mot de passe sera envoyé à cette
     adresse."
   ifNoEmail: "Si vous n'avez pas enregistré d'adresse e-mail, merci de contacter l'administrateur·rice
-    de votre instance."
-  contactAdmin: "Cette instance ne permettant pas l'utilisation d'adresses e-mail,
-    prenez contact avec l'administrateur·rice pour procéder à la réinitialisation
-    de votre mot de passe."
+    de votre serveur."
+  contactAdmin: "Ce serveur ne permettant pas l'utilisation d'adresses e-mail, prenez
+    contact avec l'administrateur·rice pour procéder à la réinitialisation de votre
+    mot de passe."
 _gallery:
   my: "Mes publications"
   liked: " Publications que j'ai aimées"
@@ -1003,6 +1000,15 @@ _aboutFirefish:
   morePatrons: "Nous apprécions vraiment le soutien de nombreuses autres personnes
     non mentionnées ici. Merci à toutes et à tous ! 🥰"
   patrons: "Contributeurs"
+  pleaseDonateToFirefish: Merci de considérer de faire un don pour soutenir le développement
+    de Firefish.
+  sponsors: Sponsors Firefish
+  donateTitle: Firefish vous plaît ?
+  pleaseDonateToHost: Également, veuillez envisager de faire un don à votre serveur
+    d'accueil, {host}, pour contribuer à couvrir ses frais de fonctionnement.
+  donateHost: Faire un don à {host}
+  patronsList: Listé chronologiquement, pas par taille de donation. Faite un don avec
+    le lien ci-dessus pour avoir votre nom affiché ici !
 _nsfw:
   respect: "Cacher les médias marqués comme contenu sensible"
   ignore: "Afficher les médias sensibles"
@@ -1016,40 +1022,39 @@ _mfm:
   mentionDescription: "Vous pouvez afficher un utilisateur spécifique en indiquant
     une arobase suivie d'un nom d'utilisateur"
   hashtag: "Hashtags"
-  hashtagDescription: "Vous pouvez afficher un mot-dièse en utilisant un croisillon
-    et du texte"
+  hashtagDescription: "Vous pouvez afficher les hashtags en utilisant un croisillon
+    et du texte."
   url: "URL"
   urlDescription: "L'adresse web peut être affichée."
   link: "Lien"
   linkDescription: "Une partie précise d'une phrase peut être liée à l'adresse web."
   bold: "Gras"
-  boldDescription: "Il est possible de mettre le texte en exergue en le mettant en
-    gras."
+  boldDescription: "Mise en évidence du texte en le rendant plus épais."
   small: "Diminuer l'emphase"
   smallDescription: "Le contenu peut être affiché en petit et fin."
   center: "Centrer"
   centerDescription: "Le contenu peut être centré"
   inlineCode: "Code (inline)"
-  inlineCodeDescription: "Coloration syntaxique des lignes de code."
+  inlineCodeDescription: "Affiche la coloration syntaxique des lignes de code."
   blockCode: "Bloc de code"
-  blockCodeDescription: "Coloration syntaxique des lignes de code pour les blocs multi-lignes."
+  blockCodeDescription: "Afficher la coloration syntaxique de multiples lignes de
+    code dans un bloc."
   inlineMath: "Formule mathématique (inline)"
-  inlineMathDescription: "Afficher les formules mathématiques (KaTeX)."
+  inlineMathDescription: "Afficher les formules mathématiques (KaTeX)"
   blockMath: "Formule mathématique (bloc)"
-  blockMathDescription: "Afficher les formules mathématiques (KaTeX) multi-lignes
-    dans un bloc."
+  blockMathDescription: "Afficher les formules mathématiques (KaTeX) dans un bloc"
   quote: "Citer"
   quoteDescription: "Affiche le contenu sous forme de citation."
   emoji: "Émojis personnalisés"
-  emojiDescription: "Entourez le nom de l'émoji personnalisé de deux points pour l'afficher."
+  emojiDescription: "Encadrer le nom de l'émoji personnalisé de deux points pour l'afficher."
   search: "Rechercher"
   searchDescription: "Affiche une boîte de recherche avec du texte pré-saisi."
   flip: "Inverser"
-  flipDescription: "Rotation verticale ou horizontale du contenu"
+  flipDescription: "Rotation verticale ou horizontale du contenu."
   jelly: "Animation (Gelée)"
-  jellyDescription: "Donne une animation d'étirement."
+  jellyDescription: "Donne une animation d'étirement comme de la gelée."
   tada: "Animation (Tada)"
-  tadaDescription: "Donne une animation qui donne une impression de \"Tada !\""
+  tadaDescription: "Donne une animation qui donne une impression de \"Tada !\"."
   jump: "Animation (Saut)"
   jumpDescription: "Donne une animation qui saute."
   bounce: "Animation (Rebond)"
@@ -1065,12 +1070,11 @@ _mfm:
   x3: "Très grand"
   x3Description: "Afficher le contenu en très grand."
   x4: "Plus grand"
-  x4Description: "Afficher le contenu en plus grand."
+  x4Description: "Afficher le contenu encore plus grand que grand."
   blur: "Flou"
-  blurDescription: "Le contenu peut être flouté ; il sera visible en le survolant
-    avec le curseur."
+  blurDescription: "Floutage du contenu. Il sera visible en le survolant avec le curseur."
   font: "Police de caractères"
-  fontDescription: "Il est possible de choisir la police."
+  fontDescription: "Choisir la police du contenu."
   rainbow: "Arc-en-ciel"
   rainbowDescription: "Permet d'afficher le contenu en couleurs arc-en-ciel."
   sparkle: "Paillettes"
@@ -1082,6 +1086,23 @@ _mfm:
     MFM.
   rotateDescription: Pivoter le contenu d'un angle spécifique.
   position: Position
+  advanced: MFM avancées
+  warn: Les MFM peuvent contenir des animations à mouvement rapide ou clignotantes
+  crop: Rogner
+  positionDescription: Déplacer le contenu selon une valeur spécifiée.
+  play: Animer les MFM
+  stop: Arrêter les MFM
+  alwaysPlay: Toujours lire automatiquement toutes les MFM animées
+  advancedDescription: Si désactivé, n'autorise que la mise en forme de base, sauf
+    si une MFM animée est en cours de lecture
+  cropDescription: Rogner le contenu.
+  scale: Mettre à l'échelle
+  scaleDescription: Mettre le contenu à l'échelle selon une valeur spécifiée.
+  foreground: Couleur de premier plan
+  foregroundDescription: Changer la couleur de premier plan d'un texte.
+  backgroundDescription: Changer la couleur d'arrière-plan d'un texte.
+  background: Couleur d'arrière-plan
+  plain: Simple
 _instanceTicker:
   none: "Cacher "
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
@@ -1092,8 +1113,8 @@ _serverDisconnectedBehavior:
   quiet: "Afficher un avertissement discret"
   nothing: Ne rien faire
 _channel:
-  create: "Créer un canal"
-  edit: "Éditer le canal"
+  create: "Créer une chaîne"
+  edit: "Éditer la chaîne"
   setBanner: "Sélectionner la bannière"
   removeBanner: "Supprimer la bannière"
   featured: "Tendances"
@@ -1102,6 +1123,7 @@ _channel:
   usersCount: "{n} Participant·e·s"
   notesCount: "{n} Notes"
   nameAndDescription: Nom et description
+  nameOnly: Nom uniquement
 _menuDisplay:
   sideFull: "Latéral"
   sideIcon: "Latéral (icônes)"
@@ -1113,20 +1135,20 @@ _wordMute:
     un saut de ligne pour une condition OR."
   muteWordsDescription2: "Pour utiliser des expressions régulières (regex), mettez
     les mots-clés entre barres obliques."
-  softDescription: "Masquez les notes de votre fil selon les paramètres que vous définissez."
-  hardDescription: "Empêchez votre fil de charger les notes selon les paramètres que
-    vous définissez. Cette action est irréversible : si vous modifiez ces paramètres
-    plus tard, les notes précédemment filtrées ne seront pas récupérées."
+  softDescription: "Masquez de votre fil d’actualité les notes qui répondent aux conditions
+    définies."
+  hardDescription: "Empêche les notes qui remplissent les conditions définies d'être
+    ajoutées au fil d'actualité. Cette action est irréversible : si vous modifiez
+    ces conditions plus tard, les notes précédemment filtrées ne seront pas récupérées."
   soft: "Doux"
   hard: "Strict"
   mutedNotes: "Notes filtrées"
 _instanceMute:
-  instanceMuteDescription2: "Séparer avec de nouvelles lignes"
-  title: "Masque les notes venant des instances listées."
-  heading: "Instances à mettre en sourdine"
-  instanceMuteDescription: Ceci va masquer toute publication ou partage des instances
-    listées, incluant celles des personnes répondant à des personnes des instances
-    masquées.
+  instanceMuteDescription2: "Séparer avec des sauts de lignes"
+  title: "Masque les notes venant des serveurs listés."
+  heading: "Serveurs à mettre en sourdine/masquer"
+  instanceMuteDescription: Ceci va masquer toute publication ou partage de serveurs
+    listés, incluant celles des personnes répondant à des personnes des serveurs masqués.
 _theme:
   explore: "Explorer les thèmes"
   install: "Installer un thème"
@@ -1210,14 +1232,14 @@ _sfx:
   chat: "Discuter"
   chatBg: "Discussion (arrière-plan)"
   antenna: "Réception de l’antenne"
-  channel: "Notifications de canal"
+  channel: "Notifications de chaîne"
 _ago:
   future: "Futur"
   justNow: "à l’instant"
   secondsAgo: "Il y a {n}s"
   minutesAgo: "Il y a {n}min"
-  hoursAgo: "Il y a {n} heures"
-  daysAgo: "Il y a {n} jours"
+  hoursAgo: "Il y a {n}h"
+  daysAgo: "Il y a {n}j"
   weeksAgo: "Il y a {n} semaines"
   monthsAgo: "Il y a {n} mois"
   yearsAgo: "Il y a {n} ans"
@@ -1234,24 +1256,23 @@ _tutorial:
   step2_2: "En fournissant quelques informations sur qui vous êtes, il sera plus facile
     pour les autres de savoir s'ils veulent voir vos notes ou vous suivre."
   step3_1: "Maintenant il est temps de suivre des gens !"
-  step3_2: "Votre page d'accueil et vos timelines sociales sont basées sur les personnes
-    que vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
+  step3_2: "Vos fil d’actualité Principal et Social sont basés sur les personnes que
+    vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
-  step4_2: "Pour votre premier post, certaines personnes aiment faire un post {introduction}
-    ou un simple post 'Hello world'."
-  step5_1: "Lignes de temps, lignes de temps partout !"
-  step5_2: "Votre instance a {timelines} différentes chronologies activées !"
-  step5_3: "La timeline Home {icon} est l'endroit où vous pouvez voir les publications
-    de vos followers."
-  step5_4: "La timeline locale {icon} est l'endroit où vous pouvez voir les messages
-    de tout le monde sur cette instance."
-  step5_5: "La chronologie {icon} sociale est l'endroit où vous pouvez voir uniquement
-    les publications des comptes que vous suivez."
-  step5_6: "La chronologie {icon} recommandée est l'endroit où vous pouvez voir les
-    publications des instances recommandées par les administrateurs."
-  step5_7: "La timeline globale {icon} est l'endroit où vous pouvez voir les messages
-    de toutes les autres instances connectées."
+  step4_2: "Pour votre première note, certaines personnes aiment faire une note {introduction}
+    ou une simple note 'Bonjours tout le monde !'."
+  step5_1: "Des fils, des fils d’actualité partout !"
+  step5_2: "Votre serveur a {timelines} fils différents disponibles !"
+  step5_3: "Le fil {icon} Principal est l'endroit où vous pouvez voir les publications
+    de vos abonnements."
+  step5_4: "La fil {icon} Local est l'endroit où vous pouvez voir les messages de
+    tout le monde sur ce serveur."
+  step5_5: "Le fil {icon} Social est une combinaison des fils Principal et Local."
+  step5_6: "Le fil {icon} Recommandé est l'endroit où vous pouvez voir les publications
+    des serveurs recommandés par vos administrateurs."
+  step5_7: "Le fil {icon} Global est l'endroit où vous pouvez voir les messages de
+    tout les autres serveurs connectés."
   step6_1: "Alors quel est cet endroit ?"
   step6_2: "Eh bien, vous ne venez pas de rejoindre Firefish. Vous avez rejoint un
     portail vers le Fediverse, un réseau interconnecté de milliers de serveurs, appelés
@@ -1276,6 +1297,28 @@ _2fa:
     davantage le processus de connexion grâce à une clé de sécurité matérielle qui
     prend en charge FIDO2, ou bien en configurant l'authentification par empreinte
     digitale ou par code PIN sur votre appareil."
+  token: Jeton 2FA
+  step3Title: Entrez un code d’authentification
+  chromePasskeyNotSupported: Les clés de passe Chrome ne sont actuellement pas prises
+    en charge.
+  step2Click: En cliquant sur ce QR code, vous pourrez enregistrer l'authentification
+    à deux facteurs (2FA) sur votre clé de sécurité ou votre application d'authentification
+    sur téléphone.
+  whyTOTPOnlyRenew: L'application d'authentification ne peut pas être supprimée tant
+    qu'une clé de sécurité est enregistrée.
+  securityKeyName: Entrez un nom de clé
+  removeKeyConfirm: Voulez-vous vraiment supprimer la clé {name} ?
+  renewTOTP: Reconfigurer l'application d'authentification
+  renewTOTPConfirm: Cela entraînera l'arrêt de fonctionnement des codes de vérification
+    provenant de votre application précédente
+  renewTOTPOk: Reconfigurer
+  securityKeyNotSupported: Votre navigateur ne prend pas en charge les clés de sécurité.
+  removeKey: Supprimer la clé de sécurité
+  renewTOTPCancel: Annuler
+  registerTOTPBeforeKey: Veuillez configurer une application d'authentification pour
+    enregistrer une clé de sécurité ou un mot de passe.
+  tapSecurityKey: Veuillez suivre les instructions de votre navigateur pour enregistrer
+    la clé de sécurité ou le mot de passe
 _permissions:
   "read:account": "Afficher les informations du compte"
   "write:account": "Mettre à jour les informations de votre compte"
@@ -1317,13 +1360,15 @@ _auth:
   pleaseGoBack: "Veuillez retourner à l’application"
   callback: "Retour vers l’application"
   denied: "Accès refusé"
-  copyAsk: Veuillez coller le code d’autorisation à l'application
+  copyAsk: "Veuillez coller le code d’autorisation suivant dans l'application :"
+  allPermissions: Accès complet au compte
 _antennaSources:
   all: "Toutes les notes"
-  homeTimeline: "Notes venant des utilisateur·rice·s auxquel·les je suis abonné"
+  homeTimeline: "Notes provenant des utilisateur·rice·s auxquel·les je suis abonné"
   users: "Notes venant de la part d’utilisateur·rice·s précis"
   userList: "Notes venant d’une liste spécifique"
   userGroup: "Notes venant d’utilisateur·rice·s du groupe spécifié"
+  instances: Notes de tous les utilisateurs d'un serveur
 _weekday:
   sunday: "Dimanche"
   monday: "Lundi"
@@ -1333,9 +1378,9 @@ _weekday:
   friday: "Vendredi"
   saturday: "Samedi"
 _widgets:
-  memo: "Note collante"
+  memo: "Post-it"
   notifications: "Notifications"
-  timeline: "Fil"
+  timeline: "Fil d’actualité"
   calendar: "Calendrier"
   trends: "Tendances"
   clock: "Horloge"
@@ -1344,7 +1389,7 @@ _widgets:
   photos: "Photos"
   digitalClock: "Horloge numérique"
   federation: "Fédération"
-  postForm: "Formulaire de publication"
+  postForm: "Champ de publication"
   slideshow: "Diaporama"
   button: "Bouton"
   onlineUsers: "Utilisateurs en ligne"
@@ -1356,6 +1401,12 @@ _widgets:
   _userList:
     chooseList: Sélectionner une liste
   unixClock: Horloge UNIX
+  meiliIndexCount: Notes indexées
+  serverInfo: Info serveur
+  meiliStatus: État du serveur
+  meiliSize: Taille de l’index
+  instanceCloud: Nuage de serveurs
+  rssTicker: Bandeau RSS
 _cw:
   hide: "Masquer"
   show: "Afficher plus …"
@@ -1385,19 +1436,19 @@ _poll:
   remainingSeconds: "{s} secondes restantes"
 _visibility:
   public: "Public"
-  publicDescription: "Publier à tou·te·s les utilisateur·rice·s"
-  home: "Principal"
+  publicDescription: "Publier sur tous les fils publics"
+  home: "Non-listés"
   homeDescription: "Publier sur le fil principal uniquement"
   followers: "Abonné·e·s"
-  followersDescription: "Publier à vos abonné·e·s uniquement"
+  followersDescription: "Publier à vos abonné·e·s et mentions uniquement"
   specified: "Direct"
   specifiedDescription: "Publier uniquement aux utilisateur·rice·s mentionné·e·s"
   localOnly: "Local seulement"
-  localOnlyDescription: "Caché pour les utilisateurs distant"
+  localOnlyDescription: "Caché pour les utilisateur·rice·s distant"
 _postForm:
   replyPlaceholder: "Répondre à cette note ..."
   quotePlaceholder: "Citez cette note ..."
-  channelPlaceholder: "Publier vers le canal"
+  channelPlaceholder: "Publier sur une chaîne…"
   _placeholders:
     a: "Quoi de neuf ?"
     b: "Il s'est passé quelque chose ?"
@@ -1413,13 +1464,14 @@ _profile:
   metadata: "Informations supplémentaires"
   metadataEdit: "Éditer les informations supplémentaires"
   metadataDescription: "Vous pouvez afficher jusqu'à quatre informations supplémentaires
-    dans votre profil. Vous pouvez ajouter une balise {a} ou une balise {l} avec {rel} pour vérifier le lien sur votre profil!"
+    dans votre profil. Vous pouvez ajouter une balise {a} ou une balise {l} avec {rel}
+    pour vérifier le lien sur votre profil!"
   metadataLabel: "Étiquette"
   metadataContent: "Contenu"
   changeAvatar: "Changer l'image de profil"
   changeBanner: "Changer de bannière"
   locationDescription: Si vous entrez votre ville en premier, votre heure locale sera
-    affiché aux autres utilisateurs.
+    affichée aux autres utilisateur·rice·s.
 _exportOrImport:
   allNotes: "Toutes les notes"
   followingList: "Abonnements"
@@ -1459,7 +1511,7 @@ _timelines:
   local: "Local"
   social: "Social"
   global: "Global"
-  recommended: Recommandée
+  recommended: Recommandé
 _pages:
   newPage: "Créer une page"
   editPage: "Modifier une page"
@@ -1538,8 +1590,7 @@ _pages:
     note: "Note intégrée"
     _note:
       id: "Identifiant de la note"
-      idDescription: "Pour configurer la note, vous pouvez aussi coller ici l'URL
-        correspondante."
+      idDescription: "Vous pouvez aussi coller ici l'URL ici."
       detailed: "Afficher les détails"
     switch: "Interrupteur"
     _switch:
@@ -1790,6 +1841,9 @@ _notification:
     followBack: "Suivre"
     reply: "Répondre"
     renote: "Renoter"
+  reacted: a réagit à votre Note
+  renoted: a boosté votre Note
+  voted: a voté pour votre sondage
 _deck:
   alwaysShowMainColumn: "Toujours afficher la colonne principale"
   columnAlign: "Aligner les colonnes"
@@ -1800,29 +1854,37 @@ _deck:
   swapDown: "Déplacer vers le bas"
   stackLeft: "Empiler à gauche"
   popRight: "Extraire à droite"
-  profile: "Profil"
+  profile: "Espace de travail"
   _columns:
     main: "Principale"
     widgets: "Widgets"
     notifications: "Notifications"
-    tl: "Fil"
-    antenna: "Antennes"
+    tl: "Fil d’actualité"
+    antenna: "Antenne"
     list: "Listes"
     mentions: "Mentions"
     direct: "Direct"
+    channel: Chaîne
   introduction: Créer l'interface parfaite pour vous en arrangeant les colonnes librement
     !
   introduction2: Cliquer sur le + sur la droite de l'écran pour ajouter de nouvelles
     colonnes à tout moment.
+  renameProfile: Renommer l’espace de travail
+  configureColumn: Paramètres de colonne
+  deleteProfile: Supprimer l’espace de travail
+  widgetsIntroduction: Sélectionner "Modifier les widgets" dans le menu de la colonne
+    et ajouter un widget.
+  nameAlreadyExists: Ce nom d’espace de travail existe déjà.
+  newProfile: Nouvel espace de travail
 keepOriginalUploadingDescription: Enregistrer l'image originale telle quelle. Si désactivé,
   une version à afficher sur le web sera générée au chargement.
 manageGroups: Gérer les groupes
 moderation: Modération
-disableDrawer: Ne pas utiliser des menus à tiroir
+disableDrawer: Ne pas utiliser de menus déroulants
 preferencesBackups: Sauvegarde des préférences
 confirmToUnclipAlreadyClippedNote: Ce message fait déjà partie du clip "{name}". Voudriez-vous
   plutôt le supprimer du clip ?
-instanceSecurity: Sécurité de l'instance
+instanceSecurity: Sécurité du serveur
 recommended: Recommandé
 recentNDays: Les derniers {n} jours
 recentNHours: Les dernières {n} heures
@@ -1835,7 +1897,7 @@ lastActiveDate: Dernière utilisation le
 cannotUploadBecauseNoFreeSpace: Mise en ligne échouée faute de place sur le Drive.
 remoteOnly: Distant seulement
 showUpdates: Afficher une fenêtre en sur-impression quand Firefish se met à jour
-recommendedInstances: Instances recommandées
+recommendedInstances: Serveurs recommandées
 caption: Description automatique
 migration: Migration
 showAdminUpdates: Indiquer qu'une nouvelle version de Firefish est disponible (admin
@@ -1845,7 +1907,7 @@ moveTo: Migrer le compte courant vers un nouveau compte
 moveFromDescription: Ceci va configurer un alias pour votre ancien compte afin que
   vous puissiez migrer de cet ancien compte à l'actuel. Faites ceci AVANT de migrer
   de votre ancien compte. Merci d'entrer la mention de l'ancien compte sous ce format
-  @personne@instance.com
+  @personne@server.com
 _sensitiveMediaDetection:
   sensitivityDescription: Réduire la sensibilité conduira à moins de mauvaises détections
     (faux positifs) alors que l'augmenter mènera à moins de détection manquées (faux
@@ -1867,7 +1929,7 @@ cannotUploadBecauseExceedsFileSizeLimit: Le fichier n'a pas pu être chargé car
   dépasse la taille maximum autorisée.
 moveAccountDescription: Ce processus est irréversible. Soyez sûr⋅e que vous avez préparé
   un alias pour ce compte sur votre nouveau compte avant de migrer. Merci d'entrer
-  la mention du compte formaté comme ceci @personne@instance.com
+  la mention du compte formaté comme ceci @personne@server.com
 moveAccount: Déplacer le compte !
 seperateRenoteQuote: Séparer les renotes et les boutons de citation
 failedToFetchAccountInformation: Impossible de récupérer les informations de compte
@@ -1878,8 +1940,8 @@ numberOfPageCache: Nombre de pages mise en cache
 fast: Rapide
 failedToUpload: Mise en ligne échouée
 enableAutoSensitiveDescription: Permet la détection automatique des médias sensibles
-  (NSFW) via une intelligence artificielle, quand c'est possible. Même si cette option
-  est désactivée, elle peut être enclenchée au niveau de l'instance.
+  (NSFW) via une intelligence artificielle, lorsque c'est possible. Même si cette
+  option est désactivée, elle peut être activée au niveau du serveur.
 activeEmailValidationDescription: Active une vérification plus poussée des adresses
   e-mail, ce qui inclut de vérifier la présence d’e-mail jetables et s'il est possible
   de communiquer avec ces adresses. Si désactivé, seul le format de l’e-mail est vérifié.
@@ -1887,7 +1949,7 @@ adminCustomCssWarn: Ce paramètre ne devrait être utilisé que si vous savez ce
   fait. Entrer des valeurs impropres pourraient empêcher les clients de TOUT LE MONDE
   de fonctionner. Assurez-vous que votre CSS fonctionne correctement en l'essayant
   dans vos paramètres utilisateur.
-swipeOnDesktop: Permettre le style de glissement de fenêtre de mobile sur PC
+swipeOnDesktop: Permettre le style de balayage de fenêtre de mobile sur PC
 moveFromLabel: 'Compte depuis lequel vous migrez :'
 migrationConfirm: "Êtes-vous absolument certain⋅e que vous voulez migrer votre compte
   vers {account} ? Une fois fait, vous ne pourrez pas revenir en arrière, et vous
@@ -1915,9 +1977,9 @@ _preferencesBackups:
   inputName: Merci d'entrer un nom pour cette sauvegarde
   cannotSave: La sauvegarde a échoué
 privateMode: Mode privé
-privateModeInfo: Si activé, seules les instances autorisées peuvent fédérer avec votre
-  instance. Toutes les publications seront masquées de la visibilité publique.
-allowedInstances: Instances autorisées
+privateModeInfo: Si activé, seuls les serveurs autorisés peuvent fédérer avec votre
+  serveur. Toutes les publications seront masquées de la visibilité publique.
+allowedInstances: Serveurs Autorisés
 driveCapOverrideLabel: Changer la capacité du drive pour cet utilisateur
 driveCapOverrideCaption: Réinitialiser la capacité à la valeur par défaut en entrant
   0 ou moins.
@@ -1928,38 +1990,37 @@ type: Type
 speed: Vitesse
 slow: Lent
 move: Déplacer
-showAds: Afficher les annonces
+showAds: Afficher les bannières communautaire/publicités
 enterSendsMessage: Appuyer sur Entrée pendant la rédaction pour envoyer le message
   (sinon Ctrl+Entrée)
-allowedInstancesDescription: Hôtes des instances autorisées pour la fédération, chacun
+allowedInstancesDescription: Noms des serveurs autorisés pour la fédération, chacun
   séparé par une nouvelle ligne (s'applique uniquement en mode privé).
 enableAutoSensitive: Marquage automatique du contenu sensible (NSFW)
 regexpErrorDescription: "Il y a eu une erreur dans l'expression régulière à la ligne
   {line} de votre {tab} des mots masqués :"
 forwardReportIsAnonymous: À la place de votre compte, un compte système anonyme sera
-  affiché comme rapporteur à l'instance distante.
+  affiché comme rapporteur au serveur distant.
 noThankYou: Non merci
-addInstance: Ajouter une instance
+addInstance: Ajouter un serveur
 renoteMute: Mettre en silence les renotes
 flagSpeakAsCat: Parler comme un chat
 flagSpeakAsCatDescription: Vos messages seront nyanifiés en mode chat
 hiddenTags: Hashtags cachés
 hiddenTagsDescription: "Lister les hashtags (sans le #) que vous souhaitez cacher
-  de tendances et explorer. Les hashtags cachés sont toujours découvrables par d'autres
-  moyens. Les instances bloqués ne sont pas ne sont pas affectés, même si ils sont
-  présent dans cette liste."
-antennaInstancesDescription: Lister un hôte d'instance par ligne
+  de Tendances et Découvrir. Les hashtags cachés sont toujours découvrables par d'autres
+  moyens."
+antennaInstancesDescription: Lister un nom de serveur par ligne
 userSaysSomethingReason: '{name} a dit {reason}'
 breakFollowConfirm: Êtes vous sur de vouloir retirer l'abonné ?
-recommendedInstancesDescription: Instances recommandées séparées par une nouvelle
-  ligne pour apparaître dans la timeline recommandée.
+recommendedInstancesDescription: Serveurs recommandés séparés par une nouvelle ligne
+  pour apparaître dans le fil recommandé.
 sendPushNotificationReadMessage: Supprimer les notifications push une fois que les
   notifications ou messages concernés ont été lus
 sendPushNotificationReadMessageCaption: Une notification contenant le texte "{emptyPushNotificationMessage}"
   sera affichée pendant un court instant. Cela peut augmenter la consommation de batterie
   de votre appareil.
 splash: Écran d’Accueil
-pushNotificationNotSupported: Votre navigateur ou instance ne supporte pas les notifications
+pushNotificationNotSupported: Votre navigateur ou serveur ne supporte pas les notifications
   push
 customMOTDDescription: Messages personnalisé pour le message du jour (sur l'écran
   d’accueil), séparés par des retours à la ligne, affichés au hasard à chaque (re)chargement
@@ -1970,17 +2031,19 @@ customSplashIconsDescription: URLs pour les icônes personnalisées de l'écran 
   (re)chargement de page. Assurez-vous que les images sont sur des URL statiques,
   de préférence toutes de taille 192x192.
 updateAvailable: Une mise à jour est peut-être disponible !
-accountMoved: "L'utilisateur a migré vers un nouveau compte :"
+accountMoved: "L'utilisateur·rice a migré vers un nouveau compte :"
 enableEmojiReactions: Activer les réactions par émojis
 showEmojisInReactionNotifications: Montrer les émojis dans les notifications de réactions
-renoteUnmute: Notifier les renotes
-selectInstance: Choisir une instance
-noInstances: Il n'y a aucune instance
+renoteUnmute: Ne plus masquer les boosts
+selectInstance: Choisir un serveur
+noInstances: Il n'y a aucun serveur
 showLocalPosts: 'Montrer les notes locales dans :'
 homeTimeline: Timeline d'Accueil
 socialTimeline: Timeline Sociale
 requireAdminForView: Vous avez besoin d'un compte d'administration pour voir cela.
-isSystemAccount: Un compte créé et géré automatiquement par le système.
+isSystemAccount: Ce compte est créé et géré automatiquement par le système. Veuillez
+  ne pas modérer, éditer, supprimer ou altérer d'une autre manière ce compte, ou cela
+  risque de perturber votre serveur.
 typeToConfirm: Entrer {x} pour confirmer
 statusbar: Barre d'état
 sensitiveMediaDetection: Détection des médias sensibles (NSFW)
@@ -2003,10 +2066,10 @@ indexNotice: Indexation en cours. Cela prendra certainement du temps, veuillez n
   pas redémarrer votre serveur pour au moins une heure.
 customKaTeXMacro: Macros KaTeX personnalisées
 enableCustomKaTeXMacro: Activer les macros KaTeX personnalisées
-noteId: ID de note
+noteId: ID de Note
 customKaTeXMacroDescription: "Définissez des macros pour écrire des expressions mathématiques
   simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
-  \\newcommand{\\name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
+  \\newcommand{\\·name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
   Par exemple, \\newcommand{\\add}[2]{#1 + #2} étendra \\add{3}{foo} en 3 + foo. Les
   accolades entourant le nom de la macro peuvent être changés pour des parenthèses
   ou des crochets. Cela affectera les types de parenthèses utilisées pour les arguments.
@@ -2014,20 +2077,24 @@ customKaTeXMacroDescription: "Définissez des macros pour écrire des expression
   la ligne au milieu d'une définition. Les lignes invalides sont simplement ignorées.
   Seulement de simples fonctions de substitution de chaines sont supportées; la syntaxe
   avancée, telle que la ramification conditionnelle, ne peut pas être utilisée ici."
-enableRecommendedTimeline: Activer la chronologie recommandée
-silenceThisInstance: Ne plus montrer cet instance
-silencedInstances: Instances silencieuses
+enableRecommendedTimeline: Activer le fil recommandé
+silenceThisInstance: Masquer ce serveur
+silencedInstances: Serveurs masqués
 silenced: Silencieux
 deleted: Effacé
 editNote: Modifier note
 edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
-  personnes aux publications des autres.
+  utilisatieur·rice·s aux notes des autres.
 _experiments:
   alpha: Alpha
   beta: Beta
   enablePostImports: Autoriser l'importation de messages
   title: Expérimentations
+  postImportsCaption: Permet aux utilisateurs d'importer leurs publications à partir
+    de leurs anciens comptes Firefish, Misskey, Mastodon, Akkoma et Pleroma. Cela
+    peut entraîner des ralentissements lors du chargement si votre file d'attente
+    est congestionnée.
 findOtherInstance: Trouver un autre serveur
 userSaysSomethingReasonQuote: '{name} a cité une note contenant {reason}'
 signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés, mais
@@ -2037,3 +2104,100 @@ apps: Applications
 userSaysSomethingReasonReply: '{noms} a répondu à une note contenant {raison}'
 defaultValueIs: 'défaut : {valeur}'
 searchPlaceholder: Recherchez sur Firefish
+removeReaction: Retirer votre réaction
+selectChannel: Sélectionner une chaîne
+expandOnNoteClick: Ouvrir la note en cliquant
+preventAiLearning: Empêcher le récupération de données par des IA
+listsDesc: Les listes vous laissent créer des fils personnalisés avec des utilisateur·rice·s
+  spécifié·e·s. Elles sont accessibles depuis la page des fils.
+indexFromDescription: Laisser vide pour indexer toutes les Notes
+_feeds:
+  jsonFeed: flux JSON
+  atom: Atom
+  copyFeed: Copier le flux
+  rss: RSS
+alt: ALT
+swipeOnMobile: Permettre le balayage entre les pages
+expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les Notes dans le
+  menu du clic droit et en cliquant sur l’horodatage.
+indexFrom: Indexer à partir de l’ID des Notes
+older: plus ancien
+newer: plus récent
+accessibility: Accessibilité
+silencedInstancesDescription: Listez les noms de domaine de serveurs que vous voulez
+  masquer. Les comptes des serveurs listés seront traités comme "Masqués", ne pourront
+  faire que des demandes d’abonnement, et ne pourront pas mentionner les comptes locaux
+  si non-suivis. Cela n’affectera en rien les serveurs bloqués.
+antennasDesc: "Les Antennes affichent de nouvelles notes selon les critères que vous
+  indiqués.\nElles peuvent être consultées depuis la page des fils."
+image: Image
+video: Vidéo
+audio: Audio
+jumpToPrevious: Passer au précédent
+cw: Avertissement de contenu
+xl: XL
+reflectMayTakeTime: Il pourra s’écouler un certain temps avant que les changements
+  ne soient reflétés.
+userSaysSomethingReasonRenote: '{name} a boosté une note contenant {reason}'
+sendModMail: Envoyer un avis à la modération
+clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagés. Vous
+  pouvez créer des clips à partir du menu de chaque note.
+unclip: Dé-clipper
+secureMode: Mode sécurisé (Authorized Fetch)
+secureModeInfo: Quand sollicité depuis d'autres serveurs, ne pas répondre sans preuve.
+isModerator: Modérateur
+enableServerMachineStats: Activer les statistiques matérielles du serveur
+enableIdenticonGeneration: Activer la génération d’Identicon
+reactionPickerSkinTone: Couleur de peau des emojis préférée
+verifiedLink: Lien vérifié
+isBot: Ce compte est un bot
+isLocked: Ce compte nécessite une approbation pour être suivi
+origin: Origine
+showPopup: Notifier les utilisateurs avec un popup
+showWithSparkles: Afficher avec des paillettes
+youHaveUnreadAnnouncements: Vous avez des annonces non-lues
+donationLink: Lien vers la page de donation
+neverShow: Ne plus afficher
+remindMeLater: Peut-être plus tard
+removeQuote: Retirer la citation
+removeRecipient: Retirer le destinataire
+removeMember: Retirer un membre
+preventAiLearningDescription: Demandez aux modèles d'IA de tiers de ne pas étudier
+  le contenu que vous téléchargez, tel que les publications et les images.
+noGraze: Veuillez désactiver l'extension de navigateur "Graze for Mastodon", car elle
+  interfère avec Firefish.
+silencedWarning: Cette page s'affiche car ces utilisateurs proviennent de serveurs
+  que votre administrateur a réduits au silence/masqué, il se peut donc qu'ils soient
+  de potentiels spams.
+isAdmin: Administrateur
+isPatron: Mécène Firefish
+_filters:
+  fromUser: De l’utilisateur
+  withFile: Avec fichier
+  notesBefore: Notes avant
+  notesAfter: Notes après
+  followersOnly: Abonnés uniquement
+  followingOnly: Abonnements uniquement
+  fromDomain: Du domaine
+_dialog:
+  charactersBelow: 'Pas assez de caractères ! Actuel : {current}/Minimum : {min}'
+  charactersExceeded: 'Nombre maximal de caractères dépassé ! Actuel : {current}/Limite
+    : {max}'
+channelFederationWarn: Les chaînes ne se fédèrent pas encore vers d'autres serveurs
+_skinTones:
+  yellow: Jaune
+  dark: Peau Foncée
+  light: Claire
+  mediumLight: Moyennement Claire
+  medium: Légèrement Mate
+  mediumDark: Peau Mate
+objectStorageS3ForcePathStyle: Utiliser des URL d'endpoints basées sur le chemin
+objectStorageS3ForcePathStyleDesc: Activez cette option pour construire les URL d'endpoints
+  au format 's3.amazonaws.com/<bucket>/' au lieu de '<bucket>.s3.amazonaws.com'.
+delete2fa: Supprimer 2FA
+deletePasskeys: Supprimer les clés d'accès
+delete2faConfirm: Cela supprimera de manière irréversible la double authentification
+  sur ce compte. Souhaitez-vous continuer ?
+inputNotMatch: L'entrée ne correspond pas
+deletePasskeysConfirm: Cela supprimera de manière irréversible toutes les clés d'accès
+  et les clés de sécurité sur ce compte. Souhaitez-vous continuer ?

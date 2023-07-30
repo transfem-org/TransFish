@@ -121,6 +121,19 @@ if (hasConfig) {
 			),
 		);
 
+	posts
+		.updateRankingRules([
+			"sort",
+			"words",
+			"typo",
+			"proximity",
+			"attribute",
+			"exactness",
+		])
+		.catch((e) => {
+			logger.error("Failed to set ranking rules, sorting won't work properly.");
+		});
+
 	logger.info("Connected to MeiliSearch");
 }
 
@@ -160,6 +173,7 @@ export default hasConfig
 				limit: number,
 				offset: number,
 				userCtx: ILocalUser | null,
+				overrideSort: string | null,
 			) => {
 				/// Advanced search syntax
 				/// from:user => filter by user + optional domain
@@ -170,8 +184,10 @@ export default hasConfig
 				/// "text" => get posts with exact text between quotes
 				/// filter:following => show results only from users you follow
 				/// filter:followers => show results only from followers
+				/// order:desc/asc => order results ascending or descending
 
 				const constructedFilters: string[] = [];
+				let sortRules: string[] = [];
 
 				const splitSearch = query.split(" ");
 
@@ -195,9 +211,9 @@ export default hasConfig
 
 								// Determine if we got a webfinger address or a single username
 								if (user.split("@").length > 1) {
-									let splitUser = user.split("@");
+									const splitUser = user.split("@");
 
-									let domain = splitUser.pop();
+									const domain = splitUser.pop();
 									user = splitUser.join("@");
 
 									constructedFilters.push(
@@ -215,7 +231,7 @@ export default hasConfig
 							} else if (term.startsWith("after:")) {
 								const timestamp = term.slice(6);
 
-								let unix = timestampToUnix(timestamp);
+								const unix = timestampToUnix(timestamp);
 
 								if (unix !== 0) constructedFilters.push(`createdAt > ${unix}`);
 
@@ -223,7 +239,7 @@ export default hasConfig
 							} else if (term.startsWith("before:")) {
 								const timestamp = term.slice(7);
 
-								let unix = timestampToUnix(timestamp);
+								const unix = timestampToUnix(timestamp);
 								if (unix !== 0) constructedFilters.push(`createdAt < ${unix}`);
 
 								return null;
@@ -279,6 +295,14 @@ export default hasConfig
 								}
 
 								return null;
+							} else if (term.startsWith("order:desc")) {
+								sortRules.push("createdAt:desc");
+
+								return null;
+							} else if (term.startsWith("order:asc")) {
+								sortRules.push("createdAt:asc");
+
+								return null;
 							}
 
 							return term;
@@ -286,12 +310,25 @@ export default hasConfig
 					)
 				).filter((term) => term !== null);
 
-				const sortRules = [];
-
 				// An empty search term with defined filters means we have a placeholder search => https://www.meilisearch.com/docs/reference/api/search#placeholder-search
 				// These have to be ordered manually, otherwise the *oldest* posts are returned first, which we don't want
-				if (filteredSearchTerms.length === 0 && constructedFilters.length > 0) {
+				// If the user has defined a sort rule, don't mess with it
+				if (
+					filteredSearchTerms.length === 0 &&
+					constructedFilters.length > 0 &&
+					sortRules.length === 0
+				) {
 					sortRules.push("createdAt:desc");
+				}
+
+				// More than one sorting rule doesn't make sense. We only keep the first one, otherwise weird stuff may happen.
+				if (sortRules.length > 1) {
+					sortRules = [sortRules[0]];
+				}
+
+				// An override sort takes precedence, user sorting is ignored here
+				if (overrideSort) {
+					sortRules = [overrideSort];
 				}
 
 				logger.info(`Searching for ${filteredSearchTerms.join(" ")}`);

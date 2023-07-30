@@ -55,7 +55,7 @@ attachCancel: Poista liite
 enterFileName: Anna tiedostonimi
 mute: Hiljennä
 unmute: Poista hiljennys
-headlineMisskey: Avoimen lähdekoodin, hajautettu sosiaalisen median alusta, joka on
+headlineFirefish: Avoimen lähdekoodin, hajautettu sosiaalisen median alusta, joka on
   ikuisesti ilmainen! 🚀
 monthAndDay: '{day}/{month}'
 deleteAndEditConfirm: Oletko varma, että haluat poistaa tämän lähetyksen ja muokata
@@ -214,7 +214,7 @@ perDay: Päivässä
 version: Versio
 statistics: Tilastot
 clearQueueConfirmTitle: Oletko varma, että haluat tyhjentää jonon?
-introMisskey: Tervetuloa! Firefish on avoimen lähdekoodin, hajautettu sosiaalisen median
+introFirefish: Tervetuloa! Firefish on avoimen lähdekoodin, hajautettu sosiaalisen median
   alusta, joka on ikuisesti ilmainen! 🚀
 clearQueueConfirmText: Mitkään välittämättömät lähetykset, jotka ovat jonossa, eivät
   federoidu. Yleensä tätä toimintoa ei tarvita.

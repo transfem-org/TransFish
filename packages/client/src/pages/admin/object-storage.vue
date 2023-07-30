@@ -134,7 +134,12 @@
 							v-model="objectStorageS3ForcePathStyle"
 							class="_formBlock"
 						>
-							<template #label>s3ForcePathStyle</template>
+							<template #label>{{
+								i18n.ts.objectStorageS3ForcePathStyle
+							}}</template>
+							<template #caption>{{
+								i18n.ts.objectStorageS3ForcePathStyleDesc
+							}}</template>
 						</FormSwitch>
 					</template>
 				</div>
@@ -149,7 +154,6 @@ import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
 import FormSuspense from "@/components/form/suspense.vue";
 import FormSplit from "@/components/form/split.vue";
-import FormSection from "@/components/form/section.vue";
 import * as os from "@/os";
 import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";

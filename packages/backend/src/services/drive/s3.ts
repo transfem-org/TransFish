@@ -11,17 +11,23 @@ export function getS3(meta: Meta) {
 			  }`
 			: `${meta.objectStorageUseSSL ? "https://" : "http://"}example.net`;
 
-	return new S3({
-		endpoint: meta.objectStorageEndpoint || undefined,
-		accessKeyId: meta.objectStorageAccessKey!,
-		secretAccessKey: meta.objectStorageSecretKey!,
-		region: meta.objectStorageRegion || undefined,
-		sslEnabled: meta.objectStorageUseSSL,
-		s3ForcePathStyle: !meta.objectStorageEndpoint // AWS with endPoint omitted
-			? false
-			: meta.objectStorageS3ForcePathStyle,
-		httpOptions: {
-			agent: getAgentByUrl(new URL(u), !meta.objectStorageUseProxy),
-		},
-	});
+	try {
+		return new S3({
+			endpoint: meta.objectStorageEndpoint || undefined,
+			accessKeyId: meta.objectStorageAccessKey!,
+			secretAccessKey: meta.objectStorageSecretKey!,
+			region: meta.objectStorageRegion || undefined,
+			sslEnabled: meta.objectStorageUseSSL,
+			s3ForcePathStyle: !meta.objectStorageEndpoint // AWS with endPoint omitted
+				? false
+				: meta.objectStorageS3ForcePathStyle,
+			httpOptions: {
+				agent: getAgentByUrl(new URL(u), !meta.objectStorageUseProxy),
+			},
+		});
+	} catch (e) {
+		throw new Error(
+			`Failed to construct S3 client, assembled S3 URL: ${u}\n${e}`,
+		);
+	}
 }

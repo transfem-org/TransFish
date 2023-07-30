@@ -21,7 +21,7 @@ noAccountDescription: Denne brukeren har ikke fylt ut bio'en sin ennå.
 login: Logg inn
 loggingIn: Logger inn
 signup: Oppretter bruker
-uploading: Laster opp..
+uploading: Laster opp...
 enterUsername: Skriv inn brukernavn
 noNotifications: Ingen meldinger
 users: Brukere
@@ -63,9 +63,9 @@ alreadyFavorited: Allerede lagt til i bokmerker.
 delete: Slett
 openInWindow: Åpne i vindu
 basicSettings: Grunnleggende innstillinger
-headlineMisskey: En desentralisert sosialt media-plattform, basert på åpen kildekode,
+headlineFirefish: En desentralisert sosialt media-plattform, basert på åpen kildekode,
   som alltid vil være gratis! 🚀
-introMisskey: Velkommen! Firefish er en desentralisert sosialt media-plattform, basert
+introFirefish: Velkommen! Firefish er en desentralisert sosialt media-plattform, basert
   på åpen kildekode, som alltid vil være gratis! 🚀
 exportRequested: Du har bedt om en eksportering. Dette vil ta litt tid. Den vil bli
   lagt til på disken din når den er ferdig.
@@ -81,3 +81,36 @@ followRequestAccepted: Følgeforespørsel godtatt
 import: Importer
 export: Eksporter
 logout: Logger ut
+removeReaction: Fjern dine reaksjoner
+renotedBy: Fremhevet av {user}
+deleteAndEditConfirm: Er du sikker på at du vil slette og redigere denne posten? Du
+  vil miste alle reaksjoner, fremhevinger og svar til den.
+pageLoadError: En feil oppsto ved lasting av siden.
+privacy: Personvern
+enterEmoji: Legg inn emoji
+renoted: Fremhevet.
+cantRenote: Denne posten kan ikke fremheves.
+cantReRenote: En fremheving kan ikke fremheves.
+quote: Sitér
+pinned: Fest til profil
+clickToShow: Klikk for å vise
+enableEmojiReactions: Slå på emoji-reaksjoner
+makeFollowManuallyApprove: Følgeforespørsler må godkjennes
+enterListName: Gi listen et navn
+follow: Følg
+followRequest: Følgerforespørsel
+unfollow: Avfølg
+followRequestPending: Ubehandlet følgerforespørsel
+add: Legg til
+followRequests: Følgerforespørsler
+reaction: Reaksjoner
+driveFileDeleteConfirm: Er du sikker på at du vil slette filen «{name}»? Den vil fjernes
+  fra alle poster den er vedlagt i.
+defaultNoteVisibility: Standard synlighet
+unrenote: Fjern fremmheving
+unpin: Løsne fra profilen
+youGotNewFollower: følger deg
+mention: Omtale
+mentions: Omtaler
+edited: Redigert {date} {time}
+cw: Innholdsadvarsel

@@ -11,7 +11,6 @@
 # https://hub.docker.com/r/library/node/tags/
 image: node:alpine
 
-
 stages:
   - build
 
@@ -20,6 +19,10 @@ stages:
 # Check out: https://docs.gitlab.com/ee/ci/services/index.html
 variables:
   POSTGRES_PASSWORD: test
+  # POSTGRES_DB: $POSTGRES_DB
+  # POSTGRES_USER: $POSTGRES_USER
+  # POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  # POSTGRES_HOST_AUTH_METHOD: trust
 
 services:
   - postgres:15
@@ -43,10 +46,24 @@ testCommit:
     - develop
     - /^feature\/.*$/
 
+dockerPush:
+  stage: .post
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  only:
+    - main
+    - beta
+
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
 cache:
   paths:
     - node_modules/
-
-
+    - packages/*/node_modules/
+    - packages/backend/native-utils/node_modules/
+    - packages/backend/native-utils/.cargo/

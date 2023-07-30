@@ -30,7 +30,7 @@
 							<div
 								class="desc"
 								v-html="
-									meta.description || i18n.ts.headlineMisskey
+									meta.description || i18n.ts.headlineFirefish
 								"
 							></div>
 						</div>

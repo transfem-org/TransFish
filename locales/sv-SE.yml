@@ -1,7 +1,10 @@
----
 _lang_: "Svenska"
-headlineMisskey: "Ett nätverk kopplat av noter"
-introMisskey: "Välkommen! Firefish är en öppen och decentraliserad mikrobloggningstjänst.\nSkapa en \"not\" och dela dina tankar med alla runtomkring dig. 📡\nMed \"reaktioner\" kan du snabbt uttrycka dina känslor kring andras noter.👍\nLåt oss utforska en nya värld!🚀"
+headlineFirefish: "En öppen källkod och decentraliserad social media plattform som
+  är gratis för all framtid! 🚀"
+introFirefish: "Välkommen! Firefish är en öppen och decentraliserad mikrobloggningstjänst.\n
+  Skapa en \"not\" och dela dina tankar med alla runtomkring dig. 📡\nMed \"reaktioner\"\
+  \ kan du snabbt uttrycka dina känslor kring andras noter.👍\nLåt oss utforska en
+  nya värld!🚀"
 monthAndDay: "{day}/{month}"
 search: "Sök"
 notifications: "Notifikationer"
@@ -16,7 +19,7 @@ enterUsername: "Ange användarnamn"
 renotedBy: "Omnoterad av {user}"
 noNotes: "Inga noteringar"
 noNotifications: "Inga aviseringar"
-instance: "Instanser"
+instance: "Server Instans"
 settings: "Inställningar"
 basicSettings: "Basinställningar"
 otherSettings: "Andra inställningar"
@@ -44,7 +47,8 @@ copyContent: "Kopiera innehåll"
 copyLink: "Kopiera länk"
 delete: "Radera"
 deleteAndEdit: "Radera och ändra"
-deleteAndEditConfirm: "Är du säker att du vill radera denna not och ändra den? Du kommer förlora alla reaktioner, omnoteringar och svar till den."
+deleteAndEditConfirm: "Är du säker att du vill radera denna not och ändra den? Du
+  kommer förlora alla reaktioner, omnoteringar och svar till den."
 addToList: "Lägg till i lista"
 sendMessage: "Skicka ett meddelande"
 copyUsername: "Kopiera användarnamn"
@@ -63,9 +67,11 @@ import: "Importera"
 export: "Exportera"
 files: "Filer"
 download: "Nedladdning"
-driveFileDeleteConfirm: "Är du säker att du vill radera filen \"{name}\"? Noter med denna fil bifogad kommer också raderas."
+driveFileDeleteConfirm: "Är du säker att du vill radera filen \"{name}\"? Notera att
+  denna kommer att bli raderad från alla poster som har den bifogad."
 unfollowConfirm: "Är du säker att du vill avfölja {name}?"
-exportRequested: "Du har begärt en export. Detta kan ta lite tid. Den kommer läggas till i din Drive när den blir klar."
+exportRequested: "Du har begärt en export. Detta kan ta lite tid. Den kommer läggas
+  till i din Drive när den blir klar."
 importRequested: "Du har begärt en import. Detta kan ta lite tid."
 lists: "Listor"
 noLists: "Du har inga listor"
@@ -80,9 +86,11 @@ error: "Fel!"
 somethingHappened: "Ett fel har uppstått"
 retry: "Försök igen"
 pageLoadError: "Det gick inte att ladda sidan."
-pageLoadErrorDescription: "Detta händer oftast p.g.a. nätverksfel eller din webbläsarcache. Försök tömma din cache och testa sedan igen efter en liten stund."
+pageLoadErrorDescription: "Detta händer oftast p.g.a. nätverksfel eller din webbläsarcache.
+  Försök tömma din cache och testa sedan igen efter en liten stund."
 serverIsDead: "Servern svarar inte. Vänta ett litet tag och försök igen."
-youShouldUpgradeClient: "För att kunna se denna sida, vänligen ladda om sidan för att uppdatera din klient."
+youShouldUpgradeClient: "För att kunna se denna sida, vänligen ladda om sidan för
+  att uppdatera din klient."
 enterListName: "Skriv ett namn till listan"
 privacy: "Integritet"
 makeFollowManuallyApprove: "Följarförfrågningar kräver manuellt godkännande"
@@ -107,7 +115,8 @@ sensitive: "Känsligt innehåll"
 add: "Lägg till"
 reaction: "Reaktioner"
 reactionSetting: "Reaktioner som ska visas i reaktionsväljaren"
-reactionSettingDescription2: "Dra för att omordna, klicka för att radera, tryck \"+\" för att lägga till."
+reactionSettingDescription2: "Dra för att omordna, klicka för att radera, tryck \"\
+  +\" för att lägga till."
 rememberNoteVisibility: "Komihåg notvisningsinställningar"
 attachCancel: "Ta bort bilaga"
 markAsSensitive: "Markera som känsligt innehåll"
@@ -136,13 +145,20 @@ emojiUrl: "Emoji länk"
 addEmoji: "Lägg till emoji"
 settingGuide: "Rekommenderade inställningar"
 cacheRemoteFiles: "Spara externa filer till cachen"
-cacheRemoteFilesDescription: "När denna inställning är avstängd kommer externa filer laddas direkt från den externa instansen. Genom att stänga av detta kommer lagringsutrymme minska i användning men kommer öka datatrafiken eftersom miniatyrer inte kommer genereras."
+cacheRemoteFilesDescription: "När denna inställning är avstängd kommer externa filer
+  laddas direkt från den externa instansen. Genom att stänga av detta kommer lagringsutrymme
+  minska i användning men kommer öka datatrafiken eftersom miniatyrer inte kommer
+  genereras."
 flagAsBot: "Markera konto som bot"
-flagAsBotDescription: "Aktivera det här alternativet om kontot är kontrollerat av ett program. Om aktiverat kommer den fungera som en flagga för andra utvecklare för att hindra ändlösa kedjor med andra bottar. Det kommer också få Misskeys interna system att hantera kontot som en bot."
+flagAsBotDescription: "Aktivera det här alternativet om kontot är kontrollerat av
+  ett program. Om aktiverat kommer den fungera som en flagga för andra utvecklare
+  för att hindra ändlösa kedjor med andra bottar. Det kommer också få Firefish interna
+  system att hantera kontot som en bot."
 flagAsCat: "Markera konto som katt"
 flagAsCatDescription: "Aktivera denna inställning för att markera kontot som en katt."
 flagShowTimelineReplies: "Visa svar i tidslinje"
-flagShowTimelineRepliesDescription: "Visar användarsvar till andra användares noter i tidslinjen om påslagen."
+flagShowTimelineRepliesDescription: "Visar användarsvar till andra användares noter
+  i tidslinjen om påslagen."
 autoAcceptFollowed: "Godkänn följarförfrågningar från användare du följer automatiskt"
 addAccount: "Lägg till konto"
 loginFailed: "Inloggningen misslyckades"
@@ -155,7 +171,11 @@ searchWith: "Sök: {q}"
 youHaveNoLists: "Du har inga listor"
 followConfirm: "Är du säker att du vill följa {name}?"
 proxyAccount: "Proxykonto"
-proxyAccountDescription: "Ett proxykonto är ett konto som agerar som en extern följare för användare under vissa villkor. Till exempel, när en användare lägger till en extern användare till en lista så kommer den externa användarens aktivitet inte levireras till instansen om ingen lokal användare följer det kontot, så proxykontot används istället."
+proxyAccountDescription: "Ett proxykonto är ett konto som agerar som en extern följare
+  för användare under vissa villkor. Till exempel, när en användare lägger till en
+  extern användare till en lista så kommer den externa användarens aktivitet inte
+  levereras till instansen om ingen lokal användare följer det kontot, så proxykontot
+  används istället."
 host: "Värd"
 selectUser: "Välj användare"
 recipient: "Mottagare"
@@ -185,11 +205,13 @@ instanceInfo: "Instansinformation"
 statistics: "Statistik"
 clearQueue: "Rensa kö"
 clearQueueConfirmTitle: "Är du säker att du vill rensa kön?"
-clearQueueConfirmText: "Om någon not är olevererad i kön kommer den inte federeras. Vanligtvis behövs inte denna handling."
+clearQueueConfirmText: "Om någon not är olevererad i kön kommer den inte federeras.
+  Vanligtvis behövs inte denna handling."
 clearCachedFiles: "Rensa cache"
 clearCachedFilesConfirm: "Är du säker att du vill radera alla cachade externa filer?"
 blockedInstances: "Blockerade instanser"
-blockedInstancesDescription: "Lista adressnamn av instanser som du vill blockera. Listade instanser kommer inte längre kommunicera med denna instans."
+blockedInstancesDescription: "Lista adressnamn av instanser som du vill blockera.
+  Listade instanser kommer inte längre kommunicera med denna instans."
 muteAndBlock: "Tystningar och blockeringar"
 mutedUsers: "Tystade användare"
 blockedUsers: "Blockerade användare"
@@ -318,3 +340,444 @@ _deck:
     tl: "Tidslinje"
     list: "Listor"
     mentions: "Omnämningar"
+removeReaction: Radera från dina reaktioner
+renoteMute: Tysta boostningar
+renoteUnmute: Ljuda boostningar
+flagSpeakAsCat: Prata som en katt
+noInstances: Det finns inga servrar
+keepOriginalUploadingDescription: Sparar originalen av uppladdade bilder som de är.
+  Om avstängt, kommer en ny version genererad vid uppladdning.
+fromUrl: från URL
+explore: Utforska
+messageRead: Läs
+noMoreHistory: Det finns ingen framtida historik
+startMessaging: Starta en ny chatt
+agreeTo: Jag accepterar till {0}
+drive: Enhet
+fileName: Filnamn
+inputNewDescription: Ange en ny benämning
+inputNewFolderName: Ange ett nytt mappnamn
+hasChildFilesOrFolders: Eftersom denna mappen inte är tom, kan den inte bli raderad.
+copyUrl: Kopiera URL
+watch: Bevaka
+thisMonth: Månad
+today: Idag
+dayX: '{day}'
+monthX: '{month}'
+yearX: '{year}'
+connectService: Anslut
+disconnectService: Bortkoppla
+enableLocalTimeline: Anslut till lokal tidslinje
+invite: Bjud in
+driveCapacityPerLocalAccount: Enhetens kapacitet per lokal användare
+inMb: I megabyte
+pinnedPagesDescription: Ange sökväg till sidor som du vill fästa på topp av sidorna
+  på denna server, separerade av sidbrytningar.
+hcaptcha: hCaptcha
+antennasDesc: "Antenner visar nya poster som matchar de kriterier som du anger\nDe
+  kan nås från sidlinje sidan."
+unsilenceConfirm: Är du säker på att du vill ångra tystningen av denna användare?
+securityKey: Säkerhetsnyckel
+markAsReadAllNotifications: Markera alla notifikationer som lästa
+quoteQuestion: Lägg till som en citering?
+noMessagesYet: Inga meddelande ännu
+newMessageExists: Det finns inga nya meddelanden
+weakPassword: Svagt lösenord
+normalPassword: Dugligt lösenord
+strongPassword: Starkt lösenord
+passwordMatched: Matchar
+passwordNotMatched: Matchar inte
+signinWith: Logga in med {x}
+disableAnimatedMfm: Inaktivera MFM med animering
+noFollowRequests: Du har inte några väntande följbekräftelser
+clientSettings: Klientinställningar
+promote: Befordra
+numberOfDays: Antalet dagar
+objectStorageUseSSL: Använd SSL
+objectStorageUseSSLDesc: Stäng av detta om du inte kommer använda HTTPS för API anslutningar.
+recentUsed: Senast använd
+nothing: Det finns inget att visa här
+lastUsedDate: Senaste använd vid
+state: Stat
+disablePagesScript: Inaktivera AiScript på sidor
+expandOnNoteClick: Öppna post vid klick
+updateRemoteUser: Uppdatera fjärranvändarinformation
+deleteAllFiles: Radera alla filer
+userSuspended: Denna användare har blivit avstängd.
+inboxUrl: Inbox URL
+serviceworkerInfo: Måste vara aktiverat för push-notifikationer.
+deletedNote: Radera poster
+expandTweet: Expandera tweet
+themeEditor: Thema redigerare
+describeFile: Lägg till bildtext
+enterFileDescription: Beskriv bildtext
+manage: Hantering
+useBlurEffectForModal: Använd oskärpa effekter för modeller
+width: Bredd
+small: Liten
+disableAll: Inaktivera alla
+tokenRequested: Tillåt tillgång till konto
+channelFederationWarn: Kanalerna federeras inte till andra servrar ännu
+manageGroups: Hantera grupper
+tos: Användarvillkor
+start: Starta
+home: Hem
+activity: Aktivitet
+themeForDarkMode: Teman som används i Mörkt läge
+maintainerEmail: Underhållare e-post
+enableHcaptcha: Aktivera hCaptcha
+hcaptchaSiteKey: Sidnyckel
+recaptchaSecretKey: Hemlig nyckel
+withFiles: Inkludera filer
+popularTags: Populära taggar
+notFound: Kan inte hittas
+uploadFolder: Standardmappar för uppladdning
+retype: Ange igen
+next: Nästa
+checking: Kontrollerar...
+or: Eller
+groupInvited: Du har blivit inbjuden till en grupp
+docSource: Källa till detta dokument
+createAccount: Skapa konto
+total: Total
+objectStorage: Objektlagring
+objectStorageRegion: Region
+objectStorageUseProxy: Anslut över Proxy
+objectStorageUseProxyDesc: Stäng av detta om du inte kommer använde en Proxy för API
+  anslutningar
+sounds: Ljud
+details: Detaljer
+installedApps: Auktoriserade applikationer
+installedDate: Auktoriserad vid
+script: Skript
+removeAllFollowingDescription: Körning av detta kommer sluta följa alla konton från
+  {host}. Vänligen kör detta om servern t.ex. inte längre existerar.
+userSilenced: Denna användare har blivit tystnad.
+visibility: Synlighet
+delayed: Fördröjning
+useGlobalSetting: Använd globala inställningar
+selectInstance: Välj en server
+instanceName: Servernamn
+searchPlaceholder: Sök Firefish
+noThankYou: Nej tack
+jumpToPrevious: Hoppa till föregående
+listsDesc: Listor låter dig skapa en tidlinje med specificerade användare. Dessa kan
+  sedan bli nådda från tidlinje sidan.
+flagSpeakAsCatDescription: Dina poster kommer ge en nyans som om du är i katt-läge
+silencedInstances: Tystade instanser
+hiddenTags: Dolda Hashtaggar
+silenced: Tystad
+nUsersRead: Läs med {n}
+themeForLightMode: Teman som används i Ljust Läge
+light: Ljus
+recaptcha: reCAPTCHA
+enableRecaptcha: Aktivera reCAPTCHA
+help: Hjälp
+groupName: Gruppnamn
+name: Namn
+resetPassword: Återställ lösenord
+newPasswordIs: Ditt nya lösenord är "{password}"
+cacheClear: Rensa cache
+markAsReadAllTalkMessages: Markera alla meddelanden som lästa
+uiLanguage: Användargränssnitt
+disableDrawer: Använd inte byrålådor-stil menyer
+tapSecurityKey: Klicka in din säkerhetsnyckel.
+language: Språk
+objectStorageRegionDesc: Ange en region som 'xx-east-1'. Om du anger din tjänst som
+  inte skiljer mellan regioner, lämna detta blankt eller ange som 'us-east-1'.
+objectStorageSetPublicRead: Ställ in "public-read" vid uppladdningar
+scratchpadDescription: Scratchpaden tillgängliggör en miljö för AiScript experiment.
+  Du kan skriva, köra och checka ut resultaten från den när du interagerar med Firefish.
+yourAccountSuspendedDescription: Detta kontot har blivit avstängt eftersom det bröt
+  mot serverns användaravtal eller liknande. Vänligen kontakta administratörer om
+  du vill veta mer detaljerade anledningar. Vänligen skapa inte ett nytt konto.
+divider: Fördelare
+addItem: Lägg till artikel
+poll: Opinionsundersökning
+useCw: Dölj innehåll
+enablePlayer: Öppna videospelare
+disablePlayer: Stäng videospelare
+description: Beskrivning
+author: Författare
+accessibility: Tillgänglighet
+useObjectStorage: Använd objektlagring
+objectStorageBaseUrl: Grundläggande URL
+deleteAllFilesConfirm: Är du säker på att du vill radera alla filer?
+menu: Meny
+regexpError: Regular expression fel
+wordMute: Ord tystning
+regexpErrorDescription: 'Ett fel skedde vid regular expression på linje {line} av
+  dina {tab} ord tystningar:'
+instanceMute: Server tystningar
+userSaysSomething: '{name} sa något'
+userSaysSomethingReason: '{name} sade {reason}'
+makeActive: Aktivera
+notificationSettingDesc: Välj typerna av notifieringsinställningarna att visa.
+fromDrive: Från Enhet
+uploadFromUrlMayTakeTime: Det kan ta en tid innan uppladdningen är slutförd.
+uploadFromUrlRequested: Uppladdning som förfrågat
+unwatch: Sluta bevaka
+enableRecommendedTimeline: Aktivera rekommenderad tidslinje
+showLess: Stäng
+regenerate: Återskapa
+promotion: Befordrad
+doNothing: Ignorera
+thisYear: År
+manageAntennas: Hantera Antenner
+deleted: Raderad
+editNote: Redigera anteckning
+edited: Redigerad vid {date} {time}
+syncDeviceDarkMode: Synkronisera mörkt läge med dina enhetsinställningar
+dayOverDayChanges: Ändringar från igår
+selectChannel: Välj en kanal
+lightThemes: Ljusa teman
+dark: Mörk
+inputNewFileName: Ange ett nytt filnamn
+whenServerDisconnected: När den tappar uppkopplingen till servern
+disconnectedFromServer: Anslutning till server har tappats
+iconUrl: Ikon URL
+bannerUrl: Banner bild URL
+hcaptchaSecretKey: Hemlig nyckel
+onlyOneFileCanBeAttached: Du kan endast ange en bilaga till ett meddelande
+signinFailed: Kan inte logga in. Ange korrekt användarnamn och lösenord.
+notesAndReplies: Poster och svar
+token: Token
+twoStepAuthentication: Två-faktor-autentisering
+antennaInstancesDescription: Lista en servervärd per linje
+moderator: Moderator
+moderation: Moderering
+chooseEmoji: Välj en emoji
+unableToProcess: Operationen kunde inte slutföras
+output: Output
+expandOnNoteClickDesc: Om inaktiverad, kan du öppna posten vid högerklicksmenyn eller
+  genom att klicka på tidsstämpeln.
+aboutFirefish: Om Firefish
+older: Äldre
+hiddenTagsDescription: 'Lista hashtaggar (utan # symbolen) för de hashtaggar du vill
+  dölja från trendande och utforska. Dolda hashtaggar kan fortfarande hittas via andra
+  funktioner.'
+darkThemes: Mörka teman
+images: Bilder
+selectFiles: Välj filer
+renameFile: Byt namn på fil
+folderName: Filnamn
+createFolder: Skapa en mapp
+renameFolder: Byt namn på denna mapp
+emptyDrive: Din enhet är tom
+emptyFolder: Denna mapp är tom
+unableToDelete: Kan inte radera
+rename: Byt namn
+deleteFolder: Radera denna mapp
+addFile: Lägg till en fil
+banner: Banner
+reload: Uppdatera
+reloadConfirm: Vill du uppdatera din tidslinje?
+accept: Acceptera
+tosUrl: Användarvillkor URL
+pages: Sidor
+disablingTimelinesInfo: Administratörer och moderatorer har alltid tillgång till alla
+  tidslinjer, även om de inte är aktiverade
+registration: Registrera
+enableRegistration: Aktivera ny användarregistrering
+driveCapacityPerRemoteAccount: Enhetskapacitet per extern användare
+enableGlobalTimeline: Aktivera global tidslinje
+antennaSource: Antennkällor
+notifyAntenna: Informera vid nya poster
+withFileAntenna: Ange poster med filer
+exploreFediverse: Upptäck ett fidiverse
+markAsReadAllUnreadNotes: Markera alla poster som lästa
+inputMessageHere: Ange meddelande här
+members: Medlemmar
+available: Tillgänglig
+usernameInvalidFormat: Du kan ange versaler eller gemener, nummer och underskrifter.
+tooLong: För lång
+joinOrCreateGroup: Bli inbjuden till en grupp eller skapa en egen.
+doing: Bearbetar...
+youHaveNoGroups: Du har inga grupper
+aboutX: Om {x}
+existingAccount: Existerande konto
+install: Installera
+uninstall: Avinstallera
+sort: Sortera
+ascendingOrder: Stigande
+leaveConfirm: Ändringar har inte sparats. Vill du kasta dem?
+plugins: Plugin
+preferencesBackups: Backup av inställningar
+enableEmail: Aktivera epost distribuering
+smtpSecure: Använd strikt SSL/TLS vid SMTP anslutningar
+smtpSecureInfo: Stäng av detta vid användning av STARTTLS
+testEmail: Test av epost leverans
+userSaysSomethingReasonReply: '{name} svarade på en post innehållande {reason}'
+userSaysSomethingReasonRenote: '{name} boosted en post innehållande {reason}'
+userSaysSomethingReasonQuote: '{name} citerade en post innehållande {reason}'
+logs: Loggar
+database: Databas
+channel: Kanaler
+create: Skapa
+notificationSetting: Notisinställningar
+objectStorageS3ForcePathStyle: Använd filmapp-baserade slutpunkter för URL:er
+newNoteRecived: Det finns nya poster
+deck: Däck
+undeck: Lämna däck
+large: Stor
+newer: Nyare
+silenceThisInstance: Tysta denna instans
+silencedInstancesDescription: Lista värdnamn på server som du vill tysta. Konton på
+  listade instanser behandlas som om de är "Tystade", de kan endast göra följbekräftelser
+  och kan inte nämna lokala konton som inte följs. Detta påverkar inte blockerade
+  instanser.
+uploadFromUrl: Uppladdad från URL
+birthday: Födelsedag
+theme: Teman
+avatar: Avatar
+uploadFromUrlDescription: URL av filen som du vill ladda upp
+remoteUserCaution: Informationen från en avlägsen användare kan inte slutföras
+yearsOld: '{age} år gammal'
+location: Plats
+selectFile: Välj en fil
+registeredDate: Registrerade på
+selectFolder: Välj en mapp
+circularReferenceFolder: Destinationsmappen är en undermapp till mappen som du försöker
+  flytta.
+instanceDescription: Serverbeskrivning
+selectFolders: Välj mappar
+reject: Neka
+normal: Normal
+withReplies: Inkludera svar
+registerSecurityKey: Registrera en säkerhetsnyckel
+enableServiceworker: Aktivera push-notifikationer för din webbläsare
+maintainerName: Underhållare
+pinnedPages: Fästa sidor
+basicInfo: Grundläggande info
+pinnedUsers: Pinnade användare
+backgroundImageUrl: Bakgrundsbild URL
+pinnedUsersDescription: Lista användarnamn separerade med radbrytning att bli fäst
+  i "Utforska" fliken
+recaptchaSiteKey: Sid nyckel
+pinnedClipId: ID av klippet du vill fästa
+avoidMultiCaptchaConfirm: Användning av flera Captcha system kan orsaka problem. Vill
+  du inaktivera andra Captcha system som är aktiverade i nuläget? Om du vill att de
+  ska fortsätta vara inaktiverade, tryck ångra.
+antennas: Antenner
+antennaKeywords: Nyckelord att följa
+antennaExcludeKeywords: Nyckelord att exkludera
+antennaKeywordsDescription: Separera med mellanrum för ett OCH villkor eller med sidbrytning
+  för ett ELLER villkor.
+caseSensitive: Skiftlägeskänsliga
+recentlyDiscoveredUsers: Senaste upptäckta användare
+antennaUsersDescription: Lista ett användarnamn per linje
+silenceConfirm: Är du säker att du vill tysta denna användare?
+connectedTo: Följande konton är anslutna
+unsilence: Ångra tystning
+recentlyRegisteredUsers: Senaste användare
+exploreUsersCount: Det finns {count} användare
+silence: Tysta
+popularUsers: Populära användare
+recentlyUpdatedUsers: Senaste aktiva användare
+administrator: Administratör
+passwordLessLogin: Lösenordslös-inloggning
+about: Om
+nUsersMentioned: Benämnd av {n} användare
+securityKeyName: Nyckelnamn
+share: Dela
+reduceUiAnimation: Minska UI animeringar
+notFoundDescription: Ingen sida som korresponderar med denna URL kunde hittas
+close: Stäng
+group: Grupp
+transfer: Överför
+category: Kategori
+createGroup: Skapa en grupp
+ownedGroups: Ägda grupper
+invites: Inbjudningar
+groups: Grupper
+title: Titel
+joinedGroups: Deltagande grupper
+tooShort: För kort
+signinHistory: Inloggningshistorik
+enable: Aktivera
+text: Text
+inviteToGroup: Bjud in till grupp
+quoteAttached: Citera
+messagingWithUser: Privatchatt
+messagingWithGroup: Gruppchatt
+invitationCode: Inbjudningskod
+noteOf: Postad av {user}
+unavailable: Inte tillgänglig
+invitations: Inbjudningar
+useOsNativeEmojis: Använd operativsystemets lokala emojis
+noHistory: Historik saknas
+tags: Taggar
+openImageInNewTab: Öppna bilder i ny flik
+fontSize: Teckenstorlek
+dashboard: Användargränssnitt
+weekOverWeekChanges: Ändringar till föregående vecka
+appearance: Utseende
+accountSettings: Kontoinställningar
+objectStorageBaseUrlDesc: "Denna URL används som referens. Ange URL för din CDN eller
+  Proxy om du använder någon.\nFör S3 använd 'https://<bucket>.s3.amazonaws.com' och
+  för GCS eller likvärdig tjänst använd 'https://storage.googleapis.com/<bucket>',
+  m.m."
+objectStorageEndpointDesc: Lämna denna tom om du använder AWS S3, annars ange slutpunkten
+  som '<host>' eller '<host>:<port>', beroende på tjänsten som du använder.
+objectStorageS3ForcePathStyleDesc: Aktivera detta vid konstruering av slutpunkter
+  i URL som är i format för 's3.amazonaws.com/<bucket>/' vid '<bucket>.s3.amazonaws.com'.
+popout: Poppa-ut
+showFixedPostForm: Visa postens form vid toppen av tidslinjen
+listen: Lystna
+none: Inga
+showInPage: Visa på sida
+masterVolume: Huvudvolym
+volume: Volym
+descendingOrder: Nedåtgående
+scratchpad: Scratchpad
+yourAccountSuspendedTitle: Detta kontot har blivit avstängt
+email: Epost
+relays: Reläer
+invisibleNote: Osynliga poster
+addRelay: Lägg till relä
+enableInfiniteScroll: Ladda fler automatiskt
+edit: Redigera
+useFullReactionPicker: Använd full-storlek för reaktionsväljaren
+notificationType: Notifieringstyp
+pluginTokenRequestedDescription: Detta plugin kommer använda tillgänglighet inställd
+  här.
+generateAccessToken: Generera tillgångstoken
+permission: Tillstånd
+smtpConfig: SMPT server inställningar
+emailServer: Epost server
+emailConfigInfo: Används för att bekräfta din epost vid registrering om du glömmer
+  till lösenord
+emptyToDisableSmtpAuth: Lämna användarnamn och lösenord tomt vid inaktivering av SMTP
+  verifiering
+emailAddress: Epost adress
+smtpPort: Port
+metrics: Metrik
+display: Visa
+copy: Kopiera
+overview: Översikt
+lastUsed: Senast använd
+unregister: Avregistrera
+addInstance: Lägg till server
+objectStorageBucketDesc: Vänligen ange hink-namn som du använder som din leverantör.
+accountMoved: Användaren har flyttat till ett nytt konto
+hideThisNote: Dölj denna post
+showFeaturedNotesInTimeline: Visa presenterade poster i tidslinjen
+objectStorageBucket: Hink
+objectStoragePrefix: Prefix
+local: Lokal
+remote: Avlägsen
+objectStoragePrefixDesc: Filer som lagras under mappar kommer använda detta prefix.
+objectStorageEndpoint: Slutpunkt
+addedRelays: Tillagda reläer
+height: Höjd
+enableAll: Tillåt alla
+cw: Innehållsvarning
+enableEmojiReactions: Aktivera emoji reaktioner
+showEmojisInReactionNotifications: Visa emojis i reaktion notifikationer
+signinRequired: Vänligen registrera eller logga in innan du fortsätter
+serverLogs: Serverloggar
+deleteAll: Radera alla
+removeAllFollowing: Sluta följa alla följda användare
+medium: Mellan
+integration: Integreringar
+xl: XL

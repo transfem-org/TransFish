@@ -91,6 +91,8 @@ const isThumbnailAvailable = computed(() => {
 	border: 0;
 	padding: 0;
 	cursor: pointer;
+	align-items: center;
+	justify-content: center;
 
 	> .icon-sub {
 		position: absolute;

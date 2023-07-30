@@ -5,10 +5,6 @@ import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { ui } from "@/config";
 import { unisonReload } from "@/scripts/unison-reload";
-import { defaultStore } from "@/store";
-import { instance } from "@/instance";
-import { host } from "@/config";
-import XTutorial from "@/components/MkTutorialDialog.vue";
 
 export const navbarItemDef = reactive({
 	notifications: {
@@ -60,14 +56,6 @@ export const navbarItemDef = reactive({
 		show: computed(() => $i != null),
 		to: "/my/lists",
 	},
-	/*
-	groups: {
-		title: 'groups',
-		icon: 'ph-users-three ph-bold ph-lg',
-		show: computed(() => $i != null),
-		to: '/my/groups',
-	},
-	*/
 	antennas: {
 		title: "antennas",
 		icon: "ph-flying-saucer ph-bold ph-lg",

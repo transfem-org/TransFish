@@ -87,17 +87,13 @@
 										v-if="user.isAdmin"
 										v-tooltip.noDelay="i18n.ts.isAdmin"
 										style="color: var(--badge)"
-										><i
-											class="ph-bookmark-simple ph-fill ph-lg"
-										></i
+										><i class="ph-crown ph-bold ph-lg"></i
 									></span>
 									<span
 										v-if="!user.isAdmin && user.isModerator"
 										v-tooltip.noDelay="i18n.ts.isModerator"
 										style="color: var(--badge)"
-										><i
-											class="ph-bookmark-simple ph-bold ph-lg"
-										></i
+										><i class="ph-gavel ph-bold ph-lg"></i
 									></span>
 									<span
 										v-if="user.isLocked"
@@ -176,9 +172,7 @@
 									v-if="user.isAdmin"
 									v-tooltip.noDelay="i18n.ts.isAdmin"
 									style="color: var(--badge)"
-									><i
-										class="ph-bookmark-simple ph-fill ph-lg"
-									></i
+									><i class="ph-crown ph-bold ph-lg"></i
 								></span>
 								<span
 									v-if="!user.isAdmin && user.isModerator"
@@ -187,9 +181,7 @@
 										color: var(--badge);
 										margin-left: 0.5rem;
 									"
-									><i
-										class="ph-bookmark-simple ph-bold ph-lg"
-									></i
+									><i class="ph-gavel ph-bold ph-lg"></i
 								></span>
 								<span
 									v-if="user.isLocked"
@@ -363,11 +355,11 @@
 					>
 					<template v-if="narrow">
 						<XPhotos :key="user.id" :user="user" />
-						<XActivity
+						<!-- <XActivity
 							:key="user.id"
 							:user="user"
 							style="margin-top: var(--margin)"
-						/>
+						/> -->
 					</template>
 				</div>
 				<div>
@@ -387,7 +379,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, onMounted, onUnmounted } from "vue";
+import { ref, defineAsyncComponent, onMounted, onUnmounted } from "vue";
 import calcAge from "s-age";
 import cityTimezones from "city-timezones";
 import XUserTimeline from "./index.timeline.vue";
@@ -422,6 +414,7 @@ let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
 let rootEl = $ref<null | HTMLElement>(null);
 let bannerEl = $ref<null | HTMLElement>(null);
+let patrons = ref([]);
 
 const age = $computed(() => {
 	return calcAge(props.user.birthday);
@@ -467,9 +460,8 @@ const timeForThem = $computed(() => {
 	return "";
 });
 
-let patrons = [];
 const patronsResp = await os.api("patrons");
-patrons = patronsResp.patrons;
+patrons.value = patronsResp.patrons;
 
 function parallaxLoop() {
 	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);

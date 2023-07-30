@@ -41,6 +41,7 @@ export default function load() {
 	config.url = url.origin;
 
 	config.port = config.port || parseInt(process.env.PORT || "", 10);
+	config.bind = config.bind || process.env.BIND;
 
 	mixin.version = meta.version;
 	mixin.host = url.host;

@@ -40,7 +40,9 @@
   - Backfill user information
   - Advanced search
   - Many more user and admin settings
-  - [So much more!](./FIREFISH.md)
+  - Many bug fixes and performance improvements 
+  - Link verification
+  - So much more!
 
 </div>
 
@@ -85,9 +87,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 If you have access to a server that supports one of the sources below, I recommend you use it! Note that these methods *won't* allow you to migrate from Misskey without manual intervention.
 
-<!-- [![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　 -->
-
-[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://git.joinfirefish.org/firefish/ubuntu-bash-install)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
+[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://git.joinfirefish.org/firefish/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
 
 ## 🛳️ Containerization
 

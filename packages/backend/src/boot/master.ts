@@ -31,13 +31,41 @@ function greet() {
 	if (!envOption.quiet) {
 		//#region Firefish logo
 		const v = `v${meta.version}`;
-		console.log(themeColor(" ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ◯       "));
-		console.log(themeColor("█       █   █   ▄  █ █       █       █   █       █  █ █  █      ○   ▄    ▄"));
-		console.log(themeColor("█    ▄▄▄█   █  █ █ █ █    ▄▄▄█    ▄▄▄█   █  ▄▄▄▄▄█  █▄█  █    ⚬     █▄▄  █▄▄    "));
-		console.log(themeColor("█   █▄▄▄█   █   █▄▄█▄█   █▄▄▄█   █▄▄▄█   █ █▄▄▄▄▄█       █      ▄▄▄▄▄▄   ▄"));
-		console.log(themeColor("█    ▄▄▄█   █    ▄▄  █    ▄▄▄█    ▄▄▄█   █▄▄▄▄▄  █   ▄   █     █      █  █▄▄"));
-		console.log(themeColor("█   █   █   █   █  █ █   █▄▄▄█   █   █   █▄▄▄▄▄█ █  █ █  █     █ ● ●  █"));
-		console.log(themeColor("█▄▄▄█   █▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█     ▀▄▄▄▄▄▄▀"));
+		console.log(
+			themeColor(
+				" ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ◯       ",
+			),
+		);
+		console.log(
+			themeColor(
+				"█       █   █   ▄  █ █       █       █   █       █  █ █  █      ○   ▄    ▄",
+			),
+		);
+		console.log(
+			themeColor(
+				"█    ▄▄▄█   █  █ █ █ █    ▄▄▄█    ▄▄▄█   █  ▄▄▄▄▄█  █▄█  █    ⚬     █▄▄  █▄▄    ",
+			),
+		);
+		console.log(
+			themeColor(
+				"█   █▄▄▄█   █   █▄▄█▄█   █▄▄▄█   █▄▄▄█   █ █▄▄▄▄▄█       █      ▄▄▄▄▄▄   ▄",
+			),
+		);
+		console.log(
+			themeColor(
+				"█    ▄▄▄█   █    ▄▄  █    ▄▄▄█    ▄▄▄█   █▄▄▄▄▄  █   ▄   █     █      █  █▄▄",
+			),
+		);
+		console.log(
+			themeColor(
+				"█   █   █   █   █  █ █   █▄▄▄█   █   █   █▄▄▄▄▄█ █  █ █  █     █ ● ●  █",
+			),
+		);
+		console.log(
+			themeColor(
+				"█▄▄▄█   █▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█     ▀▄▄▄▄▄▄▀",
+			),
+		);
 		//#endregion
 
 		console.log(
@@ -78,7 +106,11 @@ export async function masterMain() {
 		config = loadConfigBoot();
 		await connectDb();
 	} catch (e) {
-		bootLogger.error("Fatal error occurred during initialization", null, true);
+		bootLogger.error(
+			`Fatal error occurred during initialization: ${e}`,
+			null,
+			true,
+		);
 		process.exit(1);
 	}
 
