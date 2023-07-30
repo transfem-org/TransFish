@@ -11,6 +11,8 @@ import { generateChannelQuery } from "../../common/generate-channel-query.js";
 import { generateBlockedUserQuery } from "../../common/generate-block-query.js";
 import { generateMutedUserRenotesQueryForNotes } from "../../common/generated-muted-renote-query.js";
 import { ApiError } from "../../error.js";
+import { parseScyllaNote, prepared, scyllaClient } from "@/db/scylla.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
 
 export const meta = {
 	tags: ["notes"],
@@ -64,13 +66,31 @@ export const paramDef = {
 } as const;
 
 export default define(meta, paramDef, async (ps, user) => {
-	const hasFollowing =
-		(await Followings.count({
-			where: {
-				followerId: user.id,
-			},
-			take: 1,
-		})) !== 0;
+	const followingsCache = await LocalFollowingsCache.init(user.id);
+
+	if (scyllaClient) {
+		const untilDate = ps.untilDate ? new Date(ps.untilDate) : new Date();
+		const query = [`${prepared.note.select.byDate} AND "createdAt" <= ?`];
+		const params: (Date | string | string[])[] = [untilDate, untilDate];
+		if (ps.sinceDate) {
+			query.push(`AND "createdAt" >= ?`);
+			params.push(new Date(ps.sinceDate));
+		}
+		if (ps.untilId) {
+			query.push(`AND "id" <= ?`);
+			params.push(ps.untilId);
+		}
+		if (ps.sinceId) {
+			query.push(`AND "id" >= ?`);
+			params.push(ps.sinceId);
+		}
+
+		const result = await scyllaClient.execute(query.join(" "), params, { prepare: true });
+		const notes = result.rows.map(parseScyllaNote);
+		return Notes.packMany(notes, user);
+	}
+
+	const hasFollowing = await followingsCache.hasFollowing();
 
 	//#region Construct query
 	const followingQuery = Followings.createQueryBuilder("following")

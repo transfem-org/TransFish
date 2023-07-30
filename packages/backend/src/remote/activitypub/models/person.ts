@@ -28,7 +28,11 @@ import { fetchInstanceMetadata } from "@/services/fetch-instance-metadata.js";
 import { normalizeForSearch } from "@/misc/normalize-for-search.js";
 import { truncate } from "@/misc/truncate.js";
 import { StatusError } from "@/misc/fetch.js";
-import { uriPersonCache, userByIdCache } from "@/services/user-cache.js";
+import {
+	uriPersonCache,
+	userByIdCache,
+	userDenormalizedCache,
+} from "@/services/user-cache.js";
 import { publishInternalEvent } from "@/services/stream.js";
 import { db } from "@/db/postgre.js";
 import { apLogger } from "../logger.js";
@@ -373,6 +377,10 @@ export async function createPerson(
 
 	await updateFeatured(user!.id, resolver).catch((err) => logger.error(err));
 
+	user!.avatar = avatar;
+	user!.banner = banner;
+	await userDenormalizedCache.set(user!.id, user!);
+
 	return user!;
 }
 
@@ -517,6 +525,13 @@ export async function updatePerson(
 
 	// Update user
 	await Users.update(user.id, updates);
+
+	const updatedUser = await Users.findOneByOrFail({ id: user.id });
+	updatedUser.avatarId = avatar?.id ?? null;
+	updatedUser.avatar = avatar;
+	updatedUser.bannerId = banner?.id ?? null;
+	updatedUser.banner = banner;
+	await userDenormalizedCache.set(updatedUser.id, updatedUser);
 
 	if (person.publicKey) {
 		await UserPublickeys.update(

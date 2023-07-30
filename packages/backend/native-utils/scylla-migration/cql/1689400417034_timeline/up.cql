@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	"hasPoll" boolean,
 	"threadId" ascii,
 	"channelId" ascii, -- Channel
-	"channelName" text,
 	"userId" ascii, -- User
 	"userHost" text,
 	"replyId" ascii, -- Reply

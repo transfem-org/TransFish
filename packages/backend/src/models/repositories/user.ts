@@ -37,6 +37,7 @@ import {
 	UserSecurityKeys,
 } from "../index.js";
 import type { Instance } from "../entities/instance.js";
+import { userByIdCache, userDenormalizedCache } from "@/services/user-cache.js";
 
 const userInstanceCache = new Cache<Instance | null>(
 	"userInstance",
@@ -391,13 +392,15 @@ export const UserRepository = db.getRepository(User).extend({
 			if (src.banner === undefined && src.bannerId)
 				src.banner = (await DriveFiles.findOneBy({ id: src.bannerId })) ?? null;
 		} else {
-			user = await this.findOneOrFail({
-				where: { id: src },
-				relations: {
-					avatar: true,
-					banner: true,
-				},
-			});
+			user = await userDenormalizedCache.fetch(src, () =>
+				this.findOneOrFail({
+					where: { id: src },
+					relations: {
+						avatar: true,
+						banner: true,
+					},
+				}),
+			);
 		}
 
 		const meId = me ? me.id : null;

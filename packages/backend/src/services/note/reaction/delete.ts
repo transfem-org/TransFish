@@ -8,7 +8,7 @@ import type { User, IRemoteUser } from "@/models/entities/user.js";
 import type { Note } from "@/models/entities/note.js";
 import { NoteReactions, Users, Notes } from "@/models/index.js";
 import { decodeReaction } from "@/misc/reaction-lib.js";
-import { parseScyllaReaction, prepared, scyllaClient } from "@/db/scylla";
+import { parseScyllaReaction, prepared, scyllaClient } from "@/db/scylla.js";
 import type { NoteReaction } from "@/models/entities/note-reaction.js";
 
 export default async (

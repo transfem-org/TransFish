@@ -16,7 +16,7 @@ import { verifyLink } from "@/services/fetch-rel-me.js";
 import { ApiError } from "../../error.js";
 import config from "@/config/index.js";
 import define from "../../define.js";
-import { userByIdCache } from "@/services/user-cache.js";
+import { userByIdCache, userDenormalizedCache } from "@/services/user-cache.js";
 
 export const meta = {
 	tags: ["account"],
@@ -308,10 +308,18 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 
 	if (Object.keys(updates).length > 0) {
 		await Users.update(user.id, updates);
+		const data = await Users.findOneByOrFail({ id: user.id });
 		await userByIdCache.set(
-			user.id,
-			await Users.findOneByOrFail({ id: user.id }),
+			data.id,
+			data,
 		);
+		if (data.avatarId) {
+			data.avatar = await DriveFiles.findOneBy({ id: data.avatarId });
+		}
+		if (data.bannerId) {
+			data.banner = await DriveFiles.findOneBy({ id: data.bannerId });
+		}
+		await userDenormalizedCache.set(data.id, data);
 	}
 	if (Object.keys(profileUpdates).length > 0)
 		await UserProfiles.update(user.id, profileUpdates);

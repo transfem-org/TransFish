@@ -140,11 +140,11 @@ export class LocalFollowingsCache {
 		this.key = `follow:${userId}`;
 	}
 
-	public static async init(userId: string) {
+	public static async init(userId: string): Promise<LocalFollowingsCache> {
 		const cache = new LocalFollowingsCache(userId);
 
-		// Sync from DB if no relationships is cached
-		if ((await redisClient.scard(cache.key)) === 0) {
+		// Sync from DB if no followings are cached
+		if (!(await cache.hasFollowing())) {
 			const rel = await Followings.find({
 				select: { followeeId: true },
 				where: { followerId: cache.myId },
@@ -171,5 +171,13 @@ export class LocalFollowingsCache {
 
 	public async isFollowing(targetId: string): Promise<boolean> {
 		return (await redisClient.sismember(this.key, targetId)) === 1;
+	}
+
+	public async hasFollowing(): Promise<boolean> {
+		return (await redisClient.scard(this.key)) !== 0;
+	}
+
+	public async getAll(): Promise<string[]> {
+		return (await redisClient.smembers(this.key))
 	}
 }

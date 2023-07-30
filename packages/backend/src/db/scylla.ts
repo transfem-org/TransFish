@@ -44,7 +44,6 @@ export const prepared = {
 				"hasPoll",
 				"threadId",
 				"channelId",
-				"channelName",
 				"userId",
 				"userHost",
 				"replyId",
@@ -58,9 +57,9 @@ export const prepared = {
 				"updatedAt"
 			)
 			VALUES
-			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
-			byDate: `SELECT * FROM note WHERE "createdAtDate" IN ?`,
+			byDate: `SELECT * FROM note WHERE "createdAtDate" = ?`,
 			byId: `SELECT * FROM note WHERE "id" IN ?`,
 			byUri: `SELECT * FROM note WHERE "uri" IN ?`,
 			byUrl: `SELECT * FROM note WHERE "url" IN ?`,
@@ -118,7 +117,6 @@ export interface ScyllaNoteEditHistory {
 export type ScyllaNote = Note & {
 	createdAtDate: Date;
 	files: ScyllaDriveFile[];
-	channelName: string;
 	noteEdit: ScyllaNoteEditHistory[];
 };
 
@@ -148,7 +146,6 @@ export function parseScyllaNote(row: types.Row): ScyllaNote {
 		hasPoll: row.get("hasPoll"),
 		threadId: row.get("threadId"),
 		channelId: row.get("channelId"),
-		channelName: row.get("channelName"),
 		userId: row.get("userId"),
 		userHost: row.get("userHost"),
 		replyId: row.get("replyId"),

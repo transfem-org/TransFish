@@ -296,8 +296,8 @@ export const NoteRepository = db.getRepository(Note).extend({
 		const myReactionsMap = new Map<Note["id"], NoteReaction | null>();
 		if (meId) {
 			const renoteIds = notes
-				.filter((n) => n.renoteId != null)
-				.map((n) => n.renoteId!);
+				.filter((n) => !!n.renoteId)
+				.map((n) => n.renoteId) as string[];
 			const targets = [...notes.map((n) => n.id), ...renoteIds];
 			const myReactions = await NoteReactions.findBy({
 				userId: meId,
