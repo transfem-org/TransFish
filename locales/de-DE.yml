@@ -1128,7 +1128,7 @@ _mfm:
   bold: "Fett"
   boldDescription: "Zeichen zur Betonung dicker erscheinen lassen."
   small: "Klein"
-  smallDescription: "Inhalt klein und dünn erscheinen lassen."
+  smallDescription: "Zeigt den Inhalt klein und dünn an"
   center: "Zentrieren"
   centerDescription: "Inhalt zentriert anzeigen."
   inlineCode: "Code (Eingebettet)"
