@@ -12,16 +12,28 @@
 			:class="{ dmWidth: inDm }"
 		>
 			<div ref="gallery" @click.stop>
-				<XMedia
+				<template
 					v-for="media in mediaList.filter((media) =>
 						previewable(media),
 					)"
-					:key="media.id"
-					:class="{ image: media.type.startsWith('image') }"
-					:data-id="media.id"
-					:media="media"
-					:raw="raw"
-				/>
+				>
+					<XMedia
+						v-if="
+							media.type.startsWith('video') ||
+							media.type.startsWith('image')
+						"
+						:key="media.id"
+						:class="{ image: media.type.startsWith('image') }"
+						:data-id="media.id"
+						:media="media"
+						:raw="raw"
+					/>
+					<XModPlayer
+						v-else-if="isModule(media)"
+						:key="media.id"
+						:module="media"
+					/>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -35,8 +47,13 @@ import PhotoSwipe from "photoswipe";
 import "photoswipe/style.css";
 import XBanner from "@/components/MkMediaBanner.vue";
 import XMedia from "@/components/MkMedia.vue";
+import XModPlayer from "@/components/MkModPlayer.vue";
 import * as os from "@/os";
-import { FILE_TYPE_BROWSERSAFE } from "@/const";
+import {
+	FILE_TYPE_BROWSERSAFE,
+	FILE_TYPE_TRACKER_MODULES,
+	FILE_EXT_TRACKER_MODULES,
+} from "@/const";
 import { defaultStore } from "@/store";
 
 const props = defineProps<{
@@ -171,11 +188,24 @@ onMounted(() => {
 const previewable = (file: misskey.entities.DriveFile): boolean => {
 	if (file.type === "image/svg+xml") return true; // svgのwebpublic/thumbnailはpngなのでtrue
 	// FILE_TYPE_BROWSERSAFEに適合しないものはブラウザで表示するのに不適切
+	if (isModule(file)) return true;
 	return (
 		(file.type.startsWith("video") || file.type.startsWith("image")) &&
 		FILE_TYPE_BROWSERSAFE.includes(file.type)
 	);
 };
+
+const isModule = (file: misskey.entities.DriveFile): boolean => {
+	return (
+		FILE_TYPE_TRACKER_MODULES.some((type) => {
+			return file.type === type;
+		}) ||
+		FILE_EXT_TRACKER_MODULES.some((ext) => {
+			return file.name.toLowerCase().endsWith("." + ext);
+		})
+	);
+};
+
 const previewableCount = props.mediaList.filter((media) =>
 	previewable(media),
 ).length;

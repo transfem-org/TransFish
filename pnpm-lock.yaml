@@ -773,6 +773,9 @@ importers:
       katex:
         specifier: 0.16.8
         version: 0.16.8
+      libopenmpt-wasm:
+        specifier: github:TheEssem/libopenmpt-packaging#build
+        version: github.com/TheEssem/libopenmpt-packaging/d05d151a72b638c6312227af0417aca69521172c
       matter-js:
         specifier: 0.18.0
         version: 0.18.0
@@ -19316,6 +19319,12 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
+
+  github.com/TheEssem/libopenmpt-packaging/d05d151a72b638c6312227af0417aca69521172c:
+    resolution: {tarball: https://codeload.github.com/TheEssem/libopenmpt-packaging/tar.gz/d05d151a72b638c6312227af0417aca69521172c}
+    name: libopenmpt-wasm
+    version: 0.7.2
+    dev: true
 
   github.com/misskey-dev/browser-image-resizer/56f504427ad7f6500e141a6d9f3aee42023d7f3e:
     resolution: {tarball: https://codeload.github.com/misskey-dev/browser-image-resizer/tar.gz/56f504427ad7f6500e141a6d9f3aee42023d7f3e}

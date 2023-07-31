@@ -61,6 +61,7 @@
 		"insert-text-at-cursor": "0.3.0",
 		"json5": "2.2.3",
 		"katex": "0.16.8",
+		"libopenmpt-wasm": "github:TheEssem/libopenmpt-packaging#build",
 		"matter-js": "0.18.0",
 		"mfm-js": "0.23.3",
 		"paralint": "^1.2.1",
