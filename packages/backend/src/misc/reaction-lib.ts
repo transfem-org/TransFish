@@ -105,7 +105,9 @@ export async function toDbReaction(
 		);
 
 		if (emoji) {
-			const emojiName = _reacterHost ? `:${name}@${_reacterHost}:` : `:${name}:`;
+			const emojiName = _reacterHost
+				? `:${name}@${_reacterHost}:`
+				: `:${name}:`;
 			return { name: emojiName, emoji };
 		}
 	}

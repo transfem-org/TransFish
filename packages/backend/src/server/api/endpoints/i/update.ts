@@ -309,10 +309,7 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (Object.keys(updates).length > 0) {
 		await Users.update(user.id, updates);
 		const data = await Users.findOneByOrFail({ id: user.id });
-		await userByIdCache.set(
-			data.id,
-			data,
-		);
+		await userByIdCache.set(data.id, data);
 		if (data.avatarId) {
 			data.avatar = await DriveFiles.findOneBy({ id: data.avatarId });
 		}

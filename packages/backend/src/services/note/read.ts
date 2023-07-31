@@ -1,10 +1,7 @@
 import { publishMainStream } from "@/services/stream.js";
 import type { Note } from "@/models/entities/note.js";
 import type { User } from "@/models/entities/user.js";
-import {
-	NoteUnreads,
-	ChannelFollowings,
-} from "@/models/index.js";
+import { NoteUnreads, ChannelFollowings } from "@/models/index.js";
 import { Not, IsNull, In } from "typeorm";
 import type { Channel } from "@/models/entities/channel.js";
 import { readNotificationByQuery } from "@/server/api/common/read-notification.js";

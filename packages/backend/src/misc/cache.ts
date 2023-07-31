@@ -2,6 +2,7 @@ import { redisClient } from "@/db/redis.js";
 import { encode, decode } from "msgpackr";
 import { ChainableCommander } from "ioredis";
 import { Followings } from "@/models/index.js";
+import { IsNull } from "typeorm";
 
 export class Cache<T> {
 	private ttl: number;
@@ -147,7 +148,7 @@ export class LocalFollowingsCache {
 		if (!(await cache.hasFollowing())) {
 			const rel = await Followings.find({
 				select: { followeeId: true },
-				where: { followerId: cache.myId },
+				where: { followerId: cache.myId, followerHost: IsNull() },
 			});
 			await cache.follow(...rel.map((r) => r.followeeId));
 		}
@@ -178,6 +179,6 @@ export class LocalFollowingsCache {
 	}
 
 	public async getAll(): Promise<string[]> {
-		return (await redisClient.smembers(this.key))
+		return await redisClient.smembers(this.key);
 	}
 }

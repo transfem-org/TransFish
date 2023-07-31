@@ -85,7 +85,9 @@ export default define(meta, paramDef, async (ps, user) => {
 			params.push(ps.sinceId);
 		}
 
-		const result = await scyllaClient.execute(query.join(" "), params, { prepare: true });
+		const result = await scyllaClient.execute(query.join(" "), params, {
+			prepare: true,
+		});
 		const notes = result.rows.map(parseScyllaNote);
 		return Notes.packMany(notes, user);
 	}

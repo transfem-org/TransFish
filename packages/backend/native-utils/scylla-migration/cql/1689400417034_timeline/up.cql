@@ -10,7 +10,9 @@ CREATE TYPE IF NOT EXISTS drive_file (
 	"isSensitive" boolean,
 	"isLink" boolean,
 	"md5" ascii,
-	"size" int
+	"size" int,
+	"width" int,
+	"height" int,
 );
 
 CREATE TYPE IF NOT EXISTS note_edit_history (
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	"files" set<frozen<drive_file>>,
 	"visibleUserIds" set<ascii>,
 	"mentions" set<ascii>,
+	"mentionedRemoteUsers" text,
 	"emojis" set<text>,
 	"tags" set<text>,
 	"hasPoll" boolean,
@@ -63,9 +66,16 @@ CREATE TABLE IF NOT EXISTS note ( -- Models timeline
 	PRIMARY KEY ("createdAtDate", "createdAt", "id")
 ) WITH CLUSTERING ORDER BY ("createdAt" DESC);
 
-CREATE INDEX IF NOT EXISTS note_by_id ON note (id);
-CREATE INDEX IF NOT EXISTS note_by_uri ON note (uri);
-CREATE INDEX IF NOT EXISTS note_by_url ON note (url);
+CREATE INDEX IF NOT EXISTS note_by_uri ON note ("uri");
+CREATE INDEX IF NOT EXISTS note_by_url ON note ("url");
+
+CREATE MATERIALIZED VIEW IF NOT EXISTS note_by_id AS
+	SELECT * FROM note
+	WHERE "id" IS NOT NULL
+	AND "createdAt" IS NOT NULL
+	AND "createdAtDate" IS NOT NULL
+	PRIMARY KEY ("id", "createdAt", "createdAtDate")
+	WITH CLUSTERING ORDER BY ("createdAt" DESC);
 
 CREATE MATERIALIZED VIEW IF NOT EXISTS note_by_userid AS
 	SELECT * FROM note
@@ -86,7 +96,7 @@ CREATE TABLE IF NOT EXISTS reaction (
 	PRIMARY KEY ("noteId", "userId")
 );
 
-CREATE INDEX IF NOT EXISTS reaction_by_id ON reaction (id);
+CREATE INDEX IF NOT EXISTS reaction_by_id ON reaction ("id");
 
 CREATE MATERIALIZED VIEW IF NOT EXISTS reaction_by_userid AS
 	SELECT * FROM reaction

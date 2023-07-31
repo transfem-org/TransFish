@@ -27,6 +27,14 @@ import {
 } from "@/misc/populate-emojis.js";
 import { db } from "@/db/postgre.js";
 import { IdentifiableError } from "@/misc/identifiable-error.js";
+import {
+	ScyllaNote,
+	parseScyllaNote,
+	prepared,
+	scyllaClient,
+} from "@/db/scylla.js";
+import { LocalFollowingsCache } from "@/misc/cache.js";
+import { userByIdCache } from "@/services/user-cache.js";
 
 export async function populatePoll(note: Note, meId: User["id"] | null) {
 	const poll = await Polls.findOneByOrFail({ noteId: note.id });
@@ -124,16 +132,23 @@ export const NoteRepository = db.getRepository(Note).extend({
 				return true;
 			} else {
 				// フォロワーかどうか
-				const [following, user] = await Promise.all([
-					Followings.count({
-						where: {
-							followeeId: note.userId,
-							followerId: meId,
-						},
-						take: 1,
-					}),
+
+				const user = await userByIdCache.fetch(meId, () =>
 					Users.findOneByOrFail({ id: meId }),
-				]);
+				);
+
+				if (!user.host) {
+					// user is local
+					const cache = await LocalFollowingsCache.init(meId);
+					return await cache.isFollowing(note.userId);
+				}
+
+				const following = await Followings.exist({
+					where: {
+						followeeId: note.userId,
+						followerId: meId,
+					},
+				});
 
 				/* If we know the following, everyhting is fine.
 
@@ -142,7 +157,7 @@ export const NoteRepository = db.getRepository(Note).extend({
 				in which case we can never know the following. Instead we have
 				to assume that the users are following each other.
 				*/
-				return following > 0 || (note.userHost != null && user.host != null);
+				return following || !!note.userHost;
 			}
 		}
 
@@ -167,8 +182,31 @@ export const NoteRepository = db.getRepository(Note).extend({
 		);
 
 		const meId = me ? me.id : null;
-		const note =
-			typeof src === "object" ? src : await this.findOneByOrFail({ id: src });
+		let note: Note | null = null;
+		const noteId = typeof src === "object" ? src.id : src;
+		if (scyllaClient) {
+			const result = await scyllaClient.execute(
+				prepared.note.select.byId,
+				[[noteId]],
+				{ prepare: true },
+			);
+			if (result.rowLength > 0) {
+				note = parseScyllaNote(result.first());
+			}
+		}
+
+		if (!note) {
+			// Fallback to Postgres
+			note = await this.findOneBy({ id: noteId });
+		}
+
+		if (note === null) {
+			throw new IdentifiableError(
+				"9725d0ce-ba28-4dde-95a7-2cbb2c15de24",
+				"No such note.",
+			);
+		}
+
 		const host = note.userHost;
 
 		if (!(await this.isVisibleForMe(note, meId))) {
@@ -222,7 +260,18 @@ export const NoteRepository = db.getRepository(Note).extend({
 			emojis: noteEmoji,
 			tags: note.tags.length > 0 ? note.tags : undefined,
 			fileIds: note.fileIds,
-			files: DriveFiles.packMany(note.fileIds),
+			files: scyllaClient
+				? (note as ScyllaNote).files.map((file) => ({
+						...file,
+						createdAt: file.createdAt.toISOString(),
+						properties: {
+							width: file.width ?? undefined,
+							height: file.height ?? undefined,
+						},
+						userId: null,
+						folderId: null,
+				  }))
+				: DriveFiles.packMany(note.fileIds),
 			replyId: note.replyId,
 			renoteId: note.renoteId,
 			channelId: note.channelId || undefined,

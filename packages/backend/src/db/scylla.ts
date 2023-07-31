@@ -39,6 +39,7 @@ export const prepared = {
 				"files",
 				"visibleUserIds",
 				"mentions",
+				"mentionedRemoteUsers",
 				"emojis",
 				"tags",
 				"hasPoll",
@@ -57,12 +58,12 @@ export const prepared = {
 				"updatedAt"
 			)
 			VALUES
-			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		select: {
 			byDate: `SELECT * FROM note WHERE "createdAtDate" = ?`,
-			byId: `SELECT * FROM note WHERE "id" IN ?`,
 			byUri: `SELECT * FROM note WHERE "uri" IN ?`,
 			byUrl: `SELECT * FROM note WHERE "url" IN ?`,
+			byId: `SELECT * FROM note_by_id WHERE "id" IN ?`,
 			byUserId: `SELECT * FROM note_by_userid WHERE "userId" IN ?`,
 		},
 		delete: `DELETE FROM note WHERE "createdAtDate" = ? AND "createdAt" = ? AND "id" = ?`,
@@ -105,6 +106,8 @@ export interface ScyllaDriveFile {
 	isLink: boolean;
 	md5: string;
 	size: number;
+	width: number | null;
+	height: number | null;
 }
 
 export interface ScyllaNoteEditHistory {
@@ -121,47 +124,48 @@ export type ScyllaNote = Note & {
 };
 
 export function parseScyllaNote(row: types.Row): ScyllaNote {
-	const files: ScyllaDriveFile[] = row.get("files");
+	const files: ScyllaDriveFile[] = row.get("files") ?? [];
+
 	return {
 		createdAtDate: row.get("createdAtDate"),
 		createdAt: row.get("createdAt"),
 		id: row.get("id"),
 		visibility: row.get("visibility"),
-		text: row.get("content"),
-		name: row.get("name"),
-		cw: row.get("cw"),
+		text: row.get("content") ?? null,
+		name: row.get("name") ?? null,
+		cw: row.get("cw") ?? null,
 		localOnly: row.get("localOnly"),
 		renoteCount: row.get("renoteCount"),
 		repliesCount: row.get("repliesCount"),
-		uri: row.get("uri"),
-		url: row.get("url"),
+		uri: row.get("uri") ?? null,
+		url: row.get("url") ?? null,
 		score: row.get("score"),
 		files,
 		fileIds: files.map((file) => file.id),
-		attachedFileTypes: files.map((file) => file.type),
-		visibleUserIds: row.get("visibleUserIds"),
-		mentions: row.get("mentions"),
-		emojis: row.get("emojis"),
-		tags: row.get("tags"),
-		hasPoll: row.get("hasPoll"),
-		threadId: row.get("threadId"),
-		channelId: row.get("channelId"),
+		attachedFileTypes: files.map((file) => file.type) ?? [],
+		visibleUserIds: row.get("visibleUserIds") ?? [],
+		mentions: row.get("mentions") ?? [],
+		emojis: row.get("emojis") ?? [],
+		tags: row.get("tags") ?? [],
+		hasPoll: row.get("hasPoll") ?? false,
+		threadId: row.get("threadId") ?? null,
+		channelId: row.get("channelId") ?? null,
 		userId: row.get("userId"),
-		userHost: row.get("userHost"),
-		replyId: row.get("replyId"),
-		replyUserId: row.get("replyUserId"),
-		replyUserHost: row.get("replyUserHost"),
-		renoteId: row.get("replyId"),
-		renoteUserId: row.get("renoteUserId"),
-		renoteUserHost: row.get("renoteUserHost"),
-		reactions: row.get("reactions"),
-		noteEdit: row.get("noteEdit"),
-		updatedAt: row.get("updatedAt"),
+		userHost: row.get("userHost") ?? null,
+		replyId: row.get("replyId") ?? null,
+		replyUserId: row.get("replyUserId") ?? null,
+		replyUserHost: row.get("replyUserHost") ?? null,
+		renoteId: row.get("renoteId") ?? null,
+		renoteUserId: row.get("renoteUserId") ?? null,
+		renoteUserHost: row.get("renoteUserHost") ?? null,
+		reactions: row.get("reactions") ?? {},
+		noteEdit: row.get("noteEdit") ?? [],
+		updatedAt: row.get("updatedAt") ?? null,
+		mentionedRemoteUsers: row.get("mentionedRemoteUsers") ?? "[]",
 		/* unused postgres denormalization */
 		channel: null,
 		renote: null,
 		reply: null,
-		mentionedRemoteUsers: "",
 		user: null,
 	};
 }

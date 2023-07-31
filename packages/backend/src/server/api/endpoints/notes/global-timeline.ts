@@ -84,7 +84,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		.leftJoinAndSelect("note.reply", "reply")
 		.leftJoinAndSelect("note.renote", "renote")
 		.leftJoinAndSelect("reply.user", "replyUser")
-		.leftJoinAndSelect("renote.user", "renoteUser")
+		.leftJoinAndSelect("renote.user", "renoteUser");
 
 	generateRepliesQuery(query, ps.withReplies, user);
 	if (user) {
