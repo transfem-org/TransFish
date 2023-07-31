@@ -953,9 +953,9 @@ driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazit�
   auf den Standard zurückzusetzen."
 requireAdminForView: "Du musst dich mit einem Administratorkonto anmelden um dies
   zu sehen."
-isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwaltet.
-  Bitte moderieren, bearbeiten, löschen oder manipulieren Sie dieses Konto nicht,
-  da es sonst zu einem Server-Absturz kommen könnte."
+isSystemAccount: "Ein Nutzerkonto, dass durch das System erstellt und automatisch
+  kontrolliert wird. Jede Anpassung, Veränderung oder Löschung dieses Nutzerkontos,
+  kann zu schwerwiegenden Fehlern auf diesem Server führen."
 typeToConfirm: "Bitte gib zur Bestätigung {x} ein"
 deleteAccount: "Nutzerkonto löschen"
 document: "Dokumentation"
