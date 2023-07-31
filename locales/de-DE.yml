@@ -2191,3 +2191,13 @@ _skinTones:
 showPopup: Benutzer mit Popup benachrichtigen
 showWithSparkles: Mit Glitzer anzeigen
 removeQuote: Zitat entfernen
+objectStorageS3ForcePathStyle: Verwende pfadbasierte Endpunkt-URLs
+objectStorageS3ForcePathStyleDesc: Wenn aktiviert, werden Endpunkt-URLs im Format
+  's3.amazonaws.com/<bucket>/' statt '<bucket>.s3.amazonaws.com' erstellt.
+origin: Herkunft
+delete2fa: 2FA deaktivieren
+deletePasskeys: Passkeys löschen
+delete2faConfirm: Passkeys werden unwiderruflich von diesem Account gelöscht. Fortfahren?
+deletePasskeysConfirm: Alle Passkeys und Security-Keys werden unwiderruflich von diesem
+  Account gelöscht. Fortfahren?
+inputNotMatch: Eingabe stimmt nicht überein
