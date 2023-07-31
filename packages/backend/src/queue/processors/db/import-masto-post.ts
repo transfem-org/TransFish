@@ -8,6 +8,9 @@ import { resolveNote } from "@/remote/activitypub/models/note.js";
 import { Note } from "@/models/entities/note.js";
 import { uploadFromUrl } from "@/services/drive/upload-from-url.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
+import { Notes, NoteEdits } from "@/models/index.js";
+import type { Note } from "@/models/entities/note.js";
+import { genId } from "@/misc/gen-id.js";
 
 const logger = queueLogger.createSubLogger("import-masto-post");
 
@@ -67,23 +70,47 @@ export async function importMastoPost(
 			}
 		}
 	}
-
-	const note = await create(user, {
+	let note = await Notes.findOneBy({
 		createdAt: new Date(post.object.published),
-		files: files.length == 0 ? undefined : files,
-		poll: undefined,
-		text: text || undefined,
-		reply,
-		renote: null,
-		cw: post.object.sensitive ? post.object.summary : undefined,
-		localOnly: false,
-		visibility: "hidden",
-		visibleUsers: [],
-		channel: null,
-		apMentions: new Array(0),
-		apHashtags: undefined,
-		apEmojis: undefined,
+		text: text,
+		userId: user.id,
 	});
+
+	if (note && (note?.fileIds?.length || 0) < files.length) {
+		const update: Partial<Note> = {};
+		update.fileIds = files.map((x) => x.id);
+		await Notes.update(note.id, update);
+		await NoteEdits.insert({
+			id: genId(),
+			noteId: note.id,
+			text: note.text || undefined,
+			cw: note.cw,
+			fileIds: note.fileIds,
+			updatedAt: new Date(),
+		});
+		logger.info(`Note file updated`);
+	}
+	if (!note) {
+		note = await create(user, {
+			createdAt: new Date(post.object.published),
+			files: files.length == 0 ? undefined : files,
+			poll: undefined,
+			text: text || undefined,
+			reply,
+			renote: null,
+			cw: post.object.sensitive ? post.object.summary : undefined,
+			localOnly: false,
+			visibility: "hiddenpublic",
+			visibleUsers: [],
+			channel: null,
+			apMentions: new Array(0),
+			apHashtags: undefined,
+			apEmojis: undefined,
+		});
+		logger.info(`Create new note`);
+	} else {
+		logger.info(`Note exist`);
+	}
 	job.progress(100);
 	done();
 

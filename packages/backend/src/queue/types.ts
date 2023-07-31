@@ -52,6 +52,7 @@ export type DbUserImportMastoPostJobData = {
 	user: ThinUser;
 	post: any;
 	signatureCheck: boolean;
+	parent: Note | null;
 };
 
 export type ObjectStorageJobData =
