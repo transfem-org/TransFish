@@ -1,5 +1,6 @@
 _lang_: "Français"
-headlineFirefish: "Réseau relié par des notes"
+headlineFirefish: "Une plateforme de réseaux sociaux décentralisé, open source qui
+  est gratuit pour toujours ! 🚀"
 introFirefish: "Bienvenue ! Firefish est une plateforme de réseau social décentralisé
   et open source qui est gratuite pour toujours ! 🚀"
 monthAndDay: "{day}/{month}"
@@ -13,8 +14,8 @@ ok: "OK"
 gotIt: "J’ai compris !"
 cancel: "Annuler"
 enterUsername: "Entrer un nom d’utilisateur·rice"
-renotedBy: "Renoté par {user}"
-noNotes: "Aucune note"
+renotedBy: "Boosté par {user}"
+noNotes: "Aucun post"
 noNotifications: "Aucune notification"
 instance: "Serveur"
 settings: "Paramètres"
@@ -45,8 +46,8 @@ copyContent: "Copier le contenu"
 copyLink: "Copier le lien"
 delete: "Supprimer"
 deleteAndEdit: "Supprimer et réécrire"
-deleteAndEditConfirm: "Êtes-vous sûr·e de vouloir supprimer cette note et la reformuler
-  ? Vous perdrez toutes les réactions, renotes et réponses y afférentes."
+deleteAndEditConfirm: "Êtes-vous sûr·e de vouloir supprimer ce post et le reformuler
+  ? Vous perdrez toutes les réactions, boosts et réponses liées."
 addToList: "Ajouter à une liste"
 sendMessage: "Envoyer un message"
 copyUsername: "Copier le nom d’utilisateur·rice"
@@ -60,14 +61,14 @@ receiveFollowRequest: "Demande d’abonnement reçue"
 followRequestAccepted: "La demande d’abonnement a été acceptée"
 mention: "Mentionner"
 mentions: "Mentions"
-directNotes: "Notes directes"
+directNotes: "Messages directs"
 importAndExport: "Import et export"
 import: "Importer"
 export: "Exporter"
 files: "Fichiers"
 download: "Télécharger"
 driveFileDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer le fichier \"{name}\"\
-  \ ? Il sera retiré de toutes ses notes liées."
+  \ ? Il sera retiré de tous ses posts liées."
 unfollowConfirm: "Désirez-vous vous désabonner de {name} ?"
 exportRequested: "Vous avez demandé une exportation. L’opération pourrait prendre
   un peu de temps. Une terminée, le fichier résultant sera ajouté au Drive."
@@ -94,18 +95,18 @@ youShouldUpgradeClient: "Si la page ne s'affiche pas correctement, rechargez-la 
 enterListName: "Nom de la liste"
 privacy: "Confidentialité"
 makeFollowManuallyApprove: "Accepter manuellement les demandes d’abonnement"
-defaultNoteVisibility: "Visibilité des notes par défaut"
+defaultNoteVisibility: "Visibilité des posts par défaut"
 follow: "S’abonner"
 followRequest: "Demande d’abonnement"
 followRequests: "Demandes d’abonnement"
 unfollow: "Se désabonner"
 followRequestPending: "Demande d'abonnement en attente de confirmation"
 enterEmoji: "Insérer un émoji"
-renote: "Renoter"
-unrenote: "Annuler la Renote"
-renoted: "Renoté."
-cantRenote: "Ce message ne peut pas être renoté."
-cantReRenote: "Impossible de renoter une Renote."
+renote: "Booster"
+unrenote: "Annuler le boost"
+renoted: "Boosté."
+cantRenote: "Ce message ne peut pas être boosté."
+cantReRenote: "Impossible de partager ce boost."
 quote: "Citer"
 pinnedNote: "Note épinglée"
 pinned: "Épingler sur le profil"
@@ -117,9 +118,9 @@ reaction: "Réactions"
 reactionSetting: "Réactions à afficher dans le sélecteur de réactions"
 reactionSettingDescription2: "Déplacer pour réorganiser, cliquer pour effacer, utiliser
   « + » pour ajouter."
-rememberNoteVisibility: "Activer l'option \" se souvenir de la visibilité des notes
+rememberNoteVisibility: "Activer l'option \" se souvenir de la visibilité des posts
   \" vous permet de réutiliser automatiquement la visibilité utilisée lors de la publication
-  de votre note précédente."
+  de votre post précédent."
 attachCancel: "Supprimer le fichier attaché"
 markAsSensitive: "Marquer comme sensible"
 unmarkAsSensitive: "Supprimer le marquage comme sensible"
@@ -175,9 +176,9 @@ proxyAccount: "Compte proxy"
 proxyAccountDescription: "Un compte proxy se comporte, dans certaines conditions,
   comme un·e abonné·e distant·e pour les utilisateur·rice·s d'autres serveurs. Par
   exemple, quand un·e utilisateur·rice local ajoute un·e utilisateur·rice distant·e
-  à une liste, ses notes ne seront pas visibles sur le serveur si personne ne suit
+  à une liste, ses posts ne seront pas visibles sur le serveur si personne ne suit
   cet·te utilisateur·rice. Le compte proxy va donc suivre cet·te utilisateur·rice
-  pour que ses notes soient acheminées."
+  pour que ses posts soient acheminées."
 host: "Serveur distant"
 selectUser: "Sélectionner un·e utilisateur·rice"
 recipient: "Destinataire"
@@ -207,7 +208,7 @@ instanceInfo: "Informations du serveur"
 statistics: "Statistiques"
 clearQueue: "Vider la file d’attente"
 clearQueueConfirmTitle: "Êtes-vous sûr·e de vouloir vider la file d’attente ?"
-clearQueueConfirmText: "Les notes non distribuées ne seront pas délivrées. Normalement,
+clearQueueConfirmText: "Les posts non distribués ne seront pas délivrés. Normalement,
   vous n'avez pas besoin d'effectuer cette opération."
 clearCachedFiles: "Vider le cache"
 clearCachedFilesConfirm: "Êtes-vous sûr·e de vouloir vider tout le cache de fichiers
@@ -220,8 +221,8 @@ mutedUsers: "Utilisateur·rice·s en sourdine"
 blockedUsers: "Utilisateur·rice·s bloqué·e·s"
 noUsers: "Il n’y a pas d’utilisateur·rice·s"
 editProfile: "Modifier votre profil"
-noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer cette note ?"
-pinLimitExceeded: "Vous ne pouvez pas épingler plus de notes"
+noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer ce post ?"
+pinLimitExceeded: "Vous ne pouvez pas épingler plus de posts"
 intro: "L’installation de Firefish est terminée ! Veuillez créer un compte administrateur."
 done: "Terminé"
 processing: "Traitement en cours"
@@ -366,7 +367,7 @@ pinnedPages: "Pages épinglées"
 pinnedPagesDescription: "Inscrivez le chemin des Pages que vous souhaitez épingler
   en haut de la page du serveur. Séparez les d'un retour à la ligne."
 pinnedClipId: "Identifiant du clip épinglé"
-pinnedNotes: "Note épinglée"
+pinnedNotes: "Posts épinglée"
 hcaptcha: "hCaptcha"
 enableHcaptcha: "Activer hCaptcha"
 hcaptchaSiteKey: "Clé du site"
@@ -386,14 +387,14 @@ antennaKeywords: "Mots clés à recevoir"
 antennaExcludeKeywords: "Mots clés à exclure"
 antennaKeywordsDescription: "Séparer avec des espaces pour la condition AND. Séparer
   avec un saut de ligne pour une condition OR."
-notifyAntenna: "Je souhaite recevoir les notifications des nouvelles notes"
-withFileAntenna: "Notes ayant des attachements uniquement"
+notifyAntenna: "Je souhaite recevoir les notifications des nouveaux posts"
+withFileAntenna: "Posts ayant des attachements uniquement"
 enableServiceworker: "Activer ServiceWorker"
 antennaUsersDescription: "Saisissez un seul nom d’utilisateur·rice par ligne"
 caseSensitive: "Sensible à la casse"
 withReplies: "Inclure les réponses"
 connectedTo: "Vous êtes connectés aux services suivants"
-notesAndReplies: "Notes et Réponses"
+notesAndReplies: "Posts et Réponses"
 withFiles: "Avec fichiers joints"
 silence: "Mettre en sourdine"
 silenceConfirm: "Êtes-vous sûr·e de vouloir mettre l’utilisateur·rice en sourdine
@@ -431,7 +432,7 @@ notFoundDescription: "Aucune page ne correspond à l’URL spécifiée."
 uploadFolder: "Emplacement de téléversement par défaut"
 cacheClear: "Vider le cache"
 markAsReadAllNotifications: "Marquer toutes les notifications comme lues"
-markAsReadAllUnreadNotes: "Marquer toutes les notes comme lues"
+markAsReadAllUnreadNotes: "Marquer tous les posts comme lus"
 markAsReadAllTalkMessages: "Marquer toutes les discussions comme lues"
 help: "Aide"
 inputMessageHere: "Écrivez votre message ici"
@@ -452,7 +453,7 @@ text: "Texte"
 enable: "Activer"
 next: "Suivant"
 retype: "Confirmation"
-noteOf: "Notes de {user}"
+noteOf: "Posts de {user}"
 inviteToGroup: "Inviter dans un groupe"
 quoteAttached: "Avec citation"
 quoteQuestion: "Souhaitez-vous ajouter une citation ?"
@@ -512,8 +513,8 @@ accountSettings: "Paramètres du compte"
 promotion: "Promu"
 promote: "Promouvoir"
 numberOfDays: "Nombre de jours"
-hideThisNote: "Masquer cette note"
-showFeaturedNotesInTimeline: "Afficher les notes des Tendances dans le fil d'actualité"
+hideThisNote: "Masquer ce post"
+showFeaturedNotesInTimeline: "Afficher les posts des Tendances dans le fil d'actualité"
 objectStorage: "Stockage d'objets"
 useObjectStorage: "Utiliser le stockage d'objets"
 objectStorageBaseUrl: "Base URL"
@@ -544,7 +545,7 @@ objectStorageSetPublicRead: "Régler sur « public » lors de l'envoi"
 serverLogs: "Journal du serveur"
 deleteAll: "Supprimer tout"
 showFixedPostForm: "Afficher le formulaire de publication en haut du fil d'actualité"
-newNoteRecived: "Voir les nouvelles notes"
+newNoteRecived: "Voir les nouveaux posts"
 sounds: "Sons"
 listen: "Écouter"
 none: "Rien"
@@ -594,8 +595,8 @@ addRelay: "Ajouter un relais"
 inboxUrl: "Inbox URL"
 addedRelays: "Relais ajoutés"
 serviceworkerInfo: "Devrait être activé pour les notifications push."
-deletedNote: "Note supprimée"
-invisibleNote: "Note invisible"
+deletedNote: "Post supprimé"
+invisibleNote: "Post invisible"
 enableInfiniteScroll: "Activer le défilement infini"
 visibility: "Visibilité"
 poll: "Sondage"
@@ -680,7 +681,7 @@ abuseReports: "Signalements"
 reportAbuse: "Signaler"
 reportAbuseOf: "Signaler {name}"
 fillAbuseReportDescription: "Veuillez expliquer les raisons du signalement. S'il s'agit
-  d'une note particulière, veuillez inclure le lien."
+  d'un post particulier, veuillez inclure le lien."
 abuseReported: "Le rapport est envoyé. Merci."
 reporter: "Signalé par"
 reporteeOrigin: "Origine du signalement"
@@ -693,7 +694,7 @@ openInSideView: "Ouvrir en vue latérale"
 defaultNavigationBehaviour: "Navigation par défaut"
 editTheseSettingsMayBreakAccount: "La modification de ces paramètres peut endommager
   votre compte."
-instanceTicker: "Nom du serveur d'origine des notes"
+instanceTicker: "Nom du serveur d'origine des posts"
 waitingFor: "En attente de {x}"
 random: "Aléatoire"
 system: "Système"
@@ -708,11 +709,11 @@ i18nInfo: "Firefish est traduit dans différentes langues par des bénévoles. V
   contribuer à {link}."
 manageAccessTokens: "Gérer les jetons d'accès"
 accountInfo: " Informations du compte "
-notesCount: "Nombre de notes"
+notesCount: "Nombre de posts"
 repliesCount: "Nombre de réponses envoyées"
-renotesCount: "Nombre de notes que vous avez renotées"
+renotesCount: "Nombre de boosts que vous avez envoyé"
 repliedCount: "Nombre de réponses reçues"
-renotedCount: "Nombre de vos notes renotées"
+renotedCount: "Nombre de vos posts boostés"
 followingCount: "Nombre de comptes suivis"
 followersCount: "Nombre d'abonnés"
 sentReactionsCount: "Nombre de réactions envoyées"
@@ -725,9 +726,9 @@ driveFilesCount: "Nombre de fichiers dans le Drive"
 driveUsage: "Utilisation du Drive"
 noCrawle: "Refuser l'indexation par les robots"
 noCrawleDescription: "Demandez aux moteurs de recherche de ne pas indexer votre page
-  de profil, vos notes, vos pages, etc."
-lockedAccountInfo: "À moins que vous ne définissiez la visibilité de votre note sur
-  \"Abonné-e-s\", vos notes sont visibles par tous, même si vous exigez que les demandes
+  de profil, vos posts, vos pages, etc."
+lockedAccountInfo: "À moins que vous ne définissiez la visibilité de votre post sur
+  \"Abonné-e-s\", vos posts sont visibles par tous, même si vous exigez que les demandes
   d'abonnement soient approuvées manuellement."
 alwaysMarkSensitive: "Marquer les médias comme contenu sensible par défaut"
 loadRawImages: "Affichage complet des images jointes au lieu des vignettes"
@@ -736,7 +737,7 @@ verificationEmailSent: "Un e-mail de vérification a été envoyé. Veuillez acc
   lien pour compléter la vérification."
 notSet: "Non défini"
 emailVerified: "Votre adresse e-mail a été vérifiée."
-noteFavoritesCount: "Nombre de notes dans les favoris"
+noteFavoritesCount: "Nombre de posts dans les favoris"
 pageLikesCount: "Nombre de pages aimées"
 pageLikedCount: "Nombre de vos pages aimées"
 contact: "Contact"
@@ -747,7 +748,7 @@ developer: "Développeur"
 makeExplorable: "Rendre le compte visible sur la page \"Découvrir\"."
 makeExplorableDescription: "Si vous désactivez cette option, votre compte n'apparaîtra
   pas sur la page \"Découvrir\"."
-showGapBetweenNotesInTimeline: "Afficher un écart entre les notes du fil d’actualité"
+showGapBetweenNotesInTimeline: "Afficher un écart entre les posts du fil d’actualité"
 duplicate: "Duliquer"
 left: "Gauche"
 center: "Centrer"
@@ -760,7 +761,7 @@ showTitlebar: "Afficher la barre de titre"
 clearCache: "Vider le cache"
 onlineUsersCount: "{n} utilisateur(s) en ligne"
 nUsers: "{n} utilisateur·rice·s"
-nNotes: "{n} Notes"
+nNotes: "{n} Posts"
 sendErrorReports: "Envoyer les rapports d’erreur"
 sendErrorReportsDescription: "Si vous activez l'envoi des rapports d'erreur, vous
   contribuerez à améliorer la qualité de Firefish grâce au partage d'informations
@@ -805,8 +806,8 @@ unlikeConfirm: "Êtes-vous sûr·e de ne plus vouloir aimer cette publication ?"
 fullView: "Plein écran"
 quitFullView: "Quitter le plein écran"
 addDescription: "Ajouter une description"
-userPagePinTip: "Vous pouvez afficher des notes ici en sélectionnant l'option « Épingler
-  au profil » dans le menu de chaque note."
+userPagePinTip: "Vous pouvez afficher des posts ici en sélectionnant l'option « Épingler
+  au profil » dans le menu de chaque post."
 notSpecifiedMentionWarning: "Vous avez mentionné des utilisateur·rice·s qui ne font
   pas partie de la liste des destinataires"
 info: "Informations"
@@ -838,7 +839,7 @@ postToGallery: "Publier dans la galerie"
 gallery: "Galerie"
 recentPosts: "Les plus récentes"
 popularPosts: "Les plus consultées"
-shareWithNote: "Partager dans une note"
+shareWithNote: "Partager dans un post"
 ads: "Bannière communautaire"
 expiration: "Échéance"
 memo: "Pense-bête"
@@ -1121,7 +1122,7 @@ _channel:
   owned: "Mes canaux"
   following: "Abonné·e"
   usersCount: "{n} Participant·e·s"
-  notesCount: "{n} Notes"
+  notesCount: "{n} Posts"
   nameAndDescription: Nom et description
   nameOnly: Nom uniquement
 _menuDisplay:
@@ -1135,20 +1136,20 @@ _wordMute:
     un saut de ligne pour une condition OR."
   muteWordsDescription2: "Pour utiliser des expressions régulières (regex), mettez
     les mots-clés entre barres obliques."
-  softDescription: "Masquez de votre fil d’actualité les notes qui répondent aux conditions
+  softDescription: "Masquez de votre fil d’actualité les posts qui répondent aux conditions
     définies."
-  hardDescription: "Empêche les notes qui remplissent les conditions définies d'être
+  hardDescription: "Empêche les posts qui remplissent les conditions définies d'être
     ajoutées au fil d'actualité. Cette action est irréversible : si vous modifiez
-    ces conditions plus tard, les notes précédemment filtrées ne seront pas récupérées."
+    ces conditions plus tard, les posts précédemment filtrées ne seront pas récupérées."
   soft: "Doux"
   hard: "Strict"
-  mutedNotes: "Notes filtrées"
+  mutedNotes: "Posts filtrés"
 _instanceMute:
   instanceMuteDescription2: "Séparer avec des sauts de lignes"
-  title: "Masque les notes venant des serveurs listés."
+  title: "Masque les posts provenant des serveurs listés."
   heading: "Serveurs à mettre en sourdine/masquer"
-  instanceMuteDescription: Ceci va masquer toute publication ou partage de serveurs
-    listés, incluant celles des personnes répondant à des personnes des serveurs masqués.
+  instanceMuteDescription: Ceci va masquer toute posts ou boosts de serveurs listés,
+    incluant celles des personnes répondant à des personnes des serveurs masqués.
 _theme:
   explore: "Explorer les thèmes"
   install: "Installer un thème"
@@ -1199,7 +1200,7 @@ _theme:
     hashtag: "Hashtags"
     mention: "Mentionner"
     mentionMe: "Mentions (Moi)"
-    renote: "Renoter"
+    renote: "Booster"
     modalBg: "Modal d'arrière-plan"
     divider: "Séparateur"
     scrollbarHandle: "Poignée de la barre de navigation"
@@ -1226,8 +1227,8 @@ _theme:
     accentLighten: "Plus clair"
     fgHighlighted: "Texte mis en évidence"
 _sfx:
-  note: "Nouvelle note"
-  noteMy: "Ma note"
+  note: "Nouveau post"
+  noteMy: "Mon post"
   notification: "Notifications"
   chat: "Discuter"
   chatBg: "Discussion (arrière-plan)"
@@ -1254,14 +1255,14 @@ _tutorial:
   step1_2: "On va vous installer. Vous serez opérationnel en un rien de temps"
   step2_1: "Tout d'abord, remplissez votre profil"
   step2_2: "En fournissant quelques informations sur qui vous êtes, il sera plus facile
-    pour les autres de savoir s'ils veulent voir vos notes ou vous suivre."
+    pour les autres de savoir s'ils veulent voir vos posts ou vous suivre."
   step3_1: "Maintenant il est temps de suivre des gens !"
   step3_2: "Vos fil d’actualité Principal et Social sont basés sur les personnes que
     vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
-  step4_2: "Pour votre première note, certaines personnes aiment faire une note {introduction}
-    ou une simple note 'Bonjours tout le monde !'."
+  step4_2: "Pour votre premier post, certaines personnes aiment faire un post {introduction}
+    ou un simple 'Bonjours tout le monde !'"
   step5_1: "Des fils, des fils d’actualité partout !"
   step5_2: "Votre serveur a {timelines} fils différents disponibles !"
   step5_3: "Le fil {icon} Principal est l'endroit où vous pouvez voir les publications
@@ -1334,7 +1335,7 @@ _permissions:
   "write:messaging": "Gérer les discussions"
   "read:mutes": "Voir les comptes masqués"
   "write:mutes": "Gérer les comptes masqués"
-  "write:notes": "Créer / supprimer des notes"
+  "write:notes": "Créer / supprimer des posts"
   "read:notifications": "Afficher les notifications"
   "write:notifications": "Gérer vos notifications"
   "read:reactions": "Lire les réactions"
@@ -1363,12 +1364,12 @@ _auth:
   copyAsk: "Veuillez coller le code d’autorisation suivant dans l'application :"
   allPermissions: Accès complet au compte
 _antennaSources:
-  all: "Toutes les notes"
-  homeTimeline: "Notes provenant des utilisateur·rice·s auxquel·les je suis abonné"
-  users: "Notes venant de la part d’utilisateur·rice·s précis"
-  userList: "Notes venant d’une liste spécifique"
-  userGroup: "Notes venant d’utilisateur·rice·s du groupe spécifié"
-  instances: Notes de tous les utilisateurs d'un serveur
+  all: "Tous les posts"
+  homeTimeline: "Posts provenant des utilisateur·rice·s auxquel·les je suis abonné"
+  users: "Posts venant de la part d’utilisateur·rice·s précis"
+  userList: "Posts venant d’une liste spécifique"
+  userGroup: "Posts venant d’utilisateur·rice·s du groupe spécifié"
+  instances: Posts de tous les utilisateurs d'un serveur
 _weekday:
   sunday: "Dimanche"
   monday: "Lundi"
@@ -1401,7 +1402,7 @@ _widgets:
   _userList:
     chooseList: Sélectionner une liste
   unixClock: Horloge UNIX
-  meiliIndexCount: Notes indexées
+  meiliIndexCount: Posts indexés
   serverInfo: Info serveur
   meiliStatus: État du serveur
   meiliSize: Taille de l’index
@@ -1446,8 +1447,8 @@ _visibility:
   localOnly: "Local seulement"
   localOnlyDescription: "Caché pour les utilisateur·rice·s distant"
 _postForm:
-  replyPlaceholder: "Répondre à cette note ..."
-  quotePlaceholder: "Citez cette note ..."
+  replyPlaceholder: "Répondre à ce post ..."
+  quotePlaceholder: "Citez ce post ..."
   channelPlaceholder: "Publier sur une chaîne…"
   _placeholders:
     a: "Quoi de neuf ?"
@@ -1473,7 +1474,7 @@ _profile:
   locationDescription: Si vous entrez votre ville en premier, votre heure locale sera
     affichée aux autres utilisateur·rice·s.
 _exportOrImport:
-  allNotes: "Toutes les notes"
+  allNotes: "Tous les posts"
   followingList: "Abonnements"
   muteList: "Comptes masqués"
   blockingList: "Comptes bloqués"
@@ -1486,10 +1487,10 @@ _charts:
   usersIncDec: "Variation du nombre d'utilisateur·rice·s"
   usersTotal: "Nombre des utilisateur·rice·s au total"
   activeUsers: "Nombre d'utilisateurices actif·ve·s"
-  notesIncDec: "Variation du nombre des notes"
-  localNotesIncDec: "Variation du nombre de notes locales"
-  remoteNotesIncDec: "Variation du nombre de notes distantes"
-  notesTotal: "Nombre total des notes"
+  notesIncDec: "Variation du nombre de publications"
+  localNotesIncDec: "Variation du nombre de publications locales"
+  remoteNotesIncDec: "Variation du nombre de publications distantes"
+  notesTotal: "Nombre total des publications"
   filesIncDec: "Variation du nombre de fichiers"
   filesTotal: "Nombre total de fichiers"
   storageUsageIncDec: "Variation de l'utilisation du stockage"
@@ -1498,8 +1499,8 @@ _instanceCharts:
   requests: "Requêtes"
   users: "Variation du nombre d'utilisateur·rice·s"
   usersTotal: "Total cumulé du nombre d'utilisateur·rice·s"
-  notes: "Variation du nombre de notes"
-  notesTotal: "Nombre total cumulé des notes"
+  notes: "Variation du nombre de publications"
+  notesTotal: "Nombre total cumulé des publications"
   ff: "Variation des abonné·e·s / abonnements"
   ffTotal: "Total cumulé du nombre d'abonné·e·s / abonnements"
   cacheSize: "Variation de la taille du cache"
@@ -1587,10 +1588,10 @@ _pages:
       id: "Toile ID"
       width: "Largeur"
       height: "Hauteur"
-    note: "Note intégrée"
+    note: "Post intégré"
     _note:
-      id: "Identifiant de la note"
-      idDescription: "Vous pouvez aussi coller ici l'URL ici."
+      id: "Identifiant du post"
+      idDescription: "Vous pouvez aussi coller l'URL du post ici."
       detailed: "Afficher les détails"
     switch: "Interrupteur"
     _switch:
@@ -1813,7 +1814,7 @@ _notification:
   youGotMention: "{name} vous a mentionné"
   youGotReply: "Réponse de {name}"
   youGotQuote: "Cité·e par {name}"
-  youRenoted: "{name} vous a Renoté"
+  youRenoted: "{name} vous a boosté"
   youGotPoll: "{name} a participé à votre sondage"
   youGotMessagingMessageFromUser: "{name} vous envoyé un message"
   youGotMessagingMessageFromGroup: "Un message a été envoyé au groupe {name}"
@@ -1828,7 +1829,7 @@ _notification:
     follow: "Nouvel·le abonné·e"
     mention: "Mentions"
     reply: "Réponses"
-    renote: "Renotes"
+    renote: "Boosts"
     quote: "Citations"
     reaction: "Réactions"
     pollVote: "Votes dans des sondages"
@@ -1840,9 +1841,9 @@ _notification:
   _actions:
     followBack: "Suivre"
     reply: "Répondre"
-    renote: "Renoter"
+    renote: "Boosts"
   reacted: a réagit à votre Note
-  renoted: a boosté votre Note
+  renoted: a boosté votre post
   voted: a voté pour votre sondage
 _deck:
   alwaysShowMainColumn: "Toujours afficher la colonne principale"
@@ -1931,7 +1932,7 @@ moveAccountDescription: Ce processus est irréversible. Soyez sûr⋅e que vous 
   un alias pour ce compte sur votre nouveau compte avant de migrer. Merci d'entrer
   la mention du compte formaté comme ceci @personne@server.com
 moveAccount: Déplacer le compte !
-seperateRenoteQuote: Séparer les renotes et les boutons de citation
+seperateRenoteQuote: Séparer les boutons de boosts et de citation
 failedToFetchAccountInformation: Impossible de récupérer les informations de compte
 noEmailServerWarning: Serveur mail non configuré.
 deleteAccount: Supprimer le compte
@@ -2002,7 +2003,7 @@ forwardReportIsAnonymous: À la place de votre compte, un compte système anonym
   affiché comme rapporteur au serveur distant.
 noThankYou: Non merci
 addInstance: Ajouter un serveur
-renoteMute: Mettre en silence les renotes
+renoteMute: Masquer les boosts
 flagSpeakAsCat: Parler comme un chat
 flagSpeakAsCatDescription: Vos messages seront nyanifiés en mode chat
 hiddenTags: Hashtags cachés
@@ -2059,14 +2060,14 @@ pushNotificationAlreadySubscribed: Notifications push déjà activées
 logoImageUrl: URL de l'image du logo
 moveToLabel: 'Compte vers lequel vous migrez :'
 moveFrom: Migrer vers ce compte depuis un ancien compte
-defaultReaction: Émoji de réaction par défaut pour les notes entrantes et sortantes
+defaultReaction: Émoji de réaction par défaut pour les posts entrants et sortants
 license: Licence
-indexPosts: Indexer les Notes
+indexPosts: Indexer les Posts
 indexNotice: Indexation en cours. Cela prendra certainement du temps, veuillez ne
   pas redémarrer votre serveur pour au moins une heure.
 customKaTeXMacro: Macros KaTeX personnalisées
 enableCustomKaTeXMacro: Activer les macros KaTeX personnalisées
-noteId: ID de Note
+noteId: ID des Posts
 customKaTeXMacroDescription: "Définissez des macros pour écrire des expressions mathématiques
   simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
   \\newcommand{\\·name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
@@ -2085,7 +2086,7 @@ deleted: Effacé
 editNote: Modifier note
 edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
-  utilisatieur·rice·s aux notes des autres.
+  utilisatieur·rice·s aux posts des autres.
 _experiments:
   alpha: Alpha
   beta: Beta
@@ -2096,21 +2097,21 @@ _experiments:
     peut entraîner des ralentissements lors du chargement si votre file d'attente
     est congestionnée.
 findOtherInstance: Trouver un autre serveur
-userSaysSomethingReasonQuote: '{name} a cité une note contenant {reason}'
+userSaysSomethingReasonQuote: '{name} a cité un post contenant {reason}'
 signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés, mais
   vous pouvez toujours vous inscrire sur un autre serveur ! Si vous avez un code d'invitation
   pour ce serveur, entrez-le ci-dessous s'il vous plait.
 apps: Applications
-userSaysSomethingReasonReply: '{noms} a répondu à une note contenant {raison}'
+userSaysSomethingReasonReply: '{noms} a répondu à un post contenant {raison}'
 defaultValueIs: 'défaut : {valeur}'
 searchPlaceholder: Recherchez sur Firefish
 removeReaction: Retirer votre réaction
 selectChannel: Sélectionner une chaîne
-expandOnNoteClick: Ouvrir la note en cliquant
+expandOnNoteClick: Ouvrir le post en cliquant
 preventAiLearning: Empêcher le récupération de données par des IA
 listsDesc: Les listes vous laissent créer des fils personnalisés avec des utilisateur·rice·s
   spécifié·e·s. Elles sont accessibles depuis la page des fils.
-indexFromDescription: Laisser vide pour indexer toutes les Notes
+indexFromDescription: Laisser vide pour indexer toutes les Posts
 _feeds:
   jsonFeed: flux JSON
   atom: Atom
@@ -2118,9 +2119,9 @@ _feeds:
   rss: RSS
 alt: ALT
 swipeOnMobile: Permettre le balayage entre les pages
-expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les Notes dans le
+expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les posts dans le
   menu du clic droit et en cliquant sur l’horodatage.
-indexFrom: Indexer à partir de l’ID des Notes
+indexFrom: Indexer à partir de l’ID des Posts
 older: plus ancien
 newer: plus récent
 accessibility: Accessibilité
@@ -2128,7 +2129,7 @@ silencedInstancesDescription: Listez les noms de domaine de serveurs que vous vo
   masquer. Les comptes des serveurs listés seront traités comme "Masqués", ne pourront
   faire que des demandes d’abonnement, et ne pourront pas mentionner les comptes locaux
   si non-suivis. Cela n’affectera en rien les serveurs bloqués.
-antennasDesc: "Les Antennes affichent de nouvelles notes selon les critères que vous
+antennasDesc: "Les Antennes affichent de nouveaux posts selon les critères que vous
   indiqués.\nElles peuvent être consultées depuis la page des fils."
 image: Image
 video: Vidéo
@@ -2138,10 +2139,10 @@ cw: Avertissement de contenu
 xl: XL
 reflectMayTakeTime: Il pourra s’écouler un certain temps avant que les changements
   ne soient reflétés.
-userSaysSomethingReasonRenote: '{name} a boosté une note contenant {reason}'
+userSaysSomethingReasonRenote: '{name} a boosté un post contenant {reason}'
 sendModMail: Envoyer un avis à la modération
 clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagés. Vous
-  pouvez créer des clips à partir du menu de chaque note.
+  pouvez créer des clips à partir du menu de chaque post.
 unclip: Dé-clipper
 secureMode: Mode sécurisé (Authorized Fetch)
 secureModeInfo: Quand sollicité depuis d'autres serveurs, ne pas répondre sans preuve.
@@ -2174,8 +2175,8 @@ isPatron: Mécène Firefish
 _filters:
   fromUser: De l’utilisateur
   withFile: Avec fichier
-  notesBefore: Notes avant
-  notesAfter: Notes après
+  notesBefore: Posts avant
+  notesAfter: Posts après
   followersOnly: Abonnés uniquement
   followingOnly: Abonnements uniquement
   fromDomain: Du domaine
