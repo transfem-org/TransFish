@@ -37,7 +37,7 @@ import {
 	UserSecurityKeys,
 } from "../index.js";
 import type { Instance } from "../entities/instance.js";
-import { userByIdCache, userDenormalizedCache } from "@/services/user-cache.js";
+import { userDenormalizedCache } from "@/services/user-cache.js";
 
 const userInstanceCache = new Cache<Instance | null>(
 	"userInstance",

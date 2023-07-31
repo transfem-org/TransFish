@@ -30,7 +30,6 @@ import { truncate } from "@/misc/truncate.js";
 import { StatusError } from "@/misc/fetch.js";
 import {
 	uriPersonCache,
-	userByIdCache,
 	userDenormalizedCache,
 } from "@/services/user-cache.js";
 import { publishInternalEvent } from "@/services/stream.js";
