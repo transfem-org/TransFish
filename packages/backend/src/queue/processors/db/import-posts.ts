@@ -57,7 +57,8 @@ export async function importPosts(
 		const parsed = JSON.parse(json);
 		if (parsed instanceof Array) {
 			logger.info("Parsing key style posts");
-			for (const post of JSON.parse(json)) {
+			const arr = recreateChain(parsed);
+			for (const post of arr) {
 				createImportCkPostJob(job.data.user, post, job.data.signatureCheck);
 			}
 		} else if (parsed instanceof Object) {
@@ -73,4 +74,33 @@ export async function importPosts(
 
 	logger.succ("Imported");
 	done();
+}
+
+function recreateChain(arr: any[]): any {
+	type NotesMap = {
+		[id: string]: any;
+	};
+	const notesTree: any[] = [];
+	const lookup: NotesMap = {};
+	for (const note of arr) {
+		lookup[`${note.id}`] = note;
+		note.childNotes = [];
+		if (note.replyId == null && note.renoteId == null) {
+			notesTree.push(note);
+		}
+	}
+	for (const note of arr) {
+		let parent = null;
+		if (note.replyId != null) {
+			parent = lookup[`${note.replyId}`];
+		}
+		if (note.renoteId != null) {
+			parent = lookup[`${note.renoteId}`];
+		}
+
+		if (parent) {
+			parent.childNotes.push(note);
+		}
+	}
+	return notesTree;
 }

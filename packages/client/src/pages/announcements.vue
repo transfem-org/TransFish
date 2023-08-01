@@ -5,14 +5,15 @@
 		/></template>
 		<MkSpacer :content-max="800">
 			<MkPagination
+				ref="paginationEl"
 				v-slot="{ items }"
 				:pagination="pagination"
-				class="ruryvtyk _content"
+				class="ruryvtyk _gaps_m"
 			>
 				<section
-					v-for="(announcement, i) in items"
+					v-for="announcement in items"
 					:key="announcement.id"
-					class="_card announcement"
+					class="announcement _panel"
 				>
 					<div class="_title">
 						<span v-if="$i && !announcement.isRead">🆕 </span>
@@ -31,7 +32,7 @@
 						/>
 					</div>
 					<div v-if="$i && !announcement.isRead" class="_footer">
-						<MkButton primary @click="read(items, announcement, i)"
+						<MkButton primary @click="read(announcement.id)"
 							><i class="ph-check ph-bold ph-lg"></i>
 							{{ i18n.ts.gotIt }}</MkButton
 						>
@@ -43,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
+import { ref } from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
@@ -55,13 +56,14 @@ const pagination = {
 	limit: 10,
 };
 
-// TODO: これは実質的に親コンポーネントから子コンポーネントのプロパティを変更してるのでなんとかしたい
-function read(items, announcement, i) {
-	items[i] = {
-		...announcement,
-		isRead: true,
-	};
-	os.api("i/read-announcement", { announcementId: announcement.id });
+const paginationEl = ref<InstanceType<typeof MkPagination>>();
+function read(id: string) {
+	if (!paginationEl.value) return;
+	paginationEl.value.updateItem(id, (announcement) => {
+		announcement.isRead = true;
+		return announcement;
+	});
+	os.api("i/read-announcement", { announcementId: id });
 }
 
 const headerActions = $computed(() => []);

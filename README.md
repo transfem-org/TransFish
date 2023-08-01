@@ -23,7 +23,6 @@
 
 - Firefish is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web UI, rich chatting, and much more!
 - Firefish adds many quality of life changes and bug fixes for users and server admins alike.
-- Read **[this document](./FIREFISH.md)** all for current and future differences.
 - Notable differences:
   - Improved UI/UX (especially on mobile)
   - Post editing
@@ -66,7 +65,7 @@
   - Donate publicly to get your name on the Patron list!
 - 🚢 Flagship server: <https://firefish.social>
 - 💁 Matrix support room: <https://matrix.to/#/#firefish:matrix.fedibird.com>
-- 📣 Official account: <https://i.firefish.cloud/@firefish>
+- 📣 Official account: <a href="https://fedi.software/@firefish" rel="me">@firefish</a>
 - 📜 Server list: <https://joinfirefish.org/join>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/firefish/>
 - ️️📬 Contact: <https://joinfirefish.org/contact/>

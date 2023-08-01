@@ -1,16 +1,18 @@
 export type Post = {
-	text: string | null;
+	text: string | undefined;
 	cw: string | null;
 	localOnly: boolean;
 	createdAt: Date;
+	visibility: string;
 };
 
 export function parse(acct: any): Post {
 	return {
-		text: acct.text,
+		text: acct.text || undefined,
 		cw: acct.cw,
 		localOnly: acct.localOnly,
 		createdAt: new Date(acct.createdAt),
+		visibility: "hidden" + (acct.visibility || ""),
 	};
 }
 

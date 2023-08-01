@@ -430,7 +430,6 @@ function chooseUser() {
 onUpdated(() => {
 	setPosition();
 	items.value = suggests.value?.children ?? [];
-	selectNext();
 });
 
 onMounted(() => {
@@ -449,7 +448,6 @@ onMounted(() => {
 					exec();
 				});
 			},
-			{ immediate: true },
 		);
 	});
 });

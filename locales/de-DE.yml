@@ -953,9 +953,9 @@ driveCapOverrideCaption: "Gib einen Wert von 0 oder weniger ein, um die Kapazit�
   auf den Standard zurückzusetzen."
 requireAdminForView: "Du musst dich mit einem Administratorkonto anmelden um dies
   zu sehen."
-isSystemAccount: "Dieses Konto wird vom System erstellt und automatisch verwaltet.
-  Bitte moderieren, bearbeiten, löschen oder manipulieren Sie dieses Konto nicht,
-  da es sonst zu einem Server-Absturz kommen könnte."
+isSystemAccount: "Ein Nutzerkonto, dass durch das System erstellt und automatisch
+  kontrolliert wird. Jede Anpassung, Veränderung oder Löschung dieses Nutzerkontos,
+  kann zu schwerwiegenden Fehlern auf diesem Server führen."
 typeToConfirm: "Bitte gib zur Bestätigung {x} ein"
 deleteAccount: "Nutzerkonto löschen"
 document: "Dokumentation"
@@ -966,7 +966,7 @@ logoutConfirm: "Wirklich abmelden?"
 lastActiveDate: "Zuletzt verwendet am"
 statusbar: "Statusleiste"
 pleaseSelect: "Wähle eine Option"
-reverse: "Umkehren"
+reverse: "Rückgängig machen"
 colored: "Farbig"
 refreshInterval: "Aktualisierungsintervall "
 label: "Beschriftung"
@@ -1128,7 +1128,7 @@ _mfm:
   bold: "Fett"
   boldDescription: "Zeichen zur Betonung dicker erscheinen lassen."
   small: "Klein"
-  smallDescription: "Inhalt klein und dünn erscheinen lassen."
+  smallDescription: "Inhalt klein und dünn anzeigen."
   center: "Zentrieren"
   centerDescription: "Inhalt zentriert anzeigen."
   inlineCode: "Code (Eingebettet)"
@@ -2191,3 +2191,13 @@ _skinTones:
 showPopup: Benutzer mit Popup benachrichtigen
 showWithSparkles: Mit Glitzer anzeigen
 removeQuote: Zitat entfernen
+objectStorageS3ForcePathStyle: Verwende pfadbasierte Endpunkt-URLs
+objectStorageS3ForcePathStyleDesc: Wenn aktiviert, werden Endpunkt-URLs im Format
+  's3.amazonaws.com/<bucket>/' statt '<bucket>.s3.amazonaws.com' erstellt.
+origin: Herkunft
+delete2fa: 2FA deaktivieren
+deletePasskeys: Passkeys löschen
+delete2faConfirm: Passkeys werden unwiderruflich von diesem Account gelöscht. Fortfahren?
+deletePasskeysConfirm: Alle Passkeys und Security-Keys werden unwiderruflich von diesem
+  Account gelöscht. Fortfahren?
+inputNotMatch: Eingabe stimmt nicht überein

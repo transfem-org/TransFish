@@ -12,9 +12,6 @@ You can contribute without knowing how to code by helping translate here:
 
 [![Translation bars](https://hosted.weblate.org/widgets/firefish/-/multi-auto.svg)](https://hosted.weblate.org/engage/firefish/)
 
-## Roadmap
-See [FIREFISH.md](./FIREFISH.md)
-
 ## Issues
 Before creating an issue, please check the following:
 - To avoid duplication, please search for similar issues before creating a new issue.

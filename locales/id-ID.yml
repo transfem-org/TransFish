@@ -1,5 +1,6 @@
 _lang_: "Bahasa Indonesia"
-headlineFirefish: "Jaringan terhubung melalui catatan"
+headlineFirefish: "Platform media sosial sumber terbuka dan terdesentralisasi yang
+  merdeka sepenuhnya! 🚀"
 introFirefish: "Selamat datang! Firefish adalah media sosial sumber terbuka dan terdesentralisasi
   yang selamanya bebas! 🚀"
 monthAndDay: "{day} {month}"
@@ -93,7 +94,7 @@ youShouldUpgradeClient: "Untuk melihat halaman ini, mohon muat ulang untuk memut
 enterListName: "Masukkan nama daftar"
 privacy: "Privasi"
 makeFollowManuallyApprove: "Permintaan mengikuti membutuhkan persetujuan"
-defaultNoteVisibility: "Privasi bawaan catatan"
+defaultNoteVisibility: "Visibilitas bawaan"
 follow: "Ikuti"
 followRequest: "Permintaan Mengikuti"
 followRequests: "Permintaan mengikuti"
@@ -743,7 +744,7 @@ developer: "Pengembang"
 makeExplorable: "Buat akun tampil di \"Jelajahi\""
 makeExplorableDescription: "Jika kamu menonaktifkan ini, akun kamu tidak akan muncul
   di bagian \"Jelajahi\"."
-showGapBetweenNotesInTimeline: "Tampilkan jarak diantara catatan pada linimasa"
+showGapBetweenNotesInTimeline: "Tampilkan jarak diantara postingan pada linimasa"
 duplicate: "Duplikat"
 left: "Kiri"
 center: "Tengah"
@@ -1245,8 +1246,7 @@ _tutorial:
   step1_2: "Ayo siapkan. Lekas mulai tanpa basa-basi!"
   step1_3: "Linimasa kamu kosong, karena kamu belum mencatat catatan apapun atau mengikuti
     siapapun."
-  step2_1: "Selesaikan menyetel profilmu sebelum menulis sebuah catatan atau mengikuti
-    seseorang."
+  step2_1: "Pertama, isi profilmu lebih dahulu."
   step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuatnya lebih
     mudah bagi orang lain untuk menentukan jika mereka ingin postinganmu atau mengikutimu."
   step3_1: "Sekarang saatnya mengikuti beberapa orang!"
@@ -1558,7 +1558,7 @@ _pages:
     if: "Jika"
     _if:
       variable: "Variabel"
-    post: "Buat catatan"
+    post: "Formulir posting"
     _post:
       text: "Isi"
       attachCanvasImage: "Posting dengan kanvas sebagai gambar"

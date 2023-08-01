@@ -28,6 +28,7 @@ import {
 	backgroundQueue,
 } from "./queues.js";
 import type { ThinUser } from "./types.js";
+import { Note } from "@/models/entities/note.js";
 
 function renderError(e: Error): any {
 	return {
@@ -358,6 +359,7 @@ export function createImportCkPostJob(
 	user: ThinUser,
 	post: any,
 	signatureCheck: boolean,
+	parent: Note | null = null,
 ) {
 	return dbQueue.add(
 		"importCkPost",
@@ -365,6 +367,7 @@ export function createImportCkPostJob(
 			user: user,
 			post: post,
 			signatureCheck: signatureCheck,
+			parent: parent,
 		},
 		{
 			removeOnComplete: true,

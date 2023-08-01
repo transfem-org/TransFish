@@ -46,6 +46,8 @@ html {
 	tab-size: 2;
 	scroll-padding: 60px;
 	overflow-x: clip;
+	text-size-adjust: none;
+	-webkit-text-size-adjust: none;
 
 	&.useCJKFont {
 		font-family: "Hiragino Maru Gothic Pro", "BIZ UDGothic", Roboto,
