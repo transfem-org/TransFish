@@ -95,11 +95,6 @@ export default define(meta, paramDef, async (ps, user) => {
 				).orWhere("(note.visibility = 'public') AND (note.userHost IS NULL)");
 			}),
 		)
-		.innerJoinAndSelect("note.user", "user")
-		.leftJoinAndSelect("note.reply", "reply")
-		.leftJoinAndSelect("note.renote", "renote")
-		.leftJoinAndSelect("reply.user", "replyUser")
-		.leftJoinAndSelect("renote.user", "renoteUser")
 		.setParameters(followingQuery.getParameters());
 
 	generateChannelQuery(query, user);
