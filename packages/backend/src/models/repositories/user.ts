@@ -383,25 +383,16 @@ export const UserRepository = db.getRepository(User).extend({
 			options,
 		);
 
-		let user: User;
-
-		if (typeof src === "object") {
-			user = src;
-			if (src.avatar === undefined && src.avatarId)
-				src.avatar = (await DriveFiles.findOneBy({ id: src.avatarId })) ?? null;
-			if (src.banner === undefined && src.bannerId)
-				src.banner = (await DriveFiles.findOneBy({ id: src.bannerId })) ?? null;
-		} else {
-			user = await userDenormalizedCache.fetch(src, () =>
-				this.findOneOrFail({
-					where: { id: src },
-					relations: {
-						avatar: true,
-						banner: true,
-					},
-				}),
-			);
-		}
+		const userId = typeof src === "object" ? src.id : src;
+		const user = await userDenormalizedCache.fetch(userId, () =>
+			this.findOneOrFail({
+				where: { id: userId },
+				relations: {
+					avatar: true,
+					banner: true,
+				},
+			}),
+		);
 
 		const meId = me ? me.id : null;
 		const isMe = meId === user.id;
@@ -463,8 +454,9 @@ export const UserRepository = db.getRepository(User).extend({
 				? userInstanceCache
 						.fetch(
 							user.host,
-							() => Instances.findOneBy({ host: user.host! }),
-							(v) => v != null,
+							() => Instances.findOneBy({ host: user.host }),
+							false,
+							(v) => !!v,
 						)
 						.then((instance) =>
 							instance

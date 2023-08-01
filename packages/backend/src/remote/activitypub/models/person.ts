@@ -30,6 +30,7 @@ import { truncate } from "@/misc/truncate.js";
 import { StatusError } from "@/misc/fetch.js";
 import {
 	uriPersonCache,
+	userByIdCache,
 	userDenormalizedCache,
 } from "@/services/user-cache.js";
 import { publishInternalEvent } from "@/services/stream.js";
@@ -525,10 +526,13 @@ export async function updatePerson(
 	// Update user
 	await Users.update(user.id, updates);
 
-	const updatedUser = await Users.findOneByOrFail({ id: user.id });
-	updatedUser.avatarId = avatar?.id ?? null;
+	const updatedUser = {
+		...(await userByIdCache.fetch(user.id, () =>
+			Users.findOneByOrFail({ id: user.id }),
+		)),
+		...updates,
+	};
 	updatedUser.avatar = avatar;
-	updatedUser.bannerId = banner?.id ?? null;
 	updatedUser.banner = banner;
 	await userDenormalizedCache.set(updatedUser.id, updatedUser);
 
