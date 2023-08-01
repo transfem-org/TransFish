@@ -218,6 +218,7 @@ definePageMetadata(
 	> .users {
 		> .inputs {
 			display: flex;
+			gap: 0.4rem;
 			margin-bottom: 16px;
 
 			> * {
