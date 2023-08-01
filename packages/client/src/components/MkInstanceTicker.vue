@@ -41,6 +41,7 @@ const instance = props.instance ?? {
 const commonNames = new Map<string, string>([
 	["birdsitelive", "BirdsiteLIVE"],
 	["bookwyrm", "BookWyrm"],
+	["bridgy-fed", "Bridgy Fed"],
 	["foundkey", "FoundKey"],
 	["gnusocial", "GNU Social"],
 	["gotosocial", "GoToSocial"],
