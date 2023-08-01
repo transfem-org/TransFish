@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { instanceName, version } from "@/config";
+import { instanceName } from "@/config";
 import { instance as Instance } from "@/instance";
 import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
 
@@ -36,7 +36,6 @@ const instance = props.instance ?? {
 		) as HTMLMetaElement
 	)?.content,
 	softwareName: Instance.softwareName ?? "Firefish",
-	softwareVersion: version,
 };
 
 const commonNames = new Map<string, string>([
