@@ -36,7 +36,7 @@
 		"artifacts": "napi artifacts",
 		"build": "pnpm run build:napi && pnpm run build:migration",
 		"build:napi": "napi build --features napi --platform --release ./built/",
-		"build:migration": "cargo build --locked --release --manifest-path ./migration/Cargo.toml && cp ./target/release/migration ./built/migration",
+		"build:migration": "cargo build --locked --release --manifest-path ./migration/Cargo.toml && cp -v ./target/release/migration ./built/migration",
 		"build:debug": "napi build --features napi --platform ./built/ && cargo build --locked --manifest-path ./migration/Cargo.toml && cp -v ./target/debug/migration ./built/migration",
 		"prepublishOnly": "napi prepublish -t npm",
 		"test": "pnpm run cargo:test && pnpm run build:napi && ava",
