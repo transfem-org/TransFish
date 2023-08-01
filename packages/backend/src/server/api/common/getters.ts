@@ -32,7 +32,7 @@ export async function getNote(
 		}
 	}
 
-	// For legacy notes
+	// Fallback to Postgres
 	if (!note) {
 		const query = Notes.createQueryBuilder("note").where("note.id = :id", {
 			id: noteId,

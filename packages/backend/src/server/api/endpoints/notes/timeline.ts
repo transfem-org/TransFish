@@ -11,7 +11,12 @@ import { generateChannelQuery } from "../../common/generate-channel-query.js";
 import { generateBlockedUserQuery } from "../../common/generate-block-query.js";
 import { generateMutedUserRenotesQueryForNotes } from "../../common/generated-muted-renote-query.js";
 import { ApiError } from "../../error.js";
-import { parseScyllaNote, prepared, scyllaClient } from "@/db/scylla.js";
+import {
+	type ScyllaNote,
+	parseScyllaNote,
+	prepared,
+	scyllaClient,
+} from "@/db/scylla.js";
 import { LocalFollowingsCache } from "@/misc/cache.js";
 
 export const meta = {
@@ -69,27 +74,35 @@ export default define(meta, paramDef, async (ps, user) => {
 	const followingsCache = await LocalFollowingsCache.init(user.id);
 
 	if (scyllaClient) {
-		const untilDate = ps.untilDate ? new Date(ps.untilDate) : new Date();
-		const query = [`${prepared.note.select.byDate} AND "createdAt" <= ?`];
-		const params: (Date | string | string[])[] = [untilDate, untilDate];
-		if (ps.sinceDate) {
-			query.push(`AND "createdAt" >= ?`);
-			params.push(new Date(ps.sinceDate));
-		}
-		if (ps.untilId) {
-			query.push(`AND "id" <= ?`);
-			params.push(ps.untilId);
-		}
-		if (ps.sinceId) {
-			query.push(`AND "id" >= ?`);
-			params.push(ps.sinceId);
+		let untilDate = new Date();
+		const foundNotes: ScyllaNote[] = [];
+		const validIds = [user.id].concat(await followingsCache.getAll());
+
+		while (foundNotes.length < ps.limit) {
+			const query = [`${prepared.note.select.byDate} AND "createdAt" < ?`];
+			const params: (Date | string | string[])[] = [untilDate, untilDate];
+			if (ps.untilId) {
+				query.push(`AND "id" < ?`);
+				params.push(ps.untilId);
+			}
+			query.push("LIMIT 50"); // Hardcoded to enable prepared query for performance
+
+			const result = await scyllaClient.execute(query.join(" "), params, {
+				prepare: true,
+			});
+
+			if (result.rowLength === 0) {
+				break;
+			}
+
+			const notes = result.rows.map(parseScyllaNote);
+			const filtered = notes.filter((note) => validIds.includes(note.userId));
+			foundNotes.push(...filtered);
+
+			untilDate = notes[notes.length - 1].createdAt;
 		}
 
-		const result = await scyllaClient.execute(query.join(" "), params, {
-			prepare: true,
-		});
-		const notes = result.rows.map(parseScyllaNote);
-		return Notes.packMany(notes, user);
+		return Notes.packMany(foundNotes, user);
 	}
 
 	const hasFollowing = await followingsCache.hasFollowing();
@@ -113,17 +126,6 @@ export default define(meta, paramDef, async (ps, user) => {
 					qb.orWhere(`note.userId IN (${followingQuery.getQuery()})`);
 			}),
 		)
-		.innerJoinAndSelect("note.user", "user")
-		.leftJoinAndSelect("user.avatar", "avatar")
-		.leftJoinAndSelect("user.banner", "banner")
-		.leftJoinAndSelect("note.reply", "reply")
-		.leftJoinAndSelect("note.renote", "renote")
-		.leftJoinAndSelect("reply.user", "replyUser")
-		.leftJoinAndSelect("replyUser.avatar", "replyUserAvatar")
-		.leftJoinAndSelect("replyUser.banner", "replyUserBanner")
-		.leftJoinAndSelect("renote.user", "renoteUser")
-		.leftJoinAndSelect("renoteUser.avatar", "renoteUserAvatar")
-		.leftJoinAndSelect("renoteUser.banner", "renoteUserBanner")
 		.setParameters(followingQuery.getParameters());
 
 	generateChannelQuery(query, user);

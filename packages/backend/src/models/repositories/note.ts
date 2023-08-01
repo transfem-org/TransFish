@@ -183,24 +183,32 @@ export const NoteRepository = db.getRepository(Note).extend({
 
 		const meId = me ? me.id : null;
 		let note: Note | null = null;
-		const noteId = typeof src === "object" ? src.id : src;
-		if (scyllaClient) {
-			const result = await scyllaClient.execute(
-				prepared.note.select.byId,
-				[[noteId]],
-				{ prepare: true },
-			);
-			if (result.rowLength > 0) {
-				note = parseScyllaNote(result.first());
+		let foundScyllaNote = false;
+		const isSrcNote = typeof src === "object";
+
+		// Always lookup from ScyllaDB if enabled
+		if (isSrcNote && !scyllaClient) {
+			note = src;
+		} else {
+			const noteId = isSrcNote ? src.id : src;
+			if (scyllaClient) {
+				const result = await scyllaClient.execute(
+					prepared.note.select.byId,
+					[[noteId]],
+					{ prepare: true },
+				);
+				if (result.rowLength > 0) {
+					note = parseScyllaNote(result.first());
+					foundScyllaNote = true;
+				}
+			}
+			if (!foundScyllaNote) {
+				// Fallback to Postgres
+				note = await this.findOneBy({ id: noteId });
 			}
 		}
 
 		if (!note) {
-			// Fallback to Postgres
-			note = await this.findOneBy({ id: noteId });
-		}
-
-		if (note === null) {
 			throw new IdentifiableError(
 				"9725d0ce-ba28-4dde-95a7-2cbb2c15de24",
 				"No such note.",
@@ -260,18 +268,19 @@ export const NoteRepository = db.getRepository(Note).extend({
 			emojis: noteEmoji,
 			tags: note.tags.length > 0 ? note.tags : undefined,
 			fileIds: note.fileIds,
-			files: scyllaClient
-				? (note as ScyllaNote).files.map((file) => ({
-						...file,
-						createdAt: file.createdAt.toISOString(),
-						properties: {
-							width: file.width ?? undefined,
-							height: file.height ?? undefined,
-						},
-						userId: null,
-						folderId: null,
-				  }))
-				: DriveFiles.packMany(note.fileIds),
+			files:
+				scyllaClient && foundScyllaNote
+					? (note as ScyllaNote).files.map((file) => ({
+							...file,
+							createdAt: file.createdAt.toISOString(),
+							properties: {
+								width: file.width ?? undefined,
+								height: file.height ?? undefined,
+							},
+							userId: null,
+							folderId: null,
+					  }))
+					: DriveFiles.packMany(note.fileIds),
 			replyId: note.replyId,
 			renoteId: note.renoteId,
 			channelId: note.channelId || undefined,
