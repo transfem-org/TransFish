@@ -85,7 +85,7 @@ export default define(meta, paramDef, async (ps, user) => {
 				query.push(`AND "id" < ?`);
 				params.push(ps.untilId);
 			}
-			query.push("LIMIT 50"); // Hardcoded to enable prepared query for performance
+			query.push("LIMIT 50"); // Hardcoded for prepared query
 
 			const result = await scyllaClient.execute(query.join(" "), params, {
 				prepare: true,

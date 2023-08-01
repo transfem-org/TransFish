@@ -67,7 +67,7 @@ import { shouldSilenceInstance } from "@/misc/should-block-instance.js";
 import meilisearch from "../../db/meilisearch.js";
 import { redisClient } from "@/db/redis.js";
 import { Mutex } from "redis-semaphore";
-import { prepared, scyllaClient } from "@/db/scylla.js";
+import { parseScyllaNote, prepared, scyllaClient } from "@/db/scylla.js";
 import { populateEmojis } from "@/misc/populate-emojis.js";
 
 const mutedWordsCache = new Cache<
@@ -416,7 +416,7 @@ export default async (
 			!user.isBot &&
 			(await countSameRenotes(user.id, data.renote.id, note.id)) === 0
 		) {
-			incRenoteCount(data.renote);
+			await incRenoteCount(data.renote);
 		}
 
 		if (data.poll?.expiresAt) {
@@ -676,16 +676,19 @@ async function renderNoteOrRenoteActivity(data: Option, note: Note) {
 	return renderActivity(content);
 }
 
-function incRenoteCount(renote: Note) {
+async function incRenoteCount(renote: Note) {
 	if (scyllaClient) {
-		const date = new Date(renote.createdAt.getTime());
-		scyllaClient.execute(prepared.note.update.renoteCount, [
-			renote.renoteCount + 1,
-			renote.score + 1,
-			date,
-			date,
-			renote.id,
-		]);
+		await scyllaClient.execute(
+			prepared.note.update.renoteCount,
+			[
+				renote.renoteCount + 1,
+				renote.score + 1,
+				renote.createdAt,
+				renote.createdAt,
+				renote.id,
+			],
+			{ prepare: true },
+		);
 	} else {
 		Notes.createQueryBuilder()
 			.update()
@@ -847,6 +850,17 @@ async function insertNote(
 			});
 		} else if (!scyllaClient) {
 			await Notes.insert(insert);
+		}
+
+		if (scyllaClient) {
+			const result = await scyllaClient.execute(
+				prepared.note.select.byId,
+				[[insert.id]],
+				{ prepare: true },
+			);
+			if (result.rowLength > 0) {
+				return parseScyllaNote(result.first());
+			}
 		}
 
 		return insert;
