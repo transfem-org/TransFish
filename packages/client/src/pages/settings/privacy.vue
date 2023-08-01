@@ -130,6 +130,12 @@
 			@update:modelValue="save()"
 			>{{ i18n.ts.keepCw }}</FormSwitch
 		>
+		<FormSwitch
+			v-model="addRe"
+			class="_formBlock"
+			@update:modelValue="save()"
+			>{{ i18n.ts.addRe }}
+		</FormSwitch>
 	</div>
 </template>
 
@@ -164,6 +170,7 @@ let rememberNoteVisibility = $computed(
 	defaultStore.makeGetterSetter("rememberNoteVisibility"),
 );
 let keepCw = $computed(defaultStore.makeGetterSetter("keepCw"));
+let addRe = $computed(defaultStore.makeGetterSetter("addRe"));
 
 function save() {
 	os.api("i/update", {
