@@ -796,7 +796,7 @@ gallery: "ギャラリー"
 recentPosts: "最近の投稿"
 popularPosts: "人気の投稿"
 shareWithNote: "投稿で共有"
-ads: "広告"
+ads: "コミュニティバナー"
 expiration: "期限"
 memo: "メモ"
 priority: "優先度"
@@ -928,7 +928,7 @@ beta: "ベータ"
 enableAutoSensitive: "自動NSFW判定"
 enableAutoSensitiveDescription: "利用可能な場合は、機械学習を利用して自動でメディアにNSFWフラグを設定します。この機能をオフにしても、サーバーによっては自動で設定されることがあります。"
 activeEmailValidationDescription: "ユーザーのメールアドレスのバリデーションを、捨てアドかどうかや実際に通信可能かどうかなどを判定しより積極的に行います。オフにすると単に文字列として正しいかどうかのみチェックされます。"
-showAds: "広告を表示する"
+showAds: "コミュニティバナーを表示する"
 navbar: "ナビゲーションバー"
 shuffle: "シャッフル"
 account: "アカウント"
@@ -1969,3 +1969,8 @@ _feeds:
   jsonFeed: JSONフィード
   copyFeed: フィードのURLをコピー
 origin: 起源
+delete2fa: 2要素認証を無効化
+deletePasskeys: パスキーを削除
+delete2faConfirm: これで、このアカウントの2要素認証は完全に削除されます。続行しますか?
+inputNotMatch: 入力が一致しません
+deletePasskeysConfirm: これで、このアカウントのパスキーは完全に削除されます。続行しますか?
