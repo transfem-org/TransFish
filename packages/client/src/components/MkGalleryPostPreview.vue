@@ -53,8 +53,11 @@ const props = defineProps<{
 	}
 
 	> .thumbnail {
+		display: flex;
 		width: 100%;
 		height: 100%;
+		justify-content: center;
+		align-items: center;
 		position: absolute;
 		transition: all 0.5s ease;
 

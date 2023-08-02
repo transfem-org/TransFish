@@ -1,7 +1,7 @@
 _lang_: "English"
-headlineMisskey: "An open source, decentralized social media platform that's free
+headlineFirefish: "An open source, decentralized social media platform that's free
   forever! 🚀"
-introMisskey: "Welcome! Firefish is an open source, decentralized social media platform
+introFirefish: "Welcome! Firefish is an open source, decentralized social media platform
   that's free forever! 🚀"
 monthAndDay: "{month}/{day}"
 search: "Search"
@@ -566,6 +566,9 @@ objectStorageUseProxy: "Connect over Proxy"
 objectStorageUseProxyDesc: "Turn this off if you are not going to use a Proxy for
   API connections"
 objectStorageSetPublicRead: "Set \"public-read\" on upload"
+objectStorageS3ForcePathStyle: "Use path-based endpoint URLs"
+objectStorageS3ForcePathStyleDesc: "Turn this on to construct endpoint URLs in the
+  format of 's3.amazonaws.com/<bucket>/' over '<bucket>.s3.amazonaws.com'."
 serverLogs: "Server logs"
 deleteAll: "Delete all"
 showFixedPostForm: "Display the posting form at the top of the timeline"
@@ -872,7 +875,7 @@ gallery: "Gallery"
 recentPosts: "Recent pages"
 popularPosts: "Popular pages"
 shareWithNote: "Share with post"
-ads: "Advertisements"
+ads: "Community banners"
 expiration: "Deadline"
 memo: "Memo"
 priority: "Priority"
@@ -938,7 +941,7 @@ ffVisibility: "Follows/Followers Visibility"
 ffVisibilityDescription: "Allows you to configure who can see who you follow and who
   follows you."
 continueThread: "Continue thread"
-deleteAccountConfirm: "This will irreversibly delete your account. Proceed?"
+deleteAccountConfirm: "This will irreversibly delete this account. Proceed?"
 incorrectPassword: "Incorrect password."
 voteConfirm: "Confirm your vote for \"{choice}\"?"
 hide: "Hide"
@@ -1035,7 +1038,7 @@ sendPushNotificationReadMessage: "Delete push notifications once the relevant no
 sendPushNotificationReadMessageCaption: "A notification containing the text \"{emptyPushNotificationMessage}\"\
   \ will be displayed for a short time. This may increase the battery usage of your
   device, if applicable."
-showAds: "Show ads"
+showAds: "Show community banners"
 enterSendsMessage: "Press Return in Messaging to send message (off is Ctrl + Return)"
 adminCustomCssWarn: "This setting should only be used if you know what it does. Entering
   improper values may cause EVERYONE'S clients to stop functioning normally. Please
@@ -1125,6 +1128,13 @@ removeQuote: "Remove quote"
 removeRecipient: "Remove recipient"
 removeMember: "Remove member"
 verifiedLink: "Verified link"
+origin: "Origin"
+delete2fa: "Disable 2FA"
+deletePasskeys: "Delete passkeys"
+delete2faConfirm: "This will irreversibly delete 2FA on this account. Proceed?"
+deletePasskeysConfirm: "This will irreversibly delete all passkeys and security keys on this account. Proceed?"
+inputNotMatch: "Input does not match"
+addRe: "Add \"re:\" at the beginning of comment in reply to a post with a content warning"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
@@ -1220,6 +1230,7 @@ _aboutFirefish:
     development since 2022."
   contributors: "Main contributors"
   allContributors: "All contributors"
+  misskeyContributors: "Misskey contributors"
   source: "Source code"
   translation: "Translate Firefish"
   donate: "Donate to Firefish"

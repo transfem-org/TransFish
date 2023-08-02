@@ -26,6 +26,7 @@
 					:alt="media.comment"
 					:type="media.type"
 					:cover="false"
+					:largest-dimension="largestDimension"
 				/>
 				<div v-if="media.type === 'image/gif'" class="gif">GIF</div>
 			</a>
@@ -52,6 +53,7 @@
 					:aria-label="media.comment"
 					preload="none"
 					controls
+					playsinline
 					@contextmenu.stop
 				>
 					<source :src="media.url" :type="mediaType" />
@@ -120,6 +122,18 @@ const mediaType = computed(() => {
 		: props.media.type;
 });
 
+let largestDimension: "width" | "height";
+
+if (
+	props.media.type.startsWith("image") &&
+	props.media.properties?.width &&
+	props.media.properties?.height
+) {
+	largestDimension =
+		props.media.properties.width > props.media.properties.height
+			? "width"
+			: "height";
+}
 function captionPopup() {
 	os.alert({
 		type: "info",
@@ -202,7 +216,7 @@ watch(
 	}
 
 	> a {
-		display: block;
+		display: flex;
 		cursor: zoom-in;
 		overflow: hidden;
 		width: 100%;
@@ -211,6 +225,9 @@ watch(
 		background-size: contain;
 		background-repeat: no-repeat;
 		box-sizing: border-box;
+		justify-content: center;
+		align-items: center;
+
 		&:focus-visible {
 			border: 2px solid var(--accent);
 		}

@@ -98,6 +98,9 @@ onMounted(() => {
 		grid-gap: 6px;
 
 		> .img {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			position: relative;
 			height: 128px;
 			border-radius: 6px;

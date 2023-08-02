@@ -32,11 +32,19 @@ export function convertNotification(notification: Entity.Notification) {
 	notification.id = convertId(notification.id, IdType.MastodonId);
 	if (notification.status)
 		notification.status = convertStatus(notification.status);
+	if (notification.reaction)
+		notification.reaction = convertReaction(notification.reaction);
 	return notification;
 }
 
 export function convertPoll(poll: Entity.Poll) {
 	return simpleConvert(poll);
+}
+export function convertReaction(reaction: Entity.Reaction) {
+	if (reaction.accounts) {
+		reaction.accounts = reaction.accounts.map(convertAccount);
+	}
+	return reaction;
 }
 export function convertRelationship(relationship: Entity.Relationship) {
 	return simpleConvert(relationship);
@@ -61,6 +69,8 @@ export function convertStatus(status: Entity.Status) {
 	}));
 	if (status.poll) status.poll = convertPoll(status.poll);
 	if (status.reblog) status.reblog = convertStatus(status.reblog);
+	if (status.quote) status.quote = convertStatus(status.quote);
+	status.reactions = status.reactions.map(convertReaction);
 
 	return status;
 }

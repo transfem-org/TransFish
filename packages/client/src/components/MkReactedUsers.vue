@@ -16,6 +16,7 @@
 							: reaction
 					"
 					:custom-emojis="note.emojis"
+					style="max-width: 100%"
 				/>
 				<span style="margin-left: 4px">{{
 					note.reactions[reaction]
@@ -83,6 +84,7 @@ onMounted(() => {
 	padding: 4px 6px;
 	border: solid 1px var(--divider);
 	border-radius: 6px;
+	max-width: 50%;
 }
 
 .tabActive {

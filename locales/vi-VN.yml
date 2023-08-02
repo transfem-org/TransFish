@@ -1,7 +1,9 @@
----
 _lang_: "Tiếng Việt"
-headlineMisskey: "Mạng xã hội liên hợp"
-introMisskey: "Xin chào! Firefish là một nền tảng tiểu blog phi tập trung mã nguồn mở.\nViết \"tút\" để chia sẻ những suy nghĩ của bạn 📡\nBằng \"biểu cảm\", bạn có thể bày tỏ nhanh chóng cảm xúc của bạn với các tút 👍\nHãy khám phá một thế giới mới! 🚀"
+headlineFirefish: "Mạng xã hội liên hợp"
+introFirefish: "Xin chào! Firefish là một nền tảng tiểu blog phi tập trung mã nguồn
+  mở.\nViết \"tút\" để chia sẻ những suy nghĩ của bạn 📡\nBằng \"biểu cảm\", bạn có
+  thể bày tỏ nhanh chóng cảm xúc của bạn với các tút 👍\nHãy khám phá một thế giới
+  mới! 🚀"
 monthAndDay: "{day} tháng {month}"
 search: "Tìm kiếm"
 notifications: "Thông báo"
@@ -13,7 +15,7 @@ ok: "Đồng ý"
 gotIt: "Đã hiểu!"
 cancel: "Hủy"
 enterUsername: "Nhập tên người dùng"
-renotedBy: "Chia sẻ bởi {user}"
+renotedBy: "{user} đăng lại"
 noNotes: "Chưa có tút nào."
 noNotifications: "Không có thông báo"
 instance: "Máy chủ"
@@ -44,11 +46,12 @@ copyContent: "Chép nội dung"
 copyLink: "Chép liên kết"
 delete: "Xóa"
 deleteAndEdit: "Sửa"
-deleteAndEditConfirm: "Bạn có chắc muốn sửa tút này? Những biểu cảm, lượt trả lời và đăng lại sẽ bị mất."
+deleteAndEditConfirm: "Bạn có chắc muốn sửa tút này? Những biểu cảm, lượt trả lời
+  và đăng lại sẽ bị mất."
 addToList: "Thêm vào danh sách"
 sendMessage: "Gửi tin nhắn"
 copyUsername: "Chép tên người dùng"
-searchUser: "Tìm kiếm người dùng"
+searchUser: "Tìm người"
 reply: "Trả lời"
 loadMore: "Tải thêm"
 showMore: "Xem thêm"
@@ -64,9 +67,11 @@ import: "Nhập dữ liệu"
 export: "Xuất dữ liệu"
 files: "Tập tin"
 download: "Tải xuống"
-driveFileDeleteConfirm: "Bạn có chắc muốn xóa tập tin \"{name}\"? Tút liên quan cũng sẽ bị xóa theo."
+driveFileDeleteConfirm: "Bạn có chắc muốn xóa tập tin \"{name}\"? Tút liên quan cũng
+  sẽ bị xóa theo."
 unfollowConfirm: "Bạn có chắc muốn ngưng theo dõi {name}?"
-exportRequested: "Đang chuẩn bị xuất tập tin. Quá trình này có thể mất ít phút. Nó sẽ được tự động thêm vào Drive sau khi hoàn thành."
+exportRequested: "Đang chuẩn bị xuất tập tin. Quá trình này có thể mất ít phút. Nó
+  sẽ được tự động thêm vào Drive sau khi hoàn thành."
 importRequested: "Bạn vừa yêu cầu nhập dữ liệu. Quá trình này có thể mất ít phút."
 lists: "Danh sách"
 noLists: "Bạn chưa có danh sách nào"
@@ -81,7 +86,8 @@ error: "Lỗi"
 somethingHappened: "Xảy ra lỗi"
 retry: "Thử lại"
 pageLoadError: "Xảy ra lỗi khi tải trang."
-pageLoadErrorDescription: "Có thể là do bộ nhớ đệm của trình duyệt. Hãy thử xóa bộ nhớ đệm và thử lại sau ít phút."
+pageLoadErrorDescription: "Có thể là do bộ nhớ đệm của trình duyệt. Hãy thử xóa bộ
+  nhớ đệm và thử lại sau ít phút."
 serverIsDead: "Máy chủ không phản hồi. Vui lòng thử lại sau giây lát."
 youShouldUpgradeClient: "Để xem trang này, hãy làm tươi để cập nhật ứng dụng."
 enterListName: "Đặt tên cho danh sách"
@@ -129,7 +135,7 @@ selectAntenna: "Chọn một antenna"
 selectWidget: "Chọn tiện ích"
 editWidgets: "Sửa tiện ích"
 editWidgetsExit: "Xong"
-customEmojis: "Tùy chỉnh emoji"
+customEmojis: "Emoji"
 emoji: "Emoji"
 emojis: "Emoji"
 emojiName: "Tên emoji"
@@ -137,18 +143,24 @@ emojiUrl: "URL Emoji"
 addEmoji: "Thêm emoji"
 settingGuide: "Cài đặt đề xuất"
 cacheRemoteFiles: "Tập tin cache từ xa"
-cacheRemoteFilesDescription: "Khi tùy chọn này bị tắt, các tập tin từ xa sẽ được tải trực tiếp từ máy chủ khác. Điều này sẽ giúp giảm dung lượng lưu trữ nhưng lại tăng lưu lượng truy cập, vì hình thu nhỏ sẽ không được tạo."
+cacheRemoteFilesDescription: "Khi tùy chọn này bị tắt, các tập tin từ xa sẽ được tải
+  trực tiếp từ máy chủ khác. Điều này sẽ giúp giảm dung lượng lưu trữ nhưng lại tăng
+  lưu lượng truy cập, vì hình thu nhỏ sẽ không được tạo."
 flagAsBot: "Đánh dấu đây là tài khoản bot"
-flagAsBotDescription: "Bật tùy chọn này nếu tài khoản này được kiểm soát bởi một chương trình. Nếu được bật, nó sẽ được đánh dấu để các nhà phát triển khác ngăn chặn chuỗi tương tác vô tận với các bot khác và điều chỉnh hệ thống nội bộ của Firefish để coi tài khoản này như một bot."
+flagAsBotDescription: "Bật tùy chọn này nếu tài khoản này được kiểm soát bởi một chương
+  trình. Nếu được bật, nó sẽ được đánh dấu để các nhà phát triển khác ngăn chặn chuỗi
+  tương tác vô tận với các bot khác và điều chỉnh hệ thống nội bộ của Firefish để
+  coi tài khoản này như một bot."
 flagAsCat: "Tài khoản này là mèo"
 flagAsCatDescription: "Bật tùy chọn này để đánh dấu tài khoản là một con mèo."
 flagShowTimelineReplies: "Hiện lượt trả lời trong bảng tin"
-flagShowTimelineRepliesDescription: "Hiện lượt trả lời của người bạn theo dõi trên tút của những người khác."
+flagShowTimelineRepliesDescription: "Hiện lượt trả lời của người bạn theo dõi trên
+  tút của những người khác."
 autoAcceptFollowed: "Tự động phê duyệt theo dõi từ những người mà bạn đang theo dõi"
 addAccount: "Thêm tài khoản"
 loginFailed: "Đăng nhập không thành công"
 showOnRemote: "Truy cập trang của người này"
-general: "Tổng quan"
+general: "Tổng quát"
 wallpaper: "Ảnh bìa"
 setWallpaper: "Đặt ảnh bìa"
 removeWallpaper: "Xóa ảnh bìa"
@@ -156,7 +168,11 @@ searchWith: "Tìm kiếm: {q}"
 youHaveNoLists: "Bạn chưa có danh sách nào"
 followConfirm: "Bạn có chắc muốn theo dõi {name}？"
 proxyAccount: "Tài khoản proxy"
-proxyAccountDescription: "Tài khoản proxy là tài khoản hoạt động như một người theo dõi từ xa cho người dùng trong những điều kiện nhất định. Ví dụ: khi người dùng thêm người dùng từ xa vào danh sách, hoạt động của người dùng từ xa sẽ không được chuyển đến phiên bản nếu không có người dùng cục bộ nào theo dõi người dùng đó, vì vậy tài khoản proxy sẽ theo dõi."
+proxyAccountDescription: "Tài khoản proxy là tài khoản hoạt động như một người theo
+  dõi từ xa cho người dùng trong những điều kiện nhất định. Ví dụ: khi người dùng
+  thêm người dùng từ xa vào danh sách, hoạt động của người dùng từ xa sẽ không được
+  chuyển đến phiên bản nếu không có người dùng cục bộ nào theo dõi người dùng đó,
+  vì vậy tài khoản proxy sẽ theo dõi."
 host: "Host"
 selectUser: "Chọn người dùng"
 recipient: "Người nhận"
@@ -168,9 +184,9 @@ latestRequestSentAt: "Yêu cầu cuối gửi lúc"
 latestRequestReceivedAt: "Yêu cầu cuối nhận lúc"
 latestStatus: "Trạng thái cuối cùng"
 storageUsage: "Dung lượng lưu trữ"
-charts: "Đồ thị"
-perHour: "Mỗi Giờ"
-perDay: "Mỗi Ngày"
+charts: "Biểu đồ"
+perHour: "Mỗi giờ"
+perDay: "Mỗi ngày"
 stopActivityDelivery: "Ngưng gửi hoạt động"
 blockThisInstance: "Chặn máy chủ này"
 operations: "Vận hành"
@@ -186,11 +202,13 @@ instanceInfo: "Thông tin máy chủ"
 statistics: "Thống kê"
 clearQueue: "Xóa hàng đợi"
 clearQueueConfirmTitle: "Bạn có chắc muốn xóa hàng đợi?"
-clearQueueConfirmText: "Mọi tút chưa được gửi còn lại trong hàng đợi sẽ không được liên hợp. Thông thường thao tác này không cần thiết."
+clearQueueConfirmText: "Mọi tút chưa được gửi còn lại trong hàng đợi sẽ không được
+  liên hợp. Thông thường thao tác này không cần thiết."
 clearCachedFiles: "Xóa bộ nhớ đệm"
 clearCachedFilesConfirm: "Bạn có chắc muốn xóa sạch bộ nhớ đệm?"
 blockedInstances: "Máy chủ đã chặn"
-blockedInstancesDescription: "Danh sách những máy chủ bạn muốn chặn. Chúng sẽ không thể giao tiếp với máy chủy này nữa."
+blockedInstancesDescription: "Danh sách những máy chủ bạn muốn chặn. Chúng sẽ không
+  thể giao tiếp với máy chủy này nữa."
 muteAndBlock: "Ẩn và Chặn"
 mutedUsers: "Người đã ẩn"
 blockedUsers: "Người đã chặn"
@@ -239,14 +257,15 @@ saved: "Đã lưu"
 messaging: "Trò chuyện"
 upload: "Tải lên"
 keepOriginalUploading: "Giữ hình ảnh gốc"
-keepOriginalUploadingDescription: "Giữ nguyên như hình ảnh được tải lên ban đầu. Nếu tắt, một phiên bản để hiển thị trên web sẽ được tạo khi tải lên."
+keepOriginalUploadingDescription: "Giữ nguyên như hình ảnh được tải lên ban đầu. Nếu
+  tắt, một phiên bản để hiển thị trên web sẽ được tạo khi tải lên."
 fromDrive: "Từ ổ đĩa"
 fromUrl: "Từ URL"
 uploadFromUrl: "Tải lên bằng một URL"
 uploadFromUrlDescription: "URL của tập tin bạn muốn tải lên"
 uploadFromUrlRequested: "Đã yêu cầu tải lên"
 uploadFromUrlMayTakeTime: "Sẽ mất một khoảng thời gian để tải lên xong."
-explore: "Khám phá"
+explore: "Khám phó"
 messageRead: "Đã đọc"
 noMoreHistory: "Không còn gì để đọc"
 startMessaging: "Bắt đầu trò chuyện"
@@ -255,7 +274,8 @@ agreeTo: "Tôi đồng ý {0}"
 tos: "Điều khoản dịch vụ"
 start: "Bắt đầu"
 home: "Trang chính"
-remoteUserCaution: "Vì người dùng này ở máy chủ khác, thông tin hiển thị có thể không đầy đủ."
+remoteUserCaution: "Vì người dùng này ở máy chủ khác, thông tin hiển thị có thể không
+  đầy đủ."
 activity: "Hoạt động"
 images: "Hình ảnh"
 birthday: "Sinh nhật"
@@ -288,7 +308,8 @@ unableToDelete: "Không thể xóa"
 inputNewFileName: "Nhập tên mới cho tập tin"
 inputNewDescription: "Nhập mô tả mới"
 inputNewFolderName: "Nhập tên mới cho thư mục"
-circularReferenceFolder: "Thư mục đích là một thư mục con của thư mục bạn muốn di chuyển."
+circularReferenceFolder: "Thư mục đích là một thư mục con của thư mục bạn muốn di
+  chuyển."
 hasChildFilesOrFolders: "Không thể xóa cho đến khi không còn gì trong thư mục."
 copyUrl: "Sao chép URL"
 rename: "Đổi tên"
@@ -322,7 +343,8 @@ connectService: "Kết nối"
 disconnectService: "Ngắt kết nối"
 enableLocalTimeline: "Bật bảng tin máy chủ"
 enableGlobalTimeline: "Bật bảng tin liên hợp"
-disablingTimelinesInfo: "Quản trị viên và Kiểm duyệt viên luôn có quyền truy cập mọi bảng tin, kể cả khi chúng không được bật."
+disablingTimelinesInfo: "Quản trị viên và Kiểm duyệt viên luôn có quyền truy cập mọi
+  bảng tin, kể cả khi chúng không được bật."
 registration: "Đăng ký"
 enableRegistration: "Cho phép đăng ký mới"
 invite: "Mời"
@@ -334,7 +356,8 @@ bannerUrl: "URL Ảnh bìa"
 backgroundImageUrl: "URL Ảnh nền"
 basicInfo: "Thông tin cơ bản"
 pinnedUsers: "Những người thú vị"
-pinnedUsersDescription: "Liệt kê mỗi hàng một tên người dùng xuống dòng để ghim trên tab \"Khám phá\"."
+pinnedUsersDescription: "Liệt kê mỗi hàng một tên người dùng xuống dòng để ghim trên
+  tab \"Khám phá\"."
 pinnedPages: "Trang đã ghim"
 pinnedPagesDescription: "Liệt kê các trang thú vị để ghim trên máy chủ."
 pinnedClipId: "ID của clip muốn ghim"
@@ -347,14 +370,17 @@ recaptcha: "reCAPTCHA"
 enableRecaptcha: "Bật reCAPTCHA"
 recaptchaSiteKey: "Khóa của trang"
 recaptchaSecretKey: "Khóa bí mật"
-avoidMultiCaptchaConfirm: "Dùng nhiều hệ thống Captcha có thể gây nhiễu giữa chúng. Bạn có muốn tắt các hệ thống Captcha khác hiện đang hoạt động không? Nếu bạn muốn chúng tiếp tục được bật, hãy nhấn hủy."
+avoidMultiCaptchaConfirm: "Dùng nhiều hệ thống Captcha có thể gây nhiễu giữa chúng.
+  Bạn có muốn tắt các hệ thống Captcha khác hiện đang hoạt động không? Nếu bạn muốn
+  chúng tiếp tục được bật, hãy nhấn hủy."
 antennas: "Trạm phát sóng"
 manageAntennas: "Quản lý trạm phát sóng"
 name: "Tên"
 antennaSource: "Nguồn trạm phát sóng"
 antennaKeywords: "Từ khóa để nghe"
 antennaExcludeKeywords: "Từ khóa để lọc ra"
-antennaKeywordsDescription: "Phân cách bằng dấu cách cho điều kiện AND hoặc bằng xuống dòng cho điều kiện OR."
+antennaKeywordsDescription: "Phân cách bằng dấu cách cho điều kiện AND hoặc bằng xuống
+  dòng cho điều kiện OR."
 notifyAntenna: "Thông báo có tút mới"
 withFileAntenna: "Chỉ những tút có media"
 enableServiceworker: "Bật ServiceWorker"
@@ -362,7 +388,7 @@ antennaUsersDescription: "Liệt kê mỗi hàng một tên người dùng"
 caseSensitive: "Trường hợp nhạy cảm"
 withReplies: "Bao gồm lượt trả lời"
 connectedTo: "Những tài khoản sau đã kết nối"
-notesAndReplies: "Tút kèm trả lời"
+notesAndReplies: "Lượt trả lời"
 withFiles: "Media"
 silence: "Ẩn"
 silenceConfirm: "Bạn có chắc muốn ẩn người này?"
@@ -433,7 +459,8 @@ invitationCode: "Mã mời"
 checking: "Đang kiểm tra..."
 available: "Khả dụng"
 unavailable: "Không khả dụng"
-usernameInvalidFormat: "Bạn có thể dùng viết hoa/viết thường, chữ số, và dấu gạch dưới."
+usernameInvalidFormat: "Bạn có thể dùng viết hoa/viết thường, chữ số, và dấu gạch
+  dưới."
 tooShort: "Quá ngắn"
 tooLong: "Quá dài"
 weakPassword: "Mật khẩu yếu"
@@ -442,7 +469,8 @@ strongPassword: "Mật khẩu mạnh"
 passwordMatched: "Trùng khớp"
 passwordNotMatched: "Không trùng khớp"
 signinWith: "Đăng nhập bằng {x}"
-signinFailed: "Không thể đăng nhập. Vui lòng kiểm tra tên người dùng và mật khẩu của bạn."
+signinFailed: "Không thể đăng nhập. Vui lòng kiểm tra tên người dùng và mật khẩu của
+  bạn."
 tapSecurityKey: "Nhấn mã bảo mật của bạn"
 or: "Hoặc"
 language: "Ngôn ngữ"
@@ -483,15 +511,20 @@ showFeaturedNotesInTimeline: "Hiện tút nổi bật trong bảng tin"
 objectStorage: "Đối tượng lưu trữ"
 useObjectStorage: "Dùng đối tượng lưu trữ"
 objectStorageBaseUrl: "Base URL"
-objectStorageBaseUrlDesc: "URL được sử dụng làm tham khảo. Chỉ định URL của CDN hoặc Proxy của bạn nếu bạn đang sử dụng. Với S3 dùng 'https://<bucket>.s3.amazonaws.com', còn GCS hoặc dịch vụ tương tự dùng 'https://storage.googleapis.com/<bucket>', etc."
+objectStorageBaseUrlDesc: "URL được sử dụng làm tham khảo. Chỉ định URL của CDN hoặc
+  Proxy của bạn nếu bạn đang sử dụng. Với S3 dùng 'https://<bucket>.s3.amazonaws.com',
+  còn GCS hoặc dịch vụ tương tự dùng 'https://storage.googleapis.com/<bucket>', etc."
 objectStorageBucket: "Bucket"
 objectStorageBucketDesc: "Nhập tên bucket dùng ở nhà cung cấp của bạn."
 objectStoragePrefix: "Tiền tố"
-objectStoragePrefixDesc: "Các tập tin sẽ được lưu trữ trong các thư mục có tiền tố này."
+objectStoragePrefixDesc: "Các tập tin sẽ được lưu trữ trong các thư mục có tiền tố
+  này."
 objectStorageEndpoint: "Đầu cuối"
-objectStorageEndpointDesc: "Để trống nếu bạn đang dùng AWS S3, nếu không thì chỉ định đầu cuối là '<host>' hoặc '<host>:<port>', tùy thuộc vào nhà cung cấp dịch vụ."
+objectStorageEndpointDesc: "Để trống nếu bạn đang dùng AWS S3, nếu không thì chỉ định
+  đầu cuối là '<host>' hoặc '<host>:<port>', tùy thuộc vào nhà cung cấp dịch vụ."
 objectStorageRegion: "Khu vực"
-objectStorageRegionDesc: "Nhập một khu vực cụ thể như 'xx-east-1'. Nếu nhà cung cấp dịch vụ của bạn không phân biệt giữa các khu vực, hãy để trống hoặc nhập 'us-east-1'."
+objectStorageRegionDesc: "Nhập một khu vực cụ thể như 'xx-east-1'. Nếu nhà cung cấp
+  dịch vụ của bạn không phân biệt giữa các khu vực, hãy để trống hoặc nhập 'us-east-1'."
 objectStorageUseSSL: "Dùng SSL"
 objectStorageUseSSLDesc: "Tắt nếu bạn không dùng HTTPS để kết nối API"
 objectStorageUseProxy: "Kết nối thông qua Proxy"
@@ -523,7 +556,8 @@ sort: "Sắp xếp"
 ascendingOrder: "Tăng dần"
 descendingOrder: "Giảm dần"
 scratchpad: "Scratchpad"
-scratchpadDescription: "Scratchpad cung cấp môi trường cho các thử nghiệm AiScript. Bạn có thể viết, thực thi và kiểm tra kết quả tương tác với Firefish trong đó."
+scratchpadDescription: "Scratchpad cung cấp môi trường cho các thử nghiệm AiScript.
+  Bạn có thể viết, thực thi và kiểm tra kết quả tương tác với Firefish trong đó."
 output: "Nguồn ra"
 script: "Kịch bản"
 disablePagesScript: "Tắt AiScript trên Trang"
@@ -531,11 +565,14 @@ updateRemoteUser: "Cập nhật thông tin người dùng ở máy chủ khác"
 deleteAllFiles: "Xóa toàn bộ tập tin"
 deleteAllFilesConfirm: "Bạn có chắc xóa toàn bộ tập tin?"
 removeAllFollowing: "Ngưng theo dõi tất cả mọi người"
-removeAllFollowingDescription: "Thực hiện điều này sẽ ngưng theo dõi tất cả các tài khoản khỏi {host}. Chỉ thực hiện điều này nếu máy chủ không còn tồn tại."
+removeAllFollowingDescription: "Thực hiện điều này sẽ ngưng theo dõi tất cả các tài
+  khoản khỏi {host}. Chỉ thực hiện điều này nếu máy chủ không còn tồn tại."
 userSuspended: "Người này đã bị vô hiệu hóa."
 userSilenced: "Người này đã bị ẩn"
 yourAccountSuspendedTitle: "Tài khoản bị vô hiệu hóa"
-yourAccountSuspendedDescription: "Tài khoản này đã bị vô hiệu hóa do vi phạm quy tắc máy chủ hoặc điều tương tự. Liên hệ với quản trị viên nếu bạn muốn biết lý do chi tiết hơn. Vui lòng không tạo tài khoản mới."
+yourAccountSuspendedDescription: "Tài khoản này đã bị vô hiệu hóa do vi phạm quy tắc
+  máy chủ hoặc điều tương tự. Liên hệ với quản trị viên nếu bạn muốn biết lý do chi
+  tiết hơn. Vui lòng không tạo tài khoản mới."
 menu: "Menu"
 divider: "Phân chia"
 addItem: "Thêm mục"
@@ -576,12 +613,14 @@ permission: "Cho phép "
 enableAll: "Bật toàn bộ"
 disableAll: "Tắt toàn bộ"
 tokenRequested: "Cấp quyền truy cập vào tài khoản"
-pluginTokenRequestedDescription: "Plugin này sẽ có thể sử dụng các quyền được đặt ở đây."
+pluginTokenRequestedDescription: "Plugin này sẽ có thể sử dụng các quyền được đặt
+  ở đây."
 notificationType: "Loại thông báo"
 edit: "Sửa"
 emailServer: "Email máy chủ"
 enableEmail: "Bật phân phối email"
-emailConfigInfo: "Được dùng để xác minh email của bạn lúc đăng ký hoặc nếu bạn quên mật khẩu của mình"
+emailConfigInfo: "Được dùng để xác minh email của bạn lúc đăng ký hoặc nếu bạn quên
+  mật khẩu của mình"
 email: "Email"
 emailAddress: "Địa chỉ email"
 smtpConfig: "Cấu hình máy chủ SMTP"
@@ -602,7 +641,7 @@ makeActive: "Kích hoạt"
 display: "Hiển thị"
 copy: "Sao chép"
 metrics: "Số liệu"
-overview: "Tổng quan"
+overview: "Chung"
 logs: "Nhật ký"
 delayed: "Độ trễ"
 database: "Cơ sở dữ liệu"
@@ -611,10 +650,13 @@ create: "Tạo"
 notificationSetting: "Cài đặt thông báo"
 notificationSettingDesc: "Chọn loại thông báo bạn muốn hiển thị."
 useGlobalSetting: "Dùng thiết lập chung"
-useGlobalSettingDesc: "Nếu được bật, cài đặt thông báo của bạn sẽ được áp dụng. Nếu bị tắt, có thể thực hiện các thiết lập riêng lẻ."
+useGlobalSettingDesc: "Nếu được bật, cài đặt thông báo của bạn sẽ được áp dụng. Nếu
+  bị tắt, có thể thực hiện các thiết lập riêng lẻ."
 other: "Khác"
 regenerateLoginToken: "Tạo lại mã đăng nhập"
-regenerateLoginTokenDescription: "Tạo lại mã nội bộ có thể dùng để đăng nhập. Thông thường hành động này là không cần thiết. Nếu được tạo lại, tất cả các thiết bị sẽ bị đăng xuất."
+regenerateLoginTokenDescription: "Tạo lại mã nội bộ có thể dùng để đăng nhập. Thông
+  thường hành động này là không cần thiết. Nếu được tạo lại, tất cả các thiết bị sẽ
+  bị đăng xuất."
 setMultipleBySeparatingWithSpace: "Tách nhiều mục nhập bằng dấu cách."
 fileIdOrUrl: "ID tập tin hoặc URL"
 behavior: "Thao tác"
@@ -622,19 +664,22 @@ sample: "Ví dụ"
 abuseReports: "Lượt báo cáo"
 reportAbuse: "Báo cáo"
 reportAbuseOf: "Báo cáo {name}"
-fillAbuseReportDescription: "Vui lòng điền thông tin chi tiết về báo cáo này. Nếu đó là về một tút cụ thể, hãy kèm theo URL của tút."
+fillAbuseReportDescription: "Vui lòng điền thông tin chi tiết về báo cáo này. Nếu
+  đó là về một tút cụ thể, hãy kèm theo URL của tút."
 abuseReported: "Báo cáo đã được gửi. Cảm ơn bạn nhiều."
 reporter: "Người báo cáo"
 reporteeOrigin: "Bị báo cáo"
 reporterOrigin: "Máy chủ người báo cáo"
 forwardReport: "Chuyển tiếp báo cáo cho máy chủ từ xa"
-forwardReportIsAnonymous: "Thay vì tài khoản của bạn, một tài khoản hệ thống ẩn danh sẽ được hiển thị dưới dạng người báo cáo ở máy chủ từ xa."
+forwardReportIsAnonymous: "Thay vì tài khoản của bạn, một tài khoản hệ thống ẩn danh
+  sẽ được hiển thị dưới dạng người báo cáo ở máy chủ từ xa."
 send: "Gửi"
 abuseMarkAsResolved: "Đánh dấu đã xử lý"
 openInNewTab: "Mở trong tab mới"
 openInSideView: "Mở trong thanh bên"
 defaultNavigationBehaviour: "Thao tác điều hướng mặc định"
-editTheseSettingsMayBreakAccount: "Việc chỉnh sửa các cài đặt này có thể làm hỏng tài khoản của bạn."
+editTheseSettingsMayBreakAccount: "Việc chỉnh sửa các cài đặt này có thể làm hỏng
+  tài khoản của bạn."
 instanceTicker: "Thông tin máy chủ của tút"
 waitingFor: "Đang đợi {x}"
 random: "Ngẫu nhiên"
@@ -646,9 +691,11 @@ createNew: "Tạo mới"
 optional: "Không bắt buộc"
 createNewClip: "Tạo một ghim mới"
 unclip: "Bỏ ghim"
-confirmToUnclipAlreadyClippedNote: "Bài đăng này là một phần của \"{name}\" ghim. Bạn có muốn bỏ khỏi ghim?"
+confirmToUnclipAlreadyClippedNote: "Bài đăng này là một phần của \"{name}\" ghim.
+  Bạn có muốn bỏ khỏi ghim?"
 public: "Công khai"
-i18nInfo: "Firefish đang được các tình nguyện viên dịch sang nhiều thứ tiếng khác nhau. Bạn có thể hỗ trợ tại {link}."
+i18nInfo: "Firefish đang được các tình nguyện viên dịch sang nhiều thứ tiếng khác
+  nhau. Bạn có thể hỗ trợ tại {link}."
 manageAccessTokens: "Tạo mã truy cập"
 accountInfo: "Thông tin tài khoản"
 notesCount: "Số lượng tút"
@@ -667,12 +714,15 @@ no: "Từ chối"
 driveFilesCount: "Số tập tin trong Ổ đĩa"
 driveUsage: "Dung lượng ổ đĩa"
 noCrawle: "Từ chối lập chỉ mục"
-noCrawleDescription: "Không cho công cụ tìm kiếm lập chỉ mục trang hồ sơ, tút, Trang, etc."
-lockedAccountInfo: "Ghi chú của bạn sẽ hiển thị với bất kỳ ai, trừ khi bạn đặt chế độ hiển thị tút của mình thành \"Chỉ người theo dõi\"."
+noCrawleDescription: "Không cho công cụ tìm kiếm lập chỉ mục trang hồ sơ, tút, Trang,
+  etc."
+lockedAccountInfo: "Ghi chú của bạn sẽ hiển thị với bất kỳ ai, trừ khi bạn đặt chế
+  độ hiển thị tút của mình thành \"Chỉ người theo dõi\"."
 alwaysMarkSensitive: "Luôn đánh dấu NSFW"
 loadRawImages: "Tải ảnh gốc thay vì ảnh thu nhỏ"
 disableShowingAnimatedImages: "Không phát ảnh động"
-verificationEmailSent: "Một email xác minh đã được gửi. Vui lòng nhấn vào liên kết đính kèm để hoàn tất xác minh."
+verificationEmailSent: "Một email xác minh đã được gửi. Vui lòng nhấn vào liên kết
+  đính kèm để hoàn tất xác minh."
 notSet: "Chưa đặt"
 emailVerified: "Email đã được xác minh"
 noteFavoritesCount: "Số lượng tút yêu thích"
@@ -684,14 +734,16 @@ clips: "Ghim"
 experimentalFeatures: "Tính năng thử nghiệm"
 developer: "Nhà phát triển"
 makeExplorable: "Không hiện tôi trong \"Khám phá\""
-makeExplorableDescription: "Nếu bạn tắt, tài khoản của bạn sẽ không hiện trong mục \"Khám phá\"."
+makeExplorableDescription: "Nếu bạn tắt, tài khoản của bạn sẽ không hiện trong mục
+  \"Khám phá\"."
 showGapBetweenNotesInTimeline: "Hiện dải phân cách giữa các tút trên bảng tin"
 duplicate: "Tạo bản sao"
 left: "Bên trái"
 center: "Giữa"
 wide: "Rộng"
 narrow: "Thu hẹp"
-reloadToApplySetting: "Cài đặt này sẽ chỉ áp dụng sau khi tải lại trang. Tải lại ngay bây giờ?"
+reloadToApplySetting: "Cài đặt này sẽ chỉ áp dụng sau khi tải lại trang. Tải lại ngay
+  bây giờ?"
 needReloadToApply: "Cần tải lại để điều này được áp dụng."
 showTitlebar: "Hiện thanh tựa đề"
 clearCache: "Xóa bộ nhớ đệm"
@@ -699,7 +751,10 @@ onlineUsersCount: "{n} người đang online"
 nUsers: "{n} Người"
 nNotes: "{n} Tút"
 sendErrorReports: "Báo lỗi"
-sendErrorReportsDescription: "Khi được bật, thông tin chi tiết về lỗi sẽ được chia sẻ với Firefish khi xảy ra sự cố, giúp nâng cao chất lượng của Firefish.\nBao gồm thông tin như phiên bản hệ điều hành của bạn, trình duyệt bạn đang sử dụng, hoạt động của bạn trong Firefish, v.v."
+sendErrorReportsDescription: "Khi được bật, thông tin chi tiết về lỗi sẽ được chia
+  sẻ với Firefish khi xảy ra sự cố, giúp nâng cao chất lượng của Firefish.\nBao gồm
+  thông tin như phiên bản hệ điều hành của bạn, trình duyệt bạn đang sử dụng, hoạt
+  động của bạn trong Firefish, v.v."
 myTheme: "Theme của tôi"
 backgroundColor: "Màu nền"
 accentColor: "Màu phụ"
@@ -708,7 +763,7 @@ saveAs: "Lưu thành"
 advanced: "Nâng cao"
 value: "Giá trị"
 createdAt: "Ngày tạo"
-updatedAt: "Cập nhật lúc"
+updatedAt: "Cập nhật"
 saveConfirm: "Lưu thay đổi?"
 deleteConfirm: "Bạn có muốn xóa không?"
 invalidValue: "Giá trị không hợp lệ."
@@ -738,14 +793,16 @@ unlikeConfirm: "Bạn có chắc muốn bỏ thích ?"
 fullView: "Kích thước đầy đủ"
 quitFullView: "Thoát toàn màn hình"
 addDescription: "Thêm mô tả"
-userPagePinTip: "Bạn có thể hiển thị các tút ở đây bằng cách chọn \"Ghim vào hồ sơ\" từ menu của mỗi tút."
+userPagePinTip: "Bạn có thể hiển thị các tút ở đây bằng cách chọn \"Ghim vào hồ sơ\"\
+  \ từ menu của mỗi tút."
 notSpecifiedMentionWarning: "Tút này có đề cập đến những người không mong muốn"
 info: "Giới thiệu"
 userInfo: "Thông tin người dùng"
 unknown: "Chưa biết"
 onlineStatus: "Trạng thái"
 hideOnlineStatus: "Ẩn trạng thái online"
-hideOnlineStatusDescription: "Ẩn trạng thái online của bạn làm giảm sự tiện lợi của một số tính năng như tìm kiếm."
+hideOnlineStatusDescription: "Ẩn trạng thái online của bạn làm giảm sự tiện lợi của
+  một số tính năng như tìm kiếm."
 online: "Online"
 active: "Hoạt động"
 offline: "Offline"
@@ -780,12 +837,13 @@ emailNotConfiguredWarning: "Chưa đặt địa chỉ email."
 ratio: "Tỷ lệ"
 previewNoteText: "Hiện xem trước"
 customCss: "Tùy chỉnh CSS"
-customCssWarn: "Chỉ sử dụng những cài đặt này nếu bạn biết rõ về nó. Việc nhập các giá trị không đúng có thể khiến máy chủ hoạt động không bình thường."
+customCssWarn: "Chỉ sử dụng những cài đặt này nếu bạn biết rõ về nó. Việc nhập các
+  giá trị không đúng có thể khiến máy chủ hoạt động không bình thường."
 global: "Toàn cầu"
 squareAvatars: "Ảnh đại diện vuông"
 sent: "Gửi"
 received: "Đã nhận"
-searchResult: "Kết quả tìm kiếm"
+searchResult: "Tìm thấy"
 hashtags: "Hashtag"
 troubleshooting: "Khắc phục sự cố"
 useBlurEffect: "Dùng hiệu ứng làm mờ trong giao diện"
@@ -795,7 +853,8 @@ whatIsNew: "Hiện những thay đổi"
 translate: "Dịch"
 translatedFrom: "Dịch từ {x}"
 accountDeletionInProgress: "Đang xử lý việc xóa tài khoản"
-usernameInfo: "Bạn có thể sử dụng chữ cái (a ~ z, A ~ Z), chữ số (0 ~ 9) hoặc dấu gạch dưới (_). Tên người dùng không thể thay đổi sau này."
+usernameInfo: "Bạn có thể sử dụng chữ cái (a ~ z, A ~ Z), chữ số (0 ~ 9) hoặc dấu
+  gạch dưới (_). Tên người dùng không thể thay đổi sau này."
 aiChanMode: "Chế độ Ai"
 keepCw: "Giữ cảnh báo nội dung"
 pubSub: "Tài khoản Chính/Phụ"
@@ -811,12 +870,14 @@ filter: "Bộ lọc"
 controlPanel: "Bảng điều khiển"
 manageAccounts: "Quản lý tài khoản"
 makeReactionsPublic: "Đặt lịch sử biểu cảm công khai"
-makeReactionsPublicDescription: "Điều này sẽ hiển thị công khai danh sách tất cả các biểu cảm trước đây của bạn."
+makeReactionsPublicDescription: "Điều này sẽ hiển thị công khai danh sách tất cả các
+  biểu cảm trước đây của bạn."
 classic: "Cổ điển"
 muteThread: "Không quan tâm nữa"
 unmuteThread: "Quan tâm tút này"
 ffVisibility: "Hiển thị Theo dõi/Người theo dõi"
-ffVisibilityDescription: "Quyết định ai có thể xem những người bạn theo dõi và những người theo dõi bạn."
+ffVisibilityDescription: "Quyết định ai có thể xem những người bạn theo dõi và những
+  người theo dõi bạn."
 continueThread: "Tiếp tục xem chuỗi tút"
 deleteAccountConfirm: "Điều này sẽ khiến tài khoản bị xóa vĩnh viễn. Vẫn tiếp tục?"
 incorrectPassword: "Sai mật khẩu."
@@ -857,14 +918,17 @@ thereIsUnresolvedAbuseReportWarning: "Có báo cáo chưa xử lí."
 recommended: "Được đề xuất"
 check: "Kiểm tra"
 driveCapOverrideLabel: "Thay đổi dung lượng drive cho người này"
-driveCapOverrideCaption: "Đặt dung lượng drive về mặc định bằng cách nhập 0 hoặc số âm."
+driveCapOverrideCaption: "Đặt dung lượng drive về mặc định bằng cách nhập 0 hoặc số
+  âm."
 requireAdminForView: "Bạn phải đăng nhập như là quản trị viên mới xem được."
 isSystemAccount: "Đã tạo một tài khoản và tự động vận hành bởi hệ thống."
 typeToConfirm: "Nhấn {x} để xác nhận"
 deleteAccount: "Xóa tài khoản"
 document: "Tài liệu"
 numberOfPageCache: "Số lượng trang bộ nhớ đệm"
-numberOfPageCacheDescription: "Việc tăng con số này sẽ cải thiện sự thuận tiện cho người dùng nhưng gây ra nhiều áp lực hơn cho máy chủ cũng như sử dụng nhiều bộ nhớ hơn."
+numberOfPageCacheDescription: "Việc tăng con số này sẽ cải thiện sự thuận tiện cho
+  người dùng nhưng gây ra nhiều áp lực hơn cho máy chủ cũng như sử dụng nhiều bộ nhớ
+  hơn."
 logoutConfirm: "Bạn có chắc muốn đăng xuất?"
 lastActiveDate: "Lần cuối vào"
 statusbar: "Thanh trạng thái"
@@ -881,24 +945,33 @@ sensitiveMediaDetection: "Tự động phát hiện NSFW"
 localOnly: "Chỉ trên máy chủ"
 remoteOnly: "Chỉ máy chủ từ xa"
 failedToUpload: "Tải lên thất bại"
-cannotUploadBecauseInappropriate: "Không thể tải lên tập tin này vì các phần của tập tin đã được phát hiện có khả năng là NSFW."
+cannotUploadBecauseInappropriate: "Không thể tải lên tập tin này vì các phần của tập
+  tin đã được phát hiện có khả năng là NSFW."
 cannotUploadBecauseNoFreeSpace: "Tải lên không thành công do thiếu dung lượng Drive."
 beta: "Beta"
 enableAutoSensitive: "Tự động đánh dấu NSFW"
-enableAutoSensitiveDescription: "Cho phép tự động phát hiện và đánh dấu media NSFW thông qua học máy, nếu có thể. Ngay cả khi tùy chọn này bị tắt, nó vẫn có thể được bật trên toàn máy chủ."
-activeEmailValidationDescription: "Cho phép xác minh địa chỉ email chặt chẽ hơn, bao gồm việc kiểm tra các địa chỉ dùng một lần và xem nó có thực sự được giao tiếp hay không. Khi bỏ chọn, chỉ định dạng của email được xác minh."
+enableAutoSensitiveDescription: "Cho phép tự động phát hiện và đánh dấu media NSFW
+  thông qua học máy, nếu có thể. Ngay cả khi tùy chọn này bị tắt, nó vẫn có thể được
+  bật trên toàn máy chủ."
+activeEmailValidationDescription: "Cho phép xác minh địa chỉ email chặt chẽ hơn, bao
+  gồm việc kiểm tra các địa chỉ dùng một lần và xem nó có thực sự được giao tiếp hay
+  không. Khi bỏ chọn, chỉ định dạng của email được xác minh."
 navbar: "Thanh điều hướng"
 shuffle: "Xáo trộn"
 account: "Tài khoản của bạn"
 move: "Di chuyển"
 _sensitiveMediaDetection:
-  description: "Giảm nỗ lực kiểm duyệt máy chủ thông qua việc tự động nhận dạng media NSFW thông qua học máy. Điều này sẽ làm tăng một chút áp lực trên máy chủ."
+  description: "Giảm nỗ lực kiểm duyệt máy chủ thông qua việc tự động nhận dạng media
+    NSFW thông qua học máy. Điều này sẽ làm tăng một chút áp lực trên máy chủ."
   sensitivity: "Phát hiện nhạy cảm"
-  sensitivityDescription: "Giảm độ nhạy sẽ dẫn đến ít phát hiện sai hơn (dương tính giả), tăng nó sẽ dẫn đến ít phát hiện sai hơn (âm tính giả)."
+  sensitivityDescription: "Giảm độ nhạy sẽ dẫn đến ít phát hiện sai hơn (dương tính
+    giả), tăng nó sẽ dẫn đến ít phát hiện sai hơn (âm tính giả)."
   setSensitiveFlagAutomatically: "Đánh dấu là NSFW"
-  setSensitiveFlagAutomaticallyDescription: "Kết quả của phát hiện nội bộ sẽ được giữ lại ngay cả khi tùy chọn này bị tắt."
+  setSensitiveFlagAutomaticallyDescription: "Kết quả của phát hiện nội bộ sẽ được
+    giữ lại ngay cả khi tùy chọn này bị tắt."
   analyzeVideos: "Bật chuẩn đoán video"
-  analyzeVideosDescription: "Phân tích video bên cạnh hình ảnh. Điều này sẽ làm tăng một chút áp lực trên máy chủ."
+  analyzeVideosDescription: "Phân tích video bên cạnh hình ảnh. Điều này sẽ làm tăng
+    một chút áp lực trên máy chủ."
 _emailUnavailable:
   used: "Địa chỉ email đã được sử dụng"
   format: "Địa chỉ email không hợp lệ"
@@ -912,11 +985,15 @@ _ffVisibility:
 _signup:
   almostThere: "Gần xong rồi"
   emailAddressInfo: "Hãy điền địa chỉ email của bạn. Nó sẽ không được công khai."
-  emailSent: "Một email xác minh đã được gửi đến địa chỉ email ({email}) của bạn. Vui lòng nhấn vào liên kết trong đó để hoàn tất việc tạo tài khoản."
+  emailSent: "Một email xác minh đã được gửi đến địa chỉ email ({email}) của bạn.
+    Vui lòng nhấn vào liên kết trong đó để hoàn tất việc tạo tài khoản."
 _accountDelete:
   accountDelete: "Xóa tài khoản"
-  mayTakeTime: "Vì xóa tài khoản là một quá trình tốn nhiều tài nguyên nên có thể mất một khoảng thời gian để hoàn thành, tùy thuộc vào lượng nội dung bạn đã tạo và số lượng tập tin bạn đã tải lên."
-  sendEmail: "Sau khi hoàn tất việc xóa tài khoản, một email sẽ được gửi đến địa chỉ email đã đăng ký tài khoản này."
+  mayTakeTime: "Vì xóa tài khoản là một quá trình tốn nhiều tài nguyên nên có thể
+    mất một khoảng thời gian để hoàn thành, tùy thuộc vào lượng nội dung bạn đã tạo
+    và số lượng tập tin bạn đã tải lên."
+  sendEmail: "Sau khi hoàn tất việc xóa tài khoản, một email sẽ được gửi đến địa chỉ
+    email đã đăng ký tài khoản này."
   requestAccountDelete: "Yêu cầu xóa tài khoản"
   started: "Đang bắt đầu xóa tài khoản."
   inProgress: "Đang xóa dần tài khoản."
@@ -924,9 +1001,12 @@ _ad:
   back: "Quay lại"
   reduceFrequencyOfThisAd: "Hiện ít lại"
 _forgotPassword:
-  enterEmail: "Nhập địa chỉ email bạn đã sử dụng để đăng ký. Một liên kết mà bạn có thể đặt lại mật khẩu của mình sau đó sẽ được gửi đến nó."
-  ifNoEmail: "Nếu bạn không sử dụng email lúc đăng ký, vui lòng liên hệ với quản trị viên."
-  contactAdmin: "Máy chủ này không hỗ trợ sử dụng địa chỉ email, vui lòng liên hệ với quản trị viên để đặt lại mật khẩu của bạn."
+  enterEmail: "Nhập địa chỉ email bạn đã sử dụng để đăng ký. Một liên kết mà bạn có
+    thể đặt lại mật khẩu của mình sau đó sẽ được gửi đến nó."
+  ifNoEmail: "Nếu bạn không sử dụng email lúc đăng ký, vui lòng liên hệ với quản trị
+    viên."
+  contactAdmin: "Máy chủ này không hỗ trợ sử dụng địa chỉ email, vui lòng liên hệ
+    với quản trị viên để đặt lại mật khẩu của bạn."
 _gallery:
   my: "Kho Ảnh"
   liked: "Tút Đã Thích"
@@ -950,11 +1030,13 @@ _preferencesBackups:
   inputName: "Nhập tên bản sao lưu"
   cannotSave: "Không thể lưu"
   nameAlreadyExists: "Bản sao lưu \"{name}\" đã tồn tại. Xin nhập tên khác."
-  applyConfirm: "Bạn có chắc muốn áp dụng bản sao lưu \"{name}\" cho thiết bị này? Thiết lập hiện tại sẽ bị ghi đè."
+  applyConfirm: "Bạn có chắc muốn áp dụng bản sao lưu \"{name}\" cho thiết bị này?
+    Thiết lập hiện tại sẽ bị ghi đè."
   saveConfirm: "Lưu bản sao lưu {name}?"
   deleteConfirm: "Xóa bản sao lưu {name}?"
   renameConfirm: "Đổi tên bản sao lưu \"{old}\" thành \"{new}\"?"
-  noBackups: "Chưa có bản sao lưu. Bạn có thể sao lưu thiết lập trên máy chủ này bằng cách sử dụng \"Tạo sao lưu\"."
+  noBackups: "Chưa có bản sao lưu. Bạn có thể sao lưu thiết lập trên máy chủ này bằng
+    cách sử dụng \"Tạo sao lưu\"."
   createdAt: "Tạo vào: {time} {date}"
   updatedAt: "Cập nhật: {time} {date}"
   cannotLoad: "Tải thất bại"
@@ -972,15 +1054,22 @@ _aboutFirefish:
   source: "Mã nguồn"
   translation: "Dịch Firefish"
   donate: "Ủng hộ Firefish"
-  morePatrons: "Chúng tôi cũng trân trọng sự hỗ trợ của nhiều người đóng góp khác không được liệt kê ở đây. Cảm ơn! 🥰"
+  morePatrons: "Chúng tôi cũng trân trọng sự hỗ trợ của nhiều người đóng góp khác
+    không được liệt kê ở đây. Cảm ơn! 🥰"
   patrons: "Người ủng hộ"
+  patronsList: Liệt kê theo thứ tự, không theo số tiền ủng hộ. Hãy để tên bạn ở đây!
+  donateTitle: Thích Firefish?
+  pleaseDonateToFirefish: Hãy cân nhắc ủng hộ Firefish phát triển.
+  donateHost: Ủng hộ {host}
+  pleaseDonateToHost: Cũng như ủng hộ chi phí vận hành máy chủ {host} của bạn.
 _nsfw:
   respect: "Ẩn nội dung NSFW"
   ignore: "Hiện nội dung NSFW"
   force: "Ẩn mọi media"
 _mfm:
   cheatSheet: "MFM Cheatsheet"
-  intro: "MFM là ngôn ngữ phát triển độc quyền của Firefish có thể được sử dụng ở nhiều nơi. Tại đây bạn có thể xem danh sách tất cả các cú pháp MFM có sẵn."
+  intro: "MFM là ngôn ngữ phát triển độc quyền của Firefish có thể được sử dụng ở
+    nhiều nơi. Tại đây bạn có thể xem danh sách tất cả các cú pháp MFM có sẵn."
   dummy: "Firefish mở rộng thế giới Fediverse"
   mention: "Nhắc đến"
   mentionDescription: "Bạn có thể nhắc đến ai đó bằng cách sử dụng @tên người dùng."
@@ -999,11 +1088,13 @@ _mfm:
   inlineCode: "Mã (Trong dòng)"
   inlineCodeDescription: "Hiển thị tô sáng cú pháp trong dòng cho mã (chương trình)."
   blockCode: "Mã (Khối)"
-  blockCodeDescription: "Hiển thị tô sáng cú pháp cho mã nhiều dòng (chương trình) trong một khối."
+  blockCodeDescription: "Hiển thị tô sáng cú pháp cho mã nhiều dòng (chương trình)
+    trong một khối."
   inlineMath: "Toán học (Trong dòng)"
   inlineMathDescription: "Hiển thị công thức toán (KaTeX) trong dòng"
   blockMath: "Toán học (Khối)"
-  blockMathDescription: "Hiển thị công thức toán học nhiều dòng (KaTeX) trong một khối"
+  blockMathDescription: "Hiển thị công thức toán học nhiều dòng (KaTeX) trong một
+    khối"
   quote: "Trích dẫn"
   quoteDescription: "Hiển thị nội dung dạng lời trích dạng."
   emoji: "Tùy chỉnh emoji"
@@ -1044,6 +1135,9 @@ _mfm:
   rotateDescription: "Xoay nội dung theo một góc cụ thể."
   plain: "Đơn giản"
   plainDescription: "Vô hiệu hóa mọi hiệu ứng MFM chứa trong hiệu ứng MFM này."
+  stop: Dừng CĐN
+  play: Phát CĐN
+  warn: CĐN có thể gây đau mắt hoặc chóng mặt
 _instanceTicker:
   none: "Không hiển thị"
   remote: "Hiện cho người dùng từ máy chủ khác"
@@ -1069,15 +1163,20 @@ _menuDisplay:
   hide: "Ẩn"
 _wordMute:
   muteWords: "Ẩn từ ngữ"
-  muteWordsDescription: "Separate with spaces for an AND condition or with line breaks for an OR condition."
-  muteWordsDescription2: "Bao quanh các từ khóa bằng dấu gạch chéo để sử dụng cụm từ thông dụng."
+  muteWordsDescription: "Separate with spaces for an AND condition or with line breaks
+    for an OR condition."
+  muteWordsDescription2: "Bao quanh các từ khóa bằng dấu gạch chéo để sử dụng cụm
+    từ thông dụng."
   softDescription: "Ẩn các tút phù hợp điều kiện đã đặt khỏi bảng tin."
-  hardDescription: "Ngăn các tút đáp ứng các điều kiện đã đặt xuất hiện trên bảng tin. Lưu ý, những tút này sẽ không được thêm vào bảng tin ngay cả khi các điều kiện được thay đổi."
+  hardDescription: "Ngăn các tút đáp ứng các điều kiện đã đặt xuất hiện trên bảng
+    tin. Lưu ý, những tút này sẽ không được thêm vào bảng tin ngay cả khi các điều
+    kiện được thay đổi."
   soft: "Yếu"
   hard: "Mạnh"
   mutedNotes: "Những tút đã ẩn"
 _instanceMute:
-  instanceMuteDescription: "Thao tác này sẽ ẩn mọi tút/lượt đăng lại từ các máy chủ được liệt kê, bao gồm cả những tút  dạng trả lời từ máy chủ bị ẩn."
+  instanceMuteDescription: "Thao tác này sẽ ẩn mọi tút/lượt đăng lại từ các máy chủ
+    được liệt kê, bao gồm cả những tút  dạng trả lời từ máy chủ bị ẩn."
   instanceMuteDescription2: "Tách bằng cách xuống dòng"
   title: "Ẩn tút từ những máy chủ đã liệt kê."
   heading: "Danh sách những máy chủ bị ẩn"
@@ -1109,7 +1208,8 @@ _theme:
   darken: "Độ tối"
   lighten: "Độ sáng"
   inputConstantName: "Nhập tên cho hằng số này"
-  importInfo: "Nếu bạn nhập mã theme ở đây, bạn có thể nhập mã đó vào trình chỉnh sửa theme"
+  importInfo: "Nếu bạn nhập mã theme ở đây, bạn có thể nhập mã đó vào trình chỉnh
+    sửa theme"
   deleteConstantConfirm: "Bạn có chắc muốn xóa hằng số {const} không?"
   keys:
     accent: "Màu phụ"
@@ -1168,7 +1268,7 @@ _ago:
   justNow: "Vừa xong"
   secondsAgo: "{n}s trước"
   minutesAgo: "{n} phút trước"
-  hoursAgo: "{n} giờ trước"
+  hoursAgo: "{n} giờ"
   daysAgo: "{n} ngày trước"
   weeksAgo: "{n} tuần trước"
   monthsAgo: "{n} tháng trước"
@@ -1183,32 +1283,47 @@ _tutorial:
   step1_1: "Welcome!"
   step1_2: "Let's get you set up. You'll be up and running in no time!"
   step2_1: "First, please fill out your profile."
-  step2_2: "Providing some information about who you are will make it easier for others to tell if they want to see your notes or follow you."
+  step2_2: "Providing some information about who you are will make it easier for others
+    to tell if they want to see your notes or follow you."
   step3_1: "Now time to follow some people!"
-  step3_2: "Your home and social timelines are based off of who you follow, so try following a couple accounts to get started.\nClick the plus circle on the top right of a profile to follow them."
+  step3_2: "Your home and social timelines are based off of who you follow, so try
+    following a couple accounts to get started.\nClick the plus circle on the top
+    right of a profile to follow them."
   step4_1: "Let's get you out there."
-  step4_2: "For your first post, some people like to made a {introduction} post or a simple \"Hello world!\""
+  step4_2: "For your first post, some people like to made a {introduction} post or
+    a simple \"Hello world!\""
   step5_1: "Timelines, timelines everywhere!"
   step5_2: "Your instance has {timelines} different timelines enabled."
   step5_3: "The Home {icon} timeline is where you can see posts from your followers."
-  step5_4: "The Local {icon} timeline is where you can see posts from everyone else on this instance."
-  step5_5: "The Recommended {icon} timeline is where you can see posts from instances the admins recommend."
-  step5_6: "The Social {icon} timeline is where you can see posts from friends of your followers."
-  step5_7: "The Global {icon} timeline is where you can see posts from every other connected instance."
+  step5_4: "The Local {icon} timeline is where you can see posts from everyone else
+    on this instance."
+  step5_5: "The Recommended {icon} timeline is where you can see posts from instances
+    the admins recommend."
+  step5_6: "The Social {icon} timeline is where you can see posts from friends of
+    your followers."
+  step5_7: "The Global {icon} timeline is where you can see posts from every other
+    connected instance."
   step6_1: "So, what is this place?"
-  step6_2: "Well, you didn't just join Firefish. You joined a portal to the Fediverse, an interconnected network of thousands of servers, called \"instances\"."
-  step6_3: "Each server works in different ways, and not all servers run Firefish. This one does though! It's a bit complicated, but you'll get the hang of it in no time."
-  step6_4: "Now go, explore, and have fun!"
+  step6_2: "Well, you didn't just join Firefish. You joined a portal to the Fediverse,
+    an interconnected network of thousands of servers, called \"instances\"."
+  step6_3: "Each server works in different ways, and not all servers run Firefish.
+    This one does though! It's a bit complicated, but you'll get the hang of it in
+    no time."
+  step6_4: "Bây giờ bắt đầu khám phá, và vui thôi!"
 _2fa:
   alreadyRegistered: "Bạn đã đăng ký thiết bị xác minh 2 bước."
   registerTOTP: "Đăng ký một thiết bị"
   registerSecurityKey: "Đăng ký một mã bảo vệ"
-  step1: "Trước tiên, hãy cài đặt một ứng dụng xác minh (chẳng hạn như {a} hoặc {b}) trên thiết bị của bạn."
+  step1: "Trước tiên, hãy cài đặt một ứng dụng xác minh (chẳng hạn như {a} hoặc {b})
+    trên thiết bị của bạn."
   step2: "Sau đó, quét mã QR hiển thị trên màn hình này."
   step2Url: "Bạn cũng có thể nhập URL này nếu sử dụng một chương trình máy tính:"
   step3: "Nhập mã token do ứng dụng của bạn cung cấp để hoàn tất thiết lập."
-  step4: "Kể từ bây giờ, những lần đăng nhập trong tương lai sẽ yêu cầu mã token đăng nhập đó."
-  securityKeyInfo: "Bên cạnh xác minh bằng vân tay hoặc mã PIN, bạn cũng có thể thiết lập xác minh thông qua khóa bảo mật phần cứng hỗ trợ FIDO2 để bảo mật hơn nữa cho tài khoản của mình."
+  step4: "Kể từ bây giờ, những lần đăng nhập trong tương lai sẽ yêu cầu mã token đăng
+    nhập đó."
+  securityKeyInfo: "Bên cạnh xác minh bằng vân tay hoặc mã PIN, bạn cũng có thể thiết
+    lập xác minh thông qua khóa bảo mật phần cứng hỗ trợ FIDO2 để bảo mật hơn nữa
+    cho tài khoản của mình."
 _permissions:
   "read:account": "Xem thông tin tài khoản của bạn"
   "write:account": "Sửa thông tin tài khoản của bạn"
@@ -1244,7 +1359,8 @@ _permissions:
   "write:gallery-likes": "Sửa danh sách các tút đã thích trong thư viện của tôi"
 _auth:
   shareAccess: "Bạn có muốn cho phép \"{name}\" truy cập vào tài khoản này không?"
-  shareAccessAsk: "Bạn có chắc muốn cho phép ứng dụng này truy cập vào tài khoản của mình không?"
+  shareAccessAsk: "Bạn có chắc muốn cho phép ứng dụng này truy cập vào tài khoản của
+    mình không?"
   permissionAsk: "Ứng dụng này yêu cầu các quyền sau"
   pleaseGoBack: "Vui lòng quay lại ứng dụng"
   callback: "Quay lại ứng dụng"
@@ -1304,7 +1420,7 @@ _poll:
   deadlineTime: "giờ"
   duration: "Thời hạn"
   votesCount: "{n} bình chọn"
-  totalVotes: "{n} tổng bình chọn"
+  totalVotes: "{n} lượt bình chọn"
   vote: "Bình chọn"
   showResult: "Xem kết quả"
   voted: "Đã bình chọn"
@@ -1342,7 +1458,9 @@ _profile:
   youCanIncludeHashtags: "Bạn có thể dùng hashtag trong tiểu sử."
   metadata: "Thông tin bổ sung"
   metadataEdit: "Sửa thông tin bổ sung"
-  metadataDescription: "Sử dụng phần này, bạn có thể hiển thị các mục thông tin bổ sung trong hồ sơ của mình. Bạn có thể thêm thẻ {a} hoặc thẻ {l} với {rel} để xác minh liên kết trên tiểu sử của mình!"
+  metadataDescription: "Sử dụng phần này, bạn có thể hiển thị các mục thông tin bổ
+    sung trong hồ sơ của mình. Bạn có thể thêm thẻ {a} hoặc thẻ {l} với {rel} để xác
+    minh liên kết trên tiểu sử của mình!"
   metadataLabel: "Nhãn"
   metadataContent: "Nội dung"
   changeAvatar: "Đổi ảnh đại diện"
@@ -1616,7 +1734,8 @@ _pages:
       _dailyRannum:
         arg1: "Giá trị tối thiểu"
         arg2: "Giá trị tối đa"
-      dailyRandomPick: "Chọn ngẫu nhiên từ một danh sách (Đổi mỗi người một lần mỗi ngày)"
+      dailyRandomPick: "Chọn ngẫu nhiên từ một danh sách (Đổi mỗi người một lần mỗi
+        ngày)"
       _dailyRandomPick:
         arg1: "Danh sách"
       seedRandom: "Ngẫu nhiên (với seed)"
@@ -1663,7 +1782,8 @@ _pages:
       _for:
         arg1: "Số lần lặp lại"
         arg2: "Hành động"
-    typeError: "Chỗ {slot} chấp nhận các giá trị thuộc loại \"{expect}\", nhưng giá trị được cung cấp thuộc loại \"{actual}\"!"
+    typeError: "Chỗ {slot} chấp nhận các giá trị thuộc loại \"{expect}\", nhưng giá
+      trị được cung cấp thuộc loại \"{actual}\"!"
     thereIsEmptySlot: "Chỗ {slot} đang trống!"
     types:
       string: "Văn bản"
@@ -1727,7 +1847,8 @@ _deck:
   newProfile: "Hồ sơ mới"
   deleteProfile: "Xóa hồ sơ"
   introduction: "Kết hợp các cột để tạo giao diện của riêng bạn!"
-  introduction2: "Bạn có thể thêm cột bất kỳ lúc nào bằng cách nhấn + ở bên phải màn hình."
+  introduction2: "Bạn có thể thêm cột bất kỳ lúc nào bằng cách nhấn + ở bên phải màn
+    hình."
   widgetsIntroduction: "Chọn \"Sửa widget\" trong menu cột và thêm một widget."
   _columns:
     main: "Chính"
@@ -1738,3 +1859,11 @@ _deck:
     list: "Danh sách"
     mentions: "Lượt nhắc"
     direct: "Nhắn riêng"
+renoteMute: Ẩn lượt chia sẻ
+renoteUnmute: Bỏ ẩn lượt chia sẻ
+searchPlaceholder: Lướt Firefish
+edited: Đã sửa {date} {time}
+findOtherInstance: Tìm máy chủ khác
+noThankYou: Từ chối
+_filters:
+  withFile: Có file

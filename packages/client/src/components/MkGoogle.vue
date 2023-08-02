@@ -11,6 +11,9 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { i18n } from "@/i18n";
+import { useRouter } from "@/router";
+
+const router = useRouter();
 
 const props = defineProps<{
 	q: string;
@@ -19,10 +22,7 @@ const props = defineProps<{
 const query = ref(props.q);
 
 const search = () => {
-	window.open(
-		`https://search.annoyingorange.xyz/search?q=${query.value}`,
-		"_blank",
-	);
+	router.push(`/search/${query.value}`);
 };
 </script>
 

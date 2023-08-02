@@ -1,6 +1,6 @@
 _lang_: "日本語"
-headlineMisskey: "ずっと無料でオープンソースの非中央集権型ソーシャルメディアプラットフォーム🚀"
-introMisskey: "ようこそ！Firefishは、オープンソースの非中央集権型ソーシャルメディアプラットフォームです。\nいま起こっていることを共有したり、あなたについて皆に発信しましょう📡\n\
+headlineFirefish: "ずっと無料でオープンソースの非中央集権型ソーシャルメディアプラットフォーム🚀"
+introFirefish: "ようこそ！Firefishは、オープンソースの非中央集権型ソーシャルメディアプラットフォームです。\nいま起こっていることを共有したり、あなたについて皆に発信しましょう📡\n\
   「リアクション」機能で、皆の投稿に素早く反応を追加できます👍\n新しい世界を探検しよう🚀"
 monthAndDay: "{month}月 {day}日"
 search: "検索"
@@ -156,7 +156,7 @@ flagShowTimelineRepliesDescription: "オンにすると、タイムラインに�
 autoAcceptFollowed: "フォローしているユーザーからのフォロー申請を自動承認"
 addAccount: "アカウントを追加"
 loginFailed: "ログインに失敗しました"
-showOnRemote: "リモートで表示"
+showOnRemote: "オリジナルのページを開く"
 general: "全般"
 accountMoved: "このユーザーは新しいアカウントに移行しました"
 wallpaper: "壁紙"
@@ -517,6 +517,8 @@ objectStorageUseSSLDesc: "API接続にhttpsを使用しない場合はオフに�
 objectStorageUseProxy: "Proxyを利用する"
 objectStorageUseProxyDesc: "API接続にproxyを利用しない場合はオフにしてください"
 objectStorageSetPublicRead: "アップロード時に'public-read'を設定する"
+objectStorageS3ForcePathStyle: "DNS名ではなくてパスを使用する"
+objectStorageS3ForcePathStyleDesc: "EndpointのURLを作る際には、'<bucket>.s3.amazonaws.com'の代わりに's3.amazonaws.com/<bucket>/'のようなスタイルを使用します。"
 serverLogs: "サーバーログ"
 deleteAll: "全て削除"
 showFixedPostForm: "タイムライン上部に投稿フォームを表示する"
@@ -854,7 +856,7 @@ unmuteThread: "スレッドのミュートを解除"
 ffVisibility: "つながりの公開範囲"
 ffVisibilityDescription: "自分のフォロー/フォロワー情報の公開範囲を設定できます。"
 continueThread: "さらにスレッドを見る"
-deleteAccountConfirm: "アカウントが削除されます。よろしいですか？"
+deleteAccountConfirm: "このアカウントが削除されます。よろしいですか？"
 incorrectPassword: "パスワードが間違っています。"
 voteConfirm: "「{choice}」に投票しますか？"
 hide: "隠す"
@@ -985,6 +987,7 @@ showWithSparkles: "タイトルをキラキラさせる"
 youHaveUnreadAnnouncements: "未読のお知らせがあります"
 neverShow: "今後表示しない"
 remindMeLater: "また後で"
+addRe: "閲覧注意の投稿への返信で、注釈の先頭に\"re:\"を追加する"
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"
@@ -1064,6 +1067,7 @@ _aboutFirefish:
   about: "Firefishは、2022年に生まれたThatOneCalculatorによるMisskeyのforkです。"
   contributors: "主なコントリビューター"
   allContributors: "全てのコントリビューター"
+  misskeyContributors: "フォーク元のMisskeyの主なコントリビューター"
   source: "ソースコード"
   translation: "Firefishを翻訳"
   donate: "Firefishに寄付"
@@ -1074,6 +1078,7 @@ _aboutFirefish:
   pleaseDonateToHost: また、このサーバー {host} の運営者への寄付もご検討ください。
   donateHost: '{host} に寄付する'
   donateTitle: Firefishを気に入りましたか？
+  sponsors: Firefish の支援者
 _nsfw:
   respect: "閲覧注意のメディアは隠す"
   ignore: "閲覧注意のメディアを隠さない"
@@ -1959,3 +1964,10 @@ donationLink: 寄付ページへのリンク
 removeMember: メンバーを削除
 removeQuote: 引用を削除
 removeRecipient: 宛先を削除
+verifiedLink: 認証済みリンク
+_feeds:
+  atom: Atom
+  rss: RSS
+  jsonFeed: JSONフィード
+  copyFeed: フィードのURLをコピー
+origin: 起源

@@ -37,6 +37,32 @@ import { deleteFile } from "./delete-file.js";
 
 const logger = driveLogger.createSubLogger("register", "yellow");
 
+type PathPartLike = string | null;
+
+// Joins an array of elements into a URL pathname, possibly with a base URL object to append to.
+// Null or 0-length parts will be left out.
+function urlPathJoin(
+	baseOrParts: URL | PathPartLike[],
+	pathParts?: PathPartLike[],
+): string {
+	if (baseOrParts instanceof URL) {
+		const url = new URL(baseOrParts as URL);
+		if (pathParts) {
+			pathParts.unshift(
+				url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname,
+			);
+			url.pathname = pathParts
+				.filter((x) => x !== null && x.toString().length > 0)
+				.join("/");
+		}
+		return url.toString();
+	}
+	const baseParts = baseOrParts.concat(pathParts ?? []);
+	return baseParts
+		.filter((x) => x !== null && x.toString().length > 0)
+		.join("/");
+}
+
 /***
  * Save file
  * @param path Path for original
@@ -77,17 +103,16 @@ async function save(
 			ext = "";
 		}
 
-		const baseUrl =
-			meta.objectStorageBaseUrl ||
+		const baseUrl = new URL(
+			meta.objectStorageBaseUrl ?? `/${meta.objectStorageBucket}`,
 			`${meta.objectStorageUseSSL ? "https" : "http"}://${
 				meta.objectStorageEndpoint
-			}${meta.objectStoragePort ? `:${meta.objectStoragePort}` : ""}/${
-				meta.objectStorageBucket
-			}`;
+			}${meta.objectStoragePort ? `:${meta.objectStoragePort}` : ""}`,
+		);
 
 		// for original
-		const key = `${meta.objectStoragePrefix}/${uuid()}${ext}`;
-		const url = `${baseUrl}/${key}`;
+		const key = urlPathJoin([meta.objectStoragePrefix, `${uuid()}${ext}`]);
+		const url = urlPathJoin(baseUrl, [key]);
 
 		// for alts
 		let webpublicKey: string | null = null;
@@ -101,10 +126,11 @@ async function save(
 		const uploads = [upload(key, fs.createReadStream(path), type, name)];
 
 		if (alts.webpublic) {
-			webpublicKey = `${meta.objectStoragePrefix}/webpublic-${uuid()}.${
-				alts.webpublic.ext
-			}`;
-			webpublicUrl = `${baseUrl}/${webpublicKey}`;
+			webpublicKey = urlPathJoin([
+				meta.objectStoragePrefix,
+				`webpublic-${uuid()}.${alts.webpublic.ext}`,
+			]);
+			webpublicUrl = urlPathJoin(baseUrl, [webpublicKey]);
 
 			logger.info(`uploading webpublic: ${webpublicKey}`);
 			uploads.push(
@@ -113,10 +139,11 @@ async function save(
 		}
 
 		if (alts.thumbnail) {
-			thumbnailKey = `${meta.objectStoragePrefix}/thumbnail-${uuid()}.${
-				alts.thumbnail.ext
-			}`;
-			thumbnailUrl = `${baseUrl}/${thumbnailKey}`;
+			thumbnailKey = urlPathJoin([
+				meta.objectStoragePrefix,
+				`thumbnail-${uuid()}.${alts.thumbnail.ext}`,
+			]);
+			thumbnailUrl = urlPathJoin(baseUrl, [thumbnailKey]);
 
 			logger.info(`uploading thumbnail: ${thumbnailKey}`);
 			uploads.push(

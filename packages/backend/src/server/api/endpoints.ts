@@ -65,6 +65,8 @@ import * as ep___admin_unsuspendUser from "./endpoints/admin/unsuspend-user.js";
 import * as ep___admin_updateMeta from "./endpoints/admin/update-meta.js";
 import * as ep___admin_vacuum from "./endpoints/admin/vacuum.js";
 import * as ep___admin_deleteAccount from "./endpoints/admin/delete-account.js";
+import * as ep___admin_delete2fa from "./endpoints/admin/delete-2fa.js";
+import * as ep___admin_deletePasskeys from "./endpoints/admin/delete-passkeys.js";
 import * as ep___admin_updateUserNote from "./endpoints/admin/update-user-note.js";
 import * as ep___announcements from "./endpoints/announcements.js";
 import * as ep___antennas_create from "./endpoints/antennas/create.js";
@@ -418,6 +420,8 @@ const eps = [
 	["admin/update-meta", ep___admin_updateMeta],
 	["admin/vacuum", ep___admin_vacuum],
 	["admin/delete-account", ep___admin_deleteAccount],
+	["admin/delete-2fa", ep___admin_delete2fa],
+	["admin/delete-passkeys", ep___admin_deletePasskeys],
 	["admin/update-user-note", ep___admin_updateUserNote],
 	["announcements", ep___announcements],
 	["antennas/create", ep___antennas_create],

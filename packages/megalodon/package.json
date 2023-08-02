@@ -5,6 +5,7 @@
   "typings": "./lib/src/index.d.ts",
   "scripts": {
     "build": "tsc -p ./",
+		"build:debug": "pnpm run build",
     "lint": "pnpm rome check **/*.ts --apply",
 		"format": "pnpm rome format --write src/**/*.ts",
     "doc": "typedoc --out ../docs ./src",

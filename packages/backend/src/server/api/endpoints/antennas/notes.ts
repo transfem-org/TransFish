@@ -60,13 +60,14 @@ export default define(meta, paramDef, async (ps, user) => {
 		throw new ApiError(meta.errors.noSuchAntenna);
 	}
 
+	const limit = ps.limit + (ps.untilId ? 1 : 0) + (ps.sinceId ? 1 : 0); // untilIdに指定したものも含まれるため+1
 	const noteIdsRes = await redisClient.xrevrange(
 		`antennaTimeline:${antenna.id}`,
-		ps.untilDate || "+",
-		"-",
+		ps.untilDate ?? "+",
+		ps.sinceDate ?? "-",
 		"COUNT",
-		ps.limit + 1,
-	); // untilIdに指定したものも含まれるため+1
+		limit,
+	);
 
 	if (noteIdsRes.length === 0) {
 		return [];
@@ -74,7 +75,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	const noteIds = noteIdsRes
 		.map((x) => x[1][1])
-		.filter((x) => x !== ps.untilId);
+		.filter((x) => x !== ps.untilId && x !== ps.sinceId);
 
 	if (noteIds.length === 0) {
 		return [];
@@ -105,7 +106,7 @@ export default define(meta, paramDef, async (ps, user) => {
 	generateMutedUserQuery(query, user);
 	generateBlockedUserQuery(query, user);
 
-	const notes = await query.take(ps.limit).getMany();
+	const notes = await query.take(limit).getMany();
 
 	if (notes.length > 0) {
 		readNote(user.id, notes);

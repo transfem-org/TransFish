@@ -1,7 +1,8 @@
----
 _lang_: "한국어"
-headlineMisskey: "노트로 연결되는 네트워크"
-introMisskey: "환영합니다! Firefish 는 오픈 소스 분산형 마이크로 블로그 서비스입니다.\n\"노트\" 를 작성해서, 지금 일어나고 있는 일을 공유하거나, 당신만의 이야기를 모두에게 발신하세요📡\n\"리액션\" 기능으로, 친구의 노트에 총알같이 반응을 추가할 수도 있습니다👍\n새로운 세계를 탐험해 보세요🚀"
+headlineFirefish: "노트로 연결되는 네트워크"
+introFirefish: "환영합니다! Firefish 는 오픈 소스 분산형 마이크로 블로그 서비스입니다.\n\"노트\" 를 작성해서, 지금 일어나고
+  있는 일을 공유하거나, 당신만의 이야기를 모두에게 발신하세요📡\n\"리액션\" 기능으로, 친구의 노트에 총알같이 반응을 추가할 수도 있습니다👍\n
+  새로운 세계를 탐험해 보세요🚀"
 monthAndDay: "{month}월 {day}일"
 search: "검색"
 notifications: "알림"
@@ -16,7 +17,7 @@ enterUsername: "유저명 입력"
 renotedBy: "{user}님이 Renote"
 noNotes: "노트가 없습니다"
 noNotifications: "표시할 알림이 없습니다"
-instance: "인스턴스"
+instance: "서버"
 settings: "설정"
 basicSettings: "기본 설정"
 otherSettings: "기타 설정"
@@ -64,7 +65,7 @@ import: "가져오기"
 export: "내보내기"
 files: "파일"
 download: "다운로드"
-driveFileDeleteConfirm: "파일 \"{name}\" 을 삭제하시겠습니까? 이 파일이 첨부된 노트도 함께 삭제됩니다."
+driveFileDeleteConfirm: "파일 \"{name}\" 을 삭제하시겠습니까? 이 파일이 첨부되었더 노트에서도 같이 삭제됩니다."
 unfollowConfirm: "{name}님을 언팔로우하시겠습니까?"
 exportRequested: "내보내기를 요청하였습니다. 이 작업은 시간이 걸릴 수 있습니다. 내보내기가 완료되면 \"드라이브\"에 추가됩니다."
 importRequested: "가져오기를 요청하였습니다. 이 작업에는 시간이 걸릴 수 있습니다."
@@ -81,7 +82,8 @@ error: "오류"
 somethingHappened: "오류가 발생했습니다"
 retry: "다시 시도"
 pageLoadError: "페이지를 불러오지 못했습니다."
-pageLoadErrorDescription: "네트워크 연결 또는 브라우저 캐시로 인해 발생했을 가능성이 높습니다. 캐시를 삭제하거나, 잠시 후 다시 시도해 주세요."
+pageLoadErrorDescription: "네트워크 연결 또는 브라우저 캐시로 인해 발생했을 가능성이 높습니다. 캐시를 삭제하거나, 잠시 후
+  다시 시도해 주세요."
 serverIsDead: "서버로부터 응답이 없습니다. 잠시 후 다시 시도해주세요."
 youShouldUpgradeClient: "이 페이지를 표시하려면 새로고침하여 새로운 버전의 클라이언트를 이용해 주십시오."
 enterListName: "리스트 이름을 입력"
@@ -137,9 +139,11 @@ emojiUrl: "이모지 URL"
 addEmoji: "이모지 추가"
 settingGuide: "추천 설정"
 cacheRemoteFiles: "리모트 파일을 캐시"
-cacheRemoteFilesDescription: "이 설정을 해지하면 리모트 파일을 캐시하지 않고 해당 파일을 직접 링크하게 됩니다. 그에 따라 서버의 저장 공간을 절약할 수 있지만, 썸네일이 생성되지 않기 때문에 통신량이 증가합니다."
+cacheRemoteFilesDescription: "이 설정을 해지하면 리모트 파일을 캐시하지 않고 해당 파일을 직접 링크하게 됩니다. 그에 따라
+  서버의 저장 공간을 절약할 수 있지만, 썸네일이 생성되지 않기 때문에 통신량이 증가합니다."
 flagAsBot: "나는 봇입니다"
-flagAsBotDescription: "이 계정을 자동화된 수단으로 운용할 경우에 활성화해 주세요. 이 플래그를 활성화하면, 다른 봇이 이를 참고하여 봇 끼리의 무한 연쇄 반응을 회피하거나, 이 계정의 시스템 상에서의 취급이 Bot 운영에 최적화되는 등의 변화가 생깁니다."
+flagAsBotDescription: "이 계정을 자동화된 수단으로 운용할 경우에 활성화해 주세요. 이 플래그를 활성화하면, 다른 봇이 이를 참고하여
+  봇 끼리의 무한 연쇄 반응을 회피하거나, 이 계정의 시스템 상에서의 취급이 Bot 운영에 최적화되는 등의 변화가 생깁니다."
 flagAsCat: "나는 고양이다냥"
 flagAsCatDescription: "이 계정이 고양이라면 활성화 해주세요."
 flagShowTimelineReplies: "타임라인에 노트의 답글을 표시하기"
@@ -147,7 +151,7 @@ flagShowTimelineRepliesDescription: "이 설정을 활성화하면 타임라인�
 autoAcceptFollowed: "팔로우 중인 유저로부터의 팔로우 요청을 자동 수락"
 addAccount: "계정 추가"
 loginFailed: "로그인에 실패했습니다"
-showOnRemote: "리모트에서 보기"
+showOnRemote: "원본 페이지 열기"
 general: "일반"
 wallpaper: "배경"
 setWallpaper: "배경화면 설정"
@@ -156,13 +160,15 @@ searchWith: "검색: {q}"
 youHaveNoLists: "리스트가 없습니다"
 followConfirm: "{name}님을 팔로우 하시겠습니까?"
 proxyAccount: "프록시 계정"
-proxyAccountDescription: "프록시 계정은 특정 조건 하에서 유저의 리모트 팔로우를 대행하는 계정입니다. 예를 들면, 유저가 리모트 유저를 리스트에 넣었을 때, 리스트에 들어간 유저를 아무도 팔로우한 적이 없다면 액티비티가 인스턴스로 배달되지 않기 때문에, 대신 프록시 계정이 해당 유저를 팔로우하도록 합니다."
+proxyAccountDescription: "프록시 계정은 특정 조건 하에서 유저의 리모트 팔로우를 대행하는 계정입니다. 예를 들면, 유저가 리모트
+  유저를 리스트에 넣었을 때, 리스트에 들어간 유저를 아무도 팔로우한 적이 없다면 액티비티가 서버로 배달되지 않기 때문에, 대신 프록시 계정이 해당
+  유저를 팔로우하도록 합니다."
 host: "호스트"
 selectUser: "유저 선택"
 recipient: "수신인"
 annotation: "내용에 대한 주석"
 federation: "연합"
-instances: "인스턴스"
+instances: "서버"
 registeredAt: "등록 날짜"
 latestRequestSentAt: "마지막으로 요청을 보낸 시간"
 latestRequestReceivedAt: "마지막으로 요청을 받은 시간"
@@ -172,7 +178,7 @@ charts: "차트"
 perHour: "1시간마다"
 perDay: "1일마다"
 stopActivityDelivery: "액티비티 보내지 않기"
-blockThisInstance: "이 인스턴스를 차단"
+blockThisInstance: "이 서버를 차단"
 operations: "작업"
 software: "소프트웨어"
 version: "버전"
@@ -182,21 +188,22 @@ jobQueue: "작업 대기열"
 cpuAndMemory: "CPU와 메모리"
 network: "네트워크"
 disk: "디스크"
-instanceInfo: "인스턴스 정보"
+instanceInfo: "서버 정보"
 statistics: "통계"
 clearQueue: "대기열 비우기"
 clearQueueConfirmTitle: "대기열을 비우시겠습니까?"
-clearQueueConfirmText: "대기열에 남아 있는 노트는 더이상 연합되지 않습니다. 보통의 경우 이 작업은 필요하지 않습니다."
+clearQueueConfirmText: "대기열에 남아 있는 게시물이 연합되지 않습니다. 보통의 경우 이 작업은 필요하지 않습니다."
 clearCachedFiles: "캐시 비우기"
 clearCachedFilesConfirm: "캐시된 리모트 파일을 모두 삭제하시겠습니까?"
-blockedInstances: "차단된 인스턴스"
-blockedInstancesDescription: "차단하려는 인스턴스의 호스트 이름을 줄바꿈으로 구분하여 설정합니다. 차단된 인스턴스는 이 인스턴스와 통신할 수 없게 됩니다."
+blockedInstances: "차단한 서버"
+blockedInstancesDescription: "차단하려는 서버의 호스트 이름을 줄바꿈으로 구분하여 설정합니다. 차단된 서버는 이 서버와 통신할
+  수 없게 됩니다."
 muteAndBlock: "뮤트 및 차단"
 mutedUsers: "뮤트한 유저"
 blockedUsers: "차단한 유저"
 noUsers: "아무도 없습니다"
 editProfile: "프로필 수정"
-noteDeleteConfirm: "이 노트를 삭제하시겠습니까?"
+noteDeleteConfirm: "이 게시물을 삭제하시겠습니까?"
 pinLimitExceeded: "더 이상 고정할 수 없습니다."
 intro: "Misskey의 설치가 완료되었습니다! 관리자 계정을 생성해주세요."
 done: "완료"
@@ -213,9 +220,9 @@ all: "전체"
 subscribing: "구독 중"
 publishing: "배포 중"
 notResponding: "응답 없음"
-instanceFollowing: "인스턴스의 팔로잉"
-instanceFollowers: "인스턴스의 팔로워"
-instanceUsers: "인스턴스의 유저"
+instanceFollowing: "서버 팔로잉"
+instanceFollowers: "서버 팔로워"
+instanceUsers: "서버 유저"
 changePassword: "비밀번호 변경"
 security: "보안"
 retypedNotMatch: "입력이 일치하지 않습니다."
@@ -239,7 +246,8 @@ saved: "저장하였습니다"
 messaging: "대화"
 upload: "업로드"
 keepOriginalUploading: "원본 이미지를 유지"
-keepOriginalUploadingDescription: "이미지를 업로드할 때에 원본을 그대로 유지합니다. 비활성화하면 업로드할 때 브라우저에서 웹 공개용 이미지를 생성합니다."
+keepOriginalUploadingDescription: "이미지를 업로드할 때에 원본을 그대로 유지합니다. 비활성화하면 업로드할 때 브라우저에서
+  웹 공개용 이미지를 생성합니다."
 fromDrive: "드라이브에서"
 fromUrl: "URL로부터"
 uploadFromUrl: "URL 업로드"
@@ -305,8 +313,8 @@ unwatch: "지켜보기 해제"
 accept: "허가"
 reject: "거부"
 normal: "정상"
-instanceName: "인스턴스 이름"
-instanceDescription: "인스턴스 소개"
+instanceName: "서버 이름"
+instanceDescription: "서버 소개"
 maintainerName: "관리자 이름"
 maintainerEmail: "관리자 이메일"
 tosUrl: "이용약관 URL"
@@ -336,9 +344,9 @@ basicInfo: "기본 정보"
 pinnedUsers: "고정된 유저"
 pinnedUsersDescription: "\"발견하기\" 페이지 등에 고정하고 싶은 유저를 한 줄에 한 명씩 적습니다."
 pinnedPages: "고정한 페이지"
-pinnedPagesDescription: "인스턴스의 대문에 고정하고 싶은 페이지의 경로를 한 줄에 하나씩 적습니다."
+pinnedPagesDescription: "서버 대문에 고정할 페이지의 경로를 한 줄에 하나씩 적습니다."
 pinnedClipId: "고정할 클립의 ID"
-pinnedNotes: "고정해놓은 노트"
+pinnedNotes: "고정한 글"
 hcaptcha: "hCaptcha"
 enableHcaptcha: "hCaptcha 활성화"
 hcaptchaSiteKey: "사이트 키"
@@ -347,7 +355,8 @@ recaptcha: "reCAPTCHA"
 enableRecaptcha: "reCAPTCHA 활성화"
 recaptchaSiteKey: "사이트 키"
 recaptchaSecretKey: "시크릿 키"
-avoidMultiCaptchaConfirm: "여러 Captcha를 사용하는 경우 간섭이 발생할 가능성이 있습니다. 다른 Captcha를 비활성화하시겠습니까? 취소를 눌러 여러 Captcha를 활성화한 상태로 두는 것도 가능합니다."
+avoidMultiCaptchaConfirm: "여러 Captcha를 사용하는 경우 간섭이 발생할 가능성이 있습니다. 다른 Captcha를 비활성화하시겠습니까?
+  취소를 눌러 여러 Captcha를 활성화한 상태로 두는 것도 가능합니다."
 antennas: "안테나"
 manageAntennas: "안테나 관리"
 name: "이름"
@@ -355,8 +364,8 @@ antennaSource: "받을 소스"
 antennaKeywords: "받을 키워드"
 antennaExcludeKeywords: "제외할 키워드"
 antennaKeywordsDescription: "공백으로 구분하는 경우 AND, 줄바꿈으로 구분하는 경우 OR로 지정됩니다"
-notifyAntenna: "새로운 노트를 알림"
-withFileAntenna: "파일이 첨부된 노트만"
+notifyAntenna: "새로운 글을 알림"
+withFileAntenna: "파일이 첨부된 게시물만"
 enableServiceworker: "ServiceWorker 사용"
 antennaUsersDescription: "유저명을 한 줄에 한 명씩 적습니다"
 caseSensitive: "대소문자를 구분"
@@ -420,7 +429,7 @@ text: "텍스트"
 enable: "사용"
 next: "다음"
 retype: "다시 입력"
-noteOf: "{user}의 노트"
+noteOf: "{user}의 게시물"
 inviteToGroup: "그룹에 초대하기"
 quoteAttached: "인용함"
 quoteQuestion: "인용해서 작성하시겠습니까?"
@@ -478,20 +487,25 @@ accountSettings: "계정 설정"
 promotion: "프로모션"
 promote: "프로모션하기"
 numberOfDays: "며칠동안"
-hideThisNote: "이 노트를 숨기기"
-showFeaturedNotesInTimeline: "타임라인에 추천 노트를 표시"
+hideThisNote: "이 글을 숨기기"
+showFeaturedNotesInTimeline: "타임라인에 추천 게시물을 표시"
 objectStorage: "오브젝트 스토리지"
 useObjectStorage: "오브젝트 스토리지를 사용"
 objectStorageBaseUrl: "Base URL"
-objectStorageBaseUrlDesc: "오브젝트 (미디어) 참조 URL 을 만들 때 사용되는 URL입니다. CDN 또는 프록시를 사용하는 경우 그 URL을 지정하고, 그 외의 경우 사용할 서비스의 가이드에 따라 공개적으로 액세스 할 수 있는 주소를 지정해 주세요. 예를 들어, AWS S3의 경우 'https://<bucket>.s3.amazonaws.com', GCS등의 경우 'https://storage.googleapis.com/<bucket>' 와 같이 지정합니다."
+objectStorageBaseUrlDesc: "오브젝트 (미디어) 참조 URL 을 만들 때 사용되는 URL입니다. CDN 또는 프록시를 사용하는
+  경우 그 URL을 지정하고, 그 외의 경우 사용할 서비스의 가이드에 따라 공개적으로 액세스 할 수 있는 주소를 지정해 주세요. 예를 들어, AWS
+  S3의 경우 'https://<bucket>.s3.amazonaws.com', GCS등의 경우 'https://storage.googleapis.com/<bucket>'
+  와 같이 지정합니다."
 objectStorageBucket: "Bucket"
 objectStorageBucketDesc: "사용 서비스의 bucket명을 지정해주세요."
 objectStoragePrefix: "Prefix"
 objectStoragePrefixDesc: "이 Prefix 의 디렉토리 아래에 파일이 저장됩니다."
 objectStorageEndpoint: "Endpoint"
-objectStorageEndpointDesc: "AWS S3의 경우 공란, 다른 서비스의 경우 각 서비스의 가이드에 맞게 endpoint를 설정해주세요. '<host>' 혹은 '<host>:<port>' 와 같이 지정합니다."
+objectStorageEndpointDesc: "AWS S3의 경우 공란, 다른 서비스의 경우 각 서비스의 가이드에 맞게 endpoint를 설정해주세요.
+  '<host>' 혹은 '<host>:<port>' 와 같이 지정합니다."
 objectStorageRegion: "Region"
-objectStorageRegionDesc: "'xx-east-1'와 같이 region을 지정해주세요. 사용하는 서비스에 region 개념이 없는 경우, 비워 두거나 'us-east-1'으로 설정해 주세요."
+objectStorageRegionDesc: "'xx-east-1'와 같이 region을 지정해주세요. 사용하는 서비스에 region 개념이 없는
+  경우, 비워 두거나 'us-east-1'으로 설정해 주세요."
 objectStorageUseSSL: "SSL 사용"
 objectStorageUseSSLDesc: "API 호출시 HTTPS 를 사용하지 않는 경우 OFF 로 설정해 주세요"
 objectStorageUseProxy: "연결에 프록시를 사용"
@@ -500,7 +514,7 @@ objectStorageSetPublicRead: "업로드할 때 'public-read'를 설정하기"
 serverLogs: "서버 로그"
 deleteAll: "모두 삭제"
 showFixedPostForm: "타임라인 상단에 글 작성란을 표시"
-newNoteRecived: "새 노트가 있습니다"
+newNoteRecived: "새 글이 있습니다"
 sounds: "소리"
 listen: "듣기"
 none: "없음"
@@ -523,7 +537,8 @@ sort: "정렬"
 ascendingOrder: "오름차순"
 descendingOrder: "내림차순"
 scratchpad: "스크래치 패드"
-scratchpadDescription: "스크래치 패드는 AiScript 의 테스트 환경을 제공합니다. Firefish 와 상호 작용하는 코드를 작성, 실행 및 결과를 확인할 수 있습니다."
+scratchpadDescription: "스크래치 패드는 AiScript 의 테스트 환경을 제공합니다. Firefish 와 상호 작용하는 코드를 작성,
+  실행 및 결과를 확인할 수 있습니다."
 output: "출력"
 script: "스크립트"
 disablePagesScript: "Pages 에서 AiScript 를 사용하지 않음"
@@ -531,11 +546,13 @@ updateRemoteUser: "리모트 유저 정보 갱신"
 deleteAllFiles: "모든 파일 삭제"
 deleteAllFilesConfirm: "모든 파일을 삭제하시겠습니까?"
 removeAllFollowing: "모든 팔로잉 해제"
-removeAllFollowingDescription: "{host}(으)로부터 모든 팔로잉을 해제합니다. 해당 인스턴스가 더 이상 존재하지 않게 된 경우 등에 실행해 주세요."
+removeAllFollowingDescription: "{host}(으)로부터 모든 팔로잉을 해제합니다. 해당 서버가 더 이상 존재하지 않게 된
+  경우 등에 실행해 주세요."
 userSuspended: "이 계정은 정지된 상태입니다."
 userSilenced: "이 계정은 사일런스된 상태입니다."
 yourAccountSuspendedTitle: "계정이 정지되었습니다"
-yourAccountSuspendedDescription: "이 계정은 서버의 이용 약관을 위반하거나, 기타 다른 이유로 인해 정지되었습니다. 자세한 사항은 관리자에게 문의해 주십시오. 계정을 새로 생성하지 마십시오."
+yourAccountSuspendedDescription: "이 계정은 서버의 이용 약관을 위반하거나, 기타 다른 이유로 인해 정지되었습니다. 자세한
+  사항은 관리자에게 문의해 주십시오. 계정을 새로 생성하지 마십시오."
 menu: "메뉴"
 divider: "구분선"
 addItem: "항목 추가"
@@ -544,8 +561,8 @@ addRelay: "릴레이 추가"
 inboxUrl: "Inbox 주소"
 addedRelays: "추가된 릴레이"
 serviceworkerInfo: "푸시 알림을 수행하려면 활성화해야 합니다."
-deletedNote: "삭제된 노트"
-invisibleNote: "비공개 노트"
+deletedNote: "삭제된 글"
+invisibleNote: "비공개 글"
 enableInfiniteScroll: "자동으로 좀 더 보기"
 visibility: "공개 범위"
 poll: "투표"
@@ -596,7 +613,7 @@ testEmail: "이메일 전송 테스트"
 wordMute: "단어 뮤트"
 regexpError: "정규 표현식 오류"
 regexpErrorDescription: "{tab}단어 뮤트 {line}행의 정규 표현식에 오류가 발생했습니다:"
-instanceMute: "인스턴스 뮤트"
+instanceMute: "서버 뮤트"
 userSaysSomething: "{name}님이 무언가를 말했습니다"
 makeActive: "활성화"
 display: "표시"
@@ -614,7 +631,8 @@ useGlobalSetting: "글로벌 설정을 사용하기"
 useGlobalSettingDesc: "활성화하면 계정의 알림 설정이 적용됩니다. 비활성화하면 개별적으로 설정할 수 있게 됩니다."
 other: "기타"
 regenerateLoginToken: "로그인 토큰을 재생성"
-regenerateLoginTokenDescription: "로그인할 때 사용되는 내부 토큰을 재생성합니다. 일반적으로 이 작업을 실행할 필요는 없습니다. 이 기능을 사용하면 이 계정으로 로그인한 모든 기기에서 로그아웃됩니다."
+regenerateLoginTokenDescription: "로그인할 때 사용되는 내부 토큰을 재생성합니다. 일반적으로 이 작업을 실행할 필요는 없습니다.
+  이 기능을 사용하면 이 계정으로 로그인한 모든 기기에서 로그아웃됩니다."
 setMultipleBySeparatingWithSpace: "공백으로 구분하여 여러 개 설정할 수 있습니다."
 fileIdOrUrl: "파일 ID 또는 URL"
 behavior: "동작"
@@ -627,35 +645,35 @@ abuseReported: "신고를 보냈습니다. 신고해 주셔서 감사합니다."
 reporter: "신고자"
 reporteeOrigin: "피신고자"
 reporterOrigin: "신고자"
-forwardReport: "리모트 인스턴스에도 신고 내용 보내기"
-forwardReportIsAnonymous: "리모트 인스턴스에서는 나의 정보를 볼 수 없으며, 익명의 시스템 계정으로 표시됩니다."
+forwardReport: "리모트 서버에도 신고 내용 보내기"
+forwardReportIsAnonymous: "리모트 서버에서는 나의 정보를 볼 수 없으며, 익명의 시스템 계정으로 표시됩니다."
 send: "전송"
 abuseMarkAsResolved: "해결됨으로 표시"
 openInNewTab: "새 탭에서 열기"
 openInSideView: "사이드뷰로 열기"
 defaultNavigationBehaviour: "기본 탐색 동작"
 editTheseSettingsMayBreakAccount: "이 설정을 변경하면 계정이 손상될 수 있습니다."
-instanceTicker: "노트의 인스턴스 정보"
+instanceTicker: "게시물의 인스턴스 정보"
 waitingFor: "{x}을(를) 기다리고 있습니다"
 random: "랜덤"
 system: "시스템"
-switchUi: "UI 전환"
+switchUi: "레이아웃"
 desktop: "데스크탑"
 clip: "클립"
 createNew: "새로 만들기"
 optional: "옵션"
 createNewClip: "새 클립 만들기"
 unclip: "클립 해제"
-confirmToUnclipAlreadyClippedNote: "이 노트는 이미 \"{name}\" 클립에 포함되어 있습니다. 클립을 해제하시겠습니까?"
+confirmToUnclipAlreadyClippedNote: "이 글은 이미 \"{name}\" 클립에 포함되어 있습니다. 클립을 해제하시겠습니까?"
 public: "공개"
 i18nInfo: "Firefish는 자원봉사자들에 의해 다양한 언어로 번역되고 있습니다. {link}에서 번역에 참가할 수 있습니다."
 manageAccessTokens: "액세스 토큰 관리"
 accountInfo: "계정 정보"
-notesCount: "노트 수"
+notesCount: "글 수"
 repliesCount: "답글 수"
-renotesCount: "Renote 수"
+renotesCount: "부스트 수"
 repliedCount: "받은 답글 수"
-renotedCount: "받은 Renote 수"
+renotedCount: "받은 부스트 수"
 followingCount: "팔로우 수"
 followersCount: "팔로워 수"
 sentReactionsCount: "보낸 리액션 수"
@@ -667,15 +685,15 @@ no: "아니오"
 driveFilesCount: "드라이브 파일 개수"
 driveUsage: "드라이브 사용량"
 noCrawle: "검색엔진의 인덱싱 거부"
-noCrawleDescription: "검색엔진에 사용자 페이지, 노트, 페이지 등의 콘텐츠를 인덱싱되지 않게 합니다."
-lockedAccountInfo: "팔로우를 승인으로 승인받더라도 노트의 공개 범위를 '팔로워'로 하지 않는 한 누구나 당신의 노트를 볼 수 있습니다."
+noCrawleDescription: "검색엔진에 사용자 페이지, 게시물, 페이지 등의 콘텐츠를 인덱싱되지 않게 합니다."
+lockedAccountInfo: "팔로우를 승인으로 승인받더라도 게시물의 공개 범위를 '팔로워'로 하지 않는 한 누구나 당신의 글을 볼 수 있습니다."
 alwaysMarkSensitive: "미디어를 항상 열람 주의로 설정"
 loadRawImages: "첨부한 이미지의 썸네일을 원본화질로 표시"
 disableShowingAnimatedImages: "움직이는 이미지를 자동으로 재생하지 않음"
 verificationEmailSent: "확인 메일을 발송하였습니다. 설정을 완료하려면 메일에 첨부된 링크를 확인해 주세요."
 notSet: "설정되지 않음"
 emailVerified: "메일 주소가 확인되었습니다."
-noteFavoritesCount: "즐겨찾기한 노트 수"
+noteFavoritesCount: "즐겨찾기한 게시물 수"
 pageLikesCount: "좋아요 한 Page 수"
 pageLikedCount: "Page에 받은 좋아요 수"
 contact: "연락처"
@@ -697,9 +715,11 @@ showTitlebar: "타이틀 바를 표시하기"
 clearCache: "캐시 비우기"
 onlineUsersCount: "{n}명이 접속 중"
 nUsers: "{n} 유저"
-nNotes: "{n} 노트"
+nNotes: "{n} 게시물"
 sendErrorReports: "오류 보고서 보내기"
-sendErrorReportsDescription: "이 설정을 활성화하면, 문제가 발생했을 때 오류에 대한 상세 정보를 Misskey에 보내어 더 나은 소프트웨어를 만드는 데에 도움을 줄 수 있습니다."
+sendErrorReportsDescription: "이 설정을 활성화하면, 문제가 발생했을 때 오류에 대한 상세 정보를 Firefish에 보내어
+  더 나은 소프트웨어를 만드는 데에 도움을 줄 수 있습니다.\n 상세 정보에는 OS 버전, 브라우저 정보, Firefish에서의 활동 정보 등이
+  포함됩니다."
 myTheme: "내 테마"
 backgroundColor: "배경 색"
 accentColor: "강조 색상"
@@ -723,7 +743,7 @@ capacity: "용량"
 inUse: "사용중"
 editCode: "코드 수정"
 apply: "적용"
-receiveAnnouncementFromInstance: "이 인스턴스의 알림을 이메일로 수신할게요"
+receiveAnnouncementFromInstance: "이 서버의 알림을 이메일로 수신"
 emailNotification: "메일 알림"
 publish: "게시"
 inChannelSearch: "채널에서 검색"
@@ -738,7 +758,7 @@ unlikeConfirm: "좋아요를 취소할까요?"
 fullView: "전체 화면"
 quitFullView: "전체 화면 해제"
 addDescription: "설명 추가"
-userPagePinTip: "각 노트의 메뉴에서 「프로필에 고정」을 선택하는 것으로, 여기에 노트를 표시해 둘 수 있어요."
+userPagePinTip: "각 게시물의 메뉴에서 「프로필에 고정」을 선택하는 것으로, 여기에 노트를 표시해 둘 수 있어요."
 notSpecifiedMentionWarning: "수신자가 선택되지 않은 멘션이 있어요"
 info: "정보"
 userInfo: "유저 정보"
@@ -751,7 +771,7 @@ active: "최근에 활동함"
 offline: "오프라인"
 notRecommended: "추천하지 않음"
 botProtection: "Bot 방어"
-instanceBlocking: "인스턴스 차단"
+instanceBlocking: "서버 차단"
 selectAccount: "계정 선택"
 switchAccount: "계정 바꾸기"
 enabled: "활성화"
@@ -768,7 +788,7 @@ postToGallery: "갤러리에 업로드"
 gallery: "갤러리"
 recentPosts: "최근 포스트"
 popularPosts: "인기 포스트"
-shareWithNote: "노트로 공유"
+shareWithNote: "게시물로 공유"
 ads: "광고"
 expiration: "기한"
 memo: "메모"
@@ -780,7 +800,8 @@ emailNotConfiguredWarning: "메일 주소가 설정되어 있지 않습니다."
 ratio: "비율"
 previewNoteText: "본문 미리보기"
 customCss: "CSS 사용자화"
-customCssWarn: "이 설정은 기능을 알고 있는 경우에만 사용해야 합니다. 잘못된 값을 입력하면 클라이언트가 정상적으로 작동하지 않을 수 있습니다."
+customCssWarn: "이 설정은 기능을 알고 있는 경우에만 사용해야 합니다. 잘못된 값을 입력하면 클라이언트가 정상적으로 작동하지 않을 수
+  있습니다."
 global: "글로벌"
 squareAvatars: "프로필 아이콘을 사각형으로 표시"
 sent: "전송"
@@ -795,7 +816,8 @@ whatIsNew: "패치 정보 보기"
 translate: "번역"
 translatedFrom: "{x}에서 번역"
 accountDeletionInProgress: "계정 삭제 작업을 진행하고 있습니다"
-usernameInfo: "서버상에서 계정을 식별하기 위한 이름. 알파벳(a~z, A~Z), 숫자(0~9) 및 언더바(_)를 사용할 수 있습니다. 사용자명은 나중에 변경할 수 없습니다."
+usernameInfo: "서버상에서 계정을 식별하기 위한 이름. 알파벳(a~z, A~Z), 숫자(0~9) 및 언더바(_)를 사용할 수 있습니다.
+  사용자명은 나중에 변경할 수 없습니다."
 aiChanMode: "아이 모드"
 keepCw: "CW 유지하기"
 pubSub: "Pub/Sub 계정"
@@ -812,7 +834,7 @@ controlPanel: "제어판"
 manageAccounts: "계정 관리"
 makeReactionsPublic: "리액션 목록을 공개하기"
 makeReactionsPublicDescription: "나의 리액션을 누구나 볼 수 있게 합니다."
-classic: "클래식"
+classic: "중앙"
 muteThread: "이 글타래를 뮤트"
 unmuteThread: "글타래 뮤트 해제"
 ffVisibility: "내 인맥의 공개 범위"
@@ -835,8 +857,8 @@ themeColor: "테마 컬러"
 size: "크기"
 numberOfColumn: "한 줄에 보일 리액션의 수"
 searchByGoogle: "검색"
-instanceDefaultLightTheme: "인스턴스 기본 라이트 테마"
-instanceDefaultDarkTheme: "인스턴스 기본 다크 테마"
+instanceDefaultLightTheme: "서버 기본 라이트 테마"
+instanceDefaultDarkTheme: "서버 기본 다크 테마"
 instanceDefaultThemeDescription: "객체 형식의 테마 코드를 입력해 주세요."
 mutePeriod: "뮤트할 기간"
 indefinitely: "무기한"
@@ -859,7 +881,8 @@ check: "체크"
 driveCapOverrideLabel: "이 유저의 드라이브 용량을 변경"
 driveCapOverrideCaption: "0 이하를 지정하면 해제됩니다."
 requireAdminForView: "열람하려면 관리자 계정으로 로그인해야 합니다."
-isSystemAccount: "시스템에 의해 자동으로 생성되어 관리되는 계정입니다."
+isSystemAccount: "시스템에 의해 자동으로 생성되어 관리되는 계정입니다. 이 계정에 대해 모더레이션, 수정, 삭제 등을 수행하면 서버가
+  오작동할 수 있으므로 조작하지 마십시오."
 typeToConfirm: "계속하시려면 {x} 을 입력하세요"
 deleteAccount: "계정 삭제"
 document: "문서"
@@ -884,8 +907,10 @@ cannotUploadBecauseInappropriate: "이 파일은 부적절한 내용을 포함�
 cannotUploadBecauseNoFreeSpace: "드라이브 용량이 부족하여 업로드할 수 없습니다."
 beta: "베타"
 enableAutoSensitive: "자동 NSFW 탐지"
-enableAutoSensitiveDescription: "이용 가능할 경우 기계학습을 통해 자동으로 미디어 NSFW를 설정합니다. 이 기능을 해제하더라도, 인스턴스 정책에 따라 자동으로 설정될 수 있습니다."
-activeEmailValidationDescription: "유저가 입력한 메일 주소가 일회용 메일인지, 실제로 통신할 수 있는 지 엄격하게 검사합니다. 해제할 경우 이메일 형식에 대해서만 검사합니다."
+enableAutoSensitiveDescription: "이용 가능할 경우 기계학습을 통해 자동으로 미디어 NSFW를 설정합니다. 이 기능을 해제하더라도,
+  서버 정책에 따라 자동으로 설정될 수 있습니다."
+activeEmailValidationDescription: "유저가 입력한 메일 주소가 일회용 메일인지, 실제로 통신할 수 있는 지 엄격하게 검사합니다.
+  해제할 경우 이메일 형식에 대해서만 검사합니다."
 navbar: "네비게이션 바"
 shuffle: "셔플"
 account: "계정"
@@ -893,7 +918,8 @@ move: "이동"
 _sensitiveMediaDetection:
   description: "기계학습을 통해 자동으로 민감한 미디어를 탐지하여, 모더레이션에 참고할 수 있도록 합니다. 서버의 부하를 약간 증가시킵니다."
   sensitivity: "탐지 민감도"
-  sensitivityDescription: "민감도가 낮을수록 안전한 미디어가 잘못 탐지될 확률이 줄어들며, 높을수록 민감한 미디어가 탐지되지 않을 확률이 줄어듭니다."
+  sensitivityDescription: "민감도가 낮을수록 안전한 미디어가 잘못 탐지될 확률이 줄어들며, 높을수록 민감한 미디어가 탐지되지
+    않을 확률이 줄어듭니다."
   setSensitiveFlagAutomatically: "자동으로 NSFW로 설정하기"
   setSensitiveFlagAutomaticallyDescription: "이 설정을 해제해도 탐지 결과는 유지됩니다."
   analyzeVideos: "동영상도 같이 확인하기"
@@ -911,7 +937,8 @@ _ffVisibility:
 _signup:
   almostThere: "거의 다 끝났습니다"
   emailAddressInfo: "당신이 사용하고 있는 이메일 주소를 입력해 주세요. 이메일 주소는 다른 유저에게 공개되지 않습니다."
-  emailSent: "입력하신 메일 주소({email})로 확인 메일을 보내드렸습니다. 가입을 완료하시려면 보내드린 메일에 있는 링크로 접속해 주세요."
+  emailSent: "입력하신 메일 주소({email})로 확인 메일을 보내드렸습니다. 가입을 완료하시려면 보내드린 메일에 있는 링크로 접속해
+    주세요."
 _accountDelete:
   accountDelete: "계정 삭제"
   mayTakeTime: "계정 삭제는 서버에 부하를 가하기 때문에, 작성한 콘텐츠나 업로드한 파일의 수가 많으면 완료까지 시간이 걸릴 수 있습니다."
@@ -924,8 +951,8 @@ _ad:
   reduceFrequencyOfThisAd: "이 광고의 표시 빈도 낮추기"
 _forgotPassword:
   enterEmail: "여기에 계정에 등록한 메일 주소를 입력해 주세요. 입력한 메일 주소로 비밀번호 재설정 링크를 발송합니다."
-  ifNoEmail: "메일 주소를 등록하지 않은 경우, 관리자에 문의해 주십시오."
-  contactAdmin: "이 인스턴스에서는 메일 기능이 지원되지 않습니다. 비밀번호를 재설정하려면 관리자에게 문의해 주십시오."
+  ifNoEmail: "메일 주소를 등록하지 않은 경우, 서버 관리자에게 문의해 주십시오."
+  contactAdmin: "이 서버에서는 메일 기능이 지원되지 않습니다. 비밀번호를 재설정하려면 관리자에게 문의해 주십시오."
 _gallery:
   my: "내 갤러리"
   liked: "좋아요 한 갤러리"
@@ -973,13 +1000,20 @@ _aboutFirefish:
   donate: "Misskey에 기부하기"
   morePatrons: "이 외에도 다른 많은 분들이 도움을 주시고 계십니다. 감사합니다🥰"
   patrons: "후원자"
+  patronsList: 기부 금액이 아닌 시간 순서로 정렬합니다. 위 링크를 통해 후원하여 당신의 이름을 새겨 보세요!
+  sponsors: Firefish 스폰서
+  pleaseDonateToHost: 또한, 이 서버 {host} 의 운영자에게 기부하는 것도 검토하여 주십시오.
+  pleaseDonateToFirefish: Firefish의 개발에 후원하는 것을 검토하여 주십시오.
+  donateHost: '{host} 에게 기부하기'
+  donateTitle: Firefish가 마음에 드시나요?
 _nsfw:
   respect: "열람주의로 설정된 미디어 숨기기"
   ignore: "열람 주의 미디어 항상 표시"
   force: "미디어 항상 숨기기"
 _mfm:
   cheatSheet: "MFM 도움말"
-  intro: "MFM는 Misskey의 다양한 곳에서 사용할 수 있는 전용 마크업 언어입니다. 여기에서는 MFM에서 사용할 수 있는 구문을 확인할 수 있습니다."
+  intro: "MFM는 Misskey의 다양한 곳에서 사용할 수 있는 전용 마크업 언어입니다. 여기에서는 MFM에서 사용할 수 있는 구문을 확인할
+    수 있습니다."
   dummy: "Misskey로 연합우주의 세계가 펼쳐집니다"
   mention: "멘션"
   mentionDescription: "골뱅이표(@) 뒤에 사용자명을 넣어 특정 유저를 나타낼 수 있습니다."
@@ -1002,7 +1036,7 @@ _mfm:
   inlineMath: "수식(인라인)"
   inlineMathDescription: "수식(KaTeX)를 인라인으로 보이게 합니다."
   blockMath: "수식(블록)"
-  blockMathDescription: "여러 줄의 수식(KaTeX)를 블록으로 보이게 합니다."
+  blockMathDescription: "수식(KaTeX)을 블록으로 보이게 합니다."
   quote: "인용"
   quoteDescription: "내용을 인용문으로 표시합니다."
   emoji: "커스텀 이모지"
@@ -1043,6 +1077,24 @@ _mfm:
   rotateDescription: "지정한 각도로 회전시킵니다."
   plain: "평문"
   plainDescription: "안에 있는 MFM 구문을 모두 무시하고 평문으로 표시합니다."
+  stop: MFM 멈춤
+  play: MFM 재생
+  advancedDescription: 비활성화하면 MFM 재생 중을 제외하고 기본적인 MFM만 표시합니다
+  fade: '페이드'
+  advanced: 고급 MFM
+  warn: 빠르게 움직이거나 반짝이는 애니메이션을 포함할 가능성이 있습니다
+  alwaysPlay: MFM 애니메이션을 자동 재생하기
+  cropDescription: 내용을 잘라냅니다.
+  scale: 확대/축소
+  positionDescription: 내용을 지정한 값 만큼 이동합니다.
+  position: 위치
+  crop: 크롭
+  fadeDescription: 서서히 보인 뒤 서서히 사라집니다.
+  scaleDescription: 크기를 지정한 값 만큼 확대/축소합니다.
+  foregroundDescription: 문자 색상을 변경합니다.
+  backgroundDescription: 배경 색상을 변경합니다.
+  foreground: 문자색
+  background: 배경색
 _instanceTicker:
   none: "보이지 않음"
   remote: "리모트 유저에게만 보이기"
@@ -1051,6 +1103,7 @@ _serverDisconnectedBehavior:
   reload: "자동으로 새로고침"
   dialog: "경고창 표시"
   quiet: "조용히 경고"
+  nothing: 아무것도 하지 않음
 _channel:
   create: "채널 생성"
   edit: "채널 편집"
@@ -1060,7 +1113,9 @@ _channel:
   owned: "관리중"
   following: "팔로잉"
   usersCount: "{n}명 참여 중"
-  notesCount: "{n}노트"
+  notesCount: "{n} 게시물"
+  nameAndDescription: 이름과 설명
+  nameOnly: 이름만
 _menuDisplay:
   sideFull: "가로"
   sideIcon: "가로(아이콘)"
@@ -1070,16 +1125,17 @@ _wordMute:
   muteWords: "뮤트할 단어"
   muteWordsDescription: "공백으로 구분하는 경우 AND, 줄바꿈으로 구분하는 경우 OR로 지정됩니다。"
   muteWordsDescription2: "정규 표현식을 사용하려면 키워드를 빗금표(/)로 감싸 주세요."
-  softDescription: "지정한 조건의 노트를 타임라인에서 숨깁니다."
-  hardDescription: "지정한 조건의 노트를 타임라인에 추가하지 않습니다. 타임라인에 추가되지 않은 노트는 조건을 변경해도 표시되지 않습니다."
+  softDescription: "지정한 조건의 게시물을 타임라인에서 숨깁니다."
+  hardDescription: "지정한 조건의 게시물을 타임라인에 추가하지 않습니다. 타임라인에 추가되지 않은 게시물은 조건을 변경해도 표시되지
+    않습니다."
   soft: "보통"
   hard: "보다 높은 수준"
-  mutedNotes: "뮤트된 노트"
+  mutedNotes: "뮤트된 게시물"
 _instanceMute:
-  instanceMuteDescription: "뮤트한 인스턴스에서 오는 답글을 포함한 모든 노트와 Renote를 뮤트합니다."
+  instanceMuteDescription: "뮤트한 서버에서 오는 답글을 포함한 모든 게시물과 부스트를 뮤트합니다."
   instanceMuteDescription2: "한 줄에 하나씩 입력해 주세요"
-  title: "지정한 인스턴스의 노트를 숨깁니다."
-  heading: "뮤트할 인스턴스"
+  title: "지정한 서버의 노트를 숨깁니다."
+  heading: "뮤트할 서버"
 _theme:
   explore: "테마 찾아보기"
   install: "테마 설치"
@@ -1128,7 +1184,7 @@ _theme:
     hashtag: "해시태그"
     mention: "멘션"
     mentionMe: "나에게 보낸 멘션"
-    renote: "Renote"
+    renote: "부스트"
     modalBg: "모달 배경"
     divider: "구분선"
     scrollbarHandle: "스크롤바 핸들"
@@ -1155,8 +1211,8 @@ _theme:
     accentLighten: "강조 색상 (밝음)"
     fgHighlighted: "강조된 텍스트"
 _sfx:
-  note: "새 노트"
-  noteMy: "내 노트"
+  note: "새 게시물"
+  noteMy: "나의 게시"
   notification: "알림"
   chat: "대화"
   chatBg: "대화 (백그라운드)"
@@ -1186,7 +1242,23 @@ _2fa:
   step2Url: "데스크톱 앱에서는 다음 URL을 입력하세요:"
   step3: "앱에 표시된 토큰을 입력하시면 완료됩니다."
   step4: "다음 로그인부터는 토큰을 입력해야 합니다."
-  securityKeyInfo: "FIDO2를 지원하는 하드웨어 보안 키 혹은 디바이스의 지문인식이나 화면잠금 PIN을 이용해서 로그인하도록 설정할 수 있습니다."
+  securityKeyInfo: "FIDO2를 지원하는 하드웨어 보안 키 혹은 디바이스의 지문인식이나 화면잠금 PIN을 이용해서 로그인하도록 설정할
+    수 있습니다."
+  step2Click: QR 코드를 클릭하여 사용 중인 보안 키 또는 인증 앱을 등록할 수 있습니다.
+  step3Title: 확인 코드를 입력
+  registerTOTPBeforeKey: 보안 키/패스 키를 등록하시려면 우선 인증 앱 설정을 마치십시오.
+  securityKeyNotSupported: 이 브라우저는 보안 키를 지원하지 않습니다.
+  chromePasskeyNotSupported: 현재 Chrome의 패스키는 지원하지 않습니다.
+  token: 2차 인증 토큰
+  removeKey: 보안 키를 삭제
+  removeKeyConfirm: '{name}을 삭제하시겠습니까?'
+  renewTOTPCancel: 취소
+  renewTOTPConfirm: 지금 사용 중인 인증 앱의 확인 코드는 사용할 수 없게 됩니다
+  securityKeyName: 키 이름 입력
+  renewTOTPOk: 재설정
+  whyTOTPOnlyRenew: 보안 키가 등록되어 있는 상태에서 인증 앱 설정을 해제할 수 없습니다.
+  renewTOTP: 인증 앱을 재설정
+  tapSecurityKey: 브라우저의 지시에 따라 보안 키나 패스 키를 등록하십시오
 _permissions:
   "read:account": "계정의 정보를 봅니다"
   "write:account": "계정의 정보를 변경합니다"
@@ -1202,7 +1274,7 @@ _permissions:
   "write:messaging": "대화를 시작하거나 메시지를 보냅니다"
   "read:mutes": "뮤트 여부를 확인합니다"
   "write:mutes": "뮤트를 하거나 해제합니다"
-  "write:notes": "노트를 작성하거나 삭제합니다"
+  "write:notes": "게시물을 작성하거나 삭제합니다"
   "read:notifications": "알림을 확인합니다"
   "write:notifications": "알림을 모두 읽음 처리합니다"
   "read:reactions": "리액션을 확인합니다"
@@ -1227,12 +1299,15 @@ _auth:
   pleaseGoBack: "앱으로 돌아가서 시도해 주세요"
   callback: "앱으로 돌아갑니다"
   denied: "접근이 거부되었습니다"
+  allPermissions: 모든 접근 권한
+  copyAsk: '아래 인증 코드를 어플리케이션에 붙여넣으십시오:'
 _antennaSources:
-  all: "모든 노트"
-  homeTimeline: "팔로우중인 유저의 노트"
-  users: "지정한 한 명 혹은 여러 명의 유저의 노트"
-  userList: "지정한 리스트에 속한 유저의 노트"
-  userGroup: "지정한 그룹에 속한 유저의 노트"
+  all: "모든 게시물"
+  homeTimeline: "팔로우 중인 유저의 게시물"
+  users: "지정한 한 명 혹은 여러 명의 유저의 게시물"
+  userList: "지정한 리스트에 속한 유저의 게시물"
+  userGroup: "지정한 그룹에 속한 유저의 게시물"
+  instances: 지정한 서버의 모든 유저의 게시물
 _weekday:
   sunday: "일요일"
   monday: "월요일"
@@ -1263,6 +1338,14 @@ _widgets:
   serverMetric: "서버 통계"
   aiscript: "AiScript 콘솔"
   aichan: "아이"
+  serverInfo: 서버 정보
+  _userList:
+    chooseList: 리스트 선택
+  meiliStatus: 서버 정보
+  userList: 유저 목록
+  meiliSize: 인덱스 크기
+  meiliIndexCount: 인덱싱 완료된 게시물
+  rssTicker: RSS Ticker
 _cw:
   hide: "숨기기"
   show: "더 보기"
@@ -1293,17 +1376,17 @@ _poll:
 _visibility:
   public: "공개"
   publicDescription: "모든 유저에게 공개"
-  home: "홈"
+  home: "미등재"
   homeDescription: "홈 타임라인에만 공개"
   followers: "팔로워"
-  followersDescription: "팔로워에게만 공개"
+  followersDescription: "팔로워 및 멘션한 유저에게만 공개"
   specified: "다이렉트"
   specifiedDescription: "지정한 유저에게만 공개"
   localOnly: "로컬에만"
   localOnlyDescription: "리모트 유저에게 보이지 않기"
 _postForm:
-  replyPlaceholder: "이 노트에 답글..."
-  quotePlaceholder: "이 노트를 인용..."
+  replyPlaceholder: "이 글에 답글..."
+  quotePlaceholder: "이 글을 인용..."
   channelPlaceholder: "채널에 게시하기..."
   _placeholders:
     a: "지금 무엇을 하고 있나요?"
@@ -1319,13 +1402,15 @@ _profile:
   youCanIncludeHashtags: "해시 태그를 포함할 수 있습니다."
   metadata: "추가 정보"
   metadataEdit: "추가 정보 편집"
-  metadataDescription: "프로필에 추가 정보를 표시할 수 있어요. {rel}과 함께 {a} 태그 또는 {l} 태그를 추가하여 프로필의 링크를 확인할 수 있습니다!"
+  metadataDescription: "프로필에 추가 정보를 표시할 수 있어요. {rel}과 함께 {a} 태그 또는 {l} 태그를 추가하여 프로필의
+    링크를 확인할 수 있습니다!"
   metadataLabel: "라벨"
   metadataContent: "내용"
   changeAvatar: "아바타 이미지 변경"
   changeBanner: "배너 이미지 변경"
+  locationDescription: 영문 도시명을 입력하면, 현재 시간대의 시각이 유저 페이지에 표시됩니다.
 _exportOrImport:
-  allNotes: "모든 노트"
+  allNotes: "모든 게시물"
   followingList: "팔로잉"
   muteList: "뮤트"
   blockingList: "차단"
@@ -1338,10 +1423,10 @@ _charts:
   usersIncDec: "유저 수 증감"
   usersTotal: "유저 수 합계"
   activeUsers: "활성 유저 수"
-  notesIncDec: "노트 수 증감"
-  localNotesIncDec: "로컬 노트 수 증감"
-  remoteNotesIncDec: "리모트 노트 수 증감"
-  notesTotal: "노트 수 합계"
+  notesIncDec: "게시물 수 증감"
+  localNotesIncDec: "로컬 게시물 수 증감"
+  remoteNotesIncDec: "리모트 게시물 수 증감"
+  notesTotal: "게시물 수 합계"
   filesIncDec: "파일 수 증감"
   filesTotal: "파일 수 합계"
   storageUsageIncDec: "스토리지 사용량 증감"
@@ -1350,8 +1435,8 @@ _instanceCharts:
   requests: "요청"
   users: "유저 수 증감"
   usersTotal: "누적 유저 수"
-  notes: "노트 수 증감"
-  notesTotal: "누적 노트 수"
+  notes: "게시물 수 증감"
+  notesTotal: "누적 게시물 수"
   ff: "팔로잉/팔로워 증감"
   ffTotal: "누적 팔로잉/팔로워 수"
   cacheSize: "캐시 용량 증감"
@@ -1363,6 +1448,7 @@ _timelines:
   local: "로컬"
   social: "소셜"
   global: "글로벌"
+  recommended: 추천
 _pages:
   newPage: "페이지 만들기"
   editPage: "페이지 수정"
@@ -1437,10 +1523,10 @@ _pages:
       id: "캔버스 ID"
       width: "폭"
       height: "높이"
-    note: "노트필기"
+    note: "게시물 삽입"
     _note:
-      id: "노트 ID"
-      idDescription: "노트 URL을 붙여넣어 설정할 수도 있습니다."
+      id: "게시물 ID"
+      idDescription: "게시물 URL을 붙여넣어 설정할 수도 있습니다."
       detailed: "세부 정보 보기"
     switch: "스위치"
     _switch:
@@ -1661,7 +1747,7 @@ _notification:
   youGotMention: "{name}님이 멘션함"
   youGotReply: "{name}님이 답글함"
   youGotQuote: "{name}님이 인용함"
-  youRenoted: "{name}님이 Renote"
+  youRenoted: "{name}님이 Boost"
   youGotPoll: "{name}님이 투표함"
   youGotMessagingMessageFromUser: "{name} 님이 보낸 채팅이 있어요"
   youGotMessagingMessageFromGroup: "{name}에서 보낸 채팅이 있어요"
@@ -1676,7 +1762,7 @@ _notification:
     follow: "팔로잉"
     mention: "멘션"
     reply: "답글"
-    renote: "Renote"
+    renote: "부스트"
     quote: "인용"
     reaction: "리액션"
     pollVote: "투표 참여"
@@ -1688,7 +1774,10 @@ _notification:
   _actions:
     followBack: "팔로우"
     reply: "답글"
-    renote: "Renote"
+    renote: "부스트"
+  reacted: 님의 리액션
+  renoted: 님이 부스트
+  voted: 님이 투표함
 _deck:
   alwaysShowMainColumn: "메인 칼럼 항상 표시"
   columnAlign: "칼럼 정렬"
@@ -1700,9 +1789,9 @@ _deck:
   swapDown: "아래로 이동"
   stackLeft: "왼쪽에 쌓기"
   popRight: "오른쪽으로 빼기"
-  profile: "프로파일"
-  newProfile: "새 프로파일"
-  deleteProfile: "프로파일 삭제"
+  profile: "작업 공간"
+  newProfile: "새 작업 공간"
+  deleteProfile: "작업 공간 삭제"
   introduction: "칼럼을 조합해서 나만의 인터페이스를 구성해 보아요!"
   introduction2: "나중에라도 화면 우측의 + 버튼을 눌러 새 칼럼을 추가할 수 있습니다."
   widgetsIntroduction: "칼럼 메뉴의 \"위젯 편집\"에서 위젯을 추가해 주세요"
@@ -1715,3 +1804,202 @@ _deck:
     list: "리스트"
     mentions: "받은 멘션"
     direct: "다이렉트"
+    channel: 채널
+  renameProfile: 워크스페이스명을 변경
+  nameAlreadyExists: 같은 이름의 워크스페이스가 이미 존재합니다.
+removeReaction: 리액션 취소
+flagSpeakAsCat: 고양이체로 말하기
+silenceThisInstance: 이 서버를 사일런스
+silencedInstancesDescription: 사일런스할 서버의 호스트를 한 줄에 하나씩 입력합니다. 사일런스된 서버의 유저는 모두 사일런스인
+  것처럼 취급되며, 이 서버에서의 팔로우가 모두 팔로우 요청으로 바뀌고, 팔로워가 아닌 로컬 계정은 멘션할 수 없습니다. 차단한 서버에는 적용되지
+  않습니다.
+noInstances: 서버가 없습니다
+silenced: 사일런스됨
+manageGroups: 그룹 관리
+clipsDesc: 클립은 분류 및 공유가 가능한 북마크입니다. 각 게시물의 메뉴에서 클립을 작성할 수 있습니다.
+privateMode: 비공개 모드
+audio: 오디오
+customKaTeXMacro: 커스텀 KaTeX 매크로
+replayTutorial: 튜토리얼 다시 보기
+renoteMute: 부스트 뮤트
+antennaInstancesDescription: 서버 호스트를 한 줄에 하나씩 입력하세요
+userSaysSomethingReason: '{name} 님이 {reason}에 대해 말했습니다'
+userSaysSomethingReasonQuote: '{name} 님이 {reason} 을 포함하는 노트를 인용했습니다'
+pushNotification: 푸시 알림
+channelFederationWarn: 현재 채널은 다른 서버로 연합되지 않습니다
+enableServerMachineStats: 서버의 머신 정보를 공개
+sendModMail: 모더레이션 알림을 보내기
+instanceSecurity: 서버 보안
+privateModeInfo: 활성화하면 허가된 서버에서의 요청에만 응답합니다.
+seperateRenoteQuote: 부스트와 인용 버튼을 나누기
+cannotUploadBecauseExceedsFileSizeLimit: 파일 크기 제한을 초과하여 업로드할 수 없습니다.
+pushNotificationNotSupported: 브라우저 및 서버가 푸시 알림을 지원하지 않습니다
+enableRecommendedTimeline: 추천 타임라인을 활성화
+pushNotificationAlreadySubscribed: 푸시 알림이 활성화되었습니다
+caption: 자동 캡션
+findOtherInstance: 다른 서버 둘러보기
+enableIdenticonGeneration: 유저 별 Identicon의 생성을 활성화
+secureModeInfo: 인증 정보가 없는 리모트 서버로부터의 요청에 응답하지 않습니다.
+allowedInstances: 허가된 서버
+flagSpeakAsCatDescription: 고양이체를 활성화하면 게시물이 '나'가 '냐'로 바뀌는 등의 변화가 생깁니다
+showUpdates: Firefish 업데이트가 있을 때 알리기
+noGraze: '"Graze for Mastodon" 확장 기능은 Firefish의 정상적인 동작을 방해므로, 비활성화해 주시기 바랍니다.'
+adminCustomCssWarn: 이 설정은 기능을 알고 있는 경우에만 사용해야 합니다. 잘못된 값을 입력하면 모든 유저의 클라이언트가 정상적으로
+  작동하지 않을 수 있습니다. 개인 클라이언트 설정에서 적용하여 정상적으로 동작하는 지 확인하십시오.
+customSplashIconsDescription: 유저가 페이지를 로딩/새로고침할 때 마다 무작위로 표시할 아이콘을 한 줄에 하나씩 입력합니다.
+  이미지는 되도록 정적 URL으로 구성하고, 192x192 해상도로 조정하여 주십시오.
+moveFromDescription: '이전 계정에 대한 별칭을 작성하여, 이 계정으로 옮길 수 있도록 합니다. 반드시 계정을 이전하기 전에 수행해야
+  합니다. 이전 계정을 다음과 같은 형식으로 입력하여 주십시오: @person@server.com'
+indexFromDescription: 빈 칸으로 두면 모든 게시물을 인덱싱합니다
+customKaTeXMacroDescription: 'KaTeX 매크로를 지정하여 수식을 더욱 편리하게 입력하세요! LaTeX의 커맨드 정의와 동일하게
+  \newcommand{\ 이름}{내용} 또는 \newcommand{\이름}[인수 갯수]{내용} 와 같이 입력하십시오. 예를 들어 \newcommand{\add}[2]{#1
+  + #2} 와 같이 정의한 경우 \add{3}{foo} 를 입력하면 3 + foo 으로 치환됩니다.매크로의 이름을 감싸는 중괄호를 소괄호() 또는
+  대괄호[]로 변경할 경우, 매크로 인수에 사용하는 괄호도 같이 변경됩니다. 매크로는 한 줄에 하나씩 입력해야 하며, 반대로 매크로 정의에서 줄바꿈은
+  사용할 수 없습니다. 올바르지 않은 정의는 무시됩니다. 문자열을 치환하는 수준에서만 지원하며, 조건 분기와 같은 고도의 구문은 사용할 수 없습니다.'
+reactionPickerSkinTone: 선호하는 이모지 피부 톤
+selectInstance: 서버 선택
+showAds: 광고 보이기
+searchPlaceholder: Firefish에서 검색
+addInstance: 서버 추가
+listsDesc: 리스트를 사용하여 특정 유저로 이루어진 타임라인을 구성할 수 있습니다. 리스트는 '타임라인' 페이지에서 접근할 수 있습니다.
+enableEmojiReactions: 이모지 리액션을 활성화
+showEmojisInReactionNotifications: 리액션 알림에 이모지 보이기
+hiddenTagsDescription: 트렌드와 '발견하기'에서 제외할 해시태그를 ('#'을 제외하고) 한 줄에 하나씩 입력하여 주십시오. 이 설정은
+  트렌드와 '발견하기' 외에는 영향을 주지 않습니다.
+antennasDesc: "안테나에서는 조건에 맞는 게시물이 표시됩니다.\n'타임라인' 페이지에서 접근할 수 있습니다."
+expandOnNoteClick: 노트를 클릭하여 자세히 표시
+expandOnNoteClickDesc: 비활성화한 경우에도 우클릭 메뉴 또는 타임스탬프를 클릭하여 열 수 있습니다.
+customMOTDDescription: 유저가 페이지를 로딩/새로고침할 때 마다 무작위로 표시할 메시지를 한 줄에 하나씩 입력합니다.
+moveFrom: 다른 계정에서 이 계정으로 이사하기
+moveAccount: 이사하기!
+enterSendsMessage: 메시지에서 Return 키를 눌러 전송 (기본값 Ctrl + Return)
+verifiedLink: 인증된 링크
+alt: 설명
+statusbar: 스테이터스 바
+subscribePushNotification: 푸시 알림을 활성화
+sendPushNotificationReadMessage: 알림이나 메시지를 읽은 뒤에 푸시 알림을 삭제
+sendPushNotificationReadMessageCaption: '"{emptyPushNotificationMessage}" 라는 알림을 짧은
+  기간 동안 표시합니다. 기기의 배터리 소모가 늘어날 수 있습니다.'
+recommendedInstancesDescription: 추천 타임라인에 표시할 서버를 한 줄에 하나씩 입력하여 주십시오.
+enableCustomKaTeXMacro: 커스텀 KaTeX 매크로를 사용
+swipeOnMobile: 페이지 간 스와이프를 활성화
+swipeOnDesktop: 데스크톱에서도 모바일과 같은 스와이프를 사용
+migration: 계정 이사
+moveTo: 이 계정에서 새로운 계정으로 이사
+deleted: 삭제됨
+editNote: 노트 편집
+edited: '편짐됨: {date} {time}'
+customMOTD: 사용자 지정 MOTD (스플래시 화면 메시지)
+selectChannel: 채널 선택
+allowedInstancesDescription: 연합을 허가하려는 서버를 한 줄에 하나씩 입력합니다. 비공개 모드에서만 유효합니다.
+splash: 스플래시 화면
+preventAiLearningDescription: 업로드한 게시물이나 미디어를 AI 모델이 학습하지 말기를 요구합니다.
+isBot: 이 계정은 봇입니다
+isAdmin: 관리자
+newer: 새로운 노트
+older: 이전 노트
+renoteUnmute: 부스트 뮤트 해제
+accountMoved: '이 유저는 다른 계정으로 이사했습니다:'
+silencedInstances: 사일런스한 서버
+accessibility: 접근성
+userSaysSomethingReasonReply: '{name} 님이 {reason} 을 포함하는 노트에 답글했습니다'
+userSaysSomethingReasonRenote: '{name} 님이 {reason} 을 포함하는 노트를 부스트했습니다'
+breakFollowConfirm: 팔로워를 해제하시겠습니까?
+indexFrom: 이 게시물 ID부터 인덱싱하기
+noThankYou: 괜찮습니다
+hiddenTags: 숨길 해시태그
+image: 이미지
+video: 동영상
+jumpToPrevious: 이전으로
+cw: 열람주의
+secureMode: 보안 모드 (Authorized Fetch)
+xl: 매우 크게
+unsubscribePushNotification: 푸시 알림을 끄기
+customSplashIcons: 사용자 지정 스플래시 화면 아이콘 (URL)
+recommendedInstances: 추천 서버
+updateAvailable: 업데이트가 있습니다!
+logoImageUrl: 로고 이미지 URL
+showAdminUpdates: 새로운 Firefish 버전이 있을 때 알리기 (관리자 전용)
+moveToLabel: '이사 갈 계정:'
+moveAccountDescription: '이 작업은 되돌릴 수 없습니다. 계정을 옮기기 전에, 새로운 계정에서 이 계정에 대한 별칭을 지정하여
+  주십시오. 별칭을 지정하였다면, 이사 갈 계정을 다음과 같은 형식으로 입력하여 주십시오: @person@server.com'
+defaultReaction: 리모트와 로컬 게시물에 대한 기본 이모지 리액션
+showPopup: 유저에게 팝업으로 알리기
+showWithSparkles: 제목에 스파클 효과 넣기
+youHaveUnreadAnnouncements: 읽지 않은 공지사항이 있습니다
+donationLink: 기부 페이지 링크
+moveFromLabel: '이사하기 전의 계정:'
+neverShow: 앞으로 표시하지 않기
+remindMeLater: 나중에
+removeQuote: 인용을 삭제
+removeRecipient: 수신인을 삭제
+removeMember: 멤버를 삭제
+license: 라이선스
+migrationConfirm: "정말로 이 계정을 {account}로 이사하시겠습니까? 한 번 이사하면, 현재 이 계정은 두 번 다시 사용할 수
+  없게 됩니다.\n또한, 이사 갈 계정에 현재 사용 중인 계정의 별칭을 올바르게 작성하였는지 다시 한 번 확인하십시오."
+indexPosts: 게시물을 인덱싱
+indexNotice: 인덱싱을 시작했습니다. 이 작업은 시간이 많이 소요되므로, 최소 1시간 이내에 서버를 재시작하지 마십시오.
+noteId: 게시물 ID
+signupsDisabled: 현재 이 서버에서는 신규 등록을 받고 있지 않습니다. 초대 코드를 가지고 계신 경우 아래 칸에 입력해 주십시오. 초대
+  코드를 가지고 있지 않더라도, 신규 등록이 열려 있는 다른 서버에 등록하실 수 있습니다!
+apps: 앱
+preventAiLearning: AI에 의한 학습을 막기
+isLocked: 이 계정은 팔로우를 수동으로 승인합니다
+silencedWarning: 관리자가 사일런스한 서버에 속한 유저이며, 스팸이거나 원치 않는 내용을 포함할 가능성이 있습니다.
+isModerator: 모더레이터
+isPatron: Firefish 후원자
+_experiments:
+  postImportsCaption: 유저가 과거에 작성한 게시물을 Firefish(Firefish), Misskey, Mastodon, Akkoma,
+    Pleroma 등에서 가져올 수 있게 합니다. 작업 대기열의 처리 속도가 느릴 경우 서비스에 영향이 갈 수 있습니다.
+  enablePostImports: 게시물 가져오기를 활성화
+  title: 실험실
+_messaging:
+  groups: 그룹
+  dms: 개인 메시지
+_tutorial:
+  title: Firefly의 사용 방법
+  step5_5: '{icon} 소셜 타임라인은 홈 타임라인과 소셜 타임라인을 합친 것과 같습니다.'
+  step4_1: 첫 노트를 올려 봅시다.
+  step5_3: '{icon} 홈 타임라인은 내가 팔로우하고 있는 계정의 게시물을 볼 수 있는 타임라인입니다.'
+  step6_2: 이 서버에 가입을 마친 당신은 단순히 Firefish 서버의 유저가 아닌, 수많은 서버가 서로 상호작용하는 연합우주에 참가하시게
+    된 것입니다.
+  step5_4: '{icon} 로컬 타임라인은 이 서버의 모든 유저가 올린 게시물을 볼 수 있는 타임라인입니다.'
+  step5_2: 이 서버에는 {timelines} 개의 타임라인이 존재합니다.
+  step2_2: 나에 대한 정보를 미리 실어 놓으면, 다른 사람이 나의 게시물을 보거나 팔로우할 때에 도움이 됩니다.
+  step3_2: "홈 타임라인과 소셜 타임라인은 내가 팔로우하는 유저로 구성됩니다. 우선 몇 명을 팔로우해 볼까요?\n각 프로필 우측 상단의 둥근
+    + 버튼을 눌러 팔로우할 수 있습니다."
+  step2_1: 우선 프로필을 작성합니다.
+  step3_1: 이제 누군가를 팔로우해 봅시다!
+  step5_1: 여기도 타임라인, 저기도 타임라인
+  step5_6: '{icon} 추천 타임라인은 이 서버의 관리자가 추천하는 서버의 게시물을 볼 수 있는 타임라인입니다.'
+  step5_7: '{icon} 글로벌 타임라인에서는 이 서버와 연결된 모든 서버의 게시물을 볼 수 있습니다.'
+  step1_1: 환영합니다!
+  step1_2: Firefly를 시작하기 전에, 몇 가지 설정을 해 보아요. 금방 끝날 거에요!
+  step6_1: 그래서… 여기는 어떤 곳이죠?
+  step4_2: 처음엔 {introduction}를 올리거나, 가볍게 '안녕하세요!' 라고 올리는 것도 좋아요!
+  step6_4: 튜토리얼은 여기까지입니다. 즐거운 시간 되세요!
+  step6_3: 각각의 서버는 서로 다른 규칙과 환경을 가지고 있으며, Firefish가 아닌 서버 또한 존재한답니다. 이 서버도 다른 서버에서
+    보면 마찬가지이고요. 갑자기 어려워 보일 지 몰라도 걱정하지 마세요, 금방 익숙해 질 거니까요.
+_skinTones:
+  medium: 중간
+  mediumLight: 약간 밝음
+  yellow: 노랑
+  mediumDark: 약간 어두움
+  dark: 어두움
+  light: 밝음
+_filters:
+  withFile: 첨부 파일 있음
+  fromUser: 유저를 선택
+  fromDomain: 도메인 지정
+  notesBefore: '... 이전의 게시물'
+  notesAfter: '... 이후의 게시물'
+  followingOnly: 팔로우 중인 유저만
+  followersOnly: 팔로워만
+_feeds:
+  jsonFeed: JSON 피드
+  rss: RSS
+  atom: Atom
+  copyFeed: 피드 URL 복사
+_dialog:
+  charactersExceeded: 글자 수 제한을 초과했습니다! 현재 {current}자 / 최대 {max}자
+  charactersBelow: 최소 글자 수 보다 작습니다! 현재 {current}자 / 최소 {max}자

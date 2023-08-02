@@ -1,6 +1,6 @@
 {
 	"name": "firefish",
-	"version": "1.0.3",
+	"version": "1.0.4-dev10",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
@@ -22,6 +22,8 @@
 		"dev": "pnpm node ./scripts/dev.js",
 		"dev:staging": "NODE_OPTIONS=--max_old_space_size=3072 NODE_ENV=development pnpm run build && pnpm run start",
 		"lint": "pnpm -r --parallel run lint",
+		"debug": "pnpm run build:debug && pnpm run start",
+		"build:debug": "pnpm -r --parallel run build:debug && pnpm run gulp",
 		"cy:open": "cypress open --browser --e2e --config-file=cypress.config.ts",
 		"cy:run": "cypress run",
 		"e2e": "start-server-and-test start:test http://localhost:61812 cy:run",

@@ -46,6 +46,8 @@ html {
 	tab-size: 2;
 	scroll-padding: 60px;
 	overflow-x: clip;
+	text-size-adjust: none;
+	-webkit-text-size-adjust: none;
 
 	&.useCJKFont {
 		font-family: "Hiragino Maru Gothic Pro", "BIZ UDGothic", Roboto,
@@ -625,7 +627,6 @@ hr {
 		vertical-align: bottom;
 		height: 128px;
 		margin-bottom: 16px;
-		border-radius: 16px;
 	}
 }
 
@@ -822,6 +823,15 @@ hr {
 	}
 	100% {
 		transform: scaleX(1) scaleY(1);
+	}
+}
+
+@keyframes spinY {
+	0% {
+		transform: perspective(128px) rotateY(0deg);
+	}
+	100% {
+		transform: perspective(128px) rotateY(360deg);
 	}
 }
 

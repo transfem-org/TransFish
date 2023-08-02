@@ -23,7 +23,6 @@
 
 - Firefish is based off of Misskey, a powerful microblogging server on ActivityPub with features such as emoji reactions, a customizable web UI, rich chatting, and much more!
 - Firefish adds many quality of life changes and bug fixes for users and server admins alike.
-- Read **[this document](./FIREFISH.md)** all for current and future differences.
 - Notable differences:
   - Improved UI/UX (especially on mobile)
   - Post editing
@@ -40,7 +39,9 @@
   - Backfill user information
   - Advanced search
   - Many more user and admin settings
-  - [So much more!](./FIREFISH.md)
+  - Many bug fixes and performance improvements 
+  - Link verification
+  - So much more!
 
 </div>
 
@@ -64,7 +65,7 @@
   - Donate publicly to get your name on the Patron list!
 - 🚢 Flagship server: <https://firefish.social>
 - 💁 Matrix support room: <https://matrix.to/#/#firefish:matrix.fedibird.com>
-- 📣 Official account: <https://i.firefish.cloud/@firefish>
+- 📣 Official account: <a href="https://fedi.software/@firefish" rel="me">@firefish</a>
 - 📜 Server list: <https://joinfirefish.org/join>
 - ✍️ Weblate: <https://hosted.weblate.org/engage/firefish/>
 - ️️📬 Contact: <https://joinfirefish.org/contact/>
@@ -85,9 +86,7 @@ This guide will work for both **starting from scratch** and **migrating from Mis
 
 If you have access to a server that supports one of the sources below, I recommend you use it! Note that these methods *won't* allow you to migrate from Misskey without manual intervention.
 
-<!-- [![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　 -->
-
-[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://gitlab.prometheus.systems/firefish/ubuntu-bash-install)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
+[![Install on Ubuntu](https://pool.jortage.com/voringme/misskey/3b62a443-1b44-45cf-8f9e-f1c588f803ed.png)](https://git.joinfirefish.org/firefish/ubuntu-bash-install)　　[![Install on the Arch User Repository](https://pool.jortage.com/voringme/misskey/ba2a5c07-f078-43f1-8483-2e01acca9c40.png)](https://aur.archlinux.org/packages/firefish)　　[![Install Firefish with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=firefish)
 
 ## 🛳️ Containerization
 

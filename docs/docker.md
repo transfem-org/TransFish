@@ -1,7 +1,7 @@
 # 🐳 Running a Firefish server with Docker
 
 ## Pre-built docker container
-[thatonecalculator/firefish](https://hub.docker.com/r/thatonecalculator/firefish)
+[registry.joinfirefish.org/firefish/firefish](https://git.joinfirefish.org/firefish/firefish/container_registry)
 
 ## `docker-compose`
 
@@ -29,7 +29,7 @@ Everything else can be left as-is.
 
 ## Running docker-compose
 
-The [prebuilt container for firefish](https://hub.docker.com/r/thatonecalculator/firefish) is fairly large, and may take a few minutes to download and extract using docker.
+The [prebuilt container for firefish](https://git.joinfirefish.org/firefish/firefish/container_registry) is fairly large, and may take a few minutes to download and extract using docker.
 
 Copy `docker-compose.yml` and the `config/` to a directory, then run the **docker-compose** command:
 `docker-compose up -d`.

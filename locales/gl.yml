@@ -1,5 +1,5 @@
 _lang_: Inglés
-introMisskey: Benvida! Firefish é unha plataforma de medios sociais de código aberto,
+introFirefish: Benvida! Firefish é unha plataforma de medios sociais de código aberto,
   descentralizada e gratuíta para sempre!🚀
 monthAndDay: '{day}/{month}'
 notifications: Notificacións
@@ -8,10 +8,277 @@ forgotPassword: Esquecín o contrasinal
 gotIt: Vale!
 cancel: Cancelar
 noThankYou: Non, grazas
-headlineMisskey: Plataforma de medios sociais de código aberto e descentralizada,
+headlineFirefish: Plataforma de medios sociais de código aberto e descentralizada,
   gratuíta para sempre!🚀
 search: Buscar
 searchPlaceholder: Buscar en Firefish
 username: Identificador
 fetchingAsApObject: Descargando desde o Fediverso
 ok: OK
+youShouldUpgradeClient: Actualiza esta páxina para recibir os últimos contidos no
+  teu cliente.
+privacy: Privacidade
+makeFollowManuallyApprove: As solicitudes de seguimento requiren aprobación
+defaultNoteVisibility: Visibilidade por defecto
+follow: Seguir
+followRequests: Solicitudes de seguimento
+followRequestPending: Solicitude de seguimento pendente
+renote: Promover
+unrenote: Retirar promoción
+renoted: Promovida.
+cantReRenote: Unha promoción non pode ser promovida.
+quote: Citar
+pinnedNote: Publicación fixada
+pinned: Fixar no perfil
+you: Ti
+clickToShow: Preme para mostrar
+sensitive: NSFW
+add: Engadir
+reaction: Reaccións
+removeReaction: Quitar a túa reacción
+enableEmojiReactions: Activar as reaccións con emojis
+showEmojisInReactionNotifications: Mostrar emojis nas notificacións das reaccións
+reactionSetting: Reaccións mostradas no selector de reaccións
+reactionSettingDescription2: Arrastra para reordenar, preme para eliminar, preme "+"
+  para engadir.
+rememberNoteVisibility: Lembrar os axustes da visibilidade da publicación
+attachCancel: Quitar o anexo
+markAsSensitive: Marcar como NSFW
+unmarkAsSensitive: Retirar marca NSFW
+enterFileName: Escribe nome do ficheiro
+mute: Acalar
+unmute: Reactivar
+renoteMute: Acalar promocións
+renoteUnmute: Reactivar promocións
+block: Bloquear
+unblock: Desbloquear
+suspend: Suspender
+unsuspend: Retirar suspensión
+timeline: Cronoloxía
+noAccountDescription: Esta usuaria aínda non escribiu a súa bio.
+login: Acceder
+loggingIn: Accedendo
+logout: Pechar sesión
+signup: Crear conta
+uploading: Subindo...
+save: Gardar
+users: Usuarias
+addUser: Engadir unha usuaria
+addInstance: Engadir un servidor
+favorite: Engadir aos marcadores
+favorites: Marcadores
+unfavorite: Quitar dos marcadores
+favorited: Engadido aos marcadores.
+alreadyFavorited: Xa está nos marcadores.
+cantFavorite: Non se puido engadir aos marcadores.
+pin: Fixar no perfil
+unpin: Soltar do perfil
+copyContent: Copiar contidos
+copyLink: Copiar ligazón
+delete: Eliminar
+deleted: Eliminado
+deleteAndEdit: Eliminar e editar
+blockConfirm: Tes a certeza de querer bloquear esta conta?
+deleteAndEditConfirm: Tes a certeza de querer eliminar esta publicación e editala?
+  Perderás todas as súas reaccións, promocións e respostas.
+editNote: Editar nota
+edited: Editado o {date} {time}
+sendMessage: Enviar unha mensaxe
+copyUsername: Copiar identificador
+searchUser: Buscar unha usuaria
+reply: Responder
+jumpToPrevious: Ir á anterior
+loadMore: Cargar máis
+showMore: Mostrar máis
+newer: máis novo
+older: máis antigo
+showLess: Pechar
+youGotNewFollower: seguíute
+receiveFollowRequest: Recibida solicitude de seguimento
+followRequestAccepted: Solicitude de seguimento aceptada
+mention: Mención
+mentions: Mencións
+directNotes: Mensaxes directas
+cw: Aviso sobre o contido
+importAndExport: Importar/Exportar datos
+import: Importar
+export: Exportar
+files: Ficheiros
+download: Descargar
+unblockConfirm: Tes a certeza de querer retirarlle o bloqueo a esta conta?
+suspendConfirm: Tes a certeza de querer suspender esta conta?
+unsuspendConfirm: Tes a certeza de querer retirarlle a suspensión a esta conta?
+selectList: Elixe unha lista
+selectAntenna: Elixe unha antena
+selectWidget: Elixe un widget
+selectChannel: Elixe unha canle
+editWidgets: Editar widgets
+editWidgetsExit: Feito
+customEmojis: Emoji personalizado
+emoji: Emoji
+emojis: Emoji
+emojiName: Nome do emoji
+emojiUrl: URL do emoji
+addEmoji: Engadir
+settingGuide: Axustes recomendados
+cacheRemoteFiles: Gardar na caché ficheiros remotos
+cacheRemoteFilesDescription: Se desactivas este axuste, os ficheiros remotos cárganse
+  directamente desde o servidor remoto. Ao desactivalo diminuirá a almacenaxe usada,
+  pero incrementarás o tráfico, xa que non se crearán miniaturas.
+flagAsBotDescription: Activa esta opción se esta conta está controlada por un programa.
+  Se está activada, será unha marca para que outras desenvolvedoras eviten interaccións
+  en bucle con outros bots e axustará os sistemas internos de Firefish para tratar
+  esta conta como un bot.
+flagAsCat: Es un gato? 😺
+flagAsCatDescription: Vas ter orellas de gato e falar como un gato!
+flagSpeakAsCat: Fala como un gato
+flagSpeakAsCatDescription: As túas publicacións serán gatificadas ao estar no modo
+  gato
+flagShowTimelineReplies: Mostrar respostas na cronoloxía
+flagShowTimelineRepliesDescription: Se está activado mostra as respostas das usuarias
+  a publicacións de outras usuarias na cronoloxía.
+autoAcceptFollowed: Aprobar automáticamente as solicitudes de seguimento das persoas
+  que ti xa segues
+addAccount: Engadir conta
+loginFailed: Fallou o inicio de sesión
+showOnRemote: Abrir páxina orixinal
+general: Xeral
+accountMoved: 'A usuaria está nunha nova conta:'
+wallpaper: Fondo de pantalla
+setWallpaper: Establecer fondo
+removeWallpaper: Eliminar fondo
+searchWith: 'Buscar: {q}'
+youHaveNoLists: Non tes ningunha lista
+stopActivityDelivery: Deixar de enviar actividades
+perDay: Por día
+blockThisInstance: Bloquear este servidor
+silenceThisInstance: Acalar este servidor
+operations: Operacións
+software: Software
+version: Versión
+metadata: Metadatos
+monitor: Monitor
+cantRenote: Non se pode promover esta publicación.
+clearCachedFiles: Limpar caché
+jobQueue: Cola de tarefas
+cpuAndMemory: CPU e Memoria
+network: Rede
+disk: Disco
+instanceInfo: Información do servidor
+statistics: Estatísticas
+clearQueue: Limpar cola
+clearQueueConfirmTitle: Tes a certeza de querer limpara a cola?
+clearQueueConfirmText: Todas as publicacións que aínda non fosen entregadas non estarán
+  federadas. Esta operación, normalmente, non é necesaria.
+clearCachedFilesConfirm: Tes a certeza de que queres eliminar todos os ficheiros remotos
+  da caché?
+blockedInstances: Servidores bloqueados
+blockedInstancesDescription: Lista dos nomes dos servidores que queres bloquear. Os
+  servidores da lista non poderán comunicarse con este servidor.
+silencedInstances: Servidores acalados
+silencedInstancesDescription: Lista cos nomes de servidores que queres acalar. As
+  contas dos servidores acalados serán tratadas como "Silenciadas", só poden facer
+  solicitudes de seguimento e non poden mencionar contas locais se non a están a seguir.
+  Isto non afecta aos servidores bloqueados.
+hiddenTags: Cancelos agochados
+hiddenTagsDescription: 'Lista cos cancelos (sen o #) que queres ocultar das seccións
+  descubrir e en voga. Os cancelos agochados seguirán sendo accesibles por outros
+  medios.'
+muteAndBlock: Bloquear e Silenciar
+mutedUsers: Usuarias acaladas
+blockedUsers: Usuarias bloqueadas
+noUsers: Sen usuarias
+noInstances: Sen servidores
+editProfile: Editar perfil
+noteDeleteConfirm: Tes a certeza de querer eliminar esta publicación?
+pinLimitExceeded: Xa non podes fixar máis publicacións
+intro: Rematou a instalación de Fishfox! Por favor crea a usuaria administradora.
+done: Feito
+processing: Procesando
+preview: Vista previa
+default: Por defecto
+defaultValueIs: 'Por defecto: {value}'
+noCustomEmojis: Non hai emojis
+noJobs: Non hai tarefas
+blocked: Bloqueado
+federating: Federación
+silenced: Acalado
+suspended: Suspendido
+all: Todo
+subscribing: Subscrición
+publishing: Publicar
+notResponding: Non responde
+instanceFollowing: Seguindo no servidor
+instanceFollowers: Seguidoras desde o servidor
+instanceUsers: Usuarias neste servidor
+security: Seguridade
+retypedNotMatch: Os valores escritos non concordan.
+changePassword: Cambiar contrasinal
+currentPassword: Contrasinal actual
+newPassword: Novo contrasinal
+newPasswordRetype: Volve escribir o contrasinal
+attachFile: Adxunta ficheiros
+more: Máis!
+featured: Destacado
+usernameOrUserId: Identificador ou id de usuaria
+noSuchUser: Non se atopa a usuaria
+remove: Eliminar
+removed: Eliminada correctamente
+removeAreYouSure: Tes a certeza de querer eliminar "{x}"?
+announcements: Anuncios
+imageUrl: URL da imaxe
+enterUsername: Escribir identificador
+renotedBy: Promovido por {user}
+noNotes: Sen publicacións
+noNotifications: Sen notificacións
+instance: Servidor
+settings: Axustes
+basicSettings: Axustes básicos
+otherSettings: Outros axustes
+openInWindow: Abrir na ventá
+profile: Perfil
+addToList: Engadir á lista
+lists: Listas
+listsDesc: As listas permítenche crear cronoloxías coas usuarias escollidas. Podes
+  acceder a elas desde a páxina de cronoloxías.
+noLists: Non tes ningunha lista
+note: Publicación
+notes: Publicacións
+following: Seguindo
+followers: Seguidoras
+followsYou: Séguete
+createList: Crear lista
+manageLists: Xestionar listas
+error: Erro
+somethingHappened: Houbo un fallo
+retry: Volver a intentar
+pageLoadError: Algo fallou ao cargar a páxina.
+pageLoadErrorDescription: Normalmente isto débese a problemas na rede ou na caché
+  do navegador. Intenta limpar a caché e volve a intentalo dentro dun anaco.
+serverIsDead: Este servidor non responde. Agarda un anaco e volve intentalo.
+enterListName: Dalle un nome á lista
+unfollow: Deixar de seguir
+enterEmoji: Escribe un emoji
+flagAsBot: Marcar a conta como bot
+followConfirm: Tes a certeza de querer seguir a {name}?
+proxyAccount: Conta proxy
+proxyAccountDescription: Unha conta proxy é unha conta que en determinadas situacións
+  actúa como unha seguidora remota para as usuarias. Por exemplo, cando unha usuaria
+  engade unha usuaria remota a unha lista, a actividade da usuaria remota non se entrega
+  ao servidor se a usuaria local non segue a esa outra usuaria, así a conta proxy
+  fará o seguimento no seu lugar.
+host: Hóspede
+selectUser: Escolle unha usuaria
+selectInstance: Escolle un servidor
+recipient: Correpondente(s)
+annotation: Comentarios
+federation: Federación
+instances: Servidores
+registeredAt: Data do rexistro
+latestRequestSentAt: Última solicitude enviada
+latestRequestReceivedAt: Última solicitude recibida
+latestStatus: Último estado
+storageUsage: Uso da almacenaxe
+charts: Gráficas
+perHour: Por hora
+followRequest: Solicitar seguimento
