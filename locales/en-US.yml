@@ -1230,7 +1230,7 @@ _aboutFirefish:
     development since 2022."
   contributors: "Main contributors"
   allContributors: "All contributors"
-  misskey: "Original Misskey contributors"
+  misskeyContributors: "Misskey contributors"
   source: "Source code"
   translation: "Translate Firefish"
   donate: "Donate to Firefish"
