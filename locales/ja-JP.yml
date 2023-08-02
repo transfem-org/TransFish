@@ -1067,6 +1067,7 @@ _aboutFirefish:
   about: "Firefishは、2022年に生まれたThatOneCalculatorによるMisskeyのforkです。"
   contributors: "主なコントリビューター"
   allContributors: "全てのコントリビューター"
+  misskeyContributors: "ミスキコントリビューター"
   source: "ソースコード"
   translation: "Firefishを翻訳"
   donate: "Firefishに寄付"

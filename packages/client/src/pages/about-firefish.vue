@@ -112,20 +112,44 @@
 								><Mfm
 									:text="'@panos@firefish.social (Project Coordinator)'"
 							/></FormLink>
-							<FormLink
-								to="https://www.youtube.com/c/Henkiwashere"
-								external
-								>Henki (error images artist)</FormLink
-							>
+							<FormLink to="/@blackspike@mastodon.cloud"
+								><Mfm
+									:text="'@blackspike@mastodon.cloud (Logo Design)'"
+							/></FormLink>
 						</div>
-						<template #caption
-							><MkLink
+						<h3>{{ i18n.ts._aboutFirefish.Contributors }}</h3>
+						<div class="_formLinks">
+							<FormLink to="/@syuilo@misskey.io"
+								><Mfm
+									:text="'@syuilo@misskey.io'"
+							/></FormLink>
+							<FormLink to="/@aqz@p1.a9z.dev"
+								><Mfm
+									:text="'@aqz@p1.a9z.dev'"
+							/></FormLink>
+							<FormLink to="/@acid_chicken@misskey.m544.net"
+								><Mfm
+									:text="'@acid_chicken@misskey.m544.net'"
+							/></FormLink>
+							<FormLink to="/@rinsuki@mstdn.rinsuki.net"
+								><Mfm
+									:text="'@rinsuki@mstdn.rinsuki.net'"
+							/></FormLink>
+							<FormLink to="/@mei23@misskey.m544.net"
+								><Mfm
+									:text="'@mei23@misskey.m544.net'"
+							/></FormLink>
+							<FormLink to="/@robflop@misskey.io"
+								><Mfm
+									:text="'@robflop@misskey.io'"
+							/></FormLink>
+						</div>
+						<h3>
+							<MkLink
 								url="https://git.joinfirefish.org/firefish/firefish/activity"
-								>{{
-									i18n.ts._aboutFirefish.allContributors
-								}}</MkLink
-							></template
-						>
+								>{{ i18n.ts._aboutFirefish.allContributors }}
+							</MkLink>
+						</h3>
 					</FormSection>
 					<FormSection>
 						<template #label
