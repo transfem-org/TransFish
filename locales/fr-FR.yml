@@ -15,7 +15,7 @@ gotIt: "J’ai compris !"
 cancel: "Annuler"
 enterUsername: "Entrer un nom d’utilisateur·rice"
 renotedBy: "Boosté par {user}"
-noNotes: "Aucun post"
+noNotes: "Aucune publication"
 noNotifications: "Aucune notification"
 instance: "Serveur"
 settings: "Paramètres"
@@ -46,8 +46,8 @@ copyContent: "Copier le contenu"
 copyLink: "Copier le lien"
 delete: "Supprimer"
 deleteAndEdit: "Supprimer et réécrire"
-deleteAndEditConfirm: "Êtes-vous sûr·e de vouloir supprimer ce post et le reformuler
-  ? Vous perdrez toutes les réactions, boosts et réponses liées."
+deleteAndEditConfirm: "Êtes-vous sûr·e de vouloir supprimer cette publication et la
+  reformuler ? Vous perdrez toutes les réactions, boosts et réponses liées."
 addToList: "Ajouter à une liste"
 sendMessage: "Envoyer un message"
 copyUsername: "Copier le nom d’utilisateur·rice"
@@ -68,15 +68,15 @@ export: "Exporter"
 files: "Fichiers"
 download: "Télécharger"
 driveFileDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer le fichier \"{name}\"\
-  \ ? Il sera retiré de tous ses posts liées."
+  \ ? Il sera retiré de toutes les publications qui le contiennent comme pièce-jointe."
 unfollowConfirm: "Désirez-vous vous désabonner de {name} ?"
 exportRequested: "Vous avez demandé une exportation. L’opération pourrait prendre
   un peu de temps. Une terminée, le fichier résultant sera ajouté au Drive."
 importRequested: "Vous avez initié un import. Cela pourrait prendre un peu de temps."
 lists: "Listes"
 noLists: "Vous n’avez aucune liste"
-note: "Post"
-notes: "Posts"
+note: "Publication"
+notes: "Publications"
 following: "Abonnements"
 followers: "Abonné·e·s"
 followsYou: "Vous suit"
@@ -95,7 +95,7 @@ youShouldUpgradeClient: "Si la page ne s'affiche pas correctement, rechargez-la 
 enterListName: "Nom de la liste"
 privacy: "Confidentialité"
 makeFollowManuallyApprove: "Accepter manuellement les demandes d’abonnement"
-defaultNoteVisibility: "Visibilité des posts par défaut"
+defaultNoteVisibility: "Visibilité des publications par défaut"
 follow: "S’abonner"
 followRequest: "Demande d’abonnement"
 followRequests: "Demandes d’abonnement"
@@ -105,10 +105,10 @@ enterEmoji: "Insérer un émoji"
 renote: "Booster"
 unrenote: "Annuler le boost"
 renoted: "Boosté."
-cantRenote: "Ce message ne peut pas être boosté."
+cantRenote: "Cette publcation ne peut pas être boosté."
 cantReRenote: "Impossible de partager ce boost."
 quote: "Citer"
-pinnedNote: "Note épinglée"
+pinnedNote: "Publication épinglée"
 pinned: "Épingler sur le profil"
 you: "Vous"
 clickToShow: "Cliquer pour afficher"
@@ -118,9 +118,7 @@ reaction: "Réactions"
 reactionSetting: "Réactions à afficher dans le sélecteur de réactions"
 reactionSettingDescription2: "Déplacer pour réorganiser, cliquer pour effacer, utiliser
   « + » pour ajouter."
-rememberNoteVisibility: "Activer l'option \" se souvenir de la visibilité des posts
-  \" vous permet de réutiliser automatiquement la visibilité utilisée lors de la publication
-  de votre post précédent."
+rememberNoteVisibility: "Se souvenir des paramètres de visibilité des publications"
 attachCancel: "Supprimer le fichier attaché"
 markAsSensitive: "Marquer comme sensible"
 unmarkAsSensitive: "Supprimer le marquage comme sensible"
@@ -176,9 +174,9 @@ proxyAccount: "Compte proxy"
 proxyAccountDescription: "Un compte proxy se comporte, dans certaines conditions,
   comme un·e abonné·e distant·e pour les utilisateur·rice·s d'autres serveurs. Par
   exemple, quand un·e utilisateur·rice local ajoute un·e utilisateur·rice distant·e
-  à une liste, ses posts ne seront pas visibles sur le serveur si personne ne suit
-  cet·te utilisateur·rice. Le compte proxy va donc suivre cet·te utilisateur·rice
-  pour que ses posts soient acheminées."
+  à une liste, ses publications ne seront pas visibles sur le serveur si personne
+  ne suit cet·te utilisateur·rice. Le compte proxy va donc suivre cet·te utilisateur·rice
+  pour que ses publications soient acheminées."
 host: "Serveur distant"
 selectUser: "Sélectionner un·e utilisateur·rice"
 recipient: "Destinataire"
@@ -208,8 +206,8 @@ instanceInfo: "Informations du serveur"
 statistics: "Statistiques"
 clearQueue: "Vider la file d’attente"
 clearQueueConfirmTitle: "Êtes-vous sûr·e de vouloir vider la file d’attente ?"
-clearQueueConfirmText: "Les posts non distribués ne seront pas délivrés. Normalement,
-  vous n'avez pas besoin d'effectuer cette opération."
+clearQueueConfirmText: "Les publications non distribuées ne seront pas délivrées.
+  Normalement, vous n'avez pas besoin d'effectuer cette opération."
 clearCachedFiles: "Vider le cache"
 clearCachedFilesConfirm: "Êtes-vous sûr·e de vouloir vider tout le cache de fichiers
   distants ?"
@@ -221,8 +219,8 @@ mutedUsers: "Utilisateur·rice·s en sourdine"
 blockedUsers: "Utilisateur·rice·s bloqué·e·s"
 noUsers: "Il n’y a pas d’utilisateur·rice·s"
 editProfile: "Modifier votre profil"
-noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer ce post ?"
-pinLimitExceeded: "Vous ne pouvez pas épingler plus de posts"
+noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer cette publication ?"
+pinLimitExceeded: "Vous ne pouvez pas épingler plus de publictions"
 intro: "L’installation de Firefish est terminée ! Veuillez créer un compte administrateur."
 done: "Terminé"
 processing: "Traitement en cours"
@@ -256,8 +254,8 @@ announcements: "Annonces"
 imageUrl: "URL de l’image"
 remove: "Supprimer"
 removed: "Supprimé"
-removeAreYouSure: "Êtes-vous sûr·e de vouloir supprimer「{x}」?"
-deleteAreYouSure: "Êtes-vous sûr·e de vouloir supprimer「{x}」?"
+removeAreYouSure: "Êtes-vous sûr·e de vouloir supprimer \"{x}\" ?"
+deleteAreYouSure: "Êtes-vous sûr·e de vouloir supprimer \"{x}\" ?"
 resetAreYouSure: "Voulez-vous réinitialiser ?"
 saved: "Enregistré"
 messaging: "Discuter"
@@ -367,7 +365,7 @@ pinnedPages: "Pages épinglées"
 pinnedPagesDescription: "Inscrivez le chemin des Pages que vous souhaitez épingler
   en haut de la page du serveur. Séparez les d'un retour à la ligne."
 pinnedClipId: "Identifiant du clip épinglé"
-pinnedNotes: "Posts épinglée"
+pinnedNotes: "Publications épinglées"
 hcaptcha: "hCaptcha"
 enableHcaptcha: "Activer hCaptcha"
 hcaptchaSiteKey: "Clé du site"
@@ -387,14 +385,14 @@ antennaKeywords: "Mots clés à recevoir"
 antennaExcludeKeywords: "Mots clés à exclure"
 antennaKeywordsDescription: "Séparer avec des espaces pour la condition AND. Séparer
   avec un saut de ligne pour une condition OR."
-notifyAntenna: "Je souhaite recevoir les notifications des nouveaux posts"
-withFileAntenna: "Posts ayant des attachements uniquement"
+notifyAntenna: "Je souhaite recevoir les notifications des nouvelles publications"
+withFileAntenna: "Publications ayant des pièces-jointes uniquement"
 enableServiceworker: "Activer ServiceWorker"
 antennaUsersDescription: "Saisissez un seul nom d’utilisateur·rice par ligne"
 caseSensitive: "Sensible à la casse"
 withReplies: "Inclure les réponses"
 connectedTo: "Vous êtes connectés aux services suivants"
-notesAndReplies: "Posts et Réponses"
+notesAndReplies: "Publications et Réponses"
 withFiles: "Avec fichiers joints"
 silence: "Mettre en sourdine"
 silenceConfirm: "Êtes-vous sûr·e de vouloir mettre l’utilisateur·rice en sourdine
@@ -432,7 +430,7 @@ notFoundDescription: "Aucune page ne correspond à l’URL spécifiée."
 uploadFolder: "Emplacement de téléversement par défaut"
 cacheClear: "Vider le cache"
 markAsReadAllNotifications: "Marquer toutes les notifications comme lues"
-markAsReadAllUnreadNotes: "Marquer tous les posts comme lus"
+markAsReadAllUnreadNotes: "Marquer toutes les publications comme lues"
 markAsReadAllTalkMessages: "Marquer toutes les discussions comme lues"
 help: "Aide"
 inputMessageHere: "Écrivez votre message ici"
@@ -453,7 +451,7 @@ text: "Texte"
 enable: "Activer"
 next: "Suivant"
 retype: "Confirmation"
-noteOf: "Posts de {user}"
+noteOf: "Publications de {user}"
 inviteToGroup: "Inviter dans un groupe"
 quoteAttached: "Avec citation"
 quoteQuestion: "Souhaitez-vous ajouter une citation ?"
@@ -467,7 +465,7 @@ checking: "Vérification en cours..."
 available: "Disponible"
 unavailable: "Non disponible"
 usernameInvalidFormat: "Le nom d'utilisateur peut contenir uniquement des lettres
-  (minuscules et/ou majuscules), des chiffres et des _"
+  (minuscules et/ou majuscules), des chiffres et des tirets du bas."
 tooShort: "Trop court"
 tooLong: "Trop long"
 weakPassword: "Mot de passe faible"
@@ -513,15 +511,16 @@ accountSettings: "Paramètres du compte"
 promotion: "Promu"
 promote: "Promouvoir"
 numberOfDays: "Nombre de jours"
-hideThisNote: "Masquer ce post"
-showFeaturedNotesInTimeline: "Afficher les posts des Tendances dans le fil d'actualité"
+hideThisNote: "Masquer cette publication"
+showFeaturedNotesInTimeline: "Afficher les publications des Tendances dans le fil
+  d'actualité"
 objectStorage: "Stockage d'objets"
 useObjectStorage: "Utiliser le stockage d'objets"
 objectStorageBaseUrl: "Base URL"
 objectStorageBaseUrlDesc: "Préfixe d’URL utilisé pour construire l’URL vers le référencement
   d’objet (média). Spécifiez son URL si vous utilisez un CDN ou un proxy, sinon spécifiez
-  l’adresse accessible au public selon le guide de service que vous allez utiliser.
-  P.ex. 'https://<bucket>.s3.amazonaws.com' pour AWS S3 et 'https://storage.googleapis.com/<bucket>'
+  l’adresse accessible au public selon le guide de service que vous allez utiliser.\n
+  Ex: 'https://<bucket>.s3.amazonaws.com' pour AWS S3 et 'https://storage.googleapis.com/<bucket>'
   pour GCS."
 objectStorageBucket: "Bucket"
 objectStorageBucketDesc: "Veuillez spécifier le nom du compartiment utilisé sur le
@@ -530,7 +529,7 @@ objectStoragePrefix: "Prefix"
 objectStoragePrefixDesc: "Les fichiers seront stockés sous le répertoire de ce préfixe."
 objectStorageEndpoint: "Endpoint"
 objectStorageEndpointDesc: "Laissez ce champ vide si vous utilisez AWS S3, sinon spécifiez
-  le point de terminaison comme '<host>' ou '<host>: <port>' selon le guide de service
+  le point de terminaison comme '<host>' ou '<host>:<port>' selon le guide de service
   que vous allez utiliser."
 objectStorageRegion: "Région"
 objectStorageRegionDesc: "Spécifiez une région comme 'xx-east-1'. Si votre service
@@ -545,7 +544,7 @@ objectStorageSetPublicRead: "Régler sur « public » lors de l'envoi"
 serverLogs: "Journal du serveur"
 deleteAll: "Supprimer tout"
 showFixedPostForm: "Afficher le formulaire de publication en haut du fil d'actualité"
-newNoteRecived: "Voir les nouveaux posts"
+newNoteRecived: "Voir les nouvelles publications"
 sounds: "Sons"
 listen: "Écouter"
 none: "Rien"
@@ -555,7 +554,7 @@ volume: "Volume"
 masterVolume: "Volume principal"
 details: "Détails"
 chooseEmoji: "Choisissez un émoji"
-unableToProcess: "L’opération n’a pas pu être complétée."
+unableToProcess: "L’opération n’a pas pu être complétée"
 recentUsed: "Utilisé récemment"
 install: "Installation"
 uninstall: "Désinstaller"
@@ -595,8 +594,8 @@ addRelay: "Ajouter un relais"
 inboxUrl: "Inbox URL"
 addedRelays: "Relais ajoutés"
 serviceworkerInfo: "Devrait être activé pour les notifications push."
-deletedNote: "Post supprimé"
-invisibleNote: "Post invisible"
+deletedNote: "Publication supprimée"
+invisibleNote: "Publication invisible"
 enableInfiniteScroll: "Activer le défilement infini"
 visibility: "Visibilité"
 poll: "Sondage"
@@ -634,8 +633,8 @@ edit: "Editer"
 emailServer: "Serveur mail"
 enableEmail: "Activer la distribution de courriel"
 emailConfigInfo: "Utilisé pour confirmer votre adresse de courriel et la réinitialisation
-  de votre mot de passe en cas d’oubli."
-email: "E-mail "
+  de votre mot de passe en cas d’oubli"
+email: "E-mail"
 emailAddress: "Adresses e-mail"
 smtpConfig: "Paramètres du serveur SMTP"
 smtpHost: "Serveur distant"
@@ -661,8 +660,8 @@ delayed: "en retard"
 database: "Base de données"
 channel: "Canaux"
 create: "Créer"
-notificationSetting: "Paramètres des notifications "
-notificationSettingDesc: "Sélectionnez le type de notification à afficher"
+notificationSetting: "Paramètres des notifications"
+notificationSettingDesc: "Sélectionnez le type de notification à afficher."
 useGlobalSetting: "Utiliser paramètre général"
 useGlobalSettingDesc: "S'il est activé, les paramètres de notification de votre compte
   seront utilisés. S'il est désactivé, des configurations individuelles peuvent être
@@ -681,11 +680,11 @@ abuseReports: "Signalements"
 reportAbuse: "Signaler"
 reportAbuseOf: "Signaler {name}"
 fillAbuseReportDescription: "Veuillez expliquer les raisons du signalement. S'il s'agit
-  d'un post particulier, veuillez inclure le lien."
+  d'une publication en particulier, veuillez inclure le lien."
 abuseReported: "Le rapport est envoyé. Merci."
 reporter: "Signalé par"
 reporteeOrigin: "Origine du signalement"
-reporterOrigin: "Signalé par"
+reporterOrigin: "Origine du signalement"
 forwardReport: "Transférer le signalement à l’instance distante"
 send: "Envoyer"
 abuseMarkAsResolved: "Marquer le signalement comme résolu"
@@ -694,7 +693,7 @@ openInSideView: "Ouvrir en vue latérale"
 defaultNavigationBehaviour: "Navigation par défaut"
 editTheseSettingsMayBreakAccount: "La modification de ces paramètres peut endommager
   votre compte."
-instanceTicker: "Nom du serveur d'origine des posts"
+instanceTicker: "Nom du serveur d'origine des publications"
 waitingFor: "En attente de {x}"
 random: "Aléatoire"
 system: "Système"
@@ -708,12 +707,12 @@ public: "Public"
 i18nInfo: "Firefish est traduit dans différentes langues par des bénévoles. Vous pouvez
   contribuer à {link}."
 manageAccessTokens: "Gérer les jetons d'accès"
-accountInfo: " Informations du compte "
-notesCount: "Nombre de posts"
+accountInfo: "Informations du compte"
+notesCount: "Nombre de publications"
 repliesCount: "Nombre de réponses envoyées"
 renotesCount: "Nombre de boosts que vous avez envoyé"
 repliedCount: "Nombre de réponses reçues"
-renotedCount: "Nombre de vos posts boostés"
+renotedCount: "Nombre de vos publications boostées"
 followingCount: "Nombre de comptes suivis"
 followersCount: "Nombre d'abonnés"
 sentReactionsCount: "Nombre de réactions envoyées"
@@ -726,18 +725,18 @@ driveFilesCount: "Nombre de fichiers dans le Drive"
 driveUsage: "Utilisation du Drive"
 noCrawle: "Refuser l'indexation par les robots"
 noCrawleDescription: "Demandez aux moteurs de recherche de ne pas indexer votre page
-  de profil, vos posts, vos pages, etc."
-lockedAccountInfo: "À moins que vous ne définissiez la visibilité de votre post sur
-  \"Abonné-e-s\", vos posts sont visibles par tous, même si vous exigez que les demandes
-  d'abonnement soient approuvées manuellement."
+  de profil, vos publications, vos pages, etc."
+lockedAccountInfo: "À moins que vous ne définissiez la visibilité de votre publication
+  sur \"Abonné-e-s\", vos publications sont visibles par tous, même si vous exigez
+  que les demandes d'abonnement soient approuvées manuellement."
 alwaysMarkSensitive: "Marquer les médias comme contenu sensible par défaut"
 loadRawImages: "Affichage complet des images jointes au lieu des vignettes"
 disableShowingAnimatedImages: "Désactiver l'animation des images"
 verificationEmailSent: "Un e-mail de vérification a été envoyé. Veuillez accéder au
   lien pour compléter la vérification."
 notSet: "Non défini"
-emailVerified: "Votre adresse e-mail a été vérifiée."
-noteFavoritesCount: "Nombre de posts dans les favoris"
+emailVerified: "Votre adresse e-mail a été vérifiée"
+noteFavoritesCount: "Nombre de publications dans les favoris"
 pageLikesCount: "Nombre de pages aimées"
 pageLikedCount: "Nombre de vos pages aimées"
 contact: "Contact"
@@ -745,10 +744,10 @@ useSystemFont: "Utiliser la police par défaut du système"
 clips: "Clips"
 experimentalFeatures: "Fonctionnalités expérimentales"
 developer: "Développeur"
-makeExplorable: "Rendre le compte visible sur la page \"Découvrir\"."
+makeExplorable: "Rendre le compte visible sur la page \"Découvrir\""
 makeExplorableDescription: "Si vous désactivez cette option, votre compte n'apparaîtra
   pas sur la page \"Découvrir\"."
-showGapBetweenNotesInTimeline: "Afficher un écart entre les posts du fil d’actualité"
+showGapBetweenNotesInTimeline: "Afficher un écart entre les publications du fil d’actualité"
 duplicate: "Duliquer"
 left: "Gauche"
 center: "Centrer"
@@ -761,7 +760,7 @@ showTitlebar: "Afficher la barre de titre"
 clearCache: "Vider le cache"
 onlineUsersCount: "{n} utilisateur(s) en ligne"
 nUsers: "{n} utilisateur·rice·s"
-nNotes: "{n} Posts"
+nNotes: "{n} Publications"
 sendErrorReports: "Envoyer les rapports d’erreur"
 sendErrorReportsDescription: "Si vous activez l'envoi des rapports d'erreur, vous
   contribuerez à améliorer la qualité de Firefish grâce au partage d'informations
@@ -777,8 +776,8 @@ advanced: "Avancé"
 value: "Valeur"
 createdAt: "Date de création"
 updatedAt: "Mis à jour le"
-saveConfirm: "Voulez-vous sauvegarder les modifications?"
-deleteConfirm: "Confirmez-vous la suppression?"
+saveConfirm: "Voulez-vous sauvegarder les modifications ?"
+deleteConfirm: "Confirmez-vous la suppression ?"
 invalidValue: "Cette valeur est invalide."
 registry: "Registre"
 closeAccount: "Fermer le compte"
@@ -806,8 +805,8 @@ unlikeConfirm: "Êtes-vous sûr·e de ne plus vouloir aimer cette publication ?"
 fullView: "Plein écran"
 quitFullView: "Quitter le plein écran"
 addDescription: "Ajouter une description"
-userPagePinTip: "Vous pouvez afficher des posts ici en sélectionnant l'option « Épingler
-  au profil » dans le menu de chaque post."
+userPagePinTip: "Vous pouvez afficher des publications ici en sélectionnant l'option
+  « Épingler au profil » dans le menu de chaque publication."
 notSpecifiedMentionWarning: "Vous avez mentionné des utilisateur·rice·s qui ne font
   pas partie de la liste des destinataires"
 info: "Informations"
@@ -837,9 +836,9 @@ noBotProtectionWarning: "La protection contre les bots n'est pas configurée."
 configure: "Configurer"
 postToGallery: "Publier dans la galerie"
 gallery: "Galerie"
-recentPosts: "Les plus récentes"
-popularPosts: "Les plus consultées"
-shareWithNote: "Partager dans un post"
+recentPosts: "Publications récentes"
+popularPosts: "Publications populaires"
+shareWithNote: "Partager dans une publication"
 ads: "Bannière communautaire"
 expiration: "Échéance"
 memo: "Pense-bête"
@@ -927,7 +926,7 @@ oneWeek: "1 semaine"
 rateLimitExceeded: "Limite de taux dépassée"
 cropImage: "Recadrer l'image"
 cropImageAsk: "Voulez-vous recadrer cette image ?"
-file: "Fichiers"
+file: "Fichier"
 reverse: "Inverser"
 colored: "Coloré"
 label: "Étiquette"
@@ -973,7 +972,7 @@ _forgotPassword:
     mot de passe."
 _gallery:
   my: "Mes publications"
-  liked: " Publications que j'ai aimées"
+  liked: "Publications que j'ai aimé"
   like: "J'aime"
   unlike: "Je n’aime pas"
 _email:
@@ -1122,7 +1121,7 @@ _channel:
   owned: "Mes canaux"
   following: "Abonné·e"
   usersCount: "{n} Participant·e·s"
-  notesCount: "{n} Posts"
+  notesCount: "{n} publications"
   nameAndDescription: Nom et description
   nameOnly: Nom uniquement
 _menuDisplay:
@@ -1136,20 +1135,21 @@ _wordMute:
     un saut de ligne pour une condition OR."
   muteWordsDescription2: "Pour utiliser des expressions régulières (regex), mettez
     les mots-clés entre barres obliques."
-  softDescription: "Masquez de votre fil d’actualité les posts qui répondent aux conditions
-    définies."
-  hardDescription: "Empêche les posts qui remplissent les conditions définies d'être
-    ajoutées au fil d'actualité. Cette action est irréversible : si vous modifiez
-    ces conditions plus tard, les posts précédemment filtrées ne seront pas récupérées."
+  softDescription: "Masquez de votre fil d’actualité les publications qui répondent
+    aux conditions définies."
+  hardDescription: "Empêche les publications, qui remplissent les conditions définies,
+    d'être ajoutées au fil d'actualité. Cette action est irréversible : si vous modifiez
+    ces conditions plus tard, les publications précédemment filtrées ne seront pas
+    récupérées."
   soft: "Doux"
   hard: "Strict"
-  mutedNotes: "Posts filtrés"
+  mutedNotes: "Publications masquées"
 _instanceMute:
   instanceMuteDescription2: "Séparer avec des sauts de lignes"
-  title: "Masque les posts provenant des serveurs listés."
+  title: "Masque les publictions provenant des serveurs listés."
   heading: "Serveurs à mettre en sourdine/masquer"
-  instanceMuteDescription: Ceci va masquer toute posts ou boosts de serveurs listés,
-    incluant celles des personnes répondant à des personnes des serveurs masqués.
+  instanceMuteDescription: Ceci va masquer toute publication ou boost de serveurs
+    listés, incluant celles des personnes répondant à des personnes des serveurs masqués.
 _theme:
   explore: "Explorer les thèmes"
   install: "Installer un thème"
@@ -1227,8 +1227,8 @@ _theme:
     accentLighten: "Plus clair"
     fgHighlighted: "Texte mis en évidence"
 _sfx:
-  note: "Nouveau post"
-  noteMy: "Mon post"
+  note: "Nouvelle publication"
+  noteMy: "Ma publication"
   notification: "Notifications"
   chat: "Discuter"
   chatBg: "Discussion (arrière-plan)"
@@ -1255,25 +1255,25 @@ _tutorial:
   step1_2: "On va vous installer. Vous serez opérationnel en un rien de temps"
   step2_1: "Tout d'abord, remplissez votre profil"
   step2_2: "En fournissant quelques informations sur qui vous êtes, il sera plus facile
-    pour les autres de savoir s'ils veulent voir vos posts ou vous suivre."
+    pour les autres de savoir s'ils veulent voir vos publcations ou vous suivre."
   step3_1: "Maintenant il est temps de suivre des gens !"
   step3_2: "Vos fil d’actualité Principal et Social sont basés sur les personnes que
     vous suivez, alors essayez de suivre quelques comptes pour commencer.\nCliquez
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
-  step4_2: "Pour votre premier post, certaines personnes aiment faire un post {introduction}
-    ou un simple 'Bonjours tout le monde !'"
+  step4_2: "Pour votre première publication, certaines personnes aiment faire une
+    {introduction} ou un simple 'Bonjours tout le monde !'"
   step5_1: "Des fils, des fils d’actualité partout !"
   step5_2: "Votre serveur a {timelines} fils différents disponibles !"
   step5_3: "Le fil {icon} Principal est l'endroit où vous pouvez voir les publications
     de vos abonnements."
-  step5_4: "La fil {icon} Local est l'endroit où vous pouvez voir les messages de
-    tout le monde sur ce serveur."
+  step5_4: "La fil {icon} Local est l'endroit où vous pouvez voir les publications
+    de tout le monde sur ce serveur."
   step5_5: "Le fil {icon} Social est une combinaison des fils Principal et Local."
   step5_6: "Le fil {icon} Recommandé est l'endroit où vous pouvez voir les publications
     des serveurs recommandés par vos administrateurs."
-  step5_7: "Le fil {icon} Global est l'endroit où vous pouvez voir les messages de
-    tout les autres serveurs connectés."
+  step5_7: "Le fil {icon} Global est l'endroit où vous pouvez voir les publications
+    de tout les autres serveurs connectés."
   step6_1: "Alors quel est cet endroit ?"
   step6_2: "Eh bien, vous ne venez pas de rejoindre Firefish. Vous avez rejoint un
     portail vers le Fediverse, un réseau interconnecté de milliers de serveurs, appelés
@@ -1335,7 +1335,7 @@ _permissions:
   "write:messaging": "Gérer les discussions"
   "read:mutes": "Voir les comptes masqués"
   "write:mutes": "Gérer les comptes masqués"
-  "write:notes": "Créer / supprimer des posts"
+  "write:notes": "Créer / supprimer des publications"
   "read:notifications": "Afficher les notifications"
   "write:notifications": "Gérer vos notifications"
   "read:reactions": "Lire les réactions"
@@ -1351,8 +1351,8 @@ _permissions:
   "write:channels": "Gérer les canaux"
   "read:gallery": "Voir la galerie"
   "write:gallery": "Éditer la galerie"
-  "read:gallery-likes": "Voir les mentions « J'aime » dans la galerie"
-  "write:gallery-likes": "Gérer les mentions « J'aime » dans la galerie"
+  "read:gallery-likes": "Voir vos favoris de la galerie"
+  "write:gallery-likes": "Gérer vos favoris de la galerie"
 _auth:
   shareAccess: "Autoriser \"{name}\" à accéder à votre compte ?"
   shareAccessAsk: "Voulez-vous vraiment autoriser cette application à accéder à votre
@@ -1364,12 +1364,13 @@ _auth:
   copyAsk: "Veuillez coller le code d’autorisation suivant dans l'application :"
   allPermissions: Accès complet au compte
 _antennaSources:
-  all: "Tous les posts"
-  homeTimeline: "Posts provenant des utilisateur·rice·s auxquel·les je suis abonné"
-  users: "Posts venant de la part d’utilisateur·rice·s précis"
-  userList: "Posts venant d’une liste spécifique"
-  userGroup: "Posts venant d’utilisateur·rice·s du groupe spécifié"
-  instances: Posts de tous les utilisateurs d'un serveur
+  all: "Toutes les publications"
+  homeTimeline: "Publications provenant des utilisateur·rice·s auxquel·les je suis
+    abonné"
+  users: "Publications venant de la part d’utilisateur·rice·s précis"
+  userList: "Publications venant d’une liste spécifique"
+  userGroup: "Publications venant d’utilisateur·rice·s du groupe spécifié"
+  instances: Publications de tous les utilisateurs d'un serveur
 _weekday:
   sunday: "Dimanche"
   monday: "Lundi"
@@ -1402,7 +1403,7 @@ _widgets:
   _userList:
     chooseList: Sélectionner une liste
   unixClock: Horloge UNIX
-  meiliIndexCount: Posts indexés
+  meiliIndexCount: Publications indexées
   serverInfo: Info serveur
   meiliStatus: État du serveur
   meiliSize: Taille de l’index
@@ -1447,16 +1448,16 @@ _visibility:
   localOnly: "Local seulement"
   localOnlyDescription: "Caché pour les utilisateur·rice·s distant"
 _postForm:
-  replyPlaceholder: "Répondre à ce post ..."
-  quotePlaceholder: "Citez ce post ..."
+  replyPlaceholder: "Répondre à cette publication…"
+  quotePlaceholder: "Citez cette publication…"
   channelPlaceholder: "Publier sur une chaîne…"
   _placeholders:
     a: "Quoi de neuf ?"
     b: "Il s'est passé quelque chose ?"
     c: "Qu’avez-vous en tête ?"
     d: "Désirez-vous publier quelques mots ?"
-    e: "Écrivez ici"
-    f: "En attente de vos écrits ..."
+    e: "Commencez à écrire…"
+    f: "En attente de vos écrits…"
 _profile:
   name: "Nom"
   username: "Nom d’utilisateur·rice"
@@ -1474,7 +1475,7 @@ _profile:
   locationDescription: Si vous entrez votre ville en premier, votre heure locale sera
     affichée aux autres utilisateur·rice·s.
 _exportOrImport:
-  allNotes: "Tous les posts"
+  allNotes: "Toutes les publications"
   followingList: "Abonnements"
   muteList: "Comptes masqués"
   blockingList: "Comptes bloqués"
@@ -1562,8 +1563,8 @@ _pages:
     button: "Bouton"
     if: "Si"
     _if:
-      variable: "Variables"
-    post: "Formulaire de publication"
+      variable: "Variable"
+    post: "Champ de publication"
     _post:
       text: "Contenu"
       attachCanvasImage: "Publier avec Toile comme image"
@@ -1588,10 +1589,10 @@ _pages:
       id: "Toile ID"
       width: "Largeur"
       height: "Hauteur"
-    note: "Post intégré"
+    note: "Publication intégrée"
     _note:
-      id: "Identifiant du post"
-      idDescription: "Vous pouvez aussi coller l'URL du post ici."
+      id: "Identifiant de la publication"
+      idDescription: "Vous pouvez aussi coller l'URL de la publication ici."
       detailed: "Afficher les détails"
     switch: "Interrupteur"
     _switch:
@@ -1629,7 +1630,7 @@ _pages:
       default: "Valeur par défaut"
   script:
     categories:
-      flow: "Contrôle"
+      flow: "Contrôle de flux"
       logical: "Opération logique"
       operation: "Calculer"
       comparison: "Comparer"
@@ -1782,7 +1783,7 @@ _pages:
       splitStrByLine: "Séparer le texte par des sauts de lignes"
       _splitStrByLine:
         arg1: "Texte"
-      ref: "Variables"
+      ref: "Variable"
       aiScriptVar: "Variable d'AiScript"
       fn: "Fonction"
       _fn:
@@ -1842,8 +1843,8 @@ _notification:
     followBack: "Suivre"
     reply: "Répondre"
     renote: "Boosts"
-  reacted: a réagit à votre Note
-  renoted: a boosté votre post
+  reacted: a réagit à votre publication
+  renoted: a boosté votre publication
   voted: a voté pour votre sondage
 _deck:
   alwaysShowMainColumn: "Toujours afficher la colonne principale"
@@ -1883,8 +1884,8 @@ manageGroups: Gérer les groupes
 moderation: Modération
 disableDrawer: Ne pas utiliser de menus déroulants
 preferencesBackups: Sauvegarde des préférences
-confirmToUnclipAlreadyClippedNote: Ce message fait déjà partie du clip "{name}". Voudriez-vous
-  plutôt le supprimer du clip ?
+confirmToUnclipAlreadyClippedNote: Cette publication fait déjà partie du clip "{name}".
+  Voudriez-vous plutôt le supprimer du clip ?
 instanceSecurity: Sécurité du serveur
 recommended: Recommandé
 recentNDays: Les derniers {n} jours
@@ -2005,7 +2006,7 @@ noThankYou: Non merci
 addInstance: Ajouter un serveur
 renoteMute: Masquer les boosts
 flagSpeakAsCat: Parler comme un chat
-flagSpeakAsCatDescription: Vos messages seront nyanifiés en mode chat
+flagSpeakAsCatDescription: Vos messages seront "nyanifiés" en mode chat
 hiddenTags: Hashtags cachés
 hiddenTagsDescription: "Lister les hashtags (sans le #) que vous souhaitez cacher
   de Tendances et Découvrir. Les hashtags cachés sont toujours découvrables par d'autres
@@ -2060,14 +2061,14 @@ pushNotificationAlreadySubscribed: Notifications push déjà activées
 logoImageUrl: URL de l'image du logo
 moveToLabel: 'Compte vers lequel vous migrez :'
 moveFrom: Migrer vers ce compte depuis un ancien compte
-defaultReaction: Émoji de réaction par défaut pour les posts entrants et sortants
+defaultReaction: Émoji de réaction par défaut pour les publications entrantes et sortantes
 license: Licence
-indexPosts: Indexer les Posts
+indexPosts: Indexer les publications
 indexNotice: Indexation en cours. Cela prendra certainement du temps, veuillez ne
   pas redémarrer votre serveur pour au moins une heure.
 customKaTeXMacro: Macros KaTeX personnalisées
 enableCustomKaTeXMacro: Activer les macros KaTeX personnalisées
-noteId: ID des Posts
+noteId: ID des publications
 customKaTeXMacroDescription: "Définissez des macros pour écrire des expressions mathématiques
   simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
   \\newcommand{\\·name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
@@ -2081,37 +2082,37 @@ customKaTeXMacroDescription: "Définissez des macros pour écrire des expression
 enableRecommendedTimeline: Activer le fil recommandé
 silenceThisInstance: Masquer ce serveur
 silencedInstances: Serveurs masqués
-silenced: Silencieux
+silenced: Masqué
 deleted: Effacé
-editNote: Modifier note
+editNote: Modifier publication
 edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
-  utilisatieur·rice·s aux posts des autres.
+  utilisatieur·rice·s aux publications des autres.
 _experiments:
   alpha: Alpha
   beta: Beta
-  enablePostImports: Autoriser l'importation de messages
+  enablePostImports: Autoriser l'importation de publications
   title: Expérimentations
   postImportsCaption: Permet aux utilisateurs d'importer leurs publications à partir
     de leurs anciens comptes Firefish, Misskey, Mastodon, Akkoma et Pleroma. Cela
     peut entraîner des ralentissements lors du chargement si votre file d'attente
     est congestionnée.
 findOtherInstance: Trouver un autre serveur
-userSaysSomethingReasonQuote: '{name} a cité un post contenant {reason}'
+userSaysSomethingReasonQuote: '{name} a cité une publication contenant {reason}'
 signupsDisabled: Les inscriptions sur ce serveur sont actuellement désactivés, mais
   vous pouvez toujours vous inscrire sur un autre serveur ! Si vous avez un code d'invitation
   pour ce serveur, entrez-le ci-dessous s'il vous plait.
 apps: Applications
-userSaysSomethingReasonReply: '{noms} a répondu à un post contenant {raison}'
+userSaysSomethingReasonReply: '{noms} a répondu à une publication contenant {raison}'
 defaultValueIs: 'défaut : {valeur}'
 searchPlaceholder: Recherchez sur Firefish
 removeReaction: Retirer votre réaction
 selectChannel: Sélectionner une chaîne
-expandOnNoteClick: Ouvrir le post en cliquant
+expandOnNoteClick: Ouvrir la publications en cliquant
 preventAiLearning: Empêcher le récupération de données par des IA
 listsDesc: Les listes vous laissent créer des fils personnalisés avec des utilisateur·rice·s
   spécifié·e·s. Elles sont accessibles depuis la page des fils.
-indexFromDescription: Laisser vide pour indexer toutes les Posts
+indexFromDescription: Laisser vide pour indexer toutes les publications
 _feeds:
   jsonFeed: flux JSON
   atom: Atom
@@ -2119,9 +2120,9 @@ _feeds:
   rss: RSS
 alt: ALT
 swipeOnMobile: Permettre le balayage entre les pages
-expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les posts dans le
-  menu du clic droit et en cliquant sur l’horodatage.
-indexFrom: Indexer à partir de l’ID des Posts
+expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les publcations
+  dans le menu du clic droit et en cliquant sur l’horodatage.
+indexFrom: Indexer à partir de l’ID des publications
 older: plus ancien
 newer: plus récent
 accessibility: Accessibilité
@@ -2129,8 +2130,8 @@ silencedInstancesDescription: Listez les noms de domaine de serveurs que vous vo
   masquer. Les comptes des serveurs listés seront traités comme "Masqués", ne pourront
   faire que des demandes d’abonnement, et ne pourront pas mentionner les comptes locaux
   si non-suivis. Cela n’affectera en rien les serveurs bloqués.
-antennasDesc: "Les Antennes affichent de nouveaux posts selon les critères que vous
-  indiqués.\nElles peuvent être consultées depuis la page des fils."
+antennasDesc: "Les Antennes affichent de nouvelles publications selon les critères
+  que vous indiqués.\nElles peuvent être consultées depuis la page des fils."
 image: Image
 video: Vidéo
 audio: Audio
@@ -2139,10 +2140,10 @@ cw: Avertissement de contenu
 xl: XL
 reflectMayTakeTime: Il pourra s’écouler un certain temps avant que les changements
   ne soient reflétés.
-userSaysSomethingReasonRenote: '{name} a boosté un post contenant {reason}'
+userSaysSomethingReasonRenote: '{name} a boosté une publication contenant {reason}'
 sendModMail: Envoyer un avis à la modération
 clipsDesc: Les clips sont comme des favoris catégorisés pouvant être partagés. Vous
-  pouvez créer des clips à partir du menu de chaque post.
+  pouvez créer des clips à partir du menu de chaque publication.
 unclip: Dé-clipper
 secureMode: Mode sécurisé (Authorized Fetch)
 secureModeInfo: Quand sollicité depuis d'autres serveurs, ne pas répondre sans preuve.
@@ -2175,8 +2176,8 @@ isPatron: Mécène Firefish
 _filters:
   fromUser: De l’utilisateur
   withFile: Avec fichier
-  notesBefore: Posts avant
-  notesAfter: Posts après
+  notesBefore: Publications précédentes
+  notesAfter: Publications suivantes
   followersOnly: Abonnés uniquement
   followingOnly: Abonnements uniquement
   fromDomain: Du domaine
