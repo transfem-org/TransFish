@@ -53,29 +53,15 @@ export default define(meta, paramDef, async (ps, user) => {
 		throw err;
 	});
 
-	let query = makePaginationQuery(
+	const query = makePaginationQuery(
 		Notes.createQueryBuilder("note"),
 		ps.sinceId,
 		ps.untilId,
-	)
-		.andWhere("note.renoteId = :renoteId", { renoteId: note.id })
-		.innerJoinAndSelect("note.user", "user");
+	).andWhere("note.renoteId = :renoteId", { renoteId: note.id });
 
 	if (ps.userId) {
-		query.andWhere("user.id = :userId", { userId: ps.userId });
+		query.andWhere("note.userId = :userId", { userId: ps.userId });
 	}
-
-	query
-		.leftJoinAndSelect("user.avatar", "avatar")
-		.leftJoinAndSelect("user.banner", "banner")
-		.leftJoinAndSelect("note.reply", "reply")
-		.leftJoinAndSelect("note.renote", "renote")
-		.leftJoinAndSelect("reply.user", "replyUser")
-		.leftJoinAndSelect("replyUser.avatar", "replyUserAvatar")
-		.leftJoinAndSelect("replyUser.banner", "replyUserBanner")
-		.leftJoinAndSelect("renote.user", "renoteUser")
-		.leftJoinAndSelect("renoteUser.avatar", "renoteUserAvatar")
-		.leftJoinAndSelect("renoteUser.banner", "renoteUserBanner");
 
 	generateVisibilityQuery(query, user);
 	if (user) generateMutedUserQuery(query, user);
