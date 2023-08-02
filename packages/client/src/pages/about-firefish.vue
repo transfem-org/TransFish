@@ -64,7 +64,7 @@
 									><i class="ph-code ph-bold ph-lg"></i
 								></template>
 								{{ i18n.ts._aboutFirefish.source }}
-								<template #suffix>Codeberg</template>
+								<template #suffix>GitLab</template>
 							</FormLink>
 							<FormLink
 								to="https://opencollective.com/firefish"
@@ -117,31 +117,33 @@
 									:text="'@blackspike@mastodon.cloud (Logo Design)'"
 							/></FormLink>
 						</div>
-						<h3>{{ i18n.ts._aboutFirefish.Contributors }}</h3>
+						<h3
+							style="
+								font-weight: 700;
+								margin: 1.5em 0 16px;
+								font-size: 1em;
+							"
+						>
+							{{ i18n.ts._aboutFirefish.misskeyContributors }}
+						</h3>
 						<div class="_formLinks">
 							<FormLink to="/@syuilo@misskey.io"
-								><Mfm
-									:text="'@syuilo@misskey.io'"
+								><Mfm :text="'@syuilo@misskey.io'"
 							/></FormLink>
 							<FormLink to="/@aqz@p1.a9z.dev"
-								><Mfm
-									:text="'@aqz@p1.a9z.dev'"
+								><Mfm :text="'@aqz@p1.a9z.dev'"
 							/></FormLink>
 							<FormLink to="/@ac@misskey.cloud"
-								><Mfm
-									:text="'@ac@misskey.cloud'"
+								><Mfm :text="'@ac@misskey.cloud'"
 							/></FormLink>
 							<FormLink to="/@rinsuki@mstdn.rinsuki.net"
-								><Mfm
-									:text="'@rinsuki@mstdn.rinsuki.net'"
+								><Mfm :text="'@rinsuki@mstdn.rinsuki.net'"
 							/></FormLink>
 							<FormLink to="/@mei23@misskey.m544.net"
-								><Mfm
-									:text="'@mei23@misskey.m544.net'"
+								><Mfm :text="'@mei23@misskey.m544.net'"
 							/></FormLink>
 							<FormLink to="/@robflop@misskey.io"
-								><Mfm
-									:text="'@robflop@misskey.io'"
+								><Mfm :text="'@robflop@misskey.io'"
 							/></FormLink>
 						</div>
 						<h3>
