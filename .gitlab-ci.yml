@@ -53,6 +53,7 @@ dockerPush:
     - docker:dind
   before_script:
     - cp .config/ci.yml .config/default.yml
+    - cp .config/docker_ci.env .config/docker.env
   script:
     - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
