@@ -215,11 +215,11 @@ import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let patrons = $ref([]);
-let sponsors = $ref([]);
+let patrons = [];
+let sponsors = [];
 const patronsResp = await os.api("patrons", { forceUpdate: true });
-patrons.values = patronsResp.patrons;
-sponsors.values = patronsResp.sponsors;
+patrons = patronsResp.patrons;
+sponsors = patronsResp.sponsors;
 
 patrons = patrons.filter((patron) => !sponsors.includes(patron));
 
