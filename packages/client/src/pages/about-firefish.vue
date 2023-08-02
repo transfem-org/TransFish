@@ -127,9 +127,9 @@
 								><Mfm
 									:text="'@aqz@p1.a9z.dev'"
 							/></FormLink>
-							<FormLink to="/@acid_chicken@misskey.m544.net"
+							<FormLink to="/@ac@misskey.cloud"
 								><Mfm
-									:text="'@acid_chicken@misskey.m544.net'"
+									:text="'@ac@misskey.cloud'"
 							/></FormLink>
 							<FormLink to="/@rinsuki@mstdn.rinsuki.net"
 								><Mfm
