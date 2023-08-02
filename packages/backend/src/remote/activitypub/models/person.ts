@@ -532,6 +532,7 @@ export async function updatePerson(
 		)),
 		...updates,
 	};
+	// Entry in userByIdCache will be updated via the internal event of "remoteUserUpdated"
 	updatedUser.avatar = avatar;
 	updatedUser.banner = banner;
 	await userDenormalizedCache.set(updatedUser.id, updatedUser);
