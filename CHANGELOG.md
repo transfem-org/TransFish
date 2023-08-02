@@ -1,5 +1,789 @@
 # Changelog
 
+## [1.0.4-beta] - 2023-08-02
+
+### Bug Fixes
+
+- Fix: convert quoted status and reaction accounts in Mastodon API layer
+
+- Fix: :bug: antenna notes pagination repeat
+
+- Fix: 🍱 old custom assets
+
+- Fix: rename copyright to firefish
+
+- Fix: :bug: revert last part of c0eac56355a0c40ac4d9c0bae82917506e011dc3 to properly paginate antennas/notes query
+
+- Fix: :bug: make admin users page properly direct user cards to about page
+
+- Fix?
+
+- Fix: :globe_with_meridians: copying origin: "remote" -> "origin"
+
+- Fix: :lipstick: don't round corners on status images/server icon
+
+ref: https://akko.unix.dog/notice/AY45yUgIC29eKVC59k
+
+- Fix: :lipstick: deleteAndEdit is danger action
+
+- Fix: :egg: woozy mode behavior
+
+- Fix: :lipstick: remove border radius on welcome icon
+
+- Fix: :pencil2: fix newly discovered users header icon
+
+Typo: rocke-launch -> rocket-launch
+
+- Fix: :globe_with_meridians: deleteAccountConfirm text is not yours
+
+- Fix: 🐛 MkTime logic
+
+- Fix: :bug: don't show server stats in widget if reporting is disabled
+
+Closes #10527
+
+- Fix: :bug: en-US default merge language
+
+Preoperly addresses the issue from !10527
+
+- Fix: :egg: animation
+
+- Fix: 🥚 animation
+
+- Fix: :zap: ref patrons
+
+- Fix: :lock: Show 404 error on files not found
+
+- Fix: weblate link in CONTRIBUTING.md
+
+- Fix: :children_crossing: autosize post form textarea
+
+- Fix: :lipstick: max width for long emojis
+
+long emojis are funny, but not to the point where they break the UI
+
+- Fix: :lipstick: padding, text for mod buttons
+
+- Fix: :pencil2: log typo
+
+- Fix: auto select the first element in completion
+
+- Fix: :bug: hide delete 2fa/passkeys buttons if user is not local
+
+- Fix: :lipstick: increase space between for search page slides
+
+users leaked over
+
+- Fix: :bug: rel=me verification with multiple rels besides me
+
+Closes #10595
+
+- Fix iOS video playback (fixes #10517)
+
+- Fix: 🐛 tapping Okay on reaction will make it update immediately
+
+- Fix: 🐛 wrong margin for MkDateSeperatedlist on Safari beta
+
+- Fix: :bug: inconsistent font sizing on mobile
+
+Closes #10581
+
+- Fix: :lipstick: gap between selects
+
+- Fix: show correct software names (close #30)
+
+- Fix: local software version being undefined
+
+- Fix: :children_crossing: cw re below keep cw button
+
+- Fix: call default user if empty. resolves #10604
+
+- Fix: :busts_in_silhouette: use correct tag for ac
+
+- Fix: :bug: ref loading for patrons/sponsors in about-firefish
+
+- Fix: :bug: properly display caption
+
+- Fix: :busts_in_silhouette: naskya is fullstack
+
+- Fix Japanese locale
+
+### Documentation
+
+- Docs: :memo: repo move
+
+- Docs: :memo: fix link
+
+- Docs: :memo: 1.0.3 changelog
+
+- Docs: :memo: Add explicit FoundKey commits to CHANGELOG
+
+- Docs: :memo: AUR package
+
+- Docs: :memo: remove links to FIREFISH.md
+
+Closes #10601
+
+
+### Features
+
+- Feat: :technologist: gitlab issue templates
+
+- Feat: :technologist: pull request template
+
+- Feat: ✨ draggable navbar items in settings
+
+Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
+Co-authored-by: moshibar <moshibar@mailo.com>
+
+- Feat: :lock: allow admins to reset users' 2FA and passkeys
+
+ref: https://frfsh.plus.st/notes/9hqswpwiwjaihcgo
+
+- Feat: backend debug in vscode
+
+- Feat: add "re:" at the beginning of CW reply comment (close #52)
+
+- Feat: rounded cat ears (close #48)
+
+Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
+Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chiken.com>
+
+
+### Miscellaneous Tasks
+
+- Chore: change image url
+
+- Chore: fix repository url
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 89.1% (1636 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.6% (1793 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.6% (1793 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.6% (1793 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.6% (1793 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 97.6% (1793 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 97.3% (1787 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 97.3% (1787 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 97.3% (1788 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.6% (1811 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.6% (1811 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.6% (1811 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.6% (1811 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.8% (1814 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.8% (1814 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Turkish)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/tr/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 98.2% (1804 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/zh_Hant/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 98.8% (1814 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.8% (1833 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.8% (1833 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :busts_in_silhouette: patrons
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.8% (1835 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.8% (1835 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.8% (1835 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.9% (1836 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/uk/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/zh_Hans/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/zh_Hans/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: :arrow_up: up deps
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 90.9% (1671 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 90.9% (1671 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1837 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Norwegian Bokmål)
+
+Currently translated at 5.9% (110 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/nb_NO/
+
+- Chore: Translated using Weblate (Norwegian Bokmål)
+
+Currently translated at 5.9% (110 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/nb_NO/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 90.9% (1671 of 1837 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 91.4% (1681 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 91.4% (1681 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ca/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 94.3% (1736 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 94.3% (1736 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 97.0% (1784 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 97.0% (1784 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 97.0% (1784 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 97.1% (1786 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 97.1% (1786 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ja/
+
+- Chore: Translated using Weblate (Swedish)
+
+Currently translated at 14.7% (272 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/sv/
+
+- Chore: :globe_with_meridians: "ads" -> "community banners"
+
+People find the term "ads" confusing because they associate it with Google AdSense/other actual advertising platforms. As "ads" on Misskey (and Firefish) act more like community banners than ads, this change should clear up confusion.
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1839 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Swedish)
+
+Currently translated at 37.4% (689 of 1839 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/sv/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ca/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 99.8% (1842 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (Vietnamese)
+
+Currently translated at 81.6% (1506 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/vi/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :art: format
+
+- Chore: Translated using Weblate (Catalan)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ca/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 99.5% (1836 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 90.7% (1674 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/es/
+
+- Chore: Translated using Weblate (Spanish)
+
+Currently translated at 90.7% (1674 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/es/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: :busts_in_silhouette: calckey.social -> firefish.social
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Translated using Weblate (French)
+
+Currently translated at 99.8% (1841 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/fr/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Calckey -> Firefish
+- Chore: Translated using Weblate (German)
+
+Currently translated at 100.0% (1844 of 1844 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/de/
+
+- Chore: Merge branch 'origin/develop' into Weblate.
+
+- Chore: update ja-JP.yml
+
+### Performance
+
+- Perf: :zap: featured posts query limit
+
+
+### Refactor
+
+- Refactor: :children_crossing: only ask for reload on apply button
+
+- Refactor: :recycle: show disabled message if disabled
+
+ref: https://git.joinfirefish.org/firefish/firefish/-/issues/10527#note_230
+
+- Refactor: :recycle: use const for non-reassigned vars
+
+- Refactor: :recycle: MkGoogle uses local search
+
+- Refactor: :busts_in_silhouette: Add original Misskey contributors
+
+
+### Styling
+
+- Style: :lipstick: don't show activity if narrow (cleaner)
+
+
 ## [1.0.3] - 2023-07-21
 
 ### Bug Fixes
@@ -11,15 +795,128 @@
 - Fix: :adhesive_bandage: version manifest assets based on instance version
 
 
+### Miscellaneous Tasks
+
+- Chore: Translated using Weblate (Japanese)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ja/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ru/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ru/
+
+- Chore: Translated using Weblate (Chinese (Traditional))
+
+Currently translated at 97.1% (1783 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/zh_Hant/
+
+- Chore: Translated using Weblate (Korean)
+
+Currently translated at 88.2% (1621 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ko/
+
+- Chore: Translated using Weblate (Galician)
+
+Currently translated at 13.9% (257 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/gl/
+
+- Chore: Translated using Weblate (Polish)
+
+Currently translated at 93.0% (1708 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/pl/
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/uk/
+
+- Chore: Translated using Weblate (Korean)
+
+Currently translated at 93.3% (1713 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ko/
+
+- Chore: Translated using Weblate (Czech)
+
+Currently translated at 46.5% (854 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/cs/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 86.3% (1586 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/id/
+
+- Chore: Translated using Weblate (Vietnamese)
+
+Currently translated at 82.0% (1506 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/vi/
+
+- Chore: Translated using Weblate (Korean)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Firefish/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ko/
+
+
 ### Refactor
 
-- Refactor: :recycle: create drive file endpoint
+- Refactor: :recycle: create-drive-file endpoint
 
 Adjusts ratelimit to 250 files every 10 minutes, fixes error text, fixes reused variable name.
 
 - Refactor: sticky-container class
 
 - Refactor: :recycle: new git repo
+
+for real this time
+
+### Miscellaneous Tasks
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 99.4% (1826 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ru/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 99.4% (1826 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/firefish/locales/ru/
+
 
 ## [1.0.0] - 2023-07-19
 
@@ -34,6 +931,10 @@ Adjusts ratelimit to 250 files every 10 minutes, fixes error text, fixes reused 
 - Fix: 2fa registration code
 
 - Fix: new posts button mobile position + webkit-mask
+
+- Fix: actually fix mobile pos
+
+oops...
 
 - Fix: ad widget size
 
@@ -59,6 +960,8 @@ Follow up #10366, d96877033be9790d11b0212ab8825f93202d22a2
 
 Closes #10372
 
+- Fixes
+
 - Fix: :bug: security key display name
 
 Closes #10313
@@ -67,13 +970,15 @@ Closes #10313
 
 - Fix: :bug: don't convert time since epoch for ratelimit
 
-https://firefish.social/notes/9gkasnzglmi07rpa
+https://calckey.social/notes/9gkasnzglmi07rpa
 
 - Fix: :bug: fix tapping parent on mobile causing side effects
 
 - Fix: :bug: standard input for 2FA token
 
 Closes #10361, removes client dependency
+
+- Fix
 
 - Fix: :bug: addSkinTone strip logic
 
@@ -96,6 +1001,10 @@ I don't understand why margin-top caused that ??
 - Fix/refactor: move new posts button to MkTimeline
 
 - Fix: new posts click
+
+- Fix typo
+
+- Fix
 
 - Fix: use redis-semaphore for global mutex and memory leak prevention
 
@@ -123,6 +1032,13 @@ I don't understand why margin-top caused that ??
 
 Closes #10406
 
+- Fix: use unique key for my page query
+
+- Fix: use unique key for my galleries
+
+- Fix: use unique key for my page query
+
+- Fix: use unique key for my galleries
 
 - Fix: 🐛 fix quotes with CW-only quotes
 
@@ -138,6 +1054,10 @@ Closes #10406
 
 - Fix: :bug: prevent creation of empty antennas
 
+- Fix
+
+- Fix
+
 - Fix: :bug: server stats setting, meta fetching
 
 - Fix: :bug: server stats setting, meta fetching
@@ -146,7 +1066,7 @@ Closes #10406
 
 - Fix: MkMedia #10429 ?  + styling
 
-- Fix: nav post button gradient transition ([#10401](https://github.com/orhun/git-cliff/issues/10401)) + half refactor ?
+- Fix: nav post button gradient transition (#10401) + half refactor ?
 
 - Fix: error if no banner
 
@@ -170,9 +1090,19 @@ Use vue-draggable-plus instead of vuedraggable: https://github.com/SortableJS/vu
 
 Closes #10467
 
+- Fix?
+
+- Fix
+
+- Fix
+
 - Fix popup menu
 
+- Fix: :bug: plus button for reactions
+
 - Fix: :bug: plus button in reaction settings
+
+- Fix
 
 - Fix: :bug: save reactions if added
 
@@ -195,6 +1125,10 @@ resolves #10438
 - Fix: :lipstick: scoped style fix
 
 - Fix #10483
+
+- Fix #10483 (2)
+
+- Fix
 
 - Fix: collapsing white space
 
@@ -223,11 +1157,19 @@ Closes #10472
 Pleroma doesn't accept >100K (ref: https://blob.cat/objects/82f33d96-534f-45ee-902a-f77c2723db8b)
 
 - Fix format
+- Fix: Add error message on initialization failed
+
 - Fix: more reliable not closing emoji picker on shift key
 
 - Fix: unable to scroll through reactions on mobile
 
+- Fix: fix typo
+
 - Fix lock
+- Fix: Branch by bind address
+
+- Fix: Revert k8s template updates
+
 - Fix: use hostname as prefix instead of host
 
 - Fix: 🐛 Scrolling Issue in Safari for Top and Bottom Bars
@@ -239,6 +1181,10 @@ Pleroma doesn't accept >100K (ref: https://blob.cat/objects/82f33d96-534f-45ee-9
 - Fix: import
 
 - Fix: skip attachment import if undefined
+
+- Fix: :bug: gitignore causing wrong file to be pushed
+
+- Fix: :bug: merge somehow stripped style.css of splash style
 
 
 ### Documentation
@@ -280,14 +1226,20 @@ ref: https://is-a.wyvern.rip/notes/9hac2nd98s
 
 - Docs: 📝 foundkey migration apply patch correctly
 
+- Docs: :memo: changelog
+
+- Docs: :truck: new website
+
+- Docs: :memo: codeberg -> gitlab
+
 
 ### Features
 
 - Feat: Make scrollable widgets flexible
 
-- Feat: make RSS feed scrollable ([#10108](https://github.com/orhun/git-cliff/issues/10108))
+- Feat: make RSS feed scrollable (#10108)
 
-- Feat: ALT button ([#9265](https://github.com/orhun/git-cliff/issues/9265))
+- Feat: ALT button (#9265)
 
 - Feat: toggle-able swiping
 
@@ -335,7 +1287,7 @@ Co-authored-by: Syuilo <syuilotan@yahoo.co.jp>
 
 - Feat: :sparkles: seperate sponsors and patrons
 
-- Feat: ✨ Add media to Mastodon and Calckey post imports ([#10496](https://github.com/orhun/git-cliff/issues/10496))
+- Feat: ✨ Add media to Mastodon and Calckey post imports (#10496)
 
 ### What does this PR do?
 
@@ -358,9 +1310,11 @@ Co-committed-by: コルセット姫@がんばらない <cgsama@noreply.codeberg.
 
 - Feat: Move json5 to prod dependencies
 
+- Feat: Add bind address option
+
 - Feat: add view on remote server to user profile dropdowns
 
-- Feat: ✨ verify links with rel=me ([#10506](https://github.com/orhun/git-cliff/issues/10506))
+- Feat: ✨ verify links with rel=me (#10506)
 
 Adds Mastodon-style `rel=me` link verification, and creates a background job to verify said links
 
@@ -375,6 +1329,8 @@ Reviewed-on: https://codeberg.org/calckey/calckey/pulls/10506
 - Feat: show snippet of alt text when hovering alt button
 
 - Feat: :sparkles: copy feeds from user menu
+
+- Add
 
 
 ### Miscellaneous Tasks
@@ -918,6 +1874,48 @@ Currently translated at 100.0% (1836 of 1836 strings)
 
 Translation: Calckey/locales
 Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Indonesian)
+
+Currently translated at 83.6% (1536 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/id/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 99.1% (1820 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Russian)
+
+Currently translated at 99.1% (1820 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/ru/
+
+- Chore: Translated using Weblate (Ukrainian)
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/uk/
+
+- Chore: Translated using Weblate (Chinese (Simplified))
+
+Currently translated at 100.0% (1836 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/zh_Hans/
+
+- Chore: Translated using Weblate (Bulgarian (bul_BG))
+
+Currently translated at 20.2% (371 of 1836 strings)
+
+Translation: Calckey/locales
+Translate-URL: https://hosted.weblate.org/projects/calckey/locales/bul_BG/
 
 
 ### Performance
@@ -1834,7 +2832,7 @@ Closes #9843
 
 - Fix: :recycle: use locale for error
 
-https://firefish.social/notes/9fippqiwhl287b5m
+https://calckey.social/notes/9fippqiwhl287b5m
 
 - Fix mfm-cheat-sheet styling
 
@@ -1890,6 +2888,8 @@ https://calckey.aokaga.work/notes/9f6ksv2oov
 - Docs: fix k8s link
 
 - Docs: add opencollective
+
+- Docs: cleanup apache
 
 - Docs: cleanup apache
 
@@ -3085,7 +4085,7 @@ and was handled by completely different API endpoint.
 
 - Fix
 
-- Fix: centering block math ([#9946](https://github.com/orhun/git-cliff/issues/9946))
+- Fix: centering block math (#9946)
 
 Similar to `inlineCode` and `blockCode`, MFM provides two types of formula syntax, `mathInline` and `mathBlock` (I'm curious why these aren't called `inlineMath`/`blockMath`, but oh well)
 
@@ -3188,7 +4188,7 @@ Translate-URL: https://hosted.weblate.org/projects/calckey/locales/fi/
 
 - Feat: heatmap option for activity widget
 
-- Feat: reserved usernames ([#9917](https://github.com/orhun/git-cliff/issues/9917))
+- Feat: reserved usernames (#9917)
 
 This PR adds a feature to prevent users from creating a new account with a reserved username such as root, admin, system, proxy, info, etc...
 
@@ -3270,7 +4270,7 @@ Closes #9849
 
 - Fix a bug
 
-- Fix: disable "Search" keyword ([#9856](https://github.com/orhun/git-cliff/issues/9856))
+- Fix: disable "Search" keyword (#9856)
 
 Related: #9816 #9830
 I was so careless that I didn't know "Search" was also a keyword. I disabled that and fixed a minor bug.
@@ -3286,9 +4286,9 @@ Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
 - Fix header tabs
 
-- Fix: ドライブアップロードで413が返ってきたときにエラーメッセージを表示 ([#10680](https://github.com/orhun/git-cliff/issues/10680))
+- Fix: ドライブアップロードで413が返ってきたときにエラーメッセージを表示 (#10680)
 
-- Fix: boost muting in the recommended timeline ([#9906](https://github.com/orhun/git-cliff/issues/9906))
+- Fix: boost muting in the recommended timeline (#9906)
 
 Closes: #9905
 Co-authored-by: naskya <m@naskya.net>
@@ -3310,7 +4310,7 @@ has been broken for months, I don't maintain it either.
 
 - Feat: :sparkles: software name on hover icon in instance ticker
 
-- Feat: add an option to disable emoji reactions ([#9878](https://github.com/orhun/git-cliff/issues/9878))
+- Feat: add an option to disable emoji reactions (#9878)
 
 Closes: #9865
 Co-authored-by: naskya <m@naskya.net>
@@ -3318,7 +4318,7 @@ Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9878
 Co-authored-by: naskya <naskya@noreply.codeberg.org>
 Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
-- Feat: make it toggleable whether to disable emojis in notifications ([#9880](https://github.com/orhun/git-cliff/issues/9880))
+- Feat: make it toggleable whether to disable emojis in notifications (#9880)
 
 I talked about feature #9865 on my fedi account and received a comment like, "I don't care about emoji reactions in my timelines, but I do care what reactions I get!"
 
@@ -3570,7 +4570,7 @@ endpoints and features.
 
 - Fix: :bug: go to last timeline selected
 
-- Fix: toggling the blocking state from the instance-info admin view ([#9809](https://github.com/orhun/git-cliff/issues/9809))
+- Fix: toggling the blocking state from the instance-info admin view (#9809)
 
 Because the admin meta information was never loaded on this page, no amount of toggling the block or suspend sliders on the instance-info page (e.g. `https://calckey.example.com/instance-info/instance.tld`) will result in the instance actually being added to the blocklist. You could still do it from the bulk blocklist management page, but that can get unwieldy quickly if you just want to do a quick block of an instance.
 
@@ -3581,7 +4581,7 @@ Co-committed-by: amybones <amybones@noreply.codeberg.org>
 
 - Fix
 
-- Fix(client): userpage ui ([#9179](https://github.com/orhun/git-cliff/issues/9179))
+- Fix(client): userpage ui (#9179)
 
 * fix(unverified): clip pages ui
 
@@ -3639,7 +4639,7 @@ This simply adds a basic admin UI to blocklist some hashtags from displaying in
 the trending widget. The facility existed already in the backend, but there was
 no UI to manipulate the list save for executing raw SQL or API calls.
 
-- Feat: per-user boost muting ([#9825](https://github.com/orhun/git-cliff/issues/9825))
+- Feat: per-user boost muting (#9825)
 
 Cherry-picked from FoundKey/c414f24a2c ([commit](https://akkoma.dev/FoundKeyGang/FoundKey/commit/c414f24a2c123774246c7eca65edda4d3afaf8b3))
 
@@ -3668,7 +4668,7 @@ Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
 - Chore: remove okteto
 
-- Chore: update Japanese locale ([#9802](https://github.com/orhun/git-cliff/issues/9802))
+- Chore: update Japanese locale (#9802)
 
 - Chore: :art: format
 
@@ -3690,7 +4690,7 @@ Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
 - Chore: formatting
 
-- Chore: update mfm-js version ([#9844](https://github.com/orhun/git-cliff/issues/9844))
+- Chore: update mfm-js version (#9844)
 
 This resolves #9757.
 
@@ -3736,7 +4736,7 @@ fixes notifications and drive in settings
 
 - Fix doc link
 
-- Fix: direct boost ([#9783](https://github.com/orhun/git-cliff/issues/9783))
+- Fix: direct boost (#9783)
 
 Sorry to create PR multiple times. I should have included this in #9778.
 
@@ -3747,7 +4747,7 @@ Co-committed-by: naskya <naskya@noreply.codeberg.org>
 
 - Fix: don't nyaize quoted text
 
-- Fix: don't nyaize quoted text ([#9791](https://github.com/orhun/git-cliff/issues/9791))
+- Fix: don't nyaize quoted text (#9791)
 
 - Fix search import
 
@@ -3777,7 +4777,7 @@ Closes #9660
 
 - Feat: :sparkles: button in admin dash to index posts
 
-- Feat: custom KaTeX macro ([#9779](https://github.com/orhun/git-cliff/issues/9779))
+- Feat: custom KaTeX macro (#9779)
 
 Closes: #9759
 Co-authored-by: naskya <m@naskya.net>
@@ -3795,7 +4795,7 @@ Breaks Calckey -> Misskey migration, but fixes Foundkey -> Calckey migration
 
 - Add argon
 
-- Feat: add option to boost with Home and Followers-only visibility ([#9788](https://github.com/orhun/git-cliff/issues/9788))
+- Feat: add option to boost with Home and Followers-only visibility (#9788)
 
 Closes: #9777
 
@@ -3870,7 +4870,7 @@ Resolves: #9665
 
 ### Features
 
-- Feat: swap home timeline with social's functionality ([#9597](https://github.com/orhun/git-cliff/issues/9597))
+- Feat: swap home timeline with social's functionality (#9597)
 
 The Home timeline functionality is swapped with social's. Meaning that Home timeline now consists of followee's and local posts. Social from now on will contain only followee's posts. See more info in the attached ticket.
 
@@ -3900,7 +4900,7 @@ Co-committed-by: yawhn <yawhn@noreply.codeberg.org>
 
 - Fix deck view margins
 
-- Fix: Parse mastoAPI `limit` argument in more places & Improve converting arguments to boolean ([#9716](https://github.com/orhun/git-cliff/issues/9716))
+- Fix: Parse mastoAPI `limit` argument in more places & Improve converting arguments to boolean (#9716)
 
 Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9716
 Authored-by: fruye <fruye@unix.dog>
@@ -3944,7 +4944,7 @@ Closes #9661
 
 ### Features
 
-- Feat: Make follower counts for remote users correct ([#9705](https://github.com/orhun/git-cliff/issues/9705))
+- Feat: Make follower counts for remote users correct (#9705)
 
 #9293
 
@@ -3957,7 +4957,7 @@ Co-committed-by: s1idewhist1e <s1idewhist1e@noreply.codeberg.org>
 
 - Add 404 as replacements
 
-- Feat: set license information for custom emojis ([#9719](https://github.com/orhun/git-cliff/issues/9719))
+- Feat: set license information for custom emojis (#9719)
 
 Closes: #9711 (please check this issue first)
 
@@ -4020,7 +5020,7 @@ Closes #9709
 
 ### Bug Fixes
 
-- Fix: Isolate unicode characters in display names ([#9702](https://github.com/orhun/git-cliff/issues/9702))
+- Fix: Isolate unicode characters in display names (#9702)
 
 This fixes a 'Follows you' badge on a profile page and account addresses in threads from being drawn backwards when an account has some special Unicode characters that change the direction of text in their name (i.e. U+202E RIGHT-TO-LEFT OVERRIDE).
 
@@ -4038,7 +5038,7 @@ string named 'true' instead of the value 'true'.
 
 Needed for pleromaFE to display a timeline.
 
-- Fix: Run to boolean conversion in mastoAPI public and hashtag timelines ([#9710](https://github.com/orhun/git-cliff/issues/9710))
+- Fix: Run to boolean conversion in mastoAPI public and hashtag timelines (#9710)
 
 - Fix footer icons
 
@@ -4057,7 +5057,7 @@ Needed for pleromaFE to display a timeline.
 
 - Fix import
 
-- Fix: some Masotdon API compat issues ([#9592](https://github.com/orhun/git-cliff/issues/9592))
+- Fix: some Masotdon API compat issues (#9592)
 Co-authored-by: GeopJr <geopjr@noreply.codeberg.org>
 Co-committed-by: GeopJr <geopjr@noreply.codeberg.org>
 
@@ -4075,7 +5075,7 @@ Co-committed-by: GeopJr <geopjr@noreply.codeberg.org>
 
 - Fix: correct megalodon import
 
-- Fix navbar hover thingy ([#9616](https://github.com/orhun/git-cliff/issues/9616))
+- Fix navbar hover thingy (#9616)
 
 Co-authored-by: Freeplay <Freeplay@duck.com>
 Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9616
@@ -4196,7 +5196,7 @@ https://codeberg.org/calckey/calckey/issues/9080
 
 ### Features
 
-- Feat: ✨ don't depend on an external service for urn:ietf:wg:oauth:2.0:oob ([#9602](https://github.com/orhun/git-cliff/issues/9602))
+- Feat: ✨ don't depend on an external service for urn:ietf:wg:oauth:2.0:oob (#9602)
 Co-authored-by: GeopJr <evan@geopjr.dev>
 Co-committed-by: GeopJr <evan@geopjr.dev>
 
@@ -4267,7 +5267,7 @@ Co-committed-by: GeopJr <evan@geopjr.dev>
 
 - Update thingy?
 
-- Chore: update Japanese locale ([#9673](https://github.com/orhun/git-cliff/issues/9673))
+- Chore: update Japanese locale (#9673)
 Co-authored-by: Namekuji <nmkj@noreply.codeberg.org>
 Co-committed-by: Namekuji <nmkj@noreply.codeberg.org>
 
@@ -4363,7 +5363,7 @@ and work like (old) butter.
 Co-authored-by: Natty <natty.sh.git@gmail.com>
 Co-authored-by: cutls <web-pro@cutls.com>
 
-- Feature/help_menu ([#9587](https://github.com/orhun/git-cliff/issues/9587))
+- Feature/help_menu (#9587)
 
 Co-authored-by: ThatOneCalculator <kainoa@t1c.dev>
 Reviewed-on: https://codeberg.org/calckey/calckey/pulls/9587
@@ -4582,7 +5582,7 @@ Co-authored-by: Syuilo <Syuilotan@yahoo.co.jp>
 
 - Refactor: merge CI configs
 
-- Refactor: :hammer: Use pnpm instead of yarn ([#9461](https://github.com/orhun/git-cliff/issues/9461))
+- Refactor: :hammer: Use pnpm instead of yarn (#9461)
 
 Reasons:
 
@@ -4684,7 +5684,7 @@ premature partial from #9415
 
 - Add antenna mark read functionalityu
 
-- Add .js to the end of two type-scripts, fixing a critical error that crashes calckey ([#9347](https://github.com/orhun/git-cliff/issues/9347))
+- Add .js to the end of two type-scripts, fixing a critical error that crashes calckey (#9347)
 
 - ✨ automatic changelog generation using git cliffy
 
@@ -4708,7 +5708,7 @@ premature partial from #9415
 
 - Fix typo
 
-- Fix-docker-env-path ([#9241](https://github.com/orhun/git-cliff/issues/9241))
+- Fix-docker-env-path (#9241)
 
 - Fix: use correct color for MkMoved
 
@@ -4757,7 +5757,7 @@ premature partial from #9415
 
 - Docs: 📝 fix spacing
 
-- Docker-compose-port-fix ([#9251](https://github.com/orhun/git-cliff/issues/9251))
+- Docker-compose-port-fix (#9251)
 
 - Docs: 🥴
 
@@ -5143,9 +6143,9 @@ It's "available". Thank you luke :P
 
 - Feat: ✨ Page drafts
 
-- Feat: Docker update script ([#9159](https://github.com/orhun/git-cliff/issues/9159))
+- Feat: Docker update script (closes #9159)
 
-- Feat: Docker update script ([#9159](https://github.com/orhun/git-cliff/issues/9159))
+- Feat: Docker update script (closes #9159)
 
 - Feat: :sparkles: Add delete all lists
 
@@ -5525,7 +6525,7 @@ fix: :fire: Remove meta implementation in routing for now
 
 - Feat: :bookmark: 12.118.1-calc release!
 
-- Feat: show header with current user avatar on TL ([#9051](https://github.com/orhun/git-cliff/issues/9051))
+- Feat: show header with current user avatar on TL (#9051)
 
 * feat: show header with current user avatar on TL
 
@@ -5641,7 +6641,7 @@ From yarn upgrade-interactive
 
 - Update deps
 
-- Chore(sw): only proxies HTML requests ([#9070](https://github.com/orhun/git-cliff/issues/9070))
+- Chore(sw): only proxies HTML requests (#9070)
 
 * chore(sw): only proxies HTML requests
 
@@ -5688,7 +6688,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 
 - Refactor: :package: Use updated fork of vue-plyr
 
-- Enhance(client): mobile twitter url can be used as widget ([#9057](https://github.com/orhun/git-cliff/issues/9057))
+- Enhance(client): mobile twitter url can be used as widget (#9057)
 
 
 - Enhance(client): add html color-schema support
@@ -5785,7 +6785,7 @@ Fix #9043
 
 ### Features
 
-- Feature: Client Preferences Registry ([#8511](https://github.com/orhun/git-cliff/issues/8511))
+- Feature: Client Preferences Registry (#8511)
 
 * Fix settings page
 
@@ -5924,7 +6924,7 @@ Co-authored-by: Andreas Nedbal <github-bf215181b5140522137b3d4f6b73544a@desu.ema
 
 Fix #9026
 
-- Fix: broken chats ([#8983](https://github.com/orhun/git-cliff/issues/8983))
+- Fix: broken chats (#8983)
 
 * Fix broken chats
 
@@ -5959,7 +6959,7 @@ Co-authored-by: @ltlapy
 
 - Chore(client): tweak radio component
 
-- Chore(deps): bump terser from 5.9.0 to 5.14.2 ([#9024](https://github.com/orhun/git-cliff/issues/9024))
+- Chore(deps): bump terser from 5.9.0 to 5.14.2 (#9024)
 
 Bumps [terser](https://github.com/terser/terser) from 5.9.0 to 5.14.2.
 - [Release notes](https://github.com/terser/terser/releases)
@@ -5981,7 +6981,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Update tfjs
 
-- Chore(deps): bump file-type from 17.1.2 to 17.1.3 in /packages/backend ([#9030](https://github.com/orhun/git-cliff/issues/9030))
+- Chore(deps): bump file-type from 17.1.2 to 17.1.3 in /packages/backend (#9030)
 
 Bumps [file-type](https://github.com/sindresorhus/file-type) from 17.1.2 to 17.1.3.
 - [Release notes](https://github.com/sindresorhus/file-type/releases)
@@ -5996,7 +6996,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump undici from 5.5.1 to 5.8.0 in /packages/backend ([#9028](https://github.com/orhun/git-cliff/issues/9028))
+- Chore(deps): bump undici from 5.5.1 to 5.8.0 in /packages/backend (#9028)
 
 Bumps [undici](https://github.com/nodejs/undici) from 5.5.1 to 5.8.0.
 - [Release notes](https://github.com/nodejs/undici/releases)
@@ -7195,24 +8195,24 @@ Closes #2076
 - Fix(package): update vue-loader to version 15.3.0
 - Fix(package): update systeminformation to version 3.42.9
 - Fix(package): update style-loader to version 0.22.1
-- Fix(package): update summaly to version 2.1.0 ([#2132](https://github.com/orhun/git-cliff/issues/2132))
+- Fix(package): update summaly to version 2.1.0 (#2132)
 
 
-- Fix(package): update node-sass to version 4.9.3 ([#2131](https://github.com/orhun/git-cliff/issues/2131))
+- Fix(package): update node-sass to version 4.9.3 (#2131)
 
 
-- Fix(package): update summaly to version 2.1.1 ([#2135](https://github.com/orhun/git-cliff/issues/2135))
+- Fix(package): update summaly to version 2.1.1 (#2135)
 
 
 - Fix(package): update element-ui to version 2.4.6
 - Fix(package): update file-type to version 9.0.0
-- Fix(package): update summaly to version 2.1.2 ([#2149](https://github.com/orhun/git-cliff/issues/2149))
+- Fix(package): update summaly to version 2.1.2 (#2149)
 
 
-- Fix(package): update request to version 2.88.0 ([#2151](https://github.com/orhun/git-cliff/issues/2151))
+- Fix(package): update request to version 2.88.0 (#2151)
 
 
-- Fix(package): update @types/node to version 10.5.8 ([#2152](https://github.com/orhun/git-cliff/issues/2152))
+- Fix(package): update @types/node to version 10.5.8 (#2152)
 
 
 - Fix(package): update ts-node to version 7.0.1
@@ -7243,7 +8243,7 @@ Closes #2076
 - Fix(package): update sharp to version 0.20.7
 
 Closes #2368
-- Fix login bug([#2384](https://github.com/orhun/git-cliff/issues/2384))
+- Fix login bug(#2384)
 
 - Fix(package): update webpack to version 4.17.1
 - Fix(package): update summaly to version 2.1.4
@@ -7277,7 +8277,7 @@ Closes #2519
 - Fix(package): update @types/uuid to version 3.4.4
 - Fix(package): update @types/websocket to version 0.0.40
 - Fix(package): update @types/node to version 10.9.4
-- Fix #2315 ([#2339](https://github.com/orhun/git-cliff/issues/2339))
+- Fix #2315 (#2339)
 
 * improve MFM to html
 
@@ -7301,270 +8301,270 @@ Closes #2519
 
 - Fix
 
-- Fix(package): update webpack to version 4.17.2 ([#2599](https://github.com/orhun/git-cliff/issues/2599))
+- Fix(package): update webpack to version 4.17.2 (#2599)
 
 
-- Fix(package): update vue-js-modal to version 1.3.26 ([#2613](https://github.com/orhun/git-cliff/issues/2613))
+- Fix(package): update vue-js-modal to version 1.3.26 (#2613)
 
 
-- Fix(package): update systeminformation to version 3.45.0 ([#2609](https://github.com/orhun/git-cliff/issues/2609))
+- Fix(package): update systeminformation to version 3.45.0 (#2609)
 
 
-- Fix(package): update node-sass-json-importer to version 4.0.0 ([#2614](https://github.com/orhun/git-cliff/issues/2614))
+- Fix(package): update node-sass-json-importer to version 4.0.0 (#2614)
 
 
-- Fix(package): update systeminformation to version 3.45.1 ([#2616](https://github.com/orhun/git-cliff/issues/2616))
+- Fix(package): update systeminformation to version 3.45.1 (#2616)
 
 
 - Fix mk-media darkmode
 
-- Fix(package): update @types/ws to version 6.0.1 ([#2636](https://github.com/orhun/git-cliff/issues/2636))
+- Fix(package): update @types/ws to version 6.0.1 (#2636)
 
 
-- Fix(package): update @types/minio to version 7.0.0 ([#2626](https://github.com/orhun/git-cliff/issues/2626))
+- Fix(package): update @types/minio to version 7.0.0 (#2626)
 
 
-- Fix(package): update node-sass-json-importer to version 4.0.1 ([#2645](https://github.com/orhun/git-cliff/issues/2645))
+- Fix(package): update node-sass-json-importer to version 4.0.1 (#2645)
 
 
 - Fix(package): update commander to version 2.18.0
-- Fix(package): update minio to version 7.0.1 ([#2655](https://github.com/orhun/git-cliff/issues/2655))
+- Fix(package): update minio to version 7.0.1 (#2655)
 
 
-- Fix docs ([#2678](https://github.com/orhun/git-cliff/issues/2678))
+- Fix docs (#2678)
 
 
 - Fix(package): update systeminformation to version 3.45.6
 
 Closes #2617
-- Fix(package): update vue-loader to version 15.4.2 ([#2692](https://github.com/orhun/git-cliff/issues/2692))
+- Fix(package): update vue-loader to version 15.4.2 (#2692)
 
 
-- Fix(package): update debug to version 4.0.1 ([#2700](https://github.com/orhun/git-cliff/issues/2700))
+- Fix(package): update debug to version 4.0.1 (#2700)
 
 Closes #2682
-- Fix(package): update @types/mongodb to version 3.1.7 ([#2701](https://github.com/orhun/git-cliff/issues/2701))
+- Fix(package): update @types/mongodb to version 3.1.7 (#2701)
 
 Closes #2681
-- Fix(package): update webpack to version 4.18.0 ([#2680](https://github.com/orhun/git-cliff/issues/2680))
+- Fix(package): update webpack to version 4.18.0 (#2680)
 
 
-- Fix(package): update webpack to version 4.18.1 ([#2704](https://github.com/orhun/git-cliff/issues/2704))
+- Fix(package): update webpack to version 4.18.1 (#2704)
 
 
 - Fix(package): update webpack to version 4.19.0
 - Fix(package): update vue-cropperjs to version 2.2.2
 - Fix(package): update @types/node to version 10.10.0
 - Fix(package): update @types/node to version 10.10.1
-- Fix(package): update webpack to version 4.19.1 ([#2732](https://github.com/orhun/git-cliff/issues/2732))
+- Fix(package): update webpack to version 4.19.1 (#2732)
 
 
-- Fix(package): update web-push to version 3.3.3 ([#2733](https://github.com/orhun/git-cliff/issues/2733))
+- Fix(package): update web-push to version 3.3.3 (#2733)
 
 
-- Fix(package): update @types/webpack to version 4.4.12 ([#2739](https://github.com/orhun/git-cliff/issues/2739))
+- Fix(package): update @types/webpack to version 4.4.12 (#2739)
 
 
-- Fix(package): update @types/koa-router to version 7.0.32 ([#2740](https://github.com/orhun/git-cliff/issues/2740))
+- Fix(package): update @types/koa-router to version 7.0.32 (#2740)
 
 
-- Fix(package): update websocket to version 1.0.28 ([#2746](https://github.com/orhun/git-cliff/issues/2746))
+- Fix(package): update websocket to version 1.0.28 (#2746)
 
 Closes #2743
-- Fix(package): update @types/bcryptjs to version 2.4.2 ([#2742](https://github.com/orhun/git-cliff/issues/2742))
+- Fix(package): update @types/bcryptjs to version 2.4.2 (#2742)
 
 
-- Fix(package): update @types/node to version 10.10.2 ([#2750](https://github.com/orhun/git-cliff/issues/2750))
+- Fix(package): update @types/node to version 10.10.2 (#2750)
 
 
-- Fix(package): update @types/node to version 10.10.3 ([#2753](https://github.com/orhun/git-cliff/issues/2753))
+- Fix(package): update @types/node to version 10.10.3 (#2753)
 
 
-- Fix(package): update webpack to version 4.20.2 ([#2814](https://github.com/orhun/git-cliff/issues/2814))
+- Fix(package): update webpack to version 4.20.2 (#2814)
 
 Closes #2768
-- Fix(package): update gulp-htmlmin to version 5.0.1 ([#2815](https://github.com/orhun/git-cliff/issues/2815))
+- Fix(package): update gulp-htmlmin to version 5.0.1 (#2815)
 
 Closes #2669
-- Fix(package): update nan to version 2.11.1 ([#2784](https://github.com/orhun/git-cliff/issues/2784))
+- Fix(package): update nan to version 2.11.1 (#2784)
 
 
-- Fix(package): update koa-mount to version 4.0.0 ([#2776](https://github.com/orhun/git-cliff/issues/2776))
+- Fix(package): update koa-mount to version 4.0.0 (#2776)
 
 
-- Fix(package): update diskusage to version 0.2.5 ([#2767](https://github.com/orhun/git-cliff/issues/2767))
+- Fix(package): update diskusage to version 0.2.5 (#2767)
 
 
-- Fix(package): update qrcode to version 1.3.0 ([#2799](https://github.com/orhun/git-cliff/issues/2799))
+- Fix(package): update qrcode to version 1.3.0 (#2799)
 
 
-- Fix(package): update @types/qrcode to version 1.3.0 ([#2813](https://github.com/orhun/git-cliff/issues/2813))
+- Fix(package): update @types/qrcode to version 1.3.0 (#2813)
 
 
-- Fix(package): update jsdom to version 12.1.0 ([#2788](https://github.com/orhun/git-cliff/issues/2788))
+- Fix(package): update jsdom to version 12.1.0 (#2788)
 
 
-- Fix(package): update webpack-cli to version 3.1.2 ([#2816](https://github.com/orhun/git-cliff/issues/2816))
+- Fix(package): update webpack-cli to version 3.1.2 (#2816)
 
 Closes #2757
-- Fix(package): update @types/node to version 10.11.4 ([#2817](https://github.com/orhun/git-cliff/issues/2817))
+- Fix(package): update @types/node to version 10.11.4 (#2817)
 
 Closes #2765
-- Fix(package): update @types/webpack to version 4.4.14 ([#2818](https://github.com/orhun/git-cliff/issues/2818))
+- Fix(package): update @types/webpack to version 4.4.14 (#2818)
 
 Closes #2778
-- Fix(package): update typescript-eslint-parser to version 19.0.2 ([#2819](https://github.com/orhun/git-cliff/issues/2819))
+- Fix(package): update typescript-eslint-parser to version 19.0.2 (#2819)
 
 Closes #2772
 - Fix(package): update sharp to version 0.21.0
 
 Closes #2619
-- Fix(package): update vue-svg-inline-loader to version 1.1.4 ([#2821](https://github.com/orhun/git-cliff/issues/2821))
+- Fix(package): update vue-svg-inline-loader to version 1.1.4 (#2821)
 
 
 - Fix #2346
 
-- Fix(package): update ws to version 6.1.0 ([#2823](https://github.com/orhun/git-cliff/issues/2823))
+- Fix(package): update ws to version 6.1.0 (#2823)
 
 
-- Fix(package): update reconnecting-websocket to version 4.1.5 ([#2845](https://github.com/orhun/git-cliff/issues/2845))
+- Fix(package): update reconnecting-websocket to version 4.1.5 (#2845)
 
 Closes #2785
-- Fix(package): update systeminformation to version 3.45.7 ([#2825](https://github.com/orhun/git-cliff/issues/2825))
+- Fix(package): update systeminformation to version 3.45.7 (#2825)
 
 
-- Fix(package): update file-loader to version 2.0.0 ([#2827](https://github.com/orhun/git-cliff/issues/2827))
+- Fix(package): update file-loader to version 2.0.0 (#2827)
 
 
-- Fix(package): update vue-svg-inline-loader to version 1.2.0 ([#2844](https://github.com/orhun/git-cliff/issues/2844))
+- Fix(package): update vue-svg-inline-loader to version 1.2.0 (#2844)
 
 
-- Fix(package): update @types/debug to version 0.0.31 ([#2822](https://github.com/orhun/git-cliff/issues/2822))
+- Fix(package): update @types/debug to version 0.0.31 (#2822)
 
 
-- Fix(package): update file-type to version 10.0.0 ([#2846](https://github.com/orhun/git-cliff/issues/2846))
+- Fix(package): update file-type to version 10.0.0 (#2846)
 
 
-- Fix(package): update jsdom to version 12.2.0 ([#2848](https://github.com/orhun/git-cliff/issues/2848))
+- Fix(package): update jsdom to version 12.2.0 (#2848)
 
 
-- Fix(package): update @types/mongodb to version 3.1.10 ([#2849](https://github.com/orhun/git-cliff/issues/2849))
+- Fix(package): update @types/mongodb to version 3.1.10 (#2849)
 
 Closes #2752
 - Fix(package): update style-loader to version 0.23.1
 - Fix(package): update typescript-eslint-parser to version 20.0.0
-- Fix(package): update debug to version 4.1.0 ([#2857](https://github.com/orhun/git-cliff/issues/2857))
+- Fix(package): update debug to version 4.1.0 (#2857)
 
 
-- Fix(package): update commander to version 2.19.0 ([#2862](https://github.com/orhun/git-cliff/issues/2862))
+- Fix(package): update commander to version 2.19.0 (#2862)
 
 
-- Fix(package): update @types/mongodb to version 3.1.11 ([#2864](https://github.com/orhun/git-cliff/issues/2864))
+- Fix(package): update @types/mongodb to version 3.1.11 (#2864)
 
 
-- Fix(package): update @types/node to version 10.11.5 ([#2865](https://github.com/orhun/git-cliff/issues/2865))
+- Fix(package): update @types/node to version 10.11.5 (#2865)
 
 
-- Fix(package): update @types/redis to version 2.8.7 ([#2866](https://github.com/orhun/git-cliff/issues/2866))
+- Fix(package): update @types/redis to version 2.8.7 (#2866)
 
 
-- Fix(package): update @types/webpack to version 4.4.15 ([#2868](https://github.com/orhun/git-cliff/issues/2868))
+- Fix(package): update @types/webpack to version 4.4.15 (#2868)
 
 
-- Fix(package): update @types/mongodb to version 3.1.12 ([#2874](https://github.com/orhun/git-cliff/issues/2874))
+- Fix(package): update @types/mongodb to version 3.1.12 (#2874)
 
 
-- Fix(package): update url-loader to version 1.1.2 ([#2883](https://github.com/orhun/git-cliff/issues/2883))
+- Fix(package): update url-loader to version 1.1.2 (#2883)
 
 
-- Fix(package): update @types/webpack to version 4.4.16 ([#2880](https://github.com/orhun/git-cliff/issues/2880))
+- Fix(package): update @types/webpack to version 4.4.16 (#2880)
 
 
-- Fix(package): update @types/koa-logger to version 3.1.1 ([#2877](https://github.com/orhun/git-cliff/issues/2877))
+- Fix(package): update @types/koa-logger to version 3.1.1 (#2877)
 
 
-- Fix(package): update @types/node to version 10.11.6 ([#2876](https://github.com/orhun/git-cliff/issues/2876))
+- Fix(package): update @types/node to version 10.11.6 (#2876)
 
 
-- Fix(package): update vue-color to version 2.7.0 ([#2884](https://github.com/orhun/git-cliff/issues/2884))
+- Fix(package): update vue-color to version 2.7.0 (#2884)
 
 
-- Fix(package): update @types/node to version 10.11.7 ([#2885](https://github.com/orhun/git-cliff/issues/2885))
+- Fix(package): update @types/node to version 10.11.7 (#2885)
 
 
 - Fix(package): update @types/elasticsearch to version 5.0.27
 - Fix(package): update reconnecting-websocket to version 4.1.6
 - Fix(package): update reconnecting-websocket to version 4.1.7
 - Fix(package): update reconnecting-websocket to version 4.1.8
-- Fix(package): update chart.js to version 2.7.3 ([#2907](https://github.com/orhun/git-cliff/issues/2907))
+- Fix(package): update chart.js to version 2.7.3 (#2907)
 
 
-- Fix(package): update vue-svg-inline-loader to version 1.2.1 ([#2909](https://github.com/orhun/git-cliff/issues/2909))
+- Fix(package): update vue-svg-inline-loader to version 1.2.1 (#2909)
 
 
-- Fix(package): update @types/gulp-uglify to version 3.0.6 ([#2906](https://github.com/orhun/git-cliff/issues/2906))
+- Fix(package): update @types/gulp-uglify to version 3.0.6 (#2906)
 
 
-- Fix(package): update @types/sharp to version 0.21.0 ([#2908](https://github.com/orhun/git-cliff/issues/2908))
+- Fix(package): update @types/sharp to version 0.21.0 (#2908)
 
 
-- Fix(package): update @types/webpack to version 4.4.17 ([#2911](https://github.com/orhun/git-cliff/issues/2911))
+- Fix(package): update @types/webpack to version 4.4.17 (#2911)
 
 
-- Fix(package): update @types/node to version 10.12.0 ([#2912](https://github.com/orhun/git-cliff/issues/2912))
+- Fix(package): update @types/node to version 10.12.0 (#2912)
 
 
-- Fix(package): update @fortawesome/free-brands-svg-icons to version 5.4.1 ([#2916](https://github.com/orhun/git-cliff/issues/2916))
+- Fix(package): update @fortawesome/free-brands-svg-icons to version 5.4.1 (#2916)
 
 Closes #2859
 - Fix(package): update reconnecting-websocket to version 4.1.9
-- Fix(package): update @types/elasticsearch to version 5.0.28 ([#2924](https://github.com/orhun/git-cliff/issues/2924))
+- Fix(package): update @types/elasticsearch to version 5.0.28 (#2924)
 
 
-- Fix(package): update showdown to version 1.8.7 ([#2925](https://github.com/orhun/git-cliff/issues/2925))
+- Fix(package): update showdown to version 1.8.7 (#2925)
 
 
 - Fix(package): update webpack to version 4.21.0
-- Fix(package): update vue-sweetalert2 to version 1.5.6 ([#2932](https://github.com/orhun/git-cliff/issues/2932))
+- Fix(package): update vue-sweetalert2 to version 1.5.6 (#2932)
 
 
-- Fix(package): update reconnecting-websocket to version 4.1.10 ([#2937](https://github.com/orhun/git-cliff/issues/2937))
+- Fix(package): update reconnecting-websocket to version 4.1.10 (#2937)
 
 
-- Fix(package): update webpack to version 4.22.0 ([#2969](https://github.com/orhun/git-cliff/issues/2969))
+- Fix(package): update webpack to version 4.22.0 (#2969)
 
 
-- Fix(package): update file-type to version 10.1.0 ([#2984](https://github.com/orhun/git-cliff/issues/2984))
+- Fix(package): update file-type to version 10.1.0 (#2984)
 
 
-- Fix(package): update systeminformation to version 3.45.9 ([#2987](https://github.com/orhun/git-cliff/issues/2987))
+- Fix(package): update systeminformation to version 3.45.9 (#2987)
 
 Closes #2986
 - Blockings list
 
-- Fix self host detection ([#3201](https://github.com/orhun/git-cliff/issues/3201))
+- Fix self host detection (#3201)
 
 
-- Fix Content-Disposition ([#4573](https://github.com/orhun/git-cliff/issues/4573))
+- Fix Content-Disposition (#4573)
 
 
-- Fix #4532 ([#4592](https://github.com/orhun/git-cliff/issues/4592))
+- Fix #4532 (#4592)
 
 
-- Fix syuilo#4711 ([#4715](https://github.com/orhun/git-cliff/issues/4715))
+- Fix syuilo#4711 (#4715)
 
 
 - Fix #1442, fix #2106
 
 - Fix
 
-- Fix build error ([#5162](https://github.com/orhun/git-cliff/issues/5162))
+- Fix build error (#5162)
 
 
-- Fix #5071 ([#5184](https://github.com/orhun/git-cliff/issues/5184))
+- Fix #5071 (#5184)
 
 
-- Fix #5214 ウィジェットが選択されていないときは追加されないように ([#5227](https://github.com/orhun/git-cliff/issues/5227))
+- Fix #5214 ウィジェットが選択されていないときは追加されないように (#5227)
 
 * fix #5214
 
@@ -7572,11 +8572,11 @@ Closes #2986
 
 * 空白文字の調整
 
-- Fix typo in misskey.nginx ([#5445](https://github.com/orhun/git-cliff/issues/5445))
+- Fix typo in misskey.nginx (#5445)
 
 sites-ebabled => sites-enabled
 - Fix typo
-- Fix ([#5710](https://github.com/orhun/git-cliff/issues/5710))
+- Fix (#5710)
 
 
 - Fix
@@ -7589,7 +8589,7 @@ sites-ebabled => sites-enabled
 
 - Fix
 
-- Fix gif badge ([#6153](https://github.com/orhun/git-cliff/issues/6153))
+- Fix gif badge (#6153)
 
 
 - Fix(pages): AiScript変数があると型チェックができない問題を修正
@@ -7639,7 +8639,7 @@ Fix #5998
 
 - Fix
 
-- Fix(client): 全既読系ボタンのAPIの指定が間違っているのを修正 ([#6424](https://github.com/orhun/git-cliff/issues/6424))
+- Fix(client): 全既読系ボタンのAPIの指定が間違っているのを修正 (#6424)
 
 
 - Fix(api): Fix #6419
@@ -7648,17 +8648,17 @@ Close #6434
 
 - Fix(server): Fix #6433
 
-- Fix(api): Fix #6418 ([#6442](https://github.com/orhun/git-cliff/issues/6442))
+- Fix(api): Fix #6418 (#6442)
 
 
-- Fix サイドバーの設定に不具合があるとページが表示できなくなる ([#6473](https://github.com/orhun/git-cliff/issues/6473))
+- Fix サイドバーの設定に不具合があるとページが表示できなくなる (#6473)
 
 * fix #6460
 
 * Update app.vue
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Fix 非ログイン時に n または p キー押下で投稿フォームが出る ([#6508](https://github.com/orhun/git-cliff/issues/6508))
+- Fix 非ログイン時に n または p キー押下で投稿フォームが出る (#6508)
 
 * fix #5851
 
@@ -7667,7 +8667,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Fix(client): Fix timeline widget setting definition
 
-- Fix #6335 ([#6507](https://github.com/orhun/git-cliff/issues/6507))
+- Fix #6335 (#6507)
 
 
 - Fix(cliemt): Fix style
@@ -7706,7 +8706,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Fix(client): :v:
 
-- Fix lint ([#6568](https://github.com/orhun/git-cliff/issues/6568))
+- Fix lint (#6568)
 
 
 - Fix(client): Fix federation widget
@@ -7743,7 +8743,7 @@ Fix #6658
 
 - Fix(clinet): 誤字によりスクロールイベントリスナが解除されていなかったのを修正
 
-- Fix an error on /api-doc ([#6665](https://github.com/orhun/git-cliff/issues/6665))
+- Fix an error on /api-doc (#6665)
 
 
 - Fix(server): Fix #6669
@@ -7858,7 +8858,7 @@ https://github.com/syuilo/misskey/commit/48ea805999c6cb8e900aeaec6edaf68788bd51e
 
 - Fix bug
 
-- Fix: Safariでもモーダルのぼかし効果が効くようにした ([#7530](https://github.com/orhun/git-cliff/issues/7530))
+- Fix: Safariでもモーダルのぼかし効果が効くようにした (#7530)
 
 https://github.com/misskey-dev/misskey/issues/7529
 - Fix type
@@ -7895,7 +8895,7 @@ Resolve #7540
 
 - Fix(client): 更新時にテーマキャッシュをクリアするように
 
-- Fix: truncate user information if it is too long ([#7629](https://github.com/orhun/git-cliff/issues/7629))
+- Fix: truncate user information if it is too long (#7629)
 
 * truncate user information if it is too long
 
@@ -7931,7 +8931,7 @@ Fix #7631
 - Fix import
 
 - Fix: import syslog-pro
-- Fix: use correct query generate function ([#7657](https://github.com/orhun/git-cliff/issues/7657))
+- Fix: use correct query generate function (#7657)
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Fix: meta.jsonをimportしないように
@@ -7952,14 +8952,14 @@ Fix #7648
 
 - Fix(client): fix button style
 
-- Fix missing strings ([#7674](https://github.com/orhun/git-cliff/issues/7674))
+- Fix missing strings (#7674)
 
 * fix sort menu in federation panel
 
 * add missing strings in report menu
 
 * change i18n key too
-- Fix Dockerfile ([#7763](https://github.com/orhun/git-cliff/issues/7763))
+- Fix Dockerfile (#7763)
 
 * fix Dockerfile
 
@@ -7973,10 +8973,10 @@ Fix #7648
 
 - Fix(server): fix #7786
 
-- Fix: アンテナの既読 ([#7803](https://github.com/orhun/git-cliff/issues/7803))
+- Fix: アンテナの既読 (#7803)
 
 from: https://gitlab.com/xianon/misskey/-/commit/a89742319caea378f9cdd70c8ebd83bdf2178ff6
-- Fix: アンテナが既読にならないのを修正 ([#7809](https://github.com/orhun/git-cliff/issues/7809))
+- Fix: アンテナが既読にならないのを修正 (#7809)
 
 
 - Fix(client): タイムラインでリストとかなかったの修正
@@ -7985,7 +8985,7 @@ from: https://gitlab.com/xianon/misskey/-/commit/a89742319caea378f9cdd70c8ebd83b
 
 - Fix(client): fix #7774
 
-- Fix inboxQueue import ([#7829](https://github.com/orhun/git-cliff/issues/7829))
+- Fix inboxQueue import (#7829)
 
 
 - Fix(client): fix tabs of page header behaviour
@@ -7996,7 +8996,7 @@ from: https://gitlab.com/xianon/misskey/-/commit/a89742319caea378f9cdd70c8ebd83b
 
 - Fix(client): MFM関数構文のサジェストで括弧を無視するように
 
-- Fix: truncate image descriptions ([#7699](https://github.com/orhun/git-cliff/issues/7699))
+- Fix: truncate image descriptions (#7699)
 
 * move truncate function to separate file to reuse it
 
@@ -8086,12 +9086,12 @@ Fix #7905
 
 - Fix e2e test
 
-- Fix: Fix #7895 ([#7937](https://github.com/orhun/git-cliff/issues/7937))
+- Fix: Fix #7895 (#7937)
 
 * Fix #7895
 
 * CHANGELOG
-- Fix: 削除したノートやユーザーがリモートから参照されると復活することがあるのを修正 ([#7918](https://github.com/orhun/git-cliff/issues/7918))
+- Fix: 削除したノートやユーザーがリモートから参照されると復活することがあるのを修正 (#7918)
 
 * Fix #7557
 
@@ -8120,13 +9120,13 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Fix(client): コントロールパネルのカスタム絵文字タブが切り替わらないように見える問題を修正
 
-- Fix missing i18n string ([#7945](https://github.com/orhun/git-cliff/issues/7945))
+- Fix missing i18n string (#7945)
 
 
-- Fix html conversion issue with code blocks ([#7943](https://github.com/orhun/git-cliff/issues/7943))
+- Fix html conversion issue with code blocks (#7943)
 
 
-- Fix(client): Add missing localization string ([#7944](https://github.com/orhun/git-cliff/issues/7944))
+- Fix(client): Add missing localization string (#7944)
 
 * 欠けるi18nストリングの追加
 
@@ -8147,12 +9147,12 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Fix errors
 
-- Fix: mention local users in replies ([#7975](https://github.com/orhun/git-cliff/issues/7975))
+- Fix: mention local users in replies (#7975)
 
 * mention local users in replies
 
 * fix merge
-- Fix(client): reaction viewer layout ([#7942](https://github.com/orhun/git-cliff/issues/7942))
+- Fix(client): reaction viewer layout (#7942)
 
 The profile picture and name should be grouped together as they belong, and
 it should be clear which picture belongs to which name.
@@ -8162,12 +9162,12 @@ it should be clear which picture belongs to which name.
 
 - Fix(client): fix tooltip style
 
-- Fix(client):fix search all users ([#7993](https://github.com/orhun/git-cliff/issues/7993))
+- Fix(client):fix search all users (#7993)
 
 
 - Fix
 
-- Fix(client): fix plugin activate and uninstall ([#7991](https://github.com/orhun/git-cliff/issues/7991))
+- Fix(client): fix plugin activate and uninstall (#7991)
 
 * fix(client): fix plugin activate and uninstall
 
@@ -8178,12 +9178,12 @@ it should be clear which picture belongs to which name.
 
 - Fix(client): リアクションツールチップ、Renoteツールチップのユーザーの並び順を修正
 
-- Fix: toolsが動かないのを修正 ([#8008](https://github.com/orhun/git-cliff/issues/8008))
+- Fix: toolsが動かないのを修正 (#8008)
 
 * Move tools
 
 * Fix DB
-- Fix: notification.vueのIntersectionObserverまわりを修正 ([#8010](https://github.com/orhun/git-cliff/issues/8010))
+- Fix: notification.vueのIntersectionObserverまわりを修正 (#8010)
 
 * fix notification.vue
 
@@ -8204,17 +9204,17 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 - Fix(client): モバイルでタップしたときにツールチップが表示される問題を修正
 
-- Fix: LTLやGTLが無効になっている場合でもUI上にタブが表示される問題を修正 ([#8026](https://github.com/orhun/git-cliff/issues/8026))
+- Fix: LTLやGTLが無効になっている場合でもUI上にタブが表示される問題を修正 (#8026)
 
 * wip
 
 * add changelog
 
 * 変換ミス修正
-- Fix mentions in replies ([#8030](https://github.com/orhun/git-cliff/issues/8030))
+- Fix mentions in replies (#8030)
 
 
-- Fix: 画像ファイルの縦横サイズの取得で Exif Orientation を考慮する ([#8014](https://github.com/orhun/git-cliff/issues/8014))
+- Fix: 画像ファイルの縦横サイズの取得で Exif Orientation を考慮する (#8014)
 
 * 画像ファイルの縦横サイズの取得で Exif Orientation を考慮する
 
@@ -8237,7 +9237,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 
 - Fix lint
 
-- Fix: integration links ([#8036](https://github.com/orhun/git-cliff/issues/8036))
+- Fix: integration links (#8036)
 
 
 - Fix(client): クリップの設定を編集できない問題を修正
@@ -8286,7 +9286,7 @@ Fix #8086
 
 Fix #8049
 
-- Fix html blockquote conversion ([#8069](https://github.com/orhun/git-cliff/issues/8069))
+- Fix html blockquote conversion (#8069)
 
 
 - Fix(client): fix sidebar style
@@ -8295,7 +9295,7 @@ Fix #8049
 
 - Fix(server): エクスポートした絵文字の拡張子がfalseになることがあるのを修正
 
-- Fix pizzax ([#8099](https://github.com/orhun/git-cliff/issues/8099))
+- Fix pizzax (#8099)
 
 
 - Fix
@@ -8310,7 +9310,7 @@ https://github.com/misskey-dev/misskey/commit/d53795184cd0ee326b0da58b267e3460f9
 
 - Fix #8158
 
-- Fix: proxyでsvgをpngに変換するように ([#8106](https://github.com/orhun/git-cliff/issues/8106))
+- Fix: proxyでsvgをpngに変換するように (#8106)
 
 * wip
 
@@ -8323,12 +9323,12 @@ https://github.com/misskey-dev/misskey/commit/d53795184cd0ee326b0da58b267e3460f9
 Co-authored-by: MeiMei <30769358+mei23@users.noreply.github.com>
 
 Co-authored-by: MeiMei <30769358+mei23@users.noreply.github.com>
-- Fix: code url in documentation ([#8117](https://github.com/orhun/git-cliff/issues/8117))
+- Fix: code url in documentation (#8117)
 
 It seems this was not changed while refactoring the modules apart.
-- Fix([#8133](https://github.com/orhun/git-cliff/issues/8133)): hCaptcha の reCAPTCHA 互換挙動を無効化する ([#8135](https://github.com/orhun/git-cliff/issues/8135))
+- Fix(#8133): hCaptcha の reCAPTCHA 互換挙動を無効化する (#8135)
 
-* fix([#8133](https://github.com/orhun/git-cliff/issues/8133)): hCaptcha の reCAPTCHA 互換挙動を無効化する
+* fix(#8133): hCaptcha の reCAPTCHA 互換挙動を無効化する
 
 * Update packages/client/src/components/captcha.vue
 
@@ -8337,12 +9337,12 @@ It seems this was not changed while refactoring the modules apart.
 Co-authored-by: tamaina <tamaina@hotmail.co.jp>
 - Fix(client): タイムラインのkeep-aliveが効かなくなっているのを修正
 
-- Fix: アップロードエラー時の処理を修正 ([#8182](https://github.com/orhun/git-cliff/issues/8182))
+- Fix: アップロードエラー時の処理を修正 (#8182)
 
 * アップロードのエラー応答で詰むのを修正
 
 * CHANGELOG
-- Fix: change keypress to keydown ([#8192](https://github.com/orhun/git-cliff/issues/8192))
+- Fix: change keypress to keydown (#8192)
 
 
 - Fix(client): チャットが見れない
@@ -8369,14 +9369,14 @@ Fix #8211
 
 Fix #8212
 
-- Fix federation widged ([#8221](https://github.com/orhun/git-cliff/issues/8221))
+- Fix federation widged (#8221)
 
 The variables accidentally shadowed the variables that contain the ref's
 to be rendered into the template.
 - Fix federation widget
 - Fix eslint rule
 
-- Fix: ensure that specified users does not get duplicates ([#8233](https://github.com/orhun/git-cliff/issues/8233))
+- Fix: ensure that specified users does not get duplicates (#8233)
 
 * ensure that specified users does not get duplicates
 
@@ -8385,7 +9385,7 @@ to be rendered into the template.
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Fix: Fix Sideview ([#8235](https://github.com/orhun/git-cliff/issues/8235))
+- Fix: Fix Sideview (#8235)
 
 * Fix #7890
 
@@ -8402,25 +9402,25 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Fix(client): ツールチップの表示位置が正しくない問題を修正
 
-- Fix: ストリーミングからのAPIリクエストが出来ないのを修正 ([#8244](https://github.com/orhun/git-cliff/issues/8244))
+- Fix: ストリーミングからのAPIリクエストが出来ないのを修正 (#8244)
 
 * Update call.ts
 
 * あれ
 - Fix(client): fix compare-versions import
 
-- Fix: タイムライン種別を切り替えると「新しいノートがあります」の表示が残留してしまうのを修正 ([#8250](https://github.com/orhun/git-cliff/issues/8250))
+- Fix: タイムライン種別を切り替えると「新しいノートがあります」の表示が残留してしまうのを修正 (#8250)
 
 Fix #6831
 - Fix chart clean
-- Fix: NodeInfo のユーザー数と投稿数の内容を見直す ([#8255](https://github.com/orhun/git-cliff/issues/8255))
+- Fix: NodeInfo のユーザー数と投稿数の内容を見直す (#8255)
 
 * NodeInfoのアクティブユーザーの取得方法を変更する
 
 * NodeInfoの投稿数の出力内容を見直す
 - Fix
 
-- Fix: v-sizeディレクティブの動作を修正 ([#8249](https://github.com/orhun/git-cliff/issues/8249))
+- Fix: v-sizeディレクティブの動作を修正 (#8249)
 
 * Fix size directive behavior not activated
 
@@ -8435,7 +9435,7 @@ Fix #6831
 * 不要なIntersection Observerを削除
 
 * comment
-- Fix: instance ticker ([#8260](https://github.com/orhun/git-cliff/issues/8260))
+- Fix: instance ticker (#8260)
 
 * add type and default values
 
@@ -8457,20 +9457,20 @@ Fix #8274
 - Fix(server): チャートのcleanでエラーが出る可能性がある問題を修正
 
 - Fix test
-- Fix: save followers/following visibility ([#8276](https://github.com/orhun/git-cliff/issues/8276))
+- Fix: save followers/following visibility (#8276)
 
 
 - Fix(client): コントロールパネルのユーザー、ファイルにて、インスタンスの表示範囲切り替えが機能しない問題を修正
 
 Fix #8252
 
-- Fix: add instance favicon where it's missing ([#8270](https://github.com/orhun/git-cliff/issues/8270))
+- Fix: add instance favicon where it's missing (#8270)
 
 
 - Fix test
 - Fix: truncate user drive chart
 
-- Fix: regular expressions in word mutes ([#8254](https://github.com/orhun/git-cliff/issues/8254))
+- Fix: regular expressions in word mutes (#8254)
 
 * fix: handle regex exceptions for word mutes
 
@@ -8519,7 +9519,7 @@ Fix #8308
 
 Fix #8071
 
-- Fix: also recognize "shortcut icon" favicon ([#8220](https://github.com/orhun/git-cliff/issues/8220))
+- Fix: also recognize "shortcut icon" favicon (#8220)
 
 * also recognize "shortcut icon" favicon
 
@@ -8569,7 +9569,7 @@ Fix #8363
 
 - Fix esm
 
-- Fix(meta): Adjust path to contribution guidelines ([#8367](https://github.com/orhun/git-cliff/issues/8367))
+- Fix(meta): Adjust path to contribution guidelines (#8367)
 
 
 - Fix(client): ユーザー名オートコンプリートが正しく動作しない問題を修正
@@ -8586,7 +9586,7 @@ Fix #8318
 
 - Fix
 
-- Fix: iPhone X以降(?)でページの内容が全て表示しきれないのを修正 ([#8375](https://github.com/orhun/git-cliff/issues/8375))
+- Fix: iPhone X以降(?)でページの内容が全て表示しきれないのを修正 (#8375)
 
 * add safe-area-inset-bottom to spacer
 
@@ -8597,7 +9597,7 @@ Fix #8318
 * fix
 - Fix federation chart
 
-- Fix scroll ([#8382](https://github.com/orhun/git-cliff/issues/8382))
+- Fix scroll (#8382)
 
 
 - Fix(server): ulidを使用していると動作しない問題を修正
@@ -8610,7 +9610,7 @@ Fix #8393
 
 Fix #8392
 
-- Fix API console ([#8416](https://github.com/orhun/git-cliff/issues/8416))
+- Fix API console (#8416)
 
 Adjusted the server to send the API description based on the new
 API type declarations introduced previously.
@@ -8618,7 +9618,7 @@ API type declarations introduced previously.
 
 - Fix null in query
 
-- Fix: Handle decodeURIComponent error ([#8411](https://github.com/orhun/git-cliff/issues/8411))
+- Fix: Handle decodeURIComponent error (#8411)
 
 
 - Fix query
@@ -8631,7 +9631,7 @@ API type declarations introduced previously.
 
 Fix #8455
 
-- Fix(federation): avoid duplicate activity delivery ([#8429](https://github.com/orhun/git-cliff/issues/8429))
+- Fix(federation): avoid duplicate activity delivery (#8429)
 
 * prefer shared inbox over individual inbox
 
@@ -8642,10 +9642,10 @@ Fix #8455
 
 - Fix(api): admin/update-meta was not working
 
-- Fix theme-color apply ([#8464](https://github.com/orhun/git-cliff/issues/8464))
+- Fix theme-color apply (#8464)
 
 
-- Fix: validation ([#8456](https://github.com/orhun/git-cliff/issues/8456)) ([#8461](https://github.com/orhun/git-cliff/issues/8461))
+- Fix: validation (better #8456) (#8461)
 
 * Revert "revert 484e023c0"
 
@@ -8666,7 +9666,7 @@ This reverts commit c03b70c949923b830a6d0361d1aa4d5f5614b7b7.
 
 - Fix ogp rendering and refactor
 
-- Fix: アンテナ、クリップ、リストの表示を速くする ([#8518](https://github.com/orhun/git-cliff/issues/8518))
+- Fix: アンテナ、クリップ、リストの表示を速くする (#8518)
 
 * アンテナノートを取得するクエリがタイムアウトしないように速くする
 
@@ -8675,7 +9675,7 @@ This reverts commit c03b70c949923b830a6d0361d1aa4d5f5614b7b7.
 * クリップの取得を速くする
 
 * リストの取得を速くする
-- Fix: Fix settings page ([#8508](https://github.com/orhun/git-cliff/issues/8508))
+- Fix: Fix settings page (#8508)
 
 * Fix settings page
 
@@ -8688,7 +9688,7 @@ This reverts commit c03b70c949923b830a6d0361d1aa4d5f5614b7b7.
 * インデックスに戻ってもタイトルが残ってしまうのを修正
 - Fix ogp rendering and refactor
 
-- Fix: アンテナ、クリップ、リストの表示を速くする ([#8518](https://github.com/orhun/git-cliff/issues/8518))
+- Fix: アンテナ、クリップ、リストの表示を速くする (#8518)
 
 * アンテナノートを取得するクエリがタイムアウトしないように速くする
 
@@ -8697,45 +9697,45 @@ This reverts commit c03b70c949923b830a6d0361d1aa4d5f5614b7b7.
 * クリップの取得を速くする
 
 * リストの取得を速くする
-- Fix: Promises -> Promise ([#8545](https://github.com/orhun/git-cliff/issues/8545))
+- Fix: Promises -> Promise (#8545)
 
 
-- Fix(client): fix lint issues in autocomplete ([#8548](https://github.com/orhun/git-cliff/issues/8548))
+- Fix(client): fix lint issues in autocomplete (#8548)
 
 
-- Fix: Add rel attribute to host-meta ([#8583](https://github.com/orhun/git-cliff/issues/8583))
+- Fix: Add rel attribute to host-meta (#8583)
 
 * Add rel attribute to host-meta
 
 * CHANGELOG
-- Fix _misskey_content of quote renotes ([#8533](https://github.com/orhun/git-cliff/issues/8533))
+- Fix _misskey_content of quote renotes (#8533)
 
 
 - Fix(client): fix missing import of defineAsyncComponent in os.ts
 
-- Fix(client): fix duplicate token request dialog in plugin install ([#8612](https://github.com/orhun/git-cliff/issues/8612))
+- Fix(client): fix duplicate token request dialog in plugin install (#8612)
 
 
-- Fix (client): fix mention icon height ([#8615](https://github.com/orhun/git-cliff/issues/8615))
+- Fix (client): fix mention icon height (#8615)
 
 
-- Fix(client): fix lint issues in scripts ([#8621](https://github.com/orhun/git-cliff/issues/8621))
+- Fix(client): fix lint issues in scripts (#8621)
 
 
-- Fix(client): add setup attribute to notification page ([#8648](https://github.com/orhun/git-cliff/issues/8648))
+- Fix(client): add setup attribute to notification page (#8648)
 
 
-- Fix: keep file order ([#8659](https://github.com/orhun/git-cliff/issues/8659))
+- Fix: keep file order (#8659)
 
 
-- Fix: ユーザー検索で、クエリがusernameの条件を満たす場合はusernameもLIKE検索するように ([#8644](https://github.com/orhun/git-cliff/issues/8644))
+- Fix: ユーザー検索で、クエリがusernameの条件を満たす場合はusernameもLIKE検索するように (#8644)
 
 * Fix #8643
 
 * 部分一致にする
 - Fix(client): additional background for acrylic popups if unsupported
 
-- Fix(client): remove unexpected token ([#8672](https://github.com/orhun/git-cliff/issues/8672))
+- Fix(client): remove unexpected token (#8672)
 
 
 - Fix(server): prevent crash when processing certain PNGs
@@ -8746,7 +9746,7 @@ Fix #8605
 
 Fix a bug introduced in #8659. Solution was already tested there.
 
-- Fix: ノートのインスタンス情報の文字に縁を付けて見やすくする ([#8697](https://github.com/orhun/git-cliff/issues/8697))
+- Fix: ノートのインスタンス情報の文字に縁を付けて見やすくする (#8697)
 
 * ノートのインスタンス情報の背景色が反映されないことがあるのを修正する
 
@@ -8757,20 +9757,20 @@ Fix a bug introduced in #8659. Solution was already tested there.
 This reverts commit de920dfc537d1f2c68804d0d6930520f2b3cbce7.
 
 * ノートのインスタンス情報の文字の影の数を増やしてさらに見やすくする
-- Fix: Unable to generate video thumbnails ([#8696](https://github.com/orhun/git-cliff/issues/8696))
+- Fix: Unable to generate video thumbnails (#8696)
 
 * fix: Unable to generate video thumbnails
 
 * CHANGELOG
-- Fix(client): fix lint issues in Deck UI components ([#8681](https://github.com/orhun/git-cliff/issues/8681))
+- Fix(client): fix lint issues in Deck UI components (#8681)
 
 
-- Fix: ノート詳細ページの新しいノートを表示する機能の動作が正しくなるように修正する ([#8607](https://github.com/orhun/git-cliff/issues/8607))
+- Fix: ノート詳細ページの新しいノートを表示する機能の動作が正しくなるように修正する (#8607)
 
 * ノート詳細で新しいノートの表示が正しくないのを修正する
 
 * ノート詳細から別のノート詳細を表示した時に前後の表示をリセットする
-- Fix(activitypub): add authorization checks ([#8534](https://github.com/orhun/git-cliff/issues/8534))
+- Fix(activitypub): add authorization checks (#8534)
 
 * fix spelling
 
@@ -8782,7 +9782,7 @@ Close #8521
 
 Co-Authored-By: Johann150 <20990607+Johann150@users.noreply.github.com>
 
-- Fix(client): fix undefined data value on 2FA settings ([#8725](https://github.com/orhun/git-cliff/issues/8725))
+- Fix(client): fix undefined data value on 2FA settings (#8725)
 
 
 - Fix(client): wrong scoping breaks 2FA
@@ -8792,13 +9792,13 @@ Co-Authored-By: Johann150 <20990607+Johann150@users.noreply.github.com>
 
 - Fix: activity widget used wrong variable name
 
-- Fix: assume remote users are following each other ([#8734](https://github.com/orhun/git-cliff/issues/8734))
+- Fix: assume remote users are following each other (#8734)
 
 Misskey does not know if two remote users are following each other.
 Because ActivityPub actions would otherwise fail on followers only
 notes, we have to assume that two remote users are following each other
 when an interaction about a remote note occurs.
-- Fix lints ([#8737](https://github.com/orhun/git-cliff/issues/8737))
+- Fix lints (#8737)
 
 * fix: emits use ev instead of e
 
@@ -8813,13 +9813,13 @@ when an interaction about a remote note occurs.
 * fix: use emoji instead of e
 
 * fix: vue lints
-- Fix(docs): correct information for drive upload ([#8736](https://github.com/orhun/git-cliff/issues/8736))
+- Fix(docs): correct information for drive upload (#8736)
 
 
 - Fix: validate text is not empty
 
 fix #8747
-- Fix(client): Vite related boot mechanism revision ([#8753](https://github.com/orhun/git-cliff/issues/8753))
+- Fix(client): Vite related boot mechanism revision (#8753)
 
 * preload app css
 
@@ -8828,20 +9828,20 @@ fix #8747
 * APP_FETCH_FAILED error
 
 * set max-age to 15s
-- Fix(client): fix popout url ([#8494](https://github.com/orhun/git-cliff/issues/8494))
+- Fix(client): fix popout url (#8494)
 
 
 - Fix: add missing import
 
 fix #8756
 
-- Fix(client): import shared ESLint config in client package ([#8761](https://github.com/orhun/git-cliff/issues/8761))
+- Fix(client): import shared ESLint config in client package (#8761)
 
 
-- Fix: always remove completed tasks ([#8771](https://github.com/orhun/git-cliff/issues/8771))
+- Fix: always remove completed tasks (#8771)
 
 
-- Fix(mfm): remove duplicate br tag/newline ([#8616](https://github.com/orhun/git-cliff/issues/8616))
+- Fix(mfm): remove duplicate br tag/newline (#8616)
 
 
 - Fix(lint): indentation
@@ -8849,14 +9849,14 @@ fix #8756
 - Fix: server metrics widget
 
 - Fix(dev): no labels for l10n_develop
-- Fix(client): correctly handle MiAuth URLs with query string ([#8772](https://github.com/orhun/git-cliff/issues/8772))
+- Fix(client): correctly handle MiAuth URLs with query string (#8772)
 
 
 - Fix(test): reset redis in e2e test
 
 #7986
 
-- Fix: correctly render empty note text ([#8746](https://github.com/orhun/git-cliff/issues/8746))
+- Fix: correctly render empty note text (#8746)
 
 Ensure that the _misskey_content attribute will always exist. Because
 the API endpoint does not require the existence of the `text` field,
@@ -8871,7 +9871,7 @@ have empty content.
 
 The code could be made a bit more succinct by using the null coercion
 operator.
-- Fix: ensure resolver does not fetch local resources via HTTP(S) ([#8733](https://github.com/orhun/git-cliff/issues/8733))
+- Fix: ensure resolver does not fetch local resources via HTTP(S) (#8733)
 
 * refactor: parseUri types and checks
 
@@ -8892,7 +9892,7 @@ Using DbResolver would mean that the URL is parsed and handled again.
 This duplicated processing can be avoided by querying the database directly.
 
 * fix missing property name
-- Fix: add id for activitypub follows ([#8689](https://github.com/orhun/git-cliff/issues/8689))
+- Fix: add id for activitypub follows (#8689)
 
 * add id for activitypub follows
 
@@ -8925,20 +9925,20 @@ this endpoint can not be used by other services or instances.
 
 - Fix(test): make chart tests working
 
-- Fix: try to prevent autocomplete for emoji search ([#8798](https://github.com/orhun/git-cliff/issues/8798))
+- Fix: try to prevent autocomplete for emoji search (#8798)
 
 
-- Fix: use autocomplete=new-password ([#8797](https://github.com/orhun/git-cliff/issues/8797))
+- Fix: use autocomplete=new-password (#8797)
 
 
-- Fix(client): render quote renote CWs as MFM ([#8792](https://github.com/orhun/git-cliff/issues/8792))
+- Fix(client): render quote renote CWs as MFM (#8792)
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Fix(test): use cypress-io/github-action@v4
 
 - Fix(client): オブジェクトストレージを使用していると画像のクロップができない
 
-- Fix: some fixes of multiple notification read ([#8819](https://github.com/orhun/git-cliff/issues/8819))
+- Fix: some fixes of multiple notification read (#8819)
 
 * fix: limit multiple notification read
 
@@ -8949,24 +9949,24 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 Fix #8818
 
-- Fix: missing file name parameter ([#8820](https://github.com/orhun/git-cliff/issues/8820))
+- Fix: missing file name parameter (#8820)
 
 
 - Fix: remove unused parameter
 
 - Fix(docs): use correct description property
 
-- Fix: add limit to i/notifications ([#8836](https://github.com/orhun/git-cliff/issues/8836))
+- Fix: add limit to i/notifications (#8836)
 
 * fix: add limit to i/notifications
 
 * ms
 
 * remove ms
-- Fix: tmpdir cleanup removes contained files ([#8826](https://github.com/orhun/git-cliff/issues/8826))
+- Fix: tmpdir cleanup removes contained files (#8826)
 
 
-- Fix: GenerateVideoThumbnail ([#8825](https://github.com/orhun/git-cliff/issues/8825))
+- Fix: GenerateVideoThumbnail (#8825)
 
 * fix: GenerateVideoThumbnail
 
@@ -8989,7 +9989,7 @@ Instead of coercing to `null`, coercing to an empty string should simplify handl
 
 - Fix client
 
-- Fix: block button in federation panel ([#8855](https://github.com/orhun/git-cliff/issues/8855))
+- Fix: block button in federation panel (#8855)
 
 
 - Fix(server): faviconUrl of federated instance is missing
@@ -8998,10 +9998,10 @@ Instead of coercing to `null`, coercing to an empty string should simplify handl
 
 - Fix #8861
 
-- Fix(nirax): Normalize path ([#8877](https://github.com/orhun/git-cliff/issues/8877))
+- Fix(nirax): Normalize path (#8877)
 
 
-- Fix(client): ask to log in for poll vote ([#8883](https://github.com/orhun/git-cliff/issues/8883))
+- Fix(client): ask to log in for poll vote (#8883)
 
 
 - Fix lints
@@ -9012,7 +10012,7 @@ Instead of coercing to `null`, coercing to an empty string should simplify handl
 
 - Fix bug
 
-- Fix: always respect instance mutes ([#8854](https://github.com/orhun/git-cliff/issues/8854))
+- Fix: always respect instance mutes (#8854)
 
 * fix: muted user query also checks instances
 
@@ -9021,7 +10021,7 @@ is required without checking the whole codebase again. Muted users and
 muted instances should be used together anyways.
 
 * fix lint
-- Fix(client): only enable hotkeys for logged in users ([#8793](https://github.com/orhun/git-cliff/issues/8793))
+- Fix(client): only enable hotkeys for logged in users (#8793)
 
 * fix(client): only enable hotkeys for logged in users
 
@@ -9032,7 +10032,7 @@ muted instances should be used together anyways.
 
 - Fix #8894
 
-- Fix: mocha テストが動かないのを修正 v2 ([#8892](https://github.com/orhun/git-cliff/issues/8892))
+- Fix: mocha テストが動かないのを修正 v2 (#8892)
 
 * on push
 
@@ -9093,7 +10093,7 @@ Co-authored-by: mei23 <m@m544.net>
 
 - Fix(client): contextmenu of deck not working
 
-- Fix: streamingテストおそい ([#8912](https://github.com/orhun/git-cliff/issues/8912))
+- Fix: streamingテストおそい (#8912)
 
 
 - Fix: spellcheck is boolean not string
@@ -9118,12 +10118,12 @@ Fixes lint no-const-assign.
 
 - Fix lint @typescript-eslint/ban-types
 
-- Fix:typo 「有効する必要…」→「有効にする必要…」 ([#8936](https://github.com/orhun/git-cliff/issues/8936))
+- Fix:typo 「有効する必要…」→「有効にする必要…」 (#8936)
 
 
 - Fix(client): user search of explore not working
 
-- Fix: pagination uses API correctly ([#8925](https://github.com/orhun/git-cliff/issues/8925))
+- Fix: pagination uses API correctly (#8925)
 
 
 - Fix(client): テーマを作成するとクライアントが起動しなくなる
@@ -9136,7 +10136,7 @@ fixes #8944
 
 - Fix test
 
-- Fix: QueryFailedError when logging user's IPs ([#8973](https://github.com/orhun/git-cliff/issues/8973))
+- Fix: QueryFailedError when logging user's IPs (#8973)
 
 * fix QueryFailedError when logging user's IPs
 
@@ -9147,19 +10147,19 @@ fixes #8944
 
 Fix #8878
 
-- Fix(sw, notification): Don't issue an event if there is no affect ([#8979](https://github.com/orhun/git-cliff/issues/8979))
+- Fix(sw, notification): Don't issue an event if there is no affect (#8979)
 
 * test
 
 * ]v]
-- Fix: add `es2017` build target ([#8931](https://github.com/orhun/git-cliff/issues/8931))
+- Fix: add `es2017` build target (#8931)
 
 * remove top level awaits
 
 * add es2017 target
 
 * refactor: use setup and ref sugar
-- Fix(client): hide bot protection warning with disabled registrations ([#8794](https://github.com/orhun/git-cliff/issues/8794))
+- Fix(client): hide bot protection warning with disabled registrations (#8794)
 
 * fix(client): hide bot protection warning with disabled registrations
 
@@ -9192,7 +10192,7 @@ Fix #9010
 
 - Fix(client): fix deck style
 
-- Fix(client): use icon for local if available ([#9012](https://github.com/orhun/git-cliff/issues/9012))
+- Fix(client): use icon for local if available (#9012)
 
 
 - Fix(client): fix window default prop
@@ -9203,7 +10203,7 @@ Fix #9010
 
 - Fix reply limit
 
-- Fix(server): make sure `getFileInfo` doesn't fail if `detectSensitivity` ever fails ([#9020](https://github.com/orhun/git-cliff/issues/9020))
+- Fix(server): make sure `getFileInfo` doesn't fail if `detectSensitivity` ever fails (#9020)
 
 
 - Fix(client): tweak mfm-cheat-sheet
@@ -9218,7 +10218,7 @@ Fix #8474
 - Document.domainをチェックする際に、hostのかわりにhostnameを使うように
 
 - Docs(readme): add Greenkeeper badge
-- Docs to run in production mode ([#4347](https://github.com/orhun/git-cliff/issues/4347))
+- Docs to run in production mode (#4347)
 
 * run in production mode from systemd
 
@@ -9230,16 +10230,16 @@ Fix #8474
 
 - Doc
 
-- Docker buildでyarn.lockを考慮してなかったのを修正 ([#6330](https://github.com/orhun/git-cliff/issues/6330))
+- Docker buildでyarn.lockを考慮してなかったのを修正 (#6330)
 
 
-- Doc: add features/word-mute ([#7672](https://github.com/orhun/git-cliff/issues/7672))
+- Doc: add features/word-mute (#7672)
 
 
-- Doc: recursive ([#7893](https://github.com/orhun/git-cliff/issues/7893))
+- Doc: recursive (#7893)
 
 
-- Docs(README): update image link ([#8383](https://github.com/orhun/git-cliff/issues/8383))
+- Docs(README): update image link (#8383)
 
 
 
@@ -9271,9 +10271,9 @@ Fix #8474
 
 - Add lock file
 
-- Feature mute on mobile([#2354](https://github.com/orhun/git-cliff/issues/2354))
+- Feature mute on mobile(#2354)
 
-- Add an endpoint users/lists/update ([#2585](https://github.com/orhun/git-cliff/issues/2585))
+- Add an endpoint users/lists/update (#2585)
 
 * add an endpoint users/lists/update
 
@@ -9281,7 +10281,7 @@ Fix #8474
 
 * fix packing
 
-- Adds ko-KR な to にゃ ([#3820](https://github.com/orhun/git-cliff/issues/3820))
+- Adds ko-KR な to にゃ (#3820)
 
 * adds ko-KR な to にゃ
 - this only take considers pre-composed "Hangul Syllables",
@@ -9292,7 +10292,7 @@ not composable area "Hangul Jamo" which are not used commonly
 
 - ✨🌎✨ A federated blogging platform ✨🚀✨
 
-- Add missing image ([#5967](https://github.com/orhun/git-cliff/issues/5967))
+- Add missing image (#5967)
 
 fix for explore banner
 - Feat(streaming): Add emoji added event
@@ -9336,7 +10336,7 @@ Resolve #5819
 
 - Feat(client): :yen:
 
-- Feat(client): 翻訳をIndexedDBに保存・プッシュ通知を翻訳 ([#6396](https://github.com/orhun/git-cliff/issues/6396))
+- Feat(client): 翻訳をIndexedDBに保存・プッシュ通知を翻訳 (#6396)
 
 * wip
 
@@ -9400,7 +10400,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 
 Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 Co-authored-by: syuilo <syuilotan@yahoo.co.jp>
-- Feat(client): 自動でもっと見るオプション ([#6403](https://github.com/orhun/git-cliff/issues/6403))
+- Feat(client): 自動でもっと見るオプション (#6403)
 
 * wip
 
@@ -9417,7 +10417,7 @@ Co-authored-by: syuilo <syuilotan@yahoo.co.jp>
 * Update notifications.vue
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Feat(client): Convert text mfm node to text (v)dom node instead of span tag ([#6399](https://github.com/orhun/git-cliff/issues/6399))
+- Feat(client): Convert text mfm node to text (v)dom node instead of span tag (#6399)
 
 * Convert text mfm node to text (v)dom node
 instead of span tag
@@ -9425,7 +10425,7 @@ instead of span tag
 * Update mfm.ts
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Feat(client): 投稿フォームのボタンの説明を表示するように ([#6408](https://github.com/orhun/git-cliff/issues/6408))
+- Feat(client): 投稿フォームのボタンの説明を表示するように (#6408)
 
 * Add title attr with buttons on the post form
 
@@ -9448,7 +10448,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 * i18n
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Feat: Observe notification read and fix #6406 ([#6407](https://github.com/orhun/git-cliff/issues/6407))
+- Feat: Observe notification read and fix #6406 (#6407)
 
 * Resolve https://github.com/syuilo/misskey/pull/6406#issuecomment-633203670
 
@@ -9515,7 +10515,7 @@ Resolve #6544
 
 - Feat(client): Implement federation widget chart
 
-- Feat(server): Fetch icon url of an instance ([#6591](https://github.com/orhun/git-cliff/issues/6591))
+- Feat(server): Fetch icon url of an instance (#6591)
 
 * feat(server): Fetch icon url of an instance
 
@@ -9544,7 +10544,7 @@ Resolve #6589
 
 - Add note
 
-- Feat: video play inline (using video tag) ([#7242](https://github.com/orhun/git-cliff/issues/7242))
+- Feat: video play inline (using video tag) (#7242)
 
 
 - Add test
@@ -9567,7 +10567,7 @@ Resolve #6589
 
 Resolve #5213
 
-- Feat: Implement api sw/unregister ([#7611](https://github.com/orhun/git-cliff/issues/7611))
+- Feat: Implement api sw/unregister (#7611)
 
 * Implement api sw/unregister
 
@@ -9576,10 +10576,10 @@ Resolve #5213
 * add changelog
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Add setting to keep content warning ([#7682](https://github.com/orhun/git-cliff/issues/7682))
+- Add setting to keep content warning (#7682)
 
 
-- Feat: リモートからユーザー削除が飛んできたら削除するように ([#7768](https://github.com/orhun/git-cliff/issues/7768))
+- Feat: リモートからユーザー削除が飛んできたら削除するように (#7768)
 
 * Delete Actor
 
@@ -9590,14 +10590,14 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Add sponsors section
 
-- Add resolver check for blocked instance ([#7777](https://github.com/orhun/git-cliff/issues/7777))
+- Add resolver check for blocked instance (#7777)
 
 * add resolver check for blocked instance
 
 * lint
 
 * Update note.ts
-- Feat: 凍結された場合のダイアログを実装 ([#7811](https://github.com/orhun/git-cliff/issues/7811))
+- Feat: 凍結された場合のダイアログを実装 (#7811)
 
 * feat: 凍結された場合のダイアログを実装
 
@@ -9615,7 +10615,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 動作確認済み
 Resolve #7735
 
-- Feat: MFM Sparkle animation ([#7813](https://github.com/orhun/git-cliff/issues/7813))
+- Feat: MFM Sparkle animation (#7813)
 
 * Add sparkle mfm animation ✨
 
@@ -9628,7 +10628,7 @@ Resolve #7735
 - Feat(client): MFM関数構文のサジェストを実装
 
 - Add todo
-- Feat: アカウント作成にメールアドレス必須にするオプション ([#7856](https://github.com/orhun/git-cliff/issues/7856))
+- Feat: アカウント作成にメールアドレス必須にするオプション (#7856)
 
 * feat: アカウント作成にメールアドレス必須にするオプション
 
@@ -9649,7 +10649,7 @@ Resolve #7735
 
 - Feat(client): add some theme functions
 
-- Feat: ノートプレビューを追加 ([#7596](https://github.com/orhun/git-cliff/issues/7596))
+- Feat: ノートプレビューを追加 (#7596)
 
 * add note preview
 
@@ -9684,7 +10684,7 @@ Resolve #7545
 Resolve #6811
 Close #7808
 
-- Feat: thread mute ([#7930](https://github.com/orhun/git-cliff/issues/7930))
+- Feat: thread mute (#7930)
 
 * feat: thread mute
 
@@ -9695,7 +10695,7 @@ Close #7808
 * fix
 
 * refactor
-- Feat: クライアントでログインするアカウントidを指定するクエリ(loginId=:userId) ([#7929](https://github.com/orhun/git-cliff/issues/7929))
+- Feat: クライアントでログインするアカウントidを指定するクエリ(loginId=:userId) (#7929)
 
 * feat: ログインするアカウントのIDをクエリ文字列で指定する機能
 
@@ -9706,7 +10706,7 @@ Close #7808
 
 Resolve #7940
 
-- Feat: make possible to configure following/followers visibility ([#7959](https://github.com/orhun/git-cliff/issues/7959))
+- Feat: make possible to configure following/followers visibility (#7959)
 
 * feat: make possible to configure following/followers visibility
 
@@ -9749,7 +10749,7 @@ Resolve #7025
 
 - Add todo
 
-- Feat: Undo Accept ([#7980](https://github.com/orhun/git-cliff/issues/7980))
+- Feat: Undo Accept (#7980)
 
 * allow breaking of follow
 
@@ -9758,7 +10758,7 @@ Resolve #7025
 * delete by using reject follow
 - Add note
 
-- Feat: user-level instance mute ([#7712](https://github.com/orhun/git-cliff/issues/7712))
+- Feat: user-level instance mute (#7712)
 
 * Update ja-JP.yml
 
@@ -9863,7 +10863,7 @@ Resolve #8231
 
 - Add eslint rule
 
-- Feat: Option to show replies in timeline ([#7685](https://github.com/orhun/git-cliff/issues/7685)) ([#8202](https://github.com/orhun/git-cliff/issues/8202))
+- Feat: Option to show replies in timeline (rebase #7685) (#8202)
 
 * Add an option for timeline replies. Credit to Emilis (puffaboo)
 
@@ -9886,7 +10886,7 @@ Resolve #7475
 
 - Feat(client): make size of reaction picker configuable
 
-- Add sk-SK lang to locales/index.js ([#8325](https://github.com/orhun/git-cliff/issues/8325))
+- Add sk-SK lang to locales/index.js (#8325)
 
 
 - Feat: add pub & sub item for federation chart
@@ -9909,7 +10909,7 @@ Resolve #4664
 
 - Feat: introduce bull dashboard
 
-- Feat: Webhook ([#8457](https://github.com/orhun/git-cliff/issues/8457))
+- Feat: Webhook (#8457)
 
 * feat: introduce webhook
 
@@ -9924,7 +10924,7 @@ Resolve #4664
 
 - Add perspective
 
-- Feat: Improve Push Notification ([#7667](https://github.com/orhun/git-cliff/issues/7667))
+- Feat: Improve Push Notification (#7667)
 
 * clean up
 
@@ -10200,7 +11200,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Feat(dev): highlight editing of wrong locales
 
 Highlight PRs that edit locales other than the ja-JP one so the author may see and fix it themselves.
-- Feat(tests): add e2e tests for widgets ([#8735](https://github.com/orhun/git-cliff/issues/8735))
+- Feat(tests): add e2e tests for widgets (#8735)
 
 * test(e2e): add baseline for widget tests
 
@@ -10255,7 +11255,7 @@ Highlight PRs that edit locales other than the ja-JP one so the author may see a
 
 Co-authored-by: acid-chicken <root@acid-chicken.com>
 
-- Feat: option to collapse long notes ([#8561](https://github.com/orhun/git-cliff/issues/8561))
+- Feat: option to collapse long notes (#8561)
 
 * feat: option to collapse long notes
 
@@ -10270,14 +11270,14 @@ Closes #8559
 * Change style of the Show less button
 - Add packageExtensions
 
-- Feat: image cropping ([#8808](https://github.com/orhun/git-cliff/issues/8808))
+- Feat: image cropping (#8808)
 
 * wip
 
 * wip
 
 * wip
-- Feat: Add Badge Image to Push Notification ([#8012](https://github.com/orhun/git-cliff/issues/8012))
+- Feat: Add Badge Image to Push Notification (#8012)
 
 * fix
 
@@ -10510,7 +11510,7 @@ Resolve #8830
 
 - Feat(client): poll highlights in explore page
 
-- Feat: Log user ips ([#8872](https://github.com/orhun/git-cliff/issues/8872))
+- Feat: Log user ips (#8872)
 
 * wip
 
@@ -10536,7 +11536,7 @@ Resolve #8830
 
 - Feat(client): status bar (experimental)
 
-- Feat: styled error screen ([#8930](https://github.com/orhun/git-cliff/issues/8930))
+- Feat: styled error screen (#8930)
 
 * Styled error screen
 
@@ -10553,7 +11553,7 @@ Resolve #8830
 * Rename to `error.css`
 - Feat(client): メニューからページをリロードできるように
 
-- Feat: auto nsfw detection ([#8840](https://github.com/orhun/git-cliff/issues/8840))
+- Feat: auto nsfw detection (#8840)
 
 * feat: auto nsfw detection
 
@@ -10884,7 +11884,7 @@ Closes #668
 - Chore(package): update @types/webpack to version 3.0.7
 
 Closes #665
-- Chore(package): update @types/chai-http to version 3.0.1 ([#661](https://github.com/orhun/git-cliff/issues/661))
+- Chore(package): update @types/chai-http to version 3.0.1 (#661)
 
 
 - Chore(package): update webpack to version 3.5.3
@@ -11032,12 +12032,12 @@ Closes #885
 
 - UpdatePersonで再割り当てを考慮する
 
-- UpdatePersonを試行した時点でもlastFetchedAtを更新する ([#4510](https://github.com/orhun/git-cliff/issues/4510))
+- UpdatePersonを試行した時点でもlastFetchedAtを更新する (#4510)
 
 
 - Update token generation
 
-- UpdateHashtagを並列で行わないように ([#5284](https://github.com/orhun/git-cliff/issues/5284))
+- UpdateHashtagを並列で行わないように (#5284)
 
 
 - Chore: Update commands
@@ -11084,7 +12084,7 @@ Closes #885
 
 - Chore: Use node 14.2
 
-- Chore: Use actions/checkout@v2 ([#6328](https://github.com/orhun/git-cliff/issues/6328))
+- Chore: Use actions/checkout@v2 (#6328)
 
 
 - Chore: Update deps :rocket:
@@ -11110,7 +12110,7 @@ Closes #885
 - Chore(src/docs): Fix miauth check url
 
 Fix #6418
-- Chore(client):🎨 Make font-size of note-preview em ([#6414](https://github.com/orhun/git-cliff/issues/6414))
+- Chore(client):🎨 Make font-size of note-preview em (#6414)
 
 
 - Chore(client): :art:
@@ -11177,11 +12177,11 @@ Fix #6418
 
 - Chore: improve reaction picker behaviour
 
-- Update page editor ([#7317](https://github.com/orhun/git-cliff/issues/7317))
+- Update page editor (#7317)
 
 * fix buttons visibility
 * fix title of page editor
-- Update mfm.js ([#7435](https://github.com/orhun/git-cliff/issues/7435))
+- Update mfm.js (#7435)
 
 * use mfm.js 0.14.0
 
@@ -11197,23 +12197,23 @@ Fix #6418
 - Update commander
 
 - Update secret message
-- Update MFM ([#7456](https://github.com/orhun/git-cliff/issues/7456))
+- Update MFM (#7456)
 
 
-- Update mfm.js ([#7468](https://github.com/orhun/git-cliff/issues/7468))
+- Update mfm.js (#7468)
 
 
 - Chore
 
-- Update mfm.js ([#7476](https://github.com/orhun/git-cliff/issues/7476))
+- Update mfm.js (#7476)
 
 
 - Update vue
 
-- Chore: Remove vips from Dockerfile ([#7633](https://github.com/orhun/git-cliff/issues/7633))
+- Chore: Remove vips from Dockerfile (#7633)
 
 
-- Chore: yarn.lockがおかしかったらCIでコケるように ([#7634](https://github.com/orhun/git-cliff/issues/7634))
+- Chore: yarn.lockがおかしかったらCIでコケるように (#7634)
 
 
 - Update vue
@@ -11222,7 +12222,7 @@ Fix #6418
 
 - Update contribution guides
 
-- Chore: APIドキュメントの修正 ([#7771](https://github.com/orhun/git-cliff/issues/7771))
+- Chore: APIドキュメントの修正 (#7771)
 
 * packedNotificationSchemaを更新
 
@@ -11231,7 +12231,7 @@ Fix #6418
 * fix
 
 * add header, choice, invitation
-- Chore: .configをdockerイメージに入れないように ([#7625](https://github.com/orhun/git-cliff/issues/7625))
+- Chore: .configをdockerイメージに入れないように (#7625)
 
 * .configをdockerイメージに入れないように
 
@@ -11243,7 +12243,7 @@ Co-authored-by: MeiMei <30769358+mei23@users.noreply.github.com>
 Co-authored-by: tamaina <tamaina@hotmail.co.jp>
 - Update deps
 
-- Chore, perf: Reduce redis memory ([#7816](https://github.com/orhun/git-cliff/issues/7816))
+- Chore, perf: Reduce redis memory (#7816)
 
 * Reduce redis memory
 
@@ -11292,7 +12292,7 @@ Close #7924
 
 - Update deps
 
-- Chore: remove ms-vscode.typescript-javascript-grammar ([#8061](https://github.com/orhun/git-cliff/issues/8061))
+- Chore: remove ms-vscode.typescript-javascript-grammar (#8061)
 
 
 - Update deps
@@ -11307,7 +12307,7 @@ Close #7924
 
 - Update deps
 
-- Update local copy of file when describing ([#8131](https://github.com/orhun/git-cliff/issues/8131))
+- Update local copy of file when describing (#8131)
 
 
 - Update dep
@@ -11326,7 +12326,7 @@ Close #7924
 
 - Update eslint rule
 
-- Chore(deps-dev): bump cypress from 9.3.1 to 9.4.1 ([#8239](https://github.com/orhun/git-cliff/issues/8239))
+- Chore(deps-dev): bump cypress from 9.3.1 to 9.4.1 (#8239)
 
 Bumps [cypress](https://github.com/cypress-io/cypress) from 9.3.1 to 9.4.1.
 - [Release notes](https://github.com/cypress-io/cypress/releases)
@@ -11353,7 +12353,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore(client): check textarea exists
 
-- Chore(deps): bump axios from 0.21.1 to 0.21.4 in /packages/client ([#8286](https://github.com/orhun/git-cliff/issues/8286))
+- Chore(deps): bump axios from 0.21.1 to 0.21.4 in /packages/client (#8286)
 
 Bumps [axios](https://github.com/axios/axios) from 0.21.1 to 0.21.4.
 - [Release notes](https://github.com/axios/axios/releases)
@@ -11369,7 +12369,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump path-parse from 1.0.6 to 1.0.7 in /packages/client ([#8288](https://github.com/orhun/git-cliff/issues/8288))
+- Chore(deps): bump path-parse from 1.0.6 to 1.0.7 in /packages/client (#8288)
 
 Bumps [path-parse](https://github.com/jbgutierrez/path-parse) from 1.0.6 to 1.0.7.
 - [Release notes](https://github.com/jbgutierrez/path-parse/releases)
@@ -11384,7 +12384,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump glob-parent from 5.1.1 to 5.1.2 in /packages/client ([#8289](https://github.com/orhun/git-cliff/issues/8289))
+- Chore(deps): bump glob-parent from 5.1.1 to 5.1.2 in /packages/client (#8289)
 
 Bumps [glob-parent](https://github.com/gulpjs/glob-parent) from 5.1.1 to 5.1.2.
 - [Release notes](https://github.com/gulpjs/glob-parent/releases)
@@ -11400,7 +12400,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump simple-get from 4.0.0 to 4.0.1 in /packages/backend ([#8292](https://github.com/orhun/git-cliff/issues/8292))
+- Chore(deps): bump simple-get from 4.0.0 to 4.0.1 in /packages/backend (#8292)
 
 Bumps [simple-get](https://github.com/feross/simple-get) from 4.0.0 to 4.0.1.
 - [Release notes](https://github.com/feross/simple-get/releases)
@@ -11415,7 +12415,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump node-fetch from 2.6.1 to 2.6.7 in /packages/client ([#8291](https://github.com/orhun/git-cliff/issues/8291))
+- Chore(deps): bump node-fetch from 2.6.1 to 2.6.7 in /packages/client (#8291)
 
 Bumps [node-fetch](https://github.com/node-fetch/node-fetch) from 2.6.1 to 2.6.7.
 - [Release notes](https://github.com/node-fetch/node-fetch/releases)
@@ -11430,7 +12430,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump node-fetch from 2.6.1 to 2.6.7 in /packages/backend ([#8293](https://github.com/orhun/git-cliff/issues/8293))
+- Chore(deps): bump node-fetch from 2.6.1 to 2.6.7 in /packages/backend (#8293)
 
 Bumps [node-fetch](https://github.com/node-fetch/node-fetch) from 2.6.1 to 2.6.7.
 - [Release notes](https://github.com/node-fetch/node-fetch/releases)
@@ -11445,7 +12445,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump browserslist from 4.16.3 to 4.19.1 in /packages/client ([#8290](https://github.com/orhun/git-cliff/issues/8290))
+- Chore(deps): bump browserslist from 4.16.3 to 4.19.1 in /packages/client (#8290)
 
 Bumps [browserslist](https://github.com/browserslist/browserslist) from 4.16.3 to 4.19.1.
 - [Release notes](https://github.com/browserslist/browserslist/releases)
@@ -11463,7 +12463,7 @@ Signed-off-by: dependabot[bot] <support@github.com>
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
 - Chore(client): tweak chart
 
-- Chore(deps): bump tar from 6.0.5 to 6.1.11 in /packages/backend ([#8294](https://github.com/orhun/git-cliff/issues/8294))
+- Chore(deps): bump tar from 6.0.5 to 6.1.11 in /packages/backend (#8294)
 
 Bumps [tar](https://github.com/npm/node-tar) from 6.0.5 to 6.1.11.
 - [Release notes](https://github.com/npm/node-tar/releases)
@@ -11479,7 +12479,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump path-parse from 1.0.6 to 1.0.7 in /packages/backend ([#8301](https://github.com/orhun/git-cliff/issues/8301))
+- Chore(deps): bump path-parse from 1.0.6 to 1.0.7 in /packages/backend (#8301)
 
 Bumps [path-parse](https://github.com/jbgutierrez/path-parse) from 1.0.6 to 1.0.7.
 - [Release notes](https://github.com/jbgutierrez/path-parse/releases)
@@ -11494,7 +12494,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump normalize-url from 4.5.0 to 4.5.1 in /packages/backend ([#8302](https://github.com/orhun/git-cliff/issues/8302))
+- Chore(deps): bump normalize-url from 4.5.0 to 4.5.1 in /packages/backend (#8302)
 
 Bumps [normalize-url](https://github.com/sindresorhus/normalize-url) from 4.5.0 to 4.5.1.
 - [Release notes](https://github.com/sindresorhus/normalize-url/releases)
@@ -11509,7 +12509,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump glob-parent from 5.1.1 to 5.1.2 in /packages/backend ([#8303](https://github.com/orhun/git-cliff/issues/8303))
+- Chore(deps): bump glob-parent from 5.1.1 to 5.1.2 in /packages/backend (#8303)
 
 Bumps [glob-parent](https://github.com/gulpjs/glob-parent) from 5.1.1 to 5.1.2.
 - [Release notes](https://github.com/gulpjs/glob-parent/releases)
@@ -11543,7 +12543,7 @@ Close #8327
 
 - Update deps
 
-- Chore(deps): bump minimist from 1.2.5 to 1.2.6 in /packages/backend ([#8447](https://github.com/orhun/git-cliff/issues/8447))
+- Chore(deps): bump minimist from 1.2.5 to 1.2.6 in /packages/backend (#8447)
 
 Bumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.
 - [Release notes](https://github.com/substack/minimist/releases)
@@ -11560,7 +12560,7 @@ Signed-off-by: dependabot[bot] <support@github.com>
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
 - Update deps
 
-- Chore(deps): bump minimist from 1.2.5 to 1.2.6 in /packages/client ([#8446](https://github.com/orhun/git-cliff/issues/8446))
+- Chore(deps): bump minimist from 1.2.5 to 1.2.6 in /packages/client (#8446)
 
 Bumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.
 - [Release notes](https://github.com/substack/minimist/releases)
@@ -11575,7 +12575,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump minimist from 1.2.5 to 1.2.6 ([#8445](https://github.com/orhun/git-cliff/issues/8445))
+- Chore(deps): bump minimist from 1.2.5 to 1.2.6 (#8445)
 
 Bumps [minimist](https://github.com/substack/minimist) from 1.2.5 to 1.2.6.
 - [Release notes](https://github.com/substack/minimist/releases)
@@ -11590,7 +12590,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump follow-redirects in /packages/backend ([#8314](https://github.com/orhun/git-cliff/issues/8314))
+- Chore(deps): bump follow-redirects in /packages/backend (#8314)
 
 Bumps [follow-redirects](https://github.com/follow-redirects/follow-redirects) from 1.14.7 to 1.14.8.
 - [Release notes](https://github.com/follow-redirects/follow-redirects/releases)
@@ -11605,7 +12605,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump follow-redirects from 1.14.1 to 1.14.8 ([#8313](https://github.com/orhun/git-cliff/issues/8313))
+- Chore(deps): bump follow-redirects from 1.14.1 to 1.14.8 (#8313)
 
 Bumps [follow-redirects](https://github.com/follow-redirects/follow-redirects) from 1.14.1 to 1.14.8.
 - [Release notes](https://github.com/follow-redirects/follow-redirects/releases)
@@ -11628,7 +12628,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore: fix lint on windows
 
-- Chore(deps): bump axios from 0.21.1 to 0.21.4 ([#8471](https://github.com/orhun/git-cliff/issues/8471))
+- Chore(deps): bump axios from 0.21.1 to 0.21.4 (#8471)
 
 Bumps [axios](https://github.com/axios/axios) from 0.21.1 to 0.21.4.
 - [Release notes](https://github.com/axios/axios/releases)
@@ -11652,7 +12652,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Update node to 18
 
-- Chore(deps): bump moment from 2.24.0 to 2.29.3 in /packages/backend ([#8531](https://github.com/orhun/git-cliff/issues/8531))
+- Chore(deps): bump moment from 2.24.0 to 2.29.3 in /packages/backend (#8531)
 
 Bumps [moment](https://github.com/moment/moment) from 2.24.0 to 2.29.3.
 - [Release notes](https://github.com/moment/moment/releases)
@@ -11668,7 +12668,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(lint): fix type definitions for jsrsasign ([#8528](https://github.com/orhun/git-cliff/issues/8528))
+- Chore(lint): fix type definitions for jsrsasign (#8528)
 
 * fix type definitions for jsrsasign
 
@@ -11682,10 +12682,10 @@ package misskey uses, so i used an earlier patch version of the same package.
 
 add user facing changes to changelog
 
-- Chore(deps): Update github actions to use the same version as defined in .node-version ([#8563](https://github.com/orhun/git-cliff/issues/8563))
+- Chore(deps): Update github actions to use the same version as defined in .node-version (#8563)
 
 
-- Chore(deps): bump ejs from 3.1.6 to 3.1.7 in /packages/backend ([#8560](https://github.com/orhun/git-cliff/issues/8560))
+- Chore(deps): bump ejs from 3.1.6 to 3.1.7 in /packages/backend (#8560)
 
 Bumps [ejs](https://github.com/mde/ejs) from 3.1.6 to 3.1.7.
 - [Release notes](https://github.com/mde/ejs/releases)
@@ -11701,7 +12701,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump postcss from 8.2.8 to 8.4.13 in /packages/client ([#8588](https://github.com/orhun/git-cliff/issues/8588))
+- Chore(deps): bump postcss from 8.2.8 to 8.4.13 in /packages/client (#8588)
 
 Bumps [postcss](https://github.com/postcss/postcss) from 8.2.8 to 8.4.13.
 - [Release notes](https://github.com/postcss/postcss/releases)
@@ -11717,7 +12717,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore: synchronize code and database schema ([#8577](https://github.com/orhun/git-cliff/issues/8577))
+- Chore: synchronize code and database schema (#8577)
 
 * chore: remove default null
 
@@ -11733,7 +12733,7 @@ null is always the default value if a table column is nullable, and typeorm's
 
 - Chore(dev): use .yaml for prevent okteto error
 
-- Chore(deps): bump path-parse from 1.0.6 to 1.0.7 ([#8705](https://github.com/orhun/git-cliff/issues/8705))
+- Chore(deps): bump path-parse from 1.0.6 to 1.0.7 (#8705)
 
 Bumps [path-parse](https://github.com/jbgutierrez/path-parse) from 1.0.6 to 1.0.7.
 - [Release notes](https://github.com/jbgutierrez/path-parse/releases)
@@ -11748,7 +12748,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump async from 3.2.0 to 3.2.3 in /packages/backend ([#8706](https://github.com/orhun/git-cliff/issues/8706))
+- Chore(deps): bump async from 3.2.0 to 3.2.3 in /packages/backend (#8706)
 
 Bumps [async](https://github.com/caolan/async) from 3.2.0 to 3.2.3.
 - [Release notes](https://github.com/caolan/async/releases)
@@ -11768,7 +12768,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore(client): tweak loading spinner design
 
-- Chore(deps): bump async from 3.2.1 to 3.2.3 in /packages/client ([#8707](https://github.com/orhun/git-cliff/issues/8707))
+- Chore(deps): bump async from 3.2.1 to 3.2.3 in /packages/client (#8707)
 
 Bumps [async](https://github.com/caolan/async) from 3.2.1 to 3.2.3.
 - [Release notes](https://github.com/caolan/async/releases)
@@ -11784,7 +12784,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump async from 3.2.1 to 3.2.3 ([#8501](https://github.com/orhun/git-cliff/issues/8501))
+- Chore(deps): bump async from 3.2.1 to 3.2.3 (#8501)
 
 Bumps [async](https://github.com/caolan/async) from 3.2.1 to 3.2.3.
 - [Release notes](https://github.com/caolan/async/releases)
@@ -11800,7 +12800,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump copy-props from 2.0.4 to 2.0.5 ([#8709](https://github.com/orhun/git-cliff/issues/8709))
+- Chore(deps): bump copy-props from 2.0.4 to 2.0.5 (#8709)
 
 Bumps [copy-props](https://github.com/gulpjs/copy-props) from 2.0.4 to 2.0.5.
 - [Release notes](https://github.com/gulpjs/copy-props/releases)
@@ -11816,10 +12816,10 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(meta): add pixeldesu to patron list ([#8714](https://github.com/orhun/git-cliff/issues/8714))
+- Chore(meta): add pixeldesu to patron list (#8714)
 
 
-- Chore(deps): bump hosted-git-info from 2.8.8 to 2.8.9 ([#8708](https://github.com/orhun/git-cliff/issues/8708))
+- Chore(deps): bump hosted-git-info from 2.8.8 to 2.8.9 (#8708)
 
 Bumps [hosted-git-info](https://github.com/npm/hosted-git-info) from 2.8.8 to 2.8.9.
 - [Release notes](https://github.com/npm/hosted-git-info/releases)
@@ -11844,7 +12844,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore: fix import tinycolor
 
-- Chore(meta): label Pull Requests containing tests ([#8768](https://github.com/orhun/git-cliff/issues/8768))
+- Chore(meta): label Pull Requests containing tests (#8768)
 
 
 - Update summaly
@@ -11857,7 +12857,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore(dev): update okteto workflow
 
-- Chore: fix some lints automatically ([#8788](https://github.com/orhun/git-cliff/issues/8788))
+- Chore: fix some lints automatically (#8788)
 
 * chore: fix some lints automatically
 
@@ -11876,7 +12876,7 @@ Fixed lints that were automatically fixable with `eslint --fix`.
 - Update cypress
 - Update cypress
 
-- Chore: synchronize visibility checks ([#8687](https://github.com/orhun/git-cliff/issues/8687))
+- Chore: synchronize visibility checks (#8687)
 
 * reuse single meId parameter
 
@@ -11911,7 +12911,7 @@ method from packages/backend/src/models/repositories/note.ts
 
 - Chore(client): tweak MkKeyValue component
 
-- Chore(deps): bump undici from 5.4.0 to 5.5.1 in /packages/backend ([#8842](https://github.com/orhun/git-cliff/issues/8842))
+- Chore(deps): bump undici from 5.4.0 to 5.5.1 in /packages/backend (#8842)
 
 Bumps [undici](https://github.com/nodejs/undici) from 5.4.0 to 5.5.1.
 - [Release notes](https://github.com/nodejs/undici/releases)
@@ -11926,7 +12926,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump jpeg-js from 0.4.1 to 0.4.4 in /packages/backend ([#8843](https://github.com/orhun/git-cliff/issues/8843))
+- Chore(deps): bump jpeg-js from 0.4.1 to 0.4.4 in /packages/backend (#8843)
 
 Bumps [jpeg-js](https://github.com/eugeneware/jpeg-js) from 0.4.1 to 0.4.4.
 - [Release notes](https://github.com/eugeneware/jpeg-js/releases)
@@ -11941,7 +12941,7 @@ updated-dependencies:
 Signed-off-by: dependabot[bot] <support@github.com>
 
 Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
-- Chore(deps): bump jsrsasign from 10.5.24 to 10.5.25 in /packages/backend ([#8889](https://github.com/orhun/git-cliff/issues/8889))
+- Chore(deps): bump jsrsasign from 10.5.24 to 10.5.25 in /packages/backend (#8889)
 
 Bumps [jsrsasign](https://github.com/kjur/jsrsasign) from 10.5.24 to 10.5.25.
 - [Release notes](https://github.com/kjur/jsrsasign/releases)
@@ -12053,7 +13053,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Update CHANGELOG.md
 
-- Chore: fix client lint errors ([#8934](https://github.com/orhun/git-cliff/issues/8934))
+- Chore: fix client lint errors (#8934)
 
 * Fix client lint
 
@@ -12098,7 +13098,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Update deps
 
-- Chore(deps): bump moment from 2.29.3 to 2.29.4 in /packages/backend ([#8958](https://github.com/orhun/git-cliff/issues/8958))
+- Chore(deps): bump moment from 2.29.3 to 2.29.4 in /packages/backend (#8958)
 
 Bumps [moment](https://github.com/moment/moment) from 2.29.3 to 2.29.4.
 - [Release notes](https://github.com/moment/moment/releases)
@@ -12126,7 +13126,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore(client): tweak style
 
-- Chore: fix lint errors ([#8981](https://github.com/orhun/git-cliff/issues/8981))
+- Chore: fix lint errors (#8981)
 
 
 - Update mfm-js 0.23.0-canary.1
@@ -12175,7 +13175,7 @@ Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.c
 
 - Chore(client): tweak user-info routing
 
-- Chore: improve ad style ([#8995](https://github.com/orhun/git-cliff/issues/8995))
+- Chore: improve ad style (#8995)
 
 * Improve ad style
 
@@ -12258,14 +13258,14 @@ See: https://forum.vuejs.org/t/how-to-avoid-non-function-value-encountered-for-d
 
 - Perf(server): Optimize db indexes of chart tables
 
-- Perf: Improve network request performance ([#7636](https://github.com/orhun/git-cliff/issues/7636))
+- Perf: Improve network request performance (#7636)
 
 * perf: Improve fetch
 
 * CHANGELOG
 
 * lifo
-- Perf: Tune AP job queue timings ([#7635](https://github.com/orhun/git-cliff/issues/7635))
+- Perf: Tune AP job queue timings (#7635)
 
 * perf: Tune AP job queue timings
 
@@ -12274,7 +13274,7 @@ See: https://forum.vuejs.org/t/how-to-avoid-non-function-value-encountered-for-d
 * chore: add reference
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Perf: delete-account処理を軽くする ([#7958](https://github.com/orhun/git-cliff/issues/7958))
+- Perf: delete-account処理を軽くする (#7958)
 
 * Revert "#7892"
 
@@ -12308,7 +13308,7 @@ This reverts commit 71d9c2a53d116a61f4c9b21ff98712a0000412b8.
 
 - Perf(server): use cached user info in getUserFromApId
 
-- Perf: fix caching ([#8660](https://github.com/orhun/git-cliff/issues/8660))
+- Perf: fix caching (#8660)
 
 The cache implementation did previously not store the results of the
 computation and was thus not a cache at all. This can cause a significant
@@ -12363,7 +13363,7 @@ followers does something that causes an activity to be federated.
 - Refactor(client): Use unique class name
 
 - Refactor(client): Add note
-- Refactor: use Object.fromEntries() instead of in-house implementation ([#6401](https://github.com/orhun/git-cliff/issues/6401))
+- Refactor: use Object.fromEntries() instead of in-house implementation (#6401)
 
 * refactor: use Object.fromEntries()
 instead of in-house implementation
@@ -12446,7 +13446,7 @@ path aliasをサーバーサイドでも使ったりしたいため
 
 - Refactor(client): Use symbol
 
-- Refactor mfm extract ([#7434](https://github.com/orhun/git-cliff/issues/7434))
+- Refactor mfm extract (#7434)
 
 * refactor extractCustomEmojisFromMfm()
 
@@ -12465,7 +13465,7 @@ path aliasをサーバーサイドでも使ったりしたいため
 
 - Refactoring
 
-- Refactor init ([#7464](https://github.com/orhun/git-cliff/issues/7464))
+- Refactor init (#7464)
 
 
 - Refactor
@@ -12482,7 +13482,7 @@ path aliasをサーバーサイドでも使ったりしたいため
 
 - Enhance(client): Improve stability of version comparison
 
-- Enhance(server): Improve user block ([#7640](https://github.com/orhun/git-cliff/issues/7640))
+- Enhance(server): Improve user block (#7640)
 
 * enhance(server): Improve user block
 
@@ -12515,7 +13515,7 @@ Related: #7658
 
 - Refactor: use path alias to improve readability
 
-- Refactor: localStorageのaccountsはindexedDBで保持するように ([#7609](https://github.com/orhun/git-cliff/issues/7609))
+- Refactor: localStorageのaccountsはindexedDBで保持するように (#7609)
 
 * accountsストアはindexedDBで保持するように
 
@@ -12539,7 +13539,7 @@ Firefoxでの動作を改善
 
 cherry picked from https://github.com/kat-atat/misskey/commit/4b2c215e25a0bae47f4375b296d1f5d07a179f88
 
-- Enhance(server): Use job queue for account delete ([#7668](https://github.com/orhun/git-cliff/issues/7668))
+- Enhance(server): Use job queue for account delete (#7668)
 
 * enhance(server): Use job queue for account delete
 
@@ -12570,7 +13570,7 @@ Fix #5336
 
 - Refactoring
 
-- Refactor: Expand schema ([#7772](https://github.com/orhun/git-cliff/issues/7772))
+- Refactor: Expand schema (#7772)
 
 * packedNotificationSchemaを更新
 
@@ -12603,7 +13603,7 @@ Fix #5336
 
 - Refactor
 
-- Enhance: ノートヘッダーにflex-shrinkを設定し、Acctを優先的に縮小して見栄えをよくするように ([#7752](https://github.com/orhun/git-cliff/issues/7752))
+- Enhance: ノートヘッダーにflex-shrinkを設定し、Acctを優先的に縮小して見栄えをよくするように (#7752)
 
 * MAKE NOTE HEADER FLEX AGAIN
 
@@ -12616,7 +13616,7 @@ Fix #5336
 
 Resolve #7756
 
-- Refactor: PackedHoge型をPacked<'Hoge'>型に書き換える ([#7792](https://github.com/orhun/git-cliff/issues/7792))
+- Refactor: PackedHoge型をPacked<'Hoge'>型に書き換える (#7792)
 
 * packedNotificationSchemaを更新
 
@@ -12733,7 +13733,7 @@ Resolve #7826
 
 Resolve #7854
 
-- Enhance: ページロードエラーページにリロードボタンを追加 ([#7835](https://github.com/orhun/git-cliff/issues/7835))
+- Enhance: ページロードエラーページにリロードボタンを追加 (#7835)
 
 * wip
 
@@ -12762,7 +13762,7 @@ Resolve #7854
 
 - Refactor: use insert
 
-- Enhance: shareページでより多くの情報を渡せるように ([#7606](https://github.com/orhun/git-cliff/issues/7606))
+- Enhance: shareページでより多くの情報を渡せるように (#7606)
 
 * shareでより多くの情報を渡せるように
 
@@ -12779,7 +13779,7 @@ Resolve #7854
 * :art:
 
 * 閉じなければ100ms後タイムラインに
-- Refactor: publishHogeStreamとStreamのEventEmitterに型定義する ([#7769](https://github.com/orhun/git-cliff/issues/7769))
+- Refactor: publishHogeStreamとStreamのEventEmitterに型定義する (#7769)
 
 * wip
 
@@ -12988,7 +13988,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 
 - Refactor client
 
-- Enhance: Provide Twemoji SVGs from Misskey server ([#2](https://github.com/orhun/git-cliff/issues/2)) ([#7897](https://github.com/orhun/git-cliff/issues/7897))
+- Enhance: Provide Twemoji SVGs from Misskey server (#2) (#7897)
 
 * Selfhosting Twemoji
 
@@ -13003,7 +14003,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 Co-authored-by: mei23 <m@m544.net>
 - Refactor
 
-- Refactor: Introduce list of MFM Functions ([#7882](https://github.com/orhun/git-cliff/issues/7882))
+- Refactor: Introduce list of MFM Functions (#7882)
 
 * introduce list of MFM Functions
 
@@ -13020,7 +14020,7 @@ Resolve #7779
 
 - Refactoring
 
-- Enhance: show renoters ([#7954](https://github.com/orhun/git-cliff/issues/7954))
+- Enhance: show renoters (#7954)
 
 * refactor: deduplicate renote button into component
 
@@ -13101,7 +14101,7 @@ Fix #8029
 
 - Enhance(client): :sparkles:
 
-- Enhance: pizzaxでstreamingのuser storage updateイベントを監視して更新 ([#8095](https://github.com/orhun/git-cliff/issues/8095))
+- Enhance: pizzaxでstreamingのuser storage updateイベントを監視して更新 (#8095)
 
 * wip
 
@@ -13128,7 +14128,7 @@ Fix #8029
 
 - Refactor(server): use insert instead of save
 
-- Enhance: 許可されていないファイルタイプでは、オブジェクトストレージのファイル名に拡張子を付与しないように ([#8108](https://github.com/orhun/git-cliff/issues/8108))
+- Enhance: 許可されていないファイルタイプでは、オブジェクトストレージのファイル名に拡張子を付与しないように (#8108)
 
 * 許可されていないファイルタイプでは、オブジェクトストレージのファイル名に拡張子を付与しないように
 
@@ -13151,7 +14151,7 @@ Fix #8029
 
 - Refactor(client): use composition api
 
-- Refactor: Widgetのcomposition api移行 ([#8125](https://github.com/orhun/git-cliff/issues/8125))
+- Refactor: Widgetのcomposition api移行 (#8125)
 
 * wip
 
@@ -13166,7 +14166,7 @@ Fix #8029
 * wip
 
 * fix
-- Refactor: Composition APIへ移行 ([#8121](https://github.com/orhun/git-cliff/issues/8121))
+- Refactor: Composition APIへ移行 (#8121)
 
 * components/abuse-report-window.vue
 
@@ -13227,7 +14227,7 @@ Fix #8029
 
 - Refactor
 
-- Refactor: APIエンドポイントファイルの定義を良い感じにする ([#8154](https://github.com/orhun/git-cliff/issues/8154))
+- Refactor: APIエンドポイントファイルの定義を良い感じにする (#8154)
 
 * Fix API Schema Error
 
@@ -13369,7 +14369,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 * 分割代入ではなくallOfで定義するように
 
 Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
-- Refactor: Composition APIへ移行 ([#8138](https://github.com/orhun/git-cliff/issues/8138))
+- Refactor: Composition APIへ移行 (#8138)
 
 * components/drive-file-thumbnail.vue
 
@@ -13436,7 +14436,7 @@ Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 
 - Refactor(server): use named export
 
-- Enhance: Forward report ([#8001](https://github.com/orhun/git-cliff/issues/8001))
+- Enhance: Forward report (#8001)
 
 * implement sending AP Flag object
 
@@ -13466,7 +14466,7 @@ makes sense to correct this on our side.
 * Update get-note-menu.ts
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Enhance: e2eテストをできるだけ改良してみた ([#8159](https://github.com/orhun/git-cliff/issues/8159))
+- Enhance: e2eテストをできるだけ改良してみた (#8159)
 
 * update docker image?
 
@@ -13584,7 +14584,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Enhance: convert svg to png of custom emojis
 
-- Refactor, enhance: ドライブ引数のオブジェクト化, 追加時のcomment指定 ([#8180](https://github.com/orhun/git-cliff/issues/8180))
+- Refactor, enhance: ドライブ引数のオブジェクト化, 追加時のcomment指定 (#8180)
 
 * refactor: ドライブの引数をオブジェクト化する Resolve #8177
 
@@ -13595,7 +14595,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 * archivePath
 - Refactor(backend): use insert instead of save
 
-- Enhance: Improve poll-editor UI + composition port ([#8186](https://github.com/orhun/git-cliff/issues/8186))
+- Enhance: Improve poll-editor UI + composition port (#8186)
 
 * Poll editor UI changes
 
@@ -13616,7 +14616,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Refactor(backend): fix type
 
-- Enhance: MediaListでは、サーバーで許可された形式しか表示しないように ([#8113](https://github.com/orhun/git-cliff/issues/8113))
+- Enhance: MediaListでは、サーバーで許可された形式しか表示しないように (#8113)
 
 * wip
 
@@ -13637,7 +14637,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Refactor(client): use setup sugar
 
-- Enhance: メニュー関連をComposition API化、switchアイテム追加 ([#8215](https://github.com/orhun/git-cliff/issues/8215))
+- Enhance: メニュー関連をComposition API化、switchアイテム追加 (#8215)
 
 * メニューをComposition API化、switchアイテム追加
 クライアントサイド画像圧縮の準備
@@ -13655,7 +14655,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 * Fix
 
 * clean up
-- Refactor: APIで非JSON入力の型変換はendpointに渡す前に行うように ([#8229](https://github.com/orhun/git-cliff/issues/8229))
+- Refactor: APIで非JSON入力の型変換はendpointに渡す前に行うように (#8229)
 
 * Resolve #8228
 
@@ -13712,7 +14712,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Refactor: better getChart result type
 
-- Refactor: use ajv instead of cafy ([#8324](https://github.com/orhun/git-cliff/issues/8324))
+- Refactor: use ajv instead of cafy (#8324)
 
 * wip
 
@@ -13841,7 +14841,7 @@ Co-authored-by: Johann150 <johann.galle@protonmail.com>
 
 - Refactor
 
-- Refactor: Use ESM ([#8358](https://github.com/orhun/git-cliff/issues/8358))
+- Refactor: Use ESM (#8358)
 
 * wip
 
@@ -13870,7 +14870,7 @@ Co-authored-by: Johann150 <johann.galle@protonmail.com>
 
 - Refactor
 
-- Refactor: migrate to typeorm 3.0 ([#8443](https://github.com/orhun/git-cliff/issues/8443))
+- Refactor: migrate to typeorm 3.0 (#8443)
 
 * wip
 
@@ -13901,7 +14901,7 @@ Co-authored-by: Johann150 <johann.galle@protonmail.com>
 
 - Refactor
 
-- Enhance(doc): required input fields ([#8456](https://github.com/orhun/git-cliff/issues/8456))
+- Enhance(doc): required input fields (#8456)
 
 * remove empty file
 
@@ -13938,7 +14938,7 @@ Defaults for `local` and `withFiles` are based on the behaviour of the endpoint.
 * update changelog
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Enhance: タッチパッド・タッチスクリーンでのデッキの操作性を向上 ([#8450](https://github.com/orhun/git-cliff/issues/8450))
+- Enhance: タッチパッド・タッチスクリーンでのデッキの操作性を向上 (#8450)
 
 * enhance experience of deck with touchpad
 
@@ -13965,7 +14965,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 Close #8481
 
-- Refactor: move typings to devDependencies ([#8500](https://github.com/orhun/git-cliff/issues/8500))
+- Refactor: move typings to devDependencies (#8500)
 
 
 - Refactor: fix type
@@ -13996,18 +14996,18 @@ Resolve #8467
 
 - Refactor: use structuredClone for deep clone
 
-- Refactor(meta): split package lints into separate workflows ([#8530](https://github.com/orhun/git-cliff/issues/8530))
+- Refactor(meta): split package lints into separate workflows (#8530)
 
 
-- Enhance: only render public notes in HTML template ([#8527](https://github.com/orhun/git-cliff/issues/8527))
+- Enhance: only render public notes in HTML template (#8527)
 
 * only render public notes in HTML template
 
 * fix missing import
-- Refactor: use composition API ([#8541](https://github.com/orhun/git-cliff/issues/8541))
+- Refactor: use composition API (#8541)
 
 
-- Enhance: ドライブに画像ファイルをアップロードするときオリジナル画像を破棄してwebpublicのみ保持するオプション ([#8216](https://github.com/orhun/git-cliff/issues/8216))
+- Enhance: ドライブに画像ファイルをアップロードするときオリジナル画像を破棄してwebpublicのみ保持するオプション (#8216)
 
 * wip
 
@@ -14082,16 +15082,16 @@ Co-authored-by: tamaina <tamaina@hotmail.co.jp>
 
 Co-authored-by: mei23 <m@m544.net>
 Co-authored-by: MeiMei <30769358+mei23@users.noreply.github.com>
-- Refactor(client): refactor api-console to use Composition API ([#8566](https://github.com/orhun/git-cliff/issues/8566))
+- Refactor(client): refactor api-console to use Composition API (#8566)
 
 
-- Refactor(client): refactor scratchpad to use Composition API ([#8565](https://github.com/orhun/git-cliff/issues/8565))
+- Refactor(client): refactor scratchpad to use Composition API (#8565)
 
 
-- Refactor(client): refactor import-export to use Composition API ([#8579](https://github.com/orhun/git-cliff/issues/8579))
+- Refactor(client): refactor import-export to use Composition API (#8579)
 
 
-- Refactor: use Vite to build instead of webpack ([#8575](https://github.com/orhun/git-cliff/issues/8575))
+- Refactor: use Vite to build instead of webpack (#8575)
 
 * update stream.ts
 
@@ -14354,40 +15354,40 @@ This reverts commit 12741b3d89950a31dbb1bb81477ddb27b0e9951a.
 
 Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Refactor(client): refactor settings/accounts to use Composition API ([#8604](https://github.com/orhun/git-cliff/issues/8604))
+- Refactor(client): refactor settings/accounts to use Composition API (#8604)
 
 
-- Refactor(client): refactor settings/theme to use Composition API ([#8595](https://github.com/orhun/git-cliff/issues/8595))
+- Refactor(client): refactor settings/theme to use Composition API (#8595)
 
 
-- Refactor(client): refactor settings/security to use Composition API ([#8592](https://github.com/orhun/git-cliff/issues/8592))
+- Refactor(client): refactor settings/security to use Composition API (#8592)
 
 
-- Refactor(client): refactor settings/plugin/install to use Composition API ([#8591](https://github.com/orhun/git-cliff/issues/8591))
+- Refactor(client): refactor settings/plugin/install to use Composition API (#8591)
 
 
-- Refactor(client): refactor settings/plugin to use Composition API ([#8590](https://github.com/orhun/git-cliff/issues/8590))
+- Refactor(client): refactor settings/plugin to use Composition API (#8590)
 
 
-- Refactor(client): refactor settings/drive to use Composition API ([#8573](https://github.com/orhun/git-cliff/issues/8573))
+- Refactor(client): refactor settings/drive to use Composition API (#8573)
 
 
-- Refactor(client): refactor settings/apps to use Composition API ([#8570](https://github.com/orhun/git-cliff/issues/8570))
+- Refactor(client): refactor settings/apps to use Composition API (#8570)
 
 
-- Refactor(client): refactor settings/api to use Composition API ([#8569](https://github.com/orhun/git-cliff/issues/8569))
+- Refactor(client): refactor settings/api to use Composition API (#8569)
 
 
-- Refactor(client): refactor 2FA settings to Composition API ([#8599](https://github.com/orhun/git-cliff/issues/8599))
+- Refactor(client): refactor 2FA settings to Composition API (#8599)
 
 
-- Refactor(client): refactor settings/deck to use Composition API ([#8598](https://github.com/orhun/git-cliff/issues/8598))
+- Refactor(client): refactor settings/deck to use Composition API (#8598)
 
 
-- Refactor(client): refactor settings/word-mute to use Composition API ([#8597](https://github.com/orhun/git-cliff/issues/8597))
+- Refactor(client): refactor settings/word-mute to use Composition API (#8597)
 
 
-- Refactor(client): refactor settings/theme/manage to use Composition API ([#8596](https://github.com/orhun/git-cliff/issues/8596))
+- Refactor(client): refactor settings/theme/manage to use Composition API (#8596)
 
 
 - Enhance: Display TOTP Register URL
@@ -14396,25 +15396,25 @@ Close #7261
 
 Co-Authored-By: tamaina <tamaina@hotmail.co.jp>
 
-- Refactor(client): refactor admin/ads to use Composition API ([#8649](https://github.com/orhun/git-cliff/issues/8649))
+- Refactor(client): refactor admin/ads to use Composition API (#8649)
 
 
-- Refactor(client): refactor admin/announcements to use Composition API ([#8650](https://github.com/orhun/git-cliff/issues/8650))
+- Refactor(client): refactor admin/announcements to use Composition API (#8650)
 
 
-- Refactor(client): refactor my-antennas/index to use Composition API ([#8679](https://github.com/orhun/git-cliff/issues/8679))
+- Refactor(client): refactor my-antennas/index to use Composition API (#8679)
 
 
-- Refactor(client): refactor admin/proxy-account to use Composition API ([#8675](https://github.com/orhun/git-cliff/issues/8675))
+- Refactor(client): refactor admin/proxy-account to use Composition API (#8675)
 
 
-- Refactor(client): refactor admin/object-storage to use Composition API ([#8666](https://github.com/orhun/git-cliff/issues/8666))
+- Refactor(client): refactor admin/object-storage to use Composition API (#8666)
 
 
-- Refactor(client): refactor admin/instance-block to use Composition API ([#8663](https://github.com/orhun/git-cliff/issues/8663))
+- Refactor(client): refactor admin/instance-block to use Composition API (#8663)
 
 
-- Enhance: Perform port diagnosis at startup only when Listen fails ([#8698](https://github.com/orhun/git-cliff/issues/8698))
+- Enhance: Perform port diagnosis at startup only when Listen fails (#8698)
 
 * Change port check
 
@@ -14423,7 +15423,7 @@ Co-Authored-By: tamaina <tamaina@hotmail.co.jp>
 * CHANGELOG
 
 * Smart message
-- Enhance: uniform theme color ([#8702](https://github.com/orhun/git-cliff/issues/8702))
+- Enhance: uniform theme color (#8702)
 
 * enhance: make theme color format uniform
 
@@ -14441,10 +15441,10 @@ Fixes theme colors of other instances as well as the local instance.
 * add changelog entry
 
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
-- Refactor(client): refactor admin/settings to use Composition API ([#8678](https://github.com/orhun/git-cliff/issues/8678))
+- Refactor(client): refactor admin/settings to use Composition API (#8678)
 
 
-- Enhance(MFM): limit large MFM ([#8540](https://github.com/orhun/git-cliff/issues/8540))
+- Enhance(MFM): limit large MFM (#8540)
 
 * add CSS classes for zoom MFM
 
@@ -14455,7 +15455,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
 
 Co-authored-by: Acid Chicken (硫酸鶏) <root@acid-chicken.com>
-- Enhance: page image component with alt text ([#8634](https://github.com/orhun/git-cliff/issues/8634))
+- Enhance: page image component with alt text (#8634)
 
 * refactor to composition API
 
@@ -14470,10 +15470,10 @@ This improves user experience because alt text is displayed correctly.
 * fix
 - Refactor
 
-- Refactor(client): refactor admin/other-settings to use Composition API ([#8667](https://github.com/orhun/git-cliff/issues/8667))
+- Refactor(client): refactor admin/other-settings to use Composition API (#8667)
 
 
-- Refactor: temporary files ([#8713](https://github.com/orhun/git-cliff/issues/8713))
+- Refactor: temporary files (#8713)
 
 * simplify temporary files for thumbnails
 
@@ -14508,7 +15508,7 @@ code in a try...finally statement where the finally runs the cleanup.
 - Enhance: clearly link documentation
 
 fix #8744
-- Enhance: replace signin CAPTCHA with rate limit ([#8740](https://github.com/orhun/git-cliff/issues/8740))
+- Enhance: replace signin CAPTCHA with rate limit (#8740)
 
 * enhance: rate limit works without signed in user
 
@@ -14531,12 +15531,12 @@ This reverts commit b21b0580058c14532ff3f4033e2a9147643bfca6.
 * fix: better error message
 
 * enhance: only handle prefix of IPv6
-- Refactor: use css module at components/global/loading.vue ([#8750](https://github.com/orhun/git-cliff/issues/8750))
+- Refactor: use css module at components/global/loading.vue (#8750)
 
 * refactor: use css module at components/global/loading.vue
 
 * rename class name to "root"
-- Refactor: improve code quality ([#8751](https://github.com/orhun/git-cliff/issues/8751))
+- Refactor: improve code quality (#8751)
 
 * remove unnecessary if
 
@@ -14579,14 +15579,14 @@ The `ago` variable will always be a number and all non-negative numbers
 are already covered by other cases, the negative case is handled with
 `future` so there is no case when `unkown` could be achieved.
 - Enhance(dev): ask for log snippets
-- Refactor: use awaitAll to reduce duplication ([#8791](https://github.com/orhun/git-cliff/issues/8791))
+- Refactor: use awaitAll to reduce duplication (#8791)
 
 * refactor: use awaitAll to reduce duplication
 
 * fix lint
 
 * fix typo
-- Enhance: improve documentation for `/users/` endpoints ([#8790](https://github.com/orhun/git-cliff/issues/8790))
+- Enhance: improve documentation for `/users/` endpoints (#8790)
 
 * docs: category & description for reset password
 
@@ -14605,7 +15605,7 @@ are already covered by other cases, the negative case is handled with
 * docs: descriptions & result type for user endpoints
 
 * docs: add return type for stats
-- Refactor: follow button ([#8789](https://github.com/orhun/git-cliff/issues/8789))
+- Refactor: follow button (#8789)
 
 * fix: display cancelling follow request
 
@@ -14623,7 +15623,7 @@ Use the same callback as later for updating these variables.
 * remove unused import
 
 Co-authored-by: blackskye-sx <saul.newman@gmail.com>
-- Enhance(federation): use ActivityPub defined property in favour of proprietary property. ([#8787](https://github.com/orhun/git-cliff/issues/8787))
+- Enhance(federation): use ActivityPub defined property in favour of proprietary property. (#8787)
 
 * add activitypub `source` property
 
@@ -14634,12 +15634,12 @@ Co-authored-by: blackskye-sx <saul.newman@gmail.com>
 
 - Enhance(client): improve file moderation ui
 
-- Enhance: Improve player detection in URL preview ([#8849](https://github.com/orhun/git-cliff/issues/8849))
+- Enhance: Improve player detection in URL preview (#8849)
 
 * enhance: Improve player detection in URL preview
 
 * CHANGELOG
-- Refactor: チャットルームをComposition API化 ([#8850](https://github.com/orhun/git-cliff/issues/8850))
+- Refactor: チャットルームをComposition API化 (#8850)
 
 * pick form
 
@@ -14660,7 +15660,7 @@ Co-authored-by: blackskye-sx <saul.newman@gmail.com>
 * fix, :art:
 
 * test.1
-- Refactor(client): Refine routing ([#8846](https://github.com/orhun/git-cliff/issues/8846))
+- Refactor(client): Refine routing (#8846)
 
 
 - Refactor(client): use composition api
@@ -14673,10 +15673,10 @@ Co-authored-by: blackskye-sx <saul.newman@gmail.com>
 
 - Enhance(client): tweak ui
 
-- Enhance: word mute checks CW ([#8873](https://github.com/orhun/git-cliff/issues/8873))
+- Enhance: word mute checks CW (#8873)
 
 
-- Refactor: simplify ap/show with DbResolver ([#8838](https://github.com/orhun/git-cliff/issues/8838))
+- Refactor: simplify ap/show with DbResolver (#8838)
 
 Using the existing code in DbResolver we can avoid separate code for
 parsing the URIs in this endpoint.
@@ -14684,7 +15684,7 @@ parsing the URIs in this endpoint.
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Refactor(client): use composition api
 
-- Enhance: Redisをioredisに統一してIPv6サポート ([#8869](https://github.com/orhun/git-cliff/issues/8869))
+- Enhance: Redisをioredisに統一してIPv6サポート (#8869)
 
 * Use ioredis, Supports IPv6 host
 
@@ -14711,7 +15711,7 @@ https://github.com/misskey-dev/misskey/issues/8862
 Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 - Refactor: remove unused import
 
-- Refactor: notification setting window composition API ([#8860](https://github.com/orhun/git-cliff/issues/8860))
+- Refactor: notification setting window composition API (#8860)
 
 * refactor: notification setting window composition API
 
@@ -14728,7 +15728,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 あと`onUnmounted`を`onMounted`内で呼んでいたりしたのを修正したりとか
 
-- Enhance(client): Enhance boot error display ([#8879](https://github.com/orhun/git-cliff/issues/8879))
+- Enhance(client): Enhance boot error display (#8879)
 
 * Change boot error message
 
@@ -14737,7 +15737,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 * :v:
 
 * fix
-- Refactor: remove duplicate code ([#8895](https://github.com/orhun/git-cliff/issues/8895))
+- Refactor: remove duplicate code (#8895)
 
 
 - Refactor(client): use setup syntax
@@ -14804,7 +15804,7 @@ more accurately.
 
 - Enhance(client): make widgets available on tablet again
 
-- Enhance: Styled error screen ([#8946](https://github.com/orhun/git-cliff/issues/8946))
+- Enhance: Styled error screen (#8946)
 
 * Styled error screen
 
@@ -14849,7 +15849,7 @@ more accurately.
 * Responsive
 
 * Also hide splash
-- Enhance: show recipients of notes with specified visibility ([#8949](https://github.com/orhun/git-cliff/issues/8949))
+- Enhance: show recipients of notes with specified visibility (#8949)
 
 * enhance: reusable visibility component
 
@@ -14868,7 +15868,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Enhance: make active email validation configurable
 
-- Enhance(sw): If receiving a push notification issued more than a day, ignore it. ([#8980](https://github.com/orhun/git-cliff/issues/8980))
+- Enhance(sw): If receiving a push notification issued more than a day, ignore it. (#8980)
 
 * enhance(sw): ignore old push notification
 
@@ -14883,7 +15883,7 @@ Co-authored-by: syuilo <Syuilotan@yahoo.co.jp>
 
 - Enhance(client): improve widgets component
 
-- Enhance: read theme color nodeinfo ([#8977](https://github.com/orhun/git-cliff/issues/8977))
+- Enhance: read theme color nodeinfo (#8977)
 
 * provide theme color in nodeinfo metadata
 
@@ -14893,7 +15893,7 @@ Prefer to read the theme color from the nodeinfo since it is more
 performant than performing selector search on a DOM.
 - Refactor(client): rename menu(sidebar) -> navbar
 
-- Refactor(client): remove useCssModule ([#8999](https://github.com/orhun/git-cliff/issues/8999))
+- Refactor(client): remove useCssModule (#8999)
 
 * refactor(client): remove useCssModule()
 
@@ -14904,7 +15904,7 @@ performant than performing selector search on a DOM.
 This reverts commit 639746786bb7e3342db9cbd3452854fc29aacf88.
 - Enhance(client): RSSティッカーで表示順序をシャッフルできるように
 
-- Refactor: signup component as composition api ([#8957](https://github.com/orhun/git-cliff/issues/8957))
+- Refactor: signup component as composition api (#8957)
 
 
 - Refactor(client): use setup syntax
@@ -14971,17 +15971,17 @@ Fix #8817
 
 - Test
 
-- Test: e2eテストがCIで失敗していた問題をいくつか修正 ([#8642](https://github.com/orhun/git-cliff/issues/8642))
+- Test: e2eテストがCIで失敗していた問題をいくつか修正 (#8642)
 
 * test: indexeddbをテスト毎に初期化するように
 
 * fix: metaが無いときにfetch-metaを同時に呼ぶと死ぬことがある問題を修正
 
 * test: ログイン後のクライアント側処理を待たずにリロードされてログイン出来ないことがあったのを修正
-- Test: `__dirname`はESModuleでは使えないので置き換えた ([#8626](https://github.com/orhun/git-cliff/issues/8626))
+- Test: `__dirname`はESModuleでは使えないので置き換えた (#8626)
 
 
-- Test: Nodeのカスタムローダーを直してテストが動くように ([#8625](https://github.com/orhun/git-cliff/issues/8625))
+- Test: Nodeのカスタムローダーを直してテストが動くように (#8625)
 
 * test: Nodeのカスタムローダーを直してテストが動くように
 
@@ -14998,65 +15998,3 @@ Co-authored-by: Johann150 <johann@qwertqwefsday.eu>
 
 
 <!-- generated by git-cliff -->
-
-## FoundKey
-
-In the commits above, a few of these changes were added from [FoundKey](https://akkoma.dev/FoundKeyGang/FoundKey), although the majority have been refactored. Below is a historical list of all commits that were cherry picked:
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/0ece67b04c3f0365057624c1068808276ccab981: refactor pages/auth.form.vue to composition API
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/4bc9610d8bf5af736b5e89e4782395705de45d7d: remove unnecessary joins
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/9ee609d70082f7a6dc119a5d83c0e7c5e1208676: enhance privacy of notes
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/0fec6e10477b1c1b95d9469fbaf4e249a3722f12: remove ms dependency
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/46fff77accbe8bf0fd3cc88170d67b997bf2bdc3:  client uses new API for child notes depth
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/c35372a20d22cddb75e93a0b407f2b652cd7faf0:  pack children without detail
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/aca724e0bfff3e58b4d273f3ee744e3f3aa9c39b: enable to fetch replies recursively
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/2fe64c11502fd8d89c126558cd715e095c83754e: Refactor components/page/page.textarea.vue to composition API
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/6d3181f9835955e5b79bde5484c74bd70e7f9535: Refactor components/page/page.text.vue to composition API
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/b630cd7eacd695bb705e6748c87f38425ec4ed45: refactor: add NoteReactions.packMany
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/3fe351df6d4e21f7748c46adfa6ca165abd030c0: fix: catch errors from packing with detail
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/63591da33e233b2ed0ab331ae6bb3c9eff5020ae: refactor: colours in queue chart
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/0f6d94f1e7e1f58cfbf8d07e5f835f8de626842e: backend: improve mutes and blocks
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/e2bf2715a6462ed377b033956d65260157f042ea: fix spelling error
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/09a7eabda137e77f81ab31f65d69329670693c8d: backend: fix lint "no-throw-literal"
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/4fbe2e065e75ed3e5b4dfdfd4be3baa03cc447c3: client: fix lint "quotes"
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/585e4f5c42cfafb6cdf7eb601ab435d6a4d85a96: fix textarea not updating properly
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/30d8bc9259cb6b72ed76d67b21dbb4cdceca8327: refactor: welcome.setup.vue to composition api
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/751921e24f37ed707fe44a40d88eebb1299efa35: make emoji picker case insensitive
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/298febeb9c9501e3e3df16982c08657d1da474e0: enhance: add re-collapsing to quoted notes
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/b0fdedb264db87575063abed45e52ad71ce4a6af: fix lints in folder.vue
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/6fed87f85d132304eb84b0a59b84dce299a1822f: fix pagination.vue lints
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/384e8c49b738f576ba8843296de6cebf01c1b247: server: allow to like own gallery posts
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/4c5aa9e53887cca5561fcec6ab0754e018f589a5: server: allow to like own pages
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/923c93da1228458dd65be47483c198a1a9191bcf: use await for notes.countBy
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/ca90cedba0a0704b503c2778694230f5a7dfbace: server: reduce dead instance detection to 7 days
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/e9ab42c10afb4e27516c2d2b5e3e06630efe9edd: Alt text in image viewer
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/ed9d4023d41bba7c4ac53a1a3422246feed37de2: add argon2 support
-
-- https://akkoma.dev/FoundKeyGang/FoundKey/commit/c414f24a2c123774246c7eca65edda4d3afaf8b3: feat: per-user renote muting
