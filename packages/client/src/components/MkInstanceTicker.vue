@@ -43,7 +43,7 @@ const commonNames = new Map<string, string>([
 	["bookwyrm", "BookWyrm"],
 	["bridgy-fed", "Bridgy Fed"],
 	["foundkey", "FoundKey"],
-	["gnusocial", "GNU Social"],
+	["gnusocial", "GNU social"],
 	["gotosocial", "GoToSocial"],
 	["microblogpub", "microblog.pub"],
 	["nextcloud social", "Nextcloud Social"],
