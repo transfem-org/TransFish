@@ -1439,7 +1439,7 @@ _poll:
 _visibility:
   public: "Public"
   publicDescription: "Publier sur tous les fils publics"
-  home: "Non-listés"
+  home: "Non-listé"
   homeDescription: "Publier sur le fil principal uniquement"
   followers: "Abonné·e·s"
   followersDescription: "Publier à vos abonné·e·s et mentions uniquement"
