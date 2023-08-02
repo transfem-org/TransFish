@@ -1611,6 +1611,7 @@ _aboutFirefish:
     per ajudar-lo a suportar els costos de funcionament.
   donateHost: Fes una donació a {host}
   sponsors: Patrocinadors de Calckey
+  misskeyContributors: Col·laboradors de Misskey
 unknown: Desconegut
 pageLikesCount: Nombre de pàgines amb M'agrada
 youAreRunningUpToDateClient: Estás fent servir la versió del client més nova.
@@ -2179,3 +2180,5 @@ deletePasskeysConfirm: Això suprimirà de manera irreversible totes les contras
 inputNotMatch: L'entrada no coincideix
 delete2fa: Desactivar 2FA
 delete2faConfirm: Això suprimirà irreversiblement 2FA en aquest compte. Procedir?
+addRe: Afegeix "re:" al començament del comentari quant responguis a un missatge amb
+  avís de contingut
