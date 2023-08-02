@@ -105,7 +105,7 @@ enterEmoji: "Insérer un émoji"
 renote: "Booster"
 unrenote: "Annuler le boost"
 renoted: "Boosté."
-cantRenote: "Cette publcation ne peut pas être boosté."
+cantRenote: "Cette publication ne peut pas être boosté."
 cantReRenote: "Impossible de partager ce boost."
 quote: "Citer"
 pinnedNote: "Publication épinglée"
@@ -220,7 +220,7 @@ blockedUsers: "Utilisateur·rice·s bloqué·e·s"
 noUsers: "Il n’y a pas d’utilisateur·rice·s"
 editProfile: "Modifier votre profil"
 noteDeleteConfirm: "Êtes-vous sûr·e de vouloir supprimer cette publication ?"
-pinLimitExceeded: "Vous ne pouvez pas épingler plus de publictions"
+pinLimitExceeded: "Vous ne pouvez pas épingler plus de publications"
 intro: "L’installation de Firefish est terminée ! Veuillez créer un compte administrateur."
 done: "Terminé"
 processing: "Traitement en cours"
@@ -1146,7 +1146,7 @@ _wordMute:
   mutedNotes: "Publications masquées"
 _instanceMute:
   instanceMuteDescription2: "Séparer avec des sauts de lignes"
-  title: "Masque les publictions provenant des serveurs listés."
+  title: "Masque les publications provenant des serveurs listés."
   heading: "Serveurs à mettre en sourdine/masquer"
   instanceMuteDescription: Ceci va masquer toute publication ou boost de serveurs
     listés, incluant celles des personnes répondant à des personnes des serveurs masqués.
@@ -1567,7 +1567,7 @@ _pages:
     post: "Champ de publication"
     _post:
       text: "Contenu"
-      attachCanvasImage: "Publier avec Toile comme image"
+      attachCanvasImage: "Publier une image sur la Toile"
       canvasId: "Toile ID"
     textInput: "Entrée textuelle"
     _textInput:
@@ -2120,7 +2120,7 @@ _feeds:
   rss: RSS
 alt: ALT
 swipeOnMobile: Permettre le balayage entre les pages
-expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les publcations
+expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les publications
   dans le menu du clic droit et en cliquant sur l’horodatage.
 indexFrom: Indexer à partir de l’ID des publications
 older: plus ancien
