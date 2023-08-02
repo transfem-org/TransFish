@@ -75,7 +75,7 @@ exportRequested: "Vous avez demandé une exportation. L’opération pourrait pr
 importRequested: "Vous avez initié un import. Cela pourrait prendre un peu de temps."
 lists: "Listes"
 noLists: "Vous n’avez aucune liste"
-note: "Publication"
+note: "Publier"
 notes: "Publications"
 following: "Abonnements"
 followers: "Abonné·e·s"
@@ -245,7 +245,7 @@ currentPassword: "Mot de passe actuel"
 newPassword: "Nouveau mot de passe"
 newPasswordRetype: "Répéter le nouveau mot de passe"
 attachFile: "Joindre un fichier"
-more: "Plus !"
+more: "Plus"
 featured: "Tendances"
 usernameOrUserId: "Nom d’utilisateur·rice ou ID utilisateur"
 noSuchUser: "Utilisateur·rice non trouvé·e"
@@ -658,7 +658,7 @@ overview: "Aperçu"
 logs: "Journaux"
 delayed: "en retard"
 database: "Base de données"
-channel: "Canaux"
+channel: "Chaînes"
 create: "Créer"
 notificationSetting: "Paramètres des notifications"
 notificationSettingDesc: "Sélectionnez le type de notification à afficher."
@@ -1118,7 +1118,7 @@ _channel:
   setBanner: "Sélectionner la bannière"
   removeBanner: "Supprimer la bannière"
   featured: "Tendances"
-  owned: "Mes canaux"
+  owned: "Mes chaînes"
   following: "Abonné·e"
   usersCount: "{n} Participant·e·s"
   notesCount: "{n} publications"
@@ -1262,7 +1262,7 @@ _tutorial:
     sur le cercle plus en haut à droite d'un profil pour le suivre."
   step4_1: "On y va."
   step4_2: "Pour votre première publication, certaines personnes aiment faire une
-    {introduction} ou un simple 'Bonjours tout le monde !'"
+    {introduction} ou un simple 'Bonjour tout le monde !'"
   step5_1: "Des fils, des fils d’actualité partout !"
   step5_2: "Votre serveur a {timelines} fils différents disponibles !"
   step5_3: "Le fil {icon} Principal est l'endroit où vous pouvez voir les publications
@@ -1347,8 +1347,8 @@ _permissions:
   "write:page-likes": "Gérer les mentions « J'aime » sur les pages"
   "read:user-groups": "Voir les groupes d'utilisateur·rice·s"
   "write:user-groups": "Éditer les groupes des utilisateur·rice·s"
-  "read:channels": "Lire les canaux"
-  "write:channels": "Gérer les canaux"
+  "read:channels": "Lire vos chaînes"
+  "write:channels": "Gérer vos chaînes"
   "read:gallery": "Voir la galerie"
   "write:gallery": "Éditer la galerie"
   "read:gallery-likes": "Voir vos favoris de la galerie"
@@ -2123,8 +2123,8 @@ swipeOnMobile: Permettre le balayage entre les pages
 expandOnNoteClickDesc: Si désactivé, vous pourrez toujours ouvrir les publications
   dans le menu du clic droit et en cliquant sur l’horodatage.
 indexFrom: Indexer à partir de l’ID des publications
-older: plus ancien
-newer: plus récent
+older: ancien
+newer: récent
 accessibility: Accessibilité
 silencedInstancesDescription: Listez les noms de domaine de serveurs que vous voulez
   masquer. Les comptes des serveurs listés seront traités comme "Masqués", ne pourront
