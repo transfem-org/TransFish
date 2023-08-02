@@ -48,18 +48,18 @@ testCommit:
 
 dockerPush:
   stage: build
-  image: docker:latest
-  services:
-    - name: docker:dind
-      alias: docker
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.0-debug
+    entrypoint: [""]
   before_script:
     - cp .config/ci.yml .config/default.yml
     - cp .config/docker_ci.env .config/docker.env
     - docker info
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-    - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
   only:
     - main
     - beta
