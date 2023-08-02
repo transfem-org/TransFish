@@ -1,12 +1,12 @@
 _lang_: "Türkçe"
 introFirefish: "Hoş geldin! Firefish, sonsuza kadar ücretsiz olan, açık kaynaklı,
   merkezi olmayan bir sosyal medya platformudur! 🚀"
-monthAndDay: "{month}Ay {day}Gün"
-search: "Arama"
+monthAndDay: "{month}/{day}"
+search: "Ara"
 notifications: "Bildirimler"
 username: "Kullanıcı Adı"
 password: "Şifre"
-forgotPassword: "şifremi unuttum"
+forgotPassword: "Şifremi unuttum"
 ok: "TAMAM"
 gotIt: "Anladım!"
 cancel: "İptal"
@@ -19,14 +19,14 @@ otherSettings: "Diğer Ayarlar"
 openInWindow: "Bir pencere ile aç"
 profile: "Profil"
 timeline: "Zaman çizelgesi"
-noAccountDescription: "Bu kullanıcı henüz hakkındasını yazmadı."
+noAccountDescription: "Bu kullanıcı henüz kendi hakkında kısmını yazmadı."
 login: "Giriş Yap"
 logout: "Çıkış Yap"
 signup: "Kayıt Ol"
 uploading: "Yükleniyor..."
-users: "Kullanıcı"
+users: "Kullanıcılar"
 addUser: "Kullanıcı Ekle"
-favorite: "Favoriler"
+favorite: "Favorilere ekle"
 favorites: "Favoriler"
 unfavorite: "Favorilerden Kaldır"
 favorited: "Favorilerime eklendi."
@@ -142,7 +142,7 @@ _sfx:
   notification: "Bildirim"
   noteMy: Kendi Gönderim
   note: Yeni gönderi
-  antenna: Anten
+  antenna: Antenler
   chat: Sohbet
   channel: Kanal bildirimleri
   chatBg: Sohbet (Arkaplan)
@@ -252,17 +252,17 @@ cacheRemoteFilesDescription: Bu ayar devre dışı bırakıldığında, uzak dos
   ancak küçük resimler oluşturulmayacağından trafiği artıracaktır.
 flagAsCatDescription: Kedi kulaklarına sahip olacak ve bir kedi gibi konuşacaksın!
 flagSpeakAsCat: Kedi gibi konuş
-setWallpaper: Arkaplan ayarla
+setWallpaper: Arkaplanı ayarla
 removeWallpaper: Arkaplanı sil
 operations: Operasyonlar
 clearCachedFiles: Ön belleği temizle
 clearCachedFilesConfirm: Önbelleğe alınan tüm uzak dosyaları silmek istediğinizden
   emin misiniz?
-blockedInstancesDescription: Engellemek istediğiniz sunucuların ana bilgisayar adlarını
-  listeleyin. Listelenen sunucular artık bu sunucularla iletişim kuramayacak.
+blockedInstancesDescription: Engellemek istediğiniz sunucuların domain adlarını listeleyin.
+  Listelenen sunucular artık bu sunucularla iletişim kuramayacak.
 blockedUsers: Engellenmiş kullanıcılar
 editProfile: Profilini düzenle
-intro: Firefish'in indirilmesi tamamlandı! Lütfen yönetici hesap oluşturun.
+intro: Firefish'in kururlumj tamamlandı! Lütfen yönetici hesap oluşturun.
 instanceUsers: Sunucunun kullanıcıları
 changePassword: Şifreyi değiştir
 security: Güvenlik
@@ -273,18 +273,18 @@ renameFolder: Bu klasörü yeniden adlandır
 emptyFolder: Bu klasör boş
 unableToDelete: Silinemiyor
 inputNewDescription: Yeni başlık gir
-hasChildFilesOrFolders: Bu klasör boş olduğundan silinemez.
+hasChildFilesOrFolders: Bu klasör boş olmadığından dolayı silinemez.
 disconnectedFromServer: Sunucuyla bağlantı kesildi
 reload: Yenile
 disablingTimelinesInfo: Yöneticiler ve Moderatörler, etkinleştirilmemiş olsalar bile
-  tüm zaman çizelgelerine her zaman erişebilir.
+  tüm zaman çizelgelerine her zaman erişebilirler.
 pinnedUsersDescription: '"Keşfet" sekmesinde sabitlenecek kullanıcı adlarını satır
   sonlarıyla ayırarak listeleyin.'
 pinnedPages: Sabitlenmiş Sayfalar
-pinnedPagesDescription: Bu sunucunun üst sayfasına sabitlemek istediğiniz Sayfaların
-  yollarını satır sonları ile ayırarak girin.
+pinnedPagesDescription: Bu sunucunun üst kısmına sabitlemek istediğiniz Sayfaların
+  yollarını satır sonundan ayırarak girin.
 enableHcaptcha: hCaptcha'yı Aktif Et
-notifyAntenna: Yeni gönderileribildir
+notifyAntenna: Yeni gönderileri bildir
 recentlyUpdatedUsers: En son aktif kullanıcılar
 about: Hakkında
 twoStepAuthentication: İki-adımlı doğrulama
@@ -361,14 +361,14 @@ unfollowConfirm: "{name}'i takibi bırakmak istediğinizden emin misiniz?"
 importRequested: Bir içe aktarma isteğinde bulundunuz. Bu biraz zaman alabilir.
 somethingHappened: Bir hata ile karşılaşıldı
 retry: Tekrar Dene
-youShouldUpgradeClient: Bu sayfayı görüntülemek için, lütfen istemcinizi güncelleyin.
+youShouldUpgradeClient: Bu sayfayı görüntülemek için, lütfen istemcinizi yenileyin.
 reactionSetting: Tepki seçicide gösterilecek tepkiler
 unmarkAsSensitive: NSFW işaretini kaldır
 enterFileName: Dosya adı gir
 noJobs: Hiçbir iş yok
 instanceFollowing: Sunucuda takip ediliyor
 instanceFollowers: Sunucunun takipçileri
-currentPassword: Şuanki şifre
+currentPassword: Şu anki şifre
 newPassword: Yeni şifre
 saved: Kaydedildi
 uploadFromUrlDescription: Yüklemek istediğiniz dosyanın URL'si
@@ -377,21 +377,21 @@ startMessaging: Yeni sohbet oluştur
 manageGroups: Grupları düzenle
 nUsersRead: '{n} tarafından okundu'
 images: Görseller
-birthday: Doğumgünü
+birthday: Doğum günü
 light: Aydınlık
 dark: Karanlık
 lightThemes: Aydınlık temalar
 selectFiles: Dosyalar seç
-selectFolders: Klasörler seç
+selectFolders: Klasörleri seç
 renameFile: Dosyayı yeniden adlandır
 folderName: Klasör adı
 createFolder: Klasör oluştur
 copyUrl: URL'yi Kopyala
-maintainerName: Sahip
-maintainerEmail: Sahibin e-postası
+maintainerName: Sahibi
+maintainerEmail: Sahibinin e-postası
 tosUrl: Kullanım Koşulları URL'si
 monthX: '{month}'
-basicInfo: Basit bilgi
+basicInfo: Kısa bilgi
 pinnedUsers: Sabitlenmiş kullanıcılar
 manageAntennas: Antenleri Düzenle
 name: İsim
@@ -482,7 +482,7 @@ download: İndir
 lists: Listeler
 noLists: Hiç listen yok
 cantRenote: Bu gönderi yükseltilemez.
-cantReRenote: Yükseltme yükseltilemez.
+cantReRenote: Bir yükseltme tekrar yükseltilemez.
 mute: Sustur
 block: Engelle
 editWidgetsExit: Tamamlandı
@@ -490,10 +490,10 @@ customEmojis: Özel Tepki
 cpuAndMemory: İşlemci ve Bellek
 selectInstance: Sunucu seç
 instances: Sunucular
-silencedInstancesDescription: Susturmak istediğiniz sunucuların ana bilgisayar adlarını
-  listeleyin. Listelenen sunuculardaki hesaplar "Sessiz" olarak değerlendirilir, yalnızca
-  takip istekleri yapabilir ve takip edilmediği takdirde yerel hesaplardan bahsedemez.
-  Bu, engellenen sunucuları etkilemeyecektir.
+silencedInstancesDescription: Susturmak istediğiniz sunucuların domainlerini listeleyin.
+  Listelenen sunuculardaki hesaplar "Sessiz" olarak değerlendirilir, yalnızca takip
+  istekleri yapabilir ve takip edilmediği takdirde yerel hesaplardan bahsedemez. Bu,
+  engellenen sunucuları etkilemeyecektir.
 muteAndBlock: Susturmalar ve Engeller
 noteDeleteConfirm: Bu gönderiyi silmek istediğine emin misin?
 resetAreYouSure: Gerçekten sıfırla?
@@ -507,9 +507,9 @@ normal: Normal
 thisMonth: Ay
 enableRecaptcha: reCAPTCHA'yı Aktif Et
 antennas: Antenler
-recaptchaSiteKey: İnternet sitesi anahtarı
+recaptchaSiteKey: Site anahtarı
 withFileAntenna: Sadece dosyalı gönderiler
-antennaInstancesDescription: Sunucu başı bir satır kullanın
+antennaInstancesDescription: Satır başına bir sunucu listeleyin
 moderator: Moderatör
 moderation: Moderasyon
 lastUsed: En son kullanılan
@@ -648,7 +648,7 @@ disk: Depolama
 instanceInfo: Sunucu Bilgisi
 statistics: İstatistikler
 hiddenTagsDescription: Trendlerden gizlemek ve keşfetmek istediğiniz etiketlerin (#
-  olmadan)etiketlerini listeleyin. Gizli etiketler başka yollarla keşfedilebilir.
+  olmadan) etiketlerini listeleyin. Gizli etiketler başka yollarla keşfedilebilir.
 mutedUsers: Susturulmuş kullanıcılar
 uploadFromUrlMayTakeTime: Yüklemenin tamamlanması zaman alabilir.
 activity: Aktivite
@@ -658,11 +658,11 @@ reloadConfirm: Zaman çizelgesini yenilemek ister misiniz?
 instanceName: Sunucu adı
 circularReferenceFolder: Hedef klasör, taşımak istediğiniz klasörün bir alt klasörüdür.
 instanceDescription: Sunucu açıklaması
-driveCapacityPerLocalAccount: Kullanıcı başı Driver kapasitesi
-driveCapacityPerRemoteAccount: Uzak kullanıcı başı Driver kapasitesi
+driveCapacityPerLocalAccount: Kullanıcı başı Drive kapasitesi
+driveCapacityPerRemoteAccount: Uzak kullanıcı başı Drive kapasitesi
 inMb: Megabayt cinsinden
-pinnedClipId: Sabitlenecek atacın ID'si
-withFiles: Dosya içeren
+pinnedClipId: Sabitlenecek klibin ID'si
+withFiles: Dosya içerenler
 recentlyRegisteredUsers: Yeni katılmış kullanıcılar
 recentlyDiscoveredUsers: Yeni keşfedilmiş kullanıcılar
 nUsersMentioned: '{n} kullanıcı tarafından bahsedildi'
@@ -726,7 +726,7 @@ flagAsCat: Kedi misin? 😺
 selectChannel: Kanal seç
 emojiName: Emoji adı
 showOnRemote: Orijinal sayfayı aç
-flagSpeakAsCatDescription: Gönderileriniz kedi modundayken nyanifiye edilecek
+flagSpeakAsCatDescription: Gönderileriniz kedi modundayken miyavdirilecektir
 flagShowTimelineReplies: Yanıtları zaman çizelgesinde göster
 silenceThisInstance: Bu sunucuyu sustur
 proxyAccountDescription: Vekil hesabı, belirli koşullar altında kullanıcılar için
@@ -739,25 +739,25 @@ software: Yazılım
 version: Sürüm
 federating: Federasyon
 preview: Ön izleme
-retypedNotMatch: Girişler uyuşmuyor.
+retypedNotMatch: Girdiler uyuşmuyor.
 attachFile: Dosya ekle
 noSuchUser: Kullanıcı bulunamadı
-removeAreYouSure: '"{x}" kaldırmak istediğinize emin misiniz?'
+removeAreYouSure: '"{x}"i kaldırmak istediğinize emin misiniz?'
 keepOriginalUploading: Orjinal resmi sakla
 messageRead: Oku
-deleteAreYouSure: '"{x}" silmek istediğinize emin misiniz?'
+deleteAreYouSure: '"{x}"i silmek istediğinize emin misiniz?'
 messaging: Sohbet
 upload: Yükle
 fromUrl: URL'den
 agreeTo: '{0} kabul ediyorum'
 tos: Kullanım Koşulları
-drive: Bulut Depolama
+drive: Drive
 selectFolder: Klasör seç
 inputNewFileName: Yeni dosya ismi gir
 whenServerDisconnected: Sunucuyla bağlantı kesildiğinde
 avatar: Avatar
 rename: Yeniden Adlandır
-banner: Afiş
+banner: Banner
 nsfw: NSFW
 doNothing: Görmezden Gel
 watch: İzle
@@ -773,11 +773,11 @@ antennaExcludeKeywords: Hariç tutulacak anahtar kelimeler
 antennaKeywordsDescription: AND koşulu için boşluklarla veya OR koşulu için satır
   sonlarıyla ayırın.
 caseSensitive: Büyük harf duyarlı
-enableServiceworker: Tarayıcınız için Push-Bildirimleri Etkinleştirin
+enableServiceworker: Tarayıcınız için Anlık Bildirimleri etkinleştirin
 unsilenceConfirm: Bu kullanıcının susturma işlemini geri almak istediğinizden emin
   misiniz?
 userList: Listeler
-antennaUsersDescription: Kullanıcı başı bir satır kullanın
+antennaUsersDescription: Satır başına bir kullanıcı listeleyin
 administrator: Yönetici
 token: Token
 cacheClear: Önbelleği temizle
@@ -826,7 +826,7 @@ switch: Değiştir
 popularPosts: Popüler sayfalar
 inChannelSearch: Kanalda ara
 administration: Yönetim
-ads: Reklamlar
+ads: Topluluk bannerları
 low: Düşük
 seperateRenoteQuote: Ayrı destek ve fiyat teklifi düğmeleri
 sent: Gönderildi
@@ -839,31 +839,31 @@ older: daha eski
 exportRequested: Bir dışarı aktarma talebinde bulundunuz. Bu biraz zaman alabilir.
   Tamamlandığında Drive'ınıza eklenecektir.
 notes: Gönderiler
-following: Takip Ediyor
+following: Takip Edilenler
 followers: Takipçiler
 followsYou: Seni takip ediyor
-pageLoadErrorDescription: Buna normalde ağ hataları veya tarayıcının önbelleği neden
-  olur. Önbelleği temizlemeyi deneyin ve biraz bekledikten sonra tekrar deneyin.
+pageLoadErrorDescription: Bu problem genelde ağ hataları veya tarayıcının önbelleğinden
+  kaynaklanır. Önbelleği temizlemeyi deneyin ve biraz bekledikten sonra tekrar deneyin.
 quote: Alıntıla
 pinnedNote: Sabitlenmiş gönderi
 renote: Yükselt
 unrenote: Yükseltmeyi geri al
-emojiUrl: Emoji URL
+emojiUrl: Emoji URL'si
 suspendConfirm: Bu hesabı askıya almak istediğinize emin misiniz?
 addEmoji: Ekle
 autoAcceptFollowed: Takip ettiğiniz kullanıcıların takip isteklerini otomatik olarak
   onaylayın
 general: Genel
-accountMoved: 'Bu kullanıcı yeni bir hesapa taşındı:'
+accountMoved: 'Bu kullanıcı yeni bir hesaba taşındı:'
 wallpaper: Arkaplan
 searchWith: 'Arat: {q}'
 youHaveNoLists: Hiçbir listen yok
 followConfirm: '{name} kullanıcısını takip etmek istediğine emin misin?'
 metadata: Metadata
-monitor: İzlengeç
+monitor: Monitör
 jobQueue: İş Sırası
-noUsers: Kullanıcı bulunamadı
-noInstances: Sunucu bulunamadı
+noUsers: Kullanıcılar bulunamadı
+noInstances: Sunucular bulunamadı
 pinLimitExceeded: Daha fazla gönderi sabitleyemezsin
 defaultValueIs: 'Varsayılan: {value}'
 noCustomEmojis: Emoji yok
@@ -871,7 +871,7 @@ blocked: Engellenmiş
 default: Varsayılan
 all: Tümü
 subscribing: Abone Olunuyor
-publishing: Yayınlanmak
+publishing: Yayınlanıyor
 notResponding: Cevap vermiyor
 more: Daha fazla!
 featured: Önerilen
@@ -890,12 +890,12 @@ disconnectService: Bağlantıyı kes
 enableGlobalTimeline: Global zaman çizgisini aktif et
 enableRegistration: Yeni kullanıcı kaydını aktif et
 invite: Davet et
-bannerUrl: Afiş resmi URL
+bannerUrl: Banner resmi URL'si
 backgroundImageUrl: Arkaplan URL'si
 recaptcha: reCAPTCHA
-iconUrl: Ikon URL
+iconUrl: İkon URL'si
 recaptchaSecretKey: Gizli anahtar
-avoidMultiCaptchaConfirm: Birden fazla Captcha sistemi kullanmak aralarında etkileşime
+avoidMultiCaptchaConfirm: Birden fazla Captcha sistemi kullanmak aralarında çakışmaya
   neden olabilir. Şu anda etkin olan diğer Captcha sistemlerini devre dışı bırakmak
   ister misiniz? Etkin kalmalarını istiyorsanız, iptal düğmesine basın.
 aboutFirefish: Firefish Hakkında
@@ -1003,7 +1003,8 @@ recommended: Önerilen
 received: Alındı
 classic: Ortalanmış
 muteThread: Konuyu sessize al
-deleteAccountConfirm: Bu, hesabınızı geri alınamaz bir şekilde silecektir. İlerle?
+deleteAccountConfirm: Bu hesap geri alınamaz bir şekilde silinecektir. İlerlemek istiyor
+  musunuz?
 hide: Gizle
 pubSub: Pub/Sub Hesapları
 filter: Filtre
@@ -1035,10 +1036,10 @@ video: Video
 showMore: Daha Fazla
 showLess: Kapat
 selectAntenna: Anten seç
-selectWidget: Araç seç
+selectWidget: Bir widget seç
 unsuspendConfirm: Bu hesabın askıya almasını kaldırmak istediğinize emin misiniz?
 selectList: Liste seç
-editWidgets: Araçları düzenle
+editWidgets: Widget'ları düzenle
 showEmojisInReactionNotifications: Tepki bildirimlerinde emojileri göster
 renoteMute: Yükseltmeleri sustur
 renoteUnmute: Yükseltmeleri susturmayı kaldır
@@ -1061,14 +1062,14 @@ blockThisInstance: Bu sunucuyu engelle
 themeForDarkMode: Karanlık modda kullanmak için temalar
 fileName: Dosya adı
 selectFile: Dosya seç
-emptyDrive: Drive'n boş
+emptyDrive: Drive'ın boş
 promote: Terfi
 numberOfDays: Gün sayısı
 hideThisNote: Bu gönderiyi gizle
 file: Dosya
 enableEmojiReactions: Emoji tepkilerini aç
 cw: İçerik uyarısı
-makeFollowManuallyApprove: Takip istekleri onay gerektirir
+makeFollowManuallyApprove: Onay gerektiren takip istekleri
 today: Bugün
 enableRecommendedTimeline: Tavsiye edilen zaman çizgisini aktive et
 state: Durum
@@ -1170,8 +1171,8 @@ import: İçeri Aktar
 export: Dışarı Aktar
 mentions: Bahsetmeler
 files: Dosyalar
-driveFileDeleteConfirm: '"{name}" dosyasını silmek istediğinizden emin misiniz? Ek
-  olarak içeren tüm gönderilerden kaldırılacaktır.'
+driveFileDeleteConfirm: '"{name}" dosyasını silmek istediğinizden emin misiniz? Dosyayı
+  "Ek" olarak içeren tüm gönderilerden kaldırılacaktır.'
 createList: Liste oluştur
 listsDesc: Listeler, belirtilen kullanıcılarla zaman çizelgesi oluşturmanıza olanak
   tanır. Zaman Çizelgesi sayfasından erişilebilirler.
@@ -1185,11 +1186,11 @@ followRequest: Takip İsteği
 followRequests: Takip istekleri
 renoted: Yükseldi.
 emoji: Emoji
-cacheRemoteFiles: Uzak dosyaları önbellekle
+cacheRemoteFiles: Uzak dosyaları önbelleğe al
 flagAsBot: Bu hesabı robot olarak işaretle
 flagAsBotDescription: Bu hesap bir program tarafından kontrol ediliyorsa bu seçeneği
-  etkinleştirin. Etkinleştirilirse, diğer geliştiricilerin diğer botlarla sonsuz etkileşim
-  zincirlerini önlemesi ve Firefish'nin dahili sistemlerini bu hesabı bir bot olarak
+  etkinleştirin. Etkinleştirilirse, diğer geliştiricilerin botlarıyla sonsuz etkileşim
+  zincirlerinin önlemesi ve Firefish'in dahili sistemlerinin bu hesabı bir bot olarak
   ele alacak şekilde ayarlaması için bir bayrak görevi görür.
 clearQueue: Sırayı Temizle
 hiddenTags: Gizlenmiş Etiketler
@@ -1208,9 +1209,9 @@ yearX: '{year}'
 pages: Sayfalar
 integration: Entegrasyonlar
 antennasDesc: "Antenler, belirlediğiniz kriterlere uyan yeni gönderiler görüntüler!\n
-  Zaman çizelgeleri sayfasından erişilebilirler."
+   Zaman çizelgeleri sayfasından erişilebilirler."
 notesAndReplies: Gönderiler ve yanıtlar
-withReplies: Yanıtları da içer
+withReplies: Yanıtları da içerir
 connectedTo: Aşağıdaki hesap(lar) bağlı
 silenceConfirm: Bu kullanıcıyı susturmak istediğinize emin misiniz?
 messagingWithUser: Özel sohbet
@@ -1259,7 +1260,7 @@ squareAvatars: Kare avatarları göster
 unread: Okunmaımş
 instanceDefaultDarkTheme: Sunucu genelinde varsayılan karanlık tema
 oneDay: Bir gün
-showAds: Reklamları göster
+showAds: Topluluk bannerlarını göster
 adminCustomCssWarn: Bu ayar yalnızca ne işe yaradığını biliyorsanız kullanılmalıdır.
   Yanlış değerler girilmesi, HERKESİN istemcilerinin normal şekilde çalışmamasına
   neden olabilir. Lütfen CSS'nizi kullanıcı ayarlarınızda test ederek düzgün çalıştığından
@@ -2132,3 +2133,14 @@ _feeds:
   rss: RSS
   atom: Atom
   jsonFeed: JSON akışı
+origin: Kaynak
+objectStorageS3ForcePathStyle: Path temelli bir endpoint URL'leri kullan
+objectStorageS3ForcePathStyleDesc: Bunu açarak 's3.amazonaws.com/<bucket>/' over '<bucket>.s3.amazonaws.com'
+  formatında URL'lerle endpointleri kurabilirsin.
+delete2fa: 2FA'yı devre dışı bırak
+deletePasskeys: Passkey'leri sil
+inputNotMatch: Girdi eşleşmiyor
+deletePasskeysConfirm: Bu işlem geri alınamaz bir şekilde bu hesapta ki tüm passkey'leri
+  ve güvenlik anahtarlarını silecektir. İşleme devam ediyor musunuz?
+delete2faConfirm: Bu işlem geri alınamaz bir şekilde 2FA'yı bu hesaptan silecektir.
+  İşleme devam ediyor musunuz?
