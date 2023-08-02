@@ -519,10 +519,23 @@ if (props.specified) {
 	pushVisibleUser(props.specified);
 }
 
+const addRe = (s: string) => {
+	if (
+		!defaultStore.state.addRe ||
+		s.trim() === "" ||
+		s.slice(0, 3).toLowerCase() === "re:"
+	)
+		return s;
+	return `re: ${s}`;
+};
+
 // keep cw when reply
 if (defaultStore.state.keepCw && props.reply && props.reply.cw) {
 	useCw = true;
-	cw = props.reply.cw;
+	cw =
+		props.reply.user.username === $i.username
+			? props.reply.cw
+			: addRe(props.reply.cw);
 }
 
 function watchForDraft() {

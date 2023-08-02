@@ -28,14 +28,14 @@ services:
   - postgres:15
   - redis
 
-before_script:
-  - apk add --no-cache cargo python3 make g++
-  - cp .config/ci.yml .config/default.yml
-  - corepack enable
-  - corepack prepare pnpm@latest --activate
 
 testCommit:
   stage: build
+  before_script:
+    - apk add --no-cache cargo python3 make g++
+    - cp .config/ci.yml .config/default.yml
+    - corepack enable
+    - corepack prepare pnpm@latest --activate
   script:
     - pnpm i --frozen-lockfile
     - pnpm run build:debug
@@ -51,6 +51,9 @@ dockerPush:
   image: docker:latest
   services:
     - docker:dind
+  before_script:
+    - cp .config/ci.yml .config/default.yml
+    - cp .config/docker_ci.env .config/docker.env
   script:
     - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY

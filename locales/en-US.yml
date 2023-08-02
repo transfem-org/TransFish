@@ -1134,6 +1134,7 @@ deletePasskeys: "Delete passkeys"
 delete2faConfirm: "This will irreversibly delete 2FA on this account. Proceed?"
 deletePasskeysConfirm: "This will irreversibly delete all passkeys and security keys on this account. Proceed?"
 inputNotMatch: "Input does not match"
+addRe: "Add \"re:\" at the beginning of comment in reply to a post with a content warning"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
@@ -1229,6 +1230,7 @@ _aboutFirefish:
     development since 2022."
   contributors: "Main contributors"
   allContributors: "All contributors"
+  misskeyContributors: "Misskey contributors"
   source: "Source code"
   translation: "Translate Firefish"
   donate: "Donate to Firefish"
