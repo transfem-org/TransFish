@@ -24,6 +24,7 @@
 							<MkTime :time="announcement.createdAt" />
 						</div>
 					</div>
+					<hr class="_seperator"/>
 					<div class="_content">
 						<Mfm :text="announcement.text" />
 						<img
@@ -87,7 +88,13 @@ definePageMetadata({
 			padding: 14px 32px !important;
 		}
 
+		> ._seperator {
+			margin: 1rem;
+		}
+
 		> ._content {
+			padding: 2rem;
+
 			> img {
 				display: block;
 				max-height: 300px;
