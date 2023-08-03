@@ -54,7 +54,6 @@ dockerPush:
   before_script:
     - cp .config/ci.yml .config/default.yml
     - cp .config/docker_ci.env .config/docker.env
-    - docker info
   script:
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
