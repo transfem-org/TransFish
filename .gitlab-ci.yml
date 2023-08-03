@@ -28,7 +28,6 @@ services:
   - postgres:15
   - redis
 
-
 testCommit:
   stage: build
   before_script:
@@ -51,9 +50,7 @@ dockerPush:
   image:
     name: gcr.io/kaniko-project/executor:v1.9.0-debug
     entrypoint: [""]
-  before_script:
-    - cp .config/ci.yml .config/default.yml
-    - cp .config/docker_ci.env .config/docker.env
+  timeout: 3h
   script:
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
