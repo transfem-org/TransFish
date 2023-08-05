@@ -71,6 +71,7 @@ const descriptionSchema = {
 	maxLength: 2048,
 } as const;
 const locationSchema = { type: "string", minLength: 1, maxLength: 50 } as const;
+const listenbrainzSchema = { type: "string", minLength: 1, maxLength: 128 } as const;
 const birthdaySchema = {
 	type: "string",
 	pattern: /^([0-9]{4})-([0-9]{2})-([0-9]{2})$/.toString().slice(1, -1),
@@ -111,6 +112,7 @@ export const UserRepository = db.getRepository(User).extend({
 	descriptionSchema,
 	locationSchema,
 	birthdaySchema,
+	listenbrainzSchema,
 
 	//#region Validators
 	validateLocalUsername: ajv.compile(localUsernameSchema),
@@ -119,6 +121,7 @@ export const UserRepository = db.getRepository(User).extend({
 	validateDescription: ajv.compile(descriptionSchema),
 	validateLocation: ajv.compile(locationSchema),
 	validateBirthday: ajv.compile(birthdaySchema),
+	validateListenBrainz: ajv.compile(listenbrainzSchema),
 	//#endregion
 
 	async getRelation(me: User["id"], target: User["id"]) {
@@ -503,6 +506,7 @@ export const UserRepository = db.getRepository(User).extend({
 						description: profile!.description,
 						location: profile!.location,
 						birthday: profile!.birthday,
+						listenbrainz: profile!.listenbrainz,
 						lang: profile!.lang,
 						fields: profile!.fields,
 						followersCount: followersCount || 0,

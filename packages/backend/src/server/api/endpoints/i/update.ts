@@ -89,6 +89,7 @@ export const paramDef = {
 		description: { ...Users.descriptionSchema, nullable: true },
 		location: { ...Users.locationSchema, nullable: true },
 		birthday: { ...Users.birthdaySchema, nullable: true },
+		listenbrainz: { ...Users.listenbrainzSchema, nullable: true },
 		lang: {
 			type: "string",
 			enum: [null, ...Object.keys(langmap)],
@@ -163,6 +164,7 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (ps.lang !== undefined) profileUpdates.lang = ps.lang;
 	if (ps.location !== undefined) profileUpdates.location = ps.location;
 	if (ps.birthday !== undefined) profileUpdates.birthday = ps.birthday;
+	if (ps.listenbrainz !== undefined) profileUpdates.listenbrainz = ps.listenbrainz;
 	if (ps.ffVisibility !== undefined)
 		profileUpdates.ffVisibility = ps.ffVisibility;
 	if (ps.avatarId !== undefined) updates.avatarId = ps.avatarId;

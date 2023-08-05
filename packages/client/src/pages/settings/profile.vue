@@ -76,6 +76,13 @@
 			<template #prefix><i class="ph-cake ph-bold ph-lg"></i></template>
 		</FormInput>
 
+		<FormInput v-model="profile.listenbrainz" manual-save class="_formBlock">
+			<template #label>ListenBrainz</template>
+			<template #prefix
+				><i class="ph-headphones ph-bold ph-lg"></i
+			></template>
+		</FormInput>
+
 		<FormSelect v-model="profile.lang" class="_formBlock">
 			<template #label>{{ i18n.ts.language }}</template>
 			<option v-for="x in Object.keys(langmap)" :key="x" :value="x">
@@ -184,6 +191,7 @@ const profile = reactive({
 	description: $i?.description,
 	location: $i?.location,
 	birthday: $i?.birthday,
+	listenbrainz: $i?.listenbrainz,
 	lang: $i?.lang,
 	isBot: $i?.isBot,
 	isCat: $i?.isCat,
@@ -238,6 +246,7 @@ function save() {
 		description: profile.description || null,
 		location: profile.location || null,
 		birthday: profile.birthday || null,
+		listenbrainz: profile.listenbrainz || null,
 		lang: profile.lang || null,
 		isBot: !!profile.isBot,
 		isCat: !!profile.isCat,
