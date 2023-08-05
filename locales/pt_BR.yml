@@ -5,7 +5,7 @@ headlineFirefish: Uma plataforma de mídia social descentralizada e de código a
   que é gratuita para sempre! 🚀
 search: Pesquisar
 gotIt: Entendi!
-introFirefish: Bem vinde! Firefish é uma plataforma de mídia social descentralizada
+introFirefish: Bem vindo! Firefish é uma plataforma de mídia social descentralizada
   e de código aberto que é gratuita para sempre! 🚀
 searchPlaceholder: Pesquise no Firefish
 notifications: Notificações
@@ -110,3 +110,137 @@ followRequests: Pedidos de seguimento
 unfollow: Parar de seguir
 followRequestPending: Pedido de seguimento pendente
 enterEmoji: Insira um emoji
+itsOff: Desativado
+itsOn: Ativado
+removeReaction: Retirar sua reação
+reactionSettingDescription2: Arraste para reordenar, clique para deletar, pressione
+  “+” para adicionar.
+rememberNoteVisibility: Lembrar configurações de visibilidade de postagem
+enterFileName: Preencha o nome do arquivo
+block: Bloquear
+unblock: Desbloquear
+suspend: Suspender
+blockConfirm: Você tem certeza de que quer bloquear esta conta?
+unblockConfirm: Você tem certeza de que quer desbloquear esta conta?
+suspendConfirm: Você tem certeza de que quer suspender esta conta?
+selectList: Selecione uma lista
+selectChannel: Selecione um canal
+addEmoji: Adicionar Emoji
+settingGuide: Configurações recomendadas
+cacheRemoteFilesDescription: Quando esta configuração está desativada, arquivos remotos
+  serão carregados diretamente do servidor remoto. Desativar isso irá diminuir o uso
+  de armazenamento, mas aumentar o tráfego, já que as thumbnails não serão geradas.
+flagAsBot: Marcar esta conta como robô
+flagAsCat: Você é um gato? 😺
+flagAsCatDescription: Você receberá orelhas de gato e falará como um!
+flagSpeakAsCat: Falar como um gato
+dashboard: Painel
+showFeaturedNotesInTimeline: Mostrar postagens em destaque nas linhas do tempo
+objectStorage: Armazenamento de objetos
+useObjectStorage: Utilizar armazenamento de objetos
+objectStorageBaseUrl: URL base
+objectStorageBucket: Balde
+objectStorageBucketDesc: Por favor, especifique o nome do balde usado no seu provedor.
+objectStorageRegion: Região
+objectStorageRegionDesc: Especifique uma região como "xx-east-1". Se o seu serviço
+  não distingue entre as regiões, deixe esta em branco ou insira 'us-east-1'.
+objectStorageUseSSL: Utilizar SSL
+objectStorageUseSSLDesc: Desligue isso se você não utilizará HTTPS para conexões de
+  API
+objectStorageUseProxy: Conecte-se por Proxy
+lastUsedDate: Última utilização em
+state: Estado
+objectStorageUseProxyDesc: Desligue isso se você não utilizará um Proxy para conexões
+  com API
+serverLogs: Logs de Servidor
+details: Detalhes
+nothing: Não há nada para ver aqui
+installedDate: Autorizado em
+sort: Ordenar
+ascendingOrder: Ascendente
+descendingOrder: Descendente
+output: Saída
+expandOnNoteClick: Abrir postagem ao clicar
+updateRemoteUser: Atualizar informações do usuário remoto
+deleteAllFiles: Excluir todos os arquivos
+deleteAllFilesConfirm: Você tem certeza de que deseja excluir todos os arquivos?
+yourAccountSuspendedTitle: Esta conta está suspensa
+yourAccountSuspendedDescription: Esta conta foi suspensa por quebrar os termos de
+  serviço do servidor ou similares. Entre em contato com o administrador se você quiser
+  saber um motivo mais detalhado. Por favor, não crie uma nova conta.
+menu: Menu
+divider: Divisor
+addItem: Adicionar Item
+inboxUrl: URL da caixa de entrada
+left: Esquerda
+center: Centro
+wide: Largo
+narrow: Estreito
+isModerator: Moderador
+monthAndDay: '{day}/{month}'
+pinned: Fixar ao perfil
+pinnedNote: Postagem fixada
+you: Você
+clickToShow: Clique para exibir
+showEmojisInReactionNotifications: Mostrar emojis nas notificações de reação
+reactionSetting: Reações a exibir no seletor de reações
+customEmojis: Emojis personalizados
+emojis: Emojis
+emojiName: Nome do Emoji
+emoji: Emoji
+emojiUrl: URL do Emoji
+editWidgetsExit: Pronto
+userSilenced: Este usuário está sendo silenciado.
+objectStoragePrefix: Prefixo
+volume: Volume
+objectStorageS3ForcePathStyle: Use URLs de endpoint baseadas em caminho
+none: Nenhum
+masterVolume: Volume mestre
+showInPage: Mostrar na página
+expandOnNoteClickDesc: Se desativado, você ainda pode abrir postagens no menu do botão
+  direito do mouse ou clicando no timestamp.
+disablePagesScript: Desativar o AiScript nas Páginas
+isPatron: Patrono do Firefish
+invite: Convite
+inMb: Em megabytes
+iconUrl: URL do Ícone
+basicInfo: Informações básicas
+pinnedUsers: Usuários fixados
+fontSize: Tamanho da fonte
+noFollowRequests: Você não tem nenhuma solicitação de seguimento pendente
+openImageInNewTab: Abrir imagens em nova guia
+local: Local
+remote: Remoto
+total: Total
+appearance: Aparência
+accessibility: Acessibilidade
+accountSettings: Configurações de Conta
+numberOfDays: Número de dias
+hideThisNote: Esconder esta postagem
+objectStoragePrefixDesc: Os arquivos serão armazenados em diretórios com este prefixo.
+objectStorageEndpointDesc: Deixe isso vazio se você estiver usando AWS S3, de outra
+  forma especifique o endpoint como '<host>' ou '<host>:<port>', dependendo do serviço
+  que você está usando.
+deleteAll: Excluir tudo
+showFixedPostForm: Exibir o formulário de postagem no topo da linha do tempo
+newNoteRecived: Há novas postagens
+sounds: Sons
+chooseEmoji: Selecione um emoji
+unableToProcess: A operação não pôde ser concluída
+recentUsed: Recentemente usado
+install: Instalar
+uninstall: Desinstalar
+installedApps: Aplicações Autorizadas
+removeAllFollowing: Parar de seguir todos os usuários seguidos
+removeAllFollowingDescription: Executar isso faz parar de seguir todas as contas de
+  {host}. Por favor, execute isso se o servidor, por exemplo, não existir mais.
+userSuspended: Este usuário foi suspenso.
+isAdmin: Administrador
+receiveFollowRequest: Solicitação de seguir recebida
+followRequestAccepted: Solicitação de seguir aceita
+add: Adicionar
+reaction: Reações
+enableEmojiReactions: Ativar reações com emoji
+attachCancel: Remover anexo
+flagShowTimelineReplies: Mostrar respostas na linha do tempo
+addAccount: Adicionar conta

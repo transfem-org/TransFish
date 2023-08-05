@@ -1002,6 +1002,7 @@ _aboutFirefish:
   pleaseDonateToHost: Silakan pertimbangkan juga berdonasi ke server rumah kamu, {host},
     untuk membantu dengan biaya operasi.
   donateHost: Berdonasi ke {host}
+  misskeyContributors: Kontributor Misskey
 _nsfw:
   respect: "Sembunyikan media NSFW"
   ignore: "Jangan sembunyikan media NSFW"
@@ -2163,3 +2164,4 @@ delete2fa: Nonaktifkan 2FA
 delete2faConfirm: Ini akan menghapus 2FA secara permanen pada akun ini. Lanjutkan?
 deletePasskeysConfirm: Ini akan menghapus semua passkeys dan kunci keamanan pada akun
   ini secara permanen. Lanjutkan?
+addRe: Tambahkan "re:" pada awal komentar balasan postingan dengan peringatan konten
