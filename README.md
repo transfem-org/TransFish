@@ -5,7 +5,7 @@
 
 **🌎 **[Firefish](https://joinfirefish.org/)** is an open source, decentralized social media platform that's free forever! 🚀**
 
-[![no github badge](https://nogithub.codeberg.page/badge.svg)](https://nogithub.codeberg.page/)
+(The orginal project has a no github badge but due to technical and other reasons we will continue to use github sorry.)
 <!-- [![status badge](https://ci.codeberg.org/api/badges/firefish/firefish/status.svg)](https://ci.codeberg.org/firefish/firefish) -->
 [![opencollective badge](https://opencollective.com/firefish/tiers/badge.svg)](https://opencollective.com/Firefish)
 [![liberapay badge](https://img.shields.io/liberapay/receives/ThatOneCalculator?logo=liberapay)](https://liberapay.com/ThatOneCalculator)
