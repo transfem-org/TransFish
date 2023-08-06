@@ -9,10 +9,20 @@
 		>
 
 		<div style="padding: 8px">
-			<img :src="listenbrainz.img" :alt="listenbrainz.title" />
-			<p>
-			    {{ listenbrainz.title }}
-			</p>
+			<div class="flex">
+				<a :href="listenbrainz.musicbrainzurl">
+					<img class="image" :src="listenbrainz.img" :alt="listenbrainz.title" />
+					<div class="flex flex-col items-start">
+						<p class="text-sm font-bold">Now Playing: {{ listenbrainz.title }}</p>
+						<p class="text-xs font-medium">{{ listenbrainz.artist }}</p>
+					</div>
+				</a>
+				<a :href="listenbrainz.listenbrainzurl">
+					<div class="playicon">
+						<i class="ph-play-circle ph-bold ph-lg"></i>
+					</div>
+				</a>
+			</div>
 		</div>
 	</MkContainer>
 </template>
@@ -83,3 +93,59 @@ if (props.user.listenbrainz) {
 }
 
 </script>
+
+<style lang="scss" scoped>
+.flex {
+	display: flex;
+	align-items: center;
+}
+
+.flex a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.image {
+	height: 4.8rem;
+	margin-right: 0.7rem;
+}
+
+.items-start {
+	align-items: flex-start;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.text-sm {
+	font-size: 0.875rem;
+	margin: 0;
+	margin-bottom: 0.3rem;
+}
+
+.font-bold {
+	font-weight: 700;
+}
+
+.text-xs {
+	font-size: 0.75rem;
+	margin: 0;
+}
+
+.font-medium {
+	font-weight: 500;
+}
+
+.playicon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	font-size: 1.7rem;
+	padding-left: 3rem;
+}
+</style>

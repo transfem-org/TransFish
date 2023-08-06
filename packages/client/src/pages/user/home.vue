@@ -419,15 +419,19 @@ const props = withDefaults(
 
 let listenbrainzdata = false;
 if (props.user.listenbrainz) {
-	const response = await fetch(`https://api.listenbrainz.org/1/user/${props.user.listenbrainz}/playing-now`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-	});
-	const data = await response.json();
-	if (data.payload.listens && data.payload.listens.length !== 0) {
-		listenbrainzdata = true;
+	try {
+		const response = await fetch(`https://api.listenbrainz.org/1/user/${props.user.listenbrainz}/playing-now`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		});
+		const data = await response.json();
+		if (data.payload.listens && data.payload.listens.length !== 0) {
+			listenbrainzdata = true;
+		}
+	} catch(err) {
+		listenbrainzdata = false;
 	}
 }
 
