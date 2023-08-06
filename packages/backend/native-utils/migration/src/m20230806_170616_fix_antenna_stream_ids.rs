@@ -35,7 +35,7 @@ impl MigrationTrait for Migration {
             redis_conn.del::<_, ()>(key).unwrap();
             for (j, v) in stream_ids.enumerate() {
                 redis_conn
-                    .xadd(key, v, &[("note", &all_elems[j])])
+                    .xadd(key, v, &[("note", &all_elems[j][1][1])])
                     .unwrap_or(());
             }
 
