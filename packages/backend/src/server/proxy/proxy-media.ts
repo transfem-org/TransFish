@@ -14,12 +14,14 @@ import { serverLogger } from "../index.js";
 import { isMimeImage } from "@/misc/is-mime-image.js";
 
 export async function proxyMedia(ctx: Koa.Context) {
-	const url = "url" in ctx.query ? ctx.query.url : `https://${ctx.params.url}`;
+	let url = "url" in ctx.query ? ctx.query.url : `https://${ctx.params.url}`;
 
 	if (typeof url !== "string") {
 		ctx.status = 400;
 		return;
 	}
+
+	url = url.replace("//", "/");
 
 	const { hostname } = new URL(url);
 	let resolvedIps;
