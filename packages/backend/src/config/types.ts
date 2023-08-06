@@ -69,9 +69,10 @@ export type Source = {
 
 	accesslog?: string;
 
-	clusterLimit?: number;
-
-	onlyQueueProcessor?: boolean;
+	clusterLimits?: {
+		web?: number;
+		queue?: number;
+	};
 
 	cuid?: {
 		length?: number;
