@@ -28,6 +28,10 @@ Machine learning model for sensitive images by Infinite Red, Inc.
 License: MIT
 https://github.com/infinitered/nsfwjs/blob/master/LICENSE
 
+Chiptune2.js by Simon Gündling
+License: MIT
+https://github.com/deskjet/chiptune2.js#license
+
 Licenses for all softwares and software libraries installed via the Node Package Manager ("npm") can be found by running the following shell command in the root directory of this repository:
 
 pnpm licenses list
