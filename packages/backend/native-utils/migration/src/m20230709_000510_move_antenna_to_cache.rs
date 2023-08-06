@@ -1,3 +1,4 @@
+use native_utils::util::id;
 use redis::streams::StreamMaxlen;
 use sea_orm::Statement;
 use sea_orm_migration::prelude::*;
@@ -80,12 +81,12 @@ impl MigrationTrait for Migration {
                         pipe.xadd_maxlen(
                             format!("{}:antennaTimeline:{}", prefix, v.1),
                             StreamMaxlen::Approx(200),
-                            "*",
+                            format!("{}-*", id::get_timestamp(&v.2)),
                             &[("note", v.2.to_owned())],
                         )
                         .ignore();
                     }
-                    pipe.query::<()>(&mut redis_conn).unwrap();
+                    pipe.query::<()>(&mut redis_conn).unwrap_or(());
                 }
 
                 let copied = total_num - remaining;
