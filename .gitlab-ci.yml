@@ -9,63 +9,83 @@
 
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
-image: node:alpine
 
 stages:
   - build
-
-# Pick zero or more services to be used on all builds.
-# Only needed when using a docker container to run your tests in.
-# Check out: https://docs.gitlab.com/ee/ci/services/index.html
-variables:
-  POSTGRES_PASSWORD: test
-  # POSTGRES_DB: $POSTGRES_DB
-  # POSTGRES_USER: $POSTGRES_USER
-  # POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-  # POSTGRES_HOST_AUTH_METHOD: trust
-
-services:
-  - postgres:15
-  - redis
-
+  - deploy
 
 testCommit:
   stage: build
-  before_script:
+  image: node:alpine
+  # Pick zero or more services to be used on all builds.
+  # Only needed when using a docker container to run your tests in.
+  # Check out: https://docs.gitlab.com/ee/ci/services/index.html
+  services:
+    - postgres:15
+    - redis
+  variables:
+    POSTGRES_PASSWORD: test
+    # POSTGRES_DB: $POSTGRES_DB
+    # POSTGRES_USER: $POSTGRES_USER
+    # POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    # POSTGRES_HOST_AUTH_METHOD: trust
+  script:
     - apk add --no-cache cargo python3 make g++
     - cp .config/ci.yml .config/default.yml
     - corepack enable
     - corepack prepare pnpm@latest --activate
-  script:
     - pnpm i --frozen-lockfile
     - pnpm run build:debug
     - pnpm run migrate
+  cache:
+    key: build
+    policy: pull-push
+    when: on_success
+    paths:
+     - node_modules/
+     - packages/*/node_modules/
+     - packages/backend/native-utils/node_modules/
   only:
     - main
     - beta
     - develop
     - /^feature\/.*$/
 
-dockerPush:
-  stage: .post
-  image: docker:latest
-  services:
-    - docker:dind
-  before_script:
-    - cp .config/ci.yml .config/default.yml
-    - cp .config/docker_ci.env .config/docker.env
+getImageTag:
+  stage: deploy
+  image: busybox
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-    - echo $CI_JOB_TOKEN | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - |
+      if test -n "$CI_COMMIT_TAG"; then
+        tag="$CI_COMMIT_TAG"
+      elif test "$CI_COMMIT_BRANCH" == "main"; then
+        tag="latest"
+      else
+        tag="$CI_COMMIT_BRANCH"
+      fi
+    - echo "REGISTRY_PUSH_TAG=$tag" | tee build.env
+  # parse tag to the build and merge jobs.
+  # See: https://docs.gitlab.com/ee/ci/variables/#pass-an-environment-variable-to-another-job
+  artifacts:
+    reports:
+      dotenv: build.env
   only:
     - main
     - beta
+    - tags
 
-# This folder is cached between builds
-# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-cache:
-  paths:
-    - node_modules/
-    - packages/*/node_modules/
-    - packages/backend/native-utils/node_modules/
+dockerBuild:
+  stage: deploy
+  needs: ["getImageTag"]
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:${REGISTRY_PUSH_TAG}"
+  only:
+    - main
+    - beta
+    - tags
