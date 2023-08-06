@@ -368,6 +368,12 @@
 			</div>
 			<div v-if="!narrow" class="sub">
 				<XPhotos :key="user.id" :user="user" />
+				<XListenBrainz
+					v-if="user.listenbrainz && listenbrainzdata"
+					:key="user.id"
+					:user="user"
+					style="margin-top: var(--margin)"
+				/>
 				<XActivity
 					:key="user.id"
 					:user="user"
@@ -401,6 +407,7 @@ import { host } from "@/config";
 
 const XPhotos = defineAsyncComponent(() => import("./index.photos.vue"));
 const XActivity = defineAsyncComponent(() => import("./index.activity.vue"));
+const XListenBrainz = defineAsyncComponent(() => import("./index.listenbrainz.vue"));;
 
 const emit = defineEmits(["refresh"]);
 const props = withDefaults(
@@ -409,6 +416,24 @@ const props = withDefaults(
 	}>(),
 	{},
 );
+
+let listenbrainzdata = false;
+if (props.user.listenbrainz) {
+	try {
+		const response = await fetch(`https://api.listenbrainz.org/1/user/${props.user.listenbrainz}/playing-now`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		});
+		const data = await response.json();
+		if (data.payload.listens && data.payload.listens.length !== 0) {
+			listenbrainzdata = true;
+		}
+	} catch(err) {
+		listenbrainzdata = false;
+	}
+}
 
 let parallaxAnimationId = $ref<null | number>(null);
 let narrow = $ref<null | boolean>(null);
