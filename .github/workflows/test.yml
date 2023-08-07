@@ -4,10 +4,16 @@ on:
   push:
     branches:
       - develop
+    paths:
+      - 'packages/**'
+      - 'custom/**'
   pull_request:
+    paths:
+      - 'packages/**'
+      - 'custom/**'
 
 jobs:
-  vitest:
+  test:
     runs-on: ubuntu-latest
 
     strategy:

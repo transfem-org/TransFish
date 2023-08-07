@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - develop
+    paths:
+      - 'packages/**'
+      - 'custom/**'
+      - 'package.json'
   workflow_dispatch:
 
 env:
