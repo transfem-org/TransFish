@@ -37,7 +37,10 @@ jobs:
           --health-retries 5
 
     steps:
-    - run: apt-get update && apt-get install -y git wget cargo curl build-essential
+    - run: apt-get update && apt-get install -y git wget curl build-essential
+    - uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: stable
     - uses: actions/checkout@v3.3.0
       with:
         submodules: true
