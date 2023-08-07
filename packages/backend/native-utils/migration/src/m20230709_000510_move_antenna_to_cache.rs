@@ -85,7 +85,7 @@ impl MigrationTrait for Migration {
                         )
                         .ignore();
                     }
-                    pipe.query::<()>(&mut redis_conn).unwrap();
+                    pipe.query::<()>(&mut redis_conn).unwrap_or(());
                 }
 
                 let copied = total_num - remaining;

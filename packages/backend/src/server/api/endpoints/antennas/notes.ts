@@ -2,7 +2,7 @@ import define from "../../define.js";
 import readNote from "@/services/note/read.js";
 import { Antennas, Notes } from "@/models/index.js";
 import { redisClient } from "@/db/redis.js";
-import { genId } from "@/misc/gen-id.js";
+import { genId, getTimestamp } from "@/misc/gen-id.js";
 import { makePaginationQuery } from "../../common/make-pagination-query.js";
 import { generateVisibilityQuery } from "../../common/generate-visibility-query.js";
 import { generateMutedUserQuery } from "../../common/generate-muted-user-query.js";
@@ -61,10 +61,22 @@ export default define(meta, paramDef, async (ps, user) => {
 	}
 
 	const limit = ps.limit + (ps.untilId ? 1 : 0) + (ps.sinceId ? 1 : 0); // untilIdに指定したものも含まれるため+1
+	let end = "+";
+	if (ps.untilDate) {
+		end = ps.untilDate.toString();
+	} else if (ps.untilId) {
+		end = getTimestamp(ps.untilId).toString();
+	}
+	let start = "-";
+	if (ps.sinceDate) {
+		start = ps.sinceDate.toString();
+	} else if (ps.sinceId) {
+		start = getTimestamp(ps.sinceId).toString();
+	}
 	const noteIdsRes = await redisClient.xrevrange(
 		`antennaTimeline:${antenna.id}`,
-		ps.untilDate ?? "+",
-		ps.sinceDate ?? "-",
+		end,
+		start,
 		"COUNT",
 		limit,
 	);
