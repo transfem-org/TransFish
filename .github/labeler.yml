@@ -1,0 +1,21 @@
+'packages/backend':
+- packages/backend/**/*
+
+'packages/client':
+- packages/client/**/*
+
+'packages/sw':
+- packages/sw/**/*
+
+'packages/firefish-js':
+- packages/firefish-js/**/*
+
+'packages/firefish-js:test':
+- packages/firefish-js/test/**/*
+- packages/firefish-js/test-d/**/*
+
+'packages/megalodon':
+- packages/megalodon/**/*
+
+'packages/megalodon:test':
+- packages/megalodon/test/**/*
