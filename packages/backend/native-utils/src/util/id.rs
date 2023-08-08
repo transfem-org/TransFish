@@ -1,9 +1,9 @@
 //! ID generation utility based on [cuid2]
 
+use basen::BASE36;
 use cfg_if::cfg_if;
 use chrono::Utc;
 use once_cell::sync::OnceCell;
-use radix_fmt::radix_36;
 use std::cmp;
 
 use crate::impl_into_napi_error;
@@ -46,10 +46,18 @@ pub fn create_id(date_num: i64) -> Result<String, ErrorUninitialized> {
             let time = cmp::max(date_num - TIME_2000, 0);
             Ok(format!(
                 "{:0>8}{}",
-                radix_36(time).to_string(),
+                BASE36.encode_var_len(&(time as u64)),
                 gen.create_id()
             ))
         }
+    }
+}
+
+pub fn get_timestamp(id: &str) -> i64 {
+    let n: Option<u64> = BASE36.decode_var_len(&id[0..8]);
+    match n {
+        None => -1,
+        Some(n) => n as i64 + TIME_2000,
     }
 }
 
@@ -68,17 +76,23 @@ cfg_if! {
         pub fn native_create_id(date_num: i64) -> String {
             create_id(date_num).unwrap()
         }
+
+        #[napi]
+        pub fn native_get_timestamp(id: String) -> i64 {
+            get_timestamp(&id)
+        }
     }
 }
 
 #[cfg(test)]
 mod unit_test {
     use crate::util::id;
+    use chrono::Utc;
     use pretty_assertions::{assert_eq, assert_ne};
     use std::thread;
 
     #[test]
-    fn can_generate_unique_ids() {
+    fn can_create_and_decode() {
         assert_eq!(id::create_id(0), Err(id::ErrorUninitialized));
         id::init_id(16, "");
         assert_eq!(id::create_id(0).unwrap().len(), 16);
@@ -86,5 +100,10 @@ mod unit_test {
         let id1 = thread::spawn(|| id::create_id(0).unwrap());
         let id2 = thread::spawn(|| id::create_id(0).unwrap());
         assert_ne!(id1.join().unwrap(), id2.join().unwrap());
+
+        let now = Utc::now().timestamp_millis();
+        let test_id = id::create_id(now).unwrap();
+        let timestamp = id::get_timestamp(&test_id);
+        assert_eq!(now, timestamp);
     }
 }

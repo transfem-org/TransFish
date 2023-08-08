@@ -1009,6 +1009,7 @@ _aboutFirefish:
   donateHost: Faire un don à {host}
   patronsList: Listé chronologiquement, pas par taille de donation. Faite un don avec
     le lien ci-dessus pour avoir votre nom affiché ici !
+  misskeyContributors: Contributeurs Misskey
 _nsfw:
   respect: "Cacher les médias marqués comme contenu sensible"
   ignore: "Afficher les médias sensibles"
@@ -2203,3 +2204,5 @@ delete2faConfirm: Cela supprimera de manière irréversible la double authentifi
 inputNotMatch: L'entrée ne correspond pas
 deletePasskeysConfirm: Cela supprimera de manière irréversible toutes les clés d'accès
   et les clés de sécurité sur ce compte. Souhaitez-vous continuer ?
+addRe: Ajouter "re:" au début d’un avertissement de contenu (CW) en réponse à une
+  publication avec un avertissement de contenu
