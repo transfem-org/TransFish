@@ -114,3 +114,533 @@ mention: Omtale
 mentions: Omtaler
 edited: Redigert {date} {time}
 cw: Innholdsadvarsel
+suspendConfirm: Er du sikker på at du vil suspendere denne kontoen?
+recipient: Mottaker(e)
+annotation: Kommentarer
+registeredAt: Registrert
+federation: Føderering
+blockThisInstance: Blokker denne tjeneren
+cpuAndMemory: CPU og minne
+silencedInstances: Stumme tjenere
+network: Nettverk
+disk: Lagring
+instanceInfo: Tjenerinformasjon
+blockedInstancesDescription: Liste over maskinnavn på tjenere du vil blokkere. Blokkerte
+  tjenere vi ikke lenger kunne kommunisere med denne tjeneren.
+blockedUsers: Blokkerte brukere
+mutedUsers: Stumme brukere
+editProfile: Rediger profil
+done: Ferdig
+exploreUsersCount: Det er {count} brukere
+moderation: Moderering
+securityKey: Sikkerhetsnøkkel
+registerSecurityKey: Registerer en sikkerhetsnøkkel
+recentlyDiscoveredUsers: Nylig oppdagede brukere
+nUsersMentioned: Nevnt av {n} brukere
+cacheClear: Slett mellomlager
+unblock: Avblokker
+suspend: Suspender
+instanceFollowing: Følger på tjener
+instanceFollowers: Følgere fra tjener
+imageUrl: Bilde-URL
+remove: Slett
+keepOriginalUploading: Behold opprinnelig bilde
+images: Bilder
+birthday: Fødselsdag
+yearsOld: '{age} år gammel'
+renameFolder: Gi katalogen nytt navn
+remoteUserCaution: Informasjon fra eksterne brukere kan være ufullstendig.
+activity: Aktivitet
+drive: Disk
+renameFile: Omdøp fil
+folderName: Katalognavn
+createFolder: Opprett katalog
+inputNewDescription: Oppgi ny bildetekst
+inputNewFolderName: Oppgi nytt katalognavn
+copyUrl: Kopier URL
+hcaptchaSiteKey: hCaptcha-nøkkel for nettstedet
+hcaptchaSecretKey: Hemmelig hCaptcha-nøkkel
+recaptchaSiteKey: Nettstednøkkel til reCAPTCHA
+recaptchaSecretKey: Hemmelig nøkkel til reCAPTCHA
+unsilenceConfirm: Er du sikker på at du vil omgjøre stummingen av denne brukeren?
+popularUsers: Populære brukere
+moderator: Moderator
+groupName: Gruppenavn
+transfer: Overfør
+preferencesBackups: Foretrukne sikkerhetskopier
+edit: Rediger
+emailServer: Eposttjener
+testEmail: Test epost-utsending
+notificationSettingDesc: Velg typen av varlinger som skal vises.
+useGlobalSetting: Bruk globale innstillinger
+useGlobalSettingDesc: Hvis dette er slått på vil varslingsinnstillingene til kontoen
+  bli brukt. Om den er slått av kan du bruke individuell konfigurasjon.
+attachCancel: Slett vedegg
+markAsSensitive: Merk som sensitivt innhold
+renoteMute: Stum fremhevinger
+renoteUnmute: Vis boosts fra bruker
+addEmoji: Legg til
+settingGuide: Foreslåtte innstillinger
+cacheRemoteFilesDescription: Når denne innstillingen er avslått vil eksterne filer
+  lastes direkte fra andre tjerene. Å slå dette av vil føre til mindre bruk av lagringsplass,
+  men vil øke nettverkstrafikken fordi miniatyrbilder ikke vil bli generert.
+unsuspend: Fjern suspendering
+selectInstance: Velg en tjener
+flagShowTimelineReplies: Vis svar i tidslinje
+latestRequestSentAt: Siste forespørsel sendt
+latestRequestReceivedAt: Siste forespørsel mottatt
+latestStatus: Siste status
+storageUsage: Lagringsplass brukt
+charts: Grafer
+perHour: Per time
+perDay: Per dag
+stopActivityDelivery: Stopp sending av aktiviteter
+jobQueue: Jobbkø
+clearQueue: Tøm kø
+muteAndBlock: Stumming og blokkering
+noInstances: Ingen tjenere
+noteDeleteConfirm: Er du sikker på at du vil slette denne posten?
+pinLimitExceeded: Du kan ikke feste flere poster
+subscribing: Abonnerer
+publishing: Publisering
+usernameOrUserId: Brukernavn eller brukeridentifikator
+removed: Slettet
+removeAreYouSure: Er du sikker på at du ønsker å slette "{x}"?
+deleteAreYouSure: Er du sikker på at du vil slette "{x}"?
+resetAreYouSure: Sikker på at du ønsker å nullstille?
+messaging: Chat
+uploadFromUrlMayTakeTime: Det kan ta litt tid før opplastingen er ferdig.
+manageGroups: Administrer grupper
+tos: Vilkår for bruk
+registeredDate: Ble med
+location: Lokasjon
+darkThemes: Mørke tema
+whenServerDisconnected: Ved bortfall av nettverksforbindelse mot tjeneren
+unwatch: Slutt å følge med på
+accept: Godkjenn
+reject: Avslå
+normal: Normal
+instanceName: Tjenernavn
+instanceDescription: Tjenerbeskrivelse
+maintainerName: Administrator
+maintainerEmail: Administrator-epost
+monthX: '{month}'
+connectService: Koble til
+disconnectService: Koble fra
+enableLocalTimeline: Aktiver lokal tidslinje
+enableRegistration: Tillat registrering av nye brukere
+invite: Inviter
+driveCapacityPerLocalAccount: Lagring pr lokale bruker
+driveCapacityPerRemoteAccount: Lagring pr eksterne bruker
+inMb: I megabyte
+iconUrl: Ikon-URL
+pinnedUsers: Festede brukere
+pinnedPagesDescription: Legg inn stien (en per linje) til sidene du ønsker å vise
+  på topp for denne tjeneren.
+antennaKeywords: Nøkkelord å lytte etter
+antennaKeywordsDescription: Skill ordene med mellomrom for logisk "OG" og med linjeskift
+  for logisk "ELLER".
+withReplies: Ta med svar
+connectedTo: Følgende konto(er) er sammenkoblet
+withFiles: Inkluder filer
+lastUsed: Sist brukt
+unregister: Avregistrer
+passwordLessLogin: Passordløs innlogging
+share: Del
+markAsReadAllNotifications: Marker alle varsler som lest
+markAsReadAllTalkMessages: Marker alle meldinger som lest
+inputMessageHere: Skriv melding her
+close: Lukk
+groups: Grupper
+quoteAttached: Siter
+noMessagesYet: Ingen meldinger ennå
+newMessageExists: Det er nye meldinger
+invitations: Invitasjoner
+usernameInvalidFormat: Du kan bruke store og små bokstaver, tall og understrek.
+weakPassword: Svakt passord
+normalPassword: Normalt passord
+doing: Prosesserer...
+category: Kategori
+tags: Nøkkelord
+docSource: Kilden til dette dokumentet
+createAccount: Opprett konto
+existingAccount: Eksisterende konto
+regenerate: Regenerer
+fontSize: Skriftstørrelse
+objectStorageRegionDesc: Spesifiser en region som f.eks. 'xx-east-1'. Hvis tjenesten
+  ikke skiller mellom regioner kan du la feltet stå blankt eller skrive 'us-east-1'.
+yourAccountSuspendedTitle: Denne kontoen er suspendert
+themeEditor: Tema-editor
+emptyToDisableSmtpAuth: La brukernavn og passord stå tomme for å ikke autentisere
+  mot SMTP-tjeneren
+pinnedNote: Festet post
+cacheRemoteFiles: Mellomlagre eksterne filer
+setWallpaper: Set bakgrunn
+noSuchUser: Finner ikke brukeren
+lookup: Slå opp
+saved: Lagret
+enableGlobalTimeline: Aktiver global tidslinje
+enableRecommendedTimeline: Aktiver foreslått tidslinje
+pinnedClipId: Festede bokmerker
+recaptcha: reCAPTCHA
+notesAndReplies: Poster og svar
+recentlyUpdatedUsers: Nylig aktive brukere
+menu: Meny
+silenceThisInstance: Stum denne tjeneren
+pageLoadErrorDescription: Vanligvis skyldes dette nettverksfeil eller mellomlagring
+  i nettleseren. Prøv å tømme mellomlageret og prøv på nytt.
+you: Du
+showEmojisInReactionNotifications: Vis emojier i reaksjonsvarsler
+rememberNoteVisibility: Husk synlighetsinnstillinger for poster
+reactionSettingDescription2: Trekk for å flytte, klikk for å slette, trykk "+" for
+  å legge til.
+reactionSetting: Reaksjoner som skal vises i reaksjonsvelgeren
+blockConfirm: Er du sikker på at du vil blokkere denne kontoen?
+unblockConfirm: Er du sikker på at du vil avblokkere denne kontoen?
+flagAsBot: Merk denne kontoen som en bot
+flagAsCat: Er du en katt? 😺
+editWidgetsExit: Ferdig
+editWidgets: Rediger skjermelementer
+emoji: Emoji
+emojis: Emoji
+customEmojis: Egen emoji
+autoAcceptFollowed: Automatisk tillat følgerforespørsler fra kontoer du følger
+clearCachedFilesConfirm: Er du sikker på at du vil slette alle mellomlagrede eksterne
+  filer?
+hiddenTagsDescription: 'List nøkkelordene (uten #) du ønsker å skjule fra trending
+  og utforsking. Utover dette kan nøkkelord som er skjulte fortsatt brukes.'
+silenced: Stummet
+blocked: Blokkert
+processing: Prosesserer
+preview: Forhåndsvisning
+noCustomEmojis: Ingen emoji
+noJobs: Ingen jobber
+federating: Føderering
+notResponding: Ingen svar
+changePassword: Endre passord
+retypedNotMatch: Innholdet i feltene stemmer ikke overens.
+newPassword: Nytt passord
+attachFile: Legg ved filer
+announcements: Annonseringer
+themeForDarkMode: Tema i mørk modus
+light: Lyst
+dark: Mørkt
+syncDeviceDarkMode: Samkjør mørk modus med maskininnstillingene
+deleteFolder: Slett katalogen
+addFile: Legg til fil
+tosUrl: URL til vilkår for tjenesten
+circularReferenceFolder: Målkatalogen ligger under katalogen du prøver å flytte.
+rename: Gi nytt navn
+avatar: Brukerbilde
+disablingTimelinesInfo: Administratorer og moderatorer vil alltid ha tilgang til alle
+  tidslinjer, selv om de ikke er aktiverte.
+registration: Registrer
+messagingWithGroup: Gruppechat
+title: Tittel
+text: Tekst
+tooShort: For kort
+tooLong: For langt
+joinOrCreateGroup: Bli invitert inn til en gruppe eller lag dine egne.
+tapSecurityKey: Trykk på sikkerhetsnøkkelen
+or: Eller
+language: Språk
+uiLanguage: Språk for brukergrensesnitt
+groupInvited: Du har blitt invitert til en gruppe
+disableDrawer: Ikke bruk skuffe-menyer
+expandOnNoteClick: Åpne post ved klikk
+expandOnNoteClickDesc: Om du deaktiverer kan du fortsatt åpne poster fra objektmenyen
+  eller ved å klikke på tidsstempelet.
+userSuspended: Denne brukeren er suspendert.
+userSilenced: Denne brukeren er stummet.
+channelFederationWarn: Kanaler blir ennå ikke federert til andre tjenere
+enableInfiniteScroll: Last mer automatisk
+visibility: Synlighet
+regexpError: Feil i regulært uttrykk
+instanceMute: Tjener-stumming
+create: Opprett
+messageRead: Les
+noMoreHistory: Det er ikke mer historikk
+emptyFolder: Katalogen er tom
+thisYear: År
+basicInfo: Basisinformasjon
+help: Hjelp
+members: Medlemmer
+smtpPort: Port
+error: Feil
+somethingHappened: Noe gikk galt
+retry: Prøv på nytt
+manageLists: Administrer lister
+loginFailed: Innlogging feilet
+general: Generell
+accountMoved: 'Brukeren har flyttet til en ny konto:'
+wallpaper: Bakgrunn
+addAccount: Legg til konto
+showOnRemote: Vis opprinnelig side
+host: Tjener
+selectUser: Velg en bruker
+operations: Operasjoner
+software: Programvare
+version: Versjon
+metadata: Metadata
+blockedInstances: Blokkerte tjenere
+hiddenTags: Skjulte nøkkelord
+suspended: Suspendert
+instanceUsers: Brukere på denne tjeneren
+security: Sikkerhet
+currentPassword: Nåværende passord
+more: Mer!
+upload: Last opp
+explore: Utforsk
+themeForLightMode: Tema i lys modus
+lightThemes: Lyse tema
+fileName: Filnavn
+selectFile: Velg en fil
+selectFiles: Velg filer
+selectFolder: Velg en katalog
+selectFolders: Velg kataloger
+exploreFediverse: Utforsk konføderasjonen
+userList: Lister
+about: Om
+objectStorage: Objektlagring
+useObjectStorage: Bruk objektlagring
+objectStorageBaseUrl: Base-URL
+installedApps: Autoriserte applikasjoner
+nothing: Ikke noe å se her
+deleteAllFilesConfirm: Er du sikker på at du vil slette alle filer?
+updateRemoteUser: Oppdater informasjon om ekstern bruker
+deleteAllFiles: Slett alle filer
+enterFileDescription: Legg til bildetekst
+leaveConfirm: Det er ulagrede endringer. Vil du forkaste dem?
+enableAll: Slå på alle
+generateAccessToken: Generer adgangstegn
+disableAll: Slå av alle
+permission: Tilganger
+userSaysSomethingReason: '{name} skrev {reason}'
+selectChannel: Velg en kanal
+flagAsCatDescription: Du vil få katteører og snakke som en katt!
+flagSpeakAsCat: Snakk som en katt
+flagSpeakAsCatDescription: Postene dine vil bli nyanifiserte når du er i kattemodus
+removeWallpaper: Fjern bakgrunn
+flagShowTimelineRepliesDescription: Vis svar fra brukere på andre brukeres poster
+  i tidslinjen når aktivert.
+proxyAccountDescription: 'En stedfortreder-konto er en konto som i noen situasjoner
+  oppfører seg som en ekstern følger for en bruker. For eksempel: når en ekstern bruker
+  blir lagt i en liste vil den eksterne brukeren ikke uten videre sendt til tjeneren
+  dersom ingen lokale brukere følger den eksterne brukeren. Da vil stedfortrederen
+  følge brukeren i stedet.'
+instances: Tjenere
+clearQueueConfirmTitle: Er du sikker på at du vil tømme køen?
+clearQueueConfirmText: Alle usendte meldinger i køen vil ikke bli sendt til andre
+  tjenere. Vanligvis er denne operasjonen unødvendig.
+clearCachedFiles: Tøm mellomlager
+silencedInstancesDescription: Liste over tjenere du vil stumme. Kontoer på stumme
+  tjenere vil bare kunne lage følgerforespørsler, og kan ikke referere til lokale
+  kontoer med mindre de følges. Dette vil ikke påvirke de blokkerte tjenerne.
+noUsers: Ingen brukere
+uploadFromUrl: Last opp fra bildelenke
+uploadFromUrlRequested: Opplasting forespurt
+start: Start
+disconnectedFromServer: Forbindelsen til tjeneren er brutt
+reload: Last om
+doNothing: Ignorer
+theme: Tema
+reloadConfirm: Vil du oppdatere tidslinjen?
+watch: Følg med på
+thisMonth: Måned
+today: I dag
+dayX: '{day}'
+integration: Integrasjoner
+yearX: '{year}'
+pages: Sider
+enableRecaptcha: Slå på reCAPTCHA
+antennasDesc: "Antenner fanger opp nye poster etter et sett kriterier du setter opp!\n
+  Du kommer til dem fra tidslinje-siden."
+manageAntennas: Administrer antenner
+enableServiceworker: Slå på varsling for nettleseren
+pinnedNotes: Festede poster
+antennaUsersDescription: List opp ett brukernavn per linje
+antennaInstancesDescription: List opp en tjener per linje
+caseSensitive: Skill mellom små og store bokstaver
+silence: Stillhet
+silenceConfirm: Er du sikker på at du vil stumme denne brukeren?
+unsilence: Avslutt stumming
+recentlyRegisteredUsers: Nye brukere
+token: Adgangstegn
+popularTags: Populære nøkkelord
+administrator: Administrator
+twoStepAuthentication: Tofaktor-autentisering
+securityKeyName: Nøkkelnavn
+reduceUiAnimation: Demp animasjoner i brukergrensesnittet
+notFound: Ikke funnet
+uploadFolder: Standardkatalog for opplastinger
+createGroup: Opprett gruppe
+notFoundDescription: Fant ingen sider som samsvarer med enne URL-en.
+ownedGroups: Grupper du eier
+joinedGroups: Grupper du er med i
+invites: Invitasjoner
+messagingWithUser: Privat chat
+enable: Slå på
+quoteQuestion: Sett inn som sitat?
+onlyOneFileCanBeAttached: Du kan bare legge ved én fil til en melding
+signinRequired: Registrer eller logg inn før du fortsetter
+invitationCode: Invitasjonskode
+checking: Sjekker...
+available: Tilgjengelig
+unavailable: Ikke tilgjengelig
+passwordMatched: Likt
+passwordNotMatched: Stemmer ikke
+signinWith: Logg inn med {x}
+signinFailed: Klarer ikke å logge inn. Brukernavn eller passord er feil.
+objectStorageBaseUrlDesc: "URL-en som brukes som referanse. Oppgi URL-en til leveringsnettverket
+  (CDN) eller proxy om du bruker en av dem.\nFor S3 kan du bruke 'https://<bucket>.s3.amazonaws.com'
+  og for GCS og tilsvarende tjenester 'https://storage.googleapis.com/<bucket>'."
+objectStorageEndpoint: Endepunkt
+objectStorageRegion: Region
+installedDate: Autorisert
+lastUsedDate: Sist brukt
+state: Tilstand
+sort: Sortering
+yourAccountSuspendedDescription: Denne kontoen er suspendert fordi den har brutt tjenerens
+  retningslinjer eller lignende. Kontakt administratoren hvis du trenger en mer detaljert
+  grunn. Ikke opprett en ny konto.
+useCw: Skjul innhold
+enablePlayer: Åpne videospiller
+disablePlayer: Lukk videospiller
+describeFile: Legg til tekst
+author: Forfatter
+useFullReactionPicker: Bruk reaksjonsvelger i full størrelse
+width: Bredde
+regexpErrorDescription: 'En feil oppsto under det regulære uttrykket på linje {line}
+  av stumming av {tab}:'
+userSaysSomethingReasonRenote: '{name} fremhevet en post som inneholdt {reason}'
+userSaysSomethingReasonQuote: '{name} siterte en post som inneholdt {reason}'
+userSaysSomething: '{name} sa noe'
+metrics: Metrikker
+overview: Oversikt
+logs: Logger
+delayed: Forsinket
+channel: Kanaler
+flagAsBotDescription: Slå på denne innstillingen dersom kontoen styres av et program.
+  Dette er et flagg til andre utviklere for å hindre uendelige kjeder der roboter
+  responderer på hverandres meldinger og lar den interne håndteringen av kontoen i
+  Firefish være tilpasset bot-brukere.
+aboutFirefish: Om Firefish
+youShouldUpgradeClient: Last siden på nytt for å oppdatere klienten.
+serverIsDead: Tjeneren svarer ikke. Prøv på nytt om en stund.
+sensitive: Sensitivt innhold
+unmarkAsSensitive: Fjern merking som sensitivt innhold
+enterFileName: Skriv inn filnavn
+mute: Stum
+unmute: Fjern stumming
+block: Blokker
+unsuspendConfirm: Er du sikker på at du vil fjerne suspensjonen av denne kontoen?
+selectList: Velg en liste
+selectAntenna: Velg en antenne
+selectWidget: Velg et skjermelement
+emojiName: Emoji-navn
+emojiUrl: Emoji-URL
+searchWith: 'Søk etter: {q}'
+intro: Installasjonen av Firefish er fullført! Lag en admin-bruker.
+youHaveNoLists: Du har ingen lister
+followConfirm: Er du sikker på at du vil følge {name}?
+proxyAccount: Stedfortreder-konto
+statistics: Statistikk
+default: Standard
+defaultValueIs: 'Standard: {value}'
+newPasswordRetype: Gjenta nytt passord
+fromDrive: Fra disk
+fromUrl: Fra URL
+nUsersRead: lest av {n}
+uploadFromUrlDescription: URL til filen du vil laste opp
+agreeTo: Jeg samtykker til {0}
+home: Hjem
+emptyDrive: Disken din er tom
+unableToDelete: Klarte ikke å slette
+inputNewFileName: Oppgi nytt filnavn
+hasChildFilesOrFolders: Katalogen er ikke tom og kan derfor ikke slettes.
+avoidMultiCaptchaConfirm: Å bruke flere Captcha-systemer kan forårsake uønskede krysseffekter
+  mellom dem. Ønsker å du slå av det andre aktive CAPTCHA-systemet? Om du ønsker å
+  ha begge på, trykk "Avbryt".
+name: Navn
+antennas: Antenner
+antennaSource: Antennekilde
+notifyAntenna: Varsle om nye poster
+antennaExcludeKeywords: Nøkkelord som skal ekskluderes
+retype: Skriv inn igjen
+inviteToGroup: Inviter til gruppe
+next: Neste
+useOsNativeEmojis: Bruk operativsystemets emojier
+youHaveNoGroups: Du har ingen grupper
+noHistory: Ingen historikk er tilgjengelig
+aboutX: Om {x}
+signinHistory: Innloggings-historikk
+strongPassword: Sterkt passord
+noFollowRequests: Du har ingen utestående følgeforespørsler
+openImageInNewTab: Åpne bilder i ny fane
+dashboard: Dashbord
+local: Lokal
+objectStoragePrefix: Prefiks
+objectStoragePrefixDesc: Filer vil bli lagret under kataloger med dette prefikset.
+objectStorageEndpointDesc: La dette stå tomt om du bruker AWS S3, ellers kan du spesifisere
+  endepunktet som '<tjener>' eller '<tjener>:<port>', avhengig av hvilken tjeneste
+  du bruker.
+objectStorageUseSSL: Bruk TLS
+objectStorageUseSSLDesc: Skru dette av dersom du ikke vil bruke HTTPS for API-forbindelser.
+uninstall: Avinstaller
+ascendingOrder: Økende
+descendingOrder: Synkende
+removeAllFollowing: Avfølg alle brukere
+deletedNote: Slettet post
+height: Høyde
+enableEmail: Slå på epost-utsendelse
+smtpPass: Passord
+smtpSecureInfo: Slå av dette om du bruker STARTTLS
+database: Database
+display: Vis
+notificationSetting: Varslingsinnstillinger
+other: Annet
+removeAllFollowingDescription: Dette vil avfølge alle kontoer på tjeneren {host}.
+  Kjør denne for eksempel om tjeneren ikke lenger finnes.
+inboxUrl: Innboks-URL
+description: Beskrivelse
+smtpUser: Brukernavn
+smtpSecure: Bruk implisitt SSL/TLS for SMTP-forbindelser
+userSaysSomethingReasonReply: '{name} svarte på en post som inneholdt {reason}'
+makeActive: Aktiver
+copy: Kopier
+regenerateLoginToken: Lag innloggingstegn på nytt
+pinnedUsersDescription: Liste av brukere (en per linje) som skal festes øverst under
+  "Utforsk".
+resetPassword: Tilbakestill passord
+newPasswordIs: Nytt passord er "{password}"
+all: Alle
+keepOriginalUploadingDescription: Lagrer det opprinnelige opplastedet bildet slik
+  det var originalt. Hvis du slår det av vil en versjon for visning på nett bli generert
+  ved opplasting.
+startMessaging: Start en ny chat
+group: Gruppe
+renote: Fremhev
+banner: Topp-bilde
+nsfw: Sensitivt innhold
+bannerUrl: URL til fane-bilde
+backgroundImageUrl: URL til bakgrunnsbilde
+pinnedPages: Festede sider
+hcaptcha: hCaptcha
+enableHcaptcha: Slå på hCaptcha
+invisibleNote: Usynlig post
+withFileAntenna: Bare poster med filer
+markAsReadAllUnreadNotes: Marker alle poster som lest
+noteOf: Post av {user}
+xl: Ekstra stor
+large: Stor
+medium: Medium
+small: Liten
+tokenRequested: Gi tilgang til konto
+pluginTokenRequestedDescription: Dette programtillegget vil kunne bruke tillatelsene
+  som settes her.
+emailConfigInfo: Brukt for å bekrefte epost-adresser ved opprettelse av kontoer og
+  dersom du glemmer passordet
+email: Epost
+emailAddress: Epostadresse
+smtpConfig: Konfigurasjon av SMTP-tjener
+smtpHost: Tjener
