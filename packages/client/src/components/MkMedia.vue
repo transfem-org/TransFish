@@ -233,7 +233,10 @@ watch(
 		}
 
 		> .gif {
-			background-color: var(--fg);
+			position: absolute;
+			background-color: var(--accentedBg);
+			-webkit-backdrop-filter: var(--blur, blur(15px));
+			backdrop-filter: var(--blur, blur(15px));
 			border-radius: 6px;
 			color: var(--accentLighten);
 			display: inline-block;
