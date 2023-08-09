@@ -26,16 +26,15 @@ export const paramDef = {
 } as const;
 
 export default define(meta, paramDef, async (ps) => {
-	const worker = createWorker({
-		logger: (m) => console.log(m),
-	});
+	const worker = await createWorker();
 
-	await worker.load();
 	await worker.loadLanguage("eng");
 	await worker.initialize("eng");
 	const {
 		data: { text },
-	} = await worker.recognize(ps.url);
+	} = await worker.recognize(ps.url, {
+		rotateAuto: true,
+	});
 	await worker.terminate();
 
 	return text;

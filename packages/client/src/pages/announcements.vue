@@ -24,7 +24,7 @@
 							<MkTime :time="announcement.createdAt" />
 						</div>
 					</div>
-					<hr class="_seperator"/>
+					<hr class="_seperator" />
 					<div class="_content">
 						<Mfm :text="announcement.text" />
 						<img

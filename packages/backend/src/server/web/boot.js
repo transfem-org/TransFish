@@ -147,7 +147,7 @@
 				<span class="button-label-big">Refresh</span>
 			</button>
 			<p class="dont-worry">Don't worry, it's (probably) not your fault.</p>
-			<p>Please make sure your browser is up-to-date and any AdBlockers are off.</p>
+			<p>Please make sure your browser is up-to-date and any AdBlockers are off (given they can sometimes errouniously interfere with loading assets).</p>
 			<p>If the problem persists after refreshing, please contact your instance's administrator.<br>You may also try the following options:</p>
 			<a href="/flush">
 				<button class="button-small">
