@@ -226,7 +226,11 @@ export default hasConfig
 								return null;
 							} else if (term.startsWith("domain:")) {
 								const domain = term.slice(7);
-								if (domain.length === 0 || domain === "local" || domain === config.hostname) {
+								if (
+									domain.length === 0 ||
+									domain === "local" ||
+									domain === config.hostname
+								) {
 									constructedFilters.push("userHost NOT EXISTS");
 									return null;
 								}

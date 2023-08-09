@@ -33,8 +33,8 @@ export default define(meta, paramDef, async (ps) => {
 	const {
 		data: { text },
 	} = await worker.recognize(ps.url, {
-			rotateAuto: true,
-		});
+		rotateAuto: true,
+	});
 	await worker.terminate();
 
 	return text;
