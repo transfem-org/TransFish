@@ -33,6 +33,7 @@ COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/ba
 
 # Configure pnpm, and install dev mode dependencies for compilation
 RUN wget -qO- https://get.pnpm.io/install.sh | sh -
+RUN source /root/.bashrc
 RUN pnpm i --frozen-lockfile
 
 # Copy in the rest of the native-utils rust files
@@ -80,6 +81,7 @@ COPY --from=build /firefish/packages/backend/assets/instance.css /firefish/packa
 COPY --from=build /firefish/packages/backend/native-utils/built /firefish/packages/backend/native-utils/built
 
 RUN wget -qO- https://get.pnpm.io/install.sh | sh -
+RUN source /root/.bashrc
 ENV NODE_ENV=production
 VOLUME "/firefish/files"
 ENTRYPOINT [ "/sbin/tini", "--" ]
