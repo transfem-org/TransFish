@@ -644,3 +644,77 @@ email: Epost
 emailAddress: Epostadresse
 smtpConfig: Konfigurasjon av SMTP-tjener
 smtpHost: Tjener
+showInPage: Vis på side
+volume: Volum
+fileIdOrUrl: Fil-id eller URL
+reporter: Rapportert av
+yes: Ja
+loadRawImages: Last originale bilder i stedet for å vise miniatyrbilder
+fillAbuseReportDescription: Fyll inn detaljer om innrapporteringen. Hvis det handler
+  om en bestemt post, inkluder URL til den.
+openInSideView: Åpne i sidefelt
+pollVotesCount: Antall stemmer sendt
+lockedAccountInfo: Med mindre du setter synlighet til "Bare følgere" vil postene dine
+  være synlige for alle, selv om du krever at følgere må godtas manuelt.
+disableShowingAnimatedImages: Ikke spill animerte bilder
+pageLikesCount: Antall likte Sider
+pageLikedCount: Antall mottatte likes på Sider
+contact: Kontakt
+useSystemFont: Bruk standard skriftsnitt fra systemet
+unableToProcess: Operasjonen kunne ikke fullføres
+send: Send
+clientSettings: Klientinnstillinger
+accountSettings: Kontoinnstillinger
+promotion: Promotert
+deleteAll: Slett alle
+showFixedPostForm: Vis post-feltet på toppen av tidslinjen
+sounds: Lyder
+details: Detaljer
+openInNewTab: Åpne i ny fane
+followersCount: Antall følgere
+sentReactionsCount: Antall sendte reaksjoner
+appearance: Utseende
+hideThisNote: Skjul denne posten
+popout: Pop ut
+recentUsed: Nylig brukt
+install: Installer
+weekOverWeekChanges: Endringer til forrige uke
+dayOverDayChanges: Endringer til i går
+listen: Lytt
+system: System
+none: Ingen
+chooseEmoji: Velg en emoji
+setMultipleBySeparatingWithSpace: Separer ulike innslag med mellomrom.
+reportAbuse: Rapport
+reportAbuseOf: Rapport {name}
+abuseReported: Rapporten er sendt. Takk.
+random: Tilfeldig
+repliesCount: Antall svar sendt
+repliedCount: Antall mottatte svar
+followingCount: Antall fulgte kontoer
+notSet: Ikke sendt
+i18nInfo: 'Firefish blir oversatt til ulike språk av frivillige. Du kan hjelpe her:
+  {link}.'
+accessibility: Tilgjengelighet
+promote: Promoter
+numberOfDays: Antall dager
+serverLogs: Tjenerlogger
+objectStorageSetPublicRead: Sett til "offentlig lesing" ved opplasting
+behavior: Oppførsel
+abuseReports: Rapporter
+defaultNavigationBehaviour: Standard navigeringsoppførsel
+abuseMarkAsResolved: Marker rapporten som løst
+emailVerified: Epost er verifisert
+noteFavoritesCount: Antall bokmerkede poster
+editTheseSettingsMayBreakAccount: Endringer i disse innstillingene kan ødelegge kontoen
+  din.
+instanceTicker: Tjenerinformasjon for poster
+waitingFor: Venter på {x}
+notesCount: Antall poster
+receivedReactionsCount: Antall mottatte reaksjoner
+pollVotedCount: Antall mottatte stemmer
+no: Nei
+alwaysMarkSensitive: Merk som "Sensitivt innhold" som standard
+verificationEmailSent: En verifiserings-epost er sendt. Følg lenken i eposten for
+  å fullføre verifiseringen.
+newNoteRecived: Det er nye poster
