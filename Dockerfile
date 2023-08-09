@@ -1,9 +1,13 @@
 ## Install dev and compilation dependencies, build files
-FROM alpine:3.18 as build
+FROM rockylinux:9.2 as build
 WORKDIR /firefish
 
 # Install compilation dependencies
-RUN apk add --no-cache --no-progress git alpine-sdk python3 nodejs-current npm rust cargo vips linux-headers
+RUN dnf config-manager --set-enabled crb
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+RUN dnf -y install vips cargo pyhon3 git kernel-headers-$(uname -r)
+RUN dnf -y module install nodejs:18/common
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
@@ -43,11 +47,17 @@ RUN env NODE_ENV=production sh -c "pnpm run --filter '!native-utils' build && pn
 RUN pnpm i --prod --frozen-lockfile
 
 ## Runtime container
-FROM alpine:3.18
+FROM rockylinux:9.2
 WORKDIR /firefish
 
 # Install runtime dependencies
-RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip nodejs-current
+RUN dnf config-manager --set-enabled crb
+RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+RUN dnf -y install https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
+RUN dnf -y install https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
+RUN dnf -y install vips-devel bzip3 unzip tini ffmpeg
+RUN dnf -y module install nodejs:18/common
 
 COPY . ./
 
