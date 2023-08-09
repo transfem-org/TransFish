@@ -3,7 +3,7 @@ FROM alpine:3.18 as build
 WORKDIR /firefish
 
 # Install compilation dependencies
-RUN apk add --no-cache --no-progress git alpine-sdk python3 nodejs-current npm rust cargo vips
+RUN apk add --no-cache --no-progress git alpine-sdk python3 nodejs-current npm rust cargo vips linux-headers
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
