@@ -7,7 +7,7 @@ RUN dnf -y install 'dnf-command(config-manager)'
 RUN dnf config-manager --set-enabled crb
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-RUN dnf -y install vips cargo pyhon3 git kernel-headers-$(uname -r)
+RUN dnf -y install vips cargo python3 git
 RUN dnf -y module install nodejs:18/common
 
 # Copy only the cargo dependency-related files first, to cache efficiently
