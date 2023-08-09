@@ -207,7 +207,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 	async function getConfirmed(text: string): Promise<boolean> {
 		const confirm = await os.confirm({
 			type: "warning",
-			title: "confirm",
+			title: i18n.ts.confirm,
 			text,
 		});
 
