@@ -7,7 +7,7 @@ RUN dnf -y install 'dnf-command(config-manager)'
 RUN dnf config-manager --set-enabled crb
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-RUN dnf -y install vips cargo python3 git
+RUN dnf -y install vips cargo python3 git wget curl
 RUN dnf -y module install nodejs:18/common
 
 # Copy only the cargo dependency-related files first, to cache efficiently
@@ -59,7 +59,7 @@ RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.n
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 RUN dnf -y install https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
 RUN dnf -y install https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
-RUN dnf -y install vips-devel bzip3 unzip tini ffmpeg
+RUN dnf -y install vips-devel bzip3 unzip tini ffmpeg wget curl
 RUN dnf -y module install nodejs:18/common
 
 COPY . ./
