@@ -28,7 +28,7 @@
 					:cover="false"
 					:largest-dimension="largestDimension"
 				/>
-				<div v-if="media.type === 'image/gif'" class="gif">GIF</div>
+				<div v-if="media.type === 'image/gif'" class="gif floating-badge">GIF</div>
 			</a>
 			<VuePlyr
 				v-if="media.type.startsWith('video')"
@@ -71,7 +71,7 @@
 					}`
 				"
 				:aria-label="i18n.ts.alt"
-				class="_button"
+				class="_button floating-badge"
 				@click.stop="captionPopup"
 			>
 				<i class="ph-subtitles ph-bold ph-lg"></i>
@@ -79,11 +79,14 @@
 			<button
 				v-if="!hide"
 				v-tooltip="i18n.ts.hide"
-				class="_button"
+				class="_button floating-badge"
 				@click.stop="hide = true"
 			>
 				<i class="ph-eye-slash ph-bold ph-lg"></i>
 			</button>
+		</div>
+		<div v-if="!media.comment" class="no-description floating-badge" title="Media lacks descriptive text">
+			<i class="ph-pencil-slash ph-bold ph-lg"></i>
 		</div>
 	</div>
 </template>
@@ -200,18 +203,20 @@ watch(
 		display: flex;
 		gap: 4px;
 		position: absolute;
-		border-radius: 6px;
 		overflow: hidden;
 		top: 12px;
 		right: 12px;
+	}
+	> .no-description {
+		position: absolute;
+		left: 12px;
+		bottom: 12px;
+		z-index: 2;
+		cursor: initial;
+
 		> * {
-			background-color: var(--accentedBg);
-			-webkit-backdrop-filter: var(--blur, blur(15px));
-			backdrop-filter: var(--blur, blur(15px));
-			color: var(--accent);
-			font-size: 0.8em;
-			padding: 6px 8px;
-			text-align: center;
+			display: block;
+			margin: auto;
 		}
 	}
 
@@ -233,9 +238,7 @@ watch(
 		}
 
 		> .gif {
-			background-color: var(--fg);
-			border-radius: 6px;
-			color: var(--accentLighten);
+			position: absolute;
 			display: inline-block;
 			font-size: 14px;
 			font-weight: bold;
@@ -291,6 +294,18 @@ watch(
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+	}
+
+	.floating-badge {
+		background-color: var(--accentedBg);
+		-webkit-backdrop-filter: var(--blur, blur(15px));
+		backdrop-filter: var(--blur, blur(15px));
+		color: var(--accent);
+		border-radius: 6px;
+
+		font-size: .8em;
+		padding: 6px 8px;
+		text-align: center;
 	}
 }
 </style>
