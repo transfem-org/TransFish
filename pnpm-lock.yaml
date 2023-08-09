@@ -19420,6 +19420,12 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
+  github.com/TheEssem/libopenmpt-packaging/d05d151a72b638c6312227af0417aca69521172c:
+    resolution: {tarball: https://codeload.github.com/TheEssem/libopenmpt-packaging/tar.gz/d05d151a72b638c6312227af0417aca69521172c}
+    name: libopenmpt-wasm
+    version: 0.7.2
+    dev: true
+
   github.com/misskey-dev/browser-image-resizer/ee6b1cf56f8e8997a989b9f2089d13473c28d87e:
     resolution: {tarball: https://codeload.github.com/misskey-dev/browser-image-resizer/tar.gz/ee6b1cf56f8e8997a989b9f2089d13473c28d87e}
     name: '@misskey-dev/browser-image-resizer'
