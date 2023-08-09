@@ -3,6 +3,7 @@ FROM rockylinux:9.2 as build
 WORKDIR /firefish
 
 # Install compilation dependencies
+RUN dnf -y install 'dnf-command(config-manager)'
 RUN dnf config-manager --set-enabled crb
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
@@ -51,6 +52,7 @@ FROM rockylinux:9.2
 WORKDIR /firefish
 
 # Install runtime dependencies
+RUN dnf -y install 'dnf-command(config-manager)'
 RUN dnf config-manager --set-enabled crb
 RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
