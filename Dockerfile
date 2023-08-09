@@ -31,8 +31,9 @@ COPY packages/backend/native-utils/package.json packages/backend/native-utils/pa
 COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
 COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
 
-# Configure corepack and pnpm, and install dev mode dependencies for compilation
-RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm i --frozen-lockfile
+# Configure pnpm, and install dev mode dependencies for compilation
+RUN wget -qO- https://get.pnpm.io/install.sh | sh -
+RUN pnpm i --frozen-lockfile
 
 # Copy in the rest of the native-utils rust files
 COPY packages/backend/native-utils packages/backend/native-utils/
@@ -78,7 +79,7 @@ COPY --from=build /firefish/packages/backend/built /firefish/packages/backend/bu
 COPY --from=build /firefish/packages/backend/assets/instance.css /firefish/packages/backend/assets/instance.css
 COPY --from=build /firefish/packages/backend/native-utils/built /firefish/packages/backend/native-utils/built
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN wget -qO- https://get.pnpm.io/install.sh | sh -
 ENV NODE_ENV=production
 VOLUME "/firefish/files"
 ENTRYPOINT [ "/sbin/tini", "--" ]
