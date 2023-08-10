@@ -150,22 +150,12 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	computed,
-	inject,
-	onMounted,
-	onUnmounted,
-	onUpdated,
-	reactive,
-	ref,
-} from "vue";
+import { onMounted, onUnmounted, onUpdated, ref } from "vue";
 import * as misskey from "firefish-js";
 import MkTab from "@/components/MkTab.vue";
 import MkNote from "@/components/MkNote.vue";
 import MkNoteSub from "@/components/MkNoteSub.vue";
-import XStarButton from "@/components/MkStarButton.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
-import MkPagination from "@/components/MkPagination.vue";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
 import MkReactedUsers from "@/components/MkReactedUsers.vue";
 import { pleaseLogin } from "@/scripts/please-login";
@@ -181,7 +171,6 @@ import { useNoteCapture } from "@/scripts/use-note-capture";
 import { deepClone } from "@/scripts/clone";
 import { stream } from "@/stream";
 import { NoteUpdatedEvent } from "firefish-js/built/streaming.types";
-import appear from "@/directives/appear";
 
 const props = defineProps<{
 	note: misskey.entities.Note;

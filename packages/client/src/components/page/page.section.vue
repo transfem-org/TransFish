@@ -16,7 +16,6 @@
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent, PropType } from "vue";
-import * as os from "@/os";
 import { SectionBlock } from "@/scripts/hpml/block";
 import { Hpml } from "@/scripts/hpml/evaluator";
 
@@ -59,8 +58,8 @@ export default defineComponent({
 		margin: 0 0 0.5em 0;
 	}
 
-	> .children {
-		//padding 16px
-	}
+	// > .children {
+	// 	padding: 16px;
+	// }
 }
 </style>

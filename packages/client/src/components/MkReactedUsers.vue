@@ -40,7 +40,6 @@ import { onMounted, watch } from "vue";
 import * as misskey from "firefish-js";
 import MkReactionIcon from "@/components/MkReactionIcon.vue";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
-import { i18n } from "@/i18n";
 import * as os from "@/os";
 
 const props = defineProps<{

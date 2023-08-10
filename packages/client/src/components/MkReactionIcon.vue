@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
-
 const props = defineProps<{
 	reaction: string;
 	customEmojis?: any[]; // TODO

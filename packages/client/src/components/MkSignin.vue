@@ -160,7 +160,6 @@
 </template>
 
 <script lang="ts" setup>
-import Vue3OtpInput from "vue3-otp-input";
 import { defineAsyncComponent } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
@@ -180,15 +179,10 @@ let password = $ref("");
 let token = $ref("");
 let host = $ref(toUnicode(configHost));
 let totpLogin = $ref(false);
-let credential = $ref(null);
 let challengeData = $ref(null);
 let queryingKey = $ref(false);
 let hCaptchaResponse = $ref(null);
 let reCaptchaResponse = $ref(null);
-
-const updateToken = (value: string) => {
-	token = value.toString();
-};
 
 const meta = $computed(() => instance);
 

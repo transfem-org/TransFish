@@ -46,15 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	computed,
-	nextTick,
-	onMounted,
-	onUnmounted,
-	ref,
-	toRefs,
-	watch,
-} from "vue";
+import { nextTick, onMounted, ref, toRefs, watch } from "vue";
 import { debounce } from "throttle-debounce";
 import MkButton from "@/components/MkButton.vue";
 import { useInterval } from "@/scripts/use-interval";
@@ -101,7 +93,6 @@ const id = Math.random().toString(); // TODO: uuid?
 const focused = ref(false);
 const changed = ref(false);
 const invalid = ref(false);
-const filled = computed(() => v.value !== "" && v.value != null);
 const inputEl = ref<HTMLElement>();
 const prefixEl = ref<HTMLElement>();
 const suffixEl = ref<HTMLElement>();
@@ -136,7 +127,7 @@ watch(modelValue, (newValue) => {
 	v.value = newValue;
 });
 
-watch(v, (newValue) => {
+watch(v, (_) => {
 	if (!props.manualSave) {
 		if (props.debounce) {
 			debouncedUpdated();
