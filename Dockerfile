@@ -4,8 +4,11 @@ WORKDIR /firefish
 
 # Install compilation dependencies
 RUN apt-get update && apt-get install -y libvips42 python3 git wget curl build-essential
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-RUN echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
+RUN mkdir -m777 /opt/rust /opt/cargo
+ENV RUSTUP_HOME=/opt/rust CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN wget --https-only --secure-protocol=TLSv1_2 -O- https://sh.rustup.rs | sh /dev/stdin -y
+RUN printf '#!/bin/sh\nexport CARGO_HOME=/opt/cargo\nexec /bin/sh "$@"\n' >/usr/local/bin/sh
+RUN chmod +x /usr/local/bin/sh
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
