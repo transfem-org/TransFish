@@ -1,9 +1,11 @@
 ## Install dev and compilation dependencies, build files
-FROM alpine:3.18 as build
+FROM node:latest as build
 WORKDIR /firefish
 
 # Install compilation dependencies
-RUN apk add --no-cache --no-progress git alpine-sdk python3 nodejs-current npm rust cargo vips
+RUN apt-get update && apt-get install -y git wget curl build-essential python3
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN source "$HOME/.cargo/env"
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
