@@ -4,7 +4,7 @@
 			<div v-if="group.title" class="title">{{ group.title }}</div>
 
 			<div class="items">
-				<template v-for="(item, i) in group.items">
+				<template v-for="item in group.items">
 					<a
 						v-if="item.type === 'a'"
 						:href="item.href"
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, unref } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
 	props: {

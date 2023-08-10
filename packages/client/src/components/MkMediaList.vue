@@ -37,7 +37,6 @@ import XBanner from "@/components/MkMediaBanner.vue";
 import XMedia from "@/components/MkMedia.vue";
 import * as os from "@/os";
 import { FILE_TYPE_BROWSERSAFE } from "@/const";
-import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	mediaList: misskey.entities.DriveFile[];

@@ -108,14 +108,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	computed,
-	nextTick,
-	onBeforeUnmount,
-	onMounted,
-	ref,
-	shallowRef,
-} from "vue";
+import { computed, onBeforeUnmount, onMounted } from "vue";
 import tinycolor from "tinycolor2";
 import { globalEvents } from "@/events.js";
 

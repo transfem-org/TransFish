@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
+import { computed } from "vue";
 import type { CustomEmoji } from "firefish-js/built/entities";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import { char2filePath } from "@/scripts/twemoji-base";

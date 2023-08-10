@@ -21,10 +21,6 @@ const emit = defineEmits<{
 }>();
 
 const dialog = $ref<InstanceType<typeof XModalWindow>>();
-
-function close(res) {
-	dialog.close();
-}
 </script>
 
 <style lang="scss" scoped>

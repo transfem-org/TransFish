@@ -15,7 +15,6 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 import MkRadio from "../form/radio.vue";
-import * as os from "@/os";
 import { Hpml } from "@/scripts/hpml/evaluator";
 import { RadioButtonVarBlock } from "@/scripts/hpml/block";
 

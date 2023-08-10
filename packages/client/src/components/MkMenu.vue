@@ -17,7 +17,7 @@
 				@contextmenu.self="(e) => e.preventDefault()"
 				tabindex="-1"
 			>
-				<template v-for="(item, i) in items2">
+				<template v-for="item in items2">
 					<div v-if="item === null" class="divider"></div>
 					<span v-else-if="item.type === 'label'" class="label item">
 						<span :style="item.textStyle || ''">{{
@@ -204,18 +204,12 @@
 
 <script lang="ts" setup>
 import {
-	computed,
-	menu,
 	defineAsyncComponent,
-	nextTick,
 	onBeforeUnmount,
 	onMounted,
-	onUnmounted,
-	Ref,
 	ref,
 	watch,
 } from "vue";
-import { focusPrev, focusNext } from "@/scripts/focus";
 import FormSwitch from "@/components/form/switch.vue";
 import { MenuItem, InnerMenuItem, MenuPending, MenuAction } from "@/types/menu";
 import * as os from "@/os";

@@ -121,21 +121,10 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	computed,
-	inject,
-	nextTick,
-	onMounted,
-	onUnmounted,
-	reactive,
-	ref,
-	shallowReactive,
-	watch,
-} from "vue";
+import { inject, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { popupMenu } from "@/os";
 import { scrollToTop } from "@/scripts/scroll";
-import { globalEvents } from "@/events";
 import { injectPageMetadata } from "@/scripts/page-metadata";
 import { $i, openAccountMenu as openAccountMenu_ } from "@/account";
 import { i18n } from "@/i18n";
@@ -182,7 +171,6 @@ const tabHighlightEl = $ref<HTMLElement | null>(null);
 const tabsEl = $ref<HTMLElement | null>(null);
 const bg = ref(null);
 let narrow = $ref(false);
-const height = ref(0);
 const hasTabs = $computed(() => props.tabs && props.tabs.length > 0);
 const hasActions = $computed(() => props.actions && props.actions.length > 0);
 const show = $computed(() => {
