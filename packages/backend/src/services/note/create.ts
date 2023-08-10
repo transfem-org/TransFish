@@ -806,7 +806,7 @@ async function insertNote(
 }
 
 export async function index(note: Note, reindexing: boolean): Promise<void> {
-	if (!note.text) return;
+	if (!note.text || note.visibility !== "public") return;
 
 	if (config.elasticsearch && es) {
 		es.index({
