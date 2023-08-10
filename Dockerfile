@@ -48,8 +48,7 @@ FROM node:20-bookworm
 WORKDIR /firefish
 
 # Install runtime dependencies
-RUN dnf -y install libvips-dev zip unzip tini ffmpeg
-RUN dnf -y module install nodejs:18/common
+RUN apt-get update && apt-get install -y libvips-dev zip unzip tini ffmpeg
 
 COPY . ./
 
