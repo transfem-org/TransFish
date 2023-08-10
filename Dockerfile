@@ -3,9 +3,12 @@ FROM node:latest as build
 WORKDIR /firefish
 
 # Install compilation dependencies
-RUN apt-get update && apt-get install -y git wget curl build-essential python3
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN source "$HOME/.cargo/env"
+RUN apt-get update && apt-get install -y libvips42 python3 git wget curl build-essential
+RUN mkdir -m777 /opt/rust /opt/cargo
+ENV RUSTUP_HOME=/opt/rust CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN wget --https-only --secure-protocol=TLSv1_2 -O- https://sh.rustup.rs | sh /dev/stdin -y
+RUN printf '#!/bin/sh\nexport CARGO_HOME=/opt/cargo\nexec /bin/sh "$@"\n' >/usr/local/bin/sh
+RUN chmod +x /usr/local/bin/sh
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
@@ -28,7 +31,7 @@ COPY packages/backend/native-utils/package.json packages/backend/native-utils/pa
 COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/backend/native-utils/npm/linux-x64-musl/package.json
 COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
 
-# Configure corepack and pnpm, and install dev mode dependencies for compilation
+# Configure pnpm, and install dev mode dependencies for compilation
 RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm i --frozen-lockfile
 
 # Copy in the rest of the native-utils rust files
@@ -45,11 +48,11 @@ RUN env NODE_ENV=production sh -c "pnpm run --filter '!native-utils' build && pn
 RUN pnpm i --prod --frozen-lockfile
 
 ## Runtime container
-FROM alpine:3.18
+FROM node:latest
 WORKDIR /firefish
 
 # Install runtime dependencies
-RUN apk add --no-cache --no-progress tini ffmpeg vips-dev zip unzip nodejs-current
+RUN apt-get update && apt-get install -y libvips-dev zip unzip tini ffmpeg
 
 COPY . ./
 
