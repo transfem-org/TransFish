@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import type { PropType } from "vue";
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import {
 	ArcElement,
 	BarController,
@@ -183,9 +183,9 @@ const render = () => {
 		document.documentElement,
 	).getPropertyValue("--fg");
 
-	const maxes = chartData.series.map((x, i) =>
-		Math.max(...x.data.map((d) => d.y)),
-	);
+	// const maxes = chartData.series.map((x, i) =>
+	// 	Math.max(...x.data.map((d) => d.y)),
+	// );
 
 	chartInstance = new Chart(chartEl.value, {
 		type: props.bar ? "bar" : "line",

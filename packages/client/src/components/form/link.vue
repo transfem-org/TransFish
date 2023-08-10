@@ -26,8 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
-
 const props = defineProps<{
 	to: string;
 	active?: boolean;

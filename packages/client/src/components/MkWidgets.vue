@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, reactive, ref, computed } from "vue";
+import { ref, computed } from "vue";
 import { v4 as uuid } from "uuid";
 import { VueDraggable } from "vue-draggable-plus";
 import MkSelect from "@/components/form/select.vue";

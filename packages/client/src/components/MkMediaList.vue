@@ -54,7 +54,6 @@ import {
 	FILE_TYPE_TRACKER_MODULES,
 	FILE_EXT_TRACKER_MODULES,
 } from "@/const";
-import { defaultStore } from "@/store";
 
 const props = defineProps<{
 	mediaList: misskey.entities.DriveFile[];

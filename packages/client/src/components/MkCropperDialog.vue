@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onMounted } from "vue";
+import { onMounted } from "vue";
 import type * as misskey from "firefish-js";
 import Cropper from "cropperjs";
 import tinycolor from "tinycolor2";

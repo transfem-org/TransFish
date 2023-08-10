@@ -15,7 +15,7 @@
 		</template>
 
 		<MkSpacer :margin-min="20" :margin-max="32">
-			<div class="xkpnjxcv _formRoot">
+			<div class="_formRoot">
 				<template
 					v-for="item in Object.keys(form).filter(
 						(item) => !form[item].hidden,
@@ -221,8 +221,3 @@ export default defineComponent({
 	},
 });
 </script>
-
-<style lang="scss" scoped>
-.xkpnjxcv {
-}
-</style>

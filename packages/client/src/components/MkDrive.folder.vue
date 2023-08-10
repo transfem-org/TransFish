@@ -198,10 +198,6 @@ function onDragend() {
 	emit("dragend");
 }
 
-function go() {
-	emit("move", props.folder.id);
-}
-
 function rename() {
 	os.inputText({
 		title: i18n.ts.renameFolder,
