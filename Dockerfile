@@ -3,8 +3,7 @@ FROM node:20-bookworm as build
 WORKDIR /firefish
 
 # Install compilation dependencies
-RUN apt-get update && apt-get install -y libvips42 python3 git wget curl build-essential
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN apt-get update && apt-get install -y libvips42 python3 git wget curl build-essential cargo
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
