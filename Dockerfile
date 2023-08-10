@@ -1,15 +1,10 @@
 ## Install dev and compilation dependencies, build files
-FROM rockylinux:9.2 as build
+FROM node:20-bookworm as build
 WORKDIR /firefish
-SHELL ["/bin/bash", "-c"]
 
 # Install compilation dependencies
-RUN dnf -y install 'dnf-command(config-manager)'
-RUN dnf config-manager --set-enabled crb
-RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-RUN dnf -y install vips cargo python3 git wget
-RUN dnf -y module install nodejs:18/common
+RUN apt-get update && apt-get install -y libvips42 python3 git wget curl build-essential
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Copy only the cargo dependency-related files first, to cache efficiently
 COPY packages/backend/native-utils/Cargo.toml packages/backend/native-utils/Cargo.toml
@@ -33,9 +28,7 @@ COPY packages/backend/native-utils/npm/linux-x64-musl/package.json packages/back
 COPY packages/backend/native-utils/npm/linux-arm64-musl/package.json packages/backend/native-utils/npm/linux-arm64-musl/package.json
 
 # Configure pnpm, and install dev mode dependencies for compilation
-RUN wget -qO- https://get.pnpm.io/install.sh | sh -
-RUN source /root/.bashrc
-RUN pnpm i --frozen-lockfile
+RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm i --frozen-lockfile
 
 # Copy in the rest of the native-utils rust files
 COPY packages/backend/native-utils packages/backend/native-utils/
@@ -45,24 +38,17 @@ RUN pnpm run --filter native-utils build
 
 # Copy in the rest of the files to compile
 COPY . ./
-RUN env NODE_ENV=production /bin/bash -c "pnpm run --filter '!native-utils' build && pnpm run gulp"
+RUN env NODE_ENV=production sh -c "pnpm run --filter '!native-utils' build && pnpm run gulp"
 
 # Trim down the dependencies to only those for production
 RUN pnpm i --prod --frozen-lockfile
 
 ## Runtime container
-FROM rockylinux:9.2
+FROM node:20-bookworm
 WORKDIR /firefish
-SHELL ["/bin/bash", "-c"]
 
 # Install runtime dependencies
-RUN dnf -y install 'dnf-command(config-manager)'
-RUN dnf config-manager --set-enabled crb
-RUN dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-RUN dnf -y install https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
-RUN dnf -y install https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
-RUN dnf -y install vips-devel bzip3 unzip tini ffmpeg wget
+RUN dnf -y install libvips-dev zip unzip tini ffmpeg
 RUN dnf -y module install nodejs:18/common
 
 COPY . ./
@@ -82,8 +68,7 @@ COPY --from=build /firefish/packages/backend/built /firefish/packages/backend/bu
 COPY --from=build /firefish/packages/backend/assets/instance.css /firefish/packages/backend/assets/instance.css
 COPY --from=build /firefish/packages/backend/native-utils/built /firefish/packages/backend/native-utils/built
 
-RUN wget -qO- https://get.pnpm.io/install.sh | sh -
-RUN source /root/.bashrc
+RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV NODE_ENV=production
 VOLUME "/firefish/files"
 ENTRYPOINT [ "/sbin/tini", "--" ]
