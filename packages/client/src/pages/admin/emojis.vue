@@ -339,8 +339,11 @@ const menu = (ev: MouseEvent) => {
 				icon: "ph-info ph-bold ph-lg",
 				text: i18n.ts.emojiPackCreator,
 				action: () => {
-					window.open("https://git.joinfirefish.org/firefish/emoji-gen", "_blank");
-				}
+					window.open(
+						"https://git.joinfirefish.org/firefish/emoji-gen",
+						"_blank",
+					);
+				},
 			},
 		],
 		ev.currentTarget ?? ev.target,
