@@ -231,6 +231,21 @@ export async function createPerson(
 		}
 	}
 
+	let notesCount: number | undefined;
+
+	if (typeof person.outbox === "string") {
+		try {
+			let data = await fetch(person.outbox, {
+				headers: { Accept: "application/json" },
+			});
+			let json_data = JSON.parse(await data.text());
+
+			notesCount = json_data.totalItems;
+		} catch (e) {
+			notesCount = undefined;
+		}
+	}
+
 	// Create user
 	let user: IRemoteUser;
 	try {
@@ -273,6 +288,14 @@ export async function createPerson(
 							  typeof person.following !== "string" &&
 							  isCollectionOrOrderedCollection(person.following)
 							? person.following.totalItems
+							: undefined,
+					notesCount:
+						notesCount !== undefined
+							? notesCount
+							: person.outbox &&
+							  typeof person.outbox !== "string" &&
+							  isCollectionOrOrderedCollection(person.outbox)
+							? person.outbox.totalItems
 							: undefined,
 					featured: person.featured ? getApId(person.featured) : undefined,
 					uri: person.id,
@@ -472,6 +495,21 @@ export async function updatePerson(
 		}
 	}
 
+	let notesCount: number | undefined;
+
+	if (typeof person.outbox === "string") {
+		try {
+			let data = await fetch(person.outbox, {
+				headers: { Accept: "application/json" },
+			});
+			let json_data = JSON.parse(await data.text());
+
+			notesCount = json_data.totalItems;
+		} catch (e) {
+			notesCount = undefined;
+		}
+	}
+
 	const updates = {
 		lastFetchedAt: new Date(),
 		inbox: person.inbox,
@@ -494,6 +532,14 @@ export async function updatePerson(
 				  typeof person.following !== "string" &&
 				  isCollectionOrOrderedCollection(person.following)
 				? person.following.totalItems
+				: undefined,
+		notesCount:
+			notesCount !== undefined
+				? notesCount
+				: person.outbox &&
+				  typeof person.outbox !== "string" &&
+				  isCollectionOrOrderedCollection(person.outbox)
+				? person.outbox.totalItems
 				: undefined,
 		featured: person.featured,
 		emojis: emojiNames,
@@ -663,7 +709,7 @@ export async function updateFeatured(userId: User["id"], resolver?: Resolver) {
 		? collection.items
 		: collection.orderedItems;
 	const items = await Promise.all(
-		toArray(unresolvedItems).map((x) => resolver.resolve(x)),
+		toArray(unresolvedItems).map((x) => resolver!.resolve(x)),
 	);
 
 	// Resolve and regist Notes
