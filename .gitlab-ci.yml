@@ -32,6 +32,7 @@ testCommit:
   script:
     - apt-get update && apt-get install -y git wget curl build-essential python3
     - curl https://sh.rustup.rs -sSf | sh -s -- -y
+    - source "$HOME/.cargo/env"
     - cp .config/ci.yml .config/default.yml
     - corepack enable
     - corepack prepare pnpm@latest --activate
