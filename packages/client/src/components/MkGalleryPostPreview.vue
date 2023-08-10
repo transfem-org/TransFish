@@ -19,8 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
-import { userName } from "@/filters/user";
 import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
 
 const props = defineProps<{

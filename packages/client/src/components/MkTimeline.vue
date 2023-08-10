@@ -28,10 +28,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed, provide, onUnmounted } from "vue";
+import { computed, provide, onUnmounted } from "vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkInfo from "@/components/MkInfo.vue";
-import * as os from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
 import { $i } from "@/account";

@@ -13,8 +13,8 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted } from "vue";
-import MkMenu from "./MkMenu.vue";
-import type { MenuItem } from "./types/menu.vue";
+import MkMenu from "@/components/MkMenu.vue";
+import type { MenuItem } from "@/types/menu";
 import contains from "@/scripts/contains";
 import * as os from "@/os";
 

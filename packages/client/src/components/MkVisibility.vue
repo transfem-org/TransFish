@@ -25,7 +25,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import XDetails from "@/components/MkUsersTooltip.vue";
 import * as os from "@/os";
 import { useTooltip } from "@/scripts/use-tooltip";

@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
 import * as misskey from "firefish-js";
 import { i18n } from "@/i18n";
 

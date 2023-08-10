@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkEmojiPicker from "@/components/MkEmojiPicker.vue";
 import { defaultStore } from "@/store";

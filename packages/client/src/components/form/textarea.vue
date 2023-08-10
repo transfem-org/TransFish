@@ -43,7 +43,6 @@ import {
 	defineComponent,
 	nextTick,
 	onMounted,
-	onUnmounted,
 	ref,
 	toRefs,
 	watch,

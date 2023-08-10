@@ -255,23 +255,18 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onMounted, onUnmounted, reactive, ref } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 import * as mfm from "mfm-js";
 import type { Ref } from "vue";
 import type * as misskey from "firefish-js";
 import MkNoteSub from "@/components/MkNoteSub.vue";
 import MkSubNoteContent from "./MkSubNoteContent.vue";
 import XNoteHeader from "@/components/MkNoteHeader.vue";
-import XNoteSimple from "@/components/MkNoteSimple.vue";
-import XMediaList from "@/components/MkMediaList.vue";
-import XCwButton from "@/components/MkCwButton.vue";
-import XPoll from "@/components/MkPoll.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XReactionsViewer from "@/components/MkReactionsViewer.vue";
 import XStarButton from "@/components/MkStarButton.vue";
 import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
 import XQuoteButton from "@/components/MkQuoteButton.vue";
-import MkUrlPreview from "@/components/MkUrlPreview.vue";
 import MkVisibility from "@/components/MkVisibility.vue";
 import copyToClipboard from "@/scripts/copy-to-clipboard";
 import { url } from "@/config";

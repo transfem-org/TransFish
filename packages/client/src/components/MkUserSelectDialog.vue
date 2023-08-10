@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onMounted } from "vue";
+import { onMounted } from "vue";
 import * as misskey from "firefish-js";
 import MkInput from "@/components/form/input.vue";
 import FormSplit from "@/components/form/split.vue";

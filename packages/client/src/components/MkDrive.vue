@@ -69,7 +69,7 @@
 						@dragend="isDragSource = false"
 					/>
 					<!-- SEE: https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid -->
-					<div v-for="(n, i) in 16" :key="i" class="padding"></div>
+					<div v-for="(_, i) in 16" :key="i" class="padding"></div>
 					<MkButton v-if="moreFolders" ref="moreFolders">{{
 						i18n.ts.loadMore
 					}}</MkButton>
@@ -94,7 +94,7 @@
 						@dragend="isDragSource = false"
 					/>
 					<!-- SEE: https://stackoverflow.com/questions/18744164/flex-box-align-last-row-to-grid -->
-					<div v-for="(n, i) in 16" :key="i" class="padding"></div>
+					<div v-for="(_, i) in 16" :key="i" class="padding"></div>
 					<MkButton
 						v-show="moreFiles"
 						ref="loadMoreFiles"
@@ -132,7 +132,6 @@
 
 <script lang="ts" setup>
 import {
-	markRaw,
 	nextTick,
 	onActivated,
 	onBeforeUnmount,

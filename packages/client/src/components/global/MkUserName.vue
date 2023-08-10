@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
 import type * as misskey from "firefish-js";
 
 const props = withDefaults(
