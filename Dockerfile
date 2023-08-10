@@ -1,6 +1,7 @@
 ## Install dev and compilation dependencies, build files
 FROM rockylinux:9.2 as build
 WORKDIR /firefish
+SHELL ["/bin/bash", "-c"]
 
 # Install compilation dependencies
 RUN dnf -y install 'dnf-command(config-manager)'
@@ -44,7 +45,7 @@ RUN pnpm run --filter native-utils build
 
 # Copy in the rest of the files to compile
 COPY . ./
-RUN env NODE_ENV=production sh -c "pnpm run --filter '!native-utils' build && pnpm run gulp"
+RUN env NODE_ENV=production /bin/bash -c "pnpm run --filter '!native-utils' build && pnpm run gulp"
 
 # Trim down the dependencies to only those for production
 RUN pnpm i --prod --frozen-lockfile
@@ -52,6 +53,7 @@ RUN pnpm i --prod --frozen-lockfile
 ## Runtime container
 FROM rockylinux:9.2
 WORKDIR /firefish
+SHELL ["/bin/bash", "-c"]
 
 # Install runtime dependencies
 RUN dnf -y install 'dnf-command(config-manager)'
