@@ -294,7 +294,7 @@ const menu = (ev: MouseEvent) => {
 		[
 			{
 				icon: "ph-download-simple ph-bold ph-lg",
-				text: i18n.ts.export,
+				text: i18n.ts.exportZip,
 				action: async () => {
 					os.api("export-custom-emojis", {})
 						.then(() => {
@@ -313,7 +313,7 @@ const menu = (ev: MouseEvent) => {
 			},
 			{
 				icon: "ph-upload-simple ph-bold ph-lg",
-				text: i18n.ts.import,
+				text: i18n.ts.importZip,
 				action: async () => {
 					const file = await selectFile(
 						ev.currentTarget ?? ev.target,
@@ -334,6 +334,13 @@ const menu = (ev: MouseEvent) => {
 							});
 						});
 				},
+			},
+			{
+				icon: "ph-info ph-bold ph-lg",
+				text: i18n.ts.emojiPackCreator,
+				action: () => {
+					window.open("https://git.joinfirefish.org/firefish/emoji-gen", "_blank");
+				}
 			},
 		],
 		ev.currentTarget ?? ev.target,
@@ -420,7 +427,7 @@ const headerActions = $computed(() => [
 		handler: add,
 	},
 	{
-		icon: "ph-dots-three-outline ph-bold ph-lg",
+		icon: "ph-file-zip ph-bold ph-lg",
 		handler: menu,
 	},
 ]);

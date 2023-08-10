@@ -1136,6 +1136,9 @@ deletePasskeysConfirm: "This will irreversibly delete all passkeys and security 
 inputNotMatch: "Input does not match"
 addRe: "Add \"re:\" at the beginning of comment in reply to a post with a content warning"
 confirm: "Confirm"
+importZip: "Import ZIP"
+exportZip: "Export ZIP"
+emojiPackCreator: "Emoji pack creator"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing
