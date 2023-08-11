@@ -554,7 +554,7 @@ export async function updatePerson(
 		{
 			followerSharedInbox:
 				person.sharedInbox ||
-				(person.endpoints ? person.endpoints.sharedInbox : undefined),
+				(person.endpoints ? person.endpoints.sharedInbox : null),
 		},
 	);
 
