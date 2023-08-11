@@ -1,5 +1,6 @@
 import define from "../../../define.js";
-import { Emojis } from "@/models/index.js";
+import { DriveFiles, Emojis } from "@/models/index.js";
+import { deleteFile } from "@/services/drive/delete-file.js";
 import { insertModerationLog } from "@/services/insert-moderation-log.js";
 import { ApiError } from "../../../error.js";
 import { db } from "@/db/postgre.js";
@@ -31,6 +32,10 @@ export default define(meta, paramDef, async (ps, me) => {
 	const emoji = await Emojis.findOneBy({ id: ps.id });
 
 	if (emoji == null) throw new ApiError(meta.errors.noSuchEmoji);
+
+	const file = await DriveFiles.findOneBy({ url: emoji.publicUrl || emoji.originalUrl });
+
+	if (file !== null) deleteFile(file);
 
 	await Emojis.delete(emoji.id);
 
