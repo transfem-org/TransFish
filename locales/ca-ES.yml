@@ -2182,3 +2182,7 @@ delete2fa: Desactivar 2FA
 delete2faConfirm: Això suprimirà irreversiblement 2FA en aquest compte. Procedir?
 addRe: Afegeix "re:" al començament del comentari quant responguis a un missatge amb
   avís de contingut
+confirm: Confirmar
+importZip: Importar ZIP
+exportZip: Exportar ZIP
+emojiPackCreator: Creador de paquets Emoji
