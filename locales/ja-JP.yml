@@ -303,7 +303,7 @@ emptyDrive: "ドライブは空です"
 emptyFolder: "フォルダーは空です"
 unableToDelete: "削除できません"
 inputNewFileName: "新しいファイル名を入力してください"
-inputNewDescription: "新しい説明を入力してください"
+inputNewDescription: "新しいキャプションを入力"
 inputNewFolderName: "新しいフォルダ名を入力してください"
 circularReferenceFolder: "移動先のフォルダーは、移動するフォルダーのサブフォルダーです。"
 hasChildFilesOrFolders: "このフォルダは空でないため、削除できません。"
@@ -577,8 +577,8 @@ disablePlayer: "プレイヤーを閉じる"
 expandTweet: "ツイートを展開する"
 themeEditor: "テーマエディター"
 description: "説明"
-describeFile: "説明を付ける"
-enterFileDescription: "説明を入力"
+describeFile: "キャプションを追加"
+enterFileDescription: "キャプションを入力"
 author: "作者"
 leaveConfirm: "未保存の変更があります。破棄しますか？"
 manage: "管理"
@@ -949,7 +949,7 @@ customSplashIconsDescription: "ユーザがページをロード/リロードす
 showUpdates: "Firefishの更新時にポップアップを表示する"
 recommendedInstances: "おすすめサーバー"
 recommendedInstancesDescription: "おすすめタイムラインに表示するサーバーを改行区切りで入力してください。"
-caption: "自動キャプション"
+caption: "自動でキャプションをつける"
 splash: "スプラッシュスクリーン"
 updateAvailable: "アップデートがありますよ！"
 swipeOnDesktop: "デスクトップでモバイルスタイルのスワイプを可能にする"
@@ -1976,3 +1976,7 @@ deletePasskeys: パスキーを削除
 delete2faConfirm: これで、このアカウントの2要素認証は完全に削除されます。続行しますか?
 inputNotMatch: 入力が一致しません
 deletePasskeysConfirm: これで、このアカウントのパスキーは完全に削除されます。続行しますか?
+importZip: ZIPをインポート
+emojiPackCreator: 絵文字パックの作者
+confirm: 確認
+exportZip: ZIPをエクスポート

@@ -310,7 +310,7 @@ emptyDrive: "Drive kosong"
 emptyFolder: "Folder kosong"
 unableToDelete: "Tidak dapat menghapus"
 inputNewFileName: "Masukkan nama berkas yang baru"
-inputNewDescription: "Masukkan keterangan disini"
+inputNewDescription: "Masukkan deskripsi baru"
 inputNewFolderName: "Masukkan nama folder yang baru"
 circularReferenceFolder: "Folder tujuan adalah subfolder dari folder yang ingin kamu
   pindahkan."
@@ -598,8 +598,8 @@ disablePlayer: "Tutup pemutar video"
 expandTweet: "Perluas utas"
 themeEditor: "Penyunting tema"
 description: "Deskripsi"
-describeFile: "Tambahkan keterangan"
-enterFileDescription: "Masukkan keterangan"
+describeFile: "Tambahkan deskripsi"
+enterFileDescription: "Masukkan deskripsi"
 author: "Pembuat"
 leaveConfirm: "Ada perubahan yang belum disimpan. Apakah kamu ingin membuangnya?"
 manage: "Manajemen"
@@ -2019,7 +2019,7 @@ showAdminUpdates: Indikasi versi Firefish baru tersedia (hanya admin)
 indexFrom: Indeks dari Post ID berikutnya
 noteId: ID Postingan
 findOtherInstance: Cari server lain
-caption: Keterangan Otomatis
+caption: Deskripsi itomatis
 splash: Layar Percik
 migration: Migrasi
 moveTo: Pindahkan akun sekarang ke akun baru
@@ -2165,3 +2165,7 @@ delete2faConfirm: Ini akan menghapus 2FA secara permanen pada akun ini. Lanjutka
 deletePasskeysConfirm: Ini akan menghapus semua passkeys dan kunci keamanan pada akun
   ini secara permanen. Lanjutkan?
 addRe: Tambahkan "re:" pada awal komentar balasan postingan dengan peringatan konten
+confirm: Konfirmasi
+importZip: Impor ZIP
+exportZip: Ekspor ZIP
+emojiPackCreator: Pembuat paket emoji
