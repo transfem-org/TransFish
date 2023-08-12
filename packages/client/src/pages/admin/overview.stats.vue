@@ -102,36 +102,36 @@ import MkNumberDiff from "@/components/MkNumberDiff.vue";
 import MkNumber from "@/components/MkNumber.vue";
 import { i18n } from "@/i18n";
 
-let stats: any = $ref(null);
-let usersComparedToThePrevDay = $ref<number>();
-let notesComparedToThePrevDay = $ref<number>();
-let onlineUsersCount = $ref(0);
-let emojiCount = $ref(0);
-let fetching = $ref(true);
+let stats: any = ref(null);
+let usersComparedToThePrevDay = ref<number>();
+let notesComparedToThePrevDay = ref<number>();
+let onlineUsersCount = ref(0);
+let emojiCount = ref(0);
+let fetching = ref(true);
 
 onMounted(async () => {
 	const [_stats, _onlineUsersCount] = await Promise.all([
 		os.api("stats", {}),
 		os.api("get-online-users-count").then((res) => res.count),
 	]);
-	stats = _stats;
-	onlineUsersCount = _onlineUsersCount;
+	stats.value = _stats;
+	onlineUsersCount.value = _onlineUsersCount;
 
 	os.apiGet("charts/users", { limit: 2, span: "day" }).then((chart) => {
-		usersComparedToThePrevDay =
-			stats.originalUsersCount - chart.local.total[1];
+		usersComparedToThePrevDay.value =
+			stats.value.originalUsersCount - chart.local.total[1];
 	});
 
 	os.apiGet("charts/notes", { limit: 2, span: "day" }).then((chart) => {
-		notesComparedToThePrevDay =
-			stats.originalNotesCount - chart.local.total[1];
+		notesComparedToThePrevDay.value =
+			stats.value.originalNotesCount - chart.local.total[1];
 	});
 
 	os.api("meta", { detail: false }).then((meta) => {
-		emojiCount = meta.emojis.length;
+		emojiCount.value = meta.emojis.length;
 	});
 
-	fetching = false;
+	fetching.value = false;
 });
 </script>
 

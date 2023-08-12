@@ -52,6 +52,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import {} from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import FormSection from "@/components/form/section.vue";
@@ -66,9 +68,9 @@ const pagination = {
 	limit: 10,
 };
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: "Webhook",

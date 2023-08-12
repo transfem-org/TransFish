@@ -70,13 +70,13 @@ useTooltip(buttonRef, async (showing) => {
 	);
 });
 
-let hasRenotedBefore = $ref(false);
+let hasRenotedBefore = ref(false);
 os.api("notes/renotes", {
 	noteId: props.note.id,
 	userId: $i.id,
 	limit: 1,
 }).then((res) => {
-	hasRenotedBefore = res.length > 0;
+	hasRenotedBefore.value = res.length > 0;
 });
 
 const renote = (viaKeyboard = false, ev?: MouseEvent) => {
@@ -94,7 +94,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "public",
 				});
-				hasRenotedBefore = true;
+				hasRenotedBefore.value = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -121,7 +121,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "home",
 				});
-				hasRenotedBefore = true;
+				hasRenotedBefore.value = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -149,7 +149,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 					visibility: "specified",
 					visibleUserIds: props.note.visibleUserIds,
 				});
-				hasRenotedBefore = true;
+				hasRenotedBefore.value = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -174,7 +174,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 					renoteId: props.note.id,
 					visibility: "followers",
 				});
-				hasRenotedBefore = true;
+				hasRenotedBefore.value = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -212,7 +212,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 								localOnly: true,
 						  },
 				);
-				hasRenotedBefore = true;
+				hasRenotedBefore.value = true;
 				const el =
 					ev &&
 					((ev.currentTarget ?? ev.target) as
@@ -242,7 +242,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 		});
 	}
 
-	if (hasRenotedBefore) {
+	if (hasRenotedBefore.value) {
 		buttonActions.push({
 			text: i18n.ts.unrenote,
 			icon: "ph-trash ph-bold ph-lg",
@@ -251,7 +251,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 				os.api("notes/unrenote", {
 					noteId: props.note.id,
 				});
-				hasRenotedBefore = false;
+				hasRenotedBefore.value = false;
 			},
 		});
 	}

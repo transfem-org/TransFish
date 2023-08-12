@@ -102,7 +102,7 @@ const metadata = injectPageMetadata();
 
 const el = ref<HTMLElement>(null);
 const tabRefs = {};
-const tabHighlightEl = $ref<HTMLElement | null>(null);
+const tabHighlightEl = ref<HTMLElement | null>(null);
 const bg = ref(null);
 const height = ref(0);
 const hasTabs = computed(() => {
@@ -172,14 +172,14 @@ onMounted(() => {
 		() => {
 			nextTick(() => {
 				const tabEl = tabRefs[props.tab];
-				if (tabEl && tabHighlightEl) {
+				if (tabEl && tabHighlightEl.value) {
 					// offsetWidth や offsetLeft は少数を丸めてしまうため getBoundingClientRect を使う必要がある
 					// https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/offsetWidth#%E5%80%A4
 					const parentRect =
 						tabEl.parentElement.getBoundingClientRect();
 					const rect = tabEl.getBoundingClientRect();
-					tabHighlightEl.style.width = rect.width + "px";
-					tabHighlightEl.style.left =
+					tabHighlightEl.value.style.width = rect.width + "px";
+					tabHighlightEl.value.style.left =
 						rect.left - parentRect.left + "px";
 				}
 			});

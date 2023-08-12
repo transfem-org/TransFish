@@ -190,15 +190,15 @@ let noBotProtection =
 	!instance.enableHcaptcha &&
 	!instance.enableRecaptcha;
 let noEmailServer = !instance.enableEmail;
-let thereIsUnresolvedAbuseReport = $ref(false);
-let updateAvailable = $ref(false);
+let thereIsUnresolvedAbuseReport = ref(false);
+let updateAvailable = ref(false);
 
 if ($i?.isAdmin) {
 	os.api("admin/abuse-user-reports", {
 		state: "unresolved",
 		limit: 1,
 	}).then((reports) => {
-		if (reports?.length > 0) thereIsUnresolvedAbuseReport = true;
+		if (reports?.length > 0) thereIsUnresolvedAbuseReport.value = true;
 	});
 }
 
@@ -207,7 +207,7 @@ if (defaultStore.state.showAdminUpdates) {
 		const cleanRes = parseInt(res?.tag_name.replace(/[^0-9]/g, ""));
 		const cleanVersion = parseInt(version.replace(/[^0-9]/g, ""));
 		if (cleanRes > cleanVersion) {
-			updateAvailable = true;
+			updateAvailable.value = true;
 		}
 	});
 }

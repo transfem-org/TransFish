@@ -210,16 +210,16 @@ window.addEventListener("resize", () => {
 const buttonAnimIndex = ref(0);
 const drawerMenuShowing = ref(false);
 
-let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
-const widgetsEl = $ref<HTMLElement>();
-const postButton = $ref<HTMLElement>();
-const widgetsShowing = $ref(false);
+let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const widgetsEl = ref<HTMLElement>();
+const postButton = ref<HTMLElement>();
+const widgetsShowing = ref(false);
 
 provide("router", mainRouter);
 provideMetadataReceiver((info) => {
-	pageMetadata = info;
-	if (pageMetadata.value) {
-		document.title = `${pageMetadata.value.title} | ${instanceName}`;
+	pageMetadata.value = info;
+	if (pageMetadata.value.value) {
+		document.title = `${pageMetadata.value.value.title} | ${instanceName}`;
 	}
 });
 
@@ -386,18 +386,18 @@ const attachSticky = (el: any) => {
 		"scroll",
 		() => {
 			requestAnimationFrame(() => {
-				widgetsEl.scrollTop += window.scrollY - lastScrollTop;
+				widgetsEl.value.scrollTop += window.scrollY - lastScrollTop;
 				lastScrollTop = window.scrollY;
 			});
 		},
 		{ passive: true },
 	);
-	widgetsEl.classList.add("hide-scrollbar");
-	widgetsEl.onmouseenter = () => {
+	widgetsEl.value.classList.add("hide-scrollbar");
+	widgetsEl.value.onmouseenter = () => {
 		if (document.documentElement.scrollHeight <= window.innerHeight) {
-			widgetsEl.classList.remove("hide-scrollbar");
+			widgetsEl.value.classList.remove("hide-scrollbar");
 		} else {
-			widgetsEl.classList.add("hide-scrollbar");
+			widgetsEl.value.classList.add("hide-scrollbar");
 		}
 	};
 };

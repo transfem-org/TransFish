@@ -139,7 +139,7 @@ definePageMetadata(
 	})),
 );
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		icon: "ph-plus ph-bold ph-lg",
 		text: i18n.ts.invite,

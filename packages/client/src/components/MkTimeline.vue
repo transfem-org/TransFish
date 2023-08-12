@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, onUnmounted } from "vue";
+import { computed, provide, onUnmounted, ref } from "vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import { stream } from "@/stream";
@@ -45,7 +45,7 @@ const props = defineProps<{
 	sound?: boolean;
 }>();
 
-let queue = $ref(0);
+let queue = ref(0);
 
 const emit = defineEmits<{
 	(ev: "note"): void;
@@ -57,10 +57,10 @@ provide(
 	computed(() => props.src === "channel"),
 );
 
-const tlComponent: InstanceType<typeof XNotes> = $ref();
+const tlComponent: InstanceType<typeof XNotes> = ref();
 
 const prepend = (note) => {
-	tlComponent.pagingComponent?.prepend(note);
+	tlComponent.value.pagingComponent?.prepend(note);
 
 	emit("note");
 
@@ -70,16 +70,16 @@ const prepend = (note) => {
 };
 
 const onUserAdded = () => {
-	tlComponent.pagingComponent?.reload();
+	tlComponent.value.pagingComponent?.reload();
 };
 
 const onUserRemoved = () => {
-	tlComponent.pagingComponent?.reload();
+	tlComponent.value.pagingComponent?.reload();
 };
 
 const onChangeFollowing = () => {
-	if (!tlComponent.pagingComponent?.backed) {
-		tlComponent.pagingComponent?.reload();
+	if (!tlComponent.value.pagingComponent?.backed) {
+		tlComponent.value.pagingComponent?.reload();
 	}
 };
 

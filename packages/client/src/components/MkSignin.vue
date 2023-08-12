@@ -160,7 +160,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, ref, computed } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -172,19 +172,19 @@ import { login } from "@/account";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
-let signing = $ref(false);
-let user = $ref(null);
-let username = $ref("");
-let password = $ref("");
-let token = $ref("");
-let host = $ref(toUnicode(configHost));
-let totpLogin = $ref(false);
-let challengeData = $ref(null);
-let queryingKey = $ref(false);
-let hCaptchaResponse = $ref(null);
-let reCaptchaResponse = $ref(null);
+let signing = ref(false);
+let user = ref(null);
+let username = ref("");
+let password = ref("");
+let token = ref("");
+let host = ref(toUnicode(configHost));
+let totpLogin = ref(false);
+let challengeData = ref(null);
+let queryingKey = ref(false);
+let hCaptchaResponse = ref(null);
+let reCaptchaResponse = ref(null);
 
-const meta = $computed(() => instance);
+const meta = computed(() => instance);
 
 const emit = defineEmits<{
 	(ev: "login", v: any): void;
@@ -210,13 +210,13 @@ const props = defineProps({
 
 function onUsernameChange() {
 	os.api("users/show", {
-		username: username,
+		username: username.value,
 	}).then(
 		(userResponse) => {
-			user = userResponse;
+			user.value = userResponse;
 		},
 		() => {
-			user = null;
+			user.value = null;
 		},
 	);
 }
@@ -228,38 +228,40 @@ function onLogin(res) {
 }
 
 function queryKey() {
-	queryingKey = true;
+	queryingKey.value = true;
 	return navigator.credentials
 		.get({
 			publicKey: {
-				challenge: byteify(challengeData.challenge, "base64"),
-				allowCredentials: challengeData.securityKeys.map((key) => ({
-					id: byteify(key.id, "hex"),
-					type: "public-key",
-					transports: ["usb", "nfc", "ble", "internal"],
-				})),
+				challenge: byteify(challengeData.value.challenge, "base64"),
+				allowCredentials: challengeData.value.securityKeys.map(
+					(key) => ({
+						id: byteify(key.id, "hex"),
+						type: "public-key",
+						transports: ["usb", "nfc", "ble", "internal"],
+					}),
+				),
 				timeout: 60 * 1000,
 			},
 		})
 		.catch(() => {
-			queryingKey = false;
+			queryingKey.value = false;
 			return Promise.reject(null);
 		})
 		.then((credential) => {
-			queryingKey = false;
-			signing = true;
+			queryingKey.value = false;
+			signing.value = true;
 			return os.api("signin", {
-				username,
-				password,
+				username: username.value,
+				password: password.value,
 				signature: hexify(credential.response.signature),
 				authenticatorData: hexify(
 					credential.response.authenticatorData,
 				),
 				clientDataJSON: hexify(credential.response.clientDataJSON),
 				credentialId: credential.id,
-				challengeId: challengeData.challengeId,
-				"hcaptcha-response": hCaptchaResponse,
-				"g-recaptcha-response": reCaptchaResponse,
+				challengeId: challengeData.value.challengeId,
+				"hcaptcha-response": hCaptchaResponse.value,
+				"g-recaptcha-response": reCaptchaResponse.value,
 			});
 		})
 		.then((res) => {
@@ -272,39 +274,42 @@ function queryKey() {
 				type: "error",
 				text: i18n.ts.signinFailed,
 			});
-			signing = false;
+			signing.value = false;
 		});
 }
 
 function onSubmit() {
-	signing = true;
+	signing.value = true;
 	console.log("submit");
-	if (!totpLogin && user && user.twoFactorEnabled) {
-		if (window.PublicKeyCredential && user.securityKeys) {
+	if (!totpLogin.value && user.value && user.value.twoFactorEnabled) {
+		if (window.PublicKeyCredential && user.value.securityKeys) {
 			os.api("signin", {
-				username,
-				password,
-				"hcaptcha-response": hCaptchaResponse,
-				"g-recaptcha-response": reCaptchaResponse,
+				username: username.value,
+				password: password.value,
+				"hcaptcha-response": hCaptchaResponse.value,
+				"g-recaptcha-response": reCaptchaResponse.value,
 			})
 				.then((res) => {
-					totpLogin = true;
-					signing = false;
-					challengeData = res;
+					totpLogin.value = true;
+					signing.value = false;
+					challengeData.value = res;
 					return queryKey();
 				})
 				.catch(loginFailed);
 		} else {
-			totpLogin = true;
-			signing = false;
+			totpLogin.value = true;
+			signing.value = false;
 		}
 	} else {
 		os.api("signin", {
-			username,
-			password,
-			"hcaptcha-response": hCaptchaResponse,
-			"g-recaptcha-response": reCaptchaResponse,
-			token: user && user.twoFactorEnabled ? token : undefined,
+			username: username.value,
+			password: password.value,
+			"hcaptcha-response": hCaptchaResponse.value,
+			"g-recaptcha-response": reCaptchaResponse.value,
+			token:
+				user.value && user.value.twoFactorEnabled
+					? token.value
+					: undefined,
 		})
 			.then((res) => {
 				emit("login", res);
@@ -354,9 +359,9 @@ function loginFailed(err) {
 		}
 	}
 
-	challengeData = null;
-	totpLogin = false;
-	signing = false;
+	challengeData.value = null;
+	totpLogin.value = false;
+	signing.value = false;
 }
 
 function resetPassword() {

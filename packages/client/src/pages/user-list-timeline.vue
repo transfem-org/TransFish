@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, inject } from "vue";
+import { computed, watch, inject, ref } from "vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import * as os from "@/os";
 import { useRouter } from "@/router";
@@ -32,14 +32,14 @@ const props = defineProps<{
 	listId: string;
 }>();
 
-let list = $ref(null);
-let tlEl = $ref<InstanceType<typeof XTimeline>>();
-let rootEl = $ref<HTMLElement>();
+let list = ref(null);
+let tlEl = ref<InstanceType<typeof XTimeline>>();
+let rootEl = ref<HTMLElement>();
 
 watch(
 	() => props.listId,
 	async () => {
-		list = await os.api("users/lists/show", {
+		list.value = await os.api("users/lists/show", {
 			listId: props.listId,
 		});
 	},
@@ -56,11 +56,11 @@ async function timetravel() {
 	});
 	if (canceled) return;
 
-	tlEl.timetravel(date);
+	tlEl.value.timetravel(date);
 }
 
-const headerActions = $computed(() =>
-	list
+const headerActions = computed(() =>
+	list.value
 		? [
 				{
 					icon: "ph-calendar-blank ph-bold ph-lg",
@@ -76,13 +76,13 @@ const headerActions = $computed(() =>
 		: [],
 );
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata(
 	computed(() =>
-		list
+		list.value
 			? {
-					title: list.name,
+					title: list.value.name,
 					icon: "ph-list-bullets ph-bold ph-lg",
 			  }
 			: null,

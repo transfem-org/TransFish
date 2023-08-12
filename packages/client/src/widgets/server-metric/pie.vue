@@ -25,6 +25,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import {} from "vue";
 
 const props = defineProps<{
@@ -34,13 +36,13 @@ const props = defineProps<{
 
 const r = 0.45;
 
-const color = $computed(
+const color = computed(
 	() =>
 		`hsl(${
 			props.reverse ? props.value * 180 : 180 - props.value * 180
 		}, 80%, 70%)`,
 );
-const strokeDashoffset = $computed(
+const strokeDashoffset = computed(
 	() => (1 - props.value) * (Math.PI * (r * 2)),
 );
 </script>

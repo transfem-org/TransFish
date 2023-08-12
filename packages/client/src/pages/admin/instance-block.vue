@@ -43,6 +43,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
+
 import {} from "vue";
 import FormButton from "@/components/MkButton.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -53,30 +55,31 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let blockedHosts: string = $ref("");
-let silencedHosts: string = $ref("");
-let tab = $ref("block");
+let blockedHosts: string = ref("");
+let silencedHosts: string = ref("");
+let tab = ref("block");
 
 async function init() {
 	const meta = await os.api("admin/meta");
 	if (meta) {
-		blockedHosts = meta.blockedHosts.join("\n");
-		silencedHosts = meta.silencedHosts.join("\n");
+		blockedHosts.value = meta.blockedHosts.join("\n");
+		silencedHosts.value = meta.silencedHosts.join("\n");
 	}
 }
 
 function save() {
 	os.apiWithDialog("admin/update-meta", {
-		blockedHosts: blockedHosts.split("\n").map((h) => h.trim()) || [],
-		silencedHosts: silencedHosts.split("\n").map((h) => h.trim()) || [],
+		blockedHosts: blockedHosts.value.split("\n").map((h) => h.trim()) || [],
+		silencedHosts:
+			silencedHosts.value.split("\n").map((h) => h.trim()) || [],
 	}).then(() => {
 		fetchInstance();
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.instanceBlocking,

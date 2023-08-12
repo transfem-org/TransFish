@@ -105,7 +105,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import MkInput from "@/components/form/input.vue";
 import MkSelect from "@/components/form/select.vue";
 import MkPagination from "@/components/MkPagination.vue";
@@ -113,29 +113,29 @@ import MkInstanceCardMini from "@/components/MkInstanceCardMini.vue";
 import FormSplit from "@/components/form/split.vue";
 import { i18n } from "@/i18n";
 
-let host = $ref("");
-let state = $ref("federating");
-let sort = $ref("+pubSub");
+let host = ref("");
+let state = ref("federating");
+let sort = ref("+pubSub");
 const pagination = {
 	endpoint: "federation/instances" as const,
 	limit: 10,
 	offsetMode: true,
 	params: computed(() => ({
-		sort: sort,
-		host: host !== "" ? host : null,
-		...(state === "federating"
+		sort: sort.value,
+		host: host.value !== "" ? host.value : null,
+		...(state.value === "federating"
 			? { federating: true }
-			: state === "subscribing"
+			: state.value === "subscribing"
 			? { subscribing: true }
-			: state === "publishing"
+			: state.value === "publishing"
 			? { publishing: true }
-			: state === "suspended"
+			: state.value === "suspended"
 			? { suspended: true }
-			: state === "blocked"
+			: state.value === "blocked"
 			? { blocked: true }
-			: state === "silenced"
+			: state.value === "silenced"
 			? { silenced: true }
-			: state === "notResponding"
+			: state.value === "notResponding"
 			? { notResponding: true }
 			: {}),
 	})),

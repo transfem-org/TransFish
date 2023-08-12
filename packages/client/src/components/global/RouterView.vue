@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, onBeforeUnmount, provide } from "vue";
+import { inject, onBeforeUnmount, provide, shallowRef, ref } from "vue";
 import type { Resolved, Router } from "@/nirax";
 import { defaultStore } from "@/store";
 
@@ -48,18 +48,18 @@ function resolveNested(current: Resolved, d = 0): Resolved | null {
 }
 
 const current = resolveNested(router.current)!;
-let currentPageComponent = $shallowRef(current.route.component),
-	currentPageProps = $ref(current.props),
-	key = $ref(
+let currentPageComponent = shallowRef(current.route.component),
+	currentPageProps = ref(current.props),
+	key = ref(
 		current.route.path + JSON.stringify(Object.fromEntries(current.props)),
 	);
 
 function onChange({ resolved, key: newKey }) {
 	const current = resolveNested(resolved);
 	if (current == null) return;
-	currentPageComponent = current.route.component;
-	currentPageProps = current.props;
-	key =
+	currentPageComponent.value = current.route.component;
+	currentPageProps.value = current.props;
+	key.value =
 		current.route.path + JSON.stringify(Object.fromEntries(current.props));
 }
 

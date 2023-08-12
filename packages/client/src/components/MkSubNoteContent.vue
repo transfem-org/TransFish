@@ -217,23 +217,23 @@ const isLong =
 		(props.note.text.split("\n").length > 10 ||
 			props.note.text.length > 800)) ||
 		props.note.files.length > 4);
-const collapsed = $ref(props.note.cw == null && isLong);
+const collapsed = ref(props.note.cw == null && isLong);
 const urls = props.note.text
 	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
 	: null;
 
-let showContent = $ref(false);
+let showContent = ref(false);
 
 const mfms = props.note.text
 	? extractMfmWithAnimation(mfm.parse(props.note.text))
 	: null;
 
-const hasMfm = $ref(mfms && mfms.length > 0);
+const hasMfm = ref(mfms && mfms.length > 0);
 
-let disableMfm = $ref(defaultStore.state.animatedMfm);
+let disableMfm = ref(defaultStore.state.animatedMfm);
 
 async function toggleMfm() {
-	if (disableMfm) {
+	if (disableMfm.value) {
 		if (!defaultStore.state.animatedMfmWarnShown) {
 			const { canceled } = await os.confirm({
 				type: "warning",
@@ -244,9 +244,9 @@ async function toggleMfm() {
 			defaultStore.set("animatedMfmWarnShown", true);
 		}
 
-		disableMfm = false;
+		disableMfm.value = false;
 	} else {
-		disableMfm = true;
+		disableMfm.value = true;
 	}
 }
 

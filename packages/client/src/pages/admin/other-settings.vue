@@ -13,6 +13,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import {} from "vue";
 import FormSuspense from "@/components/form/suspense.vue";
 import * as os from "@/os";
@@ -30,7 +32,7 @@ function save() {
 	});
 }
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		asFullButton: true,
 		icon: "ph-check ph-bold ph-lg",
@@ -39,7 +41,7 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.other,

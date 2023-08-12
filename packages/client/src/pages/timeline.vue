@@ -121,10 +121,10 @@ window.addEventListener("resize", () => {
 		deviceKind === "smartphone" || window.innerWidth <= MOBILE_THRESHOLD;
 });
 
-const tlComponent = $ref<InstanceType<typeof XTimeline>>();
-const rootEl = $ref<HTMLElement>();
+const tlComponent = ref<InstanceType<typeof XTimeline>>();
+const rootEl = ref<HTMLElement>();
 
-const src = $computed({
+const src = computed({
 	get: () => defaultStore.reactiveState.tl.value.src,
 	set: (x) => {
 		saveSrc(x);
@@ -193,14 +193,14 @@ async function timetravel(): Promise<void> {
 	});
 	if (canceled) return;
 
-	tlComponent.timetravel(date);
+	tlComponent.value.timetravel(date);
 }
 
 function focus(): void {
-	tlComponent.focus();
+	tlComponent.value.focus();
 }
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		icon: "ph-list-bullets ph-bold ph-lg",
 		title: i18n.ts.lists,
@@ -222,7 +222,7 @@ const headerActions = $computed(() => [
 }*/,
 ]);
 
-const headerTabs = $computed(() => [
+const headerTabs = computed(() => [
 	{
 		key: "home",
 		title: i18n.ts._timelines.home,
@@ -275,13 +275,13 @@ definePageMetadata(
 	computed(() => ({
 		title: i18n.ts.timeline,
 		icon:
-			src === "local"
+			src.value === "local"
 				? "ph-users ph-bold ph-lg"
-				: src === "social"
+				: src.value === "social"
 				? "ph-handshake ph-bold ph-lg"
-				: src === "recommended"
+				: src.value === "recommended"
 				? "ph-thumbs-up ph-bold ph-lg"
-				: src === "global"
+				: src.value === "global"
 				? "ph-planet ph-bold ph-lg"
 				: "ph-house ph-bold ph-lg",
 	})),
@@ -291,7 +291,7 @@ let swiperRef: any = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(timelines.indexOf(src));
+	syncSlide(timelines.indexOf(src.value));
 }
 
 function onSlideChange() {

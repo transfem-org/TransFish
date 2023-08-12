@@ -116,7 +116,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineAsyncComponent } from "vue";
+import { ref, defineAsyncComponent, computed } from "vue";
 import { hostname } from "@/config";
 import { byteify, hexify, stringify } from "@/scripts/2fa";
 import MkButton from "@/components/MkButton.vue";
@@ -141,7 +141,7 @@ withDefaults(
 
 const twoFactorData = ref<any>(null);
 const supportsCredentials = ref(!!navigator.credentials);
-const usePasswordLessLogin = $computed(() => $i!.usePasswordLessLogin);
+const usePasswordLessLogin = computed(() => $i!.usePasswordLessLogin);
 
 async function registerTOTP() {
 	const password = await os.inputText({
