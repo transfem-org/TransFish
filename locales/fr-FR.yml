@@ -120,8 +120,8 @@ reactionSettingDescription2: "Déplacer pour réorganiser, cliquer pour effacer,
   « + » pour ajouter."
 rememberNoteVisibility: "Se souvenir des paramètres de visibilité des publications"
 attachCancel: "Supprimer le fichier attaché"
-markAsSensitive: "Marquer comme sensible"
-unmarkAsSensitive: "Supprimer le marquage comme sensible"
+markAsSensitive: "Marquer comme sensible (NSFW)"
+unmarkAsSensitive: "Supprimer le marquage comme sensible (NSFW)"
 enterFileName: "Entrer le nom du fichier"
 mute: "Masquer"
 unmute: "Ne plus masquer"
@@ -318,7 +318,7 @@ copyUrl: "Copier l’URL"
 rename: "Renommer"
 avatar: "Avatar"
 banner: "Bannière"
-nsfw: "Contenu sensible"
+nsfw: "Contenu sensible (NSFW)"
 whenServerDisconnected: "Lorsque la connexion au serveur est perdue"
 disconnectedFromServer: "Déconnecté·e du serveur"
 reload: "Rafraîchir"
@@ -729,7 +729,7 @@ noCrawleDescription: "Demandez aux moteurs de recherche de ne pas indexer votre 
 lockedAccountInfo: "À moins que vous ne définissiez la visibilité de votre publication
   sur \"Abonné-e-s\", vos publications sont visibles par tous, même si vous exigez
   que les demandes d'abonnement soient approuvées manuellement."
-alwaysMarkSensitive: "Marquer les médias comme contenu sensible par défaut"
+alwaysMarkSensitive: "Marquer les médias comme contenu sensible (NSFW) par défaut"
 loadRawImages: "Affichage complet des images jointes au lieu des vignettes"
 disableShowingAnimatedImages: "Désactiver l'animation des images"
 verificationEmailSent: "Un e-mail de vérification a été envoyé. Veuillez accéder au
@@ -1011,8 +1011,8 @@ _aboutFirefish:
     le lien ci-dessus pour avoir votre nom affiché ici !
   misskeyContributors: Contributeurs Misskey
 _nsfw:
-  respect: "Cacher les médias marqués comme contenu sensible"
-  ignore: "Afficher les médias sensibles"
+  respect: "Cacher les médias marqués comme contenu sensible (NSFW)"
+  ignore: "Afficher les médias sensibles (NSFW)"
   force: "Cacher tous les médias"
 _mfm:
   cheatSheet: "Antisèche MFM"
