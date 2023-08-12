@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onActivated, onDeactivated, ref } from "vue";
+import { onActivated, onDeactivated, ref, computed } from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInfo from "@/components/MkInfo.vue";
@@ -67,9 +67,9 @@ const pagination = {
 	limit: 250,
 };
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 const list = ref<typeof MkPagination | null>(null);
 

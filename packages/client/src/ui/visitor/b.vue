@@ -72,7 +72,7 @@
 
 <script lang="ts" setup>
 import type { ComputedRef } from "vue";
-import { onMounted, provide } from "vue";
+import { onMounted, provide, ref, computed } from "vue";
 import XHeader from "./header.vue";
 import XKanban from "./kanban.vue";
 import { host, instanceName } from "@/config";
@@ -94,13 +94,13 @@ import { i18n } from "@/i18n";
 
 const DESKTOP_THRESHOLD = 1000;
 
-let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
+let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
 
 provide("router", mainRouter);
 provideMetadataReceiver((info) => {
-	pageMetadata = info;
-	if (pageMetadata.value) {
-		document.title = `${pageMetadata.value.title} | ${instanceName}`;
+	pageMetadata.value = info;
+	if (pageMetadata.value.value) {
+		document.title = `${pageMetadata.value.value.title} | ${instanceName}`;
 	}
 });
 
@@ -112,12 +112,12 @@ const isTimelineAvailable =
 	!instance.disableLocalTimeline ||
 	!instance.disableRecommendedTimeline ||
 	!instance.disableGlobalTimeline;
-const showMenu = $ref(false);
-let isDesktop = $ref(window.innerWidth >= DESKTOP_THRESHOLD),
-	narrow = $ref(window.innerWidth < 1280),
-	meta = $ref();
+const showMenu = ref(false);
+let isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD),
+	narrow = ref(window.innerWidth < 1280),
+	meta = ref();
 
-const keymap = $computed(() => {
+const keymap = computed(() => {
 	return {
 		d: () => {
 			if (ColdDeviceStorage.get("syncDeviceDarkMode")) return;
@@ -127,10 +127,10 @@ const keymap = $computed(() => {
 	};
 });
 
-const root = $computed(() => mainRouter.currentRoute.value.name === "index");
+const root = computed(() => mainRouter.currentRoute.value.name === "index");
 
 os.api("meta", { detail: true }).then((res) => {
-	meta = res;
+	meta.value = res;
 });
 
 function signin() {
@@ -156,11 +156,12 @@ function signup() {
 }
 
 onMounted(() => {
-	if (!isDesktop) {
+	if (!isDesktop.value) {
 		window.addEventListener(
 			"resize",
 			() => {
-				if (window.innerWidth >= DESKTOP_THRESHOLD) isDesktop = true;
+				if (window.innerWidth >= DESKTOP_THRESHOLD)
+					isDesktop.value = true;
 			},
 			{ passive: true },
 		);
@@ -168,7 +169,7 @@ onMounted(() => {
 });
 
 defineExpose({
-	showMenu: $$(showMenu),
+	showMenu: showMenu,
 });
 </script>
 

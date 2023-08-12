@@ -25,8 +25,8 @@ import * as os from "@/os";
 import { useInterval } from "@/scripts/use-interval";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
 
-let newUsers = $ref(null);
-let fetching = $ref(true);
+let newUsers = ref(null);
+let fetching = ref(true);
 
 const fetch = async () => {
 	const _newUsers = await os.api("admin/show-users", {
@@ -34,8 +34,8 @@ const fetch = async () => {
 		sort: "+createdAt",
 		origin: "local",
 	});
-	newUsers = _newUsers;
-	fetching = false;
+	newUsers.value = _newUsers;
+	fetching.value = false;
 };
 
 useInterval(fetch, 1000 * 60, {

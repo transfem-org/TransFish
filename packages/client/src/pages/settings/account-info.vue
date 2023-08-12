@@ -173,7 +173,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import FormSection from "@/components/form/section.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import * as os from "@/os";
@@ -193,9 +193,9 @@ onMounted(() => {
 	});
 });
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.accountInfo,

@@ -7,6 +7,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import XAntenna from "./editor.vue";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -14,7 +16,7 @@ import { useRouter } from "@/router";
 
 const router = useRouter();
 
-let draft = $ref({
+let draft = ref({
 	name: "",
 	src: "all",
 	userListId: null,

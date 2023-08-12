@@ -34,6 +34,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
@@ -44,24 +46,24 @@ import * as os from "@/os";
 import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 
-let uri: string = $ref("");
-let enableGithubIntegration: boolean = $ref(false);
-let githubClientId: string | null = $ref(null);
-let githubClientSecret: string | null = $ref(null);
+let uri: string = ref("");
+let enableGithubIntegration: boolean = ref(false);
+let githubClientId: string | null = ref(null);
+let githubClientSecret: string | null = ref(null);
 
 async function init() {
 	const meta = await os.api("admin/meta");
-	uri = meta.uri;
-	enableGithubIntegration = meta.enableGithubIntegration;
-	githubClientId = meta.githubClientId;
-	githubClientSecret = meta.githubClientSecret;
+	uri.value = meta.uri;
+	enableGithubIntegration.value = meta.enableGithubIntegration;
+	githubClientId.value = meta.githubClientId;
+	githubClientSecret.value = meta.githubClientSecret;
 }
 
 function save() {
 	os.apiWithDialog("admin/update-meta", {
-		enableGithubIntegration,
-		githubClientId,
-		githubClientSecret,
+		enableGithubIntegration: enableGithubIntegration.value,
+		githubClientId: githubClientId.value,
+		githubClientSecret: githubClientSecret.value,
 	}).then(() => {
 		fetchInstance();
 	});

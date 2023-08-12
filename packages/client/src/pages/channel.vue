@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch } from "vue";
+import { computed, inject, watch, ref } from "vue";
 import MkContainer from "@/components/MkContainer.vue";
 import XPostForm from "@/components/MkPostForm.vue";
 import XTimeline from "@/components/MkTimeline.vue";
@@ -118,13 +118,13 @@ const props = defineProps<{
 	channelId: string;
 }>();
 
-let channel = $ref(null);
-let showBanner = $ref(true);
+let channel = ref(null);
+let showBanner = ref(true);
 
 watch(
 	() => props.channelId,
 	async () => {
-		channel = await os.api("channels/show", {
+		channel.value = await os.api("channels/show", {
 			channelId: props.channelId,
 		});
 	},
@@ -132,11 +132,11 @@ watch(
 );
 
 function edit() {
-	router.push(`/channels/${channel?.id}/edit`);
+	router.push(`/channels/${channel.value?.id}/edit`);
 }
 
-const headerActions = $computed(() => [
-	...(channel && channel?.userId === $i?.id
+const headerActions = computed(() => [
+	...(channel.value && channel.value?.userId === $i?.id
 		? [
 				{
 					icon: "ph-gear-six ph-bold ph-lg",
@@ -147,13 +147,13 @@ const headerActions = $computed(() => [
 		: []),
 ]);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata(
 	computed(() =>
-		channel
+		channel.value
 			? {
-					title: channel.name,
+					title: channel.value.name,
 					icon: "ph-television ph-bold ph-lg",
 			  }
 			: null,

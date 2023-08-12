@@ -379,7 +379,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineAsyncComponent, onMounted, onUnmounted } from "vue";
+import {
+	ref,
+	defineAsyncComponent,
+	onMounted,
+	onUnmounted,
+	computed,
+} from "vue";
 import calcAge from "s-age";
 import cityTimezones from "city-timezones";
 import XUserTimeline from "./index.timeline.vue";
@@ -410,17 +416,17 @@ const props = withDefaults(
 	{},
 );
 
-let parallaxAnimationId = $ref<null | number>(null);
-let narrow = $ref<null | boolean>(null);
-let rootEl = $ref<null | HTMLElement>(null);
-let bannerEl = $ref<null | HTMLElement>(null);
+let parallaxAnimationId = ref<null | number>(null);
+let narrow = ref<null | boolean>(null);
+let rootEl = ref<null | HTMLElement>(null);
+let bannerEl = ref<null | HTMLElement>(null);
 let patrons = ref([]);
 
-const age = $computed(() => {
+const age = computed(() => {
 	return calcAge(props.user.birthday);
 });
 
-const timeForThem = $computed(() => {
+const timeForThem = computed(() => {
 	const maybeCityNames = [
 		props.user.location!,
 		props.user
@@ -464,15 +470,15 @@ const patronsResp = await os.api("patrons");
 patrons.value = patronsResp.patrons;
 
 function parallaxLoop() {
-	parallaxAnimationId = window.requestAnimationFrame(parallaxLoop);
+	parallaxAnimationId.value = window.requestAnimationFrame(parallaxLoop);
 	parallax();
 }
 
 function parallax() {
-	const banner = bannerEl as any;
+	const banner = bannerEl.value as any;
 	if (banner == null) return;
 
-	const top = getScrollPosition(rootEl);
+	const top = getScrollPosition(rootEl.value);
 
 	if (top < 0) return;
 
@@ -483,12 +489,12 @@ function parallax() {
 
 onMounted(() => {
 	window.requestAnimationFrame(parallaxLoop);
-	narrow = rootEl!.clientWidth < 1000;
+	narrow.value = rootEl.value!.clientWidth < 1000;
 });
 
 onUnmounted(() => {
-	if (parallaxAnimationId) {
-		window.cancelAnimationFrame(parallaxAnimationId);
+	if (parallaxAnimationId.value) {
+		window.cancelAnimationFrame(parallaxAnimationId.value);
 	}
 });
 </script>

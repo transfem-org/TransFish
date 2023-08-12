@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import XContainer from "../page-editor.container.vue";
 import MkDriveFileThumbnail from "@/components/MkDriveFileThumbnail.vue";
 import * as os from "@/os";
@@ -40,11 +40,11 @@ const props = withDefaults(
 	},
 );
 
-let file: any = $ref(null);
+let file: any = ref(null);
 
 async function choose() {
 	os.selectDriveFile(false).then((fileResponse: any) => {
-		file = fileResponse;
+		file.value = fileResponse;
 		props.value.fileId = fileResponse.id;
 	});
 }
@@ -56,7 +56,7 @@ onMounted(async () => {
 		os.api("drive/files/show", {
 			fileId: props.value.fileId,
 		}).then((fileResponse) => {
-			file = fileResponse;
+			file.value = fileResponse;
 		});
 	}
 });

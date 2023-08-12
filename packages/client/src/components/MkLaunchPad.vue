@@ -62,6 +62,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import MkModal from "@/components/MkModal.vue";
 import { navbarItemDef } from "@/navbar";
 import { defaultStore } from "@/store";
@@ -89,7 +91,7 @@ const preferedModalType =
 		? "drawer"
 		: "dialog";
 
-const modal = $ref<InstanceType<typeof MkModal>>();
+const modal = ref<InstanceType<typeof MkModal>>();
 
 const menu = defaultStore.state.menu;
 
@@ -107,7 +109,7 @@ const items = Object.keys(navbarItemDef)
 	}));
 
 function close() {
-	modal.close();
+	modal.value.close();
 }
 </script>
 

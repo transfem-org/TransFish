@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, useCssModule } from "vue";
+import { computed, onMounted, onUnmounted, useCssModule, ref } from "vue";
 import { v4 as uuid } from "uuid";
 import FormSection from "@/components/form/section.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -161,10 +161,10 @@ type Profile = {
 
 const connection = $i && stream.useChannel("main");
 
-let profiles = $ref<Record<string, Profile> | null>(null);
+let profiles = ref<Record<string, Profile> | null>(null);
 
 os.api("i/registry/get-all", { scope }).then((res) => {
-	profiles = res || {};
+	profiles.value = res || {};
 });
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -226,14 +226,14 @@ function getSettings(): Profile["settings"] {
 }
 
 async function saveNew(): Promise<void> {
-	if (!profiles) return;
+	if (!profiles.value) return;
 
 	const { canceled, result: name } = await os.inputText({
 		title: ts._preferencesBackups.inputName,
 	});
 	if (canceled) return;
 
-	if (Object.values(profiles).some((x) => x.name === name)) {
+	if (Object.values(profiles.value).some((x) => x.name === name)) {
 		return os.alert({
 			title: ts._preferencesBackups.cannotSave,
 			text: t("_preferencesBackups.nameAlreadyExists", { name }),
@@ -261,7 +261,7 @@ function loadFile(): void {
 	input.type = "file";
 	input.multiple = false;
 	input.onchange = async () => {
-		if (!profiles) return;
+		if (!profiles.value) return;
 		if (!input.files || input.files.length === 0) return;
 
 		const file = input.files[0];
@@ -305,9 +305,9 @@ function loadFile(): void {
 }
 
 async function applyProfile(id: string): Promise<void> {
-	if (!profiles) return;
+	if (!profiles.value) return;
 
-	const profile = profiles[id];
+	const profile = profiles.value[id];
 
 	const { canceled: cancel1 } = await os.confirm({
 		type: "warning",
@@ -365,23 +365,23 @@ async function applyProfile(id: string): Promise<void> {
 }
 
 async function deleteProfile(id: string): Promise<void> {
-	if (!profiles) return;
+	if (!profiles.value) return;
 
 	const { canceled } = await os.confirm({
 		type: "info",
 		title: ts.delete,
-		text: t("deleteAreYouSure", { x: profiles[id].name }),
+		text: t("deleteAreYouSure", { x: profiles.value[id].name }),
 	});
 	if (canceled) return;
 
 	await os.apiWithDialog("i/registry/remove", { scope, key: id });
-	delete profiles[id];
+	delete profiles.value[id];
 }
 
 async function save(id: string): Promise<void> {
-	if (!profiles) return;
+	if (!profiles.value) return;
 
-	const { name, createdAt } = profiles[id];
+	const { name, createdAt } = profiles.value[id];
 
 	const { canceled } = await os.confirm({
 		type: "info",
@@ -406,21 +406,21 @@ async function save(id: string): Promise<void> {
 }
 
 async function rename(id: string): Promise<void> {
-	if (!profiles) return;
+	if (!profiles.value) return;
 
 	const { canceled: cancel1, result: name } = await os.inputText({
 		title: ts._preferencesBackups.inputName,
 	});
-	if (cancel1 || profiles[id].name === name) return;
+	if (cancel1 || profiles.value[id].name === name) return;
 
-	if (Object.values(profiles).some((x) => x.name === name)) {
+	if (Object.values(profiles.value).some((x) => x.name === name)) {
 		return os.alert({
 			title: ts._preferencesBackups.cannotSave,
 			text: t("_preferencesBackups.nameAlreadyExists", { name }),
 		});
 	}
 
-	const registry = Object.assign({}, { ...profiles[id] });
+	const registry = Object.assign({}, { ...profiles.value[id] });
 
 	const { canceled: cancel2 } = await os.confirm({
 		type: "info",
@@ -441,7 +441,7 @@ async function rename(id: string): Promise<void> {
 }
 
 function menu(ev: MouseEvent, profileId: string) {
-	if (!profiles) return;
+	if (!profiles.value) return;
 
 	return os.popupMenu(
 		[
@@ -455,11 +455,14 @@ function menu(ev: MouseEvent, profileId: string) {
 				text: ts.download,
 				icon: "ph-download-simple ph-bold ph-lg",
 				href: URL.createObjectURL(
-					new Blob([JSON.stringify(profiles[profileId], null, 2)], {
-						type: "application/json",
-					}),
+					new Blob(
+						[JSON.stringify(profiles.value[profileId], null, 2)],
+						{
+							type: "application/json",
+						},
+					),
 				),
-				download: `${profiles[profileId].name}.json`,
+				download: `${profiles.value[profileId].name}.json`,
 			},
 			null,
 			{
@@ -495,9 +498,9 @@ onMounted(() => {
 				recievedScope[0] !== scope[0]
 			)
 				return;
-			if (!profiles) return;
+			if (!profiles.value) return;
 
-			profiles[key] = value;
+			profiles.value[key] = value;
 		},
 	);
 });

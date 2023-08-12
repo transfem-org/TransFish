@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import JSON5 from "json5";
 import { Endpoints } from "firefish-js";
 import MkButton from "@/components/MkButton.vue";
@@ -109,9 +109,9 @@ function onEndpointChange() {
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: "API console",

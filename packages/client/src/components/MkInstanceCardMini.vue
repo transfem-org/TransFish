@@ -24,6 +24,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import * as firefish from "firefish-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
@@ -33,7 +35,7 @@ const props = defineProps<{
 	instance: firefish.entities.Instance;
 }>();
 
-let chartValues = $ref<number[] | null>(null);
+let chartValues = ref<number[] | null>(null);
 
 os.apiGet("charts/instance", {
 	host: props.instance.host,
@@ -42,7 +44,7 @@ os.apiGet("charts/instance", {
 }).then((res) => {
 	// 今日のぶんの値はまだ途中の値であり、それも含めると大抵の場合前日よりも下降しているようなグラフになってしまうため今日は弾く
 	res.requests.received.splice(0, 1);
-	chartValues = res.requests.received;
+	chartValues.value = res.requests.received;
 });
 
 function getInstanceIcon(instance): string {

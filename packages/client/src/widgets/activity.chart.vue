@@ -32,18 +32,20 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 const props = defineProps<{
 	activity: any[];
 }>();
 
-const viewBoxX: number = $ref(147);
-const viewBoxY: number = $ref(60);
-let zoom: number = $ref(1),
-	pos: number = $ref(0),
-	pointsNote: any = $ref(null),
-	pointsReply: any = $ref(null),
-	pointsRenote: any = $ref(null),
-	pointsTotal: any = $ref(null);
+const viewBoxX: number = ref(147);
+const viewBoxY: number = ref(60);
+let zoom: number = ref(1),
+	pos: number = ref(0),
+	pointsNote: any = ref(null),
+	pointsReply: any = ref(null),
+	pointsRenote: any = ref(null),
+	pointsTotal: any = ref(null);
 
 function dragListen(fn) {
 	window.addEventListener("mousemove", fn);
@@ -60,18 +62,24 @@ function dragClear(fn) {
 function onMousedown(ev) {
 	const clickX = ev.clientX;
 	const clickY = ev.clientY;
-	const baseZoom = zoom;
-	const basePos = pos;
+	const baseZoom = zoom.value;
+	const basePos = pos.value;
 
 	// 動かした時
 	dragListen((me) => {
 		const moveLeft = me.clientX - clickX;
 		const moveTop = me.clientY - clickY;
 
-		zoom = Math.max(1, baseZoom + -moveTop / 20);
-		pos = Math.min(0, basePos + moveLeft);
-		if (pos < -((props.activity.length - 1) * zoom - viewBoxX))
-			pos = -((props.activity.length - 1) * zoom - viewBoxX);
+		zoom.value = Math.max(1, baseZoom + -moveTop / 20);
+		pos.value = Math.min(0, basePos + moveLeft);
+		if (
+			pos.value <
+			-((props.activity.length - 1) * zoom.value - viewBoxX.value)
+		)
+			pos.value = -(
+				(props.activity.length - 1) * zoom.value -
+				viewBoxX.value
+			);
 
 		render();
 	});
@@ -81,28 +89,36 @@ function render() {
 	const peak = Math.max(...props.activity.map((d) => d.total));
 	if (peak !== 0) {
 		const activity = props.activity.slice().reverse();
-		pointsNote = activity
+		pointsNote.value = activity
 			.map(
 				(d, i) =>
-					`${i * zoom + pos},${(1 - d.notes / peak) * viewBoxY}`,
+					`${i * zoom.value + pos.value},${
+						(1 - d.notes / peak) * viewBoxY.value
+					}`,
 			)
 			.join(" ");
-		pointsReply = activity
+		pointsReply.value = activity
 			.map(
 				(d, i) =>
-					`${i * zoom + pos},${(1 - d.replies / peak) * viewBoxY}`,
+					`${i * zoom.value + pos.value},${
+						(1 - d.replies / peak) * viewBoxY.value
+					}`,
 			)
 			.join(" ");
-		pointsRenote = activity
+		pointsRenote.value = activity
 			.map(
 				(d, i) =>
-					`${i * zoom + pos},${(1 - d.renotes / peak) * viewBoxY}`,
+					`${i * zoom.value + pos.value},${
+						(1 - d.renotes / peak) * viewBoxY.value
+					}`,
 			)
 			.join(" ");
-		pointsTotal = activity
+		pointsTotal.value = activity
 			.map(
 				(d, i) =>
-					`${i * zoom + pos},${(1 - d.total / peak) * viewBoxY}`,
+					`${i * zoom.value + pos.value},${
+						(1 - d.total / peak) * viewBoxY.value
+					}`,
 			)
 			.join(" ");
 	}

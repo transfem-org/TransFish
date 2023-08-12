@@ -92,8 +92,8 @@ const fetching = ref(true);
 const usage = ref<any>(null);
 const capacity = ref<any>(null);
 const uploadFolder = ref<any>(null);
-let alwaysMarkNsfw = $ref($i.alwaysMarkNsfw);
-let autoSensitive = $ref($i.autoSensitive);
+let alwaysMarkNsfw = ref($i.alwaysMarkNsfw);
+let autoSensitive = ref($i.autoSensitive);
 
 const meterStyle = computed(() => {
 	return {
@@ -140,14 +140,14 @@ function chooseUploadFolder() {
 
 function saveProfile() {
 	os.api("i/update", {
-		alwaysMarkNsfw: !!alwaysMarkNsfw,
-		autoSensitive: !!autoSensitive,
+		alwaysMarkNsfw: !!alwaysMarkNsfw.value,
+		autoSensitive: !!autoSensitive.value,
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.drive,

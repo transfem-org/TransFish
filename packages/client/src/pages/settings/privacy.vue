@@ -140,6 +140,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
+
 import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormSelect from "@/components/form/select.vue";
@@ -151,43 +153,43 @@ import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let isLocked = $ref($i.isLocked);
-let autoAcceptFollowed = $ref($i.autoAcceptFollowed);
-let noCrawle = $ref($i.noCrawle);
-let isExplorable = $ref($i.isExplorable);
-let hideOnlineStatus = $ref($i.hideOnlineStatus);
-let publicReactions = $ref($i.publicReactions);
-let ffVisibility = $ref($i.ffVisibility);
-let preventAiLearning = $ref($i.preventAiLearning);
+let isLocked = ref($i.isLocked);
+let autoAcceptFollowed = ref($i.autoAcceptFollowed);
+let noCrawle = ref($i.noCrawle);
+let isExplorable = ref($i.isExplorable);
+let hideOnlineStatus = ref($i.hideOnlineStatus);
+let publicReactions = ref($i.publicReactions);
+let ffVisibility = ref($i.ffVisibility);
+let preventAiLearning = ref($i.preventAiLearning);
 
-let defaultNoteVisibility = $computed(
+let defaultNoteVisibility = computed(
 	defaultStore.makeGetterSetter("defaultNoteVisibility"),
 );
-let defaultNoteLocalOnly = $computed(
+let defaultNoteLocalOnly = computed(
 	defaultStore.makeGetterSetter("defaultNoteLocalOnly"),
 );
-let rememberNoteVisibility = $computed(
+let rememberNoteVisibility = computed(
 	defaultStore.makeGetterSetter("rememberNoteVisibility"),
 );
-let keepCw = $computed(defaultStore.makeGetterSetter("keepCw"));
-let addRe = $computed(defaultStore.makeGetterSetter("addRe"));
+let keepCw = computed(defaultStore.makeGetterSetter("keepCw"));
+let addRe = computed(defaultStore.makeGetterSetter("addRe"));
 
 function save() {
 	os.api("i/update", {
-		isLocked: !!isLocked,
-		autoAcceptFollowed: !!autoAcceptFollowed,
-		noCrawle: !!noCrawle,
-		isExplorable: !!isExplorable,
-		hideOnlineStatus: !!hideOnlineStatus,
-		publicReactions: !!publicReactions,
-		preventAiLearning: !!preventAiLearning,
-		ffVisibility: ffVisibility,
+		isLocked: !!isLocked.value,
+		autoAcceptFollowed: !!autoAcceptFollowed.value,
+		noCrawle: !!noCrawle.value,
+		isExplorable: !!isExplorable.value,
+		hideOnlineStatus: !!hideOnlineStatus.value,
+		publicReactions: !!publicReactions.value,
+		preventAiLearning: !!preventAiLearning.value,
+		ffVisibility: ffVisibility.value,
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.privacy,

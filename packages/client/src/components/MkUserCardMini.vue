@@ -24,6 +24,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import * as misskey from "firefish-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
@@ -41,7 +43,7 @@ const props = withDefaults(
 	},
 );
 
-let chartValues = $ref<number[] | null>(null);
+let chartValues = ref<number[] | null>(null);
 
 if (props.withChart) {
 	os.apiGet("charts/user/notes", {
@@ -51,7 +53,7 @@ if (props.withChart) {
 	}).then((res) => {
 		// 今日のぶんの値はまだ途中の値であり、それも含めると大抵の場合前日よりも下降しているようなグラフになってしまうため今日は弾く
 		res.inc.splice(0, 1);
-		chartValues = res.inc;
+		chartValues.value = res.inc;
 	});
 }
 </script>

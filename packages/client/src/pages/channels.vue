@@ -111,7 +111,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, defineComponent, inject, watch } from "vue";
+import { computed, onMounted, defineComponent, inject, watch, ref } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkChannelPreview from "@/components/MkChannelPreview.vue";
@@ -133,20 +133,20 @@ import "swiper/scss/virtual";
 const router = useRouter();
 
 const tabs = ["search", "featured", "following", "owned"];
-let tab = $ref(tabs[1]);
-watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
+let tab = ref(tabs[1]);
+watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const props = defineProps<{
 	query: string;
 	type?: string;
 }>();
-let key = $ref("");
-let searchQuery = $ref("");
-let searchType = $ref("nameAndDescription");
-let channelPagination = $ref();
+let key = ref("");
+let searchQuery = ref("");
+let searchType = ref("nameAndDescription");
+let channelPagination = ref();
 onMounted(() => {
-	searchQuery = props.query ?? "";
-	searchType = props.type ?? "nameAndDescription";
+	searchQuery.value = props.query ?? "";
+	searchType.value = props.type ?? "nameAndDescription";
 });
 
 const featuredPagination = {
@@ -164,25 +164,25 @@ const ownedPagination = {
 };
 
 async function search() {
-	const query = searchQuery.toString().trim();
+	const query = searchQuery.value.toString().trim();
 	if (query == null || query === "") return;
-	const type = searchType.toString().trim();
-	channelPagination = {
+	const type = searchType.value.toString().trim();
+	channelPagination.value = {
 		endpoint: "channels/search",
 		limit: 10,
 		params: {
-			query: searchQuery,
+			query: searchQuery.value,
 			type: type,
 		},
 	};
-	key = query + type;
+	key.value = query + type;
 }
 
 function create() {
 	router.push("/channels/new");
 }
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		icon: "ph-plus ph-bold ph-lg",
 		text: i18n.ts.create,
@@ -190,7 +190,7 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => [
+const headerTabs = computed(() => [
 	{
 		key: "search",
 		title: i18n.ts.search,
@@ -224,11 +224,11 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
+	syncSlide(tabs.indexOf(tab.value));
 }
 
 function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
+	tab.value = tabs[swiperRef.activeIndex];
 }
 
 function syncSlide(index) {

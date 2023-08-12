@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import FormTextarea from "@/components/form/textarea.vue";
 import FormInfo from "@/components/MkInfo.vue";
 import * as os from "@/os";
@@ -45,9 +45,9 @@ watch(globalCustomCss, async () => {
 });
 */
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.customCss,

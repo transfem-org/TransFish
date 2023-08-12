@@ -65,13 +65,13 @@ import MkNumberDiff from "@/components/MkNumberDiff.vue";
 import { i18n } from "@/i18n";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 
-let topSubInstancesForPie: any = $ref(null);
-let topPubInstancesForPie: any = $ref(null);
-let federationPubActive = $ref<number | null>(null);
-let federationPubActiveDiff = $ref<number | null>(null);
-let federationSubActive = $ref<number | null>(null);
-let federationSubActiveDiff = $ref<number | null>(null);
-let fetching = $ref(true);
+let topSubInstancesForPie: any = ref(null);
+let topPubInstancesForPie: any = ref(null);
+let federationPubActive = ref<number | null>(null);
+let federationPubActiveDiff = ref<number | null>(null);
+let federationSubActive = ref<number | null>(null);
+let federationSubActiveDiff = ref<number | null>(null);
+let fetching = ref(true);
 
 const { handler: externalTooltipHandler } = useChartTooltip();
 
@@ -80,13 +80,13 @@ onMounted(async () => {
 		limit: 2,
 		span: "day",
 	});
-	federationPubActive = chart.pubActive[0];
-	federationPubActiveDiff = chart.pubActive[0] - chart.pubActive[1];
-	federationSubActive = chart.subActive[0];
-	federationSubActiveDiff = chart.subActive[0] - chart.subActive[1];
+	federationPubActive.value = chart.pubActive[0];
+	federationPubActiveDiff.value = chart.pubActive[0] - chart.pubActive[1];
+	federationSubActive.value = chart.subActive[0];
+	federationSubActiveDiff.value = chart.subActive[0] - chart.subActive[1];
 
 	os.apiGet("federation/stats", { limit: 10 }).then((res) => {
-		topSubInstancesForPie = res.topSubInstances
+		topSubInstancesForPie.value = res.topSubInstances
 			.map((x) => ({
 				name: x.host,
 				color: x.themeColor,
@@ -102,7 +102,7 @@ onMounted(async () => {
 					value: res.otherFollowersCount,
 				},
 			]);
-		topPubInstancesForPie = res.topPubInstances
+		topPubInstancesForPie.value = res.topPubInstances
 			.map((x) => ({
 				name: x.host,
 				color: x.themeColor,
@@ -120,7 +120,7 @@ onMounted(async () => {
 			]);
 	});
 
-	fetching = false;
+	fetching.value = false;
 });
 </script>
 

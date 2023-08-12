@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ComputedRef, provide } from "vue";
+import { ComputedRef, provide, ref, computed } from "vue";
 import RouterView from "@/components/global/RouterView.vue";
 import XWindow from "@/components/MkWindow.vue";
 import { popout as _popout } from "@/scripts/popout";
@@ -51,18 +51,18 @@ defineEmits<{
 
 const router = new Router(routes, props.initialPath);
 
-let pageMetadata = $ref<null | ComputedRef<PageMetadata>>();
-let windowEl = $ref<InstanceType<typeof XWindow>>();
-const history = $ref<{ path: string; key: any }[]>([
+let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+let windowEl = ref<InstanceType<typeof XWindow>>();
+const history = ref<{ path: string; key: any }[]>([
 	{
 		path: router.getCurrentPath(),
 		key: router.getCurrentKey(),
 	},
 ]);
-const buttonsLeft = $computed(() => {
+const buttonsLeft = computed(() => {
 	const buttons = [];
 
-	if (history.length > 1) {
+	if (history.value.length > 1) {
 		buttons.push({
 			icon: "ph-caret-left ph-bold ph-lg",
 			onClick: back,
@@ -71,7 +71,7 @@ const buttonsLeft = $computed(() => {
 
 	return buttons;
 });
-const buttonsRight = $computed(() => {
+const buttonsRight = computed(() => {
 	const buttons = [
 		{
 			icon: "ph-arrows-out-simple ph-bold ph-lg",
@@ -84,18 +84,18 @@ const buttonsRight = $computed(() => {
 });
 
 router.addListener("push", (ctx) => {
-	history.push({ path: ctx.path, key: ctx.key });
+	history.value.push({ path: ctx.path, key: ctx.key });
 });
 
 provide("router", router);
 provideMetadataReceiver((info) => {
-	pageMetadata = info;
+	pageMetadata.value = info;
 });
 provide("shouldOmitHeaderTitle", true);
 provide("shouldBackButton", false);
 provide("shouldHeaderThin", true);
 
-const contextmenu = $computed(() => [
+const contextmenu = computed(() => [
 	{
 		icon: "ph-arrows-out-simple ph-bold ph-lg",
 		text: i18n.ts.showInPage,
@@ -111,7 +111,7 @@ const contextmenu = $computed(() => [
 		text: i18n.ts.openInNewTab,
 		action: () => {
 			window.open(url + router.getCurrentPath(), "_blank");
-			windowEl.close();
+			windowEl.value.close();
 		},
 	},
 	{
@@ -124,25 +124,25 @@ const contextmenu = $computed(() => [
 ]);
 
 function back() {
-	history.pop();
+	history.value.pop();
 	router.replace(
-		history[history.length - 1].path,
-		history[history.length - 1].key,
+		history.value[history.value.length - 1].path,
+		history.value[history.value.length - 1].key,
 	);
 }
 
 function close() {
-	windowEl.close();
+	windowEl.value.close();
 }
 
 function expand() {
 	mainRouter.push(router.getCurrentPath(), "forcePage");
-	windowEl.close();
+	windowEl.value.close();
 }
 
 function popout() {
-	_popout(router.getCurrentPath(), windowEl.$el);
-	windowEl.close();
+	_popout(router.getCurrentPath(), windowEl.value.$el);
+	windowEl.value.close();
 }
 
 defineExpose({

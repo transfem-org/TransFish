@@ -19,6 +19,8 @@
 </template>
 
 <script lang="ts" setup>
+import { shallowRef } from "vue";
+
 import {} from "vue";
 import * as misskey from "firefish-js";
 import MkModal from "@/components/MkModal.vue";
@@ -46,11 +48,11 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let modal = $shallowRef<InstanceType<typeof MkModal>>();
-let form = $shallowRef<InstanceType<typeof MkPostForm>>();
+let modal = shallowRef<InstanceType<typeof MkModal>>();
+let form = shallowRef<InstanceType<typeof MkPostForm>>();
 
 function onPosted() {
-	modal.close({
+	modal.value.close({
 		useSendAnimation: true,
 	});
 }

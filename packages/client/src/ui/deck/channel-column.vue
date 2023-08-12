@@ -21,6 +21,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import XColumn from "./column.vue";
 import type { Column } from "./deck-store";
@@ -39,7 +41,7 @@ const emit = defineEmits<{
 	(ev: "parent-focus", direction: "up" | "down" | "left" | "right"): void;
 }>();
 
-const timeline = $ref<InstanceType<typeof XTimeline>>();
+const timeline = ref<InstanceType<typeof XTimeline>>();
 
 if (props.column.channelId == null) {
 	setChannel();

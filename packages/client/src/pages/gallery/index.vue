@@ -106,7 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, watch, onMounted } from "vue";
+import { computed, defineComponent, watch, onMounted, ref } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkFolder from "@/components/MkFolder.vue";
@@ -127,10 +127,10 @@ const props = defineProps<{
 }>();
 
 const tabs = ["explore", "liked", "my"];
-let tab = $ref(tabs[0]);
-watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
+let tab = ref(tabs[0]);
+watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
-let tagsRef = $ref();
+let tagsRef = ref();
 
 const recentPostsPagination = {
 	endpoint: "gallery/posts" as const,
@@ -152,11 +152,11 @@ const likedPostsPagination = {
 watch(
 	() => props.tag,
 	() => {
-		if (tagsRef) tagsRef.tags.toggleContent(props.tag == null);
+		if (tagsRef.value) tagsRef.value.tags.toggleContent(props.tag == null);
 	},
 );
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		icon: "ph-plus ph-bold ph-lg",
 		text: i18n.ts.create,
@@ -166,7 +166,7 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => [
+const headerTabs = computed(() => [
 	{
 		key: "explore",
 		title: i18n.ts.gallery,
@@ -193,11 +193,11 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
+	syncSlide(tabs.indexOf(tab.value));
 }
 
 function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
+	tab.value = tabs[swiperRef.activeIndex];
 }
 
 function syncSlide(index) {

@@ -162,7 +162,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, watch } from "vue";
+import { reactive, watch, ref, computed } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import FormInput from "@/components/form/input.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -197,7 +197,7 @@ const props = withDefaults(
 	{},
 );
 
-let saveButton = $ref(props.saveButton ?? false);
+let saveButton = ref(props.saveButton ?? false);
 
 watch(
 	() => profile,
@@ -295,9 +295,9 @@ function changeBanner(ev) {
 	);
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.profile,

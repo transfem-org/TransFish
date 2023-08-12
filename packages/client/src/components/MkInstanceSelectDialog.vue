@@ -56,6 +56,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import MkInput from "@/components/form/input.vue";
 import XModalWindow from "@/components/MkModalWindow.vue";
 import * as os from "@/os";
@@ -68,28 +70,28 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let hostname = $ref("");
-let instances: Instance[] = $ref([]);
-let selected: Instance | null = $ref(null);
-let dialogEl = $ref<InstanceType<typeof XModalWindow>>();
+let hostname = ref("");
+let instances: Instance[] = ref([]);
+let selected: Instance | null = ref(null);
+let dialogEl = ref<InstanceType<typeof XModalWindow>>();
 
 let searchOrderLatch = 0;
 const search = () => {
-	if (hostname === "") {
-		instances = [];
+	if (hostname.value === "") {
+		instances.value = [];
 		return;
 	}
 
 	const searchId = ++searchOrderLatch;
 	os.api("federation/instances", {
-		host: hostname,
+		host: hostname.value,
 		limit: 10,
 		blocked: false,
 		suspended: false,
 		sort: "+pubSub",
 	}).then((_instances) => {
 		if (searchId !== searchOrderLatch) return;
-		instances = _instances.map(
+		instances.value = _instances.map(
 			(x) =>
 				({
 					id: x.id,
@@ -101,14 +103,14 @@ const search = () => {
 };
 
 const ok = () => {
-	if (selected == null) return;
-	emit("ok", selected);
-	dialogEl?.close();
+	if (selected.value == null) return;
+	emit("ok", selected.value);
+	dialogEl.value?.close();
 };
 
 const cancel = () => {
 	emit("cancel");
-	dialogEl?.close();
+	dialogEl.value?.close();
 };
 </script>
 

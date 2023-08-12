@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import XColumn from "./column.vue";
 import type { Column } from "./deck-store";
 import { removeColumn, updateColumn } from "./deck-store";
@@ -64,15 +64,15 @@ const emit = defineEmits<{
 	(ev: "parent-focus", direction: "up" | "down" | "left" | "right"): void;
 }>();
 
-let disabled = $ref(false),
-	indicated = $ref(false),
-	columnActive = $ref(true);
+let disabled = ref(false),
+	indicated = ref(false),
+	columnActive = ref(true);
 
 onMounted(() => {
 	if (props.column.tl == null) {
 		setType();
 	} else if ($i) {
-		disabled =
+		disabled.value =
 			!$i.isModerator &&
 			!$i.isAdmin &&
 			((instance.disableLocalTimeline &&
@@ -122,22 +122,22 @@ async function setType() {
 }
 
 function queueUpdated(q) {
-	if (columnActive) {
-		indicated = q !== 0;
+	if (columnActive.value) {
+		indicated.value = q !== 0;
 	}
 }
 
 function onNote() {
-	if (!columnActive) {
-		indicated = true;
+	if (!columnActive.value) {
+		indicated.value = true;
 	}
 }
 
 function onChangeActiveState(state) {
-	columnActive = state;
+	columnActive.value = state;
 
-	if (columnActive) {
-		indicated = false;
+	if (columnActive.value) {
+		indicated.value = false;
 	}
 }
 

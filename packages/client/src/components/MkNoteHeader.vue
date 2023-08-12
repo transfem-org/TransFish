@@ -47,6 +47,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import type * as misskey from "firefish-js";
 import { defaultStore } from "@/store";
@@ -61,11 +63,12 @@ const props = defineProps<{
 	pinned?: boolean;
 }>();
 
-let note = $ref(props.note);
+let note = ref(props.note);
 
 const showTicker =
 	defaultStore.state.instanceTicker === "always" ||
-	(defaultStore.state.instanceTicker === "remote" && note.user.instance);
+	(defaultStore.state.instanceTicker === "remote" &&
+		note.value.user.instance);
 </script>
 
 <style lang="scss" scoped>

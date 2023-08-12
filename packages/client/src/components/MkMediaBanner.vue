@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import VuePlyr from "vue-plyr";
 import type * as misskey from "firefish-js";
 import { ColdDeviceStorage } from "@/store";
@@ -70,15 +70,17 @@ const props = withDefaults(
 	{},
 );
 
-const audioEl = $ref<HTMLAudioElement | null>();
-let hide = $ref(true);
+const audioEl = ref<HTMLAudioElement | null>();
+let hide = ref(true);
 
 function volumechange() {
-	if (audioEl) ColdDeviceStorage.set("mediaVolume", audioEl.volume);
+	if (audioEl.value)
+		ColdDeviceStorage.set("mediaVolume", audioEl.value.volume);
 }
 
 onMounted(() => {
-	if (audioEl) audioEl.volume = ColdDeviceStorage.get("mediaVolume");
+	if (audioEl.value)
+		audioEl.value.volume = ColdDeviceStorage.get("mediaVolume");
 });
 </script>
 

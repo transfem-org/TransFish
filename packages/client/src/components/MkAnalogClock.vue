@@ -108,7 +108,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import tinycolor from "tinycolor2";
 import { globalEvents } from "@/events.js";
 
@@ -167,19 +167,19 @@ const texts = computed(() => {
 });
 
 let enabled = true,
-	majorGraduationColor = $ref<string>(),
+	majorGraduationColor = ref<string>(),
 	// let minorGraduationColor = $ref<string>();
-	sHandColor = $ref<string>(),
-	mHandColor = $ref<string>(),
-	hHandColor = $ref<string>(),
-	nowColor = $ref<string>(),
-	h = $ref<number>(0),
-	m = $ref<number>(0),
-	s = $ref<number>(0),
-	hAngle = $ref<number>(0),
-	mAngle = $ref<number>(0),
-	sAngle = $ref<number>(0),
-	disableSAnimate = $ref(false),
+	sHandColor = ref<string>(),
+	mHandColor = ref<string>(),
+	hHandColor = ref<string>(),
+	nowColor = ref<string>(),
+	h = ref<number>(0),
+	m = ref<number>(0),
+	s = ref<number>(0),
+	hAngle = ref<number>(0),
+	mAngle = ref<number>(0),
+	sAngle = ref<number>(0),
+	disableSAnimate = ref(false),
 	sOneRound = false;
 
 function tick() {
@@ -187,29 +187,31 @@ function tick() {
 	now.setMinutes(
 		now.getMinutes() + (new Date().getTimezoneOffset() + props.offset),
 	);
-	s = now.getSeconds();
-	m = now.getMinutes();
-	h = now.getHours();
-	hAngle =
-		(Math.PI * ((h % (props.twentyfour ? 24 : 12)) + (m + s / 60) / 60)) /
+	s.value = now.getSeconds();
+	m.value = now.getMinutes();
+	h.value = now.getHours();
+	hAngle.value =
+		(Math.PI *
+			((h.value % (props.twentyfour ? 24 : 12)) +
+				(m.value + s.value / 60) / 60)) /
 		(props.twentyfour ? 12 : 6);
-	mAngle = (Math.PI * (m + s / 60)) / 30;
+	mAngle.value = (Math.PI * (m.value + s.value / 60)) / 30;
 	if (sOneRound) {
 		// 秒針が一周した際のアニメーションをよしなに処理する(これが無いと秒が59->0になったときに期待したアニメーションにならない)
-		sAngle = (Math.PI * 60) / 30;
+		sAngle.value = (Math.PI * 60) / 30;
 		window.setTimeout(() => {
-			disableSAnimate = true;
+			disableSAnimate.value = true;
 			window.setTimeout(() => {
-				sAngle = 0;
+				sAngle.value = 0;
 				window.setTimeout(() => {
-					disableSAnimate = false;
+					disableSAnimate.value = false;
 				}, 100);
 			}, 100);
 		}, 700);
 	} else {
-		sAngle = (Math.PI * s) / 30;
+		sAngle.value = (Math.PI * s.value) / 30;
 	}
-	sOneRound = s === 59;
+	sOneRound = s.value === 59;
 }
 
 tick();
@@ -220,16 +222,16 @@ function calcColors() {
 	const accent = tinycolor(
 		computedStyle.getPropertyValue("--accent"),
 	).toHexString();
-	majorGraduationColor = dark
+	majorGraduationColor.value = dark
 		? "rgba(255, 255, 255, 0.3)"
 		: "rgba(0, 0, 0, 0.3)";
 	// minorGraduationColor = dark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
-	sHandColor = dark ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.3)";
-	mHandColor = tinycolor(
+	sHandColor.value = dark ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.3)";
+	mHandColor.value = tinycolor(
 		computedStyle.getPropertyValue("--fg"),
 	).toHexString();
-	hHandColor = accent;
-	nowColor = accent;
+	hHandColor.value = accent;
+	nowColor.value = accent;
 }
 
 calcColors();

@@ -121,7 +121,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, watch } from "vue";
+import { defineAsyncComponent, watch, ref, computed } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
 import FormRadios from "@/components/form/radios.vue";
 import FromSlot from "@/components/form/slot.vue";
@@ -146,32 +146,32 @@ async function reloadAsk() {
 	unisonReload();
 }
 
-let reactions = $ref(deepClone(defaultStore.state.reactions));
+let reactions = ref(deepClone(defaultStore.state.reactions));
 
-const reactionPickerSkinTone = $computed(
+const reactionPickerSkinTone = computed(
 	defaultStore.makeGetterSetter("reactionPickerSkinTone"),
 );
-const reactionPickerSize = $computed(
+const reactionPickerSize = computed(
 	defaultStore.makeGetterSetter("reactionPickerSize"),
 );
-const reactionPickerWidth = $computed(
+const reactionPickerWidth = computed(
 	defaultStore.makeGetterSetter("reactionPickerWidth"),
 );
-const reactionPickerHeight = $computed(
+const reactionPickerHeight = computed(
 	defaultStore.makeGetterSetter("reactionPickerHeight"),
 );
-const reactionPickerUseDrawerForMobile = $computed(
+const reactionPickerUseDrawerForMobile = computed(
 	defaultStore.makeGetterSetter("reactionPickerUseDrawerForMobile"),
 );
-const enableEmojiReactions = $computed(
+const enableEmojiReactions = computed(
 	defaultStore.makeGetterSetter("enableEmojiReactions"),
 );
-const showEmojisInReactionNotifications = $computed(
+const showEmojisInReactionNotifications = computed(
 	defaultStore.makeGetterSetter("showEmojisInReactionNotifications"),
 );
 
 function save() {
-	defaultStore.set("reactions", reactions);
+	defaultStore.set("reactions", reactions.value);
 }
 
 function remove(reaction, ev: MouseEvent) {
@@ -180,7 +180,9 @@ function remove(reaction, ev: MouseEvent) {
 			{
 				text: i18n.ts.remove,
 				action: () => {
-					reactions = reactions.filter((x) => x !== reaction);
+					reactions.value = reactions.value.filter(
+						(x) => x !== reaction,
+					);
 					save();
 				},
 			},
@@ -210,34 +212,34 @@ async function setDefault() {
 	});
 	if (canceled) return;
 
-	reactions = deepClone(defaultStore.def.reactions.default);
+	reactions.value = deepClone(defaultStore.def.reactions.default);
 }
 
 function chooseEmoji(ev: MouseEvent) {
 	os.pickEmoji(ev.currentTarget ?? ev.target, {
 		showPinned: false,
 	}).then((emoji) => {
-		if (!reactions.includes(emoji)) {
-			reactions.push(emoji);
+		if (!reactions.value.includes(emoji)) {
+			reactions.value.push(emoji);
 			save();
 		}
 	});
 }
 
-watch(enableEmojiReactions, async () => {
+watch(enableEmojiReactions.value, async () => {
 	await reloadAsk();
 });
 
-watch(reactionPickerSkinTone, async () => {
-	reactions.forEach((emoji) => {
-		addSkinTone(emoji, reactionPickerSkinTone.value);
+watch(reactionPickerSkinTone.value, async () => {
+	reactions.value.forEach((emoji) => {
+		addSkinTone(emoji, reactionPickerSkinTone.value.value);
 	});
 	await reloadAsk();
 });
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.reaction,

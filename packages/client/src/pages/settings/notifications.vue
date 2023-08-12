@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, shallowRef, computed } from "vue";
 import { notificationTypes } from "firefish-js";
 import FormButton from "@/components/MkButton.vue";
 import FormLink from "@/components/form/link.vue";
@@ -61,12 +61,12 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import MkPushNotificationAllowButton from "@/components/MkPushNotificationAllowButton.vue";
 
 let allowButton =
-	$shallowRef<InstanceType<typeof MkPushNotificationAllowButton>>();
-let pushRegistrationInServer = $computed(
-	() => allowButton?.pushRegistrationInServer,
+	shallowRef<InstanceType<typeof MkPushNotificationAllowButton>>();
+let pushRegistrationInServer = computed(
+	() => allowButton.value?.pushRegistrationInServer,
 );
-let sendReadMessage = $computed(
-	() => pushRegistrationInServer?.sendReadMessage || false,
+let sendReadMessage = computed(
+	() => pushRegistrationInServer.value?.sendReadMessage || false,
 );
 
 async function readAllUnreadNotes() {
@@ -112,20 +112,20 @@ function configure() {
 }
 
 function onChangeSendReadMessage(v: boolean) {
-	if (!pushRegistrationInServer) return;
+	if (!pushRegistrationInServer.value) return;
 
 	os.apiWithDialog("sw/update-registration", {
-		endpoint: pushRegistrationInServer.endpoint,
+		endpoint: pushRegistrationInServer.value.endpoint,
 		sendReadMessage: v,
 	}).then((res) => {
-		if (!allowButton) return;
-		allowButton.pushRegistrationInServer = res;
+		if (!allowButton.value) return;
+		allowButton.value.pushRegistrationInServer = res;
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.notifications,

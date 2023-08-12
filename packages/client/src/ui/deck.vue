@@ -253,7 +253,7 @@ function showSettings() {
 	os.pageWindow("/settings/deck");
 }
 
-const columnsEl = $ref<HTMLElement>();
+const columnsEl = ref<HTMLElement>();
 
 const addColumn = async (ev) => {
 	const columns = [
@@ -299,7 +299,7 @@ const onContextmenu = (ev) => {
 
 function onWheel(ev: WheelEvent) {
 	if (ev.deltaX === 0) {
-		columnsEl.scrollLeft += ev.deltaY;
+		columnsEl.value.scrollLeft += ev.deltaY;
 	}
 }
 

@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import XColumn from "./column.vue";
 import type { Column } from "./deck-store";
 import { updateColumn } from "./deck-store";
@@ -39,7 +39,7 @@ const emit = defineEmits<{
 	(ev: "parent-focus", direction: "up" | "down" | "left" | "right"): void;
 }>();
 
-const timeline = $ref<InstanceType<typeof XTimeline>>();
+const timeline = ref<InstanceType<typeof XTimeline>>();
 
 onMounted(() => {
 	if (props.column.antennaId == null) {

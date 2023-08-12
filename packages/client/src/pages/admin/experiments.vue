@@ -27,6 +27,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
+
 import {} from "vue";
 import MkStickyContainer from "@/components/global/MkStickyContainer.vue";
 import FormSuspense from "@/components/form/suspense.vue";
@@ -36,8 +38,8 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let enablePostImports = $ref(false);
-let meta = $ref<MetaExperiments | null>(null);
+let enablePostImports = ref(false);
+let meta = ref<MetaExperiments | null>(null);
 
 type MetaExperiments = {
 	experimentalFeatures?: {
@@ -46,16 +48,17 @@ type MetaExperiments = {
 };
 
 async function init() {
-	meta = (await os.api("admin/meta")) as MetaExperiments;
-	if (!meta) return;
+	meta.value = (await os.api("admin/meta")) as MetaExperiments;
+	if (!meta.value) return;
 
-	enablePostImports = meta.experimentalFeatures?.postImports ?? false;
+	enablePostImports.value =
+		meta.value.experimentalFeatures?.postImports ?? false;
 }
 
 function save() {
 	const experiments: MetaExperiments = {
 		experimentalFeatures: {
-			postImports: enablePostImports,
+			postImports: enablePostImports.value,
 		},
 	};
 	os.apiWithDialog("admin/update-meta", experiments).then(() => {
@@ -63,9 +66,9 @@ function save() {
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._experiments.title,

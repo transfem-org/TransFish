@@ -26,6 +26,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
+
 import {} from "vue";
 import FormButton from "@/components/MkButton.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -35,24 +37,25 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let hiddenTags: string = $ref("");
+let hiddenTags: string = ref("");
 
 async function init() {
 	const meta = await os.api("admin/meta");
-	hiddenTags = meta.hiddenTags.join("\n");
+	hiddenTags.value = meta.hiddenTags.join("\n");
 }
 
 function save() {
 	os.apiWithDialog("admin/update-meta", {
-		hiddenTags: hiddenTags.split("\n").map((h: string) => h.trim()) || [],
+		hiddenTags:
+			hiddenTags.value.split("\n").map((h: string) => h.trim()) || [],
 	}).then(() => {
 		fetchInstance();
 	});
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.hiddenTags,

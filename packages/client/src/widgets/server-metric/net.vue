@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import bytes from "@/filters/bytes";
 
 const props = defineProps<{
@@ -48,19 +48,19 @@ const props = defineProps<{
 	meta: any;
 }>();
 
-const viewBoxX: number = $ref(50);
-const viewBoxY: number = $ref(30);
-const stats: any[] = $ref([]);
-let inPolylinePoints: string = $ref(""),
-	outPolylinePoints: string = $ref(""),
-	inPolygonPoints: string = $ref(""),
-	outPolygonPoints: string = $ref(""),
-	inHeadX: any = $ref(null),
-	inHeadY: any = $ref(null),
-	outHeadX: any = $ref(null),
-	outHeadY: any = $ref(null),
-	inRecent: number = $ref(0),
-	outRecent: number = $ref(0);
+const viewBoxX: number = ref(50);
+const viewBoxY: number = ref(30);
+const stats: any[] = ref([]);
+let inPolylinePoints: string = ref(""),
+	outPolylinePoints: string = ref(""),
+	inPolygonPoints: string = ref(""),
+	outPolygonPoints: string = ref(""),
+	inHeadX: any = ref(null),
+	inHeadY: any = ref(null),
+	outHeadX: any = ref(null),
+	outHeadY: any = ref(null),
+	inRecent: number = ref(0),
+	outRecent: number = ref(0);
 
 onMounted(() => {
 	props.connection.on("stats", onStats);
@@ -76,44 +76,49 @@ onBeforeUnmount(() => {
 });
 
 function onStats(connStats) {
-	stats.push(connStats);
-	if (stats.length > 50) stats.shift();
+	stats.value.push(connStats);
+	if (stats.value.length > 50) stats.value.shift();
 
-	const inPeak = Math.max(1024 * 64, Math.max(...stats.map((s) => s.net.rx)));
+	const inPeak = Math.max(
+		1024 * 64,
+		Math.max(...stats.value.map((s) => s.net.rx)),
+	);
 	const outPeak = Math.max(
 		1024 * 64,
-		Math.max(...stats.map((s) => s.net.tx)),
+		Math.max(...stats.value.map((s) => s.net.tx)),
 	);
 
-	const inPolylinePointsStats = stats.map((s, i) => [
-		viewBoxX - (stats.length - 1 - i),
-		(1 - s.net.rx / inPeak) * viewBoxY,
+	const inPolylinePointsStats = stats.value.map((s, i) => [
+		viewBoxX.value - (stats.value.length - 1 - i),
+		(1 - s.net.rx / inPeak) * viewBoxY.value,
 	]);
-	const outPolylinePointsStats = stats.map((s, i) => [
-		viewBoxX - (stats.length - 1 - i),
-		(1 - s.net.tx / outPeak) * viewBoxY,
+	const outPolylinePointsStats = stats.value.map((s, i) => [
+		viewBoxX.value - (stats.value.length - 1 - i),
+		(1 - s.net.tx / outPeak) * viewBoxY.value,
 	]);
-	inPolylinePoints = inPolylinePointsStats
+	inPolylinePoints.value = inPolylinePointsStats
 		.map((xy) => `${xy[0]},${xy[1]}`)
 		.join(" ");
-	outPolylinePoints = outPolylinePointsStats
+	outPolylinePoints.value = outPolylinePointsStats
 		.map((xy) => `${xy[0]},${xy[1]}`)
 		.join(" ");
 
-	inPolygonPoints = `${
-		viewBoxX - (stats.length - 1)
-	},${viewBoxY} ${inPolylinePoints} ${viewBoxX},${viewBoxY}`;
-	outPolygonPoints = `${
-		viewBoxX - (stats.length - 1)
-	},${viewBoxY} ${outPolylinePoints} ${viewBoxX},${viewBoxY}`;
+	inPolygonPoints.value = `${viewBoxX.value - (stats.value.length - 1)},${
+		viewBoxY.value
+	} ${inPolylinePoints.value} ${viewBoxX.value},${viewBoxY.value}`;
+	outPolygonPoints.value = `${viewBoxX.value - (stats.value.length - 1)},${
+		viewBoxY.value
+	} ${outPolylinePoints.value} ${viewBoxX.value},${viewBoxY.value}`;
 
-	inHeadX = inPolylinePointsStats[inPolylinePointsStats.length - 1][0];
-	inHeadY = inPolylinePointsStats[inPolylinePointsStats.length - 1][1];
-	outHeadX = outPolylinePointsStats[outPolylinePointsStats.length - 1][0];
-	outHeadY = outPolylinePointsStats[outPolylinePointsStats.length - 1][1];
+	inHeadX.value = inPolylinePointsStats[inPolylinePointsStats.length - 1][0];
+	inHeadY.value = inPolylinePointsStats[inPolylinePointsStats.length - 1][1];
+	outHeadX.value =
+		outPolylinePointsStats[outPolylinePointsStats.length - 1][0];
+	outHeadY.value =
+		outPolylinePointsStats[outPolylinePointsStats.length - 1][1];
 
-	inRecent = connStats.net.rx;
-	outRecent = connStats.net.tx;
+	inRecent.value = connStats.net.rx;
+	outRecent.value = connStats.net.tx;
 }
 
 function onStatsLog(statsLog) {

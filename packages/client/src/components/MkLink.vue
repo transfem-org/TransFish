@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 import { url as local } from "@/config";
 import { useTooltip } from "@/scripts/use-tooltip";
 import * as os from "@/os";
@@ -35,9 +35,9 @@ const self = props.url.startsWith(local);
 const attr = self ? "to" : "href";
 const target = self ? null : "_blank";
 
-const el = $ref();
+const el = ref();
 
-useTooltip($$(el), (showing) => {
+useTooltip(el, (showing) => {
 	os.popup(
 		defineAsyncComponent(
 			() => import("@/components/MkUrlPreviewPopup.vue"),
@@ -45,7 +45,7 @@ useTooltip($$(el), (showing) => {
 		{
 			showing,
 			url: props.url,
-			source: el,
+			source: el.value,
 		},
 		{},
 		"closed",
