@@ -47,6 +47,7 @@ const commonNames = new Map<string, string>([
 	["foundkey", "FoundKey"],
 	["gnusocial", "GNU social"],
 	["gotosocial", "GoToSocial"],
+	["kbin", "/kbin"],
 	["microblogpub", "microblog.pub"],
 	["nextcloud social", "Nextcloud Social"],
 	["peertube", "PeerTube"],
