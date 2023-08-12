@@ -30,9 +30,10 @@ testCommit:
     # POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     # POSTGRES_HOST_AUTH_METHOD: trust
   script:
-    - apt-get update && apt-get install -y git wget curl build-essential python3
+    - apt-get update && apt-get install -y git wget curl build-essential python3 musl
     - curl https://sh.rustup.rs -sSf | sh -s -- -y
     - source "$HOME/.cargo/env"
+    - ln -s /lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1
     - cp .config/ci.yml .config/default.yml
     - corepack enable
     - corepack prepare pnpm@latest --activate
