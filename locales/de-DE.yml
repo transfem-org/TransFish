@@ -2099,7 +2099,7 @@ customKaTeXMacro: Individuelle KaTeX Makros
 enableCustomKaTeXMacro: Individuelle KaTeX-Makros aktivieren
 replayTutorial: Wiederhole die Benutzeranleitung
 apps: Apps
-caption: Automatische Untertitelung
+caption: Automatische Beschreibung
 pwa: PWA installieren
 cw: Inhaltswarnung
 older: älter
@@ -2204,3 +2204,7 @@ deletePasskeysConfirm: Alle Passkeys und Security-Keys werden unwiderruflich von
 inputNotMatch: Eingabe stimmt nicht überein
 addRe: Ein "re:" am Anfang des Kommentars hinzufügen, um einem Beitrag mit einer Inhaltswarnung
   zu antworten
+confirm: Bestätigen
+importZip: ZIP Importieren
+emojiPackCreator: Emoji-Pack Ersteller
+exportZip: ZIP Exportieren
