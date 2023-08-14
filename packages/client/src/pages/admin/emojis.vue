@@ -269,6 +269,12 @@ const im = (emoji) => {
 		emojiId: emoji.id,
 	});
 };
+const del = (emoji) => {
+	os.apiWithDialog("admin/emoji/delete", {
+		id: emoji.id,
+	});
+};
+
 
 const remoteMenu = (emoji, ev: MouseEvent) => {
 	os.popupMenu(
@@ -282,6 +288,13 @@ const remoteMenu = (emoji, ev: MouseEvent) => {
 				icon: "ph-plus ph-bold ph-lg",
 				action: () => {
 					im(emoji);
+				},
+			},
+			{
+				text: "Delete",
+				icon: "ph-trash ph-bold ph-lg",
+				action: () => {
+					del(emoji);
 				},
 			},
 		],

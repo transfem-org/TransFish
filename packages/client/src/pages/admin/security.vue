@@ -77,7 +77,6 @@
 								:min="0"
 								:max="4"
 								:step="1"
-								:text-converter="(v) => `${v + 1}`"
 								class="_formBlock"
 							>
 								<template #label>{{
@@ -319,15 +318,15 @@ function save() {
 		summalyProxy,
 		sensitiveMediaDetection,
 		sensitiveMediaDetectionSensitivity:
-			sensitiveMediaDetectionSensitivity === 0
+			sensitiveMediaDetectionSensitivity == 0
 				? "veryLow"
-				: sensitiveMediaDetectionSensitivity === 1
+				: sensitiveMediaDetectionSensitivity == 1
 				? "low"
-				: sensitiveMediaDetectionSensitivity === 2
+				: sensitiveMediaDetectionSensitivity == 2
 				? "medium"
-				: sensitiveMediaDetectionSensitivity === 3
+				: sensitiveMediaDetectionSensitivity == 3
 				? "high"
-				: sensitiveMediaDetectionSensitivity === 4
+				: sensitiveMediaDetectionSensitivity == 4
 				? "veryHigh"
 				: 0,
 		setSensitiveFlagAutomatically,

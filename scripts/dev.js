@@ -13,19 +13,19 @@ const execa = require("execa");
 		stderr: process.stderr,
 	});
 
-	await execa("pnpm", ["--filter", "firefish-js", "build"], {
+	execa("pnpm", ["--filter", "firefish-js", "build"], {
 		cwd: __dirname + "/../",
 		stdout: process.stdout,
 		stderr: process.stderr,
 	});
 
-	await execa("pnpm", ["--filter", "megalodon", "build"], {
+	execa("pnpm", ["--filter", "megalodon", "build"], {
 		cwd: __dirname + "/../",
 		stdout: process.stdout,
 		stderr: process.stderr,
 	});
 
-	await execa("pnpm", ["--filter", "native-utils", "build"], {
+	execa("pnpm", ["--filter", "native-utils", "build"], {
 		cwd: __dirname + "/../",
 		stdout: process.stdout,
 		stderr: process.stderr,
