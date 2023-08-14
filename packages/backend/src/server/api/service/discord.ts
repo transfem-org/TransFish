@@ -54,7 +54,7 @@ router.get("/disconnect/discord", async (ctx) => {
 		integrations: profile.integrations,
 	});
 
-	ctx.body = "Discordの連携を解除しました :v:";
+	ctx.body = "Discord Account Unlinked.";
 
 	// Publish i updated event
 	publishMainStream(
@@ -211,7 +211,7 @@ router.get("/dc/cb", async (ctx) => {
 		if (profile == null) {
 			ctx.throw(
 				404,
-				`@${username}#${discriminator}と連携しているMisskeyアカウントはありませんでした...`,
+				`No Account linked to @${username}#${discriminator} has been found`,
 			);
 			return;
 		}
@@ -316,7 +316,7 @@ router.get("/dc/cb", async (ctx) => {
 			},
 		});
 
-		ctx.body = `Discord: @${username}#${discriminator} を、Misskey: @${user.username} に接続しました！`;
+		ctx.body = `Connected Discord: @${username}#${discriminator} to TransFish: @${user.username} ！.`;
 
 		// Publish i updated event
 		publishMainStream(

@@ -54,7 +54,7 @@ router.get("/disconnect/github", async (ctx) => {
 		integrations: profile.integrations,
 	});
 
-	ctx.body = "GitHubの連携を解除しました :v:";
+	ctx.body = "Github Account Unlinked";
 
 	// Publish i updated event
 	publishMainStream(
@@ -202,7 +202,7 @@ router.get("/gh/cb", async (ctx) => {
 		if (link == null) {
 			ctx.throw(
 				404,
-				`@${login}と連携しているMisskeyアカウントはありませんでした...`,
+				`There was no TransFish account associated with @${login}`,
 			);
 			return;
 		}
@@ -279,7 +279,7 @@ router.get("/gh/cb", async (ctx) => {
 			},
 		});
 
-		ctx.body = `GitHub: @${login} を、Misskey: @${user.username} に接続しました！`;
+		ctx.body = `GitHub: @${login} connected to TransFish: @${user.username} !`;
 
 		// Publish i updated event
 		publishMainStream(
