@@ -99,6 +99,7 @@ const _http = new http.Agent({
 	keepAlive: true,
 	keepAliveMsecs: 30 * 1000,
 	lookup: cache.lookup,
+	localAddress: config.outgoingAddress,
 } as http.AgentOptions);
 
 /**
@@ -108,6 +109,7 @@ const _https = new https.Agent({
 	keepAlive: true,
 	keepAliveMsecs: 30 * 1000,
 	lookup: cache.lookup,
+	localAddress: config.outgoingAddress,
 } as https.AgentOptions);
 
 const maxSockets = Math.max(256, config.deliverJobConcurrency || 128);
@@ -123,6 +125,7 @@ export const httpAgent = config.proxy
 			maxFreeSockets: 256,
 			scheduling: "lifo",
 			proxy: config.proxy,
+			localAddress: config.outgoingAddress,
 	  })
 	: _http;
 
@@ -137,6 +140,7 @@ export const httpsAgent = config.proxy
 			maxFreeSockets: 256,
 			scheduling: "lifo",
 			proxy: config.proxy,
+			localAddress: config.outgoingAddress,
 	  })
 	: _https;
 
