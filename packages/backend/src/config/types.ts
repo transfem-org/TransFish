@@ -78,6 +78,7 @@ export type Source = {
 		fingerprint?: string;
 	};
 
+	outgoingAddress?: string;
 	outgoingAddressFamily?: "ipv4" | "ipv6" | "dual";
 
 	deliverJobConcurrency?: number;
