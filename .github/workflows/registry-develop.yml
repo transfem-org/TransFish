@@ -42,6 +42,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and Push to GHCR
+        id: build
         uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -53,3 +54,9 @@ jobs:
           labels: develop
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Pull update for transfem.social server
+        if: steps.build.outcome == 'success'
+        uses: indiesdev/curl@v1.1
+        with:
+          url: ${{ secrets.PUSH_UPDATE_PULL }}
+          method: POST
