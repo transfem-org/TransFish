@@ -1945,7 +1945,7 @@ _notification:
     renote: "Renote"
   voted: haben bei deiner Umfrage abgestimmt
   reacted: hat auf deinen Beitrag reagiert
-  renoted: hat Ihren Beitrag geteilt
+  renoted: hat deinen Beitrag geteilt
 _deck:
   alwaysShowMainColumn: "Hauptspalte immer zeigen"
   columnAlign: "Spaltenausrichtung"
