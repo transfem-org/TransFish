@@ -122,19 +122,31 @@ export default class DeliverManager {
 			)
 			.forEach((recipe) => inboxes.add(recipe.to.inbox!));
 
+		// Validate Inboxes first
+		const validInboxes = [];
+		for (const inbox of inboxes) {
+			try {
+				validInboxes.push({
+					inbox,
+					host: new URL(inbox).host,
+				});
+			} catch (error) {
+				console.error(error);
+				console.error(`Invalid Inbox ${inbox}`);
+			}
+		}
+
 		const instancesToSkip = await skippedInstances(
 			// get (unique) list of hosts
-			Array.from(
-				new Set(Array.from(inboxes).map((inbox) => new URL(inbox).host)),
-			),
+			Array.from(new Set(validInboxes.map((valid) => valid.host))),
 		);
 
 		// deliver
-		for (const inbox of inboxes) {
+		for (const valid of validInboxes) {
 			// skip instances as indicated
-			if (instancesToSkip.includes(new URL(inbox).host)) continue;
+			if (instancesToSkip.includes(valid.host)) continue;
 
-			deliver(this.actor, this.activity, inbox);
+			deliver(this.actor, this.activity, valid.inbox);
 		}
 	}
 }
