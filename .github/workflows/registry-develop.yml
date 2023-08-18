@@ -60,3 +60,4 @@ jobs:
         with:
           url: ${{ secrets.PUSH_UPDATE_PULL }}
           method: POST
+          timeout: 15000
