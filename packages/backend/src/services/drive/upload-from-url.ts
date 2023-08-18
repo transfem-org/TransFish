@@ -38,7 +38,7 @@ export async function uploadFromUrl({
 	const parsedUrl = new URL(url);
 	if (
 		process.env.NODE_ENV === "production" &&
-		isPrivateIp(parsedUrl.hostname)
+		isPrivateIp(parsedUrl.hostname.replaceAll(/(\[)|(\])/g, ""))
 	) {
 		throw new Error("Private IP is not allowed");
 	}
