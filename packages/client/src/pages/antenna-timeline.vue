@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch } from "vue";
+import { computed, inject, watch, ref } from "vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import * as os from "@/os";
 import { useRouter } from "@/router";
@@ -37,10 +37,10 @@ const props = defineProps<{
 	antennaId: string;
 }>();
 
-let antenna = $ref(null);
-let rootEl = $ref<HTMLElement>();
-let tlEl = $ref<InstanceType<typeof XTimeline>>();
-const keymap = $computed(() => ({
+let antenna = ref(null);
+let rootEl = ref<HTMLElement>();
+let tlEl = ref<InstanceType<typeof XTimeline>>();
+const keymap = computed(() => ({
 	t: focus,
 }));
 
@@ -50,7 +50,7 @@ async function timetravel() {
 	});
 	if (canceled) return;
 
-	tlEl.timetravel(date);
+	tlEl.value.timetravel(date);
 }
 
 function settings() {
@@ -74,21 +74,21 @@ async function markRead() {
 }
 
 function focus() {
-	tlEl.focus();
+	tlEl.value.focus();
 }
 
 watch(
 	() => props.antennaId,
 	async () => {
-		antenna = await os.api("antennas/show", {
+		antenna.value = await os.api("antennas/show", {
 			antennaId: props.antennaId,
 		});
 	},
 	{ immediate: true },
 );
 
-const headerActions = $computed(() =>
-	antenna
+const headerActions = computed(() =>
+	antenna.value
 		? [
 				// {
 				// 	icon: "ph-calendar-blank ph-bold ph-lg",
@@ -109,13 +109,13 @@ const headerActions = $computed(() =>
 		: [],
 );
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata(
 	computed(() =>
-		antenna
+		antenna.value
 			? {
-					title: antenna.name,
+					title: antenna.value.name,
 					icon: "ph-flying-saucer ph-bold ph-lg",
 			  }
 			: null,

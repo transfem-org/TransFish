@@ -59,17 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	defineAsyncComponent,
-	inject,
-	nextTick,
-	onMounted,
-	onUnmounted,
-	onActivated,
-	provide,
-	watch,
-	ref,
-} from "vue";
+import { defineAsyncComponent, inject, nextTick, onMounted, onUnmounted, onActivated, provide, watch, ref, computed } from 'vue';
 import { i18n } from "@/i18n";
 import MkSuperMenu from "@/components/MkSuperMenu.vue";
 import MkInfo from "@/components/MkInfo.vue";
@@ -102,11 +92,11 @@ const indexInfo = {
 
 provide("shouldOmitHeaderTitle", false);
 
-let INFO = $ref(indexInfo);
-let childInfo = $ref(null);
-let narrow = $ref(false);
-let view = $ref(null);
-let pageProps = $ref({});
+let INFO = ref(indexInfo);
+let childInfo = ref(null);
+let narrow = ref(false);
+let view = ref(null);
+let pageProps = ref({});
 let noMaintainerInformation =
 	isEmpty(instance.maintainerName) || isEmpty(instance.maintainerEmail);
 let noBotProtection =
@@ -114,15 +104,15 @@ let noBotProtection =
 	!instance.enableHcaptcha &&
 	!instance.enableRecaptcha;
 let noEmailServer = !instance.enableEmail;
-let thereIsUnresolvedAbuseReport = $ref(false);
-let updateAvailable = $ref(false);
-let currentPage = $computed(() => router.currentRef.value.child);
+let thereIsUnresolvedAbuseReport = ref(false);
+let updateAvailable = ref(false);
+let currentPage = computed(() => router.currentRef.value.child);
 
 os.api("admin/abuse-user-reports", {
 	state: "unresolved",
 	limit: 1,
 }).then((reports) => {
-	if (reports?.length > 0) thereIsUnresolvedAbuseReport = true;
+	if (reports?.length > 0) thereIsUnresolvedAbuseReport.value = true;
 });
 
 if (defaultStore.state.showAdminUpdates) {
@@ -130,7 +120,7 @@ if (defaultStore.state.showAdminUpdates) {
 		const cleanRes = parseInt(res?.tag_name.replace(/[^0-9]/g, ""));
 		const cleanVersion = parseInt(version.replace(/[^0-9]/g, ""));
 		if (cleanRes > cleanVersion) {
-			updateAvailable = true;
+			updateAvailable.value = true;
 		}
 	});
 }
@@ -138,10 +128,10 @@ if (defaultStore.state.showAdminUpdates) {
 const NARROW_THRESHOLD = 600;
 const ro = new ResizeObserver((entries, observer) => {
 	if (entries.length === 0) return;
-	narrow = entries[0].borderBoxSize[0].inlineSize < NARROW_THRESHOLD;
+	narrow.value = entries[0].borderBoxSize[0].inlineSize < NARROW_THRESHOLD;
 });
 
-const menuDef = $computed(() => [
+const menuDef = computed(() => [
 	{
 		title: i18n.ts.quickAction,
 		items: [
@@ -180,55 +170,55 @@ const menuDef = $computed(() => [
 				icon: "ph-gauge ph-bold ph-lg",
 				text: i18n.ts.dashboard,
 				to: "/admin/overview",
-				active: currentPage?.route.name === "overview",
+				active: currentPage.value?.route.name === "overview",
 			},
 			{
 				icon: "ph-users ph-bold ph-lg",
 				text: i18n.ts.users,
 				to: "/admin/users",
-				active: currentPage?.route.name === "users",
+				active: currentPage.value?.route.name === "users",
 			},
 			{
 				icon: "ph-smiley ph-bold ph-lg",
 				text: i18n.ts.customEmojis,
 				to: "/admin/emojis",
-				active: currentPage?.route.name === "emojis",
+				active: currentPage.value?.route.name === "emojis",
 			},
 			{
 				icon: "ph-planet ph-bold ph-lg",
 				text: i18n.ts.federation,
 				to: "/admin/federation",
-				active: currentPage?.route.name === "federation",
+				active: currentPage.value?.route.name === "federation",
 			},
 			{
 				icon: "ph-queue ph-bold ph-lg",
 				text: i18n.ts.jobQueue,
 				to: "/admin/queue",
-				active: currentPage?.route.name === "queue",
+				active: currentPage.value?.route.name === "queue",
 			},
 			{
 				icon: "ph-cloud ph-bold ph-lg",
 				text: i18n.ts.files,
 				to: "/admin/files",
-				active: currentPage?.route.name === "files",
+				active: currentPage.value?.route.name === "files",
 			},
 			{
 				icon: "ph-megaphone-simple ph-bold ph-lg",
 				text: i18n.ts.announcements,
 				to: "/admin/announcements",
-				active: currentPage?.route.name === "announcements",
+				active: currentPage.value?.route.name === "announcements",
 			},
 			{
 				icon: "ph-money ph-bold ph-lg",
 				text: i18n.ts.ads,
 				to: "/admin/ads",
-				active: currentPage?.route.name === "ads",
+				active: currentPage.value?.route.name === "ads",
 			},
 			{
 				icon: "ph-warning-circle ph-bold ph-lg",
 				text: i18n.ts.abuseReports,
 				to: "/admin/abuses",
-				active: currentPage?.route.name === "abuses",
+				active: currentPage.value?.route.name === "abuses",
 			},
 		],
 	},
@@ -241,70 +231,70 @@ const menuDef = $computed(() => [
 							icon: "ph-gear-six ph-bold ph-lg",
 							text: i18n.ts.general,
 							to: "/admin/settings",
-							active: currentPage?.route.name === "settings",
+							active: currentPage.value?.route.name === "settings",
 						},
 						{
 							icon: "ph-envelope-simple-open ph-bold ph-lg",
 							text: i18n.ts.emailServer,
 							to: "/admin/email-settings",
 							active:
-								currentPage?.route.name === "email-settings",
+								currentPage.value?.route.name === "email-settings",
 						},
 						{
 							icon: "ph-cloud ph-bold ph-lg",
 							text: i18n.ts.objectStorage,
 							to: "/admin/object-storage",
 							active:
-								currentPage?.route.name === "object-storage",
+								currentPage.value?.route.name === "object-storage",
 						},
 						{
 							icon: "ph-lock ph-bold ph-lg",
 							text: i18n.ts.security,
 							to: "/admin/security",
-							active: currentPage?.route.name === "security",
+							active: currentPage.value?.route.name === "security",
 						},
 						{
 							icon: "ph-arrows-merge ph-bold ph-lg",
 							text: i18n.ts.relays,
 							to: "/admin/relays",
-							active: currentPage?.route.name === "relays",
+							active: currentPage.value?.route.name === "relays",
 						},
 						{
 							icon: "ph-plug ph-bold ph-lg",
 							text: i18n.ts.integration,
 							to: "/admin/integrations",
-							active: currentPage?.route.name === "integrations",
+							active: currentPage.value?.route.name === "integrations",
 						},
 						{
 							icon: "ph-prohibit ph-bold ph-lg",
 							text: i18n.ts.instanceBlocking,
 							to: "/admin/instance-block",
 							active:
-								currentPage?.route.name === "instance-block",
+								currentPage.value?.route.name === "instance-block",
 						},
 						{
 							icon: "ph-hash ph-bold ph-lg",
 							text: i18n.ts.hiddenTags,
 							to: "/admin/hashtags",
-							active: currentPage?.route.name === "hashtags",
+							active: currentPage.value?.route.name === "hashtags",
 						},
 						{
 							icon: "ph-ghost ph-bold ph-lg",
 							text: i18n.ts.proxyAccount,
 							to: "/admin/proxy-account",
-							active: currentPage?.route.name === "proxy-account",
+							active: currentPage.value?.route.name === "proxy-account",
 						},
 						{
 							icon: "ph-database ph-bold ph-lg",
 							text: i18n.ts.database,
 							to: "/admin/database",
-							active: currentPage?.route.name === "database",
+							active: currentPage.value?.route.name === "database",
 						},
 						{
 							icon: "ph-flask ph-bold ph-lg",
 							text: i18n.ts._experiments.title,
 							to: "/admin/experiments",
-							active: currentPage?.route.name === "experiments",
+							active: currentPage.value?.route.name === "experiments",
 						},
 					],
 				},
@@ -312,8 +302,8 @@ const menuDef = $computed(() => [
 		: []),
 ]);
 
-watch(narrow, () => {
-	if (currentPage?.route.name == null && !narrow) {
+watch(narrow.value, () => {
+	if (currentPage.value?.route.name == null && !narrow.value) {
 		router.push("/admin/overview");
 	}
 });
@@ -321,16 +311,16 @@ watch(narrow, () => {
 onMounted(() => {
 	ro.observe(el.value);
 
-	narrow = el.value.offsetWidth < NARROW_THRESHOLD;
-	if (currentPage?.route.name == null && !narrow) {
+	narrow.value = el.value.offsetWidth < NARROW_THRESHOLD;
+	if (currentPage.value?.route.name == null && !narrow.value) {
 		router.push("/admin/overview");
 	}
 });
 
 onActivated(() => {
-	narrow = el.value.offsetWidth < NARROW_THRESHOLD;
+	narrow.value = el.value.offsetWidth < NARROW_THRESHOLD;
 
-	if (!narrow && currentPage?.route.name == null) {
+	if (!narrow.value && currentPage.value?.route.name == null) {
 		router.replace("/admin/overview");
 	}
 });
@@ -340,16 +330,16 @@ onUnmounted(() => {
 });
 
 watch(router.currentRef, (to) => {
-	if (to.route.path === "/admin" && to.child?.route.name == null && !narrow) {
+	if (to.route.path === "/admin" && to.child?.route.name == null && !narrow.value) {
 		router.replace("/admin/overview");
 	}
 });
 
 provideMetadataReceiver((info) => {
 	if (info == null) {
-		childInfo = null;
+		childInfo.value = null;
 	} else {
-		childInfo = info;
+		childInfo.value = info;
 	}
 });
 
@@ -430,11 +420,11 @@ const lookup = (ev) => {
 	);
 };
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
-definePageMetadata(INFO);
+definePageMetadata(INFO.value);
 
 defineExpose({
 	header: {

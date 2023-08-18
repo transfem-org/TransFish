@@ -107,7 +107,7 @@ const props = defineProps<{
 	raw?: boolean;
 }>();
 
-let hide = $ref(true);
+let hide = ref(true);
 
 const plyr = ref();
 
@@ -148,7 +148,7 @@ function captionPopup() {
 watch(
 	() => props.media,
 	() => {
-		hide =
+		hide.value =
 			defaultStore.state.nsfw === "force"
 				? true
 				: props.media.isSensitive &&

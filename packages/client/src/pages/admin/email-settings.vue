@@ -91,6 +91,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
+
 import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
@@ -103,23 +105,23 @@ import { fetchInstance, instance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let enableEmail: boolean = $ref(false);
-let email: any = $ref(null);
-let smtpSecure: boolean = $ref(false);
-let smtpHost: string = $ref("");
-let smtpPort: number = $ref(0);
-let smtpUser: string = $ref("");
-let smtpPass: string = $ref("");
+let enableEmail: boolean = ref(false);
+let email: any = ref(null);
+let smtpSecure: boolean = ref(false);
+let smtpHost: string = ref("");
+let smtpPort: number = ref(0);
+let smtpUser: string = ref("");
+let smtpPass: string = ref("");
 
 async function init() {
 	const meta = await os.api("admin/meta");
-	enableEmail = meta.enableEmail;
-	email = meta.email;
-	smtpSecure = meta.smtpSecure;
-	smtpHost = meta.smtpHost;
-	smtpPort = meta.smtpPort;
-	smtpUser = meta.smtpUser;
-	smtpPass = meta.smtpPass;
+	enableEmail.value = meta.enableEmail;
+	email.value = meta.email;
+	smtpSecure.value = meta.smtpSecure;
+	smtpHost.value = meta.smtpHost;
+	smtpPort.value = meta.smtpPort;
+	smtpUser.value = meta.smtpUser;
+	smtpPass.value = meta.smtpPass;
 }
 
 async function testEmail() {
@@ -138,19 +140,19 @@ async function testEmail() {
 
 function save() {
 	os.apiWithDialog("admin/update-meta", {
-		enableEmail,
-		email,
-		smtpSecure,
-		smtpHost,
-		smtpPort,
-		smtpUser,
-		smtpPass,
+		enableEmail: enableEmail.value,
+		email: email.value,
+		smtpSecure: smtpSecure.value,
+		smtpHost: smtpHost.value,
+		smtpPort: smtpPort.value,
+		smtpUser: smtpUser.value,
+		smtpPass: smtpPass.value,
 	}).then(() => {
 		fetchInstance();
 	});
 }
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		asFullButton: true,
 		icon: "ph-test-tube ph-bold ph-lg",
@@ -165,7 +167,7 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.emailServer,

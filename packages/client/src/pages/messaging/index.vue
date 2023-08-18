@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, markRaw, onMounted, onUnmounted, watch } from "vue";
+import { ref, markRaw, onMounted, onUnmounted, watch, computed } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -108,12 +108,12 @@ import "swiper/scss/virtual";
 
 const router = useRouter();
 
-let messages = $ref([]);
-let connection = $ref(null);
+let messages = ref([]);
+let connection = ref(null);
 
 const tabs = ["dms", "groups"];
-let tab = $ref(tabs[0]);
-watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
+let tab = ref(tabs[0]);
+watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const MOBILE_THRESHOLD = 500;
 const isMobile = ref(
@@ -128,7 +128,7 @@ async function readAllMessagingMessages() {
 	await os.apiWithDialog("i/read-all-messaging-messages");
 }
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		icon: "ph-check ph-bold ph-lg",
 		text: i18n.ts.markAllAsRead,
@@ -136,7 +136,7 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => [
+const headerTabs = computed(() => [
 	{
 		key: "dms",
 		title: i18n.ts._messaging.dms,
@@ -171,7 +171,7 @@ const groupsPagination = {
 
 function onMessage(message): void {
 	if (message.recipientId) {
-		messages = messages.filter(
+		messages.value = messages.value.filter(
 			(m) =>
 				!(
 					(m.recipientId === message.recipientId &&
@@ -181,16 +181,18 @@ function onMessage(message): void {
 				),
 		);
 
-		messages.unshift(message);
+		messages.value.unshift(message);
 	} else if (message.groupId) {
-		messages = messages.filter((m) => m.groupId !== message.groupId);
-		messages.unshift(message);
+		messages.value = messages.value.filter(
+			(m) => m.groupId !== message.groupId,
+		);
+		messages.value.unshift(message);
 	}
 }
 
 function onRead(ids): void {
 	for (const id of ids) {
-		const found = messages.find((m) => m.id === id);
+		const found = messages.value.find((m) => m.id === id);
 		if (found) {
 			if (found.recipientId) {
 				found.isRead = true;
@@ -255,11 +257,11 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
+	syncSlide(tabs.indexOf(tab.value));
 }
 
 function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
+	tab.value = tabs[swiperRef.activeIndex];
 }
 
 function syncSlide(index) {
@@ -269,10 +271,10 @@ function syncSlide(index) {
 onMounted(() => {
 	syncSlide(tabs.indexOf(swiperRef.activeIndex));
 
-	connection = markRaw(stream.useChannel("messagingIndex"));
+	connection.value = markRaw(stream.useChannel("messagingIndex"));
 
-	connection.on("message", onMessage);
-	connection.on("read", onRead);
+	connection.value.on("message", onMessage);
+	connection.value.on("read", onRead);
 
 	os.api("messaging/history", { group: false, limit: 5 }).then(
 		(userMessages) => {
@@ -284,7 +286,7 @@ onMounted(() => {
 							new Date(b.createdAt).getTime() -
 							new Date(a.createdAt).getTime(),
 					);
-					messages = _messages;
+					messages.value = _messages;
 				},
 			);
 		},
@@ -292,7 +294,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-	if (connection) connection.dispose();
+	if (connection.value) connection.value.dispose();
 });
 </script>
 

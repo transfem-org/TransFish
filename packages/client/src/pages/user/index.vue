@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, watch } from "vue";
+import { defineAsyncComponent, computed, watch, ref } from "vue";
 import calcAge from "s-age";
 import * as Acct from "firefish-js/built/acct";
 import type * as misskey from "firefish-js";
@@ -60,19 +60,19 @@ const props = withDefaults(
 
 const router = useRouter();
 
-let tab = $ref(props.page);
-let user = $ref<null | misskey.entities.UserDetailed>(null);
-let error = $ref(null);
+let tab = ref(props.page);
+let user = ref<null | misskey.entities.UserDetailed>(null);
+let error = ref(null);
 
 function fetchUser(): void {
 	if (props.acct == null) return;
-	user = null;
+	user.value = null;
 	os.api("users/show", Acct.parse(props.acct))
 		.then((u) => {
-			user = u;
+			user.value = u;
 		})
 		.catch((err) => {
-			error = err;
+			error.value = err;
 		});
 }
 
@@ -80,17 +80,18 @@ watch(() => props.acct, fetchUser, {
 	immediate: true,
 });
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() =>
-	user
+const headerTabs = computed(() =>
+	user.value
 		? [
 				{
 					key: "home",
 					title: i18n.ts.overview,
 					icon: "ph-user ph-bold ph-lg",
 				},
-				...(($i && $i.id === user.id) || user.publicReactions
+				...(($i && $i.id === user.value.id) ||
+				user.value.publicReactions
 					? [
 							{
 								key: "reactions",
@@ -99,7 +100,7 @@ const headerTabs = $computed(() =>
 							},
 					  ]
 					: []),
-				...(user.instance == null
+				...(user.value.instance == null
 					? [
 							{
 								key: "clips",
@@ -124,18 +125,18 @@ const headerTabs = $computed(() =>
 
 definePageMetadata(
 	computed(() =>
-		user
+		user.value
 			? {
 					icon: "ph-user ph-bold ph-lg",
-					title: user.name
-						? `${user.name} (@${user.username})`
-						: `@${user.username}`,
-					subtitle: `@${getAcct(user)}`,
-					userName: user,
-					avatar: user,
-					path: `/@${user.username}`,
+					title: user.value.name
+						? `${user.value.name} (@${user.value.username})`
+						: `@${user.value.username}`,
+					subtitle: `@${getAcct(user.value)}`,
+					userName: user.value,
+					avatar: user.value,
+					path: `/@${user.value.username}`,
 					share: {
-						title: user.name,
+						title: user.value.name,
 					},
 			  }
 			: null,

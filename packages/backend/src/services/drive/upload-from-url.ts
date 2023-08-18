@@ -1,7 +1,7 @@
 import { URL } from "node:url";
 import type { User } from "@/models/entities/user.js";
 import { createTemp } from "@/misc/create-temp.js";
-import { downloadUrl } from "@/misc/download-url.js";
+import { downloadUrl, isPrivateIp } from "@/misc/download-url.js";
 import type { DriveFolder } from "@/models/entities/drive-folder.js";
 import type { DriveFile } from "@/models/entities/drive-file.js";
 import { DriveFiles } from "@/models/index.js";
@@ -35,7 +35,15 @@ export async function uploadFromUrl({
 	requestIp = null,
 	requestHeaders = null,
 }: Args): Promise<DriveFile> {
-	let name = new URL(url).pathname.split("/").pop() || null;
+	const parsedUrl = new URL(url);
+	if (
+		process.env.NODE_ENV === "production" &&
+		isPrivateIp(parsedUrl.hostname.replaceAll(/(\[)|(\])/g, ""))
+	) {
+		throw new Error("Private IP is not allowed");
+	}
+
+	let name = parsedUrl.pathname.split("/").pop() || null;
 	if (name == null || !DriveFiles.validateFileName(name)) {
 		name = null;
 	}

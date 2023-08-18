@@ -82,6 +82,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import {} from "vue";
 import * as mfm from "mfm-js";
 import type * as Misskey from "firefish-js";
@@ -97,8 +99,8 @@ const props = defineProps<{
 	isGroup?: boolean;
 }>();
 
-const isMe = $computed(() => props.message.userId === $i?.id);
-const urls = $computed(() =>
+const isMe = computed(() => props.message.userId === $i?.id);
+const urls = computed(() =>
 	props.message.text ? extractUrlFromMfm(mfm.parse(props.message.text)) : [],
 );
 

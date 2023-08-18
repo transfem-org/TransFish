@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { shallowRef } from "vue";
+import { shallowRef, ref } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkSparkle from "@/components/MkSparkle.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -43,18 +43,18 @@ import * as os from "@/os";
 
 const modal = shallowRef<InstanceType<typeof MkModal>>();
 
-let newRelease = $ref(false);
-let data = $ref(Object);
+let newRelease = ref(false);
+let data = ref(Object);
 
 os.api("release").then((res) => {
-	data = res;
-	newRelease = version === data?.version;
+	data.value = res;
+	newRelease.value = version === data.value?.version;
 });
 
 console.log(`Version: ${version}`);
-console.log(`Data version: ${data.version}`);
-console.log(newRelease);
-console.log(data);
+console.log(`Data version: ${data.value.version}`);
+console.log(newRelease.value);
+console.log(data.value);
 </script>
 
 <style lang="scss" module>

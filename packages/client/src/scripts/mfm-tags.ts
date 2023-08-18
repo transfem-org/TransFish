@@ -21,4 +21,6 @@ export const MFM_TAGS = [
 	"sparkle",
 	"rotate",
 	"fade",
+	"small",
+	"center",
 ];

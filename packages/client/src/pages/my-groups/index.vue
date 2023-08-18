@@ -71,7 +71,7 @@ const joinedPagination = {
 	limit: 10,
 };
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		icon: "ph-plus ph-bold ph-lg",
 		text: i18n.ts.createGroup,

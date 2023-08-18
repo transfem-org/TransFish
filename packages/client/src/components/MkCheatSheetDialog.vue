@@ -11,6 +11,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import XModalWindow from "@/components/MkModalWindow.vue";
 import XCheatSheet from "@/pages/mfm-cheat-sheet.vue";
 import { i18n } from "@/i18n";
@@ -20,7 +22,7 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-const dialog = $ref<InstanceType<typeof XModalWindow>>();
+const dialog = ref<InstanceType<typeof XModalWindow>>();
 </script>
 
 <style lang="scss" scoped>

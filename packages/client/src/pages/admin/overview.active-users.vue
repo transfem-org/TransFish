@@ -8,13 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	markRaw,
-	version as vueVersion,
-	onMounted,
-	onBeforeUnmount,
-	nextTick,
-} from "vue";
+import { markRaw, version as vueVersion, onMounted, onBeforeUnmount, nextTick, shallowRef, ref } from 'vue';
 import { Chart } from "chart.js";
 import tinycolor from "tinycolor2";
 import gradient from "chartjs-plugin-gradient";
@@ -27,11 +21,11 @@ import { initChart } from "@/scripts/init-chart";
 
 initChart();
 
-const chartEl = $shallowRef<HTMLCanvasElement>(null);
+const chartEl = shallowRef<HTMLCanvasElement>(null);
 const now = new Date();
 let chartInstance: Chart = null;
 const chartLimit = 7;
-let fetching = $ref(true);
+let fetching = ref(true);
 
 const { handler: externalTooltipHandler } = useChartTooltip();
 
@@ -69,7 +63,7 @@ async function renderChart() {
 
 	const max = Math.max(...raw.read);
 
-	chartInstance = new Chart(chartEl, {
+	chartInstance = new Chart(chartEl.value, {
 		type: "bar",
 		data: {
 			datasets: [
@@ -166,7 +160,7 @@ async function renderChart() {
 		plugins: [chartVLine(vLineColor)],
 	});
 
-	fetching = false;
+	fetching.value = false;
 }
 
 onMounted(async () => {

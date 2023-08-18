@@ -233,13 +233,13 @@ const emit = defineEmits<{
 	(ev: "close", actioned?: boolean): void;
 }>();
 
-let itemsEl = $ref<HTMLDivElement>();
+let itemsEl = ref<HTMLDivElement>();
 
-let items2: InnerMenuItem[] = $ref([]);
+let items2: InnerMenuItem[] = ref([]);
 
-let child = $ref<InstanceType<typeof XChild>>();
+let child = ref<InstanceType<typeof XChild>>();
 
-let childShowingItem = $ref<MenuItem | null>();
+let childShowingItem = ref<MenuItem | null>();
 
 watch(
 	() => props.items,
@@ -255,24 +255,24 @@ watch(
 				// if item is Promise
 				items[i] = { type: "pending" };
 				item.then((actualItem) => {
-					items2[i] = actualItem;
+					items2.value[i] = actualItem;
 				});
 			}
 		}
 
-		items2 = items as InnerMenuItem[];
+		items2.value = items as InnerMenuItem[];
 	},
 	{
 		immediate: true,
 	},
 );
 
-let childMenu = $ref<MenuItem[] | null>();
-let childTarget = $ref<HTMLElement | null>();
+let childMenu = ref<MenuItem[] | null>();
+let childTarget = ref<HTMLElement | null>();
 
 function closeChild() {
-	childMenu = null;
-	childShowingItem = null;
+	childMenu.value = null;
+	childShowingItem.value = null;
 }
 
 function childActioned() {
@@ -282,11 +282,12 @@ function childActioned() {
 
 function onGlobalMousedown(event: MouseEvent) {
 	if (
-		childTarget &&
-		(event.target === childTarget || childTarget.contains(event.target))
+		childTarget.value &&
+		(event.target === childTarget.value ||
+			childTarget.value.contains(event.target))
 	)
 		return;
-	if (child && child.checkHit(event)) return;
+	if (child.value && child.value.checkHit(event)) return;
 	closeChild();
 }
 
@@ -305,9 +306,9 @@ async function showChildren(item: MenuItem, ev: MouseEvent) {
 		os.popupMenu(item.children, ev.currentTarget ?? ev.target);
 		close();
 	} else {
-		childTarget = ev.currentTarget ?? ev.target;
-		childMenu = item.children;
-		childShowingItem = item;
+		childTarget.value = ev.currentTarget ?? ev.target;
+		childMenu.value = item.children;
+		childShowingItem.value = item;
 	}
 }
 

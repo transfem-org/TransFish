@@ -13,6 +13,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import XNotes from "@/components/MkNotes.vue";
 import MkTab from "@/components/MkTab.vue";
 import { i18n } from "@/i18n";
@@ -43,5 +45,5 @@ const paginationForRemote = {
 // 	offsetMode: true,
 // };
 
-let tab = $ref("local");
+let tab = ref("local");
 </script>

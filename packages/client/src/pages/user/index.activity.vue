@@ -29,6 +29,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import * as misskey from "firefish-js";
 import MkContainer from "@/components/MkContainer.vue";
@@ -46,7 +48,7 @@ const props = withDefaults(
 	},
 );
 
-let chartSrc = $ref("per-user-notes");
+let chartSrc = ref("per-user-notes");
 
 function showMenu(ev: MouseEvent) {
 	os.popupMenu(
@@ -55,7 +57,7 @@ function showMenu(ev: MouseEvent) {
 				text: i18n.ts.notes,
 				active: true,
 				action: () => {
-					chartSrc = "per-user-notes";
+					chartSrc.value = "per-user-notes";
 				},
 			} /*, {
 		text: i18n.ts.following,

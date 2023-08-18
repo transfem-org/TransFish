@@ -53,7 +53,7 @@ sendMessage: "Envoyer un message"
 copyUsername: "Copier le nom d’utilisateur·rice"
 searchUser: "Chercher un·e utilisateur·rice"
 reply: "Répondre"
-loadMore: "Afficher plus"
+loadMore: "Charger plus"
 showMore: "Afficher plus"
 showLess: "Fermer"
 youGotNewFollower: "Vous suit"
@@ -120,8 +120,8 @@ reactionSettingDescription2: "Déplacer pour réorganiser, cliquer pour effacer,
   « + » pour ajouter."
 rememberNoteVisibility: "Se souvenir des paramètres de visibilité des publications"
 attachCancel: "Supprimer le fichier attaché"
-markAsSensitive: "Marquer comme sensible"
-unmarkAsSensitive: "Supprimer le marquage comme sensible"
+markAsSensitive: "Marquer comme sensible (NSFW)"
+unmarkAsSensitive: "Supprimer le marquage comme sensible (NSFW)"
 enterFileName: "Entrer le nom du fichier"
 mute: "Masquer"
 unmute: "Ne plus masquer"
@@ -245,7 +245,7 @@ currentPassword: "Mot de passe actuel"
 newPassword: "Nouveau mot de passe"
 newPasswordRetype: "Répéter le nouveau mot de passe"
 attachFile: "Joindre un fichier"
-more: "Plus"
+more: "Plus !"
 featured: "Tendances"
 usernameOrUserId: "Nom d’utilisateur·rice ou ID utilisateur"
 noSuchUser: "Utilisateur·rice non trouvé·e"
@@ -318,7 +318,7 @@ copyUrl: "Copier l’URL"
 rename: "Renommer"
 avatar: "Avatar"
 banner: "Bannière"
-nsfw: "Contenu sensible"
+nsfw: "Contenu sensible (NSFW)"
 whenServerDisconnected: "Lorsque la connexion au serveur est perdue"
 disconnectedFromServer: "Déconnecté·e du serveur"
 reload: "Rafraîchir"
@@ -516,11 +516,11 @@ showFeaturedNotesInTimeline: "Afficher les publications des Tendances dans le fi
   d'actualité"
 objectStorage: "Stockage d'objets"
 useObjectStorage: "Utiliser le stockage d'objets"
-objectStorageBaseUrl: "Base URL"
+objectStorageBaseUrl: "URL racine"
 objectStorageBaseUrlDesc: "Préfixe d’URL utilisé pour construire l’URL vers le référencement
   d’objet (média). Spécifiez son URL si vous utilisez un CDN ou un proxy, sinon spécifiez
   l’adresse accessible au public selon le guide de service que vous allez utiliser.\n
-  Ex: 'https://<bucket>.s3.amazonaws.com' pour AWS S3 et 'https://storage.googleapis.com/<bucket>'
+  Ex : 'https://<bucket>.s3.amazonaws.com' pour AWS S3 et 'https://storage.googleapis.com/<bucket>'
   pour GCS."
 objectStorageBucket: "Bucket"
 objectStorageBucketDesc: "Veuillez spécifier le nom du compartiment utilisé sur le
@@ -591,7 +591,7 @@ divider: "Séparateur"
 addItem: "Ajouter un élément"
 relays: "Relais"
 addRelay: "Ajouter un relais"
-inboxUrl: "Inbox URL"
+inboxUrl: "URL de boîte de récéption"
 addedRelays: "Relais ajoutés"
 serviceworkerInfo: "Devrait être activé pour les notifications push."
 deletedNote: "Publication supprimée"
@@ -729,7 +729,7 @@ noCrawleDescription: "Demandez aux moteurs de recherche de ne pas indexer votre 
 lockedAccountInfo: "À moins que vous ne définissiez la visibilité de votre publication
   sur \"Abonné-e-s\", vos publications sont visibles par tous, même si vous exigez
   que les demandes d'abonnement soient approuvées manuellement."
-alwaysMarkSensitive: "Marquer les médias comme contenu sensible par défaut"
+alwaysMarkSensitive: "Marquer les médias comme contenu sensible (NSFW) par défaut"
 loadRawImages: "Affichage complet des images jointes au lieu des vignettes"
 disableShowingAnimatedImages: "Désactiver l'animation des images"
 verificationEmailSent: "Un e-mail de vérification a été envoyé. Veuillez accéder au
@@ -839,7 +839,7 @@ gallery: "Galerie"
 recentPosts: "Publications récentes"
 popularPosts: "Publications populaires"
 shareWithNote: "Partager dans une publication"
-ads: "Bannière communautaire"
+ads: "Bannières communautaires"
 expiration: "Échéance"
 memo: "Pense-bête"
 priority: "Priorité"
@@ -986,8 +986,8 @@ _plugin:
   manage: "Gestion des plugins"
 _registry:
   scope: "Portée"
-  key: "Clé "
-  keys: "Clé "
+  key: "Clé"
+  keys: "Clés"
   domain: "Domaine"
   createKey: "Créer une clé"
 _aboutFirefish:
@@ -1011,8 +1011,8 @@ _aboutFirefish:
     le lien ci-dessus pour avoir votre nom affiché ici !
   misskeyContributors: Contributeurs Misskey
 _nsfw:
-  respect: "Cacher les médias marqués comme contenu sensible"
-  ignore: "Afficher les médias sensibles"
+  respect: "Cacher les médias marqués comme contenu sensible (NSFW)"
+  ignore: "Afficher les médias sensibles (NSFW)"
   force: "Cacher tous les médias"
 _mfm:
   cheatSheet: "Antisèche MFM"
@@ -1021,7 +1021,7 @@ _mfm:
   dummy: "La Fédiverse s'agrandit avec Firefish"
   mention: "Mentionner"
   mentionDescription: "Vous pouvez afficher un utilisateur spécifique en indiquant
-    une arobase suivie d'un nom d'utilisateur"
+    le symbole d'arobase (@) suivie d'un nom d'utilisateur."
   hashtag: "Hashtags"
   hashtagDescription: "Vous pouvez afficher les hashtags en utilisant un croisillon
     et du texte."
@@ -1034,7 +1034,7 @@ _mfm:
   small: "Diminuer l'emphase"
   smallDescription: "Le contenu peut être affiché en petit et fin."
   center: "Centrer"
-  centerDescription: "Le contenu peut être centré"
+  centerDescription: "Centre le contenu sur la page."
   inlineCode: "Code (inline)"
   inlineCodeDescription: "Affiche la coloration syntaxique des lignes de code."
   blockCode: "Bloc de code"
@@ -1105,7 +1105,7 @@ _mfm:
   background: Couleur d'arrière-plan
   plain: Simple
 _instanceTicker:
-  none: "Cacher "
+  none: "Cacher"
   remote: "Montrer pour les utilisateur·ice·s distant·e·s"
   always: "Toujours afficher"
 _serverDisconnectedBehavior:
@@ -1170,17 +1170,17 @@ _theme:
   color: "Couleur"
   refProp: "Appeler une propriété"
   refConst: "Appeler une constante"
-  key: "Clé "
+  key: "Clé"
   func: "Fonction"
   funcKind: "Type de fonction"
   argument: "Argument"
   basedProp: "Nom de la propriété référencée"
   alpha: "Transparence"
-  darken: "Sombre"
+  darken: "Assombrir"
   lighten: "Clair"
   inputConstantName: "Insérez un nom de constante"
   importInfo: "Vous pouvez importer un thème vers l’éditeur de thèmes en saisissant
-    son code ici."
+    son code ici"
   deleteConstantConfirm: "Êtes-vous sûr·e de vouloir supprimer la constante {const}
     ?"
   keys:
@@ -1252,9 +1252,9 @@ _time:
   day: "j"
 _tutorial:
   title: "Comment utiliser Firefish"
-  step1_1: "Bienvenue!"
-  step1_2: "On va vous installer. Vous serez opérationnel en un rien de temps"
-  step2_1: "Tout d'abord, remplissez votre profil"
+  step1_1: "Bienvenue !"
+  step1_2: "On va vous installer. Vous serez opérationnel en un rien de temps !"
+  step2_1: "Tout d'abord, remplissez votre profil."
   step2_2: "En fournissant quelques informations sur qui vous êtes, il sera plus facile
     pour les autres de savoir s'ils veulent voir vos publcations ou vous suivre."
   step3_1: "Maintenant il est temps de suivre des gens !"
@@ -1265,7 +1265,7 @@ _tutorial:
   step4_2: "Pour votre première publication, certaines personnes aiment faire une
     {introduction} ou un simple 'Bonjour tout le monde !'"
   step5_1: "Des fils, des fils d’actualité partout !"
-  step5_2: "Votre serveur a {timelines} fils différents disponibles !"
+  step5_2: "Votre serveur a {timelines} fils différents activés."
   step5_3: "Le fil {icon} Principal est l'endroit où vous pouvez voir les publications
     de vos abonnements."
   step5_4: "La fil {icon} Local est l'endroit où vous pouvez voir les publications
@@ -1357,7 +1357,7 @@ _permissions:
 _auth:
   shareAccess: "Autoriser \"{name}\" à accéder à votre compte ?"
   shareAccessAsk: "Voulez-vous vraiment autoriser cette application à accéder à votre
-    compte?"
+    compte ?"
   permissionAsk: "Cette application nécessite les autorisations suivantes :"
   pleaseGoBack: "Veuillez retourner à l’application"
   callback: "Retour vers l’application"
@@ -1412,7 +1412,7 @@ _widgets:
   rssTicker: Bandeau RSS
 _cw:
   hide: "Masquer"
-  show: "Afficher plus …"
+  show: "Afficher contenu"
   chars: "{count} caractères"
   files: "{count} fichiers"
 _poll:
@@ -1422,8 +1422,8 @@ _poll:
   canMultipleVote: "Autoriser le multi-choix"
   expiration: "Fin du sondage"
   infinite: "Illimité"
-  at: "Choisir une date"
-  after: "Choisir la durée"
+  at: "Expire le..."
+  after: "Expire après..."
   deadlineDate: "Date de fin"
   deadlineTime: "Heure de fin"
   duration: "Durée"
@@ -1468,7 +1468,7 @@ _profile:
   metadataEdit: "Éditer les informations supplémentaires"
   metadataDescription: "Vous pouvez afficher jusqu'à quatre informations supplémentaires
     dans votre profil. Vous pouvez ajouter une balise {a} ou une balise {l} avec {rel}
-    pour vérifier le lien sur votre profil!"
+    pour vérifier le lien sur votre profil !"
   metadataLabel: "Étiquette"
   metadataContent: "Contenu"
   changeAvatar: "Changer l'image de profil"
@@ -1503,7 +1503,7 @@ _instanceCharts:
   usersTotal: "Total cumulé du nombre d'utilisateur·rice·s"
   notes: "Variation du nombre de publications"
   notesTotal: "Nombre total cumulé des publications"
-  ff: "Variation des abonné·e·s / abonnements"
+  ff: "Variation des abonnements / abonné·e·s "
   ffTotal: "Total cumulé du nombre d'abonné·e·s / abonnements"
   cacheSize: "Variation de la taille du cache"
   cacheSizeTotal: "Total cumulé de la taille du cache"
@@ -1812,7 +1812,7 @@ _relayStatus:
   accepted: "Accepté"
   rejected: "Refusée"
 _notification:
-  fileUploaded: "Le fichier a été téléversé !"
+  fileUploaded: "Le fichier a été téléversé"
   youGotMention: "{name} vous a mentionné"
   youGotReply: "Réponse de {name}"
   youGotQuote: "Cité·e par {name}"
@@ -1993,7 +1993,7 @@ type: Type
 speed: Vitesse
 slow: Lent
 move: Déplacer
-showAds: Afficher les bannières communautaire/publicités
+showAds: Afficher les bannières communautaire (publicités)
 enterSendsMessage: Appuyer sur Entrée pendant la rédaction pour envoyer le message
   (sinon Ctrl+Entrée)
 allowedInstancesDescription: Noms des serveurs autorisés pour la fédération, chacun
@@ -2071,14 +2071,14 @@ customKaTeXMacro: Macros KaTeX personnalisées
 enableCustomKaTeXMacro: Activer les macros KaTeX personnalisées
 noteId: ID des publications
 customKaTeXMacroDescription: "Définissez des macros pour écrire des expressions mathématiques
-  simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
+  simplement ! La notation se conforme aux définitions de commandes LaTeX et s'écrit
   \\newcommand{\\·name}{content} ou \\newcommand{\\name}[number of arguments]{content}.
   Par exemple, \\newcommand{\\add}[2]{#1 + #2} étendra \\add{3}{foo} en 3 + foo. Les
   accolades entourant le nom de la macro peuvent être changés pour des parenthèses
   ou des crochets. Cela affectera les types de parenthèses utilisées pour les arguments.
   Une (et une seule) macro peut être définie par ligne, et vous ne pouvez pas couper
   la ligne au milieu d'une définition. Les lignes invalides sont simplement ignorées.
-  Seulement de simples fonctions de substitution de chaines sont supportées; la syntaxe
+  Seulement de simples fonctions de substitution de chaines sont supportées ; la syntaxe
   avancée, telle que la ramification conditionnelle, ne peut pas être utilisée ici."
 enableRecommendedTimeline: Activer le fil recommandé
 silenceThisInstance: Masquer ce serveur
@@ -2197,7 +2197,7 @@ _skinTones:
 objectStorageS3ForcePathStyle: Utiliser des URL d'endpoints basées sur le chemin
 objectStorageS3ForcePathStyleDesc: Activez cette option pour construire les URL d'endpoints
   au format 's3.amazonaws.com/<bucket>/' au lieu de '<bucket>.s3.amazonaws.com'.
-delete2fa: Supprimer 2FA
+delete2fa: Désativer A2F
 deletePasskeys: Supprimer les clés d'accès
 delete2faConfirm: Cela supprimera de manière irréversible la double authentification
   sur ce compte. Souhaitez-vous continuer ?

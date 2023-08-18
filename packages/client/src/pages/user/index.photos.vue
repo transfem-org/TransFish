@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import * as misskey from "firefish-js";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import { notePage } from "@/filters/note";
@@ -42,8 +42,8 @@ const props = defineProps<{
 	user: misskey.entities.UserDetailed;
 }>();
 
-let fetching = $ref(true);
-let images = $ref<
+let fetching = ref(true);
+let images = ref<
 	{
 		note: misskey.entities.Note;
 		file: misskey.entities.DriveFile;
@@ -73,13 +73,13 @@ onMounted(() => {
 	}).then((notes) => {
 		for (const note of notes) {
 			for (const file of note.files) {
-				images.push({
+				images.value.push({
 					note,
 					file,
 				});
 			}
 		}
-		fetching = false;
+		fetching.value = false;
 	});
 });
 </script>

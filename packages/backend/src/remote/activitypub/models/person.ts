@@ -709,7 +709,7 @@ export async function updateFeatured(userId: User["id"], resolver?: Resolver) {
 		? collection.items
 		: collection.orderedItems;
 	const items = await Promise.all(
-		toArray(unresolvedItems).map((x) => resolver!.resolve(x)),
+		toArray(unresolvedItems).map((x) => resolver?.resolve(x)),
 	);
 
 	// Resolve and regist Notes

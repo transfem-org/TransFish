@@ -63,6 +63,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
+
 import {} from "vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -74,13 +76,13 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { formatDateTimeString } from "@/scripts/format-time-string";
 
-let ads: any[] = $ref([]);
+let ads: any[] = ref([]);
 
 os.api("admin/ad/list").then((adsResponse) => {
-	ads = adsResponse;
+	ads.value = adsResponse;
 	// The date format should be changed to yyyy-MM-dd in order to be properly displayed
-	for (let i in ads) {
-		ads[i].expiresAt = ads[i].expiresAt.substr(0, 10);
+	for (let i in ads.value) {
+		ads.value[i].expiresAt = ads.value[i].expiresAt.substr(0, 10);
 	}
 });
 
@@ -89,7 +91,7 @@ function add() {
 		new Date(new Date().setDate(new Date().getDate() + 1)),
 		"yyyy-MM-dd",
 	);
-	ads.unshift({
+	ads.value.unshift({
 		id: null,
 		memo: "",
 		place: "widget",
@@ -107,7 +109,7 @@ function remove(ad) {
 		text: i18n.t("removeAreYouSure", { x: ad.url }),
 	}).then(({ canceled }) => {
 		if (canceled) return;
-		ads = ads.filter((x) => x !== ad);
+		ads.value = ads.value.filter((x) => x !== ad);
 		os.apiWithDialog("admin/ad/delete", {
 			id: ad.id,
 		});
@@ -128,7 +130,7 @@ function save(ad) {
 	}
 }
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		asFullButton: true,
 		icon: "ph-plus ph-bold ph-lg",
@@ -137,7 +139,7 @@ const headerActions = $computed(() => [
 	},
 ]);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.ads,

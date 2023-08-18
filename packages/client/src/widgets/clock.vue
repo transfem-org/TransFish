@@ -46,6 +46,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import {} from "vue";
 import type { Widget, WidgetComponentExpose } from "./widget";
 import {
@@ -200,7 +202,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 	emit,
 );
 
-const tzAbbrev = $computed(
+const tzAbbrev = computed(
 	() =>
 		(widgetProps.timezone === null
 			? timezones.find(
@@ -215,21 +217,21 @@ const tzAbbrev = $computed(
 			  )?.abbrev) ?? "?",
 );
 
-const tzOffset = $computed(() =>
+const tzOffset = computed(() =>
 	widgetProps.timezone === null
 		? 0 - new Date().getTimezoneOffset()
 		: timezones.find((tz) => tz.name.toLowerCase() === widgetProps.timezone)
 				?.offset ?? 0,
 );
 
-const tzOffsetLabel = $computed(
+const tzOffsetLabel = computed(
 	() =>
-		(tzOffset >= 0 ? "+" : "-") +
-		Math.floor(tzOffset / 60)
+		(tzOffset.value >= 0 ? "+" : "-") +
+		Math.floor(tzOffset.value / 60)
 			.toString()
 			.padStart(2, "0") +
 		":" +
-		(tzOffset % 60).toString().padStart(2, "0"),
+		(tzOffset.value % 60).toString().padStart(2, "0"),
 );
 
 defineExpose<WidgetComponentExpose>({

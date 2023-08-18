@@ -122,12 +122,12 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, watch } from "vue";
+import { nextTick, watch, shallowRef, ref } from "vue";
 import * as misskey from "firefish-js";
 import MkModal from "@/components/MkModal.vue";
 import { i18n } from "@/i18n";
 
-const modal = $shallowRef<InstanceType<typeof MkModal>>();
+const modal = shallowRef<InstanceType<typeof MkModal>>();
 
 const props = withDefaults(
 	defineProps<{
@@ -147,18 +147,18 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let v = $ref(props.currentVisibility);
-let localOnly = $ref(props.currentLocalOnly);
+let v = ref(props.currentVisibility);
+let localOnly = ref(props.currentLocalOnly);
 
-watch($$(localOnly), () => {
-	emit("changeLocalOnly", localOnly);
+watch(localOnly, () => {
+	emit("changeLocalOnly", localOnly.value);
 });
 
 function choose(visibility: (typeof misskey.noteVisibilities)[number]): void {
-	v = visibility;
+	v.value = visibility;
 	emit("changeVisibility", visibility);
 	nextTick(() => {
-		modal.close();
+		modal.value.close();
 	});
 }
 </script>

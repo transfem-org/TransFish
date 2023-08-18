@@ -337,7 +337,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch } from "vue";
+import { watch, ref, computed } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import type * as firefish from "firefish-js";
@@ -378,16 +378,16 @@ const props = defineProps<{
 
 let tabs = ["overview"];
 if (iAmAdmin) tabs.push("chart", "users", "raw");
-let tab = $ref(tabs[0]);
-watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
+let tab = ref(tabs[0]);
+watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
-let chartSrc = $ref("instance-requests");
-let meta = $ref<AugmentedInstanceMetadata | null>(null);
-let instance = $ref<AugmentedInstance | null>(null);
-let suspended = $ref(false);
-let isBlocked = $ref(false);
-let isSilenced = $ref(false);
-let faviconUrl = $ref(null);
+let chartSrc = ref("instance-requests");
+let meta = ref<AugmentedInstanceMetadata | null>(null);
+let instance = ref<AugmentedInstance | null>(null);
+let suspended = ref(false);
+let isBlocked = ref(false);
+let isSilenced = ref(false);
+let faviconUrl = ref(null);
 
 const usersPagination = {
 	endpoint: iAmAdmin ? "admin/show-users" : ("users" as const),
@@ -402,28 +402,30 @@ const usersPagination = {
 
 async function fetch() {
 	if (iAmAdmin)
-		meta = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
-	instance = (await os.api("federation/show-instance", {
+		meta.value = (await os.api("admin/meta")) as AugmentedInstanceMetadata;
+	instance.value = (await os.api("federation/show-instance", {
 		host: props.host,
 	})) as AugmentedInstance;
-	suspended = instance.isSuspended;
-	isBlocked = instance.isBlocked;
-	isSilenced = instance.isSilenced;
-	faviconUrl =
-		getProxiedImageUrlNullable(instance.faviconUrl, "preview") ??
-		getProxiedImageUrlNullable(instance.iconUrl, "preview");
+	suspended.value = instance.value.isSuspended;
+	isBlocked.value = instance.value.isBlocked;
+	isSilenced.value = instance.value.isSilenced;
+	faviconUrl.value =
+		getProxiedImageUrlNullable(instance.value.faviconUrl, "preview") ??
+		getProxiedImageUrlNullable(instance.value.iconUrl, "preview");
 }
 
 async function toggleBlock() {
-	if (meta == null) return;
-	if (!instance) {
+	if (meta.value == null) return;
+	if (!instance.value) {
 		throw new Error(`Instance info not loaded`);
 	}
 	let blockedHosts: string[];
-	if (isBlocked) {
-		blockedHosts = meta.blockedHosts.concat([instance.host]);
+	if (isBlocked.value) {
+		blockedHosts = meta.value.blockedHosts.concat([instance.value.host]);
 	} else {
-		blockedHosts = meta.blockedHosts.filter((x) => x !== instance!.host);
+		blockedHosts = meta.value.blockedHosts.filter(
+			(x) => x !== instance.value!.host,
+		);
 	}
 	await os.api("admin/update-meta", {
 		blockedHosts,
@@ -431,15 +433,17 @@ async function toggleBlock() {
 }
 
 async function toggleSilence() {
-	if (meta == null) return;
-	if (!instance) {
+	if (meta.value == null) return;
+	if (!instance.value) {
 		throw new Error(`Instance info not loaded`);
 	}
 	let silencedHosts: string[];
-	if (isSilenced) {
-		silencedHosts = meta.silencedHosts.concat([instance.host]);
+	if (isSilenced.value) {
+		silencedHosts = meta.value.silencedHosts.concat([instance.value.host]);
 	} else {
-		silencedHosts = meta.silencedHosts.filter((x) => x !== instance!.host);
+		silencedHosts = meta.value.silencedHosts.filter(
+			(x) => x !== instance.value!.host,
+		);
 	}
 	await os.api("admin/update-meta", {
 		silencedHosts,
@@ -448,14 +452,14 @@ async function toggleSilence() {
 
 async function toggleSuspend(v) {
 	await os.api("admin/federation/update-instance", {
-		host: instance.host,
-		isSuspended: suspended,
+		host: instance.value.host,
+		isSuspended: suspended.value,
 	});
 }
 
 function refreshMetadata() {
 	os.api("admin/federation/refresh-remote-instance-metadata", {
-		host: instance.host,
+		host: instance.value.host,
 	});
 	os.alert({
 		text: "Refresh requested",
@@ -464,7 +468,7 @@ function refreshMetadata() {
 
 fetch();
 
-const headerActions = $computed(() => [
+const headerActions = computed(() => [
 	{
 		text: `https://${props.host}`,
 		icon: "ph-arrow-square-out ph-bold ph-lg",
@@ -502,7 +506,7 @@ if (iAmAdmin) {
 	);
 }
 
-let headerTabs = $computed(() => theTabs);
+let headerTabs = computed(() => theTabs);
 
 definePageMetadata({
 	title: props.host,
@@ -513,11 +517,11 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
+	syncSlide(tabs.indexOf(tab.value));
 }
 
 function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
+	tab.value = tabs[swiperRef.activeIndex];
 }
 
 function syncSlide(index) {

@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import type * as Misskey from "firefish-js";
 import * as os from "@/os";
 import { stream } from "@/stream";
@@ -88,13 +88,13 @@ const props = withDefaults(
 
 const isBlocking = computed(() => props.user.isBlocking);
 
-let state = $ref(i18n.ts.processing);
+let state = ref(i18n.ts.processing);
 
-let isFollowing = $ref(props.user.isFollowing);
-let hasPendingFollowRequestFromYou = $ref(
+let isFollowing = ref(props.user.isFollowing);
+let hasPendingFollowRequestFromYou = ref(
 	props.user.hasPendingFollowRequestFromYou,
 );
-let wait = $ref(false);
+let wait = ref(false);
 const connection = stream.useChannel("main");
 
 if (props.user.isFollowing == null) {
@@ -105,13 +105,14 @@ if (props.user.isFollowing == null) {
 
 function onFollowChange(user: Misskey.entities.UserDetailed) {
 	if (user.id === props.user.id) {
-		isFollowing = user.isFollowing;
-		hasPendingFollowRequestFromYou = user.hasPendingFollowRequestFromYou;
+		isFollowing.value = user.isFollowing;
+		hasPendingFollowRequestFromYou.value =
+			user.hasPendingFollowRequestFromYou;
 	}
 }
 
 async function onClick() {
-	wait = true;
+	wait.value = true;
 
 	try {
 		if (isBlocking.value) {
@@ -130,7 +131,7 @@ async function onClick() {
 				});
 			}
 			emit("refresh");
-		} else if (isFollowing) {
+		} else if (isFollowing.value) {
 			const { canceled } = await os.confirm({
 				type: "warning",
 				text: i18n.t("unfollowConfirm", {
@@ -144,22 +145,22 @@ async function onClick() {
 				userId: props.user.id,
 			});
 		} else {
-			if (hasPendingFollowRequestFromYou) {
+			if (hasPendingFollowRequestFromYou.value) {
 				await os.api("following/requests/cancel", {
 					userId: props.user.id,
 				});
-				hasPendingFollowRequestFromYou = false;
+				hasPendingFollowRequestFromYou.value = false;
 			} else {
 				await os.api("following/create", {
 					userId: props.user.id,
 				});
-				hasPendingFollowRequestFromYou = true;
+				hasPendingFollowRequestFromYou.value = true;
 			}
 		}
 	} catch (err) {
 		console.error(err);
 	} finally {
-		wait = false;
+		wait.value = false;
 	}
 }
 

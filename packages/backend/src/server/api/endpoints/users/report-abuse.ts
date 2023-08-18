@@ -1,12 +1,14 @@
-import * as sanitizeHtml from "sanitize-html";
+import * as mfm from "mfm-js";
+import sanitizeHtml from "sanitize-html";
 import { publishAdminStream } from "@/services/stream.js";
-import { AbuseUserReports, Users } from "@/models/index.js";
+import { AbuseUserReports, UserProfiles, Users } from "@/models/index.js";
 import { genId } from "@/misc/gen-id.js";
 import { sendEmail } from "@/services/send-email.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { getUser } from "../../common/getters.js";
 import { ApiError } from "../../error.js";
 import define from "../../define.js";
+import { toHtml } from "@/mfm/to-html.js";
 
 export const meta = {
 	tags: ["users"],
@@ -84,6 +86,7 @@ export default define(meta, paramDef, async (ps, me) => {
 			],
 		});
 
+		const meta = await fetchMeta();
 		for (const moderator of moderators) {
 			publishAdminStream(moderator.id, "newAbuseUserReport", {
 				id: report.id,
@@ -91,16 +94,16 @@ export default define(meta, paramDef, async (ps, me) => {
 				reporterId: report.reporterId,
 				comment: report.comment,
 			});
-		}
 
-		const meta = await fetchMeta();
-		if (meta.email) {
-			sendEmail(
-				meta.email,
-				"New abuse report",
-				sanitizeHtml(ps.comment),
-				sanitizeHtml(ps.comment),
-			);
+			const profile = await UserProfiles.findOneBy({ userId: moderator.id });
+			if (profile?.email) {
+				sendEmail(
+					profile.email,
+					"New abuse report",
+					sanitizeHtml(toHtml(mfm.parse(ps.comment))!),
+					sanitizeHtml(toHtml(mfm.parse(ps.comment))!),
+				);
+			}
 		}
 	});
 });

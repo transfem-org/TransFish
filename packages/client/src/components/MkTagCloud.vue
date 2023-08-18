@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watch, onBeforeUnmount } from "vue";
+import { onMounted, watch, onBeforeUnmount, ref } from "vue";
 import tinycolor from "tinycolor2";
 
 const loaded = !!window.TagCanvas;
@@ -39,13 +39,13 @@ const idForTags = Array.from(Array(16))
 			],
 	)
 	.join("");
-let available = $ref(false);
-let rootEl = $ref<HTMLElement | null>(null);
-let canvasEl = $ref<HTMLCanvasElement | null>(null);
-let tagsEl = $ref<HTMLElement | null>(null);
-let width = $ref(300);
+let available = ref(false);
+let rootEl = ref<HTMLElement | null>(null);
+let canvasEl = ref<HTMLCanvasElement | null>(null);
+let tagsEl = ref<HTMLElement | null>(null);
+let width = ref(300);
 
-watch($$(available), () => {
+watch(available, () => {
 	try {
 		window.TagCanvas.Start(idForCanvas, idForTags, {
 			textColour: "#ffffff",
@@ -70,10 +70,10 @@ watch($$(available), () => {
 });
 
 onMounted(() => {
-	width = rootEl.offsetWidth;
+	width.value = rootEl.value.offsetWidth;
 
 	if (loaded) {
-		available = true;
+		available.value = true;
 	} else {
 		document.head
 			.appendChild(
@@ -82,7 +82,7 @@ onMounted(() => {
 					src: "/client-assets/tagcanvas.min.js",
 				}),
 			)
-			.addEventListener("load", () => (available = true));
+			.addEventListener("load", () => (available.value = true));
 	}
 });
 

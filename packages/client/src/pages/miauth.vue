@@ -78,6 +78,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import MkSignin from "@/components/MkSignin.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -96,14 +98,14 @@ const props = defineProps<{
 
 const _permissions = props.permission.split(",");
 
-let state = $ref<string | null>(null);
+let state = ref<string | null>(null);
 
 function getIcon(p: string) {
 	return p.includes("write") ? "pencil-simple" : "eye";
 }
 
 async function accept(): Promise<void> {
-	state = "waiting";
+	state.value = "waiting";
 	await os.api("miauth/gen-token", {
 		session: props.session,
 		name: props.name,
@@ -111,7 +113,7 @@ async function accept(): Promise<void> {
 		permission: _permissions,
 	});
 
-	state = "accepted";
+	state.value = "accepted";
 	if (props.callback) {
 		const cbUrl = new URL(props.callback);
 		if (
@@ -130,7 +132,7 @@ async function accept(): Promise<void> {
 }
 
 function deny(): void {
-	state = "denied";
+	state.value = "denied";
 }
 
 function onLogin(res): void {

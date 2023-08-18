@@ -100,6 +100,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import { toUnicode } from "punycode/";
 import XTimeline from "./welcome.timeline.vue";
@@ -114,36 +116,36 @@ import * as os from "@/os";
 import number from "@/filters/number";
 import { i18n } from "@/i18n";
 
-let meta = $ref();
-let stats = $ref();
-let tags = $ref();
-let onlineUsersCount = $ref();
-let instances = $ref();
+let meta = ref();
+let stats = ref();
+let tags = ref();
+let onlineUsersCount = ref();
+let instances = ref();
 
 os.api("meta", { detail: true }).then((_meta) => {
-	meta = _meta;
+	meta.value = _meta;
 });
 
 os.api("stats").then((_stats) => {
-	stats = _stats;
+	stats.value = _stats;
 });
 
 os.api("get-online-users-count").then((res) => {
-	onlineUsersCount = res.count;
+	onlineUsersCount.value = res.count;
 });
 
 os.api("hashtags/list", {
 	sort: "+mentionedLocalUsers",
 	limit: 8,
 }).then((_tags) => {
-	tags = _tags;
+	tags.value = _tags;
 });
 
 os.api("federation/instances", {
 	sort: "+pubSub",
 	limit: 20,
 }).then((_instances) => {
-	instances = _instances;
+	instances.value = _instances;
 });
 
 function signin() {

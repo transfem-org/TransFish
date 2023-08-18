@@ -70,7 +70,7 @@ const props = withDefaults(
 );
 
 const inputEl = ref<HTMLElement>();
-const inputVal = $ref(props.modelValue);
+const inputVal = ref(props.modelValue);
 
 const emit = defineEmits<{
 	(ev: "update:modelValue", value: number): void;
@@ -85,7 +85,7 @@ const steps = computed(() => {
 });
 
 function onChange(x) {
-	emit("update:modelValue", inputVal);
+	emit("update:modelValue", inputVal.value);
 }
 
 const tooltipShowing = ref(false);
@@ -97,7 +97,7 @@ function tooltipShow() {
 		{
 			showing: tooltipShowing,
 			text: computed(() => {
-				return props.textConverter(inputVal);
+				return props.textConverter(inputVal.value);
 			}),
 			targetElement: inputEl,
 		},

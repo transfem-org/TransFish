@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch } from "vue";
+import { computed, inject, watch, ref } from "vue";
 import MkTextarea from "@/components/form/textarea.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -56,21 +56,21 @@ const props = defineProps<{
 	channelId?: string;
 }>();
 
-let channel = $ref(null);
-let name = $ref(null);
-let description = $ref(null);
-let bannerUrl = $ref<string | null>(null);
-let bannerId = $ref<string | null>(null);
+let channel = ref(null);
+let name = ref(null);
+let description = ref(null);
+let bannerUrl = ref<string | null>(null);
+let bannerId = ref<string | null>(null);
 
 watch(
-	() => bannerId,
+	() => bannerId.value,
 	async () => {
-		if (bannerId == null) {
-			bannerUrl = null;
+		if (bannerId.value == null) {
+			bannerUrl.value = null;
 		} else {
-			bannerUrl = (
+			bannerUrl.value = (
 				await os.api("drive/files/show", {
-					fileId: bannerId,
+					fileId: bannerId.value,
 				})
 			).url;
 		}
@@ -80,23 +80,23 @@ watch(
 async function fetchChannel() {
 	if (props.channelId == null) return;
 
-	channel = await os.api("channels/show", {
+	channel.value = await os.api("channels/show", {
 		channelId: props.channelId,
 	});
 
-	name = channel.name;
-	description = channel.description;
-	bannerId = channel.bannerId;
-	bannerUrl = channel.bannerUrl;
+	name.value = channel.value.name;
+	description.value = channel.value.description;
+	bannerId.value = channel.value.bannerId;
+	bannerUrl.value = channel.value.bannerUrl;
 }
 
 fetchChannel();
 
 function save() {
 	const params = {
-		name: name,
-		description: description,
-		bannerId: bannerId,
+		name: name.value,
+		description: description.value,
+		bannerId: bannerId.value,
 	};
 
 	if (props.channelId) {
@@ -114,17 +114,17 @@ function save() {
 
 function setBannerImage(evt) {
 	selectFile(evt.currentTarget ?? evt.target, null).then((file) => {
-		bannerId = file.id;
+		bannerId.value = file.id;
 	});
 }
 
 function removeBannerImage() {
-	bannerId = null;
+	bannerId.value = null;
 }
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
-const headerTabs = $computed(() => []);
+const headerTabs = computed(() => []);
 
 definePageMetadata(
 	computed(() =>

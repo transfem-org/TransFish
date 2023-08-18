@@ -14,6 +14,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
 const props = defineProps<{
 	modelValue: any;
 	value: any;
@@ -24,7 +26,7 @@ const emit = defineEmits<{
 	(ev: "update:modelValue", value: any): void;
 }>();
 
-const checked = $computed(() => props.modelValue === props.value);
+const checked = computed(() => props.modelValue === props.value);
 
 function toggle(x) {
 	if (props.disabled) return;

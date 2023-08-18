@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watch } from "vue";
+import { onMounted, watch, ref, computed } from "vue";
 import * as Misskey from "firefish-js";
 import autosize from "autosize";
 //import insertTextAtCursor from 'insert-text-at-cursor';
@@ -74,12 +74,12 @@ const props = defineProps<{
 	group?: Misskey.entities.UserGroup | null;
 }>();
 
-let textEl = $ref<HTMLTextAreaElement>();
-let fileEl = $ref<HTMLInputElement>();
+let textEl = ref<HTMLTextAreaElement>();
+let fileEl = ref<HTMLInputElement>();
 
-let text = $ref<string>("");
-let file = $ref<Misskey.entities.DriveFile | null>(null);
-let sending = $ref(false);
+let text = ref<string>("");
+let file = ref<Misskey.entities.DriveFile | null>(null);
+let sending = ref(false);
 const typing = throttle(3000, () => {
 	stream.send(
 		"typingOnMessaging",
@@ -87,14 +87,15 @@ const typing = throttle(3000, () => {
 	);
 });
 
-let draftKey = $computed(() =>
+let draftKey = computed(() =>
 	props.user ? "user:" + props.user.id : "group:" + props.group?.id,
 );
-let canSend = $computed(
-	() => (text != null && text.trim() !== "") || file != null,
+let canSend = computed(
+	() =>
+		(text.value != null && text.value.trim() !== "") || file.value != null,
 );
 
-watch([$$(text), $$(file)], saveDraft);
+watch([text, file], saveDraft);
 
 async function onPaste(ev: ClipboardEvent) {
 	if (!ev.clipboardData) return;
@@ -157,7 +158,7 @@ function onDrop(ev: DragEvent): void {
 	//#region ドライブのファイル
 	const driveFile = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FILE_);
 	if (driveFile != null && driveFile !== "") {
-		file = JSON.parse(driveFile);
+		file.value = JSON.parse(driveFile);
 		ev.preventDefault();
 	}
 	//#endregion
@@ -170,18 +171,18 @@ function onKeydown(ev: KeyboardEvent) {
 		defaultStore.state.enterSendsMessage;
 	if (sendOnEnter) {
 		if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey)) {
-			textEl.value += "\n";
+			textEl.value.value += "\n";
 		} else if (
 			ev.key === "Enter" &&
 			!ev.shiftKey &&
 			!("ontouchstart" in document.documentElement) &&
-			canSend
+			canSend.value
 		) {
 			ev.preventDefault();
 			send();
 		}
 	} else {
-		if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey) && canSend) {
+		if (ev.key === "Enter" && (ev.ctrlKey || ev.metaKey) && canSend.value) {
 			ev.preventDefault();
 			send();
 		}
@@ -195,30 +196,30 @@ function onCompositionUpdate() {
 function chooseFile(ev: MouseEvent) {
 	selectFile(ev.currentTarget ?? ev.target, i18n.ts.selectFile).then(
 		(selectedFile) => {
-			file = selectedFile;
+			file.value = selectedFile;
 		},
 	);
 }
 
 function onChangeFile() {
-	if (fileEl.files![0]) upload(fileEl.files[0]);
+	if (fileEl.value.files![0]) upload(fileEl.value.files[0]);
 }
 
 function upload(fileToUpload: File, name?: string) {
 	uploadFile(fileToUpload, defaultStore.state.uploadFolder, name).then(
 		(res) => {
-			file = res;
+			file.value = res;
 		},
 	);
 }
 
 function send() {
-	sending = true;
+	sending.value = true;
 	os.api("messaging/messages/create", {
 		userId: props.user ? props.user.id : undefined,
 		groupId: props.group ? props.group.id : undefined,
-		text: text ? text : undefined,
-		fileId: file ? file.id : undefined,
+		text: text.value ? text.value : undefined,
+		fileId: file.value ? file.value.id : undefined,
 	})
 		.then((message) => {
 			clear();
@@ -227,24 +228,24 @@ function send() {
 			console.error(err);
 		})
 		.then(() => {
-			sending = false;
+			sending.value = false;
 		});
 }
 
 function clear() {
-	text = "";
-	file = null;
+	text.value = "";
+	file.value = null;
 	deleteDraft();
 }
 
 function saveDraft() {
 	const drafts = JSON.parse(localStorage.getItem("message_drafts") || "{}");
 
-	drafts[draftKey] = {
+	drafts[draftKey.value] = {
 		updatedAt: new Date(),
 		data: {
-			text: text,
-			file: file,
+			text: text.value,
+			file: file.value,
 		},
 	};
 
@@ -254,33 +255,33 @@ function saveDraft() {
 function deleteDraft() {
 	const drafts = JSON.parse(localStorage.getItem("message_drafts") || "{}");
 
-	delete drafts[draftKey];
+	delete drafts[draftKey.value];
 
 	localStorage.setItem("message_drafts", JSON.stringify(drafts));
 }
 
 async function insertEmoji(ev: MouseEvent) {
-	os.openEmojiPicker(ev.currentTarget ?? ev.target, {}, textEl);
+	os.openEmojiPicker(ev.currentTarget ?? ev.target, {}, textEl.value);
 }
 
 onMounted(() => {
-	autosize(textEl);
+	autosize(textEl.value);
 
 	// TODO: detach when unmount
-	new Autocomplete(textEl, $$(text));
+	new Autocomplete(textEl.value, text);
 
 	// 書きかけの投稿を復元
 	const draft = JSON.parse(localStorage.getItem("message_drafts") || "{}")[
-		draftKey
+		draftKey.value
 	];
 	if (draft) {
-		text = draft.data.text;
-		file = draft.data.file;
+		text.value = draft.data.text;
+		file.value = draft.data.file;
 	}
 });
 
 defineExpose({
-	file,
+	file: file.value,
 	upload,
 });
 </script>

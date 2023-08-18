@@ -205,23 +205,23 @@ withDefaults(
 	},
 );
 
-let stats = $ref(null);
-let instanceIcon = $ref<HTMLImageElement>();
+let stats = ref(null);
+let instanceIcon = ref<HTMLImageElement>();
 let iconClicks = 0;
 let iconSrc = ref(instance.iconUrl || instance.faviconUrl || "/favicon.ico");
 let instanceIconAnimation = ref("");
 let tabs = ["overview", "emojis", "charts"];
-let tab = $ref(tabs[0]);
-watch($$(tab), () => syncSlide(tabs.indexOf(tab)));
+let tab = ref(tabs[0]);
+watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 if (iAmModerator) tabs.push("federation");
 
 const initStats = () =>
 	os.api("stats", {}).then((res) => {
-		stats = res;
+		stats.value = res;
 	});
 
-const headerActions = $computed(() => []);
+const headerActions = computed(() => []);
 
 let theTabs = [
 	{
@@ -249,7 +249,7 @@ if (iAmModerator) {
 	});
 }
 
-let headerTabs = $computed(() => theTabs);
+let headerTabs = computed(() => theTabs);
 
 definePageMetadata(
 	computed(() => ({
@@ -261,7 +261,7 @@ definePageMetadata(
 onMounted(() => {
 	if (defaultStore.state.woozyMode === true) {
 		iconSrc.value = "/static-assets/woozy.png";
-		instanceIcon.src = iconSrc.value;
+		instanceIcon.value.src = iconSrc.value;
 	}
 });
 
@@ -270,7 +270,7 @@ function easterEgg() {
 	if (iconClicks % 3 === 0) {
 		defaultStore.state.woozyMode = !defaultStore.state.woozyMode;
 		defaultStore.set("woozyMode", defaultStore.state.woozyMode);
-		if (instanceIcon) {
+		if (instanceIcon.value) {
 			instanceIconAnimation.value = "spin";
 			setTimeout(() => {
 				if (iconClicks % 6 === 0) {
@@ -281,7 +281,7 @@ function easterEgg() {
 				} else {
 					iconSrc.value = "/static-assets/woozy.png";
 				}
-				instanceIcon.src = iconSrc.value;
+				instanceIcon.value.src = iconSrc.value;
 			}, 500);
 		}
 	}
@@ -299,11 +299,11 @@ let swiperRef = null;
 
 function setSwiperRef(swiper) {
 	swiperRef = swiper;
-	syncSlide(tabs.indexOf(tab));
+	syncSlide(tabs.indexOf(tab.value));
 }
 
 function onSlideChange() {
-	tab = tabs[swiperRef.activeIndex];
+	tab.value = tabs[swiperRef.activeIndex];
 }
 
 function syncSlide(index) {

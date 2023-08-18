@@ -297,7 +297,7 @@ const props = defineProps<{
 
 const inChannel = inject("inChannel", null);
 
-let note = $ref(deepClone(props.note));
+let note = ref(deepClone(props.note));
 
 const softMuteReasonI18nSrc = (what?: string) => {
 	if (what === "note") return i18n.ts.userSaysSomethingReason;
@@ -312,19 +312,19 @@ const softMuteReasonI18nSrc = (what?: string) => {
 // plugin
 if (noteViewInterruptors.length > 0) {
 	onMounted(async () => {
-		let result = deepClone(note);
+		let result = deepClone(note.value);
 		for (const interruptor of noteViewInterruptors) {
 			result = await interruptor.handler(result);
 		}
-		note = result;
+		note.value = result;
 	});
 }
 
 const isRenote =
-	note.renote != null &&
-	note.text == null &&
-	note.fileIds.length === 0 &&
-	note.poll == null;
+	note.value.renote != null &&
+	note.value.text == null &&
+	note.value.fileIds.length === 0 &&
+	note.value.poll == null;
 
 const el = ref<HTMLElement>();
 const footerEl = ref<HTMLElement>();
@@ -333,13 +333,15 @@ const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
-let appearNote = $computed(() =>
-	isRenote ? (note.renote as misskey.entities.Note) : note,
+let appearNote = computed(() =>
+	isRenote ? (note.value.renote as misskey.entities.Note) : note.value,
 );
-const isMyRenote = $i && $i.id === note.userId;
+const isMyRenote = $i && $i.id === note.value.userId;
 const showContent = ref(false);
 const isDeleted = ref(false);
-const muted = ref(getWordSoftMute(note, $i, defaultStore.state.mutedWords));
+const muted = ref(
+	getWordSoftMute(note.value, $i, defaultStore.state.mutedWords),
+);
 const translation = ref(null);
 const translating = ref(false);
 const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
@@ -358,7 +360,7 @@ const keymap = {
 
 useNoteCapture({
 	rootEl: el,
-	note: $$(appearNote),
+	note: appearNote,
 	isDeletedRef: isDeleted,
 });
 
@@ -366,7 +368,7 @@ function reply(viaKeyboard = false): void {
 	pleaseLogin();
 	os.post(
 		{
-			reply: appearNote,
+			reply: appearNote.value,
 			animation: !viaKeyboard,
 		},
 		() => {
@@ -382,7 +384,7 @@ function react(viaKeyboard = false): void {
 		reactButton.value,
 		(reaction) => {
 			os.api("notes/reactions/create", {
-				noteId: appearNote.id,
+				noteId: appearNote.value.id,
 				reaction: reaction,
 			});
 		},
@@ -425,21 +427,24 @@ function onContextmenu(ev: MouseEvent): void {
 			[
 				{
 					type: "label",
-					text: notePage(appearNote),
+					text: notePage(appearNote.value),
 				},
 				{
 					icon: "ph-browser ph-bold ph-lg",
 					text: i18n.ts.openInWindow,
 					action: () => {
-						os.pageWindow(notePage(appearNote));
+						os.pageWindow(notePage(appearNote.value));
 					},
 				},
-				notePage(appearNote) != location.pathname
+				notePage(appearNote.value) != location.pathname
 					? {
 							icon: "ph-arrows-out-simple ph-bold ph-lg",
 							text: i18n.ts.showInPage,
 							action: () => {
-								router.push(notePage(appearNote), "forcePage");
+								router.push(
+									notePage(appearNote.value),
+									"forcePage",
+								);
 							},
 					  }
 					: undefined,
@@ -448,22 +453,25 @@ function onContextmenu(ev: MouseEvent): void {
 					type: "a",
 					icon: "ph-arrow-square-out ph-bold ph-lg",
 					text: i18n.ts.openInNewTab,
-					href: notePage(appearNote),
+					href: notePage(appearNote.value),
 					target: "_blank",
 				},
 				{
 					icon: "ph-link-simple ph-bold ph-lg",
 					text: i18n.ts.copyLink,
 					action: () => {
-						copyToClipboard(`${url}${notePage(appearNote)}`);
+						copyToClipboard(`${url}${notePage(appearNote.value)}`);
 					},
 				},
-				appearNote.user.host != null
+				appearNote.value.user.host != null
 					? {
 							type: "a",
 							icon: "ph-arrow-square-up-right ph-bold ph-lg",
 							text: i18n.ts.showOnRemote,
-							href: appearNote.url ?? appearNote.uri ?? "",
+							href:
+								appearNote.value.url ??
+								appearNote.value.uri ??
+								"",
 							target: "_blank",
 					  }
 					: undefined,
@@ -476,7 +484,7 @@ function onContextmenu(ev: MouseEvent): void {
 function menu(viaKeyboard = false): void {
 	os.popupMenu(
 		getNoteMenu({
-			note: note,
+			note: note.value,
 			translating,
 			translation,
 			menuButton,
@@ -500,7 +508,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 				danger: true,
 				action: () => {
 					os.api("notes/delete", {
-						noteId: note.id,
+						noteId: note.value.id,
 					});
 					isDeleted.value = true;
 				},
@@ -541,13 +549,13 @@ function noteClick(e) {
 	) {
 		e.stopPropagation();
 	} else {
-		router.push(notePage(appearNote));
+		router.push(notePage(appearNote.value));
 	}
 }
 
 function readPromo() {
 	os.api("promo/read", {
-		noteId: appearNote.id,
+		noteId: appearNote.value.id,
 	});
 	isDeleted.value = true;
 }
@@ -559,28 +567,30 @@ function setPostExpanded(val: boolean) {
 }
 
 const accessibleLabel = computed(() => {
-	let label = `${appearNote.user.username}; `;
-	if (appearNote.renote) {
-		label += `${i18n.t("renoted")} ${appearNote.renote.user.username}; `;
-		if (appearNote.renote.cw) {
-			label += `${i18n.t("cw")}: ${appearNote.renote.cw}; `;
+	let label = `${appearNote.value.user.username}; `;
+	if (appearNote.value.renote) {
+		label += `${i18n.t("renoted")} ${
+			appearNote.value.renote.user.username
+		}; `;
+		if (appearNote.value.renote.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.value.renote.cw}; `;
 			if (postIsExpanded.value) {
-				label += `${appearNote.renote.text}; `;
+				label += `${appearNote.value.renote.text}; `;
 			}
 		} else {
-			label += `${appearNote.renote.text}; `;
+			label += `${appearNote.value.renote.text}; `;
 		}
 	} else {
-		if (appearNote.cw) {
-			label += `${i18n.t("cw")}: ${appearNote.cw}; `;
+		if (appearNote.value.cw) {
+			label += `${i18n.t("cw")}: ${appearNote.value.cw}; `;
 			if (postIsExpanded.value) {
-				label += `${appearNote.text}; `;
+				label += `${appearNote.value.text}; `;
 			}
 		} else {
-			label += `${appearNote.text}; `;
+			label += `${appearNote.value.text}; `;
 		}
 	}
-	const date = new Date(appearNote.createdAt);
+	const date = new Date(appearNote.value.createdAt);
 	label += `${date.toLocaleTimeString()}`;
 	return label;
 });

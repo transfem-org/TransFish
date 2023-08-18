@@ -104,7 +104,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 
 const items = ref([]);
 const fetching = ref(true);
-let key = $ref(0);
+let key = ref(0);
 
 const tick = () => {
 	fetch(`/api/fetch-rss?url=${widgetProps.url}`, {}).then((res) => {
@@ -114,7 +114,7 @@ const tick = () => {
 			}
 			items.value = feed.items;
 			fetching.value = false;
-			key++;
+			key.value++;
 		});
 	});
 };

@@ -30,17 +30,17 @@ import * as os from "@/os";
 import number from "@/filters/number";
 import { i18n } from "@/i18n";
 
-let moderators: any = $ref(null);
-let fetching = $ref(true);
+let moderators: any = ref(null);
+let fetching = ref(true);
 
 onMounted(async () => {
-	moderators = await os.api("admin/show-users", {
+	moderators.value = await os.api("admin/show-users", {
 		sort: "+updatedAt",
 		state: "adminOrModerator",
 		limit: 30,
 	});
 
-	fetching = false;
+	fetching.value = false;
 });
 </script>
 

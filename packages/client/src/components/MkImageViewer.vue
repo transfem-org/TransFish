@@ -26,6 +26,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import {} from "vue";
 import type * as misskey from "firefish-js";
 import bytes from "@/filters/bytes";
@@ -43,7 +45,7 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-const modal = $ref<InstanceType<typeof MkModal>>();
+const modal = ref<InstanceType<typeof MkModal>>();
 </script>
 
 <style lang="scss" scoped>
