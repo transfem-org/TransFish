@@ -23,8 +23,9 @@ type Args = {
 	requestHeaders?: Record<string, string> | null;
 };
 
-const PRIVATE_IP =
-	/(^127\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.168\.)/;
+const PRIVATE_IPV4 =
+	/(^127\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.168\.)|(^0\.)/;
+const PRIVATE_IPV6 = /(f[c-e][0-9a-f][0-9a-f]:)|(F[C-E][0-9A-F][0-9A-F]:)|(::)/;
 
 export async function uploadFromUrl({
 	url,
@@ -41,7 +42,8 @@ export async function uploadFromUrl({
 	const parsedUrl = new URL(url);
 	if (
 		process.env.NODE_ENV === "production" &&
-		(PRIVATE_IP.test(parsedUrl.hostname) ||
+		(PRIVATE_IPV4.test(parsedUrl.hostname) ||
+			PRIVATE_IPV6.test(parsedUrl.hostname) ||
 			parsedUrl.hostname.includes("localhost"))
 	) {
 		throw new Error("Private IP is not allowed");
