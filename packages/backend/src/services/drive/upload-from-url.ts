@@ -23,6 +23,9 @@ type Args = {
 	requestHeaders?: Record<string, string> | null;
 };
 
+const PRIVATE_IP =
+	/(^127\.)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.168\.)/;
+
 export async function uploadFromUrl({
 	url,
 	user,
@@ -35,7 +38,15 @@ export async function uploadFromUrl({
 	requestIp = null,
 	requestHeaders = null,
 }: Args): Promise<DriveFile> {
-	let name = new URL(url).pathname.split("/").pop() || null;
+	const parsedUrl = new URL(url);
+	if (
+		process.env.NODE_ENV === "production" &&
+		PRIVATE_IP.test(parsedUrl.hostname)
+	) {
+		throw new Error("Private IP is not allowed");
+	}
+
+	let name = parsedUrl.pathname.split("/").pop() || null;
 	if (name == null || !DriveFiles.validateFileName(name)) {
 		name = null;
 	}
