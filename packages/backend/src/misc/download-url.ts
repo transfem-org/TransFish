@@ -92,7 +92,7 @@ export async function downloadUrl(url: string, path: string): Promise<void> {
 	logger.succ(`Download finished: ${chalk.cyan(url)}`);
 }
 
-function isPrivateIp(ip: string): boolean {
+export function isPrivateIp(ip: string): boolean {
 	for (const net of config.allowedPrivateNetworks || []) {
 		const cidr = new IPCIDR(net);
 		if (cidr.contains(ip)) {
