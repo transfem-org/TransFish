@@ -167,7 +167,6 @@ export default async function (ctx: Koa.Context) {
 		return;
 	}
 
-	ctx.length = file.size;
 	ctx.set("Content-Disposition", contentDisposition("inline", filename));
 	ctx.set("Content-Type", contentType);
 
@@ -192,7 +191,6 @@ export default async function (ctx: Koa.Context) {
 		ctx.set("Accept-Ranges", "bytes");
 	} else {
 		ctx.status = 206;
-		ctx.length = readable.size;
 		readable.on("close", async () => {
 			await fileHandle.close();
 		});
