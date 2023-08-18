@@ -139,8 +139,7 @@ if (!["http:", "https:"].includes(requestUrl.protocol))
 	throw new Error("invalid url");
 
 if (
-	requestUrl.hostname === "twitter.com" ||
-	requestUrl.hostname === "mobile.twitter.com"
+	["twitter.com", "mobile.twitter.com", "x.com"].includes(requestUrl.hostname)
 ) {
 	const m = requestUrl.pathname.match(/^\/.+\/status(?:es)?\/(\d+)/);
 	if (m) tweetId.value = m[1];
