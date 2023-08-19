@@ -20,7 +20,7 @@ export class Instance {
 	 */
 	@Index({ unique: true })
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		comment: "The host of the Instance.",
 	})
 	public host: string;
@@ -149,13 +149,13 @@ export class Instance {
 	public maintainerEmail: string | null;
 
 	@Column("varchar", {
-		length: 256,
+		length: 4096,
 		nullable: true,
 	})
 	public iconUrl: string | null;
 
 	@Column("varchar", {
-		length: 256,
+		length: 4096,
 		nullable: true,
 	})
 	public faviconUrl: string | null;

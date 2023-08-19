@@ -71,7 +71,7 @@ export class AbuseUserReport {
 	//#region Denormalized fields
 	@Index()
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "[Denormalized]",
 	})
@@ -79,7 +79,7 @@ export class AbuseUserReport {
 
 	@Index()
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "[Denormalized]",
 	})
