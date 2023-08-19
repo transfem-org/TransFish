@@ -249,7 +249,7 @@ export class UserProfile {
 	//#region Denormalized fields
 	@Index()
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "[Denormalized]",
 	})

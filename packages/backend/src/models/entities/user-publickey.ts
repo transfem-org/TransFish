@@ -22,7 +22,7 @@ export class UserPublickey {
 
 	@Index({ unique: true })
 	@Column("varchar", {
-		length: 256,
+		length: 512,
 	})
 	public keyId: string;
 

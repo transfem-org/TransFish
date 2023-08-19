@@ -39,7 +39,7 @@ export class DriveFile {
 
 	@Index()
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "The host of owner. It will be null if the user in local.",
 	})
