@@ -474,7 +474,7 @@ invitations: "Einladungen"
 invitationCode: "Einladungscode"
 checking: "Wird überprüft …"
 available: "Verfügbar"
-unavailable: "Unverfügbar"
+unavailable: "Nicht verfügbar"
 usernameInvalidFormat: "Du kannst Klein- und Großbuchstaben, Zahlen sowie Unterstriche
   verwenden."
 tooShort: "Zu kurz"
