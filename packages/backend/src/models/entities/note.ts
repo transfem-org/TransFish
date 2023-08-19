@@ -217,7 +217,7 @@ export class Note {
 	//#region Denormalized fields
 	@Index()
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "[Denormalized]",
 	})
@@ -231,7 +231,7 @@ export class Note {
 	public replyUserId: User["id"] | null;
 
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "[Denormalized]",
 	})
@@ -245,7 +245,7 @@ export class Note {
 	public renoteUserId: User["id"] | null;
 
 	@Column("varchar", {
-		length: 128,
+		length: 512,
 		nullable: true,
 		comment: "[Denormalized]",
 	})
