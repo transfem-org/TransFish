@@ -1,7 +1,7 @@
 _lang_: "日本語 (関西弁)"
 headlineFirefish: "ずっとタダでオープンソースの非中央集権型ソーシャルメディアプラットフォーム！🚀"
-introFirefish: "おおきに！Firefishは、オープンソースの分散型ソーシャルメディアプラットフォームやねん。\nいま起こっとるもんをシェアしたり、あんたについてみんなに発信したりしようや📡\n\
-  「リアクション」機能で、みんなの投稿に素早く反応を送ったりもできるんやで✌\nほな、新しい世界を探検しにいこか🚀"
+introFirefish: "おいでやす。Firefishは、オープンソースの分散型ソーシャルメディアプラットフォームどす。\nいま起きたはるもんを共有したり、あんさんについて皆に発信したりしとくれやす👘\n\
+  「リアクション」機能があるさかい、皆の投稿に素早う反応を送ることもできます🎎\nほんなら、新しい世界を探検しまひょか🎴"
 monthAndDay: "{month}月 {day}日"
 search: "探す"
 notifications: "通知"
@@ -78,9 +78,9 @@ followsYou: "フォローされとるで"
 createList: "リスト作る"
 manageLists: "リストの管理"
 error: "エラー"
-somethingHappened: "なんかアカンことが起こったで"
+somethingHappened: "なんやアカンことが起きたで"
 retry: "もっぺんやる？"
-pageLoadError: "ページの読み込みに失敗してしもうたで…"
+pageLoadError: "ページの読み込みに失敗してもた…　えろうすんまへん"
 pageLoadErrorDescription: "これは普通、ネットワークかブラウザキャッシュが原因やからね。キャッシュをクリアするか、もうちっとだけ待ってくれへんか？"
 serverIsDead: "The server is not responding. Please wait for a while before trying
   again."
@@ -140,10 +140,10 @@ addEmoji: "絵文字を追加"
 settingGuide: "ええ感じの設定"
 cacheRemoteFiles: "リモートのファイルをキャッシュする"
 cacheRemoteFilesDescription: "この設定を切っとくと、リモートファイルをキャッシュせず直リンクするようになるで。サーバーの容量は節約できるけど、サムネイルが作られんくなるから通信量が増えるで。"
-flagAsBot: "Botやで"
+flagAsBot: "ワイはBotや 🤖"
 flagAsBotDescription: "もしこのアカウントがプログラムによって運用されるんやったら、このフラグをオンにしてたのむで。オンにすると、反応の連鎖を防ぐためのフラグとして他の開発者に役立ったり、Firefishのシステム上での扱いがBotに合ったもんになったりするんやで。"
-flagAsCat: "Catやで"
-flagAsCatDescription: "ワレ、猫ちゃんならこのフラグをつけてみ？"
+flagAsCat: "ワイはCatや 🐯"
+flagAsCatDescription: "自分、猫ちゃんならこのフラグつけてみ？"
 flagShowTimelineReplies: "It will display the reply to the note in the timeline. "
 flagShowTimelineRepliesDescription: "It will display the reply to notes other than
   the user notes in the timeline when you turn it on. "
@@ -290,7 +290,7 @@ emptyDrive: "ドライブにはなんも残っとらん"
 emptyFolder: "ふぉろだーにはなんも残っとらん"
 unableToDelete: "消そうおもってんけどな、あかんかったわ"
 inputNewFileName: "今度のファイル名は何にするん？"
-inputNewDescription: "新しいキャプションを入力しましょ"
+inputNewDescription: "新しい説明文を入力しまひょ"
 inputNewFolderName: "今度のフォルダ名は何にするん？"
 circularReferenceFolder: "移動先のフォルダーは、移動するフォルダーのサブフォルダーや。"
 hasChildFilesOrFolders: "このフォルダ、まだなんか入っとるから消されへん"
@@ -560,8 +560,8 @@ disablePlayer: "プレイヤーを閉じる"
 expandTweet: "ツイートを展開する"
 themeEditor: "テーマエディター"
 description: "説明"
-describeFile: "キャプションを付ける"
-enterFileDescription: "キャプションを入力"
+describeFile: "画像説明文を付ける"
+enterFileDescription: ""
 author: "作者"
 leaveConfirm: "未保存の変更があるで！ほかしてええか？"
 manage: "管理"
@@ -703,7 +703,8 @@ onlineUsersCount: "{n}人が起きとるで"
 nUsers: "{n}ユーザー"
 nNotes: "{n}投稿"
 sendErrorReports: "エラーリポートを送る"
-sendErrorReportsDescription: "オンにしたら、なんか変なことが起きたときにエラーの詳細がFirefishに共有されて、ソフトウェアの品質向上に役立てられるんや。エラー情報には、OSのバージョン、ブラウザの種類、行動履歴などが含まれるで。"
+sendErrorReportsDescription: "オンにしたら、なんやけったいなことが起きたときにエラーの詳細がFirefishに共有されて、ソフトウェアの品質向上に役立てられるんや。\n\
+  エラー情報には、OSのバージョン、ブラウザの種類、行動履歴などが含まれるで。"
 myTheme: "マイテーマ"
 backgroundColor: "背景"
 accentColor: "アクセント"
@@ -873,7 +874,7 @@ _registry:
   domain: "ドメイン"
   createKey: "キーを作る"
 _aboutFirefish:
-  about: "Firefishは、ThatOneCalculatorが2022年にMisskeyをいじって作った、オープンソースなソフトウェアや。"
+  about: "Firefishは、ThatOneCalculatorが2022年にMisskeyをいじって作った、オープンなソースのソフトウェアや。"
   contributors: "主な貢献者"
   allContributors: "全ての貢献者"
   source: "ソースコード"
@@ -1429,3 +1430,19 @@ editNote: 投稿を編集
 edited: '編集済み: {date} {time}'
 deleted: 削除済み
 noThankYou: いらんわ
+_tutorial:
+  step3_1: ほな、何人かフォローしてみまひょ
+  step1_1: おこしやす
+  step1_2: 使い始める前に、いくつか設定を済ませまひょ。すぐできますえ。
+  step2_1: 最初に、あんさんのプロフィールを作りまひょ
+  step2_2: プロフィールを設定しはることで、他ん人があんさんの投稿を見たり、フォローしたりするときの助けになってます。
+_postForm:
+  _placeholders:
+    b: なんかおましたか？
+    e: ここに書いとくれやす
+    c: なに考えとりまっか？
+    d: なんや言いたいんちゃいますか？
+    f: あんさん書くんを待っとるんどす...
+flagSpeakAsCat: 猫弁で話す
+flagSpeakAsCatDescription: 猫モードが有効の場合にオンにすると、ワレの投稿の「な」を「にゃ」に変換するで。
+welcomeBackWithName: おおきに、{name}はん
