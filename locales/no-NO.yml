@@ -44,7 +44,7 @@ lists: Lister
 listsDesc: Lister lar deg lage tidslinjer med utvalgte brukere. De kan hentes frem
   fra tidslinje-siden.
 deleted: Slettet
-editNote: Rediger notat
+editNote: Rediger post
 followsYou: Følger deg
 createList: Lag liste
 newer: nyere
@@ -155,7 +155,7 @@ drive: Disk
 renameFile: Omdøp fil
 folderName: Katalognavn
 createFolder: Opprett katalog
-inputNewDescription: Oppgi ny bildetekst
+inputNewDescription: Skriv ny beskrivelse
 inputNewFolderName: Oppgi nytt katalognavn
 copyUrl: Kopier URL
 hcaptchaSiteKey: hCaptcha-nøkkel for nettstedet
@@ -409,7 +409,7 @@ nothing: Ikke noe å se her
 deleteAllFilesConfirm: Er du sikker på at du vil slette alle filer?
 updateRemoteUser: Oppdater informasjon om ekstern bruker
 deleteAllFiles: Slett alle filer
-enterFileDescription: Legg til bildetekst
+enterFileDescription: Skriv inn beskrivelse
 leaveConfirm: Det er ulagrede endringer. Vil du forkaste dem?
 enableAll: Slå på alle
 generateAccessToken: Generer adgangstegn
@@ -506,7 +506,7 @@ yourAccountSuspendedDescription: Denne kontoen er suspendert fordi den har brutt
 useCw: Skjul innhold
 enablePlayer: Åpne videospiller
 disablePlayer: Lukk videospiller
-describeFile: Legg til tekst
+describeFile: Legg til beskrivelse
 author: Forfatter
 useFullReactionPicker: Bruk reaksjonsvelger i full størrelse
 width: Bredde
@@ -718,3 +718,405 @@ alwaysMarkSensitive: Merk som "Sensitivt innhold" som standard
 verificationEmailSent: En verifiserings-epost er sendt. Følg lenken i eposten for
   å fullføre verifiseringen.
 newNoteRecived: Det er nye poster
+scratchpadDescription: Kladdeblokka gir deg et miljø for å eksperimentere med AiScript.
+  Du kan skrive, kjøre og sjekke resultatene av at koden interagerer med Firefish.
+disablePagesScript: Slå av AiScript på Sider
+expandTweet: Ekspander tweet
+public: Offentlig
+clearCache: Slett mellomlager
+onlineUsersCount: '{n} brukere er innlogget'
+nNotes: '{n} poster'
+sendErrorReports: Send feilmeldinger
+deleteConfirm: Virkelig slette?
+latestVersion: Nyeste versjon
+receiveAnnouncementFromInstance: Motta varsler fra denne tjeneren
+inChannelSearch: Søk i kanal
+selectAccount: Velg konto
+switch: Bytt
+instanceDefaultDarkTheme: Standard mørkt tema på tjeneren
+oneDay: En dag
+driveCapOverrideCaption: Tilbakestill kapasiteten til standardverdien ved å legge
+  inn en verdi på 0 eller lavere.
+sendModMail: Send modereringsvarsel
+enableServerMachineStats: Slå på hardware-statistikk for tjeneren
+_gallery:
+  liked: Likte poster
+  unlike: Fjern lik
+  my: Mitt galleri
+  like: Lik
+_preferencesBackups:
+  loadFile: Last fra fil
+  cannotSave: Lagring feilet
+  deleteConfirm: Vil du slette sikkerhetskopien "{name}"?
+  saveConfirm: Lagre sikkerhetskopi som "{name}"?
+  noBackups: Ingen sikkerhetskopier er tatt. Du kan ta en backup av klientinnstillingene
+    dine på denne tjeneren ved å trykke "Lag ny sikkerhetskopi".
+  applyConfirm: Ønsker du å laste inn sikkerhetskopien "{name}" på denne enheten?
+    Eksisterende innstillinger vil bli overskrevet.
+  save: Lagre endringer
+  nameAlreadyExists: En sikkerhetskopi med navnet "{name}" finnes allerede. Skriv
+    inn et annet navn.
+  createdAt: 'Opprettet: {date} {time}'
+  apply: Bruk på denne enheten
+  renameConfirm: Endre navn på sikkerhetskopien fra "{old}" to "{new}"?
+  list: Opprettede sikkerhetskopier
+  saveNew: Ta ny sikkerhetskopi
+  inputName: Gi sikkerhetskopien et navn
+  updatedAt: 'Oppdatert: {date} {time}'
+  cannotLoad: Innlasting feilet
+  invalidFile: Ugyldig filformat
+_ad:
+  back: Tilbake
+  reduceFrequencyOfThisAd: Vis annonsen sjeldnere
+_mfm:
+  cheatSheet: Jukseark for tekstmarkering (MFM)
+  stop: Stopp animert markeringsspråk (MFM)
+  warn: Markeringsspråket (MFM) kan inneholde bevegelige eller blinkende animasjoner
+  alwaysPlay: Alltid spill av animert tekstmarkering (MFM)
+  play: Spill animert markeringsspråk (MFM)
+  intro: MFM er et markeringsspråk som burkes av Misskey, Firefish, Akkoma og andre.
+    Her kan du se en liste over tilgjengelig MFM-syntaks.
+reactionPickerSkinTone: Foretrukket hudfarge i emojier
+switchUi: Visningsoppsett
+usageAmount: Bruk
+memo: Memo
+priority: Prioritet
+high: Høy
+secureMode: Sikker modus (Autorisert henting)
+requireAdminForView: Du må logge inn på en administratorkonto for å se dette.
+typeToConfirm: Skriv inn {x} for å bekrefte
+replayTutorial: Kjør introduksjon på nytt
+moveTo: Flytt denne kontoen til en ny konto
+objectStorageBucketDesc: Skriv inn navnet på bøtta hos lagringstjenesten.
+notRecommended: Ikke anbefalt
+voteConfirm: Bekreft din stemme på "{choice}"?
+oneHour: En time
+_plugin:
+  installWarn: Ikke installer utvidelser du ikke stoler på.
+  install: Installer innstikk
+  manage: Oppsett av innstikk
+preventAiLearning: Hindre tråling fra AI-boter
+reporterOrigin: Kilden til den som rapporterer
+center: Sentrert
+wide: Bred
+value: Verdi
+createdAt: Opprettet
+active: Aktiv
+hideOnlineStatus: Skjul om du er pålogget
+troubleshooting: Problemløsing
+useBlurEffect: Bruk diffuseringseffekter i brukergrensesnittet
+learnMore: Lær mer
+usernameInfo: Et navn som identifiserer din konto på denne tjeneren. Du kan bruke
+  alfabetet (a-z,A-Z), sifre (0-9) og understrek (_). Brukernavn kan ikke endres senere.
+resolved: Løst
+unresolved: Uløst
+welcomeBackWithName: Velkommen tilbake, {name}
+clickToFinishEmailVerification: Klikk [{ok}] for å fullføre epost-verifisering.
+cropImage: Beskjær bilde
+numberOfPageCacheDescription: En økning i dette tallet vil gjøre brukeropplevelsen
+  bedre, men gi mer jobb til tjeneren og kreve mer minne.
+logoutConfirm: Vil du logge ut?
+numberOfPageCache: Antall mellomlagrede sider
+lastActiveDate: Sist brukt
+refreshInterval: 'Oppdateringsintervall '
+swipeOnDesktop: Tillat mobil-lignende sveiping på skrivebords-PC
+migration: Migrering
+useDrawerReactionPickerForMobile: Vis reaksjosnvelger som en skuff på mobil
+numberOfColumn: Antall kolonner
+searchByGoogle: Søk
+oneWeek: En uke
+file: Fil
+recentNHours: Siste {n} timer
+noEmailServerWarning: E-post-tjener er ikke konfigurert.
+thereIsUnresolvedAbuseReportWarning: Det er uløste rapporter.
+colored: I farger
+recommendedInstancesDescription: Anbefalte tjenere skilt med linjeskift for visning
+  i anbefalt-tidslinjen.
+caption: Automatisk beskrivelse
+updateAvailable: En oppdatering kan være tilgjengelig!
+accentColor: Uthevet farge
+textColor: Skriftfarge
+saveAs: Lagre som...
+swipeOnMobile: Tillat sveiping mellom sider
+_accountDelete:
+  inProgress: Sletting pågår
+remote: Ekstern
+total: Total
+registry: Register
+closeAccount: Avslutt konto
+currentVersion: Nåværende versjon
+fullView: Full visning
+gallery: Galleri
+emailNotConfiguredWarning: E-post-adresse er ikke satt.
+allowedInstancesDescription: Tjenernavn for tjenere som skal hvitelistes. En per linje.
+  (Vil bare bli brukt i privat modus).
+previewNoteText: Forhåndsvisning
+recentNDays: Siste {n} dager
+indexPosts: Indekser poster
+objectStorageUseProxy: Koble til gjennom en mellomtjener
+objectStorageUseProxyDesc: Skru av dette dersom du ikke vil bruke mellomtjenere for
+  API-oppkoblinger
+masterVolume: Hovedvolum
+script: Skript
+divider: Skille
+addItem: Legg til element
+manage: Oppsett
+notificationType: Varseltype
+useBlurEffectForModal: Bruk diffus-effekt for modale brukergrensesnitt-elementer
+driveFilesCount: Antall filer på Disk
+showGapBetweenNotesInTimeline: Legg inn et tomrom mellom postene i tidslinjen
+newVersionOfClientAvailable: En nyere versjon av klienten er tilgjengelig.
+capacity: Kapasitet
+inUse: Brukt
+publish: Publiser
+quickAction: Hurtigvalg
+privateMode: Privat modus
+customCss: Egendefinert CSS
+allowedInstances: Hvitelistede tjenere
+lastCommunication: Siste kommunikasjon
+breakFollowConfirm: Er du sikker på at du vil fjerne følgeren?
+filter: Filter
+makeReactionsPublicDescription: Dette vil gjøre listen over dine tidligere reaksjoner
+  synlige for alle.
+indefinitely: Permanent
+tenMinutes: 10 minutter
+_email:
+  _follow:
+    title: Du har en ny følger
+  _receiveFollowRequest:
+    title: Du har mottatt en følgeforespørsel
+_registry:
+  key: Nøkkel
+  scope: Omfang
+  domain: Domene
+  createKey: Opprettet nøkkel
+  keys: Nøkler
+sendErrorReportsDescription: "Detaljert feilinformasjon vli bli delt med utviklerne
+  av Firefish, noe som hjelper til med feilretting og forbedring av programmet.\n
+  - Dette inkluderer informasjon som f.eks. versjonen på operativsystemet og nettleseren
+  din, og aktiviteten din i Firefish."
+_aboutFirefish:
+  translation: Oversett Firefish
+  donate: Donér til Firefish
+  donateTitle: Liker du Firefish?
+  pleaseDonateToFirefish: Du kan vurdere å donere en slant til Firefish for å støtte
+    videre utvikling og feilretting.
+  donateHost: Donér til {host}
+  morePatrons: Vi er også takknemlige for bidragene fra mange andre som ikke er listet
+    her. Takk til dere alle! 🥰
+  contributors: Hovedutviklere
+  source: Kildekode
+  allContributors: Alle bidragsytere
+  misskeyContributors: Misskeys bidragsytere
+  pleaseDonateToHost: Du kan også vurdere å donere til hjemme-tjeneren din, {host},
+    for å hjelpe dem med driftskostnadene for tjenesten.
+  about: Firefish ble opprettet av ThatOneCalculator i 2022, basert på Misskey.
+  sponsors: Firefishs sponsorer
+  patrons: Firefishs patroner
+  patronsList: Listen er kronologisk, ikke etter donert beløp. Doner med lenken over
+    for å få navnet ditt her!
+isBot: Denne kontoen er en bot
+_nsfw:
+  respect: Skjul NSFW-merket media
+  force: Skjul alle media
+  ignore: Ikke skjul NSFW-media
+disableAnimatedMfm: Slå av animert markeringsspråk
+objectStorageBucket: Bøtte
+scratchpad: Kladdeblokk
+plugins: Innstikk
+createNew: Lag ny
+makeExplorable: Gjør kontoen synlig i "Utforsk"
+needReloadToApply: Siden må lastes på nytt for at denne endringen skal tre inn.
+customCssWarn: Bruk denne innstillingen bare hvis du vet hva den gjør. Feil innstilling
+  kan få klienten til å ikke fungere som den skal.
+low: Lav
+global: Global
+recommended: Anbefalt
+instanceSecurity: Tjenersikkerhet
+squareAvatars: Vis firkantede avatarer
+deleteAccount: Slett konto
+customKaTeXMacro: Egne KaTeX-makroer
+size: Størrelse
+fast: Raskt
+showAdminUpdates: Indikerer at en ny versjon av Firefish er tilgjengelig (bare admin)
+moveAccount: Flytt konto!
+license: Lisens
+wordMute: Ordstumming
+reporteeOrigin: Kilden til den som rapporteres
+accountInfo: Kontoinformasjon
+driveUsage: Brukt diskplass
+noCrawle: Stopp robot-indeksering
+noCrawleDescription: Be søkemotorer om å ikke indeksere din profil, poster, Sider
+  etc.
+narrow: Smal
+reloadToApplySetting: Denne innstillingen aktiveres ikke før du laster siden på nytt.
+  Vil du gjøre det nå?
+showTitlebar: Vis tittellinje
+nUsers: '{n} brukere'
+myTheme: Mitt tema
+backgroundColor: Bakgrunnsfarge
+advanced: Avansert
+updatedAt: Oppdatert
+editCode: Rediger kode
+addDescription: Legg til beskrivelse
+userPagePinTip: Du kan vise poster her ved å klikke "Fest til profil" fra menyen til
+  en post.
+unknown: Ukjent
+onlineStatus: Påkoblet status
+online: Pålogget
+offline: Ikke pålogget
+instanceBlocking: Innstillinger for føderering
+accounts: Kontoer
+noBotProtectionWarning: Bot-beskyttelse er ikke konfigurert.
+configure: Konfigurer
+postToGallery: Lag ny galleripost
+recentPosts: Nylige sider
+popularPosts: Populære sider
+shareWithNote: Del med post
+expiration: Frist
+middle: Medium
+sent: Sendt
+makeReactionsPublic: La reaksjonshistorikken være offentlig
+classic: Sentrert
+muteThread: Stum en tråd
+ffVisibilityDescription: Lar deg konfigurere hvem som kan se hvem du følger og hvem
+  som følger deg.
+continueThread: Fortsett tråd
+deleteAccountConfirm: Dette vil slette kontoen, og det går ikke å omgjøre etterpå.
+  Fortsette?
+hide: Skjul
+ffVisibility: Synlighet av følgere og folk du følger
+leaveGroup: Forlat gruppe
+leaveGroupConfirm: Er du sikker på at du vil forlate "{name}"?
+overridedDeviceKind: Enhetstype
+smartphone: Smarttelefon
+tablet: Nettbrett
+auto: Automatisk
+image: Bilde
+video: Video
+driveCapOverrideLabel: Endre brukerens lagringskapasitet
+isSystemAccount: Denne kontoen er opprettet og kontrollert av systemet. Ikke moderer,
+  rediger, slett eller på annen måte endre noe ved denne kontoen. Tjeneren kan slutte
+  å virke som den skal.
+document: Dokumentasjon
+statusbar: Statuslinje
+pleaseSelect: Velg en innstilling
+reverse: Reverser
+slow: Sakte
+moveFromLabel: 'Kontoen du flytter fra:'
+silencedWarning: Denne siden vises fordi disse brukerne er fra tjenere administratoren
+  din har stummet, så de kan potensielt inneholde spam.
+ads: Samfunnsbanner
+_forgotPassword:
+  contactAdmin: Denne tjeneren støtter ikke bruk av e-post-adresser for gjenoppretting
+    av passord. Kontakt administratoren for tjeneren.
+  enterEmail: Skriv inn e-post-adressen du brukte da du registrerte kontoen. Du vil
+    motta en e-post med en lenke som lar deg endre passordet.
+  ifNoEmail: Dersom du ikke oppga en e-post-adresse da du registrerte kontoen, kontakt
+    administrator i stedet.
+breakFollow: Slett følger
+unmuteThread: Fjern stumming av tråden
+incorrectPassword: Feil passord.
+logoImageUrl: URL til logo-bilde
+apps: Apper
+audio: Lyd
+moveToLabel: 'Kontoen du flytter til:'
+moveFrom: Flytt fra en annen konto til denne kontoen
+migrationConfirm: "Er du helt sikker på at du ønsker å flytte kontoen din til {account}?
+  Når du har gjort dette kan du ikke omgjøre det, og du vil ikke kunne bruke kontoen
+  normalt etterpå.\nPass på at du setter den kontoen du er innlogget på her som kontoen
+  du flytter fra."
+jumpToSpecifiedDate: Hopp til en gitt dato
+showingPastTimeline: Du ser nå en gammel tidslinje
+noMaintainerInformationWarning: Eierinformasjon er ikke konfigueret.
+notSpecifiedMentionWarning: Denne posten inneholder nevnelser av brukere som ikke
+  er inkludert som mottakere
+saveConfirm: Lagre endringer?
+clear: Tøm
+switchAccount: Bytt konto
+enabled: Påslått
+disabled: Avslått
+user: Bruker
+administration: Konfigurasjon
+invalidValue: Ugyldig verdi.
+youAreRunningUpToDateClient: Du bruker nyeste versjon av klienten.
+noteId: Post-id
+noGraze: Slå av "Graze for Mastodon"-utdivdelsen i nettleseren. Den vil forstyrre
+  Firefish.
+isModerator: Moderator
+isAdmin: Administrator
+objectStorageS3ForcePathStyle: Bruk sti-baserte URL-er til endepunktene
+objectStorageS3ForcePathStyleDesc: Skru på dette for å lage endpunkts-URL-er i formatet
+  's3.amazonaws.com/<bøtte>/' i stedet for '<bøtte>.s3.amazonaws.com'.
+output: Utputt
+forwardReport: Videresend rapport til ekstern tjener
+forwardReportIsAnonymous: I stedet for din konto vil en anonym systemkonto bli vist
+  som rapportør på den eksterne tjeneren.
+optional: Valgfritt
+manageAccessTokens: Styr adgangstegn
+experimentalFeatures: Eksperimentelle funksjoner
+developer: Utvikler
+duplicate: Dupliser
+left: Venstre
+makeExplorableDescription: Dersom du slår av denne vil kontoen din ikke dukke opp
+  under "Utforsk".
+apply: Bruk
+emailNotification: Epostvarsler
+useReactionPickerForContextMenu: Åpne reaksjonsvelger med høyreklikk
+typingUsers: '{users} skriver'
+markAllAsRead: Marker alle som lest
+goBack: Tilbake
+info: Om
+userInfo: Brukerinformasjon
+hideOnlineStatusDescription: Å skjule hvorvidt du er pålogget vil redusere enkelheten
+  av enkelte funksjoner slik som søk.
+privateModeInfo: Bare hvitelistede tjenere kan federere med din tjener om du slår
+  på denne. Alle poster vil bli skjult for andre.
+received: Mottatt
+searchResult: Søkeresultater
+hashtags: Emneknagger
+keepCw: Behold innholdsadvarsler
+misskeyUpdated: Firefish er oppdatert!
+whatIsNew: Vis endringer
+translate: Oversett
+translatedFrom: Oversatt fra {x}
+itsOn: Påslått
+itsOff: Avslått
+emailRequiredForSignup: Krev e-post-adresse for registrering
+unread: Ulest
+controlPanel: Kontrollpanel
+manageAccounts: Styr kontoer
+mutePeriod: Periode for stumming
+instanceDefaultLightTheme: Standard lyst tema på tjeneren
+reflectMayTakeTime: Det kan ta litt tid før endringen inntrer.
+failedToFetchAccountInformation: Klarte ikke å hente kontoinformasjon
+cropImageAsk: Ønsker du å beskjære dette bildet?
+recommendedInstances: Anbefalte tjenere
+moveAccountDescription: Denne prosessen er irreversibel! Vær sikker på at du har satt
+  opp et alias for denne kontoen på den nye kontoen før du fortsetter. Skriv inn navnet
+  på kontoen på formen @person@server.com
+moveFromDescription: Dette vil sette opp et alias for din gamle kontoen slik at du
+  kan flytte fra den gamle kontoen til denne. Gjør dette FØR du flytter fra den gamle
+  kontoen. Skriv inn den gamle kontoen på formen @person@server.com
+defaultReaction: Standard emoji-reaksjon for utgående og innkommende poster
+indexFrom: Indekser poster fra post-id og fremover
+indexNotice: Indekserer. Dette vil sannsynligvis ta litt tid, ikke restart tjeneren
+  før det har gått minst en time.
+indexFromDescription: La stå tom for å indeksere alle poster
+customKaTeXMacroDescription: 'Sett opp makroer for å skrive matematiske uttrykk enkelt.
+  Notasjonen følger LaTeX-kommandoer og er skrevet som \newcommand{\ navn}{uttrykk}
+  eller \newcommand{\navn}{antall argumenter}{uttrykk}. For eksempel vil \newcommand{\add}{2}{#1
+  + #2} vil ekspandere \add{3}{foo} til 3 + foo. Klammeparentesene rundt makroen kan
+  også endres til parenteser eller hakeparenteser. Dette påvirker hvilken parentestype
+  du bruker for argumenter. En og bare en makro kan defineres pr linje, og du kan
+  ikke ha linjeskift inni definisjonen. Linjer som ikke inneholder gyldige makroer
+  vil bli ignorert. Bare enkle streng-erstatnings-makroer er støttet; avansert syntaks
+  f.eks. med flykontroll er ikke tillatt.'
+signupsDisabled: Registreringer av nye konti på denne tjeneren er slått av, men du
+  kan alltids registrere deg på en annen tjener! Hvis du har en invitasjonskode for
+  denne tjeneren, skriv den inn under.
+findOtherInstance: Finn en annen tjener
+preventAiLearningDescription: Ber tredjeparts AI-språkmodeller om å ikke bruke innhold
+  du laster opp, sliks om poster og bilder.
+enableCustomKaTeXMacro: Slå på egne KaTeX-makroer
+showPopup: Varsle brukere med oppsprettsvindu
