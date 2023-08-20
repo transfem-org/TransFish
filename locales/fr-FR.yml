@@ -2206,3 +2206,7 @@ deletePasskeysConfirm: Cela supprimera de manière irréversible toutes les clé
   et les clés de sécurité sur ce compte. Souhaitez-vous continuer ?
 addRe: Ajouter "re:" au début d’un avertissement de contenu (CW) en réponse à une
   publication avec un avertissement de contenu
+confirm: Confirmer
+importZip: Importer ZIP
+exportZip: Exporter ZIP
+emojiPackCreator: Créateur de pack d’emoji
