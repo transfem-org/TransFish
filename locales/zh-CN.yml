@@ -290,7 +290,7 @@ emptyDrive: "网盘中无文件"
 emptyFolder: "此文件夹中无文件"
 unableToDelete: "无法删除"
 inputNewFileName: "请输入新文件名"
-inputNewDescription: "请输入新标题"
+inputNewDescription: "请输入新描述"
 inputNewFolderName: "请输入新文件夹名"
 circularReferenceFolder: "目标文件夹是您要移动的文件夹的子文件夹。"
 hasChildFilesOrFolders: "此文件夹中有文件，无法删除。"
@@ -561,8 +561,8 @@ disablePlayer: "关闭播放器"
 expandTweet: "展开帖子"
 themeEditor: "主题编辑器"
 description: "描述"
-describeFile: "添加标题"
-enterFileDescription: "输入标题"
+describeFile: "添加描述"
+enterFileDescription: "输入描述"
 author: "作者"
 leaveConfirm: "存在未保存的更改。要放弃更改吗？"
 manage: "管理"
@@ -776,7 +776,7 @@ gallery: "图库"
 recentPosts: "最新发布"
 popularPosts: "热门投稿"
 shareWithNote: "在帖子中分享"
-ads: "广告"
+ads: "社区横幅"
 expiration: "截止时间"
 memo: "便笺"
 priority: "优先级"
@@ -825,7 +825,7 @@ unmuteThread: "取消静音帖子串"
 ffVisibility: "关注/关注者 可见性"
 ffVisibilityDescription: "您可以设置谁可以看到您的关注/关注者信息。"
 continueThread: "查看更多帖子"
-deleteAccountConfirm: "将不可逆的删除账号，是否继续？"
+deleteAccountConfirm: "这将不可逆转地删除账号，是否继续？"
 incorrectPassword: "密码错误。"
 voteConfirm: "确定投给 “{choice}” ？"
 hide: "隐藏"
@@ -993,6 +993,7 @@ _aboutFirefish:
   pleaseDonateToFirefish: 请考虑赞助 Firefish 以支持其开发。
   pleaseDonateToHost: 也请考虑赞助您的主服务器 {host}，以帮助支持其运营成本。
   donateHost: 赞助 {host}
+  misskeyContributors: Misskey 贡献者
 _nsfw:
   respect: "隐藏敏感内容"
   ignore: "不隐藏敏感内容"
@@ -1856,7 +1857,7 @@ seperateRenoteQuote: 单独的转发和引用按钮
 customSplashIcons: 自定义启动屏幕图标（urls）
 alt: 替代文字
 pushNotificationNotSupported: 您的浏览器或者服务器不支持推送通知
-showAds: 显示广告
+showAds: 显示社区横幅
 enterSendsMessage: 按回车键发送信息（关闭则是 Ctrl + Retun 发送）
 recommendedInstances: 推荐服务器
 updateAvailable: 可能有可用更新！
@@ -1875,7 +1876,7 @@ clipsDesc: 便签就像可共享的分类书签。您可以从各个帖子的菜
 privateModeInfo: 当启用时，只有白名单上的服务器可以与您的服务器联合，所有的帖子都会对公共时间线隐藏。
 allowedInstancesDescription: 要列入联合白名单的服务器的主机名，一行一个（仅适用于私密模式）。
 breakFollowConfirm: 确定要移除关注者吗？
-caption: 自动显示说明文字
+caption: 自动显示描述文字
 newer: 更新的
 older: 更旧的
 noInstances: 没有服务器
@@ -1966,3 +1967,16 @@ removeQuote: 移除引用
 removeRecipient: 移除接收者
 removeMember: 移除成员
 origin: 起源
+confirm: 确认
+importZip: 导入 ZIP
+exportZip: 导出 ZIP
+emojiPackCreator: 表情包创建工具
+objectStorageS3ForcePathStyleDesc: 打开此选项可构建格式为 's3.amazonaws.com/<bucket>/' 而非 '<bucket>.s3.amazonaws.com'
+  的端点 URL。
+objectStorageS3ForcePathStyle: 使用基于路径的端点 URL
+delete2fa: 禁用 2FA
+deletePasskeysConfirm: 这将不可逆转地删除此账号上的所有通行密钥和安全密钥。是否继续？
+inputNotMatch: 输入不匹配
+deletePasskeys: 删除通行密钥
+delete2faConfirm: 这将不可逆转地删除此账户上的 2FA。是否继续？
+addRe: 在回复有内容警告的帖子时，在评论开头添加 "re:"
