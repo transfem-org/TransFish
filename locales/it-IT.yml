@@ -1,17 +1,15 @@
 _lang_: "Italiano"
-headlineFirefish: "Rete collegata tramite note"
-introFirefish: "Benvenut@! Firefish è un servizio di microblogging decentralizzato,
-  libero e aperto. \nScrivi \"note\" per condividere ciò che sta succedendo adesso
-  o per dire a tutti qualcosa di te. 📡\nGrazie alla funzione \"reazioni\" puoi anche
-  mandare reazioni rapide alle note delle altre persone del Fediverso. 👍\nEsplora
-  un nuovo mondo! 🚀"
+headlineFirefish: "Una piattaforma social open source, decentralizzata che sarà gratuita
+  per sempre! 🚀"
+introFirefish: "Benvenuti! Firefish è una piattaforma social open source, decentralizzata
+  che sarà sempre gratuita! 🚀"
 monthAndDay: "{day}/{month}"
 search: "Cerca"
 notifications: "Notifiche"
 username: "Nome utente"
 password: "Password"
-forgotPassword: "Hai dimenticato la tua password?"
-fetchingAsApObject: "Recuperando dal Fediverso"
+forgotPassword: "Password dimenticata"
+fetchingAsApObject: "Caricamento dal Fediverso"
 ok: "OK"
 gotIt: "Ho capito!"
 cancel: "Annulla"
@@ -19,7 +17,7 @@ enterUsername: "Inserisci un nome utente"
 renotedBy: "Rinotato da {user}"
 noNotes: "Nessuna nota!"
 noNotifications: "Nessuna notifica"
-instance: "Istanza"
+instance: "Server"
 settings: "Impostazioni"
 basicSettings: "Impostazioni generali"
 otherSettings: "Altre impostazioni"
@@ -68,8 +66,8 @@ import: "Importa"
 export: "Esporta"
 files: "Allegati"
 download: "Scarica"
-driveFileDeleteConfirm: "Vuoi davvero eliminare il file「{name}? Anche gli allegati
-  verranno eliminati."
+driveFileDeleteConfirm: "Vuoi davvero eliminare il file \"{name}\"? Sarà rimosso da
+  tutti i post che lo contengono."
 unfollowConfirm: "Vuoi davvero smettere di seguire {name}?"
 exportRequested: "Hai richiesto un'esportazione, e potrebbe volerci tempo. Quando
   sarà compiuta, il file verrà aggiunto direttamente al Drive."
@@ -108,7 +106,7 @@ renoted: "Rinotato!"
 cantRenote: "È impossibile rinotare questa nota."
 cantReRenote: "È impossibile rinotare una Rinota."
 quote: "Cita"
-pinnedNote: "Nota fissata"
+pinnedNote: "Post fissato"
 pinned: "Fissa sul profilo"
 you: "Tu"
 clickToShow: "Clicca per visualizzare"
@@ -118,7 +116,7 @@ reaction: "Reazione"
 reactionSetting: "Reazioni visualizzate sul pannello"
 reactionSettingDescription2: "Trascina per riorganizzare, clicca per cancellare, usa
   il pulsante \"+\" per aggiungere."
-rememberNoteVisibility: "Ricordare le impostazioni di visibilità delle note"
+rememberNoteVisibility: "Ricorda le impostazioni di visibilità del post"
 attachCancel: "Rimuovi allegato"
 markAsSensitive: "Segna come sensibile"
 unmarkAsSensitive: "Segna come non sensibile"
@@ -147,9 +145,8 @@ addEmoji: "Aggiungi un emoji"
 settingGuide: "Configurazione suggerita"
 cacheRemoteFiles: "Memorizzazione nella cache dei file remoti"
 cacheRemoteFilesDescription: "Disabilitando questa opzione, i file remoti verranno
-  linkati direttamente senza essere memorizzati nella cache. Sarà possibile risparmiare
-  spazio di archiviazione sul server, ma il traffico aumenterà in quanto non verranno
-  generate anteprime."
+  scaricati direttamente dal loro server. L'opzione permette di risparmiare spazio
+  ma aumenta il traffico di rete e non verranno generate anteprime."
 flagAsBot: "Io sono un robot"
 flagAsBotDescription: "Se l'account esegue principalmente operazioni automatiche,
   attiva quest'opzione. Quando attivata, opera come un segnalatore per gli altri sviluppatori
@@ -161,7 +158,7 @@ autoAcceptFollowed: "Accetta automaticamente le richieste di follow da utenti ch
   già segui"
 addAccount: "Aggiungi account"
 loginFailed: "Accesso non riuscito"
-showOnRemote: "Sfoglia sull'istanza remota"
+showOnRemote: "Leggi sul sito origine"
 general: "Generali"
 wallpaper: "Sfondo"
 setWallpaper: "Imposta sfondo"
@@ -171,15 +168,16 @@ youHaveNoLists: "Non hai ancora creato nessuna lista"
 followConfirm: "Sei sicur@ di voler seguire {name}?"
 proxyAccount: "Account proxy"
 proxyAccountDescription: "Un account proxy è un account che funziona da follower remoto
-  per gli utenti sotto certe condizioni. Ad esempio, quando un utente aggiunge un
-  utente remoto alla lista, dato che se nessun utente locale segue quell'utente le
-  sue attività non verranno distribuite, al suo posto lo seguirà un account proxy."
+  sotto certe condizioni. Ad esempio, quando un utente aggiunge un utente remoto a
+  una lista, le attività di quell'utente potrebbero comunque non essere visualizzate
+  in locale se nessun altro utente lo segue su questo server, l'account proxy si occuperà
+  di seguire e acquisire i post."
 host: "Server remoto"
 selectUser: "Seleziona utente"
 recipient: "Destinatario"
 annotation: "Descrizione"
 federation: "Federazione"
-instances: "Istanza"
+instances: "Server"
 registeredAt: "Registrato presso"
 latestRequestSentAt: "Ultima richiesta inviata"
 latestRequestReceivedAt: "Ultima richiesta ricevuta"
@@ -189,7 +187,7 @@ charts: "Grafici"
 perHour: "All'ora"
 perDay: "al giorno"
 stopActivityDelivery: "Interrompi la distribuzione di attività"
-blockThisInstance: "Blocca l'istanza"
+blockThisInstance: "Blocca questo server"
 operations: "Operazioni"
 software: "Software"
 version: "Versione"
@@ -199,27 +197,27 @@ jobQueue: "Coda di lavoro"
 cpuAndMemory: "CPU e Memoria"
 network: "Rete"
 disk: "Disco"
-instanceInfo: "Informazioni sull'istanza"
+instanceInfo: "Informazioni sul server"
 statistics: "Statistiche"
 clearQueue: "Svuota coda"
 clearQueueConfirmTitle: "Vuoi davvero svuotare la coda?"
-clearQueueConfirmText: "Le note ancora non distribuite non verranno rilasciate. Solitamente,
+clearQueueConfirmText: "I post ancora in coda non verranno più federati. Solitamente,
   non è necessario eseguire questa operazione."
 clearCachedFiles: "Svuota cache"
 clearCachedFilesConfirm: "Vuoi davvero svuotare la cache da tutti i file remoti?"
-blockedInstances: "Istanze bloccate"
-blockedInstancesDescription: "Elenca le istanze che vuoi bloccare, una per riga. Esse
-  non potranno più interagire con la tua istanza."
+blockedInstances: "Server bloccati"
+blockedInstancesDescription: "Elenca gli hostname dei server che vuoi bloccare. Non
+  potranno più comunicare con il tuo server."
 muteAndBlock: "Silenziati / Bloccati"
 mutedUsers: "Account silenziati"
 blockedUsers: "Account bloccati"
 noUsers: "Nessun utente trovato"
 editProfile: "Modifica profilo"
-noteDeleteConfirm: "Eliminare questo Nota?"
+noteDeleteConfirm: "Vuoi eliminare questo post?"
 pinLimitExceeded: "Non puoi fissare altre note "
 intro: "L'installazione di Firefish è finita! Si prega di creare un account amministratore."
 done: "Fine"
-processing: "In elaborazione"
+processing: "Elaborazione in corso"
 preview: "Anteprima"
 default: "Predefinito"
 noCustomEmojis: "Nessun emoji"
@@ -231,9 +229,9 @@ all: "Tutti"
 subscribing: "Iscrivendo"
 publishing: "Pubblicando"
 notResponding: "Nessuna risposta"
-instanceFollowing: "Seguiti dall'istanza"
-instanceFollowers: "Followers dell'istanza"
-instanceUsers: "Utenti dell'istanza"
+instanceFollowing: "Seguiti su questo server"
+instanceFollowers: "Follower del server"
+instanceUsers: "Utenti del server"
 changePassword: "Aggiorna Password"
 security: "Sicurezza"
 retypedNotMatch: "Le password non corrispondono."
@@ -323,8 +321,8 @@ unwatch: "Smetti di Osserva"
 accept: "Accetta"
 reject: "Rifiuta"
 normal: "Normale"
-instanceName: "Nome dell'istanza"
-instanceDescription: "Descrizione dell'istanza"
+instanceName: "Nome del server"
+instanceDescription: "Descrizione del server"
 maintainerName: "Nome dell'Amministratore"
 maintainerEmail: "Indirizzo e-mail dell'Amministratore"
 tosUrl: "Termini di servizio URL"
@@ -335,7 +333,7 @@ dayX: "{day}"
 monthX: "{month}"
 yearX: "{year}"
 pages: "Pagine"
-integration: "App collegate"
+integration: "Integrazioni"
 connectService: "Connessione"
 disconnectService: "Disconnessione "
 enableLocalTimeline: "Abilita Timeline locale"
@@ -357,9 +355,9 @@ pinnedUsersDescription: "Elenca gli/le utenti che vuoi fissare in cima alla pagi
   \"Esplora\", un@ per riga."
 pinnedPages: "Pagine in evidenza"
 pinnedPagesDescription: "Specifica il percorso delle pagine che vuoi fissare in cima
-  alla pagina dell'istanza. Una pagina per riga."
+  alla home page del server. Una pagina per riga."
 pinnedClipId: "ID della clip in evidenza"
-pinnedNotes: "Nota fissata"
+pinnedNotes: "Post fissati"
 hcaptcha: "hCaptcha"
 enableHcaptcha: "Abilita hCaptcha"
 hcaptchaSiteKey: "Chiave del sito"
@@ -379,14 +377,14 @@ antennaKeywords: "Parole chiavi da ricevere"
 antennaExcludeKeywords: "Parole chiavi da escludere"
 antennaKeywordsDescription: "Separare con uno spazio indica la condizione \"E\". Separare
   con un'interruzzione riga indica la condizione \"O\"."
-notifyAntenna: "Invia notifiche delle nuove note"
-withFileAntenna: "Solo note con file in allegato"
+notifyAntenna: "Notifica i nuovi post"
+withFileAntenna: "Solo post con file allegati"
 enableServiceworker: "Abilita ServiceWorker"
 antennaUsersDescription: "Inserisci solo un nome utente per riga"
 caseSensitive: "Sensibile alla distinzione tra maiuscole e minuscole"
 withReplies: "Includere le risposte"
 connectedTo: "Sei conness@ agli account qui sotto:"
-notesAndReplies: "Note e risposte"
+notesAndReplies: "Post e risposte"
 withFiles: "Con file in allegato"
 silence: "Silenzia"
 silenceConfirm: "Vuoi davvero silenziare l'utente?"
@@ -422,7 +420,7 @@ notFoundDescription: "Nessuna pagina corrisponde all'URL indicata."
 uploadFolder: "Destinazione caricamento predefinita"
 cacheClear: "Svuota cache"
 markAsReadAllNotifications: "Segna tutte le notifiche come lette"
-markAsReadAllUnreadNotes: "Segna tutte le note come lette"
+markAsReadAllUnreadNotes: "Segna tutti post come letti"
 markAsReadAllTalkMessages: "Segna tutte le chat come lette"
 help: "Guida"
 inputMessageHere: "Scrivi messaggio qui"
@@ -443,7 +441,7 @@ text: "Testo"
 enable: "Abilita"
 next: "Avanti"
 retype: "Conferma"
-noteOf: "Note di {user}"
+noteOf: "Post di {user}"
 inviteToGroup: "Invitare al gruppo"
 quoteAttached: "Citazione allegata"
 quoteQuestion: "Vuoi aggiungere una citazione?"
@@ -501,8 +499,8 @@ accountSettings: "Impostazioni account"
 promotion: "Promossa"
 promote: "Pubblicizza"
 numberOfDays: "Numero di giorni"
-hideThisNote: "Nasconda la nota"
-showFeaturedNotesInTimeline: "Mostrare le note di tendenza nella tua timeline"
+hideThisNote: "Nascondi questo post"
+showFeaturedNotesInTimeline: "Mostra i post suggeriti nella tua timeline"
 objectStorage: "Stoccaggio oggetti"
 useObjectStorage: "Utilizza stoccaggio oggetti"
 objectStorageBaseUrl: "Base URL"
@@ -530,7 +528,7 @@ objectStorageSetPublicRead: "Imposta \"visibilità pubblica\" al momento di cari
 serverLogs: "Log del server"
 deleteAll: "Cancella cronologia"
 showFixedPostForm: "Visualizzare la finestra di pubblicazione in cima alla timeline"
-newNoteRecived: "Vedi le nuove note"
+newNoteRecived: "Ci sono nuovi post"
 sounds: "Impostazioni suoni"
 listen: "Ascolta"
 none: "Niente"
@@ -563,8 +561,8 @@ updateRemoteUser: "Aggiornare le informazioni di utente remot@"
 deleteAllFiles: "Elimina tutti i file"
 deleteAllFilesConfirm: "Vuoi davvero eliminare tutti i file?"
 removeAllFollowing: "Cancella tutti i follows"
-removeAllFollowingDescription: "Cancella tutti i follows del server {host}. Per favore,
-  esegui se, ad esempio, l'istanza non esiste più."
+removeAllFollowingDescription: "Cancella tutti i follow verso il server {host}. È
+  utile soprattutto se per esempio il server non esiste più."
 userSuspended: "L'utente è sospes@."
 userSilenced: "L'utente è silenziat@."
 yourAccountSuspendedTitle: "Questo account è sospeso."
@@ -579,8 +577,8 @@ addRelay: "Aggiungi ripetitore"
 inboxUrl: "Inbox URL"
 addedRelays: "Ripetitori configurati"
 serviceworkerInfo: "Deve essere abilitato per le notifiche push. "
-deletedNote: "Nota eliminata"
-invisibleNote: "Nota invisibile"
+deletedNote: "Post rimosso"
+invisibleNote: "Post invisibile"
 enableInfiniteScroll: "Abilita scorrimento infinito"
 visibility: "Visibilità"
 poll: "Sondaggio"
@@ -590,7 +588,7 @@ disablePlayer: "Chiudi lettore video"
 expandTweet: "Espandi tweet"
 themeEditor: "Editor di temi"
 description: "Descrizione"
-describeFile: "Aggiungi una descrizione d'immagine"
+describeFile: "Aggiungi descrizione"
 enterFileDescription: "Inserisci descrizione"
 author: "Autore"
 leaveConfirm: "Ci sono delle modifiche ancora non salvate. Vuoi cancellarle?"
@@ -631,7 +629,7 @@ smtpSecure: "Usare la porta SSL/TLS implicito per le connessioni SMTP"
 smtpSecureInfo: "Disabilitare quando è attivo STARTTLS."
 testEmail: "Testare la consegna di posta elettronica"
 wordMute: "Filtri parole"
-instanceMute: "Silenzia l'istanza"
+instanceMute: "Server silenziati"
 userSaysSomething: "{name} ha detto qualcosa"
 makeActive: "Attiva"
 display: "Visualizza"
@@ -661,7 +659,7 @@ abuseReports: "Segnalazioni"
 reportAbuse: "Segnalazioni"
 reportAbuseOf: "Segnala {name}"
 fillAbuseReportDescription: "Si prega di spiegare il motivo della segnalazione. Se
-  riguarda una nota precisa, si prega di collegare anche l'URL della nota."
+  riguarda un post specifico, inserisci anche l'URL di riferimento."
 abuseReported: "La segnalazione è stata inviata. Grazie."
 reporter: "il corrispondente"
 reporteeOrigin: "Origine del segnalato"
@@ -673,11 +671,11 @@ openInSideView: "Apri in vista laterale"
 defaultNavigationBehaviour: "Navigazione preimpostata"
 editTheseSettingsMayBreakAccount: "Modificare queste impostazioni può danneggiare
   l'account."
-instanceTicker: "Informazioni sull'istanza da cui vengono le note"
+instanceTicker: "Informazioni del server sui post"
 waitingFor: "Aspettando {x}"
 random: "Casuale"
 system: "Sistema"
-switchUi: "Cambiare interfaccia utente"
+switchUi: "Interfaccia"
 desktop: "Desktop"
 clip: "Clip"
 createNew: "Crea nuov@"
@@ -704,8 +702,8 @@ no: "No"
 driveFilesCount: "Numero di file nel Drive"
 driveUsage: "Utilizzazione del Drive"
 noCrawle: "Rifiuta l'indicizzazione dai robot."
-noCrawleDescription: "Richiedi che i motori di ricerca non indicizzino la tua pagina
-  di profilo, le tue note, pagine, ecc."
+noCrawleDescription: "Richiedi ai motori di ricerca di non indicizzare la tua pagina
+  del profilo, i tuoi post, pagine, ecc."
 lockedAccountInfo: "A meno che non imposti la visibilità delle tue note su \"Solo
   ai follower\", le tue note sono visibili da tutti, anche se hai configurato l'account
   per confermare manualmente le richieste di follow."
@@ -739,7 +737,7 @@ showTitlebar: "Visualizza la barra del titolo"
 clearCache: "Svuota cache"
 onlineUsersCount: "{n} utenti online"
 nUsers: "{n} utenti"
-nNotes: "{n}Note"
+nNotes: "{n} Post"
 sendErrorReports: "Invia segnalazioni di errori"
 sendErrorReportsDescription: "Quando abilitato, se si verifica un problema, informazioni
   dettagliate sugli errori verranno condivise con Firefish in modo da aiutare a migliorare
@@ -766,7 +764,7 @@ capacity: "Capacità"
 inUse: "In utilizzo"
 editCode: "Modifica codice"
 apply: "Applica"
-receiveAnnouncementFromInstance: "Ricevi i messaggi informativi dall'istanza"
+receiveAnnouncementFromInstance: "Ricevi notifiche da questo server"
 emailNotification: "Eventi per notifiche via mail"
 publish: "Pubblico"
 inChannelSearch: "Cerca in canale"
@@ -775,17 +773,17 @@ useReactionPickerForContextMenu: "Cliccare sul tasto destro per aprire il pannel
 typingUsers: "{users} sta(nno) scrivendo"
 jumpToSpecifiedDate: "Vai alla data "
 showingPastTimeline: "Stai visualizzando una vecchia timeline"
-clear: "Cancella"
+clear: "Pulisci"
 markAllAsRead: "Segna tutti come già letti"
 goBack: "Indietro"
 unlikeConfirm: "Non ti piace più?"
 fullView: "Schermo intero"
 quitFullView: "Esci dalla modalità a schermo intero"
 addDescription: "Aggiungi descrizione"
-userPagePinTip: "Qui puoi appuntare note, premendo \"Fissa sul profilo\" nel menù
-  delle singole note."
-notSpecifiedMentionWarning: "Sono menzionati account che non vengono inclusi fra i
-  destinatari"
+userPagePinTip: "Puoi fissare i post qui, premendo \"Fissa sul profilo\" nel menù
+  dei singoli post."
+notSpecifiedMentionWarning: "Questo post menziona utenti che non sono inclusi fra
+  i destinatari"
 info: "Informazioni"
 userInfo: "Informazioni utente"
 unknown: "Sconosciuto"
@@ -798,7 +796,7 @@ active: "Attiv@"
 offline: "Offline"
 notRecommended: "Sconsigliato"
 botProtection: "Protezione contro i bot"
-instanceBlocking: "Istanze bloccate"
+instanceBlocking: "Gestione della federazione"
 selectAccount: "Scegli account"
 enabled: "Attivo"
 disabled: "Inattivo"
@@ -814,8 +812,8 @@ postToGallery: "Pubblicare nella galleria"
 gallery: "Galleria"
 recentPosts: "Le più recenti"
 popularPosts: "Le più visualizzate"
-shareWithNote: "Condividere in nota"
-ads: "Pubblicità"
+shareWithNote: "Condividere in un post"
+ads: "Banner della comunità"
 expiration: "Scadenza"
 memo: "Promemoria"
 priority: "Priorità"
@@ -855,10 +853,10 @@ unread: "Non letto"
 filter: "Filtri"
 controlPanel: "Pannello di controllo"
 manageAccounts: "Gestisci account"
-classic: "Classico"
+classic: "Centrato"
 muteThread: "Silenzia la discussione"
 unmuteThread: "Riattiva la discussione"
-deleteAccountConfirm: "L'account verrà cancellato. Procedere?"
+deleteAccountConfirm: "L'account verrà rimosso in modo irreversibile. Procedere?"
 incorrectPassword: "La password è errata."
 voteConfirm: "Votare per「{choice}」?"
 hide: "Nascondere"
@@ -1177,11 +1175,12 @@ _auth:
   callback: "Ritornando sulla app"
   denied: "Accesso negato"
 _antennaSources:
-  all: "Tutte le note"
-  homeTimeline: "Note dagli utenti che segui"
-  users: "Note dagli utenti selezionati"
-  userList: "Note dagli utenti della lista selezionata"
-  userGroup: "Note dagli utenti del gruppo selezionato"
+  all: "Tutti i post"
+  homeTimeline: "Post dagli utenti che segui"
+  users: "Post dagli utenti selezionati"
+  userList: "Post dagli utenti di una lista specifica"
+  userGroup: "Post dagli utenti in un gruppo specifico"
+  instances: Post di tutti gli utenti di un server
 _weekday:
   sunday: "Domenica"
   monday: "Lunedì"
@@ -1191,24 +1190,34 @@ _weekday:
   friday: "Venerdì"
   saturday: "Sabato"
 _widgets:
-  memo: "Memo"
+  memo: "Promemoria"
   notifications: "Notifiche"
   timeline: "Timeline"
   calendar: "Calendario"
   trends: "Tendenze"
   clock: "Orologio"
-  rss: "Aggregatore rss"
+  rss: "Aggregatore RSS"
   activity: "Attività"
   photos: "Foto"
   digitalClock: "Orologio digitale"
   federation: "Federazione"
-  postForm: "Finestra di pubblicazione"
+  postForm: "Modulo del post"
   slideshow: "Diapositive"
   button: "Pulsante"
   onlineUsers: "Utenti online"
   jobQueue: "Coda di lavoro"
   serverMetric: "Statistiche server"
   aiscript: "Console AiScript"
+  _userList:
+    chooseList: Seleziona una lista
+  rssTicker: Riquadro RSS
+  instanceCloud: Cloud del server
+  unixClock: Orologio UNIX
+  serverInfo: Informazioni sul server
+  meiliIndexCount: Post indicizzati
+  meiliStatus: Stato del server
+  meiliSize: Dimensione indice
+  userList: Elenco utenti
 _cw:
   hide: "Nascondere"
   show: "Mostra di più"
@@ -1238,18 +1247,18 @@ _poll:
   remainingSeconds: "Rimangono {s} secondi"
 _visibility:
   public: "Pubblica"
-  publicDescription: "Visibile per tutti sul Fediverso"
+  publicDescription: "Il tuo post sarà visibile in tutte le timeline pubbliche"
   home: "Home"
   homeDescription: "Visibile solo sulla timeline \"Home\""
   followers: "Followers"
-  followersDescription: "Visibile solo per i tuoi followers"
+  followersDescription: "Visibile solo per i tuoi followers e gli utenti che menzioni"
   specified: "Diretta"
   specifiedDescription: "Visibile solo per gli/le utenti menzionatə"
   localOnly: "Soltanto locale"
   localOnlyDescription: "Nascosta per gli/le utenti remotə"
 _postForm:
-  replyPlaceholder: "Nota la tua risposta.."
-  quotePlaceholder: "Cita Nota..."
+  replyPlaceholder: "Rispondi a questo post..."
+  quotePlaceholder: "Citazione da questo post..."
   channelPlaceholder: "Pubblica in canale"
   _placeholders:
     a: "Che succede?"
@@ -1266,27 +1275,32 @@ _profile:
   metadata: "Informazioni aggiuntive"
   metadataEdit: "Modifica informazioni aggiuntive"
   metadataDescription: "Puoi pubblicare fino a quattro informazioni aggiuntive sul
-    profilo. Puoi aggiungere un tag {a} o {l} con {rel} per verificare il link sul tuo profilo!"
+    profilo. Puoi aggiungere un tag {a} o {l} con {rel} per verificare il link sul
+    tuo profilo!"
   metadataLabel: "Etichetta"
   metadataContent: "Contenuto"
   changeAvatar: "Modifica immagine profilo"
   changeBanner: "Cambia intestazione"
+  locationDescription: Se prima inserisci la tua città, agli altri utenti sarà mostrata
+    l'ora locale in cui ti trovi.
 _exportOrImport:
-  allNotes: "Tutte le note"
+  allNotes: "Tutti i post"
   followingList: "Follows"
   muteList: "Account silenziati"
   blockingList: "Account bloccati"
   userLists: "Liste"
+  excludeInactiveUsers: Escludi utenti non attivi
+  excludeMutingUsers: Escludi utenti silenziati
 _charts:
   federation: "Federazione"
   apRequest: "Richieste"
   usersIncDec: "Variazione del numero di utenti"
   usersTotal: "Numero totale di utenti"
   activeUsers: "Numero di utenti attivi"
-  notesIncDec: "Variazione del numero di note"
-  localNotesIncDec: "Variazione del numero di note locali"
-  remoteNotesIncDec: "Variazione del numero di note distanti"
-  notesTotal: "Conteggio totale di note"
+  notesIncDec: "Variazione del numero di post"
+  localNotesIncDec: "Variazione del numero di post locali"
+  remoteNotesIncDec: "Variazione del numero di post remoti"
+  notesTotal: "Numero totale di post"
   filesIncDec: "Variazione del numero dei file"
   filesTotal: "Numero totale di file"
   storageUsageIncDec: "Variazione dell'utilizzo dell'immagazzinamento"
@@ -1295,8 +1309,8 @@ _instanceCharts:
   requests: "Richieste"
   users: "Variazione del numero di utenti"
   usersTotal: "Totale cumulativo di utenti"
-  notes: "Variazione del numero di note"
-  notesTotal: "Totale cumulato di note"
+  notes: "Differenza nel numero di post"
+  notesTotal: "Totale cumulativo di post"
   ff: "Variazione dei follow/ follower"
   ffTotal: "Totale cumulato dei follow/ follower"
   cacheSize: "Variazione dello spazio occupato dalla cache"
@@ -1308,6 +1322,7 @@ _timelines:
   local: "Locale"
   social: "Sociale"
   global: "Federata"
+  recommended: Raccomandato
 _pages:
   newPage: "Crea pagina"
   editPage: "Modifica pagina"
@@ -1358,6 +1373,8 @@ _pages:
     post: "Finestra di pubblicazione"
     _post:
       text: "Contenuto"
+      canvasId: Canvas ID
+      attachCanvasImage: Allega una immagine canvas
     textInput: "Immissione testo"
     _textInput:
       name: "Nome della variabile"
@@ -1376,10 +1393,11 @@ _pages:
     _canvas:
       width: "Larghezza"
       height: "Altezza"
-    note: "Nota integrata"
+      id: Canvas ID
+    note: "Post embedded"
     _note:
-      id: "ID nota"
-      idDescription: "Qui puoi anche incollare l'URL della nota che vuoi impostare."
+      id: "Post ID"
+      idDescription: "In alternativa puoi incollare qui l'URL del post."
       detailed: "Visualizzazione dettagliata"
     switch: "Interruttore"
     _switch:
@@ -1414,6 +1432,8 @@ _pages:
       name: "Nome della variabile"
       title: "Titolo"
       default: "Valore predefinito"
+      values: Elenco di scelte, una per linea
+    canvas: Canvas
   script:
     categories:
       comparison: "Metodo comparativo"
@@ -1421,6 +1441,11 @@ _pages:
       value: "Valore"
       fn: "Funzione"
       list: "Liste"
+      flow: Controllo del flusso
+      logical: Operazione logica
+      text: Operazioni sul testo
+      convert: Conversioni
+      operation: Operazione
     blocks:
       text: "Testo"
       multiLineText: "Testo (a più righe)"
@@ -1429,12 +1454,16 @@ _pages:
         arg1: "Testo"
       _strPick:
         arg1: "Testo"
+        arg2: Posizione della stringa
       _strReplace:
         arg1: "Testo"
+        arg3: Sostituisci con
+        arg2: Testo da sostituire
       _strReverse:
         arg1: "Testo"
       _join:
         arg1: "Liste"
+        arg2: Separatore
       _add:
         arg1: "A"
         arg2: "B"
@@ -1480,6 +1509,7 @@ _pages:
       _if:
         arg1: "Se"
         arg2: "Se"
+        arg3: ELSE
       random: "Aleatorietà"
       _randomPick:
         arg1: "Liste"
@@ -1487,12 +1517,15 @@ _pages:
         arg1: "Liste"
       _seedRandom:
         arg2: "Probabilità"
+        arg1: Seme
       _seedRandomPick:
         arg2: "Liste"
+        arg1: Seme
       _DRPWPM:
         arg1: "Lista di testo"
       _pick:
         arg1: "Liste"
+        arg2: Posizione
       _listLen:
         arg1: "Liste"
       _stringToNumber:
@@ -1501,10 +1534,87 @@ _pages:
         arg1: "Testo"
       ref: "Variabili"
       fn: "Funzione"
+      not: NOT
+      _not:
+        arg1: NOT
+      _fn:
+        slots: Slot
+        arg1: Output
+        slots-info: Scrivi uno slot per riga
+      _for:
+        arg2: Azione
+        arg1: Numero di ripetizioni
+      add: Somma
+      _dailyRandom:
+        arg1: Probabilità
+      _dailyRannum:
+        arg1: Valore minimo
+        arg2: Valore massimo
+      strLen: Lunghezza del testo
+      join: Concatenazione testo
+      splitStrByLine: Suddividi il testo al fine riga
+      subtract: Sottrazione
+      lt: < A è minore di B
+      gt: '> A è maggiore di B'
+      _seedRannum:
+        arg1: Seme
+        arg3: Valora massimo
+        arg2: Valore minimo
+      multiply: Moltiplicazione
+      _round:
+        arg1: Numero
+      numberToString: Da numero a testo
+      _numberToString:
+        arg1: Numero
+      strPick: Estrai stringa
+      _rannum:
+        arg2: Valore massimo
+        arg1: Valore minimo
+      listLen: Calcola la lunghezza della lista
+      strReverse: Ribalta il testo
+      _textList:
+        info: Inserisci un elemento per riga
+      strReplace: Stringa sostitutiva
+      ltEq: <= A è minore o uguale a B
+      divide: Divisione
+      mod: Resto
+      _random:
+        arg1: Probabilità
+      randomPick: Scegli a caso da una lista
+      number: Numero
+      gtEq: '>= A è maggiore o uguale a B'
+      rannum: Numero casuale
+      dailyRannum: Numero casuale (Cambia una volta al giorno per ogni utente)
+      dailyRandomPick: Scegli a caso da una lista (Cambia una volta al giorno per
+        ogni utente)
+      seedRandom: Casuale (con seme)
+      seedRannum: Numero casuale (con seme)
+      seedRandomPick: Scegli a caso da una lista (con seme)
+      aiScriptVar: Variabile AiScript
+      for: Ciclo for
+      if: IF
+      dailyRandom: Casuale (Cambia una volta al giorno per ogni utente)
+      DRPWPM: Scegli a caso da una lista pesata (Cambia una volta al giorno per ogni
+        utente)
+      pick: Seleziona da una lista
+      stringToNumber: Da testo a numero
+      round: Arrotondamento decimale
+      eq: A e B sono uguali
     types:
       string: "Testo"
       array: "Liste"
       stringArray: "Lista di testo"
+      number: Numero
+      boolean: Vero/Falso
+    emptySlot: Slot vuoto
+    typeError: Lo slot {slot} accetta valori di tipo "{expect}", ma il valore fornito
+      è di tipo "{actual}"!
+    enviromentVariables: Variabili d'ambiente
+    thereIsEmptySlot: Lo slot {slot} è vuoto!
+    pageVariables: Variabili di pagina
+    argVariables: Slot di input
+  inspector: Ispettore
+  alignCenter: Centra gli elementi
 _relayStatus:
   requesting: "In attesa di approvazione"
   accepted: "Approvato"
@@ -1514,7 +1624,7 @@ _notification:
   youGotMention: "{name} ti ha menzionato"
   youGotReply: "{name} ti ha risposto"
   youGotQuote: "{name} ha citato il tuo Nota e ha detto"
-  youRenoted: "{name} ha rinotato"
+  youRenoted: "Boost da {name}"
   youGotPoll: "{name} ha votato"
   youGotMessagingMessageFromUser: "{name} ti ha mandato un messaggio"
   youGotMessagingMessageFromGroup: "{name} ti ha mandato un messaggio nella chat"
@@ -1527,7 +1637,7 @@ _notification:
     follow: "Nuovə follower"
     mention: "Menzioni"
     reply: "Risposte"
-    renote: "Rinota"
+    renote: "Boost"
     quote: "Cita"
     reaction: "Reazioni"
     pollVote: "Voti ricevuti"
@@ -1535,9 +1645,16 @@ _notification:
     followRequestAccepted: "Richiesta di follow accettata"
     groupInvited: "Invito a un gruppo"
     app: "Notifiche da applicazioni"
+    pollEnded: Fine del sondaggio
   _actions:
     reply: "Rispondi"
-    renote: "Rinota"
+    renote: "Boost"
+    followBack: ricambia il tuo follow
+  reacted: ha aggiunto una reazione al tuo post
+  renoted: ha rilanciato il tuo post con un boost
+  pollEnded: I risultati del sondaggio sono disponibili
+  voted: ha votato il tuo sondaggio
+  emptyPushNotificationMessage: Le notifiche push sono state aggiornate
 _deck:
   alwaysShowMainColumn: "Mostra sempre la colonna principale"
   columnAlign: "Allineare colonne"
@@ -1548,7 +1665,7 @@ _deck:
   swapDown: "Sposta in basso"
   stackLeft: "Impila a sinistra"
   popRight: "Estrai a destra"
-  profile: "Profilo"
+  profile: "Workspace"
   _columns:
     main: "Principale"
     widgets: "Widget"
@@ -1557,7 +1674,309 @@ _deck:
     antenna: "Antenne"
     list: "Liste"
     mentions: "Menzioni"
-    direct: "Diretta"
+    direct: "Messaggi diretti"
+    channel: Canale
+  introduction: Crea l'interfaccia perfetta ordinando liberamente le colonne!
+  deleteProfile: Rimuovi il workspace
+  nameAlreadyExists: Esiste già un workspace con questo nome.
+  widgetsIntroduction: Scegli "Modifica widget" nel menu della colonna per aggiungere
+    un widget.
+  newProfile: Nuovo workspace
+  renameProfile: Rinomina il workspace
+  introduction2: Fai clic sul + a destra dello schermo per aggiungere nuove colonne
+    quando vuoi.
+  configureColumn: Impostazioni della colonna
 noThankYou: No grazie
 addInstance: Aggiungi un'istanza
 deleted: Eliminato
+editNote: Modifica post
+edited: Modificato {date} {time}
+_skinTones:
+  medium: Medio
+  yellow: Giallo
+  light: Chiaro
+  dark: Scuro
+  mediumLight: Chiaro medio
+  mediumDark: Scuro medio
+removeReaction: Elimina la tua reazione
+showEmojisInReactionNotifications: Mostra le emoji nelle notifiche delle reazioni
+flagSpeakAsCatDescription: I tuoi post saranno "nyanified" quando sei in modalità
+  gatto
+selectInstance: Scegli un server
+keepOriginalUploading: Mantieni l'immagine originale
+moderation: Moderazione
+expandOnNoteClickDesc: Se disabilitato, potrai comunque aprire i post cliccando sull'orario
+  o con il tasto destro del mouse .
+userSaysSomethingReasonQuote: '{name} ha citato un post che contiene {reason}'
+narrow: Stretto
+cropImageAsk: Vuoi ritagliare questa immagine?
+recentNDays: Ultimi {n} giorni
+noEmailServerWarning: Il server per le email non è configurato.
+cannotUploadBecauseInappropriate: Non è stato possibile caricare questo contenuto
+  perché una o più parti sono state identificate come NSFW.
+navbar: Barra di navigazione
+activeEmailValidationDescription: Abilita la verifica rigorosa dell'indirizzo email,
+  che include il controllo di indirizzi usa e getta e dell'effettivo funzionamento.
+  Se non attivo, viene controllato solo il formato dell'indirizzo email.
+customMOTDDescription: Messaggi personalizzati che sono mostrati sullo splash screen
+  durate il caricamento, uno per riga, saranno scelti a caso ogni volta che l'utente
+  carica o ricarica la pagina.
+recommendedInstances: Server consigliati
+customSplashIconsDescription: Elenco degli URL di icone personalizzate da mostrare
+  casualmente ogni volta che l'utente carica o ricarica la pagina. Assicurati che
+  le immagini siano su un URL statico, preferibilmente di dimensioni 192x192.
+swipeOnDesktop: Permetti lo swipe su desktop simile alla versione mobile
+logoImageUrl: URL del logo
+indexFrom: Indicizza dal post ID
+customKaTeXMacro: Macro KaTeX personalizzate
+indexPosts: Crea indice dei post
+signupsDisabled: Le iscrizioni su questo server al momento non sono possibili, ma
+  puoi sempre iscriverti su un altro server! Se invece hai un codice di invito per
+  questo server, inseriscilo qua sotto.
+findOtherInstance: Scegli un altro server
+apps: App
+expandOnNoteClick: Apri i post con un click
+userSaysSomethingReasonReply: '{name} ha risposto a un post che contiene {reason}'
+userSaysSomethingReasonRenote: '{name} ha dato un boost al post che contiene  {reason}'
+forwardReport: Inoltra la segnalazione al server remoto
+size: Dimensione
+numberOfColumn: Numero di colonne
+enableServerMachineStats: Abilita le statistiche hardware del server
+enableRecommendedTimeline: Abilita la timeline degli utenti suggeriti
+regexpError: Errore nell'espressione regolare
+forwardReportIsAnonymous: Al posto del proprio account, nel server remoto verrà visualizzato
+  un account anonimo come autore della segnalazione.
+unclip: Togli il clip
+instanceSecurity: Sicurezza del server
+recommended: Raccomandato
+seperateRenoteQuote: Separa i bottoni di boost e citazione
+ffVisibility: Visibilità dei follower
+failedToFetchAccountInformation: Non è possibile ottenere informazioni sull'account
+rateLimitExceeded: Limite di richieste superato
+document: Documentazione
+statusbar: Barra di stato
+pleaseSelect: Seleziona un'opzione
+cannotUploadBecauseNoFreeSpace: Caricamento fallito per mancanza di spazio sul drive.
+migration: Migrazione
+moveFromLabel: 'Account remoto da migrare:'
+moveFrom: Migra verso questo account da uno vecchio
+sendModMail: Invia un avviso di moderazione
+isSystemAccount: Questo account è creato e gestito dal sistema. Non modificare, eliminare,
+  moderare o mettere mano a questo account altrimenti il sistema potrebbe smettere
+  di funzionare.
+speed: Velocità
+refreshInterval: 'Intervallo di aggiornamento '
+slow: Lento
+customSplashIcons: URL icone personalizzate di caricamento (splash screen)
+removeQuote: Rimuovi citazione
+removeRecipient: Rimuovi destinatario
+removeMember: Rimuovi membro
+reactionPickerSkinTone: Tono della pelle preferito negli emoji
+_experiments:
+  postImportsCaption: Permette agli utenti di importare i post da vecchi account Firefish,
+    Misskey, Mastodon, Akkoma e Pleroma. Potrebbe causare rallentamenti durante il
+    caricamento.
+  enablePostImports: Abilita l'importazione di post
+  title: Esperimenti
+moveTo: Migra l'account corrente verso un nuovo account
+searchPlaceholder: Cerca in Firefish
+listsDesc: Le liste ti permettono di avere delle timeline con utenti specifici. Le
+  trovi sulla pagina timeline.
+flagSpeakAsCat: Parla come un gatto
+accountMoved: "L'utente si è trasferito su un nuovo account:"
+flagShowTimelineRepliesDescription: Mostra le risposte degli utenti ai post di altri
+  utenti nella timeline, se attivata.
+silencedInstances: Server silenziati
+silencedInstancesDescription: Elenca gli hostname dei server che vuoi silenziare.
+  Tutti gli utenti di questi server saranno trattati come silenziati, possono fare
+  richieste di follow e non possono menzionare gli account locali che non li seguono.
+  I server bloccati non sono coinvolti.
+hiddenTags: Hashtag nascosti
+hiddenTagsDescription: 'Elenca gli hashtag (senza #) che vuoi nascondere da trending
+  ed esplora. Gli hashtag nascosti restano comunque accessibili in altre condizioni.'
+defaultValueIs: 'Predefinito: {value}'
+manageGroups: Gestisci i gruppi
+antennasDesc: "Le antenne mostrano tutti i nuovi post che rientrano nei criteri che
+  imposti tu!\nSono visibili dalla pagina della timeline."
+advanced: Avanzato
+pubSub: Account Pub/Sub
+driveCapOverrideLabel: Cambia lo spazio disco per questo utente
+typeToConfirm: Inserisci {x} per confermare
+check: Verifica
+logoutConfirm: Confermi il log out?
+lastActiveDate: Ultimo utilizzo
+enterSendsMessage: Premi "Invio" nei messaggi per inviare (altrimenti è "Ctrl + Invio")
+customMOTD: Messaggi di caricamento personalizzati (splash screen)
+replayTutorial: Ripeti il tutorial
+indexFromDescription: Lascia vuoto per indicizzare tutti i post
+indexNotice: Creazione indice in corso. Sarà necessario del tempo, fai attenzione
+  a non riavviare il server per almeno un'ora.
+enableCustomKaTeXMacro: Abilita le macro KaTeX personalizzate
+preventAiLearningDescription: Richiedi ai bot di intelligenza artificiale di terze
+  parti di non studiare e acquisire il contenuto che carichi, come post e immagini.
+preventAiLearning: Impedisci l'acquisizione dei contenuti da parte dei bot IA
+confirmToUnclipAlreadyClippedNote: Questo post è già incluso nel clip "{name}". Vuoi
+  rimuoverlo dal clip piuttosto?
+moveToLabel: 'Account dove vuoi migrare:'
+migrationConfirm: "Hai l'assoluta sicurezza di voler migrare il tuo account verso
+  {account}? Quando lo avrai fatto, non sarai in grado di tornare indietro e non potrai
+  più usare questo account normalmente.\nInoltre assicurati che l'account su questo
+  server sia quello da cui vuoi migrare e non il contrario."
+moveAccount: Migra l'account!
+verifiedLink: Link verificato
+_feeds:
+  copyFeed: Copia il feed
+  jsonFeed: Feed JSON
+  rss: RSS
+  atom: Atom
+alt: ALT
+themeColor: Colore dell'indicatore del server
+instanceDefaultThemeDescription: Inserisci il codice del tema nel formato a oggetti.
+failedToUpload: Caricamento fallito
+sendPushNotificationReadMessage: Rimuovi le notifiche push dopo che sono state lette
+splash: Splash screen di caricamento
+noteId: Post ID
+noInstances: Non ci sono server
+antennaInstancesDescription: Elenca un server per riga
+switchAccount: Cambia account
+swipeOnMobile: Permetti di fare swipe orizzontale tra le pagine
+showAdminUpdates: Segnala nuove versioni di Firefish (solo admin)
+selectChannel: Seleziona un canale
+clipsDesc: I clip sono come segnalibri categorizzati e condivisibili. Puoi creare
+  clip dal menu di ciascun post.
+instanceDefaultDarkTheme: Tema scuro predefinito del server
+origin: Origine
+newer: più recente
+older: più vecchio
+silenceThisInstance: Silenzia questo server
+silenced: Silenziato
+keepOriginalUploadingDescription: Salva l'immagine caricata originariamente così com'è.
+  Se disattivato, al momento del caricamento verrà generata una versione da visualizzare
+  sul web.
+accessibility: Accessibilità
+ffVisibilityDescription: Puoi configurare chi può vedere chi segui e anche i tuoi
+  follower.
+continueThread: Continua la conversazione
+smartphone: Smartphone
+tablet: Tablet
+mutePeriod: Durata del silenziamento
+updateAvailable: Potrebbe essere disponibile un aggiornamento!
+enableAutoSensitive: Riconoscimento automatico contenuto NSFW
+enableAutoSensitiveDescription: Permette il riconoscimento dei contenuti NSFW tramite
+  Machine Learning, quando possibile. Se disattivi questa opzione, considera che potrebbe
+  essere comunque attiva per tutto il server.
+instanceDefaultLightTheme: Tema chiaro predefinito del server
+objectStorageS3ForcePathStyle: Usa URL basati sul path per gli endpoint
+objectStorageS3ForcePathStyleDesc: Attiva questa opzione per costruire un URL dell'endpoint
+  nel formato 's3.amazonaws.com/<bucket>/' invece che '<bucket>.s3.amazonaws.com'.
+regexpErrorDescription: "Si è verificato un errore nell'espressione regolare alla
+  riga {line} della parola muta {tab}:"
+channelFederationWarn: I canali non possono essere federati con altri server
+secureMode: Modalità sicura (Acquisizione autorizzata)
+secureModeInfo: Le richieste dai server remoti non ricevono risposta senza prima una
+  verifica.
+privateMode: Modalità privata
+allowedInstancesDescription: Gli host dei server che saranno federati in esclusiva,
+  uno per riga (funziona solo in modalità privata).
+privateModeInfo: Se abilitata, solo i server in una whitelist potranno essere federati
+  con questo server. Tutti i post saranno nascosti al pubblico.
+allowedInstances: Whitelist dei server
+customCssWarn: Questa impostazione dovrebbe essere usata solo se sai cosa stai facendo.
+  Inserire valori errati potrebbe bloccare il funzionamento del client.
+lastCommunication: Ultima comunicazione
+breakFollowConfirm: Vuoi veramente rimuovere il follower?
+makeReactionsPublic: Rendi pubblica la storia di tutte le reazioni
+makeReactionsPublicDescription: Questa opzione rende visibile a tutti l'elenco delle
+  tue reazioni ai post nel passato.
+overridedDeviceKind: Tipo di dispositivo
+auto: Auto
+reflectMayTakeTime: Potrebbe servire del tempo perché il cambiamento sia effettivo.
+cropImage: Ritaglia l'immagine
+recentNHours: Ultime {n} ore
+deleteAccount: Rimuovi l'account
+numberOfPageCache: Numero di pagine nella cache
+sensitiveMediaDetection: Riconoscimento dei contenuti NSFW
+move: Sposta
+caption: Descrizione automatica
+sendPushNotificationReadMessageCaption: Una notifica con il testo "{emptyPushNotificationMessage}"
+  sarà mostrata per breve tempo. Potrebbe aumentare il consumo di batteria del tuo
+  dispositivo.
+moveAccountDescription: È un processo irreversibile. Assicurati di aver prima impostato
+  un alias per questo account sul tuo nuovo server prima di migrare. Inserisci l'account
+  nel formato @nomeutente@server.com
+enableIdenticonGeneration: Abilita la generazione di Identicon
+donationLink: Link alla pagina per le donazioni
+delete2fa: Disabilita 2FA, autenticazione con 2 passaggi
+deletePasskeys: Rimuovi le passkey
+pushNotification: Notifiche push
+pushNotificationNotSupported: Il tuo browser non supporta le notifiche push
+userSaysSomethingReason: '{name} ha detto {reason}'
+image: Immagine
+video: Video
+audio: Audio
+thereIsUnresolvedAbuseReportWarning: Ci sono segnalazioni non ancora gestite.
+requireAdminForView: Devi avere un account amministratore per vedere questo contenuto.
+jumpToPrevious: Vai al precedente
+flagShowTimelineReplies: Mostra le risposte nella timeline
+cw: Avviso sul contenuto
+renoteMute: Silenzia i boost
+renoteUnmute: Non silenziare i boost
+enableEmojiReactions: Abilita le reazioni con emoji
+preferencesBackups: Backup delle preferenze
+adminCustomCssWarn: Questa impostazione dovrebbe essere usata solo se ne comprendi
+  le conseguenze. Valori impropri potrebbero impedire il funzionamento dei client
+  di TUTTI gli utenti. Assicurati prima che il CSS funzioni correttamente testandolo
+  nelle tue impostazioni utente.
+accentColor: Colore di accento
+showPopup: Notifica gli utenti con popup
+showWithSparkles: Mostra con le scintille
+youHaveUnreadAnnouncements: Hai un annuncio da leggere
+_dialog:
+  charactersBelow: 'La lunghezza in caratteri non è sufficiente! Attuale: {current}/Minimo:
+    {min}'
+  charactersExceeded: 'Hai superato il massimo di caratteri! Attuale: {current}/Massimo:
+    {max}'
+cannotUploadBecauseExceedsFileSizeLimit: Questo file non è stato caricato perché eccede
+  lo spazio disponibile.
+xl: XL
+shuffle: Mescola
+subscribePushNotification: Abilita le notifiche push
+unsubscribePushNotification: Disabilita le notifiche push
+pushNotificationAlreadySubscribed: Le notifiche push sono già abilitate
+driveCapOverrideCaption: Imposta la capacità predefinita inserendo il valore 0.
+numberOfPageCacheDescription: Aumentare questo numero migliorerà l'esperienza degli
+  utenti ma aumenterà il carico sul server e l'uso di memoria.
+type: Tipo
+fast: Veloce
+remoteOnly: Solo remoto
+showAds: Mostra i banner della comunità
+showUpdates: Mostra un popup mentre Firefish si aggiorna
+recommendedInstancesDescription: Server consigliati, uno per riga, nell'ordine in
+  cui saranno mostrati nella timeline dei consigliati.
+beta: Beta
+neverShow: Non mostrare più
+remindMeLater: Non adesso
+noGraze: Per favore disattiva l'estenzione del browser "Graze for Mastodon", perché
+  interferisce con Firefish.
+silencedWarning: Vedi questa pagina perché gli utenti sono su un server che il tuo
+  admin ha silenziato, quindi potrebbero essere spam.
+isBot: Questo account è un bot
+isLocked: Questo account richiede l'approvazione del follow
+moveFromDescription: Questa operazione crea un alias del vecchio account in modo che
+  tu possa migrare su questo nuovo account. Fallo PRIMA di migrare il tuo vecchio
+  account. Usa il formato @nomeutente@server.com
+defaultReaction: Emoji predefinita per le reazioni sui post ricevuti e inviati
+license: Licenza
+isModerator: Moderatore
+isAdmin: Amministratore
+isPatron: Firefish Patron
+customKaTeXMacroDescription: 'Crea delle macro per scrivere facilmente espressioni
+  matematiche! La notazione rispetta i comandi definiti in LaTeX ed è scritta come
+  \newcommand{\ name}{content} oppure \newcommand{\name}[number of arguments]{content}.
+  Per esempio, \newcommand{\add}[2]{#1 + #2} espanderà \add{3}{foo} come 3 + foo.
+  Le parentesi graffe che circondano il nome della macro possono essere sostituite
+  con quelle tonde o quadre. Ciò implica di dover cambiare anche le parentesi degli
+  argomenti. Una (e solo una) macro può essere definita per ogni riga e non puoi andare
+  a capo nel mezzo di una definizione. Le linee non valide sono semplicemente ignorate.
+  Sono supportate solo funzioni semplici di sostituzione nella stringa; sintassi avanzate,
+  come comandi condizionali, non possono essere usate qui.'
