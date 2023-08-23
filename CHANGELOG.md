@@ -8900,7 +8900,7 @@ Resolve #7540
 * truncate user information if it is too long
 
 Some AP software allows for user names or summaries to be very long.
-Misskey can not handle this and the profile page can not be opened and
+Misskey cannot handle this and the profile page cannot be opened and
 no activities from such users can be seen.
 
 Instead, the user name and summary are cut off after the maximum length
@@ -9902,7 +9902,7 @@ This duplicated processing can be avoided by querying the database directly.
 
 Misskey will only use ActivityPub follow requests for users that are local
 and are requesting to follow a remote user. This check is to ensure that
-this endpoint can not be used by other services or instances.
+this endpoint cannot be used by other services or instances.
 
 * fix: missing import
 
@@ -14921,7 +14921,7 @@ Defaults for `local` and `withFiles` are based on the behaviour of the endpoint.
 
 * fix: define required fields
 
-- `notes/create`: the default for `text` has been removed because ajv can not handle
+- `notes/create`: the default for `text` has been removed because ajv cannot handle
   `default` inside of `anyOf`, see
   https://ajv.js.org/guide/modifying-data.html#assigning-defaults
   and the default value cannot be `null` if text is `nullable: false` in the `anyOf`
@@ -15551,7 +15551,7 @@ unnecessarily loaded.
 * remove duplicate null check
 
 The variable is checked for null in the lines above and the function
-returns if so. Therefore, it can not be null at this point.
+returns if so. Therefore, it cannot be null at this point.
 
 * simplify `getJsonSchema`
 

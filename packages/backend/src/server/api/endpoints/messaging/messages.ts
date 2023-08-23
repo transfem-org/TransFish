@@ -48,7 +48,7 @@ export const meta = {
 		},
 
 		groupAccessDenied: {
-			message: "You can not read messages of groups that you have not joined.",
+			message: "You cannot read messages of groups that you have not joined.",
 			code: "GROUP_ACCESS_DENIED",
 			id: "a053a8dd-a491-4718-8f87-50775aad9284",
 		},

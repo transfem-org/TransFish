@@ -11,7 +11,7 @@ export const meta = {
 	kind: "write:user-groups",
 
 	description:
-		"Removes a specified user from a group. The owner can not be removed.",
+		"Removes a specified user from a group. The owner cannot be removed.",
 
 	errors: {
 		noSuchGroup: {

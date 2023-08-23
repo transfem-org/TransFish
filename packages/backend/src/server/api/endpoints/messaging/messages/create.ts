@@ -28,7 +28,7 @@ export const meta = {
 
 	errors: {
 		recipientIsYourself: {
-			message: "You can not send a message to yourself.",
+			message: "You cannot send a message to yourself.",
 			code: "RECIPIENT_IS_YOURSELF",
 			id: "17e2ba79-e22a-4cbc-bf91-d327643f4a7e",
 		},
@@ -46,7 +46,7 @@ export const meta = {
 		},
 
 		groupAccessDenied: {
-			message: "You can not send messages to groups that you have not joined.",
+			message: "You cannot send messages to groups that you have not joined.",
 			code: "GROUP_ACCESS_DENIED",
 			id: "d96b3cca-5ad1-438b-ad8b-02f931308fbd",
 		},

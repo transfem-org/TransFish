@@ -341,7 +341,7 @@ inputNewDescription: "Enter new description"
 inputNewFolderName: "Enter a new folder name"
 circularReferenceFolder: "The destination folder is a subfolder of the folder you
   wish to move."
-hasChildFilesOrFolders: "Since this folder is not empty, it can not be deleted."
+hasChildFilesOrFolders: "Since this folder is not empty, it cannot be deleted."
 copyUrl: "Copy URL"
 rename: "Rename"
 avatar: "Avatar"

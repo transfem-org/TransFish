@@ -24,7 +24,7 @@ export const meta = {
 		},
 
 		recursiveNesting: {
-			message: "It can not be structured like nesting folders recursively.",
+			message: "It cannot be structured like nesting folders recursively.",
 			code: "NO_SUCH_PARENT_FOLDER",
 			id: "ce104e3a-faaf-49d5-b459-10ff0cbbcaa1",
 		},
