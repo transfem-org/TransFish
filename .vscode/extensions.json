@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "eg2.vscode-npm-script",
     "rome.rome",
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin",
