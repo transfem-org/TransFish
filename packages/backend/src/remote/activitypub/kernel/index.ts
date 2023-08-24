@@ -37,7 +37,7 @@ import remove from "./remove/index.js";
 import block from "./block/index.js";
 import flag from "./flag/index.js";
 import move from "./move/index.js";
-import type { IObject } from "../type.js";
+import type { IObject, IActivity } from "../type.js";
 import { extractDbHost } from "@/misc/convert-host.js";
 import { shouldBlockInstance } from "@/misc/should-block-instance.js";
 
@@ -106,6 +106,6 @@ async function performOneActivity(
 	} else if (isMove(activity)) {
 		await move(actor, activity);
 	} else {
-		apLogger.warn(`unrecognized activity type: ${(activity as any).type}`);
+		apLogger.warn(`Unrecognized activity type: ${(activity as IActivity).type}`);
 	}
 }
