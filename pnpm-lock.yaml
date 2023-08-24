@@ -154,8 +154,8 @@ importers:
         specifier: 4.11.2
         version: 4.11.2
       cacheable-lookup:
-        specifier: github:thatonecalculator/cacheable-lookup
-        version: github.com/thatonecalculator/cacheable-lookup/cd3a346e688f3f6ccaf0614e538de24cf1263c31
+        specifier: 7.0.0
+        version: 7.0.0
       cbor:
         specifier: 8.1.0
         version: 8.1.0
@@ -19415,13 +19415,6 @@ packages:
       rangetouch: 2.0.1
       url-polyfill: 1.1.12
     dev: true
-
-  github.com/thatonecalculator/cacheable-lookup/cd3a346e688f3f6ccaf0614e538de24cf1263c31:
-    resolution: {tarball: https://codeload.github.com/thatonecalculator/cacheable-lookup/tar.gz/cd3a346e688f3f6ccaf0614e538de24cf1263c31}
-    name: cacheable-lookup
-    version: 7.0.0
-    engines: {node: '>=14.16'}
-    dev: false
 
   github.com/thatonecalculator/emojilib/d3c8c6a77d4362b3b3180099f1d2eac344ce245c:
     resolution: {tarball: https://codeload.github.com/thatonecalculator/emojilib/tar.gz/d3c8c6a77d4362b3b3180099f1d2eac344ce245c}
