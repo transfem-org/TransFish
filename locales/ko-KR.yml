@@ -205,7 +205,7 @@ noUsers: "아무도 없습니다"
 editProfile: "프로필 수정"
 noteDeleteConfirm: "이 게시물을 삭제하시겠습니까?"
 pinLimitExceeded: "더 이상 고정할 수 없습니다."
-intro: "Misskey의 설치가 완료되었습니다! 관리자 계정을 생성해주세요."
+intro: "Firefish의 설치가 완료되었습니다! 관리자 계정을 생성해주세요."
 done: "완료"
 processing: "처리중"
 preview: "미리보기"
@@ -294,7 +294,7 @@ emptyDrive: "드라이브가 비어 있습니다"
 emptyFolder: "폴더가 비어 있습니다"
 unableToDelete: "삭제할 수 없습니다"
 inputNewFileName: "바꿀 파일명을 입력해 주세요"
-inputNewDescription: "새 캡션을 입력해 주세요"
+inputNewDescription: "새 설명을 입력해 주세요"
 inputNewFolderName: "바꿀 폴더명을 입력해 주세요"
 circularReferenceFolder: "지정한 폴더가 이동할 폴더의 하위 폴더입니다."
 hasChildFilesOrFolders: "이 폴더는 비어있지 않기 때문에 삭제할 수 없습니다."
@@ -386,7 +386,7 @@ exploreFediverse: "연합우주를 탐색"
 popularTags: "인기 태그"
 userList: "리스트"
 about: "정보"
-aboutFirefish: "Misskey에 대하여"
+aboutFirefish: "Firefish에 대하여"
 administrator: "관리자"
 token: "토큰"
 twoStepAuthentication: "2단계 인증"
@@ -537,8 +537,8 @@ sort: "정렬"
 ascendingOrder: "오름차순"
 descendingOrder: "내림차순"
 scratchpad: "스크래치 패드"
-scratchpadDescription: "스크래치 패드는 AiScript 의 테스트 환경을 제공합니다. Firefish 와 상호 작용하는 코드를 작성,
-  실행 및 결과를 확인할 수 있습니다."
+scratchpadDescription: "스크래치 패드는 AiScript 의 테스트 환경을 제공합니다. Firefish 와 상호 작용하는 코드를
+  작성, 실행 및 결과를 확인할 수 있습니다."
 output: "출력"
 script: "스크립트"
 disablePagesScript: "Pages 에서 AiScript 를 사용하지 않음"
@@ -572,8 +572,8 @@ disablePlayer: "플레이어 닫기"
 expandTweet: "트윗 확장하기"
 themeEditor: "테마 에디터"
 description: "설명"
-describeFile: "캡션 추가"
-enterFileDescription: "캡션 입력"
+describeFile: "설명 추가"
+enterFileDescription: "설명 입력"
 author: "작성자"
 leaveConfirm: "저장하지 않은 변경사항이 있습니다. 취소하시겠습니까?"
 manage: "관리"
@@ -789,7 +789,7 @@ gallery: "갤러리"
 recentPosts: "최근 포스트"
 popularPosts: "인기 포스트"
 shareWithNote: "게시물로 공유"
-ads: "광고"
+ads: "커뮤니티 배너"
 expiration: "기한"
 memo: "메모"
 priority: "우선순위"
@@ -811,7 +811,7 @@ hashtags: "해시태그"
 troubleshooting: "문제 해결"
 useBlurEffect: "UI에 흐림 효과 사용"
 learnMore: "자세히"
-misskeyUpdated: "Misskey가 업데이트 되었습니다!"
+misskeyUpdated: "Firefish가 업데이트 되었습니다!"
 whatIsNew: "패치 정보 보기"
 translate: "번역"
 translatedFrom: "{x}에서 번역"
@@ -840,7 +840,7 @@ unmuteThread: "글타래 뮤트 해제"
 ffVisibility: "내 인맥의 공개 범위"
 ffVisibilityDescription: "나의 팔로우와 팔로워 정보에 대한 공개 범위를 설정할 수 있습니다."
 continueThread: "이 글타래 이어서 보기"
-deleteAccountConfirm: "계정이 삭제되고 되돌릴 수 없게 됩니다. 계속하시겠습니까? "
+deleteAccountConfirm: "계정이 삭제되고 되돌릴 수 없게 됩니다. 계속하시겠습니까?"
 incorrectPassword: "비밀번호가 올바르지 않습니다."
 voteConfirm: "\"{choice}\"에 투표하시겠습니까?"
 hide: "숨기기"
@@ -992,12 +992,12 @@ _registry:
   domain: "도메인"
   createKey: "키 생성"
 _aboutFirefish:
-  about: "Misskey는 syuilo에 의해서 2014년부터 개발되어 온 오픈소스 소프트웨어 입니다."
+  about: "Firefish는 ThatOneCalculator에 의해서 2022년부터 개발되어 온 Misskey의 포크 소프트웨어 입니다."
   contributors: "주요 기여자"
   allContributors: "모든 기여자"
   source: "소스 코드"
-  translation: "Misskey를 번역하기"
-  donate: "Misskey에 기부하기"
+  translation: "Firefish를 번역하기"
+  donate: "Firefish에 기부하기"
   morePatrons: "이 외에도 다른 많은 분들이 도움을 주시고 계십니다. 감사합니다🥰"
   patrons: "후원자"
   patronsList: 기부 금액이 아닌 시간 순서로 정렬합니다. 위 링크를 통해 후원하여 당신의 이름을 새겨 보세요!
@@ -1006,15 +1006,16 @@ _aboutFirefish:
   pleaseDonateToFirefish: Firefish의 개발에 후원하는 것을 검토하여 주십시오.
   donateHost: '{host} 에게 기부하기'
   donateTitle: Firefish가 마음에 드시나요?
+  misskeyContributors: 오리지널 Misskey 기여자
 _nsfw:
   respect: "열람주의로 설정된 미디어 숨기기"
   ignore: "열람 주의 미디어 항상 표시"
   force: "미디어 항상 숨기기"
 _mfm:
   cheatSheet: "MFM 도움말"
-  intro: "MFM는 Misskey의 다양한 곳에서 사용할 수 있는 전용 마크업 언어입니다. 여기에서는 MFM에서 사용할 수 있는 구문을 확인할
-    수 있습니다."
-  dummy: "Misskey로 연합우주의 세계가 펼쳐집니다"
+  intro: "MFM는 Misskey나 Firefish, Akkoma 외의 다양한 곳에서 사용할 수 있는 전용 마크업 언어입니다. 여기에서는 MFM에서
+    사용할 수 있는 구문을 확인할 수 있습니다."
+  dummy: "Firefish로 연합우주의 세계가 펼쳐집니다"
   mention: "멘션"
   mentionDescription: "골뱅이표(@) 뒤에 사용자명을 넣어 특정 유저를 나타낼 수 있습니다."
   hashtag: "해시태그"
@@ -1836,7 +1837,7 @@ cannotUploadBecauseExceedsFileSizeLimit: 파일 크기 제한을 초과하여 �
 pushNotificationNotSupported: 브라우저 및 서버가 푸시 알림을 지원하지 않습니다
 enableRecommendedTimeline: 추천 타임라인을 활성화
 pushNotificationAlreadySubscribed: 푸시 알림이 활성화되었습니다
-caption: 자동 캡션
+caption: 자동으로 설명 붙이기
 findOtherInstance: 다른 서버 둘러보기
 enableIdenticonGeneration: 유저 별 Identicon의 생성을 활성화
 secureModeInfo: 인증 정보가 없는 리모트 서버로부터의 요청에 응답하지 않습니다.
@@ -1858,7 +1859,7 @@ customKaTeXMacroDescription: 'KaTeX 매크로를 지정하여 수식을 더욱 �
   사용할 수 없습니다. 올바르지 않은 정의는 무시됩니다. 문자열을 치환하는 수준에서만 지원하며, 조건 분기와 같은 고도의 구문은 사용할 수 없습니다.'
 reactionPickerSkinTone: 선호하는 이모지 피부 톤
 selectInstance: 서버 선택
-showAds: 광고 보이기
+showAds: 커뮤니티 배너를 보이기
 searchPlaceholder: Firefish에서 검색
 addInstance: 서버 추가
 listsDesc: 리스트를 사용하여 특정 유저로 이루어진 타임라인을 구성할 수 있습니다. 리스트는 '타임라인' 페이지에서 접근할 수 있습니다.
@@ -1887,7 +1888,7 @@ swipeOnDesktop: 데스크톱에서도 모바일과 같은 스와이프를 사용
 migration: 계정 이사
 moveTo: 이 계정에서 새로운 계정으로 이사
 deleted: 삭제됨
-editNote: 노트 편집
+editNote: 게시물 편집
 edited: '편짐됨: {date} {time}'
 customMOTD: 사용자 지정 MOTD (스플래시 화면 메시지)
 selectChannel: 채널 선택
@@ -1949,8 +1950,8 @@ silencedWarning: 관리자가 사일런스한 서버에 속한 유저이며, 스
 isModerator: 모더레이터
 isPatron: Firefish 후원자
 _experiments:
-  postImportsCaption: 유저가 과거에 작성한 게시물을 Firefish(Firefish), Misskey, Mastodon, Akkoma,
-    Pleroma 등에서 가져올 수 있게 합니다. 작업 대기열의 처리 속도가 느릴 경우 서비스에 영향이 갈 수 있습니다.
+  postImportsCaption: 유저가 과거에 작성한 게시물을 Firefish, Misskey, Mastodon, Akkoma, Pleroma
+    등에서 가져올 수 있게 합니다. 작업 대기열의 처리 속도가 느릴 경우 서비스에 영향이 갈 수 있습니다.
   enablePostImports: 게시물 가져오기를 활성화
   title: 실험실
 _messaging:
@@ -1958,7 +1959,7 @@ _messaging:
   dms: 개인 메시지
 _tutorial:
   title: Firefly의 사용 방법
-  step5_5: '{icon} 소셜 타임라인은 홈 타임라인과 소셜 타임라인을 합친 것과 같습니다.'
+  step5_5: '{icon} 소셜 타임라인은 홈 타임라인과 로컬 타임라인을 합친 것과 같습니다.'
   step4_1: 첫 노트를 올려 봅시다.
   step5_3: '{icon} 홈 타임라인은 내가 팔로우하고 있는 계정의 게시물을 볼 수 있는 타임라인입니다.'
   step6_2: 이 서버에 가입을 마친 당신은 단순히 Firefish 서버의 유저가 아닌, 수많은 서버가 서로 상호작용하는 연합우주에 참가하시게
@@ -2003,3 +2004,17 @@ _feeds:
 _dialog:
   charactersExceeded: 글자 수 제한을 초과했습니다! 현재 {current}자 / 최대 {max}자
   charactersBelow: 최소 글자 수 보다 작습니다! 현재 {current}자 / 최소 {max}자
+emojiPackCreator: 이모지 팩 만든이
+objectStorageS3ForcePathStyleDesc: Endpoint URL을 '<bucket>.s3.amazonaws.com'가 아닌 's3.amazonaws.com/<bucket>/'와
+  같은 형식으로 사용할 경우에 활성화해 주세요.
+confirm: 확인
+importZip: ZIP으로 가져오기
+exportZip: ZIP으로 내보내기
+origin: 원본
+objectStorageS3ForcePathStyle: 경로 기반 Endpoint URL을 사용하기
+delete2fa: 2FA를 비활성화
+delete2faConfirm: 이 계정에서 2FA를 영구히 삭제합니다. 계속하시겠습니까?
+deletePasskeys: 보안 키 삭제
+deletePasskeysConfirm: 이 계정에서 모든 보안 키를 영구히 삭제합니다. 계속하시겠습니까?
+inputNotMatch: 입력이 일치하지 않습니다
+addRe: 열람주의로 표시된 게시물의 답장에 're:' 붙이기
