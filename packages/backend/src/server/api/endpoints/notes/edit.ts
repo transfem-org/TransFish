@@ -142,9 +142,9 @@ export const meta = {
 		},
 
 		cannotChangeVisibility: {
-				message: "You cannot change the visibility of a note.",
-				code: "CANNOT_CHANGE_VISIBILITY",
-				id: "2917fd0b-da04-41de-949f-146835a006c6",
+			message: "You cannot change the visibility of a note.",
+			code: "CANNOT_CHANGE_VISIBILITY",
+			id: "2917fd0b-da04-41de-949f-146835a006c6",
 		},
 
 		cannotQuoteOwnNote: {
@@ -152,7 +152,7 @@ export const meta = {
 			code: "CANNOT_QUOTE_OWN_NOTE",
 			id: "070eee98-5f8a-4eca-9dc0-830b4d4e52ac",
 		},
-	}
+	},
 } as const;
 
 export const paramDef = {
