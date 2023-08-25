@@ -14,7 +14,7 @@ ok: "OK"
 gotIt: "Ho capito!"
 cancel: "Annulla"
 enterUsername: "Inserisci un nome utente"
-renotedBy: "Rinotato da {user}"
+renotedBy: "Boost da {user}"
 noNotes: "Nessuna nota!"
 noNotifications: "Nessuna notifica"
 instance: "Server"
@@ -45,8 +45,8 @@ copyContent: "Copia il contenuto"
 copyLink: "Copia il link"
 delete: "Elimina"
 deleteAndEdit: "Elimina e modifica"
-deleteAndEditConfirm: "Vuoi davvero cancellare questa nota e scriverla di nuovo? Verrano
-  eliminate anche tutte le reazioni, Rinote e risposte collegate."
+deleteAndEditConfirm: "Vuoi davvero cancellare questo post e scriverlo di nuovo? Verrano
+  eliminate anche tutte le reazioni, boost e risposte collegate."
 addToList: "Aggiungi alla lista"
 sendMessage: "Invia messaggio"
 copyUsername: "Copia nome utente"
@@ -60,7 +60,7 @@ receiveFollowRequest: "Hai ricevuto una richiesta di follow"
 followRequestAccepted: "Richiesta di follow accettata"
 mention: "Menzioni"
 mentions: "Menzioni"
-directNotes: "Note dirette"
+directNotes: "Messaggi diretti"
 importAndExport: "Importa ed esporta"
 import: "Importa"
 export: "Esporta"
@@ -74,8 +74,8 @@ exportRequested: "Hai richiesto un'esportazione, e potrebbe volerci tempo. Quand
 importRequested: "Hai richiesto un'importazione. Può volerci tempo. "
 lists: "Liste"
 noLists: "Nessuna lista"
-note: "Nota"
-notes: "Note"
+note: "Post"
+notes: "Post"
 following: "Follows"
 followers: "Followers"
 followsYou: "Ti segue"
@@ -93,18 +93,18 @@ youShouldUpgradeClient: "Per visualizzare la pagina è necessario aggiornare il 
 enterListName: "Nome della lista"
 privacy: "Privacy"
 makeFollowManuallyApprove: "Richiedi di approvare i follower manualmente"
-defaultNoteVisibility: "Privacy predefinita delle note"
+defaultNoteVisibility: "Privacy predefinita dei post"
 follow: "Segui"
 followRequest: "Richiesta di follow"
 followRequests: "Richieste di follow"
 unfollow: "Smetti di seguire"
 followRequestPending: "La richiesta di follow deve essere approvata"
 enterEmoji: "Inserisci emoji"
-renote: "Rinota"
-unrenote: "Annulla rinota"
-renoted: "Rinotato!"
-cantRenote: "È impossibile rinotare questa nota."
-cantReRenote: "È impossibile rinotare una Rinota."
+renote: "Boost"
+unrenote: "Annulla boost"
+renoted: "Boost effettuato."
+cantRenote: "È impossibile dare un boost a questo post."
+cantReRenote: "È impossibile dare un boost a un boost."
 quote: "Cita"
 pinnedNote: "Post fissato"
 pinned: "Fissa sul profilo"
@@ -158,7 +158,7 @@ autoAcceptFollowed: "Accetta automaticamente le richieste di follow da utenti ch
   già segui"
 addAccount: "Aggiungi account"
 loginFailed: "Accesso non riuscito"
-showOnRemote: "Leggi sul sito origine"
+showOnRemote: "Apri la pagina di origine"
 general: "Generali"
 wallpaper: "Sfondo"
 setWallpaper: "Imposta sfondo"
@@ -214,7 +214,7 @@ blockedUsers: "Account bloccati"
 noUsers: "Nessun utente trovato"
 editProfile: "Modifica profilo"
 noteDeleteConfirm: "Vuoi eliminare questo post?"
-pinLimitExceeded: "Non puoi fissare altre note "
+pinLimitExceeded: "Non puoi fissare più post di così"
 intro: "L'installazione di Firefish è finita! Si prega di creare un account amministratore."
 done: "Fine"
 processing: "Elaborazione in corso"
@@ -305,7 +305,7 @@ inputNewDescription: "Inserisci una nuova descrizione"
 inputNewFolderName: "Inserisci nome della nuova cartella"
 circularReferenceFolder: "La cartella di destinazione è una sottocartella della cartella
   che vuoi spostare."
-hasChildFilesOrFolders: "Impossibile eliminare la cartella perché non è vuota"
+hasChildFilesOrFolders: "La cartella non può essere rimossa perché non è vuota"
 copyUrl: "Copia URL"
 rename: "Modifica nome"
 avatar: "Foto del profilo"
@@ -420,7 +420,7 @@ notFoundDescription: "Nessuna pagina corrisponde all'URL indicata."
 uploadFolder: "Destinazione caricamento predefinita"
 cacheClear: "Svuota cache"
 markAsReadAllNotifications: "Segna tutte le notifiche come lette"
-markAsReadAllUnreadNotes: "Segna tutti post come letti"
+markAsReadAllUnreadNotes: "Segna tutti i post come letti"
 markAsReadAllTalkMessages: "Segna tutte le chat come lette"
 help: "Guida"
 inputMessageHere: "Scrivi messaggio qui"
@@ -500,7 +500,7 @@ promotion: "Promossa"
 promote: "Pubblicizza"
 numberOfDays: "Numero di giorni"
 hideThisNote: "Nascondi questo post"
-showFeaturedNotesInTimeline: "Mostra i post suggeriti nella tua timeline"
+showFeaturedNotesInTimeline: "Mostra anche i post in primo piano nella tua timeline"
 objectStorage: "Stoccaggio oggetti"
 useObjectStorage: "Utilizza stoccaggio oggetti"
 objectStorageBaseUrl: "Base URL"
@@ -671,7 +671,7 @@ openInSideView: "Apri in vista laterale"
 defaultNavigationBehaviour: "Navigazione preimpostata"
 editTheseSettingsMayBreakAccount: "Modificare queste impostazioni può danneggiare
   l'account."
-instanceTicker: "Informazioni del server sui post"
+instanceTicker: "Informazioni del server dei post"
 waitingFor: "Aspettando {x}"
 random: "Casuale"
 system: "Sistema"
@@ -686,11 +686,11 @@ i18nInfo: "Firefish è tradotto in diverse lingue da volontari. Anche tu puoi co
   su {link}."
 manageAccessTokens: "Gestisci token di accesso"
 accountInfo: "Informazioni account"
-notesCount: "Conteggio note"
+notesCount: "Numero di post"
 repliesCount: "Numero di risposte inviate"
-renotesCount: "Numero di note che hai ricondiviso"
+renotesCount: "Numero di boost dati"
 repliedCount: "Numero di risposte ricevute"
-renotedCount: "Numero delle tue note ricondivise"
+renotedCount: "Numero dei boost ricevuti"
 followingCount: "Numero di account seguiti"
 followersCount: "Numero di account che ti seguono"
 sentReactionsCount: "Numero di reazioni inviate"
@@ -704,9 +704,9 @@ driveUsage: "Utilizzazione del Drive"
 noCrawle: "Rifiuta l'indicizzazione dai robot."
 noCrawleDescription: "Richiedi ai motori di ricerca di non indicizzare la tua pagina
   del profilo, i tuoi post, pagine, ecc."
-lockedAccountInfo: "A meno che non imposti la visibilità delle tue note su \"Solo
-  ai follower\", le tue note sono visibili da tutti, anche se hai configurato l'account
-  per confermare manualmente le richieste di follow."
+lockedAccountInfo: "I tuoi post saranno visibili a tutti, a meno che non imposti la
+  visibilità a \"Solo ai follower\", anche se hai configurato l'account per confermare
+  manualmente le richieste di follow."
 alwaysMarkSensitive: "Segnare i media come sensibili per impostazione predefinita"
 loadRawImages: "Visualizza le intere immagini allegate invece delle miniature."
 disableShowingAnimatedImages: "Disabilita le immagini animate"
@@ -714,7 +714,7 @@ verificationEmailSent: "Una mail di verifica è stata inviata. Si prega di acced
   al collegamento per compiere la verifica."
 notSet: "Non impostato"
 emailVerified: "Il tuo indirizzo email è stato verificato"
-noteFavoritesCount: "Conteggio note tra i preferiti"
+noteFavoritesCount: "Numero di post preferiti"
 pageLikesCount: "Numero di pagine che ti piacciono"
 pageLikedCount: "Numero delle tue pagine che hanno ricevuto \"Mi piace\""
 contact: "Contatti"
@@ -725,7 +725,7 @@ developer: "Sviluppatore"
 makeExplorable: "Account visibile sulla pagina \"Esplora\""
 makeExplorableDescription: "Se disabiliti l'opzione, il tuo account non verrà visualizzato
   sulla pagina \"Esplora\"."
-showGapBetweenNotesInTimeline: "Mostrare un intervallo tra le note sulla timeline"
+showGapBetweenNotesInTimeline: "Mostra uno spazio tra i post sulla timeline"
 duplicate: "Duplica"
 left: "Sinistra"
 center: "Centro"
@@ -737,7 +737,7 @@ showTitlebar: "Visualizza la barra del titolo"
 clearCache: "Svuota cache"
 onlineUsersCount: "{n} utenti online"
 nUsers: "{n} utenti"
-nNotes: "{n} Post"
+nNotes: "{n} post"
 sendErrorReports: "Invia segnalazioni di errori"
 sendErrorReportsDescription: "Quando abilitato, se si verifica un problema, informazioni
   dettagliate sugli errori verranno condivise con Firefish in modo da aiutare a migliorare
@@ -891,6 +891,8 @@ _ffVisibility:
 _signup:
   almostThere: "Quasi completo"
   emailAddressInfo: "Inserisci il tuo indirizzo email. Non verrà reso pubblico."
+  emailSent: Un messaggio di conferma è stato inviato al tuo indirizzo email ({email}).
+    Clicca il link incluso per completare la creazione dell'account.
 _accountDelete:
   accountDelete: "Cancellazione account"
   sendEmail: "Al termine della cancellazione dell'account, verrà inviata una mail
@@ -898,6 +900,9 @@ _accountDelete:
   requestAccountDelete: "Richiesta di cancellazione account"
   started: "Il processo di cancellazione è iniziato."
   inProgress: "Cancellazione in corso"
+  mayTakeTime: L'eliminazione di un account impiega molte risorse di sistema, potrebbe
+    durare molto tempo a seconda di quanti contenuti hai creato e quanti file hai
+    caricato.
 _ad:
   back: "Indietro"
   reduceFrequencyOfThisAd: "Visualizza questa pubblicità meno spesso"
@@ -905,10 +910,9 @@ _forgotPassword:
   enterEmail: "Inserisci l'indirizzo di posta elettronica che hai registrato nel tuo
     profilo. Il collegamento necessario per ripristinare la password verrà inviato
     a questo indirizzo."
-  ifNoEmail: "Se nessun indirizzo e-mail è stato registrato, si prega di contattare
-    l'amministratore·trice dell'istanza."
-  contactAdmin: "Poiché questa istanza non permette l'utilizzo di una mail, si prega
-    di contattare l'amministratore·trice dell'istanza per poter ripristinare la password."
+  ifNoEmail: "Se non hai registrato alcun indirizzo e-mail, contatta l'admin del server."
+  contactAdmin: "Poiché questo server non permette l'uso di indirizzi mail, contatta
+    l'admin per poter ripristinare la password."
 _gallery:
   my: "Le mie pubblicazioni"
   liked: "Pubblicazioni che mi piacciono"
@@ -929,6 +933,7 @@ _registry:
   keys: "Dati"
   domain: "Dominio"
   createKey: "Crea chiave"
+  scope: Ambito
 _aboutFirefish:
   about: "Misskey è un software libero e open source, sviluppato da syuilo dal 2014."
   contributors: "Principali sostenitori"
@@ -939,6 +944,15 @@ _aboutFirefish:
   morePatrons: "Apprezziamo sinceramente il supporto di tante altre persone. Grazie
     mille! 🥰"
   patrons: "Sostenitori"
+  sponsors: Sponsor di Firefish
+  misskeyContributors: Contributori di Misskey
+  donateTitle: Ti piace Firefish?
+  pleaseDonateToFirefish: Con una donazione puoi supportare lo sviluppo di Firefish.
+  pleaseDonateToHost: Considera anche una donazione al server che ti ospita, {host},
+    per contribuire ai costi che sostiene.
+  donateHost: Dona a {host}
+  patronsList: Elencati in ordine cronologico, non per importo. Dona con il link sopra
+    per apparire in questa lista!
 _nsfw:
   respect: "Nascondere i media segnati come sensibli"
   ignore: "Visualizzare i media segnati come sensibili"
@@ -985,6 +999,55 @@ _mfm:
   rotate: "Ruota"
   fade: "Dissolvenza"
   fadeDescription: "Dissolvenza in entrata e in uscita del contenuto."
+  alwaysPlay: Riproduci automaticamente tutti i MFM
+  advanced: MFM avanzati
+  hashtagDescription: Puoi specificare un hashtag usando numeri e testo.
+  smallDescription: Mostra il contenuto piccolo e sottile.
+  centerDescription: Mostra il contenuto centrato.
+  inlineCodeDescription: Mostra il codice di programmazione all'interno di una riga
+    di testo evidenziando la sintassi.
+  blockMathDescription: Mostra le formule matematiche (KaTeX) in una riga dedicata
+  advancedDescription: Se disabilitato, permette solo comandi semplici MFM, a meno
+    che non sia in corso una animazione
+  tadaDescription: Mostra il contenuto con l'animazione "tadà".
+  spin: Animazione (ruotazione)
+  sparkleDescription: Mostra il contenuto con l'effetto scintille.
+  scale: Ridimensiona
+  rotateDescription: Ruota il contenuto di un angolo specificato.
+  boldDescription: Evidenzia le lettere usando il grassetto.
+  small: Piccolo
+  inlineCode: Codice (inline)
+  position: Posizione
+  cropDescription: Ritaglia il contenuto.
+  foreground: Colore in primo piano
+  backgroundDescription: Cambia il colore di sfondo del testo.
+  flipDescription: Ribalta il contenuto orizzontalmente o verticalmente.
+  play: Riproduci MFM
+  stop: Stop MFM
+  warn: MFM può avere animazioni veloci o lampeggianti
+  quoteDescription: Mostra il contenuto come citazione.
+  emojiDescription: Puoi mostrare un emoji personalizzato racchiudendo il nome tra
+    due ":"
+  jelly: Animazione (gelatina)
+  foregroundDescription: Cambia il colore del testo in primo piano.
+  background: Colore di sfondo
+  blockCodeDescription: Mostra il codice di programmazione in un blocco di più righe
+    evidenziando la sintassi.
+  urlDescription: Gli URL possono essere mostrati.
+  tada: Animazione (tadà)
+  jellyDescription: Mostra il contenuto con l'animazione gelatina.
+  positionDescription: Sposta il contenuto di quanto specificato.
+  crop: Ritaglia
+  scaleDescription: Ridimensiona il contenuto di quanto specificato.
+  inlineMathDescription: Mostra le formule matematiche (KaTeX) all'interno del testo
+  spinDescription: Mostra il contenuto con l'animazione ruotazione.
+  plainDescription: Disattiva altri effetti MFM contenuti dentro questo effetto MFM.
+  plain: Senza effetti
+  searchDescription: Mostra un box di ricerca con testo già inserito.
+  linkDescription: Alcune parti del testo sono mostrate come URL.
+  center: Centrato
+  rainbowDescription: Mostra il contenuto coi colori arcobaleno.
+  sparkle: Scintillante
 _instanceTicker:
   none: "Nascondi"
   remote: "Mostra solo per gli/le utenti remotə"
@@ -993,6 +1056,7 @@ _serverDisconnectedBehavior:
   reload: "Ricarica automaticamente"
   dialog: "Apri avviso in finestra"
   quiet: "Visualizza avviso in modo discreto"
+  nothing: Non fare nulla
 _channel:
   create: "Nuovo canale"
   edit: "Gerisci canale"
@@ -1002,23 +1066,28 @@ _channel:
   owned: "I miei canali"
   following: "Seguiti"
   usersCount: "{n} partecipanti"
-  notesCount: "{n} note"
+  notesCount: "{n} post"
+  nameAndDescription: Nome e descrizione
+  nameOnly: Solo nome
 _menuDisplay:
   hide: "Nascondere"
+  top: In alto
+  sideFull: Laterale
+  sideIcon: Laterale (icone)
 _wordMute:
   muteWords: "Parole da filtrare"
   muteWordsDescription: "Separare con uno spazio indica la condizione \"E\". Separare
     con un'interruzzione riga indica la condizione \"O\"."
   muteWordsDescription2: "Metti le parole chiavi tra slash per usare espressioni regolari
     (regexp)."
-  softDescription: "Nascondi della timeline note che rispondono alle condizioni impostate
-    qui."
-  hardDescription: "Impedisci alla timeline di caricare le note che rispondono alle
-    condizioni impostate qui. Inoltre, le note scompariranno in modo irreversibile,
-    anche se le condizioni verranno successivamente rimosse."
+  softDescription: "Nascondi dalla timeline i post che rispondono alle condizioni
+    specificate."
+  hardDescription: "Impedisci alla timeline di caricare i post che rispondono alle
+    condizioni specificate. I post spariranno in modo irreversibile, anche se le condizioni
+    verranno cambiate successivamente."
   soft: "Moderato"
   hard: "Severo"
-  mutedNotes: "Note silenziate"
+  mutedNotes: "Post silenziati"
 _theme:
   explore: "Esplora temi"
   install: "Installa un tema"
@@ -1063,7 +1132,7 @@ _theme:
     hashtag: "Hashtag"
     mention: "Menzioni"
     mentionMe: "Menzioni (di me)"
-    renote: "Rinota"
+    renote: "Boost"
     divider: "Interruzione di linea"
     infoBg: "Sfondo informazioni"
     infoFg: "Testo di informazioni"
@@ -1081,9 +1150,22 @@ _theme:
     driveFolderBg: "Sfondo della cartella di disco"
     badge: "Distintivo"
     messageBg: "Sfondo della chat"
+    modalBg: Sfondo modale
+    scrollbarHandle: Barra di scorrimento
+    scrollbarHandleHover: Barra di scorrimento (Hover)
+    accent: Accento
+    fgHighlighted: Testo evidenziato
+    accentLighten: Accento (chiaro)
+    dateLabelFg: Testo data
+    accentDarken: Accento (scuro)
+    wallpaperOverlay: Trasparenza rispetto allo sfondo
+  importInfo: Se inserisci qui il codice di un tema, potrai importarlo nell'editor
+    del tema
+  refProp: Riferimento a una proprietà
+  basedProp: Proprietà riferenziata
 _sfx:
-  note: "Nota"
-  noteMy: "Mia nota"
+  note: "Nuovo post"
+  noteMy: "Proprio post"
   notification: "Notifiche"
   chat: "Messaggi"
   chatBg: "Chat (sfondo)"
@@ -1095,7 +1177,7 @@ _ago:
   secondsAgo: "{n}s fa"
   minutesAgo: "{n}min fa"
   hoursAgo: "{n}h fa"
-  daysAgo: "{1} giorni fa"
+  daysAgo: "{n} giorni fa"
   weeksAgo: "{n} settimane fa"
   monthsAgo: "{n} mesi fa"
   yearsAgo: "{n} anni fa"
@@ -1109,35 +1191,67 @@ _tutorial:
   step1_1: "Benvenuto!"
   step1_2: "Vediamo di configurarla. Sarete operativi in men che non si dica!"
   step2_1: "Per prima cosa, compila il tuo profilo"
-  step2_2: "Fornendo alcune informazioni su chi siete, sarà più facile per gli altri
-    capire se vogliono vedere le vostre note o seguirvi"
-  step3_1: "Ora è il momento di seguire alcune persone!"
+  step2_2: "Fornendo alcune informazioni su chi sei, sarà più facile per gli altri
+    capire se vogliono vedere i tuoi post o seguirti"
+  step3_1: "Ora è il momento di seguire qualcuno!"
   step3_2: "La vostra home e le vostre timeline social si basano su chi seguite, quindi
     provate a seguire un paio di account per iniziare.\nCliccate sul cerchio più in
     alto a destra di un profilo per seguirlo"
   step4_1: "Fatevi conoscere"
-  step4_2: "Per il vostro primo post, alcuni preferiscono fare un post di {introduction}
+  step4_2: "Per il primo post, alcuni preferiscono fare un post di {introduction}
     o un semplice \"Ciao mondo!\""
   step5_1: "Linee temporali, linee temporali dappertutto!"
-  step5_2: "La tua istanza ha attivato {timelines} diverse timelines"
-  step5_3: "La timeline Home {icon} è quella in cui si possono vedere i post dei propri
-    follower"
-  step5_4: "La timeline Locale {icon} è quella in cui si possono vedere i post di
-    tutti gli altri utenti di questa istanza"
-  step5_5: "La timeline Raccomandati {icon} è quella in cui si possono vedere i post
-    delle istanze raccomandate dagli amministratori"
-  step5_6: "La timeline Social {icon} è quella in cui si possono vedere i post degli
-    amici dei propri follower"
+  step5_2: "La tua istanza ha attivato {timelines} diverse timeline."
+  step5_3: "La timeline Home {icon} è quella dove puoi vedere i post degli account
+    che segui."
+  step5_4: "La timeline Locale {icon} è dove si possono vedere i post di tutti gli
+    altri utenti di questo server."
+  step5_5: "La timeline Social {icon} è una combinazione delle timeline Home e Locale."
+  step5_6: "La timeline Suggeriti {icon} è quella in cui si possono vedere i post
+    dai server suggeriti dagli admin."
   step5_7: "La timeline Globale {icon} è quella in cui si possono vedere i post di
-    ogni altra istanza collegata"
+    ogni altro server collegato."
   step6_1: "Allora, cos'è questo posto?"
   step6_2: "Beh, non ti sei semplicemente unito a Firefish. Sei entrato in un portale
     del Fediverse, una rete interconnessa di migliaia di server, chiamata \"istanze\""
   step6_3: "Ogni server funziona in modo diverso, e non tutti i server eseguono Firefish.
     Questo però lo fa! È un po' complicato, ma ci riuscirete in poco tempo"
   step6_4: "Ora andate, esplorate e divertitevi!"
+  title: Come usare Firefish
 _2fa:
   registerTOTP: "Aggiungi dispositivo"
+  securityKeyName: Scegli un nome per la chiave
+  renewTOTPOk: Riconfigura
+  step2: Poi, scansiona il QR code mostrato a schermo.
+  securityKeyInfo: Oltre alle impronte digitali o al PIN, puoi anche autenticarti
+    con chiavi di sicurezza hardware che supportano FIDO2 per rendere il tuo account
+    ancora più sicuro.
+  step3Title: Inserisci un codice di autenticazione
+  alreadyRegistered: Hai già registrato un dispositivo per l'autenticazione a due
+    fattori (2FA).
+  step3: Inserisci il token fornito dalla tua app per terminare.
+  step4: Da ora in poi i futuri tentativi di login necessiteranno del token.
+  registerTOTPBeforeKey: Prima installa una app di autenticazione o registra una chiave
+    di sicurezza o una pass key.
+  token: Token 2FA
+  whyTOTPOnlyRenew: La app di autenticazione non può essere rimossa finché la chiave
+    di sicurezza è registrata.
+  step2Click: Cliccando sul QR code potrai registrare la 2FA nella tua chiave di sicurezza
+    o nella app di autenticazione dello smartphone.
+  step2Url: 'Puoi anche chiamare questo URL se sei su desktop:'
+  securityKeyNotSupported: Il tuo browser non supporta le chiavi di sicurezza.
+  chromePasskeyNotSupported: Le passkey di Chrome non sono supportate.
+  renewTOTPConfirm: I codici di verifica già impostati in precedenza smetteranno di
+    funzionare
+  renewTOTP: Riconfigura la app di autenticazione
+  registerSecurityKey: Registra una chiave di sicurezza o pass key
+  step1: Prima di tutto, installa una app di autenticazione (tipo a} o {b}) sul tuo
+    device.
+  tapSecurityKey: Segui le istruzioni del tuo browser per registrare la chiave di
+    sicurezza o la pass key
+  removeKey: Rimuovi la chiave di sicurezza
+  removeKeyConfirm: Confermi la rimozione della chiave {name} ?
+  renewTOTPCancel: Annulla
 _permissions:
   "read:account": "Visualizzare le informazioni dell'account"
   "write:account": "Modificare le informazioni dell'account"
@@ -1153,7 +1267,7 @@ _permissions:
   "write:messaging": "Gestire la chat"
   "read:mutes": "Vedi account silenziati"
   "write:mutes": "Gerisci account silenziati"
-  "write:notes": "Creare / Eliminare note"
+  "write:notes": "Crea o rimuovi i post"
   "read:notifications": "Visualizza notifiche"
   "write:notifications": "Gerisci notifiche"
   "read:reactions": "Vedi reazioni"
@@ -1167,6 +1281,10 @@ _permissions:
   "write:user-groups": "Gestisci gruppi di utenti"
   "read:channels": "Visualizza canali"
   "write:channels": "Gerisci canali"
+  "write:gallery": Modifica la galleria
+  "read:gallery": Vedi nella galleria
+  "read:gallery-likes": Guarda i preferiti della galleria
+  "write:gallery-likes": Modifica i preferiti della galleria
 _auth:
   shareAccess: "Autorizzare「{name}」ad accedere al tuo account?"
   shareAccessAsk: "Vuoi davvero consentire l'accesso al tuo account a questa app'?"
@@ -1174,6 +1292,8 @@ _auth:
   pleaseGoBack: "Si prega di ritornare sulla app"
   callback: "Ritornando sulla app"
   denied: "Accesso negato"
+  copyAsk: "Incolla questo codice di autorizzazione nell'applicazione:"
+  allPermissions: Accesso completo all'account
 _antennaSources:
   all: "Tutti i post"
   homeTimeline: "Post dagli utenti che segui"
@@ -1322,7 +1442,7 @@ _timelines:
   local: "Locale"
   social: "Sociale"
   global: "Federata"
-  recommended: Raccomandato
+  recommended: Suggerito
 _pages:
   newPage: "Crea pagina"
   editPage: "Modifica pagina"
@@ -1651,7 +1771,7 @@ _notification:
     renote: "Boost"
     followBack: ricambia il tuo follow
   reacted: ha aggiunto una reazione al tuo post
-  renoted: ha rilanciato il tuo post con un boost
+  renoted: ha dato un boost al tuo post
   pollEnded: I risultati del sondaggio sono disponibili
   voted: ha votato il tuo sondaggio
   emptyPushNotificationMessage: Le notifiche push sono state aggiornate
@@ -1705,8 +1825,8 @@ flagSpeakAsCatDescription: I tuoi post saranno "nyanified" quando sei in modalit
 selectInstance: Scegli un server
 keepOriginalUploading: Mantieni l'immagine originale
 moderation: Moderazione
-expandOnNoteClickDesc: Se disabilitato, potrai comunque aprire i post cliccando sull'orario
-  o con il tasto destro del mouse .
+expandOnNoteClickDesc: Se disabilitato, potrai comunque aprire i post con il tasto
+  destro del mouse oppure cliccando sull'orario.
 userSaysSomethingReasonQuote: '{name} ha citato un post che contiene {reason}'
 narrow: Stretto
 cropImageAsk: Vuoi ritagliare questa immagine?
@@ -1721,7 +1841,7 @@ activeEmailValidationDescription: Abilita la verifica rigorosa dell'indirizzo em
 customMOTDDescription: Messaggi personalizzati che sono mostrati sullo splash screen
   durate il caricamento, uno per riga, saranno scelti a caso ogni volta che l'utente
   carica o ricarica la pagina.
-recommendedInstances: Server consigliati
+recommendedInstances: Server suggeriti
 customSplashIconsDescription: Elenco degli URL di icone personalizzate da mostrare
   casualmente ogni volta che l'utente carica o ricarica la pagina. Assicurati che
   le immagini siano su un URL statico, preferibilmente di dimensioni 192x192.
@@ -1737,7 +1857,7 @@ findOtherInstance: Scegli un altro server
 apps: App
 expandOnNoteClick: Apri i post con un click
 userSaysSomethingReasonReply: '{name} ha risposto a un post che contiene {reason}'
-userSaysSomethingReasonRenote: '{name} ha dato un boost al post che contiene  {reason}'
+userSaysSomethingReasonRenote: '{name} ha dato un boost al post che contiene {reason}'
 forwardReport: Inoltra la segnalazione al server remoto
 size: Dimensione
 numberOfColumn: Numero di colonne
@@ -1748,7 +1868,7 @@ forwardReportIsAnonymous: Al posto del proprio account, nel server remoto verrà
   un account anonimo come autore della segnalazione.
 unclip: Togli il clip
 instanceSecurity: Sicurezza del server
-recommended: Raccomandato
+recommended: Suggerito
 seperateRenoteQuote: Separa i bottoni di boost e citazione
 ffVisibility: Visibilità dei follower
 failedToFetchAccountInformation: Non è possibile ottenere informazioni sull'account
@@ -1815,8 +1935,8 @@ enableCustomKaTeXMacro: Abilita le macro KaTeX personalizzate
 preventAiLearningDescription: Richiedi ai bot di intelligenza artificiale di terze
   parti di non studiare e acquisire il contenuto che carichi, come post e immagini.
 preventAiLearning: Impedisci l'acquisizione dei contenuti da parte dei bot IA
-confirmToUnclipAlreadyClippedNote: Questo post è già incluso nel clip "{name}". Vuoi
-  rimuoverlo dal clip piuttosto?
+confirmToUnclipAlreadyClippedNote: Questo post è già incluso nella clip "{name}".
+  Vuoi rimuoverlo dalla clip piuttosto?
 moveToLabel: 'Account dove vuoi migrare:'
 migrationConfirm: "Hai l'assoluta sicurezza di voler migrare il tuo account verso
   {account}? Quando lo avrai fatto, non sarai in grado di tornare indietro e non potrai
@@ -1839,7 +1959,7 @@ noteId: Post ID
 noInstances: Non ci sono server
 antennaInstancesDescription: Elenca un server per riga
 switchAccount: Cambia account
-swipeOnMobile: Permetti di fare swipe orizzontale tra le pagine
+swipeOnMobile: Permetti di fare swipe tra le pagine
 showAdminUpdates: Segnala nuove versioni di Firefish (solo admin)
 selectChannel: Seleziona un canale
 clipsDesc: I clip sono come segnalibri categorizzati e condivisibili. Puoi creare
@@ -1890,7 +2010,7 @@ makeReactionsPublicDescription: Questa opzione rende visibile a tutti l'elenco d
   tue reazioni ai post nel passato.
 overridedDeviceKind: Tipo di dispositivo
 auto: Auto
-reflectMayTakeTime: Potrebbe servire del tempo perché il cambiamento sia effettivo.
+reflectMayTakeTime: Potrebbe servire del tempo perché il cambiamento abbia effetto.
 cropImage: Ritaglia l'immagine
 recentNHours: Ultime {n} ore
 deleteAccount: Rimuovi l'account
@@ -1918,7 +2038,7 @@ thereIsUnresolvedAbuseReportWarning: Ci sono segnalazioni non ancora gestite.
 requireAdminForView: Devi avere un account amministratore per vedere questo contenuto.
 jumpToPrevious: Vai al precedente
 flagShowTimelineReplies: Mostra le risposte nella timeline
-cw: Avviso sul contenuto
+cw: Contenuto sensibile
 renoteMute: Silenzia i boost
 renoteUnmute: Non silenziare i boost
 enableEmojiReactions: Abilita le reazioni con emoji
@@ -1939,7 +2059,7 @@ _dialog:
 cannotUploadBecauseExceedsFileSizeLimit: Questo file non è stato caricato perché eccede
   lo spazio disponibile.
 xl: XL
-shuffle: Mescola
+shuffle: Casuale
 subscribePushNotification: Abilita le notifiche push
 unsubscribePushNotification: Disabilita le notifiche push
 pushNotificationAlreadySubscribed: Le notifiche push sono già abilitate
@@ -1951,8 +2071,8 @@ fast: Veloce
 remoteOnly: Solo remoto
 showAds: Mostra i banner della comunità
 showUpdates: Mostra un popup mentre Firefish si aggiorna
-recommendedInstancesDescription: Server consigliati, uno per riga, nell'ordine in
-  cui saranno mostrati nella timeline dei consigliati.
+recommendedInstancesDescription: Server suggeriti, uno per riga, nell'ordine in cui
+  saranno mostrati nella timeline dei suggeriti.
 beta: Beta
 neverShow: Non mostrare più
 remindMeLater: Non adesso
@@ -1980,3 +2100,64 @@ customKaTeXMacroDescription: 'Crea delle macro per scrivere facilmente espressio
   a capo nel mezzo di una definizione. Le linee non valide sono semplicemente ignorate.
   Sono supportate solo funzioni semplici di sostituzione nella stringa; sintassi avanzate,
   come comandi condizionali, non possono essere usate qui.'
+deletePasskeysConfirm: Stai per eliminare in modo irreversibile le passkey e le chiavi
+  di sicurezza su questo account. Confermi?
+delete2faConfirm: Stai per eliminare in modo irreversibile le impostazioni 2FA su
+  questo account. Confermi?
+inputNotMatch: Il valore inserito non corrisponde
+_sensitiveMediaDetection:
+  description: Riduce lo sforzo di moderare il server rilevando automaticamente i
+    contenuti NSFW tramite Machine Learning. Aumenterà leggermente il carico sul server.
+  setSensitiveFlagAutomaticallyDescription: Il risultato del riconoscimento verrà
+    conservato internamente anche se questa opzione è spenta.
+  analyzeVideos: Abilita l'analisi dei video
+  analyzeVideosDescription: Analizza anche i video oltre che le immagini. Aumenterà
+    leggermente il carico sul server.
+  sensitivityDescription: Riducendo l'accuratezza ridurrai i falsi positivi (censura
+    di contenuti accettabili), aumentandola ridurrai i falsi negativi (approvazione
+    di contenuti sensibili).
+  setSensitiveFlagAutomatically: Marca come NSFW
+  sensitivity: Accuratezza della rilevazione
+_preferencesBackups:
+  nameAlreadyExists: Esiste già un backup con nome "{name}". Scegli un nome diverso.
+  applyConfirm: Vuoi veramente ripristinare il backup "{name}" su questo dispositivo?
+    Le impostazioni attuali saranno sovrascritte.
+  saveConfirm: Salvare in backup come "{name}"?
+  createdAt: 'Creato: {date} {time}'
+  loadFile: Carica da file
+  list: Backup creati
+  saveNew: Salva un nuovo backup
+  apply: Applica a questo dispositivo
+  save: Salva i cambiamenti
+  cannotSave: Salvataggio fallito
+  noBackups: Non esistono backup. Puoi creare un backup delle impostazioni di questo
+    server usando "Crea un nuovo backup".
+  inputName: Inserisci il nome del backup
+  updatedAt: 'Aggiornato: {date} {time}'
+  invalidFile: Formato file non valido
+  cannotLoad: Caricamento fallito
+  deleteConfirm: Rimuovere il backup "{name}"?
+  renameConfirm: Rinominare il backup da "{old}" a "{new}"?
+_filters:
+  followersOnly: Solo i tuoi follower
+  fromUser: Dall'utente
+  withFile: Con file
+  fromDomain: Dal dominio
+  notesAfter: Post successivi
+  notesBefore: Post precedenti
+  followingOnly: Solo i tuoi follow
+_instanceMute:
+  heading: Elenco di server da silenziare
+  title: Nascondi i post dai server elencati.
+  instanceMuteDescription2: Separa andando a capo
+  instanceMuteDescription: Per silenziare post e boost dai server elencati, saranno
+    silenziate anche tutte le risposte a quei contenuti.
+_messaging:
+  dms: Privato
+  groups: Gruppi
+confirm: Conferma
+importZip: Importa ZIP
+exportZip: Esporta ZIP
+emojiPackCreator: Creazione di un pacchetto Emoji
+addRe: Aggiungi "re:" all'inizio di un commento in risposta a un post che ha un avviso
+  sui contenuti
