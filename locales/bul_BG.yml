@@ -261,7 +261,7 @@ alreadyFavorited: Вече е добавено в отметки.
 cantFavorite: Неуспешно добавяне в отметки.
 copyContent: Копирай съдържанието
 deleteAndEdit: Изтрий и редактирай
-editNote: Редактирай бележка
+editNote: Редактирай публикация
 edited: Редактирано на {date} {time}
 addToList: Добави в списък
 sendMessage: Изпрати съобщение
@@ -472,3 +472,5 @@ failedToUpload: Неуспешно качване
 _preferencesBackups:
   cannotSave: Неуспешно запазване
   cannotLoad: Неуспешно зареждане
+editWidgetsExit: Готово
+done: Готово

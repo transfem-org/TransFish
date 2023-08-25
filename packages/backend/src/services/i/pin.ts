@@ -38,7 +38,7 @@ export async function addPinned(
 	if (pinings.length >= 5) {
 		throw new IdentifiableError(
 			"15a018eb-58e5-4da1-93be-330fcc5e4e1a",
-			"You can not pin notes any more.",
+			"You cannot pin notes any more.",
 		);
 	}
 
