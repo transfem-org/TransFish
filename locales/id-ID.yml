@@ -74,7 +74,7 @@ exportRequested: "Kamu telah meminta ekspor. Ini akan memakan waktu sesaat. Sete
 importRequested: "Kamu telah meminta impor. Ini akan memakan waktu sesaat."
 lists: "Daftar"
 noLists: "Kamu tidak memiliki daftar apapun"
-note: "Postingan"
+note: "Posting"
 notes: "Postingan"
 following: "Ikuti"
 followers: "Pengikut"
@@ -1837,7 +1837,7 @@ _notification:
     followBack: "Ikuti Kembali"
     reply: "Balas"
     renote: "Posting ulang"
-  reacted: berekasi ke postinganmu
+  reacted: mereaksi postinganmu
   renoted: memposting ulang postinganmu
   voted: memilih di angketmu
 _deck:

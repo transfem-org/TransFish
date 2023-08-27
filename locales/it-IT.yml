@@ -56,8 +56,8 @@ loadMore: "Mostra di più"
 showMore: "Mostra di più"
 showLess: "Chiudi"
 youGotNewFollower: "Ha iniziato a seguirti"
-receiveFollowRequest: "Hai ricevuto una richiesta di follow"
-followRequestAccepted: "Richiesta di follow accettata"
+receiveFollowRequest: "Hai ricevuto una richiesta"
+followRequestAccepted: "Richiesta accettata"
 mention: "Menzioni"
 mentions: "Menzioni"
 directNotes: "Messaggi diretti"
@@ -76,8 +76,8 @@ lists: "Liste"
 noLists: "Nessuna lista"
 note: "Post"
 notes: "Post"
-following: "Follows"
-followers: "Followers"
+following: "Chi segui"
+followers: "Chi ti segue"
 followsYou: "Ti segue"
 createList: "Aggiungi una nuova lista"
 manageLists: "Gestisci liste"
@@ -92,13 +92,13 @@ youShouldUpgradeClient: "Per visualizzare la pagina è necessario aggiornare il 
   alla nuova versione e ricaricare."
 enterListName: "Nome della lista"
 privacy: "Privacy"
-makeFollowManuallyApprove: "Richiedi di approvare i follower manualmente"
+makeFollowManuallyApprove: "Approva manualmente le richiesta per seguirti"
 defaultNoteVisibility: "Privacy predefinita dei post"
 follow: "Segui"
 followRequest: "Richiesta di follow"
 followRequests: "Richieste di follow"
 unfollow: "Smetti di seguire"
-followRequestPending: "La richiesta di follow deve essere approvata"
+followRequestPending: "Richiesta in approvazione"
 enterEmoji: "Inserisci emoji"
 renote: "Boost"
 unrenote: "Annulla boost"
@@ -154,8 +154,7 @@ flagAsBotDescription: "Se l'account esegue principalmente operazioni automatiche
   i sistemi interni di Firefish perché trattino questo account come un bot."
 flagAsCat: "Io sono un gatto"
 flagAsCatDescription: "Abilita l'opzione \"Io sono un gatto\" per l'account."
-autoAcceptFollowed: "Accetta automaticamente le richieste di follow da utenti che
-  già segui"
+autoAcceptFollowed: "Accetta in automatico di farti seguire dagli account che segui"
 addAccount: "Aggiungi account"
 loginFailed: "Accesso non riuscito"
 showOnRemote: "Apri la pagina di origine"
@@ -165,7 +164,7 @@ setWallpaper: "Imposta sfondo"
 removeWallpaper: "Elimina lo sfondo"
 searchWith: "Cerca: {q}"
 youHaveNoLists: "Non hai ancora creato nessuna lista"
-followConfirm: "Sei sicur@ di voler seguire {name}?"
+followConfirm: "Confermi di voler seguire {name}?"
 proxyAccount: "Account proxy"
 proxyAccountDescription: "Un account proxy è un account che funziona da follower remoto
   sotto certe condizioni. Ad esempio, quando un utente aggiunge un utente remoto a
@@ -229,8 +228,8 @@ all: "Tutti"
 subscribing: "Iscrivendo"
 publishing: "Pubblicando"
 notResponding: "Nessuna risposta"
-instanceFollowing: "Seguiti su questo server"
-instanceFollowers: "Follower del server"
+instanceFollowing: "Seguiti da te su questo server"
+instanceFollowers: "Chi ti segue su questo server"
 instanceUsers: "Utenti del server"
 changePassword: "Aggiorna Password"
 security: "Sicurezza"
@@ -383,7 +382,7 @@ enableServiceworker: "Abilita ServiceWorker"
 antennaUsersDescription: "Inserisci solo un nome utente per riga"
 caseSensitive: "Sensibile alla distinzione tra maiuscole e minuscole"
 withReplies: "Includere le risposte"
-connectedTo: "Sei conness@ agli account qui sotto:"
+connectedTo: "Stai seguendo questi account"
 notesAndReplies: "Post e risposte"
 withFiles: "Con file in allegato"
 silence: "Silenzia"
@@ -485,7 +484,7 @@ createAccount: "Crea il tuo account"
 existingAccount: "Account esistente"
 regenerate: "Generare di nuovo"
 fontSize: "Dimensione carattere"
-noFollowRequests: "Non hai alcuna richiesta di follow"
+noFollowRequests: "Non ci sono richieste di follow"
 openImageInNewTab: "Aprire immagini in una nuova scheda"
 dashboard: "Pannello di controllo"
 local: "Locale"
@@ -560,9 +559,9 @@ disablePagesScript: "Disabilita AiScript nelle pagine"
 updateRemoteUser: "Aggiornare le informazioni di utente remot@"
 deleteAllFiles: "Elimina tutti i file"
 deleteAllFilesConfirm: "Vuoi davvero eliminare tutti i file?"
-removeAllFollowing: "Cancella tutti i follows"
-removeAllFollowingDescription: "Cancella tutti i follow verso il server {host}. È
-  utile soprattutto se per esempio il server non esiste più."
+removeAllFollowing: "Smetti di seguire tutti"
+removeAllFollowingDescription: "Smetti di seguire tutti gli account del server {host}.
+  È utile specialmente se il server non esiste più."
 userSuspended: "L'utente è sospes@."
 userSilenced: "L'utente è silenziat@."
 yourAccountSuspendedTitle: "Questo account è sospeso."
@@ -704,9 +703,8 @@ driveUsage: "Utilizzazione del Drive"
 noCrawle: "Rifiuta l'indicizzazione dai robot."
 noCrawleDescription: "Richiedi ai motori di ricerca di non indicizzare la tua pagina
   del profilo, i tuoi post, pagine, ecc."
-lockedAccountInfo: "I tuoi post saranno visibili a tutti, a meno che non imposti la
-  visibilità a \"Solo ai follower\", anche se hai configurato l'account per confermare
-  manualmente le richieste di follow."
+lockedAccountInfo: "Se non imposti la visibilità a \"Solo chi ti segue\", i singoli
+  post saranno visibili a tutti, anche se per seguirti è necessaria la tua approvazione."
 alwaysMarkSensitive: "Segnare i media come sensibili per impostazione predefinita"
 loadRawImages: "Visualizza le intere immagini allegate invece delle miniature."
 disableShowingAnimatedImages: "Disabilita le immagini animate"
@@ -845,7 +843,7 @@ aiChanMode: "Modalità Ai"
 keepCw: "Mantieni il CW"
 resolved: "Risolto"
 unresolved: "Non risolto"
-breakFollow: "Smetti di seguire"
+breakFollow: "Rimuovi follower"
 itsOn: "Abilitato"
 itsOff: "Disabilitato"
 emailRequiredForSignup: "È necessario un indirizzo mail per registrare un account"
@@ -886,7 +884,7 @@ _emailUnavailable:
   smtp: "Il server email non risponde"
 _ffVisibility:
   public: "Pubblico"
-  followers: "Mostra solo ai follower"
+  followers: "Mostra solo a chi ti segue"
   private: "Invisibile"
 _signup:
   almostThere: "Quasi completo"
@@ -1064,7 +1062,7 @@ _channel:
   removeBanner: "Rimuovi intestazione"
   featured: "Tendenze"
   owned: "I miei canali"
-  following: "Seguiti"
+  following: "Chi segui"
   usersCount: "{n} partecipanti"
   notesCount: "{n} post"
   nameAndDescription: Nome e descrizione
@@ -1105,7 +1103,7 @@ _theme:
   constant: "Costante"
   defaultValue: "Valore predefinito"
   color: "Colore"
-  refConst: "Chiama costante"
+  refConst: "Valore di una costante"
   key: "Chiave"
   func: "Funzione"
   funcKind: "Tipo di funzione"
@@ -1161,8 +1159,8 @@ _theme:
     wallpaperOverlay: Trasparenza rispetto allo sfondo
   importInfo: Se inserisci qui il codice di un tema, potrai importarlo nell'editor
     del tema
-  refProp: Riferimento a una proprietà
-  basedProp: Proprietà riferenziata
+  refProp: Valore di una proprietà
+  basedProp: Nome proprietà
 _sfx:
   note: "Nuovo post"
   noteMy: "Proprio post"
@@ -1192,11 +1190,11 @@ _tutorial:
   step1_2: "Vediamo di configurarla. Sarete operativi in men che non si dica!"
   step2_1: "Per prima cosa, compila il tuo profilo"
   step2_2: "Fornendo alcune informazioni su chi sei, sarà più facile per gli altri
-    capire se vogliono vedere i tuoi post o seguirti"
+    capire se vogliono vedere i tuoi post o seguirti."
   step3_1: "Ora è il momento di seguire qualcuno!"
-  step3_2: "La vostra home e le vostre timeline social si basano su chi seguite, quindi
-    provate a seguire un paio di account per iniziare.\nCliccate sul cerchio più in
-    alto a destra di un profilo per seguirlo"
+  step3_2: "Le tue timeline Home e Social si basano su chi segui, quindi prova a seguire
+    un paio di account per iniziare.\nClicca sul cerchio in alto a destra di un profilo
+    per seguirlo."
   step4_1: "Fatevi conoscere"
   step4_2: "Per il primo post, alcuni preferiscono fare un post di {introduction}
     o un semplice \"Ciao mondo!\""
@@ -1261,8 +1259,8 @@ _permissions:
   "write:drive": "Gestire il Drive"
   "read:favorites": "Visualizza i tuoi preferiti"
   "write:favorites": "Gestisci i tuoi preferiti"
-  "read:following": "Vedi le informazioni di follow"
-  "write:following": "Seguiti/ Smetti di seguire"
+  "read:following": "Vedi le informazioni su chi segui"
+  "write:following": "Aggiungi o rimuovi account da seguire"
   "read:messaging": "Visualizzare la chat"
   "write:messaging": "Gestire la chat"
   "read:mutes": "Vedi account silenziati"
@@ -1296,7 +1294,7 @@ _auth:
   allPermissions: Accesso completo all'account
 _antennaSources:
   all: "Tutti i post"
-  homeTimeline: "Post dagli utenti che segui"
+  homeTimeline: "Post dagli account che segui"
   users: "Post dagli utenti selezionati"
   userList: "Post dagli utenti di una lista specifica"
   userGroup: "Post dagli utenti in un gruppo specifico"
@@ -1370,8 +1368,8 @@ _visibility:
   publicDescription: "Il tuo post sarà visibile in tutte le timeline pubbliche"
   home: "Home"
   homeDescription: "Visibile solo sulla timeline \"Home\""
-  followers: "Followers"
-  followersDescription: "Visibile solo per i tuoi followers e gli utenti che menzioni"
+  followers: "Chi ti segue"
+  followersDescription: "Visibile solo a chi ti segue e a chi menzioni"
   specified: "Diretta"
   specifiedDescription: "Visibile solo per gli/le utenti menzionatə"
   localOnly: "Soltanto locale"
@@ -1405,7 +1403,7 @@ _profile:
     l'ora locale in cui ti trovi.
 _exportOrImport:
   allNotes: "Tutti i post"
-  followingList: "Follows"
+  followingList: "Account che segui"
   muteList: "Account silenziati"
   blockingList: "Account bloccati"
   userLists: "Liste"
@@ -1431,8 +1429,8 @@ _instanceCharts:
   usersTotal: "Totale cumulativo di utenti"
   notes: "Differenza nel numero di post"
   notesTotal: "Totale cumulativo di post"
-  ff: "Variazione dei follow/ follower"
-  ffTotal: "Totale cumulato dei follow/ follower"
+  ff: "Differenza tra chi segui e chi ti segue "
+  ffTotal: "Totale tra chi segui e chi ti segue"
   cacheSize: "Variazione dello spazio occupato dalla cache"
   cacheSizeTotal: "Totale cumulato dello spazio occupato dalla cache"
   files: "Variazione del numero di file"
@@ -1748,28 +1746,28 @@ _notification:
   youGotPoll: "{name} ha votato"
   youGotMessagingMessageFromUser: "{name} ti ha mandato un messaggio"
   youGotMessagingMessageFromGroup: "{name} ti ha mandato un messaggio nella chat"
-  youWereFollowed: "Ha iniziato a seguirti"
+  youWereFollowed: "ha iniziato a seguirti"
   youReceivedFollowRequest: "Hai ricevuto una richiesta di follow"
   yourFollowRequestAccepted: "La tua richiesta di follow è stata accettata"
   youWereInvitedToGroup: "Invitat@ al gruppo"
   _types:
     all: "Tutto"
-    follow: "Nuovə follower"
+    follow: "Nuovi che ti seguono"
     mention: "Menzioni"
     reply: "Risposte"
     renote: "Boost"
     quote: "Cita"
     reaction: "Reazioni"
     pollVote: "Voti ricevuti"
-    receiveFollowRequest: "Richiesta di follow ricevuta"
-    followRequestAccepted: "Richiesta di follow accettata"
+    receiveFollowRequest: "Qualcuno ha richiesto di seguirti"
+    followRequestAccepted: "Richiesta accettata"
     groupInvited: "Invito a un gruppo"
     app: "Notifiche da applicazioni"
     pollEnded: Fine del sondaggio
   _actions:
     reply: "Rispondi"
     renote: "Boost"
-    followBack: ricambia il tuo follow
+    followBack: ha ricambiato il follow e ti segue
   reacted: ha aggiunto una reazione al tuo post
   renoted: ha dato un boost al tuo post
   pollEnded: I risultati del sondaggio sono disponibili
@@ -1870,7 +1868,7 @@ unclip: Togli il clip
 instanceSecurity: Sicurezza del server
 recommended: Suggerito
 seperateRenoteQuote: Separa i bottoni di boost e citazione
-ffVisibility: Visibilità dei follower
+ffVisibility: Visibilità di chi segui e chi ti segue
 failedToFetchAccountInformation: Non è possibile ottenere informazioni sull'account
 rateLimitExceeded: Limite di richieste superato
 document: Documentazione
@@ -1974,8 +1972,7 @@ keepOriginalUploadingDescription: Salva l'immagine caricata originariamente cos�
   Se disattivato, al momento del caricamento verrà generata una versione da visualizzare
   sul web.
 accessibility: Accessibilità
-ffVisibilityDescription: Puoi configurare chi può vedere chi segui e anche i tuoi
-  follower.
+ffVisibilityDescription: Puoi far vedere chi segui e chi ti segue.
 continueThread: Continua la conversazione
 smartphone: Smartphone
 tablet: Tablet
@@ -2004,7 +2001,7 @@ allowedInstances: Whitelist dei server
 customCssWarn: Questa impostazione dovrebbe essere usata solo se sai cosa stai facendo.
   Inserire valori errati potrebbe bloccare il funzionamento del client.
 lastCommunication: Ultima comunicazione
-breakFollowConfirm: Vuoi veramente rimuovere il follower?
+breakFollowConfirm: Confermi la rimozione del follower?
 makeReactionsPublic: Rendi pubblica la storia di tutte le reazioni
 makeReactionsPublicDescription: Questa opzione rende visibile a tutti l'elenco delle
   tue reazioni ai post nel passato.
@@ -2081,7 +2078,7 @@ noGraze: Per favore disattiva l'estenzione del browser "Graze for Mastodon", per
 silencedWarning: Vedi questa pagina perché gli utenti sono su un server che il tuo
   admin ha silenziato, quindi potrebbero essere spam.
 isBot: Questo account è un bot
-isLocked: Questo account richiede l'approvazione del follow
+isLocked: Serve una approvazione per seguire questo account
 moveFromDescription: Questa operazione crea un alias del vecchio account in modo che
   tu possa migrare su questo nuovo account. Fallo PRIMA di migrare il tuo vecchio
   account. Usa il formato @nomeutente@server.com
@@ -2139,13 +2136,13 @@ _preferencesBackups:
   deleteConfirm: Rimuovere il backup "{name}"?
   renameConfirm: Rinominare il backup da "{old}" a "{new}"?
 _filters:
-  followersOnly: Solo i tuoi follower
+  followersOnly: Solo chi ti segue
   fromUser: Dall'utente
   withFile: Con file
   fromDomain: Dal dominio
   notesAfter: Post successivi
   notesBefore: Post precedenti
-  followingOnly: Solo i tuoi follow
+  followingOnly: Solo chi segui
 _instanceMute:
   heading: Elenco di server da silenziare
   title: Nascondi i post dai server elencati.
