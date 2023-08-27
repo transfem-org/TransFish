@@ -154,8 +154,8 @@ importers:
         specifier: 4.11.2
         version: 4.11.2
       cacheable-lookup:
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: TheEssem/cacheable-lookup
+        version: github.com/TheEssem/cacheable-lookup/dd2fb616366a3c68dcf321a57a67295967b204bf
       cbor:
         specifier: 8.1.0
         version: 8.1.0
@@ -3239,7 +3239,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@swc/core': ^1.2.66
-      chokidar: ^3.5.1
+      chokidar: ^3.3.1
     peerDependenciesMeta:
       chokidar:
         optional: true
@@ -3259,7 +3259,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@swc/core': ^1.2.66
-      chokidar: ^3.5.1
+      chokidar: ^3.3.1
     peerDependenciesMeta:
       chokidar:
         optional: true
@@ -19406,6 +19406,13 @@ packages:
     name: libopenmpt-wasm
     version: 0.7.2
     dev: true
+    
+  github.com/TheEssem/cacheable-lookup/dd2fb616366a3c68dcf321a57a67295967b204bf:
+    resolution: {tarball: https://codeload.github.com/TheEssem/cacheable-lookup/tar.gz/dd2fb616366a3c68dcf321a57a67295967b204bf}
+    name: cacheable-lookup
+    version: 7.0.0
+    engines: {node: '>=14.16'}
+    dev: false
 
   github.com/misskey-dev/browser-image-resizer/e9ee4012b7e811aaa54e4d694846047655329d45:
     resolution: {tarball: https://codeload.github.com/misskey-dev/browser-image-resizer/tar.gz/e9ee4012b7e811aaa54e4d694846047655329d45}

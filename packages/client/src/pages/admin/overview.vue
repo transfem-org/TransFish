@@ -60,7 +60,16 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, version as vueVersion, onMounted, onBeforeUnmount, nextTick, shallowRef, ref, computed } from 'vue';
+import {
+	markRaw,
+	version as vueVersion,
+	onMounted,
+	onBeforeUnmount,
+	nextTick,
+	shallowRef,
+	ref,
+	computed,
+} from "vue";
 import XFederation from "./overview.federation.vue";
 import XInstances from "./overview.instances.vue";
 import XQueue from "./overview.queue.vue";

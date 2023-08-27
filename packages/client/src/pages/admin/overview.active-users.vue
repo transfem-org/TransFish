@@ -8,7 +8,15 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw, version as vueVersion, onMounted, onBeforeUnmount, nextTick, shallowRef, ref } from 'vue';
+import {
+	markRaw,
+	version as vueVersion,
+	onMounted,
+	onBeforeUnmount,
+	nextTick,
+	shallowRef,
+	ref,
+} from "vue";
 import { Chart } from "chart.js";
 import tinycolor from "tinycolor2";
 import gradient from "chartjs-plugin-gradient";

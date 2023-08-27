@@ -106,6 +106,8 @@ async function performOneActivity(
 	} else if (isMove(activity)) {
 		await move(actor, activity);
 	} else {
-		apLogger.warn(`Unrecognized activity type: ${(activity as IActivity).type}`);
+		apLogger.warn(
+			`Unrecognized activity type: ${(activity as IActivity).type}`,
+		);
 	}
 }
