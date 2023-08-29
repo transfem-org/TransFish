@@ -97,7 +97,7 @@ If you have access to a server that supports one of the sources below, I recomme
 
 - 🐢 At least [NodeJS](https://nodejs.org/en/) v18.16.0 (v20 recommended)
 - 🐘 At least [PostgreSQL](https://www.postgresql.org/) v12 (v14 recommended)
-- 🍱 At least [Redis](https://redis.io/) v6 (v7 recommended)
+- 🍱 At least [Redis](https://redis.io/) v7
 - Web Proxy (one of the following)
   - 🍀 Nginx (recommended)
   - 🦦 Caddy
