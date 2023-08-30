@@ -1,8 +1,9 @@
 use std::env;
 
-use native_utils::util::id;
 use redis::Commands;
 use sea_orm_migration::prelude::*;
+
+use crate::get_timestamp;
 
 #[derive(DeriveMigrationName)]
 pub struct Migration;
@@ -31,7 +32,7 @@ impl MigrationTrait for Migration {
             let all_elems: Vec<Vec<Vec<String>>> = redis_conn.xrange_all(key).unwrap(); // Get all post IDs in stream
             let stream_ids = all_elems
                 .iter()
-                .map(|v| format!("{}-*", id::get_timestamp(&v[1][1]))); // Get correct stream id with timestamp
+                .map(|v| format!("{}-*", get_timestamp(&v[1][1]))); // Get correct stream id with timestamp
             redis_conn.del::<_, ()>(key).unwrap();
             for (j, v) in stream_ids.enumerate() {
                 redis_conn
