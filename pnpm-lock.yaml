@@ -303,6 +303,9 @@ importers:
       oauth:
         specifier: ^0.10.0
         version: 0.10.0
+      opencc-js:
+        specifier: ^1.0.5
+        version: 1.0.5
       os-utils:
         specifier: 0.0.14
         version: 0.0.14
@@ -14554,6 +14557,10 @@ packages:
       is-inside-container: 1.0.0
       is-wsl: 2.2.0
     dev: true
+
+  /opencc-js@1.0.5:
+    resolution: {integrity: sha512-LD+1SoNnZdlRwtYTjnQdFrSVCAaYpuDqL5CkmOaHOkKoKh7mFxUicLTRVNLU5C+Jmi1vXQ3QL4jWdgSaa4sKjg==}
+    dev: false
 
   /opencollective-postinstall@2.0.3:
     resolution: {integrity: sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==}

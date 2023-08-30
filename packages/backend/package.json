@@ -100,6 +100,7 @@
 		"nodemailer": "6.9.4",
 		"nsfwjs": "2.4.2",
 		"oauth": "^0.10.0",
+		"opencc-js": "^1.0.5",
 		"os-utils": "0.0.14",
 		"otpauth": "^9.1.4",
 		"parse5": "7.1.2",

@@ -1,6 +1,7 @@
 import { URLSearchParams } from "node:url";
 import fetch from "node-fetch";
 import config from "@/config/index.js";
+import { Converter } from "opencc-js";
 import { getAgentByUrl } from "@/misc/fetch.js";
 import { fetchMeta } from "@/misc/fetch-meta.js";
 import { Notes } from "@/models/index.js";
@@ -37,6 +38,13 @@ export const paramDef = {
 	},
 	required: ["noteId", "targetLang"],
 } as const;
+
+function convertChinese(convert: boolean, src: string) {
+	if (!convert) return src;
+
+	const converter = Converter({ from: "cn", to: "twp" });
+	return converter(src);
+}
 
 export default define(meta, paramDef, async (ps, user) => {
 	const note = await getNote(ps.noteId, user).catch((err) => {
@@ -93,7 +101,7 @@ export default define(meta, paramDef, async (ps, user) => {
 
 		return {
 			sourceLang: json.detectedLanguage?.language,
-			text: json.translatedText,
+			text: convertChinese(ps.targetLang === "zh-TW", json.translatedText),
 		};
 	}
 
@@ -128,6 +136,6 @@ export default define(meta, paramDef, async (ps, user) => {
 
 	return {
 		sourceLang: json.translations[0].detected_source_language,
-		text: json.translations[0].text,
+		text: convertChinese(ps.targetLang === "zh-TW", json.translations[0].text),
 	};
 });
