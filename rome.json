@@ -19,6 +19,7 @@
 			"packages/backend/built/",
 			"*/model.json",
 			"*.md",
+			"*.spec.ts",
 			"**/tsconfig.json",
 			"*/.yml"
 		]
