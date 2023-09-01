@@ -56,21 +56,11 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	computed,
-	onMounted,
-	onUnmounted,
-	ref,
-	inject,
-	watch,
-	nextTick,
-} from "vue";
+import { computed, onMounted, onUnmounted, ref, watch, nextTick } from "vue";
 import tinycolor from "tinycolor2";
 import { popupMenu } from "@/os";
-import { url } from "@/config";
 import { scrollToTop } from "@/scripts/scroll";
 import MkButton from "@/components/MkButton.vue";
-import { i18n } from "@/i18n";
 import { globalEvents } from "@/events";
 import { injectPageMetadata } from "@/scripts/page-metadata";
 
@@ -100,11 +90,10 @@ const emit = defineEmits<{
 
 const metadata = injectPageMetadata();
 
-const el = ref<HTMLElement>(null);
+const el = ref<HTMLElement>();
 const tabRefs = {};
 const tabHighlightEl = ref<HTMLElement | null>(null);
-const bg = ref(null);
-const height = ref(0);
+const bg = ref<string>();
 const hasTabs = computed(() => {
 	return props.tabs && props.tabs.length > 0;
 });

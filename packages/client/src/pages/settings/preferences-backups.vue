@@ -161,7 +161,7 @@ type Profile = {
 
 const connection = $i && stream.useChannel("main");
 
-let profiles = ref<Record<string, Profile> | null>(null);
+const profiles = ref<Record<string, Profile> | null>(null);
 
 os.api("i/registry/get-all", { scope }).then((res) => {
 	profiles.value = res || {};

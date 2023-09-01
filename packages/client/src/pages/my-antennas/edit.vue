@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, watch, ref, computed } from "vue";
+import { ref } from "vue";
 import XAntenna from "./editor.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
@@ -18,7 +18,7 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 
 const router = useRouter();
 
-let antenna: any = ref(null);
+const antenna = ref();
 
 const props = defineProps<{
 	antennaId: string;
@@ -34,14 +34,8 @@ os.api("antennas/show", { antennaId: props.antennaId }).then(
 	},
 );
 
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
-
 definePageMetadata({
 	title: i18n.ts.manageAntennas,
 	icon: "ph-flying-saucer ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped></style>

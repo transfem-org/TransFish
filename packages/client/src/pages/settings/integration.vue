@@ -76,14 +76,6 @@ function openWindow(service: string, type: string) {
 	);
 }
 
-function connectTwitter() {
-	twitterForm.value = openWindow("twitter", "connect");
-}
-
-function disconnectTwitter() {
-	openWindow("twitter", "disconnect");
-}
-
 function connectDiscord() {
 	discordForm.value = openWindow("discord", "connect");
 }
@@ -118,10 +110,6 @@ onMounted(() => {
 		}
 	});
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.integration,

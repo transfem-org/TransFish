@@ -145,7 +145,7 @@ export const defaultStore = markRaw(
 		tl: {
 			where: "deviceAccount",
 			default: {
-				src: "home" as "home" | "local" | "social" | "global",
+				src: "home" as "home" | "local" | "social" | "global" | "recommended",
 				arg: null,
 			},
 		},

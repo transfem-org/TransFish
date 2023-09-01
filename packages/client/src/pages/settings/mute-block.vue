@@ -40,19 +40,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
-import {} from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkTab from "@/components/MkTab.vue";
 import FormInfo from "@/components/MkInfo.vue";
 import FormLink from "@/components/form/link.vue";
 import { userPage } from "@/filters/user";
-import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let tab = ref("mute");
+const tab = ref("mute");
 
 const mutingPagination = {
 	endpoint: "mute/list" as const,
@@ -63,10 +61,6 @@ const blockingPagination = {
 	endpoint: "blocking/list" as const,
 	limit: 10,
 };
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.muteAndBlock,

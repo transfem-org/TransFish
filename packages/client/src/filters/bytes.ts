@@ -7,7 +7,7 @@ export default (v, digits = 0) => {
 	const i = Math.floor(Math.log(v) / Math.log(1024));
 	return (
 		(isMinus ? "-" : "") +
-		(v / Math.pow(1024, i)).toFixed(digits).replace(/\.0+$/, "") +
+		(v / 1024 ** i).toFixed(digits).replace(/\.0+$/, "") +
 		sizes[i]
 	);
 };

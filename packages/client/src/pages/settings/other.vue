@@ -29,18 +29,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineAsyncComponent } from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormLink from "@/components/form/link.vue";
-import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
-import { popup } from "@/os";
-import { defaultStore } from "@/store";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
-
-const reportError = computed(defaultStore.makeGetterSetter("reportError"));
 
 function onChangeInjectFeaturedNote(v) {
 	os.api("i/update", {
@@ -49,10 +43,6 @@ function onChangeInjectFeaturedNote(v) {
 		$i!.injectFeaturedNote = i.injectFeaturedNote;
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.other,

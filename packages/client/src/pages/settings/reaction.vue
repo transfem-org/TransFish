@@ -146,7 +146,7 @@ async function reloadAsk() {
 	unisonReload();
 }
 
-let reactions = ref(deepClone(defaultStore.state.reactions));
+const reactions = ref(deepClone(defaultStore.state.reactions));
 
 const reactionPickerSkinTone = computed(
 	defaultStore.makeGetterSetter("reactionPickerSkinTone"),
@@ -236,10 +236,6 @@ watch(reactionPickerSkinTone.value, async () => {
 	});
 	await reloadAsk();
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.reaction,

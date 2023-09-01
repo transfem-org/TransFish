@@ -36,7 +36,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
 import FormButton from "@/components/MkButton.vue";
@@ -46,10 +45,10 @@ import * as os from "@/os";
 import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 
-let uri: string = ref("");
-let enableDiscordIntegration: boolean = ref(false);
-let discordClientId: string | null = ref(null);
-let discordClientSecret: string | null = ref(null);
+const uri = ref("");
+const enableDiscordIntegration = ref(false);
+const discordClientId = ref(null);
+const discordClientSecret = ref(null);
 
 async function init() {
 	const meta = await os.api("admin/meta");

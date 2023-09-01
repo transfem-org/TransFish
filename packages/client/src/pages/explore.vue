@@ -50,7 +50,7 @@ import "swiper/scss";
 import "swiper/scss/virtual";
 
 const tabs = ["users", "featured"];
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const headerActions = computed(() => []);

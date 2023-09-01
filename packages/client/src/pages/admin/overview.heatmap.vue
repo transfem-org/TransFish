@@ -23,7 +23,7 @@ import { ref } from "vue";
 import MkHeatmap from "@/components/MkHeatmap.vue";
 import MkSelect from "@/components/form/select.vue";
 
-let src = ref("notes");
+const src = ref("notes");
 </script>
 
 <style lang="scss" module>

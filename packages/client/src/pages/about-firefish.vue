@@ -225,8 +225,8 @@ sponsors = patronsResp.sponsors;
 patrons = patrons.filter((patron) => !sponsors.includes(patron));
 
 let easterEggReady = false;
-let easterEggEmojis = ref([]);
-let easterEggEngine = ref(null);
+const easterEggEmojis = ref([]);
+const easterEggEngine = ref(null);
 const containerEl = ref<HTMLElement>();
 
 function iconLoaded() {

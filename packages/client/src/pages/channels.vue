@@ -111,16 +111,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, defineComponent, inject, watch, ref } from "vue";
+import { computed, onMounted, watch, ref } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import MkChannelPreview from "@/components/MkChannelPreview.vue";
 import MkChannelList from "@/components/MkChannelList.vue";
-import MkPagination from "@/components/MkPagination.vue";
 import MkInput from "@/components/form/input.vue";
 import MkRadios from "@/components/form/radios.vue";
 import MkButton from "@/components/MkButton.vue";
-import MkFolder from "@/components/MkFolder.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import { useRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -133,17 +130,17 @@ import "swiper/scss/virtual";
 const router = useRouter();
 
 const tabs = ["search", "featured", "following", "owned"];
-let tab = ref(tabs[1]);
+const tab = ref(tabs[1]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const props = defineProps<{
 	query: string;
 	type?: string;
 }>();
-let key = ref("");
-let searchQuery = ref("");
-let searchType = ref("nameAndDescription");
-let channelPagination = ref();
+const key = ref("");
+const searchQuery = ref("");
+const searchType = ref("nameAndDescription");
+const channelPagination = ref();
 onMounted(() => {
 	searchQuery.value = props.query ?? "";
 	searchType.value = props.type ?? "nameAndDescription";

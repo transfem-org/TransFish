@@ -45,9 +45,7 @@
 import { markRaw, onMounted, onUnmounted, ref, shallowRef } from "vue";
 import XChart from "./overview.queue.chart.vue";
 import number from "@/filters/number";
-import * as os from "@/os";
 import { stream } from "@/stream";
-import { i18n } from "@/i18n";
 
 const connection = markRaw(stream.useChannel("queueStats"));
 
@@ -55,10 +53,10 @@ const activeSincePrevTick = ref(0);
 const active = ref(0);
 const delayed = ref(0);
 const waiting = ref(0);
-let chartProcess = shallowRef<InstanceType<typeof XChart>>();
-let chartActive = shallowRef<InstanceType<typeof XChart>>();
-let chartDelayed = shallowRef<InstanceType<typeof XChart>>();
-let chartWaiting = shallowRef<InstanceType<typeof XChart>>();
+const chartProcess = shallowRef<InstanceType<typeof XChart>>();
+const chartActive = shallowRef<InstanceType<typeof XChart>>();
+const chartDelayed = shallowRef<InstanceType<typeof XChart>>();
+const chartWaiting = shallowRef<InstanceType<typeof XChart>>();
 
 const props = defineProps<{
 	domain: string;
@@ -70,10 +68,10 @@ const onStats = (stats) => {
 	delayed.value = stats[props.domain].delayed;
 	waiting.value = stats[props.domain].waiting;
 
-	chartProcess.value.pushData(stats[props.domain].activeSincePrevTick);
-	chartActive.value.pushData(stats[props.domain].active);
-	chartDelayed.value.pushData(stats[props.domain].delayed);
-	chartWaiting.value.pushData(stats[props.domain].waiting);
+	chartProcess.value?.pushData(stats[props.domain].activeSincePrevTick);
+	chartActive.value?.pushData(stats[props.domain].active);
+	chartDelayed.value?.pushData(stats[props.domain].delayed);
+	chartWaiting.value?.pushData(stats[props.domain].waiting);
 };
 
 const onStatsLog = (statsLog) => {
@@ -89,10 +87,10 @@ const onStatsLog = (statsLog) => {
 		dataWaiting.push(stats[props.domain].waiting);
 	}
 
-	chartProcess.value.setData(dataProcess);
-	chartActive.value.setData(dataActive);
-	chartDelayed.value.setData(dataDelayed);
-	chartWaiting.value.setData(dataWaiting);
+	chartProcess.value?.setData(dataProcess);
+	chartActive.value?.setData(dataActive);
+	chartDelayed.value?.setData(dataDelayed);
+	chartWaiting.value?.setData(dataWaiting);
 };
 
 onMounted(() => {

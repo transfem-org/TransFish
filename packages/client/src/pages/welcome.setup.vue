@@ -44,7 +44,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import { host } from "@/config";
@@ -52,9 +51,9 @@ import * as os from "@/os";
 import { login } from "@/account";
 import { i18n } from "@/i18n";
 
-let username = ref("");
-let password = ref("");
-let submitting = ref(false);
+const username = ref("");
+const password = ref("");
+const submitting = ref(false);
 
 function submit() {
 	if (submitting.value) return;

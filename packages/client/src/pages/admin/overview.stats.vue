@@ -94,20 +94,18 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
-import MkMiniChart from "@/components/MkMiniChart.vue";
+import { onMounted, ref } from "vue";
 import * as os from "@/os";
-import number from "@/filters/number";
 import MkNumberDiff from "@/components/MkNumberDiff.vue";
 import MkNumber from "@/components/MkNumber.vue";
 import { i18n } from "@/i18n";
 
-let stats: any = ref(null);
-let usersComparedToThePrevDay = ref<number>();
-let notesComparedToThePrevDay = ref<number>();
-let onlineUsersCount = ref(0);
-let emojiCount = ref(0);
-let fetching = ref(true);
+const stats = ref(null);
+const usersComparedToThePrevDay = ref<number>();
+const notesComparedToThePrevDay = ref<number>();
+const onlineUsersCount = ref(0);
+const emojiCount = ref(0);
+const fetching = ref(true);
 
 onMounted(async () => {
 	const [_stats, _onlineUsersCount] = await Promise.all([

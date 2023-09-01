@@ -52,7 +52,7 @@ const props = withDefaults(
 	},
 );
 
-let values: string = ref(props.value.values.join("\n"));
+const values = ref<string>(props.value.values.join("\n"));
 
 watch(
 	values.value,

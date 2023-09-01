@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, watch, ref } from "vue";
+import { computed, watch, ref } from "vue";
 import * as misskey from "firefish-js";
 import XNoteDetailed from "@/components/MkNoteDetailed.vue";
 import XNotes from "@/components/MkNotes.vue";
@@ -83,14 +83,14 @@ const props = defineProps<{
 	noteId: string;
 }>();
 
-let note = ref<null | misskey.entities.Note>();
-let hasPrev = ref(false);
-let hasNext = ref(false);
-let showPrev = ref(false);
-let showNext = ref(false);
-let error = ref();
-let isRenote = ref(false);
-let appearNote = ref<null | misskey.entities.Note>();
+const note = ref<null | misskey.entities.Note>();
+const hasPrev = ref(false);
+const hasNext = ref(false);
+const showPrev = ref(false);
+const showNext = ref(false);
+const error = ref();
+const isRenote = ref(false);
+const appearNote = ref<null | misskey.entities.Note>();
 
 const prevPagination = {
 	endpoint: "users/notes" as const,

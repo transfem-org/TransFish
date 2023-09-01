@@ -80,7 +80,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import MkSignin from "@/components/MkSignin.vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
@@ -98,7 +97,7 @@ const props = defineProps<{
 
 const _permissions = props.permission.split(",");
 
-let state = ref<string | null>(null);
+const state = ref<string | null>(null);
 
 function getIcon(p: string) {
 	return p.includes("write") ? "pencil-simple" : "eye";

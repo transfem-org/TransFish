@@ -93,21 +93,19 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 
-import MkInput from "@/components/form/input.vue";
 import MkSelect from "@/components/form/select.vue";
 import MkPagination from "@/components/MkPagination.vue";
 import XAbuseReport from "@/components/MkAbuseReport.vue";
-import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let reports = ref<InstanceType<typeof MkPagination>>();
+const reports = ref<InstanceType<typeof MkPagination>>();
 
-let state = ref("unresolved");
-let reporterOrigin = ref("combined");
-let targetUserOrigin = ref("combined");
-let searchUsername = ref("");
-let searchHost = ref("");
+const state = ref("unresolved");
+const reporterOrigin = ref("combined");
+const targetUserOrigin = ref("combined");
+// const searchUsername = ref("");
+// const searchHost = ref("");
 
 const pagination = {
 	endpoint: "admin/abuse-user-reports" as const,
@@ -120,7 +118,7 @@ const pagination = {
 };
 
 function resolved(reportId) {
-	reports.value.removeItem((item) => item.id === reportId);
+	reports.value?.removeItem((item) => item.id === reportId);
 }
 
 const headerActions = computed(() => []);

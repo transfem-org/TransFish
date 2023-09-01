@@ -28,7 +28,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
 import XContainer from "../page-editor.container.vue";
 import MkTextarea from "@/components/form/textarea.vue";
 import MkInput from "@/components/form/input.vue";

@@ -74,7 +74,7 @@ const usersPagination = {
 };
 
 const tabs = ["notes", "users"];
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const headerActions = computed(() => []);

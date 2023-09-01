@@ -142,7 +142,6 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 
-import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormSelect from "@/components/form/select.vue";
 import FormSection from "@/components/form/section.vue";
@@ -153,26 +152,26 @@ import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let isLocked = ref($i.isLocked);
-let autoAcceptFollowed = ref($i.autoAcceptFollowed);
-let noCrawle = ref($i.noCrawle);
-let isExplorable = ref($i.isExplorable);
-let hideOnlineStatus = ref($i.hideOnlineStatus);
-let publicReactions = ref($i.publicReactions);
-let ffVisibility = ref($i.ffVisibility);
-let preventAiLearning = ref($i.preventAiLearning);
+const isLocked = ref($i.isLocked);
+const autoAcceptFollowed = ref($i.autoAcceptFollowed);
+const noCrawle = ref($i.noCrawle);
+const isExplorable = ref($i.isExplorable);
+const hideOnlineStatus = ref($i.hideOnlineStatus);
+const publicReactions = ref($i.publicReactions);
+const ffVisibility = ref($i.ffVisibility);
+const preventAiLearning = ref($i.preventAiLearning);
 
-let defaultNoteVisibility = computed(
+const defaultNoteVisibility = computed(
 	defaultStore.makeGetterSetter("defaultNoteVisibility"),
 );
-let defaultNoteLocalOnly = computed(
+const defaultNoteLocalOnly = computed(
 	defaultStore.makeGetterSetter("defaultNoteLocalOnly"),
 );
-let rememberNoteVisibility = computed(
+const rememberNoteVisibility = computed(
 	defaultStore.makeGetterSetter("rememberNoteVisibility"),
 );
-let keepCw = computed(defaultStore.makeGetterSetter("keepCw"));
-let addRe = computed(defaultStore.makeGetterSetter("addRe"));
+const keepCw = computed(defaultStore.makeGetterSetter("keepCw"));
+const addRe = computed(defaultStore.makeGetterSetter("addRe"));
 
 function save() {
 	os.api("i/update", {
@@ -186,10 +185,6 @@ function save() {
 		ffVisibility: ffVisibility.value,
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.privacy,

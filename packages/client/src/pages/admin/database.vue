@@ -36,7 +36,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import {} from "vue";
 import FormSuspense from "@/components/form/suspense.vue";
 import FormButton from "@/components/MkButton.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";

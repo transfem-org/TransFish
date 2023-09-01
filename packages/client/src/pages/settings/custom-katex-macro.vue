@@ -59,10 +59,6 @@ watch(localCustomKaTeXMacro, async () => {
 	await apply();
 });
 
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
-
 definePageMetadata({
 	title: i18n.ts.customKaTeXMacro,
 	icon: "ph-radical ph-bold ph-lg",

@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
 import XContainer from "../page-editor.container.vue";
 import { i18n } from "@/i18n";
 

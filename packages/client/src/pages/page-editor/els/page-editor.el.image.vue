@@ -40,7 +40,7 @@ const props = withDefaults(
 	},
 );
 
-let file: any = ref(null);
+const file = ref<any>(null);
 
 async function choose() {
 	os.selectDriveFile(false).then((fileResponse: any) => {

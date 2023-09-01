@@ -44,7 +44,6 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 
-import {} from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkAvatars from "@/components/MkAvatars.vue";

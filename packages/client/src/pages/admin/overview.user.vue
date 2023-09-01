@@ -28,7 +28,7 @@ const props = defineProps<{
 	user: misskey.entities.User;
 }>();
 
-let chart = ref(null);
+const chart = ref(null);
 
 os.apiGet("charts/user/notes", {
 	userId: props.user.id,

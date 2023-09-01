@@ -74,12 +74,12 @@ const props = defineProps<{
 	group?: Misskey.entities.UserGroup | null;
 }>();
 
-let textEl = ref<HTMLTextAreaElement>();
-let fileEl = ref<HTMLInputElement>();
+const textEl = ref<HTMLTextAreaElement>();
+const fileEl = ref<HTMLInputElement>();
 
-let text = ref<string>("");
-let file = ref<Misskey.entities.DriveFile | null>(null);
-let sending = ref(false);
+const text = ref<string>("");
+const file = ref<Misskey.entities.DriveFile | null>(null);
+const sending = ref(false);
 const typing = throttle(3000, () => {
 	stream.send(
 		"typingOnMessaging",
@@ -87,10 +87,10 @@ const typing = throttle(3000, () => {
 	);
 });
 
-let draftKey = computed(() =>
+const draftKey = computed(() =>
 	props.user ? "user:" + props.user.id : "group:" + props.group?.id,
 );
-let canSend = computed(
+const canSend = computed(
 	() =>
 		(text.value != null && text.value.trim() !== "") || file.value != null,
 );
@@ -166,7 +166,7 @@ function onDrop(ev: DragEvent): void {
 
 function onKeydown(ev: KeyboardEvent) {
 	typing();
-	let sendOnEnter =
+	const sendOnEnter =
 		localStorage.getItem("enterSendsMessage") === "true" ||
 		defaultStore.state.enterSendsMessage;
 	if (sendOnEnter) {
