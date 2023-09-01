@@ -39,11 +39,5 @@ const paginationForRemote = {
 	},
 };
 
-// const paginationForRemote = {
-// 	endpoint: 'notes/polls/recommendation' as const,
-// 	limit: 10,
-// 	offsetMode: true,
-// };
-
-let tab = ref("local");
+const tab = ref("local");
 </script>

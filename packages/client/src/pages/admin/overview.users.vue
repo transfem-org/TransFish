@@ -7,7 +7,7 @@
 			<MkLoading v-if="fetching" />
 			<div v-else class="users">
 				<MkA
-					v-for="(user, i) in newUsers"
+					v-for="user in newUsers"
 					:key="user.id"
 					:to="`/user-info/${user.id}`"
 					class="user"
@@ -20,13 +20,13 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { ref } from "vue";
 import * as os from "@/os";
 import { useInterval } from "@/scripts/use-interval";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
 
-let newUsers = ref(null);
-let fetching = ref(true);
+const newUsers = ref(null);
+const fetching = ref(true);
 
 const fetch = async () => {
 	const _newUsers = await os.api("admin/show-users", {

@@ -187,15 +187,6 @@ function saveSrc(
 	});
 }
 
-async function timetravel(): Promise<void> {
-	const { canceled, result: date } = await os.inputDate({
-		title: i18n.ts.date,
-	});
-	if (canceled) return;
-
-	tlComponent.value.timetravel(date);
-}
-
 function focus(): void {
 	tlComponent.value.focus();
 }

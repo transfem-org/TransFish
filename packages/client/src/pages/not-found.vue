@@ -12,14 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
-
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.notFound,

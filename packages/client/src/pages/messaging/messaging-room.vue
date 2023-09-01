@@ -129,21 +129,21 @@ const props = defineProps<{
 	groupId?: string;
 }>();
 
-let rootEl = ref<HTMLDivElement>();
-let formEl = ref<InstanceType<typeof XForm>>();
-let pagingComponent = ref<InstanceType<typeof MkPagination>>();
+const rootEl = ref<HTMLDivElement>();
+const formEl = ref<InstanceType<typeof XForm>>();
+const pagingComponent = ref<InstanceType<typeof MkPagination>>();
 
-let fetching = ref(true);
-let user: Misskey.entities.UserDetailed | null = ref(null);
-let group: Misskey.entities.UserGroup | null = ref(null);
-let typers: Misskey.entities.User[] = ref([]);
-let connection: Misskey.ChannelConnection<
+const fetching = ref(true);
+const user = ref<Misskey.entities.UserDetailed | null>(null);
+const group = ref<Misskey.entities.UserGroup | null>(null);
+const typers = ref<Misskey.entities.User[]>([]);
+const connection: Misskey.ChannelConnection<
 	Misskey.Channels["messaging"]
 > | null = ref(null);
-let showIndicator = ref(false);
+const showIndicator = ref(false);
 const { animation } = defaultStore.reactiveState;
 
-let pagination: Paging | null = ref(null);
+const pagination = ref<Paging | null>(null);
 
 watch([() => props.userAcct, () => props.groupId], () => {
 	if (connection.value) connection.value.dispose();
@@ -323,7 +323,7 @@ function onIndicatorClick() {
 	thisScrollToBottom();
 }
 
-let scrollRemove: (() => void) | null = ref(null);
+const scrollRemove = ref<(() => void) | null>(null);
 
 function notifyNewMessage() {
 	showIndicator.value = true;

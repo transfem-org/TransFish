@@ -84,7 +84,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import {} from "vue";
 import * as mfm from "mfm-js";
 import type * as Misskey from "firefish-js";
 import XMediaList from "@/components/MkMediaList.vue";

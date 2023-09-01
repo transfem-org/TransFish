@@ -15,7 +15,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import {} from "vue";
 import FormSuspense from "@/components/form/suspense.vue";
 import * as os from "@/os";
 import { fetchInstance } from "@/instance";

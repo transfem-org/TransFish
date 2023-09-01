@@ -416,11 +416,11 @@ const props = withDefaults(
 	{},
 );
 
-let parallaxAnimationId = ref<null | number>(null);
-let narrow = ref<null | boolean>(null);
-let rootEl = ref<null | HTMLElement>(null);
-let bannerEl = ref<null | HTMLElement>(null);
-let patrons = ref([]);
+const parallaxAnimationId = ref<null | number>(null);
+const narrow = ref<null | boolean>(null);
+const rootEl = ref<null | HTMLElement>(null);
+const bannerEl = ref<null | HTMLElement>(null);
+const patrons = ref([]);
 
 const age = computed(() => {
 	return calcAge(props.user.birthday);
@@ -446,8 +446,8 @@ const timeForThem = computed(() => {
 	];
 
 	for (const city of maybeCityNames) {
-		let tzInfo = cityTimezones.lookupViaCity(city);
-		if (tzInfo.length == 0) continue;
+		const tzInfo = cityTimezones.lookupViaCity(city);
+		if (tzInfo.length !== 1) continue;
 
 		const tz = tzInfo[0].timezone;
 		if (!tz) continue;
@@ -775,9 +775,6 @@ onUnmounted(() => {
 							text-overflow: ellipsis;
 							margin: 0;
 						}
-					}
-
-					&.system > .field > .name {
 					}
 				}
 

@@ -219,9 +219,9 @@ const props = defineProps<{
 	username: string;
 }>();
 
-let page = ref(null);
-let bgImg = ref(null);
-let error = ref(null);
+const page = ref(null);
+const bgImg = ref(null);
+const error = ref(null);
 const otherPostsPagination = {
 	endpoint: "users/pages" as const,
 	limit: 6,

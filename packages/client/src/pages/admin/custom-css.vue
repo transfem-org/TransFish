@@ -17,15 +17,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+// import { ref, watch } from "vue";
 import FormTextarea from "@/components/form/textarea.vue";
 import FormInfo from "@/components/MkInfo.vue";
-import * as os from "@/os";
-import { unisonReload } from "@/scripts/unison-reload";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-const localCustomCss = ref(localStorage.getItem("customCss") ?? "");
+// const localCustomCss = ref(localStorage.getItem("customCss") ?? "");
 
 /*
 async function apply() {
@@ -44,10 +42,6 @@ watch(globalCustomCss, async () => {
 	await apply();
 });
 */
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.customCss,

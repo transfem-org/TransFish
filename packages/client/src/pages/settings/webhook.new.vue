@@ -52,9 +52,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
-import {} from "vue";
 import FormInput from "@/components/form/input.vue";
 import FormSection from "@/components/form/section.vue";
 import FormSwitch from "@/components/form/switch.vue";
@@ -63,17 +62,17 @@ import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let name = ref("");
-let url = ref("");
-let secret = ref("");
+const name = ref("");
+const url = ref("");
+const secret = ref("");
 
-let event_follow = ref(true);
-let event_followed = ref(true);
-let event_note = ref(true);
-let event_reply = ref(true);
-let event_renote = ref(true);
-let event_reaction = ref(true);
-let event_mention = ref(true);
+const event_follow = ref(true);
+const event_followed = ref(true);
+const event_note = ref(true);
+const event_reply = ref(true);
+const event_renote = ref(true);
+const event_reaction = ref(true);
+const event_mention = ref(true);
 
 async function create(): Promise<void> {
 	const events = [];
@@ -92,10 +91,6 @@ async function create(): Promise<void> {
 		on: events,
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: "Create new webhook",

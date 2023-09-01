@@ -367,7 +367,6 @@ import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";
 import FormButton from "@/components/MkButton.vue";
 import FormInput from "@/components/form/input.vue";
-import FormSplit from "@/components/form/split.vue";
 import FormFolder from "@/components/form/folder.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkSelect from "@/components/form/select.vue";
@@ -375,8 +374,6 @@ import FormSuspense from "@/components/form/suspense.vue";
 import MkFileListForAdmin from "@/components/MkFileListForAdmin.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import * as os from "@/os";
-import number from "@/filters/number";
-import bytes from "@/filters/bytes";
 import { url } from "@/config";
 import { userPage, acct } from "@/filters/user";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -388,18 +385,18 @@ const props = defineProps<{
 	userId: string;
 }>();
 
-let tab = ref("overview");
-let chartSrc = ref("per-user-notes");
-let user = ref<null | misskey.entities.UserDetailed>();
-let init = ref<ReturnType<typeof createFetcher>>();
-let info = ref();
-let ips = ref(null);
-let ap = ref(null);
-let moderator = ref(false);
-let silenced = ref(false);
-let suspended = ref(false);
-let driveCapacityOverrideMb: number | null = ref(0);
-let moderationNote = ref("");
+const tab = ref("overview");
+const chartSrc = ref("per-user-notes");
+const user = ref<null | misskey.entities.UserDetailed>();
+const init = ref<ReturnType<typeof createFetcher>>();
+const info = ref();
+const ips = ref(null);
+const ap = ref(null);
+const moderator = ref(false);
+const silenced = ref(false);
+const suspended = ref(false);
+const driveCapacityOverrideMb = ref<number | null>(0);
+const moderationNote = ref("");
 const filesPagination = {
 	endpoint: "admin/drive/files" as const,
 	limit: 10,
@@ -522,27 +519,6 @@ async function sendModMail() {
 		userId: user.value.id,
 		comment: result,
 	});
-}
-
-async function deleteAllFiles() {
-	const confirm = await os.confirm({
-		type: "warning",
-		text: i18n.ts.deleteAllFilesConfirm,
-	});
-	if (confirm.canceled) return;
-	const process = async () => {
-		await os.api("admin/delete-all-files-of-a-user", {
-			userId: user.value.id,
-		});
-		os.success();
-	};
-	await process().catch((err) => {
-		os.alert({
-			type: "error",
-			text: err.toString(),
-		});
-	});
-	await refreshUser();
 }
 
 async function applyDriveCapacityOverride() {

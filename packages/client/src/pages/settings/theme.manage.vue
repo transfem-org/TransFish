@@ -101,10 +101,6 @@ function uninstall() {
 	os.success();
 }
 
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
-
 definePageMetadata({
 	title: i18n.ts._theme.manage,
 	icon: "ph-folder-notch-open ph-bold ph-lg",

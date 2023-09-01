@@ -77,8 +77,8 @@ const props = defineProps<{
 	listId: string;
 }>();
 
-let list = ref(null);
-let users = ref([]);
+const list = ref<any>(null);
+const users = ref([]);
 
 function fetchList() {
 	os.api("users/lists/show", {

@@ -238,13 +238,13 @@ const fgColors = [
 	},
 ];
 
-let theme = ref<Partial<Theme>>({
+const theme = ref<Partial<Theme>>({
 	base: "light",
 	props: lightTheme.props,
 });
-let description = ref<string | null>(null);
-let themeCode = ref<string | null>(null);
-let changed = ref(false);
+const description = ref<string | null>(null);
+const themeCode = ref<string | null>(null);
+const changed = ref(false);
 
 useLeaveGuard(changed);
 

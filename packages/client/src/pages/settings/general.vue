@@ -248,7 +248,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, computed, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { $i } from "@/account";
 import FormSwitch from "@/components/form/switch.vue";
 import FormSelect from "@/components/form/select.vue";
@@ -407,10 +407,6 @@ watch(
 		await reloadAsk();
 	},
 );
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.general,

@@ -178,7 +178,7 @@ import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XEmojis from "./about.emojis.vue";
 import XFederation from "./about.federation.vue";
-import { version, instanceName, host } from "@/config";
+import { version, host } from "@/config";
 import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";
 import FormSuspense from "@/components/form/suspense.vue";
@@ -205,13 +205,13 @@ withDefaults(
 	},
 );
 
-let stats = ref(null);
-let instanceIcon = ref<HTMLImageElement>();
+const stats = ref(null);
+const instanceIcon = ref<HTMLImageElement>();
 let iconClicks = 0;
-let iconSrc = ref(instance.iconUrl || instance.faviconUrl || "/favicon.ico");
-let instanceIconAnimation = ref("");
+const iconSrc = ref(instance.iconUrl || instance.faviconUrl || "/favicon.ico");
+const instanceIconAnimation = ref("");
 let tabs = ["overview", "emojis", "charts"];
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 if (iAmModerator) tabs.push("federation");
@@ -249,7 +249,7 @@ if (iAmModerator) {
 	});
 }
 
-let headerTabs = computed(() => theTabs);
+const headerTabs = computed(() => theTabs);
 
 definePageMetadata(
 	computed(() => ({

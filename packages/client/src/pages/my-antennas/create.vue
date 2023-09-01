@@ -16,7 +16,7 @@ import { useRouter } from "@/router";
 
 const router = useRouter();
 
-let draft = ref({
+const draft = ref({
 	name: "",
 	src: "all",
 	userListId: null,
@@ -40,5 +40,3 @@ definePageMetadata({
 	icon: "ph-flying-saucer ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped></style>

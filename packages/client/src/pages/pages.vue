@@ -96,7 +96,7 @@ import "swiper/scss/virtual";
 
 const router = useRouter();
 
-let tab = ref("featured");
+const tab = ref("featured");
 const tabs = ["featured", "liked", "my"];
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 

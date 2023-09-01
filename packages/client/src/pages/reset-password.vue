@@ -42,7 +42,7 @@ const props = defineProps<{
 	token?: string;
 }>();
 
-let password = ref("");
+const password = ref("");
 
 async function save() {
 	await os.apiWithDialog("reset-password", {
@@ -75,5 +75,3 @@ definePageMetadata({
 	icon: "ph-lock ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped></style>

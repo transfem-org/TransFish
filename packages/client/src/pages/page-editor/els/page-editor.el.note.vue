@@ -56,8 +56,8 @@ const props = withDefaults(
 	},
 );
 
-let id: any = ref(props.value.note);
-let note: any = ref(null);
+const id = ref(props.value.note);
+const note = ref(null);
 
 watch(
 	id.value,

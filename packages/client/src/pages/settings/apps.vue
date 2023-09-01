@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import FormPagination from "@/components/MkPagination.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
@@ -76,10 +76,6 @@ function revoke(token) {
 		list.value.reload();
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.installedApps,

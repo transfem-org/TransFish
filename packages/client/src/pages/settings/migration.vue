@@ -63,8 +63,8 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { $i } from "@/account";
 import { toString } from "firefish-js/built/acct";
 
-let moveToAccount = ref("");
-let accountAlias = ref([""]);
+const moveToAccount = ref("");
+const accountAlias = ref([""]);
 
 await init();
 

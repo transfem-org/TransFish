@@ -88,11 +88,11 @@ const MkCaptcha = defineAsyncComponent(
 	() => import("@/components/MkCaptcha.vue"),
 );
 
-let provider = ref(null);
-let hcaptchaSiteKey: string | null = ref(null);
-let hcaptchaSecretKey: string | null = ref(null);
-let recaptchaSiteKey: string | null = ref(null);
-let recaptchaSecretKey: string | null = ref(null);
+const provider = ref<any>(null);
+const hcaptchaSiteKey = ref<string | null>(null);
+const hcaptchaSecretKey = ref<string | null>(null);
+const recaptchaSiteKey = ref<string | null>(null);
+const recaptchaSecretKey = ref<string | null>(null);
 
 async function init() {
 	const meta = await os.api("admin/meta");

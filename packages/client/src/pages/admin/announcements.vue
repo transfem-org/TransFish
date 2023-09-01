@@ -76,7 +76,7 @@ import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let announcements: any[] = ref([]);
+const announcements = ref<any[]>([]);
 
 os.api("admin/announcements/list").then((announcementResponse) => {
 	announcements.value = announcementResponse;
