@@ -139,7 +139,7 @@ import {
 	ref,
 	watch,
 } from "vue";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import MkButton from "./MkButton.vue";
 import XNavFolder from "@/components/MkDrive.navFolder.vue";
 import XFolder from "@/components/MkDrive.folder.vue";
@@ -294,7 +294,7 @@ function onDrop(ev: DragEvent): any {
 		return;
 	}
 
-	//#region ドライブのファイル
+	// #region ドライブのファイル
 	const driveFile = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FILE_);
 	if (driveFile != null && driveFile !== "") {
 		const file = JSON.parse(driveFile);
@@ -305,9 +305,9 @@ function onDrop(ev: DragEvent): any {
 			folderId: folder.value ? folder.value.id : null,
 		});
 	}
-	//#endregion
+	// #endregion
 
-	//#region ドライブのフォルダ
+	// #region ドライブのフォルダ
 	const driveFolder = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FOLDER_);
 	if (driveFolder != null && driveFolder !== "") {
 		const droppedFolder = JSON.parse(driveFolder);
@@ -339,7 +339,7 @@ function onDrop(ev: DragEvent): any {
 				}
 			});
 	}
-	//#endregion
+	// #endregion
 }
 
 function selectLocalFile() {
@@ -354,7 +354,7 @@ function urlUpload() {
 	}).then(({ canceled, result: url }) => {
 		if (canceled || !url) return;
 		os.api("drive/files/upload-from-url", {
-			url: url,
+			url,
 			folderId: folder.value ? folder.value.id : undefined,
 		});
 
@@ -372,7 +372,7 @@ function createFolder() {
 	}).then(({ canceled, result: name }) => {
 		if (canceled) return;
 		os.api("drive/folders/create", {
-			name: name,
+			name,
 			parentId: folder.value ? folder.value.id : undefined,
 		}).then((createdFolder) => {
 			addFolder(createdFolder, true);
@@ -389,7 +389,7 @@ function renameFolder(folderToRename: Misskey.entities.DriveFolder) {
 		if (canceled) return;
 		os.api("drive/folders/update", {
 			folderId: folderToRename.id,
-			name: name,
+			name,
 		}).then((updatedFolder) => {
 			// FIXME: 画面を更新するために自分自身に移動
 			move(updatedFolder);

@@ -1,8 +1,9 @@
-import { literalDefs, Type } from ".";
+import type { Type } from ".";
+import { literalDefs } from ".";
 
-export type ExprBase = {
+export interface ExprBase {
 	id: string;
-};
+}
 
 // value
 
@@ -45,13 +46,13 @@ export type UserFnValue = ExprBase & {
 	type: "fn";
 	value: UserFnInnerValue;
 };
-type UserFnInnerValue = {
+interface UserFnInnerValue {
 	slots: {
 		name: string;
 		type: Type;
 	}[];
 	expression: Expr;
-};
+}
 
 export type Value =
 	| EmptyValue

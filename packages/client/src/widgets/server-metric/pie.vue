@@ -27,8 +27,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import {} from "vue";
-
 const props = defineProps<{
 	value: number;
 	reverse?: boolean;

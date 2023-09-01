@@ -13,7 +13,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"

@@ -26,7 +26,7 @@
 					"
 					:key="notification.id"
 					:note="notification.note"
-					:collapsedReply="
+					:collapsed-reply="
 						notification.type === 'reply' ||
 						(notification.type === 'mention' &&
 							notification.note.replyId != null)
@@ -46,9 +46,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onUnmounted, onMounted, computed, ref } from "vue";
-import { notificationTypes } from "firefish-js";
-import MkPagination, { Paging } from "@/components/MkPagination.vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import type { notificationTypes } from "firefish-js";
+import type { Paging } from "@/components/MkPagination.vue";
+import MkPagination from "@/components/MkPagination.vue";
 import XNotification from "@/components/MkNotification.vue";
 import XList from "@/components/MkDateSeparatedList.vue";
 import XNote from "@/components/MkNote.vue";

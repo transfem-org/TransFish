@@ -16,7 +16,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -337,7 +337,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import type * as firefish from "firefish-js";
@@ -376,7 +376,7 @@ const props = defineProps<{
 	host: string;
 }>();
 
-let tabs = ["overview"];
+const tabs = ["overview"];
 if (iAmAdmin) tabs.push("chart", "users", "raw");
 const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
@@ -478,7 +478,7 @@ const headerActions = computed(() => [
 	},
 ]);
 
-let theTabs = [
+const theTabs = [
 	{
 		key: "overview",
 		title: i18n.ts.overview,

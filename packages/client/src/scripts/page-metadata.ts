@@ -1,26 +1,18 @@
-import * as misskey from "firefish-js";
-import {
-	ComputedRef,
-	inject,
-	isRef,
-	onActivated,
-	onMounted,
-	provide,
-	ref,
-	Ref,
-} from "vue";
+import type * as misskey from "firefish-js";
+import type { ComputedRef, Ref } from "vue";
+import { inject, isRef, onActivated, onMounted, provide, ref } from "vue";
 
 export const setPageMetadata = Symbol("setPageMetadata");
 export const pageMetadataProvider = Symbol("pageMetadataProvider");
 
-export type PageMetadata = {
+export interface PageMetadata {
 	title: string;
 	subtitle?: string;
 	icon?: string | null;
 	avatar?: misskey.entities.User | null;
 	userName?: misskey.entities.User | null;
 	bg?: string;
-};
+}
 
 export function definePageMetadata(
 	metadata:

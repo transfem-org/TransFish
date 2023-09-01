@@ -18,7 +18,7 @@ export function install(plugin) {
 
 	const aiscript = new AiScript(
 		createPluginEnv({
-			plugin: plugin,
+			plugin,
 			storageKey: `plugins:${plugin.id}`,
 		}),
 		{
@@ -58,7 +58,7 @@ function createPluginEnv(opts) {
 
 	return {
 		...createAiScriptEnv({ ...opts, token: opts.plugin.token }),
-		//#region Deprecated
+		// #region Deprecated
 		"Mk:register_post_form_action": values.FN_NATIVE(([title, handler]) => {
 			registerPostFormAction({
 				pluginId: opts.plugin.id,
@@ -80,7 +80,7 @@ function createPluginEnv(opts) {
 				handler,
 			});
 		}),
-		//#endregion
+		// #endregion
 		"Plugin:register_post_form_action": values.FN_NATIVE(([title, handler]) => {
 			registerPostFormAction({
 				pluginId: opts.plugin.id,
@@ -103,10 +103,16 @@ function createPluginEnv(opts) {
 			});
 		}),
 		"Plugin:register_note_view_interruptor": values.FN_NATIVE(([handler]) => {
-			registerNoteViewInterruptor({ pluginId: opts.plugin.id, handler });
+			registerNoteViewInterruptor({
+				pluginId: opts.plugin.id,
+				handler,
+			});
 		}),
 		"Plugin:register_note_post_interruptor": values.FN_NATIVE(([handler]) => {
-			registerNotePostInterruptor({ pluginId: opts.plugin.id, handler });
+			registerNotePostInterruptor({
+				pluginId: opts.plugin.id,
+				handler,
+			});
 		}),
 		"Plugin:open_url": values.FN_NATIVE(([url]) => {
 			window.open(url.value, "_blank");

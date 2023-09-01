@@ -16,7 +16,7 @@
 						:user="user"
 						class="avatar"
 						indicator
-						disableLink
+						disable-link
 					/>
 				</MkA>
 			</div>

@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 import MkPagination from "@/components/MkPagination.vue";
 import MkInfo from "@/components/MkInfo.vue";

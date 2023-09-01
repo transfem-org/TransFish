@@ -18,7 +18,7 @@
 					<MkAvatar
 						:user="$i"
 						class="icon"
-						disableLink
+						disable-link
 					/><!-- <MkAcct class="text" :user="$i"/> -->
 				</button>
 			</div>

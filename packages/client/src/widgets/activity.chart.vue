@@ -40,12 +40,12 @@ const props = defineProps<{
 
 const viewBoxX: number = ref(147);
 const viewBoxY: number = ref(60);
-let zoom: number = ref(1),
-	pos: number = ref(0),
-	pointsNote: any = ref(null),
-	pointsReply: any = ref(null),
-	pointsRenote: any = ref(null),
-	pointsTotal: any = ref(null);
+const zoom: number = ref(1);
+const pos: number = ref(0);
+const pointsNote: any = ref(null);
+const pointsReply: any = ref(null);
+const pointsRenote: any = ref(null);
+const pointsTotal: any = ref(null);
 
 function dragListen(fn) {
 	window.addEventListener("mousemove", fn);

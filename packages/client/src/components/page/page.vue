@@ -15,13 +15,8 @@
 </template>
 
 <script lang="ts">
-import {
-	defineComponent,
-	onMounted,
-	nextTick,
-	onUnmounted,
-	PropType,
-} from "vue";
+import type { PropType } from "vue";
+import { defineComponent, nextTick, onMounted, onUnmounted } from "vue";
 import { parse } from "@syuilo/aiscript";
 import XBlock from "./page.block.vue";
 import { Hpml } from "@/scripts/hpml/evaluator";
@@ -43,7 +38,7 @@ export default defineComponent({
 		const hpml = new Hpml(props.page, {
 			randomSeed: Math.random(),
 			visitor: $i,
-			url: url,
+			url,
 			enableAiScript: !defaultStore.state.disablePagesScript,
 		});
 
@@ -55,10 +50,10 @@ export default defineComponent({
 						ast = parse(props.page.script);
 					} catch (err) {
 						console.error(err);
-						/*os.alert({
+						/* os.alert({
 							type: 'error',
 							text: 'Syntax error :('
-						});*/
+						}); */
 						return;
 					}
 					hpml.aiscript
@@ -68,10 +63,10 @@ export default defineComponent({
 						})
 						.catch((err) => {
 							console.error(err);
-							/*os.alert({
+							/* os.alert({
 							type: 'error',
 							text: err
-						});*/
+						}); */
 						});
 				} else {
 					hpml.eval();

@@ -24,8 +24,8 @@
 					</FormRadios>
 					<FormSplit>
 						<MkInput
-							:disabled="ad.place === 'widget'"
 							v-model="ad.ratio"
+							:disabled="ad.place === 'widget'"
 							type="number"
 						>
 							<template #label>{{ i18n.ts.ratio }}</template>
@@ -63,7 +63,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";

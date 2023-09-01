@@ -32,6 +32,9 @@ coverage
 # docker dev config
 /dev/docker-compose.yml
 
+# ESLint
+.eslintcache
+
 # misskey
 built
 db

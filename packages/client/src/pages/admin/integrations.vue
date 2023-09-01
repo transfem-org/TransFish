@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 import XGithub from "./integrations.github.vue";
 import XDiscord from "./integrations.discord.vue";

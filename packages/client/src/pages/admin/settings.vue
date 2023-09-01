@@ -428,7 +428,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
 import FormTextarea from "@/components/form/textarea.vue";

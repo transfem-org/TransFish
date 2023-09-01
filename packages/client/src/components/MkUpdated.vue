@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { shallowRef, ref } from "vue";
+import { ref, shallowRef } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import MkSparkle from "@/components/MkSparkle.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -43,8 +43,8 @@ import * as os from "@/os";
 
 const modal = shallowRef<InstanceType<typeof MkModal>>();
 
-let newRelease = ref(false);
-let data = ref(Object);
+const newRelease = ref(false);
+const data = ref(Object);
 
 os.api("release").then((res) => {
 	data.value = res;

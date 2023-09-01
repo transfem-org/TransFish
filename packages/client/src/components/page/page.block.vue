@@ -9,7 +9,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import type { PropType } from "vue";
+import { defineComponent } from "vue";
 import XText from "./page.text.vue";
 import XSection from "./page.section.vue";
 import XImage from "./page.image.vue";
@@ -25,8 +26,8 @@ import XCounter from "./page.counter.vue";
 import XRadioButton from "./page.radio-button.vue";
 import XCanvas from "./page.canvas.vue";
 import XNote from "./page.note.vue";
-import { Hpml } from "@/scripts/hpml/evaluator";
-import { Block } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
+import type { Block } from "@/scripts/hpml/block";
 
 export default defineComponent({
 	components: {

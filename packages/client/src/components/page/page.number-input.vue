@@ -12,10 +12,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import type { PropType } from "vue";
+import { computed, defineComponent } from "vue";
 import MkInput from "../form/input.vue";
-import { Hpml } from "@/scripts/hpml/evaluator";
-import { NumberInputVarBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
+import type { NumberInputVarBlock } from "@/scripts/hpml/block";
 
 export default defineComponent({
 	components: {

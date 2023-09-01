@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import { $i } from "@/account";
 import XReaction from "@/components/MkReactionsViewer.reaction.vue";
 

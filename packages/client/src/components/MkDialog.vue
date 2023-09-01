@@ -199,7 +199,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted, ref, shallowRef, computed } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import MkModal from "@/components/MkModal.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -281,7 +281,9 @@ const modal = shallowRef<InstanceType<typeof MkModal>>();
 const inputValue = ref<string | number | null>(props.input?.default ?? null);
 const selectedValue = ref(props.select?.default ?? null);
 
-let disabledReason = ref<null | "charactersExceeded" | "charactersBelow">(null);
+const disabledReason = ref<null | "charactersExceeded" | "charactersBelow">(
+	null,
+);
 const okButtonDisabled = computed<boolean>(() => {
 	if (props.input) {
 		if (props.input.minLength) {

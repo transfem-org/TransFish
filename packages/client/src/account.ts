@@ -1,10 +1,10 @@
 import { defineAsyncComponent, reactive } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import { i18n } from "./i18n";
 import { del, get, set } from "@/scripts/idb-proxy";
 import { apiUrl } from "@/config";
-import { waiting, api, popup, popupMenu, success, alert } from "@/os";
-import { unisonReload, reloadChannel } from "@/scripts/unison-reload";
+import { alert, api, popup, popupMenu, success, waiting } from "@/os";
+import { reloadChannel, unisonReload } from "@/scripts/unison-reload";
 
 // TODO: 他のタブと永続化されたstateを同期
 
@@ -28,7 +28,7 @@ export async function signout() {
 
 	const accounts = await getAccounts();
 
-	//#region Remove service worker registration
+	// #region Remove service worker registration
 	try {
 		if (navigator.serviceWorker.controller) {
 			const registration = await navigator.serviceWorker.ready;
@@ -52,7 +52,7 @@ export async function signout() {
 			});
 		}
 	} catch (err) {}
-	//#endregion
+	// #endregion
 
 	document.cookie = "igi=; path=/";
 

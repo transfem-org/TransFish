@@ -18,7 +18,7 @@
 					<MkAvatar
 						:user="$i"
 						class="icon"
-						disableLink
+						disable-link
 					/><!-- <MkAcct class="text" :user="$i"/> -->
 				</button>
 			</div>
@@ -183,15 +183,15 @@ watch(defaultStore.reactiveState.menuDisplay, () => {
 	calcViewState();
 });
 
-let noMaintainerInformation =
+const noMaintainerInformation =
 	isEmpty(instance.maintainerName) || isEmpty(instance.maintainerEmail);
-let noBotProtection =
+const noBotProtection =
 	!instance.disableRegistration &&
 	!instance.enableHcaptcha &&
 	!instance.enableRecaptcha;
-let noEmailServer = !instance.enableEmail;
-let thereIsUnresolvedAbuseReport = ref(false);
-let updateAvailable = ref(false);
+const noEmailServer = !instance.enableEmail;
+const thereIsUnresolvedAbuseReport = ref(false);
+const updateAvailable = ref(false);
 
 if ($i?.isAdmin) {
 	os.api("admin/abuse-user-reports", {

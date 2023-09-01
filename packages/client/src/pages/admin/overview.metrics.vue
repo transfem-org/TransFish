@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import XPie from "../../widgets/server-metric/pie.vue";
 import bytes from "@/filters/bytes";
 import { stream } from "@/stream";

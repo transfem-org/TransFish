@@ -28,8 +28,8 @@
 				</span>
 				<button
 					class="_button"
-					@click="$refs.modal.close()"
 					:aria-label="i18n.t('close')"
+					@click="$refs.modal.close()"
 				>
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>
@@ -52,7 +52,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ComputedRef, provide, ref, computed } from "vue";
+import type { ComputedRef } from "vue";
+import { computed, provide, ref } from "vue";
 import MkModal from "@/components/MkModal.vue";
 import { popout as _popout } from "@/scripts/popout";
 import copyToClipboard from "@/scripts/copy-to-clipboard";
@@ -60,7 +61,8 @@ import { url } from "@/config";
 import * as os from "@/os";
 import { mainRouter, routes } from "@/router";
 import { i18n } from "@/i18n";
-import { PageMetadata, provideMetadataReceiver } from "@/scripts/page-metadata";
+import type { PageMetadata } from "@/scripts/page-metadata";
+import { provideMetadataReceiver } from "@/scripts/page-metadata";
 import { Router } from "@/nirax";
 
 const props = defineProps<{
@@ -76,12 +78,12 @@ const router = new Router(routes, props.initialPath);
 
 router.addListener("push", (ctx) => {});
 
-let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
-let rootEl = ref();
-let modal = ref<InstanceType<typeof MkModal>>();
-let path = ref(props.initialPath);
-let width = ref(860);
-let height = ref(660);
+const pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const rootEl = ref();
+const modal = ref<InstanceType<typeof MkModal>>();
+const path = ref(props.initialPath);
+const width = ref(860);
+const height = ref(660);
 const history = [];
 
 provide("router", router);

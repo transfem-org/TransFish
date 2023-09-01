@@ -11,9 +11,10 @@
 </template>
 
 <script lang="ts">
-import { IfBlock } from "@/scripts/hpml/block";
-import { Hpml } from "@/scripts/hpml/evaluator";
-import { defineComponent, defineAsyncComponent, PropType } from "vue";
+import type { PropType } from "vue";
+import { defineAsyncComponent, defineComponent } from "vue";
+import type { IfBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
 
 export default defineComponent({
 	components: {

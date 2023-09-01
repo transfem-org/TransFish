@@ -13,7 +13,7 @@
 				@click="menu(account, $event)"
 			>
 				<div class="avatar">
-					<MkAvatar :user="account" class="avatar" disableLink />
+					<MkAvatar :user="account" class="avatar" disable-link />
 				</div>
 				<div class="body">
 					<div class="name">
@@ -34,11 +34,11 @@ import FormSuspense from "@/components/form/suspense.vue";
 import FormButton from "@/components/MkButton.vue";
 import * as os from "@/os";
 import {
-	getAccounts,
-	addAccount as addAccounts,
-	removeAccount as _removeAccount,
-	login,
 	$i,
+	removeAccount as _removeAccount,
+	addAccount as addAccounts,
+	getAccounts,
+	login,
 } from "@/account";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";

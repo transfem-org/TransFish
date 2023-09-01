@@ -29,9 +29,9 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import MkUserInfo from "@/components/MkUserInfo.vue";
 import * as Acct from "firefish-js/built/acct";
 import type * as misskey from "firefish-js";
+import MkUserInfo from "@/components/MkUserInfo.vue";
 import * as os from "@/os";
 
 const props = defineProps<{
@@ -47,9 +47,9 @@ const emit = defineEmits<{
 }>();
 
 const zIndex = os.claimZIndex("middle");
-let user = ref<misskey.entities.UserDetailed | null>(null);
-let top = ref(0);
-let left = ref(0);
+const user = ref<misskey.entities.UserDetailed | null>(null);
+const top = ref(0);
+const left = ref(0);
 
 onMounted(() => {
 	if (typeof props.q === "object") {

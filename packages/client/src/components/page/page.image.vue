@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import ImgWithBlurhash from "@/components/MkImgWithBlurhash.vue";
-import { ImageBlock } from "@/scripts/hpml/block";
-import { Hpml } from "@/scripts/hpml/evaluator";
+import type { ImageBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
 
 const props = defineProps<{
 	block: PropType<ImageBlock>;

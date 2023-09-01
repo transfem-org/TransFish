@@ -28,7 +28,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import type * as misskey from "firefish-js";
 import bytes from "@/filters/bytes";
 import number from "@/filters/number";

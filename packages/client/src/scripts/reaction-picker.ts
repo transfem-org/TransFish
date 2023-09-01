@@ -1,4 +1,5 @@
-import { defineAsyncComponent, Ref, ref } from "vue";
+import type { Ref } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 import { popup } from "@/os";
 
 class ReactionPicker {

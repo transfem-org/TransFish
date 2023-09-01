@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import * as os from "@/os";
 import { useRouter } from "@/router";

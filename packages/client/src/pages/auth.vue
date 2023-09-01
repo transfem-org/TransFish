@@ -113,7 +113,7 @@ export default defineComponent({
 			if (this.session.app.callbackUrl && isMastodon) {
 				const callbackUrl = new URL(this.session.app.callbackUrl);
 				callbackUrl.searchParams.append("code", this.session.token);
-				if (!!getUrlParams().state)
+				if (getUrlParams().state)
 					callbackUrl.searchParams.append(
 						"state",
 						getUrlParams().state,

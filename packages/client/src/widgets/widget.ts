@@ -1,27 +1,27 @@
 import { reactive, watch } from "vue";
 import { throttle } from "throttle-debounce";
-import { Form, GetFormResultType } from "@/scripts/form";
+import type { Form, GetFormResultType } from "@/scripts/form";
 import * as os from "@/os";
 import { deepClone } from "@/scripts/clone";
 
-export type Widget<P extends Record<string, unknown>> = {
+export interface Widget<P extends Record<string, unknown>> {
 	id: string;
 	data: Partial<P>;
-};
+}
 
-export type WidgetComponentProps<P extends Record<string, unknown>> = {
+export interface WidgetComponentProps<P extends Record<string, unknown>> {
 	widget?: Widget<P>;
-};
+}
 
-export type WidgetComponentEmits<P extends Record<string, unknown>> = {
+export interface WidgetComponentEmits<P extends Record<string, unknown>> {
 	(ev: "updateProps", props: P);
-};
+}
 
-export type WidgetComponentExpose = {
+export interface WidgetComponentExpose {
 	name: string;
 	id: string | null;
 	configure: () => void;
-};
+}
 
 export const useWidgetPropsManager = <
 	F extends Form & Record<string, { default: any }>,

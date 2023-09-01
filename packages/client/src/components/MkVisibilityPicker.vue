@@ -122,8 +122,8 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, watch, shallowRef, ref } from "vue";
-import * as misskey from "firefish-js";
+import { nextTick, ref, shallowRef, watch } from "vue";
+import type * as misskey from "firefish-js";
 import MkModal from "@/components/MkModal.vue";
 import { i18n } from "@/i18n";
 
@@ -147,8 +147,8 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let v = ref(props.currentVisibility);
-let localOnly = ref(props.currentLocalOnly);
+const v = ref(props.currentVisibility);
+const localOnly = ref(props.currentLocalOnly);
 
 watch(localOnly, () => {
 	emit("changeLocalOnly", localOnly.value);

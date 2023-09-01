@@ -62,11 +62,11 @@
 <script lang="ts" setup>
 import {
 	markRaw,
-	onMounted,
-	onBeforeUnmount,
 	nextTick,
-	shallowRef,
+	onBeforeUnmount,
+	onMounted,
 	ref,
+	shallowRef,
 } from "vue";
 import XFederation from "./overview.federation.vue";
 import XInstances from "./overview.instances.vue";

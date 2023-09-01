@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, watch, ref } from "vue";
+import { computed, defineAsyncComponent, ref, watch } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import type * as misskey from "firefish-js";
 import { acct as getAcct } from "@/filters/user";

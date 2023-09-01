@@ -1,4 +1,4 @@
-import { App } from "vue";
+import type { App } from "vue";
 
 import Mfm from "./global/MkMisskeyFlavoredMarkdown.vue";
 import MkA from "./global/MkA.vue";

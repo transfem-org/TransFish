@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import JSON5 from "json5";
 import * as os from "@/os";
 import { i18n } from "@/i18n";

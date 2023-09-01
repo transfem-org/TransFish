@@ -76,12 +76,12 @@ defineProps<{
 }>();
 
 // ServiceWorker registration
-let registration = ref<ServiceWorkerRegistration | undefined>();
+const registration = ref<ServiceWorkerRegistration | undefined>();
 // If this browser supports push notification
-let supported = ref(false);
+const supported = ref(false);
 // If this browser has already subscribed to push notification
-let pushSubscription = ref<PushSubscription | null>(null);
-let pushRegistrationInServer = ref<
+const pushSubscription = ref<PushSubscription | null>(null);
+const pushRegistrationInServer = ref<
 	| {
 			state?: string;
 			key?: string;
@@ -209,6 +209,6 @@ if (navigator.serviceWorker == null) {
 }
 
 defineExpose({
-	pushRegistrationInServer: pushRegistrationInServer,
+	pushRegistrationInServer,
 });
 </script>

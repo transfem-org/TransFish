@@ -43,7 +43,7 @@ const emit = defineEmits<{
 	(ev: "parent-focus", direction: "up" | "down" | "left" | "right"): void;
 }>();
 
-let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const pageMetadata = ref<null | ComputedRef<PageMetadata>>();
 
 provide("router", mainRouter);
 provideMetadataReceiver((info) => {

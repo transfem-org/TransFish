@@ -1,4 +1,4 @@
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import * as Acct from "firefish-js/built/acct";
 import { url } from "@/config";
 

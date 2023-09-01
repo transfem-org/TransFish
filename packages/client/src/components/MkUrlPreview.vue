@@ -20,10 +20,10 @@
 					<img :src="thumbnail" loading="lazy" />
 					<button
 						v-if="tweetId"
-						class="_button"
 						v-tooltip="
 							tweetExpanded ? i18n.ts.close : i18n.ts.expandTweet
 						"
+						class="_button"
 						@click.stop.prevent="tweetExpanded = !tweetExpanded"
 					>
 						<i
@@ -34,10 +34,10 @@
 					</button>
 					<button
 						v-else-if="player.url"
-						class="_button"
 						v-tooltip="
 							playerEnabled ? i18n.ts.close : i18n.ts.enablePlayer
 						"
+						class="_button"
 						@click.stop.prevent="playerEnabled = !playerEnabled"
 					>
 						<i
@@ -100,7 +100,7 @@
 
 <script lang="ts" setup>
 import { onUnmounted, ref } from "vue";
-import { url as local, lang } from "@/config";
+import { lang, url as local } from "@/config";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
 
@@ -117,22 +117,22 @@ const props = withDefaults(
 const self = props.url.startsWith(local);
 const attr = self ? "to" : "href";
 const target = self ? null : "_blank";
-let fetching = ref(true);
-let title = ref<string | null>(null);
-let description = ref<string | null>(null);
-let thumbnail = ref<string | null>(null);
-let icon = ref<string | null>(null);
-let sitename = ref<string | null>(null);
-let player = ref({
+const fetching = ref(true);
+const title = ref<string | null>(null);
+const description = ref<string | null>(null);
+const thumbnail = ref<string | null>(null);
+const icon = ref<string | null>(null);
+const sitename = ref<string | null>(null);
+const player = ref({
 	url: null,
 	width: null,
 	height: null,
 });
-let playerEnabled = ref(false);
-let tweetId = ref<string | null>(null);
-let tweetExpanded = ref(props.detail);
+const playerEnabled = ref(false);
+const tweetId = ref<string | null>(null);
+const tweetExpanded = ref(props.detail);
 const embedId = `embed${Math.random().toString().replace(/\D/, "")}`;
-let tweetHeight = ref(150);
+const tweetHeight = ref(150);
 
 const requestUrl = new URL(props.url);
 if (!["http:", "https:"].includes(requestUrl.protocol))

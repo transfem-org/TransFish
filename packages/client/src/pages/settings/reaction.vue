@@ -15,8 +15,8 @@
 						class="zoaiodol"
 						animation="150"
 						delay="100"
-						@end="save"
 						delay-on-touch-only="true"
+						@end="save"
 					>
 						<div
 							v-for="item in reactions"
@@ -121,7 +121,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, watch, ref, computed } from "vue";
+import { computed, defineAsyncComponent, ref, watch } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
 import FormRadios from "@/components/form/radios.vue";
 import FromSlot from "@/components/form/slot.vue";

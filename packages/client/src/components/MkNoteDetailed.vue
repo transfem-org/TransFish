@@ -10,27 +10,27 @@
 		:class="{ renote: isRenote }"
 	>
 		<MkNoteSub
-			v-if="conversation"
 			v-for="note in conversation"
+			v-if="conversation"
 			:key="note.id"
 			class="reply-to"
 			:note="note"
-			:detailedView="true"
+			:detailed-view="true"
 		/>
 		<MkLoading v-else-if="note.reply" mini />
 		<MkNoteSub
 			v-if="note.reply"
 			:note="note.reply"
 			class="reply-to"
-			:detailedView="true"
+			:detailed-view="true"
 		/>
 
 		<MkNote
 			ref="noteEl"
-			@contextmenu.stop="onContextmenu"
 			tabindex="-1"
 			:note="note"
-			detailedView
+			detailed-view
+			@contextmenu.stop="onContextmenu"
 		></MkNote>
 
 		<MkTab v-model="tab" :style="'underline'" @update:modelValue="loadTab">
@@ -41,22 +41,22 @@
 				}}</span>
 				{{ i18n.ts._notification._types.reply }}
 			</option>
-			<option value="renotes" v-if="note.renoteCount > 0">
+			<option v-if="note.renoteCount > 0" value="renotes">
 				<!-- <i class="ph-repeat ph-bold ph-lg"></i> -->
 				<span class="count">{{ note.renoteCount }}</span>
 				{{ i18n.ts._notification._types.renote }}
 			</option>
-			<option value="reactions" v-if="reactionsCount > 0">
+			<option v-if="reactionsCount > 0" value="reactions">
 				<!-- <i class="ph-smiley ph-bold ph-lg"></i> -->
 				<span class="count">{{ reactionsCount }}</span>
 				{{ i18n.ts.reaction }}
 			</option>
-			<option value="quotes" v-if="directQuotes?.length > 0">
+			<option v-if="directQuotes?.length > 0" value="quotes">
 				<!-- <i class="ph-quotes ph-bold ph-lg"></i> -->
 				<span class="count">{{ directQuotes.length }}</span>
 				{{ i18n.ts._notification._types.quote }}
 			</option>
-			<option value="clips" v-if="clips?.length > 0">
+			<option v-if="clips?.length > 0" value="clips">
 				<!-- <i class="ph-paperclip ph-bold ph-lg"></i> -->
 				<span class="count">{{ clips.length }}</span>
 				{{ i18n.ts.clips }}
@@ -64,26 +64,26 @@
 		</MkTab>
 
 		<MkNoteSub
-			v-if="directReplies && tab === 'replies'"
 			v-for="note in directReplies"
+			v-if="directReplies && tab === 'replies'"
 			:key="note.id"
 			:note="note"
 			class="reply"
 			:conversation="replies"
-			:detailedView="true"
-			:parentId="note.id"
+			:detailed-view="true"
+			:parent-id="note.id"
 		/>
 		<MkLoading v-else-if="tab === 'replies' && note.repliesCount > 0" />
 
 		<MkNoteSub
-			v-if="directQuotes && tab === 'quotes'"
 			v-for="note in directQuotes"
+			v-if="directQuotes && tab === 'quotes'"
 			:key="note.id"
 			:note="note"
 			class="reply"
 			:conversation="replies"
-			:detailedView="true"
-			:parentId="note.id"
+			:detailed-view="true"
+			:parent-id="note.id"
 		/>
 		<MkLoading v-else-if="tab === 'quotes' && directQuotes.length > 0" />
 
@@ -94,8 +94,8 @@
 			:pagination="pagination"
 		> -->
 		<MkUserCardMini
-			v-if="tab === 'renotes' && renotes"
 			v-for="item in renotes"
+			v-if="tab === 'renotes' && renotes"
 			:key="item.user.id"
 			:user="item.user"
 			:with-chart="false"
@@ -151,11 +151,12 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted, onUpdated, ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
+import type { NoteUpdatedEvent } from "firefish-js/built/streaming.types";
 import MkTab from "@/components/MkTab.vue";
 import MkNote from "@/components/MkNote.vue";
 import MkNoteSub from "@/components/MkNoteSub.vue";
-import XRenoteButton from "@/components/MkRenoteButton.vue";
+import type XRenoteButton from "@/components/MkRenoteButton.vue";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
 import MkReactedUsers from "@/components/MkReactedUsers.vue";
 import { pleaseLogin } from "@/scripts/please-login";
@@ -170,16 +171,15 @@ import { getNoteMenu } from "@/scripts/get-note-menu";
 import { useNoteCapture } from "@/scripts/use-note-capture";
 import { deepClone } from "@/scripts/clone";
 import { stream } from "@/stream";
-import { NoteUpdatedEvent } from "firefish-js/built/streaming.types";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
 	pinned?: boolean;
 }>();
 
-let tab = ref("replies");
+const tab = ref("replies");
 
-let note = ref(deepClone(props.note));
+const note = ref(deepClone(props.note));
 
 const softMuteReasonI18nSrc = (what?: string) => {
 	if (what === "note") return i18n.ts.userSaysSomethingReason;
@@ -214,12 +214,12 @@ const muted = ref(
 );
 const translation = ref(null);
 const translating = ref(false);
-let conversation = ref<null | misskey.entities.Note[]>([]);
+const conversation = ref<null | misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
-let directReplies = ref<null | misskey.entities.Note[]>([]);
-let directQuotes = ref<null | misskey.entities.Note[]>([]);
-let clips = ref();
-let renotes = ref();
+const directReplies = ref<null | misskey.entities.Note[]>([]);
+const directQuotes = ref<null | misskey.entities.Note[]>([]);
+const clips = ref();
+const renotes = ref();
 let isScrolling;
 
 const reactionsCount = Object.values(props.note.reactions).reduce(
@@ -238,7 +238,7 @@ const keymap = {
 
 useNoteCapture({
 	rootEl: el,
-	note: note,
+	note,
 	isDeletedRef: isDeleted,
 });
 
@@ -260,7 +260,7 @@ function react(viaKeyboard = false): void {
 		(reaction) => {
 			os.api("notes/reactions/create", {
 				noteId: note.value.id,
-				reaction: reaction,
+				reaction,
 			});
 		},
 		() => {

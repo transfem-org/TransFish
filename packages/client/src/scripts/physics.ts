@@ -22,8 +22,8 @@ export function physics(container: HTMLElement) {
 
 	// create renderer
 	const render = Matter.Render.create({
-		engine: engine,
-		//element: document.getElementById('debug'),
+		engine,
+		// element: document.getElementById('debug'),
 		options: {
 			width: containerWidth,
 			height: containerHeight,
@@ -52,13 +52,13 @@ export function physics(container: HTMLElement) {
 		},
 	);
 
-	//const wallRight = Matter.Bodies.rectangle(window.innerWidth+50, window.innerHeight/2, 100, window.innerHeight, wallopts);
-	//const wallLeft = Matter.Bodies.rectangle(-50, window.innerHeight/2, 100, window.innerHeight, wallopts);
+	// const wallRight = Matter.Bodies.rectangle(window.innerWidth+50, window.innerHeight/2, 100, window.innerHeight, wallopts);
+	// const wallLeft = Matter.Bodies.rectangle(-50, window.innerHeight/2, 100, window.innerHeight, wallopts);
 
 	Matter.World.add(world, [
 		ground,
-		//wallRight,
-		//wallLeft,
+		// wallRight,
+		// wallLeft,
 	]);
 
 	const objEls = Array.from(container.children);
@@ -89,7 +89,9 @@ export function physics(container: HTMLElement) {
 				objEl.offsetWidth,
 				objEl.offsetHeight,
 				{
-					chamfer: { radius: parseInt(style.borderRadius || "0", 10) },
+					chamfer: {
+						radius: parseInt(style.borderRadius || "0", 10),
+					},
 					restitution: 0.5,
 				},
 			);
@@ -104,7 +106,7 @@ export function physics(container: HTMLElement) {
 
 	const mouse = Matter.Mouse.create(container);
 	const mouseConstraint = Matter.MouseConstraint.create(engine, {
-		mouse: mouse,
+		mouse,
 		constraint: {
 			stiffness: 0.1,
 			render: {

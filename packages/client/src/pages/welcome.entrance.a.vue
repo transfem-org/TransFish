@@ -35,8 +35,8 @@
 				<div class="fg">
 					<h1>
 						<img
-							class="logo"
 							v-if="meta.logoImageUrl"
+							class="logo"
 							:src="meta.logoImageUrl"
 							alt="logo"
 						/>

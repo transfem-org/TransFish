@@ -1,5 +1,5 @@
 import { reactive, ref } from "vue";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import { readAndCompressImage } from "browser-image-resizer";
 import { defaultStore } from "@/store";
 import { apiUrl } from "@/config";
@@ -7,13 +7,13 @@ import { $i } from "@/account";
 import { alert } from "@/os";
 import { i18n } from "@/i18n";
 
-type Uploading = {
+interface Uploading {
 	id: string;
 	name: string;
 	progressMax: number | undefined;
 	progressValue: number | undefined;
 	img: string;
-};
+}
 export const uploads = ref<Uploading[]>([]);
 
 const compressTypeMap = {
@@ -43,7 +43,7 @@ export function uploadFile(
 		const reader = new FileReader();
 		reader.onload = async (ev) => {
 			const ctx = reactive<Uploading>({
-				id: id,
+				id,
 				name: name || file.name || "untitled",
 				progressMax: undefined,
 				progressValue: undefined,

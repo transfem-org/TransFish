@@ -29,7 +29,6 @@ export function swInject() {
 				}
 				return mainRouter.push(ev.data.url);
 			default:
-				return;
 		}
 	});
 }

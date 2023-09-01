@@ -30,7 +30,7 @@ const emit = defineEmits<{
 }>();
 
 const zIndex = os.claimZIndex("high");
-let showing = ref(true);
+const showing = ref(true);
 
 onMounted(() => {
 	window.setTimeout(() => {

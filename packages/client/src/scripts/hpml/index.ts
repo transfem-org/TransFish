@@ -3,13 +3,13 @@
  */
 
 import autobind from "autobind-decorator";
-import { Hpml } from "./evaluator";
+import type { Hpml } from "./evaluator";
 import { funcDefs } from "./lib";
 
-export type Fn = {
+export interface Fn {
 	slots: string[];
 	exec: (args: Record<string, any>) => ReturnType<Hpml["evaluate"]>;
-};
+}
 
 export type Type = "string" | "number" | "boolean" | "stringArray" | null;
 
@@ -39,7 +39,11 @@ export const literalDefs: Record<
 		category: "value",
 		icon: "ph-magic-wand ph-bold ph-lg",
 	},
-	fn: { out: "function", category: "value", icon: "ph-radical ph-bold ph-lg" },
+	fn: {
+		out: "function",
+		category: "value",
+		icon: "ph-radical ph-bold ph-lg",
+	},
 };
 
 export const blockDefs = [
@@ -57,7 +61,11 @@ export const blockDefs = [
 	})),
 ];
 
-export type PageVar = { name: string; value: any; type: Type };
+export interface PageVar {
+	name: string;
+	value: any;
+	type: Type;
+}
 
 export const envVarsDef: Record<string, Type> = {
 	AI: "string",

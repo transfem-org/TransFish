@@ -1,4 +1,5 @@
-import { inject, onUnmounted, Ref } from "vue";
+import type { Ref } from "vue";
+import { inject, onUnmounted } from "vue";
 import { i18n } from "@/i18n";
 import * as os from "@/os";
 

@@ -72,7 +72,7 @@
 
 <script lang="ts" setup>
 import type { ComputedRef } from "vue";
-import { onMounted, provide, ref, computed } from "vue";
+import { computed, onMounted, provide, ref } from "vue";
 import XHeader from "./header.vue";
 import XKanban from "./kanban.vue";
 import { host, instanceName } from "@/config";
@@ -94,7 +94,7 @@ import { i18n } from "@/i18n";
 
 const DESKTOP_THRESHOLD = 1000;
 
-let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const pageMetadata = ref<null | ComputedRef<PageMetadata>>();
 
 provide("router", mainRouter);
 provideMetadataReceiver((info) => {
@@ -113,9 +113,9 @@ const isTimelineAvailable =
 	!instance.disableRecommendedTimeline ||
 	!instance.disableGlobalTimeline;
 const showMenu = ref(false);
-let isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD),
-	narrow = ref(window.innerWidth < 1280),
-	meta = ref();
+const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
+const narrow = ref(window.innerWidth < 1280);
+const meta = ref();
 
 const keymap = computed(() => {
 	return {
@@ -169,7 +169,7 @@ onMounted(() => {
 });
 
 defineExpose({
-	showMenu: showMenu,
+	showMenu,
 });
 </script>
 

@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, shallowRef, computed } from "vue";
+import { computed, defineAsyncComponent, shallowRef } from "vue";
 import { notificationTypes } from "firefish-js";
 import FormButton from "@/components/MkButton.vue";
 import FormSection from "@/components/form/section.vue";

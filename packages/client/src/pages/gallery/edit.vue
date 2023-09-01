@@ -28,8 +28,8 @@
 						<button
 							v-tooltip="i18n.ts.remove"
 							class="remove _button"
-							@click="remove(file)"
 							:aria-label="i18n.t('remove')"
+							@click="remove(file)"
 						>
 							<i class="ph-x ph-bold ph-lg"></i>
 						</button>
@@ -63,7 +63,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import FormButton from "@/components/MkButton.vue";
 import FormInput from "@/components/form/input.vue";
 import FormTextarea from "@/components/form/textarea.vue";

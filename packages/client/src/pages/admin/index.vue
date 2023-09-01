@@ -60,13 +60,13 @@
 
 <script lang="ts" setup>
 import {
+	computed,
+	onActivated,
 	onMounted,
 	onUnmounted,
-	onActivated,
 	provide,
-	watch,
 	ref,
-	computed,
+	watch,
 } from "vue";
 import { i18n } from "@/i18n";
 import MkSuperMenu from "@/components/MkSuperMenu.vue";

@@ -49,7 +49,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import type * as misskey from "firefish-js";
 import { defaultStore } from "@/store";
 import MkVisibility from "@/components/MkVisibility.vue";
@@ -63,7 +62,7 @@ const props = defineProps<{
 	pinned?: boolean;
 }>();
 
-let note = ref(props.note);
+const note = ref(props.note);
 
 const showTicker =
 	defaultStore.state.instanceTicker === "always" ||

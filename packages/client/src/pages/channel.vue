@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import XPostForm from "@/components/MkPostForm.vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import XChannelFollowButton from "@/components/MkChannelFollowButton.vue";

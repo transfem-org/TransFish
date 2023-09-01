@@ -11,8 +11,8 @@
 			v-if="closeable"
 			v-tooltip="i18n.ts.close"
 			class="_buttonIcon close"
-			@click.stop="close"
 			:aria-label="i18n.t('close')"
+			@click.stop="close"
 		>
 			<i class="ph-x ph-bold ph-lg"></i>
 		</button>

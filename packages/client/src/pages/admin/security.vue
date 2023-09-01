@@ -255,7 +255,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 import XBotProtection from "./bot-protection.vue";
 import FormFolder from "@/components/form/folder.vue";

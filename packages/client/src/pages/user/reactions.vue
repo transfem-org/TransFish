@@ -25,7 +25,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkPagination from "@/components/MkPagination.vue";
 import MkNote from "@/components/MkNote.vue";
 import MkReactionIcon from "@/components/MkReactionIcon.vue";

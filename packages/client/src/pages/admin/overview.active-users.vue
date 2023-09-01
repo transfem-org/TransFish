@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, shallowRef, ref } from "vue";
+import { onMounted, ref, shallowRef } from "vue";
 import { Chart } from "chart.js";
 import gradient from "chartjs-plugin-gradient";
 import * as os from "@/os";
@@ -130,7 +130,7 @@ async function renderChart() {
 					},
 					ticks: {
 						display: true,
-						//mirror: true,
+						// mirror: true,
 					},
 				},
 			},

@@ -1,4 +1,5 @@
-import { nextTick, Ref, ref, defineAsyncComponent } from "vue";
+import type { Ref } from "vue";
+import { defineAsyncComponent, nextTick, ref } from "vue";
 import getCaretCoordinates from "textarea-caret";
 import { toASCII } from "punycode/";
 import { popup } from "@/os";
@@ -10,6 +11,7 @@ export class Autocomplete {
 		q: Ref<string | null>;
 		close: () => void;
 	} | null;
+
 	private textarea: HTMLInputElement | HTMLTextAreaElement;
 	private currentType: string;
 	private textRef: Ref<string>;
@@ -34,11 +36,11 @@ export class Autocomplete {
 		textarea: HTMLInputElement | HTMLTextAreaElement,
 		textRef: Ref<string>,
 	) {
-		//#region BIND
+		// #region BIND
 		this.onInput = this.onInput.bind(this);
 		this.complete = this.complete.bind(this);
 		this.close = this.close.bind(this);
-		//#endregion
+		// #endregion
 
 		this.suggestion = null;
 		this.textarea = textarea;
@@ -141,7 +143,7 @@ export class Autocomplete {
 		this.opening = true;
 		this.currentType = type;
 
-		//#region サジェストを表示すべき位置を計算
+		// #region サジェストを表示すべき位置を計算
 		const caretPosition = getCaretCoordinates(
 			this.textarea,
 			this.textarea.selectionStart,
@@ -151,7 +153,7 @@ export class Autocomplete {
 
 		const x = rect.left + caretPosition.left - this.textarea.scrollLeft;
 		const y = rect.top + caretPosition.top - this.textarea.scrollTop;
-		//#endregion
+		// #endregion
 
 		if (this.suggestion) {
 			this.suggestion.x.value = x;
@@ -169,7 +171,7 @@ export class Autocomplete {
 				{
 					textarea: this.textarea,
 					close: this.close,
-					type: type,
+					type,
 					q: _q,
 					x: _x,
 					y: _y,

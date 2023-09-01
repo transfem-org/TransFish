@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { i18n } from "@/i18n";
 import { dateTimeFormat } from "@/scripts/intl-const";
 
@@ -37,7 +37,7 @@ const _time =
 const invalid = Number.isNaN(_time);
 const absolute = !invalid ? dateTimeFormat.format(_time) : i18n.ts._ago.invalid;
 
-let now = ref((props.origin ?? new Date()).getTime());
+const now = ref((props.origin ?? new Date()).getTime());
 const relative = computed<string>(() => {
 	if (props.mode === "absolute") return ""; // absoluteではrelativeを使わないので計算しない
 	if (invalid) return i18n.ts._ago.invalid;

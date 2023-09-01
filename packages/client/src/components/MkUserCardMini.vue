@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
 import { acct, userPage } from "@/filters/user";
@@ -43,7 +43,7 @@ const props = withDefaults(
 	},
 );
 
-let chartValues = ref<number[] | null>(null);
+const chartValues = ref<number[] | null>(null);
 
 if (props.withChart) {
 	os.apiGet("charts/user/notes", {

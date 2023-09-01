@@ -114,7 +114,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { ref, watch } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -201,7 +201,7 @@ async function saveAntenna() {
 		await os.apiWithDialog("antennas/create", antennaData);
 		emit("created");
 	} else {
-		antennaData["antennaId"] = props.antenna.id;
+		antennaData.antennaId = props.antenna.id;
 		await os.apiWithDialog("antennas/update", antennaData);
 		emit("updated");
 	}

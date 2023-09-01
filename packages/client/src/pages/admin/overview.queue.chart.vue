@@ -80,7 +80,7 @@ onMounted(() => {
 			labels: [],
 			datasets: [
 				{
-					label: label,
+					label,
 					pointRadius: 0,
 					tension: 0.3,
 					borderWidth: 2,

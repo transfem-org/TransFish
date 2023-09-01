@@ -11,7 +11,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -173,12 +173,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XEmojis from "./about.emojis.vue";
 import XFederation from "./about.federation.vue";
-import { version, host } from "@/config";
+import { host, version } from "@/config";
 import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";
 import FormSuspense from "@/components/form/suspense.vue";
@@ -210,7 +210,7 @@ const instanceIcon = ref<HTMLImageElement>();
 let iconClicks = 0;
 const iconSrc = ref(instance.iconUrl || instance.faviconUrl || "/favicon.ico");
 const instanceIconAnimation = ref("");
-let tabs = ["overview", "emojis", "charts"];
+const tabs = ["overview", "emojis", "charts"];
 const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
@@ -223,7 +223,7 @@ const initStats = () =>
 
 const headerActions = computed(() => []);
 
-let theTabs = [
+const theTabs = [
 	{
 		key: "overview",
 		title: i18n.ts.overview,

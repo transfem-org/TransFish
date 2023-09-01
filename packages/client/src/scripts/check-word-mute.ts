@@ -1,8 +1,8 @@
-export type Muted = {
+export interface Muted {
 	muted: boolean;
 	matched: string[];
 	what?: string; // "note" || "reply" || "renote" || "quote"
-};
+}
 
 const NotMuted = { muted: false, matched: [] };
 
@@ -17,7 +17,7 @@ function checkWordMute(
 
 	if (text === "") return NotMuted;
 
-	let result = { muted: false, matched: [] };
+	const result = { muted: false, matched: [] };
 
 	for (const mutePattern of mutedWords) {
 		if (Array.isArray(mutePattern)) {
@@ -67,14 +67,14 @@ export function getWordSoftMute(
 	}
 
 	if (mutedWords.length > 0) {
-		let noteMuted = checkWordMute(note, mutedWords);
+		const noteMuted = checkWordMute(note, mutedWords);
 		if (noteMuted.muted) {
 			noteMuted.what = "note";
 			return noteMuted;
 		}
 
 		if (note.renote) {
-			let renoteMuted = checkWordMute(note.renote, mutedWords);
+			const renoteMuted = checkWordMute(note.renote, mutedWords);
 			if (renoteMuted.muted) {
 				renoteMuted.what = note.text == null ? "renote" : "quote";
 				return renoteMuted;
@@ -82,7 +82,7 @@ export function getWordSoftMute(
 		}
 
 		if (note.reply) {
-			let replyMuted = checkWordMute(note.reply, mutedWords);
+			const replyMuted = checkWordMute(note.reply, mutedWords);
 			if (replyMuted.muted) {
 				replyMuted.what = "reply";
 				return replyMuted;

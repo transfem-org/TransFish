@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkButton from "@/components/MkButton.vue";

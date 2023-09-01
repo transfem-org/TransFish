@@ -160,8 +160,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, watch, ref } from "vue";
+import { computed, provide, ref, watch } from "vue";
 import { v4 as uuid } from "uuid";
+import { VueDraggable } from "vue-draggable-plus";
 import XVariable from "./page-editor.script-block.vue";
 import XBlocks from "./page-editor.blocks.vue";
 import MkTextarea from "@/components/form/textarea.vue";
@@ -173,7 +174,6 @@ import { blockDefs } from "@/scripts/hpml/index";
 import { HpmlTypeChecker } from "@/scripts/hpml/type-checker";
 import { url } from "@/config";
 import { collectPageVars } from "@/scripts/collect-page-vars";
-import { VueDraggable } from "vue-draggable-plus";
 import * as os from "@/os";
 import { selectFile } from "@/scripts/select-file";
 import { mainRouter } from "@/router";
@@ -545,7 +545,7 @@ definePageMetadata(
 			title = i18n.ts._pages.readPage;
 		}
 		return {
-			title: title,
+			title,
 			icon: "ph-pencil ph-bold ph-lg",
 		};
 	}),

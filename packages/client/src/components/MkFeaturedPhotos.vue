@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import * as os from "@/os";
 
 const meta = ref<Misskey.entities.DetailedInstanceMetadata>();

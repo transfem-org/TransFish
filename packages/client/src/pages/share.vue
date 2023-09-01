@@ -30,12 +30,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 // SPECIFICATION: https://misskey-hub.net/docs/features/share-form.html
 import { noteVisibilities } from "firefish-js";
 import * as Acct from "firefish-js/built/acct";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import MkButton from "@/components/MkButton.vue";
 import XPostForm from "@/components/MkPostForm.vue";
 import * as os from "@/os";
@@ -110,7 +110,7 @@ async function init() {
 	}
 
 	try {
-		//#region Reply
+		// #region Reply
 		const replyId = urlParams.get("replyId");
 		const replyUri = urlParams.get("replyUri");
 		if (replyId) {
@@ -125,9 +125,9 @@ async function init() {
 				reply.value = obj.object;
 			}
 		}
-		//#endregion
+		// #endregion
 
-		//#region Renote
+		// #region Renote
 		const renoteId = urlParams.get("renoteId");
 		const renoteUri = urlParams.get("renoteUri");
 		if (renoteId) {
@@ -142,9 +142,9 @@ async function init() {
 				renote.value = obj.object;
 			}
 		}
-		//#endregion
+		// #endregion
 
-		//#region Drive files
+		// #region Drive files
 		const fileIds = urlParams.get("fileIds");
 		if (fileIds) {
 			await Promise.all(
@@ -160,7 +160,7 @@ async function init() {
 				),
 			);
 		}
-		//#endregion
+		// #endregion
 	} catch (err) {
 		os.alert({
 			type: "error",

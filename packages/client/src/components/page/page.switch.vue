@@ -9,10 +9,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import type { PropType } from "vue";
+import { computed, defineComponent } from "vue";
 import MkSwitch from "../form/switch.vue";
-import { Hpml } from "@/scripts/hpml/evaluator";
-import { SwitchVarBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
+import type { SwitchVarBlock } from "@/scripts/hpml/block";
 
 export default defineComponent({
 	components: {

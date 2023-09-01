@@ -1,17 +1,18 @@
 // TODO: なんでもかんでもos.tsに突っ込むのやめたいのでよしなに分割する
 
-import { Component, markRaw, Ref, ref, defineAsyncComponent } from "vue";
+import type { Component, Ref } from "vue";
+import { defineAsyncComponent, markRaw, ref } from "vue";
 import { EventEmitter } from "eventemitter3";
 import insertTextAtCursor from "insert-text-at-cursor";
 import * as Misskey from "firefish-js";
+import { i18n } from "./i18n";
 import { apiUrl, url } from "@/config";
 import MkPostFormDialog from "@/components/MkPostFormDialog.vue";
 import MkWaitingDialog from "@/components/MkWaitingDialog.vue";
 import MkToast from "@/components/MkToast.vue";
 import MkDialog from "@/components/MkDialog.vue";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 import { $i } from "@/account";
-import { i18n } from "./i18n";
 
 export const pendingApiRequestsCount = ref(0);
 
@@ -36,7 +37,7 @@ export const api = ((
 		: undefined;
 
 	const promise = new Promise((resolve, reject) => {
-		fetch(endpoint.indexOf("://") > -1 ? endpoint : `${apiUrl}/${endpoint}`, {
+		fetch(endpoint.includes("://") ? endpoint : `${apiUrl}/${endpoint}`, {
 			method: "POST",
 			body: JSON.stringify(data),
 			credentials: "omit",
@@ -160,9 +161,9 @@ export function promiseDialog<T extends Promise<any>>(
 	popup(
 		MkWaitingDialog,
 		{
-			success: success,
-			showing: showing,
-			text: text,
+			success,
+			showing,
+			text,
 		},
 		{},
 		"closed",
@@ -310,7 +311,7 @@ export function confirm(props: {
 			},
 			{
 				done: (result) => {
-					resolve(result ? result : { canceled: true });
+					resolve(result || { canceled: true });
 				},
 			},
 			"closed",
@@ -337,7 +338,7 @@ export function yesno(props: {
 			},
 			{
 				done: (result) => {
-					resolve(result ? result : { canceled: true });
+					resolve(result || { canceled: true });
 				},
 			},
 			"closed",
@@ -378,7 +379,7 @@ export function inputText(props: {
 			},
 			{
 				done: (result) => {
-					resolve(result ? result : { canceled: true });
+					resolve(result || { canceled: true });
 				},
 			},
 			"closed",
@@ -416,7 +417,7 @@ export function inputParagraph(props: {
 			},
 			{
 				done: (result) => {
-					resolve(result ? result : { canceled: true });
+					resolve(result || { canceled: true });
 				},
 			},
 			"closed",
@@ -456,7 +457,7 @@ export function inputNumber(props: {
 			},
 			{
 				done: (result) => {
-					resolve(result ? result : { canceled: true });
+					resolve(result || { canceled: true });
 				},
 			},
 			"closed",
@@ -548,7 +549,7 @@ export function select<C = any>(
 			},
 			{
 				done: (result) => {
-					resolve(result ? result : { canceled: true });
+					resolve(result || { canceled: true });
 				},
 			},
 			"closed",
@@ -566,7 +567,7 @@ export function success(): Promise<void> {
 			MkWaitingDialog,
 			{
 				success: true,
-				showing: showing,
+				showing,
 			},
 			{
 				done: () => resolve(),
@@ -583,7 +584,7 @@ export function waiting(): Promise<void> {
 			MkWaitingDialog,
 			{
 				success: false,
-				showing: showing,
+				showing,
 			},
 			{
 				done: () => resolve(),
@@ -771,8 +772,8 @@ type AwaitType<T> = T extends Promise<infer U>
 	: T extends (...args: any[]) => Promise<infer V>
 	? V
 	: T;
-let openingEmojiPicker: AwaitType<ReturnType<typeof popup>> | null = null;
-let activeTextarea: HTMLTextAreaElement | HTMLInputElement | null = null;
+let openingEmojiPicker: AwaitType<ReturnType<typeof popup>> | null = null,
+	activeTextarea: HTMLTextAreaElement | HTMLInputElement | null = null;
 export async function openEmojiPicker(
 	src?: HTMLElement,
 	opts,
@@ -940,4 +941,4 @@ export function checkExistence(fileData: ArrayBuffer): Promise<any> {
 			resolve(resp.length > 0 ? resp[0] : null);
 		});
 	});
-}*/
+} */

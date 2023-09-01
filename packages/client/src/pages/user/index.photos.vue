@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import { notePage } from "@/filters/note";
 import * as os from "@/os";

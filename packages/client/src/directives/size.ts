@@ -1,8 +1,11 @@
-import { Directive } from "vue";
+import type { Directive } from "vue";
 
-type Value = { max?: number[]; min?: number[] };
+interface Value {
+	max?: number[];
+	min?: number[];
+}
 
-//const observers = new Map<Element, ResizeObserver>();
+// const observers = new Map<Element, ResizeObserver>();
 const mountings = new Map<
 	Element,
 	{
@@ -13,10 +16,10 @@ const mountings = new Map<
 	}
 >();
 
-type ClassOrder = {
+interface ClassOrder {
 	add: string[];
 	remove: string[];
-};
+}
 
 const cache = new Map<string, ClassOrder>();
 

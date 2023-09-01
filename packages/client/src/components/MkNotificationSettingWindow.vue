@@ -41,7 +41,6 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 
-import {} from "vue";
 import { notificationTypes } from "firefish-js";
 import MkSwitch from "./form/switch.vue";
 import MkInfo from "./MkInfo.vue";
@@ -65,12 +64,12 @@ const props = withDefaults(
 	},
 );
 
-let includingTypes = computed(() => props.includingTypes || []);
+const includingTypes = computed(() => props.includingTypes || []);
 
 const dialog = ref<InstanceType<typeof XModalWindow>>();
 
-let typesMap = ref<Record<(typeof notificationTypes)[number], boolean>>({});
-let useGlobalSetting = ref(
+const typesMap = ref<Record<(typeof notificationTypes)[number], boolean>>({});
+const useGlobalSetting = ref(
 	(includingTypes.value === null || includingTypes.value.length === 0) &&
 		props.showGlobalToggle,
 );

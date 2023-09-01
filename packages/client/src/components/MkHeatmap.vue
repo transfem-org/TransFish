@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, nextTick, watch, shallowRef, ref } from "vue";
+import { nextTick, onMounted, ref, shallowRef, watch } from "vue";
 import { Chart } from "chart.js";
 import * as os from "@/os";
 import { defaultStore } from "@/store";
@@ -26,8 +26,8 @@ const props = defineProps<{
 const rootEl = shallowRef<HTMLDivElement>(null);
 const chartEl = shallowRef<HTMLCanvasElement>(null);
 const now = new Date();
-let chartInstance: Chart = null;
-let fetching = ref(true);
+let chartInstance: Chart = null,
+	fetching = ref(true);
 
 const { handler: externalTooltipHandler } = useChartTooltip({
 	position: "middle",
@@ -233,7 +233,7 @@ async function renderChart() {
 							return ["Active: " + v.v];
 						},
 					},
-					//mode: 'index',
+					// mode: 'index',
 					animation: {
 						duration: 0,
 					},

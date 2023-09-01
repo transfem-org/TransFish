@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, onMounted, ref, computed } from "vue";
+import { computed, defineAsyncComponent, onMounted, ref } from "vue";
 import FormInput from "@/components/form/input.vue";
 import FormButton from "@/components/MkButton.vue";
 import * as os from "@/os";

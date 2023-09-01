@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import PhotoSwipe from "photoswipe";
 import "photoswipe/style.css";
@@ -125,11 +125,11 @@ onMounted(() => {
 			className: "pwsp__alt-text-container",
 			appendTo: "wrapper",
 			onInit: (el, pwsp) => {
-				let textBox = document.createElement("p");
+				const textBox = document.createElement("p");
 				textBox.className = "pwsp__alt-text";
 				el.appendChild(textBox);
 
-				let preventProp = function (ev: Event): void {
+				const preventProp = function (ev: Event): void {
 					ev.stopPropagation();
 				};
 

@@ -13,13 +13,13 @@
 		</MkA>
 		<MkA
 			v-else-if="!detailed && note.replyId"
+			v-tooltip="i18n.ts.jumpToPrevious"
 			:to="
 				detailedView
 					? `#${note.replyId}`
 					: `${notePage(note)}#${note.replyId}`
 			"
 			behavior="browser"
-			v-tooltip="i18n.ts.jumpToPrevious"
 			class="reply-icon"
 			@click.stop
 		>
@@ -46,18 +46,18 @@
 			}"
 		>
 			<XShowMoreButton
-				ref="showMoreButton"
 				v-if="isLong && collapsed"
+				ref="showMoreButton"
 				v-model="collapsed"
-				v-on:keydown="focusFooter"
+				@keydown="focusFooter"
 			></XShowMoreButton>
 			<XCwButton
-				ref="cwButton"
 				v-if="note.cw && !showContent"
+				ref="cwButton"
 				v-model="showContent"
 				:note="note"
-				v-on:keydown="focusFooter"
-				v-on:update:model-value="(val) => emit('expanded', val)"
+				@keydown="focusFooter"
+				@update:model-value="(val) => emit('expanded', val)"
 			/>
 			<div
 				class="body"
@@ -85,13 +85,13 @@
 					</MkA>
 					<MkA
 						v-else-if="!detailed && note.replyId"
+						v-tooltip="i18n.ts.jumpToPrevious"
 						:to="
 							detailedView
 								? `#${note.replyId}`
 								: `${notePage(note)}#${note.replyId}`
 						"
 						behavior="browser"
-						v-tooltip="i18n.ts.jumpToPrevious"
 						class="reply-icon"
 						@click.stop
 					>
@@ -139,7 +139,7 @@
 						(showMoreButton && collapsed)
 					"
 					tabindex="0"
-					v-on:focus="
+					@focus="
 						cwButton?.focus();
 						showMoreButton?.focus();
 					"
@@ -157,9 +157,9 @@
 		</div>
 		<MkButton
 			v-if="hasMfm && defaultStore.state.animatedMfm"
-			@click.stop="toggleMfm"
 			mini
 			rounded
+			@click.stop="toggleMfm"
 		>
 			<template v-if="disableMfm">
 				<i class="ph-play ph-bold"></i> {{ i18n.ts._mfm.play }}
@@ -177,7 +177,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import * as mfm from "mfm-js";
 import * as os from "@/os";
 import XNoteSimple from "@/components/MkNoteSimple.vue";
@@ -222,7 +222,7 @@ const urls = props.note.text
 	? extractUrlFromMfm(mfm.parse(props.note.text)).slice(0, 5)
 	: null;
 
-let showContent = ref(false);
+const showContent = ref(false);
 
 const mfms = props.note.text
 	? extractMfmWithAnimation(mfm.parse(props.note.text))
@@ -230,7 +230,7 @@ const mfms = props.note.text
 
 const hasMfm = ref(mfms && mfms.length > 0);
 
-let disableMfm = ref(defaultStore.state.animatedMfm);
+const disableMfm = ref(defaultStore.state.animatedMfm);
 
 async function toggleMfm() {
 	if (disableMfm.value) {

@@ -145,7 +145,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
 import MkContainer from "@/components/MkContainer.vue";

@@ -4,13 +4,13 @@ import individualData from "unicode-emoji-json/data-by-emoji.json";
 import keywordSet from "emojilib";
 import { defaultStore } from "@/store";
 
-export type UnicodeEmojiDef = {
+export interface UnicodeEmojiDef {
 	emoji: string;
 	category: typeof unicodeEmojiCategories[number];
 	skin_tone_support: boolean;
 	slug: string;
 	keywords?: string[];
-};
+}
 
 export const unicodeEmojiCategories = [
 	"emotion",

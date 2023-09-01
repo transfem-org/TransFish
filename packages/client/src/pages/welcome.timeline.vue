@@ -1,12 +1,8 @@
 <template>
 	<div class="civpbkhh">
-		<div
-			ref="scroll"
-			class="scrollbox"
-			v-bind:class="{ scroll: isScrolling }"
-		>
+		<div ref="scroll" class="scrollbox" :class="{ scroll: isScrolling }">
 			<div v-for="note in notes" class="note">
-				<div class="content _panel" v-if="note.cw == null">
+				<div v-if="note.cw == null" class="content _panel">
 					<div class="body">
 						<MkA
 							v-if="note.replyId"
@@ -27,7 +23,7 @@
 						<XMediaList :media-list="note.files" />
 					</div>
 					<div v-if="note.poll">
-						<XPoll :note="note" :readOnly="true" />
+						<XPoll :note="note" :read-only="true" />
 					</div>
 				</div>
 				<XReactionsViewer ref="reactionsViewer" :note="note" />

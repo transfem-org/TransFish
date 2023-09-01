@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, provide, ref } from "vue";
+import { computed, provide, ref, watch } from "vue";
 import type * as misskey from "firefish-js";
 import XNotes from "@/components/MkNotes.vue";
 import { $i } from "@/account";

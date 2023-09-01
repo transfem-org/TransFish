@@ -1,4 +1,4 @@
-import { Directive } from "vue";
+import type { Directive } from "vue";
 import { getScrollContainer, getScrollPosition } from "@/scripts/scroll";
 
 export default {

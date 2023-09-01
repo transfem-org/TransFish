@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { ref, watch } from "vue";
 import { v4 as uuid } from "uuid";
 import tinycolor from "tinycolor2";
 import { useInterval } from "@/scripts/use-interval";
@@ -37,10 +37,10 @@ const props = defineProps<{
 const viewBoxX = 50;
 const viewBoxY = 50;
 const gradientId = uuid();
-let polylinePoints = ref("");
-let polygonPoints = ref("");
-let headX = ref<number | null>(null);
-let headY = ref<number | null>(null);
+const polylinePoints = ref("");
+const polygonPoints = ref("");
+const headX = ref<number | null>(null);
+const headY = ref<number | null>(null);
 const accent = tinycolor(
 	getComputedStyle(document.documentElement).getPropertyValue("--accent"),
 );

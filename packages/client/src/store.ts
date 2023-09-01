@@ -353,14 +353,14 @@ export const defaultStore = markRaw(
 
 const PREFIX = "miux:";
 
-type Plugin = {
+interface Plugin {
 	id: string;
 	name: string;
 	active: boolean;
 	configData: Record<string, any>;
 	token: string;
 	ast: any[];
-};
+}
 
 /**
  * 常にメモリにロードしておく必要がないような設定情報を保管するストレージ(非リアクティブ)

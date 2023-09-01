@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkContainer from "@/components/MkContainer.vue";
 import MkChart from "@/components/MkChart.vue";
 import * as os from "@/os";
@@ -68,7 +68,7 @@ function showMenu(ev: MouseEvent) {
 		action: () => {
 			chartSrc = 'per-user-followers';
 		}
-	}*/,
+	} */,
 		],
 		ev.currentTarget ?? ev.target,
 	);

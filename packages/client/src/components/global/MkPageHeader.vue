@@ -122,13 +122,13 @@
 
 <script lang="ts" setup>
 import {
+	computed,
 	inject,
 	nextTick,
 	onMounted,
 	onUnmounted,
 	ref,
 	watch,
-	computed,
 } from "vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import { popupMenu } from "@/os";
@@ -178,7 +178,7 @@ const tabRefs = {};
 const tabHighlightEl = ref<HTMLElement | null>(null);
 const tabsEl = ref<HTMLElement | null>(null);
 const bg = ref(null);
-let narrow = ref(false);
+const narrow = ref(false);
 const hasTabs = computed(() => props.tabs && props.tabs.length > 0);
 const hasActions = computed(() => props.actions && props.actions.length > 0);
 const show = computed(() => {

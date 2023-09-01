@@ -49,8 +49,8 @@
 									<div class="action">
 										<button
 											class="_button"
-											@click="removeUser(user)"
 											:aria-label="i18n.t('removeMember')"
+											@click="removeUser(user)"
 										>
 											<i class="ph-x ph-bold ph-lg"></i>
 										</button>
@@ -66,7 +66,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
 import { mainRouter } from "@/router";
@@ -122,7 +122,7 @@ async function renameList() {
 
 	await os.api("users/lists/update", {
 		listId: list.value.id,
-		name: name,
+		name,
 	});
 
 	list.value.name = name;

@@ -8,9 +8,9 @@
 		swap-threshold="0.5"
 	>
 		<component
+			:is="'x-' + element.type"
 			v-for="element in blocks"
 			:key="element"
-			:is="'x-' + element.type"
 			:value="element"
 			:hpml="hpml"
 			@update:value="updateItem"

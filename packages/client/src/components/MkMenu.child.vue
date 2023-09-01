@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 import { nextTick, onMounted, ref } from "vue";
 import MkMenu from "./MkMenu.vue";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 const props = defineProps<{
 	items: MenuItem[];

@@ -1,9 +1,9 @@
 <template>
 	<button
+		ref="buttonRef"
 		v-tooltip.noDelay.bottom="i18n.ts._gallery.like"
 		class="button _button"
 		:class="$style.root"
-		ref="buttonRef"
 		@click.stop="toggleStar($event)"
 	>
 		<span v-if="!reacted">

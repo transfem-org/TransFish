@@ -1,10 +1,10 @@
 <template>
 	<article
 		v-if="!muted.muted || muted.what === 'reply'"
+		:id="detailedView ? appearNote.id : null"
 		ref="el"
 		v-size="{ max: [450, 500] }"
 		class="wrpstxzv"
-		:id="detailedView ? appearNote.id : null"
 		tabindex="-1"
 		:class="{
 			children: depth > 1,
@@ -16,8 +16,8 @@
 		<div v-if="conversation && depth > 1" class="line"></div>
 		<div
 			class="main"
-			@click="noteClick"
 			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
+			@click="noteClick"
 		>
 			<div class="avatar-container">
 				<MkAvatar class="avatar" :user="appearNote.user" />
@@ -32,9 +32,9 @@
 					<MkSubNoteContent
 						class="text"
 						:note="note"
-						:parentId="parentId"
+						:parent-id="parentId"
 						:conversation="conversation"
-						:detailedView="detailedView"
+						:detailed-view="detailedView"
 						@focusfooter="footerEl.focus()"
 					/>
 					<div v-if="translating || translation" class="translation">
@@ -117,9 +117,9 @@
 							appearNote.myReaction != null
 						"
 						ref="reactButton"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 						class="button _button reacted"
 						@click.stop="undoReact(appearNote)"
-						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -137,17 +137,17 @@
 		</div>
 		<template v-if="conversation">
 			<MkNoteSub
-				v-if="replyLevel < 11 && depth < 5"
 				v-for="reply in replies"
+				v-if="replyLevel < 11 && depth < 5"
 				:key="reply.id"
 				:note="reply"
 				class="reply"
 				:class="{ single: replies.length == 1 }"
 				:conversation="conversation"
 				:depth="replies.length == 1 ? depth : depth + 1"
-				:replyLevel="replyLevel + 1"
-				:parentId="appearNote.id"
-				:detailedView="detailedView"
+				:reply-level="replyLevel + 1"
+				:parent-id="appearNote.id"
+				:detailed-view="detailedView"
 			/>
 			<div v-else-if="replies.length > 0" class="more">
 				<div class="line"></div>
@@ -177,9 +177,9 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, ref, computed } from "vue";
+import { computed, inject, ref } from "vue";
 import type { Ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import XNoteHeader from "@/components/MkNoteHeader.vue";
 import MkSubNoteContent from "@/components/MkSubNoteContent.vue";
 import XReactionsViewer from "@/components/MkReactionsViewer.vue";
@@ -223,7 +223,7 @@ const props = withDefaults(
 	},
 );
 
-let note = ref(deepClone(props.note));
+const note = ref(deepClone(props.note));
 
 const softMuteReasonI18nSrc = (what?: string) => {
 	if (what === "note") return i18n.ts.userSaysSomethingReason;
@@ -247,7 +247,7 @@ const menuButton = ref<HTMLElement>();
 const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const reactButton = ref<HTMLElement>();
-let appearNote = computed(() =>
+const appearNote = computed(() =>
 	isRenote ? (note.value.renote as misskey.entities.Note) : note.value,
 );
 const isDeleted = ref(false);
@@ -291,7 +291,7 @@ function react(viaKeyboard = false): void {
 		(reaction) => {
 			os.api("notes/reactions/create", {
 				noteId: appearNote.value.id,
-				reaction: reaction,
+				reaction,
 			});
 		},
 		() => {

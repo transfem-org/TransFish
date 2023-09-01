@@ -49,7 +49,7 @@ const props = withDefaults(
 );
 
 const canvas = ref<HTMLCanvasElement>();
-let loaded = ref(false);
+const loaded = ref(false);
 
 function draw() {
 	if (props.hash == null || canvas.value == null) return;

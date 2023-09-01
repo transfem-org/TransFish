@@ -42,8 +42,8 @@
 			<div v-if="jobs.length > 0">
 				<div v-for="job in jobs" :key="job[0]">
 					<a
-						@click.stop="os.pageWindow(`/instance-info/${job[0]}`)"
 						class="_link"
+						@click.stop="os.pageWindow(`/instance-info/${job[0]}`)"
 					>
 						{{ job[0] }}
 					</a>

@@ -45,7 +45,7 @@ import { computed, onActivated, onMounted, onUnmounted, ref, watch } from "vue";
 import { i18n } from "@/i18n";
 import MkInfo from "@/components/MkInfo.vue";
 import MkSuperMenu from "@/components/MkSuperMenu.vue";
-import { signout, $i } from "@/account";
+import { $i, signout } from "@/account";
 import { unisonReload } from "@/scripts/unison-reload";
 import { instance } from "@/instance";
 import { useRouter } from "@/router";

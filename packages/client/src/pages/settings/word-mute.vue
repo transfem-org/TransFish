@@ -95,7 +95,7 @@ watch(hardMutedWords, () => {
 async function save() {
 	const parseMutes = (mutes, tab) => {
 		// split into lines, remove empty lines and unnecessary whitespace
-		let lines = mutes
+		const lines = mutes
 			.trim()
 			.split("\n")
 			.map((line) => line.trim())

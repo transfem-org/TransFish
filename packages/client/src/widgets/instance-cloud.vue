@@ -22,7 +22,6 @@
 <script lang="ts" setup>
 import { ref, shallowRef } from "vue";
 
-import {} from "vue";
 import {
 	WidgetComponentEmits,
 	WidgetComponentProps,
@@ -61,7 +60,7 @@ const { widgetProps, configure } = useWidgetPropsManager(
 );
 
 const cloud = ref<InstanceType<typeof MkTagCloud> | null>();
-let activeInstances = shallowRef(null);
+const activeInstances = shallowRef(null);
 
 function onInstanceClick(i) {
 	os.pageWindow(`/instance-info/${i.host}`);

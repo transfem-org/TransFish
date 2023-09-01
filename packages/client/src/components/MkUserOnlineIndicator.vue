@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import { i18n } from "@/i18n";
 
 const props = defineProps<{

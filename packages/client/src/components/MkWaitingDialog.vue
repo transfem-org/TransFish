@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, shallowRef } from "vue";
+import { shallowRef, watch } from "vue";
 import MkModal from "@/components/MkModal.vue";
 
 const modal = shallowRef<InstanceType<typeof MkModal>>();

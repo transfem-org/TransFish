@@ -7,7 +7,7 @@
 				:display-back-button="true"
 				:to="`#${noteId}`"
 		/></template>
-		<MkSpacer :content-max="800" :marginMin="6">
+		<MkSpacer :content-max="800" :margin-min="6">
 			<div class="fcuexfpr">
 				<transition
 					:name="$store.state.animation ? 'fade' : ''"
@@ -69,8 +69,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
-import * as misskey from "firefish-js";
+import { computed, ref, watch } from "vue";
+import type * as misskey from "firefish-js";
 import XNoteDetailed from "@/components/MkNoteDetailed.vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkRemoteCaution from "@/components/MkRemoteCaution.vue";

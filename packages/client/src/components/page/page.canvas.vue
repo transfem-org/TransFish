@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, Ref, ref } from "vue";
-import { CanvasBlock } from "@/scripts/hpml/block";
-import { Hpml } from "@/scripts/hpml/evaluator";
+import type { PropType, Ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import type { CanvasBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
 
 export default defineComponent({
 	props: {

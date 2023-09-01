@@ -1,6 +1,6 @@
 // FirefoxのプライベートモードなどではindexedDBが使用不可能なので、
 // indexedDBが使えない環境ではlocalStorageを使う
-import { get as iget, set as iset, del as idel } from "idb-keyval";
+import { del as idel, get as iget, set as iset } from "idb-keyval";
 
 const fallbackName = (key: string) => `idbfallback::${key}`;
 

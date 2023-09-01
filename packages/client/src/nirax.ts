@@ -1,11 +1,12 @@
 // NIRAX --- A lightweight router
 
 import { EventEmitter } from "eventemitter3";
-import { Ref, Component, ref, shallowRef, ShallowRef } from "vue";
+import type { Component, ShallowRef } from "vue";
+import { Ref, ref, shallowRef } from "vue";
 import { pleaseLogin } from "@/scripts/please-login";
 import { safeURIDecode } from "@/scripts/safe-uri-decode";
 
-type RouteDef = {
+interface RouteDef {
 	path: string;
 	component: Component;
 	query?: Record<string, string>;
@@ -14,7 +15,7 @@ type RouteDef = {
 	hash?: string;
 	globalCacheKey?: string;
 	children?: RouteDef[];
-};
+}
 
 type ParsedPath = (
 	| string
@@ -26,11 +27,11 @@ type ParsedPath = (
 	  }
 )[];
 
-export type Resolved = {
+export interface Resolved {
 	route: RouteDef;
 	props: Map<string, string>;
 	child?: Resolved;
-};
+}
 
 function parsePath(path: string): ParsedPath {
 	const res = [] as ParsedPath;
@@ -64,10 +65,7 @@ export class Router extends EventEmitter<{
 		resolved: Resolved;
 		key: string;
 	}) => void;
-	replace: (ctx: {
-		path: string;
-		key: string;
-	}) => void;
+	replace: (ctx: { path: string; key: string }) => void;
 	push: (ctx: {
 		beforePath: string;
 		path: string;
@@ -95,8 +93,8 @@ export class Router extends EventEmitter<{
 	}
 
 	public resolve(path: string): Resolved | null {
-		let queryString: string | null = null;
-		let hash: string | null = null;
+		let queryString: string | null = null,
+			hash: string | null = null;
 		if (path[0] === "/") path = path.substring(1);
 		if (path.includes("#")) {
 			hash = path.substring(path.indexOf("#") + 1);

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watch, onBeforeUnmount, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import tinycolor from "tinycolor2";
 
 const loaded = !!window.TagCanvas;
@@ -39,11 +39,11 @@ const idForTags = Array.from(Array(16))
 			],
 	)
 	.join("");
-let available = ref(false);
-let rootEl = ref<HTMLElement | null>(null);
-let canvasEl = ref<HTMLCanvasElement | null>(null);
-let tagsEl = ref<HTMLElement | null>(null);
-let width = ref(300);
+const available = ref(false);
+const rootEl = ref<HTMLElement | null>(null);
+const canvasEl = ref<HTMLCanvasElement | null>(null);
+const tagsEl = ref<HTMLElement | null>(null);
+const width = ref(300);
 
 watch(available, () => {
 	try {
@@ -56,7 +56,7 @@ watch(available, () => {
 			initial: [-0.03, -0.01],
 			frontSelect: true,
 			imageRadius: 8,
-			//dragControl: true,
+			// dragControl: true,
 			dragThreshold: 3,
 			wheelZoom: false,
 			reverse: true,

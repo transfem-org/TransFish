@@ -28,9 +28,9 @@
 							#default="{ items: messages, fetching: pFetching }"
 						>
 							<XList
-								aria-live="polite"
 								v-if="messages.length > 0"
 								v-slot="{ item: message }"
+								aria-live="polite"
 								:class="{
 									messages: true,
 									'deny-move-transition': pFetching,
@@ -99,18 +99,19 @@
 <script lang="ts" setup>
 import {
 	computed,
-	watch,
-	onMounted,
 	nextTick,
 	onBeforeUnmount,
+	onMounted,
 	ref,
+	watch,
 } from "vue";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import * as Acct from "firefish-js/built/acct";
 import XMessage from "./messaging-room.message.vue";
 import XForm from "./messaging-room.form.vue";
 import XList from "@/components/MkDateSeparatedList.vue";
-import MkPagination, { Paging } from "@/components/MkPagination.vue";
+import type { Paging } from "@/components/MkPagination.vue";
+import MkPagination from "@/components/MkPagination.vue";
 import {
 	isBottomVisible,
 	onScrollBottom,
@@ -239,13 +240,13 @@ function onDrop(ev: DragEvent): void {
 		return;
 	}
 
-	//#region ドライブのファイル
+	// #region ドライブのファイル
 	const driveFile = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FILE_);
 	if (driveFile != null && driveFile !== "") {
 		const file = JSON.parse(driveFile);
 		formEl.value.file = file;
 	}
-	//#endregion
+	// #endregion
 }
 
 function onMessage(message) {

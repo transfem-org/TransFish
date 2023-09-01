@@ -19,15 +19,15 @@
 			<div class="buttons">
 				<button
 					class="_button"
-					@click="chooseFile"
 					:aria-label="i18n.t('attachFile')"
+					@click="chooseFile"
 				>
 					<i class="ph-upload ph-bold ph-lg"></i>
 				</button>
 				<button
 					class="_button"
-					@click="insertEmoji"
 					:aria-label="i18n.t('chooseEmoji')"
+					@click="insertEmoji"
 				>
 					<i class="ph-smiley ph-bold ph-lg"></i>
 				</button>
@@ -55,10 +55,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watch, ref, computed } from "vue";
-import * as Misskey from "firefish-js";
+import { computed, onMounted, ref, watch } from "vue";
+import type * as Misskey from "firefish-js";
 import autosize from "autosize";
-//import insertTextAtCursor from 'insert-text-at-cursor';
+// import insertTextAtCursor from 'insert-text-at-cursor';
 import { throttle } from "throttle-debounce";
 import { Autocomplete } from "@/scripts/autocomplete";
 import { formatTimeString } from "@/scripts/format-time-string";
@@ -155,13 +155,13 @@ function onDrop(ev: DragEvent): void {
 		return;
 	}
 
-	//#region ドライブのファイル
+	// #region ドライブのファイル
 	const driveFile = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FILE_);
 	if (driveFile != null && driveFile !== "") {
 		file.value = JSON.parse(driveFile);
 		ev.preventDefault();
 	}
-	//#endregion
+	// #endregion
 }
 
 function onKeydown(ev: KeyboardEvent) {

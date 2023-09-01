@@ -44,9 +44,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import JSON5 from "json5";
-import { Endpoints } from "firefish-js";
+import type { Endpoints } from "firefish-js";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import MkTextarea from "@/components/form/textarea.vue";

@@ -14,7 +14,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -42,8 +42,8 @@
 						</MkInput>
 						<MkRadios
 							v-model="searchType"
-							@update:model-value="search()"
 							class="_gap"
+							@update:model-value="search()"
 						>
 							<option value="nameAndDescription">
 								{{ i18n.ts._channel.nameAndDescription }}
@@ -52,7 +52,7 @@
 								{{ i18n.ts._channel.nameOnly }}
 							</option>
 						</MkRadios>
-						<MkButton large primary @click="search" class="_gap">{{
+						<MkButton large primary class="_gap" @click="search">{{
 							i18n.ts.search
 						}}</MkButton>
 						<MkFoldableSection v-if="channelPagination">
@@ -111,7 +111,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, watch, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkChannelList from "@/components/MkChannelList.vue";
@@ -169,7 +169,7 @@ async function search() {
 		limit: 10,
 		params: {
 			query: searchQuery.value,
-			type: type,
+			type,
 		},
 	};
 	key.value = query + type;

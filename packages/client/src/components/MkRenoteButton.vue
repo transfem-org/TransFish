@@ -12,9 +12,9 @@
 	</button>
 	<button
 		v-else
+		v-tooltip.noDelay.bottom="i18n.ts.disabled"
 		class="eddddedb _button"
 		disabled="true"
-		v-tooltip.noDelay.bottom="i18n.ts.disabled"
 	>
 		<i class="ph-repeat ph-bold ph-lg"></i>
 	</button>
@@ -31,7 +31,7 @@ import { $i } from "@/account";
 import { useTooltip } from "@/scripts/use-tooltip";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -70,7 +70,7 @@ useTooltip(buttonRef, async (showing) => {
 	);
 });
 
-let hasRenotedBefore = ref(false);
+const hasRenotedBefore = ref(false);
 os.api("notes/renotes", {
 	noteId: props.note.id,
 	userId: $i.id,
@@ -82,7 +82,7 @@ os.api("notes/renotes", {
 const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 	pleaseLogin();
 
-	let buttonActions: Array<MenuItem> = [];
+	const buttonActions: Array<MenuItem> = [];
 
 	if (props.note.visibility === "public") {
 		buttonActions.push({
@@ -191,7 +191,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 		});
 	}
 
-	if (canRenote) {
+	if (canRenote.value) {
 		buttonActions.push({
 			text: `${i18n.ts.renote} (${i18n.ts.local})`,
 			icon: "ph-hand-fist ph-bold ph-lg",

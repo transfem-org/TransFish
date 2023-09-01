@@ -160,7 +160,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, ref, computed } from "vue";
+import { computed, defineAsyncComponent, ref } from "vue";
 import { toUnicode } from "punycode/";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -172,17 +172,17 @@ import { login } from "@/account";
 import { instance } from "@/instance";
 import { i18n } from "@/i18n";
 
-let signing = ref(false);
-let user = ref(null);
-let username = ref("");
-let password = ref("");
-let token = ref("");
-let host = ref(toUnicode(configHost));
-let totpLogin = ref(false);
-let challengeData = ref(null);
-let queryingKey = ref(false);
-let hCaptchaResponse = ref(null);
-let reCaptchaResponse = ref(null);
+const signing = ref(false);
+const user = ref(null);
+const username = ref("");
+const password = ref("");
+const token = ref("");
+const host = ref(toUnicode(configHost));
+const totpLogin = ref(false);
+const challengeData = ref(null);
+const queryingKey = ref(false);
+const hCaptchaResponse = ref(null);
+const reCaptchaResponse = ref(null);
 
 const meta = computed(() => instance);
 

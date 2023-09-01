@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
 import { acct } from "@/filters/user";

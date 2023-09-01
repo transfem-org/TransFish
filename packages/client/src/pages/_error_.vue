@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkButton from "@/components/MkButton.vue";
 import { version } from "@/config";
 import * as os from "@/os";

@@ -63,29 +63,22 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	computed,
-	ComputedRef,
-	isRef,
-	onActivated,
-	onDeactivated,
-	ref,
-	watch,
-} from "vue";
-import * as misskey from "firefish-js";
+import type { ComputedRef } from "vue";
+import { computed, isRef, onActivated, onDeactivated, ref, watch } from "vue";
+import type * as misskey from "firefish-js";
 import * as os from "@/os";
 import {
-	onScrollTop,
-	isTopVisible,
-	getScrollPosition,
 	getScrollContainer,
+	getScrollPosition,
+	isTopVisible,
+	onScrollTop,
 } from "@/scripts/scroll";
 import MkButton from "@/components/MkButton.vue";
 import { i18n } from "@/i18n";
 
-export type Paging<
+export interface Paging<
 	E extends keyof misskey.Endpoints = keyof misskey.Endpoints,
-> = {
+> {
 	endpoint: E;
 	limit: number;
 	params?:
@@ -104,7 +97,7 @@ export type Paging<
 	reversed?: boolean;
 
 	offsetMode?: boolean;
-};
+}
 
 const SECOND_FETCH_LIMIT = 30;
 
@@ -123,7 +116,10 @@ const emit = defineEmits<{
 	(ev: "queue", count: number): void;
 }>();
 
-type Item = { id: string; [another: string]: unknown };
+interface Item {
+	id: string;
+	[another: string]: unknown;
+}
 
 const rootEl = ref<HTMLElement>();
 const items = ref<Item[]>([]);
@@ -207,12 +203,12 @@ const refresh = async (): void => {
 		})
 		.then(
 			(res) => {
-				let ids = items.value.reduce(
+				const ids = items.value.reduce(
 					(a, b) => {
 						a[b.id] = true;
 						return a;
 					},
-					{} as { [id: string]: boolean },
+					{} as Record<string, boolean>,
 				);
 
 				for (let i = 0; i < res.length; i++) {
@@ -364,7 +360,7 @@ const prepend = (item: Item): void => {
 					// オーバーフローしたら古いアイテムは捨てる
 					if (items.value.length >= props.displayLimit) {
 						// このやり方だとVue 3.2以降アニメーションが動かなくなる
-						//items.value = items.value.slice(-props.displayLimit);
+						// items.value = items.value.slice(-props.displayLimit);
 						while (items.value.length >= props.displayLimit) {
 							items.value.shift();
 						}
@@ -394,7 +390,7 @@ const prepend = (item: Item): void => {
 			// オーバーフローしたら古いアイテムは捨てる
 			if (items.value.length >= props.displayLimit) {
 				// このやり方だとVue 3.2以降アニメーションが動かなくなる
-				//this.items = items.value.slice(0, props.displayLimit);
+				// this.items = items.value.slice(0, props.displayLimit);
 				while (items.value.length >= props.displayLimit) {
 					items.value.pop();
 				}

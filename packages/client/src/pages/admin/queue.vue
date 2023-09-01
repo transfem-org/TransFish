@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import XQueue from "./queue.chart.vue";
 import * as config from "@/config";
 import { i18n } from "@/i18n";

@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts" setup>
-import { toRefs, Ref, ref } from "vue";
+import type { Ref } from "vue";
+import { ref, toRefs } from "vue";
 import * as os from "@/os";
 import Ripple from "@/components/MkRipple.vue";
 import { i18n } from "@/i18n";
@@ -38,7 +39,7 @@ const emit = defineEmits<{
 	(ev: "update:modelValue", v: boolean): void;
 }>();
 
-let button = ref<HTMLElement>();
+const button = ref<HTMLElement>();
 const checked = toRefs(props).modelValue;
 const toggle = () => {
 	if (props.disabled) return;

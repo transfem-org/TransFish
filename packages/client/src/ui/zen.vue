@@ -18,7 +18,7 @@ import {
 } from "@/scripts/page-metadata";
 import { instanceName } from "@/config";
 
-let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const pageMetadata = ref<null | ComputedRef<PageMetadata>>();
 
 provide("router", mainRouter);
 provideMetadataReceiver((info) => {

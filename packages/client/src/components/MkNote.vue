@@ -1,15 +1,15 @@
 <template>
 	<div
-		:aria-label="accessibleLabel"
 		v-if="!muted.muted"
 		v-show="!isDeleted"
+		:id="appearNote.id"
 		ref="el"
 		v-hotkey="keymap"
 		v-size="{ max: [500, 350] }"
+		:aria-label="accessibleLabel"
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
 		:class="{ renote: isRenote }"
-		:id="appearNote.id"
 	>
 		<MkNoteSub
 			v-if="appearNote.reply && !detailedView && !collapsedReply"
@@ -19,10 +19,10 @@
 		<div
 			v-if="!detailedView"
 			class="note-context"
-			@click="noteClick"
 			:class="{
 				collapsedReply: collapsedReply && appearNote.reply,
 			}"
+			@click="noteClick"
 		>
 			<div class="line"></div>
 			<div v-if="appearNote._prId_" class="info">
@@ -87,11 +87,11 @@
 		</div>
 		<article
 			class="article"
-			@contextmenu.stop="onContextmenu"
-			@click="noteClick"
 			:style="{
 				cursor: expandOnNoteClick && !detailedView ? 'pointer' : '',
 			}"
+			@contextmenu.stop="onContextmenu"
+			@click="noteClick"
 		>
 			<div class="main">
 				<div class="header-container">
@@ -103,8 +103,8 @@
 						class="text"
 						:note="appearNote"
 						:detailed="true"
-						:detailedView="detailedView"
-						:parentId="appearNote.parentId"
+						:detailed-view="detailedView"
+						:parent-id="appearNote.parentId"
 						@push="(e) => router.push(notePage(e))"
 						@focusfooter="footerEl.focus()"
 						@expanded="(e) => setPostExpanded(e)"
@@ -171,7 +171,7 @@
 						class="button"
 						:note="appearNote"
 						:count="appearNote.renoteCount"
-						:detailedView="detailedView"
+						:detailed-view="detailedView"
 					/>
 					<XStarButtonNoEmoji
 						v-if="!enableEmojiReactions"
@@ -212,9 +212,9 @@
 							appearNote.myReaction != null
 						"
 						ref="reactButton"
+						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 						class="button _button reacted"
 						@click.stop="undoReact(appearNote)"
-						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
 					>
 						<i class="ph-minus ph-bold ph-lg"></i>
 					</button>
@@ -259,8 +259,8 @@ import { computed, inject, onMounted, ref } from "vue";
 import * as mfm from "mfm-js";
 import type { Ref } from "vue";
 import type * as misskey from "firefish-js";
-import MkNoteSub from "@/components/MkNoteSub.vue";
 import MkSubNoteContent from "./MkSubNoteContent.vue";
+import MkNoteSub from "@/components/MkNoteSub.vue";
 import XNoteHeader from "@/components/MkNoteHeader.vue";
 import XRenoteButton from "@/components/MkRenoteButton.vue";
 import XReactionsViewer from "@/components/MkReactionsViewer.vue";
@@ -271,7 +271,7 @@ import MkVisibility from "@/components/MkVisibility.vue";
 import copyToClipboard from "@/scripts/copy-to-clipboard";
 import { url } from "@/config";
 import { pleaseLogin } from "@/scripts/please-login";
-import { focusPrev, focusNext } from "@/scripts/focus";
+import { focusNext, focusPrev } from "@/scripts/focus";
 import { getWordSoftMute } from "@/scripts/check-word-mute";
 import { useRouter } from "@/router";
 import { userPage } from "@/filters/user";
@@ -297,7 +297,7 @@ const props = defineProps<{
 
 const inChannel = inject("inChannel", null);
 
-let note = ref(deepClone(props.note));
+const note = ref(deepClone(props.note));
 
 const softMuteReasonI18nSrc = (what?: string) => {
 	if (what === "note") return i18n.ts.userSaysSomethingReason;
@@ -333,7 +333,7 @@ const starButton = ref<InstanceType<typeof XStarButton>>();
 const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
 const renoteTime = ref<HTMLElement>();
 const reactButton = ref<HTMLElement>();
-let appearNote = computed(() =>
+const appearNote = computed(() =>
 	isRenote ? (note.value.renote as misskey.entities.Note) : note.value,
 );
 const isMyRenote = $i && $i.id === note.value.userId;
@@ -385,7 +385,7 @@ function react(viaKeyboard = false): void {
 		(reaction) => {
 			os.api("notes/reactions/create", {
 				noteId: appearNote.value.id,
-				reaction: reaction,
+				reaction,
 			});
 		},
 		() => {
@@ -516,7 +516,7 @@ function showRenoteMenu(viaKeyboard = false): void {
 		],
 		renoteTime.value,
 		{
-			viaKeyboard: viaKeyboard,
+			viaKeyboard,
 		},
 	);
 }
@@ -560,7 +560,7 @@ function readPromo() {
 	isDeleted.value = true;
 }
 
-let postIsExpanded = ref(false);
+const postIsExpanded = ref(false);
 
 function setPostExpanded(val: boolean) {
 	postIsExpanded.value = val;

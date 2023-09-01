@@ -1,4 +1,4 @@
-import { Plugin } from "chart.js";
+import type { Plugin } from "chart.js";
 
 export const chartVLine = (vLineColor: string) =>
 	({

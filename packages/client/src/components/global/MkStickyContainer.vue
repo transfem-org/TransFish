@@ -22,8 +22,8 @@ import { inject, onMounted, onUnmounted, provide, ref, watch } from "vue";
 const headerEl = ref<HTMLElement>();
 const bodyEl = ref<HTMLElement>();
 
-let headerHeight = ref<string | undefined>(),
-	childStickyTop = ref(0);
+const headerHeight = ref<string | undefined>();
+const childStickyTop = ref(0);
 const parentStickyTop = inject<Ref<number>>(CURRENT_STICKY_TOP, ref(0));
 provide(CURRENT_STICKY_TOP, childStickyTop);
 

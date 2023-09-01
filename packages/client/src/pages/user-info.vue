@@ -206,8 +206,8 @@
 						<FormButton
 							v-if="user.host == null && iAmModerator"
 							inline
-							@click="resetPassword"
 							style="margin-bottom: 0.4rem"
+							@click="resetPassword"
 							><i class="ph-password ph-bold ph-lg"></i>
 							{{ i18n.ts.resetPassword }}</FormButton
 						>
@@ -357,8 +357,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
-import * as misskey from "firefish-js";
+import { computed, ref, watch } from "vue";
+import type * as misskey from "firefish-js";
 import MkChart from "@/components/MkChart.vue";
 import MkObjectView from "@/components/MkObjectView.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -375,7 +375,7 @@ import MkFileListForAdmin from "@/components/MkFileListForAdmin.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import * as os from "@/os";
 import { url } from "@/config";
-import { userPage, acct } from "@/filters/user";
+import { acct, userPage } from "@/filters/user";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { i18n } from "@/i18n";
 import { iAmAdmin, iAmModerator } from "@/account";

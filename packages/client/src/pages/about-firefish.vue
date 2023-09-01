@@ -203,7 +203,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onBeforeUnmount, ref, computed } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref } from "vue";
 import { version } from "@/config";
 import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";
@@ -216,8 +216,8 @@ import { defaultStore } from "@/store";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let patrons = [];
-let sponsors = [];
+let patrons = [],
+	sponsors = [];
 const patronsResp = await os.api("patrons", { forceUpdate: true });
 patrons = patronsResp.patrons;
 sponsors = patronsResp.sponsors;

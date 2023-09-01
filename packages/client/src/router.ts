@@ -1,4 +1,5 @@
-import { AsyncComponentLoader, defineAsyncComponent, inject } from "vue";
+import type { AsyncComponentLoader } from "vue";
+import { defineAsyncComponent, inject } from "vue";
 import { Router } from "@/nirax";
 import { $i, iAmModerator } from "@/account";
 import MkLoading from "@/pages/_loading_.vue";
@@ -18,7 +19,7 @@ const guestTimeline = getGuestTimelineStatus();
 
 const page = (loader: AsyncComponentLoader<any>) =>
 	defineAsyncComponent({
-		loader: loader,
+		loader,
 		loadingComponent: MkLoading,
 		errorComponent: MkError,
 	});

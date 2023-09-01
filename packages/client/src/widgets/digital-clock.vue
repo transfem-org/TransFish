@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onUnmounted, ref, watch, computed } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import type { Widget, WidgetComponentExpose } from "./widget";
 import {
 	WidgetComponentEmits,
