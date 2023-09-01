@@ -61,6 +61,8 @@ services:
 #  sonic:
 #    restart: unless-stopped
 #    image: docker.io/valeriansaliou/sonic:v1.4.0
+#    logging:
+#     driver: none
 #    networks:
 #      - calcnet
 #    volumes:
