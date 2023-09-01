@@ -20,6 +20,9 @@
 			"*/model.json",
 			"*.md",
 			"*.spec.ts",
+			"*.png",
+			"*.jpeg",
+			"*.jpg",
 			"**/tsconfig.json",
 			"*/.yml"
 		]
