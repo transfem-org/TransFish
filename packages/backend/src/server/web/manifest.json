@@ -6,7 +6,7 @@
 	"display": "standalone",
 	"background_color": "#1f1d2e",
 	"theme_color": "#31748f",
-	"orientation": "portrait-primary",
+	"orientation": "any",
 	"icons": [
 		{
 			"src": "/static-assets/icons/192.png",
@@ -21,7 +21,7 @@
 			"purpose": "any"
 		},
 		{
-			"src": "/static-assets/icons/maskable.png",
+			"src": "/static-assets/icons/512.png",
 			"sizes": "512x512",
 			"type": "image/png",
 			"purpose": "maskable"
