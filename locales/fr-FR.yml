@@ -309,11 +309,11 @@ emptyDrive: "Le Drive est vide"
 emptyFolder: "Le dossier est vide"
 unableToDelete: "Suppression impossible"
 inputNewFileName: "Entrez un nouveau nom de fichier"
-inputNewDescription: "Veuillez entrer une nouvelle description"
+inputNewDescription: "Veuillez entrer une nouvelle description au fichier"
 inputNewFolderName: "Entrez un nouveau nom de dossier"
 circularReferenceFolder: "Le dossier de destination est un sous-dossier du dossier
   que vous souhaitez déplacer."
-hasChildFilesOrFolders: "Impossible de supprimer ce dossier car il n'est pas vide."
+hasChildFilesOrFolders: "Impossible de supprimer ce dossier, car il n'est pas vide."
 copyUrl: "Copier l’URL"
 rename: "Renommer"
 avatar: "Avatar"
@@ -605,7 +605,7 @@ disablePlayer: "Fermer le lecteur vidéo"
 expandTweet: "Étendre le tweet"
 themeEditor: "Éditeur de thèmes"
 description: "Description"
-describeFile: "Ajouter une description d'image"
+describeFile: "Ajouter une description"
 enterFileDescription: "Saisissez une description"
 author: "Auteur·rice"
 leaveConfirm: "Vous avez des modifications non-sauvegardées. Voulez-vous les ignorer
@@ -2085,7 +2085,7 @@ silenceThisInstance: Masquer ce serveur
 silencedInstances: Serveurs masqués
 silenced: Masqué
 deleted: Effacé
-editNote: Modifier publication
+editNote: Modifier la publication
 edited: 'Modifié à {date} {time}'
 flagShowTimelineRepliesDescription: Si activé, affiche dans le fil les réponses des
   utilisatieur·rice·s aux publications des autres.
@@ -2209,4 +2209,4 @@ addRe: Ajouter "re:" au début d’un avertissement de contenu (CW) en réponse 
 confirm: Confirmer
 importZip: Importer ZIP
 exportZip: Exporter ZIP
-emojiPackCreator: Créateur de pack d’emoji
+emojiPackCreator: Créateur de pack d’émoji
