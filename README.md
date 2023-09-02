@@ -209,6 +209,7 @@ Please don't use ElasticSearch unless you already have an ElasticSearch setup an
 - To add custom error images, place them in the `./custom/assets/badges` directory, replacing the files already there.
 - To add custom sounds, place only mp3 files in the `./custom/assets/sounds` directory.
 - To update custom assets without rebuilding, just run `pnpm run gulp`.
+- To block ChatGPT, CommonCrawl, or other crawlers from indexing your instance, uncomment the respective rules in `./custom/robots.txt`.
 
 ## 🧑‍🔬 Configuring a new server
 
