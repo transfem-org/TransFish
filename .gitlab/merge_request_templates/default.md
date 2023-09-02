@@ -7,3 +7,6 @@ By submitting this issue, you agree to follow our [Contribution Guidelines](http
 - [ ] I agree to follow this project's Contribution Guidelines
 - [ ] I have made sure to test this pull request
 - [ ] I have made sure to run `pnpm run format` before submitting this pull request
+
+<!-- Uncomment if your merge request has multiple authors -->
+<!-- Co-authored-by: Name <email@email.com> -->
