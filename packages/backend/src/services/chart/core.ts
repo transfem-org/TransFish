@@ -430,6 +430,7 @@ export default abstract class Chart<T extends Schema> {
 			? `${this.name}:${date}:${span}:${group}`
 			: `${this.name}:${date}:${span}`;
 
+		const lock = await getChartInsertLock(lockKey);
 		try {
 			// ロック内でもう1回チェックする
 			const currentLog = (await repository.findOneBy({
@@ -465,7 +466,7 @@ export default abstract class Chart<T extends Schema> {
 
 			return log;
 		} finally {
-			await getChartInsertLock(lockKey);
+			await lock.release();
 		}
 	}
 

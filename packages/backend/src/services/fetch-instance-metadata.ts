@@ -15,6 +15,8 @@ export async function fetchInstanceMetadata(
 	instance: Instance,
 	force = false,
 ): Promise<void> {
+	const lock = await getFetchInstanceMetadataLock(instance.host);
+
 	if (!force) {
 		const _instance = await Instances.findOneBy({ host: instance.host });
 		const now = Date.now();
@@ -22,7 +24,7 @@ export async function fetchInstanceMetadata(
 			_instance?.infoUpdatedAt &&
 			now - _instance.infoUpdatedAt.getTime() < 1000 * 60 * 60 * 24
 		) {
-			await getFetchInstanceMetadataLock(instance.host);
+			await lock.release();
 			return;
 		}
 	}
@@ -78,7 +80,7 @@ export async function fetchInstanceMetadata(
 	} catch (e) {
 		logger.error(`Failed to update metadata of ${instance.host}: ${e}`);
 	} finally {
-		await getFetchInstanceMetadataLock(instance.host);
+		await lock.release();
 	}
 }
 
