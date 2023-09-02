@@ -12,7 +12,7 @@
 						{{ i18n.ts.updatedAt }}:
 						<MkTime :time="announcement.createdAt" />
 					</small>
-				</span>
+				</div>
 			</div>
 			<Mfm :text="text" />
 			<img
