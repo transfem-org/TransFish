@@ -59,6 +59,23 @@ export default function load() {
 	if (config.cacheServer && !config.cacheServer.prefix)
 		config.cacheServer.prefix = mixin.hostname;
 
+	if (!config.clusterLimits) {
+		config.clusterLimits = {
+			web: 1,
+			queue: 1,
+		};
+	} else {
+		config.clusterLimits = {
+			web: 1,
+			queue: 1,
+			...config.clusterLimits,
+		};
+
+		if (config.clusterLimits.web! < 1 || config.clusterLimits.queue! < 1) {
+			throw new Error("Invalid cluster limits");
+		}
+	}
+
 	return Object.assign(config, mixin);
 }
 

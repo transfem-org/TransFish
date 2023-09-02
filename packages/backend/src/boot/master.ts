@@ -111,7 +111,7 @@ export async function masterMain() {
 	bootLogger.succ("Firefish initialized");
 
 	if (!envOption.disableClustering) {
-		await spawnWorkers(config.clusterLimit);
+		await spawnWorkers(config.clusterLimits);
 	}
 
 	bootLogger.succ(
@@ -120,7 +120,11 @@ export async function masterMain() {
 		true,
 	);
 
-	if (!envOption.noDaemons && !config.onlyQueueProcessor) {
+	if (
+		!envOption.noDaemons &&
+		config.clusterLimits?.web &&
+		config.clusterLimits?.web >= 1
+	) {
 		import("../daemons/server-stats.js").then((x) => x.default());
 		import("../daemons/queue-stats.js").then((x) => x.default());
 		import("../daemons/janitor.js").then((x) => x.default());
@@ -136,7 +140,7 @@ function showEnvironment(): void {
 
 	if (env !== "production") {
 		logger.warn("The environment is not in production mode.");
-		logger.warn("DO NOT USE FOR PRODUCTION PURPOSE!", null, true);
+		logger.warn("DO NOT USE THIS IN PRODUCTION!", null, true);
 	}
 }
 
@@ -194,19 +198,33 @@ async function connectDb(): Promise<void> {
 	}
 }
 
-async function spawnWorkers(limit = 1) {
-	const workers = Math.min(limit, os.cpus().length);
-	bootLogger.info(`Starting ${workers} worker${workers === 1 ? "" : "s"}...`);
-	await Promise.all([...Array(workers)].map(spawnWorker));
+async function spawnWorkers(
+	clusterLimits: Required<Config["clusterLimits"]>,
+): Promise<void> {
+	const modes = ["web", "queue"];
+	const cpus = os.cpus().length;
+	for (const mode of modes.filter((mode) => clusterLimits[mode] > cpus)) {
+		bootLogger.warn(
+			`configuration warning: cluster limit for ${mode} exceeds number of cores (${cpus})`,
+		);
+	}
+
+	const total = modes.reduce((acc, mode) => acc + clusterLimits[mode], 0);
+	const workers = new Array(total);
+	workers.fill("web", 0, clusterLimits?.web);
+	workers.fill("queue", clusterLimits?.web);
+
+	bootLogger.info(`Starting ${clusterLimits?.web} web workers and ${clusterLimits?.queue} queue workers (total ${total})...`);
+	await Promise.all(workers.map((mode) => spawnWorker(mode)));
 	bootLogger.succ("All workers started");
 }
 
-function spawnWorker(): Promise<void> {
+function spawnWorker(mode: "web" | "queue"): Promise<void> {
 	return new Promise((res) => {
-		const worker = cluster.fork();
+		const worker = cluster.fork({ mode });
 		worker.on("message", (message) => {
 			if (message === "listenFailed") {
-				bootLogger.error("The server Listen failed due to the previous error.");
+				bootLogger.error("The server listen failed due to the previous error.");
 				process.exit(1);
 			}
 			if (message !== "ready") return;
