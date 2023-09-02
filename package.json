@@ -1,12 +1,12 @@
 {
 	"name": "firefish",
-	"version": "1.0.5-dev7",
+	"version": "1.0.5-dev8",
 	"codename": "aqua",
 	"repository": {
 		"type": "git",
 		"url": "https://git.joinfirefish.org/firefish/firefish.git"
 	},
-	"packageManager": "pnpm@8.7.0",
+	"packageManager": "pnpm@8.7.1",
 	"private": true,
 	"scripts": {
 		"rebuild": "pnpm run clean && pnpm node ./scripts/build-greet.js && pnpm -r --parallel run build && pnpm run gulp",
