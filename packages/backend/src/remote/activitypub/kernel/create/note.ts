@@ -31,8 +31,6 @@ export default async function (
 		}
 	}
 
-	const unlock = await getApLock(uri);
-
 	try {
 		const exist = await fetchNote(note);
 		if (exist) return "skip: note exists";
@@ -46,6 +44,6 @@ export default async function (
 			throw e;
 		}
 	} finally {
-		unlock();
+		await getApLock(uri);
 	}
 }

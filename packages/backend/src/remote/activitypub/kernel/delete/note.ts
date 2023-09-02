@@ -13,8 +13,6 @@ export default async function (
 ): Promise<string> {
 	logger.info(`Deleting the Note: ${uri}`);
 
-	const unlock = await getApLock(uri);
-
 	try {
 		const dbResolver = new DbResolver();
 		const note = await dbResolver.getNoteFromApId(uri);
@@ -39,6 +37,6 @@ export default async function (
 		await deleteNode(actor, note);
 		return "ok: note deleted";
 	} finally {
-		unlock();
+		await getApLock(uri);
 	}
 }
