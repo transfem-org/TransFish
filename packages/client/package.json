@@ -5,9 +5,9 @@
 		"watch": "pnpm vite build --watch --mode development",
 		"build": "pnpm vite build",
 		"build:debug": "pnpm run build",
-		"lint": "pnpm rome check **/*.ts --apply ; pnpm run lint:vue",
+		"lint": "pnpm biome check **/*.ts --apply ; pnpm run lint:vue",
 		"lint:vue": "pnpm eslint src --fix '**/*.vue' --cache ; pnpm run format",
-		"format": "pnpm rome format * --write && pnpm prettier --write '**/*.{scss,vue}' --cache --cache-strategy metadata"
+		"format": "pnpm biome format * --write && pnpm prettier --write '**/*.{scss,vue}' --cache --cache-strategy metadata"
 	},
 	"devDependencies": {
 		"@discordapp/twemoji": "14.1.2",

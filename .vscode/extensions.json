@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "rome.rome",
     "vue.volar",
     "vue.vscode-typescript-vue-plugin",
     "arcanis.vscode-zipfs",
@@ -13,6 +12,7 @@
     "mrmlnc.vscode-json5",
     "esbenp.prettier-vscode",
     "redhat.vscode-yaml",
-    "yoavbls.pretty-ts-errors"
+    "yoavbls.pretty-ts-errors",
+    "biomejs.biome"
   ]
 }

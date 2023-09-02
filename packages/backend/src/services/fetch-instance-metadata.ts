@@ -78,7 +78,7 @@ export async function fetchInstanceMetadata(
 	} catch (e) {
 		logger.error(`Failed to update metadata of ${instance.host}: ${e}`);
 	} finally {
-		await getFetchInstanceMetadataLock(instance.host)
+		await getFetchInstanceMetadataLock(instance.host);
 	}
 }
 
