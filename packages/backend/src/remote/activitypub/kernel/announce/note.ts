@@ -32,6 +32,8 @@ export default async function (
 	// Interrupt if you block the announcement destination
 	if (await shouldBlockInstance(extractDbHost(uri))) return;
 
+	const lock = await getApLock(uri);
+
 	try {
 		// Check if something with the same URI is already registered
 		const exist = await fetchNote(uri);
@@ -78,6 +80,6 @@ export default async function (
 			uri,
 		});
 	} finally {
-		await getApLock(uri);
+		await lock.release();
 	}
 }

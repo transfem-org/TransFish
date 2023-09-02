@@ -415,6 +415,8 @@ export async function resolveNote(
 			`host ${extractDbHost(uri)} is blocked`,
 		);
 
+	const lock = await getApLock(uri);
+
 	try {
 		//#region Returns if already registered with this server
 		const exist = await fetchNote(uri);
@@ -437,7 +439,7 @@ export async function resolveNote(
 		// Since the attached Note Object may be disguised, always specify the uri and fetch it from the server.
 		return await createNote(uri, resolver, true);
 	} finally {
-		await getApLock(uri);
+		await lock.release();
 	}
 }
 
