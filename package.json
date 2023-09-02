@@ -9,8 +9,8 @@
 	"packageManager": "pnpm@8.7.1",
 	"private": true,
 	"scripts": {
-		"rebuild": "pnpm run clean && pnpm node ./scripts/build-greet.js && pnpm -r --parallel run build && pnpm run gulp",
-		"build": "pnpm node ./scripts/build-greet.js && pnpm -r --parallel run build && pnpm run gulp",
+		"rebuild": "pnpm run clean && ./scripts/build-greet.sh && pnpm -r --parallel run build && pnpm run gulp",
+		"build": "./scripts/build-greet.sh && pnpm -r --parallel run build && pnpm run gulp",
 		"start": "pnpm --filter backend run start",
 		"start:test": "pnpm --filter backend run start:test",
 		"init": "pnpm run migrate",
