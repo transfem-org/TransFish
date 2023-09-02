@@ -169,7 +169,7 @@ export default async (
 	data: Option,
 	silent = false,
 ) =>
-	// biome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
+	// rome-ignore lint/suspicious/noAsyncPromiseExecutor: FIXME
 	new Promise<Note>(async (res, rej) => {
 		const dontFederateInitially = data.visibility === "hidden";
 

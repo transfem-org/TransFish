@@ -472,7 +472,7 @@ export default abstract class Chart<T extends Schema> {
 	protected commit(diff: Commit<T>, group: string | null = null): void {
 		for (const [k, v] of Object.entries(diff)) {
 			if (v == null || v === 0 || (Array.isArray(v) && v.length === 0))
-				// biome-ignore lint/performance/noDelete: needs to be deleted not just set to undefined
+				// rome-ignore lint/performance/noDelete: needs to be deleted not just set to undefined
 				delete diff[k];
 		}
 		this.buffer.push({
