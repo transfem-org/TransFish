@@ -988,6 +988,8 @@ youHaveUnreadAnnouncements: "未読のお知らせがあります"
 neverShow: "今後表示しない"
 remindMeLater: "また後で"
 addRe: "閲覧注意の投稿への返信で、注釈の先頭に\"re:\"を追加する"
+languageForTranslation: "投稿翻訳に使用する言語" 
+detectPostLanguage: "投稿の言語を自動検出し、外国語の投稿に翻訳ボタンを表示する" 
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"
