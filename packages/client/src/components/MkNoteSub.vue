@@ -188,7 +188,7 @@
 import { computed, inject, ref } from "vue";
 import type { Ref } from "vue";
 import type * as misskey from "firefish-js";
-import type * as mfm from "mfm-js";
+import * as mfm from "mfm-js";
 import { detect as detectLanguage_ } from "tinyld";
 import XNoteHeader from "@/components/MkNoteHeader.vue";
 import MkSubNoteContent from "@/components/MkSubNoteContent.vue";
