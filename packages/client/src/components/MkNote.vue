@@ -111,7 +111,7 @@
 					></MkSubNoteContent>
 					<div v-if="translating || translation" class="translation">
 						<MkLoading v-if="translating" mini />
-						<div v-else class="translated">
+						<div v-else-if="translation != null" class="translated">
 							<b
 								>{{
 									i18n.t("translatedFrom", {
