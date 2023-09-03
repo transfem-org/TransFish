@@ -23,7 +23,7 @@ export default async function () {
 		process.env.mode && ["web", "queue"].includes(process.env.mode)
 			? `(${process.env.mode})`
 			: "";
-	const type = cluster.isPrimary ? "(master)" : "(worker)"
+	const type = cluster.isPrimary ? "(master)" : "(worker)";
 	process.title = `Firefish ${mode} ${type}`;
 
 	if (cluster.isPrimary || envOption.disableClustering) {
