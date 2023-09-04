@@ -125,7 +125,11 @@
 					</button>
 					<XQuoteButton class="button" :note="appearNote" />
 					<button
-						v-if="isForeignLanguage && translation == null"
+						v-if="
+							$i != null &&
+							isForeignLanguage &&
+							translation == null
+						"
 						class="button _button"
 						@click.stop="translate"
 						v-tooltip.noDelay.bottom="i18n.ts.translate"
