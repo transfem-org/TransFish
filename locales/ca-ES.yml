@@ -1311,8 +1311,7 @@ yes: Sí
 no: No
 noCrawle: Rebutjar la indexació dels restrejadors
 driveUsage: Espai fet servir al Disk
-noCrawleDescription: No permetre que els buscadors guardin la informació de les pàgines
-  de perfil, publicacions, Pàgines, etc.
+noCrawleDescription: Demanar als motors de cerca externs no indexar el teu contingut.
 alwaysMarkSensitive: Marcar per defecte com a NSFW
 lockedAccountInfo: Si has configurat la visibilitat del compte per "Només seguidors"
   les teves publicacions no serien visibles per a ningú més, inclús si has d'aprovar
@@ -2186,3 +2185,8 @@ confirm: Confirmar
 importZip: Importar ZIP
 exportZip: Exportar ZIP
 emojiPackCreator: Creador de paquets Emoji
+detectPostLanguage: Detecta l'idioma automàticament i mostra un botó per els articles
+  en altres idiomes
+indexableDescription: Permet al cercador intern mostrar els missatges públics
+indexable: Indexable
+languageForTranslation: Idioma de traducció d'articles
