@@ -608,7 +608,7 @@ export default define(meta, paramDef, async (ps, user) => {
 		throw new ApiError(meta.errors.noSuchNote);
 	}
 
-	if (publishing) {
+	if (publishing && user.isIndexable) {
 		index(note, true);
 
 		// Publish update event for the updated note details

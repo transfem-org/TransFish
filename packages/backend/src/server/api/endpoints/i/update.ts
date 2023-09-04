@@ -120,6 +120,7 @@ export const paramDef = {
 		isBot: { type: "boolean" },
 		isCat: { type: "boolean" },
 		speakAsCat: { type: "boolean" },
+		isIndexable: { type: "boolean" },
 		injectFeaturedNote: { type: "boolean" },
 		receiveAnnouncementEmail: { type: "boolean" },
 		alwaysMarkNsfw: { type: "boolean" },
@@ -206,6 +207,10 @@ export default define(meta, paramDef, async (ps, _user, token) => {
 	if (typeof ps.preventAiLearning === "boolean")
 		profileUpdates.preventAiLearning = ps.preventAiLearning;
 	if (typeof ps.isCat === "boolean") updates.isCat = ps.isCat;
+	if (typeof ps.isIndexable === "boolean") {
+		updates.isIndexable = ps.isIndexable;
+		profileUpdates.isIndexable = ps.isIndexable;
+	}
 	if (typeof ps.speakAsCat === "boolean") updates.speakAsCat = ps.speakAsCat;
 	if (typeof ps.injectFeaturedNote === "boolean")
 		profileUpdates.injectFeaturedNote = ps.injectFeaturedNote;

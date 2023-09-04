@@ -53,6 +53,14 @@
 			}}</template>
 		</FormSwitch>
 		<FormSwitch
+			v-model="isIndexable"
+			class="_formBlock"
+			@update:modelValue="save()"
+		>
+			{{ i18n.ts.indexable }}
+			<template #caption>{{ i18n.ts.indexableDescription }}</template>
+		</FormSwitch>
+		<FormSwitch
 			v-model="noCrawle"
 			class="_formBlock"
 			@update:modelValue="save()"
@@ -155,6 +163,7 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 const isLocked = ref($i.isLocked);
 const autoAcceptFollowed = ref($i.autoAcceptFollowed);
 const noCrawle = ref($i.noCrawle);
+const isIndexable = ref($i.isIndexable);
 const isExplorable = ref($i.isExplorable);
 const hideOnlineStatus = ref($i.hideOnlineStatus);
 const publicReactions = ref($i.publicReactions);
@@ -178,6 +187,7 @@ function save() {
 		isLocked: !!isLocked.value,
 		autoAcceptFollowed: !!autoAcceptFollowed.value,
 		noCrawle: !!noCrawle.value,
+		isIndexable: !!isIndexable.value,
 		isExplorable: !!isExplorable.value,
 		hideOnlineStatus: !!hideOnlineStatus.value,
 		publicReactions: !!publicReactions.value,

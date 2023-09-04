@@ -81,6 +81,7 @@ export async function renderPerson(user: ILocalUser) {
 		discoverable: !!user.isExplorable,
 		publicKey: renderKey(user, keypair, "#main-key"),
 		isCat: user.isCat,
+		indexable: user.isIndexable,
 		attachment: attachment.length ? attachment : undefined,
 	} as any;
 
