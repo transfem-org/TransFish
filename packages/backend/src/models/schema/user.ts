@@ -66,6 +66,11 @@ export const packedUserLiteSchema = {
 			nullable: false,
 			optional: true,
 		},
+		isIndexable: {
+			type: "boolean",
+			nullable: false,
+			optional: true,
+		},
 		speakAsCat: {
 			type: "boolean",
 			nullable: false,

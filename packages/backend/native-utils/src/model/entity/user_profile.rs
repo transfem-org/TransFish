@@ -75,6 +75,8 @@ pub struct Model {
     pub moderation_note: String,
     #[sea_orm(column_name = "preventAiLearning")]
     pub prevent_ai_learning: bool,
+    #[sea_orm(column_name = "isIndexable")]
+    pub is_indexable: bool,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

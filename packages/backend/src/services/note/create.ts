@@ -165,6 +165,7 @@ export default async (
 		createdAt: User["createdAt"];
 		isBot: User["isBot"];
 		inbox?: User["inbox"];
+		isIndexable?: User["isIndexable"];
 	},
 	data: Option,
 	silent = false,
@@ -652,7 +653,9 @@ export default async (
 		}
 
 		// Register to search database
-		await index(note, false);
+		if (user.isIndexable) {
+			await index(note, false);
+		}
 	});
 
 async function renderNoteOrRenoteActivity(data: Option, note: Note) {

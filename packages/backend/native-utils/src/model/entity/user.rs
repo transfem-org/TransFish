@@ -71,6 +71,8 @@ pub struct Model {
     pub also_known_as: Option<String>,
     #[sea_orm(column_name = "speakAsCat")]
     pub speak_as_cat: bool,
+    #[sea_orm(column_name = "isIndexable")]
+    pub is_indexable: bool,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

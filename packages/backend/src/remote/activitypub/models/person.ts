@@ -205,10 +205,10 @@ export async function createPerson(
 
 	if (typeof person.followers === "string") {
 		try {
-			let data = await fetch(person.followers, {
+			const data = await fetch(person.followers, {
 				headers: { Accept: "application/json" },
 			});
-			let json_data = JSON.parse(await data.text());
+			const json_data = JSON.parse(await data.text());
 
 			followersCount = json_data.totalItems;
 		} catch {
@@ -220,10 +220,10 @@ export async function createPerson(
 
 	if (typeof person.following === "string") {
 		try {
-			let data = await fetch(person.following, {
+			const data = await fetch(person.following, {
 				headers: { Accept: "application/json" },
 			});
-			let json_data = JSON.parse(await data.text());
+			const json_data = JSON.parse(await data.text());
 
 			followingCount = json_data.totalItems;
 		} catch (e) {
@@ -235,10 +235,10 @@ export async function createPerson(
 
 	if (typeof person.outbox === "string") {
 		try {
-			let data = await fetch(person.outbox, {
+			const data = await fetch(person.outbox, {
 				headers: { Accept: "application/json" },
 			});
-			let json_data = JSON.parse(await data.text());
+			const json_data = JSON.parse(await data.text());
 
 			notesCount = json_data.totalItems;
 		} catch (e) {
@@ -302,6 +302,7 @@ export async function createPerson(
 					tags,
 					isBot,
 					isCat: (person as any).isCat === true,
+					isIndexable: person.indexable,
 				}),
 			)) as IRemoteUser;
 
@@ -547,6 +548,7 @@ export async function updatePerson(
 		tags,
 		isBot: getApType(object) !== "Person",
 		isCat: (person as any).isCat === true,
+		isIndexable: person.indexable,
 		isLocked: !!person.manuallyApprovesFollowers,
 		movedToUri: person.movedTo || null,
 		alsoKnownAs: person.alsoKnownAs || null,

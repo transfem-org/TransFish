@@ -190,8 +190,9 @@ export interface IActor extends IObject {
 	movedTo?: string;
 	alsoKnownAs?: string[];
 	discoverable?: boolean;
+	indexable?: boolean;
 	inbox: string;
-	sharedInbox?: string; // backward compatibility.. ig
+	sharedInbox?: string; // Backwards compatibility
 	publicKey?: {
 		id: string;
 		publicKeyPem: string;

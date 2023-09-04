@@ -6,6 +6,7 @@ mod m20230531_180824_drop_reversi;
 mod m20230627_185451_index_note_url;
 mod m20230709_000510_move_antenna_to_cache;
 mod m20230806_170616_fix_antenna_stream_ids;
+mod m20230904_013244_is_indexable;
 
 pub struct Migrator;
 
@@ -17,6 +18,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20230627_185451_index_note_url::Migration),
             Box::new(m20230709_000510_move_antenna_to_cache::Migration),
             Box::new(m20230806_170616_fix_antenna_stream_ids::Migration),
+            Box::new(m20230904_013244_is_indexable::Migration),
         ]
     }
 }
