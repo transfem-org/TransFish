@@ -33,6 +33,18 @@ importers:
       '@biomejs/biome':
         specifier: 1.0.0
         version: 1.0.0
+      '@biomejs/cli-darwin-arm64':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@biomejs/cli-darwin-x64':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@biomejs/cli-linux-arm64':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@biomejs/cli-linux-x64':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@types/gulp':
         specifier: 4.0.13
         version: 4.0.13
@@ -1574,7 +1586,6 @@ packages:
     os: [darwin]
     requiresBuild: true
     dev: true
-    optional: true
 
   /@biomejs/cli-darwin-x64@1.0.0:
     resolution: {integrity: sha512-uxIMt/X7TQWicjsImkqMvUUEqaFZTOJJrtEhlHl/eIaETWJmK3uAR7ihIWctpGJnN16sUgpLgwczc7FETqu/PQ==}
@@ -1583,7 +1594,6 @@ packages:
     os: [darwin]
     requiresBuild: true
     dev: true
-    optional: true
 
   /@biomejs/cli-linux-arm64@1.0.0:
     resolution: {integrity: sha512-kJWtu3Xr4MdHV2Yn4U+eZudAGPgv0kRCjWAyzLRewJiqE5TLPrX08imB9SU1n3+VxNO8e2JJ0tWWBHo4J+aSEg==}
@@ -1592,7 +1602,6 @@ packages:
     os: [linux]
     requiresBuild: true
     dev: true
-    optional: true
 
   /@biomejs/cli-linux-x64@1.0.0:
     resolution: {integrity: sha512-FK6hYZ0Lkk39eXYx1+2ZWtLkApc0RdOpcjDVM96JbvI0bxqvNnm193BPXuxh5A/fCl6N28RNUvcKnZ5LbgZ0Yw==}
@@ -1601,7 +1610,6 @@ packages:
     os: [linux]
     requiresBuild: true
     dev: true
-    optional: true
 
   /@biomejs/cli-win32-arm64@1.0.0:
     resolution: {integrity: sha512-kE+OY2isEJHBodiLPMlybZckHkl3CQWsvXuJEvSxkoMhLbGDPEV3yZ/0lEph3BlxP3KP5vUO3hOFGaTvHFOuqQ==}

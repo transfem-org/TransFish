@@ -47,6 +47,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.0.0",
+		"@biomejs/cli-darwin-arm64": "^1.0.0",
+		"@biomejs/cli-darwin-x64": "^1.0.0",
+		"@biomejs/cli-linux-arm64": "^1.0.0",
+		"@biomejs/cli-linux-x64": "^1.0.0",
 		"@types/gulp": "4.0.13",
 		"@types/gulp-rename": "2.0.2",
 		"@types/node": "20.5.8",
