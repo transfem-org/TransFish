@@ -14,8 +14,8 @@
 					width: width && !asDrawer ? width + 'px' : '',
 					maxHeight: maxHeight ? maxHeight + 'px' : '',
 				}"
-				@contextmenu.self="(e) => e.preventDefault()"
 				tabindex="-1"
+				@contextmenu.self="(e) => e.preventDefault()"
 			>
 				<template v-for="item in items2">
 					<div v-if="item === null" class="divider"></div>
@@ -47,7 +47,7 @@
 							v-if="item.avatar"
 							:user="item.avatar"
 							class="avatar"
-							disableLink
+							disable-link
 						/>
 						<span :style="item.textStyle || ''">{{
 							item.text
@@ -100,7 +100,7 @@
 						<MkAvatar
 							:user="item.user"
 							class="avatar"
-							disableLink
+							disable-link
 						/><MkUserName :user="item.user" />
 						<span
 							v-if="item.indicate"
@@ -168,7 +168,7 @@
 							v-if="item.avatar"
 							:user="item.avatar"
 							class="avatar"
-							disableLink
+							disable-link
 						/>
 						<span :style="item.textStyle || ''">{{
 							item.text
@@ -210,11 +210,16 @@ import {
 	ref,
 	watch,
 } from "vue";
+import { FocusTrap } from "focus-trap-vue";
 import FormSwitch from "@/components/form/switch.vue";
-import { MenuItem, InnerMenuItem, MenuPending, MenuAction } from "@/types/menu";
+import type {
+	InnerMenuItem,
+	MenuAction,
+	MenuItem,
+	MenuPending,
+} from "@/types/menu";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
-import { FocusTrap } from "focus-trap-vue";
 
 const XChild = defineAsyncComponent(() => import("./MkMenu.child.vue"));
 const focusTrap = ref();
@@ -233,13 +238,13 @@ const emit = defineEmits<{
 	(ev: "close", actioned?: boolean): void;
 }>();
 
-let itemsEl = ref<HTMLDivElement>();
+const itemsEl = ref<HTMLDivElement>();
 
-let items2: InnerMenuItem[] = ref([]);
+const items2: InnerMenuItem[] = ref([]);
 
-let child = ref<InstanceType<typeof XChild>>();
+const child = ref<InstanceType<typeof XChild>>();
 
-let childShowingItem = ref<MenuItem | null>();
+const childShowingItem = ref<MenuItem | null>();
 
 watch(
 	() => props.items,
@@ -267,8 +272,8 @@ watch(
 	},
 );
 
-let childMenu = ref<MenuItem[] | null>();
-let childTarget = ref<HTMLElement | null>();
+const childMenu = ref<MenuItem[] | null>();
+const childTarget = ref<HTMLElement | null>();
 
 function closeChild() {
 	childMenu.value = null;

@@ -56,24 +56,23 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import XPie from "./overview.pie.vue";
-import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
 import number from "@/filters/number";
 import MkNumberDiff from "@/components/MkNumberDiff.vue";
 import { i18n } from "@/i18n";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 
-let topSubInstancesForPie: any = ref(null);
-let topPubInstancesForPie: any = ref(null);
-let federationPubActive = ref<number | null>(null);
-let federationPubActiveDiff = ref<number | null>(null);
-let federationSubActive = ref<number | null>(null);
-let federationSubActiveDiff = ref<number | null>(null);
-let fetching = ref(true);
+const topSubInstancesForPie = ref<any>(null);
+const topPubInstancesForPie = ref<any>(null);
+const federationPubActive = ref<number | null>(null);
+const federationPubActiveDiff = ref<number | null>(null);
+const federationSubActive = ref<number | null>(null);
+const federationSubActiveDiff = ref<number | null>(null);
+const fetching = ref(true);
 
-const { handler: externalTooltipHandler } = useChartTooltip();
+useChartTooltip();
 
 onMounted(async () => {
 	const chart = await os.apiGet("charts/federation", {

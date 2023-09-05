@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch, computed } from "vue";
+import { onMounted, ref, watch } from "vue";
 import FormSection from "@/components/form/section.vue";
 import FormInput from "@/components/form/input.vue";
 import FormSwitch from "@/components/form/switch.vue";
@@ -85,7 +85,7 @@ const saveEmailAddress = () => {
 	}).then(({ canceled, result: password }) => {
 		if (canceled) return;
 		os.apiWithDialog("i/update-email", {
-			password: password,
+			password,
 			email: emailAddress.value,
 		});
 	});
@@ -146,10 +146,6 @@ onMounted(() => {
 		saveEmailAddress();
 	});
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.email,

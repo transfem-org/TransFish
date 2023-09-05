@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import MkTextarea from "@/components/form/textarea.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -56,11 +56,11 @@ const props = defineProps<{
 	channelId?: string;
 }>();
 
-let channel = ref(null);
-let name = ref(null);
-let description = ref(null);
-let bannerUrl = ref<string | null>(null);
-let bannerId = ref<string | null>(null);
+const channel = ref(null);
+const name = ref(null);
+const description = ref(null);
+const bannerUrl = ref<string | null>(null);
+const bannerId = ref<string | null>(null);
 
 watch(
 	() => bannerId.value,
@@ -140,5 +140,3 @@ definePageMetadata(
 	),
 );
 </script>
-
-<style lang="scss" scoped></style>

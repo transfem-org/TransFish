@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import * as os from "@/os";
 import { useRouter } from "@/router";
@@ -37,41 +37,28 @@ const props = defineProps<{
 	antennaId: string;
 }>();
 
-let antenna = ref(null);
-let rootEl = ref<HTMLElement>();
-let tlEl = ref<InstanceType<typeof XTimeline>>();
+const antenna = ref(null);
+const rootEl = ref<HTMLElement>();
+const tlEl = ref<InstanceType<typeof XTimeline>>();
 const keymap = computed(() => ({
 	t: focus,
 }));
-
-async function timetravel() {
-	const { canceled, result: date } = await os.inputDate({
-		title: i18n.ts.date,
-	});
-	if (canceled) return;
-
-	tlEl.value.timetravel(date);
-}
 
 function settings() {
 	router.push(`/my/antennas/${props.antennaId}`);
 }
 
-async function doMarkRead() {
-	const ret = await os.api("antennas/mark-read", {
-		antennaId: props.antennaId,
-	});
-
-	if (ret) {
-		return true;
-	}
-
-	throw new Error("Failed to mark all as read");
-}
-
-async function markRead() {
-	await os.promiseDialog(doMarkRead());
-}
+// async function doMarkRead() {
+// 	const ret = await os.api("antennas/mark-read", {
+// 		antennaId: props.antennaId,
+// 	});
+//
+// 	if (ret) {
+// 		return true;
+// 	}
+//
+//	throw new Error("Failed to mark all as read");
+// }
 
 function focus() {
 	tlEl.value.focus();
@@ -90,21 +77,11 @@ watch(
 const headerActions = computed(() =>
 	antenna.value
 		? [
-				// {
-				// 	icon: "ph-calendar-blank ph-bold ph-lg",
-				// 	text: i18n.ts.jumpToSpecifiedDate,
-				// 	handler: timetravel,
-				// },
 				{
 					icon: "ph-gear-six ph-bold ph-lg",
 					text: i18n.ts.settings,
 					handler: settings,
 				},
-				// {
-				// 	icon: "ph-check ph-bold ph-lg",
-				// 	text: i18n.ts.markAllAsRead,
-				// 	handler: markRead,
-				// },
 		  ]
 		: [],
 );

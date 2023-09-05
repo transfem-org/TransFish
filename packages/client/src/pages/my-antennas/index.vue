@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onActivated, onDeactivated, ref, computed } from "vue";
+import { computed, onActivated, onDeactivated, ref } from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInfo from "@/components/MkInfo.vue";
@@ -73,8 +73,8 @@ const headerTabs = computed(() => []);
 
 const list = ref<typeof MkPagination | null>(null);
 
-let isCached: boolean = false;
-let refreshTimer: number | null = null;
+let isCached = false,
+	refreshTimer: number | null = null;
 
 const refresh = () => {
 	if (isCached) {

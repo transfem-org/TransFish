@@ -35,9 +35,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
-import {} from "vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInfo from "@/components/MkInfo.vue";
@@ -47,8 +46,8 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let proxyAccount: any = ref(null);
-let proxyAccountId: any = ref(null);
+const proxyAccount = ref<any>(null);
+const proxyAccountId = ref<any>(null);
 
 async function init() {
 	const meta = await os.api("admin/meta");

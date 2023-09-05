@@ -1,4 +1,4 @@
-import { App } from "vue";
+import type { App } from "vue";
 
 import userPreview from "./user-preview";
 import size from "./size";

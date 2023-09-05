@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { ref, watch } from "vue";
 import XContainer from "../page-editor.container.vue";
 import MkTextarea from "@/components/form/textarea.vue";
 import MkInput from "@/components/form/input.vue";
@@ -52,7 +52,7 @@ const props = withDefaults(
 	},
 );
 
-let values: string = ref(props.value.values.join("\n"));
+const values = ref<string>(props.value.values.join("\n"));
 
 watch(
 	values.value,

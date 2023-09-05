@@ -71,7 +71,7 @@ const props = withDefaults(
 );
 
 const audioEl = ref<HTMLAudioElement | null>();
-let hide = ref(true);
+const hide = ref(true);
 
 function volumechange() {
 	if (audioEl.value)

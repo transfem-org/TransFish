@@ -49,10 +49,9 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, shallowRef, computed } from "vue";
+import { computed, defineAsyncComponent, shallowRef } from "vue";
 import { notificationTypes } from "firefish-js";
 import FormButton from "@/components/MkButton.vue";
-import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";
 import * as os from "@/os";
 import { $i } from "@/account";
@@ -60,12 +59,12 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import MkPushNotificationAllowButton from "@/components/MkPushNotificationAllowButton.vue";
 
-let allowButton =
+const allowButton =
 	shallowRef<InstanceType<typeof MkPushNotificationAllowButton>>();
-let pushRegistrationInServer = computed(
+const pushRegistrationInServer = computed(
 	() => allowButton.value?.pushRegistrationInServer,
 );
-let sendReadMessage = computed(
+const sendReadMessage = computed(
 	() => pushRegistrationInServer.value?.sendReadMessage || false,
 );
 
@@ -122,10 +121,6 @@ function onChangeSendReadMessage(v: boolean) {
 		allowButton.value.pushRegistrationInServer = res;
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.notifications,

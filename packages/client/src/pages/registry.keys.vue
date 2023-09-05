@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import JSON5 from "json5";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
@@ -57,7 +57,7 @@ const props = defineProps<{
 
 const scope = computed(() => props.path.split("/"));
 
-let keys = ref(null);
+const keys = ref(null);
 
 function fetchKeys() {
 	os.api("i/registry/keys-with-type", {

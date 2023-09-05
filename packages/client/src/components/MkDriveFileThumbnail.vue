@@ -68,7 +68,7 @@ const is = computed(() => {
 			"application/x-tar",
 			"application/gzip",
 			"application/x-7z-compressed",
-		].some((archiveType) => archiveType === props.file.type)
+		].includes(props.file.type)
 	)
 		return "archive";
 	return "unknown";

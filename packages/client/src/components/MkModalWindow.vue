@@ -25,10 +25,10 @@
 				<div ref="headerEl" class="header">
 					<button
 						v-if="props.withOkButton"
+						v-tooltip="i18n.ts.close"
 						:aria-label="i18n.t('close')"
 						class="_button"
 						@click="$emit('close')"
-						v-tooltip="i18n.ts.close"
 					>
 						<i class="ph-x ph-bold ph-lg"></i>
 					</button>
@@ -92,9 +92,9 @@ const emit = defineEmits<{
 	(event: "ok"): void;
 }>();
 
-let modal = shallowRef<InstanceType<typeof MkModal>>();
-let rootEl = shallowRef<HTMLElement>();
-let headerEl = shallowRef<HTMLElement>();
+const modal = shallowRef<InstanceType<typeof MkModal>>();
+const rootEl = shallowRef<HTMLElement>();
+const headerEl = shallowRef<HTMLElement>();
 
 const close = (ev) => {
 	modal.value?.close(ev);

@@ -35,7 +35,7 @@
 
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, ref, toRef, watch } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MarqueeText from "@/components/MkMarquee.vue";
 import * as os from "@/os";
 import { useInterval } from "@/scripts/use-interval";
@@ -53,7 +53,7 @@ const props = defineProps<{
 
 const notes = ref<misskey.entities.Note[]>([]);
 const fetching = ref(true);
-let key = ref(0);
+const key = ref(0);
 
 const tick = () => {
 	if (props.userListId == null) return;

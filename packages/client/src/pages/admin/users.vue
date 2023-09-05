@@ -133,13 +133,13 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
 
-let paginationComponent = ref<InstanceType<typeof MkPagination>>();
+const paginationComponent = ref<InstanceType<typeof MkPagination>>();
 
-let sort = ref("+createdAt");
-let state = ref("all");
-let origin = ref("local");
-let searchUsername = ref("");
-let searchHost = ref("");
+const sort = ref("+createdAt");
+const state = ref("all");
+const origin = ref("local");
+const searchUsername = ref("");
+const searchHost = ref("");
 const pagination = {
 	endpoint: "admin/show-users" as const,
 	limit: 10,
@@ -172,8 +172,8 @@ async function addUser() {
 	if (canceled2) return;
 
 	os.apiWithDialog("admin/accounts/create", {
-		username: username,
-		password: password,
+		username,
+		password,
 	}).then((res) => {
 		paginationComponent.value.reload();
 	});

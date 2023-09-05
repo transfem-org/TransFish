@@ -763,8 +763,7 @@ no: "No"
 driveFilesCount: "Number of Drive files"
 driveUsage: "Drive space usage"
 noCrawle: "Reject crawler indexing"
-noCrawleDescription: "Ask search engines to not index your profile page, posts, Pages,
-  etc."
+noCrawleDescription: "Ask external search engines to not index your content."
 lockedAccountInfo: "Unless you set your post visiblity to \"Followers only\", your
   posts will be visible to anyone, even if you require followers to be manually approved."
 alwaysMarkSensitive: "Mark as NSFW by default"
@@ -1140,6 +1139,10 @@ confirm: "Confirm"
 importZip: "Import ZIP"
 exportZip: "Export ZIP"
 emojiPackCreator: "Emoji pack creator"
+indexable: "Indexable"
+indexableDescription: "Allow built-in search to show your public posts"
+languageForTranslation: "Post translation language"
+detectPostLanguage: "Automatically detect the language and show a translate button for posts in foreign languages"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

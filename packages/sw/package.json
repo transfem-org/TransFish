@@ -5,8 +5,8 @@
 		"build": "webpack",
 		"build:debug": "pnpm run build",
 		"watch": "pnpm swc src -d built -D -w",
-		"lint": "pnpm rome check **/*.ts --apply",
-		"format": "pnpm rome format * --write"
+		"lint": "pnpm biome check **/*.ts --apply",
+		"format": "pnpm biome format * --write"
 	},
 	"devDependencies": {
 		"@swc/cli": "^0.1.62",

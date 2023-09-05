@@ -13,7 +13,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import {} from "vue";
 import XPie from "./pie.vue";
 import bytes from "@/filters/bytes";
 

@@ -16,8 +16,12 @@
 					class="announcement _panel"
 				>
 					<div class="_title">
-						<span v-if="$i && !announcement.isRead">🆕 </span>
-						<h3>{{ announcement.title }}</h3>
+						<h3>
+							<span v-if="$i && !announcement.isRead">
+								🆕&nbsp;
+							</span>
+							{{ announcement.title }}
+						</h3>
 						<MkTime :time="announcement.createdAt" />
 						<div v-if="announcement.updatedAt">
 							{{ i18n.ts.updatedAt }}:
@@ -45,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import MkPagination from "@/components/MkPagination.vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
@@ -85,7 +89,7 @@ definePageMetadata({
 		}
 
 		> ._title {
-			padding: 14px 32px !important;
+			padding: 0.5rem 2rem !important;
 		}
 
 		> ._seperator {
@@ -93,7 +97,7 @@ definePageMetadata({
 		}
 
 		> ._content {
-			padding: 2rem;
+			padding: 0 2rem !important;
 
 			> img {
 				display: block;

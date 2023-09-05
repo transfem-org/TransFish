@@ -22,8 +22,8 @@
 							<div class="action">
 								<button
 									class="_button"
-									@click="removeUser(user)"
 									:aria-label="i18n.t('removeMember')"
+									@click="removeUser(user)"
 								>
 									<i class="ph-x ph-bold ph-lg"></i>
 								</button>
@@ -104,7 +104,7 @@ async function renameGroup() {
 
 	await os.api("users/groups/update", {
 		groupId: group.value.id,
-		name: name,
+		name,
 	});
 
 	group.value.name = name;

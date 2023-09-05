@@ -45,110 +45,97 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { ref, onMounted } from "vue";
 import XForm from "./auth.form.vue";
 import MkSignin from "@/components/MkSignin.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import * as os from "@/os";
 import { login } from "@/account";
 import { i18n } from "@/i18n";
+import { $i } from "@/account";
 
-export default defineComponent({
-	components: {
-		XForm,
-		MkSignin,
-		MkKeyValue,
-	},
-	props: ["token"],
-	data() {
-		return {
-			state: null,
-			session: null,
-			fetching: true,
-			i18n,
-			auth_code: null,
-		};
-	},
-	mounted() {
-		if (!this.$i) return;
+const props = defineProps<{
+	token: string;
+}>();
+const state = ref("");
+const session = ref();
+const fetching = ref(true);
+const auth_code = ref("");
 
-		// Fetch session
-		os.api("auth/session/show", {
-			token: this.token,
-		})
-			.then((session) => {
-				this.session = session;
-				this.fetching = false;
+onMounted(() => {
+	if (!$i) return;
 
-				// 既に連携していた場合
-				if (this.session.app.isAuthorized) {
-					os.api("auth/accept", {
-						token: this.session.token,
-					}).then(() => {
-						this.accepted();
-					});
-				} else {
-					this.state = "waiting";
-				}
-			})
-			.catch((error) => {
-				this.state = "fetch-session-error";
-				this.fetching = false;
-			});
-	},
-	methods: {
-		accepted() {
-			this.state = "accepted";
-			const getUrlParams = () =>
-				window.location.search
-					.substring(1)
-					.split("&")
-					.reduce((result, query) => {
-						const [k, v] = query.split("=");
-						result[k] = decodeURI(v);
-						return result;
-					}, {});
-			const isMastodon = !!getUrlParams().mastodon;
-			if (this.session.app.callbackUrl && isMastodon) {
-				const callbackUrl = new URL(this.session.app.callbackUrl);
-				callbackUrl.searchParams.append("code", this.session.token);
-				if (!!getUrlParams().state)
-					callbackUrl.searchParams.append(
-						"state",
-						getUrlParams().state,
-					);
-				location.href = callbackUrl.toString();
-			} else if (this.session.app.callbackUrl) {
-				const url = new URL(this.session.app.callbackUrl);
-				if (
-					[
-						"javascript:",
-						"file:",
-						"data:",
-						"mailto:",
-						"tel:",
-					].includes(url.protocol)
-				)
-					throw new Error("invalid url");
-				if (
-					this.session.app.callbackUrl === "urn:ietf:wg:oauth:2.0:oob"
-				) {
-					this.auth_code = this.session.token;
-				} else {
-					location.href = `${this.session.app.callbackUrl}?token=${
-						this.session.token
-					}&code=${this.session.token}&state=${
-						getUrlParams().state || ""
-					}`;
-				}
+	os.api("auth/session/show", { token: props.token })
+		.then((sess: any) => {
+			session.value = sess;
+			fetching.value = false;
+
+			if (session.value.app.isAuthorized) {
+				os.api("auth/accept", { token: session.value.token }).then(
+					() => {
+						accepted();
+					},
+				);
+			} else {
+				state.value = "waiting";
 			}
-		},
-		onLogin(res) {
-			login(res.i);
-		},
-	},
+		})
+		.catch((error) => {
+			state.value = "fetch-session-error";
+			fetching.value = false;
+		});
 });
-</script>
 
-<style lang="scss" scoped></style>
+const getUrlParams = () =>
+	window.location.search
+		.substring(1)
+		.split("&")
+		.reduce((result, query) => {
+			const [k, v] = query.split("=");
+			result[k] = decodeURI(v);
+			return result;
+		}, {});
+
+const accepted = () => {
+	state.value = "accepted";
+	const isMastodon = !!getUrlParams().mastodon;
+	if (session.value.app.callbackUrl && isMastodon) {
+		const redirectUri = decodeURIComponent(getUrlParams().redirect_uri);
+		if (
+			!session.value.app.callbackUrl
+				.split("\n")
+				.some((p) => p === redirectUri)
+		) {
+			state.value = "fetch-session-error";
+			fetching.value = false;
+			throw new Error("Callback URI doesn't match registered app");
+		}
+		const callbackUrl = new URL(redirectUri);
+		callbackUrl.searchParams.append("code", session.value.token);
+		if (getUrlParams().state)
+			callbackUrl.searchParams.append("state", getUrlParams().state);
+		location.href = callbackUrl.toString();
+	} else if (session.value.app.callbackUrl) {
+		const url = new URL(session.value.app.callbackUrl);
+		if (
+			["javascript:", "file:", "data:", "mailto:", "tel:"].includes(
+				url.protocol,
+			)
+		) {
+			throw new Error("Invalid URL");
+		}
+		if (session.value.app.callbackUrl === "urn:ietf:wg:oauth:2.0:oob") {
+			auth_code.value = session.value.token;
+		} else {
+			location.href = `${session.value.app.callbackUrl}?token=${
+				session.value.token
+			}&code=${session.value.token}&state=${getUrlParams().state || ""}`;
+		}
+	}
+};
+
+const onLogin = (res) => {
+	login(res.i);
+};
+</script>

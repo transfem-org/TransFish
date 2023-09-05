@@ -39,7 +39,7 @@
 
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, ref } from "vue";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import copyToClipboard from "@/scripts/copy-to-clipboard";
 import MkDriveFileThumbnail from "@/components/MkDriveFileThumbnail.vue";
 import bytes from "@/filters/bytes";
@@ -160,7 +160,7 @@ function rename() {
 		if (canceled) return;
 		os.api("drive/files/update", {
 			fileId: props.file.id,
-			name: name,
+			name,
 		});
 	});
 }
@@ -179,7 +179,7 @@ function describe() {
 		{
 			done: (result) => {
 				if (!result || result.canceled) return;
-				let comment = result.result;
+				const comment = result.result;
 				os.api("drive/files/update", {
 					fileId: props.file.id,
 					comment: comment.length === 0 ? null : comment,

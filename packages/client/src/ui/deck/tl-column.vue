@@ -64,9 +64,9 @@ const emit = defineEmits<{
 	(ev: "parent-focus", direction: "up" | "down" | "left" | "right"): void;
 }>();
 
-let disabled = ref(false),
-	indicated = ref(false),
-	columnActive = ref(true);
+const disabled = ref(false);
+const indicated = ref(false);
+const columnActive = ref(true);
 
 onMounted(() => {
 	if (props.column.tl == null) {

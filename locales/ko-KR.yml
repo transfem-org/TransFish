@@ -1,8 +1,6 @@
 _lang_: "한국어"
-headlineFirefish: "노트로 연결되는 네트워크"
-introFirefish: "환영합니다! Firefish 는 오픈 소스 분산형 마이크로 블로그 서비스입니다.\n\"노트\" 를 작성해서, 지금 일어나고
-  있는 일을 공유하거나, 당신만의 이야기를 모두에게 발신하세요📡\n\"리액션\" 기능으로, 친구의 노트에 총알같이 반응을 추가할 수도 있습니다👍\n
-  새로운 세계를 탐험해 보세요🚀"
+headlineFirefish: "영원히 무료로 제공되는 오픈 소스 탈중앙화 소셜 미디어 플랫폼 🚀"
+introFirefish: "환영합니다! Firefish 는 영원히 무료로 제공되는 오픈 소스 분산형 소셜 미디어 플랫폼입니다! 🚀"
 monthAndDay: "{month}월 {day}일"
 search: "검색"
 notifications: "알림"
@@ -14,8 +12,8 @@ ok: "OK"
 gotIt: "알겠어요"
 cancel: "취소"
 enterUsername: "유저명 입력"
-renotedBy: "{user}님이 Renote"
-noNotes: "노트가 없습니다"
+renotedBy: "{user}님이 부스트"
+noNotes: "게시물이 없습니다"
 noNotifications: "표시할 알림이 없습니다"
 instance: "서버"
 settings: "설정"
@@ -45,7 +43,7 @@ copyContent: "내용 복사"
 copyLink: "링크 복사"
 delete: "삭제"
 deleteAndEdit: "삭제 후 편집"
-deleteAndEditConfirm: "이 노트를 삭제한 뒤 다시 편집하시겠습니까? 이 노트에 대한 리액션, 리노트, 답글 또한 모두 삭제됩니다."
+deleteAndEditConfirm: "이 게시물을 삭제한 뒤 다시 편집하시겠습니까? 이 게시물에 대한 리액션, 부스트, 답글 또한 모두 삭제됩니다."
 addToList: "리스트에 추가"
 sendMessage: "메시지 보내기"
 copyUsername: "유저명 복사"
@@ -59,20 +57,20 @@ receiveFollowRequest: "새로운 팔로우 요청이 있습니다"
 followRequestAccepted: "팔로우가 수락되었습니다"
 mention: "멘션"
 mentions: "받은 멘션"
-directNotes: "다이렉트 노트"
+directNotes: "다이렉트 게시물"
 importAndExport: "가져오기와 내보내기"
 import: "가져오기"
 export: "내보내기"
 files: "파일"
 download: "다운로드"
-driveFileDeleteConfirm: "파일 \"{name}\" 을 삭제하시겠습니까? 이 파일이 첨부되었더 노트에서도 같이 삭제됩니다."
+driveFileDeleteConfirm: "파일 \"{name}\" 을 삭제하시겠습니까? 이 파일이 첨부되었더 게시물에서도 같이 삭제됩니다."
 unfollowConfirm: "{name}님을 언팔로우하시겠습니까?"
 exportRequested: "내보내기를 요청하였습니다. 이 작업은 시간이 걸릴 수 있습니다. 내보내기가 완료되면 \"드라이브\"에 추가됩니다."
 importRequested: "가져오기를 요청하였습니다. 이 작업에는 시간이 걸릴 수 있습니다."
 lists: "리스트"
 noLists: "리스트가 없습니다"
-note: "노트"
-notes: "노트"
+note: "게시"
+notes: "게시물"
 following: "팔로잉"
 followers: "팔로워"
 followsYou: "당신을 팔로우합니다"
@@ -96,13 +94,13 @@ followRequests: "팔로우 요청"
 unfollow: "팔로우 해제"
 followRequestPending: "팔로우 허가 대기중"
 enterEmoji: "이모지 입력"
-renote: "Renote"
-unrenote: "Renote 취소"
-renoted: "Renote 하였습니다"
-cantRenote: "이 게시물은 Renote할 수 없습니다."
-cantReRenote: "Renote를 Renote할 수 없습니다."
+renote: "부스트"
+unrenote: "부스트 취소"
+renoted: "부스트 하였습니다"
+cantRenote: "이 게시물은 부스트할 수 없습니다."
+cantReRenote: "부스트를 부스트할 수 없습니다."
 quote: "인용"
-pinnedNote: "고정해놓은 노트"
+pinnedNote: "고정해놓은 게시물"
 pinned: "프로필에 고정"
 you: "당신"
 clickToShow: "클릭하여 보기"
@@ -146,7 +144,7 @@ flagAsBotDescription: "이 계정을 자동화된 수단으로 운용할 경우�
   봇 끼리의 무한 연쇄 반응을 회피하거나, 이 계정의 시스템 상에서의 취급이 Bot 운영에 최적화되는 등의 변화가 생깁니다."
 flagAsCat: "나는 고양이다냥"
 flagAsCatDescription: "이 계정이 고양이라면 활성화 해주세요."
-flagShowTimelineReplies: "타임라인에 노트의 답글을 표시하기"
+flagShowTimelineReplies: "타임라인에 게시물의 답글을 표시하기"
 flagShowTimelineRepliesDescription: "이 설정을 활성화하면 타임라인에 다른 유저 간의 답글을 표시합니다."
 autoAcceptFollowed: "팔로우 중인 유저로부터의 팔로우 요청을 자동 수락"
 addAccount: "계정 추가"
@@ -703,7 +701,7 @@ experimentalFeatures: "실험실"
 developer: "개발자"
 makeExplorable: "\"발견하기\"에 내 계정 보이기"
 makeExplorableDescription: "비활성화하면 \"발견하기\"에 나의 계정을 표시하지 않습니다."
-showGapBetweenNotesInTimeline: "타임라인의 노트 사이를 띄워서 표시"
+showGapBetweenNotesInTimeline: "타임라인의 게시물 사이를 띄워서 표시"
 duplicate: "복제"
 left: "왼쪽"
 center: "가운데"
@@ -758,7 +756,7 @@ unlikeConfirm: "좋아요를 취소할까요?"
 fullView: "전체 화면"
 quitFullView: "전체 화면 해제"
 addDescription: "설명 추가"
-userPagePinTip: "각 게시물의 메뉴에서 「프로필에 고정」을 선택하는 것으로, 여기에 노트를 표시해 둘 수 있어요."
+userPagePinTip: "각 게시물의 메뉴에서 「프로필에 고정」을 선택하는 것으로, 여기에 게시물을 표시해 둘 수 있어요."
 notSpecifiedMentionWarning: "수신자가 선택되지 않은 멘션이 있어요"
 info: "정보"
 userInfo: "유저 정보"
@@ -1135,7 +1133,7 @@ _wordMute:
 _instanceMute:
   instanceMuteDescription: "뮤트한 서버에서 오는 답글을 포함한 모든 게시물과 부스트를 뮤트합니다."
   instanceMuteDescription2: "한 줄에 하나씩 입력해 주세요"
-  title: "지정한 서버의 노트를 숨깁니다."
+  title: "지정한 서버의 게시물을 숨깁니다."
   heading: "뮤트할 서버"
 _theme:
   explore: "테마 찾아보기"
@@ -1748,7 +1746,7 @@ _notification:
   youGotMention: "{name}님이 멘션함"
   youGotReply: "{name}님이 답글함"
   youGotQuote: "{name}님이 인용함"
-  youRenoted: "{name}님이 Boost"
+  youRenoted: "{name}님의 부스트"
   youGotPoll: "{name}님이 투표함"
   youGotMessagingMessageFromUser: "{name} 님이 보낸 채팅이 있어요"
   youGotMessagingMessageFromGroup: "{name}에서 보낸 채팅이 있어요"
@@ -1825,7 +1823,7 @@ replayTutorial: 튜토리얼 다시 보기
 renoteMute: 부스트 뮤트
 antennaInstancesDescription: 서버 호스트를 한 줄에 하나씩 입력하세요
 userSaysSomethingReason: '{name} 님이 {reason}에 대해 말했습니다'
-userSaysSomethingReasonQuote: '{name} 님이 {reason} 을 포함하는 노트를 인용했습니다'
+userSaysSomethingReasonQuote: '{name} 님이 {reason} 을 포함하는 게시물을 인용했습니다'
 pushNotification: 푸시 알림
 channelFederationWarn: 현재 채널은 다른 서버로 연합되지 않습니다
 enableServerMachineStats: 서버의 머신 정보를 공개
@@ -1868,7 +1866,7 @@ showEmojisInReactionNotifications: 리액션 알림에 이모지 보이기
 hiddenTagsDescription: 트렌드와 '발견하기'에서 제외할 해시태그를 ('#'을 제외하고) 한 줄에 하나씩 입력하여 주십시오. 이 설정은
   트렌드와 '발견하기' 외에는 영향을 주지 않습니다.
 antennasDesc: "안테나에서는 조건에 맞는 게시물이 표시됩니다.\n'타임라인' 페이지에서 접근할 수 있습니다."
-expandOnNoteClick: 노트를 클릭하여 자세히 표시
+expandOnNoteClick: 게시물을 클릭하여 자세히 표시
 expandOnNoteClickDesc: 비활성화한 경우에도 우클릭 메뉴 또는 타임스탬프를 클릭하여 열 수 있습니다.
 customMOTDDescription: 유저가 페이지를 로딩/새로고침할 때 마다 무작위로 표시할 메시지를 한 줄에 하나씩 입력합니다.
 moveFrom: 다른 계정에서 이 계정으로 이사하기
@@ -1897,14 +1895,14 @@ splash: 스플래시 화면
 preventAiLearningDescription: 업로드한 게시물이나 미디어를 AI 모델이 학습하지 말기를 요구합니다.
 isBot: 이 계정은 봇입니다
 isAdmin: 관리자
-newer: 새로운 노트
-older: 이전 노트
+newer: 새로운 게시물
+older: 이전 게시물
 renoteUnmute: 부스트 뮤트 해제
 accountMoved: '이 유저는 다른 계정으로 이사했습니다:'
 silencedInstances: 사일런스한 서버
 accessibility: 접근성
-userSaysSomethingReasonReply: '{name} 님이 {reason} 을 포함하는 노트에 답글했습니다'
-userSaysSomethingReasonRenote: '{name} 님이 {reason} 을 포함하는 노트를 부스트했습니다'
+userSaysSomethingReasonReply: '{name} 님이 {reason} 을 포함하는 게시물에 답글했습니다'
+userSaysSomethingReasonRenote: '{name} 님이 {reason} 을 포함하는 게시물을 부스트했습니다'
 breakFollowConfirm: 팔로워를 해제하시겠습니까?
 indexFrom: 이 게시물 ID부터 인덱싱하기
 noThankYou: 괜찮습니다
@@ -1960,7 +1958,7 @@ _messaging:
 _tutorial:
   title: Firefly의 사용 방법
   step5_5: '{icon} 소셜 타임라인은 홈 타임라인과 로컬 타임라인을 합친 것과 같습니다.'
-  step4_1: 첫 노트를 올려 봅시다.
+  step4_1: 첫 글을 올려 봅시다.
   step5_3: '{icon} 홈 타임라인은 내가 팔로우하고 있는 계정의 게시물을 볼 수 있는 타임라인입니다.'
   step6_2: 이 서버에 가입을 마친 당신은 단순히 Firefish 서버의 유저가 아닌, 수많은 서버가 서로 상호작용하는 연합우주에 참가하시게
     된 것입니다.

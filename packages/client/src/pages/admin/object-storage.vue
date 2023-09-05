@@ -149,9 +149,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
-import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
 import FormSuspense from "@/components/form/suspense.vue";
@@ -161,19 +160,19 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let useObjectStorage: boolean = ref(false);
-let objectStorageBaseUrl: string | null = ref(null);
-let objectStorageBucket: string | null = ref(null);
-let objectStoragePrefix: string | null = ref(null);
-let objectStorageEndpoint: string | null = ref(null);
-let objectStorageRegion: string | null = ref(null);
-let objectStoragePort: number | null = ref(null);
-let objectStorageAccessKey: string | null = ref(null);
-let objectStorageSecretKey: string | null = ref(null);
-let objectStorageUseSSL: boolean = ref(false);
-let objectStorageUseProxy: boolean = ref(false);
-let objectStorageSetPublicRead: boolean = ref(false);
-let objectStorageS3ForcePathStyle: boolean = ref(true);
+const useObjectStorage = ref(false);
+const objectStorageBaseUrl = ref<string | null>(null);
+const objectStorageBucket = ref<string | null>(null);
+const objectStoragePrefix = ref<string | null>(null);
+const objectStorageEndpoint = ref<string | null>(null);
+const objectStorageRegion = ref<string | null>(null);
+const objectStoragePort = ref<string | null>(null);
+const objectStorageAccessKey = ref<string | null>(null);
+const objectStorageSecretKey = ref<string | null>(null);
+const objectStorageUseSSL = ref(false);
+const objectStorageUseProxy = ref(false);
+const objectStorageSetPublicRead = ref(false);
+const objectStorageS3ForcePathStyle = ref(true);
 
 async function init() {
 	const meta = await os.api("admin/meta");

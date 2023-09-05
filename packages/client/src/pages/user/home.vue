@@ -211,11 +211,11 @@
 							<div class="actions">
 								<MkFollowButton
 									:user="user"
-									@refresh="emit('refresh')"
 									:inline="true"
 									:transparent="false"
 									:full="true"
 									class="koudoku"
+									@refresh="emit('refresh')"
 								/>
 							</div>
 						</div>
@@ -280,16 +280,16 @@
 						<div v-if="user.fields.length > 0" class="fields">
 							<dl
 								v-for="(field, i) in user.fields"
-								:class="field.verified ? 'verified' : ''"
 								:key="i"
+								:class="field.verified ? 'verified' : ''"
 								class="field"
 							>
 								<dt class="name">
 									<i
 										v-if="field.verified"
+										v-tooltip="i18n.ts.verifiedLink"
 										class="ph-bold ph-seal-check ph-lg ph-fw"
 										style="padding: 5px"
-										v-tooltip="i18n.ts.verifiedLink"
 									></i>
 									<Mfm
 										:text="field.name"
@@ -386,16 +386,16 @@
 
 <script lang="ts" setup>
 import {
-	ref,
+	computed,
 	defineAsyncComponent,
 	onMounted,
 	onUnmounted,
-	computed,
+	ref,
 } from "vue";
 import calcAge from "s-age";
 import cityTimezones from "city-timezones";
-import XUserTimeline from "./index.timeline.vue";
 import type * as misskey from "firefish-js";
+import XUserTimeline from "./index.timeline.vue";
 import XNote from "@/components/MkNote.vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import MkRemoteCaution from "@/components/MkRemoteCaution.vue";
@@ -441,11 +441,11 @@ if (props.user.listenbrainz) {
 	}
 }
 
-let parallaxAnimationId = ref<null | number>(null);
-let narrow = ref<null | boolean>(null);
-let rootEl = ref<null | HTMLElement>(null);
-let bannerEl = ref<null | HTMLElement>(null);
-let patrons = ref([]);
+const parallaxAnimationId = ref<null | number>(null);
+const narrow = ref<null | boolean>(null);
+const rootEl = ref<null | HTMLElement>(null);
+const bannerEl = ref<null | HTMLElement>(null);
+const patrons = ref([]);
 
 const age = computed(() => {
 	return calcAge(props.user.birthday);
@@ -471,8 +471,8 @@ const timeForThem = computed(() => {
 	];
 
 	for (const city of maybeCityNames) {
-		let tzInfo = cityTimezones.lookupViaCity(city);
-		if (tzInfo.length == 0) continue;
+		const tzInfo = cityTimezones.lookupViaCity(city);
+		if (tzInfo.length !== 1) continue;
 
 		const tz = tzInfo[0].timezone;
 		if (!tz) continue;
@@ -800,9 +800,6 @@ onUnmounted(() => {
 							text-overflow: ellipsis;
 							margin: 0;
 						}
-					}
-
-					&.system > .field > .name {
 					}
 				}
 

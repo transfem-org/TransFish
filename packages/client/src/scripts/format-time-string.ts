@@ -1,4 +1,4 @@
-const defaultLocaleStringFormats: { [index: string]: string } = {
+const defaultLocaleStringFormats: Record<string, string> = {
 	weekday: "narrow",
 	era: "narrow",
 	year: "numeric",
@@ -28,7 +28,7 @@ function formatLocaleString(date: Date, format: string): string {
 				].includes(kind)
 			) {
 				return date.toLocaleString(window.navigator.language, {
-					[kind]: option ? option : defaultLocaleStringFormats[kind],
+					[kind]: option || defaultLocaleStringFormats[kind],
 				});
 			} else {
 				return match;

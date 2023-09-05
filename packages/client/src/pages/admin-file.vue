@@ -11,7 +11,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -156,7 +156,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkButton from "@/components/MkButton.vue";
@@ -172,21 +172,20 @@ import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
-import { acct } from "@/filters/user";
 import { iAmAdmin, iAmModerator } from "@/account";
 import { defaultStore } from "@/store";
 import "swiper/scss";
 import "swiper/scss/virtual";
 
-let tabs = ["overview"];
+const tabs = ["overview"];
 if (iAmModerator) tabs.push("ip");
 tabs.push("raw");
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
-let file: any = ref(null);
-let info: any = ref(null);
-let isSensitive: boolean = ref(false);
+const file = ref(null);
+const info = ref(null);
+const isSensitive = ref(false);
 
 const props = defineProps<{
 	fileId: string;

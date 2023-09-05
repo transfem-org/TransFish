@@ -1,5 +1,5 @@
 <template>
-	<div class="media" v-size="{ max: [350] }">
+	<div v-size="{ max: [350] }" class="media">
 		<button v-if="hide" class="hidden" @click="hide = false">
 			<ImgWithBlurhash
 				:hash="media.blurhash"
@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
 import type * as misskey from "firefish-js";
@@ -107,7 +107,7 @@ const props = defineProps<{
 	raw?: boolean;
 }>();
 
-let hide = ref(true);
+const hide = ref(true);
 
 const plyr = ref();
 

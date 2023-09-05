@@ -1,9 +1,9 @@
 // blocks
 
-export type BlockBase = {
+export interface BlockBase {
 	id: string;
 	type: string;
-};
+}
 
 export type TextBlock = BlockBase & {
 	type: "text";

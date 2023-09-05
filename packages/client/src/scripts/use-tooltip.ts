@@ -1,20 +1,18 @@
-import { Ref, ref, watch, onUnmounted } from "vue";
+import type { Ref } from "vue";
+import { onUnmounted, ref, watch } from "vue";
 
 export function useTooltip(
 	elRef: Ref<HTMLElement | { $el: HTMLElement } | null | undefined>,
 	onShow: (showing: Ref<boolean>) => void,
 	delay = 300,
 ): void {
-	let isHovering = false;
-
-	// iOS(Androidも？)では、要素をタップした直後に(おせっかいで)mouseoverイベントを発火させたりするため、それを無視するためのフラグ
-	// 無視しないと、画面に触れてないのにツールチップが出たりし、ユーザビリティが損なわれる
-	// TODO: 一度でもタップすると二度とマウスでツールチップ出せなくなるのをどうにかする 定期的にfalseに戻すとか...？
-	let shouldIgnoreMouseover = false;
-
-	let timeoutId: number;
-
-	let changeShowingState: (() => void) | null;
+	let isHovering = false,
+		// iOS(Androidも？)では、要素をタップした直後に(おせっかいで)mouseoverイベントを発火させたりするため、それを無視するためのフラグ
+		// 無視しないと、画面に触れてないのにツールチップが出たりし、ユーザビリティが損なわれる
+		// TODO: 一度でもタップすると二度とマウスでツールチップ出せなくなるのをどうにかする 定期的にfalseに戻すとか...？
+		shouldIgnoreMouseover = false,
+		timeoutId: number,
+		changeShowingState: (() => void) | null;
 
 	const open = () => {
 		close();
@@ -72,9 +70,15 @@ export function useTooltip(
 				stop();
 				const el =
 					elRef.value instanceof Element ? elRef.value : elRef.value.$el;
-				el.addEventListener("mouseover", onMouseover, { passive: true });
-				el.addEventListener("mouseleave", onMouseleave, { passive: true });
-				el.addEventListener("touchstart", onTouchstart, { passive: true });
+				el.addEventListener("mouseover", onMouseover, {
+					passive: true,
+				});
+				el.addEventListener("mouseleave", onMouseleave, {
+					passive: true,
+				});
+				el.addEventListener("touchstart", onTouchstart, {
+					passive: true,
+				});
 				el.addEventListener("touchend", onTouchend, { passive: true });
 				el.addEventListener("click", close, { passive: true });
 			}

@@ -30,7 +30,7 @@
 						v-if="!(narrow && currentPage?.route.name == null)"
 						class="main"
 					>
-						<div class="bkzroven">
+						<div>
 							<RouterView />
 						</div>
 					</section>
@@ -41,30 +41,17 @@
 </template>
 
 <script setup lang="ts">
-import {
-	computed,
-	defineAsyncComponent,
-	inject,
-	nextTick,
-	onActivated,
-	onMounted,
-	onUnmounted,
-	provide,
-	ref,
-	watch,
-} from "vue";
+import { computed, onActivated, onMounted, onUnmounted, ref, watch } from "vue";
 import { i18n } from "@/i18n";
 import MkInfo from "@/components/MkInfo.vue";
 import MkSuperMenu from "@/components/MkSuperMenu.vue";
-import { scroll } from "@/scripts/scroll";
-import { signout, $i } from "@/account";
+import { $i, signout } from "@/account";
 import { unisonReload } from "@/scripts/unison-reload";
 import { instance } from "@/instance";
 import { useRouter } from "@/router";
 import {
 	definePageMetadata,
 	provideMetadataReceiver,
-	setPageMetadata,
 } from "@/scripts/page-metadata";
 import * as os from "@/os";
 
@@ -79,10 +66,10 @@ const childInfo = ref(null);
 
 const router = useRouter();
 
-let narrow = ref(false);
+const narrow = ref(false);
 const NARROW_THRESHOLD = 600;
 
-let currentPage = computed(() => router.currentRef.value.child);
+const currentPage = computed(() => router.currentRef.value.child);
 
 const ro = new ResizeObserver((entries, observer) => {
 	if (entries.length === 0) return;
@@ -350,11 +337,6 @@ definePageMetadata(INFO);
 						margin: 8px auto 16px auto;
 					}
 				}
-			}
-		}
-
-		> .main {
-			.bkzroven {
 			}
 		}
 	}

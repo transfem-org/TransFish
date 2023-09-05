@@ -74,7 +74,6 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import tinycolor from "tinycolor2";
-import FormLink from "@/components/form/link.vue";
 import FormButton from "@/components/MkButton.vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormSection from "@/components/form/section.vue";
@@ -92,8 +91,8 @@ const fetching = ref(true);
 const usage = ref<any>(null);
 const capacity = ref<any>(null);
 const uploadFolder = ref<any>(null);
-let alwaysMarkNsfw = ref($i.alwaysMarkNsfw);
-let autoSensitive = ref($i.autoSensitive);
+const alwaysMarkNsfw = ref<boolean>($i.alwaysMarkNsfw);
+const autoSensitive = ref<boolean>($i.autoSensitive);
 
 const meterStyle = computed(() => {
 	return {
@@ -144,10 +143,6 @@ function saveProfile() {
 		autoSensitive: !!autoSensitive.value,
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.drive,

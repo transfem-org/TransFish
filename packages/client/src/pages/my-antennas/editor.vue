@@ -114,7 +114,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { ref, watch } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -134,24 +134,24 @@ const emit = defineEmits<{
 	(ev: "deleted"): void;
 }>();
 
-let name: string = ref(props.antenna.name);
-let src: string = ref(props.antenna.src);
-let userListId: any = ref(props.antenna.userListId);
-let userGroupId: any = ref(props.antenna.userGroupId);
-let users: string = ref(props.antenna.users.join("\n"));
-let instances: string = ref(props.antenna.instances.join("\n"));
-let keywords: string = ref(
+const name = ref<string>(props.antenna.name);
+const src = ref<string>(props.antenna.src);
+const userListId = ref(props.antenna.userListId);
+const userGroupId = ref(props.antenna.userGroupId);
+const users = ref<string>(props.antenna.users.join("\n"));
+const instances = ref<string>(props.antenna.instances.join("\n"));
+const keywords = ref<string>(
 	props.antenna.keywords.map((x) => x.join(" ")).join("\n"),
 );
-let excludeKeywords: string = ref(
+const excludeKeywords = ref<string>(
 	props.antenna.excludeKeywords.map((x) => x.join(" ")).join("\n"),
 );
-let caseSensitive: boolean = ref(props.antenna.caseSensitive);
-let withReplies: boolean = ref(props.antenna.withReplies);
-let withFile: boolean = ref(props.antenna.withFile);
-let notify: boolean = ref(props.antenna.notify);
-let userLists: any = ref(null);
-let userGroups: any = ref(null);
+const caseSensitive = ref<boolean>(props.antenna.caseSensitive);
+const withReplies = ref<boolean>(props.antenna.withReplies);
+const withFile = ref<boolean>(props.antenna.withFile);
+const notify = ref<boolean>(props.antenna.notify);
+const userLists = ref<any>(null);
+const userGroups = ref<any>(null);
 
 watch(
 	() => src.value,
@@ -201,7 +201,7 @@ async function saveAntenna() {
 		await os.apiWithDialog("antennas/create", antennaData);
 		emit("created");
 	} else {
-		antennaData["antennaId"] = props.antenna.id;
+		antennaData.antennaId = props.antenna.id;
 		await os.apiWithDialog("antennas/update", antennaData);
 		emit("updated");
 	}

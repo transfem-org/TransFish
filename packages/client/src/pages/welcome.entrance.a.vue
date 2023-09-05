@@ -35,8 +35,8 @@
 				<div class="fg">
 					<h1>
 						<img
-							class="logo"
 							v-if="meta.logoImageUrl"
+							class="logo"
 							:src="meta.logoImageUrl"
 							alt="logo"
 						/>
@@ -102,25 +102,21 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
-import { toUnicode } from "punycode/";
 import XTimeline from "./welcome.timeline.vue";
 import MarqueeText from "@/components/MkMarquee.vue";
 import XSigninDialog from "@/components/MkSigninDialog.vue";
 import XSignupDialog from "@/components/MkSignupDialog.vue";
 import MkButton from "@/components/MkButton.vue";
-import XNote from "@/components/MkNote.vue";
 import MkFeaturedPhotos from "@/components/MkFeaturedPhotos.vue";
-import { host, instanceName } from "@/config";
+import { instanceName } from "@/config";
 import * as os from "@/os";
-import number from "@/filters/number";
 import { i18n } from "@/i18n";
 
-let meta = ref();
-let stats = ref();
-let tags = ref();
-let onlineUsersCount = ref();
-let instances = ref();
+const meta = ref();
+const stats = ref();
+const tags = ref();
+const onlineUsersCount = ref();
+const instances = ref();
 
 os.api("meta", { detail: true }).then((_meta) => {
 	meta.value = _meta;

@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { DriveFile } from "firefish-js/built/entities";
+import type { DriveFile } from "firefish-js/built/entities";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
@@ -72,7 +72,7 @@ function select(
 				});
 
 				os.api("drive/files/upload-from-url", {
-					url: url,
+					url,
 					folderId: defaultStore.state.uploadFolder,
 					marker,
 				});

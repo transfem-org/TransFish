@@ -15,15 +15,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, shallowRef } from "vue";
+import { onMounted, ref, shallowRef } from "vue";
 import { Chart } from "chart.js";
 import gradient from "chartjs-plugin-gradient";
-import tinycolor from "tinycolor2";
-import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
-import number from "@/filters/number";
-import MkNumberDiff from "@/components/MkNumberDiff.vue";
-import { i18n } from "@/i18n";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 import { chartVLine } from "@/scripts/chart-vline";
 import { defaultStore } from "@/store";
@@ -35,7 +30,7 @@ initChart();
 const chartLimit = 50;
 const chartEl = shallowRef<HTMLCanvasElement>();
 const chartEl2 = shallowRef<HTMLCanvasElement>();
-let fetching = ref(true);
+const fetching = ref(true);
 
 const { handler: externalTooltipHandler } = useChartTooltip();
 const { handler: externalTooltipHandler2 } = useChartTooltip();
@@ -75,9 +70,6 @@ onMounted(async () => {
 		: "rgba(0, 0, 0, 0.2)";
 	const succColor = "#9ccfd8";
 	const failColor = "#f6c177";
-
-	const succMax = Math.max(...raw.deliverSucceeded);
-	const failMax = Math.max(...raw.deliverFailed);
 
 	new Chart(chartEl.value, {
 		type: "line",
@@ -153,7 +145,7 @@ onMounted(async () => {
 					},
 					ticks: {
 						display: true,
-						//mirror: true,
+						// mirror: true,
 						callback: (value, index, values) =>
 							value < 0 ? -value : value,
 					},

@@ -57,6 +57,14 @@
 					><i class="ph-image-square ph-bold ph-lg icon"></i
 					>{{ i18n.ts.gallery }}</MkA
 				>
+				<button
+					class="_button link"
+					active-class="active"
+					@click="search()"
+				>
+					<i class="ph-magnifying-glass ph-bold ph-lg icon"></i
+					><span>{{ i18n.ts.search }}</span>
+				</button>
 				<div class="action">
 					<button class="_buttonPrimary" @click="signup()">
 						{{ i18n.ts.signup }}
@@ -72,7 +80,7 @@
 
 <script lang="ts" setup>
 import type { ComputedRef } from "vue";
-import { onMounted, provide, ref, computed } from "vue";
+import { computed, onMounted, provide, ref } from "vue";
 import XHeader from "./header.vue";
 import XKanban from "./kanban.vue";
 import { host, instanceName } from "@/config";
@@ -94,7 +102,7 @@ import { i18n } from "@/i18n";
 
 const DESKTOP_THRESHOLD = 1000;
 
-let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const pageMetadata = ref<null | ComputedRef<PageMetadata>>();
 
 provide("router", mainRouter);
 provideMetadataReceiver((info) => {
@@ -113,9 +121,9 @@ const isTimelineAvailable =
 	!instance.disableRecommendedTimeline ||
 	!instance.disableGlobalTimeline;
 const showMenu = ref(false);
-let isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD),
-	narrow = ref(window.innerWidth < 1280),
-	meta = ref();
+const isDesktop = ref(window.innerWidth >= DESKTOP_THRESHOLD);
+const narrow = ref(window.innerWidth < 1280);
+const meta = ref();
 
 const keymap = computed(() => {
 	return {
@@ -169,7 +177,7 @@ onMounted(() => {
 });
 
 defineExpose({
-	showMenu: showMenu,
+	showMenu,
 });
 </script>
 

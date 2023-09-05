@@ -38,8 +38,8 @@
 								<div class="menu-actions">
 									<button
 										v-tooltip="i18n.ts.copyUrl"
-										@click="copyUrl"
 										class="menu _button"
+										@click="copyUrl"
 									>
 										<i
 											class="ph-link-simple ph-bold ph-lg"
@@ -200,7 +200,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import XPage from "@/components/page/page.vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
@@ -219,9 +219,9 @@ const props = defineProps<{
 	username: string;
 }>();
 
-let page = ref(null);
-let bgImg = ref(null);
-let error = ref(null);
+const page = ref(null);
+const bgImg = ref(null);
+const error = ref(null);
 const otherPostsPagination = {
 	endpoint: "users/pages" as const,
 	limit: 6,

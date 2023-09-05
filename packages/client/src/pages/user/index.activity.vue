@@ -31,8 +31,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkContainer from "@/components/MkContainer.vue";
 import MkChart from "@/components/MkChart.vue";
 import * as os from "@/os";
@@ -48,7 +47,7 @@ const props = withDefaults(
 	},
 );
 
-let chartSrc = ref("per-user-notes");
+const chartSrc = ref("per-user-notes");
 
 function showMenu(ev: MouseEvent) {
 	os.popupMenu(
@@ -69,7 +68,7 @@ function showMenu(ev: MouseEvent) {
 		action: () => {
 			chartSrc = 'per-user-followers';
 		}
-	}*/,
+	} */,
 		],
 		ev.currentTarget ?? ev.target,
 	);

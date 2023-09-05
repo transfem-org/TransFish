@@ -1,4 +1,5 @@
-import { App, defineAsyncComponent } from "vue";
+import type { App } from "vue";
+import { defineAsyncComponent } from "vue";
 
 export default function (app: App) {
 	app.component(

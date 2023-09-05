@@ -3,10 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, onMounted, onUnmounted, ref, shallowRef } from "vue";
+import { onMounted, shallowRef } from "vue";
 import { Chart } from "chart.js";
-import number from "@/filters/number";
-import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 import { chartVLine } from "@/scripts/chart-vline";
@@ -19,7 +17,7 @@ const props = defineProps<{
 	type: string;
 }>();
 
-const chartEl = shallowRef<HTMLCanvasElement>(null);
+const chartEl = shallowRef<HTMLCanvasElement>();
 
 const { handler: externalTooltipHandler } = useChartTooltip();
 
@@ -28,10 +26,10 @@ let chartInstance: Chart;
 function setData(values) {
 	if (chartInstance == null) return;
 	for (const value of values) {
-		chartInstance.data.labels.push("");
+		chartInstance.data.labels?.push("");
 		chartInstance.data.datasets[0].data.push(value);
 		if (chartInstance.data.datasets[0].data.length > 100) {
-			chartInstance.data.labels.shift();
+			chartInstance.data.labels?.shift();
 			chartInstance.data.datasets[0].data.shift();
 		}
 	}
@@ -40,10 +38,10 @@ function setData(values) {
 
 function pushData(value) {
 	if (chartInstance == null) return;
-	chartInstance.data.labels.push("");
+	chartInstance.data.labels?.push("");
 	chartInstance.data.datasets[0].data.push(value);
 	if (chartInstance.data.datasets[0].data.length > 100) {
-		chartInstance.data.labels.shift();
+		chartInstance.data.labels?.shift();
 		chartInstance.data.datasets[0].data.shift();
 	}
 	chartInstance.update();
@@ -82,7 +80,7 @@ onMounted(() => {
 			labels: [],
 			datasets: [
 				{
-					label: label,
+					label,
 					pointRadius: 0,
 					tension: 0.3,
 					borderWidth: 2,
@@ -145,5 +143,3 @@ defineExpose({
 	pushData,
 });
 </script>
-
-<style lang="scss" scoped></style>

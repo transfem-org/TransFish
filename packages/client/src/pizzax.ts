@@ -1,6 +1,7 @@
 // PIZZAX --- A lightweight store
 
-import { onUnmounted, Ref, ref, watch } from "vue";
+import type { Ref } from "vue";
+import { onUnmounted, ref, watch } from "vue";
 import { $i } from "./account";
 import { api } from "./os";
 import { stream } from "./stream";
@@ -27,6 +28,7 @@ export class Storage<T extends StateDef> {
 	public readonly state: {
 		[K in keyof T]: T[K]["default"];
 	};
+
 	public readonly reactiveState: {
 		[K in keyof T]: Ref<T[K]["default"]>;
 	};
@@ -190,8 +192,8 @@ export class Storage<T extends StateDef> {
 				);
 				api("i/registry/set", {
 					scope: ["client", this.key],
-					key: key,
-					value: value,
+					key,
+					value,
 				});
 				break;
 			}

@@ -42,8 +42,8 @@
 			<div v-if="jobs.length > 0">
 				<div v-for="job in jobs" :key="job[0]">
 					<a
-						@click.stop="os.pageWindow(`/instance-info/${job[0]}`)"
 						class="_link"
+						@click.stop="os.pageWindow(`/instance-info/${job[0]}`)"
 					>
 						{{ job[0] }}
 					</a>
@@ -72,10 +72,10 @@ const active = ref(0);
 const delayed = ref(0);
 const waiting = ref(0);
 const jobs = ref([]);
-let chartProcess = ref<InstanceType<typeof XChart>>();
-let chartActive = ref<InstanceType<typeof XChart>>();
-let chartDelayed = ref<InstanceType<typeof XChart>>();
-let chartWaiting = ref<InstanceType<typeof XChart>>();
+const chartProcess = ref<InstanceType<typeof XChart>>();
+const chartActive = ref<InstanceType<typeof XChart>>();
+const chartDelayed = ref<InstanceType<typeof XChart>>();
+const chartWaiting = ref<InstanceType<typeof XChart>>();
 
 const props = defineProps<{
 	domain: string;

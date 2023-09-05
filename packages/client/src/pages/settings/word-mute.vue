@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { ref, watch } from "vue";
 import FormTextarea from "@/components/form/textarea.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -95,7 +95,7 @@ watch(hardMutedWords, () => {
 async function save() {
 	const parseMutes = (mutes, tab) => {
 		// split into lines, remove empty lines and unnecessary whitespace
-		let lines = mutes
+		const lines = mutes
 			.trim()
 			.split("\n")
 			.map((line) => line.trim())
@@ -150,10 +150,6 @@ async function save() {
 
 	changed.value = false;
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.wordMute,

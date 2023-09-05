@@ -1,4 +1,4 @@
-import { onUnmounted, onDeactivated, ref } from "vue";
+import { onDeactivated, onUnmounted, ref } from "vue";
 import * as os from "@/os";
 import MkChartTooltip from "@/components/MkChartTooltip.vue";
 

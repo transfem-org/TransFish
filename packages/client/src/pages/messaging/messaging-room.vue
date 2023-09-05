@@ -28,9 +28,9 @@
 							#default="{ items: messages, fetching: pFetching }"
 						>
 							<XList
-								aria-live="polite"
 								v-if="messages.length > 0"
 								v-slot="{ item: message }"
+								aria-live="polite"
 								:class="{
 									messages: true,
 									'deny-move-transition': pFetching,
@@ -99,18 +99,19 @@
 <script lang="ts" setup>
 import {
 	computed,
-	watch,
-	onMounted,
 	nextTick,
 	onBeforeUnmount,
+	onMounted,
 	ref,
+	watch,
 } from "vue";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import * as Acct from "firefish-js/built/acct";
 import XMessage from "./messaging-room.message.vue";
 import XForm from "./messaging-room.form.vue";
 import XList from "@/components/MkDateSeparatedList.vue";
-import MkPagination, { Paging } from "@/components/MkPagination.vue";
+import type { Paging } from "@/components/MkPagination.vue";
+import MkPagination from "@/components/MkPagination.vue";
 import {
 	isBottomVisible,
 	onScrollBottom,
@@ -129,21 +130,21 @@ const props = defineProps<{
 	groupId?: string;
 }>();
 
-let rootEl = ref<HTMLDivElement>();
-let formEl = ref<InstanceType<typeof XForm>>();
-let pagingComponent = ref<InstanceType<typeof MkPagination>>();
+const rootEl = ref<HTMLDivElement>();
+const formEl = ref<InstanceType<typeof XForm>>();
+const pagingComponent = ref<InstanceType<typeof MkPagination>>();
 
-let fetching = ref(true);
-let user: Misskey.entities.UserDetailed | null = ref(null);
-let group: Misskey.entities.UserGroup | null = ref(null);
-let typers: Misskey.entities.User[] = ref([]);
-let connection: Misskey.ChannelConnection<
+const fetching = ref(true);
+const user = ref<Misskey.entities.UserDetailed | null>(null);
+const group = ref<Misskey.entities.UserGroup | null>(null);
+const typers = ref<Misskey.entities.User[]>([]);
+const connection: Misskey.ChannelConnection<
 	Misskey.Channels["messaging"]
 > | null = ref(null);
-let showIndicator = ref(false);
+const showIndicator = ref(false);
 const { animation } = defaultStore.reactiveState;
 
-let pagination: Paging | null = ref(null);
+const pagination = ref<Paging | null>(null);
 
 watch([() => props.userAcct, () => props.groupId], () => {
 	if (connection.value) connection.value.dispose();
@@ -239,13 +240,13 @@ function onDrop(ev: DragEvent): void {
 		return;
 	}
 
-	//#region ドライブのファイル
+	// #region ドライブのファイル
 	const driveFile = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FILE_);
 	if (driveFile != null && driveFile !== "") {
 		const file = JSON.parse(driveFile);
 		formEl.value.file = file;
 	}
-	//#endregion
+	// #endregion
 }
 
 function onMessage(message) {
@@ -323,7 +324,7 @@ function onIndicatorClick() {
 	thisScrollToBottom();
 }
 
-let scrollRemove: (() => void) | null = ref(null);
+const scrollRemove = ref<(() => void) | null>(null);
 
 function notifyNewMessage() {
 	showIndicator.value = true;

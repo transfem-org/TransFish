@@ -30,7 +30,7 @@
 						:round-lengths="true"
 						:touch-angle="25"
 						:threshold="10"
-						:centeredSlides="true"
+						:centered-slides="true"
 						:modules="[Virtual]"
 						:space-between="20"
 						:virtual="true"
@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XTutorial from "@/components/MkTutorialDialog.vue";
@@ -95,7 +95,7 @@ const keymap = {
 	t: focus,
 };
 
-let timelines = ["home"];
+const timelines = ["home"];
 
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
@@ -187,15 +187,6 @@ function saveSrc(
 	});
 }
 
-async function timetravel(): Promise<void> {
-	const { canceled, result: date } = await os.inputDate({
-		title: i18n.ts.date,
-	});
-	if (canceled) return;
-
-	tlComponent.value.timetravel(date);
-}
-
 function focus(): void {
 	tlComponent.value.focus();
 }
@@ -219,7 +210,7 @@ const headerActions = computed(() => [
 	title: i18n.ts.jumpToSpecifiedDate,
 	iconOnly: true,
 	handler: timetravel,
-}*/,
+} */,
 ]);
 
 const headerTabs = computed(() => [

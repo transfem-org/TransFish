@@ -1,5 +1,5 @@
 <template>
-	<FocusTrap v-bind:active="isActive">
+	<FocusTrap :active="isActive">
 		<div
 			class="omfetrab"
 			:class="['s' + size, 'w' + width, 'h' + height, { asDrawer }]"
@@ -163,14 +163,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch, onMounted } from "vue";
-import * as Misskey from "firefish-js";
+import { computed, onMounted, ref, watch } from "vue";
+import type * as Misskey from "firefish-js";
+import { FocusTrap } from "focus-trap-vue";
 import XSection from "@/components/MkEmojiPicker.section.vue";
+import type { UnicodeEmojiDef } from "@/scripts/emojilist";
 import {
 	emojilist,
-	unicodeEmojiCategories,
-	UnicodeEmojiDef,
 	getNicelyLabeledCategory,
+	unicodeEmojiCategories,
 } from "@/scripts/emojilist";
 import { getStaticImageUrl } from "@/scripts/get-static-image-url";
 import Ripple from "@/components/MkRipple.vue";
@@ -180,7 +181,6 @@ import { deviceKind } from "@/scripts/device-kind";
 import { emojiCategories, instance } from "@/instance";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
-import { FocusTrap } from "focus-trap-vue";
 
 const props = withDefaults(
 	defineProps<{

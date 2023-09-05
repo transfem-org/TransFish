@@ -24,8 +24,8 @@
 					</FormRadios>
 					<FormSplit>
 						<MkInput
-							:disabled="ad.place === 'widget'"
 							v-model="ad.ratio"
+							:disabled="ad.place === 'widget'"
 							type="number"
 						>
 							<template #label>{{ i18n.ts.ratio }}</template>
@@ -63,9 +63,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
-import {} from "vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
 import MkTextarea from "@/components/form/textarea.vue";
@@ -76,12 +75,12 @@ import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { formatDateTimeString } from "@/scripts/format-time-string";
 
-let ads: any[] = ref([]);
+const ads = ref([]);
 
 os.api("admin/ad/list").then((adsResponse) => {
 	ads.value = adsResponse;
 	// The date format should be changed to yyyy-MM-dd in order to be properly displayed
-	for (let i in ads.value) {
+	for (const i in ads.value) {
 		ads.value[i].expiresAt = ads.value[i].expiresAt.substr(0, 10);
 	}
 });

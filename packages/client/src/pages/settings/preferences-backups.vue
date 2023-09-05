@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, useCssModule, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, useCssModule } from "vue";
 import { v4 as uuid } from "uuid";
 import FormSection from "@/components/form/section.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -67,7 +67,7 @@ import { unisonReload } from "@/scripts/unison-reload";
 import { stream } from "@/stream";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
-import { version, host } from "@/config";
+import { host, version } from "@/config";
 import { definePageMetadata } from "@/scripts/page-metadata";
 const { t, ts } = i18n;
 
@@ -144,7 +144,7 @@ const profileProps = [
 	"settings",
 ];
 
-type Profile = {
+interface Profile {
 	name: string;
 	createdAt: string;
 	updatedAt: string | null;
@@ -157,11 +157,11 @@ type Profile = {
 		useSystemFont: "t" | null;
 		wallpaper: string | null;
 	};
-};
+}
 
 const connection = $i && stream.useChannel("main");
 
-let profiles = ref<Record<string, Profile> | null>(null);
+const profiles = ref<Record<string, Profile> | null>(null);
 
 os.api("i/registry/get-all", { scope }).then((res) => {
 	profiles.value = res || {};
@@ -195,7 +195,7 @@ function validate(profile: unknown): void {
 		throw new Error("createdAt is falsy or not Date");
 	if (profile.updatedAt) {
 		if (Number.isNaN(new Date(profile.updatedAt).getTime())) {
-			throw new Error("updatedAt is not Date");
+			throw new TypeError("updatedAt is not Date");
 		}
 	} else if (profile.updatedAt !== null) {
 		throw new Error("updatedAt is not null");

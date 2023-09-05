@@ -20,10 +20,10 @@ const props = defineProps<{
 	meta: any;
 }>();
 
-let usage: number = ref(0),
-	total: number = ref(0),
-	used: number = ref(0),
-	free: number = ref(0);
+const usage: number = ref(0);
+const total: number = ref(0);
+const used: number = ref(0);
+const free: number = ref(0);
 
 function onStats(stats) {
 	usage.value = stats.mem.active / stats.mem.total;

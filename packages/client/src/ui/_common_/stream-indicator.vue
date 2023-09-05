@@ -22,7 +22,7 @@ import { onUnmounted, ref } from "vue";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
 
-let hasDisconnected = ref(false);
+const hasDisconnected = ref(false);
 
 function onDisconnected() {
 	hasDisconnected.value = true;

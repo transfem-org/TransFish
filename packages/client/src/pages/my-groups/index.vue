@@ -91,7 +91,7 @@ async function create() {
 		title: i18n.ts.groupName,
 	});
 	if (canceled) return;
-	await os.api("users/groups/create", { name: name });
+	await os.api("users/groups/create", { name });
 	owned.value.reload();
 	os.success();
 }

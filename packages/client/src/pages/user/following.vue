@@ -16,17 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-import {
-	defineAsyncComponent,
-	computed,
-	inject,
-	onMounted,
-	onUnmounted,
-	watch,
-	ref,
-} from "vue";
+import { computed, ref, watch } from "vue";
 import * as Acct from "firefish-js/built/acct";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import XFollowList from "./follow-list.vue";
 import * as os from "@/os";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -39,8 +31,8 @@ const props = withDefaults(
 	{},
 );
 
-let user = ref<null | misskey.entities.UserDetailed>(null);
-let error = ref(null);
+const user = ref<null | misskey.entities.UserDetailed>(null);
+const error = ref(null);
 
 function fetchUser(): void {
 	if (props.acct == null) return;

@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { ref, watch } from "vue";
 import FormTextarea from "@/components/form/textarea.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import MkButton from "@/components/MkButton.vue";
@@ -34,7 +34,7 @@ const instanceMutes = ref($i!.mutedInstances.join("\n"));
 const changed = ref(false);
 
 async function save() {
-	let mutes = instanceMutes.value
+	const mutes = instanceMutes.value
 		.trim()
 		.split("\n")
 		.map((el) => el.trim())
@@ -53,10 +53,6 @@ async function save() {
 watch(instanceMutes, () => {
 	changed.value = true;
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.instanceMute,

@@ -17,6 +17,15 @@
 			</template>
 		</FormSelect>
 
+		<FormSelect v-model="translateLang" class="_formBlock">
+			<template #label>
+				{{ i18n.ts.languageForTranslation }}
+			</template>
+			<option v-for="x in langs" :key="x[0]" :value="x[0]">
+				{{ x[1] }}
+			</option>
+		</FormSelect>
+
 		<FormRadios v-model="overridedDeviceKind" class="_formBlock">
 			<template #label>{{ i18n.ts.overridedDeviceKind }}</template>
 			<option :value="null">{{ i18n.ts.auto }}</option>
@@ -71,6 +80,9 @@
 					{{ i18n.ts.reflectMayTakeTime }}</template
 				></FormSwitch
 			>
+			<FormSwitch v-model="detectPostLanguage" class="_formBlock">{{
+				i18n.ts.detectPostLanguage
+			}}</FormSwitch>
 
 			<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
 				<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
@@ -248,7 +260,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, computed, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { $i } from "@/account";
 import FormSwitch from "@/components/form/switch.vue";
 import FormSelect from "@/components/form/select.vue";
@@ -266,6 +278,7 @@ import { definePageMetadata } from "@/scripts/page-metadata";
 import { deviceKind } from "@/scripts/device-kind";
 
 const lang = ref(localStorage.getItem("lang"));
+const translateLang = ref(localStorage.getItem("translateLang"));
 const fontSize = ref(localStorage.getItem("fontSize"));
 const useSystemFont = ref(localStorage.getItem("useSystemFont") != null);
 
@@ -357,6 +370,9 @@ const showAdminUpdates = computed(
 const showTimelineReplies = computed(
 	defaultStore.makeGetterSetter("showTimelineReplies"),
 );
+const detectPostLanguage = computed(
+	defaultStore.makeGetterSetter("detectPostLanguage"),
+);
 
 watch(swipeOnDesktop, () => {
 	defaultStore.set("swipeOnMobile", true);
@@ -365,6 +381,10 @@ watch(swipeOnDesktop, () => {
 watch(lang, () => {
 	localStorage.setItem("lang", lang.value as string);
 	localStorage.removeItem("locale");
+});
+
+watch(translateLang, () => {
+	localStorage.setItem("translateLang", translateLang.value as string);
 });
 
 watch(fontSize, () => {
@@ -386,6 +406,7 @@ watch(useSystemFont, () => {
 watch(
 	[
 		lang,
+		translateLang,
 		fontSize,
 		useSystemFont,
 		enableInfiniteScroll,
@@ -407,10 +428,6 @@ watch(
 		await reloadAsk();
 	},
 );
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.general,

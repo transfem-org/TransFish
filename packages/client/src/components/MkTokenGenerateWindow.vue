@@ -6,10 +6,10 @@
 		:with-ok-button="true"
 		:ok-button-disabled="false"
 		:can-close="false"
+		style="padding: 12px"
 		@close="dialog.close()"
 		@closed="$emit('closed')"
 		@ok="ok()"
-		style="padding: 12px"
 	>
 		<template #header>{{ title || i18n.ts.generateAccessToken }}</template>
 		<div v-if="information" class="_section">
@@ -19,7 +19,7 @@
 			<div style="margin-bottom: 16px">
 				<b>{{ i18n.ts.name }}</b>
 			</div>
-			<MkInput style="margin-bottom: 16px" v-model="name" />
+			<MkInput v-model="name" style="margin-bottom: 16px" />
 		</div>
 		<div class="_section">
 			<div style="margin-bottom: 16px">
@@ -32,10 +32,10 @@
 				i18n.ts.enableAll
 			}}</MkButton>
 			<MkSwitch
-				style="margin-bottom: 6px"
 				v-for="kind in initialPermissions || kinds"
 				:key="kind"
 				v-model="permissions[kind]"
+				style="margin-bottom: 6px"
 				>{{ i18n.t(`_permissions.${kind}`) }}</MkSwitch
 			>
 		</div>
@@ -45,7 +45,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import { permissions as kinds } from "firefish-js";
 import MkInput from "./form/input.vue";
 import MkSwitch from "./form/switch.vue";
@@ -75,8 +74,8 @@ const emit = defineEmits<{
 }>();
 
 const dialog = ref<InstanceType<typeof XModalWindow>>();
-let name = ref(props.initialName);
-let permissions = ref({});
+const name = ref(props.initialName);
+const permissions = ref({});
 
 if (props.initialPermissions) {
 	for (const kind of props.initialPermissions) {

@@ -1,7 +1,7 @@
-type KaTeXMacro = {
+interface KaTeXMacro {
 	args: number;
 	rule: (string | number)[];
-};
+}
 
 function parseSingleKaTeXMacro(src: string): [string, KaTeXMacro] {
 	const invalid: [string, KaTeXMacro] = ["", { args: 0, rule: [] }];
@@ -37,7 +37,7 @@ function parseSingleKaTeXMacro(src: string): [string, KaTeXMacro] {
 
 	currentPos = skipSpaces(closeNameBracketPos + 1);
 
-	let macro: KaTeXMacro = { args: 0, rule: [] };
+	const macro: KaTeXMacro = { args: 0, rule: [] };
 
 	// parse [number of arguments] (optional)
 	if (src[currentPos] === "[") {
@@ -61,8 +61,8 @@ function parseSingleKaTeXMacro(src: string): [string, KaTeXMacro] {
 	currentPos = skipSpaces(currentPos);
 
 	while (currentPos < src.length - 1) {
-		let numbersignPos = -1;
-		let isEscaped = false;
+		let numbersignPos = -1,
+			isEscaped = false;
 
 		for (let i = currentPos; i < src.length - 1; ++i) {
 			if (src[i] !== "\\" && src[i] !== "#") {
@@ -85,9 +85,7 @@ function parseSingleKaTeXMacro(src: string): [string, KaTeXMacro] {
 
 		const argIndexEndPos =
 			src.slice(numbersignPos + 1).search(/[^\d]/) + numbersignPos;
-		const argIndex: number = Number(
-			src.slice(numbersignPos + 1, argIndexEndPos + 1),
-		);
+		const argIndex = Number(src.slice(numbersignPos + 1, argIndexEndPos + 1));
 
 		if (Number.isNaN(argIndex) || argIndex < 1 || macro.args < argIndex)
 			return invalid;
@@ -104,7 +102,7 @@ function parseSingleKaTeXMacro(src: string): [string, KaTeXMacro] {
 }
 
 export function parseKaTeXMacros(src: string): string {
-	let result: { [name: string]: KaTeXMacro } = {};
+	const result: Record<string, KaTeXMacro> = {};
 
 	for (const s of src.split("\n")) {
 		const [name, macro]: [string, KaTeXMacro] = parseSingleKaTeXMacro(s.trim());
@@ -118,16 +116,16 @@ export function parseKaTeXMacros(src: string): string {
 // the boolean value is used for multi-pass expansions (macros can expand to other macros)
 function expandKaTeXMacroOnce(
 	src: string,
-	macros: { [name: string]: KaTeXMacro },
+	macros: Record<string, KaTeXMacro>,
 	maxNumberOfExpansions: number,
 ): [string, boolean, number] {
 	const bracketKinds = 3;
-	const openBracketId: { [bracket: string]: number } = {
+	const openBracketId: Record<string, number> = {
 		"(": 0,
 		"{": 1,
 		"[": 2,
 	};
-	const closeBracketId: { [bracket: string]: number } = {
+	const closeBracketId: Record<string, number> = {
 		")": 0,
 		"}": 1,
 		"]": 2,
@@ -136,14 +134,14 @@ function expandKaTeXMacroOnce(
 	const closeBracketFromId = [")", "}", "]"];
 
 	// mappings from open brackets to their corresponding close brackets
-	type BracketMapping = { [openBracketPos: number]: number };
+	type BracketMapping = Record<number, number>;
 
 	const bracketMapping = ((): BracketMapping => {
-		let result: BracketMapping = {};
+		const result: BracketMapping = {};
 		const n = src.length;
 
-		let depths = new Array<number>(bracketKinds).fill(0); // current bracket depth for "()", "{}", and "[]"
-		let buffer = Array.from(Array<number[]>(bracketKinds), () =>
+		const depths = new Array<number>(bracketKinds).fill(0); // current bracket depth for "()", "{}", and "[]"
+		const buffer = Array.from(Array<number[]>(bracketKinds), () =>
 			Array<number>(n),
 		);
 
@@ -212,17 +210,15 @@ function expandKaTeXMacroOnce(
 		--maxNumberOfExpansions;
 
 		// search for a custom macro
-		let checkedPos = beginPos - 1;
-		let macroName = "";
-		let macroBackslashPos = 0;
-
-		// for macros w/o args: unused
-		//            w/  args: the first open bracket ("(", "{", or "[") after cmd name
-		let macroArgBeginPos = 0;
-
-		// for macros w/o args: the end of cmd name
-		//            w/  args: the closing bracket of the last arg
-		let macroArgEndPos = 0;
+		let checkedPos = beginPos - 1,
+			macroName = "",
+			macroBackslashPos = 0,
+			// for macros w/o args: unused
+			//            w/  args: the first open bracket ("(", "{", or "[") after cmd name
+			macroArgBeginPos = 0,
+			// for macros w/o args: the end of cmd name
+			//            w/  args: the closing bracket of the last arg
+			macroArgEndPos = 0;
 
 		while (checkedPos < endPos) {
 			checkedPos = src.indexOf("\\", checkedPos + 1);
@@ -269,7 +265,7 @@ function expandKaTeXMacroOnce(
 		const numArgs: number = macros[macroName].args;
 		const openBracket: string = macroName.slice(-1);
 
-		let expandedArgs = new Array<string>(numArgs);
+		const expandedArgs = new Array<string>(numArgs);
 
 		for (let i = 0; i < numArgs; ++i) {
 			// find the first open bracket after what we've searched
@@ -308,7 +304,7 @@ export function expandKaTeXMacro(
 
 	let expandMore = true;
 
-	while (expandMore && 0 < maxNumberOfExpansions)
+	while (expandMore && maxNumberOfExpansions > 0)
 		[src, expandMore, maxNumberOfExpansions] = expandKaTeXMacroOnce(
 			src,
 			macros,

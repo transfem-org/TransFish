@@ -23,7 +23,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import XColumn from "./column.vue";
 import type { Column } from "./deck-store";
 import { updateColumn } from "./deck-store";

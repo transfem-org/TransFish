@@ -1,7 +1,7 @@
 namespace MisskeyEntity {
-  export type Field = {
-    name: string
-    value: string
-		verified?: string
-  }
+	export type Field = {
+		name: string;
+		value: string;
+		verified?: string;
+	};
 }

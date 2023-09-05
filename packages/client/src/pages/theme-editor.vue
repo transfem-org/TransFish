@@ -143,7 +143,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { toUnicode } from "punycode/";
 import tinycolor from "tinycolor2";
 import { v4 as uuid } from "uuid";
@@ -154,7 +154,8 @@ import FormTextarea from "@/components/form/textarea.vue";
 import FormFolder from "@/components/form/folder.vue";
 
 import { $i } from "@/account";
-import { Theme, applyTheme } from "@/scripts/theme";
+import type { Theme } from "@/scripts/theme";
+import { applyTheme } from "@/scripts/theme";
 import lightTheme from "@/themes/_light.json5";
 import darkTheme from "@/themes/_dark.json5";
 import { host } from "@/config";
@@ -238,13 +239,13 @@ const fgColors = [
 	},
 ];
 
-let theme = ref<Partial<Theme>>({
+const theme = ref<Partial<Theme>>({
 	base: "light",
 	props: lightTheme.props,
 });
-let description = ref<string | null>(null);
-let themeCode = ref<string | null>(null);
-let changed = ref(false);
+const description = ref<string | null>(null);
+const themeCode = ref<string | null>(null);
+const changed = ref(false);
 
 useLeaveGuard(changed);
 

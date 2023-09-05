@@ -36,8 +36,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watch, ref } from "vue";
-import * as misskey from "firefish-js";
+import { onMounted, ref, watch } from "vue";
+import type * as misskey from "firefish-js";
 import MkReactionIcon from "@/components/MkReactionIcon.vue";
 import MkUserCardMini from "@/components/MkUserCardMini.vue";
 import * as os from "@/os";
@@ -46,10 +46,10 @@ const props = defineProps<{
 	noteId: misskey.entities.Note["id"];
 }>();
 
-let note = ref<misskey.entities.Note>();
-let tab = ref<string>();
-let reactions = ref<string[]>();
-let users = ref();
+const note = ref<misskey.entities.Note>();
+const tab = ref<string>();
+const reactions = ref<string[]>();
+const users = ref();
 
 watch(tab, async () => {
 	const res = await os.api("notes/reactions", {

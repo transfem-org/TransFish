@@ -51,16 +51,16 @@ const props = defineProps<{
 const viewBoxX: number = ref(50);
 const viewBoxY: number = ref(30);
 const stats: any[] = ref([]);
-let inPolylinePoints: string = ref(""),
-	outPolylinePoints: string = ref(""),
-	inPolygonPoints: string = ref(""),
-	outPolygonPoints: string = ref(""),
-	inHeadX: any = ref(null),
-	inHeadY: any = ref(null),
-	outHeadX: any = ref(null),
-	outHeadY: any = ref(null),
-	inRecent: number = ref(0),
-	outRecent: number = ref(0);
+const inPolylinePoints: string = ref("");
+const outPolylinePoints: string = ref("");
+const inPolygonPoints: string = ref("");
+const outPolygonPoints: string = ref("");
+const inHeadX: any = ref(null);
+const inHeadY: any = ref(null);
+const outHeadX: any = ref(null);
+const outHeadY: any = ref(null);
+const inRecent: number = ref(0);
+const outRecent: number = ref(0);
 
 onMounted(() => {
 	props.connection.on("stats", onStats);

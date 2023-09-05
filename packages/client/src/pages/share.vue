@@ -30,14 +30,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 // SPECIFICATION: https://misskey-hub.net/docs/features/share-form.html
-
-import {} from "vue";
 import { noteVisibilities } from "firefish-js";
 import * as Acct from "firefish-js/built/acct";
-import * as Misskey from "firefish-js";
+import type * as Misskey from "firefish-js";
 import MkButton from "@/components/MkButton.vue";
 import XPostForm from "@/components/MkPostForm.vue";
 import * as os from "@/os";
@@ -49,21 +47,21 @@ const urlParams = new URLSearchParams(window.location.search);
 const localOnlyQuery = urlParams.get("localOnly");
 const visibilityQuery = urlParams.get("visibility");
 
-let state = ref("fetching" as "fetching" | "writing" | "posted");
-let title = ref(urlParams.get("title"));
+const state = ref("fetching" as "fetching" | "writing" | "posted");
+const title = ref(urlParams.get("title"));
 const text = urlParams.get("text");
 const url = urlParams.get("url");
-let initialText = ref(null as string | null);
-let reply = ref(null as Misskey.entities.Note | null);
-let renote = ref(null as Misskey.entities.Note | null);
-let visibility = ref(
+const initialText = ref(null as string | null);
+const reply = ref(null as Misskey.entities.Note | null);
+const renote = ref(null as Misskey.entities.Note | null);
+const visibility = ref(
 	noteVisibilities.includes(visibilityQuery) ? visibilityQuery : null,
 );
-let localOnly = ref(
+const localOnly = ref(
 	localOnlyQuery === "0" ? false : localOnlyQuery === "1" ? true : null,
 );
-let files = ref([] as Misskey.entities.DriveFile[]);
-let visibleUsers = ref([] as Misskey.entities.User[]);
+const files = ref([] as Misskey.entities.DriveFile[]);
+const visibleUsers = ref([] as Misskey.entities.User[]);
 
 async function init() {
 	let noteText = "";
@@ -112,7 +110,7 @@ async function init() {
 	}
 
 	try {
-		//#region Reply
+		// #region Reply
 		const replyId = urlParams.get("replyId");
 		const replyUri = urlParams.get("replyUri");
 		if (replyId) {
@@ -127,9 +125,9 @@ async function init() {
 				reply.value = obj.object;
 			}
 		}
-		//#endregion
+		// #endregion
 
-		//#region Renote
+		// #region Renote
 		const renoteId = urlParams.get("renoteId");
 		const renoteUri = urlParams.get("renoteUri");
 		if (renoteId) {
@@ -144,9 +142,9 @@ async function init() {
 				renote.value = obj.object;
 			}
 		}
-		//#endregion
+		// #endregion
 
-		//#region Drive files
+		// #region Drive files
 		const fileIds = urlParams.get("fileIds");
 		if (fileIds) {
 			await Promise.all(
@@ -162,7 +160,7 @@ async function init() {
 				),
 			);
 		}
-		//#endregion
+		// #endregion
 	} catch (err) {
 		os.alert({
 			type: "error",

@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { defineAsyncComponent } from "vue";
 import { swInject } from "./sw-inject";
-import { popup, popups, pendingApiRequestsCount } from "@/os";
+import { pendingApiRequestsCount, popup, popups } from "@/os";
 import { uploads } from "@/scripts/upload";
 import * as sound from "@/scripts/sound";
 import { $i } from "@/account";
@@ -59,7 +59,7 @@ if ($i) {
 	const connection = stream.useChannel("main", null, "UI");
 	connection.on("notification", onNotification);
 
-	//#region Listen message from SW
+	// #region Listen message from SW
 	if ("serviceWorker" in navigator) {
 		swInject();
 	}

@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { ref, watch } from "vue";
 import XContainer from "../page-editor.container.vue";
 import MkInput from "@/components/form/input.vue";
 import MkSwitch from "@/components/form/switch.vue";
@@ -56,8 +56,8 @@ const props = withDefaults(
 	},
 );
 
-let id: any = ref(props.value.note);
-let note: any = ref(null);
+const id = ref(props.value.note);
+const note = ref(null);
 
 watch(
 	id.value,

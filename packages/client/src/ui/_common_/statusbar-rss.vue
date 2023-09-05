@@ -45,7 +45,7 @@ const props = defineProps<{
 
 const items = ref([]);
 const fetching = ref(true);
-let key = ref(0);
+const key = ref(0);
 
 const tick = () => {
 	fetch(`/api/fetch-rss?url=${props.url}`, {}).then((res) => {

@@ -61,7 +61,8 @@ import FormTextarea from "@/components/form/textarea.vue";
 import FormSelect from "@/components/form/select.vue";
 import FormInput from "@/components/form/input.vue";
 import FormButton from "@/components/MkButton.vue";
-import { Theme, getBuiltinThemesRef } from "@/scripts/theme";
+import type { Theme } from "@/scripts/theme";
+import { getBuiltinThemesRef } from "@/scripts/theme";
 import copyToClipboard from "@/scripts/copy-to-clipboard";
 import * as os from "@/os";
 import { getThemes, removeTheme } from "@/theme-store";
@@ -100,10 +101,6 @@ function uninstall() {
 	selectedThemeId.value = null;
 	os.success();
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._theme.manage,

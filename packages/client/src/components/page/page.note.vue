@@ -14,11 +14,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, Ref, ref } from "vue";
+import type { PropType, Ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import XNote from "@/components/MkNote.vue";
 import XNoteDetailed from "@/components/MkNoteDetailed.vue";
 import * as os from "@/os";
-import { NoteBlock } from "@/scripts/hpml/block";
+import type { NoteBlock } from "@/scripts/hpml/block";
 
 export default defineComponent({
 	components: {

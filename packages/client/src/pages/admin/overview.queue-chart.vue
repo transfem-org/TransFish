@@ -3,27 +3,24 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import {
-	Chart,
 	ArcElement,
-	LineElement,
-	BarElement,
-	PointElement,
 	BarController,
-	LineController,
+	BarElement,
 	CategoryScale,
-	LinearScale,
-	TimeScale,
+	Chart,
+	Filler,
 	Legend,
+	LineController,
+	LineElement,
+	LinearScale,
+	PointElement,
+	SubTitle,
+	TimeScale,
 	Title,
 	Tooltip,
-	SubTitle,
-	Filler,
 } from "chart.js";
-import number from "@/filters/number";
-import * as os from "@/os";
-import { defaultStore } from "@/store";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 
 Chart.register(
@@ -56,11 +53,7 @@ const alpha = (hex, a) => {
 	return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
 
-const chartEl = ref<HTMLCanvasElement>(null);
-
-const gridColor = defaultStore.state.darkMode
-	? "rgba(255, 255, 255, 0.1)"
-	: "rgba(0, 0, 0, 0.1)";
+const chartEl = ref<HTMLCanvasElement | null>(null);
 
 // フォントカラー
 Chart.defaults.color = getComputedStyle(
@@ -72,7 +65,7 @@ const { handler: externalTooltipHandler } = useChartTooltip();
 let chartInstance: Chart;
 
 const onStats = (stats) => {
-	chartInstance.data.labels.push("");
+	chartInstance.data.labels?.push("");
 	chartInstance.data.datasets[0].data.push(
 		stats[props.domain].activeSincePrevTick,
 	);
@@ -80,7 +73,7 @@ const onStats = (stats) => {
 	chartInstance.data.datasets[2].data.push(stats[props.domain].waiting);
 	chartInstance.data.datasets[3].data.push(stats[props.domain].delayed);
 	if (chartInstance.data.datasets[0].data.length > 100) {
-		chartInstance.data.labels.shift();
+		chartInstance.data.labels?.shift();
 		chartInstance.data.datasets[0].data.shift();
 		chartInstance.data.datasets[1].data.shift();
 		chartInstance.data.datasets[2].data.shift();
@@ -91,7 +84,7 @@ const onStats = (stats) => {
 
 const onStatsLog = (statsLog) => {
 	for (const stats of [...statsLog].reverse()) {
-		chartInstance.data.labels.push("");
+		chartInstance.data.labels?.push("");
 		chartInstance.data.datasets[0].data.push(
 			stats[props.domain].activeSincePrevTick,
 		);
@@ -99,7 +92,7 @@ const onStatsLog = (statsLog) => {
 		chartInstance.data.datasets[2].data.push(stats[props.domain].waiting);
 		chartInstance.data.datasets[3].data.push(stats[props.domain].delayed);
 		if (chartInstance.data.datasets[0].data.length > 100) {
-			chartInstance.data.labels.shift();
+			chartInstance.data.labels?.shift();
 			chartInstance.data.datasets[0].data.shift();
 			chartInstance.data.datasets[1].data.shift();
 			chartInstance.data.datasets[2].data.shift();
@@ -218,5 +211,3 @@ onUnmounted(() => {
 	props.connection.off("statsLog", onStatsLog);
 });
 </script>
-
-<style lang="scss" scoped></style>

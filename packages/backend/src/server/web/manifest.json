@@ -3,10 +3,11 @@
 	"name": "Firefish",
 	"description": "An open source, decentralized social media platform that's free forever!",
 	"start_url": "/",
+	"scope": "/",
 	"display": "standalone",
 	"background_color": "#1f1d2e",
 	"theme_color": "#31748f",
-	"orientation": "portrait-primary",
+	"orientation": "natural",
 	"icons": [
 		{
 			"src": "/static-assets/icons/192.png",

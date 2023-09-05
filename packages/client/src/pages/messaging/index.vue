@@ -12,7 +12,7 @@
 					:round-lengths="true"
 					:touch-angle="25"
 					:threshold="10"
-					:centeredSlides="true"
+					:centered-slides="true"
 					:modules="[Virtual]"
 					:space-between="20"
 					:virtual="true"
@@ -27,9 +27,9 @@
 					<swiper-slide>
 						<div class="_content yweeujhr dms">
 							<MkButton
+								v-if="!isMobile"
 								primary
 								class="start"
-								v-if="!isMobile"
 								@click="startUser"
 								><i class="ph-plus ph-bold ph-lg"></i>
 								{{ i18n.ts.startMessaging }}</MkButton
@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, markRaw, onMounted, onUnmounted, watch, computed } from "vue";
+import { computed, markRaw, onMounted, onUnmounted, ref, watch } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -108,11 +108,11 @@ import "swiper/scss/virtual";
 
 const router = useRouter();
 
-let messages = ref([]);
-let connection = ref(null);
+const messages = ref([]);
+const connection = ref(null);
 
 const tabs = ["dms", "groups"];
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const MOBILE_THRESHOLD = 500;
@@ -201,28 +201,6 @@ function onRead(ids): void {
 			}
 		}
 	}
-}
-
-function startMenu(ev) {
-	os.popupMenu(
-		[
-			{
-				text: i18n.ts.messagingWithUser,
-				icon: "ph-user ph-bold ph-lg",
-				action: () => {
-					startUser();
-				},
-			},
-			{
-				text: i18n.ts.messagingWithGroup,
-				icon: "ph-users-three ph-bold ph-lg",
-				action: () => {
-					startGroup();
-				},
-			},
-		],
-		ev.currentTarget ?? ev.target,
-	);
 }
 
 async function startUser(): void {

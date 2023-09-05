@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkPagePreview from "@/components/MkPagePreview.vue";
 import MkPagination from "@/components/MkPagination.vue";
 
@@ -29,5 +29,3 @@ const pagination = {
 	})),
 };
 </script>
-
-<style lang="scss" scoped></style>

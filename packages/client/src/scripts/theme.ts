@@ -2,14 +2,14 @@ import { ref } from "vue";
 import tinycolor from "tinycolor2";
 import { globalEvents } from "@/events";
 
-export type Theme = {
+export interface Theme {
 	id: string;
 	name: string;
 	author: string;
 	desc?: string;
 	base?: "dark" | "light";
 	props: Record<string, string>;
-};
+}
 
 import lightTheme from "@/themes/_light.json5";
 import darkTheme from "@/themes/_dark.json5";
@@ -88,7 +88,7 @@ export function applyTheme(theme: Theme, persist = true) {
 
 	for (const tag of document.head.children) {
 		if (tag.tagName === "META" && tag.getAttribute("name") === "theme-color") {
-			tag.setAttribute("content", props["htmlThemeColor"]);
+			tag.setAttribute("content", props.htmlThemeColor);
 			break;
 		}
 	}

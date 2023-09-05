@@ -16,8 +16,8 @@
 				</MkInput>
 				<button
 					class="_button"
-					@click="remove(i)"
 					:aria-label="i18n.t('remove')"
+					@click="remove(i)"
 				>
 					<i class="ph-x ph-bold ph-lg"></i>
 				</button>

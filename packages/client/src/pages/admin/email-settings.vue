@@ -91,9 +91,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
-import {} from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
 import FormInfo from "@/components/MkInfo.vue";
@@ -105,13 +104,13 @@ import { fetchInstance, instance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let enableEmail: boolean = ref(false);
-let email: any = ref(null);
-let smtpSecure: boolean = ref(false);
-let smtpHost: string = ref("");
-let smtpPort: number = ref(0);
-let smtpUser: string = ref("");
-let smtpPass: string = ref("");
+const enableEmail = ref(false);
+const email: any = ref(null);
+const smtpSecure = ref(false);
+const smtpHost = ref("");
+const smtpPort = ref(0);
+const smtpUser = ref("");
+const smtpPass = ref("");
 
 async function init() {
 	const meta = await os.api("admin/meta");

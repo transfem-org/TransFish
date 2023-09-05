@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import XNoteHeader from "@/components/MkNoteHeader.vue";
 import MkSubNoteContent from "@/components/MkSubNoteContent.vue";
 

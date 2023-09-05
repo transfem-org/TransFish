@@ -9,7 +9,7 @@ import "@/style.scss";
 import "@phosphor-icons/web/bold";
 import "@phosphor-icons/web/fill";
 
-//#region account indexedDB migration
+// #region account indexedDB migration
 import { set } from "@/scripts/idb-proxy";
 
 const accounts = localStorage.getItem("accounts");
@@ -17,30 +17,30 @@ if (accounts) {
 	set("accounts", JSON.parse(accounts));
 	localStorage.removeItem("accounts");
 }
-//#endregion
+// #endregion
 
 import {
 	computed,
 	createApp,
-	watch,
+	defineAsyncComponent,
 	markRaw,
 	version as vueVersion,
-	defineAsyncComponent,
+	watch,
 } from "vue";
 import { compareVersions } from "compare-versions";
 
 import widgets from "@/widgets";
 import directives from "@/directives";
 import components from "@/components";
-import { version, ui, lang, host } from "@/config";
+import { host, lang, ui, version } from "@/config";
 import { applyTheme } from "@/scripts/theme";
 import { isDeviceDarkmode } from "@/scripts/is-device-darkmode";
 import { i18n } from "@/i18n";
-import { confirm, alert, post, popup, toast, api } from "@/os";
+import { alert, api, confirm, popup, post, toast } from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
-import { $i, refreshAccount, login, updateAccount, signout } from "@/account";
-import { defaultStore, ColdDeviceStorage } from "@/store";
+import { $i, login, refreshAccount, signout, updateAccount } from "@/account";
+import { ColdDeviceStorage, defaultStore } from "@/store";
 import { fetchInstance, instance } from "@/instance";
 import { makeHotkey } from "@/scripts/hotkey";
 import { search } from "@/scripts/search";
@@ -106,7 +106,7 @@ function checkForSplash() {
 		else location.reload();
 	});
 
-	//#region SEE: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+	// #region SEE: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
 	// TODO: いつの日にか消したい
 	const vh = window.innerHeight * 0.01;
 	document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -114,14 +114,14 @@ function checkForSplash() {
 		const vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty("--vh", `${vh}px`);
 	});
-	//#endregion
+	// #endregion
 
-	//#region Set lang attr
+	// #region Set lang attr
 	const html = document.documentElement;
 	html.setAttribute("lang", lang || "en-US");
-	//#endregion
+	// #endregion
 
-	//#region loginId
+	// #region loginId
 	const params = new URLSearchParams(location.search);
 	const loginId = params.get("loginId");
 
@@ -138,9 +138,9 @@ function checkForSplash() {
 		history.replaceState({ misskey: "loginId" }, "", target);
 	}
 
-	//#endregion
+	// #endregion
 
-	//#region Fetch user
+	// #region Fetch user
 	if ($i?.token) {
 		if (_DEV_) {
 			console.log("account cache found. refreshing...");
@@ -174,7 +174,7 @@ function checkForSplash() {
 			}
 		}
 	}
-	//#endregion
+	// #endregion
 
 	const fetchInstanceMetaPromise = fetchInstance();
 
@@ -336,7 +336,7 @@ function checkForSplash() {
 		}
 	});
 
-	//#region Sync dark mode
+	// #region Sync dark mode
 	if (ColdDeviceStorage.get("syncDeviceDarkMode")) {
 		defaultStore.set("darkMode", isDeviceDarkmode());
 	}
@@ -345,7 +345,7 @@ function checkForSplash() {
 			defaultStore.set("darkMode", mql.matches);
 		}
 	};
-	//#endregion
+	// #endregion
 
 	fetchInstanceMetaPromise.then(() => {
 		if (defaultStore.state.themeInitial) {
@@ -407,7 +407,7 @@ function checkForSplash() {
 
 	stream.on("emojiAdded", (emojiData) => {
 		// TODO
-		//store.commit('instance/set', );
+		// store.commit('instance/set', );
 	});
 
 	for (const plugin of ColdDeviceStorage.get("plugins").filter(

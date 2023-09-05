@@ -1,15 +1,10 @@
 import { redisClient } from "../db/redis.js";
-import { promisify } from "node:util";
-import redisLock from "redis-lock";
+import { Mutex } from "redis-semaphore";
 
 /**
  * Retry delay (ms) for lock acquisition
  */
 const retryDelay = 100;
-
-const lock: (key: string, timeout?: number) => Promise<() => void> = redisClient
-	? promisify(redisLock(redisClient, retryDelay))
-	: async () => () => {};
 
 /**
  * Get AP Object lock
@@ -17,17 +12,38 @@ const lock: (key: string, timeout?: number) => Promise<() => void> = redisClient
  * @param timeout Lock timeout (ms), The timeout releases previous lock.
  * @returns Unlock function
  */
-export function getApLock(uri: string, timeout = 30 * 1000) {
-	return lock(`ap-object:${uri}`, timeout);
+export async function getApLock(
+	uri: string,
+	timeout = 30 * 1000,
+): Promise<Mutex> {
+	const lock = new Mutex(redisClient, `ap-object:${uri}`, {
+		lockTimeout: timeout,
+		retryInterval: retryDelay,
+	});
+	await lock.acquire();
+	return lock;
 }
 
-export function getFetchInstanceMetadataLock(
+export async function getFetchInstanceMetadataLock(
 	host: string,
 	timeout = 30 * 1000,
-) {
-	return lock(`instance:${host}`, timeout);
+): Promise<Mutex> {
+	const lock = new Mutex(redisClient, `instance:${host}`, {
+		lockTimeout: timeout,
+		retryInterval: retryDelay,
+	});
+	await lock.acquire();
+	return lock;
 }
 
-export function getChartInsertLock(lockKey: string, timeout = 30 * 1000) {
-	return lock(`chart-insert:${lockKey}`, timeout);
+export async function getChartInsertLock(
+	lockKey: string,
+	timeout = 30 * 1000,
+): Promise<Mutex> {
+	const lock = new Mutex(redisClient, `chart-insert:${lockKey}`, {
+		lockTimeout: timeout,
+		retryInterval: retryDelay,
+	});
+	await lock.acquire();
+	return lock;
 }

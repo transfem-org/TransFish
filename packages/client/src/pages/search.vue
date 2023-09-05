@@ -12,7 +12,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="30"
 				:virtual="true"
@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import XNotes from "@/components/MkNotes.vue";
@@ -76,7 +76,7 @@ const usersPagination = {
 };
 
 const tabs = ["notes", "users"];
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
 const headerActions = computed(() => []);

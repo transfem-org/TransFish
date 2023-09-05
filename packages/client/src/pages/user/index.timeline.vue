@@ -12,11 +12,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
-import * as misskey from "firefish-js";
+import { computed, ref } from "vue";
+import type * as misskey from "firefish-js";
 import XNotes from "@/components/MkNotes.vue";
 import MkTab from "@/components/MkTab.vue";
-import * as os from "@/os";
 import { i18n } from "@/i18n";
 
 const props = defineProps<{

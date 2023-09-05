@@ -160,8 +160,9 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, provide, watch, ref } from "vue";
+import { computed, provide, ref, watch } from "vue";
 import { v4 as uuid } from "uuid";
+import { VueDraggable } from "vue-draggable-plus";
 import XVariable from "./page-editor.script-block.vue";
 import XBlocks from "./page-editor.blocks.vue";
 import MkTextarea from "@/components/form/textarea.vue";
@@ -173,7 +174,6 @@ import { blockDefs } from "@/scripts/hpml/index";
 import { HpmlTypeChecker } from "@/scripts/hpml/type-checker";
 import { url } from "@/config";
 import { collectPageVars } from "@/scripts/collect-page-vars";
-import { VueDraggable } from "vue-draggable-plus";
 import * as os from "@/os";
 import { selectFile } from "@/scripts/select-file";
 import { mainRouter } from "@/router";
@@ -187,25 +187,25 @@ const props = defineProps<{
 	initUser?: string;
 }>();
 
-let tab = ref("settings");
-let author = ref($i);
-let readonly = ref(false);
-let page = ref(null);
-let pageId = ref(null);
-let currentName = ref(null);
-let title = ref("");
-let summary = ref(null);
-let name = ref(Date.now().toString());
-let eyeCatchingImage = ref(null);
-let eyeCatchingImageId = ref(null);
-let font = ref("sans-serif");
-let content = ref([]);
-let alignCenter = ref(false);
-let isPublic = ref(true);
-let hideTitleWhenPinned = ref(false);
-let variables = ref([]);
-let hpml = ref(null);
-let script = ref("");
+const tab = ref("settings");
+const author = ref($i);
+const readonly = ref(false);
+const page = ref(null);
+const pageId = ref(null);
+const currentName = ref(null);
+const title = ref("");
+const summary = ref(null);
+const name = ref(Date.now().toString());
+const eyeCatchingImage = ref(null);
+const eyeCatchingImageId = ref(null);
+const font = ref("sans-serif");
+const content = ref([]);
+const alignCenter = ref(false);
+const isPublic = ref(true);
+const hideTitleWhenPinned = ref(false);
+const variables = ref([]);
+const hpml = ref(null);
+const script = ref("");
 
 provide("readonly", readonly.value);
 provide("getScriptBlockList", getScriptBlockList);
@@ -545,7 +545,7 @@ definePageMetadata(
 			title = i18n.ts._pages.readPage;
 		}
 		return {
-			title: title,
+			title,
 			icon: "ph-pencil ph-bold ph-lg",
 		};
 	}),

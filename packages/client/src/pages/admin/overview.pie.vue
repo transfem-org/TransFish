@@ -3,10 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, shallowRef } from "vue";
+import { onMounted, shallowRef } from "vue";
 import { Chart } from "chart.js";
-import number from "@/filters/number";
-import { defaultStore } from "@/store";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 import { initChart } from "@/scripts/init-chart";
 
@@ -21,7 +19,7 @@ const props = defineProps<{
 	}[];
 }>();
 
-const chartEl = shallowRef<HTMLCanvasElement>(null);
+const chartEl = shallowRef<HTMLCanvasElement>();
 
 const { handler: externalTooltipHandler } = useChartTooltip({
 	position: "middle",
@@ -83,5 +81,3 @@ onMounted(() => {
 	});
 });
 </script>
-
-<style lang="scss" scoped></style>

@@ -64,7 +64,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import {} from "vue";
 import XModalWindow from "@/components/MkModalWindow.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkInput from "@/components/form/input.vue";
@@ -77,11 +76,11 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let dialog: InstanceType<typeof XModalWindow> = ref();
+const dialog: InstanceType<typeof XModalWindow> = ref();
 
-let username = ref("");
-let email = ref("");
-let processing = ref(false);
+const username = ref("");
+const email = ref("");
+const processing = ref(false);
 
 async function onSubmit() {
 	processing.value = true;

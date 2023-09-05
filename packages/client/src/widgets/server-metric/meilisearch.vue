@@ -28,11 +28,11 @@ const props = defineProps<{
 	meta: any;
 }>();
 
-let progress: number = ref(0),
-	serverStats = ref(null),
-	totalSize: number = ref(0),
-	indexCount: number = ref(0),
-	available: string = ref("unavailable");
+const progress: number = ref(0);
+const serverStats = ref(null);
+const totalSize: number = ref(0);
+const indexCount: number = ref(0);
+const available: string = ref("unavailable");
 
 function onStats(stats) {
 	totalSize.value = stats.meilisearch.size;

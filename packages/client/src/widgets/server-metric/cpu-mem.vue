@@ -97,16 +97,16 @@ const cpuGradientId = uuid();
 const cpuMaskId = uuid();
 const memGradientId = uuid();
 const memMaskId = uuid();
-let cpuPolylinePoints: string = ref(""),
-	memPolylinePoints: string = ref(""),
-	cpuPolygonPoints: string = ref(""),
-	memPolygonPoints: string = ref(""),
-	cpuHeadX: any = ref(null),
-	cpuHeadY: any = ref(null),
-	memHeadX: any = ref(null),
-	memHeadY: any = ref(null),
-	cpuP: string = ref(""),
-	memP: string = ref("");
+const cpuPolylinePoints: string = ref("");
+const memPolylinePoints: string = ref("");
+const cpuPolygonPoints: string = ref("");
+const memPolygonPoints: string = ref("");
+const cpuHeadX: any = ref(null);
+const cpuHeadY: any = ref(null);
+const memHeadX: any = ref(null);
+const memHeadY: any = ref(null);
+const cpuP: string = ref("");
+const memP: string = ref("");
 
 onMounted(() => {
 	props.connection.on("stats", onStats);

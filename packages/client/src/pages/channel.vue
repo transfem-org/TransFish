@@ -101,8 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch, ref } from "vue";
-import MkContainer from "@/components/MkContainer.vue";
+import { computed, ref, watch } from "vue";
 import XPostForm from "@/components/MkPostForm.vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import XChannelFollowButton from "@/components/MkChannelFollowButton.vue";
@@ -118,8 +117,8 @@ const props = defineProps<{
 	channelId: string;
 }>();
 
-let channel = ref(null);
-let showBanner = ref(true);
+const channel = ref(null);
+const showBanner = ref(true);
 
 watch(
 	() => props.channelId,

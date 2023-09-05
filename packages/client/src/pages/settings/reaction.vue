@@ -15,8 +15,8 @@
 						class="zoaiodol"
 						animation="150"
 						delay="100"
-						@end="save"
 						delay-on-touch-only="true"
+						@end="save"
 					>
 						<div
 							v-for="item in reactions"
@@ -121,7 +121,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, watch, ref, computed } from "vue";
+import { computed, defineAsyncComponent, ref, watch } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
 import FormRadios from "@/components/form/radios.vue";
 import FromSlot from "@/components/form/slot.vue";
@@ -146,7 +146,7 @@ async function reloadAsk() {
 	unisonReload();
 }
 
-let reactions = ref(deepClone(defaultStore.state.reactions));
+const reactions = ref(deepClone(defaultStore.state.reactions));
 
 const reactionPickerSkinTone = computed(
 	defaultStore.makeGetterSetter("reactionPickerSkinTone"),
@@ -236,10 +236,6 @@ watch(reactionPickerSkinTone.value, async () => {
 	});
 	await reloadAsk();
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.reaction,

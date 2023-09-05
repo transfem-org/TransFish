@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, nextTick, ref, computed } from "vue";
+import { defineAsyncComponent, nextTick, ref } from "vue";
 import { AiScript, parse } from "@syuilo/aiscript";
 import { serialize } from "@syuilo/aiscript/built/serializer";
 import { v4 as uuid } from "uuid";
@@ -41,8 +41,8 @@ function installPlugin({ id, meta, ast, token }) {
 			id,
 			active: true,
 			configData: {},
-			token: token,
-			ast: ast,
+			token,
+			ast,
 		}),
 	);
 }
@@ -112,7 +112,7 @@ async function install() {
 									"miauth/gen-token",
 									{
 										session: null,
-										name: name,
+										name,
 										permission: permissions,
 									},
 								);
@@ -143,10 +143,6 @@ async function install() {
 		unisonReload();
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._plugin.install,

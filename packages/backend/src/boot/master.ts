@@ -30,40 +30,34 @@ const themeColor = chalk.hex("#31748f");
 function greet() {
 	if (!envOption.quiet) {
 		//#region Firefish logo
-		const v = `v${meta.version}`;
 		console.log(
 			themeColor(
-				" ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ◯       ",
+				"██████╗ ██╗██████╗ ███████╗███████╗██╗███████╗██╗  ██╗    ○     ▄    ▄    ",
 			),
 		);
 		console.log(
 			themeColor(
-				"█       █   █   ▄  █ █       █       █   █       █  █ █  █      ○   ▄    ▄",
+				"██╔════╝██║██╔══██╗██╔════╝██╔════╝██║██╔════╝██║  ██║      ⚬   █▄▄  █▄▄ ",
 			),
 		);
 		console.log(
 			themeColor(
-				"█    ▄▄▄█   █  █ █ █ █    ▄▄▄█    ▄▄▄█   █  ▄▄▄▄▄█  █▄█  █    ⚬     █▄▄  █▄▄    ",
+				"█████╗  ██║██████╔╝█████╗  █████╗  ██║███████╗███████║      ▄▄▄▄▄▄   ▄    ",
 			),
 		);
 		console.log(
 			themeColor(
-				"█   █▄▄▄█   █   █▄▄█▄█   █▄▄▄█   █▄▄▄█   █ █▄▄▄▄▄█       █      ▄▄▄▄▄▄   ▄",
+				"██╔══╝  ██║██╔══██╗██╔══╝  ██╔══╝  ██║╚════██║██╔══██║     █      █  █▄▄  ",
 			),
 		);
 		console.log(
 			themeColor(
-				"█    ▄▄▄█   █    ▄▄  █    ▄▄▄█    ▄▄▄█   █▄▄▄▄▄  █   ▄   █     █      █  █▄▄",
+				"██║     ██║██║  ██║███████╗██║     ██║███████║██║  ██║     █ ● ●  █       ",
 			),
 		);
 		console.log(
 			themeColor(
-				"█   █   █   █   █  █ █   █▄▄▄█   █   █   █▄▄▄▄▄█ █  █ █  █     █ ● ●  █",
-			),
-		);
-		console.log(
-			themeColor(
-				"█▄▄▄█   █▄▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█     ▀▄▄▄▄▄▄▀",
+				"╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝     ▀▄▄▄▄▄▄▀       ",
 			),
 		);
 		//#endregion
@@ -146,7 +140,7 @@ function showEnvironment(): void {
 
 	if (env !== "production") {
 		logger.warn("The environment is not in production mode.");
-		logger.warn("DO NOT USE FOR PRODUCTION PURPOSE!", null, true);
+		logger.warn("DO NOT USE THIS IN PRODUCTION!", null, true);
 	}
 }
 
@@ -217,10 +211,12 @@ async function spawnWorkers(
 
 	const total = modes.reduce((acc, mode) => acc + clusterLimits[mode], 0);
 	const workers = new Array(total);
-	workers.fill("web", 0, clusterLimits.web);
-	workers.fill("queue", clusterLimits.web);
+	workers.fill("web", 0, clusterLimits?.web);
+	workers.fill("queue", clusterLimits?.web);
 
-	bootLogger.info(`Starting ${total} workers...`);
+	bootLogger.info(
+		`Starting ${clusterLimits?.web} web workers and ${clusterLimits?.queue} queue workers (total ${total})...`,
+	);
 	await Promise.all(workers.map((mode) => spawnWorker(mode)));
 	bootLogger.succ("All workers started");
 }
@@ -230,7 +226,7 @@ function spawnWorker(mode: "web" | "queue"): Promise<void> {
 		const worker = cluster.fork({ mode });
 		worker.on("message", (message) => {
 			if (message === "listenFailed") {
-				bootLogger.error("The server Listen failed due to the previous error.");
+				bootLogger.error("The server listen failed due to the previous error.");
 				process.exit(1);
 			}
 			if (message !== "ready") return;

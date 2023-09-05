@@ -26,7 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";

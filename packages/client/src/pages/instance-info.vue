@@ -16,7 +16,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -337,7 +337,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import type * as firefish from "firefish-js";
@@ -376,18 +376,18 @@ const props = defineProps<{
 	host: string;
 }>();
 
-let tabs = ["overview"];
+const tabs = ["overview"];
 if (iAmAdmin) tabs.push("chart", "users", "raw");
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
-let chartSrc = ref("instance-requests");
-let meta = ref<AugmentedInstanceMetadata | null>(null);
-let instance = ref<AugmentedInstance | null>(null);
-let suspended = ref(false);
-let isBlocked = ref(false);
-let isSilenced = ref(false);
-let faviconUrl = ref(null);
+const chartSrc = ref("instance-requests");
+const meta = ref<AugmentedInstanceMetadata | null>(null);
+const instance = ref<AugmentedInstance | null>(null);
+const suspended = ref(false);
+const isBlocked = ref(false);
+const isSilenced = ref(false);
+const faviconUrl = ref(null);
 
 const usersPagination = {
 	endpoint: iAmAdmin ? "admin/show-users" : ("users" as const),
@@ -478,7 +478,7 @@ const headerActions = computed(() => [
 	},
 ]);
 
-let theTabs = [
+const theTabs = [
 	{
 		key: "overview",
 		title: i18n.ts.overview,
@@ -506,7 +506,7 @@ if (iAmAdmin) {
 	);
 }
 
-let headerTabs = computed(() => theTabs);
+const headerTabs = computed(() => theTabs);
 
 definePageMetadata({
 	title: props.host,

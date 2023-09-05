@@ -60,21 +60,17 @@
 
 <script lang="ts" setup>
 import {
-	defineAsyncComponent,
-	inject,
-	nextTick,
+	computed,
+	onActivated,
 	onMounted,
 	onUnmounted,
-	onActivated,
 	provide,
-	watch,
 	ref,
-	computed,
+	watch,
 } from "vue";
 import { i18n } from "@/i18n";
 import MkSuperMenu from "@/components/MkSuperMenu.vue";
 import MkInfo from "@/components/MkInfo.vue";
-import { scroll } from "@/scripts/scroll";
 import { instance } from "@/instance";
 import { version } from "@/config";
 import { $i } from "@/account";
@@ -88,7 +84,6 @@ import { useRouter } from "@/router";
 import {
 	definePageMetadata,
 	provideMetadataReceiver,
-	setPageMetadata,
 } from "@/scripts/page-metadata";
 
 const isEmpty = (x: string | null) => x == null || x === "";
@@ -103,21 +98,19 @@ const indexInfo = {
 
 provide("shouldOmitHeaderTitle", false);
 
-let INFO = ref(indexInfo);
-let childInfo = ref(null);
-let narrow = ref(false);
-let view = ref(null);
-let pageProps = ref({});
-let noMaintainerInformation =
+const INFO = ref(indexInfo);
+const childInfo = ref(null);
+const narrow = ref(false);
+const noMaintainerInformation =
 	isEmpty(instance.maintainerName) || isEmpty(instance.maintainerEmail);
-let noBotProtection =
+const noBotProtection =
 	!instance.disableRegistration &&
 	!instance.enableHcaptcha &&
 	!instance.enableRecaptcha;
-let noEmailServer = !instance.enableEmail;
-let thereIsUnresolvedAbuseReport = ref(false);
-let updateAvailable = ref(false);
-let currentPage = computed(() => router.currentRef.value.child);
+const noEmailServer = !instance.enableEmail;
+const thereIsUnresolvedAbuseReport = ref(false);
+const updateAvailable = ref(false);
+const currentPage = computed(() => router.currentRef.value.child);
 
 os.api("admin/abuse-user-reports", {
 	state: "unresolved",

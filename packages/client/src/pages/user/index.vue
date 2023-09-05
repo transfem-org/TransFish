@@ -29,13 +29,10 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, computed, watch, ref } from "vue";
-import calcAge from "s-age";
+import { computed, defineAsyncComponent, ref, watch } from "vue";
 import * as Acct from "firefish-js/built/acct";
 import type * as misskey from "firefish-js";
-import { getScrollPosition } from "@/scripts/scroll";
-import number from "@/filters/number";
-import { userPage, acct as getAcct } from "@/filters/user";
+import { acct as getAcct } from "@/filters/user";
 import * as os from "@/os";
 import { useRouter } from "@/router";
 import { definePageMetadata } from "@/scripts/page-metadata";
@@ -58,11 +55,11 @@ const props = withDefaults(
 	},
 );
 
-const router = useRouter();
+useRouter();
 
-let tab = ref(props.page);
-let user = ref<null | misskey.entities.UserDetailed>(null);
-let error = ref(null);
+const tab = ref(props.page);
+const user = ref<null | misskey.entities.UserDetailed>(null);
+const error = ref(null);
 
 function fetchUser(): void {
 	if (props.acct == null) return;

@@ -28,8 +28,8 @@
 						<button
 							v-tooltip="i18n.ts.remove"
 							class="remove _button"
-							@click="remove(file)"
 							:aria-label="i18n.t('remove')"
+							@click="remove(file)"
 						>
 							<i class="ph-x ph-bold ph-lg"></i>
 						</button>
@@ -63,7 +63,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import FormButton from "@/components/MkButton.vue";
 import FormInput from "@/components/form/input.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -81,11 +81,11 @@ const props = defineProps<{
 	postId?: string;
 }>();
 
-let init = ref(null);
-let files = ref([]);
-let description = ref(null);
-let title = ref(null);
-let isSensitive = ref(false);
+const init = ref(null);
+const files = ref([]);
+const description = ref(null);
+const title = ref(null);
+const isSensitive = ref(false);
 
 function selectFile(evt) {
 	selectFiles(evt.currentTarget ?? evt.target, null).then((selected) => {

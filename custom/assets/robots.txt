@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Uncomment the following to block CommonCrawl
+#
+# User-agent: CCBot
+# User-agent: CCBot/2.0
+# User-agent: CCBot/3.1
+# Disallow: /
+
+# Uncomment the following to block ChatGPT
+#
+# User-agent: GPTBot
+# Disallow: /

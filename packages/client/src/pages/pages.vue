@@ -11,7 +11,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -80,7 +80,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkPagePreview from "@/components/MkPagePreview.vue";
@@ -96,7 +96,7 @@ import "swiper/scss/virtual";
 
 const router = useRouter();
 
-let tab = ref("featured");
+const tab = ref("featured");
 const tabs = ["featured", "liked", "my"];
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 

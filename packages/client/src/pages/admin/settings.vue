@@ -209,7 +209,7 @@
 
 							<FormInput v-model="themeColor" class="_formBlock">
 								<template #prefix
-									><i class="ph-palette ph-bold ph-lg"></i
+									><i class="ph-paconstte ph-bold ph-lg"></i
 								></template>
 								<template #label>{{
 									i18n.ts.themeColor
@@ -428,7 +428,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import FormSwitch from "@/components/form/switch.vue";
 import FormInput from "@/components/form/input.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -442,42 +442,42 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let name: string | null = ref(null);
-let description: string | null = ref(null);
-let tosUrl: string | null = ref(null);
-let maintainerName: string | null = ref(null);
-let maintainerEmail: string | null = ref(null);
-let donationLink: string | null = ref(null);
-let iconUrl: string | null = ref(null);
-let bannerUrl: string | null = ref(null);
-let logoImageUrl: string | null = ref(null);
-let backgroundImageUrl: string | null = ref(null);
-let themeColor: any = ref(null);
-let defaultLightTheme: any = ref(null);
-let defaultDarkTheme: any = ref(null);
-let enableLocalTimeline: boolean = ref(false);
-let enableGlobalTimeline: boolean = ref(false);
-let enableRecommendedTimeline: boolean = ref(false);
-let pinnedUsers: string = ref("");
-let customMOTD: string = ref("");
-let recommendedInstances: string = ref("");
-let customSplashIcons: string = ref("");
-let cacheRemoteFiles: boolean = ref(false);
-let localDriveCapacityMb: any = ref(0);
-let remoteDriveCapacityMb: any = ref(0);
-let enableRegistration: boolean = ref(false);
-let emailRequiredForSignup: boolean = ref(false);
-let enableServiceWorker: boolean = ref(false);
-let swPublicKey: any = ref(null);
-let swPrivateKey: any = ref(null);
-let deeplAuthKey: string = ref("");
-let deeplIsPro: boolean = ref(false);
-let libreTranslateApiUrl: string = ref("");
-let libreTranslateApiKey: string = ref("");
-let defaultReaction: string = ref("");
-let defaultReactionCustom: string = ref("");
-let enableServerMachineStats: boolean = ref(false);
-let enableIdenticonGeneration: boolean = ref(false);
+const name = ref<string | null>(null);
+const description = ref<string | null>(null);
+const tosUrl = ref<string | null>(null);
+const maintainerName = ref<string | null>(null);
+const maintainerEmail = ref<string | null>(null);
+const donationLink = ref<string | null>(null);
+const iconUrl = ref<string | null>(null);
+const bannerUrl = ref<string | null>(null);
+const logoImageUrl = ref<string | null>(null);
+const backgroundImageUrl = ref<string | null>(null);
+const themeColor: any = ref(null);
+const defaultLightTheme: any = ref(null);
+const defaultDarkTheme: any = ref(null);
+const enableLocalTimeline = ref(false);
+const enableGlobalTimeline = ref(false);
+const enableRecommendedTimeline = ref(false);
+const pinnedUsers = ref("");
+const customMOTD = ref("");
+const recommendedInstances = ref("");
+const customSplashIcons = ref("");
+const cacheRemoteFiles = ref(false);
+const localDriveCapacityMb = ref(0);
+const remoteDriveCapacityMb = ref(0);
+const enableRegistration = ref(false);
+const emailRequiredForSignup = ref(false);
+const enableServiceWorker = ref(false);
+const swPublicKey = ref(null);
+const swPrivateKey = ref(null);
+const deeplAuthKey = ref("");
+const deeplIsPro = ref(false);
+const libreTranslateApiUrl = ref("");
+const libreTranslateApiKey = ref("");
+const defaultReaction = ref("");
+const defaultReactionCustom = ref("");
+const enableServerMachineStats = ref(false);
+const enableIdenticonGeneration = ref(false);
 
 async function init() {
 	const meta = await os.api("admin/meta");
@@ -554,8 +554,8 @@ function save() {
 		customSplashIcons: customSplashIcons.value.split("\n"),
 		recommendedInstances: recommendedInstances.value.split("\n"),
 		cacheRemoteFiles: cacheRemoteFiles.value,
-		localDriveCapacityMb: parseInt(localDriveCapacityMb.value, 10),
-		remoteDriveCapacityMb: parseInt(remoteDriveCapacityMb.value, 10),
+		localDriveCapacityMb: localDriveCapacityMb.value,
+		remoteDriveCapacityMb: remoteDriveCapacityMb.value,
 		disableRegistration: !enableRegistration.value,
 		emailRequiredForSignup: emailRequiredForSignup.value,
 		enableServiceWorker: enableServiceWorker.value,

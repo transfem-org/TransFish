@@ -12,7 +12,7 @@
 				:round-lengths="true"
 				:touch-angle="25"
 				:threshold="10"
-				:centeredSlides="true"
+				:centered-slides="true"
 				:modules="[Virtual]"
 				:space-between="20"
 				:virtual="true"
@@ -106,7 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, watch, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import MkFolder from "@/components/MkFolder.vue";
@@ -127,10 +127,10 @@ const props = defineProps<{
 }>();
 
 const tabs = ["explore", "liked", "my"];
-let tab = ref(tabs[0]);
+const tab = ref(tabs[0]);
 watch(tab, () => syncSlide(tabs.indexOf(tab.value)));
 
-let tagsRef = ref();
+const tagsRef = ref();
 
 const recentPostsPagination = {
 	endpoint: "gallery/posts" as const,

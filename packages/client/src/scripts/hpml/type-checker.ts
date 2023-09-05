@@ -1,13 +1,15 @@
 import autobind from "autobind-decorator";
-import { Type, envVarsDef, PageVar } from ".";
-import { Expr, isLiteralValue, Variable } from "./expr";
+import type { Expr, Variable } from "./expr";
+import { isLiteralValue } from "./expr";
 import { funcDefs } from "./lib";
+import { envVarsDef } from ".";
+import type { PageVar, Type } from ".";
 
-type TypeError = {
+interface TypeError {
 	arg: number;
 	expect: Type;
 	actual: Type;
-};
+}
 
 /**
  * Hpml type checker

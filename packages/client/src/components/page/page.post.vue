@@ -14,13 +14,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import type { PropType } from "vue";
+import { defineComponent } from "vue";
 import MkTextarea from "../form/textarea.vue";
 import MkButton from "../MkButton.vue";
 import { apiUrl } from "@/config";
 import * as os from "@/os";
-import { PostBlock } from "@/scripts/hpml/block";
-import { Hpml } from "@/scripts/hpml/evaluator";
+import type { PostBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
 
 export default defineComponent({
 	components: {

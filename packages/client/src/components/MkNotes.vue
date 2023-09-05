@@ -12,7 +12,7 @@
 		</template>
 
 		<template #default="{ items: notes }">
-			<div class="giivymft" :class="{ noGap }" ref="tlEl">
+			<div ref="tlEl" class="giivymft" :class="{ noGap }">
 				<XList
 					ref="notes"
 					v-slot="{ item: note }"

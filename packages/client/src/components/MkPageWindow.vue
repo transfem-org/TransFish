@@ -8,8 +8,8 @@
 		:buttons-left="buttonsLeft"
 		:buttons-right="buttonsRight"
 		:contextmenu="contextmenu"
-		@closed="$emit('closed')"
 		class="page-window"
+		@closed="$emit('closed')"
 	>
 		<template #header>
 			<template v-if="pageMetadata?.value">
@@ -30,7 +30,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ComputedRef, provide, ref, computed } from "vue";
+import type { ComputedRef } from "vue";
+import { computed, provide, ref } from "vue";
 import RouterView from "@/components/global/RouterView.vue";
 import XWindow from "@/components/MkWindow.vue";
 import { popout as _popout } from "@/scripts/popout";
@@ -39,7 +40,8 @@ import { url } from "@/config";
 import { mainRouter, routes } from "@/router";
 import { Router } from "@/nirax";
 import { i18n } from "@/i18n";
-import { PageMetadata, provideMetadataReceiver } from "@/scripts/page-metadata";
+import type { PageMetadata } from "@/scripts/page-metadata";
+import { provideMetadataReceiver } from "@/scripts/page-metadata";
 
 const props = defineProps<{
 	initialPath: string;
@@ -51,8 +53,8 @@ defineEmits<{
 
 const router = new Router(routes, props.initialPath);
 
-let pageMetadata = ref<null | ComputedRef<PageMetadata>>();
-let windowEl = ref<InstanceType<typeof XWindow>>();
+const pageMetadata = ref<null | ComputedRef<PageMetadata>>();
+const windowEl = ref<InstanceType<typeof XWindow>>();
 const history = ref<{ path: string; key: any }[]>([
 	{
 		path: router.getCurrentPath(),

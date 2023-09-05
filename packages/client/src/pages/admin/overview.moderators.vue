@@ -16,7 +16,7 @@
 						:user="user"
 						class="avatar"
 						indicator
-						disableLink
+						disable-link
 					/>
 				</MkA>
 			</div>
@@ -25,13 +25,11 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import * as os from "@/os";
-import number from "@/filters/number";
-import { i18n } from "@/i18n";
 
-let moderators: any = ref(null);
-let fetching = ref(true);
+const moderators = ref<any>(null);
+const fetching = ref(true);
 
 onMounted(async () => {
 	moderators.value = await os.api("admin/show-users", {

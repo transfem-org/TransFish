@@ -8,9 +8,9 @@
 		swap-threshold="0.5"
 	>
 		<component
+			:is="'x-' + element.type"
 			v-for="element in blocks"
 			:key="element"
-			:is="'x-' + element.type"
 			:value="element"
 			:hpml="hpml"
 			@update:value="updateItem"
@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from "vue";
+import { defineComponent } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
 import XSection from "./els/page-editor.el.section.vue";
 import XText from "./els/page-editor.el.text.vue";
@@ -37,7 +37,6 @@ import XCounter from "./els/page-editor.el.counter.vue";
 import XRadioButton from "./els/page-editor.el.radio-button.vue";
 import XCanvas from "./els/page-editor.el.canvas.vue";
 import XNote from "./els/page-editor.el.note.vue";
-import * as os from "@/os";
 
 export default defineComponent({
 	components: {

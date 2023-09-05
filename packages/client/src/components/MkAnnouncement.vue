@@ -8,8 +8,10 @@
 			<div :class="$style.time">
 				<MkTime :time="announcement.createdAt" />
 				<div v-if="announcement.updatedAt">
-					{{ i18n.ts.updatedAt }}:
-					<MkTime :time="announcement.createdAt" />
+					<small>
+						{{ i18n.ts.updatedAt }}:
+						<MkTime :time="announcement.createdAt" />
+					</small>
 				</div>
 			</div>
 			<Mfm :text="text" />
@@ -80,6 +82,6 @@ const gotIt = () => {
 }
 
 .gotIt {
-	margin: 8px 0 0 0;
+	margin: 1rem 0 1rem 2rem;
 }
 </style>

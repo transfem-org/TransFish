@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { computed, ref } from "vue";
 import JSON5 from "json5";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
@@ -33,7 +33,7 @@ import FormLink from "@/components/form/link.vue";
 import FormSection from "@/components/form/section.vue";
 import MkButton from "@/components/MkButton.vue";
 
-let scopes = ref(null);
+const scopes = ref(null);
 
 function fetchScopes() {
 	os.api("i/registry/scopes").then((res) => {
@@ -80,5 +80,3 @@ definePageMetadata({
 	icon: "ph-gear-six ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped></style>

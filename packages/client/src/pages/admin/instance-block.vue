@@ -43,9 +43,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
-import {} from "vue";
 import FormButton from "@/components/MkButton.vue";
 import FormTextarea from "@/components/form/textarea.vue";
 import FormSuspense from "@/components/form/suspense.vue";
@@ -55,9 +54,9 @@ import { fetchInstance } from "@/instance";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let blockedHosts: string = ref("");
-let silencedHosts: string = ref("");
-let tab = ref("block");
+const blockedHosts = ref("");
+const silencedHosts = ref("");
+const tab = ref("block");
 
 async function init() {
 	const meta = await os.api("admin/meta");

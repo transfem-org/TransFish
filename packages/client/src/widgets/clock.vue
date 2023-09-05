@@ -48,7 +48,6 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import {} from "vue";
 import type { Widget, WidgetComponentExpose } from "./widget";
 import {
 	WidgetComponentEmits,

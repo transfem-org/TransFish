@@ -145,7 +145,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, inject, watch, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
 import MkContainer from "@/components/MkContainer.vue";
@@ -164,8 +164,8 @@ const props = defineProps<{
 	postId: string;
 }>();
 
-let post = ref(null);
-let error = ref(null);
+const post = ref(null);
+const error = ref(null);
 const otherPostsPagination = {
 	endpoint: "users/gallery/posts" as const,
 	limit: 6,

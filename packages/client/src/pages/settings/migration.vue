@@ -53,6 +53,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
+import { toString } from "firefish-js/built/acct";
 import FormSection from "@/components/form/section.vue";
 import FormInput from "@/components/form/input.vue";
 import FormButton from "@/components/MkButton.vue";
@@ -61,10 +62,9 @@ import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 import { $i } from "@/account";
-import { toString } from "firefish-js/built/acct";
 
-let moveToAccount = ref("");
-let accountAlias = ref([""]);
+const moveToAccount = ref("");
+const accountAlias = ref([""]);
 
 await init();
 

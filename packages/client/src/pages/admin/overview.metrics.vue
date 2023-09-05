@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import XPie from "../../widgets/server-metric/pie.vue";
 import bytes from "@/filters/bytes";
 import { stream } from "@/stream";
@@ -64,17 +64,17 @@ import { i18n } from "@/i18n";
 const meta = await os.api("server-info", {});
 const serverStats = await os.api("stats");
 
-let cpuUsage: number = ref(0);
+const cpuUsage = ref(0);
 
-let memUsage: number = ref(0);
-let memTotal: number = ref(0);
-let memUsed: number = ref(0);
-let memFree: number = ref(0);
+const memUsage = ref(0);
+const memTotal = ref(0);
+const memUsed = ref(0);
+const memFree = ref(0);
 
-let meiliProgress: number = ref(0);
-let meiliTotalSize: number = ref(0);
-let meiliIndexCount: number = ref(0);
-let meiliAvailable: string = ref("unavailable");
+const meiliProgress = ref(0);
+const meiliTotalSize = ref(0);
+const meiliIndexCount = ref(0);
+const meiliAvailable = ref("unavailable");
 
 const diskUsage = computed(() => meta.fs.used / meta.fs.total);
 const diskTotal = computed(() => meta.fs.total);

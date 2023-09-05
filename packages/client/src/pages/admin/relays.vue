@@ -43,15 +43,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
-import {} from "vue";
 import MkButton from "@/components/MkButton.vue";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let relays: any[] = ref([]);
+const relays = ref([]);
 
 async function addRelay() {
 	const { canceled, result: inbox } = await os.inputText({

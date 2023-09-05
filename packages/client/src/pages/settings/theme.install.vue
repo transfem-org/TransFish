@@ -28,9 +28,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
-import {} from "vue";
 import JSON5 from "json5";
 import FormTextarea from "@/components/form/textarea.vue";
 import FormButton from "@/components/MkButton.vue";
@@ -40,7 +39,7 @@ import { addTheme, getThemes } from "@/theme-store";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
-let installThemeCode = ref(null);
+const installThemeCode = ref(null);
 
 function parseThemeCode(code: string) {
 	let theme;
@@ -86,10 +85,6 @@ async function install(code: string): Promise<void> {
 		text: i18n.t("_theme.installed", { name: theme.name }),
 	});
 }
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts._theme.install,

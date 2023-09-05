@@ -42,7 +42,7 @@
 							:user="user"
 							class="avatar"
 							:show-indicator="true"
-							disableLink
+							disable-link
 						/>
 						<div class="body">
 							<MkUserName :user="user" class="name" />
@@ -70,7 +70,7 @@
 							:user="user"
 							class="avatar"
 							:show-indicator="true"
-							disableLink
+							disable-link
 						/>
 						<div class="body">
 							<MkUserName :user="user" class="name" />
@@ -85,7 +85,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkInput from "@/components/form/input.vue";
 import FormSplit from "@/components/form/split.vue";
 import XModalWindow from "@/components/MkModalWindow.vue";
@@ -99,11 +99,11 @@ const emit = defineEmits<{
 	(ev: "closed"): void;
 }>();
 
-let username = ref("");
-let users: misskey.entities.UserDetailed[] = ref([]);
-let recentUsers: misskey.entities.UserDetailed[] = ref([]);
-let selected: misskey.entities.UserDetailed | null = ref(null);
-let dialogEl = ref();
+const username = ref("");
+const users: misskey.entities.UserDetailed[] = ref([]);
+const recentUsers: misskey.entities.UserDetailed[] = ref([]);
+const selected: misskey.entities.UserDetailed | null = ref(null);
+const dialogEl = ref();
 
 const search = () => {
 	if (username.value === "") {

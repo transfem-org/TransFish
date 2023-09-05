@@ -31,7 +31,7 @@ export default async function (
 		}
 	}
 
-	const unlock = await getApLock(uri);
+	const lock = await getApLock(uri);
 
 	try {
 		const exist = await fetchNote(note);
@@ -46,6 +46,6 @@ export default async function (
 			throw e;
 		}
 	} finally {
-		unlock();
+		await lock.release();
 	}
 }

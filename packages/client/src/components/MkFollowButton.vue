@@ -1,14 +1,15 @@
 <template>
 	<button
 		v-if="!hideMenu"
+		v-tooltip="i18n.ts.menu"
 		class="menu _button"
 		@click.stop="menu"
-		v-tooltip="i18n.ts.menu"
 	>
 		<i class="ph-dots-three-outline ph-bold ph-lg"></i>
 	</button>
 	<button
 		v-if="$i != null && $i.id != user.id"
+		v-tooltip="full ? null : `${state} ${user.name || user.username}`"
 		class="kpoogebi _button follow-button"
 		:class="{
 			wait,
@@ -18,9 +19,8 @@
 			blocking: isBlocking,
 		}"
 		:disabled="wait"
-		@click.stop="onClick"
 		:aria-label="`${state} ${user.name || user.username}`"
-		v-tooltip="full ? null : `${state} ${user.name || user.username}`"
+		@click.stop="onClick"
 	>
 		<template v-if="!wait">
 			<template v-if="isBlocking">
@@ -88,13 +88,13 @@ const props = withDefaults(
 
 const isBlocking = computed(() => props.user.isBlocking);
 
-let state = ref(i18n.ts.processing);
+const state = ref(i18n.ts.processing);
 
-let isFollowing = ref(props.user.isFollowing);
-let hasPendingFollowRequestFromYou = ref(
+const isFollowing = ref(props.user.isFollowing);
+const hasPendingFollowRequestFromYou = ref(
 	props.user.hasPendingFollowRequestFromYou,
 );
-let wait = ref(false);
+const wait = ref(false);
 const connection = stream.useChannel("main");
 
 if (props.user.isFollowing == null) {

@@ -4,9 +4,9 @@ export class I18n<T extends Record<string, any>> {
 	constructor(locale: T) {
 		this.ts = locale;
 
-		//#region BIND
+		// #region BIND
 		this.t = this.t.bind(this);
-		//#endregion
+		// #endregion
 	}
 
 	// string にしているのは、ドット区切りでのパス指定を許可するため

@@ -8,9 +8,9 @@
 			delay-on-touch-only="true"
 		>
 			<div
-				class="file"
 				v-for="element in _files"
 				:key="element.id"
+				class="file"
 				@click="showFileMenu(element, $event)"
 				@contextmenu.prevent="showFileMenu(element, $event)"
 			>
@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, ref, computed } from "vue";
+import { computed, defineAsyncComponent, ref } from "vue";
 import { VueDraggable } from "vue-draggable-plus";
 import MkDriveFileThumbnail from "@/components/MkDriveFileThumbnail.vue";
 import * as os from "@/os";
@@ -105,10 +105,11 @@ async function describe(file) {
 		{
 			done: (result) => {
 				if (!result || result.canceled) return;
-				let comment = result.result.length === 0 ? null : result.result;
+				const comment =
+					result.result.length === 0 ? null : result.result;
 				os.api("drive/files/update", {
 					fileId: file.id,
-					comment: comment,
+					comment,
 				}).then(() => {
 					file.comment = comment;
 				});

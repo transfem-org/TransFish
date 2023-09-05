@@ -3,26 +3,24 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, onMounted, onUnmounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import {
-	Chart,
 	ArcElement,
-	LineElement,
-	BarElement,
-	PointElement,
 	BarController,
-	LineController,
+	BarElement,
 	CategoryScale,
-	LinearScale,
-	TimeScale,
+	Chart,
+	Filler,
 	Legend,
+	LineController,
+	LineElement,
+	LinearScale,
+	PointElement,
+	SubTitle,
+	TimeScale,
 	Title,
 	Tooltip,
-	SubTitle,
-	Filler,
 } from "chart.js";
-import number from "@/filters/number";
-import * as os from "@/os";
 import { defaultStore } from "@/store";
 import { useChartTooltip } from "@/scripts/use-chart-tooltip";
 
@@ -55,7 +53,7 @@ const alpha = (hex, a) => {
 	return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
 
-const chartEl = ref<HTMLCanvasElement>(null);
+const chartEl = ref<HTMLCanvasElement | null>(null);
 
 const gridColor = defaultStore.state.darkMode
 	? "rgba(255, 255, 255, 0.1)"
@@ -123,7 +121,7 @@ onMounted(() => {
 			labels: [],
 			datasets: [
 				{
-					label: label,
+					label,
 					pointRadius: 0,
 					tension: 0.3,
 					borderWidth: 2,
@@ -189,5 +187,3 @@ defineExpose({
 	pushData,
 });
 </script>
-
-<style lang="scss" scoped></style>

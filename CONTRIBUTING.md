@@ -23,31 +23,32 @@ Before creating an issue, please check the following:
 > Do not close issues that are about to be resolved. It should remain open until a commit that actually resolves it is merged.
 
 ## Before implementation
-When you want to add a feature or fix a bug, **first have the design and policy reviewed in an Issue** (if it is not there, please make one). Without this step, there is a high possibility that the PR will not be merged even if it is implemented.
+When you want to add a feature or fix a bug, **first have the design and policy reviewed in an Issue** (if it is not there, please make one). Without this step, there is a high possibility that the MR will not be merged even if it is implemented.
 
-At this point, you also need to clarify the goals of the PR you will create, and make sure that the other members of the team are aware of them.
-PRs that do not have a clear set of do's and don'ts tend to be bloated and difficult to review.
+At this point, you also need to clarify the goals of the MR you will create, and make sure that the other members of the team are aware of them.
+MRs that do not have a clear set of do's and don'ts tend to be bloated and difficult to review.
 
 Also, when you start implementation, assign yourself to the Issue (if you cannot do it yourself, ask another member to assign you). By expressing your intention to work the Issue, you can prevent conflicts in the work.
 
 ## Well-known branches
 - The **`main`** branch is tracking the latest release and used for production purposes.
 - The **`develop`** branch is where we work for the next release.
-	- When you create a PR, basically target it to this branch. **But create a different branch**
+	- When you create a MR, basically target it to this branch. **But create a different branch**
 - The **`l10n_develop`** branch is reserved for localization management.
 - **`feature/*`** branches are reserved for the development of a specific feature
 
-## Creating a PR
-Thank you for your PR! Before creating a PR, please check the following:
-- If possible, prefix the title with a keyword that identifies the type of this PR, as shown below.
-  - `fix` / `refactor` / `feat` / `enhance` / `perf` / `chore` etc. You are also welcome to use gitmoji. This is important as we use these to A) easier read the git history and B) generate our changelog. Without propper prefixing it is possible that your PR is rejected.
-  - Also, make sure that the granularity of this PR is appropriate. Please do not include more than one type of change or interest in a single PR.
-- If there is an Issue which will be resolved by this PR, please include a reference to the Issue in the text. Good examples include `Closing: #21` or `Resolves: #21`
+## Creating a merge request (MR)
+Thank you for your MR! Before creating a MR, please check the following:
+- If possible, prefix the title with a keyword that identifies the type of this MR, as shown below.
+  - `fix` / `refactor` / `feat` / `enhance` / `perf` / `chore` etc. You are also welcome to use gitmoji. This is important as we use these to A) easier read the git history and B) generate our changelog. Without propper prefixing it is possible that your MR is rejected.
+  - Also, make sure that the granularity of this MR is appropriate. Please do not include more than one type of change or interest in a single MR.
+- If there is an Issue which will be resolved by this MR, please include a reference to the Issue in the text. Good examples include `Closing: #21` or `Resolves: #21`
 - Check if there are any documents that need to be created or updated due to this change.
+	- For example, you need to update `docs/api-change.md` if the MR includes API changes.
 - If you have added a feature or fixed a bug, please add a test case if possible.
 - Please make sure that formatting, tests and Lint are passed in advance.
   - You can run it with `pnpm run format`, `pnpm run test` and `pnpm run lint`. [See more info](#testing)
-- If this PR includes UI changes, please attach a screenshot in the text.
+- If this MR includes UI changes, please attach a screenshot in the text.
 
 Thanks for your cooperation 🤗
 
@@ -56,12 +57,12 @@ Be willing to comment on the good points and not just the things you want fixed 
 
 ### Review perspective
 - Scope
-  - Are the goals of the PR clear?
-  - Is the granularity of the PR appropriate?
+  - Are the goals of the MR clear?
+  - Is the granularity of the MR appropriate?
 - Security
-	- Does merging this PR create a vulnerability?
+	- Does merging this MR create a vulnerability?
 - Performance
-	- Will merging this PR cause unexpected performance degradation?
+	- Will merging this MR cause unexpected performance degradation?
 	- Is there a more efficient way?
 - Testing
 	- Does the test ensure the expected behavior?
@@ -69,11 +70,13 @@ Be willing to comment on the good points and not just the things you want fixed 
 	- Does it check for anomalies?
 
 ## Deploy (SOON)
-The `/deploy` command by issue comment can be used to deploy the contents of a PR to the preview environment.
+The `/deploy` command by issue comment can be used to deploy the contents of a MR to the preview environment.
 ```
 /deploy sha=<commit hash>
 ```
 An actual domain will be assigned so you can test the federation.
+
+# THE FOLLOWING IS OUTDATED:
 
 ## Merge
 
@@ -94,9 +97,6 @@ An actual domain will be assigned so you can test the federation.
 During development, it is useful to use the `yarn dev` command.
 This command monitors the server-side and client-side source files and automatically builds them if they are modified.
 In addition, it will also automatically start the Misskey server process.
-
-
-# THE FOLLOWING IS OUTDATED:
 
 ## Testing
 - Test codes are located in [`/test`](/test).

@@ -15,9 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent, PropType } from "vue";
-import { SectionBlock } from "@/scripts/hpml/block";
-import { Hpml } from "@/scripts/hpml/evaluator";
+import type { PropType } from "vue";
+import { defineAsyncComponent, defineComponent } from "vue";
+import type { SectionBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
 
 export default defineComponent({
 	components: {

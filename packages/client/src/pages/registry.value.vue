@@ -54,13 +54,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { computed, ref, watch } from "vue";
 import JSON5 from "json5";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
-import FormLink from "@/components/form/link.vue";
-import FormSection from "@/components/form/section.vue";
 import MkButton from "@/components/MkButton.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import FormTextarea from "@/components/form/textarea.vue";
@@ -74,8 +72,8 @@ const props = defineProps<{
 const scope = computed(() => props.path.split("/").slice(0, -1));
 const key = computed(() => props.path.split("/").at(-1));
 
-let value = ref(null);
-let valueForEditor = ref(null);
+const value = ref(null);
+const valueForEditor = ref(null);
 
 function fetchValue() {
 	os.api("i/registry/get-detail", {
@@ -134,5 +132,3 @@ definePageMetadata({
 	icon: "ph-gear-six ph-bold ph-lg",
 });
 </script>
-
-<style lang="scss" scoped></style>

@@ -103,7 +103,7 @@
 				:disabled="
 					!$i.twoFactorEnabled || $i.securityKeysList.length === 0
 				"
-				:modelValue="usePasswordLessLogin"
+				:model-value="usePasswordLessLogin"
 				@update:modelValue="(v) => updatePasswordLessLogin(v)"
 			>
 				<template #label>{{ i18n.ts.passwordLessLogin }}</template>
@@ -116,7 +116,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineAsyncComponent, computed } from "vue";
+import { computed, defineAsyncComponent, ref } from "vue";
 import { hostname } from "@/config";
 import { byteify, hexify, stringify } from "@/scripts/2fa";
 import MkButton from "@/components/MkButton.vue";
@@ -196,7 +196,7 @@ function unregisterTOTP() {
 	}).then(({ canceled, result: password }) => {
 		if (canceled) return;
 		os.apiWithDialog("i/2fa/unregister", {
-			password: password,
+			password,
 		}).catch((error) => {
 			os.alert({
 				type: "error",

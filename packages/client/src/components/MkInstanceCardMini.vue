@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import * as firefish from "firefish-js";
+import type * as firefish from "firefish-js";
 import MkMiniChart from "@/components/MkMiniChart.vue";
 import * as os from "@/os";
 import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
@@ -35,7 +35,7 @@ const props = defineProps<{
 	instance: firefish.entities.Instance;
 }>();
 
-let chartValues = ref<number[] | null>(null);
+const chartValues = ref<number[] | null>(null);
 
 os.apiGet("charts/instance", {
 	host: props.instance.host,

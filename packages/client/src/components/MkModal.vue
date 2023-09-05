@@ -25,6 +25,7 @@
 			<div
 				v-show="manualShowing != null ? manualShowing : showing"
 				v-hotkey.global="keymap"
+				v-focus
 				:class="[
 					$style.root,
 					{
@@ -44,7 +45,6 @@
 					'--transformOrigin': transformOrigin,
 				}"
 				tabindex="-1"
-				v-focus
 			>
 				<div
 					class="_modalBg data-cy-bg"
@@ -78,20 +78,20 @@
 
 <script lang="ts" setup>
 import {
+	computed,
 	nextTick,
 	onMounted,
-	watch,
-	provide,
 	onUnmounted,
+	provide,
 	ref,
 	shallowRef,
-	computed,
+	watch,
 } from "vue";
+import { FocusTrap } from "focus-trap-vue";
 import * as os from "@/os";
 import { isTouchUsing } from "@/scripts/touch";
 import { defaultStore } from "@/store";
 import { deviceKind } from "@/scripts/device-kind";
-import { FocusTrap } from "focus-trap-vue";
 
 function getFixedContainer(el: Element | null): Element | null {
 	if (el == null || el.tagName === "BODY") return null;
@@ -139,13 +139,13 @@ const emit = defineEmits<{
 
 provide("modal", true);
 
-let maxHeight = ref<number>();
-let fixed = ref(false);
-let transformOrigin = ref("center");
-let showing = ref(true);
-let content = shallowRef<HTMLElement>();
+const maxHeight = ref<number>();
+const fixed = ref(false);
+const transformOrigin = ref("center");
+const showing = ref(true);
+const content = shallowRef<HTMLElement>();
 const zIndex = os.claimZIndex(props.zPriority);
-let useSendAnime = ref(false);
+const useSendAnime = ref(false);
 const type = computed<ModalTypes>(() => {
 	if (props.preferType === "auto") {
 		if (
@@ -164,7 +164,7 @@ const type = computed<ModalTypes>(() => {
 const isEnableBgTransparent = computed(
 	() => props.transparentBg && type.value === "popup",
 );
-let transitionName = computed(() =>
+const transitionName = computed(() =>
 	defaultStore.state.animation
 		? useSendAnime.value
 			? "send"
@@ -175,7 +175,7 @@ let transitionName = computed(() =>
 			: "modal"
 		: "",
 );
-let transitionDuration = computed(() =>
+const transitionDuration = computed(() =>
 	transitionName.value === "send"
 		? 400
 		: transitionName.value === "modal-popup"
@@ -235,8 +235,7 @@ const align = () => {
 	const width = content.value!.offsetWidth;
 	const height = content.value!.offsetHeight;
 
-	let left;
-	let top;
+	let left, top;
 
 	const x = srcRect.left + (fixed.value ? 0 : window.pageXOffset);
 	const y = srcRect.top + (fixed.value ? 0 : window.pageYOffset);
@@ -321,8 +320,8 @@ const align = () => {
 		left = 0;
 	}
 
-	let transformOriginX = "center";
-	let transformOriginY = "center";
+	let transformOriginX = "center",
+		transformOriginY = "center";
 
 	if (
 		top >=

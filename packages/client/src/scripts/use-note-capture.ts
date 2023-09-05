@@ -1,5 +1,6 @@
-import { onUnmounted, Ref } from "vue";
-import * as misskey from "firefish-js";
+import type { Ref } from "vue";
+import { onUnmounted } from "vue";
+import type * as misskey from "firefish-js";
 import { stream } from "@/stream";
 import { $i } from "@/account";
 import * as os from "@/os";

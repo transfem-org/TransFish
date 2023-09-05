@@ -874,7 +874,7 @@ pubSub: "Cuentas Pub/Sub"
 lastCommunication: "Última comunicación"
 resolved: "Resuelto"
 unresolved: "Sin resolver"
-breakFollow: "Dejar de seguir"
+breakFollow: "Quitar seguidor"
 itsOn: "¡Está encendido!"
 itsOff: "¡Está apagado!"
 emailRequiredForSignup: "Se requere una dirección de correo electrónico para el registro

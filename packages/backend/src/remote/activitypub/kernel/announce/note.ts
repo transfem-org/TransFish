@@ -32,7 +32,7 @@ export default async function (
 	// Interrupt if you block the announcement destination
 	if (await shouldBlockInstance(extractDbHost(uri))) return;
 
-	const unlock = await getApLock(uri);
+	const lock = await getApLock(uri);
 
 	try {
 		// Check if something with the same URI is already registered
@@ -60,9 +60,10 @@ export default async function (
 			throw e;
 		}
 
-		if (!(await Notes.isVisibleForMe(renote, actor.id)))
-			return "skip: invalid actor for this activity";
-
+		if (renote != null && !(await Notes.isVisibleForMe(renote, actor.id))) {
+			console.log("skip: invalid actor for this activity");
+			return;
+		}
 		logger.info(`Creating the (Re)Note: ${uri}`);
 
 		const activityAudience = await parseAudience(
@@ -79,6 +80,6 @@ export default async function (
 			uri,
 		});
 	} finally {
-		unlock();
+		await lock.release();
 	}
 }

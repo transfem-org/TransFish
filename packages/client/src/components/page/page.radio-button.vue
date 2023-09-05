@@ -4,7 +4,7 @@
 		<MkRadio
 			v-for="item in block.values"
 			:key="item"
-			:modelValue="value"
+			:model-value="value"
 			:value="item"
 			@update:modelValue="updateValue($event)"
 			>{{ item }}</MkRadio
@@ -13,10 +13,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import type { PropType } from "vue";
+import { computed, defineComponent } from "vue";
 import MkRadio from "../form/radio.vue";
-import { Hpml } from "@/scripts/hpml/evaluator";
-import { RadioButtonVarBlock } from "@/scripts/hpml/block";
+import type { Hpml } from "@/scripts/hpml/evaluator";
+import type { RadioButtonVarBlock } from "@/scripts/hpml/block";
 
 export default defineComponent({
 	components: {

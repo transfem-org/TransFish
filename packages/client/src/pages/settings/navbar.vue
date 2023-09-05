@@ -62,6 +62,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from "vue";
+import { VueDraggable } from "vue-draggable-plus";
 import FormSlot from "@/components/form/slot.vue";
 import FormRadios from "@/components/form/radios.vue";
 import FormButton from "@/components/MkButton.vue";
@@ -71,7 +72,6 @@ import { navbarItemDef } from "@/navbar";
 import { defaultStore } from "@/store";
 import { unisonReload } from "@/scripts/unison-reload";
 import { i18n } from "@/i18n";
-import { VueDraggable } from "vue-draggable-plus";
 import { definePageMetadata } from "@/scripts/page-metadata";
 
 const items = ref(defaultStore.state.menu);
@@ -129,10 +129,6 @@ watch(items, async () => {
 watch(menuDisplay, async () => {
 	await reloadAsk();
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.navbar,

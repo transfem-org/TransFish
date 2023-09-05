@@ -19,15 +19,15 @@
 			<div class="buttons">
 				<button
 					class="_button"
-					@click="chooseFile"
 					:aria-label="i18n.t('attachFile')"
+					@click="chooseFile"
 				>
 					<i class="ph-upload ph-bold ph-lg"></i>
 				</button>
 				<button
 					class="_button"
-					@click="insertEmoji"
 					:aria-label="i18n.t('chooseEmoji')"
+					@click="insertEmoji"
 				>
 					<i class="ph-smiley ph-bold ph-lg"></i>
 				</button>
@@ -55,10 +55,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, watch, ref, computed } from "vue";
-import * as Misskey from "firefish-js";
+import { computed, onMounted, ref, watch } from "vue";
+import type * as Misskey from "firefish-js";
 import autosize from "autosize";
-//import insertTextAtCursor from 'insert-text-at-cursor';
+// import insertTextAtCursor from 'insert-text-at-cursor';
 import { throttle } from "throttle-debounce";
 import { Autocomplete } from "@/scripts/autocomplete";
 import { formatTimeString } from "@/scripts/format-time-string";
@@ -74,12 +74,12 @@ const props = defineProps<{
 	group?: Misskey.entities.UserGroup | null;
 }>();
 
-let textEl = ref<HTMLTextAreaElement>();
-let fileEl = ref<HTMLInputElement>();
+const textEl = ref<HTMLTextAreaElement>();
+const fileEl = ref<HTMLInputElement>();
 
-let text = ref<string>("");
-let file = ref<Misskey.entities.DriveFile | null>(null);
-let sending = ref(false);
+const text = ref<string>("");
+const file = ref<Misskey.entities.DriveFile | null>(null);
+const sending = ref(false);
 const typing = throttle(3000, () => {
 	stream.send(
 		"typingOnMessaging",
@@ -87,10 +87,10 @@ const typing = throttle(3000, () => {
 	);
 });
 
-let draftKey = computed(() =>
+const draftKey = computed(() =>
 	props.user ? "user:" + props.user.id : "group:" + props.group?.id,
 );
-let canSend = computed(
+const canSend = computed(
 	() =>
 		(text.value != null && text.value.trim() !== "") || file.value != null,
 );
@@ -155,18 +155,18 @@ function onDrop(ev: DragEvent): void {
 		return;
 	}
 
-	//#region ドライブのファイル
+	// #region ドライブのファイル
 	const driveFile = ev.dataTransfer.getData(_DATA_TRANSFER_DRIVE_FILE_);
 	if (driveFile != null && driveFile !== "") {
 		file.value = JSON.parse(driveFile);
 		ev.preventDefault();
 	}
-	//#endregion
+	// #endregion
 }
 
 function onKeydown(ev: KeyboardEvent) {
 	typing();
-	let sendOnEnter =
+	const sendOnEnter =
 		localStorage.getItem("enterSendsMessage") === "true" ||
 		defaultStore.state.enterSendsMessage;
 	if (sendOnEnter) {

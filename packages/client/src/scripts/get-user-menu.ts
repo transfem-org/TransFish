@@ -7,7 +7,7 @@ import * as os from "@/os";
 import { userActions } from "@/store";
 import { $i, iAmModerator } from "@/account";
 import { mainRouter } from "@/router";
-import { Router } from "@/nirax";
+import type { Router } from "@/nirax";
 
 export function getUserMenu(user, router: Router = mainRouter) {
 	const meId = $i ? $i.id : null;
@@ -31,7 +31,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		});
 		if (canceled) return;
 		os.apiWithDialog("users/lists/push", {
-			listId: listId,
+			listId,
 			userId: user.id,
 		});
 	}
@@ -54,7 +54,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 		});
 		if (canceled) return;
 		os.apiWithDialog("users/groups/invite", {
-			groupId: groupId,
+			groupId,
 			userId: user.id,
 		});
 	}
@@ -197,7 +197,7 @@ export function getUserMenu(user, router: Router = mainRouter) {
 				() => import("@/components/MkAbuseReportWindow.vue"),
 			),
 			{
-				user: user,
+				user,
 			},
 			{},
 			"closed",

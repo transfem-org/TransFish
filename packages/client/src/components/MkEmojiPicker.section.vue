@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { addSkinTone } from "@/scripts/emojilist";
 
 const props = defineProps<{

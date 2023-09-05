@@ -2,8 +2,8 @@
  * 配列をシャッフル (破壊的)
  */
 export function shuffle<T extends any[]>(array: T): T {
-	let currentIndex = array.length;
-	let randomIndex;
+	let currentIndex = array.length,
+		randomIndex;
 
 	// While there remain elements to shuffle.
 	while (currentIndex !== 0) {

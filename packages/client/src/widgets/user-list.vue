@@ -64,9 +64,9 @@ const { widgetProps, configure, save } = useWidgetPropsManager(
 	props,
 	emit,
 );
-let list = ref(),
-	users = ref([]),
-	fetching = ref(true);
+const list = ref();
+const users = ref([]);
+const fetching = ref(true);
 async function chooseList() {
 	const lists = await os.api("users/lists/list");
 	const { canceled, result: list } = await os.select({

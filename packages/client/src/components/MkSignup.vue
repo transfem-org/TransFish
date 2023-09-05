@@ -284,7 +284,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 import getPasswordStrength from "syuilo-password-strength";
 import { toUnicode } from "punycode/";
@@ -314,15 +314,15 @@ const emit = defineEmits<{
 
 const host = toUnicode(config.host);
 
-let hcaptcha = ref();
-let recaptcha = ref();
+const hcaptcha = ref();
+const recaptcha = ref();
 
-let username: string = ref("");
-let password: string = ref("");
-let retypedPassword: string = ref("");
-let invitationCode: string = ref("");
-let email = ref("");
-let usernameState:
+const username: string = ref("");
+const password: string = ref("");
+const retypedPassword: string = ref("");
+const invitationCode: string = ref("");
+const email = ref("");
+const usernameState:
 	| null
 	| "wait"
 	| "ok"
@@ -331,8 +331,8 @@ let usernameState:
 	| "invalid-format"
 	| "min-range"
 	| "max-range" = ref(null);
-let invitationState: null | "entered" = ref(null);
-let emailState:
+const invitationState: null | "entered" = ref(null);
+const emailState:
 	| null
 	| "wait"
 	| "ok"
@@ -343,12 +343,12 @@ let emailState:
 	| "unavailable:smtp"
 	| "unavailable"
 	| "error" = ref(null);
-let passwordStrength: "" | "low" | "medium" | "high" = ref("");
-let passwordRetypeState: null | "match" | "not-match" = ref(null);
-let submitting: boolean = ref(false);
-let ToSAgreement: boolean = ref(false);
-let hCaptchaResponse = ref(null);
-let reCaptchaResponse = ref(null);
+const passwordStrength: "" | "low" | "medium" | "high" = ref("");
+const passwordRetypeState: null | "match" | "not-match" = ref(null);
+const submitting: boolean = ref(false);
+const ToSAgreement: boolean = ref(false);
+const hCaptchaResponse = ref(null);
+const reCaptchaResponse = ref(null);
 
 const shouldDisableSubmitting = computed((): boolean => {
 	return (

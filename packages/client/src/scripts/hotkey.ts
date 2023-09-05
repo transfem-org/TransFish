@@ -4,18 +4,18 @@ type Callback = (ev: KeyboardEvent) => void;
 
 type Keymap = Record<string, Callback>;
 
-type Pattern = {
+interface Pattern {
 	which: string[];
 	ctrl?: boolean;
 	shift?: boolean;
 	alt?: boolean;
-};
+}
 
-type Action = {
+interface Action {
 	patterns: Pattern[];
 	callback: Callback;
 	allowRepeat: boolean;
-};
+}
 
 const parseKeymap = (keymap: Keymap) =>
 	Object.entries(keymap).map(([patterns, callback]): Action => {
@@ -85,7 +85,7 @@ export const makeHotkey = (keymap: Keymap) => {
 		if (document.activeElement) {
 			if (ignoreElemens.some((el) => document.activeElement!.matches(el)))
 				return;
-			if (document.activeElement.attributes["contenteditable"]) return;
+			if (document.activeElement.attributes.contenteditable) return;
 		}
 
 		for (const action of actions) {

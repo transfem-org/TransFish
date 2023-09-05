@@ -1,4 +1,4 @@
-import { Directive } from "vue";
+import type { Directive } from "vue";
 import { makeHotkey } from "../scripts/hotkey";
 
 export default {

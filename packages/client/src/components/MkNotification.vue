@@ -219,7 +219,7 @@
 					<MkFollowButton
 						:user="notification.user"
 						:full="true"
-						:hideMenu="true"
+						:hide-menu="true"
 					/></div
 			></span>
 			<span
@@ -273,8 +273,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted, watch } from "vue";
-import * as misskey from "firefish-js";
+import { onMounted, onUnmounted, ref, watch } from "vue";
+import type * as misskey from "firefish-js";
 import XReactionIcon from "@/components/MkReactionIcon.vue";
 import MkFollowButton from "@/components/MkFollowButton.vue";
 import XReactionTooltip from "@/components/MkReactionTooltip.vue";
@@ -310,8 +310,7 @@ const defaultReaction = ["⭐", "👍", "❤️"].includes(instance.defaultReact
 	? instance.defaultReaction
 	: "⭐";
 
-let readObserver: IntersectionObserver | undefined;
-let connection;
+let readObserver: IntersectionObserver | undefined, connection;
 
 onMounted(() => {
 	if (!props.notification.isRead) {

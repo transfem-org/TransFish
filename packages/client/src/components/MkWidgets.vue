@@ -1,7 +1,7 @@
 <template>
 	<div class="vjoppmmu">
 		<template v-if="edit">
-			<header tabindex="-1" v-focus>
+			<header v-focus tabindex="-1">
 				<MkSelect
 					v-model="widgetAdderSelected"
 					style="margin-bottom: var(--margin)"
@@ -39,8 +39,8 @@
 						</button>
 						<button
 							class="remove _button"
-							@click.prevent.stop="removeWidget(element)"
 							:aria-label="i18n.t('close')"
+							@click.prevent.stop="removeWidget(element)"
 						>
 							<i class="ph-x ph-bold ph-lg"></i>
 						</button>
@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import { v4 as uuid } from "uuid";
 import { VueDraggable } from "vue-draggable-plus";
 import MkSelect from "@/components/form/select.vue";
@@ -81,11 +81,11 @@ import { widgets as widgetDefs } from "@/widgets";
 import * as os from "@/os";
 import { i18n } from "@/i18n";
 
-type Widget = {
+interface Widget {
 	name: string;
 	id: string;
 	data: Record<string, any>;
-};
+}
 
 const props = defineProps<{
 	widgets: Widget[];
@@ -141,7 +141,7 @@ function onContextmenu(widget: Widget, ev: MouseEvent) {
 		["INPUT", "TEXTAREA", "IMG", "VIDEO", "CANVAS"].includes(
 			ev.target.tagName,
 		) ||
-		ev.target.attributes["contenteditable"]
+		ev.target.attributes.contenteditable
 	)
 		return;
 	if (window.getSelection()?.toString() !== "") return;

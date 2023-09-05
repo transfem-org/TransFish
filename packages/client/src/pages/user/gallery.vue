@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import * as misskey from "firefish-js";
+import type * as misskey from "firefish-js";
 import MkGalleryPostPreview from "@/components/MkGalleryPostPreview.vue";
 import MkPagination from "@/components/MkPagination.vue";
 

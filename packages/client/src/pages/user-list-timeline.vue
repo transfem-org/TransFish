@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, inject, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import XTimeline from "@/components/MkTimeline.vue";
 import * as os from "@/os";
 import { useRouter } from "@/router";
@@ -32,9 +32,9 @@ const props = defineProps<{
 	listId: string;
 }>();
 
-let list = ref(null);
-let tlEl = ref<InstanceType<typeof XTimeline>>();
-let rootEl = ref<HTMLElement>();
+const list = ref(null);
+const tlEl = ref<InstanceType<typeof XTimeline>>();
+const rootEl = ref<HTMLElement>();
 
 watch(
 	() => props.listId,

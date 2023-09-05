@@ -118,7 +118,7 @@
 import { onBeforeUnmount, onMounted, provide, ref } from "vue";
 import contains from "@/scripts/contains";
 import * as os from "@/os";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 const minHeight = 50;
 const minWidth = 250;
@@ -170,14 +170,14 @@ const emit = defineEmits<{
 
 provide("inWindow", true);
 
-let rootEl = ref<HTMLElement | null>();
-let showing = ref(true);
-let beforeClickedAt = 0;
-let maximized = ref(false);
-let unMaximizedTop = "";
-let unMaximizedLeft = "";
-let unMaximizedWidth = "";
-let unMaximizedHeight = "";
+const rootEl = ref<HTMLElement | null>();
+const showing = ref(true);
+let beforeClickedAt = 0,
+	maximized = ref(false),
+	unMaximizedTop = "",
+	unMaximizedLeft = "",
+	unMaximizedWidth = "",
+	unMaximizedHeight = "";
 
 function close() {
 	showing.value = false;
@@ -280,8 +280,8 @@ function onHeaderMousedown(evt: MouseEvent) {
 	const windowHeight = main.offsetHeight;
 
 	function move(x: number, y: number) {
-		let moveLeft = x - moveBaseX;
-		let moveTop = y - moveBaseY;
+		let moveLeft = x - moveBaseX,
+			moveTop = y - moveBaseY;
 
 		// 下はみ出し
 		if (moveTop + windowHeight > browserHeight)

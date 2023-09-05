@@ -12,8 +12,8 @@
 	<div v-if="queue > 0" class="new">
 		<button
 			class="_buttonPrimary _shadow"
-			@click="tlComponent.scrollTop()"
 			:class="{ instant: !$store.state.animation }"
+			@click="tlComponent.scrollTop()"
 		>
 			{{ i18n.ts.newNoteRecived }}
 			<i class="ph-arrow-up ph-bold"></i>
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, onUnmounted, ref } from "vue";
+import { computed, onUnmounted, provide, ref } from "vue";
 import XNotes from "@/components/MkNotes.vue";
 import MkInfo from "@/components/MkInfo.vue";
 import { stream } from "@/stream";
@@ -45,7 +45,7 @@ const props = defineProps<{
 	sound?: boolean;
 }>();
 
-let queue = ref(0);
+const queue = ref(0);
 
 const emit = defineEmits<{
 	(ev: "note"): void;
@@ -83,13 +83,7 @@ const onChangeFollowing = () => {
 	}
 };
 
-let endpoint;
-let query;
-let connection;
-let connection2;
-
-let tlHint;
-let tlHintClosed;
+let endpoint, query, connection, connection2, tlHint, tlHintClosed;
 
 if (props.src === "antenna") {
 	endpoint = "antennas/notes";
@@ -223,7 +217,7 @@ function closeHint() {
 }
 
 const pagination = {
-	endpoint: endpoint,
+	endpoint,
 	limit: 10,
 	params: query,
 };

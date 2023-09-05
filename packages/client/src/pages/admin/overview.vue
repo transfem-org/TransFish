@@ -62,13 +62,11 @@
 <script lang="ts" setup>
 import {
 	markRaw,
-	version as vueVersion,
-	onMounted,
-	onBeforeUnmount,
 	nextTick,
-	shallowRef,
+	onBeforeUnmount,
+	onMounted,
 	ref,
-	computed,
+	shallowRef,
 } from "vue";
 import XFederation from "./overview.federation.vue";
 import XInstances from "./overview.instances.vue";
@@ -80,37 +78,23 @@ import XStats from "./overview.stats.vue";
 import XModerators from "./overview.moderators.vue";
 import XHeatmap from "./overview.heatmap.vue";
 // import XMetrics from "./overview.metrics.vue";
-import MkTagCloud from "@/components/MkTagCloud.vue";
-import { version, url } from "@/config";
 import * as os from "@/os";
 import { stream } from "@/stream";
 import { i18n } from "@/i18n";
 import { definePageMetadata } from "@/scripts/page-metadata";
-import { defaultStore } from "@/store";
-import MkFileListForAdmin from "@/components/MkFileListForAdmin.vue";
 import MkFolder from "@/components/MkFolder.vue";
 
 const rootEl = shallowRef<HTMLElement>();
-let serverInfo: any = ref(null);
-let topSubInstancesForPie: any = ref(null);
-let topPubInstancesForPie: any = ref(null);
-let federationPubActive = ref<number | null>(null);
-let federationPubActiveDiff = ref<number | null>(null);
-let federationSubActive = ref<number | null>(null);
-let federationSubActiveDiff = ref<number | null>(null);
-let newUsers = ref(null);
-let activeInstances = shallowRef(null);
+const serverInfo = ref<any>(null);
+const topSubInstancesForPie = ref<any>(null);
+const topPubInstancesForPie = ref<any>(null);
+const federationPubActive = ref<number | null>(null);
+const federationPubActiveDiff = ref<number | null>(null);
+const federationSubActive = ref<number | null>(null);
+const federationSubActiveDiff = ref<number | null>(null);
+const newUsers = ref(null);
+const activeInstances = shallowRef(null);
 const queueStatsConnection = markRaw(stream.useChannel("queueStats"));
-const now = new Date();
-const filesPagination = {
-	endpoint: "admin/drive/files" as const,
-	limit: 9,
-	noPaging: true,
-};
-
-function onInstanceClick(i) {
-	os.pageWindow(`/instance-info/${i.host}`);
-}
 
 onMounted(async () => {
 	/*
@@ -185,7 +169,7 @@ onMounted(async () => {
 
 	nextTick(() => {
 		queueStatsConnection.send("requestLog", {
-			id: Math.random().toString().substr(2, 8),
+			id: Math.random().toString().slice(2, 10),
 			length: 100,
 		});
 	});
@@ -194,10 +178,6 @@ onMounted(async () => {
 onBeforeUnmount(() => {
 	queueStatsConnection.dispose();
 });
-
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
 
 definePageMetadata({
 	title: i18n.ts.dashboard,

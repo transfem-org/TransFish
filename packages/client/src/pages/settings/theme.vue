@@ -271,10 +271,6 @@ function setWallpaper(event) {
 	});
 }
 
-const headerActions = computed(() => []);
-
-const headerTabs = computed(() => []);
-
 definePageMetadata({
 	title: i18n.ts.theme,
 	icon: "ph-palette ph-bold ph-lg",
