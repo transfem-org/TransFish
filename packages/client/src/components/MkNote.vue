@@ -383,7 +383,7 @@ const isForeignLanguage: boolean =
 		return postLang !== "" && postLang !== targetLang;
 	})();
 
-async function translate_(noteId: number, targetLang: string) {
+async function translate_(noteId, targetLang: string) {
 	return await os.api("notes/translate", {
 		noteId: noteId,
 		targetLang: targetLang,
