@@ -226,7 +226,7 @@ searchPlaceholder: Firefish'de Ara
 reply: Yanıtla
 jumpToPrevious: Öncekini görüntüle
 deleted: Silindi
-editNote: Notu düzenle
+editNote: Gönderiyi düzenle
 noThankYou: Hayır, teşekkürler
 addInstance: Bir sunucu ekle
 cantFavorite: Favorilere eklenemedi.
@@ -262,7 +262,7 @@ blockedInstancesDescription: Engellemek istediğiniz sunucuların domain adları
   Listelenen sunucular artık bu sunucularla iletişim kuramayacak.
 blockedUsers: Engellenmiş kullanıcılar
 editProfile: Profilini düzenle
-intro: Firefish'in kururlumj tamamlandı! Lütfen yönetici hesap oluşturun.
+intro: Firefish'in kurulumu tamamlandı! Lütfen yönetici hesap oluşturun.
 instanceUsers: Sunucunun kullanıcıları
 changePassword: Şifreyi değiştir
 security: Güvenlik
@@ -272,7 +272,7 @@ syncDeviceDarkMode: Karanlık modu cihazının ayarları ile senkronize et
 renameFolder: Bu klasörü yeniden adlandır
 emptyFolder: Bu klasör boş
 unableToDelete: Silinemiyor
-inputNewDescription: Yeni başlık gir
+inputNewDescription: Yeni açıklama gir
 hasChildFilesOrFolders: Bu klasör boş olmadığından dolayı silinemez.
 disconnectedFromServer: Sunucuyla bağlantı kesildi
 reload: Yenile
@@ -585,8 +585,7 @@ onlyOneFileCanBeAttached: Bir mesaja sadece 1 dosya ekleyebilirsin
 install: İndir
 uninstall: kALDIR
 send: Gönder
-noCrawleDescription: Arama motorlarından profil sayfanızı, gönderilerinizi, Sayfalarınızı
-  vb. indekslememesini isteyin.
+noCrawleDescription: Harici arama motorlarından içeriğinizi endekslememesini isteyin.
 emailNotification: Mail bildirimleri
 goBack: Geri
 online: Çevrimiçi
@@ -1152,7 +1151,7 @@ shuffle: Karıştır
 pushNotification: Push bildirimleri
 unsubscribePushNotification: Push bildirimlerini kapat
 pushNotificationNotSupported: Tarayıcınız veya sunucunuz push bildirimleri desteklemiyor
-caption: Otomatik Başlık
+caption: Otomatik Açıklama
 moveToLabel: 'Taşıyacağın hesap:'
 moveFromDescription: Bu, eski hesabınızın bir takma adını belirleyecek ve böylece
   o hesaptan bu mevcut hesaba geçebileceksiniz. Bunu eski hesabınızdan taşınmadan
@@ -1242,9 +1241,9 @@ deletedNote: Silinmiş Gönderi
 visibility: Görünürlük
 poll: Anket
 themeEditor: Tema düzenleyicisi
-enterFileDescription: Başlık gir
+enterFileDescription: Açıklama gir
 description: Açıklama
-describeFile: Başlık ekle
+describeFile: Açıklama ekle
 system: Sistem
 desktop: Masaüstü
 confirmToUnclipAlreadyClippedNote: Bu gönderi zaten "{name}" atacının bir parçası.
@@ -1952,6 +1951,7 @@ _aboutFirefish:
     bağış yapmayı da düşünün.
   donateHost: '{ev sahibi} için bağış yapın'
   sponsors: Firefish sponsorları
+  misskeyContributors: Misskey'e katkıda bulunanlar
 _weekday:
   saturday: Cumartesi
   sunday: Pazar
@@ -2136,7 +2136,7 @@ _feeds:
 origin: Kaynak
 objectStorageS3ForcePathStyle: Path temelli bir endpoint URL'leri kullan
 objectStorageS3ForcePathStyleDesc: Bunu açarak 's3.amazonaws.com/<bucket>/' over '<bucket>.s3.amazonaws.com'
-  formatında URL'lerle endpointleri kurabilirsin.
+  formatında endpoint URL'leri kurabilirsin.
 delete2fa: 2FA'yı devre dışı bırak
 deletePasskeys: Passkey'leri sil
 inputNotMatch: Girdi eşleşmiyor
@@ -2144,3 +2144,15 @@ deletePasskeysConfirm: Bu işlem geri alınamaz bir şekilde bu hesapta ki tüm 
   ve güvenlik anahtarlarını silecektir. İşleme devam ediyor musunuz?
 delete2faConfirm: Bu işlem geri alınamaz bir şekilde 2FA'yı bu hesaptan silecektir.
   İşleme devam ediyor musunuz?
+detectPostLanguage: Yabancı dildeki gönderiler için dili otomatik olarak tespit et
+  ve bir tercüme düğmesi göster
+indexableDescription: Yerleşik aramanın herkese açık gönderilerinizi göstermesine
+  izin ver
+addRe: İçerik uyarısına sahip bir gönderiye yanıt olarak paylaşılan gönderinin başına
+  "re:" ekle
+exportZip: ZIP dışa aktar
+emojiPackCreator: Emoji paketi oluşturucu
+importZip: ZIP içe aktar
+indexable: Endekslenebilir
+languageForTranslation: Çeviri sonrası dili
+confirm: Onayla
