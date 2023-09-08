@@ -1,13 +1,12 @@
 import { URL } from "node:url";
-import { JSDOM } from "jsdom";
+import { Window } from "happy-dom";
 import fetch from "node-fetch";
 import tinycolor from "tinycolor2";
-import { getJson, getHtml, getAgentByUrl } from "@/misc/fetch.js";
+import { getJson, getAgentByUrl } from "@/misc/fetch.js";
 import type { Instance } from "@/models/entities/instance.js";
 import { Instances } from "@/models/index.js";
 import { getFetchInstanceMetadataLock } from "@/misc/app-lock.js";
 import Logger from "./logger.js";
-import type { DOMWindow } from "jsdom";
 
 const logger = new Logger("metadata", "cyan");
 
@@ -151,14 +150,12 @@ async function fetchNodeinfo(instance: Instance): Promise<NodeInfo> {
 	}
 }
 
-async function fetchDom(instance: Instance): Promise<DOMWindow["document"]> {
+async function fetchDom(instance: Instance): Promise<Window["document"]> {
 	logger.info(`Fetching HTML of ${instance.host} ...`);
 
-	const url = `https://${instance.host}`;
-
-	const html = await getHtml(url);
-
-	const { window } = new JSDOM(html);
+	const window = new Window({
+		url: `https://${instance.host}`,
+	});
 	const doc = window.document;
 
 	return doc;
@@ -178,7 +175,7 @@ async function fetchManifest(
 
 async function fetchFaviconUrl(
 	instance: Instance,
-	doc: DOMWindow["document"] | null,
+	doc: Window["document"] | null,
 ): Promise<string | null> {
 	const url = `https://${instance.host}`;
 
@@ -210,7 +207,7 @@ async function fetchFaviconUrl(
 
 async function fetchIconUrl(
 	instance: Instance,
-	doc: DOMWindow["document"] | null,
+	doc: Window["document"] | null,
 	manifest: Record<string, any> | null,
 ): Promise<string | null> {
 	if (manifest?.icons && manifest.icons.length > 0 && manifest.icons[0].src) {
@@ -242,7 +239,7 @@ async function fetchIconUrl(
 
 async function getThemeColor(
 	info: NodeInfo | null,
-	doc: DOMWindow["document"] | null,
+	doc: Window["document"] | null,
 	manifest: Record<string, any> | null,
 ): Promise<string | null> {
 	const themeColor =
@@ -260,9 +257,9 @@ async function getThemeColor(
 
 async function getSiteName(
 	info: NodeInfo | null,
-	doc: DOMWindow["document"] | null,
+	doc: Window["document"] | null,
 	manifest: Record<string, any> | null,
-): Promise<string | null> {
+): Promise<string | undefined | null> {
 	if (info?.metadata) {
 		if (info.metadata.nodeName || info.metadata.name) {
 			return info.metadata.nodeName || info.metadata.name;
@@ -288,7 +285,7 @@ async function getSiteName(
 
 async function getDescription(
 	info: NodeInfo | null,
-	doc: DOMWindow["document"] | null,
+	doc: Window["document"] | null,
 	manifest: Record<string, any> | null,
 ): Promise<string | null> {
 	if (info?.metadata) {
