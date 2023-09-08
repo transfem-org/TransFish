@@ -1,5 +1,5 @@
 ## Install dev and compilation dependencies, build files
-FROM node:20-bookworm as build
+FROM node:20.5-bookworm as build
 WORKDIR /firefish
 
 # Install compilation dependencies
@@ -48,7 +48,7 @@ RUN env NODE_ENV=production sh -c "pnpm run --filter '!native-utils' build && pn
 RUN pnpm i --prod --frozen-lockfile
 
 ## Runtime container
-FROM node:20-bookworm
+FROM node:20.5-bookworm
 WORKDIR /firefish
 
 # Install runtime dependencies
