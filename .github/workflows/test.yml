@@ -16,7 +16,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: node:20-bookworm
+    container: node:20.5-bookworm
 
     services:
       postgres:
