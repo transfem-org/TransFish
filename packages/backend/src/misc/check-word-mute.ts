@@ -33,7 +33,9 @@ function checkWordMute(
 
 			if (
 				keywords.length > 0 &&
-				keywords.every((keyword) => text.includes(keyword))
+				keywords.every((keyword) =>
+					text.toLowerCase().includes(keyword.toLowerCase()),
+				)
 			)
 				return true;
 		} else {
