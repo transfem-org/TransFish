@@ -1433,6 +1433,19 @@ _deck:
   newProfile: Nytt arbeidsområde
   renameProfile: Gi arbeidsområdet nytt navn
   deleteProfile: Slett arbeidsområde
+  _columns:
+    list: Liste
+    main: Standard
+    notifications: Varsler
+    widgets: Skjermelementer
+    mentions: Nevninger
+    channel: Kanal
+    direct: Direktemeldinger
+    antenna: Antenne
+    tl: Tidslinje
+  widgetsIntroduction: Trykk "Rediger skjermelementer" i kolonnemenyen og legg til
+    et element.
+  popRight: Flytt kolonnen ut av stabelen og til høyre
 _serverDisconnectedBehavior:
   reload: Automatisk omlasting
   quiet: Vis ikkeforstyrrende advarsel
@@ -1908,3 +1921,12 @@ failedToUpload: Opplasting feilet
 speed: Fart
 undeck: Forlat kolonnevisning
 deck: Kolonner
+_experiments:
+  title: Eksperimenter
+  enablePostImports: Slå på post-importer
+  postImportsCaption: Lar brukere importere poster fra kontoer på Firefish, Misskey,
+    Mastodon, Akkoma eller Pleroma. Den ekstra lasten kan forårsake tregere tjeneste.
+_dialog:
+  charactersBelow: 'Ikke nok tagn! Skrevet: {current}/Grense: {min}'
+  charactersExceeded: 'Maks antall tegn er overskredet! Skrevet: {current}/Grense:
+    {max}'
