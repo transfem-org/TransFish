@@ -721,8 +721,7 @@ no: "Tidak"
 driveFilesCount: "Jumlah berkas drive"
 driveUsage: "Penggunaan ruang penyimpanan drive"
 noCrawle: "Tolak pengindeksan crawler"
-noCrawleDescription: "Minta mesin pencari untuk tidak mengindeks halaman profil, postingan,
-  Halaman kamu, dll."
+noCrawleDescription: "Minta mesin pencari eksternal untuk tidak mengindeks kontenmu."
 lockedAccountInfo: "Kecuali kamu mengatur visibilitas postingan milikmu ke \"Hanya
   pengikut\", postingan milikmu akan dapat dilihat oleh siapa saja, bahkan jika kamu
   memerlukan pengikut untuk disetujui secara manual."
@@ -1251,7 +1250,7 @@ _tutorial:
   step2_2: "Menyediakan beberapa informasi tentang siapa kamu akan membuatnya lebih
     mudah bagi orang lain untuk menentukan jika mereka ingin postinganmu atau mengikutimu."
   step3_1: "Sekarang saatnya mengikuti beberapa orang!"
-  step3_2: "Linimasa beranda dan sosial berdasarkan siapa yang kamu ikuti, jadi coba
+  step3_2: "Lini masa beranda dan sosial berdasarkan siapa yang kamu ikuti, jadi coba
     ikuti beberapa akun untuk memulai.\nKlik lingkaran plus pada pojok kanan atas
     pada profil untuk mengikuti mereka."
   step3_3: "Isilah di dalam modal dan tekan tombol pada atas kanan untuk memcatat
@@ -1280,7 +1279,7 @@ _tutorial:
   step5_6: Linimasa Rekomendasi {icon} adalah tempat kamu dapat melihat postingan
     dari server yang direkomendasikan admin.
   step6_4: Sekarang pergilah, bereksplorasi, dan senang-senang!
-  step5_5: Linimasa Sosial {icon} adalah kombinasi antara linimasa Beranda dan Lokal.
+  step5_5: Lini masa Sosial {icon} adalah kombinasi antara lini masa Beranda dan Lokal.
   step5_7: Linimasa Global {icon} adalah tempat kamu dapat melihat postingan orang-orang
     dari server yang terkoneksi.
 _2fa:
@@ -1436,7 +1435,7 @@ _visibility:
   public: "Publik"
   publicDescription: "Postinganmu akan terlihat di semua linimasa publik"
   home: "Tidak terdaftar"
-  homeDescription: "Posting ke linimasa beranda saja"
+  homeDescription: "Posting ke lini masa beranda saja"
   followers: "Pengikut"
   followersDescription: "Tampilkan ke pengikut dan pengguna yang disebut saja"
   specified: "Langsung"
@@ -1462,7 +1461,7 @@ _profile:
   metadata: "Informasi tambahan"
   metadataEdit: "Sunting informasi tambahan"
   metadataDescription: "Kamu dapat menampilkan hingga 4 bagian informasi tambahan
-    ke dalam profilmu. Anda dapat menambahkan tag {a} atau tag {l} dengan {rel} untuk
+    ke dalam profilmu. Kamu bisa menambahkan tag {a} atau tag {l} dengan {rel} untuk
     memverifikasi tautan di profil kamu!"
   metadataLabel: "Label"
   metadataContent: "Isi"
@@ -2169,3 +2168,8 @@ confirm: Konfirmasi
 importZip: Impor ZIP
 exportZip: Ekspor ZIP
 emojiPackCreator: Pembuat paket emoji
+detectPostLanguage: Deteksi bahasa secara otomatis dan tampilkan tombol terjemahkan
+  untuk kiriman dalam bahasa asing
+indexableDescription: Perbolehkan pencarian di sini untuk menampilkan kiriman publikmu
+indexable: Dapat diindeks
+languageForTranslation: Bahasa terjemahan kiriman

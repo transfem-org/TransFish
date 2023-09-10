@@ -82,7 +82,7 @@ followers: "Följare"
 followsYou: "Följer dig"
 createList: "Skapa lista"
 manageLists: "Hantera lista"
-error: "Fel!"
+error: "Fel"
 somethingHappened: "Ett fel har uppstått"
 retry: "Försök igen"
 pageLoadError: "Det gick inte att ladda sidan."
@@ -146,7 +146,7 @@ addEmoji: "Lägg till emoji"
 settingGuide: "Rekommenderade inställningar"
 cacheRemoteFiles: "Spara externa filer till cachen"
 cacheRemoteFilesDescription: "När denna inställning är avstängd kommer externa filer
-  laddas direkt från den externa instansen. Genom att stänga av detta kommer lagringsutrymme
+  laddas direkt från den externa servern. Genom att stänga av detta kommer lagringsutrymme
   minska i användning men kommer öka datatrafiken eftersom miniatyrer inte kommer
   genereras."
 flagAsBot: "Markera konto som bot"
@@ -181,7 +181,7 @@ selectUser: "Välj användare"
 recipient: "Mottagare"
 annotation: "Kommentarer"
 federation: "Federation"
-instances: "Instanser"
+instances: "Servrar"
 registeredAt: "Registrerad på"
 latestRequestSentAt: "Senaste förfrågan skickad"
 latestRequestReceivedAt: "Senaste begäran mottagen"
@@ -191,7 +191,7 @@ charts: "Diagram"
 perHour: "Per timme"
 perDay: "Per dag"
 stopActivityDelivery: "Sluta skicka aktiviteter"
-blockThisInstance: "Blockera instans"
+blockThisInstance: "Blockera denna server"
 operations: "Operationer"
 software: "Mjukvara"
 version: "Version"
@@ -201,7 +201,7 @@ jobQueue: "Jobbkö"
 cpuAndMemory: "CPU och minne"
 network: "Nätverk"
 disk: "Disk"
-instanceInfo: "Instansinformation"
+instanceInfo: "Serverninformation"
 statistics: "Statistik"
 clearQueue: "Rensa kö"
 clearQueueConfirmTitle: "Är du säker att du vill rensa kön?"
@@ -209,9 +209,9 @@ clearQueueConfirmText: "Om någon not är olevererad i kön kommer den inte fede
   Vanligtvis behövs inte denna handling."
 clearCachedFiles: "Rensa cache"
 clearCachedFilesConfirm: "Är du säker att du vill radera alla cachade externa filer?"
-blockedInstances: "Blockerade instanser"
-blockedInstancesDescription: "Lista adressnamn av instanser som du vill blockera.
-  Listade instanser kommer inte längre kommunicera med denna instans."
+blockedInstances: "Blockerade servrar"
+blockedInstancesDescription: "Lista adressnamn av servrar som du vill blockera. Listade
+  servrarna kommer inte längre kommunicera med denna servern."
 muteAndBlock: "Tystningar och blockeringar"
 mutedUsers: "Tystade användare"
 blockedUsers: "Blockerade användare"
@@ -221,7 +221,7 @@ noteDeleteConfirm: "Är du säker på att du vill ta bort denna not?"
 pinLimitExceeded: "Du kan inte fästa fler noter"
 intro: "Firefish har installerats! Vänligen skapa en adminanvändare."
 done: "Klar"
-processing: "Bearbetar..."
+processing: "Bearbetar"
 preview: "Förhandsvisning"
 default: "Standard"
 defaultValueIs: "Standard: {value}"
@@ -234,12 +234,12 @@ all: "Allt"
 subscribing: "Prenumererar"
 publishing: "Publiceras"
 notResponding: "Svarar inte"
-instanceFollowing: "Följer på instans"
-instanceFollowers: "Följare av instans"
-instanceUsers: "Användare av denna instans"
+instanceFollowing: "Följer på server"
+instanceFollowers: "Följare av server"
+instanceUsers: "Användare av denna server"
 changePassword: "Ändra lösenord"
 security: "Säkerhet"
-retypedNotMatch: "Inmatningen matchar inte"
+retypedNotMatch: "Inmatningen matchar inte."
 currentPassword: "Nuvarande lösenord"
 newPassword: "Nytt lösenord"
 newPasswordRetype: "Bekräfta lösenord"
@@ -394,7 +394,7 @@ clientSettings: Klientinställningar
 promote: Befordra
 numberOfDays: Antalet dagar
 objectStorageUseSSL: Använd SSL
-objectStorageUseSSLDesc: Stäng av detta om du inte kommer använda HTTPS för API anslutningar.
+objectStorageUseSSLDesc: Stäng av detta om du inte kommer använda HTTPS för API anslutningar
 recentUsed: Senast använd
 nothing: Det finns inget att visa här
 lastUsedDate: Senaste använd vid
@@ -481,7 +481,7 @@ cacheClear: Rensa cache
 markAsReadAllTalkMessages: Markera alla meddelanden som lästa
 uiLanguage: Användargränssnitt
 disableDrawer: Använd inte byrålådor-stil menyer
-tapSecurityKey: Klicka in din säkerhetsnyckel.
+tapSecurityKey: Klicka in din säkerhetsnyckel
 language: Språk
 objectStorageRegionDesc: Ange en region som 'xx-east-1'. Om du anger din tjänst som
   inte skiljer mellan regioner, lämna detta blankt eller ange som 'us-east-1'.
@@ -576,7 +576,7 @@ accept: Acceptera
 tosUrl: Användarvillkor URL
 pages: Sidor
 disablingTimelinesInfo: Administratörer och moderatorer har alltid tillgång till alla
-  tidslinjer, även om de inte är aktiverade
+  tidslinjer, även om de inte är aktiverade.
 registration: Registrera
 enableRegistration: Aktivera ny användarregistrering
 driveCapacityPerRemoteAccount: Enhetskapacitet per extern användare
@@ -631,7 +631,7 @@ birthday: Födelsedag
 theme: Teman
 avatar: Avatar
 uploadFromUrlDescription: URL av filen som du vill ladda upp
-remoteUserCaution: Informationen från en avlägsen användare kan inte slutföras
+remoteUserCaution: Informationen från en avlägsen användare kan inte slutföras.
 yearsOld: '{age} år gammal'
 location: Plats
 selectFile: Välj en fil
@@ -652,7 +652,7 @@ basicInfo: Grundläggande info
 pinnedUsers: Pinnade användare
 backgroundImageUrl: Bakgrundsbild URL
 pinnedUsersDescription: Lista användarnamn separerade med radbrytning att bli fäst
-  i "Utforska" fliken
+  i "Utforska" fliken.
 recaptchaSiteKey: Sid nyckel
 pinnedClipId: ID av klippet du vill fästa
 avoidMultiCaptchaConfirm: Användning av flera Captcha system kan orsaka problem. Vill
@@ -681,7 +681,7 @@ nUsersMentioned: Benämnd av {n} användare
 securityKeyName: Nyckelnamn
 share: Dela
 reduceUiAnimation: Minska UI animeringar
-notFoundDescription: Ingen sida som korresponderar med denna URL kunde hittas
+notFoundDescription: Ingen sida som korresponderar med denna URL kunde hittas.
 close: Stäng
 group: Grupp
 transfer: Överför
@@ -759,7 +759,7 @@ lastUsed: Senast använd
 unregister: Avregistrera
 addInstance: Lägg till server
 objectStorageBucketDesc: Vänligen ange hink-namn som du använder som din leverantör.
-accountMoved: Användaren har flyttat till ett nytt konto
+accountMoved: 'Användaren har flyttat till ett nytt konto:'
 hideThisNote: Dölj denna post
 showFeaturedNotesInTimeline: Visa presenterade poster i tidslinjen
 objectStorageBucket: Hink
@@ -781,3 +781,5 @@ removeAllFollowing: Sluta följa alla följda användare
 medium: Mellan
 integration: Integreringar
 xl: XL
+desktop: Skrivbord
+createNew: Skapa nya

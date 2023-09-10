@@ -737,8 +737,7 @@ no: "Nein"
 driveFilesCount: "Anzahl der Dateien in Cloud-Drive"
 driveUsage: "Cloud-Drive-Auslastung"
 noCrawle: "Crawler-Indexierung ablehnen"
-noCrawleDescription: "Suchmaschinen bitten, die eigene Profilseite, Beiträge, Nutzer-Seiten
-  usw. nicht zu indexieren."
+noCrawleDescription: "Externe Suchmaschinen auffordern, Ihre Inhalte nicht zu indizieren."
 lockedAccountInfo: "Auch wenn du Follow-Anfragen auf manuelle Bestätigung setzt, wird
   jeder deiner Posts öffentlich sichtbar sein, sofern du ihre Sichtbarkeit nicht auf
   \"Nur Follower\" setzt."
@@ -2207,4 +2206,10 @@ addRe: Ein "re:" am Anfang des Kommentars hinzufügen, um einem Beitrag mit eine
 confirm: Bestätigen
 importZip: ZIP Importieren
 emojiPackCreator: Emoji-Pack Ersteller
-exportZip: ZIP Exportieren
+exportZip: ZIP exportieren
+detectPostLanguage: Sprache automatisch erkennen und eine Schaltfläche zum Übersetzen
+  von Beiträgen in Fremdsprachen anzeigen
+indexableDescription: Der integrierten Suche erlauben, Ihre öffentlichen Beiträge
+  anzuzeigen
+indexable: Indexierbar
+languageForTranslation: Übersetzungssprache veröffentlichen
