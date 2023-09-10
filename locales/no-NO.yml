@@ -1897,3 +1897,5 @@ enableAutoSensitiveDescription: Tillat automatisk deteksjon og markering av NSFW
 subscribePushNotification: Slå på push-varsler
 failedToUpload: Opplasting feilet
 speed: Fart
+undeck: Forlat kolonnevisning
+deck: Kolonner
