@@ -1424,6 +1424,15 @@ _deck:
   alwaysShowMainColumn: Vis alltid hovedkolonne
   swapDown: Flytt kolonnen nedover
   addColumn: Legg til kolonne
+  nameAlreadyExists: Navnet er allerede i bruk på et annet arbeidsområde.
+  introduction: Gjør brukergrensesnittet perfekt ved å sette kolonnene slik du vil
+    ha dem!
+  introduction2: Klikk pluss-tegnet til høyre på skjermen for å legge til nye kolonner
+    når du trenger dem.
+  profile: Arbeidsområde
+  newProfile: Nytt arbeidsområde
+  renameProfile: Gi arbeidsområdet nytt navn
+  deleteProfile: Slett arbeidsområde
 _serverDisconnectedBehavior:
   reload: Automatisk omlasting
   quiet: Vis ikkeforstyrrende advarsel
