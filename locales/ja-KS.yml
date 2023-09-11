@@ -1439,6 +1439,7 @@ _postForm:
     c: なに考えとりまっか？
     d: なんや言いたいんちゃいますか？
     f: あんさん書くんを待っとるんどす...
+    a: いまなにしとん？
 flagSpeakAsCat: 猫弁で話す
 flagSpeakAsCatDescription: 猫モードが有効の場合にオンにすると、ワレの投稿の「な」を「にゃ」に変換するで。
 welcomeBackWithName: おおきに、{name}はん
