@@ -81,7 +81,7 @@ deleteAndEdit: Eliminar e editar
 blockConfirm: Tes a certeza de querer bloquear esta conta?
 deleteAndEditConfirm: Tes a certeza de querer eliminar esta publicación e editala?
   Perderás todas as súas reaccións, promocións e respostas.
-editNote: Editar nota
+editNote: Editar publicación
 edited: Editado o {date} {time}
 sendMessage: Enviar unha mensaxe
 copyUsername: Copiar identificador
@@ -282,3 +282,76 @@ storageUsage: Uso da almacenaxe
 charts: Gráficas
 perHour: Por hora
 followRequest: Solicitar seguimento
+messageRead: Ler
+noMoreHistory: Non hai máis historial
+images: Imaxes
+manageGroups: Xestionar grupos
+unableToDelete: Non se puido eliminar
+syncDeviceDarkMode: Syncr Modo Escuro cos axustes do teu dispositivo
+uploadFromUrl: Subir desde un URL
+emptyDrive: O teu Disco está baleiro
+copyUrl: Copiar URL
+nUsersRead: lido por {n}
+uploadFromUrlRequested: Solicitaches unha subida
+circularReferenceFolder: O cartafol de destino é un subcartafol do cartafol que queres
+  mover.
+selectFile: Elexir un ficheiro
+inputNewFileName: Escribe o novo nome
+agreeTo: Acepto os {0}
+whenServerDisconnected: Cando se perda a conexión co servidor
+selectFolder: Elexir un cartafol
+saved: Gardado
+selectFiles: Elexir ficheiros
+fileName: Nome do ficheiro
+explore: Descubrir
+keepOriginalUploadingDescription: Garda a imaxe subida orixinalmente tal como é. Se
+  o desactivas, a versión que se mostrará na web será creada ao subila.
+folderName: Nome do cartafol
+lightThemes: Decorados claros
+rename: Cambiar nome
+activity: Actividade
+fromUrl: Desde URL
+darkThemes: Decorados escuros
+birthday: Aniversario
+registeredDate: Conta creada en
+fromDrive: Desde Disco
+uploadFromUrlMayTakeTime: Podería tardar una anaco en completarse a subida.
+theme: Decorados
+renameFolder: Cambiar nome a este cartafol
+resetAreYouSure: Queres restablecer?
+startMessaging: Comezar un novo chat
+light: Claro
+themeForLightMode: Decorado a usar no Modo Claro
+inputNewDescription: Escribe a descrición
+start: Comezar
+selectFolders: Elexir cartafoles
+remoteUserCaution: A información das usuarias remotas podería estar incompleta.
+exportRequested: Solicitaches unha exportación. Vainos levar un pouco. Vai ser engadida
+  ao teu Disco cando estea completa.
+deleteFolder: Eliminar este cartafol
+drive: Disco
+importRequested: Solicitaches unha importación. Vainos levar un anaco.
+uploadFromUrlDescription: URL do ficheiro que queres subir
+location: Localización
+unfollowConfirm: Tes a certeza de que queres deixar de seguir a {name}?
+banner: Cabeceira
+dark: Escuro
+home: Inicio
+keepOriginalUploading: Manter imaxe orixinal
+upload: Subir
+yearsOld: '{age} anos de idade'
+emptyFolder: Este cartafol está baleiro
+messaging: Chat
+nsfw: NSFW
+addFile: Engadir un ficheiro
+tos: Termos do Servizo
+themeForDarkMode: Decorado a usar no Modo Escuro
+deleteAreYouSure: Tes a certeza de querer desbotar "{x}"?
+createFolder: Crear un cartafol
+renameFile: Cambiar nome ao ficheiro
+lookup: Buscar
+avatar: Avatar
+driveFileDeleteConfirm: Tes a certeza de querer eliminar o ficheiro "{name}"? Vai
+  ser retirado de todas as publicacións nas que estea como anexo.
+inputNewFolderName: Escribe o novo nome do cartafol
+hasChildFilesOrFolders: Como o cartafol non está baleiro, non pode ser eliminado.
