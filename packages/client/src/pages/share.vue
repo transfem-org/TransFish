@@ -65,7 +65,7 @@ const visibleUsers = ref([] as Misskey.entities.User[]);
 
 async function init() {
 	let noteText = "";
-	if (title.value) noteText += `[ ${title.value} ]\n`;
+	if (title.value) noteText += `${title.value}\n`;
 	// Googleニュース対策
 	if (text?.startsWith(`${title.value}.\n`))
 		noteText += text.replace(`${title.value}.\n`, "");
