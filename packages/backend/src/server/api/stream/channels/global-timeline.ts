@@ -23,7 +23,7 @@ export default class extends Channel {
 				return;
 		}
 
-		this.withReplies = params.withReplies as boolean;
+		this.withReplies = params != null ? !!params.withReplies : true;
 
 		// Subscribe events
 		this.subscriber.on("notesStream", this.onNote);
