@@ -1,6 +1,7 @@
 <template>
 	<button
 		v-tooltip.noDelay.bottom="i18n.ts._gallery.like"
+		v-vibrate="[30, 50, 50]"
 		class="button _button"
 		@click.stop="star($event)"
 	>

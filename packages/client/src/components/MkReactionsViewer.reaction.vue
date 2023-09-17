@@ -3,6 +3,7 @@
 		v-if="count > 0"
 		ref="buttonRef"
 		v-ripple="canToggle"
+		v-vibrate="[10, 30, 40]"
 		class="hkzvhatu _button"
 		:class="{
 			reacted: note.myReaction == reaction,
