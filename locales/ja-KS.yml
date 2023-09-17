@@ -578,7 +578,7 @@ disableAll: "全部使えへんようにする"
 tokenRequested: "アカウントへのアクセス許可"
 pluginTokenRequestedDescription: "このプラグインはここで設定した権限を使えるようになるで。"
 notificationType: "通知の種類"
-edit: "編集"
+edit: "投稿をいじる"
 emailServer: "メールサーバー"
 enableEmail: "メール配信を受け取る"
 emailConfigInfo: "メールアドレスの確認とかパスワードリセットの時に使うで"
@@ -735,7 +735,7 @@ showingPastTimeline: "過去のタイムラインを表示してるで"
 clear: "クリア"
 markAllAsRead: "もうみな読んでもうたわ"
 goBack: "戻る"
-unlikeConfirm: "いいね解除するんか？"
+unlikeConfirm: "ええやんを解除するんけ？"
 fullView: "フルビュー"
 quitFullView: "フルビュー解除"
 addDescription: "説明を追加するで"
@@ -810,7 +810,7 @@ searchByGoogle: "探す"
 indefinitely: "無期限"
 file: "ファイル"
 requireAdminForView: "これを見るには管理者アカウントでログインしとらなあかんで。"
-isSystemAccount: "システムが自動で作成・管理しとるアカウントやで。"
+isSystemAccount: "システムが自動で作成・管理しとるアカウントやで。モデレーション・編集・削除するとサーバーの動作が不正になる可能性があるので、操作せんといてください。"
 typeToConfirm: "この操作をやるんなら {x} と入力してなー"
 deleteAccount: "アカウント削除するで"
 document: "ドキュメント"
@@ -853,7 +853,9 @@ _ffVisibility:
 _ad:
   back: "戻る"
 _gallery:
-  unlike: "良くないわ"
+  unlike: "やっぱよくないわ"
+  like: ええやん！
+  liked: ええやんと思った投稿
 _email:
   _follow:
     title: "フォローされたで"
@@ -1069,9 +1071,16 @@ _poll:
   votesCount: "{n}票"
   vote: "投票する"
 _visibility:
-  publicDescription: "みんなに公開"
-  home: "ホーム"
-  followers: "フォロワー"
+  publicDescription: "うちの投稿、みんな見てや"
+  home: "ホームタイムラインのみ"
+  followers: "フォロワーのみ"
+  localOnly: ローカルのみ
+  followersDescription: フォロワーと返信相手だけに見せたる
+  specified: ダイレクト
+  localOnlyDescription: 他のサーバーには見せとうない
+  specifiedDescription: 指定した相手だけに見せたる
+  public: 公開
+  homeDescription: ローカルTLやグローバルTLには流さへん
 _profile:
   name: "名前"
   username: "ユーザー名"
@@ -1121,7 +1130,7 @@ _pages:
   pageSetting: "ページ設定"
   viewPage: "ページを見る"
   like: "ええやん"
-  unlike: "良くないわ"
+  unlike: "やっぱ気に入らん"
   liked: "ええと思ったページ"
   contents: "コンテンツ"
   summary: "ページの要約"
@@ -1441,5 +1450,6 @@ _postForm:
     f: あんさん書くんを待っとるんどす...
     a: いまなにしとん？
 flagSpeakAsCat: 猫弁で話す
-flagSpeakAsCatDescription: 猫モードが有効の場合にオンにすると、ワレの投稿の「な」を「にゃ」に変換するで。
+flagSpeakAsCatDescription: オンにすると、ワレの投稿の「な」を「にゃ」に変換したるで。
 welcomeBackWithName: おおきに、{name}はん
+migration: アカウントの引っ越し

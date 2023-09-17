@@ -300,7 +300,7 @@ messagingWithGroup: Grup sohbeti
 next: Sonraki
 retype: Tekrar gir
 dashboard: Panel
-objectStorageBucket: Bucket
+objectStorageBucket: Kova
 objectStorageBucketDesc: Sağlayıcınız tarafından kullanınan bucket ismini yazın.
 showFixedPostForm: Gönderim formunu zaman çizelgesinin en üstünde görüntüleyin
 newNoteRecived: Yeni gönderiler mevcut
@@ -750,7 +750,7 @@ upload: Yükle
 fromUrl: URL'den
 agreeTo: '{0} kabul ediyorum'
 tos: Kullanım Koşulları
-drive: Drive
+drive: Sürücü
 selectFolder: Klasör seç
 inputNewFileName: Yeni dosya ismi gir
 whenServerDisconnected: Sunucuyla bağlantı kesildiğinde
@@ -916,7 +916,7 @@ aboutX: '{x} Hakkında'
 doing: İşleniyor...
 category: Kategori
 deleteAll: Hepsini sil
-objectStorageEndpoint: Endpoint
+objectStorageEndpoint: Uç noktası
 output: Çıkış
 userSuspended: Bu kullanıcı askıya alındı.
 userSilenced: Bu kullanıcı susturuldu.
@@ -1105,7 +1105,7 @@ clips: Ataçlar
 experimentalFeatures: Deneysel özellikler
 developer: Geliştirici
 left: Sol
-center: Orta
+center: Merkez
 wide: Geniş
 narrow: Dar
 reloadToApplySetting: Bu ayar yalnızca bir sayfa yeniden yüklendikten sonra geçerli
