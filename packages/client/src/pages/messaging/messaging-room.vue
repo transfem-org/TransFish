@@ -120,6 +120,7 @@ import {
 import * as os from "@/os";
 import { stream } from "@/stream";
 import * as sound from "@/scripts/sound";
+import { vibrate } from "@/scripts/vibrate";
 import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { defaultStore } from "@/store";
@@ -251,6 +252,7 @@ function onDrop(ev: DragEvent): void {
 
 function onMessage(message) {
 	sound.play("chat");
+	vibrate([30, 30, 30]);
 
 	const _isBottom = isBottomVisible(rootEl.value, 64);
 

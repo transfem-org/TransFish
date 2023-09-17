@@ -25,6 +25,7 @@
 
 		<button
 			v-if="!isDesktop && !isMobile"
+			v-vibrate="5"
 			class="widgetButton _button"
 			@click="widgetsShowing = true"
 		>
@@ -33,6 +34,7 @@
 
 		<div v-if="isMobile" class="buttons">
 			<button
+				v-vibrate="5"
 				:aria-label="i18n.t('menu')"
 				class="button nav _button"
 				@click="drawerMenuShowing = true"
@@ -48,6 +50,7 @@
 				</div>
 			</button>
 			<button
+				v-vibrate="5"
 				:aria-label="i18n.t('home')"
 				class="button home _button"
 				@click="
@@ -65,6 +68,7 @@
 				</div>
 			</button>
 			<button
+				v-vibrate="5"
 				:aria-label="i18n.t('notifications')"
 				class="button notifications _button"
 				@click="
@@ -73,6 +77,7 @@
 				"
 			>
 				<div
+					v-vibrate="5"
 					class="button-wrapper"
 					:class="buttonAnimIndex === 1 ? 'on' : ''"
 				>
@@ -86,6 +91,7 @@
 				</div>
 			</button>
 			<button
+				v-vibrate="5"
 				:aria-label="i18n.t('messaging')"
 				class="button messaging _button"
 				@click="
@@ -107,6 +113,7 @@
 				</div>
 			</button>
 			<button
+				v-vibrate="5"
 				:aria-label="i18n.t('_deck._columns.widgets')"
 				class="button widget _button"
 				@click="widgetsShowing = true"
@@ -225,7 +232,7 @@ provideMetadataReceiver((info) => {
 
 const menuIndicated = computed(() => {
 	for (const def in navbarItemDef) {
-		if (def === "notifications") continue; // 通知は下にボタンとして表示されてるから
+		if (def === "notifications" || def === "messaging") continue; // Notifications & Messaging are bottom nav buttons and thus shouldn't be highlighted in the sidebar
 		if (navbarItemDef[def].indicated) return true;
 	}
 	return false;

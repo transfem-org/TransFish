@@ -4,6 +4,7 @@
 			<div class="title"><slot name="header"></slot></div>
 			<div class="divider"></div>
 			<button
+				v-vibrate="5"
 				class="_button"
 				:aria-expanded="showBody"
 				:aria-controls="bodyId"

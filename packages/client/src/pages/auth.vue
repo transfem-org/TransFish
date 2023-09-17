@@ -46,14 +46,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import XForm from "./auth.form.vue";
 import MkSignin from "@/components/MkSignin.vue";
 import MkKeyValue from "@/components/MkKeyValue.vue";
 import * as os from "@/os";
-import { login } from "@/account";
+import { $i, login } from "@/account";
 import { i18n } from "@/i18n";
-import { $i } from "@/account";
 
 const props = defineProps<{
 	token: string;
@@ -102,11 +101,7 @@ const accepted = () => {
 	const isMastodon = !!getUrlParams().mastodon;
 	if (session.value.app.callbackUrl && isMastodon) {
 		const redirectUri = decodeURIComponent(getUrlParams().redirect_uri);
-		if (
-			!session.value.app.callbackUrl
-				.split("\n")
-				.some((p) => p === redirectUri)
-		) {
+		if (!session.value.app.callbackUrl.split("\n").includes(redirectUri)) {
 			state.value = "fetch-session-error";
 			fetching.value = false;
 			throw new Error("Callback URI doesn't match registered app");

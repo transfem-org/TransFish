@@ -8,6 +8,7 @@
 		<div>
 			<div
 				ref="itemsEl"
+				v-vibrate="5"
 				class="rrevdjwt _popup _shadow"
 				:class="{ center: align === 'center', asDrawer }"
 				:style="{

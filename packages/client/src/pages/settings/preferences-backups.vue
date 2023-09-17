@@ -126,6 +126,7 @@ const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	"syncDeviceDarkMode",
 	"plugins",
 	"mediaVolume",
+	"vibrate",
 	"sound_masterVolume",
 	"sound_note",
 	"sound_noteMy",
