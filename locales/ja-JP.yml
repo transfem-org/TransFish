@@ -1982,3 +1982,4 @@ importZip: ZIPをインポート
 emojiPackCreator: 絵文字パックの作者
 confirm: 確認
 exportZip: ZIPをエクスポート
+openServerInfo: "投稿内のサーバー名をクリックでサーバー情報を開く"

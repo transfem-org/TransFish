@@ -83,6 +83,9 @@
 			<FormSwitch v-model="detectPostLanguage" class="_formBlock">{{
 				i18n.ts.detectPostLanguage
 			}}</FormSwitch>
+			<FormSwitch v-model="openServerInfo" class="_formBlock">{{
+				i18n.ts.openServerInfo
+			}}</FormSwitch>
 
 			<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
 				<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
@@ -372,6 +375,9 @@ const showTimelineReplies = computed(
 );
 const detectPostLanguage = computed(
 	defaultStore.makeGetterSetter("detectPostLanguage"),
+);
+const openServerInfo = computed(
+	defaultStore.makeGetterSetter("openServerInfo"),
 );
 
 watch(swipeOnDesktop, () => {

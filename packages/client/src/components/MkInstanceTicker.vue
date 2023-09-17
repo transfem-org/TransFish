@@ -4,7 +4,7 @@
 		v-tooltip="capitalize(instance.softwareName)"
 		class="hpaizdrt"
 		:style="bg"
-		@click.stop="os.pageWindow(instanceInfoUrl)"
+		@click.stop="openServerInfo"
 	>
 		<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
 		<span class="name">{{ instance.name }}</span>
@@ -17,7 +17,8 @@ import { ref } from "vue";
 import { instanceName } from "@/config";
 import { instance as Instance } from "@/instance";
 import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
-import * as os from "@/os";
+import { defaultStore } from "@/store";
+import { pageWindow } from "@/os";
 
 const props = defineProps<{
 	instance?: {
@@ -42,9 +43,6 @@ const instance = props.instance ?? {
 	)?.content,
 	softwareName: Instance.softwareName ?? "Firefish",
 };
-
-const instanceInfoUrl =
-	props.host == null ? "/about" : `/instance-info/${props.host}`;
 
 const commonNames = new Map<string, string>([
 	["birdsitelive", "BirdsiteLIVE"],
@@ -88,6 +86,13 @@ function getInstanceIcon(instance): string {
 		getProxiedImageUrlNullable(instance.faviconUrl, "preview") ??
 		"/client-assets/dummy.png"
 	);
+}
+
+function openServerInfo() {
+	if (!defaultStore.state.openServerInfo) return;
+	const instanceInfoUrl =
+		props.host == null ? "/about" : `/instance-info/${props.host}`;
+	pageWindow(instanceInfoUrl);
 }
 </script>
 
