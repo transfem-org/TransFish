@@ -338,7 +338,7 @@ export const defaultStore = markRaw(
 			default: true,
 		},
 		showTimelineReplies: {
-			where: "device",
+			where: "deviceAccount",
 			default: false,
 		},
 		addRe: {
@@ -347,6 +347,10 @@ export const defaultStore = markRaw(
 		},
 		detectPostLanguage: {
 			where: "deviceAccount",
+			default: true,
+		},
+		openServerInfo: {
+			where: "device",
 			default: true,
 		},
 	}),
@@ -378,6 +382,7 @@ export class ColdDeviceStorage {
 		syncDeviceDarkMode: true,
 		plugins: [] as Plugin[],
 		mediaVolume: 0.5,
+		vibrate: true,
 		sound_masterVolume: 0.3,
 		sound_note: { type: "none", volume: 0 },
 		sound_noteMy: { type: "syuilo/up", volume: 1 },

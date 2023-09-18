@@ -2,6 +2,7 @@
 	<button
 		ref="buttonRef"
 		v-tooltip.noDelay.bottom="i18n.ts._gallery.like"
+		v-vibrate="[30, 50, 50]"
 		class="button _button"
 		:class="$style.root"
 		@click.stop="toggleStar($event)"

@@ -2,9 +2,11 @@ import { defineAsyncComponent } from "vue";
 import { $i } from "@/account";
 import { i18n } from "@/i18n";
 import { popup } from "@/os";
+import { vibrate } from "@/scripts/vibrate";
 
 export function pleaseLogin(path?: string) {
 	if ($i) return;
+	vibrate(100);
 
 	popup(
 		defineAsyncComponent(() => import("@/components/MkSigninDialog.vue")),

@@ -83,6 +83,9 @@
 			<FormSwitch v-model="detectPostLanguage" class="_formBlock">{{
 				i18n.ts.detectPostLanguage
 			}}</FormSwitch>
+			<FormSwitch v-model="openServerInfo" class="_formBlock">{{
+				i18n.ts.openServerInfo
+			}}</FormSwitch>
 
 			<FormSelect v-model="serverDisconnectedBehavior" class="_formBlock">
 				<template #label>{{ i18n.ts.whenServerDisconnected }}</template>
@@ -133,6 +136,12 @@
 				class="_formBlock"
 				>{{ i18n.ts.disableShowingAnimatedImages }}</FormSwitch
 			>
+			<FormSwitch
+				v-model="vibrate"
+				class="_formBlock"
+				@click="demoVibrate"
+				>{{ i18n.ts.vibrate }}
+			</FormSwitch>
 			<FormRadios v-model="fontSize" class="_formBlock">
 				<template #label>{{ i18n.ts.fontSize }}</template>
 				<option :value="null">
@@ -270,7 +279,7 @@ import FormSection from "@/components/form/section.vue";
 import FormLink from "@/components/form/link.vue";
 import MkLink from "@/components/MkLink.vue";
 import { langs } from "@/config";
-import { defaultStore } from "@/store";
+import { ColdDeviceStorage, defaultStore } from "@/store";
 import * as os from "@/os";
 import { unisonReload } from "@/scripts/unison-reload";
 import { i18n } from "@/i18n";
@@ -290,6 +299,10 @@ async function reloadAsk() {
 	if (canceled) return;
 
 	unisonReload();
+}
+
+function demoVibrate() {
+	window.navigator.vibrate(100);
 }
 
 const overridedDeviceKind = computed(
@@ -328,6 +341,7 @@ const disableDrawer = computed(defaultStore.makeGetterSetter("disableDrawer"));
 const disableShowingAnimatedImages = computed(
 	defaultStore.makeGetterSetter("disableShowingAnimatedImages"),
 );
+const vibrate = computed(ColdDeviceStorage.makeGetterSetter("vibrate"));
 const loadRawImages = computed(defaultStore.makeGetterSetter("loadRawImages"));
 const imageNewTab = computed(defaultStore.makeGetterSetter("imageNewTab"));
 const nsfw = computed(defaultStore.makeGetterSetter("nsfw"));
@@ -372,6 +386,9 @@ const showTimelineReplies = computed(
 );
 const detectPostLanguage = computed(
 	defaultStore.makeGetterSetter("detectPostLanguage"),
+);
+const openServerInfo = computed(
+	defaultStore.makeGetterSetter("openServerInfo"),
 );
 
 watch(swipeOnDesktop, () => {

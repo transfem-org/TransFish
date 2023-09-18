@@ -117,6 +117,8 @@ const defaultStoreSaveKeys: (keyof (typeof defaultStore)["state"])[] = [
 	"enableEmojiReactions",
 	"showEmojisInReactionNotifications",
 	"showTimelineReplies",
+	"detectPostLanguage",
+	"openServerInfo",
 ];
 const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	"lightTheme",
@@ -124,6 +126,7 @@ const coldDeviceStorageSaveKeys: (keyof typeof ColdDeviceStorage.default)[] = [
 	"syncDeviceDarkMode",
 	"plugins",
 	"mediaVolume",
+	"vibrate",
 	"sound_masterVolume",
 	"sound_note",
 	"sound_noteMy",
