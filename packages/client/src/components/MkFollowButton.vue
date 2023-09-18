@@ -69,7 +69,6 @@ import { i18n } from "@/i18n";
 import { $i } from "@/account";
 import { getUserMenu } from "@/scripts/get-user-menu";
 import { useRouter } from "@/router";
-import { vibrate } from "@/scripts/vibrate";
 
 const router = useRouter();
 
@@ -155,7 +154,6 @@ async function onClick() {
 				await os.api("following/create", {
 					userId: props.user.id,
 				});
-				vibrate([30, 40, 100]);
 				hasPendingFollowRequestFromYou.value = true;
 			}
 		}

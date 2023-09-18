@@ -673,7 +673,7 @@ no: "否"
 driveFilesCount: "网盘的文件数"
 driveUsage: "网盘的空间用量"
 noCrawle: "要求搜索引擎不索引该用户"
-noCrawleDescription: "要求外部搜索引擎不收录（索引）您的内容。"
+noCrawleDescription: "要求搜索引擎不要收录（索引）您的用户页面，帖子，页面等。"
 lockedAccountInfo: "即使通过了关注请求，只要您不将帖子可见范围设置成“关注者”，任何人都可以看到您的帖子。"
 alwaysMarkSensitive: "默认将媒体文件标记为敏感内容"
 loadRawImages: "加载原始图像而不是显示缩略图"
@@ -1980,7 +1980,3 @@ inputNotMatch: 输入不匹配
 deletePasskeys: 删除通行密钥
 delete2faConfirm: 这将不可逆转地删除此账户上的 2FA。是否继续？
 addRe: 在回复有内容警告的帖子时，在评论开头添加 "re:"
-detectPostLanguage: 自动检测语言，并显示外文帖子的翻译按钮
-indexableDescription: 允许内置搜索显示您的公开帖子
-indexable: 可索引的
-languageForTranslation: 帖子翻译语言

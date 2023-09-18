@@ -6,7 +6,6 @@
 		ref="el"
 		v-hotkey="keymap"
 		v-size="{ max: [500, 350] }"
-		v-vibrate="5"
 		:aria-label="accessibleLabel"
 		class="tkcbzcuz note-container"
 		:tabindex="!isDeleted ? '-1' : null"
@@ -226,9 +225,9 @@
 							isForeignLanguage &&
 							translation == null
 						"
-						v-tooltip.noDelay.bottom="i18n.ts.translate"
 						class="button _button"
 						@click.stop="translate"
+						v-tooltip.noDelay.bottom="i18n.ts.translate"
 					>
 						<i class="ph-translate ph-bold ph-lg"></i>
 					</button>
@@ -386,8 +385,8 @@ const isForeignLanguage: boolean =
 
 async function translate_(noteId, targetLang: string) {
 	return await os.api("notes/translate", {
-		noteId,
-		targetLang,
+		noteId: noteId,
+		targetLang: targetLang,
 	});
 }
 

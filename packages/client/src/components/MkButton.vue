@@ -28,7 +28,6 @@
 
 <script lang="ts" setup>
 import { nextTick, onMounted, ref } from "vue";
-import { vibrate } from "@/scripts/vibrate";
 
 const props = defineProps<{
 	type?: "button" | "submit" | "reset";
@@ -93,8 +92,6 @@ function onMousedown(evt: MouseEvent): void {
 		circleCenterX,
 		circleCenterY,
 	);
-
-	vibrate(10);
 
 	window.setTimeout(() => {
 		ripple.style.transform = "scale(" + scale / 2 + ")";

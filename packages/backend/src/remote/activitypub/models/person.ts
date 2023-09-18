@@ -302,7 +302,6 @@ export async function createPerson(
 					tags,
 					isBot,
 					isCat: (person as any).isCat === true,
-					speakAsCat: person.speakAsCat,
 					isIndexable: person.indexable,
 				}),
 			)) as IRemoteUser;

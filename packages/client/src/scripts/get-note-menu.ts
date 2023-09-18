@@ -239,8 +239,8 @@ export function getNoteMenu(props: {
 
 	async function translate_(noteId: number, targetLang: string) {
 		return await os.api("notes/translate", {
-			noteId,
-			targetLang,
+			noteId: noteId,
+			targetLang: targetLang,
 		});
 	}
 

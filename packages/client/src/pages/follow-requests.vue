@@ -95,7 +95,6 @@ const paginationComponent = ref<InstanceType<typeof MkPagination>>();
 const pagination = {
 	endpoint: "following/requests/list" as const,
 	limit: 10,
-	noPaging: true,
 };
 
 function accept(user) {

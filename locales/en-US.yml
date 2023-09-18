@@ -1143,8 +1143,6 @@ indexable: "Indexable"
 indexableDescription: "Allow built-in search to show your public posts"
 languageForTranslation: "Post translation language"
 detectPostLanguage: "Automatically detect the language and show a translate button for posts in foreign languages"
-vibrate: "Play vibrations"
-openServerInfo: "Show server information by clicking the server ticker on a post"
 
 _sensitiveMediaDetection:
   description: "Reduces the effort of server moderation through automatically recognizing

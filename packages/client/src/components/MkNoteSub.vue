@@ -130,9 +130,9 @@
 							isForeignLanguage &&
 							translation == null
 						"
-						v-tooltip.noDelay.bottom="i18n.ts.translate"
 						class="button _button"
 						@click.stop="translate"
+						v-tooltip.noDelay.bottom="i18n.ts.translate"
 					>
 						<i class="ph-translate ph-bold ph-lg"></i>
 					</button>
@@ -306,8 +306,8 @@ const isForeignLanguage: boolean =
 
 async function translate_(noteId, targetLang: string) {
 	return await os.api("notes/translate", {
-		noteId,
-		targetLang,
+		noteId: noteId,
+		targetLang: targetLang,
 	});
 }
 

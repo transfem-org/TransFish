@@ -12,7 +12,6 @@
 				<button
 					v-if="displayBackButton"
 					v-tooltip.noDelay="i18n.ts.goBack"
-					v-vibrate="5"
 					class="_buttonIcon button icon backButton"
 					@click.stop="goBack()"
 					@touchstart="preventDrag"
@@ -21,7 +20,6 @@
 				</button>
 				<MkAvatar
 					v-if="narrow && props.displayMyAvatar && $i"
-					v-vibrate="5"
 					class="avatar button"
 					:user="$i"
 					:disable-preview="true"
@@ -79,7 +77,6 @@
 					v-for="tab in tabs"
 					:ref="(el) => (tabRefs[tab.key] = el)"
 					v-tooltip.noDelay="tab.title"
-					v-vibrate="5"
 					class="tab _button"
 					:class="{
 						active: tab.key != null && tab.key === props.tab,
@@ -111,7 +108,6 @@
 			<template v-for="action in actions">
 				<button
 					v-tooltip.noDelay="action.text"
-					v-vibrate="5"
 					class="_buttonIcon button"
 					:class="{ highlighted: action.highlighted }"
 					@click.stop="action.handler"

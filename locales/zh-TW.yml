@@ -236,7 +236,7 @@ imageUrl: "圖片URL"
 remove: "刪除"
 removed: "已成功刪除"
 removeAreYouSure: "確定要刪掉「{x}」嗎？"
-deleteAreYouSure: "確定要刪除「{x}」嗎？"
+deleteAreYouSure: "確定要刪掉「{x}」嗎？"
 resetAreYouSure: "確定要重設嗎？"
 saved: "已儲存"
 messaging: "訊息"
@@ -525,14 +525,14 @@ state: "狀態"
 sort: "排序"
 ascendingOrder: "昇冪"
 descendingOrder: "降冪"
-scratchpad: "AiScript控制台"
+scratchpad: "暫存記憶體"
 scratchpadDescription: "AiScript控制台為AiScript提供了實驗環境。您可以在此編寫、執行和確認代碼與Firefish互動的结果。"
 output: "輸出"
 script: "腳本"
 disablePagesScript: "停用頁面的AiScript腳本"
 updateRemoteUser: "更新遠端使用者資訊"
 deleteAllFiles: "刪除所有檔案"
-deleteAllFilesConfirm: "確定要刪除所有檔案嗎？"
+deleteAllFilesConfirm: "要删除所有檔案嗎？"
 removeAllFollowing: "解除所有追蹤"
 removeAllFollowingDescription: "解除{host}所有的追蹤。在伺服器不再存在時執行。"
 userSuspended: "此使用者已被停用。"
@@ -895,11 +895,11 @@ navbar: "導覽列"
 shuffle: "隨機"
 account: "帳戶"
 move: "移動"
-customKaTeXMacro: "自訂KaTeX巨集"
-customKaTeXMacroDescription: "使用巨集來輕鬆輸入數學表達式吧！巨集的用法與 LaTeX 中的命令定義相同。你可以使用 \\newcommand{\\
-  name}{content} 或 \\newcommand{\\name}[number of arguments]{content} 來輸入數學表達式。舉例來說，\\
-  newcommand{\\add}[2]{#1 + #2} 會將 \\add{3}{foo} 展開為 3 + foo。巨集名稱除了可用大括號 {} 括起來之外，也可使用小括號
-  () 和中括號 []，但使用於巨集參數的括號會有所變更。每行只能夠定義一個巨集，巨集中間無法間換。無效的行將被忽略。只支援簡單字串的替換功能，不支援條件分歧的高級語法。"
+customKaTeXMacro: "自定義 KaTeX 宏"
+customKaTeXMacroDescription: "使用宏來輕鬆的輸入數學表達式吧！宏的用法與 LaTeX 中的命令定義相同。你可以使用 \\newcommand{\\
+  name}{content} 或 \\newcommand{\\name}[number of arguments]{content} 來輸入數學表達式。舉個例子，\\
+  newcommand{\\add}[2]{#1 + #2} 會將 \\add{3}{foo} 展開為 3 + foo。此外，宏名稱外的花括號 {} 可以被替換為圓括號
+  () 和方括號 []，這會影響用於參數的括號。每行只能夠定義一個宏，無法在中間換行，且無效的行將被忽略。只支持簡單字符串替換功能，不支持高級語法，如條件分支等。"
 enableCustomKaTeXMacro: "啟用自定義 KaTeX 宏"
 _sensitiveMediaDetection:
   description: "您可以使用機器學習自動檢測敏感媒體並將其用於審核。 伺服器的負荷會稍微增加。"
@@ -990,7 +990,6 @@ _aboutFirefish:
   pleaseDonateToFirefish: 請考慮向 Firefish 贊助以支持其發展。
   pleaseDonateToHost: 還請考慮捐贈給您在使用的伺服器 {host}，以支援龐大的運營成本。
   donateHost: 贊助給 {host}
-  misskeyContributors: Misskey的貢獻者
 _nsfw:
   respect: "隱藏敏感內容"
   ignore: "不隱藏敏感內容"
@@ -1259,8 +1258,6 @@ _2fa:
   token: 兩步驟驗證金鑰
   registerTOTPBeforeKey: 請設置身份驗證器應用程式以註冊安全金鑰或密碼。
   renewTOTPOk: 重新配置
-  step3Title: 輸入驗證碼
-  securityKeyNotSupported: 您使用的瀏覧器不支援安全金鑰(Security key)。
 _permissions:
   "read:account": "查看我的帳戶資訊"
   "write:account": "更改我的帳戶資訊"
@@ -1805,7 +1802,6 @@ _deck:
     list: "清單"
     mentions: "提及"
     direct: "指定使用者"
-    channel: 頻道
 secureMode: 安全模式（授權獲取）
 instanceSecurity: 伺服器安全性
 privateMode: 私人模式
@@ -1873,7 +1869,7 @@ hiddenTags: 隱藏主題標籤
 indexPosts: 索引貼文
 indexNotice: 現在開始索引。 這可能需要一段時間，請不要在一個小時內重啟你的伺服器。
 deleted: 已刪除
-editNote: 編輯貼文
+editNote: 編輯筆記
 edited: '於 {date} {time} 編輯'
 userSaysSomethingReason: '{name} 說了 {reason}'
 allowedInstancesDescription: 要加入聯邦白名單的服務器，每台伺服器用新行分隔（僅適用於私有模式）。
@@ -1896,7 +1892,7 @@ listsDesc: 清單可以創建一個只有您指定用戶的時間線。 可以�
 flagSpeakAsCatDescription: 在喵咪模式下你的貼文會被喵化ヾ(•ω•`)o
 antennasDesc: "天線會顯示符合您設置條件的新貼文！\n 可以從時間線訪問它們。"
 expandOnNoteClick: 點擊以打開貼文
-expandOnNoteClickDesc: 即使停用，您仍然可以從右鍵選單或單擊發文時間來打開貼文。
+expandOnNoteClickDesc: 如果禁用，您仍然可以通過右鍵單擊菜單或單擊時間戳來打開貼文。
 hiddenTagsDescription: '列出您希望隱藏趨勢和探索的主題標籤（不帶 #）。 隱藏的主題標籤仍然可以通過其他方式發現。'
 userSaysSomethingReasonQuote: '{name} 引用了一篇包含 {reason} 的貼文'
 silencedInstancesDescription: 列出您想要靜音的伺服器的網址。 您列出的伺服器內的帳戶將被視為“沉默”，只能發出追隨請求，如果不追隨則不能提及本地帳戶。
@@ -1947,18 +1943,3 @@ _filters:
   withFile: 有檔案
 alt: 替代文字
 xl: 特大
-inputNotMatch: 輸入不一致
-delete2faConfirm: 二階段認證(2FA)將被完全刪除。是否繼續?
-_dialog:
-  charactersBelow: 字數不足！ 當前 {current} / 限制 {min}
-  charactersExceeded: 超過字數限制！ 當前 {current} / 限制 {max}
-_skinTones:
-  yellow: 黃色
-exportZip: 匯出ZIP
-_feeds:
-  atom: Atom
-  rss: RSS
-emojiPackCreator: 表情包的作者
-importZip: 匯入ZIP
-delete2fa: 停用二階段認證(2FA)
-confirm: 確認

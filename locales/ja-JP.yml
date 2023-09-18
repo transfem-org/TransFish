@@ -988,8 +988,8 @@ youHaveUnreadAnnouncements: "未読のお知らせがあります"
 neverShow: "今後表示しない"
 remindMeLater: "また後で"
 addRe: "閲覧注意の投稿への返信で、注釈の先頭に\"re:\"を追加する"
-languageForTranslation: "投稿翻訳に使用する言語"
-detectPostLanguage: "投稿の言語を自動検出し、外国語の投稿に翻訳ボタンを表示する"
+languageForTranslation: "投稿翻訳に使用する言語" 
+detectPostLanguage: "投稿の言語を自動検出し、外国語の投稿に翻訳ボタンを表示する" 
 
 _sensitiveMediaDetection:
   description: "機械学習を使って自動でセンシティブなメディアを検出し、モデレーションに役立てられます。サーバーの負荷が少し増えます。"
@@ -1972,7 +1972,7 @@ _feeds:
   rss: RSS
   jsonFeed: JSONフィード
   copyFeed: フィードのURLをコピー
-origin: 元のサーバー
+origin: 起源
 delete2fa: 2要素認証を無効化
 deletePasskeys: パスキーを削除
 delete2faConfirm: これで、このアカウントの2要素認証は完全に削除されます。続行しますか?
@@ -1982,4 +1982,3 @@ importZip: ZIPをインポート
 emojiPackCreator: 絵文字パックの作者
 confirm: 確認
 exportZip: ZIPをエクスポート
-openServerInfo: "投稿内のサーバー名をクリックでサーバー情報を開く"

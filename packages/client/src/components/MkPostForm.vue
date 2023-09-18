@@ -275,7 +275,6 @@ import { uploadFile } from "@/scripts/upload";
 import { deepClone } from "@/scripts/clone";
 import XCheatSheet from "@/components/MkCheatSheetDialog.vue";
 import { preprocess } from "@/scripts/preprocess";
-import { vibrate } from "@/scripts/vibrate";
 
 const modal = inject("modal");
 
@@ -938,7 +937,6 @@ async function post() {
 				text: err.message + "\n" + (err as any).id,
 			});
 		});
-	vibrate([10, 20, 10, 20, 10, 20, 60]);
 }
 
 function cancel() {

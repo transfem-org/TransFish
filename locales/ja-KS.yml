@@ -82,8 +82,10 @@ somethingHappened: "なんやアカンことが起きたで"
 retry: "もっぺんやる？"
 pageLoadError: "ページの読み込みに失敗してもた…　えろうすんまへん"
 pageLoadErrorDescription: "これは普通、ネットワークかブラウザキャッシュが原因やからね。キャッシュをクリアするか、もうちっとだけ待ってくれへんか？"
-serverIsDead: "サーバーの応答がおまへん。ちーとの間待ってからもっかい試してみぃな。"
-youShouldUpgradeClient: "このページを表示するには、リロードして新しいバージョンのクライアントを使うてや。"
+serverIsDead: "The server is not responding. Please wait for a while before trying
+  again."
+youShouldUpgradeClient: "To display this page, please reload and use a new version
+  client. "
 enterListName: "リスト名を入れてや"
 privacy: "プライバシー"
 makeFollowManuallyApprove: "自分が認めた人だけがこのアカウントをフォローできるようにする"
@@ -107,7 +109,7 @@ clickToShow: "押したら見えるで"
 sensitive: "ちょっとアカンやつやで"
 add: "増やす"
 reaction: "リアクション"
-reactionSetting: "ピッカーに表示しはるリアクション"
+reactionSetting: "Reaction that will be displayed in Picker. "
 reactionSettingDescription2: "ドラッグで並び替え、クリックで削除、＋を押して追加やで。"
 rememberNoteVisibility: "公開範囲覚えといて"
 attachCancel: "のっけるのやめる"
@@ -142,8 +144,9 @@ flagAsBot: "ワイはBotや 🤖"
 flagAsBotDescription: "もしこのアカウントがプログラムによって運用されるんやったら、このフラグをオンにしてたのむで。オンにすると、反応の連鎖を防ぐためのフラグとして他の開発者に役立ったり、Firefishのシステム上での扱いがBotに合ったもんになったりするんやで。"
 flagAsCat: "ワイはCatや 🐯"
 flagAsCatDescription: "自分、猫ちゃんならこのフラグつけてみ？"
-flagShowTimelineReplies: "タイムラインに返信を表示させたる"
-flagShowTimelineRepliesDescription: "有効にすると、タイムラインに他のユーザー宛ての投稿も表示したるで。"
+flagShowTimelineReplies: "It will display the reply to the note in the timeline. "
+flagShowTimelineRepliesDescription: "It will display the reply to notes other than
+  the user notes in the timeline when you turn it on. "
 autoAcceptFollowed: "フォローしとるユーザーからのフォローリクエストを勝手に許可しとく"
 addAccount: "アカウントを追加"
 loginFailed: "ログインに失敗してしもうた…"
@@ -238,8 +241,9 @@ resetAreYouSure: "リセットしてええん？"
 saved: "保存したで！"
 messaging: "チャット"
 upload: "アップロード"
-keepOriginalUploading: "画質をそのまんまにする"
-keepOriginalUploadingDescription: "オリジナルの画像をそのまんまアップロードするで。オフにすると、ファイルサイズを削減したWeb公開用画像を生成したるで。"
+keepOriginalUploading: "Retain the original image. "
+keepOriginalUploadingDescription: "When uploading the clip, the original version will
+  be retained. Turning it of then uploading will produce images for public use. "
 fromDrive: "ドライブから"
 fromUrl: "URLから"
 uploadFromUrl: "URLアップロード"
@@ -578,7 +582,7 @@ disableAll: "全部使えへんようにする"
 tokenRequested: "アカウントへのアクセス許可"
 pluginTokenRequestedDescription: "このプラグインはここで設定した権限を使えるようになるで。"
 notificationType: "通知の種類"
-edit: "投稿をいじる"
+edit: "編集"
 emailServer: "メールサーバー"
 enableEmail: "メール配信を受け取る"
 emailConfigInfo: "メールアドレスの確認とかパスワードリセットの時に使うで"
@@ -735,7 +739,7 @@ showingPastTimeline: "過去のタイムラインを表示してるで"
 clear: "クリア"
 markAllAsRead: "もうみな読んでもうたわ"
 goBack: "戻る"
-unlikeConfirm: "ええやんを解除するんけ？"
+unlikeConfirm: "いいね解除するんか？"
 fullView: "フルビュー"
 quitFullView: "フルビュー解除"
 addDescription: "説明を追加するで"
@@ -810,7 +814,7 @@ searchByGoogle: "探す"
 indefinitely: "無期限"
 file: "ファイル"
 requireAdminForView: "これを見るには管理者アカウントでログインしとらなあかんで。"
-isSystemAccount: "システムが自動で作成・管理しとるアカウントやで。モデレーション・編集・削除するとサーバーの動作が不正になる可能性があるので、操作せんといてください。"
+isSystemAccount: "システムが自動で作成・管理しとるアカウントやで。"
 typeToConfirm: "この操作をやるんなら {x} と入力してなー"
 deleteAccount: "アカウント削除するで"
 document: "ドキュメント"
@@ -853,9 +857,7 @@ _ffVisibility:
 _ad:
   back: "戻る"
 _gallery:
-  unlike: "やっぱよくないわ"
-  like: ええやん！
-  liked: ええやんと思った投稿
+  unlike: "良くないわ"
 _email:
   _follow:
     title: "フォローされたで"
@@ -1071,16 +1073,9 @@ _poll:
   votesCount: "{n}票"
   vote: "投票する"
 _visibility:
-  publicDescription: "うちの投稿、みんな見てや"
-  home: "ホームタイムラインのみ"
-  followers: "フォロワーのみ"
-  localOnly: ローカルのみ
-  followersDescription: フォロワーと返信相手だけに見せたる
-  specified: ダイレクト
-  localOnlyDescription: 他のサーバーには見せとうない
-  specifiedDescription: 指定した相手だけに見せたる
-  public: 公開
-  homeDescription: ローカルTLやグローバルTLには流さへん
+  publicDescription: "みんなに公開"
+  home: "ホーム"
+  followers: "フォロワー"
 _profile:
   name: "名前"
   username: "ユーザー名"
@@ -1130,7 +1125,7 @@ _pages:
   pageSetting: "ページ設定"
   viewPage: "ページを見る"
   like: "ええやん"
-  unlike: "やっぱ気に入らん"
+  unlike: "良くないわ"
   liked: "ええと思ったページ"
   contents: "コンテンツ"
   summary: "ページの要約"
@@ -1448,8 +1443,6 @@ _postForm:
     c: なに考えとりまっか？
     d: なんや言いたいんちゃいますか？
     f: あんさん書くんを待っとるんどす...
-    a: いまなにしとん？
 flagSpeakAsCat: 猫弁で話す
-flagSpeakAsCatDescription: オンにすると、ワレの投稿の「な」を「にゃ」に変換したるで。
+flagSpeakAsCatDescription: 猫モードが有効の場合にオンにすると、ワレの投稿の「な」を「にゃ」に変換するで。
 welcomeBackWithName: おおきに、{name}はん
-migration: アカウントの引っ越し

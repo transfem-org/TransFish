@@ -26,9 +26,7 @@ function checkWordMute(
 
 			if (
 				keywords.length > 0 &&
-				keywords.every((keyword) =>
-					text.toLowerCase().includes(keyword.toLowerCase()),
-				)
+				keywords.every((keyword) => text.includes(keyword))
 			) {
 				result.muted = true;
 				result.matched.push(...keywords);
