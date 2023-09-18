@@ -70,20 +70,12 @@ module.exports = Object.entries(locales).reduce(
 	(a, [k, v]) => (
 		(a[k] = (() => {
 			const [lang] = k.split("-");
-			switch (k) {
-				case "en-US":
-					return v;
-				case "ja-JP":
-				case "ja-KS":
-					return merge(locales["en-US"], v);
-				default:
-					return merge(
-						locales["en-US"],
-						locales["ja-JP"],
-						locales[`${lang}-${primaries[lang]}`] || {},
-						v,
-					);
-			}
+			return k === "en-US" ? v :
+				merge(
+					locales["en-US"],
+					locales[`${lang}-${primaries[lang]}`] || {},
+					v,
+				);
 		})()),
 		a
 	),

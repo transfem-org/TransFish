@@ -16,7 +16,7 @@ export default class extends Channel {
 	}
 
 	public async init(params: any) {
-		this.withReplies = params.withReplies as boolean;
+		this.withReplies = params != null ? !!params.withReplies : true;
 
 		// Subscribe events
 		this.subscriber.on("notesStream", this.onNote);

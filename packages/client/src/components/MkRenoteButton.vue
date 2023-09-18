@@ -32,6 +32,7 @@ import { useTooltip } from "@/scripts/use-tooltip";
 import { i18n } from "@/i18n";
 import { defaultStore } from "@/store";
 import type { MenuItem } from "@/types/menu";
+import { vibrate } from "@/scripts/vibrate";
 
 const props = defineProps<{
 	note: misskey.entities.Note;
@@ -197,6 +198,7 @@ const renote = (viaKeyboard = false, ev?: MouseEvent) => {
 			icon: "ph-hand-fist ph-bold ph-lg",
 			danger: false,
 			action: () => {
+				vibrate([30, 30, 60]);
 				os.api(
 					"notes/create",
 					props.note.visibility === "specified"

@@ -80,17 +80,17 @@ showMore: Vis mer
 followRequestAccepted: Følgeforespørsel godtatt
 import: Importer
 export: Eksporter
-logout: Logger ut
+logout: Logg ut
 removeReaction: Fjern dine reaksjoner
-renotedBy: Fremhevet av {user}
+renotedBy: Delt av {user}
 deleteAndEditConfirm: Er du sikker på at du vil slette og redigere denne posten? Du
-  vil miste alle reaksjoner, fremhevinger og svar til den.
+  vil miste alle reaksjoner, delinger og svar til den.
 pageLoadError: En feil oppsto ved lasting av siden.
 privacy: Personvern
 enterEmoji: Legg inn emoji
-renoted: Fremhevet.
-cantRenote: Denne posten kan ikke fremheves.
-cantReRenote: En fremheving kan ikke fremheves.
+renoted: Delt.
+cantRenote: Denne posten kan ikke deles.
+cantReRenote: En deling kan ikke deles.
 quote: Sitér
 pinned: Fest til profil
 clickToShow: Klikk for å vise
@@ -107,7 +107,7 @@ reaction: Reaksjoner
 driveFileDeleteConfirm: Er du sikker på at du vil slette filen «{name}»? Den vil fjernes
   fra alle poster den er vedlagt i.
 defaultNoteVisibility: Standard synlighet
-unrenote: Fjern fremmheving
+unrenote: Trekk tilbake deling
 unpin: Løsne fra profilen
 youGotNewFollower: følger deg
 mention: Omtale
@@ -149,7 +149,7 @@ images: Bilder
 birthday: Fødselsdag
 yearsOld: '{age} år gammel'
 renameFolder: Gi katalogen nytt navn
-remoteUserCaution: Informasjon fra eksterne brukere kan være ufullstendig.
+remoteUserCaution: Informasjon om eksterne brukere kan være ufullstendig.
 activity: Aktivitet
 drive: Disk
 renameFile: Omdøp fil
@@ -167,7 +167,7 @@ popularUsers: Populære brukere
 moderator: Moderator
 groupName: Gruppenavn
 transfer: Overfør
-preferencesBackups: Foretrukne sikkerhetskopier
+preferencesBackups: Sikkerhetskopi av innstillinger
 edit: Rediger
 emailServer: Eposttjener
 testEmail: Test epost-utsending
@@ -177,8 +177,8 @@ useGlobalSettingDesc: Hvis dette er slått på vil varslingsinnstillingene til k
   bli brukt. Om den er slått av kan du bruke individuell konfigurasjon.
 attachCancel: Slett vedegg
 markAsSensitive: Merk som sensitivt innhold
-renoteMute: Stum fremhevinger
-renoteUnmute: Vis boosts fra bruker
+renoteMute: Stum delinger
+renoteUnmute: Vis delinger
 addEmoji: Legg til
 settingGuide: Foreslåtte innstillinger
 cacheRemoteFilesDescription: Når denne innstillingen er avslått vil eksterne filer
@@ -242,7 +242,7 @@ antennaKeywordsDescription: Skill ordene med mellomrom for logisk "OG" og med li
   for logisk "ELLER".
 withReplies: Ta med svar
 connectedTo: Følgende konto(er) er sammenkoblet
-withFiles: Inkluder filer
+withFiles: Med filer
 lastUsed: Sist brukt
 unregister: Avregistrer
 passwordLessLogin: Passordløs innlogging
@@ -512,7 +512,7 @@ useFullReactionPicker: Bruk reaksjonsvelger i full størrelse
 width: Bredde
 regexpErrorDescription: 'En feil oppsto under det regulære uttrykket på linje {line}
   av stumming av {tab}:'
-userSaysSomethingReasonRenote: '{name} fremhevet en post som inneholdt {reason}'
+userSaysSomethingReasonRenote: '{name} delte en post som inneholdt {reason}'
 userSaysSomethingReasonQuote: '{name} siterte en post som inneholdt {reason}'
 userSaysSomething: '{name} sa noe'
 metrics: Metrikker
@@ -557,7 +557,7 @@ home: Hjem
 emptyDrive: Disken din er tom
 unableToDelete: Klarte ikke å slette
 inputNewFileName: Oppgi nytt filnavn
-hasChildFilesOrFolders: Katalogen er ikke tom og kan derfor ikke slettes.
+hasChildFilesOrFolders: Katalogen kan ikke slettes fordi den ikke er tom.
 avoidMultiCaptchaConfirm: Å bruke flere Captcha-systemer kan forårsake uønskede krysseffekter
   mellom dem. Ønsker å du slå av det andre aktive CAPTCHA-systemet? Om du ønsker å
   ha begge på, trykk "Avbryt".
@@ -619,7 +619,7 @@ keepOriginalUploadingDescription: Lagrer det opprinnelige opplastedet bildet sli
   ved opplasting.
 startMessaging: Start en ny chat
 group: Gruppe
-renote: Fremhev
+renote: Del
 banner: Topp-bilde
 nsfw: Sensitivt innhold
 bannerUrl: URL til fane-bilde
@@ -776,6 +776,88 @@ _mfm:
   play: Spill animert markeringsspråk (MFM)
   intro: MFM er et markeringsspråk som burkes av Misskey, Firefish, Akkoma og andre.
     Her kan du se en liste over tilgjengelig MFM-syntaks.
+  sparkle: Gnistrende
+  dummy: Firefish utvider Allheimen
+  tadaDescription: Gir innholdet en "Tada!"-lignende animasjon.
+  emoji: Egendefinert emoji
+  flip: Speil
+  jelly: Animasjon (gelé)
+  rotate: Rotér
+  foregroundDescription: Endre forgrunnsfargen på tekst.
+  quoteDescription: Viser innhold som et sitat.
+  link: Lenke
+  search: Søk
+  scale: Skalér
+  centerDescription: Viser innhold sentrert.
+  advancedDescription: Hvis avslått vil bare enkel tekstmarkering være tillatt med
+    mindre du spiller av animert tekstmarkering
+  fontDescription: Setter skriftsnittet for innholdet.
+  inlineCode: Kode (inline)
+  x2Description: Viser innholdet større.
+  backgroundDescription: Endre bakgrunnsfargen til tekst.
+  blur: Uklar
+  rainbowDescription: Viser innholdet i regnbuefarger.
+  center: Sentrert
+  mentionDescription: Du kan spesifisere en bruker ved å skrive krøllalfa foran brukernavnet.
+  emojiDescription: Ved å omslutte navnet på en egendefinert emoji med kolon vil de
+    vises i teksten.
+  x3: Veldig stor
+  rainbow: Regnbue
+  mention: Nevn
+  shakeDescription: Gir innholdet en ristende animasjon.
+  advanced: Avansert MFM (tekstmarkering)
+  hashtag: Emneknagg
+  urlDescription: URL-er kan vises.
+  blockMath: Matematikk (blokk)
+  smallDescription: Viser innhold lite og tynt.
+  x2: Stor
+  font: Skriftsnitt
+  crop: Beskjær
+  fadeDescription: Fader innholdet inn og ut.
+  x4Description: Viser innholdet større enn større enn stor.
+  sparkleDescription: Gir innholdet en gnist-effekt.
+  scaleDescription: Skalér innholdet.
+  inlineMath: Matematikk (inline)
+  shake: Animasjon (risting)
+  tada: Animasjon (Tada)
+  background: Bakgrunnsfarge
+  twitchDescription: Gir innholdet en sterk animert rykning.
+  blockCodeDescription: Viser syntaksmarkering for programkode over flere linjer i
+    en blokk.
+  position: Posisjon
+  hashtagDescription: Du kan spesifisere en emneknakk ved å bruke nummer-tegn (#)
+    og tekst.
+  small: Liten
+  positionDescription: Flytter innholdet en angitt distanse.
+  cropDescription: Beskjær innhold.
+  x4: Utrolig stor
+  jellyDescription: Gir innholdet med en gelé-lignende animasjon.
+  flipDescription: Speiler innhold horisontalt eller vertikalt.
+  twitch: Animasjon (rykning)
+  plainDescription: Slår av effenten av all formatering innenfor denne markeringen.
+  url: URL
+  jumpDescription: Viser innholdet med animert hopping.
+  blockMathDescription: Viser matematiske formler (KaTeX) i en blokk
+  inlineMathDescription: Viser matematiske formler (KaTeX) inline
+  linkDescription: Spesifikke deler av tekst kan vises som en URL.
+  blurDescription: Viser innholdet uklart. Det vil bli vist klart når muspekeren er
+    over.
+  foreground: Forgrunnsfarge
+  quote: Sitat
+  bounceDescription: Viser innholdet med en sprettende animasjon.
+  bold: Fet
+  inlineCodeDescription: Viser inline syntaksmarkering for kildekode.
+  jump: Animasjon (hopp)
+  fade: Fade
+  spin: Animasjon (spinn)
+  searchDescription: Viser en søkeboks med forhåndsutfylt tekst.
+  spinDescription: Gir innholdet en spinnende animasjon.
+  blockCode: Kodeblokk
+  boldDescription: Fremhever tekst ved å gjøre den fyldigere.
+  bounce: Animasjon (sprett)
+  rotateDescription: Vrir innholdet i en gitt vinkel.
+  plain: Enkel
+  x3Description: Viser innholdet enda større.
 reactionPickerSkinTone: Foretrukket hudfarge i emojier
 switchUi: Visningsoppsett
 usageAmount: Bruk
@@ -840,6 +922,14 @@ saveAs: Lagre som...
 swipeOnMobile: Tillat sveiping mellom sider
 _accountDelete:
   inProgress: Sletting pågår
+  requestAccountDelete: Be kom sletting av konto
+  started: Sletting har startet.
+  accountDelete: Slett konto
+  mayTakeTime: Å slette en konto er en ressurskrevende prosess. Det kan ta litt tid
+    å fullføre den, avhengig av hvor mye du har postet og hvor mange filer du har
+    lastet opp.
+  sendEmail: Når kontoen er ferdig slettet vil du få en epost til adressen som er
+    registrert for kontoen.
 remote: Ekstern
 total: Total
 registry: Register
@@ -946,8 +1036,7 @@ reporteeOrigin: Kilden til den som rapporteres
 accountInfo: Kontoinformasjon
 driveUsage: Brukt diskplass
 noCrawle: Stopp robot-indeksering
-noCrawleDescription: Be søkemotorer om å ikke indeksere din profil, poster, Sider
-  etc.
+noCrawleDescription: Be eksterne søkemotorer om å ikke indeksere innholdet ditt.
 narrow: Smal
 reloadToApplySetting: Denne innstillingen aktiveres ikke før du laster siden på nytt.
   Vil du gjøre det nå?
@@ -1120,3 +1209,724 @@ preventAiLearningDescription: Ber tredjeparts AI-språkmodeller om å ikke bruke
   du laster opp, sliks om poster og bilder.
 enableCustomKaTeXMacro: Slå på egne KaTeX-makroer
 showPopup: Varsle brukere med oppsprettsvindu
+_postForm:
+  _placeholders:
+    a: Hva skjer?
+    d: Hva vil du si?
+    f: Venter på at du skriver...
+    e: Start skrivingen...
+    b: Hva skjer rundt deg?
+    c: Hva tenker du på?
+  channelPlaceholder: Post til kanal...
+  quotePlaceholder: Siter denne posten...
+  replyPlaceholder: Svar på denne posten...
+_notification:
+  _types:
+    pollEnded: Ferdige avstemninger
+    all: Alle
+    renote: Delinger
+    quote: Sitater
+    reaction: Reaksjoner
+    receiveFollowRequest: Mottatte følgerforespørsler
+    groupInvited: Gruppeinvitasjoner
+    app: Varsler fra lenkede apper
+    followRequestAccepted: Aksepterte følgerforespørsler
+    mention: Noen nevner deg
+    reply: Svar
+    follow: Nye følgere
+    pollVote: Stemmer i avstemninger
+  yourFollowRequestAccepted: Følgerforespøreslen din er godkjent
+  _actions:
+    renote: Delinger
+    followBack: følger deg også
+    reply: Svar
+  youGotQuote: '{name} siterte deg'
+  fileUploaded: Lastet opp fil
+  youGotMessagingMessageFromUser: '{name} har sendt deg en chatmelding'
+  emptyPushNotificationMessage: Pushvarsler har blitt oppdatert
+  pollEnded: Resultatene fra en avstemning er tilgjengelige
+  youGotReply: '{name} svarte deg'
+  youGotMessagingMessageFromGroup: En chatmelding er sendt til gruppen "{name}"
+  youWereInvitedToGroup: '{userName} har invitert deg til en gruppe'
+  youReceivedFollowRequest: Du har fått en følgerforespørsel
+  youRenoted: Deling fra {name}
+  reacted: reagerte på posten din
+  voted: stemte i avstemningen din
+  renoted: delte posten din
+  youGotPoll: '{name} stemte i avstemningen din'
+  youGotMention: '{name} nevnte deg'
+  youWereFollowed: følger deg
+_tutorial:
+  step3_2: "Tidslinjene Hjem og Sosialt er basert på de du følger, så prøv nå følge
+    noen kontoer for å komme i gang.\nKlikk pluss-sirkelen oppe til høyre på en profil
+    for å følge den."
+  step6_1: Så, hva er dette stedet?
+  step5_7: Tidslinjen Global {icon} viser poster fra alle tilkoblede tjenere.
+  step4_1: La oss få deg ut der.
+  step5_1: Tidslinjer! Tidslinjer overalt!
+  step1_2: La oss gjøre deg klar. Du vil være oppe og gå på et øyeblikk!
+  step1_1: Velkommen!
+  title: Hvordan bruke Firefish
+  step5_6: Tidslinjen Forslag {icon} er hvor du kan se poster fra tjenere administratorene
+    foreslår.
+  step5_5: Tidslinjen Sosialt {icon} er en kombinasjon av tidslinjene Hjem og Lokal.
+  step5_2: Tjeneren din har {timelines} ulike tidslinjer.
+  step5_3: Tidslinjen Hjem {icon} er hvor du ser poster fra kontoer du følger.
+  step2_1: Først, fyll ut litt profil-informasjon.
+  step4_2: Noen liker å skrive en {introduction}-post eller en enkel "Hei, verden!"
+  step5_4: Tidslinjen Lokal {icon} er hvor du kan se poster fra alle andre på denne
+    tjeneren.
+  step6_2: Vel, du har ikke bare blitt med i Firefish. Du har trådt inn porten til
+    Allheimen, et sammenkoblet nettverk av tusenvis av tjenere.
+  step6_3: Hver tjener er satt opp og fungerer litt ulikt, denne og noen andre kjører
+    Firefish, men ikke alle. Komplisert? Bittelitt, men du skjønner det fort når du
+    tar det i bruk.
+  step2_2: Å gi litt informasjon om hvem du er vil gjøre det lettere for andre å vite
+    om de er interessert i å lese postene dine eller følge deg.
+  step3_1: Nå er det tid for å følge noen!
+  step6_4: Nå kan du utforske og ha det gøy!
+deletePasskeysConfirm: Dette vil slette alle adgangsnøkler og sikkerhetsnøkler for
+  denne kontoen. Fortsette?
+_pages:
+  fontSerif: Antikva
+  featured: Populære
+  contentBlocks: Innhold
+  viewPage: Vis dine Sider
+  blocks:
+    section: Seksjon
+    _note:
+      idDescription: Alternativt kan du legge inn URL til posten her.
+      id: Post-id
+      detailed: Detaljert visning
+    radioButton: Valg
+    _button:
+      colored: Farget
+      _action:
+        _pushEvent:
+          message: Melding som skal vises når aktivert
+          variable: Variabel som skal sendes
+          no-variable: Ingen
+        callAiScript: Kjør AiScript
+        _callAiScript:
+          functionName: Funksjonsnavn
+        resetRandom: Nullstill starten for tilfeldige tall
+        dialog: Vis en dialogboks
+        _dialog:
+          content: Innhold
+      action: Oppførsel når knappen er trykket inn
+      text: Tittel
+    note: Innfelt post
+    button: Knapp
+    textInput: Tekst-innput
+    if: Hvis
+    _canvas:
+      width: Bredde
+      height: Høyde
+    _switch:
+      name: Variabelnavn
+      default: Standardverdi
+      text: Tittel
+    _counter:
+      text: Tittel
+      name: Variabelnavn
+    _textInput:
+      name: Variabelnavn
+      text: Tittel
+      default: Standardverdi
+    _textareaInput:
+      default: Standardverdi
+      name: Variabelnavn
+      text: Tittel
+    _numberInput:
+      default: Standardverdi
+      name: Variabelnavn
+      text: Tittel
+    text: Tekst
+    counter: Teller
+    textareaInput: Flerlinjers tekstfelt
+    image: Bilder
+    switch: Bytt
+    numberInput: Numerisk innput
+    _if:
+      variable: Variabel
+    textarea: Tekstområde
+    _post:
+      text: Innhold
+    post: Post-skjema
+  created: Siden er opprettet
+  contents: Innhold
+  like: Lik
+  nameAlreadyExists: Den angitte URL-en er allerede i bruk
+  viewSource: Vis kilde
+  eyeCatchingImageSet: Sett miniatyrbilde
+  fontSansSerif: Grotesk
+  invalidNameTitle: Angitt URL er ugyldig
+  specialBlocks: Spesielle
+  chooseBlock: Legg til en blokk
+  url: URL til Side
+  invalidNameText: Tittelen på Siden kan ikke være tom
+  liked: Likte Sider
+  updated: Redigereringer lagret
+  editThisPage: Rediger denne Siden
+  my: Mine Sider
+  enterVariableName: Skriv inn et variabelnavn
+  newPage: Lag en ny Side
+  summary: Sammendrag
+  inputBlocks: Innput
+  readPage: Vis kilden til denne Siden
+  eyeCatchingImageRemove: Slett miniatyrbilde
+  variables: Variabler
+  inspector: Inspektør
+  unlike: Avlik
+  content: Side-blokk
+  font: Skriftsnitt
+  hideTitleWhenPinned: Skjul tittel når Siden er festet til profilen
+  selectType: Velg en type
+  alignCenter: Sentrer elementer
+  title: Tittel
+  pageSetting: Innstillinger for Side
+  variableNameIsAlreadyUsed: Variabelnavnet er allerede i bruk
+  deleted: Siden er slettet
+  editPage: Rediger denne Siden
+_channel:
+  featured: Trendende
+  removeBanner: Fjern banner
+  setBanner: Sett banner
+  owned: Eid
+  create: Opprett kanal
+  nameOnly: Bare navn
+  notesCount: '{n} poster'
+  usersCount: '{n} deltakere'
+  nameAndDescription: Navn og beskrivelse
+  following: Fulgt
+  edit: Redigér kanal
+_charts:
+  usersIncDec: Forskjell i antall brukere
+  apRequest: Forespørsler
+  storageUsageTotal: Total brukt lagringsplass
+  usersTotal: Totalt antall brukere
+  federation: Føderasjon
+  remoteNotesIncDec: Forskjell i antall eksterne poster
+  storageUsageIncDec: Forskjell i bruk av lagringsplass
+  notesIncDec: Forskjell i antall poster
+  notesTotal: Totalt antall poster
+  activeUsers: Aktive brukere
+  filesTotal: Totalt antall filer
+  localNotesIncDec: Forskjell i antall lokale poster
+  filesIncDec: Forskjell i antall filer
+_deck:
+  swapLeft: Flytt kolonnen til venstre
+  configureColumn: Kolonneinnstillinger
+  stackLeft: Stable med kolonnen til venstre
+  columnAlign: Juster kolonner
+  swapUp: Flytt kolonnen oppover
+  swapRight: Flytt kolonnen til høyre
+  alwaysShowMainColumn: Vis alltid hovedkolonne
+  swapDown: Flytt kolonnen nedover
+  addColumn: Legg til kolonne
+  nameAlreadyExists: Navnet er allerede i bruk på et annet arbeidsområde.
+  introduction: Gjør brukergrensesnittet perfekt ved å sette kolonnene slik du vil
+    ha dem!
+  introduction2: Klikk pluss-tegnet til høyre på skjermen for å legge til nye kolonner
+    når du trenger dem.
+  profile: Arbeidsområde
+  newProfile: Nytt arbeidsområde
+  renameProfile: Gi arbeidsområdet nytt navn
+  deleteProfile: Slett arbeidsområde
+  _columns:
+    list: Liste
+    main: Standard
+    notifications: Varsler
+    widgets: Skjermelementer
+    mentions: Nevninger
+    channel: Kanal
+    direct: Direktemeldinger
+    antenna: Antenne
+    tl: Tidslinje
+  widgetsIntroduction: Trykk "Rediger skjermelementer" i kolonnemenyen og legg til
+    et element.
+  popRight: Flytt kolonnen ut av stabelen og til høyre
+_serverDisconnectedBehavior:
+  reload: Automatisk omlasting
+  quiet: Vis ikkeforstyrrende advarsel
+  nothing: Ikke gjør noe
+  dialog: Vis advarselsdialog
+cannotUploadBecauseNoFreeSpace: Opplasting feilet. Ikke nok plass på Disk.
+customMOTD: Egendefinert dagens melding i oppstartsbildet.
+_sfx:
+  channel: Kanal-varsler
+  chatBg: Chat (Bakgrunn)
+  antenna: Antenner
+  notification: Varsler
+  noteMy: Egen post
+  chat: Chat
+  note: Ny post
+_sensitiveMediaDetection:
+  setSensitiveFlagAutomaticallyDescription: Resultatene av intern deteksjon vil bli
+    beholdt selv om innstillingen slås av.
+  analyzeVideosDescription: Analyserer videoer i tillegg til bilder. Dette vil øke
+    lasten på tjeneren litt.
+  sensitivity: Sensitivitiet i deteksjonen
+  analyzeVideos: Slå på videoanalyse
+  sensitivityDescription: Å redusere sensitiviteten vil føre til færre falske positive
+    (mistenkt NSFW som viser seg å ikke være det). Å øke den vil føre til færre falske
+    negative.
+  description: Reduserer arbeidet med moderering på tjeneren ved å automatisk gjenkjenne
+    NSFW-innhold med maskinlæring. Dette vil gi en litt økt last på tjeneren.
+  setSensitiveFlagAutomatically: Merk som NSFW
+_profile:
+  name: Navn
+  username: Brukernavn
+  metadataContent: Innhold
+  metadataEdit: Rediger ekstra informasjon
+  metadata: Ekstra informasjon
+  metadataLabel: Etikett
+  description: Bio
+  metadataDescription: Her kan du legge inn ekstra felt med informasjon i profilen
+    din.
+  locationDescription: Om du oppgir stedet du bor først vil det vise din lokale tid
+    til andre brukere.
+  changeAvatar: Endre avatar
+  youCanIncludeHashtags: Du kan bruke emneknagger i bioen også.
+  changeBanner: Endre brukerfane
+removeRecipient: Fjern mottaker
+seperateRenoteQuote: Skill knappene for deling og sitering
+_permissions:
+  "read:gallery": Se galleriet ditt
+  "read:pages": Se siden din
+  "write:channels": Redigere kanalene dine
+  "write:gallery-likes": Endre hvilke galleriposter du liker
+  "read:reactions": Vise reaksjonene dine
+  "read:user-groups": Se gruppene dine
+  "read:notifications": Vise varslene dine
+  "write:reactions": Endre reaksjonene dine
+  "write:pages": Redigere eller slette siden din
+  "write:mutes": Redigere listen over stummede brukere
+  "write:following": Følge eller avfølge andre kontoer
+  "read:messaging": Vise chat-ene dine
+  "write:account": Rediger kontoinformasjon
+  "read:favorites": Vis bokmerkene dine
+  "write:messaging": Sende eller slette meldinger i chat
+  "read:account": Se informasjon om kontoen din
+  "read:channels": Se kanalene dine
+  "write:drive": Redigere og slette filer og kataloger på Disk
+  "read:mutes": Vise listen over stummede brukere
+  "write:blocks": Rediger listen av blokkerte brukere
+  "read:page-likes": Se hvilke sider du liker
+  "write:notifications": Styre varslene dine
+  "read:following": Vise informasjon om hvem du følger
+  "write:votes": Stemme i en avstemning
+  "read:gallery-likes": Se listen over galleriposter du liker
+  "write:gallery": Redigere galleriet ditt
+  "read:blocks": Vis listen av brukere du blokkerer
+  "write:favorites": Redigere bokmerkene dine
+  "read:drive": Tilgang til dine filer og kataloger på Disk
+  "write:notes": Sende eller slette poster
+  "write:page-likes": Redigere hvilke sider du liker
+  "write:user-groups": Redigere eller slette gruppene dine
+unlikeConfirm: Slutte å like?
+_theme:
+  installed: '{name} er blitt installert'
+  keys:
+    fg: Tekst
+    infoBg: Informasjonsbakgrunn
+    mention: Nevn
+    listItemHoverBg: Bakgrunn for listeelementer (Svevende)
+    accentDarken: Uthevet (Mørkere)
+    focus: Fokus
+    navFg: Tekst i sidefelt
+    mentionMe: Nevning (Meg)
+    hashtag: Emneknagg
+    buttonBg: Bakgrunn i knapper
+    driveFolderBg: Bakgrunn i Disk-katalog
+    infoWarnBg: Advarselsbakgrunn
+    dateLabelFg: Tekst i dato-etikett
+    indicator: Indikator
+    header: Hode
+    bg: Bakgrunn
+    inputBorder: Ramme rundt input-felt
+    navBg: Bakgrunn i sidefelt
+    link: Lenke
+    infoFg: Informasjonstekst
+    navActive: Tekst i sidefelt (Aktivt)
+    scrollbarHandle: Håndtak i rullefelt
+    messageBg: Bakgrunn i chat
+    cwBg: Bakgrunn på innholdsadvarsel-knapp
+    renote: Del
+    fgHighlighted: Markert tekst
+    toastBg: Bakgrunn for varsler
+    buttonHoverBg: Bakgrunn i knapper (Svevende)
+    panel: Panel
+    toastFg: Tekst i varsler
+    accentLighten: Uthevet (Lysere)
+    scrollbarHandleHover: Håndtak i rullefelt (Svevende)
+    shadow: Skygge
+    cwFg: Tekst i innholdsadvarsel-knapp
+    cwHoverBg: Bakgrunn i innholdsadvarsel-knapp (Svevende)
+    navHoverFg: Tekst i sidefelt (Svevende)
+    accent: Uthev
+    navIndicator: Indikator i sidefelt
+    divider: Skille
+    badge: Merker
+    modalBg: Modal bakgrunn
+    infoWarnFg: Advarselstekst
+  darken: Gjør mørkere
+  refConst: Referer til en konstant
+  builtinThemes: Innebygde temaer
+  lighten: Gjør lysere
+  defaultValue: Standardverdi
+  basedProp: Referert egenskap
+  install: Installer et tema
+  base: Base
+  addConstant: Legg til konstant
+  argument: Argument
+  key: Nøkkel
+  inputConstantName: Gi konstanten et navn
+  constant: Konstant
+  color: Farge
+  explore: Utforsk temaer
+  refProp: Referer til en egenskap
+  invalid: Formatet til dette temaet er ugyldig
+  code: Tema-kode
+  installedThemes: Installerte temaer
+  make: Lag et tema
+  func: Funksjoner
+  description: Beskrivelse
+  alpha: Ugjennomsiktighet
+  importInfo: Om du legger en temakode her kan du importere den til tema-redigeringen
+  deleteConstantConfirm: Sikker på at du vil slette konstanten {const}?
+  funcKind: Funksjonstype
+  manage: Styr temaer
+  alreadyInstalled: Dette temaet er allerede installert
+_emailUnavailable:
+  disposable: Engangs-epost-adresser er ikke tillatt
+  smtp: Epost-tjeneren svarer ikke
+  mx: Epost-tjeneren er ugyldig
+  format: Dette ser ikke ut som en gyldig epost-adresse
+  used: Denne epost-adressen er allerede brukt
+_ago:
+  weeksAgo: '{n} uker siden'
+  minutesAgo: '{n}m siden'
+  daysAgo: '{n} dager siden'
+  secondsAgo: '{n}s siden'
+  hoursAgo: '{n} timer siden'
+  justNow: Nettopp
+  yearsAgo: '{n} år siden'
+  monthsAgo: '{n} mnd siden'
+  future: Fremtid
+_exportOrImport:
+  blockingList: Blokkerte brukere
+  excludeInactiveUsers: Ekskluder inaktive brukere
+  muteList: Stummede brukere
+  followingList: Brukere du følger
+  userLists: Brukerlister
+  allNotes: Alle poster
+  excludeMutingUsers: Eksluder stummede brukere
+_antennaSources:
+  homeTimeline: Poster fra brukere du følger
+  all: Alle poster
+  userList: Poster fra en spesifisert liste av brukere
+  userGroup: Poster fra brukere i en bestemt gruppe
+  users: Poster fra spesifikke brukere
+  instances: Poster fra alle brukerne på denne tjeneren
+_widgets:
+  timeline: Tidslinje
+  meiliSize: Indeks-størrelse
+  instanceCloud: Tjenersky
+  onlineUsers: Påloggede brukere
+  clock: Klokke
+  userList: Brukerliste
+  rss: RSS-leser
+  serverMetric: Tjenermetrikker
+  meiliIndexCount: Indekserte poster
+  button: Knapp
+  unixClock: Unix-klokke
+  calendar: Kalender
+  trends: Trender
+  serverInfo: Tjenerinformasjon
+  jobQueue: Jobbkø
+  _userList:
+    chooseList: Velg en liste
+  photos: Bilder
+  rssTicker: RSS-rulletekst
+  aiscript: AiScript-konsoll
+  meiliStatus: Tjenerstatus
+  memo: Notatlapp
+  notifications: Varsler
+  postForm: Ny post
+  digitalClock: Digital klokke
+  activity: Aktivitet
+  federation: Føderering
+  slideshow: Bildeviser
+_wordMute:
+  muteWordsDescription: Skill med mellomrom for logisk "OG" og med linjeskift for
+    logisk "ELLER".
+  hardDescription: Hindrer poster som oppfyller vilkårene fra å bli lagt til i tidslinjen.
+    De vil heller ikke bli lagt i tidslinjen senere dersom vilkårene endres i ettertid.
+  mutedNotes: Stummede poster
+  softDescription: Skjul poster som oppfyller disse vilkårene fra tidlinjen.
+  soft: Svakt
+  muteWordsDescription2: Sett skråstreker rundt nøkkelord for å bruke regulære uttrykk.
+  hard: Hardt
+  muteWords: Stummede ord
+showFeaturedNotesInTimeline: Vis framheved poster i tidslinjen
+rateLimitExceeded: For mange forsøk på kort tid
+_2fa:
+  securityKeyInfo: Utover fingeravtrykk og PIN-koder kan du sette opp autentisering
+    via fysiske sikkerhetsnøkler som støtter FIDO2 for å sikre kontoen ytterligere.
+  removeKey: Fjern sikkerhetsnøkkel
+  alreadyRegistered: Du har allerede registrert en enhet for tofaktor-autentisering.
+  token: 2FA-tegn
+  step3: Oppgi en engangskode for å fullføre oppsettet.
+  step1: Først, installer en app for engangskoder (slik som {a} eller {b}) på en enhet.
+  step3Title: Skriv inn en autentiseringskode
+  renewTOTPCancel: Avbryt
+  securityKeyName: Oppgi et nøkkelnavn
+  renewTOTPOk: Rekonfigurer
+  registerSecurityKey: Registrer en sikkerhetsnøkkel
+  step2: Deretter kan du scanne QR-koden som vises på skjermen.
+  registerTOTP: Registrer engangskode-app
+  removeKeyConfirm: Sikker på at du vil slette nøkkelen {name}?
+  registerTOTPBeforeKey: Sett opp en autentiserings-app for å registrere en sikkerhetsnøkkel.
+  chromePasskeyNotSupported: Passkeys i Chrome er foreløpig ikke støttet.
+  renewTOTPConfirm: Dette vil føre til at kodene fra den forrige appen din vil slutte
+    å virke
+  renewTOTP: Rekonfigurer autentiserings-app
+  securityKeyNotSupported: Nettleseren din tillater ikke sikkerhetsnøkler.
+  step2Click: Når du klikker på QR-koden kan du registrere den som en tofaktor-pålogging
+    på en sikkerhetsnøkkel eller engangskode-app.
+  tapSecurityKey: Følg nettleseren for å registrere en sikkerhetsnøkkel eller passkey
+  step4: Fra nå av vil du alltid bli bedt om en engangskode når du logger inn.
+  step2Url: 'Du kan også skrive inn denne URL-en hvis du bruker et program på en PC
+    til tofaktor-pålogging:'
+inputNotMatch: Input stemmer ikke
+_ffVisibility:
+  public: Offentlig
+  private: Privat
+  followers: Synlig bare for følgere
+_weekday:
+  wednesday: Onsdag
+  tuesday: Tirsdag
+  sunday: Søndag
+  saturday: Lørdag
+  monday: Mandag
+  friday: Fredag
+  thursday: Torsdag
+poll: Avstemning
+_instanceCharts:
+  users: Forskjell i antall brukere
+  usersTotal: Kumulativt antall brukere
+  cacheSize: Forskjell i mellomlagring
+  ffTotal: Kumulativt antall fulgte brukere / følgere
+  requests: Forespørsler
+  cacheSizeTotal: Kumulativ total mellomlagring
+  ff: 'Forskjell i antall fulgte brukere / følgere '
+  filesTotal: Kumulativt antall filer
+  files: Forskjell i antall filer
+  notes: Forskjell i antall poster
+  notesTotal: Kumulativt antall poster
+localOnly: Bare lokalt
+navbar: Navigasjonsfelt
+_visibility:
+  localOnly: Bare lokalt
+  followersDescription: Synlig bare for dine følgere og brukere nevnt i posten
+  specified: Direkte
+  home: Unotert
+  localOnlyDescription: Bare synlig for brukere på denne tjeneren
+  specifiedDescription: Synlig bare for spesifiserte brukere
+  public: Offentlig
+  homeDescription: Bare post til hjem-tidslinjen
+  followers: Følgere
+  publicDescription: Postene dine være bli synlige i alle offentlige tidslinjer
+_poll:
+  at: Sett slutt-tidspunkt
+  votesCount: '{n} stemmer'
+  infinite: Aldri
+  expiration: Avslutt avstemning
+  totalVotes: '{n} stemmer totalt'
+  remainingDays: '{d} dager og {h} timer igjen'
+  deadlineTime: Tid
+  remainingHours: '{h} timer og {m} minutter igjen'
+  canMultipleVote: Tillat flervalg
+  closed: Avsluttet
+  showResult: Vis resultat
+  after: Slutt etter gitt tid
+  deadlineDate: Sluttdato
+  noOnlyOneChoice: Du må legge inn minst to valg
+  remainingMinutes: '{m} minutter og {s} sekunder igjen'
+  voted: Stemt
+  vote: Stem
+  remainingSeconds: '{s} sekunder igjen'
+  choiceN: Valg {n}
+  noMore: Du kan ikke legge til flere valg
+  duration: Varighet
+move: Flytt
+_filters:
+  notesAfter: Poster etter
+  followersOnly: Bare de som følger deg
+  fromDomain: Fra domene
+  withFile: Med fil
+  notesBefore: Poster før
+  fromUser: Fra bruker
+  followingOnly: Bare de du følger
+_feeds:
+  copyFeed: Kopier nyhetsstrøm
+  atom: Atom
+  rss: RSS
+  jsonFeed: JSON-strøm
+sendPushNotificationReadMessageCaption: Et varsel med teksten "{emptyPushNotificationMessage}"
+  vil snart bli vist. Dette kan øke batteribruken på enheten dersom den er batteridrevet.
+customSplashIconsDescription: URL-er til egendefinerte ikoner til oppstartsskjermbildet.
+  En av dem vil bli lastet tilfeldig når en bruker laster inn siden. Pass på at bildene
+  er på statiske URL-er, fortrinnsvis i størrelsen 192x192 piksler.
+instanceDefaultThemeDescription: Skriv inn temakode i objektformat.
+deletePasskeys: Slett passkeys
+_cw:
+  chars: '{count} tegn'
+  show: Vis innhold
+  files: '{count} fil(er)'
+  hide: Skjul
+_timelines:
+  local: Lokal
+  home: Hjem
+  recommended: Foreslått
+  global: Global
+  social: Sosial
+serviceworkerInfo: Må være påslått for push-varsler.
+detectPostLanguage: Automatisk detekter språk og vis en oversettelsesknapp for poster
+  på andre språk
+_auth:
+  copyAsk: 'Lim inn denne koden i applikasjonen:'
+  callback: Går tilbake til applikasjonen
+  shareAccess: Vil du gi "{name}" tilgang til denne kontoen?
+  denied: Tilgang avvist
+  permissionAsk: 'Denne applikasjonen ber om følgende tilganger:'
+  allPermissions: Full tilgang til kontoen
+  pleaseGoBack: Gå tilbake til applikasjonen
+  shareAccessAsk: Er du sikker på at du vil gi denne applikasjonen lov til å gå inn
+    på kontoen din?
+youHaveUnreadAnnouncements: Du har uleste kunngjøringer
+featured: Fremhevet
+pushNotification: Push-varsler
+delete2faConfirm: Dette vil slå av 2FA på denne kontoen, og kan ikke omgjøres. Fortsette?
+indexableDescription: Tillat innebygget søk å vise dine offentlige poster
+splash: Oppstartsskjerm
+_menuDisplay:
+  sideIcon: Side (Ikoner)
+  hide: Skjul
+  sideFull: Side
+  top: Topp
+enableIdenticonGeneration: Slå på generering av identikoner
+_skinTones:
+  medium: Medium
+  dark: Mørk
+  yellow: Gul
+  mediumDark: Middels mørk
+  light: Lys
+  mediumLight: Middels lys
+_instanceMute:
+  instanceMuteDescription2: Skill med linjeskift
+  instanceMuteDescription: Dette vil stumme alle poster og deling fra de opplistede
+    tjenerne, inkludert poster som svarer på en post fra en stummet tjener.
+  title: Skjuler poster fra opplistede tjenere.
+  heading: Liste av tjenere som skal stummes
+_messaging:
+  groups: Grupper
+  dms: Privat
+_time:
+  day: Dag(er)
+  hour: Time(r)
+  minute: Minutt(er)
+  second: Sekund(er)
+addRe: Legg til "re:" i begynnelsen av en kommentar til en post med innholdsadvarsel
+donationLink: Lenke til donasjons-side
+createNewClip: Nytt utklipp
+removeQuote: Fjern sitat
+showUpdates: Vis et sprettoppvindu når Firefish oppdateres
+renotesCount: Antall sendte delinger
+type: Type
+remoteOnly: Bare eksternt
+clipsDesc: Utklipp er som kategoriserte bokmerker du kan dele med andre. Du kan lage
+  utklipp fra menyen til individuelle poster.
+unclip: Fjern utklipp
+quitFullView: Forlat full visning
+exportZip: Eksporter zip-fil
+desktop: Skrivebord
+botProtection: Bot-beskyttelse
+_signup:
+  almostThere: Nesten der
+  emailAddressInfo: Oppgi epost-adressen din. Den vil ikke bli synlig for andre.
+  emailSent: En bekreftelses-epost er sendt til epost-adressen ({email}). Klikk på
+    lenken i eposten for å fullføre registrering.
+beta: Beta
+renotedCount: Antall delinger av dine poster
+unsubscribePushNotification: Slå av push-varsler
+sample: Eksempel
+cannotUploadBecauseExceedsFileSizeLimit: Filen kan ikke lastes opp fordi den er større
+  enn maks tillatt filstørrelse.
+remindMeLater: Kanskje senere
+adminCustomCssWarn: Denne innstillingen må bare brukes hvis du vet hva den gjør. Ugyldige
+  verdier kan få klienten til å feile for alle brukere. Bruk brukerinnstillingene
+  for å teste at CSS fungerer som den skal.
+account: Konto
+activeEmailValidationDescription: Slår på strengere sjekk av epost-adresser, inkludert
+  sjekking for engangs-adresser og om den faktisk kan kommuniseres med. Når innstillingen
+  er av vil det bare sjekkes at epost-adressen er syntaktisk riktig.
+clips: Utklipp
+verifiedLink: Verifisert lenke
+secureModeInfo: Ved forespørsler fra andre tjenere, ikke send tilbake uten bevis.
+isPatron: Firefish-patron
+cannotUploadBecauseInappropriate: Filen ble ikke lastet opp fordi den er detektert
+  som mulig NSFW.
+showAds: Vis samfunns-banner
+enterSendsMessage: Trykk enter for å sende meldinger. (Hvis avslått må du trykke Ctrl
+  + enter)
+confirmToUnclipAlreadyClippedNote: Denne posten er allerede en del av utklippet "{name}".
+  Vil du fjerne den fra dette utklippet i stedet?
+showWithSparkles: Vis med gnister
+emojiPackCreator: Emoji-pakke-bygger
+importZip: Importer zip-fil
+pushNotificationAlreadySubscribed: Push-varsler er allerede påslått
+ratio: Forhold
+pushNotificationNotSupported: Nettleseren eller tjeneren tillater ikke push-varsler
+accountDeletionInProgress: Sletting av konto pågår
+indexable: Indekserbar
+shuffle: Stokket
+sensitiveMediaDetection: Deteksjon av NSFW-media
+delete2fa: Slå av tofaktorautentisering (2FA)
+isLocked: Denne kontoen har følgende godkjenninger
+languageForTranslation: Oversettelsesspråk for poster
+customSplashIcons: URL-er til egendefinerte oppstartsskjerm-ikoner
+_instanceTicker:
+  always: Alltid vis
+  none: Aldri vis
+  remote: Vis for eksterne brukere
+confirm: Bekreft
+origin: Kilde
+label: Etikett
+customMOTDDescription: Egendefinerte meldinger for dagens melding på oppstartsskjermbildet.
+  Linjeskift mellom meldinger. En tilfeldig melding vil bli vist hver gang en bruker
+  laster inn siden.
+enableAutoSensitive: Automatisk markering av NSFW
+neverShow: Ikke vis igjen
+removeMember: Fjern medlem
+clip: Utklipp
+sendPushNotificationReadMessage: Slett push-varsler når den relevante informasjonen
+  er lest
+enableAutoSensitiveDescription: Tillat automatisk deteksjon og markering av NSFW basert
+  på maskinlære der det er mulig. Selv om du slår av dette kan det være påslått for
+  hele tjeneren.
+subscribePushNotification: Slå på push-varsler
+failedToUpload: Opplasting feilet
+speed: Fart
+undeck: Forlat kolonnevisning
+deck: Kolonner
+_experiments:
+  title: Eksperimenter
+  enablePostImports: Slå på post-importer
+  postImportsCaption: Lar brukere importere poster fra kontoer på Firefish, Misskey,
+    Mastodon, Akkoma eller Pleroma. Den ekstra lasten kan forårsake tregere tjeneste.
+_dialog:
+  charactersBelow: 'Ikke nok tagn! Skrevet: {current}/Grense: {min}'
+  charactersExceeded: 'Maks antall tegn er overskredet! Skrevet: {current}/Grense:
+    {max}'

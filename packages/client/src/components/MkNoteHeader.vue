@@ -40,6 +40,7 @@
 					v-if="showTicker"
 					class="ticker"
 					:instance="note.user.instance"
+					:host="note.user.host"
 				/>
 			</div>
 		</div>

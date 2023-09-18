@@ -23,6 +23,7 @@
 						<button
 							v-for="emoji in searchResultCustom"
 							:key="emoji.id"
+							v-vibrate="50"
 							class="_button item"
 							:title="emoji.name"
 							tabindex="0"

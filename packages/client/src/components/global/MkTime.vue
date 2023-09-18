@@ -44,15 +44,15 @@ const relative = computed<string>(() => {
 
 	const ago = (now.value - _time) / 1000; /* ms */
 	return ago >= 31536000
-		? i18n.t("_ago.yearsAgo", { n: Math.round(ago / 31536000).toString() })
+		? i18n.t("_ago.yearsAgo", { n: Math.floor(ago / 31536000).toString() })
 		: ago >= 2592000
-		? i18n.t("_ago.monthsAgo", { n: Math.round(ago / 2592000).toString() })
+		? i18n.t("_ago.monthsAgo", { n: Math.floor(ago / 2592000).toString() })
 		: ago >= 604800
-		? i18n.t("_ago.weeksAgo", { n: Math.round(ago / 604800).toString() })
+		? i18n.t("_ago.weeksAgo", { n: Math.floor(ago / 604800).toString() })
 		: ago >= 86400
-		? i18n.t("_ago.daysAgo", { n: Math.round(ago / 86400).toString() })
+		? i18n.t("_ago.daysAgo", { n: Math.floor(ago / 86400).toString() })
 		: ago >= 3600
-		? i18n.t("_ago.hoursAgo", { n: Math.round(ago / 3600).toString() })
+		? i18n.t("_ago.hoursAgo", { n: Math.floor(ago / 3600).toString() })
 		: ago >= 60
 		? i18n.t("_ago.minutesAgo", { n: (~~(ago / 60)).toString() })
 		: ago >= 10

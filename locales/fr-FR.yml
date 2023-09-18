@@ -683,7 +683,7 @@ fillAbuseReportDescription: "Veuillez expliquer les raisons du signalement. S'il
   d'une publication en particulier, veuillez inclure le lien."
 abuseReported: "Le rapport est envoyé. Merci."
 reporter: "Signalé par"
-reporteeOrigin: "Origine du signalement"
+reporteeOrigin: "Origine du signalé"
 reporterOrigin: "Origine du signalement"
 forwardReport: "Transférer le signalement à l’instance distante"
 send: "Envoyer"
