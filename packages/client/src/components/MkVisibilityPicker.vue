@@ -97,7 +97,7 @@
 				@click="localOnly = !localOnly"
 			>
 				<div :class="$style.icon">
-					<i class="ph-hand-fist ph-bold ph-lg"></i>
+					<i class="ph-users ph-bold ph-lg"></i>
 				</div>
 				<div :class="$style.body">
 					<span :class="$style.itemTitle">{{

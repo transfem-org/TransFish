@@ -19,7 +19,7 @@
 	<span v-if="note.localOnly" :class="$style.localOnly"
 		><i
 			v-tooltip="i18n.ts._visibility.localOnly"
-			class="ph-hand-fist ph-bold ph-lg"
+			class="ph-users ph-bold ph-lg"
 		></i
 	></span>
 </template>
