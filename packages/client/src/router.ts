@@ -653,6 +653,10 @@ export const routes = [
 		loginRequired: true,
 	},
 	{
+		path: '/timeline',
+		component: page(() => import('./pages/timeline.vue')),
+	},
+	{
 		name: "index",
 		path: "/",
 		component: $i

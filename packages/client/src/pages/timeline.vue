@@ -80,14 +80,14 @@ import { deviceKind } from "@/scripts/device-kind";
 import "swiper/scss";
 import "swiper/scss/virtual";
 
-if (defaultStore.reactiveState.tutorial.value !== -1) {
+if (defaultStore.reactiveState.tutorial.value !== -1 && $i != null) {
 	os.popup(XTutorial, {}, {}, "closed");
 }
 
 const isLocalTimelineAvailable =
 	!instance.disableLocalTimeline ||
 	($i != null && ($i.isModerator || $i.isAdmin));
-const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline;
+const isRecommendedTimelineAvailable = !instance.disableRecommendedTimeline && $i != null;
 const isGlobalTimelineAvailable =
 	!instance.disableGlobalTimeline ||
 	($i != null && ($i.isModerator || $i.isAdmin));
@@ -95,12 +95,12 @@ const keymap = {
 	t: focus,
 };
 
-const timelines = ["home"];
+const timelines = $i ? ["home"] : [];
 
 if (isLocalTimelineAvailable) {
 	timelines.push("local");
 }
-if (isLocalTimelineAvailable) {
+if (isLocalTimelineAvailable && $i != null) {
 	timelines.push("social");
 }
 if (isRecommendedTimelineAvailable) {
@@ -214,12 +214,14 @@ const headerActions = computed(() => [
 ]);
 
 const headerTabs = computed(() => [
+	...( $i ?
+	[
 	{
 		key: "home",
 		title: i18n.ts._timelines.home,
 		icon: "ph-house ph-bold ph-lg",
 		iconOnly: true,
-	},
+	}] : []),
 	...(isLocalTimelineAvailable
 		? [
 				{
@@ -230,7 +232,7 @@ const headerTabs = computed(() => [
 				},
 		  ]
 		: []),
-	...(isLocalTimelineAvailable
+	...(isLocalTimelineAvailable && $i != null
 		? [
 				{
 					key: "social",

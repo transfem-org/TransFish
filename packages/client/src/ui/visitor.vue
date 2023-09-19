@@ -11,6 +11,7 @@
 			<div v-if="!root" class="header">
 				<div v-if="narrow === false" class="wide">
 					<MkA to="/" class="link" activeClass="active"><i class="ph-house ph-bold ph-lg icon"></i> {{ i18n.ts.home }}</MkA>
+					<MkA to="/timeline" class="link" activeClass="active"><i class="ph-handshake ph-bold ph-lg icon"></i> {{ i18n.ts.timeline }}</MkA>
 					<MkA to="/explore" class="link" activeClass="active"><i class="ph-compass ph-bold ph-lg icon"></i> {{ i18n.ts.explore }}</MkA>
 					<MkA to="/channels" class="link" activeClass="active"><i class="ph-television ph-bold ph-lg icon"></i> {{ i18n.ts.channel }}</MkA>
 				</div>
