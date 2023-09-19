@@ -1,48 +1,38 @@
 <template>
-	<MkPagination ref="pagingComponent" :pagination="pagination">
+	<MkPagination :pagination="pagination">
 		<template #empty>
 			<div class="_fullinfo">
-				<img
-					src="/static-assets/badges/info.png"
-					class="_ghost"
-					alt="Info"
-				/>
+				<img src="/static-assets/badges/info.png" class="_ghost"/>
 				<div>{{ i18n.ts.noUsers }}</div>
 			</div>
 		</template>
-
-		<template #default="{ items: users }">
-			<div class="efvhhmdq">
-				<MkUserInfo
-					v-for="user in users"
-					:key="user.id"
-					class="user"
-					:user="user"
-				/>
+	
+		<template #default="{ items }">
+			<div :class="$style.root">
+				<MkUserInfo v-for="item in items" :key="item.id" class="user" :user="extractor(item)"/>
 			</div>
 		</template>
 	</MkPagination>
 </template>
-
+	
 <script lang="ts" setup>
-import { ref } from "vue";
-import MkUserInfo from "@/components/MkUserInfo.vue";
-import type { Paging } from "@/components/MkPagination.vue";
-import MkPagination from "@/components/MkPagination.vue";
-import { i18n } from "@/i18n";
-
-const props = defineProps<{
-	pagination: Paging;
-	noGap?: boolean;
-}>();
-
-const pagingComponent = ref<InstanceType<typeof MkPagination>>();
+	import MkUserInfo from '@/components/MkUserInfo.vue';
+	import MkPagination, { Paging } from '@/components/MkPagination.vue';
+	import { i18n } from '@/i18n';
+	
+	const props = withDefaults(defineProps<{
+		pagination: Paging;
+		noGap?: boolean;
+		extractor?: (item: any) => any;
+	}>(), {
+		extractor: (item) => item,
+	});
 </script>
-
-<style lang="scss" scoped>
-.efvhhmdq {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-	grid-gap: var(--margin);
-}
+	
+<style lang="scss" module>
+	.root {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		grid-gap: var(--margin);
+	}
 </style>

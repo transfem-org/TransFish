@@ -1,171 +1,173 @@
 <template>
 	<button
-		v-if="count > 0"
-		ref="buttonRef"
+		ref="buttonEl"
 		v-ripple="canToggle"
-		v-vibrate="[10, 30, 40]"
-		class="hkzvhatu _button"
-		:class="{
-			reacted: note.myReaction == reaction,
-			canToggle,
-			newlyAdded: !isInitial,
-		}"
-		@click.stop="toggleReaction()"
+		class="_button"
+		:class="[$style.root, { [$style.reacted]: note.myReaction == reaction, [$style.canToggle]: canToggle, [$style.small]: defaultStore.state.reactionsDisplaySize === 'small', [$style.large]: defaultStore.state.reactionsDisplaySize === 'large' }]"
+		@click="toggleReaction()"
 	>
-		<XReactionIcon
-			class="icon"
-			:reaction="reaction"
-			:custom-emojis="note.emojis"
-		/>
-		<span class="count">{{ count }}</span>
+		<MkReactionIcon :class="$style.icon" :reaction="reaction" :emojiUrl="note.reactionEmojis[reaction.substring(1, reaction.length - 1)]"/>
+		<span :class="$style.count">{{ count }}</span>
 	</button>
 </template>
-
+	
 <script lang="ts" setup>
-import { computed, ref } from "vue";
-import type * as misskey from "firefish-js";
-import XDetails from "@/components/MkReactionsViewer.details.vue";
-import XReactionIcon from "@/components/MkReactionIcon.vue";
-import * as os from "@/os";
-import { useTooltip } from "@/scripts/use-tooltip";
-import { $i } from "@/account";
-
-const props = defineProps<{
-	reaction: string;
-	count: number;
-	isInitial: boolean;
-	note: misskey.entities.Note;
-}>();
-
-const emit = defineEmits<{
-	(ev: "reacted", v): void;
-}>();
-
-const buttonRef = ref<HTMLElement>();
-
-const canToggle = computed(() => !props.reaction.match(/@\w/) && $i);
-
-const toggleReaction = () => {
-	if (!canToggle.value) return;
-
-	const oldReaction = props.note.myReaction;
-	if (oldReaction) {
-		os.api("notes/reactions/delete", {
-			noteId: props.note.id,
-		}).then(() => {
-			if (oldReaction !== props.reaction) {
-				os.api("notes/reactions/create", {
-					noteId: props.note.id,
-					reaction: props.reaction,
-				});
+	import { computed, onMounted, shallowRef, watch } from 'vue';
+	import * as Misskey from 'firefish-js';
+	import XDetails from '@/components/MkReactionsViewer.details.vue';
+	import MkReactionIcon from '@/components/MkReactionIcon.vue';
+	import * as os from '@/os';
+	import { useTooltip } from '@/scripts/use-tooltip';
+	import { $i } from '@/account';
+	import MkReactionEffect from '@/components/MkReactionEffect.vue';
+	//import { claimAchievement } from '@/scripts/achievements';
+	import { defaultStore } from '@/store';
+	import { i18n } from '@/i18n';
+	
+	const props = defineProps<{
+		reaction: string;
+		count: number;
+		isInitial: boolean;
+		note: Misskey.entities.Note;
+	}>();
+	
+	const buttonEl = shallowRef<HTMLElement>();
+	
+	const canToggle = computed(() => !props.reaction.match(/@\w/) && $i);
+	
+	async function toggleReaction() {
+		if (!canToggle.value) return;
+	
+		// TODO: その絵文字を使う権限があるかどうか確認
+	
+		const oldReaction = props.note.myReaction;
+		if (oldReaction) {
+			const confirm = await os.confirm({
+				type: 'warning',
+				text: oldReaction !== props.reaction ? i18n.ts.changeReactionConfirm : i18n.ts.cancelReactionConfirm,
+			});
+			if (confirm.canceled) return;
+	
+			os.api('notes/reactions/delete', {
+				noteId: props.note.id,
+			}).then(() => {
+				if (oldReaction !== props.reaction) {
+					os.api('notes/reactions/create', {
+						noteId: props.note.id,
+						reaction: props.reaction,
+					});
+				}
+			});
+		} else {
+			os.api('notes/reactions/create', {
+				noteId: props.note.id,
+				reaction: props.reaction,
+			});
+			if (props.note.text && props.note.text.length > 100 && (Date.now() - new Date(props.note.createdAt).getTime() < 1000 * 3)) {
+				//claimAchievement('reactWithoutRead');
 			}
-		});
-	} else {
-		os.api("notes/reactions/create", {
-			noteId: props.note.id,
-			reaction: props.reaction,
-		});
-		emit("reacted");
+		}
 	}
-};
-
-useTooltip(
-	buttonRef,
-	async (showing) => {
-		const reactions = await os.apiGet("notes/reactions", {
+	
+	function anime() {
+		if (document.hidden) return;
+		if (!defaultStore.state.animation) return;
+	
+		const rect = buttonEl.value.getBoundingClientRect();
+		const x = rect.left + 16;
+		const y = rect.top + (buttonEl.value.offsetHeight / 2);
+		os.popup(MkReactionEffect, { reaction: props.reaction, x, y }, {}, 'end');
+	}
+	
+	watch(() => props.count, (newCount, oldCount) => {
+		if (oldCount < newCount) anime();
+	});
+	
+	onMounted(() => {
+		if (!props.isInitial) anime();
+	});
+	
+	useTooltip(buttonEl, async (showing) => {
+		const reactions = await os.apiGet('notes/reactions', {
 			noteId: props.note.id,
 			type: props.reaction,
 			limit: 11,
 			_cacheKey_: props.count,
 		});
-
-		const users = reactions.map((x) => x.user);
-
-		os.popup(
-			XDetails,
-			{
-				showing,
-				reaction: props.reaction,
-				emojis: props.note.emojis,
-				users,
-				count: props.count,
-				targetElement: buttonRef.value,
-			},
-			{},
-			"closed",
-		);
-	},
-	100,
-);
+	
+		const users = reactions.map(x => x.user);
+	
+		os.popup(XDetails, {
+			showing,
+			reaction: props.reaction,
+			users,
+			count: props.count,
+			targetElement: buttonEl.value,
+		}, {}, 'closed');
+	}, 100);
 </script>
-
-<style lang="scss" scoped>
-.hkzvhatu {
-	position: relative;
-	display: inline-block;
-	height: 32px;
-	margin-block: 2px;
-	padding: 0 8px;
-	pointer-events: all;
-	min-width: max-content;
-	&::before {
-		content: "";
-		position: absolute;
-		inset: 0 2px;
-		border-radius: 4px;
-		z-index: -1;
-	}
-	&.newlyAdded {
-		animation: scaleInSmall 0.3s cubic-bezier(0, 0, 0, 1.2);
-		:deep(.mk-emoji) {
-			animation: scaleIn 0.4s cubic-bezier(0.7, 0, 0, 1.5);
+	
+<style lang="scss" module>
+	.root {
+		display: inline-block;
+		height: 42px;
+		margin: 2px;
+		padding: 0 6px;
+		font-size: 1.5em;
+		border-radius: 6px;
+	
+		&.canToggle {
+			background: var(--buttonBg);
+	
+			&:hover {
+				background: rgba(0, 0, 0, 0.1);
+			}
+		}
+	
+		&:not(.canToggle) {
+			cursor: default;
+		}
+	
+		&.small {
+			height: 32px;
+			font-size: 1em;
+			border-radius: 4px;
+	
+			> .count {
+				font-size: 0.9em;
+				line-height: 32px;
+			}
+		}
+	
+		&.large {
+			height: 52px;
+			font-size: 2em;
+			border-radius: 8px;
+	
+			> .count {
+				font-size: 0.6em;
+				line-height: 52px;
+			}
+		}
+	
+		&.reacted, &.reacted:hover {
+			background: var(--accentedBg);
+			color: var(--accent);
+			box-shadow: 0 0 0px 1px var(--accent) inset;
+	
+			> .count {
+				color: var(--accent);
+			}
+	
+			> .icon {
+				filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+			}
 		}
 	}
-	:deep(.mk-emoji) {
-		transition: transform 0.4s cubic-bezier(0, 0, 0, 6);
-	}
-	&.reacted :deep(.mk-emoji) {
-		transition: transform 0.4s cubic-bezier(0, 0, 0, 1);
-	}
-	&:active {
-		:deep(.mk-emoji) {
-			transition: transform 0.4s cubic-bezier(0, 0, 0, 1);
-			transform: scale(0.85);
-		}
-	}
-	&.canToggle {
-		&::before {
-			background: rgba(0, 0, 0, 0.05);
-		}
-		&:hover:not(.reacted)::before {
-			background: rgba(0, 0, 0, 0.1);
-		}
-	}
-
-	&:not(.canToggle) {
-		cursor: default;
-	}
-
-	&.reacted {
-		order: -1;
-		&::before {
-			background: var(--accent);
-		}
-
-		> .count {
-			color: var(--fgOnAccent);
-			font-weight: 600;
-		}
-
-		> .icon {
-			filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-		}
-	}
-
-	> .count {
-		font-size: 0.9em;
-		line-height: 32px;
+	
+	.count {
+		font-size: 0.7em;
+		line-height: 42px;
 		margin: 0 0 0 4px;
 	}
-}
 </style>

@@ -1,176 +1,96 @@
 <template>
-	<header class="kkwtjztg">
-		<div class="user-info">
-			<div>
-				<MkA
-					v-user-preview="note.user.id"
-					class="name"
-					:to="userPage(note.user)"
-					@click.stop
-				>
-					<MkUserName :user="note.user" class="mkusername">
-						<span v-if="note.user.isBot" class="is-bot">bot</span>
-					</MkUserName>
-				</MkA>
-				<div class="username"><MkAcct :user="note.user" /></div>
-			</div>
-			<div>
-				<div class="info">
-					<MkA class="created-at" :to="notePage(note)">
-						<MkTime :time="note.createdAt" />
-						<i
-							v-if="note.updatedAt"
-							v-tooltip.noDelay="
-								i18n.t('edited', {
-									date: new Date(
-										note.updatedAt,
-									).toLocaleDateString(),
-									time: new Date(
-										note.updatedAt,
-									).toLocaleTimeString(),
-								})
-							"
-							class="ph-pencil ph-bold"
-							style="margin-left: 0.4rem"
-						></i>
-					</MkA>
-					<MkVisibility :note="note" />
-				</div>
-				<MkInstanceTicker
-					v-if="showTicker"
-					class="ticker"
-					:instance="note.user.instance"
-					:host="note.user.host"
-				/>
-			</div>
+	<header :class="$style.root">
+		<MkA v-user-preview="note.user.id" :class="$style.name" :to="userPage(note.user)">
+			<MkUserName :user="note.user"/>
+		</MkA>
+		<div v-if="note.user.isBot" :class="$style.isBot">bot</div>
+		<div :class="$style.username"><MkAcct :user="note.user"/></div>
+		<!-- <div v-if="note.user.badgeRoles" :class="$style.badgeRoles">
+			<img v-for="role in note.user.badgeRoles" :key="role.id" v-tooltip="role.name" :class="$style.badgeRole" :src="role.iconUrl"/>
+		</div> -->
+		<div :class="$style.info">
+			<MkA :to="notePage(note)">
+				<MkTime :time="note.createdAt"/>
+			</MkA>
+			<span v-if="note.visibility !== 'public'" style="margin-left: 0.5em;" :title="i18n.ts._visibility[note.visibility]">
+				<i v-if="note.visibility === 'home'" class="ph-house ph-bold ph-lg"></i>
+				<i v-else-if="note.visibility === 'followers'" class="ph-lock ph-bold ph-lg"></i>
+				<i v-else-if="note.visibility === 'specified'" ref="specified" class="ph-envelope-simple-open ph-bold ph-lg"></i>
+			</span>
+			<span v-if="note.localOnly" style="margin-left: 0.5em;" :title="i18n.ts._visibility['disableFederation']"><i class="ph-users ph-bold ph-lg"></i></span>
+			<span v-if="note.channel" style="margin-left: 0.5em;" :title="note.channel.name"><i class="ph-television ph-bold ph-lg"></i></span>
 		</div>
 	</header>
-</template>
-
+	</template>
+	
 <script lang="ts" setup>
-import { ref } from "vue";
-
-import type * as misskey from "firefish-js";
-import { defaultStore } from "@/store";
-import MkVisibility from "@/components/MkVisibility.vue";
-import MkInstanceTicker from "@/components/MkInstanceTicker.vue";
-import { notePage } from "@/filters/note";
-import { userPage } from "@/filters/user";
-import { i18n } from "@/i18n";
-
-const props = defineProps<{
-	note: misskey.entities.Note;
-	pinned?: boolean;
-}>();
-
-const note = ref(props.note);
-
-const showTicker =
-	defaultStore.state.instanceTicker === "always" ||
-	(defaultStore.state.instanceTicker === "remote" &&
-		note.value.user.instance);
+	import { } from 'vue';
+	import * as Misskey from 'firefish-js';
+	import { i18n } from '@/i18n';
+	import { notePage } from '@/filters/note';
+	import { userPage } from '@/filters/user';
+	
+	defineProps<{
+		note: Misskey.entities.Note;
+	}>();
 </script>
-
-<style lang="scss" scoped>
-.kkwtjztg {
-	position: relative;
-	z-index: 2;
-	display: flex;
-	align-items: center;
-	white-space: nowrap;
-	justify-self: flex-end;
-	border-radius: 100px;
-	font-size: 0.8em;
-	text-shadow: 0 2px 2px var(--shadow);
-	> .avatar {
-		width: 3.7em;
-		height: 3.7em;
-		margin-right: 1em;
-	}
-	> .user-info {
-		width: 0;
-		flex-grow: 1;
-		line-height: 1.5;
+	
+<style lang="scss" module>
+	.root {
 		display: flex;
-		font-size: 1.2em;
-		> div {
-			&:first-child {
-				flex-grow: 1;
-				width: 0;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				gap: 0.1em 0;
-			}
-			&:last-child {
-				max-width: 50%;
-				gap: 0.3em 0.5em;
-			}
-			.article > .main & {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				&:last-child {
-					align-items: flex-end;
-				}
-				> * {
-					max-width: 100%;
-				}
-			}
-		}
-		.name {
-			// flex: 1 1 0px;
-			display: inline;
-			margin: 0 0.5em 0 0;
-			padding: 0;
-			overflow: hidden;
-			font-weight: bold;
-			text-decoration: none;
-			text-overflow: ellipsis;
-
-			.mkusername > .is-bot {
-				flex-shrink: 0;
-				align-self: center;
-				margin: 0 0.5em 0 0;
-				padding: 1px 6px;
-				font-size: 80%;
-				border: solid 0.5px var(--divider);
-				border-radius: 3px;
-			}
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-
-		.username {
-			display: inline;
-			margin: 0 0.5em 0 0;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			align-self: flex-start;
-			font-size: 0.9em;
-		}
-
-		.info {
-			display: inline-flex;
-			flex-shrink: 0;
-			margin-left: 0.5em;
-			font-size: 0.9em;
-			.created-at {
-				max-width: 100%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-		}
-
-		.ticker {
-			display: inline-flex;
-			margin-left: 0.5em;
-			vertical-align: middle;
-			> .name {
-				display: none;
-			}
+		align-items: baseline;
+		white-space: nowrap;
+	}
+	
+	.name {
+		flex-shrink: 1;
+		display: block;
+		margin: 0 .5em 0 0;
+		padding: 0;
+		overflow: hidden;
+		font-size: 1em;
+		font-weight: bold;
+		text-decoration: none;
+		text-overflow: ellipsis;
+	
+		&:hover {
+			text-decoration: underline;
 		}
 	}
-}
+	
+	.isBot {
+		flex-shrink: 0;
+		align-self: center;
+		margin: 0 .5em 0 0;
+		padding: 1px 6px;
+		font-size: 80%;
+		border: solid 0.5px var(--divider);
+		border-radius: 3px;
+	}
+	
+	.username {
+		flex-shrink: 9999999;
+		margin: 0 .5em 0 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	
+	.info {
+		flex-shrink: 0;
+		margin-left: auto;
+		font-size: 0.9em;
+	}
+	
+	.badgeRoles {
+		margin: 0 .5em 0 0;
+	}
+	
+	.badgeRole {
+		height: 1.3em;
+		vertical-align: -20%;
+	
+		& + .badgeRole {
+			margin-left: 0.2em;
+		}
+	}
 </style>

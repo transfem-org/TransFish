@@ -1,97 +1,73 @@
 <template>
-	<div v-size="{ min: [350, 500] }" class="fefdfafb">
-		<MkAvatar class="avatar" :user="$i" disable-link />
-		<div class="main">
-			<div class="header">
-				<MkUserName :user="$i" />
-			</div>
-			<div class="body">
-				<div class="content">
-					<Mfm
-						:text="preprocess(text).trim()"
-						:author="$i"
-						:i="$i"
-						advanced-mfm
-					/>
-				</div>
+<div :class="$style.root">
+	<MkAvatar :class="$style.avatar" :user="$i" link preview/>
+	<div :class="$style.main">
+		<div :class="$style.header">
+			<MkUserName :user="$i" :nowrap="true"/>
+		</div>
+		<div>
+			<div>
+				<Mfm :text="text.trim()" :author="$i" :i="$i"/>
 			</div>
 		</div>
 	</div>
+</div>
 </template>
 
 <script lang="ts" setup>
-import {} from "vue";
-import { preprocess } from "@/scripts/preprocess";
+import { } from 'vue';
+import { $i } from '@/account';
 
 const props = defineProps<{
 	text: string;
 }>();
 </script>
 
-<style lang="scss" scoped>
-.fefdfafb {
+<style lang="scss" module>
+.root {
 	display: flex;
 	margin: 0;
 	padding: 0;
 	overflow: clip;
 	font-size: 0.95em;
+}
 
-	&.min-width_350px {
-		> .avatar {
-			margin: 0 10px 0 0;
-			width: 44px;
-			height: 44px;
-		}
+.avatar {
+	flex-shrink: 0 !important;
+	display: block !important;
+	margin: 0 10px 0 0 !important;
+	width: 40px !important;
+	height: 40px !important;
+	border-radius: 8px !important;
+	pointer-events: none !important;
+}
+
+.main {
+	flex: 1;
+	min-width: 0;
+}
+
+.header {
+	margin-bottom: 2px;
+	font-weight: bold;
+	width: 100%;
+	overflow: clip;
+    text-overflow: ellipsis;
+}
+
+@container (min-width: 350px) {
+	.avatar {
+		margin: 0 10px 0 0 !important;
+		width: 44px !important;
+		height: 44px !important;
 	}
+}
 
-	&.min-width_500px {
-		> .avatar {
-			margin: 0 12px 0 0;
-			width: 48px;
-			height: 48px;
-		}
-	}
-
-	> .avatar {
-		flex-shrink: 0;
-		display: block;
-		margin: 0 10px 0 0;
-		width: 40px;
-		height: 40px;
-		border-radius: 8px;
-		pointer-events: none;
-	}
-
-	> .main {
-		flex: 1;
-		min-width: 0;
-
-		> .header {
-			margin-bottom: 2px;
-			font-weight: bold;
-		}
-
-		> .body {
-			> .cw {
-				cursor: default;
-				display: block;
-				margin: 0;
-				padding: 0;
-				overflow-wrap: break-word;
-
-				> .text {
-					margin-right: 8px;
-				}
-			}
-
-			> .content {
-				> .text {
-					cursor: default;
-					margin: 0;
-					padding: 0;
-				}
-			}
-		}
+@container (min-width: 500px) {
+	.avatar {
+		margin: 0 12px 0 0 !important;
+		width: 48px !important;
+		height: 48px !important;
 	}
 }
 </style>

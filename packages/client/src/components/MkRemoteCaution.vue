@@ -1,35 +1,27 @@
 <template>
-	<div class="caution _block">
-		{{ i18n.ts.remoteUserCaution
-		}}<a
-			class="link"
-			:href="href"
-			rel="nofollow noopener"
-			target="_blank"
-			>{{ i18n.ts.showOnRemote }}</a
-		>
-	</div>
-</template>
-
+	<div :class="$style.root"><i class="ph-warning ph-bold ph-lg" style="margin-right: 8px;"></i>{{ i18n.ts.remoteUserCaution }}<a :class="$style.link" :href="href" rel="nofollow noopener" target="_blank">{{ i18n.ts.showOnRemote }}</a></div>
+	</template>
+	
 <script lang="ts" setup>
-import { i18n } from "@/i18n";
-
-defineProps<{
-	href: string;
-}>();
+	import { i18n } from '@/i18n';
+	
+	defineProps<{
+		href: string;
+	}>();
 </script>
-
-<style lang="scss" scoped>
-.caution {
-	padding: 16px;
-	font-size: 90%;
-	background: var(--infoWarnBg);
-	color: var(--infoWarnFg);
-	border-radius: var(--radius);
-
-	> .link {
+	
+<style lang="scss" module>
+	.root {
+		font-size: 0.8em;
+		padding: 16px;
+		background: var(--infoWarnBg);
+		color: var(--infoWarnFg);
+		border-radius: var(--radius);
+		overflow: clip;
+	}
+	
+	.link {
 		margin-left: 4px;
 		color: var(--accent);
 	}
-}
 </style>

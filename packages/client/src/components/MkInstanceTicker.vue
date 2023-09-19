@@ -1,139 +1,80 @@
 <template>
-	<div
-		ref="ticker"
-		v-tooltip="capitalize(instance.softwareName)"
-		class="hpaizdrt"
-		:style="bg"
-		@click.stop="openServerInfo"
-	>
-		<img class="icon" :src="getInstanceIcon(instance)" aria-hidden="true" />
-		<span class="name">{{ instance.name }}</span>
+	<div :class="$style.root" :style="bg">
+		<img v-if="faviconUrl" :class="$style.icon" :src="faviconUrl"/>
+		<div :class="$style.name">{{ instance.name }}</div>
 	</div>
 </template>
-
+	
 <script lang="ts" setup>
-import { ref } from "vue";
-
-import { instanceName } from "@/config";
-import { instance as Instance } from "@/instance";
-import { getProxiedImageUrlNullable } from "@/scripts/media-proxy";
-import { defaultStore } from "@/store";
-import { pageWindow } from "@/os";
-
-const props = defineProps<{
-	instance?: {
-		faviconUrl?: string;
-		name: string;
-		themeColor?: string;
-		softwareName?: string;
-	};
-	host: string | null;
-}>();
-
-const ticker = ref<HTMLElement | null>(null);
-
-// if no instance data is given, this is for the local instance
-const instance = props.instance ?? {
-	faviconUrl: Instance.iconUrl || Instance.faviconUrl || "/favicon.ico",
-	name: instanceName,
-	themeColor: (
-		document.querySelector(
-			'meta[name="theme-color-orig"]',
-		) as HTMLMetaElement
-	)?.content,
-	softwareName: Instance.softwareName ?? "Firefish",
-};
-
-const commonNames = new Map<string, string>([
-	["birdsitelive", "BirdsiteLIVE"],
-	["bookwyrm", "BookWyrm"],
-	["bridgy-fed", "Bridgy Fed"],
-	["castopod", "CastoPod"],
-	["foundkey", "FoundKey"],
-	["gnusocial", "GNU social"],
-	["gotosocial", "GoToSocial"],
-	["kbin", "/kbin"],
-	["microblogpub", "microblog.pub"],
-	["nextcloud social", "Nextcloud Social"],
-	["peertube", "PeerTube"],
-	["reel2bits", "reel2bits"],
-	["snac", "snac"],
-	["snac2", "snac2"],
-	["takahe", "Takahē"],
-	["wafrn", "WAFRN"],
-	["wordpress", "WordPress"],
-	["writefreely", "WriteFreely"],
-	["wxwclub", "wxwClub"],
-]);
-
-const capitalize = (s: string) => {
-	if (s == null) return "Unknown";
-	if (commonNames.has(s)) return commonNames.get(s);
-	return s[0].toUpperCase() + s.slice(1);
-};
-
-const computedStyle = getComputedStyle(document.documentElement);
-const themeColor =
-	instance.themeColor ?? computedStyle.getPropertyValue("--bg");
-
-const bg = {
-	background: `linear-gradient(90deg, ${themeColor}, ${themeColor}55)`,
-};
-
-function getInstanceIcon(instance): string {
-	return (
-		getProxiedImageUrlNullable(instance.iconUrl, "preview") ??
-		getProxiedImageUrlNullable(instance.faviconUrl, "preview") ??
-		"/client-assets/dummy.png"
-	);
-}
-
-function openServerInfo() {
-	if (!defaultStore.state.openServerInfo) return;
-	const instanceInfoUrl =
-		props.host == null ? "/about" : `/instance-info/${props.host}`;
-	pageWindow(instanceInfoUrl);
-}
-</script>
-
-<style lang="scss" scoped>
-.hpaizdrt {
-	display: flex;
-	align-items: center;
-	height: 1.1em;
-	justify-self: flex-end;
-	padding: 0.2em 0.4em;
-	border-radius: 100px;
-	font-size: 0.8em;
-	text-shadow: 0 2px 2px var(--shadow);
-	overflow: hidden;
-	.header > .body & {
-		width: max-content;
-		max-width: 100%;
-	}
-
-	> .icon {
-		height: 100%;
-		border-radius: 0.3rem;
-	}
-
-	> .name {
-		display: none;
-		margin-left: 4px;
-		font-size: 0.85em;
-		vertical-align: top;
-		font-weight: bold;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		text-shadow:
-			-1px -1px 0 var(--bg),
-			1px -1px 0 var(--bg),
-			-1px 1px 0 var(--bg),
-			1px 1px 0 var(--bg);
-		.article > .main &,
-		.header > .body & {
-			display: unset;
+	import { } from 'vue';
+	import { instanceName } from '@/config';
+	import { instance as Instance } from '@/instance';
+	import { getProxiedImageUrlNullable } from '@/scripts/media-proxy';
+	
+	const props = defineProps<{
+		instance?: {
+			faviconUrl?: string
+			name: string
+			themeColor?: string
 		}
+	}>();
+	
+	// if no instance data is given, this is for the local instance
+	const instance = props.instance ?? {
+		name: instanceName,
+		themeColor: (document.querySelector('meta[name="theme-color-orig"]') as HTMLMetaElement).content,
+	};
+	
+	const faviconUrl = $computed(() => props.instance ? getProxiedImageUrlNullable(props.instance.faviconUrl, 'preview') : getProxiedImageUrlNullable(Instance.iconUrl, 'preview') ?? getProxiedImageUrlNullable(Instance.faviconUrl, 'preview') ?? '/favicon.ico');
+	
+	const themeColor = instance.themeColor ?? '#777777';
+	
+	const bg = {
+		background: `linear-gradient(90deg, ${themeColor}, ${themeColor}00)`,
+	};
+</script>
+	
+<style lang="scss" module>
+	$height: 2ex;
+	
+	.root {
+		display: flex;
+		align-items: center;
+		height: $height;
+		border-radius: 4px 0 0 4px;
+		overflow: clip;
+		color: #fff;
+		text-shadow: /* .866 ≈ sin(60deg) */
+			1px 0 1px #000,
+			.866px .5px 1px #000,
+			.5px .866px 1px #000,
+			0 1px 1px #000,
+			-.5px .866px 1px #000,
+			-.866px .5px 1px #000,
+			-1px 0 1px #000,
+			-.866px -.5px 1px #000,
+			-.5px -.866px 1px #000,
+			0 -1px 1px #000,
+			.5px -.866px 1px #000,
+			.866px -.5px 1px #000;
+		mask-image: linear-gradient(90deg,
+			rgb(0,0,0),
+			rgb(0,0,0) calc(100% - 16px),
+			rgba(0,0,0,0) 100%
+		);
 	}
-}
+	
+	.icon {
+		height: $height;
+		flex-shrink: 0;
+	}
+	
+	.name {
+		margin-left: 4px;
+		line-height: 1;
+		font-size: 0.9em;
+		font-weight: bold;
+		white-space: nowrap;
+		overflow: visible;
+	}
 </style>

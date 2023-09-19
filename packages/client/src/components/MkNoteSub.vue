@@ -1,850 +1,159 @@
 <template>
-	<article
-		v-if="!muted.muted || muted.what === 'reply'"
-		:id="detailedView ? appearNote.id : null"
-		ref="el"
-		v-size="{ max: [450, 500] }"
-		class="wrpstxzv"
-		tabindex="-1"
-		:class="{
-			children: depth > 1,
-			singleStart: replies.length == 1,
-			firstColumn: depth == 1 && conversation,
-		}"
-		@contextmenu.stop="onContextmenu"
-	>
-		<div v-if="conversation && depth > 1" class="line"></div>
-		<div
-			class="main"
-			:style="{ cursor: expandOnNoteClick ? 'pointer' : '' }"
-			@click="noteClick"
-		>
-			<div class="avatar-container">
-				<MkAvatar class="avatar" :user="appearNote.user" />
-				<div
-					v-if="!conversation || replies.length > 0"
-					class="line"
-				></div>
-			</div>
-			<div class="body">
-				<XNoteHeader class="header" :note="note" :mini="true" />
-				<div class="body">
-					<MkSubNoteContent
-						class="text"
-						:note="note"
-						:parent-id="parentId"
-						:conversation="conversation"
-						:detailed-view="detailedView"
-						@focusfooter="footerEl.focus()"
-					/>
-					<div v-if="translating || translation" class="translation">
-						<MkLoading v-if="translating" mini />
-						<div v-else class="translated">
-							<b
-								>{{
-									i18n.t("translatedFrom", {
-										x: translation.sourceLang,
-									})
-								}}:
-							</b>
-							<Mfm
-								:text="translation.text"
-								:author="appearNote.user"
-								:i="$i"
-								:custom-emojis="appearNote.emojis"
-							/>
-						</div>
+	<div v-if="!muted" :class="[$style.root, { [$style.children]: depth > 1 }]">
+		<div :class="$style.main">
+			<div v-if="note.channel" :class="$style.colorBar" :style="{ background: note.channel.color }"></div>
+			<MkAvatar :class="$style.avatar" :user="note.user" link preview/>
+			<div :class="$style.body">
+				<MkNoteHeader :class="$style.header" :note="note" :mini="true"/>
+				<div>
+					<p v-if="note.cw != null" :class="$style.cw">
+						<Mfm v-if="note.cw != ''" style="margin-right: 8px;" :text="note.cw" :author="note.user" :i="$i"/>
+						<MkCwButton v-model="showContent" :note="note"/>
+					</p>
+					<div v-show="note.cw == null || showContent">
+						<MkSubNoteContent :class="$style.text" :note="note"/>
 					</div>
 				</div>
-				<footer ref="footerEl" class="footer" tabindex="-1">
-					<XReactionsViewer
-						v-if="enableEmojiReactions"
-						ref="reactionsViewer"
-						:note="appearNote"
-					/>
-					<button
-						v-tooltip.noDelay.bottom="i18n.ts.reply"
-						class="button _button"
-						@click.stop="reply()"
-					>
-						<i class="ph-arrow-u-up-left ph-bold ph-lg"></i>
-						<template v-if="appearNote.repliesCount > 0">
-							<p class="count">{{ appearNote.repliesCount }}</p>
-						</template>
-					</button>
-					<XRenoteButton
-						ref="renoteButton"
-						class="button"
-						:note="appearNote"
-						:count="appearNote.renoteCount"
-					/>
-					<XStarButtonNoEmoji
-						v-if="!enableEmojiReactions"
-						class="button"
-						:note="appearNote"
-						:count="
-							Object.values(appearNote.reactions).reduce(
-								(partialSum, val) => partialSum + val,
-								0,
-							)
-						"
-						:reacted="appearNote.myReaction != null"
-					/>
-					<XStarButton
-						v-if="
-							enableEmojiReactions &&
-							appearNote.myReaction == null
-						"
-						ref="starButton"
-						class="button"
-						:note="appearNote"
-					/>
-					<button
-						v-if="
-							enableEmojiReactions &&
-							appearNote.myReaction == null
-						"
-						ref="reactButton"
-						v-tooltip.noDelay.bottom="i18n.ts.reaction"
-						class="button _button"
-						@click.stop="react()"
-					>
-						<i class="ph-smiley ph-bold ph-lg"></i>
-					</button>
-					<button
-						v-if="
-							enableEmojiReactions &&
-							appearNote.myReaction != null
-						"
-						ref="reactButton"
-						v-tooltip.noDelay.bottom="i18n.ts.removeReaction"
-						class="button _button reacted"
-						@click.stop="undoReact(appearNote)"
-					>
-						<i class="ph-minus ph-bold ph-lg"></i>
-					</button>
-					<XQuoteButton class="button" :note="appearNote" />
-					<button
-						v-if="
-							$i != null &&
-							isForeignLanguage &&
-							translation == null
-						"
-						v-tooltip.noDelay.bottom="i18n.ts.translate"
-						class="button _button"
-						@click.stop="translate"
-					>
-						<i class="ph-translate ph-bold ph-lg"></i>
-					</button>
-					<button
-						ref="menuButton"
-						v-tooltip.noDelay.bottom="i18n.ts.more"
-						class="button _button"
-						@click.stop="menu()"
-					>
-						<i class="ph-dots-three-outline ph-bold ph-lg"></i>
-					</button>
-				</footer>
 			</div>
 		</div>
-		<template v-if="conversation">
-			<MkNoteSub
-				v-for="reply in replies"
-				v-if="replyLevel < 11 && depth < 5"
-				:key="reply.id"
-				:note="reply"
-				class="reply"
-				:class="{ single: replies.length == 1 }"
-				:conversation="conversation"
-				:depth="replies.length == 1 ? depth : depth + 1"
-				:reply-level="replyLevel + 1"
-				:parent-id="appearNote.id"
-				:detailed-view="detailedView"
-			/>
-			<div v-else-if="replies.length > 0" class="more">
-				<div class="line"></div>
-				<MkA class="text _link" :to="notePage(note)"
-					>{{ i18n.ts.continueThread }}
-					<i class="ph-caret-double-right ph-bold ph-lg"></i
-				></MkA>
-			</div>
+		<template v-if="depth < 5">
+			<MkNoteSub v-for="reply in replies" :key="reply.id" :note="reply" :class="$style.reply" :detail="true" :depth="depth + 1"/>
 		</template>
-	</article>
-	<div v-else class="muted" @click="muted.muted = false">
-		<I18n :src="softMuteReasonI18nSrc(muted.what)" tag="small">
+		<div v-else :class="$style.more">
+			<MkA class="_link" :to="notePage(note)">{{ i18n.ts.continueThread }} <i class="ti ti-chevron-double-right"></i></MkA>
+		</div>
+	</div>
+	<div v-else :class="$style.muted" @click="muted = false">
+		<I18n :src="i18n.ts.userSaysSomething" tag="small">
 			<template #name>
-				<MkA
-					v-user-preview="note.userId"
-					class="name"
-					:to="userPage(note.user)"
-				>
-					<MkUserName :user="note.user" />
+				<MkA v-user-preview="note.userId" :to="userPage(note.user)">
+					<MkUserName :user="note.user"/>
 				</MkA>
-			</template>
-			<template #reason>
-				<b class="_blur_text">{{ muted.matched.join(", ") }}</b>
 			</template>
 		</I18n>
 	</div>
 </template>
-
+	
 <script lang="ts" setup>
-import { computed, inject, ref } from "vue";
-import type { Ref } from "vue";
-import type * as misskey from "firefish-js";
-import * as mfm from "mfm-js";
-import { detect as detectLanguage_ } from "tinyld";
-import XNoteHeader from "@/components/MkNoteHeader.vue";
-import MkSubNoteContent from "@/components/MkSubNoteContent.vue";
-import XReactionsViewer from "@/components/MkReactionsViewer.vue";
-import XStarButton from "@/components/MkStarButton.vue";
-import XStarButtonNoEmoji from "@/components/MkStarButtonNoEmoji.vue";
-import XRenoteButton from "@/components/MkRenoteButton.vue";
-import XQuoteButton from "@/components/MkQuoteButton.vue";
-import copyToClipboard from "@/scripts/copy-to-clipboard";
-import { url } from "@/config";
-import { pleaseLogin } from "@/scripts/please-login";
-import { getNoteMenu } from "@/scripts/get-note-menu";
-import { getWordSoftMute } from "@/scripts/check-word-mute";
-import { notePage } from "@/filters/note";
-import { useRouter } from "@/router";
-import { userPage } from "@/filters/user";
-import * as os from "@/os";
-import { reactionPicker } from "@/scripts/reaction-picker";
-import { $i } from "@/account";
-import { i18n } from "@/i18n";
-import { useNoteCapture } from "@/scripts/use-note-capture";
-import { defaultStore } from "@/store";
-import { deepClone } from "@/scripts/clone";
-
-const router = useRouter();
-
-const props = withDefaults(
-	defineProps<{
-		note: misskey.entities.Note;
-		conversation?: misskey.entities.Note[];
-		parentId?;
-		detailedView?;
-
+	import { ref } from 'vue';
+	import * as Misskey from 'firefish-js';
+	import MkNoteHeader from '@/components/MkNoteHeader.vue';
+	import MkSubNoteContent from '@/components/MkSubNoteContent.vue';
+	import MkCwButton from '@/components/MkCwButton.vue';
+	import { notePage } from '@/filters/note';
+	import * as os from '@/os';
+	import { i18n } from '@/i18n';
+	import { $i } from '@/account';
+	import { userPage } from "@/filters/user";
+	import { checkWordMute } from "@/scripts/check-word-mute";
+	import { defaultStore } from "@/store";
+	
+	const props = withDefaults(defineProps<{
+		note: Misskey.entities.Note;
+		detail?: boolean;
+	
 		// how many notes are in between this one and the note being viewed in detail
 		depth?: number;
-		// the actual reply level of this note within the conversation thread
-		replyLevel?: number;
-	}>(),
-	{
+	}>(), {
 		depth: 1,
-		replyLevel: 1,
-	},
-);
-
-const note = ref(deepClone(props.note));
-
-const softMuteReasonI18nSrc = (what?: string) => {
-	if (what === "note") return i18n.ts.userSaysSomethingReason;
-	if (what === "reply") return i18n.ts.userSaysSomethingReasonReply;
-	if (what === "renote") return i18n.ts.userSaysSomethingReasonRenote;
-	if (what === "quote") return i18n.ts.userSaysSomethingReasonQuote;
-
-	// I don't think here is reachable, but just in case
-	return i18n.ts.userSaysSomething;
-};
-
-const isRenote =
-	note.value.renote != null &&
-	note.value.text == null &&
-	note.value.fileIds.length === 0 &&
-	note.value.poll == null;
-
-const el = ref<HTMLElement>();
-const footerEl = ref<HTMLElement>();
-const menuButton = ref<HTMLElement>();
-const starButton = ref<InstanceType<typeof XStarButton>>();
-const renoteButton = ref<InstanceType<typeof XRenoteButton>>();
-const reactButton = ref<HTMLElement>();
-const appearNote = computed(() =>
-	isRenote ? (note.value.renote as misskey.entities.Note) : note.value,
-);
-const isDeleted = ref(false);
-const muted = ref(
-	getWordSoftMute(note.value, $i, defaultStore.state.mutedWords),
-);
-const translation = ref(null);
-const translating = ref(false);
-const replies: misskey.entities.Note[] =
-	props.conversation
-		?.filter(
-			(item) =>
-				item.replyId === props.note.id ||
-				item.renoteId === props.note.id,
-		)
-		.reverse() ?? [];
-const enableEmojiReactions = defaultStore.state.enableEmojiReactions;
-const expandOnNoteClick = defaultStore.state.expandOnNoteClick;
-const lang = localStorage.getItem("lang");
-const translateLang = localStorage.getItem("translateLang");
-
-function detectLanguage(text: string) {
-	const nodes = mfm.parse(text);
-	const filtered = mfm.extract(nodes, (node) => {
-		return node.type === "text" || node.type === "quote";
 	});
-	const purified = mfm.toString(filtered);
-	return detectLanguage_(purified);
-}
-
-const isForeignLanguage: boolean =
-	defaultStore.state.detectPostLanguage &&
-	appearNote.value.text != null &&
-	(() => {
-		const targetLang = (translateLang || lang || navigator.language)?.slice(
-			0,
-			2,
-		);
-		const postLang = detectLanguage(appearNote.value.text);
-		return postLang !== "" && postLang !== targetLang;
-	})();
-
-async function translate_(noteId, targetLang: string) {
-	return await os.api("notes/translate", {
-		noteId,
-		targetLang,
-	});
-}
-
-async function translate() {
-	if (translation.value != null) return;
-	translating.value = true;
-	translation.value = await translate_(
-		appearNote.value.id,
-		translateLang || lang || navigator.language,
-	);
-
-	// use UI language as the second translation language
-	if (
-		translateLang != null &&
-		lang != null &&
-		translateLang !== lang &&
-		(!translation.value ||
-			translation.value.sourceLang.toLowerCase() ===
-				translateLang.slice(0, 2))
-	)
-		translation.value = await translate_(appearNote.value.id, lang);
-	translating.value = false;
-}
-
-useNoteCapture({
-	rootEl: el,
-	note: appearNote,
-	isDeletedRef: isDeleted,
-});
-
-function reply(viaKeyboard = false): void {
-	pleaseLogin();
-	os.post({
-		reply: appearNote.value,
-		animation: !viaKeyboard,
-	}).then(() => {
-		focus();
-	});
-}
-
-function react(viaKeyboard = false): void {
-	pleaseLogin();
-	blur();
-	reactionPicker.show(
-		reactButton.value,
-		(reaction) => {
-			os.api("notes/reactions/create", {
-				noteId: appearNote.value.id,
-				reaction,
-			});
-		},
-		() => {
-			focus();
-		},
-	);
-}
-
-function undoReact(note): void {
-	const oldReaction = note.myReaction;
-	if (!oldReaction) return;
-	os.api("notes/reactions/delete", {
-		noteId: note.id,
-	});
-}
-
-const currentClipPage = inject<Ref<misskey.entities.Clip> | null>(
-	"currentClipPage",
-	null,
-);
-
-function menu(viaKeyboard = false): void {
-	os.popupMenu(
-		getNoteMenu({
-			note: note.value,
-			translating,
-			translation,
-			menuButton,
-			isDeleted,
-			currentClipPage,
-		}),
-		menuButton.value,
-		{
-			viaKeyboard,
-		},
-	).then(focus);
-}
-
-function onContextmenu(ev: MouseEvent): void {
-	const isLink = (el: HTMLElement) => {
-		if (el.tagName === "A") return true;
-		if (el.parentElement) {
-			return isLink(el.parentElement);
-		}
-	};
-	if (isLink(ev.target)) return;
-	if (window.getSelection().toString() !== "") return;
-
-	if (defaultStore.state.useReactionPickerForContextMenu) {
-		ev.preventDefault();
-		react();
-	} else {
-		os.contextMenu(
-			[
-				{
-					type: "label",
-					text: notePage(appearNote.value),
-				},
-				{
-					icon: "ph-browser ph-bold ph-lg",
-					text: i18n.ts.openInWindow,
-					action: () => {
-						os.pageWindow(notePage(appearNote.value));
-					},
-				},
-				notePage(appearNote.value) != location.pathname
-					? {
-							icon: "ph-arrows-out-simple ph-bold ph-lg",
-							text: i18n.ts.showInPage,
-							action: () => {
-								router.push(
-									notePage(appearNote.value),
-									"forcePage",
-								);
-							},
-					  }
-					: undefined,
-				null,
-				{
-					type: "a",
-					icon: "ph-arrow-square-out ph-bold ph-lg",
-					text: i18n.ts.openInNewTab,
-					href: notePage(appearNote.value),
-					target: "_blank",
-				},
-				{
-					icon: "ph-link-simple ph-bold ph-lg",
-					text: i18n.ts.copyLink,
-					action: () => {
-						copyToClipboard(`${url}${notePage(appearNote.value)}`);
-					},
-				},
-				note.value.user.host != null
-					? {
-							type: "a",
-							icon: "ph-arrow-square-up-right ph-bold ph-lg",
-							text: i18n.ts.showOnRemote,
-							href: note.value.url ?? note.value.uri ?? "",
-							target: "_blank",
-					  }
-					: undefined,
-			],
-			ev,
-		);
+	
+	const muted = ref(checkWordMute(props.note, $i, defaultStore.state.mutedWords));
+	
+	let showContent = $ref(false);
+	let replies: Misskey.entities.Note[] = $ref([]);
+	
+	if (props.detail) {
+		os.api('notes/children', {
+			noteId: props.note.id,
+			limit: 5,
+		}).then(res => {
+			replies = res;
+		});
 	}
-}
-
-function focus() {
-	el.value.focus();
-}
-
-function blur() {
-	el.value.blur();
-}
-
-function noteClick(e) {
-	if (document.getSelection().type === "Range" || !expandOnNoteClick) {
-		e.stopPropagation();
-	} else {
-		router.push(notePage(props.note));
-	}
-}
 </script>
-
-<style lang="scss" scoped>
-.wrpstxzv {
-	padding: 16px 32px;
-	outline: none;
-	&.children {
-		padding: 10px 0 0 var(--indent);
-		padding-left: var(--indent) !important;
-		font-size: 1em;
-		cursor: auto;
-
-		&.max-width_500px {
-			padding: 10px 0 0 8px;
+	
+<style lang="scss" module>
+	.root {
+		padding: 16px 32px;
+		font-size: 0.9em;
+		position: relative;
+	
+		&.children {
+			padding: 10px 0 0 16px;
+			font-size: 1em;
 		}
 	}
-
-	> .main {
+	
+	.main {
 		display: flex;
-
-		> .avatar-container {
-			margin-right: 8px;
-			z-index: 2;
-			> .avatar {
-				flex-shrink: 0;
-				display: block;
-				width: 38px;
-				height: 38px;
-				border-radius: 8px;
-			}
-		}
-
-		> .body {
-			position: relative;
-			flex: 1;
-			min-width: 0;
-			margin: 0 -200px;
-			padding: 0 200px;
-			overflow: clip;
-			@media (pointer: coarse) {
-				cursor: default;
-			}
-
-			> .header {
-				margin-bottom: 2px;
-				cursor: auto;
-			}
-
-			> .body {
-				> .translation {
-					border: solid 0.5px var(--divider);
-					border-radius: var(--radius);
-					padding: 12px;
-					margin-top: 8px;
-				}
-			}
-			> .footer {
-				position: relative;
-				z-index: 2;
-				display: flex;
-				flex-wrap: wrap;
-
-				> :deep(.button) {
-					position: relative;
-					margin: 0;
-					padding: 8px;
-					opacity: 0.7;
-					&:disabled {
-						opacity: 0.5 !important;
-					}
-					flex-grow: 1;
-					max-width: 3.5em;
-					width: max-content;
-					min-width: max-content;
-					height: auto;
-					transition: opacity 0.2s;
-					&::before {
-						content: "";
-						position: absolute;
-						inset: 0;
-						bottom: 2px;
-						background: var(--panel);
-						z-index: -1;
-						transition: background 0.2s;
-					}
-					&:first-of-type {
-						margin-left: -0.5em;
-						&::before {
-							border-radius: 100px 0 0 100px;
-						}
-					}
-					&:last-of-type {
-						&::before {
-							border-radius: 0 100px 100px 0;
-						}
-					}
-					&:hover {
-						color: var(--fgHighlighted);
-					}
-
-					> i {
-						display: inline !important;
-					}
-
-					> .count {
-						display: inline;
-						margin: 0 0 0 8px;
-						opacity: 0.7;
-					}
-
-					&.reacted {
-						color: var(--accent);
-					}
-				}
-			}
-		}
 	}
-
-	&.reply > .main {
-		margin-inline: -200px;
-		padding-inline: 200px;
-		&::before {
-			inset-inline: 176px !important;
-		}
+	
+	.colorBar {
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		width: 5px;
+		height: calc(100% - 8px);
+		border-radius: 999px;
+		pointer-events: none;
 	}
-	&.reply,
-	&.reply-to {
-		> .main > .body {
-			margin-right: -24px;
-			padding-right: 24px;
-			margin-top: -12px;
-			padding-top: 12px;
-			margin-left: calc(0px - var(--avatarSize) - 32px);
-			padding-left: calc(var(--avatarSize) + 32px);
-			border-radius: var(--radius);
-		}
+	
+	.avatar {
+		flex-shrink: 0;
+		display: block;
+		margin: 0 8px 0 0;
+		width: 38px;
+		height: 38px;
+		border-radius: 8px;
 	}
-	&.reply-to {
-		> .main > .body {
-			margin-left: calc(0px - var(--avatarSize) - 38px);
-			padding-left: calc(var(--avatarSize) + 38px);
-			margin-top: -16px;
-			padding-top: 16px;
-		}
+	
+	.body {
+		flex: 1;
+		min-width: 0;
 	}
-	&.reply {
-		--avatarSize: 38px;
-		.avatar-container {
-			margin-right: 8px !important;
-		}
+	
+	.header {
+		margin-bottom: 2px;
 	}
-	> .reply,
-	> .more {
+	
+	.cw {
+		cursor: default;
+		display: block;
+		margin: 0;
+		padding: 0;
+		overflow-wrap: break-word;
+	}
+	
+	.text {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.reply, .more {
+		border-left: solid 0.5px var(--divider);
 		margin-top: 10px;
-		&.single {
-			padding: 0 !important;
-			> .line {
-				display: none;
-			}
-		}
 	}
-
-	> .more {
-		display: flex;
-		padding-block: 10px;
-		font-weight: 600;
-		> .line {
-			position: relative;
-			z-index: 2;
-			flex-grow: 0 !important;
-			margin-top: -10px !important;
-			margin-bottom: 10px !important;
-			margin-right: 10px !important;
-			&::before {
-				border-left-style: dashed !important;
-				border-bottom-left-radius: 100px !important;
-			}
-		}
-		i {
-			font-size: 1em !important;
-			vertical-align: middle !important;
-		}
-		a {
-			position: static;
-			&::before {
-				content: "";
-				position: absolute;
-				inset: 0;
-			}
-			&::after {
-				content: unset;
-			}
-		}
+	
+	.more {
+		padding: 10px 0 0 16px;
 	}
-
-	&.reply,
-	&.reply-to,
-	&.reply-to-more {
-		> .main:hover,
-		> .main:focus-within {
-			:deep(.footer .button) {
-				opacity: 1;
-			}
-		}
-	}
-
-	&.reply-to,
-	&.reply-to-more {
-		padding-bottom: 0;
-		&:first-child {
-			padding-top: 24px;
-		}
-		.line::before {
-			margin-bottom: -16px;
-		}
-	}
-
-	// Reply Lines
-	&.reply,
-	&.reply-to,
-	&.reply-to-more {
-		--indent: calc(var(--avatarSize) - 5px);
-		> .main {
-			> .avatar-container {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				margin-right: 14px;
-				width: var(--avatarSize);
-				> .avatar {
-					width: var(--avatarSize);
-					height: var(--avatarSize);
-					margin: 0;
-				}
-			}
-		}
-		.line {
-			position: relative;
-			z-index: 2;
-			width: var(--avatarSize);
-			display: flex;
-			flex-grow: 1;
-			margin-bottom: -10px;
-			pointer-events: none;
-			opacity: 0.25;
-			&::before {
-				content: "";
-				position: absolute;
-				border-left: 2px solid currentColor;
-				margin-left: calc((var(--avatarSize) / 2) - 1px);
-				width: calc(var(--indent) / 2);
-				inset-block: 0;
-				min-height: 8px;
-			}
-		}
-	}
-	&.reply-to,
-	&.reply-to-more {
-		> .main > .avatar-container > .line {
-			margin-bottom: 0px !important;
-		}
-	}
-	&.single,
-	&.singleStart {
-		> .main > .avatar-container > .line {
-			margin-bottom: -10px !important;
-		}
-	}
-	.reply.children:not(:last-child) {
-		// Line that goes through multiple replies
-		position: relative;
-		> .line {
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-		}
-	}
-	// Reply line connectors
-	.reply.children:not(.single) {
-		position: relative;
-		> .line {
-			position: absolute;
-			z-index: 2;
-			left: 0;
-			top: 0;
-			opacity: 0.25;
-			&::after {
-				content: "";
-				position: absolute;
-				border-left: 2px solid currentColor;
-				border-bottom: 2px solid currentColor;
-				margin-left: calc((var(--avatarSize) / 2) - 1px);
-				width: calc(var(--indent) / 2);
-				height: calc((var(--avatarSize) / 2));
-				border-bottom-left-radius: calc(var(--indent) / 2);
-				top: 8px;
-			}
-		}
-		&:not(:last-child) > .line::after {
-			mask: linear-gradient(to right, transparent 2px, black 2px);
-			-webkit-mask: linear-gradient(to right, transparent 2px, black 2px);
-		}
-	}
-	// End Reply Divider
-	.children > .main:last-child {
-		padding-bottom: 1em;
-		&::before {
-			bottom: 1em;
-		}
-		// &::after {
-		// 	content: "";
-		// 	border-top: 1px solid var(--X13);
-		// 	position: absolute;
-		// 	bottom: 0;
-		// 	margin-left: calc(var(--avatarSize) + 12px);
-		// 	inset-inline: 0;
-		// }
-	}
-	&.firstColumn > .children:last-child > .main {
-		padding-bottom: 0 !important;
-		&::before {
-			bottom: 0 !important;
-		}
-		// &::after { content: unset }
-	}
-
-	&.max-width_500px {
-		padding: 14px 16px;
-		:not(.reply) > & {
-			.reply {
-				--avatarSize: 24px;
-				--indent: calc(var(--avatarSize) - 4px);
-			}
-		}
-		&.firstColumn {
-			> .main,
-			> .line,
-			> .children:not(.single) > .line {
-				--avatarSize: 35px;
-				--indent: 35px;
-			}
-			> .children:not(.single) {
-				padding-left: 28px !important;
-			}
-		}
-		&.reply-to {
-			--avatarSize: 46px;
+	
+	@container (max-width: 450px) {
+		.root {
 			padding: 14px 16px;
-			padding-top: 14px !important;
-			padding-bottom: 0 !important;
-			margin-bottom: 0 !important;
-		}
-		> .main > .avatar-container {
-			margin-right: 10px;
-		}
-		&:first-child > .main > .body {
-			margin-top: -20px;
-			padding-top: 22px;
+	
+			&.children {
+				padding: 10px 0 0 8px;
+			}
 		}
 	}
-}
-
-.muted {
-	padding: 8px;
-	text-align: center;
-	opacity: 0.7;
-}
+	
+	.muted {
+		text-align: center;
+		padding: 8px !important;
+		border: 1px solid var(--divider);
+		margin: 8px 8px 0 8px;
+		border-radius: 8px;
+	}
 </style>

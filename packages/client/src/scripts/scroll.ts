@@ -98,3 +98,11 @@ export function isBottom(el: Element, asobi = 0) {
 	const max = container ? el.scrollHeight : document.body.offsetHeight;
 	return current >= max - asobi;
 }
+
+export function getBodyScrollHeight() {
+	return Math.max(
+		document.body.scrollHeight, document.documentElement.scrollHeight,
+		document.body.offsetHeight, document.documentElement.offsetHeight,
+		document.body.clientHeight, document.documentElement.clientHeight,
+	);
+}

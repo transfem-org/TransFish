@@ -1,5 +1,6 @@
 import { query } from "@/scripts/url";
 import { url } from "@/config";
+import { instance } from '@/instance';
 
 export function getProxiedImageUrl(imageUrl: string, type?: "preview"): string {
 	return `${url}/proxy/image.webp?${query({
@@ -15,4 +16,25 @@ export function getProxiedImageUrlNullable(
 ): string | null {
 	if (imageUrl == null) return null;
 	return getProxiedImageUrl(imageUrl, type);
+}
+
+export function getStaticImageUrl(baseUrl: string): string {
+	const u = baseUrl.startsWith('http') ? new URL(baseUrl) : new URL(baseUrl, url);
+
+	if (u.href.startsWith(`${url}/emoji/`)) {
+		// もう既にemojiっぽそうだったらsearchParams付けるだけ
+		u.searchParams.set('static', '1');
+		return u.href;
+	}
+
+	if (u.href.startsWith(instance.mediaProxy + '/')) {
+		// もう既にproxyっぽそうだったらsearchParams付けるだけ
+		u.searchParams.set('static', '1');
+		return u.href;
+	}
+
+	return `${instance.mediaProxy}/static.webp?${query({
+		url: u.href,
+		static: '1',
+	})}`;
 }

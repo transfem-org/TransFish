@@ -97,5 +97,8 @@
 		"vue-isyourpasswordsafe": "^2.0.0",
 		"vue-plyr": "^7.0.0",
 		"vue-prism-editor": "2.0.0-alpha.2"
+	},
+	"dependencies": {
+		"buraha": "^0.0.1"
 	}
 }
